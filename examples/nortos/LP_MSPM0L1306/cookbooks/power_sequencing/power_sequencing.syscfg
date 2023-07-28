@@ -1,0 +1,53 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.$name                         = "GPIO_OUT";
+GPIO1.port                          = "PORTA";
+GPIO1.associatedPins.create(4);
+GPIO1.associatedPins[0].$name       = "PIN_0";
+GPIO1.associatedPins[0].pin.$assign = "PA15";
+GPIO1.associatedPins[1].$name       = "PIN_1";
+GPIO1.associatedPins[1].pin.$assign = "PA16";
+GPIO1.associatedPins[2].$name       = "PIN_2";
+GPIO1.associatedPins[2].pin.$assign = "PA17/OPA1.IN0-";
+GPIO1.associatedPins[3].$name       = "PIN_3";
+GPIO1.associatedPins[3].pin.$assign = "PA18";
+
+GPIO2.$name                          = "GPIO_INPUT";
+GPIO2.associatedPins[0].direction    = "INPUT";
+GPIO2.associatedPins[0].interruptEn  = true;
+GPIO2.associatedPins[0].polarity     = "RISE_FALL";
+GPIO2.associatedPins[0].assignedPort = "PORTA";
+GPIO2.associatedPins[0].$name        = "USER_INPUT_1";
+GPIO2.associatedPins[0].pin.$assign  = "PA12";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.$name              = "TIME_SEQUENCE";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.timerClkPrescale   = 256;
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerPeriod        = "500 ms";
+TIMER1.peripheral.$assign = "TIMG0";

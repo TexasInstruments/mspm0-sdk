@@ -1,0 +1,64 @@
+CMSIS DSP Library for MSPM0 MCUs
+================================
+
+1. Introduction
+---------------
+
+Texas Instruments supports ARM's Cortex Microcontroller Software Interface Standard (CMSIS), a standardized hardware abstraction layer for the Cortex-M processor series. The purpose of the CMSIS initiative is to standardize a fragmented industry on one superior hardware and software microcontroller architecture.
+
+The CMSIS DSP library includes source code and example applications, and saves time by including common DSP algorithms such as complex arithmetic, vector operations, filter and control functions. This library can be used on Arm Cortex-M devices, such as the MSPM0 family of MCUs.
+
+This document details the steps necessary to get started with CMSIS DSP using the `MSPM0-SDK <https://www.ti.com/tool/MSPM0-SDK>`__. More details of CMSIS DSP library are available in the `CMSIS DSP Software Library User Manual <https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html>`__.
+
+2. CMSIS DSP Source and Library
+-------------------------------
+
+The MSPM0 SDK includes the CMSIS DSP source and pre-built libraries in the following locations:
+
+-  Source: ``<SDK>\source\third_party\CMSIS\DSP``
+-  Libraries: ``<SDK>\source\third_party\CMSIS\DSP\lib``
+
+Pre-built Libraries are included for the following compilers:
+
+-  TI Arm Clang
+-  Arm GCC
+-  IAR
+-  Keil
+
+3. Using CMSIS DSP with MSPM0
+-----------------------------
+
+3.1 Using CMSIS DSP Examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The MSPM0 SDK includes ready-to-use examples which can be used to test CMSIS DSP functionality or as a template for new projects.
+
+These examples are located at ``<SDK>\examples\cmsis_dsp``, and they are also available in the `TI Developer Zone <https://dev.ti.com/>`__ and `TI Resource Explorer <https://dev.ti.com/tirex/explore/node?node=A__AOsBvwTJoOinHEWBZRPfQg__MSPM0-SDK__a3PaaoK__LATEST>`__.
+
+TI recommends to use ``cmsis_dsp_empty`` for an easy way to start an empty project including library and header files.
+
+3.2 Adding CMSIS DSP to an Existing Project
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following steps describe how to add CMSIS DSP to a Code Composer Studio (CCS) project using TI Arm Clang but similar steps apply for other IDEs and compilers.
+
+1. Add the CMSIS DSP Include directory:
+
+   In CCS, this path can be accessed at ``${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/DSP/Include``
+
+   .. figure:: ./images/cmsis_dsp_include.png
+      :alt: 
+
+2. Add the pre-built library:
+
+   In CCS, the library for TI Arm Clang is available at ``${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/DSP/lib/ticlang/m0p/arm_cortexM0l_math.a``
+
+   .. figure:: ./images/cmsis_dsp_addLib.png
+      :alt: 
+
+3. Include "arm\_math.h" into your source file:
+
+   .. figure:: ./images/cmsis_dsp_source.png
+      :alt: 
+
+4. Start developing with CMSIS DSP and MSPM0!

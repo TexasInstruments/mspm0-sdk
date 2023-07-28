@@ -1,0 +1,39 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+const CAPTURE  = scripting.addModule("/ti/driverlib/CAPTURE", {}, false);
+const CAPTURE1 = CAPTURE.addInstance();
+const PWM      = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1     = PWM.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+CAPTURE1.$name                      = "CAPTURE_0";
+CAPTURE1.captMode                   = "COMBINED";
+CAPTURE1.timerClkPrescale           = 256;
+CAPTURE1.timerPeriod                = "524.29 ms";
+CAPTURE1.interrupts                 = ["CC1_DN","ZERO"];
+CAPTURE1.peripheral.$assign         = "TIMG4";
+CAPTURE1.peripheral.ccp0Pin.$assign = "PA10";
+
+
+PWM1.$name                      = "PWM_0";
+PWM1.ccIndex                    = [0];
+PWM1.clockPrescale              = 256;
+PWM1.timerCount                 = 1000;
+PWM1.peripheral.$assign         = "TIMG1";
+PWM1.peripheral.ccp0Pin.$assign = "PA26";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle    = 50;
+
+SYSCTL.clockTreeEn = true;

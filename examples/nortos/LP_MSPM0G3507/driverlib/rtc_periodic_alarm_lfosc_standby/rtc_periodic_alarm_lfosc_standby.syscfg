@@ -1,0 +1,46 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const RTC    = scripting.addModule("/ti/driverlib/RTC");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+GPIO1.$name                               = "GPIO_LEDS";
+GPIO1.associatedPins[0].assignedPort      = "PORTA";
+GPIO1.associatedPins[0].internalResistor  = "PULL_UP";
+GPIO1.associatedPins[0].$name             = "USER_LED_1";
+GPIO1.associatedPins[0].launchPadShortcut = "LED1En";
+
+RTC.intervalAlarmEvent = "HOURCHANGE";
+RTC.calDOW             = "1";
+RTC.calMin             = 32;
+RTC.calHour            = 10;
+RTC.calYear            = 2021;
+RTC.calMonth           = "4";
+RTC.calDOM             = 5;
+RTC.calAlarm1Min       = 33;
+RTC.calAlarm1Hour      = 10;
+RTC.calAlarm1DOW       = "1";
+RTC.calAlarm1DOM       = 5;
+RTC.calSec             = 58;
+RTC.enPerAlarm1        = true;
+RTC.perAlarm1Divider   = "128";
+RTC.enabledInterrupts  = ["PRESCALER1"];
+
+SYSCTL.validateClkStatus  = true;
+SYSCTL.LFCLKDriveStrength = "HIGHEST";
+SYSCTL.powerPolicy        = "STANDBY0";
+SYSCTL.clockTreeEn       = true;

@@ -1,0 +1,44 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                            = "ADC12_0";
+ADC121.repeatMode                       = true;
+ADC121.powerDownMode                    = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.configureDMA                     = true;
+ADC121.enabledInterrupts                = ["DL_ADC12_INTERRUPT_DMA_DONE"];
+ADC121.enableFIFO                       = true;
+ADC121.sampCnt                          = 8;
+ADC121.adcMem0vref                      = "VREF";
+ADC121.sampleTime0                      = "12 us";
+ADC121.sampleTime1                      = "12 us";
+ADC121.enabledDMATriggers               = ["DL_ADC12_DMA_MEM0_RESULT_LOADED"];
+ADC121.peripheral.$assign               = "ADC0";
+ADC121.DMA_CHANNEL.$name                = "DMA_CH0";
+ADC121.DMA_CHANNEL.addressMode          = "f2b";
+ADC121.DMA_CHANNEL.enableEarlyInterrupt = true;
+ADC121.DMA_CHANNEL.transferSize         = 8;
+ADC121.DMA_CHANNEL.destIncrement        = "INCREMENT";
+ADC121.DMA_CHANNEL.enableInterrupt      = true;
+ADC121.DMA_CHANNEL.peripheral.$assign   = "DMA_CH0";
+
+
+
+VREF.advClockConfigEnable = true;
+VREF.checkVREFReady       = true;
+VREF.basicIntVolt         = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";

@@ -1,0 +1,142 @@
+MSPM0 SDK QuickStart Guide for Keil
+===================================
+
+1. Introduction
+---------------
+
+This guide is intended to assist users in the initial setup and demonstration of running their first sample application. The guide explains how to install the MSPM0 SDK and the MSPM0 CMSIS-Pack for Keil, and lists the various other tools required to get started with your first application.
+
+2. Prerequisites
+----------------
+
+The user is expected to have downloaded the following:
+
+-  `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__
+-  `Keil MDK-Arm with uVision <https://www2.keil.com/mdk5>`__ v5.38a or later, with Arm Clang compiler v6.16 or later.
+
+-  `SysConfig 1.17.x <https://www.ti.com/tool/SYSCONFIG>`__
+
+3. Install the MSPM0 CMSIS-Pack
+-------------------------------
+
+1. Install `Keil MDK-Arm with uVision <#prerequisites>`__
+
+2. In uVision, select **Project → Manage → Pack Installer**
+
+   .. figure:: ./images/quickstart_guide_keil/keil_install_1.png
+      :alt: 
+
+3. In the Pack Installer, select the Texas Instruments devices and select the corresponding MSPM0 family. Then on the right side, install the device specific pack as well as any other pack that may be necessary.
+
+   .. figure:: ./images/quickstart_guide_keil/keil_install_2.png
+      :alt: 
+
+4. Approve the license terms
+
+5. The Pack Installer should show suppport for the MSPM0 devices.
+
+   .. figure:: ./images/quickstart_guide_keil/keil_install_5.png
+      :alt: 
+
+4. Install the MSPM0 SDK
+------------------------
+
+1. Download and install the latest `MSPM0 SDK <#prerequisites>`__. Note that there are SDK installers for Windows, Linux and MacOS. The steps below are shown in Windows, but a similar approach should be followed in Linux or MacOS.
+
+2. Execute the installer. Click **Next**.
+
+   .. figure:: ./images/quickstart_guide_keil/sdk_install_1.png
+      :alt: 
+
+3. Select an **Installation Directory** and click **Next**. Note the installation directory which by default is ``c:\ti`` which will install the SDK at ``C:\ti\mspm0_sdk_<version>\``. This path will be refered to as ``<MSPM0_SDK_INSTALL_DIR>`` in sections below.
+
+   .. figure:: ./images/quickstart_guide_keil/sdk_install_2.png
+      :alt: 
+
+4. Click **Next**
+
+   .. figure:: ./images/quickstart_guide_keil/sdk_install_3.png
+      :alt: 
+
+5. After installation is complete, click **Finish**.
+
+   .. figure:: ./images/quickstart_guide_keil/sdk_install_4.png
+      :alt: 
+
+5. Using SysConfig with Keil IDE
+--------------------------------
+
+The SDK includes a preliminary version of SysConfig metadata which can be used to evaluate the user experience of MSPM0 SDK.
+
+A detailed explanation of the installation and usage of SysConfig with MSPM0 is available at `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ available in the SDK's Tools Guide.
+
+6. Import and Build an SDK Example in Keil uVision
+--------------------------------------------------
+
+1. In Keil uVision, select **Project → Open Project**
+
+   .. figure:: ./images/quickstart_guide_keil/keil_example_1.png
+      :alt: 
+
+2. Navigate to a Keil folder in SDK example at ``<MSPM0_SDK_INSTALL_DIR>/examples/`` and open the .uvprojx project file. For example ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output_hiz/keil/gpio_toggle_output_hiz.uvprojx``.
+
+   .. figure:: ./images/quickstart_guide_keil/keil_example_2.png
+      :alt: 
+
+3. The project is ready to build and debug.
+
+   .. figure:: ./images/quickstart_guide_keil/keil_example_3.png
+      :alt: 
+
+7. Downloading and debugging to MSPM0 using Keil
+------------------------------------------------
+
+Keil supports multiple debuggers. This section shows how to use the XDS-110 debugging tool in CMSIS-DAP mode. The XDS-110 is integrated into the MSPM0 LaunchPads.
+
+7.1 Using CMSIS-DAP
+~~~~~~~~~~~~~~~~~~~
+
+1. Go to the options window for the Keil project imported in the previous step by right clicking on the project folder
+
+.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_1.png
+   :alt: 
+
+2. Go to the debug tab on the window and select CMSIS-DAP as the debugger from the drop down in the top right corner.
+
+.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_2.png
+   :alt: 
+
+3. Click on the settings button and on the debug tab make sure the settings match those shown in the image below.
+
+.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_4.png
+   :alt: 
+
+4. Click on the Flash Download tab and check that description matches that of the image. If not, click on the add button and select the corresponding MSPM0 MAIN option. The device type is On-chip flash.
+
+.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_3.png
+   :alt: 
+
+5. Click Ok on the bottom of the windows to close out the windows and apply all the changes made to the debug settings
+
+.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_5.png
+   :alt: 
+
+6. Flash the device with the project by pressing the Load button as shown below
+
+.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_8.png
+   :alt: 
+
+6. Hover over the debug tab on the main screen and choose start/stop debug session
+
+.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_6.png
+   :alt: 
+
+7. This will start the debug session.
+
+.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_7.png
+   :alt: 
+
+8. Known Issues and Frequently Asked Questions (FAQs)
+-----------------------------------------------------
+
+Please refer to `Known Issues and FAQ <../../../../../known_issues_FAQ.html>`__ inside the SDK.

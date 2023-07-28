@@ -1,0 +1,391 @@
+Code Composer Studio Theia IDE Version 1.0+ for MSPM0 MCUs
+==========================================================
+
+Table of Contents
+-----------------
+
+-  `Read This First <#read-this-first>`__
+-  `Software Installation <#software-installation>`__
+-  `Development Flow <#development-flow>`__
+-  `Debugging the Application <#debugging-the-application>`__
+-  `Known Issues and Frequently Asked Questions (FAQs) <#known-issues-and-frequently-asked-questions-faqs>`__
+
+Read This First
+---------------
+
+How to Use This Guide
+~~~~~~~~~~~~~~~~~~~~~
+
+This guide describes only the setup and basic operation of the software development environment, but it does not fully describe the MSPM0 microcontrollers or the complete development software and hardware systems. For details of these items, see the appropriate TI and CCS documents listed in section `Related Documentation From Texas Instruments <#related-documentation-from-texas-instruments>`__.
+
+Information About Cautions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This guide may contain cautions.
+
+**Caution** - This is an example of a caution statement. A caution statement describes a situation that could potentially damage your software or equipment.
+
+Read each caution carefully.
+
+Related Documentation From Texas Instruments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MSPM0 development tools documentation:
+
+-  `XDS110 Debug Probe User's Guide <https://www.ti.com/lit/sprui94>`__
+
+MSPM0 device documentation:
+
+-  `LP-MSPM0L1306 User's Guide <https://www.ti.com/lit/slau869>`__
+-  `MSPM0 L-Series Technical Reference Manual <https://www.ti.com/lit/slau847>`__
+-  `LP-MSPM0G3506 User's Guide <https://www.ti.com/lit/slau873>`__
+-  `MSPM0 G-Series Technical Reference Manual <https://www.ti.com/lit/slau846>`__
+
+Code Composer documentation:
+
+-  `Code Composer Studio Documentation <https://www.ti.com/tool/CCSTUDIO#tech-docs>`__
+-  `Code Composer Studio Theia User's Guide <https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_theia/index.html>`__
+
+If You Need Assistance
+~~~~~~~~~~~~~~~~~~~~~~
+
+The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>`__ for MSPM0 MCUs are available to provide open interaction with peer engineers, TI engineers, and other experts. Additional device-specific information can be found on the `MSPM0 website <https://www.ti.com/mspm0>`__.
+
+1. Software Installation
+------------------------
+
+Code Composer Studio Theia IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__.
+
+MSPM0 microcontrollers and the MSPM0 SDK require CCS Theia 1.0.1 or higher.
+
+See the `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ documentation for finding the right SDK for your IDE version.
+
+2. Development Flow
+-------------------
+
+This chapter describes how to use CCS Theia to run the demonstration programs and develop application software.
+
+2.1 Overview
+~~~~~~~~~~~~
+
+Code Composer Studio (CCS) Theia is an integrated development environment (IDE) that supports TI’s Microcontroller and Embedded Processors portfolio. Code Composer Studio Theia comprises a suite of tools used to develop and debug embedded applications.
+
+This guide only explains some features and capabilities of the Code Composer Studio Theia IDE using MSPM0.
+
+More documentation for CCS Theia is available at `TI.com <https://www.ti.com/tool/CCSTUDIO#tech-docs>`__ or in the Help menu included in the IDE.
+
+2.2 Creating a New Project using Project Wizard
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CCS Theia includes a new project wizard which provides an intuitive and easy way to create new project.
+
+1. Select **File** → **Create New Project**
+2. Select the board or device and use filters as needed
+3. Select a project and click on **Create** |image0|
+
+Note that CCS Theia will automatically detect any dependencies, including SDKs and compilers, and it will request installation if needed.
+
+2.3 Using TI Resource Explorer in CCS Theia
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TI Resource Explorer (TI-Rex) helps you find all the latest examples, libraries, demo applications, datasheets, and more for your chosen platform.
+
+This tool is available at https://dev.ti.com/tirex, but it's also integrated into CCS Theia allowing for a more integrated user experience.
+
+1. Select **Help** → **Getting Started**. Note that CCS Theia can automatically detect your LaunchPad for easier navigation.
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_gettingstarted.png
+      :alt: 
+
+2. Click on **Browse software and examples with Resource Explorer**
+3. The navigation panel can be used to view different TI products, documentation, software, etc.
+4. TI Resource Explorer also allows to select a specific SDK version by clicking next to a product and selecting **Manage Versions**. Note that installed products are also shown with a green check mark.
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_tirex_sdk.png
+      :alt: 
+
+5. Use the integrated search to filter by device (i.e. MSPM0L), middleware (i.e. DriverLib), or solution (i.e. LIN).
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_tirex.png
+      :alt: 
+
+6. Selecting an example will show a useful Readme document with a description of the example, peripheral and pin usage and how to run it. |image1|
+
+7. Select a CCS project for the example and click on Import to add it to your workspace.
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_tirex_projectimport.png
+      :alt: 
+
+Note that CCS Theia will automatically detect any dependencies, including SDKs and compilers, and it will request installation if needed.
+
+2.4 Using SysConfig with CCS Theia
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some examples in the MSPM0 SDK have SysConfig support. `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.
+
+The SysConfig tool is delivered as a standalone installer, it can be used on the cloud at `dev.ti.com <https://dev.ti.com/sysconfig>`__, or it's integrated into CCS Theia for better and easier experience.
+
+After importing a MSPM0 project in CCS Theia, simply double-click the ``.syscfg`` file and this will open SysConfig. |image2|
+
+For more information about using SysConfig with MSPM0, visit the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ guide.
+
+2.5 Migrating Between MSPM0 Derivatives
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required. The steps below apply to TI Arm Clang but similar steps apply to Arm GCC.
+
+1. In SysConfig, enable the Device View and click on **SWITCH**
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate1.png
+   :alt: 
+
+2. Select the corresponding options for the new MSPM0 device and click **CONFIRM**.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate2.png
+   :alt: 
+
+3. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed.
+
+4. CCS Theia will automatically migrate the device variant and will add a corresponding .ccxml file.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate3.png
+   :alt: 
+
+5. In the project properties, select **Build** → **Arm Compiler** → **Predefined Symbols**. Select the device definition and update it.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate4.png
+   :alt: 
+
+6. Update the linker and startup files. The MSPM0 SDK includes default files for all MSPM0 derivatives at ``<sdk>\source\ti\devices\msp\m0p\linker_files\ticlang`` and ``<sdk>\source\ti\devices\msp\m0p\startup_system_files\ticlang`` respectively.
+
+Note that previous files should be excluded or removed from the project.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate5.png
+   :alt: 
+
+7. Resolve any other dependencies such as incompatible libraries and source code.
+
+Note: Steps 1-3 don't apply when not using SysConfig, and step 4 needs to be done manually.
+
+2.6 Stack and Heap Management and Linker Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The reserved stack and heap size can be configured using project settings or in the linker files.
+
+2.6.1 Configure Stack and Heap using TI Arm Clang compiler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Right-click on a project and select **Properties**. Select **Build Tools** → **Arm Linker** → **Basic Options** and set the stack and heap accordingly. |image3|
+
+The stack and heap can also be modified directly on the linker .cmd file by adding or editing ``--stack_size=xx`` or ``--heap_size=xx``.
+
+2.6.2 Configure Stack and Heap using Arm GCC
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The stack can be modified directly on the linker .lds file by adding or editing ``_Min_Heap_Size = xx`` or ``_Min_Stack_Size = xx``.
+
+2.7 How to Generate TI .TXT (and Other Format) Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CCS includes utilities which can be used to generate output objects in multiple formats for use with programming tools such as `MSP-GANG <https://www.ti.com/tool/MSP-GANG>`__ and `UniFlash <https://www.ti.com/tool/UNIFLASH>`__.
+
+2.7.1 Using Arm Hex Utility
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following steps explain how to enable the TI TXT format using the Hex Utility which is integrated into CCS.
+
+Right-click on a project and select **Properties**. Select **Build Tools** → **Arm Hex Utility** → **Output Format Options**. Then select the **TI-TXT hex (--ti\_txt)** option.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_outputtxt.png
+   :alt: 
+
+This same process can be used to generate other formats; however, some formats might require other parameters.
+
+A common one is Intel HEX format which in addition to selecting the output format **Intel hex (--intel, -i)**, requires to specify the memory and ROM width as parameters.
+
+When using Intel HEX for MSPM0, select a memory and ROM width of 8 in **Build Tools** → **Arm Hex Utility** → **General Options**.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_outputhex.png
+   :alt: 
+
+For more information, visit `Hex utility in CCS <https://software-dl.ti.com/ccs/esd/documents/ccs_hex-utility.html>`__.
+
+2.7.2 Using Objcopy Utility
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+CCS includes the Arm Objcopy Utility which is a LLVM-based tool that can be used to generate binaries in multiple formats.
+
+The following steps explain how to enable intel Hex format using ObjCopy.
+
+1. Right-click on a project and select **Properties**. Select **Build** → **Arm ObjCopy Utility** and select **Enable Arm Objcopy Utility**.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_objcopy1.png
+   :alt: 
+
+2. Specify the output file name using .hex extension.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_objcopy2.png
+   :alt: 
+
+3. Specify the ``ihex`` output format.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_objcopy3.png
+   :alt: 
+
+For more information about Objcopy, visit this `Objcopy guide <https://llvm.org/docs/CommandGuide/llvm-objcopy.html>`__.
+
+2.8 Overriding Pre-built Libraries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Projects might include pre-built libraries which simplify development and build time; however, they don't allow developers to modify source code easily.
+
+An example of such libraries is the MSPM0 DriverLib which is shown below.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_lib.png
+   :alt: 
+
+One option to override the library is to simply add any or all source files to the project. The MSPM0 SDK includes the ``empty_driverlib_src`` example which includes all DriverLib source by default:
+
+.. figure:: ./images/theia_ide_guide/ccstheia_lib_src.png
+   :alt: 
+
+2.9 Running from SRAM
+~~~~~~~~~~~~~~~~~~~~~
+
+The examples included in the MSPM0-SDK will commonly have linker files which create applications which are intended to run from internal Flash and will execute after reset or power cycling the device. However, in some scenarios, it can be useful to download and execute code from SRAM.
+
+This section describes step-by-step instructions to execute some functions or complete applications from SRAM.
+
+2.9.1 Running a complete application from SRAM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following steps show how to modify a basic gpio\_toggle\_output example for the LP\_MSPM0L1306 to run from SRAM. Similar steps apply to other examples and devices.
+
+1. Open the linker .cmd file and modify it to use SRAM as shown below:
+
+.. figure:: ./images/theia_ide_guide/ccstheia_runFromRAM_1.png
+   :alt: 
+
+2. Disable the System Reset which is executed by default in CCS.
+
+   CCS includes .gel files which execute certain functions on the device. These files are included inside the CCS installation folder at ``<ccs>\ccs_base\emulation\gel>``. The screenshot below shows the modification necessary for MSPM0L1306:
+
+.. figure:: ./images/theia_ide_guide/ccstheia_runFromRAM_2.png
+   :alt: 
+
+3. Download code and note that the device will execute from SRAM.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_runFromRAM_3.png
+   :alt: 
+
+2.9.2 Running a function from SRAM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following steps show how to declare a function which is executed from SRAM.
+
+1. Move the function to the ``.TI.ramfunc`` section. This can be accomplished by declaring the function with the attributes ``__attribute__((section(".TI.ramfunc"))) __attribute__((noinline))`` as observed below:
+
+.. figure:: ./images/theia_ide_guide/ccstheia_runFunctionFromRAM_1.png
+   :alt: 
+
+2. The linker file should include a placement of ``.TI.ramfunc``. Note that the linker files included in MSPM0-SDK already include this placement but it will only be applicable if any functions are placed in ``.TI.ramfunc``.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_runFunctionFromRAM_2.png
+   :alt: 
+
+3. Download code and note that the device will execute the function from SRAM.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_runFunctionFromRAM_3.png
+   :alt: 
+
+3. Debugging the Application
+----------------------------
+
+The following debug probes have been tested successfully with Code Composer Studio Theia IDE.
+
+-  TI XDS Tools, including the XDS-110 integrated into MSPM0 LaunchPads.
+
+3.1 Using TI XDS Tools
+~~~~~~~~~~~~~~~~~~~~~~
+
+TI offers a range of debug probes for Arm-based devices, including the XDS-110 which is integrated with MSPM0 LaunchPads.
+
+To use the TI-XDS debug probes, open the project options, click on **General** → **Connection** and select **Texas Instruments XDS110 USB Debug Probe**.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_debug_connection_xds.png
+   :alt: 
+
+3.1.1 Flash Loader
+^^^^^^^^^^^^^^^^^^
+
+The Flash Loader settings allow to configure some settings when programming and erasing the device.
+
+To view and modify these settings, open the project properties and select **Debug** → **Category:MSPM0 Flash Settings**.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_flash_settings.png
+   :alt: 
+
+The Flash Loader has the following options:
+
+-  **Reset Configuration**: allows to perform soft or hard reset before and after programming.
+-  **Program Configuration**: enables/disables CRC verification while programming. Note that CRC validation of NONMAIN is performed when programming/erasing NONMAIN regardless of this setting.
+-  **Erase Configuration**: configures the behavior when erasing memory. The options are:
+
+   -  **Erase MAIN memory only**: Only MAIN memory will be mass erased. An error will be thrown when attempting to write NONMAIN.
+   -  **Erase MAIN and NONMAIN memory**: Both MAIN and NONMAIN will be mass erased. See `Erasing and Updating NONMAIN Memory <#erasing-and-updating-nonmain-memory>`__ for information about NONMAIN usage.
+   -  **Erase MAIN and NONMAIN necessary sectors only**: Only sectors being updated will be erased, including both MAIN and NONMAIN. Check the device datasheet for information on the size of flash sectors. See `Erasing and Updating NONMAIN Memory <#erasing-and-updating-nonmain-memory>`__ for information about NONMAIN usage.
+   -  **Erase MAIN memory sectors by range**: Only sectors defined between **Sector Erase Start Address** and **Sector Erase End Address** will be erased. Check the device datasheet for information on the size of flash sectors and note that the addresses are inclusive. For example, a region from 0x0000\_0100 to 0x0000\_0400 on a MSPM0 device with 1kB sectors will erase sectors 0x0000\_0000-0x0000\_03FF and 0x0000\_0400-0x0000\_07FF. Note that only sectors in MAIN will be erased. An error will be thrown when attempting to write NONMAIN.
+   -  **Do not erase Flash memory**: Flash will not be erased. An error will be thrown when attempting to write NONMAIN without erasing.
+
+-  **Advanced Configuration**: disables validating the device ID. Used for debugging purposes and not recommended to disable.
+-  **Enable Verbose Output**: enables showing debug information while running the flash loader.
+
+3.1.2 Erasing and Updating NONMAIN Memory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Caution**: Extreme care should be taken when erasing and programming NONMAIN. If done incorrectly, the device will become **locked in a permanently unrecoverable state**.
+
+NONMAIN is a dedicated region of flash memory which stores configuration data which define the behavior of the device after booting. **NONMAIN should not be used for any other purpose**. See the device Technical Reference Manual for more information.
+
+TI recommends using the NONMAIN configurator available in SysConfig when configuring NONMAIN. See `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ for more information.
+
+As described in the `Flash Loader <#flash-loader>`__ section, NONMAIN is erased by selecting **Erase main and NON-MAIN memory** or **Erase MAIN and NONMAIN necessary sectors only** in the erase configuration.
+
+Note that the Flash Loader will erase NONMAIN if any of these options are enabled; however, it will run a CRC after the programming sequence is completed, and it will attempt to restore default values if NONMAIN is corrupted.
+
+3.2 Breakpoint Types
+~~~~~~~~~~~~~~~~~~~~
+
+The CCS Theia debugger uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints in Flash are not supported on MSPM0. This means that a maximum of 4 hardware breakpoints can be set within CCS Theia.
+
+CCS Theia can use a breakpoint to stop at main or halt the device at exit. These settings can be updated in the project properties by selecting **Debug** → **Category:Program/Memory Load Options**.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_breakpoint.png
+   :alt: 
+
+If the max number of breakpoints are set, the following warning will be displayed.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_debug_breakpoint.png
+   :alt: 
+
+3.3 Connecting to an Incorrect Device
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CCS Theia will show an error if an unsupported device is connected as shown below:
+
+|image4| |image5|
+
+Programming an incorrect device is not recommended and can lead to unexpected and unrecoverable behavior.
+
+4. Known Issues and Frequently Asked Questions (FAQs)
+-----------------------------------------------------
+
+Please refer to `Known Issues and FAQ <../../../../../../known_issues_FAQ.html>`__ inside the SDK.
+
+.. |image0| image:: ./images/theia_ide_guide/ccstheia_projectwizard.png
+.. |image1| image:: ./images/theia_ide_guide/ccstheia_tirex_project.png
+.. |image2| image:: ./images/theia_ide_guide/ccstheia_sysconfig.png
+.. |image3| image:: ./images/theia_ide_guide/ccstheia_stack.png
+.. |image4| image:: ./images/theia_ide_guide/ccstheia_connectionerror1.png
+.. |image5| image:: ./images/theia_ide_guide/ccstheia_connectionerror2.png
+

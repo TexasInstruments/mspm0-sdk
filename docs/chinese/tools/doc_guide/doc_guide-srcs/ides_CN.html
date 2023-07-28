@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IDEs and Compilers &mdash; MSPM0 Tools Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="ides_ccs_CN.html" />
+    <link rel="prev" title="MSPM0 工具指南" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 Tools Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IDEs and Compilers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#code-composer-studio">Code Composer Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS Theia</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide_CN.html#http://">Code Composer Studio Theia IDE Guide for MSPM0 MCUs</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html#http://">Code Composer Studio IDE Guide for MSPM0 MCUs</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/ccs_documentation-overview.html">Code Composer Studio Documentation Overview (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#iar-embedded-workbench-for-arm">IAR Embedded Workbench for Arm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html#http://">MSPM0 SDK QuickStart Guide for IAR</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide_CN.html#http://">IAR Embedded Workbench IDE for MSPM0 MCUs</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/">IAR Embedded Workbench for Arm Documentation (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#arm-keil-mdk">Arm Keil MDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html#http://">MSPM0 SDK QuickStart Guide for Keil</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../keil_ide_guide/doc_guide/doc_guide-srcs/keil_ide_guide_CN.html#http://">Arm Keil MDK IDE for MSPM0 MCUs</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://www2.keil.com/mdk5/docs">Online Manuals for Arm Keil MDK (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ti-arm-clang-compiler">TI Arm Clang Compiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/index.html">TI Arm Clang Compiler User Manual (external)</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://e2e.ti.com/blogs_/b/process/posts/the-future-of-compiler-tools-for-ti-arm-cortex-based-mcus">Blog &quot;The future of compiler tools for TI Arm Cortex-based MCUs&quot; (external)</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS Theia</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide_CN.html#http://">Code Composer Studio Theia IDE Guide for MSPM0 MCUs</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html#http://">Code Composer Studio IDE Guide for MSPM0 MCUs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#arm-gcc-toolchain">Arm GCC Toolchain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS Theia</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide_CN.html#http://">Code Composer Studio Theia IDE Guide for MSPM0 MCUs</a></li>
+<li class="toctree-l4"><a class="reference external" href="../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html#http://">Code Composer Studio IDE Guide for MSPM0 MCUs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="codegen_easeofuse_CN.html">代码生成和易用性</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug_program_CN.html">Debugging and Programming Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 Tools Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>IDEs and Compilers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ides-and-compilers">
+<h1>IDEs and Compilers<a class="headerlink" href="#ides-and-compilers" title="Permalink to this heading">¶</a></h1>
+<section id="code-composer-studio">
+<h2>Code Composer Studio<a class="headerlink" href="#code-composer-studio" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">Code Composer Studio</a> is an integrated development environment (IDE) that supports TI’s Microcontroller and Embedded Processors portfolio.</div>
+<div class="line"><br /></div>
+<div class="line">Code Composer Studio comprises a suite of tools used to develop and debug embedded applications.</div>
+<div class="line">It includes an optimizing C/C++ compiler, source code editor, project build environment, debugger, profiler, and many other features.</div>
+<div class="line">The intuitive IDE provides a single user interface taking you through each step of the application development flow.</div>
+<div class="line">Familiar tools and interfaces allow users to get started faster than ever before.</div>
+<div class="line">Code Composer Studio combines the advantages of the Eclipse software framework with advanced embedded debug capabilities from TI resulting in a compelling feature-rich development environment for embedded developers.</div>
+</div>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS Theia</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide_CN.html#http://">Code Composer Studio Theia IDE Guide for MSPM0 MCUs</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html#http://">Code Composer Studio IDE Guide for MSPM0 MCUs</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/ccs_documentation-overview.html">Code Composer Studio Documentation Overview (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="iar-embedded-workbench-for-arm">
+<h2>IAR Embedded Workbench for Arm<a class="headerlink" href="#iar-embedded-workbench-for-arm" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/">IAR Embedded Workbench for Arm</a> delivers a complete development toolchain for building and debugging embedded applications for your selected target microcontroller.</div>
+<div class="line"><br /></div>
+<div class="line">The included IAR C/C++ Compiler generates highly optimized code for your application, and the C-SPY Debugger is a fully integrated debugger for source and disassembly level debugging with support for complex code and data breakpoints.</div>
+</div>
+<section id="id3">
+<h3>Documentation<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html#http://">MSPM0 SDK QuickStart Guide for IAR</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide_CN.html#http://">IAR Embedded Workbench IDE for MSPM0 MCUs</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/">IAR Embedded Workbench for Arm Documentation (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="arm-keil-mdk">
+<h2>Arm Keil MDK<a class="headerlink" href="#arm-keil-mdk" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www2.keil.com/mdk5/uvision/">Arm Keil MDK</a> is a complete debugger and C/C++ compiler toolchain for building and debugging embedded applications.</div>
+<div class="line"><br /></div>
+<div class="line">Keil MDK includes a fully integrated debugger for source and disassembly level debugging.</div>
+<div class="line">MDK provides full CMSIS compliance.</div>
+</div>
+<section id="id5">
+<h3>Documentation<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html#http://">MSPM0 SDK QuickStart Guide for Keil</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../keil_ide_guide/doc_guide/doc_guide-srcs/keil_ide_guide_CN.html#http://">Arm Keil MDK IDE for MSPM0 MCUs</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www2.keil.com/mdk5/docs">Online Manuals for Arm Keil MDK (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="ti-arm-clang-compiler">
+<h2>TI Arm Clang Compiler<a class="headerlink" href="#ti-arm-clang-compiler" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">The <a class="reference external" href="https://www.ti.com/tool/ARM-CGT">TI Arm Clang Compiler</a>  is derived from the open source clang compiler and its supporting LLVM infrastructure.</div>
+<div class="line"><br /></div>
+<div class="line">TI Arm Clang is included with Code Composer Studio (CCS).</div>
+<div class="line">All new feature development going forward will be done in the TI Arm Clang Compiler Tools.</div>
+</div>
+<section id="id7">
+<h3>Documentation<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/index.html">TI Arm Clang Compiler User Manual (external)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://e2e.ti.com/blogs_/b/process/posts/the-future-of-compiler-tools-for-ti-arm-cortex-based-mcus">Blog &quot;The future of compiler tools for TI Arm Cortex-based MCUs&quot; (external)</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS Theia</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide_CN.html#http://">Code Composer Studio Theia IDE Guide for MSPM0 MCUs</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html#http://">Code Composer Studio IDE Guide for MSPM0 MCUs</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="arm-gcc-toolchain">
+<h2>Arm GCC Toolchain<a class="headerlink" href="#arm-gcc-toolchain" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">The MSPM0 SDK supports development using the open-source <a class="reference external" href="https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain">Arm GNU Toolchain</a> .</div>
+<div class="line"><br /></div>
+<div class="line">Arm GCC is supported by Code Composer Studio (CCS).</div>
+</div>
+<section id="id8">
+<h3>Documentation<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS Theia</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html#http://">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide_CN.html#http://">Code Composer Studio Theia IDE Guide for MSPM0 MCUs</a></li>
+<li class="toctree-l1"><a class="reference external" href="../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html#http://">Code Composer Studio IDE Guide for MSPM0 MCUs</a></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="MSPM0 工具指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ides_ccs_CN.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

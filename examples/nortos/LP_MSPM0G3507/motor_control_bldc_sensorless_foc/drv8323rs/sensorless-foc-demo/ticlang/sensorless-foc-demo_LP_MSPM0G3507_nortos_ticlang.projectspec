@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="Cortex M.MSPM0G3507"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="sensorless-foc-demo_LP_MSPM0G3507"
+        name="sensorless-foc-demo_LP_MSPM0G3507_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G3507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/foc
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/parameter
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/motor_control_bldc_sensorless_foc/modules/hal/MSPM0G3507
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/motor_control_bldc_sensorless_foc/modules/motor
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/motor_control_bldc_sensorless_foc/modules/motor_driver/drv8323rs
+            -I${ORIG_PROJ_ROOT_DIR}/
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__MSPM0G3507__
+            -DBUILDLEVEL=LEVEL5
+            -DLVSERVOMTR=1
+            -D__IQMATH_USE_MATHACL__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/motor_control_bldc_sensorless_foc/lib/ticlang/m0p/esmo.a
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/ticlang/m0p/mathacl/iqmath.a
+            -Wl,--stack_size=512
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="sensorless-foc-demo">
+
+        <pathVariable name="ORIG_PROJ_ROOT_DIR" path="../" scope="project"/>
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy"></file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../sensorless-foc.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/foc/foc.c" openOnCreation="false" excludeFromBuild="false" action="copy"  targetDirectory="modules/sensorless_foc/foc"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/foc/foc.h" openOnCreation="false" excludeFromBuild="false" action="copy"  targetDirectory="modules/sensorless_foc/foc"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/motor_driver/drv8323rs/drv8323rs.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/motor_driver/drv8323rs"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/motor_driver/drv8323rs/drv8323rs.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/motor_driver/drv8323rs"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/hal/MSPM0G3507/hal.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/hal/MSPM0G3507/hal.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal"></file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../drv8323rs-gui.c" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../drv8323rs-gui.h" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/motor/motor_params.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/motor"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/motor/motor_params.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/motor"></file>
+        <file path="../ticlang/mspm0g3507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../ticlang/startup_mspm0g3507_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/angle_math.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/clarke.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/ipark.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/park.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/pi.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/rampgen.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/rmp_cntl.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/speed_est.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/svgen.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/volt_calc.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/cirlimit.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/esmo/esmopos.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math/esmo/"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/math/pwmgen.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/math"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/parameter/parameter.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/parameter"></file>
+        <file path="../../../../../../../source/ti/motor_control_bldc_sensorless_foc/modules/sensorless_foc/parameter/parameter.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/sensorless_foc/parameter"></file>
+    </project>
+</projectSpec>

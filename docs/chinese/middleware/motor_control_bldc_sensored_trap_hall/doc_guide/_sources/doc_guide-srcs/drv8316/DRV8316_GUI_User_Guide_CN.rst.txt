@@ -1,0 +1,208 @@
+DRV8316 GUI User Guide
+======================
+
+1. Overview
+-----------
+
+This graphical user interface (GUI) was developed to allow simple evaluation of a user’s motor with the DRV8316REVM being controlled by TI’s MSPM0 microcontroller. This guide will go over the key parts of the GUI to allow you to get up and running quickly. You can access the GUI described in this document `here <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8316REVM-GUI>`__.
+
+1.1 Getting Started with GUI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The GUI allows the user to configure various settings required for BLDC motor control. The user can adjust settings like dutycycle, PWM Frequency, deadband, driection control, acceleration rate, ADC reference, fault status monitoring, speed monitoring.
+
+1.2 Hardware Connection
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Perform the following steps to begin using the GUI:
+
+1. Connect the BLDC motor to the DRV8316REVM.
+2. Make the necessary connections for connecting LP-MSPM0G3507 to DRV8316REVM.
+3. Plug in the micro-USB cable to the PC.
+4. Enable the power supply to EVM.
+
+View the `hardware user guide <DRV8316_Hardware_User_Guide_CN.html>`__ for detailed steps required to get the hardware in the right state to run this GUI example.
+
+2. Using the GUI
+----------------
+
+The GUI will automatically program the LaunchPad with the necessary firmware. If everything is successful the bottom left corner of the GUI should say "Hardware connected".
+
+.. figure:: images/Hardware_connected.png
+   :alt: 
+
+3. GUI Window
+-------------
+
+In the GUI window user can find various controls like nSleep, DRVOFF, Directrion control, dutycycle, pwm frequency, deadband, acceleration rate and SPI controls like write, read and bitfield write. Various faults are also indiacted using LEDs.
+
+.. figure:: images/GUI_window.png
+   :alt: 
+
+3.1 Motor Control
+~~~~~~~~~~~~~~~~~
+
+Once the hardware connections are done and GUI is connected to device, the motor is ready to spin. All the controls are in defaults. The user can spin the motor by adjusting the duty cycle.
+
+.. figure:: images/Motor_control.png
+   :alt: 
+
++---------------------+-----------+---------------------------------------------------------------------+
+| Function            | Default   | Description                                                         |
++=====================+===========+=====================================================================+
+| nSLEEP              | Awake     | Controls the DRV low power status and sets the duty cycle to zero   |
++---------------------+-----------+---------------------------------------------------------------------+
+| DRVOFF              | ON        | Controls the DRV pwm output and sets the duty cycle to zero         |
++---------------------+-----------+---------------------------------------------------------------------+
+| Direction           | Reverse   | Controls the diretcion of motor spinning                            |
++---------------------+-----------+---------------------------------------------------------------------+
+| PWM Frequency       | 20kHz     | PWM Frequency can be varried from 1kHz to 100kHz                    |
++---------------------+-----------+---------------------------------------------------------------------+
+| Deadband            | 320ns     | Deadband can be varried from 100ns to 1000ns                        |
++---------------------+-----------+---------------------------------------------------------------------+
+| Duty cycle          | 0%        | Minimum of 5 percent is applied to start spinning                   |
++---------------------+-----------+---------------------------------------------------------------------+
+| Acceleration rate   | 20        | Duty cycle is incremented or decemented at a rate of 1% per 20ms    |
++---------------------+-----------+---------------------------------------------------------------------+
+
+3.2 Motor Braking
+~~~~~~~~~~~~~~~~~
+
+The motor can be stopped from GUI without turning off the DRV by uisng stop button. The motor stops spinning with brake type selected.
+
+.. figure:: images/Braking.png
+   :alt: 
+
++----------------+-----------+-------------------------------------------------+
+| Function       | Default   | Description                                     |
++================+===========+=================================================+
+| Run/Stop       | Run       | Stops the motor according to the braking type   |
++----------------+-----------+-------------------------------------------------+
+| Braking type   | Brake     | Braking type can be coast or brake.             |
++----------------+-----------+-------------------------------------------------+
+
+3.3 Current setting
+~~~~~~~~~~~~~~~~~~~
+
+The DRV8316 integrates three low side current sense amplifiers for current measurements. It has features like programmable gain and setting external references. Changing the CSA Gain will automatically update the DRV register.
+
+.. figure:: images/current_settings.png
+   :alt: 
+
++------------+-----------+------------------------------------------------------+
+| Function   | Default   | Description                                          |
++============+===========+======================================================+
+| CSA gain   | 0.15V/A   | CSA gain can be set to 0.15, 0.3, 0.6 or 1.2V/A      |
++------------+-----------+------------------------------------------------------+
+| CSA Vref   | 3V        | External voltage reference for current monitoring.   |
++------------+-----------+------------------------------------------------------+
+
+3.4 Fault Status
+~~~~~~~~~~~~~~~~
+
+The firmware continuously monitors the motor parameters like voltage and current. The user can set the limits for voltage and current from GUI. When any of the faults ocuur the corresponding LED glows.
+
+.. figure:: images/Faults.png
+   :alt: 
+
++---------+----------------------+-----------------------------------------------------------------+
+| Fault   | Function             | Description                                                     |
++=========+======================+=================================================================+
+| UV      | Undervoltage fault   | LED glows when module voltage is less than undervoltage limit   |
++---------+----------------------+-----------------------------------------------------------------+
+| OV      | Overvoltage fault    | LED glows when module voltage is more than overvoltage limit    |
++---------+----------------------+-----------------------------------------------------------------+
+| OC      | Overcurrent fault    | LED glows when phase current is more than overcurrent limit     |
++---------+----------------------+-----------------------------------------------------------------+
+| DRV     | DRVFault             | LED glows when DRV generates a fault                            |
++---------+----------------------+-----------------------------------------------------------------+
+
+3.5 SPI Communication
+~~~~~~~~~~~~~~~~~~~~~
+
+The DRV8316 has 3 status registers and 7 control registers, the user can read or wirte to these registers. The motor driver must not be sleeping for SPI communication to work, if you try to perform write or read while the motor driver is in sleep it will fail. If the motor goes o sleep mode for more than 1 ms the SPI registers will revert to their default values. The status registers are readonly registers and user can't write to them. If the user tries to write it is ignored.
+
+.. figure:: images/SPI_registers.png
+   :alt: 
+
+Write Register
+~~~~~~~~~~~~~~
+
+Performs a SPI write operation based on the register selected and the value specified.
+
+-  The dropdown selects the SPI register you want to write to.
+-  The input field on the write represents the value you want to write and must include the 0x prefix. Hitting the button writes the value you inputted to the register you selected.
+
+Write Bitfield
+~~~~~~~~~~~~~~
+
+The user can safely update a register’s bitfield without overwriting other bitfields in the register.
+
+-  The dropdown selects the SPI register you want to write to.
+-  Bitfield position determines the bit position to be modified. Your mask and value is automatically shifted by the position specified here.
+-  Bitfield mask determines which bits you actually want to modify in hex. Value will be shifted automatically by the bitfield position entered.
+-  The input field on the right represents the hex value you want to write. Value will be shifted automatically by the bitfield position entered.
+
+As an example lets say you want to change CSA gain. You want to write 10b means CSA gain of 0.3V/A. You will set the following
+
+-  CSA gain bits are in CTRL\_5 register.
+-  Bitfield Position is 0 since CSA\_GIAN is from bits 1-0 i.e, starts at bit 0.
+-  Bitfield Mask is 0x3 since the max value in the bitfield is 3.
+-  The Bitfield data is 0x2 which represents 10b.
+-  Hitting the write bitfield button will update the CTRL\_5 register.
+
+Read Register
+~~~~~~~~~~~~~
+
+-  The dropdown selects the SPI register you want to read.
+-  The input field on the right is read only and will reflect the value that is read.
+
+Anytime you perform a raw SPI write operation the dropdown and input field will automatically match the register you written and show the value that was read back after your write operation has been completed.
+
+Read all registers.
+~~~~~~~~~~~~~~~~~~~
+
+-  Hitting the READ ALL button reads all the SPI registers.
+
+.. figure:: images/SPI_read_all.png
+   :alt: 
+
+3.6 ADC Reference Setting
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The user can use 3 different ADC references, it can be changed from GUI.
+
+.. figure:: images/ADC_reference_settings.png
+   :alt: 
+
++------------+-------------------------+-------------------------------------------------------------------------------------+
+| Function   | Default                 | Description                                                                         |
++============+=========================+=====================================================================================+
+| ADC VREF   | ADC Reference Voltage   | User reference voltage source of VDDA, internal reference, or external reference.   |
++------------+-------------------------+-------------------------------------------------------------------------------------+
+| INT VREF   | ADC VREF 2.5V           | Internal reference can be 2.5V or 1.4V                                              |
++------------+-------------------------+-------------------------------------------------------------------------------------+
+| EXT VREF   | 3300mV                  | User need to input the external reference voltage applied                           |
++------------+-------------------------+-------------------------------------------------------------------------------------+
+
+When VDDA is used as ADC reference the data input in internal reference and external reference is ignored.
+
+3.7 Voltage and Current Monitoring
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: images/motor_parameters.png
+   :alt: 
+
+.. figure:: images/voltage_graph.png
+   :alt: 
+
+The user can monitor the motor parameters like bus voltage, phase voltages and phase currents. The user can see the bus voltage graph.
+
+3.8 Speed Monitoring
+~~~~~~~~~~~~~~~~~~~~
+
+When the motor starts spinning the user can see the motor speed displayed in RPM. The user needs to input the number of poles in the motor used. The user must enter even number of poles failing which the speed calculation go wrong.
+
+.. figure:: images/speed.png
+   :alt: 
+

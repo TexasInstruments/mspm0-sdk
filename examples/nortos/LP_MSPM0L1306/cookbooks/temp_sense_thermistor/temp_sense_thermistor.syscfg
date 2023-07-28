@@ -1,0 +1,60 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name             = "ADC";
+ADC121.repeatMode        = true;
+ADC121.trigSrc           = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.subChanID         = 1;
+ADC121.enabledInterrupts = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.sampClkDiv        = "DL_ADC12_CLOCK_DIVIDE_4";
+ADC121.sampleTime0       = "3.25 us";
+ADC121.adcMem0chansel    = "DL_ADC12_INPUT_CHAN_9";
+
+
+GPIO1.$name                         = "RGB";
+GPIO1.associatedPins.create(3);
+GPIO1.associatedPins[0].$name       = "RED";
+GPIO1.associatedPins[0].pin.$assign = "PA26";
+GPIO1.associatedPins[1].$name       = "BLUE";
+GPIO1.associatedPins[1].pin.$assign = "PA27";
+GPIO1.associatedPins[2].$name       = "GREEN";
+GPIO1.associatedPins[2].pin.$assign = "PA13";
+
+OPA1.cfg0PSELChannel              = "IN0_POS";
+OPA1.cfg0OutputPin                = "ENABLED";
+OPA1.advRRI                       = true;
+OPA1.$name                        = "THERMISTOR_OPA";
+OPA1.advBW                        = "HIGH";
+OPA1.cfg0NSELChannel              = "IN0_NEG";
+OPA1.peripheral.$assign           = "OPA0";
+OPA1.peripheral.In0PosPin.$assign = "PA25";
+
+SYSCTL.MFCLKEn = true;
+
+TIMER1.$name                       = "THERMISTOR_TIMER_ADC";
+TIMER1.timerClkSrc                 = "LFCLK";
+TIMER1.timerMode                   = "PERIODIC";
+TIMER1.event1PublisherChannel      = 1;
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.timerPeriod                 = "250ms";

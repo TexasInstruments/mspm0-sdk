@@ -1,0 +1,25 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board       = scripting.addModule("/ti/driverlib/Board");
+const CRC         = scripting.addModule("/ti/driverlib/CRC");
+const SYSCTL      = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+CRC.seed                                = 0xFFFFFFFF;
+CRC.enableCRCCalcWithDMA                = true;
+CRC.DMA_CHANNEL_CRC.$name               = "DMA_CH0";
+CRC.DMA_CHANNEL_CRC.enableInterrupt     = true;
+CRC.DMA_CHANNEL_CRC.peripheral.$assign  = "DMA_CH0";
+
+SYSCTL.clockTreeEn = true;

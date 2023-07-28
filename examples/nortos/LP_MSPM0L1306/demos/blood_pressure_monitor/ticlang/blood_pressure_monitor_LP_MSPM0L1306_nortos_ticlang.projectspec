@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L1306"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="blood_pressure_monitor"
+        name="blood_pressure_monitor_LP_MSPM0L1306_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L1306"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -D__MSPM0L1306__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a
+            -Wl,--stack_size=512
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Blood Pressure Monitor demos">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../MSP_GUI/GUI_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/GUI_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/GUIComm_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/GUIComm_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../callbacks_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../callbacks_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../demo_mode_declaration.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../HAL_UART_M0L1306.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../cuff.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../cuff.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ti_msp_dl_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ti_msp_dl_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/mspm0l1306.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0l1306_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+    </project>
+</projectSpec>

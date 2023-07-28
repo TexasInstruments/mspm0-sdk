@@ -1,0 +1,52 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const TIMERFault  = scripting.addModule("/ti/driverlib/TIMERFault", {}, false);
+const TIMERFault1 = TIMERFault.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+PWM1.$name                      = "PWM_0";
+PWM1.clockSource                = "LFCLK";
+PWM1.timerCount                 = 100;
+PWM1.faultHandlerEn             = true;
+PWM1.faultSource                = ["1"];
+PWM1.faultInputEn               = "FIEN_ENABLED";
+PWM1.faultInput                 = "FI_DEPENDENT";
+PWM1.faultInputFilterEn         = true;
+PWM1.faultTimerCountEntry       = "FAULT_ENTRY_CTR_SUSP_COUNT";
+PWM1.faultTimerCountExit        = "FAULT_EXIT_CTR_CVAE_ACTION";
+PWM1.faultInputDetect           = true;
+PWM1.faultPin1Sense             = "SENSE_HIGH";
+PWM1.faultChannel0BehaviorEntry = "HIGH";
+PWM1.faultChannel0BehaviorExit  = "LOW";
+PWM1.faultChannel1BehaviorEntry = "LOW";
+PWM1.faultChannel1BehaviorExit  = "HIGH";
+PWM1.peripheral.$assign         = "TIMA1";
+PWM1.peripheral.ccp0Pin.$assign = "PB4";
+PWM1.peripheral.ccp1Pin.$assign = "PB1";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle    = 80;
+PWM1.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_1.dutyCycle    = 90;
+
+SYSCTL.enableEXCLK                  = true;
+SYSCTL.EXCLKSource                  = "LFCLK";
+SYSCTL.peripheral.clkOutPin.$assign = "PA31";
+
+TIMERFault1.$name             = "FAULT_0";
+PWM1.associatedFault          = TIMERFault1;
+TIMERFault1.enabledFaults     = ["1"];
+TIMERFault1.faultPin1.$assign = "PB20";

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>适用于 CCS 的 MSPM0 SDK 快速入门指南 &mdash; MSPM0 SDK Quick Start Guides 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MSPM0 SDK QuickStart Guide for IAR" href="quickstart_guide_iar_CN.html" />
+    <link rel="prev" title="适用于 CCS Theia 的 MSPM0 SDK 快速入门指南" href="quickstart_guide_ccs_theia_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 SDK Quick Start Guides
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs_theia_CN.html">适用于 CCS Theia 的 MSPM0 SDK 快速入门指南</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">适用于 CCS 的 MSPM0 SDK 快速入门指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2. 前期准备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ccs">3. 在 CCS 中导入和构建示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faq">4. 已知问题和常见问题解答(FAQ)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_iar_CN.html">MSPM0 SDK QuickStart Guide for IAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_keil_CN.html">MSPM0 SDK QuickStart Guide for Keil</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 SDK Quick Start Guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>适用于 CCS 的 MSPM0 SDK 快速入门指南</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ccs-mspm0-sdk">
+<h1>适用于 CCS 的 MSPM0 SDK 快速入门指南<a class="headerlink" href="#ccs-mspm0-sdk" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 简介<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>本指南旨在帮助用户进行初始设置并演示如何使用 TI Arm Clang 在 CCS 中运行他们的第一个 MSPM0应用程序。 本指南不用于解释 CCS 的功能。 请参阅 CCS 中的帮助菜单提供的文档，或者参考MSPM0 SDK 文档中的 <a class="reference external" href="../../../tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html">CCS IDE Guide for MSPM0 MCU</a>。</p>
+</section>
+<section id="id2">
+<h2>2. 前期准备<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>用户应已下载以下内容：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/download/CCSTUDIO">CCS 12.4.0 or later</a></p>
+<ul>
+<li><p><strong>注：</strong>此版本包括对 MSPM0量产型号的支持，不支持早期的实验型号。</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig 1.17.x</a> (包含在最新版本的 CCS 中)</p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/download/ARM-CGT-CLANG-1/">TI Clang 2.1.3.LTS</a> (包含在最新版本的 CCS 中)</p></li>
+</ul>
+</section>
+<section id="ccs">
+<h2>3. 在 CCS 中导入和构建示例<a class="headerlink" href="#ccs" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>在 CCS 中从入门页面打开 Resource Explorer</p>
+<figure class="align-default">
+<img alt="" src="../_images/open_resource_explorer.png" />
+</figure>
+</li>
+<li><p>在 PAGE 目录中选择 MSPM0并选择 Examples 文件夹</p>
+<figure class="align-default">
+<img alt="" src="../_images/select_examples.png" />
+</figure>
+</li>
+<li><p>在下面的文件路径之后导航到 DriverLib 示例</p>
+<figure class="align-default">
+<img alt="" src="../_images/navigate_driverlib_examples.png" />
+</figure>
+</li>
+<li><p>选择一个示例，选择 TI Clang 编译器文件夹，然后通过点击项目文件旁边的3个点来导入到 CCS IDE 中</p>
+<figure class="align-default">
+<img alt="" src="../_images/open_project_in_ccs.png" />
+</figure>
+</li>
+<li><p>如果未安装 SDK，将弹出一条错误消息并提示用户安装 SDK</p>
+<figure class="align-default">
+<img alt="" src="../_images/install_sdk.png" />
+</figure>
+</li>
+<li><p>安装 SDK 后，通过点击项目文件旁边的3个点将其导入到 CCS IDE 中</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/open_project_in_ccs.png" />
+</figure>
+<ol class="arabic" start="7">
+<li><p>编译样例程序，请在 Project Explorer 选项卡中单击您的样例程序，然后选择顶部的 <strong>Build</strong> 图标。</p>
+<div class="line-block">
+<div class="line"><strong>注</strong>一些样例程序包括对 SysConfig 的支持，以便更简单直观地进行配置 下图还显示了用于为样例程序工程配置器件的 SysConfig 文件 有关支持 SysConfig 的完整样例程序列表，请查看 <a class="reference external" href="../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html">MSPM0 SDK Examples Guide</a>。</div>
+<div class="line">有关基于MSPM0使用 SysConfig的更多一般信息，请参阅 SDK 工具指南中提供的 <a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">Using SysConfig with MSPM0</a>。</div>
+</div>
+<figure class="align-default">
+<img alt="" src="../_images/build_project.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="faq">
+<h2>4. 已知问题和常见问题解答(FAQ)<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h2>
+<p>请参阅 SDK 内部的 <a class="reference external" href="../../../../../known_issues_FAQ.html">Known Issues and FAQ</a>。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart_guide_ccs_theia_CN.html" class="btn btn-neutral float-left" title="适用于 CCS Theia 的 MSPM0 SDK 快速入门指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart_guide_iar_CN.html" class="btn btn-neutral float-right" title="MSPM0 SDK QuickStart Guide for IAR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

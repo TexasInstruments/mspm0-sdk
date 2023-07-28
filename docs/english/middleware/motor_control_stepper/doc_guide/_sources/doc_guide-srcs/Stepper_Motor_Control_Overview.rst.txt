@@ -1,0 +1,243 @@
+Stepper Motor Control Library Overview
+======================================
+
+1. Software Overview
+--------------------
+
+Stepper Motor Control Library is made of three main layers. They are the Application layer, Modules Layer and MSPM0 DriverLib.
+
+.. figure:: images/Library-Architecture.jpg
+   :alt: Stepper library Architecture
+
+   Stepper library Architecture
+
+1.1 Application Layer Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The user specific applications like GUI etc are present in this layer. From this layer various instances of motor driver module can be configured and used. If the user needs to perform any hardware specific actions the user is recommended to use the APIs from HAL module.
+
+1.2 HAL Module
+~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^
+
+HAL or Hardware Abstraction Layer creates an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configuration which simplifies porting of the library to various hardware by minimizing the updates needed to other components. The HAL is meant to abstract only the required pins or peripherals required for the application, this is done to make it light weight while still having flexibility for porting.
+
+HAL is designed to have specific number of pins or channels associated with a peripheral. For understanding let us consider case of GPIOs. HAL has enum HAL\_GPIO\_OUT\_PIN which has all the GPIO output pins as members as shown below.
+
+::
+
+    /*! @enum HAL_GPIO_OUT_PIN */
+    typedef enum{
+        /*! Index associated to output GPIO PIN 0 */
+        HAL_GPIO_OUT_PIN_0 = 0,
+        /*! Index associated to output GPIO PIN 1 */
+        HAL_GPIO_OUT_PIN_1,
+        /*! Index associated to output GPIO PIN 2 */
+        HAL_GPIO_OUT_PIN_2,
+        /*! Index associated to output GPIO PIN 3 */
+        HAL_GPIO_OUT_PIN_3,
+        /*! Index associated to output GPIO PIN 4 */
+        HAL_GPIO_OUT_PIN_4,
+        /*! Index associated to output GPIO PIN 5 */
+        HAL_GPIO_OUT_PIN_5,
+        /*! Index associated to output GPIO PIN 6 */
+        HAL_GPIO_OUT_PIN_6,
+        /*! Index associated to output GPIO PIN 7 */
+        HAL_GPIO_OUT_PIN_7,
+        /*! Index associated to output GPIO PIN 8 */
+        HAL_GPIO_OUT_PIN_8,
+        /*! Index associated to output GPIO PIN 9 */
+        HAL_GPIO_OUT_PIN_9,
+        /*! Total number of output GPIO pins */
+        HAL_GPIO_OUT_PIN_MAX,
+    }HAL_GPIO_OUT_PIN;
+
+To map the HAL GPIO pins to the real hardware pins we use a structure which is indexed by the members of the HAL\_GPIO\_OUT\_PIN enum and this structure stores various members like the port, pin name etc. See below the gpioOUT structure which holds data on the port and pin.
+
+::
+
+    gpioOUT[HAL_GPIO_OUT_PIN_0].iomux   = GENERIC_GPIO_OUT_PINO_0_IOMUX;
+    gpioOUT[HAL_GPIO_OUT_PIN_0].port    = GENERIC_GPIO_OUT_PORT;
+    gpioOUT[HAL_GPIO_OUT_PIN_0].pin     = GENERIC_GPIO_OUT_PINO_0_PIN;
+
+Note that GENERIC\_GPIO\_OUT\_PINO\_0\_PIN is defined in the TI Sysconfig generated files the specific line is shown below:
+
+::
+
+    #define GENERIC_GPIO_OUT_PINO_0_PIN                              (DL_GPIO_PIN_0)
+
+Thus HAL\_GPIO\_OUT\_PIN\_0 indirectly refers to DL\_GPIO\_PIN\_0, but the advantage of this mapping is that since TI Sysconfig controls the generation of the GENERIC\_GPIO\_OUT\_PINO\_0\_PIN it is very easy to change the pin in the TI Sysconfig gui and the HAL automatically follows this without the user having to change any code in the HAL layer.
+
+As seen above when accessing the hardware through the HAL we need to pass a HAL specific enum like HAL\_GPIO\_OUT\_PIN\_0, these enums are stored in the instances that access the HAL layer, in the case of the motor driver drv8889q1 we initialize the instance with its pins assigned to the HAL enums as shown in the snippet below.
+
+::
+
+    drv8889q1.dir               = HAL_GPIO_OUT_PIN_0;
+    drv8889q1.drvOff            = HAL_GPIO_OUT_PIN_1;
+    drv8889q1.nsleep            = HAL_GPIO_OUT_PIN_2;
+    drv8889q1.nfault            = HAL_GPIO_IN_PIN_0;
+    drv8889q1.vref              = HAL_DAC_CHANNEL_0;
+    drv8889q1.step              = HAL_PWM_CHANNEL_0;
+    drv8889q1.spi               = HAL_SPI_CHANNEL_0;
+    drv8889q1.spiCS             = HAL_SPI_CS_2;
+
+Now if the we need to set the nSLEEP pin high we use the API DRV8889Q1\_setNSleep() and pass this drv8889q1 instance with it, the code snippet is shown below:
+
+::
+
+    void DRV8889Q1_setNSleep(DRV8889Q1_Instance *handle)
+    {
+        HAL_setGPIOVal(handle->nsleep, HAL_GPIO_VALUE_HIGH);
+        /* Startup delay for the DRV8889Q1 SPI to be ready */
+        HAL_delayMilliSeconds(DRV8889Q1_SPI_READY_DELAY_MS);
+    }
+
+When DRV8889Q1\_setNSleep() interacts with the HAL layer it passes the member of the drv8889q1 instance, an example can the seen in the above code snippet where the nsleep member of the drv8889q1 instance is passed to the HAL layer and this is the same concept for using other HAL APIs for timer, SPI, DAC etc. The user is free to expand the HAL’s API to support other peripherals and features of the microcontroller but its strongly recommended not to modify existing API to ensure easy migration to new versions of this library.
+
+1.3 Motor Driver Module
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Motor Driver Module abstracts all the motor driving tasks into simple APIs like start motor, stop motor, set speed etc. The idea of this layer is to be independent of the hardware and use the HAL APIs to perform the hardware tasks.
+
+Motor Driver Pin Association
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The user before using the Motor driver module is expected to specify the HAL enums mapped to the motor driver instance, see the below code snippet.
+
+::
+
+    /* Assign the pins specific for the DRV */
+    drv8411a.ain1               = HAL_GPIO_OUT_PIN_0;
+    drv8411a.ain2               = HAL_GPIO_OUT_PIN_1;
+    drv8411a.bin1               = HAL_GPIO_OUT_PIN_2;
+    drv8411a.bin2               = HAL_GPIO_OUT_PIN_3;
+    drv8411a.nfault             = HAL_GPIO_IN_PIN_0;
+    drv8411a.aipropi            = HAL_ADC_CHANNEL_0;
+    drv8411a.bipropi            = HAL_ADC_CHANNEL_1;
+    drv8411a.vref               = HAL_DAC_CHANNEL_0;
+    drv8411a.indexerTimer       = HAL_TIM_CHANNEL_0;
+    drv8411a.ADCTriggerTimer    = HAL_TIM_CHANNEL_1;
+
+Motor Driver APIs
+^^^^^^^^^^^^^^^^^
+
+Motor driver module provides simple APIs which the user can use along with an instance of the motor drive module.
+
+The motor driver layer APIs also handles the motor driver specific logic while keeping the APIs generic thus the user can use different motor drives and not worry of any difference in the internal logics, For example below is a part of DRV8411A\_setPWMDrive API handling the H-bridge drive states.
+
+::
+
+    __STATIC_INLINE void DRV8411A_setPWMDrive(
+                                    HAL_GPIO_OUT_PIN in1, HAL_GPIO_OUT_PIN in2,
+                                    STEPPER_DRIVE drive, DRV8411A_DECAY decayMode)
+    {
+        HAL_GPIO_VALUE in1GpioVal  = HAL_GPIO_VALUE_LOW;
+        HAL_GPIO_VALUE in2GpioVal  = HAL_GPIO_VALUE_LOW;
+        switch (drive)
+        {
+            case STEPPER_DRIVE_DISABLE:
+                in1GpioVal = HAL_GPIO_VALUE_LOW;
+                in2GpioVal = HAL_GPIO_VALUE_LOW;
+                break;
+            case STEPPER_DRIVE_DECAY:
+                if(decayMode == DRV8411A_DECAY_SLOW)
+                {
+                    in1GpioVal = HAL_GPIO_VALUE_HIGH;
+                    in2GpioVal = HAL_GPIO_VALUE_HIGH;
+                }
+                else
+                {
+                    in1GpioVal = HAL_GPIO_VALUE_LOW;
+                    in2GpioVal = HAL_GPIO_VALUE_LOW;
+                }
+
+Note from the above code snippet that the task of setting the control output in the GPIOs to set the drive state could be different for each driver module, but since we use generic drive states which is handled by the motor driver module to set the correct output states based on its internal logic enables the Stepper library to be used with multiple motor driver modules.
+
+1.4 Stepper Library Module
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^
+
+The stepper library contains the generic algorithms for stepper motor control. This layer helps to reduce the code size when using multiple motor driver modules.
+
+This layer is used by the motor driver module and the user is not expected to use the APIs from this layer. The stepper Library is accessed through along with its instance from the motor driver layer which configures the generic algorithms and uses the stepper library APIs.
+
+::
+
+    void DRV8411A_setStepMode(DRV8411A_Instance *handle, DRV8411A_STEP stepMode)
+    {
+        if(stepMode == DRV8411A_STEP_FULL_STEP)
+        {
+            handle->stepMode = stepMode;
+            STEPPER_setIndexerIncVal(&handle->indexer, STEPPER_STEP_INC_DEC_FULL_STEP);
+            DRV8411A_setSpeed(handle, handle->setFreq);
+        }
+        if(stepMode == DRV8411A_STEP_HALF_STEP_NC)
+        {
+            handle->stepMode = stepMode;
+            STEPPER_setIndexerIncVal(&handle->indexer, STEPPER_STEP_INC_DEC_HALF_STEP);
+            DRV8411A_setSpeed(handle, handle->setFreq);
+            STEPPER_setStepType(&handle->indexer, STEPPER_STEP_TYPE_NONCIR);
+        }
+        else
+        {
+            STEPPER_setStepType(&handle->indexer, STEPPER_STEP_TYPE_CIR);
+        }
+    }
+
+In the above code the DRV8411A only sets the indexer increment decrement value to STEPPER\_STEP\_INC\_DEC\_FULL\_STEP or STEPPER\_STEP\_INC\_DEC\_HALF\_STEP. However there are more values to be set but as the DRV8411A doesn't support these modes it doesn't use them.
+
+Also the stepper library is unaware of the driver interface of the motor driver module using its APIs, ie whether PWM or Phase Enable interface. The stepper library generates generic drive states which the motor driver module turns to control outputs based on the PWM or Phase enable logic this point is also discussed was shown in the Motor Driver APIs section.
+
+1.5 MSPM0 DriverLib Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MSPM0 DriverLib is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. Please refer the DriverLib documentation for more information.
+
+2. API Guide
+------------
+
+-  `Stepper Library API Guide <../../doxygen/api_guide/html/index.html>`__
+
+3. Known Issues
+---------------
+
+1. In offline application the gui plots are sometimes not functional.
+2. Issue with fail in program loading is seen on offline application.
+3. Currently only supports CCS IDE.
+
+4. Supported Devices
+--------------------
+
+DRV8411A
+~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0L1306 <https://www.ti.com/tool/LP-MSPM0L1306>`__
+
+Links
+
+-  `Hardware User Guide <drv8411a/DRV8411A_Hardware_User_Guide.html>`__
+
+-  `GUI User Guide <drv8411a/DRV8411A_GUI_User_Guide.html>`__
+
+-  `MSPM0L1306-DRV8411A-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8411A-EVM-GUI>`__
+
+DRV8889-Q1
+~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0L1306 <https://www.ti.com/tool/LP-MSPM0L1306>`__
+
+Links
+
+-  `Hardware User Guide <drv8889-q1/DRV8889-Q1_Hardware_User_Guide.html>`__
+
+-  `GUI User Guide <drv8889-q1/DRV8889-Q1_GUI_User_Guide.html>`__
+
+-  `MSPM0L1306-DRV8889Q1-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8889Q1-EVM-GUI>`__

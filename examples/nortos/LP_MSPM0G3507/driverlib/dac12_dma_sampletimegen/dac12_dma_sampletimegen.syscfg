@@ -1,0 +1,37 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const DAC12  = scripting.addModule("/ti/driverlib/DAC12");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const gate8  = system.clockTree["MFPCLKGATE"];
+gate8.enable = true;
+
+DAC12.dacConfigureDMA          = true;
+DAC12.dacFIFOEn                = true;
+DAC12.dacFIFOThresh            = "TWO_QTRS_EMPTY";
+DAC12.dacEnabledInterrupts     = ["DMA_DONE"];
+DAC12.dacOutputPinEn           = true;
+DAC12.dacAmplifier             = "ON";
+DAC12.dacSampleTimerRate       = "1M";
+DAC12.DMA_CHANNEL.$name        = "DMA_CH0";
+DAC12.DMA_CHANNEL.transferMode = "FULL_CH_REPEAT_SINGLE";
+DAC12.DMA_CHANNEL.addressMode  = "b2f";
+DAC12.DMA_CHANNEL.srcLength    = "HALF_WORD";
+DAC12.DMA_CHANNEL.dstLength    = "HALF_WORD";
+DAC12.DMA_CHANNEL.peripheral.$assign  = "DMA_CH0";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SYSCTL.MFPCLKEn    = true;
+SYSCTL.clockTreeEn = true;

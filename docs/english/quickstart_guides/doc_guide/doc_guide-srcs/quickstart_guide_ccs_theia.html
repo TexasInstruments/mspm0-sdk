@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 SDK QuickStart Guide for CCS Theia &mdash; MSPM0 SDK Quick Start Guides 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MSPM0 SDK QuickStart Guide for CCS" href="quickstart_guide_ccs.html" />
+    <link rel="prev" title="MSPM0 SDK Quick Start Guides" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 SDK Quick Start Guides
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SDK QuickStart Guide for CCS Theia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">2. Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-a-mspm0-project-on-ccs-theia">3. Start a MSPM0 project on CCS Theia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-ti-resource-explorer">4. Using TI Resource Explorer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">5. Known Issues and Frequently Asked Questions (FAQs)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs.html">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_iar.html">MSPM0 SDK QuickStart Guide for IAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_keil.html">MSPM0 SDK QuickStart Guide for Keil</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 SDK Quick Start Guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 SDK QuickStart Guide for CCS Theia</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-sdk-quickstart-guide-for-ccs-theia">
+<h1>MSPM0 SDK QuickStart Guide for CCS Theia<a class="headerlink" href="#mspm0-sdk-quickstart-guide-for-ccs-theia" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with CCS Theia.</p>
+<p>This guide is not intended to explain the functionality of CCS Theia. Please refer to the documentation available through the Help menu in CCS Theia or the <a class="reference external" href="../../../tools/ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide.html">CCS Theia IDE Guide for MSPM0 MCUs</a> included with the MSPM0 SDK documentation.</p>
+</section>
+<section id="prerequisites">
+<h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The user is expected to have downloaded and installed the following:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">CCS Theia</a></p></li>
+</ul>
+</section>
+<section id="start-a-mspm0-project-on-ccs-theia">
+<h2>3. Start a MSPM0 project on CCS Theia<a class="headerlink" href="#start-a-mspm0-project-on-ccs-theia" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Open CCS Theia. The Getting Started page will show up, or it can be opened by selecting <strong>Help</strong> → <strong>Getting Started</strong>.</p>
+<p>Note that CCS Theia will automatically detect a MSPM0 LaunchPad if connected.</p>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_gettingstarted.png" />
+</figure>
+</li>
+<li><p>Click on <strong>Create a new project with Code Composer Studio IDE</strong> to open the Project Wizard.</p></li>
+<li><p>On the Project Wizard, select:</p>
+<ul class="simple">
+<li><p>Device or Launchpad</p></li>
+<li><p>Project to open, note that a brief description is provided and search filters can be used</p></li>
+<li><p>Project name</p></li>
+<li><p>Compiler, note that CCS Theia support TI Arm Clang and Arm GCC</p></li>
+<li><p>RTOS or No-RTOS, if available for example</p></li>
+</ul>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_projectwizard.png" />
+</figure>
+</li>
+<li><p>Click on <strong>Create</strong>.</p></li>
+<li><p>If the MSPM0 SDK hasn’t been installed, CCS Theia will request to install it. Any other dependencies such as compilers can also be installed.</p>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_projectwizard_install.png" />
+</figure>
+</li>
+<li><p>Close window once the SDK is installed.</p>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_projectwizard_installdone.png" />
+</figure>
+</li>
+<li><p>The project will be imported into the workspace.</p>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_project.png" />
+</figure>
+</li>
+<li><p>Optionally, open SysConfig.</p>
+<p>Some examples in the MSPM0 SDK have SysConfig support. <a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.</p>
+<p>Simply double-click the <code class="docutils literal notranslate"><span class="pre">.syscfg</span></code> file in the project to open the SysConfig viewer and start exploring.</p>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_sysconfig.png" />
+</figure>
+<p>For more information about using SysConfig with MSPM0, visit the <a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">Using SysConfig with MSPM0</a> guide.</p>
+</li>
+<li><p>Right-click on the project and click on <strong>Build Project(s)</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_projectbuild.png" />
+</figure>
+</li>
+<li><p>Press <strong>F5</strong> or click on the Debug icon followed by <strong>Start debugging</strong> icon.</p>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_projectdebug.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="using-ti-resource-explorer">
+<h2>4. Using TI Resource Explorer<a class="headerlink" href="#using-ti-resource-explorer" title="Permalink to this heading">¶</a></h2>
+<p>TI Resource Explorer (TI-Rex) helps you find all the latest examples, libraries, demo applications, datasheets, and more for your chosen platform.</p>
+<p>This tool is available at <a class="reference external" href="https://dev.ti.com/tirex">https://dev.ti.com/tirex</a>, but it’s also integrated into CCS Theia allowing for a more integrated user experience.</p>
+<figure class="align-default">
+<img alt="" src="../_images/theia_qsg_tirex_project.png" />
+</figure>
+</section>
+<section id="known-issues-and-frequently-asked-questions-faqs">
+<h2>5. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
+<p>Please refer to <a class="reference external" href="../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="MSPM0 SDK Quick Start Guides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart_guide_ccs.html" class="btn btn-neutral float-right" title="MSPM0 SDK QuickStart Guide for CCS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

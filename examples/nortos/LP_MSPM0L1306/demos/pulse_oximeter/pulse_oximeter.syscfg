@@ -1,0 +1,110 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const OPA2   = OPA.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const TIMER2 = TIMER.addInstance();
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                    = "ADC";
+ADC121.sampClkSrc               = "DL_ADC12_CLOCK_ULPCLK";
+ADC121.repeatMode               = true;
+ADC121.enabledADCMems           = [0,1];
+ADC121.adcMem0chansel           = "DL_ADC12_INPUT_CHAN_12";
+ADC121.adcMem1chansel           = "DL_ADC12_INPUT_CHAN_15";
+ADC121.adcMem1vref              = "VREF";
+ADC121.adcMem1stime             = "DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP1";
+ADC121.powerDownMode            = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.sampleTime0              = "750 ns";
+ADC121.sampleTime1              = "10 us";
+ADC121.enabledInterrupts        = ["DL_ADC12_INTERRUPT_DMA_DONE"];
+ADC121.configureDMA             = true;
+ADC121.sampCnt                  = 1;
+ADC121.enabledDMATriggers       = ["DL_ADC12_DMA_MEM0_RESULT_LOADED"];
+ADC121.DMA_CHANNEL.$name        = "DMA0";
+ADC121.DMA_CHANNEL.addressMode  = "f2b";
+ADC121.DMA_CHANNEL.srcLength    = "HALF_WORD";
+ADC121.DMA_CHANNEL.dstLength    = "HALF_WORD";
+ADC121.DMA_CHANNEL.transferMode = "FULL_CH_REPEAT_SINGLE";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+COMP1.$name          = "DAC";
+COMP1.hysteresis     = "DL_COMP_HYSTERESIS_20";
+COMP1.vSource        = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP1.terminalSelect = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP1.controlSelect  = "DL_COMP_DAC_CONTROL_SW";
+COMP1.setDACCode0    = 0x4D;
+
+GPIO1.$name                         = "P";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "R";
+GPIO1.associatedPins[0].assignedPin = "6";
+GPIO1.associatedPins[1].$name       = "IR";
+GPIO1.associatedPins[1].assignedPin = "7";
+
+GPIO2.$name                         = "B";
+GPIO2.associatedPins[0].$name       = "WAKE";
+GPIO2.associatedPins[0].direction   = "INPUT";
+GPIO2.associatedPins[0].assignedPin = "5";
+GPIO2.associatedPins[0].interruptEn = true;
+GPIO2.associatedPins[0].polarity    = "FALL";
+
+OPA1.$name           = "OPALED";
+OPA1.cfg0PSELChannel = "DAC8_OUT";
+OPA1.cfg0NSELChannel = "RTOP";
+OPA1.cfg0OutputPin   = "ENABLED";
+OPA1.advBW           = "HIGH";
+
+OPA2.$name           = "OPAASC";
+OPA2.cfg0PSELChannel = "IN0_POS";
+OPA2.cfg0NSELChannel = "IN1_NEG";
+OPA2.cfg0OutputPin   = "ENABLED";
+OPA2.advRRI          = true;
+OPA2.advBW           = "HIGH";
+
+
+TIMER1.$name              = "T8";
+TIMER1.timerClkPrescale   = 32;
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerPeriod        = "8 ms";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.peripheral.$assign = "TIMG0";
+
+TIMER2.$name            = "T1";
+TIMER2.timerClkPrescale = 32;
+TIMER2.timerPeriod      = "1 ms";
+TIMER2.interrupts       = ["ZERO"];
+
+UART1.$name                    = "UART";
+UART1.enabledInterrupts        = ["RX","TX"];
+UART1.targetBaudRate           = 115200;
+UART1.txFifoThreshold          = "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY";
+UART1.peripheral.$assign       = "UART1";
+UART1.peripheral.rxPin.$assign = "PA13";
+UART1.peripheral.txPin.$assign = "PA14";
+
+VREF.basicIntVolt = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";

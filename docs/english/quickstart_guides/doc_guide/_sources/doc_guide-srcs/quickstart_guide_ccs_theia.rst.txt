@@ -1,0 +1,91 @@
+MSPM0 SDK QuickStart Guide for CCS Theia
+========================================
+
+1. Introduction
+---------------
+
+This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with CCS Theia.
+
+This guide is not intended to explain the functionality of CCS Theia. Please refer to the documentation available through the Help menu in CCS Theia or the `CCS Theia IDE Guide for MSPM0 MCUs <../../../tools/ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide.html>`__ included with the MSPM0 SDK documentation.
+
+2. Prerequisites
+----------------
+
+The user is expected to have downloaded and installed the following:
+
+-  `CCS Theia <https://www.ti.com/tool/CCSTUDIO>`__
+
+3. Start a MSPM0 project on CCS Theia
+-------------------------------------
+
+1.  Open CCS Theia. The Getting Started page will show up, or it can be opened by selecting **Help** → **Getting Started**.
+
+    Note that CCS Theia will automatically detect a MSPM0 LaunchPad if connected.
+
+    .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_gettingstarted.png
+       :alt: 
+
+2.  Click on **Create a new project with Code Composer Studio IDE** to open the Project Wizard.
+
+3.  On the Project Wizard, select:
+
+    -  Device or Launchpad
+    -  Project to open, note that a brief description is provided and search filters can be used
+    -  Project name
+    -  Compiler, note that CCS Theia support TI Arm Clang and Arm GCC
+    -  RTOS or No-RTOS, if available for example
+
+    .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_projectwizard.png
+       :alt: 
+
+4.  Click on **Create**.
+5.  If the MSPM0 SDK hasn't been installed, CCS Theia will request to install it. Any other dependencies such as compilers can also be installed.
+
+    .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_projectwizard_install.png
+       :alt: 
+
+6.  Close window once the SDK is installed.
+
+    .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_projectwizard_installdone.png
+       :alt: 
+
+7.  The project will be imported into the workspace.
+
+    .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_project.png
+       :alt: 
+
+8.  Optionally, open SysConfig.
+
+    Some examples in the MSPM0 SDK have SysConfig support. `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.
+
+    Simply double-click the ``.syscfg`` file in the project to open the SysConfig viewer and start exploring.
+
+    .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_sysconfig.png
+       :alt: 
+
+    For more information about using SysConfig with MSPM0, visit the `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ guide.
+
+9.  Right-click on the project and click on **Build Project(s)**.
+
+    .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_projectbuild.png
+       :alt: 
+
+10. Press **F5** or click on the Debug icon followed by **Start debugging** icon.
+
+    .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_projectdebug.png
+       :alt: 
+
+4. Using TI Resource Explorer
+-----------------------------
+
+TI Resource Explorer (TI-Rex) helps you find all the latest examples, libraries, demo applications, datasheets, and more for your chosen platform.
+
+This tool is available at https://dev.ti.com/tirex, but it’s also integrated into CCS Theia allowing for a more integrated user experience.
+
+.. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_tirex_project.png
+   :alt: 
+
+5. Known Issues and Frequently Asked Questions (FAQs)
+-----------------------------------------------------
+
+Please refer to `Known Issues and FAQ <../../../../../known_issues_FAQ.html>`__ inside the SDK.

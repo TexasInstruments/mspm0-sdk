@@ -1,0 +1,242 @@
+MSPM0 Boot Image Manager (BIM) User's Guide
+===========================================
+
+1. Introduction
+---------------
+
+The Boot Image Manager (BIM) is an implementation of the publicly available mcuboot for MSP devices in order to allow for customers to have secure booting features in their development.
+
+Some things the BIM does:
+
+-  It can verify one or more application images using Elliptic Curve Digital Signature Algorithm (ECDSA) with NIST P-256 curve and hashing algorithm SHA-256
+
+-  It can fit in devices with RAM as small as 4 kB
+
+-  It takes up less than 20 kB of flash (allowing for two 22kB images on a 64kB device)
+
+-  mcuboot is open source and can be modified to fit the end developer's needs
+
+-  It does not require a HW accelerator or additional HW support in order to verify images
+
+Some things the current BIM doesn't do:
+
+-  It does not load application images onto a device (doesn't replace the bootloader)
+
+-  It does not guarantee a full secure boot implementation on a device
+
+**NOTE: currently this feature is in the beta stage of development, so this information may be updated in future releases**
+
+2. Using the Examples
+---------------------
+
+It is recommended to run the existing example set of the ``boot_application`` and ``boot_sample_image`` in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.4+). This example uses the MSPM0L1306 or MSPM0G3507 LaunchPad with settings shown in the project README.
+
+2.0 Prerequisites
+~~~~~~~~~~~~~~~~~
+
+To run the initial setup, make sure Python 3.7 or newer is installed with the latest pip package and run the following command to download the necessary requirements.
+
+::
+
+    python -m pip install --user -r source/third_party/mcuboot/scripts/requirements.txt
+
+2.0.1 Python Versioning in OSX or Linux
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The functions and pre-build steps will use Python 3.7 with the command ``python`` in order to envoke the python executable. Thus, the command ``python --version`` should yield 3.7 or greater.
+
+In Linux or Mac setups, python can refer to a separate version, so it is recommended either to alias the ``python3`` command to ``python``, or if two distinct versions are needed, to modify the post build step in the example to use ``python3`` instead.
+
+2.1 Application Image Example Building
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The application image example ``boot_sample_image`` is a CCS project that contains two configurations for creating two images: one that goes in the primary slot, and one that goes in the secondary slot. These images are both designed for execute in place (XIP as discussed later), and thus the configuration names bear that suffix.
+
+**NOTE** The application images cannot run in isolation on a device without the boot application present.
+
+In order to switch the configurations, one can navigate to the **properties** of the project and select **Manage Configurations** to set the active configuration.
+
+.. figure:: ./images/bim_userguide_image_configurations.png
+   :alt: 
+
+It is recommended to build both the configurations to be able to test more functionality of the boot application.
+
+This process also includes post build steps that can be found in the **Steps** tabs of **Properties > Build**. These post build steps take care of signing the image, and outputting it into a binary file with important information about it. The output file will resemble ``bim_sample_image_<slot>_<version>_<color>``
+
+The elements of the built image binary name are as follows:
+
+-  slot: the address of where the image is to be loaded (later stage)
+
+-  version: the major version of the image
+
+-  color: the led flashing color of the image
+
+2.2 Running the Boot Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Build the ``boot_application`` example. Before flashing the device, proceed to **Properties > Debug** and select the MSPM0 Flash Settings from the list on the left hand side of the Debug page. Then configure the Erase method to erase necessary sectors only (shown below)
+
+.. figure:: ./images/bim_userguide_bootapp_debug_erase.png
+   :alt: 
+
+After this, begin to Debug the project. The main function should now be entered. There shouldn't be any valid images present on the device now, so running the example should result in a flashing red LED.
+
+2.3 Loading the Binary Images
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To load the binary images onto the device, follow these steps once the boot application is being debugged:
+
+1. Open the Memory browser for the device, which can be found by navigating to **View > Memory Browser**. To load the binary image, pause the running of the device and click the green silicon package with the arrow and select **Load Memory**
+
+   .. figure:: ./images/bim_userguide_load_image.png
+      :alt: 
+
+2. Point to the specific sample image built in `Build Application Image <#application-image-example-building>`__. It is recommended to load the green image first. Select the binary file type from the drop down list as shown below. Click **Next** at the bottom.
+
+   .. figure:: ./images/bim_userguide_load_image_path.png
+      :alt: 
+
+3. Finally, enter the start address. This should match the value of the first memory slot, as well as the value listed in the file name. Once written, select **Finish**.
+
+   .. figure:: ./images/bim_userguide_load_start_address.png
+      :alt: 
+
+4. Verify that the boot application has not been erased by checking early in flash memory in the memory browser (such as 0x0000). Also verify the image has been successfully loaded into the image slot by typing the starting address into the memory browser. If both elements are present, then the device can be restarted. The highest version image currently on the device should be run, regardless of slot. In the case of loading just the primary slot image, the green LED should toggle at the end of the verification. If both images are present, then the blue LED should toggle.
+
+3 Developing using the Boot Image Manager
+-----------------------------------------
+
+While the examples provide a good starting point for some development techniques, this section elaborates on some of the developments that will likely be necessary in order to take full advantage of the boot image manager.
+
+3.1 Creating and Using Keys
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ECDSA is currently the only supported authentication method for mcuboot. ECDSA is an asymmetric algorithm, meaning there is a separate public and private key. The public key will be stored in the device flash and the private will be maintained by the developer securely. Included in the mcuboot folder is the imgtool.py python script that can sign images and create keys.
+
+In order to generate a new key, the user can enter the following command creating a key called newkey.pem (or whatever name is suitable):
+
+::
+
+    cd source/third_party/mcuboot/
+    scripts/imgtool.py keygen -k newkey.pem -t ecdsa-p256
+
+The public key is then derived from the .pem file, encoded in the DER format. It is autogenerated from the following instruction.
+
+.. code:: bash
+
+    scripts/imgtool.py getpub -k newkey.pem
+
+this will output to the console the public key information (encoded in DER format), which is then copied and pasted into ``boot_keys.c`` in the EC256 section (specifying the supported algorithm).
+
+For more information about generating keys, one can visit the `imgtool ReadMe <https://github.com/mcu-tools/mcuboot/blob/main/docs/imgtool.md>`__
+
+3.2 Creating and Signing the Application Image
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The mcuboot tool is capable of verifying and jumping to images, however these images must first be created in a format that is understood by mcuboot. This is done by a combination of linker modification to fit the memory map and using the imgtool provided by mcuboot, and included in this SDK under ``source/third_party/mcuboot/scripts``.
+
+The default image memory map of the MSPM0L1306 is provided as a reference for 2 on-chip images of equal size. The flash size required for mcuboot is less than 0x5000 depending on build configurations and optimizations. Consequently, the largest image that can currently fit on this device is 0x5400 (21kB including header of 256 bytes).
+
+.. figure:: ./images/bim_userguide_64kb_memory_map.png
+   :alt: 
+
+The default image memory map of the MSPM0G3507 is provided with a similar configuration. The flash size required for mcuboot remains the same, but the application images can be much larger. This can be modified to suit the users needs. In this setup, the largest image that can fit on this device is 0xD000 (52kB). If XIP only is desired, the scratch region can be removed.
+
+.. figure:: ./images/bim_userguide_128kb_memory_map.png
+   :alt: 
+
+This document is intended as a summary guide in order to allow a developer to begin using the boot image manager for MSP, and not to comprehensively cover the image capabilities. To understand more about advanced features of the headers or develop other features, please consult the online mcuboot documentation such as the `mcuboot design documentation <https://github.com/mcu-tools/mcuboot/blob/main/docs/design.md>`__.
+
+3.2.1 Building the Unsigned Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Currently the only supported compiler for the boot application is ticlang. However, the developer can compile their application image with any compiler. Using a favorite IDE, the user can convert the image to a signed image by creating a binary unsigned output file. However, the application must fit in the size of the image slot on the device. In a 64kB flash device with two equal slots, the maximum size supported is 21 kB. Images do not have to be position independent or change information about headers or vectors in order to function appropriately. However, they must be linked to their execution slot.
+
+Additionally, the image cannot run on its own without the boot application present. When developing an application image, it may be better to develop it with respect to 0x0000 on the device, run on a device without the boot application. Then, when an image is ready to be created, change the linking properties to run from the slot.
+
+**Important:** mcuboot will select between the images using execute in place (XIP), so the images will not be swapped by default. Because of this, the developer must create the image with respect to the image slot that the image will go into. In many cases, this could mean maintaining two images built for primary and secondary slots. Otherwise, unexpected behavior could occur.
+
+Building the image will require several modifications to a standard linker file: \* The start of the flash will need to be considered as the beginning of the image slot plus the header offset. For example, if the primary image slot starts at 0x5400, and the mcuboot header is of size 0x100, the first element of flash of the application (the interrupt vector table) should be at address 0x5500. **NOTE**: The interrupt vector table must be 256-bit aligned. Thus, the header has additional padding such that the vector table can be accessed correctly. \* The size of flash will be the image size minus the size of the header and trailer. The trailer for unencrypted, execute in place is generally very small (<50 bytes) and is not considered in the calculations for the provided example. However, in future configurations, the trailer may need to be considered in image size. \* The RAM can remain unaltered, as all RAM from the BIM will be yielded to the application.
+
+A template of these modifications for a ticlang linker file can be found in the ``bim_sample_image`` example.
+
+After compiling and creating the image, the output should be converted to binary format. The command to do this in CCS is:
+
+::
+
+    ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out --output-target binary ${ProjName}-unsigned.bin
+
+It is recommended to name the output file with the suffix "unsigned" as to avoid confusion. This can be automated by adding it to the post-build steps of the project for your IDE.
+
+3.2.2 Signing the Image
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The imgtool provided by mcuboot can then sign this image and provide the appropriate header. The following instruction uses the imgtool to sign an image:
+
+::
+
+    ./scripts/imgtool.py sign --header-size 0x100 --align 4 --slot-size 0x5400 --pad --version 1.0.0 -s 1 --pad-header --key path/to/private/key.pem ${ProjName}-unsigned.bin ${ProjName}.bin
+
+The information that the developer may need to edit are as follows:
+
+-  Key - the developer must change the key path to their private key (pem file), which can be generated following the steps in `Creating and Using Keys <#creating-and-using-keys>`__
+
+-  Version - the developer should include their versioning for the image
+
+-  Slot size - if the memory map has been altered, see `Memory Map Customization <#customization-of-the-memory-map>`__, the slot size will need to be accounted for.
+
+-  Security Version - the user can change the security version (-s option) of the software for rollback protection, however the feature is not currently supported in the beta release.
+
+This function is also included in the post build steps of the ``bim_sample_image`` project (with paths filled in).
+
+3.2.3 Encrypting the Image
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Image encryption is not supported in the beta implementation of the boot image manager.
+
+4 Modifying the BIM
+-------------------
+
+4.1 Other Image Management Techniques
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+While execute in-place (XIP) is the default image management technique, there are other methods such as swapping which offers different advantages. Currently only XIP is supported in the beta implementation.
+
+4.2 Customization of the Memory Map
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The memory map of the device is something that can be freely altered on the device. This can be changed by opening the file ``flash_mem_backend.c`` of the device and adjusting the defines to a user-specified setting. However, it is important to make sure whatever changes are made to the memory map are also accounted for in the applications linker and image size of the signing step.
+
+**Note**. Some M0L devices have a known issue where the last 8 bytes of the memory cannot be programmed successfully. Because mcuboot works in sectors, it is not recommended to use the final sector of these devices as part of an image slot or scratch slot. The sector can be written to and erased and could be used by the application. The standard linker file for the device will have a slightly smaller flash size if the device is affected.
+
+4.3 Failure behavior
+~~~~~~~~~~~~~~~~~~~~
+
+Currently, upon a failure to load a successful image, the ``mcubootFail`` function will be entered, which is defined in the ``boot_application.c`` file. The default behavior on a failure is to toggle LED2 (Red on the LaunchPad). However, this behavior can be customized to fit the developers needs. For example, a permanent, reduced functionality image could be included if all valid images fail.
+
+4.4 Additional configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are additional configurations available for mcuboot. More information can be found by consulting the `mcuboot documentation <https://github.com/mcu-tools/mcuboot/blob/main/docs/design.md>`__. However, not all of these features are currently implemented or feasible on MSP.
+
+5 Security Principles in MSP
+----------------------------
+
+5.1 Static Write Protection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To avoid unwanted erasure of the boot image manager, it is important to configure the NONMAIN region to disallow writes to the area of flash that the boot application will reside in.
+
+For more information about the NONMAIN region, consult the device specific Technical Reference Manual.
+
+5.2 Root of Trust Using NONMAIN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With the write protection enabled on NONMAIN, it is still possible for a factory reset to wipe the entire device. Preventing a factory reset (or only allowing it with a password) is a mechanism that allows developers to ensure the booting of the device into NONMAIN.
+
+5.3 Rollback Protection
+~~~~~~~~~~~~~~~~~~~~~~~
+
+One of the security features mcuboot provides is rollback protection: where a user can set a security version that new images must match or exceed in order to be accepted by the boot image manger. This prevents an attacker from installing a previous image which may contain a vulnerability that is fixed in later versions.
+
+This feature is not available on current M0L or M0G devices due to the non-main write protect occurring statically once upon startup. Rollback protection generally requires the hardware capability to prevent writes to a region dynamically (after verifying but before jumping to an image).

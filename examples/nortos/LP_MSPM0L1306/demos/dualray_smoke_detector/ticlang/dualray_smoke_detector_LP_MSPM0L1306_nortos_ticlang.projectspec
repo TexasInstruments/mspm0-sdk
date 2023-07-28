@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L1306"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="dualray_smoke_detector"
+        name="dualray_smoke_detector_LP_MSPM0L1306_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L1306"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__AFE_TPS880X__
+            -D__ENABLE_GUI__
+            -D__MSPM0L1306__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a
+            -Wl,--stack_size=512
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Dualray smoke detector demo">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../Src/DualRaySmokeAFE_GUI/jsmn/jsmn.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_GUI/jsmn">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_GUI/jsmn/jsmn.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_GUI/jsmn">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_GUI/DualRaySmokeAFE_GUI.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_GUI">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_mspm0_i2c.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_mspm0_i2c.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_regs.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_AFE_MSPM0_TPS880x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Config_MSPM0_TPS880x_Private.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_GUIComm_UART_MSPM0_TPS880x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_IO_MSPM0_TPS880x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Sounder_MSPM0_TPS880x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_System_MSPM0_TPS880x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Timing_MSPM0_TPS880x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_HAL/DualRaySmokeAFE_HAL_Config_Private.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFE_HAL">
+        </file>
+        <file path="../Src/DualRaySmokeAFELib/DualRaySmokeAFELib_DetectionAlg.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFELib">
+        </file>
+        <file path="../Src/DualRaySmokeAFELib/DualRaySmokeAFELib_Measurement.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/DualRaySmokeAFELib">
+        </file>
+        <file path="../Src/include/DualRaySmokeAFE_Config_Common.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/include">
+        </file>
+        <file path="../Src/include/DualRaySmokeAFE_GUI.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/include">
+        </file>
+        <file path="../Src/include/DualRaySmokeAFE_HAL.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/include">
+        </file>
+        <file path="../Src/include/DualRaySmokeAFELib_Config.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/include">
+        </file>
+        <file path="../Src/include/DualRaySmokeAFELib.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src/include">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_App_Config.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_App_Config.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_App_GuiComm.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_App_Main.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src">
+        </file>
+        <file path="../Src/DualRaySmokeAFE_App.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Src">
+        </file>
+        <file path="../DualRaySmokeAFE_MSPM0_TPS880x.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/mspm0l1306.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0l1306_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+    </project>
+</projectSpec>

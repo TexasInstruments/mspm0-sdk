@@ -1,0 +1,200 @@
+DRV8323RS GUI User Guide
+========================
+
+The GUI used in this guide can be found `here <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI>`__.
+
+1. Getting Started with GUI
+---------------------------
+
+The GUI allows the user to configure various settings required for Sensorless FOC motor control. The user can adjust settings like motor speed reference, set parameters and other device settings, as well as monitor the device status.
+
+Perform the following steps to begin using the GUI:
+
+1. Connect the BLDC motor to the EVM.
+2. Make the necessary connections for connecting LP-MSPM0G3507 to BOOSTXL-DRV8323RS. For detailed steps refer to `Hardware User Guide <DRV8323RS_Hardware_User_Guide_CN.html>`__.
+3. Plug in the micro-USB cable to the PC.
+4. Enable the power supply to EVM.
+
+2. Using the GUI
+----------------
+
+The GUI when launched will automatically try to establish communication with the device, if it doesn't happen or if user needs to disconnect the user can click on the link icon shown on the left side in the image shown below. A message showing ‘Connecting to target…’ will be displayed when the GUI tries to connect to the board in the hardware connection status pane which is located at the bottom of GUI window. If the connection is successful, ‘Hardware connected’ message appears, as shown in the image below.
+
+.. figure:: images/GUI-hardware_connected.jpg
+   :alt: Hardware connected
+
+   Hardware connected
+
+3. GUI Window
+-------------
+
+In the GUI Window user can find various controls to enable system, control the bldc motor, and configure various parameters such as pwm frequency, deadband and so forth. Hover over the control widgets to display the brief description on its actions.
+
+.. figure:: images/GUI-window.jpg
+   :alt: GUI window
+
+   GUI window
+
+3.1 Parameters
+~~~~~~~~~~~~~~
+
+The GUI allows to modify the FOC parameters like motor resistance, deadband etc.
+
+.. figure:: images/GUI-parameters.jpg
+   :alt: FOC parameters
+
+   FOC parameters
+
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Function   | Description                                                                                                                                  |
++============+==============================================================================================================================================+
+| R          | Motor Phase resistance in ohms.                                                                                                              |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| L          | Motor Phase inductance in henry.                                                                                                             |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Poles      | Number of poles in motor.                                                                                                                    |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Base RPM   | Maximum RPM the FOC can command. Ie, when speed reference is 1.0 . User can set it to maximum speed of the motor in revolutions per minute   |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| PWM Freq   | PWM frequency used to drive the motor.                                                                                                       |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Deadband   | Deadtime in nanoseconds inserted between high side and low side pwm outputs.                                                                 |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Amp Gain   | Gain of the current sense amplifier.                                                                                                         |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Rshunt     | Shunt resistor set in the motor driver in ohms.                                                                                              |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+3.2 Tuning
+~~~~~~~~~~
+
+User can use the Tuning section of the GUI to tune the control parameters to desired response.
+
+.. figure:: images/GUI-tuning.jpg
+   :alt: Motor Tuning
+
+   Motor Tuning
+
++---------------+-------------------------------------------------------+
+| Function      | Description                                           |
++===============+=======================================================+
+| Speed Kp      | Proportional constant in PI for Speed in per units.   |
++---------------+-------------------------------------------------------+
+| Speed Ki      | Integral constant in PI for Speed in per units.       |
++---------------+-------------------------------------------------------+
+| Id Kp         | Proportional constant in PI for Id in per units.      |
++---------------+-------------------------------------------------------+
+| Id Ki         | Integral constant in PI for Id in per units.          |
++---------------+-------------------------------------------------------+
+| Iq Kp         | Proportional constant in PI for Iq in per units.      |
++---------------+-------------------------------------------------------+
+| Iq Ki         | Integral constant in PI for Iq in per units.          |
++---------------+-------------------------------------------------------+
+| esmo Kslide   | Esmitator Kslide value in per units.                  |
++---------------+-------------------------------------------------------+
+
+3.3 Control
+~~~~~~~~~~~
+
+The user can use this section of the GUI to control the motor. The user can control the motor speed, motor state, etc.
+
+.. figure:: images/GUI-control.jpg
+   :alt: Motor Control
+
+   Motor Control
+
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Function          | Description                                                                                                                                                                                                                                                         |
++===================+=====================================================================================================================================================================================================================================================================+
+| Enable System     | Control whether FOC is enabled or disabled. If set 0, PWM is disabled and the drive is in HighZ state.                                                                                                                                                              |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Motor State       | Controls the FOC state. If set to Align, Aligns the motor to A phase. If set to Open Loop, Rotates the motor in open loop with speed from speed Reference input. If set Closed Loop, Rotates the motor in closed loop with speed from speed Reference input.        |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Speed (pu)        | Display the estimated motor speed in per unit.                                                                                                                                                                                                                      |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Speed (RPM)       | Display the estimated motor speed in revolutions per minute.                                                                                                                                                                                                        |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Speed Reference   | Reference speed in per unit input to the speed PI controller. Note that this value is set to the PI controller for speed through a ramp to smoothen the response, thus while viewing the reference to PI speed the user can see a linear ramp to the input value.   |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Id Reference      | Reference Id input in per unit. This value is set only in Align motor state.                                                                                                                                                                                        |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Id Feedback       | Feedback of Id in per unit.                                                                                                                                                                                                                                         |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Iq Reference      | Reference Iq input in per unit. This value is set only in Open Loop motor state.                                                                                                                                                                                    |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Iq Feedback       | Feedback of Iq in per unit.                                                                                                                                                                                                                                         |
++-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+3.4 Protection
+~~~~~~~~~~~~~~
+
+Section to configure the software protections like over current, under voltage and over voltage.
+
+.. figure:: images/GUI-protection.jpg
+   :alt: Motor Protection
+
+   Motor Protection
+
++-----------------------+--------------------------------------------------------------------------------+
+| Function              | Description                                                                    |
++=======================+================================================================================+
+| Over Current Limit    | Value of phase current in ampere above which software triggers over current    |
++-----------------------+--------------------------------------------------------------------------------+
+| Over Voltage Limit    | Value of voltage in volts above which software triggers over voltage fault.    |
++-----------------------+--------------------------------------------------------------------------------+
+| Under Voltage Limit   | Value of voltage in volts below which software triggers under voltage fault.   |
++-----------------------+--------------------------------------------------------------------------------+
+
+3.5 Fault Status
+~~~~~~~~~~~~~~~~
+
+The fault monitoring and handling is at the top right side of the screen this allows the user to monitor the faults. The Fault led turns red when a fault occurred. To clear all the faults, use the “CLEAR FAULTS” button.
+
+.. figure:: images/GUI-fault_status.jpg
+   :alt: Motor Fault Status
+
+   Motor Fault Status
+
++-----------------+----------------------------------------------------------------+
+| Function        | Description                                                    |
++=================+================================================================+
+| CLEAR FAULTS    | Pressing this button clears all the faults.                    |
++-----------------+----------------------------------------------------------------+
+| DRV Fault       | This Fault is set when fault pin from DRV is low.              |
++-----------------+----------------------------------------------------------------+
+| Over Current    | Set when phase currents is above the set over current limit.   |
++-----------------+----------------------------------------------------------------+
+| Over Voltage    | Set when bus voltage is above the set over voltage limit.      |
++-----------------+----------------------------------------------------------------+
+| Under Voltage   | Set when bus voltage is below the set under voltage limit.     |
++-----------------+----------------------------------------------------------------+
+
+3.6 Stats
+~~~~~~~~~
+
+Displays the relevant stats like bus voltage and phase currents.
+
+.. figure:: images/GUI-stats.jpg
+   :alt: Motor Stats
+
+   Motor Stats
+
++------------+-----------------------------------------+
+| Function   | Description                             |
++============+=========================================+
+| VM         | Voltage in the DRV VM input in volts.   |
++------------+-----------------------------------------+
+| IA         | A phase current in ampere.              |
++------------+-----------------------------------------+
+| IB         | B phase current in ampere.              |
++------------+-----------------------------------------+
+
+3.7 Plots
+~~~~~~~~~
+
+The user can see a graphical view of the speed, Id and Iq currents using the plots in the GUI.
+
+.. figure:: images/GUI-plot.jpg
+   :alt: GUI plot
+
+   GUI plot

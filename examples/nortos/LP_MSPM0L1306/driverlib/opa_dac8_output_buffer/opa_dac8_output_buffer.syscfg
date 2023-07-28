@@ -1,0 +1,50 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.InitPriority8               = "/ti/driverlib/VREF";
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+COMP1.$name              = "COMP_0";
+COMP1.hysteresis         = "DL_COMP_HYSTERESIS_20";
+COMP1.vSource            = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP1.terminalSelect     = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP1.controlSelect      = "DL_COMP_DAC_CONTROL_SW";
+COMP1.setDACCode0        = 0x4D;
+COMP1.peripheral.$assign = "COMP0";
+
+OPA1.$name                     = "OPA_0";
+OPA1.cfg0OutputPin             = "ENABLED";
+OPA1.cfg0PSELChannel           = "DAC8_OUT";
+OPA1.cfg0NSELChannel           = "RTOP";
+OPA1.advBW                     = "HIGH";
+OPA1.peripheral.$assign        = "OPA0";
+OPA1.peripheral.OutPin.$assign = "PA22";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+SYSCTL.clockTreeEn = true;
+
+VREF.basicIntVolt         = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.checkVREFReady       = true;
+VREF.advClockConfigEnable = true;
+VREF.advClkSrc            = "DL_VREF_CLOCK_BUSCLK";
+VREF.peripheral.$assign   = "VREF";

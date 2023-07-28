@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMSIS DSP Library for MSPM0 MCUs &mdash; CMSIS DSP Library for MSPM0 MCUs 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="CMSIS DSP Library for MSPM0 MCUs" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> CMSIS DSP Library for MSPM0 MCUs
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CMSIS DSP Library for MSPM0 MCUs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cmsis-dsp-source-and-library">2. CMSIS DSP Source and Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-cmsis-dsp-with-mspm0">3. Using CMSIS DSP with MSPM0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-cmsis-dsp-examples">3.1 Using CMSIS DSP Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-cmsis-dsp-to-an-existing-project">3.2 Adding CMSIS DSP to an Existing Project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CMSIS DSP Library for MSPM0 MCUs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>CMSIS DSP Library for MSPM0 MCUs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cmsis-dsp-library-for-mspm0-mcus">
+<h1>CMSIS DSP Library for MSPM0 MCUs<a class="headerlink" href="#cmsis-dsp-library-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Texas Instruments supports ARM’s Cortex Microcontroller Software Interface Standard (CMSIS), a standardized hardware abstraction layer for the Cortex-M processor series. The purpose of the CMSIS initiative is to standardize a fragmented industry on one superior hardware and software microcontroller architecture.</p>
+<p>The CMSIS DSP library includes source code and example applications, and saves time by including common DSP algorithms such as complex arithmetic, vector operations, filter and control functions. This library can be used on Arm Cortex-M devices, such as the MSPM0 family of MCUs.</p>
+<p>This document details the steps necessary to get started with CMSIS DSP using the <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0-SDK</a>. More details of CMSIS DSP library are available in the <a class="reference external" href="https://www.keil.com/pack/doc/CMSIS/DSP/html/index.html">CMSIS DSP Software Library User Manual</a>.</p>
+</section>
+<section id="cmsis-dsp-source-and-library">
+<h2>2. CMSIS DSP Source and Library<a class="headerlink" href="#cmsis-dsp-source-and-library" title="Permalink to this heading">¶</a></h2>
+<p>The MSPM0 SDK includes the CMSIS DSP source and pre-built libraries in the following locations:</p>
+<ul class="simple">
+<li><p>Source: <code class="docutils literal notranslate"><span class="pre">&lt;SDK&gt;\source\third_party\CMSIS\DSP</span></code></p></li>
+<li><p>Libraries: <code class="docutils literal notranslate"><span class="pre">&lt;SDK&gt;\source\third_party\CMSIS\DSP\lib</span></code></p></li>
+</ul>
+<p>Pre-built Libraries are included for the following compilers:</p>
+<ul class="simple">
+<li><p>TI Arm Clang</p></li>
+<li><p>Arm GCC</p></li>
+<li><p>IAR</p></li>
+<li><p>Keil</p></li>
+</ul>
+</section>
+<section id="using-cmsis-dsp-with-mspm0">
+<h2>3. Using CMSIS DSP with MSPM0<a class="headerlink" href="#using-cmsis-dsp-with-mspm0" title="Permalink to this heading">¶</a></h2>
+<section id="using-cmsis-dsp-examples">
+<h3>3.1 Using CMSIS DSP Examples<a class="headerlink" href="#using-cmsis-dsp-examples" title="Permalink to this heading">¶</a></h3>
+<p>The MSPM0 SDK includes ready-to-use examples which can be used to test CMSIS DSP functionality or as a template for new projects.</p>
+<p>These examples are located at <code class="docutils literal notranslate"><span class="pre">&lt;SDK&gt;\examples\cmsis_dsp</span></code>, and they are also available in the <a class="reference external" href="https://dev.ti.com/">TI Developer Zone</a> and <a class="reference external" href="https://dev.ti.com/tirex/explore/node?node=A__AOsBvwTJoOinHEWBZRPfQg__MSPM0-SDK__a3PaaoK__LATEST">TI Resource Explorer</a>.</p>
+<p>TI recommends to use <code class="docutils literal notranslate"><span class="pre">cmsis_dsp_empty</span></code> for an easy way to start an empty project including library and header files.</p>
+</section>
+<section id="adding-cmsis-dsp-to-an-existing-project">
+<h3>3.2 Adding CMSIS DSP to an Existing Project<a class="headerlink" href="#adding-cmsis-dsp-to-an-existing-project" title="Permalink to this heading">¶</a></h3>
+<p>The following steps describe how to add CMSIS DSP to a Code Composer Studio (CCS) project using TI Arm Clang but similar steps apply for other IDEs and compilers.</p>
+<ol class="arabic">
+<li><p>Add the CMSIS DSP Include directory:</p>
+<p>In CCS, this path can be accessed at <code class="docutils literal notranslate"><span class="pre">${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/DSP/Include</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/cmsis_dsp_include.png" />
+</figure>
+</li>
+<li><p>Add the pre-built library:</p>
+<p>In CCS, the library for TI Arm Clang is available at <code class="docutils literal notranslate"><span class="pre">${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/DSP/lib/ticlang/m0p/arm_cortexM0l_math.a</span></code></p>
+<figure class="align-default">
+<img alt="" src="../_images/cmsis_dsp_addLib.png" />
+</figure>
+</li>
+<li><p>Include “arm_math.h” into your source file:</p>
+<figure class="align-default">
+<img alt="" src="../_images/cmsis_dsp_source.png" />
+</figure>
+</li>
+<li><p>Start developing with CMSIS DSP and MSPM0!</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="CMSIS DSP Library for MSPM0 MCUs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 SDK QuickStart Guide for IAR &mdash; MSPM0 SDK Quick Start Guides 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MSPM0 SDK QuickStart Guide for Keil" href="quickstart_guide_keil.html" />
+    <link rel="prev" title="MSPM0 SDK QuickStart Guide for CCS" href="quickstart_guide_ccs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 SDK Quick Start Guides
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs_theia.html">MSPM0 SDK QuickStart Guide for CCS Theia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs.html">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SDK QuickStart Guide for IAR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">2. Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-mspm0-sdk">3. Install the MSPM0 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-mspm0-sdk-to-iar">4. Add MSPM0 SDK to IAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-sysconfig-for-mspm0">5. Install SysConfig for MSPM0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-and-build-an-sdk-example-in-iar">6. Import and Build an SDK Example in IAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">7. Known Issues and Frequently Asked Questions (FAQs)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_keil.html">MSPM0 SDK QuickStart Guide for Keil</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 SDK Quick Start Guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 SDK QuickStart Guide for IAR</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-sdk-quickstart-guide-for-iar">
+<h1>MSPM0 SDK QuickStart Guide for IAR<a class="headerlink" href="#mspm0-sdk-quickstart-guide-for-iar" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with IAR. This guide is not intended to explain the functionality of IAR. Please refer to the <a class="reference external" href="https://www.iar.com/">IAR</a> documentation or the <a class="reference external" href="../../../tools/iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide.html">IAR IDE Guide for MSPM0 MCUs</a> included with the MSPM0 SDK documentation.</p>
+</section>
+<section id="prerequisites">
+<h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The user is expected to have downloaded the following:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a></p></li>
+<li><p><a class="reference external" href="https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/">IAR Embedded Workbench for Arm 9.40.x</a></p>
+<ul>
+<li><p>The TI XDS drivers are required when using the MSPM0 Launchpad’s integrated XDS-110 programmer. For more information, please visit the <a class="reference external" href="https://updates.iar.com/filestore/standard/001/001/123/arm/doc/infocenter/csxds.ENU.html">release notes for IAR C-SPY XDS driver</a>.</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig 1.17.x</a></p></li>
+</ul>
+</section>
+<section id="install-the-mspm0-sdk">
+<h2>3. Install the MSPM0 SDK<a class="headerlink" href="#install-the-mspm0-sdk" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Download and install the latest <a class="reference external" href="#prerequisites">MSPM0 SDK</a>. Note that there are SDK installers for Windows, Linux and MacOS. The steps below are shown in Windows, but a similar approach should be followed in Linux or MacOS.</p></li>
+<li><p>Execute the installer. Click <strong>Next</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sdk_install_1.png" />
+</figure>
+</li>
+<li><p>Select an <strong>Installation Directory</strong> and click <strong>Next</strong>. Note the installation directory which by default is <code class="docutils literal notranslate"><span class="pre">c:\ti</span></code> which will install the SDK at <code class="docutils literal notranslate"><span class="pre">C:\ti\mspm0_sdk_&lt;version&gt;\</span></code>. This path will be referred to as <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;</span></code> in sections below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sdk_install_2.png" />
+</figure>
+</li>
+<li><p>Click <strong>Next</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/sdk_install_3.png" />
+</figure>
+</li>
+<li><p>After installation is complete, click <strong>Finish</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sdk_install_4.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="add-mspm0-sdk-to-iar">
+<h2>4. Add MSPM0 SDK to IAR<a class="headerlink" href="#add-mspm0-sdk-to-iar" title="Permalink to this heading">¶</a></h2>
+<p>In IAR, we need to add the latest MSPM0 SDK version. This step only has to be done once, or when the SDK is updated.</p>
+<ol class="arabic">
+<li><p>In IAR, click on <strong>Tools → Configure Custom Argument Variables</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_sdk_install_1.png" />
+</figure>
+</li>
+<li><p>Click the <strong>Global</strong> tab, and then <strong>Import</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_sdk_install_2.png" />
+</figure>
+</li>
+<li><p>Navigate to your SDK folder into <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/iar/</span></code> and open <strong>MSPM0_SDK.custom_argvars</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_sdk_install_3.png" />
+</figure>
+</li>
+<li><p>The SDK variables should now be installed in IAR. Click OK to close the window.</p>
+<div class="line-block">
+<div class="line"><strong>Note</strong>: Make sure the MSPM0 SDK path and SysConfig path matches the location and version needed for this SDK release.</div>
+<div class="line">If you installed an earlier version of the SDK then make sure to update the path to the current version you want to use.</div>
+<div class="line">Similarly, if the SysConfig path installed on <a class="reference external" href="#install-sysconfig-for-mspm0">Section 5. Install SysConfig for MSPM0</a> is incorrect or pointing to an older version, then modify it.</div>
+</div>
+<figure class="align-default">
+<img alt="" src="../_images/iar_sdk_install_4.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="install-sysconfig-for-mspm0">
+<h2>5. Install SysConfig for MSPM0<a class="headerlink" href="#install-sysconfig-for-mspm0" title="Permalink to this heading">¶</a></h2>
+<p>The SDK includes a preliminary version of SysConfig metadata which can be used to evaluate the user experience of MSPM0 SDK.</p>
+<p>For more general information about using SysConfig with MSPM0, please refer to <a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">Using SysConfig with MSPM0</a> available in the SDK’s Tools Guide.</p>
+<ol class="arabic">
+<li><p>Download and install the standalone version (1.17.x or newer) of SysConfig from <a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">ti.com</a></p></li>
+<li><p>In IAR, select <strong>Tools → Configure Viewers</strong> from the menu.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sysconfig_configure_viewers.png" />
+</figure>
+</li>
+<li><p>Click <strong>Import</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/sysconfig_configure_viewer_import.png" />
+</figure>
+</li>
+<li><p>Navigate to your SDK folder into <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/iar/</span></code> and open <strong>sysconfig_iar_setup.xml</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sysconfig_iar_setup.png" />
+</figure>
+</li>
+<li><div class="line-block">
+<div class="line">The standalone SysConfig will be associated to .syscfg files.</div>
+<div class="line">Click OK to close window.</div>
+</div>
+<figure class="align-default">
+<img alt="" src="../_images/sysconfig_configure_viewers_done.png" />
+</figure>
+</li>
+<li><p>Double-check that the <strong>SYSCONFIG_ROOT</strong> Custom Argument Variable is correctly pointing to the SysConfig folder as described in <a class="reference external" href="#add-mspm0-sdk-to-iar">Section 4. Add MSPM0 SDK to IAR</a>.</p></li>
+</ol>
+</section>
+<section id="import-and-build-an-sdk-example-in-iar">
+<h2>6. Import and Build an SDK Example in IAR<a class="headerlink" href="#import-and-build-an-sdk-example-in-iar" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>In IAR, select <strong>File → Open Workspace</strong> from the menu.</p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_example_1.png" />
+</figure>
+</li>
+<li><p>Navigate to an IAR folder in SDK example at <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/</span></code> and open the .eww workspace file. For example <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output/iar/gpio_toggle_output_LP_MSPM0L1306_nortos_iar.template.eww</span></code>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_example_2.png" />
+</figure>
+</li>
+<li><p>Click OK on the message.</p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_example_3.png" />
+</figure>
+</li>
+<li><p>Select a folder to install the example.</p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_example_4.png" />
+</figure>
+</li>
+<li><p>To build the example, right click in the project and select <strong>Make</strong>. Note that SysConfig projects will automatically generate files in the <em>“SysConfig Generated Files”</em> folder.</p>
+<div class="line-block">
+<div class="line"><strong>Note</strong>: Some examples include support for SysConfig to allow for an easier device configuration.</div>
+<div class="line">For a complete list of examples supporting SysConfig, check the <a class="reference external" href="../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html">MSPM0 SDK Examples Guide</a>.</div>
+<div class="line">For more general information about using SysConfig with MSPM0, please refer to <a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">Using SysConfig with MSPM0</a> available in the SDK’s Tools Guide.</div>
+</div>
+<figure class="align-default">
+<img alt="" src="../_images/iar_example_5a.png" />
+</figure>
+</li>
+<li><p>Click the <strong>Download and Debug</strong> button to download the code.</p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_example_6a.png" />
+</figure>
+<figure class="align-default">
+<img alt="" src="../_images/iar_example_6b.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="known-issues-and-frequently-asked-questions-faqs">
+<h2>7. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
+<p>Please refer to <a class="reference external" href="../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart_guide_ccs.html" class="btn btn-neutral float-left" title="MSPM0 SDK QuickStart Guide for CCS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart_guide_keil.html" class="btn btn-neutral float-right" title="MSPM0 SDK QuickStart Guide for Keil" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

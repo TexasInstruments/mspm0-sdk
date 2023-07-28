@@ -1,0 +1,50 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board = scripting.addModule("/ti/driverlib/Board");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                 = "ADC12_0";
+ADC121.sampClkSrc            = "DL_ADC12_CLOCK_ULPCLK";
+ADC121.sampClkDiv            = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.adcMem0chansel        = "DL_ADC12_INPUT_CHAN_2";
+ADC121.powerDownMode         = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.enabledInterrupts     = ["DL_ADC12_INTERRUPT_MEM3_RESULT_LOADED"];
+ADC121.samplingOperationMode = "sequence";
+ADC121.endAdd                = 3;
+ADC121.adcMem1stime          = "DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP1";
+ADC121.adcMem2chansel        = "DL_ADC12_INPUT_CHAN_2";
+ADC121.adcMem1chansel        = "DL_ADC12_INPUT_CHAN_2";
+ADC121.adcMem3chansel        = "DL_ADC12_INPUT_CHAN_2";
+ADC121.adcMem3stime          = "DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP1";
+ADC121.sampleTime0           = "25 us";
+ADC121.sampleTime1           = "12.5 us";
+ADC121.subChanID             = 1;
+ADC121.trigSrc               = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin2.$assign = "PA25";
+
+TIMER1.$name                       = "TIMER_0";
+TIMER1.timerClkSrc                 = "LFCLK";
+TIMER1.timerClkPrescale            = 9;
+TIMER1.timerPeriod                 = "1.125 s";
+TIMER1.event1PublisherChannel      = 1;
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.peripheral.$assign          = "TIMG0";
+
+SYSCTL.clockTreeEn = true;

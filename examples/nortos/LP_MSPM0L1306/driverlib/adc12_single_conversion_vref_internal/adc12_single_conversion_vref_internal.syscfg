@@ -1,0 +1,47 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board = scripting.addModule("/ti/driverlib/Board");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name             = "ADC12_0";
+ADC121.sampClkDiv        = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.adcMem0chansel    = "DL_ADC12_INPUT_CHAN_2";
+ADC121.sampleTime0       = "125 us";
+ADC121.enabledInterrupts = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.adcMem0vref       = "VREF";
+ADC121.adcMem0vrefDependencySelect = "DL_ADC12_REFERENCE_VOLTAGE_INTREF";
+ADC121.powerDownMode     = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin2.$assign = "PA25";
+
+GPIO1.$name                         = "GPIO_LEDS";
+GPIO1.port                          = "PORTA";
+GPIO1.portSegment                   = "Lower";
+GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPin = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+VREF.basicIntVolt                  = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.advClockConfigEnable          = true;
+VREF.advClkSrc                     = "DL_VREF_CLOCK_BUSCLK";
+VREF.peripheral.$assign            = "VREF";
+
+SYSCTL.clockTreeEn = true;

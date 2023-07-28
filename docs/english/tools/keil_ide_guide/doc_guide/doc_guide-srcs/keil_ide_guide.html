@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs &mdash; Arm Keil MDK IDE for MSPM0 MCUs Documentation 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Arm Keil MDK IDE for MSPM0 MCUs Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Arm Keil MDK IDE for MSPM0 MCUs Documentation
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#read-this-first">Read This First</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-use-this-guide">How to Use This Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#information-about-cautions">Information About Cautions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#related-documentation-from-texas-instruments">Related Documentation From Texas Instruments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-you-need-assistance">If You Need Assistance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#software-installation">1. Software Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-flow">2. Development Flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">2.1 Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-mspm0-project-from-the-mspm0-sdk">2.2 Creating a MSPM0 Project From the MSPM0 SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-project-from-scratch">2.3 Creating a Project From Scratch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-sysconfig-with-keil">2.4 Using SysConfig with Keil</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#migrating-between-mspm0-derivatives">2.5 Migrating Between MSPM0 Derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-newly-generated-sysconfig-files-to-projects">2.6 Adding Newly Generated SysConfig Files to Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stack-and-heap-management-and-s-files">2.7 Stack and Heap Management and .s Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-generate-hex-files">2.8 How to Generate Hex Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erasing-nonmain-for-mspm0">2.9 Erasing NONMAIN for MSPM0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overriding-pre-built-libraries">2.10 Overriding Pre-built libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-the-application">3. Debugging the Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-ti-xds-tools">3.1 Using TI XDS Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-segger-j-link-debug-probe">3.2 Using Segger J-Link Debug Probe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-arm-ulink-debug-adapters">3.3 Using Arm ULINK Debug Adapters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#breakpoint-types">3.4 Breakpoint Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">4. Known Issues and Frequently Asked Questions (FAQs)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Arm Keil MDK IDE for MSPM0 MCUs Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="arm-keil-mdk-ide-version-5-38-for-mspm0-mcus">
+<h1>Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs<a class="headerlink" href="#arm-keil-mdk-ide-version-5-38-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#read-this-first">Read This First</a></p></li>
+<li><p><a class="reference external" href="#software-installation">Software Installation</a></p></li>
+<li><p><a class="reference external" href="#development-flow">Development Flow</a></p></li>
+<li><p><a class="reference external" href="#debugging-the-application">Debugging the Application</a></p></li>
+<li><p><a class="reference external" href="#known-issues-and-frequently-asked-questions-faqs">Known Issues and Frequently Asked Questions (FAQs)</a></p></li>
+</ul>
+</section>
+<section id="read-this-first">
+<h2>Read This First<a class="headerlink" href="#read-this-first" title="Permalink to this heading">¶</a></h2>
+<section id="how-to-use-this-guide">
+<h3>How to Use This Guide<a class="headerlink" href="#how-to-use-this-guide" title="Permalink to this heading">¶</a></h3>
+<p>This guide describes only the setup and basic operation of the software development environment, but it does not fully describe the MSPM0 microcontrollers or the complete development software and hardware systems. For details of these items, see the appropriate TI and Keil documents listed in section <a class="reference external" href="#related-documentation-from-texas-instruments">Related Documentation From Texas Instruments</a>.</p>
+<p>This guide applies to the use of the <a class="reference external" href="https://www.ti.com/tool/TMDSEMU110-U">TI XDS-110</a>, <a class="reference external" href="https://www2.keil.com/mdk5/ulink">Arm ULINK</a>, and <a class="reference external" href="https://www.segger.com/products/debug-probes/j-link/">Segger J-Link</a> development tools series.</p>
+<p>These tools contain the most up-to-date materials available at the time of packaging. For the latest materials (including data sheets, user’s guides, software, and application information), visit the <a class="reference external" href="https://www.ti.com/mspm0">TI MSPM0 website</a> or contact your local TI sales office.</p>
+</section>
+<section id="information-about-cautions">
+<h3>Information About Cautions<a class="headerlink" href="#information-about-cautions" title="Permalink to this heading">¶</a></h3>
+<p>This guide may contain cautions.</p>
+<p><strong>Caution</strong> - This is an example of a caution statement. A caution statement describes a situation that could potentially damage your software or equipment.</p>
+<p>Read each caution carefully.</p>
+</section>
+<section id="related-documentation-from-texas-instruments">
+<h3>Related Documentation From Texas Instruments<a class="headerlink" href="#related-documentation-from-texas-instruments" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 development tools documentation:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/lit/sprui94">XDS110 Debug Probe User’s Guide</a></p></li>
+</ul>
+<p>MSPM0 device documentation:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau869">LP-MSPM0L1306 User’s Guide</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau847">MSPM0 L-Series Technical Reference Manual</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau873">LP-MSPM0G3506 User’s Guide</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau846">MSPM0 G-Series Technical Reference Manual</a></p></li>
+</ul>
+</section>
+<section id="if-you-need-assistance">
+<h3>If You Need Assistance<a class="headerlink" href="#if-you-need-assistance" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/">E2E Community Support Forums</a> for MSPM0 MCUs are available to provide open interaction with peer engineers, TI engineers, and other experts. Additional device-specific information can be found on the <a class="reference external" href="https://www.ti.com/mspm0">MSPM0 website</a>.</p>
+</section>
+</section>
+<section id="software-installation">
+<h2>1. Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this heading">¶</a></h2>
+<p>Arm Keil MDK, including µVision IDE, debugger and Arm C/C++ compiler, is available from the <a class="reference external" href="https://www.keil.com/">Keil website</a>. MSPM0 microcontrollers and the MSPM0 SDK require Keil MDK 5.38 or higher.</p>
+<p>See the <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a> documentation for finding the right SDK for your IDE version.</p>
+</section>
+<section id="development-flow">
+<h2>2. Development Flow<a class="headerlink" href="#development-flow" title="Permalink to this heading">¶</a></h2>
+<p>This chapter describes how to use Keil MDK to run the demonstration programs, develop application software, and how to debug it.</p>
+<section id="overview">
+<h3>2.1 Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h3>
+<p>Documentation for the Keil MDK is extensive, and the documentation is available online on the <a class="reference external" href="https://www2.keil.com/mdk5">Keil MDK page</a> or through the Help tab in the IDE.</p>
+</section>
+<section id="creating-a-mspm0-project-from-the-mspm0-sdk">
+<h3>2.2 Creating a MSPM0 Project From the MSPM0 SDK<a class="headerlink" href="#creating-a-mspm0-project-from-the-mspm0-sdk" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">MSPM0 SDK QuickStart Guide for Keil</a> which contains instructions on how to install the MSPM0 SDK and importing and building an SDK example in Keil.</p>
+</section>
+<section id="creating-a-project-from-scratch">
+<h3>2.3 Creating a Project From Scratch<a class="headerlink" href="#creating-a-project-from-scratch" title="Permalink to this heading">¶</a></h3>
+<p><strong>Note</strong>: Creating a project from scratch is <strong>not recommended</strong> since creating the project from scratch doesn’t add all of the necessary device support files by default. To start from a blank project, TI recommends importing the Empty Driverlib example project from the SDK.</p>
+</section>
+<section id="using-sysconfig-with-keil">
+<h3>2.4 Using SysConfig with Keil<a class="headerlink" href="#using-sysconfig-with-keil" title="Permalink to this heading">¶</a></h3>
+<p>Some examples in the MSPM0 SDK have SysConfig support. <a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.</p>
+<p>The SysConfig tool is delivered as a standalone installer which can be manually integrated into Keil, or can be used via the dev.ti.com cloud tools portal.</p>
+<p>The best way to start a SysConfig project in Keil is to import it from the SDK; however, some steps are required to initialize SysConfig in Keil for the first time. Refer to the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">MSPM0 SDK QuickStart Guide for Keil</a> for more details on installing SysConfig and enabling it for Keil.</p>
+<p>For more information about using SysConfig with MSPM0, visit the <a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">Using SysConfig with MSPM0</a> guide.</p>
+</section>
+<section id="migrating-between-mspm0-derivatives">
+<h3>2.5 Migrating Between MSPM0 Derivatives<a class="headerlink" href="#migrating-between-mspm0-derivatives" title="Permalink to this heading">¶</a></h3>
+<p>SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required.</p>
+<ol class="arabic simple">
+<li><p>In SysConfig, enable the Device View and click on <strong>SWITCH</strong></p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_migrate_1.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Select the corresponding options for the new MSPM0 device and click <strong>CONFIRM</strong>.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_migrate_2.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed.</p></li>
+<li><p>In the Keil IDE, open the <strong>Device</strong> tab in project options, and select the new MSPM0 derivative.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_migrate_3.png" />
+</figure>
+<ol class="arabic simple" start="5">
+<li><p>Update the device definition by selecting <strong>C/C++ (AC6)</strong> → <strong>Preprocessor Symbols</strong> → <strong>Define</strong>. Add the device definition as per the device selected.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_migrate_4.png" />
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Update the linker file in <strong>Linker</strong> → <strong>Scatter File</strong>. The MSPM0 SDK includes default files for all MSPM0 derivatives at <code class="docutils literal notranslate"><span class="pre">&lt;sdk&gt;\source\ti\devices\msp\m0p\linker_files\keil</span></code>.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_migrate_5.png" />
+</figure>
+<ol class="arabic simple" start="7">
+<li><p>Add the startup file of the new derivative to the project and remove existing one. The MSPM0 SDK includes default files for all MSPM0 derivatives at <code class="docutils literal notranslate"><span class="pre">&lt;sdk&gt;\source\ti\devices\msp\m0p\startup_system_files\keil</span></code>.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_migrate_6.png" />
+</figure>
+<ol class="arabic simple" start="8">
+<li><p>Resolve any other dependencies such as incompatible libraries and source code.</p></li>
+</ol>
+<p>Note: Steps 1-3 don’t apply when not using SysConfig.</p>
+</section>
+<section id="adding-newly-generated-sysconfig-files-to-projects">
+<h3>2.6 Adding Newly Generated SysConfig Files to Projects<a class="headerlink" href="#adding-newly-generated-sysconfig-files-to-projects" title="Permalink to this heading">¶</a></h3>
+<p>When working with SysConfig modules such as the NONMAIN Configurator which generate files other than <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.c</span></code>, the newly generated files must be manually added to the project since Keil does not do this automatically. See the <a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">Using SysConfig with MSPM0</a> guide for more details on which modules generate additional files.</p>
+<p>Consider the case of the NONMAIN Configurator, which generates 2 additional files: <code class="docutils literal notranslate"><span class="pre">boot_config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">boot_config.c</span></code>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_sysconfig_additional_generated_files.png" />
+</figure>
+<p>To include these files in the built project, perform the following steps:</p>
+<ol class="arabic simple">
+<li><p>After adding the SysConfig module and saving the changes, navigating back to the Keil IDE should throw a message saying that the .syscfg file was modified. Click <strong>Yes</strong> to reload the file.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_reload_sysconfig_file.png" />
+</figure>
+<ol class="arabic" start="2">
+<li><p>Right-click on the project and select <strong>Rebuild all target files</strong> to rebuild the project. The <strong>Build Output</strong> window shows that SysConfig has generated those files.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_rebuild_target.png" />
+</figure>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_build_log.png" />
+</figure>
+</li>
+<li><p>To add the additional newly generated files (in this case, <code class="docutils literal notranslate"><span class="pre">boot_config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">boot_config.c</span></code>), right-click on the <strong>Source</strong> directory and select <strong>Add Existing Files to Group ‘Source’</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_add_files_to_source.png" />
+</figure>
+</li>
+<li><p>Navigate to the example project root, select the files that need to be added, and click <strong>Add</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_select_files_to_add.png" />
+</figure>
+</li>
+<li><p>Rebuild the project. The files should be visible in the project <strong>Source</strong> directory in the IDE.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_updated_source_directory.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="stack-and-heap-management-and-s-files">
+<h3>2.7 Stack and Heap Management and .s Files<a class="headerlink" href="#stack-and-heap-management-and-s-files" title="Permalink to this heading">¶</a></h3>
+<p>The reserved stack and heap size can be configured through direct modification of the .s startup assembly file. See the Keil documentation for a complete description of this file.</p>
+<p>The supplied .s file can be modified to tune the size of the stack and heap to the needs of the application; edit <code class="docutils literal notranslate"><span class="pre">Stack_Size</span> <span class="pre">EQU</span> <span class="pre">xx</span></code> or <code class="docutils literal notranslate"><span class="pre">Heap_Size</span> <span class="pre">EQU</span> <span class="pre">xx</span></code> to allocate xx bytes for the stack or heap.</p>
+</section>
+<section id="how-to-generate-hex-files">
+<h3>2.8 How to Generate Hex Files<a class="headerlink" href="#how-to-generate-hex-files" title="Permalink to this heading">¶</a></h3>
+<p>The linker can be configured to output objects in Intel Hex format for use with programming tools such as <a class="reference external" href="https://www.ti.com/tool/MSP-GANG">MSP-GANG</a> and <a class="reference external" href="https://www.ti.com/tool/UNIFLASH">UniFlash</a>.</p>
+<p>Click <strong>Project</strong> → <strong>Options</strong> → <strong>Output</strong> → <strong>Create Hex File</strong> → <strong>Ok</strong>.</p>
+</section>
+<section id="erasing-nonmain-for-mspm0">
+<h3>2.9 Erasing NONMAIN for MSPM0<a class="headerlink" href="#erasing-nonmain-for-mspm0" title="Permalink to this heading">¶</a></h3>
+<p><strong>Caution</strong>: Extreme care should be taken when erasing and programming NONMAIN. If done incorrectly, the device will become <strong>locked in a permanently unrecoverable state</strong>.</p>
+<ol class="arabic">
+<li><p>Click <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong>.</p></li>
+<li><p>Add the NON-MAIN programming algorithm, and then click OK.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_add_nonmain.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="overriding-pre-built-libraries">
+<h3>2.10 Overriding Pre-built libraries<a class="headerlink" href="#overriding-pre-built-libraries" title="Permalink to this heading">¶</a></h3>
+<p>Projects might include pre-built libraries which simplify development and build time; however, they don’t allow developers to modify source code easily.</p>
+<p>An example of such libraries is the MSPM0 DriverLib which is shown below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_driverlib_library.png" />
+</figure>
+<p>One option to override the library is to delete <strong>driverlib.a</strong> and simply add any or all source files to the project. The MSPM0 SDK includes the <code class="docutils literal notranslate"><span class="pre">empty_driverlib_src</span></code> example which includes all DriverLib source by default:</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_empty_driverlib_project.png" />
+</figure>
+</section>
+</section>
+<section id="debugging-the-application">
+<h2>3. Debugging the Application<a class="headerlink" href="#debugging-the-application" title="Permalink to this heading">¶</a></h2>
+<section id="using-ti-xds-tools">
+<h3>3.1 Using TI XDS Tools<a class="headerlink" href="#using-ti-xds-tools" title="Permalink to this heading">¶</a></h3>
+<p>TI offers a range of debug probes for Arm-based devices, including the XDS110 which is integrated with MSPM0 LaunchPads.</p>
+<p><strong>Note</strong>: TI XDS110 debuggers are supported natively or through CMSIS DAP. TI XDS native support needs a separate installation of the TI emulation pack software in the default folder <code class="docutils literal notranslate"><span class="pre">C:\ti\ccs-base</span></code>.</p>
+<p>To use the XDS110 debug probe, right-click on the active project, then select <strong>Options for Target</strong>. In the Target Options window, select the <strong>Debug</strong> pane. From the pulldown menu, select either CMSIS-DAP Debugger or TI XDS Debugger.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_select_xds110.png" />
+</figure>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_xds110_settings.png" />
+</figure>
+<ul class="simple">
+<li><p>Note the selected Emulator. The example above uses the XDS110 integrated in LaunchPads in CSMSIS-DAP mode.</p></li>
+<li><p>The selected Interface is SWD which is supported by MSPM0.</p></li>
+<li><p>The XDS tools use a Flash Loader to download code to the device. Confirm usage in <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong>. Refer to the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">MSPM0 SDK QuickStart Guide for Keil</a> for more details.</p></li>
+</ul>
+</section>
+<section id="using-segger-j-link-debug-probe">
+<h3>3.2 Using Segger J-Link Debug Probe<a class="headerlink" href="#using-segger-j-link-debug-probe" title="Permalink to this heading">¶</a></h3>
+<p>To use J-Link, right-click on the active project, then select <strong>Options for Target</strong>. In the Target Options window, select the <strong>Debug</strong> pane. From the pulldown menu, select the J-Link debugger option.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_select_jlink.png" />
+</figure>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_jlink_settings.png" />
+</figure>
+<p>Refer to the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">MSPM0 SDK QuickStart Guide for Keil</a> for more details on using Segger J-Link.</p>
+</section>
+<section id="using-arm-ulink-debug-adapters">
+<h3>3.3 Using Arm ULINK Debug Adapters<a class="headerlink" href="#using-arm-ulink-debug-adapters" title="Permalink to this heading">¶</a></h3>
+<p>To use ULINK, right-click on the active project, then select <strong>Options for Target</strong>. In the Target Options window, select the <strong>Debug</strong> pane. From the pulldown menu, select a ULINK debugger option.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_select_ulink.png" />
+</figure>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_ulink_settings.png" />
+</figure>
+<ul class="simple">
+<li><p>The ULINK tools use a Flash Loader to download code to the device. Confirm usage in <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong>.</p></li>
+</ul>
+</section>
+<section id="breakpoint-types">
+<h3>3.4 Breakpoint Types<a class="headerlink" href="#breakpoint-types" title="Permalink to this heading">¶</a></h3>
+<p>The uVision breakpoint mechanism uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints are not supported on MSPM0. This means that a maximum of 4 breakpoints can be set within uVision.</p>
+<p>Resetting a program and the Run To Cursor operation temporarily require a breakpoint. As a result, only 3 breakpoints can be active.</p>
+<p>If the max number of breakpoints are set, the following warning will be displayed.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_max_breakpoints.png" />
+</figure>
+</section>
+</section>
+<section id="known-issues-and-frequently-asked-questions-faqs">
+<h2>4. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
+<p>Please refer to <a class="reference external" href="../../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Arm Keil MDK IDE for MSPM0 MCUs Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

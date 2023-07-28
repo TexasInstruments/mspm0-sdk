@@ -1,0 +1,55 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const RTC    = scripting.addModule("/ti/driverlib/RTC");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+GPIO1.$name                               = "GPIO_SWITCHES1";
+GPIO1.associatedPins[0].$name             = "USER_SWITCH_1";
+GPIO1.associatedPins[0].polarity          = "FALL";
+GPIO1.associatedPins[0].interruptEn       = true;
+GPIO1.associatedPins[0].internalResistor = "PULL_UP";
+GPIO1.associatedPins[0].direction        = "INPUT";
+GPIO1.associatedPins[0].pin.$assign      = "PB21";
+
+GPIO2.$name                              = "GPIO_SWITCHES2";
+GPIO2.associatedPins[0].$name            = "USER_SWITCH_2";
+GPIO2.associatedPins[0].interruptEn      = true;
+GPIO2.associatedPins[0].polarity         = "FALL";
+GPIO2.associatedPins[0].direction        = "INPUT";
+GPIO2.associatedPins[0].internalResistor = "NONE";
+GPIO2.associatedPins[0].pin.$assign      = "PA18";
+
+RTC.intervalAlarmEvent           = "HOURCHANGE";
+RTC.calDOW                       = "1";
+RTC.calMin                       = 32;
+RTC.calHour                      = 10;
+RTC.calYear                      = 2021;
+RTC.calMonth                     = "4";
+RTC.calDOM                       = 5;
+RTC.calAlarm1Min                 = 33;
+RTC.calAlarm1Hour                = 10;
+RTC.calAlarm1DOW                 = "1";
+RTC.calAlarm1DOM                 = 5;
+RTC.calSec                       = 58;
+RTC.offsetCalFreq                = "512";
+RTC.peripheral.$assign           = "RTC";
+RTC.peripheral.rtcOutPin.$assign = "PA9";
+
+SYSCTL.LFCLKSource        = "LFXT";
+SYSCTL.LFCLKDriveStrength = "HIGHEST";

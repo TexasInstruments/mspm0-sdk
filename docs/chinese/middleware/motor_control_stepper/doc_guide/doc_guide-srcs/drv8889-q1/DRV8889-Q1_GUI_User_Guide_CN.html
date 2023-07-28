@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRV8889-Q1 GUI User Guide &mdash; Stepper Motor Control User Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DRV8889-Q1 Hardware User Guide" href="DRV8889-Q1_Hardware_User_Guide_CN.html" />
+    <link rel="prev" title="DRV8411A Hardware User Guide" href="../drv8411a/DRV8411A_Hardware_User_Guide_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Stepper Motor Control User Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Stepper_Motor_Control_Overview_CN.html">Stepper Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8411a/DRV8411A_GUI_User_Guide_CN.html">DRV8411A GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8411a/DRV8411A_Hardware_User_Guide_CN.html">DRV8411A Hardware User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8889-Q1 GUI User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-gui">1. Getting Started with GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-gui">2. Using the GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#important-note">3. Important Note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gui-window">4. GUI Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-modes">5. Control Modes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spin-mode">Spin Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-mode">Step Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#decay-modes">6. Decay Modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fault-monitoring-and-handling">7. Fault Monitoring and Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-current-limit">8. Setting Current Limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stall-detection">9. Stall Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spi-register">10. SPI Register</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DRV8889-Q1_Hardware_User_Guide_CN.html">DRV8889-Q1 Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Stepper Motor Control User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DRV8889-Q1 GUI User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drv8889-q1-gui-user-guide">
+<h1>DRV8889-Q1 GUI User Guide<a class="headerlink" href="#drv8889-q1-gui-user-guide" title="Permalink to this heading">¶</a></h1>
+<p>The GUI used in this guide can be found <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8889Q1-EVM-GUI">here</a>.</p>
+<section id="getting-started-with-gui">
+<h2>1. Getting Started with GUI<a class="headerlink" href="#getting-started-with-gui" title="Permalink to this heading">¶</a></h2>
+<p>The GUI allows the user to configure various settings required for stepper motor control. The user can adjust settings like motor speed, control direction, control step movements and other device settings, as well as monitor the device status.</p>
+<p>Perform the following steps to begin using the GUI:</p>
+<ol class="arabic simple">
+<li><p>Connect the stepper motor to the EVM.</p></li>
+<li><p>Make the necessary connections for connecting LP-MSPM0L1306 to DRV8889-Q1EVM. For detailed steps refer to <a class="reference external" href="DRV8889-Q1_Hardware_User_Guide_CN.html">Hardware User Guide</a>.</p></li>
+<li><p>Plug in the micro-USB cable to the PC.</p></li>
+<li><p>Enable the power supply to EVM.</p></li>
+</ol>
+</section>
+<section id="using-the-gui">
+<h2>2. Using the GUI<a class="headerlink" href="#using-the-gui" title="Permalink to this heading">¶</a></h2>
+<p>The GUI when launched will automatically try to establish communication with the device, if it doesn’t happen or if user needs to disconnect the user can click on the link icon shown on the left side in the image shown below. A message showing ‘Connecting to target…’ will be displayed when the GUI tries to connect to the board in the hardware connection status pane which is located at the bottom of GUI window. If the connection is successful, ‘Hardware connected’ message appears, as shown in the image below.</p>
+<figure class="align-default" id="id1">
+<img alt="Hardware connected" src="../../_images/GUI-hardware_connected1.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Hardware connected</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="important-note">
+<h2>3. Important Note<a class="headerlink" href="#important-note" title="Permalink to this heading">¶</a></h2>
+<p>SPI communication requires that the motor driver is not in sleep mode. While the MCU initializes the default settings in the GUI are written by temporarily setting the DRV8889-Q1 in active mode and after writing the default settings the default sleep mode settings is set. Also note that since the SPI interface in the DRV8889-Q1 doesn’t function when the it is set in sleep mode thus the user should not change any settings which requires SPI communication when DRV8889-Q1 is set in sleep mode.</p>
+</section>
+<section id="gui-window">
+<h2>4. GUI Window<a class="headerlink" href="#gui-window" title="Permalink to this heading">¶</a></h2>
+<p>In the GUI Window user can find various controls to sleep/wake the driver, control the stepper motor, and configure various parameters such as step mode, control mode, and so forth. Hover over the control widgets to display the brief description on its actions.</p>
+<figure class="align-default" id="id2">
+<img alt="GUI window" src="../../_images/GUI-window.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">GUI window</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="control-modes">
+<h2>5. Control Modes<a class="headerlink" href="#control-modes" title="Permalink to this heading">¶</a></h2>
+<section id="spin-mode">
+<h3>Spin Mode<a class="headerlink" href="#spin-mode" title="Permalink to this heading">¶</a></h3>
+<p>Spin mode allows to spin the stepper motor in the desired speed. The desired speed is set in units of pulse per second. Knowing the motor Pulse per rotation and the step mode we can compute the RPS(Revolutions Per Second) of the motor. For example, for a motor of 200PPR speed of 200PPS equates to 1RPS in Full step mode and 0.5RPS in Half Step mode.</p>
+<p>Stepper controls are enabled only when the ‘Motor Driver’ is enabled. When the Stepper control is set to ‘RUN’ the motor starts spinning at the speed set in the speed input box. Do note to set the speed in the limit of the motor specifications, else the motor will not spin i.e. would appear to vibrate as the necessary torque to spin is not received in the set speed.</p>
+</section>
+<section id="step-mode">
+<h3>Step Mode<a class="headerlink" href="#step-mode" title="Permalink to this heading">¶</a></h3>
+<p>Step mode allows user to move the stepper motor a configured number of steps. Stepper controls are enabled only when the ‘Motor Driver’ is enabled. When the Stepper control is set to ‘RUN’ the motor starts spinning at the speed set in the speed input box and when the number of steps entered in the steps input box is reached, the motor stops.</p>
+</section>
+</section>
+<section id="decay-modes">
+<h2>6. Decay Modes<a class="headerlink" href="#decay-modes" title="Permalink to this heading">¶</a></h2>
+<p>Decay mode controls the current recirculation in the H-bridge when the drive is in decay state. This setting is to be changed to get lowest noise level.</p>
+<p>Decay modes except the smart tune ripple control allows to change the TOFF settings.</p>
+</section>
+<section id="fault-monitoring-and-handling">
+<h2>7. Fault Monitoring and Handling<a class="headerlink" href="#fault-monitoring-and-handling" title="Permalink to this heading">¶</a></h2>
+<p>The fault monitoring and handling is at the top right side of the screen this allows the user to monitor the faults. The Fault led turns red when a fault occurred. To clear the faults, use the “CLEAR FAULT” button.</p>
+</section>
+<section id="setting-current-limit">
+<h2>8. Setting Current Limit<a class="headerlink" href="#setting-current-limit" title="Permalink to this heading">¶</a></h2>
+<p>Using the FS Current the user can set the full scale current which passed through the motor. This value can be further scaled using the Torque settings, i.e. if FScurrent is 1A and Torque is set as 50% then resultant current through motor is set as 0.5A.</p>
+</section>
+<section id="stall-detection">
+<h2>9. Stall Detection<a class="headerlink" href="#stall-detection" title="Permalink to this heading">¶</a></h2>
+<p>The stall detection is used to enable or disable the stall fault. If the stall detection is enabled then when the TRQ COUNT value is below the value set in the Stall Threshold then fault is triggered. The option Rev on Stall helps to change the motor direction when the stall is detected.</p>
+</section>
+<section id="spi-register">
+<h2>10. SPI Register<a class="headerlink" href="#spi-register" title="Permalink to this heading">¶</a></h2>
+<p>The GUI allows to independently change values in the SPI registers of the drv. There are 3 options in SPI register:</p>
+<ol class="arabic simple">
+<li><p>Write 8 bit Data to register</p></li>
+</ol>
+<p>The user can select any register and write an 8 bit data to it by clicking on the Write Register button.</p>
+<figure class="align-default" id="id3">
+<img alt="Writing value to a register" src="../../_images/GUI-write_register.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Writing value to a register</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Update some bits in SPI register</p></li>
+</ol>
+<p>The user write to a register without affecting all the bits in it. The options are:</p>
+<ul class="simple">
+<li><p>Register address - Select the register to change</p></li>
+<li><p>Bitfield Position - Select 0-7 for bit0 to bit7</p></li>
+<li><p>Bitfield Mask - It is the masks for the number of bits to write i.e, If one bit is to be written then it is 1(0x1) and if two bits are to be written it is 3(0x11) and for three bits it is 7(0x111) and so on.</p></li>
+<li><p>Data - The data to be starting from the position set in bitfield position</p></li>
+</ul>
+<p>For example, Writing bit 2 and bit 3 in CTRL3 register is shown below.</p>
+<figure class="align-default" id="id4">
+<img alt="Updating value in a register" src="../../_images/GUI-update_register.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Updating value in a register</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Read SPI register</p></li>
+</ol>
+<p>Allows user to read a SPI register.The user can select any register and read the data by clicking on the Read Register button.</p>
+<p>For example, shown below is reading the CTRL3 register after writing bit 2 and bit 3 of it.</p>
+<figure class="align-default" id="id5">
+<img alt="Reading data from a register" src="../../_images/GUI-read_register.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Reading data from a register</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../drv8411a/DRV8411A_Hardware_User_Guide_CN.html" class="btn btn-neutral float-left" title="DRV8411A Hardware User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DRV8889-Q1_Hardware_User_Guide_CN.html" class="btn btn-neutral float-right" title="DRV8889-Q1 Hardware User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

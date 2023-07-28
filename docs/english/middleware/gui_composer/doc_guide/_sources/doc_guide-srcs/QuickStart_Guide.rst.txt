@@ -1,0 +1,69 @@
+GUI Composer Quick Start Guide
+==============================
+
+1. Introduction
+---------------
+
+GUI Composer project examples showcase a UART based data exchange between a LaunchPad and customizable GUI application running on a PC. These GUIs can be fully customized by you to display, process data and control execution of firmware. These GUIs may also be installed into Code Composer Studio to augment standard debug displays and also provide a simplified user interface for non-expert manual testers.
+
+This guide is intended to assist users in the initial setup and demonstration of running their first sample application.
+
+2. Prerequisites
+----------------
+
+The user is expected to have the following:
+
+-  A supported **MSPM0** LaunchPad
+-  The latest version of the **Chrome** web browser
+-  A **myTI account** for accessing `GUI Composer <https://dev.ti.com/gc>`__
+-  `Code Composer Studio (CCS) <https://www.ti.com/tool/download/CCSTUDIO>`__
+
+For additional resources and information on GUI Composer, please view the `GUI Composer User Guide <https://dev.ti.com/gc/v2/help/GC_UserGuide_v2/index.html>`__.
+
+3. Running Your First Example
+-----------------------------
+
+This section will show how to import, build and load an example with one of the available GUIs.
+
+3.1 Importing, Building, and Downloading the Code Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Open your IDE of choice, and import one of the available GUI Composer code examples from the MSPM0 SDK. These examples can be found in ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/<MSPM0_LAUNCHPAD>/gui_composer``.
+2. Review the code example README for any specific configurations for the LaunchPad you are using.
+3. Build and download the code example to the LaunchPad.
+
+3.2 Setting Up the GUI
+~~~~~~~~~~~~~~~~~~~~~~
+
+The GUIs for these examples can be started automatically from the TI Gallery by clicking one of the the links for the GUI below.
+
+**Please ensure to select the corresponding GUI for the code example that you are running on the LaunchPad. The correct GUI is specified in the code example README.**
+
+-  `GC Simple JSON GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_JSON/>`__
+-  `GC Simple MessagePack GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_mpack>`__
+-  `GC Simple MessagePack GUI - Optimized <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_mpack_optimized/>`__
+
+3.3 Configuring the GUI
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Configure the GUI settings to select the correct **COM port** and **Baud Rate**. Modify these settings by clicking on the menu icon in the top left corner, and then selecting **Options > Serial Port**.
+
+.. figure:: ./images/qs_settings.png
+   :alt: 
+
+-  The correct **COM Port** can be determined by opening your Device Manager, looking under Ports, and seeing which port is **XDS110 Class Application/User UART**.
+
+   .. figure:: ./images/qs_devicemanager.png
+      :alt: 
+
+-  Set the **Baud Rate** to **9600**. This is the Baud Rate being used by default in the example.
+
+.. figure:: ./images/qs_comportbaudrate.png
+   :alt: 
+
+3.4 Running the Example
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Start running the example on the LaunchPad. If the LaunchPad and the GUI have been configured correctly, then the GUI will start updating with data automatically.
+
+Please refer to the code example specific README for specific instructions on how to run the example.

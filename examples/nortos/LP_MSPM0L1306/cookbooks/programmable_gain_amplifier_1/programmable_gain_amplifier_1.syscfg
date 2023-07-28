@@ -1,0 +1,42 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                 = "ADC12_0";
+ADC121.sampClkDiv            = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.repeatMode            = true;
+ADC121.adcMem0chansel        = "DL_ADC12_INPUT_CHAN_13";
+ADC121.adcMem0wincomp        = true;
+ADC121.sampleTime0           = "125us";
+ADC121.configWinCompLowThld  = 1638;
+ADC121.configWinCompHighThld = 3889;
+ADC121.enabledInterrupts     = ["DL_ADC12_INTERRUPT_WINDOW_COMP_HIGH","DL_ADC12_INTERRUPT_WINDOW_COMP_LOW"];
+
+
+OPA1.$name                        = "OPA_0";
+OPA1.cfg0OutputPin                = "ENABLED";
+OPA1.cfg0PSELChannel              = "IN0_POS";
+OPA1.cfg0NSELChannel              = "RTAP";
+OPA1.cfg0MSELChannel              = "GND";
+OPA1.advBW                        = "HIGH";
+OPA1.cfg0Gain                     = "N1_P2";
+OPA1.advRRI                       = true;
+OPA1.peripheral.$assign           = "OPA1";
+OPA1.peripheral.OutPin.$assign    = "ball.20";
+OPA1.peripheral.In0PosPin.$assign = "ball.22";

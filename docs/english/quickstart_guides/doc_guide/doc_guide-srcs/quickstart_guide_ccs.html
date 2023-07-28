@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 SDK QuickStart Guide for CCS &mdash; MSPM0 SDK Quick Start Guides 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MSPM0 SDK QuickStart Guide for IAR" href="quickstart_guide_iar.html" />
+    <link rel="prev" title="MSPM0 SDK QuickStart Guide for CCS Theia" href="quickstart_guide_ccs_theia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 SDK Quick Start Guides
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs_theia.html">MSPM0 SDK QuickStart Guide for CCS Theia</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SDK QuickStart Guide for CCS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">2. Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-and-build-example-in-ccs">3. Import and Build Example in CCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">4. Known Issues and Frequently Asked Questions (FAQs)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_iar.html">MSPM0 SDK QuickStart Guide for IAR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_keil.html">MSPM0 SDK QuickStart Guide for Keil</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 SDK Quick Start Guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 SDK QuickStart Guide for CCS</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-sdk-quickstart-guide-for-ccs">
+<h1>MSPM0 SDK QuickStart Guide for CCS<a class="headerlink" href="#mspm0-sdk-quickstart-guide-for-ccs" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with CCS using TI Arm Clang. This guide is not intended to explain the functionality of CCS. Please refer to the documentation available through the Help menu in CCS or the <a class="reference external" href="../../../tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html">CCS IDE Guide for MSPM0 MCUs</a> included with the MSPM0 SDK documentation.</p>
+</section>
+<section id="prerequisites">
+<h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The user is expected to have downloaded the following:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/download/CCSTUDIO">CCS 12.4.0 or later</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig 1.17.x</a> (Included in latest version of CCS)</p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/download/ARM-CGT-CLANG-1/">TI Clang 2.1.3.LTS</a> (Included in latest version of CCS)</p></li>
+</ul>
+</section>
+<section id="import-and-build-example-in-ccs">
+<h2>3. Import and Build Example in CCS<a class="headerlink" href="#import-and-build-example-in-ccs" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>In CCS, open the Resource Explorer from the Getting Started page</p>
+<figure class="align-default">
+<img alt="" src="../_images/open_resource_explorer.png" />
+</figure>
+</li>
+<li><p>Choose MSPM0 in the page directory and select the examples folder</p>
+<figure class="align-default">
+<img alt="" src="../_images/select_examples.png" />
+</figure>
+</li>
+<li><p>Navigate to the DriverLib examples following the filepath below</p>
+<figure class="align-default">
+<img alt="" src="../_images/navigate_driverlib_examples.png" />
+</figure>
+</li>
+<li><p>Choose an example, choose the TI Clang compiler folder, and import to CCS IDE by pressing on the 3 dots next to the project file</p>
+<figure class="align-default">
+<img alt="" src="../_images/open_project_in_ccs.png" />
+</figure>
+</li>
+<li><p>If the SDK is not installed, an error message will pop up and prompt the user to install the SDK</p>
+<figure class="align-default">
+<img alt="" src="../_images/install_sdk.png" />
+</figure>
+</li>
+<li><p>Once the SDK is installed, import to CCS IDE by pressing on the 3 dots next to the project file</p>
+<figure class="align-default">
+<img alt="" src="../_images/open_project_in_ccs.png" />
+</figure>
+</li>
+<li><p>To build the example, click on your example in the Project Explorer tab, and then select the <strong>Build</strong> icon at the top.</p>
+<div class="line-block">
+<div class="line"><strong>Note</strong>: Some examples include support for SysConfig to allow for an easier device configuration.</div>
+<div class="line">The image below also shows the Sysconfig file that is used to configure the device for the example project.</div>
+<div class="line">For a complete list of examples supporting SysConfig, check the <a class="reference external" href="../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html">MSPM0 SDK Examples Guide</a>.</div>
+<div class="line">For more general information about using SysConfig with MSPM0, please refer to <a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">Using SysConfig with MSPM0</a> available in the SDK’s Tools Guide.</div>
+</div>
+<figure class="align-default">
+<img alt="" src="../_images/build_project.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="known-issues-and-frequently-asked-questions-faqs">
+<h2>4. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
+<p>Please refer to <a class="reference external" href="../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart_guide_ccs_theia.html" class="btn btn-neutral float-left" title="MSPM0 SDK QuickStart Guide for CCS Theia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart_guide_iar.html" class="btn btn-neutral float-right" title="MSPM0 SDK QuickStart Guide for IAR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

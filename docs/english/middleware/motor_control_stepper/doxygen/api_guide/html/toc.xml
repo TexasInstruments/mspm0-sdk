@@ -1,0 +1,1035 @@
+<toc label="StepperMotorControlLibrary" topic="index.html">
+  <topic label="Stepper Library API Reference" href="index.html"/>
+  <topic label="Modules" href="modules.html">
+    <topic label="HAL/LP_MSPM0L1306" href="group___h_a_l.html">
+      <topic label="HAL_SPI" href="struct_h_a_l___s_p_i.html">
+        <topic label="inst" href="struct_h_a_l___s_p_i.html#a7cb673dcad74364ad52e0f1ed9662c35"/>
+      </topic>
+      <topic label="HAL_DAC" href="struct_h_a_l___d_a_c.html">
+        <topic label="compBase" href="struct_h_a_l___d_a_c.html#aea441baca374adc358d4acce64de7d75"/>
+        <topic label="refVoltage" href="struct_h_a_l___d_a_c.html#a51a661a347e7271ccb32432081aa766b"/>
+      </topic>
+      <topic label="HAL_ADC" href="struct_h_a_l___a_d_c.html">
+        <topic label="inst" href="struct_h_a_l___a_d_c.html#ac9fd872cd1070d357a8ac935990d5235"/>
+        <topic label="refVoltage" href="struct_h_a_l___a_d_c.html#a55a82624b6760b204307b3a5870ee37d"/>
+        <topic label="value" href="struct_h_a_l___a_d_c.html#a2796ffa4409b943abe0d64c91171b73d"/>
+        <topic label="irqn" href="struct_h_a_l___a_d_c.html#afd0f6f78404cb27981eb494d74cbf23f"/>
+        <topic label="memIDX" href="struct_h_a_l___a_d_c.html#aee779d95d6324df953048a3c001fd5ab"/>
+        <topic label="endOfSeq" href="struct_h_a_l___a_d_c.html#a501e604d8ba64337b8909aed80a746e1"/>
+      </topic>
+      <topic label="HAL_PWM" href="struct_h_a_l___p_w_m.html">
+        <topic label="inst" href="struct_h_a_l___p_w_m.html#a3a50ff5d664c2234f076ef2f1d2be9ce"/>
+        <topic label="irqn" href="struct_h_a_l___p_w_m.html#a8750394201514fcd9fb7eff009e232df"/>
+        <topic label="CCIndex" href="struct_h_a_l___p_w_m.html#a4ddb28c72a1bde97e6465ab37f13ba69"/>
+      </topic>
+      <topic label="HAL_TIM" href="struct_h_a_l___t_i_m.html">
+        <topic label="inst" href="struct_h_a_l___t_i_m.html#a69e35fdb10b651a569f894a915e252ce"/>
+        <topic label="irqn" href="struct_h_a_l___t_i_m.html#af3104e73d6d0a26945b91b89ec7523c9"/>
+      </topic>
+      <topic label="HAL_GPIO" href="struct_h_a_l___g_p_i_o.html">
+        <topic label="iomux" href="struct_h_a_l___g_p_i_o.html#a9c84f8b1f2fd95608e628bc00b7ab37e"/>
+        <topic label="port" href="struct_h_a_l___g_p_i_o.html#a337f7a8823451aaef1d4998c75aac26b"/>
+        <topic label="pin" href="struct_h_a_l___g_p_i_o.html#a2775606b6fedccb723c017094e67ed83"/>
+      </topic>
+      <topic label="HAL_MCU_CLK_SPEED_HZ" href="group___h_a_l.html#gaf7b3b79e289ed08f29cfdb2d7d86387c"/>
+      <topic label="HAL_CYCLES_TO_1_MS_DELAY" href="group___h_a_l.html#ga5f2e472cba827617f4484518a33fdf16"/>
+      <topic label="HAL_ADC_MAX_VALUE" href="group___h_a_l.html#ga7e5ea6704037dbc3cbaf3dfdd6c744a7"/>
+      <topic label="HAL_DAC_MAX_VALUE" href="group___h_a_l.html#gac05e7816ff7d288990e03ae5b4985f55"/>
+      <topic label="HAL_ADC_DEFAULT_REF_VOLTAGE" href="group___h_a_l.html#ga47db7d2383c0281b0fda976e695b3ae1"/>
+      <topic label="HAL_DAC_DEFAULT_REF_VOLTAGE" href="group___h_a_l.html#gafe4349114109484f8ed09170b60b112b"/>
+      <topic label="HAL_TIM_PERIPHERAL_CLOCK_SOURCE" href="group___h_a_l.html#gae521daa8b0c03c4b755d5f5bd0729b08"/>
+      <topic label="HAL_PWM_CHANNEL" href="group___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">
+        <topic label="HAL_PWM_CHANNEL_0" href="group___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a03fa54972ba832d89298c1220869ff96"/>
+        <topic label="HAL_PWM_CHANNEL_1" href="group___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a2b9fa33e18cbcd0d6a838a2c9038780d"/>
+        <topic label="HAL_PWM_CHANNEL_MAX" href="group___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0ac0f17b4301fafcc955ba248660b04bd4"/>
+      </topic>
+      <topic label="HAL_TIM_CHANNEL" href="group___h_a_l.html#ga725e13be6dd268950cbe7e811eebb57c">
+        <topic label="HAL_TIM_CHANNEL_0" href="group___h_a_l.html#gga725e13be6dd268950cbe7e811eebb57cad7d40e597c5be56507e15eaf79b1d87a"/>
+        <topic label="HAL_TIM_CHANNEL_1" href="group___h_a_l.html#gga725e13be6dd268950cbe7e811eebb57cac433c15d96e160dab7590459870ea588"/>
+        <topic label="HAL_TIM_CHANNEL_MAX" href="group___h_a_l.html#gga725e13be6dd268950cbe7e811eebb57ca3437e78e83cf1dcfdb34b0156a9622dd"/>
+      </topic>
+      <topic label="HAL_ADC_CHANNEL" href="group___h_a_l.html#ga45835f1280003f7162449a532ed87c1a">
+        <topic label="HAL_ADC_CHANNEL_0" href="group___h_a_l.html#gga45835f1280003f7162449a532ed87c1aaf5a97ab8c41076a0443391f4bada58cd"/>
+        <topic label="HAL_ADC_CHANNEL_1" href="group___h_a_l.html#gga45835f1280003f7162449a532ed87c1aa2a1cce310fc2dd4e130aea2b414dae84"/>
+        <topic label="HAL_ADC_CHANNEL_MAX" href="group___h_a_l.html#gga45835f1280003f7162449a532ed87c1aaee8f9cfa84acbe52867dbe58c0b06c95"/>
+      </topic>
+      <topic label="HAL_DAC_CHANNEL" href="group___h_a_l.html#ga30e2882a343f4523c6e4cb8445da9400">
+        <topic label="HAL_DAC_CHANNEL_0" href="group___h_a_l.html#gga30e2882a343f4523c6e4cb8445da9400af200eb828b965ca6c37c81b025cb8f64"/>
+        <topic label="HAL_DAC_CHANNEL_MAX" href="group___h_a_l.html#gga30e2882a343f4523c6e4cb8445da9400ae554da9bd8ca03736aa0513ccb3b9a61"/>
+      </topic>
+      <topic label="HAL_GPIO_IN_PIN" href="group___h_a_l.html#ga7e7311833a1bf13803fc180fdd84500a">
+        <topic label="HAL_GPIO_IN_PIN_0" href="group___h_a_l.html#gga7e7311833a1bf13803fc180fdd84500aa35de169a0b65bead58c4970a23daad5b"/>
+        <topic label="HAL_GPIO_IN_PIN_MAX" href="group___h_a_l.html#gga7e7311833a1bf13803fc180fdd84500aa2915b025da86fdf10aabac71c76f7da2"/>
+      </topic>
+      <topic label="HAL_GPIO_OUT_PIN" href="group___h_a_l.html#ga81d35b817c14b508e1aa2c4f581b79ac">
+        <topic label="HAL_GPIO_OUT_PIN_0" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acacacc2866a87a044bb829838a8a144e68"/>
+        <topic label="HAL_GPIO_OUT_PIN_1" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acac910efd19f4788c9927e153d3fa1860e"/>
+        <topic label="HAL_GPIO_OUT_PIN_2" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acae84ffe1c196dc50ed666e7e67b84abb3"/>
+        <topic label="HAL_GPIO_OUT_PIN_3" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca81c0fff6a12f7b731f1542dff4f40131"/>
+        <topic label="HAL_GPIO_OUT_PIN_4" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca714cc78d473ba68dfc06f6c47ac18b41"/>
+        <topic label="HAL_GPIO_OUT_PIN_5" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca2421980f5e9d6a8b25c382fbece7f37d"/>
+        <topic label="HAL_GPIO_OUT_PIN_6" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acadcc1377e4d6cd404f3c8d11d8bc56702"/>
+        <topic label="HAL_GPIO_OUT_PIN_7" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca29c26f3dabd08a1761db7f799339d1b8"/>
+        <topic label="HAL_GPIO_OUT_PIN_8" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca6caf78dd55102079f400def113748651"/>
+        <topic label="HAL_GPIO_OUT_PIN_9" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca538dc8171959123bc7f89422a688f256"/>
+        <topic label="HAL_GPIO_OUT_PIN_MAX" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca084b87fd8890fcda2b85f781a8ec11df"/>
+      </topic>
+      <topic label="HAL_SPI_CHANNEL" href="group___h_a_l.html#gadd9593516aa7691021eeb01bcecec6a9">
+        <topic label="HAL_SPI_CHANNEL_0" href="group___h_a_l.html#ggadd9593516aa7691021eeb01bcecec6a9a87d6d116f93b166e76a06995ea424821"/>
+        <topic label="HAL_SPI_CHANNEL_MAX" href="group___h_a_l.html#ggadd9593516aa7691021eeb01bcecec6a9a6cdba2e523df474608a04fa81aacb28a"/>
+      </topic>
+      <topic label="HAL_SPI_CS" href="group___h_a_l.html#gadd8a694a4d051d1ed3e24f91cf3a5103">
+      </topic>
+      <topic label="HAL_GPIO_VALUE" href="group___h_a_l.html#gac977ba35c1fccd39a12331665d761ce5">
+        <topic label="HAL_GPIO_VALUE_LOW" href="group___h_a_l.html#ggac977ba35c1fccd39a12331665d761ce5a6e486d371fe4a56f9c15a2e95026b862"/>
+        <topic label="HAL_GPIO_VALUE_HIGH" href="group___h_a_l.html#ggac977ba35c1fccd39a12331665d761ce5abb0433af987db30550c494a7d4f62b1b"/>
+      </topic>
+      <topic label="HAL_PWM_CHANNEL_MODE" href="group___h_a_l.html#gab261b3a59c5ba22c02b403e1de40a41e">
+        <topic label="HAL_PWM_CHANNEL_MODE_PWM" href="group___h_a_l.html#ggab261b3a59c5ba22c02b403e1de40a41eabbeebad5382ed0ed213f126e4bbb7d49"/>
+        <topic label="HAL_PWM_CHANNEL_MODE_FORCED_HIGH" href="group___h_a_l.html#ggab261b3a59c5ba22c02b403e1de40a41ea4bbb8502464da49baa467cbb53281a91"/>
+        <topic label="HAL_PWM_CHANNEL_MODE_FORCED_LOW" href="group___h_a_l.html#ggab261b3a59c5ba22c02b403e1de40a41ea2a433519e8b0a4e9b5f5d0ad841c460a"/>
+      </topic>
+      <topic label="HAL_PIN_MODE" href="group___h_a_l.html#ga59e3f6f107cf5df870b7010313f72d24">
+        <topic label="HAL_PIN_MODE_OUTPUT_LOW" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24a9ecb3cd25b9e76ae46511ad24852648f"/>
+        <topic label="HAL_PIN_MODE_OUTPUT_HIGH" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24a81ed3b5d620ac37d983d062bcd3dfeb1"/>
+        <topic label="HAL_PIN_MODE_INPUT_PU" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24a2af75a17431b943f60fa3ab361777294"/>
+        <topic label="HAL_PIN_MODE_INPUT_PD" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24afbddcba206b049761bbf411c1e56652c"/>
+        <topic label="HAL_PIN_MODE_INPUT_HZ" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24a302e29886a7efc64a8df5daf45a5c1a9"/>
+      </topic>
+      <topic label="HAL_init" href="group___h_a_l.html#gaac941b8ea4dc23b9656f5fa217e348eb"/>
+      <topic label="HAL_setADCRefVoltage" href="group___h_a_l.html#gac45e0cf7f8e731049913093112974cf3"/>
+      <topic label="HAL_setDacRefVoltage" href="group___h_a_l.html#ga03984d5f95f98df7183cd3046c1f34ff"/>
+      <topic label="HAL_setADCSf" href="group___h_a_l.html#gaac41fca45b39313ecefcb578b73afa97"/>
+      <topic label="HAL_checkAndEnableIRQ" href="group___h_a_l.html#ga2ebc7cf3557b7d24afa67ab7e4143946"/>
+      <topic label="HAL_enableADCInterrupt" href="group___h_a_l.html#gaec6d12d067abc0b9595ebf93713c2c1c"/>
+      <topic label="HAL_disableADCInterrupt" href="group___h_a_l.html#ga3aea1cc0db3604a4cfc6a6f7e7804203"/>
+      <topic label="HAL_enablePWMInterrupt" href="group___h_a_l.html#ga382308ef6f348f302aef7b7e0a8ab6f0"/>
+      <topic label="HAL_disablePWMInterrupts" href="group___h_a_l.html#gadb9581a360ce26ec6bf2be99f80a297d"/>
+      <topic label="HAL_enableTIMInterrupt" href="group___h_a_l.html#ga871c5eaf2342110cdca5956faebfc9ba"/>
+      <topic label="HAL_disableTIMInterrupt" href="group___h_a_l.html#ga3fbcdaa8ba7bbcced63a0052c089550e"/>
+      <topic label="HAL_setGPIOVal" href="group___h_a_l.html#ga8501ce452cb958bc05fb355d60e3d345"/>
+      <topic label="HAL_readGPIOVal" href="group___h_a_l.html#gae6a056c111b330e337f2717652571df5"/>
+      <topic label="HAL_configurePin" href="group___h_a_l.html#ga49f8926553bc79102075ac160ad9f54d"/>
+      <topic label="HAL_configureGPIOOUTPin" href="group___h_a_l.html#gadaad18142b031231ec3fa4c27ea9c3c3"/>
+      <topic label="HAL_configureGPIOINPin" href="group___h_a_l.html#ga53a1ee72fb56d7c3b52a81a9951af626"/>
+      <topic label="HAL_setDACVoltage" href="group___h_a_l.html#ga4783fb92bb5390ac56ca35fd20c53bf3"/>
+      <topic label="HAL_getPWMLoadValue" href="group___h_a_l.html#ga8fee453cd847b5bbdc1d8e277e4da0bf"/>
+      <topic label="HAL_startPWMCounter" href="group___h_a_l.html#ga16507be004ab42808e4aae8a3ebbed27"/>
+      <topic label="HAL_stopPWMCounter" href="group___h_a_l.html#ga45611bb449d747b9354bb6836fdc8f92"/>
+      <topic label="HAL_startTIMCounter" href="group___h_a_l.html#gaab4413c42475b03380abb8339333c248"/>
+      <topic label="HAL_stopTIMCounter" href="group___h_a_l.html#ga2d3c571aa7f12bf479809e5043b990d5"/>
+      <topic label="HAL_isPWMCounterRunning" href="group___h_a_l.html#gaaa4f78f5eccc495a9bc848db450e2b7c"/>
+      <topic label="HAL_isTIMCounterRunning" href="group___h_a_l.html#gad4d9fa9049ea281b43bef5bb65040e78"/>
+      <topic label="HA_setPWMDutyCycle" href="group___h_a_l.html#gabb8fb73248c192e21d4c268d8339853f"/>
+      <topic label="HAL_setPWMFreq" href="group___h_a_l.html#ga4220d3f8ea591c0d48b4542c0b360627"/>
+      <topic label="HAL_setTIMFreq" href="group___h_a_l.html#ga5cfad81b23cbdcd49898012e27d31a34"/>
+      <topic label="HAL_setPWMLoadVal" href="group___h_a_l.html#gac1884db4b5ef0659081b6c3de08d7f86"/>
+      <topic label="HAL_setTIMLoadVal" href="group___h_a_l.html#ga4fed6df28dfda596644dc2d44914d33c"/>
+      <topic label="HAL_setFreq" href="group___h_a_l.html#gac0fd9757e9f332c81a8fba88fbfd8e34"/>
+      <topic label="HAL_setLoadVal" href="group___h_a_l.html#ga85faba0341369e8a94277f0531bf2abb"/>
+      <topic label="HAL_getADCData" href="group___h_a_l.html#gab532455189a63e8637e99b5b13ff1e02"/>
+      <topic label="HAL_getADCResult" href="group___h_a_l.html#ga5bdbae4e85ea7d35cecb746ff1a7167c"/>
+      <topic label="HAL_processADCIRQ" href="group___h_a_l.html#ga27b8c67f7d05acaab8774b7915200b35"/>
+      <topic label="HAL_delayMilliSeconds" href="group___h_a_l.html#ga8ede55b3708351405918bd7fbf9c8746"/>
+      <topic label="HAL_configurePWMPin" href="group___h_a_l.html#ga17468c3751546bf8d30458b111e87024"/>
+      <topic label="HAL_isSPIRxFifoEmpty" href="group___h_a_l.html#gae915e61d98a5b6464cf20fa348f39c96"/>
+      <topic label="HAL_receiveSPIData16" href="group___h_a_l.html#ga7e643d9052eecef5b6ebae43f45aee9c"/>
+      <topic label="HAL_transmitSPIData16" href="group___h_a_l.html#gaded901eac20999dd944bd0253c84133d"/>
+      <topic label="HAL_isSPIBusy" href="group___h_a_l.html#ga8c76a7ee344f64b0fce303c53702fd27"/>
+      <topic label="HAL_SPI_clearRXFifo" href="group___h_a_l.html#gaab324e40809390bc0596a9c2c967081b"/>
+      <topic label="gpioOUT" href="group___h_a_l.html#gab6ab45b3533ecf164824d10a92191163"/>
+    </topic>
+    <topic label="Motor_Driver/DRV8411A" href="group___m_d___m_o_d_u_l_e.html">
+      <topic label="DRV8411A_Instance" href="struct_d_r_v8411_a___instance.html">
+        <topic label="stepMode" href="struct_d_r_v8411_a___instance.html#a9ae5c97bcf587b85b6c3d1a9cf27b7ab"/>
+        <topic label="decayMode" href="struct_d_r_v8411_a___instance.html#a21cccb99a6fe4e49bb2fb70067d07f26"/>
+        <topic label="controlMode" href="struct_d_r_v8411_a___instance.html#a28a1b5916cbb751174ec2bd693c0ab55"/>
+        <topic label="driveState" href="struct_d_r_v8411_a___instance.html#adb2569872141db1f69b4cadefa8e9135"/>
+        <topic label="setStep" href="struct_d_r_v8411_a___instance.html#a408f5a80d68a4a6fddfc56ebee7eb7d4"/>
+        <topic label="stepCount" href="struct_d_r_v8411_a___instance.html#accbfe07ffabb6edff4143ff3f1197363"/>
+        <topic label="ripropiVal" href="struct_d_r_v8411_a___instance.html#ab72c86d570b7faac2d868cc562cfbd63"/>
+        <topic label="setFreq" href="struct_d_r_v8411_a___instance.html#a8476cdcc44463864da8c0a0a6e622bac"/>
+        <topic label="ain1" href="struct_d_r_v8411_a___instance.html#a326f1d0044229cc1cf823f3cad3e3c78"/>
+        <topic label="ain2" href="struct_d_r_v8411_a___instance.html#a58095890da630eadb67b921131723ef7"/>
+        <topic label="bin1" href="struct_d_r_v8411_a___instance.html#a4691c9e8c4f5646c012aed7f5f9306ef"/>
+        <topic label="bin2" href="struct_d_r_v8411_a___instance.html#a6074c9dad38e92bb73b81d72ec807e07"/>
+        <topic label="nfault" href="struct_d_r_v8411_a___instance.html#af2ae683e27f74c627f7a5f591f679a39"/>
+        <topic label="aipropi" href="struct_d_r_v8411_a___instance.html#acd38950e2529858cc501bf5d6a9e7382"/>
+        <topic label="bipropi" href="struct_d_r_v8411_a___instance.html#aecec18bdd2b2939e8372fc111a84d480"/>
+        <topic label="vref" href="struct_d_r_v8411_a___instance.html#a84e739f3a888689afbbe5d0dae6df528"/>
+        <topic label="indexerTimer" href="struct_d_r_v8411_a___instance.html#aaa380c30467d6569e415a1dcc36d14d2"/>
+        <topic label="ADCTriggerTimer" href="struct_d_r_v8411_a___instance.html#ad271f2c60b62d7db988feb697810e291"/>
+        <topic label="indexer" href="struct_d_r_v8411_a___instance.html#a8b9356427380f75af8d786d7e13d3ff5"/>
+        <topic label="itripSf" href="struct_d_r_v8411_a___instance.html#ab7a457e61ff05bfac7a66f88ad68a146"/>
+        <topic label="iSf" href="struct_d_r_v8411_a___instance.html#a6b099ee8de890484fb930398c2cd2c8c"/>
+      </topic>
+      <topic label="DRV8411A_A_IPROPI" href="group___m_d___m_o_d_u_l_e.html#ga9f12c5458b0b0968a67fe08cfb6788c4"/>
+      <topic label="DRV8411A_MAX_SET_FREQ" href="group___m_d___m_o_d_u_l_e.html#gaaa6aff4c56fc13d5648566897a029c59"/>
+      <topic label="DRV8411A_DIR" href="group___m_d___m_o_d_u_l_e.html#ga7c45f7884a5e55a2b627800a44188433">
+        <topic label="DRV8411A_DIR_FORWARD" href="group___m_d___m_o_d_u_l_e.html#gga7c45f7884a5e55a2b627800a44188433ab6f4fffb332f57c5065f45b4d8481550"/>
+        <topic label="DRV8411A_DIR_REVERSE" href="group___m_d___m_o_d_u_l_e.html#gga7c45f7884a5e55a2b627800a44188433aa19d306d23bae7f04097119cd2b84bd4"/>
+      </topic>
+      <topic label="DRV8411A_STEP" href="group___m_d___m_o_d_u_l_e.html#gaaed51b9c1c3c24a4c1dcce08c885520e">
+        <topic label="DRV8411A_STEP_FULL_STEP" href="group___m_d___m_o_d_u_l_e.html#ggaaed51b9c1c3c24a4c1dcce08c885520eab8a9478fbc12032eb091bd7e05800de8"/>
+        <topic label="DRV8411A_STEP_HALF_STEP_NC" href="group___m_d___m_o_d_u_l_e.html#ggaaed51b9c1c3c24a4c1dcce08c885520ea4ee3dd3472101c5ac0b02146a33ef51e"/>
+        <topic label="DRV8411A_STEP_MAX" href="group___m_d___m_o_d_u_l_e.html#ggaaed51b9c1c3c24a4c1dcce08c885520eaea9db2bf988c8b00ed01c81178b7100c"/>
+      </topic>
+      <topic label="DRV8411A_DECAY" href="group___m_d___m_o_d_u_l_e.html#ga19ad4ede76027e0c5e5bbce96d23a04b">
+        <topic label="DRV8411A_DECAY_SLOW" href="group___m_d___m_o_d_u_l_e.html#gga19ad4ede76027e0c5e5bbce96d23a04bad6284ac2d760048aa97bf4acad70ccbb"/>
+        <topic label="DRV8411A_DECAY_FAST" href="group___m_d___m_o_d_u_l_e.html#gga19ad4ede76027e0c5e5bbce96d23a04baeae6a40c0666ef713dd817d1c8b87a61"/>
+      </topic>
+      <topic label="DRV8411A_CONTROL_MODE" href="group___m_d___m_o_d_u_l_e.html#gac5cf3ed6e123978d14e10f2f49d901c4">
+        <topic label="DRV8411A_CONTROL_MODE_SPIN" href="group___m_d___m_o_d_u_l_e.html#ggac5cf3ed6e123978d14e10f2f49d901c4a1735d36e569e5087cc7f43eca47278ec"/>
+        <topic label="DRV8411A_CONTROL_MODE_STEP" href="group___m_d___m_o_d_u_l_e.html#ggac5cf3ed6e123978d14e10f2f49d901c4a259a12c048201423d4146255ed0e47fe"/>
+      </topic>
+      <topic label="DRV8411A_DRIVE" href="group___m_d___m_o_d_u_l_e.html#ga906145fc4af416cd1ad2a39ae4345a31">
+        <topic label="DRV8411A_DRIVE_DISABLED" href="group___m_d___m_o_d_u_l_e.html#gga906145fc4af416cd1ad2a39ae4345a31ac859de953f43979b71373d63d6b3b5d8"/>
+        <topic label="DRV8411A_DRIVE_ENABLED" href="group___m_d___m_o_d_u_l_e.html#gga906145fc4af416cd1ad2a39ae4345a31a67b70971f5d7db1c981c767c084ddc8f"/>
+      </topic>
+      <topic label="DRV8411A_init" href="group___m_d___m_o_d_u_l_e.html#ga291a51ab60be0d929e4c85e62018dd44"/>
+      <topic label="DRV8411A_enableDrive" href="group___m_d___m_o_d_u_l_e.html#ga606def12674cd35d5bfef8b027c6c83c"/>
+      <topic label="DRV8411A_disableDrive" href="group___m_d___m_o_d_u_l_e.html#gaf85c94cdd08186c2a099a37e71435eb7"/>
+      <topic label="DRV8411A_startMotor" href="group___m_d___m_o_d_u_l_e.html#ga1e2a6ae0aa7230a36b9d2b469d505c11"/>
+      <topic label="DRV8411A_stopMotor" href="group___m_d___m_o_d_u_l_e.html#ga19c6672baeaaf9e3d123b5c904b6776f"/>
+      <topic label="DRV8411A_isMotorRunning" href="group___m_d___m_o_d_u_l_e.html#ga55e12d181f4cbf15493a77db392adc29"/>
+      <topic label="DRV8411A_isFaultOccurred" href="group___m_d___m_o_d_u_l_e.html#ga945f2d4818a299965c6acea9c49739ff"/>
+      <topic label="DRV8411A_setDirection" href="group___m_d___m_o_d_u_l_e.html#ga503c6a2d3b21a4dd21497ddb52bcb373"/>
+      <topic label="DRV8411A_setStepMode" href="group___m_d___m_o_d_u_l_e.html#ga1262e9e2bf1c5aab3c97de22bac1c32b"/>
+      <topic label="DRV8411A_setDecayMode" href="group___m_d___m_o_d_u_l_e.html#gad12b91a3bf64f32824b38b1b1fcd18fc"/>
+      <topic label="DRV8411A_setSpeed" href="group___m_d___m_o_d_u_l_e.html#ga3d54101f4248aaf09d71542caf8d16f3"/>
+      <topic label="DRV8411A_setItripSf" href="group___m_d___m_o_d_u_l_e.html#ga20e203431dfca048401d21208b517899"/>
+      <topic label="DRV8411A_setISf" href="group___m_d___m_o_d_u_l_e.html#gaf2317a08f67c233bcf258206d6f64ad5"/>
+      <topic label="DRV8411A_setRIPROPI" href="group___m_d___m_o_d_u_l_e.html#gaa6951bac961c5844c26204fc834b5f4e"/>
+      <topic label="DRV8411A_setItrip" href="group___m_d___m_o_d_u_l_e.html#ga133e27486f54902a72f404cd7b9bca01"/>
+      <topic label="DRV8411A_setPhaseCurrentRefVoltage" href="group___m_d___m_o_d_u_l_e.html#gab0352800d01f318de96c1e09f8cf9d81"/>
+      <topic label="DRV8411A_setVrefRefVoltage" href="group___m_d___m_o_d_u_l_e.html#ga99e42978c04e107608aa4de8866c3590"/>
+      <topic label="DRV8411A_getIA" href="group___m_d___m_o_d_u_l_e.html#gab5036c67d2c3887df3bb8e13916f63df"/>
+      <topic label="DRV8411A_getIB" href="group___m_d___m_o_d_u_l_e.html#ga029641eb4ea5af3c2d76c5dcdbc8964a"/>
+      <topic label="DRV8411A_setStep" href="group___m_d___m_o_d_u_l_e.html#gaf5a821ed5cffdf97b2eb384e3fe9f59c"/>
+      <topic label="DRV8411A_setControlMode" href="group___m_d___m_o_d_u_l_e.html#ga169b038081b78e533fb475de19439f24"/>
+      <topic label="DRV8411A_checkStep" href="group___m_d___m_o_d_u_l_e.html#ga4d65da7f6626e8f82f6c250e9fe662c7"/>
+      <topic label="DRV8411A_setPWMDrive" href="group___m_d___m_o_d_u_l_e.html#ga4f846b6d875b0bd0f6361f2a4c4a6757"/>
+      <topic label="DRV8411A_setPWMDrives" href="group___m_d___m_o_d_u_l_e.html#gae0fd18e4c88869180863f3331aa335c5"/>
+      <topic label="DRV8411A_setComm" href="group___m_d___m_o_d_u_l_e.html#gaa1920f68452f841c115edeb5bf79754d"/>
+    </topic>
+    <topic label="Motor_Driver/DRV8889Q1" href="group___m_d___m_o_d_u_l_e2.html">
+      <topic label="DRV8889Q1_Instance" href="struct_d_r_v8889_q1___instance.html">
+        <topic label="stepMode" href="struct_d_r_v8889_q1___instance.html#a9b56a0b6d0d2037b1e9391bdf22f203e"/>
+        <topic label="decayMode" href="struct_d_r_v8889_q1___instance.html#a9ff782cc733758d7b26d3ca2beaedf75"/>
+        <topic label="controlMode" href="struct_d_r_v8889_q1___instance.html#aa1c02ce1dab2aaba5ace1ac4af3fec7d"/>
+        <topic label="driveState" href="struct_d_r_v8889_q1___instance.html#a826c995c3e910e59f874800a36fb2d07"/>
+        <topic label="setStep" href="struct_d_r_v8889_q1___instance.html#a0d51e31ac763019f837e53c5ea51f810"/>
+        <topic label="stepCount" href="struct_d_r_v8889_q1___instance.html#a7a15c0ec5e2993126eefc2f070092498"/>
+        <topic label="setFreq" href="struct_d_r_v8889_q1___instance.html#a28f406e1dca9100df45d7ff139c88ea4"/>
+        <topic label="dir" href="struct_d_r_v8889_q1___instance.html#a799931bb54f847f6686f1fca4ed96d4d"/>
+        <topic label="drvOff" href="struct_d_r_v8889_q1___instance.html#ae8148726cd45387b712b07e7c94648b2"/>
+        <topic label="nsleep" href="struct_d_r_v8889_q1___instance.html#ad75e917b8356310cade5a294d467243c"/>
+        <topic label="nfault" href="struct_d_r_v8889_q1___instance.html#aab8f22f4bfafaf13686813575b8ffe50"/>
+        <topic label="vref" href="struct_d_r_v8889_q1___instance.html#a99339f44d0188f2156baf55873f5a30c"/>
+        <topic label="step" href="struct_d_r_v8889_q1___instance.html#a3c03b8e76b5d87057e8dfdaa2dd949a0"/>
+        <topic label="spi" href="struct_d_r_v8889_q1___instance.html#aa36a9d5c9f403f69fbbd851985b51834"/>
+        <topic label="spiCS" href="struct_d_r_v8889_q1___instance.html#a6a595b985b74413681dca2c093f73124"/>
+      </topic>
+      <topic label="DRV8889Q1_SPI_READY_DELAY_MS" href="group___m_d___m_o_d_u_l_e2.html#ga3f18be8c4dd2588409faff1619706a02"/>
+      <topic label="DRV8889Q1_STEP_DUTYCYCLE" href="group___m_d___m_o_d_u_l_e2.html#ga5afa6614a2870b71507f3bb129aa5e93"/>
+      <topic label="DRV8889Q1_MAX_SET_FREQ" href="group___m_d___m_o_d_u_l_e2.html#gadb98d179cdc15cd09cbb43d813f14b41"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_FAULT_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga83009ec8d41ad4e1dedf84693d0eb53b"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_SPI_ERROR_OFS" href="group___m_d___m_o_d_u_l_e2.html#gabc94072601211c58fc835405c4b11e7c"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_UVLO_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga3b9777592f57019470f6d4cf47e55bdf"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_CPUV_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaddae2d0d483fd6d730eeb67367fa0639"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_OCP_OFS" href="group___m_d___m_o_d_u_l_e2.html#gae15a92b68f834cc0e3a5ab81a3e7fba6"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_STL_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga508ba291a48c8903428c9b547c8dce06"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_TF_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga271cbbf1133f8cee11fc43899831ffe8"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_OL_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga1d8fa065fb7dee40dea9167f22300252"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_FAULT_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga967e8cb55724ebbf0e58fe6aee571939"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_SPI_ERROR_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga8ae25bfd32b4f9e5e5b99b2da0af643a"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_UVLO_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga0d6c9db98fd06cd7f3ca4f4f20b93868"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_CPUV_MASK" href="group___m_d___m_o_d_u_l_e2.html#gabd6608b8c1e979fdc7ae4bb8fb7eb986"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_OCP_MASK" href="group___m_d___m_o_d_u_l_e2.html#gacf54d1bf3444058f608ba7452d464ba9"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_STL_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaca8e2174d480955675de26551c223941"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_TF_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga7d3737720fd00592e09e0cdd046d5f0a"/>
+      <topic label="DRV8889Q1_REG_FAULT_STATUS_OL_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga53b5789c9f580ca7b0a1e7fbf682af75"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS2_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga498eed33559b97bddceb31a5ac37e9d9"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS2_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#gabc592aabaa7a73a29ed6d36894885481"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS1_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga61491de478759191abab12fc2e98501e"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS1_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga58a895704a4b1481f085b892b4e7fb88"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS2_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#gac6e1824fd27a5aaca8ca0b525f131e6a"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS2_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga40c14b3f10c72d7a5a8bb2af4f511778"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS1_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf42a1aa70947de398a60624fd8d4c1ba"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS1_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga40a98d064f3291ac9caac51620ba29c0"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS2_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#gafdcba88318f54690c2e67fd285f68b4e"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS2_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga32be3a358a29f3b1fd3d6f54334efeef"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS1_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga3b2ab892ccf2c99e0c8e577029e867b1"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS1_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga9d465383574acd4b2600f2e0bfb07ab9"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS2_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga48acbe0388ec40077f29aaa76f207b8d"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS2_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga1cd8abfb79b68bc0b79a11fc37fc527e"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS1_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga130ba4a0a51b7f8e635d5ea1f0a8380d"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS1_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga7120cb35d1974c4c7b33bf25ded57df7"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_UTW_OFS" href="group___m_d___m_o_d_u_l_e2.html#gadcd09e2336b417816decd7d08045764b"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OTW_OFS" href="group___m_d___m_o_d_u_l_e2.html#gab8dc0bac601cea0f1ef1f2b0af39f26d"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OTS_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga2b872ee20d38efab80b01287a311a25a"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_STL_LRN_OK_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga0038bb2bd5674c0c5a002482029eb423"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_STALL_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaa729e5365b505296d21aaa831528b5b8"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OL_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#gadc1349d908d4bb4ee7c47da03cac6a0b"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OL_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf890310cc2f7265266ccb0c018d0988b"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_UTW_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga16cde55374664d160ff136f7043c4954"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OTW_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga43efc10846a4d24f5e2e2dd0b8a0212b"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OTS_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga3a733324b3cd7f8d642b6a53ab35c87d"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_STL_LRN_OK_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga6f2e846d77798a27e0a1bee80a1bfd7f"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_STALL_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaa242cf296e995babb433e05a163a6a6b"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OL_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga10f662f822fc99b305672aa26203a804"/>
+      <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OL_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#gafea3655f12bf35ce5d8a649db8e278f3"/>
+      <topic label="DRV8889Q1_REG_CTRL1_TRQ_DAC_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga784435a9e15d26cc872659c70393bed0"/>
+      <topic label="DRV8889Q1_REG_CTRL1_SLEW_RATE_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf3ce92d277da2556d51dad9823336ad1"/>
+      <topic label="DRV8889Q1_REG_CTRL1_TRQ_DAC_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaad98addaba5ca8155250b4d98fefe37d"/>
+      <topic label="DRV8889Q1_REG_CTRL1_SLEW_RATE_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga9832bb6a78019bb50133552cf0dbee51"/>
+      <topic label="DRV8889Q1_REG_CTRL2_DIS_OUT_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf4336c50c87a90ebd3f37af4be9575dc"/>
+      <topic label="DRV8889Q1_REG_CTRL2_TOFF_OFS" href="group___m_d___m_o_d_u_l_e2.html#gae6de07db8c29a629ef6e043590554e0a"/>
+      <topic label="DRV8889Q1_REG_CTRL2_DECAY_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga01b950ca47a6adc7ef2f24b6eb9ad779"/>
+      <topic label="DRV8889Q1_REG_CTRL2_DIS_OUT_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaca71e111f66c940ac5ada5bab1718d62"/>
+      <topic label="DRV8889Q1_REG_CTRL2_TOFF_MASK" href="group___m_d___m_o_d_u_l_e2.html#gae6cdcb2afc0afa44a4462a8da734431a"/>
+      <topic label="DRV8889Q1_REG_CTRL2_DECAY_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga7581c08093fac1b22589db573f4c32c8"/>
+      <topic label="DRV8889Q1_REG_CTRL3_DIR_OFS" href="group___m_d___m_o_d_u_l_e2.html#gad602dd35afecc5c08dace101d063d297"/>
+      <topic label="DRV8889Q1_REG_CTRL3_STEP_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga23819c446e63b1051542e6a9c236d41d"/>
+      <topic label="DRV8889Q1_REG_CTRL3_SPI_DIR_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga5dfb56dc9d36adf0887d6ada20ec55e1"/>
+      <topic label="DRV8889Q1_REG_CTRL3_SPI_STEP_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaac446d48a6b85a14be7df2a393863576"/>
+      <topic label="DRV8889Q1_REG_CTRL3_MICROSTEP_MODE_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga6001c98b998cce158795318008a1570d"/>
+      <topic label="DRV8889Q1_REG_CTRL3_DIR_MASK" href="group___m_d___m_o_d_u_l_e2.html#gad1e1cdbdc6fda930f4773b9ac42a1241"/>
+      <topic label="DRV8889Q1_REG_CTRL3_STEP_MAS" href="group___m_d___m_o_d_u_l_e2.html#ga83248f3ece2b4a6e4c6384179faebcda"/>
+      <topic label="DRV8889Q1_REG_CTRL3_SPI_DIR_MASK" href="group___m_d___m_o_d_u_l_e2.html#gad1f7b16b10f44f4f12fbb7152c6e167d"/>
+      <topic label="DRV8889Q1_REG_CTRL3_SPI_STEP_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga7e87c974277696ae30e372ca18e091fb"/>
+      <topic label="DRV8889Q1_REG_CTRL3_MICROSTEP_MODE_MASK" href="group___m_d___m_o_d_u_l_e2.html#gacdf9c7bd468bed603bde9df0dc1f8b20"/>
+      <topic label="DRV8889Q1_REG_CTRL4_CLR_FLT_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga3c39fc1d18a1017d212093533717548b"/>
+      <topic label="DRV8889Q1_REG_CTRL4_LOCK_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga47a777e513fdee517c31b68698ec9eca"/>
+      <topic label="DRV8889Q1_REG_CTRL4_EN_OL_OFS" href="group___m_d___m_o_d_u_l_e2.html#gab408f863a7600d291cc457b92e042116"/>
+      <topic label="DRV8889Q1_REG_CTRL4_OCP_MODE_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga2d684c939f5eb10115b3e2df9925fe48"/>
+      <topic label="DRV8889Q1_REG_CTRL4_OTSD_MODE_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga240201b74b8759c2512a8dcbf9b5662c"/>
+      <topic label="DRV8889Q1_REG_CTRL4_TW_REP_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga1963ede53f2cfb429ab31a22da03abe0"/>
+      <topic label="DRV8889Q1_REG_CTRL4_CLR_FLT_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga327399d4132e9a943c6a0268861656da"/>
+      <topic label="DRV8889Q1_REG_CTRL4_LOCK_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga1bf6d771eb364cac064443907bdeb048"/>
+      <topic label="DRV8889Q1_REG_CTRL4_EN_OL_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga3679ac5922ce413c2f229645ec35aafe"/>
+      <topic label="DRV8889Q1_REG_CTRL4_OCP_MODE_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga3479f94a119d7b173bc2c681601b0904"/>
+      <topic label="DRV8889Q1_REG_CTRL4_OTSD_MODE_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga808e34cca8813dc4a3d9aa5309952f69"/>
+      <topic label="DRV8889Q1_REG_CTRL4_TW_REP_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga6fae0de8e49ba4ff15d8acb8f84e473e"/>
+      <topic label="DRV8889Q1_REG_CTRL5_STL_LRN_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga3229ca19954c031a4cc5a22110befc2b"/>
+      <topic label="DRV8889Q1_REG_CTRL5_EN_STL_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga08645390e706d45df226660393c7733d"/>
+      <topic label="DRV8889Q1_REG_CTRL5_STL_REP_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga410f8c6f3bfe549d0027b43a3b4c47fd"/>
+      <topic label="DRV8889Q1_REG_CTRL5_STL_LRN_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga65e360534fc52ef8bfc149656100017d"/>
+      <topic label="DRV8889Q1_REG_CTRL5_EN_STL_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga6fea5a79ab20eb9c15784e576c17affb"/>
+      <topic label="DRV8889Q1_REG_CTRL5_STL_REP_MASK" href="group___m_d___m_o_d_u_l_e2.html#gac19641aad5f8f4239cac84761ec8e762"/>
+      <topic label="DRV8889Q1_REG_CTRL6_STALL_TH_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf9f1d584745b6cfe5638d9f4df59d165"/>
+      <topic label="DRV8889Q1_REG_CTRL6_STALL_TH_MASK" href="group___m_d___m_o_d_u_l_e2.html#gace4ed458d8271ccbd94a234ce689be22"/>
+      <topic label="DRV8889Q1_REG_CTRL7_TRQ_COUNT_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga4558af8b64c246b07e32430a4e8f348d"/>
+      <topic label="DRV8889Q1_REG_CTRL7_TRQ_COUNT_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaad54cadbe68ef43af5f4459475250b79"/>
+      <topic label="DRV8889Q1_REG_CTRL8_REV_ID_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga6a7fd378551c4e565472ac0527e44f58"/>
+      <topic label="DRV8889Q1_REG_CTRL8_REV_ID_MASK" href="group___m_d___m_o_d_u_l_e2.html#gacb737df792469770313ced2c7ffdc058"/>
+      <topic label="DRV8889Q1_SPI_CMD_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaaf4c2456f29135ddcf074fc039cb0b27"/>
+      <topic label="DRV8889Q1_SPI_ADDR_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga299118e767a85849ca50fd50f5b9a00d"/>
+      <topic label="DRV8889Q1_SPI_ADDR_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga5209941c454fe020c082625983fe0d78"/>
+      <topic label="DRV8889Q1_STALL_LEARN_EL_CYCLES" href="group___m_d___m_o_d_u_l_e2.html#gae6a7dc88362cc3b6f9477c1b8cadc74f"/>
+      <topic label="DRV8889Q1_REG_ADDR" href="group___m_d___m_o_d_u_l_e2.html#gae55b226749e773fea146adffd807f559">
+      </topic>
+      <topic label="DRV8889Q1_SPI_CMD" href="group___m_d___m_o_d_u_l_e2.html#gac5fb7653f272683d3d2a85be70fa1c5b">
+      </topic>
+      <topic label="DRV8889Q1_REG_CTRL4_LOCK" href="group___m_d___m_o_d_u_l_e2.html#gabe2cdf9b0715d1375e740f219e8667a9">
+        <topic label="DRV8889Q1_REG_CTRL4_LOCK_UNLOCK" href="group___m_d___m_o_d_u_l_e2.html#ggabe2cdf9b0715d1375e740f219e8667a9aa62651da6241cc552694f474a80e36f1"/>
+        <topic label="DRV8889Q1_REG_CTRL4_LOCK_LOCK" href="group___m_d___m_o_d_u_l_e2.html#ggabe2cdf9b0715d1375e740f219e8667a9a068df9d8b1ce578a129cc46a68227c40"/>
+      </topic>
+      <topic label="DRV8889Q1_DIR" href="group___m_d___m_o_d_u_l_e2.html#ga88ccbd94a7f49736029169887b45dcb5">
+        <topic label="DRV8889Q1_DIR_REVERSE" href="group___m_d___m_o_d_u_l_e2.html#gga88ccbd94a7f49736029169887b45dcb5ae3ddda43c2c36b02f950999e8d9d1aa7"/>
+        <topic label="DRV8889Q1_DIR_FORWARD" href="group___m_d___m_o_d_u_l_e2.html#gga88ccbd94a7f49736029169887b45dcb5a6a409b2d150ff7de56ac5ef51f2d251d"/>
+      </topic>
+      <topic label="DRV8889Q1_STEP" href="group___m_d___m_o_d_u_l_e2.html#ga9db27cb8503c2ed253ec6a2d9dfdc104">
+        <topic label="DRV8889Q1_STEP_FULL_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a759f62e562bb1da5dfa395420af83584"/>
+        <topic label="DRV8889Q1_STEP_FULL_STEP_71" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a116fe7d19377e5ce602f86af5c2fcbfb"/>
+        <topic label="DRV8889Q1_STEP_NC_HALF_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a753820c17982b6063879f9bee76a9249"/>
+        <topic label="DRV8889Q1_STEP_HALF_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a778181dd3c636c926f83dd8dfb68f8d2"/>
+        <topic label="DRV8889Q1_STEP_1BY4_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a0f3e9f10f8a18defca8c96951f6ffa35"/>
+        <topic label="DRV8889Q1_STEP_1BY8_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a3cae75af2997396109d908553690fb90"/>
+        <topic label="DRV8889Q1_STEP_1BY16_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a6631a9b541c13e887995d0fc142975de"/>
+        <topic label="DRV8889Q1_STEP_1BY32_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104af62cf784c364f6605fb681a3357e4164"/>
+        <topic label="DRV8889Q1_STEP_1BY64_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a1149b9482d792215736b8bfe40bcb592"/>
+        <topic label="DRV8889Q1_STEP_1BY128_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a2034a3b4d207695679dd6f08f50567d4"/>
+        <topic label="DRV8889Q1_STEP_1BY256_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a54990e7ec26231a9e45c1466535c05b8"/>
+      </topic>
+      <topic label="DRV8889Q1_SLEW_RATE" href="group___m_d___m_o_d_u_l_e2.html#gaea2fc701b4561bb8f294dcf86d467421">
+        <topic label="DRV8889Q1_SLEW_RATE_10VUS" href="group___m_d___m_o_d_u_l_e2.html#ggaea2fc701b4561bb8f294dcf86d467421a85f5faf85f47dac247396babb3e3e6ef"/>
+        <topic label="DRV8889Q1_SLEW_RATE_35VUS" href="group___m_d___m_o_d_u_l_e2.html#ggaea2fc701b4561bb8f294dcf86d467421a792217a0107f0f7feb787af09f23cf58"/>
+        <topic label="DRV8889Q1_SLEW_RATE_50VUS" href="group___m_d___m_o_d_u_l_e2.html#ggaea2fc701b4561bb8f294dcf86d467421a16e81c993d6a66f5aae09f449429825e"/>
+        <topic label="DRV8889Q1_SLEW_RATE_105VUS" href="group___m_d___m_o_d_u_l_e2.html#ggaea2fc701b4561bb8f294dcf86d467421af9667ed7a25097444543b58343787805"/>
+      </topic>
+      <topic label="DRV8889Q1_DECAY" href="group___m_d___m_o_d_u_l_e2.html#ga98b53f2df8af4c8d489026cbf8dad09d">
+        <topic label="DRV8889Q1_DECAY_INC_SLOW_DEC_SLOW" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09dab164e446647faf752b651fa5cfde4174"/>
+        <topic label="DRV8889Q1_DECAY_INC_SLOW_DEC_MIXED_30" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09dad554bc876b4d2f2e62d2d61a89e95642"/>
+        <topic label="DRV8889Q1_DECAY_INC_SLOW_DEC_MIXED_60" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09dac40232baa403cc76aea5f8b7f3df1fd8"/>
+        <topic label="DRV8889Q1_DECAY_INC_SLOW_DEC_FAST" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09daf196d477c0718e6d74b494affddcde55"/>
+        <topic label="DRV8889Q1_DECAY_INC_MIXED_30_DEC_MIXED_30" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09da31a6f98013e57c205335b8a2c489566e"/>
+        <topic label="DRV8889Q1_DECAY_INC_MIXED_60_DEC_MIXED_60" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09daf6bef42b7b25d3c6a9d6069a49aedc18"/>
+        <topic label="DRV8889Q1_DECAY_SMART_TUNE_DYNAMIC" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09da8d202fa52e85dd99c84c3c46964da985"/>
+        <topic label="DRV8889Q1_DECAY_SMART_TUNE_RIPPLE_CTRL" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09da64919e6370e648100ceefe52df296db6"/>
+      </topic>
+      <topic label="DRV8889Q1_TRQ_DAC" href="group___m_d___m_o_d_u_l_e2.html#ga6402d995c6c8dd4644e4b69175aefb7a">
+        <topic label="DRV8889Q1_TRQ_DAC_100" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa2868abeee9b19543a6b7b97f5e9ec30e"/>
+        <topic label="DRV8889Q1_TRQ_DAC_93P75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa18dbb8b9c70700d5b65b4f26dfaaedb8"/>
+        <topic label="DRV8889Q1_TRQ_DAC_87P5" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa1c6eeadd6c7524ea0819a41d24c55a1e"/>
+        <topic label="DRV8889Q1_TRQ_DAC_81P25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aaaaf2bdd3de047b994020a00d999dbb01"/>
+        <topic label="DRV8889Q1_TRQ_DAC_75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa6ce323ce1c06ff85b300d38f76f01d54"/>
+        <topic label="DRV8889Q1_TRQ_DAC_68P75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa7f3a084218671ae7ba49944549d26359"/>
+        <topic label="DRV8889Q1_TRQ_DAC_62P5" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa2399e2255215b742305ca8cdb5042eff"/>
+        <topic label="DRV8889Q1_TRQ_DAC_56P25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa93a488ffbadb4f810f51a1c8a4cb3e37"/>
+        <topic label="DRV8889Q1_TRQ_DAC_50" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa4ab846f694fa7e5c5fd9e370c250fbb8"/>
+        <topic label="DRV8889Q1_TRQ_DAC_43P75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa9c7dec0b1c84d440aecd931804f8272f"/>
+        <topic label="DRV8889Q1_TRQ_DAC_37P5" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aac99cc796687eb40ca6a6ea6380d200ec"/>
+        <topic label="DRV8889Q1_TRQ_DAC_31P25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa67a4bd6495cc157ab5251fcf06461cf4"/>
+        <topic label="DRV8889Q1_TRQ_DAC_25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa6fee3ac4a685a23ced627354b4fe5532"/>
+        <topic label="DRV8889Q1_TRQ_DAC_18P75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aaaf7d68e54f8378ddedd7046685b22cc3"/>
+        <topic label="DRV8889Q1_TRQ_DAC_12P5" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aabc2e77563be6f371a0ad029688257e7d"/>
+        <topic label="DRV8889Q1_TRQ_DAC_6P25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aae8b44e9fe4a6102db8d34e73c04bef2b"/>
+      </topic>
+      <topic label="DRV8889Q1_TOFF" href="group___m_d___m_o_d_u_l_e2.html#gae8c8621f0af0771bc327c0e9cf88e605">
+        <topic label="DRV8889Q1_TOFF_7US" href="group___m_d___m_o_d_u_l_e2.html#ggae8c8621f0af0771bc327c0e9cf88e605ab12e1a2d969ae33bf310d3e498dfe794"/>
+        <topic label="DRV8889Q1_TOFF_16US" href="group___m_d___m_o_d_u_l_e2.html#ggae8c8621f0af0771bc327c0e9cf88e605ad0320178288b159431473f983da81d71"/>
+        <topic label="DRV8889Q1_TOFF_24US" href="group___m_d___m_o_d_u_l_e2.html#ggae8c8621f0af0771bc327c0e9cf88e605ac70a46d9275d7816819525348d512e18"/>
+        <topic label="DRV8889Q1_TOFF_32US" href="group___m_d___m_o_d_u_l_e2.html#ggae8c8621f0af0771bc327c0e9cf88e605a2af6a445e83704a288f10363461973b1"/>
+      </topic>
+      <topic label="DRV8889Q1_CONTROL_MODE" href="group___m_d___m_o_d_u_l_e2.html#ga721b190ff053407f8ede19db4c25bf64">
+        <topic label="DRV8889Q1_CONTROL_MODE_SPIN" href="group___m_d___m_o_d_u_l_e2.html#gga721b190ff053407f8ede19db4c25bf64a89fd2ceea4cfc096f469218ba5ace177"/>
+        <topic label="DRV8889Q1_CONTROL_MODE_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga721b190ff053407f8ede19db4c25bf64aff33eab1f4579081eabd9dc7a6d0f92a"/>
+      </topic>
+      <topic label="DRV8889Q1_DRIVE" href="group___m_d___m_o_d_u_l_e2.html#ga0ed8af666c4b9bdc8178fcfade2d26c9">
+        <topic label="DRV8889Q1_DRIVE_DISABLED" href="group___m_d___m_o_d_u_l_e2.html#gga0ed8af666c4b9bdc8178fcfade2d26c9abf1122192e7c0a8d11e77008042d1c4d"/>
+        <topic label="DRV8889Q1_DRIVE_PWM" href="group___m_d___m_o_d_u_l_e2.html#gga0ed8af666c4b9bdc8178fcfade2d26c9ab76cb3cf7ceadc10a9f9db7bb124b0a0"/>
+      </topic>
+      <topic label="DRV8889Q1_init" href="group___m_d___m_o_d_u_l_e2.html#ga8a4f19414ad6252981f09f5a715a31eb"/>
+      <topic label="DRV8889Q1_createSPIDataWord" href="group___m_d___m_o_d_u_l_e2.html#ga18bb2362dc96a252697b4904d0f4222e"/>
+      <topic label="DRV8889Q1_spiWrite" href="group___m_d___m_o_d_u_l_e2.html#ga797f2dd95a1f06af6a89f9598809c550"/>
+      <topic label="DRV8889Q1_spiRead" href="group___m_d___m_o_d_u_l_e2.html#gad75c275cd702a8cf1b927c0d3de7f279"/>
+      <topic label="DRV8889Q1_spiUpdateRegister" href="group___m_d___m_o_d_u_l_e2.html#ga3fc0a1bec87b4496688758b92ecd68fd"/>
+      <topic label="DRV8889Q1_setSPIRegisterLock" href="group___m_d___m_o_d_u_l_e2.html#ga67f68471809ca55f255a2bc223bbdd2a"/>
+      <topic label="DRV8889Q1_setDirection" href="group___m_d___m_o_d_u_l_e2.html#ga729ead726f9085f1a39eab104270f93e"/>
+      <topic label="DRV8889Q1_setStepMode" href="group___m_d___m_o_d_u_l_e2.html#gac6109dd9bcd04176deb311e20468307f"/>
+      <topic label="DRV8889Q1_setDecayMode" href="group___m_d___m_o_d_u_l_e2.html#gae9663db4b456f354ac3276f45d935976"/>
+      <topic label="DRV8889Q1_setSpeed" href="group___m_d___m_o_d_u_l_e2.html#ga43effe9a6d38522a2f120b6afc32d196"/>
+      <topic label="DRV8889Q1_setFSCurr" href="group___m_d___m_o_d_u_l_e2.html#gafad6dbac5bcf5f148d008f0e3cb1cf31"/>
+      <topic label="DRV8889Q1_setSlewRate" href="group___m_d___m_o_d_u_l_e2.html#ga21cd87d4e6a9248dac0deab469c395ae"/>
+      <topic label="DRV8889Q1_setNSleep" href="group___m_d___m_o_d_u_l_e2.html#gab5d8bc68f7d7ee1fe4aae0dee189dae6"/>
+      <topic label="DRV8889Q1_clearNSleep" href="group___m_d___m_o_d_u_l_e2.html#ga514e3e4d8c05056257d631ccea466123"/>
+      <topic label="DRV8889Q1_enableOutput" href="group___m_d___m_o_d_u_l_e2.html#gaea6fa7ccae05bd4ccacd8faeeb15c8d7"/>
+      <topic label="DRV8889Q1_disableOutput" href="group___m_d___m_o_d_u_l_e2.html#gab92811a2df2d338ab2a583acac9f6cdc"/>
+      <topic label="DRV8889Q1_startMotor" href="group___m_d___m_o_d_u_l_e2.html#ga06e2d9d004b61f753975aca615ded6d4"/>
+      <topic label="DRV8889Q1_stopMotor" href="group___m_d___m_o_d_u_l_e2.html#gabc086ad5f5eecebb16ffa4c1f7764762"/>
+      <topic label="DRV8889Q1_isMotorRunning" href="group___m_d___m_o_d_u_l_e2.html#ga9cdcb21d3ee5a62f8053e3d6d46b63be"/>
+      <topic label="DRV8889Q1_isFaultOccurred" href="group___m_d___m_o_d_u_l_e2.html#ga47fb49a6c63a3ae9eabb6b6e6ce8c1f9"/>
+      <topic label="DRV8889Q1_setControlMode" href="group___m_d___m_o_d_u_l_e2.html#gaabd3ec9d4896b0d6eac46f5c049be96b"/>
+      <topic label="DRV8889Q1_checkStep" href="group___m_d___m_o_d_u_l_e2.html#gadef14bfe44e021b646623a6d6a2a610c"/>
+      <topic label="DRV8889Q1_setStepDuty" href="group___m_d___m_o_d_u_l_e2.html#gabb55662c141ad67736395a0a39b3e0f3"/>
+      <topic label="DRV8889Q1_setStepDrive" href="group___m_d___m_o_d_u_l_e2.html#ga363fe67e1c2b7020a1f865144ed7ebd4"/>
+      <topic label="DRV8889Q1_setStep" href="group___m_d___m_o_d_u_l_e2.html#ga2eebe6e31d01b188a63ff9fcf404b788"/>
+      <topic label="DRV8889Q1_setTrqDac" href="group___m_d___m_o_d_u_l_e2.html#ga19550cc8a736afa813ebca9084a417d0"/>
+      <topic label="DRV8889Q1_setToff" href="group___m_d___m_o_d_u_l_e2.html#ga518a793ca375c213baef9e43ad66985d"/>
+      <topic label="DRV8889Q1_clearFaults" href="group___m_d___m_o_d_u_l_e2.html#ga94d545c8217ee2f6bc3bd8693038eb7a"/>
+      <topic label="DRV8889Q1_getStallThres" href="group___m_d___m_o_d_u_l_e2.html#gac4b009e1ca332f59549f2b2d7ca19f7b"/>
+      <topic label="DRV8889Q1_setStallThres" href="group___m_d___m_o_d_u_l_e2.html#ga9f324879fa4ca0eacf01c3042fac33f3"/>
+      <topic label="DRV8889Q1_getTrqCount" href="group___m_d___m_o_d_u_l_e2.html#ga69155b7ba7ed8fe2389907725643ad88"/>
+      <topic label="DRV8889Q1_enableStallDet" href="group___m_d___m_o_d_u_l_e2.html#ga1f8d5f51079284dba0a731fe4d90cb0b"/>
+      <topic label="DRV8889Q1_disableStallDet" href="group___m_d___m_o_d_u_l_e2.html#ga8bb26bc3e5dbac444ffe0971a3d2ee8b"/>
+      <topic label="DRV8889Q1_enableOlDet" href="group___m_d___m_o_d_u_l_e2.html#ga75e11fda4504b4cfbc4e505618418c9a"/>
+      <topic label="DRV8889Q1_disableOlDet" href="group___m_d___m_o_d_u_l_e2.html#ga239cbaed663c8d2522a6c5817c7a2d1f"/>
+      <topic label="DRV8889Q1_setLearnStall" href="group___m_d___m_o_d_u_l_e2.html#ga6f171038656a4689bc3c1467c9793141"/>
+      <topic label="DRV8889Q1_isStallLearnSuccess" href="group___m_d___m_o_d_u_l_e2.html#ga740489eb21dac2e10c930edc93715358"/>
+      <topic label="DRV8889Q1_setVrefRefVoltage" href="group___m_d___m_o_d_u_l_e2.html#ga8b21ab960b57e6faca830d92652c8917"/>
+    </topic>
+    <topic label="Stepper_Library" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html">
+      <topic label="INDEXER_Instance" href="struct_i_n_d_e_x_e_r___instance.html">
+        <topic label="counter" href="struct_i_n_d_e_x_e_r___instance.html#a115127c3f7c37742406e5a6eab3ed3a2"/>
+        <topic label="dir" href="struct_i_n_d_e_x_e_r___instance.html#a50895d74d7762d1a5ceb11b0aae9905b"/>
+        <topic label="indexIncDec" href="struct_i_n_d_e_x_e_r___instance.html#a2b71ed8ae0ddbaa276fcbfeec425af26"/>
+        <topic label="stepType" href="struct_i_n_d_e_x_e_r___instance.html#a5c9d238cb665824c867c1c8a9e8713b5"/>
+        <topic label="IaDrive" href="struct_i_n_d_e_x_e_r___instance.html#a13a47962806fab19f49653a626e2eb69"/>
+        <topic label="IbDrive" href="struct_i_n_d_e_x_e_r___instance.html#a3c44d1a626fd90a4e40cf5944feb39ad"/>
+      </topic>
+      <topic label="STEPPER_INDEXER_MAX_COUNT" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga732ad0e84b2b4ebf78638c4572fed822"/>
+      <topic label="STEPPER_INDEXER_0_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gab520dc8e7ddbfc9d8c08a622bafa8222"/>
+      <topic label="STEPPER_INDEXER_1_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gaf7e126d8ee8dea0d0ed94c50de8613bf"/>
+      <topic label="STEPPER_INDEXER_2_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga13809f456c3d766e25b391de4a79d071"/>
+      <topic label="STEPPER_INDEXER_3_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga11fb65a9c5ad80a4614ff9ac2920f745"/>
+      <topic label="STEPPER_INDEXER_4_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga06f77b752c84b8af48f74b5eff5ed620"/>
+      <topic label="STEPPER_INDEXER_5_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga1ab0ed0e5f4993a2d4ce6f8453fe1b4a"/>
+      <topic label="STEPPER_INDEXER_6_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga403587a8e351bc78f6d6d6e3bc0e8d89"/>
+      <topic label="STEPPER_INDEXER_7_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gaa2da9c4f04ddf1cfd3812b463e97c53b"/>
+      <topic label="STEPPER_2PI" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga7405e48e39eb3b87d69b79875ef3a0ac"/>
+      <topic label="STEPPER_STEP_INC_DEC" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gaf4beb1078d95369ea63104bd1c4a04b0">
+        <topic label="STEPPER_STEP_INC_DEC_FULL_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0aec0c25e55512a99da040cfadcbda4719"/>
+        <topic label="STEPPER_STEP_INC_DEC_HALF_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0a8cef63326bc5ed250aae74d330bc722a"/>
+        <topic label="STEPPER_STEP_INC_DEC_1BY4_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0ac3c7f89b301d38ea114a3826e6b53c5b"/>
+        <topic label="STEPPER_STEP_INC_DEC_1BY8_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0aeab88223d6d96171c425b2c1e0f7edd1"/>
+        <topic label="STEPPER_STEP_INC_DEC_1BY16_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0ad02943d9c6fecee335d6fa22573000ef"/>
+        <topic label="STEPPER_STEP_INC_DEC_1BY32_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0a6d19306ab8a041abd0095ffb35a91590"/>
+        <topic label="STEPPER_STEP_INC_DEC_1BY64_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0a5e9b0197882b3be4d88c6e540833d42f"/>
+        <topic label="STEPPER_STEP_INC_DEC_1BY128_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0a1f2f5eaff24b26240b1289d3f3f33d65"/>
+        <topic label="STEPPER_STEP_INC_DEC_1BY256_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0aaf802760fc3ae56436ec7f1aa57346d0"/>
+      </topic>
+      <topic label="STEPPER_DRIVE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga58aa523835df3336a5038600b62d5cbd">
+        <topic label="STEPPER_DRIVE_DISABLE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga58aa523835df3336a5038600b62d5cbdaa179f2b75ffc2452b0ccfea3dbf39938"/>
+        <topic label="STEPPER_DRIVE_DECAY" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga58aa523835df3336a5038600b62d5cbdabfeb890fe5686cf202da7657b27c77b8"/>
+        <topic label="STEPPER_DRIVE_FORWARD" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga58aa523835df3336a5038600b62d5cbdaba1d9c5a77666d3b8d6ade791752c0ea"/>
+        <topic label="STEPPER_DRIVE_REVERSE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga58aa523835df3336a5038600b62d5cbda83e023130106c674b1658428edc9887a"/>
+      </topic>
+      <topic label="STEPPER_STEP_TYPE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga71084070707dcc19e0e9d4abdd6c9a76">
+        <topic label="STEPPER_STEP_TYPE_CIR" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga71084070707dcc19e0e9d4abdd6c9a76acfe9c478ea8d779024eacbf9fc508663"/>
+        <topic label="STEPPER_STEP_TYPE_NONCIR" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga71084070707dcc19e0e9d4abdd6c9a76a96b042615a28f2380694e45ed1db1bb1"/>
+      </topic>
+      <topic label="STEPPER_DIR" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga5f02d847107633dd6ba0b0dbdfd9e970">
+        <topic label="STEPPER_DIR_FORWARD" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga5f02d847107633dd6ba0b0dbdfd9e970a60440aa406431a14d1c19ea068b91917"/>
+        <topic label="STEPPER_DIR_REVERSE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga5f02d847107633dd6ba0b0dbdfd9e970a6bf20e77491525923286fd58ecaaac56"/>
+      </topic>
+      <topic label="STEPPER_init" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga9269668ce285b8d3ec7f54198f75f4c6"/>
+      <topic label="STEPPER_setIndexerDir" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gae084443b5f9a67c1445c2965d7b5bfc2"/>
+      <topic label="STEPPER_setIndexerIncVal" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gad44e6cfdd9342826529281ca1d8a4f62"/>
+      <topic label="STEPPER_setStepType" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga1b8b2f38cba32539d7a9fee9341708e8"/>
+      <topic label="STEPPER_setMotorDrives" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga6589b42e7d10fe0c5e008bd1fd90584f"/>
+      <topic label="STEPPER_cirStepPhaseGen" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gade1bb5f0d7515a610e2412acfd1f0526"/>
+      <topic label="STEPPER_nonCirPhaseGen" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gae418e6584970d8ca334170f6f3591949"/>
+      <topic label="STEPPER_indexer" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga9b2db9e1a40941337a3dd3261f6bf5cd"/>
+      <topic label="angleSf" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga3f9665d71d97866ad23a2fd616dda4bd"/>
+    </topic>
+  </topic>
+  <topic label="Data Structures" href="annotated.html">
+    <topic label="Data Structures" href="annotated.html">
+      <topic label="DRV8411A_Instance" href="struct_d_r_v8411_a___instance.html">
+        <topic label="stepMode" href="struct_d_r_v8411_a___instance.html#a9ae5c97bcf587b85b6c3d1a9cf27b7ab"/>
+        <topic label="decayMode" href="struct_d_r_v8411_a___instance.html#a21cccb99a6fe4e49bb2fb70067d07f26"/>
+        <topic label="controlMode" href="struct_d_r_v8411_a___instance.html#a28a1b5916cbb751174ec2bd693c0ab55"/>
+        <topic label="driveState" href="struct_d_r_v8411_a___instance.html#adb2569872141db1f69b4cadefa8e9135"/>
+        <topic label="setStep" href="struct_d_r_v8411_a___instance.html#a408f5a80d68a4a6fddfc56ebee7eb7d4"/>
+        <topic label="stepCount" href="struct_d_r_v8411_a___instance.html#accbfe07ffabb6edff4143ff3f1197363"/>
+        <topic label="ripropiVal" href="struct_d_r_v8411_a___instance.html#ab72c86d570b7faac2d868cc562cfbd63"/>
+        <topic label="setFreq" href="struct_d_r_v8411_a___instance.html#a8476cdcc44463864da8c0a0a6e622bac"/>
+        <topic label="ain1" href="struct_d_r_v8411_a___instance.html#a326f1d0044229cc1cf823f3cad3e3c78"/>
+        <topic label="ain2" href="struct_d_r_v8411_a___instance.html#a58095890da630eadb67b921131723ef7"/>
+        <topic label="bin1" href="struct_d_r_v8411_a___instance.html#a4691c9e8c4f5646c012aed7f5f9306ef"/>
+        <topic label="bin2" href="struct_d_r_v8411_a___instance.html#a6074c9dad38e92bb73b81d72ec807e07"/>
+        <topic label="nfault" href="struct_d_r_v8411_a___instance.html#af2ae683e27f74c627f7a5f591f679a39"/>
+        <topic label="aipropi" href="struct_d_r_v8411_a___instance.html#acd38950e2529858cc501bf5d6a9e7382"/>
+        <topic label="bipropi" href="struct_d_r_v8411_a___instance.html#aecec18bdd2b2939e8372fc111a84d480"/>
+        <topic label="vref" href="struct_d_r_v8411_a___instance.html#a84e739f3a888689afbbe5d0dae6df528"/>
+        <topic label="indexerTimer" href="struct_d_r_v8411_a___instance.html#aaa380c30467d6569e415a1dcc36d14d2"/>
+        <topic label="ADCTriggerTimer" href="struct_d_r_v8411_a___instance.html#ad271f2c60b62d7db988feb697810e291"/>
+        <topic label="indexer" href="struct_d_r_v8411_a___instance.html#a8b9356427380f75af8d786d7e13d3ff5"/>
+        <topic label="itripSf" href="struct_d_r_v8411_a___instance.html#ab7a457e61ff05bfac7a66f88ad68a146"/>
+        <topic label="iSf" href="struct_d_r_v8411_a___instance.html#a6b099ee8de890484fb930398c2cd2c8c"/>
+      </topic>
+      <topic label="DRV8889Q1_Instance" href="struct_d_r_v8889_q1___instance.html">
+        <topic label="stepMode" href="struct_d_r_v8889_q1___instance.html#a9b56a0b6d0d2037b1e9391bdf22f203e"/>
+        <topic label="decayMode" href="struct_d_r_v8889_q1___instance.html#a9ff782cc733758d7b26d3ca2beaedf75"/>
+        <topic label="controlMode" href="struct_d_r_v8889_q1___instance.html#aa1c02ce1dab2aaba5ace1ac4af3fec7d"/>
+        <topic label="driveState" href="struct_d_r_v8889_q1___instance.html#a826c995c3e910e59f874800a36fb2d07"/>
+        <topic label="setStep" href="struct_d_r_v8889_q1___instance.html#a0d51e31ac763019f837e53c5ea51f810"/>
+        <topic label="stepCount" href="struct_d_r_v8889_q1___instance.html#a7a15c0ec5e2993126eefc2f070092498"/>
+        <topic label="setFreq" href="struct_d_r_v8889_q1___instance.html#a28f406e1dca9100df45d7ff139c88ea4"/>
+        <topic label="dir" href="struct_d_r_v8889_q1___instance.html#a799931bb54f847f6686f1fca4ed96d4d"/>
+        <topic label="drvOff" href="struct_d_r_v8889_q1___instance.html#ae8148726cd45387b712b07e7c94648b2"/>
+        <topic label="nsleep" href="struct_d_r_v8889_q1___instance.html#ad75e917b8356310cade5a294d467243c"/>
+        <topic label="nfault" href="struct_d_r_v8889_q1___instance.html#aab8f22f4bfafaf13686813575b8ffe50"/>
+        <topic label="vref" href="struct_d_r_v8889_q1___instance.html#a99339f44d0188f2156baf55873f5a30c"/>
+        <topic label="step" href="struct_d_r_v8889_q1___instance.html#a3c03b8e76b5d87057e8dfdaa2dd949a0"/>
+        <topic label="spi" href="struct_d_r_v8889_q1___instance.html#aa36a9d5c9f403f69fbbd851985b51834"/>
+        <topic label="spiCS" href="struct_d_r_v8889_q1___instance.html#a6a595b985b74413681dca2c093f73124"/>
+      </topic>
+      <topic label="HAL_ADC" href="struct_h_a_l___a_d_c.html">
+        <topic label="inst" href="struct_h_a_l___a_d_c.html#ac9fd872cd1070d357a8ac935990d5235"/>
+        <topic label="refVoltage" href="struct_h_a_l___a_d_c.html#a55a82624b6760b204307b3a5870ee37d"/>
+        <topic label="value" href="struct_h_a_l___a_d_c.html#a2796ffa4409b943abe0d64c91171b73d"/>
+        <topic label="irqn" href="struct_h_a_l___a_d_c.html#afd0f6f78404cb27981eb494d74cbf23f"/>
+        <topic label="memIDX" href="struct_h_a_l___a_d_c.html#aee779d95d6324df953048a3c001fd5ab"/>
+        <topic label="endOfSeq" href="struct_h_a_l___a_d_c.html#a501e604d8ba64337b8909aed80a746e1"/>
+      </topic>
+      <topic label="HAL_DAC" href="struct_h_a_l___d_a_c.html">
+        <topic label="compBase" href="struct_h_a_l___d_a_c.html#aea441baca374adc358d4acce64de7d75"/>
+        <topic label="refVoltage" href="struct_h_a_l___d_a_c.html#a51a661a347e7271ccb32432081aa766b"/>
+      </topic>
+      <topic label="HAL_GPIO" href="struct_h_a_l___g_p_i_o.html">
+        <topic label="iomux" href="struct_h_a_l___g_p_i_o.html#a9c84f8b1f2fd95608e628bc00b7ab37e"/>
+        <topic label="port" href="struct_h_a_l___g_p_i_o.html#a337f7a8823451aaef1d4998c75aac26b"/>
+        <topic label="pin" href="struct_h_a_l___g_p_i_o.html#a2775606b6fedccb723c017094e67ed83"/>
+      </topic>
+      <topic label="HAL_PWM" href="struct_h_a_l___p_w_m.html">
+        <topic label="inst" href="struct_h_a_l___p_w_m.html#a3a50ff5d664c2234f076ef2f1d2be9ce"/>
+        <topic label="irqn" href="struct_h_a_l___p_w_m.html#a8750394201514fcd9fb7eff009e232df"/>
+        <topic label="CCIndex" href="struct_h_a_l___p_w_m.html#a4ddb28c72a1bde97e6465ab37f13ba69"/>
+      </topic>
+      <topic label="HAL_SPI" href="struct_h_a_l___s_p_i.html">
+        <topic label="inst" href="struct_h_a_l___s_p_i.html#a7cb673dcad74364ad52e0f1ed9662c35"/>
+      </topic>
+      <topic label="HAL_TIM" href="struct_h_a_l___t_i_m.html">
+        <topic label="inst" href="struct_h_a_l___t_i_m.html#a69e35fdb10b651a569f894a915e252ce"/>
+        <topic label="irqn" href="struct_h_a_l___t_i_m.html#af3104e73d6d0a26945b91b89ec7523c9"/>
+      </topic>
+      <topic label="INDEXER_Instance" href="struct_i_n_d_e_x_e_r___instance.html">
+        <topic label="counter" href="struct_i_n_d_e_x_e_r___instance.html#a115127c3f7c37742406e5a6eab3ed3a2"/>
+        <topic label="dir" href="struct_i_n_d_e_x_e_r___instance.html#a50895d74d7762d1a5ceb11b0aae9905b"/>
+        <topic label="indexIncDec" href="struct_i_n_d_e_x_e_r___instance.html#a2b71ed8ae0ddbaa276fcbfeec425af26"/>
+        <topic label="stepType" href="struct_i_n_d_e_x_e_r___instance.html#a5c9d238cb665824c867c1c8a9e8713b5"/>
+        <topic label="IaDrive" href="struct_i_n_d_e_x_e_r___instance.html#a13a47962806fab19f49653a626e2eb69"/>
+        <topic label="IbDrive" href="struct_i_n_d_e_x_e_r___instance.html#a3c44d1a626fd90a4e40cf5944feb39ad"/>
+      </topic>
+    </topic>
+    <topic label="Data Fields" href="functions.html">
+      <topic label="All" href="functions.html"/>
+      <topic label="Variables" href="functions_vars.html"/>
+    </topic>
+  </topic>
+  <topic label="Files">
+    <topic label="File List" href="files.html">
+      <topic label="drv8411a.h" href="drv8411a_8h.html">
+        <topic label="DRV8411A_A_IPROPI" href="group___m_d___m_o_d_u_l_e.html#ga9f12c5458b0b0968a67fe08cfb6788c4"/>
+        <topic label="DRV8411A_MAX_SET_FREQ" href="group___m_d___m_o_d_u_l_e.html#gaaa6aff4c56fc13d5648566897a029c59"/>
+        <topic label="DRV8411A_DIR" href="group___m_d___m_o_d_u_l_e.html#ga7c45f7884a5e55a2b627800a44188433">
+          <topic label="DRV8411A_DIR_FORWARD" href="group___m_d___m_o_d_u_l_e.html#gga7c45f7884a5e55a2b627800a44188433ab6f4fffb332f57c5065f45b4d8481550"/>
+          <topic label="DRV8411A_DIR_REVERSE" href="group___m_d___m_o_d_u_l_e.html#gga7c45f7884a5e55a2b627800a44188433aa19d306d23bae7f04097119cd2b84bd4"/>
+        </topic>
+        <topic label="DRV8411A_STEP" href="group___m_d___m_o_d_u_l_e.html#gaaed51b9c1c3c24a4c1dcce08c885520e">
+          <topic label="DRV8411A_STEP_FULL_STEP" href="group___m_d___m_o_d_u_l_e.html#ggaaed51b9c1c3c24a4c1dcce08c885520eab8a9478fbc12032eb091bd7e05800de8"/>
+          <topic label="DRV8411A_STEP_HALF_STEP_NC" href="group___m_d___m_o_d_u_l_e.html#ggaaed51b9c1c3c24a4c1dcce08c885520ea4ee3dd3472101c5ac0b02146a33ef51e"/>
+          <topic label="DRV8411A_STEP_MAX" href="group___m_d___m_o_d_u_l_e.html#ggaaed51b9c1c3c24a4c1dcce08c885520eaea9db2bf988c8b00ed01c81178b7100c"/>
+        </topic>
+        <topic label="DRV8411A_DECAY" href="group___m_d___m_o_d_u_l_e.html#ga19ad4ede76027e0c5e5bbce96d23a04b">
+          <topic label="DRV8411A_DECAY_SLOW" href="group___m_d___m_o_d_u_l_e.html#gga19ad4ede76027e0c5e5bbce96d23a04bad6284ac2d760048aa97bf4acad70ccbb"/>
+          <topic label="DRV8411A_DECAY_FAST" href="group___m_d___m_o_d_u_l_e.html#gga19ad4ede76027e0c5e5bbce96d23a04baeae6a40c0666ef713dd817d1c8b87a61"/>
+        </topic>
+        <topic label="DRV8411A_CONTROL_MODE" href="group___m_d___m_o_d_u_l_e.html#gac5cf3ed6e123978d14e10f2f49d901c4">
+          <topic label="DRV8411A_CONTROL_MODE_SPIN" href="group___m_d___m_o_d_u_l_e.html#ggac5cf3ed6e123978d14e10f2f49d901c4a1735d36e569e5087cc7f43eca47278ec"/>
+          <topic label="DRV8411A_CONTROL_MODE_STEP" href="group___m_d___m_o_d_u_l_e.html#ggac5cf3ed6e123978d14e10f2f49d901c4a259a12c048201423d4146255ed0e47fe"/>
+        </topic>
+        <topic label="DRV8411A_DRIVE" href="group___m_d___m_o_d_u_l_e.html#ga906145fc4af416cd1ad2a39ae4345a31">
+          <topic label="DRV8411A_DRIVE_DISABLED" href="group___m_d___m_o_d_u_l_e.html#gga906145fc4af416cd1ad2a39ae4345a31ac859de953f43979b71373d63d6b3b5d8"/>
+          <topic label="DRV8411A_DRIVE_ENABLED" href="group___m_d___m_o_d_u_l_e.html#gga906145fc4af416cd1ad2a39ae4345a31a67b70971f5d7db1c981c767c084ddc8f"/>
+        </topic>
+        <topic label="DRV8411A_init" href="group___m_d___m_o_d_u_l_e.html#ga291a51ab60be0d929e4c85e62018dd44"/>
+        <topic label="DRV8411A_enableDrive" href="group___m_d___m_o_d_u_l_e.html#ga606def12674cd35d5bfef8b027c6c83c"/>
+        <topic label="DRV8411A_disableDrive" href="group___m_d___m_o_d_u_l_e.html#gaf85c94cdd08186c2a099a37e71435eb7"/>
+        <topic label="DRV8411A_startMotor" href="group___m_d___m_o_d_u_l_e.html#ga1e2a6ae0aa7230a36b9d2b469d505c11"/>
+        <topic label="DRV8411A_stopMotor" href="group___m_d___m_o_d_u_l_e.html#ga19c6672baeaaf9e3d123b5c904b6776f"/>
+        <topic label="DRV8411A_isMotorRunning" href="group___m_d___m_o_d_u_l_e.html#ga55e12d181f4cbf15493a77db392adc29"/>
+        <topic label="DRV8411A_isFaultOccurred" href="group___m_d___m_o_d_u_l_e.html#ga945f2d4818a299965c6acea9c49739ff"/>
+        <topic label="DRV8411A_setDirection" href="group___m_d___m_o_d_u_l_e.html#ga503c6a2d3b21a4dd21497ddb52bcb373"/>
+        <topic label="DRV8411A_setStepMode" href="group___m_d___m_o_d_u_l_e.html#ga1262e9e2bf1c5aab3c97de22bac1c32b"/>
+        <topic label="DRV8411A_setDecayMode" href="group___m_d___m_o_d_u_l_e.html#gad12b91a3bf64f32824b38b1b1fcd18fc"/>
+        <topic label="DRV8411A_setSpeed" href="group___m_d___m_o_d_u_l_e.html#ga3d54101f4248aaf09d71542caf8d16f3"/>
+        <topic label="DRV8411A_setItripSf" href="group___m_d___m_o_d_u_l_e.html#ga20e203431dfca048401d21208b517899"/>
+        <topic label="DRV8411A_setISf" href="group___m_d___m_o_d_u_l_e.html#gaf2317a08f67c233bcf258206d6f64ad5"/>
+        <topic label="DRV8411A_setRIPROPI" href="group___m_d___m_o_d_u_l_e.html#gaa6951bac961c5844c26204fc834b5f4e"/>
+        <topic label="DRV8411A_setItrip" href="group___m_d___m_o_d_u_l_e.html#ga133e27486f54902a72f404cd7b9bca01"/>
+        <topic label="DRV8411A_setPhaseCurrentRefVoltage" href="group___m_d___m_o_d_u_l_e.html#gab0352800d01f318de96c1e09f8cf9d81"/>
+        <topic label="DRV8411A_setVrefRefVoltage" href="group___m_d___m_o_d_u_l_e.html#ga99e42978c04e107608aa4de8866c3590"/>
+        <topic label="DRV8411A_getIA" href="group___m_d___m_o_d_u_l_e.html#gab5036c67d2c3887df3bb8e13916f63df"/>
+        <topic label="DRV8411A_getIB" href="group___m_d___m_o_d_u_l_e.html#ga029641eb4ea5af3c2d76c5dcdbc8964a"/>
+        <topic label="DRV8411A_setStep" href="group___m_d___m_o_d_u_l_e.html#gaf5a821ed5cffdf97b2eb384e3fe9f59c"/>
+        <topic label="DRV8411A_setControlMode" href="group___m_d___m_o_d_u_l_e.html#ga169b038081b78e533fb475de19439f24"/>
+        <topic label="DRV8411A_checkStep" href="group___m_d___m_o_d_u_l_e.html#ga4d65da7f6626e8f82f6c250e9fe662c7"/>
+        <topic label="DRV8411A_setPWMDrive" href="group___m_d___m_o_d_u_l_e.html#ga4f846b6d875b0bd0f6361f2a4c4a6757"/>
+        <topic label="DRV8411A_setPWMDrives" href="group___m_d___m_o_d_u_l_e.html#gae0fd18e4c88869180863f3331aa335c5"/>
+        <topic label="DRV8411A_setComm" href="group___m_d___m_o_d_u_l_e.html#gaa1920f68452f841c115edeb5bf79754d"/>
+      </topic>
+      <topic label="drv8889-q1.h" href="drv8889-q1_8h.html">
+        <topic label="DRV8889Q1_SPI_READY_DELAY_MS" href="group___m_d___m_o_d_u_l_e2.html#ga3f18be8c4dd2588409faff1619706a02"/>
+        <topic label="DRV8889Q1_STEP_DUTYCYCLE" href="group___m_d___m_o_d_u_l_e2.html#ga5afa6614a2870b71507f3bb129aa5e93"/>
+        <topic label="DRV8889Q1_MAX_SET_FREQ" href="group___m_d___m_o_d_u_l_e2.html#gadb98d179cdc15cd09cbb43d813f14b41"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_FAULT_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga83009ec8d41ad4e1dedf84693d0eb53b"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_SPI_ERROR_OFS" href="group___m_d___m_o_d_u_l_e2.html#gabc94072601211c58fc835405c4b11e7c"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_UVLO_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga3b9777592f57019470f6d4cf47e55bdf"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_CPUV_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaddae2d0d483fd6d730eeb67367fa0639"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_OCP_OFS" href="group___m_d___m_o_d_u_l_e2.html#gae15a92b68f834cc0e3a5ab81a3e7fba6"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_STL_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga508ba291a48c8903428c9b547c8dce06"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_TF_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga271cbbf1133f8cee11fc43899831ffe8"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_OL_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga1d8fa065fb7dee40dea9167f22300252"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_FAULT_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga967e8cb55724ebbf0e58fe6aee571939"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_SPI_ERROR_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga8ae25bfd32b4f9e5e5b99b2da0af643a"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_UVLO_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga0d6c9db98fd06cd7f3ca4f4f20b93868"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_CPUV_MASK" href="group___m_d___m_o_d_u_l_e2.html#gabd6608b8c1e979fdc7ae4bb8fb7eb986"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_OCP_MASK" href="group___m_d___m_o_d_u_l_e2.html#gacf54d1bf3444058f608ba7452d464ba9"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_STL_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaca8e2174d480955675de26551c223941"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_TF_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga7d3737720fd00592e09e0cdd046d5f0a"/>
+        <topic label="DRV8889Q1_REG_FAULT_STATUS_OL_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga53b5789c9f580ca7b0a1e7fbf682af75"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS2_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga498eed33559b97bddceb31a5ac37e9d9"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS2_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#gabc592aabaa7a73a29ed6d36894885481"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS1_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga61491de478759191abab12fc2e98501e"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS1_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga58a895704a4b1481f085b892b4e7fb88"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS2_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#gac6e1824fd27a5aaca8ca0b525f131e6a"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS2_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga40c14b3f10c72d7a5a8bb2af4f511778"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS1_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf42a1aa70947de398a60624fd8d4c1ba"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS1_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga40a98d064f3291ac9caac51620ba29c0"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS2_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#gafdcba88318f54690c2e67fd285f68b4e"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS2_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga32be3a358a29f3b1fd3d6f54334efeef"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS1_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga3b2ab892ccf2c99e0c8e577029e867b1"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS1_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga9d465383574acd4b2600f2e0bfb07ab9"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS2_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga48acbe0388ec40077f29aaa76f207b8d"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS2_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga1cd8abfb79b68bc0b79a11fc37fc527e"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_LS1_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga130ba4a0a51b7f8e635d5ea1f0a8380d"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_1_OCP_HS1_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga7120cb35d1974c4c7b33bf25ded57df7"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_UTW_OFS" href="group___m_d___m_o_d_u_l_e2.html#gadcd09e2336b417816decd7d08045764b"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OTW_OFS" href="group___m_d___m_o_d_u_l_e2.html#gab8dc0bac601cea0f1ef1f2b0af39f26d"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OTS_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga2b872ee20d38efab80b01287a311a25a"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_STL_LRN_OK_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga0038bb2bd5674c0c5a002482029eb423"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_STALL_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaa729e5365b505296d21aaa831528b5b8"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OL_B_OFS" href="group___m_d___m_o_d_u_l_e2.html#gadc1349d908d4bb4ee7c47da03cac6a0b"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OL_A_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf890310cc2f7265266ccb0c018d0988b"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_UTW_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga16cde55374664d160ff136f7043c4954"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OTW_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga43efc10846a4d24f5e2e2dd0b8a0212b"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OTS_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga3a733324b3cd7f8d642b6a53ab35c87d"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_STL_LRN_OK_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga6f2e846d77798a27e0a1bee80a1bfd7f"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_STALL_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaa242cf296e995babb433e05a163a6a6b"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OL_B_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga10f662f822fc99b305672aa26203a804"/>
+        <topic label="DRV8889Q1_REG_DIAG_STATUS_2_OL_A_MASK" href="group___m_d___m_o_d_u_l_e2.html#gafea3655f12bf35ce5d8a649db8e278f3"/>
+        <topic label="DRV8889Q1_REG_CTRL1_TRQ_DAC_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga784435a9e15d26cc872659c70393bed0"/>
+        <topic label="DRV8889Q1_REG_CTRL1_SLEW_RATE_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf3ce92d277da2556d51dad9823336ad1"/>
+        <topic label="DRV8889Q1_REG_CTRL1_TRQ_DAC_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaad98addaba5ca8155250b4d98fefe37d"/>
+        <topic label="DRV8889Q1_REG_CTRL1_SLEW_RATE_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga9832bb6a78019bb50133552cf0dbee51"/>
+        <topic label="DRV8889Q1_REG_CTRL2_DIS_OUT_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf4336c50c87a90ebd3f37af4be9575dc"/>
+        <topic label="DRV8889Q1_REG_CTRL2_TOFF_OFS" href="group___m_d___m_o_d_u_l_e2.html#gae6de07db8c29a629ef6e043590554e0a"/>
+        <topic label="DRV8889Q1_REG_CTRL2_DECAY_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga01b950ca47a6adc7ef2f24b6eb9ad779"/>
+        <topic label="DRV8889Q1_REG_CTRL2_DIS_OUT_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaca71e111f66c940ac5ada5bab1718d62"/>
+        <topic label="DRV8889Q1_REG_CTRL2_TOFF_MASK" href="group___m_d___m_o_d_u_l_e2.html#gae6cdcb2afc0afa44a4462a8da734431a"/>
+        <topic label="DRV8889Q1_REG_CTRL2_DECAY_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga7581c08093fac1b22589db573f4c32c8"/>
+        <topic label="DRV8889Q1_REG_CTRL3_DIR_OFS" href="group___m_d___m_o_d_u_l_e2.html#gad602dd35afecc5c08dace101d063d297"/>
+        <topic label="DRV8889Q1_REG_CTRL3_STEP_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga23819c446e63b1051542e6a9c236d41d"/>
+        <topic label="DRV8889Q1_REG_CTRL3_SPI_DIR_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga5dfb56dc9d36adf0887d6ada20ec55e1"/>
+        <topic label="DRV8889Q1_REG_CTRL3_SPI_STEP_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaac446d48a6b85a14be7df2a393863576"/>
+        <topic label="DRV8889Q1_REG_CTRL3_MICROSTEP_MODE_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga6001c98b998cce158795318008a1570d"/>
+        <topic label="DRV8889Q1_REG_CTRL3_DIR_MASK" href="group___m_d___m_o_d_u_l_e2.html#gad1e1cdbdc6fda930f4773b9ac42a1241"/>
+        <topic label="DRV8889Q1_REG_CTRL3_STEP_MAS" href="group___m_d___m_o_d_u_l_e2.html#ga83248f3ece2b4a6e4c6384179faebcda"/>
+        <topic label="DRV8889Q1_REG_CTRL3_SPI_DIR_MASK" href="group___m_d___m_o_d_u_l_e2.html#gad1f7b16b10f44f4f12fbb7152c6e167d"/>
+        <topic label="DRV8889Q1_REG_CTRL3_SPI_STEP_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga7e87c974277696ae30e372ca18e091fb"/>
+        <topic label="DRV8889Q1_REG_CTRL3_MICROSTEP_MODE_MASK" href="group___m_d___m_o_d_u_l_e2.html#gacdf9c7bd468bed603bde9df0dc1f8b20"/>
+        <topic label="DRV8889Q1_REG_CTRL4_CLR_FLT_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga3c39fc1d18a1017d212093533717548b"/>
+        <topic label="DRV8889Q1_REG_CTRL4_LOCK_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga47a777e513fdee517c31b68698ec9eca"/>
+        <topic label="DRV8889Q1_REG_CTRL4_EN_OL_OFS" href="group___m_d___m_o_d_u_l_e2.html#gab408f863a7600d291cc457b92e042116"/>
+        <topic label="DRV8889Q1_REG_CTRL4_OCP_MODE_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga2d684c939f5eb10115b3e2df9925fe48"/>
+        <topic label="DRV8889Q1_REG_CTRL4_OTSD_MODE_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga240201b74b8759c2512a8dcbf9b5662c"/>
+        <topic label="DRV8889Q1_REG_CTRL4_TW_REP_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga1963ede53f2cfb429ab31a22da03abe0"/>
+        <topic label="DRV8889Q1_REG_CTRL4_CLR_FLT_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga327399d4132e9a943c6a0268861656da"/>
+        <topic label="DRV8889Q1_REG_CTRL4_LOCK_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga1bf6d771eb364cac064443907bdeb048"/>
+        <topic label="DRV8889Q1_REG_CTRL4_EN_OL_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga3679ac5922ce413c2f229645ec35aafe"/>
+        <topic label="DRV8889Q1_REG_CTRL4_OCP_MODE_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga3479f94a119d7b173bc2c681601b0904"/>
+        <topic label="DRV8889Q1_REG_CTRL4_OTSD_MODE_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga808e34cca8813dc4a3d9aa5309952f69"/>
+        <topic label="DRV8889Q1_REG_CTRL4_TW_REP_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga6fae0de8e49ba4ff15d8acb8f84e473e"/>
+        <topic label="DRV8889Q1_REG_CTRL5_STL_LRN_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga3229ca19954c031a4cc5a22110befc2b"/>
+        <topic label="DRV8889Q1_REG_CTRL5_EN_STL_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga08645390e706d45df226660393c7733d"/>
+        <topic label="DRV8889Q1_REG_CTRL5_STL_REP_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga410f8c6f3bfe549d0027b43a3b4c47fd"/>
+        <topic label="DRV8889Q1_REG_CTRL5_STL_LRN_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga65e360534fc52ef8bfc149656100017d"/>
+        <topic label="DRV8889Q1_REG_CTRL5_EN_STL_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga6fea5a79ab20eb9c15784e576c17affb"/>
+        <topic label="DRV8889Q1_REG_CTRL5_STL_REP_MASK" href="group___m_d___m_o_d_u_l_e2.html#gac19641aad5f8f4239cac84761ec8e762"/>
+        <topic label="DRV8889Q1_REG_CTRL6_STALL_TH_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaf9f1d584745b6cfe5638d9f4df59d165"/>
+        <topic label="DRV8889Q1_REG_CTRL6_STALL_TH_MASK" href="group___m_d___m_o_d_u_l_e2.html#gace4ed458d8271ccbd94a234ce689be22"/>
+        <topic label="DRV8889Q1_REG_CTRL7_TRQ_COUNT_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga4558af8b64c246b07e32430a4e8f348d"/>
+        <topic label="DRV8889Q1_REG_CTRL7_TRQ_COUNT_MASK" href="group___m_d___m_o_d_u_l_e2.html#gaad54cadbe68ef43af5f4459475250b79"/>
+        <topic label="DRV8889Q1_REG_CTRL8_REV_ID_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga6a7fd378551c4e565472ac0527e44f58"/>
+        <topic label="DRV8889Q1_REG_CTRL8_REV_ID_MASK" href="group___m_d___m_o_d_u_l_e2.html#gacb737df792469770313ced2c7ffdc058"/>
+        <topic label="DRV8889Q1_SPI_CMD_OFS" href="group___m_d___m_o_d_u_l_e2.html#gaaf4c2456f29135ddcf074fc039cb0b27"/>
+        <topic label="DRV8889Q1_SPI_ADDR_OFS" href="group___m_d___m_o_d_u_l_e2.html#ga299118e767a85849ca50fd50f5b9a00d"/>
+        <topic label="DRV8889Q1_SPI_ADDR_MASK" href="group___m_d___m_o_d_u_l_e2.html#ga5209941c454fe020c082625983fe0d78"/>
+        <topic label="DRV8889Q1_STALL_LEARN_EL_CYCLES" href="group___m_d___m_o_d_u_l_e2.html#gae6a7dc88362cc3b6f9477c1b8cadc74f"/>
+        <topic label="DRV8889Q1_REG_ADDR" href="group___m_d___m_o_d_u_l_e2.html#gae55b226749e773fea146adffd807f559">
+          <topic label="DRV8889Q1_REG_ADDR_FAULT_STATUS" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559a0d8834fcda34bb242d4e2c8b25a06f64"/>
+          <topic label="DRV8889Q1_REG_ADDR_DIAG_STATUS_1" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559af785613febc539034d5ee94ae7194b19"/>
+          <topic label="DRV8889Q1_REG_ADDR_DIAG_STATUS_2" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559ac36b591052584acc0ffd7487f5026370"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL1" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559a032f5544c68db14c0fc2cb457e945166"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL2" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559ac1bf19536f0d91677f49304a3d3917b4"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL3" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559af37c604d38df02ec94386987e8c3d858"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL4" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559ac204f5d6314ec9905b5794b92cd099ea"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL5" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559ab6a1f5d3a9741e7d51450e5b900b5462"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL6" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559acc072c3aab6284c9475b8dc6f673fab9"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL7" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559ae6dffc488c8ca41741cbe4ea057b30e8"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL8" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559a27679533bfa35657a685e5cb4fa310d2"/>
+          <topic label="DRV8889Q1_REG_ADDR_CTRL9" href="group___m_d___m_o_d_u_l_e2.html#ggae55b226749e773fea146adffd807f559a3302cc3e121fbe16759c8221275575fd"/>
+        </topic>
+        <topic label="DRV8889Q1_SPI_CMD" href="group___m_d___m_o_d_u_l_e2.html#gac5fb7653f272683d3d2a85be70fa1c5b">
+          <topic label="DRV8889Q1_SPI_CMD_WRITE" href="group___m_d___m_o_d_u_l_e2.html#ggac5fb7653f272683d3d2a85be70fa1c5ba46abe7ba2adb5deb82ca73076f00817f"/>
+          <topic label="DRV8889Q1_SPI_CMD_READ" href="group___m_d___m_o_d_u_l_e2.html#ggac5fb7653f272683d3d2a85be70fa1c5ba26f99043385eb9dc6398841140b5a3c0"/>
+        </topic>
+        <topic label="DRV8889Q1_REG_CTRL4_LOCK" href="group___m_d___m_o_d_u_l_e2.html#gabe2cdf9b0715d1375e740f219e8667a9">
+          <topic label="DRV8889Q1_REG_CTRL4_LOCK_UNLOCK" href="group___m_d___m_o_d_u_l_e2.html#ggabe2cdf9b0715d1375e740f219e8667a9aa62651da6241cc552694f474a80e36f1"/>
+          <topic label="DRV8889Q1_REG_CTRL4_LOCK_LOCK" href="group___m_d___m_o_d_u_l_e2.html#ggabe2cdf9b0715d1375e740f219e8667a9a068df9d8b1ce578a129cc46a68227c40"/>
+        </topic>
+        <topic label="DRV8889Q1_DIR" href="group___m_d___m_o_d_u_l_e2.html#ga88ccbd94a7f49736029169887b45dcb5">
+          <topic label="DRV8889Q1_DIR_REVERSE" href="group___m_d___m_o_d_u_l_e2.html#gga88ccbd94a7f49736029169887b45dcb5ae3ddda43c2c36b02f950999e8d9d1aa7"/>
+          <topic label="DRV8889Q1_DIR_FORWARD" href="group___m_d___m_o_d_u_l_e2.html#gga88ccbd94a7f49736029169887b45dcb5a6a409b2d150ff7de56ac5ef51f2d251d"/>
+        </topic>
+        <topic label="DRV8889Q1_STEP" href="group___m_d___m_o_d_u_l_e2.html#ga9db27cb8503c2ed253ec6a2d9dfdc104">
+          <topic label="DRV8889Q1_STEP_FULL_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a759f62e562bb1da5dfa395420af83584"/>
+          <topic label="DRV8889Q1_STEP_FULL_STEP_71" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a116fe7d19377e5ce602f86af5c2fcbfb"/>
+          <topic label="DRV8889Q1_STEP_NC_HALF_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a753820c17982b6063879f9bee76a9249"/>
+          <topic label="DRV8889Q1_STEP_HALF_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a778181dd3c636c926f83dd8dfb68f8d2"/>
+          <topic label="DRV8889Q1_STEP_1BY4_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a0f3e9f10f8a18defca8c96951f6ffa35"/>
+          <topic label="DRV8889Q1_STEP_1BY8_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a3cae75af2997396109d908553690fb90"/>
+          <topic label="DRV8889Q1_STEP_1BY16_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a6631a9b541c13e887995d0fc142975de"/>
+          <topic label="DRV8889Q1_STEP_1BY32_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104af62cf784c364f6605fb681a3357e4164"/>
+          <topic label="DRV8889Q1_STEP_1BY64_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a1149b9482d792215736b8bfe40bcb592"/>
+          <topic label="DRV8889Q1_STEP_1BY128_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a2034a3b4d207695679dd6f08f50567d4"/>
+          <topic label="DRV8889Q1_STEP_1BY256_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga9db27cb8503c2ed253ec6a2d9dfdc104a54990e7ec26231a9e45c1466535c05b8"/>
+        </topic>
+        <topic label="DRV8889Q1_SLEW_RATE" href="group___m_d___m_o_d_u_l_e2.html#gaea2fc701b4561bb8f294dcf86d467421">
+          <topic label="DRV8889Q1_SLEW_RATE_10VUS" href="group___m_d___m_o_d_u_l_e2.html#ggaea2fc701b4561bb8f294dcf86d467421a85f5faf85f47dac247396babb3e3e6ef"/>
+          <topic label="DRV8889Q1_SLEW_RATE_35VUS" href="group___m_d___m_o_d_u_l_e2.html#ggaea2fc701b4561bb8f294dcf86d467421a792217a0107f0f7feb787af09f23cf58"/>
+          <topic label="DRV8889Q1_SLEW_RATE_50VUS" href="group___m_d___m_o_d_u_l_e2.html#ggaea2fc701b4561bb8f294dcf86d467421a16e81c993d6a66f5aae09f449429825e"/>
+          <topic label="DRV8889Q1_SLEW_RATE_105VUS" href="group___m_d___m_o_d_u_l_e2.html#ggaea2fc701b4561bb8f294dcf86d467421af9667ed7a25097444543b58343787805"/>
+        </topic>
+        <topic label="DRV8889Q1_DECAY" href="group___m_d___m_o_d_u_l_e2.html#ga98b53f2df8af4c8d489026cbf8dad09d">
+          <topic label="DRV8889Q1_DECAY_INC_SLOW_DEC_SLOW" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09dab164e446647faf752b651fa5cfde4174"/>
+          <topic label="DRV8889Q1_DECAY_INC_SLOW_DEC_MIXED_30" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09dad554bc876b4d2f2e62d2d61a89e95642"/>
+          <topic label="DRV8889Q1_DECAY_INC_SLOW_DEC_MIXED_60" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09dac40232baa403cc76aea5f8b7f3df1fd8"/>
+          <topic label="DRV8889Q1_DECAY_INC_SLOW_DEC_FAST" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09daf196d477c0718e6d74b494affddcde55"/>
+          <topic label="DRV8889Q1_DECAY_INC_MIXED_30_DEC_MIXED_30" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09da31a6f98013e57c205335b8a2c489566e"/>
+          <topic label="DRV8889Q1_DECAY_INC_MIXED_60_DEC_MIXED_60" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09daf6bef42b7b25d3c6a9d6069a49aedc18"/>
+          <topic label="DRV8889Q1_DECAY_SMART_TUNE_DYNAMIC" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09da8d202fa52e85dd99c84c3c46964da985"/>
+          <topic label="DRV8889Q1_DECAY_SMART_TUNE_RIPPLE_CTRL" href="group___m_d___m_o_d_u_l_e2.html#gga98b53f2df8af4c8d489026cbf8dad09da64919e6370e648100ceefe52df296db6"/>
+        </topic>
+        <topic label="DRV8889Q1_TRQ_DAC" href="group___m_d___m_o_d_u_l_e2.html#ga6402d995c6c8dd4644e4b69175aefb7a">
+          <topic label="DRV8889Q1_TRQ_DAC_100" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa2868abeee9b19543a6b7b97f5e9ec30e"/>
+          <topic label="DRV8889Q1_TRQ_DAC_93P75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa18dbb8b9c70700d5b65b4f26dfaaedb8"/>
+          <topic label="DRV8889Q1_TRQ_DAC_87P5" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa1c6eeadd6c7524ea0819a41d24c55a1e"/>
+          <topic label="DRV8889Q1_TRQ_DAC_81P25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aaaaf2bdd3de047b994020a00d999dbb01"/>
+          <topic label="DRV8889Q1_TRQ_DAC_75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa6ce323ce1c06ff85b300d38f76f01d54"/>
+          <topic label="DRV8889Q1_TRQ_DAC_68P75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa7f3a084218671ae7ba49944549d26359"/>
+          <topic label="DRV8889Q1_TRQ_DAC_62P5" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa2399e2255215b742305ca8cdb5042eff"/>
+          <topic label="DRV8889Q1_TRQ_DAC_56P25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa93a488ffbadb4f810f51a1c8a4cb3e37"/>
+          <topic label="DRV8889Q1_TRQ_DAC_50" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa4ab846f694fa7e5c5fd9e370c250fbb8"/>
+          <topic label="DRV8889Q1_TRQ_DAC_43P75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa9c7dec0b1c84d440aecd931804f8272f"/>
+          <topic label="DRV8889Q1_TRQ_DAC_37P5" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aac99cc796687eb40ca6a6ea6380d200ec"/>
+          <topic label="DRV8889Q1_TRQ_DAC_31P25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa67a4bd6495cc157ab5251fcf06461cf4"/>
+          <topic label="DRV8889Q1_TRQ_DAC_25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aa6fee3ac4a685a23ced627354b4fe5532"/>
+          <topic label="DRV8889Q1_TRQ_DAC_18P75" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aaaf7d68e54f8378ddedd7046685b22cc3"/>
+          <topic label="DRV8889Q1_TRQ_DAC_12P5" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aabc2e77563be6f371a0ad029688257e7d"/>
+          <topic label="DRV8889Q1_TRQ_DAC_6P25" href="group___m_d___m_o_d_u_l_e2.html#gga6402d995c6c8dd4644e4b69175aefb7aae8b44e9fe4a6102db8d34e73c04bef2b"/>
+        </topic>
+        <topic label="DRV8889Q1_TOFF" href="group___m_d___m_o_d_u_l_e2.html#gae8c8621f0af0771bc327c0e9cf88e605">
+          <topic label="DRV8889Q1_TOFF_7US" href="group___m_d___m_o_d_u_l_e2.html#ggae8c8621f0af0771bc327c0e9cf88e605ab12e1a2d969ae33bf310d3e498dfe794"/>
+          <topic label="DRV8889Q1_TOFF_16US" href="group___m_d___m_o_d_u_l_e2.html#ggae8c8621f0af0771bc327c0e9cf88e605ad0320178288b159431473f983da81d71"/>
+          <topic label="DRV8889Q1_TOFF_24US" href="group___m_d___m_o_d_u_l_e2.html#ggae8c8621f0af0771bc327c0e9cf88e605ac70a46d9275d7816819525348d512e18"/>
+          <topic label="DRV8889Q1_TOFF_32US" href="group___m_d___m_o_d_u_l_e2.html#ggae8c8621f0af0771bc327c0e9cf88e605a2af6a445e83704a288f10363461973b1"/>
+        </topic>
+        <topic label="DRV8889Q1_CONTROL_MODE" href="group___m_d___m_o_d_u_l_e2.html#ga721b190ff053407f8ede19db4c25bf64">
+          <topic label="DRV8889Q1_CONTROL_MODE_SPIN" href="group___m_d___m_o_d_u_l_e2.html#gga721b190ff053407f8ede19db4c25bf64a89fd2ceea4cfc096f469218ba5ace177"/>
+          <topic label="DRV8889Q1_CONTROL_MODE_STEP" href="group___m_d___m_o_d_u_l_e2.html#gga721b190ff053407f8ede19db4c25bf64aff33eab1f4579081eabd9dc7a6d0f92a"/>
+        </topic>
+        <topic label="DRV8889Q1_DRIVE" href="group___m_d___m_o_d_u_l_e2.html#ga0ed8af666c4b9bdc8178fcfade2d26c9">
+          <topic label="DRV8889Q1_DRIVE_DISABLED" href="group___m_d___m_o_d_u_l_e2.html#gga0ed8af666c4b9bdc8178fcfade2d26c9abf1122192e7c0a8d11e77008042d1c4d"/>
+          <topic label="DRV8889Q1_DRIVE_PWM" href="group___m_d___m_o_d_u_l_e2.html#gga0ed8af666c4b9bdc8178fcfade2d26c9ab76cb3cf7ceadc10a9f9db7bb124b0a0"/>
+        </topic>
+        <topic label="DRV8889Q1_init" href="group___m_d___m_o_d_u_l_e2.html#ga8a4f19414ad6252981f09f5a715a31eb"/>
+        <topic label="DRV8889Q1_createSPIDataWord" href="group___m_d___m_o_d_u_l_e2.html#ga18bb2362dc96a252697b4904d0f4222e"/>
+        <topic label="DRV8889Q1_spiWrite" href="group___m_d___m_o_d_u_l_e2.html#ga797f2dd95a1f06af6a89f9598809c550"/>
+        <topic label="DRV8889Q1_spiRead" href="group___m_d___m_o_d_u_l_e2.html#gad75c275cd702a8cf1b927c0d3de7f279"/>
+        <topic label="DRV8889Q1_spiUpdateRegister" href="group___m_d___m_o_d_u_l_e2.html#ga3fc0a1bec87b4496688758b92ecd68fd"/>
+        <topic label="DRV8889Q1_setSPIRegisterLock" href="group___m_d___m_o_d_u_l_e2.html#ga67f68471809ca55f255a2bc223bbdd2a"/>
+        <topic label="DRV8889Q1_setDirection" href="group___m_d___m_o_d_u_l_e2.html#ga729ead726f9085f1a39eab104270f93e"/>
+        <topic label="DRV8889Q1_setStepMode" href="group___m_d___m_o_d_u_l_e2.html#gac6109dd9bcd04176deb311e20468307f"/>
+        <topic label="DRV8889Q1_setDecayMode" href="group___m_d___m_o_d_u_l_e2.html#gae9663db4b456f354ac3276f45d935976"/>
+        <topic label="DRV8889Q1_setSpeed" href="group___m_d___m_o_d_u_l_e2.html#ga43effe9a6d38522a2f120b6afc32d196"/>
+        <topic label="DRV8889Q1_setFSCurr" href="group___m_d___m_o_d_u_l_e2.html#gafad6dbac5bcf5f148d008f0e3cb1cf31"/>
+        <topic label="DRV8889Q1_setSlewRate" href="group___m_d___m_o_d_u_l_e2.html#ga21cd87d4e6a9248dac0deab469c395ae"/>
+        <topic label="DRV8889Q1_setNSleep" href="group___m_d___m_o_d_u_l_e2.html#gab5d8bc68f7d7ee1fe4aae0dee189dae6"/>
+        <topic label="DRV8889Q1_clearNSleep" href="group___m_d___m_o_d_u_l_e2.html#ga514e3e4d8c05056257d631ccea466123"/>
+        <topic label="DRV8889Q1_enableOutput" href="group___m_d___m_o_d_u_l_e2.html#gaea6fa7ccae05bd4ccacd8faeeb15c8d7"/>
+        <topic label="DRV8889Q1_disableOutput" href="group___m_d___m_o_d_u_l_e2.html#gab92811a2df2d338ab2a583acac9f6cdc"/>
+        <topic label="DRV8889Q1_startMotor" href="group___m_d___m_o_d_u_l_e2.html#ga06e2d9d004b61f753975aca615ded6d4"/>
+        <topic label="DRV8889Q1_stopMotor" href="group___m_d___m_o_d_u_l_e2.html#gabc086ad5f5eecebb16ffa4c1f7764762"/>
+        <topic label="DRV8889Q1_isMotorRunning" href="group___m_d___m_o_d_u_l_e2.html#ga9cdcb21d3ee5a62f8053e3d6d46b63be"/>
+        <topic label="DRV8889Q1_isFaultOccurred" href="group___m_d___m_o_d_u_l_e2.html#ga47fb49a6c63a3ae9eabb6b6e6ce8c1f9"/>
+        <topic label="DRV8889Q1_setControlMode" href="group___m_d___m_o_d_u_l_e2.html#gaabd3ec9d4896b0d6eac46f5c049be96b"/>
+        <topic label="DRV8889Q1_checkStep" href="group___m_d___m_o_d_u_l_e2.html#gadef14bfe44e021b646623a6d6a2a610c"/>
+        <topic label="DRV8889Q1_setStepDuty" href="group___m_d___m_o_d_u_l_e2.html#gabb55662c141ad67736395a0a39b3e0f3"/>
+        <topic label="DRV8889Q1_setStepDrive" href="group___m_d___m_o_d_u_l_e2.html#ga363fe67e1c2b7020a1f865144ed7ebd4"/>
+        <topic label="DRV8889Q1_setStep" href="group___m_d___m_o_d_u_l_e2.html#ga2eebe6e31d01b188a63ff9fcf404b788"/>
+        <topic label="DRV8889Q1_setTrqDac" href="group___m_d___m_o_d_u_l_e2.html#ga19550cc8a736afa813ebca9084a417d0"/>
+        <topic label="DRV8889Q1_setToff" href="group___m_d___m_o_d_u_l_e2.html#ga518a793ca375c213baef9e43ad66985d"/>
+        <topic label="DRV8889Q1_clearFaults" href="group___m_d___m_o_d_u_l_e2.html#ga94d545c8217ee2f6bc3bd8693038eb7a"/>
+        <topic label="DRV8889Q1_getStallThres" href="group___m_d___m_o_d_u_l_e2.html#gac4b009e1ca332f59549f2b2d7ca19f7b"/>
+        <topic label="DRV8889Q1_setStallThres" href="group___m_d___m_o_d_u_l_e2.html#ga9f324879fa4ca0eacf01c3042fac33f3"/>
+        <topic label="DRV8889Q1_getTrqCount" href="group___m_d___m_o_d_u_l_e2.html#ga69155b7ba7ed8fe2389907725643ad88"/>
+        <topic label="DRV8889Q1_enableStallDet" href="group___m_d___m_o_d_u_l_e2.html#ga1f8d5f51079284dba0a731fe4d90cb0b"/>
+        <topic label="DRV8889Q1_disableStallDet" href="group___m_d___m_o_d_u_l_e2.html#ga8bb26bc3e5dbac444ffe0971a3d2ee8b"/>
+        <topic label="DRV8889Q1_enableOlDet" href="group___m_d___m_o_d_u_l_e2.html#ga75e11fda4504b4cfbc4e505618418c9a"/>
+        <topic label="DRV8889Q1_disableOlDet" href="group___m_d___m_o_d_u_l_e2.html#ga239cbaed663c8d2522a6c5817c7a2d1f"/>
+        <topic label="DRV8889Q1_setLearnStall" href="group___m_d___m_o_d_u_l_e2.html#ga6f171038656a4689bc3c1467c9793141"/>
+        <topic label="DRV8889Q1_isStallLearnSuccess" href="group___m_d___m_o_d_u_l_e2.html#ga740489eb21dac2e10c930edc93715358"/>
+        <topic label="DRV8889Q1_setVrefRefVoltage" href="group___m_d___m_o_d_u_l_e2.html#ga8b21ab960b57e6faca830d92652c8917"/>
+      </topic>
+      <topic label="hal.h" href="hal_8h.html">
+        <topic label="HAL_MCU_CLK_SPEED_HZ" href="group___h_a_l.html#gaf7b3b79e289ed08f29cfdb2d7d86387c"/>
+        <topic label="HAL_CYCLES_TO_1_MS_DELAY" href="group___h_a_l.html#ga5f2e472cba827617f4484518a33fdf16"/>
+        <topic label="HAL_ADC_MAX_VALUE" href="group___h_a_l.html#ga7e5ea6704037dbc3cbaf3dfdd6c744a7"/>
+        <topic label="HAL_DAC_MAX_VALUE" href="group___h_a_l.html#gac05e7816ff7d288990e03ae5b4985f55"/>
+        <topic label="HAL_ADC_DEFAULT_REF_VOLTAGE" href="group___h_a_l.html#ga47db7d2383c0281b0fda976e695b3ae1"/>
+        <topic label="HAL_DAC_DEFAULT_REF_VOLTAGE" href="group___h_a_l.html#gafe4349114109484f8ed09170b60b112b"/>
+        <topic label="HAL_TIM_PERIPHERAL_CLOCK_SOURCE" href="group___h_a_l.html#gae521daa8b0c03c4b755d5f5bd0729b08"/>
+        <topic label="HAL_PWM_CHANNEL" href="group___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">
+          <topic label="HAL_PWM_CHANNEL_0" href="group___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a03fa54972ba832d89298c1220869ff96"/>
+          <topic label="HAL_PWM_CHANNEL_1" href="group___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a2b9fa33e18cbcd0d6a838a2c9038780d"/>
+          <topic label="HAL_PWM_CHANNEL_MAX" href="group___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0ac0f17b4301fafcc955ba248660b04bd4"/>
+        </topic>
+        <topic label="HAL_TIM_CHANNEL" href="group___h_a_l.html#ga725e13be6dd268950cbe7e811eebb57c">
+          <topic label="HAL_TIM_CHANNEL_0" href="group___h_a_l.html#gga725e13be6dd268950cbe7e811eebb57cad7d40e597c5be56507e15eaf79b1d87a"/>
+          <topic label="HAL_TIM_CHANNEL_1" href="group___h_a_l.html#gga725e13be6dd268950cbe7e811eebb57cac433c15d96e160dab7590459870ea588"/>
+          <topic label="HAL_TIM_CHANNEL_MAX" href="group___h_a_l.html#gga725e13be6dd268950cbe7e811eebb57ca3437e78e83cf1dcfdb34b0156a9622dd"/>
+        </topic>
+        <topic label="HAL_ADC_CHANNEL" href="group___h_a_l.html#ga45835f1280003f7162449a532ed87c1a">
+          <topic label="HAL_ADC_CHANNEL_0" href="group___h_a_l.html#gga45835f1280003f7162449a532ed87c1aaf5a97ab8c41076a0443391f4bada58cd"/>
+          <topic label="HAL_ADC_CHANNEL_1" href="group___h_a_l.html#gga45835f1280003f7162449a532ed87c1aa2a1cce310fc2dd4e130aea2b414dae84"/>
+          <topic label="HAL_ADC_CHANNEL_MAX" href="group___h_a_l.html#gga45835f1280003f7162449a532ed87c1aaee8f9cfa84acbe52867dbe58c0b06c95"/>
+        </topic>
+        <topic label="HAL_DAC_CHANNEL" href="group___h_a_l.html#ga30e2882a343f4523c6e4cb8445da9400">
+          <topic label="HAL_DAC_CHANNEL_0" href="group___h_a_l.html#gga30e2882a343f4523c6e4cb8445da9400af200eb828b965ca6c37c81b025cb8f64"/>
+          <topic label="HAL_DAC_CHANNEL_MAX" href="group___h_a_l.html#gga30e2882a343f4523c6e4cb8445da9400ae554da9bd8ca03736aa0513ccb3b9a61"/>
+        </topic>
+        <topic label="HAL_GPIO_IN_PIN" href="group___h_a_l.html#ga7e7311833a1bf13803fc180fdd84500a">
+          <topic label="HAL_GPIO_IN_PIN_0" href="group___h_a_l.html#gga7e7311833a1bf13803fc180fdd84500aa35de169a0b65bead58c4970a23daad5b"/>
+          <topic label="HAL_GPIO_IN_PIN_MAX" href="group___h_a_l.html#gga7e7311833a1bf13803fc180fdd84500aa2915b025da86fdf10aabac71c76f7da2"/>
+        </topic>
+        <topic label="HAL_GPIO_OUT_PIN" href="group___h_a_l.html#ga81d35b817c14b508e1aa2c4f581b79ac">
+          <topic label="HAL_GPIO_OUT_PIN_0" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acacacc2866a87a044bb829838a8a144e68"/>
+          <topic label="HAL_GPIO_OUT_PIN_1" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acac910efd19f4788c9927e153d3fa1860e"/>
+          <topic label="HAL_GPIO_OUT_PIN_2" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acae84ffe1c196dc50ed666e7e67b84abb3"/>
+          <topic label="HAL_GPIO_OUT_PIN_3" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca81c0fff6a12f7b731f1542dff4f40131"/>
+          <topic label="HAL_GPIO_OUT_PIN_4" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca714cc78d473ba68dfc06f6c47ac18b41"/>
+          <topic label="HAL_GPIO_OUT_PIN_5" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca2421980f5e9d6a8b25c382fbece7f37d"/>
+          <topic label="HAL_GPIO_OUT_PIN_6" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acadcc1377e4d6cd404f3c8d11d8bc56702"/>
+          <topic label="HAL_GPIO_OUT_PIN_7" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca29c26f3dabd08a1761db7f799339d1b8"/>
+          <topic label="HAL_GPIO_OUT_PIN_8" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca6caf78dd55102079f400def113748651"/>
+          <topic label="HAL_GPIO_OUT_PIN_9" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca538dc8171959123bc7f89422a688f256"/>
+          <topic label="HAL_GPIO_OUT_PIN_MAX" href="group___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca084b87fd8890fcda2b85f781a8ec11df"/>
+        </topic>
+        <topic label="HAL_SPI_CHANNEL" href="group___h_a_l.html#gadd9593516aa7691021eeb01bcecec6a9">
+          <topic label="HAL_SPI_CHANNEL_0" href="group___h_a_l.html#ggadd9593516aa7691021eeb01bcecec6a9a87d6d116f93b166e76a06995ea424821"/>
+          <topic label="HAL_SPI_CHANNEL_MAX" href="group___h_a_l.html#ggadd9593516aa7691021eeb01bcecec6a9a6cdba2e523df474608a04fa81aacb28a"/>
+        </topic>
+        <topic label="HAL_SPI_CS" href="group___h_a_l.html#gadd8a694a4d051d1ed3e24f91cf3a5103">
+          <topic label="HAL_SPI_CS_0" href="group___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a245e7d9e918d317a25632a2c741250d3"/>
+          <topic label="HAL_SPI_CS_1" href="group___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a4dd1abcb56726a9e44d11ba048ed6059"/>
+          <topic label="HAL_SPI_CS_2" href="group___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a7b39d1047b2fabfa2c879d967314b4d0"/>
+          <topic label="HAL_SPI_CS_3" href="group___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a01d825746893f18adc5fd812cb493702"/>
+          <topic label="HAL_SPI_CS_MAX" href="group___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a6590d0de26232afe1039fb74c7f5dc9f"/>
+        </topic>
+        <topic label="HAL_GPIO_VALUE" href="group___h_a_l.html#gac977ba35c1fccd39a12331665d761ce5">
+          <topic label="HAL_GPIO_VALUE_LOW" href="group___h_a_l.html#ggac977ba35c1fccd39a12331665d761ce5a6e486d371fe4a56f9c15a2e95026b862"/>
+          <topic label="HAL_GPIO_VALUE_HIGH" href="group___h_a_l.html#ggac977ba35c1fccd39a12331665d761ce5abb0433af987db30550c494a7d4f62b1b"/>
+        </topic>
+        <topic label="HAL_PWM_CHANNEL_MODE" href="group___h_a_l.html#gab261b3a59c5ba22c02b403e1de40a41e">
+          <topic label="HAL_PWM_CHANNEL_MODE_PWM" href="group___h_a_l.html#ggab261b3a59c5ba22c02b403e1de40a41eabbeebad5382ed0ed213f126e4bbb7d49"/>
+          <topic label="HAL_PWM_CHANNEL_MODE_FORCED_HIGH" href="group___h_a_l.html#ggab261b3a59c5ba22c02b403e1de40a41ea4bbb8502464da49baa467cbb53281a91"/>
+          <topic label="HAL_PWM_CHANNEL_MODE_FORCED_LOW" href="group___h_a_l.html#ggab261b3a59c5ba22c02b403e1de40a41ea2a433519e8b0a4e9b5f5d0ad841c460a"/>
+        </topic>
+        <topic label="HAL_PIN_MODE" href="group___h_a_l.html#ga59e3f6f107cf5df870b7010313f72d24">
+          <topic label="HAL_PIN_MODE_OUTPUT_LOW" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24a9ecb3cd25b9e76ae46511ad24852648f"/>
+          <topic label="HAL_PIN_MODE_OUTPUT_HIGH" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24a81ed3b5d620ac37d983d062bcd3dfeb1"/>
+          <topic label="HAL_PIN_MODE_INPUT_PU" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24a2af75a17431b943f60fa3ab361777294"/>
+          <topic label="HAL_PIN_MODE_INPUT_PD" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24afbddcba206b049761bbf411c1e56652c"/>
+          <topic label="HAL_PIN_MODE_INPUT_HZ" href="group___h_a_l.html#gga59e3f6f107cf5df870b7010313f72d24a302e29886a7efc64a8df5daf45a5c1a9"/>
+        </topic>
+        <topic label="HAL_init" href="group___h_a_l.html#gaac941b8ea4dc23b9656f5fa217e348eb"/>
+        <topic label="HAL_setADCRefVoltage" href="group___h_a_l.html#gac45e0cf7f8e731049913093112974cf3"/>
+        <topic label="HAL_setDacRefVoltage" href="group___h_a_l.html#ga03984d5f95f98df7183cd3046c1f34ff"/>
+        <topic label="HAL_setADCSf" href="group___h_a_l.html#gaac41fca45b39313ecefcb578b73afa97"/>
+        <topic label="HAL_checkAndEnableIRQ" href="group___h_a_l.html#ga2ebc7cf3557b7d24afa67ab7e4143946"/>
+        <topic label="HAL_enableADCInterrupt" href="group___h_a_l.html#gaec6d12d067abc0b9595ebf93713c2c1c"/>
+        <topic label="HAL_disableADCInterrupt" href="group___h_a_l.html#ga3aea1cc0db3604a4cfc6a6f7e7804203"/>
+        <topic label="HAL_enablePWMInterrupt" href="group___h_a_l.html#ga382308ef6f348f302aef7b7e0a8ab6f0"/>
+        <topic label="HAL_disablePWMInterrupts" href="group___h_a_l.html#gadb9581a360ce26ec6bf2be99f80a297d"/>
+        <topic label="HAL_enableTIMInterrupt" href="group___h_a_l.html#ga871c5eaf2342110cdca5956faebfc9ba"/>
+        <topic label="HAL_disableTIMInterrupt" href="group___h_a_l.html#ga3fbcdaa8ba7bbcced63a0052c089550e"/>
+        <topic label="HAL_setGPIOVal" href="group___h_a_l.html#ga8501ce452cb958bc05fb355d60e3d345"/>
+        <topic label="HAL_readGPIOVal" href="group___h_a_l.html#gae6a056c111b330e337f2717652571df5"/>
+        <topic label="HAL_configurePin" href="group___h_a_l.html#ga49f8926553bc79102075ac160ad9f54d"/>
+        <topic label="HAL_configureGPIOOUTPin" href="group___h_a_l.html#gadaad18142b031231ec3fa4c27ea9c3c3"/>
+        <topic label="HAL_configureGPIOINPin" href="group___h_a_l.html#ga53a1ee72fb56d7c3b52a81a9951af626"/>
+        <topic label="HAL_setDACVoltage" href="group___h_a_l.html#ga4783fb92bb5390ac56ca35fd20c53bf3"/>
+        <topic label="HAL_getPWMLoadValue" href="group___h_a_l.html#ga8fee453cd847b5bbdc1d8e277e4da0bf"/>
+        <topic label="HAL_startPWMCounter" href="group___h_a_l.html#ga16507be004ab42808e4aae8a3ebbed27"/>
+        <topic label="HAL_stopPWMCounter" href="group___h_a_l.html#ga45611bb449d747b9354bb6836fdc8f92"/>
+        <topic label="HAL_startTIMCounter" href="group___h_a_l.html#gaab4413c42475b03380abb8339333c248"/>
+        <topic label="HAL_stopTIMCounter" href="group___h_a_l.html#ga2d3c571aa7f12bf479809e5043b990d5"/>
+        <topic label="HAL_isPWMCounterRunning" href="group___h_a_l.html#gaaa4f78f5eccc495a9bc848db450e2b7c"/>
+        <topic label="HAL_isTIMCounterRunning" href="group___h_a_l.html#gad4d9fa9049ea281b43bef5bb65040e78"/>
+        <topic label="HA_setPWMDutyCycle" href="group___h_a_l.html#gabb8fb73248c192e21d4c268d8339853f"/>
+        <topic label="HAL_setPWMFreq" href="group___h_a_l.html#ga4220d3f8ea591c0d48b4542c0b360627"/>
+        <topic label="HAL_setTIMFreq" href="group___h_a_l.html#ga5cfad81b23cbdcd49898012e27d31a34"/>
+        <topic label="HAL_setPWMLoadVal" href="group___h_a_l.html#gac1884db4b5ef0659081b6c3de08d7f86"/>
+        <topic label="HAL_setTIMLoadVal" href="group___h_a_l.html#ga4fed6df28dfda596644dc2d44914d33c"/>
+        <topic label="HAL_setFreq" href="group___h_a_l.html#gac0fd9757e9f332c81a8fba88fbfd8e34"/>
+        <topic label="HAL_setLoadVal" href="group___h_a_l.html#ga85faba0341369e8a94277f0531bf2abb"/>
+        <topic label="HAL_getADCData" href="group___h_a_l.html#gab532455189a63e8637e99b5b13ff1e02"/>
+        <topic label="HAL_getADCResult" href="group___h_a_l.html#ga5bdbae4e85ea7d35cecb746ff1a7167c"/>
+        <topic label="HAL_processADCIRQ" href="group___h_a_l.html#ga27b8c67f7d05acaab8774b7915200b35"/>
+        <topic label="HAL_delayMilliSeconds" href="group___h_a_l.html#ga8ede55b3708351405918bd7fbf9c8746"/>
+        <topic label="HAL_configurePWMPin" href="group___h_a_l.html#ga17468c3751546bf8d30458b111e87024"/>
+        <topic label="HAL_isSPIRxFifoEmpty" href="group___h_a_l.html#gae915e61d98a5b6464cf20fa348f39c96"/>
+        <topic label="HAL_receiveSPIData16" href="group___h_a_l.html#ga7e643d9052eecef5b6ebae43f45aee9c"/>
+        <topic label="HAL_transmitSPIData16" href="group___h_a_l.html#gaded901eac20999dd944bd0253c84133d"/>
+        <topic label="HAL_isSPIBusy" href="group___h_a_l.html#ga8c76a7ee344f64b0fce303c53702fd27"/>
+        <topic label="HAL_SPI_clearRXFifo" href="group___h_a_l.html#gaab324e40809390bc0596a9c2c967081b"/>
+        <topic label="gpioOUT" href="group___h_a_l.html#gab6ab45b3533ecf164824d10a92191163"/>
+      </topic>
+      <topic label="stepper.h" href="stepper_8h.html">
+        <topic label="STEPPER_INDEXER_MAX_COUNT" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga732ad0e84b2b4ebf78638c4572fed822"/>
+        <topic label="STEPPER_INDEXER_0_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gab520dc8e7ddbfc9d8c08a622bafa8222"/>
+        <topic label="STEPPER_INDEXER_1_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gaf7e126d8ee8dea0d0ed94c50de8613bf"/>
+        <topic label="STEPPER_INDEXER_2_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga13809f456c3d766e25b391de4a79d071"/>
+        <topic label="STEPPER_INDEXER_3_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga11fb65a9c5ad80a4614ff9ac2920f745"/>
+        <topic label="STEPPER_INDEXER_4_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga06f77b752c84b8af48f74b5eff5ed620"/>
+        <topic label="STEPPER_INDEXER_5_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga1ab0ed0e5f4993a2d4ce6f8453fe1b4a"/>
+        <topic label="STEPPER_INDEXER_6_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga403587a8e351bc78f6d6d6e3bc0e8d89"/>
+        <topic label="STEPPER_INDEXER_7_BY_8" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gaa2da9c4f04ddf1cfd3812b463e97c53b"/>
+        <topic label="STEPPER_2PI" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga7405e48e39eb3b87d69b79875ef3a0ac"/>
+        <topic label="STEPPER_STEP_INC_DEC" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gaf4beb1078d95369ea63104bd1c4a04b0">
+          <topic label="STEPPER_STEP_INC_DEC_FULL_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0aec0c25e55512a99da040cfadcbda4719"/>
+          <topic label="STEPPER_STEP_INC_DEC_HALF_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0a8cef63326bc5ed250aae74d330bc722a"/>
+          <topic label="STEPPER_STEP_INC_DEC_1BY4_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0ac3c7f89b301d38ea114a3826e6b53c5b"/>
+          <topic label="STEPPER_STEP_INC_DEC_1BY8_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0aeab88223d6d96171c425b2c1e0f7edd1"/>
+          <topic label="STEPPER_STEP_INC_DEC_1BY16_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0ad02943d9c6fecee335d6fa22573000ef"/>
+          <topic label="STEPPER_STEP_INC_DEC_1BY32_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0a6d19306ab8a041abd0095ffb35a91590"/>
+          <topic label="STEPPER_STEP_INC_DEC_1BY64_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0a5e9b0197882b3be4d88c6e540833d42f"/>
+          <topic label="STEPPER_STEP_INC_DEC_1BY128_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0a1f2f5eaff24b26240b1289d3f3f33d65"/>
+          <topic label="STEPPER_STEP_INC_DEC_1BY256_STEP" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ggaf4beb1078d95369ea63104bd1c4a04b0aaf802760fc3ae56436ec7f1aa57346d0"/>
+        </topic>
+        <topic label="STEPPER_DRIVE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga58aa523835df3336a5038600b62d5cbd">
+          <topic label="STEPPER_DRIVE_DISABLE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga58aa523835df3336a5038600b62d5cbdaa179f2b75ffc2452b0ccfea3dbf39938"/>
+          <topic label="STEPPER_DRIVE_DECAY" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga58aa523835df3336a5038600b62d5cbdabfeb890fe5686cf202da7657b27c77b8"/>
+          <topic label="STEPPER_DRIVE_FORWARD" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga58aa523835df3336a5038600b62d5cbdaba1d9c5a77666d3b8d6ade791752c0ea"/>
+          <topic label="STEPPER_DRIVE_REVERSE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga58aa523835df3336a5038600b62d5cbda83e023130106c674b1658428edc9887a"/>
+        </topic>
+        <topic label="STEPPER_STEP_TYPE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga71084070707dcc19e0e9d4abdd6c9a76">
+          <topic label="STEPPER_STEP_TYPE_CIR" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga71084070707dcc19e0e9d4abdd6c9a76acfe9c478ea8d779024eacbf9fc508663"/>
+          <topic label="STEPPER_STEP_TYPE_NONCIR" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga71084070707dcc19e0e9d4abdd6c9a76a96b042615a28f2380694e45ed1db1bb1"/>
+        </topic>
+        <topic label="STEPPER_DIR" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga5f02d847107633dd6ba0b0dbdfd9e970">
+          <topic label="STEPPER_DIR_FORWARD" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga5f02d847107633dd6ba0b0dbdfd9e970a60440aa406431a14d1c19ea068b91917"/>
+          <topic label="STEPPER_DIR_REVERSE" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gga5f02d847107633dd6ba0b0dbdfd9e970a6bf20e77491525923286fd58ecaaac56"/>
+        </topic>
+        <topic label="STEPPER_init" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga9269668ce285b8d3ec7f54198f75f4c6"/>
+        <topic label="STEPPER_setIndexerDir" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gae084443b5f9a67c1445c2965d7b5bfc2"/>
+        <topic label="STEPPER_setIndexerIncVal" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gad44e6cfdd9342826529281ca1d8a4f62"/>
+        <topic label="STEPPER_setStepType" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga1b8b2f38cba32539d7a9fee9341708e8"/>
+        <topic label="STEPPER_setMotorDrives" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga6589b42e7d10fe0c5e008bd1fd90584f"/>
+        <topic label="STEPPER_cirStepPhaseGen" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gade1bb5f0d7515a610e2412acfd1f0526"/>
+        <topic label="STEPPER_nonCirPhaseGen" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#gae418e6584970d8ca334170f6f3591949"/>
+        <topic label="STEPPER_indexer" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga9b2db9e1a40941337a3dd3261f6bf5cd"/>
+        <topic label="angleSf" href="group___s_t_e_p_p_e_r___m_o_d_u_l_e.html#ga3f9665d71d97866ad23a2fd616dda4bd"/>
+      </topic>
+    </topic>
+    <topic label="Globals" href="globals.html">
+      <topic label="All" href="globals.html">
+        <topic label="a" href="globals.html"/>
+        <topic label="d" href="globals_d.html"/>
+        <topic label="g" href="globals_g.html"/>
+        <topic label="h" href="globals_h.html"/>
+        <topic label="s" href="globals_s.html"/>
+      </topic>
+      <topic label="Functions" href="globals_func.html"/>
+      <topic label="Variables" href="globals_vars.html"/>
+      <topic label="Enumerations" href="globals_enum.html"/>
+      <topic label="Enumerator" href="globals_eval.html"/>
+      <topic label="Macros" href="globals_defs.html"/>
+    </topic>
+  </topic>
+  <topic label="Disclaimer" href="_disclaimer.html"/>
+</toc>

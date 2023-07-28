@@ -1,0 +1,84 @@
+MSPM0_SDK_INSTALL_DIR ?= $(abspath ../../../../../..)
+
+include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
+
+CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
+LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
+
+OBJECTS = callbacks_JSON.obj MSP_GUI_GUI_JSON.obj MSP_GUI_GUIComm_JSON.obj ti_msp_dl_config.obj HAL_UART_M0G3507.obj main.obj gcc_startup_mspm0g3507_gcc.obj
+NAME = gc_simple_json
+
+CFLAGS = -I.. \
+    -D__MSPM0G3507__ \
+    -O2 \
+    "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
+    "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -mcpu=cortex-m0plus \
+    -march=armv6-m \
+    -mthumb \
+    -std=c99 \
+    -mfloat-abi=soft \
+    -ffunction-sections \
+    -fdata-sections \
+    -g \
+    -gstrict-dwarf \
+    -Wall \
+    "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
+    "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
+
+LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/gcc/m0p" \
+    -l:gui_composer.a \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x" \
+    -nostartfiles \
+    -Wl,-T,../gcc/mspm0g3507.lds \
+    "-Wl,-Map,$(NAME).map" \
+    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    -march=armv6-m \
+    -mthumb \
+    -static \
+    -Wl,--gc-sections \
+    "-L$(GCC_ARMCOMPILER)/arm-none-eabi/lib/thumb/v6-m/nofp" \
+    -lgcc \
+    -lc \
+    -lm \
+    -lnosys \
+    --specs=nano.specs
+all: $(NAME).out
+
+callbacks_JSON.obj: ../callbacks_JSON.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+MSP_GUI_GUI_JSON.obj: ../MSP_GUI/GUI_JSON.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+MSP_GUI_GUIComm_JSON.obj: ../MSP_GUI/GUIComm_JSON.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_msp_dl_config.obj: ../ti_msp_dl_config.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+HAL_UART_M0G3507.obj: ../HAL_UART_M0G3507.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+main.obj: ../main.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+gcc_startup_mspm0g3507_gcc.obj: ../gcc/startup_mspm0g3507_gcc.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+$(NAME).out: $(OBJECTS)
+	@ echo linking $@
+	@ $(LNK)  $(OBJECTS)  $(LFLAGS) -o $(NAME).out
+
+clean:
+	@ echo Cleaning...
+	@ $(RM) $(OBJECTS) > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).out > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).map > $(DEVNULL) 2>&1

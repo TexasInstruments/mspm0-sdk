@@ -1,0 +1,351 @@
+<toc label="BrushedMotorControlLibrary" topic="index.html">
+  <topic label="Brushed Motor Control Library API Reference" href="index.html"/>
+  <topic label="Modules" href="modules.html">
+    <topic label="LP_MSPM0L1306 - Hardware Abstraction Layer (HAL)" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html">
+      <topic label="HIGH" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga5bb885982ff66a2e0a0a45a8ee9c35e2"/>
+      <topic label="LOW" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gab811d8c6ff3a505312d3276590444289"/>
+      <topic label="PIN_MODE" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga353814d7eb3eac5a06f0ed8bae4a2db0">
+        <topic label="PIN_MODE_OUTPUT_LOW" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0a00bd0dc6138143ad722f501cb027dfee"/>
+        <topic label="PIN_MODE_OUTPUT_HIGH" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0ad18857d6b7958c471caaf0ef3e5a9916"/>
+        <topic label="PIN_MODE_INPUT_PU" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0a55b7b78e0bc35ea302b43da50483973a"/>
+        <topic label="PIN_MODE_INPUT_PD" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0ad1a9afabeb670024e017569f397d40f8"/>
+        <topic label="PIN_MODE_INPUT_HZ" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0a3e6cb6093d41dbd978264ec3f2c45232"/>
+        <topic label="PIN_MODE_PERIPHERAL" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0aec243c2b5430a3138d95e2cba414b66f"/>
+        <topic label="PIN_MODE_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0a8212d342c65b043de5e06028b027e85a"/>
+      </topic>
+      <topic label="PWM_CHANNELS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gadf1629fb519002258e5f6305659393d3">
+        <topic label="PWM_CHANNEL_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggadf1629fb519002258e5f6305659393d3a9d3dcb4d18c3aefb9b2219a76feac86b"/>
+        <topic label="PWM_CHANNEL_1" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggadf1629fb519002258e5f6305659393d3a5a035abb5b092a5a48114cb240e65a60"/>
+        <topic label="PWM_CHANNELS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggadf1629fb519002258e5f6305659393d3ac5ab5926eb3a21599333faab1b28ad7d"/>
+      </topic>
+      <topic label="SPI_CHANNELS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gae0444f7c93918f4d38f940d21e903185">
+        <topic label="SPI_CHANNEL_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggae0444f7c93918f4d38f940d21e903185ad9012d36167f89fb53e6747e1aab4f67"/>
+        <topic label="SPI_CHANNELS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggae0444f7c93918f4d38f940d21e903185a7dbf428b6d9408ae1e4027661e2b5263"/>
+      </topic>
+      <topic label="SPI_CS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gaafc0c55564c2e6786a134dd2ca172683">
+        <topic label="SPI_CS_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683a7c771518cdbd7499c46536d99602b218"/>
+        <topic label="SPI_CS_1" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683a6125c52bbaed83291a714a0aa6136999"/>
+        <topic label="SPI_CS_2" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683a2c0043ecf73179f803694b24d938904d"/>
+        <topic label="SPI_CS_3" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683a6b3602356eaaecd8f81e48b13189ce9a"/>
+        <topic label="SPI_CS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683affb303cc9efd5d56f3239ab92778f4bb"/>
+      </topic>
+      <topic label="GPIO_OUTPUT_PINS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gaaed8746cc5d095f8e1d3e6c082e6c16c">
+        <topic label="GPIO_OUTPUT_PIN_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca399ce972fe7b66fa8777e027ab29b023"/>
+        <topic label="GPIO_OUTPUT_PIN_1" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16cad759e949cf87eee40bf1ee4c61532616"/>
+        <topic label="GPIO_OUTPUT_PIN_2" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca86c98ed33866ae0ee14d3f454b222ada"/>
+        <topic label="GPIO_OUTPUT_PIN_3" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca8d2b2be03126d17214e62e57307e06d6"/>
+        <topic label="GPIO_OUTPUT_PIN_4" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca8aacd002f1531cc0a62a77cbc4f2a73f"/>
+        <topic label="GPIO_OUTPUT_PINS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca633b79fdf07aaee2e1d81fb9a48ebd24"/>
+      </topic>
+      <topic label="GPIO_INPUT_PINS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga6cc3463d0da5516f0016137200cf7738">
+        <topic label="GPIO_INPUT_PIN_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga6cc3463d0da5516f0016137200cf7738ab3206cece9285842de96e1f7911d0c23"/>
+        <topic label="GPIO_INPUT_PINS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga6cc3463d0da5516f0016137200cf7738a66e83de490009df3dbc1a41377e93dec"/>
+      </topic>
+      <topic label="ADC_CHANS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gad190fd617cbb55619f7fd1720855a95e">
+        <topic label="ADC_CHAN_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggad190fd617cbb55619f7fd1720855a95eae0d6cc3f8ccce4b67f59db6147e4967c"/>
+        <topic label="ADC_CHAN_1" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggad190fd617cbb55619f7fd1720855a95ead36add5d4dcc362325b3b2a9d8259022"/>
+        <topic label="ADC_CHANS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggad190fd617cbb55619f7fd1720855a95eaecb8abf314c5afbcfb697a978f601882"/>
+      </topic>
+      <topic label="HAL_setDutyCycle" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga90d8f6781debfa154ee6ab9d0deb104a"/>
+      <topic label="HAL_setPWMFreq" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gad4e984a8b58d1af11165fef8a6486b30"/>
+      <topic label="HAL_configurePWMPin" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga9ec23b58caf76051e23607352e7c032d"/>
+      <topic label="HAL_writeSPI8withTimeout" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga6895b4cdd0f81dd6303b4efe3f6135d2"/>
+      <topic label="HAL_readSPI8withTimeout" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gac6a601f7e018d1208eb32319b52d8d9d"/>
+      <topic label="HAL_writeSPI16withTimeout" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga30f1a29c270a30b450997d78080a4d58"/>
+      <topic label="HAL_readSPI16withTimeout" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga1d359f52a30de7ca9e49a1ebf9eeaad0"/>
+      <topic label="HAL_delayMicroSeconds" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga2172aa821a7abb3c83537b022790f7c4"/>
+      <topic label="HAL_delayMilliSeconds" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gaf439c7934f8a59d8b9a3b8b3732f1971"/>
+      <topic label="HAL_readGPIOInput" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gaeb39e136a620ab9cea1fd3999e946d6c"/>
+      <topic label="HAL_setGPIOOutput" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gac0d78298925494e1e5f78c7ccefd5374"/>
+      <topic label="HAL_Init" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga0c24e2b1e439cc2870fd9be6a7882006"/>
+      <topic label="HAL_setADCRefVoltage" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gab1fca55adc1976c45d7e652450ace16d"/>
+      <topic label="HAL_getRawADCValue" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gae4113155b6f0bc5a0b350da38b0ca4cb"/>
+      <topic label="HAL_getmVfromADC" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga0f2abcb7f1df47484fb34ec88ccc4560"/>
+      <topic label="HAL_getIQ20VoltageFromADC" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga72c7122d630a6ed68ef6f73208d7a281"/>
+      <topic label="HAL_processADCIRQ" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga27b8c67f7d05acaab8774b7915200b35"/>
+    </topic>
+    <topic label="DRV8706-Q1 - Motor Driver Module" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html">
+      <topic label="DRV8706Q1_INSTANCE" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html">
+        <topic label="adcChan" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a39d1b1df893a22d8b6933fb88a96cd81"/>
+        <topic label="csaSF" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#ab131302fedca55bd0ea1b3c36897bdeb"/>
+        <topic label="nSleep" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a9a52b74000f8d7bf28419c35360352a7"/>
+        <topic label="drvOff" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a0a1e7dc1aee1bd4e283715c0d9f93185"/>
+        <topic label="nFault" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#ad38cb0edf20c15ade03b5ecf6504bd1d"/>
+        <topic label="nHiz1" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a9b891378bf1797a0dfaaeb09deacca86"/>
+        <topic label="nHiz2" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a228e8f168e83dc12cc68da651d5d3fbd"/>
+        <topic label="in1En" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#aaa9efcb18ed07558fc0c4c9a8949c928"/>
+        <topic label="in2Ph" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#aadbd9ccd0c877537360eb2fae532c8c5"/>
+        <topic label="spiChan" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#af91a4e30394a34bb4b860de3dec803d4"/>
+        <topic label="spiCS" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#ab10807284be818dc95b5372ca0d30346"/>
+        <topic label="aRef_V" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#aa95f7caf09327bbdba3011961276ec5b"/>
+        <topic label="csaGain" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#afe910f04e30d265e275705331d0fb796"/>
+        <topic label="csaDiv" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a9266724d8e77f7808d60a4bf07f90422"/>
+        <topic label="shuntRes" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#ac10a4a94de291ad0737f8f65a9f353e6"/>
+        <topic label="driveMode" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a0bad687769919ed66a06159127c3396c"/>
+      </topic>
+      <topic label="DRV8706Q1_MODES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga91abd558fb88bd4cc685b8deee33b1a3">
+        <topic label="DRV8706Q1_H_BRIDGE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga91abd558fb88bd4cc685b8deee33b1a3af84e90390a294cc8e3727af0280a7b25"/>
+        <topic label="DRV8706Q1_PH_EN" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga91abd558fb88bd4cc685b8deee33b1a3ad22ccee08ae83ceefa58dc42d2dc09da"/>
+        <topic label="DRV8706Q1_HALF_BRIDGE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga91abd558fb88bd4cc685b8deee33b1a3a38851c55a74cf9c90bae46213819be6a"/>
+        <topic label="DRV8706Q1_SPLIT_SOLENOID" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga91abd558fb88bd4cc685b8deee33b1a3a03a9840a790631b0f3bcc6ff377113ba"/>
+      </topic>
+      <topic label="DRV8706Q1_H_BRIDGE_DRIVES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga6f70029b9f1b408918b05b2f386564a8">
+        <topic label="DRV8706Q1_H_BRIDGE_COAST" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga6f70029b9f1b408918b05b2f386564a8a3d1dd618acb964bcc7e8d078fd3d5d98"/>
+        <topic label="DRV8706Q1_H_BRIDGE_REVERSE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga6f70029b9f1b408918b05b2f386564a8a71664c3b3ead96d046d6c26f88189dca"/>
+        <topic label="DRV8706Q1_H_BRIDGE_FORWARD" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga6f70029b9f1b408918b05b2f386564a8a4885ea048be448250e9539ad9e583b1e"/>
+        <topic label="DRV8706Q1_H_BRIDGE_ACTIVE_FREEWHEEL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga6f70029b9f1b408918b05b2f386564a8ac1a7e03690a672d4c3732545b6a22fbf"/>
+      </topic>
+      <topic label="DRV8706Q1_PHASE_DRIVES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga5b35712ca409cf881b6847b3ef3ee1a9">
+        <topic label="DRV8706Q1_PHASE_REVERSE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5b35712ca409cf881b6847b3ef3ee1a9a949bb11019e0ba7ba14fae70f74217b0"/>
+        <topic label="DRV8706Q1_PHASE_FORWARD" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5b35712ca409cf881b6847b3ef3ee1a9abce8060e60ddb19258db8144cad80612"/>
+        <topic label="DRV8706Q1_PHASE_ACTIVE_FREEWHEEL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5b35712ca409cf881b6847b3ef3ee1a9a8a26388a353601bb302a82a6aef89f36"/>
+      </topic>
+      <topic label="DRV8706Q1_SOLENOID_DRIVES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gadd602cb53802886c1d7cc5b3fb9d51fd">
+        <topic label="DRV8706Q1_SOLENOID_DISABLE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggadd602cb53802886c1d7cc5b3fb9d51fda548a871f8b7dac56dec2fbf7fd3e4353"/>
+        <topic label="DRV8706Q1_SOLENOID_PWM" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggadd602cb53802886c1d7cc5b3fb9d51fda9ee1620c66ff394fb4076bbf1a262674"/>
+      </topic>
+      <topic label="DRV8706Q1_HALF_BRIDGE_DRIVES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gace3d9684814810797533093829f4ff3b">
+        <topic label="DRV8706Q1_HALF_BRIDGE_HI_Z" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggace3d9684814810797533093829f4ff3bac76303b8d9a1886de9d633be3ecb4f5e"/>
+        <topic label="DRV8706Q1_HALF_BRIDGE_PWM" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggace3d9684814810797533093829f4ff3ba840cfe0087c655f34c4bdc23466923dd"/>
+      </topic>
+      <topic label="DRV8706Q1_PWM_CHANNELS" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gac9cc248aaa86cd98844e6e13215f0136">
+        <topic label="DRV8706Q1_PWM_CHANNEL_0" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggac9cc248aaa86cd98844e6e13215f0136acf1e830d81ffcdb2490853b6a959ebc5"/>
+        <topic label="DRV8706Q1_PWM_CHANNEL_1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggac9cc248aaa86cd98844e6e13215f0136a48760e36231b237b15ce65d3085e9105"/>
+      </topic>
+      <topic label="DRV8706Q1_SPI_ADDR" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gaef31dd7c95117efb9d5ec1a34331850c">
+        <topic label="DRV8706Q1_SPI_ADDR_IC_STAT_1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca30036d63dcf189c212cb5dab5306575c"/>
+        <topic label="DRV8706Q1_SPI_ADDR_VGS_VDS_STAT" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cab3a2e008e9fad310fd015c0cba0fdfbc"/>
+        <topic label="DRV8706Q1_SPI_ADDR_IC_STAT_2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca40be0b534a580da4ab19e424d74f2c9e"/>
+        <topic label="DRV8706Q1_SPI_ADDR_RSVD_STAT" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cade51c6d104f762ed687fada8d4075448"/>
+        <topic label="DRV8706Q1_SPI_ADDR_IC_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca22ed43ae2257a782fa00ffe412c586b1"/>
+        <topic label="DRV8706Q1_SPI_ADDR_BRG_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca48684934270f2526b7931b4a29f606a7"/>
+        <topic label="DRV8706Q1_SPI_ADDR_DRV_CTRL_1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850caae01fb6ed9e027937d60f1d5622470a0"/>
+        <topic label="DRV8706Q1_SPI_ADDR_DRV_CTRL_2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cace57827e567901bc3340f3bdd10de84e"/>
+        <topic label="DRV8706Q1_SPI_ADDR_DRV_CTRL_3" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cafea06078a656b53726bc8142def23b9d"/>
+        <topic label="DRV8706Q1_SPI_ADDR_VDS_CTRL_1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca1f4ab8782d88cc6100baae5fe4faa7e1"/>
+        <topic label="DRV8706Q1_SPI_ADDR_VDS_CTRL_2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cac786b456e2ee03ccc4b2c0c64ba0241c"/>
+        <topic label="DRV8706Q1_SPI_ADDR_OLSC_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850caa66a4ba4a7a3c2f5a2df990189366acc"/>
+        <topic label="DRV8706Q1_SPI_ADDR_UVOV_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca55b8028974885a6709b8dba03865e6c1"/>
+        <topic label="DRV8706Q1_SPI_ADDR_CSA_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca72d0054d73e1a8911a6716b71032d9f7"/>
+      </topic>
+      <topic label="DRV8706Q1_CSA_GAINS" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga5e45b434a0ff0a9effffe0e0096c02ba">
+        <topic label="DRV8706Q1_CSA_GAIN_10" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5e45b434a0ff0a9effffe0e0096c02baaf35c575687376a7bfa92fb5eb34babe5"/>
+        <topic label="DRV8706Q1_CSA_GAIN_20" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5e45b434a0ff0a9effffe0e0096c02baa5aba9e74af31b77599ea6899d665c9de"/>
+        <topic label="DRV8706Q1_CSA_GAIN_40" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5e45b434a0ff0a9effffe0e0096c02baabfc65204adf41891c719abb3dfc9d0c1"/>
+        <topic label="DRV8706Q1_CSA_GAIN_80" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5e45b434a0ff0a9effffe0e0096c02baa9a81db8e60f58739d0f121a271b40363"/>
+      </topic>
+      <topic label="DRV8706Q1_CSA_DIV" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga9c4214ebe01af2be2c57dd6fab123257">
+        <topic label="DRV8706Q1_CSA_DIV_2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga9c4214ebe01af2be2c57dd6fab123257ab2a8140628ecfc2020444da6a68a899a"/>
+        <topic label="DRV8706Q1_CSA_DIV_8" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga9c4214ebe01af2be2c57dd6fab123257ac254ed356bc06c2b157379207d25efed"/>
+      </topic>
+      <topic label="DRV8706Q1_init" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga15e1ddddfd5ee7b665c3c6f0af2a264b"/>
+      <topic label="DRV8706Q1_switchToHBridgeDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gae3b6619ba638ed632937090a660c0ae9"/>
+      <topic label="DRV8706Q1_changeHBridgeDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga1783b6b2bb64efc7f8b144fa7da7133c"/>
+      <topic label="DRV8706Q1_switchToPhaseDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gaf56531b9abd9dd7a379ee7ea79c9c452"/>
+      <topic label="DRV8706Q1_changePhaseDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga3b61997764163d6566fb1ac2de8a535d"/>
+      <topic label="DRV8706Q1_changeSolenoidDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gab35ae88e19ac4c687b4054687896dce1"/>
+      <topic label="DRV8706Q1_changeHalfBridgeDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gadf6b55d7f3b096516db06632d27442b8"/>
+      <topic label="DRV8706Q1_switchToHalfBridgeDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga7bb35a940edcbdd382593b28df5c35d5"/>
+      <topic label="DRV8706Q1_switchToSolenoidDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga404a75331846576d0657b8104acba82f"/>
+      <topic label="DRV8706Q1_spiUpdateRegister" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gad697586908ba822d8953cd5db684b029"/>
+      <topic label="DRV8706Q1_spiWriteCmd" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gaad09632830b0064fab3d50dfaf3e1934"/>
+      <topic label="DRV8706Q1_spiReadCmd" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga8449b45dc4c9537e6753af8dffe1b3c6"/>
+      <topic label="DRV8706Q1_getCurrent" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gafc9933191ef37a064d70d077b6c467c1"/>
+      <topic label="DRV8706Q1_setDrivePWMFreq" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga9c9103f7adb2e5790b0df4db49cf237e"/>
+      <topic label="DRV8706Q1_setDriveDutyCycle" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga092e1846ca18123c04039b0889497bce"/>
+      <topic label="DRV8706Q1_reset" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gadf57d1431824d1d01f3b13ca320e99fb"/>
+      <topic label="DRV8706Q1_powerOnResetVal" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gaa60458c6b32d88364b830781989d887b"/>
+      <topic label="DRV8706Q1_setNSleep" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga0de0c501fa01964c9081c50fea483e2f"/>
+      <topic label="DRV8706Q1_setDrvOff" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga42f1e7f51dc897e193417166fae3ecc1"/>
+      <topic label="DRV8706Q1_setNHiZ1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga6aeb321103928449c50a7f7a26d60b02"/>
+      <topic label="DRV8706Q1_setNHiZ2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga5f2bff21b52be2af63d82c4e5256586c"/>
+      <topic label="DRV8706Q1_setAnalogReference" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga39204b387693c86df30f4a8084b52ebb"/>
+      <topic label="DRV8706Q1_setAnalogReferenceDivider" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gacb2589cf0999288ed8216274f24fcd27"/>
+      <topic label="DRV8706Q1_setCurrentSenseGain" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga5c23b407ae7e894c066533ea1e8b4572"/>
+      <topic label="DRV8706Q1_setCurrentShuntResistor" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga8b99e0b9f2d906f716c8e31fffb88356"/>
+    </topic>
+  </topic>
+  <topic label="Data Structures" href="annotated.html">
+    <topic label="Data Structures" href="annotated.html">
+      <topic label="DRV8706Q1_INSTANCE" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html">
+        <topic label="adcChan" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a39d1b1df893a22d8b6933fb88a96cd81"/>
+        <topic label="csaSF" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#ab131302fedca55bd0ea1b3c36897bdeb"/>
+        <topic label="nSleep" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a9a52b74000f8d7bf28419c35360352a7"/>
+        <topic label="drvOff" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a0a1e7dc1aee1bd4e283715c0d9f93185"/>
+        <topic label="nFault" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#ad38cb0edf20c15ade03b5ecf6504bd1d"/>
+        <topic label="nHiz1" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a9b891378bf1797a0dfaaeb09deacca86"/>
+        <topic label="nHiz2" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a228e8f168e83dc12cc68da651d5d3fbd"/>
+        <topic label="in1En" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#aaa9efcb18ed07558fc0c4c9a8949c928"/>
+        <topic label="in2Ph" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#aadbd9ccd0c877537360eb2fae532c8c5"/>
+        <topic label="spiChan" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#af91a4e30394a34bb4b860de3dec803d4"/>
+        <topic label="spiCS" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#ab10807284be818dc95b5372ca0d30346"/>
+        <topic label="aRef_V" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#aa95f7caf09327bbdba3011961276ec5b"/>
+        <topic label="csaGain" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#afe910f04e30d265e275705331d0fb796"/>
+        <topic label="csaDiv" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a9266724d8e77f7808d60a4bf07f90422"/>
+        <topic label="shuntRes" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#ac10a4a94de291ad0737f8f65a9f353e6"/>
+        <topic label="driveMode" href="struct_d_r_v8706_q1___i_n_s_t_a_n_c_e.html#a0bad687769919ed66a06159127c3396c"/>
+      </topic>
+    </topic>
+    <topic label="Data Fields" href="functions.html">
+      <topic label="All" href="functions.html"/>
+      <topic label="Variables" href="functions_vars.html"/>
+    </topic>
+  </topic>
+  <topic label="Files">
+    <topic label="File List" href="files.html">
+      <topic label="drv8706-q1.h" href="drv8706-q1_8h.html">
+        <topic label="DRV8706Q1_MODES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga91abd558fb88bd4cc685b8deee33b1a3">
+          <topic label="DRV8706Q1_H_BRIDGE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga91abd558fb88bd4cc685b8deee33b1a3af84e90390a294cc8e3727af0280a7b25"/>
+          <topic label="DRV8706Q1_PH_EN" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga91abd558fb88bd4cc685b8deee33b1a3ad22ccee08ae83ceefa58dc42d2dc09da"/>
+          <topic label="DRV8706Q1_HALF_BRIDGE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga91abd558fb88bd4cc685b8deee33b1a3a38851c55a74cf9c90bae46213819be6a"/>
+          <topic label="DRV8706Q1_SPLIT_SOLENOID" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga91abd558fb88bd4cc685b8deee33b1a3a03a9840a790631b0f3bcc6ff377113ba"/>
+        </topic>
+        <topic label="DRV8706Q1_H_BRIDGE_DRIVES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga6f70029b9f1b408918b05b2f386564a8">
+          <topic label="DRV8706Q1_H_BRIDGE_COAST" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga6f70029b9f1b408918b05b2f386564a8a3d1dd618acb964bcc7e8d078fd3d5d98"/>
+          <topic label="DRV8706Q1_H_BRIDGE_REVERSE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga6f70029b9f1b408918b05b2f386564a8a71664c3b3ead96d046d6c26f88189dca"/>
+          <topic label="DRV8706Q1_H_BRIDGE_FORWARD" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga6f70029b9f1b408918b05b2f386564a8a4885ea048be448250e9539ad9e583b1e"/>
+          <topic label="DRV8706Q1_H_BRIDGE_ACTIVE_FREEWHEEL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga6f70029b9f1b408918b05b2f386564a8ac1a7e03690a672d4c3732545b6a22fbf"/>
+        </topic>
+        <topic label="DRV8706Q1_PHASE_DRIVES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga5b35712ca409cf881b6847b3ef3ee1a9">
+          <topic label="DRV8706Q1_PHASE_REVERSE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5b35712ca409cf881b6847b3ef3ee1a9a949bb11019e0ba7ba14fae70f74217b0"/>
+          <topic label="DRV8706Q1_PHASE_FORWARD" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5b35712ca409cf881b6847b3ef3ee1a9abce8060e60ddb19258db8144cad80612"/>
+          <topic label="DRV8706Q1_PHASE_ACTIVE_FREEWHEEL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5b35712ca409cf881b6847b3ef3ee1a9a8a26388a353601bb302a82a6aef89f36"/>
+        </topic>
+        <topic label="DRV8706Q1_SOLENOID_DRIVES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gadd602cb53802886c1d7cc5b3fb9d51fd">
+          <topic label="DRV8706Q1_SOLENOID_DISABLE" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggadd602cb53802886c1d7cc5b3fb9d51fda548a871f8b7dac56dec2fbf7fd3e4353"/>
+          <topic label="DRV8706Q1_SOLENOID_PWM" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggadd602cb53802886c1d7cc5b3fb9d51fda9ee1620c66ff394fb4076bbf1a262674"/>
+        </topic>
+        <topic label="DRV8706Q1_HALF_BRIDGE_DRIVES" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gace3d9684814810797533093829f4ff3b">
+          <topic label="DRV8706Q1_HALF_BRIDGE_HI_Z" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggace3d9684814810797533093829f4ff3bac76303b8d9a1886de9d633be3ecb4f5e"/>
+          <topic label="DRV8706Q1_HALF_BRIDGE_PWM" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggace3d9684814810797533093829f4ff3ba840cfe0087c655f34c4bdc23466923dd"/>
+        </topic>
+        <topic label="DRV8706Q1_PWM_CHANNELS" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gac9cc248aaa86cd98844e6e13215f0136">
+          <topic label="DRV8706Q1_PWM_CHANNEL_0" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggac9cc248aaa86cd98844e6e13215f0136acf1e830d81ffcdb2490853b6a959ebc5"/>
+          <topic label="DRV8706Q1_PWM_CHANNEL_1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggac9cc248aaa86cd98844e6e13215f0136a48760e36231b237b15ce65d3085e9105"/>
+        </topic>
+        <topic label="DRV8706Q1_SPI_ADDR" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gaef31dd7c95117efb9d5ec1a34331850c">
+          <topic label="DRV8706Q1_SPI_ADDR_IC_STAT_1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca30036d63dcf189c212cb5dab5306575c"/>
+          <topic label="DRV8706Q1_SPI_ADDR_VGS_VDS_STAT" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cab3a2e008e9fad310fd015c0cba0fdfbc"/>
+          <topic label="DRV8706Q1_SPI_ADDR_IC_STAT_2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca40be0b534a580da4ab19e424d74f2c9e"/>
+          <topic label="DRV8706Q1_SPI_ADDR_RSVD_STAT" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cade51c6d104f762ed687fada8d4075448"/>
+          <topic label="DRV8706Q1_SPI_ADDR_IC_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca22ed43ae2257a782fa00ffe412c586b1"/>
+          <topic label="DRV8706Q1_SPI_ADDR_BRG_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca48684934270f2526b7931b4a29f606a7"/>
+          <topic label="DRV8706Q1_SPI_ADDR_DRV_CTRL_1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850caae01fb6ed9e027937d60f1d5622470a0"/>
+          <topic label="DRV8706Q1_SPI_ADDR_DRV_CTRL_2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cace57827e567901bc3340f3bdd10de84e"/>
+          <topic label="DRV8706Q1_SPI_ADDR_DRV_CTRL_3" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cafea06078a656b53726bc8142def23b9d"/>
+          <topic label="DRV8706Q1_SPI_ADDR_VDS_CTRL_1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca1f4ab8782d88cc6100baae5fe4faa7e1"/>
+          <topic label="DRV8706Q1_SPI_ADDR_VDS_CTRL_2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850cac786b456e2ee03ccc4b2c0c64ba0241c"/>
+          <topic label="DRV8706Q1_SPI_ADDR_OLSC_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850caa66a4ba4a7a3c2f5a2df990189366acc"/>
+          <topic label="DRV8706Q1_SPI_ADDR_UVOV_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca55b8028974885a6709b8dba03865e6c1"/>
+          <topic label="DRV8706Q1_SPI_ADDR_CSA_CTRL" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ggaef31dd7c95117efb9d5ec1a34331850ca72d0054d73e1a8911a6716b71032d9f7"/>
+        </topic>
+        <topic label="DRV8706Q1_CSA_GAINS" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga5e45b434a0ff0a9effffe0e0096c02ba">
+          <topic label="DRV8706Q1_CSA_GAIN_10" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5e45b434a0ff0a9effffe0e0096c02baaf35c575687376a7bfa92fb5eb34babe5"/>
+          <topic label="DRV8706Q1_CSA_GAIN_20" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5e45b434a0ff0a9effffe0e0096c02baa5aba9e74af31b77599ea6899d665c9de"/>
+          <topic label="DRV8706Q1_CSA_GAIN_40" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5e45b434a0ff0a9effffe0e0096c02baabfc65204adf41891c719abb3dfc9d0c1"/>
+          <topic label="DRV8706Q1_CSA_GAIN_80" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga5e45b434a0ff0a9effffe0e0096c02baa9a81db8e60f58739d0f121a271b40363"/>
+        </topic>
+        <topic label="DRV8706Q1_CSA_DIV" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga9c4214ebe01af2be2c57dd6fab123257">
+          <topic label="DRV8706Q1_CSA_DIV_2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga9c4214ebe01af2be2c57dd6fab123257ab2a8140628ecfc2020444da6a68a899a"/>
+          <topic label="DRV8706Q1_CSA_DIV_8" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gga9c4214ebe01af2be2c57dd6fab123257ac254ed356bc06c2b157379207d25efed"/>
+        </topic>
+        <topic label="DRV8706Q1_init" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga15e1ddddfd5ee7b665c3c6f0af2a264b"/>
+        <topic label="DRV8706Q1_switchToHBridgeDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gae3b6619ba638ed632937090a660c0ae9"/>
+        <topic label="DRV8706Q1_changeHBridgeDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga1783b6b2bb64efc7f8b144fa7da7133c"/>
+        <topic label="DRV8706Q1_switchToPhaseDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gaf56531b9abd9dd7a379ee7ea79c9c452"/>
+        <topic label="DRV8706Q1_changePhaseDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga3b61997764163d6566fb1ac2de8a535d"/>
+        <topic label="DRV8706Q1_changeSolenoidDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gab35ae88e19ac4c687b4054687896dce1"/>
+        <topic label="DRV8706Q1_changeHalfBridgeDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gadf6b55d7f3b096516db06632d27442b8"/>
+        <topic label="DRV8706Q1_switchToHalfBridgeDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga7bb35a940edcbdd382593b28df5c35d5"/>
+        <topic label="DRV8706Q1_switchToSolenoidDrive" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga404a75331846576d0657b8104acba82f"/>
+        <topic label="DRV8706Q1_spiUpdateRegister" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gad697586908ba822d8953cd5db684b029"/>
+        <topic label="DRV8706Q1_spiWriteCmd" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gaad09632830b0064fab3d50dfaf3e1934"/>
+        <topic label="DRV8706Q1_spiReadCmd" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga8449b45dc4c9537e6753af8dffe1b3c6"/>
+        <topic label="DRV8706Q1_getCurrent" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gafc9933191ef37a064d70d077b6c467c1"/>
+        <topic label="DRV8706Q1_setDrivePWMFreq" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga9c9103f7adb2e5790b0df4db49cf237e"/>
+        <topic label="DRV8706Q1_setDriveDutyCycle" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga092e1846ca18123c04039b0889497bce"/>
+        <topic label="DRV8706Q1_reset" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gadf57d1431824d1d01f3b13ca320e99fb"/>
+        <topic label="DRV8706Q1_powerOnResetVal" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gaa60458c6b32d88364b830781989d887b"/>
+        <topic label="DRV8706Q1_setNSleep" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga0de0c501fa01964c9081c50fea483e2f"/>
+        <topic label="DRV8706Q1_setDrvOff" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga42f1e7f51dc897e193417166fae3ecc1"/>
+        <topic label="DRV8706Q1_setNHiZ1" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga6aeb321103928449c50a7f7a26d60b02"/>
+        <topic label="DRV8706Q1_setNHiZ2" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga5f2bff21b52be2af63d82c4e5256586c"/>
+        <topic label="DRV8706Q1_setAnalogReference" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga39204b387693c86df30f4a8084b52ebb"/>
+        <topic label="DRV8706Q1_setAnalogReferenceDivider" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#gacb2589cf0999288ed8216274f24fcd27"/>
+        <topic label="DRV8706Q1_setCurrentSenseGain" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga5c23b407ae7e894c066533ea1e8b4572"/>
+        <topic label="DRV8706Q1_setCurrentShuntResistor" href="group___b_s_m_____m_s_p_m0_l___d_r_v8706_q1.html#ga8b99e0b9f2d906f716c8e31fffb88356"/>
+      </topic>
+      <topic label="hal.h" href="hal_8h.html">
+        <topic label="HIGH" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga5bb885982ff66a2e0a0a45a8ee9c35e2"/>
+        <topic label="LOW" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gab811d8c6ff3a505312d3276590444289"/>
+        <topic label="PIN_MODE" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga353814d7eb3eac5a06f0ed8bae4a2db0">
+          <topic label="PIN_MODE_OUTPUT_LOW" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0a00bd0dc6138143ad722f501cb027dfee"/>
+          <topic label="PIN_MODE_OUTPUT_HIGH" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0ad18857d6b7958c471caaf0ef3e5a9916"/>
+          <topic label="PIN_MODE_INPUT_PU" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0a55b7b78e0bc35ea302b43da50483973a"/>
+          <topic label="PIN_MODE_INPUT_PD" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0ad1a9afabeb670024e017569f397d40f8"/>
+          <topic label="PIN_MODE_INPUT_HZ" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0a3e6cb6093d41dbd978264ec3f2c45232"/>
+          <topic label="PIN_MODE_PERIPHERAL" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0aec243c2b5430a3138d95e2cba414b66f"/>
+          <topic label="PIN_MODE_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga353814d7eb3eac5a06f0ed8bae4a2db0a8212d342c65b043de5e06028b027e85a"/>
+        </topic>
+        <topic label="PWM_CHANNELS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gadf1629fb519002258e5f6305659393d3">
+          <topic label="PWM_CHANNEL_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggadf1629fb519002258e5f6305659393d3a9d3dcb4d18c3aefb9b2219a76feac86b"/>
+          <topic label="PWM_CHANNEL_1" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggadf1629fb519002258e5f6305659393d3a5a035abb5b092a5a48114cb240e65a60"/>
+          <topic label="PWM_CHANNELS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggadf1629fb519002258e5f6305659393d3ac5ab5926eb3a21599333faab1b28ad7d"/>
+        </topic>
+        <topic label="SPI_CHANNELS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gae0444f7c93918f4d38f940d21e903185">
+          <topic label="SPI_CHANNEL_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggae0444f7c93918f4d38f940d21e903185ad9012d36167f89fb53e6747e1aab4f67"/>
+          <topic label="SPI_CHANNELS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggae0444f7c93918f4d38f940d21e903185a7dbf428b6d9408ae1e4027661e2b5263"/>
+        </topic>
+        <topic label="SPI_CS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gaafc0c55564c2e6786a134dd2ca172683">
+          <topic label="SPI_CS_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683a7c771518cdbd7499c46536d99602b218"/>
+          <topic label="SPI_CS_1" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683a6125c52bbaed83291a714a0aa6136999"/>
+          <topic label="SPI_CS_2" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683a2c0043ecf73179f803694b24d938904d"/>
+          <topic label="SPI_CS_3" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683a6b3602356eaaecd8f81e48b13189ce9a"/>
+          <topic label="SPI_CS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaafc0c55564c2e6786a134dd2ca172683affb303cc9efd5d56f3239ab92778f4bb"/>
+        </topic>
+        <topic label="GPIO_OUTPUT_PINS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gaaed8746cc5d095f8e1d3e6c082e6c16c">
+          <topic label="GPIO_OUTPUT_PIN_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca399ce972fe7b66fa8777e027ab29b023"/>
+          <topic label="GPIO_OUTPUT_PIN_1" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16cad759e949cf87eee40bf1ee4c61532616"/>
+          <topic label="GPIO_OUTPUT_PIN_2" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca86c98ed33866ae0ee14d3f454b222ada"/>
+          <topic label="GPIO_OUTPUT_PIN_3" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca8d2b2be03126d17214e62e57307e06d6"/>
+          <topic label="GPIO_OUTPUT_PIN_4" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca8aacd002f1531cc0a62a77cbc4f2a73f"/>
+          <topic label="GPIO_OUTPUT_PINS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggaaed8746cc5d095f8e1d3e6c082e6c16ca633b79fdf07aaee2e1d81fb9a48ebd24"/>
+        </topic>
+        <topic label="GPIO_INPUT_PINS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga6cc3463d0da5516f0016137200cf7738">
+          <topic label="GPIO_INPUT_PIN_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga6cc3463d0da5516f0016137200cf7738ab3206cece9285842de96e1f7911d0c23"/>
+          <topic label="GPIO_INPUT_PINS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gga6cc3463d0da5516f0016137200cf7738a66e83de490009df3dbc1a41377e93dec"/>
+        </topic>
+        <topic label="ADC_CHANS" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gad190fd617cbb55619f7fd1720855a95e">
+          <topic label="ADC_CHAN_0" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggad190fd617cbb55619f7fd1720855a95eae0d6cc3f8ccce4b67f59db6147e4967c"/>
+          <topic label="ADC_CHAN_1" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggad190fd617cbb55619f7fd1720855a95ead36add5d4dcc362325b3b2a9d8259022"/>
+          <topic label="ADC_CHANS_MAX" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ggad190fd617cbb55619f7fd1720855a95eaecb8abf314c5afbcfb697a978f601882"/>
+        </topic>
+        <topic label="HAL_setDutyCycle" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga90d8f6781debfa154ee6ab9d0deb104a"/>
+        <topic label="HAL_setPWMFreq" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gad4e984a8b58d1af11165fef8a6486b30"/>
+        <topic label="HAL_configurePWMPin" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga9ec23b58caf76051e23607352e7c032d"/>
+        <topic label="HAL_writeSPI8withTimeout" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga6895b4cdd0f81dd6303b4efe3f6135d2"/>
+        <topic label="HAL_readSPI8withTimeout" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gac6a601f7e018d1208eb32319b52d8d9d"/>
+        <topic label="HAL_writeSPI16withTimeout" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga30f1a29c270a30b450997d78080a4d58"/>
+        <topic label="HAL_readSPI16withTimeout" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga1d359f52a30de7ca9e49a1ebf9eeaad0"/>
+        <topic label="HAL_delayMicroSeconds" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga2172aa821a7abb3c83537b022790f7c4"/>
+        <topic label="HAL_delayMilliSeconds" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gaf439c7934f8a59d8b9a3b8b3732f1971"/>
+        <topic label="HAL_readGPIOInput" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gaeb39e136a620ab9cea1fd3999e946d6c"/>
+        <topic label="HAL_setGPIOOutput" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gac0d78298925494e1e5f78c7ccefd5374"/>
+        <topic label="HAL_Init" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga0c24e2b1e439cc2870fd9be6a7882006"/>
+        <topic label="HAL_setADCRefVoltage" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gab1fca55adc1976c45d7e652450ace16d"/>
+        <topic label="HAL_getRawADCValue" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#gae4113155b6f0bc5a0b350da38b0ca4cb"/>
+        <topic label="HAL_getmVfromADC" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga0f2abcb7f1df47484fb34ec88ccc4560"/>
+        <topic label="HAL_getIQ20VoltageFromADC" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga72c7122d630a6ed68ef6f73208d7a281"/>
+        <topic label="HAL_processADCIRQ" href="group___b_s_m_____m_s_p_m0_l___h_a_l.html#ga27b8c67f7d05acaab8774b7915200b35"/>
+      </topic>
+    </topic>
+    <topic label="Globals" href="globals.html">
+      <topic label="All" href="globals.html"/>
+      <topic label="Functions" href="globals_func.html"/>
+      <topic label="Enumerations" href="globals_enum.html"/>
+      <topic label="Enumerator" href="globals_eval.html"/>
+      <topic label="Macros" href="globals_defs.html"/>
+    </topic>
+  </topic>
+  <topic label="Disclaimer" href="_disclaimer.html"/>
+</toc>

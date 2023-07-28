@@ -1,0 +1,30 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+UART1.$name = "UART_0";
+UART1.profile = "CONFIG_PROFILE_1";
+UART1.peripheral.$assign = "UART0";
+UART1.targetBaudRate = 9600;
+UART1.enableInternalLoopback = false;
+UART1.enabledInterrupts = ["RX"];
+UART1.enableFIFO= false;
+
+UART1.peripheral.txPin.$assign = "PA8";
+UART1.peripheral.rxPin.$assign = "PA9";
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+SYSCTL.clockTreeEn = true;

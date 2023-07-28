@@ -1,0 +1,835 @@
+Using SysConfig with MSPM0
+==========================
+
+1. Introduction
+---------------
+
+This guide describes how to install and get started using SysConfig with MSPM0.
+
+1.1. SysConfig Description and Recommended Use
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components.
+| SysConfig helps you manage, expose and resolve conflicts visually so that you have more time to create differentiated applications.
+
+| The tool's output includes C header and code files that can be used with software development kit (SDK) examples or used to configure custom software.
+| The SysConfig tool automatically selects the pinmux settings that satisfy the entered requirements.
+
+The SysConfig tool is delivered as a standalone installer, integrated in CCS, it can be manually integrated into IAR and Keil, or can be used via the dev.ti.com cloud tools portal.
+
+.. raw:: html
+
+   <body>
+
+.. raw:: html
+
+   <div class="mxgraph" style="max-width:100%;border:1px solid transparent;"
+   data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2023-02-25T01:17:30.626Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36\&quot; etag=\&quot;B4lJZ1YdmngnwSlWzQrn\&quot; version=\&quot;20.5.1\&quot; type=\&quot;device\&quot;&gt;&lt;diagram id=\&quot;C5RBs43oDa-KdzZeNtuy\&quot; name=\&quot;Page-1\&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}">
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+
+2. Downloading and Installing MSPM0 SysConfig
+---------------------------------------------
+
+These instructions are required when using the standalone SysConfig installer, which is currently neccessary for IAR, Keil or other IDEs. IDEs other than CCS can use this version of SysConfig in their applications, or just use the files generated by it. There are additional steps in section `Getting Started with MSPM0 SysConfig <#getting-started-with-mspm0-sysconfig>`__ to integrate this version within CCS.
+
+1. Download **SysConfig** from `TI.com <https://www.ti.com/tool/download/SYSCONFIG/>`__
+
+2. Install SysConfig
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_install.png
+      :alt: 
+
+3. Getting Started with MSPM0 SysConfig
+---------------------------------------
+
+This section describes how to integrate and use the standalone version of SysConfig in various IDEs, as well as open a Project.
+
+3.1 Getting Started using CCS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These instructions are required in order to integrate the standalone SysConfig in CCS, and successfully build an example.
+
+3.1.1 Enabling SysConfig in CCS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+CCS 12.4+ and CCS Theia 1.0.1+ include a SysConfig version which is compatible with MSPM0, thus not requiring any additional steps to use it. The steps below apply only when integrating a standalone version of SysConfig in cases such as upgrading the SysConfig version.
+
+1. | Follow instructions from the `MSPM0 SDK QuickStart Guide for CCS Theia <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html>`__ to install CCS Theia for MSPM0.
+   | Alternatively, follow instructions from the `MSPM0 SDK QuickStart Guide for CCS <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html>`__ to install CCS for MSPM0.
+
+2. Update CCS tool path. This can be done by clicking **Window→Preferences** then in the pop-up choose **Code Composer Studio→Products**, simply refresh after the install and the product should be found underneath SysConfig. Hit apply and close to make the change take effect.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_addProduct.png
+   :alt: 
+
+3.1.2 Importing MSPM0 SysConfig Project using CCS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. | Follow instructions in `MSPM0 SDK QuickStart Guide for CCS Theia <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html>`__ to install the MSPM0 SDK and import an example in CCS Theia.
+   | Alternatively, follow instructions in `MSPM0 SDK QuickStart Guide for CCS <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html>`__ to install the MSPM0 SDK and import an example in CCS.
+   | Refer to the `MSPM0 SDK Examples Guide <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html>`__ for a full list of examples with SysConfig support.
+   | For an empty example, use the "empty" example.
+
+2. | Check the SysConfig version used by the project.
+   | This step is recommended to verify the project finds the correct standalone version, but it can be skipped.
+
+   | 2.1. Open **Project Settings→CCS General→Products** and confirm the SysConfig version is the desired one.
+   | If it is not, select SysConfig and click **Edit**.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_ccs_version.png
+      :alt: 
+
+   2.2. A window will be shown to select the product version. Click on **Preferences**.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_ccs_version2.png
+      :alt: 
+
+   2.3. Verify that the SysConfig path is to the new standalone. A refresh may be needed in order to find it. If not check the paths and installation of SysConfig
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_addProduct.png
+      :alt: 
+
+3. | Build the code example.
+   | After a successful build, double-click the .syscfg file to start using SysConfig.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_ccs_file.png
+      :alt: 
+
+3.2 Getting Started using IAR
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The best way to start a SysConfig project in IAR is to import it from the SDK; however, some steps are required to initialize SysConfig in IAR for the first time.
+
+3.2.1 Enabling SysConfig in IAR
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| The following steps are required only once after installing a new SysConfig version.
+| Note that the standalone version must be installed as described in section `Downloading and Installing MSPM0 SysConfig <#downloading-and-installing-mspm0-sysconfig>`__
+
+1.  Follow instructions in `MSPM0 SDK QuickStart Guide for IAR <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__ to install the MSPM0 SDK.
+
+2.  In IAR, select **Tools → Configure Viewers** from the menu.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_configure_viewers.png
+       :alt: 
+
+3.  Click **Import**
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_configure_viewer_import.png
+       :alt: 
+
+4.  Navigate to your SDK folder into ``<MSPM0_SDK_INSTALL_DIR>/tools/iar/`` and open **sysconfig\_iar\_setup.xml**.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_iar_setup.png
+       :alt: 
+
+5.  | The standalone SysConfig will be associated to .syscfg files.
+    | Click OK to close window.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_configure_viewers_done.png
+       :alt: 
+
+6.  Select **Tools → Configure Custom Argument Variables**.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_iar_argvars.png
+       :alt: 
+
+7.  If the MSPM0\_SDK variables are not shown, ensure this step is followed as described in `MSPM0 SDK QuickStart Guide for IAR <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__, as summarized below.
+8.  In IAR, click on **Tools → Configure Custom Argument Variables**
+
+9.  Click the **Global** tab, and then **Import**
+
+10. Navigate to your SDK folder into ``<MSPM0_SDK_INSTALL_DIR>/tools/iar/`` and open **MSPM0\_SDK.custom\_argvars**.
+
+11. The SDK variables should now be installed in IAR. Click OK to close the window.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_iar_argvars_view.png
+       :alt: 
+
+12. If the **SYSCONFIG\_ROOT** variable is not pointing to the correct path of your SysConfig installation described in section `Downloading and Installing MSPM0 SysConfig <#downloading-and-installing-mspm0-sysconfig>`__, edit the variable as shown below:
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_iar_argvars_edit.png
+       :alt: 
+
+3.2.2 Importing MSPM0 SysConfig Project using IAR
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Follow these steps to import and use a SysConfig project in IAR.
+
+1. | Import a code example with SysConfig support enabled in to your workspace as described in `MSPM0 SDK QuickStart Guide for IAR <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__.
+   | Refer to the `MSPM0 SDK Examples Guide <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html>`__ for a full list of examples with SysConfig support.
+   | For an empty example, use the "empty" example.
+
+2. Double click on the \*.syscfg file in your project.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_iar_open_file.png
+      :alt: 
+
+3. This will open SysConfig and allow you to configure peripherals, IO pins, and other settings.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_iar_open.png
+      :alt: 
+
+4. Save your changes and switch back to IAR EWARM.
+
+5. Build your code example.
+
+3.3 Getting Started using Keil
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The best way to start a SysConfig project in Keil is to import it from the SDK; however, some steps are required to initialize SysConfig in Keil for the first time.
+
+3.3.1 Enabling SysConfig in Keil
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| The following steps are required after installing a new SysConfig version or updating the SDK.
+| Note that the standalone version must be installed as described in section `Downloading and Installing MSPM0 SysConfig <#downloading-and-installing-mspm0-sysconfig>`__
+
+1. Follow instructions in `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ to install the MSPM0 SDK.
+
+2. Navigate to your SDK folder into ``<MSPM0_SDK_INSTALL_DIR>/tools/keil/`` and open ``syscfg.bat`` for editing (not executing).
+
+3. Modify the SYSCFG\_PATH shown in red below to match the standalone SysConfig path that was selected during section `Downloading and Installing MSPM0 SysConfig <#downloading-and-installing-mspm0-sysconfig>`__.
+
+   .. figure:: ./images/sysconfig_guide/keil_customize_bat.png
+      :alt: 
+
+4. On the same folder, open ``<MSPM0_SDK_INSTALL_DIR/tools/keil/MSPM0_SDK_syscfg_menu_import.cfg`` for editing.
+
+5. Modify the SysConfig and SDK versions and paths.
+
+-  The SysConfig version and path is highlighted in red and it should match what was selected during section `Downloading and Installing MSPM0 SysConfig <#downloading-and-installing-mspm0-sysconfig>`__.
+-  The SDK version and path is highlighted in blue and corresponds to the ``MSPM0_SDK_INSTALL_DIR``.
+
+   .. figure:: ./images/sysconfig_guide/keil_customize_cfg.png
+      :alt: 
+
+5. In Keil uVision, select **Tools → Customize Tools Menu** from the menu.
+
+   .. figure:: ./images/sysconfig_guide/keil_customize_tools.png
+      :alt: 
+
+6. Click **Import**
+
+   .. figure:: ./images/sysconfig_guide/keil_customize_tools_import.png
+      :alt: 
+
+7. Navigate to your SDK folder into ``<MSPM0_SDK_INSTALL_DIR>/tools/keil/`` and open **MSPM0\_SDK\_syscfg\_menu\_import.cfg**.
+
+   .. figure:: ./images/sysconfig_guide/keil_customize_tools_import_file.png
+      :alt: 
+
+8. Click OK to close window.
+
+   .. figure:: ./images/sysconfig_guide/keil_customize_tools_title.png
+      :alt: 
+
+9. The Tool will now appear on the menu. It will be used to open the GUI as explained on the next section.
+
+   .. figure:: ./images/sysconfig_guide/keil_customize_tools_view.png
+      :alt: 
+
+3.3.2 Importing MSPM0 SysConfig Project using Keil
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Follow these steps to import and use a SysConfig project in Keil.
+
+1. | Import a code example with SysConfig support enabled in to your workspace as described in `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__.
+   | Refer to the `MSPM0 SDK Examples Guide <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html>`__ for a full list of examples with SysConfig support.
+   | For an empty example, use the "empty" example.
+
+2. Double click on the \*.syscfg file in your project.
+
+3. With the \*.syscfg file opened on the viewer, click on **Tools** and select the tool configured on section `Enabling SysConfig in Keil <#enabling-sysconfig-in-keil>`__.
+
+   .. figure:: ./images/sysconfig_guide/keil_sysconfig_open.png
+      :alt: 
+
+4. | This will open SysConfig and allow you to configure peripherals, IO pins, and other settings.
+   | Note that this approach only allows one SysConfig GUI to be open at a time.
+
+   .. figure:: ./images/sysconfig_guide/keil_sysconfig_view.png
+      :alt: 
+
+5. Save your changes and switch back to Keil uVision.
+
+6. Build your code example.
+
+3.4 Getting Started without an IDE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following steps describe how to start a SysConfig project using MSPM0 without an IDE. The standalone version can be used for code generation and to evaluate the capabilities of the device, but is not capable of runnning an example.
+
+1. Run the standalone version of SysConfig
+
+2. SysConfig 1.17+ includes support for MSPM0 and supports M0 SDK:
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_pre_installed_product.png
+      :alt: 
+
+3. Select the MSPM0 SDK product, and the device.
+
+   3.1. Select a board which pre-selects the device and package.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_select_sdk_evm.png
+      :alt: 
+
+   3.2. Or, select a device and package.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_select_sdk_device.png
+      :alt: 
+
+4. Start using SysConfig
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_run.png
+      :alt: 
+
+4. Using SysConfig with MSPM0 SDK
+---------------------------------
+
+This section describes useful features of SysConfig when developing for MSPM0.
+
+4.1 SysConfig Software Modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+4.1.1 List of Software Modules
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| SysConfig software modules for MSPM0 SDK are selected by clicking the icon shown below.
+| Software Modules are organized by functionality, including groups such as SYSTEM, COMMUNICATIONS and TIMERS, among others.
+| The "READ-ONLY" group contains modules which are not modifiable, but provide useful information such as "EVENT" which shows the configuration of all events used by the application.
+| **Note**: the modules might differ from below based on SDK version.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_modules.png
+   :alt: 
+
+4.1.2 Module Description
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+| A software module's description can be opened by selecting the module before adding it.
+| The description includes an overview of the module's functionality and some useful information which can usually be found in the device's datasheet or Technical Reference Manual.
+| The following shows the description of the TIMER module:
+
+.. figure:: ./images/sysconfig_guide/sysconfig_module_description.png
+   :alt: 
+
+4.1.3 Adding a Software Module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A module can be added as shown below. Note that SysConfig will only add as many instances as supported by the selected device.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_add_module.png
+   :alt: 
+
+Adding a module will automatically hide its description; however, it can be opened again by clicking the icon shown below:
+
+.. figure:: ./images/sysconfig_guide/sysconfig_module_description_show.png
+   :alt: 
+
+4.1.4 Components of a Software Module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Software modules vary in functionality, but they typically include the following sections:
+
+-  | **Name**:
+   | Custom name of the module instance.
+   | The name starts with the number "0" as a suffix by default; however, the name can be customized by the developer to reflect the purpose of the module (e.g. "LED\_ERROR" for a GPIO, or "TIMER\_HEARTBEAT" for a TIMER).
+   | Note that the actual peripheral selected by the module is shown below (e.g. "TIMA0").
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_name.png
+      :alt: 
+
+-  | **Quick Profiles**:
+   | Short list of some common configurations used for the module.
+   | Besides providing a quick way to configure the module, these configurations can be used as a guideline to observe which parameters should be customized for each configuration.
+   | Note that after modifying any parameter, the profile will default to "Custom".
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_quickprofile.png
+      :alt: 
+
+-  | **Basic Configuration**:
+   | Provides access to the most commonly used settings and features of a module.
+   | This section is expanded by default.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_basic.png
+      :alt: 
+
+-  | **Advanced Configuration**:
+   | Provides access to less common but still useful module settings and features.
+   | This section is collapsed by default.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_advanced.png
+      :alt: 
+
+-  | **Interrupts Configuration**:
+   | Selects which interrupts are enabled or disabled for the module.
+   | This section is collapsed by default.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_interrupts.png
+      :alt: 
+
+-  | **Event Configuration**:
+   | Configures the Publisher and Subscriber events for the module.
+   | See section `Event Configuration <#event-configuration>`__ for more detailed information on how to configure Events in SysConfig.
+   | This section is collapsed by default.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_events.png
+      :alt: 
+
+-  | **PinMux - Peripheral and Pin Configuration**:
+   | Configures the hardware peripheral and pins used by the module. See section `PinMux Configuration <#pinmux-configuration>`__ for more details about hardware selection.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_pinmux.png
+      :alt: 
+
+-  | **Other Dependencies**:
+   | Provides quick access to other dependencies used by the module.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_other.png
+      :alt: 
+
+4.1.5 Detailed Description of Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Some parameters include a detailed description providing quick access to useful information.
+| To access detailed help, click on the question mark as shown below.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_module_detailed_help.png
+   :alt: 
+
+4.2 Clock Tree
+~~~~~~~~~~~~~~
+
+The Clock Tree feature allows the user to configure the clocking of a device graphically rather than using SYSCTL menus. This feature is Clock Tree and can be found by clicking the signal icon near the top left corner of SysConfig. Note the highlighted icon at the top of this page that opens on MSPM0G3507.
+
+**Note**: the modules and views may differ on SDK version.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_clockTree_overview.png
+   :alt: 
+
+To enable Clock Tree, simply add the SYSCTL module and click "Use Clock Tree" as shown below. This will source code generation and all functions from Clock Tree rather than from the SYSCTL module.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_clockTree_enable.png
+   :alt: 
+
+4.2.1 Coloration Scheme And Legend
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In SysConfig, there are different colors and shapes that represent the different states of the Clock Tree. There are three possible states and colors that different elements in the Clock Tree can be. They are:
+
+-  **Active** (*blue*): The element is in use and has a non-zero signal at at least one input
+-  **Unused** (*light gray*): The element is not in use by the current view, but does have a non-zero clock signal into at least one input (even if it's not outputted)
+-  **Off** (*dark gray*): The element does not have a non-zero clock signal at any input, regardless of if its usage.
+
+The notion of "in-use" describes an element that is in the signal chain of one or more elements that do not have any outputs shown on the graph.
+
+The below image shows the SYSPLL grouping with the channel SYSPLL0 getting output to MCLK. Thus, the path through to MCLK is active, however, other channels are light gray and unused.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_clockTree_legend1.png
+   :alt: 
+
+| Here, the same SYSPLL is in use, but the HFCLK source is 0.
+| Since SYSOSC is non-zero, the mux is active (and technically on a used path), but the other elements have zero frequency inputs, and are thus off.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_clockTree_legend2.png
+   :alt: 
+
+Additionally, M0 devices currently have two separate views in the Clock Tree. A basic view to configure the internal signals, and an external/FCC view where the signals can be sent out or to the Frequency Clock Counter (FCC). One can toggle between the views by clicking them in the top right pane as shown below.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_clockTree_views.png
+   :alt: 
+
+4.2.2 Editing Different Clock Tree Components
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clock Tree components can be edited by clicking on them. There are several different types of components that live in Clock Tree. To get more information about a component, one can simply click on the component to see the available configurables. The major categories are as follows:
+
+-  **Divider/Multipliers**: These are arithmetic components in the signal path. They can be adjusted by clicking on the dropdown and selecting the correct number.
+-  **Frequency Labels**: These are generally labeled signals that can reflect the frequency on the line in order to easily ascertain what is the current state of the signal.
+-  **FCC**: The frequency clock counter is represented by a single box, and can be enabled and configured by clicking on the box in the external view window.
+-  **Gates**: These are smaller rectanular blocks that the signal passes through. Some gates are fixed, while others can be enabled/disabled by toggling the checkbox inside.
+-  **Muxes**: These are adjustable by clicking the buttons inside the mux to select the source signal to be output.
+-  **Pin Functions**: These are the smaller boxes with an "X" over them, and these all correspond to a resource in the pinmux. To enable them, click on the function and then click enable in the description. This will add the device to the pinmux data as well. There may additional configurables such as HFXT where an input frequency is required in order to know what the other frequencies will be.
+
+   -  **Note**: Just because CLKOUT appears enabled, this does not mean that code is being generated. It must be clicked on and enabled.
+
+-  **Oscillators**: SYSOSC and LFOSC are also present on the device, and SYSOSC does have some configurables and options that can be checked by clicking on the oscillator.
+
+4.2.3 Summary Views
+^^^^^^^^^^^^^^^^^^^
+
+Clock Tree also has a summary pane view that can be found on the far right of the screen when selected from the top right. This can be useful as a quick reference when developing.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_clockTree_summary.png
+   :alt: 
+
+4.3 NONMAIN Configurator
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The NONMAIN Configurator is a SysConfig module that helps the user configure the device boot routines. The configuration data used by the boot configuration routine (BCR) and bootstrap loader (BSL) are stored in a dedicated region of flash memory called NONMAIN, and the configuration data structures are protected by 32-bit CRCs to improve security. Refer to the Architecture chapter in the device TRM for more details.
+
+Valid device configuration data and the corresponding valid CRC must be programmed into NONMAIN for the device to boot, **otherwise the device will become locked in an unrecoverable state**.
+
+The NONMAIN Configurator helps the user safely configure the device boot routines by automatically calculating the CRCs based on the user-selected values. The NONMAIN Configurator can be added to a project by adding the NONMAIN module as shown below.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_nonmain_configurator_enable.png
+   :alt: 
+
+When the NONMAIN Configurator module has been added, SysConfig will generate two files: boot\_config.h and boot\_config.c.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_nonmain_configurator_generated_code.png
+   :alt: 
+
+The boot\_config.h file contains various enums, defines, and typedefs representing the configuration data structures and the selectable options.
+
+The boot\_config.c file contains the configuration data structures with the user-selected values.
+
+When these files have been added to a project, and the project has been built and downloaded to the device, the updated boot routines will take effect after the next BOOTRST.
+
+Note that the generated NONMAIN structures must be placed in the corresponding memory locations by using linker files. The MSPM0 SDK includes linker files showing this functionality for TI Arm-Clang, GCC, IAR, and Keil.
+
+Refer to the SDK BSL examples (bsl\_i2c\_flash\_interface, bsl\_uart\_flash\_interface, secondary\_bsl) and the Driverlib example flashctl\_nonmain\_memory\_write for more details on using these files in a project.
+
+4.4 Info, Warnings and Errors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| Some configurations can trigger information messages, warnings or errors which are shown in the **Problems** panel.
+| The **Problems** panel can be enabled/disabled using the icon highlighted below.
+| Clicking on the hyperlink for each message will open the module and direct the user to the error.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_module_problems.png
+   :alt: 
+
+-  This information message informs the developer that the DAC output will depend on the comparator output, and it assumes a reference supply of 3.3V.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_info.png
+      :alt: 
+
+-  The warning message informs that the calculated UART baudrate differs from the desired target value. This might be OK depending on the tolerance required by the application, so the warning could be suppressed.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_warning.png
+      :alt: 
+
+-  The error message informs that the selected timer period is not possible with the current configuration. This error must be fixed to generate code properly.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_module_error.png
+      :alt: 
+
+4.5 Code Generation
+~~~~~~~~~~~~~~~~~~~
+
+The generated files can be shown or hidden by clicking the icon highlighted below.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_module_codegen.png
+   :alt: 
+
+Click on any file to open it on the integrated editor.
+
+4.5.1 Observing code changes based on configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SysConfig can highlight differences in code generation which is a very useful feature when modifying parameters.
+
+-  **Unified diff** highlights the recent changes on the same file.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_codegen_unifieddiff.png
+      :alt: 
+
+-  **Side-by-side diff** shows the newly generated code side-by-side with previous code.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_codegen_sidediff.png
+      :alt: 
+
+-  **No diff** simply shows the latest generated code.
+
+4.6 Device View
+~~~~~~~~~~~~~~~
+
+| The Device view provides a useful view of the selected package and the pins used.
+| This view can be shown or hidden by clicking the icon highlighted below.
+| |image0|
+
+| Hover over pins to check their functionality.
+| If a pin is assigned, the selected function is highlighted.
+| Clicking an assigned pin will open the corresponding module in PinMux section.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_device_pin_view.png
+   :alt: 
+
+4.7 Board View
+~~~~~~~~~~~~~~
+
+| The Board view is shown when a SysConfig project is using an EVM and provides a good overview of the pins available on the EVM and current usage.
+| This view can be shown or hidden by clicking the icon highlighted below.
+| |image1|
+
+4.7.1 Customizing board configurations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Follow `these instructions <https://software-dl.ti.com/ccs/esd/sysconfig/docs/guide/custom-board_CN.html>`__ to override or eliminate board constraints.
+
+4.8 Switching Between Devices and Packages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| SysConfig allows developers to easily switch between devices and packages.
+| To get started, select the `Device view <#device-view>`__ or `Board view <#board-view>`__ and click on **SWITCH**.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_device_switch.png
+   :alt: 
+
+Select the new hardware and click on **CONFIRM**.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_device_switch_view.png
+   :alt: 
+
+| Note that SysConfig will attempt to assign peripherals, but some configurations might not be possible.
+| The following shows an error when attempting to migrate a project using DAC12 which is available on MSPM0Gxx, but not on MSPM0Lxx.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_device_switch_error.png
+   :alt: 
+
+4.9 Event Configuration
+~~~~~~~~~~~~~~~~~~~~~~~
+
+| The MSPM0 event manager transfers digital events from one entity (event publisher) to another (event subscriber).
+| SysConfig enables an intuitive and simple configuration of events in a graphical manner.
+| The following steps show how to configure an event.
+
+1.  Select a module with event publisher capabilities. This example uses a TIMER.
+2.  Go to the Event Configuration section of the publisher module.
+3.  | Select an ID from 1-15 and the event that will be published.
+    | The example below selected ID #2, and the Timer Zero event.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_event_publisher_2.png
+       :alt: 
+
+4.  Select a module with event subscriber capability. This example uses an ADC.
+5.  Go to the Event Configuration section of the subscriber module.
+6.  | Select the Subscriber Event Channel ID. Note that SysConfig will show which publishers are already configured.
+    | For the example below, it shows TIMER for ID #2.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_event_subscriber_1.png
+       :alt: 
+
+7.  | Open the READ-ONLY EVENT module to see all events.
+    | Note that Channel #2 is configured to trigger from TIMER to ADC.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_event_view.png
+       :alt: 
+
+8.  SysConfig also generates an **Event.dot** file which has a graphical representation of Events.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_event_file.png
+       :alt: 
+
+9.  | Copy the contents of the generated **Events.dot** into a .dot file viewer such as `GraphvizOnline <https://dreampuf.github.io/GraphvizOnline/>`__.
+    | Observe that Channel #2 is configured to trigger from TIMER to ADC.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_event_file_viewer.png
+       :alt: 
+
+10. Some event channels support multiple 2 subscribers. The example below shows the configuration of a Timer Publisher triggering an event to the ADC and DAC12 as Subscribers.
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_event_two_events.png
+       :alt: 
+
+    .. figure:: ./images/sysconfig_guide/sysconfig_event_two_events_dot.png
+       :alt: 
+
+4.10 PinMux Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SysConfig enables easy assignment of peripherals and device pins.
+
+-  | All modules with assignable hardware contain a PinMux section at the bottom of the module configuration panel.
+   | By default, modules are assigned to **Any** which will allow SysConfig to choose any available peripheral and pin.
+   | The following shows the default assignment for a UART module.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_pinmux_any.png
+      :alt: 
+
+-  Developers can select a specific peripheral or pin.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_pinmux_peripheral.png
+      :alt: 
+
+-  | Note that selecting a peripheral or pin will narrow down the options for other settings.
+   | In the example below, only UART1\_RX pins can be selected since the peripheral was selected as UART1.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_pinmux_pin.png
+      :alt: 
+
+-  | Selecting a peripheral or pin can cause conflicts if the assignment is not possible.
+   | In the example below, PA18 is being used by another module, thus causing an assignment conflict.
+
+   .. figure:: ./images/sysconfig_guide/sysconfig_pinmux_pin_conflict.png
+      :alt: 
+
+4.11 Reserving Hardware Peripherals
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+| SysConfig can allow developers to assign peripherals without necessarily using them as `Software modules <#sysconfig-software-modules>`__.
+| This feature can be useful to reserve pins and peripherals without having to generate code, or for hardware developers wanting to select pins which allow for easier routing.
+
+4.11.1 Reserve Peripheral List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The Reserve Peripheral list for MSPM0 SDK can be selected by clicking the icon shown below.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_reserveperiph_list.png
+   :alt: 
+
+4.11.2 Reserving a peripheral
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Reserve a peripheral by clicking the symbol shown below.
+| Note that SysConfig will show the instances as supported by the selected device.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_reserveperiph_select.png
+   :alt: 
+
+The assignment of the peripheral and pins is similar to `PinMux configuration <#pinmux-configuration>`__.
+
+4.12 Disabling SysConfig
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Once the initial configuration for the application is complete, developers may wish to freeze or lock-in the files generated by SysConfig, so they are not re-generated in future builds.
+
+4.12.1 Disabling SysConfig in CCS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Locate Generated Files
+''''''''''''''''''''''
+
+Generated files can be located in the CCS Project Explorer in the **Generated Source** folder:
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_ccs_files.png
+   :alt: 
+
+These files will be located in ``<project>/<build_configuration>/syscfg`` which can be accessed in a quick and easy way by right-clicking on any of the files in the folder above and selecting **Show in Local Terminal → System Explorer**
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_ccs_files_locate.png
+   :alt: 
+
+Copy Generated Files
+''''''''''''''''''''
+
+| In CCS the build directory is cleaned every time the project is rebuilt, so it is necessary to copy the generated files to a permanent location before the project is rebuilt.
+| The files can be copied to the project root directory, or a new folder can be created.
+| The following steps and figure show the steps creating a new folder.
+
+1. Create a new folder. In the figure below shown as ``<project>/sysconfig``.
+2. Copy the generated source files from the ``<project>/<build_configuration>/syscfg`` mentioned in previous step.
+3. Paste the generated source files to the new folder.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_ccs_files_copy.png
+   :alt: 
+
+Note that the files will now show in CCS:
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_ccs_files_copy2.png
+   :alt: 
+
+Disable SysConfig
+'''''''''''''''''
+
+| In CCS, files ending in **.syscfg** are automatically flagged as SysConfig files. If you have an active .syscfg file in your workspace, it will invoke the SysConfig Tools.
+| To disable the file, right-click on it and select **Exclude from Build**.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_ccs_disable.png
+   :alt: 
+
+Modify Compiler/Linker Settings
+'''''''''''''''''''''''''''''''
+
+| The source files generated by SysConfig are used by the compiler and linker as part of the build process. Moving the files to a new location requires updating project settings.
+| Note that this step may not required if the generated files are copied to the project root folder.
+
+The following image shows how to add the path ``${PROJECT_ROOT}/sysconfig`` to include the header files from the newly created folder.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_ccs_addpath.png
+   :alt: 
+
+Rebuild Project
+'''''''''''''''
+
+The project can now be rebuilt without SysConfig.
+
+Re-enabling SysConfig
+'''''''''''''''''''''
+
+1. Include the .syscfg back into the project.
+2. Exclude or delete the new folder containing the previously copied files.
+3. Remove any project settings that could cause conflicts between the folders.
+
+4.12.2 Disabling SysConfig in IAR
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Locate Generated Files
+''''''''''''''''''''''
+
+Generated files can be located in the IAR Workspace in the **SysConfig Generated Files** folder:
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_iar_files.png
+   :alt: 
+
+These files will be located in the project root folder. The files can be accessed in a quick and easy way by right-clicking on any of the files in the folder above and selecting **Open Containing Folder**
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_iar_files_locate.png
+   :alt: 
+
+Disable SysConfig
+'''''''''''''''''
+
+In IAR, SysConfig is treated as a Custom Build step. To access the custom build steps, select **Project→Options→Custom Build**. Remove all the fields that are populated under the Custom Tool Configuration tab as shown below:
+
+.. figure:: ./images/sysconfig_guide/sysconfig_codegen_disable_iar_disable.png
+   :alt: 
+
+Rebuild Project
+'''''''''''''''
+
+The project can now be rebuilt without SysConfig.
+
+Re-enabling SysConfig
+'''''''''''''''''''''
+
+1. Restore the Custom Build settings from **Project→Options→Custom Build**:
+
+   1.1. Filename extensions: ``.syscfg``
+
+   1.2. Command line: ``$SYSCONFIG_ROOT$/sysconfig_cli.bat -o $PROJ_DIR$ -s "$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json" --compiler iar $FILE_PATH$``
+
+   1.3. Output files: ``SysConfig_Generated_Files.ipcf``
+
+4.13 Overriding SYSCONFIG\_WEAK functions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In some scenarios, it might be useful to override some functions generated by SysConfig while still keeping it enabled for configuration and code generation of other functions.
+
+This can be achieved in SysConfig for MSPM0-SDK since functions are declared as ``SYSCONFIG_WEAK``.
+
+The weak attribute causes the compiler to emit a weak symbol to the symbol table for the symbol’s declaration. At link-time, if a strong definition of a symbol with the same name is included in the link, then the strong definition of the symbol will override the weak definition.
+
+The example below shows the weak definition of ``SYSCFG_DL_GPIO_init``:
+
+.. figure:: ./images/sysconfig_guide/sysconfig_weak_1.png
+   :alt: 
+
+The same function can be rewriten in the application code without the ``SYSCONFIG_WEAK`` attribute and it will take precedence over the function generated by SysConfig.
+
+Note how in the example below, ``SYSCFG_DL_GPIO_init`` is still called by ``SYSCFG_DL_Init`` during SysConfig initialization, but it resides in the application file instead of the file generated by SysConfig:
+
+.. figure:: ./images/sysconfig_guide/sysconfig_weak_2.png
+   :alt: 
+
+.. |image0| image:: ./images/sysconfig_guide/sysconfig_device_view.png
+.. |image1| image:: ./images/sysconfig_guide/sysconfig_board_view.png
+

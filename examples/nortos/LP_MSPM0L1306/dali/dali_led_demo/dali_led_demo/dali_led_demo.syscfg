@@ -1,0 +1,72 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ //@cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const CRC    = scripting.addModule("/ti/driverlib/CRC");
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const TIMER2 = TIMER.addInstance();
+const TIMER3 = TIMER.addInstance();
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+PWM1.$name                      = "PWM_0";
+PWM1.peripheral.ccp0Pin.$assign = "PA0";
+PWM1.peripheral.ccp1Pin.$assign = "PA1";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle    = 10;
+PWM1.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.ccp0PinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
+PWM1.ccp1PinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
+
+
+TIMER1.$name       = "TIMER_0";
+TIMER1.interrupts  = ["ZERO"];
+TIMER1.timerClkSrc = "LFCLK";
+TIMER1.timerPeriod = "1.40 ms";
+TIMER1.timerMode   = "PERIODIC";
+
+TIMER2.$name       = "TIMER_1";
+TIMER2.interrupts  = ["ZERO"];
+TIMER2.timerPeriod = "1 ms";
+TIMER2.timerMode   = "PERIODIC";
+
+TIMER3.$name       = "TIMER_2";
+TIMER3.timerMode   = "PERIODIC";
+TIMER3.timerPeriod = "2 ms";
+TIMER3.interrupts  = ["ZERO"];
+
+UART1.$name                    = "UART_0";
+UART1.enableExtend             = true;
+UART1.stopBits                 = "TWO";
+UART1.enableFIFO               = true;
+UART1.targetBaudRate           = 1200;
+UART1.enabledInterrupts        = ["ADDRESS_MATCH","RX"];
+UART1.uartMode                 = "DALI";
+UART1.enableManchester         = true;
+UART1.txFifoThreshold          = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
+UART1.enableMSBFirst           = true;
+UART1.peripheral.$assign       = "UART0";
+UART1.peripheral.rxPin.$assign = "PA9";
+UART1.peripheral.txPin.$assign = "PA17/OPA1.IN0-";
+UART1.txPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric2";
+UART1.txPinConfig.invert       = "ENABLE";
+UART1.txPinConfig.enableConfig = true;
+UART1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric3";
+UART1.rxPinConfig.invert       = "ENABLE";
+UART1.rxPinConfig.enableConfig = true;
+

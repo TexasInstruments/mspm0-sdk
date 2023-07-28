@@ -1,0 +1,275 @@
+Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs
+=============================================
+
+Table of Contents
+-----------------
+
+-  `Read This First <#read-this-first>`__
+-  `Software Installation <#software-installation>`__
+-  `Development Flow <#development-flow>`__
+-  `Debugging the Application <#debugging-the-application>`__
+-  `Known Issues and Frequently Asked Questions (FAQs) <#known-issues-and-frequently-asked-questions-faqs>`__
+
+Read This First
+---------------
+
+How to Use This Guide
+~~~~~~~~~~~~~~~~~~~~~
+
+This guide describes only the setup and basic operation of the software development environment, but it does not fully describe the MSPM0 microcontrollers or the complete development software and hardware systems. For details of these items, see the appropriate TI and Keil documents listed in section `Related Documentation From Texas Instruments <#related-documentation-from-texas-instruments>`__.
+
+This guide applies to the use of the `TI XDS-110 <https://www.ti.com/tool/TMDSEMU110-U>`__, `Arm ULINK <https://www2.keil.com/mdk5/ulink>`__, and `Segger J-Link <https://www.segger.com/products/debug-probes/j-link/>`__ development tools series.
+
+These tools contain the most up-to-date materials available at the time of packaging. For the latest materials (including data sheets, user's guides, software, and application information), visit the `TI MSPM0 website <https://www.ti.com/mspm0>`__ or contact your local TI sales office.
+
+Information About Cautions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This guide may contain cautions.
+
+**Caution** - This is an example of a caution statement. A caution statement describes a situation that could potentially damage your software or equipment.
+
+Read each caution carefully.
+
+Related Documentation From Texas Instruments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MSPM0 development tools documentation:
+
+-  `XDS110 Debug Probe User's Guide <https://www.ti.com/lit/sprui94>`__
+
+MSPM0 device documentation:
+
+-  `LP-MSPM0L1306 User's Guide <https://www.ti.com/lit/slau869>`__
+-  `MSPM0 L-Series Technical Reference Manual <https://www.ti.com/lit/slau847>`__
+-  `LP-MSPM0G3506 User's Guide <https://www.ti.com/lit/slau873>`__
+-  `MSPM0 G-Series Technical Reference Manual <https://www.ti.com/lit/slau846>`__
+
+If You Need Assistance
+~~~~~~~~~~~~~~~~~~~~~~
+
+The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>`__ for MSPM0 MCUs are available to provide open interaction with peer engineers, TI engineers, and other experts. Additional device-specific information can be found on the `MSPM0 website <https://www.ti.com/mspm0>`__.
+
+1. Software Installation
+------------------------
+
+Arm Keil MDK, including µVision IDE, debugger and Arm C/C++ compiler, is available from the `Keil website <https://www.keil.com/>`__. MSPM0 microcontrollers and the MSPM0 SDK require Keil MDK 5.38 or higher.
+
+See the `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ documentation for finding the right SDK for your IDE version.
+
+2. Development Flow
+-------------------
+
+This chapter describes how to use Keil MDK to run the demonstration programs, develop application software, and how to debug it.
+
+2.1 Overview
+~~~~~~~~~~~~
+
+Documentation for the Keil MDK is extensive, and the documentation is available online on the `Keil MDK page <https://www2.keil.com/mdk5>`__ or through the Help tab in the IDE.
+
+2.2 Creating a MSPM0 Project From the MSPM0 SDK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Please refer to the `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ which contains instructions on how to install the MSPM0 SDK and importing and building an SDK example in Keil.
+
+2.3 Creating a Project From Scratch
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Note**: Creating a project from scratch is **not recommended** since creating the project from scratch doesn't add all of the necessary device support files by default. To start from a blank project, TI recommends importing the Empty Driverlib example project from the SDK.
+
+2.4 Using SysConfig with Keil
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some examples in the MSPM0 SDK have SysConfig support. `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.
+
+The SysConfig tool is delivered as a standalone installer which can be manually integrated into Keil, or can be used via the dev.ti.com cloud tools portal.
+
+The best way to start a SysConfig project in Keil is to import it from the SDK; however, some steps are required to initialize SysConfig in Keil for the first time. Refer to the `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ for more details on installing SysConfig and enabling it for Keil.
+
+For more information about using SysConfig with MSPM0, visit the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ guide.
+
+2.5 Migrating Between MSPM0 Derivatives
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required.
+
+1. In SysConfig, enable the Device View and click on **SWITCH**
+
+.. figure:: ./images/keil_ide_guide/keil_ide_migrate_1.png
+   :alt: 
+
+2. Select the corresponding options for the new MSPM0 device and click **CONFIRM**.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_migrate_2.png
+   :alt: 
+
+3. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed.
+
+4. In the Keil IDE, open the **Device** tab in project options, and select the new MSPM0 derivative.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_migrate_3.png
+   :alt: 
+
+5. Update the device definition by selecting **C/C++ (AC6)** → **Preprocessor Symbols** → **Define**. Add the device definition as per the device selected.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_migrate_4.png
+   :alt: 
+
+6. Update the linker file in **Linker** → **Scatter File**. The MSPM0 SDK includes default files for all MSPM0 derivatives at ``<sdk>\source\ti\devices\msp\m0p\linker_files\keil``.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_migrate_5.png
+   :alt: 
+
+7. Add the startup file of the new derivative to the project and remove existing one. The MSPM0 SDK includes default files for all MSPM0 derivatives at ``<sdk>\source\ti\devices\msp\m0p\startup_system_files\keil``.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_migrate_6.png
+   :alt: 
+
+8. Resolve any other dependencies such as incompatible libraries and source code.
+
+Note: Steps 1-3 don't apply when not using SysConfig.
+
+2.6 Adding Newly Generated SysConfig Files to Projects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When working with SysConfig modules such as the NONMAIN Configurator which generate files other than ``ti_msp_dl_config.h`` and ``ti_msp_dl_config.c``, the newly generated files must be manually added to the project since Keil does not do this automatically. See the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ guide for more details on which modules generate additional files.
+
+Consider the case of the NONMAIN Configurator, which generates 2 additional files: ``boot_config.h`` and ``boot_config.c``.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_sysconfig_additional_generated_files.png
+   :alt: 
+
+To include these files in the built project, perform the following steps:
+
+1. After adding the SysConfig module and saving the changes, navigating back to the Keil IDE should throw a message saying that the .syscfg file was modified. Click **Yes** to reload the file.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_reload_sysconfig_file.png
+   :alt: 
+
+2. Right-click on the project and select **Rebuild all target files** to rebuild the project. The **Build Output** window shows that SysConfig has generated those files.
+
+   .. figure:: ./images/keil_ide_guide/keil_ide_rebuild_target.png
+      :alt: 
+
+   .. figure:: ./images/keil_ide_guide/keil_ide_build_log.png
+      :alt: 
+
+3. To add the additional newly generated files (in this case, ``boot_config.h`` and ``boot_config.c``), right-click on the **Source** directory and select **Add Existing Files to Group 'Source'**.
+
+   .. figure:: ./images/keil_ide_guide/keil_ide_add_files_to_source.png
+      :alt: 
+
+4. Navigate to the example project root, select the files that need to be added, and click **Add**.
+
+   .. figure:: ./images/keil_ide_guide/keil_ide_select_files_to_add.png
+      :alt: 
+
+5. Rebuild the project. The files should be visible in the project **Source** directory in the IDE.
+
+   .. figure:: ./images/keil_ide_guide/keil_ide_updated_source_directory.png
+      :alt: 
+
+2.7 Stack and Heap Management and .s Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The reserved stack and heap size can be configured through direct modification of the .s startup assembly file. See the Keil documentation for a complete description of this file.
+
+The supplied .s file can be modified to tune the size of the stack and heap to the needs of the application; edit ``Stack_Size EQU xx`` or ``Heap_Size EQU xx`` to allocate xx bytes for the stack or heap.
+
+2.8 How to Generate Hex Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The linker can be configured to output objects in Intel Hex format for use with programming tools such as `MSP-GANG <https://www.ti.com/tool/MSP-GANG>`__ and `UniFlash <https://www.ti.com/tool/UNIFLASH>`__.
+
+Click **Project** → **Options** → **Output** → **Create Hex File** → **Ok**.
+
+2.9 Erasing NONMAIN for MSPM0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Caution**: Extreme care should be taken when erasing and programming NONMAIN. If done incorrectly, the device will become **locked in a permanently unrecoverable state**.
+
+1. Click **Options** → **Debug** → **Settings** → **Flash Download**.
+2. Add the NON-MAIN programming algorithm, and then click OK.
+
+   .. figure:: ./images/keil_ide_guide/keil_ide_add_nonmain.png
+      :alt: 
+
+2.10 Overriding Pre-built libraries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Projects might include pre-built libraries which simplify development and build time; however, they don't allow developers to modify source code easily.
+
+An example of such libraries is the MSPM0 DriverLib which is shown below.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_driverlib_library.png
+   :alt: 
+
+One option to override the library is to delete **driverlib.a** and simply add any or all source files to the project. The MSPM0 SDK includes the ``empty_driverlib_src`` example which includes all DriverLib source by default:
+
+.. figure:: ./images/keil_ide_guide/keil_ide_empty_driverlib_project.png
+   :alt: 
+
+3. Debugging the Application
+----------------------------
+
+3.1 Using TI XDS Tools
+~~~~~~~~~~~~~~~~~~~~~~
+
+TI offers a range of debug probes for Arm-based devices, including the XDS110 which is integrated with MSPM0 LaunchPads.
+
+**Note**: TI XDS110 debuggers are supported natively or through CMSIS DAP. TI XDS native support needs a separate installation of the TI emulation pack software in the default folder ``C:\ti\ccs-base``.
+
+To use the XDS110 debug probe, right-click on the active project, then select **Options for Target**. In the Target Options window, select the **Debug** pane. From the pulldown menu, select either CMSIS-DAP Debugger or TI XDS Debugger.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_select_xds110.png
+   :alt: 
+
+.. figure:: ./images/keil_ide_guide/keil_ide_xds110_settings.png
+   :alt: 
+
+-  Note the selected Emulator. The example above uses the XDS110 integrated in LaunchPads in CSMSIS-DAP mode.
+-  The selected Interface is SWD which is supported by MSPM0.
+-  The XDS tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debug** → **Settings** → **Flash Download**. Refer to the `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ for more details.
+
+3.2 Using Segger J-Link Debug Probe
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To use J-Link, right-click on the active project, then select **Options for Target**. In the Target Options window, select the **Debug** pane. From the pulldown menu, select the J-Link debugger option.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_select_jlink.png
+   :alt: 
+
+.. figure:: ./images/keil_ide_guide/keil_ide_jlink_settings.png
+   :alt: 
+
+Refer to the `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ for more details on using Segger J-Link.
+
+3.3 Using Arm ULINK Debug Adapters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To use ULINK, right-click on the active project, then select **Options for Target**. In the Target Options window, select the **Debug** pane. From the pulldown menu, select a ULINK debugger option.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_select_ulink.png
+   :alt: 
+
+.. figure:: ./images/keil_ide_guide/keil_ide_ulink_settings.png
+   :alt: 
+
+-  The ULINK tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debug** → **Settings** → **Flash Download**.
+
+3.4 Breakpoint Types
+~~~~~~~~~~~~~~~~~~~~
+
+The uVision breakpoint mechanism uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints are not supported on MSPM0. This means that a maximum of 4 breakpoints can be set within uVision.
+
+Resetting a program and the Run To Cursor operation temporarily require a breakpoint. As a result, only 3 breakpoints can be active.
+
+If the max number of breakpoints are set, the following warning will be displayed.
+
+.. figure:: ./images/keil_ide_guide/keil_ide_max_breakpoints.png
+   :alt: 
+
+4. Known Issues and Frequently Asked Questions (FAQs)
+-----------------------------------------------------
+
+Please refer to `Known Issues and FAQ <../../../../../../known_issues_FAQ.html>`__ inside the SDK.

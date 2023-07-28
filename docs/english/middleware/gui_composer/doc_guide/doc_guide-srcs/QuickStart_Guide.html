@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GUI Composer Quick Start Guide &mdash; GUI Composer Library Documentation 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GUI Composer Library User’s Guide" href="Users_Guide.html" />
+    <link rel="prev" title="GUI Composer Library Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> GUI Composer Library Documentation
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GUI Composer Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">2. Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-your-first-example">3. Running Your First Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#importing-building-and-downloading-the-code-example">3.1 Importing, Building, and Downloading the Code Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-gui">3.2 Setting Up the GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-gui">3.3 Configuring the GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-example">3.4 Running the Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Users_Guide.html">GUI Composer Library User’s Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUI Composer Library Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>GUI Composer Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gui-composer-quick-start-guide">
+<h1>GUI Composer Quick Start Guide<a class="headerlink" href="#gui-composer-quick-start-guide" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>GUI Composer project examples showcase a UART based data exchange between a LaunchPad and customizable GUI application running on a PC. These GUIs can be fully customized by you to display, process data and control execution of firmware. These GUIs may also be installed into Code Composer Studio to augment standard debug displays and also provide a simplified user interface for non-expert manual testers.</p>
+<p>This guide is intended to assist users in the initial setup and demonstration of running their first sample application.</p>
+</section>
+<section id="prerequisites">
+<h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The user is expected to have the following:</p>
+<ul class="simple">
+<li><p>A supported <strong>MSPM0</strong> LaunchPad</p></li>
+<li><p>The latest version of the <strong>Chrome</strong> web browser</p></li>
+<li><p>A <strong>myTI account</strong> for accessing <a class="reference external" href="https://dev.ti.com/gc">GUI Composer</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/download/CCSTUDIO">Code Composer Studio (CCS)</a></p></li>
+</ul>
+<p>For additional resources and information on GUI Composer, please view the <a class="reference external" href="https://dev.ti.com/gc/v2/help/GC_UserGuide_v2/index.html">GUI Composer User Guide</a>.</p>
+</section>
+<section id="running-your-first-example">
+<h2>3. Running Your First Example<a class="headerlink" href="#running-your-first-example" title="Permalink to this heading">¶</a></h2>
+<p>This section will show how to import, build and load an example with one of the available GUIs.</p>
+<section id="importing-building-and-downloading-the-code-example">
+<h3>3.1 Importing, Building, and Downloading the Code Example<a class="headerlink" href="#importing-building-and-downloading-the-code-example" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Open your IDE of choice, and import one of the available GUI Composer code examples from the MSPM0 SDK. These examples can be found in <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/nortos/&lt;MSPM0_LAUNCHPAD&gt;/gui_composer</span></code>.</p></li>
+<li><p>Review the code example README for any specific configurations for the LaunchPad you are using.</p></li>
+<li><p>Build and download the code example to the LaunchPad.</p></li>
+</ol>
+</section>
+<section id="setting-up-the-gui">
+<h3>3.2 Setting Up the GUI<a class="headerlink" href="#setting-up-the-gui" title="Permalink to this heading">¶</a></h3>
+<p>The GUIs for these examples can be started automatically from the TI Gallery by clicking one of the the links for the GUI below.</p>
+<p><strong>Please ensure to select the corresponding GUI for the code example that you are running on the LaunchPad. The correct GUI is specified in the code example README.</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_JSON/">GC Simple JSON GUI</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_mpack">GC Simple MessagePack GUI</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_mpack_optimized/">GC Simple MessagePack GUI - Optimized</a></p></li>
+</ul>
+</section>
+<section id="configuring-the-gui">
+<h3>3.3 Configuring the GUI<a class="headerlink" href="#configuring-the-gui" title="Permalink to this heading">¶</a></h3>
+<p>Configure the GUI settings to select the correct <strong>COM port</strong> and <strong>Baud Rate</strong>. Modify these settings by clicking on the menu icon in the top left corner, and then selecting <strong>Options &gt; Serial Port</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/qs_settings.png" />
+</figure>
+<ul>
+<li><p>The correct <strong>COM Port</strong> can be determined by opening your Device Manager, looking under Ports, and seeing which port is <strong>XDS110 Class Application/User UART</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/qs_devicemanager.png" />
+</figure>
+</li>
+<li><p>Set the <strong>Baud Rate</strong> to <strong>9600</strong>. This is the Baud Rate being used by default in the example.</p></li>
+</ul>
+<figure class="align-default">
+<img alt="" src="../_images/qs_comportbaudrate.png" />
+</figure>
+</section>
+<section id="running-the-example">
+<h3>3.4 Running the Example<a class="headerlink" href="#running-the-example" title="Permalink to this heading">¶</a></h3>
+<p>Start running the example on the LaunchPad. If the LaunchPad and the GUI have been configured correctly, then the GUI will start updating with data automatically.</p>
+<p>Please refer to the code example specific README for specific instructions on how to run the example.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="GUI Composer Library Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Users_Guide.html" class="btn btn-neutral float-right" title="GUI Composer Library User’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

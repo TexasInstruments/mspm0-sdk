@@ -1,0 +1,72 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.associatedPins.create(3);
+GPIO1.associatedPins[0].interruptEn  = true;
+GPIO1.associatedPins[0].polarity     = "RISE";
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPin  = "22";
+GPIO1.associatedPins[0].assignedPort = "PORTB";
+GPIO1.associatedPins[1].$name        = "USER_LED_2";
+GPIO1.associatedPins[1].assignedPin  = "27";
+GPIO1.associatedPins[1].assignedPort = "PORTB";
+GPIO1.associatedPins[2].$name        = "USER_LED_3";
+GPIO1.associatedPins[2].assignedPin  = "26";
+GPIO1.associatedPins[2].assignedPort = "PORTB";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO2.$name                              = "GPIO_SWITCHES";
+GPIO2.associatedPins.create(2);
+GPIO2.associatedPins[0].direction        = "INPUT";
+GPIO2.associatedPins[0].$name            = "USER_SWITCH_1";
+GPIO2.associatedPins[0].interruptEn      = true;
+GPIO2.associatedPins[0].assignedPin      = "18";
+GPIO2.associatedPins[0].assignedPort     = "PORTA";
+GPIO2.associatedPins[0].polarity         = "RISE";
+GPIO2.associatedPins[1].$name            = "USER_SWITCH_2";
+GPIO2.associatedPins[1].direction        = "INPUT";
+GPIO2.associatedPins[1].interruptEn      = true;
+GPIO2.associatedPins[1].assignedPin      = "21";
+GPIO2.associatedPins[1].assignedPort     = "PORTB";
+GPIO2.associatedPins[1].polarity         = "FALL";
+GPIO2.associatedPins[1].internalResistor = "PULL_UP";
+
+PWM1.$name                      = "PWM";
+PWM1.enableShadowLoad           = true;
+PWM1.dutyArgs                   = "[25,75,0,0]";
+PWM1.clockDivider               = 8;
+PWM1.clockPrescale              = 4;
+PWM1.timerStartTimer            = true;
+PWM1.peripheral.$assign                 = "TIMA1";
+PWM1.peripheral.ccp0Pin.$assign         = "PA10";
+PWM1.peripheral.ccp1Pin.$assign         = "PA11";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC1";
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+
+TIMER1.timerClkDiv      = 8;
+TIMER1.$name            = "TIMER";
+TIMER1.timerPeriod      = "10 ms";
+TIMER1.timerClkPrescale = 8;
+TIMER1.interrupts       = ["ZERO"];

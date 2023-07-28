@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 LIN User’s Guide &mdash; MSPM0 LIN User&#39;s Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="MSPM0 LIN User’s Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 LIN User's Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 LIN User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-the-uart-for-lin-with-sysconfig">2. Configuring the UART for LIN with SysConfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enable-lin-counter">Enable LIN counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-and-configure-lin-counter-compare-match-mode">Enable and configure LIN Counter Compare Match mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-capture-on-rxd-falling-edge">Enable Capture on RXD Falling Edge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-counter-reset-on-rxd-falling-edge">Enable Counter Reset on RXD Falling Edge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-count-while-rxd-is-low">Enable Count while RXD is Low</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-capture-on-rxd-rising-edge">Enable Capture on RXD Rising Edge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quick-profile">Quick Profile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-applications">3. Example Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-the-example-applications">Modifying the Example Applications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 LIN User's Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 LIN User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-lin-user-s-guide">
+<h1>MSPM0 LIN User’s Guide<a class="headerlink" href="#mspm0-lin-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>LIN (Local Interconnect Network) is a serial network protocol that allows for simple and inexpensive communication in automotive networks. The MSPM0 SDK provides an easy way to start development of LIN applications using the MSPM0’s Universal Asynchronous Receiver Transmitter (UART) module.</p>
+<p>Example applications are provided in the SDK to demonstrate how to configure a MSPM0 device as a LIN 2.x Controller or Responder.</p>
+<p><strong>Note</strong>: The use of “Master” and “Slave” terminology is being considered obsolete. These terms have been replaced with “Controller” and “Responder” respectively.</p>
+<p>For supporting LIN protocol, the following hardware enhancements are implemented in the UART module:</p>
+<ul class="simple">
+<li><p>16 bit up-counter (LINCNT) clocked by the UART clock</p></li>
+<li><p>Interrupt capability on counter overflow</p></li>
+<li><p>16 bit capture register (LINC0) with two configurable modes:</p>
+<ul>
+<li><p>Capture of LINCNT value on RXD falling edge, with interrupt capability on capture</p></li>
+<li><p>Compare of LINCNT with interrupt capability on match</p></li>
+</ul>
+</li>
+<li><p>16 bit capture register (LINC1), with configurable mode:</p>
+<ul>
+<li><p>Capture LINCNT value on RXD rising edge, with interrupt capability on capture</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>The MSPM0 SDK LIN applications are only meant for basic evaluation of LIN using the UART hardware and/or guidance to implement LIN drivers. It is not meant to provide a full automotive-qualified LIN stack.</strong></p>
+</section>
+<section id="configuring-the-uart-for-lin-with-sysconfig">
+<h2>2. Configuring the UART for LIN with SysConfig<a class="headerlink" href="#configuring-the-uart-for-lin-with-sysconfig" title="Permalink to this heading">¶</a></h2>
+<p>LIN mode is supported on UART peripherals with UART Extend functionality. Refer to the device data sheet for the device-specific details on the UART peripherals.</p>
+<p>Users can easily configure their device for LIN by using SysConfig. Refer to the <a class="reference external" href="../../../../tools/sysconfig_guide/SysConfig_Guide_for_MSPM0.html">Using SysConfig with MSPM0</a> for more details on how to download, install, and get started with SysConfig.</p>
+<p>To add LIN to your project in SysConfig, add the UART-LIN module as shown below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_add_syscfg_module.png" />
+</figure>
+<p>Along with allowing the user to configure the basic UART properties for the UART peripheral, the UART-LIN module also allows users to configure the following LIN settings:</p>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_syscfg_configs.png" />
+</figure>
+<p>These settings are discussed in more detail in the sections below.</p>
+<section id="enable-lin-counter">
+<h3>Enable LIN counter<a class="headerlink" href="#enable-lin-counter" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_enable_lin_counter.png" />
+</figure>
+<p>This enables the 16 bit up-counter LIN counter, LINCNT. The LIN counter will only count when the counter is enabled.</p>
+</section>
+<section id="enable-and-configure-lin-counter-compare-match-mode">
+<h3>Enable and configure LIN Counter Compare Match mode<a class="headerlink" href="#enable-and-configure-lin-counter-compare-match-mode" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_counter_compare_match_config.png" />
+</figure>
+<p>The <strong>Counter Compare Match mode</strong> allows the user to detect timing between edge events. This is done by enabling the LIN counter, LINCNT, to be compared to a set value in the 16 bit capture register, LINC0. This functionality is useful for LIN break detection where a valid break can be detected when RXD is low for 9.5 consecutive bits.</p>
+<p>When this mode is enabled, SysConfig provides the calculated value of one Tbit, where a Tbit is the nominal time required to transmit a bit. Tbit is calculated as:</p>
+<ul class="simple">
+<li><p>Tbit = (UART Clock Source Frequency) / (UART Baud Rate)</p></li>
+</ul>
+<p>For example, with a clock source of 32MHz, a baudrate of 19200bps, <strong>Tbit Width</strong> is:</p>
+<ul class="simple">
+<li><p>Tbit = (32,000,0000) / (19,200) = 1,666</p></li>
+</ul>
+<p>The user can provide the counter compare value in Tbits. For example, to set the to set the counter compare value to 9.5 Tbits, the user should set the <strong>Counter Compare Timing</strong> value to “9.5”.</p>
+<p>After setting the value in Tbits to be compared to, SysConfig provides the value in cycles that the counter compare register LINC0 is set to. In this example, the <strong>Counter Compare Value</strong> in cycles is 15,833.</p>
+<p>Interrupt capability can be enabled to trigger on a counter compare match. Select the <strong>LINC0 match</strong> interrupt in the <strong>Interrupt Configuration</strong> section to enable triggering an interrupt on match with the set counter compare value.</p>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_linc0_match.png" />
+</figure>
+<p>When <strong>Counter Compare Match mode</strong> is enabled, the other mode of LINCNT, Capture on RXD falling edge, is automatically disabled. These options are mutually exclusive.</p>
+</section>
+<section id="enable-capture-on-rxd-falling-edge">
+<h3>Enable Capture on RXD Falling Edge<a class="headerlink" href="#enable-capture-on-rxd-falling-edge" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_capture_on_rxd_falling.png" />
+</figure>
+<p>Capture on RXD Falling edge allows the user to validate the timings of events. This is done by configuring the 16 bit capture register, LINC0, to capture the value of the LIN counter, LINCNT, on a RXD falling edge. This can be used in conjunction with the <strong>Enable Capture on RXD Rising Edge</strong> feature to perform SYNC field validation by measuring the bit timings of the signal, and using the values in LINC0 and LINC1 to validate the capture timings.</p>
+<p>Interrupt capability can be enabled to trigger on an RXD falling edge. Select the <strong>LIN falling edge</strong> interrupt in the <strong>Interrupt Configuration</strong> section to enable triggering an interrupt when the LINC0 counter captures a value to the LINC0 register on each RXD falling edge.</p>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_lin_falling_edge_int.png" />
+</figure>
+<p>When <strong>Capture on RXD Falling Edge</strong> is enabled, the other mode of LINCNT, <strong>Counter Compare Match mode</strong>, is automatically disabled. These options are mutually exclusive.</p>
+</section>
+<section id="enable-counter-reset-on-rxd-falling-edge">
+<h3>Enable Counter Reset on RXD Falling Edge<a class="headerlink" href="#enable-counter-reset-on-rxd-falling-edge" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_counter_reset.png" />
+</figure>
+<p>When <strong>Counter Reset on RXD Falling Edge</strong> is enabled, the LIN counter, LINCNT, will be reset to a value of 0 when a falling edge of RXD is detected. The LIN counter will immediately continue to count after the value is reset. This is useful during SYNC field validation to continuously count the bit times on each new falling edge.</p>
+</section>
+<section id="enable-count-while-rxd-is-low">
+<h3>Enable Count while RXD is Low<a class="headerlink" href="#enable-count-while-rxd-is-low" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_count_while_low.png" />
+</figure>
+<p>When enabled, the LIN counter, LINCNT, will count while there is a low signal on RXD. This is useful for break field detection, so the LIN counter can count the length of the RXD low signal to determine if it is a break field. The LIN counter must be first enabled before counting.</p>
+</section>
+<section id="enable-capture-on-rxd-rising-edge">
+<h3>Enable Capture on RXD Rising Edge<a class="headerlink" href="#enable-capture-on-rxd-rising-edge" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_capture_on_rxd_rising.png" />
+</figure>
+<p>When enabled, the 16-bit capture register, LINC1, will capture the value of the LIN counter, LINCNT, on each rising RXD edge. This can be used in conjunction with the <strong>Enable Capture on RXD Falling Edge</strong> feature to perform SYNC field validation by measuring the bit timings of the signal, and using the values in LINC0 and LINC1 to validate the capture timings.</p>
+<p>Interrupt capability can be enabled to trigger on an RXD rising edge. Select the <strong>LIN rising edge</strong> interrupt in the <strong>Interrupt Configuration</strong> section to enable triggering an interrupt when the LINC1 counter captures a value to the LINC0 register on each RXD rising edge.</p>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_lin_rising_edge_int.png" />
+</figure>
+</section>
+<section id="quick-profile">
+<h3>Quick Profile<a class="headerlink" href="#quick-profile" title="Permalink to this heading">¶</a></h3>
+<p>A Quick Profile is provided in the UART-LIN module that gives some basic recommendations on how to configure the LIN settings.</p>
+<p>The <strong>LIN at 19220 baud with Break Detection</strong> Quick Profile configures the UART peripheral at 19200 baud, and configures the LIN setting to handle break detection.</p>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_syscfg_profile.png" />
+</figure>
+<figure class="align-default">
+<img alt="" src="../_images/lin_guide_profile_settings.png" />
+</figure>
+<p>After selecting the profile, users can then modify these settings to be further suited for their application.</p>
+<p>Refer to the device specific Technical Reference Manual (TRM) for more details on the UART LIN configuration.</p>
+</section>
+</section>
+<section id="example-applications">
+<h2>3. Example Applications<a class="headerlink" href="#example-applications" title="Permalink to this heading">¶</a></h2>
+<p>The MSPM0 SDK provides two example applications to use as a starting point for LIN applications:</p>
+<ul class="simple">
+<li><p><strong>lin_commander</strong>: Configures the UART as a LIN Commander, and demonstrates basic transmit of LIN 2.0 packet using enhanced checksum</p></li>
+<li><p><strong>lin_responder</strong>: Configures the UART as a LIN Responder, and demonstrates break field detection and sync field validation of the received LIN header</p></li>
+</ul>
+<p>These examples can be found at <code class="docutils literal notranslate"><span class="pre">&lt;SDK_INSTALL_DIRECTORY&gt;/examples/nortos/&lt;LaunchPad&gt;/lin</span></code>.</p>
+<p>The <strong>lin_commander</strong> and <strong>lin_responder</strong> examples can be used on two separate MSPM0 devices to communicate with each other. Alternatively, a Network Analyzer compatible with LIN 2.0 can be used with either example as well.</p>
+<p>The LIN examples in the SDK are used with the Texas Instruments <a class="reference external" href="https://www.ti.com/tool/BOOSTXL-CANFD-LIN">BOOSTXL-CANFD-LIN BoosterPack</a>, which features the <a class="reference external" href="https://www.ti.com/product/TLIN2029-Q1">TLIN2029-Q1</a> fault protected LIN transceiver.</p>
+<p>Refer to the examples README files for more details on connecting the MSPM0 LaunchPad to the LIN transceiver, as well as detailed instructions on how to run the example.</p>
+<section id="modifying-the-example-applications">
+<h3>Modifying the Example Applications<a class="headerlink" href="#modifying-the-example-applications" title="Permalink to this heading">¶</a></h3>
+<p>Each LIN example application include a <code class="docutils literal notranslate"><span class="pre">lin_config.c</span></code> and <code class="docutils literal notranslate"><span class="pre">lin_config.h</span></code> file. These files contain macros that can be modified based on the user applications. It is recommended to only change these macros once the user has gained familiarity with the usage of the example application.</p>
+<p><code class="docutils literal notranslate"><span class="pre">lin_config.h</span></code> contains the definition of the struct <code class="docutils literal notranslate"><span class="pre">LIN_table_record_t</span></code> which allows the user to define a PID, the number of bytes associated with the data field for that PID, as well as a callback function for when that PID is received.</p>
+<p>Below is an example definition of a <code class="docutils literal notranslate"><span class="pre">LIN_table_record_t</span></code> struct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LIN_table_record_t</span> <span class="n">messageTable</span><span class="p">[</span><span class="n">LIN_COMMANDER_NUM_MSGS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">{</span><span class="mh">0xBA</span><span class="p">,</span> <span class="o">/*</span> <span class="n">PID</span> <span class="mh">0x3A</span> <span class="o">*/</span>
+        <span class="mi">8</span><span class="p">,</span>
+        <span class="n">NULL</span><span class="p">},</span>
+    <span class="p">{</span><span class="mh">0x0D</span><span class="p">,</span> <span class="o">/*</span> <span class="n">PID</span> <span class="mh">0x0D</span> <span class="o">*/</span>
+        <span class="mi">5</span><span class="p">,</span>
+        <span class="n">LIN_processMessage_Rx</span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>In this example, the first struct member is <code class="docutils literal notranslate"><span class="pre">{0xBA,</span> <span class="pre">8,</span> <span class="pre">NULL}</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0xBA</span></code> is the frame ID representing a PID of 0x3A. Refer to the LIN specification on how to determine the PID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">8</span></code> is the number of bytes that is expected in the data field for a packet with PID 0x3A.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NULL</span></code> tells the application that no callback function should be called when a packet with PID 0x3A is received.</p></li>
+</ul>
+<p>The second member of the struct is <code class="docutils literal notranslate"><span class="pre">{0x0D,</span> <span class="pre">5,</span> <span class="pre">LIN_processMessage_Rx}</span></code>. This member definition points to the user-defined callback function <code class="docutils literal notranslate"><span class="pre">LIN_processMessage_Rx</span></code>, which tells the application to call this function when a packet with PID 0x0D is received.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="MSPM0 LIN User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+%%{
+/*
+ * Copyright (c) 2018-2019, Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/*
+ *  ======== RTC.Board.c.xdt ========
+ */
+    /* args[] passed by /ti/drivers/templates/Board.c.xdt during function call: */
+    let RTC = args[0];
+    let content = args[1];
+    let Common = system.getScript("/ti/driverlib/Common.js");
+
+    /* shorthand names for some common references in template below */
+    let stat = RTC.$static;
+    if (stat.length == 0) return;
+
+    /*
+     * Standard Trampoline:
+     * In order to preserve spacing, it is important to also set the boolean
+     * values in the templates object based on whether that condition should
+     * produce any code
+     * Example:
+     * templates: {
+     *       boardc: "/ti/driverlib/comp/COMP.Board.c.xdt",
+     *       boardh: "/ti/driverlib/comp/COMP.Board.h.xdt",
+     *       Call: true,
+     *       Reset: false,
+     *       Power: true,
+     *       GPIO: false,
+     *       Function: true
+     * },
+     */
+
+    switch(content) {
+        case "Call":
+            printCall();
+            break;
+        case "Reset":
+            printReset();
+            break;
+        case "Power":
+            printPower();
+            break;
+        case "GPIO":
+            printGPIO();
+            break;
+        case "Function":
+            printFunction();
+            break;
+        default:
+            /* do nothing */
+            break;
+    }
+%%}
+%
+% function printCall() {
+    SYSCFG_DL_RTC_init();
+% }
+%
+% function printReset() {
+    DL_RTC_reset(RTC);
+%
+% }
+%
+% function printPower() {
+    DL_RTC_enablePower(RTC);
+% }
+%
+% function printGPIO() {
+% if (stat.offsetCalFreq != "OFF") {
+    /* Configure RTCOUT pin */
+    DL_GPIO_initPeripheralOutputFunction(
+        GPIO_RTC_IOMUX_RTCOUT, GPIO_RTC_IOMUX_RTCOUT_FUNC);
+%}
+% }
+%
+% /* Main Function */
+% function printFunction() {
+% let daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+% /* Get calendar day of the week */
+%    let calDOWString = daysOfTheWeek[stat.calDOW];
+% /* Get calendar month */
+%    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+%    let calMonthString = months[(stat.calMonth - 1)];
+%if(stat.rtcFormat == "BINARY"){
+% /* RTC Calendar Config */
+static const DL_RTC_Calendar gRTCCalendarConfig = {
+    .seconds    = `stat.calSec`,   /* Seconds = `stat.calSec` */
+    .minutes    = `stat.calMin`,   /* Minute = `stat.calMin` */
+    .hours      = `stat.calHour`,   /* Hour = `stat.calHour` */
+    .dayOfWeek  = `stat.calDOW`,    /* Day of week = `stat.calDOW` (`calDOWString`) */
+    .dayOfMonth = `stat.calDOM`,    /* Day of month = `stat.calDOM` */
+    .month      = `stat.calMonth`,    /* Month = `stat.calMonth` (`calMonthString`) */
+    .year       = `stat.calYear`, /* Year = `stat.calYear` */
+};
+%} else if(stat.rtcFormat == "BCD"){
+static const DL_RTC_Calendar gRTCCalendarConfig = {
+    .seconds    = `"0x"+stat.calSec`,   /* Seconds = `stat.calSec` */
+    .minutes    = `"0x"+stat.calMin`,   /* Minute = `stat.calMin` */
+    .hours      = `"0x"+stat.calHour`,   /* Hour = `stat.calHour` */
+    .dayOfWeek  = `"0x"+stat.calDOW`,    /* Day of week = `stat.calDOW` (`calDOWString`) */
+    .dayOfMonth = `"0x"+stat.calDOM`,    /* Day of month = `stat.calDOM` */
+    .month      = `"0x"+stat.calMonth`,    /* Month = `stat.calMonth` (`calMonthString`) */
+    .year       = `"0x"+stat.calYear`, /* Year = `stat.calYear` */
+};
+% } //%if(stat.rtcFormat == "BCD")
+% /* Get calendar alarm 1 day of the week */
+%    let calAlarm1DOWString = daysOfTheWeek[stat.calAlarm1DOW];
+% if(stat.enCalAlarm1 && (stat.enCalAlarm1Min || stat.enCalAlarm1Hour || stat.enCalAlarm1DOW || stat.enCalAlarm1DOM)) {
+%if(stat.rtcFormat == "BINARY"){
+
+static const DL_RTC_CalendarAlarm gRTCAlarm1Config = {
+%if(stat.enCalAlarm1Min) {
+    .minutes    = `stat.calAlarm1Min`, /* Minute = `stat.calAlarm1Min` */
+% }
+% if(stat.enCalAlarm1Hour) {
+    .hours      = `stat.calAlarm1Hour`, /* Hour = `stat.calAlarm1Hour` */
+% }
+%if(stat.enCalAlarm1DOW) {
+    .dayOfWeek  = `stat.calAlarm1DOW`,  /* Day of week = `stat.calAlarm1DOW` (`calAlarm1DOWString`) */
+% }
+%if(stat.enCalAlarm1DOM) {
+    .dayOfMonth = `stat.calAlarm1DOM`,  /* Day of month = `stat.calAlarm1DOM` */
+%}
+};
+%} else if(stat.rtcFormat == "BCD"){
+
+static const DL_RTC_CalendarAlarm gRTCAlarm1Config = {
+%if(stat.enCalAlarm1Min) {
+    .minutes    = `"0x"+stat.calAlarm1Min`, /* Minute = `stat.calAlarm1Min` */
+% }
+% if(stat.enCalAlarm1Hour) {
+    .hours      = `"0x"+stat.calAlarm1Hour`, /* Hour = `stat.calAlarm1Hour` */
+% }
+%if(stat.enCalAlarm1DOW) {
+    .dayOfWeek  = `"0x"+stat.calAlarm1DOW`,  /* Day of week = `stat.calAlarm1DOW` (`calAlarm1DOWString`) */
+% }
+%if(stat.enCalAlarm1DOM) {
+    .dayOfMonth = `"0x"+stat.calAlarm1DOM`,  /* Day of month = `stat.calAlarm1DOM` */
+%}
+};
+%} //if(stat.rtcFormat == "BCD"){
+%}  // % if(stat.enCalAlarm1)
+% /* Get calendar alarm 2 day of the week */
+%    let calAlarm2DOWString = daysOfTheWeek[stat.calAlarm2DOW];
+% if(stat.enCalAlarm2 && (stat.enCalAlarm2Min || stat.enCalAlarm2Hour || stat.enCalAlarm2DOW || stat.enCalAlarm2DOM)) {
+%if(stat.rtcFormat == "BINARY"){
+
+static const DL_RTC_CalendarAlarm gRTCAlarm2Config = {
+%if(stat.enCalAlarm2Min) {
+    .minutes    = `stat.calAlarm2Min`, /* Minute = `stat.calAlarm2Min` */
+% }
+% if(stat.enCalAlarm2Hour) {
+    .hours      = `stat.calAlarm2Hour`, /* Hour = `stat.calAlarm2Hour` */
+% }
+%if(stat.enCalAlarm2DOW) {
+    .dayOfWeek  = `stat.calAlarm2DOW`,  /* Day of week = `stat.calAlarm2DOW` (`calAlarm2DOWString`) */
+% }
+%if(stat.enCalAlarm2DOM) {
+    .dayOfMonth = `stat.calAlarm2DOM`,  /* Day of month = `stat.calAlarm2DOM` */
+%}
+};
+% } else if(stat.rtcFormat == "BCD"){
+
+static const DL_RTC_CalendarAlarm gRTCAlarm2Config = {
+%if(stat.enCalAlarm2Min) {
+    .minutes    = `"0x"+stat.calAlarm2Min`, /* Minute = `stat.calAlarm2Min` */
+% }
+% if(stat.enCalAlarm2Hour) {
+    .hours      = `"0x"+stat.calAlarm2Hour`, /* Hour = `stat.calAlarm2Hour` */
+% }
+%if(stat.enCalAlarm2DOW) {
+    .dayOfWeek  = `"0x"+stat.calAlarm2DOW`,  /* Day of week = `stat.calAlarm2DOW` (`calAlarm2DOWString`) */
+% }
+%if(stat.enCalAlarm2DOM) {
+    .dayOfMonth = `"0x"+stat.calAlarm2DOM`,  /* Day of month = `stat.calAlarm2DOM` */
+%}
+};
+%} // else if(stat.rtcFormat == "BCD")
+%}  // % if(stat.enCalAlarm2)
+
+SYSCONFIG_WEAK void SYSCFG_DL_RTC_init(void)
+{
+    /* Initialize RTC Calendar */
+    DL_RTC_initCalendar(RTC, gRTCCalendarConfig, DL_RTC_FORMAT_`stat.rtcFormat`);
+%if(stat.enCalAlarm1 && (stat.enCalAlarm1Min || stat.enCalAlarm1Hour || stat.enCalAlarm1DOW || stat.enCalAlarm1DOM)) {
+%if(stat.rtcFormat == "BINARY") {
+
+    /* Clear RTC Calendar Alarm 1 */
+    DL_RTC_disableAlarm1MinutesBinary(RTC);
+    DL_RTC_disableAlarm1HoursBinary(RTC);
+    DL_RTC_disableAlarm1DayOfWeekBinary(RTC);
+    DL_RTC_disableAlarm1DayOfMonthBinary(RTC);
+    DL_RTC_disableInterrupt(RTC, DL_RTC_INTERRUPT_CALENDAR_ALARM1);
+
+    /* Configure RTC Calendar Alarm 1 */
+    DL_RTC_setCalendarAlarm1(RTC, gRTCAlarm1Config);
+%if(stat.enCalAlarm1Min) {
+    DL_RTC_enableAlarm1MinutesBinary(RTC);
+%}
+%if(stat.enCalAlarm1Hour) {
+    DL_RTC_enableAlarm1HoursBinary(RTC);
+%}
+%if(stat.enCalAlarm1DOW) {
+    DL_RTC_enableAlarm1DayOfWeekBinary(RTC);
+%}
+%if(stat.enCalAlarm1DOM) {
+    DL_RTC_enableAlarm1DayOfMonthBinary(RTC);
+%}
+%}//if(stat.rtcFormat == "BINARY")
+%if(stat.rtcFormat == "BCD") {
+
+    /* Clear RTC Calendar Alarm 1 */
+    DL_RTC_disableAlarm1MinutesBCD(RTC);
+    DL_RTC_disableAlarm1HoursBCD(RTC);
+    DL_RTC_disableAlarm1DayOfWeekBCD(RTC);
+    DL_RTC_disableAlarm1DayOfMonthBCD(RTC);
+    DL_RTC_disableInterrupt(RTC, DL_RTC_INTERRUPT_CALENDAR_ALARM1);
+
+    /* Configure RTC Calendar Alarm 1 */
+    DL_RTC_setCalendarAlarm1(RTC, gRTCAlarm1Config);
+%if(stat.enCalAlarm1Min) {
+    DL_RTC_enableAlarm1MinutesBCD(RTC);
+%}
+%if(stat.enCalAlarm1Hour) {
+    DL_RTC_enableAlarm1HoursBCD(RTC);
+%}
+%if(stat.enCalAlarm1DOW) {
+    DL_RTC_enableAlarm1DayOfWeekBCD(RTC);
+%}
+%if(stat.enCalAlarm1DOM) {
+    DL_RTC_enableAlarm1DayOfMonthBCD(RTC);
+%}
+%}//if(stat.rtcFormat == "BCD")
+%} //if(stat.enCalAlarm1)
+%if(stat.enCalAlarm2 && (stat.enCalAlarm2Min || stat.enCalAlarm2Hour || stat.enCalAlarm2DOW || stat.enCalAlarm2DOM)) {
+%if(stat.rtcFormat == "BINARY") {
+
+    /* Clear RTC Calendar Alarm 2 */
+    DL_RTC_disableAlarm2MinutesBinary(RTC);
+    DL_RTC_disableAlarm2HoursBinary(RTC);
+    DL_RTC_disableAlarm2DayOfWeekBinary(RTC);
+    DL_RTC_disableAlarm2DayOfMonthBinary(RTC);
+    DL_RTC_disableInterrupt(RTC, DL_RTC_INTERRUPT_CALENDAR_ALARM2);
+
+    /* Configure RTC Calendar Alarm 2 */
+    DL_RTC_setCalendarAlarm2(RTC, gRTCAlarm2Config);
+%if(stat.enCalAlarm2Min) {
+    DL_RTC_enableAlarm2MinutesBinary(RTC);
+%}
+%if(stat.enCalAlarm2Hour) {
+    DL_RTC_enableAlarm2HoursBinary(RTC);
+%}
+%if(stat.enCalAlarm2DOW) {
+    DL_RTC_enableAlarm2DayOfWeekBinary(RTC);
+%}
+%if(stat.enCalAlarm2DOM) {
+    DL_RTC_enableAlarm2DayOfMonthBinary(RTC);
+%}
+%}//if(stat.rtcFormat == "BINARY")
+%if(stat.rtcFormat == "BCD") {
+    /* Clear RTC Calendar Alarm 2 */
+    DL_RTC_disableAlarm2MinutesBCD(RTC);
+    DL_RTC_disableAlarm2HoursBCD(RTC);
+    DL_RTC_disableAlarm2DayOfWeekBCD(RTC);
+    DL_RTC_disableAlarm2DayOfMonthBCD(RTC);
+    DL_RTC_disableInterrupt(RTC, DL_RTC_INTERRUPT_CALENDAR_ALARM2);
+
+    /* Configure RTC Calendar Alarm 2 */
+    DL_RTC_setCalendarAlarm2(RTC, gRTCAlarm2Config);
+%if(stat.enCalAlarm2Min) {
+    DL_RTC_enableAlarm2MinutesBCD(RTC);
+%}
+%if(stat.enCalAlarm2Hour) {
+    DL_RTC_enableAlarm2HoursBCD(RTC);
+%}
+%if(stat.enCalAlarm2DOW) {
+    DL_RTC_enableAlarm2DayOfWeekBCD(RTC);
+%}
+%if(stat.enCalAlarm2DOM) {
+    DL_RTC_enableAlarm2DayOfMonthBCD(RTC);
+%}
+%}//if(stat.rtcFormat == "BCD")
+%} //if(stat.enCalAlarm2)
+%if(stat.enIntervalAlarm) {
+
+    /* Configure Interval Alarm */
+    DL_RTC_setIntervalAlarm(RTC, DL_RTC_INTERVAL_ALARM_`stat.intervalAlarmEvent`);
+%}//if(stat.enIntervalAlarm)
+%if(stat.enPerAlarm0) {
+% let perscalar0Freq = 32768/Common.sliceNumber(stat.perAlarm0Divider)
+
+    /* Configure Periodic Alarm 0 frequency to `perscalar0Freq`Hz */
+    DL_RTC_setPeriodicAlarm0(RTC, DL_RTC_PRESCALER0_DIVIDE_`stat.perAlarm0Divider`);
+%}
+%if(stat.enPerAlarm1) {
+% let perscalar1Freq = 128/Common.sliceNumber(stat.perAlarm1Divider)
+
+    /* Configure Periodic Alarm 1 frequency to `perscalar1Freq`Hz */
+    DL_RTC_setPeriodicAlarm1(RTC, DL_RTC_PRESCALER1_DIVIDE_`stat.perAlarm1Divider`);
+%}
+%    /* Interrupt generation */
+%    if(stat.enabledInterrupts.length > 0){
+%    let interArgs = "";
+%    let interCount = 0
+%    let interFct = ""
+%    for (let inter of stat.enabledInterrupts) {
+%       if (interCount == 0) {
+%           interArgs += "DL_RTC_INTERRUPT_"+inter;
+%       } else {
+%           interArgs += "\n\t\t";
+%           interArgs += " | " + "DL_RTC_INTERRUPT_"+inter;
+%       }
+%           interCount++;
+%    }
+%   interFct = "DL_RTC_enableInterrupt(RTC, "+interArgs+");";
+
+    /* Configure Interrupts */
+    `interFct`
+%        if(stat.interruptPriority !== "DEFAULT"){
+%               let irqnStr = "RTC_INT_IRQn";
+    NVIC_SetPriority(`irqnStr`, `stat.interruptPriority`);
+%        }
+%    } else {
+%        // interFCT remains empty
+%    }
+
+
+%   /* Event Generation for Publisher Event Route 1 */
+%
+%       /* Check if default case for publisher/subscriber configuration */
+%       if(stat.pubChanID != 0){
+    DL_RTC_setPublisherChanID(RTC, RTC_PUB_CH);
+%       }
+%   if ((stat.pubChanID != 0) &&
+%       (stat.enabledEvents.length > 0)) {
+%%{
+    /* Event bit mask to be used in DL_RTC_enableEvent() */
+    var eventsToEnableOR = "(";
+
+    for (let eventToEnable of stat.enabledEvents)
+    {
+        /* The last event should end with a closing parenthesis */
+        if (eventToEnable == stat.enabledEvents[stat.enabledEvents.length - 1])
+        {
+            eventsToEnableOR += ("DL_RTC_EVENT_" + eventToEnable + ")");
+        }
+        else
+        {
+            eventsToEnableOR += ("DL_RTC_EVENT_" + eventToEnable + " |");
+            eventsToEnableOR += "\n\t\t";
+        }
+    }
+%%}
+    DL_RTC_enableEvent(RTC, `eventsToEnableOR`);
+%   }
+
+
+% if (stat.offsetCalFreq != "OFF") {
+
+    /* Configure the Crystal Offset Error Calibration */
+    DL_RTC_setOffsetCalibrationFrequency(RTC, DL_RTC_OFFSET_CALIBRATION_FREQUENCY_`stat.offsetCalFreq`);
+%}
+
+}
+% }

@@ -1,0 +1,29 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const PWM  = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1 = PWM.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+PWM1.$name                   = "PWM_0";
+PWM1.clockPrescale           = 256;
+PWM1.timerCount              = 2000;
+PWM1.timerStartTimer         = true;
+PWM1.interrupts              = ["CC0_DN_EVENT","LOAD_EVENT"];
+PWM1.ccIndex                 = [1];
+PWM1.peripheral.$assign      = "TIMG0";
+PWM1.PWM_CHANNEL_1.$name     = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_1.dutyCycle = 10;
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);

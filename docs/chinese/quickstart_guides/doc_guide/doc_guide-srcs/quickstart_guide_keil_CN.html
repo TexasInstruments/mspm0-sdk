@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 SDK QuickStart Guide for Keil &mdash; MSPM0 SDK Quick Start Guides 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="MSPM0 SDK QuickStart Guide for IAR" href="quickstart_guide_iar_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 SDK Quick Start Guides
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs_theia_CN.html">适用于 CCS Theia 的 MSPM0 SDK 快速入门指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs_CN.html">适用于 CCS 的 MSPM0 SDK 快速入门指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_iar_CN.html">MSPM0 SDK QuickStart Guide for IAR</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SDK QuickStart Guide for Keil</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">2. Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-mspm0-cmsis-pack">3. Install the MSPM0 CMSIS-Pack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-mspm0-sdk">4. Install the MSPM0 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-sysconfig-with-keil-ide">5. Using SysConfig with Keil IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-and-build-an-sdk-example-in-keil-uvision">6. Import and Build an SDK Example in Keil uVision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-and-debugging-to-mspm0-using-keil">7. Downloading and debugging to MSPM0 using Keil</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-cmsis-dap">7.1 Using CMSIS-DAP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">8. Known Issues and Frequently Asked Questions (FAQs)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 SDK Quick Start Guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 SDK QuickStart Guide for Keil</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-sdk-quickstart-guide-for-keil">
+<h1>MSPM0 SDK QuickStart Guide for Keil<a class="headerlink" href="#mspm0-sdk-quickstart-guide-for-keil" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This guide is intended to assist users in the initial setup and demonstration of running their first sample application. The guide explains how to install the MSPM0 SDK and the MSPM0 CMSIS-Pack for Keil, and lists the various other tools required to get started with your first application.</p>
+</section>
+<section id="prerequisites">
+<h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The user is expected to have downloaded the following:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a></p></li>
+<li><p><a class="reference external" href="https://www2.keil.com/mdk5">Keil MDK-Arm with uVision</a> v5.38a or later, with Arm Clang compiler v6.16 or later.</p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig 1.17.x</a></p></li>
+</ul>
+</section>
+<section id="install-the-mspm0-cmsis-pack">
+<h2>3. Install the MSPM0 CMSIS-Pack<a class="headerlink" href="#install-the-mspm0-cmsis-pack" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Install <a class="reference external" href="#prerequisites">Keil MDK-Arm with uVision</a></p></li>
+<li><p>In uVision, select <strong>Project → Manage → Pack Installer</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_install_1.png" />
+</figure>
+</li>
+<li><p>In the Pack Installer, select the Texas Instruments devices and select the corresponding MSPM0 family. Then on the right side, install the device specific pack as well as any other pack that may be necessary.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_install_2.png" />
+</figure>
+</li>
+<li><p>Approve the license terms</p></li>
+<li><p>The Pack Installer should show suppport for the MSPM0 devices.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_install_5.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="install-the-mspm0-sdk">
+<h2>4. Install the MSPM0 SDK<a class="headerlink" href="#install-the-mspm0-sdk" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Download and install the latest <a class="reference external" href="#prerequisites">MSPM0 SDK</a>. Note that there are SDK installers for Windows, Linux and MacOS. The steps below are shown in Windows, but a similar approach should be followed in Linux or MacOS.</p></li>
+<li><p>Execute the installer. Click <strong>Next</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sdk_install_11.png" />
+</figure>
+</li>
+<li><p>Select an <strong>Installation Directory</strong> and click <strong>Next</strong>. Note the installation directory which by default is <code class="docutils literal notranslate"><span class="pre">c:\ti</span></code> which will install the SDK at <code class="docutils literal notranslate"><span class="pre">C:\ti\mspm0_sdk_&lt;version&gt;\</span></code>. This path will be refered to as <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;</span></code> in sections below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sdk_install_21.png" />
+</figure>
+</li>
+<li><p>Click <strong>Next</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/sdk_install_31.png" />
+</figure>
+</li>
+<li><p>After installation is complete, click <strong>Finish</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sdk_install_41.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="using-sysconfig-with-keil-ide">
+<h2>5. Using SysConfig with Keil IDE<a class="headerlink" href="#using-sysconfig-with-keil-ide" title="Permalink to this heading">¶</a></h2>
+<p>The SDK includes a preliminary version of SysConfig metadata which can be used to evaluate the user experience of MSPM0 SDK.</p>
+<p>A detailed explanation of the installation and usage of SysConfig with MSPM0 is available at <a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">Using SysConfig with MSPM0</a> available in the SDK’s Tools Guide.</p>
+</section>
+<section id="import-and-build-an-sdk-example-in-keil-uvision">
+<h2>6. Import and Build an SDK Example in Keil uVision<a class="headerlink" href="#import-and-build-an-sdk-example-in-keil-uvision" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>In Keil uVision, select <strong>Project → Open Project</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_example_1.png" />
+</figure>
+</li>
+<li><p>Navigate to a Keil folder in SDK example at <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/</span></code> and open the .uvprojx project file. For example <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output_hiz/keil/gpio_toggle_output_hiz.uvprojx</span></code>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_example_2.png" />
+</figure>
+</li>
+<li><p>The project is ready to build and debug.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_example_3.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="downloading-and-debugging-to-mspm0-using-keil">
+<h2>7. Downloading and debugging to MSPM0 using Keil<a class="headerlink" href="#downloading-and-debugging-to-mspm0-using-keil" title="Permalink to this heading">¶</a></h2>
+<p>Keil supports multiple debuggers. This section shows how to use the XDS-110 debugging tool in CMSIS-DAP mode. The XDS-110 is integrated into the MSPM0 LaunchPads.</p>
+<section id="using-cmsis-dap">
+<h3>7.1 Using CMSIS-DAP<a class="headerlink" href="#using-cmsis-dap" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Go to the options window for the Keil project imported in the previous step by right clicking on the project folder</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_CMSIS_example_1.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Go to the debug tab on the window and select CMSIS-DAP as the debugger from the drop down in the top right corner.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_CMSIS_example_2.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Click on the settings button and on the debug tab make sure the settings match those shown in the image below.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_CMSIS_example_4.png" />
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>Click on the Flash Download tab and check that description matches that of the image. If not, click on the add button and select the corresponding MSPM0 MAIN option. The device type is On-chip flash.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_CMSIS_example_3.png" />
+</figure>
+<ol class="arabic simple" start="5">
+<li><p>Click Ok on the bottom of the windows to close out the windows and apply all the changes made to the debug settings</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_CMSIS_example_5.png" />
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Flash the device with the project by pressing the Load button as shown below</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_CMSIS_example_8.png" />
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Hover over the debug tab on the main screen and choose start/stop debug session</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_CMSIS_example_6.png" />
+</figure>
+<ol class="arabic simple" start="7">
+<li><p>This will start the debug session.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/keil_CMSIS_example_7.png" />
+</figure>
+</section>
+</section>
+<section id="known-issues-and-frequently-asked-questions-faqs">
+<h2>8. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
+<p>Please refer to <a class="reference external" href="../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart_guide_iar_CN.html" class="btn btn-neutral float-left" title="MSPM0 SDK QuickStart Guide for IAR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

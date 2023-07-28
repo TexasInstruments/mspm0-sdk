@@ -1,0 +1,31 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+OPA1.$name                        = "OPA_0";
+OPA1.cfg0OutputPin                = "ENABLED";
+OPA1.cfg0PSELChannel              = "IN0_POS";
+OPA1.cfg0NSELChannel              = "RTAP";
+OPA1.cfg0MSELChannel              = "GND";
+OPA1.cfg0Gain                     = "N15_P16";
+OPA1.advBW                        = "HIGH";
+OPA1.peripheral.$assign           = "OPA1";
+OPA1.peripheral.OutPin.$assign    = "PA16";
+OPA1.peripheral.In0PosPin.$assign = "PA18";
+
+SYSCTL.clockTreeEn = true;

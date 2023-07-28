@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewers>
+    <association>
+        <extensions>.syscfg</extensions>
+        <action>$SYSCONFIG_ROOT$\nw\nw.exe $SYSCONFIG_ROOT$ --compiler iar --product '$MSPM0_SDK_INSTALL_DIR$\.metadata\product.json' --output '$PROJ_DIR$' '$FILE_PATH$'</action>
+    </association>
+</viewers>

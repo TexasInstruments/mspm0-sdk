@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Generation and Ease-of-Use &mdash; MSPM0 Tools Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="codegen_easeofuse_sysconfig.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="ides_gcc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 Tools Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ides.html">IDEs and Compilers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Generation and Ease-of-Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sysconfig">SysConfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html#http://">Using SysConfig with MSPM0</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/ccs_sysconfig_projects.html">Working with SysConfig Projects (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analog-configurator">Analog Configurator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="../../analog_config_overview/doc_guide/doc_guide-srcs/analog_config_overview.html#http://">Using Analog Configurator with MSPM0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="debug_program.html">Debugging and Programming Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 Tools Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Code Generation and Ease-of-Use</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="code-generation-and-ease-of-use">
+<h1>Code Generation and Ease-of-Use<a class="headerlink" href="#code-generation-and-ease-of-use" title="Permalink to this heading">¶</a></h1>
+<section id="sysconfig">
+<h2>SysConfig<a class="headerlink" href="#sysconfig" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components.</div>
+<div class="line">SysConfig helps you manage, expose and resolve conflicts visually so that you have more time to create differentiated applications.</div>
+<div class="line"><br /></div>
+<div class="line">The tool’s output includes C header and code files that can be used with software development kit (SDK) examples or used to configure custom software.</div>
+<div class="line"><br /></div>
+<div class="line">The SysConfig tool automatically selects the pinmux settings that satisfy the entered requirements.</div>
+<div class="line">The SysConfig tool is delivered integrated in CCS, as a standalone installer, or can be used via the dev.ti.com cloud tools portal.</div>
+</div>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html#http://">Using SysConfig with MSPM0</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/ccs_sysconfig_projects.html">Working with SysConfig Projects (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="analog-configurator">
+<h2>Analog Configurator<a class="headerlink" href="#analog-configurator" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">The <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/AnalogConfigurator">TI Analog Configurator</a> is a graphical configuration tool designed to simplify and accelerate the design and enablement of an analog signal chain using a MSPM0 device with no traditional coding development necessary.</div>
+<div class="line">The tool uses an intuitive GUI to configure a signal chain using the high analog integration of MSPM0 devices, analyze and evaluate signals in real-time, and generate the configuration code necessary to flash the device.</div>
+<div class="line"><br /></div>
+<div class="line">TI Analog Configurator utilizes SysConfig to automatically select pinmux settings based on the user’s configuration.</div>
+<div class="line">The tool can output a CCS project with the SysConfig analog configuration already completed for the user.</div>
+</div>
+<section id="id2">
+<h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="../../analog_config_overview/doc_guide/doc_guide-srcs/analog_config_overview.html#http://">Using Analog Configurator with MSPM0</a></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ides_gcc.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="codegen_easeofuse_sysconfig.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

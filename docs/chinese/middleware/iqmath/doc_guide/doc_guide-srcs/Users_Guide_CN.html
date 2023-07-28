@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 IQMath User’s Guide &mdash; IQMath Documentation 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="IQMath Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> IQMath Documentation
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 IQMath User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-iqmath-library">2. Using the IQmath Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#iqmath-data-types">2.1. IQmath Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.2. Using the IQMath Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calling-functions-from-c">2.3. Calling Functions From C</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-the-global-iq-format">2.4. Selecting the Global IQ Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-projects">2.5. Example Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-guide">3. API Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarks">4. Benchmarks</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IQMath Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 IQMath User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-iqmath-user-s-guide">
+<h1>MSPM0 IQMath User’s Guide<a class="headerlink" href="#mspm0-iqmath-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>The Texas Instruments® MSP IQmath Library is a collection of highly optimized and high-precision mathematical functions for C programmers to seamlessly port a floating-point algorithm into fixed-point code on MSPM0 devices. These routines are typically used in computationally intensive real-time applications where optimal execution speed, high accuracy and ultra-low energy are critical. By using the IQmath library, it is possible to achieve execution speeds considerably faster and energy consumption considerably lower than equivalent code written using floating-point math.</p>
+<p>The IQmath library provides functions for use with 32-bit data types and high accuracy.</p>
+</section>
+<section id="using-the-iqmath-library">
+<h2>2. Using the IQmath Library<a class="headerlink" href="#using-the-iqmath-library" title="Permalink to this heading">¶</a></h2>
+<section id="iqmath-data-types">
+<h3>2.1. IQmath Data Types<a class="headerlink" href="#iqmath-data-types" title="Permalink to this heading">¶</a></h3>
+<p>The IQmath library uses a 32-bit fixed-point signed number (an “int32_t” in C99) as its basic data type. The IQ format of this fixed-point number can range from IQ1 to IQ30, where the IQ format number indicates the number of fractional bits. The IQ format value is stored as an integer with an implied scale based on the IQ format and the number of fractional bits. The equation below shows how a IQ format decimal number xiq is stored using an integer value xi with an implied scale, where n represents the number of fractional bits.</p>
+<div class="math notranslate nohighlight">
+\[IQn(x_{iq}) = x_{i} ∗ 2^{-n}\]</div>
+<p>For example the IQ24 value of 3.625 is stored as an integer value of 60817408, shown in the equation below.</p>
+<div class="math notranslate nohighlight">
+\[60817408 ∗ 2^{−24} = IQ24(3.625)\]</div>
+<p>C typedefs are provided for the various IQ formats, and these IQmath data types should be used in preference to the underlying “int32_t” data type to make it clear which variables are in IQ format.</p>
+<p>The following table provides the characteristics of the various IQ formats (the C data type, the number of integer bits, the number of fractional bits, the smallest negative value that can be represented, the largest positive value that can be represented, and the smallest difference that can be represented):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Integer Bits</p></th>
+<th class="head"><p>Fractional Bits</p></th>
+<th class="head"><p>Min Range</p></th>
+<th class="head"><p>Max Range</p></th>
+<th class="head"><p>Resolution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>_iq30</p></td>
+<td><p>2</p></td>
+<td><p>30</p></td>
+<td><p>-2</p></td>
+<td><p>1.999 999 999</p></td>
+<td><p>0.000 000 001</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq29</p></td>
+<td><p>3</p></td>
+<td><p>29</p></td>
+<td><p>-4</p></td>
+<td><p>3.999 999 998</p></td>
+<td><p>0.000 000 002</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq28</p></td>
+<td><p>4</p></td>
+<td><p>28</p></td>
+<td><p>-8</p></td>
+<td><p>7.999 999 996</p></td>
+<td><p>0.000 000 004</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq27</p></td>
+<td><p>5</p></td>
+<td><p>27</p></td>
+<td><p>-16</p></td>
+<td><p>15.999 999 993</p></td>
+<td><p>0.000 000 007</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq26</p></td>
+<td><p>6</p></td>
+<td><p>26</p></td>
+<td><p>-32</p></td>
+<td><p>31.999 999 985</p></td>
+<td><p>0.000 000 015</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq25</p></td>
+<td><p>7</p></td>
+<td><p>25</p></td>
+<td><p>-64</p></td>
+<td><p>63.999 999 970</p></td>
+<td><p>0.000 000 030</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq24</p></td>
+<td><p>8</p></td>
+<td><p>24</p></td>
+<td><p>-128</p></td>
+<td><p>127.999 999 940</p></td>
+<td><p>0.000 000 060</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq23</p></td>
+<td><p>9</p></td>
+<td><p>23</p></td>
+<td><p>-256</p></td>
+<td><p>255.999 999 881</p></td>
+<td><p>0.000 000 119</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq22</p></td>
+<td><p>10</p></td>
+<td><p>22</p></td>
+<td><p>-512</p></td>
+<td><p>511.999 999 762</p></td>
+<td><p>0.000 000 238</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq21</p></td>
+<td><p>11</p></td>
+<td><p>21</p></td>
+<td><p>-1,024</p></td>
+<td><p>1,023.999 999 523</p></td>
+<td><p>0.000 000 477</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq20</p></td>
+<td><p>12</p></td>
+<td><p>20</p></td>
+<td><p>-2,048</p></td>
+<td><p>2,047.999 999 046</p></td>
+<td><p>0.000 000 954</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq19</p></td>
+<td><p>13</p></td>
+<td><p>19</p></td>
+<td><p>-4,096</p></td>
+<td><p>4,095.999 998 093</p></td>
+<td><p>0.000 001 907</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq18</p></td>
+<td><p>14</p></td>
+<td><p>18</p></td>
+<td><p>-8,192</p></td>
+<td><p>8,191.999 996 185</p></td>
+<td><p>0.000 003 815</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq17</p></td>
+<td><p>15</p></td>
+<td><p>17</p></td>
+<td><p>-16,384</p></td>
+<td><p>16,383.999 992 371</p></td>
+<td><p>0.000 007 629</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq16</p></td>
+<td><p>16</p></td>
+<td><p>16</p></td>
+<td><p>-32,768</p></td>
+<td><p>32,767.999 984 741</p></td>
+<td><p>0.000 015 259</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq15</p></td>
+<td><p>17</p></td>
+<td><p>15</p></td>
+<td><p>-65,536</p></td>
+<td><p>65,535.999 969 483</p></td>
+<td><p>0.000 030 518</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq14</p></td>
+<td><p>18</p></td>
+<td><p>14</p></td>
+<td><p>-131,072</p></td>
+<td><p>131,071.999 938 965</p></td>
+<td><p>0.000 061 035</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq13</p></td>
+<td><p>19</p></td>
+<td><p>13</p></td>
+<td><p>-262,144</p></td>
+<td><p>262,143.999 877 930</p></td>
+<td><p>0.000 122 070</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq12</p></td>
+<td><p>20</p></td>
+<td><p>12</p></td>
+<td><p>-524,288</p></td>
+<td><p>524,287.999 755 859</p></td>
+<td><p>0.000 244 141</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq11</p></td>
+<td><p>21</p></td>
+<td><p>11</p></td>
+<td><p>-1,048,576</p></td>
+<td><p>1,048,575.999 511 720</p></td>
+<td><p>0.000 488 281</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq10</p></td>
+<td><p>22</p></td>
+<td><p>10</p></td>
+<td><p>-2,097,152</p></td>
+<td><p>2,097,151.999 023 440</p></td>
+<td><p>0.000 976 563</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq9</p></td>
+<td><p>23</p></td>
+<td><p>9</p></td>
+<td><p>-4,194,304</p></td>
+<td><p>4,194,303.998 046 880</p></td>
+<td><p>0.001 953 125</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq8</p></td>
+<td><p>24</p></td>
+<td><p>8</p></td>
+<td><p>-8,388,608</p></td>
+<td><p>8,388,607.996 093 750</p></td>
+<td><p>0.003 906 250</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq7</p></td>
+<td><p>25</p></td>
+<td><p>7</p></td>
+<td><p>-16,777,216</p></td>
+<td><p>16,777,215.992 187 500</p></td>
+<td><p>0.007 812 500</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq6</p></td>
+<td><p>26</p></td>
+<td><p>6</p></td>
+<td><p>-33,554,432</p></td>
+<td><p>33,554,431.984 375 000</p></td>
+<td><p>0.015 625 000</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq5</p></td>
+<td><p>27</p></td>
+<td><p>5</p></td>
+<td><p>-67,108,864</p></td>
+<td><p>67,108,863.968 750 000</p></td>
+<td><p>0.031 250 000</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq4</p></td>
+<td><p>28</p></td>
+<td><p>4</p></td>
+<td><p>-134,217,728</p></td>
+<td><p>134,217,727.937 500 000</p></td>
+<td><p>0.062 500 000</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq3</p></td>
+<td><p>29</p></td>
+<td><p>3</p></td>
+<td><p>-268,435,456</p></td>
+<td><p>268,435,455.875 000 000</p></td>
+<td><p>0.125 000 000</p></td>
+</tr>
+<tr class="row-even"><td><p>_iq2</p></td>
+<td><p>30</p></td>
+<td><p>2</p></td>
+<td><p>-536,870,912</p></td>
+<td><p>536,870,911.750 000 000</p></td>
+<td><p>0.250 000 000</p></td>
+</tr>
+<tr class="row-odd"><td><p>_iq1</p></td>
+<td><p>31</p></td>
+<td><p>1</p></td>
+<td><p>-1,073,741,824</p></td>
+<td><p>1,073,741,823.500 000 000</p></td>
+<td><p>0.500 000 000</p></td>
+</tr>
+</tbody>
+</table>
+<p>In addition to these specific IQ format types, there is an additional type that corresponds to the GLOBAL_IQ format. This is _iq, and it matches one of the above IQ formats (based on the setting of GLOBAL_IQ). The GLOBAL_IQ format has no impact when using the specific _iqN types and function such as _iq24.</p>
+</section>
+<section id="id1">
+<h3>2.2. Using the IQMath Library<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>Two versions of the IQmath library are provided:</p>
+<ul class="simple">
+<li><p>RTS: C implementation using compiler Runtime System (RTS) libraries</p></li>
+<li><p>MathACL: leverages the MSPM0 hardware math accelerator (MathACL) ​</p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>MSPM0 Family</p></th>
+<th class="head"><p>RTS</p></th>
+<th class="head"><p>MathACL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MSPM0G</p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+</tr>
+<tr class="row-odd"><td><p>MSPM0L</p></td>
+<td><p>Supported</p></td>
+<td><p>Not supported</p></td>
+</tr>
+</tbody>
+</table>
+<p>The libraries are provided in easy to use archive files, named <code class="docutils literal notranslate"><span class="pre">iqmath.a</span></code>. The archive files should be used with projects in place of any .lib files.</p>
+<p>To find the provided libraries, simply navigate to the device directory under <code class="docutils literal notranslate"><span class="pre">source/ti/iqmath/lib</span></code> where you will find the different versions of <code class="docutils literal notranslate"><span class="pre">iqmath.a</span></code>.</p>
+<p>In order to use IQmath, user also need to make sure they have the right path to the IQMath include folder which is <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;ti/iqmath/include/IQmathLib.h&gt;</span></code>.</p>
+<p>Review the corresponding IDE documentation for details on how to add files, libraries and paths to a project.</p>
+</section>
+<section id="calling-functions-from-c">
+<h3>2.3. Calling Functions From C<a class="headerlink" href="#calling-functions-from-c" title="Permalink to this heading">¶</a></h3>
+<p>In order to call an IQmath function from C, the C header file must be included. Then, _iq and _iqN data types, along with the IQmath functions can be used by the application.</p>
+<p>As an example, the following code performs some simple arithmetic in IQ12 format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;ti/iqmath/include/IQmathLib.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">_iq12</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">_IQ12</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">_IQ12</span><span class="p">(</span><span class="mf">7.0</span><span class="p">);</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">_IQ12div</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="selecting-the-global-iq-format">
+<h3>2.4. Selecting the Global IQ Format<a class="headerlink" href="#selecting-the-global-iq-format" title="Permalink to this heading">¶</a></h3>
+<p>Numerical precision and dynamic range requirements vary considerably from one application to another. The libraries provide a GLOBAL_IQ format (using the _iq data type) that an application can use to perform its computations in a generic format which can be changed at compile time. An application written using the GLOBAL_IQ format can be changed from one format to another by simply changing the GLOBAL_IQ value and recompiling, allowing the precision and performance effects of different formats to be easily measured and evaluated.</p>
+<p>The setting of GLOBAL_IQ does not have any influence in the _iqN format and corresponding functions. These types will always have the same fixed accuracy regardless of the GLOBAL_IQ format.</p>
+<p>The default GLOBAL_IQ format is IQ24. This can be easily overridden in one of two ways:</p>
+<p>In the source file, the format can be selected prior to including the header file. The following example selects a GLOBAL_IQ format of IQ8:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span>
+<span class="o">//</span> <span class="n">Set</span> <span class="n">GLOBAL_IQ</span> <span class="n">to</span> <span class="mi">8</span> <span class="n">prior</span> <span class="n">to</span> <span class="n">including</span> <span class="n">IQmathLib</span><span class="o">.</span><span class="n">h</span><span class="o">.</span>
+<span class="o">//</span>
+<span class="c1">#define GLOBAL_IQ 8</span>
+<span class="c1">#include &lt;ti/iqmath/include/IQmathLib.h&gt;</span>
+</pre></div>
+</div>
+<p>In the project file, add a predefined value for GLOBAL_IQ. The method to add a predefined value varies from tool chain to tool chain.</p>
+<p>The first method allows different modules in the application to have different global format values, while the second method changes the global format value for the entire application. The method that is most appropriate varies from application to application.</p>
+<p>Note: Some functions are not available when GLOBAL_IQ is 30. Please see the API Guide section for a list of functions and the available IQ formats.</p>
+</section>
+<section id="example-projects">
+<h3>2.5. Example Projects<a class="headerlink" href="#example-projects" title="Permalink to this heading">¶</a></h3>
+<p>The IQmathLib provides two example projects for for RTS and MathACL to provide a starting point for users and demonstrate the use of IQmath functions, while the SDK includes several projects which leverage IQmath for more advanced applications. The included examples are:</p>
+<ul class="simple">
+<li><p>IQmathLib MathACL operations test example</p></li>
+<li><p>IQmathLib RTS operations test example</p></li>
+</ul>
+<p>The IQmathLib projects provide a starting point for building a fixed point application. These projects will already have the libraries added and the include path set to include the header files.</p>
+<p>The examples demonstrate how to use several of the IQmathLib functions and data types to perform math calculations, with the only difference being the use of MathACL.</p>
+</section>
+</section>
+<section id="api-guide">
+<h2>3. API Guide<a class="headerlink" href="#api-guide" title="Permalink to this heading">¶</a></h2>
+<p>A complete API guide is included showing detailed information about all files, APIs, and corresponding parameters. IQmath includes five types of routines:</p>
+<ul class="simple">
+<li><p><strong>Format conversion functions</strong>: methods to convert numbers to and from the various formats.</p></li>
+<li><p><strong>Arithmetic functions</strong>: methods to perform basic arithmetic (addition, subtraction, multiplication, division).</p></li>
+<li><p><strong>Trigonometric functions</strong>: methods to perform trigonometric functions (sin, cos, atan, and so on).</p></li>
+<li><p><strong>Mathematical functions</strong>: methods to perform advanced arithmetic (square root, ex , and so on).</p></li>
+<li><p><strong>Miscellaneous</strong>: miscellaneous methods (saturation and absolute value). In the chapters that follow, the methods in each of these groups are covered in detail.</p></li>
+</ul>
+<p>The detailed guide can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">IQMath API Guide</a></p></li>
+</ul>
+</section>
+<section id="benchmarks">
+<h2>4. Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading">¶</a></h2>
+<p>This section includes benchmarks for the IQmath libraries, measured in average cycles per function. These benchmarks were run on the device launchpads using IAR Embedded Workbench for ARM 9.20.11.43606. The tests for each function were run with a set of different values ran for 1000 iterations each, resulting in the presented average.</p>
+<p>MSPM0G benchmarks were tested on early experimental silicon.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function Name</p></th>
+<th class="head"><p>(MSPM0G) MathACL IQmath</p></th>
+<th class="head"><p>(MSPM0G) RTS IQmath</p></th>
+<th class="head"><p>(MSPM0G) Float</p></th>
+<th class="head"><p>(MSPM0L) RTS IQmath</p></th>
+<th class="head"><p>(MSPM0L) Float</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sin</p></td>
+<td><p>98</p></td>
+<td><p>291</p></td>
+<td><p>1260</p></td>
+<td><p>292</p></td>
+<td><p>1223</p></td>
+</tr>
+<tr class="row-odd"><td><p>cos</p></td>
+<td><p>99</p></td>
+<td><p>289</p></td>
+<td><p>1262</p></td>
+<td><p>291</p></td>
+<td><p>1227</p></td>
+</tr>
+<tr class="row-even"><td><p>frac</p></td>
+<td><p>21</p></td>
+<td><p>21</p></td>
+<td><p>N/A</p></td>
+<td><p>24</p></td>
+<td><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>asin</p></td>
+<td><p>310</p></td>
+<td><p>521</p></td>
+<td><p>1889</p></td>
+<td><p>522</p></td>
+<td><p>2056</p></td>
+</tr>
+<tr class="row-even"><td><p>acos</p></td>
+<td><p>311</p></td>
+<td><p>523</p></td>
+<td><p>1889</p></td>
+<td><p>525</p></td>
+<td><p>2058</p></td>
+</tr>
+<tr class="row-odd"><td><p>atan</p></td>
+<td><p>264</p></td>
+<td><p>670</p></td>
+<td><p>1404</p></td>
+<td><p>671</p></td>
+<td><p>1540</p></td>
+</tr>
+<tr class="row-even"><td><p>atan2</p></td>
+<td><p>279</p></td>
+<td><p>675</p></td>
+<td><p>1379</p></td>
+<td><p>675</p></td>
+<td><p>1537</p></td>
+</tr>
+<tr class="row-odd"><td><p>sqrt</p></td>
+<td><p>105</p></td>
+<td><p>564</p></td>
+<td><p>238</p></td>
+<td><p>566</p></td>
+<td><p>254</p></td>
+</tr>
+<tr class="row-even"><td><p>exp</p></td>
+<td><p>638</p></td>
+<td><p>645</p></td>
+<td><p>1663</p></td>
+<td><p>646</p></td>
+<td><p>1694</p></td>
+</tr>
+<tr class="row-odd"><td><p>log</p></td>
+<td><p>892</p></td>
+<td><p>898</p></td>
+<td><p>1479</p></td>
+<td><p>905</p></td>
+<td><p>1513</p></td>
+</tr>
+<tr class="row-even"><td><p>add</p></td>
+<td><p>9</p></td>
+<td><p>9</p></td>
+<td><p>73</p></td>
+<td><p>11</p></td>
+<td><p>71</p></td>
+</tr>
+<tr class="row-odd"><td><p>sub</p></td>
+<td><p>9</p></td>
+<td><p>9</p></td>
+<td><p>70</p></td>
+<td><p>9</p></td>
+<td><p>69</p></td>
+</tr>
+<tr class="row-even"><td><p>mpy</p></td>
+<td><p>34</p></td>
+<td><p>63</p></td>
+<td><p>76</p></td>
+<td><p>65</p></td>
+<td><p>74</p></td>
+</tr>
+<tr class="row-odd"><td><p>div</p></td>
+<td><p>52</p></td>
+<td><p>442</p></td>
+<td><p>228</p></td>
+<td><p>443</p></td>
+<td><p>294</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="IQMath Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+UART1.$name = "UART_0";
+UART1.profile = "CONFIG_PROFILE_1";
+UART1.peripheral.$assign = "UART0";
+UART1.targetBaudRate = 9600;
+UART1.enableInternalLoopback = false;
+UART1.enabledInterrupts = ["DMA_DONE_TX", "EOT_DONE"];
+UART1.enableFIFO = true;
+UART1.txFifoThreshold = "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY";
+UART1.enabledDMATXTriggers = "DL_UART_DMA_INTERRUPT_TX";
+UART1.enableDMATX          = true;
+
+UART1.peripheral.rxPin.$assign = "PA11";
+UART1.peripheral.txPin.$assign = "PA10";
+
+UART1.DMA_CHANNEL_TX.peripheral.$assign = "DMA_CH0";
+UART1.DMA_CHANNEL_TX.addressMode = "b2f";
+UART1.DMA_CHANNEL_TX.srcIncDec = "INCREMENT";
+UART1.DMA_CHANNEL_TX.dstLength = "BYTE";
+UART1.DMA_CHANNEL_TX.srcLength = "BYTE";
+
+SYSCTL.clockTreeEn = true;

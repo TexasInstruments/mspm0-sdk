@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="MSPM0"
+                deviceId="MSPM0L1306"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="bim_sample_image"
+        name="bim_sample_image_LP_MSPM0L1306_nortos_ticlang"
+        configurations="PRIMARY_SLOT_XIP,SECONDARY_SLOT_XIP"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L1306"
+        products="MSPM0-SDK;sysconfig"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${CG_TOOL_INCLUDE_PATH}
+            -D__MSPM0L1306__
+            -gdwarf-3
+            -gstrict-dwarf
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+            -mlittle-endian
+            -Oz
+        "
+        linkerBuildOptions="
+            --stack_size=0
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Boot Image Manager Sample Image">
+
+                <!-- Project configuration specific options -->
+        <configuration
+            name="PRIMARY_SLOT_XIP"
+            compilerBuildOptions="-DPRIMARY_SLOT"
+            linkerBuildOptions="--define=PRIMARY_SLOT"
+            postBuildStep="
+                ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out --output-target binary ${ProjName}-unsigned.bin;python ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/imgtool.py sign --header-size 0x100 --align 4 --slot-size 0x5400 --pad --version 1.0.0 --pad-header --key ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/image_signTEST.pem ${ProjName}-unsigned.bin ${ProjName}_0x5400_v1_green.bin
+            ">
+        </configuration>
+        <configuration
+            name="SECONDARY_SLOT_XIP"
+            compilerBuildOptions="-DSECONDARY_SLOT"
+            linkerBuildOptions="--define=SECONDARY_SLOT"
+            postBuildStep="
+                ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out --output-target binary ${ProjName}-unsigned.bin;python ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/imgtool.py sign --header-size 0x100 --align 4 --slot-size 0x5400 --pad --version 2.0.0 --pad-header --key ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/image_signTEST.pem ${ProjName}-unsigned.bin ${ProjName}_0xa800_v2_blue.bin
+            ">
+        </configuration>
+
+        <file path="../bim_sample_image.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="mspm0l1306.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="startup_mspm0l1306_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+        <file path="../bim_sample_image.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file
+            path="../prebuilt_images/XIP/bim_sample_image_MSPM0L1306_nortos_ticlang_0x5400_v1_green.bin"
+            openOnCreation="false"
+            excludeFromBuild="true"
+            action="copy"
+            targetDirectory="prebuilt_images">
+        </file>
+        <file
+            path="../prebuilt_images/XIP/bim_sample_image_MSPM0L1306_nortos_ticlang_0xa800_v2_blue.bin"
+            openOnCreation="false"
+            excludeFromBuild="true"
+            action="copy"
+            targetDirectory="prebuilt_images">
+        </file>
+    </project>
+</projectSpec>

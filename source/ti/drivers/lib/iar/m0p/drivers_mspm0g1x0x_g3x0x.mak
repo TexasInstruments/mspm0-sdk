@@ -1,0 +1,79 @@
+SDK_INSTALL_DIR ?= $(abspath ../../../../../..)
+
+include $(SDK_INSTALL_DIR)/imports.mak
+
+CC  = "$(IAR_ARMCOMPILER)/bin/iccarm"
+ASM = "$(IAR_ARMCOMPILER)/bin/iasmarm"
+AR  = "$(IAR_ARMCOMPILER)/bin/iarchive"
+
+NAME = drivers_mspm0g1x0x_g3x0x
+
+OBJ_DIR = ../../../obj/iar/m0p/drivers_mspm0g1x0x_g3x0x
+SRC_DIR = ../../..
+
+CFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" --cpu Cortex-M0+ -DDeviceFamily_MSPM0G350X --aeabi --guard_calls --endian=little --thumb --silent -e --use_unix_directory_separators --diag_suppress=Pa050,Go005 -Ohs --debug
+AFLAGS = 
+ASMFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" 
+
+OBJECTS = $(OBJ_DIR)/DMAMSPM0.o $(OBJ_DIR)/List.o $(OBJ_DIR)/RingBuf.o $(OBJ_DIR)/StructRingBuf.o $(OBJ_DIR)/GPIO.o $(OBJ_DIR)/I2C.o $(OBJ_DIR)/UART.o $(OBJ_DIR)/GPIOMSPM0.o $(OBJ_DIR)/I2CMSPM0.o $(OBJ_DIR)/UARTMSPM0G1X0X_G3X0X.o
+
+all: $(NAME).a
+
+$(NAME).a: $(OBJECTS)
+	@ echo Archiving $@
+	@ $(AR) $(AFLAGS) $@ $^
+
+$(OBJ_DIR)/DMAMSPM0.o: $(SRC_DIR)/dma/DMAMSPM0.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/List.o: $(SRC_DIR)/utils/List.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/RingBuf.o: $(SRC_DIR)/utils/RingBuf.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/StructRingBuf.o: $(SRC_DIR)/utils/StructRingBuf.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/GPIO.o: $(SRC_DIR)/GPIO.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/I2C.o: $(SRC_DIR)/I2C.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/UART.o: $(SRC_DIR)/UART.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/GPIOMSPM0.o: $(SRC_DIR)/gpio/GPIOMSPM0.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/I2CMSPM0.o: $(SRC_DIR)/i2c/I2CMSPM0.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/UARTMSPM0G1X0X_G3X0X.o: $(SRC_DIR)/uart/UARTMSPM0G1X0X_G3X0X.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+clean:
+	@ echo Cleaning...
+	@ $(RM) $(OBJECTS) > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).a > $(DEVNULL) 2>&1

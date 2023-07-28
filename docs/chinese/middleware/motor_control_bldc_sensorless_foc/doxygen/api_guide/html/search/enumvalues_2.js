@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['hal_5fadc_5fchannel_5f0',['HAL_ADC_CHANNEL_0',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga45835f1280003f7162449a532ed87c1aaf5a97ab8c41076a0443391f4bada58cd',1,'hal.h']]],
+  ['hal_5fadc_5fchannel_5f1',['HAL_ADC_CHANNEL_1',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga45835f1280003f7162449a532ed87c1aa2a1cce310fc2dd4e130aea2b414dae84',1,'hal.h']]],
+  ['hal_5fadc_5fchannel_5f2',['HAL_ADC_CHANNEL_2',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga45835f1280003f7162449a532ed87c1aadad6ec77ad651e4baceaeec7d8aab4ab',1,'hal.h']]],
+  ['hal_5fadc_5fchannel_5fmax',['HAL_ADC_CHANNEL_MAX',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga45835f1280003f7162449a532ed87c1aaee8f9cfa84acbe52867dbe58c0b06c95',1,'hal.h']]],
+  ['hal_5fgpio_5fin_5fpin_5f0',['HAL_GPIO_IN_PIN_0',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga7e7311833a1bf13803fc180fdd84500aa35de169a0b65bead58c4970a23daad5b',1,'hal.h']]],
+  ['hal_5fgpio_5fin_5fpin_5fmax',['HAL_GPIO_IN_PIN_MAX',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga7e7311833a1bf13803fc180fdd84500aa2915b025da86fdf10aabac71c76f7da2',1,'hal.h']]],
+  ['hal_5fgpio_5fout_5fpin_5f0',['HAL_GPIO_OUT_PIN_0',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79acacacc2866a87a044bb829838a8a144e68',1,'hal.h']]],
+  ['hal_5fgpio_5fout_5fpin_5fmax',['HAL_GPIO_OUT_PIN_MAX',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga81d35b817c14b508e1aa2c4f581b79aca084b87fd8890fcda2b85f781a8ec11df',1,'hal.h']]],
+  ['hal_5fgpio_5fvalue_5fhigh',['HAL_GPIO_VALUE_HIGH',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggac977ba35c1fccd39a12331665d761ce5abb0433af987db30550c494a7d4f62b1b',1,'hal.h']]],
+  ['hal_5fgpio_5fvalue_5flow',['HAL_GPIO_VALUE_LOW',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggac977ba35c1fccd39a12331665d761ce5a6e486d371fe4a56f9c15a2e95026b862',1,'hal.h']]],
+  ['hal_5fpwm_5fchannel_5f0',['HAL_PWM_CHANNEL_0',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a03fa54972ba832d89298c1220869ff96',1,'hal.h']]],
+  ['hal_5fpwm_5fchannel_5f1',['HAL_PWM_CHANNEL_1',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a2b9fa33e18cbcd0d6a838a2c9038780d',1,'hal.h']]],
+  ['hal_5fpwm_5fchannel_5f2',['HAL_PWM_CHANNEL_2',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a5406d6bb173e71d0d1355c61b9931bd4',1,'hal.h']]],
+  ['hal_5fpwm_5fchannel_5fmax',['HAL_PWM_CHANNEL_MAX',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0ac0f17b4301fafcc955ba248660b04bd4',1,'hal.h']]],
+  ['hal_5fpwm_5ffault_5f0',['HAL_PWM_FAULT_0',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga8260c3ea43df1b18f680c5c33e8a498bafac064e8fdbc5a4ad66423d97570539e',1,'hal.h']]],
+  ['hal_5fpwm_5ffault_5fmax',['HAL_PWM_FAULT_MAX',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga8260c3ea43df1b18f680c5c33e8a498ba7904873f6607a193d36bf27a92149e0d',1,'hal.h']]],
+  ['hal_5fspi_5fchannel_5f0',['HAL_SPI_CHANNEL_0',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggadd9593516aa7691021eeb01bcecec6a9a87d6d116f93b166e76a06995ea424821',1,'hal.h']]],
+  ['hal_5fspi_5fchannel_5fmax',['HAL_SPI_CHANNEL_MAX',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggadd9593516aa7691021eeb01bcecec6a9a6cdba2e523df474608a04fa81aacb28a',1,'hal.h']]],
+  ['hal_5fspi_5fcs_5f0',['HAL_SPI_CS_0',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a245e7d9e918d317a25632a2c741250d3',1,'hal.h']]],
+  ['hal_5fspi_5fcs_5f1',['HAL_SPI_CS_1',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a4dd1abcb56726a9e44d11ba048ed6059',1,'hal.h']]],
+  ['hal_5fspi_5fcs_5f2',['HAL_SPI_CS_2',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a7b39d1047b2fabfa2c879d967314b4d0',1,'hal.h']]],
+  ['hal_5fspi_5fcs_5f3',['HAL_SPI_CS_3',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a01d825746893f18adc5fd812cb493702',1,'hal.h']]],
+  ['hal_5fspi_5fcs_5fmax',['HAL_SPI_CS_MAX',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a6590d0de26232afe1039fb74c7f5dc9f',1,'hal.h']]]
+];

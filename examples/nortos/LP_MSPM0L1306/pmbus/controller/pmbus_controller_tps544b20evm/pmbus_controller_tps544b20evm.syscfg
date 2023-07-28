@@ -1,0 +1,36 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board     = scripting.addModule("/ti/driverlib/Board");
+const GPIO      = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1     = GPIO.addInstance();
+const i2cSMBUS  = scripting.addModule("/ti/driverlib/i2cSMBUS", {}, false);
+const i2cSMBUS1 = i2cSMBUS.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+GPIO1.$name                         = "GPIO_LED";
+GPIO1.associatedPins[0].$name       = "D0";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+
+i2cSMBUS1.basicEnableController     = true;
+i2cSMBUS1.enableTimeoutA            = true;
+i2cSMBUS1.timeoutACount             = 255;
+i2cSMBUS1.intGeneric                = ["TIMEOUT_A"];
+i2cSMBUS1.enableControllerPEC       = true;
+i2cSMBUS1.intController             = ["ARBITRATION_LOST","NACK","PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_TRIGGER"];
+i2cSMBUS1.$name                     = "PMB_I2C";
+i2cSMBUS1.peripheral.$assign        = "I2C0";
+i2cSMBUS1.peripheral.sdaPin.$assign = "PA10";
+i2cSMBUS1.peripheral.sclPin.$assign = "PA11";

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRV8411A GUI User Guide &mdash; Stepper Motor Control User Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DRV8411A Hardware User Guide" href="DRV8411A_Hardware_User_Guide_CN.html" />
+    <link rel="prev" title="Stepper Motor Control Library Overview" href="../Stepper_Motor_Control_Overview_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Stepper Motor Control User Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Stepper_Motor_Control_Overview_CN.html">Stepper Motor Control Library Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8411A GUI User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-gui">1. Getting Started with GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-gui">2. Using the GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gui-window">3. GUI Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-modes">4. Control Modes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spin-mode">Spin Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-mode">Step Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#decay-modes">5. Decay Modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fault-monitoring-and-handling">6. Fault Monitoring and Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-sensing">7. Current Sensing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ripropi-and-aipropi">RIPROPI and AIPROPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#isense">ISENSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#itrip">ITRIP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#phase-current-plots">Phase Current Plots</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DRV8411A_Hardware_User_Guide_CN.html">DRV8411A Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8889-q1/DRV8889-Q1_GUI_User_Guide_CN.html">DRV8889-Q1 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8889-q1/DRV8889-Q1_Hardware_User_Guide_CN.html">DRV8889-Q1 Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Stepper Motor Control User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DRV8411A GUI User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drv8411a-gui-user-guide">
+<h1>DRV8411A GUI User Guide<a class="headerlink" href="#drv8411a-gui-user-guide" title="Permalink to this heading">¶</a></h1>
+<p>The GUI used in this guide can be found <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8411A-EVM-GUI">here</a>.</p>
+<section id="getting-started-with-gui">
+<h2>1. Getting Started with GUI<a class="headerlink" href="#getting-started-with-gui" title="Permalink to this heading">¶</a></h2>
+<p>The GUI allows the user to configure various settings required for stepper motor control. The user can adjust settings like motor speed, control direction, control step movements and other device settings, as well as monitor the device status.</p>
+<p>Perform the following steps to begin using the GUI:</p>
+<ol class="arabic simple">
+<li><p>Connect the stepper motor to the EVM.</p></li>
+<li><p>Make the necessary connections for connecting LP-MSPM0L1306 to DRV8411AEVM. For detailed steps refer to <a class="reference external" href="DRV8411A_Hardware_User_Guide_CN.html">Hardware User Guide</a>.</p></li>
+<li><p>Plug in the micro-USB cable to the PC.</p></li>
+<li><p>Enable the power supply to EVM.</p></li>
+</ol>
+</section>
+<section id="using-the-gui">
+<h2>2. Using the GUI<a class="headerlink" href="#using-the-gui" title="Permalink to this heading">¶</a></h2>
+<p>The GUI when launched will automatically try to establish communication with the device, if it doesn’t happen or if user needs to disconnect the user can click on the link icon shown on the left side in the image shown below. A message showing ‘Connecting to target…’ will be displayed when the GUI tries to connect to the board in the hardware connection status pane which is located at the bottom of GUI window. If the connection is successful, ‘Hardware connected’ message appears, as shown in the image below.</p>
+<figure class="align-default" id="id1">
+<img alt="Hardware connected" src="../../_images/GUI-hardware_connected.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Hardware connected</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="gui-window">
+<h2>3. GUI Window<a class="headerlink" href="#gui-window" title="Permalink to this heading">¶</a></h2>
+<p>In the GUI Window user can find various controls to sleep/wake the driver, control the stepper motor, and configure various parameters such as step mode, control mode, and so forth. Hover over the control widgets to display the brief description on its actions.</p>
+<figure class="align-default" id="id2">
+<img alt="GUI window" src="../../_images/GUI_window.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">GUI window</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="control-modes">
+<h2>4. Control Modes<a class="headerlink" href="#control-modes" title="Permalink to this heading">¶</a></h2>
+<section id="spin-mode">
+<h3>Spin Mode<a class="headerlink" href="#spin-mode" title="Permalink to this heading">¶</a></h3>
+<p>Spin mode allows to spin the stepper motor in the desired speed. The desired speed is set in units of pulse per second. Knowing the motor Pulse per rotation and the step mode we can compute the RPS(Revolutions Per Second) of the motor. For example, for a motor of 200PPR speed of 200PPS equates to 1RPS in Full step mode and 0.5RPS in Half Step mode.</p>
+<p>Stepper controls are enabled only when the ‘Motor Driver’ is enabled. When the Stepper control is set to ‘RUN’ the motor starts spinning at the speed set in the speed input box. Do note to set the speed in the limit of the motor specifications, else the motor will not spin i.e. would appear to vibrate as the necessary torque to spin is not received in the set speed.</p>
+</section>
+<section id="step-mode">
+<h3>Step Mode<a class="headerlink" href="#step-mode" title="Permalink to this heading">¶</a></h3>
+<p>Step mode allows user to move the stepper motor a configured number of steps. Stepper controls are enabled only when the ‘Motor Driver’ is enabled. When the Stepper control is set to ‘RUN’ the motor starts spinning at the speed set in the speed input box and when the number of steps entered in the steps input box is reached, the motor stops.</p>
+</section>
+</section>
+<section id="decay-modes">
+<h2>5. Decay Modes<a class="headerlink" href="#decay-modes" title="Permalink to this heading">¶</a></h2>
+<p>Decay mode controls the current recirculation in the H-bridge when the drive is in decay state. This setting only is used in Half step Non-circular mode, there are 2 values to select “SLOW “, and “FAST”, the user is required to selecting the decay based on the noise reduction. Generally SLOW decay is preferred.</p>
+</section>
+<section id="fault-monitoring-and-handling">
+<h2>6. Fault Monitoring and Handling<a class="headerlink" href="#fault-monitoring-and-handling" title="Permalink to this heading">¶</a></h2>
+<p>The fault monitoring and handling is at the top right side of the screen this allows the user to monitor the faults. The Fault led turns red when a fault occurred. To clear the fault, use the “CLEAR FAULT” button.</p>
+</section>
+<section id="current-sensing">
+<h2>7. Current Sensing<a class="headerlink" href="#current-sensing" title="Permalink to this heading">¶</a></h2>
+<section id="ripropi-and-aipropi">
+<h3>RIPROPI and AIPROPI<a class="headerlink" href="#ripropi-and-aipropi" title="Permalink to this heading">¶</a></h3>
+<p>The DRV8411A sends a current reduced by a factor AIPROPI through the RIPROPI resistor. The user is required to set the RIPROPI value as set in the hardware to get the proper current reading.</p>
+</section>
+<section id="isense">
+<h3>ISENSE<a class="headerlink" href="#isense" title="Permalink to this heading">¶</a></h3>
+<p>The GUI displays the instantaneous currents flowing through the A phase and B phase windings in ISENA and ISENB value respectively.</p>
+</section>
+<section id="itrip">
+<h3>ITRIP<a class="headerlink" href="#itrip" title="Permalink to this heading">¶</a></h3>
+<p>The GUI allows user to set the trip current for the stepper motor, the driver sends this current through each of the motor phase windings.</p>
+</section>
+<section id="phase-current-plots">
+<h3>Phase Current Plots<a class="headerlink" href="#phase-current-plots" title="Permalink to this heading">¶</a></h3>
+<p>The user can see a graphical view of the motor phase currents using the plots in the GUI. The GUI can capture the phase currents and show it to the user as a graphical representation.</p>
+<figure class="align-default" id="id3">
+<img alt="GUI plot" src="../../_images/GUI-plot.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">GUI plot</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Stepper_Motor_Control_Overview_CN.html" class="btn btn-neutral float-left" title="Stepper Motor Control Library Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DRV8411A_Hardware_User_Guide_CN.html" class="btn btn-neutral float-right" title="DRV8411A Hardware User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

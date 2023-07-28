@@ -1,0 +1,72 @@
+DRV8411A Hardware User Guide
+============================
+
+1. Hardware Required
+--------------------
+
+-  `LP-MSPM0L1306 <https://www.ti.com/tool/LP-MSPM0L1306>`__ - MSPM0L1306 Launchpad
+-  `DRV8411AEVM <https://www.ti.com/tool/DRV8411AEVM>`__ - DRV8411A evaluation module for dual H-bridge motor driver with current regulation
+-  DC Power supply that supports the required voltage and current
+-  Stepper Motor
+-  Ten jumper wires (to connect LP to EVM)
+-  Micro-USB cable
+
+2. Hardware Setup
+-----------------
+
+1. Connect jumper J9 and J10 in the LP-MSPM0L1306 as shown below.
+
+.. figure:: images/LPMSPM0L1306-J9_J10.jpg
+   :alt: J9 and J10 header connected to 3V side in LP-MSPM0L1306
+
+   J9 and J10 header connected to 3V side in LP-MSPM0L1306
+
+2. Remove all the jumpers on the Signal header J9 in the DRV8411AEVM as shown below.
+
+.. figure:: images/DRV8411AEVM-J9_signal_header.jpg
+   :alt: J9 header in DRV8411AEVM
+
+   J9 header in DRV8411AEVM
+
+3. Connect the LP-MSPM0L1306 to the DRV8411AEVM using the jumper wires as shown in the table below. Refer to the schematic connector pinout for the locations of the DRV8411AEVM signals. The jumper wires should connect to the headers on the right side of the jumper J9 to connect to the DRV8411A. Please do see the connection image shown below.
+
++----------------------------+-------------+---------------+----------------+
+| Connection                 | MSPM0L LP   | DRV8411AEVM   | Jumper Notes   |
++============================+=============+===============+================+
+| Phase A input 1            | PA0         | AIN1          |                |
++----------------------------+-------------+---------------+----------------+
+| Phase A input 2            | PA3         | AIN2          |                |
++----------------------------+-------------+---------------+----------------+
+| Phase B input 1            | PA1         | BIN1          |                |
++----------------------------+-------------+---------------+----------------+
+| Phase B input 2            | PA4         | BIN2          |                |
++----------------------------+-------------+---------------+----------------+
+| Fault input                | PA5         | nFAULT        |                |
++----------------------------+-------------+---------------+----------------+
+| Current reference output   | PA22        | VREF          |                |
++----------------------------+-------------+---------------+----------------+
+| Phase A current input      | PA27        | AIPROPI       |                |
++----------------------------+-------------+---------------+----------------+
+| Phase B current input      | PA26        | BIPROPI       |                |
++----------------------------+-------------+---------------+----------------+
+| VDD voltage                | 3V3         | VCC           |                |
++----------------------------+-------------+---------------+----------------+
+| Common Ground              | GND         | GND           |                |
++----------------------------+-------------+---------------+----------------+
+
+4. Connect the A phases of the motor to AOUT1, AOUT2 and the B phases to BOUT1 and BOUT2 of the motor connector terminal block on the DRV8411AEVM. If the phases of the motor are color coded, look into the motor datasheet to find the phases.
+
+5. Set the power supply voltage to less than 11V and turn the power supply outputs off. Connect the positive and negative of the power supply to VM and PGND/GND of the power connector terminal block to the DRV8411AEVM. Do not turn the power on yet. See the connection below.
+
+.. figure:: images/DRV8411AEVM-motor_power_connection.jpg
+   :alt: Motor wires and Power supply connection in DRV8411AEVM
+
+   Motor wires and Power supply connection in DRV8411AEVM
+
+**Note :** The motor phase wire colours shown above are for representation it will not be same for every motor, so please refer to motor datasheet to verify the motor phase wires for your motor.
+
+6. Connect a Micro-USB cable from the LP-MSPM0L1306 to the PC.
+
+7. Set the power supply to the motor voltage and with current limit of motor current limit( if motor rated current is higher than 1.5A please keep to 1.5A ). Turn on the power supply. The green VM LED on the DRV8411AEVM should turn on.
+
+8. Once all steps are completed you can start to run the motor with the GUI. Please refer to `GUI User Guide <DRV8411A_GUI_User_Guide_CN.html>`__.

@@ -1,0 +1,155 @@
+MSPM0 DALI User's Guide
+=======================
+
+1. Introduction
+---------------
+
+`Digitally Addressable Lighting Interface (DALI) <https://www.dali-alliance.org/dali/>`__ is a serial protocol for digital lighting control that allows for simple and efficient communication between various lighting application gear and controllers.
+
+.. figure:: ./images/DALI_logo.png
+   :alt: 
+
+**Note**: The use of "Master" and "Slave" terminology is being considered obsolete. These terms have been replaced with "Controller" and "Gear" respectively.
+
+The MSPM0 SDK provides an easy way to start development of DALI applications using the MSPM0’s Universal Asynchronous Receiver Transmitter (UART) module and contains the following:
+
+-  Support for DALI 2
+-  Full source code for DALI Library
+-  Graphical configuration of UART module using SysConfig
+
+2. DALI in the MSPM0 SDK
+------------------------
+
+The DALI source code in the MSPM0 SDK was developed to be run on the MSPM0 devices. This source code implementation focuses on the basic capabilities and functions of DALI to showcase the ability of the MSPM0 devices to handle DALI communications via UART. DALI Standards IEC 62386-102 for control gear(general) and IEC 62386-207 for control gear(LED modules) were implemented for this example. Support for most required features for IEC 62386-102/207 are included in the dali\_target\_commands.h/c and dali\_target\_led\_commands.h/c files with exceptions marked in the `Known Issues <#known-issues>`__ section as well as in the source code. Optional features for IEC 62386-102/207 were excluded from this implementation. The source code is also availabe to modify and edit, allowing customers to modify or customize any feature as desired.
+
+**Note**: While the source code was developed to be used on all MSPM0 devices, the example code was only tested and validated on the MSPM0L1306.
+
+**Included Features**
+
+-  Functions to receive and transmit DALI commands and responses, respectively
+-  Template functions using EEPROM to store certain DALI information in Flash memory and reload that information at startup
+-  Fade Time/Fade Rate fade routines
+-  Support for Direct Arc Power Control (DAPC), Up, Down, Step Up, Step Down, Recall Max, and Recall Min Execution Commands
+
+   -  Other execution commands can be implemented utilizing the fade time routine implemented for DAPC
+
+-  Support for Configuration commands
+
+   -  Extended Fade Time and Identify Device were omitted for customer implementation
+   -  Template for setting fast fade time was included, but translation to timer load value implementation was omitted
+   -  See `Known Issues <#known-issues>`__ for where Extended Fade Time and Fast Fade Time can be implemented
+   -  Template for Reset Memory Bank was included in source code
+
+-  Support for all Query Commands for IEC 62386-102
+
+   -  Some support for query commands in IEC 62386-207, queries for load deviation and thermal features were omitted since they are optional features
+
+-  Support for both logarithmic and linear fade curves
+
+   -  IEC 62386-207 supports a linear fade curve if selected
+   -  If LED Module is enabled for a connected device, it will allow you to use a configuration command to select a dimming curve
+
+3. Configuring the UART for DALI with SysConfig
+-----------------------------------------------
+
+The source code provided for this example is mostly for controlling the LED on the MSPM0 using a PWM. However, the key feature that enables the MSPM0 to interpret DALI commands is the UART DALI interface. DALI Mode enables the use of the address and address mask to receive forward frames and store the command in the RX FIFO's until they are executed. The UART module on the MSPM0 supports both a software and hardware implementation of performing address matching, of which the software version was used for this example. See the sections below for all the specific configurations needed to successfully enable DALI mode through UART.
+
+Enable DALI Mode
+~~~~~~~~~~~~~~~~
+
+In SysConfig, navigate to the UART module under the communications tab
+
+.. figure:: ./images/UART_under_communications.png
+   :alt: 
+
+In the section labeled Basic Configuration, change the Target Baud Rate to 1200, and the number of stop bits to 2.
+
+.. figure:: ./images/UART_basic_config.png
+   :alt: 
+
+In the section labeled Advanced Configuration, select the drop-down menu for UART mode, and notice that DALI Mode is disabled/not available for selection. Navigate to the Extend Configuration section below and Enable Extend Features and Manchester Encoding. These selections are needed as DALI mode is available as an UART Extend feature, and DALI messages are Manchester encoded according to the DALI standards. Once these options are selected, go back to the Advanced Configuration section and select DALI mode for UART mode. For Address and Address Mask, set to 0 if using the software address match implementation. Enable both FIFO's, and set the RX FIFO Threshold to >= 2 Entries, while making the TX FIFO Threshold <= 1 entry. Enable MSB first as the final step for the Advanced Configuration section.
+
+.. figure:: ./images/UART_advanced_config_extend_config.png
+   :alt: 
+
+DALI UART Configurations
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the Interrupt Configuration section, enable 9 bit mode address match and the Receive interrupt. The 9-bit mode address match is enabled if using the hardware implementation of address matching for DALI. Otherwise, only the Receive interrupt is used.
+
+.. figure:: ./images/UART_interrupt_config.png
+   :alt: 
+
+The final UART configuration required is the Pin Configuration section. For the TX pin, select enable pin configuration, and in the Digital IOMUX Features, only enable the invert feature. Do the same for the RX pin. The pins are inverted so that the DALI commands from the controller are interpreted correctly; without inverting the pins, the device reads broadcast commands as individual commands and vice versa. It can also impact whether a command is interpreted as a DAPC command or regular DALI command.
+
+.. figure:: ./images/UART_pin_config.png
+   :alt: 
+
+4. Example Applications - LED Demo
+----------------------------------
+
+Required Materials
+
+-  `MSPM0L1306 LaunchPad(LP) <https://www.ti.com/product/MSPM0L1306>`__
+
+   -  |image0|
+
+-  `Hasseb DALI 2 Controller/GUI <https://www.hasseb.fi/shop2/index.php?route=product/product&product_id=50>`__
+
+   -  |image1|
+   -  |image2|
+
+-  `DALI 2 Click <https://www.mikroe.com/dali-2-click>`__
+
+   -  |image3|
+
+To import the DALI example, select import project in Code Composer Studio(CCS), navigate to the examples folder in the SDK, select DALI, select the MSPM0L folder, and navigate to the ticlang directory. Once imported, you can flash the code onto the device.
+
+To test this example, attach the DALI 2 Click to the MSPM0 by connecting the RX and TX pins to the appropriate pins on the MSPM0L device, while connecting the 3.3V, 5V, and GND pins on the Click board to the 3.3V, 5V, and GND pins on the MSPM0L1306 LP. Screw in two wires into the screw terminals on the DALI 2 Click, and connect those wires to the corresponding terminal on the Hasseb DALI 2 Controller. Connect the power to the controller, and the USB from the controller to the laptop. Connect the MSPM0L1306 LP to the laptop and flash the example via CCS. Once the example is flashed device is running example, launch the DALI 2 Controller GUI and press initialize. Once a short address, random address, and device type appear, you can begin sending supported/implemented commands to the device. You will see an LED on the device respond to the supported execution commands
+
+Modifying the Example Applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The source code to the DALI implementation for MSPM0L is available for editing. This allows customers and users to re-implement or modify existing features to match personal specifications. Certain features, such as device identification and updating variables in flash, can differ from implementation to implementation. Here are a list of features that require user modification to implement. These are features that are either user specific or known issues.
+
+-  Update Flash - Variable in the control gear struct that controls when flash gets updated values. Set this flag to true in any desired function to trigger the update flash procedure in the main execution loop.
+-  Identify Device - This procedure varies per user, and can utilize the recall min and max functions to trigger the LED to toggle
+-  Reset Memory Bank/Read and Write Memory Location - Will need to be updated as more memory banks are implemented as the current implementation only supports memory bank 0
+-  Load Deviation and Thermal Protection Features - Is an optional feature, command support is available(device will call function if command is received) but implementation is up to user discretion
+-  Failure/Status Bits - Template functions available, but implementation is up to customer
+-  Extend Fade Time/Fast Fade Time - See `Known Issues <#known-issues>`__
+
+5. Known Issues
+---------------
+
+-  Only fade time for IEC62386-102:2014 is supported
+
+   -  Extended Fade Time and Fast Fade Time not supported
+   -  Fast fade times can be set, computation for extended fade times will have to be included by customer
+   -  Will have to modify timeToPeriodConversion to support use in DAPC
+
+-  Random Address will always generate 1
+
+   -  This does not impact functionality, as the device is still able to be initialized, but will generate the same random address every time it is initialized
+   -  L device does not have TRNG, if project is ported successfully to G, can utilize that module to generate a more random address
+
+-  Initializing Multiple Devices
+
+   -  GUI Tool crashes when trying to initialize multiple devices, but successfully initializes the device when connected individually to controller
+   -  No issue seen on application code function, may require different DALI bus setup rather than direct connection to DALI Controller screw terminal
+
+-  Timing for Identify Device Command
+
+   -  Due to the limitations of the number of timers that can be enabled on the MSPM0L, and the desire to keep one timer available for a PWM controlling an LED, no timer is available to indivdually control the identify device process
+   -  However, the initialization timer is designed to run for 15 minutes, so it can be utilized for the identify device process as well
+
+-  Hasseb DALI 2 Controller GUI does not have support for LED commands
+
+   -  As a result, LED Functions have not been validated
+   -  However, the Hasseb GUI code is available publicly on GitHub if users wish to modify the GUI to add support for LED commands
+
+.. |image0| image:: ./images/MSPM0L1306.png
+.. |image1| image:: ./images/hasseb_DALI_controller.png
+.. |image2| image:: ./images/hasseb_DALI_2_controller_gui.png
+.. |image3| image:: ./images/DALI_2_click.png
+

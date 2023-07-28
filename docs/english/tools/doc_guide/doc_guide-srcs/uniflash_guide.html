@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniFlash Guide for MSPM0 &mdash; MSPM0 Tools Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="debug_program_bslhost.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="debug_program_uniflash.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 Tools Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ides.html">IDEs and Compilers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codegen_easeofuse.html">Code Generation and Ease-of-Use</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="debug_program.html">Debugging and Programming Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#xds-110">XDS-110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#msp-gang">MSP-GANG</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="debug_program.html#uniflash">UniFlash</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="debug_program.html#id3">Documentation</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">UniFlash Guide for MSPM0</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/v5_0/quick_start_guide/uniflash_quick_start_guide.html">UniFlash generic Quick Start Guide (external)</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/uniflash.html">UniFlash documentation (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#bsl-host">BSL Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#dssm-unlock-gui-tool">DSSM Unlock GUI Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#elprotronic">Elprotronic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#segger">Segger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#pemicro">PEmicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#lauterbach">Lauterbach</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 Tools Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="debug_program.html">Debugging and Programming Tools</a> &raquo;</li>
+          <li><a href="debug_program_uniflash.html">&lt;no title&gt;</a> &raquo;</li>
+      <li>UniFlash Guide for MSPM0</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uniflash-guide-for-mspm0">
+<h1>UniFlash Guide for MSPM0<a class="headerlink" href="#uniflash-guide-for-mspm0" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This guide describes the installation of the UniFlash tool and general practice of using it with TI’s MSPM0 devices.</p>
+<p>This document is not intended to explain the use of UniFlash in detail. Please refer to the <a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/v7_1/uniflash_quick_start_guide.html">UniFlash Quick Start Guide</a> for more information.</p>
+</section>
+<section id="prerequisites">
+<h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The user is expected to have downloaded the following:</p>
+<ul class="simple">
+<li><p>UniFlash 8.2.0 or newer (Download latest version from <a class="reference external" href="https://www.ti.com/tool/UNIFLASH">ti.com</a> or access on the cloud at <a class="reference external" href="https://dev.ti.com/uniflash">dev.ti.com</a>)</p></li>
+<li><p>Compiled application image(s)</p>
+<ul>
+<li><p>Can be in multiple file formats for debugger connections including .out, .bin, .hex, .txt</p></li>
+<li><p>Serial connection only supports .txt and .hex file formats such as TI-TXT</p></li>
+<li><p>Use your preferred IDE and compiler to build your application</p></li>
+</ul>
+</li>
+</ul>
+<p>UniFlash can connect and interact with the device either with a debugger connected via SWD to the device, or using the device’s bootloader and a serial UART connection.</p>
+</section>
+<section id="using-uniflash-with-mspm0-via-the-debugger">
+<h2>3. Using UniFlash with MSPM0 via the Debugger<a class="headerlink" href="#using-uniflash-with-mspm0-via-the-debugger" title="Permalink to this heading">¶</a></h2>
+<p>The debugging interface such as XDS110 can be used by UniFlash to program the device. One can select the device (the on-chip version as shown below) and specific interface that will be used to start. Alternatively, UniFlash may auto-detect the MSPM0 LaunchPad if connected. The LaunchPad includes the Texas Instruments XDS110 USB Debug Probe.</p>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_jtag_start.png" />
+</figure>
+<section id="loading-an-image">
+<h3>3.1 Loading an Image.<a class="headerlink" href="#loading-an-image" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Compile an application that is in a compatible format, such as a .out. All possible file types are described in the <a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/v7_1/uniflash_quick_start_guide.html">UniFlash Quick Start Guide</a>.</p></li>
+<li><p>Upload the flash image file as shown. <img alt="image0" src="../_images/uniflash_guide_use_2.png" /></p></li>
+<li><p>Adjust erase settings or other information as necessary. If performing a Factory Reset, please take special consideration as <strong>NONMAIN will be erased in the process.</strong> It is then the user’s responsibility to re-program non-main. It is recommended to verify this is correct behavior before proceeding with a Factory Reset.</p></li>
+</ol>
+<p>Additionally, if using the factory reset, a password can be optionally provided. For more information, please refer to the corresponding device TRM.</p>
+<ol class="arabic" start="4">
+<li><p>Click <strong>Load Image</strong>. The image should be loaded correctly.</p>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_use_3.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="reading-from-memory">
+<h3>3.2 Reading From Memory<a class="headerlink" href="#reading-from-memory" title="Permalink to this heading">¶</a></h3>
+<p>Using the Memory tab, UniFlash can also inspect the flash memory of the device simply by selecting <strong>Read Target Device</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_jtag_read.png" />
+</figure>
+</section>
+</section>
+<section id="using-uniflash-via-the-bootloader-programmer">
+<h2>4 Using UniFlash via the Bootloader Programmer<a class="headerlink" href="#using-uniflash-via-the-bootloader-programmer" title="Permalink to this heading">¶</a></h2>
+<p>The Bootloader Programmer is an alternate method for writing to a device via the device’s serial UART connection without the presence of a debugger. When loading UniFlash, the selected device can use the bootloader programmer by searching the device name and selecting the bootloader option for the device as shown below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_bootloader_start.png" />
+</figure>
+<section id="hardware-considerations">
+<h3>4.1 Hardware Considerations<a class="headerlink" href="#hardware-considerations" title="Permalink to this heading">¶</a></h3>
+<p>Below are some hardware considerations that may be necessary for your device. Please consider that the pins used for UART are <strong>BSLRX</strong> and <strong>BSLTX</strong> and can be found in the device-specific datasheet.</p>
+<ul class="simple">
+<li><p>Before any operation communicating with the device, the bootloader must be invoked. There are multiple ways that this can be done, such as beginning with a blank device or using the GPIO pin based invocation. For more information on the different invocation methods, please consult the <a class="reference external" href="https://www.ti.com/lit/slau887">Bootloader User Guide</a>. When invoked, the BSL will detect interfaces for 10s before entering STANDBY, so any first use of UniFlash must happen within those 10 seconds.</p></li>
+<li><p>When using the LaunchPad, please refer to the specific LaunchPad User Guides for any special considerations when using the BootLoader</p></li>
+<li><p>If experiencing unreliable transmission, it may be necessary to place a pull-up on the transmit line of the UART.</p></li>
+</ul>
+</section>
+<section id="nonmain-considerations">
+<h3>4.2 NONMAIN Considerations<a class="headerlink" href="#nonmain-considerations" title="Permalink to this heading">¶</a></h3>
+<p><strong>Warning!!!</strong> When using UniFlash, it is possible to erase the NONMAIN region of flash by selecting the Factory Reset option from the Erase setting. The NONMAIN section contains crucial information about the device, including the Bootloader interface. <strong>If erased, it is important to reflash the device with a valid NONMAIN configuration during the flashing cycle. Otherwise, the device will not operate as intended and may become unrecoverable.</strong> The MSPM0 SDK includes a SysConfig NONMAIN configurator which can be used to easily and safely configure NONMAIN.</p>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_erase_setting.png" />
+</figure>
+<p>There are three cases for the device to perform a factory reset based on the boot configuration routine (BCR) in the NONMAIN region:</p>
+<ol class="arabic simple">
+<li><p>If enabled without a password, a factory reset can be performed.</p></li>
+<li><p>If enabled with a password, select <strong>Enabled</strong> for the factory reset password in UniFlash. The provided password must match the password that is currently programmed on the device in order to perform a Factory Reset. Note that this Factory Reset Password is a separate password from the Bootloader Unlock Password (though both default to 32 bytes of 0xFF).</p></li>
+<li><p>If disabled, the Factory Reset cannot occur.</p></li>
+</ol>
+<p>See the device Technical Reference Manual for more information about factory reset configuration in NONMAIN</p>
+</section>
+<section id="writing-to-a-device">
+<h3>4.3 Writing To a Device<a class="headerlink" href="#writing-to-a-device" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p>Configure the UART to match settings in the BSL region in NONMAIN. The default configuration is 9600 baud rate, 8-bit data width with 1 stop bit and no parity (no change). The COM port will not be auto-populated and will need to be updated based on the machine and operating system.</p></li>
+<li><p>Add the binary images as desired. The text file will include the loaded location at the beginning. The password is only necessary if not using the default password. For more information about passwords, please consult <a class="reference external" href="#using-passwords">Using Passwords</a>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_load_bootloader_image.png" />
+</figure>
+</li>
+<li><p>Adjust any settings in the <strong>Settings &amp; Utilities</strong> section if desired. This could include different erase mechanisms as well as custom CRC verification. If modifying the erase mechanisms, please consult <a class="reference external" href="#nonmain-considerations">NONMAIN considerations</a> to make sure the device does not become unrecoverable.</p></li>
+<li><p>Invoke BSL on the target device</p></li>
+<li><p>Within 10 seconds, click <strong>Load Image</strong> in the Available Actions Tab. The program loaded successfully should be shown at the bottom of the console.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_bootloader_loaded.png" />
+</figure>
+<p><strong>Note</strong> that if the image is not larger than 1KB, the following error will appear when using the Bootloader. Please see <a class="reference external" href="#known-issues-and-frequently-asked-questions-faq">Known Issues</a> for more information.</p>
+</section>
+<section id="using-passwords">
+<h3>4.4 Using Passwords<a class="headerlink" href="#using-passwords" title="Permalink to this heading">¶</a></h3>
+<p>Every BSL transaction that accesses data is password protected by the 128-bit bootloader password. This defaults to 32-bytes of 0xFF and is checked during these transactions. By default, the developer does not need to provide the unlock password, as the default password will be used. This can be changed by setting the BSL password in the NONMAIN region. See the Technical Reference Manual for more information.</p>
+<p>If the developer edits the BSL password the user will have to provide the matching password when flashing the device. This is done in TI TXT file format, using the following structure with the password contents replacing the default contents shown. The address is not used by the tool and thus can be 0x0000.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">@</span><span class="mi">0000</span>
+<span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span>
+<span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span>
+<span class="n">q</span>
+</pre></div>
+</div>
+<p>The text file containing the custom password used by the bootloader can be placed in the file as shown.</p>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_bootloader_password_provided.png" />
+</figure>
+</section>
+<section id="reading-from-a-device-using-the-bootloader">
+<h3>4.5 Reading From a Device using the Bootloader<a class="headerlink" href="#reading-from-a-device-using-the-bootloader" title="Permalink to this heading">¶</a></h3>
+<p>Memory reading is not enabled in NONMAIN by default, however the functionality is supported if desired. Refer to the device Technical Reference Manual for information about modifying NONMAIN to change the BSL memory read-out policy.</p>
+<p>When enabled, a read from the device can be performed in the <strong>Settings &amp; Utilities</strong> section of UniFlash on the top left-hand side of the screen.</p>
+<p>In order to successfully read from a device, the Bootloader Unlock Password will be required. The default password is 32 0xFF bytes, written in UniFlash as 8 0xFFFFFFFF words.</p>
+<figure class="align-default">
+<img alt="" src="../_images/uniflash_guide_bootloader_read.png" />
+</figure>
+</section>
+<section id="current-limitations-using-the-bootloader">
+<h3>4.6 Current Limitations using the Bootloader<a class="headerlink" href="#current-limitations-using-the-bootloader" title="Permalink to this heading">¶</a></h3>
+<p>When using the bootloader, there are some additional limitations with the current implementation:</p>
+<ul class="simple">
+<li><p>The maximum size of data packet transfer depends on the BSL timer (10) and the baud rate, as well as the maximum buffer space. The transfer will not happen with respect to the watchdog and thus must complete in under 10 seconds. For example. A 10kB file with a start and stop bit will require 10240 * (10 bits/packet) / (9600 bits/second) = 10.67 seconds which would cause a timeout. In this case, a higher baud rate is recommended.</p></li>
+<li><p>CRC Verification does not work for sizes less than 1kB, an error for the verification will be thrown in this case.</p></li>
+</ul>
+</section>
+</section>
+<section id="known-issues-and-frequently-asked-questions-faq">
+<h2>5. Known Issues and Frequently Asked Questions (FAQ)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faq" title="Permalink to this heading">¶</a></h2>
+<p>Please refer to the <a class="reference external" href="../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> for more information</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="debug_program_uniflash.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debug_program_bslhost.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

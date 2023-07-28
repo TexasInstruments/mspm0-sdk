@@ -1,0 +1,483 @@
+Sensorless FOC Motor Control Library Overview
+=============================================
+
+1. Software Overview
+--------------------
+
+Sensorless Field-Oriented Control (FOC) Library is made of three main layers: Application layer, HAL Layer, and MSPM0 DriverLib.
+
+.. figure:: images/Library-Architecture.jpg
+   :alt: Sensorless FOC Architecture
+
+   Sensorless FOC Architecture
+
+1.1 Application Layer Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The user specific applications (such as GUI) are present in this layer. From this layer, various instances of motor driver modules can be configured and used. If the user needs to perform any hardware specific actions, the user is recommended to use the APIs from HAL module.
+
+1.2 HAL Module
+~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^
+
+The Hardware Abstraction Layer (HAL) creates an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configurations which simplifies porting of the library to various hardware by minimizing the updates needed to other components. The HAL is meant to abstract only the required pins or peripherals required for the application while still having flexibility and scalability for porting to other MSPM0 MCUs or motor drivers.
+
+HAL is designed to have specific number of pins or channels associated with a peripheral. For example, consider the case of GPIOs. HAL has enum HAL\_GPIO\_OUT\_PIN which has all the GPIO output pins as members as shown below.
+
+::
+
+    /*! @enum HAL_GPIO_OUT_PIN */
+    typedef enum{
+        /*! Index associated to output GPIO PIN 0 */
+        HAL_GPIO_OUT_PIN_0 = 0,
+        /*! Index associated to output GPIO PIN 1 */
+        HAL_GPIO_OUT_PIN_1,
+        /*! Total number of output GPIO pins */
+        HAL_GPIO_OUT_PIN_MAX,
+    }HAL_GPIO_OUT_PIN;
+
+To map the HAL GPIO pins to the real hardware pins, a structure is used which is indexed by the members of the HAL\_GPIO\_OUT\_PIN enum. This structure stores various members like the port instance, pin name, etc. See below the gpioOUT structure which holds data on the port and pin.
+
+::
+
+    gpioOUT[HAL_GPIO_OUT_PIN_0].iomux   = GENERIC_GPIO_OUT_PINO_0_IOMUX;
+    gpioOUT[HAL_GPIO_OUT_PIN_0].port    = GENERIC_GPIO_OUT_PORT;
+    gpioOUT[HAL_GPIO_OUT_PIN_0].pin     = GENERIC_GPIO_OUT_PINO_0_PIN;
+
+Note that GENERIC\_GPIO\_OUT\_PINO\_0\_PIN is defined in the TI SysConfig generated files the specific line is shown below:
+
+::
+
+    #define GENERIC_GPIO_OUT_PINO_0_PIN                             (DL_GPIO_PIN_26)
+
+Thus, HAL\_GPIO\_OUT\_PIN\_0 indirectly refers to DL\_GPIO\_PIN\_0, but the advantage of this mapping is that since TI SysConfig controls the generation of the GENERIC\_GPIO\_OUT\_PINO\_0\_PIN, it is very easy to change the pin in the TI SysConfig GUI. The HAL automatically follows this without the user having to change any code in the HAL layer.
+
+As seen above, when accessing the hardware through the HAL, we need to pass a HAL specific enum like HAL\_GPIO\_OUT\_PIN\_0. These enums are stored in the instances that access the HAL layer. In the case of the DRV8323RS motor driver, the instances of the important pins are initialized with its pins assigned to the HAL enums as shown in the snippet below.
+
+::
+
+    drv8323rs.enable  = HAL_GPIO_OUT_PIN_0;
+    drv8323rs.nfault  = HAL_PWM_FAULT_0;
+    drv8323rs.spi     = HAL_SPI_CHANNEL_0;
+    drv8323rs.spiCS   = HAL_SPI_CS_2;
+    drv8323rs.vsenvm  = HAL_ADC_CHANNEL_1;
+    drv8323rs.isena   = HAL_ADC_CHANNEL_2;
+    drv8323rs.isenb   = HAL_ADC_CHANNEL_0;
+
+If the ENABLE pin needs to be set high, the API DRV8323RS\_enable() is used and passes the DRV8323RS instance with it. The code snippet is shown below:
+
+::
+
+    void DRV8323RS_enable(DRV8323RS_Instance *handle)
+    {
+        /* Enable the DRV8323RS */
+        HAL_setGPIOVal(handle->enable, HAL_GPIO_VALUE_HIGH);
+
+        /* Startup delay for the DRV8323RS SPI to be ready */
+        HAL_delayMilliSeconds(DRV8323RS_SPI_READY_DELAY_MS);
+    }
+
+When DRV8323RS\_enable() interacts with the HAL layer, it passes the member of the DRV8323RS instance. This is the same concept for using other HAL APIs such as the timer, SPI, DAC, etc. The user is free to expand the HAL’s API to support other peripherals and features of the MSPM0 but it is strongly recommended not to modify existing API to ensure easy migration to new versions of this library.
+
+1.3 Motor Driver Module
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Motor Driver Module uses the HAL APIs to motor driver specific operations APIs like SPI read, SPI write, voltage and current measurements. The idea of this module is to be independent of the hardware and use the HAL APIs to perform the hardware tasks specific to the motor driver.
+
+Motor Driver Pin Association
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The user before using the Motor Driver module is expected to specify the HAL enums mapped to the motor driver instance. See the below code snippet.
+
+::
+
+    /* Assign the pins specific for the DRV */
+    drv8323rs.enable  = HAL_GPIO_OUT_PIN_0;
+    drv8323rs.nfault  = HAL_PWM_FAULT_0;
+    drv8323rs.spi     = HAL_SPI_CHANNEL_0;
+    drv8323rs.spiCS   = HAL_SPI_CS_2;
+    drv8323rs.vsenvm  = HAL_ADC_CHANNEL_1;
+    drv8323rs.isena   = HAL_ADC_CHANNEL_2;
+    drv8323rs.isenb   = HAL_ADC_CHANNEL_0;
+
+Motor Driver APIs
+^^^^^^^^^^^^^^^^^
+
+The Motor Driver Module provides simple APIs which the user can use along with an instance of the motor drive module. The motor driver module APIs also handles the motor driver specific logic while keeping the APIs generic, thus the user can use different motor drivers and not worry of any difference in the internal logic. For example, below is an API for updating the SPI registers in the drv8323rs.
+
+::
+
+    void DRV8323RS_spiUpdateRegister(DRV8323RS_Instance *handle, 
+                          DRV8323RS_REG_ADDR addr, uint32_t mask, uint16_t data)
+    {
+        uint16_t dataValue;
+        dataValue = (uint16_t) DRV8323RS_spiRead(handle, addr);
+        dataValue &= ~(mask);
+        dataValue |= data;
+        DRV8323RS_spiWrite(handle, addr, dataValue);
+    }
+
+Note from the above code snippet that any bit in the spi register in the DRV8323RS can be updated. The register address can be different for different devices, but here the enumerator DRV8323RS\_REG\_ADDR is used so the user doesn’t need to know the address of each register.
+
+1.4 Sensorless FOC Library Module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overview
+^^^^^^^^
+
+The Sensorless FOC library contains generic algorithms for 3-phase sensorless FOC motor control. This module has APIs that the user can use to configure and control the FOC motor control. This module takes care of setting the PWM modulations based on the FOC algorithm. This module uses the HAL APIs for any using any hardware resources. The user is required to map the HAL PWM channels for the FOC module. Below is the code snippet that allocates the HAL PWM channels to the foc module.
+
+::
+
+    /* Assign the pins specific for FOC */
+    foc.pwmAHal = HAL_PWM_CHANNEL_1;
+    foc.pwmBHal = HAL_PWM_CHANNEL_2;
+    foc.pwmCHal = HAL_PWM_CHANNEL_0;
+
+1.5 MSPM0 DriverLib Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MSPM0 DriverLib is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. Please refer to the DriverLib documentation for more information.
+
+2. Software User Guide
+----------------------
+
+The Sensorless FOC software can be used along with the CCS debug window. If the user wishes to use the software with GUI, please do look into the GUI user guide for the specific hardware.
+
+2.1 Setting the Motor Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The motor parameter can be found in the motor\_parameter.h file. There are four motor parameters required for Sensorless FOC:
+
+-  Stator resistance, Rs (ohm)
+-  Stator inductance, Ls (H)
+-  Number of motor poles
+-  Base maximum RPM of the motor
+
+.. figure:: images/FOC_MOTOR_PARAMS.jpg
+   :alt: Locate motor parameter c file
+
+   Locate motor parameter c file
+
+These parameters are defined using an #elif statement for a motor. To define these parameters for a custom motor, modify the #define statements for MOTOR\_PARA\_RS, MOTOR\_PARA\_LS, MOTOR\_PARA\_POLES, and MOTOR\_PARA\_BASE\_RPM for USER\_MOTOR. To add another motor, copy and paste the #elif statement below and rename USER\_MOTOR to another name.
+
+::
+
+    #elif (USER_MOTOR)
+    /* Define the electrical motor parameters (User motor) */
+    /* @brief Stator resistance (ohm) */
+    #define MOTOR_PARA_RS               1.7
+    /* @brief Stator inductance (H) */
+    #define MOTOR_PARA_LS               0.004
+    /* @brief Number of poles */
+    #define MOTOR_PARA_POLES            8
+    /* @brief Base RPM */
+    #define MOTOR_PARA_BASE_RPM         5000
+
+To select a motor defined in motor\_params.h, click Project -> Properties in the toolbar. In the Properties window, go to Build -> Arm Compiler -> Predefined Symbols. The pre-defined motor name is LVSERVOMTR=1. To change the pre-defined motor name, click “Edit” and change LVSERVOMTR to another defined motor in motor\_params.h, such as LVBLDCMTR or USER\_MOTOR.
+
+.. figure:: images/CCS_PREDEFINED_SYMBOL.jpg
+   :alt: Showing LVSERVOMTR=1 symbol
+
+   Showing LVSERVOMTR=1 symbol
+
+2.2 Setting the System Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The initial parameters are found in the drv8323rs-gui.h file as #define GUI\_DEFAULT\_XXXX. The user is required to set the parameters as per the requirement. By default the default parameters are set for LVSERVOMTR motor.
+
++----------------------+-----------------------------------------------------------------------------+
+| Initial Parameters   | Description                                                                 |
++======================+=============================================================================+
+| DRV\_VDS\_LVL        | VDS comparator threshold of DRV8323RS                                       |
++----------------------+-----------------------------------------------------------------------------+
+| DRV\_SEN\_LVL        | OCP level for DRV8323RS                                                     |
++----------------------+-----------------------------------------------------------------------------+
+| DRV\_CSA\_GAIN       | CSA gain setting for DRV8323RS                                              |
++----------------------+-----------------------------------------------------------------------------+
+| DRV\_RSHUNT          | Rshunt resistor value in DRV8323RS                                          |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_RS              | Selected motor phase resistance for FOC                                     |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_LS              | Selected motor phase inductance for FOC                                     |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_POLES           | Selected motor poles for FOC                                                |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_BASE\_RPM       | Selected Base rpm for FOC                                                   |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PWMFREQ         | PWM frequency for FOC                                                       |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PWMADCSAMPLE    | PWM counts spend in ADC sampling                                            |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_CNTRLDIV        | Control loop divider for FOC, only set to 1                                 |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_DEADBAND        | Deadband in ns                                                              |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_RSHUNT          | Rshunt resistor value                                                       |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_VOLT\_RATIO     | Bus voltage conversion ratio                                                |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_AMP\_GAIN       | Current amplifier gain                                                      |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_KSLIDE          | Kslide coefficient value                                                    |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PISPD\_KP       | Proportional coefficient for PI controller for speed                        |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PISPD\_KI       | Integral coefficient for PI controller for speed                            |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PISPD\_MAX      | Maximum value output from PI controller for speed                           |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PISPD\_MIN      | Minimum value output from PI controller for speed                           |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PISPD\_DIV      | PI controller for speed Execution divider from FOC control loop frequency   |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PIIQ\_KP        | Proportional coefficient for PI controller for Iq                           |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PIIQ\_KI        | Integral coefficient for PI controller for Iq                               |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PIIQ\_MAX       | Maximum value output from PI controller for Iq                              |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PIIQ\_MIN       | Minimum value output from PI controller for Iq                              |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PIID\_KP        | Proportional coefficient for PI controller for Id                           |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PIID\_KI        | Integral coefficient for PI controller for Id                               |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PIID\_MAX       | Maximum value output from PI controller for Id                              |
++----------------------+-----------------------------------------------------------------------------+
+| FOC\_PIID\_MIN       | Minimum value output from PI controller for Id                              |
++----------------------+-----------------------------------------------------------------------------+
+
+2.3 Selecting the Build levels
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This software package uses an incremental system build to demonstrate a complete fixed-point sensorless Field Oriented control solution. There are 5 selectable build levels choices to incrementally verify the functioning.
+
++----------------+----------------------------------------------------------------------+
+| Build Levels   | Description                                                          |
++================+======================================================================+
+| LEVEL1         | Module functionality check out.                                      |
++----------------+----------------------------------------------------------------------+
+| LEVEL2         | Verify ADC, park/clarke, calibrate the offset.                       |
++----------------+----------------------------------------------------------------------+
+| LEVEL3         | Verify closed current(torque) loop and PIDs and speed measurement.   |
++----------------+----------------------------------------------------------------------+
+| LEVEL4         | Verify speed estimation and rotor position estimation.               |
++----------------+----------------------------------------------------------------------+
+| LEVEL5         | Verify closed speed loop, speed PID and eSMO.                        |
++----------------+----------------------------------------------------------------------+
+
+To select a build level in foc.h, click Project -> Properties in the toolbar. In the Properties window, go to Build -> Arm Compiler -> Predefined Symbols. The pre-defined BUILDLEVEL name is LEVEL5. To change the pre-defined build level, click “Edit” and change LEVEL5 to another defined build level in foc.h.
+
+.. figure:: images/FOC_BUILD_LEVELS.jpg
+   :alt: Build levels
+
+   Build levels
+
+Important Note
+~~~~~~~~~~~~~~
+
+The build levels are only used for verifying the modules. While using a build level lower than LEVEL5, the user should only use the motor in a no-load condition. The user should use LEVEL5 as final build level for the user to test the motor in loaded conditions.
+
+2.4 Variables for controlling motor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Below are the list of variables to include in the debug window for controlling the motor. Note, for variables in IQ24 type, set the type by right clicking the variables and changing to IQ type 24.
+
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| Variables                    | Description                                                                                                                                                                                                                                                                                                 | Type      |
++==============================+=============================================================================================================================================================================================================================================================================================================+===========+
+| enableFOC                    | Control whether FOC is enabled or disabled. If set 0, PWM is disabled and the drive is in HighZ state. If set 1, The PWM output is set as per the FOC code.                                                                                                                                                 | boolean   |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| lsw                          | Controls the FOC state. If set 0, Aligns the motor to A phase. If set 1, Rotates the motor in open loop with speed from speedRef variable. If set 2, Rotates the motor in closed loop with speed from speedRef variable. lsw=2 is not applicable to Build levels other than LEVEL5 and should not be set.   | int       |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| idRef                        | Set the align current in per unit.                                                                                                                                                                                                                                                                          | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| iqRef                        | Set the q axis current in lsw = 1 in per unit.                                                                                                                                                                                                                                                              | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| speedRef                     | Sets the reference speed, used in open loop acceleration and in lsw = 2                                                                                                                                                                                                                                     | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| speedEst.EstimatedSpeed      | Display the estimated motor speed in per unit.                                                                                                                                                                                                                                                              | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| speedEst.EstimatedSpeedRpm   | Display the estimated motor speed in RPM.                                                                                                                                                                                                                                                                   | int       |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| piSpd.Kp                     | Proportional constant in PI for Speed.                                                                                                                                                                                                                                                                      | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| piSpd.Ki                     | Integral constant in PI for Speed.                                                                                                                                                                                                                                                                          | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| piId.Kp                      | Proportional constant in PI for Id current.                                                                                                                                                                                                                                                                 | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| piId.Ki                      | Integral constant in PI for Id current.                                                                                                                                                                                                                                                                     | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| piIq.Kp                      | Proportional constant in PI for Iq current.                                                                                                                                                                                                                                                                 | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| piIq.Ki                      | Integral constant in PI for Iq current.                                                                                                                                                                                                                                                                     | IQ24      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| guiOverCurrentLimit          | Value of phase current in ampere above which software triggers overcurrent                                                                                                                                                                                                                                  | float     |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| guiVmOverVoltageLimit        | Value of voltage in volts above which software triggers overvoltage fault.                                                                                                                                                                                                                                  | float     |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| guiVmUnderVoltageLimit       | Value of voltage in volts below which software triggers undervoltage fault.                                                                                                                                                                                                                                 | float     |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| gui\_faults.clearFault       | if set 1, clears all the fault bits.                                                                                                                                                                                                                                                                        | bool      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| gui\_faults.drvFault         | Set when drv fault is detected.                                                                                                                                                                                                                                                                             | bool      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| gui\_faults.uvlo             | Set when undervoltage is detected.                                                                                                                                                                                                                                                                          | bool      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| gui\_faults.ovlo             | Set when overvoltage is detected.                                                                                                                                                                                                                                                                           | bool      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| gui\_faults.ocp              | Set when overcurrent is detected.                                                                                                                                                                                                                                                                           | bool      |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+
+2.5 Running the motor
+~~~~~~~~~~~~~~~~~~~~~
+
+Below is the steps to run the motor:
+
+1.  Check if enableFOC = 0.
+
+2.  Check if any fault bit in the “gui\_faults” structure is set. If any fault is set, clear the fault by setting gui\_faults.clearFault = 1.
+
+3.  Set idRef to desired Align current.
+
+4.  Set iqRef to desired open loop current.
+
+5.  Set speedRef to desired open loop speed.
+
+6.  Set lsw = 0 to align the motor to the A phase. Note with enableFOC = 0, the FOC is disabled currently.
+
+7.  Set enableFOC = 1 to enable the FOC code to actuate the PWM. Because lsw = 0, we should see positive current in the A phase and half of the negative current in the B and C phases. If current is not constant, see PI tuning for Id.
+
+8.  Set lsw = 1 to switch to open loop. The motor starts to spin and ramp to the speed set in speedRef. If the motor is vibrating, reset to lsw = 0 and set a higher IdRef value. The current in the A phase should be sinusoidal. If there are spikes in current or distorted waveforms, see PI tuning for Iq.
+
+9.  Set lsw = 2 to switch to closed loop. The estimated motor speed (speedEst.EstimatedSpeed) should match speedRef across load conditions and the motor should continue to run smoothly.
+
+10. Increase or decrease speedRef to run the desired motor speed. Check if the motor speed is stable after the ramp and no oscillations in speed occur, especially if load is applied. If the motor speed is unstable or there are oscillations in the final speed, use the speed PI controller to modify the speed control response.
+
+11. To stop the motor, set enableFOC = 0.
+
+12. If a fault occurs, the corresponding fault will be set in the gui\_faults structure.
+
+13. To clear the fault, remove the fault condition and set gui\_faults.clearFault. The corresponding fault bit will be cleared.
+
+2.6 Tuning the motor
+~~~~~~~~~~~~~~~~~~~~
+
+Tuning PI controllers
+~~~~~~~~~~~~~~~~~~~~~
+
+There are three PI controllers for Speed, Id current and Iq current. For tuning a PI controller, the user should first adjust the Kp first and then adjust the Ki for that PI controller. To tune the PI controllers:
+
+-  Use lsw = 0 to tune PI Id gains (piId.kp, piId.ki)
+-  Use lsw = 1 to tune PI Iq gains (piIq.kp, piIq.ki)
+-  Use lsw = 2 in PI speed gains (piSpd.kp, piSpd.ki)
+
+2.7 Logging the variables
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The user can add the \_\_ENABLE\_LOG predefined symbol to enable logging. The user can set the log index and variable as shown in the below code:
+
+::
+
+        FOC_addVarToLog(FOC_LOG_IDX_0, phaseVolt.Valpha);
+
+To see the logged data as a graph, the user can add the variable cssLog[X], where X is the index. Right click the variable and select “Graph”.
+
+.. figure:: images/CCS_GRAPH.jpg
+   :alt: Image of graph
+
+   Image of graph
+
+Select “Continuous Refresh” mode to see continuous data.
+
+.. figure:: images/CCS_GRAPH_CONT_REFRESH.jpg
+   :alt: Image of graph
+
+   Image of graph
+
+**Note that the software consumes 24KB extra space in SRAM to store the values when logging is enabled.**
+
+2.8 Access SPI Register
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The software allows to independently change values in the SPI registers of the DRV. There are 3 options of writing to SPI register. Below are the variables and examples to use.
+
+There are 3 options in SPI register:
+
+1. Write 8-bit data to register
+
++-------------------------+--------------------------------------+
+| Variables               | Description                          |
++=========================+======================================+
+| gui\_spi.writeRegFlag   | Writes the register when set to 1.   |
++-------------------------+--------------------------------------+
+| gui\_spi.writeRegAddr   | Set address of register to write.    |
++-------------------------+--------------------------------------+
+| gui\_spi.writeRegData   | Set data of register to write.       |
++-------------------------+--------------------------------------+
+
+For example, to write 0x01 to the Gate Drive HS register, select gui\_spi.writeRegAddr as DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS, set gui\_spi.writeRegData = 0x01, and then set gui\_spi.writeRegFlag = 1.
+
+2. Update some bits in SPI register
+
++---------------------------------+-------------------------------------------+
+| Variables                       | Description                               |
++=================================+===========================================+
+| gui\_spi.writeBitfieldRegFlag   | Writes the bitfield when set to 1.        |
++---------------------------------+-------------------------------------------+
+| gui\_spi.writeBitfieldRegAddr   | Set register address to write Bitfield.   |
++---------------------------------+-------------------------------------------+
+| gui\_spi.bitfieldRegPosData     | Set position of Bitfield to write.        |
++---------------------------------+-------------------------------------------+
+| gui\_spi.bitfieldRegMaskData    | Set mask of Bitfield to write.            |
++---------------------------------+-------------------------------------------+
+| gui\_spi.writeBitfieldRegData   | Set data of Bitfield to write.            |
++---------------------------------+-------------------------------------------+
+
+For setting IDRIVEP\_HS = 0x03 register, select gui\_spi.writeBitfieldRegAddr as DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS, set gui\_spi.bitfieldRegPosData = 0x04, set gui\_spi.bitfieldRegMaskData = 0x03, set gui\_spi.writeBitfieldRegData = 0x03 and then set gui\_spi.writeBitfieldRegFlag = 1.
+
+3. Read SPI register
+
++------------------------+-------------------------------------+
+| Variables              | Description                         |
++========================+=====================================+
+| gui\_spi.readRegFlag   | Reads the register when set to 1.   |
++------------------------+-------------------------------------+
+| gui\_spi.readRegAddr   | Set address of register to read.    |
++------------------------+-------------------------------------+
+| gui\_spi.readRegData   | Shows data read from register.      |
++------------------------+-------------------------------------+
+
+For reading the Gate Driver HS register, select gui\_spi.readRegAddr as DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS, and then set gui\_spi.writeRegFlag = 1. The data read can be seen in gui\_spi.readRegData.
+
+3. API Guide
+------------
+
+-  `Sensorless FOC API Guide <../../doxygen/api_guide/html/index.html>`__
+
+4. Known Issues
+---------------
+
+1. Function implicit declaration warning for IQrepeat function while compiling.
+2. Current solution supports power up to 100W. Applying high torque at low speeds can cause motor to spin backwards with high rpm.
+
+5. Supported Devices
+--------------------
+
+DRV8323RS
+~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8323rs/DRV8323RS_Hardware_User_Guide.html>`__
+
+-  `GUI User Guide <drv8323rs/DRV8323RS_GUI_User_Guide.html>`__
+
+-  `MSPM0G3507-DRV8323RS-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI>`__

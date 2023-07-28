@@ -1,0 +1,64 @@
+MSPM0 SDK QuickStart Guide for CCS
+==================================
+
+1. Introduction
+---------------
+
+This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with CCS using TI Arm Clang. This guide is not intended to explain the functionality of CCS. Please refer to the documentation available through the Help menu in CCS or the `CCS IDE Guide for MSPM0 MCUs <../../../tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html>`__ included with the MSPM0 SDK documentation.
+
+2. Prerequisites
+----------------
+
+The user is expected to have downloaded the following:
+
+-  `CCS 12.4.0 or later <https://www.ti.com/tool/download/CCSTUDIO>`__
+-  `SysConfig 1.17.x <https://www.ti.com/tool/SYSCONFIG>`__ (Included in latest version of CCS)
+-  `TI Clang 2.1.3.LTS <https://www.ti.com/tool/download/ARM-CGT-CLANG-1/>`__ (Included in latest version of CCS)
+
+3. Import and Build Example in CCS
+----------------------------------
+
+1. In CCS, open the Resource Explorer from the Getting Started page
+
+   .. figure:: ./images/quickstart_guide_ccs/open_resource_explorer.png
+      :alt: 
+
+2. Choose MSPM0 in the page directory and select the examples folder
+
+   .. figure:: ./images/quickstart_guide_ccs/select_examples.png
+      :alt: 
+
+3. Navigate to the DriverLib examples following the filepath below
+
+   .. figure:: ./images/quickstart_guide_ccs/navigate_driverlib_examples.png
+      :alt: 
+
+4. Choose an example, choose the TI Clang compiler folder, and import to CCS IDE by pressing on the 3 dots next to the project file
+
+   .. figure:: ./images/quickstart_guide_ccs/open_project_in_ccs.png
+      :alt: 
+
+5. If the SDK is not installed, an error message will pop up and prompt the user to install the SDK
+
+   .. figure:: ./images/quickstart_guide_ccs/install_sdk.png
+      :alt: 
+
+6. Once the SDK is installed, import to CCS IDE by pressing on the 3 dots next to the project file
+
+   .. figure:: ./images/quickstart_guide_ccs/open_project_in_ccs.png
+      :alt: 
+
+7. To build the example, click on your example in the Project Explorer tab, and then select the **Build** icon at the top.
+
+   | **Note**: Some examples include support for SysConfig to allow for an easier device configuration.
+   | The image below also shows the Sysconfig file that is used to configure the device for the example project.
+   | For a complete list of examples supporting SysConfig, check the `MSPM0 SDK Examples Guide <../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html>`__.
+   | For more general information about using SysConfig with MSPM0, please refer to `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ available in the SDK's Tools Guide.
+
+   .. figure:: ./images/quickstart_guide_ccs/build_project.png
+      :alt: 
+
+4. Known Issues and Frequently Asked Questions (FAQs)
+-----------------------------------------------------
+
+Please refer to `Known Issues and FAQ <../../../../../known_issues_FAQ.html>`__ inside the SDK.

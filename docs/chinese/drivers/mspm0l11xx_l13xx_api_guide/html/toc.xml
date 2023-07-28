@@ -1,0 +1,801 @@
+<toc label="MSPM0L11XX_L13XX TI-Driver Library" topic="index.html">
+  <topic label="MSPM0 TI-Driver Library" href="index.html"/>
+  <topic label="Modules" href="modules.html">
+    <topic label="Direct Memory Access (DMA)" href="group___d_m_a.html">
+      <topic label="DMAMSPM0_HWAttrs" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html">
+        <topic label="dmaIsrFxn" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#aaa249f1ea874ab783337ba700ba92e16"/>
+        <topic label="intPriority" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#af674ed538149edc488580357b1854f0e"/>
+      </topic>
+      <topic label="DMAMSPM0_Object" href="struct_d_m_a_m_s_p_m0___object.html">
+        <topic label="unused" href="struct_d_m_a_m_s_p_m0___object.html#a9abd490a4df34078590eb5a1a44ef3c2"/>
+      </topic>
+      <topic label="DMAMSPM0_Transfer" href="struct_d_m_a_m_s_p_m0___transfer.html">
+        <topic label="txTrigger" href="struct_d_m_a_m_s_p_m0___transfer.html#a36aafd8ec70c45af89205708dc2919b0"/>
+        <topic label="rxTrigger" href="struct_d_m_a_m_s_p_m0___transfer.html#a53224de0888a039e4b512fb25f3d984f"/>
+        <topic label="txTriggerType" href="struct_d_m_a_m_s_p_m0___transfer.html#aa51d812e70ab6986674a08fe8b046dd6"/>
+        <topic label="rxTriggerType" href="struct_d_m_a_m_s_p_m0___transfer.html#a48e449526c7c3f3e52850d801443b298"/>
+        <topic label="transferMode" href="struct_d_m_a_m_s_p_m0___transfer.html#a91855e3dd045d4ad989c2662b2e82bdb"/>
+        <topic label="extendedMode" href="struct_d_m_a_m_s_p_m0___transfer.html#acac957cdb22abf8e4970095a96af133c"/>
+        <topic label="srcWidth" href="struct_d_m_a_m_s_p_m0___transfer.html#afa0637e6f50f30fd54e920a0eaf69b67"/>
+        <topic label="destWidth" href="struct_d_m_a_m_s_p_m0___transfer.html#ae9af4efb81fc89be2df600b796fda8b2"/>
+        <topic label="srcIncrement" href="struct_d_m_a_m_s_p_m0___transfer.html#a236b74bddbe74a26a7fca424b40fbec3"/>
+        <topic label="destIncrement" href="struct_d_m_a_m_s_p_m0___transfer.html#a7faed6f316a48ce758f06e56afb1122c"/>
+        <topic label="dmaChannel" href="struct_d_m_a_m_s_p_m0___transfer.html#ab71ecc20442db6abceeef88fbfb29fef"/>
+        <topic label="dmaTransferSource" href="struct_d_m_a_m_s_p_m0___transfer.html#a0ebebafdd013070d0833cf16d3f63cfb"/>
+        <topic label="dmaTransferDestination" href="struct_d_m_a_m_s_p_m0___transfer.html#a230b86a92925475564175d390917785a"/>
+        <topic label="noOfData" href="struct_d_m_a_m_s_p_m0___transfer.html#a9123b47b6f6ee4af2705ff7c591ed99e"/>
+        <topic label="roundRobinPriority" href="struct_d_m_a_m_s_p_m0___transfer.html#a386da2d8a26856976ed44abbd475a744"/>
+        <topic label="enableDMAISR" href="struct_d_m_a_m_s_p_m0___transfer.html#ad88deea44659872e6803e6cee2c75bc9"/>
+      </topic>
+      <topic label="DMAMSPM0_Cfg" href="struct_d_m_a_m_s_p_m0___cfg.html">
+        <topic label="object" href="struct_d_m_a_m_s_p_m0___cfg.html#af95b4b92269f4c872aab141a92f02b3a"/>
+        <topic label="hwAttrs" href="struct_d_m_a_m_s_p_m0___cfg.html#aacdefe7b3fc5cd387a665f90d5159dee"/>
+      </topic>
+      <topic label="NUM_DMA_CHANNELS" href="group___d_m_a.html#gaee3ce80a589ee0a658d1f1d293083692"/>
+      <topic label="DMAMSPM0_IsrFxn" href="group___d_m_a.html#ga1d63418e0aacc8c97993301127d8de20"/>
+      <topic label="DMAMSPM0_Handle" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a"/>
+      <topic label="DMAMSPM0_close" href="group___d_m_a.html#gae95a2c66447e2ddd3ae9d9b645c53942"/>
+      <topic label="DMAMSPM0_init" href="group___d_m_a.html#ga8a379aa65552a10e85cc4b1cb394896b"/>
+      <topic label="DMAMSPM0_open" href="group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2"/>
+      <topic label="DMAMSPM0_setupTransfer" href="group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31"/>
+      <topic label="DMA_Init" href="group___d_m_a.html#gaa469f6d48b00671eeb013a691dc81529"/>
+      <topic label="DMAMSPM0_disableChannel" href="group___d_m_a.html#ga7f580446972a92c87d13cda5a2d666e8"/>
+      <topic label="DMAMSPM0_getCurrTransferSize" href="group___d_m_a.html#ga8fb50a12e77ce31821a6fa827460144d"/>
+      <topic label="DMA_Params_init" href="group___d_m_a.html#gad58062cd1e508a3fdf174bc65639b9e3"/>
+      <topic label="DMAMSPM0_copyDMAParams" href="group___d_m_a.html#gae6ed9ea7cefc32ae6528cf9bc2da1f2e"/>
+      <topic label="DMAMSPM0_Config" href="group___d_m_a.html#gacaa3ef9937116a3377e8181d9c036ea9"/>
+    </topic>
+    <topic label="General Purpose Input Output (GPIO)" href="group___g_p_i_o.html">
+      <topic label="GPIO status codes" href="group___g_p_i_o___s_t_a_t_u_s.html">
+        <topic label="GPIO_STATUS_SUCCESS" href="group___g_p_i_o___s_t_a_t_u_s.html#gacef3ff21200e0cff860ddd2b64adac07"/>
+        <topic label="GPIO_STATUS_ERROR" href="group___g_p_i_o___s_t_a_t_u_s.html#ga9128d9c1019c04160cfd76af9dff919a"/>
+      </topic>
+      <topic label="Macros used to configure GPIO pins" href="group___g_p_i_o___pin_config_settings.html">
+        <topic label="GPIO_CFG_OUTPUT" href="group___g_p_i_o___pin_config_settings.html#gaad0c4b9c093f1d57fd03061b7456193a"/>
+        <topic label="GPIO_CFG_OUT_STD" href="group___g_p_i_o___pin_config_settings.html#gac52528c42a8eb3be193f49de5ed7d820"/>
+        <topic label="GPIO_CFG_OUT_OD_NOPULL" href="group___g_p_i_o___pin_config_settings.html#gae660060d38901c2370d8f104fbb842a2"/>
+        <topic label="GPIO_CFG_OUT_OD_PU" href="group___g_p_i_o___pin_config_settings.html#ga16cfdcae58be5f77932b36f43e7c1d2f"/>
+        <topic label="GPIO_CFG_OUT_OD_PD" href="group___g_p_i_o___pin_config_settings.html#gaf4e7be1d009ff2c25a048ab7fe401d88"/>
+        <topic label="GPIO_CFG_OUT_STR_LOW" href="group___g_p_i_o___pin_config_settings.html#ga2917f431dff7eb7f5559643bd8df251d"/>
+        <topic label="GPIO_CFG_OUT_STR_MED" href="group___g_p_i_o___pin_config_settings.html#gac1d2c5bf8f2359d26d28abc8aa393b3a"/>
+        <topic label="GPIO_CFG_OUT_STR_HIGH" href="group___g_p_i_o___pin_config_settings.html#ga25609d59d41f081ae9759d5862dc9dd9"/>
+        <topic label="GPIO_CFG_OUT_HIGH" href="group___g_p_i_o___pin_config_settings.html#gae86eb6dc677c962a9ad94bdad6752dc0"/>
+        <topic label="GPIO_CFG_OUT_LOW" href="group___g_p_i_o___pin_config_settings.html#gad4fd3be9a7bec74d862cb1caecc5d4be"/>
+        <topic label="GPIO_CFG_INPUT" href="group___g_p_i_o___pin_config_settings.html#ga874e34de3bef2d9415b4311dd6bed234"/>
+        <topic label="GPIO_CFG_IN_NOPULL" href="group___g_p_i_o___pin_config_settings.html#gad2e8d27bfc96ef0de4dd35db10055412"/>
+        <topic label="GPIO_CFG_IN_PU" href="group___g_p_i_o___pin_config_settings.html#ga4fb7b60751481b6988049fe8fa94a7d7"/>
+        <topic label="GPIO_CFG_IN_PD" href="group___g_p_i_o___pin_config_settings.html#gad09e6716ad1b54cb6509b8c92a6567c6"/>
+        <topic label="GPIO_CFG_INVERT_OFF" href="group___g_p_i_o___pin_config_settings.html#ga56f1eee4ff9b74afc9a9456430506cd9"/>
+        <topic label="GPIO_CFG_INVERT_ON" href="group___g_p_i_o___pin_config_settings.html#ga1d73f69b8b72ef587fd7264289f5023e"/>
+        <topic label="GPIO_CFG_HYSTERESIS_OFF" href="group___g_p_i_o___pin_config_settings.html#ga7152d58bae53f054fefeda27af9b154c"/>
+        <topic label="GPIO_CFG_HYSTERESIS_ON" href="group___g_p_i_o___pin_config_settings.html#gac704d1783ffdc5509c7b16bee87ae648"/>
+        <topic label="GPIO_CFG_HIZ_OFF" href="group___g_p_i_o___pin_config_settings.html#ga5ad65600afa4e39cb557c56ec0a48539"/>
+        <topic label="GPIO_CFG_HIZ_ON" href="group___g_p_i_o___pin_config_settings.html#gaedadb245c8983aef941f15b76e5a5bf1"/>
+        <topic label="GPIO_CFG_IN_INT_NONE" href="group___g_p_i_o___pin_config_settings.html#ga666c6995ed5737b43a707d1cacd9fe69"/>
+        <topic label="GPIO_CFG_IN_INT_RISING" href="group___g_p_i_o___pin_config_settings.html#ga4a9f53e525d1f1659b485274d08ff91f"/>
+        <topic label="GPIO_CFG_IN_INT_FALLING" href="group___g_p_i_o___pin_config_settings.html#ga7a69ee26049dc2f8b5059b00a24b9f74"/>
+        <topic label="GPIO_CFG_IN_INT_BOTH_EDGES" href="group___g_p_i_o___pin_config_settings.html#ga0829900a2dd949219edc6ddc8d928f3c"/>
+        <topic label="GPIO_CFG_IN_INT_LOW" href="group___g_p_i_o___pin_config_settings.html#gab0f05c331bb66230f175e574d0d317a6"/>
+        <topic label="GPIO_CFG_IN_INT_HIGH" href="group___g_p_i_o___pin_config_settings.html#ga669d2e840e0f934426670a069a5efe0e"/>
+        <topic label="GPIO_CFG_WAKEUP_DISABLE" href="group___g_p_i_o___pin_config_settings.html#gaa2370fbbde0669ace7b01b34c4b9b6fe"/>
+        <topic label="GPIO_CFG_WAKEUP_ON_0" href="group___g_p_i_o___pin_config_settings.html#ga09f9cef441e8d4359d197b4b1b4d31d4"/>
+        <topic label="GPIO_CFG_WAKEUP_ON_1" href="group___g_p_i_o___pin_config_settings.html#ga4b8cd7a016f02417de9e95484036a9d0"/>
+        <topic label="GPIO_DO_NOT_CONFIG" href="group___g_p_i_o___pin_config_settings.html#ga0974eb3af57b7bccef9ac749d4cf23a7"/>
+        <topic label="GPIO_MUX_GPIO" href="group___g_p_i_o___pin_config_settings.html#ga6349902253d167b88fc5cd3e7138d529"/>
+      </topic>
+      <topic label="GPIO driver APIs" href="group___g_p_i_o_m_s_p_m0.html">
+        <topic label="GPIO_CFG_DRVSTR_MED_INTERNAL" href="group___g_p_i_o_m_s_p_m0.html#ga9efeff0c44ab06b5f02b82e08c4c31d2"/>
+        <topic label="GPIO_CFG_INT_LOW_INTERNAL" href="group___g_p_i_o_m_s_p_m0.html#ga676f577ce0d580f90f888ac28b8bba67"/>
+        <topic label="GPIO_CFG_INT_HIGH_INTERNAL" href="group___g_p_i_o_m_s_p_m0.html#ga9522d146f8955fd229d3f6a30a7c2195"/>
+      </topic>
+      <topic label="GPIO_Config" href="struct_g_p_i_o___config.html">
+        <topic label="configs" href="struct_g_p_i_o___config.html#ade4c7f9f11c241e04441573870d6af1a"/>
+        <topic label="callbacks" href="struct_g_p_i_o___config.html#a4ad37b028bb2f5e57889c51bd2ff314b"/>
+        <topic label="userArgs" href="struct_g_p_i_o___config.html#ae88eb9b0c507389101e024057d2fa1aa"/>
+        <topic label="intPriority" href="struct_g_p_i_o___config.html#a84aba89af518e6f30e6650e20dc79e7b"/>
+      </topic>
+      <topic label="GPIO_PIN_TO_MASK" href="group___g_p_i_o.html#ga6647f1addd6e8522e5b38566d8d6bf7e"/>
+      <topic label="GPIO_INVALID_INDEX" href="group___g_p_i_o.html#gaf57edde67444c166b414c15047ff7b44"/>
+      <topic label="GPIO_PinConfig" href="group___g_p_i_o.html#ga7f5d979226db633309b3fdc0f4a8aef6"/>
+      <topic label="GPIO_CallbackFxn" href="group___g_p_i_o.html#ga46b0c9afbe998c88539abc92082a1173"/>
+      <topic label="GPIO_clearInt" href="group___g_p_i_o.html#ga870cd0b05ac6fae2a930c4ea3298b570"/>
+      <topic label="GPIO_disableInt" href="group___g_p_i_o.html#ga33005dec4e3a9a58322dd33779990a86"/>
+      <topic label="GPIO_enableInt" href="group___g_p_i_o.html#ga31c4e65b3855424418262e35521c7051"/>
+      <topic label="GPIO_init" href="group___g_p_i_o.html#ga7aaec489dca5ac4d278d2eb3ae38a2d2"/>
+      <topic label="GPIO_read" href="group___g_p_i_o.html#ga39deeae6a6b28d3c56693a668601177e"/>
+      <topic label="GPIO_toggle" href="group___g_p_i_o.html#ga202292e331e2eb9ccf97f4caab2e97aa"/>
+      <topic label="GPIO_write" href="group___g_p_i_o.html#gadf697825b43c26c0126173780e57eb58"/>
+      <topic label="GPIO_setCallback" href="group___g_p_i_o.html#ga24c401f32e65f60f11a1594fdafb9d2a"/>
+      <topic label="GPIO_getCallback" href="group___g_p_i_o.html#gaf17426aceed970ef6c5acfa38c94bb41"/>
+      <topic label="GPIO_setConfig" href="group___g_p_i_o.html#ga015b75143cc3b8914cc298c5c4fc097e"/>
+      <topic label="GPIO_setInterruptConfig" href="group___g_p_i_o.html#ga409bdc2af261c447e67de10d7fce7569"/>
+      <topic label="GPIO_getConfig" href="group___g_p_i_o.html#gadf0153b2f2ab21828521aec8eb568d39"/>
+      <topic label="GPIO_resetConfig" href="group___g_p_i_o.html#ga131b79245a300dd81ba29a014625b0c2"/>
+      <topic label="GPIO_getMux" href="group___g_p_i_o.html#gad7fa6f50adbe67b27d50081dbf86eaff"/>
+      <topic label="GPIO_setConfigAndMux" href="group___g_p_i_o.html#ga53cc86d668c93f510dc3de7332410ebd"/>
+      <topic label="GPIO_setUserArg" href="group___g_p_i_o.html#gac852b7d77163b3aa4979e7fb13798844"/>
+      <topic label="GPIO_getUserArg" href="group___g_p_i_o.html#ga97bc4b168f58b08d71f56b4be5603c6e"/>
+    </topic>
+    <topic label="Inter-Integrated Circuit (I2C)" href="group___i2_c.html">
+      <topic label="I2C status codes" href="group___i2_c___s_t_a_t_u_s.html">
+        <topic label="I2C_STATUS_QUEUED" href="group___i2_c___s_t_a_t_u_s.html#gaa63ec7e8376d0bfa4c6255a1f723e13f"/>
+        <topic label="I2C_STATUS_SUCCESS" href="group___i2_c___s_t_a_t_u_s.html#gaa0bcf3acd26ac82bd8ff91daba2c78c4"/>
+        <topic label="I2C_STATUS_ERROR" href="group___i2_c___s_t_a_t_u_s.html#ga7323fe57c39c46d0da9910e17f5f0b06"/>
+        <topic label="I2C_STATUS_UNDEFINEDCMD" href="group___i2_c___s_t_a_t_u_s.html#ga11c31c9869ed2441789205d9e5967d66"/>
+        <topic label="I2C_STATUS_TIMEOUT" href="group___i2_c___s_t_a_t_u_s.html#gacef5657ae83115da15f49dd76801638b"/>
+        <topic label="I2C_STATUS_CLOCK_TIMEOUT" href="group___i2_c___s_t_a_t_u_s.html#gae1ce91f866196f18abebfd6aead32cbe"/>
+        <topic label="I2C_STATUS_ADDR_NACK" href="group___i2_c___s_t_a_t_u_s.html#ga75c95f62df35a6769b69904e6cd90181"/>
+        <topic label="I2C_STATUS_DATA_NACK" href="group___i2_c___s_t_a_t_u_s.html#ga3773311442a356cd750e1cf34b85ed5a"/>
+        <topic label="I2C_STATUS_ARB_LOST" href="group___i2_c___s_t_a_t_u_s.html#gadb5718560335315df79d4abe7ddba317"/>
+        <topic label="I2C_STATUS_INCOMPLETE" href="group___i2_c___s_t_a_t_u_s.html#ga4d4ff3732548047b7c09a1f34ab93d98"/>
+        <topic label="I2C_STATUS_BUS_BUSY" href="group___i2_c___s_t_a_t_u_s.html#gaf7455cb02ee12dfc513ceb28323b4b8d"/>
+        <topic label="I2C_STATUS_CANCEL" href="group___i2_c___s_t_a_t_u_s.html#ga2cca884b9720ab2ca750ebfdb8614601"/>
+        <topic label="I2C_STATUS_INVALID_TRANS" href="group___i2_c___s_t_a_t_u_s.html#gad92f93f1f1c8ef8fc2be70bb8b0c7aa9"/>
+      </topic>
+      <topic label="I2C driver APIs" href="group___i2_c_m_s_p_m0.html">
+        <topic label="I2CMSPM0_I2CPinCfg" href="struct_i2_c_m_s_p_m0___i2_c_pin_cfg.html">
+          <topic label="pinSDA" href="struct_i2_c_m_s_p_m0___i2_c_pin_cfg.html#ae179b6aa52c6c38a5bca566e1fa6a266"/>
+          <topic label="pinSCL" href="struct_i2_c_m_s_p_m0___i2_c_pin_cfg.html#ac7f5d078e1875de4b74b431c629e5e24"/>
+        </topic>
+        <topic label="I2CMSPM0_HWAttrs" href="struct_i2_c_m_s_p_m0___h_w_attrs.html">
+          <topic label="sdaPincm" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#ad08d2ca52f92c336ba8ff0786c20a9fa"/>
+          <topic label="sdaPinIndex" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a3a0f7eb128f17338e69b5b8f45b68192"/>
+          <topic label="sdaPinMux" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#ab8f99003a1014c1f4b1a7c09e858c98e"/>
+          <topic label="sclPincm" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#ae2de3b1d837a086979f1291eb7426b6d"/>
+          <topic label="sclPinIndex" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#abbffcfea85475a6ef7612853ff7d493b"/>
+          <topic label="sclPinMux" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#af5cef68e99127b16abe2032cd37d1148"/>
+          <topic label="clockSource" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a8f7341200f3ddfc11963b3563e57c356"/>
+          <topic label="clockDivider" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a8ce519fcfa8d94e812c0417c95de4678"/>
+          <topic label="rxIntFifoThr" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a9462d8ffead6f0bf74cf77eb005fc0aa"/>
+          <topic label="txIntFifoThr" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a8c07d820eaf9b7e5a25129966e9649f8"/>
+          <topic label="isClockStretchingEnabled" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a374bd4ad8cb0e92c525d63dd792942f8"/>
+          <topic label="i2cClk" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a0a4849f83c6c13088efab048e90e80c3"/>
+        </topic>
+        <topic label="I2CMSPM0_Object" href="struct_i2_c_m_s_p_m0___object.html">
+          <topic label="burstCount" href="struct_i2_c_m_s_p_m0___object.html#a7f5ff55ebb4846b5dcc3083230ae2d1a"/>
+          <topic label="burstStarted" href="struct_i2_c_m_s_p_m0___object.html#a9dd0c040deb8560a3300e43233bf27aa"/>
+          <topic label="bitRate" href="struct_i2_c_m_s_p_m0___object.html#ae39a87a753c8cd2a3d39b5c171251f81"/>
+          <topic label="sdaPincm" href="struct_i2_c_m_s_p_m0___object.html#adbc35635a515b979d6f95ac03016e6f6"/>
+          <topic label="sclPincm" href="struct_i2_c_m_s_p_m0___object.html#a99c74a516c7f5af573871fb8ddb145c3"/>
+          <topic label="i2cPostFxn" href="struct_i2_c_m_s_p_m0___object.html#a7eace6e7fc1c4b67aa27ae08463650a3"/>
+        </topic>
+        <topic label="I2C_CONTROLLER_INTERRUPTS_MASK" href="group___i2_c_m_s_p_m0.html#gaba31176c92feb3a0780547446d9575bd"/>
+      </topic>
+      <topic label="Common helper functions for I2C driver" href="group___i2_c_support.html">
+        <topic label="I2CSupport_controllerFinish" href="group___i2_c_support.html#gae288e1f7276da493a9c41e9ddc9f4cf7"/>
+        <topic label="I2CSupport_powerSetConstraint" href="group___i2_c_support.html#gaef0c9ca06b4e0e7b132bb4ba77fa49dc"/>
+        <topic label="I2CSupport_powerRelConstraint" href="group___i2_c_support.html#ga62fde0ccc035195b08603937652a63e3"/>
+        <topic label="I2CSupport_primeTransfer" href="group___i2_c_support.html#gaf638babf4e177a40cf4f04324de3c711"/>
+      </topic>
+      <topic label="I2C_Transaction" href="struct_i2_c___transaction.html">
+        <topic label="writeBuf" href="struct_i2_c___transaction.html#aa3490c2af4b443a7a4ec13f57aec6d20"/>
+        <topic label="writeCount" href="struct_i2_c___transaction.html#a08959a9f098163d02d6002e73b3a4606"/>
+        <topic label="readBuf" href="struct_i2_c___transaction.html#a804b918d5cb08bb75a39866d0b89e01e"/>
+        <topic label="readCount" href="struct_i2_c___transaction.html#a2085d4c943f0d8617365b7c427e6a0de"/>
+        <topic label="arg" href="struct_i2_c___transaction.html#a29ec65addac2d4ef5d1235c2329e2fc1"/>
+        <topic label="status" href="struct_i2_c___transaction.html#a911f51c3c6fffcb962b225363fdbbb81"/>
+        <topic label="targetAddress" href="struct_i2_c___transaction.html#a951cf16485f3cced8dfe0adb387bd118"/>
+      </topic>
+      <topic label="I2C_Params" href="struct_i2_c___params.html">
+        <topic label="transferMode" href="struct_i2_c___params.html#a79c5c51380ffbdb21df1dff6cb57de0e"/>
+        <topic label="transferCallbackFxn" href="struct_i2_c___params.html#a57edf1b900368904779d0c57a73cf047"/>
+        <topic label="bitRate" href="struct_i2_c___params.html#ad31857f6dbedb77c60c92cc8cd8cde0c"/>
+        <topic label="custom" href="struct_i2_c___params.html#a2416cc06d853e6cc24e1f294dfebb194"/>
+      </topic>
+      <topic label="I2C_Config_" href="struct_i2_c___config__.html">
+        <topic label="object" href="struct_i2_c___config__.html#a8bdac95426bbb6b46559fab1e81898ba"/>
+        <topic label="hwAttrs" href="struct_i2_c___config__.html#af4722d351fb7137a34166e047a4f96bc"/>
+      </topic>
+      <topic label="I2C_WAIT_FOREVER" href="group___i2_c.html#ga4eb2bf76d4186e8752bcd32b32908b6c"/>
+      <topic label="I2C_Handle" href="group___i2_c.html#ga1d8718f847129c7aa61dd1c264d8a13c"/>
+      <topic label="I2C_CallbackFxn" href="group___i2_c.html#gadaa5c99b7c23a00bac52d15a2469764e"/>
+      <topic label="I2C_Config" href="group___i2_c.html#gae43e4c7b224a8cc37764acb792182453"/>
+      <topic label="I2C_TransferMode" href="group___i2_c.html#ga39f3b9340fc4ee241b0d2da9b2841c26">
+        <topic label="I2C_MODE_BLOCKING" href="group___i2_c.html#gga39f3b9340fc4ee241b0d2da9b2841c26abe065350be2a0ae5c9beb24624626c75"/>
+        <topic label="I2C_MODE_CALLBACK" href="group___i2_c.html#gga39f3b9340fc4ee241b0d2da9b2841c26a129731a7edeb285f43a54b2cf9f5ac72"/>
+      </topic>
+      <topic label="I2C_BitRate" href="group___i2_c.html#gac954e3197f04c50293db466c4abb6fbe">
+        <topic label="I2C_100kHz" href="group___i2_c.html#ggac954e3197f04c50293db466c4abb6fbea966fd2df13b3a9825615c50335cf1987"/>
+        <topic label="I2C_400kHz" href="group___i2_c.html#ggac954e3197f04c50293db466c4abb6fbea83cc3750242e6ae9194cd7ed94f764d9"/>
+        <topic label="I2C_1000kHz" href="group___i2_c.html#ggac954e3197f04c50293db466c4abb6fbea38a2e32ba65eb0f67b928d181242befa"/>
+      </topic>
+      <topic label="I2C_cancel" href="group___i2_c.html#ga8cad0c04a9eca0fffc0ffe5586a5179b"/>
+      <topic label="I2C_close" href="group___i2_c.html#ga12c86d89a687f2ee1eb980d99c32326d"/>
+      <topic label="I2C_control" href="group___i2_c.html#ga4c74b1b9f8e76ac22bec7608491cb223"/>
+      <topic label="I2C_init" href="group___i2_c.html#ga9ff51ddf1d325776fef90cce0223772b"/>
+      <topic label="I2C_open" href="group___i2_c.html#ga2db3461e1e956d9b86af414da2fb05f6"/>
+      <topic label="I2C_Params_init" href="group___i2_c.html#gab11636302074d67180207ab81ceb323c"/>
+      <topic label="I2C_setClockTimeout" href="group___i2_c.html#ga999fa1c606163ca9bbb4252a27c8eb9d"/>
+      <topic label="I2C_transfer" href="group___i2_c.html#gac5d827b67fe77d7d179026941cc069d7"/>
+      <topic label="I2C_transferTimeout" href="group___i2_c.html#gaaee4f0689acbe5f0596e35b18402abf3"/>
+      <topic label="I2C_config" href="group___i2_c.html#gaff23dd4a23f45b3bf8b634c56c272ebc"/>
+      <topic label="I2C_count" href="group___i2_c.html#ga2f7b47492e348b701dc5add470d898e8"/>
+    </topic>
+    <topic label="Universal Asynchronous Receiver-Transmitter (UART)" href="group___u_a_r_t.html">
+      <topic label="UART MSPM0L11XX_L13XX driver APIs" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html">
+        <topic label="UARTMSP_HWAttrs" href="struct_u_a_r_t_m_s_p___h_w_attrs.html">
+          <topic label="regs" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a5ddea3c2465d2974af7effe050d21b72"/>
+          <topic label="irq" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#ab001d9c6b56338abac2ec2e3c7212b1b"/>
+          <topic label="rxPin" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a90dcf4db5d8fd957a88ae1a2614f24ea"/>
+          <topic label="rxPinFunction" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a6f02a2563c749b86600639261483ffdd"/>
+          <topic label="txPin" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a63ebb924b31963fc834f9957ed7c439e"/>
+          <topic label="txPinFunction" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a89c3fc896dad8c8b1dd7801b2033b38c"/>
+          <topic label="mode" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#ab1192179c5733f5c545cc247a51e89ae"/>
+          <topic label="direction" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a8358cef08b8979effd67b7ba84241f6e"/>
+          <topic label="flowControl" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#aa8bc1204c4d60a5958887b9d9a35f451"/>
+          <topic label="clockSource" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a6dde47fa15e9e3bcba8059029e2843f9"/>
+          <topic label="clockDivider" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#acdcbb64b1ac74ff60876e45d78daa2c6"/>
+          <topic label="rxIntFifoThr" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#ae8d41df9ed433f5467277c239b4fd7f6"/>
+          <topic label="txIntFifoThr" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a97f3825af3697834ecd0b5c5b682140a"/>
+        </topic>
+        <topic label="UART_RX_ERRS" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga07a66517aa98a287ece52244da759b2f"/>
+        <topic label="UART_Obj_Ptr" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga84fd25f0580eb7bb5be69b6b05855aae"/>
+        <topic label="UART_HWAttrs_Ptr" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#gad227cb847b0595472883c88f554b2f56"/>
+        <topic label="UART_buffersObject" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga1ed283e920c71552dd2a2517252105cc"/>
+        <topic label="UART_eventCallbackObject" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga2207ba74fef268909bf7dda471afc0b0"/>
+        <topic label="UART_callbackObject" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga1636c584a56888ddf04fcda92e7b1a9c"/>
+        <topic label="UARTMSP_interruptHandler" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga73555f42d0c27c1fed3f9e8656d39c3a"/>
+        <topic label="UARTMSP_enableInts" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga8b9ba6610662b1da20580d9b77b1e440"/>
+        <topic label="UARTMSPSupportFxns" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#gae442e978b8f30d3ed49762e0f38ceb31"/>
+      </topic>
+      <topic label="UART MSPM0L11XX_L13XX driver support APIs" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html">
+        <topic label="UARTSupport_Fxns" href="struct_u_a_r_t_support___fxns.html">
+          <topic label="enable" href="struct_u_a_r_t_support___fxns.html#a85f7c4a5dcf0ede80cc75168417a0709"/>
+          <topic label="disable" href="struct_u_a_r_t_support___fxns.html#a0f2d9663f556ac9ae32259e3199c8864"/>
+          <topic label="txChar" href="struct_u_a_r_t_support___fxns.html#a4eb87ae86c7494ab962e07aa48a92243"/>
+          <topic label="read" href="struct_u_a_r_t_support___fxns.html#a81462b3f5a0d3b4ab0e48a59faaceab3"/>
+          <topic label="write" href="struct_u_a_r_t_support___fxns.html#ad110131a70fcf1ff4de8c06507d9fd84"/>
+        </topic>
+        <topic label="UART_Object" href="struct_u_a_r_t___object.html">
+          <topic label="supportFxns" href="struct_u_a_r_t___object.html#a97f707486d3458340dd935d9c2203b60"/>
+          <topic label="userArg" href="struct_u_a_r_t___object.html#a4525123d0c1ff2fe0567895cf38779f9"/>
+          <topic label="buffersSupported" href="struct_u_a_r_t___object.html#ab0c31575206e348a01b95984e4cab581"/>
+          <topic label="eventsSupported" href="struct_u_a_r_t___object.html#aa4dbbadd2ccaf0c8cef8b139ea127952"/>
+          <topic label="callbacksSupported" href="struct_u_a_r_t___object.html#a293b5f2857a47f685325d59451d04115"/>
+          <topic label="dmaSupported" href="struct_u_a_r_t___object.html#a566c514a2adbe33d9554952be398da49"/>
+          <topic label="returnMode" href="struct_u_a_r_t___object.html#a0c152c353ea985f8df4c10190ada5c07"/>
+          <topic label="inUse" href="struct_u_a_r_t___object.html#a100213d0800655b7ccf73bb971caa218"/>
+          <topic label="readCancel" href="struct_u_a_r_t___object.html#a2fb216e4383b3bba4353680040b205de"/>
+          <topic label="writeCancel" href="struct_u_a_r_t___object.html#aa10d34ee5a210c9fbd3bf49239efaf62"/>
+          <topic label="overrunActive" href="struct_u_a_r_t___object.html#a8c484a15142ec4773184414a969e66c6"/>
+          <topic label="readTimedOut" href="struct_u_a_r_t___object.html#adc555e6db7bc4ec95144c5398a04552a"/>
+          <topic label="writeTimedOut" href="struct_u_a_r_t___object.html#affeffedf71e9ff84b49221ee7b9ea2ed"/>
+          <topic label="readMode" href="struct_u_a_r_t___object.html#a9ceee735504c15c208dc7b3ad988da0d"/>
+          <topic label="writeMode" href="struct_u_a_r_t___object.html#a260e3b246d53a58daa7129a1b596c292"/>
+          <topic label="rxDmaChannel" href="struct_u_a_r_t___object.html#a4f17887b6042c5eb3289e1476b6dcfc3"/>
+          <topic label="txDmaChannel" href="struct_u_a_r_t___object.html#a1433fb3b05afd6270178c9d078489351"/>
+          <topic label="readInUse" href="struct_u_a_r_t___object.html#a58d44a78308fceeb76d08a73fca4b3d4"/>
+          <topic label="writeInUse" href="struct_u_a_r_t___object.html#ac97ce506eb8107d54fc216ff13c69503"/>
+          <topic label="overrunCount" href="struct_u_a_r_t___object.html#a803fee144e297b484f6800f88e97e887"/>
+        </topic>
+        <topic label="UART_Buffers_Object" href="struct_u_a_r_t___buffers___object.html">
+          <topic label="rxBufPtr" href="struct_u_a_r_t___buffers___object.html#ad13320ac32a6fc4791ea063097fbaffe"/>
+          <topic label="txBufPtr" href="struct_u_a_r_t___buffers___object.html#acca76c2ca4c333fd0304aad1452a5429"/>
+          <topic label="rxBufSize" href="struct_u_a_r_t___buffers___object.html#af8e08b9c4a44ad610eef92451f62b4ff"/>
+          <topic label="txBufSize" href="struct_u_a_r_t___buffers___object.html#a97953622231d4e4b3b7df3de83b17628"/>
+          <topic label="rxBuf" href="struct_u_a_r_t___buffers___object.html#ac7d37d4e06e5f7e418b82244cd9bb3bb"/>
+          <topic label="txBuf" href="struct_u_a_r_t___buffers___object.html#a3a1a1ec931751e4fbc58ccf8a9999ce4"/>
+          <topic label="rxSem" href="struct_u_a_r_t___buffers___object.html#aec7a8c86d43d24a926f131a430e2692c"/>
+          <topic label="txSem" href="struct_u_a_r_t___buffers___object.html#a524f26f543c01de29783be3f25c02b35"/>
+        </topic>
+        <topic label="UART_EventCallback_Object" href="struct_u_a_r_t___event_callback___object.html">
+          <topic label="eventCallback" href="struct_u_a_r_t___event_callback___object.html#a3ce69777dfc7b3dc36140e7af1398adb"/>
+          <topic label="eventMask" href="struct_u_a_r_t___event_callback___object.html#a45f87848caaabde46096264f79a9a59f"/>
+        </topic>
+        <topic label="UART_Callback_Object" href="struct_u_a_r_t___callback___object.html">
+          <topic label="readCallback" href="struct_u_a_r_t___callback___object.html#affc8b9c5bb7953f130aeb4d6ff7a490b"/>
+          <topic label="writeCallback" href="struct_u_a_r_t___callback___object.html#a0c79a91aad009db85ebff9f31355afc7"/>
+          <topic label="readBuf" href="struct_u_a_r_t___callback___object.html#ac75aef040f0996a26ee790649a6f901d"/>
+          <topic label="writeBuf" href="struct_u_a_r_t___callback___object.html#af94ac5caf69c7e921aff728a5250768f"/>
+          <topic label="readSize" href="struct_u_a_r_t___callback___object.html#abe1abdb89a5c1e71f2c72a81e08facb5"/>
+          <topic label="writeSize" href="struct_u_a_r_t___callback___object.html#a4b4c966f151c38d6224efa83e0470796"/>
+          <topic label="writeCount" href="struct_u_a_r_t___callback___object.html#a43a8b22929cb3597590d919ded2b5853"/>
+          <topic label="readCount" href="struct_u_a_r_t___callback___object.html#a173fb83b1488509384a3c9404c6b2af5"/>
+          <topic label="bytesRead" href="struct_u_a_r_t___callback___object.html#a73f53f65af66317879cc967b069be27a"/>
+          <topic label="bytesWritten" href="struct_u_a_r_t___callback___object.html#a32a8081419e14d43f31a9fafbbd03e32"/>
+          <topic label="rxStatus" href="struct_u_a_r_t___callback___object.html#ac936e893539a88f6e8f0e21f39eeaa8f"/>
+          <topic label="txStatus" href="struct_u_a_r_t___callback___object.html#ade1aa19c66bf0b0050c003a8b639ad8d"/>
+          <topic label="rxSize" href="struct_u_a_r_t___callback___object.html#aba9ef3fdeba67f2877a510f572f1ef21"/>
+          <topic label="txSize" href="struct_u_a_r_t___callback___object.html#a95135dcabe316c346af5b042217c5dd2"/>
+          <topic label="userArg" href="struct_u_a_r_t___callback___object.html#ae237ba53a2d0df992edd2f394597e449"/>
+        </topic>
+        <topic label="UART_Data_Object" href="struct_u_a_r_t___data___object.html">
+          <topic label="object" href="struct_u_a_r_t___data___object.html#afa2bd8f7b61b0d826149acda3ba0f5ed"/>
+          <topic label="buffersObject" href="struct_u_a_r_t___data___object.html#ac55bb264f73837afc673c811af787dcf"/>
+          <topic label="eventCallbackObject" href="struct_u_a_r_t___data___object.html#a0a9ce1a170e62043b03736367490ff77"/>
+          <topic label="callbackObject" href="struct_u_a_r_t___data___object.html#a4b687abb5e0924f39d6d777ae3ed6af9"/>
+        </topic>
+        <topic label="UART_Config_" href="struct_u_a_r_t___config__.html">
+          <topic label="object" href="struct_u_a_r_t___config__.html#a3e4817fc0e2b0225caeda2072acf56c0"/>
+          <topic label="hwAttrs" href="struct_u_a_r_t___config__.html#a33679e33b65c88fc4e7c2815054923ff"/>
+        </topic>
+        <topic label="UART_Config" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga68be81b9ce429a5e5c3ac02d285dbd3b"/>
+        <topic label="UART_readBuffered" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gac631c209670246c126aa881a2ba5b8ff"/>
+        <topic label="UART_writeBuffered" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga28d4cd7a17d16035650bd02a602a451a"/>
+        <topic label="UART_readCallback" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gaf3b2e6e98a344727f4a2dbae53f08d55"/>
+        <topic label="UART_writeCallback" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga2b27db3e5e5c673fb119998026f7b381"/>
+        <topic label="UART_readFullFeatured" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gad38d4b350d3cc945c739fe969c7ece86"/>
+        <topic label="UART_writeFullFeatured" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gabd06c63ea82f6caf04319487253f41e4"/>
+        <topic label="UART_config" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gad24e1d95c2d7232d55dc5b1d00a56bb5"/>
+        <topic label="UART_count" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga3e40006b96c9c55e5ac52d51d094dbac"/>
+      </topic>
+      <topic label="UART status codes" href="group___u_a_r_t___s_t_a_t_u_s.html">
+        <topic label="UART_STATUS_SUCCESS" href="group___u_a_r_t___s_t_a_t_u_s.html#ga101b7761f89b3ec49f0c6726669acfed"/>
+        <topic label="UART_STATUS_SREADTIMEOUT" href="group___u_a_r_t___s_t_a_t_u_s.html#gaa569dea0492ecf314467c1a34572ff19"/>
+        <topic label="UART_STATUS_EFRAMING" href="group___u_a_r_t___s_t_a_t_u_s.html#gaf285a114c2681b15cc1e12e05ce9b00c"/>
+        <topic label="UART_STATUS_EPARITY" href="group___u_a_r_t___s_t_a_t_u_s.html#ga3eb6b626ee9b181615037c8a05ca683e"/>
+        <topic label="UART_STATUS_EBREAK" href="group___u_a_r_t___s_t_a_t_u_s.html#gaf2cfcca3e969184249895195a1337f29"/>
+        <topic label="UART_STATUS_EOVERRUN" href="group___u_a_r_t___s_t_a_t_u_s.html#ga41bc50b41372b5cd4545d9982ed513b8"/>
+        <topic label="UART_STATUS_EINUSE" href="group___u_a_r_t___s_t_a_t_u_s.html#gaa658b16955ceabc4e33e31cab6444b3e"/>
+        <topic label="UART_STATUS_EINVALID" href="group___u_a_r_t___s_t_a_t_u_s.html#ga7953c2fcc94679a861c00f9df8993843"/>
+        <topic label="UART_STATUS_EFAIL" href="group___u_a_r_t___s_t_a_t_u_s.html#gad03529aa81f6e5f318479b8940847487"/>
+        <topic label="UART_STATUS_EMEMORY" href="group___u_a_r_t___s_t_a_t_u_s.html#gab8d79b1ceb1763a3a37549e9cf8b82c3"/>
+        <topic label="UART_STATUS_ETIMEOUT" href="group___u_a_r_t___s_t_a_t_u_s.html#gadf2c0d2a0415c62c147a736424028f9a"/>
+        <topic label="UART_STATUS_ECANCELLED" href="group___u_a_r_t___s_t_a_t_u_s.html#ga69975d5ab5731732cb732df574ca11e2"/>
+        <topic label="UART_STATUS_ENOTOPEN" href="group___u_a_r_t___s_t_a_t_u_s.html#ga10d6a3ee4d80fddbdc4a55f378698184"/>
+        <topic label="UART_STATUS_EAGAIN" href="group___u_a_r_t___s_t_a_t_u_s.html#ga3d0a95f3ace03a023f4fb982e7ebcb17"/>
+      </topic>
+      <topic label="UART_Params" href="struct_u_a_r_t___params.html">
+        <topic label="readMode" href="struct_u_a_r_t___params.html#ab8677572499b3734fcaa00f6431b0e7b"/>
+        <topic label="writeMode" href="struct_u_a_r_t___params.html#a53a95d4c2266d6e7ecea6640baf92d40"/>
+        <topic label="readCallback" href="struct_u_a_r_t___params.html#a5457b86b6793f1c4757457b9b22e379d"/>
+        <topic label="writeCallback" href="struct_u_a_r_t___params.html#a0497d8a55aea66d3ab2118f8966e8e33"/>
+        <topic label="eventCallback" href="struct_u_a_r_t___params.html#a7db9c9e886367ff97c38f8f38f990d9f"/>
+        <topic label="eventMask" href="struct_u_a_r_t___params.html#ac90564904e58c4c33cc38c0929d51d98"/>
+        <topic label="readReturnMode" href="struct_u_a_r_t___params.html#a3d35c3ca649e7e9eaef42b137a3d460d"/>
+        <topic label="baudRate" href="struct_u_a_r_t___params.html#afadb98d0a0ef6e17240bab79306e7828"/>
+        <topic label="dataLength" href="struct_u_a_r_t___params.html#a61f18b7f576c27b60f05481b1b818f19"/>
+        <topic label="stopBits" href="struct_u_a_r_t___params.html#a395a24213a7c2d683780996085ef5e89"/>
+        <topic label="parityType" href="struct_u_a_r_t___params.html#abf50f45ac6485d026063d34707d75515"/>
+        <topic label="userArg" href="struct_u_a_r_t___params.html#acca56fbd486b68476e5757ff547b6aa5"/>
+      </topic>
+      <topic label="UART_Handle" href="group___u_a_r_t.html#gab69886c7119a5054a972d8c735f15928"/>
+      <topic label="UART_Callback" href="group___u_a_r_t.html#gad76c76927ec6631b4866dad2aad1a65f"/>
+      <topic label="UART_EventCallback" href="group___u_a_r_t.html#ga73ea5d30bfa43c6989d0526453835570"/>
+      <topic label="UART_Mode" href="group___u_a_r_t.html#ga2507a620dba95cd20885c52494d19e90">
+        <topic label="UART_Mode_BLOCKING" href="group___u_a_r_t.html#gga2507a620dba95cd20885c52494d19e90a09c2d5349786d1199eb87dc040f3d724"/>
+        <topic label="UART_Mode_CALLBACK" href="group___u_a_r_t.html#gga2507a620dba95cd20885c52494d19e90ac3b9a056e3ff09ece6ffc77bd2cc73cd"/>
+        <topic label="UART_Mode_NONBLOCKING" href="group___u_a_r_t.html#gga2507a620dba95cd20885c52494d19e90aae3d94ffdc69f8502e9b77368b551d6d"/>
+      </topic>
+      <topic label="UART_ReadReturnMode" href="group___u_a_r_t.html#gaed1c183ba0f637f74802cd791c618699">
+        <topic label="UART_ReadReturnMode_FULL" href="group___u_a_r_t.html#ggaed1c183ba0f637f74802cd791c618699ac94c79c5434492f93835d1cd4becf634"/>
+        <topic label="UART_ReadReturnMode_PARTIAL" href="group___u_a_r_t.html#ggaed1c183ba0f637f74802cd791c618699ad9b96a0d8982193a33746823022620b3"/>
+      </topic>
+      <topic label="UART_DataLen" href="group___u_a_r_t.html#gaa425797a2c950b9861fd62a11397b927">
+        <topic label="UART_DataLen_5" href="group___u_a_r_t.html#ggaa425797a2c950b9861fd62a11397b927ab7cfd7ccebeb03dbfa9a41aa81ea08f0"/>
+        <topic label="UART_DataLen_6" href="group___u_a_r_t.html#ggaa425797a2c950b9861fd62a11397b927a013ef018fd7e410c7c23a29569c15fbf"/>
+        <topic label="UART_DataLen_7" href="group___u_a_r_t.html#ggaa425797a2c950b9861fd62a11397b927a4e332707b975b874c541438df19324d7"/>
+        <topic label="UART_DataLen_8" href="group___u_a_r_t.html#ggaa425797a2c950b9861fd62a11397b927af5e26b46165112ab3553311fc7dbd6ce"/>
+      </topic>
+      <topic label="UART_StopBits" href="group___u_a_r_t.html#ga134ee767f3eaf8d26f6d0dd96d982f70">
+        <topic label="UART_StopBits_1" href="group___u_a_r_t.html#gga134ee767f3eaf8d26f6d0dd96d982f70aaedac7fd9efece6190fa462208163bc1"/>
+        <topic label="UART_StopBits_2" href="group___u_a_r_t.html#gga134ee767f3eaf8d26f6d0dd96d982f70a36fcdab28dabe4a95c0b024a3c0e217e"/>
+      </topic>
+      <topic label="UART_Parity" href="group___u_a_r_t.html#gafdde0d1dd91ce599c9df7327b45986cc">
+        <topic label="UART_Parity_NONE" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986cca0986d9690afff86b48a566979e805f28"/>
+        <topic label="UART_Parity_EVEN" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986ccaae142664e6e4376544af63eacc40ed88"/>
+        <topic label="UART_Parity_ODD" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986ccaf64f4b5c56a26f95ca696a38a7775465"/>
+        <topic label="UART_Parity_ZERO" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986ccaada41a0008a9205bab9197d28ddd3006"/>
+        <topic label="UART_Parity_ONE" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986cca43196da1132245b83886ef66bd6cd5e3"/>
+      </topic>
+      <topic label="UART_Params_init" href="group___u_a_r_t.html#ga40e5c0823bb7ffd2e8fbf19f9f20b399"/>
+      <topic label="UART_open" href="group___u_a_r_t.html#gab6d1d6b7b1f9922484f9b8a0f78ed030"/>
+      <topic label="UART_close" href="group___u_a_r_t.html#ga6b49b65f3db709c408dc4db23a68895d"/>
+      <topic label="UART_read" href="group___u_a_r_t.html#gaad50d1543185c1821e7536f7ccc7b354"/>
+      <topic label="UART_write" href="group___u_a_r_t.html#gaecade38d5a49d876b2374ae314d30fbe"/>
+      <topic label="UART_readTimeout" href="group___u_a_r_t.html#gae4bcbefb657b0e77f04c941102f6f1b9"/>
+      <topic label="UART_writeTimeout" href="group___u_a_r_t.html#gad673f06c7ed88bb011daa56f33f0dc31"/>
+      <topic label="UART_readCancel" href="group___u_a_r_t.html#ga51ed7e94d5b409ca1fcb2d65c5a25c3c"/>
+      <topic label="UART_writeCancel" href="group___u_a_r_t.html#ga0482cd0ab9ee7e802c8e785a5754d16d"/>
+      <topic label="UART_rxDisable" href="group___u_a_r_t.html#ga8b22c82e2eb2ec5d570cd22b2ec87608"/>
+      <topic label="UART_rxEnable" href="group___u_a_r_t.html#ga880f05af6177130937c36af9bb536e28"/>
+      <topic label="UART_flushRx" href="group___u_a_r_t.html#ga1183c78e6a927e9aac41fd3bdb0d822d"/>
+      <topic label="UART_getRxCount" href="group___u_a_r_t.html#ga1203f59384eb903f7b903f52038115dd"/>
+    </topic>
+  </topic>
+  <topic label="Data Structures" href="annotated.html">
+    <topic label="Data Structures" href="annotated.html">
+      <topic label="DMAMSPM0_Cfg" href="struct_d_m_a_m_s_p_m0___cfg.html">
+        <topic label="object" href="struct_d_m_a_m_s_p_m0___cfg.html#af95b4b92269f4c872aab141a92f02b3a"/>
+        <topic label="hwAttrs" href="struct_d_m_a_m_s_p_m0___cfg.html#aacdefe7b3fc5cd387a665f90d5159dee"/>
+      </topic>
+      <topic label="DMAMSPM0_HWAttrs" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html">
+        <topic label="dmaIsrFxn" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#aaa249f1ea874ab783337ba700ba92e16"/>
+        <topic label="intPriority" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#af674ed538149edc488580357b1854f0e"/>
+      </topic>
+      <topic label="DMAMSPM0_Object" href="struct_d_m_a_m_s_p_m0___object.html">
+        <topic label="unused" href="struct_d_m_a_m_s_p_m0___object.html#a9abd490a4df34078590eb5a1a44ef3c2"/>
+      </topic>
+      <topic label="DMAMSPM0_Transfer" href="struct_d_m_a_m_s_p_m0___transfer.html">
+        <topic label="txTrigger" href="struct_d_m_a_m_s_p_m0___transfer.html#a36aafd8ec70c45af89205708dc2919b0"/>
+        <topic label="rxTrigger" href="struct_d_m_a_m_s_p_m0___transfer.html#a53224de0888a039e4b512fb25f3d984f"/>
+        <topic label="txTriggerType" href="struct_d_m_a_m_s_p_m0___transfer.html#aa51d812e70ab6986674a08fe8b046dd6"/>
+        <topic label="rxTriggerType" href="struct_d_m_a_m_s_p_m0___transfer.html#a48e449526c7c3f3e52850d801443b298"/>
+        <topic label="transferMode" href="struct_d_m_a_m_s_p_m0___transfer.html#a91855e3dd045d4ad989c2662b2e82bdb"/>
+        <topic label="extendedMode" href="struct_d_m_a_m_s_p_m0___transfer.html#acac957cdb22abf8e4970095a96af133c"/>
+        <topic label="srcWidth" href="struct_d_m_a_m_s_p_m0___transfer.html#afa0637e6f50f30fd54e920a0eaf69b67"/>
+        <topic label="destWidth" href="struct_d_m_a_m_s_p_m0___transfer.html#ae9af4efb81fc89be2df600b796fda8b2"/>
+        <topic label="srcIncrement" href="struct_d_m_a_m_s_p_m0___transfer.html#a236b74bddbe74a26a7fca424b40fbec3"/>
+        <topic label="destIncrement" href="struct_d_m_a_m_s_p_m0___transfer.html#a7faed6f316a48ce758f06e56afb1122c"/>
+        <topic label="dmaChannel" href="struct_d_m_a_m_s_p_m0___transfer.html#ab71ecc20442db6abceeef88fbfb29fef"/>
+        <topic label="dmaTransferSource" href="struct_d_m_a_m_s_p_m0___transfer.html#a0ebebafdd013070d0833cf16d3f63cfb"/>
+        <topic label="dmaTransferDestination" href="struct_d_m_a_m_s_p_m0___transfer.html#a230b86a92925475564175d390917785a"/>
+        <topic label="noOfData" href="struct_d_m_a_m_s_p_m0___transfer.html#a9123b47b6f6ee4af2705ff7c591ed99e"/>
+        <topic label="roundRobinPriority" href="struct_d_m_a_m_s_p_m0___transfer.html#a386da2d8a26856976ed44abbd475a744"/>
+        <topic label="enableDMAISR" href="struct_d_m_a_m_s_p_m0___transfer.html#ad88deea44659872e6803e6cee2c75bc9"/>
+      </topic>
+      <topic label="GPIO_Config" href="struct_g_p_i_o___config.html">
+        <topic label="configs" href="struct_g_p_i_o___config.html#ade4c7f9f11c241e04441573870d6af1a"/>
+        <topic label="callbacks" href="struct_g_p_i_o___config.html#a4ad37b028bb2f5e57889c51bd2ff314b"/>
+        <topic label="userArgs" href="struct_g_p_i_o___config.html#ae88eb9b0c507389101e024057d2fa1aa"/>
+        <topic label="intPriority" href="struct_g_p_i_o___config.html#a84aba89af518e6f30e6650e20dc79e7b"/>
+      </topic>
+      <topic label="I2C_Config_" href="struct_i2_c___config__.html">
+        <topic label="object" href="struct_i2_c___config__.html#a8bdac95426bbb6b46559fab1e81898ba"/>
+        <topic label="hwAttrs" href="struct_i2_c___config__.html#af4722d351fb7137a34166e047a4f96bc"/>
+      </topic>
+      <topic label="I2C_Params" href="struct_i2_c___params.html">
+        <topic label="transferMode" href="struct_i2_c___params.html#a79c5c51380ffbdb21df1dff6cb57de0e"/>
+        <topic label="transferCallbackFxn" href="struct_i2_c___params.html#a57edf1b900368904779d0c57a73cf047"/>
+        <topic label="bitRate" href="struct_i2_c___params.html#ad31857f6dbedb77c60c92cc8cd8cde0c"/>
+        <topic label="custom" href="struct_i2_c___params.html#a2416cc06d853e6cc24e1f294dfebb194"/>
+      </topic>
+      <topic label="I2C_Transaction" href="struct_i2_c___transaction.html">
+        <topic label="writeBuf" href="struct_i2_c___transaction.html#aa3490c2af4b443a7a4ec13f57aec6d20"/>
+        <topic label="writeCount" href="struct_i2_c___transaction.html#a08959a9f098163d02d6002e73b3a4606"/>
+        <topic label="readBuf" href="struct_i2_c___transaction.html#a804b918d5cb08bb75a39866d0b89e01e"/>
+        <topic label="readCount" href="struct_i2_c___transaction.html#a2085d4c943f0d8617365b7c427e6a0de"/>
+        <topic label="arg" href="struct_i2_c___transaction.html#a29ec65addac2d4ef5d1235c2329e2fc1"/>
+        <topic label="status" href="struct_i2_c___transaction.html#a911f51c3c6fffcb962b225363fdbbb81"/>
+        <topic label="targetAddress" href="struct_i2_c___transaction.html#a951cf16485f3cced8dfe0adb387bd118"/>
+      </topic>
+      <topic label="I2CMSPM0_HWAttrs" href="struct_i2_c_m_s_p_m0___h_w_attrs.html">
+        <topic label="sdaPincm" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#ad08d2ca52f92c336ba8ff0786c20a9fa"/>
+        <topic label="sdaPinIndex" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a3a0f7eb128f17338e69b5b8f45b68192"/>
+        <topic label="sdaPinMux" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#ab8f99003a1014c1f4b1a7c09e858c98e"/>
+        <topic label="sclPincm" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#ae2de3b1d837a086979f1291eb7426b6d"/>
+        <topic label="sclPinIndex" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#abbffcfea85475a6ef7612853ff7d493b"/>
+        <topic label="sclPinMux" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#af5cef68e99127b16abe2032cd37d1148"/>
+        <topic label="clockSource" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a8f7341200f3ddfc11963b3563e57c356"/>
+        <topic label="clockDivider" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a8ce519fcfa8d94e812c0417c95de4678"/>
+        <topic label="rxIntFifoThr" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a9462d8ffead6f0bf74cf77eb005fc0aa"/>
+        <topic label="txIntFifoThr" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a8c07d820eaf9b7e5a25129966e9649f8"/>
+        <topic label="isClockStretchingEnabled" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a374bd4ad8cb0e92c525d63dd792942f8"/>
+        <topic label="i2cClk" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a0a4849f83c6c13088efab048e90e80c3"/>
+      </topic>
+      <topic label="I2CMSPM0_I2CPinCfg" href="struct_i2_c_m_s_p_m0___i2_c_pin_cfg.html">
+        <topic label="pinSDA" href="struct_i2_c_m_s_p_m0___i2_c_pin_cfg.html#ae179b6aa52c6c38a5bca566e1fa6a266"/>
+        <topic label="pinSCL" href="struct_i2_c_m_s_p_m0___i2_c_pin_cfg.html#ac7f5d078e1875de4b74b431c629e5e24"/>
+      </topic>
+      <topic label="I2CMSPM0_Object" href="struct_i2_c_m_s_p_m0___object.html">
+        <topic label="burstCount" href="struct_i2_c_m_s_p_m0___object.html#a7f5ff55ebb4846b5dcc3083230ae2d1a"/>
+        <topic label="burstStarted" href="struct_i2_c_m_s_p_m0___object.html#a9dd0c040deb8560a3300e43233bf27aa"/>
+        <topic label="bitRate" href="struct_i2_c_m_s_p_m0___object.html#ae39a87a753c8cd2a3d39b5c171251f81"/>
+        <topic label="sdaPincm" href="struct_i2_c_m_s_p_m0___object.html#adbc35635a515b979d6f95ac03016e6f6"/>
+        <topic label="sclPincm" href="struct_i2_c_m_s_p_m0___object.html#a99c74a516c7f5af573871fb8ddb145c3"/>
+        <topic label="i2cPostFxn" href="struct_i2_c_m_s_p_m0___object.html#a7eace6e7fc1c4b67aa27ae08463650a3"/>
+      </topic>
+      <topic label="UART_Buffers_Object" href="struct_u_a_r_t___buffers___object.html">
+        <topic label="rxBufPtr" href="struct_u_a_r_t___buffers___object.html#ad13320ac32a6fc4791ea063097fbaffe"/>
+        <topic label="txBufPtr" href="struct_u_a_r_t___buffers___object.html#acca76c2ca4c333fd0304aad1452a5429"/>
+        <topic label="rxBufSize" href="struct_u_a_r_t___buffers___object.html#af8e08b9c4a44ad610eef92451f62b4ff"/>
+        <topic label="txBufSize" href="struct_u_a_r_t___buffers___object.html#a97953622231d4e4b3b7df3de83b17628"/>
+        <topic label="rxBuf" href="struct_u_a_r_t___buffers___object.html#ac7d37d4e06e5f7e418b82244cd9bb3bb"/>
+        <topic label="txBuf" href="struct_u_a_r_t___buffers___object.html#a3a1a1ec931751e4fbc58ccf8a9999ce4"/>
+        <topic label="rxSem" href="struct_u_a_r_t___buffers___object.html#aec7a8c86d43d24a926f131a430e2692c"/>
+        <topic label="txSem" href="struct_u_a_r_t___buffers___object.html#a524f26f543c01de29783be3f25c02b35"/>
+      </topic>
+      <topic label="UART_Callback_Object" href="struct_u_a_r_t___callback___object.html">
+        <topic label="readCallback" href="struct_u_a_r_t___callback___object.html#affc8b9c5bb7953f130aeb4d6ff7a490b"/>
+        <topic label="writeCallback" href="struct_u_a_r_t___callback___object.html#a0c79a91aad009db85ebff9f31355afc7"/>
+        <topic label="readBuf" href="struct_u_a_r_t___callback___object.html#ac75aef040f0996a26ee790649a6f901d"/>
+        <topic label="writeBuf" href="struct_u_a_r_t___callback___object.html#af94ac5caf69c7e921aff728a5250768f"/>
+        <topic label="readSize" href="struct_u_a_r_t___callback___object.html#abe1abdb89a5c1e71f2c72a81e08facb5"/>
+        <topic label="writeSize" href="struct_u_a_r_t___callback___object.html#a4b4c966f151c38d6224efa83e0470796"/>
+        <topic label="writeCount" href="struct_u_a_r_t___callback___object.html#a43a8b22929cb3597590d919ded2b5853"/>
+        <topic label="readCount" href="struct_u_a_r_t___callback___object.html#a173fb83b1488509384a3c9404c6b2af5"/>
+        <topic label="bytesRead" href="struct_u_a_r_t___callback___object.html#a73f53f65af66317879cc967b069be27a"/>
+        <topic label="bytesWritten" href="struct_u_a_r_t___callback___object.html#a32a8081419e14d43f31a9fafbbd03e32"/>
+        <topic label="rxStatus" href="struct_u_a_r_t___callback___object.html#ac936e893539a88f6e8f0e21f39eeaa8f"/>
+        <topic label="txStatus" href="struct_u_a_r_t___callback___object.html#ade1aa19c66bf0b0050c003a8b639ad8d"/>
+        <topic label="rxSize" href="struct_u_a_r_t___callback___object.html#aba9ef3fdeba67f2877a510f572f1ef21"/>
+        <topic label="txSize" href="struct_u_a_r_t___callback___object.html#a95135dcabe316c346af5b042217c5dd2"/>
+        <topic label="userArg" href="struct_u_a_r_t___callback___object.html#ae237ba53a2d0df992edd2f394597e449"/>
+      </topic>
+      <topic label="UART_Config_" href="struct_u_a_r_t___config__.html">
+        <topic label="object" href="struct_u_a_r_t___config__.html#a3e4817fc0e2b0225caeda2072acf56c0"/>
+        <topic label="hwAttrs" href="struct_u_a_r_t___config__.html#a33679e33b65c88fc4e7c2815054923ff"/>
+      </topic>
+      <topic label="UART_Data_Object" href="struct_u_a_r_t___data___object.html">
+        <topic label="object" href="struct_u_a_r_t___data___object.html#afa2bd8f7b61b0d826149acda3ba0f5ed"/>
+        <topic label="buffersObject" href="struct_u_a_r_t___data___object.html#ac55bb264f73837afc673c811af787dcf"/>
+        <topic label="eventCallbackObject" href="struct_u_a_r_t___data___object.html#a0a9ce1a170e62043b03736367490ff77"/>
+        <topic label="callbackObject" href="struct_u_a_r_t___data___object.html#a4b687abb5e0924f39d6d777ae3ed6af9"/>
+      </topic>
+      <topic label="UART_EventCallback_Object" href="struct_u_a_r_t___event_callback___object.html">
+        <topic label="eventCallback" href="struct_u_a_r_t___event_callback___object.html#a3ce69777dfc7b3dc36140e7af1398adb"/>
+        <topic label="eventMask" href="struct_u_a_r_t___event_callback___object.html#a45f87848caaabde46096264f79a9a59f"/>
+      </topic>
+      <topic label="UART_Object" href="struct_u_a_r_t___object.html">
+        <topic label="supportFxns" href="struct_u_a_r_t___object.html#a97f707486d3458340dd935d9c2203b60"/>
+        <topic label="userArg" href="struct_u_a_r_t___object.html#a4525123d0c1ff2fe0567895cf38779f9"/>
+        <topic label="buffersSupported" href="struct_u_a_r_t___object.html#ab0c31575206e348a01b95984e4cab581"/>
+        <topic label="eventsSupported" href="struct_u_a_r_t___object.html#aa4dbbadd2ccaf0c8cef8b139ea127952"/>
+        <topic label="callbacksSupported" href="struct_u_a_r_t___object.html#a293b5f2857a47f685325d59451d04115"/>
+        <topic label="dmaSupported" href="struct_u_a_r_t___object.html#a566c514a2adbe33d9554952be398da49"/>
+        <topic label="returnMode" href="struct_u_a_r_t___object.html#a0c152c353ea985f8df4c10190ada5c07"/>
+        <topic label="inUse" href="struct_u_a_r_t___object.html#a100213d0800655b7ccf73bb971caa218"/>
+        <topic label="readCancel" href="struct_u_a_r_t___object.html#a2fb216e4383b3bba4353680040b205de"/>
+        <topic label="writeCancel" href="struct_u_a_r_t___object.html#aa10d34ee5a210c9fbd3bf49239efaf62"/>
+        <topic label="overrunActive" href="struct_u_a_r_t___object.html#a8c484a15142ec4773184414a969e66c6"/>
+        <topic label="readTimedOut" href="struct_u_a_r_t___object.html#adc555e6db7bc4ec95144c5398a04552a"/>
+        <topic label="writeTimedOut" href="struct_u_a_r_t___object.html#affeffedf71e9ff84b49221ee7b9ea2ed"/>
+        <topic label="readMode" href="struct_u_a_r_t___object.html#a9ceee735504c15c208dc7b3ad988da0d"/>
+        <topic label="writeMode" href="struct_u_a_r_t___object.html#a260e3b246d53a58daa7129a1b596c292"/>
+        <topic label="rxDmaChannel" href="struct_u_a_r_t___object.html#a4f17887b6042c5eb3289e1476b6dcfc3"/>
+        <topic label="txDmaChannel" href="struct_u_a_r_t___object.html#a1433fb3b05afd6270178c9d078489351"/>
+        <topic label="readInUse" href="struct_u_a_r_t___object.html#a58d44a78308fceeb76d08a73fca4b3d4"/>
+        <topic label="writeInUse" href="struct_u_a_r_t___object.html#ac97ce506eb8107d54fc216ff13c69503"/>
+        <topic label="overrunCount" href="struct_u_a_r_t___object.html#a803fee144e297b484f6800f88e97e887"/>
+      </topic>
+      <topic label="UART_Params" href="struct_u_a_r_t___params.html">
+        <topic label="readMode" href="struct_u_a_r_t___params.html#ab8677572499b3734fcaa00f6431b0e7b"/>
+        <topic label="writeMode" href="struct_u_a_r_t___params.html#a53a95d4c2266d6e7ecea6640baf92d40"/>
+        <topic label="readCallback" href="struct_u_a_r_t___params.html#a5457b86b6793f1c4757457b9b22e379d"/>
+        <topic label="writeCallback" href="struct_u_a_r_t___params.html#a0497d8a55aea66d3ab2118f8966e8e33"/>
+        <topic label="eventCallback" href="struct_u_a_r_t___params.html#a7db9c9e886367ff97c38f8f38f990d9f"/>
+        <topic label="eventMask" href="struct_u_a_r_t___params.html#ac90564904e58c4c33cc38c0929d51d98"/>
+        <topic label="readReturnMode" href="struct_u_a_r_t___params.html#a3d35c3ca649e7e9eaef42b137a3d460d"/>
+        <topic label="baudRate" href="struct_u_a_r_t___params.html#afadb98d0a0ef6e17240bab79306e7828"/>
+        <topic label="dataLength" href="struct_u_a_r_t___params.html#a61f18b7f576c27b60f05481b1b818f19"/>
+        <topic label="stopBits" href="struct_u_a_r_t___params.html#a395a24213a7c2d683780996085ef5e89"/>
+        <topic label="parityType" href="struct_u_a_r_t___params.html#abf50f45ac6485d026063d34707d75515"/>
+        <topic label="userArg" href="struct_u_a_r_t___params.html#acca56fbd486b68476e5757ff547b6aa5"/>
+      </topic>
+      <topic label="UARTMSP_HWAttrs" href="struct_u_a_r_t_m_s_p___h_w_attrs.html">
+        <topic label="regs" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a5ddea3c2465d2974af7effe050d21b72"/>
+        <topic label="irq" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#ab001d9c6b56338abac2ec2e3c7212b1b"/>
+        <topic label="rxPin" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a90dcf4db5d8fd957a88ae1a2614f24ea"/>
+        <topic label="rxPinFunction" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a6f02a2563c749b86600639261483ffdd"/>
+        <topic label="txPin" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a63ebb924b31963fc834f9957ed7c439e"/>
+        <topic label="txPinFunction" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a89c3fc896dad8c8b1dd7801b2033b38c"/>
+        <topic label="mode" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#ab1192179c5733f5c545cc247a51e89ae"/>
+        <topic label="direction" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a8358cef08b8979effd67b7ba84241f6e"/>
+        <topic label="flowControl" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#aa8bc1204c4d60a5958887b9d9a35f451"/>
+        <topic label="clockSource" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a6dde47fa15e9e3bcba8059029e2843f9"/>
+        <topic label="clockDivider" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#acdcbb64b1ac74ff60876e45d78daa2c6"/>
+        <topic label="rxIntFifoThr" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#ae8d41df9ed433f5467277c239b4fd7f6"/>
+        <topic label="txIntFifoThr" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a97f3825af3697834ecd0b5c5b682140a"/>
+      </topic>
+      <topic label="UARTSupport_Fxns" href="struct_u_a_r_t_support___fxns.html">
+        <topic label="enable" href="struct_u_a_r_t_support___fxns.html#a85f7c4a5dcf0ede80cc75168417a0709"/>
+        <topic label="disable" href="struct_u_a_r_t_support___fxns.html#a0f2d9663f556ac9ae32259e3199c8864"/>
+        <topic label="txChar" href="struct_u_a_r_t_support___fxns.html#a4eb87ae86c7494ab962e07aa48a92243"/>
+        <topic label="read" href="struct_u_a_r_t_support___fxns.html#a81462b3f5a0d3b4ab0e48a59faaceab3"/>
+        <topic label="write" href="struct_u_a_r_t_support___fxns.html#ad110131a70fcf1ff4de8c06507d9fd84"/>
+      </topic>
+    </topic>
+    <topic label="Data Fields" href="functions.html">
+      <topic label="All" href="functions.html"/>
+      <topic label="Variables" href="functions_vars.html"/>
+    </topic>
+  </topic>
+  <topic label="Files">
+    <topic label="File List" href="files.html">
+      <topic label="DMAMSPM0.h" href="_d_m_a_m_s_p_m0_8h.html">
+        <topic label="NUM_DMA_CHANNELS" href="group___d_m_a.html#gaee3ce80a589ee0a658d1f1d293083692"/>
+        <topic label="DMAMSPM0_IsrFxn" href="group___d_m_a.html#ga1d63418e0aacc8c97993301127d8de20"/>
+        <topic label="DMAMSPM0_Handle" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a"/>
+        <topic label="DMAMSPM0_close" href="group___d_m_a.html#gae95a2c66447e2ddd3ae9d9b645c53942"/>
+        <topic label="DMAMSPM0_init" href="group___d_m_a.html#ga8a379aa65552a10e85cc4b1cb394896b"/>
+        <topic label="DMAMSPM0_open" href="group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2"/>
+        <topic label="DMAMSPM0_setupTransfer" href="group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31"/>
+        <topic label="DMA_Init" href="group___d_m_a.html#gaa469f6d48b00671eeb013a691dc81529"/>
+        <topic label="DMAMSPM0_disableChannel" href="group___d_m_a.html#ga7f580446972a92c87d13cda5a2d666e8"/>
+        <topic label="DMAMSPM0_getCurrTransferSize" href="group___d_m_a.html#ga8fb50a12e77ce31821a6fa827460144d"/>
+        <topic label="DMA_Params_init" href="group___d_m_a.html#gad58062cd1e508a3fdf174bc65639b9e3"/>
+        <topic label="DMAMSPM0_copyDMAParams" href="group___d_m_a.html#gae6ed9ea7cefc32ae6528cf9bc2da1f2e"/>
+        <topic label="DMAMSPM0_Config" href="group___d_m_a.html#gacaa3ef9937116a3377e8181d9c036ea9"/>
+      </topic>
+      <topic label="GPIO.h" href="_g_p_i_o_8h.html">
+        <topic label="GPIO_PIN_TO_MASK" href="group___g_p_i_o.html#ga6647f1addd6e8522e5b38566d8d6bf7e"/>
+        <topic label="GPIO_STATUS_SUCCESS" href="group___g_p_i_o___s_t_a_t_u_s.html#gacef3ff21200e0cff860ddd2b64adac07"/>
+        <topic label="GPIO_STATUS_ERROR" href="group___g_p_i_o___s_t_a_t_u_s.html#ga9128d9c1019c04160cfd76af9dff919a"/>
+        <topic label="GPIO_INVALID_INDEX" href="group___g_p_i_o.html#gaf57edde67444c166b414c15047ff7b44"/>
+        <topic label="GPIO_CFG_OUTPUT" href="group___g_p_i_o___pin_config_settings.html#gaad0c4b9c093f1d57fd03061b7456193a"/>
+        <topic label="GPIO_CFG_OUT_STD" href="group___g_p_i_o___pin_config_settings.html#gac52528c42a8eb3be193f49de5ed7d820"/>
+        <topic label="GPIO_CFG_OUT_OD_NOPULL" href="group___g_p_i_o___pin_config_settings.html#gae660060d38901c2370d8f104fbb842a2"/>
+        <topic label="GPIO_CFG_OUT_OD_PU" href="group___g_p_i_o___pin_config_settings.html#ga16cfdcae58be5f77932b36f43e7c1d2f"/>
+        <topic label="GPIO_CFG_OUT_OD_PD" href="group___g_p_i_o___pin_config_settings.html#gaf4e7be1d009ff2c25a048ab7fe401d88"/>
+        <topic label="GPIO_CFG_OUT_STR_LOW" href="group___g_p_i_o___pin_config_settings.html#ga2917f431dff7eb7f5559643bd8df251d"/>
+        <topic label="GPIO_CFG_OUT_STR_MED" href="group___g_p_i_o___pin_config_settings.html#gac1d2c5bf8f2359d26d28abc8aa393b3a"/>
+        <topic label="GPIO_CFG_OUT_STR_HIGH" href="group___g_p_i_o___pin_config_settings.html#ga25609d59d41f081ae9759d5862dc9dd9"/>
+        <topic label="GPIO_CFG_OUT_HIGH" href="group___g_p_i_o___pin_config_settings.html#gae86eb6dc677c962a9ad94bdad6752dc0"/>
+        <topic label="GPIO_CFG_OUT_LOW" href="group___g_p_i_o___pin_config_settings.html#gad4fd3be9a7bec74d862cb1caecc5d4be"/>
+        <topic label="GPIO_CFG_INPUT" href="group___g_p_i_o___pin_config_settings.html#ga874e34de3bef2d9415b4311dd6bed234"/>
+        <topic label="GPIO_CFG_IN_NOPULL" href="group___g_p_i_o___pin_config_settings.html#gad2e8d27bfc96ef0de4dd35db10055412"/>
+        <topic label="GPIO_CFG_IN_PU" href="group___g_p_i_o___pin_config_settings.html#ga4fb7b60751481b6988049fe8fa94a7d7"/>
+        <topic label="GPIO_CFG_IN_PD" href="group___g_p_i_o___pin_config_settings.html#gad09e6716ad1b54cb6509b8c92a6567c6"/>
+        <topic label="GPIO_CFG_INVERT_OFF" href="group___g_p_i_o___pin_config_settings.html#ga56f1eee4ff9b74afc9a9456430506cd9"/>
+        <topic label="GPIO_CFG_INVERT_ON" href="group___g_p_i_o___pin_config_settings.html#ga1d73f69b8b72ef587fd7264289f5023e"/>
+        <topic label="GPIO_CFG_HYSTERESIS_OFF" href="group___g_p_i_o___pin_config_settings.html#ga7152d58bae53f054fefeda27af9b154c"/>
+        <topic label="GPIO_CFG_HYSTERESIS_ON" href="group___g_p_i_o___pin_config_settings.html#gac704d1783ffdc5509c7b16bee87ae648"/>
+        <topic label="GPIO_CFG_HIZ_OFF" href="group___g_p_i_o___pin_config_settings.html#ga5ad65600afa4e39cb557c56ec0a48539"/>
+        <topic label="GPIO_CFG_HIZ_ON" href="group___g_p_i_o___pin_config_settings.html#gaedadb245c8983aef941f15b76e5a5bf1"/>
+        <topic label="GPIO_CFG_IN_INT_NONE" href="group___g_p_i_o___pin_config_settings.html#ga666c6995ed5737b43a707d1cacd9fe69"/>
+        <topic label="GPIO_CFG_IN_INT_RISING" href="group___g_p_i_o___pin_config_settings.html#ga4a9f53e525d1f1659b485274d08ff91f"/>
+        <topic label="GPIO_CFG_IN_INT_FALLING" href="group___g_p_i_o___pin_config_settings.html#ga7a69ee26049dc2f8b5059b00a24b9f74"/>
+        <topic label="GPIO_CFG_IN_INT_BOTH_EDGES" href="group___g_p_i_o___pin_config_settings.html#ga0829900a2dd949219edc6ddc8d928f3c"/>
+        <topic label="GPIO_CFG_IN_INT_LOW" href="group___g_p_i_o___pin_config_settings.html#gab0f05c331bb66230f175e574d0d317a6"/>
+        <topic label="GPIO_CFG_IN_INT_HIGH" href="group___g_p_i_o___pin_config_settings.html#ga669d2e840e0f934426670a069a5efe0e"/>
+        <topic label="GPIO_CFG_WAKEUP_DISABLE" href="group___g_p_i_o___pin_config_settings.html#gaa2370fbbde0669ace7b01b34c4b9b6fe"/>
+        <topic label="GPIO_CFG_WAKEUP_ON_0" href="group___g_p_i_o___pin_config_settings.html#ga09f9cef441e8d4359d197b4b1b4d31d4"/>
+        <topic label="GPIO_CFG_WAKEUP_ON_1" href="group___g_p_i_o___pin_config_settings.html#ga4b8cd7a016f02417de9e95484036a9d0"/>
+        <topic label="GPIO_DO_NOT_CONFIG" href="group___g_p_i_o___pin_config_settings.html#ga0974eb3af57b7bccef9ac749d4cf23a7"/>
+        <topic label="GPIO_MUX_GPIO" href="group___g_p_i_o___pin_config_settings.html#ga6349902253d167b88fc5cd3e7138d529"/>
+        <topic label="GPIO_PinConfig" href="group___g_p_i_o.html#ga7f5d979226db633309b3fdc0f4a8aef6"/>
+        <topic label="GPIO_CallbackFxn" href="group___g_p_i_o.html#ga46b0c9afbe998c88539abc92082a1173"/>
+        <topic label="GPIO_clearInt" href="group___g_p_i_o.html#ga870cd0b05ac6fae2a930c4ea3298b570"/>
+        <topic label="GPIO_disableInt" href="group___g_p_i_o.html#ga33005dec4e3a9a58322dd33779990a86"/>
+        <topic label="GPIO_enableInt" href="group___g_p_i_o.html#ga31c4e65b3855424418262e35521c7051"/>
+        <topic label="GPIO_init" href="group___g_p_i_o.html#ga7aaec489dca5ac4d278d2eb3ae38a2d2"/>
+        <topic label="GPIO_read" href="group___g_p_i_o.html#ga39deeae6a6b28d3c56693a668601177e"/>
+        <topic label="GPIO_toggle" href="group___g_p_i_o.html#ga202292e331e2eb9ccf97f4caab2e97aa"/>
+        <topic label="GPIO_write" href="group___g_p_i_o.html#gadf697825b43c26c0126173780e57eb58"/>
+        <topic label="GPIO_setCallback" href="group___g_p_i_o.html#ga24c401f32e65f60f11a1594fdafb9d2a"/>
+        <topic label="GPIO_getCallback" href="group___g_p_i_o.html#gaf17426aceed970ef6c5acfa38c94bb41"/>
+        <topic label="GPIO_setConfig" href="group___g_p_i_o.html#ga015b75143cc3b8914cc298c5c4fc097e"/>
+        <topic label="GPIO_setInterruptConfig" href="group___g_p_i_o.html#ga409bdc2af261c447e67de10d7fce7569"/>
+        <topic label="GPIO_getConfig" href="group___g_p_i_o.html#gadf0153b2f2ab21828521aec8eb568d39"/>
+        <topic label="GPIO_resetConfig" href="group___g_p_i_o.html#ga131b79245a300dd81ba29a014625b0c2"/>
+        <topic label="GPIO_getMux" href="group___g_p_i_o.html#gad7fa6f50adbe67b27d50081dbf86eaff"/>
+        <topic label="GPIO_setConfigAndMux" href="group___g_p_i_o.html#ga53cc86d668c93f510dc3de7332410ebd"/>
+        <topic label="GPIO_setUserArg" href="group___g_p_i_o.html#gac852b7d77163b3aa4979e7fb13798844"/>
+        <topic label="GPIO_getUserArg" href="group___g_p_i_o.html#ga97bc4b168f58b08d71f56b4be5603c6e"/>
+      </topic>
+      <topic label="GPIOMSPM0.h" href="_g_p_i_o_m_s_p_m0_8h.html">
+        <topic label="GPIO_CFG_DRVSTR_MED_INTERNAL" href="group___g_p_i_o_m_s_p_m0.html#ga9efeff0c44ab06b5f02b82e08c4c31d2"/>
+        <topic label="GPIO_CFG_INT_LOW_INTERNAL" href="group___g_p_i_o_m_s_p_m0.html#ga676f577ce0d580f90f888ac28b8bba67"/>
+        <topic label="GPIO_CFG_INT_HIGH_INTERNAL" href="group___g_p_i_o_m_s_p_m0.html#ga9522d146f8955fd229d3f6a30a7c2195"/>
+      </topic>
+      <topic label="I2C.h" href="_i2_c_8h.html">
+        <topic label="I2C_STATUS_QUEUED" href="group___i2_c___s_t_a_t_u_s.html#gaa63ec7e8376d0bfa4c6255a1f723e13f"/>
+        <topic label="I2C_STATUS_SUCCESS" href="group___i2_c___s_t_a_t_u_s.html#gaa0bcf3acd26ac82bd8ff91daba2c78c4"/>
+        <topic label="I2C_STATUS_ERROR" href="group___i2_c___s_t_a_t_u_s.html#ga7323fe57c39c46d0da9910e17f5f0b06"/>
+        <topic label="I2C_STATUS_UNDEFINEDCMD" href="group___i2_c___s_t_a_t_u_s.html#ga11c31c9869ed2441789205d9e5967d66"/>
+        <topic label="I2C_STATUS_TIMEOUT" href="group___i2_c___s_t_a_t_u_s.html#gacef5657ae83115da15f49dd76801638b"/>
+        <topic label="I2C_STATUS_CLOCK_TIMEOUT" href="group___i2_c___s_t_a_t_u_s.html#gae1ce91f866196f18abebfd6aead32cbe"/>
+        <topic label="I2C_STATUS_ADDR_NACK" href="group___i2_c___s_t_a_t_u_s.html#ga75c95f62df35a6769b69904e6cd90181"/>
+        <topic label="I2C_STATUS_DATA_NACK" href="group___i2_c___s_t_a_t_u_s.html#ga3773311442a356cd750e1cf34b85ed5a"/>
+        <topic label="I2C_STATUS_ARB_LOST" href="group___i2_c___s_t_a_t_u_s.html#gadb5718560335315df79d4abe7ddba317"/>
+        <topic label="I2C_STATUS_INCOMPLETE" href="group___i2_c___s_t_a_t_u_s.html#ga4d4ff3732548047b7c09a1f34ab93d98"/>
+        <topic label="I2C_STATUS_BUS_BUSY" href="group___i2_c___s_t_a_t_u_s.html#gaf7455cb02ee12dfc513ceb28323b4b8d"/>
+        <topic label="I2C_STATUS_CANCEL" href="group___i2_c___s_t_a_t_u_s.html#ga2cca884b9720ab2ca750ebfdb8614601"/>
+        <topic label="I2C_STATUS_INVALID_TRANS" href="group___i2_c___s_t_a_t_u_s.html#gad92f93f1f1c8ef8fc2be70bb8b0c7aa9"/>
+        <topic label="I2C_WAIT_FOREVER" href="group___i2_c.html#ga4eb2bf76d4186e8752bcd32b32908b6c"/>
+        <topic label="I2C_Handle" href="group___i2_c.html#ga1d8718f847129c7aa61dd1c264d8a13c"/>
+        <topic label="I2C_CallbackFxn" href="group___i2_c.html#gadaa5c99b7c23a00bac52d15a2469764e"/>
+        <topic label="I2C_Config" href="group___i2_c.html#gae43e4c7b224a8cc37764acb792182453"/>
+        <topic label="I2C_TransferMode" href="group___i2_c.html#ga39f3b9340fc4ee241b0d2da9b2841c26">
+          <topic label="I2C_MODE_BLOCKING" href="group___i2_c.html#gga39f3b9340fc4ee241b0d2da9b2841c26abe065350be2a0ae5c9beb24624626c75"/>
+          <topic label="I2C_MODE_CALLBACK" href="group___i2_c.html#gga39f3b9340fc4ee241b0d2da9b2841c26a129731a7edeb285f43a54b2cf9f5ac72"/>
+        </topic>
+        <topic label="I2C_BitRate" href="group___i2_c.html#gac954e3197f04c50293db466c4abb6fbe">
+          <topic label="I2C_100kHz" href="group___i2_c.html#ggac954e3197f04c50293db466c4abb6fbea966fd2df13b3a9825615c50335cf1987"/>
+          <topic label="I2C_400kHz" href="group___i2_c.html#ggac954e3197f04c50293db466c4abb6fbea83cc3750242e6ae9194cd7ed94f764d9"/>
+          <topic label="I2C_1000kHz" href="group___i2_c.html#ggac954e3197f04c50293db466c4abb6fbea38a2e32ba65eb0f67b928d181242befa"/>
+        </topic>
+        <topic label="I2C_cancel" href="group___i2_c.html#ga8cad0c04a9eca0fffc0ffe5586a5179b"/>
+        <topic label="I2C_close" href="group___i2_c.html#ga12c86d89a687f2ee1eb980d99c32326d"/>
+        <topic label="I2C_control" href="group___i2_c.html#ga4c74b1b9f8e76ac22bec7608491cb223"/>
+        <topic label="I2C_init" href="group___i2_c.html#ga9ff51ddf1d325776fef90cce0223772b"/>
+        <topic label="I2C_open" href="group___i2_c.html#ga2db3461e1e956d9b86af414da2fb05f6"/>
+        <topic label="I2C_Params_init" href="group___i2_c.html#gab11636302074d67180207ab81ceb323c"/>
+        <topic label="I2C_setClockTimeout" href="group___i2_c.html#ga999fa1c606163ca9bbb4252a27c8eb9d"/>
+        <topic label="I2C_transfer" href="group___i2_c.html#gac5d827b67fe77d7d179026941cc069d7"/>
+        <topic label="I2C_transferTimeout" href="group___i2_c.html#gaaee4f0689acbe5f0596e35b18402abf3"/>
+        <topic label="I2C_config" href="group___i2_c.html#gaff23dd4a23f45b3bf8b634c56c272ebc"/>
+        <topic label="I2C_count" href="group___i2_c.html#ga2f7b47492e348b701dc5add470d898e8"/>
+      </topic>
+      <topic label="I2CMSPM0.h" href="_i2_c_m_s_p_m0_8h.html">
+        <topic label="I2C_CONTROLLER_INTERRUPTS_MASK" href="group___i2_c_m_s_p_m0.html#gaba31176c92feb3a0780547446d9575bd"/>
+      </topic>
+      <topic label="I2CSupport.h" href="_i2_c_support_8h.html">
+        <topic label="I2CSupport_controllerFinish" href="group___i2_c_support.html#gae288e1f7276da493a9c41e9ddc9f4cf7"/>
+        <topic label="I2CSupport_powerSetConstraint" href="group___i2_c_support.html#gaef0c9ca06b4e0e7b132bb4ba77fa49dc"/>
+        <topic label="I2CSupport_powerRelConstraint" href="group___i2_c_support.html#ga62fde0ccc035195b08603937652a63e3"/>
+        <topic label="I2CSupport_primeTransfer" href="group___i2_c_support.html#gaf638babf4e177a40cf4f04324de3c711"/>
+      </topic>
+      <topic label="UART.h" href="_u_a_r_t_8h.html">
+        <topic label="UART_STATUS_SUCCESS" href="group___u_a_r_t___s_t_a_t_u_s.html#ga101b7761f89b3ec49f0c6726669acfed"/>
+        <topic label="UART_STATUS_SREADTIMEOUT" href="group___u_a_r_t___s_t_a_t_u_s.html#gaa569dea0492ecf314467c1a34572ff19"/>
+        <topic label="UART_STATUS_EFRAMING" href="group___u_a_r_t___s_t_a_t_u_s.html#gaf285a114c2681b15cc1e12e05ce9b00c"/>
+        <topic label="UART_STATUS_EPARITY" href="group___u_a_r_t___s_t_a_t_u_s.html#ga3eb6b626ee9b181615037c8a05ca683e"/>
+        <topic label="UART_STATUS_EBREAK" href="group___u_a_r_t___s_t_a_t_u_s.html#gaf2cfcca3e969184249895195a1337f29"/>
+        <topic label="UART_STATUS_EOVERRUN" href="group___u_a_r_t___s_t_a_t_u_s.html#ga41bc50b41372b5cd4545d9982ed513b8"/>
+        <topic label="UART_STATUS_EINUSE" href="group___u_a_r_t___s_t_a_t_u_s.html#gaa658b16955ceabc4e33e31cab6444b3e"/>
+        <topic label="UART_STATUS_EINVALID" href="group___u_a_r_t___s_t_a_t_u_s.html#ga7953c2fcc94679a861c00f9df8993843"/>
+        <topic label="UART_STATUS_EFAIL" href="group___u_a_r_t___s_t_a_t_u_s.html#gad03529aa81f6e5f318479b8940847487"/>
+        <topic label="UART_STATUS_EMEMORY" href="group___u_a_r_t___s_t_a_t_u_s.html#gab8d79b1ceb1763a3a37549e9cf8b82c3"/>
+        <topic label="UART_STATUS_ETIMEOUT" href="group___u_a_r_t___s_t_a_t_u_s.html#gadf2c0d2a0415c62c147a736424028f9a"/>
+        <topic label="UART_STATUS_ECANCELLED" href="group___u_a_r_t___s_t_a_t_u_s.html#ga69975d5ab5731732cb732df574ca11e2"/>
+        <topic label="UART_STATUS_ENOTOPEN" href="group___u_a_r_t___s_t_a_t_u_s.html#ga10d6a3ee4d80fddbdc4a55f378698184"/>
+        <topic label="UART_STATUS_EAGAIN" href="group___u_a_r_t___s_t_a_t_u_s.html#ga3d0a95f3ace03a023f4fb982e7ebcb17"/>
+        <topic label="UART_Handle" href="group___u_a_r_t.html#gab69886c7119a5054a972d8c735f15928"/>
+        <topic label="UART_Callback" href="group___u_a_r_t.html#gad76c76927ec6631b4866dad2aad1a65f"/>
+        <topic label="UART_EventCallback" href="group___u_a_r_t.html#ga73ea5d30bfa43c6989d0526453835570"/>
+        <topic label="UART_Mode" href="group___u_a_r_t.html#ga2507a620dba95cd20885c52494d19e90">
+          <topic label="UART_Mode_BLOCKING" href="group___u_a_r_t.html#gga2507a620dba95cd20885c52494d19e90a09c2d5349786d1199eb87dc040f3d724"/>
+          <topic label="UART_Mode_CALLBACK" href="group___u_a_r_t.html#gga2507a620dba95cd20885c52494d19e90ac3b9a056e3ff09ece6ffc77bd2cc73cd"/>
+          <topic label="UART_Mode_NONBLOCKING" href="group___u_a_r_t.html#gga2507a620dba95cd20885c52494d19e90aae3d94ffdc69f8502e9b77368b551d6d"/>
+        </topic>
+        <topic label="UART_ReadReturnMode" href="group___u_a_r_t.html#gaed1c183ba0f637f74802cd791c618699">
+          <topic label="UART_ReadReturnMode_FULL" href="group___u_a_r_t.html#ggaed1c183ba0f637f74802cd791c618699ac94c79c5434492f93835d1cd4becf634"/>
+          <topic label="UART_ReadReturnMode_PARTIAL" href="group___u_a_r_t.html#ggaed1c183ba0f637f74802cd791c618699ad9b96a0d8982193a33746823022620b3"/>
+        </topic>
+        <topic label="UART_DataLen" href="group___u_a_r_t.html#gaa425797a2c950b9861fd62a11397b927">
+          <topic label="UART_DataLen_5" href="group___u_a_r_t.html#ggaa425797a2c950b9861fd62a11397b927ab7cfd7ccebeb03dbfa9a41aa81ea08f0"/>
+          <topic label="UART_DataLen_6" href="group___u_a_r_t.html#ggaa425797a2c950b9861fd62a11397b927a013ef018fd7e410c7c23a29569c15fbf"/>
+          <topic label="UART_DataLen_7" href="group___u_a_r_t.html#ggaa425797a2c950b9861fd62a11397b927a4e332707b975b874c541438df19324d7"/>
+          <topic label="UART_DataLen_8" href="group___u_a_r_t.html#ggaa425797a2c950b9861fd62a11397b927af5e26b46165112ab3553311fc7dbd6ce"/>
+        </topic>
+        <topic label="UART_StopBits" href="group___u_a_r_t.html#ga134ee767f3eaf8d26f6d0dd96d982f70">
+          <topic label="UART_StopBits_1" href="group___u_a_r_t.html#gga134ee767f3eaf8d26f6d0dd96d982f70aaedac7fd9efece6190fa462208163bc1"/>
+          <topic label="UART_StopBits_2" href="group___u_a_r_t.html#gga134ee767f3eaf8d26f6d0dd96d982f70a36fcdab28dabe4a95c0b024a3c0e217e"/>
+        </topic>
+        <topic label="UART_Parity" href="group___u_a_r_t.html#gafdde0d1dd91ce599c9df7327b45986cc">
+          <topic label="UART_Parity_NONE" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986cca0986d9690afff86b48a566979e805f28"/>
+          <topic label="UART_Parity_EVEN" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986ccaae142664e6e4376544af63eacc40ed88"/>
+          <topic label="UART_Parity_ODD" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986ccaf64f4b5c56a26f95ca696a38a7775465"/>
+          <topic label="UART_Parity_ZERO" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986ccaada41a0008a9205bab9197d28ddd3006"/>
+          <topic label="UART_Parity_ONE" href="group___u_a_r_t.html#ggafdde0d1dd91ce599c9df7327b45986cca43196da1132245b83886ef66bd6cd5e3"/>
+        </topic>
+        <topic label="UART_Params_init" href="group___u_a_r_t.html#ga40e5c0823bb7ffd2e8fbf19f9f20b399"/>
+        <topic label="UART_open" href="group___u_a_r_t.html#gab6d1d6b7b1f9922484f9b8a0f78ed030"/>
+        <topic label="UART_close" href="group___u_a_r_t.html#ga6b49b65f3db709c408dc4db23a68895d"/>
+        <topic label="UART_read" href="group___u_a_r_t.html#gaad50d1543185c1821e7536f7ccc7b354"/>
+        <topic label="UART_write" href="group___u_a_r_t.html#gaecade38d5a49d876b2374ae314d30fbe"/>
+        <topic label="UART_readTimeout" href="group___u_a_r_t.html#gae4bcbefb657b0e77f04c941102f6f1b9"/>
+        <topic label="UART_writeTimeout" href="group___u_a_r_t.html#gad673f06c7ed88bb011daa56f33f0dc31"/>
+        <topic label="UART_readCancel" href="group___u_a_r_t.html#ga51ed7e94d5b409ca1fcb2d65c5a25c3c"/>
+        <topic label="UART_writeCancel" href="group___u_a_r_t.html#ga0482cd0ab9ee7e802c8e785a5754d16d"/>
+        <topic label="UART_rxDisable" href="group___u_a_r_t.html#ga8b22c82e2eb2ec5d570cd22b2ec87608"/>
+        <topic label="UART_rxEnable" href="group___u_a_r_t.html#ga880f05af6177130937c36af9bb536e28"/>
+        <topic label="UART_flushRx" href="group___u_a_r_t.html#ga1183c78e6a927e9aac41fd3bdb0d822d"/>
+        <topic label="UART_getRxCount" href="group___u_a_r_t.html#ga1203f59384eb903f7b903f52038115dd"/>
+      </topic>
+      <topic label="UARTMSPM0L11XX_L13XX.h" href="_u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x_8h.html">
+        <topic label="UART_RX_ERRS" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga07a66517aa98a287ece52244da759b2f"/>
+        <topic label="UART_Obj_Ptr" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga84fd25f0580eb7bb5be69b6b05855aae"/>
+        <topic label="UART_HWAttrs_Ptr" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#gad227cb847b0595472883c88f554b2f56"/>
+        <topic label="UART_buffersObject" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga1ed283e920c71552dd2a2517252105cc"/>
+        <topic label="UART_eventCallbackObject" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga2207ba74fef268909bf7dda471afc0b0"/>
+        <topic label="UART_callbackObject" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga1636c584a56888ddf04fcda92e7b1a9c"/>
+        <topic label="UARTMSP_interruptHandler" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga73555f42d0c27c1fed3f9e8656d39c3a"/>
+        <topic label="UARTMSP_enableInts" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#ga8b9ba6610662b1da20580d9b77b1e440"/>
+        <topic label="UARTMSPSupportFxns" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html#gae442e978b8f30d3ed49762e0f38ceb31"/>
+      </topic>
+      <topic label="UARTSupportMSPM0L11XX_L13XX.h" href="_u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x_8h.html">
+        <topic label="UART_Config" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga68be81b9ce429a5e5c3ac02d285dbd3b"/>
+        <topic label="UART_readBuffered" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gac631c209670246c126aa881a2ba5b8ff"/>
+        <topic label="UART_writeBuffered" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga28d4cd7a17d16035650bd02a602a451a"/>
+        <topic label="UART_readCallback" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gaf3b2e6e98a344727f4a2dbae53f08d55"/>
+        <topic label="UART_writeCallback" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga2b27db3e5e5c673fb119998026f7b381"/>
+        <topic label="UART_readFullFeatured" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gad38d4b350d3cc945c739fe969c7ece86"/>
+        <topic label="UART_writeFullFeatured" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gabd06c63ea82f6caf04319487253f41e4"/>
+        <topic label="UART_config" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#gad24e1d95c2d7232d55dc5b1d00a56bb5"/>
+        <topic label="UART_count" href="group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga3e40006b96c9c55e5ac52d51d094dbac"/>
+      </topic>
+    </topic>
+    <topic label="Globals" href="globals.html">
+      <topic label="All" href="globals.html"/>
+      <topic label="Functions" href="globals_func.html"/>
+      <topic label="Variables" href="globals_vars.html"/>
+      <topic label="Typedefs" href="globals_type.html"/>
+      <topic label="Enumerations" href="globals_enum.html"/>
+      <topic label="Enumerator" href="globals_eval.html"/>
+      <topic label="Macros" href="globals_defs.html"/>
+    </topic>
+  </topic>
+  <topic label="Disclaimer" href="_disclaimer.html"/>
+</toc>

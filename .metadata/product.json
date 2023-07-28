@@ -1,0 +1,18 @@
+{
+    "name": "mspm0_sdk",
+    "displayName": "MSPM0 SDK",
+    "version": "1.10.00.05",
+    "documentationPath": "../docs",
+    "includePaths": [
+        "../source",
+        "."
+    ],
+    "components": [
+        "/ti/driverlib/driverlib.component.js",
+        "/ti/clockTree/clockTree.component.js"
+    ],
+    "devices": [
+        "MSPM0.*"
+    ],
+    "minToolVersion": "1.15.0"
+}

@@ -1,0 +1,150 @@
+MSPM0 SDK QuickStart Guide for IAR
+==================================
+
+1. Introduction
+---------------
+
+This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with IAR. This guide is not intended to explain the functionality of IAR. Please refer to the `IAR <https://www.iar.com/>`__ documentation or the `IAR IDE Guide for MSPM0 MCUs <../../../tools/iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide.html>`__ included with the MSPM0 SDK documentation.
+
+2. Prerequisites
+----------------
+
+The user is expected to have downloaded the following:
+
+-  `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__
+-  `IAR Embedded Workbench for Arm 9.40.x <https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/>`__
+
+   -  The TI XDS drivers are required when using the MSPM0 Launchpad's integrated XDS-110 programmer. For more information, please visit the `release notes for IAR C-SPY XDS driver <https://updates.iar.com/filestore/standard/001/001/123/arm/doc/infocenter/csxds.ENU.html>`__.
+
+-  `SysConfig 1.17.x <https://www.ti.com/tool/SYSCONFIG>`__
+
+3. Install the MSPM0 SDK
+------------------------
+
+1. Download and install the latest `MSPM0 SDK <#prerequisites>`__. Note that there are SDK installers for Windows, Linux and MacOS. The steps below are shown in Windows, but a similar approach should be followed in Linux or MacOS.
+
+2. Execute the installer. Click **Next**.
+
+   .. figure:: ./images/quickstart_guide_iar/sdk_install_1.png
+      :alt: 
+
+3. Select an **Installation Directory** and click **Next**. Note the installation directory which by default is ``c:\ti`` which will install the SDK at ``C:\ti\mspm0_sdk_<version>\``. This path will be referred to as ``<MSPM0_SDK_INSTALL_DIR>`` in sections below.
+
+   .. figure:: ./images/quickstart_guide_iar/sdk_install_2.png
+      :alt: 
+
+4. Click **Next**
+
+   .. figure:: ./images/quickstart_guide_iar/sdk_install_3.png
+      :alt: 
+
+5. After installation is complete, click **Finish**.
+
+   .. figure:: ./images/quickstart_guide_iar/sdk_install_4.png
+      :alt: 
+
+4. Add MSPM0 SDK to IAR
+-----------------------
+
+In IAR, we need to add the latest MSPM0 SDK version. This step only has to be done once, or when the SDK is updated.
+
+1. In IAR, click on **Tools → Configure Custom Argument Variables**
+
+   .. figure:: ./images/quickstart_guide_iar/iar_sdk_install_1.png
+      :alt: 
+
+2. Click the **Global** tab, and then **Import**
+
+   .. figure:: ./images/quickstart_guide_iar/iar_sdk_install_2.png
+      :alt: 
+
+3. Navigate to your SDK folder into ``<MSPM0_SDK_INSTALL_DIR>/tools/iar/`` and open **MSPM0\_SDK.custom\_argvars**.
+
+   .. figure:: ./images/quickstart_guide_iar/iar_sdk_install_3.png
+      :alt: 
+
+4. The SDK variables should now be installed in IAR. Click OK to close the window.
+
+   | **Note**: Make sure the MSPM0 SDK path and SysConfig path matches the location and version needed for this SDK release.
+   | If you installed an earlier version of the SDK then make sure to update the path to the current version you want to use.
+   | Similarly, if the SysConfig path installed on `Section 5. Install SysConfig for MSPM0 <#install-sysconfig-for-mspm0>`__ is incorrect or pointing to an older version, then modify it.
+
+   .. figure:: ./images/quickstart_guide_iar/iar_sdk_install_4.png
+      :alt: 
+
+5. Install SysConfig for MSPM0
+------------------------------
+
+The SDK includes a preliminary version of SysConfig metadata which can be used to evaluate the user experience of MSPM0 SDK.
+
+For more general information about using SysConfig with MSPM0, please refer to `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ available in the SDK's Tools Guide.
+
+1. Download and install the standalone version (1.17.x or newer) of SysConfig from `ti.com <https://www.ti.com/tool/SYSCONFIG>`__
+
+2. In IAR, select **Tools → Configure Viewers** from the menu.
+
+   .. figure:: ./images/quickstart_guide_iar/sysconfig_configure_viewers.png
+      :alt: 
+
+3. Click **Import**
+
+   .. figure:: ./images/quickstart_guide_iar/sysconfig_configure_viewer_import.png
+      :alt: 
+
+4. Navigate to your SDK folder into ``<MSPM0_SDK_INSTALL_DIR>/tools/iar/`` and open **sysconfig\_iar\_setup.xml**.
+
+   .. figure:: ./images/quickstart_guide_iar/sysconfig_iar_setup.png
+      :alt: 
+
+5. | The standalone SysConfig will be associated to .syscfg files.
+   | Click OK to close window.
+
+   .. figure:: ./images/quickstart_guide_iar/sysconfig_configure_viewers_done.png
+      :alt: 
+
+6. Double-check that the **SYSCONFIG\_ROOT** Custom Argument Variable is correctly pointing to the SysConfig folder as described in `Section 4. Add MSPM0 SDK to IAR <#add-mspm0-sdk-to-iar>`__.
+
+6. Import and Build an SDK Example in IAR
+-----------------------------------------
+
+1. In IAR, select **File → Open Workspace** from the menu.
+
+   .. figure:: ./images/quickstart_guide_iar/iar_example_1.png
+      :alt: 
+
+2. Navigate to an IAR folder in SDK example at ``<MSPM0_SDK_INSTALL_DIR>/examples/`` and open the .eww workspace file. For example ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output/iar/gpio_toggle_output_LP_MSPM0L1306_nortos_iar.template.eww``.
+
+   .. figure:: ./images/quickstart_guide_iar/iar_example_2.png
+      :alt: 
+
+3. Click OK on the message.
+
+   .. figure:: ./images/quickstart_guide_iar/iar_example_3.png
+      :alt: 
+
+4. Select a folder to install the example.
+
+   .. figure:: ./images/quickstart_guide_iar/iar_example_4.png
+      :alt: 
+
+5. To build the example, right click in the project and select **Make**. Note that SysConfig projects will automatically generate files in the *"SysConfig Generated Files"* folder.
+
+   | **Note**: Some examples include support for SysConfig to allow for an easier device configuration.
+   | For a complete list of examples supporting SysConfig, check the `MSPM0 SDK Examples Guide <../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html>`__.
+   | For more general information about using SysConfig with MSPM0, please refer to `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ available in the SDK's Tools Guide.
+
+   .. figure:: ./images/quickstart_guide_iar/iar_example_5a.png
+      :alt: 
+
+6. Click the **Download and Debug** button to download the code.
+
+   .. figure:: ./images/quickstart_guide_iar/iar_example_6a.png
+      :alt: 
+
+   .. figure:: ./images/quickstart_guide_iar/iar_example_6b.png
+      :alt: 
+
+7. Known Issues and Frequently Asked Questions (FAQs)
+-----------------------------------------------------
+
+Please refer to `Known Issues and FAQ <../../../../../known_issues_FAQ.html>`__ inside the SDK.

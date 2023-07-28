@@ -1,0 +1,29 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const DMA = scripting.addModule("/ti/driverlib/DMA");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+DMA.associatedChannels.create(1);
+DMA.associatedChannels[0].$name           = "DMA_CH0";
+DMA.associatedChannels[0].peripheral.$assign = "DMA_CH0";
+DMA.associatedChannels[0].transferMode    = "SINGLE_BLOCK";
+DMA.associatedChannels[0].dstIncDec       = "INCREMENT";
+DMA.associatedChannels[0].fillIncAmount   = "BYTE";
+DMA.associatedChannels[0].enableInterrupt = true;
+DMA.associatedChannels[0].srcIncDec       = "INCREMENT";
+DMA.associatedChannels[0].addressMode     = "b2b";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+SYSCTL.clockTreeEn = true;

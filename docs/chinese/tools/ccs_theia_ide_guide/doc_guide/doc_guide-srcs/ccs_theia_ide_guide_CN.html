@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>适用于 MSPM0 MCU 的 Code Composer Studio Theia IDE 版本1.0+ &mdash; Code Composer Studio Theia IDE for MSPM0 MCUs 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Code Composer Studio Theia IDE for MSPM0 MCUs" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Code Composer Studio Theia IDE for MSPM0 MCUs
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">适用于 MSPM0 MCU 的 Code Composer Studio Theia IDE 版本1.0+</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">请先阅读</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">如何使用本指南</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">有关注意事项的信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ti">德州仪器(TI)的相关文档</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">如果您需要帮助</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1. 软件安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">2. 开发流程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">2.1 概览</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.2 使用项目向导创建新项目</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ccs-theia-ti-resource-explorer">2.3 在 CCS Theia 中使用 TI Resource Explorer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sysconfig-ccs-theia">2.4 将 SysConfig 与 CCS Theia 结合使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mspm0">2.5 在 MSPM0衍生产品之间迁移</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">2.6 堆栈管理和链接器文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ti-arm-clang">2.6.1 使用 TI Arm Clang 编译器配置堆栈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arm-gcc">2.6.2 使用 Arm GCC 配置堆栈</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ti-txt">2.7 如何生成 TI .TXT (和其他格式)文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arm-hex">2.7.1 使用 Arm Hex 实用程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#objcopy">2.7.2 使用 objcopy 实用程序</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">2.8 覆盖预编译库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sram">2.9 从 SRAM 运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">2.9.1 从 SRAM 运行完整的应用程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">2.9.2 从 SRAM 运行函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">3. 调试应用程序</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ti-xds">3.1 使用 TI XDS 工具</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">3.1.1 闪存加载程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nonmain-memory">3.1.2 擦除和更新NONMAIN Memory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">3.2 断点类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">3.3 连接到一个不正确的设备</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#faq">4. 已知问题和常见问题解答(FAQ)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Code Composer Studio Theia IDE for MSPM0 MCUs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>适用于 MSPM0 MCU 的 Code Composer Studio Theia IDE 版本1.0+</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-mcu-code-composer-studio-theia-ide-1-0">
+<h1>适用于 MSPM0 MCU 的 Code Composer Studio Theia IDE 版本1.0+<a class="headerlink" href="#mspm0-mcu-code-composer-studio-theia-ide-1-0" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>目录<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#id2">请先阅读</a></p></li>
+<li><p><a class="reference external" href="#id6">软件安装</a></p></li>
+<li><p><a class="reference external" href="#id7">开发流程</a></p></li>
+<li><p><a class="reference external" href="#id14">调试应用程序</a></p></li>
+<li><p><a class="reference external" href="#faq">已知问题和常见问题解答(FAQ)</a></p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>请先阅读<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3>如何使用本指南<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>本指南仅介绍了软件开发环境的设置和基本操作、并未全面描述 MSPM0微控制器或完整的开发软件和硬件系统。 有关这些项目的详细信息、请参阅德州仪器(TI)的相关文档中列出的相应 TI 和 CCS 文档 <a class="reference external" href="#ti">德州仪器(TI)的相关文档</a>。</p>
+</section>
+<section id="id4">
+<h3>有关注意事项的信息<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>本指南可能包含注意事项。</p>
+<p><strong>小心</strong> - 这是一个警告声明的例子。 警告声明描述了可能损坏软件或设备的情况。</p>
+<p>仔细阅读每条注意事项。</p>
+</section>
+<section id="ti">
+<h3>德州仪器(TI)的相关文档<a class="headerlink" href="#ti" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0开发工具文档：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/lit/sprui94">XDS110调试器用户指南</a></p></li>
+</ul>
+<p>MSPM0器件文档：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau869">LP-MSPM0L1306用户指南</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau847">MSPM0 L 系列技术参考手册</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau873">LP-MSPM0G3506用户指南</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau846">MSPM0 G 系列技术参考手册</a></p></li>
+</ul>
+<p>Code Composer 文档：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/CCSTUDIO#tech-docs">Code Composer Studio 文档</a></p></li>
+<li><p><a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_theia/index.html">Code Composer Studio Theia 用户指南</a></p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>如果您需要帮助<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 MCU 的 <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/">E2E 社区支持论坛</a> 可与同行工程师、 TI 工程师和其他专家进行互动。 更多器件的额外信息可在 <a class="reference external" href="https://www.ti.com/mspm0">MSPM0网站</a> 上找到。</p>
+</section>
+</section>
+<section id="id6">
+<h2>1. 软件安装<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>Code Composer Studio Theia IDE 可从 <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">TI.com</a> 获取。</p>
+<p>MSPM0微控制器和 MSPM0 SDK 需要 CCS Theia 1.0.1或更高版本。</p>
+<p><strong>注</strong> 此版本包括对 MSPM0量产型号的支持，不支持早期型号。</p>
+<p>请参阅 <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a> 文档、查找适合您的 IDE 版本的 SDK。</p>
+</section>
+<section id="id7">
+<h2>2. 开发流程<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>本章介绍了如何使用 CCS Theia 来运行演示程序和开发应用软件。</p>
+<section id="id8">
+<h3>2.1 概览<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>Code Composer Studio (CCS) Theia 是一种集成开发环境(IDE)，支持 TI 的微控制器和嵌入式处理器产品系列。 Code Composer Studio Theia 包含一整套用于开发和调试嵌入式应用的工具。</p>
+<p>本指南仅介绍了使用 MSPM0的 Code Composer Studio Theia IDE 的一些特性和功能。</p>
+<p>有关 CCS Theia 的更多文档、请访问 <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO#tech-docs">TI.com</a> 或 IDE 中包含的”Help”菜单。</p>
+</section>
+<section id="id9">
+<h3>2.2 使用项目向导创建新项目<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<p>CCS Theia 包括一个新的项目向导、该向导提供了一种创建新项目的直观且简单的方法。</p>
+<ol class="arabic simple">
+<li><p>选择 <strong>File</strong> → <strong>Create New Project</strong></p></li>
+<li><p>选择硬件评估板或器件并根据需要使用过滤器</p></li>
+<li><p>选择一个项目，然后单击 <strong>Create</strong> <img alt="image0" src="../_images/ccstheia_projectwizard.png" /></p></li>
+</ol>
+<p>请注意、CCS Theia 将自动检测需要的安装包、包括 SDK 和编译器、 如果需要、它将请求安装。</p>
+</section>
+<section id="ccs-theia-ti-resource-explorer">
+<h3>2.3 在 CCS Theia 中使用 TI Resource Explorer<a class="headerlink" href="#ccs-theia-ti-resource-explorer" title="Permalink to this heading">¶</a></h3>
+<p>TI Resource Explorer (TI-Rex)可帮助您查找适用于所选平台的所有最新示例、库、演示应用、数据手册等。</p>
+<p>此工具可从 <a class="reference external" href="https://dev.ti.com/tirex">https://dev.ti.com/tirex</a> 获取、但它也集成到 CCS Theia 中、从而实现更集成的用户体验。</p>
+<ol class="arabic">
+<li><p>选择 <strong>Help</strong> → <strong>Getting Started</strong>。 请注意、CCS Theia 可以自动检测您的 LaunchPad、以便于导航。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_gettingstarted.png" />
+</figure>
+</li>
+<li><p>单击 <strong>Browse software and examples with Resource Explorer</strong> 浏览软件和示例</p></li>
+<li><p>导航面板可用于查看不同的 TI 产品、文档、软件等</p></li>
+<li><p>TI Resource Explorer 还允许通过单击产品旁边的并选择 <strong>Manage Versions</strong> 来选择特定的 SDK 版本。 请注意、已安装的产品也会显示绿色复选标记。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_tirex_sdk.png" />
+</figure>
+</li>
+<li><p>使用集成的搜索功能按器件(即 MSPM0L)、中间件(即 DriverLib)或解决方案(即 LIN)进行筛选。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_tirex.png" />
+</figure>
+</li>
+<li><p>选择一个示例将显示一个自述文件，其中包含该示例的说明、外设和引脚用法以及如何运行该示例。 <img alt="image1" src="../_images/ccstheia_tirex_project.png" /></p></li>
+<li><p>为示例选择一个 CCS 工程、然后点击 Import 将其添加到您的工作区中。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_tirex_projectimport.png" />
+</figure>
+</li>
+</ol>
+<p>请注意、CCS Theia 将自动检测需要的安装包、包括 SDK 和编译器、 如果需要、它将请求安装。</p>
+</section>
+<section id="sysconfig-ccs-theia">
+<h3>2.4 将 SysConfig 与 CCS Theia 结合使用<a class="headerlink" href="#sysconfig-ccs-theia" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 SDK 中的一些示例支持 SysConfig 。 <a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> 是一个直观而全面的图形实用程序集合、用于配置引脚、外设、子系统等 组件。 SysConfig 可帮助您直观地管理、暴露和解决冲突、以便您有更多时间去处理 创建差异化应用程序。</p>
+<p>SysConfig 工具可作为独立安装程序提供、也可在<a class="reference external" href="https://dev.ti.com/sysconfig">dev.ti.com</a> 的云上使用、或是集成到 CCS Theia 中以获得更好、更轻松的体验。</p>
+<p>在 CCS Theia 中导入 MSPM0项目后、只需双击 <code class="docutils literal notranslate"><span class="pre">.syscfg</span></code> 文件即可打开 SysConfig。 <img alt="image2" src="../_images/ccstheia_sysconfig.png" /></p>
+<p>有关将 SysConfig 与 MSPM0一起使用的更多信息、请访问 <a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">Using SysConfig with MSPM0</a> 指南。</p>
+</section>
+<section id="mspm0">
+<h3>2.5 在 MSPM0衍生产品之间迁移<a class="headerlink" href="#mspm0" title="Permalink to this heading">¶</a></h3>
+<p>SysConfig 允许在 MSPM0衍生产品之间更轻松地进行移植；但需要进行一些手动修改。 以下步骤适用于 TI Arm Clang、但类似的步骤适用于 Arm GCC。</p>
+<ol class="arabic simple">
+<li><p>在 SysConfig 中，启用设备视图并单击 <strong>SWITCH</strong></p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_migrate1.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>为新的 MSPM0设备选择相应的选项，然后单击 <strong>CONFIRM</strong>。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_migrate2.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>请注意、SysConfig 将突出显示与移植发生的任何冲突、例如不可用的引脚和外设。 根据需要修复任何冲突。</p></li>
+<li><p>CCS Theia 将自动完成移植并添加相应的.ccxml 文件。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_migrate3.png" />
+</figure>
+<ol class="arabic simple" start="5">
+<li><p>在项目属性中，选择 <strong>Build</strong> → <strong>Arm Compiler</strong> → <strong>Predefined Symbols</strong>。 选择器件定义并更新它。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_migrate4.png" />
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>更新链接器和启动文件。 MSPM0 SDK 包含所有 MSPM0衍生产品的默认文件、分别位于 <code class="docutils literal notranslate"><span class="pre">&lt;sdk&gt;\source\ti\devices\msp\m0p\linker_files\ticlang</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&lt;sdk&gt;\source\ti\devices\msp\m0p\startup_system_files\ticlang</span></code>。</p></li>
+</ol>
+<p>请注意、应从工程中排除或删除以前的文件。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_migrate5.png" />
+</figure>
+<ol class="arabic simple" start="7">
+<li><p>解决任何其他问题，例如不兼容的库和源代码。</p></li>
+</ol>
+<p>注意：不使用 SysConfig 时、步骤1-3不适用、需要手动完成步骤4。</p>
+</section>
+<section id="id10">
+<h3>2.6 堆栈管理和链接器文件<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<p>保留的堆栈大小可使用项目设置或在链接器文件中进行配置。</p>
+<section id="ti-arm-clang">
+<h4>2.6.1 使用 TI Arm Clang 编译器配置堆栈<a class="headerlink" href="#ti-arm-clang" title="Permalink to this heading">¶</a></h4>
+<p>右键单击某个项目，然后选择 <strong>Properties</strong>。 选择 <strong>Build Tools</strong> → <strong>Arm Linker</strong> → <strong>Basic Options</strong> 并相应地设置堆栈。 <img alt="image3" src="../_images/ccstheia_stack.png" /></p>
+<p>也可以通过添加或编辑 <code class="docutils literal notranslate"><span class="pre">--stack_size=xx</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--heap_size=xx</span></code> 直接在链接器.cmd 文件上修改堆栈。</p>
+</section>
+<section id="arm-gcc">
+<h4>2.6.2 使用 Arm GCC 配置堆栈<a class="headerlink" href="#arm-gcc" title="Permalink to this heading">¶</a></h4>
+<p>通过添加或编辑 <code class="docutils literal notranslate"><span class="pre">_Min_Heap_Size</span> <span class="pre">=</span> <span class="pre">xx</span></code> 或 <code class="docutils literal notranslate"><span class="pre">_Min_Stack_Size</span> <span class="pre">=</span> <span class="pre">xx</span></code>、可以直接在链接器.lds 文件上修改堆栈。</p>
+</section>
+</section>
+<section id="ti-txt">
+<h3>2.7 如何生成 TI .TXT (和其他格式)文件<a class="headerlink" href="#ti-txt" title="Permalink to this heading">¶</a></h3>
+<p>CCS 包含可用于以多个方式生成输出对象的实用程序 与 [MSP-GANG]等编程工具配合使用的格式(<a class="reference external" href="https://www.ti.com/tool/MSP-GANG">https://www.ti.com/tool/MSP-GANG</a>) 和 <a class="reference external" href="https://www.ti.com/tool/UNIFLASH">UniFlash</a>。</p>
+<section id="arm-hex">
+<h4>2.7.1 使用 Arm Hex 实用程序<a class="headerlink" href="#arm-hex" title="Permalink to this heading">¶</a></h4>
+<p>以下步骤说明了如何使用十六进制启用 TI TXT 格式 集成到 CCS 中的实用程序。</p>
+<p>右键单击某个项目，然后选择 <strong>Properties</strong>。 选择 <strong>Build Tools</strong> → <strong>Arm Hex Utility</strong> → <strong>Output Format Options</strong>。 然后选择 <strong>TI-TXT hex (–ti_txt)</strong> 选项。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_outputtxt.png" />
+</figure>
+<p>同样的过程可用于生成其他格式；但是、某些格式可能需要其他参数。</p>
+<p>一种常见的是英特尔十六进制格式，除选择输出格式 <strong>Intel hex (–intel, -i)</strong> 外，还需要使用该格式 将存储器和 ROM 宽度指定为参数。</p>
+<p>当对 MSPM0使用 Intel hex 时，请在 <strong>Build Tools</strong> → <strong>Arm Hex Utility</strong> → <strong>General Options</strong> 中选择8的内存和 ROM 宽度。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_outputhex.png" />
+</figure>
+<p>如需更多信息、请访问 <a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/ccs_hex-utility.html">Hex utility in CCS</a>。</p>
+</section>
+<section id="objcopy">
+<h4>2.7.2 使用 objcopy 实用程序<a class="headerlink" href="#objcopy" title="Permalink to this heading">¶</a></h4>
+<p>CCS 包括 Arm objcopy 实用程序、这是一个基于 LLVM 的工具、可用于 生成多种格式的二进制文件。</p>
+<p>以下步骤说明了如何使用 objcopy 启用 Intel Hex 格式。</p>
+<ol class="arabic simple">
+<li><p>右键单击一个项目，然后选择<strong>属性</strong>。 选择<strong>构建</strong>→** Arm objcopy 实用程序<strong>并选择</strong>启用 Arm objcopy 实用程序**。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_objcopy1.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>使用.hex 扩展名指定输出文件名。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_objcopy2.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>指定<code class="docutils literal notranslate"><span class="pre">ihex</span></code>输出格式。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_objcopy3.png" />
+</figure>
+<p>有关 objcopy 的更多信息、请访问此 <a class="reference external" href="https://llvm.org/docs/CommandGuide/llvm-objcopy.html">objcopy guide</a>。</p>
+</section>
+</section>
+<section id="id11">
+<h3>2.8 覆盖预编译库<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<p>项目可能包括预编译的库、可简化开发和编译时间；但是、 它们不允许开发人员轻易修改源代码。</p>
+<p>此类库的一个示例是 MSPM0 DriverLib、如下所示。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_lib.png" />
+</figure>
+<p>覆盖库的一个选项是只需将任何或所有源文件添加到工程中。 MSPM0 SDK 包括 <code class="docutils literal notranslate"><span class="pre">empty_driverlib_src</span></code> 示例、其中包括所有 DriverLib 源 默认情况下：</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_lib_src.png" />
+</figure>
+</section>
+<section id="sram">
+<h3>2.9 从 SRAM 运行<a class="headerlink" href="#sram" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0-SDK 中包含的示例通常包含链接器文件 创建可从内部闪存运行的应用程序，这些应用程序 在器件复位或下电上电后执行。 但是，在某些情况下、也可以从 SRAM 下载和执行代码。</p>
+<p>本节介绍了如何在 SRAM 上执行完整应用程序的步骤。</p>
+<section id="id12">
+<h4>2.9.1 从 SRAM 运行完整的应用程序<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h4>
+<p>以下步骤显示了如何修改基本 GPIO_TOGGLE_OUTPUT 示例从而支持在 LP_MSPM0L1306上从 SRAM 运行程序。 类似的步骤适用于其他示例和器件。</p>
+<ol class="arabic simple">
+<li><p>打开链接器.cmd 文件并将其修改为使用 SRAM、如下所示：</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_runFromRAM_1.png" />
+</figure>
+<ol class="arabic" start="2">
+<li><p>禁用 CCS 中默认执行的系统复位。</p>
+<p>CCS 包含在器件上执行某些函数的.gel 文件。 这些 文件包含在 CCS 安装文件夹中、位于 <code class="docutils literal notranslate"><span class="pre">&lt;ccs&gt;\ccs_base\emulation\gel&gt;</span></code>。 下面的屏幕截图 显示了 MSPM0L1306所需的修改：</p>
+</li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_runFromRAM_2.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>下载代码并注意该器件将从 SRAM 执行。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_runFromRAM_3.png" />
+</figure>
+</section>
+<section id="id13">
+<h4>2.9.2 从 SRAM 运行函数<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h4>
+<p>以下步骤显示了如何声明从 SRAM 执行的函数。</p>
+<ol class="arabic simple">
+<li><p>将函数移动到<code class="docutils literal notranslate"><span class="pre">.TI.ramfunc</span></code>段。 这可以通过实现 使用属性声明函数 <code class="docutils literal notranslate"><span class="pre">__attribute__((section(&quot;.TI.ramfunc&quot;)))__attribute__((noinline))</span></code>如下所示：</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_runFunctionFromRAM_1.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>链接器文件应包含<code class="docutils literal notranslate"><span class="pre">.TI.ramfunc</span></code>的位置。 请注意链接器 MSPM0-SDK 中包含的文件已包含此位置、但仅包含此位置 <code class="docutils literal notranslate"><span class="pre">在</span></code>.TI.ramfunc 中放置了任何函数、则适用。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_runFunctionFromRAM_2.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>下载代码并注意设备将从 SRAM 执行该功能。</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_runFunctionFromRAM_3.png" />
+</figure>
+</section>
+</section>
+</section>
+<section id="id14">
+<h2>3. 调试应用程序<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h2>
+<p>以下调试器已通过 Code Composer Studio Theria IDE 成功测试。</p>
+<ul class="simple">
+<li><p>TI XDS 工具、包括集成到 MSPM0 LaunchPad 中的 XDS-110。</p></li>
+</ul>
+<section id="ti-xds">
+<h3>3.1 使用 TI XDS 工具<a class="headerlink" href="#ti-xds" title="Permalink to this heading">¶</a></h3>
+<p>TI 为基于 Arm 的器件提供了一系列调试器、包括与 MSPM0 LaunchPad 集成的 XDS-110。</p>
+<p>要使用 TI-XDS 调试器，请打开项目选项，单击 <strong>General</strong> → <strong>Connection</strong> 然后选择 <strong>Texas Instruments XDS110 USB Debug Probe</strong>。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_debug_connection_xds.png" />
+</figure>
+<section id="id15">
+<h4>3.1.1 闪存加载程序<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h4>
+<p>闪存加载程序设置允许在对器件进行写入和擦除时配置一些设置。</p>
+<p>要查看和修改这些设置，请打开项目属性并选择 <strong>Debug</strong> → <strong>Category:MSPM0 Flash Settings</strong>。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_flash_settings.png" />
+</figure>
+<p>闪存加载程序具有以下选项：</p>
+<ul class="simple">
+<li><p><strong>Reset Configuration</strong>：允许在写入前后执行软或硬复位。</p></li>
+<li><p><strong>Program Configuration</strong>：在写入时启用/禁用 CRC 校验。 请注意、无论此设置如何、在写入/擦除非 MAIN 时都会执行非 MAIN 的 CRC 验证。</p></li>
+<li><p><strong>Erase Configuration</strong>: 配置当擦除flash的时候要执行哪些操作. 可选项如下:</p>
+<ul>
+<li><p><strong>Erase MAIN memory only</strong>: 只擦除MAIN memory.如果尝试写NONMAIN会产生一个错误信息。</p></li>
+<li><p><strong>Erase MAIN and NONMAIN memory</strong>: MAIN 和 NONMAIN memory 都会被擦除， 想了解有关NONMAIN的更多信息请参考 <a class="reference external" href="#erasing-and-updating-nonmain-memory">Erasing and Updating NONMAIN Memory</a>。</p></li>
+<li><p><strong>Erase MAIN and NONMAIN necessary sectors only</strong>: 只擦除将要被更新的扇区，包含MAIN和NONMAIN区域。关于flash扇区的大小请参考具体器件的数据手册, 想了解有关NONMAIN的更多信息请参考 <a class="reference external" href="#erasing-and-updating-nonmain-memory">Erasing and Updating NONMAIN Memory</a>.</p></li>
+<li><p><strong>Erase MAIN memory sectors by range</strong>: 只擦除 <strong>Sector Erase Start Address</strong> 和 <strong>Sector Erase End Address</strong> 之间的扇区。关于Memory扇区大小和地址信息请参考相关数据手册。 比如说，在每个扇区为1KB大小的 MSPM0 器件上设置起始地址 0x0000_0100 到结束地址0x0000_0400 的区域，将会擦除扇区0x0000_0000-0x0000_03FF 和 0x0000_0400-0x0000_07FF。 请注意，只有MAIN memory 会被擦除，如果试图写NONMAIN会产生一个错误信息。</p></li>
+<li><p><strong>Do not erase Flash memory</strong>: 不擦除Flash。如果不擦除就尝试写NONMAIN会产生一个错误信息。</p></li>
+</ul>
+</li>
+<li><p><strong>Advanced Configuration</strong>：禁用验证设备 ID。 用于调试目的、不建议禁用。</p></li>
+<li><p><strong>Enable Verbose Output</strong>：在运行 Flash 加载程序时显示调试信息。</p></li>
+</ul>
+</section>
+<section id="nonmain-memory">
+<h4>3.1.2 擦除和更新NONMAIN Memory<a class="headerlink" href="#nonmain-memory" title="Permalink to this heading">¶</a></h4>
+<p><strong>注意</strong>：擦除和写入NONMAIN 时应格外小心。 如果操作不正确，器件将被 <strong>锁定在永久不可恢复的状态</strong>。</p>
+<p>NONMAIN 是flash memory里的一块特定区域，用来存储器件启动后的操作相关配置数据。<strong>NONMAIN 不应该被用作他用</strong>. 更多信息请参考器件的技术参考手册。</p>
+<p>当需要配置NONMAIN时，TI 建议使用SysConfig中的NONMAIN configurator.更多信息请参考 <a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">Using SysConfig with MSPM0</a>。</p>
+<p>如<a class="reference external" href="#flash-loader">Flash Loader</a> 章节中所描述, NONMAIN 是通过选择擦除配置中的 <strong>Erase MAIN and NON-MAIN memory</strong> 或者 <strong>Erase MAIN and NONMAIN necessary sectors only</strong> 进行擦除。</p>
+<p>请注意如果其中一个选项使能了， Flash Loader将会擦除NONMAIN; 并且当写入完成，器件会运行一个CRC校验，如果发现NONMAIN 内容校验失败，将会尝试恢复成默认值。</p>
+</section>
+</section>
+<section id="id16">
+<h3>3.2 断点类型<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h3>
+<p>CCS Theia 调试器使用有限数量的片上调试资源(特别是4个硬件断点和2个硬件观察点)。 MSPM0不支持闪存中的软件断点。 这意味着在 CCS Theia 内最多可以设置4个硬件断点。</p>
+<p>CCS Theia 可以使用断点在 main 停止或在 exit 停止器件。 通过选择 <strong>Debug</strong> → <strong>Category:Program/Memory Load Options</strong>，可以在项目属性中更新这些设置。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_breakpoint.png" />
+</figure>
+<p>如果设置了最大断点数、将显示以下警告。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccstheia_debug_breakpoint.png" />
+</figure>
+</section>
+<section id="id17">
+<h3>3.3 连接到一个不正确的设备<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
+<p>如果连接了不受支持的设备，CCS 将显示警告，如下所示：</p>
+<p><img alt="image4" src="../_images/ccstheia_connectionerror1.png" /> <img alt="image5" src="../_images/ccstheia_connectionerror2.png" /></p>
+<p>不建议对不正确的设备进行写入，这可能会导致意外和不可恢复。</p>
+</section>
+</section>
+<section id="faq">
+<h2>4. 已知问题和常见问题解答(FAQ)<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h2>
+<p>请参阅 SDK 内部的 <a class="reference external" href="../../../../../../known_issues_FAQ.html">Known Issues and FAQ</a>。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Code Composer Studio Theia IDE for MSPM0 MCUs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

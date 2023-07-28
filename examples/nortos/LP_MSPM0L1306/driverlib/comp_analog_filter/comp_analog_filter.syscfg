@@ -1,0 +1,33 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.InitPriority8 = "/ti/driverlib/VREF";
+
+COMP1.$name                          = "COMP_0";
+COMP1.channelEnable                  = ["NEG","POS"];
+COMP1.hysteresis                     = "DL_COMP_HYSTERESIS_20";
+COMP1.selectOutputFilter             = "DL_COMP_FILTER_DELAY_1200";
+COMP1.enableOutputFilter             = true;
+COMP1.outputEnable                   = true;
+COMP1.peripheral.$assign             = "COMP0";
+COMP1.peripheral.compPinPos0.$assign = "PA26";
+COMP1.peripheral.compPinNeg0.$assign = "PA27";
+COMP1.peripheral.compPinOut.$assign  = "PA11";
+
+SYSCTL.clockTreeEn = true;

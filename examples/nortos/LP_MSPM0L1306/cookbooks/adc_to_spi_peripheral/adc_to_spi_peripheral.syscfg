@@ -1,0 +1,48 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SPI    = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1   = SPI.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                      = "ADC12_0";
+ADC121.sampClkSrc                 = "DL_ADC12_CLOCK_ULPCLK";
+ADC121.sampleTime0                = "125 us";
+ADC121.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_2";
+ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.sampClkDiv                 = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin2.$assign = "PA25";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO1.$name                         = "GPIO_LEDS";
+GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+SPI1.$name                             = "SPI_0";
+SPI1.mode                              = "PERIPHERAL";
+SPI1.dataSize                          = 16;
+SPI1.rxFifoThreshold                   = "DL_SPI_RX_FIFO_LEVEL_ONE_FRAME";
+SPI1.txFifoThreshold                   = "DL_SPI_TX_FIFO_LEVEL_3_4_EMPTY";
+SPI1.enabledInterrupts                 = ["RX"];
+SPI1.peripheral.$assign                = "SPI0";
+SPI1.peripheral.sclkPin.$assign        = "PA6";
+SPI1.peripheral.mosiPin.$assign        = "PA5";
+SPI1.peripheral.misoPin.$assign        = "PA4";
+SPI1.peripheral.cs0Pin.$assign         = "PA8";
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);

@@ -1,0 +1,28 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board = scripting.addModule("/ti/driverlib/Board");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const MATHACL = scripting.addModule("/ti/driverlib/MATHACL");
+
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name              = "ADC12_0";
+ADC121.adcMem0chansel     = "DL_ADC12_INPUT_CHAN_11";
+ADC121.sampClkDiv         = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.repeatMode         = true;
+ADC121.sampleTime0        = "50 us";
+ADC121.enabledInterrupts  = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.adcMem0trig        = "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT";
+ADC121.peripheral.$assign = "ADC0";

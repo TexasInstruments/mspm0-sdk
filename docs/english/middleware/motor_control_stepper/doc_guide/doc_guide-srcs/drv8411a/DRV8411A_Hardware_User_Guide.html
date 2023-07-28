@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRV8411A Hardware User Guide &mdash; Stepper Motor Control User Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DRV8889-Q1 GUI User Guide" href="../drv8889-q1/DRV8889-Q1_GUI_User_Guide.html" />
+    <link rel="prev" title="DRV8411A GUI User Guide" href="DRV8411A_GUI_User_Guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Stepper Motor Control User Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Stepper_Motor_Control_Overview.html">Stepper Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DRV8411A_GUI_User_Guide.html">DRV8411A GUI User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8411A Hardware User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-required">1. Hardware Required</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-setup">2. Hardware Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8889-q1/DRV8889-Q1_GUI_User_Guide.html">DRV8889-Q1 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8889-q1/DRV8889-Q1_Hardware_User_Guide.html">DRV8889-Q1 Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Stepper Motor Control User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DRV8411A Hardware User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drv8411a-hardware-user-guide">
+<h1>DRV8411A Hardware User Guide<a class="headerlink" href="#drv8411a-hardware-user-guide" title="Permalink to this heading">¶</a></h1>
+<section id="hardware-required">
+<h2>1. Hardware Required<a class="headerlink" href="#hardware-required" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0L1306">LP-MSPM0L1306</a> - MSPM0L1306 Launchpad</p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/DRV8411AEVM">DRV8411AEVM</a> - DRV8411A evaluation module for dual H-bridge motor driver with current regulation</p></li>
+<li><p>DC Power supply that supports the required voltage and current</p></li>
+<li><p>Stepper Motor</p></li>
+<li><p>Ten jumper wires (to connect LP to EVM)</p></li>
+<li><p>Micro-USB cable</p></li>
+</ul>
+</section>
+<section id="hardware-setup">
+<h2>2. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Connect jumper J9 and J10 in the LP-MSPM0L1306 as shown below.</p></li>
+</ol>
+<figure class="align-default" id="id1">
+<img alt="J9 and J10 header connected to 3V side in LP-MSPM0L1306" src="../../_images/LPMSPM0L1306-J9_J10.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">J9 and J10 header connected to 3V side in LP-MSPM0L1306</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Remove all the jumpers on the Signal header J9 in the DRV8411AEVM as shown below.</p></li>
+</ol>
+<figure class="align-default" id="id2">
+<img alt="J9 header in DRV8411AEVM" src="../../_images/DRV8411AEVM-J9_signal_header.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">J9 header in DRV8411AEVM</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Connect the LP-MSPM0L1306 to the DRV8411AEVM using the jumper wires as shown in the table below. Refer to the schematic connector pinout for the locations of the DRV8411AEVM signals. The jumper wires should connect to the headers on the right side of the jumper J9 to connect to the DRV8411A. Please do see the connection image shown below.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Connection</p></th>
+<th class="head"><p>MSPM0L LP</p></th>
+<th class="head"><p>DRV8411AEVM</p></th>
+<th class="head"><p>Jumper Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Phase A input 1</p></td>
+<td><p>PA0</p></td>
+<td><p>AIN1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Phase A input 2</p></td>
+<td><p>PA3</p></td>
+<td><p>AIN2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Phase B input 1</p></td>
+<td><p>PA1</p></td>
+<td><p>BIN1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Phase B input 2</p></td>
+<td><p>PA4</p></td>
+<td><p>BIN2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Fault input</p></td>
+<td><p>PA5</p></td>
+<td><p>nFAULT</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Current reference output</p></td>
+<td><p>PA22</p></td>
+<td><p>VREF</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Phase A current input</p></td>
+<td><p>PA27</p></td>
+<td><p>AIPROPI</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Phase B current input</p></td>
+<td><p>PA26</p></td>
+<td><p>BIPROPI</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>VDD voltage</p></td>
+<td><p>3V3</p></td>
+<td><p>VCC</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Common Ground</p></td>
+<td><p>GND</p></td>
+<td><p>GND</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li><p>Connect the A phases of the motor to AOUT1, AOUT2 and the B phases to BOUT1 and BOUT2 of the motor connector terminal block on the DRV8411AEVM. If the phases of the motor are color coded, look into the motor datasheet to find the phases.</p></li>
+<li><p>Set the power supply voltage to less than 11V and turn the power supply outputs off. Connect the positive and negative of the power supply to VM and PGND/GND of the power connector terminal block to the DRV8411AEVM. Do not turn the power on yet. See the connection below.</p></li>
+</ol>
+<figure class="align-default" id="id3">
+<img alt="Motor wires and Power supply connection in DRV8411AEVM" src="../../_images/DRV8411AEVM-motor_power_connection.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Motor wires and Power supply connection in DRV8411AEVM</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Note :</strong> The motor phase wire colours shown above are for representation it will not be same for every motor, so please refer to motor datasheet to verify the motor phase wires for your motor.</p>
+<ol class="arabic simple" start="6">
+<li><p>Connect a Micro-USB cable from the LP-MSPM0L1306 to the PC.</p></li>
+<li><p>Set the power supply to the motor voltage and with current limit of motor current limit( if motor rated current is higher than 1.5A please keep to 1.5A ). Turn on the power supply. The green VM LED on the DRV8411AEVM should turn on.</p></li>
+<li><p>Once all steps are completed you can start to run the motor with the GUI. Please refer to <a class="reference external" href="DRV8411A_GUI_User_Guide.html">GUI User Guide</a>.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="DRV8411A_GUI_User_Guide.html" class="btn btn-neutral float-left" title="DRV8411A GUI User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../drv8889-q1/DRV8889-Q1_GUI_User_Guide.html" class="btn btn-neutral float-right" title="DRV8889-Q1 GUI User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

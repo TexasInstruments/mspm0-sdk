@@ -1,0 +1,177 @@
+GUI Composer Library User's Guide
+=================================
+
+1. Introduction
+---------------
+
+GUI Composer project examples showcase a UART based data exchange between a LaunchPad and customizable GUI application running on a PC. These GUIs can be fully customized by you to display, process data and control execution of firmware. These GUIs may also be installed into Code Composer Studio to augment standard debug displays and also provide a simplified user interface for non-expert manual testers.
+
+The MSPM0 SDK includes software examples to run on your target MSP device for use with GUI Composer. Additionally, this SDK also includes pre-made GUIs that can be imported into GUI Composer and easily be used out-of-box with the provided software examples.
+
+Check out the Quick Start Guide for more information on getting started with initial setup and running a sample application.
+
+2. Architecture / General Overview
+----------------------------------
+
+The following diagram shows the relationship between the different layers in the examples.
+
+.. figure:: ./images/ug_layers.png
+   :alt: 
+
+-  **HAL**: Driver to send and receive data from GUI. Currently uses device UART.
+-  **Transport Layer Protocol**: The protocol/encoding scheme used to transfer data over the physical transport layer. There are currently two schemes supported: `JSON <https://www.json.org>`__ and `MessagePack <https://msgpack.org>`__.
+
+   -  **JSON:** Data is sent and received using JSON formatted strings
+   -  **MessagePack:** Data is sent and received using MessagePack protocol
+
+-  **GUIComm APIs**: Abstraction layer provided that is independent of the transport layer. The application can call these APIs without knowledge of the protocol underneath.
+-  **Application**: The user application. The provided examples demonstrate how the application layer is independent of the transport layer and HAL layer beneath it.
+
+3. Folder Structure
+-------------------
+
+From the root directory of the MSPM0 SDK, the following folders are available:
+
+-  **docs/middleware/gui\_composer** - Contains all documentation related to the MSP GUI Composer package
+-  **examples/nortos//gui\_composer** - Contains all of the code examples, and application and project files
+-  **source/ti/gui\_composer** - Contains generic/reusable source code that can be imported into end applications
+
+4. Understanding the Examples
+-----------------------------
+
+4.1 Receiving Data on the MSP from the GUI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+GUI Commands are received in a structure of type tGUI\_RxCmd. This is defined in the *main.c* file.
+
+.. figure:: ./images/ug_guicommandstruct.png
+   :alt: 
+
+Each entry contains the GUI command and its respective callback function.
+
+In the example above, *bEnable* is the command to receive from the GUI, and in the GUI itself, *bEnable* is the variable name that is bound to a widget. *GUICallback\_boolEnable* is its respective callback function. These callbacks are defined in the application callbacks file *callbacks\_.c*. The *GUI\_RXCommands[]* struct can be easily modified to add or remove commands as needed for the GUI.
+
+4.2 Send Data from MSP to the GUI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The APIs listed in *GUIComm.h* can be used in your application to easily send data from your MSP device to the GUI, independent of the transport layer protocol underneath. The GUIComm APIs handle encoding the data in the protocol chosen, and also send the data to the GUI.
+
+For example, the following function would be called in your application:
+
+``GUIComm_sendBool("bEnable", STR_LEN_SEVEN, bEnableSwitch);``
+
+This API sends the value in the boolean variable *bEnableSwitch* to update the GUI widget that is bound to the token *bEnable*. *STR\_LEN\_SEVEN* is simply the length of the token sent.
+
+The image below shows an example of a button widget with properties displaying that it is bound to the token *bEnable*.
+
+.. figure:: ./images/ug_binding.png
+   :alt: 
+
+4.2.1 Supported Types
+^^^^^^^^^^^^^^^^^^^^^
+
+The GUIComm functions supports the following data types:
+
+-  ints
+-  uints
+-  bools
+-  floats/doubles
+
+   -  mpack supports floats/doubles natively, or through use of the QMath/IQMath library
+   -  json can send floats/doubles through the use of the QMath/IQMath library only
+
+Additionally, data sizes of 8, 16, 32, and 64 bits are supported.
+
+5. MessagePack Optimizations
+----------------------------
+
+The mpack library allows for configurations depending on your application needs. These configurations can be found in ``mpack.h`` in your application.
+
+Enabling the ``MPACK_OPTIMIZE_FOR_SIZE`` configuration turns on optimizations in the mpack decoder to reduce the code size of the mpack library at the cost of functionality. When the optimizations are enabled, the user can reduce code size by configuring the following:
+
+-  Decoder data sizes (data sizes the decoder can receive)
+-  Decoder data types (data types allowed for use by the decoder)
+
+By reducing the allowed number of data sizes and data types, the size of the application can be reduced.
+
+**By default,** ``MPACK_OPTIMIZE_FOR_SIZE`` **is disabled.** When ``MPACK_OPTIMIZE_FOR_SIZE`` is disabled, this will enable all data sizes (8, 16, 32, and 64 bits) and all supported data types (uints, ints, bools, and arrays).
+
+5.1 Configuring decoder data sizes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The user can configure the group of ``MPACK_DECODE_SIZE`` macros to enable which data sizes that the decoder can receive. For example, if only ``MPACK_DECODE_SIZE_16_BITS`` is enabled, then all received incoming data from the GUI must be 16-bits. It will not recognize data sent as 8-bits, 32-bits, or 64-bits. Additionally, more than one of the ``MPACK_DECODE_SIZE`` macro can be enabled at a time. By reducing the amount of data sizes that the decoder will expect, the code size of the application can be reduced.
+
+.. figure:: ./images/ug_mpackdecodesize.png
+   :alt: 
+
+GUI Composer by default will send data in the smallest data size, so **the GUI must be modified to send all data as a specific data size**. The GUI can be easily modified to make this change and is discussed in more detail in the **GUI Modification** section.
+
+These macros only affects uints and ints, it does not affect other data types such as maps, bools, strings, etc.
+
+When ``MPACK_OPTIMIZE_FOR_SIZE`` is enabled, by default then ``MPACK_DECODE_SIZE_16_BITS`` is enabled.
+
+5.2 Configuring allowed data types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The user can configure the group of macros to enable which data types will be recognized by the decoder. For example, if only ``MPACK_UINTS`` is enabled, then the decoder will only recognize uint data from the GUI. If int or bool data is received, then this will result in an error.
+
+When ``MPACK_OPTIMIZE_FOR_SIZE`` is enabled, by default the application will allow uints, ints, and bools.
+
+.. figure:: ./images/ug_mpackdatatype.png
+   :alt: 
+
+5.3 GUI Modification
+~~~~~~~~~~~~~~~~~~~~
+
+As previously discussed, the mpack library can be optimized to configure the mpack decoder to only allow specific data sizes. For this to happen, a change must be made in the GUI so all outgoing uint and int data from the GUI will be sent as a specific data size.
+
+To make this change, a new file, **main.js.** with the necessary code changes must be added to the GUI. This file and the necessary code is provided for you in the pre-made GUI **MSPM0\_SimpleGUI\_mpack\_optimized**.
+
+.. figure:: ./images/ug_mpack_mainjs.png
+   :alt: 
+
+This modification sends all data from the GUI to the device as 16-bit uint/ints. In doing so, code size on the device can be reduced because the decoder then only has to expect 16-bit data. This can be done in the application by enabling ``MPACK_DECODE_SIZE_16_BITS`` in mpack.h in the application- this tells the MessagePack decoder to only expect and decode 16-bit data. To send other data sizes, modify ``encodeIntegerBitsize`` in the main.js file accordingly.
+
+6. Benchmarks
+-------------
+
+6.1 Code Size
+~~~~~~~~~~~~~
+
+The table below shows the code sizes for some MSPM0 devices for the **gc\_simple\_json** examples and the **gc\_simple\_mpack** examples. The purpose of this table is to compare the differences that the transport layer protocol has on the overall code sizes, specifically the differences between JSON, MessagePack (not optimized), and MessagePack optimized for 16-bit decodes. The code examples were compiled using TI Clang at optimization level -02.
+
++------------------+--------------------+-------------------------------------------+---------------------------------------------------------+
+|                  | gc\_simple\_json   | gc\_simple\_mpack (MPack not optimized)   | gc\_simple\_mpack (MPack optimized for 16-bit decode)   |
++==================+====================+===========================================+=========================================================+
+| LP\_MSPM0G3507   | 6.73kB             | 4.02kB                                    | 3.68kB                                                  |
++------------------+--------------------+-------------------------------------------+---------------------------------------------------------+
+| LP\_MSPM0L1306   | 6.73kB             | 3.88kB                                    | 3.54kB                                                  |
++------------------+--------------------+-------------------------------------------+---------------------------------------------------------+
+
+6.2 Message Size
+~~~~~~~~~~~~~~~~
+
+Both JSON and MessagePack encode data for data transfer. The table below compares the encoded message sizes for different data types and data sizes for each protocol.
+
++-----------------------+-----------------------------+------------------------------+
+| Data to Encode        | JSON Encoded Message Size   | MPack Encoded Message Size   |
++=======================+=============================+==============================+
+| 4294967295 (uint32)   | 10 bytes                    | 5 bytes                      |
++-----------------------+-----------------------------+------------------------------+
+| 65535 (uint16)        | 5 bytes                     | 3 bytes                      |
++-----------------------+-----------------------------+------------------------------+
+| 255 (uint8)           | 3 bytes                     | 2 bytes                      |
++-----------------------+-----------------------------+------------------------------+
+| -2147483648 (int32)   | 11 bytes                    | 5 bytes                      |
++-----------------------+-----------------------------+------------------------------+
+| -32768 (int16)        | 6 bytes                     | 3 bytes                      |
++-----------------------+-----------------------------+------------------------------+
+| -128 (int8)           | 4 bytes                     | 2 bytes                      |
++-----------------------+-----------------------------+------------------------------+
+| true (boolean)        | 4 bytes                     | 1 byte                       |
++-----------------------+-----------------------------+------------------------------+
+
+7. Additional Information
+-------------------------
+
+For more information on GUI Composer, please view the `GUI Composer User's Guide <https://dev.ti.com/gc/v2/help/GC_UserGuide_v2/index.html>`__.

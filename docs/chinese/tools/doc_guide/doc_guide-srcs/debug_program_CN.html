@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debugging and Programming Tools &mdash; MSPM0 Tools Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="debug_program_xds110_CN.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="codegen_easeofuse_analogconfig_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 Tools Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ides_CN.html">IDEs and Compilers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codegen_easeofuse_CN.html">代码生成和易用性</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Debugging and Programming Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xds-110">XDS-110</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://www.ti.com/lit/sprui94">XDS110 Debug Probe User's Guide (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#msp-gang">MSP-GANG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://www.ti.com/tool/MSP-GANG">MSP-GANG</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://www.ti.com/lit/slau358">MSP-GANG User's Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#uniflash">UniFlash</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="uniflash_guide_CN.html">UniFlash Guide for MSPM0</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/v5_0/quick_start_guide/uniflash_quick_start_guide.html">UniFlash generic Quick Start Guide (external)</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/uniflash.html">UniFlash documentation (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bsl-host">BSL Host</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://www.ti.com/lit/slaae88">MSPM0 Bootloader (BSL) Host Implementation</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://www.ti.com/lit/slau887">MSPM0 Bootloader User Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dssm-unlock-gui-tool">DSSM Unlock GUI Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/DSSM_Unlock/">DSSM Unlock GUI Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#elprotronic">Elprotronic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://www.elprotronic.com/pages/ti">Elprotronic's Flash Programmers for TI (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#segger">Segger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="segger_jlink_CN.html">Using Segger programmers with MSPM0</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://www.segger.com/downloads/jlink/UM08001">J-Link/J-Trace User Guide (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pemicro">PEmicro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pemicro_CN.html">Using PEmicro interfaces with MSPM0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lauterbach">Lauterbach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://www2.lauterbach.com/pdf/microtrace_cortexm.pdf">MicroTrace for Cortex-M User's Guide (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 Tools Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Debugging and Programming Tools</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="debugging-and-programming-tools">
+<h1>Debugging and Programming Tools<a class="headerlink" href="#debugging-and-programming-tools" title="Permalink to this heading">¶</a></h1>
+<section id="xds-110">
+<h2>XDS-110<a class="headerlink" href="#xds-110" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">The Texas Instruments <a class="reference external" href="https://www.ti.com/tool/TMDSEMU110-U">XDS110</a>  is a new class of debug probe (emulator) for TI embedded processors.</div>
+<div class="line">The XDS110 replaces the XDS100 family while supporting a wider variety of standards (IEEE1149.1, IEEE1149.7, SWD) in a single pod.</div>
+<div class="line">Also, all XDS debug probes support Core and System Trace in all Arm and DSP processors that feature an Embedded Trace Buffer (ETB).</div>
+<div class="line">The Texas Instruments XDS110 connects to the target board via a TI 20-pin connector (with multiple adapters for TI 14-pin and, Arm 10-pin and Arm 20-pin) and to the host PC via USB2.0 High Speed (480Mbps).</div>
+<div class="line">It also features two additional connections: the Auxiliary 14-pin port connector that enables EnergyTrace™, a full duplex UART port and four General-Purpose I/Os, and the Expansion 30-pin connector to connect the XDS110 EnergyTrace HDR add-on.</div>
+</div>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.ti.com/lit/sprui94">XDS110 Debug Probe User's Guide (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="msp-gang">
+<h2>MSP-GANG<a class="headerlink" href="#msp-gang" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">The MSP Gang Programmer (MSP-GANG) is a device programmer supporting all MSP devices (MSPM0, MSP430, MSP432).</div>
+<div class="line">The MSP-GANG can program up to eight identical MSP Flash or FRAM devices at the same time.</div>
+<div class="line">It connects to a host PC using a standard RS-232 or USB connection and provides flexible programming options that allow the user to fully customize the process.</div>
+</div>
+<section id="id1">
+<h3>Documentation<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.ti.com/tool/MSP-GANG">MSP-GANG</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.ti.com/lit/slau358">MSP-GANG User's Guide</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="uniflash">
+<h2>UniFlash<a class="headerlink" href="#uniflash" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.ti.com/tool/UNIFLASH">UniFlash</a>  is a standalone tool used to program on-chip flash memory on TI MCUs and on-board flash memory for Sitara processors.</div>
+<div class="line">Uniflash has a GUI, command line, and scripting interface.</div>
+<div class="line">CCS Uniflash is available free of charge.</div>
+</div>
+<section id="id3">
+<h3>Documentation<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uniflash_guide_CN.html">UniFlash Guide for MSPM0</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/v5_0/quick_start_guide/uniflash_quick_start_guide.html">UniFlash generic Quick Start Guide (external)</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/uniflash.html">UniFlash documentation (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="bsl-host">
+<h2>BSL Host<a class="headerlink" href="#bsl-host" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">MSPM0 devices are shipped with a highly customizable ROM-based bootloader that supports UART and I2C communication by default.</div>
+<div class="line">The MSPM0 SDK contains two demos: one demo uses an MCU (an MSPM0) as the host to update the MSPM0 target device through UART or I2C (the projects are based on CCS), while the other demo uses a PC as the host that communicates with the backchannel UART of a XDS110 programmer</div>
+</div>
+<section id="id4">
+<h3>Documentation<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.ti.com/lit/slaae88">MSPM0 Bootloader (BSL) Host Implementation</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.ti.com/lit/slau887">MSPM0 Bootloader User Guide</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="dssm-unlock-gui-tool">
+<h2>DSSM Unlock GUI Tool<a class="headerlink" href="#dssm-unlock-gui-tool" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">The Debug SubSystem Mailbox (DSSM) enables a debug probe to pass messages to the boot ROM of an MSPM0 device through the SWD interface. This mechanism can be used to perform a device mass erase, factory reset, and/or send a password to unlock the SWD interface.</div>
+<div class="line"><br /></div>
+<div class="line">The <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/DSSM_Unlock/">DSSM Unlock GUI tool</a>  is a standalone tool used to gain debug access or recover an MSPM0 device using this interface.</div>
+<div class="line">This tool is available free of charge.</div>
+</div>
+<section id="id6">
+<h3>Documentation<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/DSSM_Unlock/">DSSM Unlock GUI Tool</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="elprotronic">
+<h2>Elprotronic<a class="headerlink" href="#elprotronic" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">Elprotronic offers multiple hardware and software programming tools supporting MSPM0 in addition to Texas Instruments’ MSP430/432, SimpleLink (CC), C2000, and TIVA-C MCUs.</div>
+<div class="line"><br /></div>
+<div class="line">Elprotronic’s solutions for MSPM0 include the MSP-GANG, FlashPro-ARM and GangPro-ARM.</div>
+</div>
+<section id="id7">
+<h3>Documentation<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.elprotronic.com/pages/ti">Elprotronic's Flash Programmers for TI (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="segger">
+<h2>Segger<a class="headerlink" href="#segger" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.segger.com/products/debug-probes/j-link/">SEGGER J-Link</a> debug probes are the most widely used line of debug probes available today.</div>
+<div class="line">They bring this experience to their support of the MSPM0 MCU portfolio.</div>
+<div class="line">With up to 3 MBytes/s download speed to RAM and record breaking flashloaders, as well as the ability to set an unlimited number of breakpoints in an MCU’s Flash memory, the J-Link debug probes optimize your debugging and flash programming experience.</div>
+<div class="line">In fact, combining the SEGGER J-Link and SimpleLink MCU provides the fastest Flash downloading option available in the industry. This means faster programming of MSPM0 MCU devices for your production line.</div>
+<div class="line"><br /></div>
+<div class="line">J-Link supports a wide range of popular Integrated Development Environments (IDEs), such as:</div>
+<div class="line">* Code Composer Studio™ (CCS) on Windows®, macOS™, and Linux®</div>
+<div class="line">* IAR Embedded Workbench for Arm® (EWARM)</div>
+<div class="line">* Keil MDK-ARM (µVision)</div>
+</div>
+<section id="id8">
+<h3>Documentation<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="segger_jlink_CN.html">Using Segger programmers with MSPM0</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.segger.com/downloads/jlink/UM08001">J-Link/J-Trace User Guide (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="pemicro">
+<h2>PEmicro<a class="headerlink" href="#pemicro" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.pemicro.com/products/product_viewDetails.cfm?product_id=15320180&amp;productTab=1">PEmicro Multilink and Multilink FX</a> debug probes offer an affordable and compact solution for TI MSPM0 development, and allow debugging and programming to be accomplished simply and efficiently.</div>
+<div class="line">Those doing rapid development will find the Multilink and Multilink FX easy to use and fully capable of fast-paced debugging and programming.</div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://www.pemicro.com/products/product_viewDetails.cfm?product_id=15320169&amp;productTab=1">PEmicro Cyclone LC and Cycle FX</a> programmers are extremely flexible tools designed for in-circuit flash programming, debugging, and testing of devices from Texas Instruments and other manufacturers.</div>
+<div class="line">These Cyclones include a 4.3” touchscreen LCD and an access panel which provides easy access to all debug headers.</div>
+<div class="line">Cyclones programmers offer multiple communications interfaces (including USB, Ethernet, and Serial), stand-alone programming functionality, high speed data transfer, a status LCD, and many other advanced capabilities.</div>
+</div>
+<section id="id9">
+<h3>Documentation<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pemicro_CN.html">Using PEmicro interfaces with MSPM0</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="lauterbach">
+<h2>Lauterbach<a class="headerlink" href="#lauterbach" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">MSPM0 is supported by all of Lauterbach’s Arm debug tools. Generally for Cortex-M controllers, the tool of choice would be the <a class="reference external" href="https://www.lauterbach.com/frames.html?microtrace_cortexm.html">µTrace for Cortex-M</a>.</div>
+<div class="line"><br /></div>
+<div class="line">µTrace for Cortex-M is a debug and trace solution for Cortex-M controllers that supports all common debug protocols (JTAG, cJTAG, and SWD) as well as tracing via 4-bit parallel trace and SWO/SWV. On-chip tracing via MTB or ETB is also supported. In case of the MSPM0 family, the MTB of the MSPM0G devices is supported for tracing.</div>
+<div class="line"><br /></div>
+<div class="line">Another tool that fits for the MSPM0 family is a <a class="reference external" href="https://www.lauterbach.com/frames.html?powerdebug_e40.html">Power Debug E40</a> with a debug cable. These modules support the common debug protocols and can be reused for other architectures.</div>
+</div>
+<section id="id10">
+<h3>Documentation<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www2.lauterbach.com/pdf/microtrace_cortexm.pdf">MicroTrace for Cortex-M User's Guide (external)</a></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="codegen_easeofuse_analogconfig_CN.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debug_program_xds110_CN.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

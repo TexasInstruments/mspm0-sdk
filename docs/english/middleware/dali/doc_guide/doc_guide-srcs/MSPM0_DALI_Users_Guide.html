@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 DALI User’s Guide &mdash; MSPM0 DALI User&#39;s Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="MSPM0 DALI User’s Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 DALI User's Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 DALI User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dali-in-the-mspm0-sdk">2. DALI in the MSPM0 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-the-uart-for-dali-with-sysconfig">3. Configuring the UART for DALI with SysConfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enable-dali-mode">Enable DALI Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dali-uart-configurations">DALI UART Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-applications-led-demo">4. Example Applications - LED Demo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-the-example-applications">Modifying the Example Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues">5. Known Issues</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 DALI User's Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 DALI User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-dali-user-s-guide">
+<h1>MSPM0 DALI User’s Guide<a class="headerlink" href="#mspm0-dali-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://www.dali-alliance.org/dali/">Digitally Addressable Lighting Interface (DALI)</a> is a serial protocol for digital lighting control that allows for simple and efficient communication between various lighting application gear and controllers.</p>
+<figure class="align-default">
+<img alt="" src="../_images/DALI_logo.png" />
+</figure>
+<p><strong>Note</strong>: The use of “Master” and “Slave” terminology is being considered obsolete. These terms have been replaced with “Controller” and “Gear” respectively.</p>
+<p>The MSPM0 SDK provides an easy way to start development of DALI applications using the MSPM0’s Universal Asynchronous Receiver Transmitter (UART) module and contains the following:</p>
+<ul class="simple">
+<li><p>Support for DALI 2</p></li>
+<li><p>Full source code for DALI Library</p></li>
+<li><p>Graphical configuration of UART module using SysConfig</p></li>
+</ul>
+</section>
+<section id="dali-in-the-mspm0-sdk">
+<h2>2. DALI in the MSPM0 SDK<a class="headerlink" href="#dali-in-the-mspm0-sdk" title="Permalink to this heading">¶</a></h2>
+<p>The DALI source code in the MSPM0 SDK was developed to be run on the MSPM0 devices. This source code implementation focuses on the basic capabilities and functions of DALI to showcase the ability of the MSPM0 devices to handle DALI communications via UART. DALI Standards IEC 62386-102 for control gear(general) and IEC 62386-207 for control gear(LED modules) were implemented for this example. Support for most required features for IEC 62386-102/207 are included in the dali_target_commands.h/c and dali_target_led_commands.h/c files with exceptions marked in the <a class="reference external" href="#known-issues">Known Issues</a> section as well as in the source code. Optional features for IEC 62386-102/207 were excluded from this implementation. The source code is also availabe to modify and edit, allowing customers to modify or customize any feature as desired.</p>
+<p><strong>Note</strong>: While the source code was developed to be used on all MSPM0 devices, the example code was only tested and validated on the MSPM0L1306.</p>
+<p><strong>Included Features</strong></p>
+<ul class="simple">
+<li><p>Functions to receive and transmit DALI commands and responses, respectively</p></li>
+<li><p>Template functions using EEPROM to store certain DALI information in Flash memory and reload that information at startup</p></li>
+<li><p>Fade Time/Fade Rate fade routines</p></li>
+<li><p>Support for Direct Arc Power Control (DAPC), Up, Down, Step Up, Step Down, Recall Max, and Recall Min Execution Commands</p>
+<ul>
+<li><p>Other execution commands can be implemented utilizing the fade time routine implemented for DAPC</p></li>
+</ul>
+</li>
+<li><p>Support for Configuration commands</p>
+<ul>
+<li><p>Extended Fade Time and Identify Device were omitted for customer implementation</p></li>
+<li><p>Template for setting fast fade time was included, but translation to timer load value implementation was omitted</p></li>
+<li><p>See <a class="reference external" href="#known-issues">Known Issues</a> for where Extended Fade Time and Fast Fade Time can be implemented</p></li>
+<li><p>Template for Reset Memory Bank was included in source code</p></li>
+</ul>
+</li>
+<li><p>Support for all Query Commands for IEC 62386-102</p>
+<ul>
+<li><p>Some support for query commands in IEC 62386-207, queries for load deviation and thermal features were omitted since they are optional features</p></li>
+</ul>
+</li>
+<li><p>Support for both logarithmic and linear fade curves</p>
+<ul>
+<li><p>IEC 62386-207 supports a linear fade curve if selected</p></li>
+<li><p>If LED Module is enabled for a connected device, it will allow you to use a configuration command to select a dimming curve</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="configuring-the-uart-for-dali-with-sysconfig">
+<h2>3. Configuring the UART for DALI with SysConfig<a class="headerlink" href="#configuring-the-uart-for-dali-with-sysconfig" title="Permalink to this heading">¶</a></h2>
+<p>The source code provided for this example is mostly for controlling the LED on the MSPM0 using a PWM. However, the key feature that enables the MSPM0 to interpret DALI commands is the UART DALI interface. DALI Mode enables the use of the address and address mask to receive forward frames and store the command in the RX FIFO’s until they are executed. The UART module on the MSPM0 supports both a software and hardware implementation of performing address matching, of which the software version was used for this example. See the sections below for all the specific configurations needed to successfully enable DALI mode through UART.</p>
+<section id="enable-dali-mode">
+<h3>Enable DALI Mode<a class="headerlink" href="#enable-dali-mode" title="Permalink to this heading">¶</a></h3>
+<p>In SysConfig, navigate to the UART module under the communications tab</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_under_communications.png" />
+</figure>
+<p>In the section labeled Basic Configuration, change the Target Baud Rate to 1200, and the number of stop bits to 2.</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_basic_config.png" />
+</figure>
+<p>In the section labeled Advanced Configuration, select the drop-down menu for UART mode, and notice that DALI Mode is disabled/not available for selection. Navigate to the Extend Configuration section below and Enable Extend Features and Manchester Encoding. These selections are needed as DALI mode is available as an UART Extend feature, and DALI messages are Manchester encoded according to the DALI standards. Once these options are selected, go back to the Advanced Configuration section and select DALI mode for UART mode. For Address and Address Mask, set to 0 if using the software address match implementation. Enable both FIFO’s, and set the RX FIFO Threshold to &gt;= 2 Entries, while making the TX FIFO Threshold &lt;= 1 entry. Enable MSB first as the final step for the Advanced Configuration section.</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_advanced_config_extend_config.png" />
+</figure>
+</section>
+<section id="dali-uart-configurations">
+<h3>DALI UART Configurations<a class="headerlink" href="#dali-uart-configurations" title="Permalink to this heading">¶</a></h3>
+<p>In the Interrupt Configuration section, enable 9 bit mode address match and the Receive interrupt. The 9-bit mode address match is enabled if using the hardware implementation of address matching for DALI. Otherwise, only the Receive interrupt is used.</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_interrupt_config.png" />
+</figure>
+<p>The final UART configuration required is the Pin Configuration section. For the TX pin, select enable pin configuration, and in the Digital IOMUX Features, only enable the invert feature. Do the same for the RX pin. The pins are inverted so that the DALI commands from the controller are interpreted correctly; without inverting the pins, the device reads broadcast commands as individual commands and vice versa. It can also impact whether a command is interpreted as a DAPC command or regular DALI command.</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_pin_config.png" />
+</figure>
+</section>
+</section>
+<section id="example-applications-led-demo">
+<h2>4. Example Applications - LED Demo<a class="headerlink" href="#example-applications-led-demo" title="Permalink to this heading">¶</a></h2>
+<p>Required Materials</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/product/MSPM0L1306">MSPM0L1306 LaunchPad(LP)</a></p>
+<ul>
+<li><p><img alt="image0" src="../_images/MSPM0L1306.png" /></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.hasseb.fi/shop2/index.php?route=product/product&amp;product_id=50">Hasseb DALI 2 Controller/GUI</a></p>
+<ul>
+<li><p><img alt="image1" src="../_images/hasseb_DALI_controller.png" /></p></li>
+<li><p><img alt="image2" src="../_images/hasseb_DALI_2_controller_gui.png" /></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.mikroe.com/dali-2-click">DALI 2 Click</a></p>
+<ul>
+<li><p><img alt="image3" src="../_images/DALI_2_click.png" /></p></li>
+</ul>
+</li>
+</ul>
+<p>To import the DALI example, select import project in Code Composer Studio(CCS), navigate to the examples folder in the SDK, select DALI, select the MSPM0L folder, and navigate to the ticlang directory. Once imported, you can flash the code onto the device.</p>
+<p>To test this example, attach the DALI 2 Click to the MSPM0 by connecting the RX and TX pins to the appropriate pins on the MSPM0L device, while connecting the 3.3V, 5V, and GND pins on the Click board to the 3.3V, 5V, and GND pins on the MSPM0L1306 LP. Screw in two wires into the screw terminals on the DALI 2 Click, and connect those wires to the corresponding terminal on the Hasseb DALI 2 Controller. Connect the power to the controller, and the USB from the controller to the laptop. Connect the MSPM0L1306 LP to the laptop and flash the example via CCS. Once the example is flashed device is running example, launch the DALI 2 Controller GUI and press initialize. Once a short address, random address, and device type appear, you can begin sending supported/implemented commands to the device. You will see an LED on the device respond to the supported execution commands</p>
+<section id="modifying-the-example-applications">
+<h3>Modifying the Example Applications<a class="headerlink" href="#modifying-the-example-applications" title="Permalink to this heading">¶</a></h3>
+<p>The source code to the DALI implementation for MSPM0L is available for editing. This allows customers and users to re-implement or modify existing features to match personal specifications. Certain features, such as device identification and updating variables in flash, can differ from implementation to implementation. Here are a list of features that require user modification to implement. These are features that are either user specific or known issues.</p>
+<ul class="simple">
+<li><p>Update Flash - Variable in the control gear struct that controls when flash gets updated values. Set this flag to true in any desired function to trigger the update flash procedure in the main execution loop.</p></li>
+<li><p>Identify Device - This procedure varies per user, and can utilize the recall min and max functions to trigger the LED to toggle</p></li>
+<li><p>Reset Memory Bank/Read and Write Memory Location - Will need to be updated as more memory banks are implemented as the current implementation only supports memory bank 0</p></li>
+<li><p>Load Deviation and Thermal Protection Features - Is an optional feature, command support is available(device will call function if command is received) but implementation is up to user discretion</p></li>
+<li><p>Failure/Status Bits - Template functions available, but implementation is up to customer</p></li>
+<li><p>Extend Fade Time/Fast Fade Time - See <a class="reference external" href="#known-issues">Known Issues</a></p></li>
+</ul>
+</section>
+</section>
+<section id="known-issues">
+<h2>5. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Only fade time for IEC62386-102:2014 is supported</p>
+<ul>
+<li><p>Extended Fade Time and Fast Fade Time not supported</p></li>
+<li><p>Fast fade times can be set, computation for extended fade times will have to be included by customer</p></li>
+<li><p>Will have to modify timeToPeriodConversion to support use in DAPC</p></li>
+</ul>
+</li>
+<li><p>Random Address will always generate 1</p>
+<ul>
+<li><p>This does not impact functionality, as the device is still able to be initialized, but will generate the same random address every time it is initialized</p></li>
+<li><p>L device does not have TRNG, if project is ported successfully to G, can utilize that module to generate a more random address</p></li>
+</ul>
+</li>
+<li><p>Initializing Multiple Devices</p>
+<ul>
+<li><p>GUI Tool crashes when trying to initialize multiple devices, but successfully initializes the device when connected individually to controller</p></li>
+<li><p>No issue seen on application code function, may require different DALI bus setup rather than direct connection to DALI Controller screw terminal</p></li>
+</ul>
+</li>
+<li><p>Timing for Identify Device Command</p>
+<ul>
+<li><p>Due to the limitations of the number of timers that can be enabled on the MSPM0L, and the desire to keep one timer available for a PWM controlling an LED, no timer is available to indivdually control the identify device process</p></li>
+<li><p>However, the initialization timer is designed to run for 15 minutes, so it can be utilized for the identify device process as well</p></li>
+</ul>
+</li>
+<li><p>Hasseb DALI 2 Controller GUI does not have support for LED commands</p>
+<ul>
+<li><p>As a result, LED Functions have not been validated</p></li>
+<li><p>However, the Hasseb GUI code is available publicly on GitHub if users wish to modify the GUI to add support for LED commands</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="MSPM0 DALI User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

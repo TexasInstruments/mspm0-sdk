@@ -1,0 +1,119 @@
+DRV8889-Q1 GUI User Guide
+=========================
+
+The GUI used in this guide can be found `here <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8889Q1-EVM-GUI>`__.
+
+1. Getting Started with GUI
+---------------------------
+
+The GUI allows the user to configure various settings required for stepper motor control. The user can adjust settings like motor speed, control direction, control step movements and other device settings, as well as monitor the device status.
+
+Perform the following steps to begin using the GUI:
+
+1. Connect the stepper motor to the EVM.
+2. Make the necessary connections for connecting LP-MSPM0L1306 to DRV8889-Q1EVM. For detailed steps refer to `Hardware User Guide <DRV8889-Q1_Hardware_User_Guide.html>`__.
+3. Plug in the micro-USB cable to the PC.
+4. Enable the power supply to EVM.
+
+2. Using the GUI
+----------------
+
+The GUI when launched will automatically try to establish communication with the device, if it doesn't happen or if user needs to disconnect the user can click on the link icon shown on the left side in the image shown below. A message showing ‘Connecting to target…’ will be displayed when the GUI tries to connect to the board in the hardware connection status pane which is located at the bottom of GUI window. If the connection is successful, ‘Hardware connected’ message appears, as shown in the image below.
+
+.. figure:: images/GUI-hardware_connected.jpg
+   :alt: Hardware connected
+
+   Hardware connected
+
+3. Important Note
+-----------------
+
+SPI communication requires that the motor driver is not in sleep mode. While the MCU initializes the default settings in the GUI are written by temporarily setting the DRV8889-Q1 in active mode and after writing the default settings the default sleep mode settings is set. Also note that since the SPI interface in the DRV8889-Q1 doesn't function when the it is set in sleep mode thus the user should not change any settings which requires SPI communication when DRV8889-Q1 is set in sleep mode.
+
+4. GUI Window
+-------------
+
+In the GUI Window user can find various controls to sleep/wake the driver, control the stepper motor, and configure various parameters such as step mode, control mode, and so forth. Hover over the control widgets to display the brief description on its actions.
+
+.. figure:: images/GUI-window.jpg
+   :alt: GUI window
+
+   GUI window
+
+5. Control Modes
+----------------
+
+Spin Mode
+~~~~~~~~~
+
+Spin mode allows to spin the stepper motor in the desired speed. The desired speed is set in units of pulse per second. Knowing the motor Pulse per rotation and the step mode we can compute the RPS(Revolutions Per Second) of the motor. For example, for a motor of 200PPR speed of 200PPS equates to 1RPS in Full step mode and 0.5RPS in Half Step mode.
+
+Stepper controls are enabled only when the 'Motor Driver' is enabled. When the Stepper control is set to ‘RUN’ the motor starts spinning at the speed set in the speed input box. Do note to set the speed in the limit of the motor specifications, else the motor will not spin i.e. would appear to vibrate as the necessary torque to spin is not received in the set speed.
+
+Step Mode
+~~~~~~~~~
+
+Step mode allows user to move the stepper motor a configured number of steps. Stepper controls are enabled only when the 'Motor Driver' is enabled. When the Stepper control is set to ‘RUN’ the motor starts spinning at the speed set in the speed input box and when the number of steps entered in the steps input box is reached, the motor stops.
+
+6. Decay Modes
+--------------
+
+Decay mode controls the current recirculation in the H-bridge when the drive is in decay state. This setting is to be changed to get lowest noise level.
+
+Decay modes except the smart tune ripple control allows to change the TOFF settings.
+
+7. Fault Monitoring and Handling
+--------------------------------
+
+The fault monitoring and handling is at the top right side of the screen this allows the user to monitor the faults. The Fault led turns red when a fault occurred. To clear the faults, use the “CLEAR FAULT” button.
+
+8. Setting Current Limit
+------------------------
+
+Using the FS Current the user can set the full scale current which passed through the motor. This value can be further scaled using the Torque settings, i.e. if FScurrent is 1A and Torque is set as 50% then resultant current through motor is set as 0.5A.
+
+9. Stall Detection
+------------------
+
+The stall detection is used to enable or disable the stall fault. If the stall detection is enabled then when the TRQ COUNT value is below the value set in the Stall Threshold then fault is triggered. The option Rev on Stall helps to change the motor direction when the stall is detected.
+
+10. SPI Register
+----------------
+
+The GUI allows to independently change values in the SPI registers of the drv. There are 3 options in SPI register:
+
+1. Write 8 bit Data to register
+
+The user can select any register and write an 8 bit data to it by clicking on the Write Register button.
+
+.. figure:: images/GUI-write_register.jpg
+   :alt: Writing value to a register
+
+   Writing value to a register
+
+2. Update some bits in SPI register
+
+The user write to a register without affecting all the bits in it. The options are:
+
+-  Register address - Select the register to change
+-  Bitfield Position - Select 0-7 for bit0 to bit7
+-  Bitfield Mask - It is the masks for the number of bits to write i.e, If one bit is to be written then it is 1(0x1) and if two bits are to be written it is 3(0x11) and for three bits it is 7(0x111) and so on.
+-  Data - The data to be starting from the position set in bitfield position
+
+For example, Writing bit 2 and bit 3 in CTRL3 register is shown below.
+
+.. figure:: images/GUI-update_register.jpg
+   :alt: Updating value in a register
+
+   Updating value in a register
+
+3. Read SPI register
+
+Allows user to read a SPI register.The user can select any register and read the data by clicking on the Read Register button.
+
+For example, shown below is reading the CTRL3 register after writing bit 2 and bit 3 of it.
+
+.. figure:: images/GUI-read_register.jpg
+   :alt: Reading data from a register
+
+   Reading data from a register

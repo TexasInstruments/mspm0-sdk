@@ -1,0 +1,275 @@
+IAR Embedded Workbench IDE Version 9.40+ for MSPM0 MCUs
+=======================================================
+
+Table of Contents
+-----------------
+
+-  `Read This First <#read-this-first>`__
+-  `Software Installation <#software-installation>`__
+-  `Development Flow <#development-flow>`__
+-  `Debugging the Application <#debugging-the-application>`__
+-  `Known Issues and Frequently Asked Questions (FAQs) <#known-issues-and-frequently-asked-questions-faqs>`__
+
+Read This First
+---------------
+
+How to Use This Guide
+~~~~~~~~~~~~~~~~~~~~~
+
+This guide describes only the setup and basic operation of the software development environment, but it does not fully describe the MSPM0 microcontrollers or the complete development software and hardware systems. For details of these items, see the appropriate TI and IAR documents listed in section `Related Documentation From Texas Instruments <#related-documentation-from-texas-instruments>`__.
+
+This guide applies to the use of the `TI XDS-110 <https://www.ti.com/tool/TMDSEMU110-U>`__, `IAR I-Jet <https://www.iar.com/ijettrace>`__, and `Segger J-Link <https://www.segger.com/products/debug-probes/j-link/>`__ development tools series.
+
+These tools contain the most up-to-date materials available at the time of packaging. For the latest materials (including data sheets, user's guides, software, and application information), visit the `TI MSPM0 website <https://www.ti.com/mspm0>`__ or contact your local TI sales office.
+
+Information About Cautions
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This guide may contain cautions.
+
+**Caution** - This is an example of a caution statement. A caution statement describes a situation that could potentially damage your software or equipment.
+
+Read each caution carefully.
+
+Related Documentation From Texas Instruments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MSPM0 development tools documentation:
+
+-  `XDS110 Debug Probe User's Guide <https://www.ti.com/lit/sprui94>`__
+
+MSPM0 device documentation:
+
+-  `LP-MSPM0L1306 User's Guide <https://www.ti.com/lit/slau869>`__
+-  `MSPM0 L-Series Technical Reference Manual <https://www.ti.com/lit/slau847>`__
+-  `LP-MSPM0G3506 User's Guide <https://www.ti.com/lit/slau873>`__
+-  `MSPM0 G-Series Technical Reference Manual <https://www.ti.com/lit/slau846>`__
+
+If You Need Assistance
+~~~~~~~~~~~~~~~~~~~~~~
+
+The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>`__ for MSPM0 MCUs are available to provide open interaction with peer engineers, TI engineers, and other experts. Additional device-specific information can be found on the `MSPM0 website <https://www.ti.com/mspm0>`__.
+
+1. Software Installation
+------------------------
+
+IAR Embedded Workbench for Arm (EWARM) IDE is available from the `IAR website <https://www.iar.com/>`__ or the `TI IAR kickstart page <https://www.ti.com/tool/IAR-KICKSTART>`__. MSPM0 microcontrollers and the MSPM0 SDK require EWARM 9.40.1 or higher.
+
+See the `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ documentation for finding the right SDK for your IDE version.
+
+2. Development Flow
+-------------------
+
+This chapter describes how to use IAR EWARM to run the demonstration programs, develop application software, and how to use C-SPY to debug it.
+
+2.1 Overview
+~~~~~~~~~~~~
+
+Applications are developed in assembler or C using the Workbench, and they are debugged using C-SPY. C-SPY is seamlessly integrated into the Workbench. However, it is more convenient to make the distinction between the code development environment (Workbench) and the debugger (C-SPY). C-SPY can be configured to operate with a programmer tool such as XDS-110 connected to an MSPM0 device, or with a software simulator of the device. IAR EWARM refers to the Workbench and C-SPY collectively.
+
+Documentation for IAR EWARM is extensive, but the components of IAR EWARM (IDE, debugger, assembler, compiler, linker) are fully documented in ``<Installation Root>\Embedded Workbench x.x\common\doc`` and ``<Installation Root>\Embedded Workbench\arm\doc``.
+
+The PDF files located throughout the EWARM directory tree contain the most up-to-date information. In addition, EWARM documentation is available online through the Help tab in the IDE.
+
++------------------------+-------------------------------------+
+| Tool                   | User's Guide                        |
++========================+=====================================+
+| IDE                    | EWARM\_IDEGuide.ENU.pdf             |
++------------------------+-------------------------------------+
+| Assembler              | EWARM\_AssemblerReference.ENU.pdf   |
++------------------------+-------------------------------------+
+| Compiler               | EWARM\_DevelopmentGuide.ENU.pdf     |
++------------------------+-------------------------------------+
+| C Library              | EWARM\_DevelopmentGuide.ENU.pdf     |
++------------------------+-------------------------------------+
+| Linker and Librarian   | EWARM\_DevelopmentGuide.ENU.pdf     |
++------------------------+-------------------------------------+
+| Debugging              | EWARM\_DebuggingGuide.ENU.pdf       |
++------------------------+-------------------------------------+
+
+2.2 Creating an MSPM0 Project From the MSPM0 SDK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Please refer to the `MSPM0 SDK QuickStart Guide for IAR <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__ which contains instructions on how to install the MSPM0 SDK and importing and building an SDK example in IAR.
+
+2.3 Creating a Project From Scratch
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Note**: Creating a project from scratch is **not recommended** since creating the project from scratch doesn't add all of the necessary device support files by default. To start from a blank project, TI recommends importing the Empty Driverlib example project from the SDK.
+
+2.4 Using SysConfig with IAR
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some examples in the MSPM0 SDK have SysConfig support. `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.
+
+The SysConfig tool is delivered as a standalone installer which can be manually integrated into IAR, or can be used via the dev.ti.com cloud tools portal.
+
+The best way to start a SysConfig project in IAR is to import it from the SDK; however, some steps are required to initialize SysConfig in IAR for the first time. Refer to the `MSPM0 SDK QuickStart Guide for IAR <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__ for more details on installing SysConfig and enabling it for IAR.
+
+For more information about using SysConfig with MSPM0, visit the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ guide.
+
+2.5 Migrating Between MSPM0 Derivatives
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required.
+
+1. In SysConfig, enable the Device View and click on **SWITCH**
+
+.. figure:: ./images/iar_ide_guide/iar_ide_migrate_1.png
+   :alt: 
+
+2. Select the corresponding options for the new MSPM0 device and click **CONFIRM**.
+
+.. figure:: ./images/iar_ide_guide/iar_ide_migrate_2.png
+   :alt: 
+
+3. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed.
+
+4. In the project options, select **General Options** → **Target** → **Device**. Select the MSPM0 device.
+
+.. figure:: ./images/iar_ide_guide/iar_ide_migrate_3.png
+   :alt: 
+
+5. In the project options, select **C/C++ Compiler** → **Preprocessor** → **Defined symbols**. Add the device definition as per the device selected.
+
+.. figure:: ./images/iar_ide_guide/iar_ide_migrate_4.png
+   :alt: 
+
+6. Update the linker and startup files. The MSPM0 SDK includes default files for all MSPM0 derivatives at ``<sdk>\source\ti\devices\msp\m0p\linker_files\iar`` and ``<sdk>\source\ti\devices\msp\m0p\startup_system_files\iar`` respectively.
+
+7. Resolve any other dependencies such as incompatible libraries and source code.
+
+Note: Steps 1-3 don't apply when not using SysConfig.
+
+2.6 Stack and Heap Management and .icf Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The reserved stack and heap size can be configured through direct modification of the .icf linker configuration files. These files are input to the linker and contain statements that control the allocation of device memory (RAM, flash). See the IAR Development Guide documentation for a complete description of these files.
+
+The supplied .icf files can be modified to tune the size of the stack and heap to the needs of the application; edit ``__ICFEDIT_size_cstack__=xx`` or ``__ICFEDIT_size_heap__=xx`` to allocate xx bytes for the stack or heap.
+
+2.7 How to Generate TI .TXT (and Other Format) Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The linker can be configured to output objects in TI .TXT format for use with programming tools such as `MSP-GANG <https://www.ti.com/tool/MSP-GANG>`__ and `UniFlash <https://www.ti.com/tool/UNIFLASH>`__.
+
+Click **Project** → **Options** → **Output Converter** → **Generate additional output** → **Output format** → **Texas Instruments TI-TXT**. Intel Hex or other formats also can be selected.
+
+2.8 Erasing and Programming NONMAIN for MSPM0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Caution**: Extreme care should be taken when erasing and programming NONMAIN. If done incorrectly, the device will become **locked in a permanently unrecoverable state**.
+
+1. Click **Options** → **Debugger** → **Download** → **Override default .board file** → **Edit**.
+2. Select the 2nd element and then click Okay:
+
+   .. figure:: ./images/iar_ide_guide/iar_ide_non_main.png
+      :alt: 
+
+3. Add ``--non_main_erase`` as an extra parameter:
+
+   .. figure:: ./images/iar_ide_guide/iar_ide_non_main_2.png
+      :alt: 
+
+2.9 Overriding Pre-built libraries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Projects might include pre-built libraries which simplify development and build time; however, they don't allow developers to modify source code easily.
+
+An example of such libraries is the MSPM0 DriverLib which is shown below.
+
+.. figure:: ./images/iar_ide_guide/iar_ide_lib.png
+   :alt: 
+
+One option to override the library is to simply add any or all source files to the project. The MSPM0 SDK includes the ``empty_driverlib_src`` example which includes all DriverLib source by default:
+
+.. figure:: ./images/iar_ide_guide/iar_ide_lib_source.png
+   :alt: 
+
+See `Debugging Pre-built Libraries <#debugging-pre-built-libraries>`__ for information on how to debug pre-built libraries.
+
+3. Debugging the Application
+----------------------------
+
+3.1 Using TI XDS Tools
+~~~~~~~~~~~~~~~~~~~~~~
+
+TI offers a range of debug probes for Arm-based devices, including the XDS-110 which is integrated with MSPM0 LaunchPads.
+
+**Note**: TI XDS-110 debug probes are enabled for use through the CMSIS-DAP protocol. However, the TI XDS native drivers currently give higher performance.
+
+To use them with EWARM, installation of the XDS emulation package is required. A copy of the emulation package is located in the EWARM installation under ``\arm\drivers\ti-xds``. See the Readme.txt document that is also located in this folder. TI recommends installing the emulation package in ``c:\ti\xds\ewarm_version``. Do not use XDS emulation packages from other EWARM versions, as they might not be compatible and can result in errors when debugging.
+
+To use the TI-XDS debug probes,select **Options** → **Debugger** → **Driver** → **TI XDS**:
+
+.. figure:: ./images/iar_ide_guide/iar_ide_xds110_select.png
+   :alt: 
+
+When the emulation package has been installed, XDS debug probes can be selected in **Options** → **Debugger** → **TI XDS**:
+
+.. figure:: ./images/iar_ide_guide/iar_ide_xds110.png
+   :alt: 
+
+-  Note the selected Emulator. The LaunchPads include an integrated TI XDS110 Emulator.
+-  The selected Interface is SWD which is supported by MSPM0.
+-  Note the TI EmuPack installation path. Override if desired.
+-  The XDS tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debugger** → **Use flash loader(s)**:
+
+3.2 Using Segger J-Link Debug Probe
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To use the Segger J-Link debug probe, select **Options** → **Debugger** → **Driver** → **J-Link/J-Trace**:
+
+.. figure:: ./images/iar_ide_guide/iar_ide_jlink_select.png
+   :alt: 
+
+-  The J-Link tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debugger** → **Use flash loader(s)**:
+
+3.3 Using IAR I-jet Debug Probe
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To use the IAR I-Jet debug probes, select **Options** → **Debugger** → **Driver** → **I-jet**:
+
+.. figure:: ./images/iar_ide_guide/iar_ide_ijet_select.png
+   :alt: 
+
+-  The I-jet tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debugger** → **Use flash loader(s)**:
+
+3.4 Breakpoint Types
+~~~~~~~~~~~~~~~~~~~~
+
+The C-SPY breakpoint mechanism uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints are not supported on MSPM0. This means that a maximum of 4 breakpoints can be set within C-SPY.
+
+Resetting a program and the Run To Cursor operation temporarily require a breakpoint. As a result, only 3 breakpoints can be active. If 4 breakpoints are being used, C-SPY will automatically disable a breakpoint.
+
+If the max number of breakpoints are set, the following warning will be displayed.
+
+.. figure:: ./images/iar_ide_guide/iar_ide_max_breakpoints.png
+   :alt: 
+
+3.5 Debugging Pre-built Libraries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Projects might include pre-built libraries which can be difficult to debug if symbols are not available. An example of such libraries is the MSPM0 DriverLib which is used by many MSPM0 SDK examples.
+
+In such scenarios, IAR will show the following message:
+
+.. figure:: ./images/iar_ide_guide/iar_ide_debug_error.png
+   :alt: 
+
+The error can be fixed by selecting the folder with source code. For the example shown, the DriverLib source code is selected:
+
+.. figure:: ./images/iar_ide_guide/iar_ide_debug_error_fix1.png
+   :alt: 
+
+Alternatively, the path for the source code can be added to **Options** → **Runtime Checking** → **C/C++ Compiler**\ →\ **Preprocessor**. For the example shown, the DriverLib source code path was added:
+
+.. figure:: ./images/iar_ide_guide/iar_ide_debug_error_fix2.png
+   :alt: 
+
+See `Overriding Pre-built Libraries <#overriding-pre-built-libraries>`__ for information on how to override and modify source code from libraries.
+
+4. Known Issues and Frequently Asked Questions (FAQs)
+-----------------------------------------------------
+
+Please refer to `Known Issues and FAQ <../../../../../../known_issues_FAQ.html>`__ inside the SDK.

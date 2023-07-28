@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using Segger programmers with MSPM0 &mdash; MSPM0 Tools Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="debug_program_pemicro.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="debug_program_segger.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 Tools Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ides.html">IDEs and Compilers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="codegen_easeofuse.html">Code Generation and Ease-of-Use</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="debug_program.html">Debugging and Programming Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#xds-110">XDS-110</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#msp-gang">MSP-GANG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#uniflash">UniFlash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#bsl-host">BSL Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#dssm-unlock-gui-tool">DSSM Unlock GUI Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#elprotronic">Elprotronic</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="debug_program.html#segger">Segger</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="debug_program.html#id8">Documentation</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Using Segger programmers with MSPM0</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://www.segger.com/downloads/jlink/UM08001">J-Link/J-Trace User Guide (external)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#pemicro">PEmicro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debug_program.html#lauterbach">Lauterbach</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 Tools Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="debug_program.html">Debugging and Programming Tools</a> &raquo;</li>
+          <li><a href="debug_program_segger.html">&lt;no title&gt;</a> &raquo;</li>
+      <li>Using Segger programmers with MSPM0</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-segger-programmers-with-mspm0">
+<h1>Using Segger programmers with MSPM0<a class="headerlink" href="#using-segger-programmers-with-mspm0" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>This guide describes how to use Segger programmers with MSPM0.</p>
+<p>This document is not intended to explain the use of Segger tools in detail. Please refer to the corresponding IDE or Segger documentation for more detailed documentation.</p>
+</section>
+<section id="prerequisites">
+<h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The user is expected to have downloaded the following:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.segger.com/downloads/jlink/">J-Link Software Pack v7.88i or later</a></p></li>
+<li><p>Optional:</p>
+<ul>
+<li><p>Use your preferred IDE and compiler to build your application</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="installing-j-link-software-pack">
+<h2>3. Installing J-Link Software Pack<a class="headerlink" href="#installing-j-link-software-pack" title="Permalink to this heading">¶</a></h2>
+<p>The J-Link Software pack v7.88i or later includes support for MSPM0.</p>
+<ol class="arabic">
+<li><p>Download the installer from <a class="reference external" href="https://www.segger.com/downloads/jlink/">Segger’s website</a></p></li>
+<li><p>Follow the installer instructions</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_install_1.png" />
+</figure>
+</li>
+<li><p>The installer will automatically request to update IAR or Keil if installed</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_install_2.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="using-segger-j-link-with-ccs">
+<h2>4. Using Segger J-Link with CCS<a class="headerlink" href="#using-segger-j-link-with-ccs" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Update the Segger drivers as explained <a class="reference external" href="https://www.segger.com/products/debug-probes/j-link/technology/ides/ti-code-composer/">here</a> and shown below:</p>
+<p>1.1 Click on Help → Install New Software</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_ccs_1.png" />
+</figure>
+<p>1.2 Add the J-Link repository as explained <a class="reference external" href="https://www.segger.com/products/debug-probes/j-link/technology/ides/ti-code-composer/">here</a> or shown below:</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_ccs_2.png" />
+</figure>
+<p>1.3 Select the appropriate plug-ins and follow the instructions to continue installation</p>
+<p><strong>Note:</strong> If the plug-ins are not visible, adjust your proxy settings in CCS.</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_ccs_3.png" />
+</figure>
+<p>1.4 Make sure the plugin versions are correct. You may have to restart CCS for the plugin versions to be correctly updated.</p>
+</li>
+<li><p>Select “SEGGER J-Link Emulator” as a Connection on your project:</p>
+<p><strong>Note:</strong> This option is not available if the plugin was not applied correctly.</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_ccs_4.png" />
+</figure>
+</li>
+<li><p>Open the .ccxml file inside your project</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_ccs_5.png" />
+</figure>
+</li>
+<li><p>Select the CORTEX_M0P core and “SWD” as the Target Interface</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_ccs_6.png" />
+</figure>
+</li>
+<li><p>Program and debug the device.</p></li>
+</ol>
+</section>
+<section id="using-segger-j-link-with-iar">
+<h2>5. Using Segger J-Link with IAR<a class="headerlink" href="#using-segger-j-link-with-iar" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>The Segger drivers for IAR are updated when installing the latest Segger Software.</p></li>
+<li><p>Change the debugger settings to use J-Link:</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_iar_1.png" />
+</figure>
+</li>
+<li><p>Program and debug the device.</p></li>
+</ol>
+</section>
+<section id="using-segger-j-link-with-keil">
+<h2>6. Using Segger J-Link with Keil<a class="headerlink" href="#using-segger-j-link-with-keil" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>The Segger drivers for Keil are updated when installing the latest Segger Software.</p></li>
+<li><p>Change the debugger settings to use J-Link:</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_keil_1.png" />
+</figure>
+</li>
+<li><p>Select SWD interface</p>
+<figure class="align-default">
+<img alt="" src="../_images/segger_keil_2.png" />
+</figure>
+</li>
+<li><p>Program and debug the device.</p></li>
+</ol>
+</section>
+<section id="using-segger-j-flash-with-ccs-hex-utility">
+<h2>7. Using Segger J-Flash with CCS Hex Utility<a class="headerlink" href="#using-segger-j-flash-with-ccs-hex-utility" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>When using the CCS hex utility to generate output files for Segger’s J-Flash software, please follow the instructions described in the CCS IDE Guide section <a class="reference external" href="../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#how-to-generate-ti-txt-and-other-format-files">How to Generate TI .TXT (and Other Format) Files</a>.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="debug_program_segger.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debug_program_pemicro.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

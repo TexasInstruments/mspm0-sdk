@@ -1,0 +1,132 @@
+Debugging and Programming Tools
+==================================
+
+XDS-110
+----------
+| The Texas Instruments `XDS110 <https://www.ti.com/tool/TMDSEMU110-U>`_  is a new class of debug probe (emulator) for TI embedded processors.
+| The XDS110 replaces the XDS100 family while supporting a wider variety of standards (IEEE1149.1, IEEE1149.7, SWD) in a single pod.
+| Also, all XDS debug probes support Core and System Trace in all Arm and DSP processors that feature an Embedded Trace Buffer (ETB).
+| The Texas Instruments XDS110 connects to the target board via a TI 20-pin connector (with multiple adapters for TI 14-pin and, Arm 10-pin and Arm 20-pin) and to the host PC via USB2.0 High Speed (480Mbps).
+| It also features two additional connections: the Auxiliary 14-pin port connector that enables EnergyTrace™, a full duplex UART port and four General-Purpose I/Os, and the Expansion 30-pin connector to connect the XDS110 EnergyTrace HDR add-on.
+
+Documentation
+~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_xds110
+
+MSP-GANG
+----------
+| The MSP Gang Programmer (MSP-GANG) is a device programmer supporting all MSP devices (MSPM0, MSP430, MSP432).
+| The MSP-GANG can program up to eight identical MSP Flash or FRAM devices at the same time.
+| It connects to a host PC using a standard RS-232 or USB connection and provides flexible programming options that allow the user to fully customize the process.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_msp_gang
+
+UniFlash
+----------------------
+| `UniFlash <https://www.ti.com/tool/UNIFLASH>`_  is a standalone tool used to program on-chip flash memory on TI MCUs and on-board flash memory for Sitara processors.
+| Uniflash has a GUI, command line, and scripting interface.
+| CCS Uniflash is available free of charge.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_uniflash
+
+BSL Host
+----------------------
+| MSPM0 devices are shipped with a highly customizable ROM-based bootloader that supports UART and I2C communication by default.
+| The MSPM0 SDK contains two demos: one demo uses an MCU (an MSPM0) as the host to update the MSPM0 target device through UART or I2C (the projects are based on CCS), while the other demo uses a PC as the host that communicates with the backchannel UART of a XDS110 programmer
+
+Documentation
+~~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_bslhost
+
+DSSM Unlock GUI Tool
+----------------------
+| The Debug SubSystem Mailbox (DSSM) enables a debug probe to pass messages to the boot ROM of an MSPM0 device through the SWD interface. This mechanism can be used to perform a device mass erase, factory reset, and/or send a password to unlock the SWD interface.
+|
+| The `DSSM Unlock GUI tool <https://dev.ti.com/gallery/view/TIMSPGC/DSSM_Unlock/>`_  is a standalone tool used to gain debug access or recover an MSPM0 device using this interface.
+| This tool is available free of charge.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_dssmunlockgui
+
+Elprotronic
+-------------
+| Elprotronic offers multiple hardware and software programming tools supporting MSPM0 in addition to Texas Instruments' MSP430/432, SimpleLink (CC), C2000, and TIVA-C MCUs.
+|
+| Elprotronic's solutions for MSPM0 include the MSP-GANG, FlashPro-ARM and GangPro-ARM.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_elprotronic
+
+Segger
+----------
+| `SEGGER J-Link <https://www.segger.com/products/debug-probes/j-link/>`_ debug probes are the most widely used line of debug probes available today.
+| They bring this experience to their support of the MSPM0 MCU portfolio.
+| With up to 3 MBytes/s download speed to RAM and record breaking flashloaders, as well as the ability to set an unlimited number of breakpoints in an MCU’s Flash memory, the J-Link debug probes optimize your debugging and flash programming experience.
+| In fact, combining the SEGGER J-Link and SimpleLink MCU provides the fastest Flash downloading option available in the industry. This means faster programming of MSPM0 MCU devices for your production line.
+|
+| J-Link supports a wide range of popular Integrated Development Environments (IDEs), such as:
+| * Code Composer Studio™ (CCS) on Windows®, macOS™, and Linux®
+| * IAR Embedded Workbench for Arm® (EWARM)
+| * Keil MDK-ARM (µVision)
+
+Documentation
+~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_segger
+
+PEmicro
+----------
+| `PEmicro Multilink and Multilink FX <https://www.pemicro.com/products/product_viewDetails.cfm?product_id=15320180&productTab=1>`_ debug probes offer an affordable and compact solution for TI MSPM0 development, and allow debugging and programming to be accomplished simply and efficiently.
+| Those doing rapid development will find the Multilink and Multilink FX easy to use and fully capable of fast-paced debugging and programming.
+
+| `PEmicro Cyclone LC and Cycle FX <https://www.pemicro.com/products/product_viewDetails.cfm?product_id=15320169&productTab=1>`_ programmers are extremely flexible tools designed for in-circuit flash programming, debugging, and testing of devices from Texas Instruments and other manufacturers.
+| These Cyclones include a 4.3” touchscreen LCD and an access panel which provides easy access to all debug headers.
+| Cyclones programmers offer multiple communications interfaces (including USB, Ethernet, and Serial), stand-alone programming functionality, high speed data transfer, a status LCD, and many other advanced capabilities.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_pemicro
+
+Lauterbach
+-------------
+| MSPM0 is supported by all of Lauterbach's Arm debug tools. Generally for Cortex-M controllers, the tool of choice would be the `µTrace for Cortex-M <https://www.lauterbach.com/frames.html?microtrace_cortexm.html>`_.
+|
+| µTrace for Cortex-M is a debug and trace solution for Cortex-M controllers that supports all common debug protocols (JTAG, cJTAG, and SWD) as well as tracing via 4-bit parallel trace and SWO/SWV. On-chip tracing via MTB or ETB is also supported. In case of the MSPM0 family, the MTB of the MSPM0G devices is supported for tracing.
+|
+| Another tool that fits for the MSPM0 family is a `Power Debug E40 <https://www.lauterbach.com/frames.html?powerdebug_e40.html>`_ with a debug cable. These modules support the common debug protocols and can be reused for other architectures.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_lauterbach

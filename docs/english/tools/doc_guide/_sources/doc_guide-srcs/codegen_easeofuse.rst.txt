@@ -1,0 +1,34 @@
+Code Generation and Ease-of-Use
+=================================
+
+SysConfig
+----------------------
+| `SysConfig <https://www.ti.com/tool/SYSCONFIG>`_ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components.
+| SysConfig helps you manage, expose and resolve conflicts visually so that you have more time to create differentiated applications.
+|
+| The tool's output includes C header and code files that can be used with software development kit (SDK) examples or used to configure custom software.
+|
+| The SysConfig tool automatically selects the pinmux settings that satisfy the entered requirements.
+| The SysConfig tool is delivered integrated in CCS, as a standalone installer, or can be used via the dev.ti.com cloud tools portal.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   codegen_easeofuse_sysconfig
+
+Analog Configurator
+----------------------
+| The `TI Analog Configurator <https://dev.ti.com/gallery/view/TIMSPGC/AnalogConfigurator>`_ is a graphical configuration tool designed to simplify and accelerate the design and enablement of an analog signal chain using a MSPM0 device with no traditional coding development necessary.
+| The tool uses an intuitive GUI to configure a signal chain using the high analog integration of MSPM0 devices, analyze and evaluate signals in real-time, and generate the configuration code necessary to flash the device.
+|
+| TI Analog Configurator utilizes SysConfig to automatically select pinmux settings based on the user's configuration.
+| The tool can output a CCS project with the SysConfig analog configuration already completed for the user.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   codegen_easeofuse_analogconfig

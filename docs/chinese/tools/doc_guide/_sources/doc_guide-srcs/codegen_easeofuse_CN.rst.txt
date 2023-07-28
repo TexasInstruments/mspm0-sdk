@@ -1,0 +1,34 @@
+代码生成和易用性
+=================================
+
+SysConfig
+----------------------
+| `SysConfig <https://www.ti.com/tool/SYSCONFIG>`_ 是一个直观而全面的图形实用工具集合，用于配置引脚、外设、无线电、子系统和其他组件。
+| SysConfig 可助您直观地管理、发现和解决冲突，以便您有更多时间创建差异化应用。
+|
+| 该工具的输出包括 C 头文件和代码文件，这些文件可与软件开发套件 (SDK) 示例配合使用，或用于配置定制软件。
+|
+| SysConfig 工具会自动选择满足输入要求的 pinmux 设置。
+| SysConfig 工具作为独立安装程序集成在 CCS 中，也可以通过 dev.ti.com 云工具入口网址使用。
+
+Documentation
+~~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   codegen_easeofuse_sysconfig_CN
+
+Analog Configurator（模拟配置器）
+----------------------
+| `TI Analog Configurator <https://dev.ti.com/gallery/view/TIMSPGC/AnalogConfigurator>`_ 是一个图形配置工具，旨在使用 MSPM0 器件简化和加快模拟信号链的设计和实现，而无需进行传统的编码开发。
+| 该工具使用直观 GUI 来配置信号链（利用 MSPM0 器件的高模拟集成）、实时分析和评估信号以及生成刷写器件所需的配置代码。
+|
+| TI Analog Configurator 利用 SysConfig，根据用户的配置自动选择引脚多路复用设置。
+| 该工具可以输出已经为用户完成了 SysConfig 模拟配置的 CCS 工程。
+
+Documentation
+~~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   codegen_easeofuse_analogconfig_CN
