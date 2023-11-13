@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">1.10.00.05</span>
+   &#160;<span id="projectnumber">1.10.01.05</span>
    </div>
   </td>
  </tr>
@@ -519,7 +519,7 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gga840c7f725afee13c0ba40fcad6ba5097a22dc0f7556cc142526fe25aebe152913">DL_SYSCTL_MCLK_DIVIDER_7</a> = 0x6, 
 <br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gga840c7f725afee13c0ba40fcad6ba5097afc5274c5d7763951badb27da578b4c8a">DL_SYSCTL_MCLK_DIVIDER_8</a> = 0x6, 
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gga840c7f725afee13c0ba40fcad6ba5097afc5274c5d7763951badb27da578b4c8a">DL_SYSCTL_MCLK_DIVIDER_8</a> = 0x7, 
 <br />
 &#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gga840c7f725afee13c0ba40fcad6ba5097a025bb95642eb7c6ae03fcfec87729d94">DL_SYSCTL_MCLK_DIVIDER_9</a> = 0x8, 
 <br />
@@ -1012,6 +1012,12 @@ __STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:ga0e765de836ed9b826189538c67ce3903"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga0e765de836ed9b826189538c67ce3903">DL_SYSCTL_setHFCLKSourceHFXTParams</a> (<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gae709a299b57e30a00d2b05c12eaba591">DL_SYSCTL_HFXT_RANGE</a> range, uint32_t startupTime, bool monitorEnable)</td></tr>
 <tr class="memdesc:ga0e765de836ed9b826189538c67ce3903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change HFCLK source to external crystal HFXT with custom parameters.  <a href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga0e765de836ed9b826189538c67ce3903">More...</a><br /></td></tr>
 <tr class="separator:ga0e765de836ed9b826189538c67ce3903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga186ffa736843a5543272361d3ae32d9a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga186ffa736843a5543272361d3ae32d9a">DL_SYSCTL_disableSYSPLL</a> (void)</td></tr>
+<tr class="memdesc:ga186ffa736843a5543272361d3ae32d9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the SYSPLL.  <a href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga186ffa736843a5543272361d3ae32d9a">More...</a><br /></td></tr>
+<tr class="separator:ga186ffa736843a5543272361d3ae32d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad038f76d15dfa17e0d04e12c0c9a58e6"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gad038f76d15dfa17e0d04e12c0c9a58e6">DL_SYSCTL_disableHFXT</a> (void)</td></tr>
+<tr class="memdesc:gad038f76d15dfa17e0d04e12c0c9a58e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the HFXT.  <a href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gad038f76d15dfa17e0d04e12c0c9a58e6">More...</a><br /></td></tr>
+<tr class="separator:gad038f76d15dfa17e0d04e12c0c9a58e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3b677e9635ac00678d6513d23a6369e4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3b677e9635ac00678d6513d23a6369e4">DL_SYSCTL_setHFCLKSourceHFCLKIN</a> (void)</td></tr>
 <tr class="memdesc:ga3b677e9635ac00678d6513d23a6369e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change HFCLK source to external digital HFCLK_IN.  <a href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3b677e9635ac00678d6513d23a6369e4">More...</a><br /></td></tr>
 <tr class="separator:ga3b677e9635ac00678d6513d23a6369e4"><td class="memSeparator" colspan="2">&#160;</td></tr>

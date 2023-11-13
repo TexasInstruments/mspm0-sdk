@@ -119,8 +119,8 @@ function validatePowerPolicy(inst, validation){
             let hsclkMuxInst = _.find(mod.$instances, ['$name', 'HSCLKMUX']);
             let canclkMuxInst = _.find(mod.$instances, ['$name', 'CANCLKMUX']);
             let fccMux = _.find(mod.$instances, ['$name', 'FCCSELCLKMUX']);
-	        let exclkMux = _.find(mod.$instances, ['$name', 'EXCLKMUX']);
-        	let exhfclkMux = _.find(mod.$instances, ['$name', 'EXHFMUX']);
+            let exclkMux = _.find(mod.$instances, ['$name', 'EXCLKMUX']);
+            let exhfclkMux = _.find(mod.$instances, ['$name', 'EXHFMUX']);
             let mfpclkMux = _.find(mod.$instances, ['$name', 'MFPCLKMUX']);
 
             let pllMuxes = [ hsclkMuxInst, canclkMuxInst, fccMux, exclkMux ];
@@ -185,11 +185,11 @@ function validatePinmux(inst, validation){
                 inst, ["EXCLKSource"]);
             }
             if(inst.ClkOutForceHighDrive){
-				if(inst.VDD < 2.7){
-					validation.logError("When High Drive is enabled VDD supplied voltage cannot be less than 2.7V.",
-					inst, ["VDD"]);
-				}
-			}
+                if(inst.VDD < 2.7){
+                    validation.logError("When High Drive is enabled VDD supplied voltage cannot be less than 2.7V.",
+                    inst, ["VDD"]);
+                }
+            }
         } catch (e){
             // do nothing
         }
@@ -450,6 +450,11 @@ function validateSYSCTL(inst, validation)
                 }
             }
         }
+    }
+
+    /* LFCLK Validation */
+    if(inst.LFCLKSource == "LFXT"){
+        validation.logInfo("After LFXT is enabled, the internal LFOSC is disabled, and cannot be re-enabled other than by executing a BOOTRST.", inst, ["LFCLKSource"]);
     }
 
     } // if Clock Tree is enabled
@@ -1942,6 +1947,27 @@ function getInterruptGroupConfig(){
     return config;
 }
 
+function getForceDefaultClkConfig(){
+    if(Common.isDeviceM0L()){
+        return [];
+    }
+    else{
+        return [
+            {
+                displayName: "Force Default Clock Configuration",
+                name: "forceDefaultClkConfig",
+                description: "Force the default state of the HFXT and SYSPLL to be disabled before initialization.",
+                longDescription: `
+SysConfig assumes a default POR configuration of SYSCTL registers during initialization; however, some configurations such as crystals or PLL are retained in lower reset levels.
+This setting enforces disabling PLL and HFXT to keep a consistent behavior regardless of reset level. For example, HFXT and PLL are disabled after a System Reset, but not a CPU Reset.
+
+Note: LFXT is not disabled by this setting since it requires a BOOTRST.
+                `,
+                default: false,
+            }
+        ]
+    }
+}
 /*
  *  ======== devSpecific ========
  *  Device-specific extensions to be added to base sysctl configuration
@@ -2198,6 +2224,7 @@ To get started:
                     default: false,
                     onChange: onChangeClockTree
                 },
+            ].concat(getForceDefaultClkConfig()).concat([
                 {
                     name: "validateClkStatus",
                     displayName: "Enable Check for Clock Stabilization",
@@ -2384,10 +2411,12 @@ To get started:
                             hidden: true,
                             getValue: (inst) => {
                                 try{
-                                    return inst.peripheral.clkOutPin.$solution.devicePinName;
+                                    let value = inst.peripheral.clkOutPin.$solution.devicePinName;
+                                    if(value !== null){ return value};
                                 } catch(e){
                                     return "N/A"
                                 }
+                                return "N/A"
 
                             }
                         },
@@ -2408,10 +2437,12 @@ To get started:
                             ],
                             getValue: (inst) => {
                                 try{
-                                    return system.deviceData.gpio.pinInfo[inst.peripheral.clkOutPin.$solution.packagePinName].devicePin.attributes.io_type;
+                                    let value =  system.deviceData.gpio.pinInfo[inst.peripheral.clkOutPin.$solution.packagePinName].devicePin.attributes.io_type;
+                                    if(value !== null){ return value};
                                 } catch(e){
                                     return "N/A"
                                 }
+                                return "N/A"
                             }
                         },
                         // DL_SYSCTL_CLK_OUT_SOURCE_[...]
@@ -2733,7 +2764,7 @@ for use by the device. Specifically, the SYSPLL clock outputs can be used as sou
                     collapsed: true,
                     config: getInterruptGroupConfig(),
                 }
-            ]
+            ])
         },
     ],
 
@@ -2827,7 +2858,7 @@ function _getPinResources(inst)
 const memoizedGPIOFilter = _.memoize(curryGPIOFilter, (validPinSet) => JSON.stringify(validPinSet));
 
 function curryGPIOFilter(validPinSet) {
-	return (devicePin, peripheralPin) => GPIOFilter(devicePin, validPinSet);
+    return (devicePin, peripheralPin) => GPIOFilter(devicePin, validPinSet);
 }
 
 function GPIOFilter(devicePin, validPinSet) {

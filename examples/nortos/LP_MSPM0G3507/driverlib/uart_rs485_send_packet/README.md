@@ -47,6 +47,16 @@ For more information about jumper configuration to achieve low-power using the
 MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau846).
 
 ## Example Usage
-Connect the two UART devices using the setup described here [todo].
-Ensure that the uart_rs485_receive_packet is running first on another device.
-Compile, load and run the example.
+Connect the device transmitting the RS485 packet to the receiving device using the following setup guidelines. You will need two RS485 transceiver boards, one for each MCU.
+- Tranmistting MCU 3.3V         -> RS485 transceiver #1 3.3V
+- Tranmistting MCU GND          -> RS485 transceiver #1 GND
+- Tranmistting MCU TX (PA10)    -> RS485 transceiver #1 RX
+- Tranmistting MCU RE (PB4)     -> RS485 transceiver #1 R/T
+- Receiving MCU 3.3V            -> RS485 transceiver #2 3.3V
+- Receiving MCU GND             -> RS485 transceiver #2 GND
+- Receiving MCU RX (PA11)       -> RS485 transceiver #2 TX
+- Receiving MCU DE (PB3)        -> RS485 transceiver #2 R/T
+- (+) terminal of RS485 transceiver #1 -> (-) terminal of RS485 transceiver #2
+- (-) terminal of RS485 transceiver #1 -> (+) terminal of RS485 transceiver #2
+
+Compile, load and run the example. This example can be used in conjunction with the uart_rs485_receive_packet example running on a separate device. Ensure that the uart_rs485_receive_packet is running first on the other device.

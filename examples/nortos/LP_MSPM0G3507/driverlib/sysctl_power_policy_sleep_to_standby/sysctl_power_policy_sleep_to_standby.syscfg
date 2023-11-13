@@ -35,7 +35,8 @@ GPIO2.associatedPins[0].assignedPin = "22";
 GPIO2.associatedPins[0].$name       = "USER_LED_2";
 GPIO2.associatedPins[0].pin.$assign = "PB22";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerMode          = "PERIODIC";

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L1306"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="pir_motion_detection"
+        name="pir_motion_detection_LP_MSPM0L1306_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L1306"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__MSPM0L1306__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -Wl,--stack_size=512
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="PIR Motion Detection using integrated OPA for the signal chain">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../bsp.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../cascade_input_voltage.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../cascade_input_voltage.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../despiking_derippling.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../despiking_derippling.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../motion_detection.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../motion_detection.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../remove_pir_dc_voltage.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../remove_pir_dc_voltage.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../saturation_control.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../saturation_control.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ui_led.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ui_led.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../pir_motion_detection.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/mspm0l1306.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0l1306_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+    </project>
+</projectSpec>

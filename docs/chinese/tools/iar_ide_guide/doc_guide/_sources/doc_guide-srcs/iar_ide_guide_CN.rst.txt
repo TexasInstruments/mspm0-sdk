@@ -1,275 +1,275 @@
-IAR Embedded Workbench IDE Version 9.40+ for MSPM0 MCUs
+适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.40+ 版
 =======================================================
 
-Table of Contents
------------------
+目录
+----
 
--  `Read This First <#read-this-first>`__
--  `Software Installation <#software-installation>`__
--  `Development Flow <#development-flow>`__
--  `Debugging the Application <#debugging-the-application>`__
--  `Known Issues and Frequently Asked Questions (FAQs) <#known-issues-and-frequently-asked-questions-faqs>`__
+-  `请先阅读 <#read-this-first>`__
+-  `软件安装 <#software-installation>`__
+-  `开发流程 <#development-flow>`__
+-  `调试应用 <#debugging-the-application>`__
+-  `已知问题和常见问题解答 （FAQ） <#known-issues-and-frequently-asked-questions-faqs>`__
 
-Read This First
----------------
+请先阅读
+--------
 
-How to Use This Guide
-~~~~~~~~~~~~~~~~~~~~~
+如何使用本指南
+~~~~~~~~~~~~~~
 
-This guide describes only the setup and basic operation of the software development environment, but it does not fully describe the MSPM0 microcontrollers or the complete development software and hardware systems. For details of these items, see the appropriate TI and IAR documents listed in section `Related Documentation From Texas Instruments <#related-documentation-from-texas-instruments>`__.
+本指南仅说明软件开发环境的设置和基本操作， 但并未全面介绍 MSPM0 微控制器或完整的开发软件与硬件系统。 如需了解相关详细信息，请参阅 `德州仪器 （TI）相关文档 <#related-documentation-from-texas-instruments>`__\ 部分中列出的相应 TI 和 IAR 文档。
 
-This guide applies to the use of the `TI XDS-110 <https://www.ti.com/tool/TMDSEMU110-U>`__, `IAR I-Jet <https://www.iar.com/ijettrace>`__, and `Segger J-Link <https://www.segger.com/products/debug-probes/j-link/>`__ development tools series.
+本指南适用于 `TI XDS-110 <https://www.ti.com/tool/TMDSEMU110-U>`__\ 、\ `IAR I-Jet <https://www.iar.com/ijettrace>`__ 和 `Segger J-Link <https://www.segger.com/products/debug-probes/j-link/>`__ 开发工具系列的使用。
 
-These tools contain the most up-to-date materials available at the time of packaging. For the latest materials (including data sheets, user's guides, software, and application information), visit the `TI MSPM0 website <https://www.ti.com/mspm0>`__ or contact your local TI sales office.
+这些工具包含封装时可用的最新材料。有关最新材料 （包括数据表、用户指南、软件和应用信息），请访问 `TI MSPM0 网站 <https://www.ti.com/mspm0>`__\ 或联系当地的 TI 销售办事处。
 
-Information About Cautions
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+与注意事项有关的信息
+~~~~~~~~~~~~~~~~~~~~
 
-This guide may contain cautions.
+本指南可能包含注意事项。
 
-**Caution** - This is an example of a caution statement. A caution statement describes a situation that could potentially damage your software or equipment.
+**注意** - 这是注意事项语句的示例。 注意事项语句描述了一种可能对软件或者器件造成潜在损坏的情况。
 
-Read each caution carefully.
+请仔细阅读每条注意事项。
 
-Related Documentation From Texas Instruments
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+德州仪器 （TI）提供的相关文档
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-MSPM0 development tools documentation:
+MSPM0 开发工具文档：
 
--  `XDS110 Debug Probe User's Guide <https://www.ti.com/lit/sprui94>`__
+-  `XDS110 调试探针用户指南 <https://www.ti.com/lit/sprui94>`__
 
-MSPM0 device documentation:
+MSPM0 器件文档：
 
--  `LP-MSPM0L1306 User's Guide <https://www.ti.com/lit/slau869>`__
--  `MSPM0 L-Series Technical Reference Manual <https://www.ti.com/lit/slau847>`__
--  `LP-MSPM0G3506 User's Guide <https://www.ti.com/lit/slau873>`__
--  `MSPM0 G-Series Technical Reference Manual <https://www.ti.com/lit/slau846>`__
+-  `LP-MSPM0L1306 用户指南 <https://www.ti.com/lit/slau869>`__
+-  `MSPM0 L 系列技术参考手册 <https://www.ti.com/lit/slau847>`__
+-  `LP-MSPM0G3506 用户指南 <https://www.ti.com/lit/slau873>`__
+-  `MSPM0 G 系列技术参考手册 <https://www.ti.com/lit/slau846>`__
 
-If You Need Assistance
-~~~~~~~~~~~~~~~~~~~~~~
+如果您需要协助
+~~~~~~~~~~~~~~
 
-The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>`__ for MSPM0 MCUs are available to provide open interaction with peer engineers, TI engineers, and other experts. Additional device-specific information can be found on the `MSPM0 website <https://www.ti.com/mspm0>`__.
+请针对访问MSPM0 MCU 的 `E2E 社区支持论坛 <https://e2e.ti.com/support/microcontrollers/>`__\ ，与同行工程师、 TI 工程师和其他专家进行公开交流。更多器件特定信息可在 `MSPM0 网站 <https://www.ti.com/mspm0>`__\ 上找到。
 
-1. Software Installation
-------------------------
+1. 软件安装
+-----------
 
-IAR Embedded Workbench for Arm (EWARM) IDE is available from the `IAR website <https://www.iar.com/>`__ or the `TI IAR kickstart page <https://www.ti.com/tool/IAR-KICKSTART>`__. MSPM0 microcontrollers and the MSPM0 SDK require EWARM 9.40.1 or higher.
+`IAR 网站 <https://www.iar.com/>`__\ 或 `TI IAR 入门页面 <https://www.ti.com/tool/IAR-KICKSTART>`__\ 提供 IAR Embedded Workbench for Arm (EWARM) IDE。MSPM0 微控制器和 MSPM0 SDK 需要 EWARM 9.40.1 或更高版本。
 
-See the `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ documentation for finding the right SDK for your IDE version.
+要查找适合您 IDE 版本的 SDK，请参阅 `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ 文档。
 
-2. Development Flow
--------------------
+2. 开发流程
+-----------
 
-This chapter describes how to use IAR EWARM to run the demonstration programs, develop application software, and how to use C-SPY to debug it.
+本章说明了如何使用 IAR EWARM 运行演示程序、开发应用软件以及如何使用 C-SPY 调试软件。
 
-2.1 Overview
-~~~~~~~~~~~~
+2.1 概述
+~~~~~~~~
 
-Applications are developed in assembler or C using the Workbench, and they are debugged using C-SPY. C-SPY is seamlessly integrated into the Workbench. However, it is more convenient to make the distinction between the code development environment (Workbench) and the debugger (C-SPY). C-SPY can be configured to operate with a programmer tool such as XDS-110 connected to an MSPM0 device, or with a software simulator of the device. IAR EWARM refers to the Workbench and C-SPY collectively.
+在 Workbench 中使用汇编语言或者 C 语言开发应用程序，并使用 C-SPY 对其进行调试。C-SPY 无缝 集成到 Workbench 中。不过，区分代码开发环境 （Workbench）和调试器 （C-SPY）更加方便。C-SPY 可配置为使用连接至 MSPM0 器件的编程器工具（如 XDS-110），或使用器件的软件仿真器操作。IAR EWARM 是 Workbench 和 C-SPY 的统称。
 
-Documentation for IAR EWARM is extensive, but the components of IAR EWARM (IDE, debugger, assembler, compiler, linker) are fully documented in ``<Installation Root>\Embedded Workbench x.x\common\doc`` and ``<Installation Root>\Embedded Workbench\arm\doc``.
+关于 IAR EWARM 的文档很多，但关于 IAR EWARM 组件（IDE、调试器、汇编器、编译器、链接器）的完整文档位于 ``<Installation Root>\Embedded Workbench x.x\common\doc`` 和 ``<Installation Root>\Embedded Workbench\arm\doc``\ 。
 
-The PDF files located throughout the EWARM directory tree contain the most up-to-date information. In addition, EWARM documentation is available online through the Help tab in the IDE.
+整个EWARM 目录树中的 PDF 文件包含最新信息。此外，EWARM 文档在线提供，可通过 IDE 中的“Help”选项卡查看。
 
-+------------------------+-------------------------------------+
-| Tool                   | User's Guide                        |
-+========================+=====================================+
-| IDE                    | EWARM\_IDEGuide.ENU.pdf             |
-+------------------------+-------------------------------------+
-| Assembler              | EWARM\_AssemblerReference.ENU.pdf   |
-+------------------------+-------------------------------------+
-| Compiler               | EWARM\_DevelopmentGuide.ENU.pdf     |
-+------------------------+-------------------------------------+
-| C Library              | EWARM\_DevelopmentGuide.ENU.pdf     |
-+------------------------+-------------------------------------+
-| Linker and Librarian   | EWARM\_DevelopmentGuide.ENU.pdf     |
-+------------------------+-------------------------------------+
-| Debugging              | EWARM\_DebuggingGuide.ENU.pdf       |
-+------------------------+-------------------------------------+
++----------------------+-------------------------------------+
+| 工具                 | 用户指南                            |
++======================+=====================================+
+| IDE                  | EWARM\_IDEGuide.ENU.pdf             |
++----------------------+-------------------------------------+
+| 汇编器               | EWARM\_AssemblerReference.ENU.pdf   |
++----------------------+-------------------------------------+
+| 编译器               | EWARM\_DevelopmentGuide.ENU.pdf     |
++----------------------+-------------------------------------+
+| C 库                 | EWARM\_DevelopmentGuide.ENU.pdf     |
++----------------------+-------------------------------------+
+| 链接器和库管理程序   | EWARM\_DevelopmentGuide.ENU.pdf     |
++----------------------+-------------------------------------+
+| 调试                 | EWARM\_DebuggingGuide.ENU.pdf       |
++----------------------+-------------------------------------+
 
-2.2 Creating an MSPM0 Project From the MSPM0 SDK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.2 从 MSPM0 SDK 创建 MSPM0 工程
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Please refer to the `MSPM0 SDK QuickStart Guide for IAR <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__ which contains instructions on how to install the MSPM0 SDK and importing and building an SDK example in IAR.
+请参阅\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html>`__\ ，其中包含有关如何安装 MSPM0 SDK 以及在 IAR 中导入和编译 SDK 示例的说明。
 
-2.3 Creating a Project From Scratch
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.3 从头开始创建工程
+~~~~~~~~~~~~~~~~~~~~
 
-**Note**: Creating a project from scratch is **not recommended** since creating the project from scratch doesn't add all of the necessary device support files by default. To start from a blank project, TI recommends importing the Empty Driverlib example project from the SDK.
+**注意**\ ：\ **不建议**\ 从头开始创建工程，因为从头开始创建工程不会 默认添加所有必要的器件支持文件。要从空白工程开始，TI 建议从 SDK 导入空 Driverlib 示例 工程。
 
-2.4 Using SysConfig with IAR
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.4 将 SysConfig 与 IAR 配合使用
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some examples in the MSPM0 SDK have SysConfig support. `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.
+MSPM0 SDK 中的一些示例支持 SysConfig。\ `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ 是一个直观而全面的图形实用程序集合，用于配置引脚、外设、无线电、子系统和其他 组件。SysConfig 可助您直观地管理、发现和解决冲突，以便您有更多时间 创建差异化应用。
 
-The SysConfig tool is delivered as a standalone installer which can be manually integrated into IAR, or can be used via the dev.ti.com cloud tools portal.
+SysConfig 工具作为独立安装程序交付，可手动集成到 IAR 中，也可通过 dev.ti.com 云工具门户使用。
 
-The best way to start a SysConfig project in IAR is to import it from the SDK; however, some steps are required to initialize SysConfig in IAR for the first time. Refer to the `MSPM0 SDK QuickStart Guide for IAR <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__ for more details on installing SysConfig and enabling it for IAR.
+在 IAR 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 IAR 中初始化 SysConfig。请参阅\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html>`__\ ，以详细了解如何安装 SysConfig 和 为 IAR 启用 SysConfig。
 
-For more information about using SysConfig with MSPM0, visit the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ guide.
+有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 指南。
 
-2.5 Migrating Between MSPM0 Derivatives
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.5 在 MSPM0 衍生产品之间进行迁移
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required.
+通过 SysConfig，可以更轻松地在 MSPM0 衍生产品之间进行迁移；不过需进行一些手动修改。
 
-1. In SysConfig, enable the Device View and click on **SWITCH**
+1. 在 SysConfig 中，启用器件视图并点击 **SWITCH**
 
 .. figure:: ./images/iar_ide_guide/iar_ide_migrate_1.png
    :alt: 
 
-2. Select the corresponding options for the new MSPM0 device and click **CONFIRM**.
+2. 选择新 MSPM0 器件的相应选项，然后点击 **CONFIRM**\ 。
 
 .. figure:: ./images/iar_ide_guide/iar_ide_migrate_2.png
    :alt: 
 
-3. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed.
+3. 请注意，SysConfig 将突出显示与迁移的任何冲突，例如不可用的引脚和外设。 根据需要修复任何冲突。
 
-4. In the project options, select **General Options** → **Target** → **Device**. Select the MSPM0 device.
+4. 在工程选项中，依次选择 **General Options** → **Target** → **Device**\ 。选择 MSPM0 器件。
 
 .. figure:: ./images/iar_ide_guide/iar_ide_migrate_3.png
    :alt: 
 
-5. In the project options, select **C/C++ Compiler** → **Preprocessor** → **Defined symbols**. Add the device definition as per the device selected.
+5. 在工程选项中，依次选择 **C/C++ Compiler** → **Preprocessor** → **Defined symbols**\ 。 根据所选器件添加器件定义。
 
 .. figure:: ./images/iar_ide_guide/iar_ide_migrate_4.png
    :alt: 
 
-6. Update the linker and startup files. The MSPM0 SDK includes default files for all MSPM0 derivatives at ``<sdk>\source\ti\devices\msp\m0p\linker_files\iar`` and ``<sdk>\source\ti\devices\msp\m0p\startup_system_files\iar`` respectively.
+6. 更新链接器和启动文件。MSPM0 SDK 分别在 ``<sdk>\source\ti\devices\msp\m0p\linker_files\iar`` 和 ``<sdk>\source\ti\devices\msp\m0p\startup_system_files\iar`` 中包含所有 MSPM0 衍生产品的默认文件。
 
-7. Resolve any other dependencies such as incompatible libraries and source code.
+7. 解析任何其他依赖项，例如不兼容的库和源代码。
 
-Note: Steps 1-3 don't apply when not using SysConfig.
+注意：未使用 SysConfig 时，步骤 1-3 不适用。
 
-2.6 Stack and Heap Management and .icf Files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.6 栈和堆管理及 .icf 文件
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The reserved stack and heap size can be configured through direct modification of the .icf linker configuration files. These files are input to the linker and contain statements that control the allocation of device memory (RAM, flash). See the IAR Development Guide documentation for a complete description of these files.
+可通过直接修改 .icf 链接器配置文件来配置保留的栈和堆大小。这些被输出到链接器的文件包含控制器件内存（RAM，闪存）分配的语句。有关这些文件的完整说明，请参阅 IAR 开发指南文档。
 
-The supplied .icf files can be modified to tune the size of the stack and heap to the needs of the application; edit ``__ICFEDIT_size_cstack__=xx`` or ``__ICFEDIT_size_heap__=xx`` to allocate xx bytes for the stack or heap.
+可对提供的 .icf 文件进行修改，以根据应用需求调整栈和堆大小；编辑 ``__ICFEDIT_size_cstack__=xx`` 或 ``__ICFEDIT_size_heap__=xx`` 可为栈或堆分配 xx 个字节。
 
-2.7 How to Generate TI .TXT (and Other Format) Files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.7 如何生成 TI .TXT（及其他格式）文件
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The linker can be configured to output objects in TI .TXT format for use with programming tools such as `MSP-GANG <https://www.ti.com/tool/MSP-GANG>`__ and `UniFlash <https://www.ti.com/tool/UNIFLASH>`__.
+可将链接器配置为以 TI .TXT 格式输出对象，以便与 `MSP-GANG <https://www.ti.com/tool/MSP-GANG>`__ 和 `UniFlash <https://www.ti.com/tool/UNIFLASH>`__ 等编程工具一起使用。
 
-Click **Project** → **Options** → **Output Converter** → **Generate additional output** → **Output format** → **Texas Instruments TI-TXT**. Intel Hex or other formats also can be selected.
+依次点击 **Project** → **Options** → **Output Converter** → **Generate additional output** → **Output format** → **Texas Instruments TI-TXT**\ 。也可以选择 Intel Hex 或其他格式。
 
-2.8 Erasing and Programming NONMAIN for MSPM0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.8 为 MSPM0 擦除和编程 NONMAIN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Caution**: Extreme care should be taken when erasing and programming NONMAIN. If done incorrectly, the device will become **locked in a permanently unrecoverable state**.
+**注意**\ ：在擦除和编程 NONMAIN 时应特别小心。如果操作错误，器件将 **锁定在永久不可恢复的状态**\ 。
 
-1. Click **Options** → **Debugger** → **Download** → **Override default .board file** → **Edit**.
-2. Select the 2nd element and then click Okay:
+1. 依次点击 **Options** → **Debugger** → **Download** → **Override default .board file** → **Edit**\ 。
+2. 选择第二个元素，然后点击“Okay”：
 
    .. figure:: ./images/iar_ide_guide/iar_ide_non_main.png
       :alt: 
 
-3. Add ``--non_main_erase`` as an extra parameter:
+3. 添加 ``--non_main_erase`` 作为额外参数：
 
    .. figure:: ./images/iar_ide_guide/iar_ide_non_main_2.png
       :alt: 
 
-2.9 Overriding Pre-built libraries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.9 覆盖预编译库
+~~~~~~~~~~~~~~~~
 
-Projects might include pre-built libraries which simplify development and build time; however, they don't allow developers to modify source code easily.
+工程可能包括预编译库，可简化开发和编译过程；不过， 开发人员无法轻松修改源代码。
 
-An example of such libraries is the MSPM0 DriverLib which is shown below.
+下面显示了此类库的一个示例 MSPM0 DriverLib。
 
 .. figure:: ./images/iar_ide_guide/iar_ide_lib.png
    :alt: 
 
-One option to override the library is to simply add any or all source files to the project. The MSPM0 SDK includes the ``empty_driverlib_src`` example which includes all DriverLib source by default:
+覆盖库的一个选项是直接向工程添加任何或所有源文件。 MSPM0 SDK 包括 ``empty_driverlib_src`` 示例，其中默认包括所有 DriverLib 源：
 
 .. figure:: ./images/iar_ide_guide/iar_ide_lib_source.png
    :alt: 
 
-See `Debugging Pre-built Libraries <#debugging-pre-built-libraries>`__ for information on how to debug pre-built libraries.
+请参阅\ `调试预编译库 <#debugging-pre-built-libraries>`__\ ，了解 如何调试预编译库。
 
-3. Debugging the Application
-----------------------------
+3. 调试应用程序
+---------------
 
-3.1 Using TI XDS Tools
-~~~~~~~~~~~~~~~~~~~~~~
+3.1 使用 TI XDS 工具
+~~~~~~~~~~~~~~~~~~~~
 
-TI offers a range of debug probes for Arm-based devices, including the XDS-110 which is integrated with MSPM0 LaunchPads.
+TI 提供各种适用于 Arm 器件的调试探针，包括与 MSPM0 LaunchPad 集成的 XDS-110。
 
-**Note**: TI XDS-110 debug probes are enabled for use through the CMSIS-DAP protocol. However, the TI XDS native drivers currently give higher performance.
+**注意**\ ：TI XDS-110 调试探针通过 CMSIS-DAP 协议启用。不过， TI XDS 原生驱动程序目前性能更高。
 
-To use them with EWARM, installation of the XDS emulation package is required. A copy of the emulation package is located in the EWARM installation under ``\arm\drivers\ti-xds``. See the Readme.txt document that is also located in this folder. TI recommends installing the emulation package in ``c:\ti\xds\ewarm_version``. Do not use XDS emulation packages from other EWARM versions, as they might not be compatible and can result in errors when debugging.
+要将这些调试探针用于 EWARM，需要安装 XDS 仿真包。仿真包副本 位于 ``\arm\drivers\ti-xds`` 下的 EWARM 安装程序中。请参阅同样位于此文件夹中的 Readme.txt 文档。TI 建议在 ``c:\ti\xds\ewarm_version`` 中安装仿真包。请勿使用其他 EWARM 版本的 XDS 仿真包， 因为它们可能不兼容，可能在调试时导致出错。
 
-To use the TI-XDS debug probes,select **Options** → **Debugger** → **Driver** → **TI XDS**:
+要使用 TI-XDS 调试探针，请依次选择 **Options** → **Debugger** → **Driver** → **TI XDS**\ ：
 
 .. figure:: ./images/iar_ide_guide/iar_ide_xds110_select.png
    :alt: 
 
-When the emulation package has been installed, XDS debug probes can be selected in **Options** → **Debugger** → **TI XDS**:
+安装仿真包后，可在 **Options** → **Debugger** → **TI XDS** 中选择 XDS 调试探针：
 
 .. figure:: ./images/iar_ide_guide/iar_ide_xds110.png
    :alt: 
 
--  Note the selected Emulator. The LaunchPads include an integrated TI XDS110 Emulator.
--  The selected Interface is SWD which is supported by MSPM0.
--  Note the TI EmuPack installation path. Override if desired.
--  The XDS tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debugger** → **Use flash loader(s)**:
+-  注意所选仿真器。LaunchPad 包括一个集成的 TI XDS110 仿真器。
+-  所选接口是 MSPM0 支持的 SWD。
+-  注意 TI EmuPack 安装路径。根据需要覆盖。
+-  XDS 工具使用闪存加载程序将代码下载到器件。在 **Options** → **Debugger** → **Use flash loader(s)** 中确认使用：
 
-3.2 Using Segger J-Link Debug Probe
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.2 使用 Segger J-Link 调试探针
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To use the Segger J-Link debug probe, select **Options** → **Debugger** → **Driver** → **J-Link/J-Trace**:
+要使用 Segger J-Link 调试探针，请依次选择 **Options** → **Debugger** → **Driver** → **J-Link/J-Trace**\ ：
 
 .. figure:: ./images/iar_ide_guide/iar_ide_jlink_select.png
    :alt: 
 
--  The J-Link tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debugger** → **Use flash loader(s)**:
+-  J-Link 工具使用闪存加载程序将代码下载到器件。在 **Options** → **Debugger** → **Use flash loader(s)** 中确认使用：
 
-3.3 Using IAR I-jet Debug Probe
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.3 使用 IAR I-jet 调试探针
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To use the IAR I-Jet debug probes, select **Options** → **Debugger** → **Driver** → **I-jet**:
+要使用 IAR I-Jet 调试探针，请依次选择 **Options** → **Debugger** → **Driver** → **I-jet**\ ：
 
 .. figure:: ./images/iar_ide_guide/iar_ide_ijet_select.png
    :alt: 
 
--  The I-jet tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debugger** → **Use flash loader(s)**:
+-  I-jet 工具使用闪存加载程序将代码下载到器件。在 **Options** → **Debugger** → **Use flash loader(s)** 中确认使用：
 
-3.4 Breakpoint Types
-~~~~~~~~~~~~~~~~~~~~
+3.4 断点类型
+~~~~~~~~~~~~
 
-The C-SPY breakpoint mechanism uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints are not supported on MSPM0. This means that a maximum of 4 breakpoints can be set within C-SPY.
+C-SPY 断点机制使用有限数量的片上调试资源（具体为 4 个硬件断点 和 2 个硬件观察点）。MSPM0 不支持软件断点。这意味着在 C-SPY 中最多可设置 4 个断点。
 
-Resetting a program and the Run To Cursor operation temporarily require a breakpoint. As a result, only 3 breakpoints can be active. If 4 breakpoints are being used, C-SPY will automatically disable a breakpoint.
+重置程序和“运行至光标”操作临时需要1个断点。因此，只有 3 个断点 可处于活动状态。如果使用 4 个断点，C-SPY 将自动禁用1个断点。
 
-If the max number of breakpoints are set, the following warning will be displayed.
+如果设置了断点最大数量，将显示以下警告。
 
 .. figure:: ./images/iar_ide_guide/iar_ide_max_breakpoints.png
    :alt: 
 
-3.5 Debugging Pre-built Libraries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.5 调试预编译库
+~~~~~~~~~~~~~~~~
 
-Projects might include pre-built libraries which can be difficult to debug if symbols are not available. An example of such libraries is the MSPM0 DriverLib which is used by many MSPM0 SDK examples.
+工程可能包括预编译库，如果符号不可用，可能很难调试这些库。 此类库的一个示例是 MSPM0 DriverLib，它由多个 MSPM0 SDK 示例使用。
 
-In such scenarios, IAR will show the following message:
+在此类情况下，IAR 将显示以下消息：
 
 .. figure:: ./images/iar_ide_guide/iar_ide_debug_error.png
    :alt: 
 
-The error can be fixed by selecting the folder with source code. For the example shown, the DriverLib source code is selected:
+可通过选择包含源代码的文件夹来修复错误。在所示示例中，选择了 DriverLib 源代码：
 
 .. figure:: ./images/iar_ide_guide/iar_ide_debug_error_fix1.png
    :alt: 
 
-Alternatively, the path for the source code can be added to **Options** → **Runtime Checking** → **C/C++ Compiler**\ →\ **Preprocessor**. For the example shown, the DriverLib source code path was added:
+或者，将源代码路径添加至 **Options** → **Runtime Checking** → **C/C++ Compiler**\ →\ **Preprocessor**\ 。在所示示例中，添加了 DriverLib 源代码路径：
 
 .. figure:: ./images/iar_ide_guide/iar_ide_debug_error_fix2.png
    :alt: 
 
-See `Overriding Pre-built Libraries <#overriding-pre-built-libraries>`__ for information on how to override and modify source code from libraries.
+请参阅\ `覆盖预编译库 <#overriding-pre-built-libraries>`__\ ，以了解 如何覆盖和修改库的源代码。
 
-4. Known Issues and Frequently Asked Questions (FAQs)
------------------------------------------------------
+4. 已知问题和常见问题解答 （FAQ）
+---------------------------------
 
-Please refer to `Known Issues and FAQ <../../../../../../known_issues_FAQ.html>`__ inside the SDK.
+请参阅 SDK 中的\ `已知问题和 FAQ <../../../../../../known_issues_FAQ.html>`__\ 。

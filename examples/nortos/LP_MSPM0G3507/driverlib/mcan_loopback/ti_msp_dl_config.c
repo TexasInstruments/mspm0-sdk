@@ -86,6 +86,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 {
     DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+	/* Set default configuration */
+	DL_SYSCTL_disableHFXT();
+	DL_SYSCTL_disableSYSPLL();
     DL_SYSCTL_setHFCLKSourceHFXTParams(DL_SYSCTL_HFXT_RANGE_32_48_MHZ,10, true);
 
 	//Low Power Mode is configured to be SLEEP0
@@ -98,6 +101,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_CLK_init(void) {
 	       != (DL_SYSCTL_CLK_STATUS_HFCLK_GOOD
 		 | DL_SYSCTL_CLK_STATUS_LFOSC_GOOD))
 	{
+		/* Ensure that clocks are in default POR configuration before initialization.
+		* Additionally once LFXT is enabled, the internal LFOSC is disabled, and cannot
+		* be re-enabled other than by executing a BOOTRST. */
 		;
 	}
 }

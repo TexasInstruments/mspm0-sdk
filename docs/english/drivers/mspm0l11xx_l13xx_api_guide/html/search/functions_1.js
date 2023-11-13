@@ -1,20 +1,12 @@
 var searchData=
 [
-  ['gpio_5fclearint',['GPIO_clearInt',['../group___g_p_i_o.html#ga870cd0b05ac6fae2a930c4ea3298b570',1,'GPIO.h']]],
-  ['gpio_5fdisableint',['GPIO_disableInt',['../group___g_p_i_o.html#ga33005dec4e3a9a58322dd33779990a86',1,'GPIO.h']]],
-  ['gpio_5fenableint',['GPIO_enableInt',['../group___g_p_i_o.html#ga31c4e65b3855424418262e35521c7051',1,'GPIO.h']]],
-  ['gpio_5fgetcallback',['GPIO_getCallback',['../group___g_p_i_o.html#gaf17426aceed970ef6c5acfa38c94bb41',1,'GPIO.h']]],
-  ['gpio_5fgetconfig',['GPIO_getConfig',['../group___g_p_i_o.html#gadf0153b2f2ab21828521aec8eb568d39',1,'GPIO.h']]],
-  ['gpio_5fgetmux',['GPIO_getMux',['../group___g_p_i_o.html#gad7fa6f50adbe67b27d50081dbf86eaff',1,'GPIO.h']]],
-  ['gpio_5fgetuserarg',['GPIO_getUserArg',['../group___g_p_i_o.html#ga97bc4b168f58b08d71f56b4be5603c6e',1,'GPIO.h']]],
-  ['gpio_5finit',['GPIO_init',['../group___g_p_i_o.html#ga7aaec489dca5ac4d278d2eb3ae38a2d2',1,'GPIO.h']]],
-  ['gpio_5fread',['GPIO_read',['../group___g_p_i_o.html#ga39deeae6a6b28d3c56693a668601177e',1,'GPIO.h']]],
-  ['gpio_5fresetconfig',['GPIO_resetConfig',['../group___g_p_i_o.html#ga131b79245a300dd81ba29a014625b0c2',1,'GPIO.h']]],
-  ['gpio_5fsetcallback',['GPIO_setCallback',['../group___g_p_i_o.html#ga24c401f32e65f60f11a1594fdafb9d2a',1,'GPIO.h']]],
-  ['gpio_5fsetconfig',['GPIO_setConfig',['../group___g_p_i_o.html#ga015b75143cc3b8914cc298c5c4fc097e',1,'GPIO.h']]],
-  ['gpio_5fsetconfigandmux',['GPIO_setConfigAndMux',['../group___g_p_i_o.html#ga53cc86d668c93f510dc3de7332410ebd',1,'GPIO.h']]],
-  ['gpio_5fsetinterruptconfig',['GPIO_setInterruptConfig',['../group___g_p_i_o.html#ga409bdc2af261c447e67de10d7fce7569',1,'GPIO.h']]],
-  ['gpio_5fsetuserarg',['GPIO_setUserArg',['../group___g_p_i_o.html#gac852b7d77163b3aa4979e7fb13798844',1,'GPIO.h']]],
-  ['gpio_5ftoggle',['GPIO_toggle',['../group___g_p_i_o.html#ga202292e331e2eb9ccf97f4caab2e97aa',1,'GPIO.h']]],
-  ['gpio_5fwrite',['GPIO_write',['../group___g_p_i_o.html#gadf697825b43c26c0126173780e57eb58',1,'GPIO.h']]]
+  ['dma_5finit',['DMA_Init',['../group___d_m_a.html#gaa469f6d48b00671eeb013a691dc81529',1,'DMAMSPM0.h']]],
+  ['dma_5fparams_5finit',['DMA_Params_init',['../group___d_m_a.html#gad58062cd1e508a3fdf174bc65639b9e3',1,'DMAMSPM0.h']]],
+  ['dmamspm0_5fclose',['DMAMSPM0_close',['../group___d_m_a.html#gae95a2c66447e2ddd3ae9d9b645c53942',1,'DMAMSPM0.h']]],
+  ['dmamspm0_5fcopydmaparams',['DMAMSPM0_copyDMAParams',['../group___d_m_a.html#gae6ed9ea7cefc32ae6528cf9bc2da1f2e',1,'DMAMSPM0.h']]],
+  ['dmamspm0_5fdisablechannel',['DMAMSPM0_disableChannel',['../group___d_m_a.html#ga7f580446972a92c87d13cda5a2d666e8',1,'DMAMSPM0.h']]],
+  ['dmamspm0_5fgetcurrtransfersize',['DMAMSPM0_getCurrTransferSize',['../group___d_m_a.html#ga8fb50a12e77ce31821a6fa827460144d',1,'DMAMSPM0.h']]],
+  ['dmamspm0_5finit',['DMAMSPM0_init',['../group___d_m_a.html#ga8a379aa65552a10e85cc4b1cb394896b',1,'DMAMSPM0.h']]],
+  ['dmamspm0_5fopen',['DMAMSPM0_open',['../group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2',1,'DMAMSPM0.h']]],
+  ['dmamspm0_5fsetuptransfer',['DMAMSPM0_setupTransfer',['../group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31',1,'DMAMSPM0.h']]]
 ];

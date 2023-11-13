@@ -1,0 +1,150 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const GPAMP  = scripting.addModule("/ti/driverlib/GPAMP", {}, false);
+const GPAMP1 = GPAMP.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const GPIO3  = GPIO.addInstance();
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const OPA2   = OPA.addInstance();
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const TIMER2 = TIMER.addInstance();
+const TIMER3 = TIMER.addInstance();
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                                    = "ADC12_0";
+ADC121.samplingOperationMode                    = "sequence";
+ADC121.endAdd                                   = 2;
+ADC121.adcMem0chansel                           = "DL_ADC12_INPUT_CHAN_12";
+ADC121.adcMem1chansel                           = "DL_ADC12_INPUT_CHAN_3";
+ADC121.enabledInterrupts                        = ["DL_ADC12_INTERRUPT_MEM2_RESULT_LOADED"];
+ADC121.sampleTime0                              = "40us";
+ADC121.adcMem2chansel                           = "DL_ADC12_INPUT_CHAN_9";
+ADC121.peripheral.$assign                       = "ADC0";
+ADC121.peripheral.adcPin3.$assignAllowConflicts = "PA24/OPA0.IN0-";
+ADC121.peripheral.adcPin9.$assign               = "PA15";
+ADC121.adcPin3Config.$name                      = "ti_driverlib_gpio_GPIOPinGeneric5";
+ADC121.adcPin9Config.$name                      = "ti_driverlib_gpio_GPIOPinGeneric0";
+scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", ADC121.peripheral, "adcPin3");
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+COMP1.$name              = "COMP_0";
+COMP1.controlSelect      = "DL_COMP_DAC_CONTROL_SW";
+COMP1.terminalSelect     = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP1.setDACCode0        = 0x8C;
+COMP1.compMode           = "DL_COMP_MODE_ULP";
+COMP1.vSource            = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP1.peripheral.$assign = "COMP0";
+
+GPAMP1.$name                       = "GPAMP_0";
+GPAMP1.cfgPSELChannel              = "IN_POS";
+GPAMP1.cfgNSELChannel              = "INTERNAL_OUTPUT";
+GPAMP1.cfgOutputPin                = "ENABLED";
+GPAMP1.peripheral.$assign          = "GPAMP";
+GPAMP1.peripheral.InPosPin.$assign = "PA26";
+GPAMP1.peripheral.OutPin.$assign   = "PA22";
+
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort = "PORTA";
+GPIO1.associatedPins[0].assignedPin  = "0";
+GPIO1.associatedPins[0].pin.$assign  = "PA0";
+
+GPIO2.$name                         = "GPIO_RED_LED";
+GPIO2.associatedPins[0].$name       = "PIN_0";
+GPIO2.associatedPins[0].ioStructure = "SD";
+GPIO2.associatedPins[0].pin.$assign = "PA4";
+
+GPIO3.$name                         = "GPIO_GREEN_LED";
+GPIO3.associatedPins[0].$name       = "PIN_1";
+GPIO3.associatedPins[0].ioStructure = "SD";
+GPIO3.associatedPins[0].pin.$assign = "PA23";
+
+OPA1.$name                                      = "OPA_0";
+OPA1.cfg0NSELChannel                            = "RTAP";
+OPA1.cfg0Gain                                   = "N15_P16";
+OPA1.cfg0PSELChannel                            = "IN0_POS";
+OPA1.cfg0MSELChannel                            = "IN1_NEG";
+OPA1.peripheral.$assign                         = "OPA0";
+OPA1.peripheral.In0PosPin.$assign               = "PA25";
+OPA1.peripheral.In1NegPin.$assignAllowConflicts = "PA24/OPA0.IN0-";
+scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", OPA1.peripheral, "In1NegPin");
+
+OPA2.$name                     = "OPA_1";
+OPA2.cfg0OutputPin             = "ENABLED";
+OPA2.cfg0NSELChannel           = "RTAP";
+OPA2.cfg0MSELChannel           = "RTOP";
+OPA2.cfg0PSELChannel           = "DAC8_OUT";
+OPA2.cfg0Gain                  = "N15_P16";
+OPA2.peripheral.$assign        = "OPA1";
+OPA2.peripheral.OutPin.$assign = "PA16";
+
+PWM1.$name                      = "PWM_0";
+PWM1.timerCount                 = 32;
+PWM1.ccIndex                    = [0];
+PWM1.peripheral.$assign         = "TIMG0";
+PWM1.peripheral.ccp0Pin.$assign = "PA12";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle    = 75;
+
+SYSCTL.powerPolicy        = "STANDBY1";
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.$name              = "TIMER_1";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerPeriod        = "50 ms";
+TIMER1.peripheral.$assign = "TIMG1";
+
+TIMER2.$name              = "TIMER_2";
+TIMER2.interrupts         = ["ZERO"];
+TIMER2.timerPeriod        = "40us";
+TIMER2.peripheral.$assign = "TIMG4";
+
+TIMER3.$name              = "TIMER_3";
+TIMER3.timerClkDiv        = 8;
+TIMER3.timerClkPrescale   = 200;
+TIMER3.timerPeriod        = "1s";
+TIMER3.interrupts         = ["ZERO"];
+TIMER3.peripheral.$assign = "TIMG2";
+
+UART1.$name                    = "UART_0";
+UART1.targetBaudRate           = 115200;
+UART1.enableFIFO               = true;
+UART1.peripheral.$assign       = "UART0";
+UART1.peripheral.rxPin.$assign = "PA9";
+UART1.peripheral.txPin.$assign = "PA8";
+
+VREF.basicIntVolt         = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.advClockConfigEnable = true;
+VREF.checkVREFReady       = true;
+VREF.advClkSrc            = "DL_VREF_CLOCK_BUSCLK";
+VREF.peripheral.$assign   = "VREF";

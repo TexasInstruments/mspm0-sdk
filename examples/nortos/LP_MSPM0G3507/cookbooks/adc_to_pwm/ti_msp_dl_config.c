@@ -111,6 +111,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 {
     DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+    /* Set default configuration */
+    DL_SYSCTL_disableHFXT();
+    DL_SYSCTL_disableSYSPLL();
     DL_SYSCTL_setMCLKDivider(DL_SYSCTL_MCLK_DIVIDER_DISABLE);
     DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_1);
 

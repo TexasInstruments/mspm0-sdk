@@ -1,16 +1,20 @@
 var searchData=
 [
-  ['i2c_5fcancel',['I2C_cancel',['../group___i2_c.html#ga8cad0c04a9eca0fffc0ffe5586a5179b',1,'I2C.h']]],
-  ['i2c_5fclose',['I2C_close',['../group___i2_c.html#ga12c86d89a687f2ee1eb980d99c32326d',1,'I2C.h']]],
-  ['i2c_5fcontrol',['I2C_control',['../group___i2_c.html#ga4c74b1b9f8e76ac22bec7608491cb223',1,'I2C.h']]],
-  ['i2c_5finit',['I2C_init',['../group___i2_c.html#ga9ff51ddf1d325776fef90cce0223772b',1,'I2C.h']]],
-  ['i2c_5fopen',['I2C_open',['../group___i2_c.html#ga2db3461e1e956d9b86af414da2fb05f6',1,'I2C.h']]],
-  ['i2c_5fparams_5finit',['I2C_Params_init',['../group___i2_c.html#gab11636302074d67180207ab81ceb323c',1,'I2C.h']]],
-  ['i2c_5fsetclocktimeout',['I2C_setClockTimeout',['../group___i2_c.html#ga999fa1c606163ca9bbb4252a27c8eb9d',1,'I2C.h']]],
-  ['i2c_5ftransfer',['I2C_transfer',['../group___i2_c.html#gac5d827b67fe77d7d179026941cc069d7',1,'I2C.h']]],
-  ['i2c_5ftransfertimeout',['I2C_transferTimeout',['../group___i2_c.html#gaaee4f0689acbe5f0596e35b18402abf3',1,'I2C.h']]],
-  ['i2csupport_5fcontrollerfinish',['I2CSupport_controllerFinish',['../group___i2_c_support.html#gae288e1f7276da493a9c41e9ddc9f4cf7',1,'I2CSupport.h']]],
-  ['i2csupport_5fpowerrelconstraint',['I2CSupport_powerRelConstraint',['../group___i2_c_support.html#ga62fde0ccc035195b08603937652a63e3',1,'I2CSupport.h']]],
-  ['i2csupport_5fpowersetconstraint',['I2CSupport_powerSetConstraint',['../group___i2_c_support.html#gaef0c9ca06b4e0e7b132bb4ba77fa49dc',1,'I2CSupport.h']]],
-  ['i2csupport_5fprimetransfer',['I2CSupport_primeTransfer',['../group___i2_c_support.html#gaf638babf4e177a40cf4f04324de3c711',1,'I2CSupport.h']]]
+  ['gpio_5fclearint',['GPIO_clearInt',['../group___g_p_i_o.html#ga870cd0b05ac6fae2a930c4ea3298b570',1,'GPIO.h']]],
+  ['gpio_5fdisableint',['GPIO_disableInt',['../group___g_p_i_o.html#ga33005dec4e3a9a58322dd33779990a86',1,'GPIO.h']]],
+  ['gpio_5fenableint',['GPIO_enableInt',['../group___g_p_i_o.html#ga31c4e65b3855424418262e35521c7051',1,'GPIO.h']]],
+  ['gpio_5fgetcallback',['GPIO_getCallback',['../group___g_p_i_o.html#gaf17426aceed970ef6c5acfa38c94bb41',1,'GPIO.h']]],
+  ['gpio_5fgetconfig',['GPIO_getConfig',['../group___g_p_i_o.html#gadf0153b2f2ab21828521aec8eb568d39',1,'GPIO.h']]],
+  ['gpio_5fgetmux',['GPIO_getMux',['../group___g_p_i_o.html#gad7fa6f50adbe67b27d50081dbf86eaff',1,'GPIO.h']]],
+  ['gpio_5fgetuserarg',['GPIO_getUserArg',['../group___g_p_i_o.html#ga97bc4b168f58b08d71f56b4be5603c6e',1,'GPIO.h']]],
+  ['gpio_5finit',['GPIO_init',['../group___g_p_i_o.html#ga7aaec489dca5ac4d278d2eb3ae38a2d2',1,'GPIO.h']]],
+  ['gpio_5fread',['GPIO_read',['../group___g_p_i_o.html#ga39deeae6a6b28d3c56693a668601177e',1,'GPIO.h']]],
+  ['gpio_5fresetconfig',['GPIO_resetConfig',['../group___g_p_i_o.html#ga131b79245a300dd81ba29a014625b0c2',1,'GPIO.h']]],
+  ['gpio_5fsetcallback',['GPIO_setCallback',['../group___g_p_i_o.html#ga24c401f32e65f60f11a1594fdafb9d2a',1,'GPIO.h']]],
+  ['gpio_5fsetconfig',['GPIO_setConfig',['../group___g_p_i_o.html#ga015b75143cc3b8914cc298c5c4fc097e',1,'GPIO.h']]],
+  ['gpio_5fsetconfigandmux',['GPIO_setConfigAndMux',['../group___g_p_i_o.html#ga53cc86d668c93f510dc3de7332410ebd',1,'GPIO.h']]],
+  ['gpio_5fsetinterruptconfig',['GPIO_setInterruptConfig',['../group___g_p_i_o.html#ga409bdc2af261c447e67de10d7fce7569',1,'GPIO.h']]],
+  ['gpio_5fsetuserarg',['GPIO_setUserArg',['../group___g_p_i_o.html#gac852b7d77163b3aa4979e7fb13798844',1,'GPIO.h']]],
+  ['gpio_5ftoggle',['GPIO_toggle',['../group___g_p_i_o.html#ga202292e331e2eb9ccf97f4caab2e97aa',1,'GPIO.h']]],
+  ['gpio_5fwrite',['GPIO_write',['../group___g_p_i_o.html#gadf697825b43c26c0126173780e57eb58',1,'GPIO.h']]]
 ];

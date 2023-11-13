@@ -61,7 +61,8 @@ SYSCTL.SYSPLL_CLK2XDiv   = 1;
 SYSCTL.HSCLKSource       = "SYSPLLCLK2X";
 SYSCTL.validateClkStatus = true;
 SYSCTL.SYSPLL_Qdiv       = 5;
-SYSCTL.clockTreeEn       = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn        = true;
 
 TIMER1.$name            = "TIMER_0";
 TIMER1.timerClkDiv      = 8;

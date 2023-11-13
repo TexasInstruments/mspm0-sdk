@@ -1,0 +1,64 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default" 
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const OPA2   = OPA.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.sampClkDiv         = "DL_ADC12_CLOCK_DIVIDE_4";
+ADC121.trigSrc            = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.subChanID          = 1;
+ADC121.$name              = "ADC";
+ADC121.enabledInterrupts  = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.sampleTime0        = "125 us";
+ADC121.adcMem0chansel     = "DL_ADC12_INPUT_CHAN_13";
+ADC121.peripheral.$assign = "ADC1";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+OPA1.$name                        = "OPA_0";
+OPA1.cfg0PSELChannel              = "IN0_POS";
+OPA1.cfg0NSELChannel              = "IN0_NEG";
+OPA1.cfg0OutputPin                = "ENABLED";
+OPA1.peripheral.$assign           = "OPA0";
+OPA1.peripheral.In0PosPin.$assign = "PA26";
+OPA1.peripheral.In0NegPin.$assign = "PA27";
+OPA1.peripheral.OutPin.$assign    = "PA22";
+
+OPA2.$name                        = "OPA_1";
+OPA2.cfg0OutputPin                = "ENABLED";
+OPA2.cfg0PSELChannel              = "IN0_POS";
+OPA2.cfg0NSELChannel              = "IN0_NEG";
+OPA2.peripheral.$assign           = "OPA1";
+OPA2.peripheral.OutPin.$assign    = "PA16";
+OPA2.peripheral.In0PosPin.$assign = "PB19";
+OPA2.peripheral.In0NegPin.$assign = "PB20";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+SYSCTL.forceDefaultClkConfig = true;
+
+TIMER1.timerClkSrc                 = "LFCLK";
+TIMER1.timerMode                   = "PERIODIC";
+TIMER1.event1PublisherChannel      = 1;
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.timerPeriod                 = "1 ms";
+TIMER1.$name                       = "TIMER0";
+TIMER1.peripheral.$assign          = "TIMG0";

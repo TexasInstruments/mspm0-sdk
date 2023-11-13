@@ -59,7 +59,8 @@ GPIO1.associatedPins[0].$name               = "USER_LED_1";
 GPIO1.associatedPins[0].initialValue        = "SET";
 
 SYSCTL.powerPolicy = "STOP0";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 TIMER1.$name                       = "TIMER_0";
 TIMER1.timerClkSrc                 = "LFCLK";

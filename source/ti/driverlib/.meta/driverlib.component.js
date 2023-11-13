@@ -209,8 +209,62 @@ let templates = [
     },
 ];
 
+/*
+ * ======== getExtraMigrationMarkdown ========
+ * Returns aggregated text in markdown format that customers can use to aid in
+ * migrating a project between device/boards.
+ *
+ *
+ * @returns String - Full extra markdown text
+ */
+function getExtraMigrationMarkdown()
+{
+    const fixedMarkdown = `⚠ __Important: Additional device migration steps \
+    needed.__  Please follow the steps in the \
+    [MSPM0 SDK CCS IDE Guide](https://dev.ti.com/tirex/explore/node?node=A__AGfjuVVhlYfXCIsTGwVuIA__MSPM0-SDK__a3PaaoK__LATEST)\
+    Section 2.5: Migrating Between MSPM0 Derivatives. These additional steps are \
+    needed when migrating between device variants or between devices. These \
+    steps are not needed when migrating between packages. \n\n`;
+
+    return(fixedMarkdown);
+}
+
+
+/*
+ * ======== getIsMigrationValidDialog ========
+ * Determines whether a migration from one board/device to another board/device
+ * is supported by all the currently selected stacks.
+ *
+ * @param args - Object. Only contains the target device/board
+ *
+ * @returns Object - Object containing aggregated warning or disable hover text
+ *                   to determine whether a migration is fully supported,
+ *                   disabled, or flagged with a warning symbol
+ */
+function getIsMigrationValidDialog(args){
+    /* Note: currently no existing case-specific validation, return valid use case */
+    return({});
+}
+
+/*
+ * ======== getMigrationDialogInfo ========
+ * Allows for modules to contribute additional markdown text to the migration
+ * instructions and to determine whether a migration is fully supported,
+ * disabled, or flagged with a warning symbol
+ *
+ * @returns Object - Object containing extra markdown text and hover text used
+ *                   to determine whether a migration is supported
+ */
+function getMigrationDialogInfo(){
+    return({
+        extraMarkdown: getExtraMigrationMarkdown(),
+        isValid: (args) => getIsMigrationValidDialog(args)
+    });
+}
+
 exports = {
     displayName: displayName,
     topModules: topModules,
-    templates: templates
+    templates: templates,
+    getMigrationDialogInfo: getMigrationDialogInfo
 };

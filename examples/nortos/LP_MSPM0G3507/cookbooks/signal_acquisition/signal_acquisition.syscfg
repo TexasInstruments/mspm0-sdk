@@ -45,3 +45,4 @@ const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.MFCLKEn           = true;
 SYSCTL.validateClkStatus = true;
+SYSCTL.forceDefaultClkConfig = true;

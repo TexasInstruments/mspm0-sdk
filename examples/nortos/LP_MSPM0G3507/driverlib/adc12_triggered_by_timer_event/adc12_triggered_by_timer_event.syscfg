@@ -39,7 +39,8 @@ ADC121.trigSrc                    = "DL_ADC12_TRIG_SRC_EVENT";
 ADC121.peripheral.$assign         = "ADC0";
 ADC121.peripheral.adcPin2.$assign = "PA25";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 TIMER1.$name                       = "TIMER_0";
 TIMER1.timerClkSrc                 = "LFCLK";

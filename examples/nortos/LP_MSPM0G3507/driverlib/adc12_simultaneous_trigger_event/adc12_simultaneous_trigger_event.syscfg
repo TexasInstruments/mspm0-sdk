@@ -56,7 +56,8 @@ GPIO1.associatedPins[0].assignedPortSegment = "Lower";
 GPIO1.associatedPins[0].assignedPin         = "0";
 GPIO1.associatedPins[0].$name               = "USER_LED_1";
 GPIO1.associatedPins[0].initialValue        = "SET";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 TIMER1.$name                       = "TIMER_0";
 TIMER1.timerClkSrc                 = "LFCLK";

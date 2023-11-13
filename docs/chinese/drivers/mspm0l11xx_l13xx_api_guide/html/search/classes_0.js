@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['dmamspm0_5fcfg',['DMAMSPM0_Cfg',['../struct_d_m_a_m_s_p_m0___cfg.html',1,'']]],
-  ['dmamspm0_5fhwattrs',['DMAMSPM0_HWAttrs',['../struct_d_m_a_m_s_p_m0___h_w_attrs.html',1,'']]],
-  ['dmamspm0_5fobject',['DMAMSPM0_Object',['../struct_d_m_a_m_s_p_m0___object.html',1,'']]],
-  ['dmamspm0_5ftransfer',['DMAMSPM0_Transfer',['../struct_d_m_a_m_s_p_m0___transfer.html',1,'']]]
+  ['adc_5fconfig_5f',['ADC_Config_',['../struct_a_d_c___config__.html',1,'']]],
+  ['adc_5ffxntable',['ADC_FxnTable',['../struct_a_d_c___fxn_table.html',1,'']]],
+  ['adc_5fparams',['ADC_Params',['../struct_a_d_c___params.html',1,'']]]
 ];

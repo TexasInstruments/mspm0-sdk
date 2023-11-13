@@ -1,30 +1,30 @@
-Stepper Motor Control Library Overview
-======================================
+步进电机控制库概述
+==================
 
-1. Software Overview
---------------------
+1. 软件概述
+-----------
 
-Stepper Motor Control Library is made of three main layers. They are the Application layer, Modules Layer and MSPM0 DriverLib.
+步进电机控制库包含三个主要层，分别是应用层、模块层和 MSPM0 DriverLib。
 
 .. figure:: images/Library-Architecture.jpg
-   :alt: Stepper library Architecture
+   :alt: 步进库架构
 
-   Stepper library Architecture
+   步进库架构
 
-1.1 Application Layer Overview
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The user specific applications like GUI etc are present in this layer. From this layer various instances of motor driver module can be configured and used. If the user needs to perform any hardware specific actions the user is recommended to use the APIs from HAL module.
-
-1.2 HAL Module
+1.1 应用层概述
 ~~~~~~~~~~~~~~
 
-Overview
-^^^^^^^^
+用户特定的应用程序（例如 GUI 等）位于该层中。 在这一层，可以配置和使用电机驱动器模块的各种实例。如果用户需要执行任何硬件特定的操作，建议用户使用 HAL 模块中的 API。
 
-HAL or Hardware Abstraction Layer creates an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configuration which simplifies porting of the library to various hardware by minimizing the updates needed to other components. The HAL is meant to abstract only the required pins or peripherals required for the application, this is done to make it light weight while still having flexibility for porting.
+1.2 HAL 模块
+~~~~~~~~~~~~
 
-HAL is designed to have specific number of pins or channels associated with a peripheral. For understanding let us consider case of GPIOs. HAL has enum HAL\_GPIO\_OUT\_PIN which has all the GPIO output pins as members as shown below.
+概述
+^^^^
+
+HAL（即硬件抽象层）会创建一个抽象层，它提供 用来配置不同引脚和外设的 API。使用 HAL 的目标是抽象处理所有器件特定的配置，从而通过最大程度地减少其他元件所需的更新来简化库到各种硬件的移植。HAL 旨在仅抽象处理应用所需的引脚或外设，这样做是为了使其轻量化，同时仍然具有移植灵活性。
+
+HAL 旨在将特定数量的引脚或通道与外设关联。为便于理解，我们以 GPIO 为例。HAL 具有枚举 HAL\_GPIO\_OUT\_PIN，其中将所有 GPIO 输出引脚包含为成员，如下所示。
 
 ::
 
@@ -54,7 +54,7 @@ HAL is designed to have specific number of pins or channels associated with a pe
         HAL_GPIO_OUT_PIN_MAX,
     }HAL_GPIO_OUT_PIN;
 
-To map the HAL GPIO pins to the real hardware pins we use a structure which is indexed by the members of the HAL\_GPIO\_OUT\_PIN enum and this structure stores various members like the port, pin name etc. See below the gpioOUT structure which holds data on the port and pin.
+为了将 HAL GPIO 引脚映射到真实的硬件引脚，我们使用一个由 HAL\_GPIO\_OUT\_PIN 枚举成员进行索引的结构，该结构存储各种成员，如端口、引脚名称等。请参见下面的 gpioOUT 结构，该结构会保存有关端口和引脚的数据。
 
 ::
 
@@ -62,15 +62,15 @@ To map the HAL GPIO pins to the real hardware pins we use a structure which is i
     gpioOUT[HAL_GPIO_OUT_PIN_0].port    = GENERIC_GPIO_OUT_PORT;
     gpioOUT[HAL_GPIO_OUT_PIN_0].pin     = GENERIC_GPIO_OUT_PINO_0_PIN;
 
-Note that GENERIC\_GPIO\_OUT\_PINO\_0\_PIN is defined in the TI Sysconfig generated files the specific line is shown below:
+请注意，GENERIC\_GPIO\_OUT\_PINO\_0\_PIN 在 TI Sysconfig 生成的文件中定义，具体行如下所示：
 
 ::
 
     #define GENERIC_GPIO_OUT_PINO_0_PIN                              (DL_GPIO_PIN_0)
 
-Thus HAL\_GPIO\_OUT\_PIN\_0 indirectly refers to DL\_GPIO\_PIN\_0, but the advantage of this mapping is that since TI Sysconfig controls the generation of the GENERIC\_GPIO\_OUT\_PINO\_0\_PIN it is very easy to change the pin in the TI Sysconfig gui and the HAL automatically follows this without the user having to change any code in the HAL layer.
+因此，HAL\_GPIO\_OUT\_PIN\_0 间接引用 DL\_GPIO\_PIN\_0，但这种映射的优点是：由于 TI Sysconfig 控制 GENERIC\_GPIO\_OUT\_PINO\_0\_PIN 的生成，因此很容易在 TI Sysconfig GUI 中更改引脚，并且 HAL 会自动遵循此更改，而无需用户更改 HAL 层中的任何代码。
 
-As seen above when accessing the hardware through the HAL we need to pass a HAL specific enum like HAL\_GPIO\_OUT\_PIN\_0, these enums are stored in the instances that access the HAL layer, in the case of the motor driver drv8889q1 we initialize the instance with its pins assigned to the HAL enums as shown in the snippet below.
+如上所示，当通过 HAL 访问硬件时，我们需要传递 HAL 特定枚举，如 HAL\_GPIO\_OUT\_PIN\_0。这些枚举存储在访问 HAL 层的实例中，就电机驱动器 drv8889q1 而言，我们使用分配到 HAL 枚举的引脚来初始化实例，如下面的代码片段所示。
 
 ::
 
@@ -83,7 +83,7 @@ As seen above when accessing the hardware through the HAL we need to pass a HAL 
     drv8889q1.spi               = HAL_SPI_CHANNEL_0;
     drv8889q1.spiCS             = HAL_SPI_CS_2;
 
-Now if the we need to set the nSLEEP pin high we use the API DRV8889Q1\_setNSleep() and pass this drv8889q1 instance with it, the code snippet is shown below:
+现在，如果我们需要将 nSLEEP 引脚设置为高电平，可以使用 API DRV8889Q1\_setNSleep() 并通过其传递此 drv8889q1 实例，代码片段如下所示：
 
 ::
 
@@ -94,17 +94,17 @@ Now if the we need to set the nSLEEP pin high we use the API DRV8889Q1\_setNSlee
         HAL_delayMilliSeconds(DRV8889Q1_SPI_READY_DELAY_MS);
     }
 
-When DRV8889Q1\_setNSleep() interacts with the HAL layer it passes the member of the drv8889q1 instance, an example can the seen in the above code snippet where the nsleep member of the drv8889q1 instance is passed to the HAL layer and this is the same concept for using other HAL APIs for timer, SPI, DAC etc. The user is free to expand the HAL’s API to support other peripherals and features of the microcontroller but its strongly recommended not to modify existing API to ensure easy migration to new versions of this library.
+当 DRV8889Q1\_setNSleep() 与 HAL 层交互时，它会传递 drv8889q1 实例的成员，具体示例如上面的代码片段所示。在该代码片段中，drv8889q1 实例的 nsleep 成员被传递到 HAL 层，这与使用其他 HAL API（例如计时器、SPI、DAC 等）的概念相同。用户可随意扩展 HAL 的 API 以支持微控制器的其他外设和特性，但为确保能轻松迁移到该库的新版本，强烈建议不要修改现有 API。
 
-1.3 Motor Driver Module
-~~~~~~~~~~~~~~~~~~~~~~~
+1.3 电机驱动器模块
+~~~~~~~~~~~~~~~~~~
 
-Motor Driver Module abstracts all the motor driving tasks into simple APIs like start motor, stop motor, set speed etc. The idea of this layer is to be independent of the hardware and use the HAL APIs to perform the hardware tasks.
+电机驱动器模块将所有电机驱动任务抽象为简单的 API，如启动电机、停止电机、设置速度等。该层的理念是独立于硬件并使用 HAL API 来执行硬件任务。
 
-Motor Driver Pin Association
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+电机驱动器引脚关联
+^^^^^^^^^^^^^^^^^^
 
-The user before using the Motor driver module is expected to specify the HAL enums mapped to the motor driver instance, see the below code snippet.
+在使用电机驱动器模块之前，用户需要指定映射到电机驱动器实例的 HAL 枚举，请参阅下面的代码片段。
 
 ::
 
@@ -120,12 +120,12 @@ The user before using the Motor driver module is expected to specify the HAL enu
     drv8411a.indexerTimer       = HAL_TIM_CHANNEL_0;
     drv8411a.ADCTriggerTimer    = HAL_TIM_CHANNEL_1;
 
-Motor Driver APIs
-^^^^^^^^^^^^^^^^^
+电机驱动器 API
+^^^^^^^^^^^^^^
 
-Motor driver module provides simple APIs which the user can use along with an instance of the motor drive module.
+电机驱动器模块提供简单的 API，用户可以将其与电机驱动器模块的实例一同使用。
 
-The motor driver layer APIs also handles the motor driver specific logic while keeping the APIs generic thus the user can use different motor drives and not worry of any difference in the internal logics, For example below is a part of DRV8411A\_setPWMDrive API handling the H-bridge drive states.
+电机驱动器层 API 还处理电机驱动器特定逻辑，同时保持 API 通用，因此用户可以使用不同的电机驱动器，而不必担心内部逻辑有任何差异。例如，下面是处理 H 桥驱动状态的 DRV8411A\_setPWMDrive API 的一部分。
 
 ::
 
@@ -153,17 +153,17 @@ The motor driver layer APIs also handles the motor driver specific logic while k
                     in2GpioVal = HAL_GPIO_VALUE_LOW;
                 }
 
-Note from the above code snippet that the task of setting the control output in the GPIOs to set the drive state could be different for each driver module, but since we use generic drive states which is handled by the motor driver module to set the correct output states based on its internal logic enables the Stepper library to be used with multiple motor driver modules.
+请注意，在上面的代码片段中，在 GPIO 中设置控制输出以设置驱动状态的任务对于每个驱动器模块来说可能有所不同，但是，由于我们使用由电机驱动器模块处理的通用驱动状态来基于其内部逻辑设置正确的输出状态，因此步进库能够用于多个电机驱动器模块。
 
-1.4 Stepper Library Module
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.4 步进库模块
+~~~~~~~~~~~~~~
 
-Overview
-^^^^^^^^
+概述
+^^^^
 
-The stepper library contains the generic algorithms for stepper motor control. This layer helps to reduce the code size when using multiple motor driver modules.
+步进库包含用于步进电机控制的通用算法。当使用多个电机驱动器模块时，该层有助于减小代码大小。
 
-This layer is used by the motor driver module and the user is not expected to use the APIs from this layer. The stepper Library is accessed through along with its instance from the motor driver layer which configures the generic algorithms and uses the stepper library APIs.
+该层由电机驱动器模块使用，用户不应直接使用该层的 API。可通过电机驱动器层与相应实例一同访问步进库，该层会配置通用算法并使用步进库 API。
 
 ::
 
@@ -188,56 +188,54 @@ This layer is used by the motor driver module and the user is not expected to us
         }
     }
 
-In the above code the DRV8411A only sets the indexer increment decrement value to STEPPER\_STEP\_INC\_DEC\_FULL\_STEP or STEPPER\_STEP\_INC\_DEC\_HALF\_STEP. However there are more values to be set but as the DRV8411A doesn't support these modes it doesn't use them.
+在上面的代码中，DRV8411A 仅会将分度器递增或递减值设置为 STEPPER\_STEP\_INC\_DEC\_FULL\_STEP 或 STEPPER\_STEP\_INC\_DEC\_HALF\_STEP。但是，还有更多值需要设置，但由于 DRV8411A 不支持这些模式，因此不会使用它们。
 
-Also the stepper library is unaware of the driver interface of the motor driver module using its APIs, ie whether PWM or Phase Enable interface. The stepper library generates generic drive states which the motor driver module turns to control outputs based on the PWM or Phase enable logic this point is also discussed was shown in the Motor Driver APIs section.
+此外，步进库并不了解使用其 API 的电机驱动器模块的驱动器接口，即是 PWM 还是相位使能接口。步进库会生成通用驱动状态，电机驱动器模块根据 PWM 或相位使能逻辑将其转换为控制输出，这一点也在“电机驱动器 API”部分中进行了讨论。
 
-1.5 MSPM0 DriverLib Overview
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.5 MSPM0 DriverLib 概述
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-MSPM0 DriverLib is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. Please refer the DriverLib documentation for more information.
+MSPM0 DriverLib 是一组功能齐全的 API，用于配置、控制和操作 MSPM0 平台的硬件外设。更多相关信息，请参阅 DriverLib 文档。
 
-2. API Guide
-------------
+2. API 指南
+-----------
 
--  `Stepper Library API Guide <../../doxygen/api_guide/html/index.html>`__
+-  `步进库 API 指南 <../../doxygen/api_guide/html/index.html>`__
 
-3. Known Issues
----------------
+3. 已知问题
+-----------
 
-1. In offline application the gui plots are sometimes not functional.
-2. Issue with fail in program loading is seen on offline application.
-3. Currently only supports CCS IDE.
+1.在离线应用程序中，GUI 图有时不起作用。 2.离线应用程序中会出现程序加载失败的问题。 3.目前仅支持 CCS IDE。
 
-4. Supported Devices
---------------------
+4. 支持的器件
+-------------
 
 DRV8411A
 ~~~~~~~~
 
-Supported MSPM0 Launchpads
+支持的 MSPM0 LaunchPad
 
 -  `LP-MSPM0L1306 <https://www.ti.com/tool/LP-MSPM0L1306>`__
 
-Links
+链接
 
--  `Hardware User Guide <drv8411a/DRV8411A_Hardware_User_Guide_CN.html>`__
+-  `硬件用户指南 <drv8411a/DRV8411A_Hardware_User_Guide_CN.html>`__
 
--  `GUI User Guide <drv8411a/DRV8411A_GUI_User_Guide_CN.html>`__
+-  `GUI 用户指南 <drv8411a/DRV8411A_GUI_User_Guide_CN.html>`__
 
 -  `MSPM0L1306-DRV8411A-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8411A-EVM-GUI>`__
 
 DRV8889-Q1
 ~~~~~~~~~~
 
-Supported MSPM0 Launchpads
+支持的 MSPM0 LaunchPad
 
 -  `LP-MSPM0L1306 <https://www.ti.com/tool/LP-MSPM0L1306>`__
 
-Links
+链接
 
--  `Hardware User Guide <drv8889-q1/DRV8889-Q1_Hardware_User_Guide_CN.html>`__
+-  `硬件用户指南 <drv8889-q1/DRV8889-Q1_Hardware_User_Guide_CN.html>`__
 
--  `GUI User Guide <drv8889-q1/DRV8889-Q1_GUI_User_Guide_CN.html>`__
+-  `GUI 用户指南 <drv8889-q1/DRV8889-Q1_GUI_User_Guide_CN.html>`__
 
 -  `MSPM0L1306-DRV8889Q1-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8889Q1-EVM-GUI>`__

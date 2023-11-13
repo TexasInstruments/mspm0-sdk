@@ -36,4 +36,5 @@ I2C1.peripheral.$assign        = "I2C1";
 I2C1.peripheral.sdaPin.$assign = "PB3";
 I2C1.peripheral.sclPin.$assign = "PB2";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

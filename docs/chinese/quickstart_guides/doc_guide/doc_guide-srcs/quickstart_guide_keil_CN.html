@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 SDK QuickStart Guide for Keil &mdash; MSPM0 SDK Quick Start Guides 1.0 documentation</title>
+  <title>适用于 Keil 的 MSPM0 SDK 快速入门指南 &mdash; MSPM0 SDK Quick Start Guides 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="MSPM0 SDK QuickStart Guide for IAR" href="quickstart_guide_iar_CN.html" /> 
+    <link rel="prev" title="适用于 IAR 的 MSPM0 SDK 快速入门指南" href="quickstart_guide_iar_CN.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,19 +45,19 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs_theia_CN.html">适用于 CCS Theia 的 MSPM0 SDK 快速入门指南</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs_CN.html">适用于 CCS 的 MSPM0 SDK 快速入门指南</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_iar_CN.html">MSPM0 SDK QuickStart Guide for IAR</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SDK QuickStart Guide for Keil</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites">2. Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-the-mspm0-cmsis-pack">3. Install the MSPM0 CMSIS-Pack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-the-mspm0-sdk">4. Install the MSPM0 SDK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-sysconfig-with-keil-ide">5. Using SysConfig with Keil IDE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#import-and-build-an-sdk-example-in-keil-uvision">6. Import and Build an SDK Example in Keil uVision</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#downloading-and-debugging-to-mspm0-using-keil">7. Downloading and debugging to MSPM0 using Keil</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#using-cmsis-dap">7.1 Using CMSIS-DAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_iar_CN.html">适用于 IAR 的 MSPM0 SDK 快速入门指南</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">适用于 Keil 的 MSPM0 SDK 快速入门指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 引言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2. 先决条件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mspm0-cmsis-pack">3. 安装 MSPM0 CMSIS-Pack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mspm0-sdk">4. 安装 MSPM0 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sysconfig-keil-ide">5. 将 SysConfig 与 Keil IDE 配合使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#keil-uvision-sdk">6. 在 Keil uVision 中导入和编译 SDK 示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#keil-mspm0">7. 使用 Keil 在 MSPM0 上进行下载和调试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cmsis-dap">7.1 使用 CMSIS-DAP</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">8. Known Issues and Frequently Asked Questions (FAQs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faq">8.已知问题和常见问题解答 （FAQ）</a></li>
 </ul>
 </li>
 </ul>
@@ -76,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>MSPM0 SDK QuickStart Guide for Keil</li>
+      <li>适用于 Keil 的 MSPM0 SDK 快速入门指南</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -85,152 +85,152 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mspm0-sdk-quickstart-guide-for-keil">
-<h1>MSPM0 SDK QuickStart Guide for Keil<a class="headerlink" href="#mspm0-sdk-quickstart-guide-for-keil" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This guide is intended to assist users in the initial setup and demonstration of running their first sample application. The guide explains how to install the MSPM0 SDK and the MSPM0 CMSIS-Pack for Keil, and lists the various other tools required to get started with your first application.</p>
+  <section id="keil-mspm0-sdk">
+<h1>适用于 Keil 的 MSPM0 SDK 快速入门指南<a class="headerlink" href="#keil-mspm0-sdk" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 引言<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>本指南旨在帮助用户完成初始设置并展示运行其第一个示例应用。本指南说明了如何安装 MSPM0 SDK 和适用于 Keil 的 MSPM0 CMSIS-Pack，并列出了开始使用第一个应用所需的各种其他工具。</p>
 </section>
-<section id="prerequisites">
-<h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
-<p>The user is expected to have downloaded the following:</p>
+<section id="id2">
+<h2>2. 先决条件<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>用户应已下载以下各项：</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a></p></li>
-<li><p><a class="reference external" href="https://www2.keil.com/mdk5">Keil MDK-Arm with uVision</a> v5.38a or later, with Arm Clang compiler v6.16 or later.</p></li>
+<li><p><a class="reference external" href="https://www2.keil.com/mdk5">Keil MDK-Arm with uVision</a> v5.38a 或更高版本，带有 Arm Clang 编译器 v6.16 或更高版本。</p></li>
 <li><p><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig 1.17.x</a></p></li>
 </ul>
 </section>
-<section id="install-the-mspm0-cmsis-pack">
-<h2>3. Install the MSPM0 CMSIS-Pack<a class="headerlink" href="#install-the-mspm0-cmsis-pack" title="Permalink to this heading">¶</a></h2>
+<section id="mspm0-cmsis-pack">
+<h2>3. 安装 MSPM0 CMSIS-Pack<a class="headerlink" href="#mspm0-cmsis-pack" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
-<li><p>Install <a class="reference external" href="#prerequisites">Keil MDK-Arm with uVision</a></p></li>
-<li><p>In uVision, select <strong>Project → Manage → Pack Installer</strong></p>
+<li><p>安装 <a class="reference external" href="#prerequisites">Keil MDK-Arm with uVision</a></p></li>
+<li><p>在 uVision 中，依次选择 <strong>Project → Manage → Pack Installer</strong></p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_install_1.png" />
 </figure>
 </li>
-<li><p>In the Pack Installer, select the Texas Instruments devices and select the corresponding MSPM0 family. Then on the right side, install the device specific pack as well as any other pack that may be necessary.</p>
+<li><p>在“Pack Installer”中，选择“Texas Instruments”器件，并选择相应的 MSPM0 系列。 然后在右侧，安装器件特定包以及可能需要的任何其他包。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_install_2.png" />
 </figure>
 </li>
-<li><p>Approve the license terms</p></li>
-<li><p>The Pack Installer should show suppport for the MSPM0 devices.</p>
+<li><p>批准许可条款</p></li>
+<li><p>“Pack Installer”应显示支持 MSPM0 器件。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_install_5.png" />
 </figure>
 </li>
 </ol>
 </section>
-<section id="install-the-mspm0-sdk">
-<h2>4. Install the MSPM0 SDK<a class="headerlink" href="#install-the-mspm0-sdk" title="Permalink to this heading">¶</a></h2>
+<section id="mspm0-sdk">
+<h2>4. 安装 MSPM0 SDK<a class="headerlink" href="#mspm0-sdk" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
-<li><p>Download and install the latest <a class="reference external" href="#prerequisites">MSPM0 SDK</a>. Note that there are SDK installers for Windows, Linux and MacOS. The steps below are shown in Windows, but a similar approach should be followed in Linux or MacOS.</p></li>
-<li><p>Execute the installer. Click <strong>Next</strong>.</p>
+<li><p>下载并安装最新 <a class="reference external" href="#prerequisites">MSPM0 SDK</a>。请注意，SDK 安装程序有 Windows 版、Linux 版和 MacOS 版。以下步骤显示在 Windows 版中，但 Linux 或 MacOS 版也应遵循类似方法。</p></li>
+<li><p>执行安装程序。点击 <strong>Next</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sdk_install_11.png" />
 </figure>
 </li>
-<li><p>Select an <strong>Installation Directory</strong> and click <strong>Next</strong>. Note the installation directory which by default is <code class="docutils literal notranslate"><span class="pre">c:\ti</span></code> which will install the SDK at <code class="docutils literal notranslate"><span class="pre">C:\ti\mspm0_sdk_&lt;version&gt;\</span></code>. This path will be refered to as <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;</span></code> in sections below.</p>
+<li><p>选择 <strong>Installation Directory</strong> 并点击 <strong>Next</strong>。注意安装目录，默认情况下为 <code class="docutils literal notranslate"><span class="pre">c:\ti</span></code>，SDK 将安装在 <code class="docutils literal notranslate"><span class="pre">C:\ti\mspm0_sdk_&lt;version&gt;\</span></code>。此路径在以下部分中称为 <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;</span></code>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sdk_install_21.png" />
 </figure>
 </li>
-<li><p>Click <strong>Next</strong></p>
+<li><p>点击 <strong>Next</strong></p>
 <figure class="align-default">
 <img alt="" src="../_images/sdk_install_31.png" />
 </figure>
 </li>
-<li><p>After installation is complete, click <strong>Finish</strong>.</p>
+<li><p>完成安装后，点击 <strong>Finish</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sdk_install_41.png" />
 </figure>
 </li>
 </ol>
 </section>
-<section id="using-sysconfig-with-keil-ide">
-<h2>5. Using SysConfig with Keil IDE<a class="headerlink" href="#using-sysconfig-with-keil-ide" title="Permalink to this heading">¶</a></h2>
-<p>The SDK includes a preliminary version of SysConfig metadata which can be used to evaluate the user experience of MSPM0 SDK.</p>
-<p>A detailed explanation of the installation and usage of SysConfig with MSPM0 is available at <a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">Using SysConfig with MSPM0</a> available in the SDK’s Tools Guide.</p>
+<section id="sysconfig-keil-ide">
+<h2>5. 将 SysConfig 与 Keil IDE 配合使用<a class="headerlink" href="#sysconfig-keil-ide" title="Permalink to this heading">¶</a></h2>
+<p>此 SDK 包括 SysConfig 元数据的初始版本，可用于评估 MSPM0 SDK 的用户体验。</p>
+<p>有关安装 SysConfig 并将其与 MSPM0 配合使用的详细说明，请参阅在 SDK 工具指南中提供的<a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">将 SysConfig 与 MSPM0 配合使用</a>。</p>
 </section>
-<section id="import-and-build-an-sdk-example-in-keil-uvision">
-<h2>6. Import and Build an SDK Example in Keil uVision<a class="headerlink" href="#import-and-build-an-sdk-example-in-keil-uvision" title="Permalink to this heading">¶</a></h2>
+<section id="keil-uvision-sdk">
+<h2>6. 在 Keil uVision 中导入和编译 SDK 示例<a class="headerlink" href="#keil-uvision-sdk" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
-<li><p>In Keil uVision, select <strong>Project → Open Project</strong></p>
+<li><p>在 Keil uVision 中，依次选择 <strong>Project → Open Project</strong></p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_example_1.png" />
 </figure>
 </li>
-<li><p>Navigate to a Keil folder in SDK example at <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/</span></code> and open the .uvprojx project file. For example <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output_hiz/keil/gpio_toggle_output_hiz.uvprojx</span></code>.</p>
+<li><p>在位于 <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/</span></code> 的 SDK 示例中导航至 Keil 文件夹，并打开 .uvprojx 工程文件。例如 <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output_hiz/keil/gpio_toggle_output_hiz.uvprojx</span></code>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_example_2.png" />
 </figure>
 </li>
-<li><p>The project is ready to build and debug.</p>
+<li><p>工程已准备好进行编译和调试。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_example_3.png" />
 </figure>
 </li>
 </ol>
 </section>
-<section id="downloading-and-debugging-to-mspm0-using-keil">
-<h2>7. Downloading and debugging to MSPM0 using Keil<a class="headerlink" href="#downloading-and-debugging-to-mspm0-using-keil" title="Permalink to this heading">¶</a></h2>
-<p>Keil supports multiple debuggers. This section shows how to use the XDS-110 debugging tool in CMSIS-DAP mode. The XDS-110 is integrated into the MSPM0 LaunchPads.</p>
-<section id="using-cmsis-dap">
-<h3>7.1 Using CMSIS-DAP<a class="headerlink" href="#using-cmsis-dap" title="Permalink to this heading">¶</a></h3>
+<section id="keil-mspm0">
+<h2>7. 使用 Keil 在 MSPM0 上进行下载和调试<a class="headerlink" href="#keil-mspm0" title="Permalink to this heading">¶</a></h2>
+<p>Keil 支持多种调试器。此部分说明了如何在 CMSIS-DAP 模式下使用 XDS-110 调试工具。 XDS-110 集成在 MSPM0 LaunchPad 中。</p>
+<section id="cmsis-dap">
+<h3>7.1 使用 CMSIS-DAP<a class="headerlink" href="#cmsis-dap" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Go to the options window for the Keil project imported in the previous step by right clicking on the project folder</p></li>
+<li><p>右键点击工程文件夹，转至在先前步骤中导入的 Keil 工程的选项窗口</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_CMSIS_example_1.png" />
 </figure>
 <ol class="arabic simple" start="2">
-<li><p>Go to the debug tab on the window and select CMSIS-DAP as the debugger from the drop down in the top right corner.</p></li>
+<li><p>转至窗口上的“Debug”选项卡，并从右上角的下拉列表中选择 CMSIS-DAP 作为调试器。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_CMSIS_example_2.png" />
 </figure>
 <ol class="arabic simple" start="3">
-<li><p>Click on the settings button and on the debug tab make sure the settings match those shown in the image below.</p></li>
+<li><p>在“Debug”选项卡中点击“Settings”按钮，并确保设置与下图所示设置一致。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_CMSIS_example_4.png" />
 </figure>
 <ol class="arabic simple" start="4">
-<li><p>Click on the Flash Download tab and check that description matches that of the image. If not, click on the add button and select the corresponding MSPM0 MAIN option. The device type is On-chip flash.</p></li>
+<li><p>点击“Flash Download”选项卡，并确认相应说明与下图一致。 如果不一致，请点击“Add”按钮，并选择相应的 MSPM0 MAIN 选项。 器件类型为“On-chip Flash”。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_CMSIS_example_3.png" />
 </figure>
 <ol class="arabic simple" start="5">
-<li><p>Click Ok on the bottom of the windows to close out the windows and apply all the changes made to the debug settings</p></li>
+<li><p>点击窗口底部的“OK”关闭窗口，并应用对调试设置所做的所有更改</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_CMSIS_example_5.png" />
 </figure>
 <ol class="arabic simple" start="6">
-<li><p>Flash the device with the project by pressing the Load button as shown below</p></li>
+<li><p>按下“Load”按钮使用工程刷写器件，如下所示</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_CMSIS_example_8.png" />
 </figure>
-<ol class="arabic simple" start="6">
-<li><p>Hover over the debug tab on the main screen and choose start/stop debug session</p></li>
+<ol class="arabic simple" start="7">
+<li><p>将鼠标悬停在主屏幕的“Debug”选项卡上，选择“Start/Stop Debug Session”</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_CMSIS_example_6.png" />
 </figure>
-<ol class="arabic simple" start="7">
-<li><p>This will start the debug session.</p></li>
+<ol class="arabic simple" start="8">
+<li><p>这将启动调试会话。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_CMSIS_example_7.png" />
 </figure>
 </section>
 </section>
-<section id="known-issues-and-frequently-asked-questions-faqs">
-<h2>8. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
-<p>Please refer to <a class="reference external" href="../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+<section id="faq">
+<h2>8.已知问题和常见问题解答 （FAQ）<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h2>
+<p>请参阅 SDK 中的<a class="reference external" href="../../../../../known_issues_FAQ.html">已知问题和 FAQ</a>。</p>
 </section>
 </section>
 
@@ -238,7 +238,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="quickstart_guide_iar_CN.html" class="btn btn-neutral float-left" title="MSPM0 SDK QuickStart Guide for IAR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart_guide_iar_CN.html" class="btn btn-neutral float-left" title="适用于 IAR 的 MSPM0 SDK 快速入门指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

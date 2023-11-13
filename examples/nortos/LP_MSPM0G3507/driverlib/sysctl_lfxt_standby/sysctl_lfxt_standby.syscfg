@@ -53,7 +53,8 @@ SYSCTL.powerPolicy = "STANDBY0";
 SYSCTL.EXCLKSource = "LFCLK";
 SYSCTL.MCLKSource  = "LFCLK";
 SYSCTL.LFCLKSource = "LFXT";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerClkSrc        = "LFCLK";

@@ -39,6 +39,17 @@
 
 void DL_SYSCTL_configSYSPLL(DL_SYSCTL_SYSPLLConfig *config)
 {
+    /* PLL configurations are retained in lower reset levels. Set default
+     * behavior of disabling the PLL to keep a consistent behavior regardless
+     * of reset level. */
+    DL_SYSCTL_disableSYSPLL();
+
+    /* Check that SYSPLL is disabled before configuration */
+    while ((DL_SYSCTL_getClockStatus() & (DL_SYSCTL_CLK_STATUS_SYSPLL_OFF)) !=
+           (DL_SYSCTL_CLK_STATUS_SYSPLL_OFF)) {
+        ;
+    }
+
     // set SYSPLL reference clock
     DL_Common_updateReg(&SYSCTL->SOCLOCK.SYSPLLCFG0,
         ((uint32_t) config->sysPLLRef), SYSCTL_SYSPLLCFG0_SYSPLLREF_MASK);
@@ -110,17 +121,14 @@ void DL_SYSCTL_setLFCLKSourceLFXT(DL_SYSCTL_LFCLKConfig *config)
 
 void DL_SYSCTL_switchMCLKfromSYSOSCtoLFCLK(bool disableSYSOSC)
 {
-    // Set SYSOSC back to base frequency if left enabled
     if (disableSYSOSC == false) {
+        // Set SYSOSC back to base frequency if left enabled
         DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
-        // Do not set both bits
         SYSCTL->SOCLOCK.SYSOSCCFG &= ~SYSCTL_SYSOSCCFG_DISABLE_ENABLE;
-        SYSCTL->SOCLOCK.MCLKCFG |= SYSCTL_MCLKCFG_USELFCLK_ENABLE;
     } else {
-        // Do not set both bits
-        SYSCTL->SOCLOCK.MCLKCFG &= ~SYSCTL_MCLKCFG_USELFCLK_ENABLE;
         SYSCTL->SOCLOCK.SYSOSCCFG |= SYSCTL_SYSOSCCFG_DISABLE_ENABLE;
     }
+    SYSCTL->SOCLOCK.MCLKCFG |= SYSCTL_MCLKCFG_USELFCLK_ENABLE;
 
     // Verify LFCLK -> MCLK
     while ((DL_SYSCTL_getClockStatus() & SYSCTL_CLKSTATUS_CURMCLKSEL_MASK) !=
@@ -180,6 +188,11 @@ void DL_SYSCTL_switchMCLKfromHSCLKtoSYSOSC(void)
 
 void DL_SYSCTL_setHFCLKSourceHFXT(DL_SYSCTL_HFXT_RANGE range)
 {
+    /* Some crystal configurations are retained in lower reset levels. Set
+     * default behavior of HFXT to keep a consistent behavior regardless of
+     * reset level. */
+    DL_SYSCTL_disableHFXT();
+
     DL_SYSCTL_setHFXTFrequencyRange(range);
     /* Set startup time to ~0.512ms based on TYP datasheet recommendation */
     DL_SYSCTL_setHFXTStartupTime(8);
@@ -196,6 +209,11 @@ void DL_SYSCTL_setHFCLKSourceHFXT(DL_SYSCTL_HFXT_RANGE range)
 void DL_SYSCTL_setHFCLKSourceHFXTParams(
     DL_SYSCTL_HFXT_RANGE range, uint32_t startupTime, bool monitorEnable)
 {
+    /* Some crystal configurations are retained in lower reset levels. Set
+     * default behavior of HFXT to keep a consistent behavior regardless of
+     * reset level. */
+    DL_SYSCTL_disableHFXT();
+
     DL_SYSCTL_setHFXTFrequencyRange(range);
     DL_SYSCTL_setHFXTStartupTime(startupTime);
     SYSCTL->SOCLOCK.HSCLKEN |= SYSCTL_HSCLKEN_HFXTEN_ENABLE;

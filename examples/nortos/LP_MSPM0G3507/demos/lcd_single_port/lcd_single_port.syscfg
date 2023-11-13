@@ -1,0 +1,97 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                          = "COM_LINES";
+GPIO1.associatedPins.create(4);
+GPIO1.associatedPins[0].$name        = "COM0";
+GPIO1.associatedPins[0].assignedPort = "PORTB";
+GPIO1.associatedPins[0].assignedPin  = "9";
+GPIO1.associatedPins[0].pin.$assign  = "PB9";
+GPIO1.associatedPins[1].$name        = "COM1";
+GPIO1.associatedPins[1].assignedPort = "PORTB";
+GPIO1.associatedPins[1].assignedPin  = "2";
+GPIO1.associatedPins[1].pin.$assign  = "PB2";
+GPIO1.associatedPins[2].$name        = "COM2";
+GPIO1.associatedPins[2].assignedPort = "PORTB";
+GPIO1.associatedPins[2].assignedPin  = "3";
+GPIO1.associatedPins[2].pin.$assign  = "PB3";
+GPIO1.associatedPins[3].assignedPort = "PORTB";
+GPIO1.associatedPins[3].assignedPin  = "18";
+GPIO1.associatedPins[3].$name        = "COM3";
+GPIO1.associatedPins[3].pin.$assign  = "PB18";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO2.$name                          = "SEGMENT_Lines_Lower";
+GPIO2.port                           = "PORTA";
+GPIO2.associatedPins.create(15);
+GPIO2.associatedPins[0].$name        = "SEG0";
+GPIO2.associatedPins[0].assignedPin  = "4";
+GPIO2.associatedPins[0].pin.$assign  = "PA4";
+GPIO2.associatedPins[1].$name        = "SEG1";
+GPIO2.associatedPins[1].assignedPin  = "5";
+GPIO2.associatedPins[1].pin.$assign  = "PA5";
+GPIO2.associatedPins[2].$name        = "SEG2";
+GPIO2.associatedPins[2].assignedPin  = "6";
+GPIO2.associatedPins[2].pin.$assign  = "PA6";
+GPIO2.associatedPins[3].$name        = "SEG3";
+GPIO2.associatedPins[3].assignedPin  = "7";
+GPIO2.associatedPins[3].pin.$assign  = "PA7";
+GPIO2.associatedPins[4].$name        = "SEG4";
+GPIO2.associatedPins[4].assignedPin  = "8";
+GPIO2.associatedPins[4].pin.$assign  = "PA8";
+GPIO2.associatedPins[5].$name        = "SEG5";
+GPIO2.associatedPins[5].assignedPin  = "9";
+GPIO2.associatedPins[5].pin.$assign  = "PA9";
+GPIO2.associatedPins[6].$name        = "SEG6";
+GPIO2.associatedPins[6].assignedPin  = "10";
+GPIO2.associatedPins[6].pin.$assign  = "PA10";
+GPIO2.associatedPins[7].$name        = "SEG7";
+GPIO2.associatedPins[7].assignedPin  = "11";
+GPIO2.associatedPins[7].pin.$assign  = "PA11";
+GPIO2.associatedPins[8].$name        = "SEG8";
+GPIO2.associatedPins[8].assignedPin  = "12";
+GPIO2.associatedPins[8].pin.$assign  = "PA12";
+GPIO2.associatedPins[9].$name        = "SEG9";
+GPIO2.associatedPins[9].assignedPin  = "13";
+GPIO2.associatedPins[9].pin.$assign  = "PA13";
+GPIO2.associatedPins[10].$name       = "SEG10";
+GPIO2.associatedPins[10].assignedPin = "14";
+GPIO2.associatedPins[10].pin.$assign = "PA14";
+GPIO2.associatedPins[11].$name       = "SEG11";
+GPIO2.associatedPins[11].assignedPin = "15";
+GPIO2.associatedPins[11].pin.$assign = "PA15";
+GPIO2.associatedPins[12].$name       = "SEG12";
+GPIO2.associatedPins[12].assignedPin = "16";
+GPIO2.associatedPins[12].pin.$assign = "PA16";
+GPIO2.associatedPins[13].$name       = "SEG13";
+GPIO2.associatedPins[13].assignedPin = "17";
+GPIO2.associatedPins[13].pin.$assign = "PA17";
+GPIO2.associatedPins[14].$name       = "SEG14";
+GPIO2.associatedPins[14].assignedPin = "18";
+GPIO2.associatedPins[14].pin.$assign = "PA18";
+
+SYSCTL.MFCLKEn = true;
+
+TIMER1.$name              = "LCD_Update_Clock";
+TIMER1.timerClkSrc        = "MFCLK";
+TIMER1.timerPeriod        = "5ms";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.peripheral.$assign = "TIMG0";

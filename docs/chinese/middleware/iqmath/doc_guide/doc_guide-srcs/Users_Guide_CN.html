@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 IQMath User’s Guide &mdash; IQMath Documentation 1.0 documentation</title>
+  <title>MSPM0 IQMath 用户指南 &mdash; IQMath Documentation 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -44,18 +44,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 IQMath User’s Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-the-iqmath-library">2. Using the IQmath Library</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#iqmath-data-types">2.1. IQmath Data Types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">2.2. Using the IQMath Library</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#calling-functions-from-c">2.3. Calling Functions From C</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#selecting-the-global-iq-format">2.4. Selecting the Global IQ Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#example-projects">2.5. Example Projects</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 IQMath 用户指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 引言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iqmath">2. 使用 IQmath 库</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.1.IQmath 数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2. 使用 IQMath 库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c">2.3. 从 C 代码调用函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-iq">2.4. 选择 Global IQ 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.5. 示例工程</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#api-guide">3. API Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmarks">4. Benchmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">3. API 指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">4. 基准测试</a></li>
 </ul>
 </li>
 </ul>
@@ -74,7 +74,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>MSPM0 IQMath User’s Guide</li>
+      <li>MSPM0 IQMath 用户指南</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -83,33 +83,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mspm0-iqmath-user-s-guide">
-<h1>MSPM0 IQMath User’s Guide<a class="headerlink" href="#mspm0-iqmath-user-s-guide" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The Texas Instruments® MSP IQmath Library is a collection of highly optimized and high-precision mathematical functions for C programmers to seamlessly port a floating-point algorithm into fixed-point code on MSPM0 devices. These routines are typically used in computationally intensive real-time applications where optimal execution speed, high accuracy and ultra-low energy are critical. By using the IQmath library, it is possible to achieve execution speeds considerably faster and energy consumption considerably lower than equivalent code written using floating-point math.</p>
-<p>The IQmath library provides functions for use with 32-bit data types and high accuracy.</p>
+  <section id="mspm0-iqmath">
+<h1>MSPM0 IQMath 用户指南<a class="headerlink" href="#mspm0-iqmath" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 引言<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Texas Instruments® MSP IQmath 库是一个高度优化的高精度数学函数集合，可以使 C 语言编程人员将浮点算法无缝移植到 MSPM0 器件上的定点代码中。这些例程通常用于计算密集型实时应用程序，在这些应用程序中，最优的执行速度、高精度和超低能耗非常关键。与使用浮点数学算法编写的同等代码相比，使用 IQmath 库可以大幅提高执行速度并降低能耗。</p>
+<p>IQmath 库可提供搭配使用 32 位数据类型的函数和高精度。</p>
 </section>
-<section id="using-the-iqmath-library">
-<h2>2. Using the IQmath Library<a class="headerlink" href="#using-the-iqmath-library" title="Permalink to this heading">¶</a></h2>
-<section id="iqmath-data-types">
-<h3>2.1. IQmath Data Types<a class="headerlink" href="#iqmath-data-types" title="Permalink to this heading">¶</a></h3>
-<p>The IQmath library uses a 32-bit fixed-point signed number (an “int32_t” in C99) as its basic data type. The IQ format of this fixed-point number can range from IQ1 to IQ30, where the IQ format number indicates the number of fractional bits. The IQ format value is stored as an integer with an implied scale based on the IQ format and the number of fractional bits. The equation below shows how a IQ format decimal number xiq is stored using an integer value xi with an implied scale, where n represents the number of fractional bits.</p>
+<section id="iqmath">
+<h2>2. 使用 IQmath 库<a class="headerlink" href="#iqmath" title="Permalink to this heading">¶</a></h2>
+<section id="id2">
+<h3>2.1.IQmath 数据类型<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>IQmath 库使用 32 位定点有符号数（C99 中的“int32_t”）作为基础数据类型。此定点数字的 IQ 格式范围从 IQ1 到 IQ30，其中 IQ 格式数字指示小数位数。IQ 格式值存储为一个整数，它有一个基于 IQ 格式和小数位数的隐含范围。以下方程显示了一个IQ 格式的小数 xiq 如何使用带隐含范围的整数值 xi 来存储，其中 n 代表小数位数。</p>
 <div class="math notranslate nohighlight">
 \[IQn(x_{iq}) = x_{i} ∗ 2^{-n}\]</div>
-<p>For example the IQ24 value of 3.625 is stored as an integer value of 60817408, shown in the equation below.</p>
+<p>例如，3.625 的 IQ24 值存储为以下方程中显示的整数值 60817408。</p>
 <div class="math notranslate nohighlight">
 \[60817408 ∗ 2^{−24} = IQ24(3.625)\]</div>
-<p>C typedefs are provided for the various IQ formats, and these IQmath data types should be used in preference to the underlying “int32_t” data type to make it clear which variables are in IQ format.</p>
-<p>The following table provides the characteristics of the various IQ formats (the C data type, the number of integer bits, the number of fractional bits, the smallest negative value that can be represented, the largest positive value that can be represented, and the smallest difference that can be represented):</p>
+<p>C typedef 是为各种 IQ 格式提供的，这些 IQmath 数据类型应优先于底层的“int32_t”数据类型使用，以明确哪些变量是 IQ 格式的。</p>
+<p>下表提供了各种 IQ 格式的特征（C 数据类型、整数位数、小数位数、可表示的最小负值、可表示的最大正值和可表示的最小差值）：</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Type</p></th>
-<th class="head"><p>Integer Bits</p></th>
-<th class="head"><p>Fractional Bits</p></th>
-<th class="head"><p>Min Range</p></th>
-<th class="head"><p>Max Range</p></th>
-<th class="head"><p>Resolution</p></th>
+<tr class="row-odd"><th class="head"><p>类型</p></th>
+<th class="head"><p>整数位数</p></th>
+<th class="head"><p>小数位数</p></th>
+<th class="head"><p>最小范围</p></th>
+<th class="head"><p>最大范围</p></th>
+<th class="head"><p>分辨率</p></th>
 </tr>
 </thead>
 <tbody>
@@ -325,42 +325,42 @@
 </tr>
 </tbody>
 </table>
-<p>In addition to these specific IQ format types, there is an additional type that corresponds to the GLOBAL_IQ format. This is _iq, and it matches one of the above IQ formats (based on the setting of GLOBAL_IQ). The GLOBAL_IQ format has no impact when using the specific _iqN types and function such as _iq24.</p>
+<p>除了这些特定的 IQ 格式类型，还有一种对应于 GLOBAL_IQ 格式的类型。它就是 _iq，与上述的一种 IQ 格式匹配（基于 GLOBAL_IQ 的设置）。使用特定 _iqN 类型和 _iq24 之类的函数时，GLOBAL_IQ 格式没有影响。</p>
 </section>
-<section id="id1">
-<h3>2.2. Using the IQMath Library<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<p>Two versions of the IQmath library are provided:</p>
+<section id="id3">
+<h3>2.2. 使用 IQMath 库<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>提供 IQmath 库的两个版本：</p>
 <ul class="simple">
-<li><p>RTS: C implementation using compiler Runtime System (RTS) libraries</p></li>
-<li><p>MathACL: leverages the MSPM0 hardware math accelerator (MathACL) ​</p></li>
+<li><p>RTS：使用编译器 Runtime System （RTS）库的 C 实现</p></li>
+<li><p>MathACL：利用 MSPM0 硬件数学加速器 （MathACL） ​</p></li>
 </ul>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>MSPM0 Family</p></th>
+<tr class="row-odd"><th class="head"><p>MSPM0 系列</p></th>
 <th class="head"><p>RTS</p></th>
 <th class="head"><p>MathACL</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>MSPM0G</p></td>
-<td><p>Supported</p></td>
-<td><p>Supported</p></td>
+<td><p>支持</p></td>
+<td><p>支持</p></td>
 </tr>
 <tr class="row-odd"><td><p>MSPM0L</p></td>
-<td><p>Supported</p></td>
-<td><p>Not supported</p></td>
+<td><p>支持</p></td>
+<td><p>不支持</p></td>
 </tr>
 </tbody>
 </table>
-<p>The libraries are provided in easy to use archive files, named <code class="docutils literal notranslate"><span class="pre">iqmath.a</span></code>. The archive files should be used with projects in place of any .lib files.</p>
-<p>To find the provided libraries, simply navigate to the device directory under <code class="docutils literal notranslate"><span class="pre">source/ti/iqmath/lib</span></code> where you will find the different versions of <code class="docutils literal notranslate"><span class="pre">iqmath.a</span></code>.</p>
-<p>In order to use IQmath, user also need to make sure they have the right path to the IQMath include folder which is <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;ti/iqmath/include/IQmathLib.h&gt;</span></code>.</p>
-<p>Review the corresponding IDE documentation for details on how to add files, libraries and paths to a project.</p>
+<p>易于使用的名为 <code class="docutils literal notranslate"><span class="pre">iqmath.a</span></code> 的存档文件中提供了这些库。存档文件应配合工程使用，以取代 .lib 文件。</p>
+<p>要找到提供的库，只需导航到 <code class="docutils literal notranslate"><span class="pre">source/ti/iqmath/lib</span></code> 下的器件目录，在那里可找到 <code class="docutils literal notranslate"><span class="pre">iqmath.a</span></code> 的不同版本。</p>
+<p>要使用 IQmath，用户还需要确保其拥有 IQMath include 文件夹的正确路径，即 <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;ti/iqmath/include/IQmathLib.h&gt;</span></code>。</p>
+<p>有关如何向工程中添加文件、库和路径的详细信息，请查阅相应的 IDE 文档。</p>
 </section>
-<section id="calling-functions-from-c">
-<h3>2.3. Calling Functions From C<a class="headerlink" href="#calling-functions-from-c" title="Permalink to this heading">¶</a></h3>
-<p>In order to call an IQmath function from C, the C header file must be included. Then, _iq and _iqN data types, along with the IQmath functions can be used by the application.</p>
-<p>As an example, the following code performs some simple arithmetic in IQ12 format:</p>
+<section id="c">
+<h3>2.3. 从 C 代码调用函数<a class="headerlink" href="#c" title="Permalink to this heading">¶</a></h3>
+<p>要从 C 代码调用 IQmath 函数，必须包含 C 头文件。然后，应用程序可以使用 _iq 和 _iqN 数据类型以及 IQmath 函数。</p>
+<p>例如，以下代码以 IQ12 格式执行一些简单的算术：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;ti/iqmath/include/IQmathLib.h&gt;</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
@@ -373,12 +373,12 @@
 </pre></div>
 </div>
 </section>
-<section id="selecting-the-global-iq-format">
-<h3>2.4. Selecting the Global IQ Format<a class="headerlink" href="#selecting-the-global-iq-format" title="Permalink to this heading">¶</a></h3>
-<p>Numerical precision and dynamic range requirements vary considerably from one application to another. The libraries provide a GLOBAL_IQ format (using the _iq data type) that an application can use to perform its computations in a generic format which can be changed at compile time. An application written using the GLOBAL_IQ format can be changed from one format to another by simply changing the GLOBAL_IQ value and recompiling, allowing the precision and performance effects of different formats to be easily measured and evaluated.</p>
-<p>The setting of GLOBAL_IQ does not have any influence in the _iqN format and corresponding functions. These types will always have the same fixed accuracy regardless of the GLOBAL_IQ format.</p>
-<p>The default GLOBAL_IQ format is IQ24. This can be easily overridden in one of two ways:</p>
-<p>In the source file, the format can be selected prior to including the header file. The following example selects a GLOBAL_IQ format of IQ8:</p>
+<section id="global-iq">
+<h3>2.4. 选择 Global IQ 格式<a class="headerlink" href="#global-iq" title="Permalink to this heading">¶</a></h3>
+<p>不同的应用程序对数值精度和动态范围的要求差别很大。库提供 GLOBAL_IQ 格式（使用 _iq 数据类型），应用程序可使用它执行一般格式（可在编译时更改）的计算。使用 GLOBAL_IQ 格式编写的应用程序可更改为另一种格式，只需要更改 GLOBAL_IQ 值并重新编译即可，这样可以轻松测量和评估不同 格式的精度和性能影响。</p>
+<p>GLOBAL_IQ 的设置在 _iqN 格式和对应的函数中没有任何影响。这些类型始终有相同的固定精度，无论 GLOBAL_IQ 格式为何。</p>
+<p>默认的 GLOBAL_IQ 格式为 IQ24。可以通过两种方法之一轻松覆盖它：</p>
+<p>在源文件中，可以在包含头文件之前选择格式。以下示例选择了 IQ8 的 GLOBAL_IQ 格式：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span>
 <span class="o">//</span> <span class="n">Set</span> <span class="n">GLOBAL_IQ</span> <span class="n">to</span> <span class="mi">8</span> <span class="n">prior</span> <span class="n">to</span> <span class="n">including</span> <span class="n">IQmathLib</span><span class="o">.</span><span class="n">h</span><span class="o">.</span>
 <span class="o">//</span>
@@ -386,43 +386,43 @@
 <span class="c1">#include &lt;ti/iqmath/include/IQmathLib.h&gt;</span>
 </pre></div>
 </div>
-<p>In the project file, add a predefined value for GLOBAL_IQ. The method to add a predefined value varies from tool chain to tool chain.</p>
-<p>The first method allows different modules in the application to have different global format values, while the second method changes the global format value for the entire application. The method that is most appropriate varies from application to application.</p>
-<p>Note: Some functions are not available when GLOBAL_IQ is 30. Please see the API Guide section for a list of functions and the available IQ formats.</p>
+<p>在工程文件中，为 GLOBAL_IQ 添加一个预定义的值。添加预定义值的方法因工具链而异。</p>
+<p>第一种方法允许应用程序中的不同模块有不同的全局格式值，而第二种方法更改整个应用程序的全局格式值。最合适的方法因应用程序而异。</p>
+<p>注意：当 GLOBAL_IQ 为 30 时，某些函数不可用。请参阅“API 指南”部分中列出的函数和可用的 IQ 格式。</p>
 </section>
-<section id="example-projects">
-<h3>2.5. Example Projects<a class="headerlink" href="#example-projects" title="Permalink to this heading">¶</a></h3>
-<p>The IQmathLib provides two example projects for for RTS and MathACL to provide a starting point for users and demonstrate the use of IQmath functions, while the SDK includes several projects which leverage IQmath for more advanced applications. The included examples are:</p>
+<section id="id4">
+<h3>2.5. 示例工程<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>IQmathLib 提供了 RTS 和 MathACL 类型的两个示例工程作为用户的起点，并演示了 IQmath 函数的用法，而 SDK 包含若干利用 IQmath 打造更高级的应用程序的工程。包含的示例为：</p>
 <ul class="simple">
-<li><p>IQmathLib MathACL operations test example</p></li>
-<li><p>IQmathLib RTS operations test example</p></li>
+<li><p>IQmathLib MathACL 运行测试示例</p></li>
+<li><p>IQmathLib RTS 运行测试示例</p></li>
 </ul>
-<p>The IQmathLib projects provide a starting point for building a fixed point application. These projects will already have the libraries added and the include path set to include the header files.</p>
-<p>The examples demonstrate how to use several of the IQmathLib functions and data types to perform math calculations, with the only difference being the use of MathACL.</p>
+<p>IQmathLib 工程为编译定点应用程序提供了起点。这些工程已经添加了库，而且 include 路径设置为包含头文件。</p>
+<p>示例展示了如何使用若干 IQmathLib 函数和数据类型执行数学计算，唯一的区别是 MathACL 的使用。</p>
 </section>
 </section>
-<section id="api-guide">
-<h2>3. API Guide<a class="headerlink" href="#api-guide" title="Permalink to this heading">¶</a></h2>
-<p>A complete API guide is included showing detailed information about all files, APIs, and corresponding parameters. IQmath includes five types of routines:</p>
+<section id="api">
+<h2>3. API 指南<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h2>
+<p>完整的 API 指南包含在内，显示了有关所有文件、API 和相应参数的详细信息。IQmath 包括五类例程：</p>
 <ul class="simple">
-<li><p><strong>Format conversion functions</strong>: methods to convert numbers to and from the various formats.</p></li>
-<li><p><strong>Arithmetic functions</strong>: methods to perform basic arithmetic (addition, subtraction, multiplication, division).</p></li>
-<li><p><strong>Trigonometric functions</strong>: methods to perform trigonometric functions (sin, cos, atan, and so on).</p></li>
-<li><p><strong>Mathematical functions</strong>: methods to perform advanced arithmetic (square root, ex , and so on).</p></li>
-<li><p><strong>Miscellaneous</strong>: miscellaneous methods (saturation and absolute value). In the chapters that follow, the methods in each of these groups are covered in detail.</p></li>
+<li><p><strong>格式转换函数</strong>：在各种格式之间转换数字的方法。</p></li>
+<li><p><strong>算术函数</strong>：执行基础算术（加减乘除）的方法。</p></li>
+<li><p><strong>三角函数</strong>：执行三角函数（sin、cos、atan 等等）的方法。</p></li>
+<li><p><strong>数学函数</strong>：执行高等算术（平方根、ex 等等） 的方法。</p></li>
+<li><p><strong>其他</strong>：其他方法（饱和值和绝对值）。后面章节中将详细介绍每个组中的方法。</p></li>
 </ul>
-<p>The detailed guide can be found here:</p>
+<p>详细指南可以在这里找到：</p>
 <ul class="simple">
-<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">IQMath API Guide</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">IQMath API 指南</a></p></li>
 </ul>
 </section>
-<section id="benchmarks">
-<h2>4. Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading">¶</a></h2>
-<p>This section includes benchmarks for the IQmath libraries, measured in average cycles per function. These benchmarks were run on the device launchpads using IAR Embedded Workbench for ARM 9.20.11.43606. The tests for each function were run with a set of different values ran for 1000 iterations each, resulting in the presented average.</p>
-<p>MSPM0G benchmarks were tested on early experimental silicon.</p>
+<section id="id5">
+<h2>4. 基准测试<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>此部分包括 IQmath 库的基准测试，以每个函数的平均执行周期数来衡量。这些基准测试是在器件 LaunchPad 上使用 IAR Embedded Workbench for ARM 9.20.11.43606 运行的。每个函数的测试都使用一组不同的值运行，每个值迭代 1000 次，从而得到呈现的平均值。</p>
+<p>MSPM0G 基准测试是在早期实验器件上进行的。</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Function Name</p></th>
+<tr class="row-odd"><th class="head"><p>函数名称</p></th>
 <th class="head"><p>(MSPM0G) MathACL IQmath</p></th>
 <th class="head"><p>(MSPM0G) RTS IQmath</p></th>
 <th class="head"><p>(MSPM0G) Float</p></th>
@@ -448,9 +448,9 @@
 <tr class="row-even"><td><p>frac</p></td>
 <td><p>21</p></td>
 <td><p>21</p></td>
-<td><p>N/A</p></td>
+<td><p>不适用</p></td>
 <td><p>24</p></td>
-<td><p>N/A</p></td>
+<td><p>不适用</p></td>
 </tr>
 <tr class="row-odd"><td><p>asin</p></td>
 <td><p>310</p></td>

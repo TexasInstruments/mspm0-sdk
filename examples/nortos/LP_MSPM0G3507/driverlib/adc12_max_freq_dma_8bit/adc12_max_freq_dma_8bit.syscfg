@@ -33,4 +33,5 @@ ADC121.peripheral.adcPin2.$assign = "PA25";
 ADC121.DMA_CHANNEL.peripheral.$assign = "DMA_CH0";
 ADC121.DMA_CHANNEL.$name          = "DMA_CH0";
 ADC121.DMA_CHANNEL.addressMode    = "f2b";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

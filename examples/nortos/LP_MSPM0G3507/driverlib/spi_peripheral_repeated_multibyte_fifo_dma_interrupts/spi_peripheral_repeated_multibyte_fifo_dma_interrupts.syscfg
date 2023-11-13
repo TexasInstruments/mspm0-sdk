@@ -41,4 +41,5 @@ SPI1.DMA_CHANNEL_EVENT1.$name              = "DMA_CH0";
 SPI1.DMA_CHANNEL_EVENT1.peripheral.$assign = "DMA_CH0";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

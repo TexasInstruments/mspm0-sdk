@@ -5,7 +5,7 @@ This code example demonstrates how to implement a blood pressure monitor demo.
 A GUI can be used with this demo, and the user can interact with the code using the GUI. The GUI for this demo and its instructions can be found
 [here](https://dev.ti.com/gallery/view/TIMSPGC/BLOOD_PRESSURE_MONITOR/).
 
-A reference design, TIDA-010266, will be released in late July 2023 as a guide on how to design a blood pressure monitor system using the MSPM0L. It will include suggestions on how to design a custom board and code for this system and further explain the provided implementation.
+A reference design, TIDA-010266, will be released in late August 2023 as a guide on how to design a blood pressure monitor system using the MSPM0L. It will include suggestions on how to design a custom board and code for this system and further explain the provided implementation.
 
 ## Peripherals & Pin Assignments
 - ADC0

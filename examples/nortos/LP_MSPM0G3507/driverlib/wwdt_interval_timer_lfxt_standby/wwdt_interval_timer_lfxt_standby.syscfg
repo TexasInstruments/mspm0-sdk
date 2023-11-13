@@ -35,7 +35,8 @@ GPIO1.associatedPins[0].assignedPin         = "0";
 
 SYSCTL.powerPolicy = "STANDBY0";
 SYSCTL.LFCLKSource = "LFXT";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 WWDT1.$name             = "WWDT0";
 WWDT1.enabledInterrupts = true;

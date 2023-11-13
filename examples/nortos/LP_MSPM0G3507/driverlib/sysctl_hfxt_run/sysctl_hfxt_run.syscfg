@@ -56,7 +56,8 @@ GPIO1.associatedPins[0].pin.$assign = "PA0";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.validateClkStatus = true;
-SYSCTL.clockTreeEn       = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn        = true;
 
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerPeriod        = "500 ms";

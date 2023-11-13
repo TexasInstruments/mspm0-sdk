@@ -146,6 +146,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 {
     DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+	/* Set default configuration */
+	DL_SYSCTL_disableHFXT();
+	DL_SYSCTL_disableSYSPLL();
     DL_SYSCTL_enableMFCLK();
 
 	//Low Power Mode is configured to be SLEEP0

@@ -182,7 +182,7 @@ Wakeup Logic allowing a wakeup of the device when either:
 * Pin changes to 0
 * Pin changes to 1
 
-Only available on Standard-Drive with wake and 5V tolerant Open Drain`,
+Only available on Standard-Drive with wake, 5V tolerant Open Drain and High-Drive IO structures`,
                 hidden: true,
                 default: "DISABLE",
                 options: [
@@ -249,6 +249,9 @@ function validatePinmux(inst,validation){
         } else {
             if(inst.hysteresisControl === "ENABLE" && (pinIOStructure.match(/OD/) === null)){
                 validation.logError("Hysteresis only valid on Open Drain", inst, "hysteresisControl");
+            }
+            if(inst.wakeupLogic !== "DISABLE" && pinIOStructure.match(/Any|OD|SDW|HD/) == null) {
+                validation.logError("Wakeup Logic configuration only valid on Open Drain and Standard with Wake ", inst, "wakeupLogic");
             }
             if(inst.internalResistor === "PULL_UP" && pinIOStructure.match(/OD/) !== null) {
                 validation.logError("Pull-Up Resistor not valid on an Open Drain Configuration", inst, "internalResistor");

@@ -1,6 +1,166 @@
 <toc label="MSPM0G1X0X_G3X0X TI-Driver Library" topic="index.html">
   <topic label="MSPM0 TI-Driver Library" href="index.html"/>
   <topic label="Modules" href="modules.html">
+    <topic label="Analog to Digital Conversion (ADC)" href="group___a_d_c.html">
+      <topic label="ADC_control command and status codes" href="group___a_d_c___c_o_n_t_r_o_l.html">
+        <topic label="Command Codes" href="group___a_d_c___c_m_d.html">
+        </topic>
+        <topic label="ADC_CMD_RESERVED" href="group___a_d_c___c_o_n_t_r_o_l.html#ga1850e2c1e2791103d1102917d1e5b01b"/>
+        <topic label="ADC_STATUS_RESERVED" href="group___a_d_c___c_o_n_t_r_o_l.html#ga5a8bd7786df22349b1a5434f48b08581"/>
+        <topic label="ADC_STATUS_SUCCESS" href="group___a_d_c___c_o_n_t_r_o_l.html#gaee02c8883a7e443d36ea47f9696730ec"/>
+        <topic label="ADC_STATUS_ERROR" href="group___a_d_c___c_o_n_t_r_o_l.html#ga33ce323c3bbdc8a3f4e018f99a92b09d"/>
+        <topic label="ADC_STATUS_UNDEFINEDCMD" href="group___a_d_c___c_o_n_t_r_o_l.html#ga704a8cd95bdee94b0f61f06566062e8c"/>
+      </topic>
+      <topic label="ADC driver APIs" href="group___a_d_c_m_s_p_m0.html">
+        <topic label="ADCMSPM0_HWAttrs" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html">
+          <topic label="adc" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#aadb7ca2a495fa7ac5da117265c3044a6"/>
+          <topic label="adcInputDIO" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a15fa84f1cda2f6370007618c14d5cc50"/>
+          <topic label="adcInputPincm" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a58ca876ce3a37831f009b07bbb623e8c"/>
+          <topic label="adcInputPinMux" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a49d42e22c293bef2c627cf9dcc89c700"/>
+          <topic label="adcPosRefDIO" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a839c004129bca92afca5c97406ca9674"/>
+          <topic label="adcPosRefPincm" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a2d46092a48663a4f37af6af4b987c347"/>
+          <topic label="adcPosRefPinMux" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a6bc28181272d8f862d40a970e537c325"/>
+          <topic label="adcNegRefDIO" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#acb546069703ec6263b04a8103ea1f4f6"/>
+          <topic label="adcNegRefPincm" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a699c8dd40c3194307c5b66b64d15064a"/>
+          <topic label="adcNegRefPinMux" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ae73686916f32da8cd27951f44c74a2ca"/>
+          <topic label="adcChannel" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ab07fc168db27a0816c5810e98324a0de"/>
+          <topic label="refVoltage" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#adc1d12e58ce989647b003464cdee9cd6"/>
+          <topic label="refSource" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a013af067bd6d987d5163aa246d3e8dbd"/>
+          <topic label="samplingDuration" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a022927bd89290cf860d989b912b844fd"/>
+          <topic label="resolutionBits" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a63d622803996ac097fcdee057b2a0f5b"/>
+          <topic label="adcClkkDivider" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#aa6825a77d7259524a8ececef6ceaff8e"/>
+          <topic label="adcClkSelect" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a350cc72f42cc609b516cce31eda7f52e"/>
+          <topic label="adcClkFreqRange" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a08eaba35bb5177017be7625067249d61"/>
+          <topic label="conversionMode" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a796ba97320e8bbdcfc09078a4eba9a3b"/>
+          <topic label="conversionStartAddr" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a8105009d71e879a8e020da1ed7afd72a"/>
+          <topic label="conversionEndAddr" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ad47c769572bdfb2f946a052cbf1db5c2"/>
+          <topic label="repeatConversionMode" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a228d0085a55bcf60e9a68aa3faec4bec"/>
+          <topic label="samplingMode" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a32cc9362d2c2ab68f5c7750c7390739c"/>
+          <topic label="sampleTrigger" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#aae3b0be212abb499cf1fb225dce3875f"/>
+          <topic label="conversionDataFormat" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ae3b49eefa4b6c50cbabffa62f8c391f6"/>
+          <topic label="sampleTimerSrc" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ac6c8b04ab157ff52cdffbcd7bdbdde0b"/>
+          <topic label="conversionTrigger" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a754f5b48d743a44cf525f6c70307dcd4"/>
+          <topic label="adcHWAveraging" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a3e71f069f7d448e6f1742d491b95ca14"/>
+          <topic label="adcHwAvgDenominator" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a3a4d4cd574cda9726d49196e5a49fedc"/>
+          <topic label="adcHwAvgNumerator" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ac645dcc6d9014fe0c4a302ed4eaaf5a6"/>
+          <topic label="idxMEMCTLx" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a264fffed8634e76f5daae38fb8f5d708"/>
+        </topic>
+        <topic label="ADCMSPM0_Object" href="struct_a_d_c_m_s_p_m0___object.html">
+          <topic label="isOpen" href="struct_a_d_c_m_s_p_m0___object.html#a0cc9711008f6b5978edfbe0c4fda0895"/>
+          <topic label="isProtected" href="struct_a_d_c_m_s_p_m0___object.html#a8811696c36340abdbbc3b12d6b44d51c"/>
+        </topic>
+        <topic label="ADC_ALL_INTERRUPTS_MASK" href="group___a_d_c_m_s_p_m0.html#gaea7262a76a1c12fe101d11e0fc81e721"/>
+        <topic label="ADCMSPM0_Resolution_Bits" href="group___a_d_c_m_s_p_m0.html#ga1828d9ee76cc9710cf79e53c2103b86a">
+          <topic label="ADCMSPM0_RESOLUTION_12_BIT" href="group___a_d_c_m_s_p_m0.html#gga1828d9ee76cc9710cf79e53c2103b86aaa0fd3715e02dd048bd010a66d18c5d62"/>
+          <topic label="ADCMSPM0_RESOLUTION_10_BIT" href="group___a_d_c_m_s_p_m0.html#gga1828d9ee76cc9710cf79e53c2103b86aafc6866285897fa2f5cc05473dfd386a5"/>
+          <topic label="ADCMSPM0_RESOLUTION_8_BIT" href="group___a_d_c_m_s_p_m0.html#gga1828d9ee76cc9710cf79e53c2103b86aa65d2932067b8b84c47b15b8cdac0bc0e"/>
+        </topic>
+        <topic label="ADCMSPM0_Reference_Source" href="group___a_d_c_m_s_p_m0.html#ga7056eac6d9215f05bf2372494ae1087a">
+          <topic label="ADCMSPM0_VDDA_REFERENCE" href="group___a_d_c_m_s_p_m0.html#gga7056eac6d9215f05bf2372494ae1087aac1ac7183ee710280874a3f6d9fca829c"/>
+          <topic label="ADCMSPM0_INTERNAL_REFERENCE" href="group___a_d_c_m_s_p_m0.html#gga7056eac6d9215f05bf2372494ae1087aaf60ceb170337a0153fcf676f8c6d9fca"/>
+          <topic label="ADCMSPM0_EXTERNAL_REFERENCE" href="group___a_d_c_m_s_p_m0.html#gga7056eac6d9215f05bf2372494ae1087aa93a0aa01d1fde6ddd5518f9ec8e559f8"/>
+        </topic>
+        <topic label="ADCMSPM0_Clock_Divider" href="group___a_d_c_m_s_p_m0.html#gaf82d18618fee15886c513d5ca43d2f63">
+          <topic label="ADCMSPM0_CLKDIV_1" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a0ca79c61b50909ba881420ed56d46a46"/>
+          <topic label="ADCMSPM0_CLKDIV_2" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63acf9cc695e6b846b42827120b0075dbba"/>
+          <topic label="ADCMSPM0_CLKDIV_4" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a641696848d9a593322270338ba2bb3cf"/>
+          <topic label="ADCMSPM0_CLKDIV_8" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a11800b032bbfeeb81b56214ccb8453ea"/>
+          <topic label="ADCMSPM0_CLKDIV_16" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63aaa63d9ae50e29b0a68d41a8977def957"/>
+          <topic label="ADCMSPM0_CLKDIV_24" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a3eeee992616cfa4cbca588cea07a7d68"/>
+          <topic label="ADCMSPM0_CLKDIV_32" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a1de734b47c9002e64a834963bef2569d"/>
+          <topic label="ADCMSPM0_CLKDIV_48" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63ac910db4537b31c7be3135a9d239654ec"/>
+        </topic>
+        <topic label="ADCMSPM0_Clock_Select" href="group___a_d_c_m_s_p_m0.html#gae8e247470f8e7228fc3793c270152030">
+          <topic label="ADCMSPM0_CLK_SYSOSC" href="group___a_d_c_m_s_p_m0.html#ggae8e247470f8e7228fc3793c270152030a8cfda910cc419bd0880cef60a3b2b617"/>
+          <topic label="ADCMSPM0_CLK_ULPCLK" href="group___a_d_c_m_s_p_m0.html#ggae8e247470f8e7228fc3793c270152030a8389a400a4d525cc463cc5656851bdf4"/>
+          <topic label="ADCMSPM0_CLK_HFCLK" href="group___a_d_c_m_s_p_m0.html#ggae8e247470f8e7228fc3793c270152030afee1dd7f0e4c1a658700069e0d953995"/>
+        </topic>
+        <topic label="ADCMSPM0_Freq_Range" href="group___a_d_c_m_s_p_m0.html#ga474519451997c71d6fede50a4aeebf46">
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_1TO4" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46aef95b0bfa6b92694bcd57108a0b02f7c"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_4TO8" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46a17a452597dd6703a14e74564aa8468b7"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_8TO16" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46a71879e82c91bdd7bcb4fe98839a6e152"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_16TO20" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46aae11f6f4db2da52eeb739e86524c572e"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_20TO24" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46a182600974efb260d54eb832516b55843"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_24TO32" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46adb87144cb86cca915ce711bf1cb24c0d"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_32TO40" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46a92b2334d4274e9e0b2c93e96631c267b"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_40TO48" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46af3438717504993eaf0db85c02297b7fc"/>
+        </topic>
+        <topic label="ADCMSPM0_Conversion_Mode" href="group___a_d_c_m_s_p_m0.html#gaf63911000c953d20448a99408cc89991">
+          <topic label="ADCMSPM0_SINGLE_CH_SINGLE_CONV" href="group___a_d_c_m_s_p_m0.html#ggaf63911000c953d20448a99408cc89991a26e94c47c2b78ae03341f223db4d8566"/>
+          <topic label="ADCMSPM0_MULTI_CH_SEQUENCE_CONV" href="group___a_d_c_m_s_p_m0.html#ggaf63911000c953d20448a99408cc89991a6df98803783723f497e68a1831901949"/>
+        </topic>
+        <topic label="ADCMSPM0_Repeat_Conversion_Mode" href="group___a_d_c_m_s_p_m0.html#ga166ef001f4ca14ecd7b35a6d90687620">
+          <topic label="ADCMSPM0_REPEAT_MODE_ENABLED" href="group___a_d_c_m_s_p_m0.html#gga166ef001f4ca14ecd7b35a6d90687620a2e9ecf0b4dfea3322d5d2366620c1931"/>
+          <topic label="ADCMSPM0_REPEAT_MODE_DISABLED" href="group___a_d_c_m_s_p_m0.html#gga166ef001f4ca14ecd7b35a6d90687620a45ec74fe01fd760c7c8013d9c4f09aa7"/>
+        </topic>
+        <topic label="ADCMSPM0_Sampling_Mode" href="group___a_d_c_m_s_p_m0.html#gabc98ee969045cfcd52195623351ffb4e">
+          <topic label="ADCMSPM0_SAMPLING_MODE_AUTO" href="group___a_d_c_m_s_p_m0.html#ggabc98ee969045cfcd52195623351ffb4eab50db726f621998eeb7f8e87c9d22004"/>
+          <topic label="ADCMSPM0_SAMPLING_MODE_MANUAL" href="group___a_d_c_m_s_p_m0.html#ggabc98ee969045cfcd52195623351ffb4ea80eeb4526b0f2b8fbfc832d719d8c018"/>
+        </topic>
+        <topic label="ADCMSPM0_Sampling_Trg" href="group___a_d_c_m_s_p_m0.html#ga7334c44c90ef66da690be740f5e12593">
+          <topic label="ADCMSPM0_SAMPLING_TRIG_SW" href="group___a_d_c_m_s_p_m0.html#gga7334c44c90ef66da690be740f5e12593a8b48a5205c2cd4d80e80f94c34f736f8"/>
+          <topic label="ADCMSPM0_SAMPLING_TRIG_EVENT" href="group___a_d_c_m_s_p_m0.html#gga7334c44c90ef66da690be740f5e12593a9a6e6a06929f5e03ccdbee9ff2e93f6c"/>
+        </topic>
+        <topic label="ADCMSPM0_Conv_Data_Format" href="group___a_d_c_m_s_p_m0.html#gaca2fea67385b3ceeae6966eccc6e6e94">
+          <topic label="ADCMSPM0_CONV_DATA_FORMAT_UNSIGNED" href="group___a_d_c_m_s_p_m0.html#ggaca2fea67385b3ceeae6966eccc6e6e94abb929bc1f61f6300f99088dc833a4ec6"/>
+          <topic label="ADCMSPM0_CONV_DATA_FORMAT_SIGNED" href="group___a_d_c_m_s_p_m0.html#ggaca2fea67385b3ceeae6966eccc6e6e94abbd42ab446849a99dcc16c5625684d29"/>
+        </topic>
+        <topic label="ADCMSPM0_Sample_Timer_Source" href="group___a_d_c_m_s_p_m0.html#gae1e93270ea751cb2b49628d6c6afc3cb">
+          <topic label="ADCMSPM0_SAMP_TMR_SOURCE_SCOMP0" href="group___a_d_c_m_s_p_m0.html#ggae1e93270ea751cb2b49628d6c6afc3cbabbe5b543a56d017ba3dbe2c650959d31"/>
+          <topic label="ADCMSPM0_SAMP_TMR_SOURCE_SCOMP1" href="group___a_d_c_m_s_p_m0.html#ggae1e93270ea751cb2b49628d6c6afc3cba5f1de45d4f0afcb45a223ed3842b19cf"/>
+        </topic>
+        <topic label="ADCMSPM0_Conv_Trig_Src" href="group___a_d_c_m_s_p_m0.html#gaef84b3e55baab39944cc744acbe48c05">
+          <topic label="ADCMSPM0_NEXT_CONV_AUTO" href="group___a_d_c_m_s_p_m0.html#ggaef84b3e55baab39944cc744acbe48c05a17d4dbe0c1f5eb11744b2456a7feac87"/>
+          <topic label="ADCMSPM0_NEXT_CONV_WITH_TRIG" href="group___a_d_c_m_s_p_m0.html#ggaef84b3e55baab39944cc744acbe48c05a95ef93d488bfa6b75e53ee8641dc594d"/>
+        </topic>
+        <topic label="ADCMSPM0_HW_Avg" href="group___a_d_c_m_s_p_m0.html#gabc885624d7dc02502de40e3fea9dd8f1">
+          <topic label="ADCMSPM0_HW_AVG_ENABLED" href="group___a_d_c_m_s_p_m0.html#ggabc885624d7dc02502de40e3fea9dd8f1ab1ca70ef8ebba6accbc8354148e856e3"/>
+          <topic label="ADCMSPM0_HW_AVG_DISABLED" href="group___a_d_c_m_s_p_m0.html#ggabc885624d7dc02502de40e3fea9dd8f1a5b43f0ac43fc58461048a3370bb2b0d0"/>
+        </topic>
+        <topic label="ADCMSPM0_AVGN" href="group___a_d_c_m_s_p_m0.html#gaaa4f16805d05dad0fa541c6e37bb4c33">
+        </topic>
+        <topic label="ADCMSPM0_AVGD" href="group___a_d_c_m_s_p_m0.html#gab8903b88d1cd9c249cc5129b2a321d6b">
+        </topic>
+        <topic label="ADCMSPM0_Pwr_Dn_Mode" href="group___a_d_c_m_s_p_m0.html#ga3587d77b490494d33610393cd0c544d6">
+          <topic label="ADCMSPM0_Pwr_Dn_MODE_AUTO" href="group___a_d_c_m_s_p_m0.html#gga3587d77b490494d33610393cd0c544d6ac4469f3bbf3e5176b20c679877f44832"/>
+          <topic label="ADCMSPM0_Pwr_Dn_MODE_MANUAL" href="group___a_d_c_m_s_p_m0.html#gga3587d77b490494d33610393cd0c544d6ae0e6fe2e8b43631b7f9bf193cf61f145"/>
+        </topic>
+        <topic label="ADCMSPM0_CONV_START_ADDRESS" href="group___a_d_c_m_s_p_m0.html#ga92451727597f06a3497c176588c4af8c">
+        </topic>
+        <topic label="ADCMSPM0_CONV_END_ADDRESS" href="group___a_d_c_m_s_p_m0.html#gad4e5f7b54877fe9726763c76cfbe44c4">
+        </topic>
+      </topic>
+      <topic label="ADC_Params" href="struct_a_d_c___params.html">
+        <topic label="custom" href="struct_a_d_c___params.html#a62c67d0ad10066d4e30e67d648937a32"/>
+        <topic label="isProtected" href="struct_a_d_c___params.html#afcfab4dda63383c2dcf0bb21fe519c53"/>
+      </topic>
+      <topic label="ADC_FxnTable" href="struct_a_d_c___fxn_table.html">
+        <topic label="closeFxn" href="struct_a_d_c___fxn_table.html#ae7aebe8cc8f3493502e3dceecb688c32"/>
+        <topic label="controlFxn" href="struct_a_d_c___fxn_table.html#af92f7867301c8edd125436ca66e16877"/>
+        <topic label="convertFxn" href="struct_a_d_c___fxn_table.html#ac7255105d1eca815a45714ff0d2186cd"/>
+        <topic label="convertChainFxn" href="struct_a_d_c___fxn_table.html#ad63e771cb82d49a5fb8c7b637bfa3ccb"/>
+        <topic label="convertToMicroVolts" href="struct_a_d_c___fxn_table.html#a35a09bfb36dd7b17a419a34ed0ac76ed"/>
+        <topic label="initFxn" href="struct_a_d_c___fxn_table.html#a5b2882d28b0e4a8c8d7bb2ed741380e8"/>
+        <topic label="openFxn" href="struct_a_d_c___fxn_table.html#aa74579528b7be192281bf5c23e6dcf03"/>
+      </topic>
+      <topic label="ADC_Config_" href="struct_a_d_c___config__.html">
+        <topic label="fxnTablePtr" href="struct_a_d_c___config__.html#a451827ead452ffc830675afbef573ee2"/>
+        <topic label="object" href="struct_a_d_c___config__.html#a42007f8f413bd43d28b7972b9e60bbc9"/>
+        <topic label="hwAttrs" href="struct_a_d_c___config__.html#a5acc18036a502afb93d1097a185e921f"/>
+      </topic>
+      <topic label="ADC_convertRawToMicroVolts" href="group___a_d_c.html#gab9f0fda9cf7e26636cee5817789f0030"/>
+      <topic label="ADC_Handle" href="group___a_d_c.html#ga7447d17264445ab6285ddab2bb794582"/>
+      <topic label="ADC_Config" href="group___a_d_c.html#gacde6feaa979f1952a70a38e9e1e1ea74"/>
+      <topic label="ADC_close" href="group___a_d_c.html#gadb49f74bdef5e3e45ee5de306c5dfc08"/>
+      <topic label="ADC_control" href="group___a_d_c.html#gaf4be7e5e4f5cc931f4501a542d689c32"/>
+      <topic label="ADC_convert" href="group___a_d_c.html#gafcac5582b8be42a7740091d150aef05c"/>
+      <topic label="ADC_convertChain" href="group___a_d_c.html#ga8150c6d87037c8d056ec74c61345d523"/>
+      <topic label="ADC_convertToMicroVolts" href="group___a_d_c.html#gaa1cd6feaa85ea5409dbe1769586bff20"/>
+      <topic label="ADC_init" href="group___a_d_c.html#ga4b4a2ddcb45df0c8497c47d4ed800e2a"/>
+      <topic label="ADC_open" href="group___a_d_c.html#ga1bfe07e93650e1288ba5fc6acc212c46"/>
+      <topic label="ADC_Params_init" href="group___a_d_c.html#ga21df1c0987f5cecb660581ae081c4dc7"/>
+      <topic label="ADCMSPM0_fxnTable" href="group___a_d_c.html#gad053cafabeeddee0993f84e41e75a643"/>
+    </topic>
     <topic label="Direct Memory Access (DMA)" href="group___d_m_a.html">
       <topic label="DMAMSPM0_HWAttrs" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html">
         <topic label="dmaIsrFxn" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#aaa249f1ea874ab783337ba700ba92e16"/>
@@ -400,6 +560,61 @@
   </topic>
   <topic label="Data Structures" href="annotated.html">
     <topic label="Data Structures" href="annotated.html">
+      <topic label="ADC_Config_" href="struct_a_d_c___config__.html">
+        <topic label="fxnTablePtr" href="struct_a_d_c___config__.html#a451827ead452ffc830675afbef573ee2"/>
+        <topic label="object" href="struct_a_d_c___config__.html#a42007f8f413bd43d28b7972b9e60bbc9"/>
+        <topic label="hwAttrs" href="struct_a_d_c___config__.html#a5acc18036a502afb93d1097a185e921f"/>
+      </topic>
+      <topic label="ADC_FxnTable" href="struct_a_d_c___fxn_table.html">
+        <topic label="closeFxn" href="struct_a_d_c___fxn_table.html#ae7aebe8cc8f3493502e3dceecb688c32"/>
+        <topic label="controlFxn" href="struct_a_d_c___fxn_table.html#af92f7867301c8edd125436ca66e16877"/>
+        <topic label="convertFxn" href="struct_a_d_c___fxn_table.html#ac7255105d1eca815a45714ff0d2186cd"/>
+        <topic label="convertChainFxn" href="struct_a_d_c___fxn_table.html#ad63e771cb82d49a5fb8c7b637bfa3ccb"/>
+        <topic label="convertToMicroVolts" href="struct_a_d_c___fxn_table.html#a35a09bfb36dd7b17a419a34ed0ac76ed"/>
+        <topic label="initFxn" href="struct_a_d_c___fxn_table.html#a5b2882d28b0e4a8c8d7bb2ed741380e8"/>
+        <topic label="openFxn" href="struct_a_d_c___fxn_table.html#aa74579528b7be192281bf5c23e6dcf03"/>
+      </topic>
+      <topic label="ADC_Params" href="struct_a_d_c___params.html">
+        <topic label="custom" href="struct_a_d_c___params.html#a62c67d0ad10066d4e30e67d648937a32"/>
+        <topic label="isProtected" href="struct_a_d_c___params.html#afcfab4dda63383c2dcf0bb21fe519c53"/>
+      </topic>
+      <topic label="ADCMSPM0_HWAttrs" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html">
+        <topic label="adc" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#aadb7ca2a495fa7ac5da117265c3044a6"/>
+        <topic label="adcInputDIO" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a15fa84f1cda2f6370007618c14d5cc50"/>
+        <topic label="adcInputPincm" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a58ca876ce3a37831f009b07bbb623e8c"/>
+        <topic label="adcInputPinMux" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a49d42e22c293bef2c627cf9dcc89c700"/>
+        <topic label="adcPosRefDIO" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a839c004129bca92afca5c97406ca9674"/>
+        <topic label="adcPosRefPincm" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a2d46092a48663a4f37af6af4b987c347"/>
+        <topic label="adcPosRefPinMux" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a6bc28181272d8f862d40a970e537c325"/>
+        <topic label="adcNegRefDIO" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#acb546069703ec6263b04a8103ea1f4f6"/>
+        <topic label="adcNegRefPincm" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a699c8dd40c3194307c5b66b64d15064a"/>
+        <topic label="adcNegRefPinMux" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ae73686916f32da8cd27951f44c74a2ca"/>
+        <topic label="adcChannel" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ab07fc168db27a0816c5810e98324a0de"/>
+        <topic label="refVoltage" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#adc1d12e58ce989647b003464cdee9cd6"/>
+        <topic label="refSource" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a013af067bd6d987d5163aa246d3e8dbd"/>
+        <topic label="samplingDuration" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a022927bd89290cf860d989b912b844fd"/>
+        <topic label="resolutionBits" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a63d622803996ac097fcdee057b2a0f5b"/>
+        <topic label="adcClkkDivider" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#aa6825a77d7259524a8ececef6ceaff8e"/>
+        <topic label="adcClkSelect" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a350cc72f42cc609b516cce31eda7f52e"/>
+        <topic label="adcClkFreqRange" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a08eaba35bb5177017be7625067249d61"/>
+        <topic label="conversionMode" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a796ba97320e8bbdcfc09078a4eba9a3b"/>
+        <topic label="conversionStartAddr" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a8105009d71e879a8e020da1ed7afd72a"/>
+        <topic label="conversionEndAddr" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ad47c769572bdfb2f946a052cbf1db5c2"/>
+        <topic label="repeatConversionMode" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a228d0085a55bcf60e9a68aa3faec4bec"/>
+        <topic label="samplingMode" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a32cc9362d2c2ab68f5c7750c7390739c"/>
+        <topic label="sampleTrigger" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#aae3b0be212abb499cf1fb225dce3875f"/>
+        <topic label="conversionDataFormat" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ae3b49eefa4b6c50cbabffa62f8c391f6"/>
+        <topic label="sampleTimerSrc" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ac6c8b04ab157ff52cdffbcd7bdbdde0b"/>
+        <topic label="conversionTrigger" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a754f5b48d743a44cf525f6c70307dcd4"/>
+        <topic label="adcHWAveraging" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a3e71f069f7d448e6f1742d491b95ca14"/>
+        <topic label="adcHwAvgDenominator" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a3a4d4cd574cda9726d49196e5a49fedc"/>
+        <topic label="adcHwAvgNumerator" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#ac645dcc6d9014fe0c4a302ed4eaaf5a6"/>
+        <topic label="idxMEMCTLx" href="struct_a_d_c_m_s_p_m0___h_w_attrs.html#a264fffed8634e76f5daae38fb8f5d708"/>
+      </topic>
+      <topic label="ADCMSPM0_Object" href="struct_a_d_c_m_s_p_m0___object.html">
+        <topic label="isOpen" href="struct_a_d_c_m_s_p_m0___object.html#a0cc9711008f6b5978edfbe0c4fda0895"/>
+        <topic label="isProtected" href="struct_a_d_c_m_s_p_m0___object.html#a8811696c36340abdbbc3b12d6b44d51c"/>
+      </topic>
       <topic label="DMAMSPM0_Cfg" href="struct_d_m_a_m_s_p_m0___cfg.html">
         <topic label="object" href="struct_d_m_a_m_s_p_m0___cfg.html#af95b4b92269f4c872aab141a92f02b3a"/>
         <topic label="hwAttrs" href="struct_d_m_a_m_s_p_m0___cfg.html#aacdefe7b3fc5cd387a665f90d5159dee"/>
@@ -588,6 +803,154 @@
   </topic>
   <topic label="Files">
     <topic label="File List" href="files.html">
+      <topic label="ADC.h" href="_a_d_c_8h.html">
+        <topic label="ADC_convertRawToMicroVolts" href="group___a_d_c.html#gab9f0fda9cf7e26636cee5817789f0030"/>
+        <topic label="ADC_CMD_RESERVED" href="group___a_d_c___c_o_n_t_r_o_l.html#ga1850e2c1e2791103d1102917d1e5b01b"/>
+        <topic label="ADC_STATUS_RESERVED" href="group___a_d_c___c_o_n_t_r_o_l.html#ga5a8bd7786df22349b1a5434f48b08581"/>
+        <topic label="ADC_STATUS_SUCCESS" href="group___a_d_c___c_o_n_t_r_o_l.html#gaee02c8883a7e443d36ea47f9696730ec"/>
+        <topic label="ADC_STATUS_ERROR" href="group___a_d_c___c_o_n_t_r_o_l.html#ga33ce323c3bbdc8a3f4e018f99a92b09d"/>
+        <topic label="ADC_STATUS_UNDEFINEDCMD" href="group___a_d_c___c_o_n_t_r_o_l.html#ga704a8cd95bdee94b0f61f06566062e8c"/>
+        <topic label="ADC_Handle" href="group___a_d_c.html#ga7447d17264445ab6285ddab2bb794582"/>
+        <topic label="ADC_CloseFxn" href="group___a_d_c.html#ga42f6ff234d06fb71647510e04be8a3bf"/>
+        <topic label="ADC_ControlFxn" href="group___a_d_c.html#gaf9c178e22b377d9cf5eb7d2a1a072f12"/>
+        <topic label="ADC_ConvertFxn" href="group___a_d_c.html#ga552f2f752fbfc1b2af7551e55e392a42"/>
+        <topic label="ADC_ConvertChainFxn" href="group___a_d_c.html#ga30dc8178d0f5baf358ebf78fc34ab99f"/>
+        <topic label="ADC_ConvertToMicroVoltsFxn" href="group___a_d_c.html#ga2b16c6506209f209811e29909c11b19f"/>
+        <topic label="ADC_InitFxn" href="group___a_d_c.html#gaf5f90e5268e88d0bb56d40d53542b1da"/>
+        <topic label="ADC_OpenFxn" href="group___a_d_c.html#ga753af5a6a07905e109bbdecb785ac44d"/>
+        <topic label="ADC_Config" href="group___a_d_c.html#gacde6feaa979f1952a70a38e9e1e1ea74"/>
+        <topic label="ADC_close" href="group___a_d_c.html#gadb49f74bdef5e3e45ee5de306c5dfc08"/>
+        <topic label="ADC_control" href="group___a_d_c.html#gaf4be7e5e4f5cc931f4501a542d689c32"/>
+        <topic label="ADC_convert" href="group___a_d_c.html#gafcac5582b8be42a7740091d150aef05c"/>
+        <topic label="ADC_convertChain" href="group___a_d_c.html#ga8150c6d87037c8d056ec74c61345d523"/>
+        <topic label="ADC_convertToMicroVolts" href="group___a_d_c.html#gaa1cd6feaa85ea5409dbe1769586bff20"/>
+        <topic label="ADC_init" href="group___a_d_c.html#ga4b4a2ddcb45df0c8497c47d4ed800e2a"/>
+        <topic label="ADC_open" href="group___a_d_c.html#ga1bfe07e93650e1288ba5fc6acc212c46"/>
+        <topic label="ADC_Params_init" href="group___a_d_c.html#ga21df1c0987f5cecb660581ae081c4dc7"/>
+        <topic label="ADCMSPM0_fxnTable" href="group___a_d_c.html#gad053cafabeeddee0993f84e41e75a643"/>
+      </topic>
+      <topic label="ADCMSPM0.h" href="_a_d_c_m_s_p_m0_8h.html">
+        <topic label="ADC_ALL_INTERRUPTS_MASK" href="group___a_d_c_m_s_p_m0.html#gaea7262a76a1c12fe101d11e0fc81e721"/>
+        <topic label="ADCMSPM0_Resolution_Bits" href="group___a_d_c_m_s_p_m0.html#ga1828d9ee76cc9710cf79e53c2103b86a">
+          <topic label="ADCMSPM0_RESOLUTION_12_BIT" href="group___a_d_c_m_s_p_m0.html#gga1828d9ee76cc9710cf79e53c2103b86aaa0fd3715e02dd048bd010a66d18c5d62"/>
+          <topic label="ADCMSPM0_RESOLUTION_10_BIT" href="group___a_d_c_m_s_p_m0.html#gga1828d9ee76cc9710cf79e53c2103b86aafc6866285897fa2f5cc05473dfd386a5"/>
+          <topic label="ADCMSPM0_RESOLUTION_8_BIT" href="group___a_d_c_m_s_p_m0.html#gga1828d9ee76cc9710cf79e53c2103b86aa65d2932067b8b84c47b15b8cdac0bc0e"/>
+        </topic>
+        <topic label="ADCMSPM0_Reference_Source" href="group___a_d_c_m_s_p_m0.html#ga7056eac6d9215f05bf2372494ae1087a">
+          <topic label="ADCMSPM0_VDDA_REFERENCE" href="group___a_d_c_m_s_p_m0.html#gga7056eac6d9215f05bf2372494ae1087aac1ac7183ee710280874a3f6d9fca829c"/>
+          <topic label="ADCMSPM0_INTERNAL_REFERENCE" href="group___a_d_c_m_s_p_m0.html#gga7056eac6d9215f05bf2372494ae1087aaf60ceb170337a0153fcf676f8c6d9fca"/>
+          <topic label="ADCMSPM0_EXTERNAL_REFERENCE" href="group___a_d_c_m_s_p_m0.html#gga7056eac6d9215f05bf2372494ae1087aa93a0aa01d1fde6ddd5518f9ec8e559f8"/>
+        </topic>
+        <topic label="ADCMSPM0_Clock_Divider" href="group___a_d_c_m_s_p_m0.html#gaf82d18618fee15886c513d5ca43d2f63">
+          <topic label="ADCMSPM0_CLKDIV_1" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a0ca79c61b50909ba881420ed56d46a46"/>
+          <topic label="ADCMSPM0_CLKDIV_2" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63acf9cc695e6b846b42827120b0075dbba"/>
+          <topic label="ADCMSPM0_CLKDIV_4" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a641696848d9a593322270338ba2bb3cf"/>
+          <topic label="ADCMSPM0_CLKDIV_8" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a11800b032bbfeeb81b56214ccb8453ea"/>
+          <topic label="ADCMSPM0_CLKDIV_16" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63aaa63d9ae50e29b0a68d41a8977def957"/>
+          <topic label="ADCMSPM0_CLKDIV_24" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a3eeee992616cfa4cbca588cea07a7d68"/>
+          <topic label="ADCMSPM0_CLKDIV_32" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63a1de734b47c9002e64a834963bef2569d"/>
+          <topic label="ADCMSPM0_CLKDIV_48" href="group___a_d_c_m_s_p_m0.html#ggaf82d18618fee15886c513d5ca43d2f63ac910db4537b31c7be3135a9d239654ec"/>
+        </topic>
+        <topic label="ADCMSPM0_Clock_Select" href="group___a_d_c_m_s_p_m0.html#gae8e247470f8e7228fc3793c270152030">
+          <topic label="ADCMSPM0_CLK_SYSOSC" href="group___a_d_c_m_s_p_m0.html#ggae8e247470f8e7228fc3793c270152030a8cfda910cc419bd0880cef60a3b2b617"/>
+          <topic label="ADCMSPM0_CLK_ULPCLK" href="group___a_d_c_m_s_p_m0.html#ggae8e247470f8e7228fc3793c270152030a8389a400a4d525cc463cc5656851bdf4"/>
+          <topic label="ADCMSPM0_CLK_HFCLK" href="group___a_d_c_m_s_p_m0.html#ggae8e247470f8e7228fc3793c270152030afee1dd7f0e4c1a658700069e0d953995"/>
+        </topic>
+        <topic label="ADCMSPM0_Freq_Range" href="group___a_d_c_m_s_p_m0.html#ga474519451997c71d6fede50a4aeebf46">
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_1TO4" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46aef95b0bfa6b92694bcd57108a0b02f7c"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_4TO8" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46a17a452597dd6703a14e74564aa8468b7"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_8TO16" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46a71879e82c91bdd7bcb4fe98839a6e152"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_16TO20" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46aae11f6f4db2da52eeb739e86524c572e"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_20TO24" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46a182600974efb260d54eb832516b55843"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_24TO32" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46adb87144cb86cca915ce711bf1cb24c0d"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_32TO40" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46a92b2334d4274e9e0b2c93e96631c267b"/>
+          <topic label="ADCMSPM0_CLK_FREQ_RANGE_40TO48" href="group___a_d_c_m_s_p_m0.html#gga474519451997c71d6fede50a4aeebf46af3438717504993eaf0db85c02297b7fc"/>
+        </topic>
+        <topic label="ADCMSPM0_Conversion_Mode" href="group___a_d_c_m_s_p_m0.html#gaf63911000c953d20448a99408cc89991">
+          <topic label="ADCMSPM0_SINGLE_CH_SINGLE_CONV" href="group___a_d_c_m_s_p_m0.html#ggaf63911000c953d20448a99408cc89991a26e94c47c2b78ae03341f223db4d8566"/>
+          <topic label="ADCMSPM0_MULTI_CH_SEQUENCE_CONV" href="group___a_d_c_m_s_p_m0.html#ggaf63911000c953d20448a99408cc89991a6df98803783723f497e68a1831901949"/>
+        </topic>
+        <topic label="ADCMSPM0_Repeat_Conversion_Mode" href="group___a_d_c_m_s_p_m0.html#ga166ef001f4ca14ecd7b35a6d90687620">
+          <topic label="ADCMSPM0_REPEAT_MODE_ENABLED" href="group___a_d_c_m_s_p_m0.html#gga166ef001f4ca14ecd7b35a6d90687620a2e9ecf0b4dfea3322d5d2366620c1931"/>
+          <topic label="ADCMSPM0_REPEAT_MODE_DISABLED" href="group___a_d_c_m_s_p_m0.html#gga166ef001f4ca14ecd7b35a6d90687620a45ec74fe01fd760c7c8013d9c4f09aa7"/>
+        </topic>
+        <topic label="ADCMSPM0_Sampling_Mode" href="group___a_d_c_m_s_p_m0.html#gabc98ee969045cfcd52195623351ffb4e">
+          <topic label="ADCMSPM0_SAMPLING_MODE_AUTO" href="group___a_d_c_m_s_p_m0.html#ggabc98ee969045cfcd52195623351ffb4eab50db726f621998eeb7f8e87c9d22004"/>
+          <topic label="ADCMSPM0_SAMPLING_MODE_MANUAL" href="group___a_d_c_m_s_p_m0.html#ggabc98ee969045cfcd52195623351ffb4ea80eeb4526b0f2b8fbfc832d719d8c018"/>
+        </topic>
+        <topic label="ADCMSPM0_Sampling_Trg" href="group___a_d_c_m_s_p_m0.html#ga7334c44c90ef66da690be740f5e12593">
+          <topic label="ADCMSPM0_SAMPLING_TRIG_SW" href="group___a_d_c_m_s_p_m0.html#gga7334c44c90ef66da690be740f5e12593a8b48a5205c2cd4d80e80f94c34f736f8"/>
+          <topic label="ADCMSPM0_SAMPLING_TRIG_EVENT" href="group___a_d_c_m_s_p_m0.html#gga7334c44c90ef66da690be740f5e12593a9a6e6a06929f5e03ccdbee9ff2e93f6c"/>
+        </topic>
+        <topic label="ADCMSPM0_Conv_Data_Format" href="group___a_d_c_m_s_p_m0.html#gaca2fea67385b3ceeae6966eccc6e6e94">
+          <topic label="ADCMSPM0_CONV_DATA_FORMAT_UNSIGNED" href="group___a_d_c_m_s_p_m0.html#ggaca2fea67385b3ceeae6966eccc6e6e94abb929bc1f61f6300f99088dc833a4ec6"/>
+          <topic label="ADCMSPM0_CONV_DATA_FORMAT_SIGNED" href="group___a_d_c_m_s_p_m0.html#ggaca2fea67385b3ceeae6966eccc6e6e94abbd42ab446849a99dcc16c5625684d29"/>
+        </topic>
+        <topic label="ADCMSPM0_Sample_Timer_Source" href="group___a_d_c_m_s_p_m0.html#gae1e93270ea751cb2b49628d6c6afc3cb">
+          <topic label="ADCMSPM0_SAMP_TMR_SOURCE_SCOMP0" href="group___a_d_c_m_s_p_m0.html#ggae1e93270ea751cb2b49628d6c6afc3cbabbe5b543a56d017ba3dbe2c650959d31"/>
+          <topic label="ADCMSPM0_SAMP_TMR_SOURCE_SCOMP1" href="group___a_d_c_m_s_p_m0.html#ggae1e93270ea751cb2b49628d6c6afc3cba5f1de45d4f0afcb45a223ed3842b19cf"/>
+        </topic>
+        <topic label="ADCMSPM0_Conv_Trig_Src" href="group___a_d_c_m_s_p_m0.html#gaef84b3e55baab39944cc744acbe48c05">
+          <topic label="ADCMSPM0_NEXT_CONV_AUTO" href="group___a_d_c_m_s_p_m0.html#ggaef84b3e55baab39944cc744acbe48c05a17d4dbe0c1f5eb11744b2456a7feac87"/>
+          <topic label="ADCMSPM0_NEXT_CONV_WITH_TRIG" href="group___a_d_c_m_s_p_m0.html#ggaef84b3e55baab39944cc744acbe48c05a95ef93d488bfa6b75e53ee8641dc594d"/>
+        </topic>
+        <topic label="ADCMSPM0_HW_Avg" href="group___a_d_c_m_s_p_m0.html#gabc885624d7dc02502de40e3fea9dd8f1">
+          <topic label="ADCMSPM0_HW_AVG_ENABLED" href="group___a_d_c_m_s_p_m0.html#ggabc885624d7dc02502de40e3fea9dd8f1ab1ca70ef8ebba6accbc8354148e856e3"/>
+          <topic label="ADCMSPM0_HW_AVG_DISABLED" href="group___a_d_c_m_s_p_m0.html#ggabc885624d7dc02502de40e3fea9dd8f1a5b43f0ac43fc58461048a3370bb2b0d0"/>
+        </topic>
+        <topic label="ADCMSPM0_AVGN" href="group___a_d_c_m_s_p_m0.html#gaaa4f16805d05dad0fa541c6e37bb4c33">
+          <topic label="ADCMSPM0_HW_AVG_NUM_ACC_DISABLED" href="group___a_d_c_m_s_p_m0.html#ggaaa4f16805d05dad0fa541c6e37bb4c33a86b628d4ae95b3c5a264da3daf744859"/>
+          <topic label="ADCMSPM0_HW_AVG_NUM_ACC_2" href="group___a_d_c_m_s_p_m0.html#ggaaa4f16805d05dad0fa541c6e37bb4c33abe70c38765aba00b885a7db329cfbb93"/>
+          <topic label="ADCMSPM0_HW_AVG_NUM_ACC_4" href="group___a_d_c_m_s_p_m0.html#ggaaa4f16805d05dad0fa541c6e37bb4c33a0305c71f2a22097870491d3a509245b7"/>
+          <topic label="ADCMSPM0_HW_AVG_NUM_ACC_8" href="group___a_d_c_m_s_p_m0.html#ggaaa4f16805d05dad0fa541c6e37bb4c33a746b09ec13a136485340fdf67e7831bc"/>
+          <topic label="ADCMSPM0_HW_AVG_NUM_ACC_16" href="group___a_d_c_m_s_p_m0.html#ggaaa4f16805d05dad0fa541c6e37bb4c33a41f985dbdc123d9d71f7f339a8d819d8"/>
+          <topic label="ADCMSPM0_HW_AVG_NUM_ACC_32" href="group___a_d_c_m_s_p_m0.html#ggaaa4f16805d05dad0fa541c6e37bb4c33a3c2feb2cd580cfce5208f4d9698c1b20"/>
+          <topic label="ADCMSPM0_HW_AVG_NUM_ACC_64" href="group___a_d_c_m_s_p_m0.html#ggaaa4f16805d05dad0fa541c6e37bb4c33a1dfb79f3528b7ac88f563b2fc23c1853"/>
+          <topic label="ADCMSPM0_HW_AVG_NUM_ACC_128" href="group___a_d_c_m_s_p_m0.html#ggaaa4f16805d05dad0fa541c6e37bb4c33aac3f37e10f36372ee55ba3b40d8cd2ab"/>
+        </topic>
+        <topic label="ADCMSPM0_AVGD" href="group___a_d_c_m_s_p_m0.html#gab8903b88d1cd9c249cc5129b2a321d6b">
+          <topic label="ADCMSPM0_HW_AVG_DEN_DIV_BY_1" href="group___a_d_c_m_s_p_m0.html#ggab8903b88d1cd9c249cc5129b2a321d6ba7b9e3ccc87848e9ab73097b09cd3d79a"/>
+          <topic label="ADCMSPM0_HW_AVG_DEN_DIV_BY_2" href="group___a_d_c_m_s_p_m0.html#ggab8903b88d1cd9c249cc5129b2a321d6bae589e3bbb512d9099b2640d875d82963"/>
+          <topic label="ADCMSPM0_HW_AVG_DEN_DIV_BY_4" href="group___a_d_c_m_s_p_m0.html#ggab8903b88d1cd9c249cc5129b2a321d6ba743adb27b922a0fb455996f8dfe8ad91"/>
+          <topic label="ADCMSPM0_HW_AVG_DEN_DIV_BY_8" href="group___a_d_c_m_s_p_m0.html#ggab8903b88d1cd9c249cc5129b2a321d6bae9d0b121f755d36dfdfd3d6f1b9572a3"/>
+          <topic label="ADCMSPM0_HW_AVG_DEN_DIV_BY_16" href="group___a_d_c_m_s_p_m0.html#ggab8903b88d1cd9c249cc5129b2a321d6bac72f5ce8f2db570ed01af013a4827c59"/>
+          <topic label="ADCMSPM0_HW_AVG_DEN_DIV_BY_32" href="group___a_d_c_m_s_p_m0.html#ggab8903b88d1cd9c249cc5129b2a321d6baa4bf4c3be533f6b1e32a18869c24832b"/>
+          <topic label="ADCMSPM0_HW_AVG_DEN_DIV_BY_64" href="group___a_d_c_m_s_p_m0.html#ggab8903b88d1cd9c249cc5129b2a321d6ba4f2adb6c68ba176dc7fa2a50ac147dc2"/>
+          <topic label="ADCMSPM0_HW_AVG_DEN_DIV_BY_128" href="group___a_d_c_m_s_p_m0.html#ggab8903b88d1cd9c249cc5129b2a321d6ba528c7665eb8f7aeed7a67f2ca48e650e"/>
+        </topic>
+        <topic label="ADCMSPM0_Pwr_Dn_Mode" href="group___a_d_c_m_s_p_m0.html#ga3587d77b490494d33610393cd0c544d6">
+          <topic label="ADCMSPM0_Pwr_Dn_MODE_AUTO" href="group___a_d_c_m_s_p_m0.html#gga3587d77b490494d33610393cd0c544d6ac4469f3bbf3e5176b20c679877f44832"/>
+          <topic label="ADCMSPM0_Pwr_Dn_MODE_MANUAL" href="group___a_d_c_m_s_p_m0.html#gga3587d77b490494d33610393cd0c544d6ae0e6fe2e8b43631b7f9bf193cf61f145"/>
+        </topic>
+        <topic label="ADCMSPM0_CONV_START_ADDRESS" href="group___a_d_c_m_s_p_m0.html#ga92451727597f06a3497c176588c4af8c">
+          <topic label="ADCMSPM0_SEQ_START_ADDR_00" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8ca04d14893f7d80d76affaf3ab25e3e1c9"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_01" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8ca26326a9cc94b14b00a4d571ca00ec6f2"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_02" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8cac8de05b0ce8d47604d1f58ca7e438ee5"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_03" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8cade001f6da2b67bd8031b39dcd6d894ce"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_04" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8ca9baa48f3c41793c485d73d46bc111e67"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_05" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8ca6e9a467c3ffa43d80d5b28fc08c1c333"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_06" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8ca4ae6eb3ddca23e362d9986cd4ca616b6"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_07" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8ca6200720e2f2621b8f9faffa1c29d4eb2"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_08" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8caa46412c552afbef11e0ad72d49c259e5"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_09" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8ca13a9fcb27d01a07a5f33a818afa1b9e4"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_10" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8ca0ef38682d1e138fd4cfb4f620b0c97ba"/>
+          <topic label="ADCMSPM0_SEQ_START_ADDR_11" href="group___a_d_c_m_s_p_m0.html#gga92451727597f06a3497c176588c4af8cabc84362964485b1190c1e3d865fff8eb"/>
+        </topic>
+        <topic label="ADCMSPM0_CONV_END_ADDRESS" href="group___a_d_c_m_s_p_m0.html#gad4e5f7b54877fe9726763c76cfbe44c4">
+          <topic label="ADCMSPM0_SEQ_END_ADDR_00" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4ad081e5dce5d844c13003a986390257d2"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_01" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4a7ee22b5db4039213ebc38bfc0c6c9981"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_02" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4a91ddec7f08093448cb0f4dfb4eebc7ee"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_03" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4a9a8c1ae712f5f34e35e81e82300a1856"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_04" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4ade750a8951011bc380f0f700ed00bcf5"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_05" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4a3bf7e4e575019e5fb8a1755817bcbf4d"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_06" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4a4398931e73f09cc5beb61202775704fc"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_07" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4a7fb9a40f4714fcf371b608bb9119f5d3"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_08" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4adc46cd60390e0fbe8f5aa5662939fcdb"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_09" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4a0ad17849fb8d67580282bd1294bd5da8"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_10" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4aaaaaa972a5760af407001e6871e1b7fc"/>
+          <topic label="ADCMSPM0_SEQ_END_ADDR_11" href="group___a_d_c_m_s_p_m0.html#ggad4e5f7b54877fe9726763c76cfbe44c4a32caf5cc1aff2fd76c2d3e2afefbdad2"/>
+        </topic>
+      </topic>
       <topic label="DMAMSPM0.h" href="_d_m_a_m_s_p_m0_8h.html">
         <topic label="NUM_DMA_CHANNELS" href="group___d_m_a.html#gaee3ce80a589ee0a658d1f1d293083692"/>
         <topic label="DMAMSPM0_IsrFxn" href="group___d_m_a.html#ga1d63418e0aacc8c97993301127d8de20"/>
@@ -798,7 +1161,14 @@
       </topic>
     </topic>
     <topic label="Globals" href="globals.html">
-      <topic label="All" href="globals.html"/>
+      <topic label="All" href="globals.html">
+        <topic label="a" href="globals.html"/>
+        <topic label="d" href="globals_d.html"/>
+        <topic label="g" href="globals_g.html"/>
+        <topic label="i" href="globals_i.html"/>
+        <topic label="n" href="globals_n.html"/>
+        <topic label="u" href="globals_u.html"/>
+      </topic>
       <topic label="Functions" href="globals_func.html"/>
       <topic label="Variables" href="globals_vars.html"/>
       <topic label="Typedefs" href="globals_type.html"/>
@@ -808,4 +1178,5 @@
     </topic>
   </topic>
   <topic label="Disclaimer" href="_disclaimer.html"/>
+  <topic label="Deprecated List" href="deprecated.html"/>
 </toc>

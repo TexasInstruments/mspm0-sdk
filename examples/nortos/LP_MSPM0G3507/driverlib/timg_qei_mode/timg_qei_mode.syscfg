@@ -31,4 +31,5 @@ QEI1.peripheral.ccp0Pin.$assign = "PA29";
 QEI1.peripheral.ccp1Pin.$assign = "PA30";
 
 SYSCTL.EXCLKSource = "LFCLK";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

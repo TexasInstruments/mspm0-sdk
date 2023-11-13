@@ -1,0 +1,93 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const GPIO3  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                          = "COM_LINES";
+GPIO1.associatedPins.create(4);
+GPIO1.associatedPins[0].$name        = "COM0";
+GPIO1.associatedPins[0].assignedPort = "PORTA";
+GPIO1.associatedPins[0].assignedPin  = "8";
+GPIO1.associatedPins[0].pin.$assign  = "PA8";
+GPIO1.associatedPins[1].$name        = "COM1";
+GPIO1.associatedPins[1].assignedPort = "PORTA";
+GPIO1.associatedPins[1].assignedPin  = "9";
+GPIO1.associatedPins[1].pin.$assign  = "PA9";
+GPIO1.associatedPins[2].$name        = "COM2";
+GPIO1.associatedPins[2].assignedPort = "PORTA";
+GPIO1.associatedPins[2].assignedPin  = "10";
+GPIO1.associatedPins[2].pin.$assign  = "PA10";
+GPIO1.associatedPins[3].$name        = "COM3";
+GPIO1.associatedPins[3].assignedPort = "PORTA";
+GPIO1.associatedPins[3].assignedPin  = "11";
+GPIO1.associatedPins[3].pin.$assign  = "PA11";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO2.$name                         = "SEGMENT_Lines_Lower";
+GPIO2.port                          = "PORTA";
+GPIO2.associatedPins.create(6);
+GPIO2.associatedPins[0].$name       = "SEG0";
+GPIO2.associatedPins[0].assignedPin = "12";
+GPIO2.associatedPins[0].pin.$assign = "PA12";
+GPIO2.associatedPins[1].$name       = "SEG1";
+GPIO2.associatedPins[1].assignedPin = "13";
+GPIO2.associatedPins[1].pin.$assign = "PA13";
+GPIO2.associatedPins[2].$name       = "SEG2";
+GPIO2.associatedPins[2].assignedPin = "14";
+GPIO2.associatedPins[2].pin.$assign = "PA14";
+GPIO2.associatedPins[3].$name       = "SEG3";
+GPIO2.associatedPins[3].assignedPin = "15";
+GPIO2.associatedPins[3].pin.$assign = "PA15";
+GPIO2.associatedPins[4].$name       = "SEG4";
+GPIO2.associatedPins[4].assignedPin = "16";
+GPIO2.associatedPins[4].pin.$assign = "PA16";
+GPIO2.associatedPins[5].$name       = "SEG5";
+GPIO2.associatedPins[5].assignedPin = "17";
+GPIO2.associatedPins[5].pin.$assign = "PA17";
+
+GPIO3.$name                         = "SEGMENT_Lines_Upper";
+GPIO3.port                          = "PORTB";
+GPIO3.associatedPins.create(6);
+GPIO3.associatedPins[0].$name       = "SEG6";
+GPIO3.associatedPins[0].assignedPin = "7";
+GPIO3.associatedPins[0].pin.$assign = "PB7";
+GPIO3.associatedPins[1].$name       = "SEG7";
+GPIO3.associatedPins[1].assignedPin = "8";
+GPIO3.associatedPins[1].pin.$assign = "PB8";
+GPIO3.associatedPins[2].$name       = "SEG8";
+GPIO3.associatedPins[2].assignedPin = "9";
+GPIO3.associatedPins[2].pin.$assign = "PB9";
+GPIO3.associatedPins[3].$name       = "SEG9";
+GPIO3.associatedPins[3].assignedPin = "10";
+GPIO3.associatedPins[3].pin.$assign = "PB10";
+GPIO3.associatedPins[4].$name       = "SEG10";
+GPIO3.associatedPins[4].assignedPin = "11";
+GPIO3.associatedPins[4].pin.$assign = "PB11";
+GPIO3.associatedPins[5].$name       = "SEG11";
+GPIO3.associatedPins[5].assignedPin = "12";
+GPIO3.associatedPins[5].pin.$assign = "PB12";
+
+SYSCTL.MFCLKEn = true;
+
+TIMER1.$name              = "LCD_Update_Clock";
+TIMER1.timerClkSrc        = "MFCLK";
+TIMER1.timerPeriod        = "5ms";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.peripheral.$assign = "TIMG0";

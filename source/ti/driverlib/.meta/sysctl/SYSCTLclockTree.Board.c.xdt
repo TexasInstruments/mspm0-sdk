@@ -98,6 +98,11 @@
 %     let genOSC = system.getTemplate("/ti/clockTree/templates/oscillator.Board.c.xdt");
 %  tempStr = _.trimEnd(genOSC("Function"));
 %  funcStr += tempStr != ""?tempStr + "\n":"";
+% let forceDefaultClkStr = "";
+% if(stat.forceDefaultClkConfig) {
+%    funcStr += "\t/* Set default configuration */"
+%    funcStr += "\n\tDL_SYSCTL_disableHFXT();" + "\n\tDL_SYSCTL_disableSYSPLL();\n"
+%}
 %     let mod = system.modules["/ti/clockTree/pinFunction.js"];
 %     let genPinFunc = system.getTemplate(mod.templates.boardc);
 %  tempStr = _.trimEnd(genPinFunc(mod, "Function"));

@@ -5,7 +5,7 @@ This code example demonstrates how to implement a pulse oximeter demo.
 A GUI can be used with this demo, and the user can interact with the code using the GUI. The GUI for this demo can be found
 [here](https://dev.ti.com/gallery/view/TIMSPGC/PULSE_OXIMETER/).
 
-A reference design, TIDA-010267, will be released in late July 2023 as a guide on how to design a pulse oximeter system using the MSPM0L and will include suggestions for both board and code design.
+A reference design, TIDA-010267, will be released in late August 2023 as a guide on how to design a pulse oximeter system using the MSPM0L and will include suggestions for both board and code design.
 
 ## Peripherals & Pin Assignments
 - TIMG0

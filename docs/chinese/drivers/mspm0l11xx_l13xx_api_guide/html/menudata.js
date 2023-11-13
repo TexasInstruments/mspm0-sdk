@@ -44,12 +44,14 @@ var menudata={children:[
 {text:'File List',url:'files.html'},
 {text:'Globals',url:'globals.html',children:[
 {text:'All',url:'globals.html',children:[
+{text:'a',url:'globals.html#index_a'},
 {text:'d',url:'globals.html#index_d'},
 {text:'g',url:'globals.html#index_g'},
 {text:'i',url:'globals.html#index_i'},
 {text:'n',url:'globals.html#index_n'},
 {text:'u',url:'globals.html#index_u'}]},
 {text:'Functions',url:'globals_func.html',children:[
+{text:'a',url:'globals_func.html#index_a'},
 {text:'d',url:'globals_func.html#index_d'},
 {text:'g',url:'globals_func.html#index_g'},
 {text:'i',url:'globals_func.html#index_i'},
@@ -59,6 +61,7 @@ var menudata={children:[
 {text:'Enumerations',url:'globals_enum.html'},
 {text:'Enumerator',url:'globals_eval.html'},
 {text:'Macros',url:'globals_defs.html',children:[
+{text:'a',url:'globals_defs.html#index_a'},
 {text:'g',url:'globals_defs.html#index_g'},
 {text:'i',url:'globals_defs.html#index_i'},
 {text:'n',url:'globals_defs.html#index_n'},

@@ -26,7 +26,8 @@ GPIO1.associatedPins[0].assignedPort        = "PORTA";
 GPIO1.associatedPins[0].assignedPortSegment = "Lower";
 GPIO1.associatedPins[0].pin.$assign         = "PA0";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 UART1.$name                    = "UART_0";
 UART1.enableFIFO               = true;
@@ -45,4 +46,3 @@ UART1.txPinConfig.invert       = "ENABLE";
 UART1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
 UART1.rxPinConfig.enableConfig = true;
 UART1.rxPinConfig.invert       = "ENABLE";
-

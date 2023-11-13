@@ -37,4 +37,5 @@ GPIO1.associatedPins[0].$name       = "USER_LED_1";
 GPIO1.associatedPins[0].assignedPin = "0";
 GPIO1.associatedPins[0].initialValue        = "SET";
 GPIO1.associatedPins[0].pin.$assign = "PA0";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

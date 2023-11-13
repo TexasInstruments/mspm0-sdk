@@ -102,4 +102,5 @@ SYSCTL.HFCLKSource     = "HFXT";
 SYSCTL.HFCLK_Freq      = 40000000;
 SYSCTL.HFCLKMonitor    = true;
 SYSCTL.HFXTStartup     = 10;
-SYSCTL.clockTreeEn     = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn      = true;

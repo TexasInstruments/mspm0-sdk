@@ -1,5 +1,9 @@
 var searchData=
 [
+  ['sampletimersrc',['sampleTimerSrc',['../struct_a_d_c_m_s_p_m0___h_w_attrs.html#ac6c8b04ab157ff52cdffbcd7bdbdde0b',1,'ADCMSPM0_HWAttrs']]],
+  ['sampletrigger',['sampleTrigger',['../struct_a_d_c_m_s_p_m0___h_w_attrs.html#aae3b0be212abb499cf1fb225dce3875f',1,'ADCMSPM0_HWAttrs']]],
+  ['samplingduration',['samplingDuration',['../struct_a_d_c_m_s_p_m0___h_w_attrs.html#a022927bd89290cf860d989b912b844fd',1,'ADCMSPM0_HWAttrs']]],
+  ['samplingmode',['samplingMode',['../struct_a_d_c_m_s_p_m0___h_w_attrs.html#a32cc9362d2c2ab68f5c7750c7390739c',1,'ADCMSPM0_HWAttrs']]],
   ['sclpincm',['sclPincm',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#ae2de3b1d837a086979f1291eb7426b6d',1,'I2CMSPM0_HWAttrs::sclPincm()'],['../struct_i2_c_m_s_p_m0___object.html#a99c74a516c7f5af573871fb8ddb145c3',1,'I2CMSPM0_Object::sclPincm()']]],
   ['sclpinindex',['sclPinIndex',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#abbffcfea85475a6ef7612853ff7d493b',1,'I2CMSPM0_HWAttrs']]],
   ['sclpinmux',['sclPinMux',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#af5cef68e99127b16abe2032cd37d1148',1,'I2CMSPM0_HWAttrs']]],

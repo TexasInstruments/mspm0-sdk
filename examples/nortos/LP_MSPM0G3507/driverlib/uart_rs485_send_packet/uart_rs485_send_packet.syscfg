@@ -31,7 +31,8 @@ GPIO2.associatedPins[0].assignedPort = "PORTA";
 GPIO2.associatedPins[0].assignedPin  = "0";
 GPIO2.associatedPins[0].$name        = "USER_LED_1";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 UART1.$name                     = "UART_0";
 UART1.flowControl               = "RTS";

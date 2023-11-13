@@ -1,0 +1,77 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default" 
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const I2C    = scripting.addModule("/ti/driverlib/I2C", {}, false);
+const I2C1   = I2C.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                      = "ADC12_0";
+ADC121.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_2";
+ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.sampleTime0                = "200 us";
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin2.$assign = "PA25";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.$name                          = "GPIO_SENSORS_POWER";
+GPIO1.associatedPins.create(5);
+GPIO1.associatedPins[0].$name        = "HDC_V";
+GPIO1.associatedPins[0].pin.$assign  = "PB24";
+GPIO1.associatedPins[1].$name        = "DRV_V";
+GPIO1.associatedPins[1].pin.$assign  = "PA22";
+GPIO1.associatedPins[2].initialValue = "SET";
+GPIO1.associatedPins[2].$name        = "OPT_V";
+GPIO1.associatedPins[2].pin.$assign  = "PA24";
+GPIO1.associatedPins[3].$name        = "INT1";
+GPIO1.associatedPins[3].pin.$assign  = "PA26";
+GPIO1.associatedPins[4].$name        = "INT2";
+GPIO1.associatedPins[4].pin.$assign  = "PB6";
+
+I2C1.basicEnableController             = true;
+I2C1.advControllerClkStretch           = false;
+I2C1.advAnalogGlitchFilter             = "DISABLED";
+I2C1.advControllerTXFIFOTRIG           = "BYTES_1";
+I2C1.$name                             = "I2C";
+I2C1.intController                     = ["NACK","RXFIFO_TRIGGER","RX_DONE","TX_DONE"];
+I2C1.peripheral.$assign                = "I2C1";
+I2C1.peripheral.sdaPin.$assign         = "PB3";
+I2C1.peripheral.sclPin.$assign         = "PB2";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+SYSCTL.forceDefaultClkConfig = true;
+
+UART1.$name                      = "UART_0";
+UART1.enableFIFO                 = true;
+UART1.enabledInterrupts          = ["DMA_DONE_TX","EOT_DONE"];
+UART1.enabledDMATXTriggers       = "DL_UART_DMA_INTERRUPT_TX";
+UART1.rxFifoThreshold            = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+UART1.txFifoThreshold            = "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY";
+UART1.peripheral.$assign         = "UART0";
+UART1.peripheral.rxPin.$assign   = "PA11";
+UART1.peripheral.txPin.$assign   = "PA10";
+UART1.DMA_CHANNEL_TX.$name       = "DMA_CH0";
+UART1.DMA_CHANNEL_TX.addressMode = "b2f";
+UART1.DMA_CHANNEL_TX.srcLength   = "BYTE";
+UART1.DMA_CHANNEL_TX.dstLength   = "BYTE";
+

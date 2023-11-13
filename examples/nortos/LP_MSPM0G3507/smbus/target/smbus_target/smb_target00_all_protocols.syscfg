@@ -40,6 +40,7 @@ GPIO1.associatedPins[0].$name       = "LED";
 GPIO1.associatedPins[0].pin.$assign = "PA0";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+SYSCTL.forceDefaultClkConfig = true;
 
 TIMER1.$name                       = "ADC_SAMPLE_TIMER";
 TIMER1.timerMode                   = "PERIODIC";

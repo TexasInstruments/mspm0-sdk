@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BLDC Motor Control Library Overview &mdash; Hall_sensored_Motor_Control_Software_User_Guide_CN 1.0 documentation</title>
+  <title>BLDC 电机控制库概述 &mdash; Hall_sensored_Motor_Control_Software_User_Guide_CN 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -44,24 +44,24 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">BLDC Motor Control Library Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">1. Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hal-module">2. HAL Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">2.1 Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enums">2.2 Enums</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BLDC 电机控制库概述</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hal">2. HAL 模块</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.1 概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2 枚举</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ti-sysconfig">2.3 TI SysConfig</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#motor-driver-module">3. Motor Driver Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#motor-driver-pin-association">3.1 Motor Driver Pin Association</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#motor-driver-apis">3.2 Motor Driver APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">3. 电机驱动器模块</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.1 电机驱动器引脚关联</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">3.2 电机驱动器 API</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#hall-sensored-trap-module">4. Hall-sensored Trap Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#application-layer">5. Application Layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#api-guide">6. API Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#known-issues">7. Known Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#supported-devices">8. Supported Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#trap">4. 有霍尔传感器的 Trap 模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">5. 应用层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">6. API 指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">7. 已知问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">8. 支持的器件</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#drv8316revm">DRV8316REVM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drv8329aevm">DRV8329AEVM</a></li>
 </ul>
@@ -88,7 +88,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>BLDC Motor Control Library Overview</li>
+      <li>BLDC 电机控制库概述</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -97,115 +97,115 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="bldc-motor-control-library-overview">
-<h1>BLDC Motor Control Library Overview<a class="headerlink" href="#bldc-motor-control-library-overview" title="Permalink to this heading">¶</a></h1>
-<section id="overview">
-<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
-<p>MSPM0’s BLDC Motor Control Library is made up of three layers. The MSPM0 DriverLib layer consists of all the peripherals defined and is configured using SysConfig. The Module Layer contains 3 modules Hardware Abstraction Layer (HAL) module, Motor Driver module and Hall-sensored Trap module. The HAL module provides Application Programming Interfaces (APIs) to manipulate and configure MCU pins and peripherals. The Motor Driver module provides programming related to the motor driver used. The hall-sesnored trap module provide the APIs that control and generate the PWM outputs. The Application layer contains GUI or application specific APIs that are defined by the user.</p>
+  <section id="bldc">
+<h1>BLDC 电机控制库概述<a class="headerlink" href="#bldc" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 概述<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>MSPM0 的 BLDC 电机控制库由三个层组成。MSPM0 DriverLib 层包含定义的所有外设，并使用 SysConfig 进行配置。模块层包含 3 个模块：硬件抽象层 (HAL) 模块、电机驱动器模块和有霍尔传感器的 Trap 模块。HAL 模块提供应用程序编程接口 (API) 来操作和配置 MCU 引脚和外设。电机驱动器模块提供与所用电机驱动器相关的编程。有霍尔传感器的 Trap 模块提供用于控制和生成 PWM 输出的 API。应用层包含由用户定义的 GUI 或应用特定的 API。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sw_overview_library_layers.png" />
 </figure>
-<p style="text-align: center;"><p>Figure 1 - Diagram showing the layers and modules</p>
+<p style="text-align: center;"><p>图 1 - 显示层和模块的图</p>
 </p></section>
-<section id="hal-module">
-<h2>2. HAL Module<a class="headerlink" href="#hal-module" title="Permalink to this heading">¶</a></h2>
-<section id="id1">
-<h3>2.1 Overview<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
-<p>The HAL module consists of microcontroller-specific code that provides generic APIs to control and configure the user-defined pins and peripherals. The HAL APIs are developed to allow changing the HAL module used without requiring any code changes to other modules.</p>
-<p>The HAL is purposely meant to only abstract the key pins and peripherals needed to control a motor driver. A user is free to expand the HAL’s API to use other pins, peripherals and features of the microcontroller but its strongly recommended not to modify existing APIs to ensure ease migration to new versions of this library.</p>
-<p>No application specific code or motor driver specific code should exist in the HAL layer or in its API. Instead, it treats the pins and peripherals in a generic manner. For example, a motor driver likely has a nSLEEP pin but the HAL layer will only provide APIs to control the state of a GPIO output pin. It’s the responsibility of the motor driver module to associate the specific HAL GPIO output pin to the motor driver’s nSLEEP pin.</p>
+<section id="hal">
+<h2>2. HAL 模块<a class="headerlink" href="#hal" title="Permalink to this heading">¶</a></h2>
+<section id="id2">
+<h3>2.1 概述<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>HAL 模块包含微控制器特定的代码，提供通用 API 来控制和配置用户定义的引脚和外设。开发 HAL API 是为了能够更改所使用的 HAL 模块，而不需要对其他模块进行任何更改。</p>
+<p>HAL 专用于抽象处理控制电机驱动器所需的关键引脚和外设。用户可随意扩展 HAL 的 API 以使用微控制器的其他引脚、外设和特性，但为确保能轻松迁移到该库的新版本，强烈建议不要修改现有的 API。</p>
+<p>HAL 层或其 API 中不应存在应用特定或电机驱动器特定的代码，而是应以通用方式处理引脚和外设。例如，电机驱动器可能有一个 nSLEEP 引脚，但 HAL 层将仅提供 API 来控制 GPIO 输出引脚的状态。电机驱动器模块负责将特定的 HAL GPIO 输出引脚关联到电机驱动器的 nSLEEP 引脚。</p>
 </section>
-<section id="enums">
-<h3>2.2 Enums<a class="headerlink" href="#enums" title="Permalink to this heading">¶</a></h3>
-<p>The HAL layer uses enums to determine the generic references to different peripherals. Each peripheral has separate enums that are associated with pins used in that peripheral. This allows the user to change the peripheral pins without changing the code in other modules that utilizes its API. For example, the nSLEEP pin in the motor driver module is associated with one enum in a GPIO peripheral. The user can change the pin associated with the GPIO enum without any code changes in motor driver module. Consider an enum HAL_GPIO_OUT in which total number of enums represent the maximum number of GPIOs used as outputs.</p>
+<section id="id3">
+<h3>2.2 枚举<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>HAL 层使用枚举来确定对不同外设的通用引用。每个外设都有与其所用引脚相关联的单独枚举。这使用户能够更改外设引脚，而无需更改使用其 API 的其他模块中的代码。例如，电机驱动器模块中的 nSLEEP 引脚与 GPIO 外设中的一个枚举相关联。用户可以更改与 GPIO 枚举相关联的引脚，而无需更改电机驱动器模块中的任何代码。以枚举 HAL_GPIO_OUT 为例，其中枚举总数表示用作输出的最大 GPIO 数量。</p>
 <p><img alt="image0" src="../_images/sw_overview_gpio_enum.png" /></p>
-<p style="text-align: left;"><p>Figure 2 - enum representing GPIO output pins</p>
-</p><p>Figure 2 shows an example of an enum that represents 3 different GPIO output pins. The purpose of this enum is to provide a way for the HAL and motor driver APIs to reference GPIO outputs in a generic manner. The number of GPIOs determined here are based on the application requirement and the user is free to add or delete the number of GPIOs based on their application. The user will need to keep in mind the maximum amount of GPIO output pins required by different motor drivers supported in their software.</p>
+<p style="text-align: left;"><p>图 2 - 表示 GPIO 输出引脚的枚举</p>
+</p><p>图 2 显示了表示 3 个不同 GPIO 输出引脚的枚举示例。该枚举旨在为 HAL 和电机驱动器 API 提供一种引用 GPIO 输出的通用方法。这里确定的 GPIO 数量是根据应用需求而定，用户可以根据自己的应用随意增减 GPIO 数量。用户需要记住其软件支持的不同电机驱动器所需的 GPIO 输出引脚的最大数量。</p>
 <p><img alt="image1" src="../_images/sw_overview_gpio_defines.png" /></p>
-<p style="text-align: left;"><p>Figure 3 - Enum to MCU pin mapping</p>
-</p><p>Figure 3 shows a snippet from the LP-MSPM0G3507 HAL which shows how the HAL_GPIO_OUT_02 enum is now associated with a specific GPIO on the MSPM0G3507. GEN_GPIO_OUT_XXXX defines are from TI SysConfig, which will be discussed later. Note that each of those defines are representing values needed by the MSPM0’s DriverLib API to manipulate the specific pin.</p>
+<p style="text-align: left;"><p>图 3 - 枚举到 MCU 引脚的映射</p>
+</p><p>图 3 显示了 LP-MSPM0G3507 HAL 的代码片段，其中显示了 HAL_GPIO_OUT_02 枚举现在如何与 MSPM0G3507 上的特定 GPIO 相关联。GEN_GPIO_OUT_XXXX 定义来自 TI SysConfig，这将在后面论述。请注意，其中每个定义都表示 MSPM0 的 DriverLib API 操作特定引脚所需的值。</p>
 <p><img alt="image2" src="../_images/sw_overview_gpio_output_api.png" /></p>
-<p style="text-align: left;"><p>Figure 4 - HAL API example</p>
-</p><p>Now that the HAL provides the information needed to associate an enum to a specific pin, HAL_writeGPIOPin() shows the API used to change the output value of a pin associated with a given HAL_GPIO_OUT enum. It is important to note that the enum value is translated to MSPM0’s DriverLib API calls by utilizing internal structures and arrays in the HAL.</p>
+<p style="text-align: left;"><p>图 4 - HAL API 示例</p>
+</p><p>现在，HAL 提供了将枚举关联到特定引脚所需的信息，HAL_writeGPIOPin() 显示了用于更改引脚（与给定 HAL_GPIO_OUT 枚举相关联）输出值的 API。请务必注意，如何利用 HAL 中的内部结构和数组将枚举值转换为 MSPM0 的 DriverLib API 调用。</p>
 <p><img alt="image3" src="../_images/sw_overview_driver_hal_map.png" /></p>
-<p style="text-align: left;"><p>Figure 5 - Motor driver to HAL mapping</p>
-</p><p>Here is a snippet from one of the DRV8316 firmware examples associating different HAL enums to corresponding pins on the motor driver. Here, the nSLEEP pin on the motor is mapped to HAL_GPIO_OUT_02.</p>
+<p style="text-align: left;"><p>图 5 - 电机驱动器到 HAL 的映射</p>
+</p><p>这是一个 DRV8316 固件示例的代码片段，它将不同的 HAL 枚举与电机驱动器上的相应引脚相关联。这里，电机上的 nSLEEP 引脚映射到 HAL_GPIO_OUT_02。</p>
 <p><img alt="image4" src="../_images/sw_overview_driver_hal_api.png" /></p>
-<p style="text-align: left;"><p>Figure 6 - Motor driver module API</p>
-</p><p>Finally when the user wants to change the output value of the nSLEEP pin on the DRV8316 motor driver, the user can call the generic HAL API while providing the enum value that is associated with the nSLEEP pin to make the change. Although this example is focused on HAL_GPIO_OUT enum, the concept is the same for every other pin/peripheral the HAL has created enums for, such as PWM, ADC inputs, GPIO inputs and SPI enums.</p>
+<p style="text-align: left;"><p>图 6 - 电机驱动器模块 API</p>
+</p><p>最后，当用户想要更改 DRV8316 电机驱动器上 nSLEEP 引脚的输出值时，他们可以调用通用 HAL API，同时提供与 nSLEEP 引脚相关联的枚举值来进行更改。 尽管此示例侧重于 HAL_GPIO_OUT 枚举，但对于所有其他引脚/外设（HAL 已为其创建了枚举），例如 PWM、ADC 输入、GPIO 输入和 SPI 枚举而言，概念都是相同的。</p>
 </section>
 <section id="ti-sysconfig">
 <h3>2.3 TI SysConfig<a class="headerlink" href="#ti-sysconfig" title="Permalink to this heading">¶</a></h3>
-<p>MSPM0 software utilizes a GUI tool called TI SysConfig to simplify configuration of pins and peripherals. Almost all MSPM0 SDK examples utilize SysConfig. For more information on how SysConfig works and how to use it, see TI SysConfig. It is important to note that the HAL modules provided by the SDK use SysConfig which is why you will not see DriverLib API calls to initialize peripherals and pins. Instead, the HAL uses defines created by SysConfig to map the specific pins and peripherals to the different generic HAL enums. Figure 3 shows how the GEN_GPIO_OUT_XXXX defines created by SysConfig are then mapped to the HAL structures and enum value.</p>
+<p>MSPM0 软件利用名为 TI SysConfig 的 GUI 工具来简化引脚和外设的配置。几乎所有 MSPM0 SDK 示例都使用 SysConfig。有关 SysConfig 工作原理及其使用方法的更多信息，请参阅 TI SysConfig。需要注意的是，SDK 提供的 HAL 模块使用 SysConfig，因此您不会看到通过 DriverLib API 调用来初始化外设和引脚。HAL 会使用由 SysConfig 创建的定义将特定引脚和外设映射到不同的通用 HAL 枚举。图 3 显示了由 SysConfig 创建的 GEN_GPIO_OUT_XXXX 定义如何映射到 HAL 结构和枚举值。</p>
 </section>
 </section>
-<section id="motor-driver-module">
-<h2>3. Motor Driver Module<a class="headerlink" href="#motor-driver-module" title="Permalink to this heading">¶</a></h2>
-<p>The objective of the motor driver module is to use the HAL enums associated with the pins of motor driver and provide APIs such as setting a sleep pin, reading a driver fault pin, SPI read, SPI write, voltage and current measurements. Figure 7 shows an internal structure used by the DRV8316 motor driver and how it contains variables meant to associate the HAL enums with specific pins on the motor driver. The motor driver module code uses the HAL APIs to develop the motor driver module but the user can add APIs or create their own motor driver module for the application.</p>
+<section id="id4">
+<h2>3. 电机驱动器模块<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>电机驱动器模块的目标是使用与电机驱动器引脚相关的 HAL 枚举，并提供 API，例如设置睡眠引脚、读取驱动器故障引脚、SPI 读取、SPI 写入、电压和电流测量结果。图 7 显示了 DRV8316 电机驱动器使用的内部结构，及其如何包含用于将 HAL 枚举与电机驱动器特定引脚相关联的变量。电机驱动器模块代码使用 HAL API 来开发电机驱动器模块，但用户可以为应用添加 API 或创建自己的电机驱动器模块。</p>
 <p><img alt="image5" src="../_images/sw_overview_drv_struct.png" /></p>
-<p style="text-align: left;"><p>Figure 7 - DRV8316 internal structure</p>
-</p><section id="motor-driver-pin-association">
-<h3>3.1 Motor Driver Pin Association<a class="headerlink" href="#motor-driver-pin-association" title="Permalink to this heading">¶</a></h3>
-<p>The user must map the motor driver pins to HAL enums before using the motor driver module as below</p>
+<p style="text-align: left;"><p>图 7 – DRV8316 内部结构</p>
+</p><section id="id5">
+<h3>3.1 电机驱动器引脚关联<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>在使用电机驱动器模块之前，用户必须将电机驱动器引脚映射到 HAL 枚举，如下所示</p>
 <p><img alt="image6" src="../_images/sw_overview_driver_hal_map.png" /></p>
-<p style="text-align: left;"><p>Figure 5 - Motor driver to HAL mapping</p>
+<p style="text-align: left;"><p>图 5 - 电机驱动器到 HAL 的映射</p>
 </p></section>
-<section id="motor-driver-apis">
-<h3>3.2 Motor Driver APIs<a class="headerlink" href="#motor-driver-apis" title="Permalink to this heading">¶</a></h3>
-<p>The motor driver APIs are specific to a given motor driver in which the user can use to configure and control the motor driver. For example the DRV8316 has Control registers that are modified through SPI. The motor driver module contains a specific API that updates the registers.</p>
+<section id="api">
+<h3>3.2 电机驱动器 API<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h3>
+<p>电机驱动器 API 特定于给定电机驱动器，用户可以在其中使用此类 API 来配置和控制电机驱动器。例如，DRV8316 具有通过 SPI 修改的控制寄存器。电机驱动器模块包含会更新寄存器的特定 API。</p>
 <p><img alt="image7" src="../_images/sw_overview_register_update.png" /></p>
-<p style="text-align: left;"><p>Figure 9 – Example motor driver module API</p>
-</p><p>For motor drivers with register maps, the number of registers will vary with motor driver. The above snippet is a generic API that updates any registers in the DRV device. The user can manipulate any register or bit fields with a single generic API. The user can build a number of APIs that updates the bit fields based on their application needs.</p>
-<p>Another type of motor driver API is voltage and current sensing, which is dependent on the hardware and current sensing of the motor driver. For example, the DRV8316 hardware includes resistor dividers for voltage sensing, and the DRV8316 includes current sense amplifiers with programmable gain and a pre-set voltage reference. The APIs for module current and module voltage are generically used to read back the motor voltage or motor current respectively depending on the input parameters, such as scale factors, voltage references, voltage bias, and amplifier gain.</p>
+<p style="text-align: left;"><p>图 9 - 电机驱动器模块 API 示例</p>
+</p><p>对于具有寄存器映射的电机驱动器，寄存器的数量将随电机驱动器的不同而变化。上面的代码片段是一个通用 API，用于更新 DRV 器件中的所有寄存器。用户可以使用单个通用 API 来操作任何寄存器或位字段。用户可以构建许多 API，根据其应用程序需求来更新位字段。</p>
+<p>另一种类型的电机驱动器 API 是电压和电流测量，这取决于电机驱动器的硬件和电流测量。例如，DRV8316 硬件包括用于电压测量的电阻分压器，且 DRV8316 包括具有可编程增益和预设电压基准的电流测量放大器。 模块电流和模块电压的 API 通常用于根据输入参数（例如比例因子、电压基准、电压偏置和放大器增益）分别读回电机电压或电机电流。</p>
 </section>
 </section>
-<section id="hall-sensored-trap-module">
-<h2>4. Hall-sensored Trap Module<a class="headerlink" href="#hall-sensored-trap-module" title="Permalink to this heading">¶</a></h2>
-<p>The Hall-sensored Trap (halltrap) module consists of hall-based sensored trapezoidal algorithm for BLDC motor control. This layer takes care of updating the PWM based on the hall feedback. The code contains an API that reads digital Hall signal feedback and updates the PWM. This API is used to update the PWM.</p>
+<section id="trap">
+<h2>4. 有霍尔传感器的 Trap 模块<a class="headerlink" href="#trap" title="Permalink to this heading">¶</a></h2>
+<p>有霍尔传感器的 Trap (halltrap) 模块包含用于 BLDC 电机控制的基于霍尔传感器的梯形算法。该层负责根据霍尔反馈更新 PWM。该代码包含一个 API，可读取数字霍尔信号反馈并更新 PWM。该 API 用于更新 PWM。</p>
 <p><img alt="image8" src="../_images/sw_overview_pwm_update.png" /></p>
-<p style="text-align: left;"><p>Figure 10 – Halltrap module PWM update API</p>
-</p><p>The halltrap module is unaware of the driver module used. This module can be used with any driver module without changing the code in it as long as the user maps the GPIO enums to which hall sensors are connected.</p>
+<p style="text-align: left;"><p>图 10 – Halltrap 模块 PWM 更新 API</p>
+</p><p>Halltrap 模块并不了解所使用的驱动器模块。只要用户映射霍尔传感器所连接的 GPIO 枚举，该模块就可以与任何驱动器模块一同使用，而无需更改其中的代码。</p>
 <p><img alt="image9" src="../_images/sw_overview_hallsensor_map.png" /></p>
-<p style="text-align: left;"><p>Figure 11 - Hall sensor pins to HAL pins</p>
+<p style="text-align: left;"><p>图 11 - 霍尔传感器引脚到 HAL 引脚</p>
 </p></section>
-<section id="application-layer">
-<h2>5. Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this heading">¶</a></h2>
-<p>This layer contains user specific code. The user needs to specify the driver instance (i.e. DRV8316) halltrap instance and ensure that all pins are mapped correctly. The user can use the motor driver module and halltrap module APIs and to perform any hardware specific actions HAL APIs can be used.</p>
+<section id="id6">
+<h2>5. 应用层<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>该层包含用户特定的代码。用户需要指定驱动器实例（即 DRV8316）halltrap 实例并确保所有引脚都已正确映射。用户可以使用电机驱动器模块和 halltrap 模块 API，并可以使用 HAL API 来执行所有硬件特定操作。</p>
 </section>
-<section id="api-guide">
-<h2>6. API Guide<a class="headerlink" href="#api-guide" title="Permalink to this heading">¶</a></h2>
+<section id="id7">
+<h2>6. API 指南<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">Hall Sensored Trap API Guide</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">有霍尔传感器的 Trap API 指南</a></p></li>
 </ul>
 </section>
-<section id="known-issues">
-<h2>7. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<section id="id8">
+<h2>7. 已知问题<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="supported-devices">
-<h2>8. Supported Devices<a class="headerlink" href="#supported-devices" title="Permalink to this heading">¶</a></h2>
+<section id="id9">
+<h2>8. 支持的器件<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
 <section id="drv8316revm">
 <h3>DRV8316REVM<a class="headerlink" href="#drv8316revm" title="Permalink to this heading">¶</a></h3>
-<p>Supported MSPM0 Launchpads</p>
+<p>支持的 MSPM0 LaunchPad</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
 </ul>
-<p>Links</p>
+<p>链接</p>
 <ul class="simple">
-<li><p><a class="reference external" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">Hardware User Guide</a></p></li>
-<li><p><a class="reference external" href="drv8316/DRV8316_GUI_User_Guide_CN.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">硬件用户指南</a></p></li>
+<li><p><a class="reference external" href="drv8316/DRV8316_GUI_User_Guide_CN.html">GUI 用户指南</a></p></li>
 <li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8316REVM-GUI">MSPM0G3507-DRV8316REVM-GUI</a></p></li>
 </ul>
 </section>
 <section id="drv8329aevm">
 <h3>DRV8329AEVM<a class="headerlink" href="#drv8329aevm" title="Permalink to this heading">¶</a></h3>
-<p>Supported MSPM0 Launchpads</p>
+<p>支持的 MSPM0 LaunchPad</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
 </ul>
-<p>Links</p>
+<p>链接</p>
 <ul class="simple">
-<li><p><a class="reference external" href="drv8329/DRV8329_Hardware_User_Guide_CN.html">Hardware User Guide</a></p></li>
-<li><p><a class="reference external" href="drv8329/DRV8329_GUI_User_Guide_CN.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8329/DRV8329_Hardware_User_Guide_CN.html">硬件用户指南</a></p></li>
+<li><p><a class="reference external" href="drv8329/DRV8329_GUI_User_Guide_CN.html">GUI 用户指南</a></p></li>
 <li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8329AEVM-GUI">MSPM0G3507-DRV8329AEVM-GUI</a></p></li>
 </ul>
 </section>

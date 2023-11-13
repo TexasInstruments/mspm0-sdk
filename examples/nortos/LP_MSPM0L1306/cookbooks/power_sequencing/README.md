@@ -1,6 +1,6 @@
 ## Example Summary
 
-This examples creates a power sequence that allows for devices/pins be turned off and on in different sequences. 
+This example creates a power sequence that allows for devices/pins be turned off and on in different sequences. 
 
 ## Peripherals & Pin Assignments
 

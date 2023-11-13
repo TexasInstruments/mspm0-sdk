@@ -36,6 +36,7 @@ void SYSCFG_DL_init(void)
 {
     SYSCFG_DL_initPower();
     SYSCFG_DL_GPIO_init();
+    SYSCFG_DL_SYSCTL_init();
 }
 
 void SYSCFG_DL_initPower(void)
@@ -56,4 +57,15 @@ void SYSCFG_DL_GPIO_init(void)
     DL_GPIO_enableOutput(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
 
     DL_GPIO_setPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+}
+
+void SYSCFG_DL_SYSCTL_init(void)
+{
+    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+    /* Set default configuration */
+    DL_SYSCTL_disableHFXT();
+    DL_SYSCTL_disableSYSPLL();
+
+    //Low Power Mode is configured to be SLEEP0
+    DL_SYSCTL_setBORThreshold(DL_SYSCTL_BOR_THRESHOLD_LEVEL_0);
 }

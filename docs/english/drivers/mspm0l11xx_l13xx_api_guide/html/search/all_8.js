@@ -53,8 +53,10 @@ var searchData=
   ['i2csupport_5fpowerrelconstraint',['I2CSupport_powerRelConstraint',['../group___i2_c_support.html#ga62fde0ccc035195b08603937652a63e3',1,'I2CSupport.h']]],
   ['i2csupport_5fpowersetconstraint',['I2CSupport_powerSetConstraint',['../group___i2_c_support.html#gaef0c9ca06b4e0e7b132bb4ba77fa49dc',1,'I2CSupport.h']]],
   ['i2csupport_5fprimetransfer',['I2CSupport_primeTransfer',['../group___i2_c_support.html#gaf638babf4e177a40cf4f04324de3c711',1,'I2CSupport.h']]],
+  ['initfxn',['initFxn',['../struct_a_d_c___fxn_table.html#a5b2882d28b0e4a8c8d7bb2ed741380e8',1,'ADC_FxnTable']]],
   ['intpriority',['intPriority',['../struct_d_m_a_m_s_p_m0___h_w_attrs.html#af674ed538149edc488580357b1854f0e',1,'DMAMSPM0_HWAttrs::intPriority()'],['../struct_g_p_i_o___config.html#a84aba89af518e6f30e6650e20dc79e7b',1,'GPIO_Config::intPriority()']]],
   ['inuse',['inUse',['../struct_u_a_r_t___object.html#a100213d0800655b7ccf73bb971caa218',1,'UART_Object']]],
   ['irq',['irq',['../struct_u_a_r_t_m_s_p___h_w_attrs.html#ab001d9c6b56338abac2ec2e3c7212b1b',1,'UARTMSP_HWAttrs']]],
-  ['isclockstretchingenabled',['isClockStretchingEnabled',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#a374bd4ad8cb0e92c525d63dd792942f8',1,'I2CMSPM0_HWAttrs']]]
+  ['isclockstretchingenabled',['isClockStretchingEnabled',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#a374bd4ad8cb0e92c525d63dd792942f8',1,'I2CMSPM0_HWAttrs']]],
+  ['isprotected',['isProtected',['../struct_a_d_c___params.html#afcfab4dda63383c2dcf0bb21fe519c53',1,'ADC_Params']]]
 ];

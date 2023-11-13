@@ -18,4 +18,5 @@ const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 AES.profile         = "aes256Enc";
 AES.blockCipherMode = "CBC_MODE";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

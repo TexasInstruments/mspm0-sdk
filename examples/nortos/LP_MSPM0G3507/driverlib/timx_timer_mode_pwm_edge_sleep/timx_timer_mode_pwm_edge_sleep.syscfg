@@ -29,4 +29,5 @@ PWM1.PWM_CHANNEL_1.dutyCycle    = 50;
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

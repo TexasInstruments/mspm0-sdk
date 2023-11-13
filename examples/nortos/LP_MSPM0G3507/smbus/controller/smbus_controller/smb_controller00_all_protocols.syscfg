@@ -17,6 +17,7 @@ const i2cSMBUS1 = i2cSMBUS.addInstance();
 const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.peripheral.$assign = "SYSCTL";
+SYSCTL.forceDefaultClkConfig = true;
 
 i2cSMBUS1.basicEnableController     = true;
 i2cSMBUS1.$name                     = "SMB_I2C";

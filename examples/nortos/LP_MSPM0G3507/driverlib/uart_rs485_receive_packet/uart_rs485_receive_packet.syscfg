@@ -41,3 +41,5 @@ UART1.uartMode                 = "RS485";
 UART1.peripheral.$assign       = "UART0";
 UART1.peripheral.rxPin.$assign = "PA11";
 UART1.peripheral.txPin.$assign = "PA10";
+
+SYSCTL.forceDefaultClkConfig = true;

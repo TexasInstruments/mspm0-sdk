@@ -28,7 +28,8 @@ GPIO1.associatedPins[0].assignedPin         = "0";
 GPIO1.associatedPins[0].initialValue        = "SET";
 
 SYSCTL.powerPolicy = "STANDBY0";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 WWDT1.$name             = "WWDT0";
 WWDT1.sleepMode         = true;

@@ -38,3 +38,5 @@ Board.peripheral.swdioPin.$assign = "PA19";
 
 const SYSCTL              = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 SYSCTL.peripheral.$assign = "SYSCTL";
+
+SYSCTL.forceDefaultClkConfig = true;

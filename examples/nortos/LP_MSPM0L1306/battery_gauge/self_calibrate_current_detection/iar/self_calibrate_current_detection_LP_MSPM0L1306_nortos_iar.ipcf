@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IAR Project Connection File -->
+
+<iarProjectConnection version="1.2" name="self_calibrate_current_detection" oneShot="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="IarProjectConnection_1.2.xsd">
+
+    <device>
+        <name>MSPM0L1306</name>
+    </device>
+
+    <asmIncludePath>
+        <path>$PROJ_DIR$</path>
+    </asmIncludePath>
+
+    <includePath>
+        <path>$PROJ_DIR$</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source/third_party/CMSIS/Core/Include</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source</path>
+    </includePath>
+
+    <defines>
+        <define>__MSPM0L1306__</define>
+    </defines>
+
+    <extraOptions>
+        <args>
+            <arg>--debug</arg>
+            <arg>--silent</arg>
+            <arg>-e</arg>
+            <arg>--aeabi</arg>
+            <arg>--thumb</arg>
+            <arg>--diag_suppress=Pa050</arg>
+        </args>
+    </extraOptions>
+
+    <linkerFile>
+        <override>true</override>
+        <path>$PROJ_DIR$/mspm0l1306.icf</path>
+    </linkerFile>
+
+    <linkerExtraOptions>
+        <args>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/iqmath/lib/iar/m0p/rts/iqmath.a</arg>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a</arg>
+            <arg>--silent</arg>
+        </args>
+    </linkerExtraOptions>
+
+    <customBuildTools>
+    </customBuildTools>
+
+    <heaps>
+        <heap> <!-- If omitted, id="0" -->
+            <size>0</size>
+        </heap>
+        <heap id="1">
+            <size>0</size>
+        </heap>
+    </heaps>
+    <stacks>
+        <stack> <!-- If omitted, id="0" -->
+            <size>512</size>
+        </stack>
+    </stacks>
+
+
+    <files>
+        <path copyTo="$PROJ_DIR$/App.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/App.c</path>
+        <path copyTo="$PROJ_DIR$/App.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/App.h</path>
+        <path copyTo="$PROJ_DIR$/main.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/main.c</path>
+        <path copyTo="$PROJ_DIR$/mspm0l1306.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/iar/mspm0l1306.icf</path>
+        <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/README.html</path>
+        <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/README.md</path>
+        <group name="Driver" build="true">
+            <path copyTo="$PROJ_DIR$/Driver/Gauge_Type.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/Driver/Gauge_Type.h</path>
+            <path copyTo="$PROJ_DIR$/Driver/MSPM0Lxx_BSP.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/Driver/MSPM0Lxx_BSP.c</path>
+            <path copyTo="$PROJ_DIR$/Driver/MSPM0Lxx_BSP.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/Driver/MSPM0Lxx_BSP.h</path>
+            <path copyTo="$PROJ_DIR$/Driver/MSPM0Lxx_Driver.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/Driver/MSPM0Lxx_Driver.c</path>
+            <path copyTo="$PROJ_DIR$/Driver/MSPM0Lxx_Driver.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/Driver/MSPM0Lxx_Driver.h</path>
+        </group>
+        <group name="iar" build="true">
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0l1306_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/iar/startup_mspm0l1306_iar.c</path>
+        </group>
+        <group name="UserConfig" build="true">
+            <path copyTo="$PROJ_DIR$/UserConfig/UserConfig.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/UserConfig/UserConfig.c</path>
+            <path copyTo="$PROJ_DIR$/UserConfig/UserConfig.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/battery_gauge/self_calibrate_current_detection/UserConfig/UserConfig.h</path>
+        </group>
+    </files>
+</iarProjectConnection>

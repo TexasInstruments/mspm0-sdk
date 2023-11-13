@@ -30,6 +30,11 @@ function validatePinmux(inst, validation){
 
 function validate(inst, validation)
 {
+	let clockTreeEn = false;
+	if(system.modules["/ti/driverlib/SYSCTL"]){
+		clockTreeEn = system.modules["/ti/driverlib/SYSCTL"].$static.clockTreeEn;
+	}
+
 	/* MDIV must be disabled for MFCLK to be enabled */
 	if(inst.$name == "MFCLK" && inst.enable){
 		// filter returns an array
@@ -40,23 +45,20 @@ function validate(inst, validation)
 	}
 
 	if(inst.$name == "HFXT" || inst.$name == "HFCLKEXT"){
-		if(system.modules["/ti/driverlib/SYSCTL"]){
-			if(system.modules["/ti/driverlib/SYSCTL"].$static.clockTreeEn){
-				let ADCMod = system.modules["/ti/driverlib/ADC12"];
-				let isHFCLKUsed = false;
-				if(ADCMod){
-					if(_.some(ADCMod.$instances, ['sampClkSrc', "DL_ADC12_CLOCK_HFCLK"])){
-						if(inst.$name == "HFCLKEXT" && !inst.enable){
-							let HFCLKSource = system.clockTree.EXHFMUX.inputSelect;
-							if(HFCLKSource == "EXHFMUX_DIG"){
-								validation.logError("HFCLK must be enabled for the selected configuration",inst,"enable");
-							}
+		if(clockTreeEn){
+			let ADCMod = system.modules["/ti/driverlib/ADC12"];
+			if(ADCMod){
+				if(_.some(ADCMod.$instances, ['sampClkSrc', "DL_ADC12_CLOCK_HFCLK"])){
+					if(inst.$name == "HFCLKEXT" && !inst.enable){
+						let HFCLKSource = system.clockTree.EXHFMUX.inputSelect;
+						if(HFCLKSource == "EXHFMUX_DIG"){
+							validation.logError("HFCLK must be enabled for the selected configuration",inst,"enable");
 						}
-						else if(inst.$name == "HFXT" && !inst.enable){
-							let HFCLKSource = system.clockTree.EXHFMUX.inputSelect;
-							if(HFCLKSource == "EXHFMUX_XTAL"){
-								validation.logError("HFCLK must be enabled for the selected configuration",inst,"enable");
-							}
+					}
+					else if(inst.$name == "HFXT" && !inst.enable){
+						let HFCLKSource = system.clockTree.EXHFMUX.inputSelect;
+						if(HFCLKSource == "EXHFMUX_XTAL"){
+							validation.logError("HFCLK must be enabled for the selected configuration",inst,"enable");
 						}
 					}
 				}
@@ -64,6 +66,11 @@ function validate(inst, validation)
 		}
 	}
 
+	if(inst.$name == "LFXT" && inst.enable){
+		if(clockTreeEn){
+			validation.logInfo("After LFXT is enabled, the internal LFOSC is disabled, and cannot be re-enabled other than by executing a BOOTRST.",inst,"enable");
+		}
+	}
 
 
 	if(inst.enable && !_.isNil(inst.minVal)){
@@ -143,10 +150,12 @@ const CLKOUT_extendedConfig = [
 		hidden: true,
 		getValue: (inst) => {
 			try{
-				return inst.peripheral.clkOutPin.$solution.devicePinName;
+				let value = inst.peripheral.clkOutPin.$solution.devicePinName;
+				if(value !== null){return value}
 			} catch(e){
 				return "N/A"
 			}
+			return("N/A");
 
 		}
 	},
@@ -167,10 +176,12 @@ const CLKOUT_extendedConfig = [
 		],
 		getValue: (inst) => {
 			try{
-				return system.deviceData.gpio.pinInfo[inst.peripheral.clkOutPin.$solution.packagePinName].devicePin.attributes.io_type;
+				let value =  system.deviceData.gpio.pinInfo[inst.peripheral.clkOutPin.$solution.packagePinName].devicePin.attributes.io_type;
+				if(value !== null){ return value};
 			} catch(e){
 				return "N/A"
 			}
+			return "N/A"
 		}
 	},
 	{

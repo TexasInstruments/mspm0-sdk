@@ -1,10 +1,10 @@
-Library Software Overview
-=========================
+库软件概述
+==========
 
-1. Overview
------------
+1.概述
+------
 
-MSPM0’s Brushed Motor Control Library is made up of two key modules. The HAL module that provides Application Programming Interfaces (APIs) to manipulate and configure MCU pins and peripherals. Then there is the motor driver module that provides APIs to control the motor driver.
+MSPM0 的有刷电机控制库由两个关键模块组成。一个是 HAL 模块，它提供应用程序编程接口 (API) 来操作和配置 MCU 引脚和外设。另一个是电机驱动器模块，它提供 API 来控制电机驱动器。
 
 .. figure:: ./images/sw_overview_library_layers.png
    :alt: 
@@ -13,28 +13,28 @@ MSPM0’s Brushed Motor Control Library is made up of two key modules. The HAL m
 
    <p style="text-align: center;">
 
-Figure 1 - Diagram showing how the modules and application interact with each other
+图 1 - 显示模块和应用程序如何彼此交互的图表
 
 .. raw:: html
 
    </p>
 
-2. HAL Module
--------------
+2.HAL 模块
+----------
 
-2.1 Overview
-~~~~~~~~~~~~
+2.1 概述
+~~~~~~~~
 
-The HAL module is a microcontroller abstraction layer that providers generic APIs to control and configure the microcontroller’s pins and peripherals. The HAL APIs were developed to allow changing of the HAL module used without requiring any code changes to the motor driver module.
+HAL 模块是一个微控制器抽象层，提供通用 API 来控制和配置微控制器的引脚和外设。开发 HAL API 是为了在无需更改电机驱动器模块任何代码的情况下来更改所用的 HAL 模块。
 
-The HAL is purposely meant to only abstract the key pins and peripherals needed to control a motor driver. A user is free to expand the HAL’s API to support other peripherals and features of the microcontroller but its strongly recommended not to modify existing APIs to ensure ease migration to new versions of this library.
+HAL 专用于抽象处理控制电机驱动器所需的关键引脚和外设。用户可随意扩展 HAL 的 API 以支持微控制器的其他外设和特性，但为确保能轻松迁移到该库的新版本，强烈建议不要修改现有的 API。
 
-No application specific code or motor driver specific code should exist in the HAL layer or in its API. Instead, it treats the pins and peripherals in a generic manner. For example, a motor driver likely has a nSLEEP pin but the HAL layer will only provide APIs to control the state of a GPIO output pin. It’s the responsibility of the motor driver module to associate the specific HAL GPIO output pin to the motor driver’s nSLEEP pin.
+HAL 层或其 API 中不应存在应用特定或电机驱动器特定的代码，而是应以通用方式处理引脚和外设。例如，电机驱动器可能具有一个 nSLEEP 引脚，但 HAL 层将仅提供 API 来控制 GPIO 输出引脚的状态。电机驱动器模块负责将特定的 HAL GPIO 输出引脚关联到电机驱动器的 nSLEEP 引脚。
 
-2.2 Enums
-~~~~~~~~~
+2.2 枚举
+~~~~~~~~
 
-The HAL layer heavily utilizes enums to provide a generic reference to different pins and peripherals. As mentioned above, the HAL layer is responsible for dictating which physical pin and peripheral each of the enum values are associated with. This allow the HAL to change which pin or peripheral is associated with a given enum value without requiring code changes for any code that utilizes its API such as the motor driver module. As an example, lets take a closer look at the GPIO\_OUTPUT\_PIN\_2 enum value.
+HAL 层利用大量枚举来提供对不同引脚和外设的通用引用。如上所述，HAL 层负责指示与每个枚举值相关联的物理引脚和外设。这可让 HAL 更改与给定枚举值相关联的引脚或外设，而无需对使用其 API 的任何代码（例如电机驱动器模块）进行更改。作为示例，我们来仔细看看 GPIO\_OUTPUT\_PIN\_2 枚举值。
 
 |image0|
 
@@ -42,13 +42,13 @@ The HAL layer heavily utilizes enums to provide a generic reference to different
 
    <p style="text-align: center;">
 
-Figure 2 - Example enum representing GPIO output pins
+图 2 - 表示 GPIO 输出引脚的枚举示例
 
 .. raw:: html
 
    </p>
 
-Figure 2 shows an example of an enum that represents 5 different GPIO output pins. The purpose of this enum is to provide a way for the HAL and motor driver APIs to reference GPIO outputs in a generic manner. The HAL is free to determine how many gpio output pins it wants to support. The developer will need to keep in mind the maximum amount of gpio output pins the different motor drivers they want to support will require.
+图 2 显示了表示 5 个不同 GPIO 输出引脚的枚举示例。该枚举旨在为 HAL 和电机驱动器 API 提供一种引用 GPIO 输出的通用方法。HAL 可以随意决定其想要支持的 GPIO 输出引脚的数量。开发人员需要记住其想要支持的不同电机驱动器所需的 GPIO 输出引脚数量上限。
 
 |image1|
 
@@ -56,13 +56,13 @@ Figure 2 shows an example of an enum that represents 5 different GPIO output pin
 
    <p style="text-align: center;">
 
-Figure 3 - Enum to MCU pin mapping
+图 3 - 枚举到 MCU 引脚的映射
 
 .. raw:: html
 
    </p>
 
-Figure 3 shows a snippet from the LP-MSPM0L1306 HAL which shows how the GPIO\_OUTPUT\_PIN\_2 enum is now associated with a specific GPIO on the MSPM0L1306. The GEN\_GPIO\_OUTPUT\_XXXX defines are from TI Sysconfig that will be discussed later but note that each of those defines are representing values needed by the MSPM0’s driverlib api to manipulate the specific pin.
+图 3 显示了 LP-MSPM0L1306 HAL 的代码片段，其中显示了 GPIO\_OUTPUT\_PIN\_2 枚举现在如何与 MSPM0L1306 上的特定 GPIO 相关联。GEN\_GPIO\_OUTPUT\_XXXX 定义来自 TI Sysconfig，这将在后面论述，但请注意，每个定义都表示 MSPM0 的 driverlib api 操作特定引脚所需的值。
 
 |image2|
 
@@ -70,13 +70,13 @@ Figure 3 shows a snippet from the LP-MSPM0L1306 HAL which shows how the GPIO\_OU
 
    <p style="text-align: center;">
 
-Figure 4 - HAL API example
+图 4 - HAL API 示例
 
 .. raw:: html
 
    </p>
 
-Now that HAL provides the information needed to associate an enum to a specific pin, HAL\_setGPIOOutput shows the API used to change the output value of a pin associated with a given GPIO\_OUTPUT\_PINS enum. Its important to note here how the enum value is translated to MSPM0’s driverlib api calls by utilizing internal structures and arrays in the HAL.
+现在，HAL 提供了将枚举关联到特定引脚所需的信息，HAL\_setGPIOOutput 显示了用于更改引脚（与给定 GPIO\_OUTPUT\_PINS 枚举相关联）输出值的 API。这里需要注意如何利用 HAL 中的内部结构和数组将枚举值转换为 MSPM0 的 driverlib api 调用。
 
 |image3|
 
@@ -84,13 +84,13 @@ Now that HAL provides the information needed to associate an enum to a specific 
 
    <p style="text-align: center;">
 
-Figure 5 - Motor driver to HAL mapping
+图 5 - 电机驱动器到 HAL 的映射
 
 .. raw:: html
 
    </p>
 
-Here is a snippet from one of the DRV8706-Q1 example programs associating different HAL enums to corresponding pins on the motor driver. Here nHiz1 pin on the motor is mapped to GPIO\_OUTPUT\_PIN\_2.
+这是一个 DRV8706-Q1 示例程序的代码片段，它将不同的 HAL 枚举与电机驱动器上的相应引脚相关联。这里，电机上的 nHiz1 引脚映射到 GPIO\_OUTPUT\_PIN\_2。
 
 |image4|
 
@@ -98,23 +98,23 @@ Here is a snippet from one of the DRV8706-Q1 example programs associating differ
 
    <p style="text-align: center;">
 
-Figure 6 - Motor driver module API
+图 6 - 电机驱动器模块 API
 
 .. raw:: html
 
    </p>
 
-Finally when the user wants to change the output value of the nHiz1 pin on the DRV8706-Q1 motor driver, they use the generic HAL API while providing the enum value that is associated with nHiz1 to make the change. Although this example is focused on GPIO\_OUTPUT\_PINS enum, the concept is the same for every other pin and peripheral the HAL has created enums for such as PWM, ADC, gpio input and SPI enums.
+最后，当用户想要更改 DRV8706-Q1 电机驱动器上 nHiz1 引脚的输出值时，他们可以使用通用 HAL API，同时提供与 nHiz1 相关联的枚举值来进行更改。 尽管此示例侧重于 GPIO\_OUTPUT\_PINS 枚举，但对于所有其他引脚和外设（HAL 已为其创建了枚举），例如 PWM、ADC、gpio 输入和 SPI 枚举而言，概念都是相同的。
 
 2.3 TI SysConfig
 ~~~~~~~~~~~~~~~~
 
-MSPM0 supports software called TI SysConfig whose purpose is to simplify configuration of pins and peripherals utilizing a GUI tool. Almost all MSPM0 SDK examples utilizes SysConfig and there are other documentation in the SDK and online that goes into depth about how SysConfig works and how to use it. But it is important to note that the HAL modules provided by the SDK uses SysConfig which is why you will not see driverlib API calls to initialize peripherals and pins. Instead, the HAL uses defines created by SysConfig to map the specific pin and peripheral to the different generic HAL enums. Figure 3 shows how the GEN\_GPIO\_OUTPUT\_XXXX defines created by SyConfig are then mapped to the HAL structures and enum value.
+MSPM0 支持名为 TI SysConfig 的软件，该软件旨在利用 GUI 工具简化引脚和外设的配置。几乎所有 MSPM0 SDK 示例都使用 SysConfig，并且 SDK 和网上还有其他文档深入介绍了 SysConfig 的工作原理和使用方法。但需要注意的是，SDK 提供的 HAL 模块使用 SysConfig，因此您不会看到通过 driverlib API 调用来初始化外设和引脚。HAL 会使用由 SysConfig 创建的定义将特定引脚和外设映射到不同的通用 HAL 枚举。图 3 显示了由 SyConfig 创建的 GEN\_GPIO\_OUTPUT\_XXXX 定义如何映射到 HAL 结构和枚举值。
 
-3. Motor Driver Modules
------------------------
+3.电机驱动器模块
+----------------
 
-The two key objectives of the motor driver module is to associate the HAL’s enums representing MCU pins to the physical pin of the motor driver and provide APIs to make it easy for the user to control a motor driver. Figure 7 shows an internal structure used by the DRV8706-Q1 motor driver and how it contains variables meant to associate the HAL enums with specific pins on the motor driver such as nHiz1 and nHiz2.
+电机驱动器模块的两个关键目标是将代表 MCU 引脚的 HAL 枚举与电机驱动器的物理引脚相关联，并提供 API 以使用户轻松控制电机驱动器。图 7 显示了 DRV8706-Q1 电机驱动器使用的内部结构，及其如何包含用于将 HAL 枚举与电机驱动器特定引脚（例如 nHiz1 和 nHiz2）相关联的变量。
 
 |image5|
 
@@ -122,16 +122,16 @@ The two key objectives of the motor driver module is to associate the HAL’s en
 
    <p style="text-align: center;">
 
-Figure 7 - DRV8706-Q1 internal structure
+图 7 – DRV8706-Q1 内部结构
 
 .. raw:: html
 
    </p>
 
-3.1 Motor Driver Pin Association
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1 电机驱动器引脚关联
+~~~~~~~~~~~~~~~~~~~~~~
 
-The mapping of the motor driver pins to specific HAL enums is done in the user’s application as the below snippet shows.
+电机驱动器引脚到特定 HAL 枚举的映射是在用户应用程序中完成的，如下面的代码片段所示。
 
 |image6|
 
@@ -139,16 +139,16 @@ The mapping of the motor driver pins to specific HAL enums is done in the user�
 
    <p style="text-align: center;">
 
-Figure 8 - Mapping motor pins to HAL pins
+图 8 - 电机引脚到 HAL 引脚的映射
 
 .. raw:: html
 
    </p>
 
-3.2 Motor Driver APIs
-~~~~~~~~~~~~~~~~~~~~~
+3.2 电机驱动器 API
+~~~~~~~~~~~~~~~~~~
 
-The motor driver module APIs are specific to a given motor driver and meant to simplify key and common configuration of the target motor driver while also providing a foundation for users to build on top of. For example, DRV8706-Q1 has many drive modes like Half-Bridge and Phase Enable mode that will be common for users to use. Switching to these different modes is a multistep process. Therefore, the DRV8706-Q1 module has a simple API that performs all these steps via a single API call. Figure 9 shows an API to switch to Half Bridge mode.
+电机驱动器模块 API 特定于给定的电机驱动器，旨在简化目标电机驱动器的关键常见配置，同时也为用户提供构建基础。例如，DRV8706-Q1 具有许多用户常用的驱动模式，如半桥和相位使能模式。切换到这些不同的模式是一个多步过程。因此，DRV8706-Q1 模块具有一个简单的 API，可通过单个 API 调用执行所有这些步骤。图 9 显示了切换到半桥模式的 API。
 
 |image7|
 
@@ -156,18 +156,18 @@ The motor driver module APIs are specific to a given motor driver and meant to s
 
    <p style="text-align: center;">
 
-Figure 9 – Example motor driver module API
+图 9 - 电机驱动器模块 API 示例
 
 .. raw:: html
 
    </p>
 
-DRV8706-Q1 as an example has many register settings that many users will not use or change. Therefore, you won’t see a ton of APIs meant to manipulate the different registers and bitfields. However, as shown above there is a spiUpdateRegister function that performs a spi read modify write operation that makes it easy for a user to modify the register's bitfields that their specific application needs to change. This function is a good example of simple API calls that the user can build on top of to expand the motor driver module to fit their application’s needs.
+以 DRV8706-Q1 为例，它具有的众多寄存器设置是很多用户不会使用或更改的。因此，您不会看到大量用于操作不同寄存器的 API。但是，如上所示，有一个执行 spi 读取-修改-写入操作的 spiUpdateRegister 函数，使用户可以轻松修改其特定应用程序需要更改的寄存器位字段。该函数是简单调用 API 的一个典型示例，用户可以在此基础上进行构建、扩展电机驱动器模块以满足其应用程序的需求。
 
-3.3 Creating a Motor Driver Module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.3 如果您仔细研究电机驱动器模块的代码，就会发现由于使用了 HAL API，代码往往非常简单。操作微控制器的复杂性隐含在了 HAL 模块中，这使得开发电机驱动器模块变得非常简单。这意味着您可以对该库不提供额外支持，或您想要更适合于您的目标应用时，轻松创建自己的电机驱动器模块。需要注意的是，为确保您自己的电机驱动器模块具有灵活性和可重用性，请确保该模块仅调用 HAL API。
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you look through the motor driver module’s code you will note that the code tends to be very simple thanks to the HAL APIs it utilizes. The complexity of manipulating the microcontroller is hidden within the HAL module which makes developing motor driver module’s very simple. This means it will be easy to create your own motor driver module either because this library doesn’t have support for it or because you want something more tailored for your target application. Its important to note that to ensure flexibility and reusability for your own motor driver module ensure that your motor driver module only has calls to the HAL API.
+如果您仔细研究电机驱动器模块的代码，就会发现由于使用了 HAL API，代码往往非常简单。操作微控制器的复杂性隐含在了 HAL 模块中，这使得开发电机驱动器模块变得非常简单。这意味着您可以在该库不提供支持，或您想要更适合于您的目标应用时，轻松创建自己的电机驱动器模块。需要注意的是，为确保您自己的电机驱动器模块具有灵活性和可重用性，请确保该模块仅调用 HAL API。
 
 .. |image0| image:: images/sw_overview_gpio_enum.png
 .. |image1| image:: images/sw_overview_gpio_defines.png

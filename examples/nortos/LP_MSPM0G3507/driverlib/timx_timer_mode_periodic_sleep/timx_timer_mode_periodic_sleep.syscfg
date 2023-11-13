@@ -12,6 +12,7 @@ const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1  = GPIO.addInstance();
 const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
 const TIMER1 = TIMER.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 /**
  * Write custom configuration values to the imported modules.
@@ -26,3 +27,5 @@ GPIO1.associatedPins[0].initialValue = "SET";
 TIMER1.$name              = "TIMER_0";
 TIMER1.profile            = "Basic_Periodic";
 TIMER1.peripheral.$assign = "TIMG0";
+
+SYSCTL.forceDefaultClkConfig = true;

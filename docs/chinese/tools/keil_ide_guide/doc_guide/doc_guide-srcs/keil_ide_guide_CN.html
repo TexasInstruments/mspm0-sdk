@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs &mdash; Arm Keil MDK IDE for MSPM0 MCUs Documentation 1.0 documentation</title>
+  <title>适用于 MSPM0 MCU 的 Arm Keil MDK IDE 5.38+ 版 &mdash; Arm Keil MDK IDE for MSPM0 MCUs Documentation 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -43,37 +43,37 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#read-this-first">Read This First</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-use-this-guide">How to Use This Guide</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#information-about-cautions">Information About Cautions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#related-documentation-from-texas-instruments">Related Documentation From Texas Instruments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#if-you-need-assistance">If You Need Assistance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">适用于 MSPM0 MCU 的 Arm Keil MDK IDE 5.38+ 版</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">请先阅读</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">如何使用本指南</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">与注意事项有关的信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ti">德州仪器 （TI） 提供的相关文档</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">如果您需要协助</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#software-installation">1. Software Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#development-flow">2. Development Flow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#overview">2.1 Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#creating-a-mspm0-project-from-the-mspm0-sdk">2.2 Creating a MSPM0 Project From the MSPM0 SDK</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#creating-a-project-from-scratch">2.3 Creating a Project From Scratch</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-sysconfig-with-keil">2.4 Using SysConfig with Keil</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#migrating-between-mspm0-derivatives">2.5 Migrating Between MSPM0 Derivatives</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adding-newly-generated-sysconfig-files-to-projects">2.6 Adding Newly Generated SysConfig Files to Projects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stack-and-heap-management-and-s-files">2.7 Stack and Heap Management and .s Files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-generate-hex-files">2.8 How to Generate Hex Files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#erasing-nonmain-for-mspm0">2.9 Erasing NONMAIN for MSPM0</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#overriding-pre-built-libraries">2.10 Overriding Pre-built libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1. 软件安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">2. 开发流程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">2.1 概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mspm0-sdk-mspm0">2.2 从 MSPM0 SDK 创建 MSPM0 工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.3 从头开始创建工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sysconfig-keil">2.4 将 SysConfig 与 Keil 配合使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mspm0">2.5 在 MSPM0 衍生产品之间进行迁移</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sysconfig">2.6 将新生成的 SysConfig 文件添加至工程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#s">2.7 栈和堆管理及 .s 文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hex">2.8 如何生成 Hex 文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mspm0-nonmain">2.9 为 MSPM0 擦除 NONMAIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">2.10 覆盖预编译库</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#debugging-the-application">3. Debugging the Application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#using-ti-xds-tools">3.1 Using TI XDS Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-segger-j-link-debug-probe">3.2 Using Segger J-Link Debug Probe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-arm-ulink-debug-adapters">3.3 Using Arm ULINK Debug Adapters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#breakpoint-types">3.4 Breakpoint Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">3. 调试应用程序</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ti-xds">3.1 使用 TI XDS 工具</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#segger-j-link">3.2 使用 Segger J-Link 调试探针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arm-ulink">3.3 使用 Arm ULINK 调试适配器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">3.4 断点类型</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">4. Known Issues and Frequently Asked Questions (FAQs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faq">4. 已知问题和常见问题解答 （FAQ）</a></li>
 </ul>
 </li>
 </ul>
@@ -92,7 +92,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs</li>
+      <li>适用于 MSPM0 MCU 的 Arm Keil MDK IDE 5.38+ 版</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,139 +101,139 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="arm-keil-mdk-ide-version-5-38-for-mspm0-mcus">
-<h1>Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs<a class="headerlink" href="#arm-keil-mdk-ide-version-5-38-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
-<section id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
+  <section id="mspm0-mcu-arm-keil-mdk-ide-5-38">
+<h1>适用于 MSPM0 MCU 的 Arm Keil MDK IDE 5.38+ 版<a class="headerlink" href="#mspm0-mcu-arm-keil-mdk-ide-5-38" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>目录<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="#read-this-first">Read This First</a></p></li>
-<li><p><a class="reference external" href="#software-installation">Software Installation</a></p></li>
-<li><p><a class="reference external" href="#development-flow">Development Flow</a></p></li>
-<li><p><a class="reference external" href="#debugging-the-application">Debugging the Application</a></p></li>
-<li><p><a class="reference external" href="#known-issues-and-frequently-asked-questions-faqs">Known Issues and Frequently Asked Questions (FAQs)</a></p></li>
+<li><p><a class="reference external" href="#read-this-first">请先阅读</a></p></li>
+<li><p><a class="reference external" href="#software-installation">软件安装</a></p></li>
+<li><p><a class="reference external" href="#development-flow">开发流程</a></p></li>
+<li><p><a class="reference external" href="#debugging-the-application">调试应用</a></p></li>
+<li><p><a class="reference external" href="#known-issues-and-frequently-asked-questions-faqs">已知问题和常见问题解答 （FAQ）</a></p></li>
 </ul>
 </section>
-<section id="read-this-first">
-<h2>Read This First<a class="headerlink" href="#read-this-first" title="Permalink to this heading">¶</a></h2>
-<section id="how-to-use-this-guide">
-<h3>How to Use This Guide<a class="headerlink" href="#how-to-use-this-guide" title="Permalink to this heading">¶</a></h3>
-<p>This guide describes only the setup and basic operation of the software development environment, but it does not fully describe the MSPM0 microcontrollers or the complete development software and hardware systems. For details of these items, see the appropriate TI and Keil documents listed in section <a class="reference external" href="#related-documentation-from-texas-instruments">Related Documentation From Texas Instruments</a>.</p>
-<p>This guide applies to the use of the <a class="reference external" href="https://www.ti.com/tool/TMDSEMU110-U">TI XDS-110</a>, <a class="reference external" href="https://www2.keil.com/mdk5/ulink">Arm ULINK</a>, and <a class="reference external" href="https://www.segger.com/products/debug-probes/j-link/">Segger J-Link</a> development tools series.</p>
-<p>These tools contain the most up-to-date materials available at the time of packaging. For the latest materials (including data sheets, user’s guides, software, and application information), visit the <a class="reference external" href="https://www.ti.com/mspm0">TI MSPM0 website</a> or contact your local TI sales office.</p>
+<section id="id2">
+<h2>请先阅读<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h3>如何使用本指南<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>本指南仅说明软件开发环境的设置和基本操作， 但并未全面介绍 MSPM0 微控制器或完整的开发软件与硬件系统。 如需了解相关详细信息，请参阅 <a class="reference external" href="#related-documentation-from-texas-instruments">德州仪器 （TI） 相关文档</a>部分中列出的相应 TI 和 Keil 文档。</p>
+<p>本指南适用于 <a class="reference external" href="https://www.ti.com/tool/TMDSEMU110-U">TI XDS-110</a>、<a class="reference external" href="https://www2.keil.com/mdk5/ulink">Arm ULINK</a> 和 <a class="reference external" href="https://www.segger.com/products/debug-probes/j-link/">Segger J-Link</a> 开发工具系列的使用。</p>
+<p>这些工具包含封装时可用的最新材料。有关最新材料 （包括数据表、用户指南、软件和应用信息），请访问 <a class="reference external" href="https://www.ti.com/mspm0">TI MSPM0 网站</a>或联系当地的 TI 销售办事处。</p>
 </section>
-<section id="information-about-cautions">
-<h3>Information About Cautions<a class="headerlink" href="#information-about-cautions" title="Permalink to this heading">¶</a></h3>
-<p>This guide may contain cautions.</p>
-<p><strong>Caution</strong> - This is an example of a caution statement. A caution statement describes a situation that could potentially damage your software or equipment.</p>
-<p>Read each caution carefully.</p>
+<section id="id4">
+<h3>与注意事项有关的信息<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>本指南可能包含注意事项。</p>
+<p><strong>注意</strong> - 这是注意事项语句的示例。 注意事项语句描述了一种可能对软件或者器件造成潜在损坏的情况。</p>
+<p>请仔细阅读每条注意事项。</p>
 </section>
-<section id="related-documentation-from-texas-instruments">
-<h3>Related Documentation From Texas Instruments<a class="headerlink" href="#related-documentation-from-texas-instruments" title="Permalink to this heading">¶</a></h3>
-<p>MSPM0 development tools documentation:</p>
+<section id="ti">
+<h3>德州仪器 （TI） 提供的相关文档<a class="headerlink" href="#ti" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 开发工具文档：</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.ti.com/lit/sprui94">XDS110 Debug Probe User’s Guide</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/sprui94">XDS110 调试探针用户指南</a></p></li>
 </ul>
-<p>MSPM0 device documentation:</p>
+<p>MSPM0 器件文档：</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.ti.com/lit/slau869">LP-MSPM0L1306 User’s Guide</a></p></li>
-<li><p><a class="reference external" href="https://www.ti.com/lit/slau847">MSPM0 L-Series Technical Reference Manual</a></p></li>
-<li><p><a class="reference external" href="https://www.ti.com/lit/slau873">LP-MSPM0G3506 User’s Guide</a></p></li>
-<li><p><a class="reference external" href="https://www.ti.com/lit/slau846">MSPM0 G-Series Technical Reference Manual</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau869">LP-MSPM0L1306 用户指南</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau847">MSPM0 L 系列技术参考手册</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau873">LP-MSPM0G3506 用户指南</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/slau846">MSPM0 G 系列技术参考手册</a></p></li>
 </ul>
 </section>
-<section id="if-you-need-assistance">
-<h3>If You Need Assistance<a class="headerlink" href="#if-you-need-assistance" title="Permalink to this heading">¶</a></h3>
-<p>The <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/">E2E Community Support Forums</a> for MSPM0 MCUs are available to provide open interaction with peer engineers, TI engineers, and other experts. Additional device-specific information can be found on the <a class="reference external" href="https://www.ti.com/mspm0">MSPM0 website</a>.</p>
+<section id="id5">
+<h3>如果您需要协助<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>请访问关于 MSPM0 MCU 的 <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/">E2E 社区支持论坛</a>，与同行工程师、 TI 工程师和其他专家进行公开交流。更多器件特定信息可在 <a class="reference external" href="https://www.ti.com/mspm0">MSPM0 网站</a>上找到。</p>
 </section>
 </section>
-<section id="software-installation">
-<h2>1. Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this heading">¶</a></h2>
-<p>Arm Keil MDK, including µVision IDE, debugger and Arm C/C++ compiler, is available from the <a class="reference external" href="https://www.keil.com/">Keil website</a>. MSPM0 microcontrollers and the MSPM0 SDK require Keil MDK 5.38 or higher.</p>
-<p>See the <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a> documentation for finding the right SDK for your IDE version.</p>
+<section id="id6">
+<h2>1. 软件安装<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>Arm Keil MDK， 包括 µVision IDE、调试器和 Arm C/C++ 编译器，可从 <a class="reference external" href="https://www.keil.com/">Keil 网站</a>获得。MSPM0 微控制器和 MSPM0 SDK 需要 Keil MDK 5.38 或更高版本。</p>
+<p>要查找适合您 IDE 版本的 SDK，请参阅 <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a> 文档。</p>
 </section>
-<section id="development-flow">
-<h2>2. Development Flow<a class="headerlink" href="#development-flow" title="Permalink to this heading">¶</a></h2>
-<p>This chapter describes how to use Keil MDK to run the demonstration programs, develop application software, and how to debug it.</p>
-<section id="overview">
-<h3>2.1 Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h3>
-<p>Documentation for the Keil MDK is extensive, and the documentation is available online on the <a class="reference external" href="https://www2.keil.com/mdk5">Keil MDK page</a> or through the Help tab in the IDE.</p>
+<section id="id7">
+<h2>2. 开发流程<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>本章说明了如何使用 Keil MDK 运行演示程序、开发应用软件以及如何进行调试。</p>
+<section id="id8">
+<h3>2.1 概述<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>有关 Keil MDK 的文档非常广泛，可在 <a class="reference external" href="https://www2.keil.com/mdk5">Keil MDK 页面</a>上 或通过 IDE 中的“Help”选项卡在线获取。</p>
 </section>
-<section id="creating-a-mspm0-project-from-the-mspm0-sdk">
-<h3>2.2 Creating a MSPM0 Project From the MSPM0 SDK<a class="headerlink" href="#creating-a-mspm0-project-from-the-mspm0-sdk" title="Permalink to this heading">¶</a></h3>
-<p>Please refer to the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">MSPM0 SDK QuickStart Guide for Keil</a> which contains instructions on how to install the MSPM0 SDK and importing and building an SDK example in Keil.</p>
+<section id="mspm0-sdk-mspm0">
+<h3>2.2 从 MSPM0 SDK 创建 MSPM0 工程<a class="headerlink" href="#mspm0-sdk-mspm0" title="Permalink to this heading">¶</a></h3>
+<p>请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，其中包含有关如何安装 MSPM0 SDK 以及在 Keil 中导入和编译 SDK 示例的说明。</p>
 </section>
-<section id="creating-a-project-from-scratch">
-<h3>2.3 Creating a Project From Scratch<a class="headerlink" href="#creating-a-project-from-scratch" title="Permalink to this heading">¶</a></h3>
-<p><strong>Note</strong>: Creating a project from scratch is <strong>not recommended</strong> since creating the project from scratch doesn’t add all of the necessary device support files by default. To start from a blank project, TI recommends importing the Empty Driverlib example project from the SDK.</p>
+<section id="id9">
+<h3>2.3 从头开始创建工程<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<p><strong>注意</strong>：<strong>不建议</strong>从头开始创建工程，因为从头开始创建工程不会 默认添加所有必要的器件支持文件。要从空白工程开始，TI 建议从 SDK 导入空 Driverlib 示例 工程。</p>
 </section>
-<section id="using-sysconfig-with-keil">
-<h3>2.4 Using SysConfig with Keil<a class="headerlink" href="#using-sysconfig-with-keil" title="Permalink to this heading">¶</a></h3>
-<p>Some examples in the MSPM0 SDK have SysConfig support. <a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.</p>
-<p>The SysConfig tool is delivered as a standalone installer which can be manually integrated into Keil, or can be used via the dev.ti.com cloud tools portal.</p>
-<p>The best way to start a SysConfig project in Keil is to import it from the SDK; however, some steps are required to initialize SysConfig in Keil for the first time. Refer to the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">MSPM0 SDK QuickStart Guide for Keil</a> for more details on installing SysConfig and enabling it for Keil.</p>
-<p>For more information about using SysConfig with MSPM0, visit the <a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">Using SysConfig with MSPM0</a> guide.</p>
+<section id="sysconfig-keil">
+<h3>2.4 将 SysConfig 与 Keil 配合使用<a class="headerlink" href="#sysconfig-keil" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 SDK 中的一些示例支持 SysConfig。<a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> 是一个直观而全面的图形实用程序集合，用于配置引脚、外设、无线电、子系统和其他 组件。SysConfig 可助您直观地管理、发现和解决冲突，以便您有更多时间 创建差异化应用。</p>
+<p>SysConfig 工具作为独立安装程序交付，可手动集成到 Keil 中，也可通过 dev.ti.com 云工具门户使用。</p>
+<p>在 Keil 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 Keil 中初始化 SysConfig。请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，详细了解如何安装 SysConfig 和为 Keil 启用 SysConfig。</p>
+<p>有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问<a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">将 SysConfig 与 MSPM0 配合使用</a>指南。</p>
 </section>
-<section id="migrating-between-mspm0-derivatives">
-<h3>2.5 Migrating Between MSPM0 Derivatives<a class="headerlink" href="#migrating-between-mspm0-derivatives" title="Permalink to this heading">¶</a></h3>
-<p>SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required.</p>
+<section id="mspm0">
+<h3>2.5 在 MSPM0 衍生产品之间进行迁移<a class="headerlink" href="#mspm0" title="Permalink to this heading">¶</a></h3>
+<p>通过 SysConfig，可以更轻松地在 MSPM0 衍生产品之间进行迁移；不过需进行一些手动修改。</p>
 <ol class="arabic simple">
-<li><p>In SysConfig, enable the Device View and click on <strong>SWITCH</strong></p></li>
+<li><p>在 SysConfig 中，启用器件视图并点击 <strong>SWITCH</strong></p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_migrate_1.png" />
 </figure>
 <ol class="arabic simple" start="2">
-<li><p>Select the corresponding options for the new MSPM0 device and click <strong>CONFIRM</strong>.</p></li>
+<li><p>选择新 MSPM0 器件的相应选项，然后点击 <strong>CONFIRM</strong>。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_migrate_2.png" />
 </figure>
 <ol class="arabic simple" start="3">
-<li><p>Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed.</p></li>
-<li><p>In the Keil IDE, open the <strong>Device</strong> tab in project options, and select the new MSPM0 derivative.</p></li>
+<li><p>请注意，SysConfig 将突出显示与迁移的任何冲突，例如不可用的引脚和外设。 根据需要修复任何冲突。</p></li>
+<li><p>在 Keil IDE 中，在工程选项中打开 <strong>Device</strong> 选项卡，然后选择新的 MSPM0 衍生产品。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_migrate_3.png" />
 </figure>
 <ol class="arabic simple" start="5">
-<li><p>Update the device definition by selecting <strong>C/C++ (AC6)</strong> → <strong>Preprocessor Symbols</strong> → <strong>Define</strong>. Add the device definition as per the device selected.</p></li>
+<li><p>依次选择 <strong>C/C++ (AC6)</strong> → <strong>Preprocessor Symbols</strong> → <strong>Define</strong>，更新器件定义。 根据所选器件添加器件定义。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_migrate_4.png" />
 </figure>
 <ol class="arabic simple" start="6">
-<li><p>Update the linker file in <strong>Linker</strong> → <strong>Scatter File</strong>. The MSPM0 SDK includes default files for all MSPM0 derivatives at <code class="docutils literal notranslate"><span class="pre">&lt;sdk&gt;\source\ti\devices\msp\m0p\linker_files\keil</span></code>.</p></li>
+<li><p>在 <strong>Linker</strong> → <strong>Scatter File</strong> 中更新链接器文件。 MSPM0 SDK 在 <code class="docutils literal notranslate"><span class="pre">&lt;sdk&gt;\source\ti\devices\msp\m0p\linker_files\keil</span></code> 包含所有 MSPM0 衍生产品的默认文件。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_migrate_5.png" />
 </figure>
 <ol class="arabic simple" start="7">
-<li><p>Add the startup file of the new derivative to the project and remove existing one. The MSPM0 SDK includes default files for all MSPM0 derivatives at <code class="docutils literal notranslate"><span class="pre">&lt;sdk&gt;\source\ti\devices\msp\m0p\startup_system_files\keil</span></code>.</p></li>
+<li><p>将新衍生产品的启动文件添加到工程，并删除现有启动文件。MSPM0 SDK 在 <code class="docutils literal notranslate"><span class="pre">&lt;sdk&gt;\source\ti\devices\msp\m0p\startup_system_files\keil</span></code> 包含所有 MSPM0 衍生产品的默认文件。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_migrate_6.png" />
 </figure>
 <ol class="arabic simple" start="8">
-<li><p>Resolve any other dependencies such as incompatible libraries and source code.</p></li>
+<li><p>解析任何其他依赖项，例如不兼容的库和源代码。</p></li>
 </ol>
-<p>Note: Steps 1-3 don’t apply when not using SysConfig.</p>
+<p>注意：未使用 SysConfig 时，步骤 1-3 不适用。</p>
 </section>
-<section id="adding-newly-generated-sysconfig-files-to-projects">
-<h3>2.6 Adding Newly Generated SysConfig Files to Projects<a class="headerlink" href="#adding-newly-generated-sysconfig-files-to-projects" title="Permalink to this heading">¶</a></h3>
-<p>When working with SysConfig modules such as the NONMAIN Configurator which generate files other than <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.c</span></code>, the newly generated files must be manually added to the project since Keil does not do this automatically. See the <a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">Using SysConfig with MSPM0</a> guide for more details on which modules generate additional files.</p>
-<p>Consider the case of the NONMAIN Configurator, which generates 2 additional files: <code class="docutils literal notranslate"><span class="pre">boot_config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">boot_config.c</span></code>.</p>
+<section id="sysconfig">
+<h3>2.6 将新生成的 SysConfig 文件添加至工程<a class="headerlink" href="#sysconfig" title="Permalink to this heading">¶</a></h3>
+<p>使用会生成除 <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.h</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.c</span></code> 以外的文件的 SysConfig 模块（如 NONMAIN 配置器）时，必须将新生成的文件手动添加至工程，因为 Keil 不会自动添加。要详细了解哪些模块会生成额外文件，请参阅<a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">将 SysConfig 与 MSPM0 配合使用</a>指南。</p>
+<p>以 NONMAIN 配置器为例，它将生成 2 个额外文件：<code class="docutils literal notranslate"><span class="pre">boot_config.h</span></code> 和 <code class="docutils literal notranslate"><span class="pre">boot_config.c</span></code>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_sysconfig_additional_generated_files.png" />
 </figure>
-<p>To include these files in the built project, perform the following steps:</p>
+<p>要将这些文件包括在编译工程中，请执行以下步骤：</p>
 <ol class="arabic simple">
-<li><p>After adding the SysConfig module and saving the changes, navigating back to the Keil IDE should throw a message saying that the .syscfg file was modified. Click <strong>Yes</strong> to reload the file.</p></li>
+<li><p>添加 SysConfig 模块并保存所做更改后，导航回 Keil IDE 应显示一条消息，表明 .syscfg 文件已修改。点击 <strong>Yes</strong> 以重新加载文件。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_reload_sysconfig_file.png" />
 </figure>
 <ol class="arabic" start="2">
-<li><p>Right-click on the project and select <strong>Rebuild all target files</strong> to rebuild the project. The <strong>Build Output</strong> window shows that SysConfig has generated those files.</p>
+<li><p>右键点击工程，并选择 <strong>Rebuild all target files</strong> 以重新编译工程。<strong>Build Output</strong> 窗口将显示 SysConfig 已生成这些文件。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_rebuild_target.png" />
 </figure>
@@ -241,65 +241,65 @@
 <img alt="" src="../_images/keil_ide_build_log.png" />
 </figure>
 </li>
-<li><p>To add the additional newly generated files (in this case, <code class="docutils literal notranslate"><span class="pre">boot_config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">boot_config.c</span></code>), right-click on the <strong>Source</strong> directory and select <strong>Add Existing Files to Group ‘Source’</strong>.</p>
+<li><p>要添加额外新生成的文件（在本例中为 <code class="docutils literal notranslate"><span class="pre">boot_config.h</span></code> 和 <code class="docutils literal notranslate"><span class="pre">boot_config.c</span></code>），右键点击 <strong>Source</strong> 目录并选择 <strong>Add Existing Files to Group ‘Source’</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_add_files_to_source.png" />
 </figure>
 </li>
-<li><p>Navigate to the example project root, select the files that need to be added, and click <strong>Add</strong>.</p>
+<li><p>导航至示例工程根目录，选择需要添加的文件，然后点击 <strong>Add</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_select_files_to_add.png" />
 </figure>
 </li>
-<li><p>Rebuild the project. The files should be visible in the project <strong>Source</strong> directory in the IDE.</p>
+<li><p>重新编译工程。这些文件应显示在 IDE 的工程 <strong>Source</strong> 目录中。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_updated_source_directory.png" />
 </figure>
 </li>
 </ol>
 </section>
-<section id="stack-and-heap-management-and-s-files">
-<h3>2.7 Stack and Heap Management and .s Files<a class="headerlink" href="#stack-and-heap-management-and-s-files" title="Permalink to this heading">¶</a></h3>
-<p>The reserved stack and heap size can be configured through direct modification of the .s startup assembly file. See the Keil documentation for a complete description of this file.</p>
-<p>The supplied .s file can be modified to tune the size of the stack and heap to the needs of the application; edit <code class="docutils literal notranslate"><span class="pre">Stack_Size</span> <span class="pre">EQU</span> <span class="pre">xx</span></code> or <code class="docutils literal notranslate"><span class="pre">Heap_Size</span> <span class="pre">EQU</span> <span class="pre">xx</span></code> to allocate xx bytes for the stack or heap.</p>
+<section id="s">
+<h3>2.7 栈和堆管理及 .s 文件<a class="headerlink" href="#s" title="Permalink to this heading">¶</a></h3>
+<p>可通过直接修改 .s 启动汇编文件来配置保留的栈和堆大小。有关此文件的完整说明，请参阅 Keil 文档。</p>
+<p>可对提供的 .s 文件进行修改，以根据应用需求调整栈和堆大小；编辑 <code class="docutils literal notranslate"><span class="pre">Stack_Size</span> <span class="pre">EQU</span> <span class="pre">xx</span></code> 或 <code class="docutils literal notranslate"><span class="pre">Heap_Size</span> <span class="pre">EQU</span> <span class="pre">xx</span></code> 可为栈或堆分配 xx 个字节。</p>
 </section>
-<section id="how-to-generate-hex-files">
-<h3>2.8 How to Generate Hex Files<a class="headerlink" href="#how-to-generate-hex-files" title="Permalink to this heading">¶</a></h3>
-<p>The linker can be configured to output objects in Intel Hex format for use with programming tools such as <a class="reference external" href="https://www.ti.com/tool/MSP-GANG">MSP-GANG</a> and <a class="reference external" href="https://www.ti.com/tool/UNIFLASH">UniFlash</a>.</p>
-<p>Click <strong>Project</strong> → <strong>Options</strong> → <strong>Output</strong> → <strong>Create Hex File</strong> → <strong>Ok</strong>.</p>
+<section id="hex">
+<h3>2.8 如何生成 Hex 文件<a class="headerlink" href="#hex" title="Permalink to this heading">¶</a></h3>
+<p>可将链接器配置为以 Intel Hex 格式输出对象，以与 <a class="reference external" href="https://www.ti.com/tool/MSP-GANG">MSP-GANG</a> 和 <a class="reference external" href="https://www.ti.com/tool/UNIFLASH">UniFlash</a> 等编程工具一起使用。</p>
+<p>依次点击 <strong>Project</strong> → <strong>Options</strong> → <strong>Output</strong> → <strong>Create Hex File</strong> → <strong>Ok</strong>。</p>
 </section>
-<section id="erasing-nonmain-for-mspm0">
-<h3>2.9 Erasing NONMAIN for MSPM0<a class="headerlink" href="#erasing-nonmain-for-mspm0" title="Permalink to this heading">¶</a></h3>
-<p><strong>Caution</strong>: Extreme care should be taken when erasing and programming NONMAIN. If done incorrectly, the device will become <strong>locked in a permanently unrecoverable state</strong>.</p>
+<section id="mspm0-nonmain">
+<h3>2.9 为 MSPM0 擦除 NONMAIN<a class="headerlink" href="#mspm0-nonmain" title="Permalink to this heading">¶</a></h3>
+<p><strong>注意</strong>：在擦除和编程 NONMAIN 时应特别小心。如果操作错误，器件将 <strong>锁定在永久不可恢复的状态</strong>。</p>
 <ol class="arabic">
-<li><p>Click <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong>.</p></li>
-<li><p>Add the NON-MAIN programming algorithm, and then click OK.</p>
+<li><p>依次点击 <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong>。</p></li>
+<li><p>添加 NONMAIN 编程算法，然后点击“OK”。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_add_nonmain.png" />
 </figure>
 </li>
 </ol>
 </section>
-<section id="overriding-pre-built-libraries">
-<h3>2.10 Overriding Pre-built libraries<a class="headerlink" href="#overriding-pre-built-libraries" title="Permalink to this heading">¶</a></h3>
-<p>Projects might include pre-built libraries which simplify development and build time; however, they don’t allow developers to modify source code easily.</p>
-<p>An example of such libraries is the MSPM0 DriverLib which is shown below.</p>
+<section id="id10">
+<h3>2.10 覆盖预编译库<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<p>工程可能包括预编译库，可简化开发和编译过程；不过， 开发人员无法轻松修改源代码。</p>
+<p>下面显示了此类库的一个示例 MSPM0 DriverLib。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_driverlib_library.png" />
 </figure>
-<p>One option to override the library is to delete <strong>driverlib.a</strong> and simply add any or all source files to the project. The MSPM0 SDK includes the <code class="docutils literal notranslate"><span class="pre">empty_driverlib_src</span></code> example which includes all DriverLib source by default:</p>
+<p>覆盖库的一个选项是删除 <strong>driverlib.a</strong>，并直接向工程添加任何或所有源文件。 MSPM0 SDK 包括 <code class="docutils literal notranslate"><span class="pre">empty_driverlib_src</span></code> 示例，其中默认包括所有 DriverLib 源：</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_empty_driverlib_project.png" />
 </figure>
 </section>
 </section>
-<section id="debugging-the-application">
-<h2>3. Debugging the Application<a class="headerlink" href="#debugging-the-application" title="Permalink to this heading">¶</a></h2>
-<section id="using-ti-xds-tools">
-<h3>3.1 Using TI XDS Tools<a class="headerlink" href="#using-ti-xds-tools" title="Permalink to this heading">¶</a></h3>
-<p>TI offers a range of debug probes for Arm-based devices, including the XDS110 which is integrated with MSPM0 LaunchPads.</p>
-<p><strong>Note</strong>: TI XDS110 debuggers are supported natively or through CMSIS DAP. TI XDS native support needs a separate installation of the TI emulation pack software in the default folder <code class="docutils literal notranslate"><span class="pre">C:\ti\ccs-base</span></code>.</p>
-<p>To use the XDS110 debug probe, right-click on the active project, then select <strong>Options for Target</strong>. In the Target Options window, select the <strong>Debug</strong> pane. From the pulldown menu, select either CMSIS-DAP Debugger or TI XDS Debugger.</p>
+<section id="id11">
+<h2>3. 调试应用程序<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<section id="ti-xds">
+<h3>3.1 使用 TI XDS 工具<a class="headerlink" href="#ti-xds" title="Permalink to this heading">¶</a></h3>
+<p>TI 提供各种适用于基于 Arm 的器件的调试探针，包括与 MSPM0 LaunchPad 集成的 XDS110。</p>
+<p><strong>注意</strong>：TI XDS110 调试器在本地受支持或通过 CMSIS DAP 受支持。TI XDS 本地支持需要 在默认文件夹 <code class="docutils literal notranslate"><span class="pre">C:\ti\ccs-base</span></code> 中单独安装 TI 仿真包软件。</p>
+<p>要使用 XDS110 调试探针，右键点击活动工程，然后选择 <strong>Options for Target</strong>。 在“Target Options”窗口中，选择 <strong>Debug</strong> 窗格。在下拉菜单中，选择 CMSIS-DAP 调试器或 TI XDS 调试器。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_select_xds110.png" />
 </figure>
@@ -307,25 +307,25 @@
 <img alt="" src="../_images/keil_ide_xds110_settings.png" />
 </figure>
 <ul class="simple">
-<li><p>Note the selected Emulator. The example above uses the XDS110 integrated in LaunchPads in CSMSIS-DAP mode.</p></li>
-<li><p>The selected Interface is SWD which is supported by MSPM0.</p></li>
-<li><p>The XDS tools use a Flash Loader to download code to the device. Confirm usage in <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong>. Refer to the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">MSPM0 SDK QuickStart Guide for Keil</a> for more details.</p></li>
+<li><p>注意所选仿真器。以上示例在 CSMSIS-DAP 模式下使用集成在 LaunchPad 中的 XDS110。</p></li>
+<li><p>所选接口是 MSPM0 支持的 SWD。</p></li>
+<li><p>XDS 工具使用闪存加载程序将代码下载到器件。在 <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong> 中确认使用。请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a> ，了解更多详细信息。</p></li>
 </ul>
 </section>
-<section id="using-segger-j-link-debug-probe">
-<h3>3.2 Using Segger J-Link Debug Probe<a class="headerlink" href="#using-segger-j-link-debug-probe" title="Permalink to this heading">¶</a></h3>
-<p>To use J-Link, right-click on the active project, then select <strong>Options for Target</strong>. In the Target Options window, select the <strong>Debug</strong> pane. From the pulldown menu, select the J-Link debugger option.</p>
+<section id="segger-j-link">
+<h3>3.2 使用 Segger J-Link 调试探针<a class="headerlink" href="#segger-j-link" title="Permalink to this heading">¶</a></h3>
+<p>要使用 J-Link，右键点击活动工程，然后选择 <strong>Options for Target</strong>。 在“Target Options”窗口中，选择 <strong>Debug</strong> 窗格。从下拉菜单中，选择 J-Link 调试器选项。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_select_jlink.png" />
 </figure>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_jlink_settings.png" />
 </figure>
-<p>Refer to the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">MSPM0 SDK QuickStart Guide for Keil</a> for more details on using Segger J-Link.</p>
+<p>请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，以详细了解如何使用 Segger J-Link。</p>
 </section>
-<section id="using-arm-ulink-debug-adapters">
-<h3>3.3 Using Arm ULINK Debug Adapters<a class="headerlink" href="#using-arm-ulink-debug-adapters" title="Permalink to this heading">¶</a></h3>
-<p>To use ULINK, right-click on the active project, then select <strong>Options for Target</strong>. In the Target Options window, select the <strong>Debug</strong> pane. From the pulldown menu, select a ULINK debugger option.</p>
+<section id="arm-ulink">
+<h3>3.3 使用 Arm ULINK 调试适配器<a class="headerlink" href="#arm-ulink" title="Permalink to this heading">¶</a></h3>
+<p>要使用 ULINK，右键点击活动工程，然后选择 <strong>Options for Target</strong>。 在“Target Options”窗口中，选择 <strong>Debug</strong> 窗格。从下拉菜单中，选择 ULINK 调试器选项。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_select_ulink.png" />
 </figure>
@@ -333,22 +333,22 @@
 <img alt="" src="../_images/keil_ide_ulink_settings.png" />
 </figure>
 <ul class="simple">
-<li><p>The ULINK tools use a Flash Loader to download code to the device. Confirm usage in <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong>.</p></li>
+<li><p>ULINK 工具使用闪存加载程序将代码下载到器件。在 <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong> 中确认使用。</p></li>
 </ul>
 </section>
-<section id="breakpoint-types">
-<h3>3.4 Breakpoint Types<a class="headerlink" href="#breakpoint-types" title="Permalink to this heading">¶</a></h3>
-<p>The uVision breakpoint mechanism uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints are not supported on MSPM0. This means that a maximum of 4 breakpoints can be set within uVision.</p>
-<p>Resetting a program and the Run To Cursor operation temporarily require a breakpoint. As a result, only 3 breakpoints can be active.</p>
-<p>If the max number of breakpoints are set, the following warning will be displayed.</p>
+<section id="id12">
+<h3>3.4 断点类型<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<p>uVision 断点机制使用有限数量的片上调试资源（具体为 4 个硬件断点 和 2 个硬件观察点）。MSPM0 不支持软件断点。这意味着在 uVision 中最多可设置 4 个断点。</p>
+<p>重置程序和“运行至光标”操作临时需要1个断点。因此，只有 3 个断点 可处于活动状态。</p>
+<p>如果设置了断点最大数量，将显示以下警告。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_max_breakpoints.png" />
 </figure>
 </section>
 </section>
-<section id="known-issues-and-frequently-asked-questions-faqs">
-<h2>4. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
-<p>Please refer to <a class="reference external" href="../../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+<section id="faq">
+<h2>4. 已知问题和常见问题解答 （FAQ）<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h2>
+<p>请参阅 SDK 中的<a class="reference external" href="../../../../../../known_issues_FAQ.html">已知问题和 FAQ</a>。</p>
 </section>
 </section>
 

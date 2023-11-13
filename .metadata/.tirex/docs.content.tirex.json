@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_1_10_00_05.html",
+    "location": "../../release_notes_mspm0_sdk_1_10_01_05.html",
     "mainCategories": [
         [
             "Documents"
@@ -610,6 +610,33 @@
     ]
 },
 {
+    "name": "PMBus Guide",
+    "tags": [
+        "PMBus Guide",
+        "Documentation",
+        "PMB",
+        "PMBus Library",
+        "Middleware",
+        "Controller",
+        "Target",
+        "I2C"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/pmbus/PMBus_Guide.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "PMBus"
+    ]
+},
+{
     "name": "EEPROM Library Overview",
     "tags": [
         "EEPROM Library Overview",
@@ -1013,7 +1040,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_1_10_00_05.html",
+    "location": "../../release_notes_mspm0_sdk_1_10_01_05.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -1629,6 +1656,34 @@
     ]
 },
 {
+    "name": "PMBus 指南",
+    "tags": [
+        "PMBus 指南",
+        "PMBus Guide",
+        "Documentation",
+        "PMB",
+        "PMBus Library",
+        "Middleware",
+        "Controller",
+        "Target",
+        "I2C"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/chinese/middleware/pmbus/PMBus_Guide_CN.html",
+    "mainCategories": [
+        [
+            "Documents - Chinese"
+        ]
+    ],
+    "subCategories": [
+        "Middleware 中间件",
+        "PMBus"
+    ]
+},
+{
     "name": "EEPROM 库概述",
     "tags": [
         "EEPROM 库概述",
@@ -1749,7 +1804,7 @@
         ]
     ],
     "subCategories": [
-        "Middleware",
+        "Middleware 中间件",
         "Motor Control"
     ]
 },
@@ -1770,7 +1825,7 @@
         ]
     ],
     "subCategories": [
-        "Middleware",
+        "Middleware 中间件",
         "Motor Control"
     ]
 },
@@ -1839,7 +1894,7 @@
         ]
     ],
     "subCategories": [
-        "Middleware",
+        "Middleware 中间件",
         "DALI"
     ]
 },

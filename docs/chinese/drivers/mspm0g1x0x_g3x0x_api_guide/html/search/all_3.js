@@ -1,6 +1,7 @@
 var searchData=
 [
   ['datalength',['dataLength',['../struct_u_a_r_t___params.html#a61f18b7f576c27b60f05481b1b818f19',1,'UART_Params']]],
+  ['deprecated_20list',['Deprecated List',['../deprecated.html',1,'']]],
   ['destincrement',['destIncrement',['../struct_d_m_a_m_s_p_m0___transfer.html#a7faed6f316a48ce758f06e56afb1122c',1,'DMAMSPM0_Transfer']]],
   ['destwidth',['destWidth',['../struct_d_m_a_m_s_p_m0___transfer.html#ae9af4efb81fc89be2df600b796fda8b2',1,'DMAMSPM0_Transfer']]],
   ['direction',['direction',['../struct_u_a_r_t_m_s_p___h_w_attrs.html#a8358cef08b8979effd67b7ba84241f6e',1,'UARTMSP_HWAttrs']]],

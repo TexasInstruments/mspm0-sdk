@@ -36,4 +36,5 @@ UART1.DMA_CHANNEL_RX.dstIncDec = "INCREMENT";
 UART1.DMA_CHANNEL_RX.dstLength = "BYTE";
 UART1.DMA_CHANNEL_RX.srcLength = "BYTE";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

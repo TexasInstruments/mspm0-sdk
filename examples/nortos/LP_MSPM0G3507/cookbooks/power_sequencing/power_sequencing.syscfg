@@ -43,6 +43,7 @@ GPIO2.associatedPins[0].direction        = "INPUT";
 GPIO2.associatedPins[0].$name            = "USER_INPUT_1";
 
 SYSCTL.peripheral.$assign = "SYSCTL";
+SYSCTL.forceDefaultClkConfig = true;
 
 TIMER1.$name              = "TIME_SEQUENCE";
 TIMER1.interrupts         = ["ZERO"];

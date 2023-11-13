@@ -24,4 +24,5 @@ DMA.associatedChannels[0].peripheral.$assign = "DMA_CH0";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

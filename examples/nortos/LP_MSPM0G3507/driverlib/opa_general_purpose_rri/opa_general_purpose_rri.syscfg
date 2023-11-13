@@ -25,4 +25,5 @@ OPA1.cfg0NSELChannel           = "IN1_NEG";
 OPA1.peripheral.$assign        = "OPA1";
 OPA1.peripheral.OutPin.$assign = "PA16";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

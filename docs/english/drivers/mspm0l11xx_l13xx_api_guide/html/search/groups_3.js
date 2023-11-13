@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['inter_2dintegrated_20circuit_20_28i2c_29',['Inter-Integrated Circuit (I2C)',['../group___i2_c.html',1,'']]],
-  ['i2c_20status_20codes',['I2C status codes',['../group___i2_c___s_t_a_t_u_s.html',1,'']]],
-  ['i2c_20driver_20apis',['I2C driver APIs',['../group___i2_c_m_s_p_m0.html',1,'']]]
+  ['general_20purpose_20input_20output_20_28gpio_29',['General Purpose Input Output (GPIO)',['../group___g_p_i_o.html',1,'']]],
+  ['gpio_20status_20codes',['GPIO status codes',['../group___g_p_i_o___s_t_a_t_u_s.html',1,'']]],
+  ['gpio_20driver_20apis',['GPIO driver APIs',['../group___g_p_i_o_m_s_p_m0.html',1,'']]]
 ];

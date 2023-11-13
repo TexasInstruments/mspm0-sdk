@@ -159,12 +159,6 @@ static const DL_SYSCTL_SYSPLLConfig gSYSPLLConfig = {
     let pllEnabled = pllClk0Inst.enable || pllClk1Inst.enable || pllClk2XInst.enable;
 %%}
 %   if(pllEnabled){
-    /* Check that SYSPLL is disabled before configuration */
-    while ((DL_SYSCTL_getClockStatus() & (DL_SYSCTL_CLK_STATUS_SYSPLL_OFF))
-           != (DL_SYSCTL_CLK_STATUS_SYSPLL_OFF))
-        {
-            ;
-        }
     DL_SYSCTL_configSYSPLL((DL_SYSCTL_SYSPLLConfig *) &gSYSPLLConfig);
 %   }
 % } // function printCall

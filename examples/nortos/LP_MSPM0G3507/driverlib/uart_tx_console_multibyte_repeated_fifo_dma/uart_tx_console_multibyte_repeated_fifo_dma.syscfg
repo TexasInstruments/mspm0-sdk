@@ -54,4 +54,5 @@ UART1.DMA_CHANNEL_TX.addressMode     = "b2f";
 UART1.DMA_CHANNEL_TX.srcLength       = "BYTE";
 UART1.DMA_CHANNEL_TX.dstLength       = "BYTE";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

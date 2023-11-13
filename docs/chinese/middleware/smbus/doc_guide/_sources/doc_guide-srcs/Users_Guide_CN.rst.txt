@@ -1,72 +1,72 @@
-MSPM0 SMBus Library User's Guide
-================================
+MSPM0 SMBus 库用户指南
+======================
 
-1. Introduction
----------------
+1. 引言
+-------
 
-The MSPM0 SMBus Library provides a simple way to start development of SMBus applications using MSPM0 devices.
+MSPM0 SMBus 库提供了一种使用 MSPM0 器件启动开发 SMBus 应用程序的 简单方法。
 
-2. SMBus Library Supported Features
------------------------------------
+2. SMBus 库支持的特性
+---------------------
 
-This library was developed in compliance with the SMBus 3.2 specification.
+此库是按照 SMBus 3.2 规范开发的。
 
-2.1 SMBus Controller Supported Features
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.1 SMBus 控制器支持的特性
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  Clock Timeout detection
+-  时钟超时检测
 -  PEC
--  Quick command
--  Send Byte
--  Receive Byte
--  Write byte/word (support for 16bit, 32bit, and 64bit words)
--  Read byte/word (support for 16bit, 32bit, and 64bit words)
--  Process call
--  Block read/write (up to 255 bytes)
--  Block write-block read process call (up to 255 bytes)
+-  快速命令
+-  发送字节
+-  接收字节
+-  写入字节/字（支持 16 位、32 位和 64 位字）
+-  读取字节/字（支持 16 位、32 位和 64 位字）
+-  过程调用
+-  块读取/写入（最多 255 个字节）
+-  块写入-块读取过程调用（最多 255 个字节）
 
-2.2 SMBus Target Supported Features
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.2 SMBus 目标支持的特性
+~~~~~~~~~~~~~~~~~~~~~~~~
 
--  Multiple target addresses
--  Clock Timeout detection
+-  多目标地址
+-  时钟超时检测
 -  PEC
--  Quick command (only write is supported)
--  Send Byte
--  Receive Byte
--  Write byte/word (support for 16bit, 32bit, and 64bit words)
--  Read byte/word (support for 16bit, 32bit, and 64bit words)
--  Process call
--  Block read/write (up to 255 bytes)
--  Block write-block read process call (up to 255 bytes)
+-  快速命令（仅支持写入）
+-  发送字节
+-  接收字节
+-  写入字节/字（支持 16 位、32 位和 64 位字）
+-  读取字节/字（支持 16 位、32 位和 64 位字）
+-  过程调用
+-  块读取/写入（最多 255 个字节）
+-  块写入-块读取过程调用（最多 255 个字节）
 
-2.3 SMBus Features Not Currently Implemented
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.3 当前未实现的 SMBus 特性
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The SMBus features listed below are supported in hardware but have not been implemented in this release:
+硬件支持下列 SMBus 特性，但此版本中尚未实现：
 
--  FastMode+ 1MHz operation
--  Host notify protocol
--  Address resolution protocol
+-  FastMode+ 1MHz 运行
+-  主机通知协议
+-  地址解析协议
 -  SMBAlert#
 -  SMBSUS#
 
-3. SMBus Example Usage
-----------------------
+3. SMBus 示例用法
+-----------------
 
-This software library contains 2 examples that demonstrate communication between a SMBus Controller and SMBus Target using all of the supported SMBus protocols:
+此软件库包含 2 个示例，展示了 SMBus 控制器与 SMBus 目标之间使用所有支持的SMBus 协议进行的通信：
 
 -  smb\_target00\_all\_protocols
 -  smb\_controller00\_all\_protocols
 
-Each example contains source code which can be compiled and loaded onto a supported device as-is. Connect SMBCLK and SMBDAT on 2 devices running the Controller and Target examples.
+每个示例都包含可编译的源代码并可直接烧录到支持的器件。连接运行控制器和目标示例的 2 个器件上的 SMBCLK 和 SMBDAT。
 
-3.1 SMBus Examples Supported Hardware
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1 SMBus 示例支持的硬件
+~~~~~~~~~~~~~~~~~~~~~~~~
 
--  2 LP-MSPM0L1306 LaunchPad evaluation boards
+-  2 个 LP-MSPM0L1306 LaunchPad 评估板
 
-4. SMBus Library API Guide
---------------------------
+4. SMBus 库 API 指南
+--------------------
 
-Details about the SMBus Library APIs can be found in the `SMBus Library API Guide <../../doxygen/api_guide/html/index.html>`__
+有关 SMBus 库 API 的详情可参见 `SMBus 库 API 指南 <../../doxygen/api_guide/html/index.html>`__

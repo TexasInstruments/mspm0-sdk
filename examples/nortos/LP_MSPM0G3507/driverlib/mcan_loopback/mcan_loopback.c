@@ -37,7 +37,7 @@ volatile uint8_t gMsgCount;
 volatile bool gError;
 volatile bool gTransmitComplete;
 
-#define DL_MCAN_MSG_INT (0x81200)
+#define DL_MCAN_MSG_INT (0x80200)
 
 int main(void)
 {
@@ -69,7 +69,7 @@ int main(void)
     txMsg.mm = 0xAAU;
 
     /* Data bytes. */
-    txMsg.data[0] = 0x12;
+    txMsg.data[0] = 0x00;
     txMsg.data[1] = 0x34;
     txMsg.data[2] = 0x56;
     txMsg.data[3] = 0x78;
@@ -125,6 +125,7 @@ int main(void)
         } else {
             /* Increment message count if message is received. */
             gMsgCount++;
+            txMsg.data[0] = gMsgCount;
         }
     }
 }

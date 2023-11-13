@@ -52,7 +52,8 @@ SPI1.DMA_CHANNEL_EVENT1.dstLength   = "BYTE";
 SPI1.DMA_CHANNEL_EVENT2.$name       = "DMA_CH0";
 
 SYSCTL.validateClkStatus = true;
-SYSCTL.clockTreeEn       = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn        = true;
 
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerClkDiv        = 8;

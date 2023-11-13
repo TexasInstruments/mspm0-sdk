@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 LIN User’s Guide &mdash; MSPM0 LIN User&#39;s Guide 1.0 documentation</title>
+  <title>MSPM0 LIN 用户指南 &mdash; MSPM0 LIN User&#39;s Guide 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -43,20 +43,20 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 LIN User’s Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#configuring-the-uart-for-lin-with-sysconfig">2. Configuring the UART for LIN with SysConfig</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#enable-lin-counter">Enable LIN counter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enable-and-configure-lin-counter-compare-match-mode">Enable and configure LIN Counter Compare Match mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enable-capture-on-rxd-falling-edge">Enable Capture on RXD Falling Edge</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enable-counter-reset-on-rxd-falling-edge">Enable Counter Reset on RXD Falling Edge</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enable-count-while-rxd-is-low">Enable Count while RXD is Low</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enable-capture-on-rxd-rising-edge">Enable Capture on RXD Rising Edge</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#quick-profile">Quick Profile</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 LIN 用户指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 引言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sysconfig-lin-uart">2. 使用 SysConfig 为 LIN 配置 UART</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lin">启用 LIN 计数器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">启用和配置 LIN 计数器比较匹配模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rxd">启用在 RXD 下降沿捕获</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">启用在 RXD 下降沿计数器复位</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">启用在 RXD 低电平时计数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">启用在 RXD 上升沿捕获</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">快速配置文件</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#example-applications">3. Example Applications</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#modifying-the-example-applications">Modifying the Example Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">3. 示例应用程序</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">修改示例应用程序</a></li>
 </ul>
 </li>
 </ul>
@@ -77,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>MSPM0 LIN User’s Guide</li>
+      <li>MSPM0 LIN 用户指南</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -86,140 +86,140 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mspm0-lin-user-s-guide">
-<h1>MSPM0 LIN User’s Guide<a class="headerlink" href="#mspm0-lin-user-s-guide" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>LIN (Local Interconnect Network) is a serial network protocol that allows for simple and inexpensive communication in automotive networks. The MSPM0 SDK provides an easy way to start development of LIN applications using the MSPM0’s Universal Asynchronous Receiver Transmitter (UART) module.</p>
-<p>Example applications are provided in the SDK to demonstrate how to configure a MSPM0 device as a LIN 2.x Controller or Responder.</p>
-<p><strong>Note</strong>: The use of “Master” and “Slave” terminology is being considered obsolete. These terms have been replaced with “Controller” and “Responder” respectively.</p>
-<p>For supporting LIN protocol, the following hardware enhancements are implemented in the UART module:</p>
+  <section id="mspm0-lin">
+<h1>MSPM0 LIN 用户指南<a class="headerlink" href="#mspm0-lin" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 引言<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>LIN（本地互连网络）是一种串行网络协议，可在 汽车网络中以低成本实现简单通信。MSPM0 SDK 提供了一种使用 MSPM0 的通用异步接收器发送器（UART）模块 启动开发 LIN 应用程序的简单方法。</p>
+<p>SDK 中提供了示例应用程序，用于演示如何将 MSPM0 器件配置为 LIN 2.x 控制器或响应器。</p>
+<p><strong>注</strong>：“主”和“从”术语已过时，已分别替换为“控制器”和“响应器”。</p>
+<p>为了支持 LIN 协议，在 UART 模块中实现了以下 硬件增强功能：</p>
 <ul class="simple">
-<li><p>16 bit up-counter (LINCNT) clocked by the UART clock</p></li>
-<li><p>Interrupt capability on counter overflow</p></li>
-<li><p>16 bit capture register (LINC0) with two configurable modes:</p>
+<li><p>由 UART 时钟计时的 16 位向上计数器（LINCNT）</p></li>
+<li><p>计数器溢出时可中断</p></li>
+<li><p>具有两种可配置模式的 16 位捕获寄存器（LINC0）：</p>
 <ul>
-<li><p>Capture of LINCNT value on RXD falling edge, with interrupt capability on capture</p></li>
-<li><p>Compare of LINCNT with interrupt capability on match</p></li>
+<li><p>在 RXD 下降沿捕获LINCNT 值，捕获完成时可中断</p></li>
+<li><p>比较 LINCNT，匹配时可中断</p></li>
 </ul>
 </li>
-<li><p>16 bit capture register (LINC1), with configurable mode:</p>
+<li><p>具有可配置模式的 16 位捕获寄存器（LINC1）：</p>
 <ul>
-<li><p>Capture LINCNT value on RXD rising edge, with interrupt capability on capture</p></li>
+<li><p>在 RXD 上升沿捕获 LINCNT 值，捕获完成时可中断</p></li>
 </ul>
 </li>
 </ul>
-<p><strong>The MSPM0 SDK LIN applications are only meant for basic evaluation of LIN using the UART hardware and/or guidance to implement LIN drivers. It is not meant to provide a full automotive-qualified LIN stack.</strong></p>
+<p><strong>MSPM0 SDK LIN 应用程序仅限于使用 UART 硬件对 LIN 进行基本评估和/或提供指导来实现 LIN 驱动程序，不用于提供符合汽车标准的完整 LIN 栈。</strong></p>
 </section>
-<section id="configuring-the-uart-for-lin-with-sysconfig">
-<h2>2. Configuring the UART for LIN with SysConfig<a class="headerlink" href="#configuring-the-uart-for-lin-with-sysconfig" title="Permalink to this heading">¶</a></h2>
-<p>LIN mode is supported on UART peripherals with UART Extend functionality. Refer to the device data sheet for the device-specific details on the UART peripherals.</p>
-<p>Users can easily configure their device for LIN by using SysConfig. Refer to the <a class="reference external" href="../../../../tools/sysconfig_guide/SysConfig_Guide_for_MSPM0_CN.html">Using SysConfig with MSPM0</a></p>
-<p>To add LIN to your project in SysConfig, add the UART-LIN module as shown below.</p>
+<section id="sysconfig-lin-uart">
+<h2>2. 使用 SysConfig 为 LIN 配置 UART<a class="headerlink" href="#sysconfig-lin-uart" title="Permalink to this heading">¶</a></h2>
+<p>具有 UART 扩展功能的 UART 外设支持 LIN 模式。 有关 UART 外设的特定于器件的详细信息，请参考器件数据表。</p>
+<p>用户可以使用 SysConfig 轻松为 LIN 配置其器件。 有关如何下载、安装和开始使用 SysConfig 的更多详细信息，请参考<a class="reference external" href="../../../../tools/sysconfig_guide/SysConfig_Guide_for_MSPM0.html">将 SysConfig 与 MSPM0 配合使用</a>。</p>
+<p>要在 SysConfig 中将 LIN 添加到工程，如下所示添加 UART-LIN 模块。</p>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_add_syscfg_module.png" />
 </figure>
-<p>Along with allowing the user to configure the basic UART properties for the UART peripheral, the UART-LIN module also allows users to configure the following LIN settings:</p>
+<p>除了允许用户为 UART 外设配置基本的 UART 属性外，UART-LIN 模块还允许用户配置以下 LIN 设置：</p>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_syscfg_configs.png" />
 </figure>
-<p>These settings are discussed in more detail in the sections below.</p>
-<section id="enable-lin-counter">
-<h3>Enable LIN counter<a class="headerlink" href="#enable-lin-counter" title="Permalink to this heading">¶</a></h3>
+<p>以下部分将详细介绍这些设置。</p>
+<section id="lin">
+<h3>启用 LIN 计数器<a class="headerlink" href="#lin" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_enable_lin_counter.png" />
 </figure>
-<p>This enables the 16 bit up-counter LIN counter, LINCNT. The LIN counter will only count when the counter is enabled.</p>
+<p>这会启用 16 位 LIN 向上计数器 LINCNT。LIN 计数器仅在计数器启用后计数。</p>
 </section>
-<section id="enable-and-configure-lin-counter-compare-match-mode">
-<h3>Enable and configure LIN Counter Compare Match mode<a class="headerlink" href="#enable-and-configure-lin-counter-compare-match-mode" title="Permalink to this heading">¶</a></h3>
+<section id="id2">
+<h3>启用和配置 LIN 计数器比较匹配模式<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_counter_compare_match_config.png" />
 </figure>
-<p>The <strong>Counter Compare Match mode</strong> allows the user to detect timing between edge events. This is done by enabling the LIN counter, LINCNT, to be compared to a set value in the 16 bit capture register, LINC0. This functionality is useful for LIN break detection where a valid break can be detected when RXD is low for 9.5 consecutive bits.</p>
-<p>When this mode is enabled, SysConfig provides the calculated value of one Tbit, where a Tbit is the nominal time required to transmit a bit. Tbit is calculated as:</p>
+<p><strong>Counter Compare Match mode</strong> 允许用户检测边沿事件之间的计时。方式是启用 LIN 计数器 LINCNT，以便与 16 位捕获寄存器 LINC0 中的设定值进行比较。此功能对于 LIN 中断检测很有用，当 RXD 在 9.5 个连续位中处于低电平时，可检测到有效中断。</p>
+<p>启用此模式时，SysConfig 提供一个 Tbit （传输一个位所需的标称时间）的计算值。Tbit 的计算方法为：</p>
 <ul class="simple">
-<li><p>Tbit = (UART Clock Source Frequency) / (UART Baud Rate)</p></li>
+<li><p>Tbit =（UART 时钟源频率）/（UART 波特率）</p></li>
 </ul>
-<p>For example, with a clock source of 32MHz, a baudrate of 19200bps, <strong>Tbit Width</strong> is:</p>
+<p>例如，时钟源的频率为 32MHz，波特率为 19200bps，则 <strong>Tbit Width</strong> 是：</p>
 <ul class="simple">
 <li><p>Tbit = (32,000,0000) / (19,200) = 1,666</p></li>
 </ul>
-<p>The user can provide the counter compare value in Tbits. For example, to set the to set the counter compare value to 9.5 Tbits, the user should set the <strong>Counter Compare Timing</strong> value to “9.5”.</p>
-<p>After setting the value in Tbits to be compared to, SysConfig provides the value in cycles that the counter compare register LINC0 is set to. In this example, the <strong>Counter Compare Value</strong> in cycles is 15,833.</p>
-<p>Interrupt capability can be enabled to trigger on a counter compare match. Select the <strong>LINC0 match</strong> interrupt in the <strong>Interrupt Configuration</strong> section to enable triggering an interrupt on match with the set counter compare value.</p>
+<p>用户可以提供以 Tbit 为单位的计数器比较值。例如，要将计数器比较值设置为 9.5 Tbit，用户应该将 <strong>Counter Compare Timing</strong> 值设置为“9.5”。</p>
+<p>以 Tbit 为单位设置要比较的值后，SysConfig 还提供以周期为单位的值（计数器比较寄存器 LINC0 设置为此值）。在此示例中，以周期为单位的 <strong>Counter Compare Value</strong> 为 15,833。</p>
+<p>可启用中断功能，以便在计数器比较匹配时触发中断。在 <strong>Interrupt Configuration</strong> 部分中选择 <strong>LINC0 match</strong> 中断，以便在与设置的计数器比较值匹配时触发中断。</p>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_linc0_match.png" />
 </figure>
-<p>When <strong>Counter Compare Match mode</strong> is enabled, the other mode of LINCNT, Capture on RXD falling edge, is automatically disabled. These options are mutually exclusive.</p>
+<p>启用 <strong>Counter Compare Match mode</strong> 时，会自动禁用 LINCNT 的另一种模式“Capture on RXD falling edge”。这两个选项是互斥的。</p>
 </section>
-<section id="enable-capture-on-rxd-falling-edge">
-<h3>Enable Capture on RXD Falling Edge<a class="headerlink" href="#enable-capture-on-rxd-falling-edge" title="Permalink to this heading">¶</a></h3>
+<section id="rxd">
+<h3>启用在 RXD 下降沿捕获<a class="headerlink" href="#rxd" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_capture_on_rxd_falling.png" />
 </figure>
-<p>Capture on RXD Falling edge allows the user to validate the timings of events. This is done by configuring the 16 bit capture register, LINC0, to capture the value of the LIN counter, LINCNT, on a RXD falling edge. This can be used in conjunction with the <strong>Enable Capture on RXD Rising Edge</strong> feature to perform SYNC field validation by measuring the bit timings of the signal, and using the values in LINC0 and LINC1 to validate the capture timings.</p>
-<p>Interrupt capability can be enabled to trigger on an RXD falling edge. Select the <strong>LIN falling edge</strong> interrupt in the <strong>Interrupt Configuration</strong> section to enable triggering an interrupt when the LINC0 counter captures a value to the LINC0 register on each RXD falling edge.</p>
+<p>“Capture on RXD Falling Edge”可使用户验证事件时序。方式是配置 16 位捕获寄存器 LINC0，使其在 RXD 下降沿捕获 LIN 计数器 LINCNT 的值。它可以与<strong>启用在 RXD 上升沿捕获</strong>特性联合使用，通过测量信号的位时序并使用 LINC0 和 LINC1 中的值验证捕获时序，以执行同步域验证。</p>
+<p>可启用中断功能，以便在 RXD 下降沿触发中断。在 <strong>Interrupt Configuration</strong> 部分中选择 <strong>LIN falling edge</strong> 中断，以便在 LINC0 计数器在每个 RXD 下降沿将值捕获到 LINC0 寄存器时触发中断。</p>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_lin_falling_edge_int.png" />
 </figure>
-<p>When <strong>Capture on RXD Falling Edge</strong> is enabled, the other mode of LINCNT, <strong>Counter Compare Match mode</strong>, is automatically disabled. These options are mutually exclusive.</p>
+<p>启用 <strong>Capture on RXD Falling Edge</strong> 时，会自动禁用 LINCNT 的另一种模式 <strong>Counter Compare Match mode</strong>。这两个选项是互斥的。</p>
 </section>
-<section id="enable-counter-reset-on-rxd-falling-edge">
-<h3>Enable Counter Reset on RXD Falling Edge<a class="headerlink" href="#enable-counter-reset-on-rxd-falling-edge" title="Permalink to this heading">¶</a></h3>
+<section id="id3">
+<h3>启用在 RXD 下降沿计数器复位<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_counter_reset.png" />
 </figure>
-<p>When <strong>Counter Reset on RXD Falling Edge</strong> is enabled, the LIN counter, LINCNT, will be reset to a value of 0 when a falling edge of RXD is detected. The LIN counter will immediately continue to count after the value is reset. This is useful during SYNC field validation to continuously count the bit times on each new falling edge.</p>
+<p>启用 <strong>Counter Reset on RXD Falling Edge</strong> 时，LIN 计数器 LINCNT 将在 检测到 RXD 的下降沿时重置为值 0。在重置该值后，LIN 计数器将立即继续计数。在同步域验证期间，这有助于持续计算每个新下降沿上的位时间。</p>
 </section>
-<section id="enable-count-while-rxd-is-low">
-<h3>Enable Count while RXD is Low<a class="headerlink" href="#enable-count-while-rxd-is-low" title="Permalink to this heading">¶</a></h3>
+<section id="id4">
+<h3>启用在 RXD 低电平时计数<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_count_while_low.png" />
 </figure>
-<p>When enabled, the LIN counter, LINCNT, will count while there is a low signal on RXD. This is useful for break field detection, so the LIN counter can count the length of the RXD low signal to determine if it is a break field. The LIN counter must be first enabled before counting.</p>
+<p>启用后，LIN 计数器 LINCNT 会在 RXD 上有低电平信号时计数。这有助于检测中断域，因此 LIN 计数器可以计算 RXD 低电平信号的长度，以确定它是否是中断域。 在计数前，必须首先启用 LIN 计数器。</p>
 </section>
-<section id="enable-capture-on-rxd-rising-edge">
-<h3>Enable Capture on RXD Rising Edge<a class="headerlink" href="#enable-capture-on-rxd-rising-edge" title="Permalink to this heading">¶</a></h3>
+<section id="id5">
+<h3>启用在 RXD 上升沿捕获<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_capture_on_rxd_rising.png" />
 </figure>
-<p>When enabled, the 16-bit capture register, LINC1, will capture the value of the LIN counter, LINCNT, on each rising RXD edge. This can be used in conjunction with the <strong>Enable Capture on RXD Falling Edge</strong> feature to perform SYNC field validation by measuring the bit timings of the signal, and using the values in LINC0 and LINC1 to validate the capture timings.</p>
-<p>Interrupt capability can be enabled to trigger on an RXD rising edge. Select the <strong>LIN rising edge</strong> interrupt in the <strong>Interrupt Configuration</strong> section to enable triggering an interrupt when the LINC1 counter captures a value to the LINC0 register on each RXD rising edge.</p>
+<p>启用后，16 位捕获寄存器 LINC1 将在每个 RXD 上升沿捕获 LIN 计数器 LINCNT 的值。它可以与<strong>启用在 RXD 下降沿捕获</strong>特性联合使用，通过测量信号的位时序并使用 LINC0 和 LINC1 中的值验证捕获时序，以执行同步域验证。</p>
+<p>可启用中断功能，以便在 RXD 上升沿触发中断。在 <strong>Interrupt Configuration</strong> 部分中选择 <strong>LIN rising edge</strong> 中断，以便在 LINC1 计数器在每个 RXD 上升沿将值捕获到 LINC0 寄存器时触发中断。</p>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_lin_rising_edge_int.png" />
 </figure>
 </section>
-<section id="quick-profile">
-<h3>Quick Profile<a class="headerlink" href="#quick-profile" title="Permalink to this heading">¶</a></h3>
-<p>A Quick Profile is provided in the UART-LIN module that gives some basic recommendations on how to configure the LIN settings.</p>
-<p>The <strong>LIN at 19220 baud with Break Detection</strong> Quick Profile configures the UART peripheral at 19200 baud, and configures the LIN setting to handle break detection.</p>
+<section id="id6">
+<h3>快速配置文件<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<p>UART-LIN 模块中提供了一个快速配置文件，就如何配置 LIN 设置给出了一些基本的建议。</p>
+<p>快速配置文件 <strong>LIN at 19220 baud with Break Detection</strong> 将 UART 外设配置为 19200 波特，并配置 LIN 设置以处理中断检测。</p>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_syscfg_profile.png" />
 </figure>
 <figure class="align-default">
 <img alt="" src="../_images/lin_guide_profile_settings.png" />
 </figure>
-<p>After selecting the profile, users can then modify these settings to be further suited for their application.</p>
-<p>Refer to the device specific Technical Reference Manual (TRM) for more details on the UART LIN configuration.</p>
+<p>选择配置文件后，用户可以修改这些设置，以更加适合其应用。</p>
+<p>有关 UART LIN 配置的更多详细信息，请参考特定于器件的技术参考手册 （TRM）。</p>
 </section>
 </section>
-<section id="example-applications">
-<h2>3. Example Applications<a class="headerlink" href="#example-applications" title="Permalink to this heading">¶</a></h2>
-<p>The MSPM0 SDK provides two example applications to use as a starting point for LIN applications:</p>
+<section id="id7">
+<h2>3. 示例应用程序<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>MSPM0 SDK 提供两个示例应用程序，以作为 LIN 应用程序的起点：</p>
 <ul class="simple">
-<li><p><strong>lin_commander</strong>: Configures the UART as a LIN Commander, and demonstrates basic transmit of LIN 2.0 packet using enhanced checksum</p></li>
-<li><p><strong>lin_responder</strong>: Configures the UART as a LIN Responder, and demonstrates break field detection and sync field validation of the received LIN header</p></li>
+<li><p><strong>lin_commander</strong>：将 UART 配置为 LIN 命令器，并演示使用增强校验和的 LIN 2.0 数据包基本传输过程</p></li>
+<li><p><strong>lin_responder</strong>：将 UART 配置为 LIN 响应器，并演示接收的 LIN 报头的中断域检测和同步域验证</p></li>
 </ul>
-<p>These examples can be found at <code class="docutils literal notranslate"><span class="pre">&lt;SDK_INSTALL_DIRECTORY&gt;/examples/nortos/&lt;LaunchPad&gt;/lin</span></code>.</p>
-<p>The <strong>lin_commander</strong> and <strong>lin_responder</strong> examples can be used on two separate MSPM0 devices to communicate with each other. Alternatively, a Network Analyzer compatible with LIN 2.0 can be used with either example as well.</p>
-<p>The LIN examples in the SDK are used with the Texas Instruments <a class="reference external" href="https://www.ti.com/tool/BOOSTXL-CANFD-LIN">BOOSTXL-CANFD-LIN BoosterPack</a>, which features the <a class="reference external" href="https://www.ti.com/product/TLIN2029-Q1">TLIN2029-Q1</a> fault protected LIN transceiver.</p>
-<p>Refer to the examples README files for more details on connecting the MSPM0 LaunchPad to the LIN transceiver, as well as detailed instructions on how to run the example.</p>
-<section id="modifying-the-example-applications">
-<h3>Modifying the Example Applications<a class="headerlink" href="#modifying-the-example-applications" title="Permalink to this heading">¶</a></h3>
-<p>Each LIN example application include a <code class="docutils literal notranslate"><span class="pre">lin_config.c</span></code> and <code class="docutils literal notranslate"><span class="pre">lin_config.h</span></code> file. These files contain macros that can be modified based on the user applications. It is recommended to only change these macros once the user has gained familiarity with the usage of the example application.</p>
-<p><code class="docutils literal notranslate"><span class="pre">lin_config.h</span></code> contains the definition of the struct <code class="docutils literal notranslate"><span class="pre">LIN_table_record_t</span></code> which allows the user to define a PID, the number of bytes associated with the data field for that PID, as well as a callback function for when that PID is received.</p>
-<p>Below is an example definition of a <code class="docutils literal notranslate"><span class="pre">LIN_table_record_t</span></code> struct:</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">&lt;SDK_INSTALL_DIRECTORY&gt;/examples/nortos/&lt;LaunchPad&gt;/lin</span></code> 中可以找到这些示例。</p>
+<p>可以在两个不同的 MSPM0 器件上使用 <strong>lin_commander</strong> 和 <strong>lin_responder</strong> 示例进行彼此通信。 也可以在兼容 LIN 2.0 的网络分析器上使用任一示例。</p>
+<p>SDK 中的 LIN 示例配合德州仪器 （TI） <a class="reference external" href="https://www.ti.com/tool/BOOSTXL-CANFD-LIN">BOOSTXL-CANFD-LIN BoosterPack</a> 使用，它拥有 <a class="reference external" href="https://www.ti.com/product/TLIN2029-Q1">TLIN2029-Q1</a> 故障保护 LIN 收发器。</p>
+<p>有关将 MSPM0 LaunchPad 连接到 LIN 收发器的更多详细信息，以及关于如何运行示例的详细说明，请参考示例 README 文件。</p>
+<section id="id8">
+<h3>修改示例应用程序<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>每个 LIN 示例应用程序都包含一个 <code class="docutils literal notranslate"><span class="pre">lin_config.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">lin_config.h</span></code> 文件。 这些文件包含可基于用户应用程序修改的宏。 建议用户仅在熟悉示例应用程序的使用后 更改这些宏。</p>
+<p><code class="docutils literal notranslate"><span class="pre">lin_config.h</span></code> 包含结构 <code class="docutils literal notranslate"><span class="pre">LIN_table_record_t</span></code> 的定义， 该结构允许用户定义 PID、与该 PID 的数据域关联的字节数 以及收到该 PID 时的回调函数。</p>
+<p>下面是 <code class="docutils literal notranslate"><span class="pre">LIN_table_record_t</span></code> 结构的定义示例定义：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LIN_table_record_t</span> <span class="n">messageTable</span><span class="p">[</span><span class="n">LIN_COMMANDER_NUM_MSGS</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">{</span><span class="mh">0xBA</span><span class="p">,</span> <span class="o">/*</span> <span class="n">PID</span> <span class="mh">0x3A</span> <span class="o">*/</span>
         <span class="mi">8</span><span class="p">,</span>
@@ -230,13 +230,13 @@
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>In this example, the first struct member is <code class="docutils literal notranslate"><span class="pre">{0xBA,</span> <span class="pre">8,</span> <span class="pre">NULL}</span></code>.</p>
+<p>在此示例中，第一个结构成员是 <code class="docutils literal notranslate"><span class="pre">{0xBA,</span> <span class="pre">8,</span> <span class="pre">NULL}</span></code>。</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">0xBA</span></code> is the frame ID representing a PID of 0x3A. Refer to the LIN specification on how to determine the PID.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">8</span></code> is the number of bytes that is expected in the data field for a packet with PID 0x3A.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NULL</span></code> tells the application that no callback function should be called when a packet with PID 0x3A is received.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0xBA</span></code> 是代表 PID 0x3A 的帧 ID。请参考关于如何确定 PID 的 LIN 规范。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">8</span></code> 是 PID 为 0x3A 的数据包的数据域中期望的字节数。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NULL</span></code> 告知应用程序当收到 PID 为 0x3A 的数据包时，不调用回调函数。</p></li>
 </ul>
-<p>The second member of the struct is <code class="docutils literal notranslate"><span class="pre">{0x0D,</span> <span class="pre">5,</span> <span class="pre">LIN_processMessage_Rx}</span></code>. This member definition points to the user-defined callback function <code class="docutils literal notranslate"><span class="pre">LIN_processMessage_Rx</span></code>, which tells the application to call this function when a packet with PID 0x0D is received.</p>
+<p>该结构的第二个成员是 <code class="docutils literal notranslate"><span class="pre">{0x0D,</span> <span class="pre">5,</span> <span class="pre">LIN_processMessage_Rx}</span></code>。此成员定义指向用户定义的回调函数 <code class="docutils literal notranslate"><span class="pre">LIN_processMessage_Rx</span></code>，它告知应用程序当收到 PID 为 0x0D 的数据包时调用此函数。</p>
 </section>
 </section>
 </section>

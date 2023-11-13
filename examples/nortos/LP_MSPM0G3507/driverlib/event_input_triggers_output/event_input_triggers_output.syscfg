@@ -38,4 +38,5 @@ GPIO2.associatedPins[0].direction        = "INPUT";
 GPIO2.associatedPins[0].interruptEn      = true;
 GPIO2.associatedPins[0].pin.$assign      = "PB21";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

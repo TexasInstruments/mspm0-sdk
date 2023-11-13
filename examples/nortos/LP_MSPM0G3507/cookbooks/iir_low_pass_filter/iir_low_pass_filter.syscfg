@@ -37,5 +37,5 @@ DAC12.peripheral.OutPin.$assign = "PA15";
 
 SYSCTL.MFCLKEn  = true;
 SYSCTL.MFPCLKEn = true;
-
+SYSCTL.forceDefaultClkConfig = true;
 

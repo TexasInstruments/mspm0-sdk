@@ -36,4 +36,5 @@ PWM1.PWM_CHANNEL_0.shadowUpdateMode = "ZERO_EVT";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.MFCLKEn     = true;
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

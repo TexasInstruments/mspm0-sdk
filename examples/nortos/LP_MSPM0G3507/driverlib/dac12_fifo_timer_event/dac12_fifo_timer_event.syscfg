@@ -31,7 +31,8 @@ const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.MFPCLKEn          = true;
 SYSCTL.enableSleepOnExit = true;
-SYSCTL.clockTreeEn       = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn        = true;
 
 TIMER1.$name                       = "TIMER_0";
 TIMER1.timerClkSrc                 = "LFCLK";

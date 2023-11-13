@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['uart_5fcallback',['UART_Callback',['../group___u_a_r_t.html#gad76c76927ec6631b4866dad2aad1a65f',1,'UART.h']]],
-  ['uart_5fconfig',['UART_Config',['../group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html#ga68be81b9ce429a5e5c3ac02d285dbd3b',1,'UARTSupportMSPM0L11XX_L13XX.h']]],
-  ['uart_5feventcallback',['UART_EventCallback',['../group___u_a_r_t.html#ga73ea5d30bfa43c6989d0526453835570',1,'UART.h']]],
-  ['uart_5fhandle',['UART_Handle',['../group___u_a_r_t.html#gab69886c7119a5054a972d8c735f15928',1,'UART.h']]]
+  ['i2c_5fcallbackfxn',['I2C_CallbackFxn',['../group___i2_c.html#gadaa5c99b7c23a00bac52d15a2469764e',1,'I2C.h']]],
+  ['i2c_5fconfig',['I2C_Config',['../group___i2_c.html#gae43e4c7b224a8cc37764acb792182453',1,'I2C.h']]],
+  ['i2c_5fhandle',['I2C_Handle',['../group___i2_c.html#ga1d8718f847129c7aa61dd1c264d8a13c',1,'I2C.h']]]
 ];

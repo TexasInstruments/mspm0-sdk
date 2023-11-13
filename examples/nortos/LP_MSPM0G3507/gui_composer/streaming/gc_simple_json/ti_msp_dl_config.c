@@ -38,6 +38,7 @@ void SYSCFG_DL_init(void)
     SYSCFG_DL_GPIO_init();
     SYSCFG_DL_UART_init();
     SYSCFG_DL_TIMER_init();
+    SYSCFG_DL_SYSCTL_init();
 }
 
 void SYSCFG_DL_initPower(void)
@@ -82,6 +83,19 @@ void SYSCFG_DL_GPIO_init(void)
         GPIO_SWITCHES2_PORT, GPIO_SWITCHES2_USER_SWITCH_1_PIN);
     DL_GPIO_enableInterrupt(
         GPIO_SWITCHES2_PORT, GPIO_SWITCHES2_USER_SWITCH_1_PIN);
+}
+
+void SYSCFG_DL_SYSCTL_init(void)
+{
+    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+    /* Set default configuration */
+    DL_SYSCTL_disableHFXT();
+    DL_SYSCTL_disableSYSPLL();
+    DL_SYSCTL_setMCLKDivider(DL_SYSCTL_MCLK_DIVIDER_DISABLE);
+    DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_1);
+
+    //Low Power Mode is configured to be SLEEP0
+    DL_SYSCTL_setBORThreshold(DL_SYSCTL_BOR_THRESHOLD_LEVEL_0);
 }
 
 static const DL_UART_Main_ClockConfig gUARTClockConfig = {

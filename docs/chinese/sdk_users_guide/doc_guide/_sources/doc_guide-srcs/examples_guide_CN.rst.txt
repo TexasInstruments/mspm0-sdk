@@ -22,6 +22,9 @@ MSPM0 SDK 包含多个演示，展示了 各种器件的功能。
 
 敬请期待更多示例和功能。
 
+2.1.1 开箱即用体验
+^^^^^^^^^^^^^^^^^^
+
 .. raw:: html
 
    <table class="docutils align-default">
@@ -108,198 +111,6 @@ LP\_MSPM0L1306
 
    <td>
 
-blood\_pressure\_monitor
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Blood Pressure Monitor demos
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-是
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-bq769x2\_control\_i2c
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Demonstrate BQ769x2 control through I2C
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image1|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-dualray\_smoke\_detector
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Dualray smoke detector demo
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image2|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-one\_wire
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-1-wire target emulating a EEPROM interface
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image3|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
 out\_of\_box
 
 .. raw:: html
@@ -310,55 +121,7 @@ out\_of\_box
 
    <td>
 
-Out of Box experience for MSPM0 LaunchPads
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-是
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-是
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-pulse\_oximeter
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Pulse oximeter demos
+MSPM0 LaunchPad 的开箱即用体验
 
 .. raw:: html
 
@@ -378,7 +141,7 @@ Pulse oximeter demos
 
    <td align="center">
 
-|image4|
+是
 
 .. raw:: html
 
@@ -401,8 +164,8 @@ DriverLib 是一组底层驱动程序，可提供用于 访问 MSPM0 寄存器�
 
 每个示例都自带文档、完整的源代码，以及 对应其所支持的不同 IDE 和编译器的工程文件， 因而使得示例简单易用。
 
-2.2.1 AES Accelerator (AES)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.1 AES 加速器 (AES)
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -500,7 +263,7 @@ aes\_cbc\_256\_enc\_dec
 
    <td>
 
-AES256 CBC encryption and decryption example
+AES256 CBC 加密和解密示例
 
 .. raw:: html
 
@@ -510,7 +273,7 @@ AES256 CBC encryption and decryption example
 
    <td align="center">
 
-|image5|
+|image1|
 
 .. raw:: html
 
@@ -548,7 +311,7 @@ aes\_cfb\_256\_decrypt
 
    <td>
 
-AES CFB 256 bit decryption example
+AES CFB 256 位解密示例
 
 .. raw:: html
 
@@ -558,7 +321,7 @@ AES CFB 256 bit decryption example
 
    <td align="center">
 
-|image6|
+|image2|
 
 .. raw:: html
 
@@ -596,7 +359,7 @@ aes\_ofb\_128\_encrypt
 
    <td>
 
-AES OFB 128 bit encryption example
+AES OFB 128 位加密示例
 
 .. raw:: html
 
@@ -606,7 +369,7 @@ AES OFB 128 bit encryption example
 
    <td align="center">
 
-|image7|
+|image3|
 
 .. raw:: html
 
@@ -630,8 +393,8 @@ AES OFB 128 bit encryption example
 
    </table>
 
-2.2.2 Analog-to-Digital Converter (ADC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.2 模数转换器 (ADC)
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -729,7 +492,103 @@ adc12\_14bit\_resolution
 
    <td>
 
-ADC12 conversion at maximum frequency using DMA with hardware averaging enabled
+在启用硬件均值的情况下使用 DMA 以最大频率执行 ADC12 转换
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image4|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image5|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+adc12\_max\_freq\_dma
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+使用 DMA 以最大频率执行 ADC12 转换
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image6|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image7|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+adc12\_max\_freq\_dma\_8bit
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+使用 DMA 以最大频率和 8 位分辨率执行 ADC12 转换
 
 .. raw:: html
 
@@ -767,7 +626,7 @@ ADC12 conversion at maximum frequency using DMA with hardware averaging enabled
 
    <td>
 
-adc12\_internal\_temp\_sensor\_mathacl
+adc12\_monitor\_supply
 
 .. raw:: html
 
@@ -777,7 +636,7 @@ adc12\_internal\_temp\_sensor\_mathacl
 
    <td>
 
-ADC12 samples internal temperature sensor and converts reading to Celsius and Fahrenheit degrees
+ADC12 监测电压电源通道
 
 .. raw:: html
 
@@ -797,199 +656,7 @@ ADC12 samples internal temperature sensor and converts reading to Celsius and Fa
 
    <td align="center">
 
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-adc12\_max\_freq\_dma
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-ADC12 conversion at maximum frequency using DMA
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
 |image11|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image12|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-adc12\_max\_freq\_dma\_8bit
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-ADC12 conversion at maximum frequency using DMA in 8 bit resolution
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image13|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image14|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-adc12\_monitor\_supply
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-ADC12 monitors voltage supply channel
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image15|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image16|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-adc12\_sequence\_conversion
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Demonstrate configuring ADC to trigger sequence of conversions on 4 different channels
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image17|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image18|
 
 .. raw:: html
 
@@ -1017,7 +684,7 @@ adc12\_simultaneous\_trigger\_event
 
    <td>
 
-Dual ADC12 conversion triggered by a Timer event
+由计时器事件触发双重 ADC12 转换
 
 .. raw:: html
 
@@ -1027,7 +694,7 @@ Dual ADC12 conversion triggered by a Timer event
 
    <td align="center">
 
-|image19|
+|image12|
 
 .. raw:: html
 
@@ -1065,7 +732,7 @@ adc12\_simultaneous\_trigger\_event\_stop
 
    <td>
 
-Dual ADC12 conversion triggered by a Timer event while in STOP mode
+在 STOP 模式下由计时器事件触发双重 ADC12 转换
 
 .. raw:: html
 
@@ -1075,7 +742,7 @@ Dual ADC12 conversion triggered by a Timer event while in STOP mode
 
    <td align="center">
 
-|image20|
+|image13|
 
 .. raw:: html
 
@@ -1113,7 +780,7 @@ adc12\_single\_conversion
 
    <td>
 
-ADC12 simple single conversion triggered by software
+由软件触发简单的 ADC12 单次转换
 
 .. raw:: html
 
@@ -1123,7 +790,7 @@ ADC12 simple single conversion triggered by software
 
    <td align="center">
 
-|image21|
+|image14|
 
 .. raw:: html
 
@@ -1133,7 +800,7 @@ ADC12 simple single conversion triggered by software
 
    <td align="center">
 
-|image22|
+|image15|
 
 .. raw:: html
 
@@ -1161,7 +828,7 @@ adc12\_single\_conversion\_vref\_external
 
    <td>
 
-ADC12 single conversion triggered by software using external reference
+由软件使用外部基准触发 ADC12 单次转换
 
 .. raw:: html
 
@@ -1171,7 +838,7 @@ ADC12 single conversion triggered by software using external reference
 
    <td align="center">
 
-|image23|
+|image16|
 
 .. raw:: html
 
@@ -1181,7 +848,7 @@ ADC12 single conversion triggered by software using external reference
 
    <td align="center">
 
-|image24|
+|image17|
 
 .. raw:: html
 
@@ -1209,7 +876,7 @@ adc12\_single\_conversion\_vref\_internal
 
    <td>
 
-ADC12 single conversion triggered by software using internal VREF
+由软件使用内部 VREF 触发 ADC12 单次转换
 
 .. raw:: html
 
@@ -1219,7 +886,7 @@ ADC12 single conversion triggered by software using internal VREF
 
    <td align="center">
 
-|image25|
+|image18|
 
 .. raw:: html
 
@@ -1229,7 +896,7 @@ ADC12 single conversion triggered by software using internal VREF
 
    <td align="center">
 
-|image26|
+|image19|
 
 .. raw:: html
 
@@ -1257,7 +924,7 @@ adc12\_triggered\_by\_timer\_event
 
    <td>
 
-ADC12 conversion triggered by a Timer event
+由计时器事件触发 ADC12 转换
 
 .. raw:: html
 
@@ -1267,7 +934,7 @@ ADC12 conversion triggered by a Timer event
 
    <td align="center">
 
-|image27|
+|image20|
 
 .. raw:: html
 
@@ -1277,7 +944,7 @@ ADC12 conversion triggered by a Timer event
 
    <td align="center">
 
-|image28|
+|image21|
 
 .. raw:: html
 
@@ -1305,7 +972,7 @@ adc12\_triggered\_by\_timer\_event\_stop
 
    <td>
 
-ADC12 conversion triggered by a Timer event while in STOP mode
+在 STOP 模式下由计时器事件触发 ADC12 转换
 
 .. raw:: html
 
@@ -1315,7 +982,7 @@ ADC12 conversion triggered by a Timer event while in STOP mode
 
    <td align="center">
 
-|image29|
+|image22|
 
 .. raw:: html
 
@@ -1325,7 +992,7 @@ ADC12 conversion triggered by a Timer event while in STOP mode
 
    <td align="center">
 
-|image30|
+|image23|
 
 .. raw:: html
 
@@ -1353,7 +1020,7 @@ adc12\_window\_comparator
 
    <td>
 
-ADC12 single conversion in repeat mode using window comparator feature
+在重复模式下使用窗口比较器功能执行 ADC12 单次转换
 
 .. raw:: html
 
@@ -1363,7 +1030,7 @@ ADC12 single conversion in repeat mode using window comparator feature
 
    <td align="center">
 
-|image31|
+|image24|
 
 .. raw:: html
 
@@ -1373,7 +1040,7 @@ ADC12 single conversion in repeat mode using window comparator feature
 
    <td align="center">
 
-|image32|
+|image25|
 
 .. raw:: html
 
@@ -1387,8 +1054,8 @@ ADC12 single conversion in repeat mode using window comparator feature
 
    </table>
 
-2.2.3 Comparator (COMP)
-^^^^^^^^^^^^^^^^^^^^^^^
+2.2.3 比较器 (COMP)
+^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -1486,7 +1153,7 @@ comp\_analog\_filter
 
    <td>
 
-Comparator using external inputs with hysteresis and output analog filter
+比较器使用外部输入且具有迟滞和输出模拟滤波器
 
 .. raw:: html
 
@@ -1496,7 +1163,7 @@ Comparator using external inputs with hysteresis and output analog filter
 
    <td align="center">
 
-|image33|
+|image26|
 
 .. raw:: html
 
@@ -1506,7 +1173,7 @@ Comparator using external inputs with hysteresis and output analog filter
 
    <td align="center">
 
-|image34|
+|image27|
 
 .. raw:: html
 
@@ -1534,7 +1201,7 @@ comp\_dac\_to\_timer\_event
 
    <td>
 
-Comparator output using 8-bit DAC triggers a timer event to measure timing
+使用 8 位 DAC 的比较器输出触发计时器事件以测量计时
 
 .. raw:: html
 
@@ -1544,7 +1211,7 @@ Comparator output using 8-bit DAC triggers a timer event to measure timing
 
    <td align="center">
 
-|image35|
+|image28|
 
 .. raw:: html
 
@@ -1554,7 +1221,7 @@ Comparator output using 8-bit DAC triggers a timer event to measure timing
 
    <td align="center">
 
-|image36|
+|image29|
 
 .. raw:: html
 
@@ -1582,7 +1249,7 @@ comp\_hs\_dac\_vref\_external
 
    <td>
 
-Comparator in high-speed mode using 8-bit DAC with external VREF
+比较器处于高速模式并将 8 位 DAC 与外部 VREF 搭配使用
 
 .. raw:: html
 
@@ -1592,7 +1259,7 @@ Comparator in high-speed mode using 8-bit DAC with external VREF
 
    <td align="center">
 
-|image37|
+|image30|
 
 .. raw:: html
 
@@ -1602,7 +1269,7 @@ Comparator in high-speed mode using 8-bit DAC with external VREF
 
    <td align="center">
 
-|image38|
+|image31|
 
 .. raw:: html
 
@@ -1630,7 +1297,7 @@ comp\_hs\_tima\_pwm\_fault
 
    <td>
 
-Comparator in high-speed mode triggers a TIMA fault
+高速模式下的比较器触发 TIMA 故障
 
 .. raw:: html
 
@@ -1640,7 +1307,7 @@ Comparator in high-speed mode triggers a TIMA fault
 
    <td align="center">
 
-|image39|
+|image32|
 
 .. raw:: html
 
@@ -1678,7 +1345,7 @@ comp\_lp\_dac\_vref\_internal
 
    <td>
 
-Comparator in low-power mode using 8-bit DAC with internal VREF
+比较器处于低速模式并将 8 位 DAC 与内部 VREF 搭配使用
 
 .. raw:: html
 
@@ -1688,7 +1355,7 @@ Comparator in low-power mode using 8-bit DAC with internal VREF
 
    <td align="center">
 
-|image40|
+|image33|
 
 .. raw:: html
 
@@ -1712,8 +1379,8 @@ Comparator in low-power mode using 8-bit DAC with internal VREF
 
    </table>
 
-2.2.4 Controller Area Network (CAN)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.4 控制器局域网 (CAN)
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -1811,7 +1478,7 @@ mcan\_loopback
 
    <td>
 
-MCAN transmits and receives messages using loopback mode
+MCAN 使用环回模式发送和接收消息
 
 .. raw:: html
 
@@ -1821,7 +1488,7 @@ MCAN transmits and receives messages using loopback mode
 
    <td align="center">
 
-|image41|
+|image34|
 
 .. raw:: html
 
@@ -1859,7 +1526,7 @@ mcan\_message\_rx
 
    <td>
 
-Example configured to receive CAN and CAN-FD frames
+示例配置用于接收 CAN 和 CAN-FD 帧
 
 .. raw:: html
 
@@ -1869,7 +1536,7 @@ Example configured to receive CAN and CAN-FD frames
 
    <td align="center">
 
-|image42|
+|image35|
 
 .. raw:: html
 
@@ -1907,7 +1574,7 @@ mcan\_message\_rx\_tcan114x
 
    <td>
 
-Example configured to receive CAN and CAN-FD frames using BOOSTXL-TCAN1145 boosterpack.
+示例配置用于使用 BOOSTXL-TCAN1145 boosterpack 接收 CAN 和 CAN-FD 帧。
 
 .. raw:: html
 
@@ -1917,7 +1584,7 @@ Example configured to receive CAN and CAN-FD frames using BOOSTXL-TCAN1145 boost
 
    <td align="center">
 
-|image43|
+|image36|
 
 .. raw:: html
 
@@ -1955,7 +1622,7 @@ mcan\_multi\_message\_tx
 
    <td>
 
-CAN-FD transmits two messages with unique ID on GPIO interrupt
+CAN-FD 在 GPIO 中断时发送两条具有唯一 ID 的消息
 
 .. raw:: html
 
@@ -1965,7 +1632,7 @@ CAN-FD transmits two messages with unique ID on GPIO interrupt
 
    <td align="center">
 
-|image44|
+|image37|
 
 .. raw:: html
 
@@ -2003,7 +1670,7 @@ mcan\_multi\_message\_tx\_tcan114x
 
    <td>
 
-CAN-FD transmits two messages with unique ID on GPIO interrupt using BOOSTXL-TCAN1145 boosterpack.
+CAN-FD 在 GPIO 中断时使用 BOOSTXL-TCAN1145 boosterpack 发送两条具有唯一 ID 的消息。
 
 .. raw:: html
 
@@ -2013,7 +1680,7 @@ CAN-FD transmits two messages with unique ID on GPIO interrupt using BOOSTXL-TCA
 
    <td align="center">
 
-|image45|
+|image38|
 
 .. raw:: html
 
@@ -2051,7 +1718,7 @@ mcan\_single\_message\_tx
 
    <td>
 
-CAN-FD transmits a single message on GPIO interrupt
+CAN-FD 在 GPIO 中断时发送一条消息
 
 .. raw:: html
 
@@ -2061,7 +1728,7 @@ CAN-FD transmits a single message on GPIO interrupt
 
    <td align="center">
 
-|image46|
+|image39|
 
 .. raw:: html
 
@@ -2085,8 +1752,8 @@ CAN-FD transmits a single message on GPIO interrupt
 
    </table>
 
-2.2.5 Cyclic Redundancy Check (CRC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.5 循环冗余校验 (CRC)
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -2184,7 +1851,7 @@ crc\_calculate\_checksum
 
    <td>
 
-CRC32 checksum calculation of a memory block
+存储块的 CRC32 校验和计算
 
 .. raw:: html
 
@@ -2194,7 +1861,7 @@ CRC32 checksum calculation of a memory block
 
    <td align="center">
 
-|image47|
+|image40|
 
 .. raw:: html
 
@@ -2204,7 +1871,7 @@ CRC32 checksum calculation of a memory block
 
    <td align="center">
 
-|image48|
+|image41|
 
 .. raw:: html
 
@@ -2232,7 +1899,7 @@ crc\_calculate\_checksum\_dma
 
    <td>
 
-CRC32 checksum calculation of a memory block using DMA block transfer
+使用 DMA 块传输对存储块进行 CRC32 检验和计算
 
 .. raw:: html
 
@@ -2242,7 +1909,7 @@ CRC32 checksum calculation of a memory block using DMA block transfer
 
    <td align="center">
 
-|image49|
+|image42|
 
 .. raw:: html
 
@@ -2252,7 +1919,7 @@ CRC32 checksum calculation of a memory block using DMA block transfer
 
    <td align="center">
 
-|image50|
+|image43|
 
 .. raw:: html
 
@@ -2266,8 +1933,8 @@ CRC32 checksum calculation of a memory block using DMA block transfer
 
    </table>
 
-2.2.6 Digital-to-Analog Converter (DAC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.6 数模转换器 (DAC)
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -2365,7 +2032,7 @@ dac12\_dma\_sampletimegen
 
    <td>
 
-DAC12 using DMA with sample time generator to generate sine wave
+DAC12 将 DMA 与采样时间发生器搭配使用来生成正弦波
 
 .. raw:: html
 
@@ -2375,7 +2042,7 @@ DAC12 using DMA with sample time generator to generate sine wave
 
    <td align="center">
 
-|image51|
+|image44|
 
 .. raw:: html
 
@@ -2413,7 +2080,7 @@ dac12\_fifo\_sampletimegen
 
    <td>
 
-DAC12 sending repetitive signal using FIFO and sample timer generator
+DAC12 使用 FIFO 和采样时间发生器发送重复性信号
 
 .. raw:: html
 
@@ -2423,7 +2090,7 @@ DAC12 sending repetitive signal using FIFO and sample timer generator
 
    <td align="center">
 
-|image52|
+|image45|
 
 .. raw:: html
 
@@ -2461,7 +2128,7 @@ dac12\_fifo\_timer\_event
 
    <td>
 
-DAC12 sending a sawtooth signal using FIFO and triggered by a Timer event
+DAC12 使用 FIFO 发送锯齿状信号并由计时器事件触发
 
 .. raw:: html
 
@@ -2471,7 +2138,7 @@ DAC12 sending a sawtooth signal using FIFO and triggered by a Timer event
 
    <td align="center">
 
-|image53|
+|image46|
 
 .. raw:: html
 
@@ -2509,7 +2176,7 @@ dac12\_fixed\_voltage\_vref\_internal
 
    <td>
 
-DAC12 setting a fixed voltage output
+DAC12 设置固定电压输出
 
 .. raw:: html
 
@@ -2519,7 +2186,7 @@ DAC12 setting a fixed voltage output
 
    <td align="center">
 
-|image54|
+|image47|
 
 .. raw:: html
 
@@ -2543,8 +2210,8 @@ DAC12 setting a fixed voltage output
 
    </table>
 
-2.2.7 Direct Memory Access (DMA)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.7 直接存储器访问 (DMA)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -2642,7 +2309,7 @@ dma\_block\_transfer
 
    <td>
 
-DMA copies from Flash main memory to SRAM memory
+DMA 从闪存主存储器复制到 SRAM 存储器
 
 .. raw:: html
 
@@ -2652,7 +2319,7 @@ DMA copies from Flash main memory to SRAM memory
 
    <td align="center">
 
-|image55|
+|image48|
 
 .. raw:: html
 
@@ -2662,7 +2329,7 @@ DMA copies from Flash main memory to SRAM memory
 
    <td align="center">
 
-|image56|
+|image49|
 
 .. raw:: html
 
@@ -2690,7 +2357,7 @@ dma\_fill\_data
 
    <td>
 
-DMA memory fill of SRAM using DMA
+使用 DMA 对 SRAM 进行 DMA 存储器填充
 
 .. raw:: html
 
@@ -2700,7 +2367,7 @@ DMA memory fill of SRAM using DMA
 
    <td align="center">
 
-|image57|
+|image50|
 
 .. raw:: html
 
@@ -2710,7 +2377,7 @@ DMA memory fill of SRAM using DMA
 
    <td align="center">
 
-|image58|
+|image51|
 
 .. raw:: html
 
@@ -2738,7 +2405,7 @@ dma\_table\_transfer
 
    <td>
 
-DMA using Table mode with DMA
+DMA 将表格模式与 DMA 搭配使用
 
 .. raw:: html
 
@@ -2748,7 +2415,7 @@ DMA using Table mode with DMA
 
    <td align="center">
 
-|image59|
+|image52|
 
 .. raw:: html
 
@@ -2758,7 +2425,7 @@ DMA using Table mode with DMA
 
    <td align="center">
 
-|image60|
+|image53|
 
 .. raw:: html
 
@@ -2772,8 +2439,8 @@ DMA using Table mode with DMA
 
    </table>
 
-2.2.8 Events Manager
-^^^^^^^^^^^^^^^^^^^^
+2.2.8 事件管理器
+^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -2871,7 +2538,7 @@ event\_input\_triggers\_output
 
    <td>
 
-Event configuration to toggle LED when switch is pressed
+事件配置用于在按下开关时切换 LED
 
 .. raw:: html
 
@@ -2881,7 +2548,7 @@ Event configuration to toggle LED when switch is pressed
 
    <td align="center">
 
-|image61|
+|image54|
 
 .. raw:: html
 
@@ -2891,7 +2558,7 @@ Event configuration to toggle LED when switch is pressed
 
    <td align="center">
 
-|image62|
+|image55|
 
 .. raw:: html
 
@@ -3004,7 +2671,7 @@ gpio\_input\_capture
 
    <td>
 
-GPIO triggers interrupt by input capture pin
+GPIO 通过输入捕获引脚触发中断
 
 .. raw:: html
 
@@ -3014,7 +2681,7 @@ GPIO triggers interrupt by input capture pin
 
    <td align="center">
 
-|image63|
+|image56|
 
 .. raw:: html
 
@@ -3024,7 +2691,7 @@ GPIO triggers interrupt by input capture pin
 
    <td align="center">
 
-|image64|
+|image57|
 
 .. raw:: html
 
@@ -3052,7 +2719,7 @@ gpio\_simultaneous\_interrupts
 
    <td>
 
-Demonstrates how to simultaneously service three GPIO interrupts
+演示如何同时处理三个 GPIO 中断
 
 .. raw:: html
 
@@ -3062,7 +2729,7 @@ Demonstrates how to simultaneously service three GPIO interrupts
 
    <td align="center">
 
-|image65|
+|image58|
 
 .. raw:: html
 
@@ -3100,7 +2767,7 @@ gpio\_software\_poll
 
    <td>
 
-GPIO output is set based on polled input
+GPIO 输出根据轮询输入进行设置
 
 .. raw:: html
 
@@ -3110,7 +2777,7 @@ GPIO output is set based on polled input
 
    <td align="center">
 
-|image66|
+|image59|
 
 .. raw:: html
 
@@ -3120,7 +2787,7 @@ GPIO output is set based on polled input
 
    <td align="center">
 
-|image67|
+|image60|
 
 .. raw:: html
 
@@ -3148,7 +2815,7 @@ gpio\_toggle\_output
 
    <td>
 
-GPIO toggling an output pin
+GPIO 翻转输出引脚
 
 .. raw:: html
 
@@ -3158,7 +2825,7 @@ GPIO toggling an output pin
 
    <td align="center">
 
-|image68|
+|image61|
 
 .. raw:: html
 
@@ -3168,55 +2835,7 @@ GPIO toggling an output pin
 
    <td align="center">
 
-|image69|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-gpio\_toggle\_output\_cpp
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-GPIO toggling output pins using C++
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image70|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image71|
+|image62|
 
 .. raw:: html
 
@@ -3244,7 +2863,7 @@ gpio\_toggle\_output\_hiz
 
    <td>
 
-GPIO toggling an ouputput pin configured as Hi-Z
+GPIO 翻转配置为高阻态的输出引脚
 
 .. raw:: html
 
@@ -3254,7 +2873,7 @@ GPIO toggling an ouputput pin configured as Hi-Z
 
    <td align="center">
 
-|image72|
+|image63|
 
 .. raw:: html
 
@@ -3264,7 +2883,7 @@ GPIO toggling an ouputput pin configured as Hi-Z
 
    <td align="center">
 
-|image73|
+|image64|
 
 .. raw:: html
 
@@ -3278,8 +2897,8 @@ GPIO toggling an ouputput pin configured as Hi-Z
 
    </table>
 
-2.2.10 General-Purpose Amplifier (GPAMP)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.10 通用放大器 (GPAMP)
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -3377,7 +2996,7 @@ gpamp\_buffer\_to\_adc
 
    <td>
 
-GPAmp configured in buffer mode with output to ADC
+GPAmp 配置为缓冲模式并输出到 ADC
 
 .. raw:: html
 
@@ -3387,7 +3006,7 @@ GPAmp configured in buffer mode with output to ADC
 
    <td align="center">
 
-|image74|
+|image65|
 
 .. raw:: html
 
@@ -3397,7 +3016,7 @@ GPAmp configured in buffer mode with output to ADC
 
    <td align="center">
 
-|image75|
+|image66|
 
 .. raw:: html
 
@@ -3425,7 +3044,7 @@ gpamp\_general\_purpose\_rri
 
    <td>
 
-GPAmp configured in general purpose Rail-to-Rail mode
+GPAmp 配置为通用轨到轨模式
 
 .. raw:: html
 
@@ -3435,7 +3054,7 @@ GPAmp configured in general purpose Rail-to-Rail mode
 
    <td align="center">
 
-|image76|
+|image67|
 
 .. raw:: html
 
@@ -3445,7 +3064,7 @@ GPAmp configured in general purpose Rail-to-Rail mode
 
    <td align="center">
 
-|image77|
+|image68|
 
 .. raw:: html
 
@@ -3459,8 +3078,8 @@ GPAmp configured in general purpose Rail-to-Rail mode
 
    </table>
 
-2.2.11 Inter-Integrated Circuit (I2C)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.11 内部集成电路 (I2C)
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -3558,7 +3177,7 @@ i2c\_controller\_rw\_multibyte\_fifo\_interrupts
 
    <td>
 
-I2C Controller reading and writing multiple bytes using interrupts with FIFO
+I2C 控制器使用中断与 FIFO 来读取和写入多个字节
 
 .. raw:: html
 
@@ -3568,7 +3187,7 @@ I2C Controller reading and writing multiple bytes using interrupts with FIFO
 
    <td align="center">
 
-|image78|
+|image69|
 
 .. raw:: html
 
@@ -3578,7 +3197,7 @@ I2C Controller reading and writing multiple bytes using interrupts with FIFO
 
    <td align="center">
 
-|image79|
+|image70|
 
 .. raw:: html
 
@@ -3606,7 +3225,7 @@ i2c\_controller\_rw\_multibyte\_fifo\_poll
 
    <td>
 
-I2C Controller reading and writing multiple bytes polling FIFO
+I2C 控制器使用轮询 FIFO 来读取和写入多个字节
 
 .. raw:: html
 
@@ -3616,7 +3235,7 @@ I2C Controller reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image80|
+|image71|
 
 .. raw:: html
 
@@ -3626,7 +3245,7 @@ I2C Controller reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image81|
+|image72|
 
 .. raw:: html
 
@@ -3654,7 +3273,7 @@ i2c\_controller\_target\_dynamic\_switching
 
    <td>
 
-I2C dynamic switching between Controller and Target modes
+I2C 在控制器模式与目标模式之间动态转换
 
 .. raw:: html
 
@@ -3664,7 +3283,7 @@ I2C dynamic switching between Controller and Target modes
 
    <td align="center">
 
-|image82|
+|image73|
 
 .. raw:: html
 
@@ -3674,7 +3293,7 @@ I2C dynamic switching between Controller and Target modes
 
    <td align="center">
 
-|image83|
+|image74|
 
 .. raw:: html
 
@@ -3702,7 +3321,7 @@ i2c\_multicontroller\_arbitration
 
    <td>
 
-I2C Controller detecting arbitration error
+I2C 控制器检测到仲裁错误
 
 .. raw:: html
 
@@ -3712,7 +3331,7 @@ I2C Controller detecting arbitration error
 
    <td align="center">
 
-|image84|
+|image75|
 
 .. raw:: html
 
@@ -3722,7 +3341,7 @@ I2C Controller detecting arbitration error
 
    <td align="center">
 
-|image85|
+|image76|
 
 .. raw:: html
 
@@ -3750,7 +3369,7 @@ i2c\_target\_rw\_multibyte\_fifo\_interrupts
 
    <td>
 
-I2C Target reading and writing multiple bytes using interrupts
+I2C 目标使用中断来读取和写入多个字节
 
 .. raw:: html
 
@@ -3760,7 +3379,7 @@ I2C Target reading and writing multiple bytes using interrupts
 
    <td align="center">
 
-|image86|
+|image77|
 
 .. raw:: html
 
@@ -3770,7 +3389,7 @@ I2C Target reading and writing multiple bytes using interrupts
 
    <td align="center">
 
-|image87|
+|image78|
 
 .. raw:: html
 
@@ -3798,7 +3417,7 @@ i2c\_target\_rw\_multibyte\_fifo\_interrupts\_stop
 
    <td>
 
-I2C Target reading and writing multiple bytes using interrupts while in STOP mode
+I2C 目标在 STOP 模式下使用中断来读取和写入多个字节
 
 .. raw:: html
 
@@ -3808,7 +3427,7 @@ I2C Target reading and writing multiple bytes using interrupts while in STOP mod
 
    <td align="center">
 
-|image88|
+|image79|
 
 .. raw:: html
 
@@ -3818,7 +3437,7 @@ I2C Target reading and writing multiple bytes using interrupts while in STOP mod
 
    <td align="center">
 
-|image89|
+|image80|
 
 .. raw:: html
 
@@ -3846,7 +3465,7 @@ i2c\_target\_rw\_multibyte\_fifo\_poll
 
    <td>
 
-I2C Target reading and writing multiple bytes polling FIFO
+I2C 目标使用轮询 FIFO 来读取和写入多个字节
 
 .. raw:: html
 
@@ -3856,7 +3475,7 @@ I2C Target reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image90|
+|image81|
 
 .. raw:: html
 
@@ -3866,7 +3485,7 @@ I2C Target reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image91|
+|image82|
 
 .. raw:: html
 
@@ -3880,8 +3499,8 @@ I2C Target reading and writing multiple bytes polling FIFO
 
    </table>
 
-2.2.12 Math Accelerator (MATHACL)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.12 数学加速器 (MATHACL)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -3979,7 +3598,7 @@ mathacl\_mpy\_div\_op
 
    <td>
 
-MATHACL multiply and divide using fixed point
+使用定点的 MATHACL 乘法和除法
 
 .. raw:: html
 
@@ -3989,7 +3608,7 @@ MATHACL multiply and divide using fixed point
 
    <td align="center">
 
-|image92|
+|image83|
 
 .. raw:: html
 
@@ -4027,7 +3646,7 @@ mathacl\_trig\_op
 
    <td>
 
-MATHACL implementation of trigonometric functions
+三角函数的 MATHACL 实现
 
 .. raw:: html
 
@@ -4037,7 +3656,7 @@ MATHACL implementation of trigonometric functions
 
    <td align="center">
 
-|image93|
+|image84|
 
 .. raw:: html
 
@@ -4061,8 +3680,8 @@ MATHACL implementation of trigonometric functions
 
    </table>
 
-2.2.13 Non-Volatile Memory (FLASHCTL)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.13 非易失性存储器 (FLASHCTL)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -4160,7 +3779,7 @@ flashctl\_blank\_verify
 
    <td>
 
-Implementation of Flash Blank Verify command
+“闪存空白验证”命令的实现
 
 .. raw:: html
 
@@ -4170,7 +3789,7 @@ Implementation of Flash Blank Verify command
 
    <td align="center">
 
-|image94|
+|image85|
 
 .. raw:: html
 
@@ -4180,7 +3799,7 @@ Implementation of Flash Blank Verify command
 
    <td align="center">
 
-|image95|
+|image86|
 
 .. raw:: html
 
@@ -4208,7 +3827,7 @@ flashctl\_dynamic\_memory\_protection
 
    <td>
 
-Flash configured with dynamic protection
+闪存配置为具有动态保护
 
 .. raw:: html
 
@@ -4218,7 +3837,7 @@ Flash configured with dynamic protection
 
    <td align="center">
 
-|image96|
+|image87|
 
 .. raw:: html
 
@@ -4228,7 +3847,7 @@ Flash configured with dynamic protection
 
    <td align="center">
 
-|image97|
+|image88|
 
 .. raw:: html
 
@@ -4256,7 +3875,7 @@ flashctl\_ecc\_error\_injection
 
    <td>
 
-Flash ECC testing and SEC and DED error detection
+闪存 ECC 测试及 SEC 与 DED 错误检测
 
 .. raw:: html
 
@@ -4266,7 +3885,7 @@ Flash ECC testing and SEC and DED error detection
 
    <td align="center">
 
-|image98|
+|image89|
 
 .. raw:: html
 
@@ -4304,7 +3923,7 @@ flashctl\_multiple\_size\_read\_verify
 
    <td>
 
-Implementation of Flash read verify commands on multiple data sizes, with and without ECC
+针对多种数据大小且带有和不带 ECC 的闪存读取验证命令实现
 
 .. raw:: html
 
@@ -4314,7 +3933,7 @@ Implementation of Flash read verify commands on multiple data sizes, with and wi
 
    <td align="center">
 
-|image99|
+|image90|
 
 .. raw:: html
 
@@ -4324,7 +3943,7 @@ Implementation of Flash read verify commands on multiple data sizes, with and wi
 
    <td align="center">
 
-|image100|
+|image91|
 
 .. raw:: html
 
@@ -4352,7 +3971,7 @@ flashctl\_multiple\_size\_write
 
    <td>
 
-Flash writing of different size data
+不同大小数据的闪存写入
 
 .. raw:: html
 
@@ -4362,7 +3981,7 @@ Flash writing of different size data
 
    <td align="center">
 
-|image101|
+|image92|
 
 .. raw:: html
 
@@ -4372,7 +3991,7 @@ Flash writing of different size data
 
    <td align="center">
 
-|image102|
+|image93|
 
 .. raw:: html
 
@@ -4400,7 +4019,7 @@ flashctl\_nonmain\_memory\_write
 
    <td>
 
-Read-write of Non-Main Flash memory
+非主闪存存储器的读取和写入
 
 .. raw:: html
 
@@ -4410,7 +4029,7 @@ Read-write of Non-Main Flash memory
 
    <td align="center">
 
-|image103|
+|image94|
 
 .. raw:: html
 
@@ -4420,7 +4039,7 @@ Read-write of Non-Main Flash memory
 
    <td align="center">
 
-|image104|
+|image95|
 
 .. raw:: html
 
@@ -4448,7 +4067,7 @@ flashctl\_program\_with\_ecc
 
    <td>
 
-Flash programming with ECC
+具有 ECC 的闪存编程
 
 .. raw:: html
 
@@ -4458,7 +4077,7 @@ Flash programming with ECC
 
    <td align="center">
 
-|image105|
+|image96|
 
 .. raw:: html
 
@@ -4482,8 +4101,8 @@ Flash programming with ECC
 
    </table>
 
-2.2.14 Operational Amplifier (OPA)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.14 运算放大器 (OPA)
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -4581,7 +4200,7 @@ opa\_burnout\_current\_source\_to\_adc
 
    <td>
 
-OPA in buffer mode enabling burnout current source to ADC
+缓冲模式下的 OPA 向 ADC 提供烧毁电流源
 
 .. raw:: html
 
@@ -4591,7 +4210,7 @@ OPA in buffer mode enabling burnout current source to ADC
 
    <td align="center">
 
-|image106|
+|image97|
 
 .. raw:: html
 
@@ -4601,7 +4220,7 @@ OPA in buffer mode enabling burnout current source to ADC
 
    <td align="center">
 
-|image107|
+|image98|
 
 .. raw:: html
 
@@ -4629,7 +4248,7 @@ opa\_dac8\_output\_buffer
 
    <td>
 
-OPA in output buffer mode using 8-bit DAC
+OPA 处于输出缓冲模式并使用 8 位 DAC
 
 .. raw:: html
 
@@ -4639,7 +4258,7 @@ OPA in output buffer mode using 8-bit DAC
 
    <td align="center">
 
-|image108|
+|image99|
 
 .. raw:: html
 
@@ -4649,7 +4268,7 @@ OPA in output buffer mode using 8-bit DAC
 
    <td align="center">
 
-|image109|
+|image100|
 
 .. raw:: html
 
@@ -4677,7 +4296,7 @@ opa\_general\_purpose\_rri
 
    <td>
 
-OPA in general purpose mode with Rail-to-Rail configuration
+OPA 处于通用模式并采用轨到轨配置
 
 .. raw:: html
 
@@ -4687,7 +4306,7 @@ OPA in general purpose mode with Rail-to-Rail configuration
 
    <td align="center">
 
-|image110|
+|image101|
 
 .. raw:: html
 
@@ -4697,7 +4316,7 @@ OPA in general purpose mode with Rail-to-Rail configuration
 
    <td align="center">
 
-|image111|
+|image102|
 
 .. raw:: html
 
@@ -4725,7 +4344,7 @@ opa\_inverting\_pga\_with\_dac
 
    <td>
 
-OPA in inverting PGA configuration using DAC12 as bias
+OPA 采用同相 PGA 配置并使用 DAC12 作为偏置
 
 .. raw:: html
 
@@ -4735,7 +4354,7 @@ OPA in inverting PGA configuration using DAC12 as bias
 
    <td align="center">
 
-|image112|
+|image103|
 
 .. raw:: html
 
@@ -4773,7 +4392,7 @@ opa\_non\_inverting\_pga
 
    <td>
 
-OPA in non-inverting PGA configuration
+OPA 采用同相 PGA 配置
 
 .. raw:: html
 
@@ -4783,7 +4402,7 @@ OPA in non-inverting PGA configuration
 
    <td align="center">
 
-|image113|
+|image104|
 
 .. raw:: html
 
@@ -4793,7 +4412,7 @@ OPA in non-inverting PGA configuration
 
    <td align="center">
 
-|image114|
+|image105|
 
 .. raw:: html
 
@@ -4821,7 +4440,7 @@ opa\_signal\_chain\_to\_adc
 
    <td>
 
-Two OPAs configured in TIA and PGA, connected to ADC
+两个 OPA 配置为 TIA 和 PGA 并连接到 ADC
 
 .. raw:: html
 
@@ -4831,7 +4450,7 @@ Two OPAs configured in TIA and PGA, connected to ADC
 
    <td align="center">
 
-|image115|
+|image106|
 
 .. raw:: html
 
@@ -4855,8 +4474,8 @@ Two OPAs configured in TIA and PGA, connected to ADC
 
    </table>
 
-2.2.15 Other
-^^^^^^^^^^^^
+2.2.15 其他
+^^^^^^^^^^^
 
 .. raw:: html
 
@@ -4954,7 +4573,7 @@ cinit\_bypass
 
    <td>
 
-Bypass CINIT skipping variable initialization
+旁路 CINIT 跳过变量初始化
 
 .. raw:: html
 
@@ -4964,7 +4583,7 @@ Bypass CINIT skipping variable initialization
 
    <td align="center">
 
-|image116|
+|image107|
 
 .. raw:: html
 
@@ -4974,7 +4593,7 @@ Bypass CINIT skipping variable initialization
 
    <td align="center">
 
-|image117|
+|image108|
 
 .. raw:: html
 
@@ -5002,7 +4621,7 @@ empty
 
    <td>
 
-Empty start-up project using DriverLib
+使用 DriverLib 的空白启动工程
 
 .. raw:: html
 
@@ -5012,7 +4631,7 @@ Empty start-up project using DriverLib
 
    <td align="center">
 
-|image118|
+|image109|
 
 .. raw:: html
 
@@ -5022,55 +4641,7 @@ Empty start-up project using DriverLib
 
    <td align="center">
 
-|image119|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-empty\_cpp
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Empty C++ start-up project using DriverLib
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image120|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image121|
+|image110|
 
 .. raw:: html
 
@@ -5098,7 +4669,7 @@ empty\_driverlib\_src
 
    <td>
 
-Empty start-up project using DriverLib
+使用 DriverLib 的空白启动工程
 
 .. raw:: html
 
@@ -5108,7 +4679,7 @@ Empty start-up project using DriverLib
 
    <td align="center">
 
-|image122|
+|image111|
 
 .. raw:: html
 
@@ -5118,7 +4689,7 @@ Empty start-up project using DriverLib
 
    <td align="center">
 
-|image123|
+|image112|
 
 .. raw:: html
 
@@ -5146,7 +4717,7 @@ empty\_library
 
    <td>
 
-Empty start-up library project using DriverLib
+使用 DriverLib 的空白启动库工程
 
 .. raw:: html
 
@@ -5194,7 +4765,7 @@ nvic\_interrupt\_disable
 
    <td>
 
-NVIC used to demonstrate best approach to disable interrupts
+NVIC 用于演示禁用中断的最佳方法
 
 .. raw:: html
 
@@ -5204,7 +4775,7 @@ NVIC used to demonstrate best approach to disable interrupts
 
    <td align="center">
 
-|image124|
+|image113|
 
 .. raw:: html
 
@@ -5214,7 +4785,7 @@ NVIC used to demonstrate best approach to disable interrupts
 
    <td align="center">
 
-|image125|
+|image114|
 
 .. raw:: html
 
@@ -5242,7 +4813,7 @@ nvic\_interrupt\_grouping
 
    <td>
 
-NVIC configuration and use of interrupt grouping
+NVIC 配置和中断分组用法
 
 .. raw:: html
 
@@ -5252,7 +4823,7 @@ NVIC configuration and use of interrupt grouping
 
    <td align="center">
 
-|image126|
+|image115|
 
 .. raw:: html
 
@@ -5262,7 +4833,7 @@ NVIC configuration and use of interrupt grouping
 
    <td align="center">
 
-|image127|
+|image116|
 
 .. raw:: html
 
@@ -5290,7 +4861,7 @@ sram\_parity
 
    <td>
 
-Initializes and uses Parity SRAM
+初始化和使用奇偶校验 SRAM
 
 .. raw:: html
 
@@ -5300,7 +4871,7 @@ Initializes and uses Parity SRAM
 
    <td align="center">
 
-|image128|
+|image117|
 
 .. raw:: html
 
@@ -5338,7 +4909,7 @@ systick\_periodic\_timer
 
    <td>
 
-SysTick generates periodic interrupt
+SysTick 生成周期性中断
 
 .. raw:: html
 
@@ -5348,7 +4919,7 @@ SysTick generates periodic interrupt
 
    <td align="center">
 
-|image129|
+|image118|
 
 .. raw:: html
 
@@ -5358,7 +4929,7 @@ SysTick generates periodic interrupt
 
    <td align="center">
 
-|image130|
+|image119|
 
 .. raw:: html
 
@@ -5372,8 +4943,8 @@ SysTick generates periodic interrupt
 
    </table>
 
-2.2.16 Real-Time Clock (RTC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.16 实时时钟 (RTC)
+^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -5471,7 +5042,7 @@ rtc\_calendar\_alarm\_standby
 
    <td>
 
-RTC sets calendar alarm and toggles GPIO when alarm is triggered
+RTC 设置日历报警并在报警触发时切换 GPIO
 
 .. raw:: html
 
@@ -5481,7 +5052,7 @@ RTC sets calendar alarm and toggles GPIO when alarm is triggered
 
    <td align="center">
 
-|image131|
+|image120|
 
 .. raw:: html
 
@@ -5519,7 +5090,7 @@ rtc\_offset\_calibration\_lfxt
 
    <td>
 
-RTC offset correction of crystal
+晶体的 RTC 偏移校正
 
 .. raw:: html
 
@@ -5529,7 +5100,7 @@ RTC offset correction of crystal
 
    <td align="center">
 
-|image132|
+|image121|
 
 .. raw:: html
 
@@ -5567,7 +5138,7 @@ rtc\_periodic\_alarm\_lfosc\_standby
 
    <td>
 
-RTC implementation of periodic alarm in STANDBY using LFOSC
+使用 LFOSC 在 STANDBY 状态下定期报警的 RTC 实现
 
 .. raw:: html
 
@@ -5577,7 +5148,7 @@ RTC implementation of periodic alarm in STANDBY using LFOSC
 
    <td align="center">
 
-|image133|
+|image122|
 
 .. raw:: html
 
@@ -5615,7 +5186,7 @@ rtc\_periodic\_alarm\_lfxt\_standby
 
    <td>
 
-RTC implementation of periodic alarm in STANDBY using LFXT
+使用 LFXT 在 STANDBY 状态下定期报警的 RTC 实现
 
 .. raw:: html
 
@@ -5625,7 +5196,7 @@ RTC implementation of periodic alarm in STANDBY using LFXT
 
    <td align="center">
 
-|image134|
+|image123|
 
 .. raw:: html
 
@@ -5649,8 +5220,8 @@ RTC implementation of periodic alarm in STANDBY using LFXT
 
    </table>
 
-2.2.17 Serial Peripheral Interface (SPI)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.17 串行外设接口 (SPI)
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -5748,7 +5319,7 @@ spi\_controller\_command\_data\_control
 
    <td>
 
-SPI Controller transmit using command data (CD) control
+采用命令数据 (CD) 控制的 SPI 控制器传输
 
 .. raw:: html
 
@@ -5758,7 +5329,7 @@ SPI Controller transmit using command data (CD) control
 
    <td align="center">
 
-|image135|
+|image124|
 
 .. raw:: html
 
@@ -5768,7 +5339,7 @@ SPI Controller transmit using command data (CD) control
 
    <td align="center">
 
-|image136|
+|image125|
 
 .. raw:: html
 
@@ -5796,7 +5367,7 @@ spi\_controller\_echo\_interrupts
 
    <td>
 
-SPI Controller transmits data using Motorola format
+SPI 控制器使用 Motorola 格式传输数据
 
 .. raw:: html
 
@@ -5806,7 +5377,7 @@ SPI Controller transmits data using Motorola format
 
    <td align="center">
 
-|image137|
+|image126|
 
 .. raw:: html
 
@@ -5816,7 +5387,7 @@ SPI Controller transmits data using Motorola format
 
    <td align="center">
 
-|image138|
+|image127|
 
 .. raw:: html
 
@@ -5844,7 +5415,7 @@ spi\_controller\_internal\_loopback\_poll
 
    <td>
 
-SPI Controller with internal loopback using polling
+SPI 控制器具有内部环回并使用轮询
 
 .. raw:: html
 
@@ -5854,7 +5425,7 @@ SPI Controller with internal loopback using polling
 
    <td align="center">
 
-|image139|
+|image128|
 
 .. raw:: html
 
@@ -5864,7 +5435,7 @@ SPI Controller with internal loopback using polling
 
    <td align="center">
 
-|image140|
+|image129|
 
 .. raw:: html
 
@@ -5892,7 +5463,7 @@ spi\_controller\_multibyte\_fifo\_dma\_interrupts
 
    <td>
 
-SPI Controller reading and writing multiple bytes using FIFO and DMA
+SPI 控制器使用 FIFO 和 DMA 来读取和写入多个字节
 
 .. raw:: html
 
@@ -5902,7 +5473,7 @@ SPI Controller reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image141|
+|image130|
 
 .. raw:: html
 
@@ -5912,7 +5483,7 @@ SPI Controller reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image142|
+|image131|
 
 .. raw:: html
 
@@ -5940,7 +5511,7 @@ spi\_controller\_multibyte\_fifo\_poll
 
    <td>
 
-SPI Controller reading and writing multiple bytes polling FIFO
+SPI 控制器使用轮询 FIFO 来读取和写入多个字节
 
 .. raw:: html
 
@@ -5950,7 +5521,7 @@ SPI Controller reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image143|
+|image132|
 
 .. raw:: html
 
@@ -5960,7 +5531,7 @@ SPI Controller reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image144|
+|image133|
 
 .. raw:: html
 
@@ -5988,7 +5559,7 @@ spi\_controller\_register\_format
 
    <td>
 
-SPI Controller transmit and read data using register format
+SPI 控制器使用寄存器格式发送和读取数据
 
 .. raw:: html
 
@@ -5998,7 +5569,7 @@ SPI Controller transmit and read data using register format
 
    <td align="center">
 
-|image145|
+|image134|
 
 .. raw:: html
 
@@ -6008,7 +5579,7 @@ SPI Controller transmit and read data using register format
 
    <td align="center">
 
-|image146|
+|image135|
 
 .. raw:: html
 
@@ -6036,7 +5607,7 @@ spi\_controller\_repeated\_multibyte\_fifo\_dma\_interrupts
 
    <td>
 
-SPI Controller reading and writing multiple bytes using FIFO and DMA every second
+SPI 控制器使用 FIFO 和 DMA 每秒读取和写入多个字节
 
 .. raw:: html
 
@@ -6046,7 +5617,7 @@ SPI Controller reading and writing multiple bytes using FIFO and DMA every secon
 
    <td align="center">
 
-|image147|
+|image136|
 
 .. raw:: html
 
@@ -6056,7 +5627,7 @@ SPI Controller reading and writing multiple bytes using FIFO and DMA every secon
 
    <td align="center">
 
-|image148|
+|image137|
 
 .. raw:: html
 
@@ -6084,7 +5655,7 @@ spi\_peripheral\_echo\_interrupts
 
    <td>
 
-SPI Peripheral echoes data using Motorola format
+SPI 外设使用 Motorola 格式回传数据
 
 .. raw:: html
 
@@ -6094,7 +5665,7 @@ SPI Peripheral echoes data using Motorola format
 
    <td align="center">
 
-|image149|
+|image138|
 
 .. raw:: html
 
@@ -6104,7 +5675,7 @@ SPI Peripheral echoes data using Motorola format
 
    <td align="center">
 
-|image150|
+|image139|
 
 .. raw:: html
 
@@ -6132,7 +5703,7 @@ spi\_peripheral\_multibyte\_fifo\_dma\_interrupts
 
    <td>
 
-SPI Peripheral reading and writing multiple bytes using FIFO and DMA
+SPI 外设使用 FIFO 和 DMA 来读取和写入多个字节
 
 .. raw:: html
 
@@ -6142,7 +5713,7 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image151|
+|image140|
 
 .. raw:: html
 
@@ -6152,7 +5723,7 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image152|
+|image141|
 
 .. raw:: html
 
@@ -6180,7 +5751,7 @@ spi\_peripheral\_multibyte\_fifo\_poll
 
    <td>
 
-SPI Peripheral reading and writing multiple bytes polling FIFO
+SPI 外设使用轮询 FIFO 来读取和写入多个字节
 
 .. raw:: html
 
@@ -6190,7 +5761,7 @@ SPI Peripheral reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image153|
+|image142|
 
 .. raw:: html
 
@@ -6200,7 +5771,7 @@ SPI Peripheral reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image154|
+|image143|
 
 .. raw:: html
 
@@ -6228,7 +5799,7 @@ spi\_peripheral\_register\_format
 
    <td>
 
-SPI Peripheral transmit and read data using register format
+SPI 外设使用寄存器格式发送和读取数据
 
 .. raw:: html
 
@@ -6238,7 +5809,7 @@ SPI Peripheral transmit and read data using register format
 
    <td align="center">
 
-|image155|
+|image144|
 
 .. raw:: html
 
@@ -6248,7 +5819,7 @@ SPI Peripheral transmit and read data using register format
 
    <td align="center">
 
-|image156|
+|image145|
 
 .. raw:: html
 
@@ -6276,7 +5847,7 @@ spi\_peripheral\_repeated\_multibyte\_fifo\_dma\_interrupts
 
    <td>
 
-SPI Peripheral reading and writing multiple bytes using FIFO and DMA
+SPI 外设使用 FIFO 和 DMA 来读取和写入多个字节
 
 .. raw:: html
 
@@ -6286,7 +5857,7 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image157|
+|image146|
 
 .. raw:: html
 
@@ -6296,7 +5867,7 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image158|
+|image147|
 
 .. raw:: html
 
@@ -6310,8 +5881,8 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    </table>
 
-2.2.18 System Controller (SYSCTL)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.18 系统控制器 (SYSCTL)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -6409,7 +5980,7 @@ sysctl\_frequency\_clock\_counter
 
    <td>
 
-Monitor SYSOSC via Frequency Clock Counter (FCC)
+通过频率时钟计数器 (FCC) 监视 SYSOSC
 
 .. raw:: html
 
@@ -6419,7 +5990,7 @@ Monitor SYSOSC via Frequency Clock Counter (FCC)
 
    <td align="center">
 
-|image159|
+|image148|
 
 .. raw:: html
 
@@ -6457,7 +6028,7 @@ sysctl\_hfxt\_run
 
    <td>
 
-Sets external HFXT as source to HSCLK and MCLK (48MHz)
+将外部 HFXT 设置为 HSCLK 和 MCLK 的源 (48MHz)
 
 .. raw:: html
 
@@ -6467,7 +6038,7 @@ Sets external HFXT as source to HSCLK and MCLK (48MHz)
 
    <td align="center">
 
-|image160|
+|image149|
 
 .. raw:: html
 
@@ -6505,7 +6076,7 @@ sysctl\_lfxt\_standby
 
    <td>
 
-Sets LFXT as source to LFCLK (32kHz) and power policy in STANDBY0
+将 LFXT 设置为 LFCLK 的源 (32kHz) 并设置 STANDBY0 下的电源策略
 
 .. raw:: html
 
@@ -6515,7 +6086,7 @@ Sets LFXT as source to LFCLK (32kHz) and power policy in STANDBY0
 
    <td align="center">
 
-|image161|
+|image150|
 
 .. raw:: html
 
@@ -6553,7 +6124,7 @@ sysctl\_mclk\_syspll
 
    <td>
 
-Sets MCLK to run from SYSPLL (80MHz)
+将 MCLK 设置为从 SYSPLL 运行 (80MHz)
 
 .. raw:: html
 
@@ -6563,7 +6134,7 @@ Sets MCLK to run from SYSPLL (80MHz)
 
    <td align="center">
 
-|image162|
+|image151|
 
 .. raw:: html
 
@@ -6601,7 +6172,7 @@ sysctl\_power\_policy\_sleep\_to\_standby
 
    <td>
 
-SYSCTL switches between SLEEP mode and STANDBY modes
+SYSCTL 在 SLEEP 模式和 STANDBY 模式之间切换
 
 .. raw:: html
 
@@ -6611,7 +6182,7 @@ SYSCTL switches between SLEEP mode and STANDBY modes
 
    <td align="center">
 
-|image163|
+|image152|
 
 .. raw:: html
 
@@ -6621,7 +6192,7 @@ SYSCTL switches between SLEEP mode and STANDBY modes
 
    <td align="center">
 
-|image164|
+|image153|
 
 .. raw:: html
 
@@ -6649,7 +6220,7 @@ sysctl\_power\_policy\_sleep\_to\_stop
 
    <td>
 
-SYSCTL switches between SLEEP mode and STOP modes
+SYSCTL 在 SLEEP 模式和 STOP 模式之间切换
 
 .. raw:: html
 
@@ -6659,7 +6230,7 @@ SYSCTL switches between SLEEP mode and STOP modes
 
    <td align="center">
 
-|image165|
+|image154|
 
 .. raw:: html
 
@@ -6669,7 +6240,7 @@ SYSCTL switches between SLEEP mode and STOP modes
 
    <td align="center">
 
-|image166|
+|image155|
 
 .. raw:: html
 
@@ -6697,7 +6268,7 @@ sysctl\_shutdown
 
    <td>
 
-Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP
+显示 SHUTDOWN、STOP、STANDBY 和 SLEEP 后的正确唤醒机制
 
 .. raw:: html
 
@@ -6707,7 +6278,7 @@ Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP
 
    <td align="center">
 
-|image167|
+|image156|
 
 .. raw:: html
 
@@ -6717,7 +6288,7 @@ Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP
 
    <td align="center">
 
-|image168|
+|image157|
 
 .. raw:: html
 
@@ -6731,8 +6302,8 @@ Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP
 
    </table>
 
-2.2.19 Timer - Advanced (TIMA)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.19 计时器 - 高级 (TIMA)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -6830,7 +6401,7 @@ tima\_timer\_mode\_periodic\_repeat\_count
 
    <td>
 
-TimerA in periodic mode using repeat-count feature
+TimerA 处于定期模式并使用重复计数功能
 
 .. raw:: html
 
@@ -6840,7 +6411,7 @@ TimerA in periodic mode using repeat-count feature
 
    <td align="center">
 
-|image169|
+|image158|
 
 .. raw:: html
 
@@ -6878,7 +6449,7 @@ tima\_timer\_mode\_pwm\_dead\_band
 
    <td>
 
-TimerA outputs PWM signals with dead band insertion
+TimerA 输出具有死区插入的 PWM 信号
 
 .. raw:: html
 
@@ -6888,7 +6459,7 @@ TimerA outputs PWM signals with dead band insertion
 
    <td align="center">
 
-|image170|
+|image159|
 
 .. raw:: html
 
@@ -6926,7 +6497,7 @@ tima\_trigger\_fail\_mechanism
 
    <td>
 
-TimerA demonstrating fault detection
+TimerA 演示故障检测
 
 .. raw:: html
 
@@ -6936,7 +6507,7 @@ TimerA demonstrating fault detection
 
    <td align="center">
 
-|image171|
+|image160|
 
 .. raw:: html
 
@@ -6960,8 +6531,8 @@ TimerA demonstrating fault detection
 
    </table>
 
-2.2.20 Timer - General Purpose (TIMG)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.20 计时器 - 通用 (TIMG)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -7049,102 +6620,6 @@ LP\_MSPM0L1306
 
    <td>
 
-timg\_32bit\_timer\_mode\_periodic\_sleep
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-32-bit timer in periodic mode while device is in SLEEP mode
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image172|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-timg\_32bit\_timer\_mode\_pwm\_edge\_sleep
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-32-bit timer in PWM edge aligned mode while device is in SLEEP mode
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image173|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
 timg\_qei\_mode
 
 .. raw:: html
@@ -7155,7 +6630,7 @@ timg\_qei\_mode
 
    <td>
 
-TimerG uses QEI to decode relative position output of a quadrature encoder
+TimerG 使用 QEI 来对正交编码器的相对位置输出进行解码
 
 .. raw:: html
 
@@ -7165,7 +6640,7 @@ TimerG uses QEI to decode relative position output of a quadrature encoder
 
    <td align="center">
 
-|image174|
+|image161|
 
 .. raw:: html
 
@@ -7189,8 +6664,8 @@ TimerG uses QEI to decode relative position output of a quadrature encoder
 
    </table>
 
-2.2.21 Timer - Generic (TIMx)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.21 计时器 - 通用 (TIMx)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -7288,7 +6763,7 @@ timx\_timer\_mode\_capture\_duty\_and\_period
 
    <td>
 
-Timer calculates period and duty cycle
+计时器计算周期和占空比
 
 .. raw:: html
 
@@ -7298,7 +6773,7 @@ Timer calculates period and duty cycle
 
    <td align="center">
 
-|image175|
+|image162|
 
 .. raw:: html
 
@@ -7308,7 +6783,7 @@ Timer calculates period and duty cycle
 
    <td align="center">
 
-|image176|
+|image163|
 
 .. raw:: html
 
@@ -7336,7 +6811,7 @@ timx\_timer\_mode\_capture\_edge\_capture
 
    <td>
 
-Timer edge time detection using Timer capture mode
+使用计时器捕获模式进行计时器边沿时间检测
 
 .. raw:: html
 
@@ -7346,7 +6821,7 @@ Timer edge time detection using Timer capture mode
 
    <td align="center">
 
-|image177|
+|image164|
 
 .. raw:: html
 
@@ -7356,7 +6831,7 @@ Timer edge time detection using Timer capture mode
 
    <td align="center">
 
-|image178|
+|image165|
 
 .. raw:: html
 
@@ -7384,7 +6859,7 @@ timx\_timer\_mode\_compare\_edge\_count
 
    <td>
 
-Timer edge counting capability using compare mode
+使用比较模式的计时器边沿计数功能
 
 .. raw:: html
 
@@ -7394,7 +6869,7 @@ Timer edge counting capability using compare mode
 
    <td align="center">
 
-|image179|
+|image166|
 
 .. raw:: html
 
@@ -7404,7 +6879,7 @@ Timer edge counting capability using compare mode
 
    <td align="center">
 
-|image180|
+|image167|
 
 .. raw:: html
 
@@ -7432,7 +6907,7 @@ timx\_timer\_mode\_one\_shot\_standby
 
    <td>
 
-Timer in one-shot mode while device is in STANDBY mode
+器件处于 STANDBY 模式时，计时器处于单次触发模式
 
 .. raw:: html
 
@@ -7442,7 +6917,7 @@ Timer in one-shot mode while device is in STANDBY mode
 
    <td align="center">
 
-|image181|
+|image168|
 
 .. raw:: html
 
@@ -7452,7 +6927,7 @@ Timer in one-shot mode while device is in STANDBY mode
 
    <td align="center">
 
-|image182|
+|image169|
 
 .. raw:: html
 
@@ -7480,7 +6955,7 @@ timx\_timer\_mode\_periodic\_sleep
 
    <td>
 
-Timer in periodic mode while device is in SLEEP mode
+器件处于 SLEEP 模式时，计时器处于定期模式
 
 .. raw:: html
 
@@ -7490,7 +6965,7 @@ Timer in periodic mode while device is in SLEEP mode
 
    <td align="center">
 
-|image183|
+|image170|
 
 .. raw:: html
 
@@ -7500,7 +6975,7 @@ Timer in periodic mode while device is in SLEEP mode
 
    <td align="center">
 
-|image184|
+|image171|
 
 .. raw:: html
 
@@ -7528,7 +7003,7 @@ timx\_timer\_mode\_periodic\_standby
 
    <td>
 
-Timer in periodic mode while device is in STANDBY mode
+器件处于 STANDBY 模式时，计时器处于定期模式
 
 .. raw:: html
 
@@ -7538,7 +7013,7 @@ Timer in periodic mode while device is in STANDBY mode
 
    <td align="center">
 
-|image185|
+|image172|
 
 .. raw:: html
 
@@ -7548,7 +7023,7 @@ Timer in periodic mode while device is in STANDBY mode
 
    <td align="center">
 
-|image186|
+|image173|
 
 .. raw:: html
 
@@ -7576,7 +7051,7 @@ timx\_timer\_mode\_periodic\_stop
 
    <td>
 
-Timer in periodic mode while device is in STOP mode
+器件处于 STOP 模式时，计时器处于定期模式
 
 .. raw:: html
 
@@ -7586,7 +7061,7 @@ Timer in periodic mode while device is in STOP mode
 
    <td align="center">
 
-|image187|
+|image174|
 
 .. raw:: html
 
@@ -7596,7 +7071,7 @@ Timer in periodic mode while device is in STOP mode
 
    <td align="center">
 
-|image188|
+|image175|
 
 .. raw:: html
 
@@ -7624,7 +7099,7 @@ timx\_timer\_mode\_pwm\_center\_stop
 
    <td>
 
-Timer in PWM center aligned mode while device is in STOP mode
+器件处于 STOP 模式时，计时器处于 PWM 中心对齐模式
 
 .. raw:: html
 
@@ -7634,7 +7109,7 @@ Timer in PWM center aligned mode while device is in STOP mode
 
    <td align="center">
 
-|image189|
+|image176|
 
 .. raw:: html
 
@@ -7644,7 +7119,7 @@ Timer in PWM center aligned mode while device is in STOP mode
 
    <td align="center">
 
-|image190|
+|image177|
 
 .. raw:: html
 
@@ -7672,7 +7147,7 @@ timx\_timer\_mode\_pwm\_cross\_trigger\_stop\_restore
 
    <td>
 
-Timer in PWM mode after coming out of STOP with retention in SW
+器件退出 STOP 模式后，计时器处于 PWM 模式并在软件中保持
 
 .. raw:: html
 
@@ -7682,7 +7157,7 @@ Timer in PWM mode after coming out of STOP with retention in SW
 
    <td align="center">
 
-|image191|
+|image178|
 
 .. raw:: html
 
@@ -7720,7 +7195,7 @@ timx\_timer\_mode\_pwm\_edge\_sleep
 
    <td>
 
-Timer in PWM edge aligned mode while device is in SLEEP mode
+器件处于 SLEEP 模式时，计时器处于 PWM 边沿对齐模式
 
 .. raw:: html
 
@@ -7730,7 +7205,7 @@ Timer in PWM edge aligned mode while device is in SLEEP mode
 
    <td align="center">
 
-|image192|
+|image179|
 
 .. raw:: html
 
@@ -7740,7 +7215,7 @@ Timer in PWM edge aligned mode while device is in SLEEP mode
 
    <td align="center">
 
-|image193|
+|image180|
 
 .. raw:: html
 
@@ -7768,7 +7243,7 @@ timx\_timer\_mode\_pwm\_edge\_sleep\_shadow
 
    <td>
 
-Timer updating PWM duty cycle using shadow load feature
+计时器使用影子加载功能来更新 PWM 占空比
 
 .. raw:: html
 
@@ -7778,7 +7253,7 @@ Timer updating PWM duty cycle using shadow load feature
 
    <td align="center">
 
-|image194|
+|image181|
 
 .. raw:: html
 
@@ -7788,7 +7263,7 @@ Timer updating PWM duty cycle using shadow load feature
 
    <td align="center">
 
-|image195|
+|image182|
 
 .. raw:: html
 
@@ -7802,8 +7277,8 @@ Timer updating PWM duty cycle using shadow load feature
 
    </table>
 
-2.2.22 True Random Number Generator (TRNG)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.22 真随机数发生器 (TRNG)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -7901,7 +7376,7 @@ trng\_sample
 
    <td>
 
-TRNG sampling to fill a buffer with random data
+进行 TRNG 采样，以使用随机数据填充缓冲区
 
 .. raw:: html
 
@@ -7911,7 +7386,7 @@ TRNG sampling to fill a buffer with random data
 
    <td align="center">
 
-|image196|
+|image183|
 
 .. raw:: html
 
@@ -7949,7 +7424,7 @@ trng\_sample\_stop\_restore
 
    <td>
 
-TRNG sample random data after coming out of STOP with retention in SW
+在器件退出 STOP 模式后，TRNG 对随机数据进行采样并在 SW 中保持
 
 .. raw:: html
 
@@ -7959,7 +7434,7 @@ TRNG sample random data after coming out of STOP with retention in SW
 
    <td align="center">
 
-|image197|
+|image184|
 
 .. raw:: html
 
@@ -7983,8 +7458,8 @@ TRNG sample random data after coming out of STOP with retention in SW
 
    </table>
 
-2.2.23 Universal Asynchronous Receiver-Transmitter (UART)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.23 通用异步收发器 (UART)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -8082,7 +7557,7 @@ uart\_echo\_interrupts\_standby
 
    <td>
 
-UART RX/TX echo using interrupts while device is in STANDBY mode
+当器件处于 STANDBY 模式时 UART RX/TX 使用中断来回显
 
 .. raw:: html
 
@@ -8092,7 +7567,7 @@ UART RX/TX echo using interrupts while device is in STANDBY mode
 
    <td align="center">
 
-|image198|
+|image185|
 
 .. raw:: html
 
@@ -8102,7 +7577,7 @@ UART RX/TX echo using interrupts while device is in STANDBY mode
 
    <td align="center">
 
-|image199|
+|image186|
 
 .. raw:: html
 
@@ -8130,7 +7605,7 @@ uart\_extend\_manchester\_echo
 
    <td>
 
-UART Extend using Manchester encoding, echo received packet
+UART 扩展模块使用曼彻斯特编码来回显接收的数据包
 
 .. raw:: html
 
@@ -8140,7 +7615,7 @@ UART Extend using Manchester encoding, echo received packet
 
    <td align="center">
 
-|image200|
+|image187|
 
 .. raw:: html
 
@@ -8150,7 +7625,7 @@ UART Extend using Manchester encoding, echo received packet
 
    <td align="center">
 
-|image201|
+|image188|
 
 .. raw:: html
 
@@ -8178,7 +7653,7 @@ uart\_extend\_manchester\_send\_packet
 
    <td>
 
-UART Extend using Manchester encoding and decoding, send a packet
+UART 扩展模块使用曼彻斯特编码和解码来发送数据包
 
 .. raw:: html
 
@@ -8188,7 +7663,7 @@ UART Extend using Manchester encoding and decoding, send a packet
 
    <td align="center">
 
-|image202|
+|image189|
 
 .. raw:: html
 
@@ -8198,7 +7673,7 @@ UART Extend using Manchester encoding and decoding, send a packet
 
    <td align="center">
 
-|image203|
+|image190|
 
 .. raw:: html
 
@@ -8226,7 +7701,7 @@ uart\_external\_loopback\_interrupt
 
    <td>
 
-UART RX/TX external loopback using interrupts
+使用中断的 UART RX/TX 外部环回
 
 .. raw:: html
 
@@ -8236,7 +7711,7 @@ UART RX/TX external loopback using interrupts
 
    <td align="center">
 
-|image204|
+|image191|
 
 .. raw:: html
 
@@ -8246,7 +7721,7 @@ UART RX/TX external loopback using interrupts
 
    <td align="center">
 
-|image205|
+|image192|
 
 .. raw:: html
 
@@ -8274,7 +7749,7 @@ uart\_internal\_loopback\_standby\_restore
 
    <td>
 
-UART internal loopback after coming out of STANDBY with retention in SW
+器件退出 STANDBY 模式后 UART 内部环回并在软件中保持
 
 .. raw:: html
 
@@ -8284,103 +7759,7 @@ UART internal loopback after coming out of STANDBY with retention in SW
 
    <td align="center">
 
-|image206|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-uart\_rs485\_receive\_packet
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Demonstrate UART in RS485 mode, receive a packet
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image207|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-uart\_rs485\_send\_packet
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Demonstrate UART in RS485 mode, send a packet
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image208|
+|image193|
 
 .. raw:: html
 
@@ -8418,7 +7797,7 @@ uart\_rw\_multibyte\_fifo\_poll
 
    <td>
 
-UART RX/TX using FIFOs with polling
+UART RX/TX（使用具有轮询功能的 FIFO）
 
 .. raw:: html
 
@@ -8428,7 +7807,7 @@ UART RX/TX using FIFOs with polling
 
    <td align="center">
 
-|image209|
+|image194|
 
 .. raw:: html
 
@@ -8438,7 +7817,7 @@ UART RX/TX using FIFOs with polling
 
    <td align="center">
 
-|image210|
+|image195|
 
 .. raw:: html
 
@@ -8466,7 +7845,7 @@ uart\_rx\_hw\_flow\_control
 
    <td>
 
-UART RX using HW flow control
+使用硬件流控制的 UART RX
 
 .. raw:: html
 
@@ -8476,7 +7855,7 @@ UART RX using HW flow control
 
    <td align="center">
 
-|image211|
+|image196|
 
 .. raw:: html
 
@@ -8486,7 +7865,7 @@ UART RX using HW flow control
 
    <td align="center">
 
-|image212|
+|image197|
 
 .. raw:: html
 
@@ -8514,7 +7893,7 @@ uart\_rx\_multibyte\_fifo\_dma\_interrupts
 
    <td>
 
-UART RX using a DMA trigger
+使用 DMA 触发器的 UART RX
 
 .. raw:: html
 
@@ -8524,7 +7903,7 @@ UART RX using a DMA trigger
 
    <td align="center">
 
-|image213|
+|image198|
 
 .. raw:: html
 
@@ -8534,7 +7913,7 @@ UART RX using a DMA trigger
 
    <td align="center">
 
-|image214|
+|image199|
 
 .. raw:: html
 
@@ -8562,7 +7941,7 @@ uart\_tx\_console\_multibyte\_repeated\_fifo\_dma
 
    <td>
 
-UART TX to console using a continuous DMA Triggers
+UART TX 到控制台（使用连续 DMA 触发器）
 
 .. raw:: html
 
@@ -8572,7 +7951,7 @@ UART TX to console using a continuous DMA Triggers
 
    <td align="center">
 
-|image215|
+|image200|
 
 .. raw:: html
 
@@ -8582,7 +7961,7 @@ UART TX to console using a continuous DMA Triggers
 
    <td align="center">
 
-|image216|
+|image201|
 
 .. raw:: html
 
@@ -8610,7 +7989,7 @@ uart\_tx\_hw\_flow\_control
 
    <td>
 
-UART TX using hardware flow control
+使用硬件流控制的 UART TX
 
 .. raw:: html
 
@@ -8620,7 +7999,7 @@ UART TX using hardware flow control
 
    <td align="center">
 
-|image217|
+|image202|
 
 .. raw:: html
 
@@ -8630,7 +8009,7 @@ UART TX using hardware flow control
 
    <td align="center">
 
-|image218|
+|image203|
 
 .. raw:: html
 
@@ -8658,7 +8037,7 @@ uart\_tx\_multibyte\_fifo\_dma\_interrupts
 
    <td>
 
-UART TX using a DMA trigger
+使用 DMA 触发器的 UART TX
 
 .. raw:: html
 
@@ -8668,7 +8047,7 @@ UART TX using a DMA trigger
 
    <td align="center">
 
-|image219|
+|image204|
 
 .. raw:: html
 
@@ -8678,7 +8057,7 @@ UART TX using a DMA trigger
 
    <td align="center">
 
-|image220|
+|image205|
 
 .. raw:: html
 
@@ -8692,8 +8071,8 @@ UART TX using a DMA trigger
 
    </table>
 
-2.2.24 Window Watchdog Timer (WWDT)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.24 窗口看门狗计时器 (WWDT)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -8791,7 +8170,7 @@ wwdt\_interval\_timer\_lfosc\_standby
 
    <td>
 
-WWDT interval timer mode using LFOSC while device is in STANDBY mode
+器件处于 STANDBY 模式时，WWDT 使用 LFOSC 并处于间隔计时器模式
 
 .. raw:: html
 
@@ -8801,7 +8180,7 @@ WWDT interval timer mode using LFOSC while device is in STANDBY mode
 
    <td align="center">
 
-|image221|
+|image206|
 
 .. raw:: html
 
@@ -8811,7 +8190,7 @@ WWDT interval timer mode using LFOSC while device is in STANDBY mode
 
    <td align="center">
 
-|image222|
+|image207|
 
 .. raw:: html
 
@@ -8839,7 +8218,7 @@ wwdt\_interval\_timer\_lfxt\_standby
 
    <td>
 
-WWDT interval timer mode using LFXT while device is in STANDBY mode
+器件处于 STANDBY 模式时，WWDT 使用 LFXT 并处于间隔计时器模式
 
 .. raw:: html
 
@@ -8849,7 +8228,7 @@ WWDT interval timer mode using LFXT while device is in STANDBY mode
 
    <td align="center">
 
-|image223|
+|image208|
 
 .. raw:: html
 
@@ -8887,7 +8266,7 @@ wwdt\_window\_mode\_periodic\_reset
 
    <td>
 
-WWDT Window watchdog mode with periodic reset
+支持定期复位的 WWDT 窗口看门狗模式
 
 .. raw:: html
 
@@ -8897,7 +8276,7 @@ WWDT Window watchdog mode with periodic reset
 
    <td align="center">
 
-|image224|
+|image209|
 
 .. raw:: html
 
@@ -8907,7 +8286,7 @@ WWDT Window watchdog mode with periodic reset
 
    <td align="center">
 
-|image225|
+|image210|
 
 .. raw:: html
 
@@ -8921,8 +8300,8 @@ WWDT Window watchdog mode with periodic reset
 
    </table>
 
-2.3 TI-Drivers
-~~~~~~~~~~~~~~
+2.3 TI 驱动程序
+~~~~~~~~~~~~~~~
 
 “TI 驱动程序”提供了一系列稳健而直观的 功能 API，使开发人员能够以可移植、功能丰富的方式访问外设。
 
@@ -9017,7 +8396,7 @@ LP\_MSPM0L1306
 
    <td>
 
-gpio\_interrupt
+uart\_callback/freertos
 
 .. raw:: html
 
@@ -9027,17 +8406,7 @@ gpio\_interrupt
 
    <td>
 
-Toggles the LED(s) using a GPIO pin interrupt
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-是
+使用回调的 UART 简单回显
 
 .. raw:: html
 
@@ -9055,92 +8424,6 @@ Toggles the LED(s) using a GPIO pin interrupt
 
 .. raw:: html
 
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-i2c\_tmp
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Read temperature from Tmp117 Sensor using I2C
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-是
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-uart\_callback
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-UART simple echo using callback
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-是
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
    <td align="center">
 
 是
@@ -9161,7 +8444,7 @@ UART simple echo using callback
 
    <td>
 
-uart\_echo
+uart\_echo/freertos
 
 .. raw:: html
 
@@ -9171,7 +8454,7 @@ uart\_echo
 
    <td>
 
-UART simple echo
+UART 简单回显
 
 .. raw:: html
 
@@ -9294,7 +8577,7 @@ LP\_MSPM0L1306
 
    <td>
 
-uart\_echo
+uart\_echo/nortos
 
 .. raw:: html
 
@@ -9304,7 +8587,103 @@ uart\_echo
 
    <td>
 
-UART simple echo
+UART 简单回显
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+是
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+否
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+watchdog\_interval
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+看门狗驱动程序处于间隔模式
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+是
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+否
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+watchdog\_reset
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+看门狗驱动程序处于复位模式
 
 .. raw:: html
 
@@ -9439,7 +8818,7 @@ bim\_sample\_image
 
    <td>
 
-Sample GPIO toggle image for BIM
+对 BIM 的 GPIO 翻转映像进行采样
 
 .. raw:: html
 
@@ -9449,7 +8828,7 @@ Sample GPIO toggle image for BIM
 
    <td align="center">
 
-|image226|
+否
 
 .. raw:: html
 
@@ -9459,7 +8838,7 @@ Sample GPIO toggle image for BIM
 
    <td align="center">
 
-|image227|
+|image211|
 
 .. raw:: html
 
@@ -9487,7 +8866,7 @@ boot\_application
 
    <td>
 
-Boot Image Manager Using MCUBoot
+使用 MCUBoot 的启动映像管理器
 
 .. raw:: html
 
@@ -9497,7 +8876,7 @@ Boot Image Manager Using MCUBoot
 
    <td align="center">
 
-|image228|
+否
 
 .. raw:: html
 
@@ -9507,7 +8886,7 @@ Boot Image Manager Using MCUBoot
 
    <td align="center">
 
-|image229|
+|image212|
 
 .. raw:: html
 
@@ -9524,9 +8903,9 @@ Boot Image Manager Using MCUBoot
 2.5 引导加载程序 (BSL)
 ~~~~~~~~~~~~~~~~~~~~~~
 
-引导加载程序 (BSL) 提供了一种 通过标准 UART 或 I2C 串行接口对器件存储器进行编程和/或验证的 方法。此外，BSL 还支持 MAIN 闪存插件，以启用 其他接口和功能。
+引导加载程序 (BSL) 提供了一种 通过标准 UART 或 I2C 串行接口对器件存储器进行烧录和/或验证的 方法。此外，BSL 还支持基于 MAIN 闪存的通讯插件，以启用 其他接口和功能。
 
-MSPM0 SDK 包含多个示例，展示了如何在 MAIN 闪存中实现各种插件以及其他 BSL 功能。
+MSPM0 SDK 包含多个示例，展示了如何在 MAIN 闪存中实现各种通讯插件以及其他 BSL 功能。
 
 .. raw:: html
 
@@ -9614,7 +8993,7 @@ LP\_MSPM0L1306
 
    <td>
 
-bsl\_host\_mcu\_i2c\_to\_m0g\_target
+bsl\_host\_mcu\_i2c
 
 .. raw:: html
 
@@ -9624,103 +9003,7 @@ bsl\_host\_mcu\_i2c\_to\_m0g\_target
 
    <td>
 
-Shows an implementation of BSL I2C Flash interface with MSPM0G as host to MSPM0G target
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image230|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-bsl\_host\_mcu\_i2c\_to\_m0l\_target
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Shows an implementation of BSL I2C Flash interface with MSPM0G as host to MSPM0L target
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image231|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-bsl\_host\_mcu\_spi
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Shows an implementation of a BSL host utilizing SPI interface
+显示 BSL I2C 闪存接口的实现
 
 .. raw:: html
 
@@ -9758,7 +9041,7 @@ Shows an implementation of a BSL host utilizing SPI interface
 
    <td>
 
-bsl\_host\_mcu\_uart\_to\_m0g\_target
+bsl\_host\_mcu\_uart
 
 .. raw:: html
 
@@ -9768,7 +9051,7 @@ bsl\_host\_mcu\_uart\_to\_m0g\_target
 
    <td>
 
-Shows an implementation of BSL UART Flash interface with MSPM0G as host to MSPM0G target
+显示 BSL uart 闪存接口的实现
 
 .. raw:: html
 
@@ -9778,55 +9061,7 @@ Shows an implementation of BSL UART Flash interface with MSPM0G as host to MSPM0
 
    <td align="center">
 
-|image232|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-bsl\_host\_mcu\_uart\_to\_m0l\_target
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Shows an implementation of BSL UART Flash interface with MSPM0G as host to MSPM0L target
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image233|
+是
 
 .. raw:: html
 
@@ -9864,7 +9099,7 @@ bsl\_i2c\_flash\_interface
 
    <td>
 
-Shows an implementation of BSL I2C Flash interface
+显示 BSL I2C 闪存接口的实现
 
 .. raw:: html
 
@@ -9874,7 +9109,7 @@ Shows an implementation of BSL I2C Flash interface
 
    <td align="center">
 
-|image234|
+|image213|
 
 .. raw:: html
 
@@ -9884,7 +9119,7 @@ Shows an implementation of BSL I2C Flash interface
 
    <td align="center">
 
-|image235|
+|image214|
 
 .. raw:: html
 
@@ -9912,7 +9147,7 @@ bsl\_software\_invoke
 
    <td>
 
-Jump to ROM bootloader on application request
+在应用程序请求时跳转到 ROM 引导加载程序
 
 .. raw:: html
 
@@ -9922,7 +9157,7 @@ Jump to ROM bootloader on application request
 
    <td align="center">
 
-|image236|
+|image215|
 
 .. raw:: html
 
@@ -9932,55 +9167,7 @@ Jump to ROM bootloader on application request
 
    <td align="center">
 
-|image237|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-bsl\_spi\_flash\_interface
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Shows an implementation of a BSL SPI Flash interface
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image238|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image239|
+|image216|
 
 .. raw:: html
 
@@ -10008,7 +9195,7 @@ bsl\_uart\_flash\_interface
 
    <td>
 
-Shows an implementation of a BSL UART Flash interface
+显示 BSL UART 闪存接口的实现
 
 .. raw:: html
 
@@ -10018,7 +9205,7 @@ Shows an implementation of a BSL UART Flash interface
 
    <td align="center">
 
-|image240|
+|image217|
 
 .. raw:: html
 
@@ -10028,7 +9215,7 @@ Shows an implementation of a BSL UART Flash interface
 
    <td align="center">
 
-|image241|
+|image218|
 
 .. raw:: html
 
@@ -10056,7 +9243,7 @@ secondary\_bsl
 
    <td>
 
-Implements a secondary bootloader in Main overriding the ROM BSL
+在 MAIN 闪存实现次级引导加载程序来覆盖 ROM BSL
 
 .. raw:: html
 
@@ -10066,7 +9253,7 @@ Implements a secondary bootloader in Main overriding the ROM BSL
 
    <td align="center">
 
-|image242|
+|image219|
 
 .. raw:: html
 
@@ -10076,7 +9263,7 @@ Implements a secondary bootloader in Main overriding the ROM BSL
 
    <td align="center">
 
-|image243|
+|image220|
 
 .. raw:: html
 
@@ -10090,192 +9277,7 @@ Implements a secondary bootloader in Main overriding the ROM BSL
 
    </table>
 
-2.6 CMSIS-DSP
-~~~~~~~~~~~~~
-
-The CMSIS DSP software library includes a comprehensive set of signal processing functions for use on Cortex-M MCUs.
-
-The MSPM0 SDK includes examples showing how to get started using CMSIS DSP.
-
-.. raw:: html
-
-   <table class="docutils align-default">
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-工程名称
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-说明
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th colspan="2">
-
-.. raw:: html
-
-   <p style="text-align: center;">
-
-EVM
-
-.. raw:: html
-
-   </p>
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0G3507
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0L1306
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-cmsis\_dsp\_empty
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Empty example using CMSIS-DSP
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image244|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image245|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-cmsis\_dsp\_fft\_q15
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-FFT of fixed point array using CMSIS-DSP
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image246|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image247|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   </table>
-
-2.7 指导手册
+2.6 指导手册
 ~~~~~~~~~~~~
 
 “MSPM0 SDK 指导手册”包含多个实例，展示了使用多个外设实现更复杂的功能。
@@ -10378,7 +9380,7 @@ adc\_dma\_ping\_pong
 
    <td>
 
-Capture ADC data into 2 (ping-pong) buffers
+将 ADC 数据捕获到 2 个（乒乓）缓冲器
 
 .. raw:: html
 
@@ -10398,7 +9400,7 @@ Capture ADC data into 2 (ping-pong) buffers
 
    <td align="center">
 
-|image248|
+|image221|
 
 .. raw:: html
 
@@ -10416,7 +9418,7 @@ Capture ADC data into 2 (ping-pong) buffers
 
    <td>
 
-adc\_to\_pwm
+adc\_to\_spi\_controller
 
 .. raw:: html
 
@@ -10426,7 +9428,7 @@ adc\_to\_pwm
 
    <td>
 
-Convert analog voltage to PWM
+通过 SPI 从连接的目标器件读取 ADC 数据
 
 .. raw:: html
 
@@ -10436,7 +9438,7 @@ Convert analog voltage to PWM
 
    <td align="center">
 
-|image249|
+|image222|
 
 .. raw:: html
 
@@ -10446,7 +9448,7 @@ Convert analog voltage to PWM
 
    <td align="center">
 
-|image250|
+|image223|
 
 .. raw:: html
 
@@ -10474,7 +9476,7 @@ adc\_to\_spi\_peripheral
 
    <td>
 
-Sample ADC and respond to SPI commands sent by a controller
+对 ADC 进行采样并响应由控制器发送的 SPI 命令
 
 .. raw:: html
 
@@ -10484,7 +9486,7 @@ Sample ADC and respond to SPI commands sent by a controller
 
    <td align="center">
 
-|image251|
+|image224|
 
 .. raw:: html
 
@@ -10494,7 +9496,7 @@ Sample ADC and respond to SPI commands sent by a controller
 
    <td align="center">
 
-|image252|
+|image225|
 
 .. raw:: html
 
@@ -10522,7 +9524,7 @@ adc\_to\_uart
 
    <td>
 
-Configures the ADC0 to trigger single conversion and send the ADC data through UART
+对 ADC 值进行采样并通过 UART 发送
 
 .. raw:: html
 
@@ -10532,7 +9534,7 @@ Configures the ADC0 to trigger single conversion and send the ADC data through U
 
    <td align="center">
 
-|image253|
+|image226|
 
 .. raw:: html
 
@@ -10542,247 +9544,7 @@ Configures the ADC0 to trigger single conversion and send the ADC data through U
 
    <td align="center">
 
-|image254|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-digital\_mux
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Emulate a digital mux with GPIO
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image255|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-diode\_matrix
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Drive LEDs with fewer pins using diode matrix
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image256|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-fir\_low\_pass\_filter
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Applies digital FIR low-pass filter to sampled ADC signals
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image257|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-iir\_low\_pass\_filter
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Applies digital IIR filter to sampled ADC signals
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image258|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-power\_sequencing
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-This sub system allows for different pins/applications be turned on/off in a sequence as to not over load the device from simultaneous power consumption.
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image259|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image260|
+|image227|
 
 .. raw:: html
 
@@ -10810,7 +9572,7 @@ programmable\_gain\_amplifier\_1
 
    <td>
 
-Use programmable gain amplifier to dynamically adjust gain
+使用可编程增益放大器来动态调整增益
 
 .. raw:: html
 
@@ -10830,7 +9592,7 @@ Use programmable gain amplifier to dynamically adjust gain
 
    <td align="center">
 
-|image261|
+|image228|
 
 .. raw:: html
 
@@ -10858,7 +9620,7 @@ programmable\_gain\_amplifier\_2
 
    <td>
 
-Use programmable gain amplifier to dynamically adjust gain and capture values with integrated ADC
+使用可编程增益放大器来动态调整增益并使用集成式 ADC 来捕获值
 
 .. raw:: html
 
@@ -10878,103 +9640,7 @@ Use programmable gain amplifier to dynamically adjust gain and capture values wi
 
    <td align="center">
 
-|image262|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-pushbutton\_change\_pwm
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-This example demonstrates using the two switches on the MSPM0 Launchpad to change the period and duty cycle on TIMA1 PWM output channels CC0 and CC1.
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image263|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-pwm\_dac
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Use a timer to create a PWM DAC
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image264|
+|image229|
 
 .. raw:: html
 
@@ -11002,7 +9668,7 @@ pwm\_led\_driver
 
    <td>
 
-Create a pulsating LED effect using timers
+使用计时器产生脉动 LED 效果
 
 .. raw:: html
 
@@ -11012,7 +9678,7 @@ Create a pulsating LED effect using timers
 
    <td align="center">
 
-|image265|
+|image230|
 
 .. raw:: html
 
@@ -11022,55 +9688,7 @@ Create a pulsating LED effect using timers
 
    <td align="center">
 
-|image266|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-signal\_acquisition
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-OPA supports two different sensor input voltages and uses common ADC channel
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image267|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
+|image231|
 
 .. raw:: html
 
@@ -11098,7 +9716,7 @@ temp\_sense\_thermistor
 
    <td>
 
-Sample LaunchPad thermistor using integrated Op-Amp and ADC
+使用集成式运算放大器和 ADC 对 LaunchPad 热敏电阻进行采样
 
 .. raw:: html
 
@@ -11118,7 +9736,7 @@ Sample LaunchPad thermistor using integrated Op-Amp and ADC
 
    <td align="center">
 
-|image268|
+|image232|
 
 .. raw:: html
 
@@ -11146,7 +9764,7 @@ transimpedance\_amplifier
 
    <td>
 
-Configure Op-amp in transimpedance amplifier topology
+配置跨阻放大器拓扑中的运算放大器
 
 .. raw:: html
 
@@ -11166,7 +9784,7 @@ Configure Op-amp in transimpedance amplifier topology
 
    <td align="center">
 
-|image269|
+|image233|
 
 .. raw:: html
 
@@ -11180,152 +9798,15 @@ Configure Op-amp in transimpedance amplifier topology
 
    </table>
 
-2.8 DALI
-~~~~~~~~
-
-MSPM0 supports the DALI Protocol via the UART module. DALI (Digitally Addressable Lighting Interface) is a serial protocol for digital lighting control that allows for simple and efficient communication between various lighting application gear and controllers.
-
-The MSPM0 SDK includes the source code and examples showing the implementation of supported solutions.
-
-.. raw:: html
-
-   <table class="docutils align-default">
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-工程名称
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-说明
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th colspan="2">
-
-.. raw:: html
-
-   <p style="text-align: center;">
-
-EVM
-
-.. raw:: html
-
-   </p>
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0G3507
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0L1306
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-dali\_led\_demo
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Demonstrates usage of DALI protocol with an LED control demo
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image270|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   </table>
-
-2.9 EEPROM
+2.7 EEPROM
 ~~~~~~~~~~
 
-MSPM0 通过其内部闪存支持 EEPROM 仿真。 与使用外部串行 EEPROM 相比，使用内部闪存的 EEPROM 仿真可节省引脚用量和成本。
+MSPM0 通过其内部闪存支持模拟 EEPROM。 与使用外部串行 EEPROM 相比，使用内部闪存的模拟 EEPROM 可节省引脚用量和成本。
 
 MSPM0 SDK 包含一个库和多个示例，展示了其所支持的解决方案 实现方式。
 
-2.9.1 Type-A
-^^^^^^^^^^^^
+2.7.1 A 型
+^^^^^^^^^^
 
 .. raw:: html
 
@@ -11423,7 +9904,7 @@ eeprom\_emulation\_type\_a
 
    <td>
 
-Demonstrates Type A EEPROM emulation to store non-volatile data
+演示 A 型 EEPROM 仿真以存储非易失性数据
 
 .. raw:: html
 
@@ -11471,7 +9952,7 @@ eeprom\_emulation\_type\_a\_test
 
    <td>
 
-Demonstrates a more detailed use case of Type A EEPROM emulation to store blocks of non-volatile data
+演示 A 型 EEPROM 仿真的更详细用例，以存储非易失性数据块
 
 .. raw:: html
 
@@ -11505,8 +9986,8 @@ Demonstrates a more detailed use case of Type A EEPROM emulation to store blocks
 
    </table>
 
-2.9.2 Type-B
-^^^^^^^^^^^^
+2.7.2 B 型
+^^^^^^^^^^
 
 .. raw:: html
 
@@ -11604,7 +10085,7 @@ eeprom\_emulation\_type\_b
 
    <td>
 
-Demonstrates Type B EEPROM emulation to store user data
+演示 B 型 EEPROM 仿真以存储用户数据
 
 .. raw:: html
 
@@ -11652,7 +10133,7 @@ eeprom\_emulation\_type\_b\_test
 
    <td>
 
-Demonstrates a more detailed use case of Type B EEPROM emulation to store user data
+演示 B 型 EEPROM 仿真的更详细用例，以存储用户数据
 
 .. raw:: html
 
@@ -11686,15 +10167,15 @@ Demonstrates a more detailed use case of Type B EEPROM emulation to store user d
 
    </table>
 
-2.10 GUI Composer
-~~~~~~~~~~~~~~~~~
+2.8 GUI Composer
+~~~~~~~~~~~~~~~~
 
 GUI Composer 是一款基于浏览器的工具，用于开发 PC 端 基于 HTML 的 GUI，从而补充嵌入式工程或应用程序。
 
 MSPM0 SDK 包含一个库和多个示例，展示了其所支持的协议 实现方式。
 
-2.10.1 流媒体协议
-^^^^^^^^^^^^^^^^^
+2.8.1 流媒体协议
+^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -11792,7 +10273,7 @@ gc\_simple\_json
 
    <td>
 
-Demonstrates basic usage of GUI Composer communication using JSON-formatted strings
+演示使用 JSON 格式字符串进行 GUI Composer 通信的基本用例
 
 .. raw:: html
 
@@ -11802,7 +10283,7 @@ Demonstrates basic usage of GUI Composer communication using JSON-formatted stri
 
    <td align="center">
 
-|image271|
+|image234|
 
 .. raw:: html
 
@@ -11812,7 +10293,7 @@ Demonstrates basic usage of GUI Composer communication using JSON-formatted stri
 
    <td align="center">
 
-|image272|
+|image235|
 
 .. raw:: html
 
@@ -11840,7 +10321,7 @@ gc\_simple\_messagepack
 
    <td>
 
-Demonstrates basic usage of GUI Composer communication using MessagePack protocol
+演示使用 MessagePack 协议进行 GUI Composer 通信的基本用例
 
 .. raw:: html
 
@@ -11850,7 +10331,7 @@ Demonstrates basic usage of GUI Composer communication using MessagePack protoco
 
    <td align="center">
 
-|image273|
+|image236|
 
 .. raw:: html
 
@@ -11860,7 +10341,7 @@ Demonstrates basic usage of GUI Composer communication using MessagePack protoco
 
    <td align="center">
 
-|image274|
+|image237|
 
 .. raw:: html
 
@@ -11874,15 +10355,15 @@ Demonstrates basic usage of GUI Composer communication using MessagePack protoco
 
    </table>
 
-2.11 IQMath
-~~~~~~~~~~~
+2.9 IQMath
+~~~~~~~~~~
 
 IQMath 是一组高度优化的 高精度定点数运算函数库。
 
 MSPM0 SDK 包括 IQMath 的使用示例，使用简单的 C 运行时系统 (RTS) 函数，并利用 MathAcl 硬件加速器。
 
-2.11.1 Compiler RTS library
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.9.1 编译器 RTS 库
+^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -11980,7 +10461,7 @@ iqmath\_rts\_ops\_test
 
    <td>
 
-Implements various fixed-point operations leveraging the RTS implementation of IQMath
+利用 IQMath 的 RTS 实现来实施各种定点运算
 
 .. raw:: html
 
@@ -11990,7 +10471,7 @@ Implements various fixed-point operations leveraging the RTS implementation of I
 
    <td align="center">
 
-|image275|
+|image238|
 
 .. raw:: html
 
@@ -12000,7 +10481,7 @@ Implements various fixed-point operations leveraging the RTS implementation of I
 
    <td align="center">
 
-|image276|
+|image239|
 
 .. raw:: html
 
@@ -12014,8 +10495,8 @@ Implements various fixed-point operations leveraging the RTS implementation of I
 
    </table>
 
-2.11.2 MathACL
-^^^^^^^^^^^^^^
+2.9.2 MathACL
+^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -12113,7 +10594,7 @@ iqmath\_mathacl\_ops\_test
 
    <td>
 
-Implements various fixed-point operations leveraging the MathACL implementation of IQMath
+利用 IQMath 的 MathACL 实现来实施各种定点运算
 
 .. raw:: html
 
@@ -12123,7 +10604,7 @@ Implements various fixed-point operations leveraging the MathACL implementation 
 
    <td align="center">
 
-|image277|
+|image240|
 
 .. raw:: html
 
@@ -12147,10 +10628,10 @@ Implements various fixed-point operations leveraging the MathACL implementation 
 
    </table>
 
-2.12 RTOS Kernel
-~~~~~~~~~~~~~~~~
+2.10 RTOS 内核
+~~~~~~~~~~~~~~
 
-The MSPM0 SDK includes a collection of examples to test kernel functionality.
+MSPM0 SDK 包含一组用于测试 内核功能的示例。
 
 .. raw:: html
 
@@ -12248,7 +10729,7 @@ blink\_led
 
    <td>
 
-Simple FreeRTOS LED blinky demo using two tasks
+使用两个任务的简单 FreeRTOS LED 闪烁演示
 
 .. raw:: html
 
@@ -12258,7 +10739,7 @@ Simple FreeRTOS LED blinky demo using two tasks
 
    <td align="center">
 
-|image278|
+|image241|
 
 .. raw:: html
 
@@ -12268,7 +10749,7 @@ Simple FreeRTOS LED blinky demo using two tasks
 
    <td align="center">
 
-|image279|
+|image242|
 
 .. raw:: html
 
@@ -12296,7 +10777,7 @@ posix\_demo
 
    <td>
 
-Simple Posix FreeRTOS blinky LED demo
+简单的 Posix FreeRTOS 闪烁 LED 演示
 
 .. raw:: html
 
@@ -12306,7 +10787,7 @@ Simple Posix FreeRTOS blinky LED demo
 
    <td align="center">
 
-|image280|
+|image243|
 
 .. raw:: html
 
@@ -12316,7 +10797,7 @@ Simple Posix FreeRTOS blinky LED demo
 
    <td align="center">
 
-|image281|
+|image244|
 
 .. raw:: html
 
@@ -12330,14 +10811,14 @@ Simple Posix FreeRTOS blinky LED demo
 
    </table>
 
-2.13 LIN
+2.11 LIN
 ~~~~~~~~
 
 本地互连网络 (LIN) 是汽车中 常用的一种易于实现的低成本多点通信总线。
 
 MSPM0 SDK 包含易于使用的指挥官和 响应者示例。
 
-2.13.1 指挥官
+2.11.1 指挥官
 ^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12436,7 +10917,7 @@ lin\_commander
 
    <td>
 
-Demonstrates basic implementation of LIN commander to transmit and receive LIN 2.0 packets using UART
+演示 LIN 指挥官使用 UART 发送和接收 LIN 2.0 数据包的基本实现
 
 .. raw:: html
 
@@ -12446,7 +10927,7 @@ Demonstrates basic implementation of LIN commander to transmit and receive LIN 2
 
    <td align="center">
 
-|image282|
+|image245|
 
 .. raw:: html
 
@@ -12456,7 +10937,7 @@ Demonstrates basic implementation of LIN commander to transmit and receive LIN 2
 
    <td align="center">
 
-|image283|
+|image246|
 
 .. raw:: html
 
@@ -12470,7 +10951,7 @@ Demonstrates basic implementation of LIN commander to transmit and receive LIN 2
 
    </table>
 
-2.13.2 响应者
+2.11.2 响应者
 ^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12569,7 +11050,7 @@ lin\_responder
 
    <td>
 
-Demonstrates basic implementation of LIN responder to transmit and receive LIN 2.0 packets using UART
+演示 LIN 响应者使用 UART 发送和接收 LIN 2.0 数据包的基本实现
 
 .. raw:: html
 
@@ -12579,7 +11060,7 @@ Demonstrates basic implementation of LIN responder to transmit and receive LIN 2
 
    <td align="center">
 
-|image284|
+|image247|
 
 .. raw:: html
 
@@ -12589,7 +11070,7 @@ Demonstrates basic implementation of LIN responder to transmit and receive LIN 2
 
    <td align="center">
 
-|image285|
+|image248|
 
 .. raw:: html
 
@@ -12603,425 +11084,14 @@ Demonstrates basic implementation of LIN responder to transmit and receive LIN 2
 
    </table>
 
-2.14 Sensored Trap Hall Motor Control
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The MSPM0 SDK includes examples to evaluate the sensored trap hall motor control library with the DRV8316REVM and DRV8329AEVM. These firmware are designed for a GUI to make testing and evaluation quick for the user.
-
-Stay tuned for more examples and functionality coming soon.
-
-2.14.1 DRV8316
-^^^^^^^^^^^^^^
-
-.. raw:: html
-
-   <table class="docutils align-default">
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-工程名称
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-说明
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th colspan="2">
-
-.. raw:: html
-
-   <p style="text-align: center;">
-
-EVM
-
-.. raw:: html
-
-   </p>
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0G3507
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0L1306
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-drv8316revm-gui-firmware
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Firmware for LP\_MSPM0G3507 and DRV8316R EVM GUI
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image286|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   </table>
-
-2.14.2 DRV8329
-^^^^^^^^^^^^^^
-
-.. raw:: html
-
-   <table class="docutils align-default">
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-工程名称
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-说明
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th colspan="2">
-
-.. raw:: html
-
-   <p style="text-align: center;">
-
-EVM
-
-.. raw:: html
-
-   </p>
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0G3507
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0L1306
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-drv8329aevm-gui-firmware
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Firmware for LP\_MSPM0G3507 and DRV8329A EVM GUI
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image287|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   </table>
-
-2.15 Sensorless FOC Motor Control
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The MSPM0 SDK includes examples to evaluate the sensorless FOC motor control library with the DRV8323RS EVM. These firmware are designed for a GUI to make testing and evaluation quick for the user.
-
-Stay tuned for more examples and functionality coming soon.
-
-2.15.1 DRV8323RS
-^^^^^^^^^^^^^^^^
-
-.. raw:: html
-
-   <table class="docutils align-default">
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-工程名称
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-说明
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th colspan="2">
-
-.. raw:: html
-
-   <p style="text-align: center;">
-
-EVM
-
-.. raw:: html
-
-   </p>
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0G3507
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0L1306
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-sensorless-foc-demo
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Demo sensorless FOC code for LP\_MSPM0G3507 and DRV8323RS EVM GUI
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image288|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-否
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   </table>
-
-2.16 有刷电机控制
+2.12 有刷电机控制
 ~~~~~~~~~~~~~~~~~
 
 MSPM0 SDK 包含一个示例，用于 通过 DRV8706-Q1 EVM 评估有刷电机控制库。该固件有专用的 GUI 上位机，旨在帮助用户快速进行测试和评估。
 
-2.16.1 DRV8706-Q1
+更多示例和功能即将推出，敬请期待。
+
+2.12.1 DRV8706-Q1
 ^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13120,7 +11190,7 @@ drv8706s-q1evm-gui-firmware
 
    <td>
 
-Firmware for LP\_MSPM0L1306 and DRV8706S-Q1 EVM GUI
+适用于 LP\_MSPM0L1306 和 DRV8706S-Q1 EVM GUI 的固件
 
 .. raw:: html
 
@@ -13140,7 +11210,7 @@ Firmware for LP\_MSPM0L1306 and DRV8706S-Q1 EVM GUI
 
    <td align="center">
 
-|image289|
+|image249|
 
 .. raw:: html
 
@@ -13154,14 +11224,14 @@ Firmware for LP\_MSPM0L1306 and DRV8706S-Q1 EVM GUI
 
    </table>
 
-2.17 步进电机控制
+2.13 步进电机控制
 ~~~~~~~~~~~~~~~~~
 
 MSPM0 SDK 包含多个示例，用于 通过 DRV8411A 和 DRV8889-q1 EVM 评估步进电机控制库。这些固件 有专用的 GUI 上位机，旨在帮助用户快速进行测试和评估。
 
 更多示例和功能即将推出，敬请期待。
 
-2.17.1 DRV8411A
+2.13.1 DRV8411A
 ^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13260,7 +11330,7 @@ drv8411aevm-gui-firmware
 
    <td>
 
-Firmware for LP\_MSPM0L1306 and DRV8411AEVM GUI
+适用于 LP\_MSPM0L1306 和 DRV8411AEVM GUI 的固件
 
 .. raw:: html
 
@@ -13280,7 +11350,7 @@ Firmware for LP\_MSPM0L1306 and DRV8411AEVM GUI
 
    <td align="center">
 
-|image290|
+|image250|
 
 .. raw:: html
 
@@ -13294,7 +11364,7 @@ Firmware for LP\_MSPM0L1306 and DRV8411AEVM GUI
 
    </table>
 
-2.17.2 DRV8889-Q1
+2.13.2 DRV8889-Q1
 ^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13393,7 +11463,7 @@ drv8889-q1evm-gui-firmware
 
    <td>
 
-Firmware for LP\_MSPM0L1306 and DRV8889-Q1 EVM GUI
+适用于 LP\_MSPM0L1306 和 DRV8889-Q1 EVM GUI 的固件
 
 .. raw:: html
 
@@ -13413,7 +11483,7 @@ Firmware for LP\_MSPM0L1306 and DRV8889-Q1 EVM GUI
 
    <td align="center">
 
-|image291|
+|image251|
 
 .. raw:: html
 
@@ -13427,154 +11497,14 @@ Firmware for LP\_MSPM0L1306 and DRV8889-Q1 EVM GUI
 
    </table>
 
-2.18 PMBUS
-~~~~~~~~~~
-
-PMBus is a protocol design to interface with power management devices. It uses the SMBus protocol as a base.
-
-The MSPM0 SDK includes a ready-to-go example for using an MSPM0 devices as a PMBus controller for a TPS544B20 device.
-
-2.18.1 Controller
-^^^^^^^^^^^^^^^^^
-
-.. raw:: html
-
-   <table class="docutils align-default">
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-工程名称
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th rowspan="2">
-
-说明
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th colspan="2">
-
-.. raw:: html
-
-   <p style="text-align: center;">
-
-EVM
-
-.. raw:: html
-
-   </p>
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0G3507
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   <th>
-
-LP\_MSPM0L1306
-
-.. raw:: html
-
-   </th>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-pmbus\_controller\_tps544b20evm
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Use MSPM0 to configure TPS544B20EVM over PMBus
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image292|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image293|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   </table>
-
-2.19 SMBus
+2.14 SMBus
 ~~~~~~~~~~
 
 系统管理总线 (SMBus) 是一种适用于轻量级通信的 简单单端双线总线。
 
 MSPM0 SDK 包含适用于控制器和 目标的易用示例。
 
-2.19.1 控制器
+2.14.1 控制器
 ^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13673,7 +11603,7 @@ smbus\_controller
 
    <td>
 
-Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 protocols using I2C
+演示 SMBus 控制器使用 I2C 来测试所有 SMBus 2.0 协议的基本实现
 
 .. raw:: html
 
@@ -13683,7 +11613,7 @@ Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 prot
 
    <td align="center">
 
-|image294|
+否
 
 .. raw:: html
 
@@ -13693,7 +11623,7 @@ Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 prot
 
    <td align="center">
 
-|image295|
+|image252|
 
 .. raw:: html
 
@@ -13707,7 +11637,7 @@ Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 prot
 
    </table>
 
-2.19.2 目标
+2.14.2 目标
 ^^^^^^^^^^^
 
 .. raw:: html
@@ -13806,7 +11736,7 @@ smbus\_target
 
    <td>
 
-Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocols using I2C
+演示 SMBus 目标使用 I2C 来测试所有 SMBus 2.0 协议的基本实现
 
 .. raw:: html
 
@@ -13816,7 +11746,7 @@ Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocol
 
    <td align="center">
 
-|image296|
+否
 
 .. raw:: html
 
@@ -13826,7 +11756,7 @@ Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocol
 
    <td align="center">
 
-|image297|
+|image253|
 
 .. raw:: html
 
@@ -14094,48 +12024,4 @@ Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocol
 .. |image251| image:: ./images/examples_guide/ex_sysconfig.png
 .. |image252| image:: ./images/examples_guide/ex_sysconfig.png
 .. |image253| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image254| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image255| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image256| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image257| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image258| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image259| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image260| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image261| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image262| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image263| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image264| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image265| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image266| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image267| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image268| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image269| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image270| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image271| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image272| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image273| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image274| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image275| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image276| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image277| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image278| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image279| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image280| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image281| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image282| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image283| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image284| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image285| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image286| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image287| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image288| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image289| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image290| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image291| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image292| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image293| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image294| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image295| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image296| image:: ./images/examples_guide/ex_sysconfig.png
-.. |image297| image:: ./images/examples_guide/ex_sysconfig.png
 

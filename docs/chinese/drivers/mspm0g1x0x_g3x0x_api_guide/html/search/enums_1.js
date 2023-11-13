@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['uart_5fdatalen',['UART_DataLen',['../group___u_a_r_t.html#gaa425797a2c950b9861fd62a11397b927',1,'UART.h']]],
-  ['uart_5fmode',['UART_Mode',['../group___u_a_r_t.html#ga2507a620dba95cd20885c52494d19e90',1,'UART.h']]],
-  ['uart_5fparity',['UART_Parity',['../group___u_a_r_t.html#gafdde0d1dd91ce599c9df7327b45986cc',1,'UART.h']]],
-  ['uart_5freadreturnmode',['UART_ReadReturnMode',['../group___u_a_r_t.html#gaed1c183ba0f637f74802cd791c618699',1,'UART.h']]],
-  ['uart_5fstopbits',['UART_StopBits',['../group___u_a_r_t.html#ga134ee767f3eaf8d26f6d0dd96d982f70',1,'UART.h']]]
+  ['i2c_5fbitrate',['I2C_BitRate',['../group___i2_c.html#gac954e3197f04c50293db466c4abb6fbe',1,'I2C.h']]],
+  ['i2c_5ftransfermode',['I2C_TransferMode',['../group___i2_c.html#ga39f3b9340fc4ee241b0d2da9b2841c26',1,'I2C.h']]]
 ];

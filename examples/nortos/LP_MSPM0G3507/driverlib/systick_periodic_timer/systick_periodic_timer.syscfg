@@ -31,3 +31,6 @@ SYSTICK.period          = 16000000;
 SYSTICK.periodEnable    = true;
 SYSTICK.systickEnable   = true;
 SYSTICK.interruptEnable = true;
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;

@@ -51,4 +51,5 @@ GPIO3.associatedPins[1].assignedPin      = "12";
 GPIO3.associatedPins[1].direction        = "INPUT";
 GPIO3.associatedPins[1].internalResistor = "PULL_DOWN";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

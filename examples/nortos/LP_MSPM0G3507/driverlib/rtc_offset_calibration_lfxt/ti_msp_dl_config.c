@@ -102,6 +102,9 @@ static const DL_SYSCTL_LFCLKConfig gSYSCTLConfig = {
 SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 {
     DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+    /* Set default configuration */
+    DL_SYSCTL_disableHFXT();
+    DL_SYSCTL_disableSYSPLL();
     DL_SYSCTL_setLFCLKSourceLFXT((DL_SYSCTL_LFCLKConfig *) &gSYSCTLConfig);
     DL_SYSCTL_setMCLKDivider(DL_SYSCTL_MCLK_DIVIDER_DISABLE);
     DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_1);
@@ -114,6 +117,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_CLK_init(void) {
     while ((DL_SYSCTL_getClockStatus() & (DL_SYSCTL_CLK_STATUS_LFXT_GOOD))
 	       != (DL_SYSCTL_CLK_STATUS_LFXT_GOOD))
 	{
+		/* Ensure that clocks are in default POR configuration before initialization.
+		* Additionally once LFXT is enabled, the internal LFOSC is disabled, and cannot
+		* be re-enabled other than by executing a BOOTRST. */
 		;
 	}
 }

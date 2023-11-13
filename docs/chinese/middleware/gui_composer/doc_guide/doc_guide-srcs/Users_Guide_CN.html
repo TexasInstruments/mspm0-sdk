@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GUI Composer Library User’s Guide &mdash; GUI Composer Library Documentation 1.0 documentation</title>
+  <title>GUI Composer 库用户指南 &mdash; GUI Composer Library Documentation 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="GUI Composer Quick Start Guide" href="QuickStart_Guide_CN.html" /> 
+    <link rel="prev" title="GUI Composer 快速入门指南" href="QuickStart_Guide_CN.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,31 +43,31 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="QuickStart_Guide_CN.html">GUI Composer Quick Start Guide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">GUI Composer Library User’s Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#architecture-general-overview">2. Architecture / General Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#folder-structure">3. Folder Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#understanding-the-examples">4. Understanding the Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#receiving-data-on-the-msp-from-the-gui">4.1 Receiving Data on the MSP from the GUI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#send-data-from-msp-to-the-gui">4.2 Send Data from MSP to the GUI</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#supported-types">4.2.1 Supported Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QuickStart_Guide_CN.html">GUI Composer 快速入门指南</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GUI Composer 库用户指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 引言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2. 架构/总体概览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3. 文件夹结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">4. 了解示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#msp-gui">4.1 在 MSP 上接收来自 GUI 的数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4.2 从 MSP 向 GUI 发送数据</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">4.2.1 支持的类型</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#messagepack-optimizations">5. MessagePack Optimizations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#configuring-decoder-data-sizes">5.1 Configuring decoder data sizes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configuring-allowed-data-types">5.2 Configuring allowed data types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gui-modification">5.3 GUI Modification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#messagepack">5. MessagePack 优化</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">5.1 配置解码器数据大小</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">5.2 配置支持的数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gui">5.3 GUI 修改</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmarks">6. Benchmarks</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#code-size">6.1 Code Size</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#message-size">6.2 Message Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">6. 基准测试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">6.1 代码大小</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">6.2 消息大小</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#additional-information">7. Additional Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">7. 其他信息</a></li>
 </ul>
 </li>
 </ul>
@@ -86,7 +86,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>GUI Composer Library User’s Guide</li>
+      <li>GUI Composer 库用户指南</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -95,129 +95,129 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="gui-composer-library-user-s-guide">
-<h1>GUI Composer Library User’s Guide<a class="headerlink" href="#gui-composer-library-user-s-guide" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>GUI Composer project examples showcase a UART based data exchange between a LaunchPad and customizable GUI application running on a PC. These GUIs can be fully customized by you to display, process data and control execution of firmware. These GUIs may also be installed into Code Composer Studio to augment standard debug displays and also provide a simplified user interface for non-expert manual testers.</p>
-<p>The MSPM0 SDK includes software examples to run on your target MSP device for use with GUI Composer. Additionally, this SDK also includes pre-made GUIs that can be imported into GUI Composer and easily be used out-of-box with the provided software examples.</p>
-<p>Check out the Quick Start Guide for more information on getting started with initial setup and running a sample application.</p>
+  <section id="gui-composer">
+<h1>GUI Composer 库用户指南<a class="headerlink" href="#gui-composer" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 引言<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>GUI Composer 工程示例展示了 LaunchPad 与可在 PC 上运行的可自定义 GUI 应用程序之间基于 UART 的数据交换。这些 GUI 可以完全按照您的自定义来显示、处理数据并控制固件的执行。这些 GUI 也可以安装到 Code Composer Studio 中，以辅助基本调式功能，同时为非专业的手动测试人员提供简化的用户界面。</p>
+<p>MSPM0 SDK 包括为配合使用 GUI Composer 而在目标 MSP 器件上运行的软件示例。此外，此 SDK 还包括预制的 GUI，它可以导入到 GUI Composer 并可配合提供的软件示例直接轻松使用。</p>
+<p>有关初始设置和运行示例应用程序的更多入门信息，请查看快速入门指南。</p>
 </section>
-<section id="architecture-general-overview">
-<h2>2. Architecture / General Overview<a class="headerlink" href="#architecture-general-overview" title="Permalink to this heading">¶</a></h2>
-<p>The following diagram shows the relationship between the different layers in the examples.</p>
+<section id="id2">
+<h2>2. 架构/总体概览<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>下图显示了示例中不同层之间的关系。</p>
 <figure class="align-default">
 <img alt="" src="../_images/ug_layers.png" />
 </figure>
 <ul class="simple">
-<li><p><strong>HAL</strong>: Driver to send and receive data from GUI. Currently uses device UART.</p></li>
-<li><p><strong>Transport Layer Protocol</strong>: The protocol/encoding scheme used to transfer data over the physical transport layer. There are currently two schemes supported: <a class="reference external" href="https://www.json.org">JSON</a> and <a class="reference external" href="https://msgpack.org">MessagePack</a>.</p>
+<li><p><strong>HAL</strong>：从 GUI 发送和接收数据的驱动程序。当前使用器件 UART。</p></li>
+<li><p><strong>传输层协议</strong>：用于通过物理传输层传输数据的协议/编码方案。目前支持两种方案：<a class="reference external" href="https://www.json.org">JSON</a> 和 <a class="reference external" href="https://msgpack.org">MessagePack</a>。</p>
 <ul>
-<li><p><strong>JSON:</strong> Data is sent and received using JSON formatted strings</p></li>
-<li><p><strong>MessagePack:</strong> Data is sent and received using MessagePack protocol</p></li>
+<li><p><strong>JSON：</strong>使用 JSON 格式的字符串发送和接收数据</p></li>
+<li><p><strong>MessagePack：</strong>使用 MessagePack 协议发送和接收数据</p></li>
 </ul>
 </li>
-<li><p><strong>GUIComm APIs</strong>: Abstraction layer provided that is independent of the transport layer. The application can call these APIs without knowledge of the protocol underneath.</p></li>
-<li><p><strong>Application</strong>: The user application. The provided examples demonstrate how the application layer is independent of the transport layer and HAL layer beneath it.</p></li>
+<li><p><strong>GUIComm API</strong>：提供的抽象层，独立于传输层。应用程序可以在不知晓底层协议的情况下调用这些 API。</p></li>
+<li><p><strong>应用程序</strong>：用户应用程序。提供的示例展示了应用程序层如何独立于传输层及其下方的 HAL 层。</p></li>
 </ul>
 </section>
-<section id="folder-structure">
-<h2>3. Folder Structure<a class="headerlink" href="#folder-structure" title="Permalink to this heading">¶</a></h2>
-<p>From the root directory of the MSPM0 SDK, the following folders are available:</p>
+<section id="id3">
+<h2>3. 文件夹结构<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>MSPM0 SDK 的根目录下提供以下文件夹：</p>
 <ul class="simple">
-<li><p><strong>docs/middleware/gui_composer</strong> - Contains all documentation related to the MSP GUI Composer package</p></li>
-<li><p><strong>examples/nortos//gui_composer</strong> - Contains all of the code examples, and application and project files</p></li>
-<li><p><strong>source/ti/gui_composer</strong> - Contains generic/reusable source code that can be imported into end applications</p></li>
+<li><p><strong>docs/middleware/gui_composer</strong> - 包含与 MSP GUI Composer 包相关的所有文档</p></li>
+<li><p><strong>examples/nortos//gui_composer</strong> - 包含所有代码示例以及应用程序和工程文件</p></li>
+<li><p><strong>source/ti/gui_composer</strong> - 包含可导入到终端应用程序的泛型/可重用源代码</p></li>
 </ul>
 </section>
-<section id="understanding-the-examples">
-<h2>4. Understanding the Examples<a class="headerlink" href="#understanding-the-examples" title="Permalink to this heading">¶</a></h2>
-<section id="receiving-data-on-the-msp-from-the-gui">
-<h3>4.1 Receiving Data on the MSP from the GUI<a class="headerlink" href="#receiving-data-on-the-msp-from-the-gui" title="Permalink to this heading">¶</a></h3>
-<p>GUI Commands are received in a structure of type tGUI_RxCmd. This is defined in the <em>main.c</em> file.</p>
+<section id="id4">
+<h2>4. 了解示例<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<section id="msp-gui">
+<h3>4.1 在 MSP 上接收来自 GUI 的数据<a class="headerlink" href="#msp-gui" title="Permalink to this heading">¶</a></h3>
+<p>以 tGUI_RxCmd 类型的结构接收 GUI 命令。<em>main.c</em> 文件中定义了此结构。</p>
 <figure class="align-default">
 <img alt="" src="../_images/ug_guicommandstruct.png" />
 </figure>
-<p>Each entry contains the GUI command and its respective callback function.</p>
-<p>In the example above, <em>bEnable</em> is the command to receive from the GUI, and in the GUI itself, <em>bEnable</em> is the variable name that is bound to a widget. <em>GUICallback_boolEnable</em> is its respective callback function. These callbacks are defined in the application callbacks file <em>callbacks_.c</em>. The <em>GUI_RXCommands[]</em> struct can be easily modified to add or remove commands as needed for the GUI.</p>
+<p>每一条都包含 GUI 命令及其各自的回调函数。</p>
+<p>在上例中，<em>bEnable</em> 是从 GUI 接收的命令，在 GUI 中，<em>bEnable</em> 是绑定到小工具的变量名。<em>GUICallback_boolEnable</em> 是各自的回调函数。应用程序回调文件 <em>callbacks_.c</em> 中定义了这些回调函数。<em>GUI_RXCommands[]</em> 结构很容易修改，可根据需要为 GUI 增加或删除命令。</p>
 </section>
-<section id="send-data-from-msp-to-the-gui">
-<h3>4.2 Send Data from MSP to the GUI<a class="headerlink" href="#send-data-from-msp-to-the-gui" title="Permalink to this heading">¶</a></h3>
-<p>The APIs listed in <em>GUIComm.h</em> can be used in your application to easily send data from your MSP device to the GUI, independent of the transport layer protocol underneath. The GUIComm APIs handle encoding the data in the protocol chosen, and also send the data to the GUI.</p>
-<p>For example, the following function would be called in your application:</p>
+<section id="id5">
+<h3>4.2 从 MSP 向 GUI 发送数据<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>可以在应用程序中使用 <em>GUIComm.h</em> 中列出的 API，以便轻松地将数据从 MSP 器件发送到 GUI，而不依赖于下面的传输层协议。GUIComm API 负责在选择的协议中对数据编码，并将数据发送到 GUI。</p>
+<p>例如，应用程序中将调用以下函数：</p>
 <p><code class="docutils literal notranslate"><span class="pre">GUIComm_sendBool(&quot;bEnable&quot;,</span> <span class="pre">STR_LEN_SEVEN,</span> <span class="pre">bEnableSwitch);</span></code></p>
-<p>This API sends the value in the boolean variable <em>bEnableSwitch</em> to update the GUI widget that is bound to the token <em>bEnable</em>. <em>STR_LEN_SEVEN</em> is simply the length of the token sent.</p>
-<p>The image below shows an example of a button widget with properties displaying that it is bound to the token <em>bEnable</em>.</p>
+<p>此 API 发送布尔变量 <em>bEnableSwitch</em> 中的值，以更新绑定到令牌 <em>bEnable</em> 的 GUI 小工具。<em>STR_LEN_SEVEN</em> 是发送的令牌的长度。</p>
+<p>下图显示了一个按钮小工具的示例，其属性表明它绑定到令牌 <em>bEnable</em>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/ug_binding.png" />
 </figure>
-<section id="supported-types">
-<h4>4.2.1 Supported Types<a class="headerlink" href="#supported-types" title="Permalink to this heading">¶</a></h4>
-<p>The GUIComm functions supports the following data types:</p>
+<section id="id6">
+<h4>4.2.1 支持的类型<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
+<p>GUIComm 函数支持以下数据类型：</p>
 <ul class="simple">
 <li><p>ints</p></li>
 <li><p>uints</p></li>
 <li><p>bools</p></li>
 <li><p>floats/doubles</p>
 <ul>
-<li><p>mpack supports floats/doubles natively, or through use of the QMath/IQMath library</p></li>
-<li><p>json can send floats/doubles through the use of the QMath/IQMath library only</p></li>
+<li><p>mpack 原生或通过使用 QMath/IQMath 库支持 floats/doubles</p></li>
+<li><p>json 仅可以通过使用 QMath/IQMath 库发送 floats/doubles</p></li>
 </ul>
 </li>
 </ul>
-<p>Additionally, data sizes of 8, 16, 32, and 64 bits are supported.</p>
+<p>此外，支持 8、16、32 和 64 位的数据大小。</p>
 </section>
 </section>
 </section>
-<section id="messagepack-optimizations">
-<h2>5. MessagePack Optimizations<a class="headerlink" href="#messagepack-optimizations" title="Permalink to this heading">¶</a></h2>
-<p>The mpack library allows for configurations depending on your application needs. These configurations can be found in <code class="docutils literal notranslate"><span class="pre">mpack.h</span></code> in your application.</p>
-<p>Enabling the <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code> configuration turns on optimizations in the mpack decoder to reduce the code size of the mpack library at the cost of functionality. When the optimizations are enabled, the user can reduce code size by configuring the following:</p>
+<section id="messagepack">
+<h2>5. MessagePack 优化<a class="headerlink" href="#messagepack" title="Permalink to this heading">¶</a></h2>
+<p>mpack 库支持根据应用程序需求进行配置。在应用程序的 <code class="docutils literal notranslate"><span class="pre">mpack.h</span></code> 中可找到这些配置。</p>
+<p>启用 MPACK_OPTIMIZE_FOR_SIZE 配置会在 mpack 解码器中开启优化，以通用性为代价减小 mpack 库的代码大小。启用优化时，用户可配置以下方面来减小代码大小：</p>
 <ul class="simple">
-<li><p>Decoder data sizes (data sizes the decoder can receive)</p></li>
-<li><p>Decoder data types (data types allowed for use by the decoder)</p></li>
+<li><p>解码器数据大小（解码器可以接收的数据大小）</p></li>
+<li><p>解码器数据类型（解码器支持使用的数据类型）</p></li>
 </ul>
-<p>By reducing the allowed number of data sizes and data types, the size of the application can be reduced.</p>
-<p><strong>By default,</strong> <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code> <strong>is disabled.</strong> When <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code> is disabled, this will enable all data sizes (8, 16, 32, and 64 bits) and all supported data types (uints, ints, bools, and arrays).</p>
-<section id="configuring-decoder-data-sizes">
-<h3>5.1 Configuring decoder data sizes<a class="headerlink" href="#configuring-decoder-data-sizes" title="Permalink to this heading">¶</a></h3>
-<p>The user can configure the group of <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE</span></code> macros to enable which data sizes that the decoder can receive. For example, if only <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE_16_BITS</span></code> is enabled, then all received incoming data from the GUI must be 16-bits. It will not recognize data sent as 8-bits, 32-bits, or 64-bits. Additionally, more than one of the <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE</span></code> macro can be enabled at a time. By reducing the amount of data sizes that the decoder will expect, the code size of the application can be reduced.</p>
+<p>通过减少允许的数据大小和数据类型数量，可以减小应用程序的大小。</p>
+<p><strong>默认情况下，禁用</strong> <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code><strong>。</strong>禁用 <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code> 时，会启用所有数据大小（8、16、32 和 64 位）和所有支持的数据类型（uints、ints、bools 和 arrays）。</p>
+<section id="id7">
+<h3>5.1 配置解码器数据大小<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<p>用户可以配置 <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE</span></code> 宏组，以启用解码器可以接收的数据大小。 例如，如果仅启用 <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE_16_BITS</span></code>，则从 GUI 接收的所有传入数据必须是 16 位。它不会识别以 8 位、32 位或 64 位发送的数据。此外，一次可启用不止一个 <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE</span></code> 宏。通过减少解码器预期的数据大小数量，可以减小应用程序的代码大小。</p>
 <figure class="align-default">
 <img alt="" src="../_images/ug_mpackdecodesize.png" />
 </figure>
-<p>GUI Composer by default will send data in the smallest data size, so <strong>the GUI must be modified to send all data as a specific data size</strong>. The GUI can be easily modified to make this change and is discussed in more detail in the <strong>GUI Modification</strong> section.</p>
-<p>These macros only affects uints and ints, it does not affect other data types such as maps, bools, strings, etc.</p>
-<p>When <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code> is enabled, by default then <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE_16_BITS</span></code> is enabled.</p>
+<p>GUI Composer 默认会发送数据大小最小的数据，因此 <strong>GUI 必须修改为以特定数据大小发送所有数据</strong>。GUI 可以轻松修改，以完成此变更，更多详情参见 <strong>GUI 修改</strong>部分。</p>
+<p>这些宏只影响 uints 和 ints，而不影响 maps、bools、strings 等其他数据类型。</p>
+<p>启用 <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code> 时，默认启用 <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE_16_BITS</span></code>。</p>
 </section>
-<section id="configuring-allowed-data-types">
-<h3>5.2 Configuring allowed data types<a class="headerlink" href="#configuring-allowed-data-types" title="Permalink to this heading">¶</a></h3>
-<p>The user can configure the group of macros to enable which data types will be recognized by the decoder. For example, if only <code class="docutils literal notranslate"><span class="pre">MPACK_UINTS</span></code> is enabled, then the decoder will only recognize uint data from the GUI. If int or bool data is received, then this will result in an error.</p>
-<p>When <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code> is enabled, by default the application will allow uints, ints, and bools.</p>
+<section id="id8">
+<h3>5.2 配置支持的数据类型<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<p>用户可以配置宏组，以启用解码器会识别的数据类型。例如，如果仅启用 <code class="docutils literal notranslate"><span class="pre">MPACK_UINTS</span></code>，则解码器只能识别来自 GUI 的 uint 数据。如果收到 int 或 bool 数据，则会导致错误。</p>
+<p>启用 <code class="docutils literal notranslate"><span class="pre">MPACK_OPTIMIZE_FOR_SIZE</span></code> 时，应用程序默认支持 uints、ints 和 bools 类型。</p>
 <figure class="align-default">
 <img alt="" src="../_images/ug_mpackdatatype.png" />
 </figure>
 </section>
-<section id="gui-modification">
-<h3>5.3 GUI Modification<a class="headerlink" href="#gui-modification" title="Permalink to this heading">¶</a></h3>
-<p>As previously discussed, the mpack library can be optimized to configure the mpack decoder to only allow specific data sizes. For this to happen, a change must be made in the GUI so all outgoing uint and int data from the GUI will be sent as a specific data size.</p>
-<p>To make this change, a new file, <strong>main.js.</strong> with the necessary code changes must be added to the GUI. This file and the necessary code is provided for you in the pre-made GUI <strong>MSPM0_SimpleGUI_mpack_optimized</strong>.</p>
+<section id="gui">
+<h3>5.3 GUI 修改<a class="headerlink" href="#gui" title="Permalink to this heading">¶</a></h3>
+<p>如前所述，mpack 库可以优化，将 mpack 解码器配置为仅支持特定的数据大小。为此，必须在 GUI 中进行更改，使得从 GUI 发出的所有 uint 和 int 数据都以特定数据大小发送出去。</p>
+<p>要进行此更改，必须将包含必要代码更改的新文件 <strong>main.js.</strong> 添加到 GUI。预制的 GUI <strong>MSPM0_SimpleGUI_mpack_optimized</strong> 中将提供此文件和必要代码。</p>
 <figure class="align-default">
 <img alt="" src="../_images/ug_mpack_mainjs.png" />
 </figure>
-<p>This modification sends all data from the GUI to the device as 16-bit uint/ints. In doing so, code size on the device can be reduced because the decoder then only has to expect 16-bit data. This can be done in the application by enabling <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE_16_BITS</span></code> in mpack.h in the application- this tells the MessagePack decoder to only expect and decode 16-bit data. To send other data sizes, modify <code class="docutils literal notranslate"><span class="pre">encodeIntegerBitsize</span></code> in the main.js file accordingly.</p>
+<p>此修改将所有数据以 16 位 uint/ints 类型从 GUI 发送到器件。这样做可以减小器件上的代码大小，因为解码器只能接收 16 位数据。可在应用程序中完成此更改，方法是在应用程序的 mpack.h 中启用 <code class="docutils literal notranslate"><span class="pre">MPACK_DECODE_SIZE_16_BITS</span></code>，这会告知 MessagePack 解码器仅接收和解码 16 位数据。要发送其他数据大小，请在 main.js 文件中相应地修改 <code class="docutils literal notranslate"><span class="pre">encodeIntegerBitsize</span></code>。</p>
 </section>
 </section>
-<section id="benchmarks">
-<h2>6. Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading">¶</a></h2>
-<section id="code-size">
-<h3>6.1 Code Size<a class="headerlink" href="#code-size" title="Permalink to this heading">¶</a></h3>
-<p>The table below shows the code sizes for some MSPM0 devices for the <strong>gc_simple_json</strong> examples and the <strong>gc_simple_mpack</strong> examples. The purpose of this table is to compare the differences that the transport layer protocol has on the overall code sizes, specifically the differences between JSON, MessagePack (not optimized), and MessagePack optimized for 16-bit decodes. The code examples were compiled using TI Clang at optimization level -02.</p>
+<section id="id9">
+<h2>6. 基准测试<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<section id="id10">
+<h3>6.1 代码大小<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<p>下表显示了 <strong>gc_simple_json</strong> 示例和 <strong>gc_simple_mpack</strong> 示例中某些 MSPM0 器件上的代码大小。 此表的目的是比较传输层协议在总体代码大小上的差异，特别是 JSON、MessagePack（未优化）与针对 16 位解码优化的 MessagePack 之间的差异。 代码示例是使用 TI Clang 在优化级别 -02 上编译的。</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"></th>
 <th class="head"><p>gc_simple_json</p></th>
-<th class="head"><p>gc_simple_mpack (MPack not optimized)</p></th>
-<th class="head"><p>gc_simple_mpack (MPack optimized for 16-bit decode)</p></th>
+<th class="head"><p>gc_simple_mpack（MPack 未优化）</p></th>
+<th class="head"><p>gc_simple_mpack（MPack 已针对 16 位解码优化）</p></th>
 </tr>
 </thead>
 <tbody>
@@ -234,52 +234,52 @@
 </tbody>
 </table>
 </section>
-<section id="message-size">
-<h3>6.2 Message Size<a class="headerlink" href="#message-size" title="Permalink to this heading">¶</a></h3>
-<p>Both JSON and MessagePack encode data for data transfer. The table below compares the encoded message sizes for different data types and data sizes for each protocol.</p>
+<section id="id11">
+<h3>6.2 消息大小<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<p>JSON 和 MessagePack 都对数据编码以便传输数据。下表比较了不同数据类型编码后的消息大小和每种协议下的数据大小。</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Data to Encode</p></th>
-<th class="head"><p>JSON Encoded Message Size</p></th>
-<th class="head"><p>MPack Encoded Message Size</p></th>
+<tr class="row-odd"><th class="head"><p>要编码的数据</p></th>
+<th class="head"><p>JSON 编码后的消息大小</p></th>
+<th class="head"><p>MPack 编码后的消息大小</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>4294967295 (uint32)</p></td>
-<td><p>10 bytes</p></td>
-<td><p>5 bytes</p></td>
+<td><p>10 字节</p></td>
+<td><p>5 字节</p></td>
 </tr>
 <tr class="row-odd"><td><p>65535 (uint16)</p></td>
-<td><p>5 bytes</p></td>
-<td><p>3 bytes</p></td>
+<td><p>5 字节</p></td>
+<td><p>3 字节</p></td>
 </tr>
 <tr class="row-even"><td><p>255 (uint8)</p></td>
-<td><p>3 bytes</p></td>
-<td><p>2 bytes</p></td>
+<td><p>3 字节</p></td>
+<td><p>2 字节</p></td>
 </tr>
 <tr class="row-odd"><td><p>-2147483648 (int32)</p></td>
-<td><p>11 bytes</p></td>
-<td><p>5 bytes</p></td>
+<td><p>11 字节</p></td>
+<td><p>5 字节</p></td>
 </tr>
 <tr class="row-even"><td><p>-32768 (int16)</p></td>
-<td><p>6 bytes</p></td>
-<td><p>3 bytes</p></td>
+<td><p>6 字节</p></td>
+<td><p>3 字节</p></td>
 </tr>
 <tr class="row-odd"><td><p>-128 (int8)</p></td>
-<td><p>4 bytes</p></td>
-<td><p>2 bytes</p></td>
+<td><p>4 字节</p></td>
+<td><p>2 字节</p></td>
 </tr>
 <tr class="row-even"><td><p>true (boolean)</p></td>
-<td><p>4 bytes</p></td>
-<td><p>1 byte</p></td>
+<td><p>4 字节</p></td>
+<td><p>1 字节</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 </section>
-<section id="additional-information">
-<h2>7. Additional Information<a class="headerlink" href="#additional-information" title="Permalink to this heading">¶</a></h2>
-<p>For more information on GUI Composer, please view the <a class="reference external" href="https://dev.ti.com/gc/v2/help/GC_UserGuide_v2/index.html">GUI Composer User’s Guide</a>.</p>
+<section id="id12">
+<h2>7. 其他信息<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
+<p>有关 GUI Composer 的更多信息，请查看 <a class="reference external" href="https://dev.ti.com/gc/v2/help/GC_UserGuide_v2/index.html">GUI Composer 用户指南</a>。</p>
 </section>
 </section>
 
@@ -287,7 +287,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="QuickStart_Guide_CN.html" class="btn btn-neutral float-left" title="GUI Composer Quick Start Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="QuickStart_Guide_CN.html" class="btn btn-neutral float-left" title="GUI Composer 快速入门指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

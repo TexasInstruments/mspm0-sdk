@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L1306"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="self_calibrate_current_detection"
+        name="self_calibrate_current_detection_LP_MSPM0L1306_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L1306"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -D__MSPM0L1306__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/ticlang/m0p/rts/iqmath.a
+            -Wl,--stack_size=512
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="This example demonstrates a self-calibratable, high precision and low-cost current detection solution based on MSPM0 internal OPAs">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Driver/MSPM0Lxx_BSP.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_BSP.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_Driver.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_Driver.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/Gauge_Type.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../UserConfig/UserConfig.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="UserConfig">
+        </file>
+        <file path="../UserConfig/UserConfig.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="UserConfig">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/mspm0l1306.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0l1306_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+    </project>
+</projectSpec>

@@ -11,3 +11,6 @@
 const Board   = scripting.addModule("/ti/driverlib/Board");
 const MATHACL = scripting.addModule("/ti/driverlib/MATHACL");
 const SYSCTL  = scripting.addModule("/ti/driverlib/SYSCTL");
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;

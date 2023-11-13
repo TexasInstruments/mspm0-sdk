@@ -11,13 +11,10 @@ function determineInvalidOptions(inst){
         HD: false,
         OD: false
     }
-    if(inst.ioStructure !== "Any"){
-        // specified. All others are invalid
-        _.each(toDisable, (s) => { if(s !== inst.ioStructure){ s = true; } });
-        return toDisable;
-    }
+
     if(inst.direction === "INPUT"){
-        if(inst.fastWakeEn){
+        if(inst.wakeupLogic != "DISABLE"){
+            // disable all but Open Drain, Standard with Wake and High-Drive
             toDisable.SD = true; // disable Standard
             toDisable.SDL = true; // disable Low-leakage Standard
             toDisable.HS = true; // disable High-Speed
@@ -28,7 +25,10 @@ function determineInvalidOptions(inst){
             toDisable.SDL = true; // disable Low-leakage Standard
             toDisable.SDW = true; // disable Standard with Wake
             toDisable.HS = true; // disable High-Speed
-            toDisable.HD = true; // disable High-Drive
+            // HD only available on M0Gxx
+            if(Common.isDeviceM0G()){
+                toDisable.HD = true; // disable High-Drive
+            }
         }
         if(inst.internalResistor === "PULL_UP") {
             toDisable.OD = true; // disable Open Drain
@@ -40,6 +40,11 @@ function determineInvalidOptions(inst){
             toDisable.SDW = true; // disable Standard with Wake
             toDisable.OD = true; // disable Open Drain
         }
+    }
+    if(inst.ioStructure !== "Any"){
+        // specified. All others are invalid
+        _.each(toDisable, (s) => { if(s !== inst.ioStructure){ s = true; } });
+        return toDisable;
     }
     return toDisable;
 }
@@ -389,8 +394,7 @@ NOTE: Fast-Wake can be utilized on any GPIO, but only works down to STANDBY mode
                 `,
                 hidden: true,
                 default: false,
-                readOnly: false
-
+                readOnly: false,
             },
             {
                 name: "hysteresisControl", // INPUT only
@@ -413,7 +417,7 @@ Wakeup Logic allowing a wakeup of the device when either:
 * Pin changes to 0
 * Pin changes to 1
 
-Only available on Standard-Drive with wake and 5V tolerant Open Drain`,
+Only available on Standard-Drive with wake, 5V tolerant Open Drain and High-Drive IO structures`,
                 hidden: true,
                 default: "DISABLE",
                 options: [
@@ -859,9 +863,9 @@ function pinmuxRequirements(inst)
             eligible &= (pin.peripheralPin.name.match(port) !== null);
             if(!eligible){ continue; }
         }
-        if(inst.assignedPortSegment !== "Any" || inst.assignedPin !== "Any"){
+        if(inst.assignedPortSegment !== "Any" || inst.assignedPin.toLowerCase() !== "any"){
             let num = parseInt(pin.peripheralPin.name.match(/\d+$/)[0]);
-            if(inst.assignedPin !== "Any") {
+            if(inst.assignedPin.toLowerCase() !== "any") {
                 eligible &= (num === parseInt(inst.assignedPin));
             } else {
                 if(inst.assignedPortSegment === "Upper"){
@@ -957,6 +961,9 @@ function validate(inst, validation)
         if(inst.hysteresisControl === "ENABLE" && (inst.ioStructure.match(/Any|OD/) === null)){
             validation.logError("Hysteresis only valid on Open Drain", inst, "ioStructure");
         }
+        if(inst.wakeupLogic !== "DISABLE" && inst.ioStructure.match(/Any|OD|SDW|HD/) == null) {
+            validation.logError("Wakeup Logic configuration only valid on Open Drain and Standard with Wake ", inst, "wakeupLogic");
+        }
         if(inst.internalResistor === "PULL_UP" && inst.ioStructure.match(/OD/) !== null) {
             validation.logError("Pull-Up Resistor not valid on an Open Drain Configuration", inst, "ioStructure");
         }
@@ -1014,6 +1021,7 @@ function validatePinmux(inst, validation)
             inst, ["initialValue"]);
         }
     }
+
     /* EVENT validation */
     // only one pin per subscriber
 
@@ -1027,7 +1035,6 @@ function validatePinmux(inst, validation)
 if(system.deviceData.package === "LQFP-64(PM)"){
     config = config.concat(gpioLaunchPadConfig);
 }
-
 
 exports = {
     config: config,

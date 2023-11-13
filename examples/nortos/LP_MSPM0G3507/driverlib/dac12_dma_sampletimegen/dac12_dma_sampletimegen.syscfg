@@ -34,4 +34,5 @@ DAC12.DMA_CHANNEL.peripheral.$assign  = "DMA_CH0";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.MFPCLKEn    = true;
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

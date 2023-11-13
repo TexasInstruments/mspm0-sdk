@@ -30,7 +30,8 @@ const Board           = scripting.addModule("/ti/driverlib/Board", {}, false);
 Board.configureUnused = true;
 
 SYSCTL.powerPolicy = "STOP0";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 const pinFunction1                        = system.clockTree["CLKOUT"];
 pinFunction1.enable                       = true;

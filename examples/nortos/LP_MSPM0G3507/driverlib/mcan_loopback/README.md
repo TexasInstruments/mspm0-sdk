@@ -39,10 +39,13 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.co
 ## Example Usage
 Compile, load and run.
 The module is configured in internal loopback mode. The sent messages should be
-internally received by the node, and the application is configured to send 10
-messages. After 10 messages are sent, gTransmitComplete will be set to true and
-a breakpoint will be hit.
+internally received by the node.
+
 A breakpoint will also be hit if an error is encountered in the application, the
 status of the error can be inspected in the gError variable.
-Otherwise, the application can be paused or a breakpoint can be set at line 125
+Otherwise, the application can be paused or a breakpoint can be set at line 127
 to inspect the received messages in rxMsg.
+
+txMsg.data[0] will be updated with the current value of "gMsgCount" before
+sending a new loopback test message to confirm a new data is being transmitted
+and received.

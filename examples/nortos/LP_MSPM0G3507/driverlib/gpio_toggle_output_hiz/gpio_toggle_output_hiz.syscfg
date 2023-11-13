@@ -25,4 +25,5 @@ GPIO1.associatedPins[0].assignedPortSegment = "Upper";
 GPIO1.associatedPins[0].hiZ                 = "ENABLE";
 GPIO1.associatedPins[0].pin.$assign         = "PB16";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

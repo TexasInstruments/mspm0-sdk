@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 SMBus Library User’s Guide &mdash; SMBus Guide 1.0 documentation</title>
+  <title>MSPM0 SMBus 库用户指南 &mdash; SMBus Guide 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -43,19 +43,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SMBus Library User’s Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#smbus-library-supported-features">2. SMBus Library Supported Features</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#smbus-controller-supported-features">2.1 SMBus Controller Supported Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#smbus-target-supported-features">2.2 SMBus Target Supported Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#smbus-features-not-currently-implemented">2.3 SMBus Features Not Currently Implemented</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SMBus 库用户指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 引言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smbus">2. SMBus 库支持的特性</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.1 SMBus 控制器支持的特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2 SMBus 目标支持的特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.3 当前未实现的 SMBus 特性</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#smbus-example-usage">3. SMBus Example Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#smbus-examples-supported-hardware">3.1 SMBus Examples Supported Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">3. SMBus 示例用法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.1 SMBus 示例支持的硬件</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#smbus-library-api-guide">4. SMBus Library API Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smbus-api">4. SMBus 库 API 指南</a></li>
 </ul>
 </li>
 </ul>
@@ -74,7 +74,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>MSPM0 SMBus Library User’s Guide</li>
+      <li>MSPM0 SMBus 库用户指南</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -83,76 +83,76 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mspm0-smbus-library-user-s-guide">
-<h1>MSPM0 SMBus Library User’s Guide<a class="headerlink" href="#mspm0-smbus-library-user-s-guide" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The MSPM0 SMBus Library provides a simple way to start development of SMBus applications using MSPM0 devices.</p>
+  <section id="mspm0-smbus">
+<h1>MSPM0 SMBus 库用户指南<a class="headerlink" href="#mspm0-smbus" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 引言<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>MSPM0 SMBus 库提供了一种使用 MSPM0 器件启动开发 SMBus 应用程序的 简单方法。</p>
 </section>
-<section id="smbus-library-supported-features">
-<h2>2. SMBus Library Supported Features<a class="headerlink" href="#smbus-library-supported-features" title="Permalink to this heading">¶</a></h2>
-<p>This library was developed in compliance with the SMBus 3.2 specification.</p>
-<section id="smbus-controller-supported-features">
-<h3>2.1 SMBus Controller Supported Features<a class="headerlink" href="#smbus-controller-supported-features" title="Permalink to this heading">¶</a></h3>
+<section id="smbus">
+<h2>2. SMBus 库支持的特性<a class="headerlink" href="#smbus" title="Permalink to this heading">¶</a></h2>
+<p>此库是按照 SMBus 3.2 规范开发的。</p>
+<section id="id2">
+<h3>2.1 SMBus 控制器支持的特性<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Clock Timeout detection</p></li>
+<li><p>时钟超时检测</p></li>
 <li><p>PEC</p></li>
-<li><p>Quick command</p></li>
-<li><p>Send Byte</p></li>
-<li><p>Receive Byte</p></li>
-<li><p>Write byte/word (support for 16bit, 32bit, and 64bit words)</p></li>
-<li><p>Read byte/word (support for 16bit, 32bit, and 64bit words)</p></li>
-<li><p>Process call</p></li>
-<li><p>Block read/write (up to 255 bytes)</p></li>
-<li><p>Block write-block read process call (up to 255 bytes)</p></li>
+<li><p>快速命令</p></li>
+<li><p>发送字节</p></li>
+<li><p>接收字节</p></li>
+<li><p>写入字节/字（支持 16 位、32 位和 64 位字）</p></li>
+<li><p>读取字节/字（支持 16 位、32 位和 64 位字）</p></li>
+<li><p>过程调用</p></li>
+<li><p>块读取/写入（最多 255 个字节）</p></li>
+<li><p>块写入-块读取过程调用（最多 255 个字节）</p></li>
 </ul>
 </section>
-<section id="smbus-target-supported-features">
-<h3>2.2 SMBus Target Supported Features<a class="headerlink" href="#smbus-target-supported-features" title="Permalink to this heading">¶</a></h3>
+<section id="id3">
+<h3>2.2 SMBus 目标支持的特性<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Multiple target addresses</p></li>
-<li><p>Clock Timeout detection</p></li>
+<li><p>多目标地址</p></li>
+<li><p>时钟超时检测</p></li>
 <li><p>PEC</p></li>
-<li><p>Quick command (only write is supported)</p></li>
-<li><p>Send Byte</p></li>
-<li><p>Receive Byte</p></li>
-<li><p>Write byte/word (support for 16bit, 32bit, and 64bit words)</p></li>
-<li><p>Read byte/word (support for 16bit, 32bit, and 64bit words)</p></li>
-<li><p>Process call</p></li>
-<li><p>Block read/write (up to 255 bytes)</p></li>
-<li><p>Block write-block read process call (up to 255 bytes)</p></li>
+<li><p>快速命令（仅支持写入）</p></li>
+<li><p>发送字节</p></li>
+<li><p>接收字节</p></li>
+<li><p>写入字节/字（支持 16 位、32 位和 64 位字）</p></li>
+<li><p>读取字节/字（支持 16 位、32 位和 64 位字）</p></li>
+<li><p>过程调用</p></li>
+<li><p>块读取/写入（最多 255 个字节）</p></li>
+<li><p>块写入-块读取过程调用（最多 255 个字节）</p></li>
 </ul>
 </section>
-<section id="smbus-features-not-currently-implemented">
-<h3>2.3 SMBus Features Not Currently Implemented<a class="headerlink" href="#smbus-features-not-currently-implemented" title="Permalink to this heading">¶</a></h3>
-<p>The SMBus features listed below are supported in hardware but have not been implemented in this release:</p>
+<section id="id4">
+<h3>2.3 当前未实现的 SMBus 特性<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>硬件支持下列 SMBus 特性，但此版本中尚未实现：</p>
 <ul class="simple">
-<li><p>FastMode+ 1MHz operation</p></li>
-<li><p>Host notify protocol</p></li>
-<li><p>Address resolution protocol</p></li>
+<li><p>FastMode+ 1MHz 运行</p></li>
+<li><p>主机通知协议</p></li>
+<li><p>地址解析协议</p></li>
 <li><p>SMBAlert#</p></li>
 <li><p>SMBSUS#</p></li>
 </ul>
 </section>
 </section>
-<section id="smbus-example-usage">
-<h2>3. SMBus Example Usage<a class="headerlink" href="#smbus-example-usage" title="Permalink to this heading">¶</a></h2>
-<p>This software library contains 2 examples that demonstrate communication between a SMBus Controller and SMBus Target using all of the supported SMBus protocols:</p>
+<section id="id5">
+<h2>3. SMBus 示例用法<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>此软件库包含 2 个示例，展示了 SMBus 控制器与 SMBus 目标之间使用所有支持的SMBus 协议进行的通信：</p>
 <ul class="simple">
 <li><p>smb_target00_all_protocols</p></li>
 <li><p>smb_controller00_all_protocols</p></li>
 </ul>
-<p>Each example contains source code which can be compiled and loaded onto a supported device as-is. Connect SMBCLK and SMBDAT on 2 devices running the Controller and Target examples.</p>
-<section id="smbus-examples-supported-hardware">
-<h3>3.1 SMBus Examples Supported Hardware<a class="headerlink" href="#smbus-examples-supported-hardware" title="Permalink to this heading">¶</a></h3>
+<p>每个示例都包含可编译的源代码并可直接烧录到支持的器件。连接运行控制器和目标示例的 2 个器件上的 SMBCLK 和 SMBDAT。</p>
+<section id="id6">
+<h3>3.1 SMBus 示例支持的硬件<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>2 LP-MSPM0L1306 LaunchPad evaluation boards</p></li>
+<li><p>2 个 LP-MSPM0L1306 LaunchPad 评估板</p></li>
 </ul>
 </section>
 </section>
-<section id="smbus-library-api-guide">
-<h2>4. SMBus Library API Guide<a class="headerlink" href="#smbus-library-api-guide" title="Permalink to this heading">¶</a></h2>
-<p>Details about the SMBus Library APIs can be found in the <a class="reference external" href="../../doxygen/api_guide/html/index.html">SMBus Library API Guide</a></p>
+<section id="smbus-api">
+<h2>4. SMBus 库 API 指南<a class="headerlink" href="#smbus-api" title="Permalink to this heading">¶</a></h2>
+<p>有关 SMBus 库 API 的详情可参见 <a class="reference external" href="../../doxygen/api_guide/html/index.html">SMBus 库 API 指南</a></p>
 </section>
 </section>
 

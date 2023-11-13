@@ -231,7 +231,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 %        interArgs += Array(27).fill(' ').join('')+"DL_I2C_INTERRUPT_CONTROLLER_"+inter+" |\n";
 %    }
 %    for (let inter of inst.intTarget) {
+%        if (inter == "INTERRUPT_OVERFLOW ") {
+%        interArgs += Array(27).fill(' ').join('')+"DL_I2C_TARGET_INTERRUPT_OVERFLOW"+" |\n";
+%        } else {
 %        interArgs += Array(27).fill(' ').join('')+"DL_I2C_INTERRUPT_TARGET_"+inter+" |\n";
+%        }
 %    }
 %    for (let inter of inst.intGeneric) {
 %        interArgs += Array(27).fill(' ').join('')+"DL_I2C_INTERRUPT_"+inter+" |\n";

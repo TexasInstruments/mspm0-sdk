@@ -140,7 +140,9 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run. The module is configured in internal loopback mode. The sent messages should be internally received by the node, and the application is configured to send 10 messages. After 10 messages are sent, gTransmitComplete will be set to true and a breakpoint will be hit. A breakpoint will also be hit if an error is encountered in the application, the status of the error can be inspected in the gError variable. Otherwise, the application can be paused or a breakpoint can be set at line 125 to inspect the received messages in rxMsg.</p>
+<p>Compile, load and run. The module is configured in internal loopback mode. The sent messages should be internally received by the node.</p>
+<p>A breakpoint will also be hit if an error is encountered in the application, the status of the error can be inspected in the gError variable. Otherwise, the application can be paused or a breakpoint can be set at line 127 to inspect the received messages in rxMsg.</p>
+<p>txMsg.data[0] will be updated with the current value of “gMsgCount” before sending a new loopback test message to confirm a new data is being transmitted and received.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

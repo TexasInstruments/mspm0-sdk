@@ -58,4 +58,5 @@ I2C1.peripheral.sclPin.$assign = "PB2";
 
 const SYSCTL              = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 SYSCTL.peripheral.$assign = "SYSCTL";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

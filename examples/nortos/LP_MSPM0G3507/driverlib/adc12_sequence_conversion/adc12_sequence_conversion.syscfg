@@ -32,3 +32,5 @@ ADC121.peripheral.adcPin2.$assign = "PA25";
 ADC121.peripheral.adcPin0.$assign = "PA27";
 ADC121.peripheral.adcPin7.$assign = "PA22";
 ADC121.peripheral.adcPin3.$assign = "PA24";
+
+SYSCTL.forceDefaultClkConfig = true;

@@ -87,5 +87,6 @@ void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_UART_init(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_TIMER_init(void);
+void SYSCFG_DL_SYSCTL_init(void);
 
 #endif /* ti_msp_dl_config_h */

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX TI-Driver Library
-   &#160;<span id="projectnumber">1.10.00.05</span>
+   &#160;<span id="projectnumber">1.10.01.05</span>
    </div>
   </td>
  </tr>
@@ -122,11 +122,27 @@ $(function() {
 : <a class="el" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a8f7341200f3ddfc11963b3563e57c356">I2CMSPM0_HWAttrs</a>
 , <a class="el" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#a6dde47fa15e9e3bcba8059029e2843f9">UARTMSP_HWAttrs</a>
 </li>
+<li>closeFxn
+: <a class="el" href="struct_a_d_c___fxn_table.html#ae7aebe8cc8f3493502e3dceecb688c32">ADC_FxnTable</a>
+</li>
 <li>configs
 : <a class="el" href="struct_g_p_i_o___config.html#ade4c7f9f11c241e04441573870d6af1a">GPIO_Config</a>
 </li>
+<li>controlFxn
+: <a class="el" href="struct_a_d_c___fxn_table.html#af92f7867301c8edd125436ca66e16877">ADC_FxnTable</a>
+</li>
+<li>convertChainFxn
+: <a class="el" href="struct_a_d_c___fxn_table.html#ad63e771cb82d49a5fb8c7b637bfa3ccb">ADC_FxnTable</a>
+</li>
+<li>convertFxn
+: <a class="el" href="struct_a_d_c___fxn_table.html#ac7255105d1eca815a45714ff0d2186cd">ADC_FxnTable</a>
+</li>
+<li>convertToMicroVolts
+: <a class="el" href="struct_a_d_c___fxn_table.html#a35a09bfb36dd7b17a419a34ed0ac76ed">ADC_FxnTable</a>
+</li>
 <li>custom
-: <a class="el" href="struct_i2_c___params.html#a2416cc06d853e6cc24e1f294dfebb194">I2C_Params</a>
+: <a class="el" href="struct_a_d_c___params.html#a62c67d0ad10066d4e30e67d648937a32">ADC_Params</a>
+, <a class="el" href="struct_i2_c___params.html#a2416cc06d853e6cc24e1f294dfebb194">I2C_Params</a>
 </li>
 </ul>
 
@@ -196,12 +212,16 @@ $(function() {
 <li>flowControl
 : <a class="el" href="struct_u_a_r_t_m_s_p___h_w_attrs.html#aa8bc1204c4d60a5958887b9d9a35f451">UARTMSP_HWAttrs</a>
 </li>
+<li>fxnTablePtr
+: <a class="el" href="struct_a_d_c___config__.html#a451827ead452ffc830675afbef573ee2">ADC_Config_</a>
+</li>
 </ul>
 
 
 <h3><a id="index_h"></a>- h -</h3><ul>
 <li>hwAttrs
-: <a class="el" href="struct_d_m_a_m_s_p_m0___cfg.html#aacdefe7b3fc5cd387a665f90d5159dee">DMAMSPM0_Cfg</a>
+: <a class="el" href="struct_a_d_c___config__.html#a5acc18036a502afb93d1097a185e921f">ADC_Config_</a>
+, <a class="el" href="struct_d_m_a_m_s_p_m0___cfg.html#aacdefe7b3fc5cd387a665f90d5159dee">DMAMSPM0_Cfg</a>
 , <a class="el" href="struct_i2_c___config__.html#af4722d351fb7137a34166e047a4f96bc">I2C_Config_</a>
 , <a class="el" href="struct_u_a_r_t___config__.html#a33679e33b65c88fc4e7c2815054923ff">UART_Config_</a>
 </li>
@@ -215,6 +235,9 @@ $(function() {
 <li>i2cPostFxn
 : <a class="el" href="struct_i2_c_m_s_p_m0___object.html#a7eace6e7fc1c4b67aa27ae08463650a3">I2CMSPM0_Object</a>
 </li>
+<li>initFxn
+: <a class="el" href="struct_a_d_c___fxn_table.html#a5b2882d28b0e4a8c8d7bb2ed741380e8">ADC_FxnTable</a>
+</li>
 <li>intPriority
 : <a class="el" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#af674ed538149edc488580357b1854f0e">DMAMSPM0_HWAttrs</a>
 , <a class="el" href="struct_g_p_i_o___config.html#a84aba89af518e6f30e6650e20dc79e7b">GPIO_Config</a>
@@ -227,6 +250,9 @@ $(function() {
 </li>
 <li>isClockStretchingEnabled
 : <a class="el" href="struct_i2_c_m_s_p_m0___h_w_attrs.html#a374bd4ad8cb0e92c525d63dd792942f8">I2CMSPM0_HWAttrs</a>
+</li>
+<li>isProtected
+: <a class="el" href="struct_a_d_c___params.html#afcfab4dda63383c2dcf0bb21fe519c53">ADC_Params</a>
 </li>
 </ul>
 
@@ -247,10 +273,14 @@ $(function() {
 
 <h3><a id="index_o"></a>- o -</h3><ul>
 <li>object
-: <a class="el" href="struct_d_m_a_m_s_p_m0___cfg.html#af95b4b92269f4c872aab141a92f02b3a">DMAMSPM0_Cfg</a>
+: <a class="el" href="struct_a_d_c___config__.html#a42007f8f413bd43d28b7972b9e60bbc9">ADC_Config_</a>
+, <a class="el" href="struct_d_m_a_m_s_p_m0___cfg.html#af95b4b92269f4c872aab141a92f02b3a">DMAMSPM0_Cfg</a>
 , <a class="el" href="struct_i2_c___config__.html#a8bdac95426bbb6b46559fab1e81898ba">I2C_Config_</a>
 , <a class="el" href="struct_u_a_r_t___config__.html#a3e4817fc0e2b0225caeda2072acf56c0">UART_Config_</a>
 , <a class="el" href="struct_u_a_r_t___data___object.html#afa2bd8f7b61b0d826149acda3ba0f5ed">UART_Data_Object</a>
+</li>
+<li>openFxn
+: <a class="el" href="struct_a_d_c___fxn_table.html#aa74579528b7be192281bf5c23e6dcf03">ADC_FxnTable</a>
 </li>
 <li>overrunActive
 : <a class="el" href="struct_u_a_r_t___object.html#a8c484a15142ec4773184414a969e66c6">UART_Object</a>

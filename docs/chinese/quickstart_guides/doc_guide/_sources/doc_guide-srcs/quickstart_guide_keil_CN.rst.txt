@@ -1,142 +1,142 @@
-MSPM0 SDK QuickStart Guide for Keil
-===================================
+适用于 Keil 的 MSPM0 SDK 快速入门指南
+=====================================
 
-1. Introduction
----------------
+1. 引言
+-------
 
-This guide is intended to assist users in the initial setup and demonstration of running their first sample application. The guide explains how to install the MSPM0 SDK and the MSPM0 CMSIS-Pack for Keil, and lists the various other tools required to get started with your first application.
+本指南旨在帮助用户完成初始设置并展示运行其第一个示例应用。本指南说明了如何安装 MSPM0 SDK 和适用于 Keil 的 MSPM0 CMSIS-Pack，并列出了开始使用第一个应用所需的各种其他工具。
 
-2. Prerequisites
-----------------
+2. 先决条件
+-----------
 
-The user is expected to have downloaded the following:
+用户应已下载以下各项：
 
 -  `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__
--  `Keil MDK-Arm with uVision <https://www2.keil.com/mdk5>`__ v5.38a or later, with Arm Clang compiler v6.16 or later.
+-  `Keil MDK-Arm with uVision <https://www2.keil.com/mdk5>`__ v5.38a 或更高版本，带有 Arm Clang 编译器 v6.16 或更高版本。
 
 -  `SysConfig 1.17.x <https://www.ti.com/tool/SYSCONFIG>`__
 
-3. Install the MSPM0 CMSIS-Pack
--------------------------------
+3. 安装 MSPM0 CMSIS-Pack
+------------------------
 
-1. Install `Keil MDK-Arm with uVision <#prerequisites>`__
+1. 安装 `Keil MDK-Arm with uVision <#prerequisites>`__
 
-2. In uVision, select **Project → Manage → Pack Installer**
+2. 在 uVision 中，依次选择 **Project → Manage → Pack Installer**
 
    .. figure:: ./images/quickstart_guide_keil/keil_install_1.png
       :alt: 
 
-3. In the Pack Installer, select the Texas Instruments devices and select the corresponding MSPM0 family. Then on the right side, install the device specific pack as well as any other pack that may be necessary.
+3. 在“Pack Installer”中，选择“Texas Instruments”器件，并选择相应的 MSPM0 系列。 然后在右侧，安装器件特定包以及可能需要的任何其他包。
 
    .. figure:: ./images/quickstart_guide_keil/keil_install_2.png
       :alt: 
 
-4. Approve the license terms
+4. 批准许可条款
 
-5. The Pack Installer should show suppport for the MSPM0 devices.
+5. “Pack Installer”应显示支持 MSPM0 器件。
 
    .. figure:: ./images/quickstart_guide_keil/keil_install_5.png
       :alt: 
 
-4. Install the MSPM0 SDK
-------------------------
+4. 安装 MSPM0 SDK
+-----------------
 
-1. Download and install the latest `MSPM0 SDK <#prerequisites>`__. Note that there are SDK installers for Windows, Linux and MacOS. The steps below are shown in Windows, but a similar approach should be followed in Linux or MacOS.
+1. 下载并安装最新 `MSPM0 SDK <#prerequisites>`__\ 。请注意，SDK 安装程序有 Windows 版、Linux 版和 MacOS 版。以下步骤显示在 Windows 版中，但 Linux 或 MacOS 版也应遵循类似方法。
 
-2. Execute the installer. Click **Next**.
+2. 执行安装程序。点击 **Next**\ 。
 
    .. figure:: ./images/quickstart_guide_keil/sdk_install_1.png
       :alt: 
 
-3. Select an **Installation Directory** and click **Next**. Note the installation directory which by default is ``c:\ti`` which will install the SDK at ``C:\ti\mspm0_sdk_<version>\``. This path will be refered to as ``<MSPM0_SDK_INSTALL_DIR>`` in sections below.
+3. 选择 **Installation Directory** 并点击 **Next**\ 。注意安装目录，默认情况下为 ``c:\ti``\ ，SDK 将安装在 ``C:\ti\mspm0_sdk_<version>\``\ 。此路径在以下部分中称为 ``<MSPM0_SDK_INSTALL_DIR>``\ 。
 
    .. figure:: ./images/quickstart_guide_keil/sdk_install_2.png
       :alt: 
 
-4. Click **Next**
+4. 点击 **Next**
 
    .. figure:: ./images/quickstart_guide_keil/sdk_install_3.png
       :alt: 
 
-5. After installation is complete, click **Finish**.
+5. 完成安装后，点击 **Finish**\ 。
 
    .. figure:: ./images/quickstart_guide_keil/sdk_install_4.png
       :alt: 
 
-5. Using SysConfig with Keil IDE
---------------------------------
+5. 将 SysConfig 与 Keil IDE 配合使用
+------------------------------------
 
-The SDK includes a preliminary version of SysConfig metadata which can be used to evaluate the user experience of MSPM0 SDK.
+此 SDK 包括 SysConfig 元数据的初始版本，可用于评估 MSPM0 SDK 的用户体验。
 
-A detailed explanation of the installation and usage of SysConfig with MSPM0 is available at `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ available in the SDK's Tools Guide.
+有关安装 SysConfig 并将其与 MSPM0 配合使用的详细说明，请参阅在 SDK 工具指南中提供的\ `将 SysConfig 与 MSPM0 配合使用 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 。
 
-6. Import and Build an SDK Example in Keil uVision
---------------------------------------------------
+6. 在 Keil uVision 中导入和编译 SDK 示例
+----------------------------------------
 
-1. In Keil uVision, select **Project → Open Project**
+1. 在 Keil uVision 中，依次选择 **Project → Open Project**
 
    .. figure:: ./images/quickstart_guide_keil/keil_example_1.png
       :alt: 
 
-2. Navigate to a Keil folder in SDK example at ``<MSPM0_SDK_INSTALL_DIR>/examples/`` and open the .uvprojx project file. For example ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output_hiz/keil/gpio_toggle_output_hiz.uvprojx``.
+2. 在位于 ``<MSPM0_SDK_INSTALL_DIR>/examples/`` 的 SDK 示例中导航至 Keil 文件夹，并打开 .uvprojx 工程文件。例如 ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output_hiz/keil/gpio_toggle_output_hiz.uvprojx``\ 。
 
    .. figure:: ./images/quickstart_guide_keil/keil_example_2.png
       :alt: 
 
-3. The project is ready to build and debug.
+3. 工程已准备好进行编译和调试。
 
    .. figure:: ./images/quickstart_guide_keil/keil_example_3.png
       :alt: 
 
-7. Downloading and debugging to MSPM0 using Keil
-------------------------------------------------
+7. 使用 Keil 在 MSPM0 上进行下载和调试
+--------------------------------------
 
-Keil supports multiple debuggers. This section shows how to use the XDS-110 debugging tool in CMSIS-DAP mode. The XDS-110 is integrated into the MSPM0 LaunchPads.
+Keil 支持多种调试器。此部分说明了如何在 CMSIS-DAP 模式下使用 XDS-110 调试工具。 XDS-110 集成在 MSPM0 LaunchPad 中。
 
-7.1 Using CMSIS-DAP
-~~~~~~~~~~~~~~~~~~~
+7.1 使用 CMSIS-DAP
+~~~~~~~~~~~~~~~~~~
 
-1. Go to the options window for the Keil project imported in the previous step by right clicking on the project folder
+1. 右键点击工程文件夹，转至在先前步骤中导入的 Keil 工程的选项窗口
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_1.png
    :alt: 
 
-2. Go to the debug tab on the window and select CMSIS-DAP as the debugger from the drop down in the top right corner.
+2. 转至窗口上的“Debug”选项卡，并从右上角的下拉列表中选择 CMSIS-DAP 作为调试器。
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_2.png
    :alt: 
 
-3. Click on the settings button and on the debug tab make sure the settings match those shown in the image below.
+3. 在“Debug”选项卡中点击“Settings”按钮，并确保设置与下图所示设置一致。
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_4.png
    :alt: 
 
-4. Click on the Flash Download tab and check that description matches that of the image. If not, click on the add button and select the corresponding MSPM0 MAIN option. The device type is On-chip flash.
+4. 点击“Flash Download”选项卡，并确认相应说明与下图一致。 如果不一致，请点击“Add”按钮，并选择相应的 MSPM0 MAIN 选项。 器件类型为“On-chip Flash”。
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_3.png
    :alt: 
 
-5. Click Ok on the bottom of the windows to close out the windows and apply all the changes made to the debug settings
+5. 点击窗口底部的“OK”关闭窗口，并应用对调试设置所做的所有更改
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_5.png
    :alt: 
 
-6. Flash the device with the project by pressing the Load button as shown below
+6. 按下“Load”按钮使用工程刷写器件，如下所示
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_8.png
    :alt: 
 
-6. Hover over the debug tab on the main screen and choose start/stop debug session
+7. 将鼠标悬停在主屏幕的“Debug”选项卡上，选择“Start/Stop Debug Session”
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_6.png
    :alt: 
 
-7. This will start the debug session.
+8. 这将启动调试会话。
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_7.png
    :alt: 
 
-8. Known Issues and Frequently Asked Questions (FAQs)
------------------------------------------------------
+8.已知问题和常见问题解答 （FAQ）
+--------------------------------
 
-Please refer to `Known Issues and FAQ <../../../../../known_issues_FAQ.html>`__ inside the SDK.
+请参阅 SDK 中的\ `已知问题和 FAQ <../../../../../known_issues_FAQ.html>`__\ 。

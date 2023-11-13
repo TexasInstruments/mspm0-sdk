@@ -313,6 +313,24 @@
     "description": "<p>The MSPM0 SMBus Library provides a simple way to start development of SMBus applications using MSPM0 devices. This library was developed in compliance with the SMBus 3.2 specification. The SDK includes examples that demonstrate communication between a SMBus Controller and SMBus Target using all of the supported SMBus protocols.</p>"
   },
   {
+    "name": "PMBus",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "<p>The MSPM0 PMBus Library is based on the MSPM0 SMBus library. The MSPM0 PMBus library provides a set of APIs to communicate over PMBus as a controller or a target.</p>"
+  },
+  {
     "name": "Boot Image Manager",
     "mainCategories": [
       [

@@ -47,3 +47,4 @@ UART1.direction                = "TX";
 UART1.peripheral.$assign       = "UART0";
 UART1.peripheral.txPin.$assign = "PA10";
 
+SYSCTL.forceDefaultClkConfig = true;

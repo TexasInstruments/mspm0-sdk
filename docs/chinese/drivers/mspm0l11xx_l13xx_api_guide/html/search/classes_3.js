@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['uart_5fbuffers_5fobject',['UART_Buffers_Object',['../struct_u_a_r_t___buffers___object.html',1,'']]],
-  ['uart_5fcallback_5fobject',['UART_Callback_Object',['../struct_u_a_r_t___callback___object.html',1,'']]],
-  ['uart_5fconfig_5f',['UART_Config_',['../struct_u_a_r_t___config__.html',1,'']]],
-  ['uart_5fdata_5fobject',['UART_Data_Object',['../struct_u_a_r_t___data___object.html',1,'']]],
-  ['uart_5feventcallback_5fobject',['UART_EventCallback_Object',['../struct_u_a_r_t___event_callback___object.html',1,'']]],
-  ['uart_5fobject',['UART_Object',['../struct_u_a_r_t___object.html',1,'']]],
-  ['uart_5fparams',['UART_Params',['../struct_u_a_r_t___params.html',1,'']]],
-  ['uartmsp_5fhwattrs',['UARTMSP_HWAttrs',['../struct_u_a_r_t_m_s_p___h_w_attrs.html',1,'']]],
-  ['uartsupport_5ffxns',['UARTSupport_Fxns',['../struct_u_a_r_t_support___fxns.html',1,'']]]
+  ['i2c_5fconfig_5f',['I2C_Config_',['../struct_i2_c___config__.html',1,'']]],
+  ['i2c_5fparams',['I2C_Params',['../struct_i2_c___params.html',1,'']]],
+  ['i2c_5ftransaction',['I2C_Transaction',['../struct_i2_c___transaction.html',1,'']]],
+  ['i2cmspm0_5fhwattrs',['I2CMSPM0_HWAttrs',['../struct_i2_c_m_s_p_m0___h_w_attrs.html',1,'']]],
+  ['i2cmspm0_5fi2cpincfg',['I2CMSPM0_I2CPinCfg',['../struct_i2_c_m_s_p_m0___i2_c_pin_cfg.html',1,'']]],
+  ['i2cmspm0_5fobject',['I2CMSPM0_Object',['../struct_i2_c_m_s_p_m0___object.html',1,'']]]
 ];

@@ -1,123 +1,123 @@
-UniFlash Guide for MSPM0
-========================
+适用于 MSPM0 的 UniFlash 指南
+=============================
 
-1. Introduction
----------------
+1. 引言
+-------
 
-This guide describes the installation of the UniFlash tool and general practice of using it with TI's MSPM0 devices.
+本指南说明了 UniFlash 工具的安装及其与 TI MSPM0 器件配合使用的一般实践。
 
-This document is not intended to explain the use of UniFlash in detail. Please refer to the `UniFlash Quick Start Guide <https://software-dl.ti.com/ccs/esd/uniflash/docs/v7_1/uniflash_quick_start_guide.html>`__ for more information.
+本文档不用于详细说明如何使用 UniFlash。 有关详细信息，请参阅 `UniFlash 快速入门指南 <https://software-dl.ti.com/ccs/esd/uniflash/docs/v7_1/uniflash_quick_start_guide.html>`__\ 。
 
-2. Prerequisites
-----------------
+2. 先决条件
+-----------
 
-The user is expected to have downloaded the following:
+用户应已下载以下各项：
 
--  UniFlash 8.2.0 or newer (Download latest version from `ti.com <https://www.ti.com/tool/UNIFLASH>`__ or access on the cloud at `dev.ti.com <https://dev.ti.com/uniflash>`__)
--  Compiled application image(s)
+-  UniFlash 8.2.0 或更高版本（从 `ti.com <https://www.ti.com/tool/UNIFLASH>`__ 下载最新版本或在 `dev.ti.com <https://dev.ti.com/uniflash>`__ 访问云）
+-  已编译的应用程序映像
 
-   -  Can be in multiple file formats for debugger connections including .out, .bin, .hex, .txt
-   -  Serial connection only supports .txt and .hex file formats such as TI-TXT
-   -  Use your preferred IDE and compiler to build your application
+   -  可使用多种文件格式实现调试器连接，包括 .out、.bin、.hex、.txt
+   -  串行连接仅支持 .txt 和 .hex 文件格式，如 TI-TXT
+   -  使用您首选的 IDE 和编译器来编译应用程序
 
-UniFlash can connect and interact with the device either with a debugger connected via SWD to the device, or using the device's bootloader and a serial UART connection.
+UniFlash 可通过以下两种方式连接器件并与器件交互：使用通过 SWD 连接至器件的调试器，或使用器件的引导加载程序和串行 UART 连接。
 
-3. Using UniFlash with MSPM0 via the Debugger
----------------------------------------------
+3. 通过调试器将 UniFlash 与 MSPM0 配合使用
+------------------------------------------
 
-The debugging interface such as XDS110 can be used by UniFlash to program the device. One can select the device (the on-chip version as shown below) and specific interface that will be used to start. Alternatively, UniFlash may auto-detect the MSPM0 LaunchPad if connected. The LaunchPad includes the Texas Instruments XDS110 USB Debug Probe.
+UniFlash 可使用调试接口（如 XDS110）来编程器件。可选择器件（如下所示的片上版本）和将用于启动的特定接口。另外，UniFlash 还可以自动检测 MSPM0 LaunchPad（如果已连接）。LaunchPad 包括德州仪器（TI）XDS110 USB 调试探针。
 
 .. figure:: ./images/uniflash_guide/uniflash_guide_jtag_start.png
    :alt: 
 
-3.1 Loading an Image.
-~~~~~~~~~~~~~~~~~~~~~
+3.1 加载映像。
+~~~~~~~~~~~~~~
 
-1. Compile an application that is in a compatible format, such as a .out. All possible file types are described in the `UniFlash Quick Start Guide <https://software-dl.ti.com/ccs/esd/uniflash/docs/v7_1/uniflash_quick_start_guide.html>`__.
+1. 编译采用兼容格式的应用，例如 .out。\ `UniFlash 快速入门指南 <https://software-dl.ti.com/ccs/esd/uniflash/docs/v7_1/uniflash_quick_start_guide.html>`__\ 中说明了所有可能的文件类型。
 
-2. Upload the flash image file as shown. |image0|
+2. 如图所示上传闪存映像文件。 |image0|
 
-3. Adjust erase settings or other information as necessary. If performing a Factory Reset, please take special consideration as **NONMAIN will be erased in the process.** It is then the user's responsibility to re-program non-main. It is recommended to verify this is correct behavior before proceeding with a Factory Reset.
+3. 根据需要调整擦除设置或其他信息。如果恢复出厂设置，请特别注意，因为 **NONMAIN 将在这个过程中擦除**\ 。随后用户需负责重新编程 NONMAIN。在恢复出厂设置之前，建议确认此行为是否正确。
 
-Additionally, if using the factory reset, a password can be optionally provided. For more information, please refer to the corresponding device TRM.
+此外，如果恢复出厂设置，可选择提供密码。有关详细信息，请参阅相应的器件 TRM。
 
-4. Click **Load Image**. The image should be loaded correctly.
+4. 点击 **Load Image**\ 。映像应正确加载。
 
    .. figure:: ./images/uniflash_guide/uniflash_guide_use_3.png
       :alt: 
 
-3.2 Reading From Memory
-~~~~~~~~~~~~~~~~~~~~~~~
+3.2 从内存读取
+~~~~~~~~~~~~~~
 
-Using the Memory tab, UniFlash can also inspect the flash memory of the device simply by selecting **Read Target Device**.
+在“Memory”选项卡中，只需选择 **Read Target Device**\ ，UniFlash 还可检测器件闪存。
 
 .. figure:: ./images/uniflash_guide/uniflash_guide_jtag_read.png
    :alt: 
 
-4 Using UniFlash via the Bootloader Programmer
-----------------------------------------------
+4 通过引导加载程序编程器使用 UniFlash
+-------------------------------------
 
-The Bootloader Programmer is an alternate method for writing to a device via the device's serial UART connection without the presence of a debugger. When loading UniFlash, the selected device can use the bootloader programmer by searching the device name and selecting the bootloader option for the device as shown below.
+引导加载程序编程器是通过器件的串行 UART 连接写入器件的另一种方法，不需要调试器。加载 UniFlash 时，所选器件可通过搜索器件名称并选择器件的引导加载程序选项来使用引导加载程序编程器，如下所示。
 
 .. figure:: ./images/uniflash_guide/uniflash_guide_bootloader_start.png
    :alt: 
 
-4.1 Hardware Considerations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 硬件注意事项
+~~~~~~~~~~~~~~~~
 
-Below are some hardware considerations that may be necessary for your device. Please consider that the pins used for UART are **BSLRX** and **BSLTX** and can be found in the device-specific datasheet.
+下面提供了一些必要的器件硬件注意事项。请注意，用于 UART 的引脚是 **BSLRX** 和 **BSLTX**\ ，可在器件特定数据表中找到。
 
--  Before any operation communicating with the device, the bootloader must be invoked. There are multiple ways that this can be done, such as beginning with a blank device or using the GPIO pin based invocation. For more information on the different invocation methods, please consult the `Bootloader User Guide <https://www.ti.com/lit/slau887>`__. When invoked, the BSL will detect interfaces for 10s before entering STANDBY, so any first use of UniFlash must happen within those 10 seconds.
+-  在执行与器件通信的任何操作之前，必须调用引导加载程序。可通过多种方式调用，例如使用空白器件开始或使用基于 GPIO 引脚的调用。有关不同调用方法的详细信息，请查阅\ `引导加载程序用户指南 <https://www.ti.com/lit/slau887>`__\ 。调用时，BSL 将检测接口 10 秒后再进入待机状态，因此对 UniFlash 的首次使用必须在该10 秒内进行。
 
--  When using the LaunchPad, please refer to the specific LaunchPad User Guides for any special considerations when using the BootLoader
+-  使用 LaunchPad 时，请参阅特定 LaunchPad 用户指南以了解在使用引导加载程序时的任何特别注意事项。
 
--  If experiencing unreliable transmission, it may be necessary to place a pull-up on the transmit line of the UART.
+-  如果遇到不可靠传输，可能需要在 UART 传输线路上放置上拉。
 
-4.2 NONMAIN Considerations
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.2 NONMAIN 注意事项
+~~~~~~~~~~~~~~~~~~~~
 
-**Warning!!!** When using UniFlash, it is possible to erase the NONMAIN region of flash by selecting the Factory Reset option from the Erase setting. The NONMAIN section contains crucial information about the device, including the Bootloader interface. **If erased, it is important to reflash the device with a valid NONMAIN configuration during the flashing cycle. Otherwise, the device will not operate as intended and may become unrecoverable.** The MSPM0 SDK includes a SysConfig NONMAIN configurator which can be used to easily and safely configure NONMAIN.
+**警告！**\ 使用 UniFlash 时，可以从“Erase”设置中选择“Factory Reset”选项来擦除闪存的 NONMAIN 区域。NONMAIN 部分包含有关器件的重要信息，包括引导加载程序接口。\ **如果已擦除，务必要在刷写周期内使用有效 NONMAIN 配置重新刷写器件。否则，器件不会按预期运行，并且可能不可恢复。**\ MSPM0 SDK 包括 SysConfig NONMAIN 配置器，可用于轻松安全地配置 NONMAIN。
 
 .. figure:: ./images/uniflash_guide/uniflash_guide_erase_setting.png
    :alt: 
 
-There are three cases for the device to perform a factory reset based on the boot configuration routine (BCR) in the NONMAIN region:
+器件基于 NONMAIN 区域中的引导配置例程 （BCR）恢复出厂设置有三种情形：
 
-1. If enabled without a password, a factory reset can be performed.
+1. 如果不使用密码启用，可以恢复出厂设置。
 
-2. If enabled with a password, select **Enabled** for the factory reset password in UniFlash. The provided password must match the password that is currently programmed on the device in order to perform a Factory Reset. Note that this Factory Reset Password is a separate password from the Bootloader Unlock Password (though both default to 32 bytes of 0xFF).
+2. 如果使用密码启用，请选择 **Enabled** 以在 UniFlash 中使用恢复出厂设置密码。提供的密码必须与当前在器件上编程的密码一致，才能恢复出厂设置。请注意，此恢复出厂设置密码不同于引导加载程序解锁密码（但两个密码均默认为 32 字节 0xFF）。
 
-3. If disabled, the Factory Reset cannot occur.
+3. 如果禁用，则无法恢复出厂设置。
 
-See the device Technical Reference Manual for more information about factory reset configuration in NONMAIN
+有关在NONMAIN 中恢复出厂设置配置的详细信息，请参阅器件的技术参考手册。
 
-4.3 Writing To a Device
-~~~~~~~~~~~~~~~~~~~~~~~
+4.3 写入器件
+~~~~~~~~~~~~
 
-1. Configure the UART to match settings in the BSL region in NONMAIN. The default configuration is 9600 baud rate, 8-bit data width with 1 stop bit and no parity (no change). The COM port will not be auto-populated and will need to be updated based on the machine and operating system.
+1. 将 UART 配置为与 NONMAIN 中 BSL 区域的设置匹配。默认配置为 9600 波特率、8 位数据宽度（含1 个停止位）和无奇偶校验（无更改）。COM 端口不会自动填充，并且需基于机器和操作系统更新。
 
-2. Add the binary images as desired. The text file will include the loaded location at the beginning. The password is only necessary if not using the default password. For more information about passwords, please consult `Using Passwords <#using-passwords>`__.
+2. 根据需要添加二进制映像。此文本文件将包括在开始时加载的位置。只有在未使用默认密码时，才需要密码。有关密码的详细信息，请参阅\ `使用密码 <#using-passwords>`__\ 。
 
    .. figure:: ./images/uniflash_guide/uniflash_guide_load_bootloader_image.png
       :alt: 
 
-3. Adjust any settings in the **Settings & Utilities** section if desired. This could include different erase mechanisms as well as custom CRC verification. If modifying the erase mechanisms, please consult `NONMAIN considerations <#nonmain-considerations>`__ to make sure the device does not become unrecoverable.
+3. 根据需要在 **Settings & Utilities** 部分中调整任何设置。这可包括不同的擦除机制和自定义 CRC 验证。如果修改擦除机制，请参阅 `NONMAIN 注意事项 <#nonmain-considerations>`__\ 以确保器件不会变为不可恢复。
 
-4. Invoke BSL on the target device
+4. 在目标器件上调用 BSL
 
-5. Within 10 seconds, click **Load Image** in the Available Actions Tab. The program loaded successfully should be shown at the bottom of the console.
+5. 在 10 秒内，点击“Available Actions”选项卡中的 **Load Image**\ 。成功加载的程序应显示在控制台底部。
 
 .. figure:: ./images/uniflash_guide/uniflash_guide_bootloader_loaded.png
    :alt: 
 
-**Note** that if the image is not larger than 1KB, the following error will appear when using the Bootloader. Please see `Known Issues <#known-issues-and-frequently-asked-questions-faq>`__ for more information.
+**注意**\ ，如果映像大小不超过 1KB，则在使用引导加载程序时将显示以下错误。有关详细信息，请参阅\ `已知问题 <#known-issues-and-frequently-asked-questions-faq>`__\ 。
 
-4.4 Using Passwords
-~~~~~~~~~~~~~~~~~~~
+4.4 使用密码
+~~~~~~~~~~~~
 
-Every BSL transaction that accesses data is password protected by the 128-bit bootloader password. This defaults to 32-bytes of 0xFF and is checked during these transactions. By default, the developer does not need to provide the unlock password, as the default password will be used. This can be changed by setting the BSL password in the NONMAIN region. See the Technical Reference Manual for more information.
+访问数据的每个 BSL 事务均由 128 位引导加载程序密码提供保护。这默认为 32 字节 0xFF，并在这些事务期间接受检查。默认情况下，开发人员无需提供解锁密码，因为将使用默认密码。这可通过在 NONMAIN 区域内设置 BSL 密码来更改。有关详细信息，请参阅技术参考手册。
 
-If the developer edits the BSL password the user will have to provide the matching password when flashing the device. This is done in TI TXT file format, using the following structure with the password contents replacing the default contents shown. The address is not used by the tool and thus can be 0x0000.
+如果开发人员编辑 BSL 密码，则用户在刷写器件时必须提供匹配的密码。这以 TI TXT 文件格式完成，使用以下结构，用密码内容替换显示的默认内容。工具不使用地址，因此地址可以为 0x0000。
 
 ::
 
@@ -126,36 +126,36 @@ If the developer edits the BSL password the user will have to provide the matchi
     ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
     q
 
-The text file containing the custom password used by the bootloader can be placed in the file as shown.
+包含引导加载程序使用的自定义密码的文本文件可以置于所示文件。
 
 .. figure:: ./images/uniflash_guide/uniflash_guide_bootloader_password_provided.png
    :alt: 
 
-4.5 Reading From a Device using the Bootloader
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.5 使用引导加载程序从器件读取
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Memory reading is not enabled in NONMAIN by default, however the functionality is supported if desired. Refer to the device Technical Reference Manual for information about modifying NONMAIN to change the BSL memory read-out policy.
+默认情况下未在 NONMAIN 中启用内存读取，不过可根据需要支持此功能。有关修改 NONMAIN 以更改 BSL 内存读取策略的信息，请参阅器件的技术参考手册。
 
-When enabled, a read from the device can be performed in the **Settings & Utilities** section of UniFlash on the top left-hand side of the screen.
+启用后，可在屏幕左上方的 UniFlash **Settings & Utilities** 部分中执行从器件读取。
 
-In order to successfully read from a device, the Bootloader Unlock Password will be required. The default password is 32 0xFF bytes, written in UniFlash as 8 0xFFFFFFFF words.
+要成功从器件读取，需提供引导加载程序解锁密码。默认密码为 32 个 0xFF 字节，在 UniFlash 中编写为 8 个 0xFFFFFFFF 字。
 
 .. figure:: ./images/uniflash_guide/uniflash_guide_bootloader_read.png
    :alt: 
 
-4.6 Current Limitations using the Bootloader
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.6 使用引导加载程序的当前限制
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When using the bootloader, there are some additional limitations with the current implementation:
+使用引导加载程序时，当前实现存在一些额外限制：
 
--  The maximum size of data packet transfer depends on the BSL timer (10) and the baud rate, as well as the maximum buffer space. The transfer will not happen with respect to the watchdog and thus must complete in under 10 seconds. For example. A 10kB file with a start and stop bit will require 10240 \* (10 bits/packet) / (9600 bits/second) = 10.67 seconds which would cause a timeout. In this case, a higher baud rate is recommended.
+-  数据包传输的大小上限取决于 BSL 计时器（10）和波特率以及最大缓冲区空间。传输在看门狗时间后不会进行，因此必须在 10 秒内完成传输。例如，一个具有开始和停止位的 10kB 文件需要 10240 \* (10 位/数据包)/(9600 位/秒) = 10.67 秒，这会导致超时。在这种情况下，建议使用更高的波特率。
 
--  CRC Verification does not work for sizes less than 1kB, an error for the verification will be thrown in this case.
+-  CRC 验证不适用于 1kB 以下大小，因此在这种情况下将显示验证错误。
 
-5. Known Issues and Frequently Asked Questions (FAQ)
-----------------------------------------------------
+5. 已知问题和常见问题解答（FAQ）
+--------------------------------
 
-Please refer to the `Known Issues and FAQ <../../../../../known_issues_FAQ.html>`__ for more information
+有关详细信息，请参阅\ `已知问题和 FAQ <../../../../../known_issues_FAQ.html>`__
 
 .. |image0| image:: ./images/uniflash_guide/uniflash_guide_use_2.png
 

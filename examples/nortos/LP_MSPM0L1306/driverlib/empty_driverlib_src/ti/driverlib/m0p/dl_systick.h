@@ -160,7 +160,7 @@ __STATIC_INLINE void DL_SYSTICK_disableInterrupt(void)
  */
 __STATIC_INLINE void DL_SYSTICK_enable(void)
 {
-    SysTick->CTRL = (SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk);
+    SysTick->CTRL |= (SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk);
 }
 
 /**

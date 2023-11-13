@@ -32,4 +32,5 @@ OPA1.cfg0PSELChannel = "IN0_POS";
 OPA1.cfg0NSELChannel = "RTOP";
 OPA1.advBW           = "HIGH";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

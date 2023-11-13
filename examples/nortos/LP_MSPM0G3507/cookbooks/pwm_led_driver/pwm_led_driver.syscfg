@@ -28,3 +28,4 @@ PWM1.PWM_CHANNEL_0.dutyCycle    = 10;
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+SYSCTL.forceDefaultClkConfig = true;

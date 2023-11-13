@@ -1,0 +1,47 @@
+MSPM0 PMBus Library User's Guide
+================================
+
+1. Introduction
+---------------
+
+The MSPM0 PMBus Library is based on the MSPM0 SMBus library. The MSPM0 PMBus library provides a set of APIs to communicate over PMBus as a controller or a target.
+
+2. PMBus Library Supported Features
+-----------------------------------
+
+This library was developed in compliance with the PMBus 1.3.1 specification.
+
+2.1 PMBus Supported Features
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Address, memory, communication and capability related commands
+-  On, off, and margin testing related commands
+-  Output voltage related commands
+-  "Other commands" as detailed by the PMBus specification
+-  Fault related commands
+-  Power good signal limits
+-  Output voltage sequencing commands
+-  Unit status commands
+-  Parametric information commands
+-  Manufacturer's information commands
+
+2.3 PMBus Features Not Currently Implemented
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The PMBus features listed below are supported in hardware but have not been implemented in this release:
+
+-  ZONE\_READ and ZONE\_WRITE protocols
+
+3. PMBus Example Usage
+----------------------
+
+This software library contains an example that demonstrate communication between a PMBus Controller and the TPS544B20EVM-634 evaluation module. The example configures the TPS544B20EVM-634's behavior during under-voltage or over current events.
+
+-  pmbus\_controller\_tps544b20evm
+
+The above example contains source code which can be compiled and loaded onto a supported device as-is. Connect SMBCLK and SMBDAT between the controller and the TPS544B20EVM-634. Ensure properly sized pullup resistors are provisioned.
+
+3.1 PMBus Examples Supported Hardware
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  2 LP-MSPM0L1306 or LP-MSPM0G3507 LaunchPad evaluation boards

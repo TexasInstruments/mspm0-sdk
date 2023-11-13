@@ -500,7 +500,7 @@ typedef enum {
     /*! Divide MCLK frequency by 7 */
     DL_SYSCTL_MCLK_DIVIDER_7 = 0x6,
     /*! Divide MCLK frequency by 8 */
-    DL_SYSCTL_MCLK_DIVIDER_8 = 0x6,
+    DL_SYSCTL_MCLK_DIVIDER_8 = 0x7,
     /*! Divide MCLK frequency by 9 */
     DL_SYSCTL_MCLK_DIVIDER_9 = 0x8,
     /*! Divide MCLK frequency by 10 */
@@ -1950,6 +1950,38 @@ void DL_SYSCTL_setHFCLKSourceHFXTParams(
     DL_SYSCTL_HFXT_RANGE range, uint32_t startupTime, bool monitorEnable);
 
 /**
+ *  @brief      Disable the SYSPLL
+ *
+ *  If SYSPLL is already enabled, application software should not disable the
+ *  SYSPLL until the SYSPLLGOOD or SYSPLOFF bit is set in the CLKSTATUS
+ *  register, indicating that the SYSPLL transitioned to a stable active or a
+ *  stable dead state.
+ *
+ *  @sa DL_SYSCTL_getClockStatus
+ */
+__STATIC_INLINE void DL_SYSCTL_disableSYSPLL(void)
+{
+    SYSCTL->SOCLOCK.HSCLKEN &= ~(SYSCTL_HSCLKEN_SYSPLLEN_MASK);
+}
+
+/**
+ *  @brief      Disable the HFXT
+ *
+ *  If HFXT is already enabled, application software must verify that either an
+ *  HFCLKGOOD indication or an HFCLKOFF (off/dead) indication in the CLKSTATUS
+ *  register was asserted by hardware before attempting to disable the HFXT
+ *  by clearing HFXTEN. When disabling the HFXT by clearing HFXTEN, the HFXT
+ *  must not be re-enabled again until the HFCLKOFF bit in the CLKSTATUS
+ *  register is set by hardware.
+ *
+ *  @sa DL_SYSCTL_getClockStatus
+ */
+__STATIC_INLINE void DL_SYSCTL_disableHFXT(void)
+{
+    SYSCTL->SOCLOCK.HSCLKEN &= ~(SYSCTL_HSCLKEN_HFXTEN_MASK);
+}
+
+/**
  *  @brief Change HFCLK source to external digital HFCLK_IN
  *
  * HFCLK_IN can be used to bypass the HFXT circuit and bring 4-48MHz typical
@@ -1964,6 +1996,11 @@ void DL_SYSCTL_setHFCLKSourceHFXTParams(
  */
 __STATIC_INLINE void DL_SYSCTL_setHFCLKSourceHFCLKIN(void)
 {
+    /* Some crystal configurations are retained in lower reset levels. Set
+     * default behavior of HFXT to keep a consistent behavior regardless of
+     * reset level. */
+    DL_SYSCTL_disableHFXT();
+
     SYSCTL->SOCLOCK.HSCLKEN |= SYSCTL_HSCLKEN_USEEXTHFCLK_ENABLE;
 }
 

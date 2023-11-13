@@ -37,7 +37,8 @@ GPIO1.associatedPins[0].assignedPin = "0";
 GPIO1.associatedPins[0].initialValue        = "SET";
 GPIO1.associatedPins[0].pin.$assign = "PA0";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 VREF.basicMode                     = "DL_VREF_ENABLE_DISABLE";
 VREF.profile                       = "EXT_2_0_V";
 VREF.peripheral.$assign            = "VREF";

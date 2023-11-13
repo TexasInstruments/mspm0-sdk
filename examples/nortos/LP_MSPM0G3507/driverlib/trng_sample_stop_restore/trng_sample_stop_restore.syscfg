@@ -26,7 +26,8 @@ GPIO1.associatedPins[0].assignedPin  = "0";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.powerPolicy = "STOP0";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 TIMER1.timerClkSrc        = "LFCLK";
 TIMER1.timerPeriod        = "1000 ms";

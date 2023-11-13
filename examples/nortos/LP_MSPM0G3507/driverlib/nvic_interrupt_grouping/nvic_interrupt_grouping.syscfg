@@ -40,7 +40,8 @@ GPIO1.associatedPins[2].assignedPortSegment = "Upper";
 GPIO1.associatedPins[2].assignedPort        = "PORTB";
 GPIO1.associatedPins[2].pin.$assign         = "PB27";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerClkPrescale   = 256;

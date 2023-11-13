@@ -36,4 +36,5 @@ ADC121.DMA_CHANNEL.addressMode  = "f2b";
 ADC121.DMA_CHANNEL.srcLength    = "HALF_WORD";
 ADC121.DMA_CHANNEL.dstLength    = "HALF_WORD";
 ADC121.DMA_CHANNEL.transferMode = "FULL_CH_REPEAT_SINGLE";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

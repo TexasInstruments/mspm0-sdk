@@ -1,152 +1,152 @@
-Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs
+适用于 MSPM0 MCU 的 Arm Keil MDK IDE 5.38+ 版
 =============================================
 
-Table of Contents
------------------
+目录
+----
 
--  `Read This First <#read-this-first>`__
--  `Software Installation <#software-installation>`__
--  `Development Flow <#development-flow>`__
--  `Debugging the Application <#debugging-the-application>`__
--  `Known Issues and Frequently Asked Questions (FAQs) <#known-issues-and-frequently-asked-questions-faqs>`__
+-  `请先阅读 <#read-this-first>`__
+-  `软件安装 <#software-installation>`__
+-  `开发流程 <#development-flow>`__
+-  `调试应用 <#debugging-the-application>`__
+-  `已知问题和常见问题解答 （FAQ） <#known-issues-and-frequently-asked-questions-faqs>`__
 
-Read This First
----------------
+请先阅读
+--------
 
-How to Use This Guide
-~~~~~~~~~~~~~~~~~~~~~
+如何使用本指南
+~~~~~~~~~~~~~~
 
-This guide describes only the setup and basic operation of the software development environment, but it does not fully describe the MSPM0 microcontrollers or the complete development software and hardware systems. For details of these items, see the appropriate TI and Keil documents listed in section `Related Documentation From Texas Instruments <#related-documentation-from-texas-instruments>`__.
+本指南仅说明软件开发环境的设置和基本操作， 但并未全面介绍 MSPM0 微控制器或完整的开发软件与硬件系统。 如需了解相关详细信息，请参阅 `德州仪器 （TI） 相关文档 <#related-documentation-from-texas-instruments>`__\ 部分中列出的相应 TI 和 Keil 文档。
 
-This guide applies to the use of the `TI XDS-110 <https://www.ti.com/tool/TMDSEMU110-U>`__, `Arm ULINK <https://www2.keil.com/mdk5/ulink>`__, and `Segger J-Link <https://www.segger.com/products/debug-probes/j-link/>`__ development tools series.
+本指南适用于 `TI XDS-110 <https://www.ti.com/tool/TMDSEMU110-U>`__\ 、\ `Arm ULINK <https://www2.keil.com/mdk5/ulink>`__ 和 `Segger J-Link <https://www.segger.com/products/debug-probes/j-link/>`__ 开发工具系列的使用。
 
-These tools contain the most up-to-date materials available at the time of packaging. For the latest materials (including data sheets, user's guides, software, and application information), visit the `TI MSPM0 website <https://www.ti.com/mspm0>`__ or contact your local TI sales office.
+这些工具包含封装时可用的最新材料。有关最新材料 （包括数据表、用户指南、软件和应用信息），请访问 `TI MSPM0 网站 <https://www.ti.com/mspm0>`__\ 或联系当地的 TI 销售办事处。
 
-Information About Cautions
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+与注意事项有关的信息
+~~~~~~~~~~~~~~~~~~~~
 
-This guide may contain cautions.
+本指南可能包含注意事项。
 
-**Caution** - This is an example of a caution statement. A caution statement describes a situation that could potentially damage your software or equipment.
+**注意** - 这是注意事项语句的示例。 注意事项语句描述了一种可能对软件或者器件造成潜在损坏的情况。
 
-Read each caution carefully.
+请仔细阅读每条注意事项。
 
-Related Documentation From Texas Instruments
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+德州仪器 （TI） 提供的相关文档
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-MSPM0 development tools documentation:
+MSPM0 开发工具文档：
 
--  `XDS110 Debug Probe User's Guide <https://www.ti.com/lit/sprui94>`__
+-  `XDS110 调试探针用户指南 <https://www.ti.com/lit/sprui94>`__
 
-MSPM0 device documentation:
+MSPM0 器件文档：
 
--  `LP-MSPM0L1306 User's Guide <https://www.ti.com/lit/slau869>`__
--  `MSPM0 L-Series Technical Reference Manual <https://www.ti.com/lit/slau847>`__
--  `LP-MSPM0G3506 User's Guide <https://www.ti.com/lit/slau873>`__
--  `MSPM0 G-Series Technical Reference Manual <https://www.ti.com/lit/slau846>`__
+-  `LP-MSPM0L1306 用户指南 <https://www.ti.com/lit/slau869>`__
+-  `MSPM0 L 系列技术参考手册 <https://www.ti.com/lit/slau847>`__
+-  `LP-MSPM0G3506 用户指南 <https://www.ti.com/lit/slau873>`__
+-  `MSPM0 G 系列技术参考手册 <https://www.ti.com/lit/slau846>`__
 
-If You Need Assistance
-~~~~~~~~~~~~~~~~~~~~~~
+如果您需要协助
+~~~~~~~~~~~~~~
 
-The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>`__ for MSPM0 MCUs are available to provide open interaction with peer engineers, TI engineers, and other experts. Additional device-specific information can be found on the `MSPM0 website <https://www.ti.com/mspm0>`__.
+请访问关于 MSPM0 MCU 的 `E2E 社区支持论坛 <https://e2e.ti.com/support/microcontrollers/>`__\ ，与同行工程师、 TI 工程师和其他专家进行公开交流。更多器件特定信息可在 `MSPM0 网站 <https://www.ti.com/mspm0>`__\ 上找到。
 
-1. Software Installation
-------------------------
+1. 软件安装
+-----------
 
-Arm Keil MDK, including µVision IDE, debugger and Arm C/C++ compiler, is available from the `Keil website <https://www.keil.com/>`__. MSPM0 microcontrollers and the MSPM0 SDK require Keil MDK 5.38 or higher.
+Arm Keil MDK， 包括 µVision IDE、调试器和 Arm C/C++ 编译器，可从 `Keil 网站 <https://www.keil.com/>`__\ 获得。MSPM0 微控制器和 MSPM0 SDK 需要 Keil MDK 5.38 或更高版本。
 
-See the `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ documentation for finding the right SDK for your IDE version.
+要查找适合您 IDE 版本的 SDK，请参阅 `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ 文档。
 
-2. Development Flow
--------------------
+2. 开发流程
+-----------
 
-This chapter describes how to use Keil MDK to run the demonstration programs, develop application software, and how to debug it.
+本章说明了如何使用 Keil MDK 运行演示程序、开发应用软件以及如何进行调试。
 
-2.1 Overview
-~~~~~~~~~~~~
+2.1 概述
+~~~~~~~~
 
-Documentation for the Keil MDK is extensive, and the documentation is available online on the `Keil MDK page <https://www2.keil.com/mdk5>`__ or through the Help tab in the IDE.
+有关 Keil MDK 的文档非常广泛，可在 `Keil MDK 页面 <https://www2.keil.com/mdk5>`__\ 上 或通过 IDE 中的“Help”选项卡在线获取。
 
-2.2 Creating a MSPM0 Project From the MSPM0 SDK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.2 从 MSPM0 SDK 创建 MSPM0 工程
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Please refer to the `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ which contains instructions on how to install the MSPM0 SDK and importing and building an SDK example in Keil.
+请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__\ ，其中包含有关如何安装 MSPM0 SDK 以及在 Keil 中导入和编译 SDK 示例的说明。
 
-2.3 Creating a Project From Scratch
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.3 从头开始创建工程
+~~~~~~~~~~~~~~~~~~~~
 
-**Note**: Creating a project from scratch is **not recommended** since creating the project from scratch doesn't add all of the necessary device support files by default. To start from a blank project, TI recommends importing the Empty Driverlib example project from the SDK.
+**注意**\ ：\ **不建议**\ 从头开始创建工程，因为从头开始创建工程不会 默认添加所有必要的器件支持文件。要从空白工程开始，TI 建议从 SDK 导入空 Driverlib 示例 工程。
 
-2.4 Using SysConfig with Keil
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.4 将 SysConfig 与 Keil 配合使用
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some examples in the MSPM0 SDK have SysConfig support. `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.
+MSPM0 SDK 中的一些示例支持 SysConfig。\ `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ 是一个直观而全面的图形实用程序集合，用于配置引脚、外设、无线电、子系统和其他 组件。SysConfig 可助您直观地管理、发现和解决冲突，以便您有更多时间 创建差异化应用。
 
-The SysConfig tool is delivered as a standalone installer which can be manually integrated into Keil, or can be used via the dev.ti.com cloud tools portal.
+SysConfig 工具作为独立安装程序交付，可手动集成到 Keil 中，也可通过 dev.ti.com 云工具门户使用。
 
-The best way to start a SysConfig project in Keil is to import it from the SDK; however, some steps are required to initialize SysConfig in Keil for the first time. Refer to the `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ for more details on installing SysConfig and enabling it for Keil.
+在 Keil 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 Keil 中初始化 SysConfig。请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__\ ，详细了解如何安装 SysConfig 和为 Keil 启用 SysConfig。
 
-For more information about using SysConfig with MSPM0, visit the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ guide.
+有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 指南。
 
-2.5 Migrating Between MSPM0 Derivatives
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.5 在 MSPM0 衍生产品之间进行迁移
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required.
+通过 SysConfig，可以更轻松地在 MSPM0 衍生产品之间进行迁移；不过需进行一些手动修改。
 
-1. In SysConfig, enable the Device View and click on **SWITCH**
+1. 在 SysConfig 中，启用器件视图并点击 **SWITCH**
 
 .. figure:: ./images/keil_ide_guide/keil_ide_migrate_1.png
    :alt: 
 
-2. Select the corresponding options for the new MSPM0 device and click **CONFIRM**.
+2. 选择新 MSPM0 器件的相应选项，然后点击 **CONFIRM**\ 。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_migrate_2.png
    :alt: 
 
-3. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed.
+3. 请注意，SysConfig 将突出显示与迁移的任何冲突，例如不可用的引脚和外设。 根据需要修复任何冲突。
 
-4. In the Keil IDE, open the **Device** tab in project options, and select the new MSPM0 derivative.
+4. 在 Keil IDE 中，在工程选项中打开 **Device** 选项卡，然后选择新的 MSPM0 衍生产品。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_migrate_3.png
    :alt: 
 
-5. Update the device definition by selecting **C/C++ (AC6)** → **Preprocessor Symbols** → **Define**. Add the device definition as per the device selected.
+5. 依次选择 **C/C++ (AC6)** → **Preprocessor Symbols** → **Define**\ ，更新器件定义。 根据所选器件添加器件定义。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_migrate_4.png
    :alt: 
 
-6. Update the linker file in **Linker** → **Scatter File**. The MSPM0 SDK includes default files for all MSPM0 derivatives at ``<sdk>\source\ti\devices\msp\m0p\linker_files\keil``.
+6. 在 **Linker** → **Scatter File** 中更新链接器文件。 MSPM0 SDK 在 ``<sdk>\source\ti\devices\msp\m0p\linker_files\keil`` 包含所有 MSPM0 衍生产品的默认文件。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_migrate_5.png
    :alt: 
 
-7. Add the startup file of the new derivative to the project and remove existing one. The MSPM0 SDK includes default files for all MSPM0 derivatives at ``<sdk>\source\ti\devices\msp\m0p\startup_system_files\keil``.
+7. 将新衍生产品的启动文件添加到工程，并删除现有启动文件。MSPM0 SDK 在 ``<sdk>\source\ti\devices\msp\m0p\startup_system_files\keil`` 包含所有 MSPM0 衍生产品的默认文件。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_migrate_6.png
    :alt: 
 
-8. Resolve any other dependencies such as incompatible libraries and source code.
+8. 解析任何其他依赖项，例如不兼容的库和源代码。
 
-Note: Steps 1-3 don't apply when not using SysConfig.
+注意：未使用 SysConfig 时，步骤 1-3 不适用。
 
-2.6 Adding Newly Generated SysConfig Files to Projects
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.6 将新生成的 SysConfig 文件添加至工程
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When working with SysConfig modules such as the NONMAIN Configurator which generate files other than ``ti_msp_dl_config.h`` and ``ti_msp_dl_config.c``, the newly generated files must be manually added to the project since Keil does not do this automatically. See the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ guide for more details on which modules generate additional files.
+使用会生成除 ``ti_msp_dl_config.h`` 和 ``ti_msp_dl_config.c`` 以外的文件的 SysConfig 模块（如 NONMAIN 配置器）时，必须将新生成的文件手动添加至工程，因为 Keil 不会自动添加。要详细了解哪些模块会生成额外文件，请参阅\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 指南。
 
-Consider the case of the NONMAIN Configurator, which generates 2 additional files: ``boot_config.h`` and ``boot_config.c``.
+以 NONMAIN 配置器为例，它将生成 2 个额外文件：\ ``boot_config.h`` 和 ``boot_config.c``\ 。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_sysconfig_additional_generated_files.png
    :alt: 
 
-To include these files in the built project, perform the following steps:
+要将这些文件包括在编译工程中，请执行以下步骤：
 
-1. After adding the SysConfig module and saving the changes, navigating back to the Keil IDE should throw a message saying that the .syscfg file was modified. Click **Yes** to reload the file.
+1. 添加 SysConfig 模块并保存所做更改后，导航回 Keil IDE 应显示一条消息，表明 .syscfg 文件已修改。点击 **Yes** 以重新加载文件。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_reload_sysconfig_file.png
    :alt: 
 
-2. Right-click on the project and select **Rebuild all target files** to rebuild the project. The **Build Output** window shows that SysConfig has generated those files.
+2. 右键点击工程，并选择 **Rebuild all target files** 以重新编译工程。\ **Build Output** 窗口将显示 SysConfig 已生成这些文件。
 
    .. figure:: ./images/keil_ide_guide/keil_ide_rebuild_target.png
       :alt: 
@@ -154,72 +154,72 @@ To include these files in the built project, perform the following steps:
    .. figure:: ./images/keil_ide_guide/keil_ide_build_log.png
       :alt: 
 
-3. To add the additional newly generated files (in this case, ``boot_config.h`` and ``boot_config.c``), right-click on the **Source** directory and select **Add Existing Files to Group 'Source'**.
+3. 要添加额外新生成的文件（在本例中为 ``boot_config.h`` 和 ``boot_config.c``\ ），右键点击 **Source** 目录并选择 **Add Existing Files to Group 'Source'**\ 。
 
    .. figure:: ./images/keil_ide_guide/keil_ide_add_files_to_source.png
       :alt: 
 
-4. Navigate to the example project root, select the files that need to be added, and click **Add**.
+4. 导航至示例工程根目录，选择需要添加的文件，然后点击 **Add**\ 。
 
    .. figure:: ./images/keil_ide_guide/keil_ide_select_files_to_add.png
       :alt: 
 
-5. Rebuild the project. The files should be visible in the project **Source** directory in the IDE.
+5. 重新编译工程。这些文件应显示在 IDE 的工程 **Source** 目录中。
 
    .. figure:: ./images/keil_ide_guide/keil_ide_updated_source_directory.png
       :alt: 
 
-2.7 Stack and Heap Management and .s Files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.7 栈和堆管理及 .s 文件
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-The reserved stack and heap size can be configured through direct modification of the .s startup assembly file. See the Keil documentation for a complete description of this file.
+可通过直接修改 .s 启动汇编文件来配置保留的栈和堆大小。有关此文件的完整说明，请参阅 Keil 文档。
 
-The supplied .s file can be modified to tune the size of the stack and heap to the needs of the application; edit ``Stack_Size EQU xx`` or ``Heap_Size EQU xx`` to allocate xx bytes for the stack or heap.
+可对提供的 .s 文件进行修改，以根据应用需求调整栈和堆大小；编辑 ``Stack_Size EQU xx`` 或 ``Heap_Size EQU xx`` 可为栈或堆分配 xx 个字节。
 
-2.8 How to Generate Hex Files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.8 如何生成 Hex 文件
+~~~~~~~~~~~~~~~~~~~~~
 
-The linker can be configured to output objects in Intel Hex format for use with programming tools such as `MSP-GANG <https://www.ti.com/tool/MSP-GANG>`__ and `UniFlash <https://www.ti.com/tool/UNIFLASH>`__.
+可将链接器配置为以 Intel Hex 格式输出对象，以与 `MSP-GANG <https://www.ti.com/tool/MSP-GANG>`__ 和 `UniFlash <https://www.ti.com/tool/UNIFLASH>`__ 等编程工具一起使用。
 
-Click **Project** → **Options** → **Output** → **Create Hex File** → **Ok**.
+依次点击 **Project** → **Options** → **Output** → **Create Hex File** → **Ok**\ 。
 
-2.9 Erasing NONMAIN for MSPM0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.9 为 MSPM0 擦除 NONMAIN
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Caution**: Extreme care should be taken when erasing and programming NONMAIN. If done incorrectly, the device will become **locked in a permanently unrecoverable state**.
+**注意**\ ：在擦除和编程 NONMAIN 时应特别小心。如果操作错误，器件将 **锁定在永久不可恢复的状态**\ 。
 
-1. Click **Options** → **Debug** → **Settings** → **Flash Download**.
-2. Add the NON-MAIN programming algorithm, and then click OK.
+1. 依次点击 **Options** → **Debug** → **Settings** → **Flash Download**\ 。
+2. 添加 NONMAIN 编程算法，然后点击“OK”。
 
    .. figure:: ./images/keil_ide_guide/keil_ide_add_nonmain.png
       :alt: 
 
-2.10 Overriding Pre-built libraries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.10 覆盖预编译库
+~~~~~~~~~~~~~~~~~
 
-Projects might include pre-built libraries which simplify development and build time; however, they don't allow developers to modify source code easily.
+工程可能包括预编译库，可简化开发和编译过程；不过， 开发人员无法轻松修改源代码。
 
-An example of such libraries is the MSPM0 DriverLib which is shown below.
+下面显示了此类库的一个示例 MSPM0 DriverLib。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_driverlib_library.png
    :alt: 
 
-One option to override the library is to delete **driverlib.a** and simply add any or all source files to the project. The MSPM0 SDK includes the ``empty_driverlib_src`` example which includes all DriverLib source by default:
+覆盖库的一个选项是删除 **driverlib.a**\ ，并直接向工程添加任何或所有源文件。 MSPM0 SDK 包括 ``empty_driverlib_src`` 示例，其中默认包括所有 DriverLib 源：
 
 .. figure:: ./images/keil_ide_guide/keil_ide_empty_driverlib_project.png
    :alt: 
 
-3. Debugging the Application
-----------------------------
+3. 调试应用程序
+---------------
 
-3.1 Using TI XDS Tools
-~~~~~~~~~~~~~~~~~~~~~~
+3.1 使用 TI XDS 工具
+~~~~~~~~~~~~~~~~~~~~
 
-TI offers a range of debug probes for Arm-based devices, including the XDS110 which is integrated with MSPM0 LaunchPads.
+TI 提供各种适用于基于 Arm 的器件的调试探针，包括与 MSPM0 LaunchPad 集成的 XDS110。
 
-**Note**: TI XDS110 debuggers are supported natively or through CMSIS DAP. TI XDS native support needs a separate installation of the TI emulation pack software in the default folder ``C:\ti\ccs-base``.
+**注意**\ ：TI XDS110 调试器在本地受支持或通过 CMSIS DAP 受支持。TI XDS 本地支持需要 在默认文件夹 ``C:\ti\ccs-base`` 中单独安装 TI 仿真包软件。
 
-To use the XDS110 debug probe, right-click on the active project, then select **Options for Target**. In the Target Options window, select the **Debug** pane. From the pulldown menu, select either CMSIS-DAP Debugger or TI XDS Debugger.
+要使用 XDS110 调试探针，右键点击活动工程，然后选择 **Options for Target**\ 。 在“Target Options”窗口中，选择 **Debug** 窗格。在下拉菜单中，选择 CMSIS-DAP 调试器或 TI XDS 调试器。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_select_xds110.png
    :alt: 
@@ -227,14 +227,14 @@ To use the XDS110 debug probe, right-click on the active project, then select **
 .. figure:: ./images/keil_ide_guide/keil_ide_xds110_settings.png
    :alt: 
 
--  Note the selected Emulator. The example above uses the XDS110 integrated in LaunchPads in CSMSIS-DAP mode.
--  The selected Interface is SWD which is supported by MSPM0.
--  The XDS tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debug** → **Settings** → **Flash Download**. Refer to the `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ for more details.
+-  注意所选仿真器。以上示例在 CSMSIS-DAP 模式下使用集成在 LaunchPad 中的 XDS110。
+-  所选接口是 MSPM0 支持的 SWD。
+-  XDS 工具使用闪存加载程序将代码下载到器件。在 **Options** → **Debug** → **Settings** → **Flash Download** 中确认使用。请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__ ，了解更多详细信息。
 
-3.2 Using Segger J-Link Debug Probe
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.2 使用 Segger J-Link 调试探针
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To use J-Link, right-click on the active project, then select **Options for Target**. In the Target Options window, select the **Debug** pane. From the pulldown menu, select the J-Link debugger option.
+要使用 J-Link，右键点击活动工程，然后选择 **Options for Target**\ 。 在“Target Options”窗口中，选择 **Debug** 窗格。从下拉菜单中，选择 J-Link 调试器选项。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_select_jlink.png
    :alt: 
@@ -242,12 +242,12 @@ To use J-Link, right-click on the active project, then select **Options for Targ
 .. figure:: ./images/keil_ide_guide/keil_ide_jlink_settings.png
    :alt: 
 
-Refer to the `MSPM0 SDK QuickStart Guide for Keil <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ for more details on using Segger J-Link.
+请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__\ ，以详细了解如何使用 Segger J-Link。
 
-3.3 Using Arm ULINK Debug Adapters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.3 使用 Arm ULINK 调试适配器
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To use ULINK, right-click on the active project, then select **Options for Target**. In the Target Options window, select the **Debug** pane. From the pulldown menu, select a ULINK debugger option.
+要使用 ULINK，右键点击活动工程，然后选择 **Options for Target**\ 。 在“Target Options”窗口中，选择 **Debug** 窗格。从下拉菜单中，选择 ULINK 调试器选项。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_select_ulink.png
    :alt: 
@@ -255,21 +255,21 @@ To use ULINK, right-click on the active project, then select **Options for Targe
 .. figure:: ./images/keil_ide_guide/keil_ide_ulink_settings.png
    :alt: 
 
--  The ULINK tools use a Flash Loader to download code to the device. Confirm usage in **Options** → **Debug** → **Settings** → **Flash Download**.
+-  ULINK 工具使用闪存加载程序将代码下载到器件。在 **Options** → **Debug** → **Settings** → **Flash Download** 中确认使用。
 
-3.4 Breakpoint Types
-~~~~~~~~~~~~~~~~~~~~
+3.4 断点类型
+~~~~~~~~~~~~
 
-The uVision breakpoint mechanism uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints are not supported on MSPM0. This means that a maximum of 4 breakpoints can be set within uVision.
+uVision 断点机制使用有限数量的片上调试资源（具体为 4 个硬件断点 和 2 个硬件观察点）。MSPM0 不支持软件断点。这意味着在 uVision 中最多可设置 4 个断点。
 
-Resetting a program and the Run To Cursor operation temporarily require a breakpoint. As a result, only 3 breakpoints can be active.
+重置程序和“运行至光标”操作临时需要1个断点。因此，只有 3 个断点 可处于活动状态。
 
-If the max number of breakpoints are set, the following warning will be displayed.
+如果设置了断点最大数量，将显示以下警告。
 
 .. figure:: ./images/keil_ide_guide/keil_ide_max_breakpoints.png
    :alt: 
 
-4. Known Issues and Frequently Asked Questions (FAQs)
------------------------------------------------------
+4. 已知问题和常见问题解答 （FAQ）
+---------------------------------
 
-Please refer to `Known Issues and FAQ <../../../../../../known_issues_FAQ.html>`__ inside the SDK.
+请参阅 SDK 中的\ `已知问题和 FAQ <../../../../../../known_issues_FAQ.html>`__\ 。

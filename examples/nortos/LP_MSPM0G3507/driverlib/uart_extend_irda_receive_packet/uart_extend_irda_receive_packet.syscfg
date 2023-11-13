@@ -47,3 +47,4 @@ UART1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
 UART1.rxPinConfig.enableConfig = true;
 UART1.rxPinConfig.invert       = "ENABLE";
 
+SYSCTL.forceDefaultClkConfig = true;

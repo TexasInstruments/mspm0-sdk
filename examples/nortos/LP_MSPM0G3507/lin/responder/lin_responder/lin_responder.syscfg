@@ -39,6 +39,7 @@ GPIO2.associatedPins[0].assignedPin = "15";
 GPIO2.associatedPins[0].pin.$assign = "PB15";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
 
 uartLIN1.$name                    = "LIN_0";
 uartLIN1.profile                  = "CONFIG_PROFILE_1";

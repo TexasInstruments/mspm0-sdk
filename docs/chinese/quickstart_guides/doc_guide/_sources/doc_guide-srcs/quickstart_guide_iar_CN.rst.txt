@@ -1,142 +1,142 @@
-MSPM0 SDK QuickStart Guide for IAR
-==================================
+适用于 IAR 的 MSPM0 SDK 快速入门指南
+====================================
 
-1. Introduction
----------------
+1. 引言
+-------
 
-This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with IAR. This guide is not intended to explain the functionality of IAR. Please refer to the `IAR <https://www.iar.com/>`__ documentation or the `IAR IDE Guide for MSPM0 MCUs <../../../tools/iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide_CN.html>`__ included with the MSPM0 SDK documentation.
+本指南旨在帮助用户完成初始设置并演示通过 IAR 运行其第一个 MSPM0 应用。 本指南不用于说明 IAR 功能。请参阅 `IAR <https://www.iar.com/>`__ 文档或 MSPM0 SDK 文档随附的\ `适用于 MSPM0 MCU 的 IAR IDE 指南 <../../../tools/iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide.html>`__\ 。
 
-2. Prerequisites
-----------------
+2. 先决条件
+-----------
 
-The user is expected to have downloaded the following:
+用户应已下载以下各项：
 
 -  `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__
--  `IAR Embedded Workbench for Arm 9.40.x <https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/>`__
+-  `适用于 Arm 9.40.x 的 IAR Embedded Workbench <https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/>`__
 
-   -  The TI XDS drivers are required when using the MSPM0 Launchpad's integrated XDS-110 programmer. For more information, please visit the `release notes for IAR C-SPY XDS driver <https://updates.iar.com/filestore/standard/001/001/123/arm/doc/infocenter/csxds.ENU.html>`__.
+   -  使用 MSPM0 Launchpad 的集成 XDS-110 编程器时，需要 TI XDS 驱动程序。有关详细信息，请访问 `IAR C-SPY XDS 驱动程序版本说明 <https://updates.iar.com/filestore/standard/001/001/123/arm/doc/infocenter/csxds.ENU.html>`__\ 。
 
 -  `SysConfig 1.17.x <https://www.ti.com/tool/SYSCONFIG>`__
 
-3. Install the MSPM0 SDK
-------------------------
+3. 安装 MSPM0 SDK
+-----------------
 
-1. Download and install the latest `MSPM0 SDK <#prerequisites>`__. Note that there are SDK installers for Windows, Linux and MacOS. The steps below are shown in Windows, but a similar approach should be followed in Linux or MacOS.
+1. 下载并安装最新 `MSPM0 SDK <#prerequisites>`__\ 。请注意，SDK 安装程序有 Windows 版、Linux 版和 MacOS 版。以下步骤显示在 Windows 版中，但 Linux 或 MacOS 版也应遵循类似方法。
 
-2. Execute the installer. Click **Next**.
+2. 执行安装程序。点击 **Next**\ 。
 
    .. figure:: ./images/quickstart_guide_iar/sdk_install_1.png
       :alt: 
 
-3. Select an **Installation Directory** and click **Next**. Note the installation directory which by default is ``c:\ti`` which will install the SDK at ``C:\ti\mspm0_sdk_<version>\``. This path will be referred to as ``<MSPM0_SDK_INSTALL_DIR>`` in sections below.
+3. 选择 **Installation Directory** 并点击 **Next**\ 。注意安装目录，默认情况下为 ``c:\ti``\ ，SDK 将安装在 ``C:\ti\mspm0_sdk_<version>\``\ 。此路径在以下部分中称为 ``<MSPM0_SDK_INSTALL_DIR>``\ 。
 
    .. figure:: ./images/quickstart_guide_iar/sdk_install_2.png
       :alt: 
 
-4. Click **Next**
+4. 点击 **Next**
 
    .. figure:: ./images/quickstart_guide_iar/sdk_install_3.png
       :alt: 
 
-5. After installation is complete, click **Finish**.
+5. 完成安装后，点击 **Finish**\ 。
 
    .. figure:: ./images/quickstart_guide_iar/sdk_install_4.png
       :alt: 
 
-4. Add MSPM0 SDK to IAR
------------------------
+4. 将 MSPM0 SDK 添加到 IAR
+--------------------------
 
-In IAR, we need to add the latest MSPM0 SDK version. This step only has to be done once, or when the SDK is updated.
+在 IAR 中，需要添加最新 MSPM0 SDK 版本。 此步骤只需执行一次，或在更新 SDK 时执行。
 
-1. In IAR, click on **Tools → Configure Custom Argument Variables**
+1. 在 IAR 中，依次点击 **Tools → Configure Custom Argument Variables**
 
    .. figure:: ./images/quickstart_guide_iar/iar_sdk_install_1.png
       :alt: 
 
-2. Click the **Global** tab, and then **Import**
+2. 点击 **Global** 选项卡，然后点击 **Import**
 
    .. figure:: ./images/quickstart_guide_iar/iar_sdk_install_2.png
       :alt: 
 
-3. Navigate to your SDK folder into ``<MSPM0_SDK_INSTALL_DIR>/tools/iar/`` and open **MSPM0\_SDK.custom\_argvars**.
+3. 导航至 SDK 文件夹中的 ``<MSPM0_SDK_INSTALL_DIR>/tools/iar/``\ ，然后打开 **MSPM0\_SDK.custom\_argvars**\ 。
 
    .. figure:: ./images/quickstart_guide_iar/iar_sdk_install_3.png
       :alt: 
 
-4. The SDK variables should now be installed in IAR. Click OK to close the window.
+4. SDK 变量现在应已安装在 IAR 中。点击“OK”关闭该窗口。
 
-   | **Note**: Make sure the MSPM0 SDK path and SysConfig path matches the location and version needed for this SDK release.
-   | If you installed an earlier version of the SDK then make sure to update the path to the current version you want to use.
-   | Similarly, if the SysConfig path installed on `Section 5. Install SysConfig for MSPM0 <#install-sysconfig-for-mspm0>`__ is incorrect or pointing to an older version, then modify it.
+   | **注意**\ ：请确保 MSPM0 SDK 路径和 SysConfig 路径与此 SDK 版本所需的位置和版本相匹配。
+   | 如果安装了 SDK 的早期版本，请确保将路径更新为您要使用的当前版本。
+   | 同样，如果在\ `第 5 部分.为 MSPM0 安装 SysConfig <#install-sysconfig-for-mspm0>`__ 中安装的 SysConfig 路径不正确或指向早期版本，请进行修改。
 
    .. figure:: ./images/quickstart_guide_iar/iar_sdk_install_4.png
       :alt: 
 
-5. Install SysConfig for MSPM0
-------------------------------
+5. 为 MSPM0 安装 SysConfig
+--------------------------
 
-The SDK includes a preliminary version of SysConfig metadata which can be used to evaluate the user experience of MSPM0 SDK.
+此 SDK 包括 SysConfig 元数据的初始版本，可用于评估 MSPM0 SDK 的用户体验。
 
-For more general information about using SysConfig with MSPM0, please refer to `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ available in the SDK's Tools Guide.
+更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的\ `将 SysConfig 与 MSPM0 配合使用 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 。
 
-1. Download and install the standalone version (1.17.x or newer) of SysConfig from `ti.com <https://www.ti.com/tool/SYSCONFIG>`__
+1. 从 `ti.com <https://www.ti.com/tool/SYSCONFIG>`__ 下载并安装 SysConfig 独立版本（1.17.x 或更高版本）
 
-2. In IAR, select **Tools → Configure Viewers** from the menu.
+2. 在 IAR 中，从菜单中依次选择 **Tools → Configure Viewers**\ 。
 
    .. figure:: ./images/quickstart_guide_iar/sysconfig_configure_viewers.png
       :alt: 
 
-3. Click **Import**
+3. 点击 **Import**
 
    .. figure:: ./images/quickstart_guide_iar/sysconfig_configure_viewer_import.png
       :alt: 
 
-4. Navigate to your SDK folder into ``<MSPM0_SDK_INSTALL_DIR>/tools/iar/`` and open **sysconfig\_iar\_setup.xml**.
+4. 导航至 SDK 文件夹中的 ``<MSPM0_SDK_INSTALL_DIR>/tools/iar/``\ ，然后打开 **sysconfig\_iar\_setup.xml**\ 。
 
    .. figure:: ./images/quickstart_guide_iar/sysconfig_iar_setup.png
       :alt: 
 
-5. | The standalone SysConfig will be associated to .syscfg files.
-   | Click OK to close window.
+5. | 独立版 SysConfig 将与 .syscfg 文件关联。
+   | 点击“OK”关闭窗口。
 
    .. figure:: ./images/quickstart_guide_iar/sysconfig_configure_viewers_done.png
       :alt: 
 
-6. Double-check that the **SYSCONFIG\_ROOT** Custom Argument Variable is correctly pointing to the SysConfig folder as described in `Section 4. Add MSPM0 SDK to IAR <#add-mspm0-sdk-to-iar>`__.
+6. 仔细检查 **SYSCONFIG\_ROOT** 自定义参数变量，确认其正确指向 SysConfig 文件夹，如\ `第 4 部分.将 MSPM0 SDK 添加到 IAR <#add-mspm0-sdk-to-iar>`__ 所述。
 
-6. Import and Build an SDK Example in IAR
------------------------------------------
+6. 在 IAR 中导入和编译 SDK 示例
+-------------------------------
 
-1. In IAR, select **File → Open Workspace** from the menu.
+1. 在 IAR 中，从菜单中依次选择 **File → Open Workspace**\ 。
 
    .. figure:: ./images/quickstart_guide_iar/iar_example_1.png
       :alt: 
 
-2. Navigate to an IAR folder in SDK example at ``<MSPM0_SDK_INSTALL_DIR>/examples/`` and open the .eww workspace file. For example ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output/iar/gpio_toggle_output_LP_MSPM0L1306_nortos_iar.template.eww``.
+2. 在位于 ``<MSPM0_SDK_INSTALL_DIR>/examples/`` 的 SDK 示例中导航至 IAR 文件夹，并打开 .eww 工作区文件。例如 ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output/iar/gpio_toggle_output_LP_MSPM0L1306_nortos_iar.template.eww``\ 。
 
    .. figure:: ./images/quickstart_guide_iar/iar_example_2.png
       :alt: 
 
-3. Click OK on the message.
+3. 点击消息上的“OK”。
 
    .. figure:: ./images/quickstart_guide_iar/iar_example_3.png
       :alt: 
 
-4. Select a folder to install the example.
+4. 选择一个文件夹以安装示例。
 
    .. figure:: ./images/quickstart_guide_iar/iar_example_4.png
       :alt: 
 
-5. To build the example, right click in the project and select **Make**. Note that SysConfig projects will automatically generate files in the *"SysConfig Generated Files"* folder.
+5. 要编译示例，在工程中右键点击并选择 **Make**\ 。 请注意，SysConfig 工程将在\ *“SysConfig Generated Files”*\ 文件夹中自动生成文件。
 
-   | **Note**: Some examples include support for SysConfig to allow for an easier device configuration.
-   | For a complete list of examples supporting SysConfig, check the `MSPM0 SDK Examples Guide <../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html>`__.
-   | For more general information about using SysConfig with MSPM0, please refer to `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ available in the SDK's Tools Guide.
+   | **注意**\ ：一些示例支持 SysConfig，以便更轻松地进行器件配置。
+   | 有关支持 SysConfig 的示例的完整列表，请查看 `MSPM0 SDK 示例指南 <../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html>`__\ 。
+   | 更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的\ `将 SysConfig 与 MSPM0 配合使用 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 。
 
    .. figure:: ./images/quickstart_guide_iar/iar_example_5a.png
       :alt: 
 
-6. Click the **Download and Debug** button to download the code.
+6. 点击 **Download and Debug** 按钮下载代码。
 
    .. figure:: ./images/quickstart_guide_iar/iar_example_6a.png
       :alt: 
@@ -144,7 +144,7 @@ For more general information about using SysConfig with MSPM0, please refer to `
    .. figure:: ./images/quickstart_guide_iar/iar_example_6b.png
       :alt: 
 
-7. Known Issues and Frequently Asked Questions (FAQs)
------------------------------------------------------
+7. 已知问题和常见问题解答 （FAQ）
+---------------------------------
 
-Please refer to `Known Issues and FAQ <../../../../../known_issues_FAQ.html>`__ inside the SDK.
+请参阅 SDK 中的\ `已知问题和 FAQ <../../../../../known_issues_FAQ.html>`__\ 。

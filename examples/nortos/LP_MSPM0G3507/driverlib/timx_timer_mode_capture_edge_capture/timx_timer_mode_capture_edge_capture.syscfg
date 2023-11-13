@@ -23,3 +23,5 @@ CAPTURE1.interrupts                 = ["CC0_DN"];
 CAPTURE1.timerPeriod                = "15.63 s";
 CAPTURE1.peripheral.$assign         = "TIMG0";
 CAPTURE1.peripheral.ccp0Pin.$assign = "PA12";
+
+SYSCTL.forceDefaultClkConfig = true;

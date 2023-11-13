@@ -43,4 +43,5 @@ RTC.enabledInterrupts  = ["PRESCALER1"];
 SYSCTL.validateClkStatus  = true;
 SYSCTL.LFCLKDriveStrength = "HIGHEST";
 SYSCTL.powerPolicy        = "STANDBY0";
-SYSCTL.clockTreeEn       = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn        = true;

@@ -33,4 +33,5 @@ GPIO2.associatedPins[0].internalResistor = "PULL_UP";
 GPIO2.associatedPins[0].interruptEn      = true;
 GPIO2.associatedPins[0].polarity         = "RISE_FALL";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

@@ -47,4 +47,5 @@ GPIO2.associatedPins[2].polarity    = "RISE_FALL";
 GPIO2.associatedPins[2].pin.$assign = "PA13";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

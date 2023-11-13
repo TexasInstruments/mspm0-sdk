@@ -1,6 +1,47 @@
 <toc label="MSPM0L11XX_L13XX TI-Driver Library" topic="index.html">
   <topic label="MSPM0 TI-Driver Library" href="index.html"/>
   <topic label="Modules" href="modules.html">
+    <topic label="Analog to Digital Conversion (ADC)" href="group___a_d_c.html">
+      <topic label="ADC_control command and status codes" href="group___a_d_c___c_o_n_t_r_o_l.html">
+        <topic label="Command Codes" href="group___a_d_c___c_m_d.html">
+        </topic>
+        <topic label="ADC_CMD_RESERVED" href="group___a_d_c___c_o_n_t_r_o_l.html#ga1850e2c1e2791103d1102917d1e5b01b"/>
+        <topic label="ADC_STATUS_RESERVED" href="group___a_d_c___c_o_n_t_r_o_l.html#ga5a8bd7786df22349b1a5434f48b08581"/>
+        <topic label="ADC_STATUS_SUCCESS" href="group___a_d_c___c_o_n_t_r_o_l.html#gaee02c8883a7e443d36ea47f9696730ec"/>
+        <topic label="ADC_STATUS_ERROR" href="group___a_d_c___c_o_n_t_r_o_l.html#ga33ce323c3bbdc8a3f4e018f99a92b09d"/>
+        <topic label="ADC_STATUS_UNDEFINEDCMD" href="group___a_d_c___c_o_n_t_r_o_l.html#ga704a8cd95bdee94b0f61f06566062e8c"/>
+      </topic>
+      <topic label="ADC_Params" href="struct_a_d_c___params.html">
+        <topic label="custom" href="struct_a_d_c___params.html#a62c67d0ad10066d4e30e67d648937a32"/>
+        <topic label="isProtected" href="struct_a_d_c___params.html#afcfab4dda63383c2dcf0bb21fe519c53"/>
+      </topic>
+      <topic label="ADC_FxnTable" href="struct_a_d_c___fxn_table.html">
+        <topic label="closeFxn" href="struct_a_d_c___fxn_table.html#ae7aebe8cc8f3493502e3dceecb688c32"/>
+        <topic label="controlFxn" href="struct_a_d_c___fxn_table.html#af92f7867301c8edd125436ca66e16877"/>
+        <topic label="convertFxn" href="struct_a_d_c___fxn_table.html#ac7255105d1eca815a45714ff0d2186cd"/>
+        <topic label="convertChainFxn" href="struct_a_d_c___fxn_table.html#ad63e771cb82d49a5fb8c7b637bfa3ccb"/>
+        <topic label="convertToMicroVolts" href="struct_a_d_c___fxn_table.html#a35a09bfb36dd7b17a419a34ed0ac76ed"/>
+        <topic label="initFxn" href="struct_a_d_c___fxn_table.html#a5b2882d28b0e4a8c8d7bb2ed741380e8"/>
+        <topic label="openFxn" href="struct_a_d_c___fxn_table.html#aa74579528b7be192281bf5c23e6dcf03"/>
+      </topic>
+      <topic label="ADC_Config_" href="struct_a_d_c___config__.html">
+        <topic label="fxnTablePtr" href="struct_a_d_c___config__.html#a451827ead452ffc830675afbef573ee2"/>
+        <topic label="object" href="struct_a_d_c___config__.html#a42007f8f413bd43d28b7972b9e60bbc9"/>
+        <topic label="hwAttrs" href="struct_a_d_c___config__.html#a5acc18036a502afb93d1097a185e921f"/>
+      </topic>
+      <topic label="ADC_convertRawToMicroVolts" href="group___a_d_c.html#gab9f0fda9cf7e26636cee5817789f0030"/>
+      <topic label="ADC_Handle" href="group___a_d_c.html#ga7447d17264445ab6285ddab2bb794582"/>
+      <topic label="ADC_Config" href="group___a_d_c.html#gacde6feaa979f1952a70a38e9e1e1ea74"/>
+      <topic label="ADC_close" href="group___a_d_c.html#gadb49f74bdef5e3e45ee5de306c5dfc08"/>
+      <topic label="ADC_control" href="group___a_d_c.html#gaf4be7e5e4f5cc931f4501a542d689c32"/>
+      <topic label="ADC_convert" href="group___a_d_c.html#gafcac5582b8be42a7740091d150aef05c"/>
+      <topic label="ADC_convertChain" href="group___a_d_c.html#ga8150c6d87037c8d056ec74c61345d523"/>
+      <topic label="ADC_convertToMicroVolts" href="group___a_d_c.html#gaa1cd6feaa85ea5409dbe1769586bff20"/>
+      <topic label="ADC_init" href="group___a_d_c.html#ga4b4a2ddcb45df0c8497c47d4ed800e2a"/>
+      <topic label="ADC_open" href="group___a_d_c.html#ga1bfe07e93650e1288ba5fc6acc212c46"/>
+      <topic label="ADC_Params_init" href="group___a_d_c.html#ga21df1c0987f5cecb660581ae081c4dc7"/>
+      <topic label="ADCMSPM0_fxnTable" href="group___a_d_c.html#gad053cafabeeddee0993f84e41e75a643"/>
+    </topic>
     <topic label="Direct Memory Access (DMA)" href="group___d_m_a.html">
       <topic label="DMAMSPM0_HWAttrs" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html">
         <topic label="dmaIsrFxn" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#aaa249f1ea874ab783337ba700ba92e16"/>
@@ -395,6 +436,24 @@
   </topic>
   <topic label="Data Structures" href="annotated.html">
     <topic label="Data Structures" href="annotated.html">
+      <topic label="ADC_Config_" href="struct_a_d_c___config__.html">
+        <topic label="fxnTablePtr" href="struct_a_d_c___config__.html#a451827ead452ffc830675afbef573ee2"/>
+        <topic label="object" href="struct_a_d_c___config__.html#a42007f8f413bd43d28b7972b9e60bbc9"/>
+        <topic label="hwAttrs" href="struct_a_d_c___config__.html#a5acc18036a502afb93d1097a185e921f"/>
+      </topic>
+      <topic label="ADC_FxnTable" href="struct_a_d_c___fxn_table.html">
+        <topic label="closeFxn" href="struct_a_d_c___fxn_table.html#ae7aebe8cc8f3493502e3dceecb688c32"/>
+        <topic label="controlFxn" href="struct_a_d_c___fxn_table.html#af92f7867301c8edd125436ca66e16877"/>
+        <topic label="convertFxn" href="struct_a_d_c___fxn_table.html#ac7255105d1eca815a45714ff0d2186cd"/>
+        <topic label="convertChainFxn" href="struct_a_d_c___fxn_table.html#ad63e771cb82d49a5fb8c7b637bfa3ccb"/>
+        <topic label="convertToMicroVolts" href="struct_a_d_c___fxn_table.html#a35a09bfb36dd7b17a419a34ed0ac76ed"/>
+        <topic label="initFxn" href="struct_a_d_c___fxn_table.html#a5b2882d28b0e4a8c8d7bb2ed741380e8"/>
+        <topic label="openFxn" href="struct_a_d_c___fxn_table.html#aa74579528b7be192281bf5c23e6dcf03"/>
+      </topic>
+      <topic label="ADC_Params" href="struct_a_d_c___params.html">
+        <topic label="custom" href="struct_a_d_c___params.html#a62c67d0ad10066d4e30e67d648937a32"/>
+        <topic label="isProtected" href="struct_a_d_c___params.html#afcfab4dda63383c2dcf0bb21fe519c53"/>
+      </topic>
       <topic label="DMAMSPM0_Cfg" href="struct_d_m_a_m_s_p_m0___cfg.html">
         <topic label="object" href="struct_d_m_a_m_s_p_m0___cfg.html#af95b4b92269f4c872aab141a92f02b3a"/>
         <topic label="hwAttrs" href="struct_d_m_a_m_s_p_m0___cfg.html#aacdefe7b3fc5cd387a665f90d5159dee"/>
@@ -582,6 +641,32 @@
   </topic>
   <topic label="Files">
     <topic label="File List" href="files.html">
+      <topic label="ADC.h" href="_a_d_c_8h.html">
+        <topic label="ADC_convertRawToMicroVolts" href="group___a_d_c.html#gab9f0fda9cf7e26636cee5817789f0030"/>
+        <topic label="ADC_CMD_RESERVED" href="group___a_d_c___c_o_n_t_r_o_l.html#ga1850e2c1e2791103d1102917d1e5b01b"/>
+        <topic label="ADC_STATUS_RESERVED" href="group___a_d_c___c_o_n_t_r_o_l.html#ga5a8bd7786df22349b1a5434f48b08581"/>
+        <topic label="ADC_STATUS_SUCCESS" href="group___a_d_c___c_o_n_t_r_o_l.html#gaee02c8883a7e443d36ea47f9696730ec"/>
+        <topic label="ADC_STATUS_ERROR" href="group___a_d_c___c_o_n_t_r_o_l.html#ga33ce323c3bbdc8a3f4e018f99a92b09d"/>
+        <topic label="ADC_STATUS_UNDEFINEDCMD" href="group___a_d_c___c_o_n_t_r_o_l.html#ga704a8cd95bdee94b0f61f06566062e8c"/>
+        <topic label="ADC_Handle" href="group___a_d_c.html#ga7447d17264445ab6285ddab2bb794582"/>
+        <topic label="ADC_CloseFxn" href="group___a_d_c.html#ga42f6ff234d06fb71647510e04be8a3bf"/>
+        <topic label="ADC_ControlFxn" href="group___a_d_c.html#gaf9c178e22b377d9cf5eb7d2a1a072f12"/>
+        <topic label="ADC_ConvertFxn" href="group___a_d_c.html#ga552f2f752fbfc1b2af7551e55e392a42"/>
+        <topic label="ADC_ConvertChainFxn" href="group___a_d_c.html#ga30dc8178d0f5baf358ebf78fc34ab99f"/>
+        <topic label="ADC_ConvertToMicroVoltsFxn" href="group___a_d_c.html#ga2b16c6506209f209811e29909c11b19f"/>
+        <topic label="ADC_InitFxn" href="group___a_d_c.html#gaf5f90e5268e88d0bb56d40d53542b1da"/>
+        <topic label="ADC_OpenFxn" href="group___a_d_c.html#ga753af5a6a07905e109bbdecb785ac44d"/>
+        <topic label="ADC_Config" href="group___a_d_c.html#gacde6feaa979f1952a70a38e9e1e1ea74"/>
+        <topic label="ADC_close" href="group___a_d_c.html#gadb49f74bdef5e3e45ee5de306c5dfc08"/>
+        <topic label="ADC_control" href="group___a_d_c.html#gaf4be7e5e4f5cc931f4501a542d689c32"/>
+        <topic label="ADC_convert" href="group___a_d_c.html#gafcac5582b8be42a7740091d150aef05c"/>
+        <topic label="ADC_convertChain" href="group___a_d_c.html#ga8150c6d87037c8d056ec74c61345d523"/>
+        <topic label="ADC_convertToMicroVolts" href="group___a_d_c.html#gaa1cd6feaa85ea5409dbe1769586bff20"/>
+        <topic label="ADC_init" href="group___a_d_c.html#ga4b4a2ddcb45df0c8497c47d4ed800e2a"/>
+        <topic label="ADC_open" href="group___a_d_c.html#ga1bfe07e93650e1288ba5fc6acc212c46"/>
+        <topic label="ADC_Params_init" href="group___a_d_c.html#ga21df1c0987f5cecb660581ae081c4dc7"/>
+        <topic label="ADCMSPM0_fxnTable" href="group___a_d_c.html#gad053cafabeeddee0993f84e41e75a643"/>
+      </topic>
       <topic label="DMAMSPM0.h" href="_d_m_a_m_s_p_m0_8h.html">
         <topic label="NUM_DMA_CHANNELS" href="group___d_m_a.html#gaee3ce80a589ee0a658d1f1d293083692"/>
         <topic label="DMAMSPM0_IsrFxn" href="group___d_m_a.html#ga1d63418e0aacc8c97993301127d8de20"/>
@@ -798,4 +883,5 @@
     </topic>
   </topic>
   <topic label="Disclaimer" href="_disclaimer.html"/>
+  <topic label="Deprecated List" href="deprecated.html"/>
 </toc>

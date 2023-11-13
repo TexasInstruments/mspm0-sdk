@@ -10,3 +10,5 @@
  */
 const Board = scripting.addModule("/ti/driverlib/Board");
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+SYSCTL.forceDefaultClkConfig = true;

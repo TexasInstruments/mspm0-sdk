@@ -19,4 +19,5 @@ AES.keyLength       = "DL_AES_KEY_LENGTH_256";
 AES.blockCipherMode = "CFB_MODE";
 AES.operationType   = "ENCRYPT";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

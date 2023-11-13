@@ -1,113 +1,113 @@
-Using Segger programmers with MSPM0
-===================================
+将 Segger 编程器与 MSPM0 配合使用
+=================================
 
-1. Introduction
----------------
+1. 引言
+-------
 
-This guide describes how to use Segger programmers with MSPM0.
+本指南说明了如何将 Segger 编程器与 MSPM0 配合使用。
 
-This document is not intended to explain the use of Segger tools in detail. Please refer to the corresponding IDE or Segger documentation for more detailed documentation.
+本文档不用于详细说明如何使用 Segger 工具。有关详细文档，请参阅相应的 IDE 或 Segger 文档。
 
-2. Prerequisites
-----------------
+2. 先决条件
+-----------
 
-The user is expected to have downloaded the following:
+用户应已下载以下各项：
 
--  `J-Link Software Pack v7.88i or later <https://www.segger.com/downloads/jlink/>`__
--  Optional:
+-  `J-Link 软件包 v7.88i 或更高版本 <https://www.segger.com/downloads/jlink/>`__
+-  可选：
 
-   -  Use your preferred IDE and compiler to build your application
+   -  使用您首选的 IDE 和编译器来编译应用程序
 
-3. Installing J-Link Software Pack
-----------------------------------
+3. 安装 J-Link 软件包
+---------------------
 
-The J-Link Software pack v7.88i or later includes support for MSPM0.
+J-Link 软件包 v7.88i 或更高版本支持 MSPM0。
 
-1. Download the installer from `Segger's website <https://www.segger.com/downloads/jlink/>`__
+1. 从 `Segger 网站 <https://www.segger.com/downloads/jlink/>`__\ 下载安装程序
 
-2. Follow the installer instructions
+2. 按照安装程序说明操作
 
    .. figure:: ./images/segger_jlink/segger_install_1.png
       :alt: 
 
-3. The installer will automatically request to update IAR or Keil if installed
+3. 安装程序将自动请求更新 IAR 或 Keil（如果已安装）
 
    .. figure:: ./images/segger_jlink/segger_install_2.png
       :alt: 
 
-4. Using Segger J-Link with CCS
--------------------------------
+4. 将 Segger J-Link 与 CCS 配合使用
+-----------------------------------
 
-1. Update the Segger drivers as explained `here <https://www.segger.com/products/debug-probes/j-link/technology/ides/ti-code-composer/>`__ and shown below:
+1. 按照\ `此处 <https://www.segger.com/products/debug-probes/j-link/technology/ides/ti-code-composer/>`__\ 说明和如下所示更新 Segger 驱动程序：
 
-   1.1 Click on Help → Install New Software
+   1.1. 依次点击“Help → Install New Software”
 
    .. figure:: ./images/segger_jlink/segger_ccs_1.png
       :alt: 
 
-   1.2 Add the J-Link repository as explained `here <https://www.segger.com/products/debug-probes/j-link/technology/ides/ti-code-composer/>`__ or shown below:
+   1.2. 按照\ `此处 <https://www.segger.com/products/debug-probes/j-link/technology/ides/ti-code-composer/>`__\ 说明或如下所示添加 J-Link 存储库：
 
    .. figure:: ./images/segger_jlink/segger_ccs_2.png
       :alt: 
 
-   1.3 Select the appropriate plug-ins and follow the instructions to continue installation
+   1.3. 选择适当插件，并按照说明继续安装
 
-   **Note:** If the plug-ins are not visible, adjust your proxy settings in CCS.
+   **注意：**\ 如果插件不可见，请在 CCS 中调整代理设置。
 
    .. figure:: ./images/segger_jlink/segger_ccs_3.png
       :alt: 
 
-   1.4 Make sure the plugin versions are correct. You may have to restart CCS for the plugin versions to be correctly updated.
+   1.4. 确保插件版本正确。可能需要重新启动 CCS 才能正确更新插件版本。
 
-2. Select "SEGGER J-Link Emulator" as a Connection on your project:
+2. 在工程的“Connection”中选择“SEGGER J-Link Emulator”：
 
-   **Note:** This option is not available if the plugin was not applied correctly.
+   **注意：**\ 如果未正确应用插件，则此选项不可用。
 
    .. figure:: ./images/segger_jlink/segger_ccs_4.png
       :alt: 
 
-3. Open the .ccxml file inside your project
+3. 打开工程内的 .ccxml 文件
 
    .. figure:: ./images/segger_jlink/segger_ccs_5.png
       :alt: 
 
-4. Select the CORTEX\_M0P core and "SWD" as the Target Interface
+4. 选择“CORTEX\_M0P”内核，并在“Target Interface”中选择“SWD”
 
    .. figure:: ./images/segger_jlink/segger_ccs_6.png
       :alt: 
 
-5. Program and debug the device.
+5. 对器件进行编程和调试。
 
-5. Using Segger J-Link with IAR
--------------------------------
+5. 将 Segger J-Link 与 IAR 配合使用
+-----------------------------------
 
-1. The Segger drivers for IAR are updated when installing the latest Segger Software.
+1. 安装最新 Segger 软件时，将更新适用于 IAR 的 Segger 驱动程序。
 
-2. Change the debugger settings to use J-Link:
+2. 更改调试器设置以使用 J-Link：
 
    .. figure:: ./images/segger_jlink/segger_iar_1.png
       :alt: 
 
-3. Program and debug the device.
+3. 对器件进行编程和调试。
 
-6. Using Segger J-Link with Keil
---------------------------------
+6. 将 Segger J-Link 与 Keil 配合使用
+------------------------------------
 
-1. The Segger drivers for Keil are updated when installing the latest Segger Software.
+1. 安装最新 Segger 软件时，将更新适用于 Keil 的 Segger 驱动程序。
 
-2. Change the debugger settings to use J-Link:
+2. 更改调试器设置以使用 J-Link：
 
    .. figure:: ./images/segger_jlink/segger_keil_1.png
       :alt: 
 
-3. Select SWD interface
+3. 选择 SWD 接口
 
    .. figure:: ./images/segger_jlink/segger_keil_2.png
       :alt: 
 
-4. Program and debug the device.
+4. 对器件进行编程和调试。
 
-7. Using Segger J-Flash with CCS Hex Utility
---------------------------------------------
+7. 将 Segger J-Flash 与 CCS 十六进制实用程序配合使用
+----------------------------------------------------
 
-1. When using the CCS hex utility to generate output files for Segger's J-Flash software, please follow the instructions described in the CCS IDE Guide section `How to Generate TI .TXT (and Other Format) Files <../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html#ti-txt>`__.
+1. 使用 CCS 十六进制实用程序为 Segger J-Flash 软件生成输出文件时，请遵循 CCS IDE 指南中\ `如何生成 TI .TXT（及其他格式）文件 <../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#how-to-generate-ti-txt-and-other-format-files>`__\ 部分的说明。

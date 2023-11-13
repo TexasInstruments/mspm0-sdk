@@ -29,4 +29,5 @@ const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.MFPCLKEn          = true;
 SYSCTL.enableSleepOnExit = true;
-SYSCTL.clockTreeEn       = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn        = true;

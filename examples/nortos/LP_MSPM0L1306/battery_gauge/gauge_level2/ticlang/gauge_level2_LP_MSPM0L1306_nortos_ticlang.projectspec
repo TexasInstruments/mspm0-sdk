@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L1306"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="gauge_level2"
+        name="gauge_level2_LP_MSPM0L1306_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L1306"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -D__MSPM0L1306__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/ticlang/m0p/rts/iqmath.a
+            -Wl,--stack_size=512
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="The level2 gauge solution utilizes the ADC and OPAs on MSPM0 for high precison voltage and current detection">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Gauge_App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Gauge_App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Driver/BatteryRunFile_ChgDhg.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_BSP.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_BSP.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_Driver.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_Driver.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Gauge_Algorithm/CapacityLearn.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/CapacityLearn.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/CurtGauge.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/CurtGauge.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/Gauge_Type.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/Gauge.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/Mixing.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/Mixing.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/VoltGauge.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_Algorithm/VoltGauge.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Algorithm">
+        </file>
+        <file path="../Gauge_UserConfig/Gauge_UserConfig.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_UserConfig">
+        </file>
+        <file path="../Gauge_UserConfig/Gauge_UserConfig.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_UserConfig">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/mspm0l1306.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0l1306_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+    </project>
+</projectSpec>

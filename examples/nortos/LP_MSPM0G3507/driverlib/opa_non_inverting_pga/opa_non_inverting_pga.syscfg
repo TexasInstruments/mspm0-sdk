@@ -28,4 +28,5 @@ OPA1.peripheral.$assign           = "OPA1";
 OPA1.peripheral.OutPin.$assign    = "PA16";
 OPA1.peripheral.In1PosPin.$assign = "PA18";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

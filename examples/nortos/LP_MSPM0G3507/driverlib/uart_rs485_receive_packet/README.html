@@ -157,7 +157,20 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Connect the two UART devices using the setup described here [todo]. Compile, load and run the example.</p>
+<p>Connect the device transmitting the RS485 packet to the receiving device using the following setup guidelines. You will need two RS485 transceiver boards, one for each MCU.</p>
+<ul>
+<li>Tranmistting MCU 3.3V -&gt; RS485 transceiver #1 3.3V</li>
+<li>Tranmistting MCU GND -&gt; RS485 transceiver #1 GND</li>
+<li>Tranmistting MCU TX (PA10) -&gt; RS485 transceiver #1 RX</li>
+<li>Tranmistting MCU RE (PB4) -&gt; RS485 transceiver #1 R/T</li>
+<li>Receiving MCU 3.3V -&gt; RS485 transceiver #2 3.3V</li>
+<li>Receiving MCU GND -&gt; RS485 transceiver #2 GND</li>
+<li>Receiving MCU RX (PA11) -&gt; RS485 transceiver #2 TX</li>
+<li>Receiving MCU DE (PB3) -&gt; RS485 transceiver #2 R/T</li>
+<li>(+) terminal of RS485 transceiver #1 -&gt; (-) terminal of RS485 transceiver #2</li>
+<li>(-) terminal of RS485 transceiver #1 -&gt; (+) terminal of RS485 transceiver #2</li>
+</ul>
+<p>Compile, load and run the example. This example can be used in conjunction with the uart_rs485_send_packet example running on a separate device by first running uart_rs485_receive_packet on the device and then running uart_rs485_send_packet on the other device.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

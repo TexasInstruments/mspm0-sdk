@@ -24,4 +24,5 @@ GPAMP1.advRRI          = "RAIL_TO_RAIL";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

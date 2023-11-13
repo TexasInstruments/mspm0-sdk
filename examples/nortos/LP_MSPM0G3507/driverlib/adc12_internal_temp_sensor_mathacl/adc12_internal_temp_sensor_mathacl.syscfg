@@ -26,3 +26,5 @@ ADC121.sampleTime0        = "50 us";
 ADC121.enabledInterrupts  = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
 ADC121.adcMem0trig        = "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT";
 ADC121.peripheral.$assign = "ADC0";
+
+SYSCTL.forceDefaultClkConfig = true;

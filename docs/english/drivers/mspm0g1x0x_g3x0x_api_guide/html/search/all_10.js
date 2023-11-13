@@ -8,7 +8,7 @@ var searchData=
   ['uart_5fcallback_5fobject',['UART_Callback_Object',['../struct_u_a_r_t___callback___object.html',1,'']]],
   ['uart_5fcallbackobject',['UART_callbackObject',['../group___u_a_r_t_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga1636c584a56888ddf04fcda92e7b1a9c',1,'UARTMSPM0G1X0X_G3X0X.h']]],
   ['uart_5fclose',['UART_close',['../group___u_a_r_t.html#ga6b49b65f3db709c408dc4db23a68895d',1,'UART.h']]],
-  ['uart_5fconfig',['UART_Config',['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga68be81b9ce429a5e5c3ac02d285dbd3b',1,'UART_Config():&#160;UARTSupportMSPM0G1X0X_G3X0X.h'],['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#gad24e1d95c2d7232d55dc5b1d00a56bb5',1,'UART_config():&#160;UARTSupportMSPM0G1X0X_G3X0X.h']]],
+  ['uart_5fconfig',['UART_config',['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#gad24e1d95c2d7232d55dc5b1d00a56bb5',1,'UART_config():&#160;UARTSupportMSPM0G1X0X_G3X0X.h'],['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga68be81b9ce429a5e5c3ac02d285dbd3b',1,'UART_Config():&#160;UARTSupportMSPM0G1X0X_G3X0X.h']]],
   ['uart_5fconfig_5f',['UART_Config_',['../struct_u_a_r_t___config__.html',1,'']]],
   ['uart_5fcount',['UART_count',['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3e40006b96c9c55e5ac52d51d094dbac',1,'UARTSupportMSPM0G1X0X_G3X0X.h']]],
   ['uart_5fdata_5fobject',['UART_Data_Object',['../struct_u_a_r_t___data___object.html',1,'']]],

@@ -51,4 +51,5 @@ UART1.peripheral.$assign       = "UART3";
 UART1.peripheral.rxPin.$assign = "PB3";
 UART1.peripheral.txPin.$assign = "PB2";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

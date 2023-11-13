@@ -22,4 +22,5 @@ CRC.DMA_CHANNEL_CRC.$name               = "DMA_CH0";
 CRC.DMA_CHANNEL_CRC.enableInterrupt     = true;
 CRC.DMA_CHANNEL_CRC.peripheral.$assign  = "DMA_CH0";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

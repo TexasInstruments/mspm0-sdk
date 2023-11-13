@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sensorless FOC Motor Control Library Overview &mdash; Sensorless FOC Motor Control User Guide 1.0 documentation</title>
+  <title>无传感器 FOC 电机控制库概述 &mdash; Sensorless FOC Motor Control User Guide 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -44,41 +44,41 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Sensorless FOC Motor Control Library Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#software-overview">1. Software Overview</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#application-layer-overview">1.1 Application Layer Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hal-module">1.2 HAL Module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">无传感器 FOC 电机控制库概述</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 软件概述</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1 应用层概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hal">1.2 HAL 模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">概述</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#motor-driver-module">1.3 Motor Driver Module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#motor-driver-pin-association">Motor Driver Pin Association</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#motor-driver-apis">Motor Driver APIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.3 电机驱动器模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">电机驱动器引脚关联</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api">电机驱动器 API</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#sensorless-foc-library-module">1.4 Sensorless FOC Library Module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1.4 无传感器 FOC 库模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">概述</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#mspm0-driverlib-overview">1.5 MSPM0 DriverLib Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mspm0-driverlib">1.5 MSPM0 DriverLib 概述</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#software-user-guide">2. Software User Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#setting-the-motor-parameters">2.1 Setting the Motor Parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#setting-the-system-parameters">2.2 Setting the System Parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#selecting-the-build-levels">2.3 Selecting the Build levels</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#important-note">Important Note</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#variables-for-controlling-motor">2.4 Variables for controlling motor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#running-the-motor">2.5 Running the motor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tuning-the-motor">2.6 Tuning the motor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tuning-pi-controllers">Tuning PI controllers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#logging-the-variables">2.7 Logging the variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#access-spi-register">2.8 Access SPI Register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">2. 软件用户指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.1 设置电机参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">2.2 设置系统参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">2.3 选择构建级别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">重要说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">2.4 用于控制电机的变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">2.5 电机运行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">2.6 电机调优</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pi">PI 控制器调优</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">2.7 记录变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spi">2.8 访问 SPI 寄存器</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#api-guide">3. API Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#known-issues">4. Known Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#supported-devices">5. Supported Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id17">3. API 指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">4. 已知问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">5. 支持的器件</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#drv8323rs">DRV8323RS</a></li>
 </ul>
 </li>
@@ -102,7 +102,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Sensorless FOC Motor Control Library Overview</li>
+      <li>无传感器 FOC 电机控制库概述</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -111,27 +111,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="sensorless-foc-motor-control-library-overview">
-<h1>Sensorless FOC Motor Control Library Overview<a class="headerlink" href="#sensorless-foc-motor-control-library-overview" title="Permalink to this heading">¶</a></h1>
-<section id="software-overview">
-<h2>1. Software Overview<a class="headerlink" href="#software-overview" title="Permalink to this heading">¶</a></h2>
-<p>Sensorless Field-Oriented Control (FOC) Library is made of three main layers: Application layer, HAL Layer, and MSPM0 DriverLib.</p>
-<figure class="align-default" id="id2">
-<img alt="Sensorless FOC Architecture" src="../_images/Library-Architecture.jpg" />
+  <section id="foc">
+<h1>无传感器 FOC 电机控制库概述<a class="headerlink" href="#foc" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 软件概述<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>无传感器磁场定向控制 (FOC) 库包含三个主要层：应用层、HAL 层和 MSPM0 DriverLib。</p>
+<figure class="align-default" id="id20">
+<img alt="无传感器 FOC 架构" src="../_images/Library-Architecture.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Sensorless FOC Architecture</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">无传感器 FOC 架构</span><a class="headerlink" href="#id20" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<section id="application-layer-overview">
-<h3>1.1 Application Layer Overview<a class="headerlink" href="#application-layer-overview" title="Permalink to this heading">¶</a></h3>
-<p>The user specific applications (such as GUI) are present in this layer. From this layer, various instances of motor driver modules can be configured and used. If the user needs to perform any hardware specific actions, the user is recommended to use the APIs from HAL module.</p>
+<section id="id2">
+<h3>1.1 应用层概述<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>用户特定的应用程序（例如 GUI）位于该层。在这一层，可以配置和使用电机驱动器模块的各种实例。如果用户需要执行任何硬件特定的操作，建议使用 HAL 模块中的 API。</p>
 </section>
-<section id="hal-module">
-<h3>1.2 HAL Module<a class="headerlink" href="#hal-module" title="Permalink to this heading">¶</a></h3>
-<section id="overview">
-<h4>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h4>
-<p>The Hardware Abstraction Layer (HAL) creates an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configurations which simplifies porting of the library to various hardware by minimizing the updates needed to other components. The HAL is meant to abstract only the required pins or peripherals required for the application while still having flexibility and scalability for porting to other MSPM0 MCUs or motor drivers.</p>
-<p>HAL is designed to have specific number of pins or channels associated with a peripheral. For example, consider the case of GPIOs. HAL has enum HAL_GPIO_OUT_PIN which has all the GPIO output pins as members as shown below.</p>
+<section id="hal">
+<h3>1.2 HAL 模块<a class="headerlink" href="#hal" title="Permalink to this heading">¶</a></h3>
+<section id="id3">
+<h4>概述<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<p>硬件抽象层 (HAL) 会创建一个抽象层，以提供用于配置不同引脚和外设的 API。使用 HAL 的目标是抽象处理所有器件特定的配置，从而通过最大程度地减少其他元件所需的更新来简化库到各种硬件的移植。HAL 旨在仅抽象处理应用所需的引脚或外设，同时仍然具有移植到其他 MSPM0 MCU 或电机驱动器的灵活性和可扩展性。</p>
+<p>HAL 旨在将特定数量的引脚或通道与外设关联。例如，考虑 GPIO 的用例。HAL 具有枚举 HAL_GPIO_OUT_PIN，其中将所有 GPIO 输出引脚包含为成员，如下所示。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/*! @enum HAL_GPIO_OUT_PIN */
 typedef enum{
     /*! Index associated to output GPIO PIN 0 */
@@ -143,18 +143,18 @@ typedef enum{
 }HAL_GPIO_OUT_PIN;
 </pre></div>
 </div>
-<p>To map the HAL GPIO pins to the real hardware pins, a structure is used which is indexed by the members of the HAL_GPIO_OUT_PIN enum. This structure stores various members like the port instance, pin name, etc. See below the gpioOUT structure which holds data on the port and pin.</p>
+<p>为了将 HAL GPIO 引脚映射到真实的硬件引脚，使用了一个由 HAL_GPIO_OUT_PIN 枚举成员进行索引的结构。该结构存储各种成员，如端口实例、引脚名称等。请参见下面的 gpioOUT 结构，该结构会保存有关端口和引脚的数据。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gpioOUT</span><span class="p">[</span><span class="n">HAL_GPIO_OUT_PIN_0</span><span class="p">]</span><span class="o">.</span><span class="n">iomux</span>   <span class="o">=</span> <span class="n">GENERIC_GPIO_OUT_PINO_0_IOMUX</span><span class="p">;</span>
 <span class="n">gpioOUT</span><span class="p">[</span><span class="n">HAL_GPIO_OUT_PIN_0</span><span class="p">]</span><span class="o">.</span><span class="n">port</span>    <span class="o">=</span> <span class="n">GENERIC_GPIO_OUT_PORT</span><span class="p">;</span>
 <span class="n">gpioOUT</span><span class="p">[</span><span class="n">HAL_GPIO_OUT_PIN_0</span><span class="p">]</span><span class="o">.</span><span class="n">pin</span>     <span class="o">=</span> <span class="n">GENERIC_GPIO_OUT_PINO_0_PIN</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Note that GENERIC_GPIO_OUT_PINO_0_PIN is defined in the TI SysConfig generated files the specific line is shown below:</p>
+<p>请注意，GENERIC_GPIO_OUT_PINO_0_PIN 在 TI SysConfig 生成的文件中定义，具体行如下所示：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define GENERIC_GPIO_OUT_PINO_0_PIN                             (DL_GPIO_PIN_26)</span>
 </pre></div>
 </div>
-<p>Thus, HAL_GPIO_OUT_PIN_0 indirectly refers to DL_GPIO_PIN_0, but the advantage of this mapping is that since TI SysConfig controls the generation of the GENERIC_GPIO_OUT_PINO_0_PIN, it is very easy to change the pin in the TI SysConfig GUI. The HAL automatically follows this without the user having to change any code in the HAL layer.</p>
-<p>As seen above, when accessing the hardware through the HAL, we need to pass a HAL specific enum like HAL_GPIO_OUT_PIN_0. These enums are stored in the instances that access the HAL layer. In the case of the DRV8323RS motor driver, the instances of the important pins are initialized with its pins assigned to the HAL enums as shown in the snippet below.</p>
+<p>因此，HAL_GPIO_OUT_PIN_0 间接引用 DL_GPIO_PIN_0，但这种映射的优点是：由于 TI SysConfig 控制 GENERIC_GPIO_OUT_PINO_0_PIN 的生成，因此很容易在 TI SysConfig GUI 中更改引脚。HAL 会自动遵循此行为，而无需用户更改 HAL 层中的任何代码。</p>
+<p>如上所示，当通过 HAL 访问硬件时，我们需要传递 HAL 特定枚举，如 HAL_GPIO_OUT_PIN_0。这些枚举存储在访问 HAL 层的实例中。对于 DRV8323RS 电机驱动器，我们使用被分配给 HAL 枚举的引脚来初始化重要引脚的实例，如下面的代码片段所示。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drv8323rs</span><span class="o">.</span><span class="n">enable</span>  <span class="o">=</span> <span class="n">HAL_GPIO_OUT_PIN_0</span><span class="p">;</span>
 <span class="n">drv8323rs</span><span class="o">.</span><span class="n">nfault</span>  <span class="o">=</span> <span class="n">HAL_PWM_FAULT_0</span><span class="p">;</span>
 <span class="n">drv8323rs</span><span class="o">.</span><span class="n">spi</span>     <span class="o">=</span> <span class="n">HAL_SPI_CHANNEL_0</span><span class="p">;</span>
@@ -164,7 +164,7 @@ typedef enum{
 <span class="n">drv8323rs</span><span class="o">.</span><span class="n">isenb</span>   <span class="o">=</span> <span class="n">HAL_ADC_CHANNEL_0</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>If the ENABLE pin needs to be set high, the API DRV8323RS_enable() is used and passes the DRV8323RS instance with it. The code snippet is shown below:</p>
+<p>如果需要将 ENABLE 引脚设置为高电平，则使用 API DRV8323RS_enable() 并通过其传递 DRV8323RS 实例。代码片段如下所示：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">DRV8323RS_enable</span><span class="p">(</span><span class="n">DRV8323RS_Instance</span> <span class="o">*</span><span class="n">handle</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="o">/*</span> <span class="n">Enable</span> <span class="n">the</span> <span class="n">DRV8323RS</span> <span class="o">*/</span>
@@ -175,15 +175,15 @@ typedef enum{
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>When DRV8323RS_enable() interacts with the HAL layer, it passes the member of the DRV8323RS instance. This is the same concept for using other HAL APIs such as the timer, SPI, DAC, etc. The user is free to expand the HAL’s API to support other peripherals and features of the MSPM0 but it is strongly recommended not to modify existing API to ensure easy migration to new versions of this library.</p>
+<p>当 DRV8323RS_enable() 与 HAL 层交互时，会传递 DRV8323RS 实例的成员。这与使用其他 HAL API（例如计时器、SPI、DAC 等）的概念相同。用户可以随意扩展 HAL 的 API 以支持 MSPM0 的其他外设和特性，但为了确保能轻松迁移到该库的新版本，强烈建议不要修改现有的 API。</p>
 </section>
 </section>
-<section id="motor-driver-module">
-<h3>1.3 Motor Driver Module<a class="headerlink" href="#motor-driver-module" title="Permalink to this heading">¶</a></h3>
-<p>Motor Driver Module uses the HAL APIs to motor driver specific operations APIs like SPI read, SPI write, voltage and current measurements. The idea of this module is to be independent of the hardware and use the HAL APIs to perform the hardware tasks specific to the motor driver.</p>
-<section id="motor-driver-pin-association">
-<h4>Motor Driver Pin Association<a class="headerlink" href="#motor-driver-pin-association" title="Permalink to this heading">¶</a></h4>
-<p>The user before using the Motor Driver module is expected to specify the HAL enums mapped to the motor driver instance. See the below code snippet.</p>
+<section id="id4">
+<h3>1.3 电机驱动器模块<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>电机驱动器模块将 HAL API 用作电机驱动器特定操作 API，例如 SPI 读取、SPI 写入、电压和电流测量。该模块的理念是独立于硬件并使用 HAL API 来执行电机驱动器特定的硬件任务。</p>
+<section id="id5">
+<h4>电机驱动器引脚关联<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<p>在使用电机驱动器模块之前，用户需要指定映射到电机驱动器实例的 HAL 枚举。请参阅以下代码片段。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">Assign</span> <span class="n">the</span> <span class="n">pins</span> <span class="n">specific</span> <span class="k">for</span> <span class="n">the</span> <span class="n">DRV</span> <span class="o">*/</span>
 <span class="n">drv8323rs</span><span class="o">.</span><span class="n">enable</span>  <span class="o">=</span> <span class="n">HAL_GPIO_OUT_PIN_0</span><span class="p">;</span>
 <span class="n">drv8323rs</span><span class="o">.</span><span class="n">nfault</span>  <span class="o">=</span> <span class="n">HAL_PWM_FAULT_0</span><span class="p">;</span>
@@ -195,28 +195,28 @@ typedef enum{
 </pre></div>
 </div>
 </section>
-<section id="motor-driver-apis">
-<h4>Motor Driver APIs<a class="headerlink" href="#motor-driver-apis" title="Permalink to this heading">¶</a></h4>
-<p>The Motor Driver Module provides simple APIs which the user can use along with an instance of the motor drive module. The motor driver module APIs also handles the motor driver specific logic while keeping the APIs generic, thus the user can use different motor drivers and not worry of any difference in the internal logic. For example, below is an API for updating the SPI registers in the drv8323rs.</p>
+<section id="api">
+<h4>电机驱动器 API<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h4>
+<p>电机驱动器模块提供简单的 API，用户可以将其与电机驱动器模块的实例一同使用。 电机驱动器模块 API 还处理电机驱动器特定逻辑，同时保持 API 通用，因此用户可以使用不同的电机驱动器，而不必担心内部逻辑有任何差异。例如，下面是用于更新 drv8323rs 中 SPI 寄存器的 API。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">DRV8323RS_spiUpdateRegister</span><span class="p">(</span><span class="n">DRV8323RS_Instance</span> <span class="o">*</span><span class="n">handle</span><span class="p">,</span>
                       <span class="n">DRV8323RS_REG_ADDR</span> <span class="n">addr</span><span class="p">,</span> <span class="n">uint32_t</span> <span class="n">mask</span><span class="p">,</span> <span class="n">uint16_t</span> <span class="n">data</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">uint16_t</span> <span class="n">dataValue</span><span class="p">;</span>
     <span class="n">dataValue</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint16_t</span><span class="p">)</span> <span class="n">DRV8323RS_spiRead</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">addr</span><span class="p">);</span>
     <span class="n">dataValue</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="n">mask</span><span class="p">);</span>
-    <span class="n">dataValue</span> <span class="o">|=</span> <span class="n">data</span><span class="p">;</span>
+    <span class="n">dataValue</span><span class="o">|=</span> <span class="n">data</span><span class="p">;</span>
     <span class="n">DRV8323RS_spiWrite</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">dataValue</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Note from the above code snippet that any bit in the spi register in the DRV8323RS can be updated. The register address can be different for different devices, but here the enumerator DRV8323RS_REG_ADDR is used so the user doesn’t need to know the address of each register.</p>
+<p>请注意，在上面的代码片段中，DRV8323RS 中 spi 寄存器的任何位都可以修改。不同器件的寄存器地址可以不同，但这里使用枚举器 DRV8323RS_REG_ADDR，因此用户不需要知道每个寄存器的地址。</p>
 </section>
 </section>
-<section id="sensorless-foc-library-module">
-<h3>1.4 Sensorless FOC Library Module<a class="headerlink" href="#sensorless-foc-library-module" title="Permalink to this heading">¶</a></h3>
-<section id="id1">
-<h4>Overview<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
-<p>The Sensorless FOC library contains generic algorithms for 3-phase sensorless FOC motor control. This module has APIs that the user can use to configure and control the FOC motor control. This module takes care of setting the PWM modulations based on the FOC algorithm. This module uses the HAL APIs for any using any hardware resources. The user is required to map the HAL PWM channels for the FOC module. Below is the code snippet that allocates the HAL PWM channels to the foc module.</p>
+<section id="id6">
+<h3>1.4 无传感器 FOC 库模块<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<section id="id7">
+<h4>概述<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+<p>无传感器 FOC 库包含用于三相无传感器 FOC 电机控制的通用算法。用户可以使用该模块中的 API 来配置和控制 FOC 电机控制。该模块负责根据 FOC 算法设置 PWM 调制，并通过 HAL API 来使用任何硬件资源。用户需要为 FOC 模块映射 HAL PWM 通道。下面是将 HAL PWM 通道分配给 foc 模块的代码片段。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">Assign</span> <span class="n">the</span> <span class="n">pins</span> <span class="n">specific</span> <span class="k">for</span> <span class="n">FOC</span> <span class="o">*/</span>
 <span class="n">foc</span><span class="o">.</span><span class="n">pwmAHal</span> <span class="o">=</span> <span class="n">HAL_PWM_CHANNEL_1</span><span class="p">;</span>
 <span class="n">foc</span><span class="o">.</span><span class="n">pwmBHal</span> <span class="o">=</span> <span class="n">HAL_PWM_CHANNEL_2</span><span class="p">;</span>
@@ -225,30 +225,30 @@ typedef enum{
 </div>
 </section>
 </section>
-<section id="mspm0-driverlib-overview">
-<h3>1.5 MSPM0 DriverLib Overview<a class="headerlink" href="#mspm0-driverlib-overview" title="Permalink to this heading">¶</a></h3>
-<p>MSPM0 DriverLib is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. Please refer to the DriverLib documentation for more information.</p>
+<section id="mspm0-driverlib">
+<h3>1.5 MSPM0 DriverLib 概述<a class="headerlink" href="#mspm0-driverlib" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 DriverLib 是一组功能齐全的 API，用于配置、控制和操作 MSPM0 平台的硬件外设。更多信息，请参阅 DriverLib 文档。</p>
 </section>
 </section>
-<section id="software-user-guide">
-<h2>2. Software User Guide<a class="headerlink" href="#software-user-guide" title="Permalink to this heading">¶</a></h2>
-<p>The Sensorless FOC software can be used along with the CCS debug window. If the user wishes to use the software with GUI, please do look into the GUI user guide for the specific hardware.</p>
-<section id="setting-the-motor-parameters">
-<h3>2.1 Setting the Motor Parameters<a class="headerlink" href="#setting-the-motor-parameters" title="Permalink to this heading">¶</a></h3>
-<p>The motor parameter can be found in the motor_parameter.h file. There are four motor parameters required for Sensorless FOC:</p>
+<section id="id8">
+<h2>2. 软件用户指南<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<p>无传感器 FOC 软件可与 CCS 调试窗口一同使用。如果用户想将该软件和 GUI 一同使用，请查看特定硬件的 GUI 用户指南。</p>
+<section id="id9">
+<h3>2.1 设置电机参数<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<p>电机参数可以在 motor_parameter.h 文件中找到。无传感器 FOC 需要四个电机参数：</p>
 <ul class="simple">
-<li><p>Stator resistance, Rs (ohm)</p></li>
-<li><p>Stator inductance, Ls (H)</p></li>
-<li><p>Number of motor poles</p></li>
-<li><p>Base maximum RPM of the motor</p></li>
+<li><p>定子电阻，Rs (Ω)</p></li>
+<li><p>定子电感，Ls (H)</p></li>
+<li><p>电机极数量</p></li>
+<li><p>电机基准 RPM 最大值</p></li>
 </ul>
-<figure class="align-default" id="id3">
-<img alt="Locate motor parameter c file" src="../_images/FOC_MOTOR_PARAMS.jpg" />
+<figure class="align-default" id="id21">
+<img alt="电机参数 c 文件位置" src="../_images/FOC_MOTOR_PARAMS.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Locate motor parameter c file</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">电机参数 c 文件位置</span><a class="headerlink" href="#id21" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>These parameters are defined using an #elif statement for a motor. To define these parameters for a custom motor, modify the #define statements for MOTOR_PARA_RS, MOTOR_PARA_LS, MOTOR_PARA_POLES, and MOTOR_PARA_BASE_RPM for USER_MOTOR. To add another motor, copy and paste the #elif statement below and rename USER_MOTOR to another name.</p>
+<p>这些参数是使用电机的 #elif 语句定义的。若要为自定义电机定义这些参数，请修改 USER_MOTOR 的 #define 语句中的 MOTOR_PARA_RS、MOTOR_PARA_LS、MOTOR_PARA_POLES 和 MOTOR_PARA_BASE_RPM。若要添加另一个电机，请复制并粘贴下面的 #elif 语句，并将 USER_MOTOR 重命名为另一个名称。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#elif (USER_MOTOR)</span>
 <span class="o">/*</span> <span class="n">Define</span> <span class="n">the</span> <span class="n">electrical</span> <span class="n">motor</span> <span class="n">parameters</span> <span class="p">(</span><span class="n">User</span> <span class="n">motor</span><span class="p">)</span> <span class="o">*/</span>
 <span class="o">/*</span> <span class="nd">@brief</span> <span class="n">Stator</span> <span class="n">resistance</span> <span class="p">(</span><span class="n">ohm</span><span class="p">)</span> <span class="o">*/</span>
@@ -261,407 +261,404 @@ typedef enum{
 <span class="c1">#define MOTOR_PARA_BASE_RPM         5000</span>
 </pre></div>
 </div>
-<p>To select a motor defined in motor_params.h, click Project -&gt; Properties in the toolbar. In the Properties window, go to Build -&gt; Arm Compiler -&gt; Predefined Symbols. The pre-defined motor name is LVSERVOMTR=1. To change the pre-defined motor name, click “Edit” and change LVSERVOMTR to another defined motor in motor_params.h, such as LVBLDCMTR or USER_MOTOR.</p>
-<figure class="align-default" id="id4">
-<img alt="Showing LVSERVOMTR=1 symbol" src="../_images/CCS_PREDEFINED_SYMBOL.jpg" />
+<p>若要选择在 motor_params.h 中定义的电机，请点击工具栏中的“Project”-&gt;“Properties”。 在“Properties”窗口中，依次转到“Build”-&gt;“Arm Compiler”-&gt;“Predefined Symbols”。预定义的电机名称为 LVSERVOMTR=1。若要更改预定义的电机名称，请点击 “Edit” 并将 LVSERVOMTR 更改为 motor_params.h 中定义的另一个电机，例如 LVBLDCMTR 或 USER_MOTOR。</p>
+<figure class="align-default" id="id22">
+<img alt="显示 LVSERVOMTR=1 符号" src="../_images/CCS_PREDEFINED_SYMBOL.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Showing LVSERVOMTR=1 symbol</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">显示 LVSERVOMTR=1 符号</span><a class="headerlink" href="#id22" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
-<section id="setting-the-system-parameters">
-<h3>2.2 Setting the System Parameters<a class="headerlink" href="#setting-the-system-parameters" title="Permalink to this heading">¶</a></h3>
-<p>The initial parameters are found in the drv8323rs-gui.h file as #define GUI_DEFAULT_XXXX. The user is required to set the parameters as per the requirement. By default the default parameters are set for LVSERVOMTR motor.</p>
+<section id="id10">
+<h3>2.2 设置系统参数<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<p>初始参数可在 drv8323rs-gui.h 文件中找到，具体形式为 #define GUI_DEFAULT_XXXX。用户必须根据需要设置这些参数。默认情况下，为 LVSERVOMTR 电机设置默认参数。</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Initial Parameters</p></th>
-<th class="head"><p>Description</p></th>
+<tr class="row-odd"><th class="head"><p>初始参数</p></th>
+<th class="head"><p>说明</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>DRV_VDS_LVL</p></td>
-<td><p>VDS comparator threshold of DRV8323RS</p></td>
+<td><p>DRV8323RS 的 VDS 比较器阈值</p></td>
 </tr>
 <tr class="row-odd"><td><p>DRV_SEN_LVL</p></td>
-<td><p>OCP level for DRV8323RS</p></td>
+<td><p>DRV8323RS 的 OCP 电平</p></td>
 </tr>
 <tr class="row-even"><td><p>DRV_CSA_GAIN</p></td>
-<td><p>CSA gain setting for DRV8323RS</p></td>
+<td><p>DRV8323RS 的 CSA 增益设置</p></td>
 </tr>
 <tr class="row-odd"><td><p>DRV_RSHUNT</p></td>
-<td><p>Rshunt resistor value in DRV8323RS</p></td>
+<td><p>DRV8323RS 中的 Rshunt 阻值</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_RS</p></td>
-<td><p>Selected motor phase resistance for FOC</p></td>
+<td><p>为 FOC 选择的电机相电阻</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_LS</p></td>
-<td><p>Selected motor phase inductance for FOC</p></td>
+<td><p>为 FOC 选择的电机相电感</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_POLES</p></td>
-<td><p>Selected motor poles for FOC</p></td>
+<td><p>为 FOC 选择的电机极</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_BASE_RPM</p></td>
-<td><p>Selected Base rpm for FOC</p></td>
+<td><p>为 FOC 选择的基准 rpm</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_PWMFREQ</p></td>
-<td><p>PWM frequency for FOC</p></td>
+<td><p>FOC 的 PWM 频率</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_PWMADCSAMPLE</p></td>
-<td><p>PWM counts spend in ADC sampling</p></td>
+<td><p>ADC 采样中的 PWM 计数</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_CNTRLDIV</p></td>
-<td><p>Control loop divider for FOC, only set to 1</p></td>
+<td><p>FOC 的控制环路分压器，仅设置为 1</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_DEADBAND</p></td>
-<td><p>Deadband in ns</p></td>
+<td><p>死区，以 ns 为单位</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_RSHUNT</p></td>
-<td><p>Rshunt resistor value</p></td>
+<td><p>Rshunt 电阻值</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_VOLT_RATIO</p></td>
-<td><p>Bus voltage conversion ratio</p></td>
+<td><p>总线电压转换率</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_AMP_GAIN</p></td>
-<td><p>Current amplifier gain</p></td>
+<td><p>电流放大器增益</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_KSLIDE</p></td>
-<td><p>Kslide coefficient value</p></td>
+<td><p>Kslide 系数值</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_PISPD_KP</p></td>
-<td><p>Proportional coefficient for PI controller for speed</p></td>
+<td><p>速度 PI 控制器的比例系数</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_PISPD_KI</p></td>
-<td><p>Integral coefficient for PI controller for speed</p></td>
+<td><p>速度 PI 控制器的积分系数</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_PISPD_MAX</p></td>
-<td><p>Maximum value output from PI controller for speed</p></td>
+<td><p>速度 PI 控制器的最大值输出</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_PISPD_MIN</p></td>
-<td><p>Minimum value output from PI controller for speed</p></td>
+<td><p>速度 PI 控制器的最小值输出</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_PISPD_DIV</p></td>
-<td><p>PI controller for speed Execution divider from FOC control loop frequency</p></td>
+<td><p>针对 FOC 控制环路频率的速度 PI 控制器执行分频器</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_PIIQ_KP</p></td>
-<td><p>Proportional coefficient for PI controller for Iq</p></td>
+<td><p>Iq PI 控制器的比例系数</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_PIIQ_KI</p></td>
-<td><p>Integral coefficient for PI controller for Iq</p></td>
+<td><p>Iq PI 控制器的积分系数</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_PIIQ_MAX</p></td>
-<td><p>Maximum value output from PI controller for Iq</p></td>
+<td><p>Iq PI 控制器的最大值输出</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_PIIQ_MIN</p></td>
-<td><p>Minimum value output from PI controller for Iq</p></td>
+<td><p>Iq PI 控制器的最小值输出</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_PIID_KP</p></td>
-<td><p>Proportional coefficient for PI controller for Id</p></td>
+<td><p>Id PI 控制器的比例系数</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_PIID_KI</p></td>
-<td><p>Integral coefficient for PI controller for Id</p></td>
+<td><p>Id PI 控制器的积分系数</p></td>
 </tr>
 <tr class="row-odd"><td><p>FOC_PIID_MAX</p></td>
-<td><p>Maximum value output from PI controller for Id</p></td>
+<td><p>Id PI 控制器的最大值输出</p></td>
 </tr>
 <tr class="row-even"><td><p>FOC_PIID_MIN</p></td>
-<td><p>Minimum value output from PI controller for Id</p></td>
+<td><p>Id PI 控制器的最小值输出</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="selecting-the-build-levels">
-<h3>2.3 Selecting the Build levels<a class="headerlink" href="#selecting-the-build-levels" title="Permalink to this heading">¶</a></h3>
-<p>This software package uses an incremental system build to demonstrate a complete fixed-point sensorless Field Oriented control solution. There are 5 selectable build levels choices to incrementally verify the functioning.</p>
+<section id="id11">
+<h3>2.3 选择构建级别<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
+<p>该软件包使用增量式系统构建来演示完整的定点 无传感器磁场定向控制解决方案。共有 5 个可选的构建级别选项来逐步验证功能。</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Build Levels</p></th>
-<th class="head"><p>Description</p></th>
+<tr class="row-odd"><th class="head"><p>构建级别</p></th>
+<th class="head"><p>说明</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>LEVEL1</p></td>
-<td><p>Module functionality check out.</p></td>
+<td><p>模块功能检查。</p></td>
 </tr>
 <tr class="row-odd"><td><p>LEVEL2</p></td>
-<td><p>Verify ADC, park/clarke, calibrate the offset.</p></td>
+<td><p>验证 ADC、帕克/克拉克，校准偏移量。</p></td>
 </tr>
 <tr class="row-even"><td><p>LEVEL3</p></td>
-<td><p>Verify closed current(torque) loop and PIDs and speed measurement.</p></td>
+<td><p>验证电流（扭矩）闭环以及 PID 和速度测量。</p></td>
 </tr>
 <tr class="row-odd"><td><p>LEVEL4</p></td>
-<td><p>Verify speed estimation and rotor position estimation.</p></td>
+<td><p>验证速度估算和转子位置估算。</p></td>
 </tr>
 <tr class="row-even"><td><p>LEVEL5</p></td>
-<td><p>Verify closed speed loop, speed PID and eSMO.</p></td>
+<td><p>验证速度闭环、速度 PID 和 eSMO。</p></td>
 </tr>
 </tbody>
 </table>
-<p>To select a build level in foc.h, click Project -&gt; Properties in the toolbar. In the Properties window, go to Build -&gt; Arm Compiler -&gt; Predefined Symbols. The pre-defined BUILDLEVEL name is LEVEL5. To change the pre-defined build level, click “Edit” and change LEVEL5 to another defined build level in foc.h.</p>
-<figure class="align-default" id="id5">
-<img alt="Build levels" src="../_images/FOC_BUILD_LEVELS.jpg" />
+<p>若要在 foc.h 中选择构建级别，请点击工具栏中的“Project”-&gt;“Properties”。在“Properties”窗口中，依次转到“Build”-&gt;“Arm Compiler”-&gt;“Predefined Symbols”。预定义的 BUILDLEVEL 名称为 LEVEL5。若要更改预定义的构建级别，请点击“Edit”并将 LEVEL5 更改为在 foc.h 中定义的另一个构建级别。</p>
+<figure class="align-default" id="id23">
+<img alt="构建级别" src="../_images/FOC_BUILD_LEVELS.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Build levels</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">构建级别</span><a class="headerlink" href="#id23" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
-<section id="important-note">
-<h3>Important Note<a class="headerlink" href="#important-note" title="Permalink to this heading">¶</a></h3>
-<p>The build levels are only used for verifying the modules. While using a build level lower than LEVEL5, the user should only use the motor in a no-load condition. The user should use LEVEL5 as final build level for the user to test the motor in loaded conditions.</p>
+<section id="id12">
+<h3>重要说明<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h3>
+<p>构建级别仅用于验证模块。当使用低于 LEVEL5 的构建级别时，用户只能在空载条件下使用电机。用户应使用 LEVEL5 作为最终构建级别，以在负载条件下测试电机。</p>
 </section>
-<section id="variables-for-controlling-motor">
-<h3>2.4 Variables for controlling motor<a class="headerlink" href="#variables-for-controlling-motor" title="Permalink to this heading">¶</a></h3>
-<p>Below are the list of variables to include in the debug window for controlling the motor. Note, for variables in IQ24 type, set the type by right clicking the variables and changing to IQ type 24.</p>
+<section id="id13">
+<h3>2.4 用于控制电机的变量<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
+<p>下方是包含在调试窗口中用于控制电机的变量列表。注意，对于 IQ24 类型的变量，请通过右键点击变量并更改为 IQ 类型 24 来设置类型。</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Variables</p></th>
-<th class="head"><p>Description</p></th>
-<th class="head"><p>Type</p></th>
+<tr class="row-odd"><th class="head"><p>变量</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>类型</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>enableFOC</p></td>
-<td><p>Control whether FOC is enabled or disabled. If set 0, PWM is disabled and the drive is in HighZ state. If set 1, The PWM output is set as per the FOC code.</p></td>
-<td><p>boolean</p></td>
+<td><p>控制是启用还是禁用 FOC。如果设为 0，则禁用 PWM，并且驱动处于高阻态。如果设为 1，则根据 FOC 代码设置 PWM 输出。</p></td>
+<td><p>布尔</p></td>
 </tr>
 <tr class="row-odd"><td><p>lsw</p></td>
-<td><p>Controls the FOC state. If set 0, Aligns the motor to A phase. If set 1, Rotates the motor in open loop with speed from speedRef variable. If set 2, Rotates the motor in closed loop with speed from speedRef variable. lsw=2 is not applicable to Build levels other than LEVEL5 and should not be set.</p></td>
+<td><p>控制 FOC 状态。如果设为 0，则将电机与 A 相对齐。如果设为 1，则以 speedRef 变量设置的速度在开环中旋转电机。如果设为 2，则以 speedRef 变量设置的速度在闭环中旋转电机。lsw=2 不适用于 LEVEL5 以外的构建级别，并且不应设置。</p></td>
 <td><p>int</p></td>
 </tr>
 <tr class="row-even"><td><p>idRef</p></td>
-<td><p>Set the align current in per unit.</p></td>
+<td><p>设置对齐电流（标幺值）。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-odd"><td><p>iqRef</p></td>
-<td><p>Set the q axis current in lsw = 1 in per unit.</p></td>
+<td><p>设置 lsw = 1 下的 q 轴电流（标幺值）。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-even"><td><p>speedRef</p></td>
-<td><p>Sets the reference speed, used in open loop acceleration and in lsw = 2</p></td>
+<td><p>设置用于开环加速且 lsw = 2 下的基准速度</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-odd"><td><p>speedEst.EstimatedSpeed</p></td>
-<td><p>Display the estimated motor speed in per unit.</p></td>
+<td><p>显示估算的电机速度（标幺值）。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-even"><td><p>speedEst.EstimatedSpeedRpm</p></td>
-<td><p>Display the estimated motor speed in RPM.</p></td>
+<td><p>显示估算的电机速度（以 RPM 为单位）。</p></td>
 <td><p>int</p></td>
 </tr>
 <tr class="row-odd"><td><p>piSpd.Kp</p></td>
-<td><p>Proportional constant in PI for Speed.</p></td>
+<td><p>速度 PI 中的比例常量。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-even"><td><p>piSpd.Ki</p></td>
-<td><p>Integral constant in PI for Speed.</p></td>
+<td><p>速度 PI 中的积分常量。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-odd"><td><p>piId.Kp</p></td>
-<td><p>Proportional constant in PI for Id current.</p></td>
+<td><p>Id 电流 PI 中的比例常量。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-even"><td><p>piId.Ki</p></td>
-<td><p>Integral constant in PI for Id current.</p></td>
+<td><p>Id 电流 PI 中的积分常量。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-odd"><td><p>piIq.Kp</p></td>
-<td><p>Proportional constant in PI for Iq current.</p></td>
+<td><p>Iq 电流 PI 中的比例常量。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-even"><td><p>piIq.Ki</p></td>
-<td><p>Integral constant in PI for Iq current.</p></td>
+<td><p>Iq 电流 PI 中的积分常量。</p></td>
 <td><p>IQ24</p></td>
 </tr>
 <tr class="row-odd"><td><p>guiOverCurrentLimit</p></td>
-<td><p>Value of phase current in ampere above which software triggers overcurrent</p></td>
+<td><p>以安培为单位的相电流值，高于该值时，软件将触发过流</p></td>
 <td><p>float</p></td>
 </tr>
 <tr class="row-even"><td><p>guiVmOverVoltageLimit</p></td>
-<td><p>Value of voltage in volts above which software triggers overvoltage fault.</p></td>
+<td><p>以伏特为单位的电压值，高于该值时，软件将触发过压故障。</p></td>
 <td><p>float</p></td>
 </tr>
 <tr class="row-odd"><td><p>guiVmUnderVoltageLimit</p></td>
-<td><p>Value of voltage in volts below which software triggers undervoltage fault.</p></td>
+<td><p>以伏特为单位的电压值，低于该值时，软件将触发欠压故障。</p></td>
 <td><p>float</p></td>
 </tr>
 <tr class="row-even"><td><p>gui_faults.clearFault</p></td>
-<td><p>if set 1, clears all the fault bits.</p></td>
+<td><p>如果设为 1，则清除所有故障位。</p></td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>gui_faults.drvFault</p></td>
-<td><p>Set when drv fault is detected.</p></td>
+<td><p>在检测到 drv 故障时设置。</p></td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-even"><td><p>gui_faults.uvlo</p></td>
-<td><p>Set when undervoltage is detected.</p></td>
+<td><p>在检测到欠压时设置。</p></td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-odd"><td><p>gui_faults.ovlo</p></td>
-<td><p>Set when overvoltage is detected.</p></td>
+<td><p>在检测到过压时设置。</p></td>
 <td><p>bool</p></td>
 </tr>
 <tr class="row-even"><td><p>gui_faults.ocp</p></td>
-<td><p>Set when overcurrent is detected.</p></td>
+<td><p>在检测到过流时设置。</p></td>
 <td><p>bool</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="running-the-motor">
-<h3>2.5 Running the motor<a class="headerlink" href="#running-the-motor" title="Permalink to this heading">¶</a></h3>
-<p>Below is the steps to run the motor:</p>
+<section id="id14">
+<h3>2.5 电机运行<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
+<p>电机运行的步骤如下：</p>
 <ol class="arabic simple">
-<li><p>Check if enableFOC = 0.</p></li>
-<li><p>Check if any fault bit in the “gui_faults” structure is set. If any fault is set, clear the fault by setting gui_faults.clearFault = 1.</p></li>
-<li><p>Set idRef to desired Align current.</p></li>
-<li><p>Set iqRef to desired open loop current.</p></li>
-<li><p>Set speedRef to desired open loop speed.</p></li>
-<li><p>Set lsw = 0 to align the motor to the A phase. Note with enableFOC = 0, the FOC is disabled currently.</p></li>
-<li><p>Set enableFOC = 1 to enable the FOC code to actuate the PWM. Because lsw = 0, we should see positive current in the A phase and half of the negative current in the B and C phases. If current is not constant, see PI tuning for Id.</p></li>
-<li><p>Set lsw = 1 to switch to open loop. The motor starts to spin and ramp to the speed set in speedRef. If the motor is vibrating, reset to lsw = 0 and set a higher IdRef value. The current in the A phase should be sinusoidal. If there are spikes in current or distorted waveforms, see PI tuning for Iq.</p></li>
-<li><p>Set lsw = 2 to switch to closed loop. The estimated motor speed (speedEst.EstimatedSpeed) should match speedRef across load conditions and the motor should continue to run smoothly.</p></li>
-<li><p>Increase or decrease speedRef to run the desired motor speed. Check if the motor speed is stable after the ramp and no oscillations in speed occur, especially if load is applied. If the motor speed is unstable or there are oscillations in the final speed, use the speed PI controller to modify the speed control response.</p></li>
-<li><p>To stop the motor, set enableFOC = 0.</p></li>
-<li><p>If a fault occurs, the corresponding fault will be set in the gui_faults structure.</p></li>
-<li><p>To clear the fault, remove the fault condition and set gui_faults.clearFault. The corresponding fault bit will be cleared.</p></li>
+<li><p>检查 enableFOC 是否为 0。</p></li>
+<li><p>检查“gui_faults”结构中是否设置了任何故障位。如果设置了任何故障，请通过设置 gui_faults.clearFault = 1 来清除故障。</p></li>
+<li><p>将 idRef 设置为所需的对齐电流。</p></li>
+<li><p>将 iqRef 设置为所需的开环电流。</p></li>
+<li><p>将 speedRef 设置为所需的开环速度。</p></li>
+<li><p>设置 lsw = 0 可使电机与 A 相对齐。请注意，当 enableFOC = 0 时，FOC 当前被禁用。</p></li>
+<li><p>设置 enableFOC = 1 可启用 FOC 代码来驱动 PWM。因为 lsw = 0，所以我们应该在 A 相中看到正电流，在 B 相和 C 相中看到一半的负电流。如果电流不是恒定的，请参阅针对 Id 的 PI 调优。</p></li>
+<li><p>设置 lsw = 1 可切换到开环。电机开始旋转并加速至在 speedRef 中设置的速度。如果电机振动，则复位为 lsw = 0 并设置更高的 IdRef 值。A 相电流应为正弦波。如果电流存在尖峰或波形失真，请参阅针对 Iq 的 PI 调优。</p></li>
+<li><p>设置 lsw = 2 可切换到闭环。估算的电机速度 (speedEst.EstimatedSpeed) 应在负载条件下与 speedRef 匹配，并且电机应继续平稳运行。</p></li>
+<li><p>提高或降低 speedRef 则可以所需的电机速度运行。检查斜升后电机速度是否稳定，是否未出现速度振荡，特别是在施加负载时。如果电机速度不稳定或最终速度存在振荡，请使用速度 PI 控制器修改速度控制响应。</p></li>
+<li><p>若要停止电机，请设置 enableFOC = 0。</p></li>
+<li><p>如果发生故障，则会在 gui_faults 结构中设置相应的故障。</p></li>
+<li><p>若要清除故障，请移除故障条件并设置 gui_faults.clearFault。相应的故障位将被清除。</p></li>
 </ol>
 </section>
-<section id="tuning-the-motor">
-<h3>2.6 Tuning the motor<a class="headerlink" href="#tuning-the-motor" title="Permalink to this heading">¶</a></h3>
+<section id="id15">
+<h3>2.6 电机调优<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
 </section>
-<section id="tuning-pi-controllers">
-<h3>Tuning PI controllers<a class="headerlink" href="#tuning-pi-controllers" title="Permalink to this heading">¶</a></h3>
-<p>There are three PI controllers for Speed, Id current and Iq current. For tuning a PI controller, the user should first adjust the Kp first and then adjust the Ki for that PI controller. To tune the PI controllers:</p>
+<section id="pi">
+<h3>PI 控制器调优<a class="headerlink" href="#pi" title="Permalink to this heading">¶</a></h3>
+<p>共有 3 个 PI 控制器：速度 PI 控制器、Id 电流 PI 控制器和 Iq 电流 PI 控制器。若要对 PI 控制器进行调优，用户应首先调整 Kp，然后调整该 PI 控制器的 Ki。 对 PI 控制器进行调优的方法如下：</p>
 <ul class="simple">
-<li><p>Use lsw = 0 to tune PI Id gains (piId.kp, piId.ki)</p></li>
-<li><p>Use lsw = 1 to tune PI Iq gains (piIq.kp, piIq.ki)</p></li>
-<li><p>Use lsw = 2 in PI speed gains (piSpd.kp, piSpd.ki)</p></li>
+<li><p>使用 lsw = 0 可对 PI Id 增益（piId.kp、piId.ki）进行调优</p></li>
+<li><p>使用 lsw = 1 可对 PI Iq 增益（piIq.kp、piIq.ki）进行调优</p></li>
+<li><p>在 PI 速度增益中使用 lsw = 2（piSpd.kp、piSpd.ki）</p></li>
 </ul>
 </section>
-<section id="logging-the-variables">
-<h3>2.7 Logging the variables<a class="headerlink" href="#logging-the-variables" title="Permalink to this heading">¶</a></h3>
-<p>The user can add the __ENABLE_LOG predefined symbol to enable logging. The user can set the log index and variable as shown in the below code:</p>
+<section id="id16">
+<h3>2.7 记录变量<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h3>
+<p>用户可以添加 __ENABLE_LOG 预定义符号来启用日志记录。用户可以设置日志索引和变量，如以下代码所示：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FOC_addVarToLog</span><span class="p">(</span><span class="n">FOC_LOG_IDX_0</span><span class="p">,</span> <span class="n">phaseVolt</span><span class="o">.</span><span class="n">Valpha</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>To see the logged data as a graph, the user can add the variable cssLog[X], where X is the index. Right click the variable and select “Graph”.</p>
-<figure class="align-default" id="id6">
-<img alt="Image of graph" src="../_images/CCS_GRAPH.jpg" />
+<p>若要以图表形式查看记录的数据，用户可以添加变量 cssLog[X]，其中 X 是索引。右键点击该变量，然后选择“Graph”。</p>
+<figure class="align-default" id="id24">
+<img alt="图形图像" src="../_images/CCS_GRAPH.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Image of graph</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">图形图像</span><a class="headerlink" href="#id24" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Select “Continuous Refresh” mode to see continuous data.</p>
-<figure class="align-default" id="id7">
-<img alt="Image of graph" src="../_images/CCS_GRAPH_CONT_REFRESH.jpg" />
+<p>选择“Continuous Refresh”模式可查看连续数据。</p>
+<figure class="align-default" id="id25">
+<img alt="图形图像" src="../_images/CCS_GRAPH_CONT_REFRESH.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Image of graph</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">图形图像</span><a class="headerlink" href="#id25" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p><strong>Note that the software consumes 24KB extra space in SRAM to store the values when logging is enabled.</strong></p>
+<p><strong>请注意，启用日志记录功能后，软件会占用 24KB 的额外 SRAM 空间来存储值。</strong></p>
 </section>
-<section id="access-spi-register">
-<h3>2.8 Access SPI Register<a class="headerlink" href="#access-spi-register" title="Permalink to this heading">¶</a></h3>
-<p>The software allows to independently change values in the SPI registers of the DRV. There are 3 options of writing to SPI register. Below are the variables and examples to use.</p>
-<p>There are 3 options in SPI register:</p>
+<section id="spi">
+<h3>2.8 访问 SPI 寄存器<a class="headerlink" href="#spi" title="Permalink to this heading">¶</a></h3>
+<p>软件允许分别更改 DRV SPI 寄存器中的值。可通过 3 个选项写入 SPI 寄存器。下面是要使用的变量和示例。</p>
+<p>SPI 寄存器中有 3 个选项：</p>
 <ol class="arabic simple">
-<li><p>Write 8-bit data to register</p></li>
+<li><p>将 8 位数据写入寄存器</p></li>
 </ol>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Variables</p></th>
-<th class="head"><p>Description</p></th>
+<tr class="row-odd"><th class="head"><p>变量</p></th>
+<th class="head"><p>说明</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>gui_spi.writeRegFlag</p></td>
-<td><p>Writes the register when set to 1.</p></td>
+<td><p>设为 1 时写入寄存器。</p></td>
 </tr>
 <tr class="row-odd"><td><p>gui_spi.writeRegAddr</p></td>
-<td><p>Set address of register to write.</p></td>
+<td><p>设置要写入的寄存器地址。</p></td>
 </tr>
 <tr class="row-even"><td><p>gui_spi.writeRegData</p></td>
-<td><p>Set data of register to write.</p></td>
+<td><p>设置要写入的寄存器数据。</p></td>
 </tr>
 </tbody>
 </table>
-<p>For example, to write 0x01 to the Gate Drive HS register, select gui_spi.writeRegAddr as DRV8323RS_REG_ADDR_GATE_DRIVE_HS, set gui_spi.writeRegData = 0x01, and then set gui_spi.writeRegFlag = 1.</p>
+<p>例如，若要将 0x01 写入栅极驱动器 HS 寄存器，请选择 gui_spi.writeRegAddr 为 DRV8323RS_REG_ADDR_GATE_DRIVE_HS，设置 gui_spi.writeRegData = 0x01，然后设置 gui_spi.writeRegFlag = 1。</p>
 <ol class="arabic simple" start="2">
-<li><p>Update some bits in SPI register</p></li>
+<li><p>更新 SPI 寄存器中的某些位</p></li>
 </ol>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Variables</p></th>
-<th class="head"><p>Description</p></th>
+<tr class="row-odd"><th class="head"><p>变量</p></th>
+<th class="head"><p>说明</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>gui_spi.writeBitfieldRegFlag</p></td>
-<td><p>Writes the bitfield when set to 1.</p></td>
+<td><p>设为 1 时写入位字段。</p></td>
 </tr>
 <tr class="row-odd"><td><p>gui_spi.writeBitfieldRegAddr</p></td>
-<td><p>Set register address to write Bitfield.</p></td>
+<td><p>设置要写入位字段的寄存器地址。</p></td>
 </tr>
 <tr class="row-even"><td><p>gui_spi.bitfieldRegPosData</p></td>
-<td><p>Set position of Bitfield to write.</p></td>
+<td><p>设置要写入位字段的位置。</p></td>
 </tr>
 <tr class="row-odd"><td><p>gui_spi.bitfieldRegMaskData</p></td>
-<td><p>Set mask of Bitfield to write.</p></td>
+<td><p>设置要写入位字段的掩码。</p></td>
 </tr>
 <tr class="row-even"><td><p>gui_spi.writeBitfieldRegData</p></td>
-<td><p>Set data of Bitfield to write.</p></td>
+<td><p>设置要写入位字段的数据。</p></td>
 </tr>
 </tbody>
 </table>
-<p>For setting IDRIVEP_HS = 0x03 register, select gui_spi.writeBitfieldRegAddr as DRV8323RS_REG_ADDR_GATE_DRIVE_HS, set gui_spi.bitfieldRegPosData = 0x04, set gui_spi.bitfieldRegMaskData = 0x03, set gui_spi.writeBitfieldRegData = 0x03 and then set gui_spi.writeBitfieldRegFlag = 1.</p>
+<p>若要设置 IDRIVEP_HS = 0x03 寄存器，请选择 gui_spi.writeBitfieldRegAddr 为 DRV8323RS_REG_ADDR_GATE_DRIVE_HS，设置 gui_spi.bitfieldRegPosData = 0x04，设置 gui_spi.bitfieldRegMaskData = 0x03，设置 gui_spi.writeBitfieldRegData = 0x03，然后设置 gui_spi.writeBitfieldRegFlag = 1。</p>
 <ol class="arabic simple" start="3">
-<li><p>Read SPI register</p></li>
+<li><p>读取 SPI 寄存器</p></li>
 </ol>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Variables</p></th>
-<th class="head"><p>Description</p></th>
+<tr class="row-odd"><th class="head"><p>变量</p></th>
+<th class="head"><p>说明</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>gui_spi.readRegFlag</p></td>
-<td><p>Reads the register when set to 1.</p></td>
+<td><p>设为 1 时读取寄存器。</p></td>
 </tr>
 <tr class="row-odd"><td><p>gui_spi.readRegAddr</p></td>
-<td><p>Set address of register to read.</p></td>
+<td><p>设置要读取的寄存器地址。</p></td>
 </tr>
 <tr class="row-even"><td><p>gui_spi.readRegData</p></td>
-<td><p>Shows data read from register.</p></td>
+<td><p>显示从寄存器读取的数据。</p></td>
 </tr>
 </tbody>
 </table>
-<p>For reading the Gate Driver HS register, select gui_spi.readRegAddr as DRV8323RS_REG_ADDR_GATE_DRIVE_HS, and then set gui_spi.writeRegFlag = 1. The data read can be seen in gui_spi.readRegData.</p>
+<p>若要读取栅极驱动器 HS 寄存器，请选择 gui_spi.readRegAddr 为 DRV8323RS_REG_ADDR_GATE_DRIVE_HS，然后设置 gui_spi.writeRegFlag = 1。读取的数据可以在 gui_spi.readRegData 中看到。</p>
 </section>
 </section>
-<section id="api-guide">
-<h2>3. API Guide<a class="headerlink" href="#api-guide" title="Permalink to this heading">¶</a></h2>
+<section id="id17">
+<h2>3. API 指南<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">Sensorless FOC API Guide</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">无传感器 FOC API 指南</a></p></li>
 </ul>
 </section>
-<section id="known-issues">
-<h2>4. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
-<ol class="arabic simple">
-<li><p>Function implicit declaration warning for IQrepeat function while compiling.</p></li>
-<li><p>Current solution supports power up to 100W. Applying high torque at low speeds can cause motor to spin backwards with high rpm.</p></li>
-</ol>
+<section id="id18">
+<h2>4. 已知问题<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h2>
+<p>1.编译时针对 IQrepeat 函数发出函数隐式声明警告。 2.当前的解决方案支持高达 100W 的功率。在低速下施加高扭矩会导致电机以高 rpm 向后旋转。</p>
 </section>
-<section id="supported-devices">
-<h2>5. Supported Devices<a class="headerlink" href="#supported-devices" title="Permalink to this heading">¶</a></h2>
+<section id="id19">
+<h2>5. 支持的器件<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h2>
 <section id="drv8323rs">
 <h3>DRV8323RS<a class="headerlink" href="#drv8323rs" title="Permalink to this heading">¶</a></h3>
-<p>Supported MSPM0 Launchpads</p>
+<p>支持的 MSPM0 Launchpad</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
 </ul>
-<p>Links</p>
+<p>链接</p>
 <ul class="simple">
-<li><p><a class="reference external" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">Hardware User Guide</a></p></li>
-<li><p><a class="reference external" href="drv8323rs/DRV8323RS_GUI_User_Guide_CN.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">硬件用户指南</a></p></li>
+<li><p><a class="reference external" href="drv8323rs/DRV8323RS_GUI_User_Guide_CN.html">GUI 用户指南</a></p></li>
 <li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI">MSPM0G3507-DRV8323RS-EVM-GUI</a></p></li>
 </ul>
 </section>

@@ -1,93 +1,93 @@
-Using PEmicro interfaces with MSPM0
-===================================
+将 PEmicro 接口与 MSPM0 配合使用
+================================
 
-1. Introduction
----------------
+1. 引言
+-------
 
-These steps will walk the user through how to use PEmicro’s programming tools with TI’s MSPM0 devices.
+以下步骤将向用户演示如何将 PEmicro 的编程工具与 TI 的 MSPM0 器件配合使用。
 
-2. Prerequisites
-----------------
+2. 先决条件
+-----------
 
-Before proceeding, the user should be sure they are using the latest PEmicro drivers. These are available at the link below:
+开始前，用户应确保其使用的是最新 PEmicro 驱动程序。可通过以下链接获取：
 
--  `PEmicro Hardware Interface Drivers <https://www.pemicro.com/downloads/download_file.cfm?download_id=53>`__
+-  `PEmicro 硬件接口驱动程序 <https://www.pemicro.com/downloads/download_file.cfm?download_id=53>`__
 
-3. Configuring TI's Code Composer Studio (CCS) IDE
---------------------------------------------------
+3. 配置 TI 的Code Composer Studio （CCS）IDE
+--------------------------------------------
 
-3.1. Installing PEmicro's Plug-In
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1. 安装 PEmicro 的插件
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Download the `PEmicro GDB Server Plug-in <https://www.pemicro.com/downloads/download_file.cfm?download_id=412>`__.
+1. 下载 `PEmicro GDB Server 插件 <https://www.pemicro.com/downloads/download_file.cfm?download_id=412>`__\ 。
 
-2. In the CCS Menu bar, click on Help → Install New Software.
+2. 在 CCS 菜单栏中，依次点击“Help → Install New Software”。
 
    .. figure:: ./images/pemicro/pemicro_ccs_1.png
       :alt: 
 
-3. Add the PEmicro repository as demonstrated below. Click the Add button to open the Add Repository dialog.
+3. 按如下所示添加 PEmicro 存储库。点击“Add”按钮打开“Add Repository”对话框。
 
-4. Then click Archive to navigate to the downloaded plug-in file and select it.
+4. 然后点击“Archive”导航到下载的插件文件，并选择此文件。
 
    .. figure:: ./images/pemicro/pemicro_ccs_2.png
       :alt: 
 
-5. The user can name the repository whatever they wish. The options will then appear in the Available Software window.
+5. 用户可根据需要为存储库命名。选项随后将显示在“Available Software”窗口中。
 
    .. figure:: ./images/pemicro/pemicro_ccs_3.png
       :alt: 
 
-6. Select the appropriate plug-ins and follow the instructions to continue installation
+6. 选择适当插件，并按照说明继续安装
 
-   **Note**: If the plug-ins do not appear in the window, the user can try adjusting the CCS proxy settings.
+   **注意**\ ：如果插件未显示在窗口中，用户可尝试调整 CCS 代理设置。
 
-7. Select “GNU ARM PEmicro Debugging Support” and “PEmicro ARM Device Expansion Plug-in”
+7. 选择“GNU ARM PEmicro Debugging Support”和“PEmicro ARM Device Expansion Plug-in”
 
-3.2. Debug Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~
+3.2. 调试配置
+~~~~~~~~~~~~~
 
-1. Right-click on the project name (“Test” for this example) in the Project Explorer to bring up the dialog shown below:
+1. 在 Project Explorer 中右键点击工程名称（本示例中为“Test”），显示以下对话框：
 
    .. figure:: ./images/pemicro/pemicro_ccs_4.png
       :alt: 
 
-2. Then select Debug Configurations to open that window.
+2. 然后选择“Debug Configurations”打开此窗口。
 
    .. figure:: ./images/pemicro/pemicro_ccs_5.png
       :alt: 
 
-3. Double click on “GDB PEmicro Interface Debugging” to create a debug instance of “Test” project.
+3. 双击“GDB PEmicro Interface Debugging”，创建“Test”工程的调试实例。
 
    .. figure:: ./images/pemicro/pemicro_ccs_6.png
       :alt: 
 
-4. Program and debug the device
+4. 对器件进行编程和调试
 
-3.3. Setup and Physical Connection
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.3. 设置和物理连接
+~~~~~~~~~~~~~~~~~~~
 
-1. In order to use PEmicro’s Multilink or Cyclone as a debug interface, the user must make sure the TI MSPM0 target board is configured to use this option instead of the internal XDS110-ET debug probe. The procedure involves removing any jumpers from the J101 isolation block, then attaching an Arm debug probe such as PEmicro’s Multilink to the J103 header. There is also a jumper that affects power considerations. We recommend that the user carefully follow TI’s explicit instructions, which can be found in TI’s MSPM0 Launchpad User Guides in the section “Using an External Debug Probe Instead of the Onboard XDS110-ET.”
+1. 要将 PEmicro Multilink 或 Cyclone 用作调试接口，用户必须确保将 TI MSPM0 目标电路板配置为使用此选项，而非内部 XDS110-ET 调试探针。此过程包括从 J101 隔离块上拆下任何跳线，然后将 Arm 调试探针（如 PEmicro Multilink）连接至 J103 接头。还有一个跳线会影响电源考虑因素。建议用户认真遵循 TI 的明确说明，这可在 TI MSPM0 Launchpad 用户指南的“使用外部调试探针而非板载 XDS110-ET”部分中找到。
 
-2. The PC connects to the Multilink or Cyclone (typically via USB cable), and then the 10-pin mini Arm header on the Multilink or Cyclone is connected to the J103 header on the TI board via a ribbon cable. A bare Multilink is shown below connected to the TI MSPM0 target board:
+2. PC 连接到 Multilink 或 Cyclone（通常通过 USB 电缆），然后 Multilink 或 Cyclone 上的 10 引脚迷你 Arm 接头通过带状电缆连接至 TI 电路板上的 J103 接头。下面显示了连接至 TI MSPM0 目标电路板的裸 Multilink：
 
    .. figure:: ./images/pemicro/pemicro_ccs_7.png
-      :alt: Bare Multilink connected via ribbon cable to the J103 header on a TI MSPM0 board
+      :alt: 通过带状电缆连接至 TI MSPM0 电路板上 J103 接头的裸 Multilink
 
-      Bare Multilink connected via ribbon cable to the J103 header on a TI MSPM0 board
+      通过带状电缆连接至 TI MSPM0 电路板上 J103 接头的裸 Multilink
 
-4. Using PEmicro Tools with TI's MSPM0 on Keil's uVision IDE
+4. 在 Keil uVision IDE 上将 PEmicro 工具与 TI MSPM0 配合使用
 ------------------------------------------------------------
 
-1. The dropdown box in Options for Target -> Use allows the user to select the “Pemicro Debugger”, as seen below:
+1. 通过“Options for Target”->“Use”中的下拉框，用户可选择“Pemicro Debugger”，如下所示：
 
    .. figure:: ./images/pemicro/pemicro_keil_1.png
       :alt: 
 
-5. Using PEmicro Tools with TI’s MSPM0 on IAR’s Workbench for Arm IDE
+5. 在 IAR Workbench for Arm IDE 上将 PEmicro 工具与 TI MSPM0 配合使用
 ---------------------------------------------------------------------
 
-1. Under Options for Node MSPM0x\_security, in the Debugger category, the user should select “PE micro” from the Driver drop down box, as shown below:
+1. 在“Options for Node MSPM0x\_security”下的“Debugger”类别中，用户应从“Driver”下拉框中选择“PE micro”，如下所示：
 
    .. figure:: ./images/pemicro/pemicro_iar_1.png
       :alt: 

@@ -1,30 +1,30 @@
-Sensorless FOC Motor Control Library Overview
-=============================================
+无传感器 FOC 电机控制库概述
+===========================
 
-1. Software Overview
---------------------
+1. 软件概述
+-----------
 
-Sensorless Field-Oriented Control (FOC) Library is made of three main layers: Application layer, HAL Layer, and MSPM0 DriverLib.
+无传感器磁场定向控制 (FOC) 库包含三个主要层：应用层、HAL 层和 MSPM0 DriverLib。
 
 .. figure:: images/Library-Architecture.jpg
-   :alt: Sensorless FOC Architecture
+   :alt: 无传感器 FOC 架构
 
-   Sensorless FOC Architecture
+   无传感器 FOC 架构
 
-1.1 Application Layer Overview
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The user specific applications (such as GUI) are present in this layer. From this layer, various instances of motor driver modules can be configured and used. If the user needs to perform any hardware specific actions, the user is recommended to use the APIs from HAL module.
-
-1.2 HAL Module
+1.1 应用层概述
 ~~~~~~~~~~~~~~
 
-Overview
-^^^^^^^^
+用户特定的应用程序（例如 GUI）位于该层。在这一层，可以配置和使用电机驱动器模块的各种实例。如果用户需要执行任何硬件特定的操作，建议使用 HAL 模块中的 API。
 
-The Hardware Abstraction Layer (HAL) creates an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configurations which simplifies porting of the library to various hardware by minimizing the updates needed to other components. The HAL is meant to abstract only the required pins or peripherals required for the application while still having flexibility and scalability for porting to other MSPM0 MCUs or motor drivers.
+1.2 HAL 模块
+~~~~~~~~~~~~
 
-HAL is designed to have specific number of pins or channels associated with a peripheral. For example, consider the case of GPIOs. HAL has enum HAL\_GPIO\_OUT\_PIN which has all the GPIO output pins as members as shown below.
+概述
+^^^^
+
+硬件抽象层 (HAL) 会创建一个抽象层，以提供用于配置不同引脚和外设的 API。使用 HAL 的目标是抽象处理所有器件特定的配置，从而通过最大程度地减少其他元件所需的更新来简化库到各种硬件的移植。HAL 旨在仅抽象处理应用所需的引脚或外设，同时仍然具有移植到其他 MSPM0 MCU 或电机驱动器的灵活性和可扩展性。
+
+HAL 旨在将特定数量的引脚或通道与外设关联。例如，考虑 GPIO 的用例。HAL 具有枚举 HAL\_GPIO\_OUT\_PIN，其中将所有 GPIO 输出引脚包含为成员，如下所示。
 
 ::
 
@@ -38,7 +38,7 @@ HAL is designed to have specific number of pins or channels associated with a pe
         HAL_GPIO_OUT_PIN_MAX,
     }HAL_GPIO_OUT_PIN;
 
-To map the HAL GPIO pins to the real hardware pins, a structure is used which is indexed by the members of the HAL\_GPIO\_OUT\_PIN enum. This structure stores various members like the port instance, pin name, etc. See below the gpioOUT structure which holds data on the port and pin.
+为了将 HAL GPIO 引脚映射到真实的硬件引脚，使用了一个由 HAL\_GPIO\_OUT\_PIN 枚举成员进行索引的结构。该结构存储各种成员，如端口实例、引脚名称等。请参见下面的 gpioOUT 结构，该结构会保存有关端口和引脚的数据。
 
 ::
 
@@ -46,15 +46,15 @@ To map the HAL GPIO pins to the real hardware pins, a structure is used which is
     gpioOUT[HAL_GPIO_OUT_PIN_0].port    = GENERIC_GPIO_OUT_PORT;
     gpioOUT[HAL_GPIO_OUT_PIN_0].pin     = GENERIC_GPIO_OUT_PINO_0_PIN;
 
-Note that GENERIC\_GPIO\_OUT\_PINO\_0\_PIN is defined in the TI SysConfig generated files the specific line is shown below:
+请注意，GENERIC\_GPIO\_OUT\_PINO\_0\_PIN 在 TI SysConfig 生成的文件中定义，具体行如下所示：
 
 ::
 
     #define GENERIC_GPIO_OUT_PINO_0_PIN                             (DL_GPIO_PIN_26)
 
-Thus, HAL\_GPIO\_OUT\_PIN\_0 indirectly refers to DL\_GPIO\_PIN\_0, but the advantage of this mapping is that since TI SysConfig controls the generation of the GENERIC\_GPIO\_OUT\_PINO\_0\_PIN, it is very easy to change the pin in the TI SysConfig GUI. The HAL automatically follows this without the user having to change any code in the HAL layer.
+因此，HAL\_GPIO\_OUT\_PIN\_0 间接引用 DL\_GPIO\_PIN\_0，但这种映射的优点是：由于 TI SysConfig 控制 GENERIC\_GPIO\_OUT\_PINO\_0\_PIN 的生成，因此很容易在 TI SysConfig GUI 中更改引脚。HAL 会自动遵循此行为，而无需用户更改 HAL 层中的任何代码。
 
-As seen above, when accessing the hardware through the HAL, we need to pass a HAL specific enum like HAL\_GPIO\_OUT\_PIN\_0. These enums are stored in the instances that access the HAL layer. In the case of the DRV8323RS motor driver, the instances of the important pins are initialized with its pins assigned to the HAL enums as shown in the snippet below.
+如上所示，当通过 HAL 访问硬件时，我们需要传递 HAL 特定枚举，如 HAL\_GPIO\_OUT\_PIN\_0。这些枚举存储在访问 HAL 层的实例中。对于 DRV8323RS 电机驱动器，我们使用被分配给 HAL 枚举的引脚来初始化重要引脚的实例，如下面的代码片段所示。
 
 ::
 
@@ -66,7 +66,7 @@ As seen above, when accessing the hardware through the HAL, we need to pass a HA
     drv8323rs.isena   = HAL_ADC_CHANNEL_2;
     drv8323rs.isenb   = HAL_ADC_CHANNEL_0;
 
-If the ENABLE pin needs to be set high, the API DRV8323RS\_enable() is used and passes the DRV8323RS instance with it. The code snippet is shown below:
+如果需要将 ENABLE 引脚设置为高电平，则使用 API DRV8323RS\_enable() 并通过其传递 DRV8323RS 实例。代码片段如下所示：
 
 ::
 
@@ -79,17 +79,17 @@ If the ENABLE pin needs to be set high, the API DRV8323RS\_enable() is used and 
         HAL_delayMilliSeconds(DRV8323RS_SPI_READY_DELAY_MS);
     }
 
-When DRV8323RS\_enable() interacts with the HAL layer, it passes the member of the DRV8323RS instance. This is the same concept for using other HAL APIs such as the timer, SPI, DAC, etc. The user is free to expand the HAL’s API to support other peripherals and features of the MSPM0 but it is strongly recommended not to modify existing API to ensure easy migration to new versions of this library.
+当 DRV8323RS\_enable() 与 HAL 层交互时，会传递 DRV8323RS 实例的成员。这与使用其他 HAL API（例如计时器、SPI、DAC 等）的概念相同。用户可以随意扩展 HAL 的 API 以支持 MSPM0 的其他外设和特性，但为了确保能轻松迁移到该库的新版本，强烈建议不要修改现有的 API。
 
-1.3 Motor Driver Module
-~~~~~~~~~~~~~~~~~~~~~~~
+1.3 电机驱动器模块
+~~~~~~~~~~~~~~~~~~
 
-Motor Driver Module uses the HAL APIs to motor driver specific operations APIs like SPI read, SPI write, voltage and current measurements. The idea of this module is to be independent of the hardware and use the HAL APIs to perform the hardware tasks specific to the motor driver.
+电机驱动器模块将 HAL API 用作电机驱动器特定操作 API，例如 SPI 读取、SPI 写入、电压和电流测量。该模块的理念是独立于硬件并使用 HAL API 来执行电机驱动器特定的硬件任务。
 
-Motor Driver Pin Association
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+电机驱动器引脚关联
+^^^^^^^^^^^^^^^^^^
 
-The user before using the Motor Driver module is expected to specify the HAL enums mapped to the motor driver instance. See the below code snippet.
+在使用电机驱动器模块之前，用户需要指定映射到电机驱动器实例的 HAL 枚举。请参阅以下代码片段。
 
 ::
 
@@ -102,10 +102,10 @@ The user before using the Motor Driver module is expected to specify the HAL enu
     drv8323rs.isena   = HAL_ADC_CHANNEL_2;
     drv8323rs.isenb   = HAL_ADC_CHANNEL_0;
 
-Motor Driver APIs
-^^^^^^^^^^^^^^^^^
+电机驱动器 API
+^^^^^^^^^^^^^^
 
-The Motor Driver Module provides simple APIs which the user can use along with an instance of the motor drive module. The motor driver module APIs also handles the motor driver specific logic while keeping the APIs generic, thus the user can use different motor drivers and not worry of any difference in the internal logic. For example, below is an API for updating the SPI registers in the drv8323rs.
+电机驱动器模块提供简单的 API，用户可以将其与电机驱动器模块的实例一同使用。 电机驱动器模块 API 还处理电机驱动器特定逻辑，同时保持 API 通用，因此用户可以使用不同的电机驱动器，而不必担心内部逻辑有任何差异。例如，下面是用于更新 drv8323rs 中 SPI 寄存器的 API。
 
 ::
 
@@ -115,19 +115,19 @@ The Motor Driver Module provides simple APIs which the user can use along with a
         uint16_t dataValue;
         dataValue = (uint16_t) DRV8323RS_spiRead(handle, addr);
         dataValue &= ~(mask);
-        dataValue |= data;
+        dataValue|= data;
         DRV8323RS_spiWrite(handle, addr, dataValue);
     }
 
-Note from the above code snippet that any bit in the spi register in the DRV8323RS can be updated. The register address can be different for different devices, but here the enumerator DRV8323RS\_REG\_ADDR is used so the user doesn’t need to know the address of each register.
+请注意，在上面的代码片段中，DRV8323RS 中 spi 寄存器的任何位都可以修改。不同器件的寄存器地址可以不同，但这里使用枚举器 DRV8323RS\_REG\_ADDR，因此用户不需要知道每个寄存器的地址。
 
-1.4 Sensorless FOC Library Module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.4 无传感器 FOC 库模块
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Overview
-^^^^^^^^
+概述
+^^^^
 
-The Sensorless FOC library contains generic algorithms for 3-phase sensorless FOC motor control. This module has APIs that the user can use to configure and control the FOC motor control. This module takes care of setting the PWM modulations based on the FOC algorithm. This module uses the HAL APIs for any using any hardware resources. The user is required to map the HAL PWM channels for the FOC module. Below is the code snippet that allocates the HAL PWM channels to the foc module.
+无传感器 FOC 库包含用于三相无传感器 FOC 电机控制的通用算法。用户可以使用该模块中的 API 来配置和控制 FOC 电机控制。该模块负责根据 FOC 算法设置 PWM 调制，并通过 HAL API 来使用任何硬件资源。用户需要为 FOC 模块映射 HAL PWM 通道。下面是将 HAL PWM 通道分配给 foc 模块的代码片段。
 
 ::
 
@@ -136,32 +136,32 @@ The Sensorless FOC library contains generic algorithms for 3-phase sensorless FO
     foc.pwmBHal = HAL_PWM_CHANNEL_2;
     foc.pwmCHal = HAL_PWM_CHANNEL_0;
 
-1.5 MSPM0 DriverLib Overview
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.5 MSPM0 DriverLib 概述
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-MSPM0 DriverLib is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. Please refer to the DriverLib documentation for more information.
+MSPM0 DriverLib 是一组功能齐全的 API，用于配置、控制和操作 MSPM0 平台的硬件外设。更多信息，请参阅 DriverLib 文档。
 
-2. Software User Guide
-----------------------
+2. 软件用户指南
+---------------
 
-The Sensorless FOC software can be used along with the CCS debug window. If the user wishes to use the software with GUI, please do look into the GUI user guide for the specific hardware.
+无传感器 FOC 软件可与 CCS 调试窗口一同使用。如果用户想将该软件和 GUI 一同使用，请查看特定硬件的 GUI 用户指南。
 
-2.1 Setting the Motor Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.1 设置电机参数
+~~~~~~~~~~~~~~~~
 
-The motor parameter can be found in the motor\_parameter.h file. There are four motor parameters required for Sensorless FOC:
+电机参数可以在 motor\_parameter.h 文件中找到。无传感器 FOC 需要四个电机参数：
 
--  Stator resistance, Rs (ohm)
--  Stator inductance, Ls (H)
--  Number of motor poles
--  Base maximum RPM of the motor
+-  定子电阻，Rs (Ω)
+-  定子电感，Ls (H)
+-  电机极数量
+-  电机基准 RPM 最大值
 
 .. figure:: images/FOC_MOTOR_PARAMS.jpg
-   :alt: Locate motor parameter c file
+   :alt: 电机参数 c 文件位置
 
-   Locate motor parameter c file
+   电机参数 c 文件位置
 
-These parameters are defined using an #elif statement for a motor. To define these parameters for a custom motor, modify the #define statements for MOTOR\_PARA\_RS, MOTOR\_PARA\_LS, MOTOR\_PARA\_POLES, and MOTOR\_PARA\_BASE\_RPM for USER\_MOTOR. To add another motor, copy and paste the #elif statement below and rename USER\_MOTOR to another name.
+这些参数是使用电机的 #elif 语句定义的。若要为自定义电机定义这些参数，请修改 USER\_MOTOR 的 #define 语句中的 MOTOR\_PARA\_RS、MOTOR\_PARA\_LS、MOTOR\_PARA\_POLES 和 MOTOR\_PARA\_BASE\_RPM。若要添加另一个电机，请复制并粘贴下面的 #elif 语句，并将 USER\_MOTOR 重命名为另一个名称。
 
 ::
 
@@ -176,308 +176,307 @@ These parameters are defined using an #elif statement for a motor. To define the
     /* @brief Base RPM */
     #define MOTOR_PARA_BASE_RPM         5000
 
-To select a motor defined in motor\_params.h, click Project -> Properties in the toolbar. In the Properties window, go to Build -> Arm Compiler -> Predefined Symbols. The pre-defined motor name is LVSERVOMTR=1. To change the pre-defined motor name, click “Edit” and change LVSERVOMTR to another defined motor in motor\_params.h, such as LVBLDCMTR or USER\_MOTOR.
+若要选择在 motor\_params.h 中定义的电机，请点击工具栏中的“Project”->“Properties”。 在“Properties”窗口中，依次转到“Build”->“Arm Compiler”->“Predefined Symbols”。预定义的电机名称为 LVSERVOMTR=1。若要更改预定义的电机名称，请点击 “Edit” 并将 LVSERVOMTR 更改为 motor\_params.h 中定义的另一个电机，例如 LVBLDCMTR 或 USER\_MOTOR。
 
 .. figure:: images/CCS_PREDEFINED_SYMBOL.jpg
-   :alt: Showing LVSERVOMTR=1 symbol
+   :alt: 显示 LVSERVOMTR=1 符号
 
-   Showing LVSERVOMTR=1 symbol
+   显示 LVSERVOMTR=1 符号
 
-2.2 Setting the System Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.2 设置系统参数
+~~~~~~~~~~~~~~~~
 
-The initial parameters are found in the drv8323rs-gui.h file as #define GUI\_DEFAULT\_XXXX. The user is required to set the parameters as per the requirement. By default the default parameters are set for LVSERVOMTR motor.
+初始参数可在 drv8323rs-gui.h 文件中找到，具体形式为 #define GUI\_DEFAULT\_XXXX。用户必须根据需要设置这些参数。默认情况下，为 LVSERVOMTR 电机设置默认参数。
 
-+----------------------+-----------------------------------------------------------------------------+
-| Initial Parameters   | Description                                                                 |
-+======================+=============================================================================+
-| DRV\_VDS\_LVL        | VDS comparator threshold of DRV8323RS                                       |
-+----------------------+-----------------------------------------------------------------------------+
-| DRV\_SEN\_LVL        | OCP level for DRV8323RS                                                     |
-+----------------------+-----------------------------------------------------------------------------+
-| DRV\_CSA\_GAIN       | CSA gain setting for DRV8323RS                                              |
-+----------------------+-----------------------------------------------------------------------------+
-| DRV\_RSHUNT          | Rshunt resistor value in DRV8323RS                                          |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_RS              | Selected motor phase resistance for FOC                                     |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_LS              | Selected motor phase inductance for FOC                                     |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_POLES           | Selected motor poles for FOC                                                |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_BASE\_RPM       | Selected Base rpm for FOC                                                   |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PWMFREQ         | PWM frequency for FOC                                                       |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PWMADCSAMPLE    | PWM counts spend in ADC sampling                                            |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_CNTRLDIV        | Control loop divider for FOC, only set to 1                                 |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_DEADBAND        | Deadband in ns                                                              |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_RSHUNT          | Rshunt resistor value                                                       |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_VOLT\_RATIO     | Bus voltage conversion ratio                                                |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_AMP\_GAIN       | Current amplifier gain                                                      |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_KSLIDE          | Kslide coefficient value                                                    |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PISPD\_KP       | Proportional coefficient for PI controller for speed                        |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PISPD\_KI       | Integral coefficient for PI controller for speed                            |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PISPD\_MAX      | Maximum value output from PI controller for speed                           |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PISPD\_MIN      | Minimum value output from PI controller for speed                           |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PISPD\_DIV      | PI controller for speed Execution divider from FOC control loop frequency   |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PIIQ\_KP        | Proportional coefficient for PI controller for Iq                           |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PIIQ\_KI        | Integral coefficient for PI controller for Iq                               |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PIIQ\_MAX       | Maximum value output from PI controller for Iq                              |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PIIQ\_MIN       | Minimum value output from PI controller for Iq                              |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PIID\_KP        | Proportional coefficient for PI controller for Id                           |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PIID\_KI        | Integral coefficient for PI controller for Id                               |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PIID\_MAX       | Maximum value output from PI controller for Id                              |
-+----------------------+-----------------------------------------------------------------------------+
-| FOC\_PIID\_MIN       | Minimum value output from PI controller for Id                              |
-+----------------------+-----------------------------------------------------------------------------+
++---------------------+---------------------------------------------------+
+| 初始参数            | 说明                                              |
++=====================+===================================================+
+| DRV\_VDS\_LVL       | DRV8323RS 的 VDS 比较器阈值                       |
++---------------------+---------------------------------------------------+
+| DRV\_SEN\_LVL       | DRV8323RS 的 OCP 电平                             |
++---------------------+---------------------------------------------------+
+| DRV\_CSA\_GAIN      | DRV8323RS 的 CSA 增益设置                         |
++---------------------+---------------------------------------------------+
+| DRV\_RSHUNT         | DRV8323RS 中的 Rshunt 阻值                        |
++---------------------+---------------------------------------------------+
+| FOC\_RS             | 为 FOC 选择的电机相电阻                           |
++---------------------+---------------------------------------------------+
+| FOC\_LS             | 为 FOC 选择的电机相电感                           |
++---------------------+---------------------------------------------------+
+| FOC\_POLES          | 为 FOC 选择的电机极                               |
++---------------------+---------------------------------------------------+
+| FOC\_BASE\_RPM      | 为 FOC 选择的基准 rpm                             |
++---------------------+---------------------------------------------------+
+| FOC\_PWMFREQ        | FOC 的 PWM 频率                                   |
++---------------------+---------------------------------------------------+
+| FOC\_PWMADCSAMPLE   | ADC 采样中的 PWM 计数                             |
++---------------------+---------------------------------------------------+
+| FOC\_CNTRLDIV       | FOC 的控制环路分压器，仅设置为 1                  |
++---------------------+---------------------------------------------------+
+| FOC\_DEADBAND       | 死区，以 ns 为单位                                |
++---------------------+---------------------------------------------------+
+| FOC\_RSHUNT         | Rshunt 电阻值                                     |
++---------------------+---------------------------------------------------+
+| FOC\_VOLT\_RATIO    | 总线电压转换率                                    |
++---------------------+---------------------------------------------------+
+| FOC\_AMP\_GAIN      | 电流放大器增益                                    |
++---------------------+---------------------------------------------------+
+| FOC\_KSLIDE         | Kslide 系数值                                     |
++---------------------+---------------------------------------------------+
+| FOC\_PISPD\_KP      | 速度 PI 控制器的比例系数                          |
++---------------------+---------------------------------------------------+
+| FOC\_PISPD\_KI      | 速度 PI 控制器的积分系数                          |
++---------------------+---------------------------------------------------+
+| FOC\_PISPD\_MAX     | 速度 PI 控制器的最大值输出                        |
++---------------------+---------------------------------------------------+
+| FOC\_PISPD\_MIN     | 速度 PI 控制器的最小值输出                        |
++---------------------+---------------------------------------------------+
+| FOC\_PISPD\_DIV     | 针对 FOC 控制环路频率的速度 PI 控制器执行分频器   |
++---------------------+---------------------------------------------------+
+| FOC\_PIIQ\_KP       | Iq PI 控制器的比例系数                            |
++---------------------+---------------------------------------------------+
+| FOC\_PIIQ\_KI       | Iq PI 控制器的积分系数                            |
++---------------------+---------------------------------------------------+
+| FOC\_PIIQ\_MAX      | Iq PI 控制器的最大值输出                          |
++---------------------+---------------------------------------------------+
+| FOC\_PIIQ\_MIN      | Iq PI 控制器的最小值输出                          |
++---------------------+---------------------------------------------------+
+| FOC\_PIID\_KP       | Id PI 控制器的比例系数                            |
++---------------------+---------------------------------------------------+
+| FOC\_PIID\_KI       | Id PI 控制器的积分系数                            |
++---------------------+---------------------------------------------------+
+| FOC\_PIID\_MAX      | Id PI 控制器的最大值输出                          |
++---------------------+---------------------------------------------------+
+| FOC\_PIID\_MIN      | Id PI 控制器的最小值输出                          |
++---------------------+---------------------------------------------------+
 
-2.3 Selecting the Build levels
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.3 选择构建级别
+~~~~~~~~~~~~~~~~
 
-This software package uses an incremental system build to demonstrate a complete fixed-point sensorless Field Oriented control solution. There are 5 selectable build levels choices to incrementally verify the functioning.
+该软件包使用增量式系统构建来演示完整的定点 无传感器磁场定向控制解决方案。共有 5 个可选的构建级别选项来逐步验证功能。
 
-+----------------+----------------------------------------------------------------------+
-| Build Levels   | Description                                                          |
-+================+======================================================================+
-| LEVEL1         | Module functionality check out.                                      |
-+----------------+----------------------------------------------------------------------+
-| LEVEL2         | Verify ADC, park/clarke, calibrate the offset.                       |
-+----------------+----------------------------------------------------------------------+
-| LEVEL3         | Verify closed current(torque) loop and PIDs and speed measurement.   |
-+----------------+----------------------------------------------------------------------+
-| LEVEL4         | Verify speed estimation and rotor position estimation.               |
-+----------------+----------------------------------------------------------------------+
-| LEVEL5         | Verify closed speed loop, speed PID and eSMO.                        |
-+----------------+----------------------------------------------------------------------+
++------------+---------------------------------------------+
+| 构建级别   | 说明                                        |
++============+=============================================+
+| LEVEL1     | 模块功能检查。                              |
++------------+---------------------------------------------+
+| LEVEL2     | 验证 ADC、帕克/克拉克，校准偏移量。         |
++------------+---------------------------------------------+
+| LEVEL3     | 验证电流（扭矩）闭环以及 PID 和速度测量。   |
++------------+---------------------------------------------+
+| LEVEL4     | 验证速度估算和转子位置估算。                |
++------------+---------------------------------------------+
+| LEVEL5     | 验证速度闭环、速度 PID 和 eSMO。            |
++------------+---------------------------------------------+
 
-To select a build level in foc.h, click Project -> Properties in the toolbar. In the Properties window, go to Build -> Arm Compiler -> Predefined Symbols. The pre-defined BUILDLEVEL name is LEVEL5. To change the pre-defined build level, click “Edit” and change LEVEL5 to another defined build level in foc.h.
+若要在 foc.h 中选择构建级别，请点击工具栏中的“Project”->“Properties”。在“Properties”窗口中，依次转到“Build”->“Arm Compiler”->“Predefined Symbols”。预定义的 BUILDLEVEL 名称为 LEVEL5。若要更改预定义的构建级别，请点击“Edit”并将 LEVEL5 更改为在 foc.h 中定义的另一个构建级别。
 
 .. figure:: images/FOC_BUILD_LEVELS.jpg
-   :alt: Build levels
+   :alt: 构建级别
 
-   Build levels
+   构建级别
 
-Important Note
-~~~~~~~~~~~~~~
+重要说明
+~~~~~~~~
 
-The build levels are only used for verifying the modules. While using a build level lower than LEVEL5, the user should only use the motor in a no-load condition. The user should use LEVEL5 as final build level for the user to test the motor in loaded conditions.
+构建级别仅用于验证模块。当使用低于 LEVEL5 的构建级别时，用户只能在空载条件下使用电机。用户应使用 LEVEL5 作为最终构建级别，以在负载条件下测试电机。
 
-2.4 Variables for controlling motor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.4 用于控制电机的变量
+~~~~~~~~~~~~~~~~~~~~~~
 
-Below are the list of variables to include in the debug window for controlling the motor. Note, for variables in IQ24 type, set the type by right clicking the variables and changing to IQ type 24.
+下方是包含在调试窗口中用于控制电机的变量列表。注意，对于 IQ24 类型的变量，请通过右键点击变量并更改为 IQ 类型 24 来设置类型。
 
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| Variables                    | Description                                                                                                                                                                                                                                                                                                 | Type      |
-+==============================+=============================================================================================================================================================================================================================================================================================================+===========+
-| enableFOC                    | Control whether FOC is enabled or disabled. If set 0, PWM is disabled and the drive is in HighZ state. If set 1, The PWM output is set as per the FOC code.                                                                                                                                                 | boolean   |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| lsw                          | Controls the FOC state. If set 0, Aligns the motor to A phase. If set 1, Rotates the motor in open loop with speed from speedRef variable. If set 2, Rotates the motor in closed loop with speed from speedRef variable. lsw=2 is not applicable to Build levels other than LEVEL5 and should not be set.   | int       |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| idRef                        | Set the align current in per unit.                                                                                                                                                                                                                                                                          | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| iqRef                        | Set the q axis current in lsw = 1 in per unit.                                                                                                                                                                                                                                                              | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| speedRef                     | Sets the reference speed, used in open loop acceleration and in lsw = 2                                                                                                                                                                                                                                     | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| speedEst.EstimatedSpeed      | Display the estimated motor speed in per unit.                                                                                                                                                                                                                                                              | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| speedEst.EstimatedSpeedRpm   | Display the estimated motor speed in RPM.                                                                                                                                                                                                                                                                   | int       |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| piSpd.Kp                     | Proportional constant in PI for Speed.                                                                                                                                                                                                                                                                      | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| piSpd.Ki                     | Integral constant in PI for Speed.                                                                                                                                                                                                                                                                          | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| piId.Kp                      | Proportional constant in PI for Id current.                                                                                                                                                                                                                                                                 | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| piId.Ki                      | Integral constant in PI for Id current.                                                                                                                                                                                                                                                                     | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| piIq.Kp                      | Proportional constant in PI for Iq current.                                                                                                                                                                                                                                                                 | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| piIq.Ki                      | Integral constant in PI for Iq current.                                                                                                                                                                                                                                                                     | IQ24      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| guiOverCurrentLimit          | Value of phase current in ampere above which software triggers overcurrent                                                                                                                                                                                                                                  | float     |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| guiVmOverVoltageLimit        | Value of voltage in volts above which software triggers overvoltage fault.                                                                                                                                                                                                                                  | float     |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| guiVmUnderVoltageLimit       | Value of voltage in volts below which software triggers undervoltage fault.                                                                                                                                                                                                                                 | float     |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| gui\_faults.clearFault       | if set 1, clears all the fault bits.                                                                                                                                                                                                                                                                        | bool      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| gui\_faults.drvFault         | Set when drv fault is detected.                                                                                                                                                                                                                                                                             | bool      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| gui\_faults.uvlo             | Set when undervoltage is detected.                                                                                                                                                                                                                                                                          | bool      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| gui\_faults.ovlo             | Set when overvoltage is detected.                                                                                                                                                                                                                                                                           | bool      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| gui\_faults.ocp              | Set when overcurrent is detected.                                                                                                                                                                                                                                                                           | bool      |
-+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| 变量                         | 说明                                                                                                                                                                                                                       | 类型    |
++==============================+============================================================================================================================================================================================================================+=========+
+| enableFOC                    | 控制是启用还是禁用 FOC。如果设为 0，则禁用 PWM，并且驱动处于高阻态。如果设为 1，则根据 FOC 代码设置 PWM 输出。                                                                                                             | 布尔    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| lsw                          | 控制 FOC 状态。如果设为 0，则将电机与 A 相对齐。如果设为 1，则以 speedRef 变量设置的速度在开环中旋转电机。如果设为 2，则以 speedRef 变量设置的速度在闭环中旋转电机。lsw=2 不适用于 LEVEL5 以外的构建级别，并且不应设置。   | int     |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| idRef                        | 设置对齐电流（标幺值）。                                                                                                                                                                                                   | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| iqRef                        | 设置 lsw = 1 下的 q 轴电流（标幺值）。                                                                                                                                                                                     | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| speedRef                     | 设置用于开环加速且 lsw = 2 下的基准速度                                                                                                                                                                                    | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| speedEst.EstimatedSpeed      | 显示估算的电机速度（标幺值）。                                                                                                                                                                                             | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| speedEst.EstimatedSpeedRpm   | 显示估算的电机速度（以 RPM 为单位）。                                                                                                                                                                                      | int     |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| piSpd.Kp                     | 速度 PI 中的比例常量。                                                                                                                                                                                                     | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| piSpd.Ki                     | 速度 PI 中的积分常量。                                                                                                                                                                                                     | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| piId.Kp                      | Id 电流 PI 中的比例常量。                                                                                                                                                                                                  | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| piId.Ki                      | Id 电流 PI 中的积分常量。                                                                                                                                                                                                  | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| piIq.Kp                      | Iq 电流 PI 中的比例常量。                                                                                                                                                                                                  | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| piIq.Ki                      | Iq 电流 PI 中的积分常量。                                                                                                                                                                                                  | IQ24    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| guiOverCurrentLimit          | 以安培为单位的相电流值，高于该值时，软件将触发过流                                                                                                                                                                         | float   |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| guiVmOverVoltageLimit        | 以伏特为单位的电压值，高于该值时，软件将触发过压故障。                                                                                                                                                                     | float   |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| guiVmUnderVoltageLimit       | 以伏特为单位的电压值，低于该值时，软件将触发欠压故障。                                                                                                                                                                     | float   |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| gui\_faults.clearFault       | 如果设为 1，则清除所有故障位。                                                                                                                                                                                             | bool    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| gui\_faults.drvFault         | 在检测到 drv 故障时设置。                                                                                                                                                                                                  | bool    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| gui\_faults.uvlo             | 在检测到欠压时设置。                                                                                                                                                                                                       | bool    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| gui\_faults.ovlo             | 在检测到过压时设置。                                                                                                                                                                                                       | bool    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+| gui\_faults.ocp              | 在检测到过流时设置。                                                                                                                                                                                                       | bool    |
++------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
-2.5 Running the motor
-~~~~~~~~~~~~~~~~~~~~~
+2.5 电机运行
+~~~~~~~~~~~~
 
-Below is the steps to run the motor:
+电机运行的步骤如下：
 
-1.  Check if enableFOC = 0.
+1.  检查 enableFOC 是否为 0。
 
-2.  Check if any fault bit in the “gui\_faults” structure is set. If any fault is set, clear the fault by setting gui\_faults.clearFault = 1.
+2.  检查“gui\_faults”结构中是否设置了任何故障位。如果设置了任何故障，请通过设置 gui\_faults.clearFault = 1 来清除故障。
 
-3.  Set idRef to desired Align current.
+3.  将 idRef 设置为所需的对齐电流。
 
-4.  Set iqRef to desired open loop current.
+4.  将 iqRef 设置为所需的开环电流。
 
-5.  Set speedRef to desired open loop speed.
+5.  将 speedRef 设置为所需的开环速度。
 
-6.  Set lsw = 0 to align the motor to the A phase. Note with enableFOC = 0, the FOC is disabled currently.
+6.  设置 lsw = 0 可使电机与 A 相对齐。请注意，当 enableFOC = 0 时，FOC 当前被禁用。
 
-7.  Set enableFOC = 1 to enable the FOC code to actuate the PWM. Because lsw = 0, we should see positive current in the A phase and half of the negative current in the B and C phases. If current is not constant, see PI tuning for Id.
+7.  设置 enableFOC = 1 可启用 FOC 代码来驱动 PWM。因为 lsw = 0，所以我们应该在 A 相中看到正电流，在 B 相和 C 相中看到一半的负电流。如果电流不是恒定的，请参阅针对 Id 的 PI 调优。
 
-8.  Set lsw = 1 to switch to open loop. The motor starts to spin and ramp to the speed set in speedRef. If the motor is vibrating, reset to lsw = 0 and set a higher IdRef value. The current in the A phase should be sinusoidal. If there are spikes in current or distorted waveforms, see PI tuning for Iq.
+8.  设置 lsw = 1 可切换到开环。电机开始旋转并加速至在 speedRef 中设置的速度。如果电机振动，则复位为 lsw = 0 并设置更高的 IdRef 值。A 相电流应为正弦波。如果电流存在尖峰或波形失真，请参阅针对 Iq 的 PI 调优。
 
-9.  Set lsw = 2 to switch to closed loop. The estimated motor speed (speedEst.EstimatedSpeed) should match speedRef across load conditions and the motor should continue to run smoothly.
+9.  设置 lsw = 2 可切换到闭环。估算的电机速度 (speedEst.EstimatedSpeed) 应在负载条件下与 speedRef 匹配，并且电机应继续平稳运行。
 
-10. Increase or decrease speedRef to run the desired motor speed. Check if the motor speed is stable after the ramp and no oscillations in speed occur, especially if load is applied. If the motor speed is unstable or there are oscillations in the final speed, use the speed PI controller to modify the speed control response.
+10. 提高或降低 speedRef 则可以所需的电机速度运行。检查斜升后电机速度是否稳定，是否未出现速度振荡，特别是在施加负载时。如果电机速度不稳定或最终速度存在振荡，请使用速度 PI 控制器修改速度控制响应。
 
-11. To stop the motor, set enableFOC = 0.
+11. 若要停止电机，请设置 enableFOC = 0。
 
-12. If a fault occurs, the corresponding fault will be set in the gui\_faults structure.
+12. 如果发生故障，则会在 gui\_faults 结构中设置相应的故障。
 
-13. To clear the fault, remove the fault condition and set gui\_faults.clearFault. The corresponding fault bit will be cleared.
+13. 若要清除故障，请移除故障条件并设置 gui\_faults.clearFault。相应的故障位将被清除。
 
-2.6 Tuning the motor
-~~~~~~~~~~~~~~~~~~~~
+2.6 电机调优
+~~~~~~~~~~~~
 
-Tuning PI controllers
-~~~~~~~~~~~~~~~~~~~~~
+PI 控制器调优
+~~~~~~~~~~~~~
 
-There are three PI controllers for Speed, Id current and Iq current. For tuning a PI controller, the user should first adjust the Kp first and then adjust the Ki for that PI controller. To tune the PI controllers:
+共有 3 个 PI 控制器：速度 PI 控制器、Id 电流 PI 控制器和 Iq 电流 PI 控制器。若要对 PI 控制器进行调优，用户应首先调整 Kp，然后调整该 PI 控制器的 Ki。 对 PI 控制器进行调优的方法如下：
 
--  Use lsw = 0 to tune PI Id gains (piId.kp, piId.ki)
--  Use lsw = 1 to tune PI Iq gains (piIq.kp, piIq.ki)
--  Use lsw = 2 in PI speed gains (piSpd.kp, piSpd.ki)
+-  使用 lsw = 0 可对 PI Id 增益（piId.kp、piId.ki）进行调优
+-  使用 lsw = 1 可对 PI Iq 增益（piIq.kp、piIq.ki）进行调优
+-  在 PI 速度增益中使用 lsw = 2（piSpd.kp、piSpd.ki）
 
-2.7 Logging the variables
-~~~~~~~~~~~~~~~~~~~~~~~~~
+2.7 记录变量
+~~~~~~~~~~~~
 
-The user can add the \_\_ENABLE\_LOG predefined symbol to enable logging. The user can set the log index and variable as shown in the below code:
+用户可以添加 \_\_ENABLE\_LOG 预定义符号来启用日志记录。用户可以设置日志索引和变量，如以下代码所示：
 
 ::
 
         FOC_addVarToLog(FOC_LOG_IDX_0, phaseVolt.Valpha);
 
-To see the logged data as a graph, the user can add the variable cssLog[X], where X is the index. Right click the variable and select “Graph”.
+若要以图表形式查看记录的数据，用户可以添加变量 cssLog[X]，其中 X 是索引。右键点击该变量，然后选择“Graph”。
 
 .. figure:: images/CCS_GRAPH.jpg
-   :alt: Image of graph
+   :alt: 图形图像
 
-   Image of graph
+   图形图像
 
-Select “Continuous Refresh” mode to see continuous data.
+选择“Continuous Refresh”模式可查看连续数据。
 
 .. figure:: images/CCS_GRAPH_CONT_REFRESH.jpg
-   :alt: Image of graph
+   :alt: 图形图像
 
-   Image of graph
+   图形图像
 
-**Note that the software consumes 24KB extra space in SRAM to store the values when logging is enabled.**
+**请注意，启用日志记录功能后，软件会占用 24KB 的额外 SRAM 空间来存储值。**
 
-2.8 Access SPI Register
-~~~~~~~~~~~~~~~~~~~~~~~
+2.8 访问 SPI 寄存器
+~~~~~~~~~~~~~~~~~~~
 
-The software allows to independently change values in the SPI registers of the DRV. There are 3 options of writing to SPI register. Below are the variables and examples to use.
+软件允许分别更改 DRV SPI 寄存器中的值。可通过 3 个选项写入 SPI 寄存器。下面是要使用的变量和示例。
 
-There are 3 options in SPI register:
+SPI 寄存器中有 3 个选项：
 
-1. Write 8-bit data to register
+1. 将 8 位数据写入寄存器
 
-+-------------------------+--------------------------------------+
-| Variables               | Description                          |
-+=========================+======================================+
-| gui\_spi.writeRegFlag   | Writes the register when set to 1.   |
-+-------------------------+--------------------------------------+
-| gui\_spi.writeRegAddr   | Set address of register to write.    |
-+-------------------------+--------------------------------------+
-| gui\_spi.writeRegData   | Set data of register to write.       |
-+-------------------------+--------------------------------------+
++-------------------------+----------------------------+
+| 变量                    | 说明                       |
++=========================+============================+
+| gui\_spi.writeRegFlag   | 设为 1 时写入寄存器。      |
++-------------------------+----------------------------+
+| gui\_spi.writeRegAddr   | 设置要写入的寄存器地址。   |
++-------------------------+----------------------------+
+| gui\_spi.writeRegData   | 设置要写入的寄存器数据。   |
++-------------------------+----------------------------+
 
-For example, to write 0x01 to the Gate Drive HS register, select gui\_spi.writeRegAddr as DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS, set gui\_spi.writeRegData = 0x01, and then set gui\_spi.writeRegFlag = 1.
+例如，若要将 0x01 写入栅极驱动器 HS 寄存器，请选择 gui\_spi.writeRegAddr 为 DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS，设置 gui\_spi.writeRegData = 0x01，然后设置 gui\_spi.writeRegFlag = 1。
 
-2. Update some bits in SPI register
+2. 更新 SPI 寄存器中的某些位
 
-+---------------------------------+-------------------------------------------+
-| Variables                       | Description                               |
-+=================================+===========================================+
-| gui\_spi.writeBitfieldRegFlag   | Writes the bitfield when set to 1.        |
-+---------------------------------+-------------------------------------------+
-| gui\_spi.writeBitfieldRegAddr   | Set register address to write Bitfield.   |
-+---------------------------------+-------------------------------------------+
-| gui\_spi.bitfieldRegPosData     | Set position of Bitfield to write.        |
-+---------------------------------+-------------------------------------------+
-| gui\_spi.bitfieldRegMaskData    | Set mask of Bitfield to write.            |
-+---------------------------------+-------------------------------------------+
-| gui\_spi.writeBitfieldRegData   | Set data of Bitfield to write.            |
-+---------------------------------+-------------------------------------------+
++---------------------------------+----------------------------------+
+| 变量                            | 说明                             |
++=================================+==================================+
+| gui\_spi.writeBitfieldRegFlag   | 设为 1 时写入位字段。            |
++---------------------------------+----------------------------------+
+| gui\_spi.writeBitfieldRegAddr   | 设置要写入位字段的寄存器地址。   |
++---------------------------------+----------------------------------+
+| gui\_spi.bitfieldRegPosData     | 设置要写入位字段的位置。         |
++---------------------------------+----------------------------------+
+| gui\_spi.bitfieldRegMaskData    | 设置要写入位字段的掩码。         |
++---------------------------------+----------------------------------+
+| gui\_spi.writeBitfieldRegData   | 设置要写入位字段的数据。         |
++---------------------------------+----------------------------------+
 
-For setting IDRIVEP\_HS = 0x03 register, select gui\_spi.writeBitfieldRegAddr as DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS, set gui\_spi.bitfieldRegPosData = 0x04, set gui\_spi.bitfieldRegMaskData = 0x03, set gui\_spi.writeBitfieldRegData = 0x03 and then set gui\_spi.writeBitfieldRegFlag = 1.
+若要设置 IDRIVEP\_HS = 0x03 寄存器，请选择 gui\_spi.writeBitfieldRegAddr 为 DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS，设置 gui\_spi.bitfieldRegPosData = 0x04，设置 gui\_spi.bitfieldRegMaskData = 0x03，设置 gui\_spi.writeBitfieldRegData = 0x03，然后设置 gui\_spi.writeBitfieldRegFlag = 1。
 
-3. Read SPI register
+3. 读取 SPI 寄存器
 
-+------------------------+-------------------------------------+
-| Variables              | Description                         |
-+========================+=====================================+
-| gui\_spi.readRegFlag   | Reads the register when set to 1.   |
-+------------------------+-------------------------------------+
-| gui\_spi.readRegAddr   | Set address of register to read.    |
-+------------------------+-------------------------------------+
-| gui\_spi.readRegData   | Shows data read from register.      |
-+------------------------+-------------------------------------+
++------------------------+----------------------------+
+| 变量                   | 说明                       |
++========================+============================+
+| gui\_spi.readRegFlag   | 设为 1 时读取寄存器。      |
++------------------------+----------------------------+
+| gui\_spi.readRegAddr   | 设置要读取的寄存器地址。   |
++------------------------+----------------------------+
+| gui\_spi.readRegData   | 显示从寄存器读取的数据。   |
++------------------------+----------------------------+
 
-For reading the Gate Driver HS register, select gui\_spi.readRegAddr as DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS, and then set gui\_spi.writeRegFlag = 1. The data read can be seen in gui\_spi.readRegData.
+若要读取栅极驱动器 HS 寄存器，请选择 gui\_spi.readRegAddr 为 DRV8323RS\_REG\_ADDR\_GATE\_DRIVE\_HS，然后设置 gui\_spi.writeRegFlag = 1。读取的数据可以在 gui\_spi.readRegData 中看到。
 
-3. API Guide
-------------
+3. API 指南
+-----------
 
--  `Sensorless FOC API Guide <../../doxygen/api_guide/html/index.html>`__
+-  `无传感器 FOC API 指南 <../../doxygen/api_guide/html/index.html>`__
 
-4. Known Issues
----------------
+4. 已知问题
+-----------
 
-1. Function implicit declaration warning for IQrepeat function while compiling.
-2. Current solution supports power up to 100W. Applying high torque at low speeds can cause motor to spin backwards with high rpm.
+1.编译时针对 IQrepeat 函数发出函数隐式声明警告。 2.当前的解决方案支持高达 100W 的功率。在低速下施加高扭矩会导致电机以高 rpm 向后旋转。
 
-5. Supported Devices
---------------------
+5. 支持的器件
+-------------
 
 DRV8323RS
 ~~~~~~~~~
 
-Supported MSPM0 Launchpads
+支持的 MSPM0 Launchpad
 
 -  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
 
-Links
+链接
 
--  `Hardware User Guide <drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html>`__
+-  `硬件用户指南 <drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html>`__
 
--  `GUI User Guide <drv8323rs/DRV8323RS_GUI_User_Guide_CN.html>`__
+-  `GUI 用户指南 <drv8323rs/DRV8323RS_GUI_User_Guide_CN.html>`__
 
 -  `MSPM0G3507-DRV8323RS-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI>`__

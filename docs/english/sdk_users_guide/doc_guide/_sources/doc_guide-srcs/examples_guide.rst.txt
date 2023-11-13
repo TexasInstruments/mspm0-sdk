@@ -252,6 +252,102 @@ N
 
    <td>
 
+lcd\_multi\_port
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+1-wire target emulating a EEPROM interface
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image3|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+lcd\_single\_port
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+1-wire target emulating a EEPROM interface
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image4|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
 one\_wire
 
 .. raw:: html
@@ -282,7 +378,7 @@ N
 
    <td align="center">
 
-|image3|
+|image5|
 
 .. raw:: html
 
@@ -348,6 +444,54 @@ Y
 
    <td>
 
+pir\_motion\_detection
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+PIR Motion Detection using integrated OPA for the signal chain
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image6|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
 pulse\_oximeter
 
 .. raw:: html
@@ -378,7 +522,7 @@ N
 
    <td align="center">
 
-|image4|
+|image7|
 
 .. raw:: html
 
@@ -510,7 +654,7 @@ AES256 CBC encryption and decryption example
 
    <td align="center">
 
-|image5|
+|image8|
 
 .. raw:: html
 
@@ -558,7 +702,7 @@ AES CFB 256 bit decryption example
 
    <td align="center">
 
-|image6|
+|image9|
 
 .. raw:: html
 
@@ -606,7 +750,7 @@ AES OFB 128 bit encryption example
 
    <td align="center">
 
-|image7|
+|image10|
 
 .. raw:: html
 
@@ -739,7 +883,7 @@ ADC12 conversion at maximum frequency using DMA with hardware averaging enabled
 
    <td align="center">
 
-|image8|
+|image11|
 
 .. raw:: html
 
@@ -749,7 +893,7 @@ ADC12 conversion at maximum frequency using DMA with hardware averaging enabled
 
    <td align="center">
 
-|image9|
+|image12|
 
 .. raw:: html
 
@@ -787,7 +931,7 @@ ADC12 samples internal temperature sensor and converts reading to Celsius and Fa
 
    <td align="center">
 
-|image10|
+|image13|
 
 .. raw:: html
 
@@ -835,7 +979,7 @@ ADC12 conversion at maximum frequency using DMA
 
    <td align="center">
 
-|image11|
+|image14|
 
 .. raw:: html
 
@@ -845,7 +989,7 @@ ADC12 conversion at maximum frequency using DMA
 
    <td align="center">
 
-|image12|
+|image15|
 
 .. raw:: html
 
@@ -883,7 +1027,7 @@ ADC12 conversion at maximum frequency using DMA in 8 bit resolution
 
    <td align="center">
 
-|image13|
+|image16|
 
 .. raw:: html
 
@@ -893,7 +1037,7 @@ ADC12 conversion at maximum frequency using DMA in 8 bit resolution
 
    <td align="center">
 
-|image14|
+|image17|
 
 .. raw:: html
 
@@ -931,7 +1075,7 @@ ADC12 monitors voltage supply channel
 
    <td align="center">
 
-|image15|
+|image18|
 
 .. raw:: html
 
@@ -941,7 +1085,7 @@ ADC12 monitors voltage supply channel
 
    <td align="center">
 
-|image16|
+|image19|
 
 .. raw:: html
 
@@ -979,7 +1123,7 @@ Demonstrate configuring ADC to trigger sequence of conversions on 4 different ch
 
    <td align="center">
 
-|image17|
+|image20|
 
 .. raw:: html
 
@@ -989,7 +1133,7 @@ Demonstrate configuring ADC to trigger sequence of conversions on 4 different ch
 
    <td align="center">
 
-|image18|
+|image21|
 
 .. raw:: html
 
@@ -1027,7 +1171,7 @@ Dual ADC12 conversion triggered by a Timer event
 
    <td align="center">
 
-|image19|
+|image22|
 
 .. raw:: html
 
@@ -1075,7 +1219,7 @@ Dual ADC12 conversion triggered by a Timer event while in STOP mode
 
    <td align="center">
 
-|image20|
+|image23|
 
 .. raw:: html
 
@@ -1123,7 +1267,7 @@ ADC12 simple single conversion triggered by software
 
    <td align="center">
 
-|image21|
+|image24|
 
 .. raw:: html
 
@@ -1133,7 +1277,7 @@ ADC12 simple single conversion triggered by software
 
    <td align="center">
 
-|image22|
+|image25|
 
 .. raw:: html
 
@@ -1171,7 +1315,7 @@ ADC12 single conversion triggered by software using external reference
 
    <td align="center">
 
-|image23|
+|image26|
 
 .. raw:: html
 
@@ -1181,7 +1325,7 @@ ADC12 single conversion triggered by software using external reference
 
    <td align="center">
 
-|image24|
+|image27|
 
 .. raw:: html
 
@@ -1219,7 +1363,7 @@ ADC12 single conversion triggered by software using internal VREF
 
    <td align="center">
 
-|image25|
+|image28|
 
 .. raw:: html
 
@@ -1229,7 +1373,7 @@ ADC12 single conversion triggered by software using internal VREF
 
    <td align="center">
 
-|image26|
+|image29|
 
 .. raw:: html
 
@@ -1267,7 +1411,7 @@ ADC12 conversion triggered by a Timer event
 
    <td align="center">
 
-|image27|
+|image30|
 
 .. raw:: html
 
@@ -1277,7 +1421,7 @@ ADC12 conversion triggered by a Timer event
 
    <td align="center">
 
-|image28|
+|image31|
 
 .. raw:: html
 
@@ -1315,7 +1459,7 @@ ADC12 conversion triggered by a Timer event while in STOP mode
 
    <td align="center">
 
-|image29|
+|image32|
 
 .. raw:: html
 
@@ -1325,7 +1469,7 @@ ADC12 conversion triggered by a Timer event while in STOP mode
 
    <td align="center">
 
-|image30|
+|image33|
 
 .. raw:: html
 
@@ -1363,7 +1507,7 @@ ADC12 single conversion in repeat mode using window comparator feature
 
    <td align="center">
 
-|image31|
+|image34|
 
 .. raw:: html
 
@@ -1373,7 +1517,7 @@ ADC12 single conversion in repeat mode using window comparator feature
 
    <td align="center">
 
-|image32|
+|image35|
 
 .. raw:: html
 
@@ -1496,7 +1640,7 @@ Comparator using external inputs with hysteresis and output analog filter
 
    <td align="center">
 
-|image33|
+|image36|
 
 .. raw:: html
 
@@ -1506,7 +1650,7 @@ Comparator using external inputs with hysteresis and output analog filter
 
    <td align="center">
 
-|image34|
+|image37|
 
 .. raw:: html
 
@@ -1544,7 +1688,7 @@ Comparator output using 8-bit DAC triggers a timer event to measure timing
 
    <td align="center">
 
-|image35|
+|image38|
 
 .. raw:: html
 
@@ -1554,7 +1698,7 @@ Comparator output using 8-bit DAC triggers a timer event to measure timing
 
    <td align="center">
 
-|image36|
+|image39|
 
 .. raw:: html
 
@@ -1592,7 +1736,7 @@ Comparator in high-speed mode using 8-bit DAC with external VREF
 
    <td align="center">
 
-|image37|
+|image40|
 
 .. raw:: html
 
@@ -1602,7 +1746,7 @@ Comparator in high-speed mode using 8-bit DAC with external VREF
 
    <td align="center">
 
-|image38|
+|image41|
 
 .. raw:: html
 
@@ -1640,7 +1784,7 @@ Comparator in high-speed mode triggers a TIMA fault
 
    <td align="center">
 
-|image39|
+|image42|
 
 .. raw:: html
 
@@ -1688,7 +1832,7 @@ Comparator in low-power mode using 8-bit DAC with internal VREF
 
    <td align="center">
 
-|image40|
+|image43|
 
 .. raw:: html
 
@@ -1821,7 +1965,7 @@ MCAN transmits and receives messages using loopback mode
 
    <td align="center">
 
-|image41|
+|image44|
 
 .. raw:: html
 
@@ -1869,7 +2013,7 @@ Example configured to receive CAN and CAN-FD frames
 
    <td align="center">
 
-|image42|
+|image45|
 
 .. raw:: html
 
@@ -1917,7 +2061,7 @@ Example configured to receive CAN and CAN-FD frames using BOOSTXL-TCAN1145 boost
 
    <td align="center">
 
-|image43|
+|image46|
 
 .. raw:: html
 
@@ -1965,7 +2109,7 @@ CAN-FD transmits two messages with unique ID on GPIO interrupt
 
    <td align="center">
 
-|image44|
+|image47|
 
 .. raw:: html
 
@@ -2013,7 +2157,7 @@ CAN-FD transmits two messages with unique ID on GPIO interrupt using BOOSTXL-TCA
 
    <td align="center">
 
-|image45|
+|image48|
 
 .. raw:: html
 
@@ -2061,7 +2205,7 @@ CAN-FD transmits a single message on GPIO interrupt
 
    <td align="center">
 
-|image46|
+|image49|
 
 .. raw:: html
 
@@ -2194,7 +2338,7 @@ CRC32 checksum calculation of a memory block
 
    <td align="center">
 
-|image47|
+|image50|
 
 .. raw:: html
 
@@ -2204,7 +2348,7 @@ CRC32 checksum calculation of a memory block
 
    <td align="center">
 
-|image48|
+|image51|
 
 .. raw:: html
 
@@ -2242,7 +2386,7 @@ CRC32 checksum calculation of a memory block using DMA block transfer
 
    <td align="center">
 
-|image49|
+|image52|
 
 .. raw:: html
 
@@ -2252,7 +2396,7 @@ CRC32 checksum calculation of a memory block using DMA block transfer
 
    <td align="center">
 
-|image50|
+|image53|
 
 .. raw:: html
 
@@ -2375,7 +2519,7 @@ DAC12 using DMA with sample time generator to generate sine wave
 
    <td align="center">
 
-|image51|
+|image54|
 
 .. raw:: html
 
@@ -2423,7 +2567,7 @@ DAC12 sending repetitive signal using FIFO and sample timer generator
 
    <td align="center">
 
-|image52|
+|image55|
 
 .. raw:: html
 
@@ -2471,7 +2615,7 @@ DAC12 sending a sawtooth signal using FIFO and triggered by a Timer event
 
    <td align="center">
 
-|image53|
+|image56|
 
 .. raw:: html
 
@@ -2519,7 +2663,7 @@ DAC12 setting a fixed voltage output
 
    <td align="center">
 
-|image54|
+|image57|
 
 .. raw:: html
 
@@ -2652,7 +2796,7 @@ DMA copies from Flash main memory to SRAM memory
 
    <td align="center">
 
-|image55|
+|image58|
 
 .. raw:: html
 
@@ -2662,7 +2806,7 @@ DMA copies from Flash main memory to SRAM memory
 
    <td align="center">
 
-|image56|
+|image59|
 
 .. raw:: html
 
@@ -2700,7 +2844,7 @@ DMA memory fill of SRAM using DMA
 
    <td align="center">
 
-|image57|
+|image60|
 
 .. raw:: html
 
@@ -2710,7 +2854,7 @@ DMA memory fill of SRAM using DMA
 
    <td align="center">
 
-|image58|
+|image61|
 
 .. raw:: html
 
@@ -2748,7 +2892,7 @@ DMA using Table mode with DMA
 
    <td align="center">
 
-|image59|
+|image62|
 
 .. raw:: html
 
@@ -2758,7 +2902,7 @@ DMA using Table mode with DMA
 
    <td align="center">
 
-|image60|
+|image63|
 
 .. raw:: html
 
@@ -2881,7 +3025,7 @@ Event configuration to toggle LED when switch is pressed
 
    <td align="center">
 
-|image61|
+|image64|
 
 .. raw:: html
 
@@ -2891,7 +3035,7 @@ Event configuration to toggle LED when switch is pressed
 
    <td align="center">
 
-|image62|
+|image65|
 
 .. raw:: html
 
@@ -3014,7 +3158,7 @@ GPIO triggers interrupt by input capture pin
 
    <td align="center">
 
-|image63|
+|image66|
 
 .. raw:: html
 
@@ -3024,7 +3168,7 @@ GPIO triggers interrupt by input capture pin
 
    <td align="center">
 
-|image64|
+|image67|
 
 .. raw:: html
 
@@ -3062,7 +3206,7 @@ Demonstrates how to simultaneously service three GPIO interrupts
 
    <td align="center">
 
-|image65|
+|image68|
 
 .. raw:: html
 
@@ -3110,7 +3254,7 @@ GPIO output is set based on polled input
 
    <td align="center">
 
-|image66|
+|image69|
 
 .. raw:: html
 
@@ -3120,7 +3264,7 @@ GPIO output is set based on polled input
 
    <td align="center">
 
-|image67|
+|image70|
 
 .. raw:: html
 
@@ -3158,7 +3302,7 @@ GPIO toggling an output pin
 
    <td align="center">
 
-|image68|
+|image71|
 
 .. raw:: html
 
@@ -3168,7 +3312,7 @@ GPIO toggling an output pin
 
    <td align="center">
 
-|image69|
+|image72|
 
 .. raw:: html
 
@@ -3206,7 +3350,7 @@ GPIO toggling output pins using C++
 
    <td align="center">
 
-|image70|
+|image73|
 
 .. raw:: html
 
@@ -3216,7 +3360,7 @@ GPIO toggling output pins using C++
 
    <td align="center">
 
-|image71|
+|image74|
 
 .. raw:: html
 
@@ -3254,7 +3398,7 @@ GPIO toggling an ouputput pin configured as Hi-Z
 
    <td align="center">
 
-|image72|
+|image75|
 
 .. raw:: html
 
@@ -3264,7 +3408,7 @@ GPIO toggling an ouputput pin configured as Hi-Z
 
    <td align="center">
 
-|image73|
+|image76|
 
 .. raw:: html
 
@@ -3387,7 +3531,7 @@ GPAmp configured in buffer mode with output to ADC
 
    <td align="center">
 
-|image74|
+|image77|
 
 .. raw:: html
 
@@ -3397,7 +3541,7 @@ GPAmp configured in buffer mode with output to ADC
 
    <td align="center">
 
-|image75|
+|image78|
 
 .. raw:: html
 
@@ -3435,7 +3579,7 @@ GPAmp configured in general purpose Rail-to-Rail mode
 
    <td align="center">
 
-|image76|
+|image79|
 
 .. raw:: html
 
@@ -3445,7 +3589,7 @@ GPAmp configured in general purpose Rail-to-Rail mode
 
    <td align="center">
 
-|image77|
+|image80|
 
 .. raw:: html
 
@@ -3568,7 +3712,7 @@ I2C Controller reading and writing multiple bytes using interrupts with FIFO
 
    <td align="center">
 
-|image78|
+|image81|
 
 .. raw:: html
 
@@ -3578,7 +3722,7 @@ I2C Controller reading and writing multiple bytes using interrupts with FIFO
 
    <td align="center">
 
-|image79|
+|image82|
 
 .. raw:: html
 
@@ -3616,7 +3760,7 @@ I2C Controller reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image80|
+|image83|
 
 .. raw:: html
 
@@ -3626,7 +3770,7 @@ I2C Controller reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image81|
+|image84|
 
 .. raw:: html
 
@@ -3664,7 +3808,7 @@ I2C dynamic switching between Controller and Target modes
 
    <td align="center">
 
-|image82|
+|image85|
 
 .. raw:: html
 
@@ -3674,7 +3818,7 @@ I2C dynamic switching between Controller and Target modes
 
    <td align="center">
 
-|image83|
+|image86|
 
 .. raw:: html
 
@@ -3712,7 +3856,7 @@ I2C Controller detecting arbitration error
 
    <td align="center">
 
-|image84|
+|image87|
 
 .. raw:: html
 
@@ -3722,7 +3866,7 @@ I2C Controller detecting arbitration error
 
    <td align="center">
 
-|image85|
+|image88|
 
 .. raw:: html
 
@@ -3760,7 +3904,7 @@ I2C Target reading and writing multiple bytes using interrupts
 
    <td align="center">
 
-|image86|
+|image89|
 
 .. raw:: html
 
@@ -3770,7 +3914,7 @@ I2C Target reading and writing multiple bytes using interrupts
 
    <td align="center">
 
-|image87|
+|image90|
 
 .. raw:: html
 
@@ -3808,7 +3952,7 @@ I2C Target reading and writing multiple bytes using interrupts while in STOP mod
 
    <td align="center">
 
-|image88|
+|image91|
 
 .. raw:: html
 
@@ -3818,7 +3962,7 @@ I2C Target reading and writing multiple bytes using interrupts while in STOP mod
 
    <td align="center">
 
-|image89|
+|image92|
 
 .. raw:: html
 
@@ -3856,7 +4000,7 @@ I2C Target reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image90|
+|image93|
 
 .. raw:: html
 
@@ -3866,7 +4010,7 @@ I2C Target reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image91|
+|image94|
 
 .. raw:: html
 
@@ -3989,7 +4133,7 @@ MATHACL multiply and divide using fixed point
 
    <td align="center">
 
-|image92|
+|image95|
 
 .. raw:: html
 
@@ -4037,7 +4181,7 @@ MATHACL implementation of trigonometric functions
 
    <td align="center">
 
-|image93|
+|image96|
 
 .. raw:: html
 
@@ -4170,7 +4314,7 @@ Implementation of Flash Blank Verify command
 
    <td align="center">
 
-|image94|
+|image97|
 
 .. raw:: html
 
@@ -4180,7 +4324,7 @@ Implementation of Flash Blank Verify command
 
    <td align="center">
 
-|image95|
+|image98|
 
 .. raw:: html
 
@@ -4218,7 +4362,7 @@ Flash configured with dynamic protection
 
    <td align="center">
 
-|image96|
+|image99|
 
 .. raw:: html
 
@@ -4228,7 +4372,7 @@ Flash configured with dynamic protection
 
    <td align="center">
 
-|image97|
+|image100|
 
 .. raw:: html
 
@@ -4266,7 +4410,7 @@ Flash ECC testing and SEC and DED error detection
 
    <td align="center">
 
-|image98|
+|image101|
 
 .. raw:: html
 
@@ -4314,7 +4458,7 @@ Implementation of Flash read verify commands on multiple data sizes, with and wi
 
    <td align="center">
 
-|image99|
+|image102|
 
 .. raw:: html
 
@@ -4324,7 +4468,7 @@ Implementation of Flash read verify commands on multiple data sizes, with and wi
 
    <td align="center">
 
-|image100|
+|image103|
 
 .. raw:: html
 
@@ -4362,7 +4506,7 @@ Flash writing of different size data
 
    <td align="center">
 
-|image101|
+|image104|
 
 .. raw:: html
 
@@ -4372,7 +4516,7 @@ Flash writing of different size data
 
    <td align="center">
 
-|image102|
+|image105|
 
 .. raw:: html
 
@@ -4410,7 +4554,7 @@ Read-write of Non-Main Flash memory
 
    <td align="center">
 
-|image103|
+|image106|
 
 .. raw:: html
 
@@ -4420,7 +4564,7 @@ Read-write of Non-Main Flash memory
 
    <td align="center">
 
-|image104|
+|image107|
 
 .. raw:: html
 
@@ -4458,7 +4602,7 @@ Flash programming with ECC
 
    <td align="center">
 
-|image105|
+|image108|
 
 .. raw:: html
 
@@ -4591,7 +4735,7 @@ OPA in buffer mode enabling burnout current source to ADC
 
    <td align="center">
 
-|image106|
+|image109|
 
 .. raw:: html
 
@@ -4601,7 +4745,7 @@ OPA in buffer mode enabling burnout current source to ADC
 
    <td align="center">
 
-|image107|
+|image110|
 
 .. raw:: html
 
@@ -4639,7 +4783,7 @@ OPA in output buffer mode using 8-bit DAC
 
    <td align="center">
 
-|image108|
+|image111|
 
 .. raw:: html
 
@@ -4649,7 +4793,7 @@ OPA in output buffer mode using 8-bit DAC
 
    <td align="center">
 
-|image109|
+|image112|
 
 .. raw:: html
 
@@ -4687,7 +4831,7 @@ OPA in general purpose mode with Rail-to-Rail configuration
 
    <td align="center">
 
-|image110|
+|image113|
 
 .. raw:: html
 
@@ -4697,7 +4841,7 @@ OPA in general purpose mode with Rail-to-Rail configuration
 
    <td align="center">
 
-|image111|
+|image114|
 
 .. raw:: html
 
@@ -4735,7 +4879,7 @@ OPA in inverting PGA configuration using DAC12 as bias
 
    <td align="center">
 
-|image112|
+|image115|
 
 .. raw:: html
 
@@ -4783,7 +4927,7 @@ OPA in non-inverting PGA configuration
 
    <td align="center">
 
-|image113|
+|image116|
 
 .. raw:: html
 
@@ -4793,7 +4937,7 @@ OPA in non-inverting PGA configuration
 
    <td align="center">
 
-|image114|
+|image117|
 
 .. raw:: html
 
@@ -4831,7 +4975,7 @@ Two OPAs configured in TIA and PGA, connected to ADC
 
    <td align="center">
 
-|image115|
+|image118|
 
 .. raw:: html
 
@@ -4964,7 +5108,7 @@ Bypass CINIT skipping variable initialization
 
    <td align="center">
 
-|image116|
+|image119|
 
 .. raw:: html
 
@@ -4974,7 +5118,7 @@ Bypass CINIT skipping variable initialization
 
    <td align="center">
 
-|image117|
+|image120|
 
 .. raw:: html
 
@@ -5012,7 +5156,7 @@ Empty start-up project using DriverLib
 
    <td align="center">
 
-|image118|
+|image121|
 
 .. raw:: html
 
@@ -5022,7 +5166,7 @@ Empty start-up project using DriverLib
 
    <td align="center">
 
-|image119|
+|image122|
 
 .. raw:: html
 
@@ -5060,7 +5204,7 @@ Empty C++ start-up project using DriverLib
 
    <td align="center">
 
-|image120|
+|image123|
 
 .. raw:: html
 
@@ -5070,7 +5214,7 @@ Empty C++ start-up project using DriverLib
 
    <td align="center">
 
-|image121|
+|image124|
 
 .. raw:: html
 
@@ -5108,7 +5252,7 @@ Empty start-up project using DriverLib
 
    <td align="center">
 
-|image122|
+|image125|
 
 .. raw:: html
 
@@ -5118,7 +5262,7 @@ Empty start-up project using DriverLib
 
    <td align="center">
 
-|image123|
+|image126|
 
 .. raw:: html
 
@@ -5204,7 +5348,7 @@ NVIC used to demonstrate best approach to disable interrupts
 
    <td align="center">
 
-|image124|
+|image127|
 
 .. raw:: html
 
@@ -5214,7 +5358,7 @@ NVIC used to demonstrate best approach to disable interrupts
 
    <td align="center">
 
-|image125|
+|image128|
 
 .. raw:: html
 
@@ -5252,7 +5396,7 @@ NVIC configuration and use of interrupt grouping
 
    <td align="center">
 
-|image126|
+|image129|
 
 .. raw:: html
 
@@ -5262,7 +5406,7 @@ NVIC configuration and use of interrupt grouping
 
    <td align="center">
 
-|image127|
+|image130|
 
 .. raw:: html
 
@@ -5300,7 +5444,7 @@ Initializes and uses Parity SRAM
 
    <td align="center">
 
-|image128|
+|image131|
 
 .. raw:: html
 
@@ -5348,7 +5492,7 @@ SysTick generates periodic interrupt
 
    <td align="center">
 
-|image129|
+|image132|
 
 .. raw:: html
 
@@ -5358,7 +5502,7 @@ SysTick generates periodic interrupt
 
    <td align="center">
 
-|image130|
+|image133|
 
 .. raw:: html
 
@@ -5481,7 +5625,7 @@ RTC sets calendar alarm and toggles GPIO when alarm is triggered
 
    <td align="center">
 
-|image131|
+|image134|
 
 .. raw:: html
 
@@ -5529,7 +5673,7 @@ RTC offset correction of crystal
 
    <td align="center">
 
-|image132|
+|image135|
 
 .. raw:: html
 
@@ -5577,7 +5721,7 @@ RTC implementation of periodic alarm in STANDBY using LFOSC
 
    <td align="center">
 
-|image133|
+|image136|
 
 .. raw:: html
 
@@ -5625,7 +5769,7 @@ RTC implementation of periodic alarm in STANDBY using LFXT
 
    <td align="center">
 
-|image134|
+|image137|
 
 .. raw:: html
 
@@ -5758,7 +5902,7 @@ SPI Controller transmit using command data (CD) control
 
    <td align="center">
 
-|image135|
+|image138|
 
 .. raw:: html
 
@@ -5768,7 +5912,7 @@ SPI Controller transmit using command data (CD) control
 
    <td align="center">
 
-|image136|
+|image139|
 
 .. raw:: html
 
@@ -5806,7 +5950,7 @@ SPI Controller transmits data using Motorola format
 
    <td align="center">
 
-|image137|
+|image140|
 
 .. raw:: html
 
@@ -5816,7 +5960,7 @@ SPI Controller transmits data using Motorola format
 
    <td align="center">
 
-|image138|
+|image141|
 
 .. raw:: html
 
@@ -5854,7 +5998,7 @@ SPI Controller with internal loopback using polling
 
    <td align="center">
 
-|image139|
+|image142|
 
 .. raw:: html
 
@@ -5864,7 +6008,7 @@ SPI Controller with internal loopback using polling
 
    <td align="center">
 
-|image140|
+|image143|
 
 .. raw:: html
 
@@ -5902,7 +6046,7 @@ SPI Controller reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image141|
+|image144|
 
 .. raw:: html
 
@@ -5912,7 +6056,7 @@ SPI Controller reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image142|
+|image145|
 
 .. raw:: html
 
@@ -5950,7 +6094,7 @@ SPI Controller reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image143|
+|image146|
 
 .. raw:: html
 
@@ -5960,7 +6104,7 @@ SPI Controller reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image144|
+|image147|
 
 .. raw:: html
 
@@ -5998,7 +6142,7 @@ SPI Controller transmit and read data using register format
 
    <td align="center">
 
-|image145|
+|image148|
 
 .. raw:: html
 
@@ -6008,7 +6152,7 @@ SPI Controller transmit and read data using register format
 
    <td align="center">
 
-|image146|
+|image149|
 
 .. raw:: html
 
@@ -6046,7 +6190,7 @@ SPI Controller reading and writing multiple bytes using FIFO and DMA every secon
 
    <td align="center">
 
-|image147|
+|image150|
 
 .. raw:: html
 
@@ -6056,7 +6200,7 @@ SPI Controller reading and writing multiple bytes using FIFO and DMA every secon
 
    <td align="center">
 
-|image148|
+|image151|
 
 .. raw:: html
 
@@ -6094,7 +6238,7 @@ SPI Peripheral echoes data using Motorola format
 
    <td align="center">
 
-|image149|
+|image152|
 
 .. raw:: html
 
@@ -6104,7 +6248,7 @@ SPI Peripheral echoes data using Motorola format
 
    <td align="center">
 
-|image150|
+|image153|
 
 .. raw:: html
 
@@ -6142,7 +6286,7 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image151|
+|image154|
 
 .. raw:: html
 
@@ -6152,7 +6296,7 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image152|
+|image155|
 
 .. raw:: html
 
@@ -6190,7 +6334,7 @@ SPI Peripheral reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image153|
+|image156|
 
 .. raw:: html
 
@@ -6200,7 +6344,7 @@ SPI Peripheral reading and writing multiple bytes polling FIFO
 
    <td align="center">
 
-|image154|
+|image157|
 
 .. raw:: html
 
@@ -6238,7 +6382,7 @@ SPI Peripheral transmit and read data using register format
 
    <td align="center">
 
-|image155|
+|image158|
 
 .. raw:: html
 
@@ -6248,7 +6392,7 @@ SPI Peripheral transmit and read data using register format
 
    <td align="center">
 
-|image156|
+|image159|
 
 .. raw:: html
 
@@ -6286,7 +6430,7 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image157|
+|image160|
 
 .. raw:: html
 
@@ -6296,7 +6440,7 @@ SPI Peripheral reading and writing multiple bytes using FIFO and DMA
 
    <td align="center">
 
-|image158|
+|image161|
 
 .. raw:: html
 
@@ -6419,7 +6563,7 @@ Monitor SYSOSC via Frequency Clock Counter (FCC)
 
    <td align="center">
 
-|image159|
+|image162|
 
 .. raw:: html
 
@@ -6467,7 +6611,7 @@ Sets external HFXT as source to HSCLK and MCLK (48MHz)
 
    <td align="center">
 
-|image160|
+|image163|
 
 .. raw:: html
 
@@ -6515,7 +6659,7 @@ Sets LFXT as source to LFCLK (32kHz) and power policy in STANDBY0
 
    <td align="center">
 
-|image161|
+|image164|
 
 .. raw:: html
 
@@ -6563,7 +6707,7 @@ Sets MCLK to run from SYSPLL (80MHz)
 
    <td align="center">
 
-|image162|
+|image165|
 
 .. raw:: html
 
@@ -6611,7 +6755,7 @@ SYSCTL switches between SLEEP mode and STANDBY modes
 
    <td align="center">
 
-|image163|
+|image166|
 
 .. raw:: html
 
@@ -6621,7 +6765,7 @@ SYSCTL switches between SLEEP mode and STANDBY modes
 
    <td align="center">
 
-|image164|
+|image167|
 
 .. raw:: html
 
@@ -6659,7 +6803,7 @@ SYSCTL switches between SLEEP mode and STOP modes
 
    <td align="center">
 
-|image165|
+|image168|
 
 .. raw:: html
 
@@ -6669,7 +6813,7 @@ SYSCTL switches between SLEEP mode and STOP modes
 
    <td align="center">
 
-|image166|
+|image169|
 
 .. raw:: html
 
@@ -6707,7 +6851,7 @@ Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP
 
    <td align="center">
 
-|image167|
+|image170|
 
 .. raw:: html
 
@@ -6717,7 +6861,7 @@ Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP
 
    <td align="center">
 
-|image168|
+|image171|
 
 .. raw:: html
 
@@ -6840,7 +6984,7 @@ TimerA in periodic mode using repeat-count feature
 
    <td align="center">
 
-|image169|
+|image172|
 
 .. raw:: html
 
@@ -6888,7 +7032,7 @@ TimerA outputs PWM signals with dead band insertion
 
    <td align="center">
 
-|image170|
+|image173|
 
 .. raw:: html
 
@@ -6936,7 +7080,7 @@ TimerA demonstrating fault detection
 
    <td align="center">
 
-|image171|
+|image174|
 
 .. raw:: html
 
@@ -7069,7 +7213,7 @@ timg\_32bit\_timer\_mode\_periodic\_sleep
 
    <td align="center">
 
-|image172|
+|image175|
 
 .. raw:: html
 
@@ -7117,7 +7261,7 @@ timg\_32bit\_timer\_mode\_pwm\_edge\_sleep
 
    <td align="center">
 
-|image173|
+|image176|
 
 .. raw:: html
 
@@ -7165,7 +7309,7 @@ TimerG uses QEI to decode relative position output of a quadrature encoder
 
    <td align="center">
 
-|image174|
+|image177|
 
 .. raw:: html
 
@@ -7298,7 +7442,7 @@ Timer calculates period and duty cycle
 
    <td align="center">
 
-|image175|
+|image178|
 
 .. raw:: html
 
@@ -7308,7 +7452,7 @@ Timer calculates period and duty cycle
 
    <td align="center">
 
-|image176|
+|image179|
 
 .. raw:: html
 
@@ -7346,7 +7490,7 @@ Timer edge time detection using Timer capture mode
 
    <td align="center">
 
-|image177|
+|image180|
 
 .. raw:: html
 
@@ -7356,7 +7500,7 @@ Timer edge time detection using Timer capture mode
 
    <td align="center">
 
-|image178|
+|image181|
 
 .. raw:: html
 
@@ -7394,7 +7538,7 @@ Timer edge counting capability using compare mode
 
    <td align="center">
 
-|image179|
+|image182|
 
 .. raw:: html
 
@@ -7404,7 +7548,7 @@ Timer edge counting capability using compare mode
 
    <td align="center">
 
-|image180|
+|image183|
 
 .. raw:: html
 
@@ -7442,7 +7586,7 @@ Timer in one-shot mode while device is in STANDBY mode
 
    <td align="center">
 
-|image181|
+|image184|
 
 .. raw:: html
 
@@ -7452,7 +7596,7 @@ Timer in one-shot mode while device is in STANDBY mode
 
    <td align="center">
 
-|image182|
+|image185|
 
 .. raw:: html
 
@@ -7490,7 +7634,7 @@ Timer in periodic mode while device is in SLEEP mode
 
    <td align="center">
 
-|image183|
+|image186|
 
 .. raw:: html
 
@@ -7500,7 +7644,7 @@ Timer in periodic mode while device is in SLEEP mode
 
    <td align="center">
 
-|image184|
+|image187|
 
 .. raw:: html
 
@@ -7538,7 +7682,7 @@ Timer in periodic mode while device is in STANDBY mode
 
    <td align="center">
 
-|image185|
+|image188|
 
 .. raw:: html
 
@@ -7548,7 +7692,7 @@ Timer in periodic mode while device is in STANDBY mode
 
    <td align="center">
 
-|image186|
+|image189|
 
 .. raw:: html
 
@@ -7586,7 +7730,7 @@ Timer in periodic mode while device is in STOP mode
 
    <td align="center">
 
-|image187|
+|image190|
 
 .. raw:: html
 
@@ -7596,7 +7740,7 @@ Timer in periodic mode while device is in STOP mode
 
    <td align="center">
 
-|image188|
+|image191|
 
 .. raw:: html
 
@@ -7634,7 +7778,7 @@ Timer in PWM center aligned mode while device is in STOP mode
 
    <td align="center">
 
-|image189|
+|image192|
 
 .. raw:: html
 
@@ -7644,7 +7788,7 @@ Timer in PWM center aligned mode while device is in STOP mode
 
    <td align="center">
 
-|image190|
+|image193|
 
 .. raw:: html
 
@@ -7682,7 +7826,7 @@ Timer in PWM mode after coming out of STOP with retention in SW
 
    <td align="center">
 
-|image191|
+|image194|
 
 .. raw:: html
 
@@ -7730,7 +7874,7 @@ Timer in PWM edge aligned mode while device is in SLEEP mode
 
    <td align="center">
 
-|image192|
+|image195|
 
 .. raw:: html
 
@@ -7740,7 +7884,7 @@ Timer in PWM edge aligned mode while device is in SLEEP mode
 
    <td align="center">
 
-|image193|
+|image196|
 
 .. raw:: html
 
@@ -7778,7 +7922,7 @@ Timer updating PWM duty cycle using shadow load feature
 
    <td align="center">
 
-|image194|
+|image197|
 
 .. raw:: html
 
@@ -7788,7 +7932,7 @@ Timer updating PWM duty cycle using shadow load feature
 
    <td align="center">
 
-|image195|
+|image198|
 
 .. raw:: html
 
@@ -7911,7 +8055,7 @@ TRNG sampling to fill a buffer with random data
 
    <td align="center">
 
-|image196|
+|image199|
 
 .. raw:: html
 
@@ -7959,7 +8103,7 @@ TRNG sample random data after coming out of STOP with retention in SW
 
    <td align="center">
 
-|image197|
+|image200|
 
 .. raw:: html
 
@@ -8092,7 +8236,7 @@ UART RX/TX echo using interrupts while device is in STANDBY mode
 
    <td align="center">
 
-|image198|
+|image201|
 
 .. raw:: html
 
@@ -8102,7 +8246,103 @@ UART RX/TX echo using interrupts while device is in STANDBY mode
 
    <td align="center">
 
-|image199|
+|image202|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+uart\_extend\_irda\_receive\_packet
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+UART Extend using IrDA encoding, send packet via UART
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image203|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+uart\_extend\_irda\_send\_packet
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+UART Extend using IrDA encoding, send packet via UART
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image204|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
 
 .. raw:: html
 
@@ -8140,7 +8380,7 @@ UART Extend using Manchester encoding, echo received packet
 
    <td align="center">
 
-|image200|
+|image205|
 
 .. raw:: html
 
@@ -8150,7 +8390,7 @@ UART Extend using Manchester encoding, echo received packet
 
    <td align="center">
 
-|image201|
+|image206|
 
 .. raw:: html
 
@@ -8188,7 +8428,7 @@ UART Extend using Manchester encoding and decoding, send a packet
 
    <td align="center">
 
-|image202|
+|image207|
 
 .. raw:: html
 
@@ -8198,7 +8438,7 @@ UART Extend using Manchester encoding and decoding, send a packet
 
    <td align="center">
 
-|image203|
+|image208|
 
 .. raw:: html
 
@@ -8236,7 +8476,7 @@ UART RX/TX external loopback using interrupts
 
    <td align="center">
 
-|image204|
+|image209|
 
 .. raw:: html
 
@@ -8246,7 +8486,7 @@ UART RX/TX external loopback using interrupts
 
    <td align="center">
 
-|image205|
+|image210|
 
 .. raw:: html
 
@@ -8284,7 +8524,7 @@ UART internal loopback after coming out of STANDBY with retention in SW
 
    <td align="center">
 
-|image206|
+|image211|
 
 .. raw:: html
 
@@ -8332,7 +8572,7 @@ Demonstrate UART in RS485 mode, receive a packet
 
    <td align="center">
 
-|image207|
+|image212|
 
 .. raw:: html
 
@@ -8380,7 +8620,7 @@ Demonstrate UART in RS485 mode, send a packet
 
    <td align="center">
 
-|image208|
+|image213|
 
 .. raw:: html
 
@@ -8428,7 +8668,7 @@ UART RX/TX using FIFOs with polling
 
    <td align="center">
 
-|image209|
+|image214|
 
 .. raw:: html
 
@@ -8438,7 +8678,7 @@ UART RX/TX using FIFOs with polling
 
    <td align="center">
 
-|image210|
+|image215|
 
 .. raw:: html
 
@@ -8476,7 +8716,7 @@ UART RX using HW flow control
 
    <td align="center">
 
-|image211|
+|image216|
 
 .. raw:: html
 
@@ -8486,7 +8726,7 @@ UART RX using HW flow control
 
    <td align="center">
 
-|image212|
+|image217|
 
 .. raw:: html
 
@@ -8524,7 +8764,7 @@ UART RX using a DMA trigger
 
    <td align="center">
 
-|image213|
+|image218|
 
 .. raw:: html
 
@@ -8534,7 +8774,7 @@ UART RX using a DMA trigger
 
    <td align="center">
 
-|image214|
+|image219|
 
 .. raw:: html
 
@@ -8572,7 +8812,7 @@ UART TX to console using a continuous DMA Triggers
 
    <td align="center">
 
-|image215|
+|image220|
 
 .. raw:: html
 
@@ -8582,7 +8822,7 @@ UART TX to console using a continuous DMA Triggers
 
    <td align="center">
 
-|image216|
+|image221|
 
 .. raw:: html
 
@@ -8620,7 +8860,7 @@ UART TX using hardware flow control
 
    <td align="center">
 
-|image217|
+|image222|
 
 .. raw:: html
 
@@ -8630,7 +8870,7 @@ UART TX using hardware flow control
 
    <td align="center">
 
-|image218|
+|image223|
 
 .. raw:: html
 
@@ -8668,7 +8908,7 @@ UART TX using a DMA trigger
 
    <td align="center">
 
-|image219|
+|image224|
 
 .. raw:: html
 
@@ -8678,7 +8918,7 @@ UART TX using a DMA trigger
 
    <td align="center">
 
-|image220|
+|image225|
 
 .. raw:: html
 
@@ -8801,7 +9041,7 @@ WWDT interval timer mode using LFOSC while device is in STANDBY mode
 
    <td align="center">
 
-|image221|
+|image226|
 
 .. raw:: html
 
@@ -8811,7 +9051,7 @@ WWDT interval timer mode using LFOSC while device is in STANDBY mode
 
    <td align="center">
 
-|image222|
+|image227|
 
 .. raw:: html
 
@@ -8849,7 +9089,7 @@ WWDT interval timer mode using LFXT while device is in STANDBY mode
 
    <td align="center">
 
-|image223|
+|image228|
 
 .. raw:: html
 
@@ -8897,7 +9137,7 @@ WWDT Window watchdog mode with periodic reset
 
    <td align="center">
 
-|image224|
+|image229|
 
 .. raw:: html
 
@@ -8907,7 +9147,7 @@ WWDT Window watchdog mode with periodic reset
 
    <td align="center">
 
-|image225|
+|image230|
 
 .. raw:: html
 
@@ -9017,7 +9257,55 @@ LP\_MSPM0L1306
 
    <td>
 
-gpio\_interrupt
+adc\_singlechannel
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Get the samples from the configured ADC channel and print them on the console using UART
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+Y
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+gpiointerrupt
 
 .. raw:: html
 
@@ -9294,7 +9582,7 @@ LP\_MSPM0L1306
 
    <td>
 
-uart\_echo
+uart\_echo/nortos
 
 .. raw:: html
 
@@ -9338,7 +9626,238 @@ N
 
    </table>
 
-2.4 Boot Image Manager (BIM)
+2.4 Battery Gauge
+~~~~~~~~~~~~~~~~~
+
+The MSPM0 SDK includes source code and examples showing the implementation of different battery gauge solutions. Documentation includes links to companion application reports describing the solutions in more detail.
+
+.. raw:: html
+
+   <table class="docutils align-default">
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <th rowspan="2">
+
+Project Name
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th rowspan="2">
+
+Description
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th colspan="2">
+
+.. raw:: html
+
+   <p style="text-align: center;">
+
+EVM
+
+.. raw:: html
+
+   </p>
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0G3507
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0L1306
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+gauge\_level1
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+The level1 gauge approach utilizes the ADC to implement a low-cost voltage detection solution
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+Y
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+gauge\_level2
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+The level2 gauge solution utilizes the ADC and OPAs on MSPM0 for high precison voltage and current detection
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+Y
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+self\_calibrate\_current\_detection
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+This example demonstrates a self-calibratable, high precision and low-cost current detection solution based on MSPM0 internal OPAs
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+Y
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   </table>
+
+2.5 Boot Image Manager (BIM)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The MSPM0 SDK includes a boot image manager implementation to demonstrate how a user can verify integrity and authenticity of images loaded onto their device.
@@ -9449,7 +9968,7 @@ Sample GPIO toggle image for BIM
 
    <td align="center">
 
-|image226|
+|image231|
 
 .. raw:: html
 
@@ -9459,7 +9978,7 @@ Sample GPIO toggle image for BIM
 
    <td align="center">
 
-|image227|
+|image232|
 
 .. raw:: html
 
@@ -9497,7 +10016,7 @@ Boot Image Manager Using MCUBoot
 
    <td align="center">
 
-|image228|
+|image233|
 
 .. raw:: html
 
@@ -9507,7 +10026,7 @@ Boot Image Manager Using MCUBoot
 
    <td align="center">
 
-|image229|
+|image234|
 
 .. raw:: html
 
@@ -9521,7 +10040,7 @@ Boot Image Manager Using MCUBoot
 
    </table>
 
-2.5 Bootstrap Loader (BSL)
+2.6 Bootstrap Loader (BSL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The bootstrap loader (BSL) provides a method to program and/or verify the device memory through a standard UART or I2C serial interface. Among its features, the BSL supports MAIN flash plugins to enable additional interfaces and functionality.
@@ -9614,6 +10133,102 @@ LP\_MSPM0L1306
 
    <td>
 
+bsl\_can\_flash\_interface
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Shows an implementation of a BSL CAN Flash interface
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+Y
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+bsl\_host\_mcu\_can
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Shows an implementation of a BSL host utilizing CAN interface
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+Y
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
 bsl\_host\_mcu\_i2c\_to\_m0g\_target
 
 .. raw:: html
@@ -9634,7 +10249,7 @@ Shows an implementation of BSL I2C Flash interface with MSPM0G as host to MSPM0G
 
    <td align="center">
 
-|image230|
+|image235|
 
 .. raw:: html
 
@@ -9682,7 +10297,7 @@ Shows an implementation of BSL I2C Flash interface with MSPM0G as host to MSPM0L
 
    <td align="center">
 
-|image231|
+|image236|
 
 .. raw:: html
 
@@ -9778,7 +10393,7 @@ Shows an implementation of BSL UART Flash interface with MSPM0G as host to MSPM0
 
    <td align="center">
 
-|image232|
+|image237|
 
 .. raw:: html
 
@@ -9826,7 +10441,7 @@ Shows an implementation of BSL UART Flash interface with MSPM0G as host to MSPM0
 
    <td align="center">
 
-|image233|
+|image238|
 
 .. raw:: html
 
@@ -9874,7 +10489,7 @@ Shows an implementation of BSL I2C Flash interface
 
    <td align="center">
 
-|image234|
+|image239|
 
 .. raw:: html
 
@@ -9884,7 +10499,7 @@ Shows an implementation of BSL I2C Flash interface
 
    <td align="center">
 
-|image235|
+|image240|
 
 .. raw:: html
 
@@ -9922,7 +10537,7 @@ Jump to ROM bootloader on application request
 
    <td align="center">
 
-|image236|
+|image241|
 
 .. raw:: html
 
@@ -9932,7 +10547,7 @@ Jump to ROM bootloader on application request
 
    <td align="center">
 
-|image237|
+|image242|
 
 .. raw:: html
 
@@ -9970,7 +10585,7 @@ Shows an implementation of a BSL SPI Flash interface
 
    <td align="center">
 
-|image238|
+|image243|
 
 .. raw:: html
 
@@ -9980,7 +10595,7 @@ Shows an implementation of a BSL SPI Flash interface
 
    <td align="center">
 
-|image239|
+|image244|
 
 .. raw:: html
 
@@ -10018,7 +10633,7 @@ Shows an implementation of a BSL UART Flash interface
 
    <td align="center">
 
-|image240|
+|image245|
 
 .. raw:: html
 
@@ -10028,7 +10643,7 @@ Shows an implementation of a BSL UART Flash interface
 
    <td align="center">
 
-|image241|
+|image246|
 
 .. raw:: html
 
@@ -10066,7 +10681,7 @@ Implements a secondary bootloader in Main overriding the ROM BSL
 
    <td align="center">
 
-|image242|
+|image247|
 
 .. raw:: html
 
@@ -10076,7 +10691,7 @@ Implements a secondary bootloader in Main overriding the ROM BSL
 
    <td align="center">
 
-|image243|
+|image248|
 
 .. raw:: html
 
@@ -10090,7 +10705,7 @@ Implements a secondary bootloader in Main overriding the ROM BSL
 
    </table>
 
-2.6 CMSIS-DSP
+2.7 CMSIS-DSP
 ~~~~~~~~~~~~~
 
 The CMSIS DSP software library includes a comprehensive set of signal processing functions for use on Cortex-M MCUs.
@@ -10203,7 +10818,7 @@ Empty example using CMSIS-DSP
 
    <td align="center">
 
-|image244|
+|image249|
 
 .. raw:: html
 
@@ -10213,7 +10828,7 @@ Empty example using CMSIS-DSP
 
    <td align="center">
 
-|image245|
+|image250|
 
 .. raw:: html
 
@@ -10251,7 +10866,7 @@ FFT of fixed point array using CMSIS-DSP
 
    <td align="center">
 
-|image246|
+|image251|
 
 .. raw:: html
 
@@ -10261,7 +10876,7 @@ FFT of fixed point array using CMSIS-DSP
 
    <td align="center">
 
-|image247|
+|image252|
 
 .. raw:: html
 
@@ -10275,7 +10890,7 @@ FFT of fixed point array using CMSIS-DSP
 
    </table>
 
-2.7 Cookbook
+2.8 Cookbook
 ~~~~~~~~~~~~
 
 The MSPM0 SDK Cookbook contains examples showing more complex functionality implemented with multiple peripherals.
@@ -10398,7 +11013,55 @@ N
 
    <td align="center">
 
-|image248|
+|image253|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+adc\_to\_i2c\_target
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Sample ADC and respond to I2C commands sent by a controller
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image254|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image255|
 
 .. raw:: html
 
@@ -10436,7 +11099,7 @@ Convert analog voltage to PWM
 
    <td align="center">
 
-|image249|
+|image256|
 
 .. raw:: html
 
@@ -10446,7 +11109,7 @@ Convert analog voltage to PWM
 
    <td align="center">
 
-|image250|
+|image257|
 
 .. raw:: html
 
@@ -10484,7 +11147,7 @@ Sample ADC and respond to SPI commands sent by a controller
 
    <td align="center">
 
-|image251|
+|image258|
 
 .. raw:: html
 
@@ -10494,7 +11157,7 @@ Sample ADC and respond to SPI commands sent by a controller
 
    <td align="center">
 
-|image252|
+|image259|
 
 .. raw:: html
 
@@ -10532,7 +11195,7 @@ Configures the ADC0 to trigger single conversion and send the ADC data through U
 
    <td align="center">
 
-|image253|
+|image260|
 
 .. raw:: html
 
@@ -10542,7 +11205,55 @@ Configures the ADC0 to trigger single conversion and send the ADC data through U
 
    <td align="center">
 
-|image254|
+|image261|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+data\_sensor\_aggregator
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+This example reads all the sensors on the BP-BASSENSORSMKI using I2C then transmits all of the data through UART to the MSPM0.
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image262|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
 
 .. raw:: html
 
@@ -10590,7 +11301,7 @@ N
 
    <td align="center">
 
-|image255|
+|image263|
 
 .. raw:: html
 
@@ -10638,7 +11349,7 @@ N
 
    <td align="center">
 
-|image256|
+|image264|
 
 .. raw:: html
 
@@ -10676,7 +11387,7 @@ Applies digital FIR low-pass filter to sampled ADC signals
 
    <td align="center">
 
-|image257|
+|image265|
 
 .. raw:: html
 
@@ -10724,7 +11435,7 @@ Applies digital IIR filter to sampled ADC signals
 
    <td align="center">
 
-|image258|
+|image266|
 
 .. raw:: html
 
@@ -10772,7 +11483,7 @@ This sub system allows for different pins/applications be turned on/off in a seq
 
    <td align="center">
 
-|image259|
+|image267|
 
 .. raw:: html
 
@@ -10782,7 +11493,7 @@ This sub system allows for different pins/applications be turned on/off in a seq
 
    <td align="center">
 
-|image260|
+|image268|
 
 .. raw:: html
 
@@ -10830,7 +11541,7 @@ N
 
    <td align="center">
 
-|image261|
+|image269|
 
 .. raw:: html
 
@@ -10878,7 +11589,7 @@ N
 
    <td align="center">
 
-|image262|
+|image270|
 
 .. raw:: html
 
@@ -10916,7 +11627,7 @@ This example demonstrates using the two switches on the MSPM0 Launchpad to chang
 
    <td align="center">
 
-|image263|
+|image271|
 
 .. raw:: html
 
@@ -10974,7 +11685,7 @@ N
 
    <td align="center">
 
-|image264|
+|image272|
 
 .. raw:: html
 
@@ -11012,7 +11723,7 @@ Create a pulsating LED effect using timers
 
    <td align="center">
 
-|image265|
+|image273|
 
 .. raw:: html
 
@@ -11022,7 +11733,7 @@ Create a pulsating LED effect using timers
 
    <td align="center">
 
-|image266|
+|image274|
 
 .. raw:: html
 
@@ -11060,7 +11771,7 @@ OPA supports two different sensor input voltages and uses common ADC channel
 
    <td align="center">
 
-|image267|
+|image275|
 
 .. raw:: html
 
@@ -11071,6 +11782,54 @@ OPA supports two different sensor input voltages and uses common ADC channel
    <td align="center">
 
 N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+task\_scheduler
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+A simple run to completion task scheduler
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image276|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image277|
 
 .. raw:: html
 
@@ -11118,7 +11877,7 @@ N
 
    <td align="center">
 
-|image268|
+|image278|
 
 .. raw:: html
 
@@ -11166,7 +11925,103 @@ N
 
    <td align="center">
 
-|image269|
+|image279|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+two\_opa\_instrumentation\_amplifier
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Along with an external circuit this code amplifies the difference between two voltage inputs and outputs a single ended signal while rejecting the common-mode voltage.
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image280|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image281|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+uart\_to\_i2c\_bridge
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Translates UART packets to multiple I2C devices
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image282|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image283|
 
 .. raw:: html
 
@@ -11180,7 +12035,7 @@ N
 
    </table>
 
-2.8 DALI
+2.9 DALI
 ~~~~~~~~
 
 MSPM0 supports the DALI Protocol via the UART module. DALI (Digitally Addressable Lighting Interface) is a serial protocol for digital lighting control that allows for simple and efficient communication between various lighting application gear and controllers.
@@ -11303,7 +12158,7 @@ N
 
    <td align="center">
 
-|image270|
+|image284|
 
 .. raw:: html
 
@@ -11317,15 +12172,15 @@ N
 
    </table>
 
-2.9 EEPROM
-~~~~~~~~~~
+2.10 EEPROM
+~~~~~~~~~~~
 
 MSPM0 supports EEPROM emulation through its internal Flash. Compared to using an external serial EEPROM, EEPROM emulation using the internal Flash saves pin usage and cost.
 
 The MSPM0 SDK includes a library and examples showing the implementation of supported solutions.
 
-2.9.1 Type-A
-^^^^^^^^^^^^
+2.10.1 Type-A
+^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -11505,8 +12360,8 @@ Y
 
    </table>
 
-2.9.2 Type-B
-^^^^^^^^^^^^
+2.10.2 Type-B
+^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -11686,14 +12541,14 @@ Y
 
    </table>
 
-2.10 GUI Composer
+2.11 GUI Composer
 ~~~~~~~~~~~~~~~~~
 
 GUI Composer is a browser-based tool for developing PC-side HTML-based GUIs that can complement your embedded project or application.
 
 The MSPM0 SDK includes a library and various examples showing the implementation of supported protocols.
 
-2.10.1 Streaming Protocols
+2.11.1 Streaming Protocols
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -11802,7 +12657,7 @@ Demonstrates basic usage of GUI Composer communication using JSON-formatted stri
 
    <td align="center">
 
-|image271|
+|image285|
 
 .. raw:: html
 
@@ -11812,7 +12667,7 @@ Demonstrates basic usage of GUI Composer communication using JSON-formatted stri
 
    <td align="center">
 
-|image272|
+|image286|
 
 .. raw:: html
 
@@ -11850,7 +12705,7 @@ Demonstrates basic usage of GUI Composer communication using MessagePack protoco
 
    <td align="center">
 
-|image273|
+|image287|
 
 .. raw:: html
 
@@ -11860,7 +12715,7 @@ Demonstrates basic usage of GUI Composer communication using MessagePack protoco
 
    <td align="center">
 
-|image274|
+|image288|
 
 .. raw:: html
 
@@ -11874,14 +12729,14 @@ Demonstrates basic usage of GUI Composer communication using MessagePack protoco
 
    </table>
 
-2.11 IQMath
+2.12 IQMath
 ~~~~~~~~~~~
 
 IQMath is a collection of highly optimized and high-precision fixed-point mathematical functions.
 
 The MSPM0 SDK includes IQMath support using simple C runtime-system (RTS) functions, and leveraging the MathAcl hardware accelerator.
 
-2.11.1 Compiler RTS library
+2.12.1 Compiler RTS library
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -11990,7 +12845,7 @@ Implements various fixed-point operations leveraging the RTS implementation of I
 
    <td align="center">
 
-|image275|
+|image289|
 
 .. raw:: html
 
@@ -12000,7 +12855,7 @@ Implements various fixed-point operations leveraging the RTS implementation of I
 
    <td align="center">
 
-|image276|
+|image290|
 
 .. raw:: html
 
@@ -12014,7 +12869,7 @@ Implements various fixed-point operations leveraging the RTS implementation of I
 
    </table>
 
-2.11.2 MathACL
+2.12.2 MathACL
 ^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12123,7 +12978,7 @@ Implements various fixed-point operations leveraging the MathACL implementation 
 
    <td align="center">
 
-|image277|
+|image291|
 
 .. raw:: html
 
@@ -12147,7 +13002,7 @@ N
 
    </table>
 
-2.12 RTOS Kernel
+2.13 RTOS Kernel
 ~~~~~~~~~~~~~~~~
 
 The MSPM0 SDK includes a collection of examples to test kernel functionality.
@@ -12258,7 +13113,7 @@ Simple FreeRTOS LED blinky demo using two tasks
 
    <td align="center">
 
-|image278|
+|image292|
 
 .. raw:: html
 
@@ -12268,7 +13123,7 @@ Simple FreeRTOS LED blinky demo using two tasks
 
    <td align="center">
 
-|image279|
+|image293|
 
 .. raw:: html
 
@@ -12306,7 +13161,7 @@ Simple Posix FreeRTOS blinky LED demo
 
    <td align="center">
 
-|image280|
+|image294|
 
 .. raw:: html
 
@@ -12316,7 +13171,7 @@ Simple Posix FreeRTOS blinky LED demo
 
    <td align="center">
 
-|image281|
+|image295|
 
 .. raw:: html
 
@@ -12330,14 +13185,14 @@ Simple Posix FreeRTOS blinky LED demo
 
    </table>
 
-2.13 LIN
+2.14 LIN
 ~~~~~~~~
 
 The Local Interconnect Network (LIN) is a multipoint, low-cost, easily-implemented communication bus commonly used in automobiles.
 
 The MSPM0 SDK includes easy-to-use examples for Commander and Responder.
 
-2.13.1 Commander
+2.14.1 Commander
 ^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12446,7 +13301,7 @@ Demonstrates basic implementation of LIN commander to transmit and receive LIN 2
 
    <td align="center">
 
-|image282|
+|image296|
 
 .. raw:: html
 
@@ -12456,7 +13311,7 @@ Demonstrates basic implementation of LIN commander to transmit and receive LIN 2
 
    <td align="center">
 
-|image283|
+|image297|
 
 .. raw:: html
 
@@ -12470,7 +13325,7 @@ Demonstrates basic implementation of LIN commander to transmit and receive LIN 2
 
    </table>
 
-2.13.2 Responder
+2.14.2 Responder
 ^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12579,7 +13434,7 @@ Demonstrates basic implementation of LIN responder to transmit and receive LIN 2
 
    <td align="center">
 
-|image284|
+|image298|
 
 .. raw:: html
 
@@ -12589,7 +13444,7 @@ Demonstrates basic implementation of LIN responder to transmit and receive LIN 2
 
    <td align="center">
 
-|image285|
+|image299|
 
 .. raw:: html
 
@@ -12603,14 +13458,14 @@ Demonstrates basic implementation of LIN responder to transmit and receive LIN 2
 
    </table>
 
-2.14 Sensored Trap Hall Motor Control
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.15 Hall Sensored Trap BLDC Motor Control
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The MSPM0 SDK includes examples to evaluate the sensored trap hall motor control library with the DRV8316REVM and DRV8329AEVM. These firmware are designed for a GUI to make testing and evaluation quick for the user.
 
 Stay tuned for more examples and functionality coming soon.
 
-2.14.1 DRV8316
+2.15.1 DRV8316
 ^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12719,7 +13574,7 @@ Firmware for LP\_MSPM0G3507 and DRV8316R EVM GUI
 
    <td align="center">
 
-|image286|
+|image300|
 
 .. raw:: html
 
@@ -12743,7 +13598,7 @@ N
 
    </table>
 
-2.14.2 DRV8329
+2.15.2 DRV8329
 ^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12852,7 +13707,7 @@ Firmware for LP\_MSPM0G3507 and DRV8329A EVM GUI
 
    <td align="center">
 
-|image287|
+|image301|
 
 .. raw:: html
 
@@ -12876,14 +13731,14 @@ N
 
    </table>
 
-2.15 Sensorless FOC Motor Control
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.16 Sensorless FOC BLDC Motor Control
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The MSPM0 SDK includes examples to evaluate the sensorless FOC motor control library with the DRV8323RS EVM. These firmware are designed for a GUI to make testing and evaluation quick for the user.
 
 Stay tuned for more examples and functionality coming soon.
 
-2.15.1 DRV8323RS
+2.16.1 DRV8323RS
 ^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12992,7 +13847,7 @@ Demo sensorless FOC code for LP\_MSPM0G3507 and DRV8323RS EVM GUI
 
    <td align="center">
 
-|image288|
+|image302|
 
 .. raw:: html
 
@@ -13016,14 +13871,14 @@ N
 
    </table>
 
-2.16 Brushed Motor Control
+2.17 Brushed Motor Control
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The MSPM0 SDK includes an example to evaluate the brushed motor control library with the DRV8706-Q1 EVM. This firmware was designed for a GUI to make testing and evaluation quick for the user.
 
 Stay tuned for more examples and functionality coming soon.
 
-2.16.1 DRV8706-Q1
+2.17.1 DRV8706-Q1
 ^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13142,7 +13997,7 @@ N
 
    <td align="center">
 
-|image289|
+|image303|
 
 .. raw:: html
 
@@ -13156,14 +14011,14 @@ N
 
    </table>
 
-2.17 Stepper Motor Control
+2.18 Stepper Motor Control
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The MSPM0 SDK includes examples to evaluate the stepper motor control library with the DRV8411A and DRV8889-q1 EVM. These firmwares were designed for a GUI to make testing and evaluation quick for the user.
 
 Stay tuned for more examples and functionality coming soon.
 
-2.17.1 DRV8411A
+2.18.1 DRV8411A
 ^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13282,7 +14137,7 @@ N
 
    <td align="center">
 
-|image290|
+|image304|
 
 .. raw:: html
 
@@ -13296,7 +14151,7 @@ N
 
    </table>
 
-2.17.2 DRV8889-Q1
+2.18.2 DRV8889-Q1
 ^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13415,7 +14270,7 @@ N
 
    <td align="center">
 
-|image291|
+|image305|
 
 .. raw:: html
 
@@ -13429,14 +14284,14 @@ N
 
    </table>
 
-2.18 PMBUS
+2.19 PMBUS
 ~~~~~~~~~~
 
 PMBus is a protocol design to interface with power management devices. It uses the SMBus protocol as a base.
 
 The MSPM0 SDK includes a ready-to-go example for using an MSPM0 devices as a PMBus controller for a TPS544B20 device.
 
-2.18.1 Controller
+2.19.1 Controller
 ^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13545,7 +14400,7 @@ Use MSPM0 to configure TPS544B20EVM over PMBus
 
    <td align="center">
 
-|image292|
+|image306|
 
 .. raw:: html
 
@@ -13555,7 +14410,7 @@ Use MSPM0 to configure TPS544B20EVM over PMBus
 
    <td align="center">
 
-|image293|
+|image307|
 
 .. raw:: html
 
@@ -13569,14 +14424,14 @@ Use MSPM0 to configure TPS544B20EVM over PMBus
 
    </table>
 
-2.19 SMBus
+2.20 SMBus
 ~~~~~~~~~~
 
 The System Management Bus (SMBus) is a single-ended simple two-wire bus for lightweight communication.
 
 The MSPM0 SDK includes easy-to-use examples for Controller and Target.
 
-2.19.1 Controller
+2.20.1 Controller
 ^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13685,7 +14540,7 @@ Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 prot
 
    <td align="center">
 
-|image294|
+|image308|
 
 .. raw:: html
 
@@ -13695,7 +14550,7 @@ Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 prot
 
    <td align="center">
 
-|image295|
+|image309|
 
 .. raw:: html
 
@@ -13709,7 +14564,7 @@ Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 prot
 
    </table>
 
-2.19.2 Target
+2.20.2 Target
 ^^^^^^^^^^^^^
 
 .. raw:: html
@@ -13818,7 +14673,7 @@ Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocol
 
    <td align="center">
 
-|image296|
+|image310|
 
 .. raw:: html
 
@@ -13828,7 +14683,7 @@ Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocol
 
    <td align="center">
 
-|image297|
+|image311|
 
 .. raw:: html
 
@@ -14140,4 +14995,18 @@ Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocol
 .. |image295| image:: ./images/examples_guide/ex_sysconfig.png
 .. |image296| image:: ./images/examples_guide/ex_sysconfig.png
 .. |image297| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image298| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image299| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image300| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image301| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image302| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image303| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image304| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image305| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image306| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image307| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image308| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image309| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image310| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image311| image:: ./images/examples_guide/ex_sysconfig.png
 

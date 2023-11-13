@@ -265,7 +265,7 @@ typedef enum {
     /*! Divide MCLK frequency by 7 */
     DL_SYSCTL_MCLK_DIVIDER_7 = 0x6,
     /*! Divide MCLK frequency by 8 */
-    DL_SYSCTL_MCLK_DIVIDER_8 = 0x6,
+    DL_SYSCTL_MCLK_DIVIDER_8 = 0x7,
     /*! Divide MCLK frequency by 9 */
     DL_SYSCTL_MCLK_DIVIDER_9 = 0x8,
     /*! Divide MCLK frequency by 10 */

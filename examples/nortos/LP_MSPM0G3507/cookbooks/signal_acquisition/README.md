@@ -29,7 +29,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau846).
+MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 web page](https://www.ti.com/tool/LP-MSPM0G3507).
 
 ## Example Usage
 Compile, load, and run the example.

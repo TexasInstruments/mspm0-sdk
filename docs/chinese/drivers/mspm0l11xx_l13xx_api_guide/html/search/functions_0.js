@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['dma_5finit',['DMA_Init',['../group___d_m_a.html#gaa469f6d48b00671eeb013a691dc81529',1,'DMAMSPM0.h']]],
-  ['dma_5fparams_5finit',['DMA_Params_init',['../group___d_m_a.html#gad58062cd1e508a3fdf174bc65639b9e3',1,'DMAMSPM0.h']]],
-  ['dmamspm0_5fclose',['DMAMSPM0_close',['../group___d_m_a.html#gae95a2c66447e2ddd3ae9d9b645c53942',1,'DMAMSPM0.h']]],
-  ['dmamspm0_5fcopydmaparams',['DMAMSPM0_copyDMAParams',['../group___d_m_a.html#gae6ed9ea7cefc32ae6528cf9bc2da1f2e',1,'DMAMSPM0.h']]],
-  ['dmamspm0_5fdisablechannel',['DMAMSPM0_disableChannel',['../group___d_m_a.html#ga7f580446972a92c87d13cda5a2d666e8',1,'DMAMSPM0.h']]],
-  ['dmamspm0_5fgetcurrtransfersize',['DMAMSPM0_getCurrTransferSize',['../group___d_m_a.html#ga8fb50a12e77ce31821a6fa827460144d',1,'DMAMSPM0.h']]],
-  ['dmamspm0_5finit',['DMAMSPM0_init',['../group___d_m_a.html#ga8a379aa65552a10e85cc4b1cb394896b',1,'DMAMSPM0.h']]],
-  ['dmamspm0_5fopen',['DMAMSPM0_open',['../group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2',1,'DMAMSPM0.h']]],
-  ['dmamspm0_5fsetuptransfer',['DMAMSPM0_setupTransfer',['../group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31',1,'DMAMSPM0.h']]]
+  ['adc_5fclose',['ADC_close',['../group___a_d_c.html#gadb49f74bdef5e3e45ee5de306c5dfc08',1,'ADC.h']]],
+  ['adc_5fcontrol',['ADC_control',['../group___a_d_c.html#gaf4be7e5e4f5cc931f4501a542d689c32',1,'ADC.h']]],
+  ['adc_5fconvert',['ADC_convert',['../group___a_d_c.html#gafcac5582b8be42a7740091d150aef05c',1,'ADC.h']]],
+  ['adc_5fconvertchain',['ADC_convertChain',['../group___a_d_c.html#ga8150c6d87037c8d056ec74c61345d523',1,'ADC.h']]],
+  ['adc_5fconverttomicrovolts',['ADC_convertToMicroVolts',['../group___a_d_c.html#gaa1cd6feaa85ea5409dbe1769586bff20',1,'ADC.h']]],
+  ['adc_5finit',['ADC_init',['../group___a_d_c.html#ga4b4a2ddcb45df0c8497c47d4ed800e2a',1,'ADC.h']]],
+  ['adc_5fopen',['ADC_open',['../group___a_d_c.html#ga1bfe07e93650e1288ba5fc6acc212c46',1,'ADC.h']]],
+  ['adc_5fparams_5finit',['ADC_Params_init',['../group___a_d_c.html#ga21df1c0987f5cecb660581ae081c4dc7',1,'ADC.h']]]
 ];

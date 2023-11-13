@@ -45,8 +45,8 @@
 #define BSL_USER_CFG_BASE_ADDRESS                                 (0x41C00100U)
 
 /* Size in bytes of the BSL and BCR configuration structures */
-#define BSL_CONFIG_SIZE_BYTES                                             (80U)
-#define BCR_CONFIG_SIZE_BYTES                                             (88U)
+#define BCR_CONFIG_SIZE_BYTES                                             (96U)
+#define BSL_CONFIG_SIZE_BYTES                                             (88U)
 
 /* The calculated CRC based on the default configuration values */
 #define BCR_CFG_DEFAULT_CRC                                        (0x1879dac3)
@@ -123,6 +123,9 @@ uint32_t calcUserConfigCRC(uint8_t *dataPointer, uint32_t size)
     DL_CRC_init(CRC, DL_CRC_32_POLYNOMIAL, DL_CRC_BIT_REVERSED,
         DL_CRC_INPUT_ENDIANESS_LITTLE_ENDIAN, DL_CRC_OUTPUT_BYTESWAP_DISABLED);
 
+    /* Set the Seed value to reset the calculation */
+    DL_CRC_setSeed32(CRC, CRC_SEED);
+
     for (i = (uint32_t) 0U; i < size; i++) {
         DL_CRC_feedData8(CRC, dataPointer[i]);
     }
@@ -152,8 +155,8 @@ int main(void)
 
     /*
      * Program the BCR config structure to NONMAIN memory.
-     * The BCR config struct has a size of 80 bytes, and 4 bytes are
-     * programmed at a time, resulting in 80 / 4 = 20 writes to Flash
+     * The BCR config struct has a size of 96 bytes, and 4 bytes are
+     * programmed at a time, resulting in 96 / 4 = 24 writes to Flash
      */
     DL_FlashCTL_unprotectSector(
         FLASHCTL, NONMAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_NONMAIN);

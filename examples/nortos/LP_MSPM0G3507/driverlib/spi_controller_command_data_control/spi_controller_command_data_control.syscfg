@@ -35,4 +35,5 @@ SPI1.peripheral.misoPin.$assign = "PB7";
 SPI1.peripheral.cs0Pin.$assign  = "PB6";
 SPI1.peripheral.cs3Pin.$assign  = "PB1";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

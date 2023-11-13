@@ -16,4 +16,5 @@ const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
  */
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

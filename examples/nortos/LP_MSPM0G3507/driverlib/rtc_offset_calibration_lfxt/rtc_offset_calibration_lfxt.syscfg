@@ -53,3 +53,5 @@ RTC.peripheral.rtcOutPin.$assign = "PA9";
 
 SYSCTL.LFCLKSource        = "LFXT";
 SYSCTL.LFCLKDriveStrength = "HIGHEST";
+
+SYSCTL.forceDefaultClkConfig = true;

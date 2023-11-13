@@ -39,7 +39,8 @@ GPIO1.associatedPins[0].$name               = "USER_LED_1";
 GPIO1.associatedPins[0].initialValue        = "SET";
 GPIO1.associatedPins[0].pin.$assign         = "PA0";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 VREF.basicIntVolt         = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
 VREF.advClockConfigEnable = true;
 VREF.advClkSrc            = "DL_VREF_CLOCK_BUSCLK";

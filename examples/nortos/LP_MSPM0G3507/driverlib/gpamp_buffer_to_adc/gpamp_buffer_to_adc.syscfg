@@ -37,4 +37,5 @@ GPAMP1.cfgOutputPin                            = "ENABLED";
 GPAMP1.peripheral.OutPin.$assignAllowConflicts = "PA22";
 scripting.suppress("Resource conflict,@@@.+?@@@ is also in use by @@@.+?@@@", GPAMP1.peripheral, "OutPin");
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

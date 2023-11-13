@@ -26,7 +26,8 @@ DAC12.dacNegVREF     = "VEREFN";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.MFPCLKEn    = true;
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
 
 VREF.basicVrefPins                 = "VREF+-";
 VREF.basicIntVolt                  = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";

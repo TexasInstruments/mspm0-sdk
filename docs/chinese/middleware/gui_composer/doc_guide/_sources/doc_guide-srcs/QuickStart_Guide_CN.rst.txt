@@ -1,69 +1,67 @@
-GUI Composer Quick Start Guide
-==============================
+GUI Composer 快速入门指南
+=========================
 
-1. Introduction
----------------
+1. 引言
+-------
 
-GUI Composer project examples showcase a UART based data exchange between a LaunchPad and customizable GUI application running on a PC. These GUIs can be fully customized by you to display, process data and control execution of firmware. These GUIs may also be installed into Code Composer Studio to augment standard debug displays and also provide a simplified user interface for non-expert manual testers.
+GUI Composer 工程示例展示了 LaunchPad 与可在 PC 上运行的可自定义 GUI 应用程序之间基于 UART 的数据交换。这些 GUI 可以完全按照您的自定义来显示、处理数据并控制固件的执行。这些 GUI 也可以安装到 Code Composer Studio 中，以辅助基本调式功能，同时为非专业的手动测试人员提供简化的用户界面。
 
-This guide is intended to assist users in the initial setup and demonstration of running their first sample application.
+本指南旨在帮助用户完成初始设置并展示如何运行其第一个示例应用程序。
 
-2. Prerequisites
-----------------
+2. 先决条件
+-----------
 
-The user is expected to have the following:
+用户应安装好下列软件：
 
--  A supported **MSPM0** LaunchPad
--  The latest version of the **Chrome** web browser
--  A **myTI account** for accessing `GUI Composer <https://dev.ti.com/gc>`__
--  `Code Composer Studio (CCS) <https://www.ti.com/tool/download/CCSTUDIO>`__
+-  支持的 **MSPM0** LaunchPad
+-  最新版本的 **Chrome** 网络浏览器
+-  用于访问 `GUI Composer <https://dev.ti.com/gc>`__ 的 **myTI 帐户**
+-  `Code Composer Studio （CCS） <https://www.ti.com/tool/download/CCSTUDIO>`__
 
-For additional resources and information on GUI Composer, please view the `GUI Composer User Guide <https://dev.ti.com/gc/v2/help/GC_UserGuide_v2/index.html>`__.
+有关 GUI Composer 的更多资源和信息，请查看 `GUI Composer 用户指南 <https://dev.ti.com/gc/v2/help/GC_UserGuide_v2/index.html>`__\ 。
 
-3. Running Your First Example
------------------------------
+3. 运行您的第一个示例
+---------------------
 
-This section will show how to import, build and load an example with one of the available GUIs.
+此部分将展示如何使用其中一个可用的 GUI 导入、编译和加载示例。
 
-3.1 Importing, Building, and Downloading the Code Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1 导入、编译和下载代码示例
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Open your IDE of choice, and import one of the available GUI Composer code examples from the MSPM0 SDK. These examples can be found in ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/<MSPM0_LAUNCHPAD>/gui_composer``.
-2. Review the code example README for any specific configurations for the LaunchPad you are using.
-3. Build and download the code example to the LaunchPad.
+1.打开您选择的 IDE，并从 MSPM0 SDK 中导入一个可用的 GUI Composer 代码示例。在 ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/<MSPM0_LAUNCHPAD>/gui_composer`` 中可以找到这些示例。 2.有关您使用的 LaunchPad 的特定配置，请查看代码示例 README。 3.编译代码示例并将其下载到 LaunchPad。
 
-3.2 Setting Up the GUI
-~~~~~~~~~~~~~~~~~~~~~~
+3.2 设置 GUI
+~~~~~~~~~~~~
 
-The GUIs for these examples can be started automatically from the TI Gallery by clicking one of the the links for the GUI below.
+点击下列 GUI 链接之一，可以从 TI Gallery 自动启动这些示例的 GUI。
 
-**Please ensure to select the corresponding GUI for the code example that you are running on the LaunchPad. The correct GUI is specified in the code example README.**
+**请确保为您在 LaunchPad 上运行的代码示例选择对应的 GUI。代码示例 README 中指定了正确的 GUI。**
 
 -  `GC Simple JSON GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_JSON/>`__
 -  `GC Simple MessagePack GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_mpack>`__
--  `GC Simple MessagePack GUI - Optimized <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_mpack_optimized/>`__
+-  `GC Simple MessagePack GUI - 优化版 <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_SimpleGUI_mpack_optimized/>`__
 
-3.3 Configuring the GUI
-~~~~~~~~~~~~~~~~~~~~~~~
+3.3 配置 GUI
+~~~~~~~~~~~~
 
-Configure the GUI settings to select the correct **COM port** and **Baud Rate**. Modify these settings by clicking on the menu icon in the top left corner, and then selecting **Options > Serial Port**.
+配置 GUI 设置，以选择正确的 **COM 端口**\ 和\ **波特率**\ 。修改这些设置，方法是点击左上角的菜单图标，然后选择 **Options > Serial Port**\ 。
 
 .. figure:: ./images/qs_settings.png
    :alt: 
 
--  The correct **COM Port** can be determined by opening your Device Manager, looking under Ports, and seeing which port is **XDS110 Class Application/User UART**.
+-  确定正确的 **COM 端口**\ ，方法是打开 Device Manager，在“Ports”下查看哪个端口是 **XDS110 Class Application/User UART**\ 。
 
    .. figure:: ./images/qs_devicemanager.png
       :alt: 
 
--  Set the **Baud Rate** to **9600**. This is the Baud Rate being used by default in the example.
+-  将\ **波特率**\ 设置为 **9600**\ 。这是示例中默认使用的波特率。
 
 .. figure:: ./images/qs_comportbaudrate.png
    :alt: 
 
-3.4 Running the Example
-~~~~~~~~~~~~~~~~~~~~~~~
+3.4 运行示例
+~~~~~~~~~~~~
 
-Start running the example on the LaunchPad. If the LaunchPad and the GUI have been configured correctly, then the GUI will start updating with data automatically.
+开始在 LaunchPad 上运行示例。如果 LaunchPad 和 GUI 已正确配置，则 GUI 会开始自动更新数据。
 
-Please refer to the code example specific README for specific instructions on how to run the example.
+有关如何运行示例的特定说明，请参考特定于代码示例的 README。

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['dmamspm0_5fhandle',['DMAMSPM0_Handle',['../group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a',1,'DMAMSPM0.h']]],
-  ['dmamspm0_5fisrfxn',['DMAMSPM0_IsrFxn',['../group___d_m_a.html#ga1d63418e0aacc8c97993301127d8de20',1,'DMAMSPM0.h']]]
+  ['adc_5fconfig',['ADC_Config',['../group___a_d_c.html#gacde6feaa979f1952a70a38e9e1e1ea74',1,'ADC.h']]],
+  ['adc_5fhandle',['ADC_Handle',['../group___a_d_c.html#ga7447d17264445ab6285ddab2bb794582',1,'ADC.h']]]
 ];

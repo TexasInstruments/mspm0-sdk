@@ -61,6 +61,7 @@ GPIO4.associatedPins[0].interruptEn = true;
 GPIO4.associatedPins[0].$name       = "USER_SWITCH_2";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
 
 uartLIN1.$name                    = "LIN_0";
 uartLIN1.targetBaudRate           = 19200;

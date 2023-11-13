@@ -45,4 +45,5 @@ RTC.calSec             = 58;
 RTC.peripheral.$assign = "RTC";
 
 SYSCTL.powerPolicy = "STANDBY0";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

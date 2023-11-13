@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using SysConfig with MSPM0 &mdash; SysConfig Guide for MSPM0 1.0 documentation</title>
+  <title>将 SysConfig 与 MSPM0 配合使用 &mdash; SysConfig Guide for MSPM0 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -43,71 +43,71 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Using SysConfig with MSPM0</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sysconfig-description-and-recommended-use">1.1. SysConfig Description and Recommended Use</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">将 SysConfig 与 MSPM0 配合使用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 引言</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sysconfig">1.1. SysConfig 说明和建议使用方式</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#downloading-and-installing-mspm0-sysconfig">2. Downloading and Installing MSPM0 SysConfig</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-mspm0-sysconfig">3. Getting Started with MSPM0 SysConfig</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#getting-started-using-ccs">3.1 Getting Started using CCS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#enabling-sysconfig-in-ccs">3.1.1 Enabling SysConfig in CCS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#importing-mspm0-sysconfig-project-using-ccs">3.1.2 Importing MSPM0 SysConfig Project using CCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mspm0-sysconfig">2. 下载和安装 MSPM0 SysConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3. 开始使用 MSPM0 SysConfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ccs">3.1 开始使用 CCS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ccs-sysconfig">3.1.1 在 CCS 中启用 SysConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ccs-mspm0-sysconfig">3.1.2 使用 CCS 导入 MSPM0 SysConfig 工程</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#getting-started-using-iar">3.2 Getting Started using IAR</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#enabling-sysconfig-in-iar">3.2.1 Enabling SysConfig in IAR</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#importing-mspm0-sysconfig-project-using-iar">3.2.2 Importing MSPM0 SysConfig Project using IAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iar">3.2 开始使用 IAR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iar-sysconfig">3.2.1 在 IAR 中启用 SysConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iar-mspm0-sysconfig">3.2.2 使用 IAR 导入 MSPM0 SysConfig 工程</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#getting-started-using-keil">3.3 Getting Started using Keil</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#enabling-sysconfig-in-keil">3.3.1 Enabling SysConfig in Keil</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#importing-mspm0-sysconfig-project-using-keil">3.3.2 Importing MSPM0 SysConfig Project using Keil</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keil">3.3 开始使用 Keil</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#keil-sysconfig">3.3.1 在 Keil 中启用 SysConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keil-mspm0-sysconfig">3.3.2 使用 Keil 导入 MSPM0 SysConfig 工程</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#getting-started-without-an-ide">3.4 Getting Started without an IDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ide">3.4 在没有 IDE 的情况下开始使用</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#using-sysconfig-with-mspm0-sdk">4. Using SysConfig with MSPM0 SDK</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sysconfig-software-modules">4.1 SysConfig Software Modules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#list-of-software-modules">4.1.1 List of Software Modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-description">4.1.2 Module Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adding-a-software-module">4.1.3 Adding a Software Module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#components-of-a-software-module">4.1.4 Components of a Software Module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#detailed-description-of-parameters">4.1.5 Detailed Description of Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sysconfig-mspm0-sdk">4. 将 SysConfig 与 MSPM0 SDK 配合使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">4.1 SysConfig 软件模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.1.1 软件模块列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">4.1.2 模块说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">4.1.3 添加软件模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.1.4 软件模块的组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">4.1.5 参数的详细说明</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#clock-tree">4.2 Clock Tree</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#coloration-scheme-and-legend">4.2.1 Coloration Scheme And Legend</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#editing-different-clock-tree-components">4.2.2 Editing Different Clock Tree Components</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#summary-views">4.2.3 Summary Views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">4.2 时钟树</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">4.2.1 配色方案和图例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">4.2.2 编辑时钟树的不同组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">4.2.3 摘要视图</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#nonmain-configurator">4.3 NONMAIN Configurator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#info-warnings-and-errors">4.4 Info, Warnings and Errors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-generation">4.5 Code Generation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#observing-code-changes-based-on-configuration">4.5.1 Observing code changes based on configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nonmain">4.3 NONMAIN 配置器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">4.4 信息、警告和错误</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">4.5 代码生成</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id15">4.5.1 根据配置观察代码更改</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#device-view">4.6 Device View</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#board-view">4.7 Board View</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#customizing-board-configurations">4.7.1 Customizing board configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">4.6 器件视图</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">4.7 电路板视图</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id18">4.7.1 自定义电路板配置</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#switching-between-devices-and-packages">4.8 Switching Between Devices and Packages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#event-configuration">4.9 Event Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pinmux-configuration">4.10 PinMux Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reserving-hardware-peripherals">4.11 Reserving Hardware Peripherals</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#reserve-peripheral-list">4.11.1 Reserve Peripheral List</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#reserving-a-peripheral">4.11.2 Reserving a peripheral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">4.8 在器件与封装之间进行切换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">4.9 事件配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pinmux">4.10 PinMux 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">4.11 保留硬件外设</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reserve-peripheral">4.11.1 “Reserve Peripheral”列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">4.11.2 保留外设</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#disabling-sysconfig">4.12 Disabling SysConfig</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#disabling-sysconfig-in-ccs">4.12.1 Disabling SysConfig in CCS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#disabling-sysconfig-in-iar">4.12.2 Disabling SysConfig in IAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">4.12 禁用 SysConfig</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id24">4.12.1 在 CCS 中禁用 SysConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">4.12.2 在 IAR 中禁用 SysConfig</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#overriding-sysconfig-weak-functions">4.13 Overriding SYSCONFIG_WEAK functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sysconfig-weak">4.13 覆盖 SYSCONFIG_WEAK 函数</a></li>
 </ul>
 </li>
 </ul>
@@ -128,7 +128,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Using SysConfig with MSPM0</li>
+      <li>将 SysConfig 与 MSPM0 配合使用</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -137,91 +137,91 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="using-sysconfig-with-mspm0">
-<h1>Using SysConfig with MSPM0<a class="headerlink" href="#using-sysconfig-with-mspm0" title="Permalink to this heading">¶</a></h1>
-<section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This guide describes how to install and get started using SysConfig with MSPM0.</p>
-<section id="sysconfig-description-and-recommended-use">
-<h3>1.1. SysConfig Description and Recommended Use<a class="headerlink" href="#sysconfig-description-and-recommended-use" title="Permalink to this heading">¶</a></h3>
+  <section id="sysconfig-mspm0">
+<h1>将 SysConfig 与 MSPM0 配合使用<a class="headerlink" href="#sysconfig-mspm0" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2>1. 引言<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>本指南说明了如何安装 SysConfig 并开始将其与 MSPM0 配合使用。</p>
+<section id="sysconfig">
+<h3>1.1. SysConfig 说明和建议使用方式<a class="headerlink" href="#sysconfig" title="Permalink to this heading">¶</a></h3>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components.</div>
-<div class="line">SysConfig helps you manage, expose and resolve conflicts visually so that you have more time to create differentiated applications.</div>
+<div class="line"><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> 是一个直观而全面的图形实用程序集合，用于配置引脚、外设、无线电、子系统和其他组件。</div>
+<div class="line">SysConfig 可助您直观地管理、发现和解决冲突，以便有更多时间创建差异化应用程序。</div>
 </div>
 <div class="line-block">
-<div class="line">The tool’s output includes C header and code files that can be used with software development kit (SDK) examples or used to configure custom software.</div>
-<div class="line">The SysConfig tool automatically selects the pinmux settings that satisfy the entered requirements.</div>
+<div class="line">此工具的输出包括 C 头文件和代码文件，这些文件可与软件开发套件 (SDK) 示例配合使用，也可用于配置自定义软件。</div>
+<div class="line">SysConfig 工具会自动选择满足输入要求的 pinmux 设置。</div>
 </div>
-<p>The SysConfig tool is delivered as a standalone installer, integrated in CCS, it can be manually integrated into IAR and Keil, or can be used via the dev.ti.com cloud tools portal.</p>
+<p>SysConfig 工具作为独立安装程序交付并集成在 CCS 中，可将其手动集成到 IAR 和 Keil，也可通过 dev.ti.com 云工具门户使用。</p>
 <body><div class="mxgraph" style="max-width:100%;border:1px solid transparent;"
 data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2023-02-25T01:17:30.626Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36\&quot; etag=\&quot;B4lJZ1YdmngnwSlWzQrn\&quot; version=\&quot;20.5.1\&quot; type=\&quot;device\&quot;&gt;&lt;diagram id=\&quot;C5RBs43oDa-KdzZeNtuy\&quot; name=\&quot;Page-1\&quot;&gt;7V1td9o4Fv41nLM758DxC3bgY4Akk2077Wza6WS/GSxAE2G5fgmhv34lS7ItWwZDzEtS09PWlqVrSffe5z66sqFjjlcvd4HjLz9hF6COobkvHXPSMQzdGOjkP1qyYSW2yQsWAXR5pazgAf4EvFDjpTF0QShVjDBGEfTlwhn2PDCLpDInCPBarjbHSL6r7yxAqeBh5qBy6XfoRkteqtvD7MLvAC6W/NYD44pdWDmiMh9JuHRcvM4VmTcdcxxgHLGj1csYIDp5Yl6+32++o49P9t1//gx/ON9GH77+8VeXCbvdp0k6hAB4UbOiDSb62UExny8+1mgjJjDAsecCKkTrmKNltELkUCeH/4Ao2nCFO3GESREOoiVeYM9BHzH2eb059iJeTafnwHOvqWLJ+RTh2RMruoUI8XuQM15/QM7CKMBPqe6ogFQRtDJypgCNnNnTIunoGCMckEse9gAV5RJj4GPJOneTlY5qzi3XQYjjYAa21DO5iTvBAmyTZ7N6tH85O+WauwN4BaJgQyoEADkRfJaN2eE+sUjrZXonB1z1e5iBWTKDbyH0FqToYROOsTeH5NhGZECjaUCOFlEyc3VKKq2JanK9hBF48J1kStcEgGQLy1sOmZzRAjlhyPW+wyzmxJyELXQM03XAYD5Lm+Wu2LMBmM73NoRnEETgZavq+FVbs1gTAaAcTtY5NBIQs8wBkajXuLKt3T6/221kPb41VPDIPP5Nq/YscfqY3oacTF6ks404e4HR37njx0wEOcsa0RPRpmF8scv4EnTR//C3x3jVH47H8TQa2d074dE78WUjR+vacMMlfcGQDCurgufzkPRLikOijvAWTZcdwrAKls4Gx5sVjD3tei37V06NprB/hlsufBbAdT2bAQQCJwK0Y76P4IxMDPYoEwLPAGF/RRVqjEVb0pVcc5XEMIQL2n7pBO6a2EMy3UzhYZUUhV9+pKYt+5yDqGRzMiNdAsTORxSdSIfRNb+wgq7L3BaE8KczTeRR6/TpJCfTbo061qS+vQoQKcJgSuT4TSSupIJHrafZ9kAyiMHrbJEL7uuS0K45kCWUTbUpA7NejadKxFQga84GBDbpe2DToTh4Jkzrn4szKXtj14KRMASEsiSgAWfU5WeO70whghGkXl8fPu6Al8IR+fsjhiRGki56RBLx/58CnWZkBdcNPej7gMOTs6K0ypuGfk7y+4WrbS7ZBFzppmZLyGI1AlddQwbBrpDbKF5t87+cJU8w7QiOKU11kl5GtKTX63XM2zKnX+LVNA5383mZoRMCeOusIKID/h2gZ0BtQMH6S+ai4H7klnS9Yk7s7OxrgpwENS5rNaBJatYtxXLAVCwHBg0sB5SuoZ81XGUh6jF35VLC1TZqvTNcCU7dXLxKmpJVkrPJVeCYWAksA9ngTFMrmAwT2CgD0oclSBmPH0jBV2LSDr15KVOQXL/Y+KE3FkC6JIIMbHkFJJjNa0OIbvQlueL0+JRXt1sQOQ6I6BdFeo3y4vn++r+X7LiC3DTA/AzbNF/nqMLf9auTOeZV65jHccy6GbbjRndL2xreS/Vt6wx0QIw6hxofAESXDBtXzcGGaQtp6dKukXBvyMtQ/WT5LXGnvTDlwlFEhrwzYUrjCS614ZhXMv00i6mGigT8vth0tR1rdtYXO+9V9Yfb6x8Jy4wSln2OlgSWLhjMBk2BGVm8GH1Lth69ETATzGqjbH88LCvvfH9fOrRfMGQpsIDOcADmIAgIPBja/eTmVTmwy0lFGVcF9+nX3JkeHisVZZgHBJZfmaz2awaW4VECy77xoIjXpr0d3wf9rfWPg+9m9b4OTUwnmCl81P4RY7bxYWrJJ1/E0lqP0mYJk3C+3ZJiap2e5yCHDuH2tn5gEf7ayLaKVQgBzZBkU86ICep9/MBitAvv42DZ4E1ima5ZxisbDE+BfmLdm6HfH/hCkUpTG+FWb2wEqYYypDRDgLunW7/3Szou7/fSZwwmIHyKCPAk0xbSxwveB/EdDC+N+A5KGsk9d6uNEY7d0sSHS8enh36AZ/QZk50KmKaPQ36OIwQ9cHGK0TVNzpQJzMtrZqhQTP9YiinvY+YVkzrI+1fNVcFnVJrRtVOqRmyvl/aY70n0WQT8eaj3r5niIkmhmMFJ9VJO9idbhL+aXoyBtVMxJ8UyvZzrYrswv5pm+sML04xZhrI6OQf6mc/LOYdUncU3eDTCOCnTY/4YgB8xDGh+gpSHkYMQaxAtgYr89SrzGLtfA/qtQ+lUvSyKakQPEaA90Su60LvFCOF1YrjAZwOqevB1WuwlZbrLAMyLfXHx2kPYccmkdB3P7WZz1F2F/krrhptwJl6NKvaXLCgSvnxNZzITRI3HcxOPy034p4cvn7SO4l0rMkyn2F1SVhpCeepD3/EkPxY9zLyzyzVw3UmfImYCCmP5bcsjxOw2NW+du1+wmP5LS55O1vh/hmX9W3l7rnrj0LvuP2BWQ2lS2o5eTJvqwg7bBB5ZrlJLTG2QmGcXOkG1KRq55OQNb15CB4ENOSF7GWKTWuDPHLPhxQFIcSspjkNQ4TFKveSRSG3NxzFbs6JjvZ0WVhun4MrHQaSApS4J2f8Q7Xdj+i5nfeu4FwLV0KR9YWITJbBah9qMpIhErWwwKUxOY4jc5Iz8A15IfaKcc+u0v0WnDwC8OvAwdWVqXMNoKXTrPtXToeL1XY3Kyat08uFwR5cijjTcOQ6Ye87jhPd4pGAlXk5xpjjOG46ie4x95DrZK1FSQvPonfMvFpQ4ZPLplFjn3KJ/OlmuEoE5lVXMVFLmo2a68uvwhbQk+3SOuKgw5dVeX/H6gKFahqebvc2TV+Mg8lpJ9fIBiaEiY7PJ7nsCkdKj5BwpaFkSNJZ4DZ7p4xjUlel1F87nINGDKqNJX8hKLBOFFH+mgBmv25LdvcluqQ85PGqMA3N5+cVIS4dbOqyiw7NZ+Ho6nGDNNks8GR1WsKU8N2ag2HLjg7hxbVPZnxvXMaAqPEnH+X648f46vGw6rLV895h8V788ulvOor+G7O3M1fIUfZusfWPJ2p2Y3rLVlq3m2OpT4uelCVRZVz7ANXanenT4Q7Ht+dLDO/gwx82WEB9EiCussRFGfLANtenit8ePi5Pf0uVj0uV+3zodX/4WguDzlDs3Yo8D06Ytf2w3+1u+2BxfXIAoidjEiAgOuAnAE5wkdtqFLqgH8HdMBrU7JoUjKsPbZDbpi40Xy+ywD7xCQGC+tci+Fo9+891bpHb3BAM1DwAaNhJhjK6Kkbnp0JhVVryTeu4RtjRHMZgyVm+jtMfiRiTyPIlM1U40oQ22J8D6OQrCM2Yt+6JXrwqPYtdnX9r+7Iuc5gjYVkImbE/xhZ8d6Qs8j83cyLW/YAijzo7UxTKK6K9DXNOxkw6C514EezO8otBSzcMq61X6cEulTkSl9pqIlle9YV71bh2pisEdy5FqDbmlji11fEvU0Wqpo5o6Dq2rs1LHmnvf5ddhK98Xg6vkh7lSDSTfF/AFE/aX5MomUxxFhKlV/lSLC+ZOjKp16IQ++7mwOXyhahslN7wWpZooIcdb6CTdPiAoTJw0DAH9vofbCCK6y54RyF74vDii5u2+/LUng7Li+wq9H/AuGjnNfqyMfZdA9pNv5s3/AQ==&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div><script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script></section>
 </section>
-<section id="downloading-and-installing-mspm0-sysconfig">
-<h2>2. Downloading and Installing MSPM0 SysConfig<a class="headerlink" href="#downloading-and-installing-mspm0-sysconfig" title="Permalink to this heading">¶</a></h2>
-<p>These instructions are required when using the standalone SysConfig installer, which is currently neccessary for IAR, Keil or other IDEs. IDEs other than CCS can use this version of SysConfig in their applications, or just use the files generated by it. There are additional steps in section <a class="reference external" href="#getting-started-with-mspm0-sysconfig">Getting Started with MSPM0 SysConfig</a> to integrate this version within CCS.</p>
+<section id="mspm0-sysconfig">
+<h2>2. 下载和安装 MSPM0 SysConfig<a class="headerlink" href="#mspm0-sysconfig" title="Permalink to this heading">¶</a></h2>
+<p>使用独立版 SysConfig 安装程序时需遵循以下说明，IAR、Keil 或其他 IDE 当前需要此安装程序。除 CCS 以外的 IDE 可在其应用程序中使用此 SysConfig 版本，或仅使用它生成的文件。在<a class="reference external" href="#getting-started-with-mspm0-sysconfig">开始使用 MSPM0 SysConfig</a> 部分中提供了在 CCS 中集成此版本的额外步骤。</p>
 <ol class="arabic">
-<li><p>Download <strong>SysConfig</strong> from <a class="reference external" href="https://www.ti.com/tool/download/SYSCONFIG/">TI.com</a></p></li>
-<li><p>Install SysConfig</p>
+<li><p>下载 <strong>SysConfig</strong> (<a class="reference external" href="https://www.ti.com/tool/download/SYSCONFIG/">TI.com</a>)</p></li>
+<li><p>安装 SysConfig</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_install.png" />
 </figure>
 </li>
 </ol>
 </section>
-<section id="getting-started-with-mspm0-sysconfig">
-<h2>3. Getting Started with MSPM0 SysConfig<a class="headerlink" href="#getting-started-with-mspm0-sysconfig" title="Permalink to this heading">¶</a></h2>
-<p>This section describes how to integrate and use the standalone version of SysConfig in various IDEs, as well as open a Project.</p>
-<section id="getting-started-using-ccs">
-<h3>3.1 Getting Started using CCS<a class="headerlink" href="#getting-started-using-ccs" title="Permalink to this heading">¶</a></h3>
-<p>These instructions are required in order to integrate the standalone SysConfig in CCS, and successfully build an example.</p>
-<section id="enabling-sysconfig-in-ccs">
-<h4>3.1.1 Enabling SysConfig in CCS<a class="headerlink" href="#enabling-sysconfig-in-ccs" title="Permalink to this heading">¶</a></h4>
-<p>CCS 12.4+ and CCS Theia 1.0.1+ include a SysConfig version which is compatible with MSPM0, thus not requiring any additional steps to use it. The steps below apply only when integrating a standalone version of SysConfig in cases such as upgrading the SysConfig version.</p>
+<section id="id2">
+<h2>3. 开始使用 MSPM0 SysConfig<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>本部分说明了如何在各个 IDE 中集成和使用独立版 SysConfig 以及如何打开工程。</p>
+<section id="ccs">
+<h3>3.1 开始使用 CCS<a class="headerlink" href="#ccs" title="Permalink to this heading">¶</a></h3>
+<p>要在 CCS 中集成独立版 SysConfig 并成功编译示例，需遵循以下说明。</p>
+<section id="ccs-sysconfig">
+<h4>3.1.1 在 CCS 中启用 SysConfig<a class="headerlink" href="#ccs-sysconfig" title="Permalink to this heading">¶</a></h4>
+<p>CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因此无需任何额外步骤即可使用。以下步骤仅在集成独立版 SysConfig 时适用（例如升级 SysConfig 版本时）。</p>
 <ol class="arabic">
 <li><div class="line-block">
-<div class="line">Follow instructions from the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html">MSPM0 SDK QuickStart Guide for CCS Theia</a> to install CCS Theia for MSPM0.</div>
-<div class="line">Alternatively, follow instructions from the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html">MSPM0 SDK QuickStart Guide for CCS</a> to install CCS for MSPM0.</div>
+<div class="line">请遵循<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html">适用于 CCS Theia 的 MSPM0 SDK 快速入门指南</a>中的说明，为 MSPM0 安装 CCS Theia。</div>
+<div class="line">或者，遵循<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs.html">适用于 CCS 的 MSPM0 SDK 快速入门指南</a>中的说明，为 MSPM0 安装 CCS。</div>
 </div>
 </li>
-<li><p>Update CCS tool path. This can be done by clicking <strong>Window→Preferences</strong> then in the pop-up choose <strong>Code Composer Studio→Products</strong>, simply refresh after the install and the product should be found underneath SysConfig. Hit apply and close to make the change take effect.</p></li>
+<li><p>更新 CCS 工具路径。操作方式是，依次点击 <strong>Window→Preferences</strong>，然后在弹出窗口中选择 <strong>Code Composer Studio→Products</strong>，在安装后刷新，产品随即应显示在 SysConfig 下方。点击“Apply and Close”使更改生效。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_addProduct.png" />
 </figure>
 </section>
-<section id="importing-mspm0-sysconfig-project-using-ccs">
-<h4>3.1.2 Importing MSPM0 SysConfig Project using CCS<a class="headerlink" href="#importing-mspm0-sysconfig-project-using-ccs" title="Permalink to this heading">¶</a></h4>
+<section id="ccs-mspm0-sysconfig">
+<h4>3.1.2 使用 CCS 导入 MSPM0 SysConfig 工程<a class="headerlink" href="#ccs-mspm0-sysconfig" title="Permalink to this heading">¶</a></h4>
 <ol class="arabic">
 <li><div class="line-block">
-<div class="line">Follow instructions in <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html">MSPM0 SDK QuickStart Guide for CCS Theia</a> to install the MSPM0 SDK and import an example in CCS Theia.</div>
-<div class="line">Alternatively, follow instructions in <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html">MSPM0 SDK QuickStart Guide for CCS</a> to install the MSPM0 SDK and import an example in CCS.</div>
-<div class="line">Refer to the <a class="reference external" href="../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html">MSPM0 SDK Examples Guide</a> for a full list of examples with SysConfig support.</div>
-<div class="line">For an empty example, use the “empty” example.</div>
+<div class="line">请遵循<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html">适用于 CCS Theia 的 MSPM0 SDK 快速入门指南</a>中的说明，安装 MSPM0 SDK 并在 CCS Theia 中导入示例。</div>
+<div class="line">或者，遵循<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs.html">适用于 CCS 的 MSPM0 SDK 快速入门指南</a>中的说明，安装 MSPM0 SDK 并在 CCS 中导入示例。</div>
+<div class="line">有关具有 SysConfig 支持的示例的完整列表，请参阅 <a class="reference external" href="../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html">MSPM0 SDK 示例指南</a>。</div>
+<div class="line">要使用空示例，请选择“empty”示例。</div>
 </div>
 </li>
 <li><div class="line-block">
-<div class="line">Check the SysConfig version used by the project.</div>
-<div class="line">This step is recommended to verify the project finds the correct standalone version, but it can be skipped.</div>
+<div class="line">查看工程使用的 SysConfig 版本。</div>
+<div class="line">建议使用此步骤确认工程已找到正确的独立版本，但可跳过此步骤。</div>
 </div>
 <div class="line-block">
-<div class="line">2.1. Open <strong>Project Settings→CCS General→Products</strong> and confirm the SysConfig version is the desired one.</div>
-<div class="line">If it is not, select SysConfig and click <strong>Edit</strong>.</div>
+<div class="line">2.1. 打开 <strong>Project Settings→CCS General→Products</strong>，确认 SysConfig 版本是所需版本。</div>
+<div class="line">如果不是，请选择“SysConfig”并点击 <strong>Edit</strong>。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_ccs_version.png" />
 </figure>
-<p>2.2. A window will be shown to select the product version. Click on <strong>Preferences</strong>.</p>
+<p>2.2. 将显示一个窗口供选择产品版本。点击 <strong>Preferences</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_ccs_version2.png" />
 </figure>
-<p>2.3. Verify that the SysConfig path is to the new standalone. A refresh may be needed in order to find it. If not check the paths and installation of SysConfig</p>
+<p>2.3. 确认 SysConfig 路径指向新的独立版本。可能需要刷新才能显示。如果未显示，请检查 SysConfig 的路径和安装</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_addProduct.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line">Build the code example.</div>
-<div class="line">After a successful build, double-click the .syscfg file to start using SysConfig.</div>
+<div class="line">编译代码示例。</div>
+<div class="line">成功编译后，双击 .syscfg 文件开始使用 SysConfig。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_ccs_file.png" />
@@ -230,192 +230,192 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 </ol>
 </section>
 </section>
-<section id="getting-started-using-iar">
-<h3>3.2 Getting Started using IAR<a class="headerlink" href="#getting-started-using-iar" title="Permalink to this heading">¶</a></h3>
-<p>The best way to start a SysConfig project in IAR is to import it from the SDK; however, some steps are required to initialize SysConfig in IAR for the first time.</p>
-<section id="enabling-sysconfig-in-iar">
-<h4>3.2.1 Enabling SysConfig in IAR<a class="headerlink" href="#enabling-sysconfig-in-iar" title="Permalink to this heading">¶</a></h4>
+<section id="iar">
+<h3>3.2 开始使用 IAR<a class="headerlink" href="#iar" title="Permalink to this heading">¶</a></h3>
+<p>在 IAR 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时，需执行一些步骤以在 IAR 中初始化 SysConfig。</p>
+<section id="iar-sysconfig">
+<h4>3.2.1 在 IAR 中启用 SysConfig<a class="headerlink" href="#iar-sysconfig" title="Permalink to this heading">¶</a></h4>
 <div class="line-block">
-<div class="line">The following steps are required only once after installing a new SysConfig version.</div>
-<div class="line">Note that the standalone version must be installed as described in section <a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">Downloading and Installing MSPM0 SysConfig</a></div>
+<div class="line">安装新的 SysConfig 版本后，仅需执行以下步骤一次。</div>
+<div class="line">请注意，必须按照<a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">下载和安装 MSPM0 SysConfig</a> 部分中的说明安装独立版本</div>
 </div>
 <ol class="arabic">
-<li><p>Follow instructions in <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html">MSPM0 SDK QuickStart Guide for IAR</a> to install the MSPM0 SDK.</p></li>
-<li><p>In IAR, select <strong>Tools → Configure Viewers</strong> from the menu.</p>
+<li><p>请遵循<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html">适用于 IAR 的 MSPM0 SDK 快速入门指南</a>中的说明安装 MSPM0 SDK。</p></li>
+<li><p>在 IAR 中，从菜单中依次选择 <strong>Tools → Configure Viewers</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_configure_viewers.png" />
 </figure>
 </li>
-<li><p>Click <strong>Import</strong></p>
+<li><p>点击 <strong>Import</strong></p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_configure_viewer_import.png" />
 </figure>
 </li>
-<li><p>Navigate to your SDK folder into <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/iar/</span></code> and open <strong>sysconfig_iar_setup.xml</strong>.</p>
+<li><p>导航至 SDK 文件夹中的 <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/iar/</span></code>，然后打开 <strong>sysconfig_iar_setup.xml</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_iar_setup.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line">The standalone SysConfig will be associated to .syscfg files.</div>
-<div class="line">Click OK to close window.</div>
+<div class="line">独立版 SysConfig 将与 .syscfg 文件关联。</div>
+<div class="line">点击“OK”关闭窗口。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_configure_viewers_done.png" />
 </figure>
 </li>
-<li><p>Select <strong>Tools → Configure Custom Argument Variables</strong>.</p>
+<li><p>依次选择 <strong>Tools → Configure Custom Argument Variables</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_iar_argvars.png" />
 </figure>
 </li>
-<li><p>If the MSPM0_SDK variables are not shown, ensure this step is followed as described in <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html">MSPM0 SDK QuickStart Guide for IAR</a>, as summarized below.</p></li>
-<li><p>In IAR, click on <strong>Tools → Configure Custom Argument Variables</strong></p></li>
-<li><p>Click the <strong>Global</strong> tab, and then <strong>Import</strong></p></li>
-<li><p>Navigate to your SDK folder into <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/iar/</span></code> and open <strong>MSPM0_SDK.custom_argvars</strong>.</p></li>
-<li><p>The SDK variables should now be installed in IAR. Click OK to close the window.</p>
+<li><p>如果未显示 MSPM0_SDK 变量，请确保按照<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html">适用于 IAR 的 MSPM0 SDK 快速入门指南</a>中的说明执行此步骤，如下所述。</p>
+<p>7.1. 在 IAR 中，依次点击 <strong>Tools → Configure Custom Argument Variables</strong></p>
+<p>7.2. 点击 <strong>Global</strong> 选项卡，然后点击 <strong>Import</strong></p>
+<p>7.3. 导航至 SDK 文件夹中的 <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/iar/</span></code>，然后打开 <strong>MSPM0_SDK.custom_argvars</strong>。</p>
+<p>7.4. SDK 变量现在应已安装在 IAR 中。单击 OK 关闭窗口。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_iar_argvars_view.png" />
 </figure>
 </li>
-<li><p>If the <strong>SYSCONFIG_ROOT</strong> variable is not pointing to the correct path of your SysConfig installation described in section <a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">Downloading and Installing MSPM0 SysConfig</a>, edit the variable as shown below:</p>
+<li><p>如果 <strong>SYSCONFIG_ROOT</strong> 变量未指向<a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">下载和安装 MSPM0 SysConfig</a> 部分中所述的正确 SysConfig 安装路径，请按如下所示编辑变量：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_iar_argvars_edit.png" />
 </figure>
 </li>
 </ol>
 </section>
-<section id="importing-mspm0-sysconfig-project-using-iar">
-<h4>3.2.2 Importing MSPM0 SysConfig Project using IAR<a class="headerlink" href="#importing-mspm0-sysconfig-project-using-iar" title="Permalink to this heading">¶</a></h4>
-<p>Follow these steps to import and use a SysConfig project in IAR.</p>
+<section id="iar-mspm0-sysconfig">
+<h4>3.2.2 使用 IAR 导入 MSPM0 SysConfig 工程<a class="headerlink" href="#iar-mspm0-sysconfig" title="Permalink to this heading">¶</a></h4>
+<p>按照以下步骤在 IAR 中导入和使用 SysConfig 工程。</p>
 <ol class="arabic">
 <li><div class="line-block">
-<div class="line">Import a code example with SysConfig support enabled in to your workspace as described in <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html">MSPM0 SDK QuickStart Guide for IAR</a>.</div>
-<div class="line">Refer to the <a class="reference external" href="../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html">MSPM0 SDK Examples Guide</a> for a full list of examples with SysConfig support.</div>
-<div class="line">For an empty example, use the “empty” example.</div>
+<div class="line">按照<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html">适用于 IAR 的 MSPM0 SDK 快速入门指南</a>中的说明，将已启用 SysConfig 支持的代码示例导入工作区。</div>
+<div class="line">有关具有 SysConfig 支持的示例的完整列表，请参阅 <a class="reference external" href="../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html">MSPM0 SDK 示例指南</a>。</div>
+<div class="line">要使用空示例，请选择“empty”示例。</div>
 </div>
 </li>
-<li><p>Double click on the *.syscfg file in your project.</p>
+<li><p>双击工程中的 *.syscfg 文件。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_iar_open_file.png" />
 </figure>
 </li>
-<li><p>This will open SysConfig and allow you to configure peripherals, IO pins, and other settings.</p>
+<li><p>随即将打开 SysConfig，从中可配置外设、IO 引脚和其他设置。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_iar_open.png" />
 </figure>
 </li>
-<li><p>Save your changes and switch back to IAR EWARM.</p></li>
-<li><p>Build your code example.</p></li>
+<li><p>保存所做更改，并切换回 IAR EWARM。</p></li>
+<li><p>编译代码示例。</p></li>
 </ol>
 </section>
 </section>
-<section id="getting-started-using-keil">
-<h3>3.3 Getting Started using Keil<a class="headerlink" href="#getting-started-using-keil" title="Permalink to this heading">¶</a></h3>
-<p>The best way to start a SysConfig project in Keil is to import it from the SDK; however, some steps are required to initialize SysConfig in Keil for the first time.</p>
-<section id="enabling-sysconfig-in-keil">
-<h4>3.3.1 Enabling SysConfig in Keil<a class="headerlink" href="#enabling-sysconfig-in-keil" title="Permalink to this heading">¶</a></h4>
+<section id="keil">
+<h3>3.3 开始使用 Keil<a class="headerlink" href="#keil" title="Permalink to this heading">¶</a></h3>
+<p>在 Keil 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时，需执行一些步骤以在 Keil 中初始化 SysConfig。</p>
+<section id="keil-sysconfig">
+<h4>3.3.1 在 Keil 中启用 SysConfig<a class="headerlink" href="#keil-sysconfig" title="Permalink to this heading">¶</a></h4>
 <div class="line-block">
-<div class="line">The following steps are required after installing a new SysConfig version or updating the SDK.</div>
-<div class="line">Note that the standalone version must be installed as described in section <a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">Downloading and Installing MSPM0 SysConfig</a></div>
+<div class="line">安装新的 SysConfig 版本或更新 SDK 后，需执行以下步骤。</div>
+<div class="line">请注意，必须按照<a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">下载和安装 MSPM0 SysConfig</a> 部分中的说明安装独立版本</div>
 </div>
 <ol class="arabic">
-<li><p>Follow instructions in <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">MSPM0 SDK QuickStart Guide for Keil</a> to install the MSPM0 SDK.</p></li>
-<li><p>Navigate to your SDK folder into <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/keil/</span></code> and open <code class="docutils literal notranslate"><span class="pre">syscfg.bat</span></code> for editing (not executing).</p></li>
-<li><p>Modify the SYSCFG_PATH shown in red below to match the standalone SysConfig path that was selected during section <a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">Downloading and Installing MSPM0 SysConfig</a>.</p>
+<li><p>请遵循<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>中的说明安装 MSPM0 SDK。</p></li>
+<li><p>导航至 SDK 文件夹中的 <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/keil/</span></code>，然后打开 <code class="docutils literal notranslate"><span class="pre">syscfg.bat</span></code> 进行编辑（不是执行）。</p></li>
+<li><p>修改下面以红色显示的 SYSCFG_PATH，以匹配在<a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">下载和安装 MSPM0 SysConfig</a>部分中选择的独立版 SysConfig 路径。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_customize_bat.png" />
 </figure>
 </li>
-<li><p>On the same folder, open <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR/tools/keil/MSPM0_SDK_syscfg_menu_import.cfg</span></code> for editing.</p></li>
-<li><p>Modify the SysConfig and SDK versions and paths.</p></li>
+<li><p>在同一文件夹中，打开 <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR/tools/keil/MSPM0_SDK_syscfg_menu_import.cfg</span></code> 进行编辑。</p></li>
+<li><p>修改 SysConfig 和 SDK 版本与路径。</p></li>
 </ol>
 <ul>
-<li><p>The SysConfig version and path is highlighted in red and it should match what was selected during section <a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">Downloading and Installing MSPM0 SysConfig</a>.</p></li>
-<li><p>The SDK version and path is highlighted in blue and corresponds to the <code class="docutils literal notranslate"><span class="pre">MSPM0_SDK_INSTALL_DIR</span></code>.</p>
+<li><p>SysConfig 版本和路径以红色突出显示，应匹配在<a class="reference external" href="#downloading-and-installing-mspm0-sysconfig">下载和安装 MSPM0 SysConfig</a> 部分中选择的版本和路径。</p></li>
+<li><p>SDK 版本和路径以蓝色突出显示，并与 <code class="docutils literal notranslate"><span class="pre">MSPM0_SDK_INSTALL_DIR</span></code> 对应。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_customize_cfg.png" />
 </figure>
 </li>
 </ul>
 <ol class="arabic" start="5">
-<li><p>In Keil uVision, select <strong>Tools → Customize Tools Menu</strong> from the menu.</p>
+<li><p>在 Keil uVision 中，从菜单中依次选择 <strong>Tools → Customize Tools Menu</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_customize_tools.png" />
 </figure>
 </li>
-<li><p>Click <strong>Import</strong></p>
+<li><p>点击 <strong>Import</strong></p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_customize_tools_import.png" />
 </figure>
 </li>
-<li><p>Navigate to your SDK folder into <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/keil/</span></code> and open <strong>MSPM0_SDK_syscfg_menu_import.cfg</strong>.</p>
+<li><p>导航至 SDK 文件夹中的 <code class="docutils literal notranslate"><span class="pre">&lt;MSPM0_SDK_INSTALL_DIR&gt;/tools/keil/</span></code>，然后打开 <strong>MSPM0_SDK_syscfg_menu_import.cfg</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_customize_tools_import_file.png" />
 </figure>
 </li>
-<li><p>Click OK to close window.</p>
+<li><p>点击“OK”关闭窗口。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_customize_tools_title.png" />
 </figure>
 </li>
-<li><p>The Tool will now appear on the menu. It will be used to open the GUI as explained on the next section.</p>
+<li><p>“Tool”现在将显示在菜单中。使用它打开 GUI，如下一部分所述。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_customize_tools_view.png" />
 </figure>
 </li>
 </ol>
 </section>
-<section id="importing-mspm0-sysconfig-project-using-keil">
-<h4>3.3.2 Importing MSPM0 SysConfig Project using Keil<a class="headerlink" href="#importing-mspm0-sysconfig-project-using-keil" title="Permalink to this heading">¶</a></h4>
-<p>Follow these steps to import and use a SysConfig project in Keil.</p>
+<section id="keil-mspm0-sysconfig">
+<h4>3.3.2 使用 Keil 导入 MSPM0 SysConfig 工程<a class="headerlink" href="#keil-mspm0-sysconfig" title="Permalink to this heading">¶</a></h4>
+<p>按照以下步骤在 Keil 中导入和使用 SysConfig 工程。</p>
 <ol class="arabic">
 <li><div class="line-block">
-<div class="line">Import a code example with SysConfig support enabled in to your workspace as described in <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">MSPM0 SDK QuickStart Guide for Keil</a>.</div>
-<div class="line">Refer to the <a class="reference external" href="../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html">MSPM0 SDK Examples Guide</a> for a full list of examples with SysConfig support.</div>
-<div class="line">For an empty example, use the “empty” example.</div>
+<div class="line">按照<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>中的说明，将已启用 SysConfig 支持的代码示例导入工作区。</div>
+<div class="line">有关具有 SysConfig 支持的示例的完整列表，请参阅 <a class="reference external" href="../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html">MSPM0 SDK 示例指南</a>。</div>
+<div class="line">要使用空示例，请选择“empty”示例。</div>
 </div>
 </li>
-<li><p>Double click on the *.syscfg file in your project.</p></li>
-<li><p>With the *.syscfg file opened on the viewer, click on <strong>Tools</strong> and select the tool configured on section <a class="reference external" href="#enabling-sysconfig-in-keil">Enabling SysConfig in Keil</a>.</p>
+<li><p>双击工程中的 *.syscfg 文件。</p></li>
+<li><p>在查看器中打开 *.syscfg 文件后，点击 <strong>Tools</strong>，选择在<a class="reference external" href="#enabling-sysconfig-in-keil">在 Keil 中启用 SysConfig</a> 部分中配置的工具。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_sysconfig_open.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line">This will open SysConfig and allow you to configure peripherals, IO pins, and other settings.</div>
-<div class="line">Note that this approach only allows one SysConfig GUI to be open at a time.</div>
+<div class="line">随即将打开 SysConfig，从中可配置外设、IO 引脚和其他设置。</div>
+<div class="line">请注意，此方法仅允许一次打开一个 SysConfig GUI。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/keil_sysconfig_view.png" />
 </figure>
 </li>
-<li><p>Save your changes and switch back to Keil uVision.</p></li>
-<li><p>Build your code example.</p></li>
+<li><p>保存所做更改，并切换回 Keil uVision。</p></li>
+<li><p>编译代码示例。</p></li>
 </ol>
 </section>
 </section>
-<section id="getting-started-without-an-ide">
-<h3>3.4 Getting Started without an IDE<a class="headerlink" href="#getting-started-without-an-ide" title="Permalink to this heading">¶</a></h3>
-<p>The following steps describe how to start a SysConfig project using MSPM0 without an IDE. The standalone version can be used for code generation and to evaluate the capabilities of the device, but is not capable of runnning an example.</p>
+<section id="ide">
+<h3>3.4 在没有 IDE 的情况下开始使用<a class="headerlink" href="#ide" title="Permalink to this heading">¶</a></h3>
+<p>以下步骤说明了如何在没有 IDE 的情况下使用 MSPM0 启动 SysConfig 工程。独立版本可用于生成代码和评估器件特性，但不能运行示例。</p>
 <ol class="arabic">
-<li><p>Run the standalone version of SysConfig</p></li>
-<li><p>SysConfig 1.17+ includes support for MSPM0 and supports M0 SDK:</p>
+<li><p>运行 SysConfig 独立版本</p></li>
+<li><p>SysConfig 1.17+ 包含对 MSPM0 的支持并支持 M0 SDK：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_pre_installed_product.png" />
 </figure>
 </li>
-<li><p>Select the MSPM0 SDK product, and the device.</p>
-<p>3.1. Select a board which pre-selects the device and package.</p>
+<li><p>选择 MSPM0 SDK 产品和器件。</p>
+<p>3.1. 选择预先选择了器件和封装的电路板。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_select_sdk_evm.png" />
 </figure>
-<p>3.2. Or, select a device and package.</p>
+<p>3.2. 或者选择器件和封装。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_select_sdk_device.png" />
 </figure>
 </li>
-<li><p>Start using SysConfig</p>
+<li><p>开始使用 SysConfig</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_run.png" />
 </figure>
@@ -423,117 +423,117 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 </ol>
 </section>
 </section>
-<section id="using-sysconfig-with-mspm0-sdk">
-<h2>4. Using SysConfig with MSPM0 SDK<a class="headerlink" href="#using-sysconfig-with-mspm0-sdk" title="Permalink to this heading">¶</a></h2>
-<p>This section describes useful features of SysConfig when developing for MSPM0.</p>
-<section id="sysconfig-software-modules">
-<h3>4.1 SysConfig Software Modules<a class="headerlink" href="#sysconfig-software-modules" title="Permalink to this heading">¶</a></h3>
-<section id="list-of-software-modules">
-<h4>4.1.1 List of Software Modules<a class="headerlink" href="#list-of-software-modules" title="Permalink to this heading">¶</a></h4>
+<section id="sysconfig-mspm0-sdk">
+<h2>4. 将 SysConfig 与 MSPM0 SDK 配合使用<a class="headerlink" href="#sysconfig-mspm0-sdk" title="Permalink to this heading">¶</a></h2>
+<p>此部分说明了在针对 MSPM0 进行开发时，SysConfig 的一些实用功能。</p>
+<section id="id3">
+<h3>4.1 SysConfig 软件模块<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<section id="id4">
+<h4>4.1.1 软件模块列表<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
 <div class="line-block">
-<div class="line">SysConfig software modules for MSPM0 SDK are selected by clicking the icon shown below.</div>
-<div class="line">Software Modules are organized by functionality, including groups such as SYSTEM, COMMUNICATIONS and TIMERS, among others.</div>
-<div class="line">The “READ-ONLY” group contains modules which are not modifiable, but provide useful information such as “EVENT” which shows the configuration of all events used by the application.</div>
-<div class="line"><strong>Note</strong>: the modules might differ from below based on SDK version.</div>
+<div class="line">通过点击以下所示图标，选择适用于 MSPM0 SDK 的 SysConfig 软件模块。</div>
+<div class="line">软件模块按功能整理，包括系统、通信和计时器等组。</div>
+<div class="line">“READ-ONLY”组中的模块不可修改，但提供有用信息，例如“EVENT”显示应用程序使用的所有事件的配置。</div>
+<div class="line"><strong>注意</strong>：根据 SDK 版本，模块可能与下述模块不同。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_modules.png" />
 </figure>
 </section>
-<section id="module-description">
-<h4>4.1.2 Module Description<a class="headerlink" href="#module-description" title="Permalink to this heading">¶</a></h4>
+<section id="id5">
+<h4>4.1.2 模块说明<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
 <div class="line-block">
-<div class="line">A software module’s description can be opened by selecting the module before adding it.</div>
-<div class="line">The description includes an overview of the module’s functionality and some useful information which can usually be found in the device’s datasheet or Technical Reference Manual.</div>
-<div class="line">The following shows the description of the TIMER module:</div>
+<div class="line">在添加软件模块前，可通过选择模块来打开软件模块说明。</div>
+<div class="line">模块说明包括模块功能的概述以及一些有用信息，通常可在器件的数据表或技术参考手册中找到。</div>
+<div class="line">下面显示了计时器模块的说明：</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_description.png" />
 </figure>
 </section>
-<section id="adding-a-software-module">
-<h4>4.1.3 Adding a Software Module<a class="headerlink" href="#adding-a-software-module" title="Permalink to this heading">¶</a></h4>
-<p>A module can be added as shown below. Note that SysConfig will only add as many instances as supported by the selected device.</p>
+<section id="id6">
+<h4>4.1.3 添加软件模块<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
+<p>可以按如下所示添加模块。请注意，SysConfig 将仅添加所选器件支持的多个实例。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_add_module.png" />
 </figure>
-<p>Adding a module will automatically hide its description; however, it can be opened again by clicking the icon shown below:</p>
+<p>添加模块将自动隐藏其说明；不过，可点击以下所示图标再次打开说明：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_description_show.png" />
 </figure>
 </section>
-<section id="components-of-a-software-module">
-<h4>4.1.4 Components of a Software Module<a class="headerlink" href="#components-of-a-software-module" title="Permalink to this heading">¶</a></h4>
-<p>Software modules vary in functionality, but they typically include the following sections:</p>
+<section id="id7">
+<h4>4.1.4 软件模块的组件<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h4>
+<p>软件模块的功能有所不同，但通常包括以下部分：</p>
 <ul>
 <li><div class="line-block">
-<div class="line"><strong>Name</strong>:</div>
-<div class="line">Custom name of the module instance.</div>
-<div class="line">The name starts with the number “0” as a suffix by default; however, the name can be customized by the developer to reflect the purpose of the module (e.g. “LED_ERROR” for a GPIO, or “TIMER_HEARTBEAT” for a TIMER).</div>
-<div class="line">Note that the actual peripheral selected by the module is shown below (e.g. “TIMA0”).</div>
+<div class="line"><strong>Name</strong>：</div>
+<div class="line">模块实例的自定义名称。</div>
+<div class="line">默认情况下，名称从数字后缀“0”开始；不过，开发人员可自定义名称以反映模块用途（例如，将 GPIO 命名为“LED_ERROR”，或将计时器命名为“TIMER_HEARTBEAT”）。</div>
+<div class="line">请注意，下面显示了模块选择的实际外设（如“TIMA0”）。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_name.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line"><strong>Quick Profiles</strong>:</div>
-<div class="line">Short list of some common configurations used for the module.</div>
-<div class="line">Besides providing a quick way to configure the module, these configurations can be used as a guideline to observe which parameters should be customized for each configuration.</div>
-<div class="line">Note that after modifying any parameter, the profile will default to “Custom”.</div>
+<div class="line"><strong>Quick Profiles</strong>：</div>
+<div class="line">模块的一些常用配置的简短列表。</div>
+<div class="line">除了可用于快速配置模块以外，这些配置还可用作指南以观察应对每个配置自定义哪些参数。</div>
+<div class="line">请注意，修改任何参数后，配置文件将默认为“Custom”。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_quickprofile.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line"><strong>Basic Configuration</strong>:</div>
-<div class="line">Provides access to the most commonly used settings and features of a module.</div>
-<div class="line">This section is expanded by default.</div>
+<div class="line"><strong>Basic Configuration</strong>：</div>
+<div class="line">用于访问模块中最常用的设置和特性。</div>
+<div class="line">默认情况下，此部分处于展开状态。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_basic.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line"><strong>Advanced Configuration</strong>:</div>
-<div class="line">Provides access to less common but still useful module settings and features.</div>
-<div class="line">This section is collapsed by default.</div>
+<div class="line"><strong>Advanced Configuration</strong>：</div>
+<div class="line">用于访问模块中不太常用、但仍有用的设置和特性。</div>
+<div class="line">默认情况下，此部分处于折叠状态。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_advanced.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line"><strong>Interrupts Configuration</strong>:</div>
-<div class="line">Selects which interrupts are enabled or disabled for the module.</div>
-<div class="line">This section is collapsed by default.</div>
+<div class="line"><strong>Interrupts Configuration</strong>：</div>
+<div class="line">选择为模块启用或禁用哪些中断。</div>
+<div class="line">默认情况下，此部分处于折叠状态。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_interrupts.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line"><strong>Event Configuration</strong>:</div>
-<div class="line">Configures the Publisher and Subscriber events for the module.</div>
-<div class="line">See section <a class="reference external" href="#event-configuration">Event Configuration</a> for more detailed information on how to configure Events in SysConfig.</div>
-<div class="line">This section is collapsed by default.</div>
+<div class="line"><strong>Event Configuration</strong>：</div>
+<div class="line">为模块配置发布者和订阅者事件。</div>
+<div class="line">有关如何在 SysConfig 中配置事件的详细信息，请参阅<a class="reference external" href="#event-configuration">事件配置</a>部分。</div>
+<div class="line">默认情况下，此部分处于折叠状态。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_events.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line"><strong>PinMux - Peripheral and Pin Configuration</strong>:</div>
-<div class="line">Configures the hardware peripheral and pins used by the module. See section <a class="reference external" href="#pinmux-configuration">PinMux Configuration</a> for more details about hardware selection.</div>
+<div class="line"><strong>PinMux - Peripheral and Pin Configuration</strong>：</div>
+<div class="line">配置模块使用的硬件外设和引脚。 有关硬件选择的详细信息，请参阅 <a class="reference external" href="#pinmux-configuration">PinMux 配置</a>部分。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_pinmux.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line"><strong>Other Dependencies</strong>:</div>
-<div class="line">Provides quick access to other dependencies used by the module.</div>
+<div class="line"><strong>Other Dependencies</strong>：</div>
+<div class="line">用于快速访问模块使用的其他依赖项。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_other.png" />
@@ -541,248 +541,248 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 </li>
 </ul>
 </section>
-<section id="detailed-description-of-parameters">
-<h4>4.1.5 Detailed Description of Parameters<a class="headerlink" href="#detailed-description-of-parameters" title="Permalink to this heading">¶</a></h4>
+<section id="id8">
+<h4>4.1.5 参数的详细说明<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h4>
 <div class="line-block">
-<div class="line">Some parameters include a detailed description providing quick access to useful information.</div>
-<div class="line">To access detailed help, click on the question mark as shown below.</div>
+<div class="line">某些参数包括详细说明，可用于快速获取有用信息。</div>
+<div class="line">要获取详细帮助，请点击下面显示的问号。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_detailed_help.png" />
 </figure>
 </section>
 </section>
-<section id="clock-tree">
-<h3>4.2 Clock Tree<a class="headerlink" href="#clock-tree" title="Permalink to this heading">¶</a></h3>
-<p>The Clock Tree feature allows the user to configure the clocking of a device graphically rather than using SYSCTL menus. This feature is Clock Tree and can be found by clicking the signal icon near the top left corner of SysConfig. Note the highlighted icon at the top of this page that opens on MSPM0G3507.</p>
-<p><strong>Note</strong>: the modules and views may differ on SDK version.</p>
+<section id="id9">
+<h3>4.2 时钟树<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<p>时钟树特性允许用户以图形方式配置器件时钟，而非使用 SYSCTL 菜单。 时钟树特性可通过点击 SysConfig 左上角旁的信号图标找到。此页面在 MSPM0G3507 上打开， 请注意其顶部突出显示的图标。</p>
+<p><strong>注意</strong>：根据 SDK 版本，模块和视图可能有所不同。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_clockTree_overview.png" />
 </figure>
-<p>To enable Clock Tree, simply add the SYSCTL module and click “Use Clock Tree” as shown below. This will source code generation and all functions from Clock Tree rather than from the SYSCTL module.</p>
+<p>要启用时钟树，仅需添加 SYSCTL 模块并点击“Use Clock Tree”，如下所示。这将从时钟树而非 SYSCTL 模块获得代码生成和所有函数。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_clockTree_enable.png" />
 </figure>
-<section id="coloration-scheme-and-legend">
-<h4>4.2.1 Coloration Scheme And Legend<a class="headerlink" href="#coloration-scheme-and-legend" title="Permalink to this heading">¶</a></h4>
-<p>In SysConfig, there are different colors and shapes that represent the different states of the Clock Tree. There are three possible states and colors that different elements in the Clock Tree can be. They are:</p>
+<section id="id10">
+<h4>4.2.1 配色方案和图例<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h4>
+<p>在 SysConfig 中，有不同的颜色和形状表示时钟树的不同状态。时钟树中的不同元素可以有三种可能状态和颜色。其中包括：</p>
 <ul class="simple">
-<li><p><strong>Active</strong> (<em>blue</em>): The element is in use and has a non-zero signal at at least one input</p></li>
-<li><p><strong>Unused</strong> (<em>light gray</em>): The element is not in use by the current view, but does have a non-zero clock signal into at least one input (even if it’s not outputted)</p></li>
-<li><p><strong>Off</strong> (<em>dark gray</em>): The element does not have a non-zero clock signal at any input, regardless of if its usage.</p></li>
+<li><p><strong>活动</strong>（<em>蓝色</em>）：此元素正在使用中，并且在至少一个输入中具有非零信号</p></li>
+<li><p><strong>未使用</strong>（<em>浅灰色</em>）：当前视图未使用此元素，但在至少一个输入（即使其未输出）中具有非零时钟信号</p></li>
+<li><p><strong>关闭</strong>（<em>深灰色</em>）：此元素在任何用途的输入中均没有非零时钟信号。</p></li>
 </ul>
-<p>The notion of “in-use” describes an element that is in the signal chain of one or more elements that do not have any outputs shown on the graph.</p>
-<p>The below image shows the SYSPLL grouping with the channel SYSPLL0 getting output to MCLK. Thus, the path through to MCLK is active, however, other channels are light gray and unused.</p>
+<p>“使用中”概念描述的是没有任何输出显示在图中的一个或多个元素的信号链中的元素。</p>
+<p>下图显示了 SYSPLL 分组和输出到 MCLK 的通道 SYSPLL0。 因此，到 MCLK 的路径处于活动状态，而其他通道为浅灰色，即未使用。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_clockTree_legend1.png" />
 </figure>
 <div class="line-block">
-<div class="line">Here, the same SYSPLL is in use, but the HFCLK source is 0.</div>
-<div class="line">Since SYSOSC is non-zero, the mux is active (and technically on a used path), but the other elements have zero frequency inputs, and are thus off.</div>
+<div class="line">这里使用了相同的SYSPLL，但 HFCLK 源为 0。</div>
+<div class="line">由于 SYSOSC 为非零，因此多路复用器处于活动状态（技术上在使用的路径上），但其他元素的输入为零频率，因此处于关闭状态。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_clockTree_legend2.png" />
 </figure>
-<p>Additionally, M0 devices currently have two separate views in the Clock Tree. A basic view to configure the internal signals, and an external/FCC view where the signals can be sent out or to the Frequency Clock Counter (FCC). One can toggle between the views by clicking them in the top right pane as shown below.</p>
+<p>此外，M0 器件当前在时钟树中有两个单独视图。一个是配置内部信号的基本视图，另一个是可以发送信号频率时钟计数器 （FCC）的外部/FCC 视图。可以在右上窗格点击切换这两种视图，如下所示。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_clockTree_views.png" />
 </figure>
 </section>
-<section id="editing-different-clock-tree-components">
-<h4>4.2.2 Editing Different Clock Tree Components<a class="headerlink" href="#editing-different-clock-tree-components" title="Permalink to this heading">¶</a></h4>
-<p>Clock Tree components can be edited by clicking on them. There are several different types of components that live in Clock Tree. To get more information about a component, one can simply click on the component to see the available configurables. The major categories are as follows:</p>
+<section id="id11">
+<h4>4.2.2 编辑时钟树的不同组件<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h4>
+<p>可以点击编辑时钟树的各个组件。 时钟树有若干种不同类型的组件。要详细了解某个组件，可点击此组件查看可用的可配置项。主要类别如下：</p>
 <ul class="simple">
-<li><p><strong>Divider/Multipliers</strong>: These are arithmetic components in the signal path. They can be adjusted by clicking on the dropdown and selecting the correct number.</p></li>
-<li><p><strong>Frequency Labels</strong>: These are generally labeled signals that can reflect the frequency on the line in order to easily ascertain what is the current state of the signal.</p></li>
-<li><p><strong>FCC</strong>: The frequency clock counter is represented by a single box, and can be enabled and configured by clicking on the box in the external view window.</p></li>
-<li><p><strong>Gates</strong>: These are smaller rectanular blocks that the signal passes through. Some gates are fixed, while others can be enabled/disabled by toggling the checkbox inside.</p></li>
-<li><p><strong>Muxes</strong>: These are adjustable by clicking the buttons inside the mux to select the source signal to be output.</p></li>
-<li><p><strong>Pin Functions</strong>: These are the smaller boxes with an “X” over them, and these all correspond to a resource in the pinmux. To enable them, click on the function and then click enable in the description. This will add the device to the pinmux data as well. There may additional configurables such as HFXT where an input frequency is required in order to know what the other frequencies will be.</p>
+<li><p><strong>乘法器/除法器</strong>：它们是信号路径中的算数组件。要进行调整，可点击下拉菜单并选择正确数字。</p></li>
+<li><p><strong>频率标记</strong>：这些一般标记信号可反映线路上的频率以轻松确定信号的当前状态。</p></li>
+<li><p><strong>FCC</strong>：频率时钟计数器以单个框表示，可在外部视图窗口中点击此框以启用和配置频率时钟计数器。</p></li>
+<li><p><strong>门</strong>：门是信号经过的较小矩形块。有些门是固定的，而有些门可通过切换内部的复选框来启用/禁用。</p></li>
+<li><p><strong>多路复用器</strong>：可点击多路复用器内的按钮来调整多路复用器，以选择要输出的源信号。</p></li>
+<li><p><strong>引脚功能</strong>：引脚功能是上面带“X”的较小框，它们均与 PinMux 中的资源对应。要启用引脚功能，可点击此功能，然后在说明中点击“Enable”。这也会将器件添加至 PinMux 数据。可能还有其他可配置项，例如 HFXT，其中需要输入频率才能知道其他频率。</p>
 <ul>
-<li><p><strong>Note</strong>: Just because CLKOUT appears enabled, this does not mean that code is being generated. It must be clicked on and enabled.</p></li>
+<li><p><strong>注意</strong>：仅仅因为 CLKOUT 显示为启用，并不表示此代码已生成。必须点击并启用它。</p></li>
 </ul>
 </li>
-<li><p><strong>Oscillators</strong>: SYSOSC and LFOSC are also present on the device, and SYSOSC does have some configurables and options that can be checked by clicking on the oscillator.</p></li>
+<li><p><strong>振荡器</strong>：SYSOSC 和 LFOSC 也显示在器件上，SYSOSC 有一些可配置项和选项，可通过点击振荡器来选中它们。</p></li>
 </ul>
 </section>
-<section id="summary-views">
-<h4>4.2.3 Summary Views<a class="headerlink" href="#summary-views" title="Permalink to this heading">¶</a></h4>
-<p>Clock Tree also has a summary pane view that can be found on the far right of the screen when selected from the top right. This can be useful as a quick reference when developing.</p>
+<section id="id12">
+<h4>4.2.3 摘要视图<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h4>
+<p>时钟树还包含摘要窗格视图，从右上角选择后，它位于屏幕最右侧。它可用作开发时的快速参考。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_clockTree_summary.png" />
 </figure>
 </section>
 </section>
-<section id="nonmain-configurator">
-<h3>4.3 NONMAIN Configurator<a class="headerlink" href="#nonmain-configurator" title="Permalink to this heading">¶</a></h3>
-<p>The NONMAIN Configurator is a SysConfig module that helps the user configure the device boot routines. The configuration data used by the boot configuration routine (BCR) and bootstrap loader (BSL) are stored in a dedicated region of flash memory called NONMAIN, and the configuration data structures are protected by 32-bit CRCs to improve security. Refer to the Architecture chapter in the device TRM for more details.</p>
-<p>Valid device configuration data and the corresponding valid CRC must be programmed into NONMAIN for the device to boot, <strong>otherwise the device will become locked in an unrecoverable state</strong>.</p>
-<p>The NONMAIN Configurator helps the user safely configure the device boot routines by automatically calculating the CRCs based on the user-selected values. The NONMAIN Configurator can be added to a project by adding the NONMAIN module as shown below.</p>
+<section id="nonmain">
+<h3>4.3 NONMAIN 配置器<a class="headerlink" href="#nonmain" title="Permalink to this heading">¶</a></h3>
+<p>NONMAIN 配置器是帮助用户配置器件引导例程的 SysConfig 模块。引导配置例程 （BCR） 和引导加载程序 （BSL） 使用的配置数据存储在名为 NONMAIN 的闪存专用区域中，并且配置数据 结构由 32 位 CRC 保护以提高安全性。有关详细信息，请参阅器件 TRM 中的“架构”一章。</p>
+<p>有效的器件配置数据和相应的有效 CRC 必须编程到 NONMAIN 中才能引导器件, <strong>否则器件将锁定在不可恢复的状态</strong>。</p>
+<p>NONMAIN 配置器可基于用户选择的值自动计算 CRC， 从而帮助用户安全配置器件引导例程。可以通过添加 NONMAIN 模块将 NONMAIN 配置器添加至工程，如下所示。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_nonmain_configurator_enable.png" />
 </figure>
-<p>When the NONMAIN Configurator module has been added, SysConfig will generate two files: boot_config.h and boot_config.c.</p>
+<p>添加 NONMAIN 配置器模块后，SysConfig 将生成两个文件：boot_config.h 和 boot_config.c。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_nonmain_configurator_generated_code.png" />
 </figure>
-<p>The boot_config.h file contains various enums, defines, and typedefs representing the configuration data structures and the selectable options.</p>
-<p>The boot_config.c file contains the configuration data structures with the user-selected values.</p>
-<p>When these files have been added to a project, and the project has been built and downloaded to the device, the updated boot routines will take effect after the next BOOTRST.</p>
-<p>Note that the generated NONMAIN structures must be placed in the corresponding memory locations by using linker files. The MSPM0 SDK includes linker files showing this functionality for TI Arm-Clang, GCC, IAR, and Keil.</p>
-<p>Refer to the SDK BSL examples (bsl_i2c_flash_interface, bsl_uart_flash_interface, secondary_bsl) and the Driverlib example flashctl_nonmain_memory_write for more details on using these files in a project.</p>
+<p>boot_config.h 文件包含各种表示配置数据结构可选选项的枚举、定义和 类型定义。</p>
+<p>boot_config.c 文件包含带用户选择的值的配置数据结构。</p>
+<p>将这些文件添加到工程并且工程已编译并下载到器件后，更新的引导例程将在下次 BOOTRST 后生效。</p>
+<p>请注意，必须使用链接器文件将生成的 NONMAIN 结构置于相应的存储器 位置。MSPM0 SDK 包括对于 TI Arm-Clang、GCC、IAR 和 Keil 显示此功能的链接器文件。</p>
+<p>有关如何在工程中使用这些文件的详细信息，请参阅 SDK BSL 示例（bsl_i2c_flash_interface、bsl_uart_flash_interface、secondary_bsl） 和 Driverlib 示例 flashctl_nonmain_memory_write。</p>
 </section>
-<section id="info-warnings-and-errors">
-<h3>4.4 Info, Warnings and Errors<a class="headerlink" href="#info-warnings-and-errors" title="Permalink to this heading">¶</a></h3>
+<section id="id13">
+<h3>4.4 信息、警告和错误<a class="headerlink" href="#id13" title="Permalink to this heading">¶</a></h3>
 <div class="line-block">
-<div class="line">Some configurations can trigger information messages, warnings or errors which are shown in the <strong>Problems</strong> panel.</div>
-<div class="line">The <strong>Problems</strong> panel can be enabled/disabled using the icon highlighted below.</div>
-<div class="line">Clicking on the hyperlink for each message will open the module and direct the user to the error.</div>
+<div class="line">某些配置可触发信息消息、警告或错误，这些将显示在 <strong>Problems</strong> 面板中。</div>
+<div class="line">可以使用下面突出显示的图标来启用/禁用 <strong>Problems</strong> 面板。</div>
+<div class="line">点击每个消息的超链接将打开模块，并将用户定向到错误。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_problems.png" />
 </figure>
 <ul>
-<li><p>This information message informs the developer that the DAC output will depend on the comparator output, and it assumes a reference supply of 3.3V.</p>
+<li><p>此信息消息告知开发人员 DAC 输出将取决于比较器输出，并假定基准电源为 3.3V。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_info.png" />
 </figure>
 </li>
-<li><p>The warning message informs that the calculated UART baudrate differs from the desired target value. This might be OK depending on the tolerance required by the application, so the warning could be suppressed.</p>
+<li><p>此警告消息表明计算的 UART 波特率与所需目标值不同。根据应用程序所需的容差，这可能没问题，因此可以抑制此警告。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_warning.png" />
 </figure>
 </li>
-<li><p>The error message informs that the selected timer period is not possible with the current configuration. This error must be fixed to generate code properly.</p>
+<li><p>此错误消息表明所选计时器周期在当前配置下无法实现。必须修复此错误才能正确生成代码。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_error.png" />
 </figure>
 </li>
 </ul>
 </section>
-<section id="code-generation">
-<h3>4.5 Code Generation<a class="headerlink" href="#code-generation" title="Permalink to this heading">¶</a></h3>
-<p>The generated files can be shown or hidden by clicking the icon highlighted below.</p>
+<section id="id14">
+<h3>4.5 代码生成<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
+<p>可通过点击下面突出显示的图标来显示或隐藏生成的文件。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_module_codegen.png" />
 </figure>
-<p>Click on any file to open it on the integrated editor.</p>
-<section id="observing-code-changes-based-on-configuration">
-<h4>4.5.1 Observing code changes based on configuration<a class="headerlink" href="#observing-code-changes-based-on-configuration" title="Permalink to this heading">¶</a></h4>
-<p>SysConfig can highlight differences in code generation which is a very useful feature when modifying parameters.</p>
+<p>点击任何文件可在集成编辑器中将其打开。</p>
+<section id="id15">
+<h4>4.5.1 根据配置观察代码更改<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h4>
+<p>SysConfig 可突出显示代码生成中的不同，此特性在修改参数时非常有用。</p>
 <ul>
-<li><p><strong>Unified diff</strong> highlights the recent changes on the same file.</p>
+<li><p><strong>Unified diff</strong> 突出显示同一文件中的最近更改。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_unifieddiff.png" />
 </figure>
 </li>
-<li><p><strong>Side-by-side diff</strong> shows the newly generated code side-by-side with previous code.</p>
+<li><p><strong>Side-by-side diff</strong> 并排显示新生成的代码与先前代码。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_sidediff.png" />
 </figure>
 </li>
-<li><p><strong>No diff</strong> simply shows the latest generated code.</p></li>
+<li><p><strong>No diff</strong> 仅显示最新生成的代码。</p></li>
 </ul>
 </section>
 </section>
-<section id="device-view">
-<h3>4.6 Device View<a class="headerlink" href="#device-view" title="Permalink to this heading">¶</a></h3>
+<section id="id16">
+<h3>4.6 器件视图<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h3>
 <div class="line-block">
-<div class="line">The Device view provides a useful view of the selected package and the pins used.</div>
-<div class="line">This view can be shown or hidden by clicking the icon highlighted below.</div>
+<div class="line">器件视图非常有用，显示所选封装与使用的引脚。</div>
+<div class="line">可通过点击下面突出显示的图标来显示或隐藏此视图。</div>
 <div class="line"><img alt="image0" src="../_images/sysconfig_device_view.png" /></div>
 </div>
 <div class="line-block">
-<div class="line">Hover over pins to check their functionality.</div>
-<div class="line">If a pin is assigned, the selected function is highlighted.</div>
-<div class="line">Clicking an assigned pin will open the corresponding module in PinMux section.</div>
+<div class="line">将鼠标悬停在引脚上可查看其功能。</div>
+<div class="line">如果引脚已分配，则将突出显示所选功能。</div>
+<div class="line">点击分配的引脚将在 PinMux 部分中打开相应模块。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_device_pin_view.png" />
 </figure>
 </section>
-<section id="board-view">
-<h3>4.7 Board View<a class="headerlink" href="#board-view" title="Permalink to this heading">¶</a></h3>
+<section id="id17">
+<h3>4.7 电路板视图<a class="headerlink" href="#id17" title="Permalink to this heading">¶</a></h3>
 <div class="line-block">
-<div class="line">The Board view is shown when a SysConfig project is using an EVM and provides a good overview of the pins available on the EVM and current usage.</div>
-<div class="line">This view can be shown or hidden by clicking the icon highlighted below.</div>
+<div class="line">当 SysConfig 工程使用 EVM 时将显示电路板视图，在此视图中可明确概览 EVM 上的可用引脚和当前使用情况。</div>
+<div class="line">可通过点击下面突出显示的图标来显示或隐藏此视图。</div>
 <div class="line"><img alt="image1" src="../_images/sysconfig_board_view.png" /></div>
 </div>
-<section id="customizing-board-configurations">
-<h4>4.7.1 Customizing board configurations<a class="headerlink" href="#customizing-board-configurations" title="Permalink to this heading">¶</a></h4>
-<p>Follow <a class="reference external" href="https://software-dl.ti.com/ccs/esd/sysconfig/docs/guide/custom-board_CN.html">these instructions</a> to override or eliminate board constraints.</p>
+<section id="id18">
+<h4>4.7.1 自定义电路板配置<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h4>
+<p>请遵循<a class="reference external" href="https://software-dl.ti.com/ccs/esd/sysconfig/docs/guide/custom-board.html">这些说明</a>以覆盖或消除电路板限制。</p>
 </section>
 </section>
-<section id="switching-between-devices-and-packages">
-<h3>4.8 Switching Between Devices and Packages<a class="headerlink" href="#switching-between-devices-and-packages" title="Permalink to this heading">¶</a></h3>
+<section id="id19">
+<h3>4.8 在器件与封装之间进行切换<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h3>
 <div class="line-block">
-<div class="line">SysConfig allows developers to easily switch between devices and packages.</div>
-<div class="line">To get started, select the <a class="reference external" href="#device-view">Device view</a> or <a class="reference external" href="#board-view">Board view</a> and click on <strong>SWITCH</strong>.</div>
+<div class="line">SysConfig 使开发人员能够在器件与封装之间轻松切换。</div>
+<div class="line">首先，选择<a class="reference external" href="#device-view">器件视图</a>或<a class="reference external" href="#board-view">电路板视图</a>并点击 <strong>SWITCH</strong>。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_device_switch.png" />
 </figure>
-<p>Select the new hardware and click on <strong>CONFIRM</strong>.</p>
+<p>选择新硬件，并点击 <strong>CONFIRM</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_device_switch_view.png" />
 </figure>
 <div class="line-block">
-<div class="line">Note that SysConfig will attempt to assign peripherals, but some configurations might not be possible.</div>
-<div class="line">The following shows an error when attempting to migrate a project using DAC12 which is available on MSPM0Gxx, but not on MSPM0Lxx.</div>
+<div class="line">请注意，SysConfig 将尝试分配外设，但某些配置可能无法实现。</div>
+<div class="line">当尝试迁移的工程使用 DAC12，并且存在于 MSPM0Gxx，但不存在于 MSPM0Lxx 上时，将显示以下错误。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_device_switch_error.png" />
 </figure>
 </section>
-<section id="event-configuration">
-<h3>4.9 Event Configuration<a class="headerlink" href="#event-configuration" title="Permalink to this heading">¶</a></h3>
+<section id="id20">
+<h3>4.9 事件配置<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h3>
 <div class="line-block">
-<div class="line">The MSPM0 event manager transfers digital events from one entity (event publisher) to another (event subscriber).</div>
-<div class="line">SysConfig enables an intuitive and simple configuration of events in a graphical manner.</div>
-<div class="line">The following steps show how to configure an event.</div>
+<div class="line">MSPM0 事件管理器可将数字事件从一个实体（事件发布者）传输到另一实体（事件订阅者）。</div>
+<div class="line">SysConfig 以图形方式实现直观且简单的事件配置。</div>
+<div class="line">以下步骤说明了如何配置事件。</div>
 </div>
 <ol class="arabic">
-<li><p>Select a module with event publisher capabilities. This example uses a TIMER.</p></li>
-<li><p>Go to the Event Configuration section of the publisher module.</p></li>
+<li><p>选择具有事件发布者功能的模块。此示例使用计时器。</p></li>
+<li><p>转至发布者模块的“Event Configuration”部分。</p></li>
 <li><div class="line-block">
-<div class="line">Select an ID from 1-15 and the event that will be published.</div>
-<div class="line">The example below selected ID #2, and the Timer Zero event.</div>
+<div class="line">从 1-15 中选择 ID 并选择将发布的事件。</div>
+<div class="line">以下示例选择了 ID #2 和计时器零事件。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_event_publisher_2.png" />
 </figure>
 </li>
-<li><p>Select a module with event subscriber capability. This example uses an ADC.</p></li>
-<li><p>Go to the Event Configuration section of the subscriber module.</p></li>
+<li><p>选择具有事件订阅者功能的模块。此示例使用 ADC。</p></li>
+<li><p>转至订阅者模块的“Event Configuration”部分。</p></li>
 <li><div class="line-block">
-<div class="line">Select the Subscriber Event Channel ID. Note that SysConfig will show which publishers are already configured.</div>
-<div class="line">For the example below, it shows TIMER for ID #2.</div>
+<div class="line">选择订阅者事件通道 ID。请注意，SysConfig 将显示已配置的发布者。</div>
+<div class="line">以下示例显示的计时器 ID 为 #2。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_event_subscriber_1.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line">Open the READ-ONLY EVENT module to see all events.</div>
-<div class="line">Note that Channel #2 is configured to trigger from TIMER to ADC.</div>
+<div class="line">打开只读事件模块以查看所有事件。</div>
+<div class="line">请注意，通道 #2 配置为从计时器触发到 ADC。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_event_view.png" />
 </figure>
 </li>
-<li><p>SysConfig also generates an <strong>Event.dot</strong> file which has a graphical representation of Events.</p>
+<li><p>SysConfig 还将生成 <strong>Event.dot</strong> 文件，它提供事件的图形表示。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_event_file.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line">Copy the contents of the generated <strong>Events.dot</strong> into a .dot file viewer such as <a class="reference external" href="https://dreampuf.github.io/GraphvizOnline/">GraphvizOnline</a>.</div>
-<div class="line">Observe that Channel #2 is configured to trigger from TIMER to ADC.</div>
+<div class="line">将生成的 <strong>Events.dot</strong> 的内容复制到 .dot 文件查看器，如 <a class="reference external" href="https://dreampuf.github.io/GraphvizOnline/">GraphvizOnline</a>。</div>
+<div class="line">观察通道 #2 配置为从计时器触发到 ADC。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_event_file_viewer.png" />
 </figure>
 </li>
-<li><p>Some event channels support multiple 2 subscribers. The example below shows the configuration of a Timer Publisher triggering an event to the ADC and DAC12 as Subscribers.</p>
+<li><p>某些事件通道支持 2 个订阅者。以下示例显示了将事件触发到 ADC 和 DAC12 订阅者的计时器发布者配置。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_event_two_events.png" />
 </figure>
@@ -792,35 +792,35 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 </li>
 </ol>
 </section>
-<section id="pinmux-configuration">
-<h3>4.10 PinMux Configuration<a class="headerlink" href="#pinmux-configuration" title="Permalink to this heading">¶</a></h3>
-<p>SysConfig enables easy assignment of peripherals and device pins.</p>
+<section id="pinmux">
+<h3>4.10 PinMux 配置<a class="headerlink" href="#pinmux" title="Permalink to this heading">¶</a></h3>
+<p>SysConfig 能够轻松分配外设和器件引脚。</p>
 <ul>
 <li><div class="line-block">
-<div class="line">All modules with assignable hardware contain a PinMux section at the bottom of the module configuration panel.</div>
-<div class="line">By default, modules are assigned to <strong>Any</strong> which will allow SysConfig to choose any available peripheral and pin.</div>
-<div class="line">The following shows the default assignment for a UART module.</div>
+<div class="line">具有可分配硬件的所有模块在模块配置面板底部均包含 PinMux 部分。</div>
+<div class="line">默认情况下，模块分配至 <strong>Any</strong>，这将允许 SysConfig 选择任何可用外设和引脚。</div>
+<div class="line">下图显示了 UART 模块的默认分配。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_pinmux_any.png" />
 </figure>
 </li>
-<li><p>Developers can select a specific peripheral or pin.</p>
+<li><p>开发人员可选择特定外设或引脚。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_pinmux_peripheral.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line">Note that selecting a peripheral or pin will narrow down the options for other settings.</div>
-<div class="line">In the example below, only UART1_RX pins can be selected since the peripheral was selected as UART1.</div>
+<div class="line">请注意，选择外设或引脚将减少其他设置的选项。</div>
+<div class="line">在以下示例中，只能选择 UART1_RX 引脚，因为选择了外设 UART1。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_pinmux_pin.png" />
 </figure>
 </li>
 <li><div class="line-block">
-<div class="line">Selecting a peripheral or pin can cause conflicts if the assignment is not possible.</div>
-<div class="line">In the example below, PA18 is being used by another module, thus causing an assignment conflict.</div>
+<div class="line">如果分配无法实现，则选择外设或引脚可能导致冲突。</div>
+<div class="line">在以下示例中，PA18 由另一模块使用，因此导致了分配冲突。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_pinmux_pin_conflict.png" />
@@ -828,148 +828,148 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 </li>
 </ul>
 </section>
-<section id="reserving-hardware-peripherals">
-<h3>4.11 Reserving Hardware Peripherals<a class="headerlink" href="#reserving-hardware-peripherals" title="Permalink to this heading">¶</a></h3>
+<section id="id21">
+<h3>4.11 保留硬件外设<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h3>
 <div class="line-block">
-<div class="line">SysConfig can allow developers to assign peripherals without necessarily using them as <a class="reference external" href="#sysconfig-software-modules">Software modules</a>.</div>
-<div class="line">This feature can be useful to reserve pins and peripherals without having to generate code, or for hardware developers wanting to select pins which allow for easier routing.</div>
+<div class="line">SysConfig 允许开发人员分配外设，而不必将其用作<a class="reference external" href="#sysconfig-software-modules">软件模块</a>。</div>
+<div class="line">此特性可用于保留引脚和外设而不必生成代码，也可供硬件开发人员选择更易布线的引脚。</div>
 </div>
-<section id="reserve-peripheral-list">
-<h4>4.11.1 Reserve Peripheral List<a class="headerlink" href="#reserve-peripheral-list" title="Permalink to this heading">¶</a></h4>
-<p>The Reserve Peripheral list for MSPM0 SDK can be selected by clicking the icon shown below.</p>
+<section id="reserve-peripheral">
+<h4>4.11.1 “Reserve Peripheral”列表<a class="headerlink" href="#reserve-peripheral" title="Permalink to this heading">¶</a></h4>
+<p>可点击以下所示图标来选择 MSPM0 SDK 的“Reserve Peripheral”列表。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_reserveperiph_list.png" />
 </figure>
 </section>
-<section id="reserving-a-peripheral">
-<h4>4.11.2 Reserving a peripheral<a class="headerlink" href="#reserving-a-peripheral" title="Permalink to this heading">¶</a></h4>
+<section id="id22">
+<h4>4.11.2 保留外设<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h4>
 <div class="line-block">
-<div class="line">Reserve a peripheral by clicking the symbol shown below.</div>
-<div class="line">Note that SysConfig will show the instances as supported by the selected device.</div>
+<div class="line">可点击以下所示符号来保留外设。</div>
+<div class="line">请注意，SysConfig 将显示所选器件支持的实例。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_reserveperiph_select.png" />
 </figure>
-<p>The assignment of the peripheral and pins is similar to <a class="reference external" href="#pinmux-configuration">PinMux configuration</a>.</p>
+<p>外设和引脚的分配类似于 <a class="reference external" href="#pinmux-configuration">PinMux 配置</a>。</p>
 </section>
 </section>
-<section id="disabling-sysconfig">
-<h3>4.12 Disabling SysConfig<a class="headerlink" href="#disabling-sysconfig" title="Permalink to this heading">¶</a></h3>
-<p>Once the initial configuration for the application is complete, developers may wish to freeze or lock-in the files generated by SysConfig, so they are not re-generated in future builds.</p>
-<section id="disabling-sysconfig-in-ccs">
-<h4>4.12.1 Disabling SysConfig in CCS<a class="headerlink" href="#disabling-sysconfig-in-ccs" title="Permalink to this heading">¶</a></h4>
-<section id="locate-generated-files">
-<h5>Locate Generated Files<a class="headerlink" href="#locate-generated-files" title="Permalink to this heading">¶</a></h5>
-<p>Generated files can be located in the CCS Project Explorer in the <strong>Generated Source</strong> folder:</p>
+<section id="id23">
+<h3>4.12 禁用 SysConfig<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
+<p>完成应用程序的初始配置后，开发人员可能希望冻结或锁定 SysConfig 生成的文件，避免它们在将来编译中重新生成。</p>
+<section id="id24">
+<h4>4.12.1 在 CCS 中禁用 SysConfig<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h4>
+<section id="id25">
+<h5>定位生成的文件<a class="headerlink" href="#id25" title="Permalink to this heading">¶</a></h5>
+<p>生成的文件位于 CCS Project Explorer 中的 <strong>Generated Source</strong> 文件夹：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_ccs_files.png" />
 </figure>
-<p>These files will be located in <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/&lt;build_configuration&gt;/syscfg</span></code> which can be accessed in a quick and easy way by right-clicking on any of the files in the folder above and selecting <strong>Show in Local Terminal → System Explorer</strong></p>
+<p>这些文件位于 <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/&lt;build_configuration&gt;/syscfg</span></code>，可右键点击上面文件夹中的任一文件，并选择 <strong>Show in Local Terminal → System Explorer</strong> 快速轻松地访问这些文件</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_ccs_files_locate.png" />
 </figure>
 </section>
-<section id="copy-generated-files">
-<h5>Copy Generated Files<a class="headerlink" href="#copy-generated-files" title="Permalink to this heading">¶</a></h5>
+<section id="id26">
+<h5>复制生成的文件<a class="headerlink" href="#id26" title="Permalink to this heading">¶</a></h5>
 <div class="line-block">
-<div class="line">In CCS the build directory is cleaned every time the project is rebuilt, so it is necessary to copy the generated files to a permanent location before the project is rebuilt.</div>
-<div class="line">The files can be copied to the project root directory, or a new folder can be created.</div>
-<div class="line">The following steps and figure show the steps creating a new folder.</div>
+<div class="line">在 CCS 中，每次重新编译工程时将清除编译目录，因此在重新编译工程之前，必须将生成的文件复制到永久位置。</div>
+<div class="line">可以将文件复制到工程根目录，也可新建文件夹。</div>
+<div class="line">以下步骤和图显示了新建文件夹的步骤。</div>
 </div>
 <ol class="arabic simple">
-<li><p>Create a new folder. In the figure below shown as <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/sysconfig</span></code>.</p></li>
-<li><p>Copy the generated source files from the <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/&lt;build_configuration&gt;/syscfg</span></code> mentioned in previous step.</p></li>
-<li><p>Paste the generated source files to the new folder.</p></li>
+<li><p>创建一个新文件夹。在下图中显示为 <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/sysconfig</span></code>。</p></li>
+<li><p>复制上一步骤所述的 <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;/&lt;build_configuration&gt;/syscfg</span></code> 中生成的源文件。</p></li>
+<li><p>将生成的源文件粘贴到新文件夹。</p></li>
 </ol>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_ccs_files_copy.png" />
 </figure>
-<p>Note that the files will now show in CCS:</p>
+<p>请注意，文件现在显示在 CCS 中：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_ccs_files_copy2.png" />
 </figure>
 </section>
-<section id="disable-sysconfig">
-<h5>Disable SysConfig<a class="headerlink" href="#disable-sysconfig" title="Permalink to this heading">¶</a></h5>
+<section id="id27">
+<h5>禁用 SysConfig<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h5>
 <div class="line-block">
-<div class="line">In CCS, files ending in <strong>.syscfg</strong> are automatically flagged as SysConfig files. If you have an active .syscfg file in your workspace, it will invoke the SysConfig Tools.</div>
-<div class="line">To disable the file, right-click on it and select <strong>Exclude from Build</strong>.</div>
+<div class="line">在 CCS 中，以 <strong>.syscfg</strong> 结尾的文件将自动标记为 SysConfig 文件。如果工作区中有活动的 .syscfg 文件，它将调用 SysConfig 工具。</div>
+<div class="line">要禁用此文件，右键点击此文件并选择 <strong>Exclude from Build</strong>。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_ccs_disable.png" />
 </figure>
 </section>
-<section id="modify-compiler-linker-settings">
-<h5>Modify Compiler/Linker Settings<a class="headerlink" href="#modify-compiler-linker-settings" title="Permalink to this heading">¶</a></h5>
+<section id="id28">
+<h5>修改编译器/链接器设置<a class="headerlink" href="#id28" title="Permalink to this heading">¶</a></h5>
 <div class="line-block">
-<div class="line">The source files generated by SysConfig are used by the compiler and linker as part of the build process. Moving the files to a new location requires updating project settings.</div>
-<div class="line">Note that this step may not required if the generated files are copied to the project root folder.</div>
+<div class="line">SysConfig 生成的源文件由编译器和链接器在编译过程中使用。要将文件移至新位置，需要更新工程设置。</div>
+<div class="line">请注意，如果生成的文件复制到工程根文件夹，则可能无需执行此步骤。</div>
 </div>
-<p>The following image shows how to add the path <code class="docutils literal notranslate"><span class="pre">${PROJECT_ROOT}/sysconfig</span></code> to include the header files from the newly created folder.</p>
+<p>下图显示了如何添加路径 <code class="docutils literal notranslate"><span class="pre">${PROJECT_ROOT}/sysconfig</span></code> 以包括新建文件夹中的头文件。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_ccs_addpath.png" />
 </figure>
 </section>
-<section id="rebuild-project">
-<h5>Rebuild Project<a class="headerlink" href="#rebuild-project" title="Permalink to this heading">¶</a></h5>
-<p>The project can now be rebuilt without SysConfig.</p>
+<section id="id29">
+<h5>重新编译工程<a class="headerlink" href="#id29" title="Permalink to this heading">¶</a></h5>
+<p>现在可重新编译工程而不使用 SysConfig。</p>
 </section>
-<section id="re-enabling-sysconfig">
-<h5>Re-enabling SysConfig<a class="headerlink" href="#re-enabling-sysconfig" title="Permalink to this heading">¶</a></h5>
+<section id="id30">
+<h5>重新启用 SysConfig<a class="headerlink" href="#id30" title="Permalink to this heading">¶</a></h5>
 <ol class="arabic simple">
-<li><p>Include the .syscfg back into the project.</p></li>
-<li><p>Exclude or delete the new folder containing the previously copied files.</p></li>
-<li><p>Remove any project settings that could cause conflicts between the folders.</p></li>
+<li><p>将 .syscfg 重新包含至工程。</p></li>
+<li><p>排除或删除包含先前复制的文件的新文件夹。</p></li>
+<li><p>删除可能导致文件夹冲突的任何工程设置。</p></li>
 </ol>
 </section>
 </section>
-<section id="disabling-sysconfig-in-iar">
-<h4>4.12.2 Disabling SysConfig in IAR<a class="headerlink" href="#disabling-sysconfig-in-iar" title="Permalink to this heading">¶</a></h4>
-<section id="id1">
-<h5>Locate Generated Files<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h5>
-<p>Generated files can be located in the IAR Workspace in the <strong>SysConfig Generated Files</strong> folder:</p>
+<section id="id31">
+<h4>4.12.2 在 IAR 中禁用 SysConfig<a class="headerlink" href="#id31" title="Permalink to this heading">¶</a></h4>
+<section id="id32">
+<h5>定位生成的文件<a class="headerlink" href="#id32" title="Permalink to this heading">¶</a></h5>
+<p>生成的文件可能位于 IAR 工作区中的 <strong>SysConfig Generated Files</strong> 文件夹：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_iar_files.png" />
 </figure>
-<p>These files will be located in the project root folder. The files can be accessed in a quick and easy way by right-clicking on any of the files in the folder above and selecting <strong>Open Containing Folder</strong></p>
+<p>这些文件将位于工程根文件夹。可右键点击上面文件夹中的任一文件，并选择 <strong>Open Containing Folder</strong> 快速轻松地访问这些文件</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_iar_files_locate.png" />
 </figure>
 </section>
-<section id="id2">
-<h5>Disable SysConfig<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h5>
-<p>In IAR, SysConfig is treated as a Custom Build step. To access the custom build steps, select <strong>Project→Options→Custom Build</strong>. Remove all the fields that are populated under the Custom Tool Configuration tab as shown below:</p>
+<section id="id33">
+<h5>禁用 SysConfig<a class="headerlink" href="#id33" title="Permalink to this heading">¶</a></h5>
+<p>在 IAR 中，对 SysConfig 采用“Custom Build”步骤。要使用自定义编译步骤，请依次选择 <strong>Project→Options→Custom Build</strong>。清除所有在“Custom Tool Configuration”选项卡下填充的字段，如下所示：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_codegen_disable_iar_disable.png" />
 </figure>
 </section>
-<section id="id3">
-<h5>Rebuild Project<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h5>
-<p>The project can now be rebuilt without SysConfig.</p>
+<section id="id34">
+<h5>重新编译工程<a class="headerlink" href="#id34" title="Permalink to this heading">¶</a></h5>
+<p>现在可在无SysConfig的情况下重新编译工程。</p>
 </section>
-<section id="id4">
-<h5>Re-enabling SysConfig<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h5>
+<section id="id35">
+<h5>重新启用 SysConfig<a class="headerlink" href="#id35" title="Permalink to this heading">¶</a></h5>
 <ol class="arabic">
-<li><p>Restore the Custom Build settings from <strong>Project→Options→Custom Build</strong>:</p>
-<p>1.1. Filename extensions: <code class="docutils literal notranslate"><span class="pre">.syscfg</span></code></p>
-<p>1.2. Command line: <code class="docutils literal notranslate"><span class="pre">$SYSCONFIG_ROOT$/sysconfig_cli.bat</span> <span class="pre">-o</span> <span class="pre">$PROJ_DIR$</span> <span class="pre">-s</span> <span class="pre">&quot;$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json&quot;</span> <span class="pre">--compiler</span> <span class="pre">iar</span> <span class="pre">$FILE_PATH$</span></code></p>
-<p>1.3. Output files: <code class="docutils literal notranslate"><span class="pre">SysConfig_Generated_Files.ipcf</span></code></p>
+<li><p>从以下位置恢复自定义编译设置 <strong>Project→Options→Custom Build</strong>：</p>
+<p>1.1. 文件名扩展名：<code class="docutils literal notranslate"><span class="pre">.syscfg</span></code></p>
+<p>1.2. 命令行：<code class="docutils literal notranslate"><span class="pre">$SYSCONFIG_ROOT$/sysconfig_cli.bat</span> <span class="pre">-o</span> <span class="pre">$PROJ_DIR$</span> <span class="pre">-s</span> <span class="pre">&quot;$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json&quot;</span> <span class="pre">--compiler</span> <span class="pre">iar</span> <span class="pre">$FILE_PATH$</span></code></p>
+<p>1.3. 输出文件：<code class="docutils literal notranslate"><span class="pre">SysConfig_Generated_Files.ipcf</span></code></p>
 </li>
 </ol>
 </section>
 </section>
 </section>
-<section id="overriding-sysconfig-weak-functions">
-<h3>4.13 Overriding SYSCONFIG_WEAK functions<a class="headerlink" href="#overriding-sysconfig-weak-functions" title="Permalink to this heading">¶</a></h3>
-<p>In some scenarios, it might be useful to override some functions generated by SysConfig while still keeping it enabled for configuration and code generation of other functions.</p>
-<p>This can be achieved in SysConfig for MSPM0-SDK since functions are declared as <code class="docutils literal notranslate"><span class="pre">SYSCONFIG_WEAK</span></code>.</p>
-<p>The weak attribute causes the compiler to emit a weak symbol to the symbol table for the symbol’s declaration. At link-time, if a strong definition of a symbol with the same name is included in the link, then the strong definition of the symbol will override the weak definition.</p>
-<p>The example below shows the weak definition of <code class="docutils literal notranslate"><span class="pre">SYSCFG_DL_GPIO_init</span></code>:</p>
+<section id="sysconfig-weak">
+<h3>4.13 覆盖 SYSCONFIG_WEAK 函数<a class="headerlink" href="#sysconfig-weak" title="Permalink to this heading">¶</a></h3>
+<p>在某些情况下，覆盖 SysConfig 生成的某些函数，同时仍保持其启用状态 以用于其他函数的配置和代码生成， 这可能非常有用。</p>
+<p>这可在适用于 MSPM0-SDK 的 SysConfig 中实现，因为函数声明为 <code class="docutils literal notranslate"><span class="pre">SYSCONFIG_WEAK</span></code>。</p>
+<p>weak 属性导致编译器向符号表发送弱符号 以进行符号声明。在链接时，如果链接中包括 名称相同的符号的强定义，则符号的强定义 将覆盖弱定义。</p>
+<p>以下示例显示了 <code class="docutils literal notranslate"><span class="pre">SYSCFG_DL_GPIO_init</span></code> 的弱定义：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_weak_1.png" />
 </figure>
-<p>The same function can be rewriten in the application code without the <code class="docutils literal notranslate"><span class="pre">SYSCONFIG_WEAK</span></code> attribute and it will take precedence over the function generated by SysConfig.</p>
-<p>Note how in the example below, <code class="docutils literal notranslate"><span class="pre">SYSCFG_DL_GPIO_init</span></code> is still called by <code class="docutils literal notranslate"><span class="pre">SYSCFG_DL_Init</span></code> during SysConfig initialization, but it resides in the application file instead of the file generated by SysConfig:</p>
+<p>同一函数可在应用程序代码中重新编写而不带有 <code class="docutils literal notranslate"><span class="pre">SYSCONFIG_WEAK</span></code> 属性，且将优于 SysConfig 生成的函数。</p>
+<p>请注意，在以下示例中，<code class="docutils literal notranslate"><span class="pre">SYSCFG_DL_GPIO_init</span></code> 在 SysConfig 初始化期间仍由 <code class="docutils literal notranslate"><span class="pre">SYSCFG_DL_Init</span></code> 调用，但它位于应用程序文件 而非 SysConfig 生成的文件中：</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_weak_2.png" />
 </figure>

@@ -32,4 +32,5 @@ const Board           = scripting.addModule("/ti/driverlib/Board", {}, false);
 Board.configureUnused = true;
 
 SYSCTL.powerPolicy = "STOP2";
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;

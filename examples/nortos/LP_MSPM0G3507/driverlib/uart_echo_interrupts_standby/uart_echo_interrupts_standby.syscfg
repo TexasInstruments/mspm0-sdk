@@ -34,4 +34,5 @@ UART1.peripheral.txPin.$assign = "PA10";
 
 SYSCTL.powerPolicy = "STANDBY0";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
