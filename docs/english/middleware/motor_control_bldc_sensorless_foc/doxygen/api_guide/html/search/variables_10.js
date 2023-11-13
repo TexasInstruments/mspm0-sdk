@@ -1,13 +1,19 @@
 var searchData=
 [
-  ['rampdelaycount',['RampDelayCount',['../struct_r_m_p_c_n_t_l___instance.html#a702744f825aea397d689ec52069bd0f0',1,'RMPCNTL_Instance']]],
-  ['rampdelaymax',['RampDelayMax',['../struct_r_m_p_c_n_t_l___instance.html#a69154493e5f6d2beb8778660815a2543',1,'RMPCNTL_Instance']]],
-  ['ramphighlimit',['RampHighLimit',['../struct_r_m_p_c_n_t_l___instance.html#a8ba45ba1a697d907e0e3c526c031334e',1,'RMPCNTL_Instance']]],
-  ['ramplowlimit',['RampLowLimit',['../struct_r_m_p_c_n_t_l___instance.html#ae86e962e3d70df80d452a400f17fa525',1,'RMPCNTL_Instance']]],
-  ['rc',['rc',['../group___f_o_c___m_o_d_u_l_e.html#ga3e178464aebf6b067206cf3aaa225a74',1,'rc():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga3e178464aebf6b067206cf3aaa225a74',1,'rc():&#160;foc.c']]],
-  ['ref',['Ref',['../struct_p_i___instance.html#aa77ab944865e674e1d783c4acdfe5aa3',1,'PI_Instance']]],
-  ['refvoltage',['refVoltage',['../struct_h_a_l___a_d_c.html#a55a82624b6760b204307b3a5870ee37d',1,'HAL_ADC']]],
-  ['rg',['rg',['../group___f_o_c___m_o_d_u_l_e.html#gad46634d2af1a05e2ed4c8db84dffd012',1,'rg():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#gad46634d2af1a05e2ed4c8db84dffd012',1,'rg():&#160;foc.c']]],
-  ['rs',['Rs',['../struct_e_s_m_o___p_a_r_a.html#a21f4978ae22c6e0d4c2b3ecc79b2345d',1,'ESMO_PARA']]],
-  ['runspeed',['runSpeed',['../struct_e_s_m_o___instance.html#ab5c1a3fcaba38af840ed55bcccd3fe1a',1,'ESMO_Instance']]]
+  ['savedparams',['savedParams',['../group___f_o_c___u_s_e_r___u_s_e_r.html#ga2a099fbc8082d88fb5c6c7a16b867075',1,'user.h']]],
+  ['setpointvalue',['SetpointValue',['../struct_r_m_p_c_n_t_l___instance.html#a49f7602c22ef3b23bc598aca1d99edfc',1,'RMPCNTL_Instance']]],
+  ['sine',['Sine',['../struct_i_p_a_r_k___instance.html#a8a8f62af64afc8c1a29e2b6e0f3c53ae',1,'IPARK_Instance::Sine()'],['../struct_p_a_r_k___instance.html#a0797abe9e178ec883212cd93a4b70790',1,'PARK_Instance::Sine()']]],
+  ['slowcycfreq',['slowCycFreq',['../struct_u_s_e_r___p_a_r_a_m_s.html#a931e94323e67f256d62b4d38b98dd14f',1,'USER_PARAMS']]],
+  ['slowfirstcyccmplt',['slowFirstCycCmplt',['../struct_c_o_n_t_r_o_l.html#a41b53d478982072df377b0ef90ad8f7e',1,'CONTROL']]],
+  ['slowfirstcycfreq',['slowFirstCycFreq',['../struct_c_o_n_t_r_o_l.html#a31adc4ad6f0f5743644426344c6d1cf2',1,'CONTROL']]],
+  ['speedfbk',['speedFbk',['../struct_s_t_a_t_u_s___r_e_g_s.html#accc218edeadb67a25260e1a0b62ca9a5',1,'STATUS_REGS']]],
+  ['speedref',['speedRef',['../struct_c_o_m_m_a_n_d.html#a8811607cb50f0ce6686d73ab364429b5',1,'COMMAND::speedRef()'],['../struct_c_n_t_r_l___r_e_g_s.html#a73eff789a3bc79092a2f9c95eb9097b0',1,'CNTRL_REGS::speedRef()'],['../struct_s_t_a_t_u_s___r_e_g_s.html#a4fd2721c7a80d3633bdd72bb1ece06db',1,'STATUS_REGS::speedRef()']]],
+  ['speedreframprate',['speedRefRampRate',['../struct_u_s_e_r___p_a_r_a_m_s.html#aa796f5a807b70a031c61abef02d0b0d4',1,'USER_PARAMS']]],
+  ['spi',['spi',['../struct_d_r_v8323_r_s___instance.html#abcb8197ce95fe4dd5c679ea46be5d76a',1,'DRV8323RS_Instance']]],
+  ['spics',['spiCS',['../struct_d_r_v8323_r_s___instance.html#a11c19937ca9fb7eee3cace5ab4081e1f',1,'DRV8323RS_Instance']]],
+  ['startupmethod',['startupMethod',['../struct_c_o_n_t_r_o_l.html#a67acd5372c3483c2bd0a855690585ebe',1,'CONTROL::startupMethod()'],['../struct_u_s_e_r___p_a_r_a_m_s.html#a16e76ec8bb907d25fa0823231afdc602',1,'USER_PARAMS::startupMethod()']]],
+  ['state',['state',['../struct_f_o_c___instance.html#a2b100f2cf0df03d51d8ef633bae86d64',1,'FOC_Instance::state()'],['../struct_t_r_a_n_s_i_t___instance.html#a6245e0e7ba66c8fc592e7cd7d00be2f1',1,'TRANSIT_Instance::state()']]],
+  ['statusregs',['statusRegs',['../struct_u_s_e_r___v_a_r.html#af206f409fbad9c13bb52df919614dccd',1,'USER_VAR']]],
+  ['stepanglemax',['StepAngleMax',['../struct_r_a_m_p_g_e_n___instance.html#ab39e3ad26429a9a9c84211633a6360db',1,'RAMPGEN_Instance']]],
+  ['svgen',['svgen',['../group___f_o_c___m_o_d_u_l_e.html#ga1f2980a62e4f0b3811400baab0a3287c',1,'svgen():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga1f2980a62e4f0b3811400baab0a3287c',1,'svgen():&#160;foc.c']]]
 ];

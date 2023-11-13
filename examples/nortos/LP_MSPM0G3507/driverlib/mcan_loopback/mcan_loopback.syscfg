@@ -8,6 +8,8 @@
 /**
  * Import the modules used in this configuration.
  */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
 const MCAN   = scripting.addModule("/ti/driverlib/MCAN", {}, false);
 const MCAN1  = MCAN.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
@@ -27,6 +29,21 @@ pinFunction4.HFCLKMonitor = true;
 pinFunction4.enable       = true;
 pinFunction4.inputFreq    = 40;
 
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].invert              = "ENABLE";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].assignedPortSegment = "Lower";
+GPIO1.associatedPins[1].assignedPin         = "15";
+GPIO1.associatedPins[1].invert              = "ENABLE";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
 MCAN1.$name                    = "MCAN0";
 MCAN1.wkupReqEnable            = true;
 MCAN1.autoWkupEnable           = true;
@@ -42,7 +59,6 @@ MCAN1.rxFIFO0waterMark         = 0;
 MCAN1.stdFiltElem              = "111";
 MCAN1.stdFiltType              = "00";
 MCAN1.stdFiltID1               = 4;
-MCAN1.stdFiltID2               = 0;
 MCAN1.loopbackMode             = "internal";
 MCAN1.enableInterrupt          = true;
 MCAN1.interruptFlags           = ["DL_MCAN_INTERRUPT_ARA","DL_MCAN_INTERRUPT_BEU","DL_MCAN_INTERRUPT_BO","DL_MCAN_INTERRUPT_DRX","DL_MCAN_INTERRUPT_ELO","DL_MCAN_INTERRUPT_EP","DL_MCAN_INTERRUPT_EW","DL_MCAN_INTERRUPT_MRAF","DL_MCAN_INTERRUPT_PEA","DL_MCAN_INTERRUPT_PED","DL_MCAN_INTERRUPT_TC","DL_MCAN_INTERRUPT_TOO","DL_MCAN_INTERRUPT_TSW","DL_MCAN_INTERRUPT_WDI"];
@@ -50,12 +66,9 @@ MCAN1.interruptLine            = ["DL_MCAN_INTR_LINE_NUM_1"];
 MCAN1.interruptLine1Flag       = ["DL_MCAN_INTR_MASK_ALL"];
 MCAN1.m0interrupts             = ["DL_MCAN_MSP_INTERRUPT_LINE1"];
 MCAN1.overrideRetention        = true;
-MCAN1.stdFiltID1               = 4;
 MCAN1.peripheral.$assign       = "CANFD0";
 MCAN1.peripheral.rxPin.$assign = "PA13";
 MCAN1.peripheral.txPin.$assign = "PA12";
-
-const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.CANCLKSource    = "HFCLK";
 SYSCTL.useHFCLK_Manual = true;

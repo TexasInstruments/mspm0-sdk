@@ -25,7 +25,6 @@ GPIO1.associatedPins[0].pin.$assign = "PA0";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.peripheral.$assign = "SYSCTL";
-SYSCTL.forceDefaultClkConfig = true;
 
 i2cSMBUS1.basicEnableController     = true;
 i2cSMBUS1.enableTimeoutA            = true;

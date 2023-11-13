@@ -80,10 +80,10 @@
 % /* figure out pin number and pinCMx */
 %           let pinName = "ccp"+cc+"Pin";
 %           let packagePin = inst.peripheral[pinName].$solution.packagePinName;
-%           let pinCM = system.deviceData.devicePins[packagePin].attributes.iomux_pincm;
+%           let pinCM = Common.getPinCM(packagePin,inst,"CCP"+cc);
 %           let gpioName = system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%           let port = Common.getGPIOPort(gpioName);
-%           let gpioPin = Common.getGPIONumber(gpioName);
+%           let port = Common.getGPIOPortMultiPad(packagePin,inst,"CCP"+cc);
+%           let gpioPin = Common.getGPIONumberMultiPad(packagePin,inst,"CCP"+cc);
 %           let ccInstance = inst["PWM_CHANNEL_"+cc];
 /* GPIO defines for channel `cc` */
 % let portStr = "#define "+gpioStr+"_PORT";
@@ -104,16 +104,16 @@
 % let ccIndexStr2 = "DL_TIMER_CC_"+cc+"_INDEX";
 `ccIndexStr.padEnd(40, " ")+ccIndexStr2.padStart(40, " ")`
 % //#define `gpioStr`_IOMUX_FUNC                        IOMUX_PINCM`pinCM`_PF_`flav`_CCP`cc`
-%           if(Common.isDeviceM0G()){
+%           if(Common.hasTimerA()){
 %           if((inst.ccIndexCmpl).includes(cc)){
 %           let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
 % /* figure out pin number and pinCMx */
 %           let pinName = "ccp"+cc+"Pin_cmpl";
 %           let packagePin = inst.peripheral[pinName].$solution.packagePinName;
-%           let pinCM = system.deviceData.devicePins[packagePin].attributes.iomux_pincm;
+%           let pinCM = Common.getPinCM(packagePin,inst,"CCP"+cc+"_CMPL");
 %           let gpioName = system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%           let port = Common.getGPIOPort(gpioName);
-%           let gpioPin = Common.getGPIONumber(gpioName);
+%           let port = Common.getGPIOPortMultiPad(packagePin,inst,"CCP"+cc+"_CMPL");
+%           let gpioPin = Common.getGPIONumberMultiPad(packagePin,inst,"CCP"+cc+"_CMPL");
 /* GPIO defines for channel `cc` */
 % let portStr = "#define "+gpioStr+"_CMPL_PORT";
 `portStr.padEnd(40," ")+port.padStart(40, " ")`
@@ -155,7 +155,7 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin0";
 %               let faultPackagePin = sharedFault[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
+%               let faultPinCM = Common.getPinCM(faultPackagePin,inst,"FAULT0");
 %               let faultIOmuxStr = "#define "+gpioStr+"_IOMUX_FAULT_0";
 %               let faultIOmuxStr2 = "(IOMUX_PINCM"+faultPinCM+")";
 `faultIOmuxStr.padEnd(40," ")+faultIOmuxStr2.padStart(40," ")`
@@ -167,7 +167,7 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin1";
 %               let faultPackagePin = sharedFault[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
+%               let faultPinCM = Common.getPinCM(faultPackagePin,inst,"FAULT1");
 %               let faultIOmuxStr = "#define "+gpioStr+"_IOMUX_FAULT_1";
 %               let faultIOmuxStr2 = "(IOMUX_PINCM"+faultPinCM+")";
 `faultIOmuxStr.padEnd(40," ")+faultIOmuxStr2.padStart(40," ")`
@@ -179,7 +179,7 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin2";
 %               let faultPackagePin = sharedFault[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
+%               let faultPinCM = Common.getPinCM(faultPackagePin,inst,"FAULT2");
 %               let faultIOmuxStr = "#define "+gpioStr+"_IOMUX_FAULT_2";
 %               let faultIOmuxStr2 = "(IOMUX_PINCM"+faultPinCM+")";
 `faultIOmuxStr.padEnd(40," ")+faultIOmuxStr2.padStart(40," ")`
@@ -221,6 +221,14 @@
 /* Subscriber defines */
 `eventSubChannelStr.padEnd(40, " ") + eventSubChannelStr2.padStart(40, " ")`
 %       }
+%
+
+% if (inst.enableRepeatCounter)
+% {
+%    let rpcString = "#define " + inst.$name + "_REPEAT_COUNT_"+inst.repeatCounter;
+%    let rpcNumString = "(" + (inst.repeatCounter - 1) + ")";
+`rpcString.padEnd(40, " ") + rpcNumString.padStart(40, " ")`
+% } // if (inst.enableRepeatCounter)
 %   }
 % } // function printDefine
 %

@@ -32,7 +32,6 @@
             -mthumb
         "
         linkerBuildOptions="
-            -Wl,--stack_size=512
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
             -Wl,--rom_model
             -Wl,--warn_sections
@@ -48,9 +47,9 @@
         </file>
         <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
         </file>
-        <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
-        </file>
         <file path="../ti/eeprom/emulation_type_b/eeprom_emulation_type_b.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_b">
+        </file>
+        <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
         </file>
         <file path="../ti/eeprom/emulation_type_b/eeprom_emulation_type_b.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_b">
         </file>

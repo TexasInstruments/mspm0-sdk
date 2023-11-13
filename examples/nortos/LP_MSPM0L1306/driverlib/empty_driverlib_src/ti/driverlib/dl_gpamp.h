@@ -48,6 +48,8 @@
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/dl_common.h>
 
+#ifdef __MSPM0_HAS_GPAMP__
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -356,6 +358,8 @@ __STATIC_INLINE DL_GPAMP_CHOPPING_MODE DL_GPAMP_getChoppingMode(void)
 #ifdef __cplusplus
 }
 #endif
+
+#endif /* __MSPM0_HAS_GPAMP__ */
 
 #endif /* ti_dl_m0p_dl_gpamp__include */
 /** @}*/

@@ -76,8 +76,8 @@ function PWMFilter(peripheral, inst) {
     if(chanEnabled[2] || chanEnabled[3]) {
         validPeripheral &= /TIMA0/.test(peripheral.name);
     }
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         if(inst.deadBandEn) {
             validPeripheral &= /TIMA\d/.test(peripheral.name);
         }
@@ -167,7 +167,7 @@ function pinmuxRequirements(inst)
 
     for (let cc of inst.ccIndex) {
         timer.resources.push(allResources[cc]);
-        if(Common.isDeviceM0G()){
+        if(Common.hasTimerA()){
             if((inst.ccIndexCmpl).includes(cc)){
                 timer.resources.push(allResources[cc+4]);
             }
@@ -283,7 +283,7 @@ function moduleInstances(inst) {
 
     for (let cc of inst.ccIndex) {
         pwmConfig[cc] = true;
-        if(Common.isDeviceM0G()){
+        if(Common.hasTimerA()){
             if((inst.ccIndexCmpl).includes(cc)){
                 pwmConfig[cc+4] = true;
             }
@@ -331,7 +331,7 @@ function sharedModuleInstances(inst) {
     let modInstances = [];
     let longDescription = ``;
 
-    if(Common.isDeviceM0G() && inst.faultHandlerEn){
+    if((Common.hasTimerA()) && inst.faultHandlerEn){
         let result = ["0","1","2"].some(i => (inst.faultSource).includes(i));
         if (result){
             let modInst = {
@@ -374,7 +374,6 @@ function validate(inst, validation)
         "event2ControllerInterruptEn",
         "interrupts",
     ];
-    /* MSPM0G Series-Specific Option */
     for(let mde of multiDynamEnum){
         let validOptions = _.map(inst.$module.$configByName[mde].options(inst), "name");
         let selectedOptions = inst[mde];
@@ -404,8 +403,8 @@ function validate(inst, validation)
         chanEnabled[cc] = true;
     }
 
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         /* Dead Band Validation */
         if(inst.deadBandEn){
             if((inst.ccIndexCmpl.length == 0) || !(inst.ccIndexCmpl.some(r=> inst.ccIndex.includes(r)))){
@@ -508,6 +507,16 @@ function validate(inst, validation)
         }
     }
 
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    EVENT.validatePublisherOptions(inst,validation,"event1PublisherChannel");
+    EVENT.validatePublisherOptions(inst,validation,"event2PublisherChannel");
+    if(inst.subscriberPort != "Disabled"){
+        EVENT.validateSubscriberOptions(inst,validation,"subscriberChannel");
+    }
+
     Common.validateNames(inst, validation);
 }
 
@@ -521,7 +530,14 @@ function validate(inst, validation)
 function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
-    if(Common.isDeviceM0G()){
+    if(Common.hasTimerA()){
+        if(inst.enableRepeatCounter){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Repeat Counter only available on Timer A instances. Please select a Timer A instance from PinMux if available.",inst,"enableRepeatCounter");
+            }
+        }
+    }
+    if(Common.hasTimerA()){
         if(inst.ccIndexCmpl.length>0) {
             if(!(/TIMA\d/.test(solution))){
                 validation.logError("Complementary Pins only available on Timer A instances. Please select a Timer A instance from PinMux if available", inst, "ccIndexCmpl");
@@ -543,9 +559,16 @@ function validatePinmux(inst, validation) {
             chanEnabled[cc] = true;
         }
         if(chanEnabled[2] || chanEnabled[3]) {
-            if(!(/TIMA0/.test(solution))){
-                validation.logError("PWM Channels 2 & 3 only available on TIMA0 module. Please select a TIMA0 instance from PinMux if available.",inst,"ccIndex");
-            };
+            if(Common.isDeviceM0C()){
+                if(!(/TIMA0|TIMG14/.test(solution))){
+                    validation.logError("PWM Channels 2 & 3 only available on TIMA0 module. Please select a TIMA0 instance from PinMux if available.",inst,"ccIndex");
+                };
+            }
+            else{
+                if(!(/TIMA0/.test(solution))){
+                    validation.logError("PWM Channels 2 & 3 only available on TIMA0 module. Please select a TIMA0 instance from PinMux if available.",inst,"ccIndex");
+                };
+            }
         }
     }
     /* Prescale validation */
@@ -562,13 +585,24 @@ function validatePinmux(inst, validation) {
     /* Validate Timer instance supports Shadow load */
     if(inst.enableShadowLoad){
 
-        if(Common.isDeviceM0L()){
+        if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
             if(!(/TIMG4/.test(solution))){
                 validation.logError("Shadow Load is only supported on Timer G4 instances. Please select a Timer G4 instance from PinMux if available.",inst,"enableShadowLoad");
             }
-        }else if (Common.isDeviceM0G()){
+        }
+        else if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            if(!(/TIMA/.test(solution)) && !(/TIMG4/.test(solution))){
+                validation.logError("Shadow Load is only supported on Timer A instances and Timer G4 instances . Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
+            }
+        }
+        else if (Common.isDeviceM0G()){
             if(!(/TIMA/.test(solution)) && !(/TIMG6|7/.test(solution))){
                 validation.logError("Shadow Load is only supported on Timer A instances and Timer G6-G7 instances. Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
+            }
+        }
+        else if (Common.isDeviceM0C()){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Shadow Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
             }
         }
     }
@@ -578,11 +612,11 @@ function validatePinmux(inst, validation) {
         let CCInst = CCMod.$instances;
         for(let singleCC of CCInst){
             if(singleCC.shadowUpdateMode != "IMMEDIATE"){
-                if(Common.isDeviceM0L()){
+                if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
                     if(!(/TIMG4/.test(solution))){
                         validation.logError("Shadow Capture Compare mode is only supported on Timer G4 instances. Please select a Timer G4 instance from PinMux if available.",singleCC,"shadowUpdateMode");
                     }
-                }else if (Common.isDeviceM0G()){
+                }else if (Common.hasTimerA()){
                     if(!(/TIMA/.test(solution)) && !(/TIMG6|7/.test(solution))){
                         validation.logError("Shadow Capture Compare mode is only supported on on Timer A instances and Timer G6-G7 instances. Please select a Timer instance from PinMux if available.",singleCC,"shadowUpdateMode");
                     }
@@ -689,6 +723,18 @@ const PWMProfiles = [
 /**********************************/
 /******     ON CHANGE       *******/
 /**********************************/
+function onChangeEnableRepeatCounter(inst,ui)
+{
+    onChangeSetCustomProfile(inst, ui);
+    updateGUI_RepeatCounter(inst, ui);
+}
+
+function updateGUI_RepeatCounter(inst, ui) {
+
+    if(Common.hasTimerA()){
+        ui.repeatCounter.hidden = !(inst.enableRepeatCounter);
+    }
+}
 
 function onChangePWMProfile(inst, ui){
     if(inst.profile !== "CUSTOM") {
@@ -698,8 +744,8 @@ function onChangePWMProfile(inst, ui){
         if(selectedProfile === undefined) throw 'bad profiles';
         Object.assign(inst, EmptyPWMProfile,
             _.pickBy(selectedProfile, (_,key) => key !== 'name'));
-        /* MSPM0G Series-Specific Option */
-        if(Common.isDeviceM0G()){
+
+        if(Common.hasTimerA()){
             Object.assign(inst, EmptyPWMProfileAdvanced,
                 _.pickBy(selectedProfile, (_,key) => key !== 'name'));
         }
@@ -787,8 +833,8 @@ function onChangeFaultHandler(inst, ui){
 }
 
 function updateGUI_FaultHandler(inst, ui) {
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         let hide = [true, true, true, true, true, true];
         ui.faultSource.hidden = !inst.faultHandlerEn;
         ui.faultInputFilterEn.hidden = !inst.faultHandlerEn;
@@ -867,8 +913,8 @@ function onChangeDeadBand(inst, ui){
 }
 
 function updateGUI_DeadBand(inst, ui) {
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         let hide = !inst.deadBandEn;
         ui.dbInsertionMode.hidden = hide;
         ui.dbRiseDelayTimerCount.hidden = hide;
@@ -1002,6 +1048,10 @@ function optionsGetCrossTriggerTimerInstances(inst, template) {
     return allTimers;
 }
 
+function onChangeSetCustomProfile(inst, ui) {
+    inst.profile = "CUSTOM";
+}
+
 /* Retention configurable */
 let retentionConfig = [];
 if(Common.isDeviceM0G()){
@@ -1079,6 +1129,36 @@ let configAdvanced = [
         onChange        : onChangeEnableShadowLoad
     },
 ]
+
+if(Common.hasTimerA()){
+configAdvanced.push(
+    {
+        name            : "enableRepeatCounter",
+        displayName     : "Enable Repeat Counter",
+        description     : "Enable Repeat Counter",
+        longDescription : `Enables repeat counter feature. Only supported in TIMA0`,
+        default         : false,
+        onChange        : onChangeEnableRepeatCounter
+    },
+    {
+        name           : "repeatCounter",
+        displayName    : "Times to Repeat Counter",
+        description    : "Timer to Repeat Counter",
+        longDescription: `Specifies number of timer reloads events before
+        triggering repeat counter interrupt.`,
+        default        : 1,
+        hidden         : true,
+        options        : [
+            { name: 1, displayName: "1" },
+            { name: 2, displayName: "2" },
+            { name: 3, displayName: "3" },
+            { name: 4, displayName: "4" },
+        ],
+        onChange       : onChangeSetCustomProfile
+    },
+);
+};
+
 /* Advance Config: Cross Trigger options */
 configAdvanced.push(
     {
@@ -1220,7 +1300,7 @@ configAdvanced.push(
  * Dead Band & Fault Handler options only available for TIMA, which is not available
  * for MSPM0L
  */
-if(Common.isDeviceM0G()){
+if(Common.hasTimerA()){
     /* Advance Config: Dead Band options */
     configAdvanced.push(
         {
@@ -1714,6 +1794,8 @@ if(Common.isDeviceM0G()){
 
         },
     );
+}
+if(Common.isDeviceM0G()){
     configAdvanced.push(
         {
             name: "GROUP_RETENTION",
@@ -1730,8 +1812,8 @@ let ccIndexOptions = [
     { name: 0, displayName: "PWM Channel 0" },
     { name: 1, displayName: "PWM Channel 1" },
 ];
-/* MSPM0G Series-Specific Option */
-if(Common.isDeviceM0G()){
+
+if(Common.hasTimerA()){
     ccIndexOptions.push(
         { name: 2, displayName: "PWM Channel 2" },
         { name: 3, displayName: "PWM Channel 3" }
@@ -2055,7 +2137,7 @@ let profileOptions = [
     { name: "CUSTOM", displayName: "Custom" }
 ];
 
-if(Common.isDeviceM0L()) {
+if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()) {
     /* remove deadband insertion for M0L */
     profileOptions.splice(2,1);
 }
@@ -2106,7 +2188,7 @@ let configPWM = [
         onChange: onChangeCCIndex
     },
 ];
-if(Common.isDeviceM0G()){
+if(Common.hasTimerA()){
     configPWM.push({
         name: "ccIndexCmpl",
         displayName: "Enable Channel Complimentary Output",
@@ -2566,21 +2648,6 @@ Timer clock prescale set to 4\n
 
             ]
         },
-
-        /* Helper Configurables
-         * These are invisible to sysconfig and have no influence on code generation, but give the module additional
-         * visibility based on the state of the system and the specific M0 device being configured
-         */
-        {
-            /* name of the device */
-            name: "device",
-            default: "MSPM0G350X",
-            hidden: true,
-            getValue: (inst) => {
-                let mySys = system;
-                return system.deviceData.device;
-            }
-        },
         {
             /* this is a read-only array of the timers that are actually present on the device,
              * can be used to limit the allowable timers to those that make sense
@@ -2595,7 +2662,7 @@ Timer clock prescale set to 4\n
                 {name: "TIMA0"}, {name: "TIMA1"},
                 {name: "TIMG0"}, {name: "TIMG1"}, {name: "TIMG2"}, {name: "TIMG3"}, {name: "TIMG4"}, {name: "TIMG5"},
                 {name: "TIMG6"}, {name: "TIMG7"}, {name: "TIMG8"}, {name: "TIMG9"}, {name: "TIMG10"}, {name: "TIMG11"},
-                {name: "TIMG12"}, {name: ""}
+                {name: "TIMG12"}, {name: "TIMG14"}, {name: ""}
             ],
             hidden: true,
             getValue: (inst) => {

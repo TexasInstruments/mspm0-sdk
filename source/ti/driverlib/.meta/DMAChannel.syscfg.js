@@ -40,11 +40,22 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 /* Determine channe availability depending on device */
 let dmaInstances = 0;
+let dmaFullInstances = 0;
 if(Common.isDeviceM0G()){
     dmaInstances = 7;
+    dmaFullInstances = 3;
 }
-else if(Common.isDeviceM0L()){
+else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
     dmaInstances = 3;
+    dmaFullInstances = 1;
+}
+else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    dmaInstances = 7;
+    dmaFullInstances = 3;
+}
+else if(Common.isDeviceM0C()){
+    dmaInstances = 1;
+    dmaFullInstances = 0;
 }
 
 /*
@@ -97,45 +108,23 @@ function validate(inst, validation){
 
 function validatePinmux(inst, validation){
     // FULL CHANNEL VALIDATION
-    if(Common.isDeviceM0G()){
-        if(inst.channelID>2){
-            if(["FULL_CH_REPEAT_BLOCK","FULL_CH_REPEAT_SINGLE"].includes(inst.transferMode)){
-                validation.logError("Repeat Mode only available on Channels 0-2 for selected device.", inst, ["transferMode", "channelID"]);
-            }
-            if(["fill","table"].includes(inst.addressMode)){
-                validation.logError("Selected Address Mode only available on Channels 0-2 for selected device.", inst, ["addressMode", "channelID"]);
-            }
-            if(inst.enableEarlyInterrupt){
-                validation.logError("Early IRQ only available on Channels 0-2 for selected device.", inst, ["enableEarlyInterrupt", "channelID"]);
-            }
-            // EVENT Validation
-            if(inst.enabledEvents.includes("FULL_CH_EVENT_EARLY_CHANNEL")){
-                validation.logError("Early IRQ Event only available on Channels 0-2 for selected device.", inst, ["enabledEvents", "channelID"]);
-            }
+    if(inst.channelID>(dmaFullInstances-1)){
+        if(["FULL_CH_REPEAT_BLOCK","FULL_CH_REPEAT_SINGLE"].includes(inst.transferMode)){
+            validation.logError("Repeat Mode only available on Full DMA Channels.", inst, ["transferMode", "channelID"]);
         }
-        else{
-            validation.logInfo("Currently using a Full Channel.", inst, ["channelID"])
+        if(["fill","table"].includes(inst.addressMode)){
+            validation.logError("Selected Address Mode only available on Full DMA Channels.", inst, ["addressMode", "channelID"]);
+        }
+        if(inst.enableEarlyInterrupt){
+            validation.logError("Early IRQ only available on Full DMA Channels.", inst, ["enableEarlyInterrupt", "channelID"]);
+        }
+        // EVENT Validation
+        if(inst.enabledEvents.includes("FULL_CH_EVENT_EARLY_CHANNEL")){
+            validation.logError("Early IRQ Event only available on Full DMA Channels.", inst, ["enabledEvents", "channelID"]);
         }
     }
-    if(Common.isDeviceM0L()){
-        if(inst.channelID>0){
-            if(["FULL_CH_REPEAT_BLOCK","FULL_CH_REPEAT_SINGLE"].includes(inst.transferMode)){
-                validation.logError("Repeat Mode only available on Channel 0 for selected device.", inst, ["transferMode", "channelID"]);
-            }
-            if(["fill","table"].includes(inst.addressMode)){
-                validation.logError("Selected Address Mode only available on Channel 0 for selected device.", inst, ["addressMode", "channelID"]);
-            }
-            if(inst.enableEarlyInterrupt){
-                validation.logError("Early IRQ only available on Channel 0 for selected device.", inst, ["enableEarlyInterrupt", "channelID"]);
-            }
-            // EVENT Validation
-            if(inst.enabledEvents.includes("FULL_CH_EVENT_EARLY_CHANNEL")){
-                validation.logError("Early IRQ Event only available on Channels 0-2 for selected device.", inst, ["enabledEvents", "channelID"]);
-            }
-        }
-        else{
-            validation.logInfo("Currently using a Full Channel.", inst, ["channelID"])
-        }
+    else{
+        validation.logInfo("Currently using a Full Channel.", inst, ["channelID"])
     }
 
     // Cascading Trigger Validation
@@ -169,7 +158,8 @@ function onChangeAddressMode(inst, ui) {
         case "f2f":
             ui.transferMode.hidden = false;
             ui.transferMode.readOnly = false;
-            ui.transferSize.hidden = false;
+            ui.configureTransferSize.hidden = false;
+            ui.transferSize.hidden = !inst.configureTransferSize;
             ui.srcLength.readOnly = false;
             ui.srcIncDec.hidden = true;
             ui.dstLength.readOnly = false;
@@ -182,7 +172,8 @@ function onChangeAddressMode(inst, ui) {
         case "f2b":
             ui.transferMode.hidden = false;
             ui.transferMode.readOnly = false;
-            ui.transferSize.hidden = false;
+            ui.configureTransferSize.hidden = false;
+            ui.transferSize.hidden = !inst.configureTransferSize;
             ui.srcLength.readOnly = false;
             ui.srcIncDec.hidden = true;
             ui.dstLength.readOnly = false;
@@ -195,7 +186,8 @@ function onChangeAddressMode(inst, ui) {
         case "b2f":
             ui.transferMode.hidden = false;
             ui.transferMode.readOnly = false;
-            ui.transferSize.hidden = false;
+            ui.configureTransferSize.hidden = false;
+            ui.transferSize.hidden = !inst.configureTransferSize;
             ui.srcLength.readOnly = false;
             ui.srcIncDec.hidden = false;
             ui.dstLength.readOnly = false;
@@ -208,7 +200,8 @@ function onChangeAddressMode(inst, ui) {
         case "b2b":
             ui.transferMode.hidden = false;
             ui.transferMode.readOnly = false;
-            ui.transferSize.hidden = false;
+            ui.configureTransferSize.hidden = false;
+            ui.transferSize.hidden = !inst.configureTransferSize;
             ui.srcLength.readOnly = false;
             ui.srcIncDec.hidden = false;
             ui.dstLength.readOnly = false;
@@ -227,7 +220,8 @@ function onChangeAddressMode(inst, ui) {
             ui.srcIncDec.hidden = true;
             ui.dstLength.readOnly = false;
             ui.dstIncDec.hidden = false;
-            ui.transferSize.hidden = false;
+            ui.configureTransferSize.hidden = false;
+            ui.transferSize.hidden = !inst.configureTransferSize;
             ui.fillIncrement.hidden = false;
             ui.fillIncAmount.hidden = false;
             ui.tableSize.hidden = true;
@@ -243,6 +237,7 @@ function onChangeAddressMode(inst, ui) {
             ui.srcIncDec.hidden = true;
             ui.dstLength.readOnly = true;
             ui.dstIncDec.hidden = true;
+            ui.configureTransferSize.hidden = true;
             ui.transferSize.hidden = true;
             ui.fillIncrement.hidden = true;
             ui.fillIncAmount.hidden = true;
@@ -259,7 +254,6 @@ function triggerMap(inst) {
     let options = [];
     let mapping = require('./dma/DMA_TriggerMapping');
     for(let key of Object.keys(mapping.dma_triggers)) {
-    // for(let key of Object.keys(mapping.dma_triggers[(Common.getDeviceName()).slice(0, 6)])) {
         options.push({name: key, displayName: key});
     }
     return options;
@@ -593,8 +587,17 @@ transfer.
         ],
     },
     {
+        name: "configureTransferSize",
+        displayName: "Configure Transfer Size",
+        default: false,
+        onChange: (inst,ui)=>{
+            ui.transferSize.hidden = !inst.configureTransferSize;
+        }
+    },
+    {
         name: "transferSize",
         displayName: "Transfer Size",
+        hidden: true,
         description: "Transfer Size parameter with different functions depending on Transfer Mode",
         longDescription: `
 The Transfer Size is used in tandem with **Transfer Mode** to determine the number of single transfers
@@ -835,7 +838,6 @@ The transfer modes are:
 
 See the MSPM0 Technical Reference Manual for more information about DMA.
     `,
-    maxInstances: dmaInstances,
     config: channelConfig,
     pinmuxRequirements: pinmuxRequirements,
     validate: validate,

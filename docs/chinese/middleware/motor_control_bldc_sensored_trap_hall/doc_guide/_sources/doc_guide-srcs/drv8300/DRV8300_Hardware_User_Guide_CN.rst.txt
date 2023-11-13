@@ -1,0 +1,59 @@
+DRV8300Dxxx-EVM Hardware User Guide
+===================================
+
+1. Overview
+-----------
+
+To spin the BLDC motor with the DRV8300Dxxx-EVM, the user needs to modify some jumpers on the MSPM0 LaunchPad, connect the EVM pins to the LaunchPad, connect the motor phases and hall sensors to the DRV hardware and power on the supply.
+
+2. Hardware Required
+--------------------
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__ - MSPM0G3507 Launchpad
+-  `DRV8300Dxxx-EVM <https://www.ti.com/tool/DRV8300DRGE-EVM>`__ - DRV8300Dxxx-EVM evaluation module
+-  DC Power supply that supports the required voltage and current
+-  BLDC Motor
+-  Micro-USB cable
+
+3. Hardware Setup
+-----------------
+
+1. Connect the jumpers J21 and J22 on the LP-MSPM0G3507 to the BP position
+
+.. figure:: images/jumpers_image.png
+   :alt: 
+
+2. If using External ADC reference resistor R22 on LP-MSPM0G3507 needs to be populated and your reference voltage should be applied to PA23 accessible on the bottom header row of the launchpad.
+3. Connect the LP-MSPM0G3507 to the DRV8300Dxxx-EVM using the jumper wire connections in the table below.
+
+   .. figure:: images/schematic.png
+      :alt: 
+
+   ::
+
+       |Connection |MSPM0G3507|DRV8300Dxxx-EVM |Jumper Notes|
+       |:-------|:-------:|:-------:|-----------:|
+       |Phase A HS input|PB4|INHA||
+       |Phase A LS input|PB1|INLA||
+       |Phase B HS input|PA28|INHB||
+       |Phase B LS input|PA31|INLB||
+       |Phase C HS input|PB20|INHC||
+       |Phase C LS input|PB13|INLC||
+       |HALL A input|PA10|HALLA|J21 connected to BP|
+       |HALL B input|PA11|HALLB|J22 connected to BP|
+       |HALL C input|PA12|HALLC||
+       |Bus voltage input|PA25|SEN_PVDD||
+       |Phase A voltage|PB19|VSENA||
+       |Phase B voltage|PA22|VSENB||
+       |Phase C voltage|PB18|VSENC||
+       |Phase A current|PA24|ISENA||
+       |Phase B current|PA17|ISENB||
+       |Phase C current|PA18|ISENC||
+       |DRV fault input|PB12|FAULT||
+       |Ground|GND|AGND|
+
+4. Connect the 3 phases of the motor to OUTA, OUTB, and OUTC of the motor connector terminal block on the DRV8300Dxxx-EVM and the HALLA/B/C, Hall power, and Hall GND signals to the Hall connector block. **Note: The user should identify the correct phases of motor from motor datasheets, this will vary from motor to motor.**
+5. Connect the positive and negative of the power supply to VM and PGND/AGND of the power connector terminal block to the DRV8300Dxxx-EVM. Don't turn on the power supply output.
+6. Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.
+7. Set the power supply to a motor voltage between 4.5V to 34V within the DRV8316 specifications. Turn on the power supply. The green VM LED on the DRV8300Dxxx-EVM should turn on.
+8. Once all the setup is done, spin the motor using the software or GUI. Refer to `Software User Guide <../MSPM0_Sensored_Trap_Software_Users_Guide_CN.html>`__ or `GUI User Guide <DRV8300_GUI_User_Guide_CN.html>`__ for more details.

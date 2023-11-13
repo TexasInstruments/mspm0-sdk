@@ -56,17 +56,13 @@ uint8_t txPacket[UART_PACKET_SIZE] = {'M', 'S', 'P', '!'};
 /* Data received from UART */
 uint8_t rxPacket[UART_PACKET_SIZE];
 
+
 int main(void)
 {
     SYSCFG_DL_init();
 
     /* Optional delay to ensure UART TX is idle before starting transmission */
     delay_cycles(UART_TX_DELAY);
-
-#if (ENABLE_LOOPBACK_MODE == true)
-    /* Enable the internal loopback mode */
-    DL_UART_enableLoopbackMode(UART_0_INST);
-#endif
 
     /* Set LED to indicate start of transfer */
     DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
@@ -88,7 +84,8 @@ int main(void)
 
     /* If write and read were successful, toggle LED */
     while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
         delay_cycles(5000000);
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -83,6 +83,17 @@ extern "C" {
 #define DMA_CH0_TRIGGER_SEL_SW                               (DMA_SOFTWARE_TRIG)
 
 
+
+/* Port definition for Pin Group GPIO_LEDS */
+#define GPIO_LEDS_PORT                                                   (GPIOA)
+
+/* Defines for USER_LED_1: GPIOA.0 with pinCMx 1 on package pin 1 */
+#define GPIO_LEDS_USER_LED_1_PIN                                 (DL_GPIO_PIN_0)
+#define GPIO_LEDS_USER_LED_1_IOMUX                                (IOMUX_PINCM1)
+/* Defines for USER_TEST: GPIOA.1 with pinCMx 2 on package pin 2 */
+#define GPIO_LEDS_USER_TEST_PIN                                  (DL_GPIO_PIN_1)
+#define GPIO_LEDS_USER_TEST_IOMUX                                 (IOMUX_PINCM2)
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);
@@ -90,6 +101,7 @@ void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
 void SYSCFG_DL_DMA_init(void);
+
 
 
 #ifdef __cplusplus

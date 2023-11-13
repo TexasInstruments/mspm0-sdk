@@ -352,9 +352,6 @@ triggers.
     }, /****** End of DMA CONFIGURATION *******/
 ])
 
-/* Helper Configurables */
-i2cConfig = i2cConfig.concat(I2CCommon.getHelperConfig())
-
 /* Add Pinmux Peripheral Configuration group */
 i2cConfig = i2cConfig.concat(Common.getGPIOGroupConfig());
 

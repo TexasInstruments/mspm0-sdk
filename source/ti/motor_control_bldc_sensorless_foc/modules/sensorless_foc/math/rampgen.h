@@ -60,14 +60,14 @@ extern "C" {
 
 /*! @brief Define rampgen structure */
 typedef struct { 
-	/*!  Input: Ramp frequency (pu) */
+	/*!  Ramp frequency Hz*/
 	_iq  Freq;
-	/*!  Parameter: Maximum step angle (pu) */
+	/*!  Maximum step angle*/
 	_iq  StepAngleMax;
-	/*!  Variable: Step angle (pu) */
-	_iq  Angle;
-	/*!  Output: Ramp signal (pu) */
-	_iq  Out;
+	/*!  Step angle pu */
+	uint32_t  Angle;
+	/*!  Ramp output pu */
+	uint32_t  Out;
 } RAMPGEN_Instance;
 
 /*! @brief Default values for RAMPGEN instance */        
@@ -75,10 +75,8 @@ typedef struct {
 
 /*! @brief Define ramp generator estimator parameter structure */
 typedef struct {
-    /*! Base frequency in hz */
-    float baseFreq;
     /*! Sampling time */
-    float Ts;
+    int32_t Ts;
 } RAMPGEN_PARA;
 
 /**
@@ -89,7 +87,7 @@ typedef struct {
 __STATIC_INLINE void RAMPGEN_UpdateParams(RAMPGEN_Instance *handle,
 															 RAMPGEN_PARA *para)
 {
-    handle->StepAngleMax = _IQ(para->baseFreq*para->Ts);
+    handle->StepAngleMax = para->Ts;
 }
 
 /*!
@@ -99,12 +97,17 @@ __STATIC_INLINE void RAMPGEN_UpdateParams(RAMPGEN_Instance *handle,
 __STATIC_INLINE void RG_run(RAMPGEN_Instance *handle)
 {
 	/* Compute the angle rate */
-	handle->Angle += _IQmpy(handle->StepAngleMax, handle->Freq);
+	handle->Angle += (uint32_t)_ANGLE_IQtoIQ32(_IQmpy(handle->StepAngleMax,
+																 handle->Freq));
 
-	/* Saturate the angle rate within (-0.5, 0.5) */
-    ANGLE_WRAP(&handle->Angle);
     handle->Out = handle->Angle;
 }
+
+/*!
+ * @brief Reset RAMP(Sawtooth) Generator
+ * @param[in] handle  A pointer to ramp generator instance
+ */
+void RG_reset(RAMPGEN_Instance *handle);
 
 #ifdef __cplusplus
 }

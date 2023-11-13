@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['setpointvalue',['SetpointValue',['../struct_r_m_p_c_n_t_l___instance.html#a49f7602c22ef3b23bc598aca1d99edfc',1,'RMPCNTL_Instance']]],
-  ['sine',['Sine',['../struct_i_p_a_r_k___instance.html#a8a8f62af64afc8c1a29e2b6e0f3c53ae',1,'IPARK_Instance::Sine()'],['../struct_p_a_r_k___instance.html#a0797abe9e178ec883212cd93a4b70790',1,'PARK_Instance::Sine()']]],
-  ['smofreq',['smoFreq',['../struct_e_s_m_o___instance.html#ad42763cccec65bf295c50cc81a6535ba',1,'ESMO_Instance']]],
-  ['smofreqmin',['smoFreqMin',['../struct_e_s_m_o___instance.html#afbc214b66f421eabd1ab6863b4b71b65',1,'ESMO_Instance']]],
-  ['smoshift',['smoShift',['../struct_e_s_m_o___instance.html#a56133abd98160a8b1729885f31dbc26f',1,'ESMO_Instance']]],
-  ['speedest',['speedEst',['../group___f_o_c___m_o_d_u_l_e.html#ga40622e8a548ff2bc7d80551af26329b9',1,'speedEst():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga40622e8a548ff2bc7d80551af26329b9',1,'speedEst():&#160;foc.c']]],
-  ['speedref',['speedRef',['../group___f_o_c___m_o_d_u_l_e.html#ga07888f7777e8510dad056fa09eed0a2e',1,'speedRef():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga07888f7777e8510dad056fa09eed0a2e',1,'speedRef():&#160;foc.c']]],
-  ['spi',['spi',['../struct_d_r_v8323_r_s___instance.html#abcb8197ce95fe4dd5c679ea46be5d76a',1,'DRV8323RS_Instance']]],
-  ['spics',['spiCS',['../struct_d_r_v8323_r_s___instance.html#a11c19937ca9fb7eee3cace5ab4081e1f',1,'DRV8323RS_Instance']]],
-  ['startcnt',['startCnt',['../group___f_o_c___m_o_d_u_l_e.html#ga75b199de0e1c2caf4de4e6183b681737',1,'startCnt():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga75b199de0e1c2caf4de4e6183b681737',1,'startCnt():&#160;foc.c']]],
-  ['stepanglemax',['StepAngleMax',['../struct_r_a_m_p_g_e_n___instance.html#ab39e3ad26429a9a9c84211633a6360db',1,'RAMPGEN_Instance']]],
-  ['svgen',['svgen',['../group___f_o_c___m_o_d_u_l_e.html#ga1f2980a62e4f0b3811400baab0a3287c',1,'svgen():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga1f2980a62e4f0b3811400baab0a3287c',1,'svgen():&#160;foc.c']]]
+  ['ta',['Ta',['../struct_s_v_g_e_n___instance.html#aa9ddd8aaca1ada7e905a3b6b21bf7eb7',1,'SVGEN_Instance']]],
+  ['target',['target',['../struct_r_a_m_p_u_p___instance.html#a4a100e8776d7eb6be9440c1b3cab64a5',1,'RAMPUP_Instance']]],
+  ['targetvalue',['TargetValue',['../struct_r_m_p_c_n_t_l___instance.html#ad0508d96033c236f3449ed7bc10d01ba',1,'RMPCNTL_Instance']]],
+  ['tb',['Tb',['../struct_s_v_g_e_n___instance.html#acc33de657735244be95a47c816311811',1,'SVGEN_Instance']]],
+  ['tc',['Tc',['../struct_s_v_g_e_n___instance.html#ace7086844d7a497c9f5de471b1a2bdaf',1,'SVGEN_Instance']]],
+  ['temp',['temp',['../struct_p_h_a_s_e_v_o_l_t___instance.html#adfdecb5d972cb831c07a2f325a4f9e71',1,'PHASEVOLT_Instance']]],
+  ['tmp',['Tmp',['../struct_r_m_p_c_n_t_l___instance.html#a92da33acb36755b516550e62978d9af0',1,'RMPCNTL_Instance']]],
+  ['tmp1',['tmp1',['../struct_s_v_g_e_n___instance.html#a41964b0ff590019872a33904e441bf44',1,'SVGEN_Instance']]],
+  ['tmp2',['tmp2',['../struct_s_v_g_e_n___instance.html#a4191714ec627f0881f6bb1f8ae95808f',1,'SVGEN_Instance']]],
+  ['tmp3',['tmp3',['../struct_s_v_g_e_n___instance.html#aa61e976aaa3bb74858a92b84c7a39701',1,'SVGEN_Instance']]],
+  ['transit',['transit',['../struct_c_o_n_t_r_o_l.html#ad469b19e2e4a95d0323f8c9d934e5ef6',1,'CONTROL']]],
+  ['ts',['Ts',['../struct_r_a_m_p_g_e_n___p_a_r_a.html#acde35721683a3f1a1e76125157fdac81',1,'RAMPGEN_PARA::Ts()'],['../struct_r_m_p_c_n_t_l___p_a_r_a.html#a191aabc0e01c2ca0e29ac29300e3a8f8',1,'RMPCNTL_PARA::Ts()']]]
 ];

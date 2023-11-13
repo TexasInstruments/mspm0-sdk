@@ -11,7 +11,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = lin_responder.obj lin_config.obj gcc_startup_mspm0g3507_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = lin_config.obj lin_responder.obj gcc_startup_mspm0g3507_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = lin_responder
 
 CFLAGS = -I.. \
@@ -66,11 +66,11 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
-lin_responder.obj: ../lin_responder.c $(SYSCFG_H_FILES)
+lin_config.obj: ../lin_config.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
-lin_config.obj: ../lin_config.c $(SYSCFG_H_FILES)
+lin_responder.obj: ../lin_responder.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

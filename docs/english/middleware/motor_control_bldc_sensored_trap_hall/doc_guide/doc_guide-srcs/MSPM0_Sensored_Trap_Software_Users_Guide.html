@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 Sensored Trap Software User’s Guide &mdash; Hall_sensored_Motor_Control_Software_User_Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DRV8300 GUI User Guide" href="drv8300/DRV8300_GUI_User_Guide.html" />
+    <link rel="prev" title="BLDC Motor Control Library Overview" href="Hall_sensored_Trap_Motor_Control_library.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Hall_sensored_Motor_Control_Software_User_Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Hall_sensored_Trap_Motor_Control_library.html">BLDC Motor Control Library Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 Sensored Trap Software User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ccs-project-setup">CCS Project setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-initial-parameters-optional">Adding Initial Parameters (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#starting-the-project">Starting the Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-project">Running the Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-guide">API Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues">Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-devices">Supported Devices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#drv8300dxxx-evm">DRV8300Dxxx-EVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drv8311hevm">DRV8311HEVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drv8316revm">DRV8316REVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drv8317hevm">DRV8317HEVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drv8323rhevm">DRV8323RHEVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drv8328aevm">DRV8328AEVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drv8329aevm">DRV8329AEVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">DRV8329AEVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drv8353rhevm">DRV8353RHEVM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="drv8300/DRV8300_GUI_User_Guide.html">DRV8300 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8300/DRV8300_Hardware_User_Guide.html">DRV8300Dxxx-EVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8311/DRV8311_GUI_User_Guide.html">DRV8311 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8311/DRV8311_Hardware_User_Guide.html">DRV8311HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_GUI_User_Guide.html">DRV8316 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide.html">DRV8316REVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8317/DRV8317_GUI_User_Guide.html">DRV8317 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8317/DRV8317_Hardware_User_Guide.html">DRV8317HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323/DRV8323_GUI_User_Guide.html">DRV8323 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323/DRV8323_Hardware_User_Guide.html">DRV8323RHEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8328/DRV8328_GUI_User_Guide.html">DRV8328 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8328/DRV8328_Hardware_User_Guide.html">DRV8328AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/LP_MSPM0G3507/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/LP_MSPM0G3507/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/LP_MSPM0L1306/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/LP_MSPM0L1306/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8353/DRV8353_GUI_User_Guide.html">DRV8353 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8353/DRV8353_Hardware_User_Guide.html">DRV8353RHEVM Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Hall_sensored_Motor_Control_Software_User_Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 Sensored Trap Software User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-sensored-trap-software-user-s-guide">
+<h1>MSPM0 Sensored Trap Software User’s Guide<a class="headerlink" href="#mspm0-sensored-trap-software-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="ccs-project-setup">
+<h2>CCS Project setup<a class="headerlink" href="#ccs-project-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Go to Import CCS Projects as shown below.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_Import.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Click Browse. Navigate to <code class="docutils literal notranslate"><span class="pre">C:\ti\mspm0_sdk_&lt;SDK_Version&gt;\examples\nortos\[LAUNCHPAD]\motor_control_bldc_sensored_trap_hall</span></code>.</p></li>
+<li><p>Click Select Folder. Check the desired hardware board, and click Finish to import the project into your workspace.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_Import_1.png" />
+</figure>
+</section>
+<section id="adding-initial-parameters-optional">
+<h2>Adding Initial Parameters (optional)<a class="headerlink" href="#adding-initial-parameters-optional" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>In the Project Explorer, open the project drop down menu and open “[BOARD_NAME]_gui.h”.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_ProjectExplorer.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Under “defines” (line 44), change any of the “GUI_INITIAL_xxxx” defines to any pre-defined parameters in “hall_trap.h”, or value inside of the parentheses. The parameters that can be initially defined are below.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GUI_INITIAL_MOTOR_DIRECTION</p></td>
+<td><p>Motor direction (forward or reverse)</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_INITIAL_NSLEEP</p></td>
+<td><p>DRV mode (sleep or awake)</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_INITIAL_DRVOFF</p></td>
+<td><p>DRV status (ON or OFF)</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_INITIAL_STOPMOTOR</p></td>
+<td><p>Motor state (RUN or STOP)</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_INITIAL_CSAGAIN</p></td>
+<td><p>DRV CSA gain setting</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_INITIAL_FAULT_RESET</p></td>
+<td><p>Fault reset bit status</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_INITIAL_BRAKETYPE</p></td>
+<td><p>Motor brake type</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_INITIAL_CSA_REF</p></td>
+<td><p>CSA reference source</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_INITIAL_ADC_REF</p></td>
+<td><p>ADC reference value, in mV</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_INITIAL_PWM_FREQ</p></td>
+<td><p>PWM frequency value, in Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_INITIAL_DEAD_TIME_NS</p></td>
+<td><p>Dead time, in ns</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_INITIAL_ACCRATE</p></td>
+<td><p>Acceleration rate, in duty cycle per ms</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_INITIAL_PULSE_WIDTH</p></td>
+<td><p>PWM duty cycle</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_FAULT_LIMIT</p></td>
+<td><p>Fault count limit</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_MAX_PULSEWIDTH</p></td>
+<td><p>Maximum PWM duty cycle</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_INITIAL_SHUNT_RES</p></td>
+<td><p>Shunt resistance, in milliohms</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_INITIAL_ADCVREF</p></td>
+<td><p>ADC voltage reference source</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_INITIAL_ADC_INTVREF</p></td>
+<td><p>ADC internal voltage reference source</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_INITIAL_ADC_EXTVREF</p></td>
+<td><p>ADC external voltage reference value, in mV</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_MOTOR_NUMBER_OF_POLES</p></td>
+<td><p>Number of poles in motor</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_DEFAULT_OVER_VOLTAGE_LIMIT</p></td>
+<td><p>Overvoltage limit, in volts</p></td>
+</tr>
+<tr class="row-odd"><td><p>GUI_DEFAULT_UNDER_VOLTAGE_LIMIT</p></td>
+<td><p>Undervoltage limit, in volts</p></td>
+</tr>
+<tr class="row-even"><td><p>GUI_DEFAULT_OVER_CURRENT_LIMIT</p></td>
+<td><p>Overcurrent limit, in amps</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="starting-the-project">
+<h2>Starting the Project<a class="headerlink" href="#starting-the-project" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Connect the hardware and turn on the power supply. There should be no more than 50mA on the power supply.</p></li>
+<li><p>Click on the Build button.<img alt="image0" src="../_images/Build.png" /> Project should build with no errors.</p></li>
+<li><p>Click on the Debug button. <img alt="image1" src="../_images/Debug.png" /></p></li>
+<li><p>Open the Expressions window and add the following global structures and expressions. The expressions below in the guiVar structure control motor system and control parameters.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>guiVar</p></th>
+<th class="head"><p>structure that contains the GUI variables below</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>motorDirection</p></td>
+<td><p>Sets motor direction to forward or reverse</p></td>
+</tr>
+<tr class="row-odd"><td><p>nsleepSignal</p></td>
+<td><p>Sets driver to awake or sleep mode</p></td>
+</tr>
+<tr class="row-even"><td><p>stopMotor</p></td>
+<td><p>Sets motor to run or stop mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>motorBraketype</p></td>
+<td><p>Sets motor brake type to BRAKE or COAST</p></td>
+</tr>
+<tr class="row-even"><td><p>CSAGain</p></td>
+<td><p>Sets current sense amplifier (CSA) gain of the driver</p></td>
+</tr>
+<tr class="row-odd"><td><p>csaRef</p></td>
+<td><p>Sets CSA reference in millivolts</p></td>
+</tr>
+<tr class="row-even"><td><p>pwmFreq</p></td>
+<td><p>Sets PWM frequency in Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>deadtime_ns</p></td>
+<td><p>Sets dead time in ns</p></td>
+</tr>
+<tr class="row-even"><td><p>accRate</p></td>
+<td><p>Sets acceleration rate in duty cycle per ms</p></td>
+</tr>
+<tr class="row-odd"><td><p>pulseWidth</p></td>
+<td><p>Sets duty cycle in percent</p></td>
+</tr>
+<tr class="row-even"><td><p>adcVref</p></td>
+<td><p>Sets ADC voltage reference source as VDDA, internal (1.4 or 2.5V), or external (VREF+ pin)</p></td>
+</tr>
+<tr class="row-odd"><td><p>adcInternalVRef</p></td>
+<td><p>Sets ADC internal voltage reference as 1.4V or 2.5V</p></td>
+</tr>
+<tr class="row-even"><td><p>adcExternalVRef</p></td>
+<td><p>Sets ADC voltage reference when external VREF is used, in millivolts. Value set should be same as value into VREF+.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rShunt_mohm</p></td>
+<td><p>Shunt resistance of phase(s), in milliohms</p></td>
+</tr>
+</tbody>
+</table>
+<p>The expressions below in the fault structure control motor system and control parameters.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>fault</p></th>
+<th class="head"><p>structure that contains the fault variables below</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Reset</p></td>
+<td><p>Resets faults below when written with 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>overVoltage</p></td>
+<td><p>Set to 1 when bus voltage is higher than guiOverVoltageLimit</p></td>
+</tr>
+<tr class="row-even"><td><p>underVoltage</p></td>
+<td><p>Set to 1 when bus voltage is lower than guiUnderVoltageLimit</p></td>
+</tr>
+<tr class="row-odd"><td><p>drvFault</p></td>
+<td><p>Set to 1 when driver nFAULT pin is active low</p></td>
+</tr>
+<tr class="row-even"><td><p>overCurrent</p></td>
+<td><p>Set to 1 when phase current is higher than guiOverCurrentLimit</p></td>
+</tr>
+<tr class="row-odd"><td><p>ledIndication</p></td>
+<td><p>Logical OR of overVoltage, underVoltage, drvFault, and overCurrent flags</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="5">
+<li><p>If you wish to monitor the measured bus and phase voltages or currents, or control the current/voltage limits, add the below expressions.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Expression</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>moduleVoltage</p></td>
+<td><p>Motor supply voltage in IQ(20) format</p></td>
+</tr>
+<tr class="row-odd"><td><p>moduleCurrent</p></td>
+<td><p>Motor supply current in IQ(20) format. For hardware with 1 current shunt only.</p></td>
+</tr>
+<tr class="row-even"><td><p>voltagePhaseA</p></td>
+<td><p>Phase A voltage in IQ(20) format</p></td>
+</tr>
+<tr class="row-odd"><td><p>voltagePhaseB</p></td>
+<td><p>Phase B voltage in IQ(20) format</p></td>
+</tr>
+<tr class="row-even"><td><p>voltagePhaseC</p></td>
+<td><p>Phase C voltage in IQ(20) format</p></td>
+</tr>
+<tr class="row-odd"><td><p>currentPhaseA</p></td>
+<td><p>Phase A current in IQ(20) format</p></td>
+</tr>
+<tr class="row-even"><td><p>currentPhaseB</p></td>
+<td><p>Phase B current in IQ(20) format</p></td>
+</tr>
+<tr class="row-odd"><td><p>currentPhaseC</p></td>
+<td><p>Phase C current in IQ(20) format</p></td>
+</tr>
+<tr class="row-even"><td><p>guiOverCurrentLimit</p></td>
+<td><p>Sets the overcurrent limit for phases A, B, and C in IQ(20) format</p></td>
+</tr>
+<tr class="row-odd"><td><p>guiUnderVoltageLimit</p></td>
+<td><p>Sets the motor supply and phase A/B/C undervoltage limit for in IQ(20) format</p></td>
+</tr>
+<tr class="row-even"><td><p>guiOverVoltageLimit</p></td>
+<td><p>Sets the motor supply and phase A/B/C overvoltage limit for in IQ(20) format</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note: These values above are in IQ20 format. In order to display corrent value, switch them to IQ(20) format in the CCS expressions window as shown below.</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/Qvalues.png" />
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>For devices with SPI support, you can add the guiSPI structure for SPI Configuration and controlling SPI reads/writes during runtime.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>guiSPI</p></th>
+<th class="head"><p>structure that contains the SPI variables below</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>writeBitfieldRegFlag</p></td>
+<td><p>Writes writeBitfieldRegData to bitfieldRegPosData of writeBitfieldRegAddr when set to 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>writeRegFlag</p></td>
+<td><p>Writes writeRegData to writeRegData of writeRegAddr when set to 1</p></td>
+</tr>
+<tr class="row-even"><td><p>readRegFlag</p></td>
+<td><p>Reads data of readRegAddr and stores into to readRegData when set to 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>writeBitfieldRegAddr</p></td>
+<td><p>Set to address of a bitfield register write operation</p></td>
+</tr>
+<tr class="row-even"><td><p>writeRegAddr</p></td>
+<td><p>Set to address of a register write operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>readRegAddr</p></td>
+<td><p>Set to address of a register read operation</p></td>
+</tr>
+<tr class="row-even"><td><p>bitfieldRegPosData</p></td>
+<td><p>Bitfield position of a bitfield write operation to writeBitfieldRegAddr</p></td>
+</tr>
+<tr class="row-odd"><td><p>bitfieldRegMaskData</p></td>
+<td><p>Mask value of a bitfield write operation to writeBitfieldRegAddr</p></td>
+</tr>
+<tr class="row-even"><td><p>writeBitfieldRegData</p></td>
+<td><p>Data value of a bitfield write register operation to writeBitfieldRegAddr</p></td>
+</tr>
+<tr class="row-odd"><td><p>writeRegData</p></td>
+<td><p>Data value of a write register operation to writeRegAddr</p></td>
+</tr>
+<tr class="row-even"><td><p>readRegData</p></td>
+<td><p>Data value read from read operation of readRegAddr</p></td>
+</tr>
+<tr class="row-odd"><td><p>readAllRegsFlag</p></td>
+<td><p>Reads all registers when set to 1</p></td>
+</tr>
+</tbody>
+</table>
+<p>The guiRegMap structure shows all of the status and configuration registers in the DRV device during run time. For devices with SPI support only.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">guiRegMap</span>   <span class="n">structure</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">DRV83xx</span> <span class="n">register</span> <span class="nb">map</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Press Play <img alt="image2" src="../_images/Play.png" /> to start the code.</p></li>
+<li><p>Enable “Continuous Refresh” in the Expressions window. <img alt="image3" src="../_images/refresh.png" /></p></li>
+</ol>
+</section>
+<section id="running-the-project">
+<h2>Running the Project<a class="headerlink" href="#running-the-project" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Open guiVar. Set <em>pulseWidth</em> to 20 to spin the motor at 20%. The motor starts spinning.</p></li>
+<li><p>Set <em>motorDirection</em> = MOTOR_DIR_REVERSE and press Enter. The motor stops spinning in forward direction and starts to spin in the reverse direction.</p></li>
+<li><p>Set <em>nsleepSignal</em> = DRV83xx_DRV_NSLEEP_SLEEP and press Enter. The driver goes into sleep mode and the motor stops spinning. Set to DRV83xx_DRV_NSLEEP_AWAKE and <em>pulseWidth</em> = 20 to spin the motor again.</p></li>
+<li><p>Set <em>stopMotor</em> = MOTOR_STATE_STOP and press Enter to stop the motor according to the <em>motorBraketype</em>(MOTOR_BRAKE_TYPE_COAST = coast mode, MOTOR_BRAKE_TYPE_STOP = stop mode).</p></li>
+<li><p>Change <em>pwmFreq</em> to 10000 to change the PWM frequency to 10kHz. Observe in waveforms.</p></li>
+<li><p>Change <em>deadtime_ns</em> to 500 to change the MCU deadband to 500 ns. Observe in waveforms.</p></li>
+<li><p>Change <em>accRate</em> to change the acceleration and deceleration rate of the motor when <em>pulseWidth</em> is modified.</p></li>
+<li><p>Create an overvoltage fault by increasing the voltage beyond <em>guiOverVoltageLimit</em>. <em>Fault.overVoltage</em> is set to 1, the motor stops spinning, and the LED sets. Reduce the voltage below the limit and set <em>Fault.Reset</em> = 1 to clear the latched fault and start spinning the motor again.</p></li>
+<li><p>Create an undervoltage fault by decreasing the voltage below <em>guiUnderVoltageLimit</em>. <em>Fault.underVoltage</em> is set to 1, the motor stops spinning, and the LED sets. Increase the voltage above the limit and set <em>Fault.Reset</em> = 1 to clear the latched fault and start spinning the motor again.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/expression_window.png" />
+</figure>
+<ol class="arabic simple" start="10">
+<li><p>If the device has SPI registers, use the guiSPI variables to perform a bitfield write, register write, or register read, or read all operation.</p>
+<ul class="simple">
+<li><p>To perform a bitfield write operation:</p>
+<ul>
+<li><p>Select the drop-down register in <em>writeRegAddr</em></p></li>
+<li><p>Enter the bitfield position in <em>bitfieldRegPosData</em></p></li>
+<li><p>Enter the mask of the setting in that bitfield position in <em>bitfieldRegMaskData</em> (for example, a 3-bit setting has mask 0x7)</p></li>
+<li><p>Write the bitfield data in <em>writeBitfieldRegData</em></p></li>
+<li><p>Set the <em>writeBitfieldRegFlag</em> to 1. It will automatically clear to 0.</p></li>
+</ul>
+</li>
+<li><p>To perform a register write operation:</p>
+<ul>
+<li><p>Select the drop-down register in <em>writeRegAddr</em></p></li>
+<li><p>Write the data in <em>writeRegData</em></p></li>
+<li><p>Set the <em>writeRegFlag</em> to 1. It will automatically clear to 0.</p></li>
+</ul>
+</li>
+<li><p>To perform a register read operation:</p>
+<ul>
+<li><p>Select the drop-down register in <em>readRegAddr</em></p></li>
+<li><p>Set the <em>readRegFlag</em> to 1. It will automatically clear to 0.</p></li>
+<li><p>Read the data in <em>readRegData</em></p></li>
+</ul>
+</li>
+<li><p>To perform a read all registers operation:</p>
+<ul>
+<li><p>Set the <em>readAllRegsFlag</em> to 1. It will automatically clear to 0.</p></li>
+<li><p>View all registers in the <em>guiRegMap</em> structure</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/spi_window.png" />
+</figure>
+</section>
+<section id="api-guide">
+<h2>API Guide<a class="headerlink" href="#api-guide" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doxygen/mspm0g3507-doc-srcs-api-guide/html/index.html">MSPM0G3507 Hall Sensored Trap API Guide</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/mspm0g1507-doc-srcs-api-guide/html/index.html">MSPM0G1507 Hall Sensored Trap API Guide</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/mspm0l1306-doc-srcs-api-guide/html/index.html">MSPM0L1306 Hall Sensored Trap API Guide</a></p></li>
+</ul>
+</section>
+<section id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="supported-devices">
+<h2>Supported Devices<a class="headerlink" href="#supported-devices" title="Permalink to this heading">¶</a></h2>
+<section id="drv8300dxxx-evm">
+<h3>DRV8300Dxxx-EVM<a class="headerlink" href="#drv8300dxxx-evm" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8300/DRV8300_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8300/DRV8300_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0-DRV8300Dxxx-EVM-GUI">MSPM0-DRV8300Dxxx-EVM-GUI</a></p></li>
+</ul>
+</section>
+<section id="drv8311hevm">
+<h3>DRV8311HEVM<a class="headerlink" href="#drv8311hevm" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8311/DRV8311_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8311/DRV8311_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8311HEVM-GUI">MSPM0G3507-DRV8311HEVM-GUI</a></p></li>
+</ul>
+</section>
+<section id="drv8316revm">
+<h3>DRV8316REVM<a class="headerlink" href="#drv8316revm" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8316/DRV8316_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8316/DRV8316_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8316REVM-GUI">MSPM0G3507-DRV8316REVM-GUI</a></p></li>
+</ul>
+</section>
+<section id="drv8317hevm">
+<h3>DRV8317HEVM<a class="headerlink" href="#drv8317hevm" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8317/DRV8317_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8317/DRV8317_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8317HEVM-GUI">MSPM0G3507-DRV8317HEVM-GUI</a></p></li>
+</ul>
+</section>
+<section id="drv8323rhevm">
+<h3>DRV8323RHEVM<a class="headerlink" href="#drv8323rhevm" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8323/DRV8323_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8323/DRV8323_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RHEVM-GUI">MSPM0G3507-DRV8317HEVM-GUI</a></p></li>
+</ul>
+</section>
+<section id="drv8328aevm">
+<h3>DRV8328AEVM<a class="headerlink" href="#drv8328aevm" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8328/DRV8328_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8328/DRV8328_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8328AEVM-GUI">MSPM0G3507-DRV8317HEVM-GUI</a></p></li>
+</ul>
+</section>
+<section id="drv8329aevm">
+<h3>DRV8329AEVM<a class="headerlink" href="#drv8329aevm" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8329/DRV8329_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8329/DRV8329_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8329AEVM-GUI">MSPM0G3507-DRV8329AEVM-GUI</a></p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>DRV8329AEVM<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0L1306">LP-MSPM0L1306</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8329/DRV8329_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8329/DRV8329_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8329AEVM-GUI">MSPM0G3507-DRV8329AEVM-GUI</a></p></li>
+</ul>
+</section>
+<section id="drv8353rhevm">
+<h3>DRV8353RHEVM<a class="headerlink" href="#drv8353rhevm" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8353/DRV8353_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8353/DRV8353_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8353RHEVM-GUI">MSPM0G3507-DRV8329AEVM-GUI</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Hall_sensored_Trap_Motor_Control_library.html" class="btn btn-neutral float-left" title="BLDC Motor Control Library Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="drv8300/DRV8300_GUI_User_Guide.html" class="btn btn-neutral float-right" title="DRV8300 GUI User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

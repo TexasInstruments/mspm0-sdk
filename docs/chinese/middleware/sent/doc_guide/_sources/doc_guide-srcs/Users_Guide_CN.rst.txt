@@ -1,0 +1,89 @@
+MSPM0 SENT User's Guide
+=======================
+
+1. Introduction
+---------------
+
+SENT (Single Edge Nibble Transmission) is a unidirectional communication standard used in automotive networks. Data from a sensor is transmitted independently without any intervention of the data receiving device. The MSPM0 SDK provides an easy way to start development of SENT applications using the MSPM0's Timer module.
+
+An example application is provided in the SDK to demonstrate how to configure a MSPM0 device as a SENT packet transmitter.
+
+2. SENT Frame Format
+--------------------
+
+A tick is defined as a unit of time for SENT transmissions ranging from 1 us and 90 us in this implementation. Each pulse needs to be held low for a minimum of 5 ticks and high for a minimum of 7 ticks. The tick duration is user configurable.
+
+The SENT protocol defines the following frame format: 1. Synchronization/calibration pulse: 56 ticks total 2. Status nibble pulse: 12-27 ticks total 3. Up to six Data nibble pulses: 12-27 ticks each 4. Checksum nibble pulse: 12-27 ticks total 5. Pause pulse (optional)
+
+An example SENT frame used in this application is shown below. |image0|
+
+2. Configuring the Timer for SENT
+---------------------------------
+
+A general-purpose timer (TIMGx) is configured to generate the pulses for the SENT frame. The timer is configured at 4 MHz, so the following formula is used to convert ticks to clock counts:
+
+-  Clock counts = (Number of ticks \* Tick duration in us) \* 4
+
+The timer is configured in up-counting mode and counts up to the LOAD value for each state. This LOAD value is calculated for each pulse using the above formula and is dependent on the number of ticks required per pulse state.
+
+A Capture Compare Register (CCR) is used to switch between a low and high output on the pin. When the timer counts up to the equivalent of 5 ticks (which is the defined number of low ticks per pulse) the output is switched from low to high and remains high for the remainder of the pulse.
+
+3. Example Applications
+-----------------------
+
+The MSPM0 SDK provides an example application to use as a starting point for SENT applications:
+
+-  **sent\_transmit**: Configures the general-purpose timer (TIMGx) to send a SENT frame in fast channel message format, and demonstrates the state machine on how to produce the signal. The frame includes a synchronization pulse, a status nibble, up to six data nibbles, a CRC4 nibble, and an optional pause pulse.
+
+These examples can be found at ``<SDK_INSTALL_DIRECTORY>/examples/nortos/<LaunchPad>/sent``.
+
+The **sent\_transmit** example can be used in conjunction with a SENT bus to receive the transmitted signal.
+
+Refer to the examples README files for more details on connecting the MSPM0 LaunchPad to a SENT bus, as well as detailed instructions on how to run the example.
+
+Modifying the Example Applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each SENT example application include a ``SENT.c`` and ``SENT.h`` file. These files contain macros that can be modified based on the user applications. It is recommended to only change these macros once the user has gained familiarity with the usage of the example application.
+
+``SENT.h`` contains the definition of the struct ``SENT_config_obj`` which allows the user to configure parameters for the SENT frame.
+
+Below is an example definition of a ``SENT_config_obj`` struct:
+
+::
+
+        SENT_config_obj config = {
+            /*! Tick duration in us */
+            3,
+            /*! Pause configuration struct */
+            {SENT_PAUSE_MODE_FIXED_FRAME, /*! Pause pulse mode */
+                500 /*! Number of ticks */},
+            /*! Number of data nibbles in SENT packet */
+            SENT_NUM_DATA_NIBBLES_6,
+        }
+
+In this example, the user can configure the following struct members: - ``3`` is the number of us in a tick - ``{SENT_PAUSE_MODE_FIXED_FRAME, 500}`` indicates a fixed frame of 500 ticks where the pause pulse is a variable number calculated based on the total frame ticks - ``SENT_NUM_DATA_NIBBLES_6`` is the number of data nibbles in the frame
+
+``SENT.h`` also contains the definition of the struct ``SENT_PAUSE`` which allows the user to configure the pause pulse in the SENT frame.
+
+Below is an example definition of a ``SENT_PAUSE`` struct:
+
+::
+
+        SENT_PAUSE pauseConfig = {
+            /*! Pause pulse mode */
+            SENT_PAUSE_MODE_FIXED_FRAME,
+            /*! Number of ticks */
+            500
+        }
+
+In this example, the user can configure the following struct members:
+
+-  ``SENT_PAUSE_MODE_FIXED_FRAME`` indicates a fixed number of ticks in a frame. The second member of the struct, ``500``, is the total number of frame ticks.
+-  ``SENT_PAUSE_MODE_VARIABLE_FRAME`` indicates a variable number of ticks in a frame. The second member of the struct, ``500``, is the number of ticks in the pause pulse.
+-  ``SENT_PAUSE_MODE_DISABLED`` indicates that there will be no pause pulse in the SENT frame.
+
+This example uses the SAE J2716 HW CRC-4 implementation. The checksum is calculated using a seed value of 5 (0b0101). Other CRC-4 algorithms can be implemented in the software/used if desired.
+
+.. |image0| image:: ./images/Fast_Channel_Message_Frame.png
+

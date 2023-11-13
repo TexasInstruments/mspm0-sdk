@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,6 +50,8 @@ int main(void)
 
     if (CRC_EXPECTED_RESULT == crcChecksum) {
         crcChecksumMatch = true;
+        DL_GPIO_clearPins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
     } else {
         crcChecksumMatch = false;
     }

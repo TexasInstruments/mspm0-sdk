@@ -4,7 +4,7 @@ DRV8316REVM Hardware User Guide
 1. Overview
 -----------
 
-To spin the BLDC motor with DRV8316REVM the user should modify some jumpers on launchpad, connect the EVM pins to launchpad, connect the motor phases and hall sensors to drv and power on the suppy.
+To spin the BLDC motor with the DRV8316REVM, the user needs to modify some jumpers on the MSPM0 Launchpad, connect the EVM pins to the Launchpad, connect the motor phases and hall sensors to the DRV hardware and power on the supply.
 
 2. Hardware Required
 --------------------
@@ -13,72 +13,57 @@ To spin the BLDC motor with DRV8316REVM the user should modify some jumpers on l
 -  `DRV8316REVM <https://www.ti.com/tool/DRV8316REVM>`__ - DRV8316REVM evaluation module
 -  DC Power supply that supports the required voltage and current
 -  BLDC Motor
--  jumper wires (to connect LP to EVM)
+-  Jumper wires (to connect LP to EVM)
 -  Micro-USB cable
 
 3. Hardware Setup
 -----------------
 
-1. Connect the jumpers J25 and J26 in the LP-MSPM0G3507 to BP.
+1. Connect the jumpers J21 and J22 on the LP-MSPM0G3507 to the BP position
 
-2. If using External ADC reference resister R22 on LP-MSPM0G3507 needs to be populated.
-3. Connect the LP-MSPM0G3507 to the DRV8316REVM using the jumper wires as shown in the table below. Refer to the schematic connector pinout for the locations of the DRV8316REVM signals.
-
-.. figure:: images/schematic.png
+.. figure:: images/jumpers_image.png
    :alt: 
 
-+---------------------+--------------+---------------+-----------------------+
-| Connection          | MSPM0G3507   | DRV8316REVM   | Jumper Notes          |
-+=====================+==============+===============+=======================+
-| Phase A HS input    | PB4          | INHA          |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase A LS input    | PB1          | INLA          |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase B HS input    | PA28         | INHB          |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase B LS input    | PA31         | INLB          |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase C HS input    | PB20         | INHC          |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase C LS input    | PB13         | INLC          |                       |
-+---------------------+--------------+---------------+-----------------------+
-| HALL A input        | PA10         | HALLA         | J25 connected to BP   |
-+---------------------+--------------+---------------+-----------------------+
-| HALL B input        | PA11         | HALLB         | J26 connected to BP   |
-+---------------------+--------------+---------------+-----------------------+
-| HALL C input        | PA12         | HALLC         |                       |
-+---------------------+--------------+---------------+-----------------------+
-| SPI Clk input       | PB9          | SCLK          |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Serial data in      | PB8          | SDI           |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Serial data out     | PB7          | SDO           |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Channel select      | PB0          | nSCS          |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Bus voltage input   | PA25         | VSENVM        |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase A voltage     | PB19         | VSENA         |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase B voltage     | PA22         | VSENB         |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase C voltage     | PB18         | VSENC         |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase A current     | PA24         | ISENA         |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase B current     | PA17         | ISENB         |                       |
-+---------------------+--------------+---------------+-----------------------+
-| Phase C current     | PA18         | ISENC         |                       |
-+---------------------+--------------+---------------+-----------------------+
-| DRV fault input     | PB12         | nFAULT        |                       |
-+---------------------+--------------+---------------+-----------------------+
-| DRV sleep input     | PB2          | nSLEEP        |                       |
-+---------------------+--------------+---------------+-----------------------+
-| DRV OFF input       | PB6          | DRVOFF        |                       |
-+---------------------+--------------+---------------+-----------------------+
+2. If using external ADC reference, populate resistor R22 on the LP-MSPM0G3507 and apply the external reference voltage to PA23, which is accessible on the bottom header row of the Launchpad. |image0|
+3. Connect the LP-MSPM0G3507 to the DRV8316REVM using the following jumper wire connections:
 
-4. Connect the 3 phases of the motor to OUTA, OUTB, and OUTC of the motor connector terminal block on the DRV8316REVM and the HALLA/B/C, Hall power, and Hall GND signals to the Hall connector block. Note: The user should identify the correct phases of motor from motor datasheets, this will varry from motor to motor.
-5. Connect the positive and negative of the power supply to VM and PGND/GND of the power connector terminal block to the DRV8316REVM. Don't turn on the power supply output.
+   .. figure:: images/schematic.png
+      :alt: 
+
+   ::
+
+       |Connection |MSPM0G3507|DRV8316REVM |Jumper Notes|
+       |:-------|:-------:|:-------:|-----------:|
+       |Phase A HS input|PB4|INHA||
+       |Phase A LS input|PB1|INLA||
+       |Phase B HS input|PA28|INHB||
+       |Phase B LS input|PA31|INLB||
+       |Phase C HS input|PB20|INHC||
+       |Phase C LS input|PB13|INLC||
+       |HALL A input|PA10|HALLA|J21 connected to BP|
+       |HALL B input|PA11|HALLB|J22 connected to BP|
+       |HALL C input|PA12|HALLC||
+       |SPI Clk input|PB9|SCLK||
+       |Serial data in|PB8|SDI||
+       |Serial data out|PB7|SDO||
+       |Channel select|PB0|nSCS||
+       |Bus voltage input|PA25|VSENVM||
+       |Phase A voltage|PB19|VSENA||
+       |Phase B voltage|PA22|VSENB||
+       |Phase C voltage|PB18|VSENC||
+       |Phase A current|PA24|ISENA||
+       |Phase B current|PA17|ISENB||
+       |Phase C current|PA18|ISENC||
+       |DRV fault input|PB12|nFAULT||
+       |DRV sleep input|PB2|nSLEEP||
+       |DRVOFF input|PB6|DRVOFF||
+       |Ground|GND|AGND|
+
+4. Connect the 3 phases of the motor to OUTA, OUTB, and OUTC of the motor connector terminal block on the DRV8316REVM and the HALLA/B/C, Hall power, and Hall GND signals to the Hall connector block. **Note: The user should identify the correct phases of motor from motor datasheets. This will vary from motor to motor.**
+5. Connect the positive and negative of the power supply to VM and PGND/AGND of the power connector terminal block to the DRV8316REVM. Don't turn on the power supply output.
 6. Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.
-7. Set the power supply to the motor voltage. The voltage must be between 5V to 34V that matches the DRV8316 limits or if the motor is rated for lesser voltage, the supply voltage should be limited to that value. Turn on the power supply. The green VM LED on DRV8316REVM should turn on.
-8. Once all the setup is done you can start the GUI and spin the motor. Refer `GUI User Guide <DRV8316_GUI_User_Guide.html>`__ for more details.
+7. Set the power supply to a motor voltage within the DRV8316 specifications. Turn on the power supply. The green VM LED on the DRV8316REVM should turn on.
+8. Once all the setup is done, spin the motor using the software or GUI. Refer to `Software User Guide <../MSPM0_Sensored_Trap_Software_Users_Guide.html>`__ or `GUI User Guide <DRV8316_GUI_User_Guide.html>`__ for more details.
+
+.. |image0| image:: images/
+

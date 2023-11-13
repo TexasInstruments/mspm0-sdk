@@ -75,9 +75,9 @@ typedef struct {
 #define CLARKE_DEFAULTS					{ 0, 0, 0, 0, 0 } 
 
 /*!
- * @brief 1/sqrt(3) is 0.57735026918963, this is 9686330 in IQ24 format
+ * @brief 1/sqrt(3) in IQ format
  */
-#define  ONEbySQRT3_IQ24				(9686330)
+#define  ONEbySQRT3_IQ				_IQ(0.57735)
 
 /*!
  * @brief Clarke transform macro (with 2 currents)
@@ -86,8 +86,17 @@ typedef struct {
 __STATIC_INLINE void CLARKE_run(CLARKE_Instance *handle)
 {
 	handle->Alpha = handle->As;
-	handle->Beta = _IQ24mpy((handle->As + _IQmpy2(handle->Bs)),
-															   ONEbySQRT3_IQ24);
+	handle->Beta = _IQmpy((handle->As + _IQmpy2(handle->Bs)), ONEbySQRT3_IQ);
+}
+
+/**
+ * @brief     Reset clarke variables
+ * @param[in] handle  A pointer to clarke instance
+ */
+__STATIC_INLINE void CLARKE_reset(CLARKE_Instance *handle)
+{
+	handle->Alpha = 0;
+	handle->Beta = 0;
 }
 
 #ifdef __cplusplus

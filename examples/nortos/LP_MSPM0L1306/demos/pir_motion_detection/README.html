@@ -51,27 +51,17 @@
 <tr class="odd">
 <td>GPIOA</td>
 <td>PA0</td>
-<td>Standard Output for LED</td>
+<td>Open-Drain Output</td>
 </tr>
 <tr class="even">
 <td>GPIOA</td>
 <td>PA4</td>
-<td>Standard Output for LED</td>
+<td>Standard Output</td>
 </tr>
 <tr class="odd">
 <td>GPIOA</td>
 <td>PA23</td>
-<td>Standard Output for LED</td>
-</tr>
-<tr class="even">
-<td>GPAMP</td>
-<td>PA26</td>
-<td>GPAMP.IN+ Input</td>
-</tr>
-<tr class="odd">
-<td>GPAMP</td>
-<td>PA22</td>
-<td>GPAMP.OUT Output</td>
+<td>Standard Output</td>
 </tr>
 <tr class="even">
 <td>SYSCTL</td>
@@ -81,7 +71,7 @@
 <tr class="odd">
 <td>TIMG0</td>
 <td>PA12</td>
-<td>TIMG0 PWM Output</td>
+<td>Counter Compare Pin 0</td>
 </tr>
 <tr class="even">
 <td>TIMG1</td>
@@ -95,13 +85,13 @@
 </tr>
 <tr class="even">
 <td>I2C0</td>
-<td></td>
-<td></td>
+<td>PA10</td>
+<td>I2C Serial Data line (SDA)</td>
 </tr>
 <tr class="odd">
 <td>I2C0</td>
-<td></td>
-<td></td>
+<td>PA11</td>
+<td>I2C Serial Clock line (SCL)</td>
 </tr>
 <tr class="even">
 <td>UART0</td>
@@ -129,24 +119,34 @@
 <td></td>
 </tr>
 <tr class="odd">
-<td>VREF</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>OPA0</td>
-<td>PA25</td>
-<td>OPA0.IN0+ Input</td>
-</tr>
-<tr class="odd">
-<td>OPA0</td>
-<td>PA24</td>
-<td>OPA0 RTOP Input</td>
+<td>OPA1</td>
+<td>PA17</td>
+<td>OPA Inverting input 1 Pin</td>
 </tr>
 <tr class="even">
 <td>OPA1</td>
 <td>PA16</td>
-<td>OPA1.OUT Output</td>
+<td>OPA Output Pin</td>
+</tr>
+<tr class="odd">
+<td>OPA0</td>
+<td>PA25</td>
+<td>OPA Non-inverting input 0 Pin</td>
+</tr>
+<tr class="even">
+<td>OPA0</td>
+<td>PA24</td>
+<td>OPA Inverting input 0 Pin</td>
+</tr>
+<tr class="odd">
+<td>GPAMP</td>
+<td>PA26</td>
+<td>GPAMP Non-inverting input Pin</td>
+</tr>
+<tr class="even">
+<td>GPAMP</td>
+<td>PA22</td>
+<td>GPAMP Output Pin</td>
 </tr>
 <tr class="odd">
 <td>EVENT</td>
@@ -179,67 +179,11 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>PA14</td>
+<td>PA0</td>
 <td>GPIOA</td>
-<td>PA14</td>
-<td>N/A</td>
-<td>Connected to S2 button (no pull resistor)</td>
-</tr>
-<tr class="even">
-<td>PA24</td>
-<td>GPIOA</td>
-<td>PA24</td>
-<td>J1_5</td>
-<td>J5 OFF: Disconnect from photodiode D1<br>R93/R94 for thermistor RT1 not soldered by default</td>
-</tr>
-<tr class="odd">
-<td>PA6</td>
-<td>GPIOA</td>
-<td>PA6</td>
-<td>J1_7</td>
-<td>N/A</td>
-</tr>
-<tr class="even">
-<td>PA22</td>
-<td>GPIOA</td>
-<td>PA22</td>
-<td>J1_8</td>
-<td>J6 OFF: Disconnect from photodiode D1<br>RC R95/C57 for thermistor RT1 not soldered by default</td>
-</tr>
-<tr class="odd">
-<td>PA12</td>
-<td>GPIOA</td>
-<td>PA12</td>
-<td>J4_40</td>
-<td>N/A</td>
-</tr>
-<tr class="even">
-<td>PA13</td>
-<td>GPIOA</td>
-<td>PA13</td>
-<td>J4_39</td>
-<td>J3 ON/OFF: Connect/Disconnect LED2 Green</td>
-</tr>
-<tr class="odd">
-<td>PA7</td>
-<td>GPIOA</td>
-<td>PA7</td>
-<td>J2_18</td>
-<td>N/A</td>
-</tr>
-<tr class="even">
-<td>PA27</td>
-<td>GPIOA</td>
-<td>PA27</td>
-<td>J4_37</td>
-<td>J13 ON/OFF: Connect/Disconnect LED2 Blue</td>
-</tr>
-<tr class="odd">
-<td>PA26</td>
-<td>GPIOA</td>
-<td>PA26</td>
-<td>J4_38</td>
-<td>J12 ON/OFF: Connect/Disconnect LED2 Red</td>
+<td>PA0</td>
+<td>J1_10</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J10 2:3</code> Use 3.3V pull-up<br><li><code>J10 1:2</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J2 ON</code> Connect to LED1<br><li><code>J2 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA4</td>
@@ -249,17 +193,17 @@
 <td>N/A</td>
 </tr>
 <tr class="odd">
-<td>PA5</td>
+<td>PA23</td>
 <td>GPIOA</td>
-<td>PA5</td>
-<td>J2_15</td>
+<td>PA23</td>
+<td>J2_12</td>
 <td>N/A</td>
 </tr>
 <tr class="even">
-<td>PA3</td>
-<td>TIMG2</td>
+<td>PA12</td>
+<td>TIMG0</td>
 <td>CCP0</td>
-<td>J2_19</td>
+<td>J4_40</td>
 <td>N/A</td>
 </tr>
 <tr class="odd">
@@ -274,42 +218,28 @@
 <td>I2C0</td>
 <td>SCL</td>
 <td>J2_11/J4_35</td>
-<td>J14 1:2 Connect to J2_11<br>J14 2:3 Connect to J4_35</td>
+<td><ul><li>PA11 can be connected to two locations in boosterpack connector:<br><ul><li><code>J14 1:2</code>: Connect pin to <code>J2_11</code><br><li><code>J14 2:3</code>: Connect pin to <code>J4_35</code></ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA9</td>
 <td>UART0</td>
 <td>RX</td>
 <td>J1_3</td>
-<td>J17 1:2 Connect XDS-110 BackChannel UART on J101<br>J17 2:3 Connect to J1_3<br>J101 7:8 Connect XDS-110 BackChannel UART RX</td>
+<td><ul><li>PA9 can be used as UART RX connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J17 1:2</code>: Connects XDS-110 backchannel UART RX to <code>J101</code><br> <code>J101 7:8</code> Connects XDS-110 backchannel to UART RX<br><li>To use UART on boosterpack connector:<br> <code>J17 2:3</code>: Connects UART RX to <code>J1_3</code></ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA8</td>
 <td>UART0</td>
 <td>TX</td>
 <td>J1_4</td>
-<td>J16 1:2 Connect XDS-110 BackChannel UART on J101<br>J16 2:3 Connect to J1_4<br>J101 9:10 Connect XDS-110 BackChannel UART TX</td>
+<td><ul><li>PA8 can be used as UART TX connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J16 1:2</code>: Connects XDS-110 backchannel UART TX to <code>J101</code><br> <code>J101 9:10</code> Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br> <code>J16 2:3</code>: Connects UART TX to<code>J1_4</code></ul></ul></td>
 </tr>
 <tr class="odd">
-<td>PA25</td>
+<td>PA15</td>
 <td>ADC0</td>
-<td>A2</td>
-<td>J1_2</td>
-<td>J4 ON/OFF: Connect/disconnect from photodiode D1<br>J1 2:3: Connect to Thermistor RT1<br>J15 ON: Connects Thermistor RT1, if needed</td>
-</tr>
-<tr class="even">
-<td>PA23</td>
-<td>VREF</td>
-<td>VREF+</td>
-<td>J2_12</td>
-<td>C8/C11 to GND can be soldered if needed</td>
-</tr>
-<tr class="odd">
-<td>PA21</td>
-<td>VREF</td>
-<td>VREF-</td>
-<td>J1_6</td>
-<td>Solder R4 to GND if needed</td>
+<td>A9</td>
+<td>J3_23</td>
+<td><ul><li>PA15 can be connected to thermistor RT1<br><ul><li><code>J1 2:3/OFF</code> Disconnect thermistor RT1<br><li><code>J1 1:2</code> Connect thermistor RT1</ul><br><li>When using thermistor RT1:<br><ul><li><code>J15 OFF</code> Disconnect power from thermistor RT1<br><li><code>J15 ON</code> Connect power to thermistor RT1</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA17</td>
@@ -319,18 +249,53 @@
 <td>N/A</td>
 </tr>
 <tr class="odd">
+<td>PA16</td>
+<td>OPA1</td>
+<td>OUT</td>
+<td>J3_24</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>PA25</td>
+<td>OPA0</td>
+<td>IN0-</td>
+<td>J1_2</td>
+<td><ul><li>PA25 can be connected to photodiode D1<br><ul><li><code>J4 OFF</code> Disconnect from photodiode D1<br><li><code>J4 ON</code> Connect to photodiode D1</ul><br><li>PA25 can be connected to thermistor RT1<br><ul><li><code>J1 1:2/OFF</code> Disconnect from thermistor RT1<br><li><code>J1 2:3</code> Connect to thermistor RT1</ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PA24</td>
+<td>OPA0</td>
+<td>IN0-</td>
+<td>J1_5</td>
+<td><ul><li>PA24 can be connected to photodiode D1<br><ul><li><code>J5 OFF</code> Disconnect from photodiode D1<br><li><code>J5 ON</code> Cconnect to photodiode D1</ul><br><li>PA24 can be connected to thermistor RT1<br><ul><li><code>R93/R94</code> circuit for thermistor RT1 is not soldered by default<br><li>Solder <code>R93/R94</code> RC circuit to connect to thermistor RT1</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA26</td>
+<td>GPAMP</td>
+<td>IN+</td>
+<td>J4_38</td>
+<td><ul><li>PA26 can be connected to LED2 Red<br><ul><li><code>J12 OFF</code> Disconnect from LED2 Red</ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PA22</td>
+<td>GPAMP</td>
+<td>OUT</td>
+<td>J1_8</td>
+<td><ul><li>PA22 can be connected to photodiode D1<br><ul><li><code>J6 OFF</code> Disconnect from photodiode D1<br><li><code>J6 ON</code> Connect to photodiode D1</ul></ul></td>
+</tr>
+<tr class="even">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_13</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>J2_17</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>

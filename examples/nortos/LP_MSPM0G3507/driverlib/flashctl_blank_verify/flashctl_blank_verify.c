@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,6 +43,15 @@ uint32_t gDataArray64[] = {0xABCDEF00, 0x12345678};
 
 volatile DL_FLASHCTL_COMMAND_STATUS gCmdStatus;
 
+/* Codes to understand where error occured */
+#define NO_ERROR 0
+#define ERROR_ERASE 1
+#define ERROR_BLANK_VERIFY 2
+#define ERROR_64BIT_W 3
+#define ERROR_UNEXPECTED 4
+
+volatile uint8_t gErrorType = NO_ERROR;
+
 int main(void)
 {
     SYSCFG_DL_init();
@@ -55,49 +64,65 @@ int main(void)
     gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
     if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command was not successful, set a SW breakpoint */
-        __BKPT(0);
+        /* If command was not successful, set error flag */
+        gErrorType = ERROR_ERASE;
     }
 
-    /*
-     * Check if the flash word at MAIN_BASE_ADDRESS is blank. Since this sector
-     * was just erased, this is a blank flash word and the blank verify command
-     * will be successful and return no failure.
-     */
-    gCmdStatus = DL_FlashCTL_blankVerifyFromRAM(FLASHCTL, MAIN_BASE_ADDRESS);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command was not successful, set a SW breakpoint */
-        __BKPT(0);
-    }
-
-    /* 64-bit write to flash in main memory */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM64(
-        FLASHCTL, MAIN_BASE_ADDRESS, &gDataArray64[0]);
-    if (gCmdStatus == false) {
-        /* If command was not successful, set a SW breakpoint */
-        __BKPT(0);
-    }
-
-    /*
-     * Check again if the flash word at MAIN_BASE_ADDRESS is blank. Since a
-     * flash word was just programmed to MAIN_BASE_ADDRESS, this is not a
-     * blank flash word. Therefore the command will fail and the failure type
-     * will be a  DL_FLASHCTL_FAIL_TYPE_VERIFY_ERROR.
-     */
-    gCmdStatus = DL_FlashCTL_blankVerifyFromRAM(FLASHCTL, MAIN_BASE_ADDRESS);
-    if (gCmdStatus == DL_FLASHCTL_COMMAND_STATUS_FAILED) {
-        failType = DL_FlashCTL_getFailureStatus(FLASHCTL);
-        if (failType != DL_FLASHCTL_FAIL_TYPE_VERIFY_ERROR) {
-            /* If fail type is unexpected, set a SW breakpoint */
-            __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /*
+         * Check if the flash word at MAIN_BASE_ADDRESS is blank. Since this sector
+         * was just erased, this is a blank flash word and the blank verify command
+         * will be successful and return no failure.
+         */
+        gCmdStatus =
+            DL_FlashCTL_blankVerifyFromRAM(FLASHCTL, MAIN_BASE_ADDRESS);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command was not successful, set error flag */
+            gErrorType = ERROR_BLANK_VERIFY;
         }
     }
 
-    /* After completion, toggle LED */
-    while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
-        delay_cycles(16000000);
+    if (gErrorType == NO_ERROR) {
+        /* 64-bit write to flash in main memory */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
+            FLASHCTL, MAIN_BASE_ADDRESS, &gDataArray64[0]);
+        if (gCmdStatus == DL_FLASHCTL_COMMAND_STATUS_FAILED) {
+            /* If command was not successful, set error flag */
+            gErrorType = ERROR_64BIT_W;
+        }
+    }
+
+    if (gErrorType == NO_ERROR) {
+        /*
+        * Check again if the flash word at MAIN_BASE_ADDRESS is blank. Since a
+        * flash word was just programmed to MAIN_BASE_ADDRESS, this is not a
+        * blank flash word. Therefore the command will fail and the failure type
+        * will be a  DL_FLASHCTL_FAIL_TYPE_VERIFY_ERROR.
+        */
+        gCmdStatus =
+            DL_FlashCTL_blankVerifyFromRAM(FLASHCTL, MAIN_BASE_ADDRESS);
+        if (gCmdStatus == DL_FLASHCTL_COMMAND_STATUS_FAILED) {
+            failType = DL_FlashCTL_getFailureStatus(FLASHCTL);
+            if (failType != DL_FLASHCTL_FAIL_TYPE_VERIFY_ERROR) {
+                /* If fail type is unexpected, set error flag */
+                gErrorType = ERROR_UNEXPECTED;
+            }
+        }
+    }
+
+    /* After successful completion, toggle LED and USER_TEST pin */
+    if (gErrorType == NO_ERROR) {
+        while (1) {
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+            delay_cycles(16000000);
+        }
+    }
+    /* Unsuccessful example run */
+    else {
+        /* Check gErrorType value */
+        __BKPT(0);
     }
 }

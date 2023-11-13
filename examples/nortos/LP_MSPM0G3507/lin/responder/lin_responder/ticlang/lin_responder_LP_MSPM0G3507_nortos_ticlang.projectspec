@@ -33,7 +33,6 @@
             -mthumb
         "
         linkerBuildOptions="
-            -Wl,--stack_size=512
             -L${PROJECT_BUILD_DIR}/syscfg
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
             -Wl,--rom_model
@@ -51,11 +50,11 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
-        <file path="../lin_responder.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../lin_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../lin_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lin_responder.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../lin_responder.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

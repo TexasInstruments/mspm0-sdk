@@ -57,34 +57,65 @@ extern "C" {
 #endif
 
 /*!
- * @brief 0.5 in IQ
+ * @brief 0 in angle perunit IQ 32
  */
-#define ANGLE_MATH_0P5_IQ     _IQ(0.5)
+#define ANGLE_MATH_0_PU                 (0)
 
 /*!
- * @brief 1.0 in IQ
+ * @brief PI/3 in angle perunit IQ 32
  */
-#define  ANGLE_MATH_1P0_IQ    _IQ(1.0)
+#define ANGLE_MATH_PIp3_PU              (715827882)
+
+/*!
+ * @brief PI/2 in angle perunit IQ 32
+ */
+#define ANGLE_MATH_PIp2_PU              (1073741824)
+
+/*!
+ * @brief 2PI/3 in angle perunit IQ 32
+ */
+#define ANGLE_MATH_2PIp3_PU             (1431655765)
+
+/*!
+ * @brief PI in angle perunit IQ 32
+ */
+#define ANGLE_MATH_PI_PU                (2147483648)
+
+/*!
+ * @brief 4PI/3 in angle perunit IQ 32
+ */
+#define ANGLE_MATH_4PIp3_PU             (2863311530)
+
+/*!
+ * @brief 5PI/3 in angle perunit IQ 32
+ */
+#define ANGLE_MATH_5PIp3_PU             (3579139413)
+
+
+/** @brief Macro to convert IQ32 to IQ 24 */
+#define _ANGLE_toIQ24(X)                    (X >> 8)
+
+/** @brief Macro to convert IQ32 to IQ 21 */
+#define _ANGLE_toIQ21(X)                    (X >> 11)
+
+/** @brief Macro to convert IQ17 to IQ 32 */
+#define _ANGLE_IQ17toIQ32(X)                (X << 15)
+
+/** @brief Macro to convert IQ to IQ 32 */
+#define _ANGLE_IQtoIQ32(X)                  (X << (32 - GLOBAL_IQ))
+
+/** @brief Macro to convert IQ24 to IQ 32 */
+#define _ANGLE_IQ21toIQ32(X)                (X << 11)
+
+/** @brief Macro to convert IQ24 to IQ 32 */
+#define _ANGLE_IQ24toIQ32(X)                (X << 8)
 
 /**
- * @brief     Wraps angle within _IQ(-0.5) and _IQ(0.5)
- * @param[in] angle   Angle input to wrap within _IQ(-0.5) and _IQ(0.5)
+ * @brief     Gets the sine of the angle
+ * @param[in] phase  Angle for sine in 31 fixed point
+ * @return    Returns the sine of the angle in fixed point 24
  */
-__STATIC_INLINE void ANGLE_WRAP(_iq *angle)
-{
-  if(*angle > ANGLE_MATH_0P5_IQ)
-  {
-    *angle -= ANGLE_MATH_1P0_IQ;
-  }
-  else if(*angle < -ANGLE_MATH_0P5_IQ)
-  {
-    *angle += ANGLE_MATH_1P0_IQ;
-  }
-  else
-  {
-    /* This is expected to be empty */
-  }
-}
+int32_t ANGLE_getSine( uint32_t phase );
 
 #ifdef __cplusplus
 }

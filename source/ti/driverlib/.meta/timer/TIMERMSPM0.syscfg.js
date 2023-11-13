@@ -128,8 +128,8 @@ function onChangeTimerProfile(inst, ui) {
             // assigns the empty profile with the selected profile on top
             Object.assign(inst, EmptyTimerProfile,
                 _.pickBy(selectedProfile[0], (_,key) => key !== 'name'));
-            /* MSPM0G Series-Specific Option */
-            if(Common.isDeviceM0G()){
+
+            if(Common.hasTimerA()){
                 Object.assign(inst, EmptyTimerProfileAdvanced,
                     _.pickBy(selectedProfile[0], (_,key) => key !== 'name'));
             }
@@ -262,7 +262,7 @@ function getDisabledEvents(inst)
 function isFourCCCapable(inst)
 {
     try{
-        return (inst.peripheral.$solution.peripheralName.match("TIMA0") == null);
+        return (inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) == null);
     }catch (e) {
         return false;
     }
@@ -477,8 +477,8 @@ function onChangeEnableRepeatCounter(inst,ui)
 
 
 function updateGUI_RepeatCounter(inst, ui) {
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         ui.repeatCounter.hidden = !(inst.enableRepeatCounter);
     }
 }
@@ -532,8 +532,8 @@ function onChangeFaultHandler(inst, ui) {
 }
 
 function updateGUI_FaultHandler(inst, ui){
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         let hide = [true, true, true, true, true, true];
         ui.faultSource.hidden = !inst.faultHandlerEn;
         ui.faultInputFilterEn.hidden = !inst.faultHandlerEn;
@@ -652,8 +652,8 @@ let configAdvanced = [
     },
 ];
 
-/* MSPM0G Series-Specific Option */
-if(Common.isDeviceM0G()){
+
+if(Common.hasTimerA()){
 configAdvanced.push(
     {
         name            : "enableRepeatCounter",
@@ -815,8 +815,8 @@ configAdvanced.push(
         ]
     },
 );
-/* MSPM0G Series-Specific Option */
-if(Common.isDeviceM0G()){
+
+if(Common.hasTimerA()){
     configAdvanced.push(
         {
             name: "faultHandlerEn",
@@ -1092,6 +1092,11 @@ if(Common.isDeviceM0G()){
                 }
             ]
         },
+    )
+}
+
+if(Common.isDeviceM0G()){
+    configAdvanced.push(
         {
             name: "GROUP_RETENTION",
             displayName: "Retention Configuration",
@@ -1517,8 +1522,8 @@ function curryTimerFilter(inst) {
 
 function TimerFilter(peripheral, inst) {
     let validPeripheral = true;
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         if(inst.enableRepeatCounter){
             validPeripheral &= /TIMA/.test(peripheral.name);
         }
@@ -1560,7 +1565,7 @@ function sharedModuleInstances(inst) {
     let modInstances = [];
     let longDescription = ``;
 
-    if(Common.isDeviceM0G() && inst.faultHandlerEn){
+    if((Common.hasTimerA()) && inst.faultHandlerEn){
         let result = ["0","1","2"].some(i => (inst.faultSource).includes(i));
         if (result){
             let modInst = {
@@ -1599,8 +1604,8 @@ function validate(inst, validation)
         }
     }
 
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         /* Fault Validation */
         if(inst.faultHandlerEn) {
             /* Fault Handler Validation */
@@ -1630,6 +1635,16 @@ function validate(inst, validation)
         }
     }
 
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    EVENT.validatePublisherOptions(inst,validation,"event1PublisherChannel");
+    EVENT.validatePublisherOptions(inst,validation,"event2PublisherChannel");
+    if(inst.subscriberPort != "Disabled"){
+        EVENT.validateSubscriberOptions(inst,validation,"subscriberChannel");
+    }
+
     Common.validateNames(inst, validation);
 }
 
@@ -1643,7 +1658,7 @@ function validate(inst, validation)
 function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
-    if(Common.isDeviceM0G()){
+    if(Common.hasTimerA()){
         if(inst.enableRepeatCounter){
             if(!(/TIMA/.test(solution))){
                 validation.logError("Repeat Counter only available on Timer A instances. Please select a Timer A instance from PinMux if available.",inst,"enableRepeatCounter");
@@ -1659,13 +1674,24 @@ function validatePinmux(inst, validation) {
     /* Validate Timer instance supports Shadow load */
     if(inst.enableShadowLoad){
 
-        if(Common.isDeviceM0L()){
+        if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
             if(!(/TIMG4/.test(solution))){
                 validation.logError("Shadow Load is only supported on Timer G4 instances. Please select a Timer G4 instance from PinMux if available.",inst,"enableShadowLoad");
             }
-        }else if (Common.isDeviceM0G()){
-            if(!(/TIMA/.test(solution)) && !(/TIMG6|7/.test(solution))){
+        }
+        else if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            if(!(/TIMA/.test(solution)) && !(/TIMG4/.test(solution))){
+                validation.logError("Shadow Load is only supported on Timer A instances and Timer G4 instances . Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
+            }
+        }
+        else if (Common.isDeviceM0G()){
+            if(!(/TIMA/.test(solution)) && !(/TIMG6|TIMG7/.test(solution))){
                 validation.logError("Shadow Load is only supported on Timer A instances and Timer G6-G7 instances . Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
+            }
+        }
+        else if (Common.isDeviceM0C()){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Shadow Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
             }
         }
     }

@@ -107,6 +107,9 @@ uint8_t guiADCStatus = GUI_ADC_STATUS_RESET;
 /** @brief Stores the motor speed in rpm    */
 uint32_t guiMotorSpeed;
 
+/** @brief Speed timeout    */
+uint32_t guiSpeedTimeout;
+
 /** @brief Stores the number of poles in motor  */
 uint32_t guiMotorPoles = GUI_MOTOR_NUMBER_OF_POLES;
 
@@ -202,19 +205,19 @@ void GUI_changeCheck(DRV8316_Instance *drvHandle, Halltrap_Instance *hallTrap)
         firmVar.adcInternalVRef = guiVar.adcInternalVRef;
         firmVar.adcExternalVRef = guiVar.adcExternalVRef;
 
-        DRV8316_ADCVRefSel(firmVar.adcVRef, drvHandle->Vsen,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->Vsen,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8316_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenA,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenA,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8316_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenB,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenB,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8316_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenC,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenC,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8316_ADCVRefSel(firmVar.adcVRef, drvHandle->IsenA,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->IsenA,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8316_ADCVRefSel(firmVar.adcVRef, drvHandle->IsenB,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->IsenB,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8316_ADCVRefSel(firmVar.adcVRef, drvHandle->IsenC,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->IsenC,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
     }
 
@@ -328,6 +331,7 @@ void GUI_changeCheck(DRV8316_Instance *drvHandle, Halltrap_Instance *hallTrap)
     }
     else if(motorState == GUI_MOTOR_STOP)
     {
+        guiMotorSpeed = 0;
         if ((firmVar.nsleepSignal) &&
             (!firmVar.drvoffSignal) &&
             (!firmVar.stopMotor) &&

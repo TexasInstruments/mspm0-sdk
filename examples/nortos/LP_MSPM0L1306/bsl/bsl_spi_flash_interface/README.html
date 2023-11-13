@@ -66,32 +66,32 @@
 <tr class="even">
 <td>SPI0</td>
 <td>PA6</td>
-<td>SPI Serial Clock (SCLK)</td>
+<td>SPI SCLK (Clock)</td>
 </tr>
 <tr class="odd">
 <td>SPI0</td>
 <td>PA5</td>
-<td>SPI Peripheral In Controller Out (PICO)</td>
+<td>SPI PICO (Peripheral In, Controller Out)</td>
 </tr>
 <tr class="even">
 <td>SPI0</td>
 <td>PA4</td>
-<td>SPI Peripheral Out Controller In (POCI)</td>
+<td>SPI POCI (Peripheral Out, Controller In)</td>
 </tr>
 <tr class="odd">
 <td>SPI0</td>
 <td>PA8</td>
-<td>SPI Chip Select (CS0)</td>
+<td>SPI CS0 (Chip Select 0)</td>
 </tr>
 <tr class="even">
-<td>BSL</td>
-<td>PA18</td>
-<td>BSL Invoke Pin</td>
+<td>DEBUGSS</td>
+<td>PA20</td>
+<td>Debug Clock</td>
 </tr>
 <tr class="odd">
-<td>BSL</td>
-<td>NRST</td>
-<td>NRST</td>
+<td>DEBUGSS</td>
+<td>PA19</td>
+<td>Debug Data In Out</td>
 </tr>
 </tbody>
 </table>
@@ -118,14 +118,14 @@
 <tr class="even">
 <td>PA5</td>
 <td>SPI0</td>
-<td>PICO</td>
+<td>MOSI</td>
 <td>J2_15</td>
 <td>N/A</td>
 </tr>
 <tr class="odd">
 <td>PA4</td>
 <td>SPI0</td>
-<td>POCI</td>
+<td>MISO</td>
 <td>J2_14</td>
 <td>N/A</td>
 </tr>
@@ -134,21 +134,21 @@
 <td>SPI0</td>
 <td>CS0</td>
 <td>J1_4</td>
-<td>J16 2:3 Connect to J1_4</td>
+<td><ul><li>PA8 can be connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use on boosterpack connector and disconnect XDS-110:<br> <code>J16 2:3</code>: Connect pin to <code>J1_4</code></ul></ul></td>
 </tr>
 <tr class="odd">
-<td>NRST</td>
-<td>BSL</td>
-<td>NRST</td>
-<td>J2_16</td>
-<td>N/A</td>
+<td>PA20</td>
+<td>DEBUGSS</td>
+<td>SWCLK</td>
+<td>J2_13</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="even">
-<td>PA18</td>
-<td>BSL</td>
-<td>Invoke</td>
-<td>J3_26</td>
-<td>J11 OFF Disconnect S1</td>
+<td>PA19</td>
+<td>DEBUGSS</td>
+<td>SWDIO</td>
+<td>J2_17</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>

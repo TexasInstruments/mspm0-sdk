@@ -1,0 +1,38 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const CAPTURE  = scripting.addModule("/ti/driverlib/CAPTURE", {}, false);
+const CAPTURE1 = CAPTURE.addInstance();
+const PWM      = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1     = PWM.addInstance();
+const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+CAPTURE1.$name                      = "CAPTURE_0";
+CAPTURE1.captMode                   = "COMBINED";
+CAPTURE1.timerClkPrescale           = 256;
+CAPTURE1.timerPeriod                = "524.29 ms";
+CAPTURE1.interrupts                 = ["CC1_DN","ZERO"];
+CAPTURE1.peripheral.$assign         = "TIMG14";
+CAPTURE1.peripheral.ccp0Pin.$assign = "PA23";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+PWM1.$name                      = "PWM_0";
+PWM1.ccIndex                    = [0];
+PWM1.clockPrescale              = 256;
+PWM1.peripheral.$assign         = "TIMG8";
+PWM1.peripheral.ccp0Pin.$assign = "PA0";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle    = 50;
+
+SYSCTL.clockTreeEn = true;

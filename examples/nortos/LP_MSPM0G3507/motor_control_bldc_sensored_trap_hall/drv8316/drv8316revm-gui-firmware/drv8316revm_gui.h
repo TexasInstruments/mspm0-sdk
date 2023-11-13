@@ -294,6 +294,9 @@ extern uint8_t          guiADCStatus;
 /** @brief Stores the motor speed in rpm    */
 extern uint32_t         guiMotorSpeed;
 
+/** @brief Speed timeout    */
+extern uint32_t         guiSpeedTimeout;
+
 /** @brief Stores the number of poles in motor  */
 extern uint32_t         guiMotorPoles;
 

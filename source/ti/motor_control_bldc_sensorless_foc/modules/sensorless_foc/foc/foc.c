@@ -30,28 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "foc.h"
-
-/** @brief Stores Vd input used in Build level 1 and 2 */
-_iq VdTesting = _IQ(0.0);
-
-/** @brief Stores Vd input used in Build level 1 and 2 */
-_iq VqTesting = _IQ(0.05);
-
-/** @brief Stores Id reference used in align mode or lsw = 0 */
-_iq idRef = _IQ(0.10);
-
-/** @brief Stores Id reference used in rampup mode or lsw = 1 */
-_iq iqRef = _IQ(0.10);
-
-/** @brief Stores speed reference reference used in lsw = 2 */
-_iq  speedRef = _IQ(0.10);
-
-/** @brief Stores the state of the switch to control the FOC control modes
- * lsw =  0 is align state
- * lsw =  1 is rampup state
- * lsw =  2 is closed loop state
- * */
-uint16_t lsw = 0;
+#include <string.h>
 
 #if __ENABLE_LOG
 /** @brief Array used for logging foc variables */
@@ -61,20 +40,14 @@ int32_t ccsLog[FOC_LOG_IDX_MAX][FOC_LOG_BUF_SIZE];
 uint16_t ccsLogPtr[FOC_LOG_IDX_MAX]={0};
 #endif
 
-/** @brief Enables the foc motor control */
-bool enableFOC = false;
+/*! @brief 31 bit mask for speed reference */
+#define FOC_SPEEDREF_MASK                   (0x7FFFFFFF)
 
-/** @brief Used to enable the PWM when FOC is enabled */
-bool enablePWM = false;
+/** @brief Create a ipd instance */
+IPD_Instance ipd;
 
-/** @brief Counter variable used to have a smooth transition to closed loop */
-_iq startCnt;
-
-/** @brief Create an esmo instance */
-ESMO_Instance esmo = ESMO_DEFAULTS;
-
-/** @brief Create a speed estimator instance */
-SPDEST_Instance speedEst = SPDEST_DEFAULTS;
+/** @brief Create an estimator instance */
+EST_Instance est = EST_DEFAULTS;
 
 /** @brief Create a Ramp control instance for speed ramping */
 RMPCNTL_Instance rc = RMPCNTL_DEFAULTS;
@@ -100,9 +73,6 @@ PI_Instance piId  = PI_DEFAULTS;
 /** @brief Create a PI Iq instance */
 PI_Instance piIq  = PI_DEFAULTS;
 
-/** @brief Create a Circle limiting instance */
-CIRLMT_Instance cirlimit = CIRLMT_DEFAULTS;
-
 /** @brief Create a phaseVolt instance */
 PHASEVOLT_Instance phaseVolt = PHASEVOLT_DEFAULTS;
 
@@ -112,69 +82,382 @@ SVGEN_Instance svgen = SVGEN_DEFAULTS;
 /** @brief Create a pwmgen instance */
 PWMGEN_Instance pwmgen = PWMGEN_DEFAULTS;
 
+/** @brief Counter for offset calibration */
+uint32_t offsetCalibcnt = 0;
+
+/** @brief Calibration sum of phase A */
+uint32_t calibSumA = 0;
+
+/** @brief Calibration sum of phase B */
+uint32_t calibSumB = 0;
+
+/** @brief Calibration sum of phase C */
+uint32_t calibSumC = 0;
+
+/** @brief Temp variable used for storing angle */
+uint32_t pAngle;
+
+/** @brief Counter for userVar update */
+uint8_t userVarUpdateCounter = 0;
+
+/**
+ * @brief Stores the pwm frequency
+ */
+uint32_t pwmFreq[FOC_PWM_FREQ_MAX] = {10000, 15000, 20000, 25000, 30000, 35000,
+                                      40000, 45000, 50000};
+
+/**
+ * @brief Stores the pwm frequency prescaler to be used with repeat counter
+ */
+uint8_t pwmFreqPreScale[FOC_PWM_FREQ_MAX] = {0, 0, 1, 1, 1, 2, 2, 2, 3};
+
+/**
+ * @brief Stores the sampling frequency
+ */
+uint32_t samplingFreq[FOC_PWM_FREQ_MAX] = {10000, 15000, 10000, 12500, 15000,
+                                           11667, 10000, 15000, 12500};
+/**
+ * @brief Stores the Sample time in seconds for each pwm frequency
+ */
+_iq samplingTime[FOC_PWM_FREQ_MAX] = {_IQ(0.0001), _IQ(0.0000666666),
+                                      _IQ(0.0001), _IQ(0.00008),
+                                      _IQ(0.00006666666), _IQ(0.00008571428),
+                                      _IQ(0.000075), _IQ(0.00006666666),
+                                      _IQ(0.00008)};
+
+/** @brief Pointer that gets rolled over at end of user parameters */
+PARA_IDX paraUpdatePtr = PARA_IDX_USER_RS;
+
 void FOC_init(FOC_Instance *handle)
 {
-  HAL_setPWMCcValue(handle->pwmAHal, pwmgen.HalfPerMax<<1);
-  HAL_setPWMCcValue(handle->pwmBHal, pwmgen.HalfPerMax<<1);
-  HAL_setPWMCcValue(handle->pwmCHal, pwmgen.HalfPerMax<<1);
+  HAL_PWMDisableChannel(handle->hal.pwmAHal);
+  HAL_PWMDisableChannel(handle->hal.pwmBHal);
+  HAL_PWMDisableChannel(handle->hal.pwmCHal);
+
+  /* use repeat counter to set event rate division */
+  HAL_supressCompEvent(handle->hal.adcTrigHal);
+
+  /* Set the hardware scale factors for voltage and current */
+  handle->voltageSF = _IQ(USER_DEFAULT_VOLTAGE_SF);
+  handle->currentSF = _IQ(USER_DEFAULT_CURRENT_SF);
+
+  /* Set the ADC trigger compare value */
+  handle->adcTrigVal = USER_DEFAULT_FOC_PWMADCSAMPLE;
+
+  /* Set the adc trigger point */
+  FOC_setADCTrig(handle);
+
+  /* Clear fault when starting */
+  FOC_clearFault(handle);
+
+  /* Init flash vars and set the init value for the foc vars */
+  FOC_initFLASH();
+  FOC_initUserParamsFoc(&userParamsFoc, &userVar.userParams, sizeof(userVar.userParams) - FOC_WRITE_FLAG_SIZE_BYTES - FOC_CRC_SIZE_BYTES);
+
 }
 
-void FOC_setPara(FOC_Instance *handle, PARA_IDX paraIdx, float value)
+void FOC_writeFLASH(USER_PARAMS *params, uint32_t size)
+{
+  uint32_t crcCheckSum;
+
+  /* Erase Reserved Flash sector */
+  HAL_unprotectFLASH(FLASH_PARAMS_BASE_ADDRESS);
+  HAL_eraseFLASH(FLASH_PARAMS_BASE_ADDRESS);
+
+  /* Set the write flag signature */
+  params->writeFlag = FOC_WRITE_FLAG_SIGNATURE;
+
+  /* Set the CRC of Motor Configuration */
+  params->crc = HAL_getCRC(FOC_CRC_SEED, params, size - FOC_WRITE_FLAG_SIZE_BYTES - FOC_CRC_SIZE_BYTES);
+
+  /* Write Motor Configuration in Reserved Flash sector */
+  HAL_copyMemoryBlock((uint32_t *)FLASH_PARAMS_BASE_ADDRESS, params,
+                      size,(uint32_t)FLASH_PARAMS_BASE_ADDRESS);
+
+  /* Verify CRC */
+  crcCheckSum = HAL_getCRC(FOC_CRC_SEED, (void *)&savedParams, sizeof(savedParams) - FOC_WRITE_FLAG_SIZE_BYTES - FOC_CRC_SIZE_BYTES);
+  if(crcCheckSum != params->crc)
+  {
+      /* CRC not matching, Failed to write crc to flash, code for error handling*/
+      __BKPT(0);
+  }
+}
+
+void FOC_initUserParamsFoc(USER_PARAMS *pUserParamsFoc, USER_PARAMS *pUserParams, uint32_t size)
+{
+  size >>= BYTES_TO_WORD_RSHIFT;
+  uint32_t *destPtr = (uint32_t *)pUserParamsFoc;
+  uint32_t *srcPtr = (uint32_t *)pUserParams;
+
+  for(uint32_t offset = 0; offset < size; offset++)
+  {
+    *(destPtr + offset) = *(srcPtr + offset) + 1;
+  }
+}
+
+void FOC_loadSavedParams(USER_PARAMS *dstParams, const USER_PARAMS *srcParams, uint32_t size)
+{
+  memcpy(dstParams, srcParams, size);
+}
+
+void FOC_initFLASH(void)
+{
+  uint32_t crcCheckSum;
+  if(savedParams.writeFlag != FOC_WRITE_FLAG_SIGNATURE)
+  {
+    /* Load the defaultParams to userParams */
+    FOC_loadSavedParams(&userVar.userParams, &defaultParams, sizeof(defaultParams));
+
+    /* Add CRC, write flags and write to flash */
+    FOC_writeFLASH(&userVar.userParams, sizeof(userVar.userParams));
+  }
+
+  /* Load the saved parameters */
+  FOC_loadSavedParams(&userVar.userParams, &savedParams, sizeof(savedParams));
+
+  /* Verify CRC */
+  crcCheckSum = HAL_getCRC(FOC_CRC_SEED, &userVar.userParams, sizeof(userVar.userParams) - FOC_WRITE_FLAG_SIZE_BYTES - FOC_CRC_SIZE_BYTES);
+  if(crcCheckSum != userVar.userParams.crc)
+  {
+    /* CRC not matching , code for error handling*/
+    __BKPT(0);
+  }
+}
+
+void FOC_paramsUpdateProcess(FOC_Instance *handle, USER_VAR *userVar)
+{
+  USER_PARAMS *pUserParamsFoc = &userParamsFoc;
+  if(handle->runUserVarUpdate)
+  {
+    /* Update all the control variables */
+    if(userVar->controlRegs.cntrl1.enableMotor)
+    {
+      handle->cmd.motorState = MOTOR_STATE_START;
+    }
+    else
+    {
+      handle->cmd.motorState = MOTOR_STATE_STOP;
+    }
+    handle->cmd.speedRef = userVar->controlRegs.speedRef & FOC_SPEEDREF_MASK;
+    handle->cmd.IdRef = userVar->controlRegs.idRef;
+    handle->cmd.IqRef = userVar->controlRegs.iqRef;
+    handle->cmd.disCL = (FOC_DISCL) userVar->controlRegs.cntrl1.disCL;
+
+    /* Flash operations done only if the motor is in standby or fault state */
+    if(handle->state == MOTOR_STANDBY || handle->state == MOTOR_FAULT)
+    {
+      if((userVar->controlRegs.cntrl1.flashRead)
+      &&  (userVar->controlRegs.cntrl1.flashAccessKey == FOC_FLASH_ACCESSKEY))
+      {
+        userVar->controlRegs.cntrl1.flashRead = 0;
+        FOC_loadSavedParams(&userVar->userParams, &savedParams,
+                                                            sizeof(savedParams));
+        FOC_initUserParamsFoc(&userParamsFoc, &userVar->userParams, 
+                          sizeof(userVar->userParams) - FOC_WRITE_FLAG_SIZE_BYTES
+                          - FOC_CRC_SIZE_BYTES);
+        /* Clearing the flash access key */
+        userVar->controlRegs.cntrl1.flashAccessKey = 0;
+      }
+
+      if((userVar->controlRegs.cntrl1.flashWrite)
+      &&  (userVar->controlRegs.cntrl1.flashAccessKey == FOC_FLASH_ACCESSKEY))
+      {
+        userVar->controlRegs.cntrl1.flashWrite = 0;
+        FOC_writeFLASH(&userVar->userParams, sizeof(userVar->userParams));
+        /* Clearing the flash access key */
+        userVar->controlRegs.cntrl1.flashAccessKey = 0;
+      }
+
+      if((userVar->controlRegs.cntrl1.defaultRead)
+      &&  (userVar->controlRegs.cntrl1.flashAccessKey == FOC_FLASH_ACCESSKEY))
+      {
+        userVar->controlRegs.cntrl1.defaultRead = 0;
+        FOC_loadSavedParams(&userVar->userParams, &defaultParams,
+                                                          sizeof(defaultParams));
+        FOC_initUserParamsFoc(&userParamsFoc, &userVar->userParams, 
+                          sizeof(userVar->userParams) - FOC_WRITE_FLAG_SIZE_BYTES
+                          - FOC_CRC_SIZE_BYTES);
+        /* Clearing the flash access key */
+        userVar->controlRegs.cntrl1.flashAccessKey = 0;
+      }
+    }
+
+    if(userVar->controlRegs.cntrl1.clearFault)
+    {
+        if(handle->faultStatus.all)
+      {
+        FOC_clearFault(handle);
+      }
+      userVar->controlRegs.cntrl1.clearFault = 0;
+    }
+
+    /* Update the status registers */
+    userVar->statusRegs.faultStatus.all = handle->faultStatus.all;
+    userVar->statusRegs.vdc = handle->vdc;
+    userVar->statusRegs.motorState = handle->state;
+    userVar->statusRegs.speedFbk = est.freq;
+    userVar->statusRegs.speedRef = piSpd.ref;
+    userVar->statusRegs.iqCurr = piIq.fbk;
+    userVar->statusRegs.iqCurrRef = piIq.ref;
+    userVar->statusRegs.idCurr = piId.fbk;
+    userVar->statusRegs.idCurrRef = piId.ref;
+
+    /* Update the parameter in the pointer */
+    if( (*((uint32_t*)&userVar->userParams + paraUpdatePtr)) !=
+                                  (*((uint32_t*)pUserParamsFoc + paraUpdatePtr)))
+    {
+      FOC_setPara(handle, paraUpdatePtr, 
+                              *((uint32_t*)&userVar->userParams + paraUpdatePtr));
+      *((uint32_t*)pUserParamsFoc + paraUpdatePtr) = 
+                              *((uint32_t*)&userVar->userParams + paraUpdatePtr);
+    }
+    
+    /* Parameter pointer incremented and rolls over if end of user params */
+    paraUpdatePtr++;
+    if(paraUpdatePtr >= PARA_IDX_USER_MAX)
+    {
+      paraUpdatePtr = PARA_IDX_USER_RS;
+      handle->runUserVarUpdate = 0;
+      handle->userVarsLoadCmplt = 1;
+    }
+  }
+}
+
+void FOC_setPara(FOC_Instance *handle, PARA_IDX paraIdx, int32_t value)
 {
   /* Update the parameter */
   handle->parameter[paraIdx] = value;
 
   switch (paraIdx)
   {
-    case PARA_IDX_PWMFREQ:
-      HAL_setPWMFreq(handle->pwmAHal, 
-                               (uint32_t)handle->parameter[PARA_IDX_PWMFREQ]);
-      handle->parameter[PARA_IDX_PWMPERIOD] 
-                                         = HAL_getPWMLoadValue(handle->pwmAHal);
+    case PARA_IDX_USER_PWMFREQ:
+      if(handle->parameter[PARA_IDX_USER_PWMFREQ] < FOC_PWM_FREQ_MAX)
+      {
+        handle->parameter[PARA_IDX_SYS_SAMPLE_FREQ] = 
+                         samplingFreq[handle->parameter[PARA_IDX_USER_PWMFREQ]];
+        
+        HAL_setPWMFreq(handle->hal.pwmAHal,
+                   (uint32_t)pwmFreq[handle->parameter[PARA_IDX_USER_PWMFREQ]]);
+        handle->parameter[PARA_IDX_SYS_PWMPERIOD]
+                                         = HAL_getPWMLoadValue(handle->hal.pwmAHal);
+        handle->parameter[PARA_IDX_SYS_TS] = 
+                         samplingTime[handle->parameter[PARA_IDX_USER_PWMFREQ]];
+
+        HAL_setRepeatCounter(handle->hal.pwmAHal, 
+                     pwmFreqPreScale[handle->parameter[PARA_IDX_USER_PWMFREQ]]);
+      }
       break;
     
-    case PARA_IDX_PISPD_DIV:
-      handle->PISpdExecDivider = 
-                                (uint16_t)handle->parameter[PARA_IDX_PISPD_DIV]; 
+    case PARA_IDX_USER_PISPD_DIV:
+      handle->PISpdExecDivider = handle->parameter[PARA_IDX_USER_PISPD_DIV];
       break;
 
-    case PARA_IDX_DEADBAND:
-      handle->parameter[PARA_IDX_DEADBAND_CYC] = 
-      HAL_setDeadband(handle->pwmAHal, 
-                                (uint16_t)handle->parameter[PARA_IDX_DEADBAND]);
+    case PARA_IDX_USER_DEADBAND:
+      handle->parameter[PARA_IDX_SYS_DEADBAND_CYC] =
+      HAL_setDeadband(handle->hal.pwmAHal, 
+                           (uint16_t)handle->parameter[PARA_IDX_USER_DEADBAND]);
+      break;
+    case PARA_IDX_USER_STARTUP_METHOD:
+      handle->control.startupMethod = 
+                                handle->parameter[PARA_IDX_USER_STARTUP_METHOD];
+      break;
+    case PARA_IDX_USER_SLOW_FIRST_CYC_FREQ:
+      handle->control.slowFirstCycFreq = 
+                           handle->parameter[PARA_IDX_USER_SLOW_FIRST_CYC_FREQ];
+      break;
+    case PARA_IDX_USER_RAMPUP_CURRENT:
+      handle->control.rampup.rampupCurr =
+                                handle->parameter[PARA_IDX_USER_RAMPUP_CURRENT];
       break;
 
+    case PARA_IDX_USER_RAMPUP_RATE:
+      handle->control.rampup.rate = 
+      _IQmpy_rts(handle->parameter[PARA_IDX_USER_RAMPUP_RATE]
+                            ,_IQdiv_rts(_IQ(1), _IQ(FOC_CONTROL_LOOP_FREQ_HZ)));
+      break;
+
+    case PARA_IDX_USER_RAMPUP_TARGET:
+      handle->control.rampup.target = 
+                                 handle->parameter[PARA_IDX_USER_RAMPUP_TARGET];
+      break;
+
+    case PARA_IDX_USER_ALIGN_TIME:
+      handle->control.align.alignTime = 
+       _IQmpy_rts(handle->parameter[PARA_IDX_USER_ALIGN_TIME],
+                                                      FOC_CONTROL_LOOP_FREQ_HZ);
+      break;
+
+    case PARA_IDX_USER_ALIGN_CURRENT:
+      handle->control.align.alignCurr = 
+                                 handle->parameter[PARA_IDX_USER_ALIGN_CURRENT];
+      break;
+    
+    case PARA_IDX_USER_AMP_GAIN:
+      if(handle->parameter[PARA_IDX_USER_AMP_GAIN]< FOC_CSA_GAIN_MAX)
+      {
+#ifdef USER_DEFAULT_ENABLE_GAIN_CHANGE
+      DRV_setCsaGain((DRV_HANDLE *)handle->drv_handle, 
+                       (DRV_CSA_GAIN)handle->parameter[PARA_IDX_USER_AMP_GAIN]);
+#endif
+          handle->csaDiv = handle->parameter[PARA_IDX_USER_AMP_GAIN];
+      }
+      break;
+    case PARA_IDX_USER_OUTER_LOOP:
+      handle->cmd.outerLoop = handle->parameter[PARA_IDX_USER_OUTER_LOOP];
+      break;
+    case PARA_IDX_USER_DIRECTION_REVERSE:
+      handle->cmd.directionReversal = 
+                             handle->parameter[PARA_IDX_USER_DIRECTION_REVERSE];
+      break;
+    case PARA_IDX_USER_OVER_VOLTAGE_LIMIT:
+      handle->overVoltageLimit = 
+                            handle->parameter[PARA_IDX_USER_OVER_VOLTAGE_LIMIT];
+      break;
+    case PARA_IDX_USER_UNDER_VOLTAGE_LIMIT:
+      handle->underVoltageLimit = 
+                           handle->parameter[PARA_IDX_USER_UNDER_VOLTAGE_LIMIT];
+      break;
+    case PARA_IDX_USER_OVER_CURRENT_LIMIT:
+      handle->overCurrentLimit = 
+                            handle->parameter[PARA_IDX_USER_OVER_CURRENT_LIMIT];
+      break;
     default:
       /* This is expected to be empty */
       break;
   }
 
   /* Call module updates */
-  PARA_checkESMO(&handle->parameter[0], &esmo, paraIdx);
+  PARA_checkEST(&handle->parameter[0], &est, paraIdx);
   PARA_checkPISPD(&handle->parameter[0], &piSpd ,paraIdx);
   PARA_checkPIIQ(&handle->parameter[0], &piIq ,paraIdx);
   PARA_checkPIID(&handle->parameter[0], &piId ,paraIdx);
+  PARA_checkRC(&handle->parameter[0], &rc ,paraIdx);
   PARA_checkRG(&handle->parameter[0], &rg ,paraIdx);
   PARA_checkPWMGEN(&handle->parameter[0], &pwmgen ,paraIdx);
-  PARA_checkSPDEST(&handle->parameter[0], &speedEst ,paraIdx);
+  PARA_checkIPD(&handle->parameter[0], &ipd ,paraIdx);
 }
 
 void FOC_setFault(FOC_Instance *handle)
 {
-  enableFOC = false;
-  lsw = 0;
-  HAL_PWMDisableChannel(handle->pwmAHal);
-  HAL_PWMDisableChannel(handle->pwmBHal);
-  HAL_PWMDisableChannel(handle->pwmCHal);
+  handle->enablePWM = 0;
+  HAL_PWMDisableChannel(handle->hal.pwmAHal);
+  HAL_PWMDisableChannel(handle->hal.pwmBHal);
+  HAL_PWMDisableChannel(handle->hal.pwmCHal);
+  FOC_setPwmEnableStatus(handle, 0);
+  handle->state = MOTOR_FAULT;
+  
+  /* set motor to stop and also update the userVar*/
+  handle->cmd.motorState = MOTOR_STATE_STOP;
+  userVar.controlRegs.cntrl1.enableMotor = 0;
 }
 
 void FOC_clearFault(FOC_Instance *handle)
 {
-  lsw = 0;
-  HAL_setPWMCcValue(handle->pwmAHal, pwmgen.HalfPerMax<<1);
-  HAL_setPWMCcValue(handle->pwmBHal, pwmgen.HalfPerMax<<1);
-  HAL_setPWMCcValue(handle->pwmCHal, pwmgen.HalfPerMax<<1);
-  HAL_PWMEnableChannel(handle->pwmAHal);
-  HAL_PWMEnableChannel(handle->pwmBHal);
-  HAL_PWMEnableChannel(handle->pwmCHal);
+#ifdef USER_DEFAULT_ENABLE_FAULT_INPUT_CHECK
+  /* check the external fault input */
+  FAULT_INPUT_CLEAR((DRV_HANDLE *)handle->drv_handle);
+#endif
+
+  handle->faultStatus.all = 0;
 }
+

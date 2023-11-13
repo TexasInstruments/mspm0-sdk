@@ -128,7 +128,7 @@
 %%}
 %%{
     let inheritedTrigger;
-    if (parentPeripheral == "/ti/driverlib/CRC"){
+    if (["/ti/driverlib/CRC","/ti/driverlib/CRCP"].includes(parentPeripheral)){
         inheritedTrigger = "DMA_SOFTWARE_TRIG";
     }
     else{

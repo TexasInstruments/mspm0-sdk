@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -218,8 +218,13 @@ function getSPIDefaultCSDisabledOptions(inst)
  *  Pre-configures SPI according to profiles
  *
  */
-const profilesSPI = [
-    {
+    let defaultDMAConfig = {
+        enabledDMAEvent1Triggers : "None",
+        enabledDMAEvent2Triggers : "None",
+        enableDMAEvent1 : false,
+        enableDMAEvent2 : false,
+    }
+    let configProfile1 = {
         name : "CONFIG_PROFILE_1", /* Controller 4-Wire Mode at Maximum Frequency using BUSCLK */
         mode : "CONTROLLER",
         spiClkSrc      : "BUSCLK",
@@ -246,12 +251,11 @@ const profilesSPI = [
         clearRXCounterOnCSIdle: false,
         enabledInterrupts : [],
         interruptPriority : "DEFAULT",
-        enabledDMAEvent1Triggers : "None",
-        enabledDMAEvent2Triggers : "None",
-        enableDMAEvent1 : false,
-        enableDMAEvent2 : false,
-    },
-    {
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile1 = {...configProfile1, ...defaultDMAConfig};
+    };
+    let configProfile2 = {
         name : "CONFIG_PROFILE_2", /* Controller 3-Wire Mode at 1 MHZ using MFCLK */
         mode : "CONTROLLER",
         spiClkSrc      : "MFCLK",
@@ -278,12 +282,11 @@ const profilesSPI = [
         clearRXCounterOnCSIdle: false,
         enabledInterrupts : [],
         interruptPriority : "DEFAULT",
-        enabledDMAEvent1Triggers : "None",
-        enabledDMAEvent2Triggers : "None",
-        enableDMAEvent1 : false,
-        enableDMAEvent2 : false,
-    },
-    {
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile2 = {...configProfile2, ...defaultDMAConfig};
+    };
+    let configProfile3 = {
         name : "CONFIG_PROFILE_3", /* Peripheral 4-Wire Mode using BUSCLK */
         mode : "PERIPHERAL",
         spiClkSrc      : "BUSCLK",
@@ -308,11 +311,14 @@ const profilesSPI = [
         clearRXCounterOnCSIdle: false,
         enabledInterrupts : [],
         interruptPriority : "DEFAULT",
-        enabledDMAEvent1Triggers : "None",
-        enabledDMAEvent2Triggers : "None",
-        enableDMAEvent1 : false,
-        enableDMAEvent2 : false,
-    },
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile3 = {...configProfile3, ...defaultDMAConfig};
+    };
+const profilesSPI = [
+    configProfile1,
+    configProfile2,
+    configProfile3,
 ];
 
 function onChangeSPIProfile(inst, ui) {
@@ -620,7 +626,10 @@ function getDelayedSamplingCalc(inst) {
  */
 function validatePinmux(inst, validation) {
     /* Retention Validation */
-    Common.getRetentionValidation(inst,validation);
+    /* SPI does not require retention configuration for MSPM0Cxx */
+    if(!Common.isDeviceM0C()){
+        Common.getRetentionValidation(inst,validation);
+    }
 }
 
 /*
@@ -1422,6 +1431,11 @@ This is relevant only in the peripheral mode.`,
             },
         ]
     },
+]);
+
+/* CRC does not support DMA configuration for MSPM0Cxx */
+if(!Common.isDeviceM0C()){
+config = config.concat([
     {
         name: "GROUP_DMA",
         displayName: "DMA Configuration",
@@ -1482,98 +1496,53 @@ when the configured receive or transmit trigger condition occurs. \n
         ]
     },
 ])
+}
 
 /* Add Pinmux Peripheral Configuration group */
 config = config.concat(Common.getGPIOGroupConfig());
 
-/* Helper Configurables */
-config = config.concat([
-    /* Helper Configurables
-         * These are invisible to sysconfig and have no influence on code generation, but give the module additional
-         * visibility based on the state of the system and the specific M0 device being configured
-         */
-    {
-        /* name of the device */
-        name: "device",
-        default: "MSPM0G350X",
-        hidden: true,
-        getValue: (inst) => {
-            let mySys = system;
-            return system.deviceData.device;
-        }
-    },
-    {
-        /* this is a read-only array of the spi modules that are actually present on the device,
-         * can be used to limit the allowable spi to those that make sense
-         */
-        name: "spis",
-        default: [""],
-        /* superset of all possible SPImodules */
-        options: [
-            {name: "SPI0"}, {name: "SPI1"}, {name: "SPI2"}, {name: "SPI3"}, {name: ""}
-        ],
-        hidden: true,
-        getValue: (inst) => {
-            let array = _.map(system.deviceData.interfaces.SPI.peripherals, (v)=> v.name);
-            return array;
-        }
-    },
-    {
-        /* Removes undefined possibility for spi assignment */
-        name: "spiAssignment",
-        default: "Any",
-        hidden: true,
-        getValue: (inst) => {
-            if(inst.peripheral) {
-                return inst.peripheral.$assign;
-            } else {
-                return "Any";
-            }
-        }
-    }
-    /****** End of Helper Configurables *******/
-])
-
-
 function moduleInstances(inst){
     let modInstances = []
-    /*
-     * Gets a DMA module if available
-     */
-    if(!["None"].includes(inst.enabledDMAEvent1Triggers)){
-        let mod = {
-            name: "DMA_CHANNEL_EVENT1",
-            displayName: "DMA Channel Event 1",
-            moduleName: '/ti/driverlib/DMAChannel',
-            group: "GROUP_DMA",
-            args: {
+    /* SPI does not support DMA configuration for MSPM0Cxx */
+    if(!Common.isDeviceM0C()){
+        /*
+        * Gets a DMA module if available
+        */
+        if(!["None"].includes(inst.enabledDMAEvent1Triggers)){
+            let mod = {
+                name: "DMA_CHANNEL_EVENT1",
+                displayName: "DMA Channel Event 1",
+                moduleName: '/ti/driverlib/DMAChannel',
+                group: "GROUP_DMA",
+                args: {
 
-            },
-            requiredArgs: {
-                hideTriggerSelect: true,
-                passedTriggerSelect: 0,
+                },
+                requiredArgs: {
+                    hideTriggerSelect: true,
+                    passedTriggerSelect: 0,
 
-            },
+                },
 
+            }
+            modInstances.push(mod);
         }
-        modInstances.push(mod);
-    }
-    if(!["None"].includes(inst.enabledDMAEvent2Triggers)){
-        let mod = {
-            name: "DMA_CHANNEL_EVENT2",
-            displayName: "DMA Channel Event 2",
-            moduleName: '/ti/driverlib/DMAChannel',
-            group: "GROUP_DMA",
-            args: {
-            },
-            requiredArgs: {
-                hideTriggerSelect: true,
-                passedTriggerSelect: 1,
+        if(!["None"].includes(inst.enabledDMAEvent2Triggers)){
+            let mod = {
+                name: "DMA_CHANNEL_EVENT2",
+                displayName: "DMA Channel Event 2",
+                moduleName: '/ti/driverlib/DMAChannel',
+                group: "GROUP_DMA",
+                args: {
+                },
+                requiredArgs: {
+                    hideTriggerSelect: true,
+                    passedTriggerSelect: 1,
 
-            },
+                },
 
+            }
+            modInstances.push(mod);
         }
-        modInstances.push(mod);
     }
 
     /*
@@ -1720,8 +1689,11 @@ let devSpecific = {
 
 function setRequiredModules(inst){
     let theModules = ["Board", "SYSCTL"]
-    if(!["None"].includes(inst.enabledDMAEvent1Triggers) || !["None"].includes(inst.enabledDMAEvent2Triggers)){
-        theModules.push("DMA");
+    /* SPI does not support DMA configuration for MSPM0Cxx */
+    if(!Common.isDeviceM0C()){
+        if(!["None"].includes(inst.enabledDMAEvent1Triggers) || !["None"].includes(inst.enabledDMAEvent2Triggers)){
+            theModules.push("DMA");
+        }
     }
 
     let kwargs = theModules;

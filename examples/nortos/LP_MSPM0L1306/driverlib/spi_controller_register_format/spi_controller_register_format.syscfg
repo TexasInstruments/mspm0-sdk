@@ -16,10 +16,14 @@ const SPI1  = SPI.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
-GPIO1.$name                         = "GPIO_LEDS";
-GPIO1.associatedPins[0].$name       = "USER_LED_1";
-GPIO1.associatedPins[0].initialValue        = "SET";
-GPIO1.associatedPins[0].pin.$assign = "PA0";
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].pin.$assign  = "PA0";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[1].initialValue = "SET";
+GPIO1.associatedPins[1].pin.$assign  = "PA1";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
@@ -34,6 +38,12 @@ SPI1.peripheral.sclkPin.$assign = "PA6";
 SPI1.peripheral.mosiPin.$assign = "PA5";
 SPI1.peripheral.misoPin.$assign = "PA4";
 SPI1.peripheral.cs1Pin.$assign  = "PA3";
+SPI1.cs1PinConfig.$name            = "ti_driverlib_gpio_cs1PinConfig";
+SPI1.cs1PinConfig.enableConfig     =  true;
+SPI1.cs1PinConfig.internalResistor = "PULL_UP";
+SPI1.cs1PinConfig.hiZ              = "ENABLE";
+
+
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 SYSCTL.clockTreeEn = true;

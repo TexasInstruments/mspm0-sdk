@@ -26,7 +26,6 @@ CFLAGS = -I../.. \
     -mthumb
 
 LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/drivers/lib/ticlang/m0p/drivers_mspm0g1x0x_g3x0x.a" \
-    -Wl,--stack_size=512 \
     -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0G3507_release_ticlang/Debug \
     -lfreertos_builds_LP_MSPM0G3507_release_ticlang.lib \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \

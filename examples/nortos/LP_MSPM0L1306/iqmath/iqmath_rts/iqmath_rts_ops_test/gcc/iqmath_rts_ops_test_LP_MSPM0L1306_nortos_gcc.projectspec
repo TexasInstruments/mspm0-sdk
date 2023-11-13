@@ -44,6 +44,7 @@
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/gcc/m0p/rts
             -l:iqmath.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx
+            -nostartfiles
             -L${PROJECT_BUILD_DIR}/syscfg
             -l:${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx/driverlib.a
             -march=armv6-m

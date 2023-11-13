@@ -475,6 +475,10 @@ __STATIC_INLINE void DL_MathACL_waitForOperation(MATHACL_Regs *mathacl)
 /**
  *  @brief      Configure and execute a Math accelerator operation
  *
+ *  @pre        Call @ref DL_MathACL_clearResults when configuring the MATHACL
+ *              for performing @ref DL_MATHACL_OP_TYPE_MAC and
+ *              @ref DL_MATHACL_OP_TYPE_SAC operations.
+ *
  *  @param[in]  mathacl   Pointer to the register overlay for the peripheral
  *
  *  @param[in]  opConfig  Pointer to the configuration structure for the

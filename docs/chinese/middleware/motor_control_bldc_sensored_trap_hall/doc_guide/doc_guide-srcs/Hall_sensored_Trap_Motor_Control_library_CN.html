@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BLDC Motor Control Library Overview &mdash; Hall_sensored_Motor_Control_Software_User_Guide_CN 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MSPM0 Sensored Trap Software User’s Guide" href="MSPM0_Sensored_Trap_Software_Users_Guide_CN.html" />
+    <link rel="prev" title="Hall_sensored_Motor_Control_Software_User_Guide_CN" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Hall_sensored_Motor_Control_Software_User_Guide_CN
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BLDC Motor Control Library Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hal-module">2. HAL Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.1 Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enums">2.2 Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ti-sysconfig">2.3 TI SysConfig</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#motor-driver-module">3. Motor Driver Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motor-driver-pin-association">3.1 Motor Driver Pin Association</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motor-driver-apis">3.2 Motor Driver APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hall-sensored-trap-module">4. Hall-sensored Trap Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-layer">5. Application Layer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MSPM0_Sensored_Trap_Software_Users_Guide_CN.html">MSPM0 Sensored Trap Software User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8300/DRV8300_GUI_User_Guide_CN.html">DRV8300 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8300/DRV8300_Hardware_User_Guide_CN.html">DRV8300Dxxx-EVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8311/DRV8311_GUI_User_Guide_CN.html">DRV8311 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8311/DRV8311_Hardware_User_Guide_CN.html">DRV8311HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_GUI_User_Guide_CN.html">DRV8316 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">DRV8316REVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8317/DRV8317_GUI_User_Guide_CN.html">DRV8317 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8317/DRV8317_Hardware_User_Guide_CN.html">DRV8317HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323/DRV8323_GUI_User_Guide_CN.html">DRV8323 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323/DRV8323_Hardware_User_Guide_CN.html">DRV8323RHEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8328/DRV8328_GUI_User_Guide_CN.html">DRV8328 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8328/DRV8328_Hardware_User_Guide_CN.html">DRV8328AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/LP_MSPM0G3507/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/LP_MSPM0G3507/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/LP_MSPM0L1306/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/LP_MSPM0L1306/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8353/DRV8353_GUI_User_Guide_CN.html">DRV8353 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8353/DRV8353_Hardware_User_GuideCN.html">DRV8353RHEVM Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Hall_sensored_Motor_Control_Software_User_Guide_CN</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>BLDC Motor Control Library Overview</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bldc-motor-control-library-overview">
+<h1>BLDC Motor Control Library Overview<a class="headerlink" href="#bldc-motor-control-library-overview" title="Permalink to this heading">¶</a></h1>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>MSPM0’s BLDC Motor Control Library is made up of three layers. The MSPM0 DriverLib layer consists of all the peripherals defined and is configured using SysConfig. The Module Layer contains 3 modules Hardware Abstraction Layer (HAL) module, Motor Driver module and Hall-sensored Trap module. The HAL module provides Application Programming Interfaces (APIs) to manipulate and configure MCU pins and peripherals. The Motor Driver module provides programming related to the motor driver used. The hall-sesnored trap module provide the APIs that control and generate the PWM outputs. The Application layer contains GUI or application specific APIs that are defined by the user.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sw_overview_library_layers.png" />
+</figure>
+<p style="text-align: center;"><p>Figure 1 - Diagram showing the layers and modules</p>
+</p></section>
+<section id="hal-module">
+<h2>2. HAL Module<a class="headerlink" href="#hal-module" title="Permalink to this heading">¶</a></h2>
+<section id="id1">
+<h3>2.1 Overview<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>The HAL module consists of microcontroller-specific code that provides generic APIs to control and configure the user-defined pins and peripherals. The HAL APIs are developed to allow changing the HAL module used without requiring any code changes to other modules.</p>
+<p>The HAL is purposely meant to only abstract the key pins and peripherals needed to control a motor driver. A user is free to expand the HAL’s API to use other pins, peripherals and features of the microcontroller but its strongly recommended not to modify existing APIs to ensure ease migration to new versions of this library.</p>
+<p>No application specific code or motor driver specific code should exist in the HAL layer or in its API. Instead, it treats the pins and peripherals in a generic manner. For example, a motor driver likely has a nSLEEP pin but the HAL layer will only provide APIs to control the state of a GPIO output pin. It’s the responsibility of the motor driver module to associate the specific HAL GPIO output pin to the motor driver’s nSLEEP pin.</p>
+</section>
+<section id="enums">
+<h3>2.2 Enums<a class="headerlink" href="#enums" title="Permalink to this heading">¶</a></h3>
+<p>The HAL layer uses enums to determine the generic references to different peripherals. Each peripheral has separate enums that are associated with pins used in that peripheral. This allows the user to change the peripheral pins without changing the code in other modules that utilizes its API. For example, the nSLEEP pin in the motor driver module is associated with one enum in a GPIO peripheral. The user can change the pin associated with the GPIO enum without any code changes in motor driver module. Consider an enum HAL_GPIO_OUT in which total number of enums represent the maximum number of GPIOs used as outputs.</p>
+<p><img alt="image0" src="../_images/sw_overview_gpio_enum.png" /></p>
+<p style="text-align: left;"><p>Figure 2 - enum representing GPIO output pins</p>
+</p><p>Figure 2 shows an example of an enum that represents 3 different GPIO output pins. The purpose of this enum is to provide a way for the HAL and motor driver APIs to reference GPIO outputs in a generic manner. The number of GPIOs determined here are based on the application requirement and the user is free to add or delete the number of GPIOs based on their application. The user will need to keep in mind the maximum amount of GPIO output pins required by different motor drivers supported in their software.</p>
+<p><img alt="image1" src="../_images/sw_overview_gpio_defines.png" /></p>
+<p style="text-align: left;"><p>Figure 3 - Enum to MCU pin mapping</p>
+</p><p>Figure 3 shows a snippet from the LP-MSPM0G3507 HAL which shows how the HAL_GPIO_OUT_02 enum is now associated with a specific GPIO on the MSPM0G3507. GEN_GPIO_OUT_XXXX defines are from TI SysConfig, which will be discussed later. Note that each of those defines are representing values needed by the MSPM0’s DriverLib API to manipulate the specific pin.</p>
+<p><img alt="image2" src="../_images/sw_overview_gpio_output_api.png" /></p>
+<p style="text-align: left;"><p>Figure 4 - HAL API example</p>
+</p><p>Now that the HAL provides the information needed to associate an enum to a specific pin, HAL_writeGPIOPin() shows the API used to change the output value of a pin associated with a given HAL_GPIO_OUT enum. It is important to note that the enum value is translated to MSPM0’s DriverLib API calls by utilizing internal structures and arrays in the HAL.</p>
+<p><img alt="image3" src="../_images/sw_overview_driver_hal_map.png" /></p>
+<p style="text-align: left;"><p>Figure 5 - Motor driver to HAL mapping</p>
+</p><p>Here is a snippet from one of the DRV8316 firmware examples associating different HAL enums to corresponding pins on the motor driver. Here, the nSLEEP pin on the motor is mapped to HAL_GPIO_OUT_02.</p>
+<p><img alt="image4" src="../_images/sw_overview_driver_hal_api.png" /></p>
+<p style="text-align: left;"><p>Figure 6 - Motor driver module API</p>
+</p><p>Finally when the user wants to change the output value of the nSLEEP pin on the DRV8316 motor driver, the user can call the generic HAL API while providing the enum value that is associated with the nSLEEP pin to make the change. Although this example is focused on HAL_GPIO_OUT enum, the concept is the same for every other pin/peripheral the HAL has created enums for, such as PWM, ADC inputs, GPIO inputs and SPI enums.</p>
+</section>
+<section id="ti-sysconfig">
+<h3>2.3 TI SysConfig<a class="headerlink" href="#ti-sysconfig" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 software utilizes a GUI tool called TI SysConfig to simplify configuration of pins and peripherals. Almost all MSPM0 SDK examples utilize SysConfig. For more information on how SysConfig works and how to use it, see TI SysConfig. It is important to note that the HAL modules provided by the SDK use SysConfig which is why you will not see DriverLib API calls to initialize peripherals and pins. Instead, the HAL uses defines created by SysConfig to map the specific pins and peripherals to the different generic HAL enums. Figure 3 shows how the GEN_GPIO_OUT_XXXX defines created by SysConfig are then mapped to the HAL structures and enum value.</p>
+</section>
+</section>
+<section id="motor-driver-module">
+<h2>3. Motor Driver Module<a class="headerlink" href="#motor-driver-module" title="Permalink to this heading">¶</a></h2>
+<p>The objective of the motor driver module is to use the HAL enums associated with the pins of motor driver and provide APIs such as setting a sleep pin, reading a driver fault pin, SPI read, SPI write, voltage and current measurements. Figure 7 shows an internal structure used by the DRV8316 motor driver and how it contains variables meant to associate the HAL enums with specific pins on the motor driver. The motor driver module code uses the HAL APIs to develop the motor driver module but the user can add APIs or create their own motor driver module for the application.</p>
+<p><img alt="image5" src="../_images/sw_overview_drv_struct.png" /></p>
+<p style="text-align: left;"><p>Figure 7 - DRV8316 internal structure</p>
+</p><section id="motor-driver-pin-association">
+<h3>3.1 Motor Driver Pin Association<a class="headerlink" href="#motor-driver-pin-association" title="Permalink to this heading">¶</a></h3>
+<p>The user must map the motor driver pins to HAL enums before using the motor driver module as below</p>
+<p><img alt="image6" src="../_images/sw_overview_driver_hal_map.png" /></p>
+<p style="text-align: left;"><p>Figure 5 - Motor driver to HAL mapping</p>
+</p></section>
+<section id="motor-driver-apis">
+<h3>3.2 Motor Driver APIs<a class="headerlink" href="#motor-driver-apis" title="Permalink to this heading">¶</a></h3>
+<p>The motor driver APIs are specific to a given motor driver in which the user can use to configure and control the motor driver. For example the DRV8316 has Control registers that are modified through SPI. The motor driver module contains a specific API that updates the registers.</p>
+<p><img alt="image7" src="../_images/sw_overview_register_update.png" /></p>
+<p style="text-align: left;"><p>Figure 9 – Example motor driver module API</p>
+</p><p>For motor drivers with register maps, the number of registers will vary with motor driver. The above snippet is a generic API that updates any registers in the DRV device. The user can manipulate any register or bit fields with a single generic API. The user can build a number of APIs that updates the bit fields based on their application needs.</p>
+<p>Another type of motor driver API is voltage and current sensing, which is dependent on the hardware and current sensing of the motor driver. For example, the DRV8316 hardware includes resistor dividers for voltage sensing, and the DRV8316 includes current sense amplifiers with programmable gain and a pre-set voltage reference. The APIs for module current and module voltage are generically used to read back the motor voltage or motor current respectively depending on the input parameters, such as scale factors, voltage references, voltage bias, and amplifier gain.</p>
+</section>
+</section>
+<section id="hall-sensored-trap-module">
+<h2>4. Hall-sensored Trap Module<a class="headerlink" href="#hall-sensored-trap-module" title="Permalink to this heading">¶</a></h2>
+<p>The Hall-sensored Trap (halltrap) module consists of hall-based sensored trapezoidal algorithm for BLDC motor control. This layer takes care of updating the PWM based on the hall feedback. The code contains an API that reads digital Hall signal feedback and updates the PWM. This API is used to update the PWM.</p>
+<p><img alt="image8" src="../_images/sw_overview_pwm_update.png" /></p>
+<p style="text-align: left;"><p>Figure 10 – Halltrap module PWM update API</p>
+</p><p>The halltrap module is unaware of the driver module used. This module can be used with any driver module without changing the code in it as long as the user maps the GPIO enums to which hall sensors are connected.</p>
+<p><img alt="image9" src="../_images/sw_overview_hallsensor_map.png" /></p>
+<p style="text-align: left;"><p>Figure 11 - Hall sensor pins to HAL pins</p>
+</p></section>
+<section id="application-layer">
+<h2>5. Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this heading">¶</a></h2>
+<p>This layer contains user specific code. The user needs to specify the driver instance (i.e. DRV8316) halltrap instance and ensure that all pins are mapped correctly. The user can use the motor driver module and halltrap module APIs and to perform any hardware specific actions HAL APIs can be used.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Hall_sensored_Motor_Control_Software_User_Guide_CN" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MSPM0_Sensored_Trap_Software_Users_Guide_CN.html" class="btn btn-neutral float-right" title="MSPM0 Sensored Trap Software User’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

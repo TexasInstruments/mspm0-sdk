@@ -176,9 +176,21 @@ static const DL_COMP_Config g`inst.$name`Config = {
     .hysteresis    = `inst.hysteresis`,
     .polarity      = `inst.polarity`
 };
+%%{
+    /* Handle special case of INTVREF in MSPM0L122X_L222X */
+    let refSource = inst.vSource;
+    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && (inst.vrefMode == "INTERNAL")){
+        if(["DL_COMP_REF_SOURCE_VREF_DAC"].includes(inst.vSource)){
+            refSource = "DL_COMP_REF_SOURCE_INTVREF_DAC";
+        }
+        else if(["DL_COMP_REF_SOURCE_VREF"].includes(inst.vSource)){
+            refSource = "DL_COMP_REF_SOURCE_INTVREF";
+        }
+    }
+%%}
 static const DL_COMP_RefVoltageConfig g`inst.$name`VRefConfig = {
     .mode           = `inst.vMode`,
-    .source         = `inst.vSource`,
+    .source         = `refSource`,
     .terminalSelect = `inst.terminalSelect`,
     .controlSelect  = `inst.controlSelect`,
     .inputSelect    = `inst.inputSelect`

@@ -52,6 +52,11 @@ HAL_ADC halAdc[HAL_ADC_CHANNEL_MAX];
 HAL_PWM halPwm[HAL_PWM_CHANNEL_MAX];
 
 /**
+ * @brief Array to store the capture instances
+ */
+HAL_CAPTURE halCapture[HAL_CAPTURE_CHANNEL_MAX];
+
+/**
  * @brief Array for storing the PWM instances
  */
 HAL_PWM halPwmFault[HAL_PWM_FAULT_MAX];
@@ -65,6 +70,12 @@ HAL_GPIO halGpioIN[HAL_GPIO_IN_PIN_MAX];
  * @brief Array for storing the ouput GPIO pin instances
  */
 HAL_GPIO halGpioOUT[HAL_GPIO_OUT_PIN_MAX];
+
+/**
+ * @brief Array for storing the comp instances
+ */
+HAL_COMP halComp[HAL_COMP_CHANNEL_MAX];
+
 
 /**
  * @brief Scale factor for converting ADC data to voltage
@@ -82,7 +93,7 @@ void HAL_init(void)
     halSpiCS[HAL_SPI_CS_3] = DL_SPI_CHIP_SELECT_3;
 
     /* Set the ADC array */
-    for(int x = 0;x < HAL_ADC_CHANNEL_MAX ;x++)
+    for(uint32_t x = 0;x < HAL_ADC_CHANNEL_MAX ;x++)
     {
         halAdc[x].refVoltage = 0;
         halAdc[x].value = 0;
@@ -109,8 +120,15 @@ void HAL_init(void)
     halAdc[HAL_ADC_CHANNEL_2].inst          = (ADC12_Regs *)GENERIC_ADC_1_INST;
     halAdc[HAL_ADC_CHANNEL_2].irqn          = GENERIC_ADC_1_INST_INT_IRQN;
     halAdc[HAL_ADC_CHANNEL_2].memIDX        = GENERIC_ADC_1_ADCMEM_0;
-    halAdc[HAL_ADC_CHANNEL_2].endOfSeq      = DL_ADC12_IIDX_MEM0_RESULT_LOADED;
+    halAdc[HAL_ADC_CHANNEL_2].endOfSeq      = DL_ADC12_IIDX_MEM1_RESULT_LOADED;
     HAL_setADCRefVoltage(HAL_ADC_CHANNEL_2, _IQ15(HAL_ADC_DEFAULT_REF_VOLTAGE));
+#endif
+#ifdef GENERIC_ADC_1_ADCMEM_1
+    halAdc[HAL_ADC_CHANNEL_3].inst          = (ADC12_Regs *)GENERIC_ADC_1_INST;
+    halAdc[HAL_ADC_CHANNEL_3].irqn          = GENERIC_ADC_1_INST_INT_IRQN;
+    halAdc[HAL_ADC_CHANNEL_3].memIDX        = GENERIC_ADC_1_ADCMEM_1;
+    halAdc[HAL_ADC_CHANNEL_3].endOfSeq      = DL_ADC12_IIDX_MEM1_RESULT_LOADED;
+    HAL_setADCRefVoltage(HAL_ADC_CHANNEL_3, _IQ15(HAL_ADC_DEFAULT_REF_VOLTAGE));
 #endif
     /* Set the ADC scaling factor*/
     HAL_setADCSf();
@@ -135,6 +153,12 @@ void HAL_init(void)
     halPwm[HAL_PWM_CHANNEL_2].CCIndex      = GPIO_GENERIC_PWM_0_C3_IDX;
 #endif
 
+#ifdef GENERIC_PWM_0_INST
+    halPwm[HAL_PWM_CHANNEL_3].inst         = GENERIC_PWM_0_INST;
+    halPwm[HAL_PWM_CHANNEL_3].irqn         = GENERIC_PWM_0_INST_INT_IRQN;
+    halPwm[HAL_PWM_CHANNEL_3].CCIndex      = GPIO_GENERIC_PWM_0_C0_IDX;
+#endif
+
     /* Set the PWM fault array */
 #ifdef GENERIC_PWM_0_INST
     halPwmFault[HAL_PWM_FAULT_0].inst         = GENERIC_PWM_0_INST;
@@ -154,6 +178,21 @@ void HAL_init(void)
     halGpioOUT[HAL_GPIO_OUT_PIN_0].port    = GENERIC_GPIO_OUT_PORT;
     halGpioOUT[HAL_GPIO_OUT_PIN_0].pin     = GENERIC_GPIO_OUT_PINO_0_PIN;
 #endif
+
+#ifdef GENERIC_CAPTURE_0_INST
+    halCapture[HAL_CAPTURE_CHANNEL_0].inst      = GENERIC_CAPTURE_0_INST;
+    halCapture[HAL_CAPTURE_CHANNEL_0].irqn      = GENERIC_CAPTURE_0_INST_INT_IRQN;
+    halCapture[HAL_CAPTURE_CHANNEL_0].CCIndex   = DL_TIMER_CC_0_INDEX;
+#endif
+
+    halComp[HAL_COMP_CHANNEL_0].inst            = GENERIC_COMP_0_INST;
+    halComp[HAL_COMP_CHANNEL_0].pubChannelID    = GENERIC_COMP_0_INST_PUB_CH;
+
+    halComp[HAL_COMP_CHANNEL_1].inst            = GENERIC_COMP_1_INST;
+    halComp[HAL_COMP_CHANNEL_1].pubChannelID    = GENERIC_COMP_1_INST_PUB_CH;
+
+    halComp[HAL_COMP_CHANNEL_2].inst            = GENERIC_COMP_2_INST;
+    halComp[HAL_COMP_CHANNEL_2].pubChannelID    = GENERIC_COMP_2_INST_PUB_CH;
 }
 
 void HAL_setADCRefVoltage(HAL_ADC_CHANNEL adcChan, _iq15 value)
@@ -166,7 +205,15 @@ _iq15 HAL_getADCRefVoltage(HAL_ADC_CHANNEL adcChan)
     return halAdc[adcChan].refVoltage;
 }
 
+_iq15 HAL_getADCVoltage(HAL_ADC_CHANNEL adcChan)
+{
+    _iq15 ret = _IQ15mpy(_IQ15mpy(_IQ15(halAdc[adcChan].value),
+                                            halAdc[adcChan].refVoltage), adcSf);
+    return ret;
+}
+
 void HAL_setADCSf(void)
+
 {
     adcSf = _IQ15div(_IQ15(1), _IQ15(HAL_ADC_MAX_VALUE));
 }
@@ -194,9 +241,19 @@ void HAL_enablePWMInterrupt(HAL_PWM_CHANNEL pwmChan)
     HAL_checkAndEnableIRQ(halPwm[pwmChan].irqn);
 }
 
-void HAL_disablePWMInterrupts(HAL_PWM_CHANNEL pwmChan)
+void HAL_disablePWMInterrupt(HAL_PWM_CHANNEL pwmChan)
 {
     NVIC_DisableIRQ(halPwm[pwmChan].irqn);
+}
+
+void HAL_enableCaptureInterrupt(HAL_CAPTURE_CHANNEL captureChan)
+{
+    HAL_checkAndEnableIRQ(halCapture[captureChan].irqn);
+}
+
+void HAL_disableCaptureInterrupt(HAL_CAPTURE_CHANNEL captureChan)
+{
+    NVIC_DisableIRQ(halCapture[captureChan].irqn);
 }
 
 void HAL_setGPIOVal(HAL_GPIO_OUT_PIN gpioPin, HAL_GPIO_VALUE value)
@@ -268,13 +325,6 @@ void HAL_setLoadVal(GPTIMER_Regs * timerInst, uint32_t loadValue)
     DL_Timer_enableClock(timerInst);
 }
 
-_iq15 HAL_getADCVoltage(HAL_ADC_CHANNEL adcChan)
-{
-    _iq15 ret = _IQ15mpy(_IQ15mpy(_IQ15(halAdc[adcChan].value),
-                                            halAdc[adcChan].refVoltage), adcSf);
-    return ret;
-}
-
 void HAL_delayMilliSeconds(uint32_t num_ms)
 {
     if(num_ms == 0)
@@ -319,6 +369,18 @@ void HAL_PWMDisableChannel(HAL_PWM_CHANNEL pwmChan)
                           DL_TIMER_FORCE_CMPL_OUT_LOW, halPwm[pwmChan].CCIndex);
 }
 
+void HAL_PWMForceHigh(HAL_PWM_CHANNEL pwmChan)
+{
+    DL_Timer_overrideCCPOut(halPwm[pwmChan].inst, DL_TIMER_FORCE_OUT_HIGH,
+                          DL_TIMER_FORCE_CMPL_OUT_LOW, halPwm[pwmChan].CCIndex);
+}
+
+void HAL_PWMForceLow(HAL_PWM_CHANNEL pwmChan)
+{
+    DL_Timer_overrideCCPOut(halPwm[pwmChan].inst, DL_TIMER_FORCE_OUT_LOW,
+                          DL_TIMER_FORCE_CMPL_OUT_HIGH, halPwm[pwmChan].CCIndex);
+}
+
 void HAL_clearPWMFault(HAL_PWM_FAULT pwmFault)
 {
     GPTIMER_Regs *gptimer = halPwmFault[pwmFault].inst;
@@ -331,4 +393,123 @@ bool HAL_getPWMFaultStatus(HAL_PWM_FAULT pwmFault)
     uint32_t status = DL_Timer_getRawInterruptStatus(gptimer,
                                                   GPTIMER_CPU_INT_IMASK_F_MASK);
     return ((bool)(status >> GPTIMER_CPU_INT_IMASK_F_OFS));
+}
+
+void HAL_unprotectFLASH(uint32_t baseAddress)
+{
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, baseAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
+}
+
+void HAL_eraseFLASH(uint32_t baseAddress)
+{
+    DL_FLASHCTL_COMMAND_STATUS gCmdStatus;
+    HAL_unprotectFLASH(baseAddress);
+    gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
+       FLASHCTL, baseAddress, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+    if (gCmdStatus == DL_FLASHCTL_COMMAND_STATUS_FAILED)
+    {
+        /* If command was not successful, set a breakpoint */
+        __BKPT(0);
+    }
+}
+
+int32_t HAL_copyMemoryBlock(void *dstAddr, void *srcAddr, uint32_t  len, 
+                                                             uint32_t startAddr)
+{
+    volatile DL_FLASHCTL_COMMAND_STATUS status;
+    uint8_t pad[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+    uint32_t remainder = len % 8;
+    uint32_t prog64bytes = len/8;
+    /* FLASHCTL expects addresses in 32-bit chunks */
+    uint32_t prog64length = prog64bytes * 2; 
+
+    if(remainder)
+    {
+        int32_t i = remainder;
+        uint8_t * srcPtr = ( ((uint8_t *) srcAddr)  + prog64bytes * 8); 
+        for(i = 0; i < remainder; i++)
+        {
+            *(pad + i) = *(srcPtr + i);
+        }
+    }
+
+    if(prog64bytes > 0)
+    {
+       if(((uint32_t) dstAddr) % 8 != 0){
+           return -1;
+       }
+
+        status = DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(
+                FLASHCTL,(uint32_t) dstAddr, (uint32_t *) srcAddr, prog64length,
+                                                DL_FLASHCTL_REGION_SELECT_MAIN);
+    }
+
+    if (status == DL_FLASHCTL_COMMAND_STATUS_FAILED) {
+        /* flash program was not successful, return error */
+        return -1;
+    }
+
+    if(remainder > 0)
+    {
+        DL_FlashCTL_unprotectSector(FLASHCTL, startAddr, 
+                                                DL_FLASHCTL_REGION_SELECT_MAIN);
+        status = DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(FLASHCTL, 
+                        (uint32_t)(((uint32_t *) dstAddr) + (prog64bytes * 2)),
+                        (uint32_t *) pad);
+    }
+
+    if (status == DL_FLASHCTL_COMMAND_STATUS_FAILED) {
+        /* flash program was not successful, return error */
+        return -1;
+    }
+    return 0;
+}
+
+uint32_t HAL_getCRC(uint32_t seed, void *ptr, uint32_t size)
+{
+    return DL_CRC_calculateBlock32(CRC, seed, (uint32_t *)ptr, 
+                                                size>>CRC_BYTES_TO_WORD_RSHIFT);
+}
+
+void HAL_supressCompEvent(HAL_PWM_CHANNEL pwmChan)
+{
+    DL_TimerA_enableSuppressionOfCompEvent(halPwm[pwmChan].inst, 
+                                                       halPwm[pwmChan].CCIndex);
+}
+
+void HAL_setCaptureCount(HAL_CAPTURE_CHANNEL captureChan, uint32_t count)
+{
+   DL_Timer_setTimerCount(halCapture[captureChan].inst, count);
+}
+
+uint32_t HAL_getCaptureValue(HAL_CAPTURE_CHANNEL captureChan)
+{
+    return DL_Timer_getCaptureCompareValue(halCapture[captureChan].inst, halCapture[captureChan].CCIndex);
+}
+
+void HAL_setCaptureSubChannel(HAL_CAPTURE_CHANNEL captureChan, uint8_t value)
+{
+    DL_Timer_setSubscriberChanID(halCapture[captureChan].inst, DL_TIMER_SUBSCRIBER_INDEX_0, value);
+}
+
+uint32_t HAL_getCaptureLoadValue(HAL_CAPTURE_CHANNEL captureChan)
+{
+    uint32_t loadVal = DL_Timer_getLoadValue(halCapture[captureChan].inst);
+    return  loadVal;
+}
+
+void HAL_clearCaptureInterruptStatus(HAL_CAPTURE_CHANNEL captureChan)
+{
+    DL_Timer_clearInterruptStatus(halCapture[captureChan].inst, DL_TIMER_INTERRUPT_CC0_DN_EVENT);
+}
+
+void HAL_setCOMPDAC(HAL_COMP_CHANNEL compChan, uint8_t value)
+{
+    DL_COMP_setDACCode0(halComp[compChan].inst, value);
+}
+
+uint8_t HAL_getCOMPPubChannelID(HAL_COMP_CHANNEL compChan)
+{
+    return halComp[compChan].pubChannelID;
 }

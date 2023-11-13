@@ -1,0 +1,35 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+PWM1.$name                      = "PWM_0";
+PWM1.clockSource                = "LFCLK";
+PWM1.clockPrescale              = 3;
+PWM1.timerCount                 = 4000;
+PWM1.pwmMode                    = "CENTER_ALIGN";
+PWM1.peripheral.$assign         = "TIMG14";
+PWM1.peripheral.ccp0Pin.$assign = "PA23";
+PWM1.peripheral.ccp1Pin.$assign = "PA24";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle    = 75;
+PWM1.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_1.dutyCycle    = 50;
+
+const Board           = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.configureUnused = true;
+
+SYSCTL.powerPolicy = "STOP2";
+SYSCTL.clockTreeEn = true;

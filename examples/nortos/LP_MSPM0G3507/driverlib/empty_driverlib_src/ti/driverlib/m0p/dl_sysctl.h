@@ -43,18 +43,18 @@
 #ifndef ti_driverlib_m0p_sysctl__include
 #define ti_driverlib_m0p_sysctl__include
 
-/* This preliminary header file does not have a version number -  build date: 2020-08-28 14:25:07 */
-
 /******************************************************************************
 * MSP devices
 ******************************************************************************/
-
 #include <ti/devices/DeviceFamily.h>
 
 #if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
 #include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h>
 #elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L11XX_L13XX)
 #include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.h>
+#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0C110X) || \
+    (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPS003FX)
+#include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h>
 
 /********************************************************************
  *

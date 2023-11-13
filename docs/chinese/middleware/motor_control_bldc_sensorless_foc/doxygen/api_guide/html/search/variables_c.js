@@ -1,4 +1,20 @@
 var searchData=
 [
-  ['nfault',['nfault',['../struct_d_r_v8323_r_s___instance.html#a32350eb0e1c6624008dd42f44badb985',1,'DRV8323RS_Instance']]]
+  ['ocp',['ocp',['../struct_f_a_u_l_t___s_t_a_t_u_s___b_i_t_s.html#a8070c005f4519d622561f68e0e3fbd90',1,'FAULT_STATUS_BITS']]],
+  ['offseta',['offsetA',['../struct_f_o_c___instance.html#ac71291f8b789241c0ba7df58161acf90',1,'FOC_Instance']]],
+  ['offsetb',['offsetB',['../struct_f_o_c___instance.html#a6ecea0a2b60f5c287349d2253dd0bff9',1,'FOC_Instance']]],
+  ['offsetc',['offsetC',['../struct_f_o_c___instance.html#af4856adb1e4742efb8ad056acd771c30',1,'FOC_Instance']]],
+  ['offsetcalib',['offsetCalib',['../struct_f_o_c___instance.html#a418343f305ccb16f6844e2df6425544b',1,'FOC_Instance']]],
+  ['offsetcalibcnt',['offsetCalibcnt',['../group___f_o_c___m_o_d_u_l_e.html#ga85b5b9cb2658ad3604166be0e675b207',1,'offsetCalibcnt():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga85b5b9cb2658ad3604166be0e675b207',1,'offsetCalibcnt():&#160;foc.c']]],
+  ['out',['out',['../struct_t_r_a_n_s_i_t___instance.html#a906be69fd9608b48084a60a2ac87db62',1,'TRANSIT_Instance::out()'],['../struct_p_i___instance.html#a937212ff3afc50d0ababa3f3b9da1271',1,'PI_Instance::out()'],['../struct_r_a_m_p_g_e_n___instance.html#a1db240f27fcd1eb93fa205e3b334dbbb',1,'RAMPGEN_Instance::Out()']]],
+  ['outerloop',['outerLoop',['../struct_c_o_m_m_a_n_d.html#aafe0d547446fcfb0a543d0a937ec316a',1,'COMMAND::outerLoop()'],['../struct_u_s_e_r___p_a_r_a_m_s.html#a7b0a10cef285eea88baf4af4c08a4a98',1,'USER_PARAMS::outerLoop()']]],
+  ['outi',['outI',['../struct_p_i___instance.html#ab0f1f4bdb7d66049a316521500c0d74e',1,'PI_Instance']]],
+  ['outimax',['outIMax',['../struct_p_i___instance.html#a0622f1dee5ea4d447afee8bea66ba877',1,'PI_Instance']]],
+  ['outimin',['outIMin',['../struct_p_i___instance.html#a5f35bdf7c29a3352ef895225bd08a16f',1,'PI_Instance']]],
+  ['outmax',['outMax',['../struct_p_i___instance.html#ad94c4c915ebdc24c966769bde442362e',1,'PI_Instance']]],
+  ['outmin',['outMin',['../struct_p_i___instance.html#a99d175c842e5653323b3ecc95f5af0c9',1,'PI_Instance']]],
+  ['outp',['outP',['../struct_p_i___instance.html#ae097f8e919e392b6fc6f6cc107a56a64',1,'PI_Instance']]],
+  ['overcurrentlimit',['overCurrentLimit',['../struct_f_o_c___instance.html#a1a4e90885cb19bacb3d26e46e754186c',1,'FOC_Instance::overCurrentLimit()'],['../struct_u_s_e_r___p_a_r_a_m_s.html#aa0a4675ff120a730a5a535d7519e48a2',1,'USER_PARAMS::overCurrentLimit()']]],
+  ['overvoltagelimit',['overVoltageLimit',['../struct_f_o_c___instance.html#a7315ed39ad33be850c0d534966ca9065',1,'FOC_Instance::overVoltageLimit()'],['../struct_u_s_e_r___p_a_r_a_m_s.html#ab564010ffa83c3ad461bd2bf834a179c',1,'USER_PARAMS::overVoltageLimit()']]],
+  ['ovlo',['ovlo',['../struct_f_a_u_l_t___s_t_a_t_u_s___b_i_t_s.html#a394d1cea092f672890ecce6a8045c156',1,'FAULT_STATUS_BITS']]]
 ];

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -93,6 +93,7 @@ extern "C" {
 #define GPIO_PWM_0_C1_IOMUX                                      (IOMUX_PINCM13)
 #define GPIO_PWM_0_C1_IOMUX_FUNC                     IOMUX_PINCM13_PF_TIMA1_CCP1
 #define GPIO_PWM_0_C1_IDX                                    DL_TIMER_CC_1_INDEX
+
 /* Defines for PWM_1 */
 #define PWM_1_INST                                                         TIMG7
 #define PWM_1_INST_IRQHandler                                   TIMG7_IRQHandler
@@ -110,6 +111,7 @@ extern "C" {
 #define GPIO_PWM_1_C1_IOMUX                                       (IOMUX_PINCM6)
 #define GPIO_PWM_1_C1_IOMUX_FUNC                      IOMUX_PINCM6_PF_TIMG7_CCP1
 #define GPIO_PWM_1_C1_IDX                                    DL_TIMER_CC_1_INDEX
+
 
 
 /* Defines for TIMER_0 */

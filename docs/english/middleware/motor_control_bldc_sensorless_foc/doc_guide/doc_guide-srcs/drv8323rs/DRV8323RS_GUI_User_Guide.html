@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="DRV8323RS Hardware User Guide" href="DRV8323RS_Hardware_User_Guide.html" />
-    <link rel="prev" title="Sensorless FOC Motor Control Library Overview" href="../Sensorless_FOC_Motor_Control_User_Guide.html" /> 
+    <link rel="prev" title="Sensorless FOC Motor Control Library Overview" href="../Sensorless_FOC_Motor_Control_Library.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,18 +44,26 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../Sensorless_FOC_Motor_Control_User_Guide.html">Sensorless FOC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MSPM0_Sensorless_FOC_Software_Users_Guide.html">MSPM0 Sensorless FOC Software User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sensorless_FOC_Motor_Control_Library.html">Sensorless FOC Motor Control Library Overview</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8323RS GUI User Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-gui">1. Getting Started with GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-gui">1.1 Getting Started with GUI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-the-gui">2. Using the GUI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gui-window">3. GUI Window</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#parameters">3.1 Parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tuning">3.2 Tuning</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#control">3.3 Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#protection">3.4 Protection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fault-status">3.5 Fault Status</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stats">3.6 Stats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#plots">3.7 Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motor-drive-parameters">3.1 Motor &amp; Drive Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control">3.2 Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#startup">3.3 Startup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#align-startup">3.3.1 Align startup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#slow-first-cycle-startup">3.3.2 Slow First Cycle startup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initial-position-detection-ipd">3.3.3 Initial Position Detection (IPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rampup">3.4 Rampup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#closed-loop-cl">3.5 Closed Loop (CL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tuning">3.6 Tuning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#protection">3.7 Protection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fault-status">3.8 Fault Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monitors">3.9 Monitors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plots">3.10 Plots</a></li>
 </ul>
 </li>
 </ul>
@@ -88,9 +96,12 @@
              
   <section id="drv8323rs-gui-user-guide">
 <h1>DRV8323RS GUI User Guide<a class="headerlink" href="#drv8323rs-gui-user-guide" title="Permalink to this heading">¶</a></h1>
-<p>The GUI used in this guide can be found <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI">here</a>.</p>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>This graphical user interface (GUI) was developed to allow simple evaluation of a user’s motor with the DRV8323RSEVM being controlled by TI’s MSPM0 microcontroller. This guide will go over the key parts of the GUI to allow you to get up and running quickly. You can access the GUI described in this document <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI">here</a>.</p>
+</section>
 <section id="getting-started-with-gui">
-<h2>1. Getting Started with GUI<a class="headerlink" href="#getting-started-with-gui" title="Permalink to this heading">¶</a></h2>
+<h2>1.1 Getting Started with GUI<a class="headerlink" href="#getting-started-with-gui" title="Permalink to this heading">¶</a></h2>
 <p>The GUI allows the user to configure various settings required for Sensorless FOC motor control. The user can adjust settings like motor speed reference, set parameters and other device settings, as well as monitoring the device status.</p>
 <p>Perform the following steps to begin using the GUI:</p>
 <ol class="arabic simple">
@@ -99,11 +110,8 @@
 <li><p>Plug in the micro-USB cable to the PC.</p></li>
 <li><p>Enable the power supply to EVM.</p></li>
 <li><p>Launch the <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI">MSPM0G-DRV8323RS-EVM-GUI</a>.</p></li>
-<li><p>Set motor and system parameters as shown in Section 3.1 Parameters.</p></li>
-<li><p>Click “Enable System” to lock the motor and system parameters.</p></li>
-<li><p>Change the Motor State from “Align” to “Open Loop” to spin the motor in open loop with Speed Reference and Iq Reference set in per unit.</p></li>
-<li><p>Change the Motor State from “Open Loop” to “Closed Loop” to spin the motor in closed loop speed control.</p></li>
-<li><p>Tune the closed loop handoff using PI gains for Id, and the closed speed and torque loop performance using the PI gains for speed and Iq.</p></li>
+<li><p>Set all the parameters under Section 3.</p></li>
+<li><p>Click “Enable Motor” to start the motor.</p></li>
 </ol>
 </section>
 <section id="using-the-gui">
@@ -113,26 +121,26 @@
 <figure class="align-default" id="id1">
 <img alt="Hardware connected" src="../../_images/GUI-hardware_connected.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Hardware connected</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Hardware connected</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="gui-window">
 <h2>3. GUI Window<a class="headerlink" href="#gui-window" title="Permalink to this heading">¶</a></h2>
-<p>In the GUI Window user can find various controls to enable system, control the bldc motor, and configure various parameters such as pwm frequency, deadband and so forth. Hover over the control widgets to display the brief description on its actions.</p>
+<p>In the GUI Window, the user can find various controls to enable system, control the BLDC motor, and configure various parameters such as PWM frequency, deadband and so forth.</p>
 <figure class="align-default" id="id2">
 <img alt="GUI window" src="../../_images/GUI-window.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">GUI window</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">GUI window</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<section id="parameters">
-<h3>3.1 Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h3>
-<p>The GUI allows to modify the FOC parameters like motor resistance, deadband etc.</p>
+<section id="motor-drive-parameters">
+<h3>3.1 Motor &amp; Drive Parameters<a class="headerlink" href="#motor-drive-parameters" title="Permalink to this heading">¶</a></h3>
+<p>The GUI allows modification of motor and system parameters like motor resistance, inductance, flux, deadband, etc.</p>
 <figure class="align-default" id="id3">
-<img alt="FOC parameters" src="../../_images/GUI-parameters.jpg" />
+<img alt="Motor &amp; Drive Parameters" src="../../_images/GUI-parameters.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">FOC parameters</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Motor &amp; Drive Parameters</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <table class="docutils align-default">
@@ -148,11 +156,11 @@
 <tr class="row-odd"><td><p>L</p></td>
 <td><p>Motor Phase inductance in henry.</p></td>
 </tr>
-<tr class="row-even"><td><p>Poles</p></td>
-<td><p>Number of poles in motor.</p></td>
+<tr class="row-even"><td><p>KE</p></td>
+<td><p>Back emf constant of the motor in V/Hz.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Base RPM</p></td>
-<td><p>Maximum RPM the FOC can command. Ie, when speed reference is 1.0 . User can set it to maximum speed of the motor in revolutions per minute</p></td>
+<tr class="row-odd"><td><p>Max Freq</p></td>
+<td><p>Maximum electrical frequency of the motor in Hz</p></td>
 </tr>
 <tr class="row-even"><td><p>PWM Freq</p></td>
 <td><p>PWM frequency used to drive the motor.</p></td>
@@ -160,22 +168,212 @@
 <tr class="row-odd"><td><p>Deadband</p></td>
 <td><p>Deadtime in nanoseconds inserted between high side and low side pwm outputs.</p></td>
 </tr>
-<tr class="row-even"><td><p>Amp Gain</p></td>
-<td><p>Gain of the current sense amplifier.</p></td>
+<tr class="row-even"><td><p>CSA Gain</p></td>
+<td><p>FOC gain settings, this is mapped to the DRV gains, refer “param_[motor driver].h” .</p></td>
 </tr>
-<tr class="row-odd"><td><p>Rshunt</p></td>
-<td><p>Shunt resistor set in the motor driver in ohms.</p></td>
+</tbody>
+</table>
+</section>
+<section id="control">
+<h3>3.2 Control<a class="headerlink" href="#control" title="Permalink to this heading">¶</a></h3>
+<p>The user can use this section of the GUI to control the motor. The user can control the motor speed, motor state, etc.</p>
+<figure class="align-default" id="id4">
+<img alt="Control" src="../../_images/GUI-control.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Control</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Enable Motor</p></td>
+<td><p>Controls whether FOC is enabled or disabled. If set 0, PWM is disabled and the drive is in Hi-Z state.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Disable Closed Loop</p></td>
+<td><p>When set to 1, disables the closed loop transition after rampup phase is completed</p></td>
+</tr>
+<tr class="row-even"><td><p>Reverse</p></td>
+<td><p>When set to 1, the direction of rotation is reversed. Set only when motor is disabled.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Outer Loop</p></td>
+<td><p>Selects the PI speed as the outer loop or the PI current loop.</p></td>
+</tr>
+<tr class="row-even"><td><p>Motor State</p></td>
+<td><p>Displays the state of the FOC algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Speed Reference</p></td>
+<td><p>Reference speed in Hz, input to the speed PI controller. Note that this value is set to the PI controller for speed through a ramp to smoothen the response. While viewing the PI speed reference in the graph, the user will see a linear ramp to the reference value.</p></td>
+</tr>
+<tr class="row-even"><td><p>Speed</p></td>
+<td><p>Displays the estimated motor speed in Hz.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Id Reference</p></td>
+<td><p>If outer loop is current, this is set as reference to PI ID controller in closed loop. Value is in Ampere.</p></td>
+</tr>
+<tr class="row-even"><td><p>Id Feedback</p></td>
+<td><p>Displays the feedback to the PI ID controller in Ampere.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Iq Reference</p></td>
+<td><p>If outer loop is current, this is set as reference to PI IQ controller in closed loop. Value is in Ampere.</p></td>
+</tr>
+<tr class="row-even"><td><p>Iq Feedback</p></td>
+<td><p>Displays the feedback to the PI IQ controller in Ampere.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="startup">
+<h3>3.3 Startup<a class="headerlink" href="#startup" title="Permalink to this heading">¶</a></h3>
+<p>The Method drop down allows you to select between each startup methods: Align, Slow first cycle, and IPD.</p>
+<figure class="align-default" id="id5">
+<img alt="Startup method" src="../../_images/GUI-startup.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Startup method</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="align-startup">
+<h3>3.3.1 Align startup<a class="headerlink" href="#align-startup" title="Permalink to this heading">¶</a></h3>
+<p>Align startup forces the motor position to phase A for a set period of time and current before starting rampup phase.</p>
+<figure class="align-default" id="id6">
+<img alt="Startup align parameters" src="../../_images/GUI-startup-align.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Startup align parameters</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Align Time</p></td>
+<td><p>Duration of aligning the rotor in seconds.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Align Current</p></td>
+<td><p>Current during align in Ampere.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="slow-first-cycle-startup">
+<h3>3.3.2 Slow First Cycle startup<a class="headerlink" href="#slow-first-cycle-startup" title="Permalink to this heading">¶</a></h3>
+<p>Slow first cycle blindly spins the motor with a settable frequency and current in the first electrical cycle before starting rampup phase.</p>
+<figure class="align-default" id="id7">
+<img alt="Startup Slow First Cycle parameters" src="../../_images/GUI-startup-slowFirstCyc.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Startup Slow First Cycle parameters</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Slow First Cycle Freq</p></td>
+<td><p>Frequency of motor rotation during first cycle in Hz.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Slow First Cycle Current</p></td>
+<td><p>Current during first cycle in Ampere.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="initial-position-detection-ipd">
+<h3>3.3.3 Initial Position Detection (IPD)<a class="headerlink" href="#initial-position-detection-ipd" title="Permalink to this heading">¶</a></h3>
+<p>IPD applies 6 short pulse sequences to determine the motor position without spinning the motor. Comparators and timers are used to measure which of the 6 pulses has the fastest current rise time (di/dt), which determines the aligned motor position. The IPD threshold and frequency of the pulses can be configured based on the based on motor inductance to balance between accurate position detection and reducing audible noise.</p>
+<figure class="align-default" id="id8">
+<img alt="Startup IPD parameters" src="../../_images/GUI-startup-ipd.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Startup IPD parameters</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><em>Important Note</em></p>
+<p>Verify the Hardware connections for the IPD is set, if using IPD startup. Refer to <a class="reference external" href="DRV8323RS_Hardware_User_Guide.html">Hardware User Guide</a>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>IPD Thres count</p></td>
+<td><p>IPD threshold count from 1-100, higher the value higher the IPD current.</p></td>
+</tr>
+<tr class="row-odd"><td><p>IPD</p></td>
+<td><p>Frequency of injection of IPD pulses.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rampup">
+<h3>3.4 Rampup<a class="headerlink" href="#rampup" title="Permalink to this heading">¶</a></h3>
+<p>Rampup state is the acceleration from startup to open loop. Rampup has configurable current, speed rate, and target speed, which is dependent on the application and motor parameters.</p>
+<figure class="align-default" id="id9">
+<img alt="Rampup parameters" src="../../_images/GUI-rampup.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Rampup parameters</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Rampup current</p></td>
+<td><p>Current in rampup current in Ampere.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rampup speed rate</p></td>
+<td><p>Rampup rate in Hz/s.</p></td>
+</tr>
+<tr class="row-even"><td><p>Rampup Target</p></td>
+<td><p>Frequency to rampup to in Hz.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="closed-loop-cl">
+<h3>3.5 Closed Loop (CL)<a class="headerlink" href="#closed-loop-cl" title="Permalink to this heading">¶</a></h3>
+<p>Closed loop is the state after open loop once motor BEMF is sufficient to determine real-time motor position and velocity. In closed loop, the FOC algorithm can be optimized for PI speed control execution, speed reference, or speed reference ramp rate adjustment.</p>
+<figure class="align-default" id="id10">
+<img alt="Closed loop parameters" src="../../_images/GUI-cl.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Closed loop parameters</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Parameters used in closed loop.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PI speed Divider</p></td>
+<td><p>Execution divider for PI speed. This is the number of times the FOC loop runs for the PI speed controller to run once.</p></td>
+</tr>
+<tr class="row-odd"><td><p>CL Speed Ref ramp</p></td>
+<td><p>Speed reference ramp rate in Hz/s.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="tuning">
-<h3>3.2 Tuning<a class="headerlink" href="#tuning" title="Permalink to this heading">¶</a></h3>
-<p>User can use the Tuning section of the GUI to tune the control parameters to desired response.</p>
-<figure class="align-default" id="id4">
-<img alt="Motor Tuning" src="../../_images/GUI-tuning.jpg" />
+<h3>3.6 Tuning<a class="headerlink" href="#tuning" title="Permalink to this heading">¶</a></h3>
+<p>The user can use the Tuning section of the GUI to tune the control parameters to the desired response.</p>
+<figure class="align-default" id="id11">
+<img alt="Tuning parameters" src="../../_images/GUI-tuning.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Motor Tuning</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Tuning parameters</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <table class="docutils align-default">
@@ -186,82 +384,33 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Speed Kp</p></td>
-<td><p>Proportional constant in PI for Speed in per units.</p></td>
+<td><p>Proportional constant for Speed PI controller.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Speed Ki</p></td>
-<td><p>Integral constant in PI for Speed in per units.</p></td>
+<td><p>Integral constant for Speed PI controller.</p></td>
 </tr>
 <tr class="row-even"><td><p>Id Kp</p></td>
-<td><p>Proportional constant in PI for Id in per units.</p></td>
+<td><p>Proportional constant for Id PI controller.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Id Ki</p></td>
-<td><p>Integral constant in PI for Id in per units.</p></td>
+<td><p>Integral constant for Id PI controller.</p></td>
 </tr>
 <tr class="row-even"><td><p>Iq Kp</p></td>
-<td><p>Proportional constant in PI for Iq in per units.</p></td>
+<td><p>Proportional constant for Iq PI controller.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Iq Ki</p></td>
-<td><p>Integral constant in PI for Iq in per units.</p></td>
-</tr>
-<tr class="row-even"><td><p>esmo Kslide</p></td>
-<td><p>Esmitator Kslide value in per units.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="control">
-<h3>3.3 Control<a class="headerlink" href="#control" title="Permalink to this heading">¶</a></h3>
-<p>The user can use this section of the GUI to control the motor. The user can control the motor speed, motor state, etc.</p>
-<figure class="align-default" id="id5">
-<img alt="Motor Control" src="../../_images/GUI-control.jpg" />
-<figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Motor Control</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Function</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Enable System</p></td>
-<td><p>Control whether FOC is enabled or disabled. If set 0, PWM is disabled and the drive is in HighZ state.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Motor State</p></td>
-<td><p>Controls the FOC state. If set to Align, Aligns the motor to A phase. If set to Open Loop, Rotates the motor in open loop with speed from speed Reference input. If set Closed Loop, Rotates the motor in closed loop with speed from speed Reference input.</p></td>
-</tr>
-<tr class="row-even"><td><p>Speed (pu)</p></td>
-<td><p>Display the estimated motor speed in per unit.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Speed (RPM)</p></td>
-<td><p>Display the estimated motor speed in revolutions per minute.</p></td>
-</tr>
-<tr class="row-even"><td><p>Speed Reference</p></td>
-<td><p>Reference speed in per unit input to the speed PI controller. Note that this value is set to the PI controller for speed through a ramp to smoothen the response, thus while viewing the reference to PI speed the user can see a linear ramp to the input value.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Id Reference</p></td>
-<td><p>Reference Id input in per unit. This value is set only in Align motor state.</p></td>
-</tr>
-<tr class="row-even"><td><p>Id Feedback</p></td>
-<td><p>Feedback of Id in per unit.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Iq Reference</p></td>
-<td><p>Reference Iq input in per unit. This value is set only in Open Loop motor state.</p></td>
-</tr>
-<tr class="row-even"><td><p>Iq Feedback</p></td>
-<td><p>Feedback of Iq in per unit.</p></td>
+<td><p>Integral constant for Iq PI controller.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="protection">
-<h3>3.4 Protection<a class="headerlink" href="#protection" title="Permalink to this heading">¶</a></h3>
-<p>Section to configure the software protections like over current, under voltage and over voltage.</p>
-<figure class="align-default" id="id6">
-<img alt="Motor Protection" src="../../_images/GUI-protection.jpg" />
+<h3>3.7 Protection<a class="headerlink" href="#protection" title="Permalink to this heading">¶</a></h3>
+<p>This section allows the user to configure software protections like overcurrent, undervoltage and overvoltage.</p>
+<figure class="align-default" id="id12">
+<img alt="Protection parameters" src="../../_images/GUI-protection.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Motor Protection</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Protection parameters</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <table class="docutils align-default">
@@ -272,24 +421,24 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Over Current Limit</p></td>
-<td><p>Value of phase current in ampere above which software triggers over current</p></td>
+<td><p>Value of phase current in Ampere above which software triggers over current</p></td>
 </tr>
 <tr class="row-odd"><td><p>Over Voltage Limit</p></td>
-<td><p>Value of voltage in volts above which software triggers over voltage fault.</p></td>
+<td><p>Value of voltage in Volts above which software triggers over voltage fault.</p></td>
 </tr>
 <tr class="row-even"><td><p>Under Voltage Limit</p></td>
-<td><p>Value of voltage in volts below which software triggers under voltage fault.</p></td>
+<td><p>Value of voltage in Volts below which software triggers under voltage fault.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="fault-status">
-<h3>3.5 Fault Status<a class="headerlink" href="#fault-status" title="Permalink to this heading">¶</a></h3>
-<p>The fault monitoring and handling is at the top right side of the screen this allows the user to monitor the faults. The Fault led turns red when a fault occurred. To clear all the faults, use the “CLEAR FAULTS” button.</p>
-<figure class="align-default" id="id7">
-<img alt="Motor Fault Status" src="../../_images/GUI-fault_status.jpg" />
+<h3>3.8 Fault Status<a class="headerlink" href="#fault-status" title="Permalink to this heading">¶</a></h3>
+<p>The fault monitoring and handling is at the top right side of the screen to allow the user to monitor any system faults. The Fault LED on the driver board turns red when a fault occurs. To clear all the faults, use the “CLEAR FAULTS” button.</p>
+<figure class="align-default" id="id13">
+<img alt="Fault Status" src="../../_images/GUI-fault_status.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Motor Fault Status</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Fault Status</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <table class="docutils align-default">
@@ -302,28 +451,28 @@
 <tr class="row-even"><td><p>CLEAR FAULTS</p></td>
 <td><p>Pressing this button clears all the faults.</p></td>
 </tr>
-<tr class="row-odd"><td><p>DRV Fault</p></td>
-<td><p>This Fault is set when fault pin from DRV goes low.</p></td>
+<tr class="row-odd"><td><p>Ext Fault</p></td>
+<td><p>External Fault is set when fault input pin from DRV goes low.</p></td>
 </tr>
-<tr class="row-even"><td><p>Over Current</p></td>
-<td><p>Set when phase currents is above the set over current limit.</p></td>
+<tr class="row-even"><td><p>OC</p></td>
+<td><p>Set when phase currents is above the set overcurrent limit.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Over Voltage</p></td>
-<td><p>Set when bus voltage is above the set over voltage limit.</p></td>
+<tr class="row-odd"><td><p>OV</p></td>
+<td><p>Set when bus voltage is above the set overvoltage limit.</p></td>
 </tr>
-<tr class="row-even"><td><p>Under Voltage</p></td>
-<td><p>Set when bus voltage is below the set under voltage limit.</p></td>
+<tr class="row-even"><td><p>UV</p></td>
+<td><p>Set when bus voltage is below the set undervoltage limit.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="stats">
-<h3>3.6 Stats<a class="headerlink" href="#stats" title="Permalink to this heading">¶</a></h3>
-<p>Displays the relevant stats like bus voltage and phase currents.</p>
-<figure class="align-default" id="id8">
-<img alt="Motor Stats" src="../../_images/GUI-stats.jpg" />
+<section id="monitors">
+<h3>3.9 Monitors<a class="headerlink" href="#monitors" title="Permalink to this heading">¶</a></h3>
+<p>Displays the relevant monitors like bus voltage.</p>
+<figure class="align-default" id="id14">
+<img alt="Monitors" src="../../_images/GUI-monitors.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Motor Stats</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Monitors</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <table class="docutils align-default">
@@ -333,25 +482,19 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>VM</p></td>
-<td><p>Voltage in the DRV VM input in volts.</p></td>
-</tr>
-<tr class="row-odd"><td><p>IA</p></td>
-<td><p>A phase current in ampere.</p></td>
-</tr>
-<tr class="row-even"><td><p>IB</p></td>
-<td><p>B phase current in ampere.</p></td>
+<tr class="row-even"><td><p>VDC</p></td>
+<td><p>DC bus input in Volts.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="plots">
-<h3>3.7 Plots<a class="headerlink" href="#plots" title="Permalink to this heading">¶</a></h3>
+<h3>3.10 Plots<a class="headerlink" href="#plots" title="Permalink to this heading">¶</a></h3>
 <p>The user can see a graphical view of the speed, Id and Iq currents using the plots in the GUI.</p>
-<figure class="align-default" id="id9">
+<figure class="align-default" id="id15">
 <img alt="GUI plot" src="../../_images/GUI-plot.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 15 </span><span class="caption-text">GUI plot</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">GUI plot</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -362,7 +505,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Sensorless_FOC_Motor_Control_User_Guide.html" class="btn btn-neutral float-left" title="Sensorless FOC Motor Control Library Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Sensorless_FOC_Motor_Control_Library.html" class="btn btn-neutral float-left" title="Sensorless FOC Motor Control Library Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="DRV8323RS_Hardware_User_Guide.html" class="btn btn-neutral float-right" title="DRV8323RS Hardware User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

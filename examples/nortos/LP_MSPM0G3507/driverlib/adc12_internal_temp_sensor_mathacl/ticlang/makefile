@@ -27,7 +27,6 @@ CFLAGS = -I.. \
     -mthumb
 
 LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/ticlang/m0p/mathacl/iqmath.a" \
-    -Wl,--stack_size=512 \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     ../ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \

@@ -58,8 +58,31 @@ uint8_t gECCCodeError = 0xBC;
 
 volatile DL_FLASHCTL_COMMAND_STATUS gCmdStatus;
 
+volatile bool gCmdError = false;
+
+/* Codes to understand where error occured */
+#define NO_ERROR 0
+#define ERROR_ERASE 1
+#define ERROR_WRITE_8_BIT 2
+#define ERROR_READ_8_BIT 3
+#define ERROR_WRITE_16_BIT 4
+#define ERROR_READ_16_BIT 5
+#define ERROR_WRITE_32_BIT 6
+#define ERROR_READ_32_BIT 7
+#define ERROR_WRITE_64_BIT 8
+#define ERROR_READ_64_BIT 9
+#define ERROR_EXPECTED_FAIL 10
+#define ERROR_UNEXPECTED 11
+#define ERROR_WRITE_64_OVERRIDE 12
+#define ERROR_READ_64_OVERRIDE 13
+#define ERROR_EXPECTED_FAIL_OVERRIDE 14
+
+volatile uint8_t gErrorType = NO_ERROR;
+
 int main(void)
 {
+    gCmdError  = false;
+    gErrorType = NO_ERROR;
     SYSCFG_DL_init();
 
     DL_FLASHCTL_FAIL_TYPE failType;
@@ -70,125 +93,161 @@ int main(void)
     gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
     if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+        /* If command did not pass, set error flag. */
+        gErrorType = ERROR_ERASE;
     }
 
-    /* 8-bit write to flash in main memory */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM8WithECCGenerated(
-        FLASHCTL, MAIN_BASE_ADDRESS, &gData8);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* 8-bit write to flash in main memory */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM8WithECCGenerated(
+            FLASHCTL, MAIN_BASE_ADDRESS, &gData8);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_WRITE_8_BIT;
+        }
     }
 
-    /* Read verify on the 8-bit data */
-    gCmdStatus = DL_FlashCTL_readVerifyFromRAM8WithECCGenerated(
-        FLASHCTL, MAIN_BASE_ADDRESS, &gData8);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Read verify on the 8-bit data */
+        gCmdStatus = DL_FlashCTL_readVerifyFromRAM8WithECCGenerated(
+            FLASHCTL, MAIN_BASE_ADDRESS, &gData8);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_READ_8_BIT;
+        }
     }
 
-    /* 16-bit write to flash in main memory  */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM16WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 8), &gData16);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* 16-bit write to flash in main memory  */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM16WithECCGenerated(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 8), &gData16);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_WRITE_16_BIT;
+        }
     }
 
-    /* Read verify on the 16-bit data */
-    gCmdStatus = DL_FlashCTL_readVerifyFromRAM16WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 8), &gData16);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Read verify on the 16-bit data */
+        gCmdStatus = DL_FlashCTL_readVerifyFromRAM16WithECCGenerated(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 8), &gData16);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_READ_16_BIT;
+        }
     }
 
-    /* 32-bit write to flash in main memory */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM32WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 16), &gData32);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* 32-bit write to flash in main memory */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM32WithECCGenerated(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 16), &gData32);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_WRITE_32_BIT;
+        }
     }
 
-    /* Read verify on the 32-bit data */
-    gCmdStatus = DL_FlashCTL_readVerifyFromRAM32WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 16), &gData32);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Read verify on the 32-bit data */
+        gCmdStatus = DL_FlashCTL_readVerifyFromRAM32WithECCGenerated(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 16), &gData32);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_READ_32_BIT;
+        }
     }
 
-    /* 64-bit write to flash in main memory */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 24), &gDataArray64[0]);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* 64-bit write to flash in main memory */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 24), &gDataArray64[0]);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_WRITE_64_BIT;
+        }
     }
 
-    /* Read verify on the 64-bit data */
-    gCmdStatus = DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 24), &gDataArray64[0]);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Read verify on the 64-bit data */
+        gCmdStatus = DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 24), &gDataArray64[0]);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_READ_64_BIT;
+        }
     }
 
-    /* Demonstrate an expected failure for read verify when data does not match */
-    gCmdStatus = DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 24), &gDataArray64Error[0]);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_FAILED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Demonstrate a failed read verify when data does not match */
+        gCmdStatus = DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 24), &gDataArray64Error[0]);
+        failType = DL_FlashCTL_getFailureStatus(FLASHCTL);
+        if ((gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_FAILED)) {
+            /* If command did not fail, set error flag. */
+            gErrorType = ERROR_EXPECTED_FAIL;
+        } else if ((failType != DL_FLASHCTL_FAIL_TYPE_VERIFY_ERROR)) {
+            /* If there is an unexpected failure, set error flag */
+            gErrorType = ERROR_UNEXPECTED;
+        }
     }
 
-    /*
-     * 64-bit write to flash in main memory, with manually provided ECC code
-     * after overriding ECC generated by the flash controller hardware
-     */
-    DL_FlashCTL_enableOverrideHardwareGeneratedECC(FLASHCTL);
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCManual(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 40), &gDataArray64[0], &gECCCode);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /*
+        * 64-bit write to flash in main memory, with manually provided ECC code
+        * after overriding ECC generated by the flash controller hardware
+        */
+        DL_FlashCTL_enableOverrideHardwareGeneratedECC(FLASHCTL);
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCManual(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 40), &gDataArray64[0], &gECCCode);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_WRITE_64_OVERRIDE;
+        }
     }
 
-    /* Read verify on the 64-bit data, with manually provided ECC code */
-    gCmdStatus = DL_FlashCTL_readVerifyFromRAM64WithECCManual(
-        FLASHCTL, (MAIN_BASE_ADDRESS + 40), &gDataArray64[0], &gECCCode);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Read verify on the 64-bit data, with manually provided ECC code */
+        gCmdStatus = DL_FlashCTL_readVerifyFromRAM64WithECCManual(
+            FLASHCTL, (MAIN_BASE_ADDRESS + 40), &gDataArray64[0], &gECCCode);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_READ_64_OVERRIDE;
+        }
     }
 
-    /* Demonstrate an expected failure for read verify when ECC code does not match */
-    gCmdStatus = DL_FlashCTL_readVerifyFromRAM64WithECCManual(FLASHCTL,
-        (MAIN_BASE_ADDRESS + 40), &gDataArray64Error[0], &gECCCodeError);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_FAILED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Demonstrate an expected failure for read verify when ECC code does not match */
+        gCmdStatus = DL_FlashCTL_readVerifyFromRAM64WithECCManual(FLASHCTL,
+            (MAIN_BASE_ADDRESS + 40), &gDataArray64Error[0], &gECCCodeError);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_FAILED) {
+            /* If command did not pass, set error flag. */
+            gErrorType = ERROR_EXPECTED_FAIL_OVERRIDE;
+        }
     }
 
     DL_FlashCTL_disableOverrideHardwareGeneratedECC(FLASHCTL);
 
-    /* After completion, toggle LED */
-    while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
-        delay_cycles(16000000);
+    if (gErrorType == NO_ERROR) {
+        /* After completion, if successful toggle LED */
+        while (1) {
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+            delay_cycles(16000000);
+        }
+    }
+    /* Unsuccesful example run */
+    else {
+        /* Check gErrorType value */
+        __BKPT(0);
     }
 }

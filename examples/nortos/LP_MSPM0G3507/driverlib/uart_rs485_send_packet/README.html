@@ -114,28 +114,28 @@
 <td>GPIOA</td>
 <td>PA0</td>
 <td>J27_9</td>
-<td>This pin is 5V tolerant open-drain and requires pull-up.<br>J4 ON/OFF: Connect/Disconnect LED1<br>J19 1:2 3.3V Pull-up<br>J19 2:3 5V Pull-up</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PB4</td>
 <td>GPIOB</td>
 <td>PB4</td>
-<td>J4_40<br>J19 1:2 3.3V Pull-up<br>J19 2:3 5V Pull-up</td>
-<td></td>
+<td>J4_40</td>
+<td>N/A</td>
 </tr>
 <tr class="odd">
 <td>PA11</td>
 <td>UART0</td>
 <td>RX</td>
 <td>J4_33/J26_6</td>
-<td>J22 1:2 Connect XDS-110 BackChannel UART on J101<br>J22 2:3 Connect to J4_33<br>R63 connects J26_6 for LIN (default)<br>J101 7:8 Connect XDS-110 BackChannel UART RX</td>
+<td><ul><li>PA11 can be used as UART RX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J22 1:2</code>: Connects XDS-110 backchannel UART RX to <code>J101</code><br> <code>J101 7:8</code> Connects XDS-110 backchannel to UART RX<br><li>To use UART on boosterpack connector:<br> <code>J22 2:3</code>: Connects UART RX to <code>J4_33</code><br><li>To use on J26 CAN/LIN connector:<br> <code>R63</code> is populated by default and connects pin to <code>J26_6</code></ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA10</td>
 <td>UART0</td>
 <td>TX</td>
 <td>J4_34/J26_5</td>
-<td>J21 1:2 Connect XDS-110 BackChannel UART on J101<br>J21 2:3 Connect to J4_34<br>R62 connects J26_5 for LIN (default)<br>J101 9:10 Connect XDS-110 BackChannel UART TX</td>
+<td><ul><li>PA10 can be used as UART TX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J21 1:2</code>: Connects XDS-110 backchannel UART TX to <code>J101</code><br> <code>J101 9:10</code> Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br> <code>J21 2:3</code>: Connects UART TX to <code>J4_34</code><br><li>To use on J26 CAN/LIN connector:<br> <code>R62</code> is populated by default and connects pin to <code>J26_5</code></ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA8</td>
@@ -149,21 +149,21 @@
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Connect the device transmitting the RS485 packet to the receiving device using the following setup guidelines. You will need two RS485 transceiver boards, one for each MCU.</p>
 <ul>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,11 +40,13 @@ uint32_t gDstData[DMA_FILL_SIZE_WORDS];
 volatile bool gChannel0InterruptTaken = false;
 volatile bool gVerifyResult           = false;
 
+
 int main(void)
 {
     /*
      * Initialize the DMA peripheral and set up a transaction according to
-     * the parameters defined in ti_msp_dl_config.h
+     * the parameters defined in ti_msp_dl_config.h. The LED (USER_LED_1)
+     * should be off.
      */
     SYSCFG_DL_init();
 
@@ -72,6 +74,11 @@ int main(void)
     for (int i = 0; i < DMA_FILL_SIZE_WORDS; i++) {
         gVerifyResult &= (gDstData[i] == gFillPattern);
     }
+
+
+    /* Program completed. The LED should turn on */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     /* Breakpoint to inspect verification result */
     __BKPT(0);

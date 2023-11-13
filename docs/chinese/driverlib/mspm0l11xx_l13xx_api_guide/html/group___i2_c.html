@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">1.10.01.05</span>
+   &#160;<span id="projectnumber">1.20.00.05</span>
    </div>
   </td>
  </tr>
@@ -69,6 +69,7 @@ $(function() {
   <div class="summary">
 <a href="#groups">Modules</a> &#124;
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -104,6 +105,15 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___i2_c___clock_config.html">DL_I2C_ClockConfig</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___i2_c.html#ga68b87aa6d2faff98de4a588f40baf1a1">DL_I2C_setClockConfig</a>.  <a href="struct_d_l___i2_c___clock_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gadc068c6d6df6e875e4ea73d14b420e7e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#gadc068c6d6df6e875e4ea73d14b420e7e">DL_I2C_TX_FIFO_COUNT_MAXIMUM</a>&#160;&#160;&#160;((uint32_t)I2C_SYS_FENTRIES &lt;&lt; 8)</td></tr>
+<tr class="memdesc:gadc068c6d6df6e875e4ea73d14b420e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C number of bytes which could be put into the TX FIFO.  <a href="#gadc068c6d6df6e875e4ea73d14b420e7e">More...</a><br /></td></tr>
+<tr class="separator:gadc068c6d6df6e875e4ea73d14b420e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2031ae56b0ebaf369e94df7f98fb9222"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga2031ae56b0ebaf369e94df7f98fb9222">DL_I2C_RX_FIFO_COUNT_MAXIMUM</a>&#160;&#160;&#160;((uint32_t)I2C_SYS_FENTRIES)</td></tr>
+<tr class="memdesc:ga2031ae56b0ebaf369e94df7f98fb9222"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C number of bytes which could be put into the RX FIFO.  <a href="#ga2031ae56b0ebaf369e94df7f98fb9222">More...</a><br /></td></tr>
+<tr class="separator:ga2031ae56b0ebaf369e94df7f98fb9222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -1020,7 +1030,44 @@ Functions</h2></td></tr>
 <p><a class="anchor" id="ti_dl_dl_i2c_Overview"></a></p><h1>Overview</h1>
 <p>The I2C Library allows full configuration of the MSPM0 I2C module. The I2C module provides a standardized serial interface to transfer data between MSP devices and other external I2C devices (such as a sensors, memory, or DACs).</p>
 <hr/>
- <h2 class="groupheader">Enumeration Type Documentation</h2>
+ <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="gadc068c6d6df6e875e4ea73d14b420e7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadc068c6d6df6e875e4ea73d14b420e7e">&sect;&nbsp;</a></span>DL_I2C_TX_FIFO_COUNT_MAXIMUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DL_I2C_TX_FIFO_COUNT_MAXIMUM&#160;&#160;&#160;((uint32_t)I2C_SYS_FENTRIES &lt;&lt; 8)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I2C number of bytes which could be put into the TX FIFO. </p>
+<p>This variable is device specific and is calculated using the system parameter I2C_SYS_FENTRIES defined in each devices header file. </p>
+
+<p>Referenced by <a class="el" href="group___i2_c.html#ga9b8540c919dd1de8f19f66d7ee795c0c">DL_I2C_isTargetTXFIFOEmpty()</a>.</p>
+
+</div>
+</div>
+<a id="ga2031ae56b0ebaf369e94df7f98fb9222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2031ae56b0ebaf369e94df7f98fb9222">&sect;&nbsp;</a></span>DL_I2C_RX_FIFO_COUNT_MAXIMUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DL_I2C_RX_FIFO_COUNT_MAXIMUM&#160;&#160;&#160;((uint32_t)I2C_SYS_FENTRIES)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I2C number of bytes which could be put into the RX FIFO. </p>
+<p>This variable is device specific and is calculated using the system parameter I2C_SYS_FENTRIES defined in each devices header file. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="gaed43e22303286e1d4d9490c2b6ddf9bd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaed43e22303286e1d4d9490c2b6ddf9bd">&sect;&nbsp;</a></span>DL_I2C_DMA_IIDX</h2>
 
@@ -2052,6 +2099,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p>References <a class="el" href="group___i2_c.html#gadc068c6d6df6e875e4ea73d14b420e7e">DL_I2C_TX_FIFO_COUNT_MAXIMUM</a>.</p>
 
 </div>
 </div>

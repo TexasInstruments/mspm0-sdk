@@ -32,7 +32,7 @@
 
 #include "ti_msp_dl_config.h"
 
-#define ADC_SAMPLE_SIZE (256)
+#define ADC_SAMPLE_SIZE (1024)
 /* When FIFO is enabled 2 samples are compacted in a single word */
 #define ADC_FIFO_SAMPLES (ADC_SAMPLE_SIZE >> 1)
 

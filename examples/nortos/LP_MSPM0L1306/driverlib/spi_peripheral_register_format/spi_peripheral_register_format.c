@@ -240,6 +240,10 @@ static void SPI_Peripheral_processCmd(uint8_t cmd)
  */
 static void SPI_Peripheral_transactionDone(uint8_t cmd)
 {
+    /* Toggle GPIOs to signify the successful completion of a transaction */
+    DL_GPIO_togglePins(
+        GPIO_LEDS_PORT, (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
+
     switch (cmd) {
         case (CMD_READ_TYPE_0):
             /* gCmdReadType0Buffer data was sent */

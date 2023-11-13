@@ -15,10 +15,17 @@ define symbol __ICFEDIT_region_EROM2_start__ = 0x0;
 define symbol __ICFEDIT_region_EROM2_end__   = 0x0;
 define symbol __ICFEDIT_region_EROM3_start__ = 0x0;
 define symbol __ICFEDIT_region_EROM3_end__   = 0x0;
+/*
+ * This example implements a workaround for BSL_ERR_01.
+ * The following SRAM locations should not be used when using non-ECC SRAM
+ * and the application needs to jump to BSL:
+ *      0x2020_0EE0 - 0x2020_0FFF
+ *      0x2020_7FF4 - 0x2020_8000
+ */
 define symbol __ICFEDIT_region_IRAM1_start__ = 0x20200000;
-define symbol __ICFEDIT_region_IRAM1_end__   = 0x20207FFF;
-define symbol __ICFEDIT_region_IRAM2_start__ = 0x0;
-define symbol __ICFEDIT_region_IRAM2_end__   = 0x0;
+define symbol __ICFEDIT_region_IRAM1_end__   = 0x20200EDF;
+define symbol __ICFEDIT_region_IRAM2_start__ = 0x20201000;
+define symbol __ICFEDIT_region_IRAM2_end__   = 0x20207FF3;
 define symbol __ICFEDIT_region_ERAM1_start__ = 0x0;
 define symbol __ICFEDIT_region_ERAM1_end__   = 0x0;
 define symbol __ICFEDIT_region_ERAM2_start__ = 0x0;
@@ -173,4 +180,3 @@ if (!isempty(ERAM_region))
 place in NON_MAIN_BCR_region  { section .BCRConfig };
 
 place in NON_MAIN_BSL_region  { section .BSLConfig };
-

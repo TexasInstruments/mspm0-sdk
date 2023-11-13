@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -298,10 +298,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 
         /* Extract all device pin names */
         let allPinsArray = Object.values(allPins);
+        let excludedPins = ["NRST","VDD", "VSS","VCORE", "VBAT"];
         allPinsArray = allPinsArray.filter(function( obj ) {
-            return (!["NRST","VDD", "VSS","VCORE"].includes(obj.description))
+            return (!excludedPins.some(v => (obj.designSignalName).includes(v)))
         });
-        let allPinNamesArray = (allPinsArray).map(a => a.description);
+        let allPinNamesArray = (allPinsArray).map(a => a.designSignalName);
         let allPinIDArray = (allPinsArray).map(a => a.name);
 
         /* Filter unused pins */
@@ -311,7 +312,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
         unusedPinIDs = unusedPinIDs.filter((item,index) => unusedPinIDs.indexOf(item) === index);
         for(let selectUnused of unusedPinIDs){
             /* Add IOMUX_PINCM to create an array of IOMUX_PINCM defines */
-            unusedIOMUX.push("IOMUX_PINCM" + system.deviceData.devicePins[selectUnused].attributes.iomux_pincm);
+            /* Note: in the case of multiple pinCMs on same pad, access the first one */
+            if((system.deviceData.devicePins[selectUnused].attributes.iomux_pincm).split(",")[0] !== "None"){
+                unusedIOMUX.push("IOMUX_PINCM" + (system.deviceData.devicePins[selectUnused].attributes.iomux_pincm).split(",")[0]);
+            }
+
         }
 %%}
     const uint8_t unusedPinIndexes[] =

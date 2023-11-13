@@ -1,5 +1,5 @@
-Code Composer Studio IDE Version 12.4+ for MSPM0 MCUs
-=====================================================
+Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs
+=======================================================
 
 Table of Contents
 -----------------
@@ -57,7 +57,7 @@ The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>
 
 Code Composer Studio IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__.
 
-MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.4 or higher.
+MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.5.0 or higher.
 
 Code Composer Studio (CCS) IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__. Installation instructions for CCS 12.3 are available `here <https://software-dl.ti.com/ccs/esd/documents/users_guide_12.3.0/ccs_installation.html#installation-process>`__.
 
@@ -436,6 +436,17 @@ To execute a DSSM Mass Erase or DSSM Factory Reset, follow the next steps:
 
    .. figure:: ./images/ccs_ide_guide/ccs_dssm2.png
       :alt: 
+
+3.5.1.1 DSSM after Power-up
+'''''''''''''''''''''''''''
+
+The device might not respond to DSSM commands in some scenarios such as when the reset line or SWD pins are used for other functions. In such conditions, it can be useful to follow the next steps:
+
+1. Power off the device
+2. Hold the reset line (NRST) low
+3. Power up the device, while holding NRST low
+4. Execute one of the **Manual** DSSM commands mentioned in previous section
+5. When prompted, release NRST
 
 3.5.2 DSSM SWD Password Mechanism
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

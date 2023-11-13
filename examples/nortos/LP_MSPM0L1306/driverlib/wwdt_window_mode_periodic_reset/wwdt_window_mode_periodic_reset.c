@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,31 +37,33 @@ int main(void)
     SYSCFG_DL_init();
 
     /* Enable TimerG interrupts on device */
-    NVIC_EnableIRQ(TIMG0_INT_IRQn);
+    NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);
 
     /* Enable sleep on exit */
     DL_SYSCTL_enableSleepOnExit();
 
     /* Set LED to indicate Timer counter enable */
-    DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     /* Start TimerG counter */
-    DL_TimerG_startCounter(TIMG0);
+    DL_TimerG_startCounter(TIMER_0_INST);
 
     while (1) {
         __WFI();
     }
 }
 
-void TIMG0_IRQHandler(void)
+void TIMER_0_INST_IRQHandler(void)
 {
-    switch (DL_TimerG_getPendingInterrupt(TIMG0)) {
+    switch (DL_TimerG_getPendingInterrupt(TIMER_0_INST)) {
         case DL_TIMER_IIDX_ZERO:
             /* Restart WWDT timer */
-            DL_WWDT_restart(WWDT0);
+            DL_WWDT_restart(WWDT0_INST);
 
             /* Toggle LED to indicate WWDT reset */
-            DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
             break;
         default:
             break;

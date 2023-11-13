@@ -74,14 +74,14 @@
 %       let canrxPinName = "rx"+"Pin";
 %       let cantxPackagePin = inst.peripheral[cantxPinName].$solution.packagePinName;
 %       let canrxPackagePin = inst.peripheral[canrxPinName].$solution.packagePinName;
-%       let cantxPinCM = system.deviceData.devicePins[cantxPackagePin].attributes.iomux_pincm;
-%       let canrxPinCM = system.deviceData.devicePins[canrxPackagePin].attributes.iomux_pincm;
+%       let cantxPinCM = Common.getPinCM(cantxPackagePin,inst,"CANTX");
+%       let canrxPinCM = Common.getPinCM(canrxPackagePin,inst,"CANRX");
 %       let cantxGpioName = system.deviceData.devicePins[cantxPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
 %       let canrxGpioName = system.deviceData.devicePins[canrxPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let cantxPort = Common.getGPIOPort(cantxGpioName);
-%       let canrxPort = Common.getGPIOPort(canrxGpioName);
-%       let cantxGpioPin = Common.getGPIONumber(cantxGpioName);
-%       let canrxGpioPin = Common.getGPIONumber(canrxGpioName);
+%       let cantxPort = Common.getGPIOPortMultiPad(cantxPackagePin,inst,"CANTX");
+%       let canrxPort = Common.getGPIOPortMultiPad(canrxPackagePin,inst,"CANRX");
+%       let cantxGpioPin = Common.getGPIONumberMultiPad(cantxPackagePin,inst,"CANTX");
+%       let canrxGpioPin = Common.getGPIONumberMultiPad(canrxPackagePin,inst,"CANRX");
 % let cantxPortStr = "#define "+gpioStr+"_CAN_TX_PORT";
 `cantxPortStr.padEnd(40," ")+cantxPort.padStart(40, " ")`
 % let cantxPinStr = "#define "+gpioStr+"_CAN_TX_PIN";

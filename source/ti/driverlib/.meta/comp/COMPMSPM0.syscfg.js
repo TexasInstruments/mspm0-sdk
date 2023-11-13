@@ -101,14 +101,35 @@ function validate(inst, validation)
             );
         }
         // validate if MSPM0L11XX_L13XX & VREF enabled, check that its not internal reference.
+        let vrefInstance = system.modules["/ti/driverlib/VREF"];
         if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
-            let vrefInstance = system.modules["/ti/driverlib/VREF"];
             if (vrefInstance){
                 if(!(vrefInstance.$static.basicMode).includes("DL_VREF_ENABLE_DISABLE"))
                 validation.logError(
                     "Selected device does not support sourcing internal VREF for COMP, requires enabling external VREF",
                     inst, "vSource"
                 );
+            }
+        }
+        /* VREF mode validation for MSPM0L122X_L222X */
+        if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            /* External VREF validation */
+            if(inst.vrefMode == "EXTERNAL"){
+                if(!vrefInstance.$static.basicMode.includes("DL_VREF_ENABLE_DISABLE")){
+                    validation.logError(
+                        "External Reference is not enabled in VREF module.",
+                        inst, "vrefMode"
+                    );
+                }
+            }
+            /* Internal VREF validation */
+            else if(inst.vrefMode == "INTERNAL"){
+                if(!vrefInstance.$static.basicMode.includes("DL_VREF_ENABLE_ENABLE")){
+                    validation.logError(
+                        "Internal Reference is not enabled in VREF module.",
+                        inst, "vrefMode"
+                    );
+                }
             }
         }
     }
@@ -167,6 +188,16 @@ function validate(inst, validation)
                 }
             }
         }
+    }
+
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    EVENT.validatePublisherOptions(inst,validation,"pubChanID");
+    if(inst.enableSampledMode){
+        EVENT.validateSubscriberOptions(inst,validation,"sub0ChanID");
+        EVENT.validateSubscriberOptions(inst,validation,"sub1ChanID");
     }
 }
 
@@ -350,6 +381,16 @@ function updateGUIVREF(inst,ui){
     }
     else{
         ui.calcVoltage.hidden = true;
+    }
+
+    /* Internal/External VREF toggle for COMP */
+    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        if(["DL_COMP_REF_SOURCE_VREF_DAC","DL_COMP_REF_SOURCE_VREF"].includes(inst.vSource)){
+            ui.vrefMode.hidden = false;
+        }
+        else{
+            ui.vrefMode.hidden = true;
+        }
     }
 }
 
@@ -803,7 +844,7 @@ function calculateVoltage(inst){
     return (Common.getUnitPrefix(calcVoltage)).str+"V";
 }
 
-/* Voltage Source Options: VREF is only available as a source for MSPM0G */
+/* Voltage Source Options: */
 let vSourceOptions = [
     {name: "DL_COMP_REF_SOURCE_NONE", displayName: "Reference voltage generator is disabled (local reference buffer as well as DAC)"},
     {name: "DL_COMP_REF_SOURCE_VDDA_DAC", displayName: "VDDA selected as the reference source to DAC and DAC output applied as reference to comparator"},
@@ -911,7 +952,7 @@ function getPinName(inst, passedPin){
             if(peripheralPins){
                 let pinMappings = peripheralPins.pinMappings["0"]
                 if(pinMappings){
-                    pinInfo = pinMappings.description
+                    pinInfo = pinMappings.designSignalName
                 }
             }
         }
@@ -1056,6 +1097,18 @@ let config = [
                         default     : "DL_COMP_REF_SOURCE_NONE",
                         onChange    : onChangeVREF,
                         options     : vSourceOptions,
+                    },
+                    {
+                        name        : "vrefMode",
+                        displayName : "VREF Mode",
+                        description : 'Select internal or external VREF for COMP use',
+                        hidden      : true,
+                        default     : "EXTERNAL",
+                        onChange    : onChangeCustomProfile,
+                        options     : [
+                            {name: "INTERNAL", displayName: "Internal"},
+                            {name: "EXTERNAL", displayName: "External"},
+                        ],
                     },
                     {
                         name        : "vMode",

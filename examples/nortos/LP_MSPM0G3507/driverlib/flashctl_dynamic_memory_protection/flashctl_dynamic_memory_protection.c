@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,20 @@ uint32_t gData32 = 0x12345678;
 
 volatile DL_FLASHCTL_COMMAND_STATUS gCmdStatus;
 
+
+/* Codes to understand where error occured */
+#define NO_ERROR 0
+#define ERROR_ERASE 1
+#define ERROR_PROTECT 2
+#define ERROR_UNPROTECT 3
+#define ERROR_REPROTECT 4
+#define ERROR_UNEXPECTED 5
+
+volatile uint8_t gErrorType = NO_ERROR;
+
 int main(void)
 {
+    gErrorType = NO_ERROR;
     SYSCFG_DL_init();
 
     DL_FLASHCTL_FAIL_TYPE failType;
@@ -63,69 +75,77 @@ int main(void)
     failType = DL_FlashCTL_getFailureStatus(FLASHCTL);
     if ((gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_FAILED) ||
         (failType != DL_FLASHCTL_FAIL_TYPE_WRITE_ERASE_PROTECT)) {
-        /* If command did not fail, or if there is an unexpected failure, set
-         * a SW breakpoint.
+        gErrorType = ERROR_ERASE;
+    }
+
+    if (gErrorType == NO_ERROR) {
+        /* Protect a specific sector in main memory */
+        DL_FlashCTL_protectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        /* Try to program main memory */
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM32WithECCGenerated(
+            FLASHCTL, MAIN_BASE_ADDRESS, &gData32);
+        /*
+         * This is expected to fail, because memory was protected prior to
+         * executing a program operation.
+         * Memory must be unprotected before attempting to program.
          */
-        __BKPT(0);
+        failType = DL_FlashCTL_getFailureStatus(FLASHCTL);
+        if ((gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_FAILED)) {
+            gErrorType = ERROR_PROTECT;
+        }
+        if ((failType != DL_FLASHCTL_FAIL_TYPE_WRITE_ERASE_PROTECT)) {
+            gErrorType = ERROR_UNEXPECTED;
+        }
     }
 
-    /* Protect a specific sector in main memory */
-    DL_FlashCTL_protectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    /* Try to program main memory */
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM32(
-        FLASHCTL, MAIN_BASE_ADDRESS, &gData32);
-    /*
-     * This is expected to fail, because memory was protected prior to
-     * executing a program operation.
-     * Memory must be unprotected before attempting to program.
-     */
-    failType = DL_FlashCTL_getFailureStatus(FLASHCTL);
-    if ((gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_FAILED) ||
-        (failType != DL_FLASHCTL_FAIL_TYPE_WRITE_ERASE_PROTECT)) {
-        /* If command did not fail, or if there is an unexpected failure, set
-         * a SW breakpoint.
+    if (gErrorType == NO_ERROR) {
+        /* Unprotect sector in main memory*/
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        /* Erase sector in main memory */
+        gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+        /*
+         * This is expected to pass, because memory was unprotected
+         * prior to executing a program operation.
          */
-        __BKPT(0);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            gErrorType = ERROR_UNPROTECT;
+        }
     }
 
-    /* Unprotect sector in main memory*/
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    /* Erase sector in main memory */
-    gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
-    /*
-     * This is expected to pass, because memory was unprotected
-     * prior to executing a program operation.
-     */
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /*
+         * The Flash Controller will automatically re-protect memory after every
+         * program and erase operation, so memory must be dynamically unprotected
+         * again before the next operation is executed.
+         */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        /* Program to flash in main memory */
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM32WithECCGenerated(
+            FLASHCTL, MAIN_BASE_ADDRESS, &gData32);
+        /*
+         * This is expected to pass, because memory was unprotected
+         * prior to executing a program operation.
+         */
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            gErrorType = ERROR_REPROTECT;
+        }
     }
 
-    /*
-     * The Flash Controller will automatically re-protect memory after every
-     * program and erase operation, so memory must be dynamically unprotected
-     * again before the next operation is executed.
-     */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    /* Program to flash in main memory */
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM32(
-        FLASHCTL, MAIN_BASE_ADDRESS, &gData32);
-    /*
-     * This is expected to pass, because memory was unprotected
-     * prior to executing a program operation.
-     */
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* If successful, toggle LED */
+        while (1) {
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+            delay_cycles(16000000);
+        }
     }
-
-    /* If successful, toggle LED */
-    while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
-        delay_cycles(16000000);
+    /* Unsuccesful example run */
+    else {
+        /* Check gErrorType value */
+        __BKPT(0);
     }
 }

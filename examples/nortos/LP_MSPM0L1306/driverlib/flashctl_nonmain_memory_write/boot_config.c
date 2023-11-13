@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -69,6 +69,7 @@ const BCR_Config BCRConfig =
     .userSecureAppCrc              = CFG_DEFAULT_VALUE,
     .userCfgCRC                    = 0x1879dac3,
 };
+
 
 /* Bootloader configuration */
 

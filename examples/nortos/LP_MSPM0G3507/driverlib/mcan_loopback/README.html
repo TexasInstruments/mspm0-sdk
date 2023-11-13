@@ -47,6 +47,16 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>GPIOA</td>
+<td>PA0</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA15</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td>PA5</td>
 <td>HFXIN</td>
@@ -57,21 +67,26 @@
 <td>HFXOUT</td>
 </tr>
 <tr class="odd">
+<td>EVENT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td>CANFD0</td>
 <td>PA13</td>
 <td>RX Pin</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>CANFD0</td>
 <td>PA12</td>
 <td>TX Pin</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -92,53 +107,67 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>PA0</td>
+<td>GPIOA</td>
+<td>PA0</td>
+<td>J27_9</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA15</td>
+<td>GPIOA</td>
+<td>PA15</td>
+<td>J3_30</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA5</td>
 <td>SYSCTL</td>
 <td>HFXIN</td>
 <td>J28_4</td>
-<td>Connected to HFXT Y2<br>Solder R15 to connect to J28_4</td>
+<td><ul><li>PA5 is used for HFXT functionality by default in Launchpad<br><ul><li><code>Y2</code> crystal is soldered and connected by default</ul><br><li>PA5 can be connected to J28_4<br><ul><li><code>R15</code> is not soldered soldered by default<br><li>Solder <code>R15</code> to connect pin to J28_4</ul></td>
 </tr>
 <tr class="even">
 <td>PA6</td>
 <td>SYSCTL</td>
 <td>HFXOUT</td>
 <td>J28_5</td>
-<td>Connected to HFXT Y2<br>Solder R17 to connect to J28_5</td>
+<td><ul><li>PA6 is used for HFXT functionality by default in Launchpad<br><ul><li><code>Y2</code> crystal is soldered and connected by default</ul><br><li>PA6 can be connected to J28_5<br><ul><li><code>R17</code> is not soldered soldered by default<br><li>Solder <code>R17</code> to connect pin to J28_5</ul></td>
 </tr>
 <tr class="odd">
 <td>PA13</td>
 <td>CANFD0</td>
 <td>CANRX</td>
 <td>J4_32/J26_3</td>
-<td>R65 connects J26_3 for CAN (default)</td>
+<td><ul><li>PA13 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br> <code>R65</code> is populated by default and connects pin to <code>J26_3</code></ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA12</td>
 <td>CANFD0</td>
 <td>CANTX</td>
 <td>J4_32/J26_1</td>
-<td>R64 connects J26_1 for CAN (default)</td>
+<td><ul><li>PA12 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br> <code>R64</code> is populated by default and connects pin to <code>J26_1</code></ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Compile, load and run. The module is configured in internal loopback mode. The sent messages should be internally received by the node.</p>
 <p>A breakpoint will also be hit if an error is encountered in the application, the status of the error can be inspected in the gError variable. Otherwise, the application can be paused or a breakpoint can be set at line 127 to inspect the received messages in rxMsg.</p>

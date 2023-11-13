@@ -2,7 +2,6 @@ let ADC12_internalSignals = {
     MSPM0G1X0X_G3X0X: {
         ADC0: {
             CH11: "Temperature Sensor",
-            CH12: "DAC12_OUT",
             CH13: "OPA0 output",
             CH14: "GPAMP output",
             CH15: "Supply/Battery Monitor"
@@ -23,6 +22,19 @@ let ADC12_internalSignals = {
             CH15: "Supply/Battery Monitor"
         },
     },
+    MSPM0L122X_L222X: {
+        ADC0: {
+            CH29: "Temperature Sensor",
+            CH30: "VBAT Battery monitor",
+            CH31: "Supply/Battery Monitor",
+        },
+    },
+    MSPM0C110X: {
+        ADC0: {
+            CH11: "Temperature Sensor",
+            CH15: "Supply Monitor"
+        },
+    }
 }
 
 exports = {

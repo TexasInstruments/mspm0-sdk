@@ -1,7 +1,7 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 
 const { getDefaultValue } = system.getScript("./defaultValue.js");
-const { isDeviceM0G, getUnitPrefix } = system.getScript("/ti/driverlib/Common.js");
+const { isDeviceM0G, isDeviceM0C, getUnitPrefix } = system.getScript("/ti/driverlib/Common.js");
 
 function validatePinmux(inst, validation){
 	/* CLK_OUT validation */
@@ -367,7 +367,22 @@ function validClkOutPinSet(inst){
 function pinmuxRequirements(inst)
 {
     let resources = [];
-    if(inst.enable){
+	let signalTypes = {
+		lfxInPin    : ["LFXIN"],
+		lfxOutPin   : ["LFXOUT"],
+		lfclkInPin  : ["LFXOUT"],
+		hfxInPin    : ["LFXIN"],
+		hfxOutPin   : ["HFXOUT"],
+		hfclkInPin  : ["HFXOUT"],
+		roscPin     : ["ROSC"],
+		clkOutPin   : ["CLK_OUT"],
+		fccInPin	: ["FCC_IN"],
+	};
+	if(isDeviceM0C()){
+		signalTypes.lfclkInPin = ["LFCLKIN"];
+		signalTypes.hfclkInPin = ["HFCLKIN"];
+	}
+	if(inst.enable){
         switch(inst.$name){
             case "LFXT":
                 resources.push({
@@ -382,11 +397,19 @@ function pinmuxRequirements(inst)
                 });
                 break;
             case "LFCLKEXT":
-                resources.push({
-                    name            : "lfclkInPin",
-                    displayName     : "LFCLK In",
-                    interfaceNames  : ["LFXOUT"],
-                });
+				if(!isDeviceM0C()){
+					resources.push({
+						name            : "lfclkInPin",
+						displayName     : "LFCLK In",
+						interfaceNames  : ["LFXOUT"],
+					});
+				} else {
+					resources.push({
+						name            : "lfclkInPin",
+						displayName     : "LFCLK In",
+						interfaceNames  : ["LFCLKIN"],
+					});
+				}
                 break;
             case "HFXT":
                 resources.push({
@@ -401,11 +424,19 @@ function pinmuxRequirements(inst)
                 });
                 break;
             case "HFCLKEXT":
-                resources.push({
-                    name            : "hfclkInPin",
-                    displayName     : "HFCLK In",
-                    interfaceNames  : ["HFXOUT"],
-                });
+				if(!isDeviceM0C()){
+					resources.push({
+						name            : "hfclkInPin",
+						displayName     : "HFCLK In",
+						interfaceNames  : ["HFXOUT"],
+					});
+				} else {
+					resources.push({
+						name            : "hfclkInPin",
+						displayName     : "HFCLK In",
+						interfaceNames  : ["HFCLKIN"],
+					});
+				}
                 break;
 			case "CLKOUT":
 				resources.push({
@@ -432,18 +463,9 @@ function pinmuxRequirements(inst)
         interfaceName : "SYSCTL",
 		canShareWith  : "CLOCK_TREE",
         resources     : resources,
-		signalTypes   : {
-            lfxInPin    : ["LFXIN"],
-            lfxOutPin   : ["LFXOUT"],
-            lfclkInPin  : ["LFXOUT"],
-            hfxInPin    : ["LFXIN"],
-            hfxOutPin   : ["HFXOUT"],
-            hfclkInPin  : ["HFXOUT"],
-            roscPin     : ["ROSC"],
-            clkOutPin   : ["CLK_OUT"],
-			fccInPin	: ["FCC_IN"],
-        }
+		signalTypes   : signalTypes
     };
+
 	if(resources.length > 0){
 		return [sysctl];
 	} else {

@@ -32,8 +32,7 @@
 
 #include "ti_msp_dl_config.h"
 
-uint8_t data = 0;
-
+volatile uint8_t gEchoData = 0;
 int main(void)
 {
     SYSCFG_DL_init();
@@ -51,8 +50,10 @@ void UART_0_INST_IRQHandler(void)
 {
     switch (DL_UART_Main_getPendingInterrupt(UART_0_INST)) {
         case DL_UART_MAIN_IIDX_RX:
-            data = DL_UART_Main_receiveData(UART_0_INST);
-            DL_UART_Main_transmitData(UART_0_INST, data);
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+            gEchoData = DL_UART_Main_receiveData(UART_0_INST);
+            DL_UART_Main_transmitData(UART_0_INST, gEchoData);
             break;
         default:
             break;

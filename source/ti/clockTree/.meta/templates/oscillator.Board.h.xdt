@@ -54,10 +54,10 @@
 % /* ROSC pins */
 %       let roscPinName = "roscPin";
 %       let roscPackagePin = sysoscInst.peripheral[roscPinName].$solution.packagePinName;
-%       let roscPinCM = system.deviceData.devicePins[roscPackagePin].attributes.iomux_pincm;
+%       let roscPinCM = Common.getPinCM(roscPackagePin,sysoscInst,"ROSC");
 %       let roscGpioName = system.deviceData.devicePins[roscPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let roscPort = Common.getGPIOPort(roscGpioName);
-%       let roscGpioPin = Common.getGPIONumber(roscGpioName);
+%       let roscPort = Common.getGPIOPortMultiPad(roscPackagePin,sysoscInst,"ROSC");
+%       let roscGpioPin = Common.getGPIONumberMultiPad(roscPackagePin,sysoscInst,"ROSC");
 % let roscPortStr = "#define GPIO_ROSC_PORT";
 `roscPortStr.padEnd(40," ")+roscPort.padStart(40, " ")`
 % let roscPinStr = "#define GPIO_ROSC_PIN";

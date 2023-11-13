@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRV8300Dxxx-EVM Hardware User Guide &mdash; Hall_sensored_Motor_Control_Software_User_Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DRV8311 GUI User Guide" href="../drv8311/DRV8311_GUI_User_Guide.html" />
+    <link rel="prev" title="DRV8300 GUI User Guide" href="DRV8300_GUI_User_Guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Hall_sensored_Motor_Control_Software_User_Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Hall_sensored_Trap_Motor_Control_library.html">BLDC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MSPM0_Sensored_Trap_Software_Users_Guide.html">MSPM0 Sensored Trap Software User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DRV8300_GUI_User_Guide.html">DRV8300 GUI User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8300Dxxx-EVM Hardware User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-required">2. Hardware Required</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-setup">3. Hardware Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8311/DRV8311_GUI_User_Guide.html">DRV8311 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8311/DRV8311_Hardware_User_Guide.html">DRV8311HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8316/DRV8316_GUI_User_Guide.html">DRV8316 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8316/DRV8316_Hardware_User_Guide.html">DRV8316REVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8317/DRV8317_GUI_User_Guide.html">DRV8317 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8317/DRV8317_Hardware_User_Guide.html">DRV8317HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8323/DRV8323_GUI_User_Guide.html">DRV8323 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8323/DRV8323_Hardware_User_Guide.html">DRV8323RHEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8328/DRV8328_GUI_User_Guide.html">DRV8328 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8328/DRV8328_Hardware_User_Guide.html">DRV8328AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0G3507/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0G3507/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L1306/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L1306/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8353/DRV8353_GUI_User_Guide.html">DRV8353 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8353/DRV8353_Hardware_User_Guide.html">DRV8353RHEVM Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Hall_sensored_Motor_Control_Software_User_Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DRV8300Dxxx-EVM Hardware User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drv8300dxxx-evm-hardware-user-guide">
+<h1>DRV8300Dxxx-EVM Hardware User Guide<a class="headerlink" href="#drv8300dxxx-evm-hardware-user-guide" title="Permalink to this heading">¶</a></h1>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>To spin the BLDC motor with the DRV8300Dxxx-EVM, the user needs to modify some jumpers on the MSPM0 LaunchPad, connect the EVM pins to the LaunchPad, connect the motor phases and hall sensors to the DRV hardware and power on the supply.</p>
+</section>
+<section id="hardware-required">
+<h2>2. Hardware Required<a class="headerlink" href="#hardware-required" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a> - MSPM0G3507 Launchpad</p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/DRV8300DRGE-EVM">DRV8300Dxxx-EVM</a> - DRV8300Dxxx-EVM evaluation module</p></li>
+<li><p>DC Power supply that supports the required voltage and current</p></li>
+<li><p>BLDC Motor</p></li>
+<li><p>Micro-USB cable</p></li>
+</ul>
+</section>
+<section id="hardware-setup">
+<h2>3. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Connect the jumpers J21 and J22 on the LP-MSPM0G3507 to the BP position</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../../_images/jumpers_image.png" />
+</figure>
+<ol class="arabic" start="2">
+<li><p>If using External ADC reference resistor R22 on LP-MSPM0G3507 needs to be populated and your reference voltage should be applied to PA23 accessible on the bottom header row of the launchpad.</p></li>
+<li><p>Connect the LP-MSPM0G3507 to the DRV8300Dxxx-EVM using the jumper wire connections in the table below.</p>
+<figure class="align-default">
+<img alt="" src="doc_guide-srcs/drv8300/images/schematic.png" />
+</figure>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span><span class="n">Connection</span> <span class="o">|</span><span class="n">MSPM0G3507</span><span class="o">|</span><span class="n">DRV8300Dxxx</span><span class="o">-</span><span class="n">EVM</span> <span class="o">|</span><span class="n">Jumper</span> <span class="n">Notes</span><span class="o">|</span>
+<span class="o">|</span><span class="p">:</span><span class="o">-------|</span><span class="p">:</span><span class="o">-------</span><span class="p">:</span><span class="o">|</span><span class="p">:</span><span class="o">-------</span><span class="p">:</span><span class="o">|-----------</span><span class="p">:</span><span class="o">|</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">A</span> <span class="n">HS</span> <span class="nb">input</span><span class="o">|</span><span class="n">PB4</span><span class="o">|</span><span class="n">INHA</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">A</span> <span class="n">LS</span> <span class="nb">input</span><span class="o">|</span><span class="n">PB1</span><span class="o">|</span><span class="n">INLA</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">B</span> <span class="n">HS</span> <span class="nb">input</span><span class="o">|</span><span class="n">PA28</span><span class="o">|</span><span class="n">INHB</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">B</span> <span class="n">LS</span> <span class="nb">input</span><span class="o">|</span><span class="n">PA31</span><span class="o">|</span><span class="n">INLB</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">C</span> <span class="n">HS</span> <span class="nb">input</span><span class="o">|</span><span class="n">PB20</span><span class="o">|</span><span class="n">INHC</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">C</span> <span class="n">LS</span> <span class="nb">input</span><span class="o">|</span><span class="n">PB13</span><span class="o">|</span><span class="n">INLC</span><span class="o">||</span>
+<span class="o">|</span><span class="n">HALL</span> <span class="n">A</span> <span class="nb">input</span><span class="o">|</span><span class="n">PA10</span><span class="o">|</span><span class="n">HALLA</span><span class="o">|</span><span class="n">J21</span> <span class="n">connected</span> <span class="n">to</span> <span class="n">BP</span><span class="o">|</span>
+<span class="o">|</span><span class="n">HALL</span> <span class="n">B</span> <span class="nb">input</span><span class="o">|</span><span class="n">PA11</span><span class="o">|</span><span class="n">HALLB</span><span class="o">|</span><span class="n">J22</span> <span class="n">connected</span> <span class="n">to</span> <span class="n">BP</span><span class="o">|</span>
+<span class="o">|</span><span class="n">HALL</span> <span class="n">C</span> <span class="nb">input</span><span class="o">|</span><span class="n">PA12</span><span class="o">|</span><span class="n">HALLC</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Bus</span> <span class="n">voltage</span> <span class="nb">input</span><span class="o">|</span><span class="n">PA25</span><span class="o">|</span><span class="n">SEN_PVDD</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">A</span> <span class="n">voltage</span><span class="o">|</span><span class="n">PB19</span><span class="o">|</span><span class="n">VSENA</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">B</span> <span class="n">voltage</span><span class="o">|</span><span class="n">PA22</span><span class="o">|</span><span class="n">VSENB</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">C</span> <span class="n">voltage</span><span class="o">|</span><span class="n">PB18</span><span class="o">|</span><span class="n">VSENC</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">A</span> <span class="n">current</span><span class="o">|</span><span class="n">PA24</span><span class="o">|</span><span class="n">ISENA</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">B</span> <span class="n">current</span><span class="o">|</span><span class="n">PA17</span><span class="o">|</span><span class="n">ISENB</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Phase</span> <span class="n">C</span> <span class="n">current</span><span class="o">|</span><span class="n">PA18</span><span class="o">|</span><span class="n">ISENC</span><span class="o">||</span>
+<span class="o">|</span><span class="n">DRV</span> <span class="n">fault</span> <span class="nb">input</span><span class="o">|</span><span class="n">PB12</span><span class="o">|</span><span class="n">FAULT</span><span class="o">||</span>
+<span class="o">|</span><span class="n">Ground</span><span class="o">|</span><span class="n">GND</span><span class="o">|</span><span class="n">AGND</span><span class="o">|</span>
+</pre></div>
+</div>
+</li>
+<li><p>Connect the 3 phases of the motor to OUTA, OUTB, and OUTC of the motor connector terminal block on the DRV8300Dxxx-EVM and the HALLA/B/C, Hall power, and Hall GND signals to the Hall connector block. <strong>Note: The user should identify the correct phases of motor from motor datasheets, this will vary from motor to motor.</strong></p></li>
+<li><p>Connect the positive and negative of the power supply to VM and PGND/AGND of the power connector terminal block to the DRV8300Dxxx-EVM. Don’t turn on the power supply output.</p></li>
+<li><p>Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.</p></li>
+<li><p>Set the power supply to a motor voltage between 4.5V to 34V within the DRV8316 specifications. Turn on the power supply. The green VM LED on the DRV8300Dxxx-EVM should turn on.</p></li>
+<li><p>Once all the setup is done, spin the motor using the software or GUI. Refer to <a class="reference external" href="../MSPM0_Sensored_Trap_Software_Users_Guide.html">Software User Guide</a> or <a class="reference external" href="DRV8300_GUI_User_Guide.html">GUI User Guide</a> for more details.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="DRV8300_GUI_User_Guide.html" class="btn btn-neutral float-left" title="DRV8300 GUI User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../drv8311/DRV8311_GUI_User_Guide.html" class="btn btn-neutral float-right" title="DRV8311 GUI User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -88,11 +88,17 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_a_l___p_w_m.html">HAL_PWM</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define PWM instance.  <a href="struct_h_a_l___p_w_m.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_a_l___c_a_p_t_u_r_e.html">HAL_CAPTURE</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define Capture instance.  <a href="struct_h_a_l___c_a_p_t_u_r_e.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_a_l___t_i_m.html">HAL_TIM</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define TIM instance.  <a href="struct_h_a_l___t_i_m.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_a_l___g_p_i_o.html">HAL_GPIO</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define GPIO instance.  <a href="struct_h_a_l___g_p_i_o.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_a_l___c_o_m_p.html">HAL_COMP</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define COMP instance.  <a href="struct_h_a_l___c_o_m_p.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -117,6 +123,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab430123dbdb2851dddbab1d13822c55">HAL_TIM_PERIPHERAL_CLOCK_SOURCE_MHZ</a>&#160;&#160;&#160;(80)</td></tr>
 <tr class="memdesc:gaab430123dbdb2851dddbab1d13822c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the source clock for the timer peripherals. <br /></td></tr>
 <tr class="separator:gaab430123dbdb2851dddbab1d13822c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeced806699595f99941fe814197fbfae"><td class="memItemLeft" align="right" valign="top"><a id="gaeced806699595f99941fe814197fbfae"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaeced806699595f99941fe814197fbfae">CRC_BYTES_TO_WORD_RSHIFT</a>&#160;&#160;&#160;(2)</td></tr>
+<tr class="memdesc:gaeced806699595f99941fe814197fbfae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Right shift to convert bytes to words. <br /></td></tr>
+<tr class="separator:gaeced806699595f99941fe814197fbfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -127,10 +137,19 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a5406d6bb173e71d0d1355c61b9931bd4">HAL_PWM_CHANNEL_2</a>, 
 <br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0a934c77fd57e44b6460ca123855923814">HAL_PWM_CHANNEL_3</a>, 
+<br />
 &#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga4b399aa6dfb2545177dec89f4012ecd0ac0f17b4301fafcc955ba248660b04bd4">HAL_PWM_CHANNEL_MAX</a>
 <br />
  }</td></tr>
 <tr class="separator:ga4b399aa6dfb2545177dec89f4012ecd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14f61516f2183896fa7b958975fbdd93"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> { <br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga14f61516f2183896fa7b958975fbdd93a4355ee038721380d532f530e0a1bedc1">HAL_CAPTURE_CHANNEL_0</a> = 0, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga14f61516f2183896fa7b958975fbdd93a47e690483e9b7f7ca2cfc74df6c76fe6">HAL_CAPTURE_CHANNEL_MAX</a>
+<br />
+ }</td></tr>
+<tr class="separator:ga14f61516f2183896fa7b958975fbdd93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8260c3ea43df1b18f680c5c33e8a498b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga8260c3ea43df1b18f680c5c33e8a498b">HAL_PWM_FAULT</a> { <br />
 &#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga8260c3ea43df1b18f680c5c33e8a498bafac064e8fdbc5a4ad66423d97570539e">HAL_PWM_FAULT_0</a> = 0, 
 <br />
@@ -144,6 +163,8 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga45835f1280003f7162449a532ed87c1aa2a1cce310fc2dd4e130aea2b414dae84">HAL_ADC_CHANNEL_1</a>, 
 <br />
 &#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga45835f1280003f7162449a532ed87c1aadad6ec77ad651e4baceaeec7d8aab4ab">HAL_ADC_CHANNEL_2</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga45835f1280003f7162449a532ed87c1aa2103fb807d6c5acafc080a8b23c59685">HAL_ADC_CHANNEL_3</a>, 
 <br />
 &#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga45835f1280003f7162449a532ed87c1aaee8f9cfa84acbe52867dbe58c0b06c95">HAL_ADC_CHANNEL_MAX</a>
 <br />
@@ -163,6 +184,17 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:ga81d35b817c14b508e1aa2c4f581b79ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac257289f6fc1cf8c78484521aa73f4d7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac257289f6fc1cf8c78484521aa73f4d7">HAL_COMP_CHANNEL</a> { <br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggac257289f6fc1cf8c78484521aa73f4d7a26b787767fa3a13d2dcd8aed7e44fed7">HAL_COMP_CHANNEL_0</a> = 0, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggac257289f6fc1cf8c78484521aa73f4d7a325050977683a6010d3079b18d2899a6">HAL_COMP_CHANNEL_1</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggac257289f6fc1cf8c78484521aa73f4d7a4ab290c56d40c32362ee3ff8493ff006">HAL_COMP_CHANNEL_2</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggac257289f6fc1cf8c78484521aa73f4d7aed350686a05f5b33a823d549c9e056fb">HAL_COMP_CHANNEL_MAX</a>
+<br />
+ }</td></tr>
+<tr class="separator:gac257289f6fc1cf8c78484521aa73f4d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadd9593516aa7691021eeb01bcecec6a9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gadd9593516aa7691021eeb01bcecec6a9">HAL_SPI_CHANNEL</a> { <br />
 &#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ggadd9593516aa7691021eeb01bcecec6a9a87d6d116f93b166e76a06995ea424821">HAL_SPI_CHANNEL_0</a> = 0, 
 <br />
@@ -190,6 +222,13 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:gac977ba35c1fccd39a12331665d761ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c08746561d8a0bdc8457253d76d9ac2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga2c08746561d8a0bdc8457253d76d9ac2">HAL_MEMORY</a> { <br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga2c08746561d8a0bdc8457253d76d9ac2acf6d51a60ccfaec4819755d288975e32">HAL_MEMORY_FLASH_PARAMS_BASE_ADDRESS</a> = 0x0001FC00, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gga2c08746561d8a0bdc8457253d76d9ac2af6d20f0d5a8d093da476c8308f52bb9d">HAL_MEMORY_SRAM_PARAMS_BASE_ADDRESS</a> = 0x20207C00
+<br />
+ }</td></tr>
+<tr class="separator:ga2c08746561d8a0bdc8457253d76d9ac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -219,9 +258,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:ga382308ef6f348f302aef7b7e0a8ab6f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga382308ef6f348f302aef7b7e0a8ab6f0">HAL_enablePWMInterrupt</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> pwmChan)</td></tr>
 <tr class="memdesc:ga382308ef6f348f302aef7b7e0a8ab6f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable PWM interrupt.  <a href="#ga382308ef6f348f302aef7b7e0a8ab6f0">More...</a><br /></td></tr>
 <tr class="separator:ga382308ef6f348f302aef7b7e0a8ab6f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadb9581a360ce26ec6bf2be99f80a297d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gadb9581a360ce26ec6bf2be99f80a297d">HAL_disablePWMInterrupts</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> pwmChan)</td></tr>
-<tr class="memdesc:gadb9581a360ce26ec6bf2be99f80a297d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable PWM interrupt.  <a href="#gadb9581a360ce26ec6bf2be99f80a297d">More...</a><br /></td></tr>
-<tr class="separator:gadb9581a360ce26ec6bf2be99f80a297d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6a8091903187ce14b406577aaabdcfb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga6a8091903187ce14b406577aaabdcfb0">HAL_disablePWMInterrupt</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> pwmChan)</td></tr>
+<tr class="memdesc:ga6a8091903187ce14b406577aaabdcfb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable PWM interrupt.  <a href="#ga6a8091903187ce14b406577aaabdcfb0">More...</a><br /></td></tr>
+<tr class="separator:ga6a8091903187ce14b406577aaabdcfb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb46d10737ab87378ab79938d252d3ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gacb46d10737ab87378ab79938d252d3ef">HAL_enableCaptureInterrupt</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> captureChan)</td></tr>
+<tr class="memdesc:gacb46d10737ab87378ab79938d252d3ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Capture interrupt.  <a href="#gacb46d10737ab87378ab79938d252d3ef">More...</a><br /></td></tr>
+<tr class="separator:gacb46d10737ab87378ab79938d252d3ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1bc0396ca81caf0d44da47daa1831d42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga1bc0396ca81caf0d44da47daa1831d42">HAL_disableCaptureInterrupt</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> captureChan)</td></tr>
+<tr class="memdesc:ga1bc0396ca81caf0d44da47daa1831d42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable Capture interrupt.  <a href="#ga1bc0396ca81caf0d44da47daa1831d42">More...</a><br /></td></tr>
+<tr class="separator:ga1bc0396ca81caf0d44da47daa1831d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga60a0156f2b381eb6f1d90134bd7db5cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga60a0156f2b381eb6f1d90134bd7db5cc">HAL_setGPIOVal</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga81d35b817c14b508e1aa2c4f581b79ac">HAL_GPIO_OUT_PIN</a> gpioPin, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac977ba35c1fccd39a12331665d761ce5">HAL_GPIO_VALUE</a> value)</td></tr>
 <tr class="memdesc:ga60a0156f2b381eb6f1d90134bd7db5cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set value to GPIO pin.  <a href="#ga60a0156f2b381eb6f1d90134bd7db5cc">More...</a><br /></td></tr>
 <tr class="separator:ga60a0156f2b381eb6f1d90134bd7db5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,12 +327,57 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:gae9bfbd6852233c25cc7b73c89c1f2ec4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gae9bfbd6852233c25cc7b73c89c1f2ec4">HAL_PWMDisableChannel</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> pwmChan)</td></tr>
 <tr class="memdesc:gae9bfbd6852233c25cc7b73c89c1f2ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the PWM channel and overrides the channel and complementary outputs to low.  <a href="#gae9bfbd6852233c25cc7b73c89c1f2ec4">More...</a><br /></td></tr>
 <tr class="separator:gae9bfbd6852233c25cc7b73c89c1f2ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga25d19e55c50885ae948706a6697c33f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga25d19e55c50885ae948706a6697c33f0">HAL_PWMForceHigh</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> pwmChan)</td></tr>
+<tr class="memdesc:ga25d19e55c50885ae948706a6697c33f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Force the PWM out to high and complement out to low.  <a href="#ga25d19e55c50885ae948706a6697c33f0">More...</a><br /></td></tr>
+<tr class="separator:ga25d19e55c50885ae948706a6697c33f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf3effcd143204c3b2b9883ac413650b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaf3effcd143204c3b2b9883ac413650b9">HAL_PWMForceLow</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> pwmChan)</td></tr>
+<tr class="memdesc:gaf3effcd143204c3b2b9883ac413650b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Force the PWM out to low and complement out to high.  <a href="#gaf3effcd143204c3b2b9883ac413650b9">More...</a><br /></td></tr>
+<tr class="separator:gaf3effcd143204c3b2b9883ac413650b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7bc7fededb66c0872d1d2d933d76963d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga7bc7fededb66c0872d1d2d933d76963d">HAL_clearPWMFault</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga8260c3ea43df1b18f680c5c33e8a498b">HAL_PWM_FAULT</a> pwmFault)</td></tr>
 <tr class="memdesc:ga7bc7fededb66c0872d1d2d933d76963d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the PWM timer fault status.  <a href="#ga7bc7fededb66c0872d1d2d933d76963d">More...</a><br /></td></tr>
 <tr class="separator:ga7bc7fededb66c0872d1d2d933d76963d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e06f61b9d819b878c2a0a8f61c53424"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga3e06f61b9d819b878c2a0a8f61c53424">HAL_getPWMFaultStatus</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga8260c3ea43df1b18f680c5c33e8a498b">HAL_PWM_FAULT</a> pwmFault)</td></tr>
 <tr class="memdesc:ga3e06f61b9d819b878c2a0a8f61c53424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the PWM timer fault status.  <a href="#ga3e06f61b9d819b878c2a0a8f61c53424">More...</a><br /></td></tr>
 <tr class="separator:ga3e06f61b9d819b878c2a0a8f61c53424"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6154c789ce33cb59aaa7760ccfd73972"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga6154c789ce33cb59aaa7760ccfd73972">HAL_unprotectFLASH</a> (uint32_t baseAddress)</td></tr>
+<tr class="memdesc:ga6154c789ce33cb59aaa7760ccfd73972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unprotects the sector with the given base address.  <a href="#ga6154c789ce33cb59aaa7760ccfd73972">More...</a><br /></td></tr>
+<tr class="separator:ga6154c789ce33cb59aaa7760ccfd73972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad22aae4111f182f37aae6c944ca7dd8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gad22aae4111f182f37aae6c944ca7dd8e">HAL_eraseFLASH</a> (uint32_t baseAddress)</td></tr>
+<tr class="memdesc:gad22aae4111f182f37aae6c944ca7dd8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erase the sector with the given base address.  <a href="#gad22aae4111f182f37aae6c944ca7dd8e">More...</a><br /></td></tr>
+<tr class="separator:gad22aae4111f182f37aae6c944ca7dd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f5dd3e87dcf06fd2ec62036f9b3b7c9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga6f5dd3e87dcf06fd2ec62036f9b3b7c9">HAL_copyMemoryBlock</a> (void *dstAddr, void *srcAddr, uint32_t len, uint32_t startAddr)</td></tr>
+<tr class="memdesc:ga6f5dd3e87dcf06fd2ec62036f9b3b7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the SRAM memory block to flash.  <a href="#ga6f5dd3e87dcf06fd2ec62036f9b3b7c9">More...</a><br /></td></tr>
+<tr class="separator:ga6f5dd3e87dcf06fd2ec62036f9b3b7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga738f8adace32e0b2370339de88294516"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga738f8adace32e0b2370339de88294516">HAL_getCRC</a> (uint32_t seed, void *ptr, uint32_t size)</td></tr>
+<tr class="memdesc:ga738f8adace32e0b2370339de88294516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the 32bit CRC value.  <a href="#ga738f8adace32e0b2370339de88294516">More...</a><br /></td></tr>
+<tr class="separator:ga738f8adace32e0b2370339de88294516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09728b20e774195bbc867f9c42347d58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga09728b20e774195bbc867f9c42347d58">HAL_supressCompEvent</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> pwmChan)</td></tr>
+<tr class="memdesc:ga09728b20e774195bbc867f9c42347d58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suppresses the compare event.  <a href="#ga09728b20e774195bbc867f9c42347d58">More...</a><br /></td></tr>
+<tr class="separator:ga09728b20e774195bbc867f9c42347d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga42361f8bb398c70814af10a2fcbc3aea"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga42361f8bb398c70814af10a2fcbc3aea">HAL_setRepeatCounter</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> pwmChan, uint8_t value)</td></tr>
+<tr class="memdesc:ga42361f8bb398c70814af10a2fcbc3aea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Load value for the repeat counter.  <a href="#ga42361f8bb398c70814af10a2fcbc3aea">More...</a><br /></td></tr>
+<tr class="separator:ga42361f8bb398c70814af10a2fcbc3aea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaec8466aca5202a0a2b18263e465c007"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaaec8466aca5202a0a2b18263e465c007">HAL_setCaptureCount</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> captureChan, uint32_t count)</td></tr>
+<tr class="memdesc:gaaec8466aca5202a0a2b18263e465c007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set value to counter register of timer.  <a href="#gaaec8466aca5202a0a2b18263e465c007">More...</a><br /></td></tr>
+<tr class="separator:gaaec8466aca5202a0a2b18263e465c007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae156653fe5dcb8fd4ed0771ee8dbcf2b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gae156653fe5dcb8fd4ed0771ee8dbcf2b">HAL_getCaptureValue</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> captureChan)</td></tr>
+<tr class="memdesc:gae156653fe5dcb8fd4ed0771ee8dbcf2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the captured counter value.  <a href="#gae156653fe5dcb8fd4ed0771ee8dbcf2b">More...</a><br /></td></tr>
+<tr class="separator:gae156653fe5dcb8fd4ed0771ee8dbcf2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4dbfd547719954c22204980f42df9439"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4dbfd547719954c22204980f42df9439">HAL_setCaptureSubChannel</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> captureChan, uint8_t value)</td></tr>
+<tr class="memdesc:ga4dbfd547719954c22204980f42df9439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set subscriber channel id to capture channel.  <a href="#ga4dbfd547719954c22204980f42df9439">More...</a><br /></td></tr>
+<tr class="separator:ga4dbfd547719954c22204980f42df9439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8e1f65f873739ee286aab77c3f49ab37"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga8e1f65f873739ee286aab77c3f49ab37">HAL_getCaptureLoadValue</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> captureChan)</td></tr>
+<tr class="memdesc:ga8e1f65f873739ee286aab77c3f49ab37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the load value of the timer associated with the capture channel.  <a href="#ga8e1f65f873739ee286aab77c3f49ab37">More...</a><br /></td></tr>
+<tr class="separator:ga8e1f65f873739ee286aab77c3f49ab37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f4ee79559c7faac34b8bc8c102bd814"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga7f4ee79559c7faac34b8bc8c102bd814">HAL_clearCaptureInterruptStatus</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> captureChan)</td></tr>
+<tr class="memdesc:ga7f4ee79559c7faac34b8bc8c102bd814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the interrupt status of the capture channel.  <a href="#ga7f4ee79559c7faac34b8bc8c102bd814">More...</a><br /></td></tr>
+<tr class="separator:ga7f4ee79559c7faac34b8bc8c102bd814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb213f75f16b5ad359ca8f545dc994e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gacb213f75f16b5ad359ca8f545dc994e6">HAL_setCOMPDAC</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac257289f6fc1cf8c78484521aa73f4d7">HAL_COMP_CHANNEL</a> compChan, uint8_t value)</td></tr>
+<tr class="memdesc:gacb213f75f16b5ad359ca8f545dc994e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the DAC value for the comp associated with the COMP channel.  <a href="#gacb213f75f16b5ad359ca8f545dc994e6">More...</a><br /></td></tr>
+<tr class="separator:gacb213f75f16b5ad359ca8f545dc994e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabc5ccd9e71ab28b9403eed8d63b69bb4"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gabc5ccd9e71ab28b9403eed8d63b69bb4">HAL_getCOMPPubChannelID</a> (<a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac257289f6fc1cf8c78484521aa73f4d7">HAL_COMP_CHANNEL</a> compChan)</td></tr>
+<tr class="memdesc:gabc5ccd9e71ab28b9403eed8d63b69bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the publisher channel id for the COMP channel.  <a href="#gabc5ccd9e71ab28b9403eed8d63b69bb4">More...</a><br /></td></tr>
+<tr class="separator:gabc5ccd9e71ab28b9403eed8d63b69bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -339,7 +429,29 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </td></tr>
 <tr><td class="fieldname"><a id="gga4b399aa6dfb2545177dec89f4012ecd0a5406d6bb173e71d0d1355c61b9931bd4"></a>HAL_PWM_CHANNEL_2&#160;</td><td class="fielddoc"><p>Index associated to PWM channel 2 </p>
 </td></tr>
+<tr><td class="fieldname"><a id="gga4b399aa6dfb2545177dec89f4012ecd0a934c77fd57e44b6460ca123855923814"></a>HAL_PWM_CHANNEL_3&#160;</td><td class="fielddoc"><p>Index associated to PWM channel 3 </p>
+</td></tr>
 <tr><td class="fieldname"><a id="gga4b399aa6dfb2545177dec89f4012ecd0ac0f17b4301fafcc955ba248660b04bd4"></a>HAL_PWM_CHANNEL_MAX&#160;</td><td class="fielddoc"><p>Total number of PWM channels </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga14f61516f2183896fa7b958975fbdd93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga14f61516f2183896fa7b958975fbdd93">&sect;&nbsp;</a></span>HAL_CAPTURE_CHANNEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga14f61516f2183896fa7b958975fbdd93a4355ee038721380d532f530e0a1bedc1"></a>HAL_CAPTURE_CHANNEL_0&#160;</td><td class="fielddoc"><p>Index associated to capture channel 0 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga14f61516f2183896fa7b958975fbdd93a47e690483e9b7f7ca2cfc74df6c76fe6"></a>HAL_CAPTURE_CHANNEL_MAX&#160;</td><td class="fielddoc"><p>Total number of capture channels </p>
 </td></tr>
 </table>
 
@@ -383,6 +495,8 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </td></tr>
 <tr><td class="fieldname"><a id="gga45835f1280003f7162449a532ed87c1aadad6ec77ad651e4baceaeec7d8aab4ab"></a>HAL_ADC_CHANNEL_2&#160;</td><td class="fielddoc"><p>Index associated to ADC channel 2 </p>
 </td></tr>
+<tr><td class="fieldname"><a id="gga45835f1280003f7162449a532ed87c1aa2103fb807d6c5acafc080a8b23c59685"></a>HAL_ADC_CHANNEL_3&#160;</td><td class="fielddoc"><p>Index associated to ADC channel 3 </p>
+</td></tr>
 <tr><td class="fieldname"><a id="gga45835f1280003f7162449a532ed87c1aaee8f9cfa84acbe52867dbe58c0b06c95"></a>HAL_ADC_CHANNEL_MAX&#160;</td><td class="fielddoc"><p>Total number of ADC channels </p>
 </td></tr>
 </table>
@@ -424,6 +538,30 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga81d35b817c14b508e1aa2c4f581b79acacacc2866a87a044bb829838a8a144e68"></a>HAL_GPIO_OUT_PIN_0&#160;</td><td class="fielddoc"><p>Index associated to output GPIO PIN 0 </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga81d35b817c14b508e1aa2c4f581b79aca084b87fd8890fcda2b85f781a8ec11df"></a>HAL_GPIO_OUT_PIN_MAX&#160;</td><td class="fielddoc"><p>Total number of output GPIO pins </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gac257289f6fc1cf8c78484521aa73f4d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac257289f6fc1cf8c78484521aa73f4d7">&sect;&nbsp;</a></span>HAL_COMP_CHANNEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac257289f6fc1cf8c78484521aa73f4d7">HAL_COMP_CHANNEL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggac257289f6fc1cf8c78484521aa73f4d7a26b787767fa3a13d2dcd8aed7e44fed7"></a>HAL_COMP_CHANNEL_0&#160;</td><td class="fielddoc"><p>Index associated to COMP channel 0 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac257289f6fc1cf8c78484521aa73f4d7a325050977683a6010d3079b18d2899a6"></a>HAL_COMP_CHANNEL_1&#160;</td><td class="fielddoc"><p>Index associated to COMP channel 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac257289f6fc1cf8c78484521aa73f4d7a4ab290c56d40c32362ee3ff8493ff006"></a>HAL_COMP_CHANNEL_2&#160;</td><td class="fielddoc"><p>Index associated to COMP channel 2 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac257289f6fc1cf8c78484521aa73f4d7aed350686a05f5b33a823d549c9e056fb"></a>HAL_COMP_CHANNEL_MAX&#160;</td><td class="fielddoc"><p>Total number of COMP channels </p>
 </td></tr>
 </table>
 
@@ -490,6 +628,26 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggac977ba35c1fccd39a12331665d761ce5a6e486d371fe4a56f9c15a2e95026b862"></a>HAL_GPIO_VALUE_LOW&#160;</td><td class="fielddoc"><p>GPIO set to low </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggac977ba35c1fccd39a12331665d761ce5abb0433af987db30550c494a7d4f62b1b"></a>HAL_GPIO_VALUE_HIGH&#160;</td><td class="fielddoc"><p>GPIO set to high </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga2c08746561d8a0bdc8457253d76d9ac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2c08746561d8a0bdc8457253d76d9ac2">&sect;&nbsp;</a></span>HAL_MEMORY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga2c08746561d8a0bdc8457253d76d9ac2">HAL_MEMORY</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga2c08746561d8a0bdc8457253d76d9ac2acf6d51a60ccfaec4819755d288975e32"></a>HAL_MEMORY_FLASH_PARAMS_BASE_ADDRESS&#160;</td><td class="fielddoc"><p>FLASH motor parameters base address </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga2c08746561d8a0bdc8457253d76d9ac2af6d20f0d5a8d093da476c8308f52bb9d"></a>HAL_MEMORY_SRAM_PARAMS_BASE_ADDRESS&#160;</td><td class="fielddoc"><p>SRAM motor parameters base address </p>
 </td></tr>
 </table>
 
@@ -592,7 +750,7 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaec6d12d067abc0b9595ebf93713c2c1c">HAL_enableADCInterrupt()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga382308ef6f348f302aef7b7e0a8ab6f0">HAL_enablePWMInterrupt()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaec6d12d067abc0b9595ebf93713c2c1c">HAL_enableADCInterrupt()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gacb46d10737ab87378ab79938d252d3ef">HAL_enableCaptureInterrupt()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga382308ef6f348f302aef7b7e0a8ab6f0">HAL_enablePWMInterrupt()</a>.</p>
 
 </div>
 </div>
@@ -621,8 +779,6 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </dl>
 
 <p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga2ebc7cf3557b7d24afa67ab7e4143946">HAL_checkAndEnableIRQ()</a>.</p>
-
-<p>Referenced by <a class="el" href="group___m_d___m_o_d_u_l_e.html#ga3ee9c7732edf2d3af4f3ad9f47497847">DRV8323RS_init()</a>.</p>
 
 </div>
 </div>
@@ -680,14 +836,14 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 
 </div>
 </div>
-<a id="gadb9581a360ce26ec6bf2be99f80a297d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gadb9581a360ce26ec6bf2be99f80a297d">&sect;&nbsp;</a></span>HAL_disablePWMInterrupts()</h2>
+<a id="ga6a8091903187ce14b406577aaabdcfb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6a8091903187ce14b406577aaabdcfb0">&sect;&nbsp;</a></span>HAL_disablePWMInterrupt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void HAL_disablePWMInterrupts </td>
+          <td class="memname">void HAL_disablePWMInterrupt </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a>&#160;</td>
           <td class="paramname"><em>pwmChan</em></td><td>)</td>
@@ -700,6 +856,60 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pwmChan</td><td>A PWM channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gacb46d10737ab87378ab79938d252d3ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb46d10737ab87378ab79938d252d3ef">&sect;&nbsp;</a></span>HAL_enableCaptureInterrupt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_enableCaptureInterrupt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>captureChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable Capture interrupt. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">captureChan</td><td>A capture channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga2ebc7cf3557b7d24afa67ab7e4143946">HAL_checkAndEnableIRQ()</a>.</p>
+
+</div>
+</div>
+<a id="ga1bc0396ca81caf0d44da47daa1831d42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1bc0396ca81caf0d44da47daa1831d42">&sect;&nbsp;</a></span>HAL_disableCaptureInterrupt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_disableCaptureInterrupt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>captureChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable Capture interrupt. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">captureChan</td><td>A capture channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -801,7 +1011,7 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the load register value of the timer instance of the specified PWM channel </dd></dl>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gabea2993b3115956235d78b3349db69f8">FOC_setPara()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga711d56f828c6625569cc3d02fe826e25">FOC_setPara()</a>.</p>
 
 </div>
 </div>
@@ -843,7 +1053,7 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 
 <p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab430123dbdb2851dddbab1d13822c55">HAL_TIM_PERIPHERAL_CLOCK_SOURCE_MHZ</a>.</p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gabea2993b3115956235d78b3349db69f8">FOC_setPara()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga711d56f828c6625569cc3d02fe826e25">FOC_setPara()</a>.</p>
 
 </div>
 </div>
@@ -884,7 +1094,7 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 
 <p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga97ed0255b4335c48bc2e6562de4f373d">HAL_getADCVoltage()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac0fd9757e9f332c81a8fba88fbfd8e34">HAL_setFreq()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga85faba0341369e8a94277f0531bf2abb">HAL_setLoadVal()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4220d3f8ea591c0d48b4542c0b360627">HAL_setPWMFreq()</a>.</p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga0cb6c930f3022d1d20148f64225bc17f">FOC_clearFault()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gac4bf377bbb5907f710ff3e34192fadc0">FOC_init()</a>, and <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gab1d73324c488b729c246e8f544d17639">FOC_loop()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga79b327e145e068408a4014d33d864391">FOC_setADCTrig()</a>.</p>
 
 </div>
 </div>
@@ -925,7 +1135,7 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 
 <p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac0fd9757e9f332c81a8fba88fbfd8e34">HAL_setFreq()</a>.</p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gabea2993b3115956235d78b3349db69f8">FOC_setPara()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga5211e24c33ac31603888e78ca7fe3070">HAL_setPWMCcValue()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga711d56f828c6625569cc3d02fe826e25">FOC_setPara()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga5211e24c33ac31603888e78ca7fe3070">HAL_setPWMCcValue()</a>.</p>
 
 </div>
 </div>
@@ -1354,7 +1564,7 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga7bc7fededb66c0872d1d2d933d76963d">HAL_clearPWMFault()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga3e06f61b9d819b878c2a0a8f61c53424">HAL_getPWMFaultStatus()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gae915e61d98a5b6464cf20fa348f39c96">HAL_isSPIRxFifoEmpty()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gae9bfbd6852233c25cc7b73c89c1f2ec4">HAL_PWMDisableChannel()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaefafc7e1c6422c6ef16709bd8ba39d40">HAL_PWMEnableChannel()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga7e643d9052eecef5b6ebae43f45aee9c">HAL_receiveSPIData16()</a>.</p>
+<p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga7bc7fededb66c0872d1d2d933d76963d">HAL_clearPWMFault()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga6f5dd3e87dcf06fd2ec62036f9b3b7c9">HAL_copyMemoryBlock()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gad22aae4111f182f37aae6c944ca7dd8e">HAL_eraseFLASH()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga738f8adace32e0b2370339de88294516">HAL_getCRC()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga3e06f61b9d819b878c2a0a8f61c53424">HAL_getPWMFaultStatus()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gae915e61d98a5b6464cf20fa348f39c96">HAL_isSPIRxFifoEmpty()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gae9bfbd6852233c25cc7b73c89c1f2ec4">HAL_PWMDisableChannel()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaefafc7e1c6422c6ef16709bd8ba39d40">HAL_PWMEnableChannel()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga25d19e55c50885ae948706a6697c33f0">HAL_PWMForceHigh()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaf3effcd143204c3b2b9883ac413650b9">HAL_PWMForceLow()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga7e643d9052eecef5b6ebae43f45aee9c">HAL_receiveSPIData16()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga09728b20e774195bbc867f9c42347d58">HAL_supressCompEvent()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga6154c789ce33cb59aaa7760ccfd73972">HAL_unprotectFLASH()</a>.</p>
 
 <p>Referenced by <a class="el" href="group___m_d___m_o_d_u_l_e.html#ga27346f1ae911c1dd9d8324edc6454b25">DRV8323RS_spiRead()</a>.</p>
 
@@ -1384,7 +1594,7 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga0cb6c930f3022d1d20148f64225bc17f">FOC_clearFault()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gab1d73324c488b729c246e8f544d17639">FOC_loop()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
 
 </div>
 </div>
@@ -1412,7 +1622,63 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga0205fa3b97a608615009f3b2e386ee9f">FOC_setFault()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gac4bf377bbb5907f710ff3e34192fadc0">FOC_init()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gab1d73324c488b729c246e8f544d17639">FOC_loop()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga0205fa3b97a608615009f3b2e386ee9f">FOC_setFault()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+
+</div>
+</div>
+<a id="ga25d19e55c50885ae948706a6697c33f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga25d19e55c50885ae948706a6697c33f0">&sect;&nbsp;</a></span>HAL_PWMForceHigh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_PWMForceHigh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>pwmChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Force the PWM out to high and complement out to low. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pwmChan</td><td>A PWM channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+
+</div>
+</div>
+<a id="gaf3effcd143204c3b2b9883ac413650b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf3effcd143204c3b2b9883ac413650b9">&sect;&nbsp;</a></span>HAL_PWMForceLow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_PWMForceLow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>pwmChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Force the PWM out to low and complement out to high. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pwmChan</td><td>A PWM channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
 
 </div>
 </div>
@@ -1481,6 +1747,477 @@ DL_SPI_CHIP_SELECT&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <p>References <a class="el" href="struct_h_a_l___p_w_m.html#a3a50ff5d664c2234f076ef2f1d2be9ce">HAL_PWM::inst</a>.</p>
 
 <p>Referenced by <a class="el" href="group___m_d___m_o_d_u_l_e.html#gaa408960d0d295b8ff59f2bd24f84ddf6">DRV8323RS_isFaultOccurred()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+
+</div>
+</div>
+<a id="ga6154c789ce33cb59aaa7760ccfd73972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6154c789ce33cb59aaa7760ccfd73972">&sect;&nbsp;</a></span>HAL_unprotectFLASH()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_unprotectFLASH </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddress</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unprotects the sector with the given base address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">baseAddress</td><td>Base address of the sector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga75dd6b3ce92694295ff35d1ba4989330">FOC_writeFLASH()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gad22aae4111f182f37aae6c944ca7dd8e">HAL_eraseFLASH()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+
+</div>
+</div>
+<a id="gad22aae4111f182f37aae6c944ca7dd8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad22aae4111f182f37aae6c944ca7dd8e">&sect;&nbsp;</a></span>HAL_eraseFLASH()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_eraseFLASH </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddress</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erase the sector with the given base address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">baseAddress</td><td>Base address of the sector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga6154c789ce33cb59aaa7760ccfd73972">HAL_unprotectFLASH()</a>.</p>
+
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga75dd6b3ce92694295ff35d1ba4989330">FOC_writeFLASH()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+
+</div>
+</div>
+<a id="ga6f5dd3e87dcf06fd2ec62036f9b3b7c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6f5dd3e87dcf06fd2ec62036f9b3b7c9">&sect;&nbsp;</a></span>HAL_copyMemoryBlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t HAL_copyMemoryBlock </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>dstAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>srcAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>startAddr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the SRAM memory block to flash. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dstAddr</td><td>Starting address in FLASH </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">srcAddr</td><td>Starting address in SRAM </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Length of the data in bytes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">startAddr</td><td>Starting address of the memory section </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns stauts for copy</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>No error </td></tr>
+    <tr><td class="paramname">-1</td><td>Error in copy </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga75dd6b3ce92694295ff35d1ba4989330">FOC_writeFLASH()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+
+</div>
+</div>
+<a id="ga738f8adace32e0b2370339de88294516"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga738f8adace32e0b2370339de88294516">&sect;&nbsp;</a></span>HAL_getCRC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HAL_getCRC </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>seed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the 32bit CRC value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">seed</td><td>The seed for the CRC to start generating a signature from </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>Pointer to the data to compute CRC </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>Size of the block of data in bytes </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the CRC value </dd></dl>
+
+<p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaeced806699595f99941fe814197fbfae">CRC_BYTES_TO_WORD_RSHIFT</a>.</p>
+
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gabdbce38486e1224d703ae841385dacdf">FOC_initFLASH()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga75dd6b3ce92694295ff35d1ba4989330">FOC_writeFLASH()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+
+</div>
+</div>
+<a id="ga09728b20e774195bbc867f9c42347d58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga09728b20e774195bbc867f9c42347d58">&sect;&nbsp;</a></span>HAL_supressCompEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_supressCompEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>pwmChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Suppresses the compare event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pwmChan</td><td>A PWM channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#gac4bf377bbb5907f710ff3e34192fadc0">FOC_init()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaab324e40809390bc0596a9c2c967081b">HAL_SPI_clearRXFifo()</a>.</p>
+
+</div>
+</div>
+<a id="ga42361f8bb398c70814af10a2fcbc3aea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga42361f8bb398c70814af10a2fcbc3aea">&sect;&nbsp;</a></span>HAL_setRepeatCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void HAL_setRepeatCounter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>pwmChan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the Load value for the repeat counter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pwmChan</td><td>A PWM channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4b399aa6dfb2545177dec89f4012ecd0">HAL_PWM_CHANNEL</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Load value to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga7f4ee79559c7faac34b8bc8c102bd814">HAL_clearCaptureInterruptStatus()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga8e1f65f873739ee286aab77c3f49ab37">HAL_getCaptureLoadValue()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gae156653fe5dcb8fd4ed0771ee8dbcf2b">HAL_getCaptureValue()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gabc5ccd9e71ab28b9403eed8d63b69bb4">HAL_getCOMPPubChannelID()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gaaec8466aca5202a0a2b18263e465c007">HAL_setCaptureCount()</a>, <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga4dbfd547719954c22204980f42df9439">HAL_setCaptureSubChannel()</a>, and <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gacb213f75f16b5ad359ca8f545dc994e6">HAL_setCOMPDAC()</a>.</p>
+
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga711d56f828c6625569cc3d02fe826e25">FOC_setPara()</a>.</p>
+
+</div>
+</div>
+<a id="gaaec8466aca5202a0a2b18263e465c007"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaec8466aca5202a0a2b18263e465c007">&sect;&nbsp;</a></span>HAL_setCaptureCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_setCaptureCount </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>captureChan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set value to counter register of timer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">captureChan</td><td>A capture channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>Value to set in the counter register </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga42361f8bb398c70814af10a2fcbc3aea">HAL_setRepeatCounter()</a>.</p>
+
+</div>
+</div>
+<a id="gae156653fe5dcb8fd4ed0771ee8dbcf2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae156653fe5dcb8fd4ed0771ee8dbcf2b">&sect;&nbsp;</a></span>HAL_getCaptureValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HAL_getCaptureValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>captureChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the captured counter value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">captureChan</td><td>A capture channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the captured counter value </dd></dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga42361f8bb398c70814af10a2fcbc3aea">HAL_setRepeatCounter()</a>.</p>
+
+</div>
+</div>
+<a id="ga4dbfd547719954c22204980f42df9439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4dbfd547719954c22204980f42df9439">&sect;&nbsp;</a></span>HAL_setCaptureSubChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_setCaptureSubChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>captureChan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set subscriber channel id to capture channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">captureChan</td><td>A capture channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Value of channel id to be set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga42361f8bb398c70814af10a2fcbc3aea">HAL_setRepeatCounter()</a>.</p>
+
+</div>
+</div>
+<a id="ga8e1f65f873739ee286aab77c3f49ab37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8e1f65f873739ee286aab77c3f49ab37">&sect;&nbsp;</a></span>HAL_getCaptureLoadValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HAL_getCaptureLoadValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>captureChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the load value of the timer associated with the capture channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">captureChan</td><td>A capture channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the load register value of the timer instance of the specified capture channel </dd></dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga42361f8bb398c70814af10a2fcbc3aea">HAL_setRepeatCounter()</a>.</p>
+
+</div>
+</div>
+<a id="ga7f4ee79559c7faac34b8bc8c102bd814"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7f4ee79559c7faac34b8bc8c102bd814">&sect;&nbsp;</a></span>HAL_clearCaptureInterruptStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_clearCaptureInterruptStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>captureChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears the interrupt status of the capture channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">captureChan</td><td>A capture channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga14f61516f2183896fa7b958975fbdd93">HAL_CAPTURE_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga42361f8bb398c70814af10a2fcbc3aea">HAL_setRepeatCounter()</a>.</p>
+
+</div>
+</div>
+<a id="gacb213f75f16b5ad359ca8f545dc994e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb213f75f16b5ad359ca8f545dc994e6">&sect;&nbsp;</a></span>HAL_setCOMPDAC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_setCOMPDAC </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac257289f6fc1cf8c78484521aa73f4d7">HAL_COMP_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>compChan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the DAC value for the comp associated with the COMP channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">compChan</td><td>A COMP channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac257289f6fc1cf8c78484521aa73f4d7">HAL_COMP_CHANNEL</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>DAC code value to be set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga42361f8bb398c70814af10a2fcbc3aea">HAL_setRepeatCounter()</a>.</p>
+
+</div>
+</div>
+<a id="gabc5ccd9e71ab28b9403eed8d63b69bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabc5ccd9e71ab28b9403eed8d63b69bb4">&sect;&nbsp;</a></span>HAL_getCOMPPubChannelID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t HAL_getCOMPPubChannelID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac257289f6fc1cf8c78484521aa73f4d7">HAL_COMP_CHANNEL</a>&#160;</td>
+          <td class="paramname"><em>compChan</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the publisher channel id for the COMP channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">compChan</td><td>A COMP channel. One of <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#gac257289f6fc1cf8c78484521aa73f4d7">HAL_COMP_CHANNEL</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the publisher channel id for the comp instance of the specified COMP channel </dd></dl>
+
+<p>References <a class="el" href="struct_h_a_l___c_o_m_p.html#a31710be3a2eb501dc56446af9f827ba6">HAL_COMP::pubChannelID</a>.</p>
+
+<p>Referenced by <a class="el" href="group___f_o_c_____m_s_p_m0_g___h_a_l.html#ga42361f8bb398c70814af10a2fcbc3aea">HAL_setRepeatCounter()</a>.</p>
 
 </div>
 </div>

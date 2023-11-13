@@ -1,0 +1,45 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const TIMER2 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const gate6  = system.clockTree["MFCLKGATE"];
+gate6.enable = true;
+
+Board.configureUnused = true;
+
+GPIO1.$name                         = "GPIO_LEDS";
+GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPin = "4";
+GPIO1.associatedPins[0].invert      = "ENABLE";
+
+SYSCTL.clockTreeEn = true;
+
+TIMER1.$name            = "TIMER_0";
+TIMER1.interrupts       = ["ZERO"];
+TIMER1.timerMode        = "PERIODIC";
+TIMER1.timerClkSrc      = "LFCLK";
+TIMER1.timerClkPrescale = 33;
+TIMER1.timerPeriod      = "1000 ms";
+
+TIMER2.$name            = "TIMER_1";
+TIMER2.timerMode        = "PERIODIC";
+TIMER2.timerPeriod      = "250 ms";
+TIMER2.timerClkPrescale = 256;
+TIMER2.interrupts       = ["ZERO"];

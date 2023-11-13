@@ -160,7 +160,7 @@
 </section>
 <section id="mspm0-sdk-mspm0">
 <h3>2.2 从 MSPM0 SDK 创建 MSPM0 工程<a class="headerlink" href="#mspm0-sdk-mspm0" title="Permalink to this heading">¶</a></h3>
-<p>请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，其中包含有关如何安装 MSPM0 SDK 以及在 Keil 中导入和编译 SDK 示例的说明。</p>
+<p>请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，其中包含有关如何安装 MSPM0 SDK 以及在 Keil 中导入和编译 SDK 示例的说明。</p>
 </section>
 <section id="id9">
 <h3>2.3 从头开始创建工程<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
@@ -170,8 +170,8 @@
 <h3>2.4 将 SysConfig 与 Keil 配合使用<a class="headerlink" href="#sysconfig-keil" title="Permalink to this heading">¶</a></h3>
 <p>MSPM0 SDK 中的一些示例支持 SysConfig。<a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig</a> 是一个直观而全面的图形实用程序集合，用于配置引脚、外设、无线电、子系统和其他 组件。SysConfig 可助您直观地管理、发现和解决冲突，以便您有更多时间 创建差异化应用。</p>
 <p>SysConfig 工具作为独立安装程序交付，可手动集成到 Keil 中，也可通过 dev.ti.com 云工具门户使用。</p>
-<p>在 Keil 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 Keil 中初始化 SysConfig。请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，详细了解如何安装 SysConfig 和为 Keil 启用 SysConfig。</p>
-<p>有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问<a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">将 SysConfig 与 MSPM0 配合使用</a>指南。</p>
+<p>在 Keil 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 Keil 中初始化 SysConfig。请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，详细了解如何安装 SysConfig 和为 Keil 启用 SysConfig。</p>
+<p>有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问<a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">将 SysConfig 与 MSPM0 配合使用</a>指南。</p>
 </section>
 <section id="mspm0">
 <h3>2.5 在 MSPM0 衍生产品之间进行迁移<a class="headerlink" href="#mspm0" title="Permalink to this heading">¶</a></h3>
@@ -220,7 +220,7 @@
 </section>
 <section id="sysconfig">
 <h3>2.6 将新生成的 SysConfig 文件添加至工程<a class="headerlink" href="#sysconfig" title="Permalink to this heading">¶</a></h3>
-<p>使用会生成除 <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.h</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.c</span></code> 以外的文件的 SysConfig 模块（如 NONMAIN 配置器）时，必须将新生成的文件手动添加至工程，因为 Keil 不会自动添加。要详细了解哪些模块会生成额外文件，请参阅<a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">将 SysConfig 与 MSPM0 配合使用</a>指南。</p>
+<p>使用会生成除 <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.h</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ti_msp_dl_config.c</span></code> 以外的文件的 SysConfig 模块（如 NONMAIN 配置器）时，必须将新生成的文件手动添加至工程，因为 Keil 不会自动添加。要详细了解哪些模块会生成额外文件，请参阅<a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">将 SysConfig 与 MSPM0 配合使用</a>指南。</p>
 <p>以 NONMAIN 配置器为例，它将生成 2 个额外文件：<code class="docutils literal notranslate"><span class="pre">boot_config.h</span></code> 和 <code class="docutils literal notranslate"><span class="pre">boot_config.c</span></code>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_sysconfig_additional_generated_files.png" />
@@ -309,7 +309,7 @@
 <ul class="simple">
 <li><p>注意所选仿真器。以上示例在 CSMSIS-DAP 模式下使用集成在 LaunchPad 中的 XDS110。</p></li>
 <li><p>所选接口是 MSPM0 支持的 SWD。</p></li>
-<li><p>XDS 工具使用闪存加载程序将代码下载到器件。在 <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong> 中确认使用。请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a> ，了解更多详细信息。</p></li>
+<li><p>XDS 工具使用闪存加载程序将代码下载到器件。在 <strong>Options</strong> → <strong>Debug</strong> → <strong>Settings</strong> → <strong>Flash Download</strong> 中确认使用。请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a> ，了解更多详细信息。</p></li>
 </ul>
 </section>
 <section id="segger-j-link">
@@ -321,7 +321,7 @@
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_jlink_settings.png" />
 </figure>
-<p>请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，以详细了解如何使用 Segger J-Link。</p>
+<p>请参阅<a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html">适用于 Keil 的 MSPM0 SDK 快速入门指南</a>，以详细了解如何使用 Segger J-Link。</p>
 </section>
 <section id="arm-ulink">
 <h3>3.3 使用 Arm ULINK 调试适配器<a class="headerlink" href="#arm-ulink" title="Permalink to this heading">¶</a></h3>

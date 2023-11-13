@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['angle_5fmath_2eh',['angle_math.h',['../angle__math_8h.html',1,'']]]
+  ['_5fiqndiv_5frts_2ec',['_IQNdiv_rts.c',['../___i_q_ndiv__rts_8c.html',1,'']]],
+  ['_5fiqnmpy_5frts_2ec',['_IQNmpy_rts.c',['../___i_q_nmpy__rts_8c.html',1,'']]]
 ];

@@ -81,7 +81,7 @@
 %       let gen = system.getTemplate("/ti/driverlib/sysctl/SYSCTLclockTree.Board.c.xdt")
 `_.trimEnd(gen(SYSCTL,"GPIO"))`
 %   } else {
-%if(Common.isDeviceM0G()){
+%if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
 %   if(stat.LFCLKSource === "LFXT"){
     /* Configure GPIO/IOMUX for LFXT functionality */
     DL_GPIO_initPeripheralAnalogFunction(GPIO_LFXIN_IOMUX);
@@ -100,7 +100,7 @@
 %   }
 %}
 %   if(stat.enableEXCLK){
-%        if(Common.isDeviceM0G() && stat.ClkOutHighDriveEn){
+%        if((Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()) && (["HFCLK","SYSPLLOUT1"].includes(stat.EXCLKSource))){
     /*
      * To output a signal that is greater than 32MHz a High-Speed IO (HSIO) pin
      * needs to be used and have high drive enabled.
@@ -174,7 +174,7 @@ static const DL_SYSCTL_SYSPLLConfig gSYSPLLConfig = {
 %   }
 % }
 % /* LFCLK Config */
-%   if(Common.isDeviceM0G()){
+%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     %   if(stat.LFCLKSource == "LFXT"){
 static const DL_SYSCTL_LFCLKConfig gSYSCTLConfig = {
     .lowCap   = `stat.LFCLKLowCap`,
@@ -216,10 +216,12 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 %if(stat.forceDefaultClkConfig) {
     /* Set default configuration */
     DL_SYSCTL_disableHFXT();
+%   if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     DL_SYSCTL_disableSYSPLL();
+%   }
 %}
 % /* HFCLK Config */
-% if(Common.isDeviceM0G()){
+% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
 %   if(stat.useHFCLK){
 %       if(stat.HFCLKSource == "HFXT"){
     DL_SYSCTL_setHFCLKSourceHFXTParams(`stat.HFXTRange`, `stat.HFXTStartup`, `stat.HFCLKMonitor`);
@@ -239,7 +241,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 %   }
 % }
 % /* LFCLK Config */
-%   if(Common.isDeviceM0G()){
+%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     %   if(stat.LFCLKSource == "LFXT"){
     DL_SYSCTL_setLFCLKSourceLFXT((DL_SYSCTL_LFCLKConfig *) &gSYSCTLConfig);
     %   }
@@ -260,7 +262,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
             break;
        /* HSCLK Config */
         case "HSCLK":
-            if(Common.isDeviceM0G()){
+            if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
                 switch(stat.HSCLKSource){
                     case "SYSPLLCLK0":
                         printMClkSource += "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_SYSPLL);";
@@ -516,6 +518,8 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
                 if(stat.MCLKSource === "HSCLK"){
                     clockSources.push("DL_SYSCTL_CLK_STATUS_HSCLK_GOOD");
                 }
+            }
+            if(Common.isDeviceM0G()){
                 if(stat.LFCLKSource === "LFXT"){
                     clockSources.push("DL_SYSCTL_CLK_STATUS_LFXT_GOOD");
                 }

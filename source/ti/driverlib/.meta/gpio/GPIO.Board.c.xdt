@@ -106,10 +106,10 @@ function portGroupDetermine(pinstances, group, port) {
     }
     // all pins on the port belong to the same port
     let otherGroupsSamePort = _.filter(pinstances, (pin) =>
-        (pin.$ownedBy !== group && Common.getGPIOPort(pin.pin.$solution.peripheralPinName) === port));
+        (pin.$ownedBy !== group && Common.getGPIOPortMultiPad(pin.pin.$solution.packagePinName,pin,undefined) === port));
     // all pins in group are on this port
     let sameGroupOtherPort = _.filter(pinstances, (pin) =>
-        (pin.$ownedBy === group && Common.getGPIOPort(pin.pin.$solution.peripheralPinName) !== port));
+        (pin.$ownedBy === group && Common.getGPIOPortMultiPad(pin.pin.$solution.packagePinName,pin,undefined) !== port));
     if(otherGroupsSamePort.length === 0 && sameGroupOtherPort.length === 0){
         // conditions satisfied for using a group name, return group port name
         return group.$name + "_PORT";
@@ -135,8 +135,9 @@ function portGroupDetermine(pinstances, group, port) {
 %       let pinst = pinstances[pin];
 %       let group = pinst.$ownedBy.$name + "_";
 %       let ioMuxName = group + pinst.$name + "_IOMUX"
-%       let port = Common.getGPIOPort(pinst.pin.$solution.peripheralPinName);
-%       let pinID = Common.getGPIONumber(pinst.pin.$solution.peripheralPinName);
+%       let packagePin = pinst.pin.$solution.packagePinName;
+%       let port = Common.getGPIOPortMultiPad(packagePin,pinst,undefined);
+%       let pinID = Common.getGPIONumberMultiPad(packagePin,pinst,undefined);
 %       let initIOMux = "";
 %       // pin specific stuff
 %       if(pinst.direction == "OUTPUT") {
@@ -153,7 +154,7 @@ function portGroupDetermine(pinstances, group, port) {
 %           }
 %       } else {
 %           // input
-%           if(pinst.wakeupLogic === "DISABLE" && pinst.internalResistor === "NONE" &&
+%           if((pinst.wakeupLogic === "DISABLE" || !Common.hasWakeupLogic()) && pinst.internalResistor === "NONE" &&
 %              pinst.hysteresisControl === "DISABLE" && pinst.invert === "DISABLE"){
 %               initIOMux = "DL_GPIO_initDigitalInput("+ ioMuxName +");";
 %           } else {
@@ -161,7 +162,7 @@ function portGroupDetermine(pinstances, group, port) {
 %               ",\n\t\t DL_GPIO_INVERSION_" + pinst.invert +
 %               ", DL_GPIO_RESISTOR_" + pinst.internalResistor +
 %               ",\n\t\t DL_GPIO_HYSTERESIS_" + pinst.hysteresisControl +
-%               ", DL_GPIO_WAKEUP_" + pinst.wakeupLogic + ");";
+%               ", DL_GPIO_WAKEUP_" + ((Common.hasWakeupLogic())?pinst.wakeupLogic:"DISABLE") + ");";
 %           }
 %       }
     `initIOMux`

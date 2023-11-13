@@ -1905,6 +1905,30 @@ __STATIC_INLINE uint32_t DL_SYSCTL_getTempCalibrationConstant(void)
     return (*((uint32_t *) 0x41C4003C));
 }
 
+/**
+ *  @brief  Checks if Flash Bank swapping is enabled
+ *
+ *  @return Whether Flash Bank swap is enabled
+ *
+ *  @retval  false  This is not a multi-bank device
+ */
+__STATIC_INLINE bool DL_SYSCTL_isFlashBankSwapEnabled(void)
+{
+    return false;
+}
+
+/**
+ *  @brief  Checks if executing from upper flash bank
+ *
+ *  @return Whether executing from upper flash bank
+ *
+ *  @retval  false  This is not a multi-bank device.
+ */
+__STATIC_INLINE bool DL_SYSCTL_isExecuteFromUpperFlashBank(void)
+{
+    return false;
+}
+
 #ifdef __cplusplus
 }
 #endif

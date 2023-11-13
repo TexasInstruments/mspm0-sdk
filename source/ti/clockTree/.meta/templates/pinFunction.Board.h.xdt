@@ -75,10 +75,16 @@
 %               if(_.endsWith(prefix, "CLK")) { string = prefix + "IN"; }
 %               if(prefix == "FCC") { string = "FCC_IN"; }
 %               let Pin1_PackagePin = inst.peripheral[Pin1_Name].$solution.packagePinName;
-%               let Pin1_CM = system.deviceData.devicePins[Pin1_PackagePin].attributes.iomux_pincm;
+%%{
+                let postfix = "";
+                if(_.endsWith(prefix, "CLK")) { postfix = "IN"; }
+                else if(prefix == "FCC") { postfix = "_IN"; }
+                let pinInterfaceName = prefix+postfix; // TODO: add logic to get the pinInterfaceName extracted from the prefix and the given conditions
+%%}
+%               let Pin1_CM = Common.getPinCM(Pin1_PackagePin,inst,pinInterfaceName);
 %               let Pin1_GpioName = system.deviceData.devicePins[Pin1_PackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%               let Pin1_Port = Common.getGPIOPort(Pin1_GpioName);
-%               let Pin1_GpioPin = Common.getGPIONumber(Pin1_GpioName);
+%               let Pin1_Port = Common.getGPIOPortMultiPad(Pin1_PackagePin,inst,pinInterfaceName);
+%               let Pin1_GpioPin = Common.getGPIONumberMultiPad(Pin1_PackagePin,inst,pinInterfaceName);
 %               if (["HFX", "LFX"].includes(prefix)) {  string =  prefix + "T" }
 %               let Pin1_PortStr = "#define "+gpioStr+"_"+string+"_PORT";
 %               if (["HFX", "LFX"].includes(prefix)) {  string =  prefix + "IN" }
@@ -93,11 +99,12 @@
 %
 %           if(["HFXT","LFXT"].includes(inst.$name)){ // XTAL, do in pin and out pin
 %              // do out pin (two pins for XTAL, only one for digital ins)
+%              let pinInterfaceName = prefix+"OUT";
 %              let OutPinName = _.lowerCase(prefix) + "OutPin";
 %              let OutPackagePin = inst.peripheral[OutPinName].$solution.packagePinName;
-%              let OutPinCM = system.deviceData.devicePins[OutPackagePin].attributes.iomux_pincm;
+%              let OutPinCM = Common.getPinCM(OutPackagePin,inst,pinInterfaceName);
 %              let OutGpioName = system.deviceData.devicePins[OutPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%              let OutGpioPin = Common.getGPIONumber(OutGpioName);
+%              let OutGpioPin = Common.getGPIONumberMultiPad(OutPackagePin,inst,pinInterfaceName);
 %              let OutPinStr = "#define "+gpioStr+"_"+prefix+"OUT_PIN";
 %              let OutPinStr2 = "DL_GPIO_PIN_"+OutGpioPin;
 `OutPinStr.padEnd(40," ")+OutPinStr2.padStart(40," ")`

@@ -32,6 +32,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <ti/devices/DeviceFamily.h>
 
 #include <ti/driverlib/dl_flashctl.h>
 
@@ -137,13 +138,28 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_massEraseFromRAM(
 
 bool DL_FlashCTL_massEraseMultiBank(FLASHCTL_Regs *flashctl)
 {
-    bool status                        = true;
-    uint8_t numBanks                   = DL_FactoryRegion_getNumBanks();
+    bool status            = true;
+    uint32_t bankStartAddr = 0x0;
+    uint8_t numBanks       = DL_FactoryRegion_getNumBanks();
+    uint32_t flashSize     = DL_FactoryRegion_getMAINFlashSize();
+    /* Assuming a sector size of 1KB */
+    uint32_t bankSize = (((uint32_t) flashSize / (uint32_t) numBanks) * 1024U);
+
     DL_FLASHCTL_BANK_SELECT bankSelect = DL_FLASHCTL_BANK_SELECT_0;
 
-    uint8_t bankSel = 0;
-    while (bankSel < numBanks && status != false) {
-        switch (bankSel++) {
+    bool eraseFlag    = true;
+    uint8_t bankIndex = 0;
+    while (bankIndex < numBanks && status != false) {
+        /* If flash bank swap policy is enabled, the primary bank will be write
+         * and erase protected. Thus, we will not attempt an erase of the
+         * primary bank.
+         */
+        if (DL_SYSCTL_isFlashBankSwapEnabled()) {
+            eraseFlag = (bankIndex < (numBanks / (uint8_t) 2)) ? false : true;
+        } else {
+            eraseFlag = true;
+        }
+        switch (bankIndex) {
             case 0:
                 bankSelect = DL_FLASHCTL_BANK_SELECT_0;
                 break;
@@ -156,16 +172,25 @@ bool DL_FlashCTL_massEraseMultiBank(FLASHCTL_Regs *flashctl)
             case 3:
                 bankSelect = DL_FLASHCTL_BANK_SELECT_3;
                 break;
+            default:
+                break;
         }
-        DL_FlashCTL_enableAddressOverrideMode(flashctl);
-        DL_FlashCTL_setBankSelect(flashctl, bankSelect);
-        DL_FlashCTL_setRegionSelect(flashctl, DL_FLASHCTL_REGION_SELECT_MAIN);
 
-        DL_FlashCTL_unprotectMainMemory(flashctl);
-        DL_FlashCTL_protectNonMainMemory(flashctl);
+        bankStartAddr = (bankSize * bankIndex);
 
-        DL_FlashCTL_eraseMemory(flashctl, 0x0, DL_FLASHCTL_COMMAND_SIZE_BANK);
-        status = DL_FlashCTL_waitForCmdDone(flashctl);
+        if (eraseFlag == true) {
+            DL_FlashCTL_enableAddressOverrideMode(flashctl);
+            DL_FlashCTL_setBankSelect(flashctl, bankSelect);
+            DL_FlashCTL_setRegionSelect(
+                flashctl, DL_FLASHCTL_REGION_SELECT_MAIN);
+
+            DL_FlashCTL_unprotectMainMemory(flashctl);
+            DL_FlashCTL_protectNonMainMemory(flashctl);
+            DL_FlashCTL_eraseMemory(
+                flashctl, bankStartAddr, DL_FLASHCTL_COMMAND_SIZE_BANK);
+            status = DL_FlashCTL_waitForCmdDone(flashctl);
+        }
+        bankIndex++;
     }
     DL_FlashCTL_disableAddressOverrideMode(flashctl);
 
@@ -788,11 +813,31 @@ void DL_FlashCTL_unprotectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
     uint32_t sectorNumber = DL_FlashCTL_getFlashSectorNumber(flashctl, addr);
     uint32_t sectorInBank =
         DL_FlashCTL_getFlashSectorNumberInBank(flashctl, addr);
+    uint8_t numBanks              = DL_FactoryRegion_getNumBanks();
+    uint32_t mainFlashSize        = DL_FactoryRegion_getMAINFlashSize();
+    uint32_t physicalSectorNumber = 0;
     uint32_t sectorMask;
 
     if ((uint32_t) regionSelect == FLASHCTL_CMDCTL_REGIONSEL_MAIN) {
-        if (sectorNumber < (uint32_t) 32) {
-            sectorMask = (uint32_t) 1 << sectorNumber;
+        /* If the banks have been swapped, CMDWEPROTA only protects physical
+         * bank 0 (logical bank 1 in a swap), so if the address points to this
+         * region we must protect it using CMDWEPROTA instead of CMDWEPROTB
+         */
+        if (DL_SYSCTL_isExecuteFromUpperFlashBank() && numBanks > 1) {
+            /* physical sectors are swapped. Calculate physical sector to
+             * determine use of CMDWEPROTA */
+            if (sectorNumber > (mainFlashSize / 2)) {
+                physicalSectorNumber = sectorNumber - (mainFlashSize / 2);
+            } else {
+                physicalSectorNumber = sectorNumber + (mainFlashSize / 2);
+            }
+        } else {
+            physicalSectorNumber = sectorNumber;
+        }
+
+        if (physicalSectorNumber < (uint32_t) 32) {
+            /* Use CMDWEPROTA */
+            sectorMask = (uint32_t) 1 << physicalSectorNumber;
             flashctl->GEN.CMDWEPROTA &= ~sectorMask;
         } else {
             /* Use CMDWEPROTB */
@@ -832,11 +877,31 @@ void DL_FlashCTL_protectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
     uint32_t sectorNumber = DL_FlashCTL_getFlashSectorNumber(flashctl, addr);
     uint32_t sectorInBank =
         DL_FlashCTL_getFlashSectorNumberInBank(flashctl, addr);
+    uint8_t numBanks              = DL_FactoryRegion_getNumBanks();
+    uint32_t mainFlashSize        = DL_FactoryRegion_getMAINFlashSize();
+    uint32_t physicalSectorNumber = 0;
     uint32_t sectorMask;
 
     if ((uint32_t) regionSelect == FLASHCTL_CMDCTL_REGIONSEL_MAIN) {
-        if (sectorNumber < (uint32_t) 32) {
-            sectorMask = (uint32_t) 1 << sectorNumber;
+        /* If the banks have been swapped, CMDWEPROTA only protects physical
+         * bank 0 (logical bank 1 in a swap), so if the address points to this
+         * region we must protect it using CMDWEPROTA instead of CMDWEPROTB
+         */
+        if (DL_SYSCTL_isExecuteFromUpperFlashBank() && numBanks > 1) {
+            /* physical sectors are swapped. Calculate physical sector to
+             * determine use of CMDWEPROTA */
+            if (sectorNumber > (mainFlashSize / 2)) {
+                physicalSectorNumber = sectorNumber - (mainFlashSize / 2);
+            } else {
+                physicalSectorNumber = sectorNumber + (mainFlashSize / 2);
+            }
+        } else {
+            physicalSectorNumber = sectorNumber;
+        }
+
+        if (physicalSectorNumber < (uint32_t) 32) {
+            /* Use CMDWEPROTA */
+            sectorMask = (uint32_t) 1 << physicalSectorNumber;
             flashctl->GEN.CMDWEPROTA |= sectorMask;
         } else {
             /* Use CMDWEPROTB */
@@ -1300,3 +1365,128 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_blankVerifyFromRAM(
     /* Jump to RAM to execute command and wait for completion */
     return DL_FlashCTL_executeCommandFromRAM(flashctl);
 }
+
+#ifdef DEVICE_HAS_FLASH_128_BIT_WORD
+
+static void DL_FlashCTL_programMemory128Config(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data);
+static void DL_FlashCTL_programMemoryConfigMultiWord(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, DL_FLASHCTL_COMMAND_SIZE cmdSize);
+
+/*!
+ * @brief Enable programming 128 bits without ECC enabled
+ */
+#define DL_FLASHCTL_PROGRAM_128_WITHOUT_ECC (0x0000FFFF)
+
+/*!
+ * @brief Enable programming 128 bits with ECC enabled
+ */
+#define DL_FLASHCTL_PROGRAM_128_WITH_ECC (0x0001FFFF)
+
+static void DL_FlashCTL_programMemoryConfigMultiWord(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, DL_FLASHCTL_COMMAND_SIZE cmdSize)
+{
+    flashctl->GEN.CMDTYPE =
+        (uint32_t) cmdSize | DL_FLASHCTL_COMMAND_TYPE_PROGRAM;
+
+    flashctl->GEN.CMDBYTEN = cmd;
+
+    /* Set address, address should be in the sector that we want to erase */
+    DL_FlashCTL_setCommandAddress(flashctl, address);
+}
+
+static void DL_FlashCTL_programMemory128Config(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data)
+{
+    DL_FlashCTL_programMemoryConfigMultiWord(
+        flashctl, address, cmd, DL_FLASHCTL_COMMAND_SIZE_TWO_WORDS);
+
+    /* Set data registers */
+    flashctl->GEN.CMDDATA0 = *data;
+    flashctl->GEN.CMDDATA1 = *(data + 1);
+    flashctl->GEN.CMDDATA2 = *(data + 2);
+    flashctl->GEN.CMDDATA3 = *(data + 3);
+}
+
+void DL_FlashCTL_programMemory128(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+{
+    /* Enable 128 bits per data register for programming*/
+    DL_FlashCTL_programMemory128Config(
+        flashctl, address, DL_FLASHCTL_PROGRAM_128_WITHOUT_ECC, data);
+
+    /* Set bit to execute command */
+    flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
+}
+
+void DL_FlashCTL_programMemory128WithECCGenerated(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+{
+    /* Enable 128 bits per data register for programming, with ECC enabled */
+    DL_FlashCTL_programMemory128Config(
+        flashctl, address, DL_FLASHCTL_PROGRAM_128_WITH_ECC, data);
+
+    /* Set bit to execute command */
+    flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
+}
+
+void DL_FlashCTL_programMemory128WithECCManual(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t *data, uint8_t *eccCode)
+{
+    /* Enable 128 bits per data register for programming, with ECC enabled */
+    DL_FlashCTL_programMemory128Config(
+        flashctl, address, DL_FLASHCTL_PROGRAM_128_WITH_ECC, data);
+
+    flashctl->GEN.CMDDATAECC0 = *eccCode;
+    flashctl->GEN.CMDDATAECC1 = *(eccCode + 1);
+
+    /* Set bit to execute command */
+    flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
+}
+
+bool DL_FlashCTL_programMemoryBlocking128WithECCGenerated(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
+    uint32_t dataSize, DL_FLASHCTL_REGION_SELECT regionSelect)
+{
+    bool status = true;
+
+    /* Check for valid data size */
+    if ((dataSize == (uint32_t) 0) || dataSize < (uint32_t) 4) {
+        status = false;
+    }
+
+    while ((dataSize != (uint32_t) 0) && status) {
+        /* Unprotect sector before every write */
+        DL_FlashCTL_unprotectSector(flashctl, address, regionSelect);
+
+        /* 32-bit case */
+        if (dataSize == (uint32_t) 1) {
+            DL_FlashCTL_programMemory32WithECCGenerated(
+                flashctl, address, data);
+
+            dataSize = dataSize - (uint32_t) 1;
+            data     = data + 1;
+            address  = address + (uint32_t) 4;
+        } else if (dataSize < (uint32_t) 4) {
+            /* 64-bit case */
+            DL_FlashCTL_programMemory64WithECCGenerated(
+                flashctl, address, data);
+            dataSize = dataSize - (uint32_t) 2;
+            data     = data + 2;
+            address  = address + (uint32_t) 8;
+        } else {
+            /* 128-bit case */
+            DL_FlashCTL_programMemory128WithECCGenerated(
+                flashctl, address, data);
+            dataSize = dataSize - (uint32_t) 4;
+            data     = data + 4;
+            address  = address + (uint32_t) 16;
+        }
+
+        status = DL_FlashCTL_waitForCmdDone(flashctl);
+    }
+
+    return (status);
+}
+
+#endif /* DEVICE_HAS_FLASH_128_BIT_WORD */

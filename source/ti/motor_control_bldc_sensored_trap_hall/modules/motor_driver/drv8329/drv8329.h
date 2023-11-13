@@ -148,7 +148,7 @@ typedef struct
     /*!
      * pwm timer to which fault pin is connected
      */
-    HAL_PWM         faultIn;
+    HAL_FAULT_INPUT  faultIn;
 
 }DRV8329_Instance;
 

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['mspm0g3507_20_2d_20hardware_20abstraction_20layer_20_28hal_29',['MSPM0G3507 - Hardware Abstraction Layer (HAL)',['../group___f_o_c_____m_s_p_m0_g___h_a_l.html',1,'']]],
-  ['max',['Max',['../struct_p_i___p_a_r_a.html#a86449a6123f1293b4f9b5c0a28e43738',1,'PI_PARA']]],
+  ['maxfreq',['maxFreq',['../struct_r_m_p_c_n_t_l___p_a_r_a.html#a448208c00f95c5cd9299ef09a732c4b6',1,'RMPCNTL_PARA::maxFreq()'],['../struct_u_s_e_r___p_a_r_a_m_s.html#ab2883e17e375918566b6917e6b4f667b',1,'USER_PARAMS::maxFreq()']]],
   ['motor_5fdriver_2fdrv8323rs',['Motor_Driver/DRV8323RS',['../group___m_d___m_o_d_u_l_e.html',1,'']]],
   ['memidx',['memIDX',['../struct_h_a_l___a_d_c.html#aee779d95d6324df953048a3c001fd5ab',1,'HAL_ADC']]],
   ['mfuncc1',['MfuncC1',['../struct_p_w_m_g_e_n___instance.html#a2ed958e195bb536a3447d2253516e2df',1,'PWMGEN_Instance']]],
@@ -10,9 +10,22 @@ var searchData=
   ['mfuncv1',['MfuncV1',['../struct_p_h_a_s_e_v_o_l_t___instance.html#a314973148467e57292059cf24645e6d7',1,'PHASEVOLT_Instance']]],
   ['mfuncv2',['MfuncV2',['../struct_p_h_a_s_e_v_o_l_t___instance.html#abd2346d77a8055facee0403cfd2fdc42',1,'PHASEVOLT_Instance']]],
   ['mfuncv3',['MfuncV3',['../struct_p_h_a_s_e_v_o_l_t___instance.html#aa1cad42b814b8ce4a92b676304ee9278',1,'PHASEVOLT_Instance']]],
-  ['min',['Min',['../struct_p_i___p_a_r_a.html#a5790c6f589b2f417a1abaa261a137609',1,'PI_PARA']]],
-  ['motor_5fgetbasefreq',['MOTOR_getBaseFreq',['../group___m_o_t_o_r___m_o_d_u_l_e.html#gad1bca4fbd22ac510059904d82a91b6bb',1,'MOTOR_getBaseFreq(float baseRpm, float poles):&#160;motor_params.c'],['../group___m_o_t_o_r___m_o_d_u_l_e.html#gad1bca4fbd22ac510059904d82a91b6bb',1,'MOTOR_getBaseFreq(float baseRpm, float poles):&#160;motor_params.c']]],
+  ['motor',['MOTOR',['../group___f_o_c___t_y_p_e_s.html#gadf17cf9b96a849b389399eecaf8f380a',1,'foc_types.h']]],
+  ['motor_5falign',['MOTOR_ALIGN',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aa18ea35bbb6033b3552871d58deec25fa',1,'foc_types.h']]],
+  ['motor_5ffault',['MOTOR_FAULT',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aadb9c7ad15395a834ddad63b31ee68838',1,'foc_types.h']]],
+  ['motor_5fidle',['MOTOR_IDLE',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aa4fb74f2ab945070a7d5ca157061df104',1,'foc_types.h']]],
+  ['motor_5fipd',['MOTOR_IPD',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aa439f55dd791a6605280ac9c697052af2',1,'foc_types.h']]],
   ['motor_5fmodule',['Motor_Module',['../group___m_o_t_o_r___m_o_d_u_l_e.html',1,'']]],
-  ['motor_5fpara_5fnum_5fpole_5fpairs',['MOTOR_PARA_NUM_POLE_PAIRS',['../group___m_o_t_o_r___m_o_d_u_l_e.html#ga2ecac1c61f2c2e3973ee5ae955db5436',1,'motor_params.h']]],
-  ['motor_5fparams_2eh',['motor_params.h',['../motor__params_8h.html',1,'']]]
+  ['motor_5fparams_2eh',['motor_params.h',['../motor__params_8h.html',1,'']]],
+  ['motor_5frampup',['MOTOR_RAMPUP',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aa54d35af23faa91ebe73d1641cbfe72cd',1,'foc_types.h']]],
+  ['motor_5freserved',['MOTOR_RESERVED',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aa74ffa2e3970e9074b9e976eab4df549f',1,'foc_types.h']]],
+  ['motor_5frun',['MOTOR_RUN',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aa71641b416a7ffcbbc23072f9ac744b3f',1,'foc_types.h']]],
+  ['motor_5fslow_5ffirst_5fcyc',['MOTOR_SLOW_FIRST_CYC',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aad46de93ddb021283848b6073e5d9d199',1,'foc_types.h']]],
+  ['motor_5fstandby',['MOTOR_STANDBY',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aa9a4473e6eec66c1739dbe9ae0d0b835e',1,'foc_types.h']]],
+  ['motor_5fstate',['MOTOR_STATE',['../group___f_o_c___t_y_p_e_s.html#gae676bf9c7f315eb5efae14987ca95856',1,'foc_types.h']]],
+  ['motor_5fstate_5fstart',['MOTOR_STATE_START',['../group___f_o_c___t_y_p_e_s.html#ggae676bf9c7f315eb5efae14987ca95856a4d377eb63212309a584ae4a6d549ceda',1,'foc_types.h']]],
+  ['motor_5fstate_5fstop',['MOTOR_STATE_STOP',['../group___f_o_c___t_y_p_e_s.html#ggae676bf9c7f315eb5efae14987ca95856aee88a6f51e8b247f12f0fbfbe98040b6',1,'foc_types.h']]],
+  ['motor_5fstop',['MOTOR_STOP',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aaee6f27e90b9bf054096e96ae6a9f04f7',1,'foc_types.h']]],
+  ['motor_5ftransit',['MOTOR_TRANSIT',['../group___f_o_c___t_y_p_e_s.html#ggadf17cf9b96a849b389399eecaf8f380aa028a43aa38a152b41605f6199fd5e5a0',1,'foc_types.h']]],
+  ['motorstate',['motorState',['../struct_c_o_m_m_a_n_d.html#aca3b05dc89f3374b77d4a198c9902fbd',1,'COMMAND::motorState()'],['../struct_s_t_a_t_u_s___r_e_g_s.html#a607fff0fe7db68b0ceb10e3e5a16429c',1,'STATUS_REGS::motorState()']]]
 ];

@@ -1156,4 +1156,19 @@ static void DL_Timer_getInChanPairConfig(
     }
 }
 
+void DL_Timer_configQEIHallInputMode(GPTIMER_Regs *gptimer)
+{
+    /* Set channels for capture mode */
+    gptimer->COUNTERREGS.CCCTL_01[0] = GPTIMER_CCCTL_01_COC_CAPTURE;
+    gptimer->COUNTERREGS.CCCTL_01[1] = GPTIMER_CCCTL_01_COC_CAPTURE;
+
+    /* Set channels as input */
+    DL_Timer_setCCPDirection(
+        gptimer, (DL_TIMER_CC0_INPUT | DL_TIMER_CC1_INPUT));
+
+    /* Select XOR option for Hall signals */
+    gptimer->COUNTERREGS.IFCTL_01[0] = DL_TIMER_CC_IN_SEL_CCP_XOR;
+    gptimer->COUNTERREGS.IFCTL_01[1] = DL_TIMER_CC_IN_SEL_CCP_XOR;
+}
+
 #endif /* __MSPM0_HAS_TIMER_A__ || __MSPM0_HAS_TIMER_G__ */

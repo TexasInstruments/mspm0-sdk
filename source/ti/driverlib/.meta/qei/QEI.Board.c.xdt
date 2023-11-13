@@ -179,14 +179,19 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     DL_`timerName`_setClockConfig(
         `inst.$name`_INST, (DL_`timerName`_ClockConfig *) &g`inst.$name`ClockConfig);
 
-%        let qeiMode = "DL_TIMER_QEI_MODE_2_INPUT";
-%        if(inst.enableIndexInput)
-%            qeiMode = "DL_TIMER_QEI_MODE_3_INPUT";
-%
-%        for( var x = 0;x<2;x++) {
-%           let indexVal = "DL_TIMER_CC_"+x+"_INDEX";
+%       if(inst.enableIndexInput && inst.enableHallInput){
+    DL_`timerName`_configQEIHallInputMode(`inst.$name`_INST);
+%       }
+%       else{
+%           let qeiMode = "DL_TIMER_QEI_MODE_2_INPUT";
+%           if(inst.enableIndexInput){
+%               qeiMode = "DL_TIMER_QEI_MODE_3_INPUT";
+%           }
+%           for( var x = 0;x<2;x++) {
+%               let indexVal = "DL_TIMER_CC_"+x+"_INDEX";
     DL_`timerName`_configQEI(`inst.$name`_INST, `qeiMode`,
         DL_TIMER_CC_INPUT_INV_NOINVERT, `indexVal`);
+%           }
 %       }
     DL_`timerName`_setLoadValue(`inst.$name`_INST, `inst.loadValue`);
 %
@@ -313,6 +318,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 %
 %   }
     DL_`timerName`_enableClock(`inst.$name`_INST);
+%       if(inst.timerStartTimer){
+    DL_`timerName`_startCounter(`inst.$name`_INST);
+%       }
 }
 %} // for i < instances.length
 %

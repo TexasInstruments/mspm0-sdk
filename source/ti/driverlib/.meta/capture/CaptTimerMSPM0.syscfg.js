@@ -110,8 +110,8 @@ function onChangeTimerProfile(inst, ui) {
             // assigns the empty profile with the selected profile on top
             Object.assign(inst, EmptyTimerProfile,
                 _.pickBy(selectedProfile[0], (_,key) => key !== 'name'));
-            /* MSPM0G Series-Specific Option */
-            if(Common.isDeviceM0G()){
+
+            if(Common.hasTimerA()){
                 Object.assign(inst, EmptyTimerProfileAdvanced,
                     _.pickBy(selectedProfile[0], (_,key) => key !== 'name'));
             }
@@ -185,7 +185,7 @@ function getDisabledOptionsInterrupts(inst,ui)
 {
     let disabled = [];
 
-    if(Common.isDeviceM0G() && !isFourCCCapable(inst))
+    if((Common.hasTimerA()) && !isFourCCCapable(inst))
     {
         disabled.push({ name: "CC2_DN", displayName: "Channel 2 compare down event", reason: "Not supported by Timer instance"});
         disabled.push({ name: "CC2_UP", displayName: "Channel 2 compare up event",   reason: "Not supported by Timer instance"});
@@ -201,7 +201,7 @@ function getDisabledOptionsEvents(inst,ui)
 
     let disabled = [];
 
-    if(Common.isDeviceM0G() && !isFourCCCapable(inst))
+    if((Common.hasTimerA()) && !isFourCCCapable(inst))
     {
         disabled.push({ name: "CC2_DN_EVENT", displayName: "Channel 2 compare down event", reason: "Not supported by Timer instance"});
         disabled.push({ name: "CC2_UP_EVENT", displayName: "Channel 2 compare up event",   reason: "Not supported by Timer instance"});
@@ -229,7 +229,7 @@ function getDisabledEvents(inst)
 function isFourCCCapable(inst)
 {
     try{
-        return (inst.peripheral.$solution.peripheralName.match("TIMA0") != null);
+        return (inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) != null);
     }catch (e) {
         return false;
     }
@@ -412,8 +412,8 @@ function onChangeEnableRepeatCounter(inst,ui)
 }
 
 function updateGUI_RepeatCounter(inst, ui) {
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         ui.repeatCounter.hidden = !(inst.enableRepeatCounter);
     }
 }
@@ -599,8 +599,8 @@ When selected, the retention APIs will not be generated regardless of selected p
 }
 
 let configAdvanced = [];
-/* MSPM0G Series-Specific Option */
-if(Common.isDeviceM0G()){
+
+if(Common.hasTimerA()){
 configAdvanced.push(
     {
         name            : "enableRepeatCounter",
@@ -774,8 +774,8 @@ let ccIndexOptions = [
     { name: 0, displayName: "Capture Channel 0" },
     { name: 1, displayName: "Capture Channel 1" },
 ];
-/* MSPM0G Series-Specific Option */
-if(Common.isDeviceM0G()){
+
+if(Common.hasTimerA()){
     ccIndexOptions.push(
         { name: 2, displayName: "Capture Channel 2" },
         { name: 3, displayName: "Capture Channel 3" }
@@ -788,8 +788,8 @@ let ccIndexOptionsZero = [
     { name: 1,  displayName: "Capture Channel 1" },
 ]
 
-/* MSPM0G Series-Specific Option */
-if(Common.isDeviceM0G()){
+
+if(Common.hasTimerA()){
     ccIndexOptionsZero.push(
         { name: 2, displayName: "Capture Channel 2" },
         { name: 3, displayName: "Capture Channel 3" }
@@ -1210,7 +1210,7 @@ custom capture mode.\n`,
                             options: ccIndexOptions,
                             getDisabledOptions:(inst) => {
                                 let disabledOptions = [];
-                                if(Common.isDeviceM0G() && !isFourCCCapable(inst)){
+                                if((Common.hasTimerA()) && !isFourCCCapable(inst)){
                                     disabledOptions.push(ccIndexOptions[2]);
                                     disabledOptions.push(ccIndexOptions[3]);
                                     return _.map(disabledOptions, o => ({name: o.name, reason: "Only valid for TIMA0"}) );
@@ -1281,7 +1281,7 @@ be set to zero.`,
                             options: ccIndexOptionsZero,
                             getDisabledOptions:(inst) => {
                                 let disabledOptions = [];
-                                if(Common.isDeviceM0G() && !isFourCCCapable(inst)){
+                                if((Common.hasTimerA()) && !isFourCCCapable(inst)){
                                     disabledOptions.push(ccIndexOptionsZero[3]);
                                     disabledOptions.push(ccIndexOptionsZero[4]);
                                     return _.map(disabledOptions, o => ({name: o.name, reason: "Only valid for TIMA0"}) );
@@ -1925,7 +1925,7 @@ function TimerFilter(peripheral, inst) {
         validPeripheral &= /TIMA0/.test(peripheral.name);
     }
 
-    /* MSPM0G Series-Specific Option */
+
     if(inst.clockPrescale !== 1){
         // cannot be TIMG12
         validPeripheral &= !(/TIMG12\d/.test(peripheral.name));
@@ -2074,6 +2074,16 @@ function validate(inst, validation)
         validation.logError("Combined mode is not available for Event Trigger configuration", inst, ["captSelect", "captMode"]);
     }
 
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    EVENT.validatePublisherOptions(inst,validation,"event1PublisherChannel");
+    EVENT.validatePublisherOptions(inst,validation,"event2PublisherChannel");
+    if(inst.subscriberPort != "Disabled"){
+        EVENT.validateSubscriberOptions(inst,validation,"subscriberChannel");
+    }
+
     Common.validateNames(inst, validation);
 }
 
@@ -2087,7 +2097,7 @@ function validate(inst, validation)
 function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
-    if(Common.isDeviceM0G()){
+    if(Common.hasTimerA()){
         if(inst.enableRepeatCounter){
             if(!(/TIMA/.test(solution))){
                 validation.logError("Repeat Counter only available on Timer A instances. Please select a Timer A instance from PinMux if available.",inst,"enableRepeatCounter");

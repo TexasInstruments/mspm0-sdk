@@ -1,0 +1,143 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const GPIO3  = GPIO.addInstance();
+const MCAN   = scripting.addModule("/ti/driverlib/MCAN", {}, false);
+const MCAN1  = MCAN.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider4       = system.clockTree["PLL_CLK0_DIV"];
+divider4.divideValue = 4;
+
+const divider5       = system.clockTree["PLL_CLK1_DIV"];
+divider5.divideValue = 4;
+
+const divider6       = system.clockTree["PLL_CLK2X_DIV"];
+divider6.divideValue = 4;
+
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 4;
+
+const mux2       = system.clockTree["CANCLKMUX"];
+mux2.inputSelect = "CANCLKMUX_PLLCLK1_OUT";
+
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_SYSPLL2X";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction4                        = system.clockTree["HFXT"];
+pinFunction4.HFCLKMonitor                 = true;
+pinFunction4.inputFreq                    = 40;
+pinFunction4.enable                       = true;
+pinFunction4.HFXTStartup                  = 100;
+pinFunction4.peripheral.$assign           = "SYSCTL";
+pinFunction4.peripheral.hfxInPin.$assign  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$assign = "PA6";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.port                           = "PORTB";
+GPIO1.$name                          = "GPIO_BSL";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].assignedPin  = "0";
+GPIO1.associatedPins[0].$name        = "NRST";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].pin.$assign  = "PB0";
+GPIO1.associatedPins[1].assignedPin  = "16";
+GPIO1.associatedPins[1].$name        = "Invoke";
+GPIO1.associatedPins[1].pin.$assign  = "PB16";
+
+GPIO2.$name                              = "GPIO_Button";
+GPIO2.associatedPins[0].assignedPin      = "21";
+GPIO2.associatedPins[0].$name            = "PIN_0";
+GPIO2.associatedPins[0].direction        = "INPUT";
+GPIO2.associatedPins[0].assignedPort     = "PORTB";
+GPIO2.associatedPins[0].internalResistor = "PULL_UP";
+GPIO2.associatedPins[0].pin.$assign      = "PB21";
+
+GPIO3.$name                          = "GPIO_LED";
+GPIO3.associatedPins.create(2);
+GPIO3.associatedPins[0].assignedPin  = "0";
+GPIO3.associatedPins[0].assignedPort = "PORTA";
+GPIO3.associatedPins[0].$name        = "PA0";
+GPIO3.associatedPins[0].initialValue = "SET";
+GPIO3.associatedPins[0].pin.$assign  = "PA0";
+GPIO3.associatedPins[1].assignedPin  = "27";
+GPIO3.associatedPins[1].assignedPort = "PORTB";
+GPIO3.associatedPins[1].$name        = "Error";
+GPIO3.associatedPins[1].pin.$assign  = "PB27";
+
+MCAN1.$name                    = "MCAN0";
+MCAN1.wkupReqEnable            = true;
+MCAN1.autoWkupEnable           = true;
+MCAN1.emulationEnable          = true;
+MCAN1.tdcEnable                = true;
+MCAN1.rrfe                     = true;
+MCAN1.rrfs                     = true;
+MCAN1.txEventFIFOWaterMark     = 0;
+MCAN1.rxFIFO0waterMark         = 0;
+MCAN1.enableInterrupt          = true;
+MCAN1.interruptLine            = ["DL_MCAN_INTR_LINE_NUM_1"];
+MCAN1.interruptLine1Flag       = ["DL_MCAN_INTR_MASK_ALL"];
+MCAN1.m0interrupts             = ["DL_MCAN_MSP_INTERRUPT_LINE1"];
+MCAN1.overrideRetention        = true;
+MCAN1.stdFiltType              = "01";
+MCAN1.lse                      = 0;
+MCAN1.stdFiltID1               = 3;
+MCAN1.stdFiltID2               = 4;
+MCAN1.desiredNomRate           = 1000;
+MCAN1.txBufNum                 = 10;
+MCAN1.txEventFIFOSize          = 10;
+MCAN1.rxFIFO0size              = 5;
+MCAN1.rxFIFO1size              = 5;
+MCAN1.interruptFlags           = ["DL_MCAN_INTR_MASK_ALL"];
+MCAN1.darEnable                = true;
+MCAN1.rxBufStartAddr           = 512;
+MCAN1.flesa                    = 2;
+MCAN1.additionalCoreConfig     = true;
+MCAN1.txStartAddr              = 8;
+MCAN1.txEventFIFOStartAddr     = 128;
+MCAN1.rxFIFO0startAddr         = 256;
+MCAN1.rxFIFO1startAddr         = 384;
+MCAN1.anfe                     = "1";
+MCAN1.anfs                     = "1";
+MCAN1.stdFiltElem              = "010";
+MCAN1.desiredDataRate          = 0;
+MCAN1.useCalcDataVal           = false;
+MCAN1.fdMode                   = false;
+MCAN1.peripheral.$assign       = "CANFD0";
+MCAN1.peripheral.rxPin.$assign = "PA13";
+MCAN1.peripheral.txPin.$assign = "PA12";
+
+
+SYSCTL.useHFCLK_Manual = true;
+SYSCTL.HFCLKSource     = "HFXT";
+SYSCTL.HFCLK_Freq      = 48000000;
+SYSCTL.HFCLKMonitor    = true;
+SYSCTL.HFXTStartup     = 10;
+SYSCTL.clockTreeEn     = true;
+SYSCTL.CANCLKSource    = "SYSPLLCLK1";

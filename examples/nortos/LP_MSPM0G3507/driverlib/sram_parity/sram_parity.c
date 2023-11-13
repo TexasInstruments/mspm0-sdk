@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 
 /*
  * This function is called during initialization, and provides a place to
- * perform application-specificion initialization immediately after reset.
+ * perform application-specific initialization immediately after reset.
  * It is invoked after the stack pointer is initialized but before any C
  * environment setup is performed.
  * The default C environment setup is bypassed if this function returns 0.
@@ -76,6 +76,7 @@ int __low_level_init(void)
 volatile uint32_t gValue;
 volatile bool gParityFault;
 
+
 int main(void)
 {
     SYSCFG_DL_init();
@@ -90,7 +91,7 @@ int main(void)
         *(uint32_t *) (SRAM_PARITY_START + SRAM_PARITY_TEST_ADDRESS_OFFSET);
 
     /*
-     * If SRAM was initialized by setting SRAM_PARITY_INITIALIZE to 0,
+     * If SRAM was initialized by setting SRAM_PARITY_INITIALIZE to 1,
      * then breakpoint should be reached and gValue should be 0x00000000.
      */
     __BKPT(0);
@@ -104,7 +105,6 @@ int main(void)
      */
     gValue =
         *(uint32_t *) (SRAM_PARITY_START + SRAM_PARITY_TEST_ADDRESS_OFFSET);
-    ;
 
     while (1) {
         __WFI();
@@ -117,7 +117,10 @@ void NMI_Handler(void)
         case DL_SYSCTL_NMI_IIDX_SRAM_DED:
             /* NMI will trigger with parity fault */
             gParityFault = true;
-            __BKPT(0);
+
+            DL_GPIO_clearPins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+
             break;
         default:
             break;

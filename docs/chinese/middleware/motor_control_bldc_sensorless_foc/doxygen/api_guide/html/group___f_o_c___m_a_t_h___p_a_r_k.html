@@ -93,6 +93,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1bd1294c5439cc4cd1b743a9dc82acfc"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___p_a_r_k.html#ga1bd1294c5439cc4cd1b743a9dc82acfc">PARK_run</a> (<a class="el" href="struct_p_a_r_k___instance.html">PARK_Instance</a> *handle)</td></tr>
 <tr class="memdesc:ga1bd1294c5439cc4cd1b743a9dc82acfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run park.  <a href="#ga1bd1294c5439cc4cd1b743a9dc82acfc">More...</a><br /></td></tr>
 <tr class="separator:ga1bd1294c5439cc4cd1b743a9dc82acfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga86585adc3ab400c70d88030e8503c9db"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___p_a_r_k.html#ga86585adc3ab400c70d88030e8503c9db">PARK_reset</a> (<a class="el" href="struct_p_a_r_k___instance.html">PARK_Instance</a> *handle)</td></tr>
+<tr class="memdesc:ga86585adc3ab400c70d88030e8503c9db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset park variables.  <a href="#ga86585adc3ab400c70d88030e8503c9db">More...</a><br /></td></tr>
+<tr class="separator:ga86585adc3ab400c70d88030e8503c9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -123,6 +126,36 @@ Functions</h2></td></tr>
 <p>References <a class="el" href="struct_p_a_r_k___instance.html#acbeb287aef7c5eba05c1b3e75ad85ad7">PARK_Instance::Alpha</a>, <a class="el" href="struct_p_a_r_k___instance.html#a80e21be64317c66227d454522d26c517">PARK_Instance::Beta</a>, <a class="el" href="struct_p_a_r_k___instance.html#ad2afdb441a8c38881adb48362f5e895f">PARK_Instance::Cosine</a>, <a class="el" href="struct_p_a_r_k___instance.html#aed2e856a8ac8a2217899242e55a3246f">PARK_Instance::Ds</a>, <a class="el" href="struct_p_a_r_k___instance.html#a62297f8df0defd88cc8992add8358bcf">PARK_Instance::Qs</a>, and <a class="el" href="struct_p_a_r_k___instance.html#a0797abe9e178ec883212cd93a4b70790">PARK_Instance::Sine</a>.</p>
 
 <p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>.</p>
+
+</div>
+</div>
+<a id="ga86585adc3ab400c70d88030e8503c9db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga86585adc3ab400c70d88030e8503c9db">&sect;&nbsp;</a></span>PARK_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void PARK_reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_p_a_r_k___instance.html">PARK_Instance</a> *&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset park variables. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">handle</td><td>A pointer to park instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="struct_p_a_r_k___instance.html#aed2e856a8ac8a2217899242e55a3246f">PARK_Instance::Ds</a>, and <a class="el" href="struct_p_a_r_k___instance.html#a62297f8df0defd88cc8992add8358bcf">PARK_Instance::Qs</a>.</p>
+
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga6d2e1049e12bb536abdaac52137eeb10">FOC_CONTROL_run()</a>.</p>
 
 </div>
 </div>

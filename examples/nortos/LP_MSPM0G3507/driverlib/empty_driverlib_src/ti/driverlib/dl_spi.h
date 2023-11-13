@@ -72,12 +72,13 @@ extern "C" {
 /*!
  * @brief Data mode
  */
-#define DL_SPI_CD_MODE_DATA                               (SPI_CTL1_CDMODE_DATA)
+#define DL_SPI_CD_MODE_DATA        (SPI_CTL1_CDMODE_DATA >> SPI_CTL1_CDMODE_OFS)
 
 /*!
  * @brief Command mode
  */
-#define DL_SPI_CD_MODE_COMMAND                         (SPI_CTL1_CDMODE_COMMAND)
+#define DL_SPI_CD_MODE_COMMAND  (SPI_CTL1_CDMODE_COMMAND >> SPI_CTL1_CDMODE_OFS)
+
 
 /** @}*/
 

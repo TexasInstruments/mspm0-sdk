@@ -59,9 +59,9 @@ extern "C" {
 #endif
 
 /*!
- * @brief 1/3 in global IQ
+ * @brief 1/6 in global IQ
  */
-#define ONE_THIRD  (_IQ(0.33333333333333))
+#define ONE_SIX  (_IQ(0.16666666666666))
 
 /*!
  * @brief 1/sqrt(3) in global IQ
@@ -70,28 +70,30 @@ extern "C" {
 
 /*! @brief Define phase voltage structure */
 typedef struct 	{ 
-	/*!  Input: DC-bus voltage (pu) */
+	/*!  DC-bus voltage */
 	_iq  DcBusVolt;
-	/*!  Input: Modulation voltage phase A (pu) */
+	/*!  Modulation voltage phase A */
 	_iq  MfuncV1;
-	/*!  Input: Modulation voltage phase B (pu)	 */
+	/*!  Modulation voltage phase B  */
 	_iq  MfuncV2;
-	/*!  Input: Modulation voltage phase C (pu)  */
+	/*!  Modulation voltage phase C  */
 	_iq  MfuncV3;
-	/*!  Output: Phase voltage phase A (pu) */
+	/*!  Phase voltage phase A */
 	_iq  VphaseA;
-	/*!  Output: Phase voltage phase B (pu)  */
+	/*!  Phase voltage phase B */
 	_iq  VphaseB;
-	/*!  Output: Stationary d-axis phase voltage (pu) */
+    /*!  Phase voltage phase C */
+    _iq  VphaseC;
+	/*!  Stationary d-axis phase voltage */
 	_iq  Valpha;
-	/*!  Output: Stationary q-axis phase voltage (pu) */
+	/*!  Stationary q-axis phase voltage */
 	_iq  Vbeta;
 	/*!  Variable: temp variable */
 	_iq  temp;
 } PHASEVOLT_Instance;	                   
 
 /*! @brief Default values for PHASEVOLTAGE object */                  
-#define PHASEVOLT_DEFAULTS { 0, 0, 0, 0, 1, 0, 0, 0 }
+#define PHASEVOLT_DEFAULTS { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 
 /**
  * @brief     Run phase voltage calculation
@@ -101,11 +103,13 @@ __STATIC_INLINE void PHASEVOLT_run(PHASEVOLT_Instance *handle)
 {
 	/* Scale the incoming Modulation functions with the DC bus voltage value */
 	/* and calculate the 3 Phase voltages */								   
-	handle->temp = _IQmpy(handle->DcBusVolt, ONE_THIRD);                                    
+	handle->temp = _IQmpy(handle->DcBusVolt, ONE_SIX);                                    
 	handle->VphaseA = _IQmpy(handle->temp,
 				(_IQmpy2(handle->MfuncV1) - handle->MfuncV2 - handle->MfuncV3));       
 	handle->VphaseB = _IQmpy(handle->temp,
-			   (_IQmpy2(handle->MfuncV2)  - handle->MfuncV1 - handle->MfuncV3)); 
+			   (_IQmpy2(handle->MfuncV2)  - handle->MfuncV1 - handle->MfuncV3));
+    handle->VphaseC = _IQmpy(handle->temp,
+               (_IQmpy2(handle->MfuncV3)  - handle->MfuncV1 - handle->MfuncV2));
 	      
 	/* Voltage transformation (a,b,c)  ->  (Alpha,Beta)	*/					   
 	handle->Valpha = handle->VphaseA;													   

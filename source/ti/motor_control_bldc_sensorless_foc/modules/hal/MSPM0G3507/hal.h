@@ -85,6 +85,11 @@ extern "C" {
  */
 #define HAL_TIM_PERIPHERAL_CLOCK_SOURCE_MHZ         (80)
 
+/*!
+ * @brief Right shift to convert bytes to words
+ */
+#define CRC_BYTES_TO_WORD_RSHIFT                    (2)
+
 /*! @brief Define SPI instance */
 typedef struct {
     /*! SPI inst address of the channel */
@@ -117,6 +122,16 @@ typedef struct {
     DL_TIMER_CC_INDEX CCIndex;
 } HAL_PWM;
 
+/*! @brief Define Capture instance */
+typedef struct {
+    /*! Capture timer inst address of the channel */
+    GPTIMER_Regs *inst;
+    /*! IRQ number for the channel */
+    IRQn_Type irqn;
+    /*! Capture compare index for the channel */
+    DL_TIMER_CC_INDEX CCIndex;
+} HAL_CAPTURE;
+
 /*! @brief Define TIM instance */
 typedef struct {
     /*! Timer inst address of the channel */
@@ -135,6 +150,14 @@ typedef struct {
     uint32_t pin;
 } HAL_GPIO;
 
+/*! @brief Define COMP instance */
+typedef struct {
+    /*! Comp inst address of the channel */
+    COMP_Regs *inst;
+    /*! Comp publisher channel id of the channel */
+    uint8_t pubChannelID;
+} HAL_COMP;
+
 /*! @enum HAL_PWM_CHANNEL */
 typedef enum {
     /*! Index associated to PWM channel 0 */
@@ -143,9 +166,20 @@ typedef enum {
     HAL_PWM_CHANNEL_1,
     /*! Index associated to PWM channel 2 */
     HAL_PWM_CHANNEL_2,
+    /*! Index associated to PWM channel 3 */
+    HAL_PWM_CHANNEL_3,
     /*! Total number of PWM channels */
     HAL_PWM_CHANNEL_MAX,
 } HAL_PWM_CHANNEL;
+
+/*! @enum HAL_CAPTURE_CHANNEL  */
+typedef enum
+{
+    /*! Index associated to capture channel 0 */
+    HAL_CAPTURE_CHANNEL_0 = 0,
+    /*! Total number of capture channels */
+    HAL_CAPTURE_CHANNEL_MAX
+} HAL_CAPTURE_CHANNEL;
 
 /*! @enum HAL_PWM_FAULT */
 typedef enum {
@@ -163,6 +197,8 @@ typedef enum {
     HAL_ADC_CHANNEL_1,
     /*! Index associated to ADC channel 2 */
     HAL_ADC_CHANNEL_2,
+    /*! Index associated to ADC channel 3 */
+    HAL_ADC_CHANNEL_3,
     /*! Total number of ADC channels */
     HAL_ADC_CHANNEL_MAX
 } HAL_ADC_CHANNEL;
@@ -182,6 +218,18 @@ typedef enum {
     /*! Total number of output GPIO pins */
     HAL_GPIO_OUT_PIN_MAX,
 } HAL_GPIO_OUT_PIN;
+
+/*! @enum HAL_COMP_CHANNEL */
+typedef enum {
+    /*! Index associated to COMP channel 0 */
+    HAL_COMP_CHANNEL_0 = 0,
+    /*! Index associated to COMP channel 1 */
+    HAL_COMP_CHANNEL_1,
+    /*! Index associated to COMP channel 2 */
+    HAL_COMP_CHANNEL_2,
+    /*! Total number of COMP channels */
+    HAL_COMP_CHANNEL_MAX,
+} HAL_COMP_CHANNEL;
 
 /*! @enum HAL_SPI_CHANNEL */
 typedef enum {
@@ -212,6 +260,14 @@ typedef enum {
     /*! GPIO set to high */
     HAL_GPIO_VALUE_HIGH,
 } HAL_GPIO_VALUE;
+
+/*! @enum HAL_MEMORY */
+typedef enum {
+    /*! FLASH motor parameters base address */
+    HAL_MEMORY_FLASH_PARAMS_BASE_ADDRESS = 0x0001FC00,
+    /*! SRAM motor parameters base address */
+    HAL_MEMORY_SRAM_PARAMS_BASE_ADDRESS  = 0x20207C00,
+} HAL_MEMORY;
 
 /* Extern the peripheral arrays */
 extern HAL_PWM halPwm[HAL_PWM_CHANNEL_MAX];
@@ -273,7 +329,19 @@ void HAL_enablePWMInterrupt(HAL_PWM_CHANNEL pwmChan);
  * @brief     Disable PWM interrupt
  * @param[in] pwmChan   A PWM channel. One of @ref HAL_PWM_CHANNEL
  */
-void HAL_disablePWMInterrupts(HAL_PWM_CHANNEL pwmChan);
+void HAL_disablePWMInterrupt(HAL_PWM_CHANNEL pwmChan);
+
+/**
+ * @brief     Enable Capture interrupt
+ * @param[in] captureChan   A capture channel. One of @ref HAL_CAPTURE_CHANNEL
+ */
+void HAL_enableCaptureInterrupt(HAL_CAPTURE_CHANNEL captureChan);
+
+/**
+ * @brief     Disable Capture interrupt
+ * @param[in] captureChan   A capture channel. One of @ref HAL_CAPTURE_CHANNEL
+ */
+void HAL_disableCaptureInterrupt(HAL_CAPTURE_CHANNEL captureChan);
 
 /**
  * @brief     Set value to GPIO pin
@@ -374,7 +442,7 @@ __STATIC_INLINE uint16_t HAL_getADCValue(HAL_ADC_CHANNEL adcChan)
 __STATIC_INLINE DL_ADC12_IIDX HAL_processADCIRQ(ADC12_Regs *adcInst)
 {
     DL_ADC12_IIDX pendIrq = DL_ADC12_getPendingInterrupt(adcInst);
-    for(int x = 0;x < HAL_ADC_CHANNEL_MAX;x++)
+    for(uint32_t x = 0;x < HAL_ADC_CHANNEL_MAX;x++)
     {
         if(adcInst == halAdc[x].inst && pendIrq ==  halAdc[x].endOfSeq)
         {
@@ -455,6 +523,18 @@ void HAL_PWMEnableChannel(HAL_PWM_CHANNEL pwmChan);
 void HAL_PWMDisableChannel(HAL_PWM_CHANNEL pwmChan);
 
 /**
+ * @brief     Force the PWM out to high and complement out to low
+ * @param[in] pwmChan   A PWM channel. One of @ref HAL_PWM_CHANNEL
+ */
+void HAL_PWMForceHigh(HAL_PWM_CHANNEL pwmChan);
+
+/**
+ * @brief     Force the PWM out to low and complement out to high
+ * @param[in] pwmChan   A PWM channel. One of @ref HAL_PWM_CHANNEL
+ */
+void HAL_PWMForceLow(HAL_PWM_CHANNEL pwmChan);
+
+/**
  * @brief Clears the PWM timer fault status
  * @param[in] pwmFault   A PWM fault input. One of @ref HAL_PWM_FAULT
  */
@@ -470,6 +550,106 @@ void HAL_clearPWMFault(HAL_PWM_FAULT pwmFault);
  */
 bool HAL_getPWMFaultStatus(HAL_PWM_FAULT pwmFault);
 
+/**
+ * @brief Unprotects the sector with the given base address
+ * @param[in] baseAddress   Base address of the sector
+ */
+void HAL_unprotectFLASH(uint32_t baseAddress);
+
+/**
+ * @brief Erase the sector with the given base address
+ * @param[in] baseAddress   Base address of the sector
+ */
+void HAL_eraseFLASH(uint32_t baseAddress);
+
+/**
+ * @brief Copies the SRAM memory block to flash
+ * @param[in] dstAddr   Starting address in FLASH
+ * @param[in] srcAddr   Starting address in SRAM
+ * @param[in] len       Length of the data in bytes
+ * @param[in] startAddr Starting address of the memory section
+ * @return    Returns stauts for copy
+
+ * @retval     0  No error
+ * @retval     -1 Error in copy
+ */
+int32_t HAL_copyMemoryBlock(void *dstAddr, void *srcAddr, uint32_t  len, uint32_t startAddr);
+
+/**
+ * @brief Returns the 32bit CRC value
+ * @param[in]  seed  The seed for the CRC to start generating a signature from
+ * @param[in]  ptr   Pointer to the data to compute CRC
+ * @param[in]  size  Size of the block of data in bytes
+ * @return    Returns the CRC value
+ */
+uint32_t HAL_getCRC(uint32_t seed, void *ptr, uint32_t size);
+
+/**
+ * @brief     Suppresses the compare event.
+ * @param[in] pwmChan   A PWM channel. One of @ref HAL_PWM_CHANNEL
+ */
+void HAL_supressCompEvent(HAL_PWM_CHANNEL pwmChan);
+
+/**
+ * @brief     Set the Load value for the repeat counter
+ * @param[in] pwmChan   A PWM channel. One of @ref HAL_PWM_CHANNEL
+ * @param[in] value     Load value to be set.
+ */
+__STATIC_INLINE void HAL_setRepeatCounter(HAL_PWM_CHANNEL pwmChan, uint8_t value)
+{
+    DL_TimerA_setRepeatCounter(halPwm[pwmChan].inst, value);
+}
+
+/**
+ * @brief     Set value to counter register of timer
+ * @param[in] captureChan   A capture channel. One of @ref HAL_CAPTURE_CHANNEL
+ * @param[in] count  Value to set in the counter register
+ */
+void HAL_setCaptureCount(HAL_CAPTURE_CHANNEL captureChan, uint32_t count);
+
+/**
+ * @brief     Get the captured counter value
+ * @param[in] captureChan   A capture channel. One of @ref HAL_CAPTURE_CHANNEL
+ * @return    Returns the captured counter value
+ */
+uint32_t HAL_getCaptureValue(HAL_CAPTURE_CHANNEL captureChan);
+
+/**
+ * @brief     Set subscriber channel id to capture channel
+ * @param[in] captureChan   A capture channel. One of @ref HAL_CAPTURE_CHANNEL
+ * @param[in] value  Value of channel id to be set
+ */
+void HAL_setCaptureSubChannel(HAL_CAPTURE_CHANNEL captureChan, uint8_t value);
+
+/**
+ * @brief     Gets the load value of the timer associated with the capture 
+ * channel
+ * @param[in] captureChan   A capture channel. One of @ref HAL_CAPTURE_CHANNEL
+ * @return    Returns the load register value of the timer instance of the 
+ *            specified capture channel
+ */
+uint32_t HAL_getCaptureLoadValue(HAL_CAPTURE_CHANNEL captureChan);
+
+/**
+ * @brief     Clears the interrupt status of the capture channel
+ * @param[in] captureChan   A capture channel. One of @ref HAL_CAPTURE_CHANNEL
+ */
+void HAL_clearCaptureInterruptStatus(HAL_CAPTURE_CHANNEL captureChan);
+
+/**
+ * @brief     Set the DAC value for the comp associated with the COMP channel
+ * @param[in] compChan   A COMP channel. One of @ref HAL_COMP_CHANNEL
+ * @param[in] value  DAC code value to be set
+ */
+void HAL_setCOMPDAC(HAL_COMP_CHANNEL compChan, uint8_t value);
+
+/**
+ * @brief     Gets the publisher channel id for the COMP channel
+ * @param[in] compChan   A COMP channel. One of @ref HAL_COMP_CHANNEL
+ * @return    Returns the publisher channel id for the comp instance of the 
+ *            specified COMP channel
+ */
+uint8_t HAL_getCOMPPubChannelID(HAL_COMP_CHANNEL compChan);
 
 #ifdef __cplusplus
 }

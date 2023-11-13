@@ -101,10 +101,18 @@ exports = {
 
     isDeviceM0G                             : isDeviceM0G,
     isDeviceM0L                             : isDeviceM0L,
+    isDeviceM0C                             : isDeviceM0C,
     isDeviceM0x110x                         : isDeviceM0x110x,
     isDeviceFamily_PARENT_MSPM0L11XX_L13XX  : isDeviceFamily_PARENT_MSPM0L11XX_L13XX,
     isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X  : isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X,
+    isDeviceFamily_PARENT_MSPM0L122X_L222X  : isDeviceFamily_PARENT_MSPM0L122X_L222X,
+    isDeviceFamily_PARENT_MSPM0C110X        : isDeviceFamily_PARENT_MSPM0C110X,
     getDeviceFamily                         : getDeviceFamily,
+
+    hasTimerA                               : hasTimerA,
+    hasGPIOPortA                            : hasGPIOPortA,
+    hasGPIOPortB                            : hasGPIOPortB,
+    hasGPIOPortC                            : hasGPIOPortC,
 
     sliceNumber : sliceNumber,
     getGPIOPort : getGPIOPort,
@@ -138,7 +146,14 @@ exports = {
     getModuleKeys       : getModuleKeys,
     getUsedPins         : getUsedPins,
 
-    InterruptPriorityOptions : InterruptPriorityOptions
+    InterruptPriorityOptions : InterruptPriorityOptions,
+
+    hasWakeupLogic      : hasWakeupLogic,
+
+    getPinCM                : getPinCM,
+    getGPIOPortMultiPad     : getGPIOPortMultiPad,
+    getGPIONumberMultiPad   : getGPIONumberMultiPad,
+    getAllPorts             : getAllPorts,
 };
 
 /*
@@ -262,10 +277,13 @@ function boardName()
  */
 function device2Family(device)
 {
+    if(isDeviceM0C()){
+        return "MSPM0C"
+    }
     /* deviceId is the directory name within the pinmux/deviceData */
     let deviceId = device.deviceId;
 
-    let family = deviceId.match(/MSP(M0G|M0L)/)[0];
+    let family = deviceId.match(/MSP(M0G|M0L|M0C)/)[0];
 
     return(family);
 }
@@ -476,7 +494,8 @@ function getName(inst, index)
 
 /*
  *  ======== getPort ========
- *  Return pin port name or ""
+ *  Return pin port name or "". This function is intended to be used for single
+ *  functionality pins, for other use cases see getGPIOPortMultiPad.
  *
  *  @param pin - pin object representing the
  *               solution found by pinmux
@@ -724,7 +743,7 @@ function pinToName(pinNum)
 {
     for (let x in system.deviceData.devicePins) {
         if (system.deviceData.devicePins[x].ball == pinNum) {
-            let desc = String(system.deviceData.devicePins[x].description);
+            let desc = String(system.deviceData.devicePins[x].designSignalName);
             return (desc);
         }
     }
@@ -1671,26 +1690,34 @@ function getDeviceName()
 	return deviceName
 }
 
-
 /* Device Family Functions - identify selected device */
 /* Checks if device is part of MSPM0L11XX_L13XX family */
 function isDeviceFamily_PARENT_MSPM0L11XX_L13XX(){
     var deviceName = system.deviceData.device;
-    return ([ "MSPM0L134X","MSPM0L130X","MSPM0L110X"].includes(deviceName));
+    return (["MSPM0L134X","MSPM0L130X","MSPM0L110X"].includes(deviceName));
 }
 /* Checks if device is part of MSPM0G1X0X_G3X0X device family */
 function isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X(){
     var deviceName = system.deviceData.device;
     return (["MSPM0G350X","MSPM0G310X","MSPM0G150X","MSPM0G110X"].includes(deviceName));
 }
+/* Checks if device is part of MSPM0L122X_L222X device family */
+function isDeviceFamily_PARENT_MSPM0L122X_L222X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0L122X","MSPM0L222X"].includes(deviceName));
+}
+/* Checks if device is part of MSPM0C110X device family */
+function isDeviceFamily_PARENT_MSPM0C110X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0C110X","MSPS003FX"].includes(deviceName));
+}
 /* checks if current device is one of M0x110x series */
 function isDeviceM0x110x(){
 	var deviceName = system.deviceData.device;
-    return (["MSPM0G110X","MSPM0L110X"].includes(deviceName));
+    return (["MSPM0G110X","MSPM0L110X","MSPM0C110X","MSPS003FX"].includes(deviceName));
 }
-/* Generic Device Check Functions */
 
-/* checks if current device is one of MSPM0G-series */
+/* Generic Device Check Functions */
 /* checks if current device is one of MSPM0G-series */
 function isDeviceM0G()
 {
@@ -1698,7 +1725,11 @@ function isDeviceM0G()
 }
 /* checks if current device is one of MSPM0L-series */
 function isDeviceM0L(){
-    return (isDeviceFamily_PARENT_MSPM0L11XX_L13XX());
+    return (isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || isDeviceFamily_PARENT_MSPM0L122X_L222X());
+}
+/* checks if current device is one of MSPM0C-series */
+function isDeviceM0C(){
+    return (isDeviceFamily_PARENT_MSPM0C110X());
 }
 
 /* gets the device family name */
@@ -1709,22 +1740,209 @@ function getDeviceFamily(){
     else if(isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
         return "MSPM0L11XX_L13XX";
     }
+    else if(isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        return "MSPM0L122X_L222X";
+    }
+    else if(isDeviceFamily_PARENT_MSPM0C110X()){
+        return "MSPM0C110X";
+    }
     return undefined;
 }
 
-/* return integer portion of string. useful for extracting pin number */
+/* Check if device supports Timer A configuration */
+function hasTimerA(){
+    return (isDeviceM0G() || isDeviceM0C() || isDeviceFamily_PARENT_MSPM0L122X_L222X());
+}
+
+/* Check if device supports GPIO Port A configuration */
+function hasGPIOPortA(){
+    return Object.keys(system.deviceData.gpio.pinInfo).some(str=>system.deviceData.gpio.pinInfo[str].devicePin.designSignalName.includes("PA"));
+}
+/* Check if device supports GPIO Port B configuration */
+function hasGPIOPortB(){
+    return Object.keys(system.deviceData.gpio.pinInfo).some(str=>system.deviceData.gpio.pinInfo[str].devicePin.designSignalName.includes("PB"));
+}
+/* Check if device supports GPIO Port B configuration */
+function hasGPIOPortC(){
+    return Object.keys(system.deviceData.gpio.pinInfo).some(str=>system.deviceData.gpio.pinInfo[str].devicePin.designSignalName.includes("PC"));
+}
+
+/* return last integer portion of string. useful for extracting pin number */
 function sliceNumber(stringValue){
 	return stringValue.match(/\d+$/)[0]
 }
 
-/* return pin number from name */
+/* return pin number from single pin name */
 function getGPIONumber(gpioName){
 	return sliceNumber(gpioName);
 }
 
-/* return GPIO port (GPIOA / GPIOB) based on device data pin name */
+/* return GPIO port (GPIOA / GPIOB) based on single device data pin name */
 function getGPIOPort(gpioName){
-	return "GPIO"+gpioName.match(/[AB]/)[0];
+    // TODO: define the ports somewhere else so we can update univerally instead of just here 'ABC'
+    // --> decide between global define or new Common function.
+    // --> confirm if accesible from device data
+	return "GPIO"+gpioName.match(/[ABC]/)[0];
+}
+
+/*
+ *  ======== getGPIOPortMultiPad ========
+ *  Return pin port name for specified pin mux functionality.
+ *  Supports use case of dual functionality pad
+ *
+ *  @param packagePin - package pin number
+ *  @param inst - sysconfig module instance of peripheral that contains the pin
+ *  @pinInterfaceName - interface name of specific pin functionality
+ *
+ *  @returns string of the form P<port>
+ */
+function getGPIOPortMultiPad(packagePin, inst, pinInterfaceName){
+    let pinNames = (system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName).split("/");
+    let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
+    return getGPIOPort(pinNames[padIndex])
+}
+
+/*
+ *  ======== getGPIOPinNumberMultiPad ========
+ *  Return pin number for specified pin mux functionality.
+ *  Supports use case of dual functionality pad
+ *
+ *  @param packagePin - package pin number
+ *  @param inst - sysconfig module instance of peripheral that contains the pin
+ *  @pinInterfaceName - interface name of specific pin functionality
+ *
+ *  @returns string of the form <pin number>
+ */
+function getGPIONumberMultiPad(packagePin, inst, pinInterfaceName){
+    let pinNames = (system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName).split("/");
+    let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
+    return getGPIONumber(pinNames[padIndex])
+
+}
+
+/*
+ *  ======== isInstanceStatic ========
+ *  Check if a SysConfig module is static or not
+*       - Static modules have default name of the actual module name ( "/ti/driverlib/SYSCTL" )
+*       - Dynamic modules cannot have symbols on name, not a valid C identifier
+ *  @param inst - sysconfig module instance
+ *
+ *  @returns boolean true if module is static, false if dynamic
+ */
+function isInstanceStatic(inst){
+    /*
+     * Handling use case of static module:
+     * - Static modules have default name of the actual module name ( "/ti/driverlib/SYSCTL" )
+     * - Dynamic modules cannot have symbols on name, not a valid C identifier
+     */
+    return (inst.$name.includes("/"))
+}
+
+/*
+ *  ======== identifyPadIndex ========
+ *  Return index of the specified pin's mux location
+ *  Accesses device data to find the id of the specified package pin id
+ *  index location of the provided <PERIPHERAL>.<PIN INTERFACE NAME>
+ *
+ *  @param packagePin - package pin number
+ *  @param inst - sysconfig module instance of peripheral that contains the pin
+ *  @pinInterfaceName - interface name of specific pin functionality
+ *
+ *  @returns string index of the desired pin mux
+ */
+function identifyPadIndex(packagePin,inst,pinInterfaceName){
+    let peripheralName = undefined;
+    let gpioName = undefined;
+    /* Handling use case of static module: */
+    if(isInstanceStatic(inst)){
+       peripheralName = system.modules[inst.$name].displayName;
+    }
+    /* Dynamic Modules */
+    else{
+        /* Handle use case of GPIO module */
+        if(inst.$module.$name.includes("GPIO")){
+            gpioName = inst.pin.$solution;
+        }
+        /* All other modules */
+        /* TODO: Need to handle cases for TIMERFault and NONMAIN */
+        else{
+            peripheralName = inst.peripheral.$solution.peripheralName;
+        }
+    }
+    /* determine index of mux functionality */
+    let muxId = undefined;
+    if(peripheralName !== undefined){
+        muxId = ((system.deviceData.devicePins[packagePin].mux.muxSetting).map(a => a.peripheralPin.name)).indexOf(peripheralName+"."+pinInterfaceName)
+    }
+    else if(gpioName !== undefined){
+        muxId = ((system.deviceData.devicePins[packagePin].mux.muxSetting).map(a => a.peripheralPin.name)).indexOf(peripheralName+"."+pinInterfaceName)
+    }
+    /* divide the pad functionality, determine appropiate segment */
+    let modeMiddleIndex = getModeIndex(packagePin);
+    if(muxId !== undefined){
+        if(muxId>modeMiddleIndex){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// TODO: Want a better way to acces all ports possible
+// may be device data, may not be.
+// -- used for getPinNumber/getGPIOPort filtering, + used for Unused Pin Configuration
+function getAllPorts(){
+    return ["A","B","C"]
+}
+
+/*
+ *  ======== getPinCM ========
+ *  Return PinCM number of the specified pin
+ *  Accesses device data to find the id of the specified package pin id
+ *  index location of the provided <PERIPHERAL>.<PIN INTERFACE NAME>
+ *
+ *  @param packagePin - package pin number
+ *  @param inst - sysconfig module instance of peripheral that contains the pin
+ *  @pinInterfaceName - interface name of specific pin functionality
+ *
+ *  @returns string PinCM number.
+ */
+function getPinCM(packagePin, inst, pinInterfaceName)
+// TODO: example call => getPinCM(11, (spi inst), "POCI")
+{
+    // TODO: want to add condition to only do the steps after this one if more than one pinCM is returned
+    let pinCMs = (system.deviceData.devicePins[packagePin].attributes.iomux_pincm).split(",")
+    let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
+    return pinCMs[padIndex];
+
+}
+
+/*
+ *  ======== getModeIndex ========
+ *  Get the index of the last element of the pinmux dividing the pins in the
+ *  same pad
+ *  Where in device data the modes are ordered ['1', '2', '0', '2', '3', '0'],
+ *  the rule to follow is that where the mode either decreases to a non-zero
+ *  number, or increases after a 0 number, that marks the beginning of a
+ *  different pin.
+ *
+ *  @param packagePin - package pin id
+ *
+ *  @returns string index of the last object in the mode list belonging to the
+ *  first pin
+ */
+function getModeIndex(packagePin){
+    let modes = (system.deviceData.devicePins[packagePin].mux.muxSetting).map(a => a.mode);
+    for(let modeIdx in modes){
+        /* In order to find the midpoint of that divides the pins, the logic is as follows:
+         * if(((mode[i]>=mode[i+1])&&(mode[i]!=0))||((mode[i]==0)&&(mode[i]<mode[i+1])))
+         * The midpoint exists when the mode decreases to a non-zero number, or increases after a zero
+         */
+        if(((parseInt(modes[parseInt(modeIdx)])>=parseInt(modes[parseInt(modeIdx)+1]))&&(parseInt(modes[parseInt(modeIdx)+1])!==0))
+        ||((parseInt(modes[parseInt(modeIdx)])==0)&&(parseInt(modes[parseInt(modeIdx)])<parseInt(modes[parseInt(modeIdx)+1])))){
+            return parseInt(modeIdx)
+        }
+    };
+    return modes.length-1;
 }
 
 /* Common Config & Code Generation Elements */
@@ -1977,6 +2195,22 @@ function getGPIOGroupConfig(){
     ]
 }
 
+/*
+ *  ======== hasWakeupLogic ========
+ *  Check if selected device support GPIO wakeup logic configuration.
+ *  M0C does not support this.
+ *
+ *  @return boolean value answer
+ *
+ */
+function hasWakeupLogic(){
+    if(isDeviceM0C()){
+        return false;
+    }
+    return true;
+
+}
+
 function getGPIOConfigBoardC(inst){
     let returnString = "";
     let initIOMux = "";
@@ -2053,7 +2287,7 @@ function getGPIOConfigBoardC(inst){
                             }
                         } else {
                             // input
-                            if(pinst.wakeupLogic === "DISABLE" && pinst.internalResistor === "NONE" &&
+                            if((pinst.wakeupLogic === "DISABLE" || !hasWakeupLogic()) && pinst.internalResistor === "NONE" &&
                                 pinst.hysteresisControl === "DISABLE" && pinst.invert === "DISABLE"){
                                     initIOMux = "DL_GPIO_initPeripheralInputFunction("+
                                     "\n\t\t "+ioMuxName +", "+ioMuxName+"_FUNC);";
@@ -2063,7 +2297,7 @@ function getGPIOConfigBoardC(inst){
                                     ",\n\t\t DL_GPIO_INVERSION_" + pinst.invert +
                                     ", DL_GPIO_RESISTOR_" + pinst.internalResistor +
                                     ",\n\t\t DL_GPIO_HYSTERESIS_" + pinst.hysteresisControl +
-                                    ", DL_GPIO_WAKEUP_" + pinst.wakeupLogic + ");";
+                                    ", DL_GPIO_WAKEUP_" + ((hasWakeupLogic())?pinst.wakeupLogic:"DISABLE") + ");";
                             }
                         }
                         // create pin groups for lower/upper functions

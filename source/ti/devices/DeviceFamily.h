@@ -66,6 +66,8 @@ extern "C" {
 #define DeviceFamily_ID_MSPM0G150X      5
 #define DeviceFamily_ID_MSPM0G310X      6
 #define DeviceFamily_ID_MSPM0G350X      7
+#define DeviceFamily_ID_MSPM0C110X      8
+#define DeviceFamily_ID_MSPS003FX       9
 
 /*
  * DeviceFamily_PARENT_XYZ values.
@@ -76,6 +78,8 @@ extern "C" {
  */
 #define DeviceFamily_PARENT_MSPM0L11XX_L13XX    1
 #define DeviceFamily_PARENT_MSPM0G1X0X_G3X0X    2
+#define DeviceFamily_PARENT_MSPM0C110X          3
+#define DeviceFamily_PARENT_MSPS003FX           4
 
 /*
  * Lookup table that sets DeviceFamily_ID, DeviceFamily_DIRECTORY, and
@@ -121,21 +125,38 @@ extern "C" {
     #define DeviceFamily_DIRECTORY      msp
     #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPM0G1X0X_G3X0X
 
-#elif defined(DeviceFamily_MSPM0G350X) || defined (__MSPM0G3507__) \
+#elif defined(DeviceFamily_MSPM0G350X) || defined(__MSPM0G3507__) \
     || defined(__MSPM0G3506__) || defined(__MSPM0G3505__)
     #define DeviceFamily_ID             DeviceFamily_ID_MSPM0G350X
     #define DeviceFamily_DIRECTORY      msp
     #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPM0G1X0X_G3X0X
+#elif defined(DeviceFamily_MSPM0C110X) || defined(__MSPM0C1104__) \
+    || defined(__MSPM0C1103__)
+    #define DeviceFamily_ID             DeviceFamily_ID_MSPM0C110X
+    #define DeviceFamily_DIRECTORY      msp
+    #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPM0C110X
+
+#elif defined(DeviceFamily_MSPS003FX) || defined(__MSPS003F4__) \
+    || defined(__MSPS003F3__)
+    #define DeviceFamily_ID             DeviceFamily_ID_MSPS003FX
+    #define DeviceFamily_DIRECTORY      msp
+    #define DeviceFamily_PARENT         DeviceFamily_PARENT_MSPS003FX
+
 
 #else
     #error "DeviceFamily_XYZ undefined. You must define a DeviceFamily_XYZ!"
 #endif
 
 /* Ensure that only one DeviceFamily was specified */
-#if (defined(DeviceFamily_MSPM0L130X) + defined(DeviceFamily_MSPM0L134X)     \
-    + defined(DeviceFamily_MSPM0L110X) + defined(DeviceFamily_MSPM0G110X)    \
-    + defined(DeviceFamily_MSPM0G150X) + defined(DeviceFamily_MSPM0G310X)    \
-    + defined(DeviceFamily_MSPM0G350X)  \
+#if (defined(DeviceFamily_MSPM0L130X) \
+    + defined(DeviceFamily_MSPM0L134X) \
+    + defined(DeviceFamily_MSPM0L110X) \
+    + defined(DeviceFamily_MSPM0G110X) \
+    + defined(DeviceFamily_MSPM0G150X) \
+    + defined(DeviceFamily_MSPM0G310X) \
+    + defined(DeviceFamily_MSPM0G350X) \
+    + defined(DeviceFamily_MSPM0C110X) \
+    + defined(DeviceFamily_MSPS003FX) \
     ) > 1
     #error More then one DeviceFamily has been defined!
 #endif
@@ -157,10 +178,10 @@ extern "C" {
  */
 #define DeviceFamily_constructPath(x) <ti/devices/DeviceFamily_DIRECTORY/x>
 
-/* clang-format on */
+    /* clang-format on */
 
 #ifdef __cplusplus
-}
+    }
 #endif
 
 #endif /* ti_devices_DeviceFamily__include */

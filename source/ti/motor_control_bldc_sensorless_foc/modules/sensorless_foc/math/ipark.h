@@ -74,7 +74,7 @@ typedef struct {
     _iq  Cosine;
 } IPARK_Instance;
 
-/*! @brief Default values for esmo instance*/                   
+/*! @brief Default values for ipark instance*/                   
 #define IPARK_DEFAULTS {  0, 0, 0, 0, 0, 0, 0 }
 
 /**
@@ -87,6 +87,16 @@ __STATIC_INLINE void IPARK_run(IPARK_Instance *handle)
 											  - _IQmpy(handle->Qs,handle->Sine);
 	handle->Beta  = _IQrepeat(handle->Qs,handle->Cosine) 
 										   + _IQrepeat(handle->Ds,handle->Sine);
+}
+
+/**
+ * @brief     Reset ipark variables
+ * @param[in] handle  A pointer to ipark instance
+ */
+__STATIC_INLINE void IPARK_reset(IPARK_Instance *handle)
+{
+	handle->Alpha = 0;
+	handle->Beta = 0;
 }
 
 #ifdef __cplusplus

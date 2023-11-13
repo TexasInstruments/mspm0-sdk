@@ -29,7 +29,6 @@ CFLAGS = -I.. \
     -mthumb
 
 LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/lib/ticlang/m0p/arm_cortexM0l_math.a" \
-    -Wl,--stack_size=512 \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     ../ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \

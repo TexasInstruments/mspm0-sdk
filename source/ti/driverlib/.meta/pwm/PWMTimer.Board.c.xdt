@@ -124,22 +124,12 @@
 %       let flavor = inst.peripheral.$solution.peripheralName;
 %       for(let cc of inst.ccIndex){
 %           let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
-%       /* If Pin Configuration enabled, do not generate duplicate call */
-%       try {
-%           if(!inst["ccp"+cc+"PinConfig"].enableConfig){
     DL_GPIO_initPeripheralOutputFunction(`gpioStr`_IOMUX,`gpioStr`_IOMUX_FUNC);
     DL_GPIO_enableOutput(`gpioStr`_PORT, `gpioStr`_PIN);
-%               }
-%           } catch (x){/* ignore any exception */}
-%           if(Common.isDeviceM0G()){
+%           if(Common.hasTimerA()){
 %               if((inst.ccIndexCmpl).includes(cc)){
-%       /* If Pin Configuration enabled, do not generate duplicate call */
-%       try {
-%           if(!inst["ccp"+cc+"Pin_cmplConfig"].enableConfig){
     DL_GPIO_initPeripheralOutputFunction(`gpioStr`_CMPL_IOMUX,`gpioStr`_CMPL_IOMUX_FUNC);
     DL_GPIO_enableOutput(`gpioStr`_CMPL_PORT, `gpioStr`_CMPL_PIN);
-%               }
-%           } catch (x){/* ignore any exception */}
 %               }
 %           }
 %       }
@@ -158,8 +148,7 @@
 %               } // if typeof
 %        } // if flavor.match("TIMA.")
 % let initIOMux = Common.getGPIOConfigBoardC(inst);
-% /* Check if generating empty code */
-% if (/\S/.test(initIOMux)) {
+% if(initIOMux.length > 0){
     `initIOMux`
 %}
 %   }// if instances
@@ -234,6 +223,12 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 %       let mode = "DL_TIMER_DEAD_BAND_MODE_" + (inst.dbInsertionMode).match(/\d+/)[0];
     DL_`flavorCat`_setDeadBand(`inst.$name`_INST, `inst.dbFallDelayTimerCount`, `inst.dbRiseDelayTimerCount`, `mode`);
 %}
+%    /* Repeat Counter */
+%   if(inst.enableRepeatCounter){
+%       let rpcArgs = inst.repeatCounter;
+%       let rpcFct = "DL_"+flavorCat+"_setRepeatCounter("+inst.$name+"_INST, " +inst.$name + "_REPEAT_COUNT_"+rpcArgs+");\n";
+    `rpcFct`
+%   }
 %
     DL_`flavorCat`_enableClock(`inst.$name`_INST);
 %
@@ -250,18 +245,18 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
         /* The last event should end with a closing parenthesis */
         if (eventToEnable == inst.event1ControllerInterruptEn[inst.event1ControllerInterruptEn.length - 1])
         {
-            eventsToEnableOR += ("DL_TIMER_EVENT_" + eventToEnable + ")");
+            eventsToEnableOR += ("DL_"+ flavorCat.toUpperCase() + "_EVENT_" + eventToEnable + ")");
         }
         else
         {
-            eventsToEnableOR += ("DL_TIMER_EVENT_" + eventToEnable + " |");
+            eventsToEnableOR += ("DL_"+ flavorCat.toUpperCase() + "_EVENT_" + eventToEnable + " |");
             eventsToEnableOR += "\n\t\t";
         }
     }
 %%}
-    DL_`flavorCat`_enableEvent(`inst.$name`_INST, DL_TIMER_EVENT_ROUTE_1, `eventsToEnableOR`);
+    DL_`flavorCat`_enableEvent(`inst.$name`_INST, DL_`flavorCat.toUpperCase()`_EVENT_ROUTE_1, `eventsToEnableOR`);
 
-    DL_`flavorCat`_setPublisherChanID(`inst.$name`_INST, DL_TIMER_PUBLISHER_INDEX_0, `inst.$name`_INST_PUB_0_CH);
+    DL_`flavorCat`_setPublisherChanID(`inst.$name`_INST, DL_`flavorCat.toUpperCase()`_PUBLISHER_INDEX_0, `inst.$name`_INST_PUB_0_CH);
 %   }
 
 %   /* Event Generation for Publisher Event Route 2 */
@@ -276,18 +271,18 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     {
         if (eventToEnable == inst.event2ControllerInterruptEn[inst.event2ControllerInterruptEn.length - 1])
         {
-            eventsToEnableOR += ("DL_TIMER_EVENT_" + eventToEnable + ")");
+            eventsToEnableOR += ("DL_"+ flavorCat.toUpperCase() + "_EVENT_" + eventToEnable + ")");
         }
         else
         {
-            eventsToEnableOR += ("DL_TIMER_EVENT_" + eventToEnable + " |");
+            eventsToEnableOR += ("DL_"+ flavorCat.toUpperCase() + "_EVENT_" + eventToEnable + " |");
             eventsToEnableOR += "\n\t\t";
         }
     }
 %%}
-    DL_`flavorCat`_enableEvent(`inst.$name`_INST, DL_TIMER_EVENT_ROUTE_2, `eventsToEnableOR`);
+    DL_`flavorCat`_enableEvent(`inst.$name`_INST, DL_`flavorCat.toUpperCase()`_EVENT_ROUTE_2, `eventsToEnableOR`);
 
-    DL_`flavorCat`_setPublisherChanID(`inst.$name`_INST, DL_TIMER_PUBLISHER_INDEX_1, `inst.$name`_INST_PUB_1_CH);
+    DL_`flavorCat`_setPublisherChanID(`inst.$name`_INST, DL_`flavorCat.toUpperCase()`_PUBLISHER_INDEX_1, `inst.$name`_INST_PUB_1_CH);
 %   }
 
 %   /* Event Generation for Subscriber Port */
@@ -318,7 +313,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     let interArgs = "";
     let interFct = "";
     for (let inter of inst.interrupts) {
-        interArgs += "DL_TIMER_INTERRUPT_"+inter+" |\n\t\t";
+        if(inter.match("FAULT_EVENT")){
+            interArgs += "DL_TIMERA_INTERRUPT_FAULT_EVENT |\n\t\t";
+        }else{
+            interArgs += "DL_TIMER_INTERRUPT_"+inter+" |\n\t\t";
+        }
     }
     if(inst.interrupts.length > 0){
         interArgs = interArgs.slice(0,-5); // remove last OR and whitespace
@@ -537,8 +536,8 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
         { name: 0, displayName: "PWM Channel 0" },
         { name: 1, displayName: "PWM Channel 1" },
     ];
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         ccIndexOptions.push(
             { name: 2, displayName: "PWM Channel 2" },
             { name: 3, displayName: "PWM Channel 3" }

@@ -41,6 +41,7 @@
         "
         linkerBuildOptions="
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x
+            -nostartfiles
             -l:${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a
             -march=armv6-m
             -mthumb
@@ -61,9 +62,9 @@
         </file>
         <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
         </file>
-        <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
-        </file>
         <file path="../ti/eeprom/emulation_type_b/eeprom_emulation_type_b.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_b">
+        </file>
+        <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
         </file>
         <file path="../ti/eeprom/emulation_type_b/eeprom_emulation_type_b.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_b">
         </file>

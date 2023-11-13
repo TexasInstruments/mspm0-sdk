@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,10 +36,14 @@
 
 volatile uint32_t gTRNGBuffer[NUM_CAPTURES];
 
+
 int main(void)
 {
     uint32_t i;
-    /* Initialize the peripherals and set the TRNG to the NORM_FUNC state */
+    /*
+     * Initialize the peripherals and set the TRNG to the NORM_FUNC state
+     * The LED (USER_LED_1) should be turned off
+     */
     SYSCFG_DL_init();
 
     /* Setup and start a capture, then wait for the result */
@@ -51,6 +55,14 @@ int main(void)
 
     /* Power off the peripheral */
     DL_TRNG_disablePower(TRNG);
+
+
+    /*
+     * Program completed. Since USER_LED_1 is PA0 and active low on M0G LP,
+     * clearing the pin turns on the LED
+     */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     /* Set a SW breakpoint. Check gTRNGBuffer is filled with random numbers */
     __BKPT(0);

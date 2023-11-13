@@ -86,11 +86,13 @@ $(function() {
 <hr/>
  </div><div class="textblock"><code>#include &lt;ti/devices/msp/msp.h&gt;</code><br />
 <code>#include &quot;ti/iqmath/include/IQmathLib.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="iqmath__rts_8h_source.html">iqmath_rts.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for rmp_cntl.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="rmp__cntl_8h__incl.png" border="0" usemap="#rmp__cntl_8h" alt=""/></div>
 <map name="rmp__cntl_8h" id="rmp__cntl_8h">
+<area shape="rect" id="node4" href="iqmath__rts_8h.html" title="Cutdown version of the RTS version of the IQmathLib.h. " alt="" coords="399,87,503,114"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -110,22 +112,27 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_m_p_c_n_t_l___instance.html">RMPCNTL_Instance</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define rmpcntrl structure.  <a href="struct_r_m_p_c_n_t_l___instance.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_m_p_c_n_t_l___p_a_r_a.html">RMPCNTL_PARA</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define ramp control parameter structure.  <a href="struct_r_m_p_c_n_t_l___p_a_r_a.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:gac88618f4ea6c79885ac68e08c071c4b3"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#gac88618f4ea6c79885ac68e08c071c4b3">RMP_CNTRL_DELTA</a>&#160;&#160;&#160;_IQ(0.000005)</td></tr>
-<tr class="memdesc:gac88618f4ea6c79885ac68e08c071c4b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per cycle change in the ramp setpoint. <br /></td></tr>
-<tr class="separator:gac88618f4ea6c79885ac68e08c071c4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3ced47a8a7db3bf8ba729680da1d07ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga3ced47a8a7db3bf8ba729680da1d07ce">RMPCNTL_DEFAULTS</a></td></tr>
 <tr class="memdesc:ga3ced47a8a7db3bf8ba729680da1d07ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default values for RMPCNTL instance.  <a href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga3ced47a8a7db3bf8ba729680da1d07ce">More...</a><br /></td></tr>
 <tr class="separator:ga3ced47a8a7db3bf8ba729680da1d07ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga204702ef796c47409b15f13636f5cc04"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga204702ef796c47409b15f13636f5cc04">RMPCNTL_UpdateParams</a> (<a class="el" href="struct_r_m_p_c_n_t_l___instance.html">RMPCNTL_Instance</a> *handle, <a class="el" href="struct_r_m_p_c_n_t_l___p_a_r_a.html">RMPCNTL_PARA</a> *para)</td></tr>
+<tr class="memdesc:ga204702ef796c47409b15f13636f5cc04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the ramp control parameters.  <a href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga204702ef796c47409b15f13636f5cc04">More...</a><br /></td></tr>
+<tr class="separator:ga204702ef796c47409b15f13636f5cc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga07d7e6b56b6c1f179ecca201d8bd7707"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run</a> (<a class="el" href="struct_r_m_p_c_n_t_l___instance.html">RMPCNTL_Instance</a> *handle)</td></tr>
 <tr class="memdesc:ga07d7e6b56b6c1f179ecca201d8bd7707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run ramp control.  <a href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">More...</a><br /></td></tr>
 <tr class="separator:ga07d7e6b56b6c1f179ecca201d8bd7707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacc1dd3297253659b483ba7d6f93133ea"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#gacc1dd3297253659b483ba7d6f93133ea">RC_reset</a> (<a class="el" href="struct_r_m_p_c_n_t_l___instance.html">RMPCNTL_Instance</a> *handle)</td></tr>
+<tr class="memdesc:gacc1dd3297253659b483ba7d6f93133ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset ramp control variables.  <a href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#gacc1dd3297253659b483ba7d6f93133ea">More...</a><br /></td></tr>
+<tr class="separator:gacc1dd3297253659b483ba7d6f93133ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

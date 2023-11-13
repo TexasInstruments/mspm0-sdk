@@ -18,20 +18,28 @@ const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 /**
  * Write custom configuration values to the imported modules.
  */
-GPIO1.$name                         = "GPIO_LEDS";
-GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.port                                  = "PORTA";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
 GPIO1.associatedPins[0].initialValue        = "SET";
-GPIO1.associatedPins[0].pin.$assign = "PA0";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPortSegment = "Lower";
+GPIO1.associatedPins[1].assignedPin         = "15";
+GPIO1.associatedPins[1].initialValue        = "SET";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SPI1.$name                      = "SPI_0";
 SPI1.mode                       = "PERIPHERAL";
+SPI1.peripheralChipSelect               = "1";
 SPI1.peripheral.$assign         = "SPI1";
 SPI1.peripheral.sclkPin.$assign = "PB9";
 SPI1.peripheral.mosiPin.$assign = "PB8";
 SPI1.peripheral.misoPin.$assign = "PB7";
-SPI1.peripheral.cs0Pin.$assign  = "PB6";
+SPI1.peripheral.cs1Pin.$assign          = "PB17";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn  = true;

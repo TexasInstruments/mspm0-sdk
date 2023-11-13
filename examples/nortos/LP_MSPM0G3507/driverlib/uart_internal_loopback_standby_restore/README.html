@@ -112,56 +112,56 @@
 <td>GPIOB</td>
 <td>PB21</td>
 <td>J27_4</td>
-<td>Connected to S2 button (no pull resistor)</td>
+<td><ul><li>PB21 is connected to S2 button to GND with no external pull resistor<br><ul><li>Press <code>S2</code> button to connect pin to GND<br><li>Don’t use <code>S2</code> button if not needed by application</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PB26</td>
 <td>GPIOB</td>
 <td>PB26</td>
 <td>J27_8</td>
-<td>J6 ON/OFF Connect/Disconnect LED2 Red</td>
+<td><ul><li>PB26 can be connected to LED2 Red<br><ul><li><code>J6 ON</code> Connect to LED2 Red<br><li><code>J6 OFF</code> Disconnect from LED2 Red</ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PB27</td>
 <td>GPIOB</td>
 <td>PB27</td>
 <td>J27_10</td>
-<td>J7 ON/OFF Connect/Disconnect LED2 Green</td>
+<td><ul><li>PB27 can be connected to LED2 Green<br><ul><li><code>J7 ON</code> Connect to LED2 Green<br><li><code>J7 OFF</code> Disconnect from LED2 Green</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PB3</td>
 <td>UART3</td>
 <td>RX</td>
 <td>J1_10</td>
-<td>R60 pull-up not soldered by default</td>
+<td>N/A</td>
 </tr>
 <tr class="odd">
 <td>PB2</td>
 <td>UART3</td>
 <td>TX</td>
 <td>J1_9</td>
-<td>R59 pull-up not soldered by default</td>
+<td>N/A</td>
 </tr>
 <tr class="even">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Compile, load and run the example. Device will start in RUN mode.</p>
 <p>If the device is in RUN:</p>

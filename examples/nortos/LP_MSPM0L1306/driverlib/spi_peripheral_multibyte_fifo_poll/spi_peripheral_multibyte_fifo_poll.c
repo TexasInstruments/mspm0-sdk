@@ -45,13 +45,13 @@ uint8_t gTxPacket[SPI_PACKET_SIZE] = {0x1, 0x2, 0x3, 0x4};
 
 /* Data for SPI to receive */
 volatile uint8_t gRxPacket[SPI_PACKET_SIZE];
-
 int main(void)
 {
     SYSCFG_DL_init();
 
     /* Set LED to indicate start of transfer */
-    DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     /*
      * Fill FIFO with data.
@@ -60,6 +60,7 @@ int main(void)
      * requested by the Controller.
      */
     DL_SPI_fillTXFIFO8(SPI_0_INST, &gTxPacket[0], SPI_PACKET_SIZE);
+
 
     /*
      * Wait to receive data from the SPI Controller
@@ -84,7 +85,8 @@ int main(void)
 
     /* If write and read were successful, toggle LED */
     while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
         delay_cycles(16000000);
     }
 }

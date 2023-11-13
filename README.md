@@ -1,10 +1,10 @@
 # MSPM0 SDK #
-This repository contains TI's MSPM0 Software Development Kit
+This repository contains TI's MSPM0 Software Development Kit with all software and tools with TI Commercial license removed. Manifest dictates licenses for all files inside this repository. Go to [https://www.ti.com/tool/MSPM0-SDK](https://www.ti.com/tool/MSPM0-SDK) to access full SDK with TI Commercial components included.
 
 # Summary #
 The MSPM0 SDK provides the ultimate collection of software, tools and documentation to accelerate the development of applications for the MSPM0 MCU platform. The software is designed for optimal performance and memory utilization, providing a consistent and cohesive experience with a wide variety of drivers, libraries and easy-to-use examples under a single software package
 
-Features
+# Features #
 Support for the ARM®Cortex®-M0+ core and all MSPM0 devices with full support of their corresponding EVMs and peripherals.
 A wide variety of middleWare including drivers, libraries and protocol stacks for different applications and sectors including automotive, appliances, building and factory automation, etc.
 An extensive list of ready-to-use code examples to demonstrate and test device functionality, and provide a starting point to accelerate application development
@@ -32,6 +32,7 @@ You can learn more about the MSPM0 product family supported by this SDK [here](h
 ## Evaluation Modules ##
 * [MSPM0G EVM - LP-MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507)
 * [MSPM0L EVM - LP-MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306)
+* [MSPM0C EVM - LP-MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104)
 # Support #
 If you have any question or issues with the Software Development Kit, our MSPM0 development boards or using IDEs such as Code Composer Studio with our devices please go to Texas Instrument's E2E support forum [here](https://e2e.ti.com/support/microcontrollers/arm-based-microcontrollers-group/arm-based-microcontrollers/f/arm-based-microcontrollers-forum).
 

@@ -54,48 +54,56 @@ extern "C" {
 #if (LVSERVOMTR)
 /* Define the electrical motor parameters (Teknic 2310 Servomotor) */
 /* @brief Stator resistance (ohm) */
-#define MOTOR_PARA_RS               0.38
+#define MOTOR_PARA_RS               (0.38)
 /* @brief Stator inductance (H) */
-#define MOTOR_PARA_LS               0.000169
+#define MOTOR_PARA_LS               (0.000169)
 /* @brief Number of poles */
-#define MOTOR_PARA_POLES            8
-/* @brief Base RPM */
-#define MOTOR_PARA_BASE_RPM         6000
+#define MOTOR_PARA_POLES            (8)
+/* @brief Back Emf constant in V/Hz */
+#define MOTOR_PARA_KE               (0.069)
+/* @brief Maximum Frequency */
+#define MOTOR_PARA_MAX_FREQ        (400)
 
 #elif (LVBLDCMTR)
 /* Define the electrical motor parameters (Anaheim motor) */
 /* @brief Stator resistance (ohm) */
-#define MOTOR_PARA_RS               0.8 
+#define MOTOR_PARA_RS               (0.8) 
 /* @brief Stator inductance (H) */
-#define MOTOR_PARA_LS               0.001
+#define MOTOR_PARA_LS               (0.001)
 /* @brief Number of poles */
-#define MOTOR_PARA_POLES            8
-/* @brief Base RPM */
-#define MOTOR_PARA_BASE_RPM         6000
+#define MOTOR_PARA_POLES            (8)
+/* @brief Back Emf constant in V/Hz */
+#define MOTOR_PARA_KE               (0.06)
+/* @brief Maximum Frequency */
+#define MOTOR_PARA_MAX_FREQ         (400)
+
+#elif (HVPMSMMTR)
+/* Define the electrical motor parameters (Estun EMJ-04APB22 motor) */
+/* @brief Stator resistance (ohm) */
+#define MOTOR_PARA_RS               (2.35) 
+/* @brief Stator inductance (H) */
+#define MOTOR_PARA_LS               (0.00065)
+/* @brief Number of poles */
+#define MOTOR_PARA_POLES            (8)
+/* @brief Back Emf constant in V/Hz */
+#define MOTOR_PARA_KE               (1.0)
+/* @brief Maximum Frequency */
+#define MOTOR_PARA_MAX_FREQ         (200)
 
 #elif (USER_MOTOR)
 /* Define the electrical motor parameters (User motor) */
 /* @brief Stator resistance (ohm) */
-#define MOTOR_PARA_RS               1.7
+#define MOTOR_PARA_RS               (8)
 /* @brief Stator inductance (H) */
-#define MOTOR_PARA_LS               0.004
+#define MOTOR_PARA_LS               (0.0032)
 /* @brief Number of poles */
-#define MOTOR_PARA_POLES            8
-/* @brief Base RPM */
-#define MOTOR_PARA_BASE_RPM         5000
+#define MOTOR_PARA_POLES            (6)
+/* @brief Back Emf constant in V/Hz */
+#define MOTOR_PARA_KE               (0.1)
+/* @brief Maximum Frequency */
+#define MOTOR_PARA_MAX_FREQ         (125)
 
 #endif
-
-/** @brief Pole pairs of the motor */
-#define MOTOR_PARA_NUM_POLE_PAIRS                  (MOTOR_PARA_POLES/2)
-
-/**
- * @brief     Calculates the base frequency from base rpm and number of poles
- * @param[in] baseRpm   Base rpm of motor
- * @param[in] poles     Number of poles of motor 
- * @return    Returns the calculated base frequency
- */
-float MOTOR_getBaseFreq(float baseRpm, float poles);
 
 #ifdef __cplusplus
 }

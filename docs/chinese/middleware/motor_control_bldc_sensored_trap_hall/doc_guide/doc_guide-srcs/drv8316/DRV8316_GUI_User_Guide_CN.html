@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="DRV8316REVM Hardware User Guide" href="DRV8316_Hardware_User_Guide_CN.html" />
-    <link rel="prev" title="BLDC 电机控制库概述" href="../Hall_sensored_Motor_Control_Software_User_Guide_CN.html" /> 
+    <link rel="prev" title="DRV8311HEVM Hardware User Guide" href="../drv8311/DRV8311_Hardware_User_Guide_CN.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,7 +44,12 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../Hall_sensored_Motor_Control_Software_User_Guide_CN.html">BLDC 电机控制库概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Hall_sensored_Trap_Motor_Control_library_CN.html">BLDC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MSPM0_Sensored_Trap_Software_Users_Guide_CN.html">MSPM0 Sensored Trap Software User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8300/DRV8300_GUI_User_Guide_CN.html">DRV8300 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8300/DRV8300_Hardware_User_Guide_CN.html">DRV8300Dxxx-EVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8311/DRV8311_GUI_User_Guide_CN.html">DRV8311 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8311/DRV8311_Hardware_User_Guide_CN.html">DRV8311HEVM Hardware User Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8316 GUI User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">1. Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#getting-started-with-gui">1.1 Getting Started with GUI</a></li>
@@ -57,11 +62,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#motor-braking">3.2 Motor Braking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#current-setting">3.3 Current setting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fault-status">3.4 Fault Status</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spi-communication">3.5 SPI Communication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#write-register">Write Register</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#write-bitfield">Write Bitfield</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#read-register">Read Register</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#read-all-registers">Read all registers.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spi-communication">3.5 SPI Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#write-register">Write Register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-bitfield">Write Bitfield</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read-register">Read Register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read-all-registers">Read all registers.</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#adc-reference-setting">3.6 ADC Reference Setting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#voltage-and-current-monitoring">3.7 Voltage and Current Monitoring</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#speed-monitoring">3.8 Speed Monitoring</a></li>
@@ -70,8 +77,18 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="DRV8316_Hardware_User_Guide_CN.html">DRV8316REVM Hardware User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../drv8329/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../drv8329/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8317/DRV8317_GUI_User_Guide_CN.html">DRV8317 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8317/DRV8317_Hardware_User_Guide_CN.html">DRV8317HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8323/DRV8323_GUI_User_Guide_CN.html">DRV8323 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8323/DRV8323_Hardware_User_Guide_CN.html">DRV8323RHEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8328/DRV8328_GUI_User_Guide_CN.html">DRV8328 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8328/DRV8328_Hardware_User_Guide_CN.html">DRV8328AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0G3507/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0G3507/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L1306/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L1306/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8353/DRV8353_GUI_User_Guide_CN.html">DRV8353 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8353/DRV8353_Hardware_User_GuideCN.html">DRV8353RHEVM Hardware User Guide</a></li>
 </ul>
 
         </div>
@@ -104,7 +121,7 @@
 <p>This graphical user interface (GUI) was developed to allow simple evaluation of a user’s motor with the DRV8316REVM being controlled by TI’s MSPM0 microcontroller. This guide will go over the key parts of the GUI to allow you to get up and running quickly. You can access the GUI described in this document <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8316REVM-GUI">here</a>.</p>
 <section id="getting-started-with-gui">
 <h3>1.1 Getting Started with GUI<a class="headerlink" href="#getting-started-with-gui" title="Permalink to this heading">¶</a></h3>
-<p>The GUI allows the user to configure various settings required for BLDC motor control. The user can adjust settings like dutycycle, PWM Frequency, deadband, driection control, acceleration rate, ADC reference, fault status monitoring, speed monitoring.</p>
+<p>The GUI allows the user to configure various settings required for BLDC motor control. The user can adjust settings like dutycycle, PWM Frequency, deadband, direction control, acceleration rate, ADC reference, fault status monitoring, speed monitoring.</p>
 </section>
 <section id="hardware-connection">
 <h3>1.2 Hardware Connection<a class="headerlink" href="#hardware-connection" title="Permalink to this heading">¶</a></h3>
@@ -122,20 +139,20 @@
 <h2>2. Using the GUI<a class="headerlink" href="#using-the-gui" title="Permalink to this heading">¶</a></h2>
 <p>The GUI will automatically program the LaunchPad with the necessary firmware. If everything is successful the bottom left corner of the GUI should say “Hardware connected”.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Hardware_connected.png" />
+<img alt="" src="../../_images/Hardware_connected2.png" />
 </figure>
 </section>
 <section id="gui-window">
 <h2>3. GUI Window<a class="headerlink" href="#gui-window" title="Permalink to this heading">¶</a></h2>
-<p>In the GUI window user can find various controls like nSleep, DRVOFF, Directrion control, dutycycle, pwm frequency, deadband, acceleration rate and SPI controls like write, read and bitfield write. Various faults are also indiacted using LEDs.</p>
+<p>In the GUI window user can find various controls like nSleep, DRVOFF, Direction control, dutycycle, pwm frequency, deadband, acceleration rate and SPI controls like write, read and bitfield write. Various faults are also indicated using LEDs.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/GUI_window.png" />
+<img alt="" src="../../_images/GUI_window2.png" />
 </figure>
 <section id="motor-control">
 <h3>3.1 Motor Control<a class="headerlink" href="#motor-control" title="Permalink to this heading">¶</a></h3>
 <p>Once the hardware connections are done and GUI is connected to device, the motor is ready to spin. All the controls are in defaults. The user can spin the motor by adjusting the duty cycle.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/motor_control.png" />
+<img alt="" src="../../_images/Motor_control2.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -155,15 +172,15 @@
 </tr>
 <tr class="row-even"><td><p>Direction</p></td>
 <td><p>Reverse</p></td>
-<td><p>Controls the diretcion of motor spinning</p></td>
+<td><p>Controls the direction of motor spinning</p></td>
 </tr>
 <tr class="row-odd"><td><p>PWM Frequency</p></td>
 <td><p>20kHz</p></td>
-<td><p>PWM Frequency can be varried from 1kHz to 100kHz</p></td>
+<td><p>PWM Frequency can be varied from 1kHz to 100kHz</p></td>
 </tr>
 <tr class="row-even"><td><p>Deadband</p></td>
 <td><p>320ns</p></td>
-<td><p>Deadband can be varried from 100ns to 1000ns</p></td>
+<td><p>Deadband can be varied from 100ns to 1000ns</p></td>
 </tr>
 <tr class="row-odd"><td><p>Duty cycle</p></td>
 <td><p>0%</p></td>
@@ -171,16 +188,16 @@
 </tr>
 <tr class="row-even"><td><p>Acceleration rate</p></td>
 <td><p>20</p></td>
-<td><p>Duty cycle is incremented or decemented at a rate of 1% per 20ms</p></td>
+<td><p>Duty cycle is incremented or decremented at a rate of 1% per 20ms</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="motor-braking">
 <h3>3.2 Motor Braking<a class="headerlink" href="#motor-braking" title="Permalink to this heading">¶</a></h3>
-<p>The motor can be stopped from GUI without turning off the DRV by uisng stop button. The motor stops spinning with brake type selected.</p>
+<p>The motor can be stopped from GUI without turning off the DRV by using stop button. The motor stops spinning with brake type selected.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Braking.png" />
+<img alt="" src="../../_images/Braking2.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -205,7 +222,7 @@
 <h3>3.3 Current setting<a class="headerlink" href="#current-setting" title="Permalink to this heading">¶</a></h3>
 <p>The DRV8316 integrates three low side current sense amplifiers for current measurements. It has features like programmable gain and setting external references. Changing the CSA Gain will automatically update the DRV register.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/current_settings.png" />
+<img alt="" src="../../_images/current_settings2.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -228,9 +245,9 @@
 </section>
 <section id="fault-status">
 <h3>3.4 Fault Status<a class="headerlink" href="#fault-status" title="Permalink to this heading">¶</a></h3>
-<p>The firmware continuously monitors the motor parameters like voltage and current. The user can set the limits for voltage and current from GUI. When any of the faults ocuur the corresponding LED glows.</p>
+<p>The firmware continuously monitors the motor parameters like voltage and current. The user can set the limits for voltage and current from GUI. When any of the faults occur the corresponding LED glows.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Faults.png" />
+<img alt="" src="../../_images/Faults2.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -261,13 +278,12 @@
 </section>
 <section id="spi-communication">
 <h3>3.5 SPI Communication<a class="headerlink" href="#spi-communication" title="Permalink to this heading">¶</a></h3>
-<p>The DRV8316 has 3 status registers and 7 control registers, the user can read or wirte to these registers. The motor driver must not be sleeping for SPI communication to work, if you try to perform write or read while the motor driver is in sleep it will fail. If the motor goes o sleep mode for more than 1 ms the SPI registers will revert to their default values. The status registers are readonly registers and user can’t write to them. If the user tries to write it is ignored.</p>
+<p>The DRV8316 has 3 status registers and 7 control registers, the user can read or write to these registers. The motor driver must not be sleeping for SPI communication to work, if you try to perform write or read while the motor driver is in sleep it will fail. If the motor goes o sleep mode for more than 1 ms the SPI registers will revert to their default values. The status registers are readonly registers and user can’t write to them. If the user tries to write it is ignored.</p>
 <figure class="align-default">
 <img alt="" src="../../_images/SPI_registers.png" />
 </figure>
-</section>
 <section id="write-register">
-<h3>Write Register<a class="headerlink" href="#write-register" title="Permalink to this heading">¶</a></h3>
+<h4>Write Register<a class="headerlink" href="#write-register" title="Permalink to this heading">¶</a></h4>
 <p>Performs a SPI write operation based on the register selected and the value specified.</p>
 <ul class="simple">
 <li><p>The dropdown selects the SPI register you want to write to.</p></li>
@@ -275,7 +291,7 @@
 </ul>
 </section>
 <section id="write-bitfield">
-<h3>Write Bitfield<a class="headerlink" href="#write-bitfield" title="Permalink to this heading">¶</a></h3>
+<h4>Write Bitfield<a class="headerlink" href="#write-bitfield" title="Permalink to this heading">¶</a></h4>
 <p>The user can safely update a register’s bitfield without overwriting other bitfields in the register.</p>
 <ul class="simple">
 <li><p>The dropdown selects the SPI register you want to write to.</p></li>
@@ -293,7 +309,7 @@
 </ul>
 </section>
 <section id="read-register">
-<h3>Read Register<a class="headerlink" href="#read-register" title="Permalink to this heading">¶</a></h3>
+<h4>Read Register<a class="headerlink" href="#read-register" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>The dropdown selects the SPI register you want to read.</p></li>
 <li><p>The input field on the right is read only and will reflect the value that is read.</p></li>
@@ -301,7 +317,7 @@
 <p>Anytime you perform a raw SPI write operation the dropdown and input field will automatically match the register you written and show the value that was read back after your write operation has been completed.</p>
 </section>
 <section id="read-all-registers">
-<h3>Read all registers.<a class="headerlink" href="#read-all-registers" title="Permalink to this heading">¶</a></h3>
+<h4>Read all registers.<a class="headerlink" href="#read-all-registers" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Hitting the READ ALL button reads all the SPI registers.</p></li>
 </ul>
@@ -309,11 +325,12 @@
 <img alt="" src="../../_images/SPI_read_all.png" />
 </figure>
 </section>
+</section>
 <section id="adc-reference-setting">
 <h3>3.6 ADC Reference Setting<a class="headerlink" href="#adc-reference-setting" title="Permalink to this heading">¶</a></h3>
 <p>The user can use 3 different ADC references, it can be changed from GUI.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/ADC_reference_settings.png" />
+<img alt="" src="../../_images/ADC_reference_settings2.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -342,10 +359,10 @@
 <section id="voltage-and-current-monitoring">
 <h3>3.7 Voltage and Current Monitoring<a class="headerlink" href="#voltage-and-current-monitoring" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
-<img alt="" src="../../_images/motor_parameters.png" />
+<img alt="" src="../../_images/motor_parameters2.png" />
 </figure>
 <figure class="align-default">
-<img alt="" src="../../_images/voltage_graph.png" />
+<img alt="" src="../../_images/voltage_graph2.png" />
 </figure>
 <p>The user can monitor the motor parameters like bus voltage, phase voltages and phase currents. The user can see the bus voltage graph.</p>
 </section>
@@ -353,7 +370,7 @@
 <h3>3.8 Speed Monitoring<a class="headerlink" href="#speed-monitoring" title="Permalink to this heading">¶</a></h3>
 <p>When the motor starts spinning the user can see the motor speed displayed in RPM. The user needs to input the number of poles in the motor used. The user must enter even number of poles failing which the speed calculation go wrong.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/speed.png" />
+<img alt="" src="../../_images/speed2.png" />
 </figure>
 </section>
 </section>
@@ -363,7 +380,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Hall_sensored_Motor_Control_Software_User_Guide_CN.html" class="btn btn-neutral float-left" title="BLDC 电机控制库概述" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../drv8311/DRV8311_Hardware_User_Guide_CN.html" class="btn btn-neutral float-left" title="DRV8311HEVM Hardware User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="DRV8316_Hardware_User_Guide_CN.html" class="btn btn-neutral float-right" title="DRV8316REVM Hardware User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,6 +39,10 @@ int main(void)
     /* Enable WWDT interrupts on device */
     NVIC_EnableIRQ(WWDT0_INT_IRQN);
 
+    /* Clear LED and USER_TEST pin to indicate RTC clock enable */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+
     /* Enable sleep on exit */
     DL_SYSCTL_enableSleepOnExit();
 
@@ -52,8 +56,9 @@ void GROUP0_IRQHandler(void)
     switch (DL_Interrupt_getPendingGroup(DL_INTERRUPT_GROUP_0)) {
         case DL_INTERRUPT_GROUP0_IIDX_WWDT0:
             if (DL_WWDT_getPendingInterrupt(WWDT0)) {
-                /* Toggle LED */
-                DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+                /* Toggle LED and USER_TEST pin */
+                DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                    GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
             }
         default:
             break;

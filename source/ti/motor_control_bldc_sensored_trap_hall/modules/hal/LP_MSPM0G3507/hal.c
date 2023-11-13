@@ -74,6 +74,11 @@ HAL_Timer_Instance   PWMBase[HAL_PWM_MAX];
 HAL_Timer_Instance   inputCapture[HAL_CAPTURE_TIMER_MAX];
 
 /**
+ * @brief Array to store the fault instances
+ */
+HAL_fault_instance   faultInput[HAL_FAULT_INPUT_MAX];
+
+/**
  * @brief  Initializes the hal module
  */
 void HAL_init()
@@ -184,6 +189,18 @@ void HAL_init()
     inputCapture[HAL_CAPTURE_TIMER_01].gptimer   = CAPTURE_0_INST;
     inputCapture[HAL_CAPTURE_TIMER_01].ccIndex   = DL_TIMER_CC_0_INDEX;
     inputCapture[HAL_CAPTURE_TIMER_01].IRQn      = CAPTURE_0_INST_INT_IRQN;
+
+#ifdef GPIO_FAULT_1_FAULT_PIN_1_PORT
+    faultInput[HAL_FAULT_INPUT_1].gptimer = PWM_0_INST;
+    faultInput[HAL_FAULT_INPUT_1].port    = GPIO_FAULT_1_FAULT_PIN_1_PORT;
+    faultInput[HAL_FAULT_INPUT_1].pin     = GPIO_FAULT_1_FAULT_PIN_1;
+#endif
+
+#ifdef GPIO_FAULT_1_FAULT_PIN_2_PORT
+    faultInput[HAL_FAULT_INPUT_1].gptimer = PWM_0_INST;
+    faultInput[HAL_FAULT_INPUT_1].port    = GPIO_FAULT_1_FAULT_PIN_2_PORT;
+    faultInput[HAL_FAULT_INPUT_1].pin     = GPIO_FAULT_1_FAULT_PIN_2;
+#endif
 }
 
 /**
@@ -448,22 +465,22 @@ void HAL_setADCVRefExternal(HAL_ADC_CHAN chan, uint16_t externalVRef)
 
 /**
  * @brief Clear the PWM timer fault bit
- * @param[in] pwm The PWM channel
+ * @param[in] fault The fault instance
  */
-void HAL_clearTimerFault(HAL_PWM pwm)
+void HAL_clearTimerFault(HAL_FAULT_INPUT fault)
 {
-    GPTIMER_Regs *gptimer = PWMBase[pwm].gptimer;
+    GPTIMER_Regs *gptimer = faultInput[fault].gptimer;
     DL_Timer_clearInterruptStatus(gptimer, GPTIMER_CPU_INT_IMASK_F_MASK);
 }
 
 /**
  * @brief Read the PWM timer fault bit
- * @param[in] pwm The PWM channel
- * @return     The PWM timer bit status
+ * @param[in] fault The fault instance
+ * @return     The fault status
  */
-bool HAL_getTimerFaultStatus(HAL_PWM pwm)
+bool HAL_getTimerFaultStatus(HAL_FAULT_INPUT fault)
 {
-    GPTIMER_Regs *gptimer = PWMBase[pwm].gptimer;
+    GPTIMER_Regs *gptimer = faultInput[fault].gptimer;
     uint32_t status = DL_Timer_getRawInterruptStatus(gptimer, GPTIMER_CPU_INT_IMASK_F_MASK);
     return ((bool)(status >> GPTIMER_CPU_INT_IMASK_F_OFS));
 }
@@ -500,6 +517,31 @@ uint32_t HAL_getCaptureFrequency(HAL_CAPTURE_TIMER capture)
     return ((HAL_CAPTURE_TIMER_FREQ)/(capturePeriod + 1));
 }
 
-
+/**
+ * @brief updates the adc voltage reference
+ * @param[in] adcRef ADC voltage reference
+ * @param[in] chan The ADC channel name
+ * @param[in] internalVRef  Internal reference voltage
+ * @param[in] externalVRef  External reference voltage
+ */
+void HAL_ADCVRefSel(HAL_ADC_VREF adcRef, HAL_ADC_CHAN chan,
+                        HAL_ADC_INT_VREF internalVRef, uint16_t externalVRef)
+{
+    switch(adcRef)
+    {
+    case HAL_ADC_VREF_VDDA:
+        HAL_setADCVRefVDDA(chan);
+        break;
+    case HAL_ADC_VREF_INTERNAL:
+        HAL_setADCVRefInternal(chan, internalVRef);
+        break;
+    case HAL_ADC_VREF_EXTERNAL:
+        HAL_setADCVRefExternal(chan, externalVRef);
+        break;
+    default:
+        /* This is expected to be empty */
+        break;
+    }
+}
 
 

@@ -51,6 +51,28 @@ function validateGates(inst, validation) {
 			}
 		}
 	}
+	if(inst.$name === "EXCLKGATE"){
+		let modPF = system.modules["/ti/clockTree/pinFunction.js"];
+		let clkOutInst = _.find(modPF.$instances, ['$name', 'CLKOUT']);
+
+		if(_.isUndefined(clkOutInst)){
+			throw 'could not find the CLKOUT pin function instance';
+		}
+		if(inst.enable & !clkOutInst.enable){
+			validation.logWarning("The CLKOUT gate is enabled but the CLKOUT pin is not enabling the GPIO pin", clkOutInst, "enable");
+		}
+	}
+	if(inst.$name === "EXCLKGATE"){
+		let modPF = system.modules["/ti/clockTree/pinFunction.js"];
+		let clkOutInst = _.find(modPF.$instances, ['$name', 'CLKOUT']);
+
+		if(_.isUndefined(clkOutInst)){
+			throw 'could not find the CLKOUT pin function instance';
+		}
+		if(inst.enable & !clkOutInst.enable){
+			validation.logWarning("The CLKOUT gate is enabled but the CLKOUT pin is not enabling the GPIO pin", clkOutInst, "enable");
+		}
+	}
 
 }
 

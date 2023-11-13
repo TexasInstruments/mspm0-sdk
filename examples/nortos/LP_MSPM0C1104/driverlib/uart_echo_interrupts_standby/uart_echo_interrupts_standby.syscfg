@@ -1,0 +1,51 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @versions {"tool":"1.0.0+dev"}
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+
+const SYSCTL = system.modules["/ti/driverlib/SYSCTL"].$static;
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.configureUnused = true;
+
+UART1.$name = "UART_0";
+UART1.profile = "CONFIG_PROFILE_1";
+UART1.peripheral.$assign = "UART0";
+UART1.uartClkSrc = "LFCLK";
+UART1.ovsRate = "3";
+UART1.targetBaudRate = 9600;
+UART1.enableInternalLoopback = false;
+UART1.enabledInterrupts = ["RX"];
+UART1.enableFIFO= false;
+
+UART1.peripheral.txPin.$assign = "PA27";
+UART1.peripheral.rxPin.$assign = "PA26";
+
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.port                           = "PORTA";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].invert       = "ENABLE";
+GPIO1.associatedPins[0].pin.$assign  = "PA4";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[1].invert       = "ENABLE";
+GPIO1.associatedPins[1].initialValue = "SET";
+GPIO1.associatedPins[1].pin.$assign  = "PA2";
+
+SYSCTL.powerPolicy = "STANDBY0";

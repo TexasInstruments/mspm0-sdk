@@ -1,0 +1,70 @@
+## Example Summary
+
+This example shows how the I2C module can dynamically switch between operating as
+Controller and Target.
+
+In I2C Controller mode, the device writes multiple bytes to a target device every 1s.
+In I2C Target mode, the device responds to write requests from a controller device.
+On pressing S2, the device can switch between operating in I2C Controller and Target modes.
+The LED toggles every 1s if the device is operating in I2C Controller mode, and transmission is successful.
+The LED will toggle on every successful RX or TX if the device is operating in I2C Target mode.
+The example uses FIFO and interrupts.
+
+For initializing the device in Controller mode, set the define I2C_CONTROLLER_MODE to 1.
+For initializing the device in Target mode, set the define I2C_CONTROLLER_MODE to 0.
+
+The Target device must be enabled and active before running this example.
+
+## Peripherals & Pin Assignments
+
+| Peripheral | Pin | Function |
+| --- | --- | --- |
+| GPIOA | PA4 | Standard Output |
+| GPIOA | PA16 | Standard Input with internal pull-up |
+| SYSCTL |  |  |
+| I2C0 | PA0 | I2C Serial Data line (SDA) |
+| I2C0 | PA11 | I2C Serial Clock line (SCL) |
+| EVENT |  |  |
+| DEBUGSS | PA20 | Debug Clock |
+| DEBUGSS | PA19 | Debug Data In Out |
+
+## BoosterPacks, Board Resources & Jumper Settings
+
+Visit [LP_MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104) for LaunchPad information, including user guide and hardware files.
+
+| Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
+| --- | --- | --- | --- | --- |
+| PA4 | GPIOA | PA4 | J2_14 | N/A |
+| PA16 | GPIOA | PA16 | J2_19 | <ul><li>PA16 is connected to S2 button to GND with no external pull resistor<br><ul><li>Press `S2` button to connect pin to GND<br><li>Don't use `S2` button if not needed by application</ul></ul> |
+| PA0 | I2C0 | SDA | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J20 1:2` Use 3.3V pull-up<br><li>`J20 2:3` Use 5V pull-up</ul></ul> |
+| PA11 | I2C0 | SCL | J1_9 | <ul><li>PA11 can be connected to an external 3.3V pull-up<br><ul><li>`J6 OFF` Disconnect 3.3V pull-up<br><li>`J6 ON` Connect 3.3V pull-up</ul></ul> |
+| PA20 | DEBUGSS | SWCLK | J2_11 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 11:12 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 11:12 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Low-Power Recommendations
+TI recommends to terminate unused pins by setting the corresponding functions to
+GPIO and configure the pins to output low or input with internal
+pullup/pulldown resistor.
+
+SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
+
+For more information about jumper configuration to achieve low-power using the
+MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 web page](https://www.ti.com/tool/LP-MSPM0C1104).
+
+## Example Usage
+
+Connect SDA and SCL between I2C Controller and Target.
+Before compiling the example on the Target, make sure to set the define
+I2C_CONTROLLER_MODE to 0, and then load and run the example.
+Compile, load and run the example on the Controller device.
+Make sure the Target device is running before starting the Controller.
+
+The LED toggles every 1s if the device is operating in I2C Controller mode, and transmission is successful.
+The LED will toggle on every successful RX or TX if the device is operating in I2C Target mode.
+
+To switch between Controller and Target modes, press S2. Make sure to press
+S2 on the Controller device first, since the Target device should always be
+set up and running before the Controller.
+
+LED1 will remain off if there is a problem during initialization.
+LED1 will remain on if there is a problem during data transfers.

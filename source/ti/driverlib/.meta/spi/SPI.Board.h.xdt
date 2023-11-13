@@ -1,6 +1,6 @@
 %%{
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -86,10 +86,10 @@
 % if (usePICO) {
 %       let mosiPinName = "mosi"+"Pin";
 %       let mosiPackagePin = inst.peripheral[mosiPinName].$solution.packagePinName;
-%       let mosiPinCM = system.deviceData.devicePins[mosiPackagePin].attributes.iomux_pincm;
+%       let mosiPinCM = Common.getPinCM(mosiPackagePin,inst,'PICO');
 %       let mosiGpioName = system.deviceData.devicePins[mosiPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let mosiPort = Common.getGPIOPort(mosiGpioName);
-%       let mosiGpioPin = Common.getGPIONumber(mosiGpioName);
+%       let mosiPort    = Common.getGPIOPortMultiPad(mosiPackagePin, inst, 'PICO');
+%       let mosiGpioPin = Common.getGPIONumberMultiPad(mosiPackagePin, inst, 'PICO');
 % let mosiPortStr = "#define "+gpioStr+"_PICO_PORT";
 `mosiPortStr.padEnd(40," ")+mosiPort.padStart(39, " ")`
 % //#define `gpioStr`_PICO_PORT                              `mosiPort`
@@ -109,10 +109,10 @@
 % if (usePOCI) {
 %       let misoPinName = "miso"+"Pin";
 %       let misoPackagePin = inst.peripheral[misoPinName].$solution.packagePinName;
-%       let misoPinCM = system.deviceData.devicePins[misoPackagePin].attributes.iomux_pincm;
+%       let misoPinCM = Common.getPinCM(misoPackagePin,inst,'POCI');
 %       let misoGpioName = system.deviceData.devicePins[misoPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let misoPort = Common.getGPIOPort(misoGpioName);
-%       let misoGpioPin = Common.getGPIONumber(misoGpioName);
+%       let misoPort    = Common.getGPIOPortMultiPad(misoPackagePin, inst, 'POCI');
+%       let misoGpioPin = Common.getGPIONumberMultiPad(misoPackagePin, inst, 'POCI');
 % let misoPortStr = "#define "+gpioStr+"_POCI_PORT";
 `misoPortStr.padEnd(40," ")+misoPort.padStart(39, " ")`
 % //#define `gpioStr`_POCI_PORT                              `misoPort`
@@ -131,10 +131,10 @@
 %} //if (usePOCI)
 %       let sclkPinName = "sclk"+"Pin";
 %       let sclkPackagePin = inst.peripheral[sclkPinName].$solution.packagePinName;
-%       let sclkPinCM = system.deviceData.devicePins[sclkPackagePin].attributes.iomux_pincm;
+%       let sclkPinCM = Common.getPinCM(sclkPackagePin,inst,"SCLK")
 %       let sclkGpioName = system.deviceData.devicePins[sclkPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let sclkPort = Common.getGPIOPort(sclkGpioName);
-%       let sclkGpioPin = Common.getGPIONumber(sclkGpioName);
+%       let sclkPort = Common.getGPIOPortMultiPad(sclkPackagePin,inst,"SCLK");
+%       let sclkGpioPin = Common.getGPIONumberMultiPad(sclkPackagePin,inst,"SCLK");
 %
 /* GPIO configuration for `inst.$name` */
 %
@@ -158,12 +158,13 @@
 %if(csNum == "3" && inst.enableCDMode == true) {
 %continue
 %}
+%       let pinInterfaceName = "CS"+csNum+((csNum=="0") ? "" : ("POCI"+csNum));
 %       let csPinName = "cs"+csNum+"Pin";
 %       let csPackagePin = inst.peripheral[csPinName].$solution.packagePinName;
-%       let csPinCM = system.deviceData.devicePins[csPackagePin].attributes.iomux_pincm;
+%       let csPinCM = Common.getPinCM(csPackagePin,inst,pinInterfaceName);
 %       let csGpioName = system.deviceData.devicePins[csPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let csPort = Common.getGPIOPort(csGpioName);
-%       let csGpioPin = Common.getGPIONumber(csGpioName);
+%       let csPort = Common.getGPIOPortMultiPad(csPackagePin,inst,pinInterfaceName);
+%       let csGpioPin = Common.getGPIONumberMultiPad(csPackagePin,inst,pinInterfaceName);
 % let csPortStr = "#define "+gpioStr+"_CS"+csNum+"_PORT";
 `csPortStr.padEnd(40," ")+csPort.padStart(39, " ")`
 % //#define `csPortStr`_CS+csNum+_PORT                              `csPort`
@@ -190,10 +191,10 @@
 %       /* In CD mode, SPI uses the CS3/CD line */
 %       let cdPinName = "cs3Pin";
 %       let cdPackagePin = inst.peripheral[cdPinName].$solution.packagePinName;
-%       let cdPinCM = system.deviceData.devicePins[cdPackagePin].attributes.iomux_pincm;
+%       let cdPinCM = Common.getPinCM(cdPackagePin,inst,"CS3_CD_POCI3");
 %       let cdGpioName = system.deviceData.devicePins[cdPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let cdPort = Common.getGPIOPort(cdGpioName);
-%       let cdGpioPin = Common.getGPIONumber(cdGpioName);
+%       let cdPort = Common.getGPIOPortMultiPad(cdPackagePin,inst,"CS3_CD_POCI3");
+%       let cdGpioPin = Common.getGPIONumberMultiPad(cdPackagePin,inst,"CS3_CD_POCI3");
 % let cdPortStr = "#define "+gpioStr+"_CD_PORT";
 `cdPortStr.padEnd(40," ")+cdPort.padStart(39, " ")`
 % //#define `cdPortStr`_CD_PORT                              `cdPort`
@@ -213,12 +214,13 @@
 %if (inst.mode == "PERIPHERAL" && inst.frameFormat != "MOTO3"){
 %       /* CS0, CS1, CS2, or CS3 can be used in Peripheral mode */
 %       let csNum = inst.peripheralChipSelect;
+%       let pinInterfaceName = ((csNum == "3")? ("CS3_CD_POCI3"):("CS"+csNum+((csNum == "0") ? "" : ("POCI"+csNum))));
 %       let csPinName = "cs" + csNum + "Pin";
 %       let csPackagePin = inst.peripheral[csPinName].$solution.packagePinName;
-%       let csPinCM = system.deviceData.devicePins[csPackagePin].attributes.iomux_pincm;
+%       let csPinCM = Common.getPinCM(csPackagePin,inst,pinInterfaceName);
 %       let csGpioName = system.deviceData.devicePins[csPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let csPort = Common.getGPIOPort(csGpioName);
-%       let csGpioPin = Common.getGPIONumber(csGpioName);
+%       let csPort = Common.getGPIOPortMultiPad(csPackagePin,inst,pinInterfaceName);
+%       let csGpioPin = Common.getGPIONumberMultiPad(csPackagePin,inst,pinInterfaceName);
 % let csPortStr = "#define "+gpioStr+"_CS_PORT";
 `csPortStr.padEnd(40," ")+csPort.padStart(39, " ")`
 % //#define `csPortStr`_CS_PORT                              `csPort`

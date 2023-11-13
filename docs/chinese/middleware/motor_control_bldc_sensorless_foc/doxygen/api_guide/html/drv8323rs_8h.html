@@ -560,28 +560,24 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga144baf9d44f96dfd162efbd8dccb7c7f">DRV8323RS_SPI_ADDR_MASK</a>&#160;&#160;&#160;(0xF &lt;&lt; DRV8323RS_SPI_ADDR_OFS)</td></tr>
 <tr class="memdesc:ga144baf9d44f96dfd162efbd8dccb7c7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the mask for SPI register address. <br /></td></tr>
 <tr class="separator:ga144baf9d44f96dfd162efbd8dccb7c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7b546d3c2c309a9f4c8668489c7b48a3"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga7b546d3c2c309a9f4c8668489c7b48a3">DRV8323RS_VOLTAGE_SF_IQ15</a>&#160;&#160;&#160;(570517)</td></tr>
-<tr class="memdesc:ga7b546d3c2c309a9f4c8668489c7b48a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltage scale factor for vm, this is iq15 value of (R1+R2)/R2 , where R1 and R2 forms the potential divider, Default R1 = 82k ohm and R2 = 4.99k ohm, (R1+R2)/R2 = 17.4108, the iq15 is 570517. <br /></td></tr>
-<tr class="separator:ga7b546d3c2c309a9f4c8668489c7b48a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0582ec56f2a58c571ce80922a57efef3"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga0582ec56f2a58c571ce80922a57efef3">DRV8323RS_CSA_GAIN_MAX_VALUE</a>&#160;&#160;&#160;(4)</td></tr>
-<tr class="memdesc:ga0582ec56f2a58c571ce80922a57efef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of gains configurable for the drv. <br /></td></tr>
-<tr class="separator:ga0582ec56f2a58c571ce80922a57efef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga784e93b8b51ccb784936c14ceb4a5aee"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga784e93b8b51ccb784936c14ceb4a5aee">DRV8323RS_DEFAULT_R_SHUNT</a>&#160;&#160;&#160;(0.007f)</td></tr>
-<tr class="memdesc:ga784e93b8b51ccb784936c14ceb4a5aee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default shunt resistor in the drv. <br /></td></tr>
-<tr class="separator:ga784e93b8b51ccb784936c14ceb4a5aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9c57dbeab2aa9353cb03322510ad50d2"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga9c57dbeab2aa9353cb03322510ad50d2">DRV8323RS_DEFAULT_AMP_GAIN</a>&#160;&#160;&#160;(5)</td></tr>
-<tr class="memdesc:ga9c57dbeab2aa9353cb03322510ad50d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default configured CSA gain. <br /></td></tr>
-<tr class="separator:ga9c57dbeab2aa9353cb03322510ad50d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7376c36c6816bd6785b562544b4688b5"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga7376c36c6816bd6785b562544b4688b5">DRV8323RS_DEFAULT_VOLT_R_DIVIDER</a>&#160;&#160;&#160;((82+4.99)/4.99)</td></tr>
 <tr class="memdesc:ga7376c36c6816bd6785b562544b4688b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC voltage to dc bus voltage scale factor This is the ratio ((R1 + R2) / R2), where R1 and R2 forms the potential divider circuit scaling the dc bus voltage to the range of input for the adc Refer to the DRV8323RS schematics for more understanding. <br /></td></tr>
 <tr class="separator:ga7376c36c6816bd6785b562544b4688b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7b546d3c2c309a9f4c8668489c7b48a3"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga7b546d3c2c309a9f4c8668489c7b48a3">DRV8323RS_VOLTAGE_SF_IQ15</a>&#160;&#160;&#160;_IQ15(<a class="el" href="group___m_d___m_o_d_u_l_e.html#ga7376c36c6816bd6785b562544b4688b5">DRV8323RS_DEFAULT_VOLT_R_DIVIDER</a>)</td></tr>
+<tr class="memdesc:ga7b546d3c2c309a9f4c8668489c7b48a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltage scale factor for vm, in iq15 value. <br /></td></tr>
+<tr class="separator:ga7b546d3c2c309a9f4c8668489c7b48a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadee94fc0fb5d4097258191c079f48eb1"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#gadee94fc0fb5d4097258191c079f48eb1">DRV8323RS_CSA_GAIN_MAX_VALUES</a>&#160;&#160;&#160;(4)</td></tr>
+<tr class="memdesc:gadee94fc0fb5d4097258191c079f48eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of gains configurable for the drv. <br /></td></tr>
+<tr class="separator:gadee94fc0fb5d4097258191c079f48eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga784e93b8b51ccb784936c14ceb4a5aee"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga784e93b8b51ccb784936c14ceb4a5aee">DRV8323RS_DEFAULT_R_SHUNT</a>&#160;&#160;&#160;(0.007f)</td></tr>
+<tr class="memdesc:ga784e93b8b51ccb784936c14ceb4a5aee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default shunt resistor in the drv. <br /></td></tr>
+<tr class="separator:ga784e93b8b51ccb784936c14ceb4a5aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5f2f218a0cf1731558b83037cfafcb13"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga5f2f218a0cf1731558b83037cfafcb13">DRV8323RS_DEFAULT_PWM_DEADBAND_NS</a>&#160;&#160;&#160;(400)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga5f2f218a0cf1731558b83037cfafcb13">DRV8323RS_DEFAULT_PWM_DEADBAND_NS</a>&#160;&#160;&#160;(100)</td></tr>
 <tr class="memdesc:ga5f2f218a0cf1731558b83037cfafcb13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Deadband for the drv. <br /></td></tr>
 <tr class="separator:ga5f2f218a0cf1731558b83037cfafcb13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -959,10 +955,10 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ga8e9292b4906664701dfef8ed068c84ba"><td class="memItemLeft" align="right" valign="top">
-int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga8e9292b4906664701dfef8ed068c84ba">drvGain</a> [<a class="el" href="group___m_d___m_o_d_u_l_e.html#ga0582ec56f2a58c571ce80922a57efef3">DRV8323RS_CSA_GAIN_MAX_VALUE</a>]</td></tr>
-<tr class="memdesc:ga8e9292b4906664701dfef8ed068c84ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the gain values available to be set in drv. <br /></td></tr>
-<tr class="separator:ga8e9292b4906664701dfef8ed068c84ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8edd58cb2640b1f9d88a4131e4955957"><td class="memItemLeft" align="right" valign="top">
+int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_d___m_o_d_u_l_e.html#ga8edd58cb2640b1f9d88a4131e4955957">drvGain</a> [<a class="el" href="group___m_d___m_o_d_u_l_e.html#gadee94fc0fb5d4097258191c079f48eb1">DRV8323RS_CSA_GAIN_MAX_VALUES</a>]</td></tr>
+<tr class="memdesc:ga8edd58cb2640b1f9d88a4131e4955957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the gain values available to be set in drv. <br /></td></tr>
+<tr class="separator:ga8edd58cb2640b1f9d88a4131e4955957"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

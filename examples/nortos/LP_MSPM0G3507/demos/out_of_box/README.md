@@ -11,9 +11,6 @@ A GUI can be used with this demo, and the user can interact with the
 LaunchPad using the GUI. The GUI for this demo can be found
 [here](https://dev.ti.com/gallery/view/TIMSPGC/LP_MSPM0G3507_OOBE/).
 
-Please contact your local sales representative or TI support team to request access
-to the GUI.
-
 ### Demo Examples
 
 #### Blinking LED Summary

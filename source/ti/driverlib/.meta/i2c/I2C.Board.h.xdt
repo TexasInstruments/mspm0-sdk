@@ -107,15 +107,15 @@
 %       let sclPinName = "scl"+"Pin";
 %       let sdaPackagePin = inst.peripheral[sdaPinName].$solution.packagePinName;
 %       let sclPackagePin = inst.peripheral[sclPinName].$solution.packagePinName;
-%       let sdaPinCM = system.deviceData.devicePins[sdaPackagePin].attributes.iomux_pincm;
-%       let sclPinCM = system.deviceData.devicePins[sclPackagePin].attributes.iomux_pincm;
+%       let sdaPinCM = Common.getPinCM(sdaPackagePin,inst,"SDA");
+%       let sclPinCM = Common.getPinCM(sclPackagePin,inst,"SCL");
 %       let flav = flavorStrings[flavor];
 %       let sdaGpioName = system.deviceData.devicePins[sdaPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
 %       let sclGpioName = system.deviceData.devicePins[sclPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let sdaPort = Common.getGPIOPort(sdaGpioName);
-%       let sclPort = Common.getGPIOPort(sclGpioName);
-%       let sdaGpioPin = Common.getGPIONumber(sdaGpioName);
-%       let sclGpioPin = Common.getGPIONumber(sclGpioName);
+%       let sdaPort = Common.getGPIOPortMultiPad(sdaPackagePin,inst,"SDA");
+%       let sclPort = Common.getGPIOPortMultiPad(sclPackagePin,inst,"SCL");
+%       let sdaGpioPin = Common.getGPIONumberMultiPad(sdaPackagePin,inst,"SDA");
+%       let sclGpioPin = Common.getGPIONumberMultiPad(sclPackagePin,inst,"SCL");
 % let sdaPortStr = "#define "+gpioStr+"_SDA_PORT";
 `sdaPortStr.padEnd(40," ")+sdaPort.padStart(40, " ")`
 % let sdaPinStr = "#define "+gpioStr+"_SDA_PIN";

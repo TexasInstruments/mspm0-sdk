@@ -34,14 +34,10 @@
 /**
  * @brief Stores the gain values available to be set in drv
  */
-int8_t drvGain[DRV8323RS_CSA_GAIN_MAX_VALUE] = { 5, 10, 20, 40};
+int8_t drvGain[DRV8323RS_CSA_GAIN_MAX_VALUES] = { 5, 10, 20, 40};
 
 void DRV8323RS_init(DRV8323RS_Instance *handle)
 {
-    HAL_enableADCInterrupt(handle->vsenvm);
-    HAL_enableADCInterrupt(handle->isena);
-    HAL_enableADCInterrupt(handle->isenb);
-
     DRV8323RS_disable(handle);
     DRV8323RS_enable(handle);
 
@@ -274,8 +270,8 @@ _iq DRV8323RS_getIB(DRV8323RS_Instance *handle)
 
 _iq DRV8323RS_getIC(DRV8323RS_Instance *handle)
 {
-    _iq15 adcVal = HAL_getADCVoltage(handle->ic);
-    _iq15 offset = _IQdiv2(HAL_getADCRefVoltage(handle->ic));
+    _iq15 adcVal = HAL_getADCVoltage(handle->isenc);
+    _iq15 offset = _IQdiv2(HAL_getADCRefVoltage(handle->isenc));
     return _IQ15toIQ(_IQ15mpy(adcVal - offset, handle->iSf));
 }
 

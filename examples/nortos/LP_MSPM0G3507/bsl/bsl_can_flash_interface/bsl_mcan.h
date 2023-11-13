@@ -30,7 +30,13 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "bsl_can_config.h"
+#include <ti_msp_dl_config.h>
+#define BSL_CRC (CRC)
+#define BSL_CRC_SEED ((uint32_t) 0xFFFFFFFFU)
+
+
+#define DL_MCAN_SET 1;
+#define DL_MCAN_RESET 0;
 
 /* Flash Plugin Interface Version */
 #define FLASH_PLUGIN_VERSION_MCAN ((uint16_t) 0x0004)
@@ -88,7 +94,7 @@
 #define BITRATE_CONF_FD_MASK (uint64_t) 0x1
 #define BITRATE_CONF_FD_LEN (uint8_t) 0x1
 
-#define BITRATE_CONF_BRS_MASK (uint64_t) 0x2
+#define BITRATE_CONF_BRS_MASK (uint64_t) 0x1
 #define BITRATE_CONF_BRS_LEN (uint8_t) 0x1
 
 #define BITRATE_CONF_NTSG1_MASK (uint64_t) 0xFF

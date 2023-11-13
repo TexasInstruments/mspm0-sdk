@@ -51,6 +51,10 @@
        _.isUndefined(lfxtInst) || _.isUndefined(exlfInst)) {
         if(Common.isDeviceM0G()){
             throw 'Not all LFCLK elements are defined appropriately';
+        }
+    } else if ((_.isUndefined(exlfMuxInst) ||  _.isUndefined(exlfInst))) {
+        if(Common.isDeviceM0C()){
+            throw 'Not all LFCLK elements are defined appropriately';
         } else {
             return; // LFCLK not supported
         }
@@ -58,23 +62,36 @@
 
     let lfclkStr = ""
 
-    /* Traverse the MCLK table to look for clock source */
-    if(_.endsWith(lfxtMuxInst.inputSelect, "FALSE")){
-        // use LFOSC, no code generated
-        return;
-    } else {
-        // uses external digital
-        if(_.endsWith(exlfMuxInst.inputSelect, "XTAL")){
-            /* don't want to generate code unless it's actually going to get used. Check enabling */
-            if(lfxtInst.enable){
-                lfclkStr = "DL_SYSCTL_setLFCLKSourceLFXT((DL_SYSCTL_LFCLKConfig *) &gLFCLKConfig);";
-            }
+    if(Common.isDeviceM0G()){
+
+        /* Traverse the MCLK table to look for clock source */
+        if(_.endsWith(lfxtMuxInst.inputSelect, "FALSE")){
+            // use LFOSC, no code generated
+            return;
         } else {
+            // uses external digital
+            if(_.endsWith(exlfMuxInst.inputSelect, "XTAL")){
+                /* don't want to generate code unless it's actually going to get used. Check enabling */
+                if(lfxtInst.enable){
+                    lfclkStr = "DL_SYSCTL_setLFCLKSourceLFXT((DL_SYSCTL_LFCLKConfig *) &gLFCLKConfig);";
+                }
+            } else {
+                if(exlfInst.enable){
+                    lfclkStr = "DL_SYSCTL_setLFCLKSourceEXLF();";
+                }
+            }
+        }
+
+    } else if(Common.isDeviceM0C()) {
+        if(_.endsWith(exlfMuxInst.inputSelect, "EXT")){
             if(exlfInst.enable){
                 lfclkStr = "DL_SYSCTL_setLFCLKSourceEXLF();";
             }
+        } else {
+            // LFOSC used; do nothing
         }
     }
+
 %%}
 %
     `lfclkStr`

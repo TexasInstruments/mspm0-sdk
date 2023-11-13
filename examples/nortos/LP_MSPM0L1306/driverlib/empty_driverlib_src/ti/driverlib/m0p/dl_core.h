@@ -89,6 +89,26 @@ extern "C" {
  */
 #define DL_CORE_PREFETCH_DISABLED                   (CPUSS_CTL_PREFETCH_DISABLE)
 
+/** @}*/
+
+/** @addtogroup DL_CORE_LITERAL_CACHE
+ *  @{
+ */
+
+/*!
+ * @brief Enables caching and prefetching of literals.
+ * This is set only if the ICACHE or PREFETCH bits have been set respectively.
+ */
+#define DL_CORE_LITERAL_CACHE_ENABLED                   (CPUSS_CTL_LITEN_ENABLE)
+
+/*!
+ * @brief Disables caching and prefetching of literals
+ */
+#define DL_CORE_LITERAL_CACHE_DISABLED                 (CPUSS_CTL_LITEN_DISABLE)
+
+/** @}*/
+
+
 /**
  * @brief Alias for DL_Common_delayCycles
  */
@@ -167,21 +187,23 @@ __STATIC_INLINE uint32_t DL_CORE_getRevision(void)
  *
  * @param icache [in]    Instruction cache option @ref DL_CORE_CACHE
  * @param prefetch [in]  Instruction prefetch option @ref DL_CORE_PREFETCH
+ * @param litCache [in]  Literal cache option @ref DL_CORE_LITERAL_CACHE
  *
  */
-__STATIC_INLINE void DL_CORE_configInstruction(uint32_t icache, uint32_t prefetch)
+__STATIC_INLINE void DL_CORE_configInstruction(uint32_t icache, uint32_t prefetch, uint32_t litCache)
 {
-    CPUSS->CTL = ( icache | prefetch);
+    CPUSS->CTL = (icache | prefetch | litCache);
 }
 
 /**
- * @brief Returns instruction caching and prefetch configuration
+ * @brief Returns instruction caching, prefetch, and literal cache configuration
  *
- * @return Bitwise OR of @ref DL_CORE_CACHE and @ref DL_CORE_PREFETCH
+ * @return Bitwise OR of @ref DL_CORE_CACHE and @ref DL_CORE_PREFETCH and
+ * @ref DL_CORE_LITERAL_CACHE
  */
 __STATIC_INLINE uint32_t DL_CORE_getInstructionConfig(void)
 {
-    return(CPUSS->CTL & (CPUSS_CTL_ICACHE_MASK | CPUSS_CTL_PREFETCH_MASK));
+    return(CPUSS->CTL & (CPUSS_CTL_ICACHE_MASK | CPUSS_CTL_PREFETCH_MASK | CPUSS_CTL_LITEN_MASK));
 }
 
 #ifdef __cplusplus

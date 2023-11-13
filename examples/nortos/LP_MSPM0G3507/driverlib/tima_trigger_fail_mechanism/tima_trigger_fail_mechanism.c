@@ -36,9 +36,24 @@ int main(void)
 {
     SYSCFG_DL_init();
 
+    NVIC_EnableIRQ(PWM_0_INST_INT_IRQN);
+    DL_SYSCTL_enableSleepOnExit();
+
     DL_TimerA_startCounter(PWM_0_INST);
 
     while (1) {
         __WFI();
+    }
+}
+
+void PWM_0_INST_IRQHandler(void)
+{
+    switch (DL_TimerA_getPendingInterrupt(PWM_0_INST)) {
+        case DL_TIMERA_IIDX_FAULT:
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
+            break;
+        default:
+            break;
     }
 }

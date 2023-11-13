@@ -90,19 +90,15 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#gadf46bf5f26a73f7f844936be24cc9536">PWMGEN_DEFAULTS</a>&#160;&#160;&#160;{  0,0,0,0,0,0,0,0,0 }</td></tr>
 <tr class="memdesc:gadf46bf5f26a73f7f844936be24cc9536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default values for pwmgen instance. <br /></td></tr>
 <tr class="separator:gadf46bf5f26a73f7f844936be24cc9536"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga04a15e724b8bc00a6319af691bfba0ce"><td class="memItemLeft" align="right" valign="top"><a id="ga04a15e724b8bc00a6319af691bfba0ce"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga04a15e724b8bc00a6319af691bfba0ce">PWMGEN_ADC_SETTLE_DELAY</a>&#160;&#160;&#160;(20)</td></tr>
-<tr class="memdesc:ga04a15e724b8bc00a6319af691bfba0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay for the ADC value to settle all low side turn on. <br /></td></tr>
-<tr class="separator:ga04a15e724b8bc00a6319af691bfba0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga51d947634e0bf86da4f7b4dc6ece3d51"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga51d947634e0bf86da4f7b4dc6ece3d51">PWMGEN_UpdateParams</a> (<a class="el" href="struct_p_w_m_g_e_n___instance.html">PWMGEN_Instance</a> *handle, <a class="el" href="struct_p_w_m_g_e_n___p_a_r_a.html">PWMGEN_PARA</a> *para)</td></tr>
 <tr class="memdesc:ga51d947634e0bf86da4f7b4dc6ece3d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the pwmgen parameters.  <a href="#ga51d947634e0bf86da4f7b4dc6ece3d51">More...</a><br /></td></tr>
 <tr class="separator:ga51d947634e0bf86da4f7b4dc6ece3d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga72abc5777a56802784c6e00e70bb0824"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga72abc5777a56802784c6e00e70bb0824">PWMGEN_checkLimits</a> (uint16_t *duty, uint16_t maxduty, uint16_t minduty)</td></tr>
-<tr class="memdesc:ga72abc5777a56802784c6e00e70bb0824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limit to max and min duty limits.  <a href="#ga72abc5777a56802784c6e00e70bb0824">More...</a><br /></td></tr>
-<tr class="separator:ga72abc5777a56802784c6e00e70bb0824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c5b385d5ee50416a7f777594b58caad"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga7c5b385d5ee50416a7f777594b58caad">PWMGEN_checkLimits</a> (uint32_t *duty, uint32_t maxduty, uint32_t minduty)</td></tr>
+<tr class="memdesc:ga7c5b385d5ee50416a7f777594b58caad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limit to max and min duty limits.  <a href="#ga7c5b385d5ee50416a7f777594b58caad">More...</a><br /></td></tr>
+<tr class="separator:ga7c5b385d5ee50416a7f777594b58caad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga38a67d8e3ef7e172c218da328528937d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga38a67d8e3ef7e172c218da328528937d">PWMGEN_run</a> (<a class="el" href="struct_p_w_m_g_e_n___instance.html">PWMGEN_Instance</a> *handle)</td></tr>
 <tr class="memdesc:ga38a67d8e3ef7e172c218da328528937d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run pwmgen algorithm.  <a href="#ga38a67d8e3ef7e172c218da328528937d">More...</a><br /></td></tr>
 <tr class="separator:ga38a67d8e3ef7e172c218da328528937d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,14 +140,14 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>References <a class="el" href="struct_p_w_m_g_e_n___p_a_r_a.html#a2e14bb56b533478672dff6c8e5ed1e20">PWMGEN_PARA::adcSampleCycles</a>, <a class="el" href="struct_p_w_m_g_e_n___p_a_r_a.html#a0be65712059ab2edb53dc83375d9578c">PWMGEN_PARA::deadband</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a20857d670772ed02044cf8b4bf154823">PWMGEN_Instance::dutyMax</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a62f6b6c9a5bd6bca5f367f75a0f89a89">PWMGEN_Instance::dutyMin</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a778d9bde7f03d2d29c15a0e152e2e94d">PWMGEN_Instance::HalfPerMax</a>, <a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga04a15e724b8bc00a6319af691bfba0ce">PWMGEN_ADC_SETTLE_DELAY</a>, and <a class="el" href="struct_p_w_m_g_e_n___p_a_r_a.html#ac57f534686983f292943e226a7ba99b9">PWMGEN_PARA::pwmPeriod</a>.</p>
+<p>References <a class="el" href="struct_p_w_m_g_e_n___p_a_r_a.html#a0be65712059ab2edb53dc83375d9578c">PWMGEN_PARA::deadband</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a2b6115d36b761198484b097930ac98ae">PWMGEN_Instance::dutyMax</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a0d39f920f0a703c54bbee72ad966260a">PWMGEN_Instance::dutyMin</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a778d9bde7f03d2d29c15a0e152e2e94d">PWMGEN_Instance::HalfPerMax</a>, <a class="el" href="struct_p_w_m_g_e_n___p_a_r_a.html#ac57f534686983f292943e226a7ba99b9">PWMGEN_PARA::pwmPeriod</a>, <a class="el" href="param__drv8323rs_8h.html#a459abd939cc9d81a49150f4273de9f85">USER_DEFAULT_FOC_ADC_SETTLE_DELAY</a>, and <a class="el" href="param__drv8323rs_8h.html#a1eaa8519814449cc2792f6badef34017">USER_DEFAULT_FOC_PWMADCSAMPLE</a>.</p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gaab609274941c4e346cb742d3fd4b6a47">PARA_checkPWMGEN()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab10c8bf78942b43285e7ab192ffba7c5">PARA_checkPWMGEN()</a>.</p>
 
 </div>
 </div>
-<a id="ga72abc5777a56802784c6e00e70bb0824"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga72abc5777a56802784c6e00e70bb0824">&sect;&nbsp;</a></span>PWMGEN_checkLimits()</h2>
+<a id="ga7c5b385d5ee50416a7f777594b58caad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7c5b385d5ee50416a7f777594b58caad">&sect;&nbsp;</a></span>PWMGEN_checkLimits()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,19 +155,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">__STATIC_INLINE void PWMGEN_checkLimits </td>
           <td>(</td>
-          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramtype">uint32_t *&#160;</td>
           <td class="paramname"><em>duty</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>maxduty</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>minduty</em>&#160;</td>
         </tr>
         <tr>
@@ -220,7 +216,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>References <a class="el" href="struct_p_w_m_g_e_n___instance.html#aaaec44250b7f1f60fc7e8be70ebe133a">PWMGEN_Instance::dutyA</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a8b70ba5f633e47db4ee52638cd1d0172">PWMGEN_Instance::dutyB</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a60f1ce775f835dcc2440fb4bd2ae42ff">PWMGEN_Instance::dutyC</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a20857d670772ed02044cf8b4bf154823">PWMGEN_Instance::dutyMax</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a62f6b6c9a5bd6bca5f367f75a0f89a89">PWMGEN_Instance::dutyMin</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a778d9bde7f03d2d29c15a0e152e2e94d">PWMGEN_Instance::HalfPerMax</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a2ed958e195bb536a3447d2253516e2df">PWMGEN_Instance::MfuncC1</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a1b25e0f67cca55c2f7d7f34817c9dea4">PWMGEN_Instance::MfuncC2</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#aa9c217a5acb9e9a2072664b7e524d8d2">PWMGEN_Instance::MfuncC3</a>, and <a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga72abc5777a56802784c6e00e70bb0824">PWMGEN_checkLimits()</a>.</p>
+<p>References <a class="el" href="struct_p_w_m_g_e_n___instance.html#a618c775dd3d112ab7a59175a2db3735c">PWMGEN_Instance::dutyA</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a3b65ac8987ca69c27b488e2816df0da0">PWMGEN_Instance::dutyB</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a2576487321c1131edf2efbf2352ba801">PWMGEN_Instance::dutyC</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a2b6115d36b761198484b097930ac98ae">PWMGEN_Instance::dutyMax</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a0d39f920f0a703c54bbee72ad966260a">PWMGEN_Instance::dutyMin</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a778d9bde7f03d2d29c15a0e152e2e94d">PWMGEN_Instance::HalfPerMax</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a2ed958e195bb536a3447d2253516e2df">PWMGEN_Instance::MfuncC1</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#a1b25e0f67cca55c2f7d7f34817c9dea4">PWMGEN_Instance::MfuncC2</a>, <a class="el" href="struct_p_w_m_g_e_n___instance.html#aa9c217a5acb9e9a2072664b7e524d8d2">PWMGEN_Instance::MfuncC3</a>, and <a class="el" href="group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga7c5b385d5ee50416a7f777594b58caad">PWMGEN_checkLimits()</a>.</p>
 
 <p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>.</p>
 

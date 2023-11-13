@@ -44,7 +44,7 @@ let Common = system.getScript("/ti/driverlib/Common.js");
 
 let MasterOrder = [];
 
-/* MSPM0G Series-Specific Option */
+
 // TODO: confirm device list for DAC
 if(["MSPM0G350X"].includes(Common.getDeviceName())){
     MasterOrder = [
@@ -90,6 +90,23 @@ else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() && Common.isDeviceM0x110
         "GPIO", "CRC", "SYSTICK", "WWDT"
     ];
 }
+/* MSPM0L122X_L222X specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    MasterOrder = [
+        "SYSCTL", "PWM", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
+        "GPIO", "AESADV", "CRCP", "SYSTICK", "WWDT"
+    ];
+}
+/* MSPM0C110X specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
+    MasterOrder = [
+        "SYSCTL", "BEEPER", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "I2C",
+        "i2cSMBUS", "UART", "uartLIN", "SPI", "ADC12", "VREF", "EVENT", "DMA",
+        "GPIO", "CRC", "WWDT",
+    ];
+}
+
 
 /* master sorted template list of modules */
 

@@ -21,10 +21,10 @@ Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA22 | ADC0 | A7 | J3_24 | J16 ON/OFF: Connect/Disconnect from Light sensor D1<br>R83/C52 can be soldered for RC filter |
-| PA26 | OPA0 | IN0+ | J1_5 | J9 1:2/2:3 Disconnect/Connect from thermistor RT1<br>J18 ON/OFF  Connect/Disconnect from Light Sensor D1 |
-| PA20 | DEBUGSS | SWCLK | N/A | J101 15:16 ON: Connect to XDS-110 SWCLK (debug) |
-| PA19 | DEBUGSS | SWDIO | N/A | J101 13:14 ON: Connect to XDS-110 SWDIO (debug) |
+| PA22 | ADC0 | A7 | J3_24 | <ul><li>PA22 can be connected to photodiode D1<br><ul><li>`J16 ON` Connect to photodiode D1<br><li>`J16 OFF` Disconnect from photodiode D1</ul></ul> |
+| PA26 | OPA0 | IN0+ | J1_5 | <ul><li>PA26 can be connected to photodiode D1<br><ul><li>`J18 ON` Connect to photodiode D1<br><li>`J18 OFF` Disconnect from photodiode D1</ul><br><li>PA26 can be connected to thermistor RT1<br><ul><li>`J9 2:3` Connect to thermistor RT1<br><li>`J9 1:2/OFF` Disconnect from thermistor RT1</ul></ul> |
+| PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to
@@ -34,7 +34,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau846).
+MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873).
 
 ## Example Usage
 

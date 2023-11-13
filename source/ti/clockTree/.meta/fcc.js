@@ -17,7 +17,14 @@ exports = {
 		const source = getDefaultInput($ipInstance);
 
 		const config = [
-
+			// {
+			// 	name  		: "$isUsed",
+			// 	hidden		: true,
+			// 	readOnly	: true,
+			// 	getValue	: (inst) => {
+			// 		return inst.enable;
+			// 	}
+			// },
 			{
 				name        : "enable",
 				displayName : "Enable FCC",

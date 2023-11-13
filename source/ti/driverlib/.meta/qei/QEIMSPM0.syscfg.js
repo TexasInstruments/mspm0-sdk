@@ -101,6 +101,20 @@ function validate(inst, validation)
         }
     }
 
+    if(inst.enableHallInput && !inst.enableIndexInput){
+        validation.logError("3 Pin Mode must be enabled when configuring Hall Input Mode", inst, ["enableHallInput","enableIndexInput"]);
+    }
+    
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    EVENT.validatePublisherOptions(inst,validation,"event1PublisherChannel");
+    EVENT.validatePublisherOptions(inst,validation,"event2PublisherChannel");
+    if(inst.subscriberPort != "Disabled"){
+        EVENT.validateSubscriberOptions(inst,validation,"subscriberChannel");
+    }
+
     Common.validateNames(inst, validation);
 }
 
@@ -187,13 +201,13 @@ function pinmuxRequirements(inst)
         resources: [
             {
                 name: "ccp0Pin",            /* config script name */
-                displayName: "CCP0 Pin",    /* GUI name */
+                displayName: "Counter Compare Pin 0",    /* GUI name */
                 interfaceNames: ["CCP0"],   /* pinmux tool name */
                 filter : memoizedQEIResourceFilter(inst)
             },
             {
                 name: "ccp1Pin",
-                displayName: "CCP1 Pin",
+                displayName: "Counter Compare Pin 1",
                 interfaceNames: ["CCP1"],
                 filter: memoizedQEIResourceFilter(inst)
             }
@@ -503,6 +517,15 @@ let config = [
                                 },
                             ],
                         },
+                        {
+                            name        : "timerStartTimer",
+                            displayName : 'Start Timer',
+                            description : 'Start Timer',
+                            longDescription: `The timer will start
+                            counting after the call for DL_TimerX_startCounter.`,
+                            hidden      : false,
+                            default     : false,
+                        },
                     ],
                 },
                 {
@@ -517,6 +540,14 @@ let config = [
                             displayName : "Enable QEI 3 Pin Mode",
                             description : 'Enable Index Input (3 Pin Mode)',
                             longDescription: `Enable Index Input (3 Pin Mode)`,
+                            hidden      : false,
+                            default     : false,
+                        },
+                        {
+                            name        : "enableHallInput",
+                            displayName : "Enable QEI Hall Input Mode",
+                            description : 'Enable QEI Hall Input Mode',
+                            longDescription: `Enable QEI Hall Input Mode`,
                             hidden      : false,
                             default     : false,
                         },

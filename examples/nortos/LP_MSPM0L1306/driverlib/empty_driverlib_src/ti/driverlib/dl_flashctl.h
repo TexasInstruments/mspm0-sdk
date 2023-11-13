@@ -57,9 +57,17 @@
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/dl_common.h>
 #include <ti/driverlib/m0p/dl_factoryregion.h>
+#include <ti/driverlib/m0p/dl_sysctl.h>
 
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+#if (FLASHCTL_SYS_DATAWIDTH == 128)
+/*!
+ * @brief Device has 128 bit flash word width
+ */
+#define DEVICE_HAS_FLASH_128_BIT_WORD
 #endif
 
 /* clang-format off */
@@ -933,14 +941,21 @@ __STATIC_INLINE uint32_t DL_FlashCTL_getFlashSectorNumberInBank(
 {
     uint8_t numBanks       = DL_FactoryRegion_getNumBanks();
     uint32_t mainFlashSize = DL_FactoryRegion_getMAINFlashSize();
-    uint32_t sector, bankFlashSize, sectorInBank;
+    uint32_t sector, bankSectors, sectorInBank;
 
     /* Current sector over the whole memory map */
     sector = DL_FlashCTL_getFlashSectorNumber(flashctl, addr);
-    /* Bank flash size in KB */
-    bankFlashSize = mainFlashSize / numBanks;
-    /* Determine the sector in the current bank */
-    sectorInBank = sector & (bankFlashSize - (uint32_t) 1);
+    if (numBanks > 1) {
+        /* Number of sectors per bank, considered max sector
+         * count for a bank-adjusted sector. Assume banks are
+         * evenly distributed */
+        bankSectors = (mainFlashSize / numBanks);
+        /* We will not assume that the maximum number of bank sectors is a
+         * multiple of 2. Which does mean incurring a modulo operation. */
+        sectorInBank = sector % bankSectors;
+    } else {
+        sectorInBank = sector;
+    }
 
     return sectorInBank;
 }
@@ -2899,6 +2914,149 @@ void DL_FlashCTL_blankVerify(FLASHCTL_Regs *flashctl, uint32_t address);
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_blankVerifyFromRAM(
     FLASHCTL_Regs *flashctl, uint32_t address);
+
+/**
+ *  @brief      Programs 128 bit data to unprotected memory at the given address
+ *
+ *  @param[in]  flashctl   Pointer to the register overlay for the peripheral
+ *  @param[in]  address    Destination memory address to program data. The
+ *                         address must be flash word (64-bit) aligned i.e.
+ *                         aligned to a 0b000 boundary.
+ *  @param[in]  data       Pointer to the 32-bit source data
+ *
+ *  @pre         Before programming memory, the user must unprotect the region
+ *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
+ *  @post        This API just starts the program process. Check the result of it
+ *               using an interrupt or the @ref DL_FlashCTL_waitForCmdDone API
+ *
+ *  NOTE: After completion of a program operation, the flash controller will
+ *  configure all memory to a protected state.
+ *  NOTE: This API does not enable programming the ECC code.
+ */
+void DL_FlashCTL_programMemory128(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+
+/**
+ *  @brief      Programs 128 bit data with hardware generated ECC code
+ *
+ *  Programs 128 bit data, along with the 16 ECC bits which correspond to the
+ *  128-bit data word, to unprotected memory at the given address. This API
+ *  assumes that hardware generation of the ECC code has NOT been disabled,
+ *  and so the flash controller will generate the ECC bits.
+ *
+ *  @param[in]  flashctl   Pointer to the register overlay for the peripheral
+ *  @param[in]  address    Destination memory address to program data. The
+ *                         address must be flash word (64-bit) aligned i.e.
+ *                         aligned to a 0b000 boundary.
+ *  @param[in]  data       Pointer to the 32-bit source data
+ *
+ *  @pre         Before programming memory, the user must unprotect the region
+ *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
+ *  @post        This API just starts the program process. Check the result of it
+ *               using an interrupt or the @ref DL_FlashCTL_waitForCmdDone API
+ *
+ *  NOTE: After completion of a program operation, the flash controller will
+ *  configure all memory to a protected state.
+ *  NOTE: After completion of a program operation, the flash controller will
+ *  disable programming of the ECC code (regardless of whether ECC code is
+ *  hardware generated or manually provided).
+ */
+void DL_FlashCTL_programMemory128WithECCGenerated(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+
+/**
+ *  @brief      Programs 128 bit data with hardware generated ECC code
+ *
+ *  Programs 128 bit data, along with the 16 ECC bits which correspond to the
+ *  128-bit data word, to unprotected memory at the given address. This API
+ *  assumes that hardware generation of the ECC code has NOT been disabled,
+ *  and so the flash controller will generate the ECC bits.
+ *
+ *  @param[in]  flashctl   Pointer to the register overlay for the peripheral
+ *  @param[in]  address    Destination memory address to program data. The
+ *                         address must be flash word (64-bit) aligned i.e.
+ *                         aligned to a 0b000 boundary.
+ *  @param[in]  data       Pointer to the 32-bit source data
+ *
+ *  @pre         Before programming memory, the user must unprotect the region
+ *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
+ *  @post        This API just starts the program process. Check the result of it
+ *               using an interrupt or the @ref DL_FlashCTL_waitForCmdDone API
+ *
+ *  NOTE: After completion of a program operation, the flash controller will
+ *  configure all memory to a protected state.
+ *  NOTE: After completion of a program operation, the flash controller will
+ *  disable programming of the ECC code (regardless of whether ECC code is
+ *  hardware generated or manually provided).
+ */
+void DL_FlashCTL_programMemory128WithECCGenerated(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+
+/**
+ *  @brief      Programs 128 bit data with user provided ECC code
+ *
+ *  Programs 128 bit data, along with the 16 ECC bits which correspond to the
+ *  128-bit data word, to unprotected memory at the given address. This API
+ *  assumes that hardware generation of the ECC code HAS been disabled,
+ *  and so the user must provide the ECC code to program.
+ *
+ *  @param[in]  flashctl   Pointer to the register overlay for the peripheral
+ *  @param[in]  address    Destination memory address to program data. The
+ *                         address must be flash word (64-bit) aligned i.e.
+ *                         aligned to a 0b000 boundary.
+ *  @param[in]  data       Pointer to the 32-bit source data
+ *  @param[in]  eccCode    Pointer to the ECC code to program
+ *
+ *  @pre         User must call @ref DL_FlashCTL_enableOverrideHardwareGeneratedECC
+ *               to disable hardware generation of the ECC code, so the ECC code
+ *               can be manually provided for programming. This override setting
+ *               will persist through multiple programs, until
+ *               @ref DL_FlashCTL_disableOverrideHardwareGeneratedECC is called
+ *  @pre         Before programming memory, the user must unprotect the region
+ *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
+ *  @post        This API just starts the program process. Check the result of it
+ *               using an interrupt or the @ref DL_FlashCTL_waitForCmdDone API
+ *
+ *  NOTE: After completion of a program operation, the flash controller will
+ *  configure all memory to a protected state.
+ *  NOTE: After completion of a program operation, the flash controller will
+ *  disable programming of the ECC code (regardless of whether ECC code is
+ *  hardware generated or manually provided).
+ */
+void DL_FlashCTL_programMemory128WithECCManual(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t *data, uint8_t *eccCode);
+
+/**
+ *  @brief      Programs provided data up to 128-bits with ECC generated
+ *              while blocking between writes
+ *
+ *  Blocking function that programs a set of data using multi-word programming
+ *  for up to 2 flash words. Refer to the device datasheet if the device
+ *  supports multi-word programming.
+ *  When possible, the data will be programmed as either 64-bit data or as
+ *  32-bit data.
+ *
+ *  @param[in]  flashctl   Pointer to the register overlay for the peripheral
+ *  @param[in]  address    Destination memory address to program data. The
+ *                         address must be flash word (64-bit) aligned i.e.
+ *                         aligned to a 0b000 boundary.
+ *  @param[in]  dataSize      The number of 32-bit words to program
+ *  @param[in]  data          Pointer to the data source to program into flash
+ *  @param[in]  regionSelect  The region of memory to erase. One of
+ *                            @ref DL_FLASHCTL_REGION_SELECT
+ *
+ *  @return     Whether or not the program succeeded
+ *
+ *  @retval     false   Program didn't succeed
+ *  @retval     true    Program was successful
+ *
+ *  NOTE: After completion of a program operation, the flash controller will
+ *  configure all memory to a protected state.
+ *  NOTE: This API does not enable programming the ECC code.
+ */
+bool DL_FlashCTL_programMemoryBlocking128WithECCGenerated(
+    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
+    uint32_t dataSize, DL_FLASHCTL_REGION_SELECT regionSelect);
 
 #ifdef __cplusplus
 }

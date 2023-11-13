@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -104,6 +104,7 @@ extern "C" {
 #define GPIO_PWM_0_C1_CMPL_PIN                                    DL_GPIO_PIN_13
 #define GPIO_PWM_0_C1_CMPL_IOMUX                                 (IOMUX_PINCM30)
 #define GPIO_PWM_0_C1_CMPL_IOMUX_FUNC           IOMUX_PINCM30_PF_TIMA0_CCP1_CMPL
+
 
 
 

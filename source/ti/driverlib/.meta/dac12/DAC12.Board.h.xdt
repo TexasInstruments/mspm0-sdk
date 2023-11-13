@@ -69,10 +69,10 @@
 %       if (inst.dacOutputPinEn){
 %       let outPinName = "Out"+"Pin";
 %       let outPackagePin = inst.peripheral[outPinName].$solution.packagePinName;
-%       let outPinCM = system.deviceData.devicePins[outPackagePin].attributes.iomux_pincm;
+%       let outPinCM = Common.getPinCM(outPackagePin,inst,"OUT");
 %       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let outPort = Common.getGPIOPort(outGpioName);
-%       let outGpioPin = Common.getGPIONumber(outGpioName);
+%       let outPort = Common.getGPIOPortMultiPad(outPackagePin,inst,"OUT");
+%       let outGpioPin = Common.getGPIONumberMultiPad(outPackagePin,inst,"OUT");
 %       let outPortStr = "#define "+gpioStr+"_OUT_PORT";
 `outPortStr.padEnd(50," ")+outPort.padStart(30, " ")`
 % //#define GPIO_x_OUT_PORT

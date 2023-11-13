@@ -48,7 +48,7 @@
     let hfextInst = _.find(modPF.$instances, ['$name', 'HFCLKEXT']);
 
     if(_.isUndefined(exhfMuxInst) || _.isUndefined(hfextInst)) {
-        throw 'Not all LFCLK elements are defined appropriately';
+        throw 'Not all HFCLKEXT elements are defined appropriately';
     }
 
     let hfclkStr = "";

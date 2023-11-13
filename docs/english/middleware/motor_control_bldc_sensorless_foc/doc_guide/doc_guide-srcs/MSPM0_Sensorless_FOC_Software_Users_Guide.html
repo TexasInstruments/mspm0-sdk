@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 Sensorless FOC Software User’s Guide &mdash; Sensorless FOC Motor Control User Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sensorless FOC Motor Control Library Overview" href="Sensorless_FOC_Motor_Control_Library.html" />
+    <link rel="prev" title="Sensorless FOC Motor Control User Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Sensorless FOC Motor Control User Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 Sensorless FOC Software User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ccs-project-setup">CCS Project setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-the-motor-parameters">2.1 Setting the Motor Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-initial-parameters-optional">Adding Initial Parameters (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#starting-the-project">Starting the Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-project">Running the Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logging-the-variables">2.7 Logging the variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-guide">3. API Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues">4. Known Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-devices">5. Supported Devices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#drv8323rs">DRV8323RS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Sensorless_FOC_Motor_Control_Library.html">Sensorless FOC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_GUI_User_Guide.html">DRV8323RS GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide.html">DRV8323RS Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sensorless FOC Motor Control User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 Sensorless FOC Software User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-sensorless-foc-software-user-s-guide">
+<h1>MSPM0 Sensorless FOC Software User’s Guide<a class="headerlink" href="#mspm0-sensorless-foc-software-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="ccs-project-setup">
+<h2>CCS Project setup<a class="headerlink" href="#ccs-project-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Go to Import CCS Projects as shown below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_IMPORT.jpg" />
+</figure>
+</li>
+<li><p>Click Browse. Navigate to <code class="docutils literal notranslate"><span class="pre">C:\ti\mspm0_sdk_&lt;SDK_Version&gt;\examples\nortos\[LAUNCHPAD]\motor_control_bldc_sensorless_foc</span></code>.</p></li>
+<li><p>Click Select Folder. Check the desired hardware board, and click Finish to import the project into your workspace.</p>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_IMPORT_1.jpg" />
+</figure>
+</li>
+</ol>
+<section id="setting-the-motor-parameters">
+<h3>2.1 Setting the Motor Parameters<a class="headerlink" href="#setting-the-motor-parameters" title="Permalink to this heading">¶</a></h3>
+<p>The motor parameter can be found in the motor_params.h file. These are the motor parameters required for Sensorless FOC:</p>
+<ul class="simple">
+<li><p>Stator resistance, Rs (ohm)</p></li>
+<li><p>Stator inductance, Ls (H)</p></li>
+<li><p>Number of motor poles (optional)</p></li>
+<li><p>Back Emf constant in V/Hz</p></li>
+<li><p>Base maximum Frequency of the motor (Hz)</p></li>
+</ul>
+<figure class="align-default" id="id1">
+<img alt="Locate motor\_params.h file" src="../_images/FOC_MOTOR_PARAMS.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Locate motor_params.h file</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>These parameters are defined using an #elif statement for a motor. To define these parameters for a custom motor, modify the #define statements for MOTOR_PARA_RS, MOTOR_PARA_LS, MOTOR_PARA_POLES, and MOTOR_PARA_MAX_FREQ for USER_MOTOR. To add another motor, copy and paste the #elif statement below and rename USER_MOTOR to another name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#elif (USER_MOTOR)</span>
+<span class="o">/*</span> <span class="n">Define</span> <span class="n">the</span> <span class="n">electrical</span> <span class="n">motor</span> <span class="n">parameters</span> <span class="p">(</span><span class="n">User</span> <span class="n">motor</span><span class="p">)</span> <span class="o">*/</span>
+<span class="o">/*</span> <span class="nd">@brief</span> <span class="n">Stator</span> <span class="n">resistance</span> <span class="p">(</span><span class="n">ohm</span><span class="p">)</span> <span class="o">*/</span>
+<span class="c1">#define MOTOR_PARA_RS               8</span>
+<span class="o">/*</span> <span class="nd">@brief</span> <span class="n">Stator</span> <span class="n">inductance</span> <span class="p">(</span><span class="n">H</span><span class="p">)</span> <span class="o">*/</span>
+<span class="c1">#define MOTOR_PARA_LS               0.0032</span>
+<span class="o">/*</span> <span class="nd">@brief</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">poles</span> <span class="o">*/</span>
+<span class="c1">#define MOTOR_PARA_POLES            6</span>
+<span class="o">/*</span> <span class="nd">@brief</span> <span class="n">Back</span> <span class="n">Emf</span> <span class="n">constant</span> <span class="ow">in</span> <span class="n">V</span><span class="o">/</span><span class="n">Hz</span> <span class="o">*/</span>
+<span class="c1">#define MOTOR_PARA_KE               0.1</span>
+<span class="o">/*</span> <span class="nd">@brief</span> <span class="n">Maximum</span> <span class="n">Frequency</span> <span class="o">*/</span>
+<span class="c1">#define MOTOR_PARA_MAX_FREQ         125</span>
+</pre></div>
+</div>
+<p>To select a motor defined in motor_params.h, click Project -&gt; Properties in the toolbar. In the Properties window, go to Build -&gt; Arm Compiler -&gt; Predefined Symbols. The pre-defined motor name is LVSERVOMTR=1. To change the pre-defined motor name, click “Edit” and change LVSERVOMTR to another defined motor in motor_params.h, such as LVBLDCMTR or USER_MOTOR.</p>
+<figure class="align-default" id="id2">
+<img alt="LVSERVOMTR=1 symbol" src="../_images/CCS_PREDEFINED_SYMBOL.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">LVSERVOMTR=1 symbol</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="adding-initial-parameters-optional">
+<h2>Adding Initial Parameters (optional)<a class="headerlink" href="#adding-initial-parameters-optional" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>In the Project Explorer, open the project drop down menu and open “param_[motor driver].h”.</p>
+<figure class="align-default" id="id3">
+<img alt="Locate param\_[motor driver].h file" src="../_images/CCS_PROJECT_EXPLORER_PARAM_H.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Locate param_[motor driver].h file</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>In the “param_[motor driver].h” file change any of the “GUI_DEFAULT_xxxx” defines to some pre-defined parameters in the following folders, or the value inside of the parentheses.</p>
+<ul class="simple">
+<li><p>“foc_types.h” (sensorless_foc -&gt; foc)</p></li>
+<li><p>“motor_params.h” (motor)</p></li>
+<li><p>“drvxxxx.h” (motor_driver -&gt; drv83xx) The parameters that can be initially defined are below.</p></li>
+</ul>
+</li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_VOLT_RATIO</p></td>
+<td><p>Voltage divider ratio for th DC bus voltage input</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_DRV_RSHUNT</p></td>
+<td><p>DRV shunt resistor in Ω</p></td>
+</tr>
+<tr class="row-even"><td><p>DRV_CSA_GAIN_MAP_0</p></td>
+<td><p>DRV gain mapped to FOC_CSA_GAIN_0</p></td>
+</tr>
+<tr class="row-odd"><td><p>DRV_CSA_GAIN_MAP_1</p></td>
+<td><p>DRV gain mapped to FOC_CSA_GAIN_1</p></td>
+</tr>
+<tr class="row-even"><td><p>DRV_CSA_GAIN_MAP_2</p></td>
+<td><p>DRV gain mapped to FOC_CSA_GAIN_2</p></td>
+</tr>
+<tr class="row-odd"><td><p>DRV_CSA_GAIN_MAP_3</p></td>
+<td><p>DRV gain mapped to FOC_CSA_GAIN_3</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_CSA_GAIN</p></td>
+<td><p>Selected CSA gain settings</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_ENABLE_GAIN_CHANGE</p></td>
+<td><p>FLAG used to enable DRV GAIN CHANGE while program runs</p></td>
+</tr>
+<tr class="row-even"><td><p>DRV_setCsaGain</p></td>
+<td><p>Links to the DRV set gain function, need to be set if USER_DEFAULT_ENABLE_GAIN_CHANGE is defined</p></td>
+</tr>
+<tr class="row-odd"><td><p>DRV_HANDLE</p></td>
+<td><p>Links to the DRV instance, need to be set if USER_DEFAULT_ENABLE_GAIN_CHANGE is defined</p></td>
+</tr>
+<tr class="row-even"><td><p>DRV_CSA_GAIN</p></td>
+<td><p>Links to the DRV CSA gain enumeration, need to be set if USER_DEFAULT_ENABLE_GAIN_CHANGE is defined</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_ENABLE_FAULT_INPUT_CHECK</p></td>
+<td><p>FLAG used to enable checking External fault input</p></td>
+</tr>
+<tr class="row-even"><td><p>FAULT_INPUT_STATUS</p></td>
+<td><p>Links to the API to poll for fault status, should return 1 to report external fault condition</p></td>
+</tr>
+<tr class="row-odd"><td><p>FAULT_INPUT_CLEAR</p></td>
+<td><p>Links to the API to clear external fault condition</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_RS</p></td>
+<td><p>Motor stator resistance in Ω</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_LS</p></td>
+<td><p>Motor stator inductance in H</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_KE</p></td>
+<td><p>Motor back emf phase to phase in V/Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_MAX_FREQ</p></td>
+<td><p>Motor maximum frequency to command, speed reference upper limit is limited to this value</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_PWMFREQ</p></td>
+<td><p>PWM frequency selection, can enter value in enum of FOC_PWM_FREQ</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_DEADBAND</p></td>
+<td><p>Deadband to set in nanoseconds</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_STARTUP_METHOD</p></td>
+<td><p>Startup method selection, can enter value in enum of FOC_STARTUP</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_SLOW_FIRST_CYC_FREQ</p></td>
+<td><p>Slow first cycle frequency in Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_RAMPUP_CURRENT</p></td>
+<td><p>Current settings in rampup phase in Ampere</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_RAMPUP_TARGET</p></td>
+<td><p>Target frequenct in ramp phase in Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_ALIGN_TIME</p></td>
+<td><p>Time spend in align in seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_ALIGN_CURRENT</p></td>
+<td><p>Align or first cycle current</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_IPD_THRESHOLD_COUNT</p></td>
+<td><p>Value between 1-100, higher the value higher the peak current in IPD, can enter value in enum of FOC_IPD_THRES_COUNT</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_IPD_FREQ</p></td>
+<td><p>IPD frequency enum, can enter value in enum of FOC_IPD_FREQ</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_SPEED_REF_RAMP_RATE</p></td>
+<td><p>Ramp rate for PI speed reference in Hz/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_PISPD_KP</p></td>
+<td><p>Proportional constant for PI speed</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_PISPD_KI</p></td>
+<td><p>Integral constant for PI speed</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_PISPD_DIV</p></td>
+<td><p>PI speed loop execution divider, can enter value in enum of FOC_SPD_DIV</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_PIIQ_KP</p></td>
+<td><p>Proportional constant for PI IQ</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_PIIQ_KI</p></td>
+<td><p>Integral constant for PI IQ</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_PIID_KP</p></td>
+<td><p>Proportional constant for PI ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_PIID_KI</p></td>
+<td><p>Integral constant for PI ID</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_OUTER_LOOP</p></td>
+<td><p>Selection for outerloop speed or current, can enter value in enum of FOC_OUTER_LOOP</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_DIRECTION_REVERSAL</p></td>
+<td><p>Set the motor direction, can enter value in enum of FOC_DIRECTION</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_PWMADCSAMPLE</p></td>
+<td><p>Number of PWM cycles to be spend in adc sampling, ie, if 40 and PWM clock is 80Mhz then 1us is available for current sampling</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_ADC_SETTLE_DELAY</p></td>
+<td><p>ADC value rise time delay in PWM cycles, defines the delay to wait before ADC input voltage is stabilized before sampling</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_OVER_VOLT</p></td>
+<td><p>DC Bus voltage Over voltage threshold</p></td>
+</tr>
+<tr class="row-odd"><td><p>USER_DEFAULT_FOC_UNDER_VOLT</p></td>
+<td><p>DC Bus voltage Under voltage threshold</p></td>
+</tr>
+<tr class="row-even"><td><p>USER_DEFAULT_FOC_OVER_CURRENT</p></td>
+<td><p>Phase Over current threshold</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="starting-the-project">
+<h2>Starting the Project<a class="headerlink" href="#starting-the-project" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Connect the hardware and turn on the power supply. There should be no more than 50mA on the power supply.</p></li>
+<li><p>Click on the Build button.<img alt="image0" src="../_images/CCS_BUILD.jpg" /> Project should build with no errors.</p></li>
+<li><p>Click on the Debug button. <img alt="image1" src="../_images/CCS_DEBUG.jpg" /></p></li>
+<li><p>Open the Expressions window and add the following global structures and expressions. The expressions below in the userVar structure controls the motor system and has control parameters defined in it.</p>
+<p>The userVar structure has 3 structures:</p>
+<ul class="simple">
+<li><p>controlRegs which holds the variables to control the motor</p></li>
+<li><p>statusRegs which holds the status variables</p></li>
+<li><p>userParams which holds the parameters for the foc</p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>controlRegs components</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>cntri1.clearFault</p></td>
+<td><p>If set 1 clears all the faults</p></td>
+</tr>
+<tr class="row-odd"><td><p>cntri1.flashAccessKey</p></td>
+<td><p>Stores the flash access key. Need to be set value in define FOC_FLASH_ACCESSKEY to do flashWrite, flashRead, or dafultRead</p></td>
+</tr>
+<tr class="row-even"><td><p>cntri1.flashWrite</p></td>
+<td><p>If set 1 and flashAccessKey matches then values in userParams are saved to flash</p></td>
+</tr>
+<tr class="row-odd"><td><p>cntri1.flashRead</p></td>
+<td><p>If set 1 and flashAccessKey matches then values in flash are loaded into userParams</p></td>
+</tr>
+<tr class="row-even"><td><p>cntri1.defaultRead</p></td>
+<td><p>If set 1 and flashAccessKey matches then default values or initial parameters in flash are loaded into userParams</p></td>
+</tr>
+<tr class="row-odd"><td><p>cntri1.disCL</p></td>
+<td><p>If set 1 disables the closed loop transition after rampup phase is completed</p></td>
+</tr>
+<tr class="row-even"><td><p>cntri1.enableMotor</p></td>
+<td><p>If set 1 starts to run motor, if set 0 stops the motor</p></td>
+</tr>
+<tr class="row-odd"><td><p>speedRef</p></td>
+<td><p>If outer loop is speed this is set as reference to PI speed. Value is set in IQ20 and positive values are only used. User should not enter negative values.</p></td>
+</tr>
+<tr class="row-even"><td><p>iqRef</p></td>
+<td><p>If outer loop is current this is set as reference to PI IQ controller.Value is set in IQ20</p></td>
+</tr>
+<tr class="row-odd"><td><p>idRef</p></td>
+<td><p>If outer loop is current this is set as reference to PI ID controller.Value is set in IQ20</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>statusRegs components</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>faultStatus.bits.extFaultIn</p></td>
+<td><p>Shows the External fault input status, Set to 1 when falling edge on fault input pin</p></td>
+</tr>
+<tr class="row-odd"><td><p>faultStatus.bits.uvlo</p></td>
+<td><p>Shows the undervoltage fault status, Set to 1 when dc bus voltage is lower than underVoltageLimit parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>faultStatus.bits.ovlo</p></td>
+<td><p>Shows the undervoltage fault status, Set to 1 when dc bus voltage is higher than overVoltageLimit parameter</p></td>
+</tr>
+<tr class="row-odd"><td><p>faultStatus.bits.ocp</p></td>
+<td><p>Shows the overcurrent fault status, Set to 1 when motor phase current is greater than overCurrentLimit parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>motorState</p></td>
+<td><p>Shows the state of the foc control. Refer enum MOTOR.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vdc</p></td>
+<td><p>DC bus current in IQ20</p></td>
+</tr>
+<tr class="row-even"><td><p>speedFbk</p></td>
+<td><p>Estimated motor speed in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>speedRef</p></td>
+<td><p>Reference input for PI speed in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>iqCurr</p></td>
+<td><p>Feedback input to PI IQ in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>iqCurrRef</p></td>
+<td><p>Reference input for PI ID in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>idCurr</p></td>
+<td><p>Feedback input to PI ID in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>idCurrRef</p></td>
+<td><p>Reference input for PI ID in IQ(20)</p></td>
+</tr>
+</tbody>
+</table>
+<p>userParams are initialized with the parameters saved in the flash in init time.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>userParams components</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rs</p></td>
+<td><p>Stator resistance in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ls</p></td>
+<td><p>Stator inductance in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>ke</p></td>
+<td><p>Motor back emf constant in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxFreq</p></td>
+<td><p>Maximum motor frequency</p></td>
+</tr>
+<tr class="row-even"><td><p>PWMFreq</p></td>
+<td><p>Selection of PWM frequency. Refer enum FOC_PWM_FREQ</p></td>
+</tr>
+<tr class="row-odd"><td><p>deadband</p></td>
+<td><p>Deadband in nanoseconds</p></td>
+</tr>
+<tr class="row-even"><td><p>CSAGain</p></td>
+<td><p>Selection of CSA GAIN. Refer enum FOC_CSA_GAIN</p></td>
+</tr>
+<tr class="row-odd"><td><p>outerLoop</p></td>
+<td><p>Selection of Outer loop. Refer enum FOC_OUTER_LOOP</p></td>
+</tr>
+<tr class="row-even"><td><p>directionReversal</p></td>
+<td><p>Selection of direction. Refer enum FOC_DIRECTION</p></td>
+</tr>
+<tr class="row-odd"><td><p>startupMethod</p></td>
+<td><p>Startup method selection. Refer enum FOC_STARTUP</p></td>
+</tr>
+<tr class="row-even"><td><p>slowCycFreq</p></td>
+<td><p>Slow first cycle frequency in Hz. Value in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>alignCur</p></td>
+<td><p>Align current in Ampere in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>alignTime</p></td>
+<td><p>Align time in seconds in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>IPDCurrThresh</p></td>
+<td><p>Value between 1-100, higher the value higher the peak current. Refer enum FOC_IPD_THRES_COUNT</p></td>
+</tr>
+<tr class="row-even"><td><p>IPDFreq</p></td>
+<td><p>IPD frequency selection. Refer enum FOC_IPD_FREQ</p></td>
+</tr>
+<tr class="row-odd"><td><p>rampupCur</p></td>
+<td><p>Rampup current in Ampere in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>rampupRate</p></td>
+<td><p>Ramp up rate in Hz/s in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>rampupTarget</p></td>
+<td><p>Ramp up target in Hz in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>speedRefRampRate</p></td>
+<td><p>Speed reference ramp rate in Hz/s in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>piSpdKp</p></td>
+<td><p>PI speed proportionality constant in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>piSpdKi</p></td>
+<td><p>PI speed Ki in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>piSpdDiv</p></td>
+<td><p>PI speed execution rate divider</p></td>
+</tr>
+<tr class="row-even"><td><p>piIdKp</p></td>
+<td><p>PI ID proportionality constant in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>piIdKi</p></td>
+<td><p>PI ID integral constant in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>piIqKp</p></td>
+<td><p>PI IQ proportionality constant in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>piIqKi</p></td>
+<td><p>PI IQ integral constant in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>overVoltageLimit</p></td>
+<td><p>Overvoltage limit in IQ(20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>underVoltageLimit</p></td>
+<td><p>Undervoltage limit in IQ(20)</p></td>
+</tr>
+<tr class="row-even"><td><p>overCurrentLimit</p></td>
+<td><p>Overcurrent limit in IQ(20)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note: Some of the variables are in IQ20 format. In order to be displayed and updated properly during debug, you should switch them to IQ(20) format in the CCS expressions window by right clicking the expression, select Q-Values, then click “Select Q-Value”.</strong></p>
+<figure class="align-default" id="id4">
+<img alt="Select IQ value" src="../_images/CCS_SET_QVALUES.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Select IQ value</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>For devices with SPI support only, you can add the guiSPI structure for SPI Configuration and controlling SPI reads/writes during runtime. The expressions below in the gui_spi structure configure the SPI configuration and use expressions during run time.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>gui_spi</p></th>
+<th class="head"><p>structure that contains the SPI variables below</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>writeBitfieldRegFlag</p></td>
+<td><p>Writes writeBitfieldRegData to bitfieldRegPosData of writeBitfieldRegAddr when set to 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>writeBitfieldRegAddr</p></td>
+<td><p>Set to address of a bitfield register write operation</p></td>
+</tr>
+<tr class="row-even"><td><p>bitfieldRegPosData</p></td>
+<td><p>Bitfield position of a bitfield write operation to writeBitfieldRegAddr</p></td>
+</tr>
+<tr class="row-odd"><td><p>bitfieldRegMaskData</p></td>
+<td><p>Mask value of a bitfield write operation to writeBitfieldRegAddr</p></td>
+</tr>
+<tr class="row-even"><td><p>writeBitfieldRegData</p></td>
+<td><p>Data value of a bitfield write register operation to writeBitfieldRegAddr</p></td>
+</tr>
+<tr class="row-odd"><td><p>writeRegFlag</p></td>
+<td><p>Writes writeRegData to writeRegData of writeRegAddr when set to 1</p></td>
+</tr>
+<tr class="row-even"><td><p>writeRegAddr</p></td>
+<td><p>Set to address of a register write operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>writeRegData</p></td>
+<td><p>Data value of a write register operation to writeRegAddr</p></td>
+</tr>
+<tr class="row-even"><td><p>readRegFlag</p></td>
+<td><p>Reads data of readRegAddr and stores into to readRegData when set to 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>readRegAddr</p></td>
+<td><p>Set to address of a register read operation</p></td>
+</tr>
+<tr class="row-even"><td><p>readRegData</p></td>
+<td><p>Data value read from read operation of readRegAddr</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Press Play <img alt="image2" src="../_images/CCS_PLAY.jpg" /> to start the code.</p></li>
+<li><p>Enable “Continuous Refresh” in the Expressions window. <img alt="image3" src="../_images/CCS_REFRESH.jpg" /></p></li>
+</ol>
+</section>
+<section id="running-the-project">
+<h2>Running the Project<a class="headerlink" href="#running-the-project" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Open userVar. Set <em>outerloop</em> to FOC_OUTER_LOOP_SPEED to select outer speed loop. Set <em>speedRef</em> to 100 to spin the motor at 100Hz and set <em>enableMotor</em> to 1 to start the motor. The motor starts spinning.</p></li>
+<li><p>set <em>enableMotor</em> to 0 to stop the motor. Set <em>directionReversal</em> to FOC_DIRECTION_CCW to reverse the motor direction. Set <em>enableMotor</em> to 1 and observe motor spinning in opposite direction.</p></li>
+<li><p>Stop the motor by setting <em>enableMotor</em> to 0. Change <em>PWMFreq</em> to FOC_PWM_FREQ_15000 to select 15Khz PWM frequency. Enable the motor again and observe the PWM outputs.</p></li>
+<li><p>Change <em>deadband</em> to 500 to change the MCU deadband to 500 ns. Observe in waveforms.</p></li>
+<li><p>Change <em>speedRefRampRate</em> to change the acceleration and deceleration rate of the motor when <em>speedRef</em> is modified.</p></li>
+<li><p>Set <em>overVoltageLimit</em> to a low value and increase the DC bus voltage beyond it and observe <em>faultStatus.bits.ovlo</em> is set to 1, and the motor stops spinning. Reduce the voltage below the limit and set <em>cntrl1.clearFault</em> = 1 to clear the latched fault and enable the motor again to spin it.</p></li>
+<li><p>Create an undervoltage fault by decreasing the voltage below <em>underVoltageLimit</em>. Observe <em>faultStatus.bits.uvlo</em> is set and the motor stops spinning. Increase the voltage above the limit and set <em>cntrl1.clearFault</em> = 1 to clear the latched fault and enable the motor again to spin it.</p>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_EXPRESSION_WINDOW.jpg" />
+</figure>
+</li>
+<li><p>If the device has SPI registers, use the gui_spi variables to perform a bitfield write, register write, or register read, or read all operation.</p>
+<ul class="simple">
+<li><p>To perform a bitfield write operation:</p>
+<ul>
+<li><p>Select the drop-down register in <em>writeBitfieldRegAddr</em></p></li>
+<li><p>Enter the bitfield position in <em>bitfieldRegPosData</em></p></li>
+<li><p>Enter the mask of the setting in that bitfield position in <em>bitfieldRegMaskData</em> (for example, a 3-bit setting has mask 0x7)</p></li>
+<li><p>Write the bitfield data in <em>writeBitfieldRegData</em></p></li>
+<li><p>Set the <em>writeBitfieldRegFlag</em> to 1. It will automatically clear to 0.</p></li>
+</ul>
+</li>
+<li><p>To perform a register write operation:</p>
+<ul>
+<li><p>Select the drop-down register in <em>writeRegAddr</em></p></li>
+<li><p>Write the data in <em>writeRegData</em></p></li>
+<li><p>Set the <em>writeRegFlag</em> to 1. It will automatically clear to 0.</p></li>
+</ul>
+</li>
+<li><p>To perform a register read operation:</p>
+<ul>
+<li><p>Select the drop-down register in <em>readRegAddr</em></p></li>
+<li><p>Set the <em>readRegFlag</em> to 1. It will automatically clear to 0.</p></li>
+<li><p>Read the data in <em>readRegData</em></p></li>
+</ul>
+</li>
+</ul>
+<figure class="align-default" id="id5">
+<img alt="gui\_spi variables" src="../_images/CCS_SPI_WINDOW.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">gui_spi variables</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</li>
+</ol>
+<section id="logging-the-variables">
+<h3>2.7 Logging the variables<a class="headerlink" href="#logging-the-variables" title="Permalink to this heading">¶</a></h3>
+<p>The user can add the __ENABLE_LOG predefined symbol to enable logging. The user can set the log index and variable as shown in the below code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FOC_addVarToLog</span><span class="p">(</span><span class="n">FOC_LOG_IDX_0</span><span class="p">,</span> <span class="n">phaseVolt</span><span class="o">.</span><span class="n">Valpha</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To see the logged data as a graph, the user can add the variable cssLog[X], where X is the index. Right click the variable and select “Graph”.</p>
+<figure class="align-default" id="id6">
+<img alt="Image of graph" src="../_images/CCS_GRAPH.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Image of graph</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Select “Continuous Refresh” mode to see continuous data.</p>
+<figure class="align-default" id="id7">
+<img alt="Image of graph" src="../_images/CCS_GRAPH_CONT_REFRESH.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Image of graph</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Note: the software consumes 24KB extra space in SRAM to store the values when logging is enabled.</strong></p>
+</section>
+</section>
+<section id="api-guide">
+<h2>3. API Guide<a class="headerlink" href="#api-guide" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">Sensorless FOC API Guide</a></p></li>
+</ul>
+</section>
+<section id="known-issues">
+<h2>4. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Function implicit declaration warning for IQrepeat function while compiling.</p></li>
+<li><p>Current solution supports power up to 100W. Applying high torque at low speeds can cause motor to spin backwards with high rpm.</p></li>
+</ol>
+</section>
+<section id="supported-devices">
+<h2>5. Supported Devices<a class="headerlink" href="#supported-devices" title="Permalink to this heading">¶</a></h2>
+<section id="drv8323rs">
+<h3>DRV8323RS<a class="headerlink" href="#drv8323rs" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 Launchpads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8323rs/DRV8323RS_Hardware_User_Guide.html">Hardware User Guide</a></p></li>
+<li><p><a class="reference external" href="drv8323rs/DRV8323RS_GUI_User_Guide.html">GUI User Guide</a></p></li>
+<li><p><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI">MSPM0G3507-DRV8323RS-EVM-GUI</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Sensorless FOC Motor Control User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Sensorless_FOC_Motor_Control_Library.html" class="btn btn-neutral float-right" title="Sensorless FOC Motor Control Library Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

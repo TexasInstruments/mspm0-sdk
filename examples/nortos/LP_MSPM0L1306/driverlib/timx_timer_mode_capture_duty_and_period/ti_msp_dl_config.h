@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -88,6 +88,7 @@ extern "C" {
 #define GPIO_PWM_0_C0_IOMUX                                      (IOMUX_PINCM27)
 #define GPIO_PWM_0_C0_IOMUX_FUNC                     IOMUX_PINCM27_PF_TIMG1_CCP0
 #define GPIO_PWM_0_C0_IDX                                    DL_TIMER_CC_0_INDEX
+
 
 
 /* Defines for CAPTURE_0 */

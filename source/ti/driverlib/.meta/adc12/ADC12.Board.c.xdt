@@ -44,7 +44,7 @@
     if (instances.length == 0) return;
 
     /* ADCMEM range varies per device family */
-    const adcMemRange = (Common.isDeviceM0G()) ? 11:3;
+    const adcMemRange = (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) ? 11:3;
 
     switch(content){
         case "Call":

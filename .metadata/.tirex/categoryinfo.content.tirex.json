@@ -8,10 +8,15 @@
       [
         "Examples",
         "Development Tools"
+      ],
+      [
+        "Examples",
+        "Devices"
       ]
     ],
     "subCategories": [],
     "devtools": ["$(MSPM0_all_devtools)"],
+    "devices": ["$(MSPM0_all_devices)"],
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
     "description": "<p>The Texas Instruments MSPM0 Driver Library (DriverLib) is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. The DriverLib layer consists of comprehensive low-level drivers providing support for all device features with the highest optimization for performance and low memory footprint.</p>"
@@ -211,6 +216,24 @@
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
     "description": "<p>The Local Interconnect Network (LIN) is a multipoint, low-cost, easily-implemented communication bus commonly used in automobiles. The MSPM0 SDK includes easy-to-use examples for Commander and Responder.</p>"
+  },
+  {
+    "name": "SENT",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0L11xx_L13xx_devices)"],
+    "devtools": ["$(MSPM0L11xx_L13xx_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "<p>The Single Edge Nibble Transmission (SENT) is a unidirectional communication standard used in automotive networks. The MSPM0 SDK includes an easy-to-use example for transmitting a SENT frame.</p>"
   },
   {
     "name": "EEPROM",

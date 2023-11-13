@@ -108,6 +108,7 @@ volatile uint8_t gTxByteCount = 0;
 /* Index of the next byte to be transmitted in gTxBuffer */
 volatile uint8_t gTxIndex = 0;
 
+
 /* Local function prototypes */
 static void CopyArray(uint8_t *source, uint8_t *dest, uint8_t count);
 static void SPI_Controller_writeReg(
@@ -123,7 +124,9 @@ int main(void)
     NVIC_EnableIRQ(SPI_0_INST_INT_IRQN);
 
     /* Set LED to indicate start of transfer */
-    DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
+
 
     /*
      * Send Read Type 2 Command to Peripheral device.
@@ -132,12 +135,14 @@ int main(void)
     SPI_Controller_readReg(CMD_READ_TYPE_2, TYPE_2_LENGTH);
     CopyArray(gRxBuffer, gCmdReadType2Buffer, TYPE_2_LENGTH);
 
+
     /*
      * Send Read Type 1 Command to Peripheral device.
      * Copy received data to gCmdReadType1Buffer.
      */
     SPI_Controller_readReg(CMD_READ_TYPE_1, TYPE_1_LENGTH);
     CopyArray(gRxBuffer, gCmdReadType1Buffer, TYPE_1_LENGTH);
+
 
     /*
      * Send Read Type 0 Command to Peripheral device.
@@ -146,21 +151,26 @@ int main(void)
     SPI_Controller_readReg(CMD_READ_TYPE_0, TYPE_0_LENGTH);
     CopyArray(gRxBuffer, gCmdReadType0Buffer, TYPE_0_LENGTH);
 
+
     /* Send Write Type 2 Command to Peripheral device */
     SPI_Controller_writeReg(
         CMD_WRITE_TYPE_2, gCmdWriteType2Buffer, TYPE_2_LENGTH);
+
 
     /* Send Write Type 1 Command to Peripheral device */
     SPI_Controller_writeReg(
         CMD_WRITE_TYPE_1, gCmdWriteType1Buffer, TYPE_1_LENGTH);
 
+
     /* Send Write Type 0 Command to Peripheral device */
     SPI_Controller_writeReg(
         CMD_WRITE_TYPE_0, gCmdWriteType0Buffer, TYPE_0_LENGTH);
 
+
     /* If write and read were successful, toggle LED */
     while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
         delay_cycles(16000000);
     }
 }

@@ -28,7 +28,7 @@ function defaultView(ipInstance) {
 
 let Common = system.getScript("/ti/driverlib/Common.js");
 
-let family = Common.device2Family(system.deviceData);
+let family = Common.getDeviceFamily();
 let deviceComponent = system.getScript("/ti/clockTree/components/components" + family);
 
 let tree = [
@@ -43,7 +43,7 @@ let tree = [
 				brokenConnections: 	deviceComponent.brokenConnectionsSimple,
 			},
 			{
-				displayName: "External/FCC",
+				displayName: "Clock Output and FCC",
 				ipInstances: 		deviceComponent.entriesEXT,
 				frequencyLabels: 	deviceComponent.freqLabelEXT,
 				layout: 			deviceComponent.layoutEXT,
@@ -72,16 +72,21 @@ let views = [
 	},
 ];
 
-exports = {
-	// topModules: [{
-	// 	displayName: "Modules",
-	// 	modules: ["/modules/basic.js"],
-	// }],
-	clockTree: {
-		typeMap,
-		tree,
-		initialView: views[0].name,
-		precision: 5,
-	},
-	views
+let exportsConditional = {};
+if(system.deviceData.clockTree){
+	exportsConditional = {
+		// topModules: [{
+		// 	displayName: "Modules",
+		// 	modules: ["/modules/basic.js"],
+		// }],
+		clockTree: {
+			typeMap,
+			tree,
+			initialView: views[0].name,
+			precision: 5,
+		},
+		views
+	}
 }
+
+exports = exportsConditional;

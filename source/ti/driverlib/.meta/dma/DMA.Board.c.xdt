@@ -257,6 +257,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
 % if(inst.destIncrement !== "UNCHANGED"){
     DL_DMA_setDestIncrement(DMA, `instName`_CHAN_ID, DL_DMA_ADDR_`inst.destIncrement`);
 % } //if inst.destIncrement !== "UNCHANGED"
+% if(inst.configureTransferSize){
+    DL_DMA_setTransferSize(DMA, `instName`_CHAN_ID, `inst.transferSize`);
+% } //if inst.configureTransferSize
     DL_DMA_initChannel(DMA, `instName`_CHAN_ID , (DL_DMA_Config *) &g`instName`Config);
 }
 % } // for i < instances.length

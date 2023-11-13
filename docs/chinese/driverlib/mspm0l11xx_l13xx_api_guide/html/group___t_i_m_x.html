@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">1.10.01.05</span>
+   &#160;<span id="projectnumber">1.20.00.05</span>
    </div>
   </td>
  </tr>
@@ -774,10 +774,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga3d9c8000b61efdcf94acaf6c1f122974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets CCP Direction.  <a href="#ga3d9c8000b61efdcf94acaf6c1f122974">More...</a><br /></td></tr>
 <tr class="separator:ga3d9c8000b61efdcf94acaf6c1f122974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa4fc37e8fa593a5ac69a3d7b5e309e77"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#gaa4fc37e8fa593a5ac69a3d7b5e309e77">DL_Timer_setCCPOutputDisabled</a> (GPTIMER_Regs *gptimer, <a class="el" href="group___t_i_m_x.html#ga90ea6d4b0c69f1be5386a4f3307837cd">DL_TIMER_CCP_DIS_OUT</a> ccp0Config, <a class="el" href="group___t_i_m_x.html#ga90ea6d4b0c69f1be5386a4f3307837cd">DL_TIMER_CCP_DIS_OUT</a> ccp1Config)</td></tr>
-<tr class="memdesc:gaa4fc37e8fa593a5ac69a3d7b5e309e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets CCP Output configuration when timer is disabled.  <a href="#gaa4fc37e8fa593a5ac69a3d7b5e309e77">More...</a><br /></td></tr>
+<tr class="memdesc:gaa4fc37e8fa593a5ac69a3d7b5e309e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the output of the timer low via the ODIS register. This can be useful during shutdown or configuring the timer. The output pin still passes through the inversion (INV) bit. See figure "Output connection for TIMG" in Technical Reference Manual (TRM) for diagram. <a class="el" href="group___t_i_m_x.html#ga061ce12362feedaeebb5a92eb253ee5f" title="Overrides the timer CCP output. ">DL_Timer_overrideCCPOut()</a> can be used for for similar functionality, where independent overrride settings for the output and complementary output channels can be configured.  <a href="#gaa4fc37e8fa593a5ac69a3d7b5e309e77">More...</a><br /></td></tr>
 <tr class="separator:gaa4fc37e8fa593a5ac69a3d7b5e309e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaccb8572d216b10958c7cdc98063e51d6"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#gaccb8572d216b10958c7cdc98063e51d6">DL_Timer_setCCPOutputDisabledAdv</a> (GPTIMER_Regs *gptimer, uint32_t ccpOdisConfig)</td></tr>
-<tr class="memdesc:gaccb8572d216b10958c7cdc98063e51d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets CCP Output configuration when timer is disabled for timer instances with more than two CCP channels.  <a href="#gaccb8572d216b10958c7cdc98063e51d6">More...</a><br /></td></tr>
+<tr class="memdesc:gaccb8572d216b10958c7cdc98063e51d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets CCP Output configuration for timer instances with more than two CCP channels via the ODIS register. The output pin still passes through the inversion (INV) bit.  <a href="#gaccb8572d216b10958c7cdc98063e51d6">More...</a><br /></td></tr>
 <tr class="separator:gaccb8572d216b10958c7cdc98063e51d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga48b98b18c015eb190ed4f67550cd8add"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#ga48b98b18c015eb190ed4f67550cd8add">DL_Timer_setClockConfig</a> (GPTIMER_Regs *gptimer, <a class="el" href="struct_d_l___timer___clock_config.html">DL_Timer_ClockConfig</a> *config)</td></tr>
 <tr class="memdesc:ga48b98b18c015eb190ed4f67550cd8add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure timer source clock.  <a href="#ga48b98b18c015eb190ed4f67550cd8add">More...</a><br /></td></tr>
@@ -1049,6 +1049,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaec3344e71e18f8894f525c48236e784f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#gaec3344e71e18f8894f525c48236e784f">DL_Timer_configQEI</a> (GPTIMER_Regs *gptimer, <a class="el" href="group___t_i_m_x.html#ga3eb9e4754bada765a7a080174112f351">DL_TIMER_QEI_MODE</a> mode, uint32_t invert, <a class="el" href="group___t_i_m_x.html#gacbf745cd89582e044de7aac0b46aa620">DL_TIMER_CC_INDEX</a> ccIndex)</td></tr>
 <tr class="memdesc:gaec3344e71e18f8894f525c48236e784f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure Quadrature Encoder Interface (QEI)  <a href="#gaec3344e71e18f8894f525c48236e784f">More...</a><br /></td></tr>
 <tr class="separator:gaec3344e71e18f8894f525c48236e784f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab4e2b60cf7558ef4fa404d57751bc4ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#gab4e2b60cf7558ef4fa404d57751bc4ae">DL_Timer_configQEIHallInputMode</a> (GPTIMER_Regs *gptimer)</td></tr>
+<tr class="memdesc:gab4e2b60cf7558ef4fa404d57751bc4ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure Hall Input Mode.  <a href="#gab4e2b60cf7558ef4fa404d57751bc4ae">More...</a><br /></td></tr>
+<tr class="separator:gab4e2b60cf7558ef4fa404d57751bc4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad9e4ab21c668ea6231646aa4f50f2674"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___t_i_m_x.html#gac995af7f38cafc1cde6bd13f42e5416a">DL_TIMER_QEI_DIRECTION</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#gad9e4ab21c668ea6231646aa4f50f2674">DL_Timer_getQEIDirection</a> (GPTIMER_Regs *gptimer)</td></tr>
 <tr class="memdesc:gad9e4ab21c668ea6231646aa4f50f2674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get direction of Quadrature Encoder Interface (QEI) count.  <a href="#gad9e4ab21c668ea6231646aa4f50f2674">More...</a><br /></td></tr>
 <tr class="separator:gad9e4ab21c668ea6231646aa4f50f2674"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1232,9 +1235,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga90ea6d4b0c69f1be5386a4f3307837cda824e481ad0533e1bf0010d2043679cc7"></a>DL_TIMER_CCP_DIS_OUT_LOW&#160;</td><td class="fielddoc"><p>CCP output is forced low when timer is disabled </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga90ea6d4b0c69f1be5386a4f3307837cda824e481ad0533e1bf0010d2043679cc7"></a>DL_TIMER_CCP_DIS_OUT_LOW&#160;</td><td class="fielddoc"><p>CCP output source is disabled and driven low before conditional inversion </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga90ea6d4b0c69f1be5386a4f3307837cda8a0d9d5df7043ed1d210b4a2cca0b99d"></a>DL_TIMER_CCP_DIS_OUT_SET_BY_OCTL&#160;</td><td class="fielddoc"><p>CCP output is set by the OCTL when timer is disabled </p>
+<tr><td class="fieldname"><a id="gga90ea6d4b0c69f1be5386a4f3307837cda8a0d9d5df7043ed1d210b4a2cca0b99d"></a>DL_TIMER_CCP_DIS_OUT_SET_BY_OCTL&#160;</td><td class="fielddoc"><p>CCP output source is not disabled </p>
 </td></tr>
 </table>
 
@@ -2513,12 +2516,12 @@ false if peripheral wasn't reset </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Sets CCP Output configuration when timer is disabled. </p>
+<p>Forces the output of the timer low via the ODIS register. This can be useful during shutdown or configuring the timer. The output pin still passes through the inversion (INV) bit. See figure "Output connection for TIMG" in Technical Reference Manual (TRM) for diagram. <a class="el" href="group___t_i_m_x.html#ga061ce12362feedaeebb5a92eb253ee5f" title="Overrides the timer CCP output. ">DL_Timer_overrideCCPOut()</a> can be used for for similar functionality, where independent overrride settings for the output and complementary output channels can be configured. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gptimer</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ccp0Config</td><td>Output Configuration for CCP0 when timer is disabled <a class="el" href="group___t_i_m_x.html#ga90ea6d4b0c69f1be5386a4f3307837cd">DL_TIMER_CCP_DIS_OUT</a> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ccp1Config</td><td>Output Configuration for CCP1. disabled <a class="el" href="group___t_i_m_x.html#ga90ea6d4b0c69f1be5386a4f3307837cd">DL_TIMER_CCP_DIS_OUT</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ccp0Config</td><td>Output Configuration for CCP0. One of <a class="el" href="group___t_i_m_x.html#ga90ea6d4b0c69f1be5386a4f3307837cd">DL_TIMER_CCP_DIS_OUT</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ccp1Config</td><td>Output Configuration for CCP1. One of <a class="el" href="group___t_i_m_x.html#ga90ea6d4b0c69f1be5386a4f3307837cd">DL_TIMER_CCP_DIS_OUT</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -2553,12 +2556,12 @@ false if peripheral wasn't reset </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Sets CCP Output configuration when timer is disabled for timer instances with more than two CCP channels. </p>
+<p>Sets CCP Output configuration for timer instances with more than two CCP channels via the ODIS register. The output pin still passes through the inversion (INV) bit. </p>
 <dl class="section note"><dt>Note</dt><dd>Refer to device datasheet to determine if timer instance supports this feature. Only Timer instance which supports more than two CCP channels should use this API.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gptimer</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ccpOdisConfig</td><td>Output Configuration for CCP channels when timer is disabled. Bitwise OR <a class="el" href="group___d_l___t_i_m_e_r___c_c_p0___d_i_s___o_u_t___a_d_v.html">DL_TIMER_CCP0_DIS_OUT_ADV</a>, <a class="el" href="group___d_l___t_i_m_e_r___c_c_p1___d_i_s___o_u_t___a_d_v.html">DL_TIMER_CCP1_DIS_OUT_ADV</a>, <a class="el" href="group___d_l___t_i_m_e_r___c_c_p2___d_i_s___o_u_t___a_d_v.html">DL_TIMER_CCP2_DIS_OUT_ADV</a>, <a class="el" href="group___d_l___t_i_m_e_r___c_c_p3___d_i_s___o_u_t___a_d_v.html">DL_TIMER_CCP3_DIS_OUT_ADV</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ccpOdisConfig</td><td>Output Configuration for CCP channels. Bitwise OR <a class="el" href="group___d_l___t_i_m_e_r___c_c_p0___d_i_s___o_u_t___a_d_v.html">DL_TIMER_CCP0_DIS_OUT_ADV</a>, <a class="el" href="group___d_l___t_i_m_e_r___c_c_p1___d_i_s___o_u_t___a_d_v.html">DL_TIMER_CCP1_DIS_OUT_ADV</a>, <a class="el" href="group___d_l___t_i_m_e_r___c_c_p2___d_i_s___o_u_t___a_d_v.html">DL_TIMER_CCP2_DIS_OUT_ADV</a>, <a class="el" href="group___d_l___t_i_m_e_r___c_c_p3___d_i_s___o_u_t___a_d_v.html">DL_TIMER_CCP3_DIS_OUT_ADV</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -5524,7 +5527,7 @@ false if clock is disabled </dd></dl>
 </div><div class="memdoc">
 
 <p>Sets repeat counter value. Repeat counter feature is used to reduce interupt overhead. </p>
-<dl class="section note"><dt>Note</dt><dd><b>This feature is not supported by all TimerA instances.</b> Please refer to the "Different TIM Configurations" table in the device specific datasheet to determine TimerA instances which support "Repeat Counter" configuration.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>This feature is not supported by all TimerA instances.</b> Please refer to the "TIMx Configurations" table in the device specific datasheet to determine TimerA instances which support "Repeat Counter" configuration.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gptimer</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -5552,7 +5555,7 @@ false if clock is disabled </dd></dl>
 </div><div class="memdoc">
 
 <p>Gets repeat counter value. </p>
-<dl class="section note"><dt>Note</dt><dd><b>This feature is not supported by all TimerA instances.</b> Please refer to the "Different TIM Configurations" table in the device specific datasheet to determine TimerA instances which support "Repeat Counter" configuration.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><b>This feature is not supported by all TimerA instances.</b> Please refer to the "TIMx Configurations" table in the device specific datasheet to determine TimerA instances which support "Repeat Counter" configuration.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gptimer</td><td>Pointer to the register overlay for the peripheral</td></tr>
@@ -5838,6 +5841,7 @@ false if clock is disabled </dd></dl>
 </div><div class="memdoc">
 
 <p>Configure Quadrature Encoder Interface (QEI) </p>
+<dl class="section post"><dt>Postcondition</dt><dd>User should call <a class="el" href="group___t_i_m_x.html#ga6c949f949d06ebe0087ee10cbfa414a2">DL_Timer_setLoadValue</a> and <a class="el" href="group___t_i_m_x.html#gabce458b8549f86878a22a964f5634b09">DL_Timer_startCounter</a> to complete the QEI Configuration. Refer to Timer TRM for more details.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gptimer</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -5847,6 +5851,38 @@ false if clock is disabled </dd></dl>
   </table>
   </dd>
 </dl>
+
+<p>References <a class="el" href="group___t_i_m_x.html#gab4e2b60cf7558ef4fa404d57751bc4ae">DL_Timer_configQEIHallInputMode()</a>.</p>
+
+</div>
+</div>
+<a id="gab4e2b60cf7558ef4fa404d57751bc4ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab4e2b60cf7558ef4fa404d57751bc4ae">&sect;&nbsp;</a></span>DL_Timer_configQEIHallInputMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DL_Timer_configQEIHallInputMode </td>
+          <td>(</td>
+          <td class="paramtype">GPTIMER_Regs *&#160;</td>
+          <td class="paramname"><em>gptimer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure Hall Input Mode. </p>
+<dl class="section note"><dt>Note</dt><dd>Refer to device datasheet to determine if timer instance supports this feature. Only TIMGx instances with QEI support should use this API.</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>User should call <a class="el" href="group___t_i_m_x.html#ga6c949f949d06ebe0087ee10cbfa414a2">DL_Timer_setLoadValue</a> and <a class="el" href="group___t_i_m_x.html#gabce458b8549f86878a22a964f5634b09">DL_Timer_startCounter</a> to complete the Hall Input Mode Configuration. Refer to Timer TRM for more details.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">gptimer</td><td>Pointer to the register overlay for the peripheral </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="group___t_i_m_x.html#gaec3344e71e18f8894f525c48236e784f">DL_Timer_configQEI()</a>.</p>
 
 </div>
 </div>

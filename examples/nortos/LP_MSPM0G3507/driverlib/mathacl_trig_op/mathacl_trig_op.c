@@ -90,6 +90,10 @@ int main(void)
      *   op3Cos = 0
      *   op3Sin = should be 1 (0x7FFFFFFF)
      */
+
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+
     __BKPT(0);
 
     while (1) {

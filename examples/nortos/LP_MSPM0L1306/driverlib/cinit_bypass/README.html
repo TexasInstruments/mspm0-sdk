@@ -48,16 +48,31 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>GPIOA</td>
+<td>PA0</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA1</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
+<td>EVENT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -78,18 +93,32 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>PA0</td>
+<td>GPIOA</td>
+<td>PA0</td>
+<td>J1_10</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J10 2:3</code> Use 3.3V pull-up<br><li><code>J10 1:2</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J2 ON</code> Connect to LED1<br><li><code>J2 OFF</code> Disconnect from LED1</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA1</td>
+<td>GPIOA</td>
+<td>PA1</td>
+<td>J1_9</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 2:3</code> Use 3.3V pull-up<br><li><code>J9 1:2</code> Use 5V pull-up</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_13</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>J2_17</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
@@ -98,7 +127,7 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau869">LP-MSPM0L1306 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run the example. Note that gByteArray will not be zero when starting main. The values will be random when running for the first time, or retained when restarting the application. Optionally, modify the code to return a non-zero value in pre-initialization routine to initialize all .bss to zero.</p>
+<p>Compile, load and run the example. The LED should be off and USE_TEST pin set at the beginning of the program execution and will turn on at the end of the example. Note that gByteArray will not be zero when starting main. The values will be random when running for the first time, or retained when restarting the application. Optionally, modify the code to return a non-zero value in pre-initialization routine to initialize all .bss to zero.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

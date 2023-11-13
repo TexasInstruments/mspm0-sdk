@@ -1,6 +1,6 @@
 /*****************************************************************************
 
-  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/ 
+  Copyright (C) 2020 Texas Instruments Incorporated - http://www.ti.com/ 
 
   Redistribution and use in source and binary forms, with or without 
   modification, are permitted provided that the following conditions 
@@ -35,11 +35,10 @@
 
 MEMORY
 {
-    FLASH           (RX)  : origin = 0x00000000, length = 0x00020000
-    SRAM            (RWX) : origin = 0x20200000, length = 0x00008000
-    BCR_CONFIG      (R)   : origin = 0x41C00000, length = 0x00000080
-    BSL_CONFIG      (R)   : origin = 0x41C00100, length = 0x00000080
-
+  FLASH           	(RX)  : origin = 0x00000000, length = 0x0001FC00
+  MOTOR_CFG_FLS		(RW) : origin = 0x0001FC00, length = 0x00000400
+  SRAM            	(RWX) : origin = 0x20200000, length = 0x00007C00
+  MOTOR_CFG_SRAM	(RW) : origin = 0x20207C00, length = 0x00000400
 }
 
 SECTIONS
@@ -50,10 +49,10 @@ SECTIONS
     .cinit  : palign(8) {} > FLASH
     .pinit  : palign(8) {} > FLASH
     .rodata : palign(8) {} > FLASH
-    .ARM.exidx    : palign(8) {} > FLASH
-    .init_array   : palign(8) {} > FLASH
+    .ARM.exidx    :  palign(8)  {} > FLASH
+    .init_array   :  palign(8)  {} > FLASH
     .binit        : palign(8) {} > FLASH
-    .TI.ramfunc   : load = FLASH, palign(8), run=SRAM, table(BINIT)
+    .TI.ramfunc      : load = FLASH, palign(8), run=SRAM, table(BINIT)
 
     .vtable :   > SRAM
     .args   :   > SRAM
@@ -61,7 +60,7 @@ SECTIONS
     .bss    :   > SRAM
     .sysmem :   > SRAM
     .stack  :   > SRAM (HIGH)
-
-    .BCRConfig  : {} > BCR_CONFIG
-    .BSLConfig  : {} > BSL_CONFIG
+    
+    .motorConfigFlash :  palign(8) {} > MOTOR_CFG_FLS
+    .motorConfigSram  : {} > MOTOR_CFG_SRAM
 }

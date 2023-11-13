@@ -23,8 +23,7 @@ NOTE:
 Flash plugin resides and Non-main Flash memory are Static write protected in the BCR configuration.
 * Otherwise there are chances for device to get locked during the Bootloading process.
 * Refer to "boot_config.c" and "boot_config.h" to understand the configuration used for Non Main.
-* This BSL example uses provided bsl_can_config.c and bsl_can_config.h files for the 
-initalization and configuration of CAN modules 
+* This BSL example uses "bsl_mcan_flash_interface.syscfg" for the initalization and configuration of CAN modules 
 
 
 
@@ -73,23 +72,28 @@ Make the following connections, while using MCAN host example which can Invoke B
 - Controller BSL Invoke -> Peripheral BSL Invoke.
 
 Compile, load the example.
-In case of Loading an updated Non Main
-Load Nonmain and main sections, individually
+Set up Initial CAN configurations as
+    * CAN Mode : Classical CAN (BRS disabled)
+    * Nominal Speed : 1 Mbps
+    * Sampling point : 87.5
 
 Create BSL invocation condition using BSL Invoke pin or any other invocation methods.
 Send Connection command from the host. BSL Acknowledgement should be received.
 Send GetDeviceInfo command from the host.
 BSL should respond back with the CAN interface Flash plugin version information.
-
 Similarly Send erase, program, verification commands to program data in the memory.
 
-
 # Note
+
 * The Example is configured to work in CAN mode initially at 1 Mbps.
 * To change the bitrate of communication based on the configuration obtained from host through Change Baudrate Command
     * The Data section in Change Baudrate Command is expected to match the format shown below
 
 |     Padding      (5)    |     DRP      (5)    |     DSJW     (4)    |     DTSEG2      (4)    |     DTSEG1      (5)    |     NRP      (9)    |     NSJW      (7)    |     NSEG2      (7)    |     NTSEG1      (8)    |     BRS      (1)    |     FD      (1)    |
 |------------------|-------------------------|---------------------|---------------------|------------------------|------------------------|---------------------|----------------------|-----------------------|------------------------|---------------------|
-* The Transceiver used to test the example is TCAN1462-Q1.
-* PCAN USB Pro is used to analyse the CAN traffic on bus.
+
+* An arbitrary CAN frame is injected into CAN bus, on changing the CAN Mode to CAN FD to calibrate the transmission delay compensation attribute values. The Identity value can be modified as required.
+* Message Identifier accepted by BSL Plugin is 0x003
+* Message Identifier sent from BSL Plugin is 0x004
+
+

@@ -33,7 +33,6 @@
         "
         linkerBuildOptions="
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a
-            -Wl,--stack_size=512
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
             -Wl,--rom_model
             -Wl,--warn_sections

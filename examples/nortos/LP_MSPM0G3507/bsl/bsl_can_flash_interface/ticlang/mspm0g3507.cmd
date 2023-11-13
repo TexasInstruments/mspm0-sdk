@@ -44,7 +44,6 @@ MEMORY
     FLASH_PLUGIN_DEINIT(RWX)	:	 org = 0x00001400,     len = 0x00000080,
 
     FLASH_PLUGIN_OTHERS(RWX)	:	 org = 0x00001480,     len = 0x00002000,
-
     /*
      * SRAM memory marked as reserved are used for the ROM BSL execution.
      * Hence it can't be used for Flash plugin.
@@ -57,7 +56,6 @@ MEMORY
      * comply with the ROM BSL vector table location
      */
     SRAM_INT_VECS(RWX)		:    org = 0x20000000,     len = 0x000000E0,
-
     /*
      * SRAM for flash plugin operation allocated towards the end of the first
      * data buffer used for BSL communication. If more memory is needed origin
@@ -65,7 +63,7 @@ MEMORY
      * For example, if 0x100 bytes are required, then org will be 0x20003B80
      * and length will be 0x100.
      */
-    SRAM (RWX)				:    org = 0x2000015B,     len = 0x000000FF,
+    SRAM (RWX)				:    org = 0x20003C00,     len = 0x000000FF,
 
     /* Non-Main configuration memory */
     BCR_CONFIG		 		: 	 org = 0x41C00000,     len = 0x00000080,
@@ -84,10 +82,10 @@ SECTIONS
     .cinit  : palign(8) {} > FLASH_PLUGIN_OTHERS
     .pinit  : palign(8) {} > FLASH_PLUGIN_OTHERS
     .rodata : palign(8) {} > FLASH_PLUGIN_OTHERS
-
     .ARM.exidx    : palign(8)  {} > FLASH_PLUGIN_OTHERS
     .init_array   : palign(8)  {} > FLASH_PLUGIN_OTHERS
     .binit        : palign(8)  {} > FLASH_PLUGIN_OTHERS
+
 
     /*
      * Configured to not initialize any SRAM variables. Since the init function

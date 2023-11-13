@@ -13,17 +13,21 @@ After all the data is received by the Peripheral, the received data will be stor
 When the Controller sends CMD_READ_TYPE_X commands, the SPI Controller will read data from the Peripheral. The Peripheral will send example gCmdReadTypeXBuffer buffers in response.
 After all the data is received by the Controller, the received data will be stored in its corresponding gCmdReadTypeXBuffer.
 
-The Peripheral will go to SLEEP in between transactions.
+After a successful transaction, the LED will toggle its state, then the Peripheral
+will go to SLEEP.
 
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
+| GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA1 | Open-Drain Output |
 | SYSCTL |  |  |
 | SPI0 | PA6 | SPI SCLK (Clock) |
 | SPI0 | PA5 | SPI PICO (Peripheral In, Controller Out) |
 | SPI0 | PA4 | SPI POCI (Peripheral Out, Controller In) |
 | SPI0 | PA3 | SPI CS1 (Chip Select 1) |
+| EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
 
@@ -33,12 +37,14 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
+| PA0 | GPIOA | PA0 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 ON` Connect to LED1<br><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA1 | GPIOA | PA1 | J1_9 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
 | PA6 | SPI0 | SCLK | J1_7 | N/A |
 | PA5 | SPI0 | MOSI | J2_15 | N/A |
 | PA4 | SPI0 | MISO | J2_14 | N/A |
 | PA3 | SPI0 | CS1_MISO1 | J2_19 | N/A |
-| PA20 | DEBUGSS | SWCLK | J2_13 | J101 15:16 ON: Connect to XDS-110 SWCLK (debug) |
-| PA19 | DEBUGSS | SWDIO | J2_17 | J101 13:14 ON: Connect to XDS-110 SWDIO (debug) |
+| PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to
@@ -67,3 +73,7 @@ The SPI is initialized with the following configuration:
 Compile, load and run the example before running the Controller example.
 The SPI will automatically start to transmit and receive data responding to
 requests from the SPI Controller.
+
+The LED will toggle after completion to indicate success.
+USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack
+header and can be used to verify the LED behavior.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -90,10 +90,18 @@ const profilesCRC = [
 ];
 
 /************************* General functions **********************************/
-const polyOptions = [
-    {name: "32_POLYNOMIAL", displayName: "CRC-32 ISO-3309"},
+/*
+ * Polynomial Configuration:
+ * MSPM0G / MSPM0L support 32 and 16-bit polynomial.
+ * MSPM0C only supports 16-bit polynomial
+ */
+let polyOptions = [];
+if(Common.isDeviceM0G() || Common.isDeviceM0L()){
+    polyOptions.push({name: "32_POLYNOMIAL", displayName: "CRC-32 ISO-3309"})
+}
+polyOptions = polyOptions.concat([
     {name: "16_POLYNOMIAL", displayName: "CRC-16 CCITT"},
-];
+]);
 
 const bitReverseOptions = [
     {name: "NOT_REVERSED", displayName: "Not reversed"},
@@ -147,6 +155,20 @@ function onChangeCfgSeed(inst, ui)
     onChangeSetCustomProfile(inst, ui);
 }
 
+/* Profile Options vary by device depending on Polynomial availability */
+let profileOptions = [
+    {name: "CONFIG_PROFILE_1", displayName: "CRC16_CCIT_ZERO"},
+    {name: "CONFIG_PROFILE_2", displayName: "CRC16_CCIT_FALSE"},
+    {name: "CONFIG_PROFILE_3", displayName: "CRC16_AUG_CCIT"},
+];
+/* CRC32 only supported on MSPM0G and MSPM0L */
+if(Common.isDeviceM0G() || Common.isDeviceM0L()){
+    profileOptions = profileOptions.concat([
+        {name: "CONFIG_PROFILE_4", displayName: "CRC32_MPEG32"},
+        {name: "CONFIG_PROFILE_5", displayName: "CRC32_JAMCRC"},
+    ]);
+}
+profileOptions.push({name: "CUSTOM", displayName: "Custom"},)
 
 /* PROFILES CONFIGURATION */
 let CRCConfig = [
@@ -209,19 +231,47 @@ The Quick Profile Options are:
     * Allows custom configuration.`,
                 hidden      : false,
                 default     : "CUSTOM",
-                options     : [
-                    {name: "CONFIG_PROFILE_1", displayName: "CRC16_CCIT_ZERO"},
-                    {name: "CONFIG_PROFILE_2", displayName: "CRC16_CCIT_FALSE"},
-                    {name: "CONFIG_PROFILE_3", displayName: "CRC16_AUG_CCIT"},
-                    {name: "CONFIG_PROFILE_4", displayName: "CRC32_MPEG32"},
-                    {name: "CONFIG_PROFILE_5", displayName: "CRC32_JAMCRC"},
-                    {name: "CUSTOM", displayName: "Custom"},
-                ],
+                options     : profileOptions,
                 onChange    : onChangeCRCProfile,
             },
         ],
     },
 ]
+
+/*
+ * Polynomial Configuration:
+ * MSPM0G / MSPM0L support 32 and 16-bit polynomial.
+ * MSPM0C only supports 16-bit polynomial
+ */
+let polyConfig = {
+    name        : "polynomial",
+    displayName : "CRC Polynomial",
+    description : 'Select the polynomial to be used by the CRC calculation',
+    longDescription:`
+The CRC Polynomial can be configured to used the following options:\n
+![CRC Polynomials](../docs/english/sysconfig/images/crcpolynomials.png "CRC Polynomials")
+`,
+    hidden      : false,
+    default     : "32_POLYNOMIAL",
+    options     : polyOptions,
+    onChange    : onChangeCfgPoly,
+};
+if(Common.isDeviceM0C()){
+    polyConfig = {
+        name        : "polynomial",
+        displayName : "CRC Polynomial",
+        description : 'Select the polynomial to be used by the CRC calculation',
+        longDescription:`
+    The CRC Polynomial can be configured to used the following options:\n
+    ![CRC Polynomials](../docs/english/sysconfig/images/crcpolynomials.png "CRC Polynomials")
+    `,
+        hidden      : false,
+        default     : "16_POLYNOMIAL",
+        options     : polyOptions,
+        onChange    : onChangeCfgPoly,
+        readOnly    : Common.isDeviceM0C(),
+    };
+}
 
 CRCConfig = CRCConfig.concat([
     {
@@ -234,19 +284,8 @@ seed value.
 `,
         collapsed: false,
         config: [
-            {
-                name        : "polynomial",
-                displayName : "CRC Polynomial",
-                description : 'Select the polynomial to be used by the CRC calculation',
-                longDescription:`
-The CRC Polynomial can be configured to used the following options:\n
-![CRC Polynomials](../docs/english/sysconfig/images/crcpolynomials.png "CRC Polynomials")
-        `,
-                hidden      : false,
-                default     : "32_POLYNOMIAL",
-                options     : polyOptions,
-                onChange    : onChangeCfgPoly,
-            },
+            /* Polynomial OPtion availability depends on device selection */
+            polyConfig,
             {
                 name        : "bitReverse",
                 displayName : "Input/Output Bit Order",
@@ -312,6 +351,11 @@ the valid ranges based on the CRC polynomial selected:
         ],
 
     },
+])
+
+/* CRC does not support DMA configuration for MSPM0Cxx */
+if(!Common.isDeviceM0C()){
+CRCConfig = CRCConfig.concat([
     {
         name: "GROUP_DMA",
         displayName: "DMA Configuration",
@@ -338,6 +382,7 @@ and the CRC seed value have been loaded.\n
         ]
     },
 ])
+}
 
 
 /*

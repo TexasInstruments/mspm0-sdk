@@ -1,6 +1,6 @@
 %%{
 /*
- * Copyright (c) 2022 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
     let Common = system.getScript("/ti/driverlib/Common.js");
 %%}
 /*
- * Copyright (c) 2022, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -104,6 +104,8 @@
 #error "Non-Main table currently not supported for this compiler"
 #endif
 
+% if (!Common.isDeviceM0C()) {
+%
 /* Defines for BSL UART and I2C interface pins */
 % let uartRXPadNumStr = "#define DEF_UART_RXD_PAD";
 % let uartRXPadNumStr2 = "(" + "0x" + inst.uartRXPadNum.toString(16) + ")";
@@ -144,6 +146,8 @@
 %
 #define DEFAULT_BSL_PIN_INVOCATION_DATA0                       ((uint8_t) `pinData0Str`)
 #define DEFAULT_BSL_PIN_INVOCATION_DATA1                       ((uint8_t) `pinData1Str`)
+%   } // !Common.isDeviceM0C()
+%
 
 /**
  * @brief Possible values used for BCR configuration struct
@@ -153,8 +157,10 @@
 typedef enum {
     /*! AHB-AP, ET-AP, PWR-AP are enabled */
     BCR_CFG_DEBUG_ACCESS_EN = 0xAABBU,
+% if (!Common.isDeviceM0C()) {
     /*! AHB-AP, ET-AP, PWR-AP are enabled with password through DSSM */
     BCR_CFG_DEBUG_ACCESS_EN_PW = 0xCCDDU,
+%   } // !Common.isDeviceM0C()
     /*! AHB-AP, ET-AP, PWR-AP are disabled */
     BCR_CFG_DEBUG_ACCESS_DIS = 0xFFFFU,
 } BCR_CFG_DEBUG_ACCESS;
@@ -167,6 +173,7 @@ typedef enum {
     BCR_CFG_SWDP_DIS = 0xFFFFU,
 } BCR_CFG_SWDP_MODE;
 
+% if (!Common.isDeviceM0C()) {
 /*! @enum BCR_CFG_TIFA_MODE */
 typedef enum {
     /*! If enabled, re-test request through DSSM is serviced */
@@ -209,13 +216,16 @@ typedef enum {
     /*! Disable Mass Erase */
     BCR_CFG_MASS_ERASE_DIS = 0xFFFFU,
 } BCR_CFG_MASS_ERASE;
+%   } // !Common.isDeviceM0C()
 
 /*! @enum BCR_CFG_FACTORY_RESET */
 typedef enum {
     /*! Enable Factory Reset without password */
     BCR_CFG_FACTORY_RESET_EN = 0xAABBU,
+% if (!Common.isDeviceM0C()) {
     /*! Enable Factory Reset with password */
     BCR_CFG_FACTORY_RESET_EN_PW = 0xCCDDU,
+%   } // !Common.isDeviceM0C()
     /*! Disable Factory Reset */
     BCR_CFG_FACTORY_RESET_DIS = 0xFFFFU,
 } BCR_CFG_FACTORY_RESET;
@@ -228,6 +238,7 @@ typedef enum {
     BCR_CFG_NON_MAIN_STATIC_PROT_DIS = 0xFFFFU,
 } BCR_CFG_NON_MAIN_STATIC_PROT;
 
+% if (!Common.isDeviceM0C()) {
 /*! @enum BCR_CFG_SECURE_BOOT */
 typedef enum {
     /*! Enable CRC check part of application */
@@ -235,6 +246,7 @@ typedef enum {
     /*! Disable CRC check part of application */
     BCR_CFG_SECURE_BOOT_DIS = 0xFFFFU,
 } BCR_CFG_SECURE_BOOT;
+%   } // !Common.isDeviceM0C()
 
 
 /* Bootcode user configuration structure */
@@ -247,6 +259,7 @@ typedef struct
     BCR_CFG_DEBUG_ACCESS debugAccess;
     /*! Enable/disable SWD port access. One of @ref BCR_CFG_SWDP_MODE */
     BCR_CFG_SWDP_MODE swdpMode;
+%   if (!Common.isDeviceM0C()) {
     /*! Enable/disable servicing re-test request through DSSM.
      * One of @ref BCR_CFG_TIFA_MODE */
     BCR_CFG_TIFA_MODE tifaMode;
@@ -261,12 +274,18 @@ typedef struct
     BCR_CFG_BOOTLOADER_MODE bootloaderMode;
     /*! The mass erase mode. One of @ref BCR_CFG_MASS_ERASE */
     BCR_CFG_MASS_ERASE massEraseMode;
+%   } // !Common.isDeviceM0C()
     /*! The factory reset mode. One of @ref BCR_CFG_FACTORY_RESET */
     BCR_CFG_FACTORY_RESET factoryResetMode;
+%   if (!Common.isDeviceM0C()) {
     /*! DSSM_BC_MASS_ERASE_REQUEST, DSSM_DATA_EXCHANGE */
     uint32_t passwordMassErase [PASSWORD_WORD_LEN];
     /*! DSSM_BC_FACTORY_RESET_REQUEST, DSSM_DATA_EXCHANGE */
     uint32_t passwordFactoryReset [PASSWORD_WORD_LEN];
+%   } // !Common.isDeviceM0C()
+%
+%   /* Due to padding, M0C BCR field order is different for write protection fields */
+%   if (!Common.isDeviceM0C()) {
     /*! Programs static write protection of first 32K bytes.
      * One bit corresponds to one sector, LSB is Sector 0. Setting a bit
      * to 0 disables write, setting a bit to 1 enables write Possible values:
@@ -280,6 +299,22 @@ typedef struct
     /*! Non Main Flash Static Write Protection.
     * One of @ref BCR_CFG_NON_MAIN_STATIC_PROT */
     BCR_CFG_NON_MAIN_STATIC_PROT staticWriteProtectionNonMain;
+%   } else {
+    /*! Non Main Flash Static Write Protection.
+    * One of @ref BCR_CFG_NON_MAIN_STATIC_PROT */
+    BCR_CFG_NON_MAIN_STATIC_PROT staticWriteProtectionNonMain;
+    /*! Programs static write protection of first 32K bytes.
+     * One bit corresponds to one sector, LSB is Sector 0. Setting a bit
+     * to 0 disables write, setting a bit to 1 enables write Possible values:
+     *    - 0x0 to 0xFFFFFFFF */
+    uint32_t staticWriteProtectionMainLow;
+    /*! Programs static write protection of first 32K bytes.
+     * One bit corresponds to eight sectors. Setting a bit
+     * to 0 disables write, setting a bit to 1 enables write Possible values:
+     *    - 0x0 to 0xFFFFFFF0 */
+    uint32_t staticWriteProtectionMainHigh;
+%   }
+%   if (!Common.isDeviceM0C()) {
     /*! CRC check part of the application. One of @ref BCR_CFG_SECURE_BOOT */
     BCR_CFG_SECURE_BOOT secureBootMode;
     /*! The Starting address from where CRC has to be calculated for the application */
@@ -290,8 +325,13 @@ typedef struct
     uint32_t userSecureAppCrc;
     /*! CRC-32 of this structure*/
     uint32_t userCfgCRC;
+%   } else {
+    /*! Reserved */
+    uint32_t reserved;
+%   }    // !Common.isDeviceM0C()
 } BCR_Config;
 
+%   if (!Common.isDeviceM0C()) {
 /* Structure to store the Bootloader UART and I2C Pin details. */
 typedef struct
 {
@@ -475,6 +515,7 @@ typedef struct
 
 /* Added for secondary_bsl to build */
 extern const BSL_Config BSLConfig;
+%   } // !Common.isDeviceM0C()
 extern const BCR_Config BCRConfig;
 
 /* clang-format on */

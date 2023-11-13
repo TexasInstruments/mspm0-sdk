@@ -30,7 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <can_config.h>
+#include <ti_msp_dl_config.h>
 #include "stdint.h"
 
 #define BSL_PACK_HEADER_IDX 0x0
@@ -117,4 +117,5 @@ typedef struct
 void CAN_initialize(void);
 uint8_t MCAN_send_BSL_packet(volatile uint8_t *BSL_packet, uint16_t size);
 uint8_t receive_bsl_response();
-bool MCAN_send_frame(uint8_t* data, uint16_t len);
+bool MCAN_send_frame(uint32_t id, uint8_t *data, uint16_t len);
+void MCAN_reconfig(void);

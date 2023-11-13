@@ -49,17 +49,18 @@
     let mfpclkGateInst = _.find(mod.$instances, ['$name', 'MFPCLKGATE']);
     let mfclkGateInst = _.find(mod.$instances, ['$name', 'MFCLKGATE']);
 
-    if( _.isUndefined(mfpclkGateInst) || (Common.isDeviceM0G() && _.isUndefined(mfpclkMuxInst))) {
+    if( (!Common.isDeviceM0C() && _.isUndefined(mfpclkGateInst)) || (Common.isDeviceM0G() && _.isUndefined(mfpclkMuxInst))) {
         throw 'Not all MFPCLK elements are defined appropriately';
     }
 
     let mfpclkStr = "";
-
-    if(mfpclkGateInst.enable){
-        mfpclkStr = "DL_SYSCTL_enableMFPCLK();";
-        if(Common.isDeviceM0G()){
-            let source = _.split(mfpclkMuxInst.inputSelect, "_")[1];
-            mfpclkStr += "\n\tDL_SYSCTL_setMFPCLKSource(DL_SYSCTL_MFPCLK_SOURCE_" + source + ");"
+    if(!_.isUndefined(mfpclkGateInst)){
+        if(mfpclkGateInst.enable){
+            mfpclkStr = "DL_SYSCTL_enableMFPCLK();";
+            if(!_.isUndefined(mfpclkMuxInst)){
+                let source = _.split(mfpclkMuxInst.inputSelect, "_")[1];
+                mfpclkStr += "\n\tDL_SYSCTL_setMFPCLKSource(DL_SYSCTL_MFPCLK_SOURCE_" + source + ");"
+            }
         }
     }
 %%}

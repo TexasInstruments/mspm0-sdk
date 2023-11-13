@@ -54,11 +54,27 @@ let gpioConfig = [
         displayName: "Port",
         description: "Optional Port that all GPIO pins must be from",
         default: "Any",
-        options: [
-            {name: "Any"},
-            {name: "PORTA"},
-            {name: "PORTB"}
-        ]
+        options: (inst) => {
+            let portOptions = [
+                {name: "Any"},
+            ];
+            if(Common.hasGPIOPortA()){
+                portOptions.push(
+                    {name: "PORTA"}
+                )
+            }
+            if(Common.hasGPIOPortB()){
+                portOptions.push(
+                    {name: "PORTB"}
+                )
+            }
+            if(Common.hasGPIOPortC()){
+                portOptions.push(
+                    {name: "PORTC"}
+                )
+            }
+            return portOptions;
+        }
     },
     {
         name: "portSegment",

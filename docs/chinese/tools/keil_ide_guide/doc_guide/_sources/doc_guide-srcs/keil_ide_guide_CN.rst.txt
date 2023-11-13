@@ -70,7 +70,7 @@ Arm Keil MDK， 包括 µVision IDE、调试器和 Arm C/C++ 编译器，可从 
 2.2 从 MSPM0 SDK 创建 MSPM0 工程
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__\ ，其中包含有关如何安装 MSPM0 SDK 以及在 Keil 中导入和编译 SDK 示例的说明。
+请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__\ ，其中包含有关如何安装 MSPM0 SDK 以及在 Keil 中导入和编译 SDK 示例的说明。
 
 2.3 从头开始创建工程
 ~~~~~~~~~~~~~~~~~~~~
@@ -84,9 +84,9 @@ MSPM0 SDK 中的一些示例支持 SysConfig。\ `SysConfig <https://www.ti.com/
 
 SysConfig 工具作为独立安装程序交付，可手动集成到 Keil 中，也可通过 dev.ti.com 云工具门户使用。
 
-在 Keil 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 Keil 中初始化 SysConfig。请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__\ ，详细了解如何安装 SysConfig 和为 Keil 启用 SysConfig。
+在 Keil 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 Keil 中初始化 SysConfig。请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__\ ，详细了解如何安装 SysConfig 和为 Keil 启用 SysConfig。
 
-有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 指南。
+有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__\ 指南。
 
 2.5 在 MSPM0 衍生产品之间进行迁移
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -132,7 +132,7 @@ SysConfig 工具作为独立安装程序交付，可手动集成到 Keil 中，�
 2.6 将新生成的 SysConfig 文件添加至工程
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-使用会生成除 ``ti_msp_dl_config.h`` 和 ``ti_msp_dl_config.c`` 以外的文件的 SysConfig 模块（如 NONMAIN 配置器）时，必须将新生成的文件手动添加至工程，因为 Keil 不会自动添加。要详细了解哪些模块会生成额外文件，请参阅\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 指南。
+使用会生成除 ``ti_msp_dl_config.h`` 和 ``ti_msp_dl_config.c`` 以外的文件的 SysConfig 模块（如 NONMAIN 配置器）时，必须将新生成的文件手动添加至工程，因为 Keil 不会自动添加。要详细了解哪些模块会生成额外文件，请参阅\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__\ 指南。
 
 以 NONMAIN 配置器为例，它将生成 2 个额外文件：\ ``boot_config.h`` 和 ``boot_config.c``\ 。
 
@@ -229,7 +229,7 @@ TI 提供各种适用于基于 Arm 的器件的调试探针，包括与 MSPM0 La
 
 -  注意所选仿真器。以上示例在 CSMSIS-DAP 模式下使用集成在 LaunchPad 中的 XDS110。
 -  所选接口是 MSPM0 支持的 SWD。
--  XDS 工具使用闪存加载程序将代码下载到器件。在 **Options** → **Debug** → **Settings** → **Flash Download** 中确认使用。请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__ ，了解更多详细信息。
+-  XDS 工具使用闪存加载程序将代码下载到器件。在 **Options** → **Debug** → **Settings** → **Flash Download** 中确认使用。请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__ ，了解更多详细信息。
 
 3.2 使用 Segger J-Link 调试探针
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -242,7 +242,7 @@ TI 提供各种适用于基于 Arm 的器件的调试探针，包括与 MSPM0 La
 .. figure:: ./images/keil_ide_guide/keil_ide_jlink_settings.png
    :alt: 
 
-请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__\ ，以详细了解如何使用 Segger J-Link。
+请参阅\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__\ ，以详细了解如何使用 Segger J-Link。
 
 3.3 使用 Arm ULINK 调试适配器
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

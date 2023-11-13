@@ -59,10 +59,10 @@ SysConfig 工具作为独立安装程序交付并集成在 CCS 中，可将其�
 3.1.1 在 CCS 中启用 SysConfig
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因此无需任何额外步骤即可使用。以下步骤仅在集成独立版 SysConfig 时适用（例如升级 SysConfig 版本时）。
+CCS 12.5.0 和 CCS Theia 1.1.0+ 包含与 MSPM0 兼容的 SysConfig 版本，因此无需任何额外步骤即可使用。以下步骤仅在集成独立版 SysConfig 时适用（例如升级 SysConfig 版本时）。
 
-1. | 请遵循\ `适用于 CCS Theia 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html>`__\ 中的说明，为 MSPM0 安装 CCS Theia。
-   | 或者，遵循\ `适用于 CCS 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs.html>`__\ 中的说明，为 MSPM0 安装 CCS。
+1. | 请遵循\ `适用于 CCS Theia 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html>`__\ 中的说明，为 MSPM0 安装 CCS Theia。
+   | 或者，遵循\ `适用于 CCS 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html>`__\ 中的说明，为 MSPM0 安装 CCS。
 
 2. 更新 CCS 工具路径。操作方式是，依次点击 **Window→Preferences**\ ，然后在弹出窗口中选择 **Code Composer Studio→Products**\ ，在安装后刷新，产品随即应显示在 SysConfig 下方。点击“Apply and Close”使更改生效。
 
@@ -72,9 +72,9 @@ CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因�
 3.1.2 使用 CCS 导入 MSPM0 SysConfig 工程
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. | 请遵循\ `适用于 CCS Theia 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html>`__\ 中的说明，安装 MSPM0 SDK 并在 CCS Theia 中导入示例。
-   | 或者，遵循\ `适用于 CCS 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs.html>`__\ 中的说明，安装 MSPM0 SDK 并在 CCS 中导入示例。
-   | 有关具有 SysConfig 支持的示例的完整列表，请参阅 `MSPM0 SDK 示例指南 <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html>`__\ 。
+1. | 请遵循\ `适用于 CCS Theia 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html>`__\ 中的说明，安装 MSPM0 SDK 并在 CCS Theia 中导入示例。
+   | 或者，遵循\ `适用于 CCS 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html>`__\ 中的说明，安装 MSPM0 SDK 并在 CCS 中导入示例。
+   | 有关具有 SysConfig 支持的示例的完整列表，请参阅 `MSPM0 SDK 示例指南 <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html>`__\ 。
    | 要使用空示例，请选择“empty”示例。
 
 2. | 查看工程使用的 SysConfig 版本。
@@ -113,7 +113,7 @@ CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因�
 | 安装新的 SysConfig 版本后，仅需执行以下步骤一次。
 | 请注意，必须按照\ `下载和安装 MSPM0 SysConfig <#downloading-and-installing-mspm0-sysconfig>`__ 部分中的说明安装独立版本
 
-1. 请遵循\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html>`__\ 中的说明安装 MSPM0 SDK。
+1. 请遵循\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__\ 中的说明安装 MSPM0 SDK。
 
 2. 在 IAR 中，从菜单中依次选择 **Tools → Configure Viewers**\ 。
 
@@ -141,7 +141,7 @@ CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因�
    .. figure:: ./images/sysconfig_guide/sysconfig_iar_argvars.png
       :alt: 
 
-7. 如果未显示 MSPM0\_SDK 变量，请确保按照\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html>`__\ 中的说明执行此步骤，如下所述。
+7. 如果未显示 MSPM0\_SDK 变量，请确保按照\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__\ 中的说明执行此步骤，如下所述。
 
    7.1. 在 IAR 中，依次点击 **Tools → Configure Custom Argument Variables**
 
@@ -164,8 +164,8 @@ CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因�
 
 按照以下步骤在 IAR 中导入和使用 SysConfig 工程。
 
-1. | 按照\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html>`__\ 中的说明，将已启用 SysConfig 支持的代码示例导入工作区。
-   | 有关具有 SysConfig 支持的示例的完整列表，请参阅 `MSPM0 SDK 示例指南 <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html>`__\ 。
+1. | 按照\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__\ 中的说明，将已启用 SysConfig 支持的代码示例导入工作区。
+   | 有关具有 SysConfig 支持的示例的完整列表，请参阅 `MSPM0 SDK 示例指南 <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html>`__\ 。
    | 要使用空示例，请选择“empty”示例。
 
 2. 双击工程中的 \*.syscfg 文件。
@@ -193,7 +193,7 @@ CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因�
 | 安装新的 SysConfig 版本或更新 SDK 后，需执行以下步骤。
 | 请注意，必须按照\ `下载和安装 MSPM0 SysConfig <#downloading-and-installing-mspm0-sysconfig>`__ 部分中的说明安装独立版本
 
-1. 请遵循\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__\ 中的说明安装 MSPM0 SDK。
+1. 请遵循\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__\ 中的说明安装 MSPM0 SDK。
 
 2. 导航至 SDK 文件夹中的 ``<MSPM0_SDK_INSTALL_DIR>/tools/keil/``\ ，然后打开 ``syscfg.bat`` 进行编辑（不是执行）。
 
@@ -242,8 +242,8 @@ CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因�
 
 按照以下步骤在 Keil 中导入和使用 SysConfig 工程。
 
-1. | 按照\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil.html>`__\ 中的说明，将已启用 SysConfig 支持的代码示例导入工作区。
-   | 有关具有 SysConfig 支持的示例的完整列表，请参阅 `MSPM0 SDK 示例指南 <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html>`__\ 。
+1. | 按照\ `适用于 Keil 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_keil_CN.html>`__\ 中的说明，将已启用 SysConfig 支持的代码示例导入工作区。
+   | 有关具有 SysConfig 支持的示例的完整列表，请参阅 `MSPM0 SDK 示例指南 <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html>`__\ 。
    | 要使用空示例，请选择“empty”示例。
 
 2. 双击工程中的 \*.syscfg 文件。
@@ -270,7 +270,7 @@ CCS 12.4+ 和 CCS Theia 1.0.1+ 包含与 MSPM0 兼容的 SysConfig 版本，因�
 
 1. 运行 SysConfig 独立版本
 
-2. SysConfig 1.17+ 包含对 MSPM0 的支持并支持 M0 SDK：
+2. SysConfig 1.18.x 包含对 MSPM0 的支持并支持 M0 SDK：
 
    .. figure:: ./images/sysconfig_guide/sysconfig_pre_installed_product.png
       :alt: 

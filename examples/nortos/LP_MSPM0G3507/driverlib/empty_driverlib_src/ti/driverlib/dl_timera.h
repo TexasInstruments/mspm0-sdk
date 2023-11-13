@@ -206,7 +206,7 @@ typedef struct {
 /**
  * @brief  Index associated to Capture Compare 2
  * @note   <b>This option is not supported by all device TimerA modules </b>
- *         please refer to the "Different TIM Configurations" table in the
+ *         please refer to the "TIMx Configurations" table in the
  *         device specific datasheet to determine Timer instances which
  *         support "4 CC Channel" configuration.
  */
@@ -215,7 +215,7 @@ typedef struct {
 /**
  * @brief  Index associated to Capture Compare 3
  * @note   <b>This option is not supported by all device TimerA modules </b>
- *         please refer to the "Different TIM Configurations" table in the
+ *         please refer to the "TIMx Configurations" table in the
  *         device specific datasheet to determine Timer instances which
  *         support "4 CC Channel" configuration.
  */
@@ -288,56 +288,60 @@ typedef struct {
 #define DL_TIMERA_INTERRUPT_OVERFLOW_EVENT   (DL_TIMER_INTERRUPT_OVERFLOW_EVENT)
 
 /*!
-* @brief Timer capture for compare 2 down interrupt
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC2_DN_EVENT
 */
-#define DL_TIMERA_INTERRUPT_CC2_DN_EVENT                (GPTIMER_CPU_INT_IMASK_CCD2_SET)
+#define DL_TIMERA_INTERRUPT_CC2_DN_EVENT       (DL_TIMER_INTERRUPT_CC2_DN_EVENT)
 
 /*!
-* @brief Timer capture for compare 3 down interrupt
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC3_DN_EVENT
 */
-#define DL_TIMERA_INTERRUPT_CC3_DN_EVENT                (GPTIMER_CPU_INT_IMASK_CCD3_SET)
+#define DL_TIMERA_INTERRUPT_CC3_DN_EVENT       (DL_TIMER_INTERRUPT_CC3_DN_EVENT)
 
 /*!
-* @brief Timer capture for compare 2 up interrupt
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC2_UP_EVENT
 */
-#define DL_TIMERA_INTERRUPT_CC2_UP_EVENT                (GPTIMER_CPU_INT_IMASK_CCU2_SET)
+#define DL_TIMERA_INTERRUPT_CC2_UP_EVENT      (DL_TIMER_INTERRUPT_CC2_UP_EVENT)
 
 /*!
-* @brief Timer capture for compare 3 up interrupt
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC3_UP_EVENT
 */
-#define DL_TIMERA_INTERRUPT_CC3_UP_EVENT                (GPTIMER_CPU_INT_IMASK_CCU3_SET)
+#define DL_TIMERA_INTERRUPT_CC3_UP_EVENT      (DL_TIMER_INTERRUPT_CC3_UP_EVENT)
 
 /*!
-* @brief Timer capture for capture compare 4 down interrupt
-*/
-#define DL_TIMERA_INTERRUPT_CC4_DN_EVENT              (GPTIMER_CPU_INT_IMASK_CCD4_SET)
-
-/*!
-* @brief Timer capture for capture compare 5 down interrupt
-*/
-#define DL_TIMERA_INTERRUPT_CC5_DN_EVENT              (GPTIMER_CPU_INT_IMASK_CCD5_SET)
-
-/*!
-* @brief Timer capture for capture compare 4 up interrupt
-*/
-#define DL_TIMERA_INTERRUPT_CC4_UP_EVENT              (GPTIMER_CPU_INT_IMASK_CCU4_SET)
-
-/*!
-* @brief Timer capture for capture compare 5 up interrupt
-*/
-#define DL_TIMERA_INTERRUPT_CC5_UP_EVENT              (GPTIMER_CPU_INT_IMASK_CCU5_SET)
-
-/*!
-* @brief Timer repeat counter interrupt
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC4_DN_EVENT
 * @note <b> This is a Timer A specific interrupt. </b>
 */
-#define DL_TIMERA_INTERRUPT_REPC_EVENT                  (GPTIMER_CPU_INT_IMASK_REPC_SET)
+#define DL_TIMERA_INTERRUPT_CC4_DN_EVENT       (DL_TIMER_INTERRUPT_CC4_DN_EVENT)
 
 /*!
-* @brief Timer fault event interrupt.
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC5_DN_EVENT
 * @note <b> This is a Timer A specific interrupt. </b>
 */
-#define DL_TIMERA_INTERRUPT_FAULT_EVENT                    (GPTIMER_CPU_INT_IMASK_F_SET)
+#define DL_TIMERA_INTERRUPT_CC5_DN_EVENT       (DL_TIMER_INTERRUPT_CC5_DN_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC4_UP_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
+*/
+#define DL_TIMERA_INTERRUPT_CC4_UP_EVENT       (DL_TIMER_INTERRUPT_CC4_UP_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC5_UP_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
+*/
+#define DL_TIMERA_INTERRUPT_CC5_UP_EVENT       (DL_TIMER_INTERRUPT_CC5_UP_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_REPC_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
+*/
+#define DL_TIMERA_INTERRUPT_REPC_EVENT           (DL_TIMER_INTERRUPT_REPC_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_FAULT_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
+*/
+#define DL_TIMERA_INTERRUPT_FAULT_EVENT         (DL_TIMER_INTERRUPT_FAULT_EVENT)
 
 /** @}*/
 
@@ -380,54 +384,60 @@ typedef struct {
 #define DL_TIMERA_EVENT_OVERFLOW_EVENT           (DL_TIMER_EVENT_OVERFLOW_EVENT)
 
 /*!
-* @brief Timer capture for compare 2 down event
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC2_DN_EVENT
 */
-#define DL_TIMERA_EVENT_CC2_DN_EVENT                    (GPTIMER_GEN_EVENT0_IMASK_CCD2_SET)
+#define DL_TIMERA_EVENT_CC2_DN_EVENT               (DL_TIMER_EVENT_CC2_DN_EVENT)
 
 /*!
-* @brief Timer capture for compare 3 down event
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC3_DN_EVENT
 */
-#define DL_TIMERA_EVENT_CC3_DN_EVENT                    (GPTIMER_GEN_EVENT0_IMASK_CCD3_SET)
+#define DL_TIMERA_EVENT_CC3_DN_EVENT               (DL_TIMER_EVENT_CC3_DN_EVENT)
 
 /*!
-* @brief Timer capture for compare 2 up event
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC2_UP_EVENT
 */
-#define DL_TIMERA_EVENT_CC2_UP_EVENT                    (GPTIMER_GEN_EVENT0_IMASK_CCU2_SET)
+#define DL_TIMERA_EVENT_CC2_UP_EVENT               (DL_TIMER_EVENT_CC2_UP_EVENT)
 
 /*!
-* @brief Timer capture for compare 3 up event
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC3_UP_EVENT
 */
-#define DL_TIMERA_EVENT_CC3_UP_EVENT                    (GPTIMER_GEN_EVENT0_IMASK_CCU3_SET)
+#define DL_TIMERA_EVENT_CC3_UP_EVENT               (DL_TIMER_EVENT_CC3_UP_EVENT)
 
 /*!
-* @brief Timer capture for capture compare 4 down event
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC4_DN_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
 */
-#define DL_TIMERA_EVENT_CC4_DN_EVENT                  (GPTIMER_GEN_EVENT0_IMASK_CCD4_SET)
+#define DL_TIMERA_EVENT_CC4_DN_EVENT               (DL_TIMER_EVENT_CC4_DN_EVENT)
 
 /*!
-* @brief Timer capture for capture compare 5 down event
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC5_DN_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
 */
-#define DL_TIMERA_EVENT_CC5_DN_EVENT                  (GPTIMER_GEN_EVENT0_IMASK_CCD5_SET)
+#define DL_TIMERA_EVENT_CC5_DN_EVENT               (DL_TIMER_EVENT_CC5_DN_EVENT)
 
 /*!
-* @brief Timer capture for capture compare 4 up event
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC4_UP_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
 */
-#define DL_TIMERA_EVENT_CC4_UP_EVENT                  (GPTIMER_GEN_EVENT0_IMASK_CCU4_SET)
+#define DL_TIMERA_EVENT_CC4_UP_EVENT               (DL_TIMER_EVENT_CC4_UP_EVENT)
 
 /*!
-* @brief Timer capture for capture compare 5 up event
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC5_UP_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
 */
-#define DL_TIMERA_EVENT_CC5_UP_EVENT                  (GPTIMER_GEN_EVENT0_IMASK_CCU5_SET)
+#define DL_TIMERA_EVENT_CC5_UP_EVENT               (DL_TIMER_EVENT_CC5_UP_EVENT)
 
 /*!
-* @brief Timer repeat counter event
+* @brief Redirects to common @ref DL_TIMER_EVENT_REPC_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
 */
-#define DL_TIMERA_EVENT_REPC_EVENT                      (GPTIMER_GEN_EVENT0_IMASK_REPC_SET)
+#define DL_TIMERA_EVENT_REPC_EVENT                   (DL_TIMER_EVENT_REPC_EVENT)
 
 /*!
-* @brief Timer fault event event.
+* @brief Redirects to common @ref DL_TIMER_EVENT_FAULT_EVENT
+* @note <b> This is a Timer A specific interrupt. </b>
 */
-#define DL_TIMERA_EVENT_FAULT_EVENT                        (GPTIMER_GEN_EVENT0_IMASK_F_SET)
+#define DL_TIMERA_EVENT_FAULT_EVENT                 (DL_TIMER_EVENT_FAULT_EVENT)
 
 /** @}*/
 

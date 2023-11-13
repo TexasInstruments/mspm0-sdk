@@ -183,9 +183,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_DAC12_init(void)
 % if(inst.sub0ChanID != 0){
     DL_DAC12_setSubscriberChanID(DAC0, DL_DAC12_SUBSCRIBER_INDEX_0, `inst.sub0ChanID`);
 % }
-% if(inst.sub1ChanID != 0){
-    DL_DAC12_setSubscriberChanID(DAC0, DL_DAC12_SUBSCRIBER_INDEX_1, `inst.sub1ChanID`);
-% }
 % if(((inst.enabledEvents).length>0)&& (inst.pubChanID != 0)){
 %%{
     let eventCount = 0

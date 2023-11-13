@@ -42,6 +42,7 @@
 
     let mclkMuxInst = _.find(mod.$instances, ['$name', 'SYSCTLMUX']);
     let hsclkMuxInst = _.find(mod.$instances, ['$name', 'HSCLKMUX']);
+    let exhfMuxInst = _.find(mod.$instances, ['$name', 'EXHFMUX']);
 
     mod = system.modules["/ti/clockTree/oscillator.js"];
 
@@ -67,6 +68,13 @@
             } else {
                 mclkStr = "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_SYSPLL);";
             }
+        } else if(!_.isUndefined(exhfMuxInst)) {
+            if(_.endsWith(exhfMuxInst.inputSelect, "SYSOSC")){
+                return; /* nothing to print */
+            } else {
+                mclkStr = "DL_SYSCTL_switchMCLKfromSYSOSCtoHSCLK();";
+            }
+
         } else {
             return; /* only SYSOSC supported, nothing to print */
         }

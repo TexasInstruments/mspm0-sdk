@@ -136,14 +136,14 @@
 <td>GPIOB</td>
 <td>PB22</td>
 <td>J27_5</td>
-<td>J5 ON/OFF Connect/Disconnect LED2 Blue</td>
+<td><ul><li>PB22 can be connected to LED2 Blue<br><ul><li><code>J5 ON</code> Connect to LED2 Blue<br><li><code>J15 OFF</code> Disconnect from LED2 Blue</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PB26</td>
 <td>GPIOB</td>
 <td>PB26</td>
 <td>J27_8</td>
-<td>J6 ON/OFF Connect/Disconnect LED2 Red</td>
+<td><ul><li>PB26 can be connected to LED2 Red<br><ul><li><code>J6 ON</code> Connect to LED2 Red<br><li><code>J6 OFF</code> Disconnect from LED2 Red</ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PB13</td>
@@ -157,14 +157,14 @@
 <td>SYSCTL</td>
 <td>HFXIN</td>
 <td>J28_4</td>
-<td>Connected to HFXT Y2<br>Solder R15 to connect to J28_4</td>
+<td><ul><li>PA5 is used for HFXT functionality by default in Launchpad<br><ul><li><code>Y2</code> crystal is soldered and connected by default</ul><br><li>PA5 can be connected to J28_4<br><ul><li><code>R15</code> is not soldered soldered by default<br><li>Solder <code>R15</code> to connect pin to J28_4</ul></td>
 </tr>
 <tr class="odd">
 <td>PA6</td>
 <td>SYSCTL</td>
 <td>HFXOUT</td>
 <td>J28_5</td>
-<td>Connected to HFXT Y2<br>Solder R17 to connect to J28_5</td>
+<td><ul><li>PA6 is used for HFXT functionality by default in Launchpad<br><ul><li><code>Y2</code> crystal is soldered and connected by default</ul><br><li>PA6 can be connected to J28_5<br><ul><li><code>R17</code> is not soldered soldered by default<br><li>Solder <code>R17</code> to connect pin to J28_5</ul></td>
 </tr>
 <tr class="even">
 <td>PB9</td>
@@ -199,35 +199,35 @@
 <td>CANFD0</td>
 <td>CANRX</td>
 <td>J4_32/J26_3</td>
-<td>R65 connects J26_3 for CAN (default)</td>
+<td><ul><li>PA13 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br> <code>R65</code> is populated by default and connects pin to <code>J26_3</code></ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA12</td>
 <td>CANFD0</td>
 <td>CANTX</td>
 <td>J4_32/J26_1</td>
-<td>R64 connects J26_1 for CAN (default)</td>
+<td><ul><li>PA12 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br> <code>R64</code> is populated by default and connects pin to <code>J26_1</code></ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Connect the TCAN114x transceiver boosterpack as described in the TCAN Evaluation Module User’s Guide and monitor CAN-FD and CAN packages using mcan_single_message_tx_tcan114x example project or using a CAN Bus Analyzer tool of your choice.</p>
 <p>The example has the following Nominal and Data Rate frequencies configured:</p>

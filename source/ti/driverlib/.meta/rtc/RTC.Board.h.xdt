@@ -65,10 +65,10 @@
 /* Defines for RTC */
 %       let rtcOutPinName = "rtcOut"+"Pin";
 %       let rtcOutPackagePin = stat.peripheral[rtcOutPinName].$solution.packagePinName;
-%       let rtcOutPinCM = system.deviceData.devicePins[rtcOutPackagePin].attributes.iomux_pincm;
+%       let rtcOutPinCM = Common.getPinCM(rtcOutPackagePin,stat,"RTC_OUT");
 %       let rtcOutGpioName = system.deviceData.devicePins[rtcOutPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let rtcOutPort = "("+Common.getGPIOPort(rtcOutGpioName)+")";
-%       let rtcOutGpioPin = Common.getGPIONumber(rtcOutGpioName);
+%       let rtcOutPort = "("+Common.getGPIOPortMultiPad(rtcOutPackagePin,stat,"RTC_OUT")+")";
+%       let rtcOutGpioPin = Common.getGPIONumberMultiPad(rtcOutPackagePin,stat,"RTC_OUT");
 % let rtcOutPortStr = "#define GPIO_RTC_RTCOUT_PORT";
 `rtcOutPortStr.padEnd(40," ")+rtcOutPort.padStart(40, " ")`
 % let rtcOutPinStr = "#define GPIO_RTC_RTCOUT_PIN";

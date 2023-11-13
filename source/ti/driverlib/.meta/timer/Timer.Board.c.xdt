@@ -232,18 +232,18 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
         /* The last event should end with a closing parenthesis */
         if (eventToEnable == inst.event1ControllerInterruptEn[inst.event1ControllerInterruptEn.length - 1])
         {
-            eventsToEnableOR += ("DL_TIMER_EVENT_" + eventToEnable + ")");
+            eventsToEnableOR += ("DL_"+ flavorCat.toUpperCase() + "_EVENT_" + eventToEnable + ")");
         }
         else
         {
-            eventsToEnableOR += ("DL_TIMER_EVENT_" + eventToEnable + " |");
+            eventsToEnableOR += ("DL_"+ flavorCat.toUpperCase() + "_EVENT_" + eventToEnable + " |");
             eventsToEnableOR += "\n\t\t";
         }
     }
 %%}
-    DL_`flavorCat`_enableEvent(`inst.$name`_INST, DL_TIMER_EVENT_ROUTE_1, `eventsToEnableOR`);
+    DL_`flavorCat`_enableEvent(`inst.$name`_INST, DL_`flavorCat.toUpperCase()`_EVENT_ROUTE_1, `eventsToEnableOR`);
 
-    DL_`flavorCat`_setPublisherChanID(`inst.$name`_INST, DL_TIMER_PUBLISHER_INDEX_0, `inst.$name`_INST_PUB_0_CH);
+    DL_`flavorCat`_setPublisherChanID(`inst.$name`_INST, DL_`flavorCat.toUpperCase()`_PUBLISHER_INDEX_0, `inst.$name`_INST_PUB_0_CH);
 %   }
 
 %   /* Event Generation for Publisher Event Route 2 */
@@ -258,18 +258,18 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     {
         if (eventToEnable == inst.event2ControllerInterruptEn[inst.event2ControllerInterruptEn.length - 1])
         {
-            eventsToEnableOR += ("DL_TIMER_EVENT_" + eventToEnable + ")");
+            eventsToEnableOR += ("DL_"+ flavorCat.toUpperCase() + "_EVENT_" + eventToEnable + ")");
         }
         else
         {
-            eventsToEnableOR += ("DL_TIMER_EVENT_" + eventToEnable + " |");
+            eventsToEnableOR += ("DL_"+ flavorCat.toUpperCase() + "_EVENT_" + eventToEnable + " |");
             eventsToEnableOR += "\n\t\t";
         }
     }
 %%}
-    DL_`flavorCat`_enableEvent(`inst.$name`_INST, DL_TIMER_EVENT_ROUTE_2, `eventsToEnableOR`);
+    DL_`flavorCat`_enableEvent(`inst.$name`_INST, DL_`flavorCat.toUpperCase()`_EVENT_ROUTE_2, `eventsToEnableOR`);
 
-    DL_`flavorCat`_setPublisherChanID(`inst.$name`_INST, DL_TIMER_PUBLISHER_INDEX_1, `inst.$name`_INST_PUB_1_CH);
+    DL_`flavorCat`_setPublisherChanID(`inst.$name`_INST, DL_`flavorCat.toUpperCase()`_PUBLISHER_INDEX_1, `inst.$name`_INST_PUB_1_CH);
 %   }
 
 %   /* Event Generation for Subscriber Port */

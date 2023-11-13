@@ -41,7 +41,7 @@ const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 GPIO2.$name                          = "SEGMENT_Lines_Lower";
 GPIO2.port                           = "PORTA";
-GPIO2.associatedPins.create(15);
+GPIO2.associatedPins.create(14);
 GPIO2.associatedPins[0].$name        = "SEG0";
 GPIO2.associatedPins[0].assignedPin  = "4";
 GPIO2.associatedPins[0].pin.$assign  = "PA4";
@@ -84,9 +84,6 @@ GPIO2.associatedPins[12].pin.$assign = "PA16";
 GPIO2.associatedPins[13].$name       = "SEG13";
 GPIO2.associatedPins[13].assignedPin = "17";
 GPIO2.associatedPins[13].pin.$assign = "PA17";
-GPIO2.associatedPins[14].$name       = "SEG14";
-GPIO2.associatedPins[14].assignedPin = "18";
-GPIO2.associatedPins[14].pin.$assign = "PA18";
 
 SYSCTL.MFCLKEn = true;
 
@@ -94,4 +91,6 @@ TIMER1.$name              = "LCD_Update_Clock";
 TIMER1.timerClkSrc        = "MFCLK";
 TIMER1.timerPeriod        = "5ms";
 TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerStartTimer    = true;
+TIMER1.interrupts         = ["ZERO"];
 TIMER1.peripheral.$assign = "TIMG0";

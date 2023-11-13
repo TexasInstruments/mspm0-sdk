@@ -42,7 +42,6 @@ exports = {
     getBasicConfig      : getBasicConfig,
     getAdvancedConfig   : getAdvancedConfig,
     getDMAConfig        : getDMAConfig,
-    getHelperConfig     : getHelperConfig,
     getDMAModInstances  : getDMAModInstances,
     setRequiredModules  : setRequiredModules,
     getValidation       : getValidation,
@@ -81,17 +80,20 @@ function updateGUIEnableController(inst, ui)
         ui.advControllerMultiController.hidden = true;
         ui.advControllerClkStretch.hidden = true;
         inst.intController = [];
-        if ((inst.DMAEvent1).includes("CONTROLLER"))
-        {
-            inst.DMAEvent1 = "None";
-            inst.enableDMAEvent1 = false;
-            ui.enableDMAEvent1.hidden = true;
-        }
-        if ((inst.DMAEvent2).includes("CONTROLLER"))
-        {
-            inst.DMAEvent2 = "None";
-            inst.enableDMAEvent2 = false;
-            ui.enableDMAEvent2.hidden = true;
+        /* MSPM0Cxx does not support DMA configuration for I2C */
+        if(!Common.isDeviceM0C()){
+            if ((inst.DMAEvent1).includes("CONTROLLER"))
+            {
+                inst.DMAEvent1 = "None";
+                inst.enableDMAEvent1 = false;
+                ui.enableDMAEvent1.hidden = true;
+            }
+            if ((inst.DMAEvent2).includes("CONTROLLER"))
+            {
+                inst.DMAEvent2 = "None";
+                inst.enableDMAEvent2 = false;
+                ui.enableDMAEvent2.hidden = true;
+            }
         }
     }
     else
@@ -123,17 +125,20 @@ function updateGUIEnableTarget(inst, ui) {
         ui.advTargetTXEmptyEn.hidden = true;
         ui.advTargetClkStretch.hidden = true;
         inst.intTarget = [];
-        if ((inst.DMAEvent1).includes("TARGET"))
-        {
-            inst.DMAEvent1 = "None";
-            inst.enableDMAEvent1 = false;
-            ui.enableDMAEvent1.hidden = true;
-        }
-        if ((inst.DMAEvent2).includes("TARGET"))
-        {
-            inst.DMAEvent2 = "None";
-            inst.enableDMAEvent2 = false;
-            ui.enableDMAEvent2.hidden = true;
+        /* MSPM0Cxx does not support DMA configuration for I2C */
+        if(!Common.isDeviceM0C()){
+            if ((inst.DMAEvent1).includes("TARGET"))
+            {
+                inst.DMAEvent1 = "None";
+                inst.enableDMAEvent1 = false;
+                ui.enableDMAEvent1.hidden = true;
+            }
+            if ((inst.DMAEvent2).includes("TARGET"))
+            {
+                inst.DMAEvent2 = "None";
+                inst.enableDMAEvent2 = false;
+                ui.enableDMAEvent2.hidden = true;
+            }
         }
     }
     else
@@ -1135,6 +1140,10 @@ the FIFO is written or read on time.
 }
 
 function getDMAConfig(inst,ui){
+    // I2C does not support DMA for MSPM0Cxx
+    if(Common.isDeviceM0C()){
+        return [];
+    }
     return [
             /****** Start of DMA CONFIGURATION FOR INT_EVENT1 *******/
             {
@@ -1178,60 +1187,10 @@ function getDMAConfig(inst,ui){
     ];
 }
 
-function getHelperConfig(inst,ui){
-    return [
-        /* Helper Configurables
-             * These are invisible to sysconfig and have no influence on code generation, but give the module additional
-             * visibility based on the state of the system and the specific M0 device being configured
-             */
-        // TODO: [(H) JAN] tag for removal. unnecessary/unused. use isDeviceMX common functions
-        {
-            /* name of the device */
-            name: "device",
-            default: "MSPM0G350X",
-            hidden: true,
-            getValue: (inst) => {
-                let mySys = system;
-                return system.deviceData.device;
-            }
-        },
-        // TODO: [(H) JAN] tag for removal. unnecessary/unused. device data controls instances
-        {
-            /* this is a read-only array of the i2c modules that are actually present on the device,
-             * can be used to limit the allowable i2c to those that make sense
-             */
-            name: "i2cs",
-            default: [""],
-            /* superset of all possible I2Cmodules */
-            options: [
-                {name: "I2C0"}, {name: "I2C1"}, {name: ""}
-            ],
-            hidden: true,
-            getValue: (inst) => {
-                let array = _.map(system.deviceData.interfaces.I2C.peripherals, (v)=> v.name);
-                return array;
-            }
-        },
-        // TODO: [(H) JAN] tag for removal. unnecessary/unused.
-        {
-            /* Removes undefined possibility for i2c assignment */
-            name: "i2cAssignment",
-            default: "Any",
-            hidden: true,
-            getValue: (inst) => {
-                if(inst.peripheral) {
-                    return inst.peripheral.$assign;
-                } else {
-                    return "Any";
-                }
-            }
-        }
-        /****** End of Helper Configurables *******/
-    ];
-}
-
 /************************* devSpecific functions *******************************/
 function getDMAModInstances(inst, modInstances){
+    /* I2C does not support DMA configuration for MSPM0Cxx */
+    if(!Common.isDeviceM0C()){
     if(!["None"].includes(inst.DMAEvent1)){
         let mod = {
             name: "DMA_CHANNEL_EVENT1",
@@ -1268,12 +1227,16 @@ function getDMAModInstances(inst, modInstances){
         }
         modInstances.push(mod);
     }
+    }
 }
 
 function setRequiredModules(inst){
     let theModules = ["Board", "SYSCTL"]
-    if(!["None"].includes(inst.DMAEvent1) || !["None"].includes(inst.DMAEvent2)){
-        theModules.push("DMA");
+    /* I2C does not support DMA configuration for MSPM0Cxx */
+    if(!Common.isDeviceM0C()){
+        if(!["None"].includes(inst.DMAEvent1) || !["None"].includes(inst.DMAEvent2)){
+            theModules.push("DMA");
+        }
     }
 
     let kwargs = theModules;

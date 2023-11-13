@@ -4,7 +4,7 @@
 1. 引言
 -------
 
-本指南旨在帮助用户完成初始设置并演示通过 IAR 运行其第一个 MSPM0 应用。 本指南不用于说明 IAR 功能。请参阅 `IAR <https://www.iar.com/>`__ 文档或 MSPM0 SDK 文档随附的\ `适用于 MSPM0 MCU 的 IAR IDE 指南 <../../../tools/iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide.html>`__\ 。
+本指南旨在帮助用户完成初始设置并演示通过 IAR 运行其第一个 MSPM0 应用。 本指南不用于说明 IAR 功能。请参阅 `IAR <https://www.iar.com/>`__ 文档或 MSPM0 SDK 文档随附的\ `适用于 MSPM0 MCU 的 IAR IDE 指南 <../../../tools/iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide_CN.html>`__\ 。
 
 2. 先决条件
 -----------
@@ -12,11 +12,11 @@
 用户应已下载以下各项：
 
 -  `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__
--  `适用于 Arm 9.40.x 的 IAR Embedded Workbench <https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/>`__
+-  `适用于 9.40.2 的 IAR Embedded Workbench <https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/>`__
 
    -  使用 MSPM0 Launchpad 的集成 XDS-110 编程器时，需要 TI XDS 驱动程序。有关详细信息，请访问 `IAR C-SPY XDS 驱动程序版本说明 <https://updates.iar.com/filestore/standard/001/001/123/arm/doc/infocenter/csxds.ENU.html>`__\ 。
 
--  `SysConfig 1.17.x <https://www.ti.com/tool/SYSCONFIG>`__
+-  `SysConfig 1.18.x <https://www.ti.com/tool/SYSCONFIG>`__
 
 3. 安装 MSPM0 SDK
 -----------------
@@ -77,9 +77,9 @@
 
 此 SDK 包括 SysConfig 元数据的初始版本，可用于评估 MSPM0 SDK 的用户体验。
 
-更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的\ `将 SysConfig 与 MSPM0 配合使用 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 。
+更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的\ `将 SysConfig 与 MSPM0 配合使用 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__\ 。
 
-1. 从 `ti.com <https://www.ti.com/tool/SYSCONFIG>`__ 下载并安装 SysConfig 独立版本（1.17.x 或更高版本）
+1. 从 `ti.com <https://www.ti.com/tool/SYSCONFIG>`__ 下载并安装 SysConfig 独立版本（1.18.x 或更高版本）
 
 2. 在 IAR 中，从菜单中依次选择 **Tools → Configure Viewers**\ 。
 
@@ -130,8 +130,8 @@
 5. 要编译示例，在工程中右键点击并选择 **Make**\ 。 请注意，SysConfig 工程将在\ *“SysConfig Generated Files”*\ 文件夹中自动生成文件。
 
    | **注意**\ ：一些示例支持 SysConfig，以便更轻松地进行器件配置。
-   | 有关支持 SysConfig 的示例的完整列表，请查看 `MSPM0 SDK 示例指南 <../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html>`__\ 。
-   | 更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的\ `将 SysConfig 与 MSPM0 配合使用 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 。
+   | 有关支持 SysConfig 的示例的完整列表，请查看 `MSPM0 SDK 示例指南 <../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html>`__\ 。
+   | 更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的\ `将 SysConfig 与 MSPM0 配合使用 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__\ 。
 
    .. figure:: ./images/quickstart_guide_iar/iar_example_5a.png
       :alt: 

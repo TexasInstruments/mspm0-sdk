@@ -54,7 +54,7 @@ int main(void)
     drv8329.VsenB       = HAL_ADC_CHAN_2;
     drv8329.VsenC       = HAL_ADC_CHAN_5;
     drv8329.Isen        = HAL_ADC_CHAN_1;
-    drv8329.faultIn     = HAL_PWM_03;
+    drv8329.faultIn     = HAL_FAULT_INPUT_1;
 
     hallTrap.hallA      = HAL_GPIO_IN_01;
     hallTrap.hallB      = HAL_GPIO_IN_02;
@@ -89,6 +89,12 @@ int main(void)
 void PWM_0_INST_IRQHandler(void)
 {
     GUI_accMotor(&hallTrap);
+    guiSpeedTimeout++;
+
+    if(guiSpeedTimeout >= firmVar.pwmFreq)
+    {
+        guiMotorSpeed = 0;
+    }
 }
 
 void GROUP1_IRQHandler(void)
@@ -109,13 +115,16 @@ void GEN_ADC_CHAN_0_INST_IRQHandler(void)
     guiADCStatus |= GUI_ADC0_DATA_READY;
 }
 
+#ifdef GEN_ADC_CHAN_1_INST_IRQHandler
 void GEN_ADC_CHAN_1_INST_IRQHandler(void)
 {
     HAL_ADC_IIDX pend_irq = HAL_processADCIRQ(GEN_ADC_CHAN_1_INST);
     guiADCStatus |= GUI_ADC1_DATA_READY;
 }
+#endif
 
 void CAPTURE_0_INST_IRQHandler(void)
 {
     guiMotorSpeed = Halltrap_calculateMotorSpeed(&hallTrap, guiMotorPoles);
+    guiSpeedTimeout = 0;
 }

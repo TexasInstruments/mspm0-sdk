@@ -168,6 +168,38 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 #define DL_TIMERG_INTERRUPT_CC1_UP_EVENT       (DL_TIMER_INTERRUPT_CC1_UP_EVENT)
 
 /*!
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC2_DN_EVENT
+* @note <b> This interrupt is only available on some TimerG variants with
+*       4 external CCP Channels. Please refer to "TIMx
+*       Configurations" table in the device specific datasheet.</b>
+*/
+#define DL_TIMERG_INTERRUPT_CC2_DN_EVENT       (DL_TIMER_INTERRUPT_CC2_DN_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC3_DN_EVENT
+* @note <b> This interrupt is only available on some TimerG variants with
+*       4 external CCP Channels. Please refer to "TIMx
+*       Configurations" table in the device specific datasheet.</b>
+*/
+#define DL_TIMERG_INTERRUPT_CC3_DN_EVENT       (DL_TIMER_INTERRUPT_CC3_DN_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC2_UP_EVENT
+* @note <b> This interrupt is only available on some TimerG variants with
+*       4 external CCP Channels. Please refer to "TIMx
+*       Configurations" table in the device specific datasheet.</b>
+*/
+#define DL_TIMERG_INTERRUPT_CC2_UP_EVENT       (DL_TIMER_INTERRUPT_CC2_UP_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_INTERRUPT_CC3_UP_EVENT
+* @note <b> This interrupt is only available on some TimerG variants with
+*       4 external CCP Channels. Please refer to "TIMx
+*       Configurations" table in the device specific datasheet.</b>
+*/
+#define DL_TIMERG_INTERRUPT_CC3_UP_EVENT       (DL_TIMER_INTERRUPT_CC3_UP_EVENT)
+
+/*!
 * @brief Redirects to common @ref DL_TIMER_INTERRUPT_OVERFLOW_EVENT
 */
 #define DL_TIMERG_INTERRUPT_OVERFLOW_EVENT   (DL_TIMER_INTERRUPT_OVERFLOW_EVENT)
@@ -175,7 +207,7 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 /*!
 * @brief Redirects to common @ref DL_TIMER_INTERRUPT_DC_EVENT
 * @note <b> This interrupt is only available on some TimerG variants with
-*       Quadrature Encoding Input (QEI). Please refer to "Different TIM
+*       Quadrature Encoding Input (QEI). Please refer to "TIMx
 *       Configurations" table in the device specific datasheet.</b>
 */
 #define DL_TIMERG_INTERRUPT_DC_EVENT               (DL_TIMER_INTERRUPT_DC_EVENT)
@@ -184,7 +216,7 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 /*!
 * @brief Redirects to common @ref DL_TIMER_INTERRUPT_QEIERR_EVENT
 * @note <b> This interrupt is only available on some TimerG variants with
-*       Quadrature Encoding Input (QEI). Please refer to "Different TIM
+*       Quadrature Encoding Input (QEI). Please refer to "TIMx
 *       Configurations" table in the device specific datasheet.</b>
 */
 #define DL_TIMERG_INTERRUPT_QEI_ERR_EVENT      (DL_TIMER_INTERRUPT_QEIERR_EVENT)
@@ -226,6 +258,38 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 #define DL_TIMERG_EVENT_CC1_UP_EVENT               (DL_TIMER_EVENT_CC1_UP_EVENT)
 
 /*!
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC2_DN_EVENT
+* @note <b> This event is only available on some TimerG variants with
+*       4 external CCP Channels. Please refer to "TIMx
+*       Configurations" table in the device specific datasheet.</b>
+*/
+#define DL_TIMERG_EVENT_CC2_DN_EVENT               (DL_TIMER_EVENT_CC2_DN_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC3_DN_EVENT
+* @note <b> This event is only available on some TimerG variants with
+*       4 external CCP Channels. Please refer to "TIMx
+*       Configurations" table in the device specific datasheet.</b>
+*/
+#define DL_TIMERG_EVENT_CC3_DN_EVENT               (DL_TIMER_EVENT_CC3_DN_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC2_UP_EVENT
+* @note <b> This event is only available on some TimerG variants with
+*       4 external CCP Channels. Please refer to "TIMx
+*       Configurations" table in the device specific datasheet.</b>
+*/
+#define DL_TIMERG_EVENT_CC2_UP_EVENT               (DL_TIMER_EVENT_CC2_UP_EVENT)
+
+/*!
+* @brief Redirects to common @ref DL_TIMER_EVENT_CC3_UP_EVENT
+* @note <b> This event is only available on some TimerG variants with
+*       4 external CCP Channels. Please refer to "TIMx
+*       Configurations" table in the device specific datasheet.</b>
+*/
+#define DL_TIMERG_EVENT_CC3_UP_EVENT               (DL_TIMER_EVENT_CC3_UP_EVENT)
+
+/*!
 * @brief Redirects to common @ref DL_TIMER_EVENT_OVERFLOW_EVENT
 */
 #define DL_TIMERG_EVENT_OVERFLOW_EVENT           (DL_TIMER_EVENT_OVERFLOW_EVENT)
@@ -233,7 +297,7 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 /*!
 * @brief Redirects to common @ref DL_TIMER_EVENT_DC_EVENT
 * @note <b> This interrupt is only available on some TimerG variants with
-*       Quadrature Encoding Input (QEI). Please refer to "Different TIM
+*       Quadrature Encoding Input (QEI). Please refer to "TIMx
 *       Configurations" table in the device specific datasheet.</b>
 */
 #define DL_TIMERG_EVENT_DC_EVENT                       (DL_TIMER_EVENT_DC_EVENT)
@@ -242,7 +306,7 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 /*!
 * @brief Redirects to common @ref DL_TIMER_EVENT_QEIERR_EVENT
 * @note <b> This interrupt is only available on some TimerG variants with
-*       Quadrature Encoding Input (QEI). Please refer to "Different TIM
+*       Quadrature Encoding Input (QEI). Please refer to "TIMx
 *       Configurations" table in the device specific datasheet.</b>
 */
 #define DL_TIMERG_EVENT_QEIERR_EVENT               (DL_TIMER_EVENT_QEIERR_EVENT)
@@ -300,7 +364,7 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 /*!
 * @brief QEI incorrect transition state error
 * @note <b> This interrupt is only available on some TimerG variants with
-*       Quadrature Encoding Input (QEI). Please refer to "Different TIM
+*       Quadrature Encoding Input (QEI). Please refer to "TIMx
 *       Configurations" table in the device specific datasheet.</b>
 */
 #define DL_TIMERG_IIDX_QEIERR                           DL_TIMER_IDX_STAT_QEIERR
@@ -821,6 +885,11 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
  * @brief Redirects to common @ref DL_Timer_configQEI
  */
 #define DL_TimerG_configQEI                                   DL_Timer_configQEI
+
+/*!
+ * @brief Redirects to common @ref DL_Timer_configQEIHallInputMode
+ */
+#define DL_TimerG_configQEIHallInputMode         DL_Timer_configQEIHallInputMode
 
 /*!
  * @brief Redirects to common @ref DL_Timer_setPublisherChanID

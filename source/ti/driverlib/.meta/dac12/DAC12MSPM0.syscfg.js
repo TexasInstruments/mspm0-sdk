@@ -97,9 +97,6 @@ function validate(inst, validation)
         if((inst.dacFIFOTrigger == "HWTRIG0") && (inst.sub0ChanID == 0)){
             validation.logError("Hardware trigger 0 event fabric is enabled AND the corresponding subscriber hasn't been configured.", inst, ["dacFIFOTrigger","sub0ChanID"]);
         }
-        if((inst.dacFIFOTrigger == "HWTRIG1") && (inst.sub1ChanID == 0)){
-            validation.logError("Hardware trigger 1 event fabric is enabled AND the corresponding subscriber hasn't been configured.", inst, ["dacFIFOTrigger","sub1ChanID"]);
-        }
     }
 
     /* Event Validation */
@@ -109,14 +106,6 @@ function validate(inst, validation)
         }
         else if(inst.dacFIFOTrigger != "HWTRIG0"){
             validation.logInfo("Event 0 Subscriber is configured but not used as a DAC trigger.", inst, ["dacFIFOTrigger","sub0ChanID"]);
-        }
-    }
-    if(inst.sub1ChanID != 0){
-        if(!inst.dacFIFOEn){
-            validation.logInfo("Event 1 Subscriber is configured but not used as a DAC trigger.", inst, ["dacFIFOEn","sub1ChanID"]);
-        }
-        else if(inst.dacFIFOTrigger != "HWTRIG1"){
-            validation.logInfo("Event 1 Subscriber is configured but not used as a DAC trigger.", inst, ["dacFIFOTrigger","sub1ChanID"]);
         }
     }
     if(((inst.enabledEvents).length>0)&& (inst.pubChanID == 0)){
@@ -144,6 +133,15 @@ function validate(inst, validation)
             }
         }
     }
+
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    if(inst.enabledEvents.length>0){
+        EVENT.validatePublisherOptions(inst,validation,"pubChanID");
+    }
+    EVENT.validateSubscriberOptions(inst,validation,"sub0ChanID");
 }
 
 
@@ -332,7 +330,6 @@ config  = config.concat([
                 options     : [
                     {name: "SAMPLETIMER", displayName: "Sample time generator"},
                     {name: "HWTRIG0", displayName: "Hardware trigger 0 event fabric"},
-                    {name: "HWTRIG1", displayName: "Hardware trigger 1 event fabric"},
                 ],
                 onChange    : (inst,ui) => {
                     if(inst.dacFIFOEn && (inst.dacFIFOTrigger == "SAMPLETIMER")){
@@ -629,17 +626,6 @@ Calculated voltage based on user provided parameters:\n
                 getDisabledOptions: EVENT.getSubscriberDisabledOptions,
             },
             {
-                name        : "sub1ChanID",
-                displayName : "Event 1 Subscriber Channel ID",
-                description : 'Sets the event 1 subscriber channel ID',
-                hidden      : true,
-                readOnly: true,
-                default: 0,
-                options: EVENT.getSubscriberOptions,
-                getDisabledOptions: EVENT.getSubscriberDisabledOptions,
-            },
-
-            {
                 name: "eventInfo",
                 description: "information about configured events that's passed on to the EVENT module",
                 default: [""],
@@ -652,9 +638,6 @@ Calculated voltage based on user provided parameters:\n
                     if(inst.sub0ChanID != 0){
                         options.push({name: inst.sub0ChanID.toString() + "sub"});
                     }
-                    if(inst.sub1ChanID != 0){
-                        options.push({name: inst.sub1ChanID.toString() + "sub"});
-                    }
                     return options;
                 },
                 getValue: (inst) => {
@@ -664,9 +647,6 @@ Calculated voltage based on user provided parameters:\n
                     }
                     if(inst.sub0ChanID != 0){
                         result.push(inst.sub0ChanID.toString() + "sub");
-                    }
-                    if(inst.sub1ChanID != 0){
-                        result.push(inst.sub1ChanID.toString() + "sub");
                     }
                     if(result.length == 0){
                         result = [""];

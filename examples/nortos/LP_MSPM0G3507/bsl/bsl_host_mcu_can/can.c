@@ -32,14 +32,10 @@
 
 #include <can.h>
 #include <bsl.h>
-#include <can_config.h>
+#include <ti_msp_dl_config.h>
 
-extern DL_MCAN_ClockConfig gMCAN0ClockConf;
-extern DL_MCAN_ConfigParams gMCAN0ConfigParams;
-extern DL_MCAN_MsgRAMConfigParams gMCAN0MsgRAMConfigParams;
-extern DL_MCAN_StdMsgIDFilterElement gMCAN0StdFiltelem;
-extern DL_MCAN_InitParams new_gMCAN0InitParams;
-extern DL_MCAN_BitTimingParams   new_gMCAN0BitTimes;
+DL_MCAN_InitParams new_gMCAN0InitParams;
+DL_MCAN_BitTimingParams   new_gMCAN0BitTimes;
 
 volatile RX_states RX_state;
 volatile bool frame_send_success = false;
@@ -50,14 +46,14 @@ CANFD_baudrate_config br_cfg =
 {
  .fdMode = 1,
  .brsEnable  = 1,
- .nomTimeSeg1 = 19,
- .nomTimeSeg2 = 18,
- .nomSynchJumpWidth = 18,
+ .nomTimeSeg1 = 33,
+ .nomTimeSeg2 = 4,
+ .nomSynchJumpWidth = 4,
  .nomRatePrescalar = 0,
- .dataTimeSeg1 = 1,
- .dataTimeSeg2 = 0,
+ .dataTimeSeg1 = 4,
+ .dataTimeSeg2 = 1,
  .dataSynchJumpWidth = 0,
- .dataRatePrescalar = 1,
+ .dataRatePrescalar = 0,
 };
 volatile uint16_t BSL_maxBufferSize = (uint16_t)64;
 
@@ -90,11 +86,18 @@ uint16_t decode_dlc(DL_MCAN_RxBufElement *rxMsg)
     return canfd_dlc_lengths[rxMsg->dlc];
 }
 
-void DL_MCAN_reconfig()
+
+uint32_t get_CAN_TDCO(DL_MCAN_BitTimingParams* dbtp)
 {
+    uint32_t tdco = (dbtp->dataTimeSeg1 + dbtp->dataTimeSeg2 + 3);
+    tdco *= (dbtp->dataRatePrescalar + 1);
+    tdco /= 2;
+    return tdco;
+}
 
+void MCAN_reconfig(void)
+{
     /* Put MCAN in SW initialization mode. */
-
     DL_MCAN_setOpMode(MCAN0_INST, DL_MCAN_OPERATION_MODE_SW_INIT);
 
     /* Wait till MCAN is not initialized. */
@@ -103,27 +106,12 @@ void DL_MCAN_reconfig()
     /* Initialize MCAN module. */
     DL_MCAN_init(MCAN0_INST, (DL_MCAN_InitParams *) &new_gMCAN0InitParams);
 
-    /* Configure MCAN module. */
-    DL_MCAN_config(MCAN0_INST, (DL_MCAN_ConfigParams*) &gMCAN0ConfigParams);
-
     /* Configure Bit timings. */
     DL_MCAN_setBitTime(MCAN0_INST, (DL_MCAN_BitTimingParams*) &new_gMCAN0BitTimes);
 
-    /* Configure Standard ID filter element */
-    DL_MCAN_addStdMsgIDFilter(MCAN0_INST, 0U, (DL_MCAN_StdMsgIDFilterElement *) &gMCAN0StdFiltelem);
-
-    /* Set Extended ID Mask. */
-    DL_MCAN_setExtIDAndMask(MCAN0_INST, MCAN0_INST_MCAN_EXT_ID_AND_MASK );
-
-    /* Configure Message RAM Sections */
-    DL_MCAN_msgRAMConfig(MCAN0_INST, (DL_MCAN_MsgRAMConfigParams*) &gMCAN0MsgRAMConfigParams);
-
-    /* Loopback mode */
-
     /* Take MCAN out of the SW initialization mode */
     DL_MCAN_setOpMode(MCAN0_INST, DL_MCAN_OPERATION_MODE_NORMAL);
-
-    while (DL_MCAN_OPERATION_MODE_NORMAL != DL_MCAN_getOpMode(MCAN0_INST));
+    while (DL_MCAN_OPERATION_MODE_NORMAL != DL_MCAN_getOpMode(CANFD0));
 
     /* Enable MCAN module Interrupts */
     DL_MCAN_enableIntr(MCAN0_INST, MCAN0_INST_MCAN_INTERRUPTS, 1U);
@@ -138,15 +126,16 @@ void DL_MCAN_reconfig()
     return;
 }
 
-bool MCAN_send_frame( uint8_t* data, uint16_t len)
+bool MCAN_send_frame(uint32_t id, uint8_t* data, uint16_t len)
 {
     frame_send_success = false;
     uint32_t intr_status;
     DL_MCAN_TxBufElement txMsg;
     DL_MCAN_TxFIFOStatus txfifoStatus;
+
     /* Initialize message to transmit. */
     /* Identifier Value. */
-    txMsg.id = MCAN_HOST_ID;
+    txMsg.id = id;
     /* Transmit data frame. */
     txMsg.rtr = 0U;
     /* 11-bit standard identifier. */
@@ -181,8 +170,11 @@ bool MCAN_send_frame( uint8_t* data, uint16_t len)
     DL_MCAN_TXBufAddReq(CANFD0, txfifoStatus.putIdx);
 
     /* Wait till ACK bit is written by receiver on Bus*/
-    while(frame_send_success == false)
-    {;}
+    if(txMsg.id == MCAN_HOST_ID)
+    {
+        while(frame_send_success == false)
+        {;}
+    }
     delay_cycles(DELAY_CAN_FRAME_TX);
 
     return true;
@@ -219,9 +211,10 @@ uint8_t MCAN_send_BSL_packet(volatile uint8_t *BSL_packet, uint16_t size)
         frame_length = 64;
 
     fragment_start = (uint8_t *)&BSL_packet[0];
+
     while(bytes_to_send>=frame_length)
     {
-        MCAN_send_frame(fragment_start,frame_length);
+        MCAN_send_frame(MCAN_HOST_ID, fragment_start,frame_length);
         total_count++;
         fragment_start += frame_length;
         bytes_to_send -= frame_length;
@@ -231,7 +224,7 @@ uint8_t MCAN_send_BSL_packet(volatile uint8_t *BSL_packet, uint16_t size)
     for(int i=0; i<3 && (frame_fragments[i]!=0);i++)
     {
 
-        MCAN_send_frame(fragment_start,frame_fragments[i]);
+        MCAN_send_frame(MCAN_HOST_ID, fragment_start,frame_fragments[i]);
         fragment_start += frame_fragments[i];
     }
     return 0;
@@ -276,6 +269,7 @@ uint8_t receive_bsl_response()
 
         if(RX_state == RX_acknowledged && !require_msg_response)
         {
+
             RX_state = RX_idle;
             return ack_error_status;
         }
@@ -388,7 +382,6 @@ void BSL_PI_MCAN_ISR(void)
     DL_MCAN_RxFIFOStatus rxFS;
     uint16_t mcan_frame_size;
     uint32_t intr_status;
-
     switch (DL_MCAN_getPendingInterrupt(CANFD0))
     {
         case DL_MCAN_IIDX_LINE1:
@@ -401,7 +394,6 @@ void BSL_PI_MCAN_ISR(void)
 
             else if((intr_status & MCAN_IR_RF1N_MASK )== MCAN_IR_RF1N_MASK)
             {
-
                 rxFS.num = DL_MCAN_RX_FIFO_NUM_1;
                 do
                 {
@@ -409,7 +401,6 @@ void BSL_PI_MCAN_ISR(void)
                 }while ((rxFS.fillLvl) == 0);
 
                 DL_MCAN_readMsgRam(CANFD0, DL_MCAN_MEM_TYPE_FIFO, 0U, rxFS.num, &rxMsg);
-
                 DL_MCAN_writeRxFIFOAck(CANFD0, rxFS.num, rxFS.getIdx);
                 mcan_frame_size = decode_dlc(&rxMsg);
 
@@ -433,11 +424,12 @@ void BSL_PI_MCAN_ISR(void)
 
                         ack_received = true;
                         RX_state = RX_acknowledged;
-                        ack_error_status = BSL_OPERATION_SUCCESFUL;
+
                     }
                     else
                     {
                         ack_error_status = rxMsg.data[0];
+                        return;
                     }
                 }
                 else if(RX_state == RX_acknowledged)
@@ -480,20 +472,9 @@ void BSL_PI_MCAN_ISR(void)
 
 void CAN_initialize()
 {
-    protocol_mode = CAN_MODE;
     NVIC_ClearPendingIRQ(MCAN0_INST_INT_IRQN);
     NVIC_EnableIRQ(MCAN0_INST_INT_IRQN);
     DL_Interrupt_registerInterrupt(
         ((uint32_t) MCAN0_INST_INT_IRQN), BSL_PI_MCAN_ISR);
     return;
-}
-void CAN_deinit(void)
-{
-/*  Reset the MCAN */
-    DL_MCAN_reset(CANFD0);
-
-/*  Disable and Unregister the interrupt */
-    DL_Interrupt_unregisterInterrupt((uint32_t) CANFD0_INT_IRQn);
-    NVIC_DisableIRQ(CANFD0_INT_IRQn);
-
 }

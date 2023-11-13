@@ -35,13 +35,13 @@ content of the generated ti_msp_dl_config.h file into the provided version.
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| SYSCTL |   |   |
-| SPI0 | PB6 | SPI Chip Select (CS0) |
-| SPI0 | PB7 | SPI Peripheral Out Controller In (POCI) |
-| SPI0 | PB8 | SPI Peripheral In Controller Out (PICO) |
-| SPI0 | PB9 | SPI Serial Clock (SCLK) |
-| BSL | PA18 | BSL Invoke Pin |
-| BSL | NRST | NRST |
+| SYSCTL |  |  |
+| SPI1 | PB9 | SPI SCLK (Clock) |
+| SPI1 | PB8 | SPI PICO (Peripheral In, Controller Out) |
+| SPI1 | PB7 | SPI POCI (Peripheral Out, Controller In) |
+| SPI1 | PB6 | SPI CS0 (Chip Select 0) |
+| DEBUGSS | PA20 | Debug Clock |
+| DEBUGSS | PA19 | Debug Data In Out |
 
 ## BoosterPacks, Board Resources & Jumper Settings
 
@@ -49,12 +49,12 @@ Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PB6 | SPI0 | CS0 | J2_13 | N/A |
-| PB7 | SPI0 | POCI | J2_14 | N/A |
-| PB8 | SPI0 | PICO | J2_15 | N/A |
-| PB9 | SPI0 | SCLK | J1_7 | N/A |
-| NRST | BSL | NRST | J2_16 | N/A |
-| PA18 | BSL | Invoke | J3_26 | J8 OFF Disconnect S1 |
+| PB9 | SPI1 | SCLK | J1_7 | N/A |
+| PB8 | SPI1 | MOSI | J2_15 | N/A |
+| PB7 | SPI1 | MISO | J2_14 | N/A |
+| PB6 | SPI1 | CS0 | J2_13 | N/A |
+| PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to
@@ -64,7 +64,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau846).
+MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873).
 
 ## Example Usage
 

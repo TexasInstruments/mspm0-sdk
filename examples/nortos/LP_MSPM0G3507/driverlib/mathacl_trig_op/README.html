@@ -47,21 +47,36 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>GPIOA</td>
+<td>PA0</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA15</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td>MATHACL</td>
+<td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
+<td>MATHACL</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -82,27 +97,41 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>PA0</td>
+<td>GPIOA</td>
+<td>PA0</td>
+<td>J27_9</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA15</td>
+<td>GPIOA</td>
+<td>PA15</td>
+<td>J3_30</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run the example. The application will stop at the break point to allow the user to verify the three sin/cos operations. The value of op1Cos should be 1 (0x7FFFFFFF). The value of op1Sin should be 0. The value of op2Cos should be 0.707 (0x5A89E374). The value of op2Sin should be 0.707 (0x5A7B0D41). The value of op3Cos should be 0. The value of op3Sin should be 1 (0x7FFFFFFF).</p>
+<p>Compile, load and run the example. The application will stop at the break point to allow the user to verify the three sin/cos operations. The value of op1Cos should be 1 (0x7FFFFFFF). The value of op1Sin should be 0. The value of op2Cos should be 0.707 (0x5A89E374). The value of op2Sin should be 0.707 (0x5A7B0D41). The value of op3Cos should be 0. The value of op3Sin should be 1 (0x7FFFFFFF). After the values have been calculated, LED1 will turn on to signal example is complete. USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

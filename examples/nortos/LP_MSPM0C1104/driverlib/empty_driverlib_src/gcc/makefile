@@ -1,0 +1,170 @@
+MSPM0_SDK_INSTALL_DIR ?= $(abspath ../../../../../..)
+
+include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
+
+CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
+LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
+
+SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler gcc --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../empty.syscfg)
+
+SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
+SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+
+OBJECTS = empty.obj ti_driverlib_dl_adc12.obj ti_driverlib_dl_aes.obj ti_driverlib_dl_common.obj ti_driverlib_dl_crc.obj ti_driverlib_dl_dac12.obj ti_driverlib_dl_dma.obj ti_driverlib_dl_flashctl.obj ti_driverlib_dl_i2c.obj ti_driverlib_dl_mathacl.obj ti_driverlib_dl_mcan.obj ti_driverlib_dl_opa.obj ti_driverlib_dl_rtc.obj ti_driverlib_dl_spi.obj ti_driverlib_dl_timer.obj ti_driverlib_dl_trng.obj ti_driverlib_dl_uart.obj ti_driverlib_dl_vref.obj ti_driverlib_m0p_dl_interrupt.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj gcc_startup_mspm0c1104_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+NAME = empty_driverlib_src
+
+CFLAGS = -I.. \
+    -I. \
+    -D__MSPM0C1104__ \
+    -O2 \
+    "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
+    "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -mcpu=cortex-m0plus \
+    -march=armv6-m \
+    -mthumb \
+    -std=c99 \
+    -mfloat-abi=soft \
+    -ffunction-sections \
+    -fdata-sections \
+    -g \
+    -gstrict-dwarf \
+    -Wall \
+    "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
+    "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
+
+LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0c110x" \
+    -nostartfiles \
+    -Wl,-T,../gcc/mspm0c1104.lds \
+    "-Wl,-Map,$(NAME).map" \
+    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0c110x/driverlib.a" \
+    -march=armv6-m \
+    -mthumb \
+    -static \
+    -Wl,--gc-sections \
+    "-L$(GCC_ARMCOMPILER)/arm-none-eabi/lib/thumb/v6-m/nofp" \
+    -lgcc \
+    -lc \
+    -lm \
+    -lnosys \
+    --specs=nano.specs
+all: $(NAME).out
+
+.INTERMEDIATE: syscfg
+$(SYSCFG_FILES): syscfg
+	@ echo generation complete
+
+syscfg: ../empty.syscfg
+	@ echo Generating configuration files...
+	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
+
+define C_RULE
+$(basename $(notdir $(1))).obj: $(1) $(SYSCFG_H_FILES)
+	@ echo Building $$@
+	@ $(CC) $(CFLAGS) $$< -c -o $$@
+endef
+
+$(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
+
+empty.obj: ../empty.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_adc12.obj: ../ti/driverlib/dl_adc12.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_aes.obj: ../ti/driverlib/dl_aes.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_common.obj: ../ti/driverlib/dl_common.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_crc.obj: ../ti/driverlib/dl_crc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_dac12.obj: ../ti/driverlib/dl_dac12.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_dma.obj: ../ti/driverlib/dl_dma.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_flashctl.obj: ../ti/driverlib/dl_flashctl.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_i2c.obj: ../ti/driverlib/dl_i2c.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_mathacl.obj: ../ti/driverlib/dl_mathacl.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_mcan.obj: ../ti/driverlib/dl_mcan.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_opa.obj: ../ti/driverlib/dl_opa.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_rtc.obj: ../ti/driverlib/dl_rtc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_spi.obj: ../ti/driverlib/dl_spi.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_timer.obj: ../ti/driverlib/dl_timer.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_trng.obj: ../ti/driverlib/dl_trng.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_uart.obj: ../ti/driverlib/dl_uart.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_vref.obj: ../ti/driverlib/dl_vref.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_m0p_dl_interrupt.obj: ../ti/driverlib/m0p/dl_interrupt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+gcc_startup_mspm0c1104_gcc.obj: ../gcc/startup_mspm0c1104_gcc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+$(NAME).out: $(OBJECTS)
+	@ echo linking $@
+	@ $(LNK)  $(OBJECTS)  $(LFLAGS) -o $(NAME).out
+
+clean:
+	@ echo Cleaning...
+	@ $(RM) $(OBJECTS) > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).out > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).map > $(DEVNULL) 2>&1
+	@ $(RM) $(SYSCFG_FILES)> $(DEVNULL) 2>&1

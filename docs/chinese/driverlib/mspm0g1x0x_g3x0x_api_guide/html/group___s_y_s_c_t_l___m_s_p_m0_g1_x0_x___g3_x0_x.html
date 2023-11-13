@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">1.10.01.05</span>
+   &#160;<span id="projectnumber">1.20.00.05</span>
    </div>
   </td>
  </tr>
@@ -851,6 +851,12 @@ __STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:ga4b827d98ddbc2ba384560e36e12218f7"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga4b827d98ddbc2ba384560e36e12218f7">DL_SYSCTL_getTempCalibrationConstant</a> (void)</td></tr>
 <tr class="memdesc:ga4b827d98ddbc2ba384560e36e12218f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the calibration constant of the temperature sensor to be used in temperature calculation.  <a href="#ga4b827d98ddbc2ba384560e36e12218f7">More...</a><br /></td></tr>
 <tr class="separator:ga4b827d98ddbc2ba384560e36e12218f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3b61e3a92f4be62b70cdb43e03866b19"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3b61e3a92f4be62b70cdb43e03866b19">DL_SYSCTL_isFlashBankSwapEnabled</a> (void)</td></tr>
+<tr class="memdesc:ga3b61e3a92f4be62b70cdb43e03866b19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if Flash Bank swapping is enabled.  <a href="#ga3b61e3a92f4be62b70cdb43e03866b19">More...</a><br /></td></tr>
+<tr class="separator:ga3b61e3a92f4be62b70cdb43e03866b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafaf14ccfbcd9f94da7e6fd6c2602e290"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gafaf14ccfbcd9f94da7e6fd6c2602e290">DL_SYSCTL_isExecuteFromUpperFlashBank</a> (void)</td></tr>
+<tr class="memdesc:gafaf14ccfbcd9f94da7e6fd6c2602e290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if executing from upper flash bank.  <a href="#gafaf14ccfbcd9f94da7e6fd6c2602e290">More...</a><br /></td></tr>
+<tr class="separator:gafaf14ccfbcd9f94da7e6fd6c2602e290"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><a class="anchor" id="ti_dl_m0p_dl_mspm0g_sysctl_Overview"></a></p><h1>Overview</h1>
@@ -4473,6 +4479,60 @@ This wait state is only applied if MCLK running from SYSPLL, HFXT, or HFCLK_IN.<
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">Temperature</td><td>sensor calibration data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga3b61e3a92f4be62b70cdb43e03866b19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3b61e3a92f4be62b70cdb43e03866b19">&sect;&nbsp;</a></span>DL_SYSCTL_isFlashBankSwapEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE bool DL_SYSCTL_isFlashBankSwapEnabled </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if Flash Bank swapping is enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>Whether Flash Bank swap is enabled</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">false</td><td>This is not a multi-bank device </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gafaf14ccfbcd9f94da7e6fd6c2602e290"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafaf14ccfbcd9f94da7e6fd6c2602e290">&sect;&nbsp;</a></span>DL_SYSCTL_isExecuteFromUpperFlashBank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE bool DL_SYSCTL_isExecuteFromUpperFlashBank </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if executing from upper flash bank. </p>
+<dl class="section return"><dt>Returns</dt><dd>Whether executing from upper flash bank</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">false</td><td>This is not a multi-bank device. </td></tr>
   </table>
   </dd>
 </dl>

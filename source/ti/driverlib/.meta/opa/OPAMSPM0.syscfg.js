@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -729,45 +729,6 @@ opaConfig = opaConfig.concat([
      * These are invisible to sysconfig and have no influence on code generation, but give the module additional
      * visibility based on the state of the system and the specific M0 device being configured
      */
-    {
-        /* name of the device */
-        name: "device",
-        default: "MSPM0G350X",
-        hidden: true,
-        getValue: (inst) => {
-            let mySys = system;
-            return system.deviceData.device;
-        }
-    },
-    {
-        /* this is a read-only array of the opa modules that are actually present on the device,
-         * can be used to limit the allowable opa to those that make sense
-         */
-        name: "opas",
-        default: [""],
-        /* superset of all possible OPA modules */
-        options: [
-            {name: "OPA0"}, {name: "OPA1"},{name: ""}
-        ],
-        hidden: true,
-        getValue: (inst) => {
-            let array = _.map(system.deviceData.interfaces.OA.peripherals, (v)=> v.name);
-            return array;
-        }
-    },
-    {
-        /* Removes undefined possibility for opa assignment */
-        name: "opaAssignment",
-        default: "Any",
-        hidden: true,
-        getValue: (inst) => {
-            if(inst.peripheral) {
-                return inst.peripheral.$assign;
-            } else {
-                return "Any";
-            }
-        }
-    },
     {
         name: "pinIn0PosUsed",
         displayName: "IN0+ is used",

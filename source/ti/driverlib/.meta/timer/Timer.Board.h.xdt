@@ -116,7 +116,7 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin0";
 %               let faultPackagePin = sharedFault[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
+%               let faultPinCM = Common.getPinCM(faultPackagePin,inst,"FAULT0");
 %               let faultIOmuxStr = "#define "+gpioStr+"_IOMUX_FAULT_0";
 %               let faultIOmuxStr2 = "(IOMUX_PINCM"+faultPinCM+")";
 `faultIOmuxStr.padEnd(40," ")+faultIOmuxStr2.padStart(40," ")`
@@ -128,7 +128,7 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin1";
 %               let faultPackagePin = sharedFault[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
+%               let faultPinCM = Common.getPinCM(faultPackagePin,inst,"FAULT1");
 %               let faultIOmuxStr = "#define "+gpioStr+"_IOMUX_FAULT_1";
 %               let faultIOmuxStr2 = "(IOMUX_PINCM"+faultPinCM+")";
 `faultIOmuxStr.padEnd(40," ")+faultIOmuxStr2.padStart(40," ")`
@@ -140,7 +140,7 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin2";
 %               let faultPackagePin = sharedFault[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
+%               let faultPinCM = Common.getPinCM(faultPackagePin,inst,"FAULT2");
 %               let faultIOmuxStr = "#define "+gpioStr+"_IOMUX_FAULT_2";
 %               let faultIOmuxStr2 = "(IOMUX_PINCM"+faultPinCM+")";
 `faultIOmuxStr.padEnd(40," ")+faultIOmuxStr2.padStart(40," ")`

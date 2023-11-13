@@ -134,7 +134,7 @@ void DRV8329_ADCVRefSel(HAL_ADC_VREF adcRef, HAL_ADC_CHAN chan,
     case HAL_ADC_VREF_INTERNAL:
         HAL_setADCVRefInternal(chan, internalVRef);
         break;
-    case HAL_ADC_VREF_EXternal:
+    case HAL_ADC_VREF_EXTERNAL:
         HAL_setADCVRefExternal(chan, externalVRef);
         break;
     default:

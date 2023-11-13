@@ -1,0 +1,1428 @@
+<toc label="MSPM0G1507HallSensoredTrapMotorControlLibrary" topic="index.html">
+  <topic label="Hall Sensored Trap Library API Reference" href="index.html"/>
+  <topic label="Modules" href="modules.html">
+    <topic label="MSPM0G1507 - Hardware Abstraction Layer (HAL)" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g1507___h_a_l.html">
+    </topic>
+    <topic label="HALL_SENSORED_TRAP__MSPM0G_HAL" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html">
+      <topic label="HAL_GPIO_Instance_" href="struct_h_a_l___g_p_i_o___instance__.html">
+        <topic label="iomux" href="struct_h_a_l___g_p_i_o___instance__.html#abdb5a32b907c90eb314405d670784cef"/>
+        <topic label="port" href="struct_h_a_l___g_p_i_o___instance__.html#a92527b731343ebe40db848de9069cd89"/>
+        <topic label="pin" href="struct_h_a_l___g_p_i_o___instance__.html#aaa83ada754ff66496498c4eea4b899e8"/>
+        <topic label="IRQn" href="struct_h_a_l___g_p_i_o___instance__.html#a79e28d6c48d68a210df60c4549485b45"/>
+      </topic>
+      <topic label="HAL_ADC_instance_" href="struct_h_a_l___a_d_c__instance__.html">
+        <topic label="inst" href="struct_h_a_l___a_d_c__instance__.html#ac82a0b5c905ac8ec19788165526e9641"/>
+        <topic label="endOfSeq" href="struct_h_a_l___a_d_c__instance__.html#a0e93de787e5409d06cbce25d74ca06f5"/>
+        <topic label="IRQn" href="struct_h_a_l___a_d_c__instance__.html#a9db57450a2624ca91eeca6260e6282ae"/>
+        <topic label="value" href="struct_h_a_l___a_d_c__instance__.html#ab7b3207200b61bb88ac2bcdbc4c70ad1"/>
+        <topic label="refVoltagemV" href="struct_h_a_l___a_d_c__instance__.html#a57b6fd8b1565d0a3de9fdb01126ceece"/>
+        <topic label="memIdx" href="struct_h_a_l___a_d_c__instance__.html#a9c7518981d20d943837082da3c73d3f8"/>
+      </topic>
+      <topic label="HAL_Timer_Instance_" href="struct_h_a_l___timer___instance__.html">
+        <topic label="gptimer" href="struct_h_a_l___timer___instance__.html#a791ff7025ecd15e373cabc30bfa863d1"/>
+        <topic label="ccIndex" href="struct_h_a_l___timer___instance__.html#aa7c1f25ec7801aa83de0df4d53f2dee9"/>
+        <topic label="IRQn" href="struct_h_a_l___timer___instance__.html#acfa12b0ed487c29bd3435f3e04f46f74"/>
+      </topic>
+      <topic label="HAL_fault_instance" href="struct_h_a_l__fault__instance.html">
+        <topic label="gptimer" href="struct_h_a_l__fault__instance.html#ae249f460ccd6a556aabb5d63640f9821"/>
+        <topic label="port" href="struct_h_a_l__fault__instance.html#a9d7aec6aa4f1da21d36e8b5d8932bbb4"/>
+        <topic label="pin" href="struct_h_a_l__fault__instance.html#a16d777718b22facca825a4beb2d79f3f"/>
+      </topic>
+      <topic label="HAL_SYSTEM_FREQ_MHZ" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga34ec5c2dff1e9d72ee4026879e121815"/>
+      <topic label="HAL_PWM_TIMER_FREQ_MHZ" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga065925ccdf2681747ea17cb67b62b22a"/>
+      <topic label="HAL_CAPTURE_TIMER_FREQ" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga6639cbd10cb39b6656d3d09e88007be5"/>
+      <topic label="HAL_VDDA_REFVOLTAGE" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaaff445b3e95fbd0fe93d2f21ca4170c1"/>
+      <topic label="MAX_ADC_VALUE" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga91f5af028cd707fcddafff4416925b21"/>
+      <topic label="HAL_GPIO_Instance" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gabfe6f57c865a97217ca989249539fb80"/>
+      <topic label="HAL_ADC_instance" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaab21c49f477f976ca6a6ea76aa23c62c"/>
+      <topic label="HAL_Timer_Instance" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga585750bfa78fcf7f0d3b810aad571c18"/>
+      <topic label="HAL_fault_instance" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga661db3b2622e8f8e7afa75f30562ccbc"/>
+      <topic label="HAL_GPIO_STATE" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga69227df1772ca23e63db3c72e14bf2b5">
+        <topic label="HAL_GPIO_PIN_LOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga69227df1772ca23e63db3c72e14bf2b5a5d50be244078b1e160fe753df373a871"/>
+        <topic label="HAL_GPIO_PIN_HIGH" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga69227df1772ca23e63db3c72e14bf2b5ac9eb0f26a635f2747d617b07391b8b67"/>
+      </topic>
+      <topic label="HAL_ADC_CHAN" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafa24d889c6b7446ca4f353f9e66dbf2a">
+        <topic label="HAL_ADC_CHAN_0" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafa24d889c6b7446ca4f353f9e66dbf2aa5af5d02f28e87cb2a84ee3af8b5bcd68"/>
+        <topic label="HAL_ADC_CHAN_1" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafa24d889c6b7446ca4f353f9e66dbf2aaec262545aafd932dd08b70af4d66f522"/>
+        <topic label="HAL_ADC_CHAN_2" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafa24d889c6b7446ca4f353f9e66dbf2aaa0e54b043904008fb5a3ef32fd54ed62"/>
+        <topic label="HAL_ADC_CHAN_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafa24d889c6b7446ca4f353f9e66dbf2aaedd5eb42b690c442612b5c16769334ff"/>
+      </topic>
+      <topic label="HAL_GPIO_IN" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gac635f165de0baac53708e407f4cb55e1">
+        <topic label="HAL_GPIO_IN_01" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a445ceac59e5385e228b5f793a38012fc"/>
+        <topic label="HAL_GPIO_IN_02" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a12029c9ab80694ad0696f2dc28630523"/>
+        <topic label="HAL_GPIO_IN_03" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a877d28f12c77483067b20ad6684f0742"/>
+        <topic label="HAL_GPIO_IN_04" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1abaaabebce8848d7ae02d3ece66f7ae22"/>
+        <topic label="HAL_GPIO_IN_05" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a2651949a5ecafe062563e5b1769170c6"/>
+        <topic label="HAL_GPIO_IN_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a59e6ad55e062a1d170c5666010c83c5e"/>
+      </topic>
+      <topic label="HAL_GPIO_OUT" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga8e1967170bf4efd016e423bdbbba880b">
+        <topic label="HAL_GPIO_OUT_01" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga8e1967170bf4efd016e423bdbbba880bad3ef2418d444396e4d594953db62902b"/>
+        <topic label="HAL_GPIO_OUT_02" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga8e1967170bf4efd016e423bdbbba880baf1fbc9a91eeea28ae31c49c0b44b1b05"/>
+        <topic label="HAL_GPIO_OUT_03" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga8e1967170bf4efd016e423bdbbba880ba2e0313eb9c836e22b9165bdd10f1d74b"/>
+        <topic label="HAL_GPIO_OUT_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga8e1967170bf4efd016e423bdbbba880ba8a21d458823f6a34870377a0c3902484"/>
+      </topic>
+      <topic label="HAL_PWM" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gae2c1aa11343ba5f836ae7a744c4b0a32">
+        <topic label="HAL_PWM_01" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggae2c1aa11343ba5f836ae7a744c4b0a32acdf2035e05220ccab29f93772485d63c"/>
+        <topic label="HAL_PWM_02" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggae2c1aa11343ba5f836ae7a744c4b0a32a6449914cee6d2129f7e2a9b69bb46e0e"/>
+        <topic label="HAL_PWM_03" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggae2c1aa11343ba5f836ae7a744c4b0a32aa21a7b867df80f1c604e35cb8ac76a33"/>
+        <topic label="HAL_PWM_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggae2c1aa11343ba5f836ae7a744c4b0a32a15b31d10dddec577ac904c6551d14210"/>
+      </topic>
+      <topic label="HAL_CAPTURE_TIMER" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga443d0b0f105b5a88fe4383416976944f">
+        <topic label="HAL_CAPTURE_TIMER_01" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga443d0b0f105b5a88fe4383416976944fa873e97346d95f1dae44971d11446632c"/>
+        <topic label="HAL_CAPTURE_TIMER_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga443d0b0f105b5a88fe4383416976944fa213f4f99c31ab1b2e766550746b93cef"/>
+      </topic>
+      <topic label="HAL_FAULT_INPUT" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga31efd569d01d863766a3dea7cbf9277c">
+        <topic label="HAL_FAULT_INPUT_1" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga31efd569d01d863766a3dea7cbf9277ca091dcd82b79aab0a53d13e78d63f3ed8"/>
+        <topic label="HAL_FAULT_INPUT_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga31efd569d01d863766a3dea7cbf9277cafd5372e7a46801e6519d7355dbeabc94"/>
+      </topic>
+      <topic label="HAL_SPI_CHAN" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafd598002c976f8f7a713319892341f8e">
+        <topic label="HAL_SPI_CHAN_0" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafd598002c976f8f7a713319892341f8ea66a5a45c33bf54cae088b92b2dcb20a9"/>
+        <topic label="HAL_SPI_CHAN_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafd598002c976f8f7a713319892341f8eaf37ee9b61a169cbbbed64d36c72d083a"/>
+      </topic>
+      <topic label="HAL_SPI_CS" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gadd8a694a4d051d1ed3e24f91cf3a5103">
+        <topic label="HAL_SPI_CS_0" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a245e7d9e918d317a25632a2c741250d3"/>
+        <topic label="HAL_SPI_CS_1" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a4dd1abcb56726a9e44d11ba048ed6059"/>
+        <topic label="HAL_SPI_CS_2" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a7b39d1047b2fabfa2c879d967314b4d0"/>
+        <topic label="HAL_SPI_CS_3" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a01d825746893f18adc5fd812cb493702"/>
+        <topic label="HAL_SPI_CS_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a6590d0de26232afe1039fb74c7f5dc9f"/>
+      </topic>
+      <topic label="HAL_ADC_VREF" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga2639d75737992092fe609dd9bc0c16f4">
+        <topic label="HAL_ADC_VREF_VDDA" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2639d75737992092fe609dd9bc0c16f4a2c630194084000f3c6450484cadb8936"/>
+        <topic label="HAL_ADC_VREF_INTERNAL" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2639d75737992092fe609dd9bc0c16f4acd18aabd0b868c59b152a1b0bfa8a8d3"/>
+        <topic label="HAL_ADC_VREF_EXTERNAL" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2639d75737992092fe609dd9bc0c16f4aaa7de254fb79b9e8c60e932d55b526a5"/>
+      </topic>
+      <topic label="HAL_ADC_INT_VREF" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga2e4f068697ba7abda2778f931fbc0086">
+        <topic label="HAL_ADC_INT_VREF_2P5V" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2e4f068697ba7abda2778f931fbc0086a9a18b07f312b4139ba71b190a7f5972f"/>
+        <topic label="HAL_ADC_INT_VREF_1P4V" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2e4f068697ba7abda2778f931fbc0086a1a56831decf2ed725140f74b46ef4d2a"/>
+      </topic>
+      <topic label="HAL_ADC_IIDX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga766203e04ba498fc83f09539677afd0d">
+        <topic label="HAL_ADC_IIDX_OVERFLOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da1adba70e747880c335f213379a4418cf"/>
+        <topic label="HAL_ADC_IIDX_TRIG_OVERFLOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0dae08d36f61738242cc727a37cf40cab27"/>
+        <topic label="HAL_ADC_IIDX_WINDOW_COMP_HIGH" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da2255ea4d221ef0e01b53c1039b8fb725"/>
+        <topic label="HAL_ADC_IIDX_WINDOW_COMP_LOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da0df4d28bd94f807065b7b12e21a3cd07"/>
+        <topic label="HAL_ADC_IIDX_INIFG" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0dac70ebe9f3c9c1df8b27464a191781bd0"/>
+        <topic label="HAL_ADC_IIDX_DMA_DONE" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0dab23f3ed46c9ae8d5fc1928c56f98e3ed"/>
+        <topic label="HAL_ADC_IIDX_UNDERFLOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da8076403e75531721558e07d986cb84bb"/>
+        <topic label="HAL_ADC_IIDX_MEM0_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da1bbc2bac055c99ca03ff6974b9c6482c"/>
+        <topic label="HAL_ADC_IIDX_MEM1_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da246aafcbf96027f4731e1c9fd6b8b808"/>
+        <topic label="HAL_ADC_IIDX_MEM2_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da7b146ba824c96add8dd30580f2c6fcb8"/>
+        <topic label="HAL_ADC_IIDX_MEM3_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da4d810e7d043fa54304290fc02eac2fdb"/>
+        <topic label="HAL_ADC_IIDX_MEM4_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0dacb05d27f35619e860816cc1f78fb41dd"/>
+        <topic label="HAL_ADC_IIDX_MEM5_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da40bbe488eeeae2c18033cc5acfda5f3b"/>
+        <topic label="HAL_ADC_IIDX_MEM6_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da434a61f3e3f33321caf3395d76f93347"/>
+        <topic label="HAL_ADC_IIDX_MEM7_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da0de73d87b3fc15dc45a74b48c6b1d4f3"/>
+        <topic label="HAL_ADC_IIDX_MEM8_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da50789eb2edccc9b905931c79c754db68"/>
+        <topic label="HAL_ADC_IIDX_MEM9_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da08884b7c43ea7f2931ba6d04f3b499ec"/>
+        <topic label="HAL_ADC_IIDX_MEM10_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da834344e57355be45f8476527140507c6"/>
+        <topic label="HAL_ADC_IIDX_MEM11_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da29b4762ce4fb60e4a567aa756b80bb39"/>
+      </topic>
+      <topic label="HAL_init" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga756ed4028115d9e20a16a636fc4cea34"/>
+      <topic label="HAL_readGPIOPin" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga1aea5cc02cc69d4bd522f76b5f204dbf"/>
+      <topic label="HAL_writeGPIOPin" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaf163c99472ebeaa22616a535312a0eae"/>
+      <topic label="HAL_setDeadband" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga31717781709a2c69c647d47004afadf4"/>
+      <topic label="HAL_setPWMFreq" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gac80448eea96a2a7c0eeed737e7a18389"/>
+      <topic label="HAL_writeSPI16" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafa15c52b39efa5799e7caa5a6e505a59"/>
+      <topic label="HAL_readSPI16" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaa8ccf044a6bddb584fd0c79b18d00675"/>
+      <topic label="HAL_setADCRefVoltage" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafe1fa32d1f01535a639c8956ee223aa7"/>
+      <topic label="HAL_getmvFromADC" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gab2d1f7dcc95f87a8cd8f6247f92ea517"/>
+      <topic label="HAL_getIQ20VoltageFromADC" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga24f36db88d63d8d3bad5665be5f64719"/>
+      <topic label="HAL_processADCIRQ" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga68a3070c2dec88af3f6badc81522a2dd"/>
+      <topic label="HAL_enableADCInterrupt" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaf741b8dc1fb120390891f1734aef7f84"/>
+      <topic label="HAL_enableGPIOInterrupt" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga2d4abcb3128021c829897251b0c15057"/>
+      <topic label="HAL_enablePWMInterrupt" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga6efe9a45e892c92e25be1470e3045e8b"/>
+      <topic label="HAL_enableCaptureInterrupt" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gac03676c49557a1823055cfdd87977518"/>
+      <topic label="HAL_setADCVRefVDDA" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafab32726f99125acf6c0bc90fbc46186"/>
+      <topic label="HAL_setADCVRefInternal" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga3df4ea84f5443693f7b346c08e7311bc"/>
+      <topic label="HAL_setADCVRefExternal" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga929e882840e656417c583e885aef1f7b"/>
+      <topic label="HAL_clearTimerFault" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga1f5b793b60c2baf3a4ddd98d0ef6768a"/>
+      <topic label="HAL_getTimerFaultStatus" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga14158172a806ac0183ee132c94a8ad40"/>
+      <topic label="HAL_getCaptureFrequency" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaf8d1db00f1f4486bfda3f7ca34a3f36b"/>
+      <topic label="HAL_ADCVRefSel" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga56c1afdc53c48477cbf443d68797018d"/>
+      <topic label="HAL_getGPIOEnabledInterruptStatus" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gad39ea208df735a1ff3d413d2e600a5b9"/>
+      <topic label="HAL_delayMicroSeconds" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga4ff40ea6b11d7a5c552caf247cc52644"/>
+      <topic label="HAL_updatePWM" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga51564f86eb85a3ad271eef4f8fdd761a"/>
+      <topic label="HAL_PWMOutputLow" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga6619879c6f04d41149b635de692623ee"/>
+      <topic label="HAL_PWMOutputHigh" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaba12ac2178d47a4e1b5ebf7b1c6dff00"/>
+      <topic label="gpioInputPin" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gabf7f96df7b15f226fe054f39cea12197"/>
+      <topic label="PWMBase" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga339c60b951ef921487c760c772f6efb2"/>
+      <topic label="inputCapture" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga886739ea646a2d4b676ed8b8ac9ce26f"/>
+      <topic label="ADCChannel" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga760d65cf1971586d5d5684aea419cdb6"/>
+      <topic label="faultInput" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga98aeb8dd561abf6951a11bd8f83747f7"/>
+    </topic>
+    <topic label="Hall Trap" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html">
+      <topic label="Halltrap_Instance" href="struct_halltrap___instance.html">
+        <topic label="hallA" href="struct_halltrap___instance.html#a4906a992a118f3f609ac5713360b8ea3"/>
+        <topic label="hallB" href="struct_halltrap___instance.html#a18e293c3d35568e6977553812a6d34be"/>
+        <topic label="hallC" href="struct_halltrap___instance.html#ac40cd8ae573ae41cae61501232af2ea7"/>
+        <topic label="phaseA" href="struct_halltrap___instance.html#afedbc44ac8151edcf628b408dbc152d9"/>
+        <topic label="phaseB" href="struct_halltrap___instance.html#a22b091f27d7925b4ce2b65f52e36e8ec"/>
+        <topic label="phaseC" href="struct_halltrap___instance.html#a9510b0c0bd0d89c8a5e9741dbde43b18"/>
+        <topic label="captureInput" href="struct_halltrap___instance.html#a43b40c7c6b20426581f9d60f5cd83cd6"/>
+      </topic>
+      <topic label="HALLTRAP_HALT_TIME_US" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga1db267b2b48211e0de173233c50b5219"/>
+      <topic label="HALL" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga2327004c225174ddd85ef22f59b3155a">
+        <topic label="HALL_A" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga2327004c225174ddd85ef22f59b3155aae14703fcbaa5b2948bbdd9daf01d2c5a"/>
+        <topic label="HALL_B" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga2327004c225174ddd85ef22f59b3155aaad5f052e009fde75c02797ccdd24d892"/>
+        <topic label="HALL_C" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga2327004c225174ddd85ef22f59b3155aac752d908ab6014482c2ce7614f20e9a6"/>
+        <topic label="HALL_MAX" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga2327004c225174ddd85ef22f59b3155aaf40341b484dfac2601eda43c53206175"/>
+      </topic>
+      <topic label="MOTOR_DIR" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gadd6cf20369bb90a13cfd4950e792cd8f">
+        <topic label="MOTOR_DIR_FORWARD" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggadd6cf20369bb90a13cfd4950e792cd8fa1e237bee2172c309381749a1882636dc"/>
+        <topic label="MOTOR_DIR_REVERSE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggadd6cf20369bb90a13cfd4950e792cd8fa7487645fe3870eb9d9597b00166fd9ef"/>
+      </topic>
+      <topic label="MOTOR_BRAKE_TYPE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga4d6f437df94d4ffe41e644bb6805e223">
+        <topic label="MOTOR_BRAKE_TYPE_COAST" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga4d6f437df94d4ffe41e644bb6805e223ab3e98ccf165b0d3bf9cd58f9df232b95"/>
+        <topic label="MOTOR_BRAKE_TYPE_BRAKE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga4d6f437df94d4ffe41e644bb6805e223ad0af3ea049f37653ebd7f6e307959247"/>
+      </topic>
+      <topic label="MOTOR_STATE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gae676bf9c7f315eb5efae14987ca95856">
+        <topic label="MOTOR_STATE_RUN" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggae676bf9c7f315eb5efae14987ca95856a463c5c215ddb1fd727b8d8ec6e06a568"/>
+        <topic label="MOTOR_STATE_STOP" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggae676bf9c7f315eb5efae14987ca95856aee88a6f51e8b247f12f0fbfbe98040b6"/>
+      </topic>
+      <topic label="HALLTRAP_COMM_STATE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gac8d6a0010f964f334a8717f5773bb168">
+        <topic label="HALLTRAP_COMM_STATE_C_TO_A" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168a99baea53ace36bf4503602c3ee11cd46"/>
+        <topic label="HALLTRAP_COMM_STATE_A_TO_B" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168af94301666d2778da1b5f4b6852a1d992"/>
+        <topic label="HALLTRAP_COMM_STATE_C_TO_B" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168aa5db08c439effd216b54a4116702575a"/>
+        <topic label="HALLTRAP_COMM_STATE_B_TO_C" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168ae9c4bc92ba411b2d7e14cd9889eeb371"/>
+        <topic label="HALLTRAP_COMM_STATE_B_TO_A" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168aaf0347ab031a6a27aafeaa7b0a0aa0e1"/>
+        <topic label="HALLTRAP_COMM_STATE_A_TO_C" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168a161904f0afcb80d0db6e1b9661892dad"/>
+      </topic>
+      <topic label="Halltrap_Init" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gaccf854176d3f9e15cfe656f8c2a94d16"/>
+      <topic label="Halltrap_PWMUpdate" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga86941d341ea00dee5476ab4946f8efb0"/>
+      <topic label="Halltrap_calculateMotorSpeed" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga3450a8c009559db39a6fa879db21225c"/>
+      <topic label="Halltrap_setDeadband" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gace00493702aa4a03f6205a454ad4e867"/>
+      <topic label="Halltrap_setPWMFreq" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga66c5cb796e211a2a74d934ff2ebd691c"/>
+      <topic label="Halltrap_stopMotor" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga4b16a77a4e6d80e8f1fb201ba7a2a19e"/>
+      <topic label="Halltrap_disablePWM" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga09c92134067ae1c2bba3508945263577"/>
+      <topic label="Halltrap_changeMotorDirection" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga3fdc973ed09278b57f70ab493303ba89"/>
+    </topic>
+    <topic label="Motor Driver/DRV8300" href="group___d_r_v8300___m_o_d_u_l_e.html">
+      <topic label="DRV8300_Instance" href="struct_d_r_v8300___instance.html">
+        <topic label="led" href="struct_d_r_v8300___instance.html#ab749a31f37ba8d36e3bc4f9e1aff2b76"/>
+        <topic label="csa_sf" href="struct_d_r_v8300___instance.html#a75e3c6c3f74a0190378234c90caa961f"/>
+        <topic label="csaVRef" href="struct_d_r_v8300___instance.html#a62ece198c140815797e2eef16cfab181"/>
+        <topic label="Vsen" href="struct_d_r_v8300___instance.html#ae3e88008924df8f50c737f4f843ad5e6"/>
+        <topic label="VsenA" href="struct_d_r_v8300___instance.html#a1d4484f639fb0bc789464124cbe877a7"/>
+        <topic label="VsenB" href="struct_d_r_v8300___instance.html#ae605540883986f74aedad60554e23b0b"/>
+        <topic label="VsenC" href="struct_d_r_v8300___instance.html#a9e109a2f612861bcb8c3f4540a4cb789"/>
+        <topic label="IsenA" href="struct_d_r_v8300___instance.html#ae85a53235bf2e6ca7547181d4663f02f"/>
+        <topic label="IsenB" href="struct_d_r_v8300___instance.html#a2f298b9773ff5b639d54c7b3fcd78fb4"/>
+        <topic label="IsenC" href="struct_d_r_v8300___instance.html#aa61b1a1d4405e45043afb5fc4bc0e349"/>
+      </topic>
+      <topic label="DRV8300_VOLTAGE_CONV_CONST" href="group___d_r_v8300___m_o_d_u_l_e.html#ga507f04548bc42854fef25a375ee4c9c3"/>
+      <topic label="DRV8300_CSA_REF_VOLTAGE" href="group___d_r_v8300___m_o_d_u_l_e.html#gac1bb92e1b1adc90acb7ee349dbca580e"/>
+      <topic label="DRV8300_init" href="group___d_r_v8300___m_o_d_u_l_e.html#gabc2b93d88a620d76600f5b70307a61a7"/>
+      <topic label="DRV8300_enable" href="group___d_r_v8300___m_o_d_u_l_e.html#gae247dfdd6391dc485e741412494fc2cf"/>
+      <topic label="DRV8300_updateCSAScaleFactor" href="group___d_r_v8300___m_o_d_u_l_e.html#ga53d4491d55c7da8dd07bc1057e73ee0e"/>
+      <topic label="DRV8300_getVoltage" href="group___d_r_v8300___m_o_d_u_l_e.html#ga661c3bb1a72dde4d4cbc0f3710d9f67e"/>
+      <topic label="DRV8300_getCurrent" href="group___d_r_v8300___m_o_d_u_l_e.html#ga5ba5f913c10b84bb3b67207f684eec63"/>
+      <topic label="DRV8300_ADCVRefSel" href="group___d_r_v8300___m_o_d_u_l_e.html#ga2fc73d3ea1c7ab9700f871c5d1417c88"/>
+      <topic label="DRV8300_getcsaVref" href="group___d_r_v8300___m_o_d_u_l_e.html#gafd6f4b9c694a3218e1dfdc955d0c4ef6"/>
+    </topic>
+    <topic label="Motor Driver/drv8311" href="group__drv8311___m_o_d_u_l_e.html">
+      <topic label="drv8311_Instance" href="structdrv8311___instance.html">
+        <topic label="nsleep" href="structdrv8311___instance.html#aba18b2058a876109d78a28c6f03ec16f"/>
+        <topic label="drvoff" href="structdrv8311___instance.html#a931833e5ccb0846728e858c6e12bad7f"/>
+        <topic label="nfault" href="structdrv8311___instance.html#a8fdf2290482cec7a98b20b3f31f76b25"/>
+        <topic label="spiChan" href="structdrv8311___instance.html#aa18adce35a8bb8318381444750c7d24a"/>
+        <topic label="spiCs" href="structdrv8311___instance.html#af8ddcbde3126184a829350746f201106"/>
+        <topic label="csa_sf" href="structdrv8311___instance.html#ae1e76080d9287068654ef94849af10e3"/>
+        <topic label="csaVRef" href="structdrv8311___instance.html#af024eff0965fe55837a7aba027c59bb5"/>
+        <topic label="Vsen" href="structdrv8311___instance.html#aff047b5b27771f7e76b8429e987e118e"/>
+        <topic label="VsenA" href="structdrv8311___instance.html#a3e4a13ed3fd82763c20915a5132a5815"/>
+        <topic label="VsenB" href="structdrv8311___instance.html#ab59af97b1db18f3f85d6cf009911e902"/>
+        <topic label="VsenC" href="structdrv8311___instance.html#abd82f9be2b36097ac37cd9a097632e2b"/>
+        <topic label="IsenA" href="structdrv8311___instance.html#a08fd4313a6cf9b592b85c049a931d4d6"/>
+        <topic label="IsenB" href="structdrv8311___instance.html#a459c13050411d3474b7eb7877981a98a"/>
+        <topic label="IsenC" href="structdrv8311___instance.html#aed7eaf132dd092b8fec23bf6883dd420"/>
+        <topic label="faultIn" href="structdrv8311___instance.html#a7ae947b67d33bf95927de0be05e4e0d9"/>
+      </topic>
+      <topic label="drv8311_MAXIMUM_RESET_TIME" href="group__drv8311___m_o_d_u_l_e.html#ga275583bc4c62b11daa3f0e5d2d013582"/>
+      <topic label="drv8311_MAXIMUM_WAKEUP_TIME" href="group__drv8311___m_o_d_u_l_e.html#ga1d8679b9a4f390cae266a83659436796"/>
+      <topic label="drv8311_VOLTAGE_CONV_CONST" href="group__drv8311___m_o_d_u_l_e.html#ga60f2e0a49da9e077484af0aa1a2cf517"/>
+      <topic label="drv8311_CSA_REF_VOLTAGE" href="group__drv8311___m_o_d_u_l_e.html#ga3efdb1427a289bdc08a1b632436f0293"/>
+      <topic label="drv8311_CSAGAIN_0P25VA_IQ" href="group__drv8311___m_o_d_u_l_e.html#gaa311ebe6bae26371d95119730fcb3d4f"/>
+      <topic label="drv8311_CSAGAIN_0P5VA_IQ" href="group__drv8311___m_o_d_u_l_e.html#ga1944b863fab56049a5ed7af88e92e3f8"/>
+      <topic label="drv8311_CSAGAIN_1P0VA_IQ" href="group__drv8311___m_o_d_u_l_e.html#ga8b81c021c77c3ca1adfb35a6003306ef"/>
+      <topic label="drv8311_CSAGAIN_2P0VA_IQ" href="group__drv8311___m_o_d_u_l_e.html#ga7f3b153e6f62cb74d0266aa1eed014ef"/>
+      <topic label="drv8311_CSAGAIN" href="group__drv8311___m_o_d_u_l_e.html#gab0c38d6308301bf61d891c238f0b4a69">
+        <topic label="drv8311_CSAGAIN_0P25VA" href="group__drv8311___m_o_d_u_l_e.html#ggab0c38d6308301bf61d891c238f0b4a69acbfc1ea0200cbd67e70ae422d0fa37d3"/>
+        <topic label="drv8311_CSAGAIN_0P5VA" href="group__drv8311___m_o_d_u_l_e.html#ggab0c38d6308301bf61d891c238f0b4a69ac36792e39583228de41acb1224bf82b3"/>
+        <topic label="drv8311_CSAGAIN_1P0VA" href="group__drv8311___m_o_d_u_l_e.html#ggab0c38d6308301bf61d891c238f0b4a69a09a83a6a3ccec37ee6d1438452acd1e1"/>
+        <topic label="drv8311_CSAGAIN_2P0VA" href="group__drv8311___m_o_d_u_l_e.html#ggab0c38d6308301bf61d891c238f0b4a69a196bbddea36f2b7f14651574d0c11acd"/>
+      </topic>
+      <topic label="drv8311_DRVOFF_PIN_STAT" href="group__drv8311___m_o_d_u_l_e.html#ga4f7faf7a784efd7bb2aaf8fa37f2669c">
+        <topic label="drv8311_DRVOFF_PIN_LOW" href="group__drv8311___m_o_d_u_l_e.html#gga4f7faf7a784efd7bb2aaf8fa37f2669ca9930b2d3eb9bfe41e2264bb6e4a954d0"/>
+        <topic label="drv8311_DRVOFF_PIN_HIGH" href="group__drv8311___m_o_d_u_l_e.html#gga4f7faf7a784efd7bb2aaf8fa37f2669caf46d71e55c5cdb7965da3f92d9b7834c"/>
+      </topic>
+      <topic label="drv8311_DRV_NSLEEP_STAT" href="group__drv8311___m_o_d_u_l_e.html#gab234188b8e2ef7bb8edb3b84bca6acbf">
+        <topic label="drv8311_DRV_NSLEEP_SLEEP" href="group__drv8311___m_o_d_u_l_e.html#ggab234188b8e2ef7bb8edb3b84bca6acbfa10b34c5d5c65d734c2dbc72497c9f3da"/>
+        <topic label="drv8311_DRV_NSLEEP_AWAKE" href="group__drv8311___m_o_d_u_l_e.html#ggab234188b8e2ef7bb8edb3b84bca6acbfaa4876812a5ec708ccde9d674aff58f7f"/>
+      </topic>
+      <topic label="drv8311_setDrvoff" href="group__drv8311___m_o_d_u_l_e.html#gab15ecb3e6dfb0bba028769c83b247b25"/>
+      <topic label="drv8311_setnSleep" href="group__drv8311___m_o_d_u_l_e.html#gac49af3d3bc16dec1944b6e1e507774c9"/>
+      <topic label="drv8311_init" href="group__drv8311___m_o_d_u_l_e.html#ga0e03a707286ea30626c3e94f5faa9b99"/>
+      <topic label="drv8311_enable" href="group__drv8311___m_o_d_u_l_e.html#ga2ca15563c34e3faf3c954c3388d70e32"/>
+      <topic label="drv8311_updateCSAScaleFactor" href="group__drv8311___m_o_d_u_l_e.html#ga2329fc99620e7549ed89e4b2bfd8847a"/>
+      <topic label="drv8311_getVoltage" href="group__drv8311___m_o_d_u_l_e.html#ga4fa828362abab16c53d5d06414f942f5"/>
+      <topic label="drv8311_getCurrent" href="group__drv8311___m_o_d_u_l_e.html#ga7d9b464fcbecdcb2bcd1f5644fccfd44"/>
+      <topic label="drv8311_ADCVRefSel" href="group__drv8311___m_o_d_u_l_e.html#ga075cfe6e7b73f8657757aea518b70e9a"/>
+      <topic label="drv8311_getcsaVref" href="group__drv8311___m_o_d_u_l_e.html#ga977e4158e892a4ccbf9346a60a8a1828"/>
+    </topic>
+    <topic label="Motor Driver/DRV8316" href="group___d_r_v8316___m_o_d_u_l_e.html">
+      <topic label="DRV8316_Instance" href="struct_d_r_v8316___instance.html">
+        <topic label="nsleep" href="struct_d_r_v8316___instance.html#a0e426c1a069ed8c92bf1480d48f56223"/>
+        <topic label="drvoff" href="struct_d_r_v8316___instance.html#a87e1c3bc7b1c3f0ba1c5b50500a04055"/>
+        <topic label="nfault" href="struct_d_r_v8316___instance.html#af4a8bce5d51ada6122a5c03bc8938995"/>
+        <topic label="spiChan" href="struct_d_r_v8316___instance.html#ac9901022cfb74bf3ff9a0b21a4d579e4"/>
+        <topic label="spiCs" href="struct_d_r_v8316___instance.html#a21e4520f947f86372fe2cc8bc81dbc43"/>
+        <topic label="csa_sf" href="struct_d_r_v8316___instance.html#a02b0dd6b879c302127bc312d43a4174e"/>
+        <topic label="csaVRef" href="struct_d_r_v8316___instance.html#a951a57cdb6bb135f8015a5e731126bf0"/>
+        <topic label="Vsen" href="struct_d_r_v8316___instance.html#adfad3d2317f2325f7d8e94907021e02f"/>
+        <topic label="VsenA" href="struct_d_r_v8316___instance.html#af14e9932a1de38752a8a46c996971be7"/>
+        <topic label="VsenB" href="struct_d_r_v8316___instance.html#a6aeceec5ef046816a09bb33c56ae6b58"/>
+        <topic label="VsenC" href="struct_d_r_v8316___instance.html#a94382b22e7f3b7cc66b6b33cc3a20039"/>
+        <topic label="IsenA" href="struct_d_r_v8316___instance.html#a964457cd56db99fe2ae789255832b49f"/>
+        <topic label="IsenB" href="struct_d_r_v8316___instance.html#a23d6b61e987125b01d500fbbf907a784"/>
+        <topic label="IsenC" href="struct_d_r_v8316___instance.html#a687b9891b9d20dfe785129a39483d2fc"/>
+        <topic label="faultIn" href="struct_d_r_v8316___instance.html#a6f36db385b3e62a643dc017d03a16a7a"/>
+      </topic>
+      <topic label="DRV8316_ADDR_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga10362cb2e5cf0702c76261c03f3bd040"/>
+      <topic label="DRV8316_DATA_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gab0c8f4100dfa46f97e5dcd1fedf16e3d"/>
+      <topic label="DRV8316_DATA_TRANSMIT_TO_READ" href="group___d_r_v8316___m_o_d_u_l_e.html#gabd58b4d653c1b398edc76c753e20d49e"/>
+      <topic label="DRV8316_INITIAL_PARITY" href="group___d_r_v8316___m_o_d_u_l_e.html#gaf37bf78584fb3a4b025b0d5c9eb8c209"/>
+      <topic label="DRV8316_PARITY_CHECK" href="group___d_r_v8316___m_o_d_u_l_e.html#gab82c22de716bfd1e09a77bed396b7dc0"/>
+      <topic label="DRV8316_RIGHT_SHIFT_REGISTER" href="group___d_r_v8316___m_o_d_u_l_e.html#gabb73d70a3ae88a1b080cb6f06c0e2cab"/>
+      <topic label="DRV8316_PARITY_BIT_POSITION" href="group___d_r_v8316___m_o_d_u_l_e.html#ga2c6ceac4066f6b2b23c3822158a49395"/>
+      <topic label="DRV8316_ADDR_BIT_POSITION" href="group___d_r_v8316___m_o_d_u_l_e.html#ga5ebaa176346f89611af868a201a61e22"/>
+      <topic label="DRV8316_SPICMD_BIT_POSITION" href="group___d_r_v8316___m_o_d_u_l_e.html#gad1c44faf3071439bca6c1a2b066b024a"/>
+      <topic label="DRV8316_CLEAR_BIT_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gaecbf9b7c216c13ff141f40957e5c492c"/>
+      <topic label="DRV8316_MAXIMUM_RESET_TIME" href="group___d_r_v8316___m_o_d_u_l_e.html#ga2addf4934f9e6c9ba83e7e09c84778c8"/>
+      <topic label="DRV8316_MAXIMUM_WAKEUP_TIME" href="group___d_r_v8316___m_o_d_u_l_e.html#ga45c8c13e87729fb9b197618955557e42"/>
+      <topic label="DRV8316_VOLTAGE_CONV_CONST" href="group___d_r_v8316___m_o_d_u_l_e.html#gae13062ac7e4e2b84c5877b2931749456"/>
+      <topic label="DRV8316_CSA_REF_VOLTAGE" href="group___d_r_v8316___m_o_d_u_l_e.html#ga39fd6a10d5fd5d74359983b27b746b8d"/>
+      <topic label="DRV8316_CSAGAIN_0P15VA_IQ" href="group___d_r_v8316___m_o_d_u_l_e.html#gaeb86690f42d665e7deb1741c4e4926ad"/>
+      <topic label="DRV8316_CSAGAIN_0P3VA_IQ" href="group___d_r_v8316___m_o_d_u_l_e.html#gabb6e61b592c7371b3cf793c47f89b687"/>
+      <topic label="DRV8316_CSAGAIN_0P6VA_IQ" href="group___d_r_v8316___m_o_d_u_l_e.html#gaa4fa270aa0130eb18de09b323028ae9b"/>
+      <topic label="DRV8316_CSAGAIN_1P2VA_IQ" href="group___d_r_v8316___m_o_d_u_l_e.html#gab545f67bc4706b27555a25777ca95b54"/>
+      <topic label="DRV8316_CTRL01_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gaefef4a3bbe24c5c9c3eba156bc6ad601">
+        <topic label="DRV8316_CTRL01_MASK_REG_LOCK" href="group___d_r_v8316___m_o_d_u_l_e.html#ggaefef4a3bbe24c5c9c3eba156bc6ad601a5bedf476594819723e0f04e589b2c32f"/>
+      </topic>
+      <topic label="DRV8316_CTRL02_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga236bc79f315609bb4b506149f3442547">
+        <topic label="DRV8316_CTRL02_MASK_CLR_FLT" href="group___d_r_v8316___m_o_d_u_l_e.html#gga236bc79f315609bb4b506149f3442547a82edabc1c47aeab8567a06ce65e832e4"/>
+        <topic label="DRV8316_CTRL02_MASK_PWM_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga236bc79f315609bb4b506149f3442547a20d8f9af08d5c0a977e6be88a48d1041"/>
+        <topic label="DRV8316_CTRL02_MASK_SLEW" href="group___d_r_v8316___m_o_d_u_l_e.html#gga236bc79f315609bb4b506149f3442547aa8d08472a474df7cf7d4f5c7ddfd5686"/>
+        <topic label="DRV8316_CTRL02_MASK_SDO_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga236bc79f315609bb4b506149f3442547aed38e60a4f1d072b1f0309ca3a9d7d64"/>
+      </topic>
+      <topic label="DRV8316_CTRL03_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gae990ec2e2348345367aad7a8284c7595">
+        <topic label="DRV8316_CTRL03_MASK_OTW_REP" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae990ec2e2348345367aad7a8284c7595a543c8b2ce2ddee4a8d9d67b420f5cd31"/>
+        <topic label="DRV8316_CTRL03_MASK_OVP_EN" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae990ec2e2348345367aad7a8284c7595af5b567ff700b0b31015682589bc9e111"/>
+        <topic label="DRV8316_CTRL03_MASK_OVP_SEL" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae990ec2e2348345367aad7a8284c7595a7fb779d273e3ad6885af23f366629014"/>
+        <topic label="DRV8316_CTRL03_MASK_PWM_100_DUTY_SEL" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae990ec2e2348345367aad7a8284c7595a751a0401c90281f03f35ba916bb806ad"/>
+      </topic>
+      <topic label="DRV8316_CTRL04_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gac767e1d5b7c904687ec80c53745011dc">
+        <topic label="DRV8316_CTRL04_MASK_OCP_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dcaf54f0edf05fee76f63b10b1be4dd279a"/>
+        <topic label="DRV8316_CTRL04_MASK_OCP_LVL" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dcad37ab050cf0bf1f3d0214d2f2eeed013"/>
+        <topic label="DRV8316_CTRL04_MASK_OCP_RETRY" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dcabd973eabfcf115fdb4b2917d3bf5cd6b"/>
+        <topic label="DRV8316_CTRL04_MASK_OCP_DEG" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dca4c7923ac7ae73128ac84fa77d3ea25c4"/>
+        <topic label="DRV8316_CTRL04_MASK_OCP_CBC" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dca41b80fe8d61ec4af7ad298364009e2e7"/>
+        <topic label="DRV8316_CTRL04_MASK_DRV_OFF" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dcacec0a0e920b737d4d2f16ec8cd118c6f"/>
+      </topic>
+      <topic label="DRV8316_CTRL05_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga4c30afd03e4445f9a227749b85ffd051">
+        <topic label="DRV8316_CTRL05_MASK_CSA_GAIN" href="group___d_r_v8316___m_o_d_u_l_e.html#gga4c30afd03e4445f9a227749b85ffd051a4fa3951ec9cfcfeb04e54c89e57e1fdf"/>
+        <topic label="DRV8316_CTRL05_MASK_EN_ASR" href="group___d_r_v8316___m_o_d_u_l_e.html#gga4c30afd03e4445f9a227749b85ffd051ab41ca6fd40d22a750fd51a3f4202dfe0"/>
+        <topic label="DRV8316_CTRL05_MASK_EN_AAR" href="group___d_r_v8316___m_o_d_u_l_e.html#gga4c30afd03e4445f9a227749b85ffd051a06bf75f0847ff560625d3a2d4779f1d0"/>
+        <topic label="DRV8316_CTRL05_MASK_ILIM_RECIR" href="group___d_r_v8316___m_o_d_u_l_e.html#gga4c30afd03e4445f9a227749b85ffd051a8999ec1cf83e0b637d9216c29477493d"/>
+      </topic>
+      <topic label="DRV8316_CTRL06_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga168ccc7e57c1c205d8ccb189a607942d">
+        <topic label="DRV8316_CTRL06_MASK_BUCK_DIS" href="group___d_r_v8316___m_o_d_u_l_e.html#gga168ccc7e57c1c205d8ccb189a607942da21555f731ac9961eeda928b1711467e6"/>
+        <topic label="DRV8316_CTRL06_MASK_BUCK_SEL" href="group___d_r_v8316___m_o_d_u_l_e.html#gga168ccc7e57c1c205d8ccb189a607942da22ead9db8cd46f82585d2ffce78cfc0f"/>
+        <topic label="DRV8316_CTRL06_MASK_BUCK_CL" href="group___d_r_v8316___m_o_d_u_l_e.html#gga168ccc7e57c1c205d8ccb189a607942daccff0b5dea0797e933767a1a2e6c8833"/>
+        <topic label="DRV8316_CTRL06_MASK_BUCK_PS_DIS" href="group___d_r_v8316___m_o_d_u_l_e.html#gga168ccc7e57c1c205d8ccb189a607942da0c75f470d4a13a6799b9efba909f7b48"/>
+      </topic>
+      <topic label="DRV8316_CTRL10_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga226da4a4257d085f0ee2d049c806cee3">
+        <topic label="DRV8316_CTRL10_MASK_DLY_TARGET" href="group___d_r_v8316___m_o_d_u_l_e.html#gga226da4a4257d085f0ee2d049c806cee3a530218c89fcce6d31ff88d6804610e32"/>
+        <topic label="DRV8316_CTRL10_MASK_DLYCMP_EN" href="group___d_r_v8316___m_o_d_u_l_e.html#gga226da4a4257d085f0ee2d049c806cee3aaf5f03f9274e28367ee0629281889b11"/>
+      </topic>
+      <topic label="DRV8316_CTRL01" href="group___d_r_v8316___m_o_d_u_l_e.html#ga3a656684484bc76fac51066ea88bca03">
+        <topic label="DRV8316_CTRL01_REG_UNLOCK" href="group___d_r_v8316___m_o_d_u_l_e.html#gga3a656684484bc76fac51066ea88bca03a6d96193a6a9468b1f9a73d82922b7c79"/>
+        <topic label="DRV8316_CTRL01_REG_LOCK" href="group___d_r_v8316___m_o_d_u_l_e.html#gga3a656684484bc76fac51066ea88bca03a037eed89e2a69b72b55e720a9807b710"/>
+      </topic>
+      <topic label="DRV8316_CTRL02" href="group___d_r_v8316___m_o_d_u_l_e.html#ga2d7f0333d71b0cdf9e26ca0ebcb09941">
+        <topic label="DRV8316_CTRL02_CLR_FLT" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941ae86f1b9f111c62b2cd44aa45e1b0a417"/>
+        <topic label="DRV8316_CTRL02_PWMMODE_6x" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a8bbb82567df6378dae413c864a851bdb"/>
+        <topic label="DRV8316_CTRL02_PWMMODE_6x_CL" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941ae78c25bcf51d2b2653b527f59d8c3b91"/>
+        <topic label="DRV8316_CTRL02_PWMMODE_3x" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a7f6278862d05952c6eebd1ca295c506e"/>
+        <topic label="DRV8316_CTRL02_PWMMODE_3x_CL" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941aa3b7890a0f93a0c7277aaad65a5a93e1"/>
+        <topic label="DRV8316_CTRL02_SLEWRATE_25" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a3542d60b4ca753e5625be7c168e6ea89"/>
+        <topic label="DRV8316_CTRL02_SLEWRATE_50" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a70e5d209766fa738bf2cfdec7a36f044"/>
+        <topic label="DRV8316_CTRL02_SLEWRATE_125" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941aa38b5c7c990f705d683c91ea3c83f7ba"/>
+        <topic label="DRV8316_CTRL02_SLEWRATE_200" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941ae42114d9fab50e3cca395fb10b8e3f3d"/>
+        <topic label="DRV8316_CTRL02_SDO_OPEN_DRAIN_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941adffe9febe1e532e192c19c10bc517a3a"/>
+        <topic label="DRV8316_CTRL02_SDO_PUSH_PULL_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a6e1d444154bef779304306ef72d66b28"/>
+      </topic>
+      <topic label="DRV8316_CTRL03" href="group___d_r_v8316___m_o_d_u_l_e.html#ga373e142d377cd3ce5fbd4061cc646e62">
+        <topic label="DRV8316_CTRL03_OTW_REP_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62aa4a3eb8814ffd1e3528a9f1b5f2c7234"/>
+        <topic label="DRV8316_CTRL03_OTW_REP_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a9a171bfc410697791b93215bc5e3f5e6"/>
+        <topic label="DRV8316_CTRL03_OVP_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62ab80d7a906af5810a05574eb910fc2875"/>
+        <topic label="DRV8316_CTRL03_OVP_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a1c2ff853013ba7cca0f46e4bf90c9e07"/>
+        <topic label="DRV8316_CTRL03_OVP_SEL_34V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a426eb02e15c19bf910d9fe18ea92b44c"/>
+        <topic label="DRV8316_CTRL03_OVP_SEL_22V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62ac6445462aea36eb8455f051553e83a4a"/>
+        <topic label="DRV8316_CTRL03_PWM_20KHZ" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a076db41517813fab33328f9648826072"/>
+        <topic label="DRV8316_CTRL03_PWM_40KHZ" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a946d89d1e334dfd8f5d828d9dc3692eb"/>
+      </topic>
+      <topic label="DRV8316_CTRL04" href="group___d_r_v8316___m_o_d_u_l_e.html#ga6c4b1b82dd221f9969b402aa15d18e5e">
+        <topic label="DRV8316_CTRL04_OCP_LATCHED" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eaec74732d367c5b79828b8e193b18a7c3"/>
+        <topic label="DRV8316_CTRL04_OCP_AUTO_RETRY" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eaffd8072b5f8584db09b094d0f5e45fa9"/>
+        <topic label="DRV8316_CTRL04_OCP_REPORT" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea3b40a67d1af11354be5b4ae9768de876"/>
+        <topic label="DRV8316_CTRL04_OCP_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea3bb07ea372ed97c30c6c854608e80eb2"/>
+        <topic label="DRV8316_CTRL04_OCP_LVL_16A" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea4754e126a14401212493b14e82673f4a"/>
+        <topic label="DRV8316_CTRL04_OCP_LVL_24A" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea3212dafe55ae10a8081e73dadded4990"/>
+        <topic label="DRV8316_CTRL04_OCP_RETRY_5MS" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea7c64cf59688d28f59c5656b9a5f39e1f"/>
+        <topic label="DRV8316_CTRL04_OCP_RETRY_500MS" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eaa164625570f970af5c0e4d45427ce2f1"/>
+        <topic label="DRV8316_CTRL04_OCP_DEG_0P2US" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ead23e77f2ffdb4afbcdadaee90afe6c31"/>
+        <topic label="DRV8316_CTRL04_OCP_DEG_0P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea8685afd2601268c1487a8a9983759f24"/>
+        <topic label="DRV8316_CTRL04_OCP_DEG_1P25US" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eab55ea8a889b769106260f550c92423a8"/>
+        <topic label="DRV8316_CTRL04_OCP_DEG_1P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea0b25800685a4183bca964bdcab657ca5"/>
+        <topic label="DRV8316_CTRL04_OCP_CBC_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea3aa0ac52d482d51557c7cf719bf7df10"/>
+        <topic label="DRV8316_CTRL04_OCP_CBC_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eaecca47230c4cefcf873c7e15b6137307"/>
+        <topic label="DRV8316_CTRL04_DRV_OFF_NO_ACTION" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eadef2cf3fc715bf4cd65a63437bc0ee1b"/>
+        <topic label="DRV8316_CTRL04_DRV_OFF_LOW_POWER_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea4a5541ca25f70cdf5d5e31248728321a"/>
+      </topic>
+      <topic label="DRV8316_CTRL05" href="group___d_r_v8316___m_o_d_u_l_e.html#gade620b1bf2bebc6eee73e7cf3668ef8b">
+        <topic label="DRV8316_CTRL05_CSA_GAIN_0P15VA" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba30ff6f4d898ef4a9087a4cd03c66978c"/>
+        <topic label="DRV8316_CTRL05_CSA_GAIN_0P3VA" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8bac11b5b02358e4930e8b0c6ae41ede4d6"/>
+        <topic label="DRV8316_CTRL05_CSA_GAIN_0P6VA" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba0c1ff889bde12819ed52b78d23bcfa8d"/>
+        <topic label="DRV8316_CTRL05_CSA_GAIN_1P2VA" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba5ed394a962ea70c2a23d783242df5f07"/>
+        <topic label="DRV8316_CTRL05_EN_ASR_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba44b061d219716242d9ddc8a9172ee63f"/>
+        <topic label="DRV8316_CTRL05_EN_ASR_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba9d5b8669f27a69dce0bf6b054505b534"/>
+        <topic label="DRV8316_CTRL05_EN_AAR_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba1d88475b5d701fa3b54c020625769ac9"/>
+        <topic label="DRV8316_CTRL05_EN_AAR_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba950bb0c2ad963689a9128de2127fb808"/>
+        <topic label="DRV8316_CTRL05_ILIM_RECIR_BRAKE_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba7b53e7751bdde2c895d40641e8ba6e9c"/>
+        <topic label="DRV8316_CTRL05_ILIM_RECIR_COAST_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8bacaa20854073d572c20e58ef447540474"/>
+      </topic>
+      <topic label="DRV8316_CTRL06" href="group___d_r_v8316___m_o_d_u_l_e.html#ga2f68a73344295e1d72191178c671df3d">
+        <topic label="DRV8316_CTRL06_BUCK_DIS_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3dad1067cc5344f1eb500e5ecc7d9422263"/>
+        <topic label="DRV8316_CTRL06_BUCK_DIS_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3dae5986a835a8356cabcf7811d7a18fd7a"/>
+        <topic label="DRV8316_CTRL06_BUCK_SEL_3P3V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da5c317f3736548e4d3b6ddf7e5fda92d2"/>
+        <topic label="DRV8316_CTRL06_BUCK_SEL_5P0V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da3dd28c426dcb6a592566bc21b6ab8f25"/>
+        <topic label="DRV8316_CTRL06_BUCK_SEL_4P0V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da7878cb3a01c61fdc26884862efe389ed"/>
+        <topic label="DRV8316_CTRL06_BUCK_SEL_5P7V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da77a4cf36eb4803eb1038c7ec1d734220"/>
+        <topic label="DRV8316_CTRL06_BUCK_CL_600MA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3dac45106bc2a5305a9d0285c7b529e0351"/>
+        <topic label="DRV8316_CTRL06_BUCK_CL_150MA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3daf0709547a8a9db8616f237b43e1a7f16"/>
+        <topic label="DRV8316_CTRL06_BUCK_PS_DIS_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da59450402be34924de0e135df2bfd7c51"/>
+        <topic label="DRV8316_CTRL06_BUCK_PS_DIS_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da9b437c1ec8f5c1d5b56803536faa35c6"/>
+      </topic>
+      <topic label="DRV8316_CTRL10" href="group___d_r_v8316___m_o_d_u_l_e.html#gac89e926fc153d52e2dc003cfe7673cb0">
+        <topic label="DRV8316_CTRL10_DLY_TARGET_0P0US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a6fd59c4fa06b45f9cfbfdf66d1e9481f"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_0P4US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a4715b4458ec4f0a72c3f0d745b4dab1f"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_0P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0ab616e1e430d67c4cdeed6f11d9651713"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_0P8US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a4efda1704723e381015ee2453352a312"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_1P0US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a4d9aa7c102725631ebaf8ae9aba3bfa3"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_1P2US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a65fbc7659ef3e8399950dca69e311db2"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_1P4US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0abb2923e9104cb6f82dcabb8f031c06de"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_1P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a0c502dc7b0bd33f8db7c67787f23ddde"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_1P8US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a35504bd73bad1815c6384cc563d8d8bc"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_2P0US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0adb4d1bd474fb78d832d26d0f6fd1c9d1"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_2P2US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0aefeb09f3a7ad315894fa4189fb493c40"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_2P4US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a7e43e994d8c3cd407105c609b4eb816a"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_2P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0acd0ac1f1abc1a713bd123fa786852eb2"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_2P8US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0ac8629fd8b907873355d00faa555b6e32"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_3P0US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a33632796265035ce2440c10897fd34ae"/>
+        <topic label="DRV8316_CTRL10_DLY_TARGET_3P2US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a6299a01f03073168903ce61e77a2fa00"/>
+        <topic label="DRV8316_CTRL10_DLYCMP_EN_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0af7f073f22adaa1e202bd191eef686b1e"/>
+        <topic label="DRV8316_CTRL10_DLYCMP_EN_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0ac0432fdb54a42fc678d3e1bd4e2c32b2"/>
+      </topic>
+      <topic label="DRV8316_SPI" href="group___d_r_v8316___m_o_d_u_l_e.html#ga62e68b771157b7178a97c8d66440bc8f">
+        <topic label="DRV8316_SPI_READ" href="group___d_r_v8316___m_o_d_u_l_e.html#gga62e68b771157b7178a97c8d66440bc8fae7c880c6b6248fc2649add89640fa58f"/>
+        <topic label="DRV8316_SPI_WRITE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga62e68b771157b7178a97c8d66440bc8fa8ea658102b7eb29c34f3a8cd856e9c31"/>
+      </topic>
+      <topic label="DRV8316_ADDR" href="group___d_r_v8316___m_o_d_u_l_e.html#ga1e0bc23e54da87246c7417a258078338">
+        <topic label="DRV8316_ADDR_STAT_IC" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a3abf5bc4996f338834cc3b16df20bded"/>
+        <topic label="DRV8316_ADDR_STAT_1" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338ab5725ae8a23ab1307a4c12931d85eb4b"/>
+        <topic label="DRV8316_ADDR_STAT_2" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a846b1f1fd1a862fcbfb2257393b9a960"/>
+        <topic label="DRV8316_ADDR_CTRL_1" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a9f509aa23a4466a9afab5f3710d42973"/>
+        <topic label="DRV8316_ADDR_CTRL_2" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338ac0a427aab69bd1381f7c23983628eccd"/>
+        <topic label="DRV8316_ADDR_CTRL_3" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a9f4d6d16726c65c600a2e2467cfe60ec"/>
+        <topic label="DRV8316_ADDR_CTRL_4" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a14ed7a9b6c143e125c32684ed82239c6"/>
+        <topic label="DRV8316_ADDR_CTRL_5" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338ad4db8914b593c4aa3d7933f0bd7b8af7"/>
+        <topic label="DRV8316_ADDR_CTRL_6" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a9db143625c7874db8198bc31437dbec8"/>
+        <topic label="DRV8316_ADDR_CTRL_10" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a078bd59d57207cf3c41293d241c9aaa9"/>
+      </topic>
+      <topic label="DRV8316_CSAGAIN" href="group___d_r_v8316___m_o_d_u_l_e.html#ga09b98410826de8b26b190fd10a63e712">
+        <topic label="DRV8316_CSAGAIN_0P15VA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga09b98410826de8b26b190fd10a63e712a449c718508adb9bf779e8db0962ed534"/>
+        <topic label="DRV8316_CSAGAIN_0P3VA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga09b98410826de8b26b190fd10a63e712a070e78e24b940320a23ac386fd4f746d"/>
+        <topic label="DRV8316_CSAGAIN_0P6VA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga09b98410826de8b26b190fd10a63e712a4f8cbfeac2fefc93125977e1c8506ac5"/>
+        <topic label="DRV8316_CSAGAIN_1P2VA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga09b98410826de8b26b190fd10a63e712ad046dfc9a2d270df270d2f9b4815a6d6"/>
+      </topic>
+      <topic label="DRV8316_DRVOFF_PIN_STAT" href="group___d_r_v8316___m_o_d_u_l_e.html#ga1014d79277c61d8e2ade7232f6c697f9">
+        <topic label="DRV8316_DRVOFF_PIN_LOW" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1014d79277c61d8e2ade7232f6c697f9aec0e1b9f44e86471ae5d6c82795897c6"/>
+        <topic label="DRV8316_DRVOFF_PIN_HIGH" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1014d79277c61d8e2ade7232f6c697f9ae6e573b8a54f2f343f4a6ca674804630"/>
+      </topic>
+      <topic label="DRV8316_DRV_NSLEEP_STAT" href="group___d_r_v8316___m_o_d_u_l_e.html#gae0e44c1b2c786f1f1bc896c0ee55bb50">
+        <topic label="DRV8316_DRV_NSLEEP_SLEEP" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae0e44c1b2c786f1f1bc896c0ee55bb50a402a776b8595d7e17151a2b7f982e5fc"/>
+        <topic label="DRV8316_DRV_NSLEEP_AWAKE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae0e44c1b2c786f1f1bc896c0ee55bb50a1a606148120fd0c68ba43cb6f69c0066"/>
+      </topic>
+      <topic label="DRV8316_setDrvoff" href="group___d_r_v8316___m_o_d_u_l_e.html#gab765a4c9b17c09a51709c673d22193b9"/>
+      <topic label="DRV8316_setnSleep" href="group___d_r_v8316___m_o_d_u_l_e.html#ga52960b60852207a52c414213224c8aeb"/>
+      <topic label="DRV8316_init" href="group___d_r_v8316___m_o_d_u_l_e.html#ga14a04555e81102acd3475dd75cd26b0d"/>
+      <topic label="DRV8316_SPIWrite" href="group___d_r_v8316___m_o_d_u_l_e.html#gae7901f0b0cf5ab473676430b5dbc3f39"/>
+      <topic label="DRV8316_SPIRead" href="group___d_r_v8316___m_o_d_u_l_e.html#gaf4a2656e1035270fd575e42b4f070bc1"/>
+      <topic label="DRV8316_enable" href="group___d_r_v8316___m_o_d_u_l_e.html#ga52b4a6187c3b2dbc9fe7729019115695"/>
+      <topic label="DRV8316_updateCTRLRegs" href="group___d_r_v8316___m_o_d_u_l_e.html#gaf1bccf8d2622f9c45d921848a70bb9d5"/>
+      <topic label="DRV8316_updateCSAScaleFactor" href="group___d_r_v8316___m_o_d_u_l_e.html#ga168e238efaebe9f00394900396356911"/>
+      <topic label="DRV8316_getVoltage" href="group___d_r_v8316___m_o_d_u_l_e.html#ga027c3ae3f3e906e09b309f040e84efd9"/>
+      <topic label="DRV8316_getCurrent" href="group___d_r_v8316___m_o_d_u_l_e.html#ga25253fa680b2137f1259bc3d75a016da"/>
+      <topic label="DRV8316_ADCVRefSel" href="group___d_r_v8316___m_o_d_u_l_e.html#ga51486c113a3b0da7f36aa7551e5c6566"/>
+      <topic label="DRV8316_updateSPICsagain" href="group___d_r_v8316___m_o_d_u_l_e.html#ga9882a7ad7085b2c380e5102578a6a9aa"/>
+      <topic label="DRV8316_unlockRegs" href="group___d_r_v8316___m_o_d_u_l_e.html#ga6f4f4ad3b1f575e753a0882738c5c65e"/>
+      <topic label="DRV8316_clearfaultBit" href="group___d_r_v8316___m_o_d_u_l_e.html#ga99b5c341ef54d632939e5b2726ca0b2e"/>
+      <topic label="DRV8316_getcsaVref" href="group___d_r_v8316___m_o_d_u_l_e.html#ga9bb83381f6514985feef7f4b1c4c7215"/>
+    </topic>
+    <topic label="Motor Driver/drv8317" href="group__drv8317___m_o_d_u_l_e.html">
+      <topic label="drv8317_Instance" href="structdrv8317___instance.html">
+        <topic label="nsleep" href="structdrv8317___instance.html#a6c07895ef5b05f1f2c6baa828af791ec"/>
+        <topic label="drvoff" href="structdrv8317___instance.html#a0dbcd84b81d664a76b85b5a30f160551"/>
+        <topic label="nfault" href="structdrv8317___instance.html#a402bda83cc48e5be955f6576e1e4159c"/>
+        <topic label="spiChan" href="structdrv8317___instance.html#a89608fff5efa7e66d4ee74e698f7565d"/>
+        <topic label="spiCs" href="structdrv8317___instance.html#a3b3b165495dccd6332d6f2683b9e2d30"/>
+        <topic label="csa_sf" href="structdrv8317___instance.html#abf727b3ff2674bae3a0eb05406fa5bde"/>
+        <topic label="csaVRef" href="structdrv8317___instance.html#afb539f9103afb43f80069e43541ba4f7"/>
+        <topic label="Vsen" href="structdrv8317___instance.html#aadab7dc1da5deaa90a5439e8d2dd897f"/>
+        <topic label="VsenA" href="structdrv8317___instance.html#a3bb4b21220fd9acdd4a7e653322c46a1"/>
+        <topic label="VsenB" href="structdrv8317___instance.html#a7c1b6abf101602c74c8cc08fefbf72a0"/>
+        <topic label="VsenC" href="structdrv8317___instance.html#a86892a62b1450bcb14573cc87863b664"/>
+        <topic label="IsenA" href="structdrv8317___instance.html#a214d8f84b4b62d2fdd1ddd1b17bafb8f"/>
+        <topic label="IsenB" href="structdrv8317___instance.html#ab3e21f4a5d9f51f401316cd12f177a5b"/>
+        <topic label="IsenC" href="structdrv8317___instance.html#ab6ba09322b342255031f4e57d52909fe"/>
+        <topic label="faultIn" href="structdrv8317___instance.html#a0468b7667f4fa8077f382bcc3f951ba0"/>
+      </topic>
+      <topic label="drv8317_MAXIMUM_RESET_TIME" href="group__drv8317___m_o_d_u_l_e.html#ga6b3dea52ed6584c56ea1b19cb01c2f84"/>
+      <topic label="drv8317_MAXIMUM_WAKEUP_TIME" href="group__drv8317___m_o_d_u_l_e.html#ga151e9cbbb1dcd5f6b1df40026614eab2"/>
+      <topic label="drv8317_VOLTAGE_CONV_CONST" href="group__drv8317___m_o_d_u_l_e.html#ga200914aec0d5bd8e34f89f1e82bac8e1"/>
+      <topic label="drv8317_CSA_REF_VOLTAGE" href="group__drv8317___m_o_d_u_l_e.html#ga2b985b383ef193c6c66eb55d5da7af11"/>
+      <topic label="drv8317_CSAGAIN_0P25VA_IQ" href="group__drv8317___m_o_d_u_l_e.html#gad231501952ee8f4d0b979b2995a754c2"/>
+      <topic label="drv8317_CSAGAIN_0P5VA_IQ" href="group__drv8317___m_o_d_u_l_e.html#gac432d92caef16289591485ed43736ac5"/>
+      <topic label="drv8317_CSAGAIN_1P0VA_IQ" href="group__drv8317___m_o_d_u_l_e.html#ga9116e8fa21c7eb65513961eeab5b22e5"/>
+      <topic label="drv8317_CSAGAIN_2P0VA_IQ" href="group__drv8317___m_o_d_u_l_e.html#gabac6bf2e92872e3464965e622a000b49"/>
+      <topic label="drv8317_CSAGAIN" href="group__drv8317___m_o_d_u_l_e.html#ga913b071e0c52d43bb404890dc4245153">
+        <topic label="drv8317_CSAGAIN_0P25VA" href="group__drv8317___m_o_d_u_l_e.html#gga913b071e0c52d43bb404890dc4245153afb184ec6d03d9c6cf2e43c1db657e6ae"/>
+        <topic label="drv8317_CSAGAIN_0P5VA" href="group__drv8317___m_o_d_u_l_e.html#gga913b071e0c52d43bb404890dc4245153a0cf4cc179a0fd37c2567b945d0bfbcd3"/>
+        <topic label="drv8317_CSAGAIN_1P0VA" href="group__drv8317___m_o_d_u_l_e.html#gga913b071e0c52d43bb404890dc4245153aa1d1a8f20afbbd8d92f6988443b22384"/>
+        <topic label="drv8317_CSAGAIN_2P0VA" href="group__drv8317___m_o_d_u_l_e.html#gga913b071e0c52d43bb404890dc4245153a9b0b5d1e210d26cd034bd327bd3daa47"/>
+      </topic>
+      <topic label="drv8317_DRVOFF_PIN_STAT" href="group__drv8317___m_o_d_u_l_e.html#gaeef24f14ea846879969018c34dacaae8">
+        <topic label="drv8317_DRVOFF_PIN_LOW" href="group__drv8317___m_o_d_u_l_e.html#ggaeef24f14ea846879969018c34dacaae8a7ae62db433d259e00c48a62b3c1f3490"/>
+        <topic label="drv8317_DRVOFF_PIN_HIGH" href="group__drv8317___m_o_d_u_l_e.html#ggaeef24f14ea846879969018c34dacaae8aa2d27c966553e17b57cf9c766d3155e2"/>
+      </topic>
+      <topic label="drv8317_DRV_NSLEEP_STAT" href="group__drv8317___m_o_d_u_l_e.html#ga94d81995cf8b410c524bcba765ed6447">
+        <topic label="drv8317_DRV_NSLEEP_SLEEP" href="group__drv8317___m_o_d_u_l_e.html#gga94d81995cf8b410c524bcba765ed6447a24f32b292948237aa9c53159b00f63ea"/>
+        <topic label="drv8317_DRV_NSLEEP_AWAKE" href="group__drv8317___m_o_d_u_l_e.html#gga94d81995cf8b410c524bcba765ed6447aaa5f476132af00a87f28ef50f8bc9664"/>
+      </topic>
+      <topic label="drv8317_setDrvoff" href="group__drv8317___m_o_d_u_l_e.html#gae51e2e2927bee728c837cfa12a85bd19"/>
+      <topic label="drv8317_setnSleep" href="group__drv8317___m_o_d_u_l_e.html#gaf2ff3f931b315ee206df02ca9760c5aa"/>
+      <topic label="drv8317_init" href="group__drv8317___m_o_d_u_l_e.html#ga37d0d002bc44508e73d6b2af27b0e87c"/>
+      <topic label="drv8317_enable" href="group__drv8317___m_o_d_u_l_e.html#gaa41d8e61e830080af986520411525f24"/>
+      <topic label="drv8317_updateCSAScaleFactor" href="group__drv8317___m_o_d_u_l_e.html#ga06d868c14c310c4e1485af393d2af9cb"/>
+      <topic label="drv8317_getVoltage" href="group__drv8317___m_o_d_u_l_e.html#gaae9cd35391998020b04ac85884c474b9"/>
+      <topic label="drv8317_getCurrent" href="group__drv8317___m_o_d_u_l_e.html#ga4cc7cc6d542be95383b830c5913d299c"/>
+      <topic label="drv8317_ADCVRefSel" href="group__drv8317___m_o_d_u_l_e.html#ga97bf91572c7e2e464a26408b17c975d8"/>
+      <topic label="drv8317_getcsaVref" href="group__drv8317___m_o_d_u_l_e.html#ga788ce7a8e131b41ef5f42b56b7e9e261"/>
+    </topic>
+    <topic label="Motor Driver/DRV8323" href="group___d_r_v8323___m_o_d_u_l_e.html">
+      <topic label="DRV8323_Instance" href="struct_d_r_v8323___instance.html">
+        <topic label="nsleep" href="struct_d_r_v8323___instance.html#ade9aefcb61d636eff0b266ebb7697f91"/>
+        <topic label="led" href="struct_d_r_v8323___instance.html#a4d8263d8c64eb4fa98172e7e4db07ea6"/>
+        <topic label="nfault" href="struct_d_r_v8323___instance.html#a7b7f96ee7e5e6516001bd058643293c9"/>
+        <topic label="csa_sf" href="struct_d_r_v8323___instance.html#a6db7868ea81ca9f7932e37377a738b7c"/>
+        <topic label="csaVRef" href="struct_d_r_v8323___instance.html#a4c8e5276bd175b58a2f5728c46822092"/>
+        <topic label="Vsen" href="struct_d_r_v8323___instance.html#a123b6d17ab288f2e685613620cd45389"/>
+        <topic label="VsenA" href="struct_d_r_v8323___instance.html#aa8f2983dc4b7f3e2b612f065c2330847"/>
+        <topic label="VsenB" href="struct_d_r_v8323___instance.html#a5b742f9508691d8e7bdb61c1a7b4c99c"/>
+        <topic label="VsenC" href="struct_d_r_v8323___instance.html#a12474deeb3410c0dd7543a9ea61e7cca"/>
+        <topic label="IsenA" href="struct_d_r_v8323___instance.html#a79410c7aa0633988527651b8fdc687b5"/>
+        <topic label="IsenB" href="struct_d_r_v8323___instance.html#a68ba7957e101482598caec4316d8df7e"/>
+        <topic label="IsenC" href="struct_d_r_v8323___instance.html#a3eb07b26eab78ac9ab8e54441f348b7f"/>
+        <topic label="faultIn" href="struct_d_r_v8323___instance.html#a7b5fb2118e03aed3730c3a95d6047c9b"/>
+      </topic>
+      <topic label="DRV8323_MAXIMUM_WAKEUP_TIME" href="group___d_r_v8323___m_o_d_u_l_e.html#gab92be3f921b7b4b2b81e91c9da2b69ea"/>
+      <topic label="DRV8323_VOLTAGE_CONV_CONST" href="group___d_r_v8323___m_o_d_u_l_e.html#ga1b839cd1ad65dcc9b0fd0e7ebd36c7b1"/>
+      <topic label="DRV8323_CSA_REF_VOLTAGE" href="group___d_r_v8323___m_o_d_u_l_e.html#ga596d12144e9e00c9a6b845149f985001"/>
+      <topic label="DRV8323_CSAGAIN_5_IQ" href="group___d_r_v8323___m_o_d_u_l_e.html#ga7d460ea7ceedf76aa109ff63f6902c9a"/>
+      <topic label="DRV8323_CSAGAIN_10_IQ" href="group___d_r_v8323___m_o_d_u_l_e.html#gaa1ec2f33911c5052f9b943c3a32f8bd4"/>
+      <topic label="DRV8323_CSAGAIN_20_IQ" href="group___d_r_v8323___m_o_d_u_l_e.html#ga81e7e3d6d3994d95277598f3f3b07d82"/>
+      <topic label="DRV8323_CSAGAIN_40_IQ" href="group___d_r_v8323___m_o_d_u_l_e.html#ga2a92486f57724367719038ec6d413285"/>
+      <topic label="DRV8323_CSAGAIN" href="group___d_r_v8323___m_o_d_u_l_e.html#gaf0a113eaf9756356a7dda205bc16a826">
+        <topic label="DRV8323_CSAGAIN_5" href="group___d_r_v8323___m_o_d_u_l_e.html#ggaf0a113eaf9756356a7dda205bc16a826adcf17e688691d68f45f96bfaa8d9c585"/>
+        <topic label="DRV8323_CSAGAIN_10" href="group___d_r_v8323___m_o_d_u_l_e.html#ggaf0a113eaf9756356a7dda205bc16a826aabbe7caf95b1d7f476e99c52d1f709cd"/>
+        <topic label="DRV8323_CSAGAIN_20" href="group___d_r_v8323___m_o_d_u_l_e.html#ggaf0a113eaf9756356a7dda205bc16a826ae35cc981eafb9b69e432fe2308c4274c"/>
+        <topic label="DRV8323_CSAGAIN_40" href="group___d_r_v8323___m_o_d_u_l_e.html#ggaf0a113eaf9756356a7dda205bc16a826a5fc4d5e9f84d125066dbab21de12b44b"/>
+      </topic>
+      <topic label="DRV8323_DRVOFF_PIN_STAT" href="group___d_r_v8323___m_o_d_u_l_e.html#ga9c27b545a515df71d5a94815385f5589">
+        <topic label="DRV8323_DRVOFF_PIN_LOW" href="group___d_r_v8323___m_o_d_u_l_e.html#gga9c27b545a515df71d5a94815385f5589a22f7610175d82582bbaa18bf704f03b1"/>
+        <topic label="DRV8323_DRVOFF_PIN_HIGH" href="group___d_r_v8323___m_o_d_u_l_e.html#gga9c27b545a515df71d5a94815385f5589adb0dcde93ab146f2cbbae77278022285"/>
+      </topic>
+      <topic label="DRV8323_DRV_NSLEEP_STAT" href="group___d_r_v8323___m_o_d_u_l_e.html#ga3171a1e021f4dab79d3c5870fa7d7f8b">
+        <topic label="DRV8323_DRV_NSLEEP_SLEEP" href="group___d_r_v8323___m_o_d_u_l_e.html#gga3171a1e021f4dab79d3c5870fa7d7f8badf3cf3c2fdd5fdfd6437cc65f933e32c"/>
+        <topic label="DRV8323_DRV_NSLEEP_AWAKE" href="group___d_r_v8323___m_o_d_u_l_e.html#gga3171a1e021f4dab79d3c5870fa7d7f8bad4d5c1a44d1bb4eb0bf64d6263b4c111"/>
+      </topic>
+      <topic label="DRV8323_setnSleep" href="group___d_r_v8323___m_o_d_u_l_e.html#ga14b72938fdf3f9ea3ea30340f55a2162"/>
+      <topic label="DRV8323_getcsaVref" href="group___d_r_v8323___m_o_d_u_l_e.html#gaeaafda6b351cabac750441ba52f68275"/>
+      <topic label="DRV8323_init" href="group___d_r_v8323___m_o_d_u_l_e.html#gab9d75726dd58140eae9e0f516670bd84"/>
+      <topic label="DRV8323_enable" href="group___d_r_v8323___m_o_d_u_l_e.html#ga51bf94468645d84bf8cf7069b66f78f3"/>
+      <topic label="DRV8323_updateCSAScaleFactor" href="group___d_r_v8323___m_o_d_u_l_e.html#ga2f6bf8ab8909d7d69ac60c29b64fd8fd"/>
+      <topic label="DRV8323_getVoltage" href="group___d_r_v8323___m_o_d_u_l_e.html#ga0ba788bd51c58ee6af5c560e020efb9e"/>
+      <topic label="DRV8323_getCurrent" href="group___d_r_v8323___m_o_d_u_l_e.html#gab7cd5693d6c62df475eb0276fac66709"/>
+      <topic label="DRV8323_ADCVRefSel" href="group___d_r_v8323___m_o_d_u_l_e.html#ga8ad5c9e7f0cfc62bfac84e96710f0e85"/>
+    </topic>
+    <topic label="Motor Driver/drv8328" href="group__drv8328___m_o_d_u_l_e.html">
+      <topic label="drv8328_Instance" href="structdrv8328___instance.html">
+        <topic label="nsleep" href="structdrv8328___instance.html#a0f88913a009d1f0a5a5b07494dd59f2b"/>
+        <topic label="drvoff" href="structdrv8328___instance.html#ab6553efe5a7fb93165d16a4212b1ae6b"/>
+        <topic label="nfault" href="structdrv8328___instance.html#a118b18cb2674ab19c7be5816a02f2fd5"/>
+        <topic label="csa_sf" href="structdrv8328___instance.html#a48e387c774aa12c3f1937a73f8b56944"/>
+        <topic label="Vsen" href="structdrv8328___instance.html#aca4ab7f3b3809c999462035a201e5efc"/>
+        <topic label="VsenA" href="structdrv8328___instance.html#a394086fe8232f1cb5591d3c1aef38888"/>
+        <topic label="VsenB" href="structdrv8328___instance.html#a9c427b38f5e26eb13a2bba1a0ca54fdf"/>
+        <topic label="VsenC" href="structdrv8328___instance.html#a78c54198e4cf39ecfb8a39e35b77dac8"/>
+        <topic label="Isen" href="structdrv8328___instance.html#ac8f8bddde67889556ddd7726ed09a642"/>
+        <topic label="faultIn" href="structdrv8328___instance.html#ae51504a6036321c35558fe4507502344"/>
+      </topic>
+      <topic label="drv8328_MAXIMUM_WAKEUP_TIME" href="group__drv8328___m_o_d_u_l_e.html#ga685172a1967fd1cfce7ee520fc3a6836"/>
+      <topic label="drv8328_VOLTAGE_CONV_CONST" href="group__drv8328___m_o_d_u_l_e.html#gac408e3318573448cefdb32db738f0af5"/>
+      <topic label="drv8328_CSA_REF_VOLTAGE" href="group__drv8328___m_o_d_u_l_e.html#gabdd83d483786437f71dd7727d92d59bc"/>
+      <topic label="drv8328_DRVOFF_PIN_STAT" href="group__drv8328___m_o_d_u_l_e.html#ga15a569fe692ffa6d0fffb12ea8946a65">
+        <topic label="drv8328_DRVOFF_PIN_LOW" href="group__drv8328___m_o_d_u_l_e.html#gga15a569fe692ffa6d0fffb12ea8946a65ac7f7a7ed51cfdf52dcc6dab49afb5289"/>
+        <topic label="drv8328_DRVOFF_PIN_HIGH" href="group__drv8328___m_o_d_u_l_e.html#gga15a569fe692ffa6d0fffb12ea8946a65ae30d17ed842267ba960595a238abb6cf"/>
+      </topic>
+      <topic label="drv8328_DRV_NSLEEP_STAT" href="group__drv8328___m_o_d_u_l_e.html#ga303aaced3c5353e1a85817608c7bce4b">
+        <topic label="drv8328_DRV_NSLEEP_SLEEP" href="group__drv8328___m_o_d_u_l_e.html#gga303aaced3c5353e1a85817608c7bce4ba1a3a4b072d33b895a6f9c6ce50d07a5a"/>
+        <topic label="drv8328_DRV_NSLEEP_AWAKE" href="group__drv8328___m_o_d_u_l_e.html#gga303aaced3c5353e1a85817608c7bce4ba0913b6ce34b7fd22195a8505d5365e68"/>
+      </topic>
+      <topic label="drv8328_setDrvoff" href="group__drv8328___m_o_d_u_l_e.html#ga7456f768581659bebd5c6237bd17f235"/>
+      <topic label="drv8328_setnSleep" href="group__drv8328___m_o_d_u_l_e.html#ga2aaa243bb7c188a84f25400450865d56"/>
+      <topic label="drv8328_getcsaVref" href="group__drv8328___m_o_d_u_l_e.html#ga53771f3d34fbea49a385b44da1afa028"/>
+      <topic label="drv8328_init" href="group__drv8328___m_o_d_u_l_e.html#gab9ea3e01a3aa369ba3a1ae7f3240f6b3"/>
+      <topic label="drv8328_enable" href="group__drv8328___m_o_d_u_l_e.html#ga7eeb26f557e5fb3972091fd300d4c903"/>
+      <topic label="drv8328_updateCSAScaleFactor" href="group__drv8328___m_o_d_u_l_e.html#gaf6a86ba08605ee2c8272f5264ed3c15f"/>
+      <topic label="drv8328_getVoltage" href="group__drv8328___m_o_d_u_l_e.html#ga35e242478fac47408e10484c770af61f"/>
+      <topic label="drv8328_getCurrent" href="group__drv8328___m_o_d_u_l_e.html#ga448258c738c66c5342c1eaab3f791738"/>
+      <topic label="drv8328_ADCVRefSel" href="group__drv8328___m_o_d_u_l_e.html#ga1a335428eafb10cac34c72114e63fe22"/>
+    </topic>
+    <topic label="Motor Driver/DRV8329" href="group___d_r_v8329___m_o_d_u_l_e.html">
+      <topic label="DRV8329_Instance" href="struct_d_r_v8329___instance.html">
+        <topic label="nsleep" href="struct_d_r_v8329___instance.html#a8e7e62dda2e23207d9ac13a595b67acf"/>
+        <topic label="drvoff" href="struct_d_r_v8329___instance.html#a7e96581657a31dc572d0f6d76170ff90"/>
+        <topic label="nfault" href="struct_d_r_v8329___instance.html#aef074356df29f09dec15d26909ee25a2"/>
+        <topic label="csa_sf" href="struct_d_r_v8329___instance.html#a34655956ac762efe605e1ea300339a2f"/>
+        <topic label="csaVRef" href="struct_d_r_v8329___instance.html#a0a2e6b3a9e22ebaaa8095520b96703ff"/>
+        <topic label="Vsen" href="struct_d_r_v8329___instance.html#ad3dc81c1c17bd2fbad46233be56d618b"/>
+        <topic label="VsenA" href="struct_d_r_v8329___instance.html#ab30bb9117f1243c07d34bda01aef5f15"/>
+        <topic label="VsenB" href="struct_d_r_v8329___instance.html#ae1ce4613b975fb6775ffe86f9a64c55d"/>
+        <topic label="VsenC" href="struct_d_r_v8329___instance.html#ab8536ffabdb3afd422434f28f326c741"/>
+        <topic label="Isen" href="struct_d_r_v8329___instance.html#afd2b4437e5110097b45329a1de80b960"/>
+        <topic label="faultIn" href="struct_d_r_v8329___instance.html#a8400551f99136621f8d914531a09c59c"/>
+      </topic>
+      <topic label="DRV8329_MAXIMUM_WAKEUP_TIME" href="group___d_r_v8329___m_o_d_u_l_e.html#gadf31059a12dfd3825ae396752b7d33cc"/>
+      <topic label="DRV8329_VOLTAGE_CONV_CONST" href="group___d_r_v8329___m_o_d_u_l_e.html#ga5a0a441e0034667d30b33f9fc4bde24c"/>
+      <topic label="DRV8329_CSA_REF_VOLTAGE" href="group___d_r_v8329___m_o_d_u_l_e.html#ga1daefc61f4656060a57434a83c90ed63"/>
+      <topic label="DRV8329_CSAGAIN_5_IQ" href="group___d_r_v8329___m_o_d_u_l_e.html#ga617b0711ddc7acf8bb26357be6723569"/>
+      <topic label="DRV8329_CSAGAIN_10_IQ" href="group___d_r_v8329___m_o_d_u_l_e.html#ga4b67f8973e5bf66f16634025770d0929"/>
+      <topic label="DRV8329_CSAGAIN_20_IQ" href="group___d_r_v8329___m_o_d_u_l_e.html#ga527d360846611e581f0ca0ae424124c8"/>
+      <topic label="DRV8329_CSAGAIN_40_IQ" href="group___d_r_v8329___m_o_d_u_l_e.html#ga28f9046a9f78df0ffd5c33679703422c"/>
+      <topic label="DRV8329_CSAGAIN" href="group___d_r_v8329___m_o_d_u_l_e.html#ga58f1d446df001d89b645772573533372">
+        <topic label="DRV8329_CSAGAIN_5" href="group___d_r_v8329___m_o_d_u_l_e.html#gga58f1d446df001d89b645772573533372a845762ca7cfb410a02bb827d7ac80d2d"/>
+        <topic label="DRV8329_CSAGAIN_10" href="group___d_r_v8329___m_o_d_u_l_e.html#gga58f1d446df001d89b645772573533372a6504e7cdd73da78b4667d649a45a750c"/>
+        <topic label="DRV8329_CSAGAIN_20" href="group___d_r_v8329___m_o_d_u_l_e.html#gga58f1d446df001d89b645772573533372a80591edb5edc7d75d1173ec32a60c987"/>
+        <topic label="DRV8329_CSAGAIN_40" href="group___d_r_v8329___m_o_d_u_l_e.html#gga58f1d446df001d89b645772573533372a9e219456cac08242285ad2d825c3f3da"/>
+      </topic>
+      <topic label="DRV8329_DRVOFF_PIN_STAT" href="group___d_r_v8329___m_o_d_u_l_e.html#ga973dcced9fc32ebab52bff9d506d17ad">
+        <topic label="DRV8329_DRVOFF_PIN_LOW" href="group___d_r_v8329___m_o_d_u_l_e.html#gga973dcced9fc32ebab52bff9d506d17adad7d20af45ffd466b7957c7b916de9326"/>
+        <topic label="DRV8329_DRVOFF_PIN_HIGH" href="group___d_r_v8329___m_o_d_u_l_e.html#gga973dcced9fc32ebab52bff9d506d17adad2ff883bc7c24e6cb44cd36ae58bb6e0"/>
+      </topic>
+      <topic label="DRV8329_DRV_NSLEEP_STAT" href="group___d_r_v8329___m_o_d_u_l_e.html#ga8d3006dc9ceb03475629219a50ca7beb">
+        <topic label="DRV8329_DRV_NSLEEP_SLEEP" href="group___d_r_v8329___m_o_d_u_l_e.html#gga8d3006dc9ceb03475629219a50ca7beba3ca695519543b564b79cc13bda0a2413"/>
+        <topic label="DRV8329_DRV_NSLEEP_AWAKE" href="group___d_r_v8329___m_o_d_u_l_e.html#gga8d3006dc9ceb03475629219a50ca7beba804e539fcd29772d62931796b36909be"/>
+      </topic>
+      <topic label="DRV8329_setDrvoff" href="group___d_r_v8329___m_o_d_u_l_e.html#ga881b0fa1cceb40abbafd9b1af99b9355"/>
+      <topic label="DRV8329_setnSleep" href="group___d_r_v8329___m_o_d_u_l_e.html#gab53257ad888c05d0e5cbf663620fa8e0"/>
+      <topic label="DRV8329_getcsaVref" href="group___d_r_v8329___m_o_d_u_l_e.html#ga25d2bd24695ece3660393e9f26563735"/>
+      <topic label="DRV8329_init" href="group___d_r_v8329___m_o_d_u_l_e.html#ga6fc05e1773870ac7340b172fd59e1ece"/>
+      <topic label="DRV8329_enable" href="group___d_r_v8329___m_o_d_u_l_e.html#ga2fb67956c90faa4e1a35aa227c54f2d7"/>
+      <topic label="DRV8329_updateCSAScaleFactor" href="group___d_r_v8329___m_o_d_u_l_e.html#gaaca3a31b2fedcfc5f67a092a292d06cd"/>
+      <topic label="DRV8329_getVoltage" href="group___d_r_v8329___m_o_d_u_l_e.html#ga2112bbde437332df96345e9570c4e216"/>
+      <topic label="DRV8329_getCurrent" href="group___d_r_v8329___m_o_d_u_l_e.html#gaf7376c2e8d4d1495ecef239cc39c29ec"/>
+      <topic label="DRV8329_ADCVRefSel" href="group___d_r_v8329___m_o_d_u_l_e.html#ga25cfce9ce6bb4fe0b26f3f4be05bad30"/>
+    </topic>
+    <topic label="Motor Driver/DRV8353" href="group___d_r_v8353___m_o_d_u_l_e.html">
+      <topic label="DRV8353_Instance" href="struct_d_r_v8353___instance.html">
+        <topic label="nsleep" href="struct_d_r_v8353___instance.html#a87db5805ca9c929f60ebd655acb7c294"/>
+        <topic label="led" href="struct_d_r_v8353___instance.html#a855c950294752e2595800f4b9dc3d447"/>
+        <topic label="nfault" href="struct_d_r_v8353___instance.html#a540dc26714454f78fddbd8509b2334bd"/>
+        <topic label="csa_sf" href="struct_d_r_v8353___instance.html#a0324a975f371f176de451b269b8e4e9b"/>
+        <topic label="csaVRef" href="struct_d_r_v8353___instance.html#a7cb5636e05269769858e16363f59c4f0"/>
+        <topic label="Vsen" href="struct_d_r_v8353___instance.html#a7d56ff31ba3355e29c8bef7a5b5c826e"/>
+        <topic label="VsenA" href="struct_d_r_v8353___instance.html#ae0662288cd4dbb4f4c10b28491e7b446"/>
+        <topic label="VsenB" href="struct_d_r_v8353___instance.html#ae1d6279d04e8e273e8c715f999bc24f3"/>
+        <topic label="VsenC" href="struct_d_r_v8353___instance.html#a7a1411a1e40d1821cbe74851cb62b1c4"/>
+        <topic label="IsenA" href="struct_d_r_v8353___instance.html#af798aded1977de0842e687b992a70486"/>
+        <topic label="IsenB" href="struct_d_r_v8353___instance.html#a458eccd856b7e28818545e130adbbef2"/>
+        <topic label="IsenC" href="struct_d_r_v8353___instance.html#ad1af689e3b736329db057a09a2320436"/>
+        <topic label="faultIn" href="struct_d_r_v8353___instance.html#a57bbc2d7425089147cfe4170210cdca6"/>
+      </topic>
+      <topic label="DRV8353_ADDR_MASK" href="group___d_r_v8353___m_o_d_u_l_e.html#gab34cd2ae54b82f3f7943be2fac05ee50"/>
+      <topic label="DRV8353_DATA_MASK" href="group___d_r_v8353___m_o_d_u_l_e.html#ga93886ac31310e857c6d7fe5c2fbc2ce1"/>
+      <topic label="DRV8353_DATA_TRANSMIT_TO_READ" href="group___d_r_v8353___m_o_d_u_l_e.html#gac6e76128b8b69d9200778d6ec256e572"/>
+      <topic label="DRV8353_INITIAL_PARITY" href="group___d_r_v8353___m_o_d_u_l_e.html#ga7657842558a0dd84c2737d19f169e580"/>
+      <topic label="DRV8353_PARITY_CHECK" href="group___d_r_v8353___m_o_d_u_l_e.html#gac3e333aea2cea47ab71731dcb735bd86"/>
+      <topic label="DRV8353_RIGHT_SHIFT_REGISTER" href="group___d_r_v8353___m_o_d_u_l_e.html#ga09782a89233e250bd4eacb4f2a1bbadc"/>
+      <topic label="DRV8353_PARITY_BIT_POSITION" href="group___d_r_v8353___m_o_d_u_l_e.html#ga253f952d35f3cf351a1e605c6bcdb81b"/>
+      <topic label="DRV8353_ADDR_BIT_POSITION" href="group___d_r_v8353___m_o_d_u_l_e.html#ga6eb4676a8a1e15d8ab7e345ccd4b820b"/>
+      <topic label="DRV8353_SPICMD_BIT_POSITION" href="group___d_r_v8353___m_o_d_u_l_e.html#ga740878e49f7bf925a5570a71dc68ad09"/>
+      <topic label="DRV8353_CLEAR_BIT_MASK" href="group___d_r_v8353___m_o_d_u_l_e.html#gaab179be488ef695698446e4b6bbe6dd5"/>
+      <topic label="DRV8353_MAXIMUM_RESET_TIME" href="group___d_r_v8353___m_o_d_u_l_e.html#gada541520cdd2a40f7fab78f94de4e96c"/>
+      <topic label="DRV8353_MAXIMUM_WAKEUP_TIME" href="group___d_r_v8353___m_o_d_u_l_e.html#ga457735774b8e0f550314c18141a5e500"/>
+      <topic label="DRV8353_VOLTAGE_CONV_CONST" href="group___d_r_v8353___m_o_d_u_l_e.html#gab811b6627159c6590982b08d3f715da9"/>
+      <topic label="DRV8353_CSA_REF_VOLTAGE" href="group___d_r_v8353___m_o_d_u_l_e.html#ga67c772027b3e004bc6b8023e2fe73f79"/>
+      <topic label="DRV8353_DRV_NSLEEP_STAT" href="group___d_r_v8353___m_o_d_u_l_e.html#ga85635d2c1fd77faaa742c5f79dcc4f7a">
+        <topic label="DRV8353_DRV_NSLEEP_SLEEP" href="group___d_r_v8353___m_o_d_u_l_e.html#gga85635d2c1fd77faaa742c5f79dcc4f7aa5f95e7ab032af299f8ed586a1b696bf1"/>
+        <topic label="DRV8353_DRV_NSLEEP_AWAKE" href="group___d_r_v8353___m_o_d_u_l_e.html#gga85635d2c1fd77faaa742c5f79dcc4f7aaa0f7491bc070b27d7f2188c2c581fff0"/>
+      </topic>
+      <topic label="DRV8353_setnSleep" href="group___d_r_v8353___m_o_d_u_l_e.html#ga731c6bb8ef94494533cf860ff48e571c"/>
+      <topic label="DRV8353_init" href="group___d_r_v8353___m_o_d_u_l_e.html#ga7566d4a13ea4f4772c6b6af996688cd1"/>
+      <topic label="DRV8353_enable" href="group___d_r_v8353___m_o_d_u_l_e.html#gae252dcccce45f0f2d929c73c113fb134"/>
+      <topic label="DRV8353_updateCSAScaleFactor" href="group___d_r_v8353___m_o_d_u_l_e.html#gadcc78583eccee13453f0855379a4fed4"/>
+      <topic label="DRV8353_getVoltage" href="group___d_r_v8353___m_o_d_u_l_e.html#ga6bb0da5a49fbeae7f755a937b1e924d1"/>
+      <topic label="DRV8353_getCurrent" href="group___d_r_v8353___m_o_d_u_l_e.html#ga1f0cd8ee478e02e9e9b1d1ee2b296f4d"/>
+      <topic label="DRV8353_ADCVRefSel" href="group___d_r_v8353___m_o_d_u_l_e.html#gaebd1c958f7f1c59158052cffe0606adf"/>
+      <topic label="DRV8353_getcsaVref" href="group___d_r_v8353___m_o_d_u_l_e.html#gae805bd8ac1b2e93cd801767e3cab0f1e"/>
+    </topic>
+  </topic>
+  <topic label="Data Structures" href="annotated.html">
+    <topic label="Data Structures" href="annotated.html">
+      <topic label="DRV8300_Instance" href="struct_d_r_v8300___instance.html">
+        <topic label="led" href="struct_d_r_v8300___instance.html#ab749a31f37ba8d36e3bc4f9e1aff2b76"/>
+        <topic label="csa_sf" href="struct_d_r_v8300___instance.html#a75e3c6c3f74a0190378234c90caa961f"/>
+        <topic label="csaVRef" href="struct_d_r_v8300___instance.html#a62ece198c140815797e2eef16cfab181"/>
+        <topic label="Vsen" href="struct_d_r_v8300___instance.html#ae3e88008924df8f50c737f4f843ad5e6"/>
+        <topic label="VsenA" href="struct_d_r_v8300___instance.html#a1d4484f639fb0bc789464124cbe877a7"/>
+        <topic label="VsenB" href="struct_d_r_v8300___instance.html#ae605540883986f74aedad60554e23b0b"/>
+        <topic label="VsenC" href="struct_d_r_v8300___instance.html#a9e109a2f612861bcb8c3f4540a4cb789"/>
+        <topic label="IsenA" href="struct_d_r_v8300___instance.html#ae85a53235bf2e6ca7547181d4663f02f"/>
+        <topic label="IsenB" href="struct_d_r_v8300___instance.html#a2f298b9773ff5b639d54c7b3fcd78fb4"/>
+        <topic label="IsenC" href="struct_d_r_v8300___instance.html#aa61b1a1d4405e45043afb5fc4bc0e349"/>
+      </topic>
+      <topic label="drv8311_Instance" href="structdrv8311___instance.html">
+        <topic label="nsleep" href="structdrv8311___instance.html#aba18b2058a876109d78a28c6f03ec16f"/>
+        <topic label="drvoff" href="structdrv8311___instance.html#a931833e5ccb0846728e858c6e12bad7f"/>
+        <topic label="nfault" href="structdrv8311___instance.html#a8fdf2290482cec7a98b20b3f31f76b25"/>
+        <topic label="spiChan" href="structdrv8311___instance.html#aa18adce35a8bb8318381444750c7d24a"/>
+        <topic label="spiCs" href="structdrv8311___instance.html#af8ddcbde3126184a829350746f201106"/>
+        <topic label="csa_sf" href="structdrv8311___instance.html#ae1e76080d9287068654ef94849af10e3"/>
+        <topic label="csaVRef" href="structdrv8311___instance.html#af024eff0965fe55837a7aba027c59bb5"/>
+        <topic label="Vsen" href="structdrv8311___instance.html#aff047b5b27771f7e76b8429e987e118e"/>
+        <topic label="VsenA" href="structdrv8311___instance.html#a3e4a13ed3fd82763c20915a5132a5815"/>
+        <topic label="VsenB" href="structdrv8311___instance.html#ab59af97b1db18f3f85d6cf009911e902"/>
+        <topic label="VsenC" href="structdrv8311___instance.html#abd82f9be2b36097ac37cd9a097632e2b"/>
+        <topic label="IsenA" href="structdrv8311___instance.html#a08fd4313a6cf9b592b85c049a931d4d6"/>
+        <topic label="IsenB" href="structdrv8311___instance.html#a459c13050411d3474b7eb7877981a98a"/>
+        <topic label="IsenC" href="structdrv8311___instance.html#aed7eaf132dd092b8fec23bf6883dd420"/>
+        <topic label="faultIn" href="structdrv8311___instance.html#a7ae947b67d33bf95927de0be05e4e0d9"/>
+      </topic>
+      <topic label="DRV8316_Instance" href="struct_d_r_v8316___instance.html">
+        <topic label="nsleep" href="struct_d_r_v8316___instance.html#a0e426c1a069ed8c92bf1480d48f56223"/>
+        <topic label="drvoff" href="struct_d_r_v8316___instance.html#a87e1c3bc7b1c3f0ba1c5b50500a04055"/>
+        <topic label="nfault" href="struct_d_r_v8316___instance.html#af4a8bce5d51ada6122a5c03bc8938995"/>
+        <topic label="spiChan" href="struct_d_r_v8316___instance.html#ac9901022cfb74bf3ff9a0b21a4d579e4"/>
+        <topic label="spiCs" href="struct_d_r_v8316___instance.html#a21e4520f947f86372fe2cc8bc81dbc43"/>
+        <topic label="csa_sf" href="struct_d_r_v8316___instance.html#a02b0dd6b879c302127bc312d43a4174e"/>
+        <topic label="csaVRef" href="struct_d_r_v8316___instance.html#a951a57cdb6bb135f8015a5e731126bf0"/>
+        <topic label="Vsen" href="struct_d_r_v8316___instance.html#adfad3d2317f2325f7d8e94907021e02f"/>
+        <topic label="VsenA" href="struct_d_r_v8316___instance.html#af14e9932a1de38752a8a46c996971be7"/>
+        <topic label="VsenB" href="struct_d_r_v8316___instance.html#a6aeceec5ef046816a09bb33c56ae6b58"/>
+        <topic label="VsenC" href="struct_d_r_v8316___instance.html#a94382b22e7f3b7cc66b6b33cc3a20039"/>
+        <topic label="IsenA" href="struct_d_r_v8316___instance.html#a964457cd56db99fe2ae789255832b49f"/>
+        <topic label="IsenB" href="struct_d_r_v8316___instance.html#a23d6b61e987125b01d500fbbf907a784"/>
+        <topic label="IsenC" href="struct_d_r_v8316___instance.html#a687b9891b9d20dfe785129a39483d2fc"/>
+        <topic label="faultIn" href="struct_d_r_v8316___instance.html#a6f36db385b3e62a643dc017d03a16a7a"/>
+      </topic>
+      <topic label="drv8317_Instance" href="structdrv8317___instance.html">
+        <topic label="nsleep" href="structdrv8317___instance.html#a6c07895ef5b05f1f2c6baa828af791ec"/>
+        <topic label="drvoff" href="structdrv8317___instance.html#a0dbcd84b81d664a76b85b5a30f160551"/>
+        <topic label="nfault" href="structdrv8317___instance.html#a402bda83cc48e5be955f6576e1e4159c"/>
+        <topic label="spiChan" href="structdrv8317___instance.html#a89608fff5efa7e66d4ee74e698f7565d"/>
+        <topic label="spiCs" href="structdrv8317___instance.html#a3b3b165495dccd6332d6f2683b9e2d30"/>
+        <topic label="csa_sf" href="structdrv8317___instance.html#abf727b3ff2674bae3a0eb05406fa5bde"/>
+        <topic label="csaVRef" href="structdrv8317___instance.html#afb539f9103afb43f80069e43541ba4f7"/>
+        <topic label="Vsen" href="structdrv8317___instance.html#aadab7dc1da5deaa90a5439e8d2dd897f"/>
+        <topic label="VsenA" href="structdrv8317___instance.html#a3bb4b21220fd9acdd4a7e653322c46a1"/>
+        <topic label="VsenB" href="structdrv8317___instance.html#a7c1b6abf101602c74c8cc08fefbf72a0"/>
+        <topic label="VsenC" href="structdrv8317___instance.html#a86892a62b1450bcb14573cc87863b664"/>
+        <topic label="IsenA" href="structdrv8317___instance.html#a214d8f84b4b62d2fdd1ddd1b17bafb8f"/>
+        <topic label="IsenB" href="structdrv8317___instance.html#ab3e21f4a5d9f51f401316cd12f177a5b"/>
+        <topic label="IsenC" href="structdrv8317___instance.html#ab6ba09322b342255031f4e57d52909fe"/>
+        <topic label="faultIn" href="structdrv8317___instance.html#a0468b7667f4fa8077f382bcc3f951ba0"/>
+      </topic>
+      <topic label="DRV8323_Instance" href="struct_d_r_v8323___instance.html">
+        <topic label="nsleep" href="struct_d_r_v8323___instance.html#ade9aefcb61d636eff0b266ebb7697f91"/>
+        <topic label="led" href="struct_d_r_v8323___instance.html#a4d8263d8c64eb4fa98172e7e4db07ea6"/>
+        <topic label="nfault" href="struct_d_r_v8323___instance.html#a7b7f96ee7e5e6516001bd058643293c9"/>
+        <topic label="csa_sf" href="struct_d_r_v8323___instance.html#a6db7868ea81ca9f7932e37377a738b7c"/>
+        <topic label="csaVRef" href="struct_d_r_v8323___instance.html#a4c8e5276bd175b58a2f5728c46822092"/>
+        <topic label="Vsen" href="struct_d_r_v8323___instance.html#a123b6d17ab288f2e685613620cd45389"/>
+        <topic label="VsenA" href="struct_d_r_v8323___instance.html#aa8f2983dc4b7f3e2b612f065c2330847"/>
+        <topic label="VsenB" href="struct_d_r_v8323___instance.html#a5b742f9508691d8e7bdb61c1a7b4c99c"/>
+        <topic label="VsenC" href="struct_d_r_v8323___instance.html#a12474deeb3410c0dd7543a9ea61e7cca"/>
+        <topic label="IsenA" href="struct_d_r_v8323___instance.html#a79410c7aa0633988527651b8fdc687b5"/>
+        <topic label="IsenB" href="struct_d_r_v8323___instance.html#a68ba7957e101482598caec4316d8df7e"/>
+        <topic label="IsenC" href="struct_d_r_v8323___instance.html#a3eb07b26eab78ac9ab8e54441f348b7f"/>
+        <topic label="faultIn" href="struct_d_r_v8323___instance.html#a7b5fb2118e03aed3730c3a95d6047c9b"/>
+      </topic>
+      <topic label="drv8328_Instance" href="structdrv8328___instance.html">
+        <topic label="nsleep" href="structdrv8328___instance.html#a0f88913a009d1f0a5a5b07494dd59f2b"/>
+        <topic label="drvoff" href="structdrv8328___instance.html#ab6553efe5a7fb93165d16a4212b1ae6b"/>
+        <topic label="nfault" href="structdrv8328___instance.html#a118b18cb2674ab19c7be5816a02f2fd5"/>
+        <topic label="csa_sf" href="structdrv8328___instance.html#a48e387c774aa12c3f1937a73f8b56944"/>
+        <topic label="Vsen" href="structdrv8328___instance.html#aca4ab7f3b3809c999462035a201e5efc"/>
+        <topic label="VsenA" href="structdrv8328___instance.html#a394086fe8232f1cb5591d3c1aef38888"/>
+        <topic label="VsenB" href="structdrv8328___instance.html#a9c427b38f5e26eb13a2bba1a0ca54fdf"/>
+        <topic label="VsenC" href="structdrv8328___instance.html#a78c54198e4cf39ecfb8a39e35b77dac8"/>
+        <topic label="Isen" href="structdrv8328___instance.html#ac8f8bddde67889556ddd7726ed09a642"/>
+        <topic label="faultIn" href="structdrv8328___instance.html#ae51504a6036321c35558fe4507502344"/>
+      </topic>
+      <topic label="DRV8329_Instance" href="struct_d_r_v8329___instance.html">
+        <topic label="nsleep" href="struct_d_r_v8329___instance.html#a8e7e62dda2e23207d9ac13a595b67acf"/>
+        <topic label="drvoff" href="struct_d_r_v8329___instance.html#a7e96581657a31dc572d0f6d76170ff90"/>
+        <topic label="nfault" href="struct_d_r_v8329___instance.html#aef074356df29f09dec15d26909ee25a2"/>
+        <topic label="csa_sf" href="struct_d_r_v8329___instance.html#a34655956ac762efe605e1ea300339a2f"/>
+        <topic label="csaVRef" href="struct_d_r_v8329___instance.html#a0a2e6b3a9e22ebaaa8095520b96703ff"/>
+        <topic label="Vsen" href="struct_d_r_v8329___instance.html#ad3dc81c1c17bd2fbad46233be56d618b"/>
+        <topic label="VsenA" href="struct_d_r_v8329___instance.html#ab30bb9117f1243c07d34bda01aef5f15"/>
+        <topic label="VsenB" href="struct_d_r_v8329___instance.html#ae1ce4613b975fb6775ffe86f9a64c55d"/>
+        <topic label="VsenC" href="struct_d_r_v8329___instance.html#ab8536ffabdb3afd422434f28f326c741"/>
+        <topic label="Isen" href="struct_d_r_v8329___instance.html#afd2b4437e5110097b45329a1de80b960"/>
+        <topic label="faultIn" href="struct_d_r_v8329___instance.html#a8400551f99136621f8d914531a09c59c"/>
+      </topic>
+      <topic label="DRV8353_Instance" href="struct_d_r_v8353___instance.html">
+        <topic label="nsleep" href="struct_d_r_v8353___instance.html#a87db5805ca9c929f60ebd655acb7c294"/>
+        <topic label="led" href="struct_d_r_v8353___instance.html#a855c950294752e2595800f4b9dc3d447"/>
+        <topic label="nfault" href="struct_d_r_v8353___instance.html#a540dc26714454f78fddbd8509b2334bd"/>
+        <topic label="csa_sf" href="struct_d_r_v8353___instance.html#a0324a975f371f176de451b269b8e4e9b"/>
+        <topic label="csaVRef" href="struct_d_r_v8353___instance.html#a7cb5636e05269769858e16363f59c4f0"/>
+        <topic label="Vsen" href="struct_d_r_v8353___instance.html#a7d56ff31ba3355e29c8bef7a5b5c826e"/>
+        <topic label="VsenA" href="struct_d_r_v8353___instance.html#ae0662288cd4dbb4f4c10b28491e7b446"/>
+        <topic label="VsenB" href="struct_d_r_v8353___instance.html#ae1d6279d04e8e273e8c715f999bc24f3"/>
+        <topic label="VsenC" href="struct_d_r_v8353___instance.html#a7a1411a1e40d1821cbe74851cb62b1c4"/>
+        <topic label="IsenA" href="struct_d_r_v8353___instance.html#af798aded1977de0842e687b992a70486"/>
+        <topic label="IsenB" href="struct_d_r_v8353___instance.html#a458eccd856b7e28818545e130adbbef2"/>
+        <topic label="IsenC" href="struct_d_r_v8353___instance.html#ad1af689e3b736329db057a09a2320436"/>
+        <topic label="faultIn" href="struct_d_r_v8353___instance.html#a57bbc2d7425089147cfe4170210cdca6"/>
+      </topic>
+      <topic label="HAL_ADC_instance_" href="struct_h_a_l___a_d_c__instance__.html">
+        <topic label="inst" href="struct_h_a_l___a_d_c__instance__.html#ac82a0b5c905ac8ec19788165526e9641"/>
+        <topic label="endOfSeq" href="struct_h_a_l___a_d_c__instance__.html#a0e93de787e5409d06cbce25d74ca06f5"/>
+        <topic label="IRQn" href="struct_h_a_l___a_d_c__instance__.html#a9db57450a2624ca91eeca6260e6282ae"/>
+        <topic label="value" href="struct_h_a_l___a_d_c__instance__.html#ab7b3207200b61bb88ac2bcdbc4c70ad1"/>
+        <topic label="refVoltagemV" href="struct_h_a_l___a_d_c__instance__.html#a57b6fd8b1565d0a3de9fdb01126ceece"/>
+        <topic label="memIdx" href="struct_h_a_l___a_d_c__instance__.html#a9c7518981d20d943837082da3c73d3f8"/>
+      </topic>
+      <topic label="HAL_fault_instance" href="struct_h_a_l__fault__instance.html">
+        <topic label="gptimer" href="struct_h_a_l__fault__instance.html#ae249f460ccd6a556aabb5d63640f9821"/>
+        <topic label="port" href="struct_h_a_l__fault__instance.html#a9d7aec6aa4f1da21d36e8b5d8932bbb4"/>
+        <topic label="pin" href="struct_h_a_l__fault__instance.html#a16d777718b22facca825a4beb2d79f3f"/>
+      </topic>
+      <topic label="HAL_GPIO_Instance_" href="struct_h_a_l___g_p_i_o___instance__.html">
+        <topic label="iomux" href="struct_h_a_l___g_p_i_o___instance__.html#abdb5a32b907c90eb314405d670784cef"/>
+        <topic label="port" href="struct_h_a_l___g_p_i_o___instance__.html#a92527b731343ebe40db848de9069cd89"/>
+        <topic label="pin" href="struct_h_a_l___g_p_i_o___instance__.html#aaa83ada754ff66496498c4eea4b899e8"/>
+        <topic label="IRQn" href="struct_h_a_l___g_p_i_o___instance__.html#a79e28d6c48d68a210df60c4549485b45"/>
+      </topic>
+      <topic label="HAL_Timer_Instance_" href="struct_h_a_l___timer___instance__.html">
+        <topic label="gptimer" href="struct_h_a_l___timer___instance__.html#a791ff7025ecd15e373cabc30bfa863d1"/>
+        <topic label="ccIndex" href="struct_h_a_l___timer___instance__.html#aa7c1f25ec7801aa83de0df4d53f2dee9"/>
+        <topic label="IRQn" href="struct_h_a_l___timer___instance__.html#acfa12b0ed487c29bd3435f3e04f46f74"/>
+      </topic>
+      <topic label="Halltrap_Instance" href="struct_halltrap___instance.html">
+        <topic label="hallA" href="struct_halltrap___instance.html#a4906a992a118f3f609ac5713360b8ea3"/>
+        <topic label="hallB" href="struct_halltrap___instance.html#a18e293c3d35568e6977553812a6d34be"/>
+        <topic label="hallC" href="struct_halltrap___instance.html#ac40cd8ae573ae41cae61501232af2ea7"/>
+        <topic label="phaseA" href="struct_halltrap___instance.html#afedbc44ac8151edcf628b408dbc152d9"/>
+        <topic label="phaseB" href="struct_halltrap___instance.html#a22b091f27d7925b4ce2b65f52e36e8ec"/>
+        <topic label="phaseC" href="struct_halltrap___instance.html#a9510b0c0bd0d89c8a5e9741dbde43b18"/>
+        <topic label="captureInput" href="struct_halltrap___instance.html#a43b40c7c6b20426581f9d60f5cd83cd6"/>
+      </topic>
+    </topic>
+    <topic label="Data Fields" href="functions.html">
+      <topic label="All" href="functions.html"/>
+      <topic label="Variables" href="functions_vars.html"/>
+    </topic>
+  </topic>
+  <topic label="Files">
+    <topic label="File List" href="files.html">
+      <topic label="drv8300.h" href="drv8300_8h.html">
+        <topic label="DRV8300_VOLTAGE_CONV_CONST" href="group___d_r_v8300___m_o_d_u_l_e.html#ga507f04548bc42854fef25a375ee4c9c3"/>
+        <topic label="DRV8300_CSA_REF_VOLTAGE" href="group___d_r_v8300___m_o_d_u_l_e.html#gac1bb92e1b1adc90acb7ee349dbca580e"/>
+        <topic label="DRV8300_init" href="group___d_r_v8300___m_o_d_u_l_e.html#gabc2b93d88a620d76600f5b70307a61a7"/>
+        <topic label="DRV8300_enable" href="group___d_r_v8300___m_o_d_u_l_e.html#gae247dfdd6391dc485e741412494fc2cf"/>
+        <topic label="DRV8300_updateCSAScaleFactor" href="group___d_r_v8300___m_o_d_u_l_e.html#ga53d4491d55c7da8dd07bc1057e73ee0e"/>
+        <topic label="DRV8300_getVoltage" href="group___d_r_v8300___m_o_d_u_l_e.html#ga661c3bb1a72dde4d4cbc0f3710d9f67e"/>
+        <topic label="DRV8300_getCurrent" href="group___d_r_v8300___m_o_d_u_l_e.html#ga5ba5f913c10b84bb3b67207f684eec63"/>
+        <topic label="DRV8300_ADCVRefSel" href="group___d_r_v8300___m_o_d_u_l_e.html#ga2fc73d3ea1c7ab9700f871c5d1417c88"/>
+        <topic label="DRV8300_getcsaVref" href="group___d_r_v8300___m_o_d_u_l_e.html#gafd6f4b9c694a3218e1dfdc955d0c4ef6"/>
+      </topic>
+      <topic label="drv8311.h" href="drv8311_8h.html">
+        <topic label="drv8311_MAXIMUM_RESET_TIME" href="group__drv8311___m_o_d_u_l_e.html#ga275583bc4c62b11daa3f0e5d2d013582"/>
+        <topic label="drv8311_MAXIMUM_WAKEUP_TIME" href="group__drv8311___m_o_d_u_l_e.html#ga1d8679b9a4f390cae266a83659436796"/>
+        <topic label="drv8311_VOLTAGE_CONV_CONST" href="group__drv8311___m_o_d_u_l_e.html#ga60f2e0a49da9e077484af0aa1a2cf517"/>
+        <topic label="drv8311_CSA_REF_VOLTAGE" href="group__drv8311___m_o_d_u_l_e.html#ga3efdb1427a289bdc08a1b632436f0293"/>
+        <topic label="drv8311_CSAGAIN_0P25VA_IQ" href="group__drv8311___m_o_d_u_l_e.html#gaa311ebe6bae26371d95119730fcb3d4f"/>
+        <topic label="drv8311_CSAGAIN_0P5VA_IQ" href="group__drv8311___m_o_d_u_l_e.html#ga1944b863fab56049a5ed7af88e92e3f8"/>
+        <topic label="drv8311_CSAGAIN_1P0VA_IQ" href="group__drv8311___m_o_d_u_l_e.html#ga8b81c021c77c3ca1adfb35a6003306ef"/>
+        <topic label="drv8311_CSAGAIN_2P0VA_IQ" href="group__drv8311___m_o_d_u_l_e.html#ga7f3b153e6f62cb74d0266aa1eed014ef"/>
+        <topic label="drv8311_CSAGAIN" href="group__drv8311___m_o_d_u_l_e.html#gab0c38d6308301bf61d891c238f0b4a69">
+          <topic label="drv8311_CSAGAIN_0P25VA" href="group__drv8311___m_o_d_u_l_e.html#ggab0c38d6308301bf61d891c238f0b4a69acbfc1ea0200cbd67e70ae422d0fa37d3"/>
+          <topic label="drv8311_CSAGAIN_0P5VA" href="group__drv8311___m_o_d_u_l_e.html#ggab0c38d6308301bf61d891c238f0b4a69ac36792e39583228de41acb1224bf82b3"/>
+          <topic label="drv8311_CSAGAIN_1P0VA" href="group__drv8311___m_o_d_u_l_e.html#ggab0c38d6308301bf61d891c238f0b4a69a09a83a6a3ccec37ee6d1438452acd1e1"/>
+          <topic label="drv8311_CSAGAIN_2P0VA" href="group__drv8311___m_o_d_u_l_e.html#ggab0c38d6308301bf61d891c238f0b4a69a196bbddea36f2b7f14651574d0c11acd"/>
+        </topic>
+        <topic label="drv8311_DRVOFF_PIN_STAT" href="group__drv8311___m_o_d_u_l_e.html#ga4f7faf7a784efd7bb2aaf8fa37f2669c">
+          <topic label="drv8311_DRVOFF_PIN_LOW" href="group__drv8311___m_o_d_u_l_e.html#gga4f7faf7a784efd7bb2aaf8fa37f2669ca9930b2d3eb9bfe41e2264bb6e4a954d0"/>
+          <topic label="drv8311_DRVOFF_PIN_HIGH" href="group__drv8311___m_o_d_u_l_e.html#gga4f7faf7a784efd7bb2aaf8fa37f2669caf46d71e55c5cdb7965da3f92d9b7834c"/>
+        </topic>
+        <topic label="drv8311_DRV_NSLEEP_STAT" href="group__drv8311___m_o_d_u_l_e.html#gab234188b8e2ef7bb8edb3b84bca6acbf">
+          <topic label="drv8311_DRV_NSLEEP_SLEEP" href="group__drv8311___m_o_d_u_l_e.html#ggab234188b8e2ef7bb8edb3b84bca6acbfa10b34c5d5c65d734c2dbc72497c9f3da"/>
+          <topic label="drv8311_DRV_NSLEEP_AWAKE" href="group__drv8311___m_o_d_u_l_e.html#ggab234188b8e2ef7bb8edb3b84bca6acbfaa4876812a5ec708ccde9d674aff58f7f"/>
+        </topic>
+        <topic label="drv8311_setDrvoff" href="group__drv8311___m_o_d_u_l_e.html#gab15ecb3e6dfb0bba028769c83b247b25"/>
+        <topic label="drv8311_setnSleep" href="group__drv8311___m_o_d_u_l_e.html#gac49af3d3bc16dec1944b6e1e507774c9"/>
+        <topic label="drv8311_init" href="group__drv8311___m_o_d_u_l_e.html#ga0e03a707286ea30626c3e94f5faa9b99"/>
+        <topic label="drv8311_enable" href="group__drv8311___m_o_d_u_l_e.html#ga2ca15563c34e3faf3c954c3388d70e32"/>
+        <topic label="drv8311_updateCSAScaleFactor" href="group__drv8311___m_o_d_u_l_e.html#ga2329fc99620e7549ed89e4b2bfd8847a"/>
+        <topic label="drv8311_getVoltage" href="group__drv8311___m_o_d_u_l_e.html#ga4fa828362abab16c53d5d06414f942f5"/>
+        <topic label="drv8311_getCurrent" href="group__drv8311___m_o_d_u_l_e.html#ga7d9b464fcbecdcb2bcd1f5644fccfd44"/>
+        <topic label="drv8311_ADCVRefSel" href="group__drv8311___m_o_d_u_l_e.html#ga075cfe6e7b73f8657757aea518b70e9a"/>
+        <topic label="drv8311_getcsaVref" href="group__drv8311___m_o_d_u_l_e.html#ga977e4158e892a4ccbf9346a60a8a1828"/>
+      </topic>
+      <topic label="drv8316.h" href="drv8316_8h.html">
+        <topic label="DRV8316_ADDR_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga10362cb2e5cf0702c76261c03f3bd040"/>
+        <topic label="DRV8316_DATA_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gab0c8f4100dfa46f97e5dcd1fedf16e3d"/>
+        <topic label="DRV8316_DATA_TRANSMIT_TO_READ" href="group___d_r_v8316___m_o_d_u_l_e.html#gabd58b4d653c1b398edc76c753e20d49e"/>
+        <topic label="DRV8316_INITIAL_PARITY" href="group___d_r_v8316___m_o_d_u_l_e.html#gaf37bf78584fb3a4b025b0d5c9eb8c209"/>
+        <topic label="DRV8316_PARITY_CHECK" href="group___d_r_v8316___m_o_d_u_l_e.html#gab82c22de716bfd1e09a77bed396b7dc0"/>
+        <topic label="DRV8316_RIGHT_SHIFT_REGISTER" href="group___d_r_v8316___m_o_d_u_l_e.html#gabb73d70a3ae88a1b080cb6f06c0e2cab"/>
+        <topic label="DRV8316_PARITY_BIT_POSITION" href="group___d_r_v8316___m_o_d_u_l_e.html#ga2c6ceac4066f6b2b23c3822158a49395"/>
+        <topic label="DRV8316_ADDR_BIT_POSITION" href="group___d_r_v8316___m_o_d_u_l_e.html#ga5ebaa176346f89611af868a201a61e22"/>
+        <topic label="DRV8316_SPICMD_BIT_POSITION" href="group___d_r_v8316___m_o_d_u_l_e.html#gad1c44faf3071439bca6c1a2b066b024a"/>
+        <topic label="DRV8316_CLEAR_BIT_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gaecbf9b7c216c13ff141f40957e5c492c"/>
+        <topic label="DRV8316_MAXIMUM_RESET_TIME" href="group___d_r_v8316___m_o_d_u_l_e.html#ga2addf4934f9e6c9ba83e7e09c84778c8"/>
+        <topic label="DRV8316_MAXIMUM_WAKEUP_TIME" href="group___d_r_v8316___m_o_d_u_l_e.html#ga45c8c13e87729fb9b197618955557e42"/>
+        <topic label="DRV8316_VOLTAGE_CONV_CONST" href="group___d_r_v8316___m_o_d_u_l_e.html#gae13062ac7e4e2b84c5877b2931749456"/>
+        <topic label="DRV8316_CSA_REF_VOLTAGE" href="group___d_r_v8316___m_o_d_u_l_e.html#ga39fd6a10d5fd5d74359983b27b746b8d"/>
+        <topic label="DRV8316_CSAGAIN_0P15VA_IQ" href="group___d_r_v8316___m_o_d_u_l_e.html#gaeb86690f42d665e7deb1741c4e4926ad"/>
+        <topic label="DRV8316_CSAGAIN_0P3VA_IQ" href="group___d_r_v8316___m_o_d_u_l_e.html#gabb6e61b592c7371b3cf793c47f89b687"/>
+        <topic label="DRV8316_CSAGAIN_0P6VA_IQ" href="group___d_r_v8316___m_o_d_u_l_e.html#gaa4fa270aa0130eb18de09b323028ae9b"/>
+        <topic label="DRV8316_CSAGAIN_1P2VA_IQ" href="group___d_r_v8316___m_o_d_u_l_e.html#gab545f67bc4706b27555a25777ca95b54"/>
+        <topic label="DRV8316_CTRL01_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gaefef4a3bbe24c5c9c3eba156bc6ad601">
+          <topic label="DRV8316_CTRL01_MASK_REG_LOCK" href="group___d_r_v8316___m_o_d_u_l_e.html#ggaefef4a3bbe24c5c9c3eba156bc6ad601a5bedf476594819723e0f04e589b2c32f"/>
+        </topic>
+        <topic label="DRV8316_CTRL02_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga236bc79f315609bb4b506149f3442547">
+          <topic label="DRV8316_CTRL02_MASK_CLR_FLT" href="group___d_r_v8316___m_o_d_u_l_e.html#gga236bc79f315609bb4b506149f3442547a82edabc1c47aeab8567a06ce65e832e4"/>
+          <topic label="DRV8316_CTRL02_MASK_PWM_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga236bc79f315609bb4b506149f3442547a20d8f9af08d5c0a977e6be88a48d1041"/>
+          <topic label="DRV8316_CTRL02_MASK_SLEW" href="group___d_r_v8316___m_o_d_u_l_e.html#gga236bc79f315609bb4b506149f3442547aa8d08472a474df7cf7d4f5c7ddfd5686"/>
+          <topic label="DRV8316_CTRL02_MASK_SDO_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga236bc79f315609bb4b506149f3442547aed38e60a4f1d072b1f0309ca3a9d7d64"/>
+        </topic>
+        <topic label="DRV8316_CTRL03_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gae990ec2e2348345367aad7a8284c7595">
+          <topic label="DRV8316_CTRL03_MASK_OTW_REP" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae990ec2e2348345367aad7a8284c7595a543c8b2ce2ddee4a8d9d67b420f5cd31"/>
+          <topic label="DRV8316_CTRL03_MASK_OVP_EN" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae990ec2e2348345367aad7a8284c7595af5b567ff700b0b31015682589bc9e111"/>
+          <topic label="DRV8316_CTRL03_MASK_OVP_SEL" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae990ec2e2348345367aad7a8284c7595a7fb779d273e3ad6885af23f366629014"/>
+          <topic label="DRV8316_CTRL03_MASK_PWM_100_DUTY_SEL" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae990ec2e2348345367aad7a8284c7595a751a0401c90281f03f35ba916bb806ad"/>
+        </topic>
+        <topic label="DRV8316_CTRL04_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#gac767e1d5b7c904687ec80c53745011dc">
+          <topic label="DRV8316_CTRL04_MASK_OCP_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dcaf54f0edf05fee76f63b10b1be4dd279a"/>
+          <topic label="DRV8316_CTRL04_MASK_OCP_LVL" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dcad37ab050cf0bf1f3d0214d2f2eeed013"/>
+          <topic label="DRV8316_CTRL04_MASK_OCP_RETRY" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dcabd973eabfcf115fdb4b2917d3bf5cd6b"/>
+          <topic label="DRV8316_CTRL04_MASK_OCP_DEG" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dca4c7923ac7ae73128ac84fa77d3ea25c4"/>
+          <topic label="DRV8316_CTRL04_MASK_OCP_CBC" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dca41b80fe8d61ec4af7ad298364009e2e7"/>
+          <topic label="DRV8316_CTRL04_MASK_DRV_OFF" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac767e1d5b7c904687ec80c53745011dcacec0a0e920b737d4d2f16ec8cd118c6f"/>
+        </topic>
+        <topic label="DRV8316_CTRL05_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga4c30afd03e4445f9a227749b85ffd051">
+          <topic label="DRV8316_CTRL05_MASK_CSA_GAIN" href="group___d_r_v8316___m_o_d_u_l_e.html#gga4c30afd03e4445f9a227749b85ffd051a4fa3951ec9cfcfeb04e54c89e57e1fdf"/>
+          <topic label="DRV8316_CTRL05_MASK_EN_ASR" href="group___d_r_v8316___m_o_d_u_l_e.html#gga4c30afd03e4445f9a227749b85ffd051ab41ca6fd40d22a750fd51a3f4202dfe0"/>
+          <topic label="DRV8316_CTRL05_MASK_EN_AAR" href="group___d_r_v8316___m_o_d_u_l_e.html#gga4c30afd03e4445f9a227749b85ffd051a06bf75f0847ff560625d3a2d4779f1d0"/>
+          <topic label="DRV8316_CTRL05_MASK_ILIM_RECIR" href="group___d_r_v8316___m_o_d_u_l_e.html#gga4c30afd03e4445f9a227749b85ffd051a8999ec1cf83e0b637d9216c29477493d"/>
+        </topic>
+        <topic label="DRV8316_CTRL06_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga168ccc7e57c1c205d8ccb189a607942d">
+          <topic label="DRV8316_CTRL06_MASK_BUCK_DIS" href="group___d_r_v8316___m_o_d_u_l_e.html#gga168ccc7e57c1c205d8ccb189a607942da21555f731ac9961eeda928b1711467e6"/>
+          <topic label="DRV8316_CTRL06_MASK_BUCK_SEL" href="group___d_r_v8316___m_o_d_u_l_e.html#gga168ccc7e57c1c205d8ccb189a607942da22ead9db8cd46f82585d2ffce78cfc0f"/>
+          <topic label="DRV8316_CTRL06_MASK_BUCK_CL" href="group___d_r_v8316___m_o_d_u_l_e.html#gga168ccc7e57c1c205d8ccb189a607942daccff0b5dea0797e933767a1a2e6c8833"/>
+          <topic label="DRV8316_CTRL06_MASK_BUCK_PS_DIS" href="group___d_r_v8316___m_o_d_u_l_e.html#gga168ccc7e57c1c205d8ccb189a607942da0c75f470d4a13a6799b9efba909f7b48"/>
+        </topic>
+        <topic label="DRV8316_CTRL10_MASK" href="group___d_r_v8316___m_o_d_u_l_e.html#ga226da4a4257d085f0ee2d049c806cee3">
+          <topic label="DRV8316_CTRL10_MASK_DLY_TARGET" href="group___d_r_v8316___m_o_d_u_l_e.html#gga226da4a4257d085f0ee2d049c806cee3a530218c89fcce6d31ff88d6804610e32"/>
+          <topic label="DRV8316_CTRL10_MASK_DLYCMP_EN" href="group___d_r_v8316___m_o_d_u_l_e.html#gga226da4a4257d085f0ee2d049c806cee3aaf5f03f9274e28367ee0629281889b11"/>
+        </topic>
+        <topic label="DRV8316_CTRL01" href="group___d_r_v8316___m_o_d_u_l_e.html#ga3a656684484bc76fac51066ea88bca03">
+          <topic label="DRV8316_CTRL01_REG_UNLOCK" href="group___d_r_v8316___m_o_d_u_l_e.html#gga3a656684484bc76fac51066ea88bca03a6d96193a6a9468b1f9a73d82922b7c79"/>
+          <topic label="DRV8316_CTRL01_REG_LOCK" href="group___d_r_v8316___m_o_d_u_l_e.html#gga3a656684484bc76fac51066ea88bca03a037eed89e2a69b72b55e720a9807b710"/>
+        </topic>
+        <topic label="DRV8316_CTRL02" href="group___d_r_v8316___m_o_d_u_l_e.html#ga2d7f0333d71b0cdf9e26ca0ebcb09941">
+          <topic label="DRV8316_CTRL02_CLR_FLT" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941ae86f1b9f111c62b2cd44aa45e1b0a417"/>
+          <topic label="DRV8316_CTRL02_PWMMODE_6x" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a8bbb82567df6378dae413c864a851bdb"/>
+          <topic label="DRV8316_CTRL02_PWMMODE_6x_CL" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941ae78c25bcf51d2b2653b527f59d8c3b91"/>
+          <topic label="DRV8316_CTRL02_PWMMODE_3x" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a7f6278862d05952c6eebd1ca295c506e"/>
+          <topic label="DRV8316_CTRL02_PWMMODE_3x_CL" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941aa3b7890a0f93a0c7277aaad65a5a93e1"/>
+          <topic label="DRV8316_CTRL02_SLEWRATE_25" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a3542d60b4ca753e5625be7c168e6ea89"/>
+          <topic label="DRV8316_CTRL02_SLEWRATE_50" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a70e5d209766fa738bf2cfdec7a36f044"/>
+          <topic label="DRV8316_CTRL02_SLEWRATE_125" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941aa38b5c7c990f705d683c91ea3c83f7ba"/>
+          <topic label="DRV8316_CTRL02_SLEWRATE_200" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941ae42114d9fab50e3cca395fb10b8e3f3d"/>
+          <topic label="DRV8316_CTRL02_SDO_OPEN_DRAIN_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941adffe9febe1e532e192c19c10bc517a3a"/>
+          <topic label="DRV8316_CTRL02_SDO_PUSH_PULL_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2d7f0333d71b0cdf9e26ca0ebcb09941a6e1d444154bef779304306ef72d66b28"/>
+        </topic>
+        <topic label="DRV8316_CTRL03" href="group___d_r_v8316___m_o_d_u_l_e.html#ga373e142d377cd3ce5fbd4061cc646e62">
+          <topic label="DRV8316_CTRL03_OTW_REP_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62aa4a3eb8814ffd1e3528a9f1b5f2c7234"/>
+          <topic label="DRV8316_CTRL03_OTW_REP_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a9a171bfc410697791b93215bc5e3f5e6"/>
+          <topic label="DRV8316_CTRL03_OVP_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62ab80d7a906af5810a05574eb910fc2875"/>
+          <topic label="DRV8316_CTRL03_OVP_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a1c2ff853013ba7cca0f46e4bf90c9e07"/>
+          <topic label="DRV8316_CTRL03_OVP_SEL_34V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a426eb02e15c19bf910d9fe18ea92b44c"/>
+          <topic label="DRV8316_CTRL03_OVP_SEL_22V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62ac6445462aea36eb8455f051553e83a4a"/>
+          <topic label="DRV8316_CTRL03_PWM_20KHZ" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a076db41517813fab33328f9648826072"/>
+          <topic label="DRV8316_CTRL03_PWM_40KHZ" href="group___d_r_v8316___m_o_d_u_l_e.html#gga373e142d377cd3ce5fbd4061cc646e62a946d89d1e334dfd8f5d828d9dc3692eb"/>
+        </topic>
+        <topic label="DRV8316_CTRL04" href="group___d_r_v8316___m_o_d_u_l_e.html#ga6c4b1b82dd221f9969b402aa15d18e5e">
+          <topic label="DRV8316_CTRL04_OCP_LATCHED" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eaec74732d367c5b79828b8e193b18a7c3"/>
+          <topic label="DRV8316_CTRL04_OCP_AUTO_RETRY" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eaffd8072b5f8584db09b094d0f5e45fa9"/>
+          <topic label="DRV8316_CTRL04_OCP_REPORT" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea3b40a67d1af11354be5b4ae9768de876"/>
+          <topic label="DRV8316_CTRL04_OCP_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea3bb07ea372ed97c30c6c854608e80eb2"/>
+          <topic label="DRV8316_CTRL04_OCP_LVL_16A" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea4754e126a14401212493b14e82673f4a"/>
+          <topic label="DRV8316_CTRL04_OCP_LVL_24A" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea3212dafe55ae10a8081e73dadded4990"/>
+          <topic label="DRV8316_CTRL04_OCP_RETRY_5MS" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea7c64cf59688d28f59c5656b9a5f39e1f"/>
+          <topic label="DRV8316_CTRL04_OCP_RETRY_500MS" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eaa164625570f970af5c0e4d45427ce2f1"/>
+          <topic label="DRV8316_CTRL04_OCP_DEG_0P2US" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ead23e77f2ffdb4afbcdadaee90afe6c31"/>
+          <topic label="DRV8316_CTRL04_OCP_DEG_0P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea8685afd2601268c1487a8a9983759f24"/>
+          <topic label="DRV8316_CTRL04_OCP_DEG_1P25US" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eab55ea8a889b769106260f550c92423a8"/>
+          <topic label="DRV8316_CTRL04_OCP_DEG_1P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea0b25800685a4183bca964bdcab657ca5"/>
+          <topic label="DRV8316_CTRL04_OCP_CBC_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea3aa0ac52d482d51557c7cf719bf7df10"/>
+          <topic label="DRV8316_CTRL04_OCP_CBC_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eaecca47230c4cefcf873c7e15b6137307"/>
+          <topic label="DRV8316_CTRL04_DRV_OFF_NO_ACTION" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5eadef2cf3fc715bf4cd65a63437bc0ee1b"/>
+          <topic label="DRV8316_CTRL04_DRV_OFF_LOW_POWER_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga6c4b1b82dd221f9969b402aa15d18e5ea4a5541ca25f70cdf5d5e31248728321a"/>
+        </topic>
+        <topic label="DRV8316_CTRL05" href="group___d_r_v8316___m_o_d_u_l_e.html#gade620b1bf2bebc6eee73e7cf3668ef8b">
+          <topic label="DRV8316_CTRL05_CSA_GAIN_0P15VA" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba30ff6f4d898ef4a9087a4cd03c66978c"/>
+          <topic label="DRV8316_CTRL05_CSA_GAIN_0P3VA" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8bac11b5b02358e4930e8b0c6ae41ede4d6"/>
+          <topic label="DRV8316_CTRL05_CSA_GAIN_0P6VA" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba0c1ff889bde12819ed52b78d23bcfa8d"/>
+          <topic label="DRV8316_CTRL05_CSA_GAIN_1P2VA" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba5ed394a962ea70c2a23d783242df5f07"/>
+          <topic label="DRV8316_CTRL05_EN_ASR_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba44b061d219716242d9ddc8a9172ee63f"/>
+          <topic label="DRV8316_CTRL05_EN_ASR_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba9d5b8669f27a69dce0bf6b054505b534"/>
+          <topic label="DRV8316_CTRL05_EN_AAR_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba1d88475b5d701fa3b54c020625769ac9"/>
+          <topic label="DRV8316_CTRL05_EN_AAR_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba950bb0c2ad963689a9128de2127fb808"/>
+          <topic label="DRV8316_CTRL05_ILIM_RECIR_BRAKE_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8ba7b53e7751bdde2c895d40641e8ba6e9c"/>
+          <topic label="DRV8316_CTRL05_ILIM_RECIR_COAST_MODE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggade620b1bf2bebc6eee73e7cf3668ef8bacaa20854073d572c20e58ef447540474"/>
+        </topic>
+        <topic label="DRV8316_CTRL06" href="group___d_r_v8316___m_o_d_u_l_e.html#ga2f68a73344295e1d72191178c671df3d">
+          <topic label="DRV8316_CTRL06_BUCK_DIS_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3dad1067cc5344f1eb500e5ecc7d9422263"/>
+          <topic label="DRV8316_CTRL06_BUCK_DIS_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3dae5986a835a8356cabcf7811d7a18fd7a"/>
+          <topic label="DRV8316_CTRL06_BUCK_SEL_3P3V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da5c317f3736548e4d3b6ddf7e5fda92d2"/>
+          <topic label="DRV8316_CTRL06_BUCK_SEL_5P0V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da3dd28c426dcb6a592566bc21b6ab8f25"/>
+          <topic label="DRV8316_CTRL06_BUCK_SEL_4P0V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da7878cb3a01c61fdc26884862efe389ed"/>
+          <topic label="DRV8316_CTRL06_BUCK_SEL_5P7V" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da77a4cf36eb4803eb1038c7ec1d734220"/>
+          <topic label="DRV8316_CTRL06_BUCK_CL_600MA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3dac45106bc2a5305a9d0285c7b529e0351"/>
+          <topic label="DRV8316_CTRL06_BUCK_CL_150MA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3daf0709547a8a9db8616f237b43e1a7f16"/>
+          <topic label="DRV8316_CTRL06_BUCK_PS_DIS_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da59450402be34924de0e135df2bfd7c51"/>
+          <topic label="DRV8316_CTRL06_BUCK_PS_DIS_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga2f68a73344295e1d72191178c671df3da9b437c1ec8f5c1d5b56803536faa35c6"/>
+        </topic>
+        <topic label="DRV8316_CTRL10" href="group___d_r_v8316___m_o_d_u_l_e.html#gac89e926fc153d52e2dc003cfe7673cb0">
+          <topic label="DRV8316_CTRL10_DLY_TARGET_0P0US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a6fd59c4fa06b45f9cfbfdf66d1e9481f"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_0P4US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a4715b4458ec4f0a72c3f0d745b4dab1f"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_0P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0ab616e1e430d67c4cdeed6f11d9651713"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_0P8US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a4efda1704723e381015ee2453352a312"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_1P0US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a4d9aa7c102725631ebaf8ae9aba3bfa3"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_1P2US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a65fbc7659ef3e8399950dca69e311db2"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_1P4US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0abb2923e9104cb6f82dcabb8f031c06de"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_1P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a0c502dc7b0bd33f8db7c67787f23ddde"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_1P8US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a35504bd73bad1815c6384cc563d8d8bc"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_2P0US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0adb4d1bd474fb78d832d26d0f6fd1c9d1"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_2P2US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0aefeb09f3a7ad315894fa4189fb493c40"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_2P4US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a7e43e994d8c3cd407105c609b4eb816a"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_2P6US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0acd0ac1f1abc1a713bd123fa786852eb2"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_2P8US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0ac8629fd8b907873355d00faa555b6e32"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_3P0US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a33632796265035ce2440c10897fd34ae"/>
+          <topic label="DRV8316_CTRL10_DLY_TARGET_3P2US" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0a6299a01f03073168903ce61e77a2fa00"/>
+          <topic label="DRV8316_CTRL10_DLYCMP_EN_DISABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0af7f073f22adaa1e202bd191eef686b1e"/>
+          <topic label="DRV8316_CTRL10_DLYCMP_EN_ENABLE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggac89e926fc153d52e2dc003cfe7673cb0ac0432fdb54a42fc678d3e1bd4e2c32b2"/>
+        </topic>
+        <topic label="DRV8316_SPI" href="group___d_r_v8316___m_o_d_u_l_e.html#ga62e68b771157b7178a97c8d66440bc8f">
+          <topic label="DRV8316_SPI_READ" href="group___d_r_v8316___m_o_d_u_l_e.html#gga62e68b771157b7178a97c8d66440bc8fae7c880c6b6248fc2649add89640fa58f"/>
+          <topic label="DRV8316_SPI_WRITE" href="group___d_r_v8316___m_o_d_u_l_e.html#gga62e68b771157b7178a97c8d66440bc8fa8ea658102b7eb29c34f3a8cd856e9c31"/>
+        </topic>
+        <topic label="DRV8316_ADDR" href="group___d_r_v8316___m_o_d_u_l_e.html#ga1e0bc23e54da87246c7417a258078338">
+          <topic label="DRV8316_ADDR_STAT_IC" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a3abf5bc4996f338834cc3b16df20bded"/>
+          <topic label="DRV8316_ADDR_STAT_1" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338ab5725ae8a23ab1307a4c12931d85eb4b"/>
+          <topic label="DRV8316_ADDR_STAT_2" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a846b1f1fd1a862fcbfb2257393b9a960"/>
+          <topic label="DRV8316_ADDR_CTRL_1" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a9f509aa23a4466a9afab5f3710d42973"/>
+          <topic label="DRV8316_ADDR_CTRL_2" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338ac0a427aab69bd1381f7c23983628eccd"/>
+          <topic label="DRV8316_ADDR_CTRL_3" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a9f4d6d16726c65c600a2e2467cfe60ec"/>
+          <topic label="DRV8316_ADDR_CTRL_4" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a14ed7a9b6c143e125c32684ed82239c6"/>
+          <topic label="DRV8316_ADDR_CTRL_5" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338ad4db8914b593c4aa3d7933f0bd7b8af7"/>
+          <topic label="DRV8316_ADDR_CTRL_6" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a9db143625c7874db8198bc31437dbec8"/>
+          <topic label="DRV8316_ADDR_CTRL_10" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1e0bc23e54da87246c7417a258078338a078bd59d57207cf3c41293d241c9aaa9"/>
+        </topic>
+        <topic label="DRV8316_CSAGAIN" href="group___d_r_v8316___m_o_d_u_l_e.html#ga09b98410826de8b26b190fd10a63e712">
+          <topic label="DRV8316_CSAGAIN_0P15VA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga09b98410826de8b26b190fd10a63e712a449c718508adb9bf779e8db0962ed534"/>
+          <topic label="DRV8316_CSAGAIN_0P3VA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga09b98410826de8b26b190fd10a63e712a070e78e24b940320a23ac386fd4f746d"/>
+          <topic label="DRV8316_CSAGAIN_0P6VA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga09b98410826de8b26b190fd10a63e712a4f8cbfeac2fefc93125977e1c8506ac5"/>
+          <topic label="DRV8316_CSAGAIN_1P2VA" href="group___d_r_v8316___m_o_d_u_l_e.html#gga09b98410826de8b26b190fd10a63e712ad046dfc9a2d270df270d2f9b4815a6d6"/>
+        </topic>
+        <topic label="DRV8316_DRVOFF_PIN_STAT" href="group___d_r_v8316___m_o_d_u_l_e.html#ga1014d79277c61d8e2ade7232f6c697f9">
+          <topic label="DRV8316_DRVOFF_PIN_LOW" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1014d79277c61d8e2ade7232f6c697f9aec0e1b9f44e86471ae5d6c82795897c6"/>
+          <topic label="DRV8316_DRVOFF_PIN_HIGH" href="group___d_r_v8316___m_o_d_u_l_e.html#gga1014d79277c61d8e2ade7232f6c697f9ae6e573b8a54f2f343f4a6ca674804630"/>
+        </topic>
+        <topic label="DRV8316_DRV_NSLEEP_STAT" href="group___d_r_v8316___m_o_d_u_l_e.html#gae0e44c1b2c786f1f1bc896c0ee55bb50">
+          <topic label="DRV8316_DRV_NSLEEP_SLEEP" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae0e44c1b2c786f1f1bc896c0ee55bb50a402a776b8595d7e17151a2b7f982e5fc"/>
+          <topic label="DRV8316_DRV_NSLEEP_AWAKE" href="group___d_r_v8316___m_o_d_u_l_e.html#ggae0e44c1b2c786f1f1bc896c0ee55bb50a1a606148120fd0c68ba43cb6f69c0066"/>
+        </topic>
+        <topic label="DRV8316_setDrvoff" href="group___d_r_v8316___m_o_d_u_l_e.html#gab765a4c9b17c09a51709c673d22193b9"/>
+        <topic label="DRV8316_setnSleep" href="group___d_r_v8316___m_o_d_u_l_e.html#ga52960b60852207a52c414213224c8aeb"/>
+        <topic label="DRV8316_init" href="group___d_r_v8316___m_o_d_u_l_e.html#ga14a04555e81102acd3475dd75cd26b0d"/>
+        <topic label="DRV8316_SPIWrite" href="group___d_r_v8316___m_o_d_u_l_e.html#gae7901f0b0cf5ab473676430b5dbc3f39"/>
+        <topic label="DRV8316_SPIRead" href="group___d_r_v8316___m_o_d_u_l_e.html#gaf4a2656e1035270fd575e42b4f070bc1"/>
+        <topic label="DRV8316_enable" href="group___d_r_v8316___m_o_d_u_l_e.html#ga52b4a6187c3b2dbc9fe7729019115695"/>
+        <topic label="DRV8316_updateCTRLRegs" href="group___d_r_v8316___m_o_d_u_l_e.html#gaf1bccf8d2622f9c45d921848a70bb9d5"/>
+        <topic label="DRV8316_updateCSAScaleFactor" href="group___d_r_v8316___m_o_d_u_l_e.html#ga168e238efaebe9f00394900396356911"/>
+        <topic label="DRV8316_getVoltage" href="group___d_r_v8316___m_o_d_u_l_e.html#ga027c3ae3f3e906e09b309f040e84efd9"/>
+        <topic label="DRV8316_getCurrent" href="group___d_r_v8316___m_o_d_u_l_e.html#ga25253fa680b2137f1259bc3d75a016da"/>
+        <topic label="DRV8316_ADCVRefSel" href="group___d_r_v8316___m_o_d_u_l_e.html#ga51486c113a3b0da7f36aa7551e5c6566"/>
+        <topic label="DRV8316_updateSPICsagain" href="group___d_r_v8316___m_o_d_u_l_e.html#ga9882a7ad7085b2c380e5102578a6a9aa"/>
+        <topic label="DRV8316_unlockRegs" href="group___d_r_v8316___m_o_d_u_l_e.html#ga6f4f4ad3b1f575e753a0882738c5c65e"/>
+        <topic label="DRV8316_clearfaultBit" href="group___d_r_v8316___m_o_d_u_l_e.html#ga99b5c341ef54d632939e5b2726ca0b2e"/>
+        <topic label="DRV8316_getcsaVref" href="group___d_r_v8316___m_o_d_u_l_e.html#ga9bb83381f6514985feef7f4b1c4c7215"/>
+      </topic>
+      <topic label="drv8317.h" href="drv8317_8h.html">
+        <topic label="drv8317_MAXIMUM_RESET_TIME" href="group__drv8317___m_o_d_u_l_e.html#ga6b3dea52ed6584c56ea1b19cb01c2f84"/>
+        <topic label="drv8317_MAXIMUM_WAKEUP_TIME" href="group__drv8317___m_o_d_u_l_e.html#ga151e9cbbb1dcd5f6b1df40026614eab2"/>
+        <topic label="drv8317_VOLTAGE_CONV_CONST" href="group__drv8317___m_o_d_u_l_e.html#ga200914aec0d5bd8e34f89f1e82bac8e1"/>
+        <topic label="drv8317_CSA_REF_VOLTAGE" href="group__drv8317___m_o_d_u_l_e.html#ga2b985b383ef193c6c66eb55d5da7af11"/>
+        <topic label="drv8317_CSAGAIN_0P25VA_IQ" href="group__drv8317___m_o_d_u_l_e.html#gad231501952ee8f4d0b979b2995a754c2"/>
+        <topic label="drv8317_CSAGAIN_0P5VA_IQ" href="group__drv8317___m_o_d_u_l_e.html#gac432d92caef16289591485ed43736ac5"/>
+        <topic label="drv8317_CSAGAIN_1P0VA_IQ" href="group__drv8317___m_o_d_u_l_e.html#ga9116e8fa21c7eb65513961eeab5b22e5"/>
+        <topic label="drv8317_CSAGAIN_2P0VA_IQ" href="group__drv8317___m_o_d_u_l_e.html#gabac6bf2e92872e3464965e622a000b49"/>
+        <topic label="drv8317_CSAGAIN" href="group__drv8317___m_o_d_u_l_e.html#ga913b071e0c52d43bb404890dc4245153">
+          <topic label="drv8317_CSAGAIN_0P25VA" href="group__drv8317___m_o_d_u_l_e.html#gga913b071e0c52d43bb404890dc4245153afb184ec6d03d9c6cf2e43c1db657e6ae"/>
+          <topic label="drv8317_CSAGAIN_0P5VA" href="group__drv8317___m_o_d_u_l_e.html#gga913b071e0c52d43bb404890dc4245153a0cf4cc179a0fd37c2567b945d0bfbcd3"/>
+          <topic label="drv8317_CSAGAIN_1P0VA" href="group__drv8317___m_o_d_u_l_e.html#gga913b071e0c52d43bb404890dc4245153aa1d1a8f20afbbd8d92f6988443b22384"/>
+          <topic label="drv8317_CSAGAIN_2P0VA" href="group__drv8317___m_o_d_u_l_e.html#gga913b071e0c52d43bb404890dc4245153a9b0b5d1e210d26cd034bd327bd3daa47"/>
+        </topic>
+        <topic label="drv8317_DRVOFF_PIN_STAT" href="group__drv8317___m_o_d_u_l_e.html#gaeef24f14ea846879969018c34dacaae8">
+          <topic label="drv8317_DRVOFF_PIN_LOW" href="group__drv8317___m_o_d_u_l_e.html#ggaeef24f14ea846879969018c34dacaae8a7ae62db433d259e00c48a62b3c1f3490"/>
+          <topic label="drv8317_DRVOFF_PIN_HIGH" href="group__drv8317___m_o_d_u_l_e.html#ggaeef24f14ea846879969018c34dacaae8aa2d27c966553e17b57cf9c766d3155e2"/>
+        </topic>
+        <topic label="drv8317_DRV_NSLEEP_STAT" href="group__drv8317___m_o_d_u_l_e.html#ga94d81995cf8b410c524bcba765ed6447">
+          <topic label="drv8317_DRV_NSLEEP_SLEEP" href="group__drv8317___m_o_d_u_l_e.html#gga94d81995cf8b410c524bcba765ed6447a24f32b292948237aa9c53159b00f63ea"/>
+          <topic label="drv8317_DRV_NSLEEP_AWAKE" href="group__drv8317___m_o_d_u_l_e.html#gga94d81995cf8b410c524bcba765ed6447aaa5f476132af00a87f28ef50f8bc9664"/>
+        </topic>
+        <topic label="drv8317_setDrvoff" href="group__drv8317___m_o_d_u_l_e.html#gae51e2e2927bee728c837cfa12a85bd19"/>
+        <topic label="drv8317_setnSleep" href="group__drv8317___m_o_d_u_l_e.html#gaf2ff3f931b315ee206df02ca9760c5aa"/>
+        <topic label="drv8317_init" href="group__drv8317___m_o_d_u_l_e.html#ga37d0d002bc44508e73d6b2af27b0e87c"/>
+        <topic label="drv8317_enable" href="group__drv8317___m_o_d_u_l_e.html#gaa41d8e61e830080af986520411525f24"/>
+        <topic label="drv8317_updateCSAScaleFactor" href="group__drv8317___m_o_d_u_l_e.html#ga06d868c14c310c4e1485af393d2af9cb"/>
+        <topic label="drv8317_getVoltage" href="group__drv8317___m_o_d_u_l_e.html#gaae9cd35391998020b04ac85884c474b9"/>
+        <topic label="drv8317_getCurrent" href="group__drv8317___m_o_d_u_l_e.html#ga4cc7cc6d542be95383b830c5913d299c"/>
+        <topic label="drv8317_ADCVRefSel" href="group__drv8317___m_o_d_u_l_e.html#ga97bf91572c7e2e464a26408b17c975d8"/>
+        <topic label="drv8317_getcsaVref" href="group__drv8317___m_o_d_u_l_e.html#ga788ce7a8e131b41ef5f42b56b7e9e261"/>
+      </topic>
+      <topic label="drv8323.h" href="drv8323_8h.html">
+        <topic label="DRV8323_MAXIMUM_WAKEUP_TIME" href="group___d_r_v8323___m_o_d_u_l_e.html#gab92be3f921b7b4b2b81e91c9da2b69ea"/>
+        <topic label="DRV8323_VOLTAGE_CONV_CONST" href="group___d_r_v8323___m_o_d_u_l_e.html#ga1b839cd1ad65dcc9b0fd0e7ebd36c7b1"/>
+        <topic label="DRV8323_CSA_REF_VOLTAGE" href="group___d_r_v8323___m_o_d_u_l_e.html#ga596d12144e9e00c9a6b845149f985001"/>
+        <topic label="DRV8323_CSAGAIN_5_IQ" href="group___d_r_v8323___m_o_d_u_l_e.html#ga7d460ea7ceedf76aa109ff63f6902c9a"/>
+        <topic label="DRV8323_CSAGAIN_10_IQ" href="group___d_r_v8323___m_o_d_u_l_e.html#gaa1ec2f33911c5052f9b943c3a32f8bd4"/>
+        <topic label="DRV8323_CSAGAIN_20_IQ" href="group___d_r_v8323___m_o_d_u_l_e.html#ga81e7e3d6d3994d95277598f3f3b07d82"/>
+        <topic label="DRV8323_CSAGAIN_40_IQ" href="group___d_r_v8323___m_o_d_u_l_e.html#ga2a92486f57724367719038ec6d413285"/>
+        <topic label="DRV8323_CSAGAIN" href="group___d_r_v8323___m_o_d_u_l_e.html#gaf0a113eaf9756356a7dda205bc16a826">
+          <topic label="DRV8323_CSAGAIN_5" href="group___d_r_v8323___m_o_d_u_l_e.html#ggaf0a113eaf9756356a7dda205bc16a826adcf17e688691d68f45f96bfaa8d9c585"/>
+          <topic label="DRV8323_CSAGAIN_10" href="group___d_r_v8323___m_o_d_u_l_e.html#ggaf0a113eaf9756356a7dda205bc16a826aabbe7caf95b1d7f476e99c52d1f709cd"/>
+          <topic label="DRV8323_CSAGAIN_20" href="group___d_r_v8323___m_o_d_u_l_e.html#ggaf0a113eaf9756356a7dda205bc16a826ae35cc981eafb9b69e432fe2308c4274c"/>
+          <topic label="DRV8323_CSAGAIN_40" href="group___d_r_v8323___m_o_d_u_l_e.html#ggaf0a113eaf9756356a7dda205bc16a826a5fc4d5e9f84d125066dbab21de12b44b"/>
+        </topic>
+        <topic label="DRV8323_DRVOFF_PIN_STAT" href="group___d_r_v8323___m_o_d_u_l_e.html#ga9c27b545a515df71d5a94815385f5589">
+          <topic label="DRV8323_DRVOFF_PIN_LOW" href="group___d_r_v8323___m_o_d_u_l_e.html#gga9c27b545a515df71d5a94815385f5589a22f7610175d82582bbaa18bf704f03b1"/>
+          <topic label="DRV8323_DRVOFF_PIN_HIGH" href="group___d_r_v8323___m_o_d_u_l_e.html#gga9c27b545a515df71d5a94815385f5589adb0dcde93ab146f2cbbae77278022285"/>
+        </topic>
+        <topic label="DRV8323_DRV_NSLEEP_STAT" href="group___d_r_v8323___m_o_d_u_l_e.html#ga3171a1e021f4dab79d3c5870fa7d7f8b">
+          <topic label="DRV8323_DRV_NSLEEP_SLEEP" href="group___d_r_v8323___m_o_d_u_l_e.html#gga3171a1e021f4dab79d3c5870fa7d7f8badf3cf3c2fdd5fdfd6437cc65f933e32c"/>
+          <topic label="DRV8323_DRV_NSLEEP_AWAKE" href="group___d_r_v8323___m_o_d_u_l_e.html#gga3171a1e021f4dab79d3c5870fa7d7f8bad4d5c1a44d1bb4eb0bf64d6263b4c111"/>
+        </topic>
+        <topic label="DRV8323_setnSleep" href="group___d_r_v8323___m_o_d_u_l_e.html#ga14b72938fdf3f9ea3ea30340f55a2162"/>
+        <topic label="DRV8323_getcsaVref" href="group___d_r_v8323___m_o_d_u_l_e.html#gaeaafda6b351cabac750441ba52f68275"/>
+        <topic label="DRV8323_init" href="group___d_r_v8323___m_o_d_u_l_e.html#gab9d75726dd58140eae9e0f516670bd84"/>
+        <topic label="DRV8323_enable" href="group___d_r_v8323___m_o_d_u_l_e.html#ga51bf94468645d84bf8cf7069b66f78f3"/>
+        <topic label="DRV8323_updateCSAScaleFactor" href="group___d_r_v8323___m_o_d_u_l_e.html#ga2f6bf8ab8909d7d69ac60c29b64fd8fd"/>
+        <topic label="DRV8323_getVoltage" href="group___d_r_v8323___m_o_d_u_l_e.html#ga0ba788bd51c58ee6af5c560e020efb9e"/>
+        <topic label="DRV8323_getCurrent" href="group___d_r_v8323___m_o_d_u_l_e.html#gab7cd5693d6c62df475eb0276fac66709"/>
+        <topic label="DRV8323_ADCVRefSel" href="group___d_r_v8323___m_o_d_u_l_e.html#ga8ad5c9e7f0cfc62bfac84e96710f0e85"/>
+      </topic>
+      <topic label="drv8328.h" href="drv8328_8h.html">
+        <topic label="drv8328_MAXIMUM_WAKEUP_TIME" href="group__drv8328___m_o_d_u_l_e.html#ga685172a1967fd1cfce7ee520fc3a6836"/>
+        <topic label="drv8328_VOLTAGE_CONV_CONST" href="group__drv8328___m_o_d_u_l_e.html#gac408e3318573448cefdb32db738f0af5"/>
+        <topic label="drv8328_CSA_REF_VOLTAGE" href="group__drv8328___m_o_d_u_l_e.html#gabdd83d483786437f71dd7727d92d59bc"/>
+        <topic label="drv8328_DRVOFF_PIN_STAT" href="group__drv8328___m_o_d_u_l_e.html#ga15a569fe692ffa6d0fffb12ea8946a65">
+          <topic label="drv8328_DRVOFF_PIN_LOW" href="group__drv8328___m_o_d_u_l_e.html#gga15a569fe692ffa6d0fffb12ea8946a65ac7f7a7ed51cfdf52dcc6dab49afb5289"/>
+          <topic label="drv8328_DRVOFF_PIN_HIGH" href="group__drv8328___m_o_d_u_l_e.html#gga15a569fe692ffa6d0fffb12ea8946a65ae30d17ed842267ba960595a238abb6cf"/>
+        </topic>
+        <topic label="drv8328_DRV_NSLEEP_STAT" href="group__drv8328___m_o_d_u_l_e.html#ga303aaced3c5353e1a85817608c7bce4b">
+          <topic label="drv8328_DRV_NSLEEP_SLEEP" href="group__drv8328___m_o_d_u_l_e.html#gga303aaced3c5353e1a85817608c7bce4ba1a3a4b072d33b895a6f9c6ce50d07a5a"/>
+          <topic label="drv8328_DRV_NSLEEP_AWAKE" href="group__drv8328___m_o_d_u_l_e.html#gga303aaced3c5353e1a85817608c7bce4ba0913b6ce34b7fd22195a8505d5365e68"/>
+        </topic>
+        <topic label="drv8328_setDrvoff" href="group__drv8328___m_o_d_u_l_e.html#ga7456f768581659bebd5c6237bd17f235"/>
+        <topic label="drv8328_setnSleep" href="group__drv8328___m_o_d_u_l_e.html#ga2aaa243bb7c188a84f25400450865d56"/>
+        <topic label="drv8328_getcsaVref" href="group__drv8328___m_o_d_u_l_e.html#ga53771f3d34fbea49a385b44da1afa028"/>
+        <topic label="drv8328_init" href="group__drv8328___m_o_d_u_l_e.html#gab9ea3e01a3aa369ba3a1ae7f3240f6b3"/>
+        <topic label="drv8328_enable" href="group__drv8328___m_o_d_u_l_e.html#ga7eeb26f557e5fb3972091fd300d4c903"/>
+        <topic label="drv8328_updateCSAScaleFactor" href="group__drv8328___m_o_d_u_l_e.html#gaf6a86ba08605ee2c8272f5264ed3c15f"/>
+        <topic label="drv8328_getVoltage" href="group__drv8328___m_o_d_u_l_e.html#ga35e242478fac47408e10484c770af61f"/>
+        <topic label="drv8328_getCurrent" href="group__drv8328___m_o_d_u_l_e.html#ga448258c738c66c5342c1eaab3f791738"/>
+        <topic label="drv8328_ADCVRefSel" href="group__drv8328___m_o_d_u_l_e.html#ga1a335428eafb10cac34c72114e63fe22"/>
+      </topic>
+      <topic label="drv8329.h" href="drv8329_8h.html">
+        <topic label="DRV8329_MAXIMUM_WAKEUP_TIME" href="group___d_r_v8329___m_o_d_u_l_e.html#gadf31059a12dfd3825ae396752b7d33cc"/>
+        <topic label="DRV8329_VOLTAGE_CONV_CONST" href="group___d_r_v8329___m_o_d_u_l_e.html#ga5a0a441e0034667d30b33f9fc4bde24c"/>
+        <topic label="DRV8329_CSA_REF_VOLTAGE" href="group___d_r_v8329___m_o_d_u_l_e.html#ga1daefc61f4656060a57434a83c90ed63"/>
+        <topic label="DRV8329_CSAGAIN_5_IQ" href="group___d_r_v8329___m_o_d_u_l_e.html#ga617b0711ddc7acf8bb26357be6723569"/>
+        <topic label="DRV8329_CSAGAIN_10_IQ" href="group___d_r_v8329___m_o_d_u_l_e.html#ga4b67f8973e5bf66f16634025770d0929"/>
+        <topic label="DRV8329_CSAGAIN_20_IQ" href="group___d_r_v8329___m_o_d_u_l_e.html#ga527d360846611e581f0ca0ae424124c8"/>
+        <topic label="DRV8329_CSAGAIN_40_IQ" href="group___d_r_v8329___m_o_d_u_l_e.html#ga28f9046a9f78df0ffd5c33679703422c"/>
+        <topic label="DRV8329_CSAGAIN" href="group___d_r_v8329___m_o_d_u_l_e.html#ga58f1d446df001d89b645772573533372">
+          <topic label="DRV8329_CSAGAIN_5" href="group___d_r_v8329___m_o_d_u_l_e.html#gga58f1d446df001d89b645772573533372a845762ca7cfb410a02bb827d7ac80d2d"/>
+          <topic label="DRV8329_CSAGAIN_10" href="group___d_r_v8329___m_o_d_u_l_e.html#gga58f1d446df001d89b645772573533372a6504e7cdd73da78b4667d649a45a750c"/>
+          <topic label="DRV8329_CSAGAIN_20" href="group___d_r_v8329___m_o_d_u_l_e.html#gga58f1d446df001d89b645772573533372a80591edb5edc7d75d1173ec32a60c987"/>
+          <topic label="DRV8329_CSAGAIN_40" href="group___d_r_v8329___m_o_d_u_l_e.html#gga58f1d446df001d89b645772573533372a9e219456cac08242285ad2d825c3f3da"/>
+        </topic>
+        <topic label="DRV8329_DRVOFF_PIN_STAT" href="group___d_r_v8329___m_o_d_u_l_e.html#ga973dcced9fc32ebab52bff9d506d17ad">
+          <topic label="DRV8329_DRVOFF_PIN_LOW" href="group___d_r_v8329___m_o_d_u_l_e.html#gga973dcced9fc32ebab52bff9d506d17adad7d20af45ffd466b7957c7b916de9326"/>
+          <topic label="DRV8329_DRVOFF_PIN_HIGH" href="group___d_r_v8329___m_o_d_u_l_e.html#gga973dcced9fc32ebab52bff9d506d17adad2ff883bc7c24e6cb44cd36ae58bb6e0"/>
+        </topic>
+        <topic label="DRV8329_DRV_NSLEEP_STAT" href="group___d_r_v8329___m_o_d_u_l_e.html#ga8d3006dc9ceb03475629219a50ca7beb">
+          <topic label="DRV8329_DRV_NSLEEP_SLEEP" href="group___d_r_v8329___m_o_d_u_l_e.html#gga8d3006dc9ceb03475629219a50ca7beba3ca695519543b564b79cc13bda0a2413"/>
+          <topic label="DRV8329_DRV_NSLEEP_AWAKE" href="group___d_r_v8329___m_o_d_u_l_e.html#gga8d3006dc9ceb03475629219a50ca7beba804e539fcd29772d62931796b36909be"/>
+        </topic>
+        <topic label="DRV8329_setDrvoff" href="group___d_r_v8329___m_o_d_u_l_e.html#ga881b0fa1cceb40abbafd9b1af99b9355"/>
+        <topic label="DRV8329_setnSleep" href="group___d_r_v8329___m_o_d_u_l_e.html#gab53257ad888c05d0e5cbf663620fa8e0"/>
+        <topic label="DRV8329_getcsaVref" href="group___d_r_v8329___m_o_d_u_l_e.html#ga25d2bd24695ece3660393e9f26563735"/>
+        <topic label="DRV8329_init" href="group___d_r_v8329___m_o_d_u_l_e.html#ga6fc05e1773870ac7340b172fd59e1ece"/>
+        <topic label="DRV8329_enable" href="group___d_r_v8329___m_o_d_u_l_e.html#ga2fb67956c90faa4e1a35aa227c54f2d7"/>
+        <topic label="DRV8329_updateCSAScaleFactor" href="group___d_r_v8329___m_o_d_u_l_e.html#gaaca3a31b2fedcfc5f67a092a292d06cd"/>
+        <topic label="DRV8329_getVoltage" href="group___d_r_v8329___m_o_d_u_l_e.html#ga2112bbde437332df96345e9570c4e216"/>
+        <topic label="DRV8329_getCurrent" href="group___d_r_v8329___m_o_d_u_l_e.html#gaf7376c2e8d4d1495ecef239cc39c29ec"/>
+        <topic label="DRV8329_ADCVRefSel" href="group___d_r_v8329___m_o_d_u_l_e.html#ga25cfce9ce6bb4fe0b26f3f4be05bad30"/>
+      </topic>
+      <topic label="drv8353.h" href="drv8353_8h.html">
+        <topic label="DRV8353_ADDR_MASK" href="group___d_r_v8353___m_o_d_u_l_e.html#gab34cd2ae54b82f3f7943be2fac05ee50"/>
+        <topic label="DRV8353_DATA_MASK" href="group___d_r_v8353___m_o_d_u_l_e.html#ga93886ac31310e857c6d7fe5c2fbc2ce1"/>
+        <topic label="DRV8353_DATA_TRANSMIT_TO_READ" href="group___d_r_v8353___m_o_d_u_l_e.html#gac6e76128b8b69d9200778d6ec256e572"/>
+        <topic label="DRV8353_INITIAL_PARITY" href="group___d_r_v8353___m_o_d_u_l_e.html#ga7657842558a0dd84c2737d19f169e580"/>
+        <topic label="DRV8353_PARITY_CHECK" href="group___d_r_v8353___m_o_d_u_l_e.html#gac3e333aea2cea47ab71731dcb735bd86"/>
+        <topic label="DRV8353_RIGHT_SHIFT_REGISTER" href="group___d_r_v8353___m_o_d_u_l_e.html#ga09782a89233e250bd4eacb4f2a1bbadc"/>
+        <topic label="DRV8353_PARITY_BIT_POSITION" href="group___d_r_v8353___m_o_d_u_l_e.html#ga253f952d35f3cf351a1e605c6bcdb81b"/>
+        <topic label="DRV8353_ADDR_BIT_POSITION" href="group___d_r_v8353___m_o_d_u_l_e.html#ga6eb4676a8a1e15d8ab7e345ccd4b820b"/>
+        <topic label="DRV8353_SPICMD_BIT_POSITION" href="group___d_r_v8353___m_o_d_u_l_e.html#ga740878e49f7bf925a5570a71dc68ad09"/>
+        <topic label="DRV8353_CLEAR_BIT_MASK" href="group___d_r_v8353___m_o_d_u_l_e.html#gaab179be488ef695698446e4b6bbe6dd5"/>
+        <topic label="DRV8353_MAXIMUM_RESET_TIME" href="group___d_r_v8353___m_o_d_u_l_e.html#gada541520cdd2a40f7fab78f94de4e96c"/>
+        <topic label="DRV8353_MAXIMUM_WAKEUP_TIME" href="group___d_r_v8353___m_o_d_u_l_e.html#ga457735774b8e0f550314c18141a5e500"/>
+        <topic label="DRV8353_VOLTAGE_CONV_CONST" href="group___d_r_v8353___m_o_d_u_l_e.html#gab811b6627159c6590982b08d3f715da9"/>
+        <topic label="DRV8353_CSA_REF_VOLTAGE" href="group___d_r_v8353___m_o_d_u_l_e.html#ga67c772027b3e004bc6b8023e2fe73f79"/>
+        <topic label="DRV8353_DRV_NSLEEP_STAT" href="group___d_r_v8353___m_o_d_u_l_e.html#ga85635d2c1fd77faaa742c5f79dcc4f7a">
+          <topic label="DRV8353_DRV_NSLEEP_SLEEP" href="group___d_r_v8353___m_o_d_u_l_e.html#gga85635d2c1fd77faaa742c5f79dcc4f7aa5f95e7ab032af299f8ed586a1b696bf1"/>
+          <topic label="DRV8353_DRV_NSLEEP_AWAKE" href="group___d_r_v8353___m_o_d_u_l_e.html#gga85635d2c1fd77faaa742c5f79dcc4f7aaa0f7491bc070b27d7f2188c2c581fff0"/>
+        </topic>
+        <topic label="DRV8353_setnSleep" href="group___d_r_v8353___m_o_d_u_l_e.html#ga731c6bb8ef94494533cf860ff48e571c"/>
+        <topic label="DRV8353_init" href="group___d_r_v8353___m_o_d_u_l_e.html#ga7566d4a13ea4f4772c6b6af996688cd1"/>
+        <topic label="DRV8353_enable" href="group___d_r_v8353___m_o_d_u_l_e.html#gae252dcccce45f0f2d929c73c113fb134"/>
+        <topic label="DRV8353_updateCSAScaleFactor" href="group___d_r_v8353___m_o_d_u_l_e.html#gadcc78583eccee13453f0855379a4fed4"/>
+        <topic label="DRV8353_getVoltage" href="group___d_r_v8353___m_o_d_u_l_e.html#ga6bb0da5a49fbeae7f755a937b1e924d1"/>
+        <topic label="DRV8353_getCurrent" href="group___d_r_v8353___m_o_d_u_l_e.html#ga1f0cd8ee478e02e9e9b1d1ee2b296f4d"/>
+        <topic label="DRV8353_ADCVRefSel" href="group___d_r_v8353___m_o_d_u_l_e.html#gaebd1c958f7f1c59158052cffe0606adf"/>
+        <topic label="DRV8353_getcsaVref" href="group___d_r_v8353___m_o_d_u_l_e.html#gae805bd8ac1b2e93cd801767e3cab0f1e"/>
+      </topic>
+      <topic label="hal.h" href="hal_8h.html">
+        <topic label="HAL_SYSTEM_FREQ_MHZ" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga34ec5c2dff1e9d72ee4026879e121815"/>
+        <topic label="HAL_PWM_TIMER_FREQ_MHZ" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga065925ccdf2681747ea17cb67b62b22a"/>
+        <topic label="HAL_CAPTURE_TIMER_FREQ" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga6639cbd10cb39b6656d3d09e88007be5"/>
+        <topic label="HAL_VDDA_REFVOLTAGE" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaaff445b3e95fbd0fe93d2f21ca4170c1"/>
+        <topic label="MAX_ADC_VALUE" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga91f5af028cd707fcddafff4416925b21"/>
+        <topic label="HAL_GPIO_Instance" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gabfe6f57c865a97217ca989249539fb80"/>
+        <topic label="HAL_ADC_instance" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaab21c49f477f976ca6a6ea76aa23c62c"/>
+        <topic label="HAL_Timer_Instance" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga585750bfa78fcf7f0d3b810aad571c18"/>
+        <topic label="HAL_fault_instance" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga661db3b2622e8f8e7afa75f30562ccbc"/>
+        <topic label="HAL_GPIO_STATE" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga69227df1772ca23e63db3c72e14bf2b5">
+          <topic label="HAL_GPIO_PIN_LOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga69227df1772ca23e63db3c72e14bf2b5a5d50be244078b1e160fe753df373a871"/>
+          <topic label="HAL_GPIO_PIN_HIGH" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga69227df1772ca23e63db3c72e14bf2b5ac9eb0f26a635f2747d617b07391b8b67"/>
+        </topic>
+        <topic label="HAL_ADC_CHAN" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafa24d889c6b7446ca4f353f9e66dbf2a">
+          <topic label="HAL_ADC_CHAN_0" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafa24d889c6b7446ca4f353f9e66dbf2aa5af5d02f28e87cb2a84ee3af8b5bcd68"/>
+          <topic label="HAL_ADC_CHAN_1" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafa24d889c6b7446ca4f353f9e66dbf2aaec262545aafd932dd08b70af4d66f522"/>
+          <topic label="HAL_ADC_CHAN_2" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafa24d889c6b7446ca4f353f9e66dbf2aaa0e54b043904008fb5a3ef32fd54ed62"/>
+          <topic label="HAL_ADC_CHAN_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafa24d889c6b7446ca4f353f9e66dbf2aaedd5eb42b690c442612b5c16769334ff"/>
+        </topic>
+        <topic label="HAL_GPIO_IN" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gac635f165de0baac53708e407f4cb55e1">
+          <topic label="HAL_GPIO_IN_01" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a445ceac59e5385e228b5f793a38012fc"/>
+          <topic label="HAL_GPIO_IN_02" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a12029c9ab80694ad0696f2dc28630523"/>
+          <topic label="HAL_GPIO_IN_03" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a877d28f12c77483067b20ad6684f0742"/>
+          <topic label="HAL_GPIO_IN_04" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1abaaabebce8848d7ae02d3ece66f7ae22"/>
+          <topic label="HAL_GPIO_IN_05" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a2651949a5ecafe062563e5b1769170c6"/>
+          <topic label="HAL_GPIO_IN_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a59e6ad55e062a1d170c5666010c83c5e"/>
+        </topic>
+        <topic label="HAL_GPIO_OUT" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga8e1967170bf4efd016e423bdbbba880b">
+          <topic label="HAL_GPIO_OUT_01" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga8e1967170bf4efd016e423bdbbba880bad3ef2418d444396e4d594953db62902b"/>
+          <topic label="HAL_GPIO_OUT_02" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga8e1967170bf4efd016e423bdbbba880baf1fbc9a91eeea28ae31c49c0b44b1b05"/>
+          <topic label="HAL_GPIO_OUT_03" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga8e1967170bf4efd016e423bdbbba880ba2e0313eb9c836e22b9165bdd10f1d74b"/>
+          <topic label="HAL_GPIO_OUT_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga8e1967170bf4efd016e423bdbbba880ba8a21d458823f6a34870377a0c3902484"/>
+        </topic>
+        <topic label="HAL_PWM" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gae2c1aa11343ba5f836ae7a744c4b0a32">
+          <topic label="HAL_PWM_01" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggae2c1aa11343ba5f836ae7a744c4b0a32acdf2035e05220ccab29f93772485d63c"/>
+          <topic label="HAL_PWM_02" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggae2c1aa11343ba5f836ae7a744c4b0a32a6449914cee6d2129f7e2a9b69bb46e0e"/>
+          <topic label="HAL_PWM_03" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggae2c1aa11343ba5f836ae7a744c4b0a32aa21a7b867df80f1c604e35cb8ac76a33"/>
+          <topic label="HAL_PWM_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggae2c1aa11343ba5f836ae7a744c4b0a32a15b31d10dddec577ac904c6551d14210"/>
+        </topic>
+        <topic label="HAL_CAPTURE_TIMER" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga443d0b0f105b5a88fe4383416976944f">
+          <topic label="HAL_CAPTURE_TIMER_01" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga443d0b0f105b5a88fe4383416976944fa873e97346d95f1dae44971d11446632c"/>
+          <topic label="HAL_CAPTURE_TIMER_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga443d0b0f105b5a88fe4383416976944fa213f4f99c31ab1b2e766550746b93cef"/>
+        </topic>
+        <topic label="HAL_FAULT_INPUT" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga31efd569d01d863766a3dea7cbf9277c">
+          <topic label="HAL_FAULT_INPUT_1" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga31efd569d01d863766a3dea7cbf9277ca091dcd82b79aab0a53d13e78d63f3ed8"/>
+          <topic label="HAL_FAULT_INPUT_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga31efd569d01d863766a3dea7cbf9277cafd5372e7a46801e6519d7355dbeabc94"/>
+        </topic>
+        <topic label="HAL_SPI_CHAN" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafd598002c976f8f7a713319892341f8e">
+          <topic label="HAL_SPI_CHAN_0" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafd598002c976f8f7a713319892341f8ea66a5a45c33bf54cae088b92b2dcb20a9"/>
+          <topic label="HAL_SPI_CHAN_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggafd598002c976f8f7a713319892341f8eaf37ee9b61a169cbbbed64d36c72d083a"/>
+        </topic>
+        <topic label="HAL_SPI_CS" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gadd8a694a4d051d1ed3e24f91cf3a5103">
+          <topic label="HAL_SPI_CS_0" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a245e7d9e918d317a25632a2c741250d3"/>
+          <topic label="HAL_SPI_CS_1" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a4dd1abcb56726a9e44d11ba048ed6059"/>
+          <topic label="HAL_SPI_CS_2" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a7b39d1047b2fabfa2c879d967314b4d0"/>
+          <topic label="HAL_SPI_CS_3" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a01d825746893f18adc5fd812cb493702"/>
+          <topic label="HAL_SPI_CS_MAX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a6590d0de26232afe1039fb74c7f5dc9f"/>
+        </topic>
+        <topic label="HAL_ADC_VREF" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga2639d75737992092fe609dd9bc0c16f4">
+          <topic label="HAL_ADC_VREF_VDDA" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2639d75737992092fe609dd9bc0c16f4a2c630194084000f3c6450484cadb8936"/>
+          <topic label="HAL_ADC_VREF_INTERNAL" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2639d75737992092fe609dd9bc0c16f4acd18aabd0b868c59b152a1b0bfa8a8d3"/>
+          <topic label="HAL_ADC_VREF_EXTERNAL" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2639d75737992092fe609dd9bc0c16f4aaa7de254fb79b9e8c60e932d55b526a5"/>
+        </topic>
+        <topic label="HAL_ADC_INT_VREF" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga2e4f068697ba7abda2778f931fbc0086">
+          <topic label="HAL_ADC_INT_VREF_2P5V" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2e4f068697ba7abda2778f931fbc0086a9a18b07f312b4139ba71b190a7f5972f"/>
+          <topic label="HAL_ADC_INT_VREF_1P4V" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga2e4f068697ba7abda2778f931fbc0086a1a56831decf2ed725140f74b46ef4d2a"/>
+        </topic>
+        <topic label="HAL_ADC_IIDX" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga766203e04ba498fc83f09539677afd0d">
+          <topic label="HAL_ADC_IIDX_OVERFLOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da1adba70e747880c335f213379a4418cf"/>
+          <topic label="HAL_ADC_IIDX_TRIG_OVERFLOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0dae08d36f61738242cc727a37cf40cab27"/>
+          <topic label="HAL_ADC_IIDX_WINDOW_COMP_HIGH" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da2255ea4d221ef0e01b53c1039b8fb725"/>
+          <topic label="HAL_ADC_IIDX_WINDOW_COMP_LOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da0df4d28bd94f807065b7b12e21a3cd07"/>
+          <topic label="HAL_ADC_IIDX_INIFG" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0dac70ebe9f3c9c1df8b27464a191781bd0"/>
+          <topic label="HAL_ADC_IIDX_DMA_DONE" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0dab23f3ed46c9ae8d5fc1928c56f98e3ed"/>
+          <topic label="HAL_ADC_IIDX_UNDERFLOW" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da8076403e75531721558e07d986cb84bb"/>
+          <topic label="HAL_ADC_IIDX_MEM0_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da1bbc2bac055c99ca03ff6974b9c6482c"/>
+          <topic label="HAL_ADC_IIDX_MEM1_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da246aafcbf96027f4731e1c9fd6b8b808"/>
+          <topic label="HAL_ADC_IIDX_MEM2_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da7b146ba824c96add8dd30580f2c6fcb8"/>
+          <topic label="HAL_ADC_IIDX_MEM3_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da4d810e7d043fa54304290fc02eac2fdb"/>
+          <topic label="HAL_ADC_IIDX_MEM4_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0dacb05d27f35619e860816cc1f78fb41dd"/>
+          <topic label="HAL_ADC_IIDX_MEM5_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da40bbe488eeeae2c18033cc5acfda5f3b"/>
+          <topic label="HAL_ADC_IIDX_MEM6_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da434a61f3e3f33321caf3395d76f93347"/>
+          <topic label="HAL_ADC_IIDX_MEM7_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da0de73d87b3fc15dc45a74b48c6b1d4f3"/>
+          <topic label="HAL_ADC_IIDX_MEM8_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da50789eb2edccc9b905931c79c754db68"/>
+          <topic label="HAL_ADC_IIDX_MEM9_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da08884b7c43ea7f2931ba6d04f3b499ec"/>
+          <topic label="HAL_ADC_IIDX_MEM10_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da834344e57355be45f8476527140507c6"/>
+          <topic label="HAL_ADC_IIDX_MEM11_RESULT_LOADED" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga766203e04ba498fc83f09539677afd0da29b4762ce4fb60e4a567aa756b80bb39"/>
+        </topic>
+        <topic label="HAL_init" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga756ed4028115d9e20a16a636fc4cea34"/>
+        <topic label="HAL_readGPIOPin" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga1aea5cc02cc69d4bd522f76b5f204dbf"/>
+        <topic label="HAL_writeGPIOPin" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaf163c99472ebeaa22616a535312a0eae"/>
+        <topic label="HAL_setDeadband" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga31717781709a2c69c647d47004afadf4"/>
+        <topic label="HAL_setPWMFreq" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gac80448eea96a2a7c0eeed737e7a18389"/>
+        <topic label="HAL_writeSPI16" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafa15c52b39efa5799e7caa5a6e505a59"/>
+        <topic label="HAL_readSPI16" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaa8ccf044a6bddb584fd0c79b18d00675"/>
+        <topic label="HAL_setADCRefVoltage" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafe1fa32d1f01535a639c8956ee223aa7"/>
+        <topic label="HAL_getmvFromADC" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gab2d1f7dcc95f87a8cd8f6247f92ea517"/>
+        <topic label="HAL_getIQ20VoltageFromADC" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga24f36db88d63d8d3bad5665be5f64719"/>
+        <topic label="HAL_processADCIRQ" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga68a3070c2dec88af3f6badc81522a2dd"/>
+        <topic label="HAL_enableADCInterrupt" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaf741b8dc1fb120390891f1734aef7f84"/>
+        <topic label="HAL_enableGPIOInterrupt" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga2d4abcb3128021c829897251b0c15057"/>
+        <topic label="HAL_enablePWMInterrupt" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga6efe9a45e892c92e25be1470e3045e8b"/>
+        <topic label="HAL_enableCaptureInterrupt" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gac03676c49557a1823055cfdd87977518"/>
+        <topic label="HAL_setADCVRefVDDA" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gafab32726f99125acf6c0bc90fbc46186"/>
+        <topic label="HAL_setADCVRefInternal" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga3df4ea84f5443693f7b346c08e7311bc"/>
+        <topic label="HAL_setADCVRefExternal" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga929e882840e656417c583e885aef1f7b"/>
+        <topic label="HAL_clearTimerFault" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga1f5b793b60c2baf3a4ddd98d0ef6768a"/>
+        <topic label="HAL_getTimerFaultStatus" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga14158172a806ac0183ee132c94a8ad40"/>
+        <topic label="HAL_getCaptureFrequency" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaf8d1db00f1f4486bfda3f7ca34a3f36b"/>
+        <topic label="HAL_ADCVRefSel" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga56c1afdc53c48477cbf443d68797018d"/>
+        <topic label="HAL_getGPIOEnabledInterruptStatus" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gad39ea208df735a1ff3d413d2e600a5b9"/>
+        <topic label="HAL_delayMicroSeconds" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga4ff40ea6b11d7a5c552caf247cc52644"/>
+        <topic label="HAL_updatePWM" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga51564f86eb85a3ad271eef4f8fdd761a"/>
+        <topic label="HAL_PWMOutputLow" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga6619879c6f04d41149b635de692623ee"/>
+        <topic label="HAL_PWMOutputHigh" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gaba12ac2178d47a4e1b5ebf7b1c6dff00"/>
+        <topic label="gpioInputPin" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gabf7f96df7b15f226fe054f39cea12197"/>
+        <topic label="PWMBase" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga339c60b951ef921487c760c772f6efb2"/>
+        <topic label="inputCapture" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga886739ea646a2d4b676ed8b8ac9ce26f"/>
+        <topic label="ADCChannel" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga760d65cf1971586d5d5684aea419cdb6"/>
+        <topic label="faultInput" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga98aeb8dd561abf6951a11bd8f83747f7"/>
+      </topic>
+      <topic label="hall_trap.h" href="hall__trap_8h.html">
+        <topic label="HALLTRAP_HALT_TIME_US" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga1db267b2b48211e0de173233c50b5219"/>
+        <topic label="HALL" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga2327004c225174ddd85ef22f59b3155a">
+          <topic label="HALL_A" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga2327004c225174ddd85ef22f59b3155aae14703fcbaa5b2948bbdd9daf01d2c5a"/>
+          <topic label="HALL_B" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga2327004c225174ddd85ef22f59b3155aaad5f052e009fde75c02797ccdd24d892"/>
+          <topic label="HALL_C" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga2327004c225174ddd85ef22f59b3155aac752d908ab6014482c2ce7614f20e9a6"/>
+          <topic label="HALL_MAX" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga2327004c225174ddd85ef22f59b3155aaf40341b484dfac2601eda43c53206175"/>
+        </topic>
+        <topic label="MOTOR_DIR" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gadd6cf20369bb90a13cfd4950e792cd8f">
+          <topic label="MOTOR_DIR_FORWARD" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggadd6cf20369bb90a13cfd4950e792cd8fa1e237bee2172c309381749a1882636dc"/>
+          <topic label="MOTOR_DIR_REVERSE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggadd6cf20369bb90a13cfd4950e792cd8fa7487645fe3870eb9d9597b00166fd9ef"/>
+        </topic>
+        <topic label="MOTOR_BRAKE_TYPE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga4d6f437df94d4ffe41e644bb6805e223">
+          <topic label="MOTOR_BRAKE_TYPE_COAST" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga4d6f437df94d4ffe41e644bb6805e223ab3e98ccf165b0d3bf9cd58f9df232b95"/>
+          <topic label="MOTOR_BRAKE_TYPE_BRAKE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gga4d6f437df94d4ffe41e644bb6805e223ad0af3ea049f37653ebd7f6e307959247"/>
+        </topic>
+        <topic label="MOTOR_STATE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gae676bf9c7f315eb5efae14987ca95856">
+          <topic label="MOTOR_STATE_RUN" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggae676bf9c7f315eb5efae14987ca95856a463c5c215ddb1fd727b8d8ec6e06a568"/>
+          <topic label="MOTOR_STATE_STOP" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggae676bf9c7f315eb5efae14987ca95856aee88a6f51e8b247f12f0fbfbe98040b6"/>
+        </topic>
+        <topic label="HALLTRAP_COMM_STATE" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gac8d6a0010f964f334a8717f5773bb168">
+          <topic label="HALLTRAP_COMM_STATE_C_TO_A" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168a99baea53ace36bf4503602c3ee11cd46"/>
+          <topic label="HALLTRAP_COMM_STATE_A_TO_B" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168af94301666d2778da1b5f4b6852a1d992"/>
+          <topic label="HALLTRAP_COMM_STATE_C_TO_B" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168aa5db08c439effd216b54a4116702575a"/>
+          <topic label="HALLTRAP_COMM_STATE_B_TO_C" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168ae9c4bc92ba411b2d7e14cd9889eeb371"/>
+          <topic label="HALLTRAP_COMM_STATE_B_TO_A" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168aaf0347ab031a6a27aafeaa7b0a0aa0e1"/>
+          <topic label="HALLTRAP_COMM_STATE_A_TO_C" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ggac8d6a0010f964f334a8717f5773bb168a161904f0afcb80d0db6e1b9661892dad"/>
+        </topic>
+        <topic label="Halltrap_Init" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gaccf854176d3f9e15cfe656f8c2a94d16"/>
+        <topic label="Halltrap_PWMUpdate" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga86941d341ea00dee5476ab4946f8efb0"/>
+        <topic label="Halltrap_calculateMotorSpeed" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga3450a8c009559db39a6fa879db21225c"/>
+        <topic label="Halltrap_setDeadband" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#gace00493702aa4a03f6205a454ad4e867"/>
+        <topic label="Halltrap_setPWMFreq" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga66c5cb796e211a2a74d934ff2ebd691c"/>
+        <topic label="Halltrap_stopMotor" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga4b16a77a4e6d80e8f1fb201ba7a2a19e"/>
+        <topic label="Halltrap_disablePWM" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga09c92134067ae1c2bba3508945263577"/>
+        <topic label="Halltrap_changeMotorDirection" href="group___h_a_l_l___t_r_a_p___m_o_d_u_l_e.html#ga3fdc973ed09278b57f70ab493303ba89"/>
+      </topic>
+    </topic>
+    <topic label="Globals" href="globals.html">
+      <topic label="All" href="globals.html">
+        <topic label="a" href="globals.html"/>
+        <topic label="d" href="globals_d.html"/>
+        <topic label="f" href="globals_f.html"/>
+        <topic label="g" href="globals_g.html"/>
+        <topic label="h" href="globals_h.html"/>
+        <topic label="i" href="globals_i.html"/>
+        <topic label="m" href="globals_m.html"/>
+        <topic label="p" href="globals_p.html"/>
+      </topic>
+      <topic label="Functions" href="globals_func.html"/>
+      <topic label="Variables" href="globals_vars.html"/>
+      <topic label="Typedefs" href="globals_type.html"/>
+      <topic label="Enumerations" href="globals_enum.html"/>
+      <topic label="Enumerator" href="globals_eval.html">
+        <topic label="d" href="globals_eval.html"/>
+        <topic label="h" href="globals_eval_h.html"/>
+        <topic label="m" href="globals_eval_m.html"/>
+      </topic>
+      <topic label="Macros" href="globals_defs.html"/>
+    </topic>
+  </topic>
+  <topic label="Disclaimer" href="_disclaimer.html"/>
+</toc>

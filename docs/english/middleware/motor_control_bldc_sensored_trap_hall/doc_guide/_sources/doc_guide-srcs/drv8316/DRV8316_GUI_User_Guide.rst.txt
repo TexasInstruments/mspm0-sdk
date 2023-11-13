@@ -9,7 +9,7 @@ This graphical user interface (GUI) was developed to allow simple evaluation of 
 1.1 Getting Started with GUI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The GUI allows the user to configure various settings required for BLDC motor control. The user can adjust settings like dutycycle, PWM Frequency, deadband, driection control, acceleration rate, ADC reference, fault status monitoring, speed monitoring.
+The GUI allows the user to configure various settings required for BLDC motor control. The user can adjust settings like dutycycle, PWM Frequency, deadband, direction control, acceleration rate, ADC reference, fault status monitoring, speed monitoring.
 
 1.2 Hardware Connection
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,7 +34,7 @@ The GUI will automatically program the LaunchPad with the necessary firmware. If
 3. GUI Window
 -------------
 
-In the GUI window user can find various controls like nSleep, DRVOFF, Directrion control, dutycycle, pwm frequency, deadband, acceleration rate and SPI controls like write, read and bitfield write. Various faults are also indiacted using LEDs.
+In the GUI window user can find various controls like nSleep, DRVOFF, Direction control, dutycycle, pwm frequency, deadband, acceleration rate and SPI controls like write, read and bitfield write. Various faults are also indicated using LEDs.
 
 .. figure:: images/GUI_window.png
    :alt: 
@@ -44,7 +44,7 @@ In the GUI window user can find various controls like nSleep, DRVOFF, Directrion
 
 Once the hardware connections are done and GUI is connected to device, the motor is ready to spin. All the controls are in defaults. The user can spin the motor by adjusting the duty cycle.
 
-.. figure:: images/motor_control.png
+.. figure:: images/Motor_control.png
    :alt: 
 
 +---------------------+-----------+---------------------------------------------------------------------+
@@ -54,21 +54,21 @@ Once the hardware connections are done and GUI is connected to device, the motor
 +---------------------+-----------+---------------------------------------------------------------------+
 | DRVOFF              | ON        | Controls the DRV pwm output and sets the duty cycle to zero         |
 +---------------------+-----------+---------------------------------------------------------------------+
-| Direction           | Reverse   | Controls the diretcion of motor spinning                            |
+| Direction           | Reverse   | Controls the direction of motor spinning                            |
 +---------------------+-----------+---------------------------------------------------------------------+
-| PWM Frequency       | 20kHz     | PWM Frequency can be varried from 1kHz to 100kHz                    |
+| PWM Frequency       | 20kHz     | PWM Frequency can be varied from 1kHz to 100kHz                     |
 +---------------------+-----------+---------------------------------------------------------------------+
-| Deadband            | 320ns     | Deadband can be varried from 100ns to 1000ns                        |
+| Deadband            | 320ns     | Deadband can be varied from 100ns to 1000ns                         |
 +---------------------+-----------+---------------------------------------------------------------------+
 | Duty cycle          | 0%        | Minimum of 5 percent is applied to start spinning                   |
 +---------------------+-----------+---------------------------------------------------------------------+
-| Acceleration rate   | 20        | Duty cycle is incremented or decemented at a rate of 1% per 20ms    |
+| Acceleration rate   | 20        | Duty cycle is incremented or decremented at a rate of 1% per 20ms   |
 +---------------------+-----------+---------------------------------------------------------------------+
 
 3.2 Motor Braking
 ~~~~~~~~~~~~~~~~~
 
-The motor can be stopped from GUI without turning off the DRV by uisng stop button. The motor stops spinning with brake type selected.
+The motor can be stopped from GUI without turning off the DRV by using stop button. The motor stops spinning with brake type selected.
 
 .. figure:: images/Braking.png
    :alt: 
@@ -100,7 +100,7 @@ The DRV8316 integrates three low side current sense amplifiers for current measu
 3.4 Fault Status
 ~~~~~~~~~~~~~~~~
 
-The firmware continuously monitors the motor parameters like voltage and current. The user can set the limits for voltage and current from GUI. When any of the faults ocuur the corresponding LED glows.
+The firmware continuously monitors the motor parameters like voltage and current. The user can set the limits for voltage and current from GUI. When any of the faults occur the corresponding LED glows.
 
 .. figure:: images/Faults.png
    :alt: 
@@ -120,7 +120,7 @@ The firmware continuously monitors the motor parameters like voltage and current
 3.5 SPI Communication
 ~~~~~~~~~~~~~~~~~~~~~
 
-The DRV8316 has 3 status registers and 7 control registers, the user can read or wirte to these registers. The motor driver must not be sleeping for SPI communication to work, if you try to perform write or read while the motor driver is in sleep it will fail. If the motor goes o sleep mode for more than 1 ms the SPI registers will revert to their default values. The status registers are readonly registers and user can't write to them. If the user tries to write it is ignored.
+The DRV8316 has 3 status registers and 7 control registers, the user can read or write to these registers. The motor driver must not be sleeping for SPI communication to work, if you try to perform write or read while the motor driver is in sleep it will fail. If the motor goes o sleep mode for more than 1 ms the SPI registers will revert to their default values. The status registers are readonly registers and user can't write to them. If the user tries to write it is ignored.
 
 .. figure:: images/SPI_registers.png
    :alt: 

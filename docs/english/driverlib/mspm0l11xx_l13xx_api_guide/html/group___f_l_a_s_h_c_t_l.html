@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">1.10.01.05</span>
+   &#160;<span id="projectnumber">1.20.00.05</span>
    </div>
   </td>
  </tr>
@@ -567,6 +567,18 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6228a63118743a5bdfdd1e743fbca011"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6228a63118743a5bdfdd1e743fbca011">DL_FlashCTL_blankVerifyFromRAM</a> (FLASHCTL_Regs *flashctl, uint32_t address)</td></tr>
 <tr class="memdesc:ga6228a63118743a5bdfdd1e743fbca011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifies that a flash word is blank, and executes command from RAM.  <a href="#ga6228a63118743a5bdfdd1e743fbca011">More...</a><br /></td></tr>
 <tr class="separator:ga6228a63118743a5bdfdd1e743fbca011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2952026ad3af18d6226fdc79619eee58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga2952026ad3af18d6226fdc79619eee58">DL_FlashCTL_programMemory128</a> (FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)</td></tr>
+<tr class="memdesc:ga2952026ad3af18d6226fdc79619eee58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programs 128 bit data to unprotected memory at the given address.  <a href="#ga2952026ad3af18d6226fdc79619eee58">More...</a><br /></td></tr>
+<tr class="separator:ga2952026ad3af18d6226fdc79619eee58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaa5b1e53f5b28f1fcee50ed96e953dc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gaaa5b1e53f5b28f1fcee50ed96e953dc1">DL_FlashCTL_programMemory128WithECCGenerated</a> (FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)</td></tr>
+<tr class="memdesc:gaaa5b1e53f5b28f1fcee50ed96e953dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programs 128 bit data with hardware generated ECC code.  <a href="#gaaa5b1e53f5b28f1fcee50ed96e953dc1">More...</a><br /></td></tr>
+<tr class="separator:gaaa5b1e53f5b28f1fcee50ed96e953dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac21a63a6a685cf066a3d20c74c48f9d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gac21a63a6a685cf066a3d20c74c48f9d5">DL_FlashCTL_programMemory128WithECCManual</a> (FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data, uint8_t *eccCode)</td></tr>
+<tr class="memdesc:gac21a63a6a685cf066a3d20c74c48f9d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programs 128 bit data with user provided ECC code.  <a href="#gac21a63a6a685cf066a3d20c74c48f9d5">More...</a><br /></td></tr>
+<tr class="separator:gac21a63a6a685cf066a3d20c74c48f9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaec5d51f9e035e2846289fd948e267cfe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gaec5d51f9e035e2846289fd948e267cfe">DL_FlashCTL_programMemoryBlocking128WithECCGenerated</a> (FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data, uint32_t dataSize, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gad8b5345481dd655cbd20dadc84e7621b">DL_FLASHCTL_REGION_SELECT</a> regionSelect)</td></tr>
+<tr class="memdesc:gaec5d51f9e035e2846289fd948e267cfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programs provided data up to 128-bits with ECC generated while blocking between writes.  <a href="#gaec5d51f9e035e2846289fd948e267cfe">More...</a><br /></td></tr>
+<tr class="separator:gaec5d51f9e035e2846289fd948e267cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><a class="anchor" id="ti_dl_dl_flashctl_Overview"></a></p><h1>Overview</h1>
@@ -1951,7 +1963,7 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of wait states used by the Flash </dd></dl>
 
-<p>References <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga7efeda684bcd5d2e0e3b908f3ea47774">DL_FlashCTL_blankVerify()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6228a63118743a5bdfdd1e743fbca011">DL_FlashCTL_blankVerifyFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gad2d0a45785ecf6057a9fb76899150819">DL_FlashCTL_eraseMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga08dca5922bc739dd8e4439f7d4882a39">DL_FlashCTL_eraseMemoryFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gac4de77451a9f9825d5598be8def66081">DL_FlashCTL_factoryReset()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9560031f2dc8b370e3991ec67c1a126e">DL_FlashCTL_factoryResetFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga68b9b8090c318278b40fad8fbb7f446c">DL_FlashCTL_factoryResetMultiBank()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gad0a7add5d14c16c7b8f470457dbac991">DL_FlashCTL_massErase()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gafb4228a5e605be29f26f0ca96d006e0b">DL_FlashCTL_massEraseFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gadc2373933a2ffc87984143c33aa8e671">DL_FlashCTL_massEraseMultiBank()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gace625a3d5ead004a4ee7c4ab593de418">DL_FlashCTL_programMemory16()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga0cacef7826e6acf24020f9f1ce6930c6">DL_FlashCTL_programMemory16WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga8e969908e8eb16afa974a92858d05b4a">DL_FlashCTL_programMemory16WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab633752a0a3d2278f15d13155c0ea4fc">DL_FlashCTL_programMemory32()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab4f2eb47c91103c2e81721ad0074745e">DL_FlashCTL_programMemory32WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaee57c0286b909969726f3e90e45fe722">DL_FlashCTL_programMemory32WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacfb8b53df0f41fb5c1e3ea07a95ae412">DL_FlashCTL_programMemory64()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga280fe2292d7d2d4103b06008aa049f36">DL_FlashCTL_programMemory64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga758e9a49b7eff59d65d86d1290780f5c">DL_FlashCTL_programMemory64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4c16d41e77dcf30172ed8661ce101370">DL_FlashCTL_programMemory8()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga036a7d5c206c13e1076be027075fdcbc">DL_FlashCTL_programMemory8WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga0e3f305f315461e208ffc1a304fe34d2">DL_FlashCTL_programMemory8WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga5644da91bdbf6df26ea6550da3dbc226">DL_FlashCTL_programMemoryBlocking()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga5a01864fe9815f1117cbda07c38e0de5">DL_FlashCTL_programMemoryBlocking64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9ea23446748b9a1eddc96b199b55e4f6">DL_FlashCTL_programMemoryBlocking64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaf27b130aecc263d4a4cce6b54346e4cf">DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga7f19934f5b5861ea8454a799ceaa642f">DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab8a38f51d18afd14036b7e83b431a8c9">DL_FlashCTL_programMemoryFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab5bfeda7bfdc18cbbfd09700e3c324da">DL_FlashCTL_programMemoryFromRAM16()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gae9fcbb0be4768476a78c30c2c8f58bf1">DL_FlashCTL_programMemoryFromRAM16WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga0d75702411509ce335509601cd26dc18">DL_FlashCTL_programMemoryFromRAM16WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaac6e4eb54efe4419a1ec1a25f8f455b4">DL_FlashCTL_programMemoryFromRAM32()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6ec25ecbed436a145cb406e1a7266cf0">DL_FlashCTL_programMemoryFromRAM32WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9e7aacaa10cf77ab3770237f4c2a0e67">DL_FlashCTL_programMemoryFromRAM32WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga88315b50e8c278210ce33626092d6b95">DL_FlashCTL_programMemoryFromRAM64()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga7140592ba53025dffe2a9ce971c5aeab">DL_FlashCTL_programMemoryFromRAM64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga52d4d86624e8b9ec93644f99867036ac">DL_FlashCTL_programMemoryFromRAM64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9030f70bb3b8d52bfcaa0468889c44f5">DL_FlashCTL_programMemoryFromRAM8()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga963be2618bfbbcaa0ae7afe718f68fe6">DL_FlashCTL_programMemoryFromRAM8WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaaff61c548f38b216c71a1141ab6fc330">DL_FlashCTL_programMemoryFromRAM8WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga07a63c746838aa5d38068d3257902130">DL_FlashCTL_protectAllMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga043bf21b804a375035999cf54693ac93">DL_FlashCTL_protectMainMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga487b9695b457dda8eb0d3375e9db8288">DL_FlashCTL_protectNonMainMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gabbb4906e8dc971d484af8ea532857c2a">DL_FlashCTL_protectSector()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga82e37baa0c9cc8270ae3b30d18ddde1f">DL_FlashCTL_readVerify16()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6e92f5898b3e9d28a7ebeaba4ccaacf7">DL_FlashCTL_readVerify16WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaa7f6a6abf258d84ccecaee57dd4af08a">DL_FlashCTL_readVerify16WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9ccd7faf9f9d4a4452e3792be56d5059">DL_FlashCTL_readVerify32()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6b2f7bb7e21f7f9c9ea3c67cf07c9018">DL_FlashCTL_readVerify32WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga03918c1cdb891ff0d9e399d4c4d0c3ae">DL_FlashCTL_readVerify32WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga36433eb1ad75ddd624d0613c82a038d6">DL_FlashCTL_readVerify64()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga2455341969795b433bd426040b477732">DL_FlashCTL_readVerify64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gabe9eadca6b3a2cafb04da9d4ff6101cd">DL_FlashCTL_readVerify64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga3f184703a975868e52e1b540395aa593">DL_FlashCTL_readVerify8()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga57f289365d1b7ddb45fd56be6b53a3ea">DL_FlashCTL_readVerify8WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga2bd8caa1b0a353265022509f4b977a62">DL_FlashCTL_readVerify8WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga079e26e16a2fa96902b21f1b73bb623b">DL_FlashCTL_readVerifyFromRAM16()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4cf263e67de4bc353ec26bb0d33df531">DL_FlashCTL_readVerifyFromRAM16WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4d7988b8e23f5f496567bc78d104fc96">DL_FlashCTL_readVerifyFromRAM16WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacbd94b07fcb879087f006a3c6dc4c873">DL_FlashCTL_readVerifyFromRAM32()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gabcffa474d83e965e0952e89f360d8a55">DL_FlashCTL_readVerifyFromRAM32WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gae1545ef4d0a7769cc405ad77d17d2f16">DL_FlashCTL_readVerifyFromRAM32WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga5d92697364867e21fd1018e1255bd651">DL_FlashCTL_readVerifyFromRAM64()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacee71da7e4f0b7e98945bce1720a03f2">DL_FlashCTL_readVerifyFromRAM64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga29e884c1e972d01f94c172702c947fff">DL_FlashCTL_readVerifyFromRAM64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga90efed15fd5c7c2370b0b6e7bd6784ef">DL_FlashCTL_readVerifyFromRAM8()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga82238c93cd956727f3e2b277ebda7f8f">DL_FlashCTL_readVerifyFromRAM8WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaa578ac170c93e87052518cb2c37e78fe">DL_FlashCTL_readVerifyFromRAM8WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gac8da907b919959d7ca3d7af48dcd930d">DL_FlashCTL_unprotectAllMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga12f380dc9c7ead7114cabd8a35391c08">DL_FlashCTL_unprotectMainMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab4b4326886983e1a9eedb3a8f723a031">DL_FlashCTL_unprotectNonMainMemory()</a>, and <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaff740a4d3903a5813bdcf631e24389cb">DL_FlashCTL_unprotectSector()</a>.</p>
+<p>References <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga7efeda684bcd5d2e0e3b908f3ea47774">DL_FlashCTL_blankVerify()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6228a63118743a5bdfdd1e743fbca011">DL_FlashCTL_blankVerifyFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gad2d0a45785ecf6057a9fb76899150819">DL_FlashCTL_eraseMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga08dca5922bc739dd8e4439f7d4882a39">DL_FlashCTL_eraseMemoryFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gac4de77451a9f9825d5598be8def66081">DL_FlashCTL_factoryReset()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9560031f2dc8b370e3991ec67c1a126e">DL_FlashCTL_factoryResetFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga68b9b8090c318278b40fad8fbb7f446c">DL_FlashCTL_factoryResetMultiBank()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gad0a7add5d14c16c7b8f470457dbac991">DL_FlashCTL_massErase()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gafb4228a5e605be29f26f0ca96d006e0b">DL_FlashCTL_massEraseFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gadc2373933a2ffc87984143c33aa8e671">DL_FlashCTL_massEraseMultiBank()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga2952026ad3af18d6226fdc79619eee58">DL_FlashCTL_programMemory128()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaaa5b1e53f5b28f1fcee50ed96e953dc1">DL_FlashCTL_programMemory128WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gac21a63a6a685cf066a3d20c74c48f9d5">DL_FlashCTL_programMemory128WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gace625a3d5ead004a4ee7c4ab593de418">DL_FlashCTL_programMemory16()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga0cacef7826e6acf24020f9f1ce6930c6">DL_FlashCTL_programMemory16WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga8e969908e8eb16afa974a92858d05b4a">DL_FlashCTL_programMemory16WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab633752a0a3d2278f15d13155c0ea4fc">DL_FlashCTL_programMemory32()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab4f2eb47c91103c2e81721ad0074745e">DL_FlashCTL_programMemory32WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaee57c0286b909969726f3e90e45fe722">DL_FlashCTL_programMemory32WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacfb8b53df0f41fb5c1e3ea07a95ae412">DL_FlashCTL_programMemory64()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga280fe2292d7d2d4103b06008aa049f36">DL_FlashCTL_programMemory64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga758e9a49b7eff59d65d86d1290780f5c">DL_FlashCTL_programMemory64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4c16d41e77dcf30172ed8661ce101370">DL_FlashCTL_programMemory8()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga036a7d5c206c13e1076be027075fdcbc">DL_FlashCTL_programMemory8WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga0e3f305f315461e208ffc1a304fe34d2">DL_FlashCTL_programMemory8WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga5644da91bdbf6df26ea6550da3dbc226">DL_FlashCTL_programMemoryBlocking()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaec5d51f9e035e2846289fd948e267cfe">DL_FlashCTL_programMemoryBlocking128WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga5a01864fe9815f1117cbda07c38e0de5">DL_FlashCTL_programMemoryBlocking64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9ea23446748b9a1eddc96b199b55e4f6">DL_FlashCTL_programMemoryBlocking64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaf27b130aecc263d4a4cce6b54346e4cf">DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga7f19934f5b5861ea8454a799ceaa642f">DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab8a38f51d18afd14036b7e83b431a8c9">DL_FlashCTL_programMemoryFromRAM()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab5bfeda7bfdc18cbbfd09700e3c324da">DL_FlashCTL_programMemoryFromRAM16()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gae9fcbb0be4768476a78c30c2c8f58bf1">DL_FlashCTL_programMemoryFromRAM16WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga0d75702411509ce335509601cd26dc18">DL_FlashCTL_programMemoryFromRAM16WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaac6e4eb54efe4419a1ec1a25f8f455b4">DL_FlashCTL_programMemoryFromRAM32()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6ec25ecbed436a145cb406e1a7266cf0">DL_FlashCTL_programMemoryFromRAM32WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9e7aacaa10cf77ab3770237f4c2a0e67">DL_FlashCTL_programMemoryFromRAM32WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga88315b50e8c278210ce33626092d6b95">DL_FlashCTL_programMemoryFromRAM64()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga7140592ba53025dffe2a9ce971c5aeab">DL_FlashCTL_programMemoryFromRAM64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga52d4d86624e8b9ec93644f99867036ac">DL_FlashCTL_programMemoryFromRAM64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9030f70bb3b8d52bfcaa0468889c44f5">DL_FlashCTL_programMemoryFromRAM8()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga963be2618bfbbcaa0ae7afe718f68fe6">DL_FlashCTL_programMemoryFromRAM8WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaaff61c548f38b216c71a1141ab6fc330">DL_FlashCTL_programMemoryFromRAM8WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga07a63c746838aa5d38068d3257902130">DL_FlashCTL_protectAllMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga043bf21b804a375035999cf54693ac93">DL_FlashCTL_protectMainMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga487b9695b457dda8eb0d3375e9db8288">DL_FlashCTL_protectNonMainMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gabbb4906e8dc971d484af8ea532857c2a">DL_FlashCTL_protectSector()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga82e37baa0c9cc8270ae3b30d18ddde1f">DL_FlashCTL_readVerify16()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6e92f5898b3e9d28a7ebeaba4ccaacf7">DL_FlashCTL_readVerify16WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaa7f6a6abf258d84ccecaee57dd4af08a">DL_FlashCTL_readVerify16WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga9ccd7faf9f9d4a4452e3792be56d5059">DL_FlashCTL_readVerify32()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga6b2f7bb7e21f7f9c9ea3c67cf07c9018">DL_FlashCTL_readVerify32WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga03918c1cdb891ff0d9e399d4c4d0c3ae">DL_FlashCTL_readVerify32WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga36433eb1ad75ddd624d0613c82a038d6">DL_FlashCTL_readVerify64()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga2455341969795b433bd426040b477732">DL_FlashCTL_readVerify64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gabe9eadca6b3a2cafb04da9d4ff6101cd">DL_FlashCTL_readVerify64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga3f184703a975868e52e1b540395aa593">DL_FlashCTL_readVerify8()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga57f289365d1b7ddb45fd56be6b53a3ea">DL_FlashCTL_readVerify8WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga2bd8caa1b0a353265022509f4b977a62">DL_FlashCTL_readVerify8WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga079e26e16a2fa96902b21f1b73bb623b">DL_FlashCTL_readVerifyFromRAM16()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4cf263e67de4bc353ec26bb0d33df531">DL_FlashCTL_readVerifyFromRAM16WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4d7988b8e23f5f496567bc78d104fc96">DL_FlashCTL_readVerifyFromRAM16WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacbd94b07fcb879087f006a3c6dc4c873">DL_FlashCTL_readVerifyFromRAM32()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gabcffa474d83e965e0952e89f360d8a55">DL_FlashCTL_readVerifyFromRAM32WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gae1545ef4d0a7769cc405ad77d17d2f16">DL_FlashCTL_readVerifyFromRAM32WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga5d92697364867e21fd1018e1255bd651">DL_FlashCTL_readVerifyFromRAM64()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacee71da7e4f0b7e98945bce1720a03f2">DL_FlashCTL_readVerifyFromRAM64WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga29e884c1e972d01f94c172702c947fff">DL_FlashCTL_readVerifyFromRAM64WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga90efed15fd5c7c2370b0b6e7bd6784ef">DL_FlashCTL_readVerifyFromRAM8()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga82238c93cd956727f3e2b277ebda7f8f">DL_FlashCTL_readVerifyFromRAM8WithECCGenerated()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaa578ac170c93e87052518cb2c37e78fe">DL_FlashCTL_readVerifyFromRAM8WithECCManual()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gac8da907b919959d7ca3d7af48dcd930d">DL_FlashCTL_unprotectAllMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga12f380dc9c7ead7114cabd8a35391c08">DL_FlashCTL_unprotectMainMemory()</a>, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gab4b4326886983e1a9eedb3a8f723a031">DL_FlashCTL_unprotectNonMainMemory()</a>, and <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaff740a4d3903a5813bdcf631e24389cb">DL_FlashCTL_unprotectSector()</a>.</p>
 
 </div>
 </div>
@@ -5797,6 +5809,234 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
+
+<p>Referenced by <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4d2a546c4352e605fb39df581ae2350e">DL_FlashCTL_getWaitState()</a>.</p>
+
+</div>
+</div>
+<a id="ga2952026ad3af18d6226fdc79619eee58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2952026ad3af18d6226fdc79619eee58">&sect;&nbsp;</a></span>DL_FlashCTL_programMemory128()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DL_FlashCTL_programMemory128 </td>
+          <td>(</td>
+          <td class="paramtype">FLASHCTL_Regs *&#160;</td>
+          <td class="paramname"><em>flashctl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Programs 128 bit data to unprotected memory at the given address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flashctl</td><td>Pointer to the register overlay for the peripheral </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Destination memory address to program data. The address must be flash word (64-bit) aligned i.e. aligned to a 0b000 boundary. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Pointer to the 32-bit source data</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>Before programming memory, the user must unprotect the region of memory to program. Refer to <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaff740a4d3903a5813bdcf631e24389cb">DL_FlashCTL_unprotectSector</a> </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>This API just starts the program process. Check the result of it using an interrupt or the <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga18538b0b2eb9257188f6b488fbf0a164">DL_FlashCTL_waitForCmdDone</a> API</dd></dl>
+<p>NOTE: After completion of a program operation, the flash controller will configure all memory to a protected state. NOTE: This API does not enable programming the ECC code. </p>
+
+<p>Referenced by <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4d2a546c4352e605fb39df581ae2350e">DL_FlashCTL_getWaitState()</a>.</p>
+
+</div>
+</div>
+<a id="gaaa5b1e53f5b28f1fcee50ed96e953dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaa5b1e53f5b28f1fcee50ed96e953dc1">&sect;&nbsp;</a></span>DL_FlashCTL_programMemory128WithECCGenerated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DL_FlashCTL_programMemory128WithECCGenerated </td>
+          <td>(</td>
+          <td class="paramtype">FLASHCTL_Regs *&#160;</td>
+          <td class="paramname"><em>flashctl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Programs 128 bit data with hardware generated ECC code. </p>
+<p>Programs 128 bit data, along with the 16 ECC bits which correspond to the 128-bit data word, to unprotected memory at the given address. This API assumes that hardware generation of the ECC code has NOT been disabled, and so the flash controller will generate the ECC bits.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flashctl</td><td>Pointer to the register overlay for the peripheral </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Destination memory address to program data. The address must be flash word (64-bit) aligned i.e. aligned to a 0b000 boundary. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Pointer to the 32-bit source data</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>Before programming memory, the user must unprotect the region of memory to program. Refer to <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaff740a4d3903a5813bdcf631e24389cb">DL_FlashCTL_unprotectSector</a> </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>This API just starts the program process. Check the result of it using an interrupt or the <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga18538b0b2eb9257188f6b488fbf0a164">DL_FlashCTL_waitForCmdDone</a> API</dd></dl>
+<p>NOTE: After completion of a program operation, the flash controller will configure all memory to a protected state. NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided). </p>
+
+<p>Referenced by <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4d2a546c4352e605fb39df581ae2350e">DL_FlashCTL_getWaitState()</a>.</p>
+
+</div>
+</div>
+<a id="gac21a63a6a685cf066a3d20c74c48f9d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac21a63a6a685cf066a3d20c74c48f9d5">&sect;&nbsp;</a></span>DL_FlashCTL_programMemory128WithECCManual()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DL_FlashCTL_programMemory128WithECCManual </td>
+          <td>(</td>
+          <td class="paramtype">FLASHCTL_Regs *&#160;</td>
+          <td class="paramname"><em>flashctl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>eccCode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Programs 128 bit data with user provided ECC code. </p>
+<p>Programs 128 bit data, along with the 16 ECC bits which correspond to the 128-bit data word, to unprotected memory at the given address. This API assumes that hardware generation of the ECC code HAS been disabled, and so the user must provide the ECC code to program.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flashctl</td><td>Pointer to the register overlay for the peripheral </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Destination memory address to program data. The address must be flash word (64-bit) aligned i.e. aligned to a 0b000 boundary. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Pointer to the 32-bit source data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eccCode</td><td>Pointer to the ECC code to program</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>User must call <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacf328d7e267b95496ff4e0d7b37e831a">DL_FlashCTL_enableOverrideHardwareGeneratedECC</a> to disable hardware generation of the ECC code, so the ECC code can be manually provided for programming. This override setting will persist through multiple programs, until <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga425a9da6de8a129833b47834093f34fb">DL_FlashCTL_disableOverrideHardwareGeneratedECC</a> is called </dd>
+<dd>
+Before programming memory, the user must unprotect the region of memory to program. Refer to <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaff740a4d3903a5813bdcf631e24389cb">DL_FlashCTL_unprotectSector</a> </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>This API just starts the program process. Check the result of it using an interrupt or the <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga18538b0b2eb9257188f6b488fbf0a164">DL_FlashCTL_waitForCmdDone</a> API</dd></dl>
+<p>NOTE: After completion of a program operation, the flash controller will configure all memory to a protected state. NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided). </p>
+
+<p>Referenced by <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4d2a546c4352e605fb39df581ae2350e">DL_FlashCTL_getWaitState()</a>.</p>
+
+</div>
+</div>
+<a id="gaec5d51f9e035e2846289fd948e267cfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaec5d51f9e035e2846289fd948e267cfe">&sect;&nbsp;</a></span>DL_FlashCTL_programMemoryBlocking128WithECCGenerated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DL_FlashCTL_programMemoryBlocking128WithECCGenerated </td>
+          <td>(</td>
+          <td class="paramtype">FLASHCTL_Regs *&#160;</td>
+          <td class="paramname"><em>flashctl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>dataSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gad8b5345481dd655cbd20dadc84e7621b">DL_FLASHCTL_REGION_SELECT</a>&#160;</td>
+          <td class="paramname"><em>regionSelect</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Programs provided data up to 128-bits with ECC generated while blocking between writes. </p>
+<p>Blocking function that programs a set of data using multi-word programming for up to 2 flash words. Refer to the device datasheet if the device supports multi-word programming. When possible, the data will be programmed as either 64-bit data or as 32-bit data.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flashctl</td><td>Pointer to the register overlay for the peripheral </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>Destination memory address to program data. The address must be flash word (64-bit) aligned i.e. aligned to a 0b000 boundary. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dataSize</td><td>The number of 32-bit words to program </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Pointer to the data source to program into flash </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">regionSelect</td><td>The region of memory to erase. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#gad8b5345481dd655cbd20dadc84e7621b">DL_FLASHCTL_REGION_SELECT</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the program succeeded</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">false</td><td>Program didn't succeed </td></tr>
+    <tr><td class="paramname">true</td><td>Program was successful</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>NOTE: After completion of a program operation, the flash controller will configure all memory to a protected state. NOTE: This API does not enable programming the ECC code. </p>
 
 <p>Referenced by <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga4d2a546c4352e605fb39df581ae2350e">DL_FlashCTL_getWaitState()</a>.</p>
 

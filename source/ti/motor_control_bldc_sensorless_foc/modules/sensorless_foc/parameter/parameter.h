@@ -54,16 +54,15 @@
 
 #include "hal.h"
 
+#include "ipd.h"
 #include "rampgen.h"
 #include "rmp_cntl.h"
 #include "clarke.h"
 #include "park.h"
 #include "ipark.h"
 #include "pi.h"
-#include "cirlimit.h"
 #include "volt_calc.h"
-#include "esmo/esmopos.h"
-#include "speed_est.h"
+#include "estimator.h"
 #include "svgen.h"
 #include "pwmgen.h"
 #include "hal.h"
@@ -75,80 +74,87 @@ extern "C" {
 
 /** @brief Enumeration for the FOC parameter
  */
+
 typedef enum {
     /*! Index associated to motor stator resistance */
-    PARA_IDX_RS = 0,
+    PARA_IDX_USER_RS = 0,
     /*! Index associated to motor stator inductance */
-    PARA_IDX_LS,
-    /*! Index associated to motor poles */
-    PARA_IDX_POLES,
-    /*! Index associated to motor base rpm */
-    PARA_IDX_BASE_RPM,
+    PARA_IDX_USER_LS,
+    /*! Index associated to motor backemf constant */
+    PARA_IDX_USER_KE,
+    /*! Index associated to motor maximum frequency */
+    PARA_IDX_USER_MAX_FREQ,
     /*! Index associated to pwm frequency */
-    PARA_IDX_PWMFREQ,
-    /*! Index associated to pwm period */
-    PARA_IDX_PWMPERIOD,
-    /*! Index associated to pwm cycles for adc sampling */
-    PARA_IDX_PWMADCSAMPLE,
-    /*! Index associated to control frequency divider */
-    PARA_IDX_CNTRLDIV,
+    PARA_IDX_USER_PWMFREQ,
     /*! Index associated to deadband in ns */
-    PARA_IDX_DEADBAND,
-    /*! Index associated to deadband in pwm cycles */
-    PARA_IDX_DEADBAND_CYC,
-    /*! Index associated to factor for converting adc voltage to bus voltage */
-    PARA_IDX_VOLT_RATIO,
-    /*! Index associated to amplifier gain for current sensing */
-    PARA_IDX_AMP_GAIN,
-    /*! Index associated to shunt resistor in ohms */
-    PARA_IDX_RSHUNT,
-    /*! Index associated to kslide constant */
-    PARA_IDX_KSLIDE,
+    PARA_IDX_USER_DEADBAND,
+    /*! Index associated to amplifier gain */
+    PARA_IDX_USER_AMP_GAIN,
+    /*! Index associated to outer loop */
+    PARA_IDX_USER_OUTER_LOOP,
+    /*! Index associated to direction reverse */
+    PARA_IDX_USER_DIRECTION_REVERSE,
+    /*! Index associated to startup method */
+    PARA_IDX_USER_STARTUP_METHOD,
+    /*! Index associated to slow first cycle frequency */
+    PARA_IDX_USER_SLOW_FIRST_CYC_FREQ,
+    /*! Index associated to align current in Ampere */
+    PARA_IDX_USER_ALIGN_CURRENT,
+    /*! Index associated to align time in seconds */
+    PARA_IDX_USER_ALIGN_TIME,
+    /*! Index associated to IPD current threshold */
+    PARA_IDX_USER_IPD_CURRENT_THRESHOLD,
+    /*! Index associated to IPD frequency in Hz */
+    PARA_IDX_USER_IPD_FREQ,
+    /*! Index associated to rampup current in Ampere */
+    PARA_IDX_USER_RAMPUP_CURRENT,
+    /*! Index associated to rampup rate */
+    PARA_IDX_USER_RAMPUP_RATE,
+    /*! Index associated to rampup target in Hz/sec */
+    PARA_IDX_USER_RAMPUP_TARGET,
+    /*! Index associated to speed reference ramp rate in Hz */
+    PARA_IDX_USER_SPDREF_RAMP_RATE,
     /*! Index associated to proportional gain for speed pi controller */
-    PARA_IDX_PISPD_KP,
+    PARA_IDX_USER_PISPD_KP,
     /*! Index associated to integral gain for speed pi controller */
-    PARA_IDX_PISPD_KI,
-    /*! Index associated to max output value for speed pi controller */
-    PARA_IDX_PISPD_MAX,
-    /*! Index associated to min output value for speed pi controller */
-    PARA_IDX_PISPD_MIN,
+    PARA_IDX_USER_PISPD_KI,
     /*! Index associated to execution divider for speed pi controller */
-    PARA_IDX_PISPD_DIV,
+    PARA_IDX_USER_PISPD_DIV,
     /*! Index associated to proportional gain for iq pi controller */
-    PARA_IDX_PIIQ_KP,
+    PARA_IDX_USER_PIIQ_KP,
     /*! Index associated to integral gain for iq pi controller */
-    PARA_IDX_PIIQ_KI,
-    /*! Index associated to min output value for iq pi controller */
-    PARA_IDX_PIIQ_MAX,
-    /*! Index associated to min output value for iq pi controller */
-    PARA_IDX_PIIQ_MIN,
+    PARA_IDX_USER_PIIQ_KI,
     /*! Index associated to proportional gain for id pi controller */
-    PARA_IDX_PIID_KP,
+    PARA_IDX_USER_PIID_KP,
     /*! Index associated to integral gain for id pi controller */
-    PARA_IDX_PIID_KI,
-    /*! Index associated to max output value for id pi controller */
-    PARA_IDX_PIID_MAX,
-    /*! Index associated to max output value for id pi controller */
-    PARA_IDX_PIID_MIN,
-    /*! Total number of parameters */
+    PARA_IDX_USER_PIID_KI,
+    /*! Index associated to over voltage limit */
+    PARA_IDX_USER_OVER_VOLTAGE_LIMIT,
+    /*! Index associated to under voltage limit */
+    PARA_IDX_USER_UNDER_VOLTAGE_LIMIT,
+    /*! Index associated to over current limit */
+    PARA_IDX_USER_OVER_CURRENT_LIMIT,
+    /*! Total number of user parameters */
+    PARA_IDX_USER_MAX,
+    /*! Index for system parameter deadband cycles */
+    PARA_IDX_SYS_DEADBAND_CYC,
+    /*! Index for system parameter PWM period */
+    PARA_IDX_SYS_PWMPERIOD,
+    /*! Index for system parameter sampling time */
+    PARA_IDX_SYS_TS,
+    /*! Index for system parameter sampling frequency */
+    PARA_IDX_SYS_SAMPLE_FREQ,
+    /*! Total number of user and system parameters */
     PARA_IDX_MAX,
 }PARA_IDX;
 
 /**
- * @brief     Check for ESMO parameter changes
+ * @brief     Check for EST parameter changes
  * @param[in] parameter  Pointer to the parameter array.
- * @param[in] handle     A pointer to esmo instance
+ * @param[in] handle     A pointer to est instance
  * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
  */
-void PARA_checkESMO(float *parameter, ESMO_Instance *handle, PARA_IDX idx);
-
-/**
- * @brief     Check for SPDEST parameter changes
- * @param[in] parameter  Pointer to the parameter array.
- * @param[in] handle     A pointer to spdest instance
- * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
- */
-void PARA_checkSPDEST(float *parameter, SPDEST_Instance *handle, PARA_IDX idx);
+void PARA_checkEST(uint32_t *parameter, EST_Instance *handle, PARA_IDX idx);
 
 /**
  * @brief     Check for PISPD parameter changes
@@ -156,7 +162,7 @@ void PARA_checkSPDEST(float *parameter, SPDEST_Instance *handle, PARA_IDX idx);
  * @param[in] handle     A pointer to pi instance
  * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
  */
-void PARA_checkPISPD(float *parameter, PI_Instance *handle, PARA_IDX idx);
+void PARA_checkPISPD(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx);
 
 /**
  * @brief     Check for PIIQ parameter changes
@@ -164,7 +170,7 @@ void PARA_checkPISPD(float *parameter, PI_Instance *handle, PARA_IDX idx);
  * @param[in] handle     A pointer to pi instance
  * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
  */
-void PARA_checkPIIQ(float *parameter, PI_Instance *handle, PARA_IDX idx);
+void PARA_checkPIIQ(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx);
 
 /**
  * @brief     Check for PIID parameter changes
@@ -172,7 +178,15 @@ void PARA_checkPIIQ(float *parameter, PI_Instance *handle, PARA_IDX idx);
  * @param[in] handle     A pointer to pi instance
  * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
  */
-void PARA_checkPIID(float *parameter, PI_Instance *handle, PARA_IDX idx);
+void PARA_checkPIID(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx);
+
+/**
+ * @brief     Check for RC parameter changes
+ * @param[in] parameter  Pointer to the parameter array.
+ * @param[in] handle     A pointer to rc instance
+ * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
+ */
+void PARA_checkRC(uint32_t *parameter, RMPCNTL_Instance *handle, PARA_IDX idx);
 
 /**
  * @brief     Check for RG parameter changes
@@ -180,7 +194,7 @@ void PARA_checkPIID(float *parameter, PI_Instance *handle, PARA_IDX idx);
  * @param[in] handle     A pointer to rg instance
  * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
  */
-void PARA_checkRG(float *parameter, RAMPGEN_Instance *handle, PARA_IDX idx);
+void PARA_checkRG(uint32_t *parameter, RAMPGEN_Instance *handle, PARA_IDX idx);
 
 /**
  * @brief     Check for PWMGEN parameter changes
@@ -188,7 +202,15 @@ void PARA_checkRG(float *parameter, RAMPGEN_Instance *handle, PARA_IDX idx);
  * @param[in] handle     A pointer to pwmgen instance
  * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
  */
-void PARA_checkPWMGEN(float *parameter, PWMGEN_Instance *handle, PARA_IDX idx);
+void PARA_checkPWMGEN(uint32_t *parameter, PWMGEN_Instance *handle, PARA_IDX idx);
+
+/**
+ * @brief     Check for IPD parameter changes
+ * @param[in] parameter  Pointer to the parameter array.
+ * @param[in] handle     A pointer to ipd instance
+ * @param[in] idx        Index of the parameter changed. One of @ref PARA_IDX
+ */
+void PARA_checkIPD(uint32_t *parameter, IPD_Instance *handle, PARA_IDX idx);
 
 #ifdef __cplusplus
 }

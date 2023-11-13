@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,6 +63,7 @@ function validate(inst, validation)
 function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
+    /* Verify if using UART Advanced instance */
     if(Common.isDeviceM0G()){
         if(inst.enableExtend){
             if(!(/UART0/.test(solution))){
@@ -70,15 +71,27 @@ function validatePinmux(inst, validation) {
                     inst,"enableExtend");
             }
         }
-
+    }
+    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        if(inst.enableExtend){
+            if(!(/UART0|UART1/.test(solution))){
+                validation.logError("Extend features are only available on UART0 and UART1 instances. Please select a valid instance from PinMux if available.",
+                    inst,"enableExtend");
+            }
+        }
     }
     // /* Retention Validation */
     Common.getRetentionValidation(inst,validation);
 }
 
 /* PROFILES CONFIGURATION */
-const profilesUART = [
-    {
+    let defaultDMAConfig = {
+        enabledDMARXTriggers : "None",
+        enabledDMATXTriggers : "None",
+        enableDMARX : false,
+        enableDMATX : false,
+    }
+    let configProfile1 = {
         name            : "CONFIG_PROFILE_1", /* INT_LOOPBACK_115200_BAUD */
         uartClkSrc      : "BUSCLK",
         enableExtend    : false,
@@ -102,12 +115,11 @@ const profilesUART = [
         setIrdaPulseLength : 0,
         enabledInterrupts : [],
         interruptPriority: "DEFAULT",
-        enabledDMARXTriggers : "None",
-        enabledDMATXTriggers : "None",
-        enableDMARX : false,
-        enableDMATX : false,
-    },
-    {
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile1 = {...configProfile1, ...defaultDMAConfig};
+    };
+    let configProfile2 = {
         name            : "CONFIG_PROFILE_2", /* 9600 LFCLK */
         uartClkSrc      : "LFCLK",
         enableExtend    : false,
@@ -131,12 +143,11 @@ const profilesUART = [
         setIrdaPulseLength : 0,
         enabledInterrupts : [],
         interruptPriority: "DEFAULT",
-        enabledDMARXTriggers : "None",
-        enabledDMATXTriggers : "None",
-        enableDMARX : false,
-        enableDMATX : false,
-    },
-    {
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile2 = {...configProfile2, ...defaultDMAConfig};
+    };
+    let configProfile3 = {
         name            : "CONFIG_PROFILE_3", /* 1 MHZ, HW Flow Control */
         uartClkSrc      : "BUSCLK",
         enableExtend    : false,
@@ -160,11 +171,15 @@ const profilesUART = [
         setIrdaPulseLength : 0,
         enabledInterrupts : [],
         interruptPriority: "DEFAULT",
-        enabledDMARXTriggers : "None",
-        enabledDMATXTriggers : "None",
-        enableDMARX : false,
-        enableDMATX : false,
-    },
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile3 = {...configProfile3, ...defaultDMAConfig};
+    };
+
+const profilesUART = [
+    configProfile1,
+    configProfile2,
+    configProfile3,
 ];
 
 /************************Interrupt Functions **********************************/
@@ -401,9 +416,6 @@ when the configured receive or transmit trigger condition occurs. \n
         config: UARTCommon.getDMAConfig(),
     },
 ])
-
-/* Helper Configurables */
-config = config.concat(UARTCommon.getHelperConfig())
 
 /* Add Pinmux Peripheral Configuration group */
 config = config.concat(Common.getGPIOGroupConfig());

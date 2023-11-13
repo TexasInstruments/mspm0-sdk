@@ -90,4 +90,6 @@ TIMER1.$name              = "LCD_Update_Clock";
 TIMER1.timerClkSrc        = "MFCLK";
 TIMER1.timerPeriod        = "5ms";
 TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerStartTimer    = true;
+TIMER1.interrupts         = ["ZERO"];
 TIMER1.peripheral.$assign = "TIMG0";

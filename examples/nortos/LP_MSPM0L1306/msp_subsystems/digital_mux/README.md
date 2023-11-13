@@ -1,0 +1,49 @@
+## Example Summary
+
+Uses GPIO port interrupts to emulate a digital mux. Application code assigns output based on states of pins PA26 and PA27.
+
+## Peripherals & Pin Assignments
+
+| Peripheral | Pin | Function |
+| --- | --- | --- |
+| GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA3 | Standard Input |
+| GPIOA | PA7 | Standard Input |
+| GPIOA | PA4 | Standard Input |
+| GPIOA | PA23 | Standard Input |
+| GPIOA | PA26 | Standard Input |
+| GPIOA | PA27 | Standard Input |
+| SYSCTL |  |  |
+| EVENT |  |  |
+| DEBUGSS | PA20 | Debug Clock |
+| DEBUGSS | PA19 | Debug Data In Out |
+
+## BoosterPacks, Board Resources & Jumper Settings
+
+Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad information, including user guide and hardware files.
+
+| Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
+| --- | --- | --- | --- | --- |
+| PA0 | GPIOA | PA0 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 ON` Connect to LED1<br><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA3 | GPIOA | PA3 | J2_19 | N/A |
+| PA7 | GPIOA | PA7 | J2_18 | N/A |
+| PA4 | GPIOA | PA4 | J2_14 | N/A |
+| PA23 | GPIOA | PA23 | J2_12 | N/A |
+| PA26 | GPIOA | PA26 | J4_38 | <ul><li>PA26 can be connected to LED2 Red<br><ul><li>`J12 ON` Connect to LED2 Red<br><li>`J12 OFF` Disconnect from LED2 Red</ul></ul> |
+| PA27 | GPIOA | PA27 | J4_37 | <ul><li>PA27 can be connected to LED2 Blue<br><ul><li>`J13 ON` Connect to LED2 Blue<br><li>`J13 OFF` Disconnect from LED2 Blue</ul></ul> |
+| PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Low-Power Recommendations
+TI recommends to terminate unused pins by setting the corresponding functions to
+GPIO and configure the pins to output low or input with internal
+pullup/pulldown resistor.
+
+SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
+
+For more information about jumper configuration to achieve low-power using the
+MSPM0 LaunchPad, please visit the [LP-MSPM0L1306 User's Guide](https://www.ti.com/lit/slau869).
+
+## Example Usage
+Compile, load and run the example.
+Use logic analyzer to see output change based on inputs or watch the LEDs to see different output based on PA26 and PA27.

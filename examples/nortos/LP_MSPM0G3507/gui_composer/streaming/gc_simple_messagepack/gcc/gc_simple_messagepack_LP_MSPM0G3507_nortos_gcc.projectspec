@@ -43,6 +43,7 @@
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/gui_composer/lib/gcc/m0p
             -l:gui_composer.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x
+            -nostartfiles
             -l:${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a
             -march=armv6-m
             -mthumb

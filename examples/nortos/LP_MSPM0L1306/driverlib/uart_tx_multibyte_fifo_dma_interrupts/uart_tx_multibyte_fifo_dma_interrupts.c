@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,6 +54,7 @@ int main(void)
         DMA, DMA_CH0_CHAN_ID, sizeof(gTxPacket) / sizeof(gTxPacket[0]));
 
     DL_SYSCTL_disableSleepOnExit();
+
     NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
     gCheckUART = false;
     gDMADone   = false;
@@ -74,11 +75,11 @@ int main(void)
         __WFE();
     }
 
-    /* Set a SW breakpoint to check results */
-    __BKPT(0);
-
     DL_SYSCTL_enableSleepOnExit();
     while (1) {
+        /* LED will turn ON to indicate example has completed without error */
+        DL_GPIO_clearPins(GPIO_LEDS_PORT,
+            (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
         __WFI();
     }
 }

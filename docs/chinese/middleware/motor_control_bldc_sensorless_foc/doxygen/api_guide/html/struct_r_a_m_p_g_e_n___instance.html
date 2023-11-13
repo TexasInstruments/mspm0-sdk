@@ -84,10 +84,10 @@ Data Fields</h2></td></tr>
 <tr class="separator:acf280cad7f09de0b02c5351569993ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab39e3ad26429a9a9c84211633a6360db"><td class="memItemLeft" align="right" valign="top">_iq&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_m_p_g_e_n___instance.html#ab39e3ad26429a9a9c84211633a6360db">StepAngleMax</a></td></tr>
 <tr class="separator:ab39e3ad26429a9a9c84211633a6360db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7272a7a3ac4c36b63e4926f5d05937fb"><td class="memItemLeft" align="right" valign="top">_iq&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_m_p_g_e_n___instance.html#a7272a7a3ac4c36b63e4926f5d05937fb">Angle</a></td></tr>
-<tr class="separator:a7272a7a3ac4c36b63e4926f5d05937fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affdd28e667098e3fb80853c2a7193e9c"><td class="memItemLeft" align="right" valign="top">_iq&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_m_p_g_e_n___instance.html#affdd28e667098e3fb80853c2a7193e9c">Out</a></td></tr>
-<tr class="separator:affdd28e667098e3fb80853c2a7193e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a589e18e5141a1b213f7ba24a54ec8f91"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_m_p_g_e_n___instance.html#a589e18e5141a1b213f7ba24a54ec8f91">Angle</a></td></tr>
+<tr class="separator:a589e18e5141a1b213f7ba24a54ec8f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1db240f27fcd1eb93fa205e3b334dbbb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_a_m_p_g_e_n___instance.html#a1db240f27fcd1eb93fa205e3b334dbbb">Out</a></td></tr>
+<tr class="separator:a1db240f27fcd1eb93fa205e3b334dbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Define rampgen structure. </p>
@@ -103,9 +103,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Input: Ramp frequency (pu) </p>
+<p>Ramp frequency Hz </p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#gae9baa736e2c3ed3e60c696370b762ab3">RG_run()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga6d2e1049e12bb536abdaac52137eeb10">FOC_CONTROL_run()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#gae9baa736e2c3ed3e60c696370b762ab3">RG_run()</a>.</p>
 
 </div>
 </div>
@@ -120,43 +120,43 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Parameter: Maximum step angle (pu) </p>
+<p>Maximum step angle </p>
 
 <p>Referenced by <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#ga29299869e5496b305e455e537c73abbd">RAMPGEN_UpdateParams()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#gae9baa736e2c3ed3e60c696370b762ab3">RG_run()</a>.</p>
 
 </div>
 </div>
-<a id="a7272a7a3ac4c36b63e4926f5d05937fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7272a7a3ac4c36b63e4926f5d05937fb">&sect;&nbsp;</a></span>Angle</h2>
+<a id="a589e18e5141a1b213f7ba24a54ec8f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a589e18e5141a1b213f7ba24a54ec8f91">&sect;&nbsp;</a></span>Angle</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">_iq RAMPGEN_Instance::Angle</td>
+          <td class="memname">uint32_t RAMPGEN_Instance::Angle</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Variable: Step angle (pu) </p>
+<p>Step angle pu </p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#gae9baa736e2c3ed3e60c696370b762ab3">RG_run()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga6d2e1049e12bb536abdaac52137eeb10">FOC_CONTROL_run()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#ga2db123fbe096affd5a9d3161402d6b5d">RG_reset()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#gae9baa736e2c3ed3e60c696370b762ab3">RG_run()</a>.</p>
 
 </div>
 </div>
-<a id="affdd28e667098e3fb80853c2a7193e9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affdd28e667098e3fb80853c2a7193e9c">&sect;&nbsp;</a></span>Out</h2>
+<a id="a1db240f27fcd1eb93fa205e3b334dbbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1db240f27fcd1eb93fa205e3b334dbbb">&sect;&nbsp;</a></span>Out</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">_iq RAMPGEN_Instance::Out</td>
+          <td class="memname">uint32_t RAMPGEN_Instance::Out</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Output: Ramp signal (pu) </p>
+<p>Ramp output pu </p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#gae9baa736e2c3ed3e60c696370b762ab3">RG_run()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#ga2db123fbe096affd5a9d3161402d6b5d">RG_reset()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_a_m_p_g_e_n.html#gae9baa736e2c3ed3e60c696370b762ab3">RG_run()</a>.</p>
 
 </div>
 </div>

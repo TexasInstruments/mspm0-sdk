@@ -28,7 +28,6 @@ CFLAGS = -I.. \
 
 LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/pmbus/lib/ticlang/m0p/pmbus.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/smbus/lib/ticlang/m0p/smbus.a" \
-    -Wl,--stack_size=512 \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a" \
     ../ticlang/mspm0l1306.cmd \
     "-Wl,-m,$(NAME).map" \

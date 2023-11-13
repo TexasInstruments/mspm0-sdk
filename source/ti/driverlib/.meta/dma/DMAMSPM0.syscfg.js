@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -340,6 +340,18 @@ function validate(inst, validation)
     if(inst.subscriberIndex.length>0 &&(!useSUB0 && !useSUB1)){
         validation.logWarning("Subscriber Index is being configured but no DMA Channel is configuring subscriber event", inst, ["subscriberIndex"]);
     }
+
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    EVENT.validatePublisherOptions(inst,validation,"pubChanID");
+    if(inst.subscriberIndex.includes("0")){
+        EVENT.validateSubscriberOptions(inst,validation,"sub0ChanID");
+    }
+    if(inst.subscriberIndex.includes("1")){
+        EVENT.validateSubscriberOptions(inst,validation,"sub1ChanID");
+    }
 }
 
 /*
@@ -357,7 +369,6 @@ function moduleInstances(inst) {
         useArray: true,
         defaultInstanceCount: 0,
         minInstanceCount: 0,
-        maxInstanceCount: dmaInstances,
         longDescription: longDescription,
         collapsed: firstCollapse,
         moduleName: "/ti/driverlib/DMAChannel",

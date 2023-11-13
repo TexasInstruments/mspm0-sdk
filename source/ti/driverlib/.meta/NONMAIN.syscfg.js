@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,12 +57,12 @@ function _getPinResources(inst)
  *  Define the base NONMAIN properties and methods
  */
 let base = {
-    displayName: "NONMAIN",
-    description: "NONMAIN Configurator Module for MSPM0",
+    displayName: "Configuration NVM",
+    description: "Configuration NVM (NONMAIN) Configurator Module for MSPM0",
     longDescription: `
-The **NONMAIN Configurator** assists the user in modifying the configuration
+The **Configuration NVM (NONMAIN) Configurator** assists the user in modifying the configuration
 policies for the start-up boot routines by altering the values programmed into
-the NONMAIN flash region.
+the Configuration NVM flash region.
 
 After a BOOTRST, the device always executes the start-up boot routines from
 read-only memory (ROM) to configure the device for operation before starting

@@ -46,6 +46,7 @@
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/DSP/lib/gcc/m0p
             -l:arm_cortexM0l_math.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx
+            -nostartfiles
             -L${PROJECT_BUILD_DIR}/syscfg
             -l:${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx/driverlib.a
             -march=armv6-m

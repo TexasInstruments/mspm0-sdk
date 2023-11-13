@@ -1,0 +1,431 @@
+MSPM0 Sensorless FOC Software User's Guide
+==========================================
+
+CCS Project setup
+-----------------
+
+1. Go to Import CCS Projects as shown below.
+
+   .. figure:: ./images/CCS_IMPORT.jpg
+      :alt: 
+
+2. Click Browse. Navigate to ``C:\ti\mspm0_sdk_<SDK_Version>\examples\nortos\[LAUNCHPAD]\motor_control_bldc_sensorless_foc``.
+3. Click Select Folder. Check the desired hardware board, and click Finish to import the project into your workspace.
+
+   .. figure:: ./images/CCS_IMPORT_1.jpg
+      :alt: 
+
+2.1 Setting the Motor Parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The motor parameter can be found in the motor\_params.h file. These are the motor parameters required for Sensorless FOC:
+
+-  Stator resistance, Rs (ohm)
+-  Stator inductance, Ls (H)
+-  Number of motor poles (optional)
+-  Back Emf constant in V/Hz
+-  Base maximum Frequency of the motor (Hz)
+
+.. figure:: images/FOC_MOTOR_PARAMS.jpg
+   :alt: Locate motor\_params.h file
+
+   Locate motor\_params.h file
+
+These parameters are defined using an #elif statement for a motor. To define these parameters for a custom motor, modify the #define statements for MOTOR\_PARA\_RS, MOTOR\_PARA\_LS, MOTOR\_PARA\_POLES, and MOTOR\_PARA\_MAX\_FREQ for USER\_MOTOR. To add another motor, copy and paste the #elif statement below and rename USER\_MOTOR to another name.
+
+::
+
+    #elif (USER_MOTOR)
+    /* Define the electrical motor parameters (User motor) */
+    /* @brief Stator resistance (ohm) */
+    #define MOTOR_PARA_RS               8
+    /* @brief Stator inductance (H) */
+    #define MOTOR_PARA_LS               0.0032
+    /* @brief Number of poles */
+    #define MOTOR_PARA_POLES            6
+    /* @brief Back Emf constant in V/Hz */
+    #define MOTOR_PARA_KE               0.1
+    /* @brief Maximum Frequency */
+    #define MOTOR_PARA_MAX_FREQ         125
+
+To select a motor defined in motor\_params.h, click Project -> Properties in the toolbar. In the Properties window, go to Build -> Arm Compiler -> Predefined Symbols. The pre-defined motor name is LVSERVOMTR=1. To change the pre-defined motor name, click “Edit” and change LVSERVOMTR to another defined motor in motor\_params.h, such as LVBLDCMTR or USER\_MOTOR.
+
+.. figure:: images/CCS_PREDEFINED_SYMBOL.jpg
+   :alt: LVSERVOMTR=1 symbol
+
+   LVSERVOMTR=1 symbol
+
+Adding Initial Parameters (optional)
+------------------------------------
+
+1. In the Project Explorer, open the project drop down menu and open “param\_[motor driver].h”.
+
+   .. figure:: ./images/CCS_PROJECT_EXPLORER_PARAM_H.jpg
+      :alt: Locate param\_[motor driver].h file
+
+      Locate param\_[motor driver].h file
+
+2. In the “param\_[motor driver].h” file change any of the “GUI\_DEFAULT\_xxxx” defines to some pre-defined parameters in the following folders, or the value inside of the parentheses.
+
+   -  “foc\_types.h” (sensorless\_foc -> foc)
+   -  “motor\_params.h” (motor)
+   -  “drvxxxx.h” (motor\_driver -> drv83xx) The parameters that can be initially defined are below.
+
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Parameter                                    | Definition                                                                                                                      |
++==============================================+=================================================================================================================================+
+| USER\_DEFAULT\_FOC\_VOLT\_RATIO              | Voltage divider ratio for th DC bus voltage input                                                                               |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_DRV\_RSHUNT                   | DRV shunt resistor in Ω                                                                                                         |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| DRV\_CSA\_GAIN\_MAP\_0                       | DRV gain mapped to FOC\_CSA\_GAIN\_0                                                                                            |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| DRV\_CSA\_GAIN\_MAP\_1                       | DRV gain mapped to FOC\_CSA\_GAIN\_1                                                                                            |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| DRV\_CSA\_GAIN\_MAP\_2                       | DRV gain mapped to FOC\_CSA\_GAIN\_2                                                                                            |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| DRV\_CSA\_GAIN\_MAP\_3                       | DRV gain mapped to FOC\_CSA\_GAIN\_3                                                                                            |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_CSA\_GAIN                     | Selected CSA gain settings                                                                                                      |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_ENABLE\_GAIN\_CHANGE          | FLAG used to enable DRV GAIN CHANGE while program runs                                                                          |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| DRV\_setCsaGain                              | Links to the DRV set gain function, need to be set if USER\_DEFAULT\_ENABLE\_GAIN\_CHANGE is defined                            |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| DRV\_HANDLE                                  | Links to the DRV instance, need to be set if USER\_DEFAULT\_ENABLE\_GAIN\_CHANGE is defined                                     |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| DRV\_CSA\_GAIN                               | Links to the DRV CSA gain enumeration, need to be set if USER\_DEFAULT\_ENABLE\_GAIN\_CHANGE is defined                         |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_ENABLE\_FAULT\_INPUT\_CHECK   | FLAG used to enable checking External fault input                                                                               |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| FAULT\_INPUT\_STATUS                         | Links to the API to poll for fault status, should return 1 to report external fault condition                                   |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| FAULT\_INPUT\_CLEAR                          | Links to the API to clear external fault condition                                                                              |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_RS                       | Motor stator resistance in Ω                                                                                                    |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_LS                       | Motor stator inductance in H                                                                                                    |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_KE                       | Motor back emf phase to phase in V/Hz                                                                                           |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_MAX\_FREQ                | Motor maximum frequency to command, speed reference upper limit is limited to this value                                        |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PWMFREQ                  | PWM frequency selection, can enter value in enum of FOC\_PWM\_FREQ                                                              |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_DEADBAND                 | Deadband to set in nanoseconds                                                                                                  |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_STARTUP\_METHOD          | Startup method selection, can enter value in enum of FOC\_STARTUP                                                               |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_SLOW\_FIRST\_CYC\_FREQ   | Slow first cycle frequency in Hz                                                                                                |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_RAMPUP\_CURRENT          | Current settings in rampup phase in Ampere                                                                                      |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_RAMPUP\_TARGET           | Target frequenct in ramp phase in Hz                                                                                            |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_ALIGN\_TIME              | Time spend in align in seconds                                                                                                  |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_ALIGN\_CURRENT           | Align or first cycle current                                                                                                    |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_IPD\_THRESHOLD\_COUNT         | Value between 1-100, higher the value higher the peak current in IPD, can enter value in enum of FOC\_IPD\_THRES\_COUNT         |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_IPD\_FREQ                | IPD frequency enum, can enter value in enum of FOC\_IPD\_FREQ                                                                   |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_SPEED\_REF\_RAMP\_RATE   | Ramp rate for PI speed reference in Hz/s                                                                                        |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PISPD\_KP                | Proportional constant for PI speed                                                                                              |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PISPD\_KI                | Integral constant for PI speed                                                                                                  |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PISPD\_DIV               | PI speed loop execution divider, can enter value in enum of FOC\_SPD\_DIV                                                       |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PIIQ\_KP                 | Proportional constant for PI IQ                                                                                                 |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PIIQ\_KI                 | Integral constant for PI IQ                                                                                                     |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PIID\_KP                 | Proportional constant for PI ID                                                                                                 |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PIID\_KI                 | Integral constant for PI ID                                                                                                     |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_OUTER\_LOOP              | Selection for outerloop speed or current, can enter value in enum of FOC\_OUTER\_LOOP                                           |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_DIRECTION\_REVERSAL      | Set the motor direction, can enter value in enum of FOC\_DIRECTION                                                              |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_PWMADCSAMPLE             | Number of PWM cycles to be spend in adc sampling, ie, if 40 and PWM clock is 80Mhz then 1us is available for current sampling   |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_ADC\_SETTLE\_DELAY       | ADC value rise time delay in PWM cycles, defines the delay to wait before ADC input voltage is stabilized before sampling       |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_OVER\_VOLT               | DC Bus voltage Over voltage threshold                                                                                           |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_UNDER\_VOLT              | DC Bus voltage Under voltage threshold                                                                                          |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| USER\_DEFAULT\_FOC\_OVER\_CURRENT            | Phase Over current threshold                                                                                                    |
++----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+Starting the Project
+--------------------
+
+1. Connect the hardware and turn on the power supply. There should be no more than 50mA on the power supply.
+2. Click on the Build button.\ |image0| Project should build with no errors.
+3. Click on the Debug button. |image1|
+4. Open the Expressions window and add the following global structures and expressions. The expressions below in the userVar structure controls the motor system and has control parameters defined in it.
+
+   The userVar structure has 3 structures:
+
+   -  controlRegs which holds the variables to control the motor
+   -  statusRegs which holds the status variables
+   -  userParams which holds the parameters for the foc
+
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | controlRegs components   | Description                                                                                                                                                   |
+   +==========================+===============================================================================================================================================================+
+   | cntri1.clearFault        | If set 1 clears all the faults                                                                                                                                |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | cntri1.flashAccessKey    | Stores the flash access key. Need to be set value in define FOC\_FLASH\_ACCESSKEY to do flashWrite, flashRead, or dafultRead                                  |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | cntri1.flashWrite        | If set 1 and flashAccessKey matches then values in userParams are saved to flash                                                                              |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | cntri1.flashRead         | If set 1 and flashAccessKey matches then values in flash are loaded into userParams                                                                           |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | cntri1.defaultRead       | If set 1 and flashAccessKey matches then default values or initial parameters in flash are loaded into userParams                                             |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | cntri1.disCL             | If set 1 disables the closed loop transition after rampup phase is completed                                                                                  |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | cntri1.enableMotor       | If set 1 starts to run motor, if set 0 stops the motor                                                                                                        |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | speedRef                 | If outer loop is speed this is set as reference to PI speed. Value is set in IQ20 and positive values are only used. User should not enter negative values.   |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | iqRef                    | If outer loop is current this is set as reference to PI IQ controller.Value is set in IQ20                                                                    |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | idRef                    | If outer loop is current this is set as reference to PI ID controller.Value is set in IQ20                                                                    |
+   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | statusRegs components         | Description                                                                                                        |
+   +===============================+====================================================================================================================+
+   | faultStatus.bits.extFaultIn   | Shows the External fault input status, Set to 1 when falling edge on fault input pin                               |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | faultStatus.bits.uvlo         | Shows the undervoltage fault status, Set to 1 when dc bus voltage is lower than underVoltageLimit parameter        |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | faultStatus.bits.ovlo         | Shows the undervoltage fault status, Set to 1 when dc bus voltage is higher than overVoltageLimit parameter        |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | faultStatus.bits.ocp          | Shows the overcurrent fault status, Set to 1 when motor phase current is greater than overCurrentLimit parameter   |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | motorState                    | Shows the state of the foc control. Refer enum MOTOR.                                                              |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | vdc                           | DC bus current in IQ20                                                                                             |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | speedFbk                      | Estimated motor speed in IQ(20)                                                                                    |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | speedRef                      | Reference input for PI speed in IQ(20)                                                                             |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | iqCurr                        | Feedback input to PI IQ in IQ(20)                                                                                  |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | iqCurrRef                     | Reference input for PI ID in IQ(20)                                                                                |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | idCurr                        | Feedback input to PI ID in IQ(20)                                                                                  |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | idCurrRef                     | Reference input for PI ID in IQ(20)                                                                                |
+   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
+
+   userParams are initialized with the parameters saved in the flash in init time.
+
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | userParams components   | Description                                                                                        |
+   +=========================+====================================================================================================+
+   | rs                      | Stator resistance in IQ(20)                                                                        |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | ls                      | Stator inductance in IQ(20)                                                                        |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | ke                      | Motor back emf constant in IQ(20)                                                                  |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | maxFreq                 | Maximum motor frequency                                                                            |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | PWMFreq                 | Selection of PWM frequency. Refer enum FOC\_PWM\_FREQ                                              |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | deadband                | Deadband in nanoseconds                                                                            |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | CSAGain                 | Selection of CSA GAIN. Refer enum FOC\_CSA\_GAIN                                                   |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | outerLoop               | Selection of Outer loop. Refer enum FOC\_OUTER\_LOOP                                               |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | directionReversal       | Selection of direction. Refer enum FOC\_DIRECTION                                                  |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | startupMethod           | Startup method selection. Refer enum FOC\_STARTUP                                                  |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | slowCycFreq             | Slow first cycle frequency in Hz. Value in IQ(20)                                                  |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | alignCur                | Align current in Ampere in IQ(20)                                                                  |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | alignTime               | Align time in seconds in IQ(20)                                                                    |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | IPDCurrThresh           | Value between 1-100, higher the value higher the peak current. Refer enum FOC\_IPD\_THRES\_COUNT   |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | IPDFreq                 | IPD frequency selection. Refer enum FOC\_IPD\_FREQ                                                 |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | rampupCur               | Rampup current in Ampere in IQ(20)                                                                 |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | rampupRate              | Ramp up rate in Hz/s in IQ(20)                                                                     |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | rampupTarget            | Ramp up target in Hz in IQ(20)                                                                     |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | speedRefRampRate        | Speed reference ramp rate in Hz/s in IQ(20)                                                        |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | piSpdKp                 | PI speed proportionality constant in IQ(20)                                                        |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | piSpdKi                 | PI speed Ki in IQ(20)                                                                              |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | piSpdDiv                | PI speed execution rate divider                                                                    |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | piIdKp                  | PI ID proportionality constant in IQ(20)                                                           |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | piIdKi                  | PI ID integral constant in IQ(20)                                                                  |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | piIqKp                  | PI IQ proportionality constant in IQ(20)                                                           |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | piIqKi                  | PI IQ integral constant in IQ(20)                                                                  |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | overVoltageLimit        | Overvoltage limit in IQ(20)                                                                        |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | underVoltageLimit       | Undervoltage limit in IQ(20)                                                                       |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+   | overCurrentLimit        | Overcurrent limit in IQ(20)                                                                        |
+   +-------------------------+----------------------------------------------------------------------------------------------------+
+
+   **Note: Some of the variables are in IQ20 format. In order to be displayed and updated properly during debug, you should switch them to IQ(20) format in the CCS expressions window by right clicking the expression, select Q-Values, then click "Select Q-Value".**
+
+   .. figure:: images/CCS_SET_QVALUES.jpg
+      :alt: Select IQ value
+
+      Select IQ value
+
+5. For devices with SPI support only, you can add the guiSPI structure for SPI Configuration and controlling SPI reads/writes during runtime. The expressions below in the gui\_spi structure configure the SPI configuration and use expressions during run time.
+
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | gui\_spi               | structure that contains the SPI variables below                                           |
+   +========================+===========================================================================================+
+   | writeBitfieldRegFlag   | Writes writeBitfieldRegData to bitfieldRegPosData of writeBitfieldRegAddr when set to 1   |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | writeBitfieldRegAddr   | Set to address of a bitfield register write operation                                     |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | bitfieldRegPosData     | Bitfield position of a bitfield write operation to writeBitfieldRegAddr                   |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | bitfieldRegMaskData    | Mask value of a bitfield write operation to writeBitfieldRegAddr                          |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | writeBitfieldRegData   | Data value of a bitfield write register operation to writeBitfieldRegAddr                 |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | writeRegFlag           | Writes writeRegData to writeRegData of writeRegAddr when set to 1                         |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | writeRegAddr           | Set to address of a register write operation                                              |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | writeRegData           | Data value of a write register operation to writeRegAddr                                  |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | readRegFlag            | Reads data of readRegAddr and stores into to readRegData when set to 1                    |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | readRegAddr            | Set to address of a register read operation                                               |
+   +------------------------+-------------------------------------------------------------------------------------------+
+   | readRegData            | Data value read from read operation of readRegAddr                                        |
+   +------------------------+-------------------------------------------------------------------------------------------+
+
+6. Press Play |image2| to start the code.
+7. Enable “Continuous Refresh” in the Expressions window. |image3|
+
+Running the Project
+-------------------
+
+1. Open userVar. Set *outerloop* to FOC\_OUTER\_LOOP\_SPEED to select outer speed loop. Set *speedRef* to 100 to spin the motor at 100Hz and set *enableMotor* to 1 to start the motor. The motor starts spinning.
+2. set *enableMotor* to 0 to stop the motor. Set *directionReversal* to FOC\_DIRECTION\_CCW to reverse the motor direction. Set *enableMotor* to 1 and observe motor spinning in opposite direction.
+3. Stop the motor by setting *enableMotor* to 0. Change *PWMFreq* to FOC\_PWM\_FREQ\_15000 to select 15Khz PWM frequency. Enable the motor again and observe the PWM outputs.
+4. Change *deadband* to 500 to change the MCU deadband to 500 ns. Observe in waveforms.
+5. Change *speedRefRampRate* to change the acceleration and deceleration rate of the motor when *speedRef* is modified.
+6. Set *overVoltageLimit* to a low value and increase the DC bus voltage beyond it and observe *faultStatus.bits.ovlo* is set to 1, and the motor stops spinning. Reduce the voltage below the limit and set *cntrl1.clearFault* = 1 to clear the latched fault and enable the motor again to spin it.
+7. Create an undervoltage fault by decreasing the voltage below *underVoltageLimit*. Observe *faultStatus.bits.uvlo* is set and the motor stops spinning. Increase the voltage above the limit and set *cntrl1.clearFault* = 1 to clear the latched fault and enable the motor again to spin it.
+
+   .. figure:: images/CCS_EXPRESSION_WINDOW.jpg
+      :alt: 
+
+8. If the device has SPI registers, use the gui\_spi variables to perform a bitfield write, register write, or register read, or read all operation.
+
+   -  To perform a bitfield write operation:
+
+      -  Select the drop-down register in *writeBitfieldRegAddr*
+      -  Enter the bitfield position in *bitfieldRegPosData*
+      -  Enter the mask of the setting in that bitfield position in *bitfieldRegMaskData* (for example, a 3-bit setting has mask 0x7)
+      -  Write the bitfield data in *writeBitfieldRegData*
+      -  Set the *writeBitfieldRegFlag* to 1. It will automatically clear to 0.
+
+   -  To perform a register write operation:
+
+      -  Select the drop-down register in *writeRegAddr*
+      -  Write the data in *writeRegData*
+      -  Set the *writeRegFlag* to 1. It will automatically clear to 0.
+
+   -  To perform a register read operation:
+
+      -  Select the drop-down register in *readRegAddr*
+      -  Set the *readRegFlag* to 1. It will automatically clear to 0.
+      -  Read the data in *readRegData*
+
+   .. figure:: images/CCS_SPI_WINDOW.jpg
+      :alt: gui\_spi variables
+
+      gui\_spi variables
+
+2.7 Logging the variables
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The user can add the \_\_ENABLE\_LOG predefined symbol to enable logging. The user can set the log index and variable as shown in the below code:
+
+::
+
+        FOC_addVarToLog(FOC_LOG_IDX_0, phaseVolt.Valpha);
+
+To see the logged data as a graph, the user can add the variable cssLog[X], where X is the index. Right click the variable and select “Graph”.
+
+.. figure:: images/CCS_GRAPH.jpg
+   :alt: Image of graph
+
+   Image of graph
+
+Select “Continuous Refresh” mode to see continuous data.
+
+.. figure:: images/CCS_GRAPH_CONT_REFRESH.jpg
+   :alt: Image of graph
+
+   Image of graph
+
+**Note: the software consumes 24KB extra space in SRAM to store the values when logging is enabled.**
+
+3. API Guide
+------------
+
+-  `Sensorless FOC API Guide <../../doxygen/api_guide/html/index.html>`__
+
+4. Known Issues
+---------------
+
+1. Function implicit declaration warning for IQrepeat function while compiling.
+2. Current solution supports power up to 100W. Applying high torque at low speeds can cause motor to spin backwards with high rpm.
+
+5. Supported Devices
+--------------------
+
+DRV8323RS
+~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8323rs/DRV8323RS_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8323RS-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI>`__
+
+.. |image0| image:: images/CCS_BUILD.jpg
+.. |image1| image:: images/CCS_DEBUG.jpg
+.. |image2| image:: images/CCS_PLAY.jpg
+.. |image3| image:: images/CCS_REFRESH.jpg
+

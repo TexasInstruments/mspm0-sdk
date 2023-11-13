@@ -39,7 +39,7 @@
 <p>The following example configures the SPI as a Peripheral. This example can be used with the spi_controller_register_format example running on another device. Ensure that the SPI Peripheral is running before starting the SPI Controller example. This example receives “register format” commands from the SPI Controller. The first byte transmitted by the SPI Controller is the command/register address. The SPI Controller can send two different types of commands: CMD_WRITE_TYPE_X and CMD_READ_TYPE_X.</p>
 <p>When the Controller sends CMD_WRITE_TYPE_X commands, the SPI Controller will then send data to the Peripheral to write to its registers. The Peripheral will initialize itself to receive gCmdWriteTypeXBuffer example buffers. After all the data is received by the Peripheral, the received data will be stored in its corresponding gCmdWriteTypeXBuffer.</p>
 <p>When the Controller sends CMD_READ_TYPE_X commands, the SPI Controller will read data from the Peripheral. The Peripheral will send example gCmdReadTypeXBuffer buffers in response. After all the data is received by the Controller, the received data will be stored in its corresponding gCmdReadTypeXBuffer.</p>
-<p>The Peripheral will go to SLEEP in between transactions.</p>
+<p>After a successful transaction, the LED will toggle its state, then the Peripheral will go to SLEEP.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -50,6 +50,16 @@
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>GPIOA</td>
+<td>PA0</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA1</td>
+<td>Open-Drain Output</td>
+</tr>
 <tr class="odd">
 <td>SYSCTL</td>
 <td></td>
@@ -76,11 +86,16 @@
 <td>SPI CS1 (Chip Select 1)</td>
 </tr>
 <tr class="even">
+<td>EVENT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -100,6 +115,20 @@
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>PA0</td>
+<td>GPIOA</td>
+<td>PA0</td>
+<td>J1_10</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J10 2:3</code> Use 3.3V pull-up<br><li><code>J10 1:2</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J2 ON</code> Connect to LED1<br><li><code>J2 OFF</code> Disconnect from LED1</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA1</td>
+<td>GPIOA</td>
+<td>PA1</td>
+<td>J1_9</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 2:3</code> Use 3.3V pull-up<br><li><code>J9 1:2</code> Use 5V pull-up</ul></ul></td>
+</tr>
 <tr class="odd">
 <td>PA6</td>
 <td>SPI0</td>
@@ -133,14 +162,14 @@
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_13</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>J2_17</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
@@ -165,6 +194,7 @@
 <li>MSB first</li>
 </ul>
 <p>Compile, load and run the example before running the Controller example. The SPI will automatically start to transmit and receive data responding to requests from the SPI Controller.</p>
+<p>The LED will toggle after completion to indicate success. USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

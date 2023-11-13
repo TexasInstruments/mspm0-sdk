@@ -68,7 +68,6 @@
 #define BSL_ADDRS_SIZE (4)
 #define BSL_BITRATE_CONFIG_SIZE (7)
 
-
 // ! Define BSL CORE commands
 #define NO_ACTIVE_COMMAND ((uint8_t) 0x00)
 #define CMD_CONNECTION ((uint8_t) 0x12)

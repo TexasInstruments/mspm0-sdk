@@ -68,14 +68,14 @@
 % for (let pin in pinstances) {
 %     let pinst = pinstances[pin];
 %     let group = pinst.$ownedBy.$name + "_";
-%     let port = Common.getGPIOPort(pinst.pin.$solution.peripheralPinName);
-%     /* Used in the event channel define */
-%     let pinID = Common.getGPIONumber(pinst.pin.$solution.peripheralPinName);
 %     let packagePin = pinst.pin.$solution.packagePinName;
-%     let pinCM = system.deviceData.devicePins[packagePin].attributes.iomux_pincm;
+%     let port = Common.getGPIOPortMultiPad(packagePin,pinst,undefined);
+%     /* Used in the event channel define */
+%     let pinID = Common.getGPIONumberMultiPad(packagePin,pinst,undefined);
+%     let pinCM = Common.getPinCM(packagePin,pinst,undefined);
 %     let sameGroupOtherPort = _.filter(pinstances, (pin) => {
 %           return pin.$ownedBy === pinst.$ownedBy &&
-%           Common.getGPIOPort(pin.pin.$solution.peripheralPinName) !== port;});
+%           Common.getGPIOPortMultiPad(pin.pin.$solution.packagePinName,pin,undefined) !== port;});
 %
 %     if(pinst.$ownedBy.port !== "Any" || sameGroupOtherPort.length === 0) {
 %     // specify a specific port per group
@@ -112,13 +112,13 @@
 %           return pin.interruptEn && pin.direction === "INPUT" });
 %       let otherGroupsSamePort = _.filter(groupedInterrupts, (pin) => {
 %           return pin.$ownedBy !== pinst.$ownedBy &&
-%                  Common.getGPIOPort(pin.pin.$solution.peripheralPinName) === port;});
+%                  Common.getGPIOPortMultiPad(pin.pin.$solution.packagePinName,pin,undefined) === port;});
 %       let sameGroupOtherPort = _.filter(groupedInterrupts, (pin) => {
 %           return pin.$ownedBy === pinst.$ownedBy &&
-%                  Common.getGPIOPort(pin.pin.$solution.peripheralPinName) !== port;});
+%                  Common.getGPIOPortMultiPad(pin.pin.$solution.packagePinName,pin,undefined) !== port;});
 %       let sameGroupSamePort = _.filter(groupedInterrupts, (pin) => {
 %           return pin.$ownedBy === pinst.$ownedBy &&
-%                  Common.getGPIOPort(pin.pin.$solution.peripheralPinName) === port;});
+%                  Common.getGPIOPortMultiPad(pin.pin.$solution.packagePinName,pin,undefined) === port;});
 %
 %       if(otherGroupsSamePort.length === 0) {
 %           // good to define by group (could be different ports)

@@ -39,7 +39,6 @@
         "
         linkerBuildOptions="
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/drivers/lib/ticlang/m0p/drivers_mspm0g1x0x_g3x0x.a
-            -Wl,--stack_size=512
             -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0G3507_release_ticlang/Debug
             -lfreertos_builds_LP_MSPM0G3507_release_ticlang.lib
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
@@ -55,9 +54,9 @@
         <property name="isHybrid" value="true"/>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/Display.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
         </file>
-        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/Display.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
-        </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/DisplayUart.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/Display.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/DisplayUart.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
         </file>

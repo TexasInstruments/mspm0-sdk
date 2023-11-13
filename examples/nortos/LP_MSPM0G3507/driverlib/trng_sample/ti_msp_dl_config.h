@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -77,6 +77,18 @@ extern "C" {
 
 
 
+
+/* Port definition for Pin Group GPIO_LEDS */
+#define GPIO_LEDS_PORT                                                   (GPIOA)
+
+/* Defines for USER_LED_1: GPIOA.0 with pinCMx 1 on package pin 33 */
+#define GPIO_LEDS_USER_LED_1_PIN                                 (DL_GPIO_PIN_0)
+#define GPIO_LEDS_USER_LED_1_IOMUX                                (IOMUX_PINCM1)
+/* Defines for USER_TEST: GPIOA.15 with pinCMx 37 on package pin 8 */
+#define GPIO_LEDS_USER_TEST_PIN                                 (DL_GPIO_PIN_15)
+#define GPIO_LEDS_USER_TEST_IOMUX                                (IOMUX_PINCM37)
+
+
 /* Defines for TRNG */
 /*
  * The TRNG interrupt is part of INT_GROUP1. Refer to the TRM for more details
@@ -92,6 +104,7 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+
 void SYSCFG_DL_TRNG_init(void);
 
 bool SYSCFG_DL_saveConfiguration(void);

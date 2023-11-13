@@ -56,22 +56,23 @@ int main(void)
     }
     NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
     gCheckUART = false;
-
     DL_SYSCTL_disableSleepOnExit();
     /* Wait in SLEEP mode until DMA interrupt is triggered */
     while (false == gCheckUART) {
         __WFE();
     }
 
-    /*
-     * Set a SW breakpoint to check results. If this example is used with the
-     * uart_tx_multibyte_fifo_dma_interrupts example, the expected data to
-     * receive in gRxPacket is: {'M', 'S', 'P', '!'}
-     */
-    __BKPT(0);
-
     DL_SYSCTL_enableSleepOnExit();
     while (1) {
+        /* LED will turn ON to indicate example has completed without error */
+        DL_GPIO_clearPins(GPIO_LEDS_PORT,
+            (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
+
+        /*
+        * If this example is used with the uart_tx_multibyte_fifo_dma_interrupts
+        * example, the expected data to receive in gRxPacket is:
+        * {'M', 'S', 'P', '!'}
+        */
         __WFI();
     }
 }

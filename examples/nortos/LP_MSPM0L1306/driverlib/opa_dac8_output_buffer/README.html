@@ -101,21 +101,21 @@
 <td>OPA0</td>
 <td>OUT</td>
 <td>J1_8</td>
-<td>J6 ON/OFF: Connect/disconnect from photodiode D1<br>R95/C57 can be soldered for thermistor RT1<br>J15 ON: Connects Thermistor RT1, if needed</td>
+<td><ul><li>PA22 can be connected to photodiode D1<br><ul><li><code>J6 OFF</code> Disconnect from photodiode D1<br><li><code>J6 ON</code> Connect to photodiode D1</ul><br><li>PA22 can be connected to thermistor RT1<br><ul><li><code>R95/C57</code> RC circuit for thermistor RT1 is not soldered by default<br><li>Solder <code>R95/C57</code> RC circuit to connect to thermistor RT1</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_13</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>J2_17</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>

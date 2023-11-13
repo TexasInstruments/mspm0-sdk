@@ -68,7 +68,7 @@
  *
  */
 #if !defined(SHA2SW_SUPPORT_SHA2_224)
-#define SHA2SW_SUPPORT_SHA2_224 (1)
+#define SHA2SW_SUPPORT_SHA2_224 (0)
 #endif
 
 /*!
@@ -76,7 +76,7 @@
  *
  */
 #if !defined(SHA2SW_SUPPORT_SHA2_384)
-#define SHA2SW_SUPPORT_SHA2_384 (1)
+#define SHA2SW_SUPPORT_SHA2_384 (0)
 #endif
 
 /*!
@@ -91,7 +91,7 @@
  *  Not defining this value will reduce code size.
  */
 #if !defined(SHA2SW_VALIDATE_INPUTS)
-#define SHA2SW_VALIDATE_INPUTS (1)
+#define SHA2SW_VALIDATE_INPUTS (0)
 #endif
 
 /*!
@@ -130,7 +130,7 @@
  * of a few bytes of code space and small change in performance.
  */
 #if !defined(SHA2SW_USE_512_CONST_FOR_256)
-#define SHA2SW_USE_512_CONST_FOR_256 (1)
+#define SHA2SW_USE_512_CONST_FOR_256 (0)
 #endif
 
 /*!

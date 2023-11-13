@@ -86,16 +86,15 @@ $(function() {
  </div><div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;ti/iqmath/include/IQmathLib.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="hal_8h_source.html">hal.h</a>&quot;</code><br />
+<code>#include &quot;ipd.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="rampgen_8h_source.html">rampgen.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="rmp__cntl_8h_source.html">rmp_cntl.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="clarke_8h_source.html">clarke.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="park_8h_source.html">park.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ipark_8h_source.html">ipark.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pi_8h_source.html">pi.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="cirlimit_8h_source.html">cirlimit.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="volt__calc_8h_source.html">volt_calc.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="esmopos_8h_source.html">esmo/esmopos.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="speed__est_8h_source.html">speed_est.h</a>&quot;</code><br />
+<code>#include &quot;estimator.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="svgen_8h_source.html">svgen.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pwmgen_8h_source.html">pwmgen.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="motor__params_8h_source.html">motor_params.h</a>&quot;</code><br />
@@ -104,21 +103,21 @@ Include dependency graph for parameter.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="parameter_8h__incl.png" border="0" usemap="#parameter_8h" alt=""/></div>
 <map name="parameter_8h" id="parameter_8h">
-<area shape="rect" id="node4" href="hal_8h.html" title="Sensorless FOC Motor Control Library HAL Module. " alt="" coords="305,80,360,107"/>
-<area shape="rect" id="node6" href="rampgen_8h.html" title="Sensorless FOC Motor Control Library Ramp Generation Module. " alt="" coords="1243,155,1335,181"/>
-<area shape="rect" id="node9" href="rmp__cntl_8h.html" title="Sensorless FOC Motor Control Library Ramp Control Module. " alt="" coords="866,229,957,256"/>
-<area shape="rect" id="node10" href="clarke_8h.html" title="Sensorless FOC Motor Control Library Clarke Module. " alt="" coords="1336,229,1409,256"/>
-<area shape="rect" id="node11" href="park_8h.html" title="Sensorless FOC Motor Control Library Park Module. " alt="" coords="1587,229,1649,256"/>
-<area shape="rect" id="node12" href="ipark_8h.html" title="Sensorless FOC Motor Control Library Inverse Park Module. " alt="" coords="519,229,586,256"/>
-<area shape="rect" id="node13" href="pi_8h.html" title="Sensorless FOC Motor Control Library PI Controller Module. " alt="" coords="1028,155,1075,181"/>
-<area shape="rect" id="node14" href="cirlimit_8h.html" title="Sensorless FOC Motor Control Library Circle limitation Module. " alt="" coords="762,229,842,256"/>
-<area shape="rect" id="node15" href="volt__calc_8h.html" title="Sensorless FOC Motor Control Library Phase Voltage Calculation Module. " alt="" coords="981,229,1073,256"/>
-<area shape="rect" id="node16" href="esmopos_8h.html" title="Sensorless FOC Motor Control Library ESMO Module. " alt="" coords="1045,80,1178,107"/>
-<area shape="rect" id="node18" href="speed__est_8h.html" title="Sensorless FOC Motor Control Library Speed Estimator Module. " alt="" coords="904,155,1004,181"/>
-<area shape="rect" id="node19" href="svgen_8h.html" title="Sensorless FOC Motor Control Library Space Vector Generation Module. " alt="" coords="421,229,495,256"/>
-<area shape="rect" id="node20" href="pwmgen_8h.html" title="Sensorless FOC Motor Control Library PWM Generation Module. " alt="" coords="434,80,525,107"/>
-<area shape="rect" id="node21" href="motor__params_8h.html" title="Sensorless FOC Motor Control Library Motor Module. " alt="" coords="1637,80,1767,107"/>
-<area shape="rect" id="node7" href="angle__math_8h.html" title="Sensorless FOC Motor Control Library Angle Math Module. " alt="" coords="1149,229,1260,256"/>
+<area shape="rect" id="node4" href="hal_8h.html" title="Sensorless FOC Motor Control Library HAL Module. " alt="" coords="153,304,207,331"/>
+<area shape="rect" id="node7" href="rampgen_8h.html" title="Sensorless FOC Motor Control Library Ramp Generation Module. " alt="" coords="533,80,625,107"/>
+<area shape="rect" id="node10" href="rmp__cntl_8h.html" title="Sensorless FOC Motor Control Library Ramp Control Module. " alt="" coords="720,80,811,107"/>
+<area shape="rect" id="node14" href="clarke_8h.html" title="Sensorless FOC Motor Control Library Clarke Module. " alt="" coords="374,155,447,181"/>
+<area shape="rect" id="node15" href="park_8h.html" title="Sensorless FOC Motor Control Library Park Module. " alt="" coords="1041,155,1103,181"/>
+<area shape="rect" id="node16" href="ipark_8h.html" title="Sensorless FOC Motor Control Library Inverse Park Module. " alt="" coords="1128,155,1195,181"/>
+<area shape="rect" id="node17" href="pi_8h.html" title="Sensorless FOC Motor Control Library PI Controller Module. " alt="" coords="649,80,695,107"/>
+<area shape="rect" id="node18" href="volt__calc_8h.html" title="Sensorless FOC Motor Control Library Phase Voltage Calculation Module. " alt="" coords="1219,155,1311,181"/>
+<area shape="rect" id="node20" href="svgen_8h.html" title="Sensorless FOC Motor Control Library Space Vector Generation Module. " alt="" coords="1335,155,1409,181"/>
+<area shape="rect" id="node21" href="pwmgen_8h.html" title="Sensorless FOC Motor Control Library PWM Generation Module. " alt="" coords="135,80,225,107"/>
+<area shape="rect" id="node24" href="motor__params_8h.html" title="Sensorless FOC Motor Control Library Motor Module. " alt="" coords="305,229,434,256"/>
+<area shape="rect" id="node8" href="angle__math_8h.html" title="Sensorless FOC Motor Control Library Angle Math Module. " alt="" coords="523,155,634,181"/>
+<area shape="rect" id="node11" href="iqmath__rts_8h.html" title="Cutdown version of the RTS version of the IQmathLib.h. " alt="" coords="709,155,813,181"/>
+<area shape="rect" id="node22" href="user_8h.html" title="Sensorless FOC Motor Control Library USER Module. " alt="" coords="149,155,211,181"/>
+<area shape="rect" id="node23" href="foc__types_8h.html" title="Sensorless FOC Motor Control Library FOC TYPES Module. " alt="" coords="131,229,229,256"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -135,59 +134,73 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga0ab29eb19c970f0b2b1746014033bfb1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> { <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ac41a52dfcad8c4c921d1b01b3ee9b6eb">PARA_IDX_RS</a> = 0, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1abe7fc8cfff63cf79f8949de450f35bf4">PARA_IDX_USER_RS</a> = 0, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a12dd224cf9c0992b83cd237e8ecbf1d3">PARA_IDX_LS</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a5224f1bf3018589377628816f805c242">PARA_IDX_USER_LS</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a669c19bbbe02e789939362494b8fd38d">PARA_IDX_POLES</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a3406f822b683d7879a8b786ad29f41de">PARA_IDX_USER_KE</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1af97747d4e10d0c18636ff4c567f86675">PARA_IDX_BASE_RPM</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a12eeaf194c4fca59303e81352bc128a0">PARA_IDX_USER_MAX_FREQ</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a74a5c65ccf13288e6f60ff5074b38a47">PARA_IDX_PWMFREQ</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a7c8ac8cc890d9523b937e06715af9eca">PARA_IDX_USER_PWMFREQ</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a1c45644353ccc39c166f5a287d85bcdf">PARA_IDX_PWMPERIOD</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a883ac5acae65cc3812ed9ff6e27a5df9">PARA_IDX_USER_DEADBAND</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a7d0b8e1c413eb0274282e8f1b0d2defb">PARA_IDX_PWMADCSAMPLE</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1af906ae83951f5532259bff4914484fe8">PARA_IDX_USER_AMP_GAIN</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a137f2c84f6772e5bad877a4fdad7debc">PARA_IDX_CNTRLDIV</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a594ae0d08f0c96d70e70674cf6182406">PARA_IDX_USER_OUTER_LOOP</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a60cd13f4995d27ec4829f5ea04a45818">PARA_IDX_DEADBAND</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1aaaf78df715c85382cf341a4e71527722">PARA_IDX_USER_DIRECTION_REVERSE</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a77c173e470b57ee597907c0e44e05867">PARA_IDX_DEADBAND_CYC</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a316e4c52d9cd264d48ad5b3dc417fbd8">PARA_IDX_USER_STARTUP_METHOD</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a4f96fbc36eefc74c3614f1fd0e77beb3">PARA_IDX_VOLT_RATIO</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a3aa44114c52d67e0e1da46225604fc61">PARA_IDX_USER_SLOW_FIRST_CYC_FREQ</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a7dd8ffe80300c18a26dbd70db4d95c57">PARA_IDX_AMP_GAIN</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a14c8c548a1b2cd8fa1a46c02f9a936b2">PARA_IDX_USER_ALIGN_CURRENT</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a57407b68a01024ccaf362ae37db8bcdf">PARA_IDX_RSHUNT</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ade297a5ac666a98140bdaca839cb7303">PARA_IDX_USER_ALIGN_TIME</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a1a2052f595bbe5dd546660248313993f">PARA_IDX_KSLIDE</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a1d552da12ae94dfb81bc87cf857814b7">PARA_IDX_USER_IPD_CURRENT_THRESHOLD</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a68d2052929a97091fc96b74191524213">PARA_IDX_PISPD_KP</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1af1edfb4ff7d7527afe9d2e067517d2ad">PARA_IDX_USER_IPD_FREQ</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a6f279a1efb4971bc70d2ac53322c3669">PARA_IDX_PISPD_KI</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a8527f6e6beca1ee367f00b95e6f7551a">PARA_IDX_USER_RAMPUP_CURRENT</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a5756d388198e6e4b08623cae19044baa">PARA_IDX_PISPD_MAX</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1abd9ffd407f34cb3f9c678e4fd31046db">PARA_IDX_USER_RAMPUP_RATE</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ad987831b3dc1313ad8850bc6993f7589">PARA_IDX_PISPD_MIN</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1aa21d41f7ef1cdbd39663a90d2936b7c5">PARA_IDX_USER_RAMPUP_TARGET</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ab4f2f1b6b21823d34c243c4f45f2c088">PARA_IDX_PISPD_DIV</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1aad4cfb837b9c65a7c0e2c52c20319150">PARA_IDX_USER_SPDREF_RAMP_RATE</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a41f7ceae8470ce9176b35bbee9def668">PARA_IDX_PIIQ_KP</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a196153ef3a0b5cd4f42fff9078d804ed">PARA_IDX_USER_PISPD_KP</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a3641a0e745260e11597a34978fca3ac8">PARA_IDX_PIIQ_KI</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1af292b1900faec81fc52371f7717923e1">PARA_IDX_USER_PISPD_KI</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a87200a52f111e4e800c4da9bb2e9a832">PARA_IDX_PIIQ_MAX</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a8da4abe90e959bf0669357218a699dd8">PARA_IDX_USER_PISPD_DIV</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ad7772b3c4296d0e1cf81a749518be209">PARA_IDX_PIIQ_MIN</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a38a3c5286ea1027a9d359ddc76a9cb98">PARA_IDX_USER_PIIQ_KP</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a10a698d260eb03c364e81f158ec8af81">PARA_IDX_PIID_KP</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a4a73eb12f2bf275697f316098a7829e6">PARA_IDX_USER_PIIQ_KI</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ab440c5cfa60d2cce4d1959c96c80d261">PARA_IDX_PIID_KI</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a963295b55f0cb85fa1e2a5895d8207e0">PARA_IDX_USER_PIID_KP</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a5dde666d23321568263c2365a200d2ea">PARA_IDX_PIID_MAX</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a32f8db61b76c0005032a5fa2db1efeba">PARA_IDX_USER_PIID_KI</a>, 
 <br />
-&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a166a091cb3aae6682b42469660ce306b">PARA_IDX_PIID_MIN</a>, 
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ae46cbea3fc0959cef885106b0c67d914">PARA_IDX_USER_OVER_VOLTAGE_LIMIT</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a0d968b991598ca086cbb7fd60260603d">PARA_IDX_USER_UNDER_VOLTAGE_LIMIT</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a6bb2170de54bf287e770115f82536a40">PARA_IDX_USER_OVER_CURRENT_LIMIT</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1adb3b0761fbc605bad69aadde025be8c8">PARA_IDX_USER_MAX</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a97c7f8fbf17c888d27c0f6f251a12d17">PARA_IDX_SYS_DEADBAND_CYC</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ac8e910b916a4a7907910910a0c8a1f48">PARA_IDX_SYS_PWMPERIOD</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a1de79c2b54711cb994482d290e0a5f6d">PARA_IDX_SYS_TS</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1a21d8d28a3b9f9c8dce2a71738994256e">PARA_IDX_SYS_SAMPLE_FREQ</a>, 
 <br />
 &#160;&#160;<a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gga0ab29eb19c970f0b2b1746014033bfb1ae8e2f04a68bc7ab9c22f140e68d5367f">PARA_IDX_MAX</a>
 <br />
@@ -197,27 +210,30 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gae91d231757304697aecdfff085020945"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gae91d231757304697aecdfff085020945">PARA_checkESMO</a> (float *parameter, <a class="el" href="struct_e_s_m_o___instance.html">ESMO_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
-<tr class="memdesc:gae91d231757304697aecdfff085020945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for ESMO parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gae91d231757304697aecdfff085020945">More...</a><br /></td></tr>
-<tr class="separator:gae91d231757304697aecdfff085020945"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6a022f722735465bbd833ad07628c3dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga6a022f722735465bbd833ad07628c3dc">PARA_checkSPDEST</a> (float *parameter, <a class="el" href="struct_s_p_d_e_s_t___instance.html">SPDEST_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
-<tr class="memdesc:ga6a022f722735465bbd833ad07628c3dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for SPDEST parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga6a022f722735465bbd833ad07628c3dc">More...</a><br /></td></tr>
-<tr class="separator:ga6a022f722735465bbd833ad07628c3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga84045dc580f4d6ee2b91e8dcfd5f765c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga84045dc580f4d6ee2b91e8dcfd5f765c">PARA_checkPISPD</a> (float *parameter, <a class="el" href="struct_p_i___instance.html">PI_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
-<tr class="memdesc:ga84045dc580f4d6ee2b91e8dcfd5f765c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for PISPD parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga84045dc580f4d6ee2b91e8dcfd5f765c">More...</a><br /></td></tr>
-<tr class="separator:ga84045dc580f4d6ee2b91e8dcfd5f765c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2696b5ad548daff2114933f0d8f1e0d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga2696b5ad548daff2114933f0d8f1e0d1">PARA_checkPIIQ</a> (float *parameter, <a class="el" href="struct_p_i___instance.html">PI_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
-<tr class="memdesc:ga2696b5ad548daff2114933f0d8f1e0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for PIIQ parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga2696b5ad548daff2114933f0d8f1e0d1">More...</a><br /></td></tr>
-<tr class="separator:ga2696b5ad548daff2114933f0d8f1e0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga64370aa15adc6fb2e172c1fb8496eb74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga64370aa15adc6fb2e172c1fb8496eb74">PARA_checkPIID</a> (float *parameter, <a class="el" href="struct_p_i___instance.html">PI_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
-<tr class="memdesc:ga64370aa15adc6fb2e172c1fb8496eb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for PIID parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga64370aa15adc6fb2e172c1fb8496eb74">More...</a><br /></td></tr>
-<tr class="separator:ga64370aa15adc6fb2e172c1fb8496eb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga504e6bd9d4e5bb1aabed5bd90e7b590c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga504e6bd9d4e5bb1aabed5bd90e7b590c">PARA_checkRG</a> (float *parameter, <a class="el" href="struct_r_a_m_p_g_e_n___instance.html">RAMPGEN_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
-<tr class="memdesc:ga504e6bd9d4e5bb1aabed5bd90e7b590c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for RG parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga504e6bd9d4e5bb1aabed5bd90e7b590c">More...</a><br /></td></tr>
-<tr class="separator:ga504e6bd9d4e5bb1aabed5bd90e7b590c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaab609274941c4e346cb742d3fd4b6a47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gaab609274941c4e346cb742d3fd4b6a47">PARA_checkPWMGEN</a> (float *parameter, <a class="el" href="struct_p_w_m_g_e_n___instance.html">PWMGEN_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
-<tr class="memdesc:gaab609274941c4e346cb742d3fd4b6a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for PWMGEN parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gaab609274941c4e346cb742d3fd4b6a47">More...</a><br /></td></tr>
-<tr class="separator:gaab609274941c4e346cb742d3fd4b6a47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad2a23ebbfc2c823dcf8c2dbf13f56049"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gad2a23ebbfc2c823dcf8c2dbf13f56049">PARA_checkEST</a> (uint32_t *parameter, EST_Instance *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
+<tr class="memdesc:gad2a23ebbfc2c823dcf8c2dbf13f56049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for EST parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gad2a23ebbfc2c823dcf8c2dbf13f56049">More...</a><br /></td></tr>
+<tr class="separator:gad2a23ebbfc2c823dcf8c2dbf13f56049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27a400d815a6d149a691eb65893978f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga27a400d815a6d149a691eb65893978f2">PARA_checkPISPD</a> (uint32_t *parameter, <a class="el" href="struct_p_i___instance.html">PI_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
+<tr class="memdesc:ga27a400d815a6d149a691eb65893978f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for PISPD parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga27a400d815a6d149a691eb65893978f2">More...</a><br /></td></tr>
+<tr class="separator:ga27a400d815a6d149a691eb65893978f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1e36f8d4b4b2b7c46dbbac49776594e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga1e36f8d4b4b2b7c46dbbac49776594e8">PARA_checkPIIQ</a> (uint32_t *parameter, <a class="el" href="struct_p_i___instance.html">PI_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
+<tr class="memdesc:ga1e36f8d4b4b2b7c46dbbac49776594e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for PIIQ parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga1e36f8d4b4b2b7c46dbbac49776594e8">More...</a><br /></td></tr>
+<tr class="separator:ga1e36f8d4b4b2b7c46dbbac49776594e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab7b3280c242ead94846538ac9ff5e479"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab7b3280c242ead94846538ac9ff5e479">PARA_checkPIID</a> (uint32_t *parameter, <a class="el" href="struct_p_i___instance.html">PI_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
+<tr class="memdesc:gab7b3280c242ead94846538ac9ff5e479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for PIID parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab7b3280c242ead94846538ac9ff5e479">More...</a><br /></td></tr>
+<tr class="separator:gab7b3280c242ead94846538ac9ff5e479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1916754a2e90049bb130be46a44db43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gad1916754a2e90049bb130be46a44db43">PARA_checkRC</a> (uint32_t *parameter, <a class="el" href="struct_r_m_p_c_n_t_l___instance.html">RMPCNTL_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
+<tr class="memdesc:gad1916754a2e90049bb130be46a44db43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for RC parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gad1916754a2e90049bb130be46a44db43">More...</a><br /></td></tr>
+<tr class="separator:gad1916754a2e90049bb130be46a44db43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3572e05542ec6d8e647655609a939b77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga3572e05542ec6d8e647655609a939b77">PARA_checkRG</a> (uint32_t *parameter, <a class="el" href="struct_r_a_m_p_g_e_n___instance.html">RAMPGEN_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
+<tr class="memdesc:ga3572e05542ec6d8e647655609a939b77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for RG parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga3572e05542ec6d8e647655609a939b77">More...</a><br /></td></tr>
+<tr class="separator:ga3572e05542ec6d8e647655609a939b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab10c8bf78942b43285e7ab192ffba7c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab10c8bf78942b43285e7ab192ffba7c5">PARA_checkPWMGEN</a> (uint32_t *parameter, <a class="el" href="struct_p_w_m_g_e_n___instance.html">PWMGEN_Instance</a> *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
+<tr class="memdesc:gab10c8bf78942b43285e7ab192ffba7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for PWMGEN parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab10c8bf78942b43285e7ab192ffba7c5">More...</a><br /></td></tr>
+<tr class="separator:gab10c8bf78942b43285e7ab192ffba7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c3844c0745605043351c51c5deed575"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga4c3844c0745605043351c51c5deed575">PARA_checkIPD</a> (uint32_t *parameter, IPD_Instance *handle, <a class="el" href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga0ab29eb19c970f0b2b1746014033bfb1">PARA_IDX</a> idx)</td></tr>
+<tr class="memdesc:ga4c3844c0745605043351c51c5deed575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for IPD parameter changes.  <a href="group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga4c3844c0745605043351c51c5deed575">More...</a><br /></td></tr>
+<tr class="separator:ga4c3844c0745605043351c51c5deed575"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

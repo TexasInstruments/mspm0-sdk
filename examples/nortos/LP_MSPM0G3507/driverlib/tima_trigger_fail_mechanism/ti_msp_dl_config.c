@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -105,6 +105,15 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
     DL_GPIO_enableOutput(GPIO_PWM_0_C1_PORT, GPIO_PWM_0_C1_PIN);
     DL_GPIO_initPeripheralInputFunction(GPIO_PWM_0_IOMUX_FAULT_1,GPIO_PWM_0_IOMUX_FAULT_1_FUNC);
 
+    DL_GPIO_initDigitalOutput(GPIO_LEDS_USER_LED_1_IOMUX);
+
+    DL_GPIO_initDigitalOutput(GPIO_LEDS_USER_TEST_IOMUX);
+
+    DL_GPIO_setPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN |
+		GPIO_LEDS_USER_TEST_PIN);
+    DL_GPIO_enableOutput(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN |
+		GPIO_LEDS_USER_TEST_PIN);
+
 }
 
 
@@ -164,7 +173,8 @@ SYSCONFIG_WEAK void SYSCFG_DL_PWM_0_init(void) {
     DL_TimerA_enableClock(PWM_0_INST);
 
 
-    
+    DL_TimerA_enableInterrupt(PWM_0_INST , DL_TIMERA_INTERRUPT_FAULT_EVENT);
+
     DL_TimerA_setCCPDirection(PWM_0_INST , DL_TIMER_CC0_OUTPUT | DL_TIMER_CC1_OUTPUT );
 
     DL_TimerA_setFaultSourceConfig(PWM_0_INST, (DL_TIMERA_FAULT_SOURCE_EXTERNAL_1_SENSE_HIGH));

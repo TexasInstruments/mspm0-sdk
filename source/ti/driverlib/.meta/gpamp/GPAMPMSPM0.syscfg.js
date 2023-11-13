@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -420,54 +420,6 @@ supported common-mode input ranges in the various RRI modes.
 
         ]
     },
-])
-
-/* Helper Configurables */
-gpampConfig = gpampConfig.concat([
-    /* Helper Configurables
-         * These are invisible to sysconfig and have no influence on code generation, but give the module additional
-         * visibility based on the state of the system and the specific M0 device being configured
-         */
-    {
-        /* name of the device */
-        name: "device",
-        default: "MSPM0G350X",
-        hidden: true,
-        getValue: (inst) => {
-            let mySys = system;
-            return system.deviceData.device;
-        }
-    },
-    {
-        /* this is a read-only array of the gpamp modules that are actually present on the device,
-         * can be used to limit the allowable gpamp to those that make sense
-         */
-        name: "gpamps",
-        default: [""],
-        /* superset of all possible GPAMP modules */
-        options: [
-            {name: "GPAMP"},{name: ""}
-        ],
-        hidden: true,
-        getValue: (inst) => {
-            let array = _.map(system.deviceData.interfaces.GPAMP.peripherals, (v)=> v.name);
-            return array;
-        }
-    },
-    {
-        /* Removes undefined possibility for gpamp assignment */
-        name: "gpampAssignment",
-        default: "Any",
-        hidden: true,
-        getValue: (inst) => {
-            if(inst.peripheral) {
-                return inst.peripheral.$assign;
-            } else {
-                return "Any";
-            }
-        }
-    }
-    /****** End of Helper Configurables *******/
 ])
 
 /* Add Pinmux Peripheral Configuration group */

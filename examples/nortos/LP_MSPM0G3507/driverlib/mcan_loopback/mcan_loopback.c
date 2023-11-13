@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,6 +39,7 @@ volatile bool gTransmitComplete;
 
 #define DL_MCAN_MSG_INT (0x80200)
 
+
 int main(void)
 {
     DL_MCAN_TxBufElement txMsg;
@@ -77,9 +78,10 @@ int main(void)
     NVIC_EnableIRQ(MCAN0_INST_INT_IRQN);
 
     gMsgCount = 0;
-    gError    = false;
 
     while (1) {
+        gError = false;
+
         /* Write Tx Message to the Message RAM. */
         DL_MCAN_writeMsgRam(MCAN0_INST, DL_MCAN_MEM_TYPE_BUF, 1U, &txMsg);
 
@@ -119,13 +121,23 @@ int main(void)
             (txMsg.data[3] != rxMsg.data[3])) {
             /* Trap code execution */
             gError = true;
-            while (1) {
-                __BKPT(0);
-            }
         } else {
             /* Increment message count if message is received. */
             gMsgCount++;
             txMsg.data[0] = gMsgCount;
+        }
+
+        if (gError == true) {
+            /* Clear pins on error */
+            DL_GPIO_clearPins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+            while (gError == true) {
+                __BKPT(0);
+            }
+        } else {
+            /* Set pins on success */
+            DL_GPIO_setPins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
         }
     }
 }
@@ -152,11 +164,6 @@ void MCAN0_INST_IRQHandler(void)
                 } else {
                     gError = true;
                 }
-                /*
-                 * Check gTransmitComplete to see if transmit is complete,
-                 * or gError if there was an error
-                 */
-                __BKPT(0);
             } else {
                 gCheckRXMessage = true;
             }

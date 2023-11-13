@@ -39,6 +39,10 @@ int main(void)
     /* Enable WWDT interrupts on device */
     NVIC_EnableIRQ(WWDT0_INT_IRQN);
 
+    /* Set LED to indicate RTC clock enable */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+
     /* Enable sleep on exit */
     DL_SYSCTL_enableSleepOnExit();
 
@@ -53,7 +57,8 @@ void GROUP0_IRQHandler(void)
         case DL_INTERRUPT_GROUP0_IIDX_WWDT0:
             if (DL_WWDT_getPendingInterrupt(WWDT0)) {
                 /* Toggle LED */
-                DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+                DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                    GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
             }
         default:
             break;

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 SENT User’s Guide &mdash; MSPM0 SENT User&#39;s Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="MSPM0 SENT User’s Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MSPM0 SENT User's Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SENT User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sent-frame-format">2. SENT Frame Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-the-timer-for-sent">2. Configuring the Timer for SENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-applications">3. Example Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-the-example-applications">Modifying the Example Applications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MSPM0 SENT User's Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 SENT User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-sent-user-s-guide">
+<h1>MSPM0 SENT User’s Guide<a class="headerlink" href="#mspm0-sent-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>SENT (Single Edge Nibble Transmission) is a unidirectional communication standard used in automotive networks. Data from a sensor is transmitted independently without any intervention of the data receiving device. The MSPM0 SDK provides an easy way to start development of SENT applications using the MSPM0’s Timer module.</p>
+<p>An example application is provided in the SDK to demonstrate how to configure a MSPM0 device as a SENT packet transmitter.</p>
+</section>
+<section id="sent-frame-format">
+<h2>2. SENT Frame Format<a class="headerlink" href="#sent-frame-format" title="Permalink to this heading">¶</a></h2>
+<p>A tick is defined as a unit of time for SENT transmissions ranging from 1 us and 90 us in this implementation. Each pulse needs to be held low for a minimum of 5 ticks and high for a minimum of 7 ticks. The tick duration is user configurable.</p>
+<p>The SENT protocol defines the following frame format: 1. Synchronization/calibration pulse: 56 ticks total 2. Status nibble pulse: 12-27 ticks total 3. Up to six Data nibble pulses: 12-27 ticks each 4. Checksum nibble pulse: 12-27 ticks total 5. Pause pulse (optional)</p>
+<p>An example SENT frame used in this application is shown below. <img alt="image0" src="../_images/Fast_Channel_Message_Frame.png" /></p>
+</section>
+<section id="configuring-the-timer-for-sent">
+<h2>2. Configuring the Timer for SENT<a class="headerlink" href="#configuring-the-timer-for-sent" title="Permalink to this heading">¶</a></h2>
+<p>A general-purpose timer (TIMGx) is configured to generate the pulses for the SENT frame. The timer is configured at 4 MHz, so the following formula is used to convert ticks to clock counts:</p>
+<ul class="simple">
+<li><p>Clock counts = (Number of ticks * Tick duration in us) * 4</p></li>
+</ul>
+<p>The timer is configured in up-counting mode and counts up to the LOAD value for each state. This LOAD value is calculated for each pulse using the above formula and is dependent on the number of ticks required per pulse state.</p>
+<p>A Capture Compare Register (CCR) is used to switch between a low and high output on the pin. When the timer counts up to the equivalent of 5 ticks (which is the defined number of low ticks per pulse) the output is switched from low to high and remains high for the remainder of the pulse.</p>
+</section>
+<section id="example-applications">
+<h2>3. Example Applications<a class="headerlink" href="#example-applications" title="Permalink to this heading">¶</a></h2>
+<p>The MSPM0 SDK provides an example application to use as a starting point for SENT applications:</p>
+<ul class="simple">
+<li><p><strong>sent_transmit</strong>: Configures the general-purpose timer (TIMGx) to send a SENT frame in fast channel message format, and demonstrates the state machine on how to produce the signal. The frame includes a synchronization pulse, a status nibble, up to six data nibbles, a CRC4 nibble, and an optional pause pulse.</p></li>
+</ul>
+<p>These examples can be found at <code class="docutils literal notranslate"><span class="pre">&lt;SDK_INSTALL_DIRECTORY&gt;/examples/nortos/&lt;LaunchPad&gt;/sent</span></code>.</p>
+<p>The <strong>sent_transmit</strong> example can be used in conjunction with a SENT bus to receive the transmitted signal.</p>
+<p>Refer to the examples README files for more details on connecting the MSPM0 LaunchPad to a SENT bus, as well as detailed instructions on how to run the example.</p>
+<section id="modifying-the-example-applications">
+<h3>Modifying the Example Applications<a class="headerlink" href="#modifying-the-example-applications" title="Permalink to this heading">¶</a></h3>
+<p>Each SENT example application include a <code class="docutils literal notranslate"><span class="pre">SENT.c</span></code> and <code class="docutils literal notranslate"><span class="pre">SENT.h</span></code> file. These files contain macros that can be modified based on the user applications. It is recommended to only change these macros once the user has gained familiarity with the usage of the example application.</p>
+<p><code class="docutils literal notranslate"><span class="pre">SENT.h</span></code> contains the definition of the struct <code class="docutils literal notranslate"><span class="pre">SENT_config_obj</span></code> which allows the user to configure parameters for the SENT frame.</p>
+<p>Below is an example definition of a <code class="docutils literal notranslate"><span class="pre">SENT_config_obj</span></code> struct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SENT_config_obj config = {
+    /*! Tick duration in us */
+    3,
+    /*! Pause configuration struct */
+    {SENT_PAUSE_MODE_FIXED_FRAME, /*! Pause pulse mode */
+        500 /*! Number of ticks */},
+    /*! Number of data nibbles in SENT packet */
+    SENT_NUM_DATA_NIBBLES_6,
+}
+</pre></div>
+</div>
+<p>In this example, the user can configure the following struct members: - <code class="docutils literal notranslate"><span class="pre">3</span></code> is the number of us in a tick - <code class="docutils literal notranslate"><span class="pre">{SENT_PAUSE_MODE_FIXED_FRAME,</span> <span class="pre">500}</span></code> indicates a fixed frame of 500 ticks where the pause pulse is a variable number calculated based on the total frame ticks - <code class="docutils literal notranslate"><span class="pre">SENT_NUM_DATA_NIBBLES_6</span></code> is the number of data nibbles in the frame</p>
+<p><code class="docutils literal notranslate"><span class="pre">SENT.h</span></code> also contains the definition of the struct <code class="docutils literal notranslate"><span class="pre">SENT_PAUSE</span></code> which allows the user to configure the pause pulse in the SENT frame.</p>
+<p>Below is an example definition of a <code class="docutils literal notranslate"><span class="pre">SENT_PAUSE</span></code> struct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SENT_PAUSE pauseConfig = {
+    /*! Pause pulse mode */
+    SENT_PAUSE_MODE_FIXED_FRAME,
+    /*! Number of ticks */
+    500
+}
+</pre></div>
+</div>
+<p>In this example, the user can configure the following struct members:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SENT_PAUSE_MODE_FIXED_FRAME</span></code> indicates a fixed number of ticks in a frame. The second member of the struct, <code class="docutils literal notranslate"><span class="pre">500</span></code>, is the total number of frame ticks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SENT_PAUSE_MODE_VARIABLE_FRAME</span></code> indicates a variable number of ticks in a frame. The second member of the struct, <code class="docutils literal notranslate"><span class="pre">500</span></code>, is the number of ticks in the pause pulse.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SENT_PAUSE_MODE_DISABLED</span></code> indicates that there will be no pause pulse in the SENT frame.</p></li>
+</ul>
+<p>This example uses the SAE J2716 HW CRC-4 implementation. The checksum is calculated using a seed value of 5 (0b0101). Other CRC-4 algorithms can be implemented in the software/used if desired.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="MSPM0 SENT User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

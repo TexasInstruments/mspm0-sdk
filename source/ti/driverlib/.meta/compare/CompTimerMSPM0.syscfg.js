@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -108,8 +108,8 @@ function onChangeTimerProfile(inst, ui) {
             // assigns the empty profile with the selected profile on top
             Object.assign(inst, EmptyTimerProfile,
                 _.pickBy(selectedProfile[0], (_,key) => key !== 'name'));
-            /* MSPM0G Series-Specific Option */
-            if(Common.isDeviceM0G()){
+
+            if(Common.hasTimerA()){
                 Object.assign(inst, EmptyTimerProfileAdvanced,
                     _.pickBy(selectedProfile[0], (_,key) => key !== 'name'));
             }
@@ -229,7 +229,7 @@ function getDisabledEvents(inst)
 function isFourCCCapable(inst)
 {
     try{
-        return (inst.peripheral.$solution.peripheralName.match("TIMA0") == null);
+        return (inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) == null);
     }catch (e) {
         return false;
     }
@@ -367,8 +367,8 @@ function onChangeEnableRepeatCounter(inst,ui)
 }
 
 function updateGUI_RepeatCounter(inst, ui) {
-    /* MSPM0G Series-Specific Option */
-    if(Common.isDeviceM0G()){
+
+    if(Common.hasTimerA()){
         ui.repeatCounter.hidden = !(inst.enableRepeatCounter);
     }
 }
@@ -492,8 +492,8 @@ When selected, the retention APIs will not be generated regardless of selected p
 }
 
 let configAdvanced = [];
-/* MSPM0G Series-Specific Option */
-if(Common.isDeviceM0G()){
+
+if(Common.hasTimerA()){
 configAdvanced.push(
     {
         name            : "enableRepeatCounter",
@@ -671,8 +671,8 @@ let ccIndexOptions = [
     { name: 0, displayName: "Compare Channel 0" },
     { name: 1, displayName: "Compare Channel 1" },
 ];
-/* MSPM0G Series-Specific Option */
-if(Common.isDeviceM0G()){
+
+if(Common.hasTimerA()){
     ccIndexOptions.push(
         { name: 2, displayName: "Compare Channel 2" },
         { name: 3, displayName: "Compare Channel 3" }
@@ -1207,7 +1207,7 @@ function TimerFilter(peripheral, inst) {
         validPeripheral &= /TIMA0/.test(peripheral.name);
     }
 
-    /* MSPM0G Series-Specific Option */
+
     if(inst.timerClkPrescale !== 1){
         // cannot be TIMG12
         validPeripheral &= !(/TIMG12\d/.test(peripheral.name));
@@ -1318,6 +1318,15 @@ function validate(inst, validation)
         }
     }
 
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    EVENT.validatePublisherOptions(inst,validation,"event1PublisherChannel");
+    EVENT.validatePublisherOptions(inst,validation,"event2PublisherChannel");
+    if(inst.subscriberPort != "Disabled"){
+        EVENT.validateSubscriberOptions(inst,validation,"subscriberChannel");
+    }
     Common.validateNames(inst, validation);
 }
 
@@ -1331,7 +1340,7 @@ function validate(inst, validation)
 function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
-    if(Common.isDeviceM0G()){
+    if(Common.hasTimerA()){
         if(inst.enableRepeatCounter){
             if(!(/TIMA/.test(solution))){
                 validation.logError("Repeat Counter only available on Timer A instances. Please select a Timer A instance from PinMux if available.",inst,"enableRepeatCounter");

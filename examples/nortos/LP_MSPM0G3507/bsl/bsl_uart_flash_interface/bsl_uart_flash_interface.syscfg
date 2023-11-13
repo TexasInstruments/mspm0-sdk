@@ -25,3 +25,4 @@ NONMAIN.bslPluginHookTransmit        = "BSL_PI_UART_send";
 NONMAIN.bslPluginHookTransmitAddress = 0x1300;
 NONMAIN.bslPluginHookDeInit          = "BSL_PI_UART_deinit";
 NONMAIN.bslPluginHookDeInitAddress   = 0x1400;
+NONMAIN.nonmainWarning = true;

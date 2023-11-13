@@ -51,6 +51,7 @@
 
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/dl_common.h>
+#include <ti/driverlib/m0p/dl_core.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -67,8 +68,18 @@ extern "C" {
  */
 __STATIC_INLINE uint16_t DL_FactoryRegion_getMAINFlashSize(void)
 {
-    return (
-        FACTORYREGION->SRAMFLASH & FACTORYREGION_SRAMFLASH_MAINFLASH_SZ_MASK);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint16_t flashSize =
+        FACTORYREGION->SRAMFLASH & FACTORYREGION_SRAMFLASH_MAINFLASH_SZ_MASK;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return flashSize;
 }
 
 /**
@@ -78,9 +89,19 @@ __STATIC_INLINE uint16_t DL_FactoryRegion_getMAINFlashSize(void)
  */
 __STATIC_INLINE uint16_t DL_FactoryRegion_getSRAMFlashSize(void)
 {
-    return (
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint16_t flashSize =
         (FACTORYREGION->SRAMFLASH & FACTORYREGION_SRAMFLASH_SRAM_SZ_MASK) >>
-        FACTORYREGION_SRAMFLASH_SRAM_SZ_OFS);
+        FACTORYREGION_SRAMFLASH_SRAM_SZ_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return flashSize;
 }
 
 /**
@@ -90,9 +111,19 @@ __STATIC_INLINE uint16_t DL_FactoryRegion_getSRAMFlashSize(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getDATAFlashSize(void)
 {
-    return ((FACTORYREGION->SRAMFLASH &
-                FACTORYREGION_SRAMFLASH_DATAFLASH_SZ_MASK) >>
-            FACTORYREGION_SRAMFLASH_DATAFLASH_SZ_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint16_t flashSize = (FACTORYREGION->SRAMFLASH &
+                             FACTORYREGION_SRAMFLASH_DATAFLASH_SZ_MASK) >>
+                         FACTORYREGION_SRAMFLASH_DATAFLASH_SZ_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return flashSize;
 }
 
 /**
@@ -102,10 +133,20 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getDATAFlashSize(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getNumBanks(void)
 {
-    return (((FACTORYREGION->SRAMFLASH &
-                 FACTORYREGION_SRAMFLASH_MAINNUMBANKS_MASK) >>
-                FACTORYREGION_SRAMFLASH_MAINNUMBANKS_OFS) +
-            (uint8_t) 1);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t numBanks = ((FACTORYREGION->SRAMFLASH &
+                            FACTORYREGION_SRAMFLASH_MAINNUMBANKS_MASK) >>
+                           FACTORYREGION_SRAMFLASH_MAINNUMBANKS_OFS) +
+                       (uint8_t) 1;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return numBanks;
 }
 
 /**
@@ -115,7 +156,18 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getNumBanks(void)
  */
 __STATIC_INLINE uint32_t DL_FactoryRegion_getTraceID(void)
 {
-    return (FACTORYREGION->TRACEID & FACTORYREGION_TRACEID_DATA_MASK);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint32_t traceID =
+        FACTORYREGION->TRACEID & FACTORYREGION_TRACEID_DATA_MASK;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return traceID;
 }
 
 /**
@@ -125,9 +177,19 @@ __STATIC_INLINE uint32_t DL_FactoryRegion_getTraceID(void)
  */
 __STATIC_INLINE uint16_t DL_FactoryRegion_getManufacturerCode(void)
 {
-    return (
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint16_t manufacturerCode =
         (FACTORYREGION->DEVICEID & FACTORYREGION_DEVICEID_MANUFACTURER_MASK) >>
-        FACTORYREGION_DEVICEID_MANUFACTURER_OFS);
+        FACTORYREGION_DEVICEID_MANUFACTURER_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return manufacturerCode;
 }
 
 /**
@@ -137,8 +199,19 @@ __STATIC_INLINE uint16_t DL_FactoryRegion_getManufacturerCode(void)
  */
 __STATIC_INLINE uint16_t DL_FactoryRegion_getPartNumber(void)
 {
-    return ((FACTORYREGION->DEVICEID & FACTORYREGION_DEVICEID_PARTNUM_MASK) >>
-            FACTORYREGION_DEVICEID_PARTNUM_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint16_t partNumber =
+        (FACTORYREGION->DEVICEID & FACTORYREGION_DEVICEID_PARTNUM_MASK) >>
+        FACTORYREGION_DEVICEID_PARTNUM_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return partNumber;
 }
 
 /**
@@ -148,8 +221,19 @@ __STATIC_INLINE uint16_t DL_FactoryRegion_getPartNumber(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getVersion(void)
 {
-    return ((FACTORYREGION->DEVICEID & FACTORYREGION_DEVICEID_VERSION_MASK) >>
-            FACTORYREGION_DEVICEID_VERSION_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t version =
+        (FACTORYREGION->DEVICEID & FACTORYREGION_DEVICEID_VERSION_MASK) >>
+        FACTORYREGION_DEVICEID_VERSION_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return version;
 }
 
 /**
@@ -159,8 +243,19 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getVersion(void)
  */
 __STATIC_INLINE uint16_t DL_FactoryRegion_getUserIDPart(void)
 {
-    return ((FACTORYREGION->USERID & FACTORYREGION_USERID_PART_MASK) >>
-            FACTORYREGION_USERID_PART_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint16_t userIDPart =
+        (FACTORYREGION->USERID & FACTORYREGION_USERID_PART_MASK) >>
+        FACTORYREGION_USERID_PART_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return userIDPart;
 }
 
 /**
@@ -170,8 +265,18 @@ __STATIC_INLINE uint16_t DL_FactoryRegion_getUserIDPart(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getUserIDVariant(void)
 {
-    return ((FACTORYREGION->USERID & FACTORYREGION_USERID_VARIANT_MASK) >>
-            FACTORYREGION_USERID_VARIANT_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+    uint8_t userIDVariant =
+        (FACTORYREGION->USERID & FACTORYREGION_USERID_VARIANT_MASK) >>
+        FACTORYREGION_USERID_VARIANT_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return userIDVariant;
 }
 
 /**
@@ -186,8 +291,19 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getUserIDVariant(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getUserIDMinorRev(void)
 {
-    return ((FACTORYREGION->USERID & FACTORYREGION_USERID_MINORREV_MASK) >>
-            FACTORYREGION_USERID_MINORREV_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t minorRev =
+        (FACTORYREGION->USERID & FACTORYREGION_USERID_MINORREV_MASK) >>
+        FACTORYREGION_USERID_MINORREV_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return minorRev;
 }
 
 /**
@@ -201,8 +317,19 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getUserIDMinorRev(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getUserIDMajorRev(void)
 {
-    return ((FACTORYREGION->USERID & FACTORYREGION_USERID_MAJORREV_MASK) >>
-            FACTORYREGION_USERID_MAJORREV_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t majorRev =
+        (FACTORYREGION->USERID & FACTORYREGION_USERID_MAJORREV_MASK) >>
+        FACTORYREGION_USERID_MAJORREV_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return majorRev;
 }
 
 /**
@@ -212,9 +339,19 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getUserIDMajorRev(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinUARTRXDPad(void)
 {
-    return ((FACTORYREGION->BSLPIN_UART &
-                FACTORYREGION_BSLPIN_UART_UART_RXD_PAD_MASK) >>
-            FACTORYREGION_BSLPIN_UART_UART_RXD_PAD_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslUARTRXDPad = (FACTORYREGION->BSLPIN_UART &
+                                FACTORYREGION_BSLPIN_UART_UART_RXD_PAD_MASK) >>
+                            FACTORYREGION_BSLPIN_UART_UART_RXD_PAD_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslUARTRXDPad;
 }
 
 /**
@@ -224,9 +361,20 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinUARTRXDPad(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinUARTRXDFunction(void)
 {
-    return ((FACTORYREGION->BSLPIN_UART &
-                FACTORYREGION_BSLPIN_UART_UART_RXD_PF_MASK) >>
-            FACTORYREGION_BSLPIN_UART_UART_RXD_PF_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslUARTRXDFunction =
+        (FACTORYREGION->BSLPIN_UART &
+            FACTORYREGION_BSLPIN_UART_UART_RXD_PF_MASK) >>
+        FACTORYREGION_BSLPIN_UART_UART_RXD_PF_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslUARTRXDFunction;
 }
 
 /**
@@ -236,9 +384,19 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinUARTRXDFunction(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinUARTTXDPad(void)
 {
-    return ((FACTORYREGION->BSLPIN_UART &
-                FACTORYREGION_BSLPIN_UART_UART_TXD_PAD_MASK) >>
-            FACTORYREGION_BSLPIN_UART_UART_TXD_PAD_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslUARTTXDPad = (FACTORYREGION->BSLPIN_UART &
+                                FACTORYREGION_BSLPIN_UART_UART_TXD_PAD_MASK) >>
+                            FACTORYREGION_BSLPIN_UART_UART_TXD_PAD_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslUARTTXDPad;
 }
 
 /**
@@ -248,9 +406,20 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinUARTTXDPad(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinUARTTXDFunction(void)
 {
-    return ((FACTORYREGION->BSLPIN_UART &
-                FACTORYREGION_BSLPIN_UART_UART_TXD_PF_MASK) >>
-            FACTORYREGION_BSLPIN_UART_UART_TXD_PF_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslUARTTXDFunction =
+        (FACTORYREGION->BSLPIN_UART &
+            FACTORYREGION_BSLPIN_UART_UART_TXD_PF_MASK) >>
+        FACTORYREGION_BSLPIN_UART_UART_TXD_PF_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslUARTTXDFunction;
 }
 
 /**
@@ -260,9 +429,19 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinUARTTXDFunction(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinI2CSDAPad(void)
 {
-    return ((FACTORYREGION->BSLPIN_I2C &
-                FACTORYREGION_BSLPIN_I2C_I2C_SDA_PAD_MASK) >>
-            FACTORYREGION_BSLPIN_I2C_I2C_SDA_PAD_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslI2CSDAPad = (FACTORYREGION->BSLPIN_I2C &
+                               FACTORYREGION_BSLPIN_I2C_I2C_SDA_PAD_MASK) >>
+                           FACTORYREGION_BSLPIN_I2C_I2C_SDA_PAD_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslI2CSDAPad;
 }
 
 /**
@@ -272,9 +451,20 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinI2CSDAPad(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinI2CSDAFunction(void)
 {
-    return ((FACTORYREGION->BSLPIN_I2C &
-                FACTORYREGION_BSLPIN_I2C_I2C_SDA_PF_MASK) >>
-            FACTORYREGION_BSLPIN_I2C_I2C_SDA_PF_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslI2CSDAFunction =
+        (FACTORYREGION->BSLPIN_I2C &
+            FACTORYREGION_BSLPIN_I2C_I2C_SDA_PF_MASK) >>
+        FACTORYREGION_BSLPIN_I2C_I2C_SDA_PF_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslI2CSDAFunction;
 }
 
 /**
@@ -284,9 +474,19 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinI2CSDAFunction(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinI2CSCLPad(void)
 {
-    return ((FACTORYREGION->BSLPIN_I2C &
-                FACTORYREGION_BSLPIN_I2C_I2C_SCL_PAD_MASK) >>
-            FACTORYREGION_BSLPIN_I2C_I2C_SCL_PAD_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslI2CSCLPad = (FACTORYREGION->BSLPIN_I2C &
+                               FACTORYREGION_BSLPIN_I2C_I2C_SCL_PAD_MASK) >>
+                           FACTORYREGION_BSLPIN_I2C_I2C_SCL_PAD_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslI2CSCLPad;
 }
 
 /**
@@ -296,9 +496,20 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinI2CSCLPad(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinI2CSCLFunction(void)
 {
-    return ((FACTORYREGION->BSLPIN_I2C &
-                FACTORYREGION_BSLPIN_I2C_I2C_SCL_PF_MASK) >>
-            FACTORYREGION_BSLPIN_I2C_I2C_SCL_PF_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslI2CSCLFunction =
+        (FACTORYREGION->BSLPIN_I2C &
+            FACTORYREGION_BSLPIN_I2C_I2C_SCL_PF_MASK) >>
+        FACTORYREGION_BSLPIN_I2C_I2C_SCL_PF_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslI2CSCLFunction;
 }
 
 /**
@@ -308,9 +519,20 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinI2CSCLFunction(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOLevel(void)
 {
-    return ((FACTORYREGION->BSLPIN_INVOKE &
-                FACTORYREGION_BSLPIN_INVOKE_GPIO_LEVEL_MASK) >>
-            FACTORYREGION_BSLPIN_INVOKE_GPIO_LEVEL_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslInvokeGPIOLevel =
+        (FACTORYREGION->BSLPIN_INVOKE &
+            FACTORYREGION_BSLPIN_INVOKE_GPIO_LEVEL_MASK) >>
+        FACTORYREGION_BSLPIN_INVOKE_GPIO_LEVEL_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslInvokeGPIOLevel;
 }
 
 /**
@@ -320,9 +542,20 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOLevel(void)
  */
 __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOPin(void)
 {
-    return ((FACTORYREGION->BSLPIN_INVOKE &
-                FACTORYREGION_BSLPIN_INVOKE_GPIO_PIN_SEL_MASK) >>
-            FACTORYREGION_BSLPIN_INVOKE_GPIO_PIN_SEL_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslInvokeGPIOPin =
+        (FACTORYREGION->BSLPIN_INVOKE &
+            FACTORYREGION_BSLPIN_INVOKE_GPIO_PIN_SEL_MASK) >>
+        FACTORYREGION_BSLPIN_INVOKE_GPIO_PIN_SEL_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslInvokeGPIOPin;
 }
 
 /**
@@ -330,11 +563,22 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOPin(void)
  *
  *  @return  The GPIO module selection used by BSL pin invocation
  */
-__STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOPModule(void)
+__STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOModule(void)
 {
-    return ((FACTORYREGION->BSLPIN_INVOKE &
-                FACTORYREGION_BSLPIN_INVOKE_GPIO_REG_SEL_MASK) >>
-            FACTORYREGION_BSLPIN_INVOKE_GPIO_REG_SEL_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslInvokeGPIOModule =
+        (FACTORYREGION->BSLPIN_INVOKE &
+            FACTORYREGION_BSLPIN_INVOKE_GPIO_REG_SEL_MASK) >>
+        FACTORYREGION_BSLPIN_INVOKE_GPIO_REG_SEL_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslInvokeGPIOModule;
 }
 
 /**
@@ -342,11 +586,22 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOPModule(void)
  *
  *  @return  The BSL invocation pin number
  */
-__STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOPModulePad(void)
+__STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOModulePad(void)
 {
-    return ((FACTORYREGION->BSLPIN_INVOKE &
-                FACTORYREGION_BSLPIN_INVOKE_BSL_PAD_MASK) >>
-            FACTORYREGION_BSLPIN_INVOKE_BSL_PAD_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint8_t bslInvokeGPIOModulePad =
+        (FACTORYREGION->BSLPIN_INVOKE &
+            FACTORYREGION_BSLPIN_INVOKE_BSL_PAD_MASK) >>
+        FACTORYREGION_BSLPIN_INVOKE_BSL_PAD_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return bslInvokeGPIOModulePad;
 }
 
 /**
@@ -356,9 +611,19 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOPModulePad(void)
  */
 __STATIC_INLINE uint32_t DL_FactoryRegion_getTemperatureVoltage(void)
 {
-    return (
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint32_t tempVoltage =
         (FACTORYREGION->TEMP_SENSE0 & FACTORYREGION_TEMP_SENSE0_DATA_MASK) >>
-        FACTORYREGION_TEMP_SENSE0_DATA_OFS);
+        FACTORYREGION_TEMP_SENSE0_DATA_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return tempVoltage;
 }
 
 /**
@@ -370,8 +635,19 @@ __STATIC_INLINE uint32_t DL_FactoryRegion_getTemperatureVoltage(void)
  */
 __STATIC_INLINE uint32_t DL_FactoryRegion_getBOOTCRCData(void)
 {
-    return ((FACTORYREGION->BOOTCRC & FACTORYREGION_BOOTCRC_DATA_MASK) >>
-            FACTORYREGION_BOOTCRC_DATA_OFS);
+    /* Save CPUSS state and then disable the cache before TRIM access */
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
+    uint32_t BOOTCRCData =
+        (FACTORYREGION->BOOTCRC & FACTORYREGION_BOOTCRC_DATA_MASK) >>
+        FACTORYREGION_BOOTCRC_DATA_OFS;
+
+    /* Restore CPUSS state */
+    CPUSS->CTL = ctlTemp;
+
+    return BOOTCRCData;
 }
 
 #ifdef __cplusplus

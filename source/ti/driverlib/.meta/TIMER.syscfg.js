@@ -71,7 +71,7 @@ function getLongDescription()
     var deviceName;
     var tableString;
     /* Return string with table for correct device (default M0G) */
-    if (Common.isDeviceM0L()) {
+    if (Common.isDeviceM0L() || Common.isDeviceM0C()) {
         deviceName = 'MSPM0L130x';
         tableString = `
 | TIM Name | Power Domain | Resolution | Prescaler | CC Ch | Phase Load | Shadow Load | Shadow CC |

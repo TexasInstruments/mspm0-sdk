@@ -61,57 +61,56 @@ extern "C" {
 /*! @brief Define pi structure */
 typedef struct {  
 	/*!  Input: reference set-point */
-	_iq  Ref;
+	_iq  ref;
 	/*!  Input: feedback */
-	_iq  Fbk;
-	/*!  Output: controller output  */
-	_iq  Out;
+	_iq  fbk;
+	/*!  Data: computed error */
+	_iq  error;
 	/*!  Parameter: proportional loop gain */
 	_iq  Kp;
 	/*!  Parameter: integral gain */
 	_iq  Ki;
 	/*!  Parameter: upper saturation limit */
-	_iq  Umax;
+	_iq  outMax;
 	/*!  Parameter: lower saturation limit */
-	_iq  Umin;
+	_iq  outMin;
+	/*!  Parameter: upper saturation limit for integral */
+	_iq  outIMax;
+	/*!  Parameter: lower saturation limit for integral */
+	_iq  outIMin;
 	/*!  Data: proportional term */
-	_iq  up;
+	_iq  outP;
 	/*!  Data: integral term */
-	_iq  ui;
+	_iq  outI;
 	/*!  Data: pre-saturated controller output */
-	_iq  v1;
-	/*!  Data: integrator storage: ui(k-1) */
-	_iq  i1;
-	/*!  Data: saturation record: [u(k-1) - v(k-1)] */
-	_iq  w1;
+	_iq  preOut;
+    /*!  Output: controller output  */
+    _iq  out;
 } PI_Instance;
 
 /*! @brief Default values for pi instance */
 #define PI_DEFAULTS {											   			   \
 						   0, 												   \
                            0, 												   \
-						   0, 												   \
-                           _IQ(1.0),										   \
-                           0,										   		   \
-                           _IQ(1.0),										   \
-                           _IQ(-1.0), 										   \
-                           0,										   		   \
-                           0, 										   		   \
+                           _IQ(1),                                             \
                            0,										   		   \
                            0,										   		   \
-                           _IQ(1.0) 										   \
+                           _IQ(1),										   	   \
+                           -_IQ(1), 										   \
+                           _IQ(1),										   	   \
+                           -_IQ(1), 										   \
+                           0,										   		   \
+                           0,										   		   \
+                           0,										   		   \
+                           0,										   		   \
               			  }
 
 /*! @brief Define pi parameter structure */						  
 typedef struct {
     /*!  PI proportionality constant */
-    float Kp;
+    int32_t Kp;
     /*!  PI integral constant */
-    float Ki;
-    /*!  Maximum output value */
-    float Max;
-    /*!  Minimum output value */
-    float Min;
+    int32_t Ki;
 } PI_PARA;
 
 /**
@@ -121,10 +120,8 @@ typedef struct {
  */
 __STATIC_INLINE void PI_UpdateParams(PI_Instance *handle, PI_PARA *para)
 {
-    handle->Kp = _IQ(para->Kp);
-    handle->Ki = _IQ(para->Ki);
-    handle->Umax  = _IQ(para->Max);
-    handle->Umin  = _IQ(para->Min);
+    handle->Kp = para->Kp;
+    handle->Ki = para->Ki;
 }
 
 /**
@@ -133,52 +130,24 @@ __STATIC_INLINE void PI_UpdateParams(PI_Instance *handle, PI_PARA *para)
  */
 __STATIC_INLINE void PI_run(PI_Instance *handle)
 {
+    handle->error = (handle->ref - handle->fbk);
 	/* proportional term */
-    handle->up = _IQmpy(handle->Kp, (handle->Ref - handle->Fbk));
+    handle->outP = _IQmpy(handle->Kp, handle->error);
 
 	/* integral term */
-     if(handle->Out == handle->v1)
-	{
-		handle->ui = _IQrepeat(handle->Ki, handle->up)+ handle->i1;
-	}
-	else
-	{
-		handle->ui = handle->i1;
-	}
-	handle->i1 = handle->ui;
-	
+	handle->outI += _IQrepeat(handle->Ki, handle->error);
+	handle->outI = _IQsat(handle->outI, handle->outIMax, handle->outIMin);
+
 	/* control output */
-	handle->v1 = handle->up + handle->ui;
-	handle->Out = _IQsat(handle->v1, handle->Umax, handle->Umin);
+	handle->preOut = handle->outP + handle->outI;
+	handle->out = _IQsat(handle->preOut , handle->outMax, handle->outMin);
 }
 
 /*!
- * @brief PI Angle tracking macro, used with angle as input and has error rollup
+ * @brief Resets the PI variables
  * @param[in] handle  A pointer to pi instance
  */
-__STATIC_INLINE void PI_POS_run(PI_Instance *handle)
-{
-	/* proportional term */
-	handle->up = handle->Ref - handle->Fbk;
-    /* roll in the error */
-	ANGLE_WRAP(&handle->up);
-	handle->up = _IQmpy(handle->Kp, handle->up);
-
-	/* integral term */
-	if(handle->Out == handle->v1)
-	{
-		handle->ui = _IQrepeat(handle->Ki, handle->up)+ handle->i1;
-	}
-	else
-	{
-		handle->ui = handle->i1;
-	}
-	handle->i1 = handle->ui;
-
-	/* control output */
-	handle->v1 = handle->up + handle->ui;
-	handle->Out= _IQsat(handle->v1, handle->Umax, handle->Umin);
-}
+void PI_reset(PI_Instance *handle);
 
 #ifdef __cplusplus
 }

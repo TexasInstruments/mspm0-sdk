@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -94,10 +94,10 @@ extern "C" {
 #define GPIO_SPI_0_SCLK_PIN                                       DL_GPIO_PIN_9
 #define GPIO_SPI_0_IOMUX_SCLK                                   (IOMUX_PINCM26)
 #define GPIO_SPI_0_IOMUX_SCLK_FUNC                   IOMUX_PINCM26_PF_SPI1_SCLK
-#define GPIO_SPI_0_CS0_PORT                                               GPIOB
-#define GPIO_SPI_0_CS0_PIN                                        DL_GPIO_PIN_6
-#define GPIO_SPI_0_IOMUX_CS0                                    (IOMUX_PINCM23)
-#define GPIO_SPI_0_IOMUX_CS0_FUNC                     IOMUX_PINCM23_PF_SPI1_CS0
+#define GPIO_SPI_0_CS1_PORT                                               GPIOB
+#define GPIO_SPI_0_CS1_PIN                                       DL_GPIO_PIN_17
+#define GPIO_SPI_0_IOMUX_CS1                                    (IOMUX_PINCM43)
+#define GPIO_SPI_0_IOMUX_CS1_FUNC               IOMUX_PINCM43_PF_SPI1_CS1_POCI1
 
 
 
@@ -107,6 +107,9 @@ extern "C" {
 /* Defines for USER_LED_1: GPIOA.0 with pinCMx 1 on package pin 33 */
 #define GPIO_LEDS_USER_LED_1_PIN                                 (DL_GPIO_PIN_0)
 #define GPIO_LEDS_USER_LED_1_IOMUX                                (IOMUX_PINCM1)
+/* Defines for USER_TEST: GPIOA.15 with pinCMx 37 on package pin 8 */
+#define GPIO_LEDS_USER_TEST_PIN                                 (DL_GPIO_PIN_15)
+#define GPIO_LEDS_USER_TEST_IOMUX                                (IOMUX_PINCM37)
 
 /* clang-format on */
 

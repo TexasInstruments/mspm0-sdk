@@ -468,20 +468,6 @@ extern "C" {
 /*! @brief Defines the mask for SPI register address */
 #define DRV8323RS_SPI_ADDR_MASK           (0xF << DRV8323RS_SPI_ADDR_OFS)
 
-/*! @brief Voltage scale factor for vm, this is iq15 value of (R1+R2)/R2 ,
-where R1 and R2 forms the potential divider, Default R1 = 82k ohm
-and R2 = 4.99k ohm, (R1+R2)/R2 = 17.4108, the iq15 is 570517*/
-#define DRV8323RS_VOLTAGE_SF_IQ15         (570517)
-
-/*! @brief Maximum number of gains configurable for the drv */
-#define DRV8323RS_CSA_GAIN_MAX_VALUE      (4)
-
-/** @brief Default shunt resistor in the drv */
-#define DRV8323RS_DEFAULT_R_SHUNT         (0.007f)
-
-/** @brief Default configured CSA gain */
-#define DRV8323RS_DEFAULT_AMP_GAIN        (5)
-
 /** @brief ADC voltage to dc bus voltage scale factor 
  * This is the ratio ((R1 + R2) / R2), where R1 and R2 forms the potential
  *  divider circuit scaling the dc bus voltage to the range of input for the adc
@@ -489,8 +475,17 @@ and R2 = 4.99k ohm, (R1+R2)/R2 = 17.4108, the iq15 is 570517*/
 */
 #define DRV8323RS_DEFAULT_VOLT_R_DIVIDER  ((82+4.99)/4.99)
 
+/*! @brief Voltage scale factor for vm, in iq15 value */
+#define DRV8323RS_VOLTAGE_SF_IQ15        _IQ15(DRV8323RS_DEFAULT_VOLT_R_DIVIDER)
+
+/*! @brief Maximum number of gains configurable for the drv */
+#define DRV8323RS_CSA_GAIN_MAX_VALUES      (4)
+
+/** @brief Default shunt resistor in the drv */
+#define DRV8323RS_DEFAULT_R_SHUNT         (0.007f)
+
 /** @brief Default Deadband for the drv */
-#define DRV8323RS_DEFAULT_PWM_DEADBAND_NS (400)
+#define DRV8323RS_DEFAULT_PWM_DEADBAND_NS (100)
 
 /*!
  * @enum DRV8323RS_SPI_CMD
@@ -752,7 +747,7 @@ typedef enum {
   /*! GAIN_CSA value is 20V/V */
   DRV8323RS_CSA_CONTROL_CSA_GAIN_20VPV,
   /*! GAIN_CSA value is 40V/V */
-  DRV8323RS_CSA_CONTROL_CSA_GAIN_40VPV
+  DRV8323RS_CSA_CONTROL_CSA_GAIN_40VPV,
 } DRV8323RS_CSA_CONTROL_CSA_GAIN;
 
 /*!
@@ -811,7 +806,7 @@ typedef enum {
 
 /*! @brief Define DRV8323RS structure */
 typedef struct {
-    /*! scale factor for currents read from ADC */
+    /*! Scale factor for currents read from ADC */
     _iq15 iSf;
     /*! GPIO pin set for enable. @ref HAL_GPIO_OUT_PIN */
     HAL_GPIO_OUT_PIN enable;
@@ -825,14 +820,14 @@ typedef struct {
     HAL_ADC_CHANNEL vsenvm;
     /*! ADC channel set for A phase. @ref HAL_ADC_CHANNEL */
     HAL_ADC_CHANNEL isena;
-    /*! ADC channel set for A phase. @ref HAL_ADC_CHANNEL */
+    /*! ADC channel set for B phase. @ref HAL_ADC_CHANNEL */
     HAL_ADC_CHANNEL isenb;
     /*! ADC channel set for C phase. @ref HAL_ADC_CHANNEL */
-    HAL_ADC_CHANNEL ic;
+    HAL_ADC_CHANNEL isenc;
 } DRV8323RS_Instance;
 
 /* Extern drvGain */
-extern int8_t drvGain[DRV8323RS_CSA_GAIN_MAX_VALUE];
+extern int8_t drvGain[DRV8323RS_CSA_GAIN_MAX_VALUES];
 
 /**
  * @brief     Enable the DRV8323RS 
@@ -1076,7 +1071,7 @@ __STATIC_INLINE uint16_t DRV8323RS_getIBRaw(DRV8323RS_Instance *handle)
  */
 __STATIC_INLINE uint16_t DRV8323RS_getICRaw(DRV8323RS_Instance *handle)
 {
-  return (HAL_getADCValue(handle->ic));
+  return (HAL_getADCValue(handle->isenc));
 }
 
 /**

@@ -81,22 +81,25 @@
 %           let qeiPin = "";
 %           let pinName = "ccp"+cc+"Pin";
 %           let funcStr2_suffix = "_CCP"+cc;
-%
+%           let pinInterfaceName;
 %           if(cc == 0) {
 %                qeiPin = "PHA";
+%                pinInterfaceName = "CCP0";
 %           } else if (cc == 1) {
 %               qeiPin = "PHB";
+%               pinInterfaceName = "CCP1";
 %           } else if(cc == 2) {
 %               qeiPin = "IDX";
 %               pinName = "idxPin";
 %               funcStr2_suffix = "_"+qeiPin;
+%               pinInterfaceName = "IDX"
 %           }
 %           let gpioStr = "GPIO_"+inst.$name+"_"+qeiPin;
 %           let packagePin = inst.peripheral[pinName].$solution.packagePinName;
-%           let pinCM = system.deviceData.devicePins[packagePin].attributes.iomux_pincm;
+%           let pinCM = Common.getPinCM(packagePin,inst,pinInterfaceName);
 %           let gpioName = system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%           let port = Common.getGPIOPort(gpioName);
-%           let gpioPin = Common.getGPIONumber(gpioName);
+%           let port = Common.getGPIOPortMultiPad(packagePin,inst,pinInterfaceName);
+%           let gpioPin = Common.getGPIONumberMultiPad(packagePin,inst,pinInterfaceName);
 /* Pin configuration defines for `inst.$name` `qeiPin` Pin */
 % let portStr = "#define "+gpioStr+"_PORT";
 `portStr.padEnd(40," ")+port.padStart(40, " ")`

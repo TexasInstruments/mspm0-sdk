@@ -50,8 +50,8 @@
  * @{
  */
 
-#ifndef HAL_H
-#define HAL_H
+#ifndef _HAL_H
+#define _HAL_H
 
 #include "ti_msp_dl_config.h"
 #include <ti/iqmath/include/IQmathLib.h>
@@ -155,6 +155,15 @@ typedef enum
     HAL_CAPTURE_TIMER_MAX
 }HAL_CAPTURE_TIMER;
 
+/*! @enum HAL_FAULT_INPUT   */
+typedef enum
+{
+    /*! @brief Index associated to fault 1  */
+    HAL_FAULT_INPUT_1,
+    /*! @brief Total number of faults  */
+    HAL_FAULT_INPUT_MAX
+}HAL_FAULT_INPUT;
+
 /*! @enum HAL_SPI_CHAN */
 typedef enum {
     /*! @brief Index associated to SPI channel 0 */
@@ -185,7 +194,7 @@ typedef enum
     /*! @brief ADC Internal Reference */
     HAL_ADC_VREF_INTERNAL,
     /*! @brief ADC External Reference */
-    HAL_ADC_VREF_EXternal
+    HAL_ADC_VREF_EXTERNAL
 }HAL_ADC_VREF;
 
 /*! @enum HAL_ADC_INT_VREF */
@@ -301,11 +310,24 @@ typedef struct HAL_Timer_Instance_
     IRQn_Type           IRQn;
 }HAL_Timer_Instance;
 
+/*! @brief Defines a fault instance  */
+typedef struct HAL_fault_instance
+{
+    /*! @brief Timer Register    */
+    GPTIMER_Regs        *gptimer;
+    /*! @brief GPIO port    */
+    GPIO_Regs *         port;
+    /*! @brief GPIO pin    */
+    uint32_t            pin;
+}HAL_fault_instance;
+
 extern HAL_Timer_Instance  PWMBase[HAL_PWM_MAX];
 
 extern HAL_Timer_Instance  inputCapture[HAL_CAPTURE_TIMER_MAX];
 
 extern HAL_ADC_instance    ADCChannel[HAL_ADC_CHAN_MAX];
+
+extern HAL_fault_instance  faultInput[HAL_FAULT_INPUT_MAX];
 
 /**
  * @brief     Initializes the hal object
@@ -430,16 +452,16 @@ void HAL_setADCVRefExternal(HAL_ADC_CHAN chan, uint16_t externalVRef);
 
 /**
  * @brief Clear the PWM timer fault bit
- * @param[in] pwm The PWM channel
+ * @param[in] fault The fault instance
  */
-void HAL_clearTimerFault(HAL_PWM pwm);
+void HAL_clearTimerFault(HAL_FAULT_INPUT fault);
 
 /**
  * @brief Read the PWM timer fault bit
- * @param[in] pwm The PWM channel
- * @return     The PWM timer bit status
+ * @param[in] fault The fault instance
+ * @return     The fault status
  */
-bool HAL_getTimerFaultStatus(HAL_PWM pwm);
+bool HAL_getTimerFaultStatus(HAL_FAULT_INPUT fault);
 
 /**
  * @brief Calculates the capture frequency
@@ -447,6 +469,16 @@ bool HAL_getTimerFaultStatus(HAL_PWM pwm);
  * @return     The capture frequency
  */
 uint32_t HAL_getCaptureFrequency(HAL_CAPTURE_TIMER capture);
+
+/**
+ * @brief updates the adc voltage reference
+ * @param[in] adcRef ADC voltage reference
+ * @param[in] chan The ADC channel name
+ * @param[in] internalVRef  Internal reference voltage
+ * @param[in] externalVRef  External reference voltage
+ */
+void HAL_ADCVRefSel(HAL_ADC_VREF adcRef, HAL_ADC_CHAN chan,
+                        HAL_ADC_INT_VREF internalVRef, uint16_t externalVRef);
 
 /**
  * @brief     Delays for specific time in microseconds
@@ -546,5 +578,5 @@ __STATIC_INLINE void HAL_PWMOutputHigh(const HAL_PWM gndPhase_1,
 #ifdef __cplusplus
 }
 #endif
-#endif /* HAL_H */
+#endif /* _HAL_H */
 /** @}*/

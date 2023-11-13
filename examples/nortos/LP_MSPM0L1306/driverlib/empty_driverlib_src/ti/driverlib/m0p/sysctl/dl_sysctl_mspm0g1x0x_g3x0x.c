@@ -35,6 +35,7 @@
 
 #if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
 
+#include <ti/driverlib/m0p/dl_core.h>
 #include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h>
 
 void DL_SYSCTL_configSYSPLL(DL_SYSCTL_SYSPLLConfig *config)
@@ -58,11 +59,19 @@ void DL_SYSCTL_configSYSPLL(DL_SYSCTL_SYSPLLConfig *config)
     DL_Common_updateReg(&SYSCTL->SOCLOCK.SYSPLLCFG1, ((uint32_t) config->pDiv),
         SYSCTL_SYSPLLCFG1_PDIV_MASK);
 
+    // save CPUSS CTL state and disable the cache
+    uint32_t ctlTemp = DL_CORE_getInstructionConfig();
+    DL_CORE_configInstruction(DL_CORE_PREFETCH_ENABLED, DL_CORE_CACHE_DISABLED,
+        DL_CORE_LITERAL_CACHE_ENABLED);
+
     // populate SYSPLLPARAM0/1 tuning registers from flash, based on input freq
     SYSCTL->SOCLOCK.SYSPLLPARAM0 =
         *(volatile uint32_t *) ((uint32_t) config->inputFreq);
     SYSCTL->SOCLOCK.SYSPLLPARAM1 =
         *(volatile uint32_t *) ((uint32_t) config->inputFreq + (uint32_t) 0x4);
+
+    // restore CPUSS CTL state
+    CPUSS->CTL = ctlTemp;
 
     // set feedback divider QDIV (multiplies to give output frequency)
     DL_Common_updateReg(&SYSCTL->SOCLOCK.SYSPLLCFG1,

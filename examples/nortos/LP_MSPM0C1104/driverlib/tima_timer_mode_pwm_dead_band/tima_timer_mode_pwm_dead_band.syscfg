@@ -1,0 +1,46 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name               = "ADC12_0";
+ADC121.configureDMA        = true;
+ADC121.adcPin0Config.$name = "ti_driverlib_gpio_GPIOPinGeneric4";
+ADC121.DMA_CHANNEL.$name   = "DMA_CH0";
+
+
+PWM1.$name                           = "PWM_0";
+PWM1.clockPrescale                   = 256;
+PWM1.timerCount                      = 2000;
+PWM1.ccIndexCmpl                     = [0,1];
+PWM1.deadBandEn                      = true;
+PWM1.dbRiseDelayTimerCount           = 50;
+PWM1.dbFallDelayTimerCount           = 25;
+PWM1.peripheral.$assign              = "TIMA0";
+PWM1.peripheral.ccp0Pin.$assign      = "PA2";
+PWM1.peripheral.ccp1Pin.$assign      = "PA6";
+PWM1.peripheral.ccp0Pin_cmpl.$assign = "PA17";
+PWM1.peripheral.ccp1Pin_cmpl.$assign = "PA16";
+PWM1.PWM_CHANNEL_0.$name             = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.ccValue           = 1000;
+PWM1.PWM_CHANNEL_0.dutyCycle         = 50;
+PWM1.PWM_CHANNEL_1.$name             = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_1.ccValue           = 499;
+PWM1.PWM_CHANNEL_1.dutyCycle         = 75;
+
+SYSCTL.clockTreeEn = true;

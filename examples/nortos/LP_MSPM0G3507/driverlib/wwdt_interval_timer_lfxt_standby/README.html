@@ -35,7 +35,7 @@
 <div id="content">
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
-<p>The following example configures the WWDT in interval mode with an interval of 2Hz. A GPIO is toggled at every interval of 2Hz (500ms). LFCLK is sourced from the external low frequency crystal oscillator (LFXT). The device remains in STANDBY mode while waiting for an interrupt.</p>
+<p>The following example configures the WWDT in interval mode with an interval of 2Hz. A LED and USER_TEST pin are toggled at every interval of 2Hz (500ms). LFCLK is sourced from the external low frequency crystal oscillator (LFXT). The device remains in STANDBY mode while waiting for an interrupt.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -52,31 +52,36 @@
 <td>Open-Drain Output</td>
 </tr>
 <tr class="even">
+<td>GPIOA</td>
+<td>PA15</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td>PA3</td>
 <td>LFXIN</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SYSCTL</td>
 <td>PA4</td>
 <td>LFXOUT</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>WWDT0</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -101,44 +106,51 @@
 <td>GPIOA</td>
 <td>PA0</td>
 <td>J27_9</td>
-<td>This pin is 5V tolerant open-drain and requires pull-up.<br>J4 ON/OFF: Connect/Disconnect LED1<br>J19 1:2 3.3V Pull-up<br>J19 2:3 5V Pull-up</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
+<td>PA15</td>
+<td>GPIOA</td>
+<td>PA15</td>
+<td>J3_30</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA3</td>
 <td>SYSCTL</td>
 <td>LFXIN</td>
 <td>J28_2</td>
-<td>Connected to LFXT Y1<br>Solder R10 to connect to J28_2</td>
+<td><ul><li>PA3 is used for LFXT functionality by default in Launchpad<br><ul><li><code>Y1</code> crystal is soldered and connected by default</ul><br><li>PA3 can be connected to J28_2<br><ul><li><code>R10</code> is not soldered soldered by default<br><li>Solder <code>R10</code> to connect pin to J28_2</ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA4</td>
 <td>SYSCTL</td>
 <td>LFXOUT</td>
 <td>J28_3</td>
-<td>Connected to LFXT Y1<br>Solder R11 to connect to J28_3</td>
+<td><ul><li>PA4 is used for LFXT functionality by default in Launchpad<br><ul><li><code>Y1</code> crystal is soldered and connected by default</ul><br><li>PA4 can be connected to J28_3<br><ul><li><code>R11</code> is not soldered soldered by default<br><li>Solder <code>R11</code> to connect pin to J28_3</ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run the example. The LED will toggle every 500ms.</p>
+<p>Compile, load and run the example. The LED and USER_TEST pin will toggle every 500ms.</p>
 <h2 id="important-note">Important Note</h2>
 <p>Early experimental samples have a known issue where the user is unable to reconnect their debugger connection after the device has gone into STOP or STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain the ability to connect the device to the debugger. This information is located in the “MSPM0G and MSPM0L Families: Functional Differences With Early Samples” document.</p>
 <!-- Close div from before_body_template.html -->

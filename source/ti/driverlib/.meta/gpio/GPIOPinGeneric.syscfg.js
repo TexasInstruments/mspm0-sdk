@@ -16,7 +16,7 @@ let config = [
             let hideInput = !(inst.direction === "INPUT");
             // input specifics
             ui.hysteresisControl.hidden = hideInput || hideAll || inst.onlyInternalResistor;
-            ui.wakeupLogic.hidden = hideInput || hideAll || inst.onlyInternalResistor;
+            ui.wakeupLogic.hidden = !Common.hasWakeupLogic() || hideInput || hideAll || inst.onlyInternalResistor;
             // output specifics
             ui.driveStrength.hidden = !hideInput || hideAll || inst.onlyInternalResistor;
             ui.hiZ.hidden = !hideInput || hideAll || inst.onlyInternalResistor;
@@ -62,7 +62,7 @@ let config = [
             let hideInput = !(inst.direction === "INPUT");
             // input specifics
             ui.hysteresisControl.hidden = hideInput || hideAll || inst.onlyInternalResistor;
-            ui.wakeupLogic.hidden = hideInput || hideAll || inst.onlyInternalResistor;
+            ui.wakeupLogic.hidden = !Common.hasWakeupLogic() || hideInput || hideAll || inst.onlyInternalResistor;
             // output specifics
             ui.driveStrength.hidden = !hideInput || hideAll || inst.onlyInternalResistor;
             ui.hiZ.hidden = !hideInput || hideAll || inst.onlyInternalResistor;
@@ -117,7 +117,7 @@ let config = [
                     let hideInput = !(inst.direction === "INPUT");
                     // input specifics
                     ui.hysteresisControl.hidden = hideInput || hideAll || inst.onlyInternalResistor;
-                    ui.wakeupLogic.hidden = hideInput || hideAll || inst.onlyInternalResistor;
+                    ui.wakeupLogic.hidden = !Common.hasWakeupLogic() || hideInput || hideAll || inst.onlyInternalResistor;
                     // output specifics
                     ui.driveStrength.hidden = !hideInput || hideAll || inst.onlyInternalResistor;
                     ui.hiZ.hidden = !hideInput || hideAll || inst.onlyInternalResistor;
@@ -250,8 +250,10 @@ function validatePinmux(inst,validation){
             if(inst.hysteresisControl === "ENABLE" && (pinIOStructure.match(/OD/) === null)){
                 validation.logError("Hysteresis only valid on Open Drain", inst, "hysteresisControl");
             }
-            if(inst.wakeupLogic !== "DISABLE" && pinIOStructure.match(/Any|OD|SDW|HD/) == null) {
-                validation.logError("Wakeup Logic configuration only valid on Open Drain and Standard with Wake ", inst, "wakeupLogic");
+            if(Common.hasWakeupLogic()){
+                if(inst.wakeupLogic !== "DISABLE" && pinIOStructure.match(/Any|OD|SDW|HD/) == null) {
+                    validation.logError("Wakeup Logic configuration only valid on Open Drain and Standard with Wake ", inst, "wakeupLogic");
+                }
             }
             if(inst.internalResistor === "PULL_UP" && pinIOStructure.match(/OD/) !== null) {
                 validation.logError("Pull-Up Resistor not valid on an Open Drain Configuration", inst, "internalResistor");

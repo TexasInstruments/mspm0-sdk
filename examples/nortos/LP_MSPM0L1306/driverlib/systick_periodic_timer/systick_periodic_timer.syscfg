@@ -5,6 +5,7 @@
 // @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
 // @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
 
+
 /**
  * Import the modules used in this configuration.
  */
@@ -18,18 +19,22 @@ const SYSTICK = scripting.addModule("/ti/driverlib/SYSTICK");
  * Write custom configuration values to the imported modules.
  */
 
-GPIO1.$name                                 = "GPIO_LEDS";
-GPIO1.associatedPins[0].$name               = "USER_LED_1";
-GPIO1.associatedPins[0].assignedPort        = "PORTA";
-GPIO1.associatedPins[0].assignedPortSegment = "Lower";
-GPIO1.associatedPins[0].assignedPin         = "0";
-GPIO1.associatedPins[0].initialValue        = "SET";
-GPIO1.associatedPins[0].pin.$assign         = "PA0";
 
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.port                           = "PORTA";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPin  = "0";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].pin.$assign  = "PA0";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[1].initialValue = "SET";
+GPIO1.associatedPins[1].assignedPin  = "1";
+GPIO1.associatedPins[1].pin.$assign  = "PA1";
+
+SYSCTL.clockTreeEn = true;
 
 SYSTICK.period          = 16000000;
 SYSTICK.periodEnable    = true;
 SYSTICK.systickEnable   = true;
 SYSTICK.interruptEnable = true;
-
-SYSCTL.clockTreeEn = true;

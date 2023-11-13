@@ -29,7 +29,9 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "bsl_can_config.h"
+//#include <bsl_can_config.h>
+
+
 #include "bsl_mcan.h"
 #include <stdlib.h>
 #include "boot_config.h"
@@ -59,12 +61,8 @@ volatile uint32_t BSL_PI_checksum;
 volatile uint16_t BSL_PI_RxDataCnt;
 volatile uint16_t BSL_activePluginType;
 
-extern DL_MCAN_ClockConfig gMCAN0ClockConf;
-extern DL_MCAN_ConfigParams gMCAN0ConfigParams;
-extern DL_MCAN_MsgRAMConfigParams gMCAN0MsgRAMConfigParams;
-extern DL_MCAN_StdMsgIDFilterElement gMCAN0StdFiltelem;
-extern DL_MCAN_InitParams new_gMCAN0InitParams;
-extern DL_MCAN_BitTimingParams   new_gMCAN0BitTimes;
+DL_MCAN_InitParams new_gMCAN0InitParams;
+DL_MCAN_BitTimingParams new_gMCAN0BitTimes;
 
 /*
  * Static Function declarations
@@ -127,6 +125,11 @@ uint32_t BSL_calculateCRC(uint8_t* data, uint16_t dataSize);
  * @return      none
  */
 void BSL_PI_interpretPICommand(const uint8_t* dataBuffer);
+
+/*
+ * Calculates the current TDCO for given DBTP values
+ */
+uint32_t get_CAN_TDCO(DL_MCAN_BitTimingParams* dbtp);
 
 /*
  * Function definitions
@@ -252,8 +255,8 @@ void process_bsl_packet()
 
 uint32_t BSL_PI_MCAN_receive(void)
 {
-    uint32_t receivedPacketAddr = (uint32_t) 0;
-    uint32_t command;
+    volatile uint32_t receivedPacketAddr = (uint32_t) 0;
+    volatile uint32_t command;
     /*
      * Since same data buffers are used between the ROM and flash plugins,
      * BSL_activePluginType helps to check if the data received is through
@@ -377,8 +380,8 @@ uint32_t BSL_PI_MCAN_receive(void)
                     if (BSL_calculateCRC(BSL_core_data_start, BSL_RXBufferSize) ==
                         BSL_PI_checksum)
                     {
-                        process_bsl_packet();
                         command = BSL_MCAN_Back_Buf[BSL_CORE_DATA_INDEX];
+                        process_bsl_packet();
 
                         /*
                          * Return the packet address to the BSL core for processing
@@ -406,7 +409,7 @@ uint32_t BSL_PI_MCAN_receive(void)
     return receivedPacketAddr;
 }
 
-uint8_t MCAN_send_frame(uint8_t* data, uint16_t len)
+uint8_t MCAN_send_frame(uint32_t id, uint8_t* data, uint16_t len)
 {
     frame_send_success = false;
     DL_MCAN_TxBufElement txMsg;
@@ -414,7 +417,7 @@ uint8_t MCAN_send_frame(uint8_t* data, uint16_t len)
 
     /* Initialize message to transmit. */
     /* Identifier Value. */
-    txMsg.id = MCAN_HOST_ID;
+    txMsg.id = id;
     /* Transmit data frame. */
     txMsg.rtr = 0U;
     /* 11-bit standard identifier. */
@@ -447,8 +450,11 @@ uint8_t MCAN_send_frame(uint8_t* data, uint16_t len)
 
     /* Add request for transmission. */
     DL_MCAN_TXBufAddReq(CANFD0, txfifoStatus.putIdx);
-    while(frame_send_success == false)
-    {;}
+    if(txMsg.id == MCAN_HOST_ID)
+    {
+        while(frame_send_success == false)
+        {;}
+    }
     return 0;
 }
 
@@ -473,7 +479,7 @@ uint8_t BSL_PI_MCAN_send(uint8_t* data, uint16_t len)
         return 0;
     else if(len == 1)
     {
-        MCAN_send_frame(data,len);
+        MCAN_send_frame(MCAN_HOST_ID,data,len);
     }
     else
     {
@@ -509,7 +515,7 @@ uint8_t BSL_PI_MCAN_send(uint8_t* data, uint16_t len)
          fragment_start = &data[0];
          while(bytes_to_send>=frame_length)
          {
-             MCAN_send_frame(fragment_start,frame_length);
+             MCAN_send_frame(MCAN_HOST_ID,fragment_start,frame_length);
              fragment_start += frame_length;
              bytes_to_send -= frame_length;
          }
@@ -517,7 +523,7 @@ uint8_t BSL_PI_MCAN_send(uint8_t* data, uint16_t len)
 
          for(int i=0; i<3 && (frame_fragments[i]!=0);i++)
          {
-             MCAN_send_frame(fragment_start,frame_fragments[i]);
+             MCAN_send_frame(MCAN_HOST_ID,fragment_start,frame_fragments[i]);
              fragment_start += frame_fragments[i];
          }
     }
@@ -540,6 +546,7 @@ static void BSL_PI_sendByte(uint8_t data)
 {
     BSL_PI_MCAN_send(&data, 1);
 }
+
 
 void BSL_initBuffers(uint8_t* buffer, uint16_t bufferSize)
 {
@@ -617,9 +624,7 @@ void BSL_PI_MCAN_ISR(void)
                  * as the first byte of the first packet, the data transfer is considered as valid and
                  * the interface is chosen as active interface
                  */
-                if((BSL_RX_state == RX_idle) &&
-                        (rxMsg.data[0] == BSL_PACKET_HEADER_BYTE/* verified*/)
-                 )
+                if(BSL_RX_state == RX_idle)
                 {
                     BSL_activePluginType = FLASH_PLUGIN_VERSION_MCAN;
                     BSL_PI_dataPointer = (uint32_t) 0;
@@ -686,8 +691,17 @@ uint32_t BSL_calculateCRC(uint8_t* data, uint16_t dataSize)
     return DL_CRC_getResult32(BSL_CRC);
 }
 
+uint32_t get_CAN_TDCO(DL_MCAN_BitTimingParams* dbtp)
+{
+    uint32_t tdco = (dbtp->dataTimeSeg1 + dbtp->dataTimeSeg2 + 3);
+    tdco *= (dbtp->dataRatePrescalar + 1);
+    tdco /= 2;
+    return tdco;
+}
+
 void BSL_PI_interpretPICommand(const uint8_t* dataBuffer)
 {
+    DL_MCAN_ProtocolStatus psr;
     uint8_t command = dataBuffer[BSL_CORE_DATA_INDEX];
     /* Check if command is non-blocking */
     if (command == CMD_PROGRAM_DATA_FAST)
@@ -710,6 +724,7 @@ void BSL_PI_interpretPICommand(const uint8_t* dataBuffer)
                 temp<<=8;
         }
 
+        /* Initialization of New MCAN Init parameters.    */
         new_gMCAN0InitParams.fdMode = temp & BITRATE_CONF_FD_MASK;
         temp >>= BITRATE_CONF_FD_LEN;
 
@@ -718,6 +733,16 @@ void BSL_PI_interpretPICommand(const uint8_t* dataBuffer)
 
         new_gMCAN0InitParams.brsEnable = temp & BITRATE_CONF_BRS_MASK;
         temp >>= BITRATE_CONF_BRS_LEN;
+
+        new_gMCAN0InitParams.txpEnable         = false;
+        new_gMCAN0InitParams.efbi              = false;
+        new_gMCAN0InitParams.pxhddisable       = false;
+
+        new_gMCAN0InitParams.darEnable         = false;
+        new_gMCAN0InitParams.wkupReqEnable     = true;
+        new_gMCAN0InitParams.autoWkupEnable    = true;
+        new_gMCAN0InitParams.emulationEnable   = true;
+
 
         new_gMCAN0BitTimes.nomTimeSeg1 = temp & BITRATE_CONF_NTSG1_MASK;
         temp >>= BITRATE_CONF_NTSG1_LEN;
@@ -742,7 +767,23 @@ void BSL_PI_interpretPICommand(const uint8_t* dataBuffer)
 
         new_gMCAN0BitTimes.dataRatePrescalar = temp & BITRATE_CONF_DPS_MASK;
 
+        /* Transmitter Delay Compensation parameters. */
+        new_gMCAN0InitParams.tdcEnable = protocol_mode;
+        new_gMCAN0InitParams.tdcConfig.tdco    = get_CAN_TDCO(&new_gMCAN0BitTimes);
+        new_gMCAN0InitParams.tdcConfig.tdcf = new_gMCAN0InitParams.tdcConfig.tdco + 1;
+        new_gMCAN0InitParams.wdcPreload        = 255;
+
         SYSCFG_DL_MCAN_reconfig();
+
+        if(protocol_mode == CAN_FD_MODE)
+        {
+            const int x[1]={1};
+            MCAN_send_frame(((0x5) << 18), (uint8_t *)&x[0], 1);
+            DL_MCAN_getProtocolStatus(CANFD0, &psr);
+            new_gMCAN0InitParams.darEnable         = true;
+            new_gMCAN0InitParams.tdcConfig.tdcf = (psr.tdcv)-1;
+            SYSCFG_DL_MCAN_reconfig();
+        }
         DL_Common_delayCycles(BITRATE_CHANGE_DELAY);
     }
     else

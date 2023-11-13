@@ -166,7 +166,6 @@ void BSL_CI_enableCache(void);
  */
 void BSL_CI_disableCache(void);
 
-
 /*
  * Function definition
  */
@@ -292,7 +291,6 @@ uint8_t CMD_API_Flash_Range_Erase(uint32_t addrStart)
         /* If the address range is valid, then erase the memory range */
         if ((addrStart >= main_flash_start_address) &&
             (addr_end <= main_flash_end_address) && (addrStart <= addr_end)) {
-
             BSL_CI_disableCache();
             while (data_pointer <= addr_end) {
                 DL_FlashCTL_unprotectSector(
@@ -706,10 +704,12 @@ uint32_t BSL_CI_calculateCRC(uint8_t *data, uint32_t dataSize)
 
 inline void BSL_CI_disableCache(void)
 {
-    DL_CORE_configInstruction(CPUSS_CTL_ICACHE_DISABLE, CPUSS_CTL_PREFETCH_DISABLE);
+    DL_CORE_configInstruction(CPUSS_CTL_ICACHE_DISABLE,
+        CPUSS_CTL_PREFETCH_DISABLE, CPUSS_CTL_LITEN_DISABLE);
 }
 
 inline void BSL_CI_enableCache(void)
 {
-    DL_CORE_configInstruction(CPUSS_CTL_ICACHE_ENABLE, CPUSS_CTL_PREFETCH_ENABLE);
+    DL_CORE_configInstruction(CPUSS_CTL_ICACHE_ENABLE,
+        CPUSS_CTL_PREFETCH_ENABLE, CPUSS_CTL_LITEN_ENABLE);
 }

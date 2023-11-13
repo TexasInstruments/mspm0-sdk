@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -67,11 +67,18 @@ function validate(inst, validation)
 function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
+    /* Verify if using UART Advanced instance */
     if(Common.isDeviceM0G()){
-            if(!(/UART0/.test(solution))){
-                validation.logError("LIN functionality is only available on the UART0 instance. Please select a UART0 instance from PinMux if available.",
-                    inst,"peripheral");
-            }
+        if(!(/UART0/.test(solution))){
+            validation.logError("LIN functionality is only available on the UART0 instance. Please select a UART0 instance from PinMux if available.",
+                inst,"peripheral");
+        }
+    }
+    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        if(!(/UART0|UART1/.test(solution))){
+            validation.logError("LIN functionality is only available on the UART0 and UART1 instances. Please select a valid instance from PinMux if available.",
+                inst,"peripheral");
+        }
     }
 }
 
@@ -100,8 +107,13 @@ function updateFifoThresholds(inst, ui) {
 
 
 /* PROFILES CONFIGURATION */
-const profilesUART = [
-    {
+    let defaultDMAConfig = {
+        enabledDMARXTriggers : "None",
+        enabledDMATXTriggers : "None",
+        enableDMARX : false,
+        enableDMATX : false,
+    }
+    let configProfile1 = {
         name            : "CONFIG_PROFILE_1", /* LIN_BREAK_DETECTION_CONFIG */
         uartClkSrc      : "BUSCLK",
         targetBaudRate  : 19200,
@@ -125,11 +137,12 @@ const profilesUART = [
         tbitVal : 9.5,
         enabledInterrupts : ["BREAK_ERROR","LINC0_MATCH","LIN_COUNTER_OVERFLOW","LIN_FALLING_EDGE","RXD_POS_EDGE"],
         interruptPriority : "DEFAULT",
-        enabledDMARXTriggers : "None",
-        enabledDMATXTriggers : "None",
-        enableDMARX : false,
-        enableDMATX : false,
-    },
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile1 = {...configProfile1, ...defaultDMAConfig};
+    };
+const profilesUART = [
+    configProfile1,
 ];
 
 /************************Interrupt Functions **********************************/
@@ -532,9 +545,6 @@ when the configured receive or transmit trigger condition occurs. \n
         config: [],
     },
 ])
-
-/* Helper Configurables */
-config = config.concat(UARTCommon.getHelperConfig())
 
 /* Add Pinmux Peripheral Configuration group */
 config = config.concat(Common.getGPIOGroupConfig());

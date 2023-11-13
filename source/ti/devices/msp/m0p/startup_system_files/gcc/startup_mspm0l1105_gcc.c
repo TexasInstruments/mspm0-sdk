@@ -63,7 +63,7 @@ extern void SysTick_Handler     (void) __attribute__((weak, alias("Default_Handl
 
 /* Device Specific Interrupt Handlers */
 extern void GROUP0_IRQHandler   (void) __attribute__((weak, alias("Default_Handler")));
-extern void GPIOA_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
+extern void GROUP1_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void TIMG1_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void ADC0_IRQHandler     (void) __attribute__((weak, alias("Default_Handler")));
 extern void SPI0_IRQHandler     (void) __attribute__((weak, alias("Default_Handler")));
@@ -97,8 +97,8 @@ void (* const interruptVectors[])(void) __attribute__ ((section (".intvecs"))) =
     0,                                     /* Reserved                  */
     PendSV_Handler,                        /* The PendSV handler        */
     SysTick_Handler,                       /* SysTick handler           */
-    GROUP0_IRQHandler,                     /* GROUP0 interrupt handler  */
-    GPIOA_IRQHandler,                      /* GPIOA interrupt handler   */
+        GROUP0_IRQHandler,                     /* GROUP0 interrupt handler  */
+    GROUP1_IRQHandler,                     /* GROUP1 interrupt handler  */
     TIMG1_IRQHandler,                      /* TIMG1 interrupt handler   */
     0,                                     /* Reserved                  */
     ADC0_IRQHandler,                       /* ADC0 interrupt handler    */

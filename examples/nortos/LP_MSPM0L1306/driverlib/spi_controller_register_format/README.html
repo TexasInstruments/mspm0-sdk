@@ -40,7 +40,7 @@
 <p>When the Controller sends CMD_WRITE_TYPE_X commands, the SPI Controller will then send data to the Peripheral to write to its registers. The Peripheral will initialize itself to receive gCmdWriteTypeXBuffer example buffers. After all the data is received by the Peripheral, the received data will be stored in its corresponding gCmdWriteTypeXBuffer.</p>
 <p>When the Controller sends CMD_READ_TYPE_X commands, the SPI Controller will read data from the Peripheral. The Peripheral will send example gCmdReadTypeXBuffer buffers in response. After all the data is received by the Controller, the received data will be stored in its corresponding gCmdReadTypeXBuffer.</p>
 <p>The Controller will go to sleep in between transactions.</p>
-<p>After all commands have been performed, the LED will toggle to indicate success.</p>
+<p>After all commands have been performed, the LED will toggle to indicate success. USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -57,41 +57,46 @@
 <td>Open-Drain Output</td>
 </tr>
 <tr class="even">
+<td>GPIOA</td>
+<td>PA1</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SPI0</td>
 <td>PA6</td>
 <td>SPI SCLK (Clock)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SPI0</td>
 <td>PA5</td>
 <td>SPI PICO (Peripheral In, Controller Out)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SPI0</td>
 <td>PA4</td>
 <td>SPI POCI (Peripheral Out, Controller In)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SPI0</td>
 <td>PA3</td>
 <td>SPI CS1 (Chip Select 1)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -116,49 +121,56 @@
 <td>GPIOA</td>
 <td>PA0</td>
 <td>J1_10</td>
-<td>This pin is 5V tolerant open-drain and requires pull-up.<br>J2 ON/OFF: Connect/Disconnect LED1<br>J10 1:2 5V Pull-up<br>J10 2:3 3.3V Pull-up</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J10 2:3</code> Use 3.3V pull-up<br><li><code>J10 1:2</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J2 ON</code> Connect to LED1<br><li><code>J2 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
+<td>PA1</td>
+<td>GPIOA</td>
+<td>PA1</td>
+<td>J1_9</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 2:3</code> Use 3.3V pull-up<br><li><code>J9 1:2</code> Use 5V pull-up</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA6</td>
 <td>SPI0</td>
 <td>SCLK</td>
 <td>J1_7</td>
 <td>N/A</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA5</td>
 <td>SPI0</td>
 <td>MOSI</td>
 <td>J2_15</td>
 <td>N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA4</td>
 <td>SPI0</td>
 <td>MISO</td>
 <td>J2_14</td>
 <td>N/A</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA3</td>
 <td>SPI0</td>
 <td>CS1_MISO1</td>
 <td>J2_19</td>
 <td>N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_13</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>J2_17</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
@@ -183,6 +195,7 @@
 <li>MSB first</li>
 </ul>
 <p>Ensure the SPI Peripheral is running before this Controller example. Compile, load and run the example. The SPI will automatically start to transmit and receive data.</p>
+<p>The LED will toggle after completion to indicate success. USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

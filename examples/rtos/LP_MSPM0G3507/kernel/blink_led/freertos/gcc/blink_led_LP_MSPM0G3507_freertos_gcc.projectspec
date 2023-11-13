@@ -49,6 +49,7 @@
         "
         linkerBuildOptions="
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x
+            -nostartfiles
             -L${PROJECT_BUILD_DIR}/syscfg
             -L${WORKSPACE_LOC}/freertos_builds_LP_MSPM0G3507_release_gcc/Debug
             -l:libfreertos_builds_LP_MSPM0G3507_release_gcc.a

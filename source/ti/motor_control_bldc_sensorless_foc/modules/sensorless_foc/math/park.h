@@ -58,19 +58,19 @@ extern "C" {
 
 /*! @brief Define park structure */
 typedef struct {  
-	/*!  Input: stationary d-axis stator variable  */
+	/*!  Stationary d-axis stator variable  */
 	_iq  Alpha;
-	/*!  Input: stationary q-axis stator variable  */
+	/*!  Stationary q-axis stator variable  */
 	_iq  Beta;
-	/*!  Input: rotating angle (pu)  */
-	_iq  Angle;
-	/*!  Output: rotating d-axis stator variable  */
+	/*!  Rotating angle (pu)  */
+	uint32_t  Angle;
+	/*!  Rotating d-axis stator variable  */
 	_iq  Ds;
-	/*!  Output: rotating q-axis stator variable */
+	/*!  Rotating q-axis stator variable */
 	_iq  Qs;
-	/*!  Input: Sine of rotor angle */
+	/*!  Sine of rotor angle */
 	_iq  Sine;
-	/*!  Input: Cosine of rotor angle */
+	/*!  Cosine of rotor angle */
 	_iq  Cosine; 	 
 } PARK_Instance;
 
@@ -87,6 +87,16 @@ __STATIC_INLINE void PARK_run(PARK_Instance *handle)
 										    + _IQmpy(handle->Beta,handle->Sine);
     handle->Qs = _IQrepeat(handle->Beta,handle->Cosine)
 										- _IQrepeat(handle->Alpha,handle->Sine);
+}
+
+/**
+ * @brief     Reset park variables
+ * @param[in] handle  A pointer to park instance
+ */
+__STATIC_INLINE void PARK_reset(PARK_Instance *handle)
+{
+	handle->Ds = 0;
+	handle->Qs = 0;
 }
 
 #ifdef __cplusplus

@@ -47,7 +47,17 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>TIMA1</td>
+<td>GPIOA</td>
+<td>PA0</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA15</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
+<td>TIMERFAULT0</td>
 <td>PB20</td>
 <td>Fault Pin 1</td>
 </tr>
@@ -97,8 +107,22 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>PA0</td>
+<td>GPIOA</td>
+<td>PA0</td>
+<td>J27_9</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA15</td>
+<td>GPIOA</td>
+<td>PA15</td>
+<td>J3_30</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PB20</td>
-<td>TIMA1</td>
+<td>TIMERFAULT0</td>
 <td>FAULT1</td>
 <td>J4_36</td>
 <td>N/A</td>
@@ -129,30 +153,34 @@
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Make sure external fault pin logic level is low before running example. Compile, load and run the example. Monitor TIMA1_C0, TIMA1_C1, External fault pin and CLK_OUT. Analyze fault reaction behavior described in “Application Design Details” section.</p>
 <h2 id="application-design-details">Application Design Details</h2>
 <p>TimerA is configured to generate edge align PWM signals on TIMA1_C0/TIMA1_C0 and monitor fault conditions via an external fault pin.</p>
 <p>A fault condition is detected when the fault pin state remains in high state for more than 5 timer clocks. This examples enables the fault input filter to handle glitches on the fault input and is configured for consecutive periods mode for 3 timer clocks. The fault pin input is passed by a synchronizer which can take up to 2 additional timer clock to start detecting consecutive periods.</p>
-<p>Once a fault is detected , TimerA is configured to set the PWM as follows:</p>
+<p>Once a fault is detected, the following actions occurr:</p>
+<ul>
+<li>TimerA is configured to set the PWM as follows:
 <ul>
 <li>TIMA1_C0 is set to high state</li>
 <li>TIMA1_C1 is set to low state</li>
+</ul></li>
+<li>USER_LED_1 and USER_TEST pins will toggle every time a fault is detected</li>
 </ul>
 <p>Once the fault condition is cleared (i.e. fault pin remains in low state for at least 5 timer clocks). TimerA will resume operation as follows and will perform all three operations listed below simultaneously:</p>
 <ul>

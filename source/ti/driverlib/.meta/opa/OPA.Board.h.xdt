@@ -1,6 +1,6 @@
 %%{
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,10 +72,10 @@
 %       if (inst.pinIn0PosUsed){
 %       let in0PosPinName = "In0Pos"+"Pin";
 %       let in0PosPackagePin = inst.peripheral[in0PosPinName].$solution.packagePinName;
-%       let in0PosPinCM = system.deviceData.devicePins[in0PosPackagePin].attributes.iomux_pincm;
+%       let in0PosPinCM = Common.getPinCM(in0PosPackagePin,inst,"IN0+");
 %       let in0PosGpioName = system.deviceData.devicePins[in0PosPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let in0PosPort = Common.getGPIOPort(in0PosGpioName);
-%       let in0PosGpioPin = Common.getGPIONumber(in0PosGpioName);
+%       let in0PosPort = Common.getGPIOPortMultiPad(in0PosPackagePin,inst,"IN0+");
+%       let in0PosGpioPin = Common.getGPIONumberMultiPad(in0PosPackagePin,inst,"IN0+");
 %       let in0PosPortStr = "#define "+gpioStr+"_IN0POS_PORT";
 `in0PosPortStr.padEnd(50," ")+in0PosPort.padStart(30, " ")`
 % //#define GPIO_x_IN0POS_PORT
@@ -95,10 +95,10 @@
 %       if (inst.pinIn1PosUsed){
 %       let in1PosPinName = "In1Pos"+"Pin";
 %       let in1PosPackagePin = inst.peripheral[in1PosPinName].$solution.packagePinName;
-%       let in1PosPinCM = system.deviceData.devicePins[in1PosPackagePin].attributes.iomux_pincm;
+%       let in1PosPinCM = Common.getPinCM(in1PosPackagePin,inst,"IN1+");
 %       let in1PosGpioName = system.deviceData.devicePins[in1PosPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let in1PosPort = Common.getGPIOPort(in1PosGpioName);
-%       let in1PosGpioPin = Common.getGPIONumber(in1PosGpioName);
+%       let in1PosPort = Common.getGPIOPortMultiPad(in1PosPackagePin,inst,"IN1+");
+%       let in1PosGpioPin = Common.getGPIONumberMultiPad(in1PosPackagePin,inst,"IN1+");
 %       let in1PosPortStr = "#define "+gpioStr+"_IN1POS_PORT";
 `in1PosPortStr.padEnd(50," ")+in1PosPort.padStart(30, " ")`
 % //#define GPIO_x_IN1POS_PORT
@@ -118,10 +118,10 @@
 %       if (inst.pinIn0NegUsed){
 %       let in0NegPinName = "In0Neg"+"Pin";
 %       let in0NegPackagePin = inst.peripheral[in0NegPinName].$solution.packagePinName;
-%       let in0NegPinCM = system.deviceData.devicePins[in0NegPackagePin].attributes.iomux_pincm;
+%       let in0NegPinCM = Common.getPinCM(in0NegPackagePin,inst,"IN0-");
 %       let in0NegGpioName = system.deviceData.devicePins[in0NegPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let in0NegPort = Common.getGPIOPort(in0NegGpioName);
-%       let in0NegGpioPin = Common.getGPIONumber(in0NegGpioName);
+%       let in0NegPort = Common.getGPIOPortMultiPad(in0NegPackagePin,inst,"IN0-");
+%       let in0NegGpioPin = Common.getGPIONumberMultiPad(in0NegPackagePin,inst,"IN0-");
 %       let in0NegPortStr = "#define "+gpioStr+"_IN0NEG_PORT";
 `in0NegPortStr.padEnd(50," ")+in0NegPort.padStart(30, " ")`
 % //#define GPIO_x_IN0NEG_PORT
@@ -141,10 +141,10 @@
 %       if (inst.pinIn1NegUsed){
 %       let in1NegPinName = "In1Neg"+"Pin";
 %       let in1NegPackagePin = inst.peripheral[in1NegPinName].$solution.packagePinName;
-%       let in1NegPinCM = system.deviceData.devicePins[in1NegPackagePin].attributes.iomux_pincm;
+%       let in1NegPinCM = Common.getPinCM(in1NegPackagePin,inst,"IN1-");
 %       let in1NegGpioName = system.deviceData.devicePins[in1NegPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let in1NegPort = Common.getGPIOPort(in1NegGpioName);
-%       let in1NegGpioPin = Common.getGPIONumber(in1NegGpioName);
+%       let in1NegPort = Common.getGPIOPortMultiPad(in1NegPackagePin,inst,"IN1-");
+%       let in1NegGpioPin = Common.getGPIONumberMultiPad(in1NegPackagePin,inst,"IN1-");
 %       let in1NegPortStr = "#define "+gpioStr+"_IN1NEG_PORT";
 `in1NegPortStr.padEnd(50," ")+in1NegPort.padStart(30, " ")`
 % //#define GPIO_x_IN1NEG_PORT
@@ -164,10 +164,10 @@
 %       if (inst.pinOutUsed){
 %       let outPinName = "Out"+"Pin";
 %       let outPackagePin = inst.peripheral[outPinName].$solution.packagePinName;
-%       let outPinCM = system.deviceData.devicePins[outPackagePin].attributes.iomux_pincm;
+%       let outPinCM = Common.getPinCM(outPackagePin,inst,"OUT");
 %       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let outPort = Common.getGPIOPort(outGpioName);
-%       let outGpioPin = Common.getGPIONumber(outGpioName);
+%       let outPort = Common.getGPIOPortMultiPad(outPackagePin,inst,"OUT");
+%       let outGpioPin = Common.getGPIONumberMultiPad(outPackagePin,inst,"OUT");
 %       let outPortStr = "#define "+gpioStr+"_OUT_PORT";
 `outPortStr.padEnd(50," ")+outPort.padStart(30, " ")`
 % //#define GPIO_x_OUT_PORT

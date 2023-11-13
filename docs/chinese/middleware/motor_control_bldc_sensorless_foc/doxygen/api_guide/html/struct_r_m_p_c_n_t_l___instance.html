@@ -92,6 +92,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a702744f825aea397d689ec52069bd0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49f7602c22ef3b23bc598aca1d99edfc"><td class="memItemLeft" align="right" valign="top">_iq&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_m_p_c_n_t_l___instance.html#a49f7602c22ef3b23bc598aca1d99edfc">SetpointValue</a></td></tr>
 <tr class="separator:a49f7602c22ef3b23bc598aca1d99edfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2adf9d773203e645c68e07028ea25b11"><td class="memItemLeft" align="right" valign="top">_iq&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_m_p_c_n_t_l___instance.html#a2adf9d773203e645c68e07028ea25b11">RampDelta</a></td></tr>
+<tr class="separator:a2adf9d773203e645c68e07028ea25b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92da33acb36755b516550e62978d9af0"><td class="memItemLeft" align="right" valign="top">_iq&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_r_m_p_c_n_t_l___instance.html#a92da33acb36755b516550e62978d9af0">Tmp</a></td></tr>
 <tr class="separator:a92da33acb36755b516550e62978d9af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -111,7 +113,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>Target value of ramp </p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#gacc1dd3297253659b483ba7d6f93133ea">RC_reset()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>.</p>
 
 </div>
 </div>
@@ -145,7 +147,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>Lower limit for ramp </p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga204702ef796c47409b15f13636f5cc04">RMPCNTL_UpdateParams()</a>.</p>
 
 </div>
 </div>
@@ -162,7 +164,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>High limit for ramp </p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga204702ef796c47409b15f13636f5cc04">RMPCNTL_UpdateParams()</a>.</p>
 
 </div>
 </div>
@@ -196,7 +198,24 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>Ramp output value </p>
 
-<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>.</p>
+<p>Referenced by <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga6d2e1049e12bb536abdaac52137eeb10">FOC_CONTROL_run()</a>, <a class="el" href="group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a">FOC_run()</a>, <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#gacc1dd3297253659b483ba7d6f93133ea">RC_reset()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>.</p>
+
+</div>
+</div>
+<a id="a2adf9d773203e645c68e07028ea25b11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2adf9d773203e645c68e07028ea25b11">&sect;&nbsp;</a></span>RampDelta</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">_iq RMPCNTL_Instance::RampDelta</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Ramp delta </p>
+
+<p>Referenced by <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga07d7e6b56b6c1f179ecca201d8bd7707">RC_run()</a>, and <a class="el" href="group___f_o_c___m_a_t_h___r_m_p___c_n_t_l.html#ga204702ef796c47409b15f13636f5cc04">RMPCNTL_UpdateParams()</a>.</p>
 
 </div>
 </div>

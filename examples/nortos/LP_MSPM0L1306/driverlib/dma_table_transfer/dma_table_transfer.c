@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,14 +46,16 @@ const uint32_t gTableData[DMA_TABLE_ENTRIES * 2] = {(uint32_t) &gDstData1,
     0x10101010, (uint32_t) &gDstData2, 0x20202020, (uint32_t) &gDstData3,
     0x30303030, (uint32_t) &gDstData4, 0x40404040};
 
-volatile bool gVerifyResult;
+volatile bool gVerifyResult = false;
+
 
 int main(void)
 {
     bool compare = true;
     /*
      * Initialize the DMA peripheral and set up a transaction according to
-     * the parameters defined in ti_msp_dl_config.h
+     * the parameters defined in ti_msp_dl_config.h. The LED (USER_LED_1)
+     * should be off.
      */
     SYSCFG_DL_init();
 
@@ -82,6 +84,11 @@ int main(void)
     compare &= (gTableData[7] == gDstData4);
 
     gVerifyResult = compare;
+
+
+    /* Program completed. The LED should turn on */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     /* Breakpoint to inspect verification result */
     __BKPT(0);

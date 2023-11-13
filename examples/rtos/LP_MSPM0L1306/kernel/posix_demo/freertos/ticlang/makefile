@@ -32,8 +32,7 @@ CFLAGS = -I../.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = -Wl,--stack_size=512 \
-    -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L1306_release_ticlang/Debug \
+LFLAGS = -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L1306_release_ticlang/Debug \
     -lfreertos_builds_LP_MSPM0L1306_release_ticlang.lib \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a" \
     ../../freertos/ticlang/mspm0l1306.cmd \

@@ -79,7 +79,7 @@
 % // TODO: WIP analog pins. comments to be removed once functionality confirmed
 %%{
     /* ADCMEM range varies per device family */
-    const adcMemRange = (Common.isDeviceM0G()) ? 11:3;
+    const adcMemRange = (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) ? 11:3;
     let adcEnabledChannels = [];
     for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
         if((inst.enabledADCMems).includes(adcMemIdx)){
@@ -117,18 +117,18 @@
 %%{
     for(let cc of adcEnabledChannels){
         /* Verify channels are module-specific */
-        if((Common.isDeviceM0G() && parseInt(cc) < 9) || (Common.isDeviceM0L() && parseInt(cc) < 10)){
+        if((Common.isDeviceM0G() && parseInt(cc) < 9) || ((Common.isDeviceM0L() || Common.isDeviceM0C()) && parseInt(cc) < 10)){
             let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
             /* figure out pin number and pinCMx */
             // let pinName = "ccp"+cc+"Pin";
             let pinName = "adcPin"+cc
             let packagePin = inst.peripheral[pinName].$solution.packagePinName;
-            let pinCM = system.deviceData.devicePins[packagePin].attributes.iomux_pincm;
+            let pinCM = Common.getPinCM(packagePin,inst,cc.toString());
             let iomux = pinCM - 1;
             // let flav = flavorStrings[flavor];
             let gpioName = system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-            let port = Common.getGPIOPort(gpioName);
-            let gpioPin = Common.getGPIONumber(gpioName);
+            let port = Common.getGPIOPortMultiPad(packagePin,inst,cc.toString());
+            let gpioPin = Common.getGPIONumberMultiPad(packagePin,inst,cc.toString());
 /* GPIO defines for channel `cc` */
 %%}
 %           let portStr = "#define "+gpioStr+"_PORT";

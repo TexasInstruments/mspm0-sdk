@@ -61,18 +61,11 @@
         </file>
         <file path="../bsl_mcan.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../bsl_can_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../bsl_can_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../boot_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../boot_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="mspm0g3507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="startup_mspm0g3507_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
         </file>
-
+        <file path="../bsl_mcan_flash_interface.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
     </project>
 </projectSpec>

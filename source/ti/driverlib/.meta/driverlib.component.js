@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023, Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,15 +49,37 @@ let systemModulesList = [
     "/ti/driverlib/Board",
     "/ti/driverlib/DMA",
     "/ti/driverlib/GPIO",
-    "/ti/driverlib/SYSTICK",
     "/ti/driverlib/WWDT",
-    "/ti/driverlib/NONMAIN",
 ];
+/* TODO: nonmain configurator needs to be updated for A2_LCD */
+if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
+    systemModulesList.push(
+        "/ti/driverlib/NONMAIN",
+    );
+};
 /* MSPM0Gxx-specific modules */
 if(Common.isDeviceM0G()){
     systemModulesList.push(
         "/ti/driverlib/MATHACL",
         "/ti/driverlib/RTC",
+    );
+};
+/* MSPM0L122X_L222X-specific modules */
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    systemModulesList.push(
+       // TODO: To be determined
+    );
+};
+/* Devices with SysTick support */
+if(Common.isDeviceM0G() || Common.isDeviceM0L()){
+    systemModulesList.push(
+        "/ti/driverlib/SYSTICK",
+    );
+};
+/* MSPM0Cxx-specific modules */
+if(Common.isDeviceM0C()){
+    systemModulesList.push(
+        "/ti/driverlib/BEEPER",
     );
 };
 
@@ -67,10 +89,15 @@ let timerModulesList = [
     "/ti/driverlib/CAPTURE",
     "/ti/driverlib/COMPARE",
 ];
-/* MSPM0Gxx-specific modules */
-if(Common.isDeviceM0G()){
+/* Devices with QEI support */
+if(Common.isDeviceM0G() || Common.isDeviceM0C()){
     timerModulesList.push(
         "/ti/driverlib/QEI",
+    );
+};
+/* Devices that support Timer Fault configuration */
+if(Common.hasTimerA()){
+    timerModulesList.push(
         "/ti/driverlib/TIMERFault",
     );
 };
@@ -86,19 +113,24 @@ let commModulesList = [
 let analogModulesList = [
     "/ti/driverlib/ADC12",
     "/ti/driverlib/VREF",
-    "/ti/driverlib/GPAMP",
 ];
-/* add device-specific modules - not available on MSPM0G110x, MSPM0L110X */
+/* add device-specific modules - not available on MSPM0Cxx */
+if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+    analogModulesList.push(
+        "/ti/driverlib/GPAMP",
+    )
+}
+/* add device-specific modules - not available on MSPM0G110x, MSPM0L110X, MSPM0C */
 if((Common.isDeviceM0G() || Common.isDeviceM0L()) && !Common.isDeviceM0x110x()){
     analogModulesList.push(
         "/ti/driverlib/COMP",
     );
 };
-/* add device-specific modules - not available on MSPM0G110x or MSPM0L110X */
+/* add device-specific modules - not available on MSPM0G110x, MSPM0L110X or MSPM0L122X_L222X()*/
 if((Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()) && !Common.isDeviceM0x110x()){
     analogModulesList.push(
-    "/ti/driverlib/OPA",
-);
+        "/ti/driverlib/OPA",
+    );
 };
 // TODO: confirm device list for DAC
 /* MSPM0Gxx-specific modules - not available for MSPM0G310X, MSPM0G110x */
@@ -107,9 +139,8 @@ if(["MSPM0G350X","MSPM0G150X"].includes(system.deviceData.device)){
         "/ti/driverlib/DAC12",
     );
 };
-
 /* MSPM0Gxx-specific modules - not available for MSPM0G150X, MSPM0G110x */
-if(["MSPM0G350X","MSPM0G310X"].includes(system.deviceData.device)){
+if(["MSPM0G350X","MSPM0G150X"].includes(system.deviceData.device)){
     commModulesList.push(
         "/ti/driverlib/MCAN",
     );
@@ -124,12 +155,25 @@ if(Common.isDeviceM0G() && !Common.isDeviceM0x110x()){
         "/ti/driverlib/TRNG",
     );
 };
+/* A2LCD-specific modules */
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    securityModulesList.push(
+        "/ti/driverlib/AESADV",
+    );
+};
 
-let dataIntegrityModulesList = []
+let dataIntegrityModulesList = [
+]
 /* add device-specific modules - not available on A2LCD */
-if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C()){
     dataIntegrityModulesList.push(
         "/ti/driverlib/CRC",
+    );
+};
+/* A2LCD-specific modules */
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    dataIntegrityModulesList.push(
+        "/ti/driverlib/CRCP",
     );
 };
 

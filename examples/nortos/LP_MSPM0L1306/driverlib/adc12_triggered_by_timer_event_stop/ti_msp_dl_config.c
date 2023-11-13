@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -149,9 +149,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_TIMER_0_init(void) {
         (DL_TimerG_TimerConfig *) &gTIMER_0TimerConfig);
     DL_TimerG_enableClock(TIMER_0_INST);
 
-    DL_TimerG_enableEvent(TIMER_0_INST, DL_TIMER_EVENT_ROUTE_1, (DL_TIMER_EVENT_ZERO_EVENT));
+    DL_TimerG_enableEvent(TIMER_0_INST, DL_TIMERG_EVENT_ROUTE_1, (DL_TIMERG_EVENT_ZERO_EVENT));
 
-    DL_TimerG_setPublisherChanID(TIMER_0_INST, DL_TIMER_PUBLISHER_INDEX_0, TIMER_0_INST_PUB_0_CH);
+    DL_TimerG_setPublisherChanID(TIMER_0_INST, DL_TIMERG_PUBLISHER_INDEX_0, TIMER_0_INST_PUB_0_CH);
 
 
 

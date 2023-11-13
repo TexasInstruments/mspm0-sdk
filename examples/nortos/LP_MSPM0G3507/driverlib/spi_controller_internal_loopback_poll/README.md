@@ -25,12 +25,12 @@ Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA17 | SPI1 | SCLK | J3_28 | RC Filter R82/C51 not soldered by default |
-| PA18 | SPI1 | MOSI | J3_26/J3_29 | J15 2:3 Connect to J3_29<br>R58 connects to J3_26 (default)<br>R23 connects to J101 and J8 for BSL_Invoke (default)<br>J8 OFF Disconnect S1 for BSL_Invoke (with pull-down)<br>J101 17:18 OFF Disconnect from XDS-110 BSL_Invoke<br>R66/R67 for thermistor RT1 not soldered by default |
-| PA16 | SPI1 | MISO | J3_29 | J15 1:2 Connect to J3_29 |
-| PA2 | SPI1 | CS0 | J28_1 | R8 ROSC to GND<br>Remove ROSC for other functions<br>Solder R9 to connect to J28_1 |
-| PA20 | DEBUGSS | SWCLK | N/A | J101 15:16 ON: Connect to XDS-110 SWCLK (debug) |
-| PA19 | DEBUGSS | SWDIO | N/A | J101 13:14 ON: Connect to XDS-110 SWDIO (debug) |
+| PA17 | SPI1 | SCLK | J3_28 | N/A |
+| PA18 | SPI1 | MOSI | J3_26/J3_29 | <ul><li>PA18 can be connected to S1 button to VCC with external pull-down<br><ul><li>`J8 ON` Connect S1 button and external pull-down<br><li>`J8 OFF` Disconnect S1 button and external pull-down</ul><br><li>PA18 can be connected to XDS-110 BSL_Invoke<br><ul><li>`J101 17:18 OFF` Disconnect pin to XDS-110 BSL Invoke</ul><br><li>PA18 can be connected to boosterpack pin J3_29<br><ul><li>`J15 2:3` Connect pin to J3_29<br><li>`J15 1:2/OFF` Disconnect pin from J3_29</ul><br><li>PA18 can be connected to boosterpack pin J3_26<br><ul><li>`R58` is soldered and connects pin to J3_26 by default</ul></ul> |
+| PA16 | SPI1 | MISO | J3_29 | <ul><li>PA16 can be connected to boosterpack connector<br><ul><li>`J15 1:2` Connect pin to `J3_29`<br><li>`J15 2:3/OFF` Disconnect pin from `J3_29`</ul></ul> |
+| PA2 | SPI1 | CS0 | J28_1 | <ul><li>PA2 is used for ROSC functionality by default in Launchpad<br><ul><li>`R8` is connected to GND by default<br><li>Remove `R8` to use pin for other functions</ul><br><li>PA2 can be connected to J28_1<br><ul><li>`R9` is not soldered soldered by default<br><li>Solder `R9` to connect pin to J28_1</ul> |
+| PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to
@@ -40,7 +40,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau846).
+MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873).
 
 ## Example Usage
 Compile, load and run the example. The SPI will automatically start

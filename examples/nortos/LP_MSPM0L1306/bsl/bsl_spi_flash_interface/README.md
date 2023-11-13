@@ -35,13 +35,13 @@ content of the generated ti_msp_dl_config.h file into the provided version.
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| SYSCTL |   |   |
-| SPI0 | PA6 | SPI Serial Clock (SCLK) |
-| SPI0 | PA5 | SPI Peripheral In Controller Out (PICO) |
-| SPI0 | PA4 | SPI Peripheral Out Controller In (POCI) |
-| SPI0 | PA8 | SPI Chip Select (CS0) |
-| BSL | PA18 | BSL Invoke Pin |
-| BSL | NRST | NRST |
+| SYSCTL |  |  |
+| SPI0 | PA6 | SPI SCLK (Clock) |
+| SPI0 | PA5 | SPI PICO (Peripheral In, Controller Out) |
+| SPI0 | PA4 | SPI POCI (Peripheral Out, Controller In) |
+| SPI0 | PA8 | SPI CS0 (Chip Select 0) |
+| DEBUGSS | PA20 | Debug Clock |
+| DEBUGSS | PA19 | Debug Data In Out |
 
 ## BoosterPacks, Board Resources & Jumper Settings
 
@@ -50,11 +50,11 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA6 | SPI0 | SCLK | J1_7 | N/A |
-| PA5 | SPI0 | PICO | J2_15 | N/A |
-| PA4 | SPI0 | POCI | J2_14 | N/A |
-| PA8 | SPI0 | CS0 | J1_4 | J16 2:3 Connect to J1_4 |
-| NRST | BSL | NRST | J2_16 | N/A |
-| PA18 | BSL | Invoke | J3_26 | J11 OFF Disconnect S1 |
+| PA5 | SPI0 | MOSI | J2_15 | N/A |
+| PA4 | SPI0 | MISO | J2_14 | N/A |
+| PA8 | SPI0 | CS0 | J1_4 | <ul><li>PA8 can be connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use on boosterpack connector and disconnect XDS-110:<br>  `J16 2:3`: Connect pin to `J1_4`</ul></ul> |
+| PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to

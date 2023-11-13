@@ -35,6 +35,9 @@
 #ifndef ti_devices_msp_m0p_mspm0g350x__include
 #define ti_devices_msp_m0p_mspm0g350x__include
 
+/* Filename: mspm0g350x.h */
+/* Revised: 2023-02-03 08:37:25 */
+
 /* Use standard integer types with explicit width */
 #include <stdint.h>
 #include <stdbool.h>
@@ -221,6 +224,7 @@ typedef enum IRQn
 #define __MSPM0_HAS_COMP__
 #define __MSPM0_HAS_CRC__
 #define __MSPM0_HAS_DAC12__
+#define __MSPM0_HAS_GPAMP__
 #define __MSPM0_HAS_GPIO__
 #define __MSPM0_HAS_TIMER_A__
 #define __MSPM0_HAS_TIMER_G__
@@ -355,6 +359,8 @@ static DEBUGSS_Regs                             * const DEBUGSS                 
 #define DMA_SYS_N_DMA_FULL_CHANNEL                    (3)       /* !< Number of FULL-DMA channels implemented in DMA. */
 #define CRC_SYS_CRC32_ENABLE                          (1)       /* !< Parameter to exclude or include 32-bit CRC. */
 #define FLASHCTL_SYS_DATAWIDTH                        (64)      /* !< Data bit width of a single flash word. */
+#define ADC_SYS_NUM_ANALOG_CHAN                       (16)      /* !< Number of analog channels. */
+#define I2C_SYS_FENTRIES                              (8)       /* !< Number of FIFO entries */
 
 /******************************************************************************
 * DMA Triggers                                                                *

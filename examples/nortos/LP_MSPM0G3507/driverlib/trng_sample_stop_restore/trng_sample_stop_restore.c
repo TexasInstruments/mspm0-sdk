@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,14 +36,19 @@
 
 volatile uint32_t gTRNGBuffer[NUM_CAPTURES];
 
-volatile bool gIsTimerExpired;
+volatile bool gIsTimerExpired   = false;
 volatile bool gIsRetentionError = true;
+
 
 int main(void)
 {
+    /*
+     * Initialize the peripherals and set the TRNG to the NORM_FUNC state
+     * The LED should be turned off
+     */
     SYSCFG_DL_init();
 
-    /* Enable TIM0 interrupts on device */
+    /* Enable TIMG0 interrupts on device */
     NVIC_EnableIRQ(TIMER_INST_INT_IRQN);
 
     /* Start 1 sec timeout */
@@ -61,8 +66,6 @@ int main(void)
         if (true == SYSCFG_DL_restoreConfiguration()) {
             gIsRetentionError = false;
 
-            DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
-
             DL_SYSCTL_setPowerPolicyRUN0SLEEP0();
 
             uint32_t i;
@@ -74,18 +77,29 @@ int main(void)
                 gTRNGBuffer[i] = DL_TRNG_getCapture(TRNG);
             }
         }
-
-        if (true == gIsRetentionError) {
-            /* This breakpoint is reached if timer save/restore failed */
-            __BKPT(0);
-        }
-
-        /*
-         * Breakpoint is set here to allow the user to inspect that the
-         * contents of gTRNGBuffer holds random data.
-         */
-        __BKPT(0);
     }
+
+    if (gIsRetentionError == true) {
+        /*
+         * Either saving or restoring the configuration failed. Since
+         * USER_LED_1 is PA0 which is active low on M0G LP, setting the pin
+         * turns off the LED
+         */
+        DL_GPIO_setPins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+    } else {
+        DL_GPIO_clearPins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+    }
+
+
+    /*
+     * Breakpoint is set here to allow the user to inspect that the
+     * contents of gTRNGBuffer holds random data.
+     *
+     * gIsRetentionError should be false.
+     */
+    __BKPT(0);
 
     while (1) {
         __WFI();

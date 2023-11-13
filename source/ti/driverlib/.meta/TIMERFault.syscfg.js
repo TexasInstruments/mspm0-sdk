@@ -41,7 +41,7 @@ function GPIOFilter(devicePin, validPinSet) {
 function validFaultPinSet(inst,faultNumber){
     let validPinSet = [];
 
-    if(Common.isDeviceM0G()){ /* Necessary to allow migration to an M0L device */
+    if(Common.hasTimerA()){ /* Necessary to allow migration to an M0L11XX_L13XX device */
         for(let pinIdx in system.deviceData.gpio.pinInfo){
             let eligible = true;
 

@@ -23,7 +23,10 @@ function determineInvalidOptions(inst){
             // disable all but Open Drain
             toDisable.SD = true; // disable Standard
             toDisable.SDL = true; // disable Low-leakage Standard
-            toDisable.SDW = true; // disable Standard with Wake
+            // SDW not available for M0C
+            if(!Common.isDeviceM0C()){
+                toDisable.SDW = true; // disable Standard with Wake
+            }
             toDisable.HS = true; // disable High-Speed
             // HD only available on M0Gxx
             if(Common.isDeviceM0G()){
@@ -37,7 +40,10 @@ function determineInvalidOptions(inst){
         if(inst.driveStrength === "HIGH"){
             toDisable.SD = true; // disable Standard
             toDisable.SDL = true; // disable Low-leakage Standard
-            toDisable.SDW = true; // disable Standard with Wake
+            // SDW not available for M0C
+            if(!Common.isDeviceM0C()){
+                toDisable.SDW = true; // disable Standard with Wake
+            }
             toDisable.OD = true; // disable Open Drain
         }
     }
@@ -197,7 +203,7 @@ let config = [
             ui.fastWakeEn.hidden = hideInput;
             ui.inputFilter.hidden = hideInput;
             ui.hysteresisControl.hidden = hideInput;
-            ui.wakeupLogic.hidden = hideInput;
+            ui.wakeupLogic.hidden = (Common.hasWakeupLogic())?hideInput:true;
             ui.interruptEn.hidden = hideInput;
             ui.interruptPriority.hidden = hideInput || !inst.interruptEn;
             ui.polarity.hidden = hideInput;
@@ -255,6 +261,14 @@ structures to be used in the solution.\n
                     {name: "Any"},
                     {name: "SD", displayName: "Standard"},
                     {name: "SDW", displayName: "Standard with Wake"},
+                    {name: "HS", displayName: "High-Speed"},
+                    {name: "OD", displayName: "5V Tolerant Open Drain"}
+                ];
+            }
+            else if(Common.isDeviceM0C()){
+                return [
+                    {name: "Any"},
+                    {name: "SD", displayName: "Standard"},
                     {name: "HS", displayName: "High-Speed"},
                     {name: "OD", displayName: "5V Tolerant Open Drain"}
                 ];
@@ -433,11 +447,27 @@ Only available on Standard-Drive with wake, 5V tolerant Open Drain and High-Driv
         name: "assignedPort",
         displayName: "Assigned Port",
         default: "Any",
-        options: [
-            {name: "Any"},
-            {name: "PORTA"},
-            {name: "PORTB"}
-        ]
+        options: (inst) => {
+            let portOptions = [
+                {name: "Any"},
+            ];
+            if(Common.hasGPIOPortA()){
+                portOptions.push(
+                    {name: "PORTA"}
+                )
+            }
+            if(Common.hasGPIOPortB()){
+                portOptions.push(
+                    {name: "PORTB"}
+                )
+            }
+            if(Common.hasGPIOPortC()){
+                portOptions.push(
+                    {name: "PORTC"}
+                )
+            }
+            return portOptions;
+        }
     },
     {
         name: "assignedPortSegment",
@@ -611,7 +641,7 @@ as dictated by the output policy.
 /* EVENT.MAX_NUM_EVENT_CHANNELS and EVENT.SPLITTER_EVENT_CHANNELS is undefined */
 let MAX_NUM_EVENT_CHANNELS;
 let SPLITTER_EVENT_CHANNELS = [];
-if (Common.isDeviceM0L())
+if (Common.isDeviceM0L() || Common.isDeviceM0C())
 {
     /*
      * M0L devices support 4 event channels (0, 1, 2, and 3). Event channel
@@ -814,10 +844,11 @@ function isUsingSameEventIndex(pinOneName, pinTwoName)
         return false;
     }
 
-    let pinOneGPIOPort = Common.getGPIOPort(pinOneName);
-    let pinTwoGPIOPort = Common.getGPIOPort(pinTwoName);
-    let pinOneGPIONumber = parseInt(Common.getGPIONumber(pinOneName));
-    let pinTwoGPIONumber = parseInt(Common.getGPIONumber(pinTwoName));
+    /* In the case of more than one mux per pad, GPIO defaults to the first one */
+    let pinOneGPIOPort = Common.getGPIOPort(pinOneName.split("/")[0]);
+    let pinTwoGPIOPort = Common.getGPIOPort(pinTwoName.split("/")[0]);
+    let pinOneGPIONumber = parseInt(Common.getGPIONumber(pinOneName.split("/")[0]));
+    let pinTwoGPIONumber = parseInt(Common.getGPIONumber(pinTwoName.split("/")[0]));
 
     let usingSameEventIndex = false;
 
@@ -864,7 +895,15 @@ function pinmuxRequirements(inst)
             if(!eligible){ continue; }
         }
         if(inst.assignedPortSegment !== "Any" || inst.assignedPin.toLowerCase() !== "any"){
-            let num = parseInt(pin.peripheralPin.name.match(/\d+$/)[0]);
+            let num = undefined;
+            if(pin.peripheralPin.peripheralName.split("/").length>1){
+                let nums = (pin.peripheralPin.peripheralName.split("/")).map(a => a.match(/\d+$/)[0]);
+                let numIndex = nums.indexOf(inst.assignedPin);
+                if(numIndex>=0){num = parseInt(nums[numIndex])};
+            }
+            else{
+                num = parseInt(pin.peripheralPin.name.match(/\d+$/)[0]);
+            }
             if(inst.assignedPin.toLowerCase() !== "any") {
                 eligible &= (num === parseInt(inst.assignedPin));
             } else {
@@ -961,8 +1000,11 @@ function validate(inst, validation)
         if(inst.hysteresisControl === "ENABLE" && (inst.ioStructure.match(/Any|OD/) === null)){
             validation.logError("Hysteresis only valid on Open Drain", inst, "ioStructure");
         }
-        if(inst.wakeupLogic !== "DISABLE" && inst.ioStructure.match(/Any|OD|SDW|HD/) == null) {
-            validation.logError("Wakeup Logic configuration only valid on Open Drain and Standard with Wake ", inst, "wakeupLogic");
+        // wakeupLogic option not configurable in M0C
+        if(Common.hasWakeupLogic()){
+            if(inst.wakeupLogic !== "DISABLE" && inst.ioStructure.match(/Any|OD|SDW|HD/) == null) {
+                validation.logError("Wakeup Logic configuration only valid on Open Drain and Standard with Wake ", inst, "wakeupLogic");
+            }
         }
         if(inst.internalResistor === "PULL_UP" && inst.ioStructure.match(/OD/) !== null) {
             validation.logError("Pull-Up Resistor not valid on an Open Drain Configuration", inst, "ioStructure");
@@ -985,6 +1027,17 @@ function validate(inst, validation)
                 validation.logInfo("This selection is currently being overriden by enabling Global Fast-Wake in Board module", inst, "fastWakeEn");
             }
         }
+    }
+
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    if(inst.direction === "INPUT"){
+        EVENT.validatePublisherOptions(inst,validation,"pubChanID");
+    }
+    else{
+        EVENT.validateSubscriberOptions(inst,validation,"subChanID");
     }
 }
 
@@ -1016,7 +1069,7 @@ function validatePinmux(inst, validation)
     *  Inform the user to use DL_GPIO_clearPins() to turn on the LED
     */
     if(_.startsWith(Common.boardName(), "LP")) {
-        if (inst.pin.$solution && inst.pin.$solution.peripheralPinName === "PA0") {
+        if (inst.pin.$solution && inst.pin.$solution.peripheralPinName.includes("PA0")) {
             validation.logInfo("Tip: LED PA0 on Launchpads is Active Low.",
             inst, ["initialValue"]);
         }

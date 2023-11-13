@@ -50,6 +50,8 @@
 /* Include the IQmath Library */
 #include "ti/iqmath/include/IQmathLib.h"
 
+#include "user.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -59,9 +61,9 @@ typedef struct {
     /*!  Half of pwm period */
     uint16_t HalfPerMax;
     /*!  Maximum dutycycle */
-    uint16_t dutyMax;
+    uint32_t dutyMax;
     /*!  Minimum dutycycle */
-    uint16_t dutyMin;
+    uint32_t dutyMin;
     /*!  A phase dutycycle in range (-1,1) */
     _iq MfuncC1;
     /*!  B phase dutycycle in range (-1,1) */
@@ -69,18 +71,15 @@ typedef struct {
     /*!  C phase dutycycle in range (-1,1) */
     _iq MfuncC3;
     /*!  PWM compare value calculated for A phase */
-    uint16_t dutyA;
+    uint32_t dutyA;
     /*!  PWM compare value calculated for B phase */
-    uint16_t dutyB;
+    uint32_t dutyB;
     /*!  PWM compare value calculated for C phase */
-    uint16_t dutyC;
+    uint32_t dutyC;
 } PWMGEN_Instance ;
 
 /*! @brief Default values for pwmgen instance */
 #define PWMGEN_DEFAULTS    {  0,0,0,0,0,0,0,0,0 }
-
-/** @brief     Delay for the ADC value to settle all low side turn on */
-#define PWMGEN_ADC_SETTLE_DELAY                          (20)
 
 /*! @brief Define pwmgen parameter structure */
 typedef struct {
@@ -88,8 +87,6 @@ typedef struct {
     uint32_t pwmPeriod;
     /*!  PWM cycles spend in deadtime */
     uint32_t deadband;
-    /*!  PWM cycles for adc sampling */
-    uint32_t adcSampleCycles;
 } PWMGEN_PARA;
 
 /**
@@ -101,8 +98,8 @@ __STATIC_INLINE void PWMGEN_UpdateParams(PWMGEN_Instance *handle,
                                                               PWMGEN_PARA *para)
 {
     handle->HalfPerMax =  para->pwmPeriod>>1;
-    handle->dutyMin = para->deadband + PWMGEN_ADC_SETTLE_DELAY 
-                                                        + para->adcSampleCycles;
+    handle->dutyMin = para->deadband + USER_DEFAULT_FOC_ADC_SETTLE_DELAY 
+                                                + USER_DEFAULT_FOC_PWMADCSAMPLE;
     handle->dutyMax = para->pwmPeriod - handle->dutyMin;
 }
 
@@ -112,8 +109,8 @@ __STATIC_INLINE void PWMGEN_UpdateParams(PWMGEN_Instance *handle,
  * @param[in] maxduty  Max dutycycle to limit to
  * @param[in] minduty  Min dutycycle to limit to
  */
-__STATIC_INLINE void PWMGEN_checkLimits(uint16_t *duty,
-                                             uint16_t maxduty, uint16_t minduty)
+__STATIC_INLINE void PWMGEN_checkLimits(uint32_t *duty,
+                                             uint32_t maxduty, uint32_t minduty)
 {
     if(*duty > maxduty)
     {

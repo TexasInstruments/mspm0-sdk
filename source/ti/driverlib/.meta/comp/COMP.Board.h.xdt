@@ -125,25 +125,29 @@
 %   if (inst.channelEnable.includes("POS")) {
 %       let inPosPinName;
 %       let inPosNumStr;
+%       let pinInterfaceName;
 %       if (inst.posChannel == "DL_COMP_IPSEL_CHANNEL_0") {
 %           inPosPinName = "compPinPos0";
 %           inPosNumStr = "_IN0P";
+%           pinInterfaceName = "IN0+"
 %       } else if (inst.posChannel == "DL_COMP_IPSEL_CHANNEL_1") {
 %           inPosPinName = "compPinPos1";
 %           inPosNumStr = "_IN1P";
+%           pinInterfaceName = "IN1+"
 %       } else if (inst.posChannel == "DL_COMP_IPSEL_CHANNEL_2") {
 %           inPosPinName = "compPinPos2";
 %           inPosNumStr = "_IN2P";
+%           pinInterfaceName = "IN2+"
 %       } else {
 %           /* Skip below generation if comp input channel isn't selected */
 %           continue;
 %       }
 %
 %       let inPosPackagePin = inst.peripheral[inPosPinName].$solution.packagePinName;
-%       let inPosPinCM = system.deviceData.devicePins[inPosPackagePin].attributes.iomux_pincm;
+%       let inPosPinCM = Common.getPinCM(inPosPackagePin,inst,pinInterfaceName);
 %       let inPosGpioName = system.deviceData.devicePins[inPosPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let inPosPort = "(" + Common.getGPIOPort(inPosGpioName) + ")";
-%       let inPosGpioPin = Common.getGPIONumber(inPosGpioName);
+%       let inPosPort = "(" + Common.getGPIOPortMultiPad(inPosPackagePin,inst,pinInterfaceName) + ")";
+%       let inPosGpioPin = Common.getGPIONumberMultiPad(inPosPackagePin,inst,pinInterfaceName);
 %       let inPosPortStr = "#define " + gpioStr + inPosNumStr + "_PORT";
 `inPosPortStr.padEnd(50," ") + inPosPort.padStart(30, " ")`
 % //#define GPIO_x_INxP_PORT
@@ -168,25 +172,29 @@
 %   if (inst.channelEnable.includes("NEG")) {
 %       let inNegPinName;
 %       let inNegNumStr;
+%       let pinInterfaceName;
 %       if (inst.negChannel == "DL_COMP_IMSEL_CHANNEL_0") {
 %           inNegPinName = "compPinNeg0";
 %           inNegNumStr = "_IN0N";
+%           pinInterfaceName = "IN0-"
 %       } else if (inst.negChannel == "DL_COMP_IMSEL_CHANNEL_1") {
 %           inNegPinName = "compPinNeg1";
 %           inNegNumStr = "_IN1N";
+%           pinInterfaceName = "IN1-"
 %       } else if (inst.negChannel == "DL_COMP_IMSEL_CHANNEL_2") {
 %           inNegPinName = "compPinNeg2";
 %           inNegNumStr = "_IN2N";
+%           pinInterfaceName = "IN2-"
 %       } else {
 %           /* Skip below generation if comp input channel isn't selected */
 %           continue;
 %       }
 %
 %       let inNegPackagePin = inst.peripheral[inNegPinName].$solution.packagePinName;
-%       let inNegPinCM = system.deviceData.devicePins[inNegPackagePin].attributes.iomux_pincm;
+%       let inNegPinCM = Common.getPinCM(inNegPackagePin,inst,pinInterfaceName);
 %       let inNegGpioName = system.deviceData.devicePins[inNegPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let inNegPort = "(" + Common.getGPIOPort(inNegGpioName) + ")";
-%       let inNegGpioPin = Common.getGPIONumber(inNegGpioName);
+%       let inNegPort = "(" + Common.getGPIOPortMultiPad(inNegPackagePin,inst,pinInterfaceName) + ")";
+%       let inNegGpioPin = Common.getGPIONumberMultiPad(inNegPackagePin,inst,pinInterfaceName);
 %       let inNegPortStr = "#define " + gpioStr + inNegNumStr + "_PORT";
 `inNegPortStr.padEnd(50," ") + inNegPort.padStart(30, " ")`
 % //#define GPIO_x_INxN_PORT
@@ -217,10 +225,10 @@
 %       let gpioStr2 = "GPIO_"+inst.$name;
 %   if(inst.outputEnable) {
 %       outPackagePin = inst.peripheral[outPinName].$solution.packagePinName;
-%       outPinCM = system.deviceData.devicePins[outPackagePin].attributes.iomux_pincm;
+%       outPinCM = Common.getPinCM(outPackagePin,inst,"OUT");
 %       outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       outGpioPin = Common.getGPIONumber(outGpioName);
-%       outPort = Common.getGPIOPort(outGpioName);
+%       outGpioPin = Common.getGPIONumberMultiPad(outPackagePin,inst,"OUT");
+%       outPort = Common.getGPIOPortMultiPad(outPackagePin,inst,"OUT");
 %   let outPortStr = "#define "+gpioStr2+"_OUT_PORT";
 `outPortStr.padEnd(40," ")+outPort.padStart(40, " ")`
 %   let outPinStr = "#define "+gpioStr2+"_OUT_PIN";

@@ -30,16 +30,15 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <can_config.h>
+#include <ti_msp_dl_config.h>
 #include "bsl.h"
 #include "stdio.h"
 #include "string.h"
 #include "can.h"
-
-volatile uint8_t BSL_TX_buffer[MAX_PACKET_SIZE + 2];
-volatile uint8_t BSL_RX_buffer[MAX_PACKET_SIZE + 2];
 extern DL_MCAN_InitParams new_gMCAN0InitParams;
 extern DL_MCAN_BitTimingParams   new_gMCAN0BitTimes;
+volatile uint8_t BSL_TX_buffer[MAX_PACKET_SIZE + 2];
+volatile uint8_t BSL_RX_buffer[MAX_PACKET_SIZE + 2];
 //*****************************************************************************
 //
 // ! BSL Entry Sequence
@@ -116,8 +115,8 @@ uint8_t Host_BSL_Connection(void)
 }
 
 //*****************************************************************************
-// ! Host_BSL_GetID
-// ! Need to send when build connection to get RAM BSL_RX_buffer size and other information
+// ! Host_BSL_Change_Bitrate
+// ! Need to send when new Bitrate has to be configured
 //
 //*****************************************************************************
 uint8_t Host_BSL_Change_Bitrate(CANFD_baudrate_config *cfg)
@@ -126,17 +125,7 @@ uint8_t Host_BSL_Change_Bitrate(CANFD_baudrate_config *cfg)
     uint8_t bsl_response = BSL_OPERATION_SUCCESFUL;
     uint32_t ui32CRC;
     uint64_t CBR =0;
-
-    new_gMCAN0InitParams.fdMode = cfg->fdMode;
-    new_gMCAN0InitParams.brsEnable = cfg->brsEnable;
-    new_gMCAN0BitTimes.nomTimeSeg1 = cfg->nomTimeSeg1;
-    new_gMCAN0BitTimes.nomTimeSeg2 = cfg->nomTimeSeg2;
-    new_gMCAN0BitTimes.nomSynchJumpWidth = cfg->nomSynchJumpWidth;
-    new_gMCAN0BitTimes.nomRatePrescalar = cfg->nomRatePrescalar;
-    new_gMCAN0BitTimes.dataTimeSeg1= cfg->dataTimeSeg1;
-    new_gMCAN0BitTimes.dataTimeSeg2 = cfg->dataTimeSeg2;
-    new_gMCAN0BitTimes.dataSynchJumpWidth = cfg->dataSynchJumpWidth;
-    new_gMCAN0BitTimes.dataRatePrescalar = cfg->dataRatePrescalar;
+    DL_MCAN_ProtocolStatus psr;
 
     CBR |= (uint64_t) cfg->fdMode;
     CBR |= ((uint64_t) cfg->brsEnable)<<1;
@@ -173,11 +162,48 @@ uint8_t Host_BSL_Change_Bitrate(CANFD_baudrate_config *cfg)
         TurnOnErrorLED();
     }
     else
-        protocol_mode = cfg->fdMode;
-        DL_MCAN_reconfig();
+    {
+
+        protocol_mode                           = cfg->fdMode;
+        new_gMCAN0InitParams.fdMode             = cfg->fdMode;
+        new_gMCAN0InitParams.brsEnable          = cfg->brsEnable;
+        new_gMCAN0InitParams.darEnable          = false;
+        new_gMCAN0InitParams.wkupReqEnable      = true;
+        new_gMCAN0InitParams.autoWkupEnable     = true;
+        new_gMCAN0InitParams.emulationEnable    = true;
+
+        new_gMCAN0BitTimes.nomTimeSeg1          = cfg->nomTimeSeg1;
+        new_gMCAN0BitTimes.nomTimeSeg2          = cfg->nomTimeSeg2;
+        new_gMCAN0BitTimes.nomSynchJumpWidth    = cfg->nomSynchJumpWidth;
+        new_gMCAN0BitTimes.nomRatePrescalar     = cfg->nomRatePrescalar;
+        new_gMCAN0BitTimes.dataTimeSeg1         = cfg->dataTimeSeg1;
+        new_gMCAN0BitTimes.dataTimeSeg2         = cfg->dataTimeSeg2;
+        new_gMCAN0BitTimes.dataSynchJumpWidth   = cfg->dataSynchJumpWidth;
+        new_gMCAN0BitTimes.dataRatePrescalar    = cfg->dataRatePrescalar;
+
+        new_gMCAN0InitParams.tdcEnable          = cfg->fdMode;
+        new_gMCAN0InitParams.tdcConfig.tdco     = get_CAN_TDCO(&new_gMCAN0BitTimes);
+        new_gMCAN0InitParams.tdcConfig.tdcf     = new_gMCAN0InitParams.tdcConfig.tdco + 1;
+        new_gMCAN0InitParams.wdcPreload         = 255;
+
+        MCAN_reconfig();
+
+        if(protocol_mode == CAN_FD_MODE)
+        {
+            int x[1]={1};
+            MCAN_send_frame(((0x6)<<18), &x[0], 1);
+            DL_MCAN_getProtocolStatus(CANFD0, &psr);
+            new_gMCAN0InitParams.darEnable         = true;
+            new_gMCAN0InitParams.tdcConfig.tdcf = (psr.tdcv)-1;
+            delay_cycles(300);
+            MCAN_reconfig();
+        }
+
+    }
 
     return (bsl_response);
 }
+
 
 //*****************************************************************************
 // ! Host_BSL_GetID

@@ -1,0 +1,71 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @versions {"tool":"1.0.0+dev"}
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const PWM         = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1        = PWM.addInstance();
+const SYSCTL      = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMERFault  = scripting.addModule("/ti/driverlib/TIMERFault", {}, false);
+const TIMERFault1 = TIMERFault.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const gate3  = system.clockTree["EXCLKGATE"];
+gate3.enable = true;
+
+const mux2       = system.clockTree["EXCLKMUX"];
+mux2.inputSelect = "EXCLKMUX_LFCLK";
+
+const pinFunction1  = system.clockTree["CLKOUT"];
+pinFunction1.enable = true;
+
+PWM1.$name                      = "PWM_0";
+PWM1.clockSource                = "LFCLK";
+PWM1.timerCount                 = 100;
+PWM1.faultHandlerEn             = true;
+PWM1.faultSource                = ["1"];
+PWM1.faultInputEn               = "FIEN_ENABLED";
+PWM1.faultInput                 = "FI_DEPENDENT";
+PWM1.faultInputFilterEn         = true;
+PWM1.faultTimerCountEntry       = "FAULT_ENTRY_CTR_SUSP_COUNT";
+PWM1.faultTimerCountExit        = "FAULT_EXIT_CTR_CVAE_ACTION";
+PWM1.faultInputDetect           = true;
+PWM1.faultPin1Sense             = "SENSE_HIGH";
+PWM1.faultChannel0BehaviorEntry = "HIGH";
+PWM1.faultChannel0BehaviorExit  = "LOW";
+PWM1.faultChannel1BehaviorEntry = "LOW";
+PWM1.faultChannel1BehaviorExit  = "HIGH";
+PWM1.peripheral.$assign         = "TIMA0";
+PWM1.peripheral.ccp0Pin.$assign = "PA2";
+PWM1.peripheral.ccp1Pin.$assign = "PA6";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle    = 80;
+PWM1.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_1.dutyCycle    = 90;
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SYSCTL.enableEXCLK = true;
+SYSCTL.EXCLKSource = "LFCLK";
+SYSCTL.clockTreeEn = true;
+
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].invert       = "ENABLE";
+GPIO1.associatedPins[0].pin.$assign  = "PA4";
+
+TIMERFault1.$name                 = "FAULT_0";
+PWM1.associatedFault              = TIMERFault1;
+TIMERFault1.enabledFaults         = ["1"];
+TIMERFault1.faultPin1.$assign     = "PA0";

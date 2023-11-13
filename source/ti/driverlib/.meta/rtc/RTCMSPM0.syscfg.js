@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -1462,44 +1462,50 @@ function validate(inst, validation)
     }
 
     if (inst.enCalAlarm2 && inst.enCalAlarm2DOM) {
-    switch(inst.calMonth){
-        case "1":
-        case "3":
-        case "5":
-        case "7":
-        case "8":
-        case "10":
-        case "12":
-            if (inst.calAlarm2DOM > 31) {
-                validation.logError(
-                    "An invalid date has been entered for the selected month.",
-                    inst, ["calAlarm2DOM"]
-                );
-            }
-            break;
-        case "4":
-        case "6":
-        case "9":
-        case "11":
-            if (inst.calAlarm2DOM > 30) {
-                validation.logError(
-                    "An invalid date has been entered for the selected month.",
-                    inst, ["calAlarm2DOM"]
-                );
-            }
-            break;
-        case "2":
-            if ((inst.calAlarm2DOM > 28 && inst.calYear % 4 != 0) || (inst.calAlarm2DOM > 29 && inst.calYear % 4 == 0)) {
-                validation.logError(
-                    "An invalid date has been entered for the selected month.",
-                    inst, ["calAlarm2DOM"]
-                );
-            }
+        switch(inst.calMonth){
+            case "1":
+            case "3":
+            case "5":
+            case "7":
+            case "8":
+            case "10":
+            case "12":
+                if (inst.calAlarm2DOM > 31) {
+                    validation.logError(
+                        "An invalid date has been entered for the selected month.",
+                        inst, ["calAlarm2DOM"]
+                    );
+                }
+                break;
+            case "4":
+            case "6":
+            case "9":
+            case "11":
+                if (inst.calAlarm2DOM > 30) {
+                    validation.logError(
+                        "An invalid date has been entered for the selected month.",
+                        inst, ["calAlarm2DOM"]
+                    );
+                }
+                break;
+            case "2":
+                if ((inst.calAlarm2DOM > 28 && inst.calYear % 4 != 0) || (inst.calAlarm2DOM > 29 && inst.calYear % 4 == 0)) {
+                    validation.logError(
+                        "An invalid date has been entered for the selected month.",
+                        inst, ["calAlarm2DOM"]
+                    );
+                }
 
-        default:
-            break
+            default:
+                break
+        }
     }
-}
+
+    /* Validate Event selection for case of switching devices.
+     * Checks that selected event is withing the valid options
+     * for current device.
+     */
+    EVENT.validatePublisherOptions(inst,validation,"pubChanID");
 
 }
 

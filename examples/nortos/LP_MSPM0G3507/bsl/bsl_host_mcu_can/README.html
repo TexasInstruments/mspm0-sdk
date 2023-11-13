@@ -35,34 +35,61 @@
 <div id="content">
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
-<p>This demo shows how to program a MSPM0 MCU loaded with CAN BSL Plugin example (bsl_can_flash_interface) using a LP-MSPM0G3507 as host by this BSL CAN Host example.</p>
+<p>This demo shows how to program a MSPM0 MCU using a LP-MSPM0G3507 as host by BSL CAN interface.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
-<pre><code>            LP-MSPM0G3507
-               Host
-         -----------------
-  NRST -|                 |
-        |                 |
-        |             PB21|&lt;--S3
-        |                 |
-        |              PB0|--&gt;NRST
-        |             PB16|--&gt;Invoke GPIO
-        |                 |
-        |              PA0|--&gt;LED
-        |             PB27|--&gt;LED
-        |             PA12|--&gt;CAN_TX
-        |             PA13|&lt;--CAN_RX</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Peripheral</th>
+<th>Pin</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SYSCTL</td>
+<td>PA5</td>
+<td>HFXIN</td>
+</tr>
+<tr class="even">
+<td>SYSCTL</td>
+<td>PA6</td>
+<td>HFXOUT</td>
+</tr>
+<tr class="odd">
+<td>CANFD0</td>
+<td>PA13</td>
+<td>RX Pin</td>
+</tr>
+<tr class="even">
+<td>CANFD0</td>
+<td>PA12</td>
+<td>TX Pin</td>
+</tr>
+<tr class="odd">
+<td>DEBUGSS</td>
+<td>PA20</td>
+<td>Debug Clock</td>
+</tr>
+<tr class="even">
+<td>DEBUGSS</td>
+<td>PA19</td>
+<td>Debug Data In Out</td>
+</tr>
+<tr class="odd">
+<td>BSL</td>
+<td>PA18</td>
+<td>BSL Invoke Pin</td>
+</tr>
+<tr class="even">
+<td>BSL</td>
+<td>NRST</td>
+<td>NRST</td>
+</tr>
+</tbody>
+</table>
 <h2 id="boosterpacks-board-resources-jumper-settings">BoosterPacks, Board Resources &amp; Jumper Settings</h2>
 <p>Visit <a href="https://www.ti.com/tool/LP-MSPM0G3507">LP_MSPM0G3507</a> for LaunchPad information, including user guide and hardware files.</p>
-<ul>
-<li>Board resources:
-<ul>
-<li>PB0 (GPIO output function to generate NRST signal)</li>
-<li>PB16 (GPIO output function to generate BSL invoke signal)</li>
-<li>S3 - PB21 (Push button to start the program)</li>
-<li>LEDs - PA0/PB27 show state of the code</li>
-<li>CANTX/RX - PA12, PA13 to transfer the CAN frames</li>
-</ul></li>
-</ul>
 <table>
 <thead>
 <tr class="header">
@@ -139,23 +166,43 @@
 <p>The device CAN_RX and CAN_TX are to be connected to a CAN transceiver which will route the lines to the CAN Bus.</p>
 <p>Make the following connections, which can Invoke BSL through GPIO togggling,</p>
 <ul>
-<li>Host NRST -&gt; Target NRST</li>
-<li>Host BSL Invoke -&gt; Target BSL Invoke.</li>
+<li>Controller NRST -&gt; Peripheral NRST</li>
+<li>Controller BSL Invoke -&gt; Peripheral BSL Invoke.</li>
 </ul>
-<p>Compile, load and run the example. Push the S3 button to start program MSPM0G3507.</p>
+<p>Compile, load and run the example. Set up Initial CAN configurations as * CAN Mode : Classical CAN (BRS disabled) * Nominal Speed : 1 Mbps * Sampling point : 87.5 Push the S2 button to start program MSPM0G3507.</p>
 <h1 id="note">Note</h1>
 <ul>
-<li>The Transceiver used to test the example is TCAN1462-Q1.</li>
-<li>By default the example is initialized with CAN FD configuration
-<ul>
-<li>nominal bitrate : 1Mbps</li>
-<li>data bitrate : 5Mbps</li>
+<li><ul>
+<li>The Example is configured to work in CAN mode initially at 1 Mbps to get response from CAN plugin.</li>
 </ul></li>
-<li>To make connection with the BSL, the host communicates with the flexible data mode (fd mode), bitrate switching (brs) as disabled and sends CAN frames at 1 Mbps<br />
-</li>
-<li>HFXT input frequency is 40 MHz</li>
-<li>Achieved CANCLK frequency is 40 MHz</li>
-<li>Achieved MCLK frequency is 80 MHz</li>
+<li>To change the bitrate of communication based on the configuration obtained from host through Change Baudrate Command
+<ul>
+<li>The Data section in Change Baudrate Command is expected to match the format shown below</li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Padding (5)</th>
+<th>DRP (5)</th>
+<th>DSJW (4)</th>
+<th>DTSEG2 (4)</th>
+<th>DTSEG1 (5)</th>
+<th>NRP (9)</th>
+<th>NSJW (7)</th>
+<th>NSEG2 (7)</th>
+<th>NTSEG1 (8)</th>
+<th>BRS (1)</th>
+<th>FD (1)</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li>An arbitrary CAN frame is injected into CAN bus, on changing the CAN Mode to CAN FD to calibrate the transmission delay compensation attribute values. The Identity value can be modified as required.</li>
+<li>Message Identifier accepted by BSL CAN Host is 0x004</li>
+<li>Message Identifier sent from BSL CAN HOST to BSL CAN PLUGIN is 0x003</li>
 </ul>
 <!-- Close div from before_body_template.html -->
 </div>

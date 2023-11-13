@@ -135,6 +135,8 @@
             <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/dl_systick.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/empty_driverlib_src/ti/driverlib/m0p/dl_systick.h</path>
         </group>
         <group name="ti/driverlib/m0p/sysctl" build="true">
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h</path>
             <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.c</path>
             <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h</path>
             <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.c</path>

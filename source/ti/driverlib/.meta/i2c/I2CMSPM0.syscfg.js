@@ -257,9 +257,6 @@ triggers.
     }, /****** End of DMA CONFIGURATION *******/
 ])
 
-/* Helper Configurables */
-i2cConfig = i2cConfig.concat(I2CCommon.getHelperConfig())
-
 /* Add Pinmux Peripheral Configuration group */
 i2cConfig = i2cConfig.concat(Common.getGPIOGroupConfig());
 
@@ -388,8 +385,13 @@ function filterHardware(component)
  *  Pre-configures I2C according to profiles
  *
  */
-const profilesI2C = [
-    {
+    let defaultDMAConfig = {
+        DMAEvent1                           : "None",
+        DMAEvent2                           : "None",
+        enableDMAEvent1                     : false,
+        enableDMAEvent2                     : false,
+    }
+    let configProfile1 = {
         name                                : "CONFIG_PROFILE_1",
         basicEnableController               : true,
         basicEnableTarget                   : false,
@@ -405,12 +407,12 @@ const profilesI2C = [
         advControllerMultiController        : false,
         advControllerClkStretch             : true,
         intController                       : [],
-        DMAEvent1                           : "None",
-        DMAEvent2                           : "None",
-        enableDMAEvent1                     : false,
-        enableDMAEvent2                     : false,
-    },
-    {
+
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile1 = {...configProfile1, ...defaultDMAConfig};
+    };
+    let configProfile2 = {
         name                                : "CONFIG_PROFILE_2",
         basicEnableController               : false,
         basicEnableTarget                   : true,
@@ -427,12 +429,11 @@ const profilesI2C = [
         advTargetAckOverride                : false,
         advTargetTXEmptyEn                  : false,
         intController                       : [],
-        DMAEvent1                           : "None",
-        DMAEvent2                           : "None",
-        enableDMAEvent1                     : false,
-        enableDMAEvent2                     : false,
-    },
-    {
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile2 = {...configProfile2, ...defaultDMAConfig};
+    };
+    let configProfile3 = {
         name                                : "CONFIG_PROFILE_3",
         basicEnableController               : true,
         basicEnableTarget                   : true,
@@ -458,11 +459,14 @@ const profilesI2C = [
         advTargetAckOverride                : false,
         advTargetTXEmptyEn                  : false,
         intController                       : [],
-        DMAEvent1                           : "None",
-        DMAEvent2                           : "None",
-        enableDMAEvent1                     : false,
-        enableDMAEvent2                     : false,
-    },
+    };
+    if(!Common.isDeviceM0C()){
+        configProfile3 = {...configProfile3, ...defaultDMAConfig};
+    };
+const profilesI2C = [
+    configProfile1,
+    configProfile2,
+    configProfile3,
 ];
 
 function onChangeI2CProfile(inst, ui) {

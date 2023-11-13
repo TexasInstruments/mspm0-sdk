@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['esmo_5finstance',['ESMO_Instance',['../struct_e_s_m_o___instance.html',1,'']]],
-  ['esmo_5fpara',['ESMO_PARA',['../struct_e_s_m_o___p_a_r_a.html',1,'']]]
+  ['drv8323rs_5finstance',['DRV8323RS_Instance',['../struct_d_r_v8323_r_s___instance.html',1,'']]]
 ];

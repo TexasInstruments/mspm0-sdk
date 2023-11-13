@@ -31,12 +31,12 @@
  */
 
 #include <application_image.h>
-#include <can_config.h>
+#include <ti_msp_dl_config.h>
 #include "bsl.h"
 #include "can.h"
 
 void ToggleLeds(void);
-extern CANFD_baudrate_config br_cfg;
+
 uint8_t bsl_err;
 
 /*=============================================================================
@@ -46,43 +46,44 @@ const uint8_t BSL_PW_RESET[32] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF};
-
+extern CANFD_baudrate_config br_cfg;
 int main(void)
 {
     uint8_t section;
 
-    while (1)
+    SYSCFG_DL_init();
+    CAN_initialize();
+    /*Indication of Initialization*/
+    ToggleLeds();
+
+     while (1)
     {
-        SYSCFG_DL_init();
-        CAN_initialize();
-        /*Indication of Initialization*/
-        ToggleLeds();
-        if(!DL_GPIO_readPins(GPIO_Button_PORT, GPIO_Button_PIN_0_PIN))
+        if (!DL_GPIO_readPins(GPIO_Button_PORT, GPIO_Button_PIN_0_PIN))
         {
             delay_cycles(DELAY_BUTTON_PRESS);
             if (!DL_GPIO_readPins(GPIO_Button_PORT, GPIO_Button_PIN_0_PIN))
             {
                 bsl_err = BSL_OPERATION_SUCCESFUL;
                 ToggleLeds();
-
 #ifdef Hardware_Invoke
-                    /* PLACE TARGET INTO BSL MODE by hardware invoke*/
+                /* PLACE TARGET INTO BSL MODE by hardware invoke*/
                 Host_BSL_entry_sequence();
                 delay_cycles(DELAY_BSL_OP_LONG);
 #endif
-
                 bsl_err = Host_BSL_Connection();
                 delay_cycles(DELAY_BSL_OP_LONG);
+
                 if(bsl_err == BSL_OPERATION_SUCCESFUL)
                 {
                     bsl_err = Host_BSL_Change_Bitrate(&br_cfg);
+
                     if(bsl_err == BSL_OPERATION_SUCCESFUL)
                     {
                         bsl_err = Host_BSL_GetID();
                         if (BSL_maxBufferSize >= MAX_PACKET_SIZE)
                         {
                             bsl_err =
-                                Host_BSL_loadPassword((uint8_t*) BSL_PW_RESET);
+                            Host_BSL_loadPassword((uint8_t*) BSL_PW_RESET);
                             if (bsl_err == BSL_OPERATION_SUCCESFUL)
                             {
                                 bsl_err = Host_BSL_MassErase();
@@ -126,7 +127,7 @@ int main(void)
                     }
                     else
                     {
-                        /* BITRATE CHANGE error */
+                        /* Bitrate Change failed error */
                         TurnOnErrorLED();
                         __BKPT(0);
                     }
@@ -134,7 +135,6 @@ int main(void)
             }
         }
         delay_cycles(DELAY_BSL_OP);
-        CAN_deinit();
     }
 }
 

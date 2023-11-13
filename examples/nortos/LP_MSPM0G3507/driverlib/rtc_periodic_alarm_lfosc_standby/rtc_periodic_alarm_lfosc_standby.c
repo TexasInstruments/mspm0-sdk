@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,6 +32,7 @@
 
 #include "ti_msp_dl_config.h"
 
+
 int main(void)
 {
     SYSCFG_DL_init();
@@ -43,7 +44,8 @@ int main(void)
     DL_SYSCTL_enableSleepOnExit();
 
     /* Set LED to indicate RTC clock enable */
-    DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     /* Start RTC clock */
     DL_RTC_enableClockControl(RTC);
@@ -58,7 +60,8 @@ void RTC_IRQHandler(void)
     switch (DL_RTC_getPendingInterrupt(RTC)) {
         case DL_RTC_IIDX_PRESCALER1:
             /* Toggle LED */
-            DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
         default:
             break;
     }

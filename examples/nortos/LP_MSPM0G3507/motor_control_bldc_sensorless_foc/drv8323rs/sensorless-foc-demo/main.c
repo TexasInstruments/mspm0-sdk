@@ -30,10 +30,26 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "drv8323rs-gui.h"
+#include "foc.h"
 
 DRV8323RS_Instance drv8323rs;
 
 FOC_Instance foc;
+
+/* @brief Defines the ADC reset status */
+#define ADC_STATUS_RESET                  (0x00)
+
+/* @brief Defines the status when adc data is ready */
+#define ADC0_DATA_READY                   (0x01)
+
+/* @brief Defines the status when adc data is ready */
+#define ADC1_DATA_READY                   (0x02)
+
+/* @brief Defines the status when adc data is ready */
+#define ADC_READY                         (0x03)
+
+/** @brief Stores the status of ADC data availability   */
+uint8_t ADCStatus = ADC_STATUS_RESET;
 
 int main(void)
 {
@@ -50,43 +66,57 @@ int main(void)
     drv8323rs.vsenvm  = HAL_ADC_CHANNEL_1;
     drv8323rs.isena   = HAL_ADC_CHANNEL_2;
     drv8323rs.isenb   = HAL_ADC_CHANNEL_0;
+    drv8323rs.isenc   = HAL_ADC_CHANNEL_3;
 
     /* Initialize the DRV module */
     DRV8323RS_init(&drv8323rs);
-    
-    /* Initialize the GUI module */
-    GUI_init(&foc, &drv8323rs);
 
     /* Assign the pins specific for FOC */
-    foc.pwmAHal = HAL_PWM_CHANNEL_1;
-    foc.pwmBHal = HAL_PWM_CHANNEL_2;
-    foc.pwmCHal = HAL_PWM_CHANNEL_0;
-    
+    foc.hal.pwmAHal     = HAL_PWM_CHANNEL_1;
+    foc.hal.pwmBHal     = HAL_PWM_CHANNEL_2;
+    foc.hal.pwmCHal     = HAL_PWM_CHANNEL_0;
+    foc.hal.adcTrigHal  = HAL_PWM_CHANNEL_3;
+    foc.hal.isenAComp   = HAL_COMP_CHANNEL_0;
+    foc.hal.isenBComp   = HAL_COMP_CHANNEL_1;
+    foc.hal.isenCComp   = HAL_COMP_CHANNEL_2;
+    foc.hal.ipdTimer    = HAL_CAPTURE_CHANNEL_0;
+
+    /* Set the drv handle in the foc instance */
+    foc.drv_handle = (void *)&drv8323rs;
+
     /* Initialize the FOC module */
     FOC_init(&foc);
-    
+
+    /* Enabling the interrupts used by DRV module */
+    HAL_enableADCInterrupt(drv8323rs.vsenvm);
+    HAL_enableADCInterrupt(drv8323rs.isena);
+    HAL_enableADCInterrupt(drv8323rs.isenb);
+
+    /* Enable interrupts */
+    NVIC_EnableIRQ(GENERIC_TIM_0_INST_INT_IRQN);
+    NVIC_EnableIRQ(GENERIC_PWM_0_INST_INT_IRQN);
+
     /* Set the priority for interrupts */
+    NVIC_SetPriority(GENERIC_CAPTURE_0_INST_INT_IRQN, 0);
     NVIC_SetPriority(GENERIC_ADC_0_INST_INT_IRQN, 1);
     NVIC_SetPriority(GENERIC_ADC_1_INST_INT_IRQN, 1);
+    NVIC_SetPriority(GENERIC_PWM_0_INST_INT_IRQN, 1);
+    NVIC_SetPriority(GENERIC_TIM_0_INST_INT_IRQN, 2);
 
     while (1)
     {
-        /* Handles the GUI changes */
-        GUI_loop(&foc, &drv8323rs);
-
-        /* Gets the GUI variables for current and voltage */
-        GUI_getVars(&drv8323rs);
-
-        /* Checks for any faults */
-        GUI_checkFaults(&foc, &drv8323rs);
-
         /* Handling the SPI register request from GUI */
         GUI_spiCommands(&drv8323rs);
+
+        /* Check and update the parameters */
+        FOC_paramsUpdateProcess(&foc, &userVar);
     }
 }
 
 void GENERIC_ADC_1_INST_IRQHandler(void)
 {
+    ADCStatus |= ADC1_DATA_READY;
+
     /* HAL layer collects the ADC data if HAL channel is defined in the
      HAL layer. The api also returns the pending IRQ, the user can use this 
      for any custom application */
@@ -95,13 +125,34 @@ void GENERIC_ADC_1_INST_IRQHandler(void)
 
 void GENERIC_ADC_0_INST_IRQHandler(void)
 {
-    uint16_t vmAdc, iaAdc, ibAdc;
+    ADCStatus |= ADC0_DATA_READY;
+
     /* HAL layer collects the ADC data if HAL channel is defined in the
     HAL layer. The api also returns the pending IRQ, the user can use this 
     for any custom application */
     DL_ADC12_IIDX pendIrq = HAL_processADCIRQ(GENERIC_ADC_0_INST);
-    vmAdc = DRV8323RS_getVMRaw(&drv8323rs);
-    iaAdc = DRV8323RS_getIARaw(&drv8323rs);
-    ibAdc = DRV8323RS_getIBRaw(&drv8323rs);
-    FOC_loop(&foc, vmAdc, iaAdc, ibAdc);
+}
+
+void GENERIC_PWM_0_INST_IRQHandler(void)
+{
+    uint16_t vmAdc, iaAdc, ibAdc, icAdc;
+    if(ADCStatus == ADC_READY)
+    {
+        vmAdc = DRV8323RS_getVMRaw(&drv8323rs);
+        iaAdc = DRV8323RS_getIARaw(&drv8323rs);
+        ibAdc = DRV8323RS_getIBRaw(&drv8323rs);
+        icAdc = DRV8323RS_getICRaw(&drv8323rs);
+        FOC_loop(&foc, vmAdc, iaAdc, ibAdc, icAdc);
+        ADCStatus = ADC_STATUS_RESET;
+    }
+}
+
+void GENERIC_TIM_0_INST_IRQHandler(void)
+{
+    FOC_CONTROL_run(&foc);
+}
+
+void GENERIC_CAPTURE_0_INST_IRQHandler(void)
+{
+    IPD_ISR(&ipd, &foc.hal);
 }

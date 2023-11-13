@@ -13,64 +13,80 @@ DRV8323RS Hardware User Guide
 2. Hardware Setup
 -----------------
 
-1. Remove the jumper J3 in the LP-MSPM0G3507 as shown below.
+1. Remove the PA26 jumper J18 in the LP-MSPM0G3507 as shown below.
 
-.. figure:: images/LPMSPM0G3507-J3.jpg
-   :alt: J3 header removed in LP-MSPM0G3507
+   .. figure:: images/LPMSPM0G3507-J18.jpg
+      :alt: J3 header removed in LP-MSPM0G3507
 
-   J3 header removed in LP-MSPM0G3507
+      J3 header removed in LP-MSPM0G3507
 
-2. Connect the 3 phases of the BLDC motor to A/B/C of connector J5 on the BOOSTXL-DRV8323RS.
+2. Connect the LP-MSPM0G3507 to the BOOSTXL-DRV8323RS in one of two ways:
 
-3. Connect VM+/GND to the positive and negative of the power supply. Do not turn the power on yet.
+   -  Plug the connectors J3 and J4 of the BOOSTXL-DRV8323RS to the top of the connectors J3/J4 of the LP-MSPM0G3507.
 
-4. Plug the connectors J3 and J4 of the BOOSTXL-DRV8323RS to the top of the connectors J3/J4 of the LP-MSPM0G3507. Refer the connection image shown below.
+   -  If using the jumper wires, connect as shown in the table below. Refer to the schematic of J3 and J4 connector pinout on BOOSTXL-DRV8323RS for the location of the signals.
 
-If the user wishes to connect pins individually rather than using the connectors, J3 and J4 please use the below pinouts:
+      .. figure:: images/DRV-CONNECTOR.jpg
+         :alt: BOOSTXL-DRV8323RS J3 and J4 connector pinout
 
-+-------------------------+--------------+---------------------+
-| Connection              | MSPM0G3507   | BOOSTXL-DRV8323RS   |
-+=========================+==============+=====================+
-| Phase A HS input        | PB4          | INHA                |
-+-------------------------+--------------+---------------------+
-| Phase A LS input        | PB1          | INLA                |
-+-------------------------+--------------+---------------------+
-| Phase B HS input        | PA28         | INHB                |
-+-------------------------+--------------+---------------------+
-| Phase B LS input        | PA31         | INLB                |
-+-------------------------+--------------+---------------------+
-| Phase C HS input        | PB20         | INHC                |
-+-------------------------+--------------+---------------------+
-| Phase C LS input        | PB13         | INLC                |
-+-------------------------+--------------+---------------------+
-| Serial clock input      | PB9          | SCLK                |
-+-------------------------+--------------+---------------------+
-| Serial data input       | PB8          | SDI                 |
-+-------------------------+--------------+---------------------+
-| Serial data output      | PB7          | SDO                 |
-+-------------------------+--------------+---------------------+
-| Chip Select             | PB0          | nSCS                |
-+-------------------------+--------------+---------------------+
-| Bus voltage input       | PA15         | VSENVM              |
-+-------------------------+--------------+---------------------+
-| Phase A current input   | PA17         | ISENA               |
-+-------------------------+--------------+---------------------+
-| Phase B current input   | PA24         | ISENB               |
-+-------------------------+--------------+---------------------+
-| Fault Input             | PA27         | nFAULT              |
-+-------------------------+--------------+---------------------+
-| DRV Enable output       | PA26         | ENABLE              |
-+-------------------------+--------------+---------------------+
-| Common Ground           | GND          | GND                 |
-+-------------------------+--------------+---------------------+
+         BOOSTXL-DRV8323RS J3 and J4 connector pinout
 
-5. Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.
+      +-------------------------+--------------+---------------------+
+      | Connection              | MSPM0G3507   | BOOSTXL-DRV8323RS   |
+      +=========================+==============+=====================+
+      | Phase A HS input        | PB4          | INHA                |
+      +-------------------------+--------------+---------------------+
+      | Phase A LS input        | PB1          | INLA                |
+      +-------------------------+--------------+---------------------+
+      | Phase B HS input        | PA28         | INHB                |
+      +-------------------------+--------------+---------------------+
+      | Phase B LS input        | PA31         | INLB                |
+      +-------------------------+--------------+---------------------+
+      | Phase C HS input        | PB20         | INHC                |
+      +-------------------------+--------------+---------------------+
+      | Phase C LS input        | PB13         | INLC                |
+      +-------------------------+--------------+---------------------+
+      | Serial clock input      | PB9          | SCLK                |
+      +-------------------------+--------------+---------------------+
+      | Serial data input       | PB8          | SDI                 |
+      +-------------------------+--------------+---------------------+
+      | Serial data output      | PB7          | SDO                 |
+      +-------------------------+--------------+---------------------+
+      | Chip Select             | PB0          | nSCS                |
+      +-------------------------+--------------+---------------------+
+      | Bus voltage input       | PA25         | VSENVM              |
+      +-------------------------+--------------+---------------------+
+      | Phase A current input   | PA17         | ISENA               |
+      +-------------------------+--------------+---------------------+
+      | Phase B current input   | PA24         | ISENB               |
+      +-------------------------+--------------+---------------------+
+      | Phase C current input   | PA18         | ISENC               |
+      +-------------------------+--------------+---------------------+
+      | Fault Input             | PA27         | nFAULT              |
+      +-------------------------+--------------+---------------------+
+      | DRV Enable output       | PA26         | ENABLE              |
+      +-------------------------+--------------+---------------------+
+      | Common Ground           | GND          | GND                 |
+      +-------------------------+--------------+---------------------+
 
-6. Set the power supply to the motor voltage and a 5-A current limit. Turn on the power supply. The green LED should turn on. See connection below.
+3. For using the IPD startup feature user needs to additionally make the below connections :
 
-.. figure:: images/LPMSPM0G3507-BOOSTXL-DRV8323RS.jpg
-   :alt: BOOSTXL-DRV8323RS connected to LP-MSPM0G3507
+   +----------------+--------------+---------------------+
+   | Connection     | MSPM0G3507   | BOOSTXL-DRV8323RS   |
+   +================+==============+=====================+
+   | COMP A input   | PA14         | ISENA               |
+   +----------------+--------------+---------------------+
+   | COMP B input   | PB26         | ISENB               |
+   +----------------+--------------+---------------------+
+   | COMP C input   | PB21         | ISENC               |
+   +----------------+--------------+---------------------+
 
-   BOOSTXL-DRV8323RS connected to LP-MSPM0G3507
+4. Connect the 3 phases of the BLDC motor to A/B/C of connector J5 on the BOOSTXL-DRV8323RS.
 
-7. Once all steps are completed you can start to run the motor. Please refer to `GUI User Guide <DRV8323RS_GUI_User_Guide_CN.html>`__.
+5. Connect the positive and negative of the power supply to VM and GND of the power connector terminal block to the
+
+6. Set the power supply to to a motor voltage between 4.5V to 34V within the DRV8323RS specifications and a 5-A current limit. Turn on the power supply. The green VM LED on the BOOSTXL-DRV8323RS should turn on.
+
+7. Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.
+
+8. Once all steps are completed you can start to run the motor. Please refer to `Software User Guide <../MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html>`__ or `GUI User Guide <DRV8323RS_GUI_User_Guide_CN.html>`__.

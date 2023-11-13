@@ -52,14 +52,12 @@
 /* Include the IQmath Library */
 #include "ti/iqmath/include/IQmathLib.h"
 
+/* Extended IQmath Library for rts */
+#include "iqmath_rts.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/*!
- * @brief  Per cycle change in the ramp setpoint
- */
- #define RMP_CNTRL_DELTA			_IQ(0.000005)
 
 /*! @brief Define rmpcntrl structure */
 typedef struct {
@@ -75,6 +73,8 @@ typedef struct {
 	uint32_t RampDelayCount;
 	/*! Ramp output value */
 	_iq SetpointValue;
+    /*! Ramp delta */
+    _iq RampDelta;
 	/*! Temporary variable to hold the difference of target and current ramp
 	output */
 	_iq	Tmp;
@@ -88,7 +88,31 @@ typedef struct {
                             0,       \
                           	0,       \
                           	0,       \
+                            0,       \
                    		  }
+
+/*! @brief Define ramp control parameter structure */
+typedef struct {
+    /*! RampDelta in Hz per cycle */
+    int32_t RampDelta;
+    /*! Maximum frequency in Hz */
+    int32_t maxFreq;
+    /*!  Sampling time in sec */
+    int32_t Ts;
+} RMPCNTL_PARA;
+
+/**
+ * @brief     Update the ramp control parameters
+ * @param[in] handle  A pointer to ramp control instance
+ * @param[in] para    A pointer to parameter array
+ */
+__STATIC_INLINE void RMPCNTL_UpdateParams(RMPCNTL_Instance *handle,
+                                                          RMPCNTL_PARA *para)
+{
+    handle->RampDelta = _IQmpy_rts(para->RampDelta ,para->Ts);
+    handle->RampHighLimit = _IQ(para->maxFreq);
+    handle->RampLowLimit = 0;
+}
 
 /**
  * @brief     Run ramp control
@@ -97,24 +121,34 @@ typedef struct {
 __STATIC_INLINE void RC_run(RMPCNTL_Instance *handle)
 {
 	handle->Tmp = handle->TargetValue - handle->SetpointValue;
-	if (_IQabs(handle->Tmp) >= RMP_CNTRL_DELTA)
+	if (_IQabs(handle->Tmp) >= handle->RampDelta)
 	{
 		handle->RampDelayCount++;
 		if (handle->RampDelayCount >= handle->RampDelayMax)
 		{
 			if (handle->TargetValue >= handle->SetpointValue)
 			{
-				handle->SetpointValue += RMP_CNTRL_DELTA;
+				handle->SetpointValue += handle->RampDelta;
 			}
 			else
 			{
-				handle->SetpointValue -= RMP_CNTRL_DELTA;
+				handle->SetpointValue -= handle->RampDelta;
 			}
-			handle->SetpointValue=_IQsat(handle->SetpointValue,
+			handle->SetpointValue =_IQsat(handle->SetpointValue,
 								   handle->RampHighLimit, handle->RampLowLimit);
 			handle->RampDelayCount = 0;
 		}
 	}
+}
+
+/**
+ * @brief     Reset ramp control variables
+ * @param[in] handle  A pointer to ramp control instance
+ */
+__STATIC_INLINE void RC_reset(RMPCNTL_Instance *handle)
+{
+	handle->TargetValue = 0;
+	handle->SetpointValue = 0;
 }
 
 #ifdef __cplusplus

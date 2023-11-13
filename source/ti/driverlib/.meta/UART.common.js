@@ -45,7 +45,6 @@ exports = {
     getAdvancedConfigLIN    : getAdvancedConfigLIN,
     getExtendConfig     : getExtendConfig,
     getDMAConfig        : getDMAConfig,
-    getHelperConfig     : getHelperConfig,
     getDMAModInstances  : getDMAModInstances,
     setRequiredModules  : setRequiredModules,
     getValidation       : getValidation,
@@ -1443,6 +1442,10 @@ This form of communication requires encoding/decoding mechanisms to ensure the s
 }
 
 function getDMAConfig(inst,ui){
+    // UART does not support DMA for MSPM0Cxx
+    if(Common.isDeviceM0C()){
+        return [];
+    }
     return [
         /* DL_UART_enableDMAReceiveEvent */
         {
@@ -1483,57 +1486,10 @@ function getDMAConfig(inst,ui){
     ];
 }
 
-function getHelperConfig(inst,ui){
-    return [
-        /* Helper Configurables
-             * These are invisible to sysconfig and have no influence on code generation, but give the module additional
-             * visibility based on the state of the system and the specific M0 device being configured
-             */
-        {
-            /* name of the device */
-            name: "device",
-            default: "MSPM0G350X",
-            hidden: true,
-            getValue: (inst) => {
-                let mySys = system;
-                return system.deviceData.device;
-            }
-        },
-        {
-            /* this is a read-only array of the uart modules that are actually present on the device,
-             * can be used to limit the allowable uart to those that make sense
-             */
-            name: "uarts",
-            default: [""],
-            /* superset of all possible UARTmodules */
-            options: [
-                {name: "UART0"}, {name: "UART1"}, {name: "UART2"}, {name: "UART3"}, {name: ""}
-            ],
-            hidden: true,
-            getValue: (inst) => {
-                let array = _.map(system.deviceData.interfaces.UART.peripherals, (v)=> v.name);
-                return array;
-            }
-        },
-        {
-            /* Removes undefined possibility for uart assignment */
-            name: "uartAssignment",
-            default: "Any",
-            hidden: true,
-            getValue: (inst) => {
-                if(inst.peripheral) {
-                    return inst.peripheral.$assign;
-                } else {
-                    return "Any";
-                }
-            }
-        }
-        /****** End of Helper Configurables *******/
-    ];
-}
-
 /************************* devSpecific functions *******************************/
 function getDMAModInstances(inst, modInstances){
+    /* UART does not support DMA configuration for MSPM0Cxx */
+    if(!Common.isDeviceM0C()){
     if(!["None"].includes(inst.enabledDMARXTriggers)){
         let mod = {
             name: "DMA_CHANNEL_RX",
@@ -1572,12 +1528,16 @@ function getDMAModInstances(inst, modInstances){
         modInstances.push(mod);
         /* TODO: pickup here */
     }
+    }
 }
 
 function setRequiredModules(inst){
     let theModules = ["Board", "SYSCTL"]
-    if(!["None"].includes(inst.enabledDMARXTriggers) || !["None"].includes(inst.enabledDMATXTriggers)){
-        theModules.push("DMA");
+    /* UART does not support DMA configuration for MSPM0Cxx */
+    if(!Common.isDeviceM0C()){
+        if(!["None"].includes(inst.enabledDMARXTriggers) || !["None"].includes(inst.enabledDMATXTriggers)){
+            theModules.push("DMA");
+        }
     }
 
     let kwargs = theModules;

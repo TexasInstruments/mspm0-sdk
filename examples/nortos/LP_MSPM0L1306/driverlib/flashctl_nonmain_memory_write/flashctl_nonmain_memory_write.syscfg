@@ -29,4 +29,6 @@ GPIO1.associatedPins[0].assignedPortSegment = "Lower";
 GPIO1.associatedPins[0].assignedPin         = "0";
 GPIO1.associatedPins[0].initialValue        = "SET";
 
+NONMAIN.nonmainWarning = true;
+
 SYSCTL.clockTreeEn = true;

@@ -63,7 +63,7 @@ typedef struct 	{
 	_iq  Ualpha;
 	/*!  Input: reference beta-axis phase voltage  */
 	_iq  Ubeta;
-	/*!  Output: reference phase-a switching function		 */
+	/*!  Output: reference phase-a switching function */
 	_iq  Ta;
 	/*!  Output: reference phase-b switching function  */
 	_iq  Tb;
@@ -82,18 +82,18 @@ typedef struct 	{
 /*! @brief Default values for SVGEN object */                
 #define SVGEN_DEFAULTS { 0,0,0,0,0 }                       
 
-/*! @brief 0.866 in IQ24 is 14529069 */  
-#define _0P866_IQ24			(14529069)
+/*! @brief 0.866 in IQ */
+#define _0P866_IQ			(_IQ(0.866))
 
 /**
  * @brief     Run Space vector generation algorithm
- * @param[in] handle  A pointer to esmo instance
+ * @param[in] handle  A pointer to svgen instance
  */
 __STATIC_INLINE void SVGEN_run(SVGEN_Instance *handle)
 {
 	handle->tmp1 = handle->Ubeta;
 	handle->tmp2 = _IQdiv2(handle->Ubeta)
-									  + (_IQ24mpy(_0P866_IQ24, handle->Ualpha));
+									  + (_IQmpy(_0P866_IQ, handle->Ualpha));
     handle->tmp3 = handle->tmp2 - handle->tmp1;
 
 	handle->VecSector = 3;

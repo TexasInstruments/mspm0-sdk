@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Code Composer Studio IDE Version 12.4+ for MSPM0 MCUs &mdash; Code Composer Studio IDE for MSPM0 MCUs 1.0 documentation</title>
+  <title>Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs &mdash; Code Composer Studio IDE for MSPM0 MCUs 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -43,7 +43,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Composer Studio IDE Version 12.4+ for MSPM0 MCUs</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#read-this-first">Read This First</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-use-this-guide">How to Use This Guide</a></li>
@@ -114,7 +114,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Code Composer Studio IDE Version 12.4+ for MSPM0 MCUs</li>
+      <li>Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -123,8 +123,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="code-composer-studio-ide-version-12-4-for-mspm0-mcus">
-<h1>Code Composer Studio IDE Version 12.4+ for MSPM0 MCUs<a class="headerlink" href="#code-composer-studio-ide-version-12-4-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
+  <section id="code-composer-studio-ide-version-12-5-0-for-mspm0-mcus">
+<h1>Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs<a class="headerlink" href="#code-composer-studio-ide-version-12-5-0-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -175,7 +175,7 @@
 <section id="software-installation">
 <h2>1. Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this heading">¶</a></h2>
 <p>Code Composer Studio IDE is available from <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">TI.com</a>.</p>
-<p>MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.4 or higher.</p>
+<p>MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.5.0 or higher.</p>
 <p>Code Composer Studio (CCS) IDE is available from <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">TI.com</a>. Installation instructions for CCS 12.3 are available <a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/users_guide_12.3.0/ccs_installation.html#installation-process">here</a>.</p>
 <p><a class="reference external" href="https://www.ti.com/tool/ARM-CGT">TI Arm Clang</a> is the recommended compiler for CCS and it will be installed by default when MSPM0 is selected during installation.</p>
 <p>Arm GCC is also available for use inside CCS; however, it’s not installed by default. Section <a class="reference external" href="#installing-arm-gcc">Installing Arm GCC</a> explains how to install GCC for CCS.</p>
@@ -512,6 +512,17 @@
 </figure>
 </li>
 </ol>
+<section id="dssm-after-power-up">
+<h5>3.5.1.1 DSSM after Power-up<a class="headerlink" href="#dssm-after-power-up" title="Permalink to this heading">¶</a></h5>
+<p>The device might not respond to DSSM commands in some scenarios such as when the reset line or SWD pins are used for other functions. In such conditions, it can be useful to follow the next steps:</p>
+<ol class="arabic simple">
+<li><p>Power off the device</p></li>
+<li><p>Hold the reset line (NRST) low</p></li>
+<li><p>Power up the device, while holding NRST low</p></li>
+<li><p>Execute one of the <strong>Manual</strong> DSSM commands mentioned in previous section</p></li>
+<li><p>When prompted, release NRST</p></li>
+</ol>
+</section>
 </section>
 <section id="dssm-swd-password-mechanism">
 <h4>3.5.2 DSSM SWD Password Mechanism<a class="headerlink" href="#dssm-swd-password-mechanism" title="Permalink to this heading">¶</a></h4>

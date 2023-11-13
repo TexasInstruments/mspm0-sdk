@@ -43,7 +43,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../Sensorless_FOC_Motor_Control_User_Guide_CN.html">无传感器 FOC 电机控制库概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html">MSPM0 Sensorless FOC Software User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sensorless_FOC_Motor_Control_User_Guide_CN.html">Sensorless FOC Motor Control Library Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DRV8323RS_GUI_User_Guide_CN.html">DRV8323RS GUI User Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8323RS Hardware User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#hardware-required">1. Hardware Required</a></li>
@@ -89,21 +90,25 @@
 </section>
 <section id="hardware-setup">
 <h2>2. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">¶</a></h2>
-<ol class="arabic simple">
-<li><p>Remove the jumper J3 in the LP-MSPM0G3507 as shown below.</p></li>
-</ol>
+<ol class="arabic">
+<li><p>Remove the PA26 jumper J18 in the LP-MSPM0G3507 as shown below.</p>
 <figure class="align-default" id="id1">
-<img alt="J3 header removed in LP-MSPM0G3507" src="../../_images/LPMSPM0G3507-J3.jpg" />
+<img alt="J3 header removed in LP-MSPM0G3507" src="../../_images/LPMSPM0G3507-J18.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">J3 header removed in LP-MSPM0G3507</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">J3 header removed in LP-MSPM0G3507</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<ol class="arabic simple" start="2">
-<li><p>Connect the 3 phases of the BLDC motor to A/B/C of connector J5 on the BOOSTXL-DRV8323RS.</p></li>
-<li><p>Connect VM+/GND to the positive and negative of the power supply. Do not turn the power on yet.</p></li>
-<li><p>Plug the connectors J3 and J4 of the BOOSTXL-DRV8323RS to the top of the connectors J3/J4 of the LP-MSPM0G3507. Refer the connection image shown below.</p></li>
-</ol>
-<p>If the user wishes to connect pins individually rather than using the connectors, J3 and J4 please use the below pinouts:</p>
+</li>
+<li><p>Connect the LP-MSPM0G3507 to the BOOSTXL-DRV8323RS in one of two ways:</p>
+<ul>
+<li><p>Plug the connectors J3 and J4 of the BOOSTXL-DRV8323RS to the top of the connectors J3/J4 of the LP-MSPM0G3507.</p></li>
+<li><p>If using the jumper wires, connect as shown in the table below. Refer to the schematic of J3 and J4 connector pinout on BOOSTXL-DRV8323RS for the location of the signals.</p>
+<figure class="align-default" id="id2">
+<img alt="BOOSTXL-DRV8323RS J3 and J4 connector pinout" src="../../_images/DRV-CONNECTOR.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">BOOSTXL-DRV8323RS J3 and J4 connector pinout</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Connection</p></th>
@@ -153,7 +158,7 @@
 <td><p>nSCS</p></td>
 </tr>
 <tr class="row-even"><td><p>Bus voltage input</p></td>
-<td><p>PA15</p></td>
+<td><p>PA25</p></td>
 <td><p>VSENVM</p></td>
 </tr>
 <tr class="row-odd"><td><p>Phase A current input</p></td>
@@ -164,32 +169,56 @@
 <td><p>PA24</p></td>
 <td><p>ISENB</p></td>
 </tr>
-<tr class="row-odd"><td><p>Fault Input</p></td>
+<tr class="row-odd"><td><p>Phase C current input</p></td>
+<td><p>PA18</p></td>
+<td><p>ISENC</p></td>
+</tr>
+<tr class="row-even"><td><p>Fault Input</p></td>
 <td><p>PA27</p></td>
 <td><p>nFAULT</p></td>
 </tr>
-<tr class="row-even"><td><p>DRV Enable output</p></td>
+<tr class="row-odd"><td><p>DRV Enable output</p></td>
 <td><p>PA26</p></td>
 <td><p>ENABLE</p></td>
 </tr>
-<tr class="row-odd"><td><p>Common Ground</p></td>
+<tr class="row-even"><td><p>Common Ground</p></td>
 <td><p>GND</p></td>
 <td><p>GND</p></td>
 </tr>
 </tbody>
 </table>
-<ol class="arabic simple" start="5">
+</li>
+</ul>
+</li>
+<li><p>For using the IPD startup feature user needs to additionally make the below connections :</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Connection</p></th>
+<th class="head"><p>MSPM0G3507</p></th>
+<th class="head"><p>BOOSTXL-DRV8323RS</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>COMP A input</p></td>
+<td><p>PA14</p></td>
+<td><p>ISENA</p></td>
+</tr>
+<tr class="row-odd"><td><p>COMP B input</p></td>
+<td><p>PB26</p></td>
+<td><p>ISENB</p></td>
+</tr>
+<tr class="row-even"><td><p>COMP C input</p></td>
+<td><p>PB21</p></td>
+<td><p>ISENC</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Connect the 3 phases of the BLDC motor to A/B/C of connector J5 on the BOOSTXL-DRV8323RS.</p></li>
+<li><p>Connect the positive and negative of the power supply to VM and GND of the power connector terminal block to the</p></li>
+<li><p>Set the power supply to to a motor voltage between 4.5V to 34V within the DRV8323RS specifications and a 5-A current limit. Turn on the power supply. The green VM LED on the BOOSTXL-DRV8323RS should turn on.</p></li>
 <li><p>Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.</p></li>
-<li><p>Set the power supply to the motor voltage and a 5-A current limit. Turn on the power supply. The green LED should turn on. See connection below.</p></li>
-</ol>
-<figure class="align-default" id="id2">
-<img alt="BOOSTXL-DRV8323RS connected to LP-MSPM0G3507" src="../../_images/LPMSPM0G3507-BOOSTXL-DRV8323RS.jpg" />
-<figcaption>
-<p><span class="caption-number">Fig. 17 </span><span class="caption-text">BOOSTXL-DRV8323RS connected to LP-MSPM0G3507</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<ol class="arabic simple" start="7">
-<li><p>Once all steps are completed you can start to run the motor. Please refer to <a class="reference external" href="DRV8323RS_GUI_User_Guide_CN.html">GUI User Guide</a>.</p></li>
+<li><p>Once all steps are completed you can start to run the motor. Please refer to <a class="reference external" href="../MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html">Software User Guide</a> or <a class="reference external" href="DRV8323RS_GUI_User_Guide_CN.html">GUI User Guide</a>.</p></li>
 </ol>
 </section>
 </section>

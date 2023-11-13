@@ -86,19 +86,19 @@
 <h1>适用于 IAR 的 MSPM0 SDK 快速入门指南<a class="headerlink" href="#iar-mspm0-sdk" title="Permalink to this heading">¶</a></h1>
 <section id="id1">
 <h2>1. 引言<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
-<p>本指南旨在帮助用户完成初始设置并演示通过 IAR 运行其第一个 MSPM0 应用。 本指南不用于说明 IAR 功能。请参阅 <a class="reference external" href="https://www.iar.com/">IAR</a> 文档或 MSPM0 SDK 文档随附的<a class="reference external" href="../../../tools/iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide.html">适用于 MSPM0 MCU 的 IAR IDE 指南</a>。</p>
+<p>本指南旨在帮助用户完成初始设置并演示通过 IAR 运行其第一个 MSPM0 应用。 本指南不用于说明 IAR 功能。请参阅 <a class="reference external" href="https://www.iar.com/">IAR</a> 文档或 MSPM0 SDK 文档随附的<a class="reference external" href="../../../tools/iar_ide_guide/doc_guide/doc_guide-srcs/iar_ide_guide_CN.html">适用于 MSPM0 MCU 的 IAR IDE 指南</a>。</p>
 </section>
 <section id="id2">
 <h2>2. 先决条件<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>用户应已下载以下各项：</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a></p></li>
-<li><p><a class="reference external" href="https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/">适用于 Arm 9.40.x 的 IAR Embedded Workbench</a></p>
+<li><p><a class="reference external" href="https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/">适用于 9.40.2 的 IAR Embedded Workbench</a></p>
 <ul>
 <li><p>使用 MSPM0 Launchpad 的集成 XDS-110 编程器时，需要 TI XDS 驱动程序。有关详细信息，请访问 <a class="reference external" href="https://updates.iar.com/filestore/standard/001/001/123/arm/doc/infocenter/csxds.ENU.html">IAR C-SPY XDS 驱动程序版本说明</a>。</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig 1.17.x</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">SysConfig 1.18.x</a></p></li>
 </ul>
 </section>
 <section id="mspm0-sdk">
@@ -161,9 +161,9 @@
 <section id="mspm0-sysconfig">
 <h2>5. 为 MSPM0 安装 SysConfig<a class="headerlink" href="#mspm0-sysconfig" title="Permalink to this heading">¶</a></h2>
 <p>此 SDK 包括 SysConfig 元数据的初始版本，可用于评估 MSPM0 SDK 的用户体验。</p>
-<p>更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的<a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">将 SysConfig 与 MSPM0 配合使用</a>。</p>
+<p>更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的<a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">将 SysConfig 与 MSPM0 配合使用</a>。</p>
 <ol class="arabic">
-<li><p>从 <a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">ti.com</a> 下载并安装 SysConfig 独立版本（1.17.x 或更高版本）</p></li>
+<li><p>从 <a class="reference external" href="https://www.ti.com/tool/SYSCONFIG">ti.com</a> 下载并安装 SysConfig 独立版本（1.18.x 或更高版本）</p></li>
 <li><p>在 IAR 中，从菜单中依次选择 <strong>Tools → Configure Viewers</strong>。</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_configure_viewers.png" />
@@ -216,8 +216,8 @@
 <li><p>要编译示例，在工程中右键点击并选择 <strong>Make</strong>。 请注意，SysConfig 工程将在<em>“SysConfig Generated Files”</em>文件夹中自动生成文件。</p>
 <div class="line-block">
 <div class="line"><strong>注意</strong>：一些示例支持 SysConfig，以便更轻松地进行器件配置。</div>
-<div class="line">有关支持 SysConfig 的示例的完整列表，请查看 <a class="reference external" href="../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html">MSPM0 SDK 示例指南</a>。</div>
-<div class="line">更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的<a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">将 SysConfig 与 MSPM0 配合使用</a>。</div>
+<div class="line">有关支持 SysConfig 的示例的完整列表，请查看 <a class="reference external" href="../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide_CN.html">MSPM0 SDK 示例指南</a>。</div>
+<div class="line">更多有关将 SysConfig 与 MSPM0 配合使用的一般信息，请参阅 SDK 工具指南中提供的<a class="reference external" href="../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html">将 SysConfig 与 MSPM0 配合使用</a>。</div>
 </div>
 <figure class="align-default">
 <img alt="" src="../_images/iar_example_5a.png" />

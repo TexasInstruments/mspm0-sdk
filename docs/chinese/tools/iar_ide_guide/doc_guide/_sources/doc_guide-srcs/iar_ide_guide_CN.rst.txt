@@ -1,5 +1,5 @@
-适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.40+ 版
-=======================================================
+适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.40.2+ 版
+=========================================================
 
 目录
 ----
@@ -53,7 +53,7 @@ MSPM0 器件文档：
 1. 软件安装
 -----------
 
-`IAR 网站 <https://www.iar.com/>`__\ 或 `TI IAR 入门页面 <https://www.ti.com/tool/IAR-KICKSTART>`__\ 提供 IAR Embedded Workbench for Arm (EWARM) IDE。MSPM0 微控制器和 MSPM0 SDK 需要 EWARM 9.40.1 或更高版本。
+`IAR 网站 <https://www.iar.com/>`__\ 或 `TI IAR 入门页面 <https://www.ti.com/tool/IAR-KICKSTART>`__\ 提供 IAR Embedded Workbench for Arm (EWARM) IDE。MSPM0 微控制器和 MSPM0 SDK 需要 EWARM 9.40.2 或更高版本。
 
 要查找适合您 IDE 版本的 SDK，请参阅 `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ 文档。
 
@@ -90,7 +90,7 @@ MSPM0 器件文档：
 2.2 从 MSPM0 SDK 创建 MSPM0 工程
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-请参阅\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html>`__\ ，其中包含有关如何安装 MSPM0 SDK 以及在 IAR 中导入和编译 SDK 示例的说明。
+请参阅\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__\ ，其中包含有关如何安装 MSPM0 SDK 以及在 IAR 中导入和编译 SDK 示例的说明。
 
 2.3 从头开始创建工程
 ~~~~~~~~~~~~~~~~~~~~
@@ -104,9 +104,9 @@ MSPM0 SDK 中的一些示例支持 SysConfig。\ `SysConfig <https://www.ti.com/
 
 SysConfig 工具作为独立安装程序交付，可手动集成到 IAR 中，也可通过 dev.ti.com 云工具门户使用。
 
-在 IAR 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 IAR 中初始化 SysConfig。请参阅\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar.html>`__\ ，以详细了解如何安装 SysConfig 和 为 IAR 启用 SysConfig。
+在 IAR 中启动 SysConfig 工程的最佳方式是从 SDK 将其导入；不过在首次启动时， 需执行一些步骤以在 IAR 中初始化 SysConfig。请参阅\ `适用于 IAR 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_iar_CN.html>`__\ ，以详细了解如何安装 SysConfig 和 为 IAR 启用 SysConfig。
 
-有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__\ 指南。
+有关如何将 SysConfig 与 MSPM0 配合使用的详细信息，请访问\ `将 SysConfig 与 MSPM0 配合使用 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__\ 指南。
 
 2.5 在 MSPM0 衍生产品之间进行迁移
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

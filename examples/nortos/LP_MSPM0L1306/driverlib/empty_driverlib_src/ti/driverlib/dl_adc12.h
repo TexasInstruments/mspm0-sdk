@@ -64,6 +64,13 @@ extern "C" {
 
 /* clang-format off */
 
+#if (ADC_SYS_NUM_ANALOG_CHAN > 16)
+/*
+ * @brief Device has more than 16 ADC input channels
+ */
+#define DEVICE_HAS_GREATER_THAN_16_INPUT_CHAN
+#endif
+
  /** @addtogroup DL_ADC12_SEQ_END_ADDR
  * @{
  */
@@ -420,6 +427,89 @@ extern "C" {
  * @brief ADC12 input channel 15 selected
  */
 #define DL_ADC12_INPUT_CHAN_15                    (ADC12_MEMCTL_CHANSEL_CHAN_15)
+
+#ifdef DEVICE_HAS_GREATER_THAN_16_INPUT_CHAN
+/*!
+ * @brief ADC12 input channel 16 selected
+ */
+#define DL_ADC12_INPUT_CHAN_16                    (ADC12_MEMCTL_CHANSEL_CHAN_16)
+
+/*!
+ * @brief ADC12 input channel 17 selected
+ */
+#define DL_ADC12_INPUT_CHAN_17                    (ADC12_MEMCTL_CHANSEL_CHAN_17)
+
+/*!
+ * @brief ADC12 input channel 18 selected
+ */
+#define DL_ADC12_INPUT_CHAN_18                    (ADC12_MEMCTL_CHANSEL_CHAN_18)
+
+/*!
+ * @brief ADC12 input channel 19 selected
+ */
+#define DL_ADC12_INPUT_CHAN_19                    (ADC12_MEMCTL_CHANSEL_CHAN_19)
+
+/*!
+ * @brief ADC12 input channel 20 selected
+ */
+#define DL_ADC12_INPUT_CHAN_20                    (ADC12_MEMCTL_CHANSEL_CHAN_20)
+
+/*!
+ * @brief ADC12 input channel 21 selected
+ */
+#define DL_ADC12_INPUT_CHAN_21                    (ADC12_MEMCTL_CHANSEL_CHAN_21)
+
+/*!
+ * @brief ADC12 input channel 22 selected
+ */
+#define DL_ADC12_INPUT_CHAN_22                    (ADC12_MEMCTL_CHANSEL_CHAN_22)
+
+/*!
+ * @brief ADC12 input channel 23 selected
+ */
+#define DL_ADC12_INPUT_CHAN_23                    (ADC12_MEMCTL_CHANSEL_CHAN_23)
+
+/*!
+ * @brief ADC12 input channel 24 selected
+ */
+#define DL_ADC12_INPUT_CHAN_24                    (ADC12_MEMCTL_CHANSEL_CHAN_24)
+
+/*!
+ * @brief ADC12 input channel 25 selected
+ */
+#define DL_ADC12_INPUT_CHAN_25                    (ADC12_MEMCTL_CHANSEL_CHAN_25)
+
+/*!
+ * @brief ADC12 input channel 26 selected
+ */
+#define DL_ADC12_INPUT_CHAN_26                    (ADC12_MEMCTL_CHANSEL_CHAN_26)
+
+/*!
+ * @brief ADC12 input channel 27 selected
+ */
+#define DL_ADC12_INPUT_CHAN_27                    (ADC12_MEMCTL_CHANSEL_CHAN_27)
+
+/*!
+ * @brief ADC12 input channel 28 selected
+ */
+#define DL_ADC12_INPUT_CHAN_28                    (ADC12_MEMCTL_CHANSEL_CHAN_28)
+
+/*!
+ * @brief ADC12 input channel 29 selected
+ */
+#define DL_ADC12_INPUT_CHAN_29                    (ADC12_MEMCTL_CHANSEL_CHAN_29)
+
+/*!
+ * @brief ADC12 input channel 30 selected
+ */
+#define DL_ADC12_INPUT_CHAN_30                    (ADC12_MEMCTL_CHANSEL_CHAN_30)
+
+/*!
+ * @brief ADC12 input channel 31 selected
+ */
+#define DL_ADC12_INPUT_CHAN_31                    (ADC12_MEMCTL_CHANSEL_CHAN_31)
+
+#endif /* DEVICE_HAS_GREATER_THAN_16_INPUT_CHAN */
 
 /** @}*/
 

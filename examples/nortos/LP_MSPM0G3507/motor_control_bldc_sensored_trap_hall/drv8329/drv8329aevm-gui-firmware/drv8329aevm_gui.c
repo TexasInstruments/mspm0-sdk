@@ -95,6 +95,9 @@ uint8_t guiADCStatus = GUI_ADC_STATUS_RESET;
 /** @brief Stores the motor speed in rpm    */
 uint32_t guiMotorSpeed;
 
+/** @brief Speed timeout    */
+uint32_t guiSpeedTimeout;
+
 /** @brief Stores the number of poles in motor  */
 uint32_t guiMotorPoles = GUI_MOTOR_NUMBER_OF_POLES;
 
@@ -166,15 +169,15 @@ void GUI_changeCheck(DRV8329_Instance *drvHandle, Halltrap_Instance *hallTrap)
         firmVar.adcInternalVRef = guiVar.adcInternalVRef;
         firmVar.adcExternalVRef = guiVar.adcExternalVRef;
 
-        DRV8329_ADCVRefSel(firmVar.adcVRef, drvHandle->Vsen,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->Vsen,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8329_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenA,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenA,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8329_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenB,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenB,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8329_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenC,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->VsenC,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
-        DRV8329_ADCVRefSel(firmVar.adcVRef, drvHandle->Isen,
+        HAL_ADCVRefSel(firmVar.adcVRef, drvHandle->Isen,
                            firmVar.adcInternalVRef, firmVar.adcExternalVRef);
     }
 

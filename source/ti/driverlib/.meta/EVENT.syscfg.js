@@ -41,7 +41,7 @@ let Common = system.getScript("/ti/driverlib/Common.js");
 
 let MAX_NUM_EVENT_CHANNELS;
 let SPLITTER_EVENT_CHANNELS = [];
-if (Common.isDeviceM0L())
+if (Common.isDeviceM0L() || Common.isDeviceM0C())
 {
     /*
      * M0L devices support 4 event channels (0, 1, 2, and 3). Event channel
@@ -105,23 +105,6 @@ function validate(inst, validation){
                 validation.logError("Multiple Publishers to one event channel not allowed",
                     inst,"channel"+chanIdx+"Pub");
             }
-        }
-        /* No circular routing (publisher and subscriber belong to the same module */
-        if(inst["channel"+chanIdx+"Sub"][0] !== "" &&
-            inst["channel"+chanIdx+"Sub"].includes(inst["channel"+chanIdx+"Pub"][0]))
-        {
-            /* Since this is something that is wrong within a specific module, it is
-             * possible and makes more sense to display the error within the offending module
-             * rather than within the event module */
-            let offendingModule = inst["channel"+chanIdx+"Pub"][0];
-            let offInst = findOffendingInstance(offendingModule);
-            if(offInst)
-            {
-                validation.logWarning("Module Publishing And Subscribing to same Event Channel",
-                    offInst);
-            }
-            /* validation.logWarning("Module Publishing and Subscribing to the same channel",
-                inst, ["channel"+chanIdx+"Sub","channel"+chanIdx+"Pub"]); */
         }
     }
 }
@@ -348,7 +331,10 @@ function getAllPublishers() {
                     let info = inst.eventInfo[infoIdx];
                     chanIdx = parseInt(info);
                     if(info.endsWith("pub")){
-                        publisherList[chanIdx].push(inst.$name);
+                        let pubSingle = publisherList[chanIdx];
+                        if(pubSingle){
+                            pubSingle.push(inst.$name);
+                        }
                     }
                 }
             }
@@ -361,7 +347,10 @@ function getAllPublishers() {
                     let info = stat.eventInfo[infoIdx];
                     chanIdx = parseInt(info);
                     if(info.endsWith("pub")){
-                        publisherList[chanIdx].push((stat.$name).replace("/ti/driverlib/",""));
+                        let pubSingle = publisherList[chanIdx];
+                        if(pubSingle){
+                            pubSingle.push((stat.$name).replace("/ti/driverlib/",""));
+                        }
                     }
                 }
             }
@@ -390,7 +379,10 @@ function getAllSubscribers() {
                     let info = inst.eventInfo[infoIdx];
                     chanIdx = parseInt(info);
                     if(info.endsWith("sub")){
-                        subscriberList[chanIdx].push(inst.$name);
+                        let subSingle = subscriberList[chanIdx];
+                        if(subSingle){
+                            subSingle.push(inst.$name);
+                        }
                     }
                 }
             }
@@ -403,7 +395,10 @@ function getAllSubscribers() {
                     let info = stat.eventInfo[infoIdx];
                     chanIdx = parseInt(info);
                     if(info.endsWith("sub")){
-                        subscriberList[chanIdx].push((stat.$name).replace("/ti/driverlib/",""));
+                        let subSingle = subscriberList[chanIdx];
+                        if(subSingle){
+                            subSingle.push((stat.$name).replace("/ti/driverlib/",""));
+                        }
                     }
                 }
             }
@@ -564,6 +559,26 @@ function getSubscriberDisabledOptions(inst) {
         return disOptions;
 }
 
+function validateSubscriberOptions(inst,validation,configName){
+    try{
+        if(!Object.keys(getSubscriberOptions(inst)).includes(inst[configName].toString())){
+            validation.logError("Please select a valid event option",inst,configName);
+        }
+    }catch (e) {
+        return false;
+    }
+}
+
+function validatePublisherOptions(inst,validation,configName){
+    try{
+        if(!Object.keys(getPublisherOptions(inst)).includes(inst[configName].toString())){
+            validation.logError("Please select a valid event option",inst,configName);
+        }
+    }catch (e) {
+        return false;
+    }
+}
+
 /*
  *  ======== base ========
  *  Define the base SYSCTL properties and methods
@@ -583,6 +598,8 @@ let base = {
     getPublisherDisabledOptions: getPublisherDisabledOptions,
     getSubscriberOptions: getSubscriberOptions,
     getSubscriberDisabledOptions: getSubscriberDisabledOptions,
+    validateSubscriberOptions: validateSubscriberOptions,
+    validatePublisherOptions: validatePublisherOptions,
 
 
     moduleStatic: {

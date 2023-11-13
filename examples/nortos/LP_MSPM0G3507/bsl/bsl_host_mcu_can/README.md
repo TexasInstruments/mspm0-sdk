@@ -1,34 +1,22 @@
 ## Example Summary
 
-This demo shows how to program a MSPM0 MCU loaded with CAN BSL Plugin example (bsl_can_flash_interface)
-using a LP-MSPM0G3507 as host by this BSL CAN Host example.
+This demo shows how to program a MSPM0 MCU using a LP-MSPM0G3507 as host by BSL CAN interface.
 
 ## Peripherals & Pin Assignments
-                LP-MSPM0G3507
-                   Host
-             -----------------
-      NRST -|                 |
-            |                 |
-            |             PB21|<--S3
-            |                 |
-            |              PB0|-->NRST
-            |             PB16|-->Invoke GPIO
-            |                 |
-            |              PA0|-->LED
-            |             PB27|-->LED
-            |             PA12|-->CAN_TX
-            |             PA13|<--CAN_RX
+
+| Peripheral | Pin | Function |
+| --- | --- | --- |
+| SYSCTL | PA5 | HFXIN |
+| SYSCTL | PA6 | HFXOUT |
+| CANFD0 | PA13 | RX Pin |
+| CANFD0 | PA12 | TX Pin |
+| DEBUGSS | PA20 | Debug Clock |
+| DEBUGSS | PA19 | Debug Data In Out |
+| BSL | PA18 | BSL Invoke Pin |
+| BSL | NRST | NRST |
 
 ## BoosterPacks, Board Resources & Jumper Settings
 Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad information, including user guide and hardware files.
-
-- Board resources:
-	+ PB0 (GPIO output function to generate NRST signal)
-	+ PB16 (GPIO output function to generate BSL invoke signal)
-	+ S3 - PB21 (Push button to start the program)
-	+ LEDs - PA0/PB27 show state of the code
-     + CANTX/RX - PA12, PA13 to transfer the CAN frames
-
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
@@ -54,20 +42,24 @@ pullup/pulldown resistor.
 The device CAN_RX and CAN_TX are to be connected to a CAN transceiver which will route the lines to the CAN Bus.
 
 Make the following connections, which can Invoke BSL through GPIO togggling, 
-- Host NRST -> Target NRST
-- Host BSL Invoke -> Target BSL Invoke.
+- Controller NRST -> Peripheral NRST
+- Controller BSL Invoke -> Peripheral BSL Invoke.
 
 Compile, load and run the example.
-Push the S3 button to start program MSPM0G3507.
+Set up Initial CAN configurations as
+    * CAN Mode : Classical CAN (BRS disabled)
+    * Nominal Speed : 1 Mbps
+    * Sampling point : 87.5
+Push the S2 button to start program MSPM0G3507.
 
 # Note
-* The Transceiver used to test the example is TCAN1462-Q1.
-* By default the example is initialized with CAN FD configuration
-      * nominal bitrate : 1Mbps
-      * data bitrate : 5Mbps
-* To make connection with the BSL, the host communicates with
- the flexible data mode (fd mode), bitrate switching (brs) as disabled 
- and sends CAN frames at 1 Mbps   
-* HFXT input frequency is 40 MHz
-* Achieved CANCLK frequency is 40 MHz 
-* Achieved MCLK frequency is 80 MHz
+* * The Example is configured to work in CAN mode initially at 1 Mbps to get response from CAN plugin.
+* To change the bitrate of communication based on the configuration obtained from host through Change Baudrate Command
+    * The Data section in Change Baudrate Command is expected to match the format shown below
+
+|     Padding      (5)    |     DRP      (5)    |     DSJW     (4)    |     DTSEG2      (4)    |     DTSEG1      (5)    |     NRP      (9)    |     NSJW      (7)    |     NSEG2      (7)    |     NTSEG1      (8)    |     BRS      (1)    |     FD      (1)    |
+|------------------|-------------------------|---------------------|---------------------|------------------------|------------------------|---------------------|----------------------|-----------------------|------------------------|---------------------|
+
+* An arbitrary CAN frame is injected into CAN bus, on changing the CAN Mode to CAN FD to calibrate the transmission delay compensation attribute values. The Identity value can be modified as required.
+* Message Identifier accepted by BSL CAN Host is 0x004
+* Message Identifier sent from BSL CAN HOST to BSL CAN PLUGIN is 0x003

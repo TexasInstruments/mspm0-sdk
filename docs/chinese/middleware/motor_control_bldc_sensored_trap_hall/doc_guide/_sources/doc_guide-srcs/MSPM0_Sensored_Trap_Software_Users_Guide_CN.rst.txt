@@ -1,0 +1,406 @@
+MSPM0 Sensored Trap Software User's Guide
+=========================================
+
+CCS Project setup
+-----------------
+
+1. Go to Import CCS Projects as shown below.
+
+.. figure:: ./images/CCS_Import.png
+   :alt: 
+
+2. Click Browse. Navigate to ``C:\ti\mspm0_sdk_<SDK_Version>\examples\nortos\[LAUNCHPAD]\motor_control_bldc_sensored_trap_hall``.
+3. Click Select Folder. Check the desired hardware board, and click Finish to import the project into your workspace.
+
+.. figure:: ./images/CCS_Import_1.png
+   :alt: 
+
+Adding Initial Parameters (optional)
+------------------------------------
+
+1. In the Project Explorer, open the project drop down menu and open “[BOARD\_NAME]\_gui.h”.
+
+.. figure:: ./images/CCS_ProjectExplorer.png
+   :alt: 
+
+2. Under “defines” (line 44), change any of the “GUI\_INITIAL\_xxxx” defines to any pre-defined parameters in “hall\_trap.h”, or value inside of the parentheses. The parameters that can be initially defined are below.
+
++---------------------------------------+-----------------------------------------------+
+| Parameter                             | Definition                                    |
++=======================================+===============================================+
+| GUI\_INITIAL\_MOTOR\_DIRECTION        | Motor direction (forward or reverse)          |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_NSLEEP                  | DRV mode (sleep or awake)                     |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_DRVOFF                  | DRV status (ON or OFF)                        |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_STOPMOTOR               | Motor state (RUN or STOP)                     |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_CSAGAIN                 | DRV CSA gain setting                          |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_FAULT\_RESET            | Fault reset bit status                        |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_BRAKETYPE               | Motor brake type                              |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_CSA\_REF                | CSA reference source                          |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_ADC\_REF                | ADC reference value, in mV                    |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_PWM\_FREQ               | PWM frequency value, in Hz                    |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_DEAD\_TIME\_NS          | Dead time, in ns                              |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_ACCRATE                 | Acceleration rate, in duty cycle per ms       |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_PULSE\_WIDTH            | PWM duty cycle                                |
++---------------------------------------+-----------------------------------------------+
+| GUI\_FAULT\_LIMIT                     | Fault count limit                             |
++---------------------------------------+-----------------------------------------------+
+| GUI\_MAX\_PULSEWIDTH                  | Maximum PWM duty cycle                        |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_SHUNT\_RES              | Shunt resistance, in milliohms                |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_ADCVREF                 | ADC voltage reference source                  |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_ADC\_INTVREF            | ADC internal voltage reference source         |
++---------------------------------------+-----------------------------------------------+
+| GUI\_INITIAL\_ADC\_EXTVREF            | ADC external voltage reference value, in mV   |
++---------------------------------------+-----------------------------------------------+
+| GUI\_MOTOR\_NUMBER\_OF\_POLES         | Number of poles in motor                      |
++---------------------------------------+-----------------------------------------------+
+| GUI\_DEFAULT\_OVER\_VOLTAGE\_LIMIT    | Overvoltage limit, in volts                   |
++---------------------------------------+-----------------------------------------------+
+| GUI\_DEFAULT\_UNDER\_VOLTAGE\_LIMIT   | Undervoltage limit, in volts                  |
++---------------------------------------+-----------------------------------------------+
+| GUI\_DEFAULT\_OVER\_CURRENT\_LIMIT    | Overcurrent limit, in amps                    |
++---------------------------------------+-----------------------------------------------+
+
+Starting the Project
+--------------------
+
+1. Connect the hardware and turn on the power supply. There should be no more than 50mA on the power supply.
+2. Click on the Build button.\ |image0| Project should build with no errors.
+3. Click on the Debug button. |image1|
+4. Open the Expressions window and add the following global structures and expressions. The expressions below in the guiVar structure control motor system and control parameters.
+
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| guiVar            | structure that contains the GUI variables below                                                                       |
++===================+=======================================================================================================================+
+| motorDirection    | Sets motor direction to forward or reverse                                                                            |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| nsleepSignal      | Sets driver to awake or sleep mode                                                                                    |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| stopMotor         | Sets motor to run or stop mode                                                                                        |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| motorBraketype    | Sets motor brake type to BRAKE or COAST                                                                               |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| CSAGain           | Sets current sense amplifier (CSA) gain of the driver                                                                 |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| csaRef            | Sets CSA reference in millivolts                                                                                      |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| pwmFreq           | Sets PWM frequency in Hz                                                                                              |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| deadtime\_ns      | Sets dead time in ns                                                                                                  |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| accRate           | Sets acceleration rate in duty cycle per ms                                                                           |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| pulseWidth        | Sets duty cycle in percent                                                                                            |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| adcVref           | Sets ADC voltage reference source as VDDA, internal (1.4 or 2.5V), or external (VREF+ pin)                            |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| adcInternalVRef   | Sets ADC internal voltage reference as 1.4V or 2.5V                                                                   |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| adcExternalVRef   | Sets ADC voltage reference when external VREF is used, in millivolts. Value set should be same as value into VREF+.   |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+| rShunt\_mohm      | Shunt resistance of phase(s), in milliohms                                                                            |
++-------------------+-----------------------------------------------------------------------------------------------------------------------+
+
+The expressions below in the fault structure control motor system and control parameters.
+
++-----------------+----------------------------------------------------------------------------+
+| fault           | structure that contains the fault variables below                          |
++=================+============================================================================+
+| Reset           | Resets faults below when written with 1                                    |
++-----------------+----------------------------------------------------------------------------+
+| overVoltage     | Set to 1 when bus voltage is higher than guiOverVoltageLimit               |
++-----------------+----------------------------------------------------------------------------+
+| underVoltage    | Set to 1 when bus voltage is lower than guiUnderVoltageLimit               |
++-----------------+----------------------------------------------------------------------------+
+| drvFault        | Set to 1 when driver nFAULT pin is active low                              |
++-----------------+----------------------------------------------------------------------------+
+| overCurrent     | Set to 1 when phase current is higher than guiOverCurrentLimit             |
++-----------------+----------------------------------------------------------------------------+
+| ledIndication   | Logical OR of overVoltage, underVoltage, drvFault, and overCurrent flags   |
++-----------------+----------------------------------------------------------------------------+
+
+5. If you wish to monitor the measured bus and phase voltages or currents, or control the current/voltage limits, add the below expressions.
+
++------------------------+----------------------------------------------------------------------------------+
+| Expression             | Description                                                                      |
++========================+==================================================================================+
+| moduleVoltage          | Motor supply voltage in IQ(20) format                                            |
++------------------------+----------------------------------------------------------------------------------+
+| moduleCurrent          | Motor supply current in IQ(20) format. For hardware with 1 current shunt only.   |
++------------------------+----------------------------------------------------------------------------------+
+| voltagePhaseA          | Phase A voltage in IQ(20) format                                                 |
++------------------------+----------------------------------------------------------------------------------+
+| voltagePhaseB          | Phase B voltage in IQ(20) format                                                 |
++------------------------+----------------------------------------------------------------------------------+
+| voltagePhaseC          | Phase C voltage in IQ(20) format                                                 |
++------------------------+----------------------------------------------------------------------------------+
+| currentPhaseA          | Phase A current in IQ(20) format                                                 |
++------------------------+----------------------------------------------------------------------------------+
+| currentPhaseB          | Phase B current in IQ(20) format                                                 |
++------------------------+----------------------------------------------------------------------------------+
+| currentPhaseC          | Phase C current in IQ(20) format                                                 |
++------------------------+----------------------------------------------------------------------------------+
+| guiOverCurrentLimit    | Sets the overcurrent limit for phases A, B, and C in IQ(20) format               |
++------------------------+----------------------------------------------------------------------------------+
+| guiUnderVoltageLimit   | Sets the motor supply and phase A/B/C undervoltage limit for in IQ(20) format    |
++------------------------+----------------------------------------------------------------------------------+
+| guiOverVoltageLimit    | Sets the motor supply and phase A/B/C overvoltage limit for in IQ(20) format     |
++------------------------+----------------------------------------------------------------------------------+
+
+**Note: These values above are in IQ20 format. In order to display corrent value, switch them to IQ(20) format in the CCS expressions window as shown below.**
+
+.. figure:: images/Qvalues.png
+   :alt: 
+
+6. For devices with SPI support, you can add the guiSPI structure for SPI Configuration and controlling SPI reads/writes during runtime.
+
++------------------------+-------------------------------------------------------------------------------------------+
+| guiSPI                 | structure that contains the SPI variables below                                           |
++========================+===========================================================================================+
+| writeBitfieldRegFlag   | Writes writeBitfieldRegData to bitfieldRegPosData of writeBitfieldRegAddr when set to 1   |
++------------------------+-------------------------------------------------------------------------------------------+
+| writeRegFlag           | Writes writeRegData to writeRegData of writeRegAddr when set to 1                         |
++------------------------+-------------------------------------------------------------------------------------------+
+| readRegFlag            | Reads data of readRegAddr and stores into to readRegData when set to 1                    |
++------------------------+-------------------------------------------------------------------------------------------+
+| writeBitfieldRegAddr   | Set to address of a bitfield register write operation                                     |
++------------------------+-------------------------------------------------------------------------------------------+
+| writeRegAddr           | Set to address of a register write operation                                              |
++------------------------+-------------------------------------------------------------------------------------------+
+| readRegAddr            | Set to address of a register read operation                                               |
++------------------------+-------------------------------------------------------------------------------------------+
+| bitfieldRegPosData     | Bitfield position of a bitfield write operation to writeBitfieldRegAddr                   |
++------------------------+-------------------------------------------------------------------------------------------+
+| bitfieldRegMaskData    | Mask value of a bitfield write operation to writeBitfieldRegAddr                          |
++------------------------+-------------------------------------------------------------------------------------------+
+| writeBitfieldRegData   | Data value of a bitfield write register operation to writeBitfieldRegAddr                 |
++------------------------+-------------------------------------------------------------------------------------------+
+| writeRegData           | Data value of a write register operation to writeRegAddr                                  |
++------------------------+-------------------------------------------------------------------------------------------+
+| readRegData            | Data value read from read operation of readRegAddr                                        |
++------------------------+-------------------------------------------------------------------------------------------+
+| readAllRegsFlag        | Reads all registers when set to 1                                                         |
++------------------------+-------------------------------------------------------------------------------------------+
+
+The guiRegMap structure shows all of the status and configuration registers in the DRV device during run time. For devices with SPI support only.
+
+::
+
+    guiRegMap   structure that contains the DRV83xx register map
+
+6. Press Play |image2| to start the code.
+7. Enable “Continuous Refresh” in the Expressions window. |image3|
+
+Running the Project
+-------------------
+
+1. Open guiVar. Set *pulseWidth* to 20 to spin the motor at 20%. The motor starts spinning.
+2. Set *motorDirection* = MOTOR\_DIR\_REVERSE and press Enter. The motor stops spinning in forward direction and starts to spin in the reverse direction.
+3. Set *nsleepSignal* = DRV83xx\_DRV\_NSLEEP\_SLEEP and press Enter. The driver goes into sleep mode and the motor stops spinning. Set to DRV83xx\_DRV\_NSLEEP\_AWAKE and *pulseWidth* = 20 to spin the motor again.
+4. Set *stopMotor* = MOTOR\_STATE\_STOP and press Enter to stop the motor according to the *motorBraketype*\ (MOTOR\_BRAKE\_TYPE\_COAST = coast mode, MOTOR\_BRAKE\_TYPE\_STOP = stop mode).
+5. Change *pwmFreq* to 10000 to change the PWM frequency to 10kHz. Observe in waveforms.
+6. Change *deadtime\_ns* to 500 to change the MCU deadband to 500 ns. Observe in waveforms.
+7. Change *accRate* to change the acceleration and deceleration rate of the motor when *pulseWidth* is modified.
+8. Create an overvoltage fault by increasing the voltage beyond *guiOverVoltageLimit*. *Fault.overVoltage* is set to 1, the motor stops spinning, and the LED sets. Reduce the voltage below the limit and set *Fault.Reset* = 1 to clear the latched fault and start spinning the motor again.
+9. Create an undervoltage fault by decreasing the voltage below *guiUnderVoltageLimit*. *Fault.underVoltage* is set to 1, the motor stops spinning, and the LED sets. Increase the voltage above the limit and set *Fault.Reset* = 1 to clear the latched fault and start spinning the motor again.
+
+.. figure:: images/expression_window.png
+   :alt: 
+
+10. If the device has SPI registers, use the guiSPI variables to perform a bitfield write, register write, or register read, or read all operation.
+
+    -  To perform a bitfield write operation:
+
+       -  Select the drop-down register in *writeRegAddr*
+       -  Enter the bitfield position in *bitfieldRegPosData*
+       -  Enter the mask of the setting in that bitfield position in *bitfieldRegMaskData* (for example, a 3-bit setting has mask 0x7)
+       -  Write the bitfield data in *writeBitfieldRegData*
+       -  Set the *writeBitfieldRegFlag* to 1. It will automatically clear to 0.
+
+    -  To perform a register write operation:
+
+       -  Select the drop-down register in *writeRegAddr*
+       -  Write the data in *writeRegData*
+       -  Set the *writeRegFlag* to 1. It will automatically clear to 0.
+
+    -  To perform a register read operation:
+
+       -  Select the drop-down register in *readRegAddr*
+       -  Set the *readRegFlag* to 1. It will automatically clear to 0.
+       -  Read the data in *readRegData*
+
+    -  To perform a read all registers operation:
+
+       -  Set the *readAllRegsFlag* to 1. It will automatically clear to 0.
+       -  View all registers in the *guiRegMap* structure
+
+.. figure:: images/spi_window.png
+   :alt: 
+
+API Guide
+---------
+
+-  `MSPM0G3507 Hall Sensored Trap API Guide <../../doxygen/mspm0g3507-doc-srcs-api-guide/html/index.html>`__
+-  `MSPM0G1507 Hall Sensored Trap API Guide <../../doxygen/mspm0g1507-doc-srcs-api-guide/html/index.html>`__
+-  `MSPM0L1306 Hall Sensored Trap API Guide <../../doxygen/mspm0l1306-doc-srcs-api-guide/html/index.html>`__
+
+Known Issues
+------------
+
+Supported Devices
+-----------------
+
+DRV8300Dxxx-EVM
+~~~~~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8300/DRV8300_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8300/DRV8300_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0-DRV8300Dxxx-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0-DRV8300Dxxx-EVM-GUI>`__
+
+DRV8311HEVM
+~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8311/DRV8311_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8311/DRV8311_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8311HEVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8311HEVM-GUI>`__
+
+DRV8316REVM
+~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8316/DRV8316_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8316/DRV8316_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8316REVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8316REVM-GUI>`__
+
+DRV8317HEVM
+~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8317/DRV8317_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8317/DRV8317_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8317HEVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8317HEVM-GUI>`__
+
+DRV8323RHEVM
+~~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8323/DRV8323_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8323/DRV8323_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8317HEVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RHEVM-GUI>`__
+
+DRV8328AEVM
+~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8328/DRV8328_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8328/DRV8328_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8317HEVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8328AEVM-GUI>`__
+
+DRV8329AEVM
+~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8329/DRV8329_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8329/DRV8329_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8329AEVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8329AEVM-GUI>`__
+
+DRV8329AEVM
+~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0L1306 <https://www.ti.com/tool/LP-MSPM0L1306>`__
+
+Links
+
+-  `Hardware User Guide <drv8329/DRV8329_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8329/DRV8329_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8329AEVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0L-DRV8329AEVM-GUI>`__
+
+DRV8353RHEVM
+~~~~~~~~~~~~
+
+Supported MSPM0 Launchpads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `Hardware User Guide <drv8353/DRV8353_Hardware_User_Guide_CN.html>`__
+
+-  `GUI User Guide <drv8353/DRV8353_GUI_User_Guide_CN.html>`__
+
+-  `MSPM0G3507-DRV8329AEVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8353RHEVM-GUI>`__
+
+.. |image0| image:: images/Build.png
+.. |image1| image:: images/Debug.png
+.. |image2| image:: images/Play.png
+.. |image3| image:: images/refresh.png
+

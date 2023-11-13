@@ -33,7 +33,6 @@
             -mthumb
         "
         linkerBuildOptions="
-            -Wl,--stack_size=512
             -L${PROJECT_BUILD_DIR}/syscfg
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
             -Wl,--rom_model

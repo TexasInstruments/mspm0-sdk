@@ -65,6 +65,22 @@ extern "C" {
 
 /* clang-format off */
 
+/*!
+ * @brief I2C number of bytes which could be put into the TX FIFO
+ *
+ * This variable is device specific and is calculated using the system parameter
+ * I2C_SYS_FENTRIES defined in each devices header file.
+*/
+#define DL_I2C_TX_FIFO_COUNT_MAXIMUM          ((uint32_t)I2C_SYS_FENTRIES << 8)
+
+/*!
+ * @brief I2C number of bytes which could be put into the RX FIFO
+ *
+ * This variable is device specific and is calculated using the system parameter
+ * I2C_SYS_FENTRIES defined in each devices header file.
+*/
+#define DL_I2C_RX_FIFO_COUNT_MAXIMUM               ((uint32_t)I2C_SYS_FENTRIES)
+
 /** @addtogroup DL_I2C_CONTROLLER_STATUS
  *  @{
  */
@@ -922,7 +938,7 @@ __STATIC_INLINE bool DL_I2C_isTargetTXFIFOFull(I2C_Regs *i2c)
 __STATIC_INLINE bool DL_I2C_isTargetTXFIFOEmpty(I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SFIFOSR & I2C_SFIFOSR_TXFIFOCNT_MASK) ==
-            I2C_SFIFOSR_TXFIFOCNT_MAXIMUM);
+            DL_I2C_TX_FIFO_COUNT_MAXIMUM);
 }
 
 /**
