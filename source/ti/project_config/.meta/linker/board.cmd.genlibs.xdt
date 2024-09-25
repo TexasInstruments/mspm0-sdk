@@ -84,6 +84,12 @@ let migration_inst = MigrationController.$static;
 % if(migration_inst.genLibCMSIS){
 -l"third_party/CMSIS/DSP/lib/ticlang/m0p/arm_cortexM0l_math.a"
 % }
+% if(migration_inst.genLibGaugeL2 && migration_inst.genLibGaugeL2Version == "RTS"){
+-l"ti/battery_gauge/lib/ticlang/m0p/gauge_l2_rts.a"
+% }
+% if(migration_inst.genLibGaugeL2 && migration_inst.genLibGaugeL2Version == "MATHACL"){
+-l"ti/battery_gauge/lib/ticlang/m0p/gauge_l2_mathacl.a"
+% }
 % if(migration_inst.genLibDL){
 -l"ti/driverlib/lib/ticlang/m0p/`Common.getDeviceFamily().toLowerCase()`/driverlib.a"
 % }

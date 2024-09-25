@@ -56,7 +56,7 @@
 #include <ti/driverlib/driverlib.h>
 #include <ti/driverlib/m0p/dl_core.h>
 #include <ti/drivers/UART.h>
-#include <ti/drivers/uart/UARTMSPM0G1X0X_G3X0X.h>
+#include <ti/drivers/uart/UARTMSPM0.h>
 
 #define CONFIG_UART_COUNT 1
 #define CONFIG_UART_BUFFER_LENGTH 1
@@ -79,7 +79,6 @@ void UART0_IRQHandler(void);
 
 /* clang-format off */
 
-#define POWER_STARTUP_DELAY                                                (16)
 
 
 /* Defines for CONFIG_UART_0 */
@@ -93,11 +92,5 @@ void UART0_IRQHandler(void);
 #define GPIO_GRP_0_PIN_0_PIN                                     (DL_GPIO_PIN_0)
 #define GPIO_GRP_0_PIN_0_IOMUX                                    (IOMUX_PINCM1)
 /* clang-format on */
-
-void SYSCFG_DL_init(void);
-void SYSCFG_DL_initPower(void);
-void SYSCFG_DL_GPIO_init(void);
-void SYSCFG_DL_SYSCTL_init(void);
-void SYSCFG_DL_SYSCTL_CLK_init(void);
 
 #endif /* ti_drivers_config_h */

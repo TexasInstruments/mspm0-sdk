@@ -549,5 +549,23 @@
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
     "description": "<p>The Energy Metrology Library is built to compute voltage, current, power, energy, and other parameters of a 3 phase power system using MSPM0. The library uses high precesion ADCs to capture the voltage and current signals.</p>"
+  },
+  {
+    "name": "Communication Modules",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "<p>The MSPM0 Communication Modules provides a simple way for the application developer to integrate serial communication modules to their application.</p>"
   }
 ]

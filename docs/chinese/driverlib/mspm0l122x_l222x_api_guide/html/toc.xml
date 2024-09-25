@@ -679,6 +679,7 @@
         <topic label="DL_DMA_WIDTH_HALF_WORD" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9aedc17c2fd6c23e189017519faf2a9450"/>
         <topic label="DL_DMA_WIDTH_WORD" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836"/>
         <topic label="DL_DMA_WIDTH_LONG" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e"/>
+        <topic label="DL_DMA_WIDTH_LONG_LONG" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9"/>
       </topic>
       <topic label="DL_DMA_EVENT_IIDX" href="group___d_m_a.html#ga9c5dfde9fc934940ba9aac298be440b8">
         <topic label="DL_DMA_EVENT_IIDX_NO_INTR" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5c8dbcebf4546d277afe8da3522156bb"/>
@@ -707,6 +708,12 @@
       <topic label="DL_DMA_SUBSCRIBER_INDEX" href="group___d_m_a.html#gaa5cab158d8d96858b0905b602c0a846a">
         <topic label="DL_DMA_SUBSCRIBER_INDEX_0" href="group___d_m_a.html#ggaa5cab158d8d96858b0905b602c0a846aa0a5cfbb93339ef6ff8a3a6870830383e"/>
         <topic label="DL_DMA_SUBSCRIBER_INDEX_1" href="group___d_m_a.html#ggaa5cab158d8d96858b0905b602c0a846aa85348fedd260f64bf890e608d33a3f3e"/>
+      </topic>
+      <topic label="DL_DMA_AUTOEN" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">
+        <topic label="DL_DMA_AUTOEN_DISABLE" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2"/>
+        <topic label="DL_DMA_AUTOEN_DMASA" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe"/>
+        <topic label="DL_DMA_AUTOEN_DMADA" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb"/>
+        <topic label="DL_DMA_AUTOEN_DMASZ" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5"/>
       </topic>
       <topic label="DL_DMA_initChannel" href="group___d_m_a.html#ga57e87a0fce4c224edea31b79515cfb2d"/>
       <topic label="DL_DMA_configTransfer" href="group___d_m_a.html#ga28e4595240333440fb932a78c70729cd"/>
@@ -758,6 +765,9 @@
       <topic label="DL_DMA_getEnabledEventStatus" href="group___d_m_a.html#ga81ee2d5a31952301b0d75a910be6a521"/>
       <topic label="DL_DMA_getRawEventsStatus" href="group___d_m_a.html#ga5aa4c5d2963c2b3c304610874cbd3977"/>
       <topic label="DL_DMA_clearEventsStatus" href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432"/>
+      <topic label="DL_DMA_enableAutoEnable" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e"/>
+      <topic label="DL_DMA_disableAutoEnable" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05"/>
+      <topic label="DL_DMA_isAutoEnableEnabled" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26"/>
     </topic>
     <topic label="Flash Controller (FLASHCTL)" href="group___f_l_a_s_h_c_t_l.html">
       <topic label="DL_FLASHCTL_INTERRUPT" href="group___d_l___f_l_a_s_h_c_t_l___i_n_t_e_r_r_u_p_t.html">
@@ -794,6 +804,7 @@
       <topic label="DL_FLASHCTL_READ_VERIFY_16_WITH_ECC" href="group___f_l_a_s_h_c_t_l.html#ga6f16c970b798b6050e15b3e6af3b0d97"/>
       <topic label="DL_FLASHCTL_READ_VERIFY_32_WITH_ECC" href="group___f_l_a_s_h_c_t_l.html#gae0a3cb01a1c85b93704e38e4bd3a8cfc"/>
       <topic label="DL_FLASHCTL_READ_VERIFY_64_WITH_ECC" href="group___f_l_a_s_h_c_t_l.html#gaa29cba255afe27ff6d3c37a92bd1ca51"/>
+      <topic label="DL_FLASHCTL_SECTOR_SIZE" href="group___f_l_a_s_h_c_t_l.html#ga39de6b05e60ebfe83038fb3ff273d81e"/>
       <topic label="DL_FLASHCTL_COMMAND_SIZE" href="group___f_l_a_s_h_c_t_l.html#ga987c2ff9232d4205c98af65ff7d7c2e2">
         <topic label="DL_FLASHCTL_COMMAND_SIZE_ONE_WORD" href="group___f_l_a_s_h_c_t_l.html#gga987c2ff9232d4205c98af65ff7d7c2e2adf1053097cc9922b5182155e01255b15"/>
         <topic label="DL_FLASHCTL_COMMAND_SIZE_TWO_WORDS" href="group___f_l_a_s_h_c_t_l.html#gga987c2ff9232d4205c98af65ff7d7c2e2abb50257fbb0d576fef26a5d2112b4e24"/>
@@ -1521,6 +1532,10 @@
         <topic label="DL_I2C_TARGET_PEC_STATUS_CHECKED" href="group___i2_c.html#ggafb5095cf27ba13dbca5226da84dbbf18a621e97a1d5400f1fcb2f7b0a242a0dfe"/>
         <topic label="DL_I2C_TARGET_PEC_STATUS_NOT_CHECKED" href="group___i2_c.html#ggafb5095cf27ba13dbca5226da84dbbf18a6381d0639c0d81a547fe93f737324ea4"/>
       </topic>
+      <topic label="DL_I2C_TARGET_PEC_CHECK_ERROR" href="group___i2_c.html#ga96c525c4ee883f347cf21e8676d7c32e">
+        <topic label="DL_I2C_TARGET_PEC_CHECK_ERROR_CLEARED" href="group___i2_c.html#gga96c525c4ee883f347cf21e8676d7c32ea72ff826ecd7fcdaac021b0f787356eae"/>
+        <topic label="DL_I2C_TARGET_PEC_CHECK_ERROR_SET" href="group___i2_c.html#gga96c525c4ee883f347cf21e8676d7c32eaa6767e7f503cda619aa26c7210e75fac"/>
+      </topic>
       <topic label="DL_I2C_ANALOG_GLITCH_FILTER_WIDTH" href="group___i2_c.html#ga031f0b093a1d7448b0ba89a6ecc0a32a">
         <topic label="DL_I2C_ANALOG_GLITCH_FILTER_WIDTH_5NS" href="group___i2_c.html#gga031f0b093a1d7448b0ba89a6ecc0a32aab775e2e3cf0f0c919a44a5e5f43f8b87"/>
         <topic label="DL_I2C_ANALOG_GLITCH_FILTER_WIDTH_10NS" href="group___i2_c.html#gga031f0b093a1d7448b0ba89a6ecc0a32aa459f9759f5f9dea0e111e09dc0cfd161"/>
@@ -1804,6 +1819,7 @@
       <topic label="DL_I2C_enableTargetPEC" href="group___i2_c.html#ga4315266fccc9844113c697f27ec97e8e"/>
       <topic label="DL_I2C_getTargetCurrentPECCount" href="group___i2_c.html#ga4e05337541555cd6338f85e2684ba2d9"/>
       <topic label="DL_I2C_getTargetPECCheckedStatus" href="group___i2_c.html#ga0898e3ac477f498dd021d6b9251be792"/>
+      <topic label="DL_I2C_getTargetPECCheckError" href="group___i2_c.html#ga442f1163dc4edf28f58e901506456ea2"/>
       <topic label="DL_I2C_getTargetTXFIFOThreshold" href="group___i2_c.html#ga8dcd575b9d863a582b3bbd378d4eb4a4"/>
       <topic label="DL_I2C_setTargetTXFIFOThreshold" href="group___i2_c.html#gaaf24be7bed7d0f0b9a23de1da777bdec"/>
       <topic label="DL_I2C_stopFlushTargetTXFIFO" href="group___i2_c.html#gae11c2c0e16d80798b2038cef33d75ca7"/>
@@ -1851,6 +1867,426 @@
     <topic label="Keystore Controller (KEYSTORECTL)" href="group___k_e_y_s_t_o_r_e_c_t_l.html">
     </topic>
     <topic label="Liquid Crystal Display (LCD)" href="group___l_c_d.html">
+      <topic label="DL_LCD_INTERRUPT" href="group___d_l___l_c_d___i_n_t_e_r_r_u_p_t.html">
+        <topic label="DL_LCD_INTERRUPT_FRAME_START" href="group___d_l___l_c_d___i_n_t_e_r_r_u_p_t.html#ga61b11f2dacc0be4ef8ee4791575d8349"/>
+        <topic label="DL_LCD_INTERRUPT_BLINKING_SEGMENTS_OFF" href="group___d_l___l_c_d___i_n_t_e_r_r_u_p_t.html#ga4ca8d628cb268c319e41c41d2d28d543"/>
+        <topic label="DL_LCD_INTERRUPT_BLINKING_SEGMENTS_ON" href="group___d_l___l_c_d___i_n_t_e_r_r_u_p_t.html#ga7d03fb1a9321ef4596c3ed3e16a9cbd6"/>
+      </topic>
+      <topic label="DL_LCD_SEGMENT_LINE" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html">
+        <topic label="DL_LCD_SEGMENT_LINE_0" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga413cc62b270dd363e7b947d39edf9f7d"/>
+        <topic label="DL_LCD_SEGMENT_LINE_1" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga867fe5acf9f9bbe8d62486c0223eeb68"/>
+        <topic label="DL_LCD_SEGMENT_LINE_2" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gafc932934368cae234d670bf1dedf25e8"/>
+        <topic label="DL_LCD_SEGMENT_LINE_3" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga5b6dca0c8ea405cdb60cc0b62b325dd9"/>
+        <topic label="DL_LCD_SEGMENT_LINE_4" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaadc27cab65ca1651fd174ace865fda43"/>
+        <topic label="DL_LCD_SEGMENT_LINE_5" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gac620dfdc361f11d4a7b0073ee144e48c"/>
+        <topic label="DL_LCD_SEGMENT_LINE_6" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga96a9a555553e29315845cabadc040c49"/>
+        <topic label="DL_LCD_SEGMENT_LINE_7" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaa92a26fe8eeba85784cd9d63873c2931"/>
+        <topic label="DL_LCD_SEGMENT_LINE_8" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gad0bcff3bbde6a6fcacdc36c8519a394f"/>
+        <topic label="DL_LCD_SEGMENT_LINE_9" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gafa966920ef0ecba8ab3b3e0107bc5eef"/>
+        <topic label="DL_LCD_SEGMENT_LINE_10" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga6c2e236f014d4eb7ac4508c5ea3fdfc2"/>
+        <topic label="DL_LCD_SEGMENT_LINE_11" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga06f2e44ccf4d2b24a9fd3a0d05160b5c"/>
+        <topic label="DL_LCD_SEGMENT_LINE_12" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga1f1a813ff24cf946d142738ccb115ab9"/>
+        <topic label="DL_LCD_SEGMENT_LINE_13" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga197af42a9d0ead08d01cb619ee614d8e"/>
+        <topic label="DL_LCD_SEGMENT_LINE_14" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gad316f9e0def41fbd126fb97a57392d25"/>
+        <topic label="DL_LCD_SEGMENT_LINE_15" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga4f5856c4df02a14e7768ca4e38490b4e"/>
+        <topic label="DL_LCD_SEGMENT_LINE_16" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga44fb053b13e7b416653423d28c572d7c"/>
+        <topic label="DL_LCD_SEGMENT_LINE_17" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga848fe356ee4f7902fb5499fc3be9e03b"/>
+        <topic label="DL_LCD_SEGMENT_LINE_18" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga05b7cba002c7cb318d85239b47651765"/>
+        <topic label="DL_LCD_SEGMENT_LINE_19" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga88ba25322a69c64c829519aa686b6025"/>
+        <topic label="DL_LCD_SEGMENT_LINE_20" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga5eebd6e746193fd9115883369facfa65"/>
+        <topic label="DL_LCD_SEGMENT_LINE_21" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga704631c7ef90e6bb10d5bf89b6519970"/>
+        <topic label="DL_LCD_SEGMENT_LINE_22" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga7ae41e6b7446652228d95b814dcab18c"/>
+        <topic label="DL_LCD_SEGMENT_LINE_23" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga3daee2b2d3b06598826c3b4943b6e226"/>
+        <topic label="DL_LCD_SEGMENT_LINE_24" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaf4dd05cc8837032649bac213fdb095b3"/>
+        <topic label="DL_LCD_SEGMENT_LINE_25" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga25f5f98a3cef041b44dabd3b6e9db175"/>
+        <topic label="DL_LCD_SEGMENT_LINE_26" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga114fbbbbf680fc4cff107dbe16389ec1"/>
+        <topic label="DL_LCD_SEGMENT_LINE_27" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gac8fe30a5037d12a55483827f4f543ab0"/>
+        <topic label="DL_LCD_SEGMENT_LINE_28" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga8472e46a659bcebc50d839d7fb3074c0"/>
+        <topic label="DL_LCD_SEGMENT_LINE_29" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga454cc8cfb27b6e5f8dbc4fb9956d322e"/>
+        <topic label="DL_LCD_SEGMENT_LINE_30" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gabfde75c3c2625be7b92ed62957d3a0ab"/>
+        <topic label="DL_LCD_SEGMENT_LINE_31" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga4a86ece139046fb5b755b3e2f03800ee"/>
+        <topic label="DL_LCD_SEGMENT_LINE_32" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga07b7fcdbe39321f743b72b243af38f31"/>
+        <topic label="DL_LCD_SEGMENT_LINE_33" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaaee943c5d3fce8ab52d4483aa1457ece"/>
+        <topic label="DL_LCD_SEGMENT_LINE_34" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaea01d442e447d6cbdfc525583e0e73dc"/>
+        <topic label="DL_LCD_SEGMENT_LINE_35" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gae688ed4277e715ffa9cea045c4a82644"/>
+        <topic label="DL_LCD_SEGMENT_LINE_36" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga0adb6584737d05608bf443c1e07d1cac"/>
+        <topic label="DL_LCD_SEGMENT_LINE_37" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaf9b6715bfde112c2027143b6664190fd"/>
+        <topic label="DL_LCD_SEGMENT_LINE_38" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga8d10a3f55a4be091419d19698c4d44ad"/>
+        <topic label="DL_LCD_SEGMENT_LINE_39" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaa375c9c4cd9c41ccd42ceddda7781fed"/>
+        <topic label="DL_LCD_SEGMENT_LINE_40" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga715d0955ea9505e38e48ab0568cc4ff8"/>
+        <topic label="DL_LCD_SEGMENT_LINE_41" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga0bb81bca8ed2330e07552414e18eb74a"/>
+        <topic label="DL_LCD_SEGMENT_LINE_42" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaa9dc0b05ecf196f87242549a464c9fae"/>
+        <topic label="DL_LCD_SEGMENT_LINE_43" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga91e9f6f667756cd5a2e1bce9d7333002"/>
+        <topic label="DL_LCD_SEGMENT_LINE_44" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga79c348b8313bc596e10fcb02139c82c7"/>
+        <topic label="DL_LCD_SEGMENT_LINE_45" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga92e7d3715c61652c7f9d454032123988"/>
+        <topic label="DL_LCD_SEGMENT_LINE_46" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga2971f2381f8c8f58467eb90254db90f3"/>
+        <topic label="DL_LCD_SEGMENT_LINE_47" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga415ac0d2edf5b4bac572deaf81067124"/>
+        <topic label="DL_LCD_SEGMENT_LINE_48" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga6652b863e430471e8fe43050574966a8"/>
+        <topic label="DL_LCD_SEGMENT_LINE_49" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga72eec11e872415c94adc0bc907dadc31"/>
+        <topic label="DL_LCD_SEGMENT_LINE_50" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaf50d8f642d194c6ff57c6f1d8dbf85f1"/>
+        <topic label="DL_LCD_SEGMENT_LINE_51" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gab4a8ad25311ebc9d1f44c945b65d76de"/>
+        <topic label="DL_LCD_SEGMENT_LINE_52" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga3900fd0f5ecf3cf1dde2c98666b1973b"/>
+        <topic label="DL_LCD_SEGMENT_LINE_53" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga6ec800a41ebf0b2efc82ea0c50ceb9a3"/>
+        <topic label="DL_LCD_SEGMENT_LINE_54" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga052c0795c799899f335766115354ba41"/>
+        <topic label="DL_LCD_SEGMENT_LINE_55" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga420b1e87b10f5ac80d3ab7b9e770ee91"/>
+        <topic label="DL_LCD_SEGMENT_LINE_56" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga2299eca5f43052e68686dbbe4e2788fc"/>
+        <topic label="DL_LCD_SEGMENT_LINE_57" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gab69090316ba829052ff809842eb56bde"/>
+        <topic label="DL_LCD_SEGMENT_LINE_58" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaff929766fc9acc30c48163860da3dd51"/>
+        <topic label="DL_LCD_SEGMENT_LINE_59" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga81ed12223e1ebf8d5a8b6a947a3566df"/>
+        <topic label="DL_LCD_SEGMENT_LINE_60" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga1ffc6f2552e4efb4fefe6b2922e4c4e6"/>
+        <topic label="DL_LCD_SEGMENT_LINE_61" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gab82178043dc1f1094ac90d4476562f8d"/>
+        <topic label="DL_LCD_SEGMENT_LINE_62" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga5a3d6dc22caf12eabed0afc7a1924199"/>
+        <topic label="DL_LCD_SEGMENT_LINE_63" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga314b8ac6ac33e7a32012bcab965349e4"/>
+      </topic>
+      <topic label="DL_LCD_MEMORY_BIT" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html">
+        <topic label="DL_LCD_MEMORY_BIT_0" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga14afe9e94b271f26ec02d5630d547109"/>
+        <topic label="DL_LCD_MEMORY_BIT_1" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga87a4b85ac0eb524eebe1e9e928263318"/>
+        <topic label="DL_LCD_MEMORY_BIT_2" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#gad498417f0c233086da9386af046c91b0"/>
+        <topic label="DL_LCD_MEMORY_BIT_3" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga33f3d2bdaf8d3fa4553d33a517c80e07"/>
+        <topic label="DL_LCD_MEMORY_BIT_4" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga055e151a1bfdd02b6ced469b46ccefc1"/>
+        <topic label="DL_LCD_MEMORY_BIT_5" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga3e66a7c77168d6394badb5bcb9457072"/>
+        <topic label="DL_LCD_MEMORY_BIT_6" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#gacf4e3abe9f92f9465be03b46b111c86c"/>
+        <topic label="DL_LCD_MEMORY_BIT_7" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga2bbbbf6ed3bf81239b2df4c5b2287641"/>
+      </topic>
+      <topic label="DL_LCD_BLINK_MEMORY_BIT" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html">
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_0" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga3017fa9924db607c928b915b1b327b8e"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_1" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga19d045624fce06c81de03b59b10a967f"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_2" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#gae6ed7219b5e68f4cc96916f403834836"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_3" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga05203219c4eed161a040ab79cb05e46a"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_4" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga19768e2ecf960f146d8c1cbca089ab45"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_5" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#gaecd40a6b74da10c8a6d283a827c87bea"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_6" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga7bbe131321d951f97b1b4ac5c449102d"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_7" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga7add1317ea793376cb33f4e760a2f4ae"/>
+      </topic>
+      <topic label="DL_LCD_Config" href="struct_d_l___l_c_d___config.html">
+        <topic label="frequencyDivider" href="struct_d_l___l_c_d___config.html#a050a80698e087198d9a2e9e06e9a1712"/>
+        <topic label="muxRate" href="struct_d_l___l_c_d___config.html#aaec62b7050d9bb4e438ed99ea0513b75"/>
+        <topic label="lowPowerWaveform" href="struct_d_l___l_c_d___config.html#a1341f45b51fe7f5f5f81fea76331e5f5"/>
+      </topic>
+      <topic label="DL_LCD_FREQ_DIVIDE" href="group___l_c_d.html#ga393dc0be362c0edcc31eb7553438f603">
+        <topic label="DL_LCD_FREQ_DIVIDE_1" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a913daef9294359d367ae49adbd251048"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_2" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603aa1340d9a5850f6ff369311747b9e0314"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_3" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a851ed8f2e500b981f78d3231d479b207"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_4" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ab22440dbe8d39551e8ed7893e91352c9"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_5" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603adb4dd12feaf21f9dd6ee3b11fae7228b"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_6" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a22a486fa3a455431602ddd5c42dba02b"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_7" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a4489689f237fd6bfbfa8f1d3017feb11"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_8" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a393c118c625025d37421ee187fad9cf3"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_9" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a4de9e5014ed6662cfa03f9e149aa7e2c"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_10" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a35e1aaae9e7bbd399397b6cd7192fecd"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_11" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a09af11370b32c224378455b5501016fb"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_12" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603afb5de066aafa75d7234888f98531d379"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_13" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a050453a888b5ff2a58d9387033f78bad"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_14" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a4c17a711344d3317cf8808caafe43532"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_15" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ae222d7c29a9c50f5c08b4398239a9738"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_16" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a20d5079bc53b78356601a431d87f87cd"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_17" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a0e919f3b26bd4c78e4dbaa1b223719b9"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_18" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a737702d472881ff3e86cf93beae3935f"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_19" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a6f0d97951308646553888419294d3779"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_20" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ae9a6f428dd6331fda060decd0ddd6d9c"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_21" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603af4891cff8574db0b3d5e5695eed09803"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_22" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ade267c5b10b43fe2004debccb99ea275"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_23" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603aeb1d9d1c1d1d7943e1d0cbb7c812b55e"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_24" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a94523aed9fe3a8ce5e480e3b5242aa5a"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_25" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a2a6c65616722706552deffd34f79f13c"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_26" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a9be5dc1e1b2ee1e5a1290d3af9cce123"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_27" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a429e51d8002f436539dbc69f639fa019"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_28" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a7c583c44b04f75c61794ae36d4d2ba9b"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_29" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a78527ad8b204f1f3e4eff5505e4b72e6"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_30" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a5101be28cc65d5215348279461b1881b"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_31" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a7f4a6b933117394e6160cdf61cf8eecc"/>
+        <topic label="DL_LCD_FREQ_DIVIDE_32" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ab29f07c7ea52a7316547492f59fb3b72"/>
+      </topic>
+      <topic label="DL_LCD_MUX_RATE" href="group___l_c_d.html#ga950b25d8ddbda10532d72ed3bd903e6e">
+        <topic label="DL_LCD_MUX_RATE_STATIC" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eaa097e8d0bc74285302de524b4730b8a2"/>
+        <topic label="DL_LCD_MUX_RATE_2" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6ea476a8e24f8b9f211608fce3889f62549"/>
+        <topic label="DL_LCD_MUX_RATE_3" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eae0408ff451be62a497131781f449a5f9"/>
+        <topic label="DL_LCD_MUX_RATE_4" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6ea656bc4fe92c2be60151dcdeeb17503ca"/>
+        <topic label="DL_LCD_MUX_RATE_5" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eaed8f7bebd516dd31aad5ba09b0075b20"/>
+        <topic label="DL_LCD_MUX_RATE_6" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eaadb0b189d83b116c9b408f6147f360b6"/>
+        <topic label="DL_LCD_MUX_RATE_7" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eaa4242615d6c3c78f2a86b1d5ca7a4030"/>
+        <topic label="DL_LCD_MUX_RATE_8" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6ea6e4b83e0cd97697e5cab444b25f43f1a"/>
+      </topic>
+      <topic label="DL_LCD_WAVEFORM_POWERMODE" href="group___l_c_d.html#ga599894907ff94a9c87a5a1f5785e74ca">
+        <topic label="DL_LCD_WAVEFORM_POWERMODE_LOWPOWER" href="group___l_c_d.html#gga599894907ff94a9c87a5a1f5785e74caadeb4b5d4c69160acd2d011e26d6e577d"/>
+        <topic label="DL_LCD_WAVEFORM_POWERMODE_STANDARD" href="group___l_c_d.html#gga599894907ff94a9c87a5a1f5785e74caaeda49bf13e31c9c54b83f1b2c1b96def"/>
+      </topic>
+      <topic label="DL_LCD_BLINKING_DIVIDE" href="group___l_c_d.html#gacb47d0b4a40792e2caed1caee11dd310">
+        <topic label="DL_LCD_BLINKING_DIVIDE_BY_2" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310a71f4eacd7e296941e4956c46175812c9"/>
+        <topic label="DL_LCD_BLINKING_DIVIDE_BY_4" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ab1dd69033c3951d8795f3611cf48acf6"/>
+        <topic label="DL_LCD_BLINKING_DIVIDE_BY_8" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ad0cc60f0e8f75cc742f9e14bc6a3e17c"/>
+        <topic label="DL_LCD_BLINKING_DIVIDE_BY_16" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ae7ea7e9212ce9257e7921b357e0d9d3a"/>
+        <topic label="DL_LCD_BLINKING_DIVIDE_BY_32" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ae53af1dd32dd5bf3314a563400a135f5"/>
+        <topic label="DL_LCD_BLINKING_DIVIDE_BY_64" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ac06ee986743eed1a5b7b98d88a3dc92d"/>
+        <topic label="DL_LCD_BLINKING_DIVIDE_BY_128" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ae7abcca07a97dc4eb122a77e82f3259c"/>
+        <topic label="DL_LCD_BLINKING_DIVIDE_BY_256" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310a050341fcab1d35982c6d047b9adff0bd"/>
+      </topic>
+      <topic label="DL_LCD_BLINKING_MODE" href="group___l_c_d.html#ga5b1b9bc3fc413d734411a487c25240de">
+        <topic label="DL_LCD_BLINKING_MODE_DISABLED" href="group___l_c_d.html#gga5b1b9bc3fc413d734411a487c25240dea49a6be1c3530813cfbd0933694c36338"/>
+        <topic label="DL_LCD_BLINKING_MODE_INDIVIDUAL_SEGMENTS" href="group___l_c_d.html#gga5b1b9bc3fc413d734411a487c25240dea00527ba79fd609e1e8b6069df6bfaff5"/>
+        <topic label="DL_LCD_BLINKING_MODE_ALL_SEGMENTS" href="group___l_c_d.html#gga5b1b9bc3fc413d734411a487c25240dea6ac4d08b931202730bfeeb4e45782288"/>
+        <topic label="DL_LCD_BLINKING_MODE_TOGGLE" href="group___l_c_d.html#gga5b1b9bc3fc413d734411a487c25240dea9710d8548ea2a309c6d2ca11b886498b"/>
+      </topic>
+      <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY" href="group___l_c_d.html#ga776f79571644f891b1be0cab88c163ec">
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_4096HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecafc8a4c9c2e8bb39e770f4803dede9b10"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_2048HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca3863f26f8f5e4c9fd4b4487c11567fda"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_1365HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecaf9ace77c39188f5e2184b5f998cd8d09"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_1024HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecabff06e54f7764f930d4629f04ad182cd"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_819HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca201c5a8a479d8b7ed57ce94f5b440774"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_682HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca948af821f52f87e4d2339d4179aceaf2"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_585HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecafc0c1c62e913315d13ada70a5286380c"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_512HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca35d76b3f234272adff03ef0da738b879"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_455HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecaad8d8c38af0529da1d6961fca38c5eb2"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_409HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecaadb17d158025dfb05b5051cf328ed739"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_372HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecaaee289558568da4b56bcaff3911209aa"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_341HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca997385887accc2cc5558111864b7dcd3"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_315HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca9ce6bc8e44f2720cd2b28187d9d1e5a2"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_292HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca937e8b9e0c895d66ed45b1720f947526"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_273HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecadea667f610440d1c8b40b6819a5ffb00"/>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_256HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca08c2a11cfb107284de5105c9b311bb22"/>
+      </topic>
+      <topic label="DL_LCD_VREF_INTERNAL" href="group___l_c_d.html#ga67ab78d44caac9c8d8228c8300303b62">
+        <topic label="DL_LCD_VREF_INTERNAL_2_60V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62ae04210464c3b10b3af6372d717115e2a"/>
+        <topic label="DL_LCD_VREF_INTERNAL_2_66V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a570812708ea6263d9b717fc3f865649b"/>
+        <topic label="DL_LCD_VREF_INTERNAL_2_72V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62ac1fc7bc916b53d5c970e6e72b12f7fdc"/>
+        <topic label="DL_LCD_VREF_INTERNAL_2_78V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a112c1b0551034a81b05b8224291edb1e"/>
+        <topic label="DL_LCD_VREF_INTERNAL_2_84V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a1dce5e928d279e1169b21ea2716eb346"/>
+        <topic label="DL_LCD_VREF_INTERNAL_2_90V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a6857163eadf71c0021842b5989510606"/>
+        <topic label="DL_LCD_VREF_INTERNAL_2_96V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62ae0a94161b986f4a920d9e5b5442a054d"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_02V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a65fc146ceccce95159a795bd8b04a95f"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_08V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a4abd04713b57f2fff979124f99cea282"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_14V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62aa72edf135ea1d6f40b12aa193657ad2d"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_20V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a5abed3a9cbf8cce450d020a6f9dc6a35"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_26V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62af9a3ac59b22dc951db05d9bd70e4eb3d"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_32V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a36a74104a716c703ea4a04b1a0d1c4a6"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_38V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a83a061bfe47fec210e36612d60d83681"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_44V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a57f3ca43f29871d6815b78e231b31d32"/>
+        <topic label="DL_LCD_VREF_INTERNAL_3_50V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a73cfde98916111bc6870e2a9c25beefa"/>
+      </topic>
+      <topic label="DL_LCD_R33_SOURCE" href="group___l_c_d.html#gac116e6a706339e56538983e4e2a1e5c2">
+        <topic label="DL_LCD_R33_SOURCE_EXTERNAL" href="group___l_c_d.html#ggac116e6a706339e56538983e4e2a1e5c2a60aa2bd9be3def107a0cfb73331e98fb"/>
+        <topic label="DL_LCD_R33_SOURCE_INTERNAL" href="group___l_c_d.html#ggac116e6a706339e56538983e4e2a1e5c2a3615821a6a3a6b33a8d4ed375cccde68"/>
+      </topic>
+      <topic label="DL_LCD_POWER_MODE" href="group___l_c_d.html#ga9829072ddbecc7ff8a5c99c46133c845">
+        <topic label="DL_LCD_POWER_MODE_LOW" href="group___l_c_d.html#gga9829072ddbecc7ff8a5c99c46133c845afe2da4ec780ebdad52f78e15d50e0745"/>
+        <topic label="DL_LCD_POWER_MODE_HIGH" href="group___l_c_d.html#gga9829072ddbecc7ff8a5c99c46133c845adc39034c338add4bb96f6aea0ec1c853"/>
+      </topic>
+      <topic label="DL_LCD_BIAS_VOLTAGE_SOURCE" href="group___l_c_d.html#ga10b21befdd15f8dd690085d499d12694">
+        <topic label="DL_LCD_BIAS_VOLTAGE_SOURCE_R33" href="group___l_c_d.html#gga10b21befdd15f8dd690085d499d12694af583111e070ef3de3fc4fb3c6f4aefd7"/>
+        <topic label="DL_LCD_BIAS_VOLTAGE_SOURCE_AVDD" href="group___l_c_d.html#gga10b21befdd15f8dd690085d499d12694a56e01947da235cecd05e8def5f61583a"/>
+      </topic>
+      <topic label="DL_LCD_BIAS" href="group___l_c_d.html#ga68e46172bceb842dc2e49e4a3ef12afc">
+        <topic label="DL_LCD_BIAS_ONE_THIRD" href="group___l_c_d.html#gga68e46172bceb842dc2e49e4a3ef12afcab2451bbeb543f887723955edbd2e03bd"/>
+        <topic label="DL_LCD_BIAS_ONE_FOURTH" href="group___l_c_d.html#gga68e46172bceb842dc2e49e4a3ef12afcaf1e7dad0b231fe906e9c48f073f4bb1f"/>
+      </topic>
+      <topic label="DL_LCD_REFERENCE_MODE" href="group___l_c_d.html#ga7db44d8ee3eb4a0f4198707e89788432">
+        <topic label="DL_LCD_REFERENCE_MODE_STATIC" href="group___l_c_d.html#gga7db44d8ee3eb4a0f4198707e89788432af4665e6db28fa205afced2b9eaf58324"/>
+        <topic label="DL_LCD_REFERENCE_MODE_SWITCHED" href="group___l_c_d.html#gga7db44d8ee3eb4a0f4198707e89788432a4c67a67b439daca4f2ca3ce93aa2738d"/>
+      </topic>
+      <topic label="DL_LCD_DISP" href="group___l_c_d.html#gafd9a920fffd7f65c067bf2017f9a1092">
+        <topic label="DL_LCD_DISPLAY_REGISTERS_MEMORY" href="group___l_c_d.html#ggafd9a920fffd7f65c067bf2017f9a1092a0ee0181b3c7dfcbe37f3945d52aa1f75"/>
+        <topic label="DL_LCD_DISPLAY_REGISTERS_BLINKING_MEMORY" href="group___l_c_d.html#ggafd9a920fffd7f65c067bf2017f9a1092a9f826d00b599928d17f7b47eb30f836e"/>
+      </topic>
+      <topic label="DL_LCD_EVENT_LINE_MODE" href="group___l_c_d.html#gaaa84fb9b57ede19f488ee5d5d4a3d2bb">
+        <topic label="DL_LCD_EVENT_LINE_MODE_DISABLED" href="group___l_c_d.html#ggaaa84fb9b57ede19f488ee5d5d4a3d2bbabe5cd96714237a46e73c8a23cfcc5b4b"/>
+        <topic label="DL_LCD_EVENT_LINE_MODE_SOFTWARE" href="group___l_c_d.html#ggaaa84fb9b57ede19f488ee5d5d4a3d2bba258b58149cbf283577e8e58cf5eb4628"/>
+        <topic label="DL_LCD_EVENT_LINE_MODE_HARDWARE" href="group___l_c_d.html#ggaaa84fb9b57ede19f488ee5d5d4a3d2bbafaa06d54e4c31dd61c88e76744896686"/>
+      </topic>
+      <topic label="DL_LCD_IIDX" href="group___l_c_d.html#gae8a4679e21d8ad5c409620c047a47b6c">
+        <topic label="DL_LCD_IIDX_NO_INT" href="group___l_c_d.html#ggae8a4679e21d8ad5c409620c047a47b6caa30fa4603d7c2a176beafdaec6bfd597"/>
+        <topic label="DL_LCD_IIDX_FRAME_START" href="group___l_c_d.html#ggae8a4679e21d8ad5c409620c047a47b6caf65412fafc1b54e52ecce86a590affa7"/>
+        <topic label="DL_LCD_IIDX_BLINKING_SEGMENTS_OFF" href="group___l_c_d.html#ggae8a4679e21d8ad5c409620c047a47b6ca105c4b26c37ce446f5917c344f7671d9"/>
+        <topic label="DL_LCD_IIDX_BLINKING_SEGMENTS_ON" href="group___l_c_d.html#ggae8a4679e21d8ad5c409620c047a47b6ca16655e08306b72bfce483fa236bea726"/>
+      </topic>
+      <topic label="DL_LCD_MEMORY" href="group___l_c_d.html#ga6eff7abd3ea85959eb9e0d5b5f543702">
+        <topic label="DL_LCD_MEMORY_0" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702af3909442fae132f298b85bdea43a1ea0"/>
+        <topic label="DL_LCD_MEMORY_1" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702afc3d00e7a1d8f48d37bb2a89d466990d"/>
+        <topic label="DL_LCD_MEMORY_2" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a8bacdc79462ff8f3111375f69424f15f"/>
+        <topic label="DL_LCD_MEMORY_3" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a2491e21bb5c80fac2194c6b37613a04c"/>
+        <topic label="DL_LCD_MEMORY_4" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a615b258f4a682224f2623d42dc56cecb"/>
+        <topic label="DL_LCD_MEMORY_5" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a55b4496276f15b354dd620b31b583592"/>
+        <topic label="DL_LCD_MEMORY_6" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a9aac58730266a0c51eea511c3b548f49"/>
+        <topic label="DL_LCD_MEMORY_7" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aaf9448443abfc81214b2d57ae72407e5"/>
+        <topic label="DL_LCD_MEMORY_8" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a164679fa7c9afe85cc2c0c8dee621b42"/>
+        <topic label="DL_LCD_MEMORY_9" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a338a39c5a97be5debdb2132615a5b215"/>
+        <topic label="DL_LCD_MEMORY_10" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aced33c20e9c731636be1e7bc8b6b7d84"/>
+        <topic label="DL_LCD_MEMORY_11" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a384f7194aef51792dbc2c8e80ec36acb"/>
+        <topic label="DL_LCD_MEMORY_12" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a4fc89eaf15a24fb017c841c97f4a6afc"/>
+        <topic label="DL_LCD_MEMORY_13" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aa59d8bdea6b32fd7fb4b3caf7db2f482"/>
+        <topic label="DL_LCD_MEMORY_14" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aed14400d34d2e5f745be8be03e649c91"/>
+        <topic label="DL_LCD_MEMORY_15" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a6c925a50dc0116a8cb53233cd6da76b5"/>
+        <topic label="DL_LCD_MEMORY_16" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a286abae26f870759074b993cef2ab04e"/>
+        <topic label="DL_LCD_MEMORY_17" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae74179cb55ba7edc1b4a40f5da9595ef"/>
+        <topic label="DL_LCD_MEMORY_18" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a9c42b725018602f3cba01794da282b7b"/>
+        <topic label="DL_LCD_MEMORY_19" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a0eedc7ea9c0903008216d36eaa9fe246"/>
+        <topic label="DL_LCD_MEMORY_20" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a6963db2f719a5cf6a7720b7dab928d9d"/>
+        <topic label="DL_LCD_MEMORY_21" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae2c0b621c6b620e6dd573405552c9523"/>
+        <topic label="DL_LCD_MEMORY_22" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ac4de31a46d90b3b8b20e0cd443273058"/>
+        <topic label="DL_LCD_MEMORY_23" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a74c939c9b1146831d820b6ab34db5fd3"/>
+        <topic label="DL_LCD_MEMORY_24" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a4bbe2fa21e0da36b2c31b352bc74545e"/>
+        <topic label="DL_LCD_MEMORY_25" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a7ce5aaf24285dd86d44e8634c3aa6b18"/>
+        <topic label="DL_LCD_MEMORY_26" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a87e68313b8d3d5c47017b2027a7bb2b1"/>
+        <topic label="DL_LCD_MEMORY_27" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a0d5105bb8b861dfcff1847e611f0241d"/>
+        <topic label="DL_LCD_MEMORY_28" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a4792293a25654d5661648cdd9f78ab6f"/>
+        <topic label="DL_LCD_MEMORY_29" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae527597769895777dccbe286d1908a10"/>
+        <topic label="DL_LCD_MEMORY_30" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ab82866902c140cd438a8a81e1b80d5ed"/>
+        <topic label="DL_LCD_MEMORY_31" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a57f15f3756c317cd6c526c80950c8b77"/>
+        <topic label="DL_LCD_MEMORY_32" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702adbdc45783ecbd7f6cfb8b08541eed8b0"/>
+        <topic label="DL_LCD_MEMORY_33" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a0b977f5ea20ad322340d5a49ddf4941a"/>
+        <topic label="DL_LCD_MEMORY_34" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ab96008adfae1cecc65b6513f87e51329"/>
+        <topic label="DL_LCD_MEMORY_35" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a20e31435dddc6663706c66bb25967853"/>
+        <topic label="DL_LCD_MEMORY_36" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a68915d26c5f2f65cf07b8df434975a9a"/>
+        <topic label="DL_LCD_MEMORY_37" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ac93dbda915c203a1ecf859fc28c49214"/>
+        <topic label="DL_LCD_MEMORY_38" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aafaf7f88131764cd06e56270d4618118"/>
+        <topic label="DL_LCD_MEMORY_39" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a829d41044b2400a1df8b4e25733a6bd3"/>
+        <topic label="DL_LCD_MEMORY_40" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ad15cacbb90c09b3da058ad5999a773eb"/>
+        <topic label="DL_LCD_MEMORY_41" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a5439febb5201ca297e7daad1baee46cc"/>
+        <topic label="DL_LCD_MEMORY_42" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702af87e554e0fcf6b8a7174a6c6d1ed7128"/>
+        <topic label="DL_LCD_MEMORY_43" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702afe03921d6b3e6a3fb4328735d207beb3"/>
+        <topic label="DL_LCD_MEMORY_44" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae4ede6f8b788b8613d2471f50eb36224"/>
+        <topic label="DL_LCD_MEMORY_45" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ad6bcc7434abe3469ca7504164454d028"/>
+        <topic label="DL_LCD_MEMORY_46" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702afc749ee4e8e85d1f9af164e908531a47"/>
+        <topic label="DL_LCD_MEMORY_47" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a8f0800af24a6c6ffa1bdee30240d85ef"/>
+        <topic label="DL_LCD_MEMORY_48" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ab5456c867890c11d2e78073209256f53"/>
+        <topic label="DL_LCD_MEMORY_49" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a573541fb62edc03f1f917e923d3659c2"/>
+        <topic label="DL_LCD_MEMORY_50" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aef084795f567546ef4f6e13754b43ae7"/>
+        <topic label="DL_LCD_MEMORY_51" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ac72b0a315cddc458469aedfff766cd5b"/>
+        <topic label="DL_LCD_MEMORY_52" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae609e77f6a04539587e3c9bf4c859a5a"/>
+        <topic label="DL_LCD_MEMORY_53" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae5c89e92ed5702b0153461021d532e09"/>
+        <topic label="DL_LCD_MEMORY_54" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aedde9d31cdec3dd2bfc46f6a401e4e0e"/>
+        <topic label="DL_LCD_MEMORY_55" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a62c85cef81d345d8fac387013e5956ef"/>
+        <topic label="DL_LCD_MEMORY_56" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a43345582445324c1ebf66c5aba627cc8"/>
+        <topic label="DL_LCD_MEMORY_57" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a2d5d0f062303dff19c71a61e50166727"/>
+        <topic label="DL_LCD_MEMORY_58" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a83164592cc84a8e7a4adcaab717fffa4"/>
+        <topic label="DL_LCD_MEMORY_59" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a5acdcaf0b8149539dc66f710260b12d2"/>
+        <topic label="DL_LCD_MEMORY_60" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a2ef8f0e806b77de75cbdc0dff6aa6cca"/>
+        <topic label="DL_LCD_MEMORY_61" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a880faec6e776ab29db5e3f72ea1b70d7"/>
+        <topic label="DL_LCD_MEMORY_62" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a7cc99198f5891dd2194c728853233e34"/>
+        <topic label="DL_LCD_MEMORY_63" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a99463c0a91b04ace5be7975697499f2b"/>
+      </topic>
+      <topic label="DL_LCD_BLINKING_MEMORY" href="group___l_c_d.html#ga4c47242689386c9ba96dfeb31b161cb3">
+        <topic label="DL_LCD_BLINKING_MEMORY_0" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a32f022483b5b3e877a86df4b35cd7e2a"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_1" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a86bbaf64ded78ebb238947bf602a5652"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_2" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a07127f8753f985b9cfb384b2eeb4b3b9"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_3" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a9a2231f65e6aa174c94ad6b225ec6c14"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_4" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3aa8ae31bd917aa3f0b7f7a8b09c423e7d"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_5" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3adef10fb587a9e25bff8ae659b4251f79"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_6" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a04c0f9e94a70173aefd9ba512fc9a96f"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_7" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a7a59a6cbd6b117cb4c4cd7d4ecde8f5f"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_8" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3aafb107ff120c0e09c76637d1b53d19d1"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_9" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a86fc6c2837edd2ccb0d24c6a3794190e"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_10" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ab01eaa8a382f96c417da1187700af3a0"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_11" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a01eca5a9e8346cb13c472de1ef11335e"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_12" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ae639d8afdceaac013cca17b71942123f"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_13" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a42013917492d500cd2bdbface39f3604"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_14" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a2ed5b2b730b30ee1605a0621ffcada7d"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_15" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a4f760ecb334a8bd0ecdb82096b580b27"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_16" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a9fb8bfaa9ad4b418f10ef3b32aec70da"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_17" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ac570d251fceae1720af06e37838b648f"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_18" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a48577938371b8b064d1a1154e30e3e84"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_19" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a294a07150d79e430a0e5bef06eebec5a"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_20" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a3bd62d0580e1b234fe44cbc633a32f54"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_21" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a7a6812ab0f8bd20bee449969df2c53ca"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_22" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a69ccd8829124b1b1eaf99375d2e16413"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_23" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a17ad980dbd91b1dceb44130389e5dba1"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_24" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a0b26226e647dd17cb05843f95200acb3"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_25" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a82f6aa81c18023d918e6b8d7e8c97d5b"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_26" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ac1e5e03ee24bc53783142a7a410e600d"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_27" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a8f827c968c584a9848c9a13bc9bafa21"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_28" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a66a517322217bb4796ba29a8ec1bde74"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_29" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3af476b52b3ed63f425a617e6716fb94f8"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_30" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a643f9fa16c85bb6190acf92e29009077"/>
+        <topic label="DL_LCD_BLINKING_MEMORY_31" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ae748d42e305840dbe8d94d68a45741c8"/>
+      </topic>
+      <topic label="DL_LCD_COM" href="group___l_c_d.html#ga94406cbef454bd87846b86d1c3de09a3">
+        <topic label="DL_LCD_COM_0" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3aa2c2c854003e5ee8c4e7348bc8e2d664"/>
+        <topic label="DL_LCD_COM_1" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3aa01abe39f9877f00c07654bca72f1290"/>
+        <topic label="DL_LCD_COM_2" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3aabee4673251f2902784d351d58acd113"/>
+        <topic label="DL_LCD_COM_3" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a463368bf555b67eed348637dfbb1ee3c"/>
+        <topic label="DL_LCD_COM_4" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a027a24864fdbec8f56486115bd1ce582"/>
+        <topic label="DL_LCD_COM_5" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a62bcdc6896797821c6f83e7e270d2c66"/>
+        <topic label="DL_LCD_COM_6" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a83c6cb000b44c49547f4cb5904789996"/>
+        <topic label="DL_LCD_COM_7" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a2530ccba6e77ef9ad7aea7beecc0c220"/>
+      </topic>
+      <topic label="DL_LCD_VREFGEN_CYCLES" href="group___l_c_d.html#ga92946dbaee85a9a84cf8d52a452c8cc2">
+        <topic label="DL_LCD_VREFGEN_CYCLES_16" href="group___l_c_d.html#gga92946dbaee85a9a84cf8d52a452c8cc2af7a84f38e1cd612d6cb7514d65ca83c5"/>
+        <topic label="DL_LCD_VREFGEN_CYCLES_32" href="group___l_c_d.html#gga92946dbaee85a9a84cf8d52a452c8cc2a65be3c608be10efbacc4afca823b795c"/>
+        <topic label="DL_LCD_VREFGEN_CYCLES_128" href="group___l_c_d.html#gga92946dbaee85a9a84cf8d52a452c8cc2a6f61332d10cd2901cddac9d1423dc1ca"/>
+        <topic label="DL_LCD_VREFGEN_CYCLES_256" href="group___l_c_d.html#gga92946dbaee85a9a84cf8d52a452c8cc2a1b076bb83b5dc2e5f9a1f7e594305019"/>
+      </topic>
+      <topic label="DL_LCD_init" href="group___l_c_d.html#ga2e2fbf768dd3178a266415d41902807d"/>
+      <topic label="DL_LCD_setPinAsLCDFunction" href="group___l_c_d.html#gab841ee8778389ba4d87bcff5ef3ccfaf"/>
+      <topic label="DL_LCD_setPinAsPortFunction" href="group___l_c_d.html#gaa86052e51b5ab1eef38988730a64fcfb"/>
+      <topic label="DL_LCD_setPinAsCommon" href="group___l_c_d.html#ga2db6e58b26445ab2285391cfed5c2102"/>
+      <topic label="DL_LCD_setPinAsSegment" href="group___l_c_d.html#ga71e2557fbebcd250a9b9d35dd18fe0b5"/>
+      <topic label="DL_LCD_enablePower" href="group___l_c_d.html#ga0442f15ebbafb619521349239d605392"/>
+      <topic label="DL_LCD_disablePower" href="group___l_c_d.html#ga87881eabff5030e2b7485463c57508cb"/>
+      <topic label="DL_LCD_isPowerEnabled" href="group___l_c_d.html#ga0683cf9307b92558d08f790e3489524c"/>
+      <topic label="DL_LCD_reset" href="group___l_c_d.html#ga07a7fbfc8bb054bf979008ed723bfd90"/>
+      <topic label="DL_LCD_isReset" href="group___l_c_d.html#ga110ccc65b6d77f8e289955a8fd8597c3"/>
+      <topic label="DL_LCD_getEventLineMode" href="group___l_c_d.html#gae67280f9c52f1ede56b278520c0da8da"/>
+      <topic label="DL_LCD_getPendingInterrupt" href="group___l_c_d.html#ga8e3e2fcff9c88ccaaf87a01d969d1fb9"/>
+      <topic label="DL_LCD_enableInterrupt" href="group___l_c_d.html#ga4b329ac20459818209b3354bbb6d2f3d"/>
+      <topic label="DL_LCD_disableInterrupt" href="group___l_c_d.html#gacf753cda63df4346a71b51eb4f4a0b6c"/>
+      <topic label="DL_LCD_getEnabledInterrupts" href="group___l_c_d.html#gaa83796daf0150effb08b62398c9cf18d"/>
+      <topic label="DL_LCD_getRawInterruptStatus" href="group___l_c_d.html#ga88ebaa17344cc72d0ca2c0ce00e1238d"/>
+      <topic label="DL_LCD_getEnabledInterruptStatus" href="group___l_c_d.html#ga78cc7b51ebe286dc00619d4c815d41af"/>
+      <topic label="DL_LCD_setInterrupts" href="group___l_c_d.html#ga90ee5ef6e80b2798c25d151d5233abfe"/>
+      <topic label="DL_LCD_clearInterruptStatus" href="group___l_c_d.html#ga95c6711f1c1c5e392d5b4da52ec2eb46"/>
+      <topic label="DL_LCD_enableExternalSync" href="group___l_c_d.html#gac431a62aab99532a78f8ba5de2ba9b13"/>
+      <topic label="DL_LCD_disableExternalSync" href="group___l_c_d.html#gac8f26a8467976b3bc363343bc90b6cd3"/>
+      <topic label="DL_LCD_isExternalSyncEnabled" href="group___l_c_d.html#ga2a7048686faff04259dd7fb1170c511a"/>
+      <topic label="DL_LCD_setFreqDiv" href="group___l_c_d.html#ga3e31151683688c5e11ffbbd222fabed0"/>
+      <topic label="DL_LCD_getFreqDiv" href="group___l_c_d.html#ga275796e5a652554c0c33bc606445b270"/>
+      <topic label="DL_LCD_setMuxRate" href="group___l_c_d.html#gaa27cb56b7d9872109224b7023a1296fc"/>
+      <topic label="DL_LCD_getMuxRate" href="group___l_c_d.html#gab85dcb6d2c7184c938800131117a98df"/>
+      <topic label="DL_LCD_turnSegmentsOn" href="group___l_c_d.html#gacc2511774ca37c74083c68b982281154"/>
+      <topic label="DL_LCD_turnSegmentsOff" href="group___l_c_d.html#ga9ae690629223d534a24f6b0bbf48b015"/>
+      <topic label="DL_LCD_setWaveformPowerMode" href="group___l_c_d.html#gab6a522c5b4bacc018cd9f4b960a40c13"/>
+      <topic label="DL_LCD_getWaveformPowerMode" href="group___l_c_d.html#ga50bd8ebbf782548ab1bc4b5a318994c8"/>
+      <topic label="DL_LCD_enable" href="group___l_c_d.html#gab625a8bb5c1ca42eed39bc3f099a2f94"/>
+      <topic label="DL_LCD_disable" href="group___l_c_d.html#ga1a685dd345550630c25612e61176d1c8"/>
+      <topic label="DL_LCD_setBlinkingControl" href="group___l_c_d.html#ga5d4f1268b22446a1413366cef3438c46"/>
+      <topic label="DL_LCD_getBlinkingFreqDiv" href="group___l_c_d.html#gae605a7a261cbad3c20ec275c0d992ac4"/>
+      <topic label="DL_LCD_getBlinkingMode" href="group___l_c_d.html#gabc61e4df61dce8aa5dbeee9c34a1b6fd"/>
+      <topic label="DL_LCD_clearAllBlinkingMemoryRegs" href="group___l_c_d.html#ga51bd7f6644d1f9d38dec9ea29af60b57"/>
+      <topic label="DL_LCD_clearAllMemoryRegs" href="group___l_c_d.html#gaf0102e280ef4c3dbb63d5627f61daae0"/>
+      <topic label="DL_LCD_selectMemRegsForDisplay" href="group___l_c_d.html#gafd288fd4a5277e6fca234b2d8bf42f54"/>
+      <topic label="DL_LCD_getSelectedMemRegsForDisplay" href="group___l_c_d.html#ga6327b96d30e07a9c6b84d8197b0dd64a"/>
+      <topic label="DL_LCD_enableVBOOST" href="group___l_c_d.html#ga98588e099adab8b4b20ce16c935fe91a"/>
+      <topic label="DL_LCD_disableVBOOST" href="group___l_c_d.html#ga77c53b0965e33a7009444054e0bd43e1"/>
+      <topic label="DL_LCD_setChargePumpFreq" href="group___l_c_d.html#ga9170ca6fd9e935819a76024d892b1b7e"/>
+      <topic label="DL_LCD_getChargePumpFreq" href="group___l_c_d.html#ga7a54f726ce6e477ea1c362c5c192ffe3"/>
+      <topic label="DL_LCD_setVREFInternal" href="group___l_c_d.html#gae35d94c0a17de9af08d7024bc1e6bf70"/>
+      <topic label="DL_LCD_getVREFInternal" href="group___l_c_d.html#gae625ebc36d79cfcec4a7be615aa5bacd"/>
+      <topic label="DL_LCD_enableChargePump" href="group___l_c_d.html#gaeb7bf72084e40a08e300c572f77627fa"/>
+      <topic label="DL_LCD_disableChargePump" href="group___l_c_d.html#gae6c351d364e0c92cef2a1bb039c79bb8"/>
+      <topic label="DL_LCD_enableVREFInternal" href="group___l_c_d.html#ga72a3b4d5231cf11dea92c35e9e29a48e"/>
+      <topic label="DL_LCD_disableVREFInternal" href="group___l_c_d.html#ga1504add9e16618ad496b2d968211ee64"/>
+      <topic label="DL_LCD_setR33source" href="group___l_c_d.html#ga7dee6195602aba80de8dcd37e0591593"/>
+      <topic label="DL_LCD_getR33Source" href="group___l_c_d.html#ga9e192d7ab8b0b37810264631e9865fa5"/>
+      <topic label="DL_LCD_setInternalBiasPowerMode" href="group___l_c_d.html#ga066fcd2d5de1cb6365985657099af6dc"/>
+      <topic label="DL_LCD_getPowerMode" href="group___l_c_d.html#gabe4f00296bfd06a68e810ed8a8e81bad"/>
+      <topic label="DL_LCD_setBiasVoltageSource" href="group___l_c_d.html#ga3e236628f4f8ae8f558ba45c6518113a"/>
+      <topic label="DL_LCD_getBiasVoltageSource" href="group___l_c_d.html#ga32252b991dc9a3f17e2e5aff55dd3b03"/>
+      <topic label="DL_LCD_enableInternalBias" href="group___l_c_d.html#ga35ea3858475eb24267ca143185d05ac9"/>
+      <topic label="DL_LCD_disableInternalBias" href="group___l_c_d.html#gaeaf82b66c9ac66b8bfb7451891f8ed71"/>
+      <topic label="DL_LCD_setBias" href="group___l_c_d.html#gad74c497e41f7d7d18318840df8e329d3"/>
+      <topic label="DL_LCD_getBias" href="group___l_c_d.html#ga61933502f0e3592e06cce95cd343f066"/>
+      <topic label="DL_LCD_setRefMode" href="group___l_c_d.html#ga2a530852fd9e0a7d02ea63a769bcb7eb"/>
+      <topic label="DL_LCD_getRefMode" href="group___l_c_d.html#gaedec38224e3a2b81f9b27983644b7ee5"/>
+      <topic label="DL_LCD_writeMemory" href="group___l_c_d.html#ga717927d49c2fd21196940a701eb14e2e"/>
+      <topic label="DL_LCD_setMemory" href="group___l_c_d.html#ga1d50d70d04fc9bc705a87e30275e28bb"/>
+      <topic label="DL_LCD_toggleMemory" href="group___l_c_d.html#gadd0bef90789dea124de4e5cb7a5a6b91"/>
+      <topic label="DL_LCD_clearMemory" href="group___l_c_d.html#ga304258f51f63a4fe5aee28c7fe3f96ad"/>
+      <topic label="DL_LCD_getMemory" href="group___l_c_d.html#ga63a7f0b262c252f9857da02c466b1d60"/>
+      <topic label="DL_LCD_writeBlinkingMemory" href="group___l_c_d.html#gac151beac837a699e7aa5e16f16abe5e6"/>
+      <topic label="DL_LCD_setBlinkingMemory" href="group___l_c_d.html#ga0ed2bbc55ffa495f8f888cd4c02fdfd2"/>
+      <topic label="DL_LCD_toggleBlinkingMemory" href="group___l_c_d.html#ga64187da6933b5ac1529e8bf201b0d647"/>
+      <topic label="DL_LCD_clearBlinkingMemory" href="group___l_c_d.html#gaa7401b40ce5e984828f9964c6a7625c5"/>
+      <topic label="DL_LCD_getBlinkingMemory" href="group___l_c_d.html#ga2f60330228b1331eb44db29c2d9614ef"/>
+      <topic label="DL_LCD_setVrefOnTimeCycles" href="group___l_c_d.html#gaa2f4b70a71aa8d137393fb70f9b12859"/>
+      <topic label="DL_LCD_getVrefOnTimeCycles" href="group___l_c_d.html#gab05c2d9aa25c8e00941358089ecffb2a"/>
     </topic>
     <topic label="Low Frequeuncy Sub-System (LFSS)" href="group___l_f_s_s.html">
       <topic label="DL_LFSS_TAMPERIO_INTERRUPT" href="group___d_l___l_f_s_s___t_a_m_p_e_r_i_o___i_n_t_e_r_r_u_p_t.html">
@@ -2732,6 +3168,16 @@
         <topic label="DL_TIMER_CC_OCTL_SRC_DEAD_BAND" href="group___d_l___t_i_m_e_r___c_c___o_c_t_l___s_r_c.html#gac33f6508ce5957827fa4d485a49fc383"/>
         <topic label="DL_TIMER_CC_OCTL_SRC_CNTDIR" href="group___d_l___t_i_m_e_r___c_c___o_c_t_l___s_r_c.html#ga0ff3f9ee4d511056323ab9f7ae581aa4"/>
       </topic>
+      <topic label="DL_TIMER_CC_SWFRCACT_CMPL" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t___c_m_p_l.html">
+        <topic label="DL_TIMER_CC_SWFRCACT_CMPL_DISABLED" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t___c_m_p_l.html#ga5d638f5bf6b64f50bf7bc530b4ac35fa"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_CMPL_HIGH" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t___c_m_p_l.html#ga8fa526ed788b2de33f7d2924c714b15d"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_CMPL_LOW" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t___c_m_p_l.html#gaf500ead05f1e5908dd416af6c81d1202"/>
+      </topic>
+      <topic label="DL_TIMER_CC_SWFRCACT" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t.html">
+        <topic label="DL_TIMER_CC_SWFRCACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t.html#ga92628f010a51370a9bbf548ca1d54be3"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_HIGH" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t.html#gaf33f64d0dbb063fcc2bbcebf61633bbc"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_LOW" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t.html#ga6ee29ef891a3dab0377eaf87421ffc3b"/>
+      </topic>
       <topic label="DL_TIMER_CC_FEXACT" href="group___d_l___t_i_m_e_r___c_c___f_e_x_a_c_t.html">
         <topic label="DL_TIMER_CC_FEXACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___f_e_x_a_c_t.html#gad7b3fe600f198a9e535df72ab556359b"/>
         <topic label="DL_TIMER_CC_FEXACT_HIGH" href="group___d_l___t_i_m_e_r___c_c___f_e_x_a_c_t.html#gad30c6b812e7748b24b98a17812cfdff0"/>
@@ -2745,6 +3191,18 @@
         <topic label="DL_TIMER_CC_FENACT_CCP_LOW" href="group___d_l___t_i_m_e_r___c_c___f_e_n_a_c_t.html#ga1f0686ebbd0be6395b7e3c69c19102c3"/>
         <topic label="DL_TIMER_CC_FENACT_CCP_TOGGLE" href="group___d_l___t_i_m_e_r___c_c___f_e_n_a_c_t.html#ga324aaae0542a04da12ce794823f2bcd7"/>
         <topic label="DL_TIMER_CC_FENACT_HIGHZ" href="group___d_l___t_i_m_e_r___c_c___f_e_n_a_c_t.html#gae7b6776dfb8501dbd8cf5c12b58a6928"/>
+      </topic>
+      <topic label="DL_TIMER_CC_CC2UACT" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html">
+        <topic label="DL_TIMER_CC_CC2UACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html#ga41e44b739d9f1b73f90ae66913d58ed9"/>
+        <topic label="DL_TIMER_CC_CC2UACT_CCP_HIGH" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html#ga388aa674ab520a955f7123d409898589"/>
+        <topic label="DL_TIMER_CC_CC2UACT_CCP_LOW" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html#gaffae28f4662f12afa2466153227de165"/>
+        <topic label="DL_TIMER_CC_CC2UACT_CCP_TOGGLE" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html#gaaf23483d5aaa3c4eaa724e01599cb4f4"/>
+      </topic>
+      <topic label="DL_TIMER_CC_CC2DACT" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html">
+        <topic label="DL_TIMER_CC_CC2DACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html#gadb101c42ba8857efa7b29f4ca362e31c"/>
+        <topic label="DL_TIMER_CC_CC2DACT_CCP_HIGH" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html#ga54a2c9c1d2ece64c88073e718fc6e6b0"/>
+        <topic label="DL_TIMER_CC_CC2DACT_CCP_LOW" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html#ga27d9bf1e197e2751299d66d3d015c112"/>
+        <topic label="DL_TIMER_CC_CC2DACT_CCP_TOGGLE" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html#ga4526b56d6116242a431dbf94f5988e2e"/>
       </topic>
       <topic label="DL_TIMER_CC_CUACT" href="group___d_l___t_i_m_e_r___c_c___c_u_a_c_t.html">
         <topic label="DL_TIMER_CC_CUACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___c_u_a_c_t.html#gaf4ac313e3d62181d525452d7c62a0b3d"/>
@@ -5003,6 +5461,10 @@
         <topic label="DL_WWDT_IIDX_NO_INT" href="group___w_w_d_t.html#gga12c15027cb23085134146d3fb3a0ffd8a0ffe5bbf0b4d5861cfe3c46640afeadd"/>
         <topic label="DL_WWDT_IIDX_INTERVAL_TIMER" href="group___w_w_d_t.html#gga12c15027cb23085134146d3fb3a0ffd8a9b27df98bf653d27a9b3909cdc2e57d1"/>
       </topic>
+      <topic label="DL_WWDT_CORE_HALT" href="group___w_w_d_t.html#gab9776a688c47adace7bcbb3096cf1b94">
+        <topic label="DL_WWDT_CORE_HALT_STOP" href="group___w_w_d_t.html#ggab9776a688c47adace7bcbb3096cf1b94a61cce3e3fecc1ed51bd7c27deac2ae42"/>
+        <topic label="DL_WWDT_CORE_HALT_FREE_RUN" href="group___w_w_d_t.html#ggab9776a688c47adace7bcbb3096cf1b94a5f04426c820c85bfc617bcb2bd4ec79a"/>
+      </topic>
       <topic label="DL_WWDT_initWatchdogMode" href="group___w_w_d_t.html#ga39acf2d9a972ebdca580e6eb7cc93159"/>
       <topic label="DL_WWDT_initIntervalTimerMode" href="group___w_w_d_t.html#ga20be7bde67b141016a72667c82ef6b50"/>
       <topic label="DL_WWDT_enablePower" href="group___w_w_d_t.html#gae78c6d4e85255a6ad4d92d22c8367ad2"/>
@@ -5026,6 +5488,8 @@
       <topic label="DL_WWDT_getRawInterruptStatus" href="group___w_w_d_t.html#gab93598ba9812f52db7f7bb608a04504a"/>
       <topic label="DL_WWDT_getPendingInterrupt" href="group___w_w_d_t.html#ga428fb631e5445f86f26f159cfa201139"/>
       <topic label="DL_WWDT_clearInterruptStatus" href="group___w_w_d_t.html#gae943dddfb187f1141e169b446a999c2b"/>
+      <topic label="DL_WWDT_setCoreHaltBehavior" href="group___w_w_d_t.html#gab63a2c458ca5b64d34febfd564239875"/>
+      <topic label="DL_WWDT_getCoreHaltBehavior" href="group___w_w_d_t.html#gac6813e142f2c9777e6229f531ef30ec9"/>
     </topic>
     <topic label="M0P Core" href="group___c_o_r_e.html">
       <topic label="DL_CORE_CACHE" href="group___d_l___c_o_r_e___c_a_c_h_e.html">
@@ -5085,6 +5549,7 @@
         <topic label="DL_INTERRUPT_GROUP1_IIDX_COMP1" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_i_d_x.html#gaba5c256395ff226cbc605b956efef639"/>
         <topic label="DL_INTERRUPT_GROUP1_IIDX_COMP2" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_i_d_x.html#ga5d48019ed64fc0c2d3b03f4c9578cb67"/>
         <topic label="DL_INTERRUPT_GROUP1_IIDX_TRNG" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_i_d_x.html#gaeff002db069855982842adb21f3350d9"/>
+        <topic label="DL_INTERRUPT_GROUP1_IIDX_GPIOC" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_i_d_x.html#ga22a27bdd11fecac94a17d81f59d0528b"/>
       </topic>
       <topic label="DL_INTERRUPT_GROUP_INTERRUPTS" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_n_t_e_r_r_u_p_t_s.html">
         <topic label="DL_INTERRUPT_GROUP0_WWDT0" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_n_t_e_r_r_u_p_t_s.html#ga83eb135ce9024bfe4903cabe258ac059"/>
@@ -5127,6 +5592,7 @@
     </topic>
     <topic label="MSPM0L122X_L222X System Control (SYSCTL)" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html">
       <topic label="DL_SYSCTL_RESET" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html">
+        <topic label="DL_SYSCTL_RESET_SYSRST" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga8870485869a50f7b5d3f6cbfa191912c"/>
         <topic label="DL_SYSCTL_RESET_CPU" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga940ba2b600c6a6f4570739618dd22f25"/>
         <topic label="DL_SYSCTL_RESET_BOOT" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#gaebabc2cbf8c1ae29d674a22dcf084c02"/>
         <topic label="DL_SYSCTL_RESET_POR" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga25e841560b3f4711a5081512eb5d82c1"/>
@@ -6096,6 +6562,11 @@
         <topic label="clockSel" href="struct_d_l___i2_c___clock_config.html#a1ea2f5bb83c52c05694708706f1fd5af"/>
         <topic label="divideRatio" href="struct_d_l___i2_c___clock_config.html#ace9f4ac6b3f5c10cac8e06d529e3cc8c"/>
       </topic>
+      <topic label="DL_LCD_Config" href="struct_d_l___l_c_d___config.html">
+        <topic label="frequencyDivider" href="struct_d_l___l_c_d___config.html#a050a80698e087198d9a2e9e06e9a1712"/>
+        <topic label="muxRate" href="struct_d_l___l_c_d___config.html#aaec62b7050d9bb4e438ed99ea0513b75"/>
+        <topic label="lowPowerWaveform" href="struct_d_l___l_c_d___config.html#a1341f45b51fe7f5f5f81fea76331e5f5"/>
+      </topic>
       <topic label="DL_RTC_Common_Calendar" href="struct_d_l___r_t_c___common___calendar.html">
         <topic label="seconds" href="struct_d_l___r_t_c___common___calendar.html#aee69e09661e680e6d4907228f033e271"/>
         <topic label="minutes" href="struct_d_l___r_t_c___common___calendar.html#ac7525518da329020295abcf40cbb7747"/>
@@ -7017,6 +7488,7 @@
           <topic label="DL_DMA_WIDTH_HALF_WORD" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9aedc17c2fd6c23e189017519faf2a9450"/>
           <topic label="DL_DMA_WIDTH_WORD" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836"/>
           <topic label="DL_DMA_WIDTH_LONG" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e"/>
+          <topic label="DL_DMA_WIDTH_LONG_LONG" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9"/>
         </topic>
         <topic label="DL_DMA_EVENT_IIDX" href="group___d_m_a.html#ga9c5dfde9fc934940ba9aac298be440b8">
           <topic label="DL_DMA_EVENT_IIDX_NO_INTR" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5c8dbcebf4546d277afe8da3522156bb"/>
@@ -7045,6 +7517,12 @@
         <topic label="DL_DMA_SUBSCRIBER_INDEX" href="group___d_m_a.html#gaa5cab158d8d96858b0905b602c0a846a">
           <topic label="DL_DMA_SUBSCRIBER_INDEX_0" href="group___d_m_a.html#ggaa5cab158d8d96858b0905b602c0a846aa0a5cfbb93339ef6ff8a3a6870830383e"/>
           <topic label="DL_DMA_SUBSCRIBER_INDEX_1" href="group___d_m_a.html#ggaa5cab158d8d96858b0905b602c0a846aa85348fedd260f64bf890e608d33a3f3e"/>
+        </topic>
+        <topic label="DL_DMA_AUTOEN" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">
+          <topic label="DL_DMA_AUTOEN_DISABLE" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2"/>
+          <topic label="DL_DMA_AUTOEN_DMASA" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe"/>
+          <topic label="DL_DMA_AUTOEN_DMADA" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb"/>
+          <topic label="DL_DMA_AUTOEN_DMASZ" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5"/>
         </topic>
         <topic label="DL_DMA_initChannel" href="group___d_m_a.html#ga57e87a0fce4c224edea31b79515cfb2d"/>
         <topic label="DL_DMA_configTransfer" href="group___d_m_a.html#ga28e4595240333440fb932a78c70729cd"/>
@@ -7096,6 +7574,9 @@
         <topic label="DL_DMA_getEnabledEventStatus" href="group___d_m_a.html#ga81ee2d5a31952301b0d75a910be6a521"/>
         <topic label="DL_DMA_getRawEventsStatus" href="group___d_m_a.html#ga5aa4c5d2963c2b3c304610874cbd3977"/>
         <topic label="DL_DMA_clearEventsStatus" href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432"/>
+        <topic label="DL_DMA_enableAutoEnable" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e"/>
+        <topic label="DL_DMA_disableAutoEnable" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05"/>
+        <topic label="DL_DMA_isAutoEnableEnabled" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26"/>
       </topic>
       <topic label="dl_factoryregion.h" href="dl__factoryregion_8h.html">
         <topic label="DL_FactoryRegion_getMAINFlashSize" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga40ce96a6b6a3f1174104010cc8abc028"/>
@@ -7156,6 +7637,7 @@
         <topic label="DL_FLASHCTL_COMMAND_TYPE_BLANK_VERIFY" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga65c8f2ad939e8718eadc85ec3b4b1061"/>
         <topic label="DL_FLASHCTL_COMMAND_TYPE_MODE_CHANGE" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga6bb6fecf9bd8e480c419b06411fb963f"/>
         <topic label="DL_FLASHCTL_COMMAND_TYPE_CLEAR_STATUS" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga0dc1855e5deb8366972d3b0ebc1842a1"/>
+        <topic label="DL_FLASHCTL_SECTOR_SIZE" href="group___f_l_a_s_h_c_t_l.html#ga39de6b05e60ebfe83038fb3ff273d81e"/>
         <topic label="DL_FLASHCTL_COMMAND_SIZE" href="group___f_l_a_s_h_c_t_l.html#ga987c2ff9232d4205c98af65ff7d7c2e2">
           <topic label="DL_FLASHCTL_COMMAND_SIZE_ONE_WORD" href="group___f_l_a_s_h_c_t_l.html#gga987c2ff9232d4205c98af65ff7d7c2e2adf1053097cc9922b5182155e01255b15"/>
           <topic label="DL_FLASHCTL_COMMAND_SIZE_TWO_WORDS" href="group___f_l_a_s_h_c_t_l.html#gga987c2ff9232d4205c98af65ff7d7c2e2abb50257fbb0d576fef26a5d2112b4e24"/>
@@ -7865,6 +8347,10 @@
           <topic label="DL_I2C_TARGET_PEC_STATUS_CHECKED" href="group___i2_c.html#ggafb5095cf27ba13dbca5226da84dbbf18a621e97a1d5400f1fcb2f7b0a242a0dfe"/>
           <topic label="DL_I2C_TARGET_PEC_STATUS_NOT_CHECKED" href="group___i2_c.html#ggafb5095cf27ba13dbca5226da84dbbf18a6381d0639c0d81a547fe93f737324ea4"/>
         </topic>
+        <topic label="DL_I2C_TARGET_PEC_CHECK_ERROR" href="group___i2_c.html#ga96c525c4ee883f347cf21e8676d7c32e">
+          <topic label="DL_I2C_TARGET_PEC_CHECK_ERROR_CLEARED" href="group___i2_c.html#gga96c525c4ee883f347cf21e8676d7c32ea72ff826ecd7fcdaac021b0f787356eae"/>
+          <topic label="DL_I2C_TARGET_PEC_CHECK_ERROR_SET" href="group___i2_c.html#gga96c525c4ee883f347cf21e8676d7c32eaa6767e7f503cda619aa26c7210e75fac"/>
+        </topic>
         <topic label="DL_I2C_ANALOG_GLITCH_FILTER_WIDTH" href="group___i2_c.html#ga031f0b093a1d7448b0ba89a6ecc0a32a">
           <topic label="DL_I2C_ANALOG_GLITCH_FILTER_WIDTH_5NS" href="group___i2_c.html#gga031f0b093a1d7448b0ba89a6ecc0a32aab775e2e3cf0f0c919a44a5e5f43f8b87"/>
           <topic label="DL_I2C_ANALOG_GLITCH_FILTER_WIDTH_10NS" href="group___i2_c.html#gga031f0b093a1d7448b0ba89a6ecc0a32aa459f9759f5f9dea0e111e09dc0cfd161"/>
@@ -8148,6 +8634,7 @@
         <topic label="DL_I2C_enableTargetPEC" href="group___i2_c.html#ga4315266fccc9844113c697f27ec97e8e"/>
         <topic label="DL_I2C_getTargetCurrentPECCount" href="group___i2_c.html#ga4e05337541555cd6338f85e2684ba2d9"/>
         <topic label="DL_I2C_getTargetPECCheckedStatus" href="group___i2_c.html#ga0898e3ac477f498dd021d6b9251be792"/>
+        <topic label="DL_I2C_getTargetPECCheckError" href="group___i2_c.html#ga442f1163dc4edf28f58e901506456ea2"/>
         <topic label="DL_I2C_getTargetTXFIFOThreshold" href="group___i2_c.html#ga8dcd575b9d863a582b3bbd378d4eb4a4"/>
         <topic label="DL_I2C_setTargetTXFIFOThreshold" href="group___i2_c.html#gaaf24be7bed7d0f0b9a23de1da777bdec"/>
         <topic label="DL_I2C_stopFlushTargetTXFIFO" href="group___i2_c.html#gae11c2c0e16d80798b2038cef33d75ca7"/>
@@ -8204,6 +8691,7 @@
         <topic label="DL_INTERRUPT_GROUP1_IIDX_COMP1" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_i_d_x.html#gaba5c256395ff226cbc605b956efef639"/>
         <topic label="DL_INTERRUPT_GROUP1_IIDX_COMP2" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_i_d_x.html#ga5d48019ed64fc0c2d3b03f4c9578cb67"/>
         <topic label="DL_INTERRUPT_GROUP1_IIDX_TRNG" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_i_d_x.html#gaeff002db069855982842adb21f3350d9"/>
+        <topic label="DL_INTERRUPT_GROUP1_IIDX_GPIOC" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_i_d_x.html#ga22a27bdd11fecac94a17d81f59d0528b"/>
         <topic label="DL_INTERRUPT_GROUP0_WWDT0" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_n_t_e_r_r_u_p_t_s.html#ga83eb135ce9024bfe4903cabe258ac059"/>
         <topic label="DL_INTERRUPT_GROUP0_WWDT1" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_n_t_e_r_r_u_p_t_s.html#ga8da13ba968c458ca040518f4230f2b12"/>
         <topic label="DL_INTERRUPT_GROUP0_DEBUGSS" href="group___d_l___i_n_t_e_r_r_u_p_t___g_r_o_u_p___i_n_t_e_r_r_u_p_t_s.html#ga8b35eaa6b97c34849af7535c6c1952d4"/>
@@ -8262,7 +8750,415 @@
         <topic label="DL_IWDT_disableWriteProtect" href="group___i_w_d_t.html#ga4f368e4d80d4b92cd1fa6624aa2d7676"/>
       </topic>
       <topic label="dl_keystorectl.h" href="dl__keystorectl_8h.html"/>
-      <topic label="dl_lcd.h" href="dl__lcd_8h.html"/>
+      <topic label="dl_lcd.h" href="dl__lcd_8h.html">
+        <topic label="DL_LCD_INTERRUPT_FRAME_START" href="group___d_l___l_c_d___i_n_t_e_r_r_u_p_t.html#ga61b11f2dacc0be4ef8ee4791575d8349"/>
+        <topic label="DL_LCD_INTERRUPT_BLINKING_SEGMENTS_OFF" href="group___d_l___l_c_d___i_n_t_e_r_r_u_p_t.html#ga4ca8d628cb268c319e41c41d2d28d543"/>
+        <topic label="DL_LCD_INTERRUPT_BLINKING_SEGMENTS_ON" href="group___d_l___l_c_d___i_n_t_e_r_r_u_p_t.html#ga7d03fb1a9321ef4596c3ed3e16a9cbd6"/>
+        <topic label="DL_LCD_SEGMENT_LINE_0" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga413cc62b270dd363e7b947d39edf9f7d"/>
+        <topic label="DL_LCD_SEGMENT_LINE_1" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga867fe5acf9f9bbe8d62486c0223eeb68"/>
+        <topic label="DL_LCD_SEGMENT_LINE_2" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gafc932934368cae234d670bf1dedf25e8"/>
+        <topic label="DL_LCD_SEGMENT_LINE_3" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga5b6dca0c8ea405cdb60cc0b62b325dd9"/>
+        <topic label="DL_LCD_SEGMENT_LINE_4" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaadc27cab65ca1651fd174ace865fda43"/>
+        <topic label="DL_LCD_SEGMENT_LINE_5" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gac620dfdc361f11d4a7b0073ee144e48c"/>
+        <topic label="DL_LCD_SEGMENT_LINE_6" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga96a9a555553e29315845cabadc040c49"/>
+        <topic label="DL_LCD_SEGMENT_LINE_7" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaa92a26fe8eeba85784cd9d63873c2931"/>
+        <topic label="DL_LCD_SEGMENT_LINE_8" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gad0bcff3bbde6a6fcacdc36c8519a394f"/>
+        <topic label="DL_LCD_SEGMENT_LINE_9" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gafa966920ef0ecba8ab3b3e0107bc5eef"/>
+        <topic label="DL_LCD_SEGMENT_LINE_10" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga6c2e236f014d4eb7ac4508c5ea3fdfc2"/>
+        <topic label="DL_LCD_SEGMENT_LINE_11" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga06f2e44ccf4d2b24a9fd3a0d05160b5c"/>
+        <topic label="DL_LCD_SEGMENT_LINE_12" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga1f1a813ff24cf946d142738ccb115ab9"/>
+        <topic label="DL_LCD_SEGMENT_LINE_13" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga197af42a9d0ead08d01cb619ee614d8e"/>
+        <topic label="DL_LCD_SEGMENT_LINE_14" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gad316f9e0def41fbd126fb97a57392d25"/>
+        <topic label="DL_LCD_SEGMENT_LINE_15" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga4f5856c4df02a14e7768ca4e38490b4e"/>
+        <topic label="DL_LCD_SEGMENT_LINE_16" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga44fb053b13e7b416653423d28c572d7c"/>
+        <topic label="DL_LCD_SEGMENT_LINE_17" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga848fe356ee4f7902fb5499fc3be9e03b"/>
+        <topic label="DL_LCD_SEGMENT_LINE_18" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga05b7cba002c7cb318d85239b47651765"/>
+        <topic label="DL_LCD_SEGMENT_LINE_19" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga88ba25322a69c64c829519aa686b6025"/>
+        <topic label="DL_LCD_SEGMENT_LINE_20" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga5eebd6e746193fd9115883369facfa65"/>
+        <topic label="DL_LCD_SEGMENT_LINE_21" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga704631c7ef90e6bb10d5bf89b6519970"/>
+        <topic label="DL_LCD_SEGMENT_LINE_22" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga7ae41e6b7446652228d95b814dcab18c"/>
+        <topic label="DL_LCD_SEGMENT_LINE_23" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga3daee2b2d3b06598826c3b4943b6e226"/>
+        <topic label="DL_LCD_SEGMENT_LINE_24" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaf4dd05cc8837032649bac213fdb095b3"/>
+        <topic label="DL_LCD_SEGMENT_LINE_25" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga25f5f98a3cef041b44dabd3b6e9db175"/>
+        <topic label="DL_LCD_SEGMENT_LINE_26" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga114fbbbbf680fc4cff107dbe16389ec1"/>
+        <topic label="DL_LCD_SEGMENT_LINE_27" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gac8fe30a5037d12a55483827f4f543ab0"/>
+        <topic label="DL_LCD_SEGMENT_LINE_28" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga8472e46a659bcebc50d839d7fb3074c0"/>
+        <topic label="DL_LCD_SEGMENT_LINE_29" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga454cc8cfb27b6e5f8dbc4fb9956d322e"/>
+        <topic label="DL_LCD_SEGMENT_LINE_30" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gabfde75c3c2625be7b92ed62957d3a0ab"/>
+        <topic label="DL_LCD_SEGMENT_LINE_31" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga4a86ece139046fb5b755b3e2f03800ee"/>
+        <topic label="DL_LCD_SEGMENT_LINE_32" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga07b7fcdbe39321f743b72b243af38f31"/>
+        <topic label="DL_LCD_SEGMENT_LINE_33" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaaee943c5d3fce8ab52d4483aa1457ece"/>
+        <topic label="DL_LCD_SEGMENT_LINE_34" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaea01d442e447d6cbdfc525583e0e73dc"/>
+        <topic label="DL_LCD_SEGMENT_LINE_35" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gae688ed4277e715ffa9cea045c4a82644"/>
+        <topic label="DL_LCD_SEGMENT_LINE_36" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga0adb6584737d05608bf443c1e07d1cac"/>
+        <topic label="DL_LCD_SEGMENT_LINE_37" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaf9b6715bfde112c2027143b6664190fd"/>
+        <topic label="DL_LCD_SEGMENT_LINE_38" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga8d10a3f55a4be091419d19698c4d44ad"/>
+        <topic label="DL_LCD_SEGMENT_LINE_39" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaa375c9c4cd9c41ccd42ceddda7781fed"/>
+        <topic label="DL_LCD_SEGMENT_LINE_40" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga715d0955ea9505e38e48ab0568cc4ff8"/>
+        <topic label="DL_LCD_SEGMENT_LINE_41" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga0bb81bca8ed2330e07552414e18eb74a"/>
+        <topic label="DL_LCD_SEGMENT_LINE_42" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaa9dc0b05ecf196f87242549a464c9fae"/>
+        <topic label="DL_LCD_SEGMENT_LINE_43" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga91e9f6f667756cd5a2e1bce9d7333002"/>
+        <topic label="DL_LCD_SEGMENT_LINE_44" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga79c348b8313bc596e10fcb02139c82c7"/>
+        <topic label="DL_LCD_SEGMENT_LINE_45" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga92e7d3715c61652c7f9d454032123988"/>
+        <topic label="DL_LCD_SEGMENT_LINE_46" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga2971f2381f8c8f58467eb90254db90f3"/>
+        <topic label="DL_LCD_SEGMENT_LINE_47" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga415ac0d2edf5b4bac572deaf81067124"/>
+        <topic label="DL_LCD_SEGMENT_LINE_48" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga6652b863e430471e8fe43050574966a8"/>
+        <topic label="DL_LCD_SEGMENT_LINE_49" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga72eec11e872415c94adc0bc907dadc31"/>
+        <topic label="DL_LCD_SEGMENT_LINE_50" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaf50d8f642d194c6ff57c6f1d8dbf85f1"/>
+        <topic label="DL_LCD_SEGMENT_LINE_51" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gab4a8ad25311ebc9d1f44c945b65d76de"/>
+        <topic label="DL_LCD_SEGMENT_LINE_52" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga3900fd0f5ecf3cf1dde2c98666b1973b"/>
+        <topic label="DL_LCD_SEGMENT_LINE_53" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga6ec800a41ebf0b2efc82ea0c50ceb9a3"/>
+        <topic label="DL_LCD_SEGMENT_LINE_54" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga052c0795c799899f335766115354ba41"/>
+        <topic label="DL_LCD_SEGMENT_LINE_55" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga420b1e87b10f5ac80d3ab7b9e770ee91"/>
+        <topic label="DL_LCD_SEGMENT_LINE_56" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga2299eca5f43052e68686dbbe4e2788fc"/>
+        <topic label="DL_LCD_SEGMENT_LINE_57" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gab69090316ba829052ff809842eb56bde"/>
+        <topic label="DL_LCD_SEGMENT_LINE_58" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gaff929766fc9acc30c48163860da3dd51"/>
+        <topic label="DL_LCD_SEGMENT_LINE_59" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga81ed12223e1ebf8d5a8b6a947a3566df"/>
+        <topic label="DL_LCD_SEGMENT_LINE_60" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga1ffc6f2552e4efb4fefe6b2922e4c4e6"/>
+        <topic label="DL_LCD_SEGMENT_LINE_61" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#gab82178043dc1f1094ac90d4476562f8d"/>
+        <topic label="DL_LCD_SEGMENT_LINE_62" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga5a3d6dc22caf12eabed0afc7a1924199"/>
+        <topic label="DL_LCD_SEGMENT_LINE_63" href="group___d_l___l_c_d___s_e_g_m_e_n_t___l_i_n_e.html#ga314b8ac6ac33e7a32012bcab965349e4"/>
+        <topic label="DL_LCD_MEMORY_BIT_0" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga14afe9e94b271f26ec02d5630d547109"/>
+        <topic label="DL_LCD_MEMORY_BIT_1" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga87a4b85ac0eb524eebe1e9e928263318"/>
+        <topic label="DL_LCD_MEMORY_BIT_2" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#gad498417f0c233086da9386af046c91b0"/>
+        <topic label="DL_LCD_MEMORY_BIT_3" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga33f3d2bdaf8d3fa4553d33a517c80e07"/>
+        <topic label="DL_LCD_MEMORY_BIT_4" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga055e151a1bfdd02b6ced469b46ccefc1"/>
+        <topic label="DL_LCD_MEMORY_BIT_5" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga3e66a7c77168d6394badb5bcb9457072"/>
+        <topic label="DL_LCD_MEMORY_BIT_6" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#gacf4e3abe9f92f9465be03b46b111c86c"/>
+        <topic label="DL_LCD_MEMORY_BIT_7" href="group___d_l___l_c_d___m_e_m_o_r_y___b_i_t.html#ga2bbbbf6ed3bf81239b2df4c5b2287641"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_0" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga3017fa9924db607c928b915b1b327b8e"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_1" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga19d045624fce06c81de03b59b10a967f"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_2" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#gae6ed7219b5e68f4cc96916f403834836"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_3" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga05203219c4eed161a040ab79cb05e46a"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_4" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga19768e2ecf960f146d8c1cbca089ab45"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_5" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#gaecd40a6b74da10c8a6d283a827c87bea"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_6" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga7bbe131321d951f97b1b4ac5c449102d"/>
+        <topic label="DL_LCD_BLINK_MEMORY_BIT_7" href="group___d_l___l_c_d___b_l_i_n_k___m_e_m_o_r_y___b_i_t.html#ga7add1317ea793376cb33f4e760a2f4ae"/>
+        <topic label="DL_LCD_FREQ_DIVIDE" href="group___l_c_d.html#ga393dc0be362c0edcc31eb7553438f603">
+          <topic label="DL_LCD_FREQ_DIVIDE_1" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a913daef9294359d367ae49adbd251048"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_2" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603aa1340d9a5850f6ff369311747b9e0314"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_3" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a851ed8f2e500b981f78d3231d479b207"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_4" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ab22440dbe8d39551e8ed7893e91352c9"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_5" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603adb4dd12feaf21f9dd6ee3b11fae7228b"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_6" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a22a486fa3a455431602ddd5c42dba02b"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_7" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a4489689f237fd6bfbfa8f1d3017feb11"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_8" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a393c118c625025d37421ee187fad9cf3"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_9" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a4de9e5014ed6662cfa03f9e149aa7e2c"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_10" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a35e1aaae9e7bbd399397b6cd7192fecd"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_11" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a09af11370b32c224378455b5501016fb"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_12" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603afb5de066aafa75d7234888f98531d379"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_13" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a050453a888b5ff2a58d9387033f78bad"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_14" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a4c17a711344d3317cf8808caafe43532"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_15" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ae222d7c29a9c50f5c08b4398239a9738"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_16" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a20d5079bc53b78356601a431d87f87cd"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_17" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a0e919f3b26bd4c78e4dbaa1b223719b9"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_18" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a737702d472881ff3e86cf93beae3935f"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_19" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a6f0d97951308646553888419294d3779"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_20" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ae9a6f428dd6331fda060decd0ddd6d9c"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_21" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603af4891cff8574db0b3d5e5695eed09803"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_22" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ade267c5b10b43fe2004debccb99ea275"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_23" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603aeb1d9d1c1d1d7943e1d0cbb7c812b55e"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_24" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a94523aed9fe3a8ce5e480e3b5242aa5a"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_25" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a2a6c65616722706552deffd34f79f13c"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_26" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a9be5dc1e1b2ee1e5a1290d3af9cce123"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_27" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a429e51d8002f436539dbc69f639fa019"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_28" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a7c583c44b04f75c61794ae36d4d2ba9b"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_29" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a78527ad8b204f1f3e4eff5505e4b72e6"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_30" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a5101be28cc65d5215348279461b1881b"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_31" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603a7f4a6b933117394e6160cdf61cf8eecc"/>
+          <topic label="DL_LCD_FREQ_DIVIDE_32" href="group___l_c_d.html#gga393dc0be362c0edcc31eb7553438f603ab29f07c7ea52a7316547492f59fb3b72"/>
+        </topic>
+        <topic label="DL_LCD_MUX_RATE" href="group___l_c_d.html#ga950b25d8ddbda10532d72ed3bd903e6e">
+          <topic label="DL_LCD_MUX_RATE_STATIC" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eaa097e8d0bc74285302de524b4730b8a2"/>
+          <topic label="DL_LCD_MUX_RATE_2" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6ea476a8e24f8b9f211608fce3889f62549"/>
+          <topic label="DL_LCD_MUX_RATE_3" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eae0408ff451be62a497131781f449a5f9"/>
+          <topic label="DL_LCD_MUX_RATE_4" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6ea656bc4fe92c2be60151dcdeeb17503ca"/>
+          <topic label="DL_LCD_MUX_RATE_5" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eaed8f7bebd516dd31aad5ba09b0075b20"/>
+          <topic label="DL_LCD_MUX_RATE_6" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eaadb0b189d83b116c9b408f6147f360b6"/>
+          <topic label="DL_LCD_MUX_RATE_7" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6eaa4242615d6c3c78f2a86b1d5ca7a4030"/>
+          <topic label="DL_LCD_MUX_RATE_8" href="group___l_c_d.html#gga950b25d8ddbda10532d72ed3bd903e6ea6e4b83e0cd97697e5cab444b25f43f1a"/>
+        </topic>
+        <topic label="DL_LCD_WAVEFORM_POWERMODE" href="group___l_c_d.html#ga599894907ff94a9c87a5a1f5785e74ca">
+          <topic label="DL_LCD_WAVEFORM_POWERMODE_LOWPOWER" href="group___l_c_d.html#gga599894907ff94a9c87a5a1f5785e74caadeb4b5d4c69160acd2d011e26d6e577d"/>
+          <topic label="DL_LCD_WAVEFORM_POWERMODE_STANDARD" href="group___l_c_d.html#gga599894907ff94a9c87a5a1f5785e74caaeda49bf13e31c9c54b83f1b2c1b96def"/>
+        </topic>
+        <topic label="DL_LCD_BLINKING_DIVIDE" href="group___l_c_d.html#gacb47d0b4a40792e2caed1caee11dd310">
+          <topic label="DL_LCD_BLINKING_DIVIDE_BY_2" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310a71f4eacd7e296941e4956c46175812c9"/>
+          <topic label="DL_LCD_BLINKING_DIVIDE_BY_4" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ab1dd69033c3951d8795f3611cf48acf6"/>
+          <topic label="DL_LCD_BLINKING_DIVIDE_BY_8" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ad0cc60f0e8f75cc742f9e14bc6a3e17c"/>
+          <topic label="DL_LCD_BLINKING_DIVIDE_BY_16" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ae7ea7e9212ce9257e7921b357e0d9d3a"/>
+          <topic label="DL_LCD_BLINKING_DIVIDE_BY_32" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ae53af1dd32dd5bf3314a563400a135f5"/>
+          <topic label="DL_LCD_BLINKING_DIVIDE_BY_64" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ac06ee986743eed1a5b7b98d88a3dc92d"/>
+          <topic label="DL_LCD_BLINKING_DIVIDE_BY_128" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310ae7abcca07a97dc4eb122a77e82f3259c"/>
+          <topic label="DL_LCD_BLINKING_DIVIDE_BY_256" href="group___l_c_d.html#ggacb47d0b4a40792e2caed1caee11dd310a050341fcab1d35982c6d047b9adff0bd"/>
+        </topic>
+        <topic label="DL_LCD_BLINKING_MODE" href="group___l_c_d.html#ga5b1b9bc3fc413d734411a487c25240de">
+          <topic label="DL_LCD_BLINKING_MODE_DISABLED" href="group___l_c_d.html#gga5b1b9bc3fc413d734411a487c25240dea49a6be1c3530813cfbd0933694c36338"/>
+          <topic label="DL_LCD_BLINKING_MODE_INDIVIDUAL_SEGMENTS" href="group___l_c_d.html#gga5b1b9bc3fc413d734411a487c25240dea00527ba79fd609e1e8b6069df6bfaff5"/>
+          <topic label="DL_LCD_BLINKING_MODE_ALL_SEGMENTS" href="group___l_c_d.html#gga5b1b9bc3fc413d734411a487c25240dea6ac4d08b931202730bfeeb4e45782288"/>
+          <topic label="DL_LCD_BLINKING_MODE_TOGGLE" href="group___l_c_d.html#gga5b1b9bc3fc413d734411a487c25240dea9710d8548ea2a309c6d2ca11b886498b"/>
+        </topic>
+        <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY" href="group___l_c_d.html#ga776f79571644f891b1be0cab88c163ec">
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_4096HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecafc8a4c9c2e8bb39e770f4803dede9b10"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_2048HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca3863f26f8f5e4c9fd4b4487c11567fda"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_1365HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecaf9ace77c39188f5e2184b5f998cd8d09"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_1024HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecabff06e54f7764f930d4629f04ad182cd"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_819HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca201c5a8a479d8b7ed57ce94f5b440774"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_682HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca948af821f52f87e4d2339d4179aceaf2"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_585HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecafc0c1c62e913315d13ada70a5286380c"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_512HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca35d76b3f234272adff03ef0da738b879"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_455HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecaad8d8c38af0529da1d6961fca38c5eb2"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_409HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecaadb17d158025dfb05b5051cf328ed739"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_372HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecaaee289558568da4b56bcaff3911209aa"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_341HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca997385887accc2cc5558111864b7dcd3"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_315HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca9ce6bc8e44f2720cd2b28187d9d1e5a2"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_292HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca937e8b9e0c895d66ed45b1720f947526"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_273HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163ecadea667f610440d1c8b40b6819a5ffb00"/>
+          <topic label="DL_LCD_CHARGE_PUMP_FREQUENCY_256HZ" href="group___l_c_d.html#gga776f79571644f891b1be0cab88c163eca08c2a11cfb107284de5105c9b311bb22"/>
+        </topic>
+        <topic label="DL_LCD_VREF_INTERNAL" href="group___l_c_d.html#ga67ab78d44caac9c8d8228c8300303b62">
+          <topic label="DL_LCD_VREF_INTERNAL_2_60V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62ae04210464c3b10b3af6372d717115e2a"/>
+          <topic label="DL_LCD_VREF_INTERNAL_2_66V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a570812708ea6263d9b717fc3f865649b"/>
+          <topic label="DL_LCD_VREF_INTERNAL_2_72V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62ac1fc7bc916b53d5c970e6e72b12f7fdc"/>
+          <topic label="DL_LCD_VREF_INTERNAL_2_78V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a112c1b0551034a81b05b8224291edb1e"/>
+          <topic label="DL_LCD_VREF_INTERNAL_2_84V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a1dce5e928d279e1169b21ea2716eb346"/>
+          <topic label="DL_LCD_VREF_INTERNAL_2_90V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a6857163eadf71c0021842b5989510606"/>
+          <topic label="DL_LCD_VREF_INTERNAL_2_96V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62ae0a94161b986f4a920d9e5b5442a054d"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_02V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a65fc146ceccce95159a795bd8b04a95f"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_08V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a4abd04713b57f2fff979124f99cea282"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_14V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62aa72edf135ea1d6f40b12aa193657ad2d"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_20V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a5abed3a9cbf8cce450d020a6f9dc6a35"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_26V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62af9a3ac59b22dc951db05d9bd70e4eb3d"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_32V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a36a74104a716c703ea4a04b1a0d1c4a6"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_38V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a83a061bfe47fec210e36612d60d83681"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_44V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a57f3ca43f29871d6815b78e231b31d32"/>
+          <topic label="DL_LCD_VREF_INTERNAL_3_50V" href="group___l_c_d.html#gga67ab78d44caac9c8d8228c8300303b62a73cfde98916111bc6870e2a9c25beefa"/>
+        </topic>
+        <topic label="DL_LCD_R33_SOURCE" href="group___l_c_d.html#gac116e6a706339e56538983e4e2a1e5c2">
+          <topic label="DL_LCD_R33_SOURCE_EXTERNAL" href="group___l_c_d.html#ggac116e6a706339e56538983e4e2a1e5c2a60aa2bd9be3def107a0cfb73331e98fb"/>
+          <topic label="DL_LCD_R33_SOURCE_INTERNAL" href="group___l_c_d.html#ggac116e6a706339e56538983e4e2a1e5c2a3615821a6a3a6b33a8d4ed375cccde68"/>
+        </topic>
+        <topic label="DL_LCD_POWER_MODE" href="group___l_c_d.html#ga9829072ddbecc7ff8a5c99c46133c845">
+          <topic label="DL_LCD_POWER_MODE_LOW" href="group___l_c_d.html#gga9829072ddbecc7ff8a5c99c46133c845afe2da4ec780ebdad52f78e15d50e0745"/>
+          <topic label="DL_LCD_POWER_MODE_HIGH" href="group___l_c_d.html#gga9829072ddbecc7ff8a5c99c46133c845adc39034c338add4bb96f6aea0ec1c853"/>
+        </topic>
+        <topic label="DL_LCD_BIAS_VOLTAGE_SOURCE" href="group___l_c_d.html#ga10b21befdd15f8dd690085d499d12694">
+          <topic label="DL_LCD_BIAS_VOLTAGE_SOURCE_R33" href="group___l_c_d.html#gga10b21befdd15f8dd690085d499d12694af583111e070ef3de3fc4fb3c6f4aefd7"/>
+          <topic label="DL_LCD_BIAS_VOLTAGE_SOURCE_AVDD" href="group___l_c_d.html#gga10b21befdd15f8dd690085d499d12694a56e01947da235cecd05e8def5f61583a"/>
+        </topic>
+        <topic label="DL_LCD_BIAS" href="group___l_c_d.html#ga68e46172bceb842dc2e49e4a3ef12afc">
+          <topic label="DL_LCD_BIAS_ONE_THIRD" href="group___l_c_d.html#gga68e46172bceb842dc2e49e4a3ef12afcab2451bbeb543f887723955edbd2e03bd"/>
+          <topic label="DL_LCD_BIAS_ONE_FOURTH" href="group___l_c_d.html#gga68e46172bceb842dc2e49e4a3ef12afcaf1e7dad0b231fe906e9c48f073f4bb1f"/>
+        </topic>
+        <topic label="DL_LCD_REFERENCE_MODE" href="group___l_c_d.html#ga7db44d8ee3eb4a0f4198707e89788432">
+          <topic label="DL_LCD_REFERENCE_MODE_STATIC" href="group___l_c_d.html#gga7db44d8ee3eb4a0f4198707e89788432af4665e6db28fa205afced2b9eaf58324"/>
+          <topic label="DL_LCD_REFERENCE_MODE_SWITCHED" href="group___l_c_d.html#gga7db44d8ee3eb4a0f4198707e89788432a4c67a67b439daca4f2ca3ce93aa2738d"/>
+        </topic>
+        <topic label="DL_LCD_DISP" href="group___l_c_d.html#gafd9a920fffd7f65c067bf2017f9a1092">
+          <topic label="DL_LCD_DISPLAY_REGISTERS_MEMORY" href="group___l_c_d.html#ggafd9a920fffd7f65c067bf2017f9a1092a0ee0181b3c7dfcbe37f3945d52aa1f75"/>
+          <topic label="DL_LCD_DISPLAY_REGISTERS_BLINKING_MEMORY" href="group___l_c_d.html#ggafd9a920fffd7f65c067bf2017f9a1092a9f826d00b599928d17f7b47eb30f836e"/>
+        </topic>
+        <topic label="DL_LCD_EVENT_LINE_MODE" href="group___l_c_d.html#gaaa84fb9b57ede19f488ee5d5d4a3d2bb">
+          <topic label="DL_LCD_EVENT_LINE_MODE_DISABLED" href="group___l_c_d.html#ggaaa84fb9b57ede19f488ee5d5d4a3d2bbabe5cd96714237a46e73c8a23cfcc5b4b"/>
+          <topic label="DL_LCD_EVENT_LINE_MODE_SOFTWARE" href="group___l_c_d.html#ggaaa84fb9b57ede19f488ee5d5d4a3d2bba258b58149cbf283577e8e58cf5eb4628"/>
+          <topic label="DL_LCD_EVENT_LINE_MODE_HARDWARE" href="group___l_c_d.html#ggaaa84fb9b57ede19f488ee5d5d4a3d2bbafaa06d54e4c31dd61c88e76744896686"/>
+        </topic>
+        <topic label="DL_LCD_IIDX" href="group___l_c_d.html#gae8a4679e21d8ad5c409620c047a47b6c">
+          <topic label="DL_LCD_IIDX_NO_INT" href="group___l_c_d.html#ggae8a4679e21d8ad5c409620c047a47b6caa30fa4603d7c2a176beafdaec6bfd597"/>
+          <topic label="DL_LCD_IIDX_FRAME_START" href="group___l_c_d.html#ggae8a4679e21d8ad5c409620c047a47b6caf65412fafc1b54e52ecce86a590affa7"/>
+          <topic label="DL_LCD_IIDX_BLINKING_SEGMENTS_OFF" href="group___l_c_d.html#ggae8a4679e21d8ad5c409620c047a47b6ca105c4b26c37ce446f5917c344f7671d9"/>
+          <topic label="DL_LCD_IIDX_BLINKING_SEGMENTS_ON" href="group___l_c_d.html#ggae8a4679e21d8ad5c409620c047a47b6ca16655e08306b72bfce483fa236bea726"/>
+        </topic>
+        <topic label="DL_LCD_MEMORY" href="group___l_c_d.html#ga6eff7abd3ea85959eb9e0d5b5f543702">
+          <topic label="DL_LCD_MEMORY_0" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702af3909442fae132f298b85bdea43a1ea0"/>
+          <topic label="DL_LCD_MEMORY_1" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702afc3d00e7a1d8f48d37bb2a89d466990d"/>
+          <topic label="DL_LCD_MEMORY_2" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a8bacdc79462ff8f3111375f69424f15f"/>
+          <topic label="DL_LCD_MEMORY_3" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a2491e21bb5c80fac2194c6b37613a04c"/>
+          <topic label="DL_LCD_MEMORY_4" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a615b258f4a682224f2623d42dc56cecb"/>
+          <topic label="DL_LCD_MEMORY_5" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a55b4496276f15b354dd620b31b583592"/>
+          <topic label="DL_LCD_MEMORY_6" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a9aac58730266a0c51eea511c3b548f49"/>
+          <topic label="DL_LCD_MEMORY_7" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aaf9448443abfc81214b2d57ae72407e5"/>
+          <topic label="DL_LCD_MEMORY_8" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a164679fa7c9afe85cc2c0c8dee621b42"/>
+          <topic label="DL_LCD_MEMORY_9" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a338a39c5a97be5debdb2132615a5b215"/>
+          <topic label="DL_LCD_MEMORY_10" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aced33c20e9c731636be1e7bc8b6b7d84"/>
+          <topic label="DL_LCD_MEMORY_11" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a384f7194aef51792dbc2c8e80ec36acb"/>
+          <topic label="DL_LCD_MEMORY_12" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a4fc89eaf15a24fb017c841c97f4a6afc"/>
+          <topic label="DL_LCD_MEMORY_13" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aa59d8bdea6b32fd7fb4b3caf7db2f482"/>
+          <topic label="DL_LCD_MEMORY_14" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aed14400d34d2e5f745be8be03e649c91"/>
+          <topic label="DL_LCD_MEMORY_15" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a6c925a50dc0116a8cb53233cd6da76b5"/>
+          <topic label="DL_LCD_MEMORY_16" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a286abae26f870759074b993cef2ab04e"/>
+          <topic label="DL_LCD_MEMORY_17" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae74179cb55ba7edc1b4a40f5da9595ef"/>
+          <topic label="DL_LCD_MEMORY_18" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a9c42b725018602f3cba01794da282b7b"/>
+          <topic label="DL_LCD_MEMORY_19" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a0eedc7ea9c0903008216d36eaa9fe246"/>
+          <topic label="DL_LCD_MEMORY_20" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a6963db2f719a5cf6a7720b7dab928d9d"/>
+          <topic label="DL_LCD_MEMORY_21" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae2c0b621c6b620e6dd573405552c9523"/>
+          <topic label="DL_LCD_MEMORY_22" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ac4de31a46d90b3b8b20e0cd443273058"/>
+          <topic label="DL_LCD_MEMORY_23" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a74c939c9b1146831d820b6ab34db5fd3"/>
+          <topic label="DL_LCD_MEMORY_24" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a4bbe2fa21e0da36b2c31b352bc74545e"/>
+          <topic label="DL_LCD_MEMORY_25" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a7ce5aaf24285dd86d44e8634c3aa6b18"/>
+          <topic label="DL_LCD_MEMORY_26" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a87e68313b8d3d5c47017b2027a7bb2b1"/>
+          <topic label="DL_LCD_MEMORY_27" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a0d5105bb8b861dfcff1847e611f0241d"/>
+          <topic label="DL_LCD_MEMORY_28" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a4792293a25654d5661648cdd9f78ab6f"/>
+          <topic label="DL_LCD_MEMORY_29" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae527597769895777dccbe286d1908a10"/>
+          <topic label="DL_LCD_MEMORY_30" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ab82866902c140cd438a8a81e1b80d5ed"/>
+          <topic label="DL_LCD_MEMORY_31" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a57f15f3756c317cd6c526c80950c8b77"/>
+          <topic label="DL_LCD_MEMORY_32" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702adbdc45783ecbd7f6cfb8b08541eed8b0"/>
+          <topic label="DL_LCD_MEMORY_33" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a0b977f5ea20ad322340d5a49ddf4941a"/>
+          <topic label="DL_LCD_MEMORY_34" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ab96008adfae1cecc65b6513f87e51329"/>
+          <topic label="DL_LCD_MEMORY_35" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a20e31435dddc6663706c66bb25967853"/>
+          <topic label="DL_LCD_MEMORY_36" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a68915d26c5f2f65cf07b8df434975a9a"/>
+          <topic label="DL_LCD_MEMORY_37" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ac93dbda915c203a1ecf859fc28c49214"/>
+          <topic label="DL_LCD_MEMORY_38" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aafaf7f88131764cd06e56270d4618118"/>
+          <topic label="DL_LCD_MEMORY_39" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a829d41044b2400a1df8b4e25733a6bd3"/>
+          <topic label="DL_LCD_MEMORY_40" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ad15cacbb90c09b3da058ad5999a773eb"/>
+          <topic label="DL_LCD_MEMORY_41" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a5439febb5201ca297e7daad1baee46cc"/>
+          <topic label="DL_LCD_MEMORY_42" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702af87e554e0fcf6b8a7174a6c6d1ed7128"/>
+          <topic label="DL_LCD_MEMORY_43" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702afe03921d6b3e6a3fb4328735d207beb3"/>
+          <topic label="DL_LCD_MEMORY_44" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae4ede6f8b788b8613d2471f50eb36224"/>
+          <topic label="DL_LCD_MEMORY_45" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ad6bcc7434abe3469ca7504164454d028"/>
+          <topic label="DL_LCD_MEMORY_46" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702afc749ee4e8e85d1f9af164e908531a47"/>
+          <topic label="DL_LCD_MEMORY_47" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a8f0800af24a6c6ffa1bdee30240d85ef"/>
+          <topic label="DL_LCD_MEMORY_48" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ab5456c867890c11d2e78073209256f53"/>
+          <topic label="DL_LCD_MEMORY_49" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a573541fb62edc03f1f917e923d3659c2"/>
+          <topic label="DL_LCD_MEMORY_50" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aef084795f567546ef4f6e13754b43ae7"/>
+          <topic label="DL_LCD_MEMORY_51" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ac72b0a315cddc458469aedfff766cd5b"/>
+          <topic label="DL_LCD_MEMORY_52" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae609e77f6a04539587e3c9bf4c859a5a"/>
+          <topic label="DL_LCD_MEMORY_53" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702ae5c89e92ed5702b0153461021d532e09"/>
+          <topic label="DL_LCD_MEMORY_54" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702aedde9d31cdec3dd2bfc46f6a401e4e0e"/>
+          <topic label="DL_LCD_MEMORY_55" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a62c85cef81d345d8fac387013e5956ef"/>
+          <topic label="DL_LCD_MEMORY_56" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a43345582445324c1ebf66c5aba627cc8"/>
+          <topic label="DL_LCD_MEMORY_57" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a2d5d0f062303dff19c71a61e50166727"/>
+          <topic label="DL_LCD_MEMORY_58" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a83164592cc84a8e7a4adcaab717fffa4"/>
+          <topic label="DL_LCD_MEMORY_59" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a5acdcaf0b8149539dc66f710260b12d2"/>
+          <topic label="DL_LCD_MEMORY_60" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a2ef8f0e806b77de75cbdc0dff6aa6cca"/>
+          <topic label="DL_LCD_MEMORY_61" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a880faec6e776ab29db5e3f72ea1b70d7"/>
+          <topic label="DL_LCD_MEMORY_62" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a7cc99198f5891dd2194c728853233e34"/>
+          <topic label="DL_LCD_MEMORY_63" href="group___l_c_d.html#gga6eff7abd3ea85959eb9e0d5b5f543702a99463c0a91b04ace5be7975697499f2b"/>
+        </topic>
+        <topic label="DL_LCD_BLINKING_MEMORY" href="group___l_c_d.html#ga4c47242689386c9ba96dfeb31b161cb3">
+          <topic label="DL_LCD_BLINKING_MEMORY_0" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a32f022483b5b3e877a86df4b35cd7e2a"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_1" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a86bbaf64ded78ebb238947bf602a5652"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_2" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a07127f8753f985b9cfb384b2eeb4b3b9"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_3" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a9a2231f65e6aa174c94ad6b225ec6c14"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_4" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3aa8ae31bd917aa3f0b7f7a8b09c423e7d"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_5" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3adef10fb587a9e25bff8ae659b4251f79"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_6" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a04c0f9e94a70173aefd9ba512fc9a96f"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_7" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a7a59a6cbd6b117cb4c4cd7d4ecde8f5f"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_8" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3aafb107ff120c0e09c76637d1b53d19d1"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_9" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a86fc6c2837edd2ccb0d24c6a3794190e"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_10" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ab01eaa8a382f96c417da1187700af3a0"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_11" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a01eca5a9e8346cb13c472de1ef11335e"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_12" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ae639d8afdceaac013cca17b71942123f"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_13" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a42013917492d500cd2bdbface39f3604"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_14" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a2ed5b2b730b30ee1605a0621ffcada7d"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_15" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a4f760ecb334a8bd0ecdb82096b580b27"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_16" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a9fb8bfaa9ad4b418f10ef3b32aec70da"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_17" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ac570d251fceae1720af06e37838b648f"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_18" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a48577938371b8b064d1a1154e30e3e84"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_19" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a294a07150d79e430a0e5bef06eebec5a"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_20" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a3bd62d0580e1b234fe44cbc633a32f54"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_21" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a7a6812ab0f8bd20bee449969df2c53ca"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_22" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a69ccd8829124b1b1eaf99375d2e16413"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_23" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a17ad980dbd91b1dceb44130389e5dba1"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_24" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a0b26226e647dd17cb05843f95200acb3"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_25" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a82f6aa81c18023d918e6b8d7e8c97d5b"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_26" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ac1e5e03ee24bc53783142a7a410e600d"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_27" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a8f827c968c584a9848c9a13bc9bafa21"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_28" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a66a517322217bb4796ba29a8ec1bde74"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_29" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3af476b52b3ed63f425a617e6716fb94f8"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_30" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3a643f9fa16c85bb6190acf92e29009077"/>
+          <topic label="DL_LCD_BLINKING_MEMORY_31" href="group___l_c_d.html#gga4c47242689386c9ba96dfeb31b161cb3ae748d42e305840dbe8d94d68a45741c8"/>
+        </topic>
+        <topic label="DL_LCD_COM" href="group___l_c_d.html#ga94406cbef454bd87846b86d1c3de09a3">
+          <topic label="DL_LCD_COM_0" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3aa2c2c854003e5ee8c4e7348bc8e2d664"/>
+          <topic label="DL_LCD_COM_1" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3aa01abe39f9877f00c07654bca72f1290"/>
+          <topic label="DL_LCD_COM_2" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3aabee4673251f2902784d351d58acd113"/>
+          <topic label="DL_LCD_COM_3" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a463368bf555b67eed348637dfbb1ee3c"/>
+          <topic label="DL_LCD_COM_4" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a027a24864fdbec8f56486115bd1ce582"/>
+          <topic label="DL_LCD_COM_5" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a62bcdc6896797821c6f83e7e270d2c66"/>
+          <topic label="DL_LCD_COM_6" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a83c6cb000b44c49547f4cb5904789996"/>
+          <topic label="DL_LCD_COM_7" href="group___l_c_d.html#gga94406cbef454bd87846b86d1c3de09a3a2530ccba6e77ef9ad7aea7beecc0c220"/>
+        </topic>
+        <topic label="DL_LCD_VREFGEN_CYCLES" href="group___l_c_d.html#ga92946dbaee85a9a84cf8d52a452c8cc2">
+          <topic label="DL_LCD_VREFGEN_CYCLES_16" href="group___l_c_d.html#gga92946dbaee85a9a84cf8d52a452c8cc2af7a84f38e1cd612d6cb7514d65ca83c5"/>
+          <topic label="DL_LCD_VREFGEN_CYCLES_32" href="group___l_c_d.html#gga92946dbaee85a9a84cf8d52a452c8cc2a65be3c608be10efbacc4afca823b795c"/>
+          <topic label="DL_LCD_VREFGEN_CYCLES_128" href="group___l_c_d.html#gga92946dbaee85a9a84cf8d52a452c8cc2a6f61332d10cd2901cddac9d1423dc1ca"/>
+          <topic label="DL_LCD_VREFGEN_CYCLES_256" href="group___l_c_d.html#gga92946dbaee85a9a84cf8d52a452c8cc2a1b076bb83b5dc2e5f9a1f7e594305019"/>
+        </topic>
+        <topic label="DL_LCD_init" href="group___l_c_d.html#ga2e2fbf768dd3178a266415d41902807d"/>
+        <topic label="DL_LCD_setPinAsLCDFunction" href="group___l_c_d.html#gab841ee8778389ba4d87bcff5ef3ccfaf"/>
+        <topic label="DL_LCD_setPinAsPortFunction" href="group___l_c_d.html#gaa86052e51b5ab1eef38988730a64fcfb"/>
+        <topic label="DL_LCD_setPinAsCommon" href="group___l_c_d.html#ga2db6e58b26445ab2285391cfed5c2102"/>
+        <topic label="DL_LCD_setPinAsSegment" href="group___l_c_d.html#ga71e2557fbebcd250a9b9d35dd18fe0b5"/>
+        <topic label="DL_LCD_enablePower" href="group___l_c_d.html#ga0442f15ebbafb619521349239d605392"/>
+        <topic label="DL_LCD_disablePower" href="group___l_c_d.html#ga87881eabff5030e2b7485463c57508cb"/>
+        <topic label="DL_LCD_isPowerEnabled" href="group___l_c_d.html#ga0683cf9307b92558d08f790e3489524c"/>
+        <topic label="DL_LCD_reset" href="group___l_c_d.html#ga07a7fbfc8bb054bf979008ed723bfd90"/>
+        <topic label="DL_LCD_isReset" href="group___l_c_d.html#ga110ccc65b6d77f8e289955a8fd8597c3"/>
+        <topic label="DL_LCD_getEventLineMode" href="group___l_c_d.html#gae67280f9c52f1ede56b278520c0da8da"/>
+        <topic label="DL_LCD_getPendingInterrupt" href="group___l_c_d.html#ga8e3e2fcff9c88ccaaf87a01d969d1fb9"/>
+        <topic label="DL_LCD_enableInterrupt" href="group___l_c_d.html#ga4b329ac20459818209b3354bbb6d2f3d"/>
+        <topic label="DL_LCD_disableInterrupt" href="group___l_c_d.html#gacf753cda63df4346a71b51eb4f4a0b6c"/>
+        <topic label="DL_LCD_getEnabledInterrupts" href="group___l_c_d.html#gaa83796daf0150effb08b62398c9cf18d"/>
+        <topic label="DL_LCD_getRawInterruptStatus" href="group___l_c_d.html#ga88ebaa17344cc72d0ca2c0ce00e1238d"/>
+        <topic label="DL_LCD_getEnabledInterruptStatus" href="group___l_c_d.html#ga78cc7b51ebe286dc00619d4c815d41af"/>
+        <topic label="DL_LCD_setInterrupts" href="group___l_c_d.html#ga90ee5ef6e80b2798c25d151d5233abfe"/>
+        <topic label="DL_LCD_clearInterruptStatus" href="group___l_c_d.html#ga95c6711f1c1c5e392d5b4da52ec2eb46"/>
+        <topic label="DL_LCD_enableExternalSync" href="group___l_c_d.html#gac431a62aab99532a78f8ba5de2ba9b13"/>
+        <topic label="DL_LCD_disableExternalSync" href="group___l_c_d.html#gac8f26a8467976b3bc363343bc90b6cd3"/>
+        <topic label="DL_LCD_isExternalSyncEnabled" href="group___l_c_d.html#ga2a7048686faff04259dd7fb1170c511a"/>
+        <topic label="DL_LCD_setFreqDiv" href="group___l_c_d.html#ga3e31151683688c5e11ffbbd222fabed0"/>
+        <topic label="DL_LCD_getFreqDiv" href="group___l_c_d.html#ga275796e5a652554c0c33bc606445b270"/>
+        <topic label="DL_LCD_setMuxRate" href="group___l_c_d.html#gaa27cb56b7d9872109224b7023a1296fc"/>
+        <topic label="DL_LCD_getMuxRate" href="group___l_c_d.html#gab85dcb6d2c7184c938800131117a98df"/>
+        <topic label="DL_LCD_turnSegmentsOn" href="group___l_c_d.html#gacc2511774ca37c74083c68b982281154"/>
+        <topic label="DL_LCD_turnSegmentsOff" href="group___l_c_d.html#ga9ae690629223d534a24f6b0bbf48b015"/>
+        <topic label="DL_LCD_setWaveformPowerMode" href="group___l_c_d.html#gab6a522c5b4bacc018cd9f4b960a40c13"/>
+        <topic label="DL_LCD_getWaveformPowerMode" href="group___l_c_d.html#ga50bd8ebbf782548ab1bc4b5a318994c8"/>
+        <topic label="DL_LCD_enable" href="group___l_c_d.html#gab625a8bb5c1ca42eed39bc3f099a2f94"/>
+        <topic label="DL_LCD_disable" href="group___l_c_d.html#ga1a685dd345550630c25612e61176d1c8"/>
+        <topic label="DL_LCD_setBlinkingControl" href="group___l_c_d.html#ga5d4f1268b22446a1413366cef3438c46"/>
+        <topic label="DL_LCD_getBlinkingFreqDiv" href="group___l_c_d.html#gae605a7a261cbad3c20ec275c0d992ac4"/>
+        <topic label="DL_LCD_getBlinkingMode" href="group___l_c_d.html#gabc61e4df61dce8aa5dbeee9c34a1b6fd"/>
+        <topic label="DL_LCD_clearAllBlinkingMemoryRegs" href="group___l_c_d.html#ga51bd7f6644d1f9d38dec9ea29af60b57"/>
+        <topic label="DL_LCD_clearAllMemoryRegs" href="group___l_c_d.html#gaf0102e280ef4c3dbb63d5627f61daae0"/>
+        <topic label="DL_LCD_selectMemRegsForDisplay" href="group___l_c_d.html#gafd288fd4a5277e6fca234b2d8bf42f54"/>
+        <topic label="DL_LCD_getSelectedMemRegsForDisplay" href="group___l_c_d.html#ga6327b96d30e07a9c6b84d8197b0dd64a"/>
+        <topic label="DL_LCD_enableVBOOST" href="group___l_c_d.html#ga98588e099adab8b4b20ce16c935fe91a"/>
+        <topic label="DL_LCD_disableVBOOST" href="group___l_c_d.html#ga77c53b0965e33a7009444054e0bd43e1"/>
+        <topic label="DL_LCD_setChargePumpFreq" href="group___l_c_d.html#ga9170ca6fd9e935819a76024d892b1b7e"/>
+        <topic label="DL_LCD_getChargePumpFreq" href="group___l_c_d.html#ga7a54f726ce6e477ea1c362c5c192ffe3"/>
+        <topic label="DL_LCD_setVREFInternal" href="group___l_c_d.html#gae35d94c0a17de9af08d7024bc1e6bf70"/>
+        <topic label="DL_LCD_getVREFInternal" href="group___l_c_d.html#gae625ebc36d79cfcec4a7be615aa5bacd"/>
+        <topic label="DL_LCD_enableChargePump" href="group___l_c_d.html#gaeb7bf72084e40a08e300c572f77627fa"/>
+        <topic label="DL_LCD_disableChargePump" href="group___l_c_d.html#gae6c351d364e0c92cef2a1bb039c79bb8"/>
+        <topic label="DL_LCD_enableVREFInternal" href="group___l_c_d.html#ga72a3b4d5231cf11dea92c35e9e29a48e"/>
+        <topic label="DL_LCD_disableVREFInternal" href="group___l_c_d.html#ga1504add9e16618ad496b2d968211ee64"/>
+        <topic label="DL_LCD_setR33source" href="group___l_c_d.html#ga7dee6195602aba80de8dcd37e0591593"/>
+        <topic label="DL_LCD_getR33Source" href="group___l_c_d.html#ga9e192d7ab8b0b37810264631e9865fa5"/>
+        <topic label="DL_LCD_setInternalBiasPowerMode" href="group___l_c_d.html#ga066fcd2d5de1cb6365985657099af6dc"/>
+        <topic label="DL_LCD_getPowerMode" href="group___l_c_d.html#gabe4f00296bfd06a68e810ed8a8e81bad"/>
+        <topic label="DL_LCD_setBiasVoltageSource" href="group___l_c_d.html#ga3e236628f4f8ae8f558ba45c6518113a"/>
+        <topic label="DL_LCD_getBiasVoltageSource" href="group___l_c_d.html#ga32252b991dc9a3f17e2e5aff55dd3b03"/>
+        <topic label="DL_LCD_enableInternalBias" href="group___l_c_d.html#ga35ea3858475eb24267ca143185d05ac9"/>
+        <topic label="DL_LCD_disableInternalBias" href="group___l_c_d.html#gaeaf82b66c9ac66b8bfb7451891f8ed71"/>
+        <topic label="DL_LCD_setBias" href="group___l_c_d.html#gad74c497e41f7d7d18318840df8e329d3"/>
+        <topic label="DL_LCD_getBias" href="group___l_c_d.html#ga61933502f0e3592e06cce95cd343f066"/>
+        <topic label="DL_LCD_setRefMode" href="group___l_c_d.html#ga2a530852fd9e0a7d02ea63a769bcb7eb"/>
+        <topic label="DL_LCD_getRefMode" href="group___l_c_d.html#gaedec38224e3a2b81f9b27983644b7ee5"/>
+        <topic label="DL_LCD_writeMemory" href="group___l_c_d.html#ga717927d49c2fd21196940a701eb14e2e"/>
+        <topic label="DL_LCD_setMemory" href="group___l_c_d.html#ga1d50d70d04fc9bc705a87e30275e28bb"/>
+        <topic label="DL_LCD_toggleMemory" href="group___l_c_d.html#gadd0bef90789dea124de4e5cb7a5a6b91"/>
+        <topic label="DL_LCD_clearMemory" href="group___l_c_d.html#ga304258f51f63a4fe5aee28c7fe3f96ad"/>
+        <topic label="DL_LCD_getMemory" href="group___l_c_d.html#ga63a7f0b262c252f9857da02c466b1d60"/>
+        <topic label="DL_LCD_writeBlinkingMemory" href="group___l_c_d.html#gac151beac837a699e7aa5e16f16abe5e6"/>
+        <topic label="DL_LCD_setBlinkingMemory" href="group___l_c_d.html#ga0ed2bbc55ffa495f8f888cd4c02fdfd2"/>
+        <topic label="DL_LCD_toggleBlinkingMemory" href="group___l_c_d.html#ga64187da6933b5ac1529e8bf201b0d647"/>
+        <topic label="DL_LCD_clearBlinkingMemory" href="group___l_c_d.html#gaa7401b40ce5e984828f9964c6a7625c5"/>
+        <topic label="DL_LCD_getBlinkingMemory" href="group___l_c_d.html#ga2f60330228b1331eb44db29c2d9614ef"/>
+        <topic label="DL_LCD_setVrefOnTimeCycles" href="group___l_c_d.html#gaa2f4b70a71aa8d137393fb70f9b12859"/>
+        <topic label="DL_LCD_getVrefOnTimeCycles" href="group___l_c_d.html#gab05c2d9aa25c8e00941358089ecffb2a"/>
+      </topic>
       <topic label="dl_lfss.h" href="dl__lfss_8h.html">
         <topic label="DL_LFSS_TAMPERIO_INTERRUPT_TAMPERIO_0" href="group___d_l___l_f_s_s___t_a_m_p_e_r_i_o___i_n_t_e_r_r_u_p_t.html#ga95d413cdc76b993898eb692dc4ec2116"/>
         <topic label="DL_LFSS_TAMPERIO_INTERRUPT_TAMPERIO_1" href="group___d_l___l_f_s_s___t_a_m_p_e_r_i_o___i_n_t_e_r_r_u_p_t.html#gacb00c4c43ab7674fc3a1b134d6ad48d8"/>
@@ -9349,6 +10245,7 @@
         <topic label="DL_SPI_restoreConfiguration" href="group___s_p_i.html#gab6405771e41906765135cf943ef43d03"/>
       </topic>
       <topic label="dl_sysctl_mspm0l122x_l222x.h" href="dl__sysctl__mspm0l122x__l222x_8h.html">
+        <topic label="DL_SYSCTL_RESET_SYSRST" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga8870485869a50f7b5d3f6cbfa191912c"/>
         <topic label="DL_SYSCTL_RESET_CPU" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga940ba2b600c6a6f4570739618dd22f25"/>
         <topic label="DL_SYSCTL_RESET_BOOT" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#gaebabc2cbf8c1ae29d674a22dcf084c02"/>
         <topic label="DL_SYSCTL_RESET_POR" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga25e841560b3f4711a5081512eb5d82c1"/>
@@ -9944,6 +10841,12 @@
         <topic label="DL_TIMER_CC_OCTL_SRC_CC1_MIRR_ALL" href="group___d_l___t_i_m_e_r___c_c___o_c_t_l___s_r_c.html#ga9526fd0410bdba40870254dc00cdd53c"/>
         <topic label="DL_TIMER_CC_OCTL_SRC_DEAD_BAND" href="group___d_l___t_i_m_e_r___c_c___o_c_t_l___s_r_c.html#gac33f6508ce5957827fa4d485a49fc383"/>
         <topic label="DL_TIMER_CC_OCTL_SRC_CNTDIR" href="group___d_l___t_i_m_e_r___c_c___o_c_t_l___s_r_c.html#ga0ff3f9ee4d511056323ab9f7ae581aa4"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_CMPL_DISABLED" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t___c_m_p_l.html#ga5d638f5bf6b64f50bf7bc530b4ac35fa"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_CMPL_HIGH" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t___c_m_p_l.html#ga8fa526ed788b2de33f7d2924c714b15d"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_CMPL_LOW" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t___c_m_p_l.html#gaf500ead05f1e5908dd416af6c81d1202"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t.html#ga92628f010a51370a9bbf548ca1d54be3"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_HIGH" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t.html#gaf33f64d0dbb063fcc2bbcebf61633bbc"/>
+        <topic label="DL_TIMER_CC_SWFRCACT_LOW" href="group___d_l___t_i_m_e_r___c_c___s_w_f_r_c_a_c_t.html#ga6ee29ef891a3dab0377eaf87421ffc3b"/>
         <topic label="DL_TIMER_CC_FEXACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___f_e_x_a_c_t.html#gad7b3fe600f198a9e535df72ab556359b"/>
         <topic label="DL_TIMER_CC_FEXACT_HIGH" href="group___d_l___t_i_m_e_r___c_c___f_e_x_a_c_t.html#gad30c6b812e7748b24b98a17812cfdff0"/>
         <topic label="DL_TIMER_CC_FEXACT_LOW" href="group___d_l___t_i_m_e_r___c_c___f_e_x_a_c_t.html#ga3345e416db1c964c866b30748971f4f7"/>
@@ -9954,6 +10857,14 @@
         <topic label="DL_TIMER_CC_FENACT_CCP_LOW" href="group___d_l___t_i_m_e_r___c_c___f_e_n_a_c_t.html#ga1f0686ebbd0be6395b7e3c69c19102c3"/>
         <topic label="DL_TIMER_CC_FENACT_CCP_TOGGLE" href="group___d_l___t_i_m_e_r___c_c___f_e_n_a_c_t.html#ga324aaae0542a04da12ce794823f2bcd7"/>
         <topic label="DL_TIMER_CC_FENACT_HIGHZ" href="group___d_l___t_i_m_e_r___c_c___f_e_n_a_c_t.html#gae7b6776dfb8501dbd8cf5c12b58a6928"/>
+        <topic label="DL_TIMER_CC_CC2UACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html#ga41e44b739d9f1b73f90ae66913d58ed9"/>
+        <topic label="DL_TIMER_CC_CC2UACT_CCP_HIGH" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html#ga388aa674ab520a955f7123d409898589"/>
+        <topic label="DL_TIMER_CC_CC2UACT_CCP_LOW" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html#gaffae28f4662f12afa2466153227de165"/>
+        <topic label="DL_TIMER_CC_CC2UACT_CCP_TOGGLE" href="group___d_l___t_i_m_e_r___c_c___c_c2_u_a_c_t.html#gaaf23483d5aaa3c4eaa724e01599cb4f4"/>
+        <topic label="DL_TIMER_CC_CC2DACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html#gadb101c42ba8857efa7b29f4ca362e31c"/>
+        <topic label="DL_TIMER_CC_CC2DACT_CCP_HIGH" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html#ga54a2c9c1d2ece64c88073e718fc6e6b0"/>
+        <topic label="DL_TIMER_CC_CC2DACT_CCP_LOW" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html#ga27d9bf1e197e2751299d66d3d015c112"/>
+        <topic label="DL_TIMER_CC_CC2DACT_CCP_TOGGLE" href="group___d_l___t_i_m_e_r___c_c___c_c2_d_a_c_t.html#ga4526b56d6116242a431dbf94f5988e2e"/>
         <topic label="DL_TIMER_CC_CUACT_DISABLED" href="group___d_l___t_i_m_e_r___c_c___c_u_a_c_t.html#gaf4ac313e3d62181d525452d7c62a0b3d"/>
         <topic label="DL_TIMER_CC_CUACT_CCP_HIGH" href="group___d_l___t_i_m_e_r___c_c___c_u_a_c_t.html#ga46b59383c3acf06779fb9e52268367a7"/>
         <topic label="DL_TIMER_CC_CUACT_CCP_LOW" href="group___d_l___t_i_m_e_r___c_c___c_u_a_c_t.html#ga8cd43ec3688e0e42d15deebc664367d7"/>
@@ -11882,6 +12793,10 @@
           <topic label="DL_WWDT_IIDX_NO_INT" href="group___w_w_d_t.html#gga12c15027cb23085134146d3fb3a0ffd8a0ffe5bbf0b4d5861cfe3c46640afeadd"/>
           <topic label="DL_WWDT_IIDX_INTERVAL_TIMER" href="group___w_w_d_t.html#gga12c15027cb23085134146d3fb3a0ffd8a9b27df98bf653d27a9b3909cdc2e57d1"/>
         </topic>
+        <topic label="DL_WWDT_CORE_HALT" href="group___w_w_d_t.html#gab9776a688c47adace7bcbb3096cf1b94">
+          <topic label="DL_WWDT_CORE_HALT_STOP" href="group___w_w_d_t.html#ggab9776a688c47adace7bcbb3096cf1b94a61cce3e3fecc1ed51bd7c27deac2ae42"/>
+          <topic label="DL_WWDT_CORE_HALT_FREE_RUN" href="group___w_w_d_t.html#ggab9776a688c47adace7bcbb3096cf1b94a5f04426c820c85bfc617bcb2bd4ec79a"/>
+        </topic>
         <topic label="DL_WWDT_initWatchdogMode" href="group___w_w_d_t.html#ga39acf2d9a972ebdca580e6eb7cc93159"/>
         <topic label="DL_WWDT_initIntervalTimerMode" href="group___w_w_d_t.html#ga20be7bde67b141016a72667c82ef6b50"/>
         <topic label="DL_WWDT_enablePower" href="group___w_w_d_t.html#gae78c6d4e85255a6ad4d92d22c8367ad2"/>
@@ -11905,6 +12820,8 @@
         <topic label="DL_WWDT_getRawInterruptStatus" href="group___w_w_d_t.html#gab93598ba9812f52db7f7bb608a04504a"/>
         <topic label="DL_WWDT_getPendingInterrupt" href="group___w_w_d_t.html#ga428fb631e5445f86f26f159cfa201139"/>
         <topic label="DL_WWDT_clearInterruptStatus" href="group___w_w_d_t.html#gae943dddfb187f1141e169b446a999c2b"/>
+        <topic label="DL_WWDT_setCoreHaltBehavior" href="group___w_w_d_t.html#gab63a2c458ca5b64d34febfd564239875"/>
+        <topic label="DL_WWDT_getCoreHaltBehavior" href="group___w_w_d_t.html#gac6813e142f2c9777e6229f531ef30ec9"/>
       </topic>
     </topic>
     <topic label="Globals" href="globals.html">
@@ -11935,4 +12852,5 @@
     </topic>
   </topic>
   <topic label="Disclaimer" href="_disclaimer.html"/>
+  <topic label="Deprecated List" href="deprecated.html"/>
 </toc>

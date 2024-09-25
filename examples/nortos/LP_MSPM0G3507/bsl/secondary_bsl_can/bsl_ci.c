@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2024, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -299,7 +299,7 @@ uint8_t CMD_API_Flash_Range_Erase(uint32_t addrStart)
             while (data_pointer <= addr_end) {
                 DL_FlashCTL_unprotectSector(
                     FLASHCTL, data_pointer, DL_FLASHCTL_REGION_SELECT_MAIN);
-                DL_FlashCTL_eraseMemory(
+                DL_FlashCTL_eraseMemoryFromRAM(
                     FLASHCTL, data_pointer, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
 
                 erase_status = erase_status &
@@ -309,7 +309,7 @@ uint8_t CMD_API_Flash_Range_Erase(uint32_t addrStart)
 
             DL_FlashCTL_unprotectSector(
                 FLASHCTL, addr_end, DL_FLASHCTL_REGION_SELECT_MAIN);
-            DL_FlashCTL_eraseMemory(
+            DL_FlashCTL_eraseMemoryFromRAM(
                 FLASHCTL, addr_end, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
 
             erase_status =
@@ -338,7 +338,7 @@ uint8_t CMD_API_Mass_Erase(void)
     if (BSLLockedStatus == BSL_STATUS_UNLOCKED) {
         BSL_CI_disableCache();
         /* Execute Mass erase */
-        if (DL_FlashCTL_massErase(FLASHCTL) == false) {
+        if (DL_FlashCTL_massEraseFromRAM(FLASHCTL) == false) {
             ret = BSL_MASS_ERASE_FAIL;
         }
         BSL_CI_enableCache();
@@ -410,7 +410,7 @@ uint8_t CMD_API_Program_Data(uint32_t addrStart)
 
                     BSL_CI_disableCache();
                     /* Initiate Flash Programming */
-                    if (DL_FlashCTL_programMemoryBlocking64WithECCGenerated(
+                    if (DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(
                             FLASHCTL, addrStart, (uint32_t *) &BSL_RXBuf[8],
                             (uint32_t) length / (uint32_t) 4,
                             flash_region) == false) {
@@ -559,7 +559,7 @@ uint8_t CMD_API_Factory_Reset(void)
              */
             if (ret == BSL_SUCCESSFUL_OPERATION) {
                 BSL_CI_disableCache();
-                if (DL_FlashCTL_factoryReset(FLASHCTL) == false) {
+                if (DL_FlashCTL_factoryResetFromRAM(FLASHCTL) == false) {
                     ret = BSL_FACTORY_RESET_FAILED;
                 }
                 BSL_CI_enableCache();

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L2228"
+            />
+        </when>
+    </applicability>
+
+    <import spec="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/builds/LP_MSPM0L2228/release/ticlang/freertos_builds_LP_MSPM0L2228_release_ticlang.projectspec"/>
+
+    <project
+        title="adc_singlechannel"
+        name="adc_singlechannel_LP_MSPM0L2228_freertos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L2228"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        references="freertos_builds_LP_MSPM0L2228_release_ticlang"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -D__MSPM0L2228__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/TI_ARM_CLANG/ARM_CM0
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/posix/ticlang
+            -I${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L2228_release_ticlang
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/drivers/lib/ticlang/m0p/drivers_mspm0l122x_l222x.a
+            -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L2228_release_ticlang/Debug
+            -lfreertos_builds_LP_MSPM0L2228_release_ticlang.lib
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l122x_l222x/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Get the samples from the configured ADC channel and print them on the console using UART">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../../main_freertos.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/Display.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/DisplayUart.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/Display.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/DisplayUart.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
+        </file>
+        <file path="../../syscfg_c.rov.xs" openOnCreation="false" excludeFromBuild="true" action="copy">
+        </file>
+        <file path="../../ti_drivers_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../ti_drivers_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../ti_msp_dl_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../ti_msp_dl_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../adcsinglechannel.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../freertos/ticlang/mspm0l2228.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../freertos/ticlang/startup_mspm0l222x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="freertos/ticlang">
+        </file>
+    </project>
+</projectSpec>

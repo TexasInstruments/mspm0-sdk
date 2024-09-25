@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.1+ 版 &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 1.0 documentation</title>
+  <title>适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.2+ 版 &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 2.00.00.03 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> IAR Embedded Workbench IDE for MSPM0 MCUs Documentation
           </a>
               <div class="version">
-                1.0
+                2.00.00.03
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,7 +43,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.1+ 版</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.2+ 版</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">目录</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">请先阅读</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">如何使用本指南</a></li>
@@ -92,7 +92,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.1+ 版</li>
+      <li>适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.2+ 版</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,8 +101,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mspm0-mcu-iar-embedded-workbench-ide-9-50-1">
-<h1>适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.1+ 版<a class="headerlink" href="#mspm0-mcu-iar-embedded-workbench-ide-9-50-1" title="Permalink to this heading">¶</a></h1>
+  <section id="mspm0-mcu-iar-embedded-workbench-ide-9-50-2">
+<h1>适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.2+ 版<a class="headerlink" href="#mspm0-mcu-iar-embedded-workbench-ide-9-50-2" title="Permalink to this heading">¶</a></h1>
 <section id="id1">
 <h2>目录<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -148,7 +148,7 @@
 </section>
 <section id="id6">
 <h2>1. 软件安装<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
-<p><a class="reference external" href="https://www.iar.com/">IAR 网站</a>或 <a class="reference external" href="https://www.ti.com/tool/IAR-KICKSTART">TI IAR 入门页面</a>提供 IAR Embedded Workbench for Arm (EWARM) IDE。MSPM0 微控制器和 MSPM0 SDK 需要 EWARM 9.50.1 或更高版本。</p>
+<p><a class="reference external" href="https://www.iar.com/">IAR 网站</a>或 <a class="reference external" href="https://www.ti.com/tool/IAR-KICKSTART">TI IAR 入门页面</a>提供 IAR Embedded Workbench for Arm (EWARM) IDE。MSPM0 微控制器和 MSPM0 SDK 需要 EWARM 9.50.2 或更高版本。</p>
 <p>要查找适合您 IDE 版本的 SDK，请参阅 <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a> 文档。</p>
 </section>
 <section id="id7">
@@ -348,6 +348,23 @@
 </section>
 <section id="faq">
 <h2>4. 已知问题和常见问题解答 （FAQ）<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h2>
+<p>在9.60.1之前的IAR版本中，本机不支持处理低功耗模式调试。</p>
+<p>要在旧版本的IAR中启用低功耗模式调试支持，请执行以下步骤：</p>
+<ol class="arabic simple">
+<li><p>联系IAR获取最新版本的armXds.dll。</p></li>
+<li><p>关闭IAR IDE。</p></li>
+<li><p>将armXds.dll复制并粘贴到：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">C:/Program</span> <span class="pre">Files/IAR</span> <span class="pre">Systems/EWARM/arm/bin</span></code></p></li>
+</ul>
+</li>
+<li><p>从MSPM0 SDK <code class="docutils literal notranslate"><span class="pre">C:\ti\&lt;sdk&gt;\tools\iar\low_power_mode_patch</span></code> 复制 <code class="docutils literal notranslate"><span class="pre">.dmac</span></code> 并粘贴到：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">C:/Program</span> <span class="pre">Files/IAR</span> <span class="pre">Systems/EWARM/arm/config/debugger/TexasInstruments</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p>`` 通过使用这些文件修补IAR安装，当设备进入低功耗状态时，应保持与调试器的连接。</p>
 <p>请参阅 SDK 中的<a class="reference external" href="../../../../../../known_issues_FAQ.html">已知问题和 FAQ</a>。</p>
 </section>
 </section>
@@ -362,7 +379,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

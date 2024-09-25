@@ -12,12 +12,14 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
 OBJECTS = main.obj main-blinky.obj freertos_iar_startup_mspm0g350x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = blink_led
 
-CFLAGS = -I../.. \
+CFLAGS += -I../.. \
     -I. \
+    $(addprefix -f,$(SYSCFG_OPT_FILES)) \
     -D__MSPM0G3507__ \
     -Om \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -35,15 +37,16 @@ CFLAGS = -I../.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L$PROJ_DIR$ \
+    -L../.. \
     "$(KERNEL_BUILD)/iar/freertos.lib" \
     --config ../../freertos/iar/mspm0g3507.icf \
     --map "$(NAME).map" \
     --silent \
     --semihosting=iar_breakpoint \
     --cpu=Cortex-M0+
+
 all: $(NAME).out
 
 $(KERNEL_BUILD)/iar/freertos.lib:

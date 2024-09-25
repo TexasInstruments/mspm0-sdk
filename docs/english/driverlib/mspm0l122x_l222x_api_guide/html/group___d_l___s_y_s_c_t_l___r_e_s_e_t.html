@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">1.30.00.03</span>
+   &#160;<span id="projectnumber">2.00.00.03</span>
    </div>
   </td>
  </tr>
@@ -84,8 +84,10 @@ Collaboration diagram for DL_SYSCTL_RESET:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga940ba2b600c6a6f4570739618dd22f25"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga940ba2b600c6a6f4570739618dd22f25">DL_SYSCTL_RESET_CPU</a>&#160;&#160;&#160;(SYSCTL_RESETLEVEL_LEVEL_CPU)</td></tr>
-<tr class="memdesc:ga940ba2b600c6a6f4570739618dd22f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a CPU reset.  <a href="#ga940ba2b600c6a6f4570739618dd22f25">More...</a><br /></td></tr>
+<tr class="memitem:ga8870485869a50f7b5d3f6cbfa191912c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga8870485869a50f7b5d3f6cbfa191912c">DL_SYSCTL_RESET_SYSRST</a>&#160;&#160;&#160;(SYSCTL_RESETLEVEL_LEVEL_CPU)</td></tr>
+<tr class="memdesc:ga8870485869a50f7b5d3f6cbfa191912c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a SYSRST.  <a href="#ga8870485869a50f7b5d3f6cbfa191912c">More...</a><br /></td></tr>
+<tr class="separator:ga8870485869a50f7b5d3f6cbfa191912c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga940ba2b600c6a6f4570739618dd22f25"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga940ba2b600c6a6f4570739618dd22f25">DL_SYSCTL_RESET_CPU</a>&#160;&#160;&#160;(<a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga8870485869a50f7b5d3f6cbfa191912c">DL_SYSCTL_RESET_SYSRST</a>)</td></tr>
 <tr class="separator:ga940ba2b600c6a6f4570739618dd22f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaebabc2cbf8c1ae29d674a22dcf084c02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#gaebabc2cbf8c1ae29d674a22dcf084c02">DL_SYSCTL_RESET_BOOT</a>&#160;&#160;&#160;(SYSCTL_RESETLEVEL_LEVEL_BOOT)</td></tr>
 <tr class="memdesc:gaebabc2cbf8c1ae29d674a22dcf084c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a Boot reset.  <a href="#gaebabc2cbf8c1ae29d674a22dcf084c02">More...</a><br /></td></tr>
@@ -104,6 +106,23 @@ Macros</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga8870485869a50f7b5d3f6cbfa191912c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8870485869a50f7b5d3f6cbfa191912c">&sect;&nbsp;</a></span>DL_SYSCTL_RESET_SYSRST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DL_SYSCTL_RESET_SYSRST&#160;&#160;&#160;(SYSCTL_RESETLEVEL_LEVEL_CPU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform a SYSRST. </p>
+<p>This issues a SYSRST (CPU plus peripherals only) </p>
+
+</div>
+</div>
 <a id="ga940ba2b600c6a6f4570739618dd22f25"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga940ba2b600c6a6f4570739618dd22f25">&sect;&nbsp;</a></span>DL_SYSCTL_RESET_CPU</h2>
 
@@ -111,13 +130,11 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DL_SYSCTL_RESET_CPU&#160;&#160;&#160;(SYSCTL_RESETLEVEL_LEVEL_CPU)</td>
+          <td class="memname">#define DL_SYSCTL_RESET_CPU&#160;&#160;&#160;(<a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga8870485869a50f7b5d3f6cbfa191912c">DL_SYSCTL_RESET_SYSRST</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Perform a CPU reset. </p>
-<p>This clears the state of the CPU logic. Peripheral states are not affected </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>This API is deprecated. Please refer to <a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga8870485869a50f7b5d3f6cbfa191912c">DL_SYSCTL_RESET_SYSRST</a>. </dd></dl>
 
 </div>
 </div>

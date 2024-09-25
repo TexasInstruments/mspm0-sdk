@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensorless FOC - DRV8329 Gate Driver User Guide &mdash; Sensorless FOC Motor Control User Guide 2.00.00.xx documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Sensorless FOC - DRV8323RS Gate Driver User Guide" href="../drv8323rs/DRV8323RS_Hardware_User_Guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Sensorless FOC Motor Control User Guide
+          </a>
+              <div class="version">
+                2.00.00.xx
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../MSPM0_Sensorless_FOC_Software_Users_Guide.html">MSPM0 Sensorless FOC Software User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sensorless_FOC_Motor_Control_Library.html">Sensorless FOC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../UART_Communication_User_Guide.html">UART Communication User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8316/DRV8316_Hardware_User_Guide.html">Sensorless FOC - DRV8316 Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8323rs/DRV8323RS_Hardware_User_Guide.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sensorless FOC - DRV8329 Gate Driver User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-required">1. Hardware Required</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-setup">2. Hardware Setup</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sensorless FOC Motor Control User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Sensorless FOC - DRV8329 Gate Driver User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sensorless-foc-drv8329-gate-driver-user-guide">
+<h1>Sensorless FOC - DRV8329 Gate Driver User Guide<a class="headerlink" href="#sensorless-foc-drv8329-gate-driver-user-guide" title="Permalink to this heading">¶</a></h1>
+<p>This User Guide outlines the usage of DRV8329 gate driver along with the sensorless FOC Application running on MSPM0.</p>
+<section id="hardware-required">
+<h2>1. Hardware Required<a class="headerlink" href="#hardware-required" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a> - MSPM0G3507 Launchpad</p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/DRV8329AEVM">DRV8329AEVM</a> - DRV8329AEVM is a 30-A, 3-phase brushless DC drive stage based on the DRV8329A gate driver for BLDC motors.</p></li>
+<li><p>DC Power supply that supports the required voltage and current</p></li>
+<li><p>Brushless-DC Motor</p></li>
+<li><p>Micro-USB cable</p></li>
+</ul>
+</section>
+<section id="hardware-setup">
+<h2>2. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Remove the PA26 jumper J18 in the LP-MSPM0G3507 as shown below.</p></li>
+</ol>
+<figure class="align-default" id="id1">
+<img alt="J18 header removed in LP-MSPM0G3507" src="../../_images/LPMSPM0G3507-J182.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">J18 header removed in LP-MSPM0G3507</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<ol class="arabic" start="2">
+<li><p>By Default in DRV8329AEVM shunt resistor R44 is populated with 0.001ohms this resistor need to be changed to 20mOhms.</p></li>
+<li><p>R18, R20 to be populated with zero ohm resistor to connect nFault input to 15th Pin in J8. Also remove R23 to remove NFAULT from 19th pin in J9.</p></li>
+<li><p>Desolder R24 and populate R19 with zero ohm resistor to move POT input from 14th pin to 3rd pin in J8/J9 connector.</p></li>
+<li><p>Remove J2 in DRV8329AEVM to make dead time set to 55ns, user can use the MCU dead time to insert dead time.</p></li>
+<li><p>User can select the CSA Gain using the connector J2. By default, the base current in FW is computed with CSA Gain of 20V/v and 20mOhm resistance.</p></li>
+<li><p>Desolder R14, R15 removed to disconnect 3.3V and 5V to LP.</p></li>
+<li><p>Connect the LP-MSPM0G3507 to the DRV8329AEVM in one of two ways:</p>
+<ul>
+<li><p>1 Plug the connectors J8 and J9 of the DRV8329AEVM to the top of the connectors J3/J4 of the LP-MSPM0G3507. An Additional connection need to be made from ISENA in DRV8329AEVM to the PA24 in LP-MSPM0G3507.</p></li>
+<li><p>2 If using the jumper wires, connect as shown in the table below. Refer to the schematic of J3 and J4 connector pinout on DRV8329AEVM for the location of the signals.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Connection</p></th>
+<th class="head"><p>MSPM0G3507</p></th>
+<th class="head"><p>DRV8329AEVM</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Phase A HS input</p></td>
+<td><p>PB4</p></td>
+<td><p>INHA</p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase A LS input</p></td>
+<td><p>PB1</p></td>
+<td><p>INLA</p></td>
+</tr>
+<tr class="row-even"><td><p>Phase B HS input</p></td>
+<td><p>PA28</p></td>
+<td><p>INHB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase B LS input</p></td>
+<td><p>PA31</p></td>
+<td><p>INLB</p></td>
+</tr>
+<tr class="row-even"><td><p>Phase C HS input</p></td>
+<td><p>PB20</p></td>
+<td><p>INHC</p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase C LS input</p></td>
+<td><p>PB13</p></td>
+<td><p>INLC</p></td>
+</tr>
+<tr class="row-even"><td><p>Bus voltage input</p></td>
+<td><p>PA18</p></td>
+<td><p>VSENVM</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bus current input 1</p></td>
+<td><p>PA17</p></td>
+<td><p>ISENA</p></td>
+</tr>
+<tr class="row-even"><td><p>Bus current input 2</p></td>
+<td><p>PA24</p></td>
+<td><p>ISENA</p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase A Voltage input</p></td>
+<td><p>PB19</p></td>
+<td><p>VSENA</p></td>
+</tr>
+<tr class="row-even"><td><p>Phase B Voltage input</p></td>
+<td><p>PA22</p></td>
+<td><p>VSENB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase C Voltage input</p></td>
+<td><p>PB18</p></td>
+<td><p>VSENC</p></td>
+</tr>
+<tr class="row-even"><td><p>Fault Input</p></td>
+<td><p>PA27</p></td>
+<td><p>nFAULT</p></td>
+</tr>
+<tr class="row-odd"><td><p>DRV Enable output</p></td>
+<td><p>PB6</p></td>
+<td><p>DRVOFF</p></td>
+</tr>
+<tr class="row-even"><td><p>DRV sleep</p></td>
+<td><p>PA26</p></td>
+<td><p>nSLEEP</p></td>
+</tr>
+<tr class="row-odd"><td><p>Common Ground</p></td>
+<td><p>GND</p></td>
+<td><p>GND</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="align-default" id="id2">
+<img alt="DRV8329AEVM J8 and J9 connector pinout" src="../../_images/DRV-CONNECTOR2.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">DRV8329AEVM J8 and J9 connector pinout</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Note: The output from the single shunt current sense is to be routed to ADC 0 &amp; 1 through Pins PA24 and PA17 respectively.</p>
+<ol class="arabic simple" start="9">
+<li><p>Place nSLEEP switch in WAKE position and DRVOFF in ON position.</p></li>
+<li><p>Connect the 3 phases of the BLDC motor to A/B/C of connector J13 on the DRV8329AEVM.</p></li>
+<li><p>Connect the positive and negative of the power supply to VM and GND of the power connector terminal block.</p></li>
+<li><p>Set the power supply to to a motor voltage between 4.5V to 60V within the DRV8329AEVM specifications and a 30-A current limit.</p></li>
+<li><p>Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.</p></li>
+<li><p>Turn on the power supply. The green VM LED on the DRV8329AEVM should turn on.</p></li>
+<li><p>Once all steps are completed, Please refer to <a class="reference external" href="../MSPM0_Sensorless_FOC_Software_Users_Guide.html">Software User Guide</a> for steps on importing the CCS project or <a class="reference external" href="https://www.ti.com/lit/pdf/SLAU927">FOC Tuning Guide</a> for steps to tune and spin the motor.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../drv8323rs/DRV8323RS_Hardware_User_Guide.html" class="btn btn-neutral float-left" title="Sensorless FOC - DRV8323RS Gate Driver User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

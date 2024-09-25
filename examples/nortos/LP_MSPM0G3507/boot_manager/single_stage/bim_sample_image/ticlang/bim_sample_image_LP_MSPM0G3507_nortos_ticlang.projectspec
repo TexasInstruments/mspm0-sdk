@@ -57,7 +57,7 @@
             compilerBuildOptions="-DPRIMARY_SLOT"
             linkerBuildOptions="--define=PRIMARY_SLOT"
             postBuildStep="
-                ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out --output-target binary ${ProjName}-unsigned.bin;python ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/imgtool.py sign --header-size 0x100 --align 4 --slot-size 0xD000 --pad --version 1.0.0 --pad-header --key ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/image_signTEST.pem ${ProjName}-unsigned.bin ${ProjName}_0x5800_v1_green.bin
+                ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out --output-target binary ${ProjName}-unsigned.bin;${PYTHON_${CCS_HOST_OS}} ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/imgtool.py sign --header-size 0x100 --align 4 --slot-size 0xD000 --pad --version 1.0.0 --pad-header --key ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/image_signTEST.pem ${ProjName}-unsigned.bin ${ProjName}_0x5800_v1_green.bin
             ">
         </configuration>
         <configuration
@@ -65,10 +65,15 @@
             compilerBuildOptions="-DSECONDARY_SLOT"
             linkerBuildOptions="--define=SECONDARY_SLOT"
             postBuildStep="
-                ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out --output-target binary ${ProjName}-unsigned.bin;python ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/imgtool.py sign --header-size 0x100 --align 4 --slot-size 0xD000 --pad --version 2.0.0 --pad-header --key ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/image_signTEST.pem ${ProjName}-unsigned.bin ${ProjName}_0x12800_v2_blue.bin
+                ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out --output-target binary ${ProjName}-unsigned.bin;${PYTHON_${CCS_HOST_OS}} ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/imgtool.py sign --header-size 0x100 --align 4 --slot-size 0xD000 --pad --version 2.0.0 --pad-header --key ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/image_signTEST.pem ${ProjName}-unsigned.bin ${ProjName}_0x12800_v2_blue.bin
             ">
         </configuration>
 
+        <buildVariable name="PYTHON_win32" value ="python" />
+        <buildVariable name="PYTHON_macosx" value ="python3" />
+        <buildVariable name="PYTHON_linux" value ="python3" />
+        <!-- Backup Variable for older versions of CCS that doesn't support CCS_HOST_OS env variable -->
+        <buildVariable name="PYTHON_" value ="python" />
         <file path="../bim_sample_image.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">

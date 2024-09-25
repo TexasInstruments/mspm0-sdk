@@ -10,12 +10,14 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
 OBJECTS = cmsis_dsp_fft_q15.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = cmsis_dsp_fft_q15
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -I. \
+    $(addprefix @,$(SYSCFG_OPT_FILES)) \
     -DARM_MATH_CM0 \
     -O2 \
     @device.opt \
@@ -35,12 +37,12 @@ CFLAGS = -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS = -nostartfiles \
+LFLAGS += -nostartfiles \
     -Tdevice.lds.genlibs \
     -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -51,6 +53,7 @@ LFLAGS = -nostartfiles \
     -lm \
     -lnosys \
     --specs=nano.specs
+
 all: $(NAME).out
 
 .INTERMEDIATE: syscfg

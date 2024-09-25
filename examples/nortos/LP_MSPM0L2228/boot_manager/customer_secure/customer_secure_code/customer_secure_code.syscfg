@@ -29,7 +29,7 @@ SECCONFIG.cscSecretAddress    = 0x4000;
 SECCONFIG.cscSecretSize       = 0x400;
 SECCONFIG.cscLockStorageSize  = 0x400;
 SECCONFIG.cscAppImageBaseAddr = 0x4800;
-SECCONFIG.cscAppImageSize     = 0x2000;
+SECCONFIG.cscAppImageSize     = 0x2800;
 
 GPIO1.$name                         = "GPIO_LEDS";
 GPIO1.associatedPins.create(3);

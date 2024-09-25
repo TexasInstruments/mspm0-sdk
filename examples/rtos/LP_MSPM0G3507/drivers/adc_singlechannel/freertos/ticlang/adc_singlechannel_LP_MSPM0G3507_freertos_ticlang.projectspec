@@ -54,6 +54,8 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
+        <file path="../../main_freertos.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/Display.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/DisplayUart.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
@@ -61,6 +63,8 @@
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/Display.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/display/DisplayUart.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/display">
+        </file>
+        <file path="../../syscfg_c.rov.xs" openOnCreation="false" excludeFromBuild="true" action="copy">
         </file>
         <file path="../../ti_drivers_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
@@ -71,10 +75,6 @@
         <file path="../../ti_msp_dl_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../../adcsinglechannel.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../../main_freertos.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../../syscfg_c.rov.xs" openOnCreation="false" excludeFromBuild="true" action="copy">
         </file>
         <file path="../../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

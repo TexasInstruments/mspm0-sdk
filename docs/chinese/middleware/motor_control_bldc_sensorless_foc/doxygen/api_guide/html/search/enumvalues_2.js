@@ -10,6 +10,7 @@ var searchData=
   ['motor_5fidle',['MOTOR_IDLE',['../app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a4fb74f2ab945070a7d5ca157061df104',1,'appUserOutputs.h']]],
   ['motor_5fipd',['MOTOR_IPD',['../app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a439f55dd791a6605280ac9c697052af2',1,'appUserOutputs.h']]],
   ['motor_5fisd',['MOTOR_ISD',['../app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766aa549d976d56d0a6f18998ed3cbd55872',1,'appUserOutputs.h']]],
+  ['motor_5fmax',['MOTOR_MAX',['../app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766adec9f2b2d5a998dcf18c6558a4b848e2',1,'appUserOutputs.h']]],
   ['motor_5fopen_5floop',['MOTOR_OPEN_LOOP',['../app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766aa365f5d10c0b078ac5990bd84909be80',1,'appUserOutputs.h']]],
   ['motor_5fslow_5ffirst_5fcycle',['MOTOR_SLOW_FIRST_CYCLE',['../app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a0970004e386a6855fb6b112666ab11d3',1,'appUserOutputs.h']]],
   ['motor_5fsoft_5fstop',['MOTOR_SOFT_STOP',['../app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a9f24eba962950ba26bcc869071319c43',1,'appUserOutputs.h']]],

@@ -12,7 +12,10 @@ switch to STANDBY0. The power policies will continue to alternate every 5s.
 TIMG1 will toggle LED1 every 250ms during the SLEEP policy, and not toggle when
 the device is in STANDBY.
 
-**Note**: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.
+**Note**: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad. When debugging
+the application, the power access port (PWR-AP) will force the device to remain active.
+In order to see full functionality of this example, it is recommended to terminate the debug session.
+Refer to the Debug section of the TRM for more information about debugging in low power modes.
 
 ## Peripherals & Pin Assignments
 

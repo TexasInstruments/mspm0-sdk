@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">1.30.00.03</span>
+   &#160;<span id="projectnumber">2.00.00.03</span>
    </div>
   </td>
  </tr>
@@ -323,7 +323,9 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836">DL_DMA_WIDTH_WORD</a> = DMA_DMACTL_DMASRCWDTH_WORD, 
 <br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">DL_DMA_WIDTH_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONG
+&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">DL_DMA_WIDTH_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONG, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9">DL_DMA_WIDTH_LONG_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONGLONG
 <br />
  }</td></tr>
 <tr class="separator:gab605141334a8b69900305c81ef998fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -378,6 +380,17 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:gaa5cab158d8d96858b0905b602c0a846a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3cfd8d2a08be11fe872cd08196e7eb1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> { <br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2">DL_DMA_AUTOEN_DISABLE</a> = DMA_DMACTL_DMAAUTOEN_DISABLE, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe">DL_DMA_AUTOEN_DMASA</a> = DMA_DMACTL_DMAAUTOEN_DMASA, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb">DL_DMA_AUTOEN_DMADA</a> = DMA_DMACTL_DMAAUTOEN_DMADA, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5">DL_DMA_AUTOEN_DMASZ</a> = DMA_DMACTL_DMAAUTOEN_DMASZ
+<br />
+ }</td></tr>
+<tr class="separator:gac3cfd8d2a08be11fe872cd08196e7eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -531,6 +544,15 @@ Functions</h2></td></tr>
 <tr class="memitem:gafece913351c1ce0970329bbe7f819432"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432">DL_DMA_clearEventsStatus</a> (DMA_Regs *dma, uint32_t eventMask)</td></tr>
 <tr class="memdesc:gafece913351c1ce0970329bbe7f819432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending dma events.  <a href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432">More...</a><br /></td></tr>
 <tr class="separator:gafece913351c1ce0970329bbe7f819432"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">DL_DMA_enableAutoEnable</a> (DMA_Regs *dma, <a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> mode, uint8_t channelNum)</td></tr>
+<tr class="memdesc:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the DMA for auto-enable.  <a href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">More...</a><br /></td></tr>
+<tr class="separator:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">DL_DMA_disableAutoEnable</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
+<tr class="memdesc:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable auto-enable for DMA.  <a href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">More...</a><br /></td></tr>
+<tr class="separator:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9a2039849be9ab98d67d7aa38d44c26"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">DL_DMA_isAutoEnableEnabled</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
+<tr class="memdesc:gad9a2039849be9ab98d67d7aa38d44c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if auto-enable is enabled for the DMA.  <a href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">More...</a><br /></td></tr>
+<tr class="separator:gad9a2039849be9ab98d67d7aa38d44c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

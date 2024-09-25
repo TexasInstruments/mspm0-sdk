@@ -257,8 +257,8 @@ static const DL_MCAN_StdMsgIDFilterElement g`instName`StdFiltelem = {
 
 %if ((inst.extFiltElem != "000") && (inst.lse > 0) ){
 static const DL_MCAN_ExtMsgIDFilterElement g`instName`ExtFiltelem = {
-    .efec = 0x`inst.extFiltElem`,
-    .eft  = 0x`inst.extFiltType`,
+    .efec = 0x`(parseInt(inst.extFiltElem, 2).toString(16).toUpperCase())`,
+    .eft  = 0x`(parseInt(inst.extFiltType, 2).toString(16).toUpperCase())`,
     .efid1 = `inst.extFiltID1`,
     .efid2 = `inst.extFiltID2`,
 };

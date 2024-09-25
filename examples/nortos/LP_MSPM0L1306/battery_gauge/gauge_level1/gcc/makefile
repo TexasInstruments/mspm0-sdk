@@ -8,7 +8,7 @@ LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 OBJECTS = main.obj Gauge_App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj Gauge_Algorithm_VoltGauge.obj Gauge_UserConfig_Gauge_UserConfig.obj gcc_startup_mspm0l130x_gcc.obj
 NAME = gauge_level1
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0L1306__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -26,7 +26,7 @@ CFLAGS = -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/gcc/m0p/rts" \
+LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/gcc/m0p/rts" \
     -l:iqmath.a \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx" \
     -nostartfiles \
@@ -34,7 +34,7 @@ LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/gcc/m0p/rts" \
     -Wl,-T,../gcc/mspm0l1306.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -45,6 +45,7 @@ LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/gcc/m0p/rts" \
     -lm \
     -lnosys \
     --specs=nano.specs
+
 all: $(NAME).out
 
 main.obj: ../main.c

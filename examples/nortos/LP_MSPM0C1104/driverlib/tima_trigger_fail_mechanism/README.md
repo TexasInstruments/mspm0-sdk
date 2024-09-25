@@ -10,7 +10,7 @@ The following example configures fault detection feature on TimerA.
 | --- | --- | --- |
 | GPIOA | PA22 | Standard Output |
 | GPIOA | PA11 | Standard Output |
-| TIMERFAULT0 | PA0 | Fault Pin 1 |
+| TIMERFAULT0 | PA25 | Fault Pin 1 |
 | SYSCTL | PA18 | CLK OUT |
 | TIMA0 | PA2 | Capture/Compare Pin 0 |
 | TIMA0 | PA6 | Capture/Compare Pin 1 |
@@ -26,7 +26,7 @@ Visit [LP_MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104) for LaunchPad infor
 | --- | --- | --- | --- | --- |
 | PA22 | GPIOA | PA22 | J1_8 | N/A |
 | PA11 | GPIOA | PA11 | J1_9 | <ul><li>PA11 can be connected to an external 3.3V pull-up<br><ul><li>`J6 OFF` Disconnect 3.3V pull-up<br><li>`J6 ON` Connect 3.3V pull-up</ul></ul> |
-| PA0 | TIMERFAULT0 | FAULT1 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J20 1:2` Use 3.3V pull-up<br><li>`J20 2:3` Use 5V pull-up</ul></ul> |
+| PA25 | TIMERFAULT0 | FAULT2 | J1_2 | N/A |
 | PA18 | SYSCTL | CLK_OUT | J2_15 | N/A |
 | PA2 | TIMA0 | CCP0 | J2_13 | N/A |
 | PA6 | TIMA0 | CCP1 | J1_7 | N/A |
@@ -66,8 +66,10 @@ up to 2 additional timer clock to start detecting consecutive periods.
 
 Once a fault is detected , TimerA is configured to set the PWM as follows:
 
-- TIMA1_C0 is set to high state
-- TIMA1_C1 is set to low state
+- TimerA is configured to set the PWM as follows:
+    - TIMA1_C0 is set to high state
+    - TIMA1_C1 is set to low state
+- USER_LED_1 and USER_TEST pins will toggle every time a fault is detected
 
 
 Once the fault condition is cleared (i.e. fault pin remains in low state for at

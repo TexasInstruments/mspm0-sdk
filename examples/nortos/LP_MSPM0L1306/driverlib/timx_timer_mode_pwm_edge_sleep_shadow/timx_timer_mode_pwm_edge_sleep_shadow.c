@@ -49,6 +49,7 @@ int main(void)
     NVIC_EnableIRQ(PWM_0_INST_INT_IRQN);
 
     DL_TimerG_startCounter(PWM_0_INST);
+
     /*
      * USER_LED_1 is turned on and USER_TEST_PIN is set low to indicate
      * PWM generation has started

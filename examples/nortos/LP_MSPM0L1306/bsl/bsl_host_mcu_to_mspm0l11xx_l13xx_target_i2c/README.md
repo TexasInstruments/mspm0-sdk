@@ -9,8 +9,8 @@ This demo shows how to program a MSPM0L1306 MCU using a LP-MSPM0L1306 as host by
 | GPIOA | PA14 | Standard Input with internal pull-up |
 | GPIOA | PA0 | Open-Drain Output |
 | GPIOA | PA27 | Standard Output |
-| GPIOA | PA3 | Standard Output |
-| GPIOA | PA7 | Standard Output |
+| GPIOA | PA3 | Standard Output(To control NRST pin) |
+| GPIOA | PA7 | Standard Output(To control invoke pin) |
 | SYSCTL |  |  |
 | I2C0 | PA10 | I2C Serial Data line (SDA) |
 | I2C0 | PA11 | I2C Serial Clock line (SCL) |

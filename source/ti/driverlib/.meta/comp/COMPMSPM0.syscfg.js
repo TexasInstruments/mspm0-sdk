@@ -276,6 +276,11 @@ function pinmuxRequirements(inst)
             displayName:"COMP Negative Channel 2 Pin",
             interfaceNames:["IN2-"],
         },
+        {
+            name:"compPinPos3",
+            displayName:"COMP Positive Channel 3 Pin",
+            interfaceNames:["IN3+"],
+        },
     ];
 
     let outPin =
@@ -296,6 +301,7 @@ function pinmuxRequirements(inst)
             compPinPos0: ["IN0+"],
             compPinPos1: ["IN1+"],
             compPinPos2: ["IN2+"],
+            compPinPos3: ["IN3+"],
             compPinNeg0: ["IN0-"],
             compPinNeg1: ["IN1-"],
             compPinNeg2: ["IN2-"],
@@ -314,6 +320,12 @@ function pinmuxRequirements(inst)
         if(((inst.channelEnable).includes("POS"))&&((inst.posChannel) ==("DL_COMP_IPSEL_CHANNEL_"+compChanIdx.toString()))){
             if(compChanIdx<3){
                 ind = compChanIdx*2
+                if(!((comp.resources).includes(allResources[ind]))){
+                    comp.resources.push(allResources[ind])
+                }
+            }
+            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && (compChanIdx==3)){
+                ind = 6;
                 if(!((comp.resources).includes(allResources[ind]))){
                     comp.resources.push(allResources[ind])
                 }
@@ -672,10 +684,19 @@ function getPositiveChannelOptionsWithReason(inst){
 
     }
     /* MSPM0L-specific options */
-    else if(Common.isDeviceM0L()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
         PositiveChannelOptionsWithReason = [
             {name: "DL_COMP_IPSEL_CHANNEL_0", displayName: "COMPx_IN0+", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IPSEL_CHANNEL_1", displayName: "COMPx_IN1+", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IPSEL_CHANNEL_6", displayName: "OPA1 output", reason: "not available on chosen COMP instance"},
+        ];
+    }
+    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        PositiveChannelOptionsWithReason = [
+            {name: "DL_COMP_IPSEL_CHANNEL_0", displayName: "COMPx_IN0+", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IPSEL_CHANNEL_1", displayName: "COMPx_IN1+", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IPSEL_CHANNEL_2", displayName: "COMPx_IN2+", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IPSEL_CHANNEL_3", displayName: "COMPx_IN3+", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IPSEL_CHANNEL_6", displayName: "OPA1 output", reason: "not available on chosen COMP instance"},
         ];
     }
@@ -691,6 +712,9 @@ function getDisabledPositiveChannelOptions(inst){
     switch(inst.peripheral.$solution.peripheralName){
         case "COMP0":
             validChannels = [ 0, 1, 2, 5, 6, 7 ];
+            if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+                validChannels.push(3);
+            }
             break;
         case "COMP1":
             validChannels = [ 0, 1, 2, 5, 7 ];
@@ -726,10 +750,19 @@ function getNegativeChannelOptionsWithReason(inst){
 
     }
     /* MSPM0L-specific options */
-    else if(Common.isDeviceM0L()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
         NegativeChannelOptionsWithReason = [
             {name: "DL_COMP_IMSEL_CHANNEL_0", displayName: "COMPx_IN0-", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IMSEL_CHANNEL_1", displayName: "COMPx_IN1-", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IMSEL_CHANNEL_5", displayName: "Temperature Sensor", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IMSEL_CHANNEL_6", displayName: "OPA0 Output", reason: "not available on chosen COMP instance"},
+        ];
+    }
+    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        NegativeChannelOptionsWithReason = [
+            {name: "DL_COMP_IMSEL_CHANNEL_0", displayName: "COMPx_IN0-", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IMSEL_CHANNEL_1", displayName: "COMPx_IN1-", reason: "not available on chosen COMP instance"},
+            {name: "DL_COMP_IMSEL_CHANNEL_2", displayName: "COMPx_IN2-", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IMSEL_CHANNEL_5", displayName: "Temperature Sensor", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IMSEL_CHANNEL_6", displayName: "OPA0 Output", reason: "not available on chosen COMP instance"},
         ];

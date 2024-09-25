@@ -8,8 +8,8 @@ This demo shows how to program a MSPM0G3507 MCU using a LP-MSPM0G3507 as host by
 | --- | --- | --- |
 | GPIOA | PA0 | Open-Drain Output |
 | GPIOB | PB21 | Standard Input with internal pull-up |
-| GPIOB | PB0 | Standard Output |
-| GPIOB | PB16 | Standard Output |
+| GPIOB | PB0 | Standard Output(To control NRST pin) |
+| GPIOB | PB16 | Standard Output(To control invoke pin) |
 | GPIOB | PB27 | Standard Output |
 | SYSCTL |  |  |
 | UART1 | PB7 | RX Pin |

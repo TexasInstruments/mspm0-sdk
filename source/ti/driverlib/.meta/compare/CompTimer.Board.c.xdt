@@ -125,16 +125,19 @@
 %   for (let i in instances) {
 %       let inst = instances[i];
 %       if (inst.triggerSelect != "Trigger"){
-%       let cc = inst.ccIndex
-%       /* all of these are defined in the header */
-%           let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
-%           /* If Pin Configuration enabled, do not generate duplicate call */
-%           try {
-%               if(!inst["ccp"+cc+"PinConfig"].enableConfig){
+%       /* Condition Check: avoid internal channels */
+%           let cc = inst.ccIndex
+%           if(!Common.isInternalTimerChannel(cc)){
+%               /* all of these are defined in the header */
+%               let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
+%               /* If Pin Configuration enabled, do not generate duplicate call */
+%               try {
+%                   if(!inst["ccp"+cc+"PinConfig"].enableConfig){
     DL_GPIO_initPeripheralInputFunction(`gpioStr`_IOMUX,`gpioStr`_IOMUX_FUNC);
-%               }
-%           } catch (x){/* ignore any exception */}
-%   }
+%                   }
+%               } catch (x){/* ignore any exception */}
+%           }
+%       }
 % let initIOMux = Common.getGPIOConfigBoardC(inst);
 % /* Check if generating empty code */
 % if (/\S/.test(initIOMux)) {

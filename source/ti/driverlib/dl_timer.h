@@ -345,6 +345,48 @@ extern "C" {
 #define DL_TIMER_CC_OCTL_SRC_CNTDIR                (GPTIMER_OCTL_01_CCPO_CNTDIR)
 /** @}*/
 
+/** @addtogroup DL_TIMER_CC_SWFRCACT_CMPL
+ *  @{
+ */
+
+/*!
+ * @brief The CCP complimentary output value is unaffected by the event.
+ */
+#define DL_TIMER_CC_SWFRCACT_CMPL_DISABLED           (GPTIMER_CCACT_01_SWFRCACT_CMPL_DISABLED)
+
+/*!
+ * @brief CCP complimentary output value is set high.
+ */
+#define DL_TIMER_CC_SWFRCACT_CMPL_HIGH               (GPTIMER_CCACT_01_SWFRCACT_CMPL_CCP_HIGH)
+
+/*!
+ * @brief CCP complimentary output value is set low.
+ */
+#define DL_TIMER_CC_SWFRCACT_CMPL_LOW                 (GPTIMER_CCACT_01_SWFRCACT_CMPL_CCP_LOW)
+
+/** @}*/
+
+/** @addtogroup DL_TIMER_CC_SWFRCACT
+ *  @{
+ */
+
+/*!
+ * @brief The CCP output value is unaffected by the event.
+ */
+#define DL_TIMER_CC_SWFRCACT_DISABLED           (GPTIMER_CCACT_01_SWFRCACT_DISABLED)
+
+/*!
+ * @brief CCP output value is set high.
+ */
+#define DL_TIMER_CC_SWFRCACT_HIGH               (GPTIMER_CCACT_01_SWFRCACT_CCP_HIGH)
+
+/*!
+ * @brief CCP output value is set low.
+ */
+#define DL_TIMER_CC_SWFRCACT_LOW                 (GPTIMER_CCACT_01_SWFRCACT_CCP_LOW)
+
+/** @}*/
+
 /** @addtogroup DL_TIMER_CC_FEXACT
  *  @{
  */
@@ -408,6 +450,60 @@ extern "C" {
  */
 #define DL_TIMER_CC_FENACT_HIGHZ           (GPTIMER_CCACT_01_FENACT_CCP_HIGHZ)
 
+
+/** @}*/
+
+/** @addtogroup DL_TIMER_CC_CC2UACT
+ *  @{
+ */
+
+/*!
+ * @brief The CCP output value is unaffected by the event.
+ */
+#define DL_TIMER_CC_CC2UACT_DISABLED           (GPTIMER_CCACT_01_CC2UACT_DISABLED)
+
+/*!
+ * @brief CCP output value is set high.
+ */
+#define DL_TIMER_CC_CC2UACT_CCP_HIGH           (GPTIMER_CCACT_01_CC2UACT_CCP_HIGH)
+
+/*!
+ * @brief CCP output value is set low
+ */
+#define DL_TIMER_CC_CC2UACT_CCP_LOW             (GPTIMER_CCACT_01_CC2UACT_CCP_LOW)
+
+/*!
+ * @brief CCP output value is toggled.
+ */
+#define DL_TIMER_CC_CC2UACT_CCP_TOGGLE      \
+                                            (GPTIMER_CCACT_01_CC2UACT_CCP_TOGGLE)
+
+/** @}*/
+
+/** @addtogroup DL_TIMER_CC_CC2DACT
+ *  @{
+ */
+
+/*!
+ * @brief The CCP output value is unaffected by the event.
+ */
+#define DL_TIMER_CC_CC2DACT_DISABLED           (GPTIMER_CCACT_01_CC2DACT_DISABLED)
+
+/*!
+ * @brief CCP output value is set high.
+ */
+#define DL_TIMER_CC_CC2DACT_CCP_HIGH           (GPTIMER_CCACT_01_CC2DACT_CCP_HIGH)
+
+/*!
+ * @brief CCP output value is set low
+ */
+#define DL_TIMER_CC_CC2DACT_CCP_LOW             (GPTIMER_CCACT_01_CC2DACT_CCP_LOW)
+
+/*!
+ * @brief CCP output value is toggled.
+ */
+#define DL_TIMER_CC_CC2DACT_CCP_TOGGLE      \
+                                            (GPTIMER_CCACT_01_CC2DACT_CCP_TOGGLE)
 
 /** @}*/
 
@@ -3063,6 +3159,8 @@ uint32_t DL_Timer_getCaptureCompareOutCtl(
  *  @param[in] gptimer       Pointer to the register overlay for the
  *                           peripheral
  *  @param[in] actionsMask   Bit mask of signal generator actions. Bitwise OR of
+ *                           @ref DL_TIMER_CC_SWFRCACT_CMPL, @ref DL_TIMER_CC_SWFRCACT,
+ *                           @ref DL_TIMER_CC_CC2UACT, @ref DL_TIMER_CC_CC2DACT,
  *                           @ref DL_TIMER_CC_FEXACT, @ref DL_TIMER_CC_FENACT,
  *                           @ref DL_TIMER_CC_CUACT, @ref DL_TIMER_CC_CDACT,
  *                           @ref DL_TIMER_CC_LACT, @ref DL_TIMER_CC_ZACT,
@@ -3081,7 +3179,9 @@ void DL_Timer_setCaptureCompareAction(
  *  @param[in]  ccIndex        Index associated to capture compare register
  *                             @ref DL_TIMER_CC_INDEX.
  *
- *  @return Bitwise OR of @ref DL_TIMER_CC_FEXACT, @ref DL_TIMER_CC_FENACT,
+ *  @return Bitwise OR of @ref DL_TIMER_CC_SWFRCACT_CMPL, @ref DL_TIMER_CC_SWFRCACT,
+ *          @ref DL_TIMER_CC_CC2UACT, @ref DL_TIMER_CC_CC2DACT,
+ *          @ref DL_TIMER_CC_FEXACT, @ref DL_TIMER_CC_FENACT,
  *          @ref DL_TIMER_CC_CUACT, @ref DL_TIMER_CC_CDACT,
  *          @ref DL_TIMER_CC_LACT, @ref DL_TIMER_CC_ZACT.
  *
@@ -4175,7 +4275,7 @@ bool DL_Timer_restoreConfiguration(
  *
  *  @param[in]  gptimer  Pointer to the register overlay for the peripheral
  *
- *  @param[in]  haltMode Timer halt behavvior. One of @ref DL_TIMER_CORE_HALT.
+ *  @param[in]  haltMode Timer halt behavior. One of @ref DL_TIMER_CORE_HALT.
  *
  */
 __STATIC_INLINE void DL_Timer_setCoreHaltBehavior(

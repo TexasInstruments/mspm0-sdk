@@ -1787,9 +1787,8 @@ if (Common.isDeviceM0G())
 }
 else if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X())
 {
-    //TODO: Confirm/Update default pin selection.
-    defaultBSLUARTRXPinCM = "25";
-    defaultBSLUARTTXPinCM = "26";
+    defaultBSLUARTRXPinCM = "26";
+    defaultBSLUARTTXPinCM = "25";
     defaultBSLI2CSCLPinCM = "2";
     defaultBSLI2CSDAPinCM = "1";
 }

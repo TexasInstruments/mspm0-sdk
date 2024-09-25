@@ -8,7 +8,7 @@ LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 OBJECTS = empty_non_sysconfig.obj ti_msp_dl_config.obj iar_startup_mspm0g350x_iar.obj
 NAME = empty_non_sysconfig
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0G3507__ \
     -Om \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -22,14 +22,15 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L$PROJ_DIR$ \
+    -L.. \
     --config ../iar/mspm0g3507.icf \
     --map "$(NAME).map" \
     --silent \
     --semihosting=iar_breakpoint \
     --cpu=Cortex-M0+
+
 all: $(NAME).out
 
 empty_non_sysconfig.obj: ../empty_non_sysconfig.c

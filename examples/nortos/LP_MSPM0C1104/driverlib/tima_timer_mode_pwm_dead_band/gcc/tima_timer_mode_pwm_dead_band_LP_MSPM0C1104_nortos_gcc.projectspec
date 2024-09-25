@@ -4,7 +4,7 @@
         <when>
             <context
                 deviceFamily="ARM"
-                deviceId="Cortex M.MSPM0C1104"
+                deviceId="MSPM0C1104"
             />
         </when>
     </applicability>
@@ -15,7 +15,7 @@
         configurations="Debug"
         toolChain="GNU"
         connection="TIXDS110_Connection.xml"
-        device="Cortex M.MSPM0C1104"
+        device="MSPM0C1104"
         ignoreDefaultDeviceSettings="true"
         ignoreDefaultCCSSettings="true"
         products="MSPM0-SDK;sysconfig"
@@ -56,7 +56,6 @@
             -lm
             -lnosys
         "
-        enableSysConfigTool="true"
         sysConfigBuildOptions="
             --output .
             --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json

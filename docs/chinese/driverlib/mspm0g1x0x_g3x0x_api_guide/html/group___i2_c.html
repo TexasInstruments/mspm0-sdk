@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">1.30.00.03</span>
+   &#160;<span id="projectnumber">2.00.00.03</span>
    </div>
   </td>
  </tr>
@@ -175,6 +175,13 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:gafb5095cf27ba13dbca5226da84dbbf18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga96c525c4ee883f347cf21e8676d7c32e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga96c525c4ee883f347cf21e8676d7c32e">DL_I2C_TARGET_PEC_CHECK_ERROR</a> { <br />
+&#160;&#160;<a class="el" href="group___i2_c.html#gga96c525c4ee883f347cf21e8676d7c32ea72ff826ecd7fcdaac021b0f787356eae">DL_I2C_TARGET_PEC_CHECK_ERROR_CLEARED</a>, 
+<br />
+&#160;&#160;<a class="el" href="group___i2_c.html#gga96c525c4ee883f347cf21e8676d7c32eaa6767e7f503cda619aa26c7210e75fac">DL_I2C_TARGET_PEC_CHECK_ERROR_SET</a> = I2C_TARGET_PECSR_PECSTS_ERROR_SET
+<br />
+ }</td></tr>
+<tr class="separator:ga96c525c4ee883f347cf21e8676d7c32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga031f0b093a1d7448b0ba89a6ecc0a32a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga031f0b093a1d7448b0ba89a6ecc0a32a">DL_I2C_ANALOG_GLITCH_FILTER_WIDTH</a> { <br />
 &#160;&#160;<a class="el" href="group___i2_c.html#gga031f0b093a1d7448b0ba89a6ecc0a32aab775e2e3cf0f0c919a44a5e5f43f8b87">DL_I2C_ANALOG_GLITCH_FILTER_WIDTH_5NS</a> = I2C_GFCTL_AGFSEL_AGLIT_5, 
 <br />
@@ -902,6 +909,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga0898e3ac477f498dd021d6b9251be792"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___i2_c.html#gafb5095cf27ba13dbca5226da84dbbf18">DL_I2C_TARGET_PEC_STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga0898e3ac477f498dd021d6b9251be792">DL_I2C_getTargetPECCheckedStatus</a> (I2C_Regs *i2c)</td></tr>
 <tr class="memdesc:ga0898e3ac477f498dd021d6b9251be792"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get status if SMBus/PMBus target PEC was checked in last transaction.  <a href="#ga0898e3ac477f498dd021d6b9251be792">More...</a><br /></td></tr>
 <tr class="separator:ga0898e3ac477f498dd021d6b9251be792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga442f1163dc4edf28f58e901506456ea2"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___i2_c.html#ga96c525c4ee883f347cf21e8676d7c32e">DL_I2C_TARGET_PEC_CHECK_ERROR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga442f1163dc4edf28f58e901506456ea2">DL_I2C_getTargetPECCheckError</a> (I2C_Regs *i2c)</td></tr>
+<tr class="memdesc:ga442f1163dc4edf28f58e901506456ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get status if SMBus/PMBus target PEC had an error.  <a href="#ga442f1163dc4edf28f58e901506456ea2">More...</a><br /></td></tr>
+<tr class="separator:ga442f1163dc4edf28f58e901506456ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8dcd575b9d863a582b3bbd378d4eb4a4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___i2_c.html#ga5f984a9185dfb1fde64fd3d8a9b3786c">DL_I2C_TX_FIFO_LEVEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga8dcd575b9d863a582b3bbd378d4eb4a4">DL_I2C_getTargetTXFIFOThreshold</a> (I2C_Regs *i2c)</td></tr>
 <tr class="memdesc:ga8dcd575b9d863a582b3bbd378d4eb4a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get target TX FIFO threshold level.  <a href="#ga8dcd575b9d863a582b3bbd378d4eb4a4">More...</a><br /></td></tr>
 <tr class="separator:ga8dcd575b9d863a582b3bbd378d4eb4a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1199,6 +1209,26 @@ Functions</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggafb5095cf27ba13dbca5226da84dbbf18a621e97a1d5400f1fcb2f7b0a242a0dfe"></a>DL_I2C_TARGET_PEC_STATUS_CHECKED&#160;</td><td class="fielddoc"><p>I2C Target SMBus/PMBus PEC was checked in the transaction that occurred before the last Stop </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggafb5095cf27ba13dbca5226da84dbbf18a6381d0639c0d81a547fe93f737324ea4"></a>DL_I2C_TARGET_PEC_STATUS_NOT_CHECKED&#160;</td><td class="fielddoc"><p>I2C Target SMBus/PMBus PEC was not checked in the transaction that occurred before the last Stop </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ga96c525c4ee883f347cf21e8676d7c32e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga96c525c4ee883f347cf21e8676d7c32e">&sect;&nbsp;</a></span>DL_I2C_TARGET_PEC_CHECK_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group___i2_c.html#ga96c525c4ee883f347cf21e8676d7c32e">DL_I2C_TARGET_PEC_CHECK_ERROR</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga96c525c4ee883f347cf21e8676d7c32ea72ff826ecd7fcdaac021b0f787356eae"></a>DL_I2C_TARGET_PEC_CHECK_ERROR_CLEARED&#160;</td><td class="fielddoc"><p>Indicates PEC check error did not occurr in the transaction that occurred before the last Stop </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga96c525c4ee883f347cf21e8676d7c32eaa6767e7f503cda619aa26c7210e75fac"></a>DL_I2C_TARGET_PEC_CHECK_ERROR_SET&#160;</td><td class="fielddoc"><p>Indicates PEC check error occurred in the transaction that occurred before the last Stop </p>
 </td></tr>
 </table>
 
@@ -7158,7 +7188,7 @@ false if peripheral wasn't reset </dd></dl>
 </div><div class="memdoc">
 
 <p>Get status if SMBus/PMBus target PEC was checked in last transaction. </p>
-<p>The status of if the target PEC was checked in the transaction that occurred before the last Stop. Latched on Stop.</p>
+<p>The status indicates if the target PEC was checked in the transaction that occurred before the last Stop. Latched on Stop.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">i2c</td><td>Pointer to the register overlay for the peripheral</td></tr>
@@ -7169,6 +7199,40 @@ false if peripheral wasn't reset </dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">One</td><td>of <a class="el" href="group___i2_c.html#gafb5095cf27ba13dbca5226da84dbbf18">DL_I2C_TARGET_PEC_STATUS</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga442f1163dc4edf28f58e901506456ea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga442f1163dc4edf28f58e901506456ea2">&sect;&nbsp;</a></span>DL_I2C_getTargetPECCheckError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE <a class="el" href="group___i2_c.html#ga96c525c4ee883f347cf21e8676d7c32e">DL_I2C_TARGET_PEC_CHECK_ERROR</a> DL_I2C_getTargetPECCheckError </td>
+          <td>(</td>
+          <td class="paramtype">I2C_Regs *&#160;</td>
+          <td class="paramname"><em>i2c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get status if SMBus/PMBus target PEC had an error. </p>
+<p>The status indicates if a PEC check error occurred in the transaction that occurred before the last Stop. Latched on Stop.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">i2c</td><td>Pointer to the register overlay for the peripheral</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Status of target PEC error check</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">One</td><td>of <a class="el" href="group___i2_c.html#ga96c525c4ee883f347cf21e8676d7c32e">DL_I2C_TARGET_PEC_CHECK_ERROR</a> </td></tr>
   </table>
   </dd>
 </dl>

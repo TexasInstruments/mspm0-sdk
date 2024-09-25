@@ -41,9 +41,9 @@
 
     <linkerExtraOptions>
         <args>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0c110x/driverlib.a</arg>
             <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
             <arg>-L$PROJ_DIR$</arg>
-            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0c110x/driverlib.a</arg>
             <arg>--silent</arg>
         </args>
     </linkerExtraOptions>

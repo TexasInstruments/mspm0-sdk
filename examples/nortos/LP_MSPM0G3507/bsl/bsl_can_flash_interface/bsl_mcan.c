@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2024, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,7 +31,6 @@
  */
 //#include <bsl_can_config.h>
 
-
 #include "bsl_mcan.h"
 #include <stdlib.h>
 #include "boot_config.h"
@@ -51,7 +50,8 @@ volatile uint16_t BSL_maxBufferSize = 1024;
 volatile uint8_t protocol_mode;
 volatile bool frame_send_success = false;
 
-volatile const uint16_t canfd_dlc_lengths[] = {0,1,2,3,4,5,6,7,8,12,16,20,24,32,48,64};
+volatile const uint16_t canfd_dlc_lengths[] = {
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 12, 16, 20, 24, 32, 48, 64};
 volatile const uint16_t canfd_dlc_size = 16;
 
 volatile BSL_RX_states BSL_RX_state;
@@ -140,28 +140,32 @@ void SYSCFG_DL_MCAN_reconfig(void)
 
     DL_MCAN_setOpMode(MCAN0_INST, DL_MCAN_OPERATION_MODE_SW_INIT);
     /* Wait till MCAN is not initialized. */
-    while (DL_MCAN_OPERATION_MODE_SW_INIT != DL_MCAN_getOpMode(MCAN0_INST));
+    while (DL_MCAN_OPERATION_MODE_SW_INIT != DL_MCAN_getOpMode(MCAN0_INST))
+        ;
 
     /* Initialize MCAN module. */
-    DL_MCAN_init(MCAN0_INST, (DL_MCAN_InitParams *) &new_gMCAN0InitParams);
+    DL_MCAN_init(MCAN0_INST, (DL_MCAN_InitParams*) &new_gMCAN0InitParams);
 
     /* Configure Bit timings. */
-    DL_MCAN_setBitTime(MCAN0_INST, (DL_MCAN_BitTimingParams*) &new_gMCAN0BitTimes);
+    DL_MCAN_setBitTime(
+        MCAN0_INST, (DL_MCAN_BitTimingParams*) &new_gMCAN0BitTimes);
 
     /* Take MCAN out of the SW initialization mode */
     DL_MCAN_setOpMode(MCAN0_INST, DL_MCAN_OPERATION_MODE_NORMAL);
 
-    while (DL_MCAN_OPERATION_MODE_NORMAL != DL_MCAN_getOpMode(MCAN0_INST));
+    while (DL_MCAN_OPERATION_MODE_NORMAL != DL_MCAN_getOpMode(MCAN0_INST))
+        ;
 
     /* Enable MCAN mopdule Interrupts */
     DL_MCAN_enableIntr(MCAN0_INST, MCAN0_INST_MCAN_INTERRUPTS, 1U);
 
-    DL_MCAN_selectIntrLine(MCAN0_INST, DL_MCAN_INTR_MASK_ALL, DL_MCAN_INTR_LINE_NUM_1);
+    DL_MCAN_selectIntrLine(
+        MCAN0_INST, DL_MCAN_INTR_MASK_ALL, DL_MCAN_INTR_LINE_NUM_1);
     DL_MCAN_enableIntrLine(MCAN0_INST, DL_MCAN_INTR_LINE_NUM_1, 1U);
 
     /* Enable MSPM0 MCAN interrupt */
-    DL_MCAN_clearInterruptStatus(MCAN0_INST,(DL_MCAN_MSP_INTERRUPT_LINE1));
-    DL_MCAN_enableInterrupt(MCAN0_INST,(DL_MCAN_MSP_INTERRUPT_LINE1));
+    DL_MCAN_clearInterruptStatus(MCAN0_INST, (DL_MCAN_MSP_INTERRUPT_LINE1));
+    DL_MCAN_enableInterrupt(MCAN0_INST, (DL_MCAN_MSP_INTERRUPT_LINE1));
 }
 
 /*
@@ -169,14 +173,11 @@ void SYSCFG_DL_MCAN_reconfig(void)
  */
 uint16_t encode_dlc(uint16_t len)
 {
-    if(len <= 8)
+    if (len <= 8)
         return len;
-    else
-    {
-        for(int i = canfd_dlc_size-1;i>8;i--)
-        {
-            if (canfd_dlc_lengths[i] == len)
-            {
+    else {
+        for (int i = canfd_dlc_size - 1; i > 8; i--) {
+            if (canfd_dlc_lengths[i] == len) {
                 return i;
             }
         }
@@ -187,7 +188,7 @@ uint16_t encode_dlc(uint16_t len)
 /*
  * Decodes the binary format into Integer value for DLC field
  */
-uint16_t decode_dlc(DL_MCAN_RxBufElement *rxMsg)
+uint16_t decode_dlc(DL_MCAN_RxBufElement* rxMsg)
 {
     return canfd_dlc_lengths[rxMsg->dlc];
 }
@@ -196,16 +197,13 @@ uint16_t decode_dlc(DL_MCAN_RxBufElement *rxMsg)
  * Calculates the size of each frame generated
  * by fragmenting without any padding inside CAN Frame
  */
-void frame_fragmentation(uint16_t len, uint16_t *frame_fragments)
+void frame_fragmentation(uint16_t len, uint16_t* frame_fragments)
 {
-    int f=0;
-    while(len>0)
-    {
-        for(int i=canfd_dlc_size-2; i>0;i--)
-        {
-            if(len>=canfd_dlc_lengths[i])
-            {
-                len-=canfd_dlc_lengths[i];
+    int f = 0;
+    while (len > 0) {
+        for (int i = canfd_dlc_size - 2; i > 0; i--) {
+            if (len >= canfd_dlc_lengths[i]) {
+                len -= canfd_dlc_lengths[i];
                 frame_fragments[f++] = canfd_dlc_lengths[i];
                 break;
             }
@@ -235,22 +233,18 @@ uint16_t BSL_PI_MCAN_init(uint8_t* buffer, uint16_t bufferSize)
 void process_bsl_packet()
 {
     BSL_PI_sendByte(BSL_ACK);
-    BSL_PI_interpretPICommand((const uint8_t*)BSL_MCAN_Back_Buf);
+    BSL_PI_interpretPICommand((const uint8_t*) BSL_MCAN_Back_Buf);
 
     /* Ping pong the buffers */
-    if (BSL_Buffer_Status == BSL_BUF1_ACTIVE)
-    {
-        BSL_MCAN_Back_Buf      = BSL_MCAN_Buf1;
-        BSL_MCAN_Active_Buf    = BSL_MCAN_Buf2;
-        BSL_Buffer_Status = BSL_BUF2_ACTIVE;
+    if (BSL_Buffer_Status == BSL_BUF1_ACTIVE) {
+        BSL_MCAN_Back_Buf   = BSL_MCAN_Buf1;
+        BSL_MCAN_Active_Buf = BSL_MCAN_Buf2;
+        BSL_Buffer_Status   = BSL_BUF2_ACTIVE;
+    } else {
+        BSL_MCAN_Back_Buf   = BSL_MCAN_Buf2;
+        BSL_MCAN_Active_Buf = BSL_MCAN_Buf1;
+        BSL_Buffer_Status   = BSL_BUF1_ACTIVE;
     }
-    else
-    {
-        BSL_MCAN_Back_Buf      = BSL_MCAN_Buf2;
-        BSL_MCAN_Active_Buf    = BSL_MCAN_Buf1;
-        BSL_Buffer_Status = BSL_BUF1_ACTIVE;
-    }
-
 }
 
 uint32_t BSL_PI_MCAN_receive(void)
@@ -262,15 +256,13 @@ uint32_t BSL_PI_MCAN_receive(void)
      * BSL_activePluginType helps to check if the data received is through
      * Flash plugin or not.
      */
-    if(BSL_activePluginType == FLASH_PLUGIN_VERSION_MCAN)
-    {
+    if (BSL_activePluginType == FLASH_PLUGIN_VERSION_MCAN) {
         /*
 
          * If the last received command packet is processed, and BSL core is ready
          * to accept a new data packet, the state will move from BLOCKED to IDLE.
          */
-        if (BSL_RX_state == RX_blocked)
-        {
+        if (BSL_RX_state == RX_blocked) {
             BSL_RX_state = RX_idle;
         }
         /*
@@ -278,118 +270,118 @@ uint32_t BSL_PI_MCAN_receive(void)
          * RECEIVING and the same state is retained until complete packet is
          * received.
          */
-        while (BSL_RX_state == RX_receiving)
-        {
-            if (BSL_PI_dataPointer == (uint32_t) BSL_PACK_HEADER_IDX)
-            {
-                if (BSL_PI_RxDataCnt > (uint16_t) BSL_PACK_HEADER_IDX)
-                {
+        while (BSL_RX_state == RX_receiving) {
+            if (BSL_PI_dataPointer == (uint32_t) BSL_PACK_HEADER_IDX) {
+                if (BSL_PI_RxDataCnt > (uint16_t) BSL_PACK_HEADER_IDX) {
                     /* Check if first byte in the packet matches the Header byte */
-                    if (BSL_MCAN_Back_Buf[BSL_PACK_HEADER_IDX] != BSL_PACKET_HEADER_BYTE)
-                    {
+                    if (BSL_MCAN_Back_Buf[BSL_PACK_HEADER_IDX] !=
+                        BSL_PACKET_HEADER_BYTE) {
                         BSL_PI_sendByte(BSL_ERROR_HEADER_INCORRECT);
                         BSL_RX_state = RX_idle;
-                    }
-                    else
-                    {
+                    } else {
                         BSL_PI_dataPointer++;
                     }
                 }
             }
             /* Next two bytes are buffer length */
-            else if (BSL_PI_dataPointer == (uint32_t) BSL_PACK_LEN_IDX_1)
-            {
-                if (BSL_PI_RxDataCnt > (uint16_t) BSL_PACK_LEN_IDX_1)
-                {
-                    BSL_RXBufferSize   = (uint16_t) BSL_MCAN_Back_Buf[BSL_PACK_LEN_IDX_1];
+            else if (BSL_PI_dataPointer == (uint32_t) BSL_PACK_LEN_IDX_1) {
+                if (BSL_PI_RxDataCnt > (uint16_t) BSL_PACK_LEN_IDX_1) {
+                    BSL_RXBufferSize =
+                        (uint16_t) BSL_MCAN_Back_Buf[BSL_PACK_LEN_IDX_1];
                     BSL_PI_dataPointer++;
                 }
-            }
-            else if (BSL_PI_dataPointer == (uint32_t) BSL_PACK_LEN_IDX_2)
-            {
-                if (BSL_PI_RxDataCnt > (uint16_t) BSL_PACK_LEN_IDX_2)
-                {
-                    uint16_t temp = (uint16_t) BSL_MCAN_Back_Buf[BSL_PACK_LEN_IDX_2] << (uint16_t) 8;
+            } else if (BSL_PI_dataPointer == (uint32_t) BSL_PACK_LEN_IDX_2) {
+                if (BSL_PI_RxDataCnt > (uint16_t) BSL_PACK_LEN_IDX_2) {
+                    uint16_t temp =
+                        (uint16_t) BSL_MCAN_Back_Buf[BSL_PACK_LEN_IDX_2]
+                        << (uint16_t) 8;
                     BSL_RXBufferSize |= temp;
 
                     /*
                      * Check if the packet size received is valid
                      * else return the error
                      */
-                    if (BSL_RXBufferSize == (uint16_t) 0)
-                    {
+                    if (BSL_RXBufferSize == (uint16_t) 0) {
                         BSL_PI_sendByte(BSL_ERROR_PACKET_SIZE_ZERO);
                         BSL_RX_state = RX_idle;
                     }
-                    if ((BSL_RXBufferSize + BSL_PI_WRAPPER_SIZE) > BSL_maxBufferSize)
-                    {
+                    if ((BSL_RXBufferSize + BSL_PI_WRAPPER_SIZE) >
+                        BSL_maxBufferSize) {
                         BSL_PI_sendByte(BSL_ERROR_PACKET_SIZE_TOO_BIG);
                         BSL_RX_state = RX_idle;
                     }
-                    BSL_PI_dataPointer = (uint32_t) BSL_RXBufferSize + (uint32_t) BSL_HEAD_LEN_BYTES;
+                    BSL_PI_dataPointer = (uint32_t) BSL_RXBufferSize +
+                                         (uint32_t) BSL_HEAD_LEN_BYTES;
                 }
             }
             /* Skip over the buffer data and go to the 32-bit checksum at the end */
             /* Start with the low checksum byte */
-            else if (BSL_PI_dataPointer == ((uint32_t) BSL_RXBufferSize + (uint32_t) BSL_BUF_CRC_IDX_1))
-            {
-                if (BSL_PI_RxDataCnt > (BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_1))
-                {
-                    BSL_PI_checksum =
-                        (uint32_t) BSL_MCAN_Back_Buf[BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_1];
+            else if (BSL_PI_dataPointer == ((uint32_t) BSL_RXBufferSize +
+                                               (uint32_t) BSL_BUF_CRC_IDX_1)) {
+                if (BSL_PI_RxDataCnt >
+                    (BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_1)) {
+                    BSL_PI_checksum = (uint32_t)
+                        BSL_MCAN_Back_Buf[BSL_RXBufferSize +
+                                          (uint16_t) BSL_BUF_CRC_IDX_1];
 
                     BSL_PI_dataPointer++;
                 }
             }
 
-            else if (BSL_PI_dataPointer ==
-                       ((uint32_t) BSL_RXBufferSize + (uint32_t) BSL_BUF_CRC_IDX_2))
-            {
-                if (BSL_PI_RxDataCnt > (BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_2))
-                {
+            else if (BSL_PI_dataPointer == ((uint32_t) BSL_RXBufferSize +
+                                               (uint32_t) BSL_BUF_CRC_IDX_2)) {
+                if (BSL_PI_RxDataCnt >
+                    (BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_2)) {
                     BSL_PI_checksum =
                         BSL_PI_checksum |
-                        (BSL_MCAN_Back_Buf[BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_2] << 8);
+                        (BSL_MCAN_Back_Buf[BSL_RXBufferSize +
+                                           (uint16_t) BSL_BUF_CRC_IDX_2]
+                            << 8);
                     BSL_PI_dataPointer++;
                 }
-            }
-            else if (BSL_PI_dataPointer == ((uint32_t) BSL_RXBufferSize + (uint32_t) BSL_BUF_CRC_IDX_3))
-            {
-                if (BSL_PI_RxDataCnt > (BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_3))
-                {
+            } else if (BSL_PI_dataPointer ==
+                       ((uint32_t) BSL_RXBufferSize +
+                           (uint32_t) BSL_BUF_CRC_IDX_3)) {
+                if (BSL_PI_RxDataCnt >
+                    (BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_3)) {
                     BSL_PI_checksum =
                         BSL_PI_checksum |
-                        (BSL_MCAN_Back_Buf[BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_3] << 16);
+                        (BSL_MCAN_Back_Buf[BSL_RXBufferSize +
+                                           (uint16_t) BSL_BUF_CRC_IDX_3]
+                            << 16);
                     BSL_PI_dataPointer++;
                 }
-            }
-            else if (BSL_PI_dataPointer == ((uint32_t) BSL_RXBufferSize + (uint32_t) BSL_BUF_CRC_IDX_4))
-            {
-                if (BSL_PI_RxDataCnt > (BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_4))
-                {
+            } else if (BSL_PI_dataPointer ==
+                       ((uint32_t) BSL_RXBufferSize +
+                           (uint32_t) BSL_BUF_CRC_IDX_4)) {
+                if (BSL_PI_RxDataCnt >
+                    (BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_4)) {
                     BSL_PI_checksum =
                         BSL_PI_checksum |
-                        (BSL_MCAN_Back_Buf[BSL_RXBufferSize + (uint16_t) BSL_BUF_CRC_IDX_4] << 24);
+                        (BSL_MCAN_Back_Buf[BSL_RXBufferSize +
+                                           (uint16_t) BSL_BUF_CRC_IDX_4]
+                            << 24);
                     BSL_PI_dataPointer = BSL_PI_dataPointer + (uint32_t) 1;
 
                     BSL_RX_state = RX_blocked;
 
-                    uint8_t* BSL_core_data_start = (uint8_t *)&BSL_MCAN_Back_Buf[BSL_CORE_DATA_INDEX];
+                    uint8_t* BSL_core_data_start =
+                        (uint8_t*) &BSL_MCAN_Back_Buf[BSL_CORE_DATA_INDEX];
 
                     /* Verify checksum */
-                    if (BSL_calculateCRC(BSL_core_data_start, BSL_RXBufferSize) ==
-                        BSL_PI_checksum)
-                    {
+                    if (BSL_calculateCRC(BSL_core_data_start,
+                            BSL_RXBufferSize) == BSL_PI_checksum) {
                         command = BSL_MCAN_Back_Buf[BSL_CORE_DATA_INDEX];
                         process_bsl_packet();
 
                         /*
                          * Return the packet address to the BSL core for processing
                          */
-                       if(command == CMD_CHANGE_BAUDRATE)
-                           receivedPacketAddr = 0;
-                       else
-                           receivedPacketAddr = (uint32_t) BSL_MCAN_Active_Buf;
+                        if (command == CMD_CHANGE_BAUDRATE)
+                            receivedPacketAddr = 0;
+                        else
+                            receivedPacketAddr =
+                                (uint32_t) BSL_MCAN_Active_Buf;
                         BSL_RX_state = RX_idle;
                     }
 
@@ -399,9 +391,7 @@ uint32_t BSL_PI_MCAN_receive(void)
                         BSL_RX_state = RX_idle;
                     }
                 }
-            }
-            else
-            {
+            } else {
                 /* Do nothing */
             }
         }
@@ -429,15 +419,15 @@ uint8_t MCAN_send_frame(uint32_t id, uint8_t* data, uint16_t len)
     /* CAN FD frames transmitted with bit rate switching. */
     txMsg.brs = protocol_mode;
     /* Frame transmitted in CAN FD format. */
-    txMsg.fdf = protocol_mode;//protocol_mode;
+    txMsg.fdf = protocol_mode;  //protocol_mode;
     /* Store Tx events. */
     txMsg.efc = 1U;
     /* Message Marker. */
     txMsg.mm = 0xAAU;
     /* Data bytes. */
-    for(int i=0;i<len;i++)
-        txMsg.data[i] = data[i];
-    while (DL_MCAN_OPERATION_MODE_NORMAL != DL_MCAN_getOpMode(CANFD0));
+    for (int i = 0; i < len; i++) txMsg.data[i] = data[i];
+    while (DL_MCAN_OPERATION_MODE_NORMAL != DL_MCAN_getOpMode(CANFD0))
+        ;
 
     /* Write Tx Message to the Message RAM (FIFO). */
     DL_MCAN_writeMsgRam(CANFD0, DL_MCAN_MEM_TYPE_FIFO, 0, &txMsg);
@@ -450,10 +440,10 @@ uint8_t MCAN_send_frame(uint32_t id, uint8_t* data, uint16_t len)
 
     /* Add request for transmission. */
     DL_MCAN_TXBufAddReq(CANFD0, txfifoStatus.putIdx);
-    if(txMsg.id == MCAN_HOST_ID)
-    {
-        while(frame_send_success == false)
-        {;}
+    if (txMsg.id == MCAN_HOST_ID) {
+        while (frame_send_success == false) {
+            ;
+        }
     }
     return 0;
 }
@@ -467,30 +457,27 @@ uint8_t BSL_PI_MCAN_send(uint8_t* data, uint16_t len)
     uint16_t bytes_to_send;
     uint16_t total_fragments;
     uint16_t dataSize;
-    uint16_t frame_fragments[3]={0,0,0};
-    uint8_t *fragment_start;
-    uint8_t status = BSL_PI_SUCCESS;
+    uint16_t frame_fragments[3] = {0, 0, 0};
+    uint8_t* fragment_start;
+    uint8_t status    = BSL_PI_SUCCESS;
     uint32_t checksum = 0;
 
     uint8_t* BSL_core_data_start;
     DL_MCAN_TxBufElement txMsg;
 
-    if(len<=0)
+    if (len <= 0)
         return 0;
-    else if(len == 1)
-    {
-        MCAN_send_frame(MCAN_HOST_ID,data,len);
-    }
-    else
-    {
+    else if (len == 1) {
+        MCAN_send_frame(MCAN_HOST_ID, data, len);
+    } else {
         BSL_core_data_start = &data[3];
-        dataSize = (uint16_t) data[1];
-        dataSize = dataSize | (data[2] << 8U);
+        dataSize            = (uint16_t) data[1];
+        dataSize            = dataSize | (data[2] << 8U);
 
-    //    * Calculate CRC for BSL Core Command and data *
+        //    * Calculate CRC for BSL Core Command and data *
         checksum = BSL_calculateCRC(BSL_core_data_start, dataSize);
 
-    //    * Append the 32-bit CRC result to the response packet *
+        //    * Append the 32-bit CRC result to the response packet *
         data[len]                = (uint8_t) checksum & (uint8_t) 0xFF;
         uint8_t temp             = checksum >> 8U;
         data[len + (uint16_t) 1] = temp & (uint8_t) 0xFF;
@@ -498,44 +485,42 @@ uint8_t BSL_PI_MCAN_send(uint8_t* data, uint16_t len)
         data[len + (uint16_t) 2] = temp & (uint8_t) 0xFF;
         data[len + (uint16_t) 3] = (checksum >> 24U);
 
-    /*
+        /*
      *     * Transmit the packet *
      * - Based on the total packet length calculate number of frames required;
      * - Copy data of each fragment into CAN Frame (txMsg element)
      * - send the frame
      *
     */
-        packet_length = len+4;
+        packet_length = len + 4;
         bytes_to_send = packet_length;
-        if(protocol_mode == CAN_MODE)
+        if (protocol_mode == CAN_MODE)
             frame_length = 8;
         else
             frame_length = 64;
 
-         fragment_start = &data[0];
-         while(bytes_to_send>=frame_length)
-         {
-             MCAN_send_frame(MCAN_HOST_ID,fragment_start,frame_length);
-             fragment_start += frame_length;
-             bytes_to_send -= frame_length;
-         }
-         frame_fragmentation(bytes_to_send, &frame_fragments[0]);
+        fragment_start = &data[0];
+        while (bytes_to_send >= frame_length) {
+            MCAN_send_frame(MCAN_HOST_ID, fragment_start, frame_length);
+            fragment_start += frame_length;
+            bytes_to_send -= frame_length;
+        }
+        frame_fragmentation(bytes_to_send, &frame_fragments[0]);
 
-         for(int i=0; i<3 && (frame_fragments[i]!=0);i++)
-         {
-             MCAN_send_frame(MCAN_HOST_ID,fragment_start,frame_fragments[i]);
-             fragment_start += frame_fragments[i];
-         }
+        for (int i = 0; i < 3 && (frame_fragments[i] != 0); i++) {
+            MCAN_send_frame(MCAN_HOST_ID, fragment_start, frame_fragments[i]);
+            fragment_start += frame_fragments[i];
+        }
     }
     return status;
 }
 
 bool BSL_PI_MCAN_deinit(void)
 {
-/*  Reset the MCAN */
+    /*  Reset the MCAN */
     DL_MCAN_reset(CANFD0);
 
-/*  Disable and Unregister the interrupt */
+    /*  Disable and Unregister the interrupt */
     DL_Interrupt_unregisterInterrupt((uint32_t) CANFD0_INT_IRQn);
     NVIC_DisableIRQ(CANFD0_INT_IRQn);
 
@@ -546,7 +531,6 @@ static void BSL_PI_sendByte(uint8_t data)
 {
     BSL_PI_MCAN_send(&data, 1);
 }
-
 
 void BSL_initBuffers(uint8_t* buffer, uint16_t bufferSize)
 {
@@ -573,11 +557,11 @@ void BSL_initBuffers(uint8_t* buffer, uint16_t bufferSize)
     BSL_RX_state = RX_idle;
 }
 
-void write_into_buffer(uint8_t *write_buffer, DL_MCAN_RxBufElement *rxMsg, uint16_t size)
+void write_into_buffer(
+    uint8_t* write_buffer, DL_MCAN_RxBufElement* rxMsg, uint16_t size)
 {
     uint16_t i;
-    for(i = 0; i<size;i++)
-    {
+    for (i = 0; i < size; i++) {
         write_buffer[BSL_PI_dataWritePointer] = (uint8_t) rxMsg->data[i];
         BSL_PI_dataWritePointer++;
     }
@@ -592,26 +576,25 @@ void BSL_PI_MCAN_ISR(void)
     uint16_t mcan_frame_size;
     uint32_t intr_status;
 
-    switch (DL_MCAN_getPendingInterrupt(CANFD0))
-    {
+    switch (DL_MCAN_getPendingInterrupt(CANFD0)) {
         case DL_MCAN_IIDX_LINE1:
 
             intr_status = DL_MCAN_getIntrStatus(CANFD0);
 
             //clear MCAN IR reg
-            DL_MCAN_clearIntrStatus(CANFD0, intr_status, DL_MCAN_INTR_SRC_MCAN_LINE_1);
+            DL_MCAN_clearIntrStatus(
+                CANFD0, intr_status, DL_MCAN_INTR_SRC_MCAN_LINE_1);
 
-            if((intr_status & MCAN_IR_TC_MASK )== MCAN_IR_TC_MASK)
-                frame_send_success =true;
-            else if((intr_status & MCAN_IR_RF0N_MASK) == MCAN_IR_RF0N_MASK)
-            {
+            if ((intr_status & MCAN_IR_TC_MASK) == MCAN_IR_TC_MASK)
+                frame_send_success = true;
+            else if ((intr_status & MCAN_IR_RF0N_MASK) == MCAN_IR_RF0N_MASK) {
                 rxFS.num = DL_MCAN_RX_FIFO_NUM_0;
-                do
-                {
+                do {
                     DL_MCAN_getRxFIFOStatus(CANFD0, &rxFS);
-                }while ((rxFS.fillLvl) == 0);
+                } while ((rxFS.fillLvl) == 0);
 
-                DL_MCAN_readMsgRam(CANFD0, DL_MCAN_MEM_TYPE_FIFO, 0U, rxFS.num, &rxMsg);
+                DL_MCAN_readMsgRam(
+                    CANFD0, DL_MCAN_MEM_TYPE_FIFO, 0U, rxFS.num, &rxMsg);
                 DL_MCAN_writeRxFIFOAck(CANFD0, rxFS.num, rxFS.getIdx);
 
                 mcan_frame_size = decode_dlc(&rxMsg);
@@ -624,43 +607,42 @@ void BSL_PI_MCAN_ISR(void)
                  * as the first byte of the first packet, the data transfer is considered as valid and
                  * the interface is chosen as active interface
                  */
-                if(BSL_RX_state == RX_idle)
-                {
-                    BSL_activePluginType = FLASH_PLUGIN_VERSION_MCAN;
-                    BSL_PI_dataPointer = (uint32_t) 0;
+                if (BSL_RX_state == RX_idle) {
+                    BSL_activePluginType    = FLASH_PLUGIN_VERSION_MCAN;
+                    BSL_PI_dataPointer      = (uint32_t) 0;
                     BSL_PI_dataWritePointer = (uint32_t) 0;
 
                     // call function to copy rxmsg.data content into back Buffer
-                    write_into_buffer((uint8_t *)BSL_MCAN_Back_Buf,&rxMsg,mcan_frame_size);
+                    write_into_buffer(
+                        (uint8_t*) BSL_MCAN_Back_Buf, &rxMsg, mcan_frame_size);
 
-                    BSL_PI_RxDataCnt   = decode_dlc(&rxMsg);
+                    BSL_PI_RxDataCnt = decode_dlc(&rxMsg);
 
-                    if(BSL_PI_RxDataCnt>=2)
-                    {
-                        BSL_RXBufferSize   = (uint16_t) BSL_MCAN_Back_Buf[1];
-                        uint16_t temp = (uint16_t) BSL_MCAN_Back_Buf[2] << (uint16_t) 8;
+                    if (BSL_PI_RxDataCnt >= 2) {
+                        BSL_RXBufferSize = (uint16_t) BSL_MCAN_Back_Buf[1];
+                        uint16_t temp    = (uint16_t) BSL_MCAN_Back_Buf[2]
+                                        << (uint16_t) 8;
                         BSL_RXBufferSize |= temp;
                         BSL_RXBufferSize += BSL_PI_WRAPPER_SIZE;
 
-                        BSL_RX_state       = RX_receiving;
+                        BSL_RX_state = RX_receiving;
                     }
                 }
                 /*
                  * Whenever a new packet is received, after a frame reception is
                  * started, append it to the data buffer
                  */
-                else if (BSL_RX_state == RX_receiving)
-                {
-                    if (BSL_PI_RxDataCnt < (BSL_maxBufferSize + (uint16_t) 4))
-                    {
-                        write_into_buffer((uint8_t *)BSL_MCAN_Back_Buf,&rxMsg,mcan_frame_size);
-                        BSL_PI_RxDataCnt   += mcan_frame_size;
+                else if (BSL_RX_state == RX_receiving) {
+                    if (BSL_PI_RxDataCnt <
+                        (BSL_maxBufferSize + (uint16_t) 4)) {
+                        write_into_buffer((uint8_t*) BSL_MCAN_Back_Buf, &rxMsg,
+                            mcan_frame_size);
+                        BSL_PI_RxDataCnt += mcan_frame_size;
                     }
                 }
                 /* When RX state machine is in any other state (BLOCKED),
                  * packet is dropped */
-                else
-                {
+                else {
                 }
             }
             break;
@@ -677,17 +659,17 @@ uint32_t BSL_calculateCRC(uint8_t* data, uint16_t dataSize)
      * required specification.
      */
     DL_CRC_enablePower(CRC);
-    DL_CRC_init(CRC, DL_CRC_32_POLYNOMIAL, DL_CRC_BIT_REVERSED,DL_CRC_INPUT_ENDIANESS_LITTLE_ENDIAN,DL_CRC_OUTPUT_BYTESWAP_DISABLED);
+    DL_CRC_init(CRC, DL_CRC_32_POLYNOMIAL, DL_CRC_BIT_REVERSED,
+        DL_CRC_INPUT_ENDIANESS_LITTLE_ENDIAN, DL_CRC_OUTPUT_BYTESWAP_DISABLED);
     /* Set the Seed value to reset the calculation */
     DL_CRC_setSeed32(BSL_CRC, BSL_CRC_SEED);
 
     /* Feed the data to CRC module */
-    for (bufferIndex = (uint16_t) 0; bufferIndex < dataSize; bufferIndex++)
-    {
+    for (bufferIndex = (uint16_t) 0; bufferIndex < dataSize; bufferIndex++) {
         DL_CRC_feedData8(BSL_CRC, data[bufferIndex]);
     }
 
-    /* Return the 32 bit result *///
+    /* Return the 32 bit result */  //
     return DL_CRC_getResult32(BSL_CRC);
 }
 
@@ -704,8 +686,7 @@ void BSL_PI_interpretPICommand(const uint8_t* dataBuffer)
     DL_MCAN_ProtocolStatus psr;
     uint8_t command = dataBuffer[BSL_CORE_DATA_INDEX];
     /* Check if command is non-blocking */
-    if (command == CMD_PROGRAM_DATA_FAST)
-    {
+    if (command == CMD_PROGRAM_DATA_FAST) {
         /*
          * When a non-blocking command is received, set the RX state to IDLE
          * So that the state machine continuous to receive the next command
@@ -713,36 +694,30 @@ void BSL_PI_interpretPICommand(const uint8_t* dataBuffer)
          * BSL core
          * */
         BSL_RX_state = RX_idle;
-    }
-    else if(command == CMD_CHANGE_BAUDRATE)
-    {
-        uint64_t temp=0;
-        for(int i=0;i<7;i++)
-        {
-            temp |= BSL_MCAN_Back_Buf[BSL_CORE_DATA_INDEX+1+i];
-            if(i!=6)
-                temp<<=8;
+    } else if (command == CMD_CHANGE_BAUDRATE) {
+        uint64_t temp = 0;
+        for (int i = 0; i < 7; i++) {
+            temp |= BSL_MCAN_Back_Buf[BSL_CORE_DATA_INDEX + 1 + i];
+            if (i != 6) temp <<= 8;
         }
 
         /* Initialization of New MCAN Init parameters.    */
         new_gMCAN0InitParams.fdMode = temp & BITRATE_CONF_FD_MASK;
         temp >>= BITRATE_CONF_FD_LEN;
 
-        if(new_gMCAN0InitParams.fdMode)
-            protocol_mode = CAN_FD_MODE;
+        if (new_gMCAN0InitParams.fdMode) protocol_mode = CAN_FD_MODE;
 
         new_gMCAN0InitParams.brsEnable = temp & BITRATE_CONF_BRS_MASK;
         temp >>= BITRATE_CONF_BRS_LEN;
 
-        new_gMCAN0InitParams.txpEnable         = false;
-        new_gMCAN0InitParams.efbi              = false;
-        new_gMCAN0InitParams.pxhddisable       = false;
+        new_gMCAN0InitParams.txpEnable   = false;
+        new_gMCAN0InitParams.efbi        = false;
+        new_gMCAN0InitParams.pxhddisable = false;
 
-        new_gMCAN0InitParams.darEnable         = false;
-        new_gMCAN0InitParams.wkupReqEnable     = true;
-        new_gMCAN0InitParams.autoWkupEnable    = true;
-        new_gMCAN0InitParams.emulationEnable   = true;
-
+        new_gMCAN0InitParams.darEnable       = false;
+        new_gMCAN0InitParams.wkupReqEnable   = true;
+        new_gMCAN0InitParams.autoWkupEnable  = true;
+        new_gMCAN0InitParams.emulationEnable = true;
 
         new_gMCAN0BitTimes.nomTimeSeg1 = temp & BITRATE_CONF_NTSG1_MASK;
         temp >>= BITRATE_CONF_NTSG1_LEN;
@@ -756,38 +731,37 @@ void BSL_PI_interpretPICommand(const uint8_t* dataBuffer)
         new_gMCAN0BitTimes.nomRatePrescalar = temp & BITRATE_CONF_NPS_MASK;
         temp >>= BITRATE_CONF_NPS_LEN;
 
-        new_gMCAN0BitTimes.dataTimeSeg1= temp & BITRATE_CONF_DTSG1_MASK;
+        new_gMCAN0BitTimes.dataTimeSeg1 = temp & BITRATE_CONF_DTSG1_MASK;
         temp >>= BITRATE_CONF_DTSG1_LEN;
 
         new_gMCAN0BitTimes.dataTimeSeg2 = temp & BITRATE_CONF_DTSG2_MASK;
         temp >>= BITRATE_CONF_DTSG2_LEN;
 
         new_gMCAN0BitTimes.dataSynchJumpWidth = temp & BITRATE_CONF_DSJW_MASK;
-        temp >>= BITRATE_CONF_DSJW_LEN ;
+        temp >>= BITRATE_CONF_DSJW_LEN;
 
         new_gMCAN0BitTimes.dataRatePrescalar = temp & BITRATE_CONF_DPS_MASK;
 
         /* Transmitter Delay Compensation parameters. */
         new_gMCAN0InitParams.tdcEnable = protocol_mode;
-        new_gMCAN0InitParams.tdcConfig.tdco    = get_CAN_TDCO(&new_gMCAN0BitTimes);
-        new_gMCAN0InitParams.tdcConfig.tdcf = new_gMCAN0InitParams.tdcConfig.tdco + 1;
-        new_gMCAN0InitParams.wdcPreload        = 255;
+        new_gMCAN0InitParams.tdcConfig.tdco =
+            get_CAN_TDCO(&new_gMCAN0BitTimes);
+        new_gMCAN0InitParams.tdcConfig.tdcf =
+            new_gMCAN0InitParams.tdcConfig.tdco + 1;
+        new_gMCAN0InitParams.wdcPreload = 255;
 
         SYSCFG_DL_MCAN_reconfig();
 
-        if(protocol_mode == CAN_FD_MODE)
-        {
-            const int x[1]={1};
-            MCAN_send_frame(((0x5) << 18), (uint8_t *)&x[0], 1);
+        if (protocol_mode == CAN_FD_MODE) {
+            const int x[1] = {1};
+            MCAN_send_frame(((0x5) << 18), (uint8_t*) &x[0], 1);
             DL_MCAN_getProtocolStatus(CANFD0, &psr);
-            new_gMCAN0InitParams.darEnable         = true;
-            new_gMCAN0InitParams.tdcConfig.tdcf = (psr.tdcv)-1;
+            new_gMCAN0InitParams.darEnable      = true;
+            new_gMCAN0InitParams.tdcConfig.tdcf = (psr.tdcv) - 1;
             SYSCFG_DL_MCAN_reconfig();
         }
         DL_Common_delayCycles(BITRATE_CHANGE_DELAY);
-    }
-    else
-    {
+    } else {
         /* Command is blocking */
         BSL_RX_state = RX_blocked;
     }

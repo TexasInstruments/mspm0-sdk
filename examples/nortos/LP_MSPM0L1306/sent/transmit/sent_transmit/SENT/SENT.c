@@ -172,7 +172,8 @@ void SENT_updateState(SENT_Handler *handler)
             break;
         case SENT_STATE_CRC:
 
-            if (handler->pauseConfig.mode == SENT_PAUSE_MODE_DISABLED) {
+            if (handler->pauseConfig.mode == SENT_PAUSE_MODE_DISABLED ||
+                (handler->pCurrentSentPack->pause == 0)) {
                 HAL_Timer_updateLoadVal(handler->syncCount);
                 handler->sentState = SENT_STATE_SYNC;
             } else {
@@ -243,8 +244,22 @@ void SENT_calculatePause(SENT_Handler *handler)
             timerCnt += (handler->pPeriodTable[handler->pNextSentPack->d5]);
             timerCnt += (handler->pPeriodTable[handler->pNextSentPack->crc]);
 
-            handler->pNextSentPack->pause =
-                (((pauseTicks * handler->tickDuration) << 2) - timerCnt);
+            /*
+             * Only insert pause ticks if the SENT package still has room for
+             * pause ticks to be padded with. Otherwise, set number of pause
+             * ticks to 0.
+             */
+            if (timerCnt <= (((uint32_t) handler->pauseConfig.numOfTicks -
+                                 (uint32_t) handler->lowTimeCount)
+                                << 2)) {
+                handler->pNextSentPack->pause =
+                    (((uint32_t)((uint32_t) pauseTicks *
+                                 (uint32_t) handler->tickDuration)
+                         << 2) -
+                        timerCnt);
+            } else {
+                handler->pNextSentPack->pause = 0;
+            }
 
             break;
         case SENT_PAUSE_MODE_DISABLED:

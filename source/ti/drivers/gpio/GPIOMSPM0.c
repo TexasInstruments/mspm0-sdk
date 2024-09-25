@@ -64,6 +64,7 @@ typedef struct {
 #if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L11XX_L13XX)
 
 #define NUM_PORTS (1)
+#define PORTA_INDEX (0)
 
 /* Port information */
 static const PortConfig portConfigs[NUM_PORTS] = {
@@ -73,11 +74,27 @@ static const PortConfig portConfigs[NUM_PORTS] = {
 #elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
 
 #define NUM_PORTS (2)
+#define PORTA_INDEX (0)
+#define PORTB_INDEX (1)
 
 /* Port information */
 static const PortConfig portConfigs[NUM_PORTS] = {
     {GPIOA_INT_IRQn, GPIOA_BASE},
     {GPIOB_INT_IRQn, GPIOB_BASE},
+};
+
+#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
+
+#define NUM_PORTS (3)
+#define PORTA_INDEX (0)
+#define PORTB_INDEX (1)
+#define PORTC_INDEX (2)
+
+/* Port information */
+static const PortConfig portConfigs[NUM_PORTS] = {
+    {GPIOA_INT_IRQn, GPIOA_BASE},
+    {GPIOB_INT_IRQn, GPIOB_BASE},
+    {GPIOC_INT_IRQn, GPIOC_BASE},
 };
 
 #else
@@ -94,9 +111,6 @@ static const PortConfig portConfigs[NUM_PORTS] = {
 
 /* Generates a per-port mask for a pin, e.g. the second pin in a port should be 0x10 */
 #define indexToPortMask(pinIndex) (1U << (pinIndex % MAX_PINS_PER_GPIO_PORT))
-
-#define PORTA_INDEX (0)
-#define PORTB_INDEX (1)
 
 #define ALL_INTERRUPTS_MASK (0xFFFFFFFFU)
 
@@ -168,11 +182,13 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
     uint32_t flagIndex           = 0;
     uint32_t pendingIntMaskGPIOA = 0;
     uint32_t pendingIntMaskGPIOB = 0;
+    uint32_t pendingIntMaskGPIOC = 0;
 
     /* Determine if a GPIO interrupt occurred, not another group element */
     uint32_t groupIIDX = DL_Interrupt_getPendingGroup(DL_INTERRUPT_GROUP_1);
     if ((groupIIDX == DL_INTERRUPT_GROUP1_IIDX_GPIOA) ||
-        (groupIIDX == DL_INTERRUPT_GROUP1_IIDX_GPIOB)) {
+        (groupIIDX == DL_INTERRUPT_GROUP1_IIDX_GPIOB) ||
+        (groupIIDX == DL_INTERRUPT_GROUP1_IIDX_GPIOC)) {
         /*
          * Find out which pins have their interrupt flags set.
          * GPIOA and GPIOB are grouped interrupts with the same
@@ -185,12 +201,6 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
 
         /* Clear the set bits at once */
         DL_GPIO_clearInterruptStatus(GPIOA, ALL_INTERRUPTS_MASK);
-
-#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
-        pendingIntMaskGPIOB =
-            DL_GPIO_getEnabledInterruptStatus(GPIOB, ALL_INTERRUPTS_MASK);
-        DL_GPIO_clearInterruptStatus(GPIOB, ALL_INTERRUPTS_MASK);
-#endif
 
         /* Match the interrupt to its corresponding callback function */
         while (pendingIntMaskGPIOA) {
@@ -208,6 +218,11 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
                 }
             }
         }
+#if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X) || \
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X))
+        pendingIntMaskGPIOB =
+            DL_GPIO_getEnabledInterruptStatus(GPIOB, ALL_INTERRUPTS_MASK);
+        DL_GPIO_clearInterruptStatus(GPIOB, ALL_INTERRUPTS_MASK);
 
         while (pendingIntMaskGPIOB) {
             flagIndex = GPIO_MASK_TO_PIN(pendingIntMaskGPIOB);
@@ -222,6 +237,26 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
                 }
             }
         }
+#endif
+#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
+        pendingIntMaskGPIOC =
+            DL_GPIO_getEnabledInterruptStatus(GPIOC, ALL_INTERRUPTS_MASK);
+        DL_GPIO_clearInterruptStatus(GPIOC, ALL_INTERRUPTS_MASK);
+
+        while (pendingIntMaskGPIOC) {
+            flagIndex = GPIO_MASK_TO_PIN(pendingIntMaskGPIOC);
+            pendingIntMaskGPIOC &= ~GPIO_PIN_TO_MASK(flagIndex);
+
+            pinIndex = flagIndex + (PORTC_INDEX * MAX_PINS_PER_GPIO_PORT);
+
+            if (pinIndex >= GPIO_pinLowerBound &&
+                pinIndex <= GPIO_pinUpperBound) {
+                if (GPIO_config.callbacks[pinIndex] != NULL) {
+                    GPIO_config.callbacks[pinIndex](pinIndex);
+                }
+            }
+        }
+#endif
     }
 
     return;

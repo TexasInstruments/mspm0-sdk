@@ -44,7 +44,7 @@
  * Constant below is (1/TSc). Where TSc is Temperature Sensor coefficient
  * available in the device datasheet
  */
-#define TEMP_TS_COEF_mV_C                                             (-571.42f)
+#define TEMP_TS_COEF_mV_C                                             (-555.55f)
 
 #define ADC_VREF_VOLTAGE                                                  (3.3f)
 #define ADC_BIT_RESOLUTION                                   ((uint32_t)(1)<<12)
@@ -67,11 +67,11 @@ int main(void)
 
     /*
      * Convert TEMP_SENSE0 result to equivalent voltage:
-     * Vtrim = (3.3*(TEMP_SENSE0 -0.5))/(2^12)
+     * Vtrim = (ADC_VREF_VOLTAGE*(TEMP_SENSE0 -0.5))/(2^12)
      */
 
     qVTrim = _IQ15div(_IQ15mpy((_IQ15(DL_SYSCTL_getTempCalibrationConstant()) -
-            _IQ15(0.5)), _IQ15(3.45)), ((uint32_t)(1) << 27));
+            _IQ15(0.5)), _IQ15(ADC_VREF_VOLTAGE)), ((uint32_t)(1) << 27));
 
 
     NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);

@@ -492,17 +492,17 @@ function validate(inst, validation)
         /* Validate user does not select a disabled PWM Channel for Second Compare */
         for(let pwmChannel in inst.ccIndex){
             if(inst["secondCompDirectionCH"+pwmChannel].includes("UP")){
-                if( !inst.ccIndex.includes(inst["secondCompUpSourceCH"+pwmChannel]) ) {
+                if( !inst.ccIndex.includes(inst["secondCompUpSourceCH"+pwmChannel]) && !(Common.isInternalTimerChannel(inst["secondCompUpSourceCH"+pwmChannel]))) {
                     validation.logError(
-                        "Selected source must be an enabled PWM Channel",
+                        "Selected source must be an enabled PWM Channel or valid Internal Channel",
                         inst, ["secondCompUpSourceCH"+pwmChannel,"ccIndex"]
                     );
                 }
             }
             if(inst["secondCompDirectionCH"+pwmChannel].includes("DOWN")){
-                if( !inst.ccIndex.includes(inst["secondCompDownSourceCH"+pwmChannel]) ) {
+                if( !inst.ccIndex.includes(inst["secondCompDownSourceCH"+pwmChannel]) && !(Common.isInternalTimerChannel(inst["secondCompDownSourceCH"+pwmChannel]))) {
                     validation.logError(
-                        "Selected source must be an enabled PWM Channel",
+                        "Selected source must be an enabled PWM Channel or valid Internal Channel",
                         inst, ["secondCompDownSourceCH"+pwmChannel,"ccIndex"]
                     );
                 }
@@ -538,6 +538,10 @@ function validatePinmux(inst, validation) {
             if(!(/TIMA/.test(solution))){
                 validation.logError("Repeat Counter only available on Timer A instances. Please select a Timer A instance from PinMux if available.",inst,"enableRepeatCounter");
             }
+        }
+        let hasInternal = inst.ccIndex.some(i => Common.isInternalTimerChannel(i));
+        if(hasInternal && (!(/TIMA/.test(solution)))){
+            validation.logError("Internal Timer Channels are only available on Timer A instances. Please select a Timer A instance from PinMux if available",inst,"ccIndex");
         }
     }
     if(Common.hasTimerA()){
@@ -630,6 +634,51 @@ function validatePinmux(inst, validation) {
 
     /* Retention Validation */
     Common.getRetentionValidation(inst,validation);
+
+    /* Internal Channel Validation */
+    // CC4-5 internal channels only available for TIMA instances.
+    if(Common.hasTimerA() && !(/TIMA/.test(solution))){
+        // Second Capture Compare Validation
+        if(inst.secondCompEn){
+            /* Validate user does not select a disabled PWM Channel for Second Compare */
+            for(let pwmChannel in inst.ccIndex){
+                if(inst["secondCompDirectionCH"+pwmChannel].includes("UP")){
+                    if(Common.isInternalTimerChannel(inst["secondCompUpSourceCH"+pwmChannel])){
+                        validation.logError(
+                            "Internal Channels are only available to be configured on TIMA instances.",
+                            inst, ["secondCompUpSourceCH"+pwmChannel,"ccIndex"]
+                        );
+                    }
+                }
+                if(inst["secondCompDirectionCH"+pwmChannel].includes("DOWN")){
+                    if(Common.isInternalTimerChannel(inst["secondCompDownSourceCH"+pwmChannel])){
+                        validation.logError(
+                            "Internal Channels are only available to be configured on TIMA instances.",
+                            inst, ["secondCompDownSourceCH"+pwmChannel,"ccIndex"]
+                        );
+                    }
+                }
+            }
+        }
+        if((inst.interrupts).some(r=>(r.match("CC4|CC5")))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["interrupts"]
+            );
+        }
+        if((inst.event1PublisherChannel !== 0) && (inst.event1ControllerInterruptEn.some(r=>(r.match("CC4|CC5"))))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["event1ControllerInterruptEn"]
+            );
+        }
+        if((inst.event2PublisherChannel !== 0) && (inst.event2ControllerInterruptEn.some(r=>(r.match("CC4|CC5"))))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["event2ControllerInterruptEn"]
+            );
+        }
+    }
 }
 
 /* PROFILES */
@@ -957,16 +1006,10 @@ let allEventOptions = [
     { name: "CC2_UP_EVENT", displayName: "Channel 2 capture or compare up event", reason: "Channel Not In Use" },
     { name: "CC3_DN_EVENT", displayName: "Channel 3 capture or compare down event", reason: "Channel Not In Use" },
     { name: "CC3_UP_EVENT", displayName: "Channel 3 capture or compare up event", reason: "Channel Not In Use" },
-
-    /* The following are only present in PG1.0. Will be deleted */
-    { name: "CC0_PLN_DN_EVENT", displayName: "Channel 0 pipelined capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC0_PLN_UP_EVENT", displayName: "Channel 0 pipelined capture or compare up event", reason: "Channel Not In Use" },
-    { name: "CC1_PLN_DN_EVENT", displayName: "Channel 1 pipelined capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC1_PLN_UP_EVENT", displayName: "Channel 1 pipelined capture or compare up event", reason: "Channel Not In Use" },
-    { name: "CC2_PLN_DN_EVENT", displayName: "Channel 2 pipelined capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC2_PLN_UP_EVENT", displayName: "Channel 2 pipelined capture or compare up event", reason: "Channel Not In Use" },
-    { name: "CC3_PLN_DN_EVENT", displayName: "Channel 3 pipelined capture or compare down event", reason: "Channel Not In Use" },
-    { name: "CC3_PLN_UP_EVENT", displayName: "Channel 3 pipelined capture or compare up event", reason: "Channel Not In Use" },
+    { name: "CC4_DN_EVENT", displayName: "Channel 4 capture or compare down event", reason: "Channel Not In Use" },
+    { name: "CC4_UP_EVENT", displayName: "Channel 4 capture or compare up event", reason: "Channel Not In Use" },
+    { name: "CC5_DN_EVENT", displayName: "Channel 5 capture or compare down event", reason: "Channel Not In Use" },
+    { name: "CC5_UP_EVENT", displayName: "Channel 5 capture or compare up event", reason: "Channel Not In Use" },
 ];
 
 function getTimerClockSourceFreq(inst) {
@@ -1001,6 +1044,9 @@ function getEventOptions(inst)
              options.splice(2,1); // remove fault
         }
     }
+    if(!Common.hasTimerA()) {
+        options = options.filter( (el) => !el.name.match("CC4|5") );
+    }
     return options;
 }
 
@@ -1029,7 +1075,7 @@ function getDisabledEvents(inst)
     return [];
 }
 
-function getDisabledCCIndexComplOptions(inst)
+function getDisabledCCIndexCmplOptions(inst)
 {
     let disabledOptions = [];
     for (let ccOption in ccIndexOptions){
@@ -1815,13 +1861,25 @@ let ccIndexOptions = [
     { name: 0, displayName: "PWM Channel 0" },
     { name: 1, displayName: "PWM Channel 1" },
 ];
-
+let ccIndexAllOptions = [
+    { name: 0, displayName: "PWM Channel 0" },
+    { name: 1, displayName: "PWM Channel 1" },
+];
 if(Common.hasTimerA()){
     ccIndexOptions.push(
         { name: 2, displayName: "PWM Channel 2" },
-        { name: 3, displayName: "PWM Channel 3" }
+        { name: 3, displayName: "PWM Channel 3" },
+    );
+    ccIndexAllOptions.push(
+        { name: 2, displayName: "PWM Channel 2" },
+        { name: 3, displayName: "PWM Channel 3" },
+        { name: 4, displayName: "Internal Channel 4" },
+        { name: 5, displayName: "Internal Channel 5" },
+
     );
 }
+
+
 
 /* Advanced Config: Secondary Compare */
 configAdvanced.push(
@@ -1868,8 +1926,8 @@ configAdvanced.push(
                         longDescription: ``,
                         default: 0,
                         hidden: true,
-                        options: ccIndexOptions,
-                        getDisabledOptions: getDisabledCCIndexComplOptions,
+                        options: ccIndexAllOptions,
+                        getDisabledOptions: getDisabledCCIndexCmplOptions,
                     },
                     {
                         name: "secondCompUpActionCH0",
@@ -1892,8 +1950,8 @@ configAdvanced.push(
                         longDescription: ``,
                         default: 0,
                         hidden: true,
-                        options: ccIndexOptions,
-                        getDisabledOptions: getDisabledCCIndexComplOptions,
+                        options: ccIndexAllOptions,
+                        getDisabledOptions: getDisabledCCIndexCmplOptions,
                     },
                     {
                         name: "secondCompDownActionCH0",
@@ -1939,8 +1997,8 @@ configAdvanced.push(
                         longDescription: ``,
                         default: 0,
                         hidden: true,
-                        options: ccIndexOptions,
-                        getDisabledOptions: getDisabledCCIndexComplOptions,
+                        options: ccIndexAllOptions,
+                        getDisabledOptions: getDisabledCCIndexCmplOptions,
                     },
                     {
                         name: "secondCompUpActionCH1",
@@ -1963,8 +2021,8 @@ configAdvanced.push(
                         longDescription: ``,
                         default: 0,
                         hidden: true,
-                        options: ccIndexOptions,
-                        getDisabledOptions: getDisabledCCIndexComplOptions,
+                        options: ccIndexAllOptions,
+                        getDisabledOptions: getDisabledCCIndexCmplOptions,
                     },
                     {
                         name: "secondCompDownActionCH1",
@@ -2010,8 +2068,8 @@ configAdvanced.push(
                         longDescription: ``,
                         default: 0,
                         hidden: true,
-                        options: ccIndexOptions,
-                        getDisabledOptions: getDisabledCCIndexComplOptions,
+                        options: ccIndexAllOptions,
+                        getDisabledOptions: getDisabledCCIndexCmplOptions,
                     },
                     {
                         name: "secondCompUpActionCH2",
@@ -2034,8 +2092,8 @@ configAdvanced.push(
                         longDescription: ``,
                         default: 0,
                         hidden: true,
-                        options: ccIndexOptions,
-                        getDisabledOptions: getDisabledCCIndexComplOptions,
+                        options: ccIndexAllOptions,
+                        getDisabledOptions: getDisabledCCIndexCmplOptions,
                     },
                     {
                         name: "secondCompDownActionCH2",
@@ -2081,8 +2139,8 @@ configAdvanced.push(
                         longDescription: ``,
                         default: 0,
                         hidden: true,
-                        options: ccIndexOptions,
-                        getDisabledOptions: getDisabledCCIndexComplOptions,
+                        options: ccIndexAllOptions,
+                        getDisabledOptions: getDisabledCCIndexCmplOptions,
                     },
                     {
                         name: "secondCompUpActionCH3",
@@ -2105,8 +2163,8 @@ configAdvanced.push(
                         longDescription: ``,
                         default: 0,
                         hidden: true,
-                        options: ccIndexOptions,
-                        getDisabledOptions: getDisabledCCIndexComplOptions,
+                        options: ccIndexAllOptions,
+                        getDisabledOptions: getDisabledCCIndexCmplOptions,
                     },
                     {
                         name: "secondCompDownActionCH3",
@@ -2200,7 +2258,7 @@ if(Common.hasTimerA()){
         default: [],
         minSelections: 0,
         options: ccIndexOptions,
-        getDisabledOptions: getDisabledCCIndexComplOptions,
+        getDisabledOptions: getDisabledCCIndexCmplOptions,
         onChange: onChangeFaultHandler
     })
 }

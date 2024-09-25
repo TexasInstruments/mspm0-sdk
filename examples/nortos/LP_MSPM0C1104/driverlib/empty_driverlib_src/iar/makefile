@@ -10,12 +10,14 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
 OBJECTS = empty.obj ti_driverlib_dl_adc12.obj ti_driverlib_dl_aes.obj ti_driverlib_dl_aesadv.obj ti_driverlib_dl_common.obj ti_driverlib_dl_crc.obj ti_driverlib_dl_crcp.obj ti_driverlib_dl_dac12.obj ti_driverlib_dl_dma.obj ti_driverlib_dl_flashctl.obj ti_driverlib_dl_i2c.obj ti_driverlib_dl_keystorectl.obj ti_driverlib_dl_lcd.obj ti_driverlib_dl_lfss.obj ti_driverlib_dl_mathacl.obj ti_driverlib_dl_mcan.obj ti_driverlib_dl_opa.obj ti_driverlib_dl_rtc_common.obj ti_driverlib_dl_spi.obj ti_driverlib_dl_timer.obj ti_driverlib_dl_trng.obj ti_driverlib_dl_uart.obj ti_driverlib_dl_vref.obj ti_driverlib_m0p_dl_interrupt.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l122x_l222x.obj iar_startup_mspm0c110x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = empty_driverlib_src
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -I. \
+    $(addprefix -f,$(SYSCFG_OPT_FILES)) \
     -D__MSPM0C1104__ \
     -Om \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -29,14 +31,15 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L$PROJ_DIR$ \
-    "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0c110x/driverlib.a" \
+LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0c110x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L.. \
     --config ../iar/mspm0c1104.icf \
     --map "$(NAME).map" \
     --silent \
     --semihosting=iar_breakpoint \
     --cpu=Cortex-M0+
+
 all: $(NAME).out
 
 .INTERMEDIATE: syscfg

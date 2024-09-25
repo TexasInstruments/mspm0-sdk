@@ -8,7 +8,7 @@ LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 OBJECTS = aesadv_ecb_256_encrypt.obj ti_msp_dl_config.obj gcc_startup_mspm0l222x_gcc.obj
 NAME = aesadv_ecb_256_encrypt
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0L2228__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -26,13 +26,13 @@ CFLAGS = -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l122x_l222x" \
+LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l122x_l222x" \
     -nostartfiles \
     -l:driverlib.a \
     -Wl,-T,../gcc/mspm0l2228.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -43,6 +43,7 @@ LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l122x_
     -lm \
     -lnosys \
     --specs=nano.specs
+
 all: $(NAME).out
 
 aesadv_ecb_256_encrypt.obj: ../aesadv_ecb_256_encrypt.c

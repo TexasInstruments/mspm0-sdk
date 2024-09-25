@@ -57,7 +57,7 @@
 #include <ti/drivers/SPI.h>
 #include <ti/drivers/UART.h>
 #include <ti/drivers/dma/DMAMSPM0.h>
-#include <ti/drivers/uart/UARTMSPM0G1X0X_G3X0X.h>
+#include <ti/drivers/uart/UARTMSPM0.h>
 
 #define CONFIG_UART_COUNT 1
 #define CONFIG_UART_BUFFER_LENGTH 1

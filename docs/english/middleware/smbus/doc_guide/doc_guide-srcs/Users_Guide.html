@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 SMBus Library User’s Guide &mdash; SMBus Guide 1.0 documentation</title>
+  <title>MSPM0 SMBus Library User’s Guide &mdash; SMBus Guide 2.0.0.x documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> SMBus Guide
           </a>
               <div class="version">
-                1.0
+                2.0.0.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -61,7 +61,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#smbus-target">SMBus Target</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#library-versions">6. Library Versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#library-versions">6. Library Versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#upgrade-and-compatibility-information">6.1 Upgrade and Compatibility Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -174,7 +177,7 @@
 </section>
 <section id="library-footprint">
 <h2>5. Library Footprint<a class="headerlink" href="#library-footprint" title="Permalink to this heading">¶</a></h2>
-<p>The following footprint was obtained with TI Arm Clang compiler v3.2.0 LTS using LP-MSPM0G3507.</p>
+<p>The following footprint was obtained with TI Arm Clang compiler v3.2.1 LTS using LP-MSPM0G3507.</p>
 <section id="smbus-controller">
 <h3>SMBus Controller<a class="headerlink" href="#smbus-controller" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
@@ -192,7 +195,7 @@
 <tr class="row-even"><td><p><strong>smb_controller00_all_protocols</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-O2</p></td>
-<td><p>3782</p></td>
+<td><p>3912</p></td>
 <td><p>469</p></td>
 <td><p>1086</p></td>
 <td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = true</p></td>
@@ -200,7 +203,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus_nwk.o</em></p></td>
 <td><p>“</p></td>
-<td><p>1184</p></td>
+<td><p>1286</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -208,7 +211,7 @@
 <tr class="row-even"><td><p>“</p></td>
 <td><p><em>smbus_phy.o</em></p></td>
 <td><p>“</p></td>
-<td><p>920</p></td>
+<td><p>948</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -232,7 +235,7 @@
 <tr class="row-odd"><td><p><strong>smb_controller00_all_protocols</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-Oz -flto*</p></td>
-<td><p>3148</p></td>
+<td><p>3236</p></td>
 <td><p>493</p></td>
 <td><p>1088</p></td>
 <td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = true</p></td>
@@ -240,7 +243,7 @@
 <tr class="row-even"><td><p><strong>smb_controller00_all_protocols</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-O2</p></td>
-<td><p>3262</p></td>
+<td><p>3272</p></td>
 <td><p>469</p></td>
 <td><p>1086</p></td>
 <td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = false</p></td>
@@ -248,7 +251,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus_nwk.o</em></p></td>
 <td><p>“</p></td>
-<td><p>808</p></td>
+<td><p>804</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -256,7 +259,7 @@
 <tr class="row-even"><td><p>“</p></td>
 <td><p><em>smbus_phy.o</em></p></td>
 <td><p>“</p></td>
-<td><p>776</p></td>
+<td><p>790</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -280,7 +283,7 @@
 <tr class="row-odd"><td><p><strong>smb_controller00_all_protocols</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-Oz -flto*</p></td>
-<td><p>2702</p></td>
+<td><p>2714</p></td>
 <td><p>493</p></td>
 <td><p>1088</p></td>
 <td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = false</p></td>
@@ -288,7 +291,7 @@
 <tr class="row-even"><td><p><strong>smb_controller_host_notify</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-O2</p></td>
-<td><p>3576</p></td>
+<td><p>3702</p></td>
 <td><p>239</p></td>
 <td><p>826</p></td>
 <td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = true</p></td>
@@ -296,7 +299,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus_nwk.o</em></p></td>
 <td><p>“</p></td>
-<td><p>1070</p></td>
+<td><p>1168</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -304,7 +307,7 @@
 <tr class="row-even"><td><p>“</p></td>
 <td><p><em>smbus_phy.o</em></p></td>
 <td><p>“</p></td>
-<td><p>940</p></td>
+<td><p>968</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -328,7 +331,7 @@
 <tr class="row-odd"><td><p><strong>smb_controller_host_notify</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-Oz -flto*</p></td>
-<td><p>2870</p></td>
+<td><p>2962</p></td>
 <td><p>219</p></td>
 <td><p>827</p></td>
 <td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = true</p></td>
@@ -356,7 +359,7 @@
 <tr class="row-even"><td><p><strong>smb_target00_all_protocols</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-O2</p></td>
-<td><p>5044</p></td>
+<td><p>5320</p></td>
 <td><p>387</p></td>
 <td><p>1343</p></td>
 <td><p>SMB_TARGET_SUPPORTS_HOST_NOTIFY = true</p></td>
@@ -364,7 +367,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus_nwk.o</em></p></td>
 <td><p>“</p></td>
-<td><p>972</p></td>
+<td><p>1070</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -372,7 +375,7 @@
 <tr class="row-even"><td><p>“</p></td>
 <td><p><em>smbus_phy.o</em></p></td>
 <td><p>“</p></td>
-<td><p>816</p></td>
+<td><p>900</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -380,7 +383,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus.o</em></p></td>
 <td><p>“</p></td>
-<td><p>226</p></td>
+<td><p>252</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -396,7 +399,7 @@
 <tr class="row-odd"><td><p><strong>smb_target00_all_protocols</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-Oz -flto*</p></td>
-<td><p>3668</p></td>
+<td><p>3908</p></td>
 <td><p>387</p></td>
 <td><p>1346</p></td>
 <td><p>SMB_TARGET_SUPPORTS_HOST_NOTIFY = true</p></td>
@@ -404,7 +407,7 @@
 <tr class="row-even"><td><p><strong>smb_target00_all_protocols</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-O2</p></td>
-<td><p>4222</p></td>
+<td><p>4508</p></td>
 <td><p>387</p></td>
 <td><p>1343</p></td>
 <td><p>SMB_TARGET_SUPPORTS_HOST_NOTIFY = false</p></td>
@@ -412,7 +415,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus_nwk.o</em></p></td>
 <td><p>“</p></td>
-<td><p>628</p></td>
+<td><p>716</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -420,7 +423,7 @@
 <tr class="row-even"><td><p>“</p></td>
 <td><p><em>smbus_phy.o</em></p></td>
 <td><p>“</p></td>
-<td><p>432</p></td>
+<td><p>536</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -428,7 +431,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus.o</em></p></td>
 <td><p>“</p></td>
-<td><p>226</p></td>
+<td><p>252</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -444,7 +447,7 @@
 <tr class="row-odd"><td><p><strong>smb_target00_all_protocols</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-Oz -flto*</p></td>
-<td><p>2986</p></td>
+<td><p>3266</p></td>
 <td><p>387</p></td>
 <td><p>1346</p></td>
 <td><p>SMB_TARGET_SUPPORTS_HOST_NOTIFY = false</p></td>
@@ -452,7 +455,7 @@
 <tr class="row-even"><td><p><strong>smb_target_host_notify</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-O2</p></td>
-<td><p>3862</p></td>
+<td><p>4110</p></td>
 <td><p>245</p></td>
 <td><p>1080</p></td>
 <td><p>SMB_TARGET_SUPPORTS_HOST_NOTIFY = true</p></td>
@@ -460,7 +463,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus_nwk.o</em></p></td>
 <td><p>“</p></td>
-<td><p>1044</p></td>
+<td><p>1142</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -468,7 +471,7 @@
 <tr class="row-even"><td><p>“</p></td>
 <td><p><em>smbus_phy.o</em></p></td>
 <td><p>“</p></td>
-<td><p>1040</p></td>
+<td><p>1124</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -476,7 +479,7 @@
 <tr class="row-odd"><td><p>“</p></td>
 <td><p><em>smbus.o</em></p></td>
 <td><p>“</p></td>
-<td><p>236</p></td>
+<td><p>262</p></td>
 <td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>“</p></td>
@@ -492,9 +495,9 @@
 <tr class="row-odd"><td><p><strong>smb_target_host_notify</strong></p></td>
 <td><p><strong>Total</strong></p></td>
 <td><p>-Oz -flto*</p></td>
-<td><p>3048</p></td>
-<td><p>238</p></td>
-<td><p>1092</p></td>
+<td><p>4110</p></td>
+<td><p>245</p></td>
+<td><p>1080</p></td>
 <td><p>SMB_TARGET_SUPPORTS_HOST_NOTIFY = true</p></td>
 </tr>
 </tbody>
@@ -507,6 +510,16 @@
 <section id="library-versions">
 <h2>6. Library Versions<a class="headerlink" href="#library-versions" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
+<li><p><strong>Version 2.00.00.00</strong></p>
+<ul>
+<li><p>SDK Release: 2.00.00.xx</p></li>
+<li><p>Updates:</p>
+<ul>
+<li><p>Fix Target PEC check. Device will NACK if PEC is incorrect and detect if PEC is missing. <strong>This feature causes a compatibility break</strong>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p><strong>Version 1.30.00.01</strong></p>
 <ul>
 <li><p>SDK Release: 1.30.00.xx</p></li>
@@ -556,6 +569,25 @@
 </ul>
 </li>
 </ul>
+<section id="upgrade-and-compatibility-information">
+<h3>6.1 Upgrade and Compatibility Information<a class="headerlink" href="#upgrade-and-compatibility-information" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Version 2.00.00.00</strong></p>
+<ul>
+<li><p>Application must now report command length to SMBus drivers when enabling PEC.</p>
+<ul>
+<li><p>The application should call <code class="docutils literal notranslate"><span class="pre">SMBus_targetReportBlock</span></code> and/or <code class="docutils literal notranslate"><span class="pre">SMBus_targetReportLength</span></code> when the SMBus is in <code class="docutils literal notranslate"><span class="pre">SMBus_State_Target_FirstByte</span></code> state. See SMBus target examples for a sample implementation.</p></li>
+</ul>
+</li>
+<li><p>SMBus Target PEC error interrupt should be disabled. This flag is checked manually by the library during reception.</p>
+<ul>
+<li><p>When using SysConfig, this option can be disabled at Interrupt Configuration → Target Interrupts.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -569,7 +601,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

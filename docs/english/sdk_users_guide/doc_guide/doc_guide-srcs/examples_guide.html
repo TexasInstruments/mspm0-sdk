@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 SDK Examples Guide &mdash; MSPM0 SDK User Guide 1.0 documentation</title>
+  <title>MSPM0 SDK Examples Guide &mdash; MSPM0 SDK User Guide 2.00.00.03 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> MSPM0 SDK User Guide
           </a>
               <div class="version">
-                1.0
+                2.00.00.03
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -94,69 +94,74 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bootstrap-loader-bsl">2.6 Bootstrap Loader (BSL)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cmsis-dsp">2.7 CMSIS-DSP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dali">2.8 DALI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#eeprom">2.9 EEPROM</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#type-a">2.9.1 Type-A</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#type-b">2.9.2 Type-B</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uart-communication-module">2.8 UART COMMUNICATION MODULE</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">2.8.1 Universal Asynchronous Receiver-Transmitter (UART)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#energy-library">2.10 Energy Library</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#tida-010243">2.10.1 TIDA_010243</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dali">2.9 DALI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eeprom">2.10 EEPROM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#type-a">2.10.1 Type-A</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-b">2.10.2 Type-B</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#gui-composer">2.11 GUI Composer</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#streaming-protocols">2.11.1 Streaming Protocols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#energy-library">2.11 Energy Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#split-phase">2.11.1 Split-phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#three-phase">2.11.2 Three-phase</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#iqmath">2.12 IQMath</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#compiler-rts-library">2.12.1 Compiler RTS library</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mathacl">2.12.2 MathACL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gui-composer">2.12 GUI Composer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#streaming-protocols">2.12.1 Streaming Protocols</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#rtos-kernel">2.13 RTOS Kernel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lin">2.14 LIN</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#commander">2.14.1 Commander</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#responder">2.14.2 Responder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iqmath">2.13 IQMath</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#compiler-rts-library">2.13.1 Compiler RTS library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mathacl">2.13.2 MathACL</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#sensored-trap-hall-motor-control">2.15 Sensored Trap Hall Motor Control</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#drv8300">2.15.1 DRV8300</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8311">2.15.2 DRV8311</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8316">2.15.3 DRV8316</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8317">2.15.4 DRV8317</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8323">2.15.5 DRV8323</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8328">2.15.6 DRV8328</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8329">2.15.7 DRV8329</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8353">2.15.8 DRV8353</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rtos-kernel">2.14 RTOS Kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lin">2.15 LIN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#commander">2.15.1 Commander</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#responder">2.15.2 Responder</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#sensorless-foc-motor-control">2.16 Sensorless FOC Motor Control</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">2.16.1 DRV8316</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8323rs">2.16.2 DRV8323RS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sensored-trap-hall-motor-control">2.16 Sensored Trap Hall Motor Control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#drv8300">2.16.1 DRV8300</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8311">2.16.2 DRV8311</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8316">2.16.3 DRV8316</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8317">2.16.4 DRV8317</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8323">2.16.5 DRV8323</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8328">2.16.6 DRV8328</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8329">2.16.7 DRV8329</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8353">2.16.8 DRV8353</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#brushed-motor-control">2.17 Brushed Motor Control</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#drv8706-q1">2.17.1 DRV8706-Q1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sensorless-foc-motor-control">2.17 Sensorless FOC Motor Control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">2.17.1 DRV8316</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8323rs">2.17.2 DRV8323RS</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#stepper-motor-control">2.18 Stepper Motor Control</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#drv8411a">2.18.1 DRV8411A</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#drv8889-q1">2.18.2 DRV8889-Q1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#brushed-motor-control">2.18 Brushed Motor Control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#drv8706-q1">2.18.1 DRV8706-Q1</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#cookbook">2.19 Cookbook</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pmbus">2.20 PMBUS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#controller">2.20.1 Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stepper-motor-control">2.19 Stepper Motor Control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#drv8411a">2.19.1 DRV8411A</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#drv8889-q1">2.19.2 DRV8889-Q1</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#sasi-smoke-detector">2.21 SASI_SMOKE_DETECTOR</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sent">2.22 SENT</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transmit">2.22.1 Transmit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cookbook">2.20 Cookbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pmbus">2.21 PMBUS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#controller">2.21.1 Controller</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#smbus">2.23 SMBus</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">2.23.1 Controller</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#target">2.23.2 Target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sasi-smoke-detector">2.22 SASI_SMOKE_DETECTOR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sent">2.23 SENT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#transmit">2.23.1 Transmit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#smbus">2.24 SMBus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">2.24.1 Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#target">2.24.2 Target</a></li>
 </ul>
 </li>
 </ul>
@@ -217,34 +222,40 @@
 </td><td align="center"><p>Y</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td></tr><tr><td><p>bq769x2_control_i2c</p>
-</td><td><p>Demonstrate BQ769x2 control through I2C</p>
+</td></tr><tr><td><p>bq7690x_control_i2c</p>
+</td><td><p>Demonstrate BQ7690x control through I2C</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image1" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>bq769x2_control_i2c</p>
+</td><td><p>Demonstrate BQ769x2 control through I2C</p>
+</td><td align="center"><p><img alt="image2" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image3" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>dualray_smoke_detector</p>
 </td><td><p>Dualray smoke detector demo</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image2" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image4" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>lcd_multi_port</p>
 </td><td><p>1-wire target emulating a EEPROM interface</p>
-</td><td align="center"><p><img alt="image3" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image5" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>lcd_single_port</p>
 </td><td><p>1-wire target emulating a EEPROM interface</p>
-</td><td align="center"><p><img alt="image4" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image5" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image6" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image7" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>one_wire</p>
 </td><td><p>1-wire target emulating a EEPROM interface</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image6" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image8" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>out_of_box</p>
@@ -256,13 +267,13 @@
 </td></tr><tr><td><p>pir_motion_detection</p>
 </td><td><p>PIR Motion Detection using integrated OPA for the signal chain</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image7" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image9" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>pulse_oximeter</p>
 </td><td><p>Pulse oximeter demos</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image8" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image10" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
@@ -282,19 +293,19 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>aes_cbc_256_enc_dec</p>
 </td><td><p>AES256 CBC encryption and decryption example</p>
-</td><td align="center"><p><img alt="image9" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image11" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>aes_cfb_256_decrypt</p>
 </td><td><p>AES CFB 256 bit decryption example</p>
-</td><td align="center"><p><img alt="image10" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image12" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>aes_ofb_128_encrypt</p>
 </td><td><p>AES OFB 128 bit encryption example</p>
-</td><td align="center"><p><img alt="image11" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image13" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
@@ -326,88 +337,88 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>adc12_14bit_resolution</p>
 </td><td><p>ADC12 conversion at maximum frequency using DMA with hardware averaging enabled</p>
-</td><td align="center"><p><img alt="image12" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image13" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image14" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image15" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image16" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image17" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>adc12_internal_temp_sensor_mathacl</p>
 </td><td><p>ADC12 samples internal temperature sensor and converts reading to Celsius and Fahrenheit degrees</p>
-</td><td align="center"><p><img alt="image16" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image18" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>adc12_max_freq_dma</p>
 </td><td><p>ADC12 conversion at maximum frequency using DMA</p>
-</td><td align="center"><p><img alt="image17" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image18" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image19" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image20" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>adc12_max_freq_dma_8bit</p>
-</td><td><p>ADC12 conversion at maximum frequency using DMA in 8 bit resolution</p>
 </td><td align="center"><p><img alt="image21" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image22" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>adc12_max_freq_dma_8bit</p>
+</td><td><p>ADC12 conversion at maximum frequency using DMA in 8 bit resolution</p>
 </td><td align="center"><p><img alt="image23" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image24" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>adc12_monitor_supply</p>
-</td><td><p>ADC12 monitors voltage supply channel</p>
 </td><td align="center"><p><img alt="image25" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image26" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>adc12_monitor_supply</p>
+</td><td><p>ADC12 monitors voltage supply channel</p>
 </td><td align="center"><p><img alt="image27" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image28" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>adc12_sequence_conversion</p>
-</td><td><p>Demonstrate configuring ADC to trigger sequence of conversions on 4 different channels</p>
 </td><td align="center"><p><img alt="image29" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image30" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>adc12_sequence_conversion</p>
+</td><td><p>Demonstrate configuring ADC to trigger sequence of conversions on 4 different channels</p>
 </td><td align="center"><p><img alt="image31" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image32" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image33" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>adc12_simultaneous_trigger_event</p>
 </td><td><p>Dual ADC12 conversion triggered by a Timer event</p>
-</td><td align="center"><p><img alt="image32" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image34" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>adc12_simultaneous_trigger_event_stop</p>
 </td><td><p>Dual ADC12 conversion triggered by a Timer event while in STOP mode</p>
-</td><td align="center"><p><img alt="image33" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image35" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>adc12_single_conversion</p>
 </td><td><p>ADC12 simple single conversion triggered by software</p>
-</td><td align="center"><p><img alt="image34" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image35" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image36" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image37" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>adc12_single_conversion_vref_external</p>
-</td><td><p>ADC12 single conversion triggered by software using external reference</p>
 </td><td align="center"><p><img alt="image38" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image39" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>adc12_single_conversion_vref_external</p>
+</td><td><p>ADC12 single conversion triggered by software using external reference</p>
 </td><td align="center"><p><img alt="image40" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image41" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image42" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>adc12_single_conversion_vref_internal</p>
 </td><td><p>ADC12 single conversion triggered by software using internal VREF</p>
-</td><td align="center"><p><img alt="image41" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image42" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image43" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image44" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>adc12_triggered_by_timer_event</p>
-</td><td><p>ADC12 conversion triggered by a Timer event</p>
 </td><td align="center"><p><img alt="image45" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image46" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>adc12_triggered_by_timer_event</p>
+</td><td><p>ADC12 conversion triggered by a Timer event</p>
 </td><td align="center"><p><img alt="image47" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image48" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>adc12_triggered_by_timer_event_stop</p>
-</td><td><p>ADC12 conversion triggered by a Timer event while in STOP mode</p>
 </td><td align="center"><p><img alt="image49" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image50" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>adc12_triggered_by_timer_event_stop</p>
+</td><td><p>ADC12 conversion triggered by a Timer event while in STOP mode</p>
 </td><td align="center"><p><img alt="image51" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image52" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>adc12_window_comparator</p>
-</td><td><p>ADC12 single conversion in repeat mode using window comparator feature</p>
 </td><td align="center"><p><img alt="image53" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image54" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>adc12_window_comparator</p>
+</td><td><p>ADC12 single conversion in repeat mode using window comparator feature</p>
 </td><td align="center"><p><img alt="image55" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image56" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image57" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image58" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="crcp">
 <h4>2.2.4 CRCP<a class="headerlink" href="#crcp" title="Permalink to this heading">¶</a></h4>
@@ -423,13 +434,13 @@
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image57" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image59" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>crcp_calculate_checksum_dma</p>
 </td><td><p>CRCP16 checksum calculation of a memory block using DMA block transfer</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image58" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image60" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="comparator-comp">
 <h4>2.2.5 Comparator (COMP)<a class="headerlink" href="#comparator-comp" title="Permalink to this heading">¶</a></h4>
@@ -442,31 +453,31 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>comp_analog_filter</p>
 </td><td><p>Comparator using external inputs with hysteresis and output analog filter</p>
-</td><td align="center"><p><img alt="image59" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image60" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image61" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image62" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image63" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>comp_dac_to_timer_event</p>
 </td><td><p>Comparator output using 8-bit DAC triggers a timer event to measure timing</p>
-</td><td align="center"><p><img alt="image62" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image63" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image64" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image65" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image66" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>comp_hs_dac_vref_external</p>
 </td><td><p>Comparator in high-speed mode using 8-bit DAC with external VREF</p>
-</td><td align="center"><p><img alt="image65" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image66" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image67" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image68" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image69" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>comp_hs_tima_pwm_fault</p>
 </td><td><p>Comparator in high-speed mode triggers a TIMA fault</p>
-</td><td align="center"><p><img alt="image68" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image70" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>comp_lp_dac_vref_internal</p>
 </td><td><p>Comparator in low-power mode using 8-bit DAC with internal VREF</p>
-</td><td align="center"><p><img alt="image69" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image71" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
@@ -482,37 +493,37 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>mcan_loopback</p>
 </td><td><p>MCAN transmits and receives messages using loopback mode</p>
-</td><td align="center"><p><img alt="image70" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image72" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>mcan_message_rx</p>
 </td><td><p>Example configured to receive CAN and CAN-FD frames</p>
-</td><td align="center"><p><img alt="image71" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image73" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>mcan_message_rx_tcan114x</p>
 </td><td><p>Example configured to receive CAN and CAN-FD frames using BOOSTXL-TCAN1145 boosterpack.</p>
-</td><td align="center"><p><img alt="image72" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image74" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>mcan_multi_message_tx</p>
 </td><td><p>CAN-FD transmits two messages with unique ID on GPIO interrupt</p>
-</td><td align="center"><p><img alt="image73" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image75" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>mcan_multi_message_tx_tcan114x</p>
 </td><td><p>CAN-FD transmits two messages with unique ID on GPIO interrupt using BOOSTXL-TCAN1145 boosterpack.</p>
-</td><td align="center"><p><img alt="image74" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image76" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>mcan_single_message_tx</p>
 </td><td><p>CAN-FD transmits a single message on GPIO interrupt</p>
-</td><td align="center"><p><img alt="image75" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image77" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
@@ -528,14 +539,14 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>crc_calculate_checksum</p>
 </td><td><p>CRC checksum calculation of a memory block</p>
-</td><td align="center"><p><img alt="image76" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image77" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image78" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image79" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image80" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>crc_calculate_checksum_dma</p>
 </td><td><p>CRC32 checksum calculation of a memory block using DMA block transfer</p>
-</td><td align="center"><p><img alt="image79" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image80" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image81" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image82" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
@@ -550,25 +561,25 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>dac12_dma_sampletimegen</p>
 </td><td><p>DAC12 using DMA with sample time generator to generate sine wave</p>
-</td><td align="center"><p><img alt="image81" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image83" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>dac12_fifo_sampletimegen</p>
 </td><td><p>DAC12 sending repetitive signal using FIFO and sample timer generator</p>
-</td><td align="center"><p><img alt="image82" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image84" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>dac12_fifo_timer_event</p>
 </td><td><p>DAC12 sending a sawtooth signal using FIFO and triggered by a Timer event</p>
-</td><td align="center"><p><img alt="image83" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image85" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>dac12_fixed_voltage_vref_internal</p>
 </td><td><p>DAC12 setting a fixed voltage output</p>
-</td><td align="center"><p><img alt="image84" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image86" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
@@ -584,22 +595,22 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>dma_block_transfer</p>
 </td><td><p>DMA copies from Flash main memory to SRAM memory</p>
-</td><td align="center"><p><img alt="image85" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image86" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image87" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image88" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>dma_fill_data</p>
-</td><td><p>DMA memory fill of SRAM using DMA</p>
 </td><td align="center"><p><img alt="image89" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image90" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>dma_fill_data</p>
+</td><td><p>DMA memory fill of SRAM using DMA</p>
 </td><td align="center"><p><img alt="image91" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image92" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image93" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>dma_table_transfer</p>
 </td><td><p>DMA using Table mode with DMA</p>
-</td><td align="center"><p><img alt="image92" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image93" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image94" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image95" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image96" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="events-manager">
 <h4>2.2.10 Events Manager<a class="headerlink" href="#events-manager" title="Permalink to this heading">¶</a></h4>
@@ -612,10 +623,10 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>event_input_triggers_output</p>
 </td><td><p>Event configuration to toggle LED when switch is pressed</p>
-</td><td align="center"><p><img alt="image95" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image96" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image97" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image98" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image99" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image100" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="gpio">
 <h4>2.2.11 GPIO<a class="headerlink" href="#gpio" title="Permalink to this heading">¶</a></h4>
@@ -628,40 +639,40 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>gpio_input_capture</p>
 </td><td><p>GPIO triggers interrupt by input capture pin</p>
-</td><td align="center"><p><img alt="image99" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image100" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image101" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image102" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image103" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image104" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>gpio_simultaneous_interrupts</p>
 </td><td><p>Demonstrates how to simultaneously service three GPIO interrupts</p>
-</td><td align="center"><p><img alt="image103" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image105" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>gpio_software_poll</p>
 </td><td><p>GPIO output is set based on polled input</p>
-</td><td align="center"><p><img alt="image104" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image105" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image106" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image107" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>gpio_toggle_output</p>
-</td><td><p>GPIO toggling an output pin</p>
 </td><td align="center"><p><img alt="image108" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image109" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>gpio_toggle_output</p>
+</td><td><p>GPIO toggling an output pin</p>
 </td><td align="center"><p><img alt="image110" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image111" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>gpio_toggle_output_cpp</p>
-</td><td><p>GPIO toggling output pins using C++</p>
 </td><td align="center"><p><img alt="image112" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image113" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>gpio_toggle_output_cpp</p>
+</td><td><p>GPIO toggling output pins using C++</p>
 </td><td align="center"><p><img alt="image114" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image115" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image116" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>gpio_toggle_output_hiz</p>
 </td><td><p>GPIO toggling an ouputput pin configured as Hi-Z</p>
-</td><td align="center"><p><img alt="image115" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image116" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image117" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image118" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image119" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image120" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="general-purpose-amplifier-gpamp">
 <h4>2.2.12 General-Purpose Amplifier (GPAMP)<a class="headerlink" href="#general-purpose-amplifier-gpamp" title="Permalink to this heading">¶</a></h4>
@@ -674,14 +685,14 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>gpamp_buffer_to_adc</p>
 </td><td><p>GPAmp configured in buffer mode with output to ADC</p>
-</td><td align="center"><p><img alt="image119" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image120" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image121" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image122" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>gpamp_general_purpose_rri</p>
 </td><td><p>GPAmp configured in general purpose Rail-to-Rail mode</p>
-</td><td align="center"><p><img alt="image121" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image122" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image123" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image124" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
@@ -699,7 +710,7 @@
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image123" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image125" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="inter-integrated-circuit-i2c">
 <h4>2.2.14 Inter-Integrated Circuit (I2C)<a class="headerlink" href="#inter-integrated-circuit-i2c" title="Permalink to this heading">¶</a></h4>
@@ -712,46 +723,46 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>i2c_controller_rw_multibyte_fifo_interrupts</p>
 </td><td><p>I2C Controller reading and writing multiple bytes using interrupts with FIFO</p>
-</td><td align="center"><p><img alt="image124" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image125" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image126" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image127" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>i2c_controller_rw_multibyte_fifo_poll</p>
-</td><td><p>I2C Controller reading and writing multiple bytes polling FIFO</p>
 </td><td align="center"><p><img alt="image128" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image129" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>i2c_controller_rw_multibyte_fifo_poll</p>
+</td><td><p>I2C Controller reading and writing multiple bytes polling FIFO</p>
 </td><td align="center"><p><img alt="image130" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image131" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>i2c_controller_target_dynamic_switching</p>
-</td><td><p>I2C dynamic switching between Controller and Target modes</p>
 </td><td align="center"><p><img alt="image132" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image133" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>i2c_controller_target_dynamic_switching</p>
+</td><td><p>I2C dynamic switching between Controller and Target modes</p>
 </td><td align="center"><p><img alt="image134" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image135" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>i2c_multicontroller_arbitration</p>
-</td><td><p>I2C Controller detecting arbitration error</p>
 </td><td align="center"><p><img alt="image136" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image137" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>i2c_multicontroller_arbitration</p>
+</td><td><p>I2C Controller detecting arbitration error</p>
 </td><td align="center"><p><img alt="image138" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image139" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>i2c_target_rw_multibyte_fifo_interrupts</p>
-</td><td><p>I2C Target reading and writing multiple bytes using interrupts</p>
 </td><td align="center"><p><img alt="image140" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image141" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>i2c_target_rw_multibyte_fifo_interrupts</p>
+</td><td><p>I2C Target reading and writing multiple bytes using interrupts</p>
 </td><td align="center"><p><img alt="image142" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image143" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>i2c_target_rw_multibyte_fifo_interrupts_stop</p>
-</td><td><p>I2C Target reading and writing multiple bytes using interrupts while in STOP mode</p>
 </td><td align="center"><p><img alt="image144" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image145" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>i2c_target_rw_multibyte_fifo_interrupts_stop</p>
+</td><td><p>I2C Target reading and writing multiple bytes using interrupts while in STOP mode</p>
 </td><td align="center"><p><img alt="image146" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image147" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>i2c_target_rw_multibyte_fifo_poll</p>
-</td><td><p>I2C Target reading and writing multiple bytes polling FIFO</p>
 </td><td align="center"><p><img alt="image148" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image149" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>i2c_target_rw_multibyte_fifo_poll</p>
+</td><td><p>I2C Target reading and writing multiple bytes polling FIFO</p>
 </td><td align="center"><p><img alt="image150" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image151" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image152" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image153" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="lcd">
 <h4>2.2.15 LCD<a class="headerlink" href="#lcd" title="Permalink to this heading">¶</a></h4>
@@ -767,7 +778,7 @@
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image152" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image154" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="math-accelerator-mathacl">
 <h4>2.2.16 Math Accelerator (MATHACL)<a class="headerlink" href="#math-accelerator-mathacl" title="Permalink to this heading">¶</a></h4>
@@ -780,13 +791,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>mathacl_mpy_div_op</p>
 </td><td><p>MATHACL implementation of trigonometric functions</p>
-</td><td align="center"><p><img alt="image153" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image155" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>mathacl_trig_op</p>
 </td><td><p>MATHACL implementation of trigonometric functions</p>
-</td><td align="center"><p><img alt="image154" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image156" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
@@ -802,46 +813,46 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>flashctl_blank_verify</p>
 </td><td><p>Implementation of Flash Blank Verify command</p>
-</td><td align="center"><p><img alt="image155" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image156" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image157" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image158" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>flashctl_dynamic_memory_protection</p>
-</td><td><p>Flash configured with dynamic protection</p>
 </td><td align="center"><p><img alt="image159" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image160" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>flashctl_dynamic_memory_protection</p>
+</td><td><p>Flash configured with dynamic protection</p>
 </td><td align="center"><p><img alt="image161" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image162" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image163" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image164" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>flashctl_ecc_error_injection</p>
 </td><td><p>Flash ECC testing and SEC and DED error detection</p>
-</td><td align="center"><p><img alt="image163" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image165" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image164" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image166" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>flashctl_multiple_size_read_verify</p>
 </td><td><p>Implementation of Flash read verify commands on multiple data sizes, with and without ECC</p>
-</td><td align="center"><p><img alt="image165" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image166" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image167" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image168" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>flashctl_multiple_size_write</p>
-</td><td><p>Flash writing of different size data</p>
 </td><td align="center"><p><img alt="image169" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image170" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>flashctl_multiple_size_write</p>
+</td><td><p>Flash writing of different size data</p>
 </td><td align="center"><p><img alt="image171" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image172" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>flashctl_nonmain_memory_write</p>
-</td><td><p>Read-write of Non-Main Flash memory</p>
 </td><td align="center"><p><img alt="image173" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image174" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>flashctl_nonmain_memory_write</p>
+</td><td><p>Read-write of Non-Main Flash memory</p>
 </td><td align="center"><p><img alt="image175" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image176" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image177" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image178" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>flashctl_program_with_ecc</p>
 </td><td><p>Flash writing of different size data</p>
-</td><td align="center"><p><img alt="image176" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image179" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image177" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image180" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="operational-amplifier-opa">
 <h4>2.2.18 Operational Amplifier (OPA)<a class="headerlink" href="#operational-amplifier-opa" title="Permalink to this heading">¶</a></h4>
@@ -854,37 +865,37 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>opa_burnout_current_source_to_adc</p>
 </td><td><p>OPA in buffer mode enabling burnout current source to ADC</p>
-</td><td align="center"><p><img alt="image178" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image179" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image181" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image182" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>opa_dac8_output_buffer</p>
 </td><td><p>OPA in output buffer mode using 8-bit DAC</p>
-</td><td align="center"><p><img alt="image180" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image181" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image183" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image184" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>opa_general_purpose_rri</p>
 </td><td><p>OPA in general purpose mode with Rail-to-Rail configuration</p>
-</td><td align="center"><p><img alt="image182" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image183" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image185" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image186" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>opa_inverting_pga_with_dac</p>
 </td><td><p>OPA in inverting PGA configuration using DAC12 as bias</p>
-</td><td align="center"><p><img alt="image184" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image187" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>opa_non_inverting_pga</p>
 </td><td><p>OPA in non-inverting PGA configuration</p>
-</td><td align="center"><p><img alt="image185" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image186" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image188" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image189" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>opa_signal_chain_to_adc</p>
 </td><td><p>Two OPAs configured in TIA and PGA, connected to ADC</p>
-</td><td align="center"><p><img alt="image187" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image190" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
@@ -900,28 +911,28 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>cinit_bypass</p>
 </td><td><p>Bypass CINIT skipping variable initialization</p>
-</td><td align="center"><p><img alt="image188" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image189" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image190" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image191" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>empty</p>
-</td><td><p>Empty start-up project using DriverLib</p>
 </td><td align="center"><p><img alt="image192" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image193" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image194" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>empty</p>
+</td><td><p>Empty start-up project using DriverLib</p>
 </td><td align="center"><p><img alt="image195" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>empty_cpp</p>
-</td><td><p>Empty C++ start-up project using DriverLib</p>
 </td><td align="center"><p><img alt="image196" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image197" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image198" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>empty_driverlib_src</p>
-</td><td><p>Empty start-up project using DriverLib</p>
+</td></tr><tr><td><p>empty_cpp</p>
+</td><td><p>Empty C++ start-up project using DriverLib</p>
 </td><td align="center"><p><img alt="image199" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image200" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image201" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>empty_driverlib_src</p>
+</td><td><p>Empty start-up project using DriverLib</p>
 </td><td align="center"><p><img alt="image202" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image203" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image204" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image205" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>empty_library</p>
 </td><td><p>Empty start-up library project using DriverLib</p>
 </td><td align="center"><p>Y</p>
@@ -936,28 +947,28 @@
 </td><td align="center"><p>Y</p>
 </td></tr><tr><td><p>nvic_interrupt_disable</p>
 </td><td><p>NVIC used to demonstrate best approach to disable interrupts</p>
-</td><td align="center"><p><img alt="image203" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image204" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image205" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image206" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>nvic_interrupt_grouping</p>
-</td><td><p>NVIC configuration and use of interrupt grouping</p>
 </td><td align="center"><p><img alt="image207" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image208" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image209" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>nvic_interrupt_grouping</p>
+</td><td><p>NVIC configuration and use of interrupt grouping</p>
 </td><td align="center"><p><img alt="image210" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image211" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image212" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image213" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>sram_parity</p>
 </td><td><p>Initializes and uses Parity SRAM</p>
-</td><td align="center"><p><img alt="image211" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image212" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>systick_periodic_timer</p>
-</td><td><p>SysTick generates periodic interrupt</p>
-</td><td align="center"><p><img alt="image213" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image214" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image215" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>systick_periodic_timer</p>
+</td><td><p>SysTick generates periodic interrupt</p>
+</td><td align="center"><p><img alt="image216" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image217" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image218" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="real-time-clock-rtc">
 <h4>2.2.20 Real-Time Clock (RTC)<a class="headerlink" href="#real-time-clock-rtc" title="Permalink to this heading">¶</a></h4>
@@ -973,28 +984,28 @@
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image216" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image219" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>rtc_calendar_alarm_standby</p>
 </td><td><p>RTC sets calendar alarm and toggles GPIO when alarm is triggered</p>
-</td><td align="center"><p><img alt="image217" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image220" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>rtc_offset_calibration_lfxt</p>
 </td><td><p>RTC offset correction of crystal</p>
-</td><td align="center"><p><img alt="image218" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image221" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>rtc_periodic_alarm_lfosc_standby</p>
 </td><td><p>RTC implementation of periodic alarm in STANDBY using LFOSC</p>
-</td><td align="center"><p><img alt="image219" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image222" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>rtc_periodic_alarm_lfxt_standby</p>
 </td><td><p>RTC implementation of periodic alarm in STANDBY using LFXT</p>
-</td><td align="center"><p><img alt="image220" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image223" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
@@ -1013,13 +1024,13 @@
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image221" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image224" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>scratchpad_retain_on_vdd_loss</p>
 </td><td><p>Retains scratchpad data on loss of VDD power.</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image222" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image225" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="serial-peripheral-interface-spi">
 <h4>2.2.22 Serial Peripheral Interface (SPI)<a class="headerlink" href="#serial-peripheral-interface-spi" title="Permalink to this heading">¶</a></h4>
@@ -1032,76 +1043,76 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>spi_controller_command_data_control</p>
 </td><td><p>SPI Controller transmit using command data (CD) control</p>
-</td><td align="center"><p><img alt="image223" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image224" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image225" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image226" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_controller_echo_interrupts</p>
-</td><td><p>SPI Controller transmits data using Motorola format</p>
 </td><td align="center"><p><img alt="image227" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image228" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image229" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_controller_fifo_dma_interrupts</p>
-</td><td><p>SPI Controller reading and writing multiple bytes using FIFO and DMA</p>
+</td></tr><tr><td><p>spi_controller_echo_interrupts</p>
+</td><td><p>SPI Controller transmits data using Motorola format</p>
 </td><td align="center"><p><img alt="image230" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image231" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image232" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>spi_controller_fifo_dma_interrupts</p>
+</td><td><p>SPI Controller reading and writing multiple bytes using FIFO and DMA</p>
+</td><td align="center"><p><img alt="image233" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image234" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>spi_controller_internal_loopback_poll</p>
 </td><td><p>SPI Controller with internal loopback using polling</p>
-</td><td align="center"><p><img alt="image232" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image233" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image234" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image235" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_controller_multibyte_fifo_poll</p>
-</td><td><p>SPI Controller reading and writing multiple bytes polling FIFO</p>
 </td><td align="center"><p><img alt="image236" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image237" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image238" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>spi_controller_multibyte_fifo_poll</p>
+</td><td><p>SPI Controller reading and writing multiple bytes polling FIFO</p>
 </td><td align="center"><p><img alt="image239" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_controller_register_format</p>
-</td><td><p>SPI Controller transmit and read data using register format</p>
 </td><td align="center"><p><img alt="image240" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image241" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image242" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>spi_controller_register_format</p>
+</td><td><p>SPI Controller transmit and read data using register format</p>
 </td><td align="center"><p><img alt="image243" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_controller_repeated_fifo_dma_interrupts</p>
-</td><td><p>SPI Controller reading and writing multiple bytes using FIFO and DMA every second</p>
 </td><td align="center"><p><img alt="image244" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image245" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image246" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_peripheral_echo_interrupts</p>
-</td><td><p>SPI Peripheral echoes data using Motorola format</p>
+</td></tr><tr><td><p>spi_controller_repeated_fifo_dma_interrupts</p>
+</td><td><p>SPI Controller reading and writing multiple bytes using FIFO and DMA every second</p>
 </td><td align="center"><p><img alt="image247" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image248" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image249" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>spi_peripheral_echo_interrupts</p>
+</td><td><p>SPI Peripheral echoes data using Motorola format</p>
 </td><td align="center"><p><img alt="image250" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_peripheral_fifo_dma_interrupts</p>
-</td><td><p>SPI Peripheral reading and writing multiple bytes using FIFO and DMA</p>
 </td><td align="center"><p><img alt="image251" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image252" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image253" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>spi_peripheral_fifo_dma_interrupts</p>
+</td><td><p>SPI Peripheral reading and writing multiple bytes using FIFO and DMA</p>
+</td><td align="center"><p><img alt="image254" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image255" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>spi_peripheral_multibyte_fifo_poll</p>
 </td><td><p>SPI Peripheral reading and writing multiple bytes polling FIFO</p>
-</td><td align="center"><p><img alt="image253" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image254" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image255" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image256" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_peripheral_register_format</p>
-</td><td><p>SPI Peripheral transmit and read data using register format</p>
 </td><td align="center"><p><img alt="image257" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image258" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image259" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>spi_peripheral_register_format</p>
+</td><td><p>SPI Peripheral transmit and read data using register format</p>
 </td><td align="center"><p><img alt="image260" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>spi_peripheral_repeated_fifo_dma_interrupts</p>
-</td><td><p>SPI Peripheral reading and writing multiple bytes using FIFO and DMA</p>
 </td><td align="center"><p><img alt="image261" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image262" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image263" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>spi_peripheral_repeated_fifo_dma_interrupts</p>
+</td><td><p>SPI Peripheral reading and writing multiple bytes using FIFO and DMA</p>
+</td><td align="center"><p><img alt="image264" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image265" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image266" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="system-controller-sysctl">
 <h4>2.2.23 System Controller (SYSCTL)<a class="headerlink" href="#system-controller-sysctl" title="Permalink to this heading">¶</a></h4>
@@ -1114,46 +1125,46 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>sysctl_frequency_clock_counter</p>
 </td><td><p>Monitor SYSOSC via Frequency Clock Counter (FCC)</p>
-</td><td align="center"><p><img alt="image264" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image265" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image266" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image267" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image268" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image269" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image270" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>sysctl_hfxt_run</p>
 </td><td><p>Sets external HFXT as source to HSCLK and MCLK (48MHz)</p>
-</td><td align="center"><p><img alt="image268" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image271" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image269" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image272" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>sysctl_lfxt_standby</p>
 </td><td><p>Sets LFXT as source to LFCLK (32kHz) and power policy in STANDBY0</p>
-</td><td align="center"><p><img alt="image270" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image273" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image271" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image274" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>sysctl_mclk_syspll</p>
 </td><td><p>Sets MCLK to run from SYSPLL (80MHz)</p>
-</td><td align="center"><p><img alt="image272" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image275" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>sysctl_power_policy_sleep_to_standby</p>
 </td><td><p>SYSCTL switches between SLEEP mode and STANDBY modes</p>
-</td><td align="center"><p><img alt="image273" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image274" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image275" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image276" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>sysctl_power_policy_sleep_to_stop</p>
-</td><td><p>SYSCTL switches between SLEEP mode and STOP modes</p>
 </td><td align="center"><p><img alt="image277" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image278" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image279" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>sysctl_power_policy_sleep_to_stop</p>
+</td><td><p>SYSCTL switches between SLEEP mode and STOP modes</p>
 </td><td align="center"><p><img alt="image280" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>sysctl_shutdown</p>
-</td><td><p>Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP</p>
 </td><td align="center"><p><img alt="image281" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image282" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image283" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>sysctl_shutdown</p>
+</td><td><p>Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP</p>
 </td><td align="center"><p><img alt="image284" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image285" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image286" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image287" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="tamper-io">
 <h4>2.2.24 Tamper IO<a class="headerlink" href="#tamper-io" title="Permalink to this heading">¶</a></h4>
@@ -1169,7 +1180,7 @@
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image285" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image288" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="timer-advanced-tima">
 <h4>2.2.25 Timer - Advanced (TIMA)<a class="headerlink" href="#timer-advanced-tima" title="Permalink to this heading">¶</a></h4>
@@ -1182,22 +1193,22 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>tima_timer_mode_periodic_repeat_count</p>
 </td><td><p>TimerA in periodic mode using repeat-count feature</p>
-</td><td align="center"><p><img alt="image286" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image287" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image288" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>tima_timer_mode_pwm_dead_band</p>
-</td><td><p>TimerA outputs PWM signals with dead band insertion</p>
 </td><td align="center"><p><img alt="image289" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image290" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image291" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>tima_trigger_fail_mechanism</p>
-</td><td><p>TimerA demonstrating fault detection</p>
+</td></tr><tr><td><p>tima_timer_mode_pwm_dead_band</p>
+</td><td><p>TimerA outputs PWM signals with dead band insertion</p>
 </td><td align="center"><p><img alt="image292" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image293" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image294" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>tima_trigger_fail_mechanism</p>
+</td><td><p>TimerA demonstrating fault detection</p>
+</td><td align="center"><p><img alt="image295" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image296" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image297" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="timer-general-purpose-timg">
 <h4>2.2.26 Timer - General Purpose (TIMG)<a class="headerlink" href="#timer-general-purpose-timg" title="Permalink to this heading">¶</a></h4>
@@ -1210,21 +1221,21 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>timg_32bit_timer_mode_periodic_sleep</p>
 </td><td><p>32-bit timer in periodic mode while device is in SLEEP mode</p>
-</td><td align="center"><p><img alt="image295" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image298" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>timg_32bit_timer_mode_pwm_edge_sleep</p>
 </td><td><p>32-bit timer in PWM edge aligned mode while device is in SLEEP mode</p>
-</td><td align="center"><p><img alt="image296" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image299" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>timg_qei_mode</p>
 </td><td><p>TimerG uses QEI to decode relative position output of a quadrature encoder</p>
-</td><td align="center"><p><img alt="image297" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image300" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image298" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image301" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="timer-generic-timx">
@@ -1238,70 +1249,70 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>timx_timer_mode_capture_duty_and_period</p>
 </td><td><p>Timer calculates period and duty cycle</p>
-</td><td align="center"><p><img alt="image299" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image300" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image301" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image302" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_capture_edge_capture</p>
-</td><td><p>Timer edge time detection using Timer capture mode</p>
 </td><td align="center"><p><img alt="image303" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image304" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image305" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_capture_edge_capture</p>
+</td><td><p>Timer edge time detection using Timer capture mode</p>
 </td><td align="center"><p><img alt="image306" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_compare_edge_count</p>
-</td><td><p>Timer edge counting capability using compare mode</p>
 </td><td align="center"><p><img alt="image307" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image308" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image309" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_compare_edge_count</p>
+</td><td><p>Timer edge counting capability using compare mode</p>
 </td><td align="center"><p><img alt="image310" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_one_shot_standby</p>
-</td><td><p>Timer in one-shot mode while device is in STANDBY mode</p>
 </td><td align="center"><p><img alt="image311" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image312" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image313" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_one_shot_standby</p>
+</td><td><p>Timer in one-shot mode while device is in STANDBY mode</p>
 </td><td align="center"><p><img alt="image314" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_periodic_sleep</p>
-</td><td><p>Timer in periodic mode while device is in SLEEP mode</p>
 </td><td align="center"><p><img alt="image315" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image316" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image317" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_periodic_sleep</p>
+</td><td><p>Timer in periodic mode while device is in SLEEP mode</p>
 </td><td align="center"><p><img alt="image318" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_periodic_standby</p>
-</td><td><p>Timer in periodic mode while device is in STANDBY mode</p>
 </td><td align="center"><p><img alt="image319" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image320" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image321" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_periodic_standby</p>
+</td><td><p>Timer in periodic mode while device is in STANDBY mode</p>
 </td><td align="center"><p><img alt="image322" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_periodic_stop</p>
-</td><td><p>Timer in periodic mode while device is in STOP mode</p>
 </td><td align="center"><p><img alt="image323" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image324" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image325" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_periodic_stop</p>
+</td><td><p>Timer in periodic mode while device is in STOP mode</p>
 </td><td align="center"><p><img alt="image326" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_pwm_center_stop</p>
-</td><td><p>Timer in PWM center aligned mode while device is in STOP mode</p>
 </td><td align="center"><p><img alt="image327" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image328" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image329" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_pwm_center_stop</p>
+</td><td><p>Timer in PWM center aligned mode while device is in STOP mode</p>
 </td><td align="center"><p><img alt="image330" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_pwm_cross_trigger_stop_restore</p>
-</td><td><p>Timer in PWM mode after coming out of STOP with retention in SW</p>
 </td><td align="center"><p><img alt="image331" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
-</td></tr><tr><td><p>timx_timer_mode_pwm_edge_sleep</p>
-</td><td><p>Timer in PWM edge aligned mode while device is in SLEEP mode</p>
 </td><td align="center"><p><img alt="image332" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image333" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_pwm_edge_sleep</p>
+</td><td><p>Timer in PWM edge aligned mode while device is in SLEEP mode</p>
 </td><td align="center"><p><img alt="image334" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image335" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>timx_timer_mode_pwm_edge_sleep_shadow</p>
-</td><td><p>Timer updating PWM duty cycle using shadow load feature</p>
 </td><td align="center"><p><img alt="image336" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image337" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_pwm_edge_sleep_shadow</p>
+</td><td><p>Timer updating PWM duty cycle using shadow load feature</p>
 </td><td align="center"><p><img alt="image338" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image339" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image340" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image341" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>timx_timer_mode_pwm_x_trig_stop_restore</p>
+</td><td><p>Timer in PWM mode after coming out of STOP with retention in SW</p>
+</td><td align="center"><p><img alt="image342" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="true-random-number-generator-trng">
 <h4>2.2.28 True Random Number Generator (TRNG)<a class="headerlink" href="#true-random-number-generator-trng" title="Permalink to this heading">¶</a></h4>
@@ -1314,13 +1325,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>trng_sample</p>
 </td><td><p>TRNG sampling to fill a buffer with random data</p>
-</td><td align="center"><p><img alt="image340" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image343" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>trng_sample_stop_restore</p>
 </td><td><p>TRNG sample random data after coming out of STOP with retention in SW</p>
-</td><td align="center"><p><img alt="image341" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image344" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
@@ -1336,94 +1347,94 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>uart_echo_interrupts_standby</p>
 </td><td><p>UART RX/TX echo using interrupts while device is in STANDBY mode</p>
-</td><td align="center"><p><img alt="image342" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image343" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image344" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image345" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image346" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image347" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image348" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>uart_extend_irda_receive_packet</p>
 </td><td><p>UART Extend using IrDA encoding, send packet via UART</p>
-</td><td align="center"><p><img alt="image346" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image349" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>uart_extend_irda_send_packet</p>
 </td><td><p>UART Extend using IrDA encoding, send packet via UART</p>
-</td><td align="center"><p><img alt="image347" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image350" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>uart_extend_manchester_echo</p>
 </td><td><p>UART Extend using Manchester encoding, echo received packet</p>
-</td><td align="center"><p><img alt="image348" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image349" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image350" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image351" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>uart_extend_manchester_send_packet</p>
-</td><td><p>UART Extend using Manchester encoding and decoding, send a packet</p>
 </td><td align="center"><p><img alt="image352" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image353" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image354" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>uart_extend_manchester_send_packet</p>
+</td><td><p>UART Extend using Manchester encoding and decoding, send a packet</p>
 </td><td align="center"><p><img alt="image355" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>uart_external_loopback_interrupt</p>
-</td><td><p>UART RX/TX external loopback using interrupts</p>
 </td><td align="center"><p><img alt="image356" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image357" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image358" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>uart_external_loopback_interrupt</p>
+</td><td><p>UART RX/TX external loopback using interrupts</p>
 </td><td align="center"><p><img alt="image359" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image360" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image361" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image362" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>uart_internal_loopback_standby_restore</p>
 </td><td><p>UART internal loopback after coming out of STANDBY with retention in SW</p>
-</td><td align="center"><p><img alt="image360" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image363" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>uart_rs485_receive_packet</p>
 </td><td><p>Demonstrate UART in RS485 mode, receive a packet</p>
-</td><td align="center"><p><img alt="image361" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image364" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>uart_rs485_send_packet</p>
 </td><td><p>Demonstrate UART in RS485 mode, send a packet</p>
-</td><td align="center"><p><img alt="image362" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image365" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>uart_rw_multibyte_fifo_poll</p>
 </td><td><p>UART RX/TX using FIFOs with polling</p>
-</td><td align="center"><p><img alt="image363" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image364" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image365" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image366" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>uart_rx_hw_flow_control</p>
-</td><td><p>UART RX using HW flow control</p>
 </td><td align="center"><p><img alt="image367" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image368" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image369" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>uart_rx_hw_flow_control</p>
+</td><td><p>UART RX using HW flow control</p>
 </td><td align="center"><p><img alt="image370" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>uart_rx_multibyte_fifo_dma_interrupts</p>
-</td><td><p>UART RX using a DMA trigger</p>
 </td><td align="center"><p><img alt="image371" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image372" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image373" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>uart_tx_console_multibyte_repeated_fifo_dma</p>
-</td><td><p>UART TX to a console using a continous DMA trigger</p>
+</td></tr><tr><td><p>uart_rx_multibyte_fifo_dma_interrupts</p>
+</td><td><p>UART RX using a DMA trigger</p>
 </td><td align="center"><p><img alt="image374" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image375" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image376" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>uart_tx_hw_flow_control</p>
-</td><td><p>UART TX using hardware flow control</p>
+</td></tr><tr><td><p>uart_tx_console_multibyte_repeated_fifo_dma</p>
+</td><td><p>UART TX to a console using a continous DMA trigger</p>
 </td><td align="center"><p><img alt="image377" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image378" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image379" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>uart_tx_hw_flow_control</p>
+</td><td><p>UART TX using hardware flow control</p>
 </td><td align="center"><p><img alt="image380" src="../_images/ex_sysconfig.png" /></p>
-</td></tr><tr><td><p>uart_tx_multibyte_fifo_dma_interrupts</p>
-</td><td><p>UART TX using a DMA trigger</p>
 </td><td align="center"><p><img alt="image381" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image382" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
 </td><td align="center"><p><img alt="image383" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>uart_tx_multibyte_fifo_dma_interrupts</p>
+</td><td><p>UART TX using a DMA trigger</p>
+</td><td align="center"><p><img alt="image384" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image385" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image386" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="window-watchdog-timer-wwdt">
 <h4>2.2.30 Window Watchdog Timer (WWDT)<a class="headerlink" href="#window-watchdog-timer-wwdt" title="Permalink to this heading">¶</a></h4>
@@ -1436,22 +1447,22 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>wwdt_interval_timer_lfosc_standby</p>
 </td><td><p>WWDT interval timer mode using LFOSC while device is in STANDBY mode</p>
-</td><td align="center"><p><img alt="image384" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image385" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image386" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image387" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image388" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image389" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image390" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>wwdt_interval_timer_lfxt_standby</p>
 </td><td><p>WWDT interval timer mode using LFXT while device is in STANDBY mode</p>
-</td><td align="center"><p><img alt="image388" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image391" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image389" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image392" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>wwdt_window_mode_periodic_reset</p>
 </td><td><p>WWDT Window watchdog mode with periodic reset</p>
-</td><td align="center"><p><img alt="image390" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image391" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image392" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image393" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image394" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image395" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image396" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 </section>
 <section id="ti-drivers">
@@ -1472,43 +1483,55 @@
 </td><td align="center"><p>Y</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
 </td></tr><tr><td><p>gpiointerrupt/freertos</p>
 </td><td><p>Toggles the LED(s) using a GPIO pin interrupt</p>
 </td><td align="center"><p>Y</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
+</td></tr><tr><td><p>i2c_controller/freertos</p>
+</td><td><p>Implements I2C controller sending commands to another device running i2c_target example</p>
+</td><td align="center"><p>Y</p>
 </td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
+</td></tr><tr><td><p>i2c_target/freertos</p>
+</td><td><p>Responds to the i2c_controller example commands using the i2c target driver</p>
+</td><td align="center"><p>Y</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
 </td></tr><tr><td><p>i2c_tmp/freertos</p>
 </td><td><p>Read temperature from Tmp117 Sensor using I2C</p>
 </td><td align="center"><p>Y</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
 </td></tr><tr><td><p>spi_controller/freertos</p>
 </td><td><p>Demonstrates the SPI driver in controller mode to communicate with another LP_MSPM0G3507 running the spi_peripheral example</p>
 </td><td align="center"><p>Y</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
 </td></tr><tr><td><p>spi_peripheral/freertos</p>
 </td><td><p>Demonstrates the SPI driver in peripheral mode to communicate with another LP_MSPM0G3507 running the spi_controller example</p>
 </td><td align="center"><p>Y</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
 </td></tr><tr><td><p>uart_callback/freertos</p>
 </td><td><p>UART simple echo using callback</p>
 </td><td align="center"><p>Y</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
 </td><td align="center"><p>Y</p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
 </td></tr><tr><td><p>uart_echo/freertos</p>
 </td><td><p>UART simple echo</p>
 </td><td align="center"><p>Y</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
 </td><td align="center"><p>Y</p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="no-rtos">
 <h4>2.3.2 No RTOS<a class="headerlink" href="#no-rtos" title="Permalink to this heading">¶</a></h4>
@@ -1524,7 +1547,7 @@
 </td><td align="center"><p>Y</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
 </td></tr></table></section>
 </section>
 <section id="battery-gauge">
@@ -1541,6 +1564,18 @@
 </td><td><p>The level1 gauge approach utilizes the ADC to implement a low-cost voltage detection solution</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>Y</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>gauge_level2_bq76952</p>
+</td><td><p>This example implements a Level2 gauge solution using BQ76952</p>
+</td><td align="center"><p><img alt="image397" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>gauge_level2_standalone</p>
+</td><td><p>The level2 gauge solution utilizes the ADC and OPAs on MSPM0 for high precision voltage and current detection</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image398" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>self_calibrate_current_detection</p>
@@ -1567,19 +1602,19 @@
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image394" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image399" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>customer_secure_image_with_bootloader</p>
 </td><td><p>Sample GPIO toggle image for Customer Secure Code</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image395" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image400" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>customer_secure_sample_image</p>
 </td><td><p>Sample GPIO toggle image for Customer Secure Code</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image396" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image401" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="single-stage">
 <h4>2.5.2 Single Stage<a class="headerlink" href="#single-stage" title="Permalink to this heading">¶</a></h4>
@@ -1592,14 +1627,14 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>bim_sample_image</p>
 </td><td><p>Sample GPIO toggle image for BIM</p>
-</td><td align="center"><p><img alt="image397" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image398" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image402" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image403" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>boot_application</p>
 </td><td><p>Boot Image Manager Using MCUBoot</p>
-</td><td align="center"><p><img alt="image399" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image400" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image404" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image405" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
@@ -1617,118 +1652,130 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>bsl_can_flash_interface</p>
 </td><td><p>Shows an implementation of a BSL CAN Flash interface</p>
-</td><td align="center"><p><img alt="image401" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image406" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_host_mcu_to_mspm0g1x0x_g3x0x_target_can</p>
 </td><td><p>Demonstrate how to program a MSPM0 MCU using a LP-MSPM0G3507 as host by BSL CAN interface.</p>
-</td><td align="center"><p><img alt="image402" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image407" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_host_mcu_to_mspm0g1x0x_g3x0x_target_i2c</p>
 </td><td><p>Demonstrate how to program a MSPM0 MCU using a LP-MSPM0G3507 as host by BSL I2C interface.</p>
-</td><td align="center"><p><img alt="image403" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image408" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_host_mcu_to_mspm0g1x0x_g3x0x_target_spi</p>
 </td><td><p>Demonstrate how to program a MSPM0 MCU using a LP-MSPM0G3507 as host by BSL SPI interface.</p>
-</td><td align="center"><p><img alt="image404" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image409" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_host_mcu_to_mspm0g1x0x_g3x0x_target_uart</p>
 </td><td><p>Demonstrate how to program a MSPM0 MCU using a LP-MSPM0G3507 as host by BSL UART interface.</p>
-</td><td align="center"><p><img alt="image405" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image410" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_host_mcu_to_mspm0l11xx_l13xx_target_i2c</p>
 </td><td><p>Demonstrate how to program a MSPM0L11xx_L13xx MCU using a LP-MSPM0L1306 as host by BSL I2C interface.</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image406" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image411" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_host_mcu_to_mspm0l11xx_l13xx_target_spi</p>
 </td><td><p>Demonstrate how to program a MSPM0L11xx_L13xx MCU using a LP-MSPM0L1306 as host by BSL SPI interface.</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image407" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image412" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_host_mcu_to_mspm0l11xx_l13xx_target_uart</p>
 </td><td><p>Demonstrate how to program a MSPM0L11xx_L13xx MCU using a LP-MSPM0L1306 as host by BSL UART interface.</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image408" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image413" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_i2c_flash_interface</p>
 </td><td><p>Shows an implementation of BSL I2C Flash interface</p>
-</td><td align="center"><p><img alt="image409" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image410" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image414" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image415" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image416" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>bsl_software_invoke_app_demo_can</p>
 </td><td><p>Demonstrates an application request to reset the device and jump to the ROM bootloader (BSL).</p>
-</td><td align="center"><p><img alt="image411" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image417" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>bsl_software_invoke_app_demo_i2c</p>
 </td><td><p>Demonstrates an application request to reset the device and jump to the ROM bootloader (BSL).</p>
-</td><td align="center"><p><img alt="image412" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image413" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
-</td></tr><tr><td><p>bsl_software_invoke_app_demo_spi</p>
-</td><td><p>Demonstrates an application request to reset the device and jump to the ROM bootloader (BSL).</p>
-</td><td align="center"><p><img alt="image414" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image415" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
-</td></tr><tr><td><p>bsl_software_invoke_app_demo_uart</p>
-</td><td><p>Demonstrates an application request to reset the device and jump to the ROM bootloader (BSL).</p>
-</td><td align="center"><p><img alt="image416" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image417" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
-</td></tr><tr><td><p>bsl_spi_flash_interface</p>
-</td><td><p>Shows an implementation of a BSL SPI Flash interface</p>
 </td><td align="center"><p><img alt="image418" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image419" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
-</td></tr><tr><td><p>bsl_uart_flash_interface</p>
-</td><td><p>Shows an implementation of a BSL UART Flash interface</p>
+</td></tr><tr><td><p>bsl_software_invoke_app_demo_spi</p>
+</td><td><p>Demonstrates an application request to reset the device and jump to the ROM bootloader (BSL).</p>
 </td><td align="center"><p><img alt="image420" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p><img alt="image421" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
+</td></tr><tr><td><p>bsl_software_invoke_app_demo_uart</p>
+</td><td><p>Demonstrates an application request to reset the device and jump to the ROM bootloader (BSL).</p>
+</td><td align="center"><p><img alt="image422" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image423" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>bsl_spi_flash_interface</p>
+</td><td><p>Shows an implementation of a BSL SPI Flash interface</p>
+</td><td align="center"><p><img alt="image424" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image425" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image426" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>bsl_uart_flash_interface</p>
+</td><td><p>Shows an implementation of a BSL UART Flash interface</p>
+</td><td align="center"><p><img alt="image427" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image428" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image429" src="../_images/ex_sysconfig.png" /></p>
+</td></tr><tr><td><p>flash_bsl</p>
+</td><td><p>Provides BSL suport from flash memory</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>Y</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>flash_bsl_app_invoke</p>
+</td><td><p>GPIO triggers interrupt by input capture pin and invokes Flash BSL</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image430" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
 </td></tr><tr><td><p>secondary_bsl_can</p>
 </td><td><p>Implements a secondary bootloader in Main overriding the ROM BSL</p>
-</td><td align="center"><p><img alt="image422" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image431" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>secondary_bsl_i2c</p>
 </td><td><p>Implements a secondary bootloader in Main overriding the ROM BSL</p>
-</td><td align="center"><p><img alt="image423" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image424" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image432" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image433" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>secondary_bsl_spi</p>
 </td><td><p>Implements a secondary bootloader in Main overriding the ROM BSL</p>
-</td><td align="center"><p><img alt="image425" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image426" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image434" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image435" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>secondary_bsl_uart</p>
 </td><td><p>Implements a secondary bootloader in Main overriding the ROM BSL</p>
-</td><td align="center"><p><img alt="image427" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image428" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image436" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image437" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image438" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="cmsis-dsp">
 <h3>2.7 CMSIS-DSP<a class="headerlink" href="#cmsis-dsp" title="Permalink to this heading">¶</a></h3>
@@ -1743,19 +1790,46 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>cmsis_dsp_empty</p>
 </td><td><p>Empty example using CMSIS-DSP</p>
-</td><td align="center"><p><img alt="image429" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image430" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image439" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image440" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>cmsis_dsp_fft_q15</p>
 </td><td><p>FFT of fixed point array using CMSIS-DSP</p>
-</td><td align="center"><p><img alt="image431" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image432" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image441" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image442" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
+<section id="uart-communication-module">
+<h3>2.8 UART COMMUNICATION MODULE<a class="headerlink" href="#uart-communication-module" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 Communication Modules - UART module provides a simple way for the application developer to integrate UART based communication module for communication.</p>
+<p>The MSPM0 SDK includes easy-to-use examples for Controller and Target.</p>
+<section id="id1">
+<h4>2.8.1 Universal Asynchronous Receiver-Transmitter (UART)<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
+</th><th rowspan="2"><p>Description</p>
+</th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
+</p></th></tr><tr><th><p>LP_MSPM0G3507</p>
+</th><th><p>LP_MSPM0L1306</p>
+</th><th><p>LP_MSPM0C1104</p>
+</th><th><p>LP_MSPM0L2228</p>
+</th></tr><tr><td><p>controller</p>
+</td><td><p>Generic UART Communication Module - Controller code</p>
+</td><td align="center"><p><img alt="image443" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>target</p>
+</td><td><p>Generic UART Communication Module - Target code</p>
+</td><td align="center"><p><img alt="image444" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr></table></section>
+</section>
 <section id="dali">
-<h3>2.8 DALI<a class="headerlink" href="#dali" title="Permalink to this heading">¶</a></h3>
+<h3>2.9 DALI<a class="headerlink" href="#dali" title="Permalink to this heading">¶</a></h3>
 <p>MSPM0 supports the DALI Protocol via the UART module. DALI (Digitally Addressable Lighting Interface) is a serial protocol for digital lighting control that allows for simple and efficient communication between various lighting application gear and controllers.</p>
 <p>The MSPM0 SDK includes the source code and examples showing the implementation of supported solutions.</p>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
@@ -1768,16 +1842,16 @@
 </th></tr><tr><td><p>dali_led_demo</p>
 </td><td><p>Demonstrates usage of DALI protocol with an LED control demo</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image433" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image445" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="eeprom">
-<h3>2.9 EEPROM<a class="headerlink" href="#eeprom" title="Permalink to this heading">¶</a></h3>
+<h3>2.10 EEPROM<a class="headerlink" href="#eeprom" title="Permalink to this heading">¶</a></h3>
 <p>MSPM0 supports EEPROM emulation through its internal Flash. Compared to using an external serial EEPROM, EEPROM emulation using the internal Flash saves pin usage and cost.</p>
 <p>The MSPM0 SDK includes a library and examples showing the implementation of supported solutions.</p>
 <section id="type-a">
-<h4>2.9.1 Type-A<a class="headerlink" href="#type-a" title="Permalink to this heading">¶</a></h4>
+<h4>2.10.1 Type-A<a class="headerlink" href="#type-a" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1799,7 +1873,7 @@
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="type-b">
-<h4>2.9.2 Type-B<a class="headerlink" href="#type-b" title="Permalink to this heading">¶</a></h4>
+<h4>2.10.2 Type-B<a class="headerlink" href="#type-b" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1822,11 +1896,27 @@
 </td></tr></table></section>
 </section>
 <section id="energy-library">
-<h3>2.10 Energy Library<a class="headerlink" href="#energy-library" title="Permalink to this heading">¶</a></h3>
+<h3>2.11 Energy Library<a class="headerlink" href="#energy-library" title="Permalink to this heading">¶</a></h3>
 <p>The MSPM0 SDK includes a collection of energy measurement examples designed to get you started quickly in testing and developing energy measurement applications.</p>
 <p>Stay tuned for more examples and functionality coming soon.</p>
-<section id="tida-010243">
-<h4>2.10.1 TIDA_010243<a class="headerlink" href="#tida-010243" title="Permalink to this heading">¶</a></h4>
+<section id="split-phase">
+<h4>2.11.1 Split-phase<a class="headerlink" href="#split-phase" title="Permalink to this heading">¶</a></h4>
+<table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
+</th><th rowspan="2"><p>Description</p>
+</th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
+</p></th></tr><tr><th><p>LP_MSPM0G3507</p>
+</th><th><p>LP_MSPM0L1306</p>
+</th><th><p>LP_MSPM0C1104</p>
+</th><th><p>LP_MSPM0L2228</p>
+</th></tr><tr><td><p>TIDA_010944_SW</p>
+</td><td><p>Firmware for Split phase measurement using MSPM0G3507, ADS131M02 and AMC131M03</p>
+</td><td align="center"><p><img alt="image446" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr></table></section>
+<section id="three-phase">
+<h4>2.11.2 Three-phase<a class="headerlink" href="#three-phase" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1835,19 +1925,19 @@
 </th><th><p>LP_MSPM0C1104</p>
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>TIDA_010243_SW</p>
-</td><td><p>Firmware for 3 phase measurement using MSPM0G3507 and ADS131M0x</p>
-</td><td align="center"><p><img alt="image434" src="../_images/ex_sysconfig.png" /></p>
+</td><td><p>Firmware for 3 phase measurement using MSPM0G3507 and ADS131M08</p>
+</td><td align="center"><p><img alt="image447" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="gui-composer">
-<h3>2.11 GUI Composer<a class="headerlink" href="#gui-composer" title="Permalink to this heading">¶</a></h3>
+<h3>2.12 GUI Composer<a class="headerlink" href="#gui-composer" title="Permalink to this heading">¶</a></h3>
 <p>GUI Composer is a browser-based tool for developing PC-side HTML-based GUIs that can complement your embedded project or application.</p>
 <p>The MSPM0 SDK includes a library and various examples showing the implementation of supported protocols.</p>
 <section id="streaming-protocols">
-<h4>2.11.1 Streaming Protocols<a class="headerlink" href="#streaming-protocols" title="Permalink to this heading">¶</a></h4>
+<h4>2.12.1 Streaming Protocols<a class="headerlink" href="#streaming-protocols" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1857,24 +1947,24 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>gc_simple_json</p>
 </td><td><p>Demonstrates basic usage of GUI Composer communication using JSON-formatted strings</p>
-</td><td align="center"><p><img alt="image435" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image436" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image448" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image449" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>gc_simple_messagepack</p>
 </td><td><p>Demonstrates basic usage of GUI Composer communication using MessagePack protocol</p>
-</td><td align="center"><p><img alt="image437" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image438" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image450" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image451" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="iqmath">
-<h3>2.12 IQMath<a class="headerlink" href="#iqmath" title="Permalink to this heading">¶</a></h3>
+<h3>2.13 IQMath<a class="headerlink" href="#iqmath" title="Permalink to this heading">¶</a></h3>
 <p>IQMath is a collection of highly optimized and high-precision fixed-point mathematical functions.</p>
 <p>The MSPM0 SDK includes IQMath support using simple C runtime-system (RTS) functions, and leveraging the MathAcl hardware accelerator.</p>
 <section id="compiler-rts-library">
-<h4>2.12.1 Compiler RTS library<a class="headerlink" href="#compiler-rts-library" title="Permalink to this heading">¶</a></h4>
+<h4>2.13.1 Compiler RTS library<a class="headerlink" href="#compiler-rts-library" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1884,13 +1974,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>iqmath_rts_ops_test</p>
 </td><td><p>Implements various fixed-point operations leveraging the RTS implementation of IQMath</p>
-</td><td align="center"><p><img alt="image439" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image440" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image452" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image453" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="mathacl">
-<h4>2.12.2 MathACL<a class="headerlink" href="#mathacl" title="Permalink to this heading">¶</a></h4>
+<h4>2.13.2 MathACL<a class="headerlink" href="#mathacl" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1900,14 +1990,14 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>iqmath_mathacl_ops_test</p>
 </td><td><p>Implements various fixed-point operations leveraging the MathACL implementation of IQMath</p>
-</td><td align="center"><p><img alt="image441" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image454" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="rtos-kernel">
-<h3>2.13 RTOS Kernel<a class="headerlink" href="#rtos-kernel" title="Permalink to this heading">¶</a></h3>
+<h3>2.14 RTOS Kernel<a class="headerlink" href="#rtos-kernel" title="Permalink to this heading">¶</a></h3>
 <p>The MSPM0 SDK includes a collection of examples to test kernel functionality.</p>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
@@ -1918,23 +2008,23 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>blink_led</p>
 </td><td><p>Simple FreeRTOS LED blinky demo using two tasks</p>
-</td><td align="center"><p><img alt="image442" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image443" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image455" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image456" src="../_images/ex_sysconfig.png" /></p>
 </td></tr><tr><td><p>posix_demo</p>
 </td><td><p>Simple Posix FreeRTOS blinky LED demo</p>
-</td><td align="center"><p><img alt="image444" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image445" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image457" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
+</td><td align="center"><p><img alt="image458" src="../_images/ex_sysconfig.png" /></p>
 </td></tr></table></section>
 <section id="lin">
-<h3>2.14 LIN<a class="headerlink" href="#lin" title="Permalink to this heading">¶</a></h3>
+<h3>2.15 LIN<a class="headerlink" href="#lin" title="Permalink to this heading">¶</a></h3>
 <p>The Local Interconnect Network (LIN) is a multipoint, low-cost, easily-implemented communication bus commonly used in automobiles.</p>
 <p>The MSPM0 SDK includes easy-to-use examples for Commander and Responder.</p>
 <section id="commander">
-<h4>2.14.1 Commander<a class="headerlink" href="#commander" title="Permalink to this heading">¶</a></h4>
+<h4>2.15.1 Commander<a class="headerlink" href="#commander" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1944,13 +2034,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>lin_commander</p>
 </td><td><p>Demonstrates basic implementation of LIN commander to transmit and receive LIN 2.0 packets using UART</p>
-</td><td align="center"><p><img alt="image446" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image447" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image448" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image459" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image460" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image461" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="responder">
-<h4>2.14.2 Responder<a class="headerlink" href="#responder" title="Permalink to this heading">¶</a></h4>
+<h4>2.15.2 Responder<a class="headerlink" href="#responder" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1960,18 +2050,18 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>lin_responder</p>
 </td><td><p>Demonstrates basic implementation of LIN responder to transmit and receive LIN 2.0 packets using UART</p>
-</td><td align="center"><p><img alt="image449" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image450" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image451" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image462" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image463" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image464" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="sensored-trap-hall-motor-control">
-<h3>2.15 Sensored Trap Hall Motor Control<a class="headerlink" href="#sensored-trap-hall-motor-control" title="Permalink to this heading">¶</a></h3>
+<h3>2.16 Sensored Trap Hall Motor Control<a class="headerlink" href="#sensored-trap-hall-motor-control" title="Permalink to this heading">¶</a></h3>
 <p>The MSPM0 SDK includes examples to evaluate the sensored trap hall motor control library with the DRV8300DRGEEVM, DRV8311HEVM, DRV8316REVM, DRV8317HEVM, DRV8323RHEVM, DRV8328AEVM, DRV8329AEVM and DRV8353RHEVM. These firmware are designed for a GUI to make testing and evaluation quick for the user.</p>
 <p>Stay tuned for more examples and functionality coming soon.</p>
 <section id="drv8300">
-<h4>2.15.1 DRV8300<a class="headerlink" href="#drv8300" title="Permalink to this heading">¶</a></h4>
+<h4>2.16.1 DRV8300<a class="headerlink" href="#drv8300" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1981,13 +2071,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>drv8300drgeevm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G3507 and drv8300drge EVM GUI</p>
-</td><td align="center"><p><img alt="image452" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image465" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8311">
-<h4>2.15.2 DRV8311<a class="headerlink" href="#drv8311" title="Permalink to this heading">¶</a></h4>
+<h4>2.16.2 DRV8311<a class="headerlink" href="#drv8311" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -1997,13 +2087,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>drv8311hevm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G3507 and drv8311h EVM GUI</p>
-</td><td align="center"><p><img alt="image453" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image466" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8316">
-<h4>2.15.3 DRV8316<a class="headerlink" href="#drv8316" title="Permalink to this heading">¶</a></h4>
+<h4>2.16.3 DRV8316<a class="headerlink" href="#drv8316" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2013,13 +2103,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>drv8316revm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G3507 and DRV8316R EVM GUI</p>
-</td><td align="center"><p><img alt="image454" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image467" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8317">
-<h4>2.15.4 DRV8317<a class="headerlink" href="#drv8317" title="Permalink to this heading">¶</a></h4>
+<h4>2.16.4 DRV8317<a class="headerlink" href="#drv8317" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2029,13 +2119,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>drv8317hevm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G3507 and drv8317h EVM GUI</p>
-</td><td align="center"><p><img alt="image455" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image468" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8323">
-<h4>2.15.5 DRV8323<a class="headerlink" href="#drv8323" title="Permalink to this heading">¶</a></h4>
+<h4>2.16.5 DRV8323<a class="headerlink" href="#drv8323" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2045,13 +2135,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>drv8323rhevm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G3507 and drv8323rh EVM GUI</p>
-</td><td align="center"><p><img alt="image456" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image469" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8328">
-<h4>2.15.6 DRV8328<a class="headerlink" href="#drv8328" title="Permalink to this heading">¶</a></h4>
+<h4>2.16.6 DRV8328<a class="headerlink" href="#drv8328" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2061,19 +2151,19 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>drv8328aevm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G3507 and DRV8328A EVM GUI</p>
-</td><td align="center"><p><img alt="image457" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image470" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>tida-010251-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G1507 and DRV8328 motor driver</p>
-</td><td align="center"><p><img alt="image458" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image471" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8329">
-<h4>2.15.7 DRV8329<a class="headerlink" href="#drv8329" title="Permalink to this heading">¶</a></h4>
+<h4>2.16.7 DRV8329<a class="headerlink" href="#drv8329" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2083,19 +2173,19 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>drv8329aevm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G3507 and DRV8329A EVM GUI</p>
-</td><td align="center"><p><img alt="image459" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image472" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>drv8329aevm-gui-firmware-MSPM0L1306</p>
 </td><td><p>Firmware for LP_MSPM0L1306 and DRV8329A EVM GUI</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image460" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image473" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8353">
-<h4>2.15.8 DRV8353<a class="headerlink" href="#drv8353" title="Permalink to this heading">¶</a></h4>
+<h4>2.16.8 DRV8353<a class="headerlink" href="#drv8353" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2105,18 +2195,18 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>drv8353rhevm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0G3507 and drv8353rh EVM GUI</p>
-</td><td align="center"><p><img alt="image461" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image474" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="sensorless-foc-motor-control">
-<h3>2.16 Sensorless FOC Motor Control<a class="headerlink" href="#sensorless-foc-motor-control" title="Permalink to this heading">¶</a></h3>
+<h3>2.17 Sensorless FOC Motor Control<a class="headerlink" href="#sensorless-foc-motor-control" title="Permalink to this heading">¶</a></h3>
 <p>The MSPM0 SDK includes examples to evaluate the sensorless FOC motor control library with the DRV8323RS EVM. These firmware are designed for a GUI to make testing and evaluation quick for the user.</p>
 <p>Stay tuned for more examples and functionality coming soon.</p>
-<section id="id1">
-<h4>2.16.1 DRV8316<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<section id="id2">
+<h4>2.17.1 DRV8316<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2126,13 +2216,13 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>sensorless-foc_DRV8316</p>
 </td><td><p>Sensorless FOC code for LP_MSPM0G3507</p>
-</td><td align="center"><p><img alt="image462" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image475" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8323rs">
-<h4>2.16.2 DRV8323RS<a class="headerlink" href="#drv8323rs" title="Permalink to this heading">¶</a></h4>
+<h4>2.17.2 DRV8323RS<a class="headerlink" href="#drv8323rs" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2142,18 +2232,18 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>sensorless-foc_DRV8323RS</p>
 </td><td><p>Sensorless FOC code for LP_MSPM0G3507</p>
-</td><td align="center"><p><img alt="image463" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image476" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="brushed-motor-control">
-<h3>2.17 Brushed Motor Control<a class="headerlink" href="#brushed-motor-control" title="Permalink to this heading">¶</a></h3>
+<h3>2.18 Brushed Motor Control<a class="headerlink" href="#brushed-motor-control" title="Permalink to this heading">¶</a></h3>
 <p>The MSPM0 SDK includes an example to evaluate the brushed motor control library with the DRV8706-Q1 EVM. This firmware was designed for a GUI to make testing and evaluation quick for the user.</p>
 <p>Stay tuned for more examples and functionality coming soon.</p>
 <section id="drv8706-q1">
-<h4>2.17.1 DRV8706-Q1<a class="headerlink" href="#drv8706-q1" title="Permalink to this heading">¶</a></h4>
+<h4>2.18.1 DRV8706-Q1<a class="headerlink" href="#drv8706-q1" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2164,17 +2254,17 @@
 </th></tr><tr><td><p>drv8706s-q1evm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0L1306 and DRV8706S-Q1 EVM GUI</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image464" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image477" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="stepper-motor-control">
-<h3>2.18 Stepper Motor Control<a class="headerlink" href="#stepper-motor-control" title="Permalink to this heading">¶</a></h3>
+<h3>2.19 Stepper Motor Control<a class="headerlink" href="#stepper-motor-control" title="Permalink to this heading">¶</a></h3>
 <p>The MSPM0 SDK includes examples to evaluate the stepper motor control library with the DRV8411A and DRV8889-q1 EVM. These firmwares were designed for a GUI to make testing and evaluation quick for the user.</p>
 <p>Stay tuned for more examples and functionality coming soon.</p>
 <section id="drv8411a">
-<h4>2.18.1 DRV8411A<a class="headerlink" href="#drv8411a" title="Permalink to this heading">¶</a></h4>
+<h4>2.19.1 DRV8411A<a class="headerlink" href="#drv8411a" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2185,12 +2275,12 @@
 </th></tr><tr><td><p>drv8411aevm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0L1306 and DRV8411AEVM GUI</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image465" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image478" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="drv8889-q1">
-<h4>2.18.2 DRV8889-Q1<a class="headerlink" href="#drv8889-q1" title="Permalink to this heading">¶</a></h4>
+<h4>2.19.2 DRV8889-Q1<a class="headerlink" href="#drv8889-q1" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2201,13 +2291,13 @@
 </th></tr><tr><td><p>drv8889-q1evm-gui-firmware</p>
 </td><td><p>Firmware for LP_MSPM0L1306 and DRV8889-Q1 EVM GUI</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image466" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image479" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="cookbook">
-<h3>2.19 Cookbook<a class="headerlink" href="#cookbook" title="Permalink to this heading">¶</a></h3>
+<h3>2.20 Cookbook<a class="headerlink" href="#cookbook" title="Permalink to this heading">¶</a></h3>
 <p>The MSPM0 SDK Cookbook contains examples showing more complex functionality implemented with multiple peripherals.</p>
 <p>The examples use DriverLib APIs, and includes full source code and documentation with detailed usage instructions.</p>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
@@ -2219,191 +2309,209 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>adc_dma_ping_pong</p>
 </td><td><p>Capture ADC data into 2 (ping-pong) buffers</p>
-</td><td align="center"><p><img alt="image467" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image468" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image480" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image481" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>adc_to_i2c_target</p>
 </td><td><p>Sample ADC and respond to I2C commands sent by a controller</p>
-</td><td align="center"><p><img alt="image469" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image470" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image482" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image483" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>adc_to_pwm</p>
 </td><td><p>Convert analog voltage to PWM</p>
-</td><td align="center"><p><img alt="image471" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image472" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image484" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image485" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>adc_to_spi_peripheral</p>
 </td><td><p>Sample ADC and respond to SPI commands sent by a controller</p>
-</td><td align="center"><p><img alt="image473" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image474" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image486" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image487" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>adc_to_uart</p>
 </td><td><p>Configures the ADC0 to trigger single conversion and send the ADC data through UART</p>
-</td><td align="center"><p><img alt="image475" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image476" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image488" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image489" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>can_to_i2c_controller_bridge</p>
 </td><td><p>Bridge between CAN interface and I2C controller interface</p>
-</td><td align="center"><p><img alt="image477" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image490" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>can_to_i2c_target_bridge</p>
 </td><td><p>Bridge between CAN interface and I2C target interface</p>
-</td><td align="center"><p><img alt="image478" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image491" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>can_to_spi_bridge</p>
 </td><td><p>Bridge between CAN interface and SPI interface</p>
-</td><td align="center"><p><img alt="image479" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image492" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>can_to_uart_bridge</p>
 </td><td><p>Bridge between CAN interface and UART interface</p>
-</td><td align="center"><p><img alt="image480" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image493" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>dac8_dma_function_generator</p>
 </td><td><p>Generates waveform using DAC8 with the DMA</p>
-</td><td align="center"><p><img alt="image481" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image482" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image494" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image495" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>data_sensor_aggregator</p>
 </td><td><p>This example reads all the sensors on the BP-BASSENSORSMKI using I2C then transmits all of the data through UART to the MSPM0.</p>
-</td><td align="center"><p><img alt="image483" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image496" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>digital_mux</p>
 </td><td><p>Emulate a digital mux with GPIO</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image484" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image497" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>diode_matrix</p>
 </td><td><p>Drive LEDs with fewer pins using diode matrix</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image485" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image498" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>fir_low_pass_filter</p>
 </td><td><p>Applies digital FIR low-pass filter to sampled ADC signals</p>
-</td><td align="center"><p><img alt="image486" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image499" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>i2c_to_uart_bridge</p>
 </td><td><p>I2C Target receives I2C transmissions and passes them on via UART</p>
-</td><td align="center"><p><img alt="image487" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image500" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>iir_low_pass_filter</p>
 </td><td><p>Applies digital IIR filter to sampled ADC signals</p>
-</td><td align="center"><p><img alt="image488" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image501" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>io_expander_i2c_host</p>
+</td><td><p>Example I2C host controller</p>
+</td><td align="center"><p><img alt="image502" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image503" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>io_expander_i2c_target</p>
+</td><td><p>Example I2C IO expander target</p>
+</td><td align="center"><p><img alt="image504" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image505" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>io_expander_uart</p>
 </td><td><p>Capture several GPIOs’ status, update and send the status to host through UART</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image489" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image506" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>power_sequencing</p>
 </td><td><p>This sub system allows for different pins/applications be turned on/off in a sequence as to not over load the device from simultaneous power consumption.</p>
-</td><td align="center"><p><img alt="image490" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image491" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image507" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image508" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>programmable_gain_amplifier_1</p>
 </td><td><p>Use programmable gain amplifier to dynamically adjust gain</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image492" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image509" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>programmable_gain_amplifier_2</p>
 </td><td><p>Use programmable gain amplifier to dynamically adjust gain and capture values with integrated ADC</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image493" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image510" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>pushbutton_change_pwm</p>
 </td><td><p>This example demonstrates using the two switches on the MSPM0 Launchpad to change the period and duty cycle on TIMA1 PWM output channels CC0 and CC1.</p>
-</td><td align="center"><p><img alt="image494" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image511" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>pwm_dac</p>
 </td><td><p>Use a timer to create a PWM DAC</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image495" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image512" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>pwm_led_driver</p>
 </td><td><p>Create a pulsating LED effect using timers</p>
-</td><td align="center"><p><img alt="image496" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image497" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image513" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image514" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>signal_acquisition</p>
 </td><td><p>OPA supports two different sensor input voltages and uses common ADC channel</p>
-</td><td align="center"><p><img alt="image498" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image515" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td><td align="center"><p>N</p>
+</td></tr><tr><td><p>spi_to_can_bridge</p>
+</td><td><p>Demonstrate SPI to CAN bridge</p>
+</td><td align="center"><p><img alt="image516" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>task_scheduler</p>
 </td><td><p>A simple run to completion task scheduler</p>
-</td><td align="center"><p><img alt="image499" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image500" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image517" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image518" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>temp_sense_thermistor</p>
 </td><td><p>Sample LaunchPad thermistor using integrated Op-Amp and ADC</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image501" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image519" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>transimpedance_amplifier</p>
 </td><td><p>Configure Op-amp in transimpedance amplifier topology</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image502" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image520" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>two_opa_instrumentation_amplifier</p>
 </td><td><p>Along with an external circuit this code amplifies the difference between two voltage inputs and outputs a single ended signal while rejecting the common-mode voltage.</p>
-</td><td align="center"><p><img alt="image503" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image504" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image521" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image522" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>uart_to_i2c_bridge</p>
 </td><td><p>Translates UART packets to multiple I2C devices</p>
-</td><td align="center"><p><img alt="image505" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image506" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image523" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image524" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>uart_to_spi_bridge</p>
 </td><td><p>UART device receives packets and passes them on or executes reads in SPI format</p>
-</td><td align="center"><p><img alt="image507" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image525" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="pmbus">
-<h3>2.20 PMBUS<a class="headerlink" href="#pmbus" title="Permalink to this heading">¶</a></h3>
+<h3>2.21 PMBUS<a class="headerlink" href="#pmbus" title="Permalink to this heading">¶</a></h3>
 <p>PMBus is a protocol design to interface with power management devices. It uses the SMBus protocol as a base.</p>
 <p>The MSPM0 SDK includes a ready-to-go example for using an MSPM0 devices as a PMBus controller for a TPS544B20 device.</p>
 <section id="controller">
-<h4>2.20.1 Controller<a class="headerlink" href="#controller" title="Permalink to this heading">¶</a></h4>
+<h4>2.21.1 Controller<a class="headerlink" href="#controller" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2413,14 +2521,14 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>pmbus_controller_tps544b20evm</p>
 </td><td><p>Use MSPM0 to configure TPS544B20EVM over PMBus</p>
-</td><td align="center"><p><img alt="image508" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image509" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image526" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image527" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="sasi-smoke-detector">
-<h3>2.21 SASI_SMOKE_DETECTOR<a class="headerlink" href="#sasi-smoke-detector" title="Permalink to this heading">¶</a></h3>
+<h3>2.22 SASI_SMOKE_DETECTOR<a class="headerlink" href="#sasi-smoke-detector" title="Permalink to this heading">¶</a></h3>
 <p>MSPM0 supports analog front ends for chambered or chamberless smoke detectors and air quality sensing solutions.</p>
 <p>The MSPM0 SDK includes a software library and reference examples for smoke detection and air quality sensing.</p>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
@@ -2444,11 +2552,11 @@
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="sent">
-<h3>2.22 SENT<a class="headerlink" href="#sent" title="Permalink to this heading">¶</a></h3>
+<h3>2.23 SENT<a class="headerlink" href="#sent" title="Permalink to this heading">¶</a></h3>
 <p>The Single Edge Nibble Transmission (SENT) is a unidirectional communication standard used in automotive networks.</p>
 <p>The MSPM0 SDK includes easy-to-use examples for transmitting a SENT frame.</p>
 <section id="transmit">
-<h4>2.22.1 Transmit<a class="headerlink" href="#transmit" title="Permalink to this heading">¶</a></h4>
+<h4>2.23.1 Transmit<a class="headerlink" href="#transmit" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2459,17 +2567,17 @@
 </th></tr><tr><td><p>sent_transmit</p>
 </td><td><p>Demonstrates basic implementation of SENT protocol</p>
 </td><td align="center"><p>N</p>
-</td><td align="center"><p><img alt="image510" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image528" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 </section>
 <section id="smbus">
-<h3>2.23 SMBus<a class="headerlink" href="#smbus" title="Permalink to this heading">¶</a></h3>
+<h3>2.24 SMBus<a class="headerlink" href="#smbus" title="Permalink to this heading">¶</a></h3>
 <p>The System Management Bus (SMBus) is a single-ended simple two-wire bus for lightweight communication.</p>
 <p>The MSPM0 SDK includes easy-to-use examples for Controller and Target.</p>
-<section id="id2">
-<h4>2.23.1 Controller<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<section id="id3">
+<h4>2.24.1 Controller<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2479,19 +2587,19 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>smb_controller00_all_protocols</p>
 </td><td><p>Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 protocols using I2C</p>
-</td><td align="center"><p><img alt="image511" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image512" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image529" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image530" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>smbus_controller_host_notify</p>
 </td><td><p>Demonstrates implementation of SMBus Host Notify function on a Controller</p>
-</td><td align="center"><p><img alt="image513" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image514" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image531" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image532" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
 <section id="target">
-<h4>2.23.2 Target<a class="headerlink" href="#target" title="Permalink to this heading">¶</a></h4>
+<h4>2.24.2 Target<a class="headerlink" href="#target" title="Permalink to this heading">¶</a></h4>
 <table class="docutils align-default"><tr><th rowspan="2"><p>Project Name</p>
 </th><th rowspan="2"><p>Description</p>
 </th><th colspan="2"><p style="text-align: center;"><p>EVM</p>
@@ -2501,14 +2609,14 @@
 </th><th><p>LP_MSPM0L2228</p>
 </th></tr><tr><td><p>smb_target00_all_protocols</p>
 </td><td><p>Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocols using I2C</p>
-</td><td align="center"><p><img alt="image515" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image516" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image533" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image534" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr><tr><td><p>smbus_target_host_notify</p>
 </td><td><p>Demonstrates implementation of SMBus Host Notify function on a Target</p>
-</td><td align="center"><p><img alt="image517" src="../_images/ex_sysconfig.png" /></p>
-</td><td align="center"><p><img alt="image518" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image535" src="../_images/ex_sysconfig.png" /></p>
+</td><td align="center"><p><img alt="image536" src="../_images/ex_sysconfig.png" /></p>
 </td><td align="center"><p>N</p>
 </td><td align="center"><p>N</p>
 </td></tr></table></section>
@@ -2527,7 +2635,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

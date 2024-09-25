@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UART Communication User Guide &mdash; Sensorless FOC Motor Control User Guide 1.0 documentation</title>
+  <title>UART Communication User Guide &mdash; Sensorless FOC Motor Control User Guide 2.00.00.xx documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> Sensorless FOC Motor Control User Guide
           </a>
               <div class="version">
-                1.0
+                2.00.00.xx
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -80,6 +80,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8316 Gate Driver User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/DRV8329_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8329 Gate Driver User Guide</a></li>
 </ul>
 
         </div>
@@ -193,7 +194,7 @@
 <figure class="align-default" id="id3">
 <img alt="UART command frame" src="../_images/UART_COMM_COMMAND_FRAME.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">UART command frame</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">UART command frame</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p><strong>START:</strong> The first byte indicates the initiation of frame (0x68 by default, but can be modified by setting FRAME_START_BYTE).</p>
@@ -202,7 +203,7 @@
 <figure class="align-default" id="id4">
 <img alt="UART control Byte" src="../_images/UART_COMM_CNTRL_BYTE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -220,7 +221,7 @@
 <figure class="align-default" id="id5">
 <img alt="UART control Byte" src="../_images/UART_COMM_RESPONSE_FRAME.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -229,7 +230,7 @@
 <figure class="align-default" id="id6">
 <img alt="UART control Byte" src="../_images/UART_COMM_RESPONSE_CNTRL_BYTE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -271,7 +272,7 @@
 <figure class="align-default" id="id7">
 <img alt="Example for 32bit Write" src="../_images/UART_EG_32_WRITE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Example for 32bit Write</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Example for 32bit Write</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <section id="control-byte">
@@ -279,7 +280,7 @@
 <figure class="align-default" id="id8">
 <img alt="Control Byte for 32bit Write" src="../_images/UART_EG_32_WRITE_CNTRL.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Control Byte for 32bit Write</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Control Byte for 32bit Write</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -288,14 +289,14 @@
 <figure class="align-default" id="id9">
 <img alt="Response for 32bit Write" src="../_images/UART_EG_32_WRITE_RESPONSE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Response for 32bit Write</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Response for 32bit Write</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>0xAC in response for a write command represents the write is successful.</p>
 <figure class="align-default" id="id10">
 <img alt="Response for 32bit Write" src="../_images/UART_EG_32_WRITE_MEMORY.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Response for 32bit Write</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Response for 32bit Write</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -306,7 +307,7 @@
 <figure class="align-default" id="id11">
 <img alt="Example for 32bit Read" src="../_images/UART_EG_32_READ.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Example for 32bit Read</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Example for 32bit Read</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <section id="id1">
@@ -314,7 +315,7 @@
 <figure class="align-default" id="id12">
 <img alt="Control Byte for 32bit Read" src="../_images/UART_EG_32_READ_CNTRL.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Control Byte for 32bit Read</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Control Byte for 32bit Read</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -323,7 +324,7 @@
 <figure class="align-default" id="id13">
 <img alt="Response for 32bit Read" src="../_images/UART_EG_32_READ_RESPONSE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Response for 32bit Read</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Response for 32bit Read</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -348,7 +349,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

@@ -150,6 +150,13 @@ extern "C" {
  */
 #define DL_INTERRUPT_GROUP1_IIDX_TRNG           (CPUSS_INT_GROUP_IIDX_STAT_INT5)
 
+/*!
+ *  @brief GPIOC Interrupt in Group 1
+ *  @note This is a device specific interrupt. Please consult the device TRM to
+ *        determine if the interrupt is enabled as part of Group 1 interrupts.
+ */
+#define DL_INTERRUPT_GROUP1_IIDX_GPIOC          (CPUSS_INT_GROUP_IIDX_STAT_INT6)
+
 /** @}*/
 
 /** @addtogroup DL_INTERRUPT_GROUP_INTERRUPTS

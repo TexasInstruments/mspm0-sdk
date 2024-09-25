@@ -1,7 +1,7 @@
 Sensorless FOC - DRV8323RS Gate Driver User Guide
 =================================================
 
-This User Guide outlines the usage of DRV8323RS gatedriver along with the sensorless FOC Application running on MSPM0.
+This User Guide outlines the usage of DRV8323RS gate driver along with the sensorless FOC Application running on MSPM0.
 
 1. Hardware Required
 --------------------
@@ -95,13 +95,13 @@ This User Guide outlines the usage of DRV8323RS gatedriver along with the sensor
 
 5. Connect the positive and negative of the power supply to VM and GND of the power connector terminal block.
 
-6. Set the power supply to to a motor voltage between 4.5V to 48V within the DRV8323RS specifications and a 15-A current limit.
+6. Set the power supply to a motor voltage between 4.5V to 48V within the DRV8323RS specifications and a 15-A current limit.
 
 7. Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.
 
 8. Turn on the power supply. The green VM LED on the BOOSTXL-DRV8323RS should turn on.
 
-9. Once all steps are completed, you can start to run the motor. Please refer to `Software User Guide <../MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html>`__ or or `FOC Tuning Guide <https://www.ti.com/lit/pdf/SLAU927>`__
+9. Once all steps are completed, you can start to run the motor. Please refer to `Software User Guide <../MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html>`__ or `FOC Tuning Guide <https://www.ti.com/lit/pdf/SLAU927>`__
 
 3. Gatedriver Register Configurations
 -------------------------------------

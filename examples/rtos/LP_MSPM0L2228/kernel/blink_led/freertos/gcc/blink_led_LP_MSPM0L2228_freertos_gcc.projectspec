@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L2228"
+            />
+        </when>
+    </applicability>
+
+    <import spec="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/builds/LP_MSPM0L2228/release/gcc/freertos_builds_LP_MSPM0L2228_release_gcc.projectspec"/>
+
+    <project
+        title="blink_led"
+        name="blink_led_LP_MSPM0L2228_freertos_gcc"
+        configurations="Debug"
+        toolChain="GNU"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L2228"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        references="freertos_builds_LP_MSPM0L2228_release_gcc"
+        products="sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__MSPM0L2228__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/GCC/ARM_CM0
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/posix/gcc
+            -I${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L2228_release_gcc
+            -mcpu=cortex-m0plus
+            -march=armv6-m
+            -mthumb
+            -std=c99
+            -std=c++11
+            -mfloat-abi=soft
+            -ffunction-sections
+            -fdata-sections
+            -g
+            -gstrict-dwarf
+            -Wall
+            -I${CG_TOOL_ROOT}/arm-none-eabi/include/newlib-nano
+            -I${CG_TOOL_ROOT}/arm-none-eabi/include
+        "
+        linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0l122x_l222x
+            -nostartfiles
+            -l:driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -L${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L2228_release_gcc/Debug
+            -l:libfreertos_builds_LP_MSPM0L2228_release_gcc.a
+            -march=armv6-m
+            -mthumb
+            -static
+            -Wl,--gc-sections
+            -L${CG_TOOL_ROOT}/arm-none-eabi/lib/thumb/v6-m/nofp
+            -lgcc
+            -lc
+            -lm
+            -lnosys
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler gcc
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Simple FreeRTOS LED blinky demo using two tasks">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../main-blinky.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../syscfg_c.rov.xs" openOnCreation="false" excludeFromBuild="true" action="copy">
+        </file>
+        <file path="../../blink_led.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../freertos/gcc/mspm0l2228.lds" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../../freertos/gcc/startup_mspm0l222x_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="freertos/gcc">
+        </file>
+    </project>
+</projectSpec>

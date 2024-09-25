@@ -37,6 +37,8 @@ let interruptOptions = [
 
 let mcanClk = 0;
 
+let mcan_ram_max_size_bytes = 1024
+
 function onChangeUseTdc(inst, ui)
 {
     if (inst.tdcEnable) {
@@ -372,9 +374,10 @@ function calcAllBitTim(inst, mcan_freq){
     }
 
     // Actual sample point calculation
-    sample_point_a = ((Phase_seg1_a + 2)/(Phase_seg1_a + Phase_seg2_a + 2))*100;
+    // Sync segment is fixed to 1
+    sample_point_a = ((Phase_seg1_a + 1)/(Phase_seg1_a + Phase_seg2_a + 1))*100;
     if (inst.brsEnable){
-        sample_point_d = ((Phase_seg1_d + 2)/(Phase_seg1_d + Phase_seg2_d + 2))*100;
+        sample_point_d = ((Phase_seg1_d + 1)/(Phase_seg1_d + Phase_seg2_d + 1))*100;
     }
 
     // CAN bit timing = (sync_seg) + (prop_seg + phase_seg_1) ^ + (phase_seg_2)
@@ -569,7 +572,22 @@ let config = [
                 hidden: true,
                 default: "",
                 getValue: (inst) => {
-                    return system.modules["/ti/driverlib/SYSCTL"].$static.CANCLKSource;
+                    if(system.modules["/ti/driverlib/SYSCTL"].$static.clockTreeEn) {
+                        let muxes = system.modules['/ti/clockTree/mux.js'].$instances;
+                        for(let mux in muxes) {
+                            if(muxes[mux].$name == "CANCLKMUX") {
+                                if(muxes[mux].inputSelect == "zCANCLKMUX_HFCLK") {
+                                    return "HFCLK";
+                                }
+                                else {
+                                    return "SYSPLLCLK1";
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        return system.modules["/ti/driverlib/SYSCTL"].$static.CANCLKSource;
+                    }
                 }
 
             },
@@ -1087,6 +1105,7 @@ let config = [
                             hidden      : false,
                             default     : 0x0,
                             isInteger   : true,
+                            range       : [0, mcan_ram_max_size_bytes]
                         },
                         {
                             name        : "lss",
@@ -1163,6 +1182,7 @@ let config = [
                             hidden      : false,
                             default     : 48,
                             isInteger   : true,
+                            range       : [0, mcan_ram_max_size_bytes]
                         },
                         {
                             name        : "lse",
@@ -1238,6 +1258,7 @@ let config = [
                             hidden      : false,
                             default     : 148,
                             isInteger   : true,
+                            range       : [0, mcan_ram_max_size_bytes]
                         },
                         {
                             name        : "txBufNum",
@@ -1281,6 +1302,7 @@ let config = [
                             hidden      : false,
                             default     : 164,
                             isInteger   : true,
+                            range       : [0, mcan_ram_max_size_bytes]
                         },
                         {
                             name        : "txEventFIFOSize",
@@ -1309,8 +1331,9 @@ let config = [
                             displayName : "RX FIFO0 Start Address",
                             description : 'RX FIFO0 Start Address.',
                             hidden      : false,
-                            default     : 170,
+                            default     : 172,
                             isInteger   : true,
+                            range       : [0, mcan_ram_max_size_bytes]
                         },
                         {
                             name        : "rxFIFO0size",
@@ -1341,8 +1364,9 @@ let config = [
                             displayName : "RX FIFO1 Start Address",
                             description : 'RX FIFO1 Start Address.',
                             hidden      : false,
-                            default     : 190,
+                            default     : 192,
                             isInteger   : true,
+                            range       : [0, mcan_ram_max_size_bytes]
                         },
                         {
                             name        : "rxFIFO1size",
@@ -1375,6 +1399,7 @@ let config = [
                             hidden      : false,
                             default     : 208,
                             isInteger   : true,
+                            range       : [0, mcan_ram_max_size_bytes]
                         },
                         {
                             name        : "rxBufElemSize",
@@ -1620,10 +1645,18 @@ let config = [
 config = config.concat(Common.getGPIOGroupConfig());
 
 function onValidate(inst, validation) {
+
     if(inst.can_clk_freq == 0){
-        validation.logError(
-            "CANCLK must be properly initialized in SYSCTL module",
-            inst, "can_clk_freq_disp");
+        if(system.modules["/ti/driverlib/SYSCTL"].$static.clockTreeEn) {
+            validation.logError(
+                "CANCLK must be properly initialized in Clock Tree",
+                inst, "can_clk_freq_disp");
+        }
+        else {
+            validation.logError(
+                "CANCLK must be properly initialized in SYSCTL module",
+                inst, "can_clk_freq_disp");
+        }
     }
     if (inst.tdcConfig_tdcf < 0 || inst.tdcConfig_tdcf > 0x7F)
     {
@@ -1735,11 +1768,11 @@ function onValidate(inst, validation) {
         }
     }
 
-    if (inst.flssa < 0 || inst.flssa > 16384)
+    if ((inst.flssa % 4) != 0)
     {
         validation.logError(
-            "Standard ID Filter List Start Address must be between 0 and 16384",
-            inst, "flssa");
+            "Standard ID Filter List Start Address must be 32-bit aligned",
+            inst, "flssa")
     }
     if (inst.lss < 0 || inst.lss > 128)
     {
@@ -1755,11 +1788,11 @@ function onValidate(inst, validation) {
         validation.logWarning("SysConfig currently does not support configuration of more than one filter. More filters can be added in the user application, however care must be taken to ensure that enough RAM is allocated during initialization.",
         inst, "lse");
     }
-    if (inst.flesa < 0 || inst.flesa > 16384)
+    if ((inst.flesa % 4) != 0)
     {
         validation.logError(
-            "Extended ID Filter List Start Address must be between 0 and 4352",
-            inst, "flesa");
+            "Extended ID Filter List Start Address must be 32-bit aligned",
+            inst, "flesa")
     }
     if (inst.lse < 0 || inst.lse > 128)
     {
@@ -1767,11 +1800,11 @@ function onValidate(inst, validation) {
             "No of Extended ID Filters must be between 0 and 64",
             inst, "lse");
     }
-    if (inst.txStartAddr < 0 || inst.txStartAddr > 4352)
+    if ((inst.txStartAddr % 4) != 0)
     {
         validation.logError(
-            "Tx Buffers Start Address must be between 0 and 4352",
-            inst, "txStartAddr");
+            "Tx Buffers Start Address must be 32-bit aligned",
+            inst, "txStartAddr")
     }
     if (inst.txBufNum < 0 || inst.txBufNum > 32)
     {
@@ -1791,11 +1824,17 @@ function onValidate(inst, validation) {
             "Tx Event FIFO Size must be between 0 and 32",
             inst, "txEventFIFOSize");
     }
-    if (inst.rxFIFO0startAddr < 0 || inst.rxFIFO0startAddr > 4352)
+    if ((inst.txEventFIFOStartAddr % 4) != 0)
     {
         validation.logError(
-            "Rx FIFO0 Start Address must be between 0 and 4352",
-            inst, "rxFIFO0startAddr");
+            "Tx Event FIFO Start Address must be 32-bit aligned",
+            inst, "txEventFIFOStartAddr")
+    }
+    if ((inst.rxFIFO0startAddr % 4) != 0)
+    {
+        validation.logError(
+            "Rx FIFO0 Start Address must be 32-bit aligned",
+            inst, "rxFIFO0startAddr")
     }
     if (inst.rxFIFO0size < 0 || inst.rxFIFO0size > 64)
     {
@@ -1803,11 +1842,11 @@ function onValidate(inst, validation) {
             "Number of Rx FIFO0 elements must be between 0 and 64",
             inst, "rxFIFO0size");
     }
-    if (inst.rxFIFO1startAddr < 0 || inst.rxFIFO1startAddr > 4352)
+    if ((inst.rxFIFO1startAddr % 4) != 0)
     {
         validation.logError(
-            "Rx FIFO1 Start Address must be between 0 and 4352",
-            inst, "rxFIFO1startAddr");
+            "Rx FIFO1 Start Address must be 32-bit aligned",
+            inst, "rxFIFO1startAddr")
     }
     if (inst.rxFIFO1size < 0 || inst.rxFIFO1size > 64)
     {
@@ -1827,19 +1866,17 @@ function onValidate(inst, validation) {
             "Rx FIFO1 Watermark must be between 0 and 64",
             inst, "rxFIFO1waterMark");
     }
-    if (inst.rxBufStartAddr < 0 || inst.rxBufStartAddr > 4352)
-    {
-        validation.logError(
-            "Rx Buffer Start Address must be between 0 and 4352",
-            inst, "rxBufStartAddr");
-    }
-    let rxBufEndAddr = inst.rxBufStartAddr + (64)*6;
-    let rxFIFO0EndAddr = inst.rxFIFO0startAddr + inst.rxFIFO0size*6;
-    let rxFIFO1EndAddr = inst.rxFIFO1startAddr + inst.rxFIFO1size*6;
-    let txBufEndAddr = inst.txStartAddr + (inst.txBufNum+inst.txFIFOSize)*6;
-    let txEventFIFOEndAddr = inst.txEventFIFOStartAddr + inst.txEventFIFOSize*2;
-    let stdIDEndAddr = inst.flssa + inst.lss*1;
-    let extIDEndAddr = inst.flesa + inst.lse*2;
+    let rxBufElemSizeBytes = parseInt(String(inst.rxBufElemSize).match(/\d/g).join(""))
+    let rxFIFO0ElemSizeBytes = parseInt(String(inst.rxFIFO0ElemSize).match(/\d/g).join(""))
+    let rxFIFO1ElemSizeBytes = parseInt(String(inst.rxFIFO1ElemSize).match(/\d/g).join(""))
+    let txBuffElemSizeBytes = parseInt(String(inst.txBufElemSize).match(/\d/g).join(""))
+    let rxBufEndAddr = inst.rxBufStartAddr + (rxBufElemSizeBytes + 8);
+    let rxFIFO0EndAddr = inst.rxFIFO0startAddr + (inst.rxFIFO0size *(rxFIFO0ElemSizeBytes + 8));
+    let rxFIFO1EndAddr = inst.rxFIFO1startAddr + (inst.rxFIFO1size *(rxFIFO1ElemSizeBytes + 8));
+    let txBufEndAddr = inst.txStartAddr + ((inst.txBufNum+inst.txFIFOSize) * (txBuffElemSizeBytes + 8));
+    let txEventFIFOEndAddr = inst.txEventFIFOStartAddr + (inst.txEventFIFOSize*2);
+    let stdIDEndAddr = inst.flssa + (inst.lss*4);
+    let extIDEndAddr = inst.flesa + (inst.lse*8);
     // TODO Revied if this need to be displayed or not
     validation.logInfo("RX Buffer Start Address "+ String(inst.rxBufStartAddr) + " End Address " + String(rxBufEndAddr), inst, "rxBufStartAddr");
     validation.logInfo("RX FIFO 0 Start Address "+ String(inst.rxFIFO0startAddr) + " End Address " + String(rxFIFO0EndAddr), inst, "rxFIFO0startAddr");
@@ -1850,25 +1887,25 @@ function onValidate(inst, validation) {
     validation.logInfo("Extended ID Filter List Start Address "+ String(inst.flesa) + " End Address " + String(extIDEndAddr), inst, "flesa");
 
     /* MCAN RAM range validation */
-    if(rxBufEndAddr>1000){
+    if(rxBufEndAddr > mcan_ram_max_size_bytes){
         validation.logError("Supported MCAN RAM Range is up to 1kb. End address is currently outside of supported range.", inst, "rxBufStartAddr");
     }
-    if(rxFIFO0EndAddr>1000){
+    if(rxFIFO0EndAddr > mcan_ram_max_size_bytes){
         validation.logError("Supported MCAN RAM Range is up to 1kb. End address is currently outside of supported range.", inst, "rxFIFO0startAddr");
     }
-    if(rxFIFO1EndAddr>1000){
+    if(rxFIFO1EndAddr > mcan_ram_max_size_bytes){
         validation.logError("Supported MCAN RAM Range is up to 1kb. End address is currently outside of supported range.", inst, "rxFIFO1startAddr");
     }
-    if(txBufEndAddr>1000){
+    if(txBufEndAddr > mcan_ram_max_size_bytes){
         validation.logError("Supported MCAN RAM Range is up to 1kb. End address is currently outside of supported range.", inst, "txStartAddr");
     }
-    if(txEventFIFOEndAddr>1000){
+    if(txEventFIFOEndAddr > mcan_ram_max_size_bytes){
         validation.logError("Supported MCAN RAM Range is up to 1kb. End address is currently outside of supported range.", inst, "txEventFIFOStartAddr");
     }
-    if(stdIDEndAddr>1000){
+    if(stdIDEndAddr > mcan_ram_max_size_bytes){
         validation.logError("Supported MCAN RAM Range is up to 1kb. End address is currently outside of supported range.", inst, "flssa");
     }
-    if(extIDEndAddr>1000){
+    if(extIDEndAddr > mcan_ram_max_size_bytes){
         validation.logError("Supported MCAN RAM Range is up to 1kb. End address is currently outside of supported range.", inst, "flesa");
     }
 

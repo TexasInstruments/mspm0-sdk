@@ -21,12 +21,12 @@ const i2cSMBUS1 = i2cSMBUS.addInstance();
  */
 ProjectConfig.genLibSMBUS     = true;
 
-GPIO1.$name                          = "GPIO_LEDS";
-GPIO1.associatedPins[0].$name        = "USER_LED_1";
-GPIO1.associatedPins[0].initialValue = "SET";
-GPIO1.associatedPins[0].assignedPort = "PORTA";
-GPIO1.associatedPins[0].assignedPin  = "13";
-GPIO1.associatedPins[0].pin.$assign  = "PA13";
+GPIO1.$name                         = "SMB_GPIO";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "LED_DEMO";
+GPIO1.associatedPins[0].pin.$assign = "PA13";
+GPIO1.associatedPins[1].$name       = "LED_ERROR";
+GPIO1.associatedPins[1].pin.$assign = "PA26";
 
 GPIO2.$name                              = "GPIO_SWITCHES";
 GPIO2.associatedPins[0].$name            = "USER_SWITCH_1";
@@ -49,7 +49,7 @@ i2cSMBUS1.basicTargetAddress                = 0x43;
 i2cSMBUS1.advTargetAckOverride              = true;
 i2cSMBUS1.enableTargetPECACKNext            = true;
 i2cSMBUS1.enableTargetPEC                   = true;
-i2cSMBUS1.intTarget                         = ["PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_EMPTY"];
+i2cSMBUS1.intTarget                         = ["RXFIFO_TRIGGER","START","STOP","TXFIFO_EMPTY"];
 i2cSMBUS1.timeoutACount                     = 135;
 i2cSMBUS1.basicEnableController             = true;
 i2cSMBUS1.intController                     = ["ARBITRATION_LOST","NACK","RXFIFO_TRIGGER","STOP"];

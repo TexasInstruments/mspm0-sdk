@@ -44,7 +44,7 @@
 // Macros and definitions
 //
 /*! Number of commands implemented in application (except quick command) */
-#define CMD_LIST_LENGHT 1
+#define CMD_LIST_LENGTH 1
 /*! Handler called when a command matches one in our list */
 typedef int8_t (*Cmd_handler_t)(SMBus *);
 
@@ -53,6 +53,7 @@ typedef struct
 {
     uint8_t cmd;                /*! Command address */
     uint8_t mask;               /*! Mask (1 means don't care) */
+    uint16_t length;            /*! Length of command payload (SMBUS_BLOCK_LENGTH if Block command) */
     Cmd_handler_t handler;      /*! Handler called if command is received */
 }t_SMB_Cmd;
 

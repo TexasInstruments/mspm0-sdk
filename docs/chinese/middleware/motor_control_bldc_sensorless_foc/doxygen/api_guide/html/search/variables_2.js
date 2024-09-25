@@ -12,10 +12,10 @@ var searchData=
   ['closeloopfastdecelspeedslewratedecihzpersec',['closeLoopFastDecelSpeedSlewRateDeciHzPerSec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#ac9e4d45856083ddaf003bb96139f89d1',1,'USER_INPUTS_T']]],
   ['closeloopslowaccelspeedslewratedecihzpersec',['closeLoopSlowAccelSpeedSlewRateDeciHzPerSec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#ae6bb407fdc778a0e532c154541363dc7',1,'USER_INPUTS_T']]],
   ['clslowacc',['clSlowAcc',['../structuser_input_misc_algo.html#a30ceac13bfe464832f9c7fb93d5b2e40',1,'userInputMiscAlgo']]],
-  ['controllerfaultstatus',['controllerFaultStatus',['../struct_u_s_e_r___o_u_t_p_u_t_s___t.html#a05fb3df0a719a253e7bddb8c270d09c6',1,'USER_OUTPUTS_T']]],
+  ['controllerfaultstatus',['controllerFaultStatus',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#aac93939dead15efa0ea96b510fcf4206',1,'USER_STATUS_INTERFACE_T']]],
   ['cos',['cos',['../struct_m_c___s_i_n_c_o_s___t.html#a63ea11339786be41d2006828470670d1',1,'MC_SINCOS_T']]],
   ['currentbase',['currentBase',['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#acbe28dbe11b185119b2daf15b7fdbb64',1,'SYSTEM_PARAMETERS_T']]],
-  ['currentpi',['currentPI',['../struct_u_s_e_r___o_u_t_p_u_t_s___t.html#ab6bbe6ba6f75e2c7f97ec86a5590494c',1,'USER_OUTPUTS_T']]],
+  ['currentpi',['currentPI',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a99cf24f90ef81fd54d362fbe93070a6a',1,'USER_STATUS_INTERFACE_T']]],
   ['currloopdis',['currLoopDis',['../structram_algo_debug_ctrl2.html#a59714fb03e77207f722927d7c9947a1b',1,'ramAlgoDebugCtrl2']]],
   ['currloopki',['currLoopKi',['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#af533570b8b05a31e93aa16380088c210',1,'SYSTEM_PARAMETERS_T']]],
   ['currloopkp',['currLoopKp',['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#aba0a9b15385d00e87fafc46e32869c6b',1,'SYSTEM_PARAMETERS_T']]]

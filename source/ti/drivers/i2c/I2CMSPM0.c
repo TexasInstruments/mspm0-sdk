@@ -102,7 +102,7 @@ static void I2CMSPM0_primeWriteBurst(
     I2CMSPM0_Object *object, I2CMSPM0_HWAttrs const *hwAttrs);
 static uint16_t I2CMSPM0_fillTransmitFifo(
     I2CMSPM0_Object *object, I2CMSPM0_HWAttrs const *hwAttrs);
-
+static void I2C_waitTillBusAvailable(I2CMSPM0_HWAttrs const *hwAttrs);
 /* Default I2C parameters structure */
 static const I2C_Params I2C_defaultParams = {
     I2C_MODE_BLOCKING, /* transferMode */
@@ -449,11 +449,17 @@ static void I2CMSPM0_hwiFxn(uintptr_t arg)
             hwAttrs->i2c, DL_I2C_INTERRUPT_CONTROLLER_RX_DONE);
         /*Update the current transaction readCount*/
         object->currentTransaction->readCount = object->readCount;
+        object->isReadInProgress              = false;
     } else if (intStatus & DL_I2C_INTERRUPT_CONTROLLER_TX_DONE) {
         DL_I2C_clearInterruptStatus(
-            hwAttrs->i2c, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+            hwAttrs->i2c, (DL_I2C_INTERRUPT_CONTROLLER_TX_DONE |
+                              DL_I2C_INTERRUPT_CONTROLLER_TXFIFO_TRIGGER));
         /*Update the current transaction writeCount*/
         object->currentTransaction->writeCount = object->writeCount;
+        if (object->readCount) {
+            object->burstStarted = false;
+            I2CMSPM0_primeReadBurst(object, hwAttrs);
+        }
     }
     /* If the STOP condition was set, complete the transfer */
     if (intStatus & DL_I2C_INTERRUPT_CONTROLLER_STOP) {
@@ -597,6 +603,15 @@ void I2CSupport_powerRelConstraint(void)
     /*Power_releaseConstraint(PowerMSPM0_DISALLOW_STANDBY);*/
 }
 
+static void I2C_waitTillBusAvailable(I2CMSPM0_HWAttrs const *hwAttrs)
+{
+    while ((DL_I2C_getControllerStatus(hwAttrs->i2c) &
+               DL_I2C_CONTROLLER_STATUS_BUSY) &&
+           !(DL_I2C_getControllerStatus(hwAttrs->i2c) &
+               DL_I2C_CONTROLLER_STATUS_IDLE)) {
+        ;
+    }
+}
 /*
  *  ======== I2CSupport_powerSetConstraint =======
  */
@@ -611,7 +626,16 @@ void I2CSupport_powerSetConstraint(void)
 static void I2CMSPM0_primeReadBurst(
     I2CMSPM0_Object *object, I2CMSPM0_HWAttrs const *hwAttrs)
 {
-    DL_I2C_CONTROLLER_STOP stop;
+    if (object->isReadInProgress)
+        return;
+    else
+        object->isReadInProgress = true;
+    /* Wait until the bus is available */
+    while (DL_I2C_getControllerStatus(hwAttrs->i2c) &
+           DL_I2C_CONTROLLER_STATUS_BUSY)
+        ;
+    /* Disable the burst before setting up the new transaction */
+    DL_I2C_disableControllerBurst(hwAttrs->i2c);
 
     /* Determine the size of this burst */
     if (object->readCount > I2CMSPM0_MAX_BURST) {
@@ -641,9 +665,9 @@ static void I2CMSPM0_primeReadBurst(
 
     /* If we will be receiving multiple bursts */
     if (object->readCount > I2CMSPM0_MAX_BURST) {
-        stop = DL_I2C_CONTROLLER_STOP_DISABLE;
+        DL_I2C_disableStopCondition(hwAttrs->i2c);
     } else {
-        stop = DL_I2C_CONTROLLER_STOP_ENABLE;
+        DL_I2C_enableStopCondition(hwAttrs->i2c);
     }
 
     /* Only generate a start condition if the burst hasn't started */
@@ -655,11 +679,18 @@ static void I2CMSPM0_primeReadBurst(
         DL_I2C_INTERRUPT_CONTROLLER_RXFIFO_TRIGGER |
             DL_I2C_INTERRUPT_CONTROLLER_RX_DONE |
             DL_I2C_INTERRUPT_CONTROLLER_RXFIFO_FULL | I2CMSPM0_TRANSFER_INTS);
-
-    DL_I2C_startControllerTransferAdvanced(hwAttrs->i2c,
-        object->currentTransaction->targetAddress,
-        DL_I2C_CONTROLLER_DIRECTION_RX, object->currentTransaction->readCount,
-        DL_I2C_CONTROLLER_START_ENABLE, stop, DL_I2C_CONTROLLER_ACK_ENABLE);
+    /* Set the target Address */
+    DL_I2C_setTargetAddress(
+        hwAttrs->i2c, object->currentTransaction->targetAddress);
+    /* Set the controller direction */
+    DL_I2C_setControllerDirection(
+        hwAttrs->i2c, DL_I2C_CONTROLLER_DIRECTION_RX);
+    /* Enable the start condition */
+    DL_I2C_enableStartCondition(hwAttrs->i2c);
+    /* Disable the manual ACK, hardware will ack automatically */
+    DL_I2C_disableControllerACK(hwAttrs->i2c);
+    /* Enable the burst run */
+    DL_I2C_enableControllerBurst(hwAttrs->i2c);
 }
 
 /*
@@ -668,9 +699,10 @@ static void I2CMSPM0_primeReadBurst(
 static void I2CMSPM0_primeWriteBurst(
     I2CMSPM0_Object *object, I2CMSPM0_HWAttrs const *hwAttrs)
 {
-    DL_I2C_CONTROLLER_STOP stop;
-    int_fast16_t count = 0;
-
+    /* Wait until bus is available */
+    I2C_waitTillBusAvailable(hwAttrs);
+    /* Disable the burst before setting up the new transaction */
+    DL_I2C_disableControllerBurst(hwAttrs->i2c);
     /* Determine the size of this burst */
     if (object->writeCount > I2CMSPM0_MAX_BURST) {
         object->burstCount = I2CMSPM0_MAX_BURST;
@@ -683,9 +715,9 @@ static void I2CMSPM0_primeWriteBurst(
 
     /* If we will be sending multiple bursts */
     if (object->readCount || object->writeCount > I2CMSPM0_MAX_BURST) {
-        stop = DL_I2C_CONTROLLER_STOP_DISABLE;
+        DL_I2C_disableStopCondition(hwAttrs->i2c);
     } else {
-        stop = DL_I2C_CONTROLLER_STOP_ENABLE;
+        DL_I2C_enableStopCondition(hwAttrs->i2c);
     }
 
     /* Only generate a start condition if the burst hasn't started */
@@ -696,18 +728,25 @@ static void I2CMSPM0_primeWriteBurst(
     DL_I2C_clearInterruptStatus(
         hwAttrs->i2c, DL_I2C_INTERRUPT_CONTROLLER_TXFIFO_TRIGGER);
     /* Fill transmit FIFO. This will modify the object counts */
-    count = I2CMSPM0_fillTransmitFifo(object, hwAttrs);
+    I2CMSPM0_fillTransmitFifo(object, hwAttrs);
 
     /* Enable TXFIFOEMPTY interrupt and other standard transfer interrupts */
     DL_I2C_enableInterrupt(hwAttrs->i2c,
         DL_I2C_INTERRUPT_CONTROLLER_TXFIFO_TRIGGER |
             DL_I2C_INTERRUPT_CONTROLLER_TX_DONE |
             DL_I2C_INTERRUPT_CONTROLLER_TXFIFO_EMPTY | I2CMSPM0_TRANSFER_INTS);
-
-    DL_I2C_startControllerTransferAdvanced(hwAttrs->i2c,
-        object->currentTransaction->targetAddress,
-        DL_I2C_CONTROLLER_DIRECTION_TX, count, DL_I2C_CONTROLLER_START_ENABLE,
-        stop, DL_I2C_CONTROLLER_ACK_DISABLE);
+    /* Set the target Address */
+    DL_I2C_setTargetAddress(
+        hwAttrs->i2c, object->currentTransaction->targetAddress);
+    /* Set the controller direction */
+    DL_I2C_setControllerDirection(
+        hwAttrs->i2c, DL_I2C_CONTROLLER_DIRECTION_TX);
+    /* Enable the start condition */
+    DL_I2C_enableStartCondition(hwAttrs->i2c);
+    /* Disable the manual ACK, hardware will ack automatically */
+    DL_I2C_disableControllerACK(hwAttrs->i2c);
+    /* Enable the burst run */
+    DL_I2C_enableControllerBurst(hwAttrs->i2c);
 }
 
 /*

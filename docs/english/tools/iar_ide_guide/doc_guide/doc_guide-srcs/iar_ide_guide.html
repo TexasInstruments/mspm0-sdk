@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IAR Embedded Workbench IDE Version 9.50.1+ for MSPM0 MCUs &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 1.0 documentation</title>
+  <title>IAR Embedded Workbench IDE Version 9.50.2+ for MSPM0 MCUs &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 2.00.00.03 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> IAR Embedded Workbench IDE for MSPM0 MCUs Documentation
           </a>
               <div class="version">
-                1.0
+                2.00.00.03
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,7 +43,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">IAR Embedded Workbench IDE Version 9.50.1+ for MSPM0 MCUs</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IAR Embedded Workbench IDE Version 9.50.2+ for MSPM0 MCUs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#read-this-first">Read This First</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-use-this-guide">How to Use This Guide</a></li>
@@ -92,7 +92,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>IAR Embedded Workbench IDE Version 9.50.1+ for MSPM0 MCUs</li>
+      <li>IAR Embedded Workbench IDE Version 9.50.2+ for MSPM0 MCUs</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,8 +101,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="iar-embedded-workbench-ide-version-9-50-1-for-mspm0-mcus">
-<h1>IAR Embedded Workbench IDE Version 9.50.1+ for MSPM0 MCUs<a class="headerlink" href="#iar-embedded-workbench-ide-version-9-50-1-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
+  <section id="iar-embedded-workbench-ide-version-9-50-2-for-mspm0-mcus">
+<h1>IAR Embedded Workbench IDE Version 9.50.2+ for MSPM0 MCUs<a class="headerlink" href="#iar-embedded-workbench-ide-version-9-50-2-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -148,7 +148,7 @@
 </section>
 <section id="software-installation">
 <h2>1. Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this heading">¶</a></h2>
-<p>IAR Embedded Workbench for Arm (EWARM) IDE is available from the <a class="reference external" href="https://www.iar.com/">IAR website</a> or the <a class="reference external" href="https://www.ti.com/tool/IAR-KICKSTART">TI IAR kickstart page</a>. MSPM0 microcontrollers and the MSPM0 SDK require EWARM 9.50.1 or higher.</p>
+<p>IAR Embedded Workbench for Arm (EWARM) IDE is available from the <a class="reference external" href="https://www.iar.com/">IAR website</a> or the <a class="reference external" href="https://www.ti.com/tool/IAR-KICKSTART">TI IAR kickstart page</a>. MSPM0 microcontrollers and the MSPM0 SDK require EWARM 9.50.2 or higher.</p>
 <p>See the <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a> documentation for finding the right SDK for your IDE version.</p>
 </section>
 <section id="development-flow">
@@ -348,7 +348,24 @@
 </section>
 <section id="known-issues-and-frequently-asked-questions-faqs">
 <h2>4. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
-<p>Please refer to <a class="reference external" href="../../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+<p>In versions of IAR before 9.60.1, handling of low-power mode debugging is not natively supported.</p>
+<p>To enable support of low-power mode debugging in older versions of IAR, please follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Reach out to IAR or your local TI sales representative for the latest version of the armXDS.dll.</p></li>
+<li><p>Close the IAR IDE.</p></li>
+<li><p>Copy and paste the armXDS.dll to:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">C:/Program</span> <span class="pre">Files/IAR</span> <span class="pre">Systems/EWARM/arm/bin</span></code></p></li>
+</ul>
+</li>
+<li><p>Copy and paste the <code class="docutils literal notranslate"><span class="pre">.dmac</span></code> file from the MSPM0 SDK at <code class="docutils literal notranslate"><span class="pre">C:\ti\&lt;sdk&gt;\tools\iar\low_power_mode_patch</span></code> to:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">C:/Program</span> <span class="pre">Files/IAR</span> <span class="pre">Systems/EWARM/arm/config/debugger/TexasInstruments</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p>`` By patching the installation of IAR with these files, connection to the debugger should be maintained when the device enters a low-power state.</p>
+<p>For other issues please refer to <a class="reference external" href="../../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
 </section>
 </section>
 
@@ -362,7 +379,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

@@ -7,10 +7,10 @@ KERNEL_BUILD := $(MSPM0_SDK_INSTALL_DIR)/kernel/freertos/builds/LP_MSPM0G3507/re
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = ti_drivers_config.obj uartcallback.obj main_freertos.obj freertos_ticlang_startup_mspm0g3507_ticlang.obj
+OBJECTS = main_freertos.obj ti_drivers_config.obj ti_msp_dl_config.obj uartcallback.obj freertos_ticlang_startup_mspm0g3507_ticlang.obj
 NAME = uart_callback
 
-CFLAGS = -I../.. \
+CFLAGS += -I../.. \
     -D__MSPM0G3507__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -25,18 +25,19 @@ CFLAGS = -I../.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/drivers/lib/ticlang/m0p/drivers_mspm0g1x0x_g3x0x.a" \
+LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/drivers/lib/ticlang/m0p/drivers_mspm0g1x0x_g3x0x.a" \
     -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0G3507_release_ticlang/Debug \
     -lfreertos_builds_LP_MSPM0G3507_release_ticlang.lib \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L../.. \
     ../../freertos/ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
 $(KERNEL_BUILD)/ticlang/freertos.lib:
@@ -45,15 +46,19 @@ $(KERNEL_BUILD)/ticlang/freertos.lib:
 	@ echo You can build it by issuing $(MAKE) in $(dir $@).
 	@ $(ECHOBLANKLINE)
 
+main_freertos.obj: ../../main_freertos.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
 ti_drivers_config.obj: ../../ti_drivers_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-uartcallback.obj: ../../uartcallback.c
+ti_msp_dl_config.obj: ../../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-main_freertos.obj: ../../main_freertos.c
+uartcallback.obj: ../../uartcallback.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

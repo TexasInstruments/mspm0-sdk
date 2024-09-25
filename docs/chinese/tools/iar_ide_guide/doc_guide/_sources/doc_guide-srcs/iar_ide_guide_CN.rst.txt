@@ -1,4 +1,4 @@
-适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.1+ 版
+适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.2+ 版
 =========================================================
 
 目录
@@ -53,7 +53,7 @@ MSPM0 器件文档：
 1. 软件安装
 -----------
 
-`IAR 网站 <https://www.iar.com/>`__\ 或 `TI IAR 入门页面 <https://www.ti.com/tool/IAR-KICKSTART>`__\ 提供 IAR Embedded Workbench for Arm (EWARM) IDE。MSPM0 微控制器和 MSPM0 SDK 需要 EWARM 9.50.1 或更高版本。
+`IAR 网站 <https://www.iar.com/>`__\ 或 `TI IAR 入门页面 <https://www.ti.com/tool/IAR-KICKSTART>`__\ 提供 IAR Embedded Workbench for Arm (EWARM) IDE。MSPM0 微控制器和 MSPM0 SDK 需要 EWARM 9.50.2 或更高版本。
 
 要查找适合您 IDE 版本的 SDK，请参阅 `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ 文档。
 
@@ -271,5 +271,23 @@ C-SPY 断点机制使用有限数量的片上调试资源（具体为 4 个硬�
 
 4. 已知问题和常见问题解答 （FAQ）
 ---------------------------------
+
+在9.60.1之前的IAR版本中，本机不支持处理低功耗模式调试。
+
+要在旧版本的IAR中启用低功耗模式调试支持，请执行以下步骤：
+
+1. 联系IAR获取最新版本的armXds.dll。
+
+2. 关闭IAR IDE。
+
+3. 将armXds.dll复制并粘贴到：
+
+   -  ``C:/Program Files/IAR Systems/EWARM/arm/bin``
+
+4. 从MSPM0 SDK ``C:\ti\<sdk>\tools\iar\low_power_mode_patch`` 复制 ``.dmac`` 并粘贴到：
+
+   -  ``C:/Program Files/IAR Systems/EWARM/arm/config/debugger/TexasInstruments``
+
+\`\` 通过使用这些文件修补IAR安装，当设备进入低功耗状态时，应保持与调试器的连接。
 
 请参阅 SDK 中的\ `已知问题和 FAQ <../../../../../../known_issues_FAQ.html>`__\ 。

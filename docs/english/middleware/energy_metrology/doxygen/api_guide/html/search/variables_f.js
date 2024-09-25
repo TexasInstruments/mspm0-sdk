@@ -12,8 +12,8 @@ var searchData=
   ['seg_5fa',['seg_a',['../structinfo_mem.html#ad8b59fd4d04d05ad6b35f8bfa8fb349e',1,'infoMem']]],
   ['sincelast',['sinceLast',['../structphase_params.html#a3301f764a3f7a95d47f04781a8ab334b',1,'phaseParams']]],
   ['sinetable',['sineTable',['../group___metrology.html#ga6846d9a0cc6edbeb0b514bfd1272de7f',1,'metrology_defines.h']]],
-  ['spichan',['spiChan',['../struct_a_d_s___instance.html#a2dc0742d96b2eebf5a91582a6f66f3cd',1,'ADS_Instance']]],
-  ['spics',['spiCs',['../struct_a_d_s___instance.html#a5ef2bb0c7a00b805543f6b9022f9c200',1,'ADS_Instance']]],
+  ['spichan',['spiChan',['../struct_a_d_s___instance.html#a2dc0742d96b2eebf5a91582a6f66f3cd',1,'ADS_Instance::spiChan()'],['../struct_a_m_c___instance.html#a32301f32de28d832ac53fc2f1bd1406e',1,'AMC_Instance::spiChan()']]],
+  ['spics',['spiCs',['../struct_a_d_s___instance.html#a5ef2bb0c7a00b805543f6b9022f9c200',1,'ADS_Instance::spiCs()'],['../struct_a_m_c___instance.html#add52e8a40973997f015becad5aae6b21',1,'AMC_Instance::spiCs()']]],
   ['status',['status',['../structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e',1,'phaseMetrology::status()'],['../structneutral_metrology.html#ae99978e998f5d06b91ceb6ca1758f134',1,'neutralMetrology::status()']]],
   ['step',['step',['../structphase_correction.html#aadc33447efebfb15c2eed6b47e709b19',1,'phaseCorrection']]],
   ['structstate',['structState',['../structcalibration_data.html#a5674bee611bf8a362852ce29350d95a9',1,'calibrationData']]],
@@ -23,5 +23,5 @@ var searchData=
   ['swellthresholdstart',['swellThresholdStart',['../structphase_params.html#ac952dc08d2389082d1e0178d76ed1277',1,'phaseParams']]],
   ['swellthresholdstop',['swellThresholdStop',['../structphase_params.html#a4e8ae6b4e2d79d94090f8b0812a958ef',1,'phaseParams']]],
   ['swellvalue',['swellValue',['../structphase_params.html#a982c29884f0e60e92f99a193a9bde837',1,'phaseParams']]],
-  ['sync',['sync',['../struct_a_d_s___instance.html#a34557cfb3bb05804bf3745e7b56732c9',1,'ADS_Instance']]]
+  ['sync',['sync',['../struct_a_d_s___instance.html#a34557cfb3bb05804bf3745e7b56732c9',1,'ADS_Instance::sync()'],['../struct_a_m_c___instance.html#a53db38abe3485394e2467c2a3483e1fa',1,'AMC_Instance::sync()']]]
 ];

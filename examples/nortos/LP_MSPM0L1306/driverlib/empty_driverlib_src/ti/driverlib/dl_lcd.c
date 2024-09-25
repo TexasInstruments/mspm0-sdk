@@ -122,21 +122,18 @@ void DL_LCD_setPinAsCommon(LCD_Regs *lcd, uint8_t pin, uint32_t com)
     }
 
     /* Set LCDMem to COM as well for corresponding pins */
-    if (muxRate == (LCD_LCDCTL0_LCDMXX_MX_STATIC | LCD_LCDCTL0_LCDMXX_MX_2 |
-                       LCD_LCDCTL0_LCDMXX_MX_3 | LCD_LCDCTL0_LCDMXX_MX_4)) {
+    if (muxRate == (LCD_LCDCTL0_LCDMXX_MX_STATIC || LCD_LCDCTL0_LCDMXX_MX_2 ||
+                       LCD_LCDCTL0_LCDMXX_MX_3 || LCD_LCDCTL0_LCDMXX_MX_4)) {
         if (pin & 1) {
             /* upper nibble */
             lcd->LCDM[pin / 2] |= (com & 0xF) << 4;
-            lcd->LCDBM[pin / 2] |= (com & 0xF) << 4;
         } else {
             /* lower nibble */
             lcd->LCDM[pin / 2] |= (com & 0xF);
-            lcd->LCDBM[pin / 2] |= (com & 0xF);
         }
     } else {
         /* 5-mux, 6-mux, 7-mux, 8-mux, whole byte per segment pin */
         lcd->LCDM[pin] |= com;
-        lcd->LCDBM[pin] |= com;
     }
 }
 

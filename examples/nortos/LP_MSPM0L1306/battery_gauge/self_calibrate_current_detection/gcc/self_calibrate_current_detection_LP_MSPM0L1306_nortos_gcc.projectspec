@@ -16,7 +16,7 @@
         toolChain="GNU"
         connection="TIXDS110_Connection.xml"
         device="MSPM0L1306"
-        ignoreDefaultDeviceSettings="false"
+        ignoreDefaultDeviceSettings="true"
         ignoreDefaultCCSSettings="true"
         products="MSPM0-SDK"
         compilerBuildOptions="
@@ -85,6 +85,10 @@
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../gcc/mspm0l1306.lds" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../gcc/startup_mspm0l130x_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

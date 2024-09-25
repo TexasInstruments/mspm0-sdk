@@ -8,7 +8,5 @@ var searchData=
   ['energyintegrator',['energyIntegrator',['../structenergy_integrator.html',1,'']]],
   ['energypulse',['energyPulse',['../structenergy_pulse.html',1,'']]],
   ['energyresidual',['energyResidual',['../structenergy_integrator.html#a20dc9a7f886301db9ee8edc693b185ac',1,'energyIntegrator']]],
-  ['events0',['EVENTS0',['../group___t_i_d_a-010243.html#ga96e88c90666b784fcea17cc8cf8e1177',1,'TIDA-010243.h']]],
-  ['events1',['EVENTS1',['../group___t_i_d_a-010243.html#ga31805590b8d2a5114194ae8ed80a173a',1,'TIDA-010243.h']]],
   ['energy_20library',['Energy Library',['../index.html',1,'']]]
 ];

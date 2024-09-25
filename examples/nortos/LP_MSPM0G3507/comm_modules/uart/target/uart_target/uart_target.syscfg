@@ -1,0 +1,53 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const CRC           = scripting.addModule("/ti/driverlib/CRC");
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const UART          = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1         = UART.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.configureUnused = true;
+
+CRC.polynomial = "16_POLYNOMIAL";
+CRC.seed       = 0xFFFF;
+
+
+UART1.$name                               = "UART_0";
+UART1.rxFifoThreshold                     = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+UART1.txFifoThreshold                     = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
+UART1.enabledDMARXTriggers                = "DL_UART_DMA_INTERRUPT_RX";
+UART1.enabledDMATXTriggers                = "DL_UART_DMA_INTERRUPT_TX";
+UART1.targetBaudRate                      = 115200;
+UART1.enableFIFO                          = true;
+UART1.peripheral.$assign                  = "UART0";
+UART1.peripheral.rxPin.$assign            = "PA11";
+UART1.peripheral.txPin.$assign            = "PA10";
+UART1.DMA_CHANNEL_RX.$name                = "DMA_CH0";
+UART1.DMA_CHANNEL_RX.addressMode          = "f2b";
+UART1.DMA_CHANNEL_RX.srcLength            = "BYTE";
+UART1.DMA_CHANNEL_RX.dstLength            = "BYTE";
+UART1.DMA_CHANNEL_RX.destIncrement        = "INCREMENT";
+UART1.DMA_CHANNEL_RX.enableEarlyInterrupt = true;
+UART1.DMA_CHANNEL_RX.earlyIntThresh       = "64";
+UART1.DMA_CHANNEL_RX.transferSize         = 71;
+UART1.DMA_CHANNEL_RX.peripheral.$assign   = "DMA_CH0";
+UART1.DMA_CHANNEL_TX.$name                = "DMA_CH1";
+UART1.DMA_CHANNEL_TX.enableInterrupt      = true;
+UART1.DMA_CHANNEL_TX.srcIncrement         = "INCREMENT";
+UART1.DMA_CHANNEL_TX.addressMode          = "b2f";
+UART1.DMA_CHANNEL_TX.srcLength            = "BYTE";
+UART1.DMA_CHANNEL_TX.dstLength            = "BYTE";
+UART1.DMA_CHANNEL_TX.peripheral.$assign   = "DMA_CH1";
+

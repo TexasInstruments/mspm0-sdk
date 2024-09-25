@@ -8,7 +8,7 @@ LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 OBJECTS = aesadv_ecb_256_encrypt.obj ti_msp_dl_config.obj ticlang_startup_mspm0l222x_ticlang.obj
 NAME = aesadv_ecb_256_encrypt
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0L2228__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -19,15 +19,16 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l122x_l222x/driverlib.a" \
+LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l122x_l222x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     ../ticlang/mspm0l2228.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
 aesadv_ecb_256_encrypt.obj: ../aesadv_ecb_256_encrypt.c

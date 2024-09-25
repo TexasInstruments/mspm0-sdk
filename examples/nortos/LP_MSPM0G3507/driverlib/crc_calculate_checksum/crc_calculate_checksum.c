@@ -37,7 +37,6 @@
 
 uint32_t gData32[CRC_NUM_OF_WORDS] = {0x3B4A5812, 0x0C74FECA, 0x0000842F};
 const uint32_t gCrcSeed            = CRC_SEED;
-
 int main(void)
 {
     volatile uint32_t crcChecksum;

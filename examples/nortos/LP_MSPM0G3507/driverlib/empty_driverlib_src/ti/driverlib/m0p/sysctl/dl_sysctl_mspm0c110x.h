@@ -66,11 +66,16 @@ extern "C" {
  *  @{
  */
 /*!
- * @brief Perform a CPU reset
+ * @brief Perform a SYSRST
  *
- * This clears the state of the CPU logic. Peripheral states are not affected
+ * This issues a SYSRST (CPU plus peripherals only)
  */
- #define DL_SYSCTL_RESET_CPU                       (SYSCTL_RESETLEVEL_LEVEL_CPU)
+ #define DL_SYSCTL_RESET_SYSRST                    (SYSCTL_RESETLEVEL_LEVEL_CPU)
+
+/*!
+ * @deprecated This API is deprecated. Please refer to @ref DL_SYSCTL_RESET_SYSRST.
+ */
+ #define DL_SYSCTL_RESET_CPU                            (DL_SYSCTL_RESET_SYSRST)
 
 /*!
  * @brief Perform a Boot reset

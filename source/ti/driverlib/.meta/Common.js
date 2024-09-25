@@ -119,6 +119,8 @@ exports = {
     hasGPIOPortC                            : hasGPIOPortC,
     hasBSLConfig                            : hasBSLConfig,
 
+    isInternalTimerChannel                  : isInternalTimerChannel,
+
     sliceNumber : sliceNumber,
     getGPIOPort : getGPIOPort,
     getGPIONumber : getGPIONumber,
@@ -1735,7 +1737,7 @@ function isDeviceFamily_MSPS003FX(){
 /* checks if current device is one of M0x110x series */
 function isDeviceM0x110x(){
 	var deviceName = system.deviceData.device;
-    return (["MSPM0G110X","MSPM0L110X","MSPM0C110X","MSPS003FX"].includes(deviceName));
+    return (["MSPM0G310X","MSPM0G110X","MSPM0L110X","MSPM0C110X","MSPS003FX"].includes(deviceName));
 }
 
 /* Generic Device Check Functions */
@@ -1779,6 +1781,11 @@ function hasBSLConfig(){
 /* Check if device supports Timer A configuration */
 function hasTimerA(){
     return (isDeviceM0G() || isDeviceM0C() || isDeviceFamily_PARENT_MSPM0L122X_L222X());
+}
+
+function isInternalTimerChannel(cc){
+    // Internal timer channels are currently defined as channels 4 and 5, only available for TIMA
+    return(hasTimerA() && (cc>=4));
 }
 
 /* Check if device supports GPIO Port A configuration */

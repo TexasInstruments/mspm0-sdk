@@ -10,6 +10,7 @@ var searchData=
   ['sector_5f5',['SECTOR_5',['../mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820a65e9aef2d951a1b95a5b80a9b09cdeee',1,'mcLib.h']]],
   ['sector_5f6',['SECTOR_6',['../mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820a552268b78f311ea37ad3eb9b98be71ac',1,'mcLib.h']]],
   ['sector_5finvalid',['SECTOR_INVALID',['../mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820abadc3efa82a7efb89dd36f8652096ea4',1,'mcLib.h']]],
+  ['sectorcount',['sectorCount',['../struct_m_c___s_v_m___t.html#ab877bb397f55b8a7ed620f1955104fc6',1,'MC_SVM_T']]],
   ['service_5finterval',['SERVICE_INTERVAL',['../app_interface_8h.html#a1a0f03fe709877cd83d3fd17340b36da',1,'appInterface.h']]],
   ['services_2eh',['services.h',['../services_8h.html',1,'']]],
   ['servicescount',['servicesCount',['../struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#a043b75f0976f0570e846b81d868145a6',1,'APP_INTERFACE_T']]],
@@ -36,6 +37,6 @@ var searchData=
   ['svmgen',['svmGen',['../struct_m_c___s_v_m___t.html#aa3b1ad49023e43798f69f0dbe19e97aa',1,'MC_SVM_T']]],
   ['system_5fparameters_5ft',['SYSTEM_PARAMETERS_T',['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html',1,'']]],
   ['systemdcbusvoltagevolts',['systemDCBusVoltageVolts',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#ac1bdb912cabca2313051060b8eaf4063',1,'USER_INPUTS_T']]],
-  ['systemfaultstatus',['systemFaultStatus',['../struct_u_s_e_r___o_u_t_p_u_t_s___t.html#a9458c954f5efa55edf5991481c70751b',1,'USER_OUTPUTS_T']]],
+  ['systemfaultstatus',['systemFaultStatus',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a053060b3fab51d001ae0c87ec064ef90',1,'USER_STATUS_INTERFACE_T']]],
   ['systemparams',['systemParams',['../struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a10a721805ba695b15010ad2fa9ae0bab',1,'USER_INPUT_INTERFACE_T']]]
 ];

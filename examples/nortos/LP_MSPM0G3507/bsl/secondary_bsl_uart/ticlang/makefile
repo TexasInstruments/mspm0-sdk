@@ -10,12 +10,14 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
 OBJECTS = bsl_ci.obj bsl_uart.obj factory_config.obj secondary_bsl.obj ti_msp_dl_config.obj ticlang_startup_mspm0g3507_ticlang.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = secondary_bsl_uart
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -I. \
+    $(addprefix @,$(SYSCFG_OPT_FILES)) \
     -D__MSPM0G3507__ \
     -DUART_Plugin \
     -Oz \
@@ -28,16 +30,17 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = -Wl,--stack_size=0 \
+LFLAGS += -Wl,--stack_size=0 \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     ../ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
 .INTERMEDIATE: syscfg

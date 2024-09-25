@@ -30,6 +30,7 @@ var searchData=
   ['user_5finput_5fclose_5floop2_5ft',['USER_INPUT_CLOSE_LOOP2_T',['../union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p2___t.html',1,'']]],
   ['user_5finput_5ffault_5fcfg1_5ft',['USER_INPUT_FAULT_CFG1_T',['../union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g1___t.html',1,'']]],
   ['user_5finput_5ffault_5fcfg2_5ft',['USER_INPUT_FAULT_CFG2_T',['../union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g2___t.html',1,'']]],
+  ['user_5finput_5ffield_5fctrl_5ft',['USER_INPUT_FIELD_CTRL_T',['../union_u_s_e_r___i_n_p_u_t___f_i_e_l_d___c_t_r_l___t.html',1,'']]],
   ['user_5finput_5finterface_5ft',['USER_INPUT_INTERFACE_T',['../struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html',1,'']]],
   ['user_5finput_5fisdcfg_5ft',['USER_INPUT_ISDCFG_T',['../union_u_s_e_r___i_n_p_u_t___i_s_d_c_f_g___t.html',1,'']]],
   ['user_5finput_5fmisc_5falgo_5ft',['USER_INPUT_MISC_ALGO_T',['../union_u_s_e_r___i_n_p_u_t___m_i_s_c___a_l_g_o___t.html',1,'']]],
@@ -40,11 +41,12 @@ var searchData=
   ['user_5finput_5frvsdrvcfg_5ft',['USER_INPUT_RVSDRVCFG_T',['../union_u_s_e_r___i_n_p_u_t___r_v_s_d_r_v_c_f_g___t.html',1,'']]],
   ['user_5finputs_5finterface_5ft',['USER_INPUTS_INTERFACE_T',['../struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html',1,'']]],
   ['user_5finputs_5ft',['USER_INPUTS_T',['../struct_u_s_e_r___i_n_p_u_t_s___t.html',1,'']]],
-  ['user_5foutputs_5ft',['USER_OUTPUTS_T',['../struct_u_s_e_r___o_u_t_p_u_t_s___t.html',1,'']]],
+  ['user_5fstatus_5finterface_5ft',['USER_STATUS_INTERFACE_T',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html',1,'']]],
   ['userinputcloseloop1',['userInputCloseLoop1',['../structuser_input_close_loop1.html',1,'']]],
   ['userinputcloseloop2',['userInputCloseLoop2',['../structuser_input_close_loop2.html',1,'']]],
   ['userinputfaultcfg1',['userInputFaultCfg1',['../structuser_input_fault_cfg1.html',1,'']]],
   ['userinputfaultcfg2',['userInputFaultCfg2',['../structuser_input_fault_cfg2.html',1,'']]],
+  ['userinputfieldctrl',['userInputFieldCtrl',['../structuser_input_field_ctrl.html',1,'']]],
   ['userinputisd',['userInputISD',['../structuser_input_i_s_d.html',1,'']]],
   ['userinputmiscalgo',['userInputMiscAlgo',['../structuser_input_misc_algo.html',1,'']]],
   ['userinputmotorstartup1',['userInputMotorStartUp1',['../structuser_input_motor_start_up1.html',1,'']]],
@@ -53,6 +55,5 @@ var searchData=
   ['userinputpincfg',['userInputPinCfg',['../structuser_input_pin_cfg.html',1,'']]],
   ['userinputrvrdrvcfg',['userInputRvrDrvCfg',['../structuser_input_rvr_drv_cfg.html',1,'']]],
   ['userinputs',['userInputs',['../struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#aca7c120a73da55c19d94df6d7040aebe',1,'APP_INTERFACE_T']]],
-  ['userinputsinterface',['userInputsInterface',['../struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#ab2a928bb8c70e85bfda402e3087ff4d9',1,'APP_INTERFACE_T']]],
-  ['useroutputs',['userOutputs',['../struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#a0756a94bb2524e1480b617ffe6d00c6f',1,'APP_INTERFACE_T']]]
+  ['userinputsinterface',['userInputsInterface',['../struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#ab2a928bb8c70e85bfda402e3087ff4d9',1,'APP_INTERFACE_T']]]
 ];

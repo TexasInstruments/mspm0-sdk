@@ -147,6 +147,8 @@ function _getPinResources(inst)
 
 function validate(inst, validation)
 {
+    validation.logWarning("Note: VBAT needs to be powered for RTC_A operation.", inst);
+
     RTCCommon.getValidation(inst,validation);
 }
 

@@ -158,6 +158,14 @@ typedef enum {
     DL_WWDT_IIDX_INTERVAL_TIMER = WWDT_IIDX_STAT_INTTIM
 } DL_WWDT_IIDX;
 
+/*! @enum DL_WWDT_CORE_HALT */
+typedef enum {
+    /*! WWDT will halt with core */
+    DL_WWDT_CORE_HALT_STOP     = WWDT_PDBGCTL_FREE_STOP,
+    /*! WWDT ignores the state of the core halted input */
+    DL_WWDT_CORE_HALT_FREE_RUN = WWDT_PDBGCTL_FREE_RUN,
+} DL_WWDT_CORE_HALT;
+
 /* clang-format on */
 
 /*!
@@ -550,6 +558,35 @@ __STATIC_INLINE DL_WWDT_IIDX DL_WWDT_getPendingInterrupt(WWDT_Regs *wwdt)
 __STATIC_INLINE void DL_WWDT_clearInterruptStatus(WWDT_Regs *wwdt)
 {
     wwdt->CPU_INT.ICLR = WWDT_ICLR_INTTIM_CLR;
+}
+
+/**
+ *  @brief      Configures WWDT behavior when the core is halted.
+ *
+ *  @param[in]  wwdt     Pointer to the register overlay for the peripheral
+ *
+ *  @param[in]  haltMode WWDT halt behavior. One of @ref DL_WWDT_CORE_HALT.
+ *
+ */
+__STATIC_INLINE void DL_WWDT_setCoreHaltBehavior(
+    WWDT_Regs *wwdt, DL_WWDT_CORE_HALT haltMode)
+{
+    wwdt->PDBGCTL = (uint32_t) haltMode;
+}
+
+/**
+ *  @brief      Get WWDT behavior when the core is halted.
+ *
+ *  @param[in]  wwdt  Pointer to the register overlay for the peripheral
+ *
+ *  @return     WWDT bahvior when core is halted. One of
+ *              @ref DL_WWDT_CORE_HALT
+ *
+ */
+__STATIC_INLINE DL_WWDT_CORE_HALT DL_WWDT_getCoreHaltBehavior(WWDT_Regs *wwdt)
+{
+    uint32_t haltMode = (wwdt->PDBGCTL & WWDT_PDBGCTL_FREE_MASK);
+    return (DL_WWDT_CORE_HALT) haltMode;
 }
 
 #ifdef __cplusplus

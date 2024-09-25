@@ -35,7 +35,7 @@
 --stack_size=256
 
 #define CSC_APPLICATION_IMAGE_BASE_ADDRESS 0x4800
-#define CSC_APPLICATION_IMAGE_SIZE 0x2000
+#define CSC_APPLICATION_IMAGE_SIZE 0x2800
 
 //#include "customer_secure_config.h"
 
@@ -43,11 +43,15 @@
 
 #define FLASH_BASE (CSC_APPLICATION_IMAGE_BASE_ADDRESS + MCUBOOT_HEAD_SIZE)
 #define FLASH_SIZE (CSC_APPLICATION_IMAGE_SIZE - MCUBOOT_HEAD_SIZE)
+#define CSC_LOCK_STORAGE_ADDR                (0x4400)
+#define CSC_LOCK_STORAGE_SIZE                 (0x400)
 
 MEMORY
 {
   FLASH (RX)      : origin = FLASH_BASE, length = FLASH_SIZE,
   SRAM (RWX)      : origin = 0x20200000, length = 0x00008000,
+
+  LOCK_STG (R)    : origin = CSC_LOCK_STORAGE_ADDR, length = CSC_LOCK_STORAGE_SIZE
 
   /* Non-Main configuration memory */
   BCR_CONFIG		(R)   : origin = 0x41C00000, length = 0x00000100,
@@ -74,6 +78,8 @@ SECTIONS
     .bss    :   > SRAM
     .sysmem :   > SRAM
     .stack  :   > SRAM (HIGH)
+
+    .lockStg : {} (NOLOAD) > LOCK_STG
 
     .BCRConfig : {} (NOLOAD) > BCR_CONFIG
     .BSLConfig : {} (NOLOAD) > BSL_CONFIG

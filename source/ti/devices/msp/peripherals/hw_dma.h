@@ -1,33 +1,33 @@
 /*****************************************************************************
 
-  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/ 
 
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
+  Redistribution and use in source and binary forms, with or without 
+  modification, are permitted provided that the following conditions 
   are met:
 
-   Redistributions of source code must retain the above copyright
+   Redistributions of source code must retain the above copyright 
    notice, this list of conditions and the following disclaimer.
 
    Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the
+   notice, this list of conditions and the following disclaimer in the 
+   documentation and/or other materials provided with the   
    distribution.
 
    Neither the name of Texas Instruments Incorporated nor the names of
    its contributors may be used to endorse or promote products derived
    from this software without specific prior written permission.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 *****************************************************************************/
@@ -36,8 +36,8 @@
 #define ti_devices_msp_peripherals_hw_dma__include
 
 /* Filename: hw_dma.h */
-/* Revised: 2023-05-10 21:25:55 */
-/* Revision: fd45ad6f4da46c901da2f4bc9007f7b90b448408 */
+/* Revised: 2023-10-18 15:33:13 */
+/* Revision: 7d9c399dfeb736b2cd8c73fed58f1ce76b72f726 */
 
 #ifndef __CORTEX_M
   #ifdef __cplusplus
@@ -191,20 +191,24 @@ typedef struct {
 #define DMA_DMACTL_DMAEN_ENABLE                  ((uint32_t)0x00000002U)         /* !< DMA channel enabled */
 /* DMA_DMACTL[DMASRCWDTH] Bits */
 #define DMA_DMACTL_DMASRCWDTH_OFS                (8)                             /* !< DMASRCWDTH Offset */
-#define DMA_DMACTL_DMASRCWDTH_MASK               ((uint32_t)0x00000300U)         /* !< DMA source width. This bit selects
+#define DMA_DMACTL_DMASRCWDTH_MASK               ((uint32_t)0x00000700U)         /* !< DMA source width. This bit selects
                                                                                     the source data width as a byte, half
-                                                                                    word, word or long word. */
+                                                                                    word, word, long word or long-long
+                                                                                    word. */
 #define DMA_DMACTL_DMASRCWDTH_BYTE               ((uint32_t)0x00000000U)         /* !< Source data width is BYTE (8-bit) */
 #define DMA_DMACTL_DMASRCWDTH_HALF               ((uint32_t)0x00000100U)         /* !< Source data width is HALF-WORD
                                                                                     (16-bit) */
 #define DMA_DMACTL_DMASRCWDTH_WORD               ((uint32_t)0x00000200U)         /* !< Source data width is WORD (32-bit) */
 #define DMA_DMACTL_DMASRCWDTH_LONG               ((uint32_t)0x00000300U)         /* !< Source data width is LONG-WORD
                                                                                     (64-bit) */
+#define DMA_DMACTL_DMASRCWDTH_LONGLONG           ((uint32_t)0x00000400U)         /* !< Source data width is LONG-LONG-WORD
+                                                                                    (128-bit) */
 /* DMA_DMACTL[DMADSTWDTH] Bits */
 #define DMA_DMACTL_DMADSTWDTH_OFS                (12)                            /* !< DMADSTWDTH Offset */
-#define DMA_DMACTL_DMADSTWDTH_MASK               ((uint32_t)0x00003000U)         /* !< DMA destination width. This bit
+#define DMA_DMACTL_DMADSTWDTH_MASK               ((uint32_t)0x00007000U)         /* !< DMA destination width. This bit
                                                                                     selects the destination as a byte,
-                                                                                    half word, word or long word. */
+                                                                                    half word, word, long word or
+                                                                                    long-long word. */
 #define DMA_DMACTL_DMADSTWDTH_BYTE               ((uint32_t)0x00000000U)         /* !< Destination data width is BYTE
                                                                                     (8-bit) */
 #define DMA_DMACTL_DMADSTWDTH_HALF               ((uint32_t)0x00001000U)         /* !< Destination data width is HALF-WORD
@@ -213,6 +217,8 @@ typedef struct {
                                                                                     (32-bit) */
 #define DMA_DMACTL_DMADSTWDTH_LONG               ((uint32_t)0x00003000U)         /* !< Destination data width is LONG-WORD
                                                                                     (64-bit) */
+#define DMA_DMACTL_DMADSTWDTH_LONGLONG           ((uint32_t)0x00004000U)         /* !< Destination data width is LONG-LONG-WORD
+                                                                                    (128-bit) */
 /* DMA_DMACTL[DMASRCINCR] Bits */
 #define DMA_DMACTL_DMASRCINCR_OFS                (16)                            /* !< DMASRCINCR Offset */
 #define DMA_DMACTL_DMASRCINCR_MASK               ((uint32_t)0x000F0000U)         /* !< DMA source increment. This bit
@@ -306,6 +312,9 @@ typedef struct {
                                                                                     read-only register and reads 0x0. */
 #define DMA_DMACTL_DMAEM_NORMAL                  ((uint32_t)0x00000000U)         /* !< Normal mode is related to transfers
                                                                                     from SRC to DST */
+#define DMA_DMACTL_DMAEM_GATHERMODE              ((uint32_t)0x01000000U)         /* !< Gather mode will read a data from
+                                                                                    an address table located at SA, and
+                                                                                    the data is transfered to the DA */
 #define DMA_DMACTL_DMAEM_FILLMODE                ((uint32_t)0x02000000U)         /* !< Fill mode will copy the SA register
                                                                                     content as data to DA */
 #define DMA_DMACTL_DMAEM_TABLEMODE               ((uint32_t)0x03000000U)         /* !< Table mode will read an address and
@@ -336,6 +345,23 @@ typedef struct {
 #define DMA_DMACTL_DMAPREIRQ_PREIRQ_HALF         ((uint32_t)0x00000070U)         /* !< Issure Pre-IRQ event when DMASZ
                                                                                     reached the half size point of the
                                                                                     original transfer size */
+/* DMA_DMACTL[DMAAUTOEN] Bits */
+#define DMA_DMACTL_DMAAUTOEN_OFS                 (2)                             /* !< DMAAUTOEN Offset */
+#define DMA_DMACTL_DMAAUTOEN_MASK                ((uint32_t)0x0000000CU)         /* !< Automatic DMA channel enable on
+                                                                                    DMASA, DMADA, DMASZ register write.
+                                                                                    If channel is configured as SW
+                                                                                    trigger (DMATCTL=0), the AUTOEN will
+                                                                                    set the DMAEN and DMAREQ. If channel
+                                                                                    is configured as HW trigger
+                                                                                    (DMACTL!=0), the AUTOEN will only set
+                                                                                    the DMAEN. */
+#define DMA_DMACTL_DMAAUTOEN_DISABLE             ((uint32_t)0x00000000U)         /* !< No automatic DMA enable */
+#define DMA_DMACTL_DMAAUTOEN_DMASA               ((uint32_t)0x00000004U)         /* !< Automatic DMA enable on DMASA
+                                                                                    register write. */
+#define DMA_DMACTL_DMAAUTOEN_DMADA               ((uint32_t)0x00000008U)         /* !< Automatic DMA enable on DMADA
+                                                                                    register write. */
+#define DMA_DMACTL_DMAAUTOEN_DMASZ               ((uint32_t)0x0000000CU)         /* !< Automatic DMA enable on DMASZ
+                                                                                    register write. */
 
 /* DMA_DMASA Bits */
 /* DMA_DMASA[ADDR] Bits */
@@ -2288,7 +2314,7 @@ typedef struct {
 #define DMA_EVT_MODE_INT0_CFG_OFS                (0)                             /* !< INT0_CFG Offset */
 #define DMA_EVT_MODE_INT0_CFG_MASK               ((uint32_t)0x00000003U)         /* !< Event line mode select for event
                                                                                     corresponding to interrupt event
-                                                                                    INT_EVENT[0] */
+                                                                                    CPU_INT */
 #define DMA_EVT_MODE_INT0_CFG_DISABLE            ((uint32_t)0x00000000U)         /* !< The interrupt or event line is
                                                                                     disabled. */
 #define DMA_EVT_MODE_INT0_CFG_SOFTWARE           ((uint32_t)0x00000001U)         /* !< The interrupt or event line is in
@@ -2302,7 +2328,7 @@ typedef struct {
 #define DMA_EVT_MODE_EVT1_CFG_OFS                (2)                             /* !< EVT1_CFG Offset */
 #define DMA_EVT_MODE_EVT1_CFG_MASK               ((uint32_t)0x0000000CU)         /* !< Event line mode select for event
                                                                                     corresponding to generic event
-                                                                                    INT_EVENT[1] */
+                                                                                    GEN_EVENT */
 #define DMA_EVT_MODE_EVT1_CFG_DISABLE            ((uint32_t)0x00000000U)         /* !< The interrupt or event line is
                                                                                     disabled. */
 #define DMA_EVT_MODE_EVT1_CFG_SOFTWARE           ((uint32_t)0x00000004U)         /* !< The interrupt or event line is in
@@ -2361,15 +2387,15 @@ typedef struct {
 #define DMA_DMAPRIO_BURSTSZ_INFINITI             ((uint32_t)0x00000000U)         /* !< There is no burst size, the whole
                                                                                     block transfer is completed on one
                                                                                     transfer without interruption */
-#define DMA_DMAPRIO_BURSTSZ_BURST_8              ((uint32_t)0x00010000U)         /* !< The burst size is 8, after 8
+#define DMA_DMAPRIO_BURSTSZ_BURST_8              ((uint32_t)0x00010000U)         /* !< The burst size is 8, after 9
                                                                                     transfers the block transfer is
                                                                                     interrupted and the priority is
                                                                                     reevaluated */
-#define DMA_DMAPRIO_BURSTSZ_BUSRT_16             ((uint32_t)0x00020000U)         /* !< The burst size is 16, after 16
+#define DMA_DMAPRIO_BURSTSZ_BUSRT_16             ((uint32_t)0x00020000U)         /* !< The burst size is 16, after 17
                                                                                     transfers the block transfer is
                                                                                     interrupted and the priority is
                                                                                     reevaluated */
-#define DMA_DMAPRIO_BURSTSZ_BURST_32             ((uint32_t)0x00030000U)         /* !< The burst size is 32, after 32
+#define DMA_DMAPRIO_BURSTSZ_BURST_32             ((uint32_t)0x00030000U)         /* !< The burst size is 32, after 33
                                                                                     transfers the block transfer is
                                                                                     interrupted and the priority is
                                                                                     reevaluated */
@@ -2380,3 +2406,4 @@ typedef struct {
 #endif
 
 #endif /* ti_devices_msp_peripherals_hw_dma__include */
+

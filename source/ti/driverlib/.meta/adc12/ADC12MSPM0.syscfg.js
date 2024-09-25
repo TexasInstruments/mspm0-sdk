@@ -97,6 +97,31 @@ function isAveragingEnabled()
 }
 
 /*
+ *  ======== validatePinmux ========
+ *  Validate this inst's configuration
+ *
+ *  param inst       - module instance to be validated
+ *  param validation - object to hold detected validation issues
+ */
+function validatePinmux(inst, validation){
+    if(Common.isDeviceM0G()){
+        if(inst.peripheral.$solution.peripheralName == "ADC1"){
+            if(isChannelSelected(inst,12) && !inst.disChan12){
+                validation.logError(
+                    "Channel 12 is an internal connection for the current configuration, requires disabling the pin resource",
+                    inst, "disChan12"
+                );
+            }
+        }else if(isChannelSelected(inst,12) && inst.disChan12){
+            validation.logError(
+                "Channel 12 pin is required to be enabled for current configuration",
+                inst, "disChan12"
+            );
+        }
+    }
+}
+
+/*
  *  ======== validate ========
  *  Validate this inst's configuration
  *
@@ -353,6 +378,11 @@ function validate(inst, validation)
      */
     EVENT.validatePublisherOptions(inst,validation,"pubChanID");
     EVENT.validateSubscriberOptions(inst,validation,"subChanID");
+
+    /* Wakeup Time validation */
+    validation.logInfo(
+        "When Power Down Mode is set to Auto, ADC wakeup time may need to be considered in each sample window. Refer to the device specific data sheet for specifications on the ADC Wakeup Time.",
+        inst, ["totalConversionRate"])
 }
 
 function getPinmuxResources(){
@@ -367,6 +397,27 @@ function getPinmuxResources(){
         )
     }
     return resources;
+}
+
+/*  ======== isChannelSelected ========
+ *  Checks if a specific channel number is enabled on the current ADC instance
+ *
+ *  param inst    - a fully configured module instance
+ *  param chanNum - number of the channel to check for
+ *
+ *  returns chanExists true if it exists, false if not
+ */
+function isChannelSelected(inst, chanNum){
+    let chanExists = false;
+    for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
+        if( inst.enabledADCMems.includes(adcMemIdx) ){
+            let tempIdx = inst["adcMem" + adcMemIdx.toString() + "chansel"]
+            let tempIdxTrim = tempIdx.slice(20);
+            let ind = parseInt(tempIdxTrim);
+            if(ind == chanNum){ chanExists = true;};
+            return chanExists;
+        }
+    }
 }
 
 /*  ======== pinmuxRequirements ========
@@ -441,7 +492,7 @@ function pinmuxRequirements(inst)
                 }
             }
             /* Special case of M0G Channel 12 */
-            if(Common.isDeviceM0G() && ind == 12){
+            if(Common.isDeviceM0G() && ind == 12 && !inst.disChan12){
                 if(!((adc.resources).includes(allResources[ind]))){
                     adc.resources.push(allResources[ind])
                 }
@@ -564,20 +615,35 @@ function updateGUIVREF(inst,ui){
     for(let adcMemIdx=0; adcMemIdx<=adcMemRange; adcMemIdx++){
         isHidden = true;
         if( inst.enabledADCMems.includes(adcMemIdx) ){
+            isHidden = false;
             if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
-                isHidden = false;
+                /* un-hide VREF components, hide VDDA components */
+                if(Common.isDeviceM0G() || Common.isDeviceM0C()) {
+                    ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = isHidden;
+                }
+                else if(Common.isDeviceM0L()){
+                    ui["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"].hidden = isHidden;
+                }
+                ui["adcMem"+adcMemIdx.toString()+"calcVoltage"].hidden = isHidden;
+
+                ui["adcMem"+adcMemIdx.toString()+"getVDDA"].hidden = !isHidden;
+            }
+            else if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VDDA"){
+                /* un-hide VDDA components, hide VREF components */
+                ui["adcMem"+adcMemIdx.toString()+"getVDDA"].hidden = isHidden;
+
+                if(Common.isDeviceM0G() || Common.isDeviceM0C()) {
+                    ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = !isHidden;
+                }
+                else if(Common.isDeviceM0L()){
+                    ui["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"].hidden = !isHidden;
+                }
+                ui["adcMem"+adcMemIdx.toString()+"calcVoltage"].hidden = !isHidden;
             }
         }
-
-        if(Common.isDeviceM0G() || Common.isDeviceM0C()) {
-            ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = isHidden;
-        }
-        else if(Common.isDeviceM0L()){
-            ui["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"].hidden = isHidden;
-        }
-        ui["adcMem"+adcMemIdx.toString()+"calcVoltage"].hidden = isHidden;
     }
 }
+
 
 function calculateVREFDependency(inst,adcMemIdx){
     let vrefMode = "DL_VREF_ENABLE_ENABLE"
@@ -772,6 +838,16 @@ function onChangeSampleMode(inst,ui){
     /* set current profile to custom */
     onChangeCustomProfile(inst,ui);
 }
+
+function isConversionRateHidden(inst){
+    let isConversionRateHidden = true;
+    if(inst.sampleMode == "DL_ADC12_SAMPLING_SOURCE_AUTO" &&
+         inst.powerDownMode == "DL_ADC12_POWER_DOWN_MODE_AUTO"){
+            isConversionRateHidden = false;
+    }
+    return isConversionRateHidden
+}
+
 function updateGUISampleMode(inst,ui){
     let isReadOnly = false;
     let isConversionRateHidden = true;
@@ -781,10 +857,8 @@ function updateGUISampleMode(inst,ui){
     } else if (inst.sampleMode == "DL_ADC12_SAMPLING_SOURCE_MANUAL") {
         isReadOnly = true;
     }
-
     ui.sampleTime0.readOnly = isReadOnly;
     ui.sampleTime1.readOnly = isReadOnly;
-    ui.totalConversionRate.hidden = isConversionRateHidden;
 
     for(let adcMemIdx=0; adcMemIdx<=adcMemRange; adcMemIdx++) {
         let isHidden = !inst.enabledADCMems.includes(adcMemIdx);
@@ -806,7 +880,6 @@ function onChangePowerDownMode(inst,ui){
 }
 function updateGUIPowerDownMode(inst,ui){
     if((inst.powerDownMode == "DL_ADC12_POWER_DOWN_MODE_AUTO")&&(inst.sampleMode == "DL_ADC12_SAMPLING_SOURCE_AUTO")){
-        ui["totalConversionRate"].hidden = false;
         for(let adcMemIdx=0; adcMemIdx<=adcMemRange; adcMemIdx++){
             if( inst.enabledADCMems.includes(adcMemIdx) )
             {
@@ -815,7 +888,6 @@ function updateGUIPowerDownMode(inst,ui){
         }
     }
     else if(inst.powerDownMode == "DL_ADC12_POWER_DOWN_MODE_MANUAL"){
-        ui["totalConversionRate"].hidden = true;
         for(let adcMemIdx=0; adcMemIdx<=adcMemRange; adcMemIdx++){
             if( inst.enabledADCMems.includes(adcMemIdx) )
             {
@@ -1207,25 +1279,10 @@ function calculateTotalConversionRate(inst){
 
  */
 function calculateConversionRate(inst,adcMemIdx){
-    let convWakeup =0;
     let convTriggerSync = 0;
     let convSampling = 0;
     let convTime = 0;
     let convHWAvg = 1;
-
-    // Wake-Up Time
-    if(inst.powerDownMode == "DL_ADC12_POWER_DOWN_MODE_AUTO"){
-        if(inst["adcMem"+(adcMemIdx).toString()+"trig"] == "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT"){
-            // TODO: 0.1 is MSP430 typical value
-            convWakeup = 0.1;
-        }
-        else if(inst["adcMem"+(adcMemIdx).toString()+"trig"] == "DL_ADC12_TRIGGER_MODE_AUTO_NEXT"){
-            convWakeup = 0;
-        }
-    }
-    else if(inst.powerDownMode == "DL_ADC12_POWER_DOWN_MODE_MANUAL"){
-        convWakeup = 0;
-    }
 
     // Trigger Sync Time
     if((inst.sampClkSrc == "DL_ADC12_CLOCK_SYSOSC")||(inst.sampClkSrc == "DL_ADC12_CLOCK_HFCLK")){
@@ -1326,7 +1383,7 @@ function calculateConversionRate(inst,adcMemIdx){
             }
         }
 
-    let convRate = convWakeup+convTriggerSync+((convSampling+convTime)*convHWAvg)
+    let convRate = convTriggerSync+((convSampling+convTime)*convHWAvg)
     return convRate;
 }
 
@@ -1361,6 +1418,26 @@ function calculateVoltage(inst, adcMemIdx){
     calcVoltage =  vrefVoltage
     // TODO: if VREF is updated to use prefix, update this as needed. right now assuming mV, thus conversion
     return calcVoltage/1000;
+}
+
+/*
+ *  ======== getVDDAVoltage ========
+ *  get VDDA reference voltage from Board module.
+ *  requires Board module to be added.
+ *
+ *
+ */
+function getVDDAVoltage(inst, adcMemIdx){
+
+    let vddaVoltage = 3.3;
+
+    let vddaInstance = system.modules["/ti/driverlib/Board"];
+
+    if (vddaInstance && (vddaInstance.$static.configureVDDA == true)){
+        vddaVoltage = (vddaInstance.$static.voltageVDDA)
+    }
+
+    return vddaVoltage;
 }
 
 function getPinName(inst,adcMemIdx){
@@ -1488,6 +1565,7 @@ function addADCMEMGroup(adcMemIdx, hiddenStatus){
             \nSupported Reference Voltage:
             \n* VDDA
             \n  * MCU supply voltage
+            \n  * VDDA can be configured through the SysConfig Board module and is set to a default of 3.3V
             \n* VREF External
             \n  * External reference supplied to the ADC through the VREF+/- pins.
             \n* VREF Internal
@@ -1498,6 +1576,16 @@ function addADCMEMGroup(adcMemIdx, hiddenStatus){
                 {name: "VDDA", displayName: "VDDA"},
                 {name: "VREF", displayName: "VREF"},
             ],
+        },
+        {
+            name        : "adcMem"+adcMemIdx.toString()+"getVDDA",
+            displayName : "VDDA",
+            default     : "3.3V",
+            getValue    : (inst) => {
+                let returnVoltage = Common.getUnitPrefix(getVDDAVoltage(inst,adcMemIdx)).str+"V";
+                return returnVoltage;
+            },
+            hidden      : hiddenStatus,
         },
         {
             name        : "adcMem"+adcMemIdx.toString()+"vrefDependency",
@@ -1554,6 +1642,25 @@ function addADCMEMGroup(adcMemIdx, hiddenStatus){
         {
             name        : "adcMem"+adcMemIdx.toString()+"ConversionRate",
             displayName : "ADC Conversion Period",
+            description : "Approximate time period for one conversion",
+            longDescription : `
+* **The calculation for ADC Conversion time is based on the following factors**:
+    * ADC Trigger Synchronization Time
+        * 3 ADC Clock Cycles are needed for synchronization after the trigger signal is set
+        * Note that this synchronization time is bypassed when ULPCLK sources the ADC Clock
+    * ADC Sample Time
+        * User determined time based on Sample Time 0 (SCOMP0) and Sample Time 1 (SCOMP1) values
+    * ADC Conversion Time
+        * The number of clock cycles required to perform the conversion
+        * Dependent on ADC resolution and device specifics. Refer to the datasheet for specific values.
+    * Hardware Accumulation
+        * When configured, hardware accumulation takes multiple samples back-to-back
+
+* **Calculation Formula**:
+    * ADC Conversion Period = ADCSyncTime + [(ADCSampleTime + ADCConversionTime) * HWAccumulation]
+
+* **Note: This calculation is not avaiable when the ADC is configured in manual sampling mode.**
+            `,
             default     : "0s",
             getValue    : (inst) => {
                 let returnRate = Common.getUnitPrefix(calculateConversionRate(inst,adcMemIdx)).str+"s";
@@ -2184,9 +2291,15 @@ config = config.concat([
                 name        : "totalConversionRate",
                 displayName : "Total Conversion Frequency",
                 description : '',
-                longDescription: `Summation of all adc mem configuration sample periods`,
+                longDescription: `
+Summation of all ADC Conversion Memory X Configuration ADC conversion periods.
+\n **Note:** the value is only calculated on Auto mode, for Manual Power Down or
+Sampling Mode, user controls the value.`,
                 hidden      : false,
                 getValue    : (inst) => {
+                    if(isConversionRateHidden(inst)){
+                        return "N/A";
+                    }
                     let returnTotal = Common.getUnitPrefix(calculateTotalConversionRate(inst)).str+"Hz";
                     return returnTotal;
                 },
@@ -2209,6 +2322,11 @@ config = config.concat([
                 name        : "powerDownMode",
                 displayName : "Power Down Mode",
                 description : 'Configures ADC12 power down mode',
+                longDescription: `
+Power down modes:
+\n* AUTO: ADC is powered down on completion of a conversion **if there is no pending trigger**
+\n* MANUAL: ADC remains powered on as long as it is enabled through software.
+`,
                 hidden      : false,
                 default     : "DL_ADC12_POWER_DOWN_MODE_AUTO",
                 options     : [
@@ -2537,6 +2655,18 @@ config = config.concat([
 /* Add Pinmux Peripheral Configuration group */
 config = config.concat(Common.getGPIOGroupConfig());
 
+if(Common.isDeviceM0G()){
+    config = config.concat([
+        {
+            name        : "disChan12",
+            displayName : "Disable Channel 12 Pin",
+            description : 'Disable Channel 12 Pin Resource from being reserved',
+            hidden      : false,
+            default     : false,
+        },
+    ]);
+}
+
 function moduleInstances(inst){
     let modInstances = [];
     /*
@@ -2605,6 +2735,7 @@ function moduleInstances(inst){
 
     for(let ix = 0; ix < 26; ix++){
         /* ADC Channel Pin Configuration */
+        if(ix == 12 && inst.disChan12) continue;
         Common.pushGPIOConfigInstOnlyIntRes(inst, modInstances,   adcConfig[ix],    "adcPin"+ix,
         "C"+ix, "ADC12 Channel "+ix+" Pin",
         "INPUT");
@@ -2630,6 +2761,7 @@ let devSpecific = {
 
     /* override generic requirements with  device-specific reqs (if any) */
     validate: validate,
+    validatePinmux: validatePinmux,
 
     pinmuxRequirements: pinmuxRequirements,
 

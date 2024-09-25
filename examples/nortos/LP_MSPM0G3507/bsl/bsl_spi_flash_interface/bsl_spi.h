@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023, Texas Instruments Incorporated
+ * Copyright (c) 2024, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,38 +36,38 @@
 #include "ti_msp_dl_config.h"
 
 /* Flash Plugin Interface Version */
-#define FLASH_PLUGIN_VERSION_SPI        ((uint16_t)0x3)
+#define FLASH_PLUGIN_VERSION_SPI ((uint16_t) 0x3)
 
 /* BSL Packet definitions */
-#define BSL_PACKET_HEADER_BYTE          ((uint8_t)0x80)
+#define BSL_PACKET_HEADER_BYTE ((uint8_t) 0x80)
 
 /* Wrapper size includes 1 Header + 2 length + 4 crc bytes */
-#define BSL_PI_WRAPPER_SIZE             ((uint16_t) 0x7)
+#define BSL_PI_WRAPPER_SIZE ((uint16_t) 0x7)
 
 /* 4 CRC bytes for CRC32 */
-#define BSL_PI_CRC_SIZE                 ((uint16_t) 0x4)
-#define MSPM0_BSL_CRC_SEED              ((uint32_t)0xFFFFFFFFU)
+#define BSL_PI_CRC_SIZE ((uint16_t) 0x4)
+#define MSPM0_BSL_CRC_SEED ((uint32_t) 0xFFFFFFFFU)
 
 /* BSL Core commands to handle in Interface layer */
-#define CMD_PROGRAM_DATA_FAST           ((uint8_t) 0x24)
+#define CMD_PROGRAM_DATA_FAST ((uint8_t) 0x24)
 
 /* BSL Acknowledgment responses */
-#define BSL_PI_COMMAND_UPPER            ((uint8_t)0x50)
-#define BSL_ERROR_HEADER_INCORRECT      ((uint8_t)0x51)
-#define BSL_ERROR_CHECKSUM_INCORRECT    ((uint8_t)0x52)
-#define BSL_ERROR_PACKET_SIZE_ZERO      ((uint8_t)0x53)
-#define BSL_ERROR_PACKET_SIZE_TOO_BIG   ((uint8_t)0x54)
-#define BSL_ERROR_UNKNOWN_ERROR         ((uint8_t)0x55)
-#define BSL_ERROR_UNKNOWN_BAUD_RATE     ((uint8_t)0x56)
-#define BSL_ACK                         ((uint8_t)0xFF)
+#define BSL_PI_COMMAND_UPPER ((uint8_t) 0x50)
+#define BSL_ERROR_HEADER_INCORRECT ((uint8_t) 0x51)
+#define BSL_ERROR_CHECKSUM_INCORRECT ((uint8_t) 0x52)
+#define BSL_ERROR_PACKET_SIZE_ZERO ((uint8_t) 0x53)
+#define BSL_ERROR_PACKET_SIZE_TOO_BIG ((uint8_t) 0x54)
+#define BSL_ERROR_UNKNOWN_ERROR ((uint8_t) 0x55)
+#define BSL_ERROR_UNKNOWN_BAUD_RATE ((uint8_t) 0x56)
+#define BSL_ACK ((uint8_t) 0xFF)
 
 /* BSL Buffer Status */
-#define BSL_BUF1_ACTIVE                 ((uint8_t)0x0)
-#define BSL_BUF2_ACTIVE                 ((uint8_t)0x1)
+#define BSL_BUF1_ACTIVE ((uint8_t) 0x0)
+#define BSL_BUF2_ACTIVE ((uint8_t) 0x1)
 
 /* BSL PI Return codes */
-#define BSL_PI_FAIL                     ((uint8_t)0x0)
-#define BSL_PI_SUCCESS                  ((uint8_t)0x1)
+#define BSL_PI_FAIL ((uint8_t) 0x0)
+#define BSL_PI_SUCCESS ((uint8_t) 0x1)
 
 /*
  * Enum that lists the various states involved in packet reception
@@ -92,7 +92,6 @@ typedef enum {
 
 } BSL_RX_states;
 
-
 /*
  * Flash Plugin APIs to be registered in Bootloader configuration
  */
@@ -112,7 +111,6 @@ typedef enum {
  * @return      16 bit Plugin version information
 */
 uint16_t BSL_PI_SPI_init(uint8_t* buffer, uint16_t bufferSize);
-
 
 /*
  * @brief   Receives the command packet
@@ -152,6 +150,5 @@ uint8_t BSL_PI_SPI_send(uint8_t* data, uint16_t len);
  * @return      Returns '1' if deinit is done
  */
 bool BSL_PI_SPI_deinit(void);
-
 
 #endif /* PLUGIN_UART_H_ */

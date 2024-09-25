@@ -34,8 +34,8 @@
 
 /* ((32KHz / (32+1)) * 0.5s) = 45 - 1 = 495 due to N+1 ticks */
 #define TIMER_500_MILLISECONDS_TICKS (495)
-/* ((32KHz / (32+1)) * 0.05s) = 50 - 1 = 49 due to N+1 ticks */
-#define TIMER_50_MILLISECONDS_TICKS (49)
+/* ((32KHz / (32+1)) * 0.05s) = 50 */
+#define TIMER_50_MILLISECONDS_TICKS (50)
 
 int main(void)
 {

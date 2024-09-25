@@ -45,6 +45,12 @@ This Library has the following modules integrated :
 
 -  Estimator
 
+-  Align brake
+
+-  MTPA
+
+-  Field Weakening
+
 FOC library also contains the Motor control state machines.
 
 Motor Control Application
@@ -52,10 +58,56 @@ Motor Control Application
 
 Motor control Application takes care of register value conversions from users inputs and feeds to the FOC library.
 
+Application Module
+^^^^^^^^^^^^^^^^^^
+
+**appInterface** : This folder contains the header files for the Input, Control and Status variables.
+
+User can add their custom Input / Ctrl configurations to "appUserInputRegsConfig" API which is periodically called by the application every 200mS when the motor is in not spinning.
+
+**ConfigTables** All the register map tuning configurations for a given index is defined in the Config tables.
+
+User can add custom values to these tables based on the application use case
+
 Main Application
 ~~~~~~~~~~~~~~~~
 
-Main application contains the user code which initializes the application modules.
+Main application contains the user code which initializes the application modules and periodically calls the configuration updates in While(1) loop.
+
+main.h Configurations
+^^^^^^^^^^^^^^^^^^^^^
+
+User Can define the Default System Configurations from the main.h
+
+**Base Address** : The default RAM address space for the Input,Ctrl & Status register map structures are defined in main.h. It is recommended to not alter the address space as these will be used by the GUI application for variable referencing.
+
+**Hardware Configurations**
+
+**Gate Driver Selection** - Select the connected HW using #ifdef Macro with the available Gate Driver Configurations. Ex: DRV8329/DRV8323/DRV8316/CUSTOM
+
+If user selects a Custom gate driver , It is recommended to choose any of the Gate driver configurations as a starting point and update the SYSCONFIG and HAL based on the pin configurations. The DRV8316/DRV8323 has SPI based Gate Driver Communication with Three Shunt Configuration & DRV8329 Example is based on Single Shunt configuration without SPI communication.
+
+**Current Shunt Configuration** - User can choose the Current shunt configurations based on the actual number of Shunt Resistors used for Current Sensing.
+
+"#define CURRENT\_SHUNT\_CONFIG" Macro will be used for the definition of given shunt configuration
+
+Below #ifdef Macro's can be used to select various current shunt configurations available in the FW.
+
+-  \_\_CURRENT\_THREE\_SHUNT\_DYNAMIC - For three shunt configuration with dynamic selection of any two shunts based on the Sector
+
+-  \_\_CURRENT\_THREE\_SHUNT\_XY\_Z - For three shunt configuration with Fixed current sensing where XY phases are used for simultaneous sampling and Z phase used for lateral sample.
+
+-  \_\_CURRENT\_TWO\_SHUNT\_X\_Y - For Dual Shunt configurations with X & Y as the respective phases of the three phases used for current sensing
+
+-  \_\_CURRENT\_SINGLE\_SHUNT - For Single Shunt current sense Configuration.
+
+For Single shunt configuration user can select \_NONINVERT\_ISEN or \_INVERT\_ISEN based on the amplifier input configuration.
+
+For Inverted Isense Configuration - The Voltage across the amplifier decreases as the Current increases.
+
+FULL\_SCALE\_CURRENT\_BASE - Set the Maximum measurable current based on the Current Shunt Amplifier Gain and the Current Sense Resistor.
+
+DC\_VOLTAGE\_BASE - Set the Maximum measurable phase Voltage based on the Scaled down voltage fed to ADC from the Voltage Divider Circuit.
 
 2. HAL Layer
 ------------
@@ -102,6 +154,17 @@ In the above image we can see that phase U voltage is mapped to ADC channel 6 an
 
 Gate driver HAL Interface handles the configurations of ADC channels to convert phase voltage inputs and phase current inputs from gate driver.
 
+Single Shunt Configurations:
+
+In single shunt based current sensing, the PWM's are dynamically shifted near the sector cross overs where there is no margin for current sampling in the non overlapping regions. For this reason, the PWM's are not center aligned and we assign Compare B indexes of Timer A to achieve this shifting. It is important for user to configure the Compare B index for the PWM's based on the Pin configuration.
+
+.. figure:: images/SingleShuntCompareBConfig.png
+   :alt: Compare B Index Configuration
+
+   Compare B Index Configuration
+
+In the above example for DRV8329 ,The primary compare events are selected based on HS PWM pins and the corresponding Timer Compare ports. The secondary Compare events are selected from the remaining Compare indexes from 0-5.
+
 Enabling simultaneous current sampling :
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -125,7 +188,7 @@ Important Peripherals and configurations used in FOC
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. GPIOs
-~~~~~~~~
+^^^^^^^^
 
 Following are the GPIO's used by the Application code:
 
@@ -153,7 +216,7 @@ User can change the GPIO pin selection in the TI SysConfig to select any desired
    GPIO sysconfig
 
 2. SPI
-~~~~~~
+^^^^^^
 
 SPI is configured in Sysconfig for gate drivers having SPI interface. The SPI configurations used are given below
 
@@ -180,14 +243,14 @@ SPI is configured in Sysconfig for gate drivers having SPI interface. The SPI co
 User can user the same SPI connection to interface any other device, but need to see if the gate driver spi transmission is busy. Also user need to take care of using a different chip select line.
 
 3. PWM
-~~~~~~
+^^^^^^
 
 Three PWM channels with complementary outputs are used to drive the motor and one channel is used to trigger the ADC to convert the voltages and currents. TIMER A0 is reserved for generating the PWMs for FOC motor control and user should not use this timer.
 
 TIMER A0 triggers the ADC using event channels, the event channels used are specified in focPeripheralInit.h, user should not use the same event channel used by the Library.
 
-3. ADC
-~~~~~~
+4. ADC
+^^^^^^
 
 The ADC configurations used are given below:
 
@@ -223,8 +286,10 @@ If user wishes to use ADC to convert any new channels the user should add new me
 
 For phase voltage and phase current configuration the Library sets the channel using the channel listed in gateDriver.h. For DC bus voltage conversion the pin is specified by TI SysConfig and user needs to take care to update the defines in gateDriver.h, if the pin is changed in TI SysConfig.
 
-4. DAC
-~~~~~~
+The first Two memory indexes of the ADC 0 & 1 are used for the Current Sampling / Voltage sampling and shound't be modified. The DC bus Voltage is sampled from the 2nd Memory Index and user can choose to use any other Memory Index apart from 0 & 1 of ADC 0 & ADC 1 for any custom ADC addition.
+
+5. DAC
+^^^^^^
 
 The DAC configurations used are given below:
 
@@ -264,6 +329,16 @@ For enabling UART communication with an external device use the below pinouts:
 +-----------------+-----------------+
 
 **For DRV8323RS**
+
++-----------------+-----------------+
+| UART comm pin   | LP-MSPM0G3507   |
++=================+=================+
+| UART TX         | PB12            |
++-----------------+-----------------+
+| UART RX         | PA13            |
++-----------------+-----------------+
+
+**For DRV8329**
 
 +-----------------+-----------------+
 | UART comm pin   | LP-MSPM0G3507   |

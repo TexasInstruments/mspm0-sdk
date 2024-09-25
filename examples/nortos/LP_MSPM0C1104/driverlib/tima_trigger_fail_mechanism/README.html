@@ -59,7 +59,7 @@
 </tr>
 <tr class="odd">
 <td>TIMERFAULT0</td>
-<td>PA0</td>
+<td>PA25</td>
 <td>Fault Pin 1</td>
 </tr>
 <tr class="even">
@@ -122,11 +122,11 @@
 <td><ul><li>PA11 can be connected to an external 3.3V pull-up<br><ul><li><code>J6 OFF</code> Disconnect 3.3V pull-up<br><li><code>J6 ON</code> Connect 3.3V pull-up</ul></ul></td>
 </tr>
 <tr class="odd">
-<td>PA0</td>
+<td>PA25</td>
 <td>TIMERFAULT0</td>
-<td>FAULT1</td>
-<td>J1_10</td>
-<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J20 1:2</code> Use 3.3V pull-up<br><li><code>J20 2:3</code> Use 5V pull-up</ul></ul></td>
+<td>FAULT2</td>
+<td>J1_2</td>
+<td>N/A</td>
 </tr>
 <tr class="even">
 <td>PA18</td>
@@ -178,8 +178,12 @@
 <p>A fault condition is detected when the fault pin state remains in high state for more than 5 timer clocks. This examples enables the fault input filter to handle glitches on the fault input and is configured for consecutive periods mode for 3 timer clocks. The fault pin input is passed by a synchronizer which can take up to 2 additional timer clock to start detecting consecutive periods.</p>
 <p>Once a fault is detected , TimerA is configured to set the PWM as follows:</p>
 <ul>
+<li>TimerA is configured to set the PWM as follows:
+<ul>
 <li>TIMA1_C0 is set to high state</li>
 <li>TIMA1_C1 is set to low state</li>
+</ul></li>
+<li>USER_LED_1 and USER_TEST pins will toggle every time a fault is detected</li>
 </ul>
 <p>Once the fault condition is cleared (i.e. fault pin remains in low state for at least 5 timer clocks). TimerA will resume operation as follows and will perform all three operations listed below simultaneously:</p>
 <ul>

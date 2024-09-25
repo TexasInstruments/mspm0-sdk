@@ -1,0 +1,98 @@
+Sensorless FOC - DRV8329 Gate Driver User Guide
+===============================================
+
+This User Guide outlines the usage of DRV8329 gate driver along with the sensorless FOC Application running on MSPM0.
+
+1. Hardware Required
+--------------------
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__ - MSPM0G3507 Launchpad
+-  `DRV8329AEVM <https://www.ti.com/tool/DRV8329AEVM>`__ - DRV8329AEVM is a 30-A, 3-phase brushless DC drive stage based on the DRV8329A gate driver for BLDC motors.
+-  DC Power supply that supports the required voltage and current
+-  Brushless-DC Motor
+-  Micro-USB cable
+
+2. Hardware Setup
+-----------------
+
+1. Remove the PA26 jumper J18 in the LP-MSPM0G3507 as shown below.
+
+.. figure:: images/LPMSPM0G3507-J18.jpg
+   :alt: J18 header removed in LP-MSPM0G3507
+
+   J18 header removed in LP-MSPM0G3507
+
+2. By Default in DRV8329AEVM shunt resistor R44 is populated with 0.001ohms this resistor need to be changed to 20mOhms.
+
+3. R18, R20 to be populated with zero ohm resistor to connect nFault input to 15th Pin in J8. Also remove R23 to remove NFAULT from 19th pin in J9.
+
+4. Desolder R24 and populate R19 with zero ohm resistor to move POT input from 14th pin to 3rd pin in J8/J9 connector.
+
+5. Remove J2 in DRV8329AEVM to make dead time set to 55ns, user can use the MCU dead time to insert dead time.
+
+6. User can select the CSA Gain using the connector J2. By default, the base current in FW is computed with CSA Gain of 20V/v and 20mOhm resistance.
+
+7. Desolder R14, R15 removed to disconnect 3.3V and 5V to LP.
+
+8. Connect the LP-MSPM0G3507 to the DRV8329AEVM in one of two ways:
+
+   -  1 Plug the connectors J8 and J9 of the DRV8329AEVM to the top of the connectors J3/J4 of the LP-MSPM0G3507. An Additional connection need to be made from ISENA in DRV8329AEVM to the PA24 in LP-MSPM0G3507.
+
+   -  2 If using the jumper wires, connect as shown in the table below. Refer to the schematic of J3 and J4 connector pinout on DRV8329AEVM for the location of the signals.
+
+      +-------------------------+--------------+---------------+
+      | Connection              | MSPM0G3507   | DRV8329AEVM   |
+      +=========================+==============+===============+
+      | Phase A HS input        | PB4          | INHA          |
+      +-------------------------+--------------+---------------+
+      | Phase A LS input        | PB1          | INLA          |
+      +-------------------------+--------------+---------------+
+      | Phase B HS input        | PA28         | INHB          |
+      +-------------------------+--------------+---------------+
+      | Phase B LS input        | PA31         | INLB          |
+      +-------------------------+--------------+---------------+
+      | Phase C HS input        | PB20         | INHC          |
+      +-------------------------+--------------+---------------+
+      | Phase C LS input        | PB13         | INLC          |
+      +-------------------------+--------------+---------------+
+      | Bus voltage input       | PA18         | VSENVM        |
+      +-------------------------+--------------+---------------+
+      | Bus current input 1     | PA17         | ISENA         |
+      +-------------------------+--------------+---------------+
+      | Bus current input 2     | PA24         | ISENA         |
+      +-------------------------+--------------+---------------+
+      | Phase A Voltage input   | PB19         | VSENA         |
+      +-------------------------+--------------+---------------+
+      | Phase B Voltage input   | PA22         | VSENB         |
+      +-------------------------+--------------+---------------+
+      | Phase C Voltage input   | PB18         | VSENC         |
+      +-------------------------+--------------+---------------+
+      | Fault Input             | PA27         | nFAULT        |
+      +-------------------------+--------------+---------------+
+      | DRV Enable output       | PB6          | DRVOFF        |
+      +-------------------------+--------------+---------------+
+      | DRV sleep               | PA26         | nSLEEP        |
+      +-------------------------+--------------+---------------+
+      | Common Ground           | GND          | GND           |
+      +-------------------------+--------------+---------------+
+
+.. figure:: images/DRV-CONNECTOR.jpg
+   :alt: DRV8329AEVM J8 and J9 connector pinout
+
+   DRV8329AEVM J8 and J9 connector pinout
+
+Note: The output from the single shunt current sense is to be routed to ADC 0 & 1 through Pins PA24 and PA17 respectively.
+
+9.  Place nSLEEP switch in WAKE position and DRVOFF in ON position.
+
+10. Connect the 3 phases of the BLDC motor to A/B/C of connector J13 on the DRV8329AEVM.
+
+11. Connect the positive and negative of the power supply to VM and GND of the power connector terminal block.
+
+12. Set the power supply to to a motor voltage between 4.5V to 60V within the DRV8329AEVM specifications and a 30-A current limit.
+
+13. Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.
+
+14. Turn on the power supply. The green VM LED on the DRV8329AEVM should turn on.
+
+15. Once all steps are completed, Please refer to `Software User Guide <../MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html>`__ for steps on importing the CCS project or `FOC Tuning Guide <https://www.ti.com/lit/pdf/SLAU927>`__ for steps to tune and spin the motor.

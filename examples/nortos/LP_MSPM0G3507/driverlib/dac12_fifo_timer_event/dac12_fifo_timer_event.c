@@ -64,7 +64,6 @@ void DAC12_IRQHandler(void)
 {
     switch (DL_DAC12_getPendingInterrupt(DAC0)) {
         case DL_DAC12_IIDX_FIFO_1_2_EMPTY:
-        case DL_DAC12_IIDX_FIFO_3_4_EMPTY:
             DL_DAC12_output12(DAC0, gSawCounter);
             gSawCounter += gSawIncrement;
             if (gSawCounter >= 4096) {
@@ -72,6 +71,7 @@ void DAC12_IRQHandler(void)
             }
             break;
         /* unused */
+        case DL_DAC12_IIDX_FIFO_3_4_EMPTY:
         case DL_DAC12_IIDX_NO_INT:
         case DL_DAC12_IIDX_MODULE_READY:
         case DL_DAC12_IIDX_FIFO_FULL:

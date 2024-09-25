@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L2228"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="secondary_bsl_uart"
+        name="secondary_bsl_uart_LP_MSPM0L2228_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L2228"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__MSPM0L2228__
+            -DUART_Plugin
+            -Oz
+            -mlittle-endian
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -Wl,--stack_size=0
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l122x_l222x/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Implements a secondary bootloader in Main overriding the ROM BSL">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../bsl_ci.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../bsl_ci.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../bsl_uart.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../bsl_uart.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../secondary_bsl.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../secondary_bsl.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ti_msp_dl_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../secondary_bsl.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/mspm0l2228.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0l2228_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

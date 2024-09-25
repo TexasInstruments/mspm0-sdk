@@ -23,7 +23,7 @@ var searchData=
   ['rxbufsize',['rxBufSize',['../struct_u_a_r_t___buffers___object.html#af8e08b9c4a44ad610eef92451f62b4ff',1,'UART_Buffers_Object']]],
   ['rxdmachannel',['rxDmaChannel',['../struct_u_a_r_t___object.html#a4f17887b6042c5eb3289e1476b6dcfc3',1,'UART_Object::rxDmaChannel()'],['../struct_s_p_i_m_s_p_m0___object.html#a66182b911bb74b165c714dc6b45a560b',1,'SPIMSPM0_Object::rxDMAChannel()']]],
   ['rxfifothreshold',['rxFifoThreshold',['../struct_s_p_i_m_s_p_m0___h_w_attrs.html#a1498c77e55bdc3706b167fd012ddd2ee',1,'SPIMSPM0_HWAttrs']]],
-  ['rxintfifothr',['rxIntFifoThr',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#a9462d8ffead6f0bf74cf77eb005fc0aa',1,'I2CMSPM0_HWAttrs::rxIntFifoThr()'],['../struct_u_a_r_t_m_s_p___h_w_attrs.html#ae8d41df9ed433f5467277c239b4fd7f6',1,'UARTMSP_HWAttrs::rxIntFifoThr()']]],
+  ['rxintfifothr',['rxIntFifoThr',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#a9462d8ffead6f0bf74cf77eb005fc0aa',1,'I2CMSPM0_HWAttrs::rxIntFifoThr()'],['../struct_i2_c_target_m_s_p_m0___h_w_attrs.html#acf9d425d079969af715be6b545889104',1,'I2CTargetMSPM0_HWAttrs::rxIntFifoThr()'],['../struct_u_a_r_t_m_s_p___h_w_attrs.html#ae8d41df9ed433f5467277c239b4fd7f6',1,'UARTMSP_HWAttrs::rxIntFifoThr()']]],
   ['rxpin',['rxPin',['../struct_u_a_r_t_m_s_p___h_w_attrs.html#a90dcf4db5d8fd957a88ae1a2614f24ea',1,'UARTMSP_HWAttrs']]],
   ['rxpinfunction',['rxPinFunction',['../struct_u_a_r_t_m_s_p___h_w_attrs.html#a6f02a2563c749b86600639261483ffdd',1,'UARTMSP_HWAttrs']]],
   ['rxscratchbuf',['rxScratchBuf',['../struct_s_p_i_m_s_p_m0___object.html#a1bfc960d4730d8d458f37f2c4b9c2fca',1,'SPIMSPM0_Object']]],

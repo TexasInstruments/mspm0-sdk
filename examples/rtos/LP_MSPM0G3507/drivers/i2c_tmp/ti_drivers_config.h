@@ -66,7 +66,7 @@
 #include <ti/drivers/I2C.h>
 #include <ti/drivers/UART.h>
 #include <ti/drivers/dma/DMAMSPM0.h>
-#include <ti/drivers/uart/UARTMSPM0G1X0X_G3X0X.h>
+#include <ti/drivers/uart/UARTMSPM0.h>
 
 /* support C++ sources */
 #ifdef __cplusplus

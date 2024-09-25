@@ -1,5 +1,5 @@
 const { getDefaultValue } = system.getScript("./defaultValue.js");
-const { device2Family } = system.getScript("../../driverlib/Common.js");
+const { device2Family, isDeviceFamily_PARENT_MSPM0L122X_L222X } = system.getScript("../../driverlib/Common.js");
 const family = device2Family(system.deviceData);
 
 function validateM0GSYSOSC(inst, validation)
@@ -88,9 +88,20 @@ function validateM0GSYSOSC(inst, validation)
 }
 
 function validateM0LSYSOSC(inst, validation) {
+
+    if(isDeviceFamily_PARENT_MSPM0L122X_L222X) {
+        let sysctl = system.modules["/ti/driverlib/SYSCTL"];
+        if(sysctl && sysctl.$static.clockTreeEn) {
+            let mod = system.modules["/ti/clockTree/mux.js"];
+            let lfxtMux = _.find(mod.$instances, ['$name','LFXTMUX']);
+            if(lfxtMux && _.endsWith(lfxtMux.inputSelect, "FALSE")){
+                validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", lfxtMux, "inputSelect");
+            }
+        }
+    }
+
     // todo: set this for the M0L, currently keeping compatible with M0G
     return validateM0GSYSOSC(inst, validation);
-
 }
 
 function validateM0CSYSOSC(inst, validation) {

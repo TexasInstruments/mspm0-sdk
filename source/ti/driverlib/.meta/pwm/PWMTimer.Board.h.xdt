@@ -76,15 +76,17 @@
 %           let instClkFreqStr2 = inst.timerClk_Freq.toString();
 `instClkFreqStr.padEnd(40," ")+instClkFreqStr2.padStart(40," ")`
 %       for(let cc of inst.ccIndex){
-%           let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
+%           /* Condition Check: avoid internal channels */
+%           if(!Common.isInternalTimerChannel(cc)){
+%               let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
 % /* figure out pin number and pinCMx */
-%           let pinName = "ccp"+cc+"Pin";
-%           let packagePin = inst.peripheral[pinName].$solution.packagePinName;
-%           let pinCM = Common.getPinCM(packagePin,inst,"CCP"+cc);
-%           let gpioName = system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%           let port = Common.getGPIOPortMultiPad(packagePin,inst,"CCP"+cc);
-%           let gpioPin = Common.getGPIONumberMultiPad(packagePin,inst,"CCP"+cc);
-%           let ccInstance = inst["PWM_CHANNEL_"+cc];
+%               let pinName = "ccp"+cc+"Pin";
+%               let packagePin = inst.peripheral[pinName].$solution.packagePinName;
+%               let pinCM = Common.getPinCM(packagePin,inst,"CCP"+cc);
+%               let gpioName = system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%               let port = Common.getGPIOPortMultiPad(packagePin,inst,"CCP"+cc);
+%               let gpioPin = Common.getGPIONumberMultiPad(packagePin,inst,"CCP"+cc);
+%               let ccInstance = inst["PWM_CHANNEL_"+cc];
 /* GPIO defines for channel `cc` */
 % let portStr = "#define "+gpioStr+"_PORT";
 `portStr.padEnd(40," ")+port.padStart(40, " ")`
@@ -133,6 +135,7 @@
 
 %               }
 %               }
+%           }
 %       }
 %       if(flavor.match("TIMA.")){
 %%{

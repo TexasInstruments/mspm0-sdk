@@ -75,15 +75,18 @@ extern "C"
 //! Enables Host Notify support as target
 //
 //*****************************************************************************
+#ifndef SMB_TARGET_SUPPORTS_HOST_NOTIFY
 #define SMB_TARGET_SUPPORTS_HOST_NOTIFY         (true)
+#endif
 
 //*****************************************************************************
 //
 //! Enables Host Notify support as Controller
 //
 //*****************************************************************************
+#ifndef SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY
 #define SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY     (true)
-
+#endif
 
 //*****************************************************************************
 // Constant definitions
@@ -130,6 +133,9 @@ extern "C"
 //
 //*****************************************************************************
 #define SMBUS_RET_OK                            (1)
+#define SMBUS_RET_OK_FIXED                      (2)
+#define SMBUS_RET_OK_BLOCK                      (3)
+
 
 //*****************************************************************************
 //
@@ -137,6 +143,13 @@ extern "C"
 //
 //*****************************************************************************
 #define SMBUS_RET_ERROR                         (-1)
+
+//*****************************************************************************
+//
+//! Definition when using variable lenght for block transactions
+//
+//*****************************************************************************
+#define SMBUS_BLOCK_LENGTH                      (0xFFFF)
 
 //*****************************************************************************
 // typedefs
@@ -298,8 +311,8 @@ typedef struct
     uint8_t *recByteTxPtr;                
     /*! Max size of buffer */
     uint16_t txSize;
-    /*! Current PEC value */
-    uint8_t pec;
+    /*! PEC block length override */
+    uint8_t pecBlockLenOverride;
     /*! Host Notify Buffer pointer */
     uint8_t *hostNotifyRxBuffPtr;
 } SMBus_Nwk;
@@ -335,8 +348,8 @@ typedef enum
     /*! Timeout Error */
     SMBus_State_TimeOutError,           
     /*! 1st byte (cmd) received */
-    SMBus_State_Target_FirstByte,        
-    /*! Target received a byte (2-n) */
+    SMBus_State_Target_FirstByte, 
+    /*! Case where second byte is length in a block command */
     SMBus_State_Target_ByteReceived,     
     /*! Quick Command detected */
     SMBus_State_Target_QCMD,             
@@ -622,6 +635,25 @@ extern void SMBus_targetReportError(SMBus *smbus,
 //
 //*****************************************************************************
 extern uint8_t SMBus_targetGetCommand(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Report to hardware that the command type is a block command
+//
+//! \param smbus       Pointer to SMBus structure
+//
+//*****************************************************************************
+extern void SMBus_targetReportBlock(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Report to hardware the fixed length of a given command
+//
+//! \param smbus       Pointer to SMBus structure
+//! \param length	   Length of payload (without PEC byte), max supported is 0xFF
+//
+//*****************************************************************************
+extern void SMBus_targetReportLength(SMBus *smbus, uint16_t length);
 
 //*****************************************************************************
 //

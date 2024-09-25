@@ -1,0 +1,146 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const DMA    = scripting.addModule("/ti/driverlib/DMA");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const SPI    = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1   = SPI.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider6       = system.clockTree["PLL_CLK2X_DIV"];
+divider6.divideValue = 4;
+
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 4;
+
+const mux2       = system.clockTree["CANCLKMUX"];
+mux2.inputSelect = "CANCLKMUX_PLLCLK1_OUT";
+
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux5       = system.clockTree["EXLFMUX"];
+mux5.inputSelect = "EXLFMUX_XTAL";
+
+const mux7       = system.clockTree["FCCTRIGMUX"];
+mux7.inputSelect = "FCCTRIGMUX_LFCLK";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_SYSPLL0";
+
+const mux9       = system.clockTree["LFXTMUX"];
+mux9.inputSelect = "LFXTMUX_TRUE";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction3     = system.clockTree["HFCLKEXT"];
+pinFunction3.inputFreq = 40;
+
+const pinFunction4        = system.clockTree["HFXT"];
+pinFunction4.inputFreq    = 40;
+pinFunction4.enable       = true;
+pinFunction4.HFCLKMonitor = true;
+pinFunction4.HFXTStartup  = 100;
+
+const pinFunction6     = system.clockTree["LFXT"];
+pinFunction6.enable    = true;
+pinFunction6.inputFreq = 32;
+
+DMA.associatedChannels.create(1);
+DMA.associatedChannels[0].$name              = "DMA_CH2";
+DMA.associatedChannels[0].addressMode        = "b2b";
+DMA.associatedChannels[0].srcLength          = "HALF_WORD";
+DMA.associatedChannels[0].dstLength          = "HALF_WORD";
+DMA.associatedChannels[0].transferMode       = "SINGLE_BLOCK";
+DMA.associatedChannels[0].peripheral.$assign = "DMA_CH2";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.port                                  = "PORTA";
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[0].pin.$assign         = "PA0";
+
+GPIO2.port                          = "PORTB";
+GPIO2.portSegment                   = "Lower";
+GPIO2.$name                         = "GPIO_TOGGLE";
+GPIO2.associatedPins.create(2);
+GPIO2.associatedPins[0].assignedPin = "8";
+GPIO2.associatedPins[0].$name       = "CAN_NEWMSG_INDICATION";
+GPIO2.associatedPins[0].pin.$assign = "PB8";
+GPIO2.associatedPins[1].$name       = "BUSY_STATUS";
+GPIO2.associatedPins[1].assignedPin = "7";
+GPIO2.associatedPins[1].pin.$assign = "PB7";
+
+SPI1.mode                                  = "PERIPHERAL";
+SPI1.txFifoThreshold                       = "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME";
+SPI1.enabledDMAEvent1Triggers              = "DL_SPI_DMA_INTERRUPT_RX";
+SPI1.dataSize                              = 16;
+SPI1.rxFifoThreshold                       = "DL_SPI_RX_FIFO_LEVEL_1_4_FULL";
+SPI1.enabledInterrupts                     = ["DMA_DONE_RX","DMA_DONE_TX","RX"];
+SPI1.enableDMAEvent1                       = false;
+SPI1.enabledDMAEvent2Triggers              = "DL_SPI_DMA_INTERRUPT_TX";
+SPI1.enableDMAEvent2                       = false;
+SPI1.peripheralChipSelect                  = "3";
+SPI1.$name                                 = "SPI_1";
+SPI1.interruptPriority                     = "2";
+SPI1.peripheral.$assign                    = "SPI1";
+SPI1.peripheral.sclkPin.$assign            = "PA17";
+SPI1.peripheral.mosiPin.$assign            = "PA18";
+SPI1.peripheral.misoPin.$assign            = "PA16";
+SPI1.peripheral.cs3Pin.$assign             = "PB1";
+SPI1.DMA_CHANNEL_EVENT1.$name              = "DMA_CH0";
+SPI1.DMA_CHANNEL_EVENT1.srcLength          = "HALF_WORD";
+SPI1.DMA_CHANNEL_EVENT1.dstLength          = "HALF_WORD";
+SPI1.DMA_CHANNEL_EVENT1.addressMode        = "f2b";
+SPI1.DMA_CHANNEL_EVENT1.peripheral.$assign = "DMA_CH0";
+SPI1.DMA_CHANNEL_EVENT2.$name              = "DMA_CH1";
+SPI1.DMA_CHANNEL_EVENT2.srcLength          = "HALF_WORD";
+SPI1.DMA_CHANNEL_EVENT2.dstLength          = "HALF_WORD";
+SPI1.DMA_CHANNEL_EVENT2.addressMode        = "b2f";
+SPI1.DMA_CHANNEL_EVENT2.peripheral.$assign = "DMA_CH1";
+
+SYSCTL.SYSPLLSource      = "HFCLK";
+SYSCTL.SYSPLL_Pdiv       = 1;
+SYSCTL.SYSPLL_Qdiv       = 4;
+SYSCTL.MFPCLKSource      = "HFCLK";
+SYSCTL.CANCLKSource      = "SYSPLLCLK1";
+SYSCTL.SYSPLL_CLK0En     = true;
+SYSCTL.SYSPLL_CLK1En     = true;
+SYSCTL.SYSPLL_CLK2XEn    = true;
+SYSCTL.HFCLK_Freq        = 40000000;
+SYSCTL.SYSPLL_CLK2XDiv   = 3;
+SYSCTL.clockTreeEn       = true;
+SYSCTL.validateClkStatus = true;
+SYSCTL.HFCLKSource       = "HFXT";
+SYSCTL.useHFCLK_Manual   = true;
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.timerClkDiv        = 5;
+TIMER1.timerPeriod        = "5000 ms";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.interruptPriority  = "0";
+TIMER1.peripheral.$assign = "TIMA0";
+

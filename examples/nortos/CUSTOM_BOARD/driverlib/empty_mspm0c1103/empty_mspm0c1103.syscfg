@@ -8,9 +8,12 @@
  * Import the modules used in this configuration.
  */
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 
 /**
  * Write custom configuration values to the imported modules.
  */
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+ProjectConfig.deviceSpin = "MSPM0C1103";

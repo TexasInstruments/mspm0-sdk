@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L1306"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="gauge_level2_standalone"
+        name="gauge_level2_standalone_LP_MSPM0L1306_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L1306"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -O2
+            @device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -ldevice.cmd.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="The level2 gauge solution utilizes the ADC and OPAs on MSPM0 for high precision voltage and current detection">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Gauge_App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Gauge_App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Driver/MSPM0Lxx_BSP.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_BSP.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_Driver.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Driver/MSPM0Lxx_Driver.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
+        </file>
+        <file path="../Gauge_Comm/Gauge_Comm.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Comm">
+        </file>
+        <file path="../Gauge_Comm/Gauge_Comm.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_Comm">
+        </file>
+        <file path="../Gauge_UserConfig/Gauge_UserConfig.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_UserConfig">
+        </file>
+        <file path="../Gauge_UserConfig/Gauge_UserConfig.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_UserConfig">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/gauge_level2/CapacityLearn.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/battery_gauge/gauge_level2">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/gauge_level2/CurtGauge.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/battery_gauge/gauge_level2">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/gauge_level2/Gauge.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/battery_gauge/gauge_level2">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/gauge_level2/Gauge_Type.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/battery_gauge/gauge_level2">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/gauge_level2/Mixing.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/battery_gauge/gauge_level2">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/gauge_level2/VoltGauge.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/battery_gauge/gauge_level2">
+        </file>
+        <file path="../lowLevelSetting.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

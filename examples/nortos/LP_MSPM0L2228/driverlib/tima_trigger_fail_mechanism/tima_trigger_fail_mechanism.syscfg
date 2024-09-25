@@ -28,7 +28,7 @@ GPIO1.associatedPins[0].assignedPin         = "0";
 GPIO1.associatedPins[0].initialValue        = "SET";
 GPIO1.associatedPins[1].assignedPort        = "PORTA";
 GPIO1.associatedPins[1].$name               = "USER_TEST";
-GPIO1.associatedPins[1].assignedPin         = "25";
+GPIO1.associatedPins[1].assignedPin         = "21";
 GPIO1.associatedPins[1].initialValue        = "SET";
 
 /**
@@ -46,7 +46,7 @@ PWM1.faultInputFilterEn         = true;
 PWM1.faultTimerCountEntry       = "FAULT_ENTRY_CTR_SUSP_COUNT";
 PWM1.faultTimerCountExit        = "FAULT_EXIT_CTR_CVAE_ACTION";
 PWM1.faultInputDetect           = true;
-PWM1.faultPin1Sense             = "SENSE_HIGH";
+PWM1.faultPin0Sense             = "SENSE_HIGH";
 PWM1.faultChannel0BehaviorEntry = "HIGH";
 PWM1.faultChannel0BehaviorExit  = "LOW";
 PWM1.faultChannel1BehaviorEntry = "LOW";
@@ -67,4 +67,6 @@ SYSCTL.clockTreeEn = true;
 TIMERFault1.$name             = "FAULT_0";
 PWM1.associatedFault          = TIMERFault1;
 TIMERFault1.enabledFaults     = ["0"];
-TIMERFault1.faultPin0.$assign = "PA26";
+TIMERFault1.faultPin0.$assign = "PA8";
+TIMERFault1.faultPin0Config.enableConfig     = true;
+TIMERFault1.faultPin0Config.internalResistor = "PULL_DOWN";

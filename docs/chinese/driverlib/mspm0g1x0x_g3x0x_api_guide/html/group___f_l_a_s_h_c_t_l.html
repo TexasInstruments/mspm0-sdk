@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">1.30.00.03</span>
+   &#160;<span id="projectnumber">2.00.00.03</span>
    </div>
   </td>
  </tr>
@@ -183,6 +183,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gaa29cba255afe27ff6d3c37a92bd1ca51">DL_FLASHCTL_READ_VERIFY_64_WITH_ECC</a>&#160;&#160;&#160;(0x000001FF)</td></tr>
 <tr class="memdesc:gaa29cba255afe27ff6d3c37a92bd1ca51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable programming 64 bits with ECC enabled. <br /></td></tr>
 <tr class="separator:gaa29cba255afe27ff6d3c37a92bd1ca51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39de6b05e60ebfe83038fb3ff273d81e"><td class="memItemLeft" align="right" valign="top"><a id="ga39de6b05e60ebfe83038fb3ff273d81e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga39de6b05e60ebfe83038fb3ff273d81e">DL_FLASHCTL_SECTOR_SIZE</a>&#160;&#160;&#160;(1024)</td></tr>
+<tr class="memdesc:ga39de6b05e60ebfe83038fb3ff273d81e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of one flash sector. <br /></td></tr>
+<tr class="separator:ga39de6b05e60ebfe83038fb3ff273d81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -3099,7 +3103,7 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
 </div><div class="memdoc">
 
 <p>Programs 32 bit data with hardware generated ECC code, and executes command from RAM. </p>
-<p>Programs 16 bit data, along with the 8 ECC bits which correspond to the 16-bit data word, to unprotected memory at the given address. This API assumes that hardware generation of the ECC code has NOT been disabled, and so the flash controller will generate the ECC bits.</p>
+<p>Programs 32 bit data, along with the 8 ECC bits which correspond to the 32-bit data word, to unprotected memory at the given address. This API assumes that hardware generation of the ECC code has NOT been disabled, and so the flash controller will generate the ECC bits.</p>
 <p>The command is executed from RAM, and blocks until the command is finished.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

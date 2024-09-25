@@ -5,10 +5,10 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = ti_drivers_config.obj uart_echo.obj ticlang_startup_mspm0g3507_ticlang.obj
+OBJECTS = uart_echo.obj ti_drivers_config.obj ticlang_startup_mspm0g3507_ticlang.obj
 NAME = uart_echo
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0G3507__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -19,24 +19,25 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/drivers/lib/ticlang/m0p/drivers_mspm0g1x0x_g3x0x.a" \
+LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/drivers/lib/ticlang/m0p/drivers_mspm0g1x0x_g3x0x.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/kernel/nortos/lib/ticlang/m0p/nortos_mspm0g1x0x_g3x0x.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     ../ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
-ti_drivers_config.obj: ../ti_drivers_config.c
+uart_echo.obj: ../uart_echo.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-uart_echo.obj: ../uart_echo.c
+ti_drivers_config.obj: ../ti_drivers_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

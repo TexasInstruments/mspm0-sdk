@@ -1,4 +1,4 @@
-IAR Embedded Workbench IDE Version 9.50.1+ for MSPM0 MCUs
+IAR Embedded Workbench IDE Version 9.50.2+ for MSPM0 MCUs
 =========================================================
 
 Table of Contents
@@ -53,7 +53,7 @@ The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>
 1. Software Installation
 ------------------------
 
-IAR Embedded Workbench for Arm (EWARM) IDE is available from the `IAR website <https://www.iar.com/>`__ or the `TI IAR kickstart page <https://www.ti.com/tool/IAR-KICKSTART>`__. MSPM0 microcontrollers and the MSPM0 SDK require EWARM 9.50.1 or higher.
+IAR Embedded Workbench for Arm (EWARM) IDE is available from the `IAR website <https://www.iar.com/>`__ or the `TI IAR kickstart page <https://www.ti.com/tool/IAR-KICKSTART>`__. MSPM0 microcontrollers and the MSPM0 SDK require EWARM 9.50.2 or higher.
 
 See the `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ documentation for finding the right SDK for your IDE version.
 
@@ -272,4 +272,22 @@ See `Overriding Pre-built Libraries <#overriding-pre-built-libraries>`__ for inf
 4. Known Issues and Frequently Asked Questions (FAQs)
 -----------------------------------------------------
 
-Please refer to `Known Issues and FAQ <../../../../../../known_issues_FAQ.html>`__ inside the SDK.
+In versions of IAR before 9.60.1, handling of low-power mode debugging is not natively supported.
+
+To enable support of low-power mode debugging in older versions of IAR, please follow these steps:
+
+1. Reach out to IAR or your local TI sales representative for the latest version of the armXDS.dll.
+
+2. Close the IAR IDE.
+
+3. Copy and paste the armXDS.dll to:
+
+   -  ``C:/Program Files/IAR Systems/EWARM/arm/bin``
+
+4. Copy and paste the ``.dmac`` file from the MSPM0 SDK at ``C:\ti\<sdk>\tools\iar\low_power_mode_patch`` to:
+
+   -  ``C:/Program Files/IAR Systems/EWARM/arm/config/debugger/TexasInstruments``
+
+\`\` By patching the installation of IAR with these files, connection to the debugger should be maintained when the device enters a low-power state.
+
+For other issues please refer to `Known Issues and FAQ <../../../../../../known_issues_FAQ.html>`__ inside the SDK.

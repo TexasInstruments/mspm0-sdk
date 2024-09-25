@@ -1,7 +1,7 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 
 const { getDefaultValue } = system.getScript("./defaultValue.js");
-const { isDeviceM0G, isDeviceM0C, getUnitPrefix } = system.getScript("/ti/driverlib/Common.js");
+const { isDeviceM0G, isDeviceM0C, isDeviceFamily_PARENT_MSPM0L122X_L222X, getUnitPrefix } = system.getScript("/ti/driverlib/Common.js");
 
 function validatePinmux(inst, validation){
 	/* CLK_OUT validation */
@@ -70,8 +70,16 @@ function validate(inst, validation)
 		if(clockTreeEn){
 			validation.logInfo("After LFXT is enabled, the internal LFOSC is disabled, and cannot be re-enabled other than by executing a BOOTRST.",inst,"enable");
 		}
+		if(isDeviceFamily_PARENT_MSPM0L122X_L222X && clockTreeEn) {
+			validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", inst, "enable");
+		}
 	}
 
+	if(inst.$name == "LFCLKEXT" && inst.enable && clockTreeEn){
+		if(isDeviceFamily_PARENT_MSPM0L122X_L222X) {
+			validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", inst, "enable");
+		}
+	}
 
 	if(inst.enable && !_.isNil(inst.minVal)){
 		if(inst.inputFreq < inst.minVal || inst.inputFreq > inst.maxVal)

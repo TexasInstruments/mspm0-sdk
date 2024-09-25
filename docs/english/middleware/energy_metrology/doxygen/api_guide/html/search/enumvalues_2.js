@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['hal_5fcrc_5f0',['HAL_CRC_0',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gga21892e84501fbafce43e93ba90d2ba4ea885086b2b3f9bd35a5db63c25d246f4d',1,'hal.h']]],
+  ['hal_5fcrc_5fmax',['HAL_CRC_MAX',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gga21892e84501fbafce43e93ba90d2ba4ea7e9313f1d6457110642926c6371de3f5',1,'hal.h']]],
   ['hal_5fdma_5fchan_5f0',['HAL_DMA_CHAN_0',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaba9c2c91b53f34245f4b524bd2d562bbafdff1c3ca015e326b71b4278d350cfaa',1,'hal.h']]],
   ['hal_5fdma_5fchan_5f1',['HAL_DMA_CHAN_1',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaba9c2c91b53f34245f4b524bd2d562bba4f6bcb52f4b8e0a43448eb15b255e897',1,'hal.h']]],
   ['hal_5fdma_5fchan_5fmax',['HAL_DMA_CHAN_MAX',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaba9c2c91b53f34245f4b524bd2d562bba55f3cc98bf581d71cd406a53e12dc4b0',1,'hal.h']]],

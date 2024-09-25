@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_1_30_00_03.html",
+    "location": "../../release_notes_mspm0_sdk_2_00_00_03.html",
     "mainCategories": [
         [
             "Documents"
@@ -945,6 +945,29 @@
     ]
 },
 {
+    "name": "Communication Modules User's Guide",
+    "tags": [
+        "Communication Modules User's Guide",
+        "UART",
+        "Documentation",
+        "Middleware"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/comm_modules/Communication_Module_Users_Guide.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "Communication Modules"
+    ]
+},
+{
     "name": "Quick Start Guide Overview",
     "tags": [
         "Quick Start Guide Overview",
@@ -1140,7 +1163,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_1_30_00_03.html",
+    "location": "../../release_notes_mspm0_sdk_2_00_00_03.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -2052,7 +2075,7 @@
     ]
 },
 {
-    "name": "DALI 管理器指南",
+    "name": "DALI dali user",
     "tags": [
         "DALI 管理器指南",
         "DALI User's Guide",
@@ -2098,6 +2121,30 @@
     "subCategories": [
         "Middleware 中间件",
         "Energy Metrology 库"
+    ]
+},
+{
+    "name": "Communication Modules 管理器指南",
+    "tags": [
+        "Communication Modules 管理器指南",
+        "Communication Modules User's Guide",
+        "UART",
+        "Documentation",
+        "Middleware"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/chinese/middleware/comm_modules/Communication_Module_Users_Guide_CN.html",
+    "mainCategories": [
+        [
+            "Documents - Chinese"
+        ]
+    ],
+    "subCategories": [
+        "Middleware 中间件",
+        "Communication Modules"
     ]
 },
 {

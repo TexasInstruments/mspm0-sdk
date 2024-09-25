@@ -14,7 +14,7 @@ The user is expected to have downloaded the following:
 -  `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__
 -  `Keil MDK-Arm with uVision <https://www2.keil.com/mdk5>`__ v5.38a or later, with Arm Clang compiler v6.16 or later.
 
--  `SysConfig 1.19.x <https://www.ti.com/tool/SYSCONFIG>`__
+-  `SysConfig 1.20.x <https://www.ti.com/tool/SYSCONFIG>`__
 
 3. Install the MSPM0 CMSIS-Pack
 -------------------------------
@@ -111,27 +111,22 @@ Keil supports multiple debuggers. This section shows how to use the XDS-110 debu
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_1.png
    :alt: 
 
-2. Go to the debug tab on the window and select CMSIS-DAP as the debugger from the drop down in the top right corner.
-
-.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_2.png
-   :alt: 
-
-3. Click on the settings button and on the debug tab make sure the settings match those shown in the image below.
+2. Go to the debug tab and click on the settings button and make sure the settings match those shown in the image below.
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_4.png
    :alt: 
 
-4. Click on the Flash Download tab and check that description matches that of the image. If not, click on the add button and select the corresponding MSPM0 MAIN option. The device type is On-chip flash.
+3. Click on the Flash Download tab and check that description matches that of the image. If not, click on the add button and select the corresponding MSPM0 MAIN option. The device type is On-chip flash.
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_3.png
    :alt: 
 
-5. Click Ok on the bottom of the windows to close out the windows and apply all the changes made to the debug settings
+4. Click Ok on the bottom of the windows to close out the windows and apply all the changes made to the debug settings
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_5.png
    :alt: 
 
-6. Flash the device with the project by pressing the Load button as shown below
+5. Flash the device with the project by pressing the Load button as shown below
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_8.png
    :alt: 

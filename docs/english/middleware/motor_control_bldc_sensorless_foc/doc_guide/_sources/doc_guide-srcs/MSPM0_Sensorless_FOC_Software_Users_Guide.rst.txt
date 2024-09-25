@@ -137,7 +137,18 @@ Algorithm debug register 2
 | *statusUpdateEn*       | Enables continous update of the UserStatusRegs             |
 +------------------------+------------------------------------------------------------+
 
-1.4 dacCtrl
+1.4 algoDebugCtrl3
+~~~~~~~~~~~~~~~~~~
+
+Algorithm debug register 3
+
++-----------------------+-----------------------------------------------+
+| algoDebugCtrl3        | Definition                                    |
++=======================+===============================================+
+| *fluxModeReference*   | Id reference used when Flux Mode is Enabled   |
++-----------------------+-----------------------------------------------+
+
+1.5 dacCtrl
 ~~~~~~~~~~~
 
 DAC control register
@@ -173,6 +184,8 @@ Configuration for system parameters
 +---------------------+--------------------------------------------------------------------------------------+
 | *mtrInductance*     | Motor Phase Inductance in Micro Henry                                                |
 +---------------------+--------------------------------------------------------------------------------------+
+| *mtrSaliency*       | Motor inductance saliency percentage                                                 |
++---------------------+--------------------------------------------------------------------------------------+
 | *mtrBemfConst*      | Motor BEMF Constant in milli Volts Per Hertz                                         |
 +---------------------+--------------------------------------------------------------------------------------+
 | *voltageBase*       | Maximum Board Supply voltage in Volts = (voltage division scaling ratio x 3.3v)      |
@@ -188,6 +201,10 @@ Configuration for system parameters
 | *currLoopKp*        | Proportional Gain for Closed Loop Torque Control                                     |
 +---------------------+--------------------------------------------------------------------------------------+
 | *currLoopKi*        | Integral Gain for Closed Loop Torque Control                                         |
++---------------------+--------------------------------------------------------------------------------------+
+| *fluxWeakeningKi*   | Integral Controller Gain for Flux Weakening                                          |
++---------------------+--------------------------------------------------------------------------------------+
+| *fluxWeakeningKp*   | Proportional Control Gain for Flux Weakening                                         |
 +---------------------+--------------------------------------------------------------------------------------+
 
 2.2 isdCfg
@@ -334,6 +351,8 @@ Configuration Parameters for Closed Loop Speed/Torque Mode
 +--------------------+------------------------------------------------------------------------------------------------+
 | *iLimit*           | Maximum current reference in torque PI loop                                                    |
 +--------------------+------------------------------------------------------------------------------------------------+
+| *highFreqFOCEn*    | Reduces the ADC sampling rate to half value, so that PWM freq can be high                      |
++--------------------+------------------------------------------------------------------------------------------------+
 
 2.7 closeLoop2
 ~~~~~~~~~~~~~~
@@ -350,7 +369,24 @@ Configuration Parameters for Closed Loop Speed/Torque Mode
 | *actSpinThr*    | Speed threshold below which motor switches to coasting while stopping motor                                                       |
 +-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
 
-2.8 faultCfg1
+2.8 fieldCtrl
+~~~~~~~~~~~~~
+
+Configuration Parameters for Field Control
+
++----------------------------+-------------------------------------------------+
+| fieldCtrl                  | Bit Wise Definition                             |
++============================+=================================================+
+| *fluxWeakeningEn*          | Enable Flux Weakening Algorithm                 |
++----------------------------+-------------------------------------------------+
+| *fluxWeakCurrRatio*        | Flux Weakening Current Ratio of Id to Iq        |
++----------------------------+-------------------------------------------------+
+| *fluxWeakeningReference*   | Reference Modulation Index for Flux Weakening   |
++----------------------------+-------------------------------------------------+
+| *mtpaEnable*               | Enable Maximum Torque Per Amp Algorithm         |
++----------------------------+-------------------------------------------------+
+
+2.9 faultCfg1
 ~~~~~~~~~~~~~
 
 Configuration Parameters for faults
@@ -363,8 +399,8 @@ Configuration Parameters for faults
 | *lockRetry*    | retry time span after the Motor Lock Fault is detected   |
 +----------------+----------------------------------------------------------+
 
-2.9 faultCfg2
-~~~~~~~~~~~~~
+2.10 faultCfg2
+~~~~~~~~~~~~~~
 
 Configuration Parameters for faults
 
@@ -392,7 +428,7 @@ Configuration Parameters for faults
 | *lock1En*        | Lock 1 : Abnormal speed enable                      |
 +------------------+-----------------------------------------------------+
 
-2.10 miscAlgo
+2.11 miscAlgo
 ~~~~~~~~~~~~~
 
 Configuration Parameters for Miscellaneous Algorithm Configurations Commands
@@ -419,7 +455,7 @@ Configuration Parameters for Miscellaneous Algorithm Configurations Commands
 | *clSlowAcc*            | Close loop acceleration when estimator is not yet fully aligned                            |
 +------------------------+--------------------------------------------------------------------------------------------+
 
-2.11 pinCfg
+2.12 pinCfg
 ~~~~~~~~~~~
 
 Configuration Parameters for Miscellaneous Pin Configuration Commands
@@ -434,7 +470,7 @@ Configuration Parameters for Miscellaneous Pin Configuration Commands
 | *vdcFiltDis*     | DC Bus Voltage filter enable                                                     |
 +------------------+----------------------------------------------------------------------------------+
 
-2.12 periphCfg1
+2.13 periphCfg1
 ~~~~~~~~~~~~~~~
 
 Configuration Parameters for Peripheral Configuration Commands
@@ -591,6 +627,17 @@ Supported MSPM0 LaunchPads
 Links
 
 -  `SENSORLESS FOC - DRV8316 Gate Driver User Guide <drv8316/DRV8316_Hardware_User_Guide.html>`__
+
+DRV8329
+~~~~~~~
+
+Supported MSPM0 LaunchPads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `SENSORLESS FOC - DRV8329 Gate Driver User Guide <drv8329/DRV8329_Hardware_User_Guide.html>`__
 
 5. Tuning Documentation
 -----------------------

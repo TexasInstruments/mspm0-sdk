@@ -1,0 +1,34 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                              = "GPIO_SWITCHES";
+GPIO1.associatedPins[0].assignedPin      = "16";
+GPIO1.associatedPins[0].$name            = "USER_SWITCH_1";
+GPIO1.associatedPins[0].direction        = "INPUT";
+GPIO1.associatedPins[0].internalResistor = "PULL_UP";
+GPIO1.associatedPins[0].interruptEn      = true;
+GPIO1.associatedPins[0].assignedPort     = "PORTA";
+GPIO1.associatedPins[0].polarity         = "FALL";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SYSCTL.clockTreeEn = true;
+
+ProjectConfig.genLinker  = false;
+ProjectConfig.genStartup = false;
+scripting.suppress("All four File Generation options must be enabled in order to guarantee Device Migration support\\. If an option is disabled, the user must manually configure that setting on its own file\\.", ProjectConfig);

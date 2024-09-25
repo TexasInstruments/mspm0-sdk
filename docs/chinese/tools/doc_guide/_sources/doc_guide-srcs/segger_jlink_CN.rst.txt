@@ -111,3 +111,19 @@ J-Link 软件包 v7.88i 或更高版本支持 MSPM0。
 ----------------------------------------------------
 
 1. 使用 CCS 十六进制实用程序为 Segger J-Flash 软件生成输出文件时，请遵循 CCS IDE 指南中\ `如何生成 TI .TXT（及其他格式）文件 <../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide_CN.html#how-to-generate-ti-txt-and-other-format-files>`__\ 部分的说明。
+
+8. 将J-Link脚本与IDE一起使用
+----------------------------
+
+尝试在任何IDE中使用J-Link脚本时，请参阅SEGGER提供的以下文档:
+
+-  `Code Composer Studio <https://wiki.segger.com/TI_Code_Composer_Studio#Using_J-Link_Script_Files>`__
+
+-  `IAR <https://wiki.segger.com/IAR_EWARM#Using_J-Link_script_files>`__
+
+-  `Keil <https://wiki.segger.com/Keil_MDK-ARM#Using_J-Link_Script_Files>`__
+
+9. 已知问题和常见问题解答(FAQ)
+------------------------------
+
+有关低功耗模式处理等其他问题，请参阅 `已知问题和常见问题 <../../../../../known_issues_FAQ.html>`__ 在SDK中。

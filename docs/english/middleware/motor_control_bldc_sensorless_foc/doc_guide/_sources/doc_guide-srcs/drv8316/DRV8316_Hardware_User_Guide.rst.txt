@@ -1,7 +1,7 @@
 Sensorless FOC - DRV8316 Gate Driver User Guide
 ===============================================
 
-This User Guide outlines the usage of DRV8316 gatedriver along with the sensorless FOC Application running on MSPM0.
+This User Guide outlines the usage of DRV8316 gate driver along with the sensorless FOC Application running on MSPM0.
 
 1. Hardware Required
 --------------------
@@ -55,7 +55,7 @@ This User Guide outlines the usage of DRV8316 gatedriver along with the sensorle
       +---------------------------+--------------+---------------+
       | Phase A current input     | PA24         | ISENA         |
       +---------------------------+--------------+---------------+
-      | Phase B current input 1   | PA25         | ISENB         |
+      | Phase B current input 1   | PA26         | ISENB         |
       +---------------------------+--------------+---------------+
       | Phase B current input 2   | PA17         | ISENB         |
       +---------------------------+--------------+---------------+
@@ -108,7 +108,7 @@ Note: There are two Phase B current inputs used because we use simultaneous curr
 
 6. Connect the positive and negative of the power supply to VM and GND of the power connector terminal block.
 
-7. Set the power supply to to a motor voltage between 6V to 24V within the DRV8316R specifications and a 5-A current limit.
+7. Set the power supply to a motor voltage between 6V to 24V within the DRV8316R specifications and a 5-A current limit.
 
 8. Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.
 

@@ -7,7 +7,7 @@ The following example configures fault detection feature on TimerA.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA0 | Open-Drain Output |
-| GPIOA | PA25 | Standard Output |
+| GPIOA | PA21 | Standard Output |
 | TIMERFAULT0 | PA26 | Fault Pin 0 |
 | SYSCTL |  |  |
 | TIMA0 | PB3 | Capture/Compare Pin 0 |
@@ -23,7 +23,7 @@ Visit [LP_MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA0 | GPIOA | PA0 | J3_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J12 1:2` Use 3.3V pull-up<br><li>`J12 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED3<br><ul><li>`J2 ON` Connect to LED3<br><li>`J2 OFF` Disconnect from LED3</ul></ul> |
-| PA25 | GPIOA | PA25 | J7_31 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul> |
+| PA21 | GPIOA | PA21 | J3_8 | <ul><li>PA21 can be connected to GND when used for VREF-<br><ul><li>`R4` is not soldered by default allowing the pin to be used for other functions</ul></ul> |
 | PA26 | TIMERFAULT0 | FAULT0 | J7_32 | N/A |
 | PB3 | TIMA0 | CCP0 | J7_40 | N/A |
 | PB4 | TIMA0 | CCP1 | J7_11 | N/A |

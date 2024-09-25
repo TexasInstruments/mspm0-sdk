@@ -84,6 +84,12 @@ INPUT("ti/smbus/lib/gcc/m0p/smbus.a")
 % if(migration_inst.genLibCMSIS){
 INPUT("third_party/CMSIS/DSP/lib/gcc/m0p/arm_cortexM0l_math.a")
 % }
+% if(migration_inst.genLibGaugeL2 && migration_inst.genLibGaugeL2Version == "RTS"){
+INPUT("ti/battery_gauge/lib/gcc/m0p/gauge_l2_rts.a")
+% }
+% if(migration_inst.genLibGaugeL2 && migration_inst.genLibGaugeL2Version == "MATHACL"){
+INPUT("ti/battery_gauge/lib/gcc/m0p/gauge_l2_mathacl.a")
+% }
 % if(migration_inst.genLibDL){
 INPUT("ti/driverlib/lib/gcc/m0p/`Common.getDeviceFamily().toLowerCase()`/driverlib.a")
 % }

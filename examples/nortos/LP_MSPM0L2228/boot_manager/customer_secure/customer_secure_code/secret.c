@@ -55,8 +55,20 @@ SECRET_MSG const SecretStorage gSecretStgInFlash = {
     .shared_secret = internal_shared_secret;
 #endif
 #ifdef CSC_ENABLE_KEYSTORE_STATIC_KEY
-.keystore_staticKey0 = {
-    0x00, 0x1, 0x16157e2b, 0xa6d2ae28, 0x8815f7ab, 0x3c4fcf09},
+/* Note that the keys below are in the following format:
+     * uint32_t: shortened hash for revocation if applicable, 0x00 if
+     *           non-revocable
+     * uint32_t: key size, one of DL_KEYSTORECTL_KEY_SIZE
+     * uint32_t key[8]: key array in little-endian notation, thus if a 128-bit
+     *           key in 8-byte notation is aabbccddeeff00112233445566778899,
+     *           the key would be written into the array as:
+     *           { 0xddccbbaa, 0x1100ffee, 0x55443322, 0x99887766 }
+     *           and the last 4 words of the array, key[4]-key[7], will
+     *           remain empty.
+     */
+.keystore_staticKey = {
+    {0x00, 0x1, 0x16157e2b, 0xa6d2ae28, 0x8815f7ab, 0x3c4fcf09},
+    {0x00, 0x1, 0x92e9fffe, 0x1c736586, 0x948f6a6d, 0x08833067}},
 #endif
 }
 ;
@@ -145,9 +157,11 @@ static uint32_t Secret_copyOverKeys(void)
 #endif
 
 #ifdef CSC_ENABLE_KEYSTORE_STATIC_KEY
-    for (int i = 0; i < 10; i++) {
-        gSecretStgInRAM.keystore_staticKey0[i] =
-            gSecretStgInFlash.keystore_staticKey0[i];
+    for (int j = 0; j < CSC_NUM_STATIC_KEYS; j++) {
+        for (int i = 0; i < 10; i++) {
+            gSecretStgInRAM.keystore_staticKey[j][i] =
+                gSecretStgInFlash.keystore_staticKey[j][i];
+        }
     }
 #endif
 

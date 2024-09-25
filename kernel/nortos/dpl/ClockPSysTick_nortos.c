@@ -51,6 +51,11 @@
 #define CPU_CLOCK_HZ ((uint32_t) 80000000)
 #define CPU_CLOCK_MHZ ((uint32_t) 80)
 
+#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
+
+#define CPU_CLOCK_HZ ((uint32_t) 32000000)
+#define CPU_CLOCK_MHZ ((uint32_t) 32)
+
 #endif
 
 #include <ti/drivers/dpl/ClockP.h>
@@ -376,7 +381,7 @@ void ClockP_setTimeout(ClockP_Handle handle, uint32_t timeout)
  */
 void ClockP_setPeriod(ClockP_Handle handle, uint32_t period)
 {
-    ClockP_Obj *obj = (ClockP_Obj *)handle;
+    ClockP_Obj *obj = (ClockP_Obj *) handle;
 
     obj->period = period;
 }

@@ -57,9 +57,9 @@ void SMBus_PHY_targetEnable(SMBus *smbus)
     DL_I2C_enablePower(smbus->phy.SMBus_Phy_i2cBase);
     delay_cycles(SMB_POWER_STARTUP_DELAY);
 
-    /* 
+    /*
         This implementation uses the SysConfig initialization.
-        Developers can implement a custom initialization 
+        Developers can implement a custom initialization
     */
     SYSCFG_DL_SMB_I2C_init();
     smbus->ctrl.bits.phyEn = 1;      // Set global flag
@@ -89,7 +89,6 @@ void SMBus_PHY_targetEnableInt(SMBus *smbus)
                                 DL_I2C_INTERRUPT_TARGET_TXFIFO_EMPTY |
                                 DL_I2C_INTERRUPT_TIMEOUT_A);
     DL_I2C_enableInterrupt(smbus->phy.SMBus_Phy_i2cBase,
-                            DL_I2C_INTERRUPT_TARGET_PEC_RX_ERROR |
                             DL_I2C_INTERRUPT_TARGET_RXFIFO_TRIGGER |
                             DL_I2C_INTERRUPT_TARGET_START |
                             DL_I2C_INTERRUPT_TARGET_STOP |
@@ -164,6 +163,16 @@ SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus)
             case DL_I2C_IIDX_TARGET_RXFIFO_TRIGGER:
                 data = DL_I2C_receiveTargetData(SMBusPHY->SMBus_Phy_i2cBase);
                 ret_state = SMBus_NWK_targetProcessRx(smbus, data);
+				// Check if last byte in the transfer that the PEC checked out, 
+				// otherwise NACK
+                if(DL_I2C_getRawInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
+                                              DL_I2C_INTERRUPT_TARGET_PEC_RX_ERROR)){
+
+                    DL_I2C_clearInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
+                                              DL_I2C_INTERRUPT_TARGET_PEC_RX_ERROR);
+                    smbus->status.bits.pecErr = 1;
+                    ret_state = SMBus_State_PECError;
+                }
                 smbus->phy.SMBus_Phy_AckPending = true;
             break;
             case DL_I2C_IIDX_TARGET_START:
@@ -213,6 +222,10 @@ SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus)
     return(ret_state);
 }
 
+void SMBus_PHY_targetSetPECCount(SMBus * smbus, uint16_t length){
+    DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, (uint32_t) 0x00000000 | length);
+}
+
 void SMBus_PHY_targetManualACK(SMBus *smbus, bool ackVal)
 {
     if (ackVal == true)
@@ -236,9 +249,9 @@ void SMBus_PHY_controllerEnable(SMBus *smbus)
     DL_I2C_enablePower(smbus->phy.SMBus_Phy_i2cBase);
     delay_cycles(SMB_POWER_STARTUP_DELAY);
 
-    /* 
+    /*
         This implementation uses the SysConfig initialization.
-        Developers can implement a custom initialization 
+        Developers can implement a custom initialization
     */
     SYSCFG_DL_SMB_I2C_init();
 
@@ -489,7 +502,7 @@ SMBus_State SMBus_PHY_controllerProcessInt(SMBus *smbus)
         break;
         case DL_I2C_IIDX_CONTROLLER_NACK:
             ret_state = SMBus_NWK_controllerProcessNACK(smbus);
-            __BKPT(0); /* Placeholder for debugging purposes */
+            //__BKPT(0); /* Placeholder for debugging purposes */
         break;
         case DL_I2C_IIDX_CONTROLLER_START:
             //__BKPT(0); /* Placeholder for debugging purposes */
@@ -498,7 +511,7 @@ SMBus_State SMBus_PHY_controllerProcessInt(SMBus *smbus)
             ret_state = SMBus_NWK_controllerProcessStop(smbus);
         break;
         case DL_I2C_IIDX_CONTROLLER_ARBITRATION_LOST:
-            __BKPT(0); /* Placeholder for debugging purposes */
+            //__BKPT(0); /* Placeholder for debugging purposes */
         break;
         /* SMBus Timeout interrupt */
         case DL_I2C_IIDX_TIMEOUT_A:

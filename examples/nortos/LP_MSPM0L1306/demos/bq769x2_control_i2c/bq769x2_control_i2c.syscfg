@@ -8,13 +8,14 @@
 /**
  * Import the modules used in this configuration.
  */
-const Board  = scripting.addModule("/ti/driverlib/Board");
-const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
-const GPIO1  = GPIO.addInstance();
-const GPIO2  = GPIO.addInstance();
-const I2C    = scripting.addModule("/ti/driverlib/I2C", {}, false);
-const I2C1   = I2C.addInstance();
-const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const GPIO2         = GPIO.addInstance();
+const I2C           = scripting.addModule("/ti/driverlib/I2C", {}, false);
+const I2C1          = I2C.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 
 /**
  * Write custom configuration values to the imported modules.
@@ -23,22 +24,25 @@ const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 GPIO1.$name                         = "GPIO_LEDS";
 GPIO1.port                          = "PORTA";
 GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPin = "26";
 GPIO1.associatedPins[0].pin.$assign = "PA26";
 
 GPIO2.$name                              = "GPIO_GRP_0";
 GPIO2.port                               = "PORTA";
 GPIO2.associatedPins[0].$name            = "PIN_0";
 GPIO2.associatedPins[0].direction        = "INPUT";
-GPIO2.associatedPins[0].assignedPin      = "14";
 GPIO2.associatedPins[0].interruptEn      = true;
 GPIO2.associatedPins[0].polarity         = "FALL";
 GPIO2.associatedPins[0].internalResistor = "PULL_UP";
+GPIO2.associatedPins[0].assignedPin      = "14";
+GPIO2.associatedPins[0].pin.$assign      = "PA14";
 
 I2C1.$name                     = "I2C_0";
 I2C1.basicEnableController     = true;
 I2C1.advAnalogGlitchFilter     = "DISABLED";
 I2C1.advControllerTXFIFOTRIG   = "BYTES_1";
+I2C1.peripheral.$assign        = "I2C0";
 I2C1.peripheral.sdaPin.$assign = "PA0";
 I2C1.peripheral.sclPin.$assign = "PA1";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.peripheral.$assign = "SYSCTL";

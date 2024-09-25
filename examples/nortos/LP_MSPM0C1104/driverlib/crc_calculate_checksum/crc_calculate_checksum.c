@@ -38,7 +38,6 @@
 uint16_t gData16[CRC_NUM_OF_WORDS] = {
     0x5812, 0x3B4A, 0xFECA, 0x0C74, 0x842F, 0x0000};
 const uint16_t gCrcSeed = CRC_SEED;
-
 int main(void)
 {
     volatile uint16_t crcChecksum;
@@ -55,6 +54,9 @@ int main(void)
     } else {
         crcChecksumMatch = false;
     }
+
+    /* Stop the debugger to verify crcChecksumMatch == true */
+    __BKPT(0);
 
     while (1) {
         __WFI();

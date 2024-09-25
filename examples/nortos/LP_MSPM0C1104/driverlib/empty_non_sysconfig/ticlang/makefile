@@ -8,7 +8,7 @@ LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 OBJECTS = empty_non_sysconfig.obj ti_msp_dl_config.obj ticlang_startup_mspm0c110x_ticlang.obj
 NAME = empty_non_sysconfig
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0C1104__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -19,15 +19,16 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0c110x/driverlib.a" \
+LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0c110x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     ../ticlang/mspm0c1104.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
 empty_non_sysconfig.obj: ../empty_non_sysconfig.c

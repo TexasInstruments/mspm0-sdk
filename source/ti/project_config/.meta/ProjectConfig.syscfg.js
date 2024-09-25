@@ -154,6 +154,8 @@ function onChangeGenLibs(inst,ui){
     ui.genLibPMBUS.hidden = !inst.genLibs;
     ui.genLibSMBUS.hidden = !inst.genLibs;
     ui.genLibCMSIS.hidden = !inst.genLibs;
+    ui.genLibGaugeL2.hidden = !inst.genLibs;
+    ui.genLibGaugeL2Version.hidden = (!inst.genLibGaugeL2)||(!inst.genLibs);
 };
 /* Set File Gen Options as Read-Only when disabled */
 function onChangeDisable(inst,ui){
@@ -328,6 +330,25 @@ This file is specific to the selected device family.
                         name: "genLibCMSIS",
                         displayName: "CMSIS/DSP",
                         default: false,
+                    },
+                    // Battery Gauge L2
+                    {
+                        name: "genLibGaugeL2",
+                        displayName: "Battery Gauge L2",
+                        default: false,
+                        onChange: (inst,ui) => {
+                            ui.genLibGaugeL2Version.hidden = !inst.genLibGaugeL2;
+                        }
+                    },
+                    {
+                        name: "genLibGaugeL2Version",
+                        displayName: "Select Battery Gauge L2 version",
+                        default: "RTS",
+                        hidden: true,
+                        options: [
+                            {name: "RTS"},
+                            {name: "MATHACL"},
+                        ]
                     },
                 ],
             },

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['tailptr',['tailPtr',['../struct_s_p_i_m_s_p_m0___object.html#acdbc71b5baf22cb92eec15c40dabf5c6',1,'SPIMSPM0_Object']]],
-  ['targetaddress',['targetAddress',['../struct_i2_c___transaction.html#a951cf16485f3cced8dfe0adb387bd118',1,'I2C_Transaction']]],
+  ['targetaddress',['targetAddress',['../struct_i2_c___transaction.html#a951cf16485f3cced8dfe0adb387bd118',1,'I2C_Transaction::targetAddress()'],['../struct_i2_c_target___params.html#a6fae93f7a675c921a6f7a891e80ceb1f',1,'I2CTarget_Params::targetAddress()']]],
   ['transfercallbackfxn',['transferCallbackFxn',['../struct_i2_c___params.html#a57edf1b900368904779d0c57a73cf047',1,'I2C_Params::transferCallbackFxn()'],['../struct_s_p_i_m_s_p_m0___object.html#ad124795f0b0417ecffc764948146802f',1,'SPIMSPM0_Object::transferCallbackFxn()'],['../struct_s_p_i___params.html#a68d1d610da6a6bf299121b939ef2a352',1,'SPI_Params::transferCallbackFxn()']]],
   ['transfercancelfxn',['transferCancelFxn',['../struct_s_p_i___fxn_table.html#a50f7f21536780c912dedf32c0918034c',1,'SPI_FxnTable']]],
   ['transfercomplete',['transferComplete',['../struct_s_p_i_m_s_p_m0___object.html#ab4d27f1d8e9cd354149129a188706baf',1,'SPIMSPM0_Object']]],
@@ -15,7 +15,7 @@ var searchData=
   ['txchar',['txChar',['../struct_u_a_r_t_support___fxns.html#a4eb87ae86c7494ab962e07aa48a92243',1,'UARTSupport_Fxns']]],
   ['txdmachannel',['txDMAChannel',['../struct_s_p_i_m_s_p_m0___object.html#aafb493b68fe88621b5c72a7904d1c6e1',1,'SPIMSPM0_Object::txDMAChannel()'],['../struct_u_a_r_t___object.html#a1433fb3b05afd6270178c9d078489351',1,'UART_Object::txDmaChannel()']]],
   ['txfifothreshold',['txFifoThreshold',['../struct_s_p_i_m_s_p_m0___h_w_attrs.html#ac2335e7fc4f00a03d81d8af5e02e818b',1,'SPIMSPM0_HWAttrs']]],
-  ['txintfifothr',['txIntFifoThr',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#a8c07d820eaf9b7e5a25129966e9649f8',1,'I2CMSPM0_HWAttrs::txIntFifoThr()'],['../struct_u_a_r_t_m_s_p___h_w_attrs.html#a97f3825af3697834ecd0b5c5b682140a',1,'UARTMSP_HWAttrs::txIntFifoThr()']]],
+  ['txintfifothr',['txIntFifoThr',['../struct_i2_c_m_s_p_m0___h_w_attrs.html#a8c07d820eaf9b7e5a25129966e9649f8',1,'I2CMSPM0_HWAttrs::txIntFifoThr()'],['../struct_i2_c_target_m_s_p_m0___h_w_attrs.html#ad9a6d17c8a3db719541de091cdc62de9',1,'I2CTargetMSPM0_HWAttrs::txIntFifoThr()'],['../struct_u_a_r_t_m_s_p___h_w_attrs.html#a97f3825af3697834ecd0b5c5b682140a',1,'UARTMSP_HWAttrs::txIntFifoThr()']]],
   ['txpin',['txPin',['../struct_u_a_r_t_m_s_p___h_w_attrs.html#a63ebb924b31963fc834f9957ed7c439e',1,'UARTMSP_HWAttrs']]],
   ['txpinfunction',['txPinFunction',['../struct_u_a_r_t_m_s_p___h_w_attrs.html#a89c3fc896dad8c8b1dd7801b2033b38c',1,'UARTMSP_HWAttrs']]],
   ['txscratchbuf',['txScratchBuf',['../struct_s_p_i_m_s_p_m0___object.html#a8e0e1a68195586c5e7501ca0242dfd47',1,'SPIMSPM0_Object']]],

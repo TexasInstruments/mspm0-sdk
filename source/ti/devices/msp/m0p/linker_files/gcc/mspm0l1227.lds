@@ -15,10 +15,15 @@ MEMORY
 /* Note: SRAM length must match MPPC/MEMSS config! Please edit it manually. */
 
 REGION_ALIAS("REGION_TEXT", FLASH);
+REGION_ALIAS("REGION_PREINIT_ARRAY", FLASH);
+REGION_ALIAS("REGION_INIT_ARRAY", FLASH);
+REGION_ALIAS("REGION_FINI_ARRAY", FLASH);
 REGION_ALIAS("REGION_BSS", SRAM);
+REGION_ALIAS("REGION_NOINIT", SRAM);
 REGION_ALIAS("REGION_DATA", SRAM);
 REGION_ALIAS("REGION_STACK", SRAM);
 REGION_ALIAS("REGION_HEAP", SRAM);
+REGION_ALIAS("REGION_TEXT_RAM", SRAM);
 REGION_ALIAS("REGION_ARM_EXIDX", FLASH);
 REGION_ALIAS("REGION_ARM_EXTAB", FLASH);
 
@@ -34,7 +39,7 @@ SECTIONS
     } > REGION_TEXT
 
     PROVIDE (_vtable_base_address =
-        DEFINED(_vtable_base_address) ? _vtable_base_address : 0x20000000);
+        DEFINED(_vtable_base_address) ? _vtable_base_address : 0x20200000);
 
     .vtable (_vtable_base_address) : AT (_vtable_base_address) {
         KEEP (*(.vtable))

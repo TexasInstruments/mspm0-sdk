@@ -133,8 +133,8 @@ typedef enum IRQn
 #define AESADV_INT_VECn         44    /* AESADV_INT Interrupt */
 #define LCD_INT_VECn            45    /* LCD_INT Interrupt */
 #define LFSS_INT_VECn           46    /* LFSS_INT Interrupt */
-#define RTC_A_INT_VECn          46,   /* RTC_A_INT Interrupt */
-#define TAMPERIO_INT_VECn       46,   /* TAMPERIO_INT Interrupt */
+#define RTC_A_INT_VECn          46    /* RTC_A_INT Interrupt */
+#define TAMPERIO_INT_VECn       46    /* TAMPERIO_INT Interrupt */
 #define DMA_INT_VECn            47    /* DMA_INT Interrupt */
 
 

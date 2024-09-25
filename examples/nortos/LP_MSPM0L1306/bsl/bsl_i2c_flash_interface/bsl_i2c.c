@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2024, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -159,7 +159,7 @@ uint32_t BSL_PI_I2C_receive(void)
      * BSL_activePluginType helps to check if the data received is through
      * Flash plugin or not.
      */
-    if(BSL_activePluginType == FLASH_PLUGIN_VERSION_I2C){
+    if (BSL_activePluginType == FLASH_PLUGIN_VERSION_I2C) {
         /*
          * If the last received command packet is processed, and BSL core is ready
          * to accept a new data packet, the state will move from BLOCKED to IDLE.
@@ -217,8 +217,8 @@ uint32_t BSL_PI_I2C_receive(void)
             else if (BSL_PI_dataPointer ==
                      ((uint32_t) BSL_RXBufferSize + (uint32_t) 3)) {
                 if (BSL_PI_RxDataCnt > (BSL_RXBufferSize + (uint16_t) 3)) {
-                    BSL_PI_checksum =
-                        (uint32_t) BSL_Back_Buf[BSL_RXBufferSize + (uint16_t) 3];
+                    BSL_PI_checksum = (uint32_t)
+                        BSL_Back_Buf[BSL_RXBufferSize + (uint16_t) 3];
                     BSL_PI_dataPointer = BSL_PI_dataPointer + (uint32_t) 1;
                 }
             } else if (BSL_PI_dataPointer ==
@@ -250,8 +250,8 @@ uint32_t BSL_PI_I2C_receive(void)
                     uint8_t* BSL_core_data_start = &BSL_Back_Buf[3];
 
                     /* Verify checksum */
-                    if (BSL_calculateCRC(BSL_core_data_start, BSL_RXBufferSize) ==
-                        BSL_PI_checksum) {
+                    if (BSL_calculateCRC(BSL_core_data_start,
+                            BSL_RXBufferSize) == BSL_PI_checksum) {
                         BSL_PI_interpretPICommand(BSL_Back_Buf);
 
                         /* Ping pong the buffers */
@@ -388,15 +388,14 @@ void BSL_PI_I2C_ISR(void)
              * as the first byte, the data transfer is considered as valid and
              * the interface is chosen as active interface
              */
-            if((BSL_RX_state == RX_idle) &&
-                    ((receivedData == BSL_PACKET_HEADER_BYTE) ||
-                            (BSL_activePluginType == FLASH_PLUGIN_VERSION_I2C) )) {
-
+            if ((BSL_RX_state == RX_idle) &&
+                ((receivedData == BSL_PACKET_HEADER_BYTE) ||
+                    (BSL_activePluginType == FLASH_PLUGIN_VERSION_I2C))) {
                 BSL_activePluginType = FLASH_PLUGIN_VERSION_I2C;
-                BSL_PI_RxDataCnt   = (uint16_t) 1;
-                BSL_PI_dataPointer = (uint32_t) 0;
-                BSL_Back_Buf[0]    = receivedData;
-                BSL_RX_state       = RX_receiving;
+                BSL_PI_RxDataCnt     = (uint16_t) 1;
+                BSL_PI_dataPointer   = (uint32_t) 0;
+                BSL_Back_Buf[0]      = receivedData;
+                BSL_RX_state         = RX_receiving;
             }
             /*
              * Whenever a new byte is received, after a packet reception is

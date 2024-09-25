@@ -1,7 +1,7 @@
 var searchData=
 [
   ['l0dt',['L0Dt',['../struct_m_o_t_o_r___t.html#a0abd8f0c2299698d8adff8b1ad1d4caa',1,'MOTOR_T']]],
-  ['l0microhenry',['L0MicroHenry',['../struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#ac4d6d2a45ef00ec753670e7ced544835',1,'USER_INPUTS_INTERFACE_T']]],
+  ['l0microhenry',['L0MicroHenry',['../struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#acf676104fcbcfe6124b37a0a0785530b',1,'USER_INPUTS_INTERFACE_T']]],
   ['l1dt',['L1Dt',['../struct_m_o_t_o_r___t.html#a67f87ded686f55c1d4dc8491c01fe322',1,'MOTOR_T']]],
   ['lddt',['LdDt',['../struct_m_o_t_o_r___t.html#afb6973d64811109d6c16c8fe16f4749d',1,'MOTOR_T']]],
   ['ldmicrohenry',['LdMicroHenry',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a11be28f0438d721d106618ff8128c693',1,'USER_INPUTS_T']]],

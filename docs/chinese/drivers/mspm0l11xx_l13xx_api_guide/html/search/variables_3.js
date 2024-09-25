@@ -8,7 +8,7 @@ var searchData=
   ['direction',['direction',['../struct_u_a_r_t_m_s_p___h_w_attrs.html#a8358cef08b8979effd67b7ba84241f6e',1,'UARTMSP_HWAttrs']]],
   ['disable',['disable',['../struct_u_a_r_t_support___fxns.html#a0f2d9663f556ac9ae32259e3199c8864',1,'UARTSupport_Fxns']]],
   ['dma_5fcount',['DMA_Count',['../group___d_m_a.html#ga691a5faa765d34c7d5469426a7690f1a',1,'DMAMSPM0.h']]],
-  ['dma_5fhandle',['DMA_Handle',['../struct_s_p_i_m_s_p_m0___object.html#adc3c5d73834c9445156fb5972236edec',1,'SPIMSPM0_Object']]],
+  ['dma_5fhandle',['DMA_Handle',['../struct_s_p_i_m_s_p_m0___object.html#adc3c5d73834c9445156fb5972236edec',1,'SPIMSPM0_Object::DMA_Handle()'],['../struct_u_a_r_t___object.html#a4616cbf8d6eb4a034beabc5bc10bfaa4',1,'UART_Object::DMA_Handle()']]],
   ['dmachannel',['dmaChannel',['../struct_d_m_a_m_s_p_m0___transfer.html#ab71ecc20442db6abceeef88fbfb29fef',1,'DMAMSPM0_Transfer']]],
   ['dmachisrfxn',['dmaChIsrFxn',['../struct_d_m_a_m_s_p_m0___transfer.html#aa2a80f908af7bf81799ef1b11acf8ed2',1,'DMAMSPM0_Transfer']]],
   ['dmaisrfxn',['dmaIsrFxn',['../struct_d_m_a_m_s_p_m0___h_w_attrs.html#aaa249f1ea874ab783337ba700ba92e16',1,'DMAMSPM0_HWAttrs']]],

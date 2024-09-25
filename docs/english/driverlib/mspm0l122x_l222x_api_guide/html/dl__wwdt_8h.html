@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">1.30.00.03</span>
+   &#160;<span id="projectnumber">2.00.00.03</span>
    </div>
   </td>
  </tr>
@@ -180,6 +180,13 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:ga12c15027cb23085134146d3fb3a0ffd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab9776a688c47adace7bcbb3096cf1b94"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___w_w_d_t.html#gab9776a688c47adace7bcbb3096cf1b94">DL_WWDT_CORE_HALT</a> { <br />
+&#160;&#160;<a class="el" href="group___w_w_d_t.html#ggab9776a688c47adace7bcbb3096cf1b94a61cce3e3fecc1ed51bd7c27deac2ae42">DL_WWDT_CORE_HALT_STOP</a> = WWDT_PDBGCTL_FREE_STOP, 
+<br />
+&#160;&#160;<a class="el" href="group___w_w_d_t.html#ggab9776a688c47adace7bcbb3096cf1b94a5f04426c820c85bfc617bcb2bd4ec79a">DL_WWDT_CORE_HALT_FREE_RUN</a> = WWDT_PDBGCTL_FREE_RUN
+<br />
+ }</td></tr>
+<tr class="separator:gab9776a688c47adace7bcbb3096cf1b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -252,6 +259,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gae943dddfb187f1141e169b446a999c2b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___w_w_d_t.html#gae943dddfb187f1141e169b446a999c2b">DL_WWDT_clearInterruptStatus</a> (WWDT_Regs *wwdt)</td></tr>
 <tr class="memdesc:gae943dddfb187f1141e169b446a999c2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending WWDT interrupt.  <a href="group___w_w_d_t.html#gae943dddfb187f1141e169b446a999c2b">More...</a><br /></td></tr>
 <tr class="separator:gae943dddfb187f1141e169b446a999c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab63a2c458ca5b64d34febfd564239875"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___w_w_d_t.html#gab63a2c458ca5b64d34febfd564239875">DL_WWDT_setCoreHaltBehavior</a> (WWDT_Regs *wwdt, <a class="el" href="group___w_w_d_t.html#gab9776a688c47adace7bcbb3096cf1b94">DL_WWDT_CORE_HALT</a> haltMode)</td></tr>
+<tr class="memdesc:gab63a2c458ca5b64d34febfd564239875"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures WWDT behavior when the core is halted.  <a href="group___w_w_d_t.html#gab63a2c458ca5b64d34febfd564239875">More...</a><br /></td></tr>
+<tr class="separator:gab63a2c458ca5b64d34febfd564239875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac6813e142f2c9777e6229f531ef30ec9"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___w_w_d_t.html#gab9776a688c47adace7bcbb3096cf1b94">DL_WWDT_CORE_HALT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___w_w_d_t.html#gac6813e142f2c9777e6229f531ef30ec9">DL_WWDT_getCoreHaltBehavior</a> (WWDT_Regs *wwdt)</td></tr>
+<tr class="memdesc:gac6813e142f2c9777e6229f531ef30ec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get WWDT behavior when the core is halted.  <a href="group___w_w_d_t.html#gac6813e142f2c9777e6229f531ef30ec9">More...</a><br /></td></tr>
+<tr class="separator:gac6813e142f2c9777e6229f531ef30ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

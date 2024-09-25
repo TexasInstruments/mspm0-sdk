@@ -1,0 +1,80 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ //@cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12         = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121        = ADC12.addInstance();
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const OPA           = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1          = OPA.addInstance();
+const OPA2          = OPA.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER         = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1        = TIMER.addInstance();
+const UART          = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1         = UART.addInstance();
+const VREF          = scripting.addModule("/ti/driverlib/VREF");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.configureDMA                      = true;
+ADC121.adcMem0chansel                    = "DL_ADC12_INPUT_CHAN_2";
+ADC121.adcMem0vref                       = "VREF";
+ADC121.adcMem0avgen                      = true;
+ADC121.$name                             = "ADC12";
+ADC121.peripheral.$assign                = "ADC0";
+ADC121.peripheral.adcPin2.$assign        = "PA25";
+ADC121.DMA_CHANNEL.$name                 = "DMA_CH0";
+ADC121.DMA_CHANNEL.addressMode           = "f2b";
+ADC121.DMA_CHANNEL.peripheral.$assign    = "DMA_CH0";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.$name                         = "GPIO_GRP_0";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "PIN_0";
+GPIO1.associatedPins[0].pin.$assign = "PA2";
+GPIO1.associatedPins[1].$name       = "PIN_1";
+GPIO1.associatedPins[1].pin.$assign = "PA3";
+
+OPA1.$name              = "OPA_1";
+OPA1.peripheral.$assign = "OPA1";
+
+OPA2.$name              = "OPA_0";
+OPA2.peripheral.$assign = "OPA0";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerPeriod        = "1 s";
+TIMER1.$name              = "TIMER";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerClkDiv        = 8;
+TIMER1.peripheral.$assign = "TIMG0";
+
+UART1.targetBaudRate                   = 256000;
+UART1.$name                            = "UART";
+UART1.peripheral.$assign               = "UART1";
+UART1.peripheral.rxPin.$assign         = "PA1";
+UART1.peripheral.txPin.$assign         = "PA0";
+UART1.txPinConfig.internalResistor     = "PULL_UP";
+UART1.txPinConfig.enableConfig         = true;
+UART1.rxPinConfig.enableConfig         = true;
+
+VREF.peripheral.$assign = "VREF";
+
+ProjectConfig.genLibIQ = true;
+ProjectConfig.genLibGaugeL2 = true;

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IAR Project Connection File -->
+
+<iarProjectConnection version="1.2" name="blink_led" oneShot="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="IarProjectConnection_1.2.xsd">
+
+    <device>
+        <name>MSPM0L2228</name>
+    </device>
+
+    <asmIncludePath>
+        <path>$PROJ_DIR$</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/builds/LP_MSPM0L2228/release</path>
+    </asmIncludePath>
+
+    <includePath>
+        <path>$PROJ_DIR$</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source/third_party/CMSIS/Core/Include</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/include</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/portable/IAR/ARM_CM0</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/iar</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/builds/LP_MSPM0L2228/release</path>
+    </includePath>
+
+    <defines>
+        <define>__MSPM0L2228__</define>
+    </defines>
+
+    <extraOptions>
+        <args>
+            <arg>--debug</arg>
+            <arg>--silent</arg>
+            <arg>-e</arg>
+            <arg>--aeabi</arg>
+            <arg>--thumb</arg>
+            <arg>--diag_suppress=Pa050</arg>
+        </args>
+    </extraOptions>
+
+    <linkerFile>
+        <override>true</override>
+        <path>$PROJ_DIR$/mspm0l2228.icf</path>
+    </linkerFile>
+
+    <linkerExtraOptions>
+        <args>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0l122x_l222x/driverlib.a</arg>
+            <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
+            <arg>-L$PROJ_DIR$</arg>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/builds/LP_MSPM0L2228/release/iar/freertos.lib</arg>
+            <arg>--silent</arg>
+        </args>
+    </linkerExtraOptions>
+
+    <customBuildTools>
+        <customBuildTool atRoot="true" name="SysConfig"> <!-- Custom build tool for entire project-->
+            <fileExtensions>.syscfg</fileExtensions>
+            <command>$SYSCONFIG_ROOT$/sysconfig_cli.bat -o $PROJ_DIR$ -s "$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json" --compiler iar $FILE_PATH$</command>
+            <output>
+                <path>SysConfig_Generated_Files.ipcf</path>
+            </output>
+            <hasPrio>true</hasPrio> <!-- true: run this tool before all other tools-->
+        </customBuildTool>
+    </customBuildTools>
+
+    <heaps>
+        <heap> <!-- If omitted, id="0" -->
+            <size>0</size>
+        </heap>
+        <heap id="1">
+            <size>0</size>
+        </heap>
+    </heaps>
+    <stacks>
+        <stack> <!-- If omitted, id="0" -->
+            <size>512</size>
+        </stack>
+    </stacks>
+
+    <preBuild>
+        <command>iarbuild.exe $MSPM0_SDK_INSTALL_DIR$/kernel/freertos/builds/LP_MSPM0L2228/release/iar/freertos_builds_LP_MSPM0L2228_release.ewp Debug</command>
+    </preBuild>
+
+    <files>
+        <path copyTo="$PROJ_DIR$/blink_led.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0L2228/kernel/blink_led/blink_led.syscfg</path>
+        <path copyTo="$PROJ_DIR$/main-blinky.c">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0L2228/kernel/blink_led/main-blinky.c</path>
+        <path copyTo="$PROJ_DIR$/main.c">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0L2228/kernel/blink_led/main.c</path>
+        <path copyTo="$PROJ_DIR$/mspm0l2228.icf">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0L2228/kernel/blink_led/freertos/iar/mspm0l2228.icf</path>
+        <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0L2228/kernel/blink_led/README.html</path>
+        <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0L2228/kernel/blink_led/README.md</path>
+        <group name="Excluded_From_Build" build="false">
+            <path copyTo="$PROJ_DIR$/Excluded_From_Build/syscfg_c.rov.xs">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0L2228/kernel/blink_led/syscfg_c.rov.xs</path>
+        </group>
+        <group name="freertos/iar" build="true">
+            <path copyTo="$PROJ_DIR$/freertos/iar/startup_mspm0l222x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0L2228/kernel/blink_led/freertos/iar/startup_mspm0l222x_iar.c</path>
+        </group>
+    </files>
+</iarProjectConnection>

@@ -369,6 +369,10 @@ typedef enum {
     /*! Normal operation */
     DL_DMA_NORMAL_MODE = DMA_DMACTL_DMAEM_NORMAL,
 #ifdef DEVICE_HAS_DMA_FULL_CHANNEL
+    /*! Available for FULL-channel configuration only. Reads data from
+     *  address table located at source address and transfers data to
+     *  destination address */
+    DL_DMA_FULL_CH_GATHER_MODE = DMA_DMACTL_DMAEM_GATHERMODE,
     /*! Available for FULL-channel configuration only. Fills the destination
      *  with a specific value */
     DL_DMA_FULL_CH_FILL_MODE = DMA_DMACTL_DMAEM_FILLMODE,
@@ -464,6 +468,8 @@ typedef enum {
     DL_DMA_WIDTH_WORD = DMA_DMACTL_DMASRCWDTH_WORD,
     /*! Long Acccess (64-bit) */
     DL_DMA_WIDTH_LONG = DMA_DMACTL_DMASRCWDTH_LONG,
+    /*! Long-long Acccess (128-bit) */
+    DL_DMA_WIDTH_LONG_LONG = DMA_DMACTL_DMASRCWDTH_LONGLONG,
 } DL_DMA_WIDTH;
 
 /*! @enum DL_DMA_EVENT_IIDX */
@@ -548,6 +554,18 @@ typedef enum {
     /*! DMA Subscriber index 1 */
     DL_DMA_SUBSCRIBER_INDEX_1 = 1
 } DL_DMA_SUBSCRIBER_INDEX;
+
+/*! @enum DL_DMA_AUTOEN */
+typedef enum {
+    /*! No automatic DMA enable */
+    DL_DMA_AUTOEN_DISABLE = DMA_DMACTL_DMAAUTOEN_DISABLE,
+    /*! Automatic DMA enable on DMASA register write */
+    DL_DMA_AUTOEN_DMASA = DMA_DMACTL_DMAAUTOEN_DMASA,
+    /*! Automatic DMA enable on DMADA register write */
+    DL_DMA_AUTOEN_DMADA = DMA_DMACTL_DMAAUTOEN_DMADA,
+    /*! Automatic DMA enable on DMASZ register write */
+    DL_DMA_AUTOEN_DMASZ = DMA_DMACTL_DMAAUTOEN_DMASZ,
+} DL_DMA_AUTOEN;
 
 /* clang-format on */
 
@@ -1554,6 +1572,50 @@ __STATIC_INLINE void DL_DMA_clearEventsStatus(
     DMA_Regs *dma, uint32_t eventMask)
 {
     dma->GEN_EVENT.ICLR |= (eventMask);
+}
+
+/**
+ *  @brief      Configure the DMA for auto-enable
+ *
+ *  @param[in]  dma             Pointer to the register overlay for the peripheral
+ *  @param[in]  mode            Enable auto-enable for DMA on a specified register write. One of @ref DL_DMA_AUTOEN
+ *  @param[in]  channelNum      DMA channel to operate on
+ */
+__STATIC_INLINE void DL_DMA_enableAutoEnable(
+    DMA_Regs *dma, DL_DMA_AUTOEN mode, uint8_t channelNum)
+{
+    dma->DMACHAN[channelNum].DMACTL |= mode;
+}
+
+/**
+ *  @brief      Disable auto-enable for DMA
+ *
+ *  @param[in]  dma             Pointer to the register overlay for the
+ *                              peripheral
+ *  @param[in]  channelNum      DMA channel to operate on
+ */
+__STATIC_INLINE void DL_DMA_disableAutoEnable(
+    DMA_Regs *dma, uint8_t channelNum)
+{
+    dma->DMACHAN[channelNum].DMACTL &= ~(DMA_DMACTL_DMAAUTOEN_MASK);
+}
+
+/**
+ *  @brief      Check if auto-enable is enabled for the DMA
+ *
+ *  @param[in]  dma  Pointer to the register overlay for the peripheral
+ *  @param[in]  channelNum  DMA channel to operate on
+ *
+ *  @return     The status of auto-enable
+ *
+ *  @retval     true    auto-enable is enabled
+ *  @retval     false   auto-enable is disabled
+ */
+__STATIC_INLINE bool DL_DMA_isAutoEnableEnabled(
+    DMA_Regs *dma, uint8_t channelNum)
+{
+    return ((dma->DMACHAN[channelNum].DMACTL & DMA_DMACTL_DMAAUTOEN_MASK) !=
+            DMA_DMACTL_DMAAUTOEN_DISABLE);
 }
 
 #ifdef __cplusplus

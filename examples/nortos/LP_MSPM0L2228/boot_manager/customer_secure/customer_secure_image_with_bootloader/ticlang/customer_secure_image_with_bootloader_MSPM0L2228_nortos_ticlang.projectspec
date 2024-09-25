@@ -28,6 +28,7 @@
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${CG_TOOL_INCLUDE_PATH}
             -I${WORKSPACE_LOC}/customer_secure_code_LP_MSPM0L2228_nortos_ticlang/Debug/syscfg
+            -I${WORKSPACE_LOC}/customer_secure_code_LP_MSPM0L2228_nortos_ticlang
             -D__MSPM0L2228__
             -gdwarf-3
             -gstrict-dwarf
@@ -62,7 +63,7 @@
                 -DGREEN
             "
             postBuildStep="
-                python ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color green
+                ${PYTHON_${CCS_HOST_OS}} ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color green
             ">
         </configuration>
         <configuration
@@ -71,10 +72,15 @@
                 -DBLUE
             "
             postBuildStep="
-                python ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color blue
+                ${PYTHON_${CCS_HOST_OS}} ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color blue
             ">
         </configuration>
 
+        <buildVariable name="PYTHON_win32" value ="python" />
+        <buildVariable name="PYTHON_macosx" value ="python3" />
+        <buildVariable name="PYTHON_linux" value ="python3" />
+        <!-- Backup Variable for older versions of CCS that doesn't support CCS_HOST_OS env variable -->
+        <buildVariable name="PYTHON_" value ="python" />
         <file path="../customer_secure_image_with_bootloader.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
@@ -90,6 +96,12 @@
         <file path="../boot_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../signingArgs.json" openOnCreation="false" excludeFromBuild="true" action="copy">
+        </file>
+        <file path="../lockable_storage_public.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../secondary_bsl/aes_gcm.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../secondary_bsl/aes_gcm.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
         </file>
         <file path="../secondary_bsl/bsl_ci.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
         </file>

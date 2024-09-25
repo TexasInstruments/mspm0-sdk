@@ -136,9 +136,9 @@ extern void SMBus_PHY_targetDisableInt(SMBus *smbus);
 //! \brief   I2C Interrupt Service routine for SMBus Target
 //
 //!  Handles the interrupts from I2C module and passes the information to
-//!  the network layer. Should be called by application when acting as 
+//!  the network layer. Should be called by application when acting as
 //!  a target and an I2C interrupt is detected.
-//!  Note that a target can also act as Host in some scenarios (like Host 
+//!  Note that a target can also act as Host in some scenarios (like Host
 //!  notify), so the ISR needs to handle such cases.
 //
 //! \param smbus    Pointer to SMBus structure
@@ -147,6 +147,23 @@ extern void SMBus_PHY_targetDisableInt(SMBus *smbus);
 //
 //*****************************************************************************
 extern SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Sets the number of bytes left to be counted. 
+//
+//!  This function should be called when the number of bytes left to be 
+//!  received is known by the application.
+//!  Once written, the I2C hardware will calculate the PEC and either indicate
+//!  that the PEC was checked correctly, or than a PEC error occurred. 
+//
+//! \param smbus    Pointer to SMBus structure
+//! \param length   Number of bytes left to be counted in current packet
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_PHY_targetSetPECCount(SMBus * smbus, uint16_t length);
 
 //*****************************************************************************
 //
@@ -277,9 +294,9 @@ extern void SMBus_PHY_controllerStartRx(SMBus *smbus,
 //! \brief   I2C Interrupt Service routine for SMBus Controller
 //
 //!  Handles the interrupts from I2C module and passes the information to
-//!  the network layer. Should be called by application when acting as 
+//!  the network layer. Should be called by application when acting as
 //!  a controller and an I2C interrupt is detected.
-//!  Note that a controller can also act as target in some scenarios (like Host 
+//!  Note that a controller can also act as target in some scenarios (like Host
 //!  notify), so the ISR needs to handle such cases.
 //
 //! \param smbus    Pointer to SMBus structure

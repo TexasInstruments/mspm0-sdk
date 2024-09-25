@@ -68,14 +68,15 @@
       S + Target_Addr+W+A + Cmd+A + ByteCountN+A + DataByte1+A +...+ DataByteN+A +
       Sr + Target_Addr+R+A + ByteCountM+A + DataByte1+A +...+ DataByteM+A + {PEC+A} + P
  */
-const t_SMB_Cmd SMB_CMD_List[CMD_LIST_LENGHT] =
+const t_SMB_Cmd SMB_CMD_List[CMD_LIST_LENGTH] =
 {
     /* Command          ControlLED
         Type            WRITE_BYTE
         CMD             0x12
+        Length          1 (Fixed)
         Description     Sets LED if 1, Clears LED if 0
      */
-    {0x12, 0x00, Control_LED_hdlr},
+    {0x12, 0x00, 0x01, Control_LED_hdlr},
 };
 
 

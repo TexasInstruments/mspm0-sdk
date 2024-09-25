@@ -15,7 +15,7 @@ CFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" "-I$(SDK_INSTALL_DIR)/source/third_party/C
 AFLAGS = 
 ASMFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" 
 
-OBJECTS = $(OBJ_DIR)/DMAMSPM0.o $(OBJ_DIR)/List.o $(OBJ_DIR)/RingBuf.o $(OBJ_DIR)/StructRingBuf.o $(OBJ_DIR)/ADC.o $(OBJ_DIR)/GPIO.o $(OBJ_DIR)/I2C.o $(OBJ_DIR)/UART.o $(OBJ_DIR)/SPI.o $(OBJ_DIR)/ADCMSPM0.o $(OBJ_DIR)/GPIOMSPM0.o $(OBJ_DIR)/I2CMSPM0.o $(OBJ_DIR)/UARTMSPM0G1X0X_G3X0X.o $(OBJ_DIR)/SPIMSPM0.o
+OBJECTS = $(OBJ_DIR)/DMAMSPM0.o $(OBJ_DIR)/List.o $(OBJ_DIR)/RingBuf.o $(OBJ_DIR)/StructRingBuf.o $(OBJ_DIR)/ADC.o $(OBJ_DIR)/GPIO.o $(OBJ_DIR)/I2C.o $(OBJ_DIR)/I2CTarget.o $(OBJ_DIR)/UART.o $(OBJ_DIR)/SPI.o $(OBJ_DIR)/ADCMSPM0.o $(OBJ_DIR)/GPIOMSPM0.o $(OBJ_DIR)/I2CMSPM0.o $(OBJ_DIR)/I2CTargetMSPM0.o $(OBJ_DIR)/UARTMSPM0.o $(OBJ_DIR)/SPIMSPM0.o
 
 all: $(NAME).a
 
@@ -58,6 +58,11 @@ $(OBJ_DIR)/I2C.o: $(SRC_DIR)/I2C.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/I2CTarget.o: $(SRC_DIR)/I2CTarget.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/UART.o: $(SRC_DIR)/UART.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
@@ -83,7 +88,12 @@ $(OBJ_DIR)/I2CMSPM0.o: $(SRC_DIR)/i2c/I2CMSPM0.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
-$(OBJ_DIR)/UARTMSPM0G1X0X_G3X0X.o: $(SRC_DIR)/uart/UARTMSPM0G1X0X_G3X0X.c
+$(OBJ_DIR)/I2CTargetMSPM0.o: $(SRC_DIR)/i2ctarget/I2CTargetMSPM0.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/UARTMSPM0.o: $(SRC_DIR)/uart/UARTMSPM0.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@

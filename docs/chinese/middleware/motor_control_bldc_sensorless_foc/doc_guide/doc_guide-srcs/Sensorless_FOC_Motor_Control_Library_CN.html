@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sensorless FOC Motor Control Library Overview &mdash; Sensorless FOC Motor Control User Guide 1.0 documentation</title>
+  <title>Sensorless FOC Motor Control Library Overview &mdash; Sensorless FOC Motor Control User Guide 2.00.00.xx documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> Sensorless FOC Motor Control User Guide
           </a>
               <div class="version">
-                1.0
+                2.00.00.xx
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -49,20 +49,28 @@
 <li class="toctree-l2"><a class="reference internal" href="#software-overview">Software Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#application-layer">1. Application Layer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#foc-library">FOC Library</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#motor-control-application">Motor Control Application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#main-application">Main Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motor-control-application">Motor Control Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#application-module">Application Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#main-application">Main Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#main-h-configurations">main.h Configurations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#hal-layer">2. HAL Layer</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#gate-driver-interface-library">Gate Driver Interface Library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enabling-simultaneous-current-sampling">Enabling simultaneous current sampling :</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#controller-interface-library">Controller Interface Library</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#important-peripherals-and-configurations-used-in-foc">Important Peripherals and configurations used in FOC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gpios">1. GPIOs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spi">2. SPI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pwm">3. PWM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adc">3. ADC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dac">4. DAC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-peripherals-and-configurations-used-in-foc">Important Peripherals and configurations used in FOC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gpios">1. GPIOs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spi">2. SPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pwm">3. PWM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adc">4. ADC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dac">5. DAC</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#communication-interface-library">Communication Interface Library</a></li>
 </ul>
 </li>
@@ -72,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="UART_Communication_User_Guide_CN.html">UART Communication User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8316 Gate Driver User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/DRV8329_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8329 Gate Driver User Guide</a></li>
 </ul>
 
         </div>
@@ -128,16 +137,47 @@
 <li><p>Openloop</p></li>
 <li><p>Closeloop</p></li>
 <li><p>Estimator</p></li>
+<li><p>Align brake</p></li>
+<li><p>MTPA</p></li>
+<li><p>Field Weakening</p></li>
 </ul>
 <p>FOC library also contains the Motor control state machines.</p>
 </section>
 <section id="motor-control-application">
 <h3>Motor Control Application<a class="headerlink" href="#motor-control-application" title="Permalink to this heading">¶</a></h3>
 <p>Motor control Application takes care of register value conversions from users inputs and feeds to the FOC library.</p>
+<section id="application-module">
+<h4>Application Module<a class="headerlink" href="#application-module" title="Permalink to this heading">¶</a></h4>
+<p><strong>appInterface</strong> : This folder contains the header files for the Input, Control and Status variables.</p>
+<p>User can add their custom Input / Ctrl configurations to “appUserInputRegsConfig” API which is periodically called by the application every 200mS when the motor is in not spinning.</p>
+<p><strong>ConfigTables</strong> All the register map tuning configurations for a given index is defined in the Config tables.</p>
+<p>User can add custom values to these tables based on the application use case</p>
+</section>
 </section>
 <section id="main-application">
 <h3>Main Application<a class="headerlink" href="#main-application" title="Permalink to this heading">¶</a></h3>
-<p>Main application contains the user code which initializes the application modules.</p>
+<p>Main application contains the user code which initializes the application modules and periodically calls the configuration updates in While(1) loop.</p>
+<section id="main-h-configurations">
+<h4>main.h Configurations<a class="headerlink" href="#main-h-configurations" title="Permalink to this heading">¶</a></h4>
+<p>User Can define the Default System Configurations from the main.h</p>
+<p><strong>Base Address</strong> : The default RAM address space for the Input,Ctrl &amp; Status register map structures are defined in main.h. It is recommended to not alter the address space as these will be used by the GUI application for variable referencing.</p>
+<p><strong>Hardware Configurations</strong></p>
+<p><strong>Gate Driver Selection</strong> - Select the connected HW using #ifdef Macro with the available Gate Driver Configurations. Ex: DRV8329/DRV8323/DRV8316/CUSTOM</p>
+<p>If user selects a Custom gate driver , It is recommended to choose any of the Gate driver configurations as a starting point and update the SYSCONFIG and HAL based on the pin configurations. The DRV8316/DRV8323 has SPI based Gate Driver Communication with Three Shunt Configuration &amp; DRV8329 Example is based on Single Shunt configuration without SPI communication.</p>
+<p><strong>Current Shunt Configuration</strong> - User can choose the Current shunt configurations based on the actual number of Shunt Resistors used for Current Sensing.</p>
+<p>“#define CURRENT_SHUNT_CONFIG” Macro will be used for the definition of given shunt configuration</p>
+<p>Below #ifdef Macro’s can be used to select various current shunt configurations available in the FW.</p>
+<ul class="simple">
+<li><p>__CURRENT_THREE_SHUNT_DYNAMIC - For three shunt configuration with dynamic selection of any two shunts based on the Sector</p></li>
+<li><p>__CURRENT_THREE_SHUNT_XY_Z - For three shunt configuration with Fixed current sensing where XY phases are used for simultaneous sampling and Z phase used for lateral sample.</p></li>
+<li><p>__CURRENT_TWO_SHUNT_X_Y - For Dual Shunt configurations with X &amp; Y as the respective phases of the three phases used for current sensing</p></li>
+<li><p>__CURRENT_SINGLE_SHUNT - For Single Shunt current sense Configuration.</p></li>
+</ul>
+<p>For Single shunt configuration user can select _NONINVERT_ISEN or _INVERT_ISEN based on the amplifier input configuration.</p>
+<p>For Inverted Isense Configuration - The Voltage across the amplifier decreases as the Current increases.</p>
+<p>FULL_SCALE_CURRENT_BASE - Set the Maximum measurable current based on the Current Shunt Amplifier Gain and the Current Sense Resistor.</p>
+<p>DC_VOLTAGE_BASE - Set the Maximum measurable phase Voltage based on the Scaled down voltage fed to ADC from the Voltage Divider Circuit.</p>
+</section>
 </section>
 </section>
 <section id="hal-layer">
@@ -178,6 +218,15 @@
 <li><p>Gate driver HAL Interface</p></li>
 </ul>
 <p>Gate driver HAL Interface handles the configurations of ADC channels to convert phase voltage inputs and phase current inputs from gate driver.</p>
+<p>Single Shunt Configurations:</p>
+<p>In single shunt based current sensing, the PWM’s are dynamically shifted near the sector cross overs where there is no margin for current sampling in the non overlapping regions. For this reason, the PWM’s are not center aligned and we assign Compare B indexes of Timer A to achieve this shifting. It is important for user to configure the Compare B index for the PWM’s based on the Pin configuration.</p>
+<figure class="align-default" id="id4">
+<img alt="Compare B Index Configuration" src="../_images/SingleShuntCompareBConfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Compare B Index Configuration</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In the above example for DRV8329 ,The primary compare events are selected based on HS PWM pins and the corresponding Timer Compare ports. The secondary Compare events are selected from the remaining Compare indexes from 0-5.</p>
 </section>
 <section id="enabling-simultaneous-current-sampling">
 <h3>Enabling simultaneous current sampling :<a class="headerlink" href="#enabling-simultaneous-current-sampling" title="Permalink to this heading">¶</a></h3>
@@ -188,18 +237,17 @@
 <section id="controller-interface-library">
 <h3>Controller Interface Library<a class="headerlink" href="#controller-interface-library" title="Permalink to this heading">¶</a></h3>
 <p>Controller Interface Library provides HAL APIs for controlling the peripherals like timer, gpio etc. The Controller Interface Library uses the gate driver Interface library to set the correct phase and voltage channel configurations to the ADC.</p>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id5">
 <img alt="Peripheral defines in focPeripheralInit.h" src="../_images/focPeripheralInit.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Peripheral defines in focPeripheralInit.h</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Peripheral defines in focPeripheralInit.h</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="important-peripherals-and-configurations-used-in-foc">
 <h3>Important Peripherals and configurations used in FOC<a class="headerlink" href="#important-peripherals-and-configurations-used-in-foc" title="Permalink to this heading">¶</a></h3>
-</section>
 <section id="gpios">
-<h3>1. GPIOs<a class="headerlink" href="#gpios" title="Permalink to this heading">¶</a></h3>
+<h4>1. GPIOs<a class="headerlink" href="#gpios" title="Permalink to this heading">¶</a></h4>
 <p>Following are the GPIO’s used by the Application code:</p>
 <ol class="arabic simple">
 <li><p>Brake input:</p></li>
@@ -218,15 +266,15 @@
 </ol>
 <p>Output pin, sets the gate driver sleep input</p>
 <p>User can change the GPIO pin selection in the TI SysConfig to select any desired pin as shown below.</p>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id6">
 <img alt="GPIO sysconfig" src="../_images/GPIO_SYSCONFIG.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">GPIO sysconfig</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">GPIO sysconfig</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="spi">
-<h3>2. SPI<a class="headerlink" href="#spi" title="Permalink to this heading">¶</a></h3>
+<h4>2. SPI<a class="headerlink" href="#spi" title="Permalink to this heading">¶</a></h4>
 <p>SPI is configured in Sysconfig for gate drivers having SPI interface. The SPI configurations used are given below</p>
 <table class="docutils align-default">
 <thead>
@@ -264,12 +312,12 @@
 <p>User can user the same SPI connection to interface any other device, but need to see if the gate driver spi transmission is busy. Also user need to take care of using a different chip select line.</p>
 </section>
 <section id="pwm">
-<h3>3. PWM<a class="headerlink" href="#pwm" title="Permalink to this heading">¶</a></h3>
+<h4>3. PWM<a class="headerlink" href="#pwm" title="Permalink to this heading">¶</a></h4>
 <p>Three PWM channels with complementary outputs are used to drive the motor and one channel is used to trigger the ADC to convert the voltages and currents. TIMER A0 is reserved for generating the PWMs for FOC motor control and user should not use this timer.</p>
 <p>TIMER A0 triggers the ADC using event channels, the event channels used are specified in focPeripheralInit.h, user should not use the same event channel used by the Library.</p>
 </section>
 <section id="adc">
-<h3>3. ADC<a class="headerlink" href="#adc" title="Permalink to this heading">¶</a></h3>
+<h4>4. ADC<a class="headerlink" href="#adc" title="Permalink to this heading">¶</a></h4>
 <p>The ADC configurations used are given below:</p>
 <table class="docutils align-default">
 <thead>
@@ -298,22 +346,23 @@
 <p>ADC hardware averaging is used to remove any noise in the signal</p>
 <p>ADC is used in converting DC bus voltage, three phase currents and three phase voltages. The gate driver library defines the ADC channel used for conversion and the memory index of the ADC used. Memory indexes used for current and voltages are listed in gateDriver.h. ADC Interrupt occurs after all currents or voltages are sampled.</p>
 <p>If user wishes to use ADC to convert any new channels the user should add new memory index by incrementing the Sequence End address in the TI SysConfig and modify the Trigger mode of the new index to “Valid trigger ..” as shown in the below images. Also note to change the Trigger mode of the default Sequence End address to “Trigger will automatically ..” while adding a new sequence end address. The user should not change the ADC interrupt used by FOC, user can enable a new ADC interrupt for their use case.</p>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id7">
 <img alt="ADC sysconfig" src="../_images/ADC_SYSCONFIG.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">ADC sysconfig</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">ADC sysconfig</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id8">
 <img alt="ADC Trigger" src="../_images/ADC_SYSCONFIG_TRIGGER.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">ADC Trigger</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">ADC Trigger</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>For phase voltage and phase current configuration the Library sets the channel using the channel listed in gateDriver.h. For DC bus voltage conversion the pin is specified by TI SysConfig and user needs to take care to update the defines in gateDriver.h, if the pin is changed in TI SysConfig.</p>
+<p>The first Two memory indexes of the ADC 0 &amp; 1 are used for the Current Sampling / Voltage sampling and shound’t be modified. The DC bus Voltage is sampled from the 2nd Memory Index and user can choose to use any other Memory Index apart from 0 &amp; 1 of ADC 0 &amp; ADC 1 for any custom ADC addition.</p>
 </section>
 <section id="dac">
-<h3>4. DAC<a class="headerlink" href="#dac" title="Permalink to this heading">¶</a></h3>
+<h4>5. DAC<a class="headerlink" href="#dac" title="Permalink to this heading">¶</a></h4>
 <p>The DAC configurations used are given below:</p>
 <table class="docutils align-default">
 <thead>
@@ -338,6 +387,7 @@
 </table>
 <p>DAC is used for real time output of the algorithm variables.</p>
 <p>NOTE: While enabling the DAC in TI SysConfig user needs to make sure the DAC output pin is not used</p>
+</section>
 </section>
 <section id="communication-interface-library">
 <h3>Communication Interface Library<a class="headerlink" href="#communication-interface-library" title="Permalink to this heading">¶</a></h3>
@@ -376,6 +426,22 @@
 </tr>
 </tbody>
 </table>
+<p><strong>For DRV8329</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>UART comm pin</p></th>
+<th class="head"><p>LP-MSPM0G3507</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>UART TX</p></td>
+<td><p>PB12</p></td>
+</tr>
+<tr class="row-odd"><td><p>UART RX</p></td>
+<td><p>PA13</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="mspm0-driverlib-overview">
@@ -395,7 +461,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

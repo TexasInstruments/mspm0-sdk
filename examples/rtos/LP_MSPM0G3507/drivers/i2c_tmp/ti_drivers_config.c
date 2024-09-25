@@ -273,7 +273,7 @@ const uint_least8_t I2C_count            = CONFIG_I2C_COUNT;
  *  =============================== UART0 ===============================
  */
 
-#include <ti/drivers/uart/UARTMSPM0G1X0X_G3X0X.h>
+#include <ti/drivers/uart/UARTMSPM0.h>
 
 static const UARTMSP_HWAttrs UARTMSPHWAttrs[CONFIG_UART_COUNT] = {
     {

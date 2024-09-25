@@ -150,6 +150,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_VREF_init(void) {
 %   }
     DL_VREF_configReference(VREF,
         (DL_VREF_Config *) &gVREFConfig);
+%   if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+%       if(inst.enableCOMPVREF){
+    DL_VREF_enableInternalRefCOMP(VREF);
+%       }
+%   }
 %
 % /* After writing VREF_EN to '1', wait for fix time instead of relying on VREF_READY status. */
 % if (inst.checkVREFReady) {

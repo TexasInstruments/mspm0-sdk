@@ -10,7 +10,7 @@ for an interrupt.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA0 | Open-Drain Output |
-| GPIOA | PA25 | Standard Output |
+| GPIOA | PA21 | Standard Output |
 | SYSCTL | PA10 | CLK OUT |
 | TIMG0 |  |  |
 | EVENT |  |  |
@@ -24,7 +24,7 @@ Visit [LP_MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA0 | GPIOA | PA0 | J3_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J12 1:2` Use 3.3V pull-up<br><li>`J12 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED3<br><ul><li>`J2 ON` Connect to LED3<br><li>`J2 OFF` Disconnect from LED3</ul></ul> |
-| PA25 | GPIOA | PA25 | J7_31 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul> |
+| PA21 | GPIOA | PA21 | J3_8 | <ul><li>PA21 can be connected to GND when used for VREF-<br><ul><li>`R4` is not soldered by default allowing the pin to be used for other functions</ul></ul> |
 | PA10 | SYSCTL | CLK_OUT | J3_30 | <ul><li>PA10 can be connected to XDS-110 backchannel or boosterpack connector:<br><ul><li>To use on boosterpack connector J3_30 and disconnect XDS-110:<br> `J14 9:10 OFF` Disconnects XDS-110 backchannel to UART TX</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J14 15:16 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J14 15:16 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J14 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J14 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |

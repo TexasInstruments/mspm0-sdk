@@ -1,0 +1,40 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const CRC           = scripting.addModule("/ti/driverlib/CRC");
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const UART          = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1         = UART.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.configureUnused = true;
+
+CRC.polynomial = "16_POLYNOMIAL";
+CRC.seed       = 0xFFFF;
+
+
+UART1.$name                    = "UART_0";
+UART1.enableFIFO               = true;
+UART1.rxFifoThreshold          = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+UART1.txFifoThreshold          = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
+UART1.targetBaudRate           = 115200;
+UART1.enableDMARX              = false;
+UART1.enableDMATX              = false;
+UART1.enabledInterrupts        = ["RX","TX"];
+UART1.peripheral.$assign       = "UART0";
+UART1.peripheral.rxPin.$assign = "PA11";
+UART1.peripheral.txPin.$assign = "PA10";
+
+
+

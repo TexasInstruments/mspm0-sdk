@@ -193,10 +193,26 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 %
 %    /* Interrupt generation */
 %    let interArgs = "";
-%    for (let inter of inst.interrupts) {
-%        interArgs += "DL_TIMER"+(flavor.replace(/[0-9]/g,'')).slice(3)+"_INTERRUPT_"+inter+"_EVENT |\n\t\t";
+%    let disabledInterrupts = [];
+%    if(inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) == null) {
+%       disabledInterrupts.push("CC2_DN");
+%       disabledInterrupts.push("CC2_UP");
+%       disabledInterrupts.push("CC3_DN");
+%       disabledInterrupts.push("CC3_UP");
 %    }
-%    if(inst.interrupts.length > 0){
+%    if(inst.peripheral.$solution.peripheralName.match("TIMA.") == null) {
+%       disabledInterrupts.push("FAULT");
+%    }
+%    if(inst.peripheral.$solution.peripheralName.includes("TIMG")) {
+%       disabledInterrupts.push("REPC");
+%    }
+%    let validInterrupts = 0;
+%    for (let inter of inst.interrupts) {
+%        if(disabledInterrupts.includes(inter)) continue;
+%        interArgs += "DL_TIMER"+(flavor.replace(/[0-9]/g,'')).slice(3)+"_INTERRUPT_"+inter+"_EVENT |\n\t\t";
+%        validInterrupts++;
+%    }
+%    if(inst.interrupts.length > 0 && validInterrupts > 0){
 %        interArgs = interArgs.slice(0,-5); // remove last OR and whitespace
 %        let interFct = "DL_"+flavorCat+"_enableInterrupt("+inst.$name+"_INST , "+interArgs+");";
 %        if(inst.interruptPriority !== "DEFAULT"){
@@ -315,6 +331,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 %           }
     `crossTrigFct`
 %       } // if crossTriggerAuthority == "Main"
+
+%   /* Both Main and Secondary have the following */
+    DL_`flavorCat`_setCaptureCompareInput(`inst.$name`_INST, DL_TIMER_CC_INPUT_INV_NOINVERT, DL_TIMER_CC_IN_SEL_TRIG, DL_TIMER_CC_0_INDEX);
+
     /*
      * Determines the external triggering event to trigger the module (self-triggered in main configuration)
      * and triggered by specific timer in secondary configuration
@@ -367,6 +387,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 %%}
     DL_`flavorCat`_setExternalTriggerEvent(`inst.$name`_INST,DL_TIMER_EXT_TRIG_SEL_TRIG_`secCrossTrigSource`);
     DL_`flavorCat`_enableExternalTrigger(`inst.$name`_INST);
+    uint32_t temp;
+    temp = DL_`flavorCat`_getCaptureCompareCtl(`inst.$name`_INST, DL_TIMER_CC_0_INDEX);
+    DL_`flavorCat`_setCaptureCompareCtl(`inst.$name`_INST, DL_TIMER_CC_MODE_COMPARE, temp | (uint32_t) DL_TIMER_CC_LCOND_TRIG_RISE, DL_TIMER_CC_0_INDEX);
 %
 %   } // if(inst.crossTriggerEn)
 % if (inst.faultHandlerEn){

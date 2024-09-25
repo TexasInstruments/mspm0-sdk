@@ -1449,12 +1449,21 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_blankVerifyFromRAM(
 
 bool DL_FlashCTL_eraseDataBank(FLASHCTL_Regs *flashctl)
 {
-    bool status;
+    bool status              = true;
+    uint32_t address         = FLASHCTL_DATA_ADDRESS;
+    uint8_t dataFlashSectors = DL_FactoryRegion_getDATAFlashSize();
 
-    DL_FlashCTL_unprotectDataMemory(flashctl);
-    DL_FlashCTL_eraseMemory(
-        flashctl, FLASHCTL_DATA_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_BANK);
-    status = DL_FlashCTL_waitForCmdDone(flashctl);
+    while ((dataFlashSectors != (uint8_t) 0) && (status == true)) {
+        DL_FlashCTL_executeClearStatus(flashctl);
+        DL_FlashCTL_unprotectSector(
+            flashctl, address, DL_FLASHCTL_REGION_SELECT_MAIN);
+        DL_FlashCTL_eraseMemory(
+            flashctl, address, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+        status = DL_FlashCTL_waitForCmdDone(flashctl);
+
+        address          = address + (uint32_t) DL_FLASHCTL_SECTOR_SIZE;
+        dataFlashSectors = dataFlashSectors - (uint8_t) 1;
+    }
 
     return (status);
 }
@@ -1462,11 +1471,22 @@ bool DL_FlashCTL_eraseDataBank(FLASHCTL_Regs *flashctl)
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_eraseDataBankFromRAM(
     FLASHCTL_Regs *flashctl)
 {
-    DL_FLASHCTL_COMMAND_STATUS status;
+    DL_FLASHCTL_COMMAND_STATUS status = DL_FLASHCTL_COMMAND_STATUS_PASSED;
+    uint32_t address                  = FLASHCTL_DATA_ADDRESS;
+    uint8_t dataFlashSectors          = DL_FactoryRegion_getDATAFlashSize();
 
-    DL_FlashCTL_unprotectDataMemory(flashctl);
-    status = DL_FlashCTL_eraseMemoryFromRAM(
-        flashctl, FLASHCTL_DATA_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_BANK);
+    while ((dataFlashSectors != (uint8_t) 0) &&
+           (status == DL_FLASHCTL_COMMAND_STATUS_PASSED)) {
+        DL_FlashCTL_executeClearStatus(flashctl);
+        DL_FlashCTL_unprotectSector(
+            flashctl, address, DL_FLASHCTL_REGION_SELECT_MAIN);
+        DL_FlashCTL_eraseMemory(
+            flashctl, address, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+        status = DL_FlashCTL_waitForCmdDone(flashctl);
+
+        address          = address + (uint32_t) DL_FLASHCTL_SECTOR_SIZE;
+        dataFlashSectors = dataFlashSectors - (uint8_t) 1;
+    }
 
     return (status);
 }

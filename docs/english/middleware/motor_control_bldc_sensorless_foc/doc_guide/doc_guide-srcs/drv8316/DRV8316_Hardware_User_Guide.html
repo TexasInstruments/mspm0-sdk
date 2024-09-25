@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sensorless FOC - DRV8316 Gate Driver User Guide &mdash; Sensorless FOC Motor Control User Guide 1.0 documentation</title>
+  <title>Sensorless FOC - DRV8316 Gate Driver User Guide &mdash; Sensorless FOC Motor Control User Guide 2.00.00.xx documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> Sensorless FOC Motor Control User Guide
           </a>
               <div class="version">
-                1.0
+                2.00.00.xx
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8323rs/DRV8323RS_Hardware_User_Guide.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/DRV8329_Hardware_User_Guide.html">Sensorless FOC - DRV8329 Gate Driver User Guide</a></li>
 </ul>
 
         </div>
@@ -85,7 +86,7 @@
              
   <section id="sensorless-foc-drv8316-gate-driver-user-guide">
 <h1>Sensorless FOC - DRV8316 Gate Driver User Guide<a class="headerlink" href="#sensorless-foc-drv8316-gate-driver-user-guide" title="Permalink to this heading">¶</a></h1>
-<p>This User Guide outlines the usage of DRV8316 gatedriver along with the sensorless FOC Application running on MSPM0.</p>
+<p>This User Guide outlines the usage of DRV8316 gate driver along with the sensorless FOC Application running on MSPM0.</p>
 <section id="hardware-required">
 <h2>1. Hardware Required<a class="headerlink" href="#hardware-required" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -104,7 +105,7 @@
 <figure class="align-default" id="id1">
 <img alt="J18 header removed in LP-MSPM0G3507" src="../../_images/LPMSPM0G3507-J18.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 19 </span><span class="caption-text">J18 header removed in LP-MSPM0G3507</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">J18 header removed in LP-MSPM0G3507</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ol class="arabic" start="2">
@@ -169,7 +170,7 @@
 <td><p>ISENA</p></td>
 </tr>
 <tr class="row-even"><td><p>Phase B current input 1</p></td>
-<td><p>PA25</p></td>
+<td><p>PA26</p></td>
 <td><p>ISENB</p></td>
 </tr>
 <tr class="row-odd"><td><p>Phase B current input 2</p></td>
@@ -221,7 +222,7 @@
 <figure class="align-default" id="id2">
 <img alt="DRV8316REVM J3 and J4 connector pinout" src="../../_images/DRV-CONNECTOR.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 20 </span><span class="caption-text">DRV8316REVM J3 and J4 connector pinout</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">DRV8316REVM J3 and J4 connector pinout</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Note: There are two Phase B current inputs used because we use simultaneous current sampling, Refer to ‘Enabling simultaneous current sampling’ in <a class="reference external" href="../Sensorless_FOC_Motor_Control_Library.html">FOC Library Overview</a>.</p>
@@ -231,7 +232,7 @@
 <figure class="align-default" id="id3">
 <img alt="DRV8316EVM ADC INPUT" src="../../_images/DRV8316_VREF_INPUT.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 21 </span><span class="caption-text">DRV8316EVM ADC INPUT</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">DRV8316EVM ADC INPUT</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ol class="arabic" start="4">
@@ -261,7 +262,7 @@
 </li>
 <li><p>Connect the 3 phases of the BLDC motor to A/B/C of connector J6 on the DRV8316REVM.</p></li>
 <li><p>Connect the positive and negative of the power supply to VM and GND of the power connector terminal block.</p></li>
-<li><p>Set the power supply to to a motor voltage between 6V to 24V within the DRV8316R specifications and a 5-A current limit.</p></li>
+<li><p>Set the power supply to a motor voltage between 6V to 24V within the DRV8316R specifications and a 5-A current limit.</p></li>
 <li><p>Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.</p></li>
 <li><p>Once all steps are completed, you can start to run the motor. Please refer to <a class="reference external" href="../MSPM0_Sensorless_FOC_Software_Users_Guide.html">Software User Guide</a> or <a class="reference external" href="https://www.ti.com/lit/pdf/SLAU927">FOC Tuning Guide</a></p></li>
 </ol>
@@ -394,7 +395,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

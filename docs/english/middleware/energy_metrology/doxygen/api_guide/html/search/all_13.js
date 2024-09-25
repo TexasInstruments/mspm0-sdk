@@ -3,6 +3,7 @@ var searchData=
   ['v_5fadc_5fmax',['V_ADC_MAX',['../group___metrology.html#gaa2ff3d73370237f6bf45c4175324b57f',1,'metrology_defines.h']]],
   ['v_5fadc_5fmin',['V_ADC_MIN',['../group___metrology.html#ga14d99e37d2e77ad7907f685a4dafb518',1,'metrology_defines.h']]],
   ['v_5fdc_5festimate',['V_dc_estimate',['../structphase_params.html#a50ca630aa4a0944932d2e1f5cfb3df42',1,'phaseParams']]],
+  ['v_5fdc_5festimate1',['V_dc_estimate1',['../structphase_params.html#a6715091345f2bfa6bca0e7a920c2b926',1,'phaseParams']]],
   ['v_5fdc_5festimate_5flogged',['V_dc_estimate_logged',['../structphase_params.html#a0d2032a8368479e687399ea09e69cdb3',1,'phaseParams']]],
   ['v_5fhistory_5fmask',['V_HISTORY_MASK',['../group___metrology.html#ga50e94c66dd5d5bd4677db586feebf5e4',1,'metrology_defines.h']]],
   ['vacoffset',['VacOffset',['../structphase_calibration_data.html#a6c8915299252d21d977602a71c2cb24a',1,'phaseCalibrationData']]],

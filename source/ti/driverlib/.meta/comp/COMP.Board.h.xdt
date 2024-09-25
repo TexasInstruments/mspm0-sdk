@@ -139,6 +139,10 @@
 %           inPosPinName = "compPinPos2";
 %           inPosNumStr = "_IN2P";
 %           pinInterfaceName = "IN2+"
+%       } else if (inst.posChannel == "DL_COMP_IPSEL_CHANNEL_3") {
+%           inPosPinName = "compPinPos3";
+%           inPosNumStr = "_IN3P";
+%           pinInterfaceName = "IN3+"
 %       } else {
 %           /* Skip below generation if comp input channel isn't selected */
 %           definePos = false;

@@ -169,7 +169,7 @@ function moduleInstances(inst){
                 passedPinName: "GPIO_"+inst.$name+"_IOMUX_"+"FAULT_PIN_0",
                 passedResourceName: "faultPin0",
                 passedPeripheralType: "Digital",
-                direction: "OUTPUT",
+                direction: "INPUT",
                 hideOutputInversion: false,
             },
         }
@@ -187,7 +187,7 @@ function moduleInstances(inst){
                 passedPinName: "GPIO_"+inst.$name+"_IOMUX_"+"FAULT_PIN_1",
                 passedResourceName: "faultPin1",
                 passedPeripheralType: "Digital",
-                direction: "OUTPUT",
+                direction: "INPUT",
                 hideOutputInversion: false,
             },
         }
@@ -205,7 +205,7 @@ function moduleInstances(inst){
                 passedPinName: "GPIO_"+inst.$name+"_IOMUX_"+"FAULT_PIN_2",
                 passedResourceName: "faultPin2",
                 passedPeripheralType: "Digital",
-                direction: "OUTPUT",
+                direction: "INPUT",
                 hideOutputInversion: false,
             },
         }

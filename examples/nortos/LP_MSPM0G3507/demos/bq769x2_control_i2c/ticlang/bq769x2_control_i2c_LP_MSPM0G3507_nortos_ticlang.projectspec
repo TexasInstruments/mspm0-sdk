@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0G3507"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="bq769x2_control_i2c"
+        name="bq769x2_control_i2c_LP_MSPM0G3507_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G3507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -O2
+            @device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -ldevice.cmd.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Demonstrate BQ769x2 control through I2C">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../BQ769x2_protocol.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../BQ769x2_protocol.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../I2C_communication.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../I2C_communication.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../bq769x2_control_i2c.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

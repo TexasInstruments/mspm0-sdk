@@ -60,17 +60,22 @@
             name="EITHER_SLOT_GREEN"
             compilerBuildOptions="-DGREEN"
             postBuildStep="
-                python ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color green
+                ${PYTHON_${CCS_HOST_OS}} ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color green
             ">
         </configuration>
         <configuration
             name="EITHER_SLOT_BLUE"
             compilerBuildOptions="-DBLUE"
             postBuildStep="
-                python ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color blue
+                ${PYTHON_${CCS_HOST_OS}} ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color blue
             ">
         </configuration>
 
+        <buildVariable name="PYTHON_win32" value ="python" />
+        <buildVariable name="PYTHON_macosx" value ="python3" />
+        <buildVariable name="PYTHON_linux" value ="python3" />
+        <!-- Backup Variable for older versions of CCS that doesn't support CCS_HOST_OS env variable -->
+        <buildVariable name="PYTHON_" value ="python" />
         <file path="../customer_secure_sample_image.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">

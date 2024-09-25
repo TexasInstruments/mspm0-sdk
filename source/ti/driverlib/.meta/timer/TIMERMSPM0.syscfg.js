@@ -140,7 +140,7 @@ function onChangeTimerProfile(inst, ui) {
     }
 }
 
-const InterruptOptions = [
+var InterruptOptions = [
     { name: "ZERO", displayName: "Zero event", description: "Timer reaches zero" },
     { name: "LOAD", displayName: "Load event", description: "Timer reloads count value" },
     { name: "FAULT", displayName: "Fault event", description: "Fault detection" },
@@ -155,8 +155,16 @@ const InterruptOptions = [
     { name: "CC3_DN", displayName: "Channel 3 compare down event", description: "Channel 3 compare value reached in timer down counting mode" },
     { name: "CC3_UP", displayName: "Channel 3 compare up event"  , description: "Channel 3 compare value reached in timer up counting mode" },
 ];
+if(Common.hasTimerA()){
+    InterruptOptions = InterruptOptions.concat([
+        { name: "CC4_DN", displayName: "Channel 4 compare down event", description: "Channel 4 compare value reached in timer down counting mode" },
+        { name: "CC4_UP", displayName: "Channel 4 compare up event"  , description: "Channel 4 compare value reached in timer up counting mode" },
+        { name: "CC5_DN", displayName: "Channel 5 compare down event", description: "Channel 5 compare value reached in timer down counting mode" },
+        { name: "CC5_UP", displayName: "Channel 5 compare up event"  , description: "Channel 5 compare value reached in timer up counting mode" },
+    ])
+};
 
-const EventOptions = [
+var EventOptions = [
     { name: "ZERO_EVENT", displayName: "Zero event" },
     { name: "LOAD_EVENT", displayName: "Load event" },
     { name: "OVERFLOW_EVENT", displayName: "Overflow event"},
@@ -170,6 +178,14 @@ const EventOptions = [
     { name: "CC3_DN_EVENT", displayName: "Channel 3 compare down event"},
     { name: "CC3_UP_EVENT", displayName: "Channel 3 compare up event"},
 ];
+if(Common.hasTimerA()){
+    EventOptions = EventOptions.concat([
+        { name: "CC4_DN_EVENT", displayName: "Channel 4 compare down event"},
+        { name: "CC4_UP_EVENT", displayName: "Channel 4 compare up event"},
+        { name: "CC5_DN_EVENT", displayName: "Channel 5 compare down event"},
+        { name: "CC5_UP_EVENT", displayName: "Channel 5 compare up event"},
+    ])
+};
 
 const TimerClockSourceOptions = [
     { name: "BUSCLK", displayName: "BUSCLK" },
@@ -204,6 +220,7 @@ function getRepeatCntOptions(inst)
 function getDisabledOptionsInterrupts(inst,ui)
 {
     let isFourCC = isFourCCCapable(inst);
+    let isTimerG = isTimerGInstance(inst);
 
     let disabled = [];
 
@@ -218,6 +235,11 @@ function getDisabledOptionsInterrupts(inst,ui)
     if(isFaultDetectionCapable)
     {
         disabled.push({ name: "FAULT", displayName: "Fault Detection", reason: "Not supported by Timer instance"});
+    }
+
+    if(isTimerG)
+    {
+        disabled.push({ name: "REPC", displayName: "Repeat Count", reason: "Not supported by Timer instance"});
     }
 
     return disabled;
@@ -263,6 +285,15 @@ function isFourCCCapable(inst)
 {
     try{
         return (inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) == null);
+    }catch (e) {
+        return false;
+    }
+}
+
+function isTimerGInstance(inst)
+{
+    try{
+        return (inst.peripheral.$solution.peripheralName.includes("TIMG"));
     }catch (e) {
         return false;
     }
@@ -1731,6 +1762,29 @@ function validatePinmux(inst, validation) {
 
     }catch (e) {
         // do nothing
+    }
+
+    /* Internal Channel Validation */
+    // CC4-5 internal channels only available for TIMA instances.
+    if(Common.hasTimerA() && !(/TIMA/.test(solution))){
+        if((inst.interrupts).some(r=>(r.match("CC4|CC5")))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["interrupts"]
+            );
+        }
+        if((inst.event1PublisherChannel !== 0) && (inst.event1ControllerInterruptEn.some(r=>(r.match("CC4|CC5"))))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["event1ControllerInterruptEn"]
+            );
+        }
+        if((inst.event2PublisherChannel !== 0) && (inst.event2ControllerInterruptEn.some(r=>(r.match("CC4|CC5"))))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["event2ControllerInterruptEn"]
+            );
+        }
     }
 
 }

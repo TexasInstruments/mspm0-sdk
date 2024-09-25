@@ -1143,7 +1143,7 @@ __STATIC_INLINE void DL_UART_disableTransmitPinManualControl(UART_Regs *uart)
  *  @post If @ref DL_UART_changeConfig was called, then the UART must be
  *        re-enabled by calling @ref DL_UART_enable
  *
- *  @sa          DL_UART_disableTransmit
+ *  @sa          DL_UART_disableTransmitPinManualControl
  *  @sa          DL_UART_enableTransmitPinManualControl
  */
 __STATIC_INLINE void DL_UART_setTransmitPinManualOutput(

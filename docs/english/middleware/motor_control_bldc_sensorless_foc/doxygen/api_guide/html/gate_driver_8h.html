@@ -132,6 +132,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gate_driver_8h.html#ac2b4bbc9223e2fa158087496ca78dbb2">ADC1_IDX_1</a>&#160;&#160;&#160;(ADC1_ADCMEM_1)</td></tr>
 <tr class="memdesc:ac2b4bbc9223e2fa158087496ca78dbb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC 1 IDX 1. <br /></td></tr>
 <tr class="separator:ac2b4bbc9223e2fa158087496ca78dbb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45244fd42d0fdab1a7bdb355ad18f8fc"><td class="memItemLeft" align="right" valign="top"><a id="a45244fd42d0fdab1a7bdb355ad18f8fc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gate_driver_8h.html#a45244fd42d0fdab1a7bdb355ad18f8fc">ADC1_IDX_2</a>&#160;&#160;&#160;(ADC1_ADCMEM_2)</td></tr>
+<tr class="memdesc:a45244fd42d0fdab1a7bdb355ad18f8fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC 1 IDX 1. <br /></td></tr>
+<tr class="separator:a45244fd42d0fdab1a7bdb355ad18f8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad21ffa3e5674ef1734130ed1a85de3e7"><td class="memItemLeft" align="right" valign="top"><a id="ad21ffa3e5674ef1734130ed1a85de3e7"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gate_driver_8h.html#ad21ffa3e5674ef1734130ed1a85de3e7">FOC_CURR_ADC0_IDX_0</a>&#160;&#160;&#160;(ADC0_ADCMEM_0)</td></tr>
 <tr class="memdesc:ad21ffa3e5674ef1734130ed1a85de3e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">FOC current ADC0 IDX 0. <br /></td></tr>
@@ -161,6 +165,9 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gate_driver_8h.html#aeefe29d86a7fb7858a31216977a1a8db">HAL_GD_ConfigureVoltageChannels</a> (void)</td></tr>
 <tr class="memdesc:aeefe29d86a7fb7858a31216977a1a8db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure phase voltage channels. <br /></td></tr>
 <tr class="separator:aeefe29d86a7fb7858a31216977a1a8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf8cb16d67651cb0d996158a95467a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gate_driver_8h.html#adf8cb16d67651cb0d996158a95467a98">HAL_currentReconstruction</a> (HAL_MEASURE_CURRENT_T *pCurrent, <a class="el" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820">MC_SECTOR_TYPES</a> sector)</td></tr>
+<tr class="memdesc:adf8cb16d67651cb0d996158a95467a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruct phase current from bus current.  <a href="#adf8cb16d67651cb0d996158a95467a98">More...</a><br /></td></tr>
+<tr class="separator:adf8cb16d67651cb0d996158a95467a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfc7152f42ecf42815ba5c2309bf9ca1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gate_driver_8h.html#abfc7152f42ecf42815ba5c2309bf9ca1">HAL_GD_ConfigureCurrentChannels</a> (CURRENT_SHUNT_TYPES currentShunt)</td></tr>
 <tr class="memdesc:abfc7152f42ecf42815ba5c2309bf9ca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure phase current channels.  <a href="#abfc7152f42ecf42815ba5c2309bf9ca1">More...</a><br /></td></tr>
 <tr class="separator:abfc7152f42ecf42815ba5c2309bf9ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -262,6 +269,43 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pVoltage</td><td>Pointer to measure voltage structure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adf8cb16d67651cb0d996158a95467a98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf8cb16d67651cb0d996158a95467a98">&sect;&nbsp;</a></span>HAL_currentReconstruction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_currentReconstruction </td>
+          <td>(</td>
+          <td class="paramtype">HAL_MEASURE_CURRENT_T *&#160;</td>
+          <td class="paramname"><em>pCurrent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820">MC_SECTOR_TYPES</a>&#160;</td>
+          <td class="paramname"><em>sector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reconstruct phase current from bus current. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pCurrent</td><td>Pointer to measure current structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sector</td><td>Voltage sector </td></tr>
   </table>
   </dd>
 </dl>

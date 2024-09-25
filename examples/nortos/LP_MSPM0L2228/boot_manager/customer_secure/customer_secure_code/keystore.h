@@ -35,7 +35,6 @@
 
 #include <ti/driverlib/driverlib.h>
 #include "customer_secure_config.h"
-#include "msp-crypto/msp_crypto.h"
 
 #ifdef CSC_ENABLE_KEYSTORE
 
@@ -64,7 +63,7 @@ typedef enum {
 
 typedef struct key_hash {
     uint32_t hash[8];
-    uint32_t slotIndex;
+    uint32_t keySlot;
     union {
         uint32_t reserved;
         key_size_t keySize;

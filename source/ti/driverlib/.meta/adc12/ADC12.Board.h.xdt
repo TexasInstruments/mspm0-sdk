@@ -92,10 +92,15 @@
 % let adcMemNameStr = "#define " + inst.$name+"_ADCMEM_"+inst["adcMem"+adcMemIdx+"_name"]
 `adcMemNameStr.padEnd(40, " ")+("DL_ADC12_MEM_IDX_" + adcMemIdx.toString()).padStart(40, " ")`
 % let adcMemREFStr = "#define " + inst.$name+"_ADCMEM_"+inst["adcMem"+adcMemIdx+"_name"]+"_REF"
-% let adcMemREFVoltageStr = "#define " + inst.$name+"_ADCMEM_"+inst["adcMem"+adcMemIdx+"_name"]+"_REF_VOLTAGE"
+% let adcMemREFVoltageStr = "#define " + inst.$name+"_ADCMEM_"+inst["adcMem"+adcMemIdx+"_name"]+"_REF_VOLTAGE_V"
 % if (inst["adcMem"+adcMemIdx+"vref"] === "VDDA") {
 `adcMemREFStr.padEnd(40, " ")+(inst["adcMem"+adcMemIdx+"vrefDependency"]).padStart(40, " ")`
-`adcMemREFVoltageStr.padEnd(40, " ")+("-1").padStart(40, " ")+" // VDDA cannot be determined"`
+% let vddaInstance = system.modules["/ti/driverlib/Board"]
+% let vddaVoltage = 3.3
+% if (vddaInstance && (vddaInstance.$static.configureVDDA == true)){
+%   vddaVoltage = (vddaInstance.$static.voltageVDDA)
+% }
+`adcMemREFVoltageStr.padEnd(40, " ")+(vddaVoltage).toString().padStart(40, " ")`
 % } else {
 `adcMemREFStr.padEnd(40, " ")+(inst["adcMem"+adcMemIdx+"vrefDependency"]).padStart(40, " ")`
 `adcMemREFVoltageStr.padEnd(40, " ")+(inst["adcMem"+adcMemIdx+"calcVoltage"].toString().replace(/ .*V/, "")).padStart(40, " ")`

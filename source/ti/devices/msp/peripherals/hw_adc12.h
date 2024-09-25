@@ -1,6 +1,6 @@
 /*****************************************************************************
 
-  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+  Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions
@@ -36,8 +36,8 @@
 #define ti_devices_msp_peripherals_hw_adc12__include
 
 /* Filename: hw_adc12.h */
-/* Revised: 2023-05-10 21:21:24 */
-/* Revision: ea14887e6b01ba9500da04a57268943a18f1cefd */
+/* Revised: 2024-02-04 23:18:52 */
+/* Revision: 8d44a0380c79ed6c597a10a9f2b1bed57fc8b226 */
 
 #ifndef __CORTEX_M
   #ifdef __cplusplus
@@ -197,20 +197,17 @@ typedef struct {
   __IO uint32_t CTL0;                              /* !< (@ 0x00001100) Control Register 0 */
   __IO uint32_t CTL1;                              /* !< (@ 0x00001104) Control Register 1 */
   __IO uint32_t CTL2;                              /* !< (@ 0x00001108) Control Register 2 */
-  __IO uint32_t CTL3;                              /* !< (@ 0x0000110C) Control Register 3 */
+       uint32_t RESERVED8;
   __IO uint32_t CLKFREQ;                           /* !< (@ 0x00001110) Sample Clock Frequency Range Register */
   __IO uint32_t SCOMP0;                            /* !< (@ 0x00001114) Sample Time Compare 0 Register */
   __IO uint32_t SCOMP1;                            /* !< (@ 0x00001118) Sample Time Compare 1 Register */
-  __IO uint32_t REFCFG;                            /* !< (@ 0x0000111C) Reference Buffer Configuration Register */
-       uint32_t RESERVED8[10];
+       uint32_t RESERVED9[11];
   __IO uint32_t WCLOW;                             /* !< (@ 0x00001148) Window Comparator Low Threshold Register */
-       uint32_t RESERVED9;
+       uint32_t RESERVED10;
   __IO uint32_t WCHIGH;                            /* !< (@ 0x00001150) Window Comparator High Threshold Register */
-       uint32_t RESERVED10[3];
-  __I  uint32_t FIFODATA;                          /* !< (@ 0x00001160) FIFO Data Register */
        uint32_t RESERVED11[3];
-  __I  uint32_t ASCRES;                            /* !< (@ 0x00001170) ASC Result Register */
-       uint32_t RESERVED12[3];
+  __I  uint32_t FIFODATA;                          /* !< (@ 0x00001160) FIFO Data Register */
+       uint32_t RESERVED12[7];
   __IO uint32_t MEMCTL[24];                        /* !< (@ 0x00001180) Conversion Memory Control Register */
        uint32_t RESERVED13[40];
   __I  uint32_t MEMRES[24];                        /* !< (@ 0x00001280) Memory Result Register */
@@ -2041,12 +2038,6 @@ typedef struct {
                                                                                     bit in ICLR is set to 1 */
 #define ADC12_CPU_INT_IMASK_MEMRESIFG21_CLR      ((uint32_t)0x00000000U)         /* !< No new data ready. */
 #define ADC12_CPU_INT_IMASK_MEMRESIFG21_SET      ((uint32_t)0x20000000U)         /* !< A new data is ready to be read. */
-/* ADC12_CPU_INT_IMASK[ASCDONE] Bits */
-#define ADC12_CPU_INT_IMASK_ASCDONE_OFS          (7)                             /* !< ASCDONE Offset */
-#define ADC12_CPU_INT_IMASK_ASCDONE_MASK         ((uint32_t)0x00000080U)         /* !< Mask for ASC done raw interrupt
-                                                                                    flag */
-#define ADC12_CPU_INT_IMASK_ASCDONE_CLR          ((uint32_t)0x00000000U)         /* !< Interrupt is not pending. */
-#define ADC12_CPU_INT_IMASK_ASCDONE_SET          ((uint32_t)0x00000080U)         /* !< Interrupt is pending. */
 
 /* ADC12_CPU_INT_RIS Bits */
 /* ADC12_CPU_INT_RIS[INIFG] Bits */
@@ -2347,11 +2338,6 @@ typedef struct {
                                                                                     bit in ICLR is set to 1 */
 #define ADC12_CPU_INT_RIS_MEMRESIFG21_CLR        ((uint32_t)0x00000000U)         /* !< No new data ready. */
 #define ADC12_CPU_INT_RIS_MEMRESIFG21_SET        ((uint32_t)0x20000000U)         /* !< A new data is ready to be read. */
-/* ADC12_CPU_INT_RIS[ASCDONE] Bits */
-#define ADC12_CPU_INT_RIS_ASCDONE_OFS            (7)                             /* !< ASCDONE Offset */
-#define ADC12_CPU_INT_RIS_ASCDONE_MASK           ((uint32_t)0x00000080U)         /* !< Raw interrupt flag for ASC done */
-#define ADC12_CPU_INT_RIS_ASCDONE_CLR            ((uint32_t)0x00000000U)         /* !< Interrupt is not pending. */
-#define ADC12_CPU_INT_RIS_ASCDONE_SET            ((uint32_t)0x00000080U)         /* !< Interrupt is pending. */
 
 /* ADC12_CPU_INT_MIS Bits */
 /* ADC12_CPU_INT_MIS[INIFG] Bits */
@@ -2652,12 +2638,6 @@ typedef struct {
                                                                                     bit in ICLR is set to 1 */
 #define ADC12_CPU_INT_MIS_MEMRESIFG21_CLR        ((uint32_t)0x00000000U)         /* !< No new data ready. */
 #define ADC12_CPU_INT_MIS_MEMRESIFG21_SET        ((uint32_t)0x20000000U)         /* !< A new data is ready to be read. */
-/* ADC12_CPU_INT_MIS[ASCDONE] Bits */
-#define ADC12_CPU_INT_MIS_ASCDONE_OFS            (7)                             /* !< ASCDONE Offset */
-#define ADC12_CPU_INT_MIS_ASCDONE_MASK           ((uint32_t)0x00000080U)         /* !< Masked interrupt status for ASC
-                                                                                    done */
-#define ADC12_CPU_INT_MIS_ASCDONE_CLR            ((uint32_t)0x00000000U)         /* !< Interrupt is not pending. */
-#define ADC12_CPU_INT_MIS_ASCDONE_SET            ((uint32_t)0x00000080U)         /* !< Interrupt is pending. */
 
 /* ADC12_CPU_INT_ISET Bits */
 /* ADC12_CPU_INT_ISET[INIFG] Bits */
@@ -2958,11 +2938,6 @@ typedef struct {
                                                                                     bit in ICLR is set to 1 */
 #define ADC12_CPU_INT_ISET_MEMRESIFG21_NO_EFFECT ((uint32_t)0x00000000U)         /* !< No new data ready. */
 #define ADC12_CPU_INT_ISET_MEMRESIFG21_SET       ((uint32_t)0x20000000U)         /* !< A new data is ready to be read. */
-/* ADC12_CPU_INT_ISET[ASCDONE] Bits */
-#define ADC12_CPU_INT_ISET_ASCDONE_OFS           (7)                             /* !< ASCDONE Offset */
-#define ADC12_CPU_INT_ISET_ASCDONE_MASK          ((uint32_t)0x00000080U)         /* !< Set ASC done flag in RIS */
-#define ADC12_CPU_INT_ISET_ASCDONE_NO_EFFECT     ((uint32_t)0x00000000U)         /* !< Interrupt is not pending. */
-#define ADC12_CPU_INT_ISET_ASCDONE_SET           ((uint32_t)0x00000080U)         /* !< Interrupt is pending. */
 
 /* ADC12_CPU_INT_ICLR Bits */
 /* ADC12_CPU_INT_ICLR[INIFG] Bits */
@@ -3263,11 +3238,6 @@ typedef struct {
                                                                                     bit in ICLR is set to 1 */
 #define ADC12_CPU_INT_ICLR_MEMRESIFG21_NO_EFFECT ((uint32_t)0x00000000U)         /* !< No new data ready. */
 #define ADC12_CPU_INT_ICLR_MEMRESIFG21_CLR       ((uint32_t)0x20000000U)         /* !< A new data is ready to be read. */
-/* ADC12_CPU_INT_ICLR[ASCDONE] Bits */
-#define ADC12_CPU_INT_ICLR_ASCDONE_OFS           (7)                             /* !< ASCDONE Offset */
-#define ADC12_CPU_INT_ICLR_ASCDONE_MASK          ((uint32_t)0x00000080U)         /* !< Clear ASC done flag in RIS */
-#define ADC12_CPU_INT_ICLR_ASCDONE_NO_EFFECT     ((uint32_t)0x00000000U)         /* !< Interrupt is not pending. */
-#define ADC12_CPU_INT_ICLR_ASCDONE_CLR           ((uint32_t)0x00000080U)         /* !< Interrupt is pending. */
 
 /* ADC12_PWREN Bits */
 /* ADC12_PWREN[ENABLE] Bits */
@@ -3730,61 +3700,18 @@ typedef struct {
 #define ADC12_CTL2_FIFOEN_MASK                   ((uint32_t)0x00000400U)         /* !< Enable FIFO based operation */
 #define ADC12_CTL2_FIFOEN_DISABLE                ((uint32_t)0x00000000U)         /* !< Disable */
 #define ADC12_CTL2_FIFOEN_ENABLE                 ((uint32_t)0x00000400U)         /* !< Enable */
-
-/* ADC12_CTL3 Bits */
-/* ADC12_CTL3[ASCCHSEL] Bits */
-#define ADC12_CTL3_ASCCHSEL_OFS                  (0)                             /* !< ASCCHSEL Offset */
-#define ADC12_CTL3_ASCCHSEL_MASK                 ((uint32_t)0x0000001FU)         /* !< ASC channel select */
-#define ADC12_CTL3_ASCCHSEL_CHAN_0               ((uint32_t)0x00000000U)         /* !< Selects channel 0 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_1               ((uint32_t)0x00000001U)         /* !< Selects channel 1 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_2               ((uint32_t)0x00000002U)         /* !< Selects channel 2 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_3               ((uint32_t)0x00000003U)         /* !< Selects channel 3 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_4               ((uint32_t)0x00000004U)         /* !< Selects channel 4 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_5               ((uint32_t)0x00000005U)         /* !< Selects channel 5 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_6               ((uint32_t)0x00000006U)         /* !< Selects channel 6 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_7               ((uint32_t)0x00000007U)         /* !< Selects channel 7 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_8               ((uint32_t)0x00000008U)         /* !< Selects channel 8 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_9               ((uint32_t)0x00000009U)         /* !< Selects channel 9 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_10              ((uint32_t)0x0000000AU)         /* !< Selects channel 10 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_11              ((uint32_t)0x0000000BU)         /* !< Selects channel 11 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_12              ((uint32_t)0x0000000CU)         /* !< Selects channel 12 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_13              ((uint32_t)0x0000000DU)         /* !< Selects channel 13 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_14              ((uint32_t)0x0000000EU)         /* !< Selects channel 14 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_15              ((uint32_t)0x0000000FU)         /* !< Selects channel 15 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_16              ((uint32_t)0x00000010U)         /* !< Selects channel 16 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_17              ((uint32_t)0x00000011U)         /* !< Selects channel 17 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_18              ((uint32_t)0x00000012U)         /* !< Selects channel 18 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_19              ((uint32_t)0x00000013U)         /* !< Selects channel 19 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_20              ((uint32_t)0x00000014U)         /* !< Selects channel 20 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_21              ((uint32_t)0x00000015U)         /* !< Selects channel 21 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_22              ((uint32_t)0x00000016U)         /* !< Selects channel 22 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_23              ((uint32_t)0x00000017U)         /* !< Selects channel 23 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_24              ((uint32_t)0x00000018U)         /* !< Selects channel 24 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_25              ((uint32_t)0x00000019U)         /* !< Selects channel 25 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_26              ((uint32_t)0x0000001AU)         /* !< Selects channel 26 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_27              ((uint32_t)0x0000001BU)         /* !< Selects channel 27 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_28              ((uint32_t)0x0000001CU)         /* !< Selects channel 28 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_29              ((uint32_t)0x0000001DU)         /* !< Selects channel 29 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_30              ((uint32_t)0x0000001EU)         /* !< Selects channel 30 */
-#define ADC12_CTL3_ASCCHSEL_CHAN_31              ((uint32_t)0x0000001FU)         /* !< Selects channel 31 */
-/* ADC12_CTL3[ASCSTIME] Bits */
-#define ADC12_CTL3_ASCSTIME_OFS                  (8)                             /* !< ASCSTIME Offset */
-#define ADC12_CTL3_ASCSTIME_MASK                 ((uint32_t)0x00000100U)         /* !< ASC sample time compare value
-                                                                                    select. This is used to select
-                                                                                    between SCOMP0 and SCOMP1 registers
-                                                                                    for ASC operation. */
-#define ADC12_CTL3_ASCSTIME_SEL_SCOMP0           ((uint32_t)0x00000000U)         /* !< Select SCOMP0 */
-#define ADC12_CTL3_ASCSTIME_SEL_SCOMP1           ((uint32_t)0x00000100U)         /* !< Select SCOMP1 */
-/* ADC12_CTL3[ASCVRSEL] Bits */
-#define ADC12_CTL3_ASCVRSEL_OFS                  (12)                            /* !< ASCVRSEL Offset */
-#define ADC12_CTL3_ASCVRSEL_MASK                 ((uint32_t)0x00003000U)         /* !< Selects voltage reference for ASC
-                                                                                    operation. VEREFM must be connected
-                                                                                    to on-board ground when external
-                                                                                    reference option is selected. Note:
-                                                                                    Writing value 0x3 defaults to INTREF. */
-#define ADC12_CTL3_ASCVRSEL_VDDA                 ((uint32_t)0x00000000U)         /* !< VDDA reference. */
-#define ADC12_CTL3_ASCVRSEL_EXTREF               ((uint32_t)0x00001000U)         /* !< EXTREF pin reference. */
-#define ADC12_CTL3_ASCVRSEL_INTREF               ((uint32_t)0x00002000U)         /* !< Internal reference. */
+/* ADC12_CTL2[RSTSAMPCAPEN] Bits */
+#define ADC12_CTL2_RSTSAMPCAPEN_OFS              (4)                             /* !< RSTSAMPCAPEN Offset */
+#define ADC12_CTL2_RSTSAMPCAPEN_MASK             ((uint32_t)0x00000010U)         /* !< 0: Sample and hold capacitor is not
+                                                                                    explicitly discharged at the end of
+                                                                                    conversion. 1: Sample and hold
+                                                                                    capacitor is discharged at the end of
+                                                                                    conversion. This incurs one
+                                                                                    additional conversion clock cycle. */
+#define ADC12_CTL2_RSTSAMPCAPEN_DISABLE          ((uint32_t)0x00000000U)         /* !< Disable sample capacitor discharge
+                                                                                    feature. */
+#define ADC12_CTL2_RSTSAMPCAPEN_ENABLE           ((uint32_t)0x00000010U)         /* !< Enable sample capacitor discharge
+                                                                                    feature. */
 
 /* ADC12_CLKFREQ Bits */
 /* ADC12_CLKFREQ[FRANGE] Bits */
@@ -3829,29 +3756,6 @@ typedef struct {
                                                                                     4). Example: VAL = 4, SCLKDIV = 3
                                                                                     implies 32 sample clock cycles. */
 
-/* ADC12_REFCFG Bits */
-/* ADC12_REFCFG[REFEN] Bits */
-#define ADC12_REFCFG_REFEN_OFS                   (0)                             /* !< REFEN Offset */
-#define ADC12_REFCFG_REFEN_MASK                  ((uint32_t)0x00000001U)         /* !< Reference buffer enable */
-#define ADC12_REFCFG_REFEN_DISABLE               ((uint32_t)0x00000000U)         /* !< Disable */
-#define ADC12_REFCFG_REFEN_ENABLE                ((uint32_t)0x00000001U)         /* !< Enable */
-/* ADC12_REFCFG[REFVSEL] Bits */
-#define ADC12_REFCFG_REFVSEL_OFS                 (1)                             /* !< REFVSEL Offset */
-#define ADC12_REFCFG_REFVSEL_MASK                ((uint32_t)0x00000002U)         /* !< Configures reference buffer output
-                                                                                    voltage */
-#define ADC12_REFCFG_REFVSEL_V2P5                ((uint32_t)0x00000000U)         /* !< Reference buffer generates 2.5 V
-                                                                                    output */
-#define ADC12_REFCFG_REFVSEL_V1P4                ((uint32_t)0x00000002U)         /* !< Reference buffer generates 1.4 V
-                                                                                    output */
-/* ADC12_REFCFG[IBPROG] Bits */
-#define ADC12_REFCFG_IBPROG_OFS                  (3)                             /* !< IBPROG Offset */
-#define ADC12_REFCFG_IBPROG_MASK                 ((uint32_t)0x00000018U)         /* !< Configures reference buffer bias
-                                                                                    current output value */
-#define ADC12_REFCFG_IBPROG_VAL0                 ((uint32_t)0x00000000U)         /* !< 1uA */
-#define ADC12_REFCFG_IBPROG_VAL1                 ((uint32_t)0x00000008U)         /* !< 0.5uA */
-#define ADC12_REFCFG_IBPROG_VAL2                 ((uint32_t)0x00000010U)         /* !< 2uA */
-#define ADC12_REFCFG_IBPROG_VAL3                 ((uint32_t)0x00000018U)         /* !< 0.67uA */
-
 /* ADC12_WCLOW Bits */
 /* ADC12_WCLOW[DATA] Bits */
 #define ADC12_WCLOW_DATA_OFS                     (0)                             /* !< DATA Offset */
@@ -3888,23 +3792,6 @@ typedef struct {
 #define ADC12_ULLMEM_FIFODATA_DATA_OFS           (0)                             /* !< DATA Offset */
 #define ADC12_ULLMEM_FIFODATA_DATA_MASK          ((uint32_t)0xFFFFFFFFU)         /* !< Read from this data field returns
                                                                                     the ADC sample from FIFO. */
-
-/* ADC12_ASCRES Bits */
-/* ADC12_ASCRES[DATA] Bits */
-#define ADC12_ASCRES_DATA_OFS                    (0)                             /* !< DATA Offset */
-#define ADC12_ASCRES_DATA_MASK                   ((uint32_t)0x0000FFFFU)         /* !< Result of ADC ad-hoc single
-                                                                                    conversion. If DF = 0, unsigned
-                                                                                    binary: The conversion result is
-                                                                                    right aligned. In 10 and 8 bit modes,
-                                                                                    the unused MSB bits are forced to 0.
-                                                                                    If DF = 1, 2s-complement format: The
-                                                                                    conversion result is left aligned. In
-                                                                                    10 and 8 bit modes, the unused LSB
-                                                                                    bits are forced to 0. The data is
-                                                                                    stored in the right-justified format
-                                                                                    and is converted to the
-                                                                                    left-justified 2s-complement format
-                                                                                    during read back. */
 
 /* ADC12_MEMCTL Bits */
 /* ADC12_MEMCTL[CHANSEL] Bits */
@@ -3953,14 +3840,18 @@ typedef struct {
 #define ADC12_MEMCTL_TRIG_TRIGGER_NEXT           ((uint32_t)0x01000000U)         /* !< Next conversion requires a trigger */
 /* ADC12_MEMCTL[VRSEL] Bits */
 #define ADC12_MEMCTL_VRSEL_OFS                   (8)                             /* !< VRSEL Offset */
-#define ADC12_MEMCTL_VRSEL_MASK                  ((uint32_t)0x00000300U)         /* !< Voltage reference selection. VEREFM
+#define ADC12_MEMCTL_VRSEL_MASK                  ((uint32_t)0x00000700U)         /* !< Voltage reference selection. VEREFM
                                                                                     must be connected to on-board ground
                                                                                     when external reference option is
                                                                                     selected. Note: Writing value 0x3
                                                                                     defaults to INTREF. */
-#define ADC12_MEMCTL_VRSEL_VDDA                  ((uint32_t)0x00000000U)         /* !< VDDA reference */
-#define ADC12_MEMCTL_VRSEL_EXTREF                ((uint32_t)0x00000100U)         /* !< External reference from pin */
-#define ADC12_MEMCTL_VRSEL_INTREF                ((uint32_t)0x00000200U)         /* !< Internal reference */
+#define ADC12_MEMCTL_VRSEL_VDDA_VSSA             ((uint32_t)0x00000000U)         /* !< VDDA reference */
+#define ADC12_MEMCTL_VRSEL_EXTREF_VREFM          ((uint32_t)0x00000100U)         /* !< External reference from pin */
+#define ADC12_MEMCTL_VRSEL_INTREF_VSSA           ((uint32_t)0x00000200U)         /* !< Internal reference */
+#define ADC12_MEMCTL_VRSEL_VDDA_VREFM            ((uint32_t)0x00000300U)         /* !< VDDA and VREFM connected to VREF+
+                                                                                    and VREF- of ADC */
+#define ADC12_MEMCTL_VRSEL_INTREF_VREFM          ((uint32_t)0x00000400U)         /* !< INTREF and VREFM connected to VREF+
+                                                                                    and VREF- of ADC */
 /* ADC12_MEMCTL[WINCOMP] Bits */
 #define ADC12_MEMCTL_WINCOMP_OFS                 (28)                            /* !< WINCOMP Offset */
 #define ADC12_MEMCTL_WINCOMP_MASK                ((uint32_t)0x10000000U)         /* !< Enable window comparator. */
@@ -4016,11 +3907,6 @@ typedef struct {
                                                                                     powered up and ready. */
 #define ADC12_STATUS_REFBUFRDY_NOTREADY          ((uint32_t)0x00000000U)         /* !< Not ready */
 #define ADC12_STATUS_REFBUFRDY_READY             ((uint32_t)0x00000002U)         /* !< Ready */
-/* ADC12_STATUS[ASCACT] Bits */
-#define ADC12_STATUS_ASCACT_OFS                  (2)                             /* !< ASCACT Offset */
-#define ADC12_STATUS_ASCACT_MASK                 ((uint32_t)0x00000004U)         /* !< ASC active */
-#define ADC12_STATUS_ASCACT_IDLE                 ((uint32_t)0x00000000U)         /* !< Idle or done */
-#define ADC12_STATUS_ASCACT_ACTIVE               ((uint32_t)0x00000004U)         /* !< ASC active */
 
 
 #ifdef __cplusplus
@@ -4028,3 +3914,4 @@ typedef struct {
 #endif
 
 #endif /* ti_devices_msp_peripherals_hw_adc12__include */
+

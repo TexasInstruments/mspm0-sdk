@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide &mdash; Secure Booting User&#39;s Guide 0.8 documentation</title>
+  <title>MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide &mdash; Secure Booting User&#39;s Guide 1.1.0.x documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> Secure Booting User's Guide
           </a>
               <div class="version">
-                0.8
+                1.1.0.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -78,6 +78,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#static-write-protection">5.1 Static Write Protection</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#root-of-trust-using-nonmain">5.2 Root of Trust Using NONMAIN</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rollback-protection">5.3 Rollback Protection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#keystore">5.4 Keystore</a></li>
 </ul>
 </li>
 </ul>
@@ -116,12 +117,12 @@
 <ul class="simple">
 <li><p>It can verify one or more application images using Elliptic Curve Digital Signature Algorithm (ECDSA) with NIST P-256 curve and hashing algorithm SHA-256</p></li>
 <li><p>It takes up less than 18 kB of flash per bank (allowing for two 110kB images on a 256kB device)</p></li>
-<li><p>mcuboot is open source and can be modified to fit the end developer’s needs</p></li>
-<li><p>It does not require additional HW support in order to verify images, but can utilize CMAC acceleration for quicker (&lt; 100ms) booting from a power on reset (POR) when the image is unchanged.</p></li>
+<li><p>mcuboot is open source and can be modified to fit the end developer’s needs, additionally the CSC has it’s own set of security features and is easily configurable via a header file or SysConfig to tailor the solution to the end needs of the user</p></li>
+<li><p>It does not require additional HW support in order to verify images, but can utilize a secure verification via CMAC for quicker (&lt; 100ms) booting from a power on reset (POR) when the image is unchanged.</p></li>
 <li><p>It sets up security features on the device such as write, read, and IP protect firewalls</p></li>
 <li><p>It sets up the KEYSTORE and the bank-swapping policy, and dynamically manage and revoke keys as the user intends</p></li>
 <li><p>It can provide rollback protection</p></li>
-<li><p>It can be made immutable and act as part of the Root of Trust (RoT) chain during a boot.</p></li>
+<li><p>It can (and should in production) be made immutable and act as part of the Root of Trust (RoT) chain during a boot.</p></li>
 <li><p>Provide easy feature configuration through the SysConfig tool, such that users can quickly build a CSC tailored to their needs</p></li>
 </ul>
 <p>Some things the current CSC (rigorously defined) doesn’t do:</p>
@@ -133,7 +134,7 @@
 </section>
 <section id="using-the-examples">
 <h2>2. Using the Examples<a class="headerlink" href="#using-the-examples" title="Permalink to this heading">¶</a></h2>
-<p>It is recommended to run the existing example pair of the <code class="docutils literal notranslate"><span class="pre">customer_secure_code</span></code> and <code class="docutils literal notranslate"><span class="pre">customer_secure_image_with_bootloader</span></code> in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.6.0+). This example uses the MSPM0L2228 LaunchPad with settings shown in the project README.</p>
+<p>It is recommended to run the existing example pair of the <code class="docutils literal notranslate"><span class="pre">customer_secure_code</span></code> and <code class="docutils literal notranslate"><span class="pre">customer_secure_image_with_bootloader</span></code> in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.7.0+). This example uses the MSPM0L2228 LaunchPad with settings shown in the project README.</p>
 <section id="prerequisites">
 <h3>2.0 Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h3>
 <p>To run the initial setup, make sure Python 3.7 or newer is installed with the latest pip package and run the following command to download the necessary requirements.</p>
@@ -190,6 +191,9 @@
 </li>
 <li><p>Also add the Customer Secure Code into the other bank, in the customer secure code project, go to the file <strong>Debug/customer_secure_code_LP_MSPM0L2228_ticlang-bank1-0x20000.bin</strong> and add this at address 0x20000.</p></li>
 <li><p>Verify that the boot application has not been erased by checking early in flash memory in the memory browser (such as 0x0000). Also verify the image has been successfully loaded into the image slot by typing the starting address into the memory browser. If both elements are present, then the device can be reset using the reset button on the LaunchPad. This will issue a stronger BOOTRST than the debuggers SYSRST and enact the secure policy. During the boot, the RED LED will be solid while it is performing the boot routine. The highest version image that is correctly signed should be run, regardless of bank. The LED should transition from RED to a GREEN or BLUE LED (depending on which image was run).</p></li>
+<li><p>Perform an Update: Make sure the debugger is disconnected at this point and the device is running (it may interfere with serial bootloading over the same line). Press the left switch (S2 on the launchpad) for the device to enter the BSL sequence. This will turn the LED CYAN and solid (both blue and green simultaneously).</p></li>
+<li><p>Using Uniflash 8.5 (or newer) open the bootloader version for the MSPM0L2228 Launchpad. Next, add a new encrypted file. The new file should be a newer version of the file previously loaded, preferably one with the opposite LED color. The file should be the text file ending in <code class="docutils literal notranslate"><span class="pre">_encrypted.txt</span></code> for the given version. Examining the file, there is a header telling the secure bootloader key information, and the image is encrypted. Once the correct COM port is selected, click the <strong>Load Image</strong> button and the update will happen, a BOOTRST will automatically occur, and the new image should be jumped to.</p></li>
+<li><p>The device LED should become solid RED after the programming, and then the LED should transition to the color of the updated image.</p></li>
 </ol>
 </section>
 </section>
@@ -304,6 +308,12 @@
 <p>One of the security features mcuboot provides is rollback protection: where a user can set a security version that new images must match or exceed in order to be accepted by the boot image manger. This prevents an attacker from installing a previous image which may contain a vulnerability that is fixed in later versions.</p>
 <p>This feature is not available on current M0L or M0G devices due to the non-main write protect occurring statically once upon startup. Rollback protection generally requires the hardware capability to prevent writes to a region dynamically (after verifying but before jumping to an image).</p>
 </section>
+<section id="keystore">
+<h3>5.4 Keystore<a class="headerlink" href="#keystore" title="Permalink to this heading">¶</a></h3>
+<p>It is important that unwanted entities do not have access to plaintext keys, but how does a user hide these keys, but still use them in the AES?</p>
+<p>The answer is to have a separate section of memory that cannot be read out from the device, but is able to send keys on a separate bus to the AES for use based on the slot that is present. This is the job of the KEYSTORE on our device.</p>
+<p>In order to communicate which keys are stored in the Keystore to the application, the CSC outputs in lockable storage the hashes of the keys, which an application can use to index the different slots and identify and use keys without being able to gain information about the key material itself.</p>
+</section>
 </section>
 </section>
 
@@ -317,7 +327,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

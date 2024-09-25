@@ -120,7 +120,7 @@ function onChangeTimerProfile(inst, ui) {
     }
 }
 
-const InterruptOptions = [
+var InterruptOptions = [
     { name: "ZERO", displayName: "Zero event", description: "Timer reaches zero" },
     { name: "LOAD", displayName: "Load event", description: "Timer reloads count value" },
     { name: "OVERFLOW", displayName: "Trigger Overflow event", description:"Trigger Overflow event"},
@@ -134,8 +134,16 @@ const InterruptOptions = [
     { name: "CC3_DN", displayName: "Channel 3 compare down event", description: "Channel 3 compare value reached in timer down counting mode" },
     { name: "CC3_UP", displayName: "Channel 3 compare up event"  , description: "Channel 3 compare value reached in timer up counting mode" },
 ];
+if(Common.hasTimerA()){
+    InterruptOptions = InterruptOptions.concat([
+        { name: "CC4_DN", displayName: "Channel 4 compare down event", description: "Channel 4 compare value reached in timer down counting mode" },
+        { name: "CC4_UP", displayName: "Channel 4 compare up event"  , description: "Channel 4 compare value reached in timer up counting mode" },
+        { name: "CC5_DN", displayName: "Channel 5 compare down event", description: "Channel 5 compare value reached in timer down counting mode" },
+        { name: "CC5_UP", displayName: "Channel 5 compare up event"  , description: "Channel 5 compare value reached in timer up counting mode" },
+    ])
+};
 
-const EventOptions = [
+var EventOptions = [
     { name: "ZERO_EVENT", displayName: "Zero event" },
     { name: "LOAD_EVENT", displayName: "Load event" },
     { name: "OVERFLOW_EVENT", displayName: "Overflow event"},
@@ -148,6 +156,14 @@ const EventOptions = [
     { name: "CC3_DN_EVENT", displayName: "Channel 3 compare down event"},
     { name: "CC3_UP_EVENT", displayName: "Channel 3 compare up event"},
 ];
+if(Common.hasTimerA()){
+    EventOptions = EventOptions.concat([
+        { name: "CC4_DN_EVENT", displayName: "Channel 4 compare down event"},
+        { name: "CC4_UP_EVENT", displayName: "Channel 4 compare up event"},
+        { name: "CC5_DN_EVENT", displayName: "Channel 5 compare down event"},
+        { name: "CC5_UP_EVENT", displayName: "Channel 5 compare up event"},
+    ])
+};
 
 const TimerClockSourceOptions = [
     { name: "BUSCLK", displayName: "BUSCLK" },
@@ -675,7 +691,9 @@ let ccIndexOptions = [
 if(Common.hasTimerA()){
     ccIndexOptions.push(
         { name: 2, displayName: "Compare Channel 2" },
-        { name: 3, displayName: "Compare Channel 3" }
+        { name: 3, displayName: "Compare Channel 3" },
+        { name: 4, displayName: "Internal Channel 4" },
+        { name: 5, displayName: "Internal Channel 5" }
     );
 }
 
@@ -1261,9 +1279,9 @@ function pinmuxRequirements(inst)
     };
 
     if(inst.triggerSelect != "Trigger"){
-        // for (let cc of inst.ccIndex) {
+        if(!Common.isInternalTimerChannel(inst.ccIndex)){
             timer.resources.push(allResources[inst.ccIndex]);
-        // }
+        }
     }
 
     return ([timer]);
@@ -1349,6 +1367,10 @@ function validatePinmux(inst, validation) {
                 validation.logError("Repeat Counter only available on Timer A instances. Please select a Timer A instance from PinMux if available.",inst,"enableRepeatCounter");
             }
         }
+        let hasInternal = Common.isInternalTimerChannel(inst.ccIndex);
+        if(hasInternal && (!(/TIMA/.test(solution)))){
+            validation.logError("Internal Timer Channels are only available on Timer A instances. Please select a Timer A instance from PinMux if available",inst,"ccIndex");
+        }
     }
 
     /* timerClkPrescale validation */
@@ -1360,6 +1382,29 @@ function validatePinmux(inst, validation) {
 
     /* Retention Validation */
     Common.getRetentionValidation(inst,validation);
+
+     /* Internal Channel Validation */
+    // CC4-5 internal channels only available for TIMA instances.
+    if(Common.hasTimerA() && !(/TIMA/.test(solution))){
+        if((inst.interrupts).some(r=>(r.match("CC4|CC5")))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["interrupts"]
+            );
+        }
+        if((inst.event1PublisherChannel !== 0) && (inst.event1ControllerInterruptEn.some(r=>(r.match("CC4|CC5"))))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["event1ControllerInterruptEn"]
+            );
+        }
+        if((inst.event2PublisherChannel !== 0) && (inst.event2ControllerInterruptEn.some(r=>(r.match("CC4|CC5"))))){
+            validation.logError(
+                "Internal Channels are only available to be configured on TIMA instances.",
+                inst, ["event2ControllerInterruptEn"]
+            );
+        }
+    }
 }
 
 /*

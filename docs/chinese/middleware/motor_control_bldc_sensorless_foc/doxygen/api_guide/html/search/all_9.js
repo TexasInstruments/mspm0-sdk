@@ -20,7 +20,7 @@ var searchData=
   ['iscrc',['isCrc',['../struct_u_a_r_t___instance.html#a688ceaea98ecaf4d26270f9009eae75b',1,'UART_Instance']]],
   ['isdcfg',['isdCfg',['../struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a5389758269550b06cc4a8ac2c6549b77',1,'USER_INPUT_INTERFACE_T']]],
   ['isden',['isdEn',['../structuser_input_i_s_d.html#a646398d7463b99c84c900e7a7fd9c09d',1,'userInputISD']]],
-  ['isdmaxstopbemfmillivolts',['isdMaxStopBemfMilliVolts',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#aef755b7ca60558edfde221080892bd16',1,'USER_INPUTS_T']]],
+  ['isdmaxstopbemfpu',['isdMaxStopBemfPU',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#adac5b515901d7cfd28b6949f6ca29dc8',1,'USER_INPUTS_T']]],
   ['isdruntime',['isdRunTime',['../structuser_input_misc_algo.html#a097fdd76955c4aeb40e2e1a13cb4db4c',1,'userInputMiscAlgo']]],
   ['isdstoptime',['isdStopTime',['../structuser_input_misc_algo.html#a27609589caa90ff179edd7052a70fc55',1,'userInputMiscAlgo']]],
   ['isdtimeout',['isdTimeOut',['../structuser_input_misc_algo.html#aad00afc9d1967dc0dba1b5cbc8e9ec6b',1,'userInputMiscAlgo']]]

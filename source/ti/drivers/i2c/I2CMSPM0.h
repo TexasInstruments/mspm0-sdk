@@ -294,8 +294,8 @@
  *  @ingroup I2C
 * @{
 */
-#ifndef ti_drivers_i2c_include
-#define ti_drivers_i2c_include
+#ifndef ti_drivers_I2CMSPM0_include
+#define ti_drivers_I2CMSPM0_include
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -420,6 +420,8 @@ typedef struct {
     uint8_t sclPincm; /*!< SCL Pincm Value */
 
     void *i2cPostFxn; /*!< I2C power notification */
+    bool
+        isReadInProgress; /*!< Flag to check if read is done before issuing another read */
 
 #ifdef POWER_MANAGEMENT_MSPM0
     Power_NotifyObj i2cPostObj; /*!< Not supported yet */
@@ -430,5 +432,5 @@ typedef struct {
 }
 #endif
 
-#endif /* ti_drivers_i2c_include */
+#endif /* ti_drivers_I2CMSPM0_include */
 /** @}*/

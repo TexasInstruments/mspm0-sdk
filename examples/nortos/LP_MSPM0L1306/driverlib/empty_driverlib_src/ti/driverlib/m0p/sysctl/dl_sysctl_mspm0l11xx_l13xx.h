@@ -66,11 +66,16 @@ extern "C" {
  *  @{
  */
 /*!
- * @brief Perform a CPU reset
+ * @brief Perform a SYSRST
  *
- * This clears the state of the CPU logic. Peripheral states are not affected
+ * This issues a SYSRST (CPU plus peripherals only)
  */
- #define DL_SYSCTL_RESET_CPU                       (SYSCTL_RESETLEVEL_LEVEL_CPU)
+ #define DL_SYSCTL_RESET_SYSRST                    (SYSCTL_RESETLEVEL_LEVEL_CPU)
+
+/*!
+ * @deprecated This API is deprecated. Please refer to @ref DL_SYSCTL_RESET_SYSRST.
+ */
+ #define DL_SYSCTL_RESET_CPU                            (DL_SYSCTL_RESET_SYSRST)
 
 /*!
  * @brief Perform a Boot reset
@@ -818,7 +823,6 @@ __STATIC_INLINE void DL_SYSCTL_setPowerPolicySTOP0(void)
     SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
     SYSCTL->SOCLOCK.SYSOSCCFG &= ~(
         SYSCTL_SYSOSCCFG_USE4MHZSTOP_MASK | SYSCTL_SYSOSCCFG_DISABLESTOP_MASK);
-    SYSCTL->SOCLOCK.MCLKCFG &= ~(SYSCTL_MCLKCFG_USELFCLK_MASK);
 }
 
 /**
@@ -843,7 +847,6 @@ __STATIC_INLINE void DL_SYSCTL_setPowerPolicySTOP1(void)
     SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
     SYSCTL->SOCLOCK.SYSOSCCFG |= SYSCTL_SYSOSCCFG_USE4MHZSTOP_MASK;
     SYSCTL->SOCLOCK.SYSOSCCFG &= ~(SYSCTL_SYSOSCCFG_DISABLESTOP_MASK);
-    SYSCTL->SOCLOCK.MCLKCFG &= ~(SYSCTL_MCLKCFG_USELFCLK_MASK);
 }
 
 /**

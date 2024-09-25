@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IAR Project Connection File -->
+
+<iarProjectConnection version="1.2" name="FreeRTOS kernel project" oneShot="true"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="IarProjectConnection_1.2.xsd">
+
+  <device>
+    <name>MSPM0L2228</name>
+  </device>
+
+  <extraOptions>
+    <args>
+      <arg>-D__MSPM0L2228__</arg>
+      <arg>-Dewarm</arg>
+      <arg>-I$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/include</arg>
+      <arg>-I$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/portable/IAR/ARM_CM0</arg>
+      <arg>-I$MSPM0_SDK_INSTALL_DIR$/source/third_party/CMSIS/Core/Include</arg>
+      <arg>-I$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/iar</arg>
+      <arg>-I$MSPM0_SDK_INSTALL_DIR$/source</arg>
+      <arg>-I$PROJ_DIR$/..</arg>
+      <arg>--debug</arg>
+      <arg>--silent</arg>
+      <arg>-e</arg>
+      <arg>--aeabi</arg>
+      <arg>--thumb</arg>
+      <arg>--diag_suppress=Pa050</arg>
+    </args>
+  </extraOptions>
+
+  <asmIncludePath>
+    <path>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/include</path>
+    <path>$PROJ_DIR$/..</path>
+  </asmIncludePath>
+
+  <files>
+    <group name="Source files">
+      <path reference="$PROJ_DIR$/croutine.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/croutine.c</path>
+      <path reference="$PROJ_DIR$/event_groups.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/event_groups.c</path>
+      <path reference="$PROJ_DIR$/list.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/list.c</path>
+      <path reference="$PROJ_DIR$/queue.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/queue.c</path>
+      <path reference="$PROJ_DIR$/stream_buffer.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/stream_buffer.c</path>
+      <path reference="$PROJ_DIR$/tasks.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/tasks.c</path>
+      <path reference="$PROJ_DIR$/timers.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/timers.c</path>
+      <path reference="$PROJ_DIR$/port.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/portable/IAR/ARM_CM0/port.c</path>
+      <path reference="$PROJ_DIR$/heap_4.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/portable/MemMang/heap_4.c</path>
+      <path reference="$PROJ_DIR$/portasm.s">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/Source/portable/IAR/ARM_CM0/portasm.s</path>
+      <path reference="$PROJ_DIR$/posix_clock.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/clock.c</path>
+      <path reference="$PROJ_DIR$/posix_memory.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/memory.c</path>
+      <path reference="$PROJ_DIR$/posix_mqueue.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/mqueue.c</path>
+      <path reference="$PROJ_DIR$/posix_pthread_barrier.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/pthread_barrier.c</path>
+      <path reference="$PROJ_DIR$/posix_pthread_cond.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/pthread_cond.c</path>
+      <path reference="$PROJ_DIR$/posix_pthread.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/pthread.c</path>
+      <path reference="$PROJ_DIR$/posix_pthread_mutex.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/pthread_mutex.c</path>
+      <path reference="$PROJ_DIR$/posix_pthread_mutex.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/pthread_rwlock.c</path>
+      <path reference="$PROJ_DIR$/posix_sched.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/sched.c</path>
+      <path reference="$PROJ_DIR$/posix_semaphore.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/semaphore.c</path>
+      <path reference="$PROJ_DIR$/posix_sleep.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/sleep.c</path>
+      <path reference="$PROJ_DIR$/posix_timer.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/timer.c</path>
+      <path reference="$PROJ_DIR$/posix_Mtx.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/posix/freertos/Mtx.c</path>
+      <path reference="$PROJ_DIR$/AppHooks_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/AppHooks_freertos.c</path>
+      <path reference="$PROJ_DIR$/ClockP_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/ClockP_freertos.c</path>
+      <path reference="$PROJ_DIR$/DebugP_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/DebugP_freertos.c</path>
+      <path reference="$PROJ_DIR$/MutexP_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/MutexP_freertos.c</path>
+      <path reference="$PROJ_DIR$/SemaphoreP_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/SemaphoreP_freertos.c</path>
+      <path reference="$PROJ_DIR$/SystemP_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/SystemP_freertos.c</path>
+      <path reference="$PROJ_DIR$/StaticAllocs_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/StaticAllocs_freertos.c</path>
+      <path reference="$PROJ_DIR$/TaskP_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/TaskP_freertos.c</path>
+      <path reference="$PROJ_DIR$/HwiPMSPM0_freertos.c">$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/dpl/HwiPMSPM0_freertos.c</path>
+      <path reference="$PROJ_DIR$/startup_mspm0l222x_iar.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/devices/msp/m0p/startup_system_files/iar/startup_mspm0l222x_iar.c</path>
+    </group>
+
+    <group name="Header files">
+      <path reference="$PROJ_DIR$/FreeRTOSConfig.h">./../FreeRTOSConfig.h</path>
+    </group>
+  </files>
+</iarProjectConnection>

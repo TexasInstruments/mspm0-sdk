@@ -99,6 +99,7 @@ void SMBus_NWK_startRxTransfer(SMBus *smbus)
     uint8_t setPEC = 1;
 
     smbus->nwk.rxIndex = 0;
+    smbus->nwk.pecBlockLenOverride = 0;
     smbus->state = SMBus_State_OK;
 
     if(smbus->ctrl.bits.pecEn == 1)
@@ -313,6 +314,14 @@ SMBus_State SMBus_NWK_targetProcessRx(SMBus *smbus,
             ret_state = SMBus_State_Target_FirstByte;
             smbus->nwk.currentCmd = data;
         }
+        else if (smbus->nwk.pecBlockLenOverride == 1){
+            // The first byte was received and the application has reported a block
+            // back to the network, such that the next byte received is to be
+            // interpreted as the length (including PEC BYTE)
+            SMBus_PHY_targetSetPECCount(smbus, data+1);
+            smbus->nwk.pecBlockLenOverride = 0;
+            ret_state = SMBus_State_Target_ByteReceived;
+        }
         else
         {
             // Data byte was received. Application can use this to process each
@@ -424,7 +433,6 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
     /* Handle Target Stop when used as SMBus Target */
     if (smbus->ctrl.bits.controller == 0)
     {
-        DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
         // Quick command is detected when a TX is detected with no data
         // We can't detect Quick_Command(R) because of double-buffer mechanism
         if(smbus->nwk.eState == SMBus_NwkState_RX)
@@ -435,7 +443,26 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
                 ret_state = SMBus_State_Target_QCMD;
             }
             else {
-                ret_state = SMBus_State_Target_CmdComplete;
+                /* Check if a PEC was processed correctly */
+                if (smbus->ctrl.bits.pecEn == 1)
+                {
+                    if ( (DL_I2C_getTargetPECCheckedStatus(smbus->phy.SMBus_Phy_i2cBase) !=
+                        DL_I2C_TARGET_PEC_STATUS_CHECKED) ||
+                         (DL_I2C_getTargetPECCheckError(smbus->phy.SMBus_Phy_i2cBase) !=
+                          DL_I2C_TARGET_PEC_CHECK_ERROR_CLEARED) )
+                    {
+                        smbus->nwk.eState = SMBus_NwkState_Error;
+                        ret_state = SMBus_State_Target_Error;
+                    }
+                    else
+                    {
+                        ret_state = SMBus_State_Target_CmdComplete;
+                    }
+                }
+                else
+                {
+                    ret_state = SMBus_State_Target_CmdComplete;
+                }
             }
         }
         else if((smbus->nwk.eState == SMBus_NwkState_Idle) &&
@@ -451,6 +478,11 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
             // don't need to do anything during a stop
         }
 
+        /* Restart PEC */
+        if (smbus->ctrl.bits.pecEn == 1)
+        {
+            DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
+        }
         // Set the network state machine to idle in order to get new packet
         smbus->nwk.eState = SMBus_NwkState_Idle;
     }
@@ -632,7 +664,9 @@ SMBus_State SMBus_NWK_controllerProcessStop(SMBus *smbus)
         {
             if(smbus->ctrl.bits.pecEn == 1)
             {
-                if(smbus->nwk.pec != 0x00)
+                if(DL_I2C_getRawInterruptStatus(smbus->phy.SMBus_Phy_i2cBase,
+                                  DL_I2C_INTERRUPT_CONTROLLER_PEC_RX_ERROR) ==
+                                  DL_I2C_INTERRUPT_CONTROLLER_PEC_RX_ERROR)
                 {
                     smbus->status.bits.pecErr = 1;
                     smbus->nwk.eState = SMBus_NwkState_Idle;

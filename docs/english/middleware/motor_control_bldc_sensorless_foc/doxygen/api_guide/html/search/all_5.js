@@ -11,5 +11,5 @@ var searchData=
   ['error_5fnone',['ERROR_NONE',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa4edc8aade11e1de7bbbdc04704baae5f',1,'uart_comm.h']]],
   ['error_5foffset',['ERROR_OFFSET',['../uart__comm_8h.html#a34da2490156c0fde3a3a9e8b658e6639',1,'uart_comm.h']]],
   ['errortype',['ErrorType',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45a',1,'uart_comm.h']]],
-  ['estimatedspeed',['estimatedSpeed',['../struct_u_s_e_r___o_u_t_p_u_t_s___t.html#ada1c41b61c4c91e2e742dfc4d81916b6',1,'USER_OUTPUTS_T']]]
+  ['estimatedspeed',['estimatedSpeed',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#adf136e84dfeb0c298cd726b43f65f56d',1,'USER_STATUS_INTERFACE_T']]]
 ];

@@ -10,7 +10,7 @@ var searchData=
   ['disable',['disable',['../struct_u_a_r_t_support___fxns.html#a0f2d9663f556ac9ae32259e3199c8864',1,'UARTSupport_Fxns']]],
   ['direct_20memory_20access_20_28dma_29',['Direct Memory Access (DMA)',['../group___d_m_a.html',1,'']]],
   ['dma_5fcount',['DMA_Count',['../group___d_m_a.html#ga691a5faa765d34c7d5469426a7690f1a',1,'DMAMSPM0.h']]],
-  ['dma_5fhandle',['DMA_Handle',['../struct_s_p_i_m_s_p_m0___object.html#adc3c5d73834c9445156fb5972236edec',1,'SPIMSPM0_Object']]],
+  ['dma_5fhandle',['DMA_Handle',['../struct_s_p_i_m_s_p_m0___object.html#adc3c5d73834c9445156fb5972236edec',1,'SPIMSPM0_Object::DMA_Handle()'],['../struct_u_a_r_t___object.html#a4616cbf8d6eb4a034beabc5bc10bfaa4',1,'UART_Object::DMA_Handle()']]],
   ['dma_5finit',['DMA_Init',['../group___d_m_a.html#gafdc13f6d8d07e139cb4454439936e7bd',1,'DMAMSPM0.h']]],
   ['dma_5fparams_5finit',['DMA_Params_init',['../group___d_m_a.html#gad58062cd1e508a3fdf174bc65639b9e3',1,'DMAMSPM0.h']]],
   ['dmachannel',['dmaChannel',['../struct_d_m_a_m_s_p_m0___transfer.html#ab71ecc20442db6abceeef88fbfb29fef',1,'DMAMSPM0_Transfer']]],

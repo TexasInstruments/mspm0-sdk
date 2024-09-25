@@ -141,11 +141,11 @@ int8_t Control_LED_hdlr(SMBus * SMB){
     {
         if (SMB->nwk.rxBuffPtr[1] == 0x00)
         {
-            DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            DL_GPIO_clearPins(SMB_GPIO_PORT, SMB_GPIO_LED_DEMO_PIN);
         }
         else
         {
-            DL_GPIO_setPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            DL_GPIO_setPins(SMB_GPIO_PORT, SMB_GPIO_LED_DEMO_PIN);
         }
         return(SMBUS_RET_OK);
     }
@@ -177,10 +177,10 @@ int8_t Control_LED_hdlr(SMBus * SMB){
 static int8_t Demo_isCmd_valid(uint8_t cmd)
 {
     uint8_t i;
-
+    int8_t ret;
     i8current_handler = -1; // Handler is invalid by default
 
-    for(i = 0; i < (CMD_LIST_LENGHT); i++)
+    for(i = 0; i < (CMD_LIST_LENGTH); i++)
     {
         if((cmd | SMB_CMD_List[i].mask) ==
            (SMB_CMD_List[i].cmd | SMB_CMD_List[i].mask))
@@ -188,11 +188,35 @@ static int8_t Demo_isCmd_valid(uint8_t cmd)
             // If the command is valid, save the handler which will be executed
             // if the command is received completely in Demo_CmdComplete
             i8current_handler = i;
-            return(SMBUS_RET_OK);
+            ret = (SMB_CMD_List[i].length == SMBUS_BLOCK_LENGTH)?SMBUS_RET_OK_BLOCK:SMBUS_RET_OK_FIXED;
+            return ret;
         }
     }
 
     return(SMBUS_RET_ERROR);
+}
+
+//*****************************************************************************
+//
+//! Returns the length associated with a given command
+//!
+//! \param cmd  Received command
+//!
+//! This function is called when a command is valid and the target needs to
+//! set the correct length for the PECCNT
+//! The function returns the length for the previously processed command, and
+//! must be called after Demo_isCmd_valid
+//!
+//! \return  Length of command if command was found
+//!          0 if command is not found
+//
+// *****************************************************************************
+static uint16_t Demo_getCurrentCmdLength(void){
+    if(i8current_handler >= 0){
+        return SMB_CMD_List[i8current_handler].length;
+    } else {
+        return 0;
+    }
 }
 
 //*****************************************************************************
@@ -240,7 +264,7 @@ static int8_t Demo_CmdComplete(SMBus *SMB)
 // *****************************************************************************
 void SMB_I2C_INST_IRQHandler (void)
 {
-
+    int8_t command_ret;
     // Check the state of SMBus
     switch(SMBus_targetProcessInt(&sSMBusTarget))
     {
@@ -257,11 +281,20 @@ void SMB_I2C_INST_IRQHandler (void)
         break;
     case SMBus_State_Target_FirstByte:
         // Validate the command here
-        if(Demo_isCmd_valid(SMBus_targetGetCommand(&sSMBusTarget)) !=
-           SMBUS_RET_OK)
+        command_ret = Demo_isCmd_valid(SMBus_targetGetCommand(&sSMBusTarget));
+
+        if(command_ret != SMBUS_RET_OK_FIXED &&
+           command_ret != SMBUS_RET_OK_BLOCK)
         {
             SMBus_targetReportError(&sSMBusTarget, SMBus_ErrorCode_Cmd);
-            __BKPT(0);
+            DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
+            __NOP();
+        }
+        else if (command_ret == SMBUS_RET_OK_BLOCK) {
+            SMBus_targetReportBlock(&sSMBusTarget);
+        }
+        else if (command_ret == SMBUS_RET_OK_FIXED) {
+            SMBus_targetReportLength(&sSMBusTarget, Demo_getCurrentCmdLength());
         }
         break;
     case SMBus_State_DataSizeError:

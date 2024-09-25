@@ -1,0 +1,34 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const CRCP    = scripting.addModule("/ti/driverlib/CRCP");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const NONMAIN = scripting.addModule("/ti/driverlib/NONMAIN");
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+CRCP.bitReverse = "REVERSED";
+CRCP.seed       = 0xFFFFFFFF;
+
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+
+NONMAIN.nonmainWarning = true;
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;

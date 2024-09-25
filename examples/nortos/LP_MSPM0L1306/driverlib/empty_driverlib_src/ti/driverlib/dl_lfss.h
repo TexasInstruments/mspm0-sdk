@@ -865,11 +865,11 @@ __STATIC_INLINE void DL_LFSS_TamperIO_enableOutput(
 {
     volatile uint32_t *pReg = &lfss->IPSPECIFIC_TIO.TOE3_0;
 
-    /* Point to correct TOE register */
-    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t) tamperIO);
+    /* Point to correct base register */
+    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t)(4 * (tamperIO / 4)));
 
     /* Set just the one bit for the specified tamper IO */
-    *pReg |= LFSS_TAMPER_IO_PIN_ENABLE;
+    *pReg |= LFSS_TAMPER_IO_PIN_ENABLE << (8 * (tamperIO % 4));
 }
 
 /**
@@ -884,11 +884,11 @@ __STATIC_INLINE void DL_LFSS_TamperIO_disableOutput(
 {
     volatile uint32_t *pReg = &lfss->IPSPECIFIC_TIO.TOE3_0;
 
-    /* Point to correct TOE register */
-    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t) tamperIO);
+    /* Point to correct base register */
+    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t)(4 * (tamperIO / 4)));
 
     /* Clear just the one bit for the specified tamper IO */
-    *pReg &= ~(LFSS_TAMPER_IO_PIN_ENABLE);
+    *pReg &= ~(LFSS_TAMPER_IO_PIN_ENABLE << (8 * (tamperIO % 4)));
 }
 
 /**
@@ -908,11 +908,16 @@ __STATIC_INLINE uint32_t DL_LFSS_TamperIO_isOutputEnabled(
 {
     volatile uint32_t *pReg = &lfss->IPSPECIFIC_TIO.TOE3_0;
 
-    /* Point to correct TIOCTLx register */
-    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t) tamperIO);
+    /* Point to correct base register */
+    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t)(4 * (tamperIO / 4)));
+
+    volatile uint32_t pinMask = LFSS_TAMPER_IO_PIN_MASK
+                                << (8 * (tamperIO % 4));
+    volatile uint32_t enableMask = LFSS_TAMPER_IO_PIN_ENABLE
+                                   << (8 * (tamperIO % 4));
 
     /* Get just the one bit for the specified tamper IO */
-    return ((*pReg & LFSS_TAMPER_IO_PIN_MASK) == LFSS_TAMPER_IO_PIN_ENABLE);
+    return ((*pReg & pinMask) == enableMask);
 }
 
 /**
@@ -929,10 +934,14 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setOutputValue(
 {
     volatile uint32_t *pReg = &lfss->IPSPECIFIC_TIO.TOUT3_0;
 
-    /* Point to correct TOE register */
-    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t) tamperIO);
+    /* Point to correct base register */
+    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t)(4 * (tamperIO / 4)));
 
-    DL_Common_updateReg(pReg, (uint32_t) outVal, LFSS_TAMPER_IO_PIN_MASK);
+    volatile uint32_t valueMask = outVal << (8 * (tamperIO % 4));
+    volatile uint32_t pinMask   = LFSS_TAMPER_IO_PIN_MASK
+                                << (8 * (tamperIO % 4));
+
+    DL_Common_updateReg(pReg, valueMask, pinMask);
 }
 
 /**
@@ -951,10 +960,13 @@ __STATIC_INLINE DL_LFSS_TAMPERIO_VALUE DL_LFSS_TamperIO_getOutputValue(
 {
     volatile uint32_t *pReg = &lfss->IPSPECIFIC_TIO.TOUT3_0;
 
-    /* Point to correct TOE register */
-    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t) tamperIO);
+    /* Point to correct base register */
+    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t)(4 * (tamperIO / 4)));
 
-    uint32_t outVal = *pReg & LFSS_TAMPER_IO_PIN_MASK;
+    volatile uint32_t pinMask = LFSS_TAMPER_IO_PIN_MASK
+                                << (8 * (tamperIO % 4));
+
+    uint32_t outVal = (*pReg & pinMask) >> (8 * (tamperIO % 4));
 
     return (DL_LFSS_TAMPERIO_VALUE)(outVal);
 }
@@ -975,10 +987,13 @@ __STATIC_INLINE DL_LFSS_TAMPERIO_VALUE DL_LFSS_TamperIO_getInputValue(
 {
     const volatile uint32_t *pReg = &lfss->IPSPECIFIC_TIO.TIN3_0;
 
-    /* Point to correct TOE register */
-    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t) tamperIO);
+    /* Point to correct base register */
+    pReg = (uint32_t *) ((uint8_t *) pReg + (uint8_t)(4 * (tamperIO / 4)));
 
-    uint32_t inputVal = *pReg & LFSS_TAMPER_IO_PIN_MASK;
+    volatile uint32_t pinMask = LFSS_TAMPER_IO_PIN_MASK
+                                << (8 * (tamperIO % 4));
+
+    uint32_t inputVal = (*pReg & pinMask) >> (8 * (tamperIO % 4));
 
     return (DL_LFSS_TAMPERIO_VALUE)(inputVal);
 }

@@ -11,6 +11,7 @@ var searchData=
   ['adcsamplingrate',['adcSamplingRate',['../struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a0dd8537c98ae2e9b6af3308775ffc123',1,'USER_INPUTS_INTERFACE_T']]],
   ['algodebugctrl1',['algoDebugCtrl1',['../struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a88dab47126e93d189c3d2846cb1cc0cd',1,'USER_CTRL_INTERFACE_T']]],
   ['algodebugctrl2',['algoDebugCtrl2',['../struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a6547c63945f909164e009efca83d947d',1,'USER_CTRL_INTERFACE_T']]],
+  ['algodebugctrl3',['algoDebugCtrl3',['../struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a426f7184476ffb551950ffad7a44a21d',1,'USER_CTRL_INTERFACE_T']]],
   ['alignangle',['alignAngle',['../structuser_input_motor_start_up2.html#a7115b3c05b68fc34480dda57b9cc1158',1,'userInputMotorStartUp2']]],
   ['alignorslowcurrlimit',['alignOrSlowCurrLimit',['../structuser_input_motor_start_up1.html#aea9dcadc8ac09daaf54312cff5b4c86c',1,'userInputMotorStartUp1']]],
   ['alignslowramprate',['alignSlowRampRate',['../structuser_input_motor_start_up1.html#a0a0fb0760829ee3db869e002e736d793',1,'userInputMotorStartUp1']]],

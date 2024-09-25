@@ -10,12 +10,14 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
 OBJECTS = flash_map_backend_flash_map_backend.obj mcuboot_config_trace.obj boot_application.obj boot_keys.obj third_party_mcuboot_boot_bootutil_src_boot_record.obj third_party_mcuboot_boot_bootutil_src_bootutil_misc.obj third_party_mcuboot_boot_bootutil_src_bootutil_public.obj third_party_mcuboot_boot_bootutil_src_caps.obj third_party_mcuboot_boot_bootutil_src_encrypted.obj third_party_mcuboot_boot_bootutil_src_fault_injection_hardening.obj third_party_mcuboot_boot_bootutil_src_fault_injection_hardening_delay_rng_mbedtls.obj third_party_mcuboot_boot_bootutil_src_image_ec.obj third_party_mcuboot_boot_bootutil_src_image_ec256.obj third_party_mcuboot_boot_bootutil_src_image_ed25519.obj third_party_mcuboot_boot_bootutil_src_image_rsa.obj third_party_mcuboot_boot_bootutil_src_image_validate.obj third_party_mcuboot_boot_bootutil_src_loader.obj third_party_mcuboot_boot_bootutil_src_swap_misc.obj third_party_mcuboot_boot_bootutil_src_swap_move.obj third_party_mcuboot_boot_bootutil_src_swap_scratch.obj third_party_mcuboot_boot_bootutil_src_tlv.obj third_party_mcuboot_ext_mbedtls-asn1_src_asn1parse.obj third_party_mcuboot_ext_mbedtls-asn1_src_platform_util.obj third_party_mcuboot_ext_msp-crypto_msp_crypto.obj ti_driverlib_dl_flashctl.obj ticlang_startup_mspm0l130x_ticlang.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = boot_application
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -I. \
+    $(addprefix @,$(SYSCFG_OPT_FILES)) \
     -D__MSPM0L1306__ \
     -DEXCLUDE_TRACE \
     -Oz \
@@ -32,18 +34,19 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/boot_manager/lib/ticlang/m0p/bimsupport.a" \
+LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/boot_manager/lib/ticlang/m0p/bimsupport.a" \
     -Wl,--stack_size=256 \
     -Wl,--heap_size=128 \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     ../ticlang/mspm0l1306.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
 .INTERMEDIATE: syscfg

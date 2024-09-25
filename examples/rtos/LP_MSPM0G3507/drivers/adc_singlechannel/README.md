@@ -51,7 +51,7 @@ for information about migrating to other MSPM0 devices.
 * Example output is generated through use of Display driver APIs.
 
 * Connect the ADC channels to the sampling sources.
-    * For quick testing, connect PA22 to `GND` and PA17 to `3V3`.
+    * For quick testing, connect ADC0 pin to `GND` and ADC1 pin to `3V3`.
 
 >__Important:__ Caution should be used when connecting the pins to analog inputs greater than 3VDC.
 

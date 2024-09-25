@@ -22,12 +22,13 @@ var searchData=
   ['tbl_5flckabnormalspeed_5fpmil',['tbl_lckAbnormalSpeed_pMil',['../config_tables_8h.html#a1c69a4ced548e1c24a0b5a2ecfed7572',1,'configTables.c']]],
   ['tbl_5fmaxvm_5fpmil',['tbl_maxVm_pMil',['../config_tables_8h.html#acb6dccb370a892b4c178cf190b6baa75',1,'configTables.c']]],
   ['tbl_5fminvm_5fpmil',['tbl_minVm_pMil',['../config_tables_8h.html#a327a4fa7416bc670dd035160ee3c12d8',1,'configTables.c']]],
+  ['tbl_5fmsqrref',['tbl_mSqrRef',['../config_tables_8h.html#af5ff12e06bb52a0de25abdcfcb04695f',1,'configTables.c']]],
   ['tbl_5fpu',['tbl_pu',['../config_tables_8h.html#a54719f795e2e9a325631e73642eeb5ca',1,'configTables.c']]],
   ['tbl_5frevdrvhandoffthr_5fpmil',['tbl_revDrvHandOffThr_pMil',['../config_tables_8h.html#a71bc858793f3ca9db708f7aa1494a91f',1,'configTables.c']]],
   ['tbl_5fslowfirstcycfreqpermil',['tbl_slowFirstCycFreqPerMil',['../config_tables_8h.html#ae952486b1806e645e3333d3077315df1',1,'configTables.c']]],
-  ['tbl_5fstatdetectthr_5fmv',['tbl_StatDetectThr_mV',['../config_tables_8h.html#af7603904734b13e9da3dbd8abb05492a',1,'configTables.c']]],
+  ['tbl_5fstatdetectthr_5fpu',['tbl_StatDetectThr_pu',['../config_tables_8h.html#aaebc49f19ff5a36fb3f7d5ffd1a9d77e',1,'configTables.c']]],
   ['tbl_5fthetaerrramprate_5fmili',['tbl_thetaErrRampRate_mili',['../config_tables_8h.html#acf9064bb282dea8a1018ddfaed775666',1,'configTables.c']]],
   ['thetaerrramprate',['thetaErrRampRate',['../structuser_input_motor_start_up2.html#a297ed25bc19eac96844f3e9e32c20890',1,'userInputMotorStartUp2']]],
-  ['torquelimit',['torqueLimit',['../struct_u_s_e_r___o_u_t_p_u_t_s___t.html#aa917041bf4158bebe46951fe07d7631e',1,'USER_OUTPUTS_T']]],
+  ['torquelimit',['torqueLimit',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a8383f44ab234678140643289b08c69ff',1,'USER_STATUS_INTERFACE_T']]],
   ['txmsg',['txMsg',['../struct_u_a_r_t___instance.html#a14dc9f8568a0ee1d49886357bab22f56',1,'UART_Instance']]]
 ];

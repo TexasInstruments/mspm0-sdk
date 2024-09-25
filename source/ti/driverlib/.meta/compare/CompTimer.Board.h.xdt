@@ -87,7 +87,9 @@
 `irqHandlerStr.padEnd(40," ")+irqHandlerStr2.padStart(40," ")`
 `irqnStr.padEnd(40," ")+irqnStr2.padStart(40," ")`
 %if (inst.triggerSelect != "Trigger"){
-%           let cc = inst.ccIndex
+%       let cc = inst.ccIndex
+%       /* Condition Check: avoid internal channels */
+%       if(!Common.isInternalTimerChannel(cc)){
 %           let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
 % /* figure out pin number and pinCMx */
 %           let pinName = "ccp"+cc+"Pin";
@@ -112,6 +114,7 @@
 % let funcStr2 = "IOMUX_PINCM"+pinCM+"_PF_"+flavor+"_CCP"+cc;
 `funcStr.padEnd(40, " ")+funcStr2.padStart(40, " ")`
 % //#define `gpioStr`_IOMUX_FUNC                        IOMUX_PINCM`pinCM`_PF_`flav`_CCP`cc`
+%   }
 %}
 %
 %       /* Create defines for event publisher channels */

@@ -435,6 +435,44 @@ Any conflicting configurations will be overriden by these settings.`,
         ],
     },
     {
+        name: "GROUP_VOLTAGE_CONFIG",
+        displayName: "Voltage Configuration",
+        description: "",
+        longDescription:
+`Voltage configuration settings that apply to all pins. \n
+Any conflicting configurations will be overriden by these settings.`,
+	    collapsed: false,
+        config: [
+            {
+                name: "configureVDDA",
+                displayName: "Configure ADC VDDA",
+                description: "Configure VDDA",
+                longDescription: ``,
+                default: false,
+                onChange: (inst,ui) => {
+                    ui.voltageVDDA.hidden = !inst.configureVDDA;
+                }
+            },
+            {
+                name: "GROUP_VDDA_CONFIG",
+                displayName: "VDDA Configuration",
+                description: "",
+                longDescription: "The selected configurations will apply to all applicable voltage configuration.",
+                collapsed: false,
+                config: [
+                    {
+                        name: "voltageVDDA",
+                        displayName: "ADC VDDA (V)",
+                        description: "Configure VDDA",
+                        default: 3.3,
+                        hidden: true,
+                        range: [1.62, 3.6],
+                    },
+                ],
+            },
+        ],
+    },
+    {
         name: "GROUP_INIT",
         displayName: "Initialization Priority Configuration",
         description: "",
@@ -468,6 +506,7 @@ function moduleInstances(inst){
 function isFileGen(inst){
     return inst.genPeriphPinFile;
 }
+
 
 /*
  *  ======== base ========

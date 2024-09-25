@@ -297,7 +297,7 @@ const uint_least8_t SPI_count                   = CONFIG_SPI_COUNT;
 /*
  *  =============================== UART0 ===============================
  */
-#include <ti/drivers/uart/UARTMSPM0G1X0X_G3X0X.h>
+#include <ti/drivers/uart/UARTMSPM0.h>
 
 static const UARTMSP_HWAttrs UARTMSPHWAttrs[CONFIG_UART_COUNT] = {
     {

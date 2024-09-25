@@ -68,6 +68,7 @@ function validatePinmux(inst, validation) {
  */
 function validate(inst, validation)
 {
+    validation.logWarning("Note: VBAT needs to be powered for IWDT operation.", inst);
 
 }
 

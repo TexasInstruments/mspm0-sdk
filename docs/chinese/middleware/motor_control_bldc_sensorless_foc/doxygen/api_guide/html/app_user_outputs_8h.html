@@ -115,8 +115,11 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_o_u_t_p_u_t_s___p_i___t.html">OUTPUTS_PI_T</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PI output structure.  <a href="struct_o_u_t_p_u_t_s___p_i___t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_u_s_e_r___o_u_t_p_u_t_s___t.html">USER_OUTPUTS_T</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">User output structure.  <a href="struct_u_s_e_r___o_u_t_p_u_t_s___t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_o_u_t_p_u_t___d_q___t.html">OUTPUT_DQ_T</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DQ structure.  <a href="struct_o_u_t_p_u_t___d_q___t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html">USER_STATUS_INTERFACE_T</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">User output structure.  <a href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -148,7 +151,9 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766afbb2b28ddcf50d6eba4d2c7bae002df0">MOTOR_BRAKE_ON_STOP</a> = 12, 
 <br />
-&#160;&#160;<a class="el" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766adb9c7ad15395a834ddad63b31ee68838">MOTOR_FAULT</a> = 13
+&#160;&#160;<a class="el" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766adb9c7ad15395a834ddad63b31ee68838">MOTOR_FAULT</a> = 13, 
+<br />
+&#160;&#160;<a class="el" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766adec9f2b2d5a998dcf18c6558a4b848e2">MOTOR_MAX</a> = 0xFFFF
 <br />
  }<tr class="memdesc:a646d894ff0b1dae9fe11aea1fbdaa766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor states.  <a href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766">More...</a><br /></td></tr>
 </td></tr>
@@ -164,7 +169,9 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa2ca1806b9ab9205480f777808f01a2ee">FAULT_HARDWARE_OVER_CURRENT</a> = 4, 
 <br />
-&#160;&#160;<a class="el" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71faa73a8c359fdd99e40c124f43b19572a5">FAULT_HV_DIE</a> = 5
+&#160;&#160;<a class="el" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71faa73a8c359fdd99e40c124f43b19572a5">FAULT_HV_DIE</a> = 5, 
+<br />
+&#160;&#160;<a class="el" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa310bdf86a6ad78c2997c0f88e11aae28">FAULT_NONE</a> = 0xFFFF
 <br />
  }<tr class="memdesc:a679c28296bc352d8d85437a4168bf71f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fault types.  <a href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71f">More...</a><br /></td></tr>
 </td></tr>
@@ -172,10 +179,10 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a613aa503f5ec5de665201fc96757948a"><td class="memItemLeft" align="right" valign="top"><a id="a613aa503f5ec5de665201fc96757948a"></a>
-<a class="el" href="struct_u_s_e_r___o_u_t_p_u_t_s___t.html">USER_OUTPUTS_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="app_user_outputs_8h.html#a613aa503f5ec5de665201fc96757948a">pUserStatusRegs</a></td></tr>
-<tr class="memdesc:a613aa503f5ec5de665201fc96757948a"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to userOutputs <br /></td></tr>
-<tr class="separator:a613aa503f5ec5de665201fc96757948a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167b8dae7f33f68c76fc15c6c1eddb08"><td class="memItemLeft" align="right" valign="top"><a id="a167b8dae7f33f68c76fc15c6c1eddb08"></a>
+<a class="el" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html">USER_STATUS_INTERFACE_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="app_user_outputs_8h.html#a167b8dae7f33f68c76fc15c6c1eddb08">pUserStatusRegs</a></td></tr>
+<tr class="memdesc:a167b8dae7f33f68c76fc15c6c1eddb08"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to userOutputs <br /></td></tr>
+<tr class="separator:a167b8dae7f33f68c76fc15c6c1eddb08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a646d894ff0b1dae9fe11aea1fbdaa766"></a>
@@ -220,6 +227,8 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a646d894ff0b1dae9fe11aea1fbdaa766adb9c7ad15395a834ddad63b31ee68838"></a>MOTOR_FAULT&#160;</td><td class="fielddoc"><p>Motor in fault state </p>
 </td></tr>
+<tr><td class="fieldname"><a id="a646d894ff0b1dae9fe11aea1fbdaa766adec9f2b2d5a998dcf18c6558a4b848e2"></a>MOTOR_MAX&#160;</td><td class="fielddoc"><p>Motor Max State </p>
+</td></tr>
 </table>
 
 </div>
@@ -249,6 +258,8 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a679c28296bc352d8d85437a4168bf71fa2ca1806b9ab9205480f777808f01a2ee"></a>FAULT_HARDWARE_OVER_CURRENT&#160;</td><td class="fielddoc"><p>Over current fault detected </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a679c28296bc352d8d85437a4168bf71faa73a8c359fdd99e40c124f43b19572a5"></a>FAULT_HV_DIE&#160;</td><td class="fielddoc"><p>HVDie Fault </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a679c28296bc352d8d85437a4168bf71fa310bdf86a6ad78c2997c0f88e11aae28"></a>FAULT_NONE&#160;</td><td class="fielddoc"><p>Fault Max </p>
 </td></tr>
 </table>
 

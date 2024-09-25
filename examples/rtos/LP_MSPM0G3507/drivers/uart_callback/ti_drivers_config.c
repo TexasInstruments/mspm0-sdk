@@ -41,57 +41,6 @@
 #include "ti_drivers_config.h"
 
 /*
- *  ======== SYSCFG_DL_init ========
- *  Perform any initialization needed before using any board APIs
- */
-SYSCONFIG_WEAK void SYSCFG_DL_init(void)
-{
-    SYSCFG_DL_initPower();
-    SYSCFG_DL_GPIO_init();
-    /* Module-Specific Initializations */
-    SYSCFG_DL_SYSCTL_init();
-    SYSCFG_DL_SYSCTL_CLK_init();
-}
-
-SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
-{
-    DL_GPIO_reset(GPIOA);
-    DL_GPIO_reset(GPIOB);
-    DL_UART_reset(CONFIG_UART_0_INST);
-
-    DL_GPIO_enablePower(GPIOA);
-    DL_GPIO_enablePower(GPIOB);
-    DL_UART_enablePower(CONFIG_UART_0_INST);
-    delay_cycles(POWER_STARTUP_DELAY);
-}
-
-SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
-{
-    DL_GPIO_initDigitalOutput(GPIO_GRP_0_PIN_0_IOMUX);
-
-    DL_GPIO_setPins(GPIO_GRP_0_PORT, GPIO_GRP_0_PIN_0_PIN);
-    DL_GPIO_enableOutput(GPIO_GRP_0_PORT, GPIO_GRP_0_PIN_0_PIN);
-}
-
-SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
-{
-    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
-    DL_SYSCTL_disableHFXT();
-    DL_SYSCTL_disableSYSPLL();
-    DL_SYSCTL_setMCLKDivider(DL_SYSCTL_MCLK_DIVIDER_DISABLE);
-    DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_1);
-    DL_SYSCTL_setPowerPolicyRUN0SLEEP0();
-    DL_SYSCTL_setBORThreshold(DL_SYSCTL_BOR_THRESHOLD_LEVEL_0);
-}
-
-SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_CLK_init(void)
-{
-    while ((DL_SYSCTL_getClockStatus() & (DL_SYSCTL_CLK_STATUS_LFOSC_GOOD)) !=
-           (DL_SYSCTL_CLK_STATUS_LFOSC_GOOD)) {
-        ;
-    }
-}
-/*
  *  =============================== DMA ===============================
  */
 #include <ti/drivers/dma/DMAMSPM0.h>
@@ -133,7 +82,7 @@ const DMAMSPM0_Cfg DMAMSPM0_Config[CONFIG_DMA_COUNT] = {
 /*
  *  =============================== UART ===============================
  */
-#include <ti/drivers/uart/UARTMSPM0G1X0X_G3X0X.h>
+#include <ti/drivers/uart/UARTMSPM0.h>
 
 const uint_least8_t CONFIG_UART_0 = 0;
 const uint_least8_t UART_count    = CONFIG_UART_COUNT;

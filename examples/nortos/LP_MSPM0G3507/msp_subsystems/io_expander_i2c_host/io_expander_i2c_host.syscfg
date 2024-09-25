@@ -1,0 +1,111 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const CRC    = scripting.addModule("/ti/driverlib/CRC");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const I2C    = scripting.addModule("/ti/driverlib/I2C", {}, false);
+const I2C1   = I2C.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const TIMER2 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.configureUnused             = true;
+Board.genPeriphPinFile            = true;
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+Board.genFileMod.$name            = "ti_driverlib_BoardPins0";
+
+CRC.seed = 0xFFFFFFFF;
+
+GPIO1.$name                              = "GPIO_B";
+GPIO1.associatedPins.create(5);
+GPIO1.associatedPins[0].assignedPort     = "PORTB";
+GPIO1.associatedPins[0].assignedPin      = "27";
+GPIO1.associatedPins[0].$name            = "LED_RGB_GREEN";
+GPIO1.associatedPins[0].pin.$assign      = "PB27";
+GPIO1.associatedPins[1].assignedPin      = "26";
+GPIO1.associatedPins[1].assignedPort     = "PORTB";
+GPIO1.associatedPins[1].$name            = "LED_RGB_RED";
+GPIO1.associatedPins[1].pin.$assign      = "PB26";
+GPIO1.associatedPins[2].assignedPort     = "PORTB";
+GPIO1.associatedPins[2].assignedPin      = "22";
+GPIO1.associatedPins[2].$name            = "LED_RGB_BLUE";
+GPIO1.associatedPins[2].pin.$assign      = "PB22";
+GPIO1.associatedPins[3].direction        = "INPUT";
+GPIO1.associatedPins[3].interruptEn      = true;
+GPIO1.associatedPins[3].polarity         = "RISE_FALL";
+GPIO1.associatedPins[3].assignedPort     = "PORTB";
+GPIO1.associatedPins[3].internalResistor = "PULL_UP";
+GPIO1.associatedPins[3].assignedPin      = "21";
+GPIO1.associatedPins[3].inputFilter      = "3_CYCLES";
+GPIO1.associatedPins[3].$name            = "SW_S3_USER";
+GPIO1.associatedPins[3].pin.$assign      = "PB21";
+GPIO1.associatedPins[4].assignedPort     = "PORTB";
+GPIO1.associatedPins[4].assignedPin      = "0";
+GPIO1.associatedPins[4].$name            = "IRQ_IN";
+GPIO1.associatedPins[4].direction        = "INPUT";
+GPIO1.associatedPins[4].internalResistor = "PULL_UP";
+GPIO1.associatedPins[4].interruptEn      = true;
+GPIO1.associatedPins[4].polarity         = "FALL";
+GPIO1.associatedPins[4].inputFilter      = "3_CYCLES";
+GPIO1.associatedPins[4].pin.$assign      = "PB0";
+
+GPIO2.$name                          = "GPIO_A";
+GPIO2.associatedPins.create(2);
+GPIO2.associatedPins[0].$name        = "SW_S2";
+GPIO2.associatedPins[0].direction    = "INPUT";
+GPIO2.associatedPins[0].assignedPort = "PORTA";
+GPIO2.associatedPins[0].assignedPin  = "18";
+GPIO2.associatedPins[0].inputFilter  = "3_CYCLES";
+GPIO2.associatedPins[0].interruptEn  = true;
+GPIO2.associatedPins[0].polarity     = "RISE_FALL";
+GPIO2.associatedPins[0].pin.$assign  = "PA18";
+GPIO2.associatedPins[1].$name        = "PA0_DEBUG";
+GPIO2.associatedPins[1].initialValue = "SET";
+GPIO2.associatedPins[1].assignedPin  = "0";
+GPIO2.associatedPins[1].assignedPort = "PORTA";
+GPIO2.associatedPins[1].pin.$assign  = "PA0";
+
+I2C1.basicEnableController             = true;
+I2C1.basicTargetAddress                = 0x0;
+I2C1.advTargetClkStretch               = false;
+I2C1.$name                             = "I2C_CONTROLLER";
+I2C1.timeoutACount                     = 255;
+I2C1.timeoutBCount                     = 255;
+I2C1.advControllerClkStretch           = false;
+I2C1.intController                     = ["NACK","RXFIFO_TRIGGER","RX_DONE","TX_DONE"];
+I2C1.advControllerTXFIFOTRIG           = "BYTES_1";
+I2C1.peripheral.$assign                = "I2C1";
+I2C1.peripheral.sdaPin.$assign         = "PB3";
+I2C1.peripheral.sclPin.$assign         = "PB2";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.interrupts                  = ["ZERO"];
+TIMER1.timerPeriod                 = "10 ms";
+TIMER1.timerClkSrc                 = "LFCLK";
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.$name                       = "TIMG_DELAY_BLOCKING";
+TIMER1.peripheral.$assign          = "TIMG0";
+
+TIMER2.interrupts                  = ["ZERO"];
+TIMER2.timerPeriod                 = "10 ms";
+TIMER2.timerClkSrc                 = "LFCLK";
+TIMER2.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER2.$name                       = "TIMG_DELAY_NO_BLOCKING";
+TIMER2.peripheral.$assign          = "TIMG6";

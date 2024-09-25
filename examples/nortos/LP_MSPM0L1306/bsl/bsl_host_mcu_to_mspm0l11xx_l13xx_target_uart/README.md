@@ -7,8 +7,8 @@ This demo shows how to program a MSPM0L1306 MCU using a LP-MSPM0L1306 as host by
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA14 | Standard Input with internal pull-up |
-| GPIOA | PA3 | Standard Output |
-| GPIOA | PA7 | Standard Output |
+| GPIOA | PA3 | Standard Output(To control NRST pin) |
+| GPIOA | PA7 | Standard Output(To control invoke pin) |
 | GPIOA | PA0 | Open-Drain Output |
 | GPIOA | PA27 | Standard Output |
 | SYSCTL |  |  |

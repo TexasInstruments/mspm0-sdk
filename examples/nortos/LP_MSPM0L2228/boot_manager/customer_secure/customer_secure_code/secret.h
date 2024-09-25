@@ -55,13 +55,33 @@ typedef struct secretStorage {
 #endif
 #ifdef CSC_ENABLE_KEYSTORE
 #ifdef CSC_ENABLE_KEYSTORE_STATIC_KEY
-    uint32_t keystore_staticKey0[10];
+
+#define CSC_NUM_STATIC_KEYS (2)
+    /* Note that the keys below are in the following format:
+     * uint32_t: shortened hash for revocation if applicable, 0x00 if
+     *           non-revocable
+     * uint32_t: key size, one of DL_KEYSTORECTL_KEY_SIZE
+     * uint32_t key[8]: key array in little-endian notation, thus if a 128-bit
+     *           key in 8-byte notation is aabbccddeeff00112233445566778899,
+     *           the key would be written into the array as:
+     *           { 0xddccbbaa, 0x1100ffee, 0x55443322, 0x99887766 }
+     *           and the last 4 words of the array, key[4]-key[7], will
+     *           remain empty.
+     */
+    uint32_t keystore_staticKey[CSC_NUM_STATIC_KEYS][10];
+
 #endif
 #ifdef CSC_ENABLE_KEYSTORE_DYNAMIC_KEY
-    // the first 4 bytes of each dynamic key represents the first 8 hash bytes
-    // if the key should be revocable, or a non-revocable code should the key
-    // not be revocable.
-    // the second 4 bytes denote whether the key is 128-bit or 256-bit
+    /* Note that the keys below are in the following format:
+     * uint32_t: first 4-bytes of hash (little-endian) for revocation.
+     * uint32_t: key size, one of DL_KEYSTORECTL_KEY_SIZE
+     * uint32_t key[8]: key array in little-endian notation, thus if a 128-bit
+     *           key in 8-byte notation is aabbccddeeff00112233445566778899,
+     *           the key would be written into the array as:
+     *           { 0xddccbbaa, 0x1100ffee, 0x55443322, 0x99887766 }
+     *           and the last 4 words of the array, key[4]-key[7], will
+     *           remain empty.
+     */
     uint32_t keystore_dynamicKeys[CSC_NUM_DYNAMIC_KEYS][10];
 #endif
 #endif  // CSC_ENABLE_KEYSTORE

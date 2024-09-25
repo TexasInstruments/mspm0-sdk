@@ -181,10 +181,10 @@ static const DL_COMP_Config g`inst.$name`Config = {
     let refSource = inst.vSource;
     if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && (inst.vrefMode == "INTERNAL")){
         if(["DL_COMP_REF_SOURCE_VREF_DAC"].includes(inst.vSource)){
-            refSource = "DL_COMP_REF_SOURCE_INTVREF_DAC";
+            refSource = "DL_COMP_REF_SOURCE_INT_VREF_DAC";
         }
         else if(["DL_COMP_REF_SOURCE_VREF"].includes(inst.vSource)){
-            refSource = "DL_COMP_REF_SOURCE_INTVREF";
+            refSource = "DL_COMP_REF_SOURCE_INT_VREF";
         }
     }
 %%}

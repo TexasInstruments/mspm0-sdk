@@ -111,3 +111,19 @@ The J-Link Software pack v7.88i or later includes support for MSPM0.
 --------------------------------------------
 
 1. When using the CCS hex utility to generate output files for Segger's J-Flash software, please follow the instructions described in the CCS IDE Guide section `How to Generate TI .TXT (and Other Format) Files <../../ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#how-to-generate-ti-txt-and-other-format-files>`__.
+
+8. Using J-Link scripts with an IDE
+-----------------------------------
+
+When attempting to use a J-Link script with any IDE, please refer to these documents provided by SEGGER:
+
+-  `Code Composer Studio <https://wiki.segger.com/TI_Code_Composer_Studio#Using_J-Link_Script_Files>`__
+
+-  `IAR <https://wiki.segger.com/IAR_EWARM#Using_J-Link_script_files>`__
+
+-  `Keil <https://wiki.segger.com/Keil_MDK-ARM#Using_J-Link_Script_Files>`__
+
+9. Known Issues and Frequently Asked Questions (FAQs)
+-----------------------------------------------------
+
+For other issues such as low-power mode handling please refer to `Known Issues and FAQ <../../../../../known_issues_FAQ.html>`__ inside the SDK.

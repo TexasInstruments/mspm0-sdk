@@ -271,11 +271,6 @@ function validateSYSCTL(inst, validation)
 
     /* SYSPLL Validation */
     if(Common.isDeviceM0G()){
-        if (inst.SYSPLL_VCOFreq != 160000000) {
-            validation.logWarning("MSPM0G currently only includes internal parameters to support configuring fVCO at a \
-            recommended frequency of 160MHz. Pending characterization, other frequencies might result in reduced \
-            accuracy or the PLL locking onto a wrong frequency entirely.", inst, ["SYSPLL_VCOFreq_disp"]);
-        }
         /* SYSPLL frequency range must be between [4MHz, 48MHz] */
         if (inst.SYSPLLSource == "HFCLK")
         {
@@ -469,6 +464,10 @@ function validateSYSCTL(inst, validation)
         validation.logInfo("After LFXT is enabled, the internal LFOSC is disabled, and cannot be re-enabled other than by executing a BOOTRST.", inst, ["LFCLKSource"]);
     }
 
+    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", inst, ["LFCLKSource"]);
+    }
+
     } // if Clock Tree is enabled
 
     if(inst.ClkOutHighDriveEn){
@@ -533,6 +532,7 @@ function onChangeClockTree(inst, ui){
 
         ui.validateClkStatus.readOnly       = (inst.LFCLKSource == "LFXT") || (inst.useHFCLK_Manual && inst.HFCLKSource == "HFXT");
         ui.waitState.hidden = !inst.clockTreeEn && !(inst.MCLKSource == "HSCLK");
+        ui.CANCLKSource.readOnly                 = inst.clockTreeEn;
     }
 
     ui.MFCLKEn.readOnly                 = inst.clockTreeEn;

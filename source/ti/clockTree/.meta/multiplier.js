@@ -11,15 +11,6 @@ function validateMultiplier(inst, validation){
 		if(pllClk0Div && pllClk1Div && pllClk2XDiv){
 			pllEnabled = pllClk0Div.enable || pllClk1Div.enable || pllClk2XDiv.enable;
 		}
-		if(pllEnabled){
-			mod = system.modules["/ti/clockTree/multiplier.js"];
-			let fvco = inst[inst.$ipInstance.outPins[0].name];
-			if(fvco != 160){
-				validation.logWarning("MSPM0G currently only includes internal parameters to support configuring fVCO at a \
-				recommended frequency of 160MHz. Pending characterization, other frequencies might result in reduced \
-				accuracy or the PLL locking onto a wrong frequency entirely.", system.clockTree["net_vco"]);
-			}
-		}
 	}
 }
 

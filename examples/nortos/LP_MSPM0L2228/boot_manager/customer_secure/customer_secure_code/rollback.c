@@ -31,7 +31,7 @@
  */
 
 #include "rollback.h"
-#include "lockable_storage.h"
+#include "lockable_storage_private.h"
 #include "secret.h"
 
 #ifdef CSC_ENABLE_ROLLBACK_PROTECTION

@@ -37,7 +37,7 @@
 <h2 id="example-summary">Example Summary</h2>
 <p>The following example explains how to change the power policy from SLEEP0 to STANDBY0 during runtime. There are two timers in use: TIMG0 and TIMG1. TIMG0 is sourced from the BUSCLK, and can run in SLEEP at 24 MHz and in STANDBY at 32 kHz. TIMG1 is sourced from the low-frequency LFCLK, and therefore can run in all states but SHUTDOWN.</p>
 <p>The application will start in SLEEP0, and then every 5s the power policy will switch to STANDBY0. The power policies will continue to alternate every 5s. TIMG1 will toggle LED1 every 250ms during the SLEEP policy, and not toggle when the device is in STANDBY.</p>
-<p><strong>Note</strong>: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.</p>
+<p><strong>Note</strong>: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad. When debugging the application, the power access port (PWR-AP) will force the device to remain active. In order to see full functionality of this example, it is recommended to terminate the debug session. Refer to the Debug section of the TRM for more information about debugging in low power modes.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>

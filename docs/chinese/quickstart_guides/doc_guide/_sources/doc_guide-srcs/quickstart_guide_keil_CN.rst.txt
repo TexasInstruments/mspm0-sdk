@@ -14,7 +14,7 @@
 -  `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__
 -  `Keil MDK-Arm with uVision <https://www2.keil.com/mdk5>`__ v5.38a 或更高版本，带有 Arm Clang 编译器 v6.16 或更高版本。
 
--  `SysConfig 1.19.x <https://www.ti.com/tool/SYSCONFIG>`__
+-  `SysConfig 1.20.x <https://www.ti.com/tool/SYSCONFIG>`__
 
 3. 安装 MSPM0 CMSIS-Pack
 ------------------------
@@ -101,37 +101,32 @@ Keil 支持多种调试器。此部分说明了如何在 CMSIS-DAP 模式下使�
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_1.png
    :alt: 
 
-2. 转至窗口上的“Debug”选项卡，并从右上角的下拉列表中选择 CMSIS-DAP 作为调试器。
-
-.. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_2.png
-   :alt: 
-
-3. 在“Debug”选项卡中点击“Settings”按钮，并确保设置与下图所示设置一致。
+2. 在“Debug”选项卡中点击“Settings”按钮，并确保设置与下图所示设置一致。
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_4.png
    :alt: 
 
-4. 点击“Flash Download”选项卡，并确认相应说明与下图一致。 如果不一致，请点击“Add”按钮，并选择相应的 MSPM0 MAIN 选项。 器件类型为“On-chip Flash”。
+3. 点击“Flash Download”选项卡，并确认相应说明与下图一致。 如果不一致，请点击“Add”按钮，并选择相应的 MSPM0 MAIN 选项。 器件类型为“On-chip Flash”。
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_3.png
    :alt: 
 
-5. 点击窗口底部的“OK”关闭窗口，并应用对调试设置所做的所有更改
+4. 点击窗口底部的“OK”关闭窗口，并应用对调试设置所做的所有更改
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_5.png
    :alt: 
 
-6. 按下“Load”按钮使用工程刷写器件，如下所示
+5. 按下“Load”按钮使用工程刷写器件，如下所示
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_8.png
    :alt: 
 
-7. 将鼠标悬停在主屏幕的“Debug”选项卡上，选择“Start/Stop Debug Session”
+6. 将鼠标悬停在主屏幕的“Debug”选项卡上，选择“Start/Stop Debug Session”
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_6.png
    :alt: 
 
-8. 这将启动调试会话。
+7. 这将启动调试会话。
 
 .. figure:: ./images/quickstart_guide_keil/keil_CMSIS_example_7.png
    :alt: 

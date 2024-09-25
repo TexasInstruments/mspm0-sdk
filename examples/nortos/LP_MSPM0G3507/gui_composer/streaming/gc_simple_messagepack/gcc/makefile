@@ -8,7 +8,7 @@ LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj ti_msp_dl_config.obj HAL_UART_M0G3507.obj main.obj gcc_startup_mspm0g350x_gcc.obj
 NAME = gc_simple_messagepack
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0G3507__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -26,7 +26,7 @@ CFLAGS = -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/gcc/m0p" \
+LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/gcc/m0p" \
     -l:gui_composer.a \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x" \
     -nostartfiles \
@@ -34,7 +34,7 @@ LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/gcc/m0p" \
     -Wl,-T,../gcc/mspm0g3507.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -45,6 +45,7 @@ LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/gcc/m0p" \
     -lm \
     -lnosys \
     --specs=nano.specs
+
 all: $(NAME).out
 
 callbacks_mpack.obj: ../callbacks_mpack.c

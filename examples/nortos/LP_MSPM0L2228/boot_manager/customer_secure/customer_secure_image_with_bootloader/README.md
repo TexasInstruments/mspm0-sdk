@@ -1,6 +1,6 @@
 ## Example Summary
 
-This is the a sample application image designed to be used with the ```boot_application``` example. It contains additional post-build steps in order to sign the image with a provided test key and run the image from the boot application in either the primary or secondary slot.
+This is the a sample application image with bootloader designed to be used with the ```customer_secure_code``` example. It contains additional post-build steps in order to sign and encrypt the image with a provided test key and run the image from the boot application in either the primary or secondary slot.
 
 ## Peripherals & Pin Assignments
 

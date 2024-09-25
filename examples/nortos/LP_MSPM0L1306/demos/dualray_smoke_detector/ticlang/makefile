@@ -10,12 +10,14 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
 OBJECTS = Src_DualRaySmokeAFE_GUI_jsmn_jsmn.obj Src_DualRaySmokeAFE_GUI_DualRaySmokeAFE_GUI.obj Src_DualRaySmokeAFE_HAL_MSPM0x_TPS880x_tps880x_mspm0_i2c_tps880x_mspm0_i2c.obj Src_DualRaySmokeAFE_HAL_MSPM0x_TPS880x_DualRaySmokeAFE_HAL_AFE_MSPM0_TPS880x.obj Src_DualRaySmokeAFE_HAL_MSPM0x_TPS880x_DualRaySmokeAFE_HAL_GUIComm_UART_MSPM0_TPS880x.obj Src_DualRaySmokeAFE_HAL_MSPM0x_TPS880x_DualRaySmokeAFE_HAL_IO_MSPM0_TPS880x.obj Src_DualRaySmokeAFE_HAL_MSPM0x_TPS880x_DualRaySmokeAFE_HAL_Sounder_MSPM0_TPS880x.obj Src_DualRaySmokeAFE_HAL_MSPM0x_TPS880x_DualRaySmokeAFE_HAL_System_MSPM0_TPS880x.obj Src_DualRaySmokeAFE_HAL_MSPM0x_TPS880x_DualRaySmokeAFE_HAL_Timing_MSPM0_TPS880x.obj Src_DualRaySmokeAFELib_DualRaySmokeAFELib_DetectionAlg.obj Src_DualRaySmokeAFELib_DualRaySmokeAFELib_Measurement.obj Src_DualRaySmokeAFE_App_Config.obj Src_DualRaySmokeAFE_App_GuiComm.obj Src_DualRaySmokeAFE_App_Main.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = dualray_smoke_detector
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -I. \
+    $(addprefix @,$(SYSCFG_OPT_FILES)) \
     -D__AFE_TPS880X__ \
     -D__ENABLE_GUI__ \
     -O2 \
@@ -28,15 +30,16 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = -ldevice.cmd.genlibs \
+LFLAGS += -ldevice.cmd.genlibs \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     ../ticlang/device_linker.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
 .INTERMEDIATE: syscfg

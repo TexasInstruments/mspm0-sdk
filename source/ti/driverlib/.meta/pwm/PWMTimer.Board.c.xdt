@@ -123,13 +123,16 @@
 %       let inst = instances[i];
 %       let flavor = inst.peripheral.$solution.peripheralName;
 %       for(let cc of inst.ccIndex){
-%           let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
+%           /* Condition Check: avoid internal channels */
+%           if(!Common.isInternalTimerChannel(cc)){
+%               let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
     DL_GPIO_initPeripheralOutputFunction(`gpioStr`_IOMUX,`gpioStr`_IOMUX_FUNC);
     DL_GPIO_enableOutput(`gpioStr`_PORT, `gpioStr`_PIN);
-%           if(Common.hasTimerA()){
-%               if((inst.ccIndexCmpl).includes(cc)){
+%               if(Common.hasTimerA()){
+%                   if((inst.ccIndexCmpl).includes(cc)){
     DL_GPIO_initPeripheralOutputFunction(`gpioStr`_CMPL_IOMUX,`gpioStr`_CMPL_IOMUX_FUNC);
     DL_GPIO_enableOutput(`gpioStr`_CMPL_PORT, `gpioStr`_CMPL_PIN);
+%                   }
 %               }
 %           }
 %       }
@@ -540,7 +543,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     if(Common.hasTimerA()){
         ccIndexOptions.push(
             { name: 2, displayName: "PWM Channel 2" },
-            { name: 3, displayName: "PWM Channel 3" }
+            { name: 3, displayName: "PWM Channel 3" },
         );
     }
 %%}

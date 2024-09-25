@@ -498,6 +498,17 @@ typedef enum {
         I2C_TARGET_PECSR_PECSTS_CHECK_CLEARED,
 } DL_I2C_TARGET_PEC_STATUS;
 
+/** @enum DL_I2C_TARGET_PEC_CHECK_ERROR */
+typedef enum {
+    /*!  Indicates PEC check error did not occurr in the transaction that
+     *   occurred before the last Stop */
+    DL_I2C_TARGET_PEC_CHECK_ERROR_CLEARED =
+        I2C_TARGET_PECSR_PECSTS_ERROR_CLEARED,
+    /*!  Indicates PEC check error occurred in the transaction that
+     *   occurred before the last Stop */
+    DL_I2C_TARGET_PEC_CHECK_ERROR_SET = I2C_TARGET_PECSR_PECSTS_ERROR_SET,
+} DL_I2C_TARGET_PEC_CHECK_ERROR;
+
 /** @enum DL_I2C_ANALOG_GLITCH_FILTER_WIDTH */
 typedef enum {
     /*!  Pulses shorter than 5ns in length are filtered.  */
@@ -3283,7 +3294,7 @@ __STATIC_INLINE uint32_t DL_I2C_getTargetCurrentPECCount(I2C_Regs *i2c)
  *  @brief      Get status if SMBus/PMBus target PEC was checked in last
  *              transaction
  *
- *  The status of if the target PEC was checked in the transaction that
+ *  The status indicates if the target PEC was checked in the transaction that
  *  occurred before the last Stop. Latched on Stop.
  *
  *  @param[in]  i2c     Pointer to the register overlay for the peripheral
@@ -3299,6 +3310,27 @@ __STATIC_INLINE DL_I2C_TARGET_PEC_STATUS DL_I2C_getTargetPECCheckedStatus(
         i2c->SLAVE.TARGET_PECSR & I2C_TARGET_PECSR_PECSTS_CHECK_MASK;
 
     return (DL_I2C_TARGET_PEC_STATUS)(status);
+}
+
+/**
+ *  @brief      Get status if SMBus/PMBus target PEC had an error
+ *
+ *  The status indicates if a PEC check error occurred in the transaction that
+ *  occurred before the last Stop. Latched on Stop.
+ *
+ *  @param[in]  i2c     Pointer to the register overlay for the peripheral
+ *
+ *  @return     Status of target PEC error check
+ *
+ *  @retval     One of @ref DL_I2C_TARGET_PEC_CHECK_ERROR
+ */
+__STATIC_INLINE DL_I2C_TARGET_PEC_CHECK_ERROR DL_I2C_getTargetPECCheckError(
+    I2C_Regs *i2c)
+{
+    uint32_t status =
+        i2c->SLAVE.TARGET_PECSR & I2C_TARGET_PECSR_PECSTS_ERROR_MASK;
+
+    return (DL_I2C_TARGET_PEC_CHECK_ERROR)(status);
 }
 
 /**

@@ -33,5 +33,9 @@ Board.peripheral.swdioPin.$assign = "PA19";
 
 SPI1.$name                              = "SPI_0";
 SPI1.mode                               = "PERIPHERAL";
+SPI1.peripheralChipSelect               = "1";
+SPI1.peripheral.sclkPin.$assign         = "PA6";
+SPI1.peripheral.misoPin.$assign         = "PA4";
+SPI1.peripheral.cs1Pin.$assign          = "PA17";
 
 SYSCTL.clockTreeEn = true;

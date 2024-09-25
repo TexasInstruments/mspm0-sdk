@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 Sensorless FOC Software User’s Guide &mdash; Sensorless FOC Motor Control User Guide 1.0 documentation</title>
+  <title>MSPM0 Sensorless FOC Software User’s Guide &mdash; Sensorless FOC Motor Control User Guide 2.00.00.xx documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> Sensorless FOC Motor Control User Guide
           </a>
               <div class="version">
-                1.0
+                2.00.00.xx
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -56,7 +56,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#speedctrl">1.1 SpeedCtrl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#algodebugctrl1">1.2 algoDebugCtrl1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#algodebugctrl2">1.3 algoDebugCtrl2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dacctrl">1.4 dacCtrl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#algodebugctrl3">1.4 algoDebugCtrl3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dacctrl">1.5 dacCtrl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#userinputregs">2 UserInputRegs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#system-parameters">2.1 System Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#isdcfg">2.2 isdCfg</a></li>
@@ -65,11 +66,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#mtrstartup2">2.5 mtrStartUp2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#closeloop1">2.6 closeLoop1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#closeloop2">2.7 closeLoop2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#faultcfg1">2.8 faultCfg1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#faultcfg2">2.9 faultCfg2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#miscalgo">2.10 miscAlgo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pincfg">2.11 pinCfg</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#periphcfg1">2.12 periphCfg1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fieldctrl">2.8 fieldCtrl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faultcfg1">2.9 faultCfg1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faultcfg2">2.10 faultCfg2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#miscalgo">2.11 miscAlgo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pincfg">2.12 pinCfg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#periphcfg1">2.13 periphCfg1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#userstatusregs">3 UserStatusRegs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#systemfaultstatus">3.1 systemFaultStatus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#motorstate">3.2 motorState</a></li>
@@ -89,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#supported-devices">4. Supported Devices</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#drv8323rs">DRV8323RS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drv8316">DRV8316</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drv8329">DRV8329</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tuning-documentation">5. Tuning Documentation</a></li>
@@ -98,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="UART_Communication_User_Guide_CN.html">UART Communication User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8316 Gate Driver User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8329/DRV8329_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8329 Gate Driver User Guide</a></li>
 </ul>
 
         </div>
@@ -278,8 +282,24 @@
 </tbody>
 </table>
 </section>
+<section id="algodebugctrl3">
+<h3>1.4 algoDebugCtrl3<a class="headerlink" href="#algodebugctrl3" title="Permalink to this heading">¶</a></h3>
+<p>Algorithm debug register 3</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>algoDebugCtrl3</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>fluxModeReference</em></p></td>
+<td><p>Id reference used when Flux Mode is Enabled</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="dacctrl">
-<h3>1.4 dacCtrl<a class="headerlink" href="#dacctrl" title="Permalink to this heading">¶</a></h3>
+<h3>1.5 dacCtrl<a class="headerlink" href="#dacctrl" title="Permalink to this heading">¶</a></h3>
 <p>DAC control register</p>
 <table class="docutils align-default">
 <thead>
@@ -324,29 +344,38 @@
 <tr class="row-odd"><td><p><em>mtrInductance</em></p></td>
 <td><p>Motor Phase Inductance in Micro Henry</p></td>
 </tr>
-<tr class="row-even"><td><p><em>mtrBemfConst</em></p></td>
+<tr class="row-even"><td><p><em>mtrSaliency</em></p></td>
+<td><p>Motor inductance saliency percentage</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>mtrBemfConst</em></p></td>
 <td><p>Motor BEMF Constant in milli Volts Per Hertz</p></td>
 </tr>
-<tr class="row-odd"><td><p><em>voltageBase</em></p></td>
+<tr class="row-even"><td><p><em>voltageBase</em></p></td>
 <td><p>Maximum Board Supply voltage in Volts = (voltage division scaling ratio x 3.3v)</p></td>
 </tr>
-<tr class="row-even"><td><p><em>currentBase</em></p></td>
+<tr class="row-odd"><td><p><em>currentBase</em></p></td>
 <td><p>Maximum Current measurable by the board = (3.3v/(2 x CSA_GAIN x SENSE_RESISTOR))</p></td>
 </tr>
-<tr class="row-odd"><td><p><em>maxMotorSpeed</em></p></td>
+<tr class="row-even"><td><p><em>maxMotorSpeed</em></p></td>
 <td><p>Rated Speed of the Motor/ Maximum operational Speed</p></td>
 </tr>
-<tr class="row-even"><td><p><em>speedLoopKp</em></p></td>
+<tr class="row-odd"><td><p><em>speedLoopKp</em></p></td>
 <td><p>Proportional Gain for Closed Loop Speed Control</p></td>
 </tr>
-<tr class="row-odd"><td><p><em>speedLoopKi</em></p></td>
+<tr class="row-even"><td><p><em>speedLoopKi</em></p></td>
 <td><p>Integral Gain for Closed Loop Speed Control</p></td>
 </tr>
-<tr class="row-even"><td><p><em>currLoopKp</em></p></td>
+<tr class="row-odd"><td><p><em>currLoopKp</em></p></td>
 <td><p>Proportional Gain for Closed Loop Torque Control</p></td>
 </tr>
-<tr class="row-odd"><td><p><em>currLoopKi</em></p></td>
+<tr class="row-even"><td><p><em>currLoopKi</em></p></td>
 <td><p>Integral Gain for Closed Loop Torque Control</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>fluxWeakeningKi</em></p></td>
+<td><p>Integral Controller Gain for Flux Weakening</p></td>
+</tr>
+<tr class="row-even"><td><p><em>fluxWeakeningKp</em></p></td>
+<td><p>Proportional Control Gain for Flux Weakening</p></td>
 </tr>
 </tbody>
 </table>
@@ -563,6 +592,9 @@
 <tr class="row-even"><td><p><em>iLimit</em></p></td>
 <td><p>Maximum current reference in torque PI loop</p></td>
 </tr>
+<tr class="row-odd"><td><p><em>highFreqFOCEn</em></p></td>
+<td><p>Reduces the ADC sampling rate to half value, so that PWM freq can be high</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -588,8 +620,33 @@
 </tbody>
 </table>
 </section>
+<section id="fieldctrl">
+<h3>2.8 fieldCtrl<a class="headerlink" href="#fieldctrl" title="Permalink to this heading">¶</a></h3>
+<p>Configuration Parameters for Field Control</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>fieldCtrl</p></th>
+<th class="head"><p>Bit Wise Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>fluxWeakeningEn</em></p></td>
+<td><p>Enable Flux Weakening Algorithm</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>fluxWeakCurrRatio</em></p></td>
+<td><p>Flux Weakening Current Ratio of Id to Iq</p></td>
+</tr>
+<tr class="row-even"><td><p><em>fluxWeakeningReference</em></p></td>
+<td><p>Reference Modulation Index for Flux Weakening</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>mtpaEnable</em></p></td>
+<td><p>Enable Maximum Torque Per Amp Algorithm</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="faultcfg1">
-<h3>2.8 faultCfg1<a class="headerlink" href="#faultcfg1" title="Permalink to this heading">¶</a></h3>
+<h3>2.9 faultCfg1<a class="headerlink" href="#faultcfg1" title="Permalink to this heading">¶</a></h3>
 <p>Configuration Parameters for faults</p>
 <table class="docutils align-default">
 <thead>
@@ -608,7 +665,7 @@
 </table>
 </section>
 <section id="faultcfg2">
-<h3>2.9 faultCfg2<a class="headerlink" href="#faultcfg2" title="Permalink to this heading">¶</a></h3>
+<h3>2.10 faultCfg2<a class="headerlink" href="#faultcfg2" title="Permalink to this heading">¶</a></h3>
 <p>Configuration Parameters for faults</p>
 <table class="docutils align-default">
 <thead>
@@ -651,7 +708,7 @@
 </table>
 </section>
 <section id="miscalgo">
-<h3>2.10 miscAlgo<a class="headerlink" href="#miscalgo" title="Permalink to this heading">¶</a></h3>
+<h3>2.11 miscAlgo<a class="headerlink" href="#miscalgo" title="Permalink to this heading">¶</a></h3>
 <p>Configuration Parameters for Miscellaneous Algorithm Configurations Commands</p>
 <table class="docutils align-default">
 <thead>
@@ -691,7 +748,7 @@
 </table>
 </section>
 <section id="pincfg">
-<h3>2.11 pinCfg<a class="headerlink" href="#pincfg" title="Permalink to this heading">¶</a></h3>
+<h3>2.12 pinCfg<a class="headerlink" href="#pincfg" title="Permalink to this heading">¶</a></h3>
 <p>Configuration Parameters for Miscellaneous Pin Configuration Commands</p>
 <table class="docutils align-default">
 <thead>
@@ -713,7 +770,7 @@
 </table>
 </section>
 <section id="periphcfg1">
-<h3>2.12 periphCfg1<a class="headerlink" href="#periphcfg1" title="Permalink to this heading">¶</a></h3>
+<h3>2.13 periphCfg1<a class="headerlink" href="#periphcfg1" title="Permalink to this heading">¶</a></h3>
 <p>Configuration Parameters for Peripheral Configuration Commands</p>
 <table class="docutils align-default">
 <thead>
@@ -900,6 +957,17 @@
 <li><p><a class="reference external" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">SENSORLESS FOC - DRV8316 Gate Driver User Guide</a></p></li>
 </ul>
 </section>
+<section id="drv8329">
+<h3>DRV8329<a class="headerlink" href="#drv8329" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 LaunchPads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8329/DRV8329_Hardware_User_Guide_CN.html">SENSORLESS FOC - DRV8329 Gate Driver User Guide</a></p></li>
+</ul>
+</section>
 </section>
 <section id="tuning-documentation">
 <h2>5. Tuning Documentation<a class="headerlink" href="#tuning-documentation" title="Permalink to this heading">¶</a></h2>
@@ -918,7 +986,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
   </div>
 
    

@@ -8,7 +8,7 @@ LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 OBJECTS = MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj MSP_GUI_mpack.obj blink_led.obj callbacks_mpack.obj common.obj HAL_MSPM0L1306.obj lightsensor.obj main.obj thermistor.obj ti_msp_dl_config.obj ticlang_startup_mspm0l130x_ticlang.obj
 NAME = out_of_box
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0L1306__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -19,16 +19,17 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a" \
+LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     ../ticlang/mspm0l1306.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
 MSP_GUI_GUI_mpack.obj: ../MSP_GUI/GUI_mpack.c

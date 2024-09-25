@@ -635,8 +635,6 @@
             <name>BUILDACTION</name>
             <archiveVersion>1</archiveVersion>
             <data>
-                <prebuild></prebuild>
-                <postbuild></postbuild>
             </data>
         </settings>
         <settings>
@@ -966,5 +964,8 @@
     </configuration>
     <file>
         <name>$PROJ_DIR$/empty_LP_MSPM0L2228_nortos_iar.ipcf</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$/SysConfig_Generated_Files.ipcf</name>
     </file>
 </project>

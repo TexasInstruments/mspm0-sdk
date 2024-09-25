@@ -34,12 +34,7 @@
 
 #include <ti/drivers/dpl/HwiP.h>
 #include <ti/devices/DeviceFamily.h>
-
-#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
-    #include <ti/drivers/uart/UARTMSPM0G1X0X_G3X0X.h>
-#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L11XX_L13XX)
-    #include <ti/drivers/uart/UARTMSPM0L11XX_L13XX.h>
-#endif
+#include <ti/drivers/uart/UARTMSPM0.h>
 
 extern const uint_least8_t UART_count;
 extern const UART_Params UART_defaultParams;
@@ -194,7 +189,7 @@ int_fast16_t UART_readCallback(UART_Handle handle, void *buf, size_t size, size_
     callbackObj->rxStatus  = 0;  /* Clear receive errors */
 
     UARTMSP_enableInts(handle);
-#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
+#if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)||(DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X))
     UARTMSP_dmaRx(handle, false);
 #endif
     HwiP_restore(key);
@@ -571,7 +566,7 @@ void UART_writeCancel(UART_Handle handle)
     {
         object->writeCancel = true;
 
-#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
+#if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)||(DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X))
         /* Stop DMA transaction */
         UARTMSP_dmaStopTx(handle);
 #endif

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<ProjectOpt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_optx.xsd">
+
+  <SchemaVersion>1.0</SchemaVersion>
+
+  <Header>### uVision Project, (C) Keil Software</Header>
+
+  <Extensions>
+    <cExt>*.c</cExt>
+    <aExt>*.s*; *.src; *.a*</aExt>
+    <oExt>*.obj; *.o</oExt>
+    <lExt>*.lib</lExt>
+    <tExt>*.txt; *.h; *.inc; *.md</tExt>
+    <pExt>*.plm</pExt>
+    <CppX>*.cpp; *.cc; *.cxx</CppX>
+    <nMigrate>0</nMigrate>
+  </Extensions>
+
+  <Target>
+    <TargetName>uart_extend_manchester_echo_LP_MSPM0G3507_nortos_keil</TargetName>
+    <ToolsetNumber>0x4</ToolsetNumber>
+    <ToolsetName>ARM-ADS</ToolsetName>
+    <TargetOption>
+      <DebugOpt>
+        <pMon>BIN\CMSIS_AGDI.dll</pMon>
+      </DebugOpt>
+    </TargetOption>
+  </Target>
+
+</ProjectOpt>

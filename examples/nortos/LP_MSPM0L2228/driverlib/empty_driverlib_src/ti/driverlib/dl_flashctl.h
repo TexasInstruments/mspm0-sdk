@@ -236,6 +236,11 @@ extern "C" {
                                           (FLASHCTL_CMDTYPE_COMMAND_CLEARSTATUS)
 /** @}*/
 
+/*!
+ * @brief Size of one flash sector
+ */
+#define DL_FLASHCTL_SECTOR_SIZE                                           (1024)
+
 /* clang-format on */
 
 /*! @enum DL_FLASHCTL_COMMAND_SIZE */
@@ -1589,8 +1594,8 @@ void DL_FlashCTL_programMemory32WithECCGenerated(
  *  @brief      Programs 32 bit data with hardware generated ECC code, and
  *              executes command from RAM
  *
- *  Programs 16 bit data, along with the 8 ECC bits which correspond to the
- *  16-bit data word, to unprotected memory at the given address. This API
+ *  Programs 32 bit data, along with the 8 ECC bits which correspond to the
+ *  32-bit data word, to unprotected memory at the given address. This API
  *  assumes that hardware generation of the ECC code has NOT been disabled,
  *  and so the flash controller will generate the ECC bits.
  *

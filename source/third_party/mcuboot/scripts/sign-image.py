@@ -5,6 +5,7 @@
 import subprocess
 import click
 import json
+import platform
 
 @click.command()
 @click.option('-s','--sdk', help='Path to the SDK to find additional scripts and tools as needed')
@@ -12,11 +13,16 @@ import json
 @click.option('-n','--name',help="name of project")
 @click.option('-c','--color',help="color of the LED")
 def make_binary(sdk,toolchain,name,color):
+    # Select the proper default python executable depending on OS
+    python_exe = "python3"
+    if "Window" in platform.system():
+        python_exe = "python"
+
     print("sdk:", sdk)
     print("toolchain:", toolchain)
     print("projectName:", name)
 
-    f = open('..\signingArgs.json')
+    f = open('../signingArgs.json')
 
     config = json.load(f)
 
@@ -33,15 +39,15 @@ def make_binary(sdk,toolchain,name,color):
 
     if(type(config["version"]) is not list):
         versionList = [config["version"]]
-    else: 
+    else:
         versionList = config["version"]
 
     # iterate over all versions provided
     for ver in versionList:
 
         versionStr = ver.replace('.','_')
-    
-        imgtool_optional_args = ['--header-size','0x100','--align','4','--slot-size','0x2000',
+
+        imgtool_optional_args = ['--header-size','0x100','--align','4','--slot-size','0x2800',
                 '--pad','--version',ver,'--pad-header','--overwrite-only','--key',
                 sdk+config["privateKeyPath"]]
 
@@ -61,7 +67,7 @@ def make_binary(sdk,toolchain,name,color):
 
         outFilename = 'sample_image_signed_0x4800_v'+versionStr+'_'+color
 
-        imgtool_args = ['python',sdk+'/source/third_party/mcuboot/scripts/imgtool.py',
+        imgtool_args = [python_exe,sdk+'/source/third_party/mcuboot/scripts/imgtool.py',
                     'sign'] + imgtool_optional_args + ['sample_image-unsigned.bin',
                         outFilename+'.bin']
 
@@ -69,9 +75,10 @@ def make_binary(sdk,toolchain,name,color):
         proc = subprocess.run(imgtool_args, capture_output=True)
         print(proc)
 
-        txtConversion_args = ['python',sdk+'/source/third_party/mcuboot/scripts/bin-to-ti-txt.py',
-                            '-f',outFilename+'.bin','-o',outFilename+'.txt','-s',"24800"]
-        
+        txtConversion_args = [python_exe,sdk+'/source/third_party/mcuboot/scripts/bin-to-ti-txt.py',
+                            '-f',outFilename+'.bin','-o',outFilename+'.txt','--encrypt','-c',
+                            outFilename+'_encrypted.txt','-s',"24800"]
+
         proc = subprocess.run(txtConversion_args, capture_output=True)
         print(proc)
 

@@ -47,108 +47,6 @@
         <TargetArmAds>
           <ArmAdsMisc>
             <AdsCpuType>"Cortex-M0+"</AdsCpuType>
-            <hadIROM>1</hadIROM>
-            <hadIRAM>1</hadIRAM>
-            <Ir1Chk>1</Ir1Chk>
-            <Im1Chk>1</Im1Chk>
-            <OnChipMemories>
-              <Ocm1>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm1>
-              <Ocm2>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm2>
-              <Ocm3>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm3>
-              <Ocm4>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm4>
-              <Ocm5>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm5>
-              <Ocm6>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </Ocm6>
-              <IRAM>
-                <Type>0</Type>
-                <StartAddress>0x20000000</StartAddress>
-                <Size>0x400</Size>
-              </IRAM>
-              <IROM>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x4000</Size>
-              </IROM>
-              <XRAM>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </XRAM>
-              <OCR_RVCT1>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT1>
-              <OCR_RVCT2>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT2>
-              <OCR_RVCT3>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT3>
-              <OCR_RVCT4>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x4000</Size>
-              </OCR_RVCT4>
-              <OCR_RVCT5>
-                <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT5>
-              <OCR_RVCT6>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT6>
-              <OCR_RVCT7>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT7>
-              <OCR_RVCT8>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT8>
-              <OCR_RVCT9>
-                <Type>0</Type>
-                <StartAddress>0x20000000</StartAddress>
-                <Size>0x400</Size>
-              </OCR_RVCT9>
-              <OCR_RVCT10>
-                <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
-              </OCR_RVCT10>
-            </OnChipMemories>
-            <RvctStartVector></RvctStartVector>
           </ArmAdsMisc>
           <Cads>
             <Optim>3</Optim>
@@ -169,15 +67,8 @@
             <noStLib>0</noStLib>
             <RepFail>1</RepFail>
             <useFile>0</useFile>
-            <TextAddressRange>0x00000000</TextAddressRange>
-            <DataAddressRange>0x20000000</DataAddressRange>
-            <pXoBase></pXoBase>
-            <ScatterFile>.\mspm0c1104.sct</ScatterFile>
-            <IncludeLibs></IncludeLibs>
-            <IncludeLibsPath></IncludeLibsPath>
-            <Misc></Misc>
-            <LinkerInputFile></LinkerInputFile>
-            <DisabledWarnings></DisabledWarnings>
+            <ScatterFile>./mspm0c1104.sct</ScatterFile>
+            <Misc>../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0c110x/driverlib.a</Misc>
           </LDads>
         </TargetArmAds>
       </TargetOption>
@@ -204,26 +95,6 @@
               <FileName>startup_mspm0c110x_uvision.s</FileName>
               <FileType>2</FileType>
               <FilePath>startup_mspm0c110x_uvision.s</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Driverlib</GroupName>
-          <Files>
-            <File>
-              <FileName>driverlib.a</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0c110x/driverlib.a</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Driverlib</GroupName>
-          <Files>
-            <File>
-              <FileName>driverlib.a</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0c110x/driverlib.a</FilePath>
             </File>
           </Files>
         </Group>

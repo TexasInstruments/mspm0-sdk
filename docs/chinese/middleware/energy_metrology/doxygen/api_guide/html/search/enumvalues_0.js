@@ -11,5 +11,17 @@ var searchData=
   ['ads_5fopcode_5fstandby',['ADS_OPCODE_STANDBY',['../group___a_d_s131_m0x.html#gga88fcf24886484ab3adb70f5f2210c0a6ab32ce0c83c7fcaf1965b90968df4288c',1,'ADS131M0x.h']]],
   ['ads_5fopcode_5funlock',['ADS_OPCODE_UNLOCK',['../group___a_d_s131_m0x.html#gga88fcf24886484ab3adb70f5f2210c0a6a3a96ec3f37ef6da4f75fdc0563cf005d',1,'ADS131M0x.h']]],
   ['ads_5fopcode_5fwakeup',['ADS_OPCODE_WAKEUP',['../group___a_d_s131_m0x.html#gga88fcf24886484ab3adb70f5f2210c0a6abb344d8a69777f3f8dfdaf4b7bdb2498',1,'ADS131M0x.h']]],
-  ['ads_5fopcode_5fwreg',['ADS_OPCODE_WREG',['../group___a_d_s131_m0x.html#gga88fcf24886484ab3adb70f5f2210c0a6a563ed4ef0ffcc1bab5b5dba8e5665274',1,'ADS131M0x.h']]]
+  ['ads_5fopcode_5fwreg',['ADS_OPCODE_WREG',['../group___a_d_s131_m0x.html#gga88fcf24886484ab3adb70f5f2210c0a6a563ed4ef0ffcc1bab5b5dba8e5665274',1,'ADS131M0x.h']]],
+  ['amc_5fcrc_5fdisable',['AMC_CRC_DISABLE',['../group___a_m_c131_m0x.html#gga394860626dcbdd546aa8221e9f232f73afcb34fc542a6d014d0606c94aa0a0f93',1,'AMC131M0x.h']]],
+  ['amc_5fcrc_5fenable',['AMC_CRC_ENABLE',['../group___a_m_c131_m0x.html#gga394860626dcbdd546aa8221e9f232f73addf956e700059c5a136c6cc0c3494bbd',1,'AMC131M0x.h']]],
+  ['amc_5fcrc_5ftype_5fansi',['AMC_CRC_TYPE_ANSI',['../group___a_m_c131_m0x.html#ggab2657b1e7fd5ea138385827fd2fc8290a603abcaac2a776a4843752040bfb3412',1,'AMC131M0x.h']]],
+  ['amc_5fcrc_5ftype_5fccitt',['AMC_CRC_TYPE_CCITT',['../group___a_m_c131_m0x.html#ggab2657b1e7fd5ea138385827fd2fc8290ab800aab4a6c7a65aa87660a702d4e947',1,'AMC131M0x.h']]],
+  ['amc_5fopcode_5flock',['AMC_OPCODE_LOCK',['../group___a_m_c131_m0x.html#gga3fbae95b43146f45c4c7a78215295263a3fc8674908f00ccf9b8caa2bcd0f391d',1,'AMC131M0x.h']]],
+  ['amc_5fopcode_5fnull',['AMC_OPCODE_NULL',['../group___a_m_c131_m0x.html#gga3fbae95b43146f45c4c7a78215295263a5533511174552f5185edfc91524818e2',1,'AMC131M0x.h']]],
+  ['amc_5fopcode_5freset',['AMC_OPCODE_RESET',['../group___a_m_c131_m0x.html#gga3fbae95b43146f45c4c7a78215295263ad0af70dd9bb1424766041dad9b5dd98e',1,'AMC131M0x.h']]],
+  ['amc_5fopcode_5frreg',['AMC_OPCODE_RREG',['../group___a_m_c131_m0x.html#gga3fbae95b43146f45c4c7a78215295263aefcaf2ce769712eb429926e396ba47df',1,'AMC131M0x.h']]],
+  ['amc_5fopcode_5fstandby',['AMC_OPCODE_STANDBY',['../group___a_m_c131_m0x.html#gga3fbae95b43146f45c4c7a78215295263adc06ce415e942754526166aba8c3dd5e',1,'AMC131M0x.h']]],
+  ['amc_5fopcode_5funlock',['AMC_OPCODE_UNLOCK',['../group___a_m_c131_m0x.html#gga3fbae95b43146f45c4c7a78215295263ac23b6dab2e305cc3509118245885cecd',1,'AMC131M0x.h']]],
+  ['amc_5fopcode_5fwakeup',['AMC_OPCODE_WAKEUP',['../group___a_m_c131_m0x.html#gga3fbae95b43146f45c4c7a78215295263a21bcbdc4dab4e427a611c770dbb118f5',1,'AMC131M0x.h']]],
+  ['amc_5fopcode_5fwreg',['AMC_OPCODE_WREG',['../group___a_m_c131_m0x.html#gga3fbae95b43146f45c4c7a78215295263a5eea00570a8fe9c3333221d7d57871bd',1,'AMC131M0x.h']]]
 ];

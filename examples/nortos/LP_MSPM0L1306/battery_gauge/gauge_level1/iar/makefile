@@ -8,7 +8,7 @@ LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 OBJECTS = main.obj Gauge_App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj Gauge_Algorithm_VoltGauge.obj Gauge_UserConfig_Gauge_UserConfig.obj iar_startup_mspm0l130x_iar.obj
 NAME = gauge_level1
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0L1306__ \
     -Om \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -22,15 +22,16 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/iar/m0p/rts/iqmath.a" \
+LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/iar/m0p/rts/iqmath.a" \
     "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L$PROJ_DIR$ \
+    -L.. \
     --config ../iar/mspm0l1306.icf \
     --map "$(NAME).map" \
     --silent \
     --semihosting=iar_breakpoint \
     --cpu=Cortex-M0+
+
 all: $(NAME).out
 
 main.obj: ../main.c

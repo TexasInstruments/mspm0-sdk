@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L2228"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="flashctl_nonmain_memory_write"
+        name="flashctl_nonmain_memory_write_LP_MSPM0L2228_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L2228"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -O2
+            @device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -ldevice.cmd.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Read-write of Non-Main Flash memory">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../flashctl_nonmain_memory_write.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashctl_nonmain_memory_write.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

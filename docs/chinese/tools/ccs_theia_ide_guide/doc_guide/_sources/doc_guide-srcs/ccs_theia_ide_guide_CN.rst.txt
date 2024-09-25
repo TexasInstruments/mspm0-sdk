@@ -1,4 +1,4 @@
-适用于 MSPM0 MCU 的 Code Composer Studio Theia IDE 版本1.2.0+
+适用于 MSPM0 MCU 的 Code Composer Studio Theia IDE 版本1.3.1+
 =============================================================
 
 目录
@@ -56,7 +56,7 @@ MSPM0 MCU 的 `E2E 社区支持论坛 <https://e2e.ti.com/support/microcontrolle
 
 Code Composer Studio Theia IDE 可从 `TI.com <https://www.ti.com/tool/CCSTUDIO>`__ 获取。
 
-MSPM0微控制器和 MSPM0 SDK 需要 CCS Theia 1.2.0或更高版本。
+MSPM0微控制器和 MSPM0 SDK 需要 CCS Theia 1.3.1或更高版本。
 
 **注** 此版本包括对 MSPM0量产型号的支持，不支持早期型号。
 
@@ -234,7 +234,7 @@ CCS 包括 Arm objcopy 实用程序、这是一个基于 LLVM 的工具、可用
 .. figure:: ./images/theia_ide_guide/ccstheia_objcopy3.png
    :alt: 
 
-有关 objcopy 的更多信息、请访问此 `objcopy guide <https://llvm.org/docs/CommandGuide/llvm-objcopy.html>`__\ 。
+有关 objcopy 的更多信息、请访问此 `objcopy guide <https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/other_object_utilities/tiarmobjcopy.html>`__\ 。
 
 2.8 覆盖预编译库
 ~~~~~~~~~~~~~~~~

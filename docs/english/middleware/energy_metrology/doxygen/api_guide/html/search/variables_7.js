@@ -1,6 +1,7 @@
 var searchData=
 [
   ['i_5fdc_5festimate',['I_dc_estimate',['../structcurrent_params.html#ab5ca6c88bca81001885de7ff88c2fb51',1,'currentParams::I_dc_estimate()'],['../structneutral_params.html#a3dcb225e2150ff808d2da6188bc83d8d',1,'neutralParams::I_dc_estimate()']]],
+  ['i_5fdc_5festimate_5fintegral',['I_dc_estimate_integral',['../structcurrent_params.html#a53c27059a70520cd589fc1cd0f8c746e',1,'currentParams']]],
   ['i_5fdc_5festimate_5flogged',['I_dc_estimate_logged',['../structcurrent_params.html#a3d4e4f6b58e52e875e723f0ed25b2a20',1,'currentParams::I_dc_estimate_logged()'],['../structneutral_params.html#a46e6ecf5f281f608ce44c02e9ec50c09',1,'neutralParams::I_dc_estimate_logged()']]],
   ['i_5fhistory',['I_History',['../structneutral_params.html#a9f4f9bcd5cd63971ce696dbfb4f3c82c',1,'neutralParams']]],
   ['iacoffset',['IacOffset',['../structcurrent_sensor_calibration_data.html#a0609c9f5912309c873c0338239b6c923',1,'currentSensorCalibrationData']]],
@@ -13,10 +14,6 @@ var searchData=
   ['interruptionevents',['interruptionEvents',['../structphase_params.html#af117493f85d4fb5fe400853e17df33a6',1,'phaseParams']]],
   ['interruptionlevel',['interruptionLevel',['../structphase_params.html#aa89f26f30797ae20ae07dad5323f6797',1,'phaseParams']]],
   ['interruptionlevelhalf',['interruptionLevelHalf',['../structphase_params.html#a9f9833dc255816d7606efeafbb1961a9',1,'phaseParams']]],
-  ['intr0enable',['intr0Enable',['../struct_t_i_d_a__instance.html#ac4edd7e8cd4c3e2ea21526487542b2e1',1,'TIDA_instance']]],
-  ['intr0status',['intr0Status',['../struct_t_i_d_a__instance.html#ad4d088e5df6ac7e7a3e8d59f9e1bc565',1,'TIDA_instance']]],
-  ['intr1enable',['intr1Enable',['../struct_t_i_d_a__instance.html#a6ce27402383092a516f5bd3945348bfd',1,'TIDA_instance']]],
-  ['intr1status',['intr1Status',['../struct_t_i_d_a__instance.html#ad357a454e361a3db7da8b9bcca033275',1,'TIDA_instance']]],
   ['iomux',['iomux',['../struct_h_a_l___g_p_i_o___instance__.html#abdb5a32b907c90eb314405d670784cef',1,'HAL_GPIO_Instance_']]],
   ['irqn',['IRQn',['../struct_h_a_l___g_p_i_o___instance__.html#a79e28d6c48d68a210df60c4549485b45',1,'HAL_GPIO_Instance_']]],
   ['iscalefactor',['IscaleFactor',['../structcurrent_sensor_calibration_data.html#a99a72cfd561b6413d148ae8431f1ebd3',1,'currentSensorCalibrationData']]]

@@ -489,15 +489,7 @@ application.`,
         },
     ])
 
-vrefConfig = vrefConfig.concat([
-    /****** ADVANCED CONFIGURATION *******/
-    {
-        name: "GROUP_ADVANCED",
-        displayName: "Advanced Configuration",
-        description: "",
-        longDescription: "Configures clock and sample and hold timing",
-	    collapsed: true,
-        config: [
+let advancedConfig = [
             {
                 name: "GROUP_ADV_CLOCK_CONFIG",
                 displayName: "Clock Configuration",
@@ -670,9 +662,30 @@ Check **SYSCTL** module for more information. `,
                     },
                 ]
             },
-        ]
-    },
-])
+        ];
+
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    advancedConfig=advancedConfig.concat([
+        // DL_VREF_enableInternalRefCOMP
+        {
+            name: "enableCOMPVREF",
+            displayName: "Enable VREF as internal reference for COMP",
+            default: false,
+        },
+    ]);
+}
+
+vrefConfig = vrefConfig.concat(
+    /****** ADVANCED CONFIGURATION *******/
+    {
+        name: "GROUP_ADVANCED",
+        displayName: "Advanced Configuration",
+        description: "",
+        longDescription: "Configures clock and sample and hold timing",
+        collapsed: true,
+        config: advancedConfig,
+    }
+);
 
 /* Add Pinmux Peripheral Configuration group */
 vrefConfig = vrefConfig.concat(Common.getGPIOGroupConfig());

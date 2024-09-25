@@ -10,11 +10,11 @@ NAME = drivers_mspm0l11xx_l13xx
 OBJ_DIR = ../../../obj/gcc/m0p/drivers_mspm0l11xx_l13xx
 SRC_DIR = ../../..
 
-CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -DDeviceFamily_MSPM0L130X -Wall -ffunction-sections -fdata-sections -std=c99 -c -g -gstrict-dwarf -O2
+CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -DDeviceFamily_MSPM0L130X -DUART_NO_DMA -Wall -ffunction-sections -fdata-sections -std=c99 -c -g -gstrict-dwarf -O2
 AFLAGS = -cr --target=elf32-little
 ASMFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" 
 
-OBJECTS = $(OBJ_DIR)/DMAMSPM0.o $(OBJ_DIR)/List.o $(OBJ_DIR)/RingBuf.o $(OBJ_DIR)/StructRingBuf.o $(OBJ_DIR)/ADC.o $(OBJ_DIR)/GPIO.o $(OBJ_DIR)/I2C.o $(OBJ_DIR)/UART.o $(OBJ_DIR)/SPI.o $(OBJ_DIR)/ADCMSPM0.o $(OBJ_DIR)/GPIOMSPM0.o $(OBJ_DIR)/I2CMSPM0.o $(OBJ_DIR)/UARTMSPM0L11XX_L13XX.o $(OBJ_DIR)/SPIMSPM0.o
+OBJECTS = $(OBJ_DIR)/DMAMSPM0.o $(OBJ_DIR)/List.o $(OBJ_DIR)/RingBuf.o $(OBJ_DIR)/StructRingBuf.o $(OBJ_DIR)/ADC.o $(OBJ_DIR)/GPIO.o $(OBJ_DIR)/I2C.o $(OBJ_DIR)/I2CTarget.o $(OBJ_DIR)/UART.o $(OBJ_DIR)/SPI.o $(OBJ_DIR)/ADCMSPM0.o $(OBJ_DIR)/GPIOMSPM0.o $(OBJ_DIR)/I2CMSPM0.o $(OBJ_DIR)/I2CTargetMSPM0.o $(OBJ_DIR)/UARTMSPM0.o $(OBJ_DIR)/SPIMSPM0.o
 
 all: $(NAME).a
 
@@ -57,6 +57,11 @@ $(OBJ_DIR)/I2C.o: $(SRC_DIR)/I2C.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/I2CTarget.o: $(SRC_DIR)/I2CTarget.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/UART.o: $(SRC_DIR)/UART.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
@@ -82,7 +87,12 @@ $(OBJ_DIR)/I2CMSPM0.o: $(SRC_DIR)/i2c/I2CMSPM0.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
-$(OBJ_DIR)/UARTMSPM0L11XX_L13XX.o: $(SRC_DIR)/uart/UARTMSPM0L11XX_L13XX.c
+$(OBJ_DIR)/I2CTargetMSPM0.o: $(SRC_DIR)/i2ctarget/I2CTargetMSPM0.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/UARTMSPM0.o: $(SRC_DIR)/uart/UARTMSPM0.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@

@@ -576,6 +576,8 @@ function pinmuxRequirements(inst)
  */
 function validate(inst, validation)
 {
+    validation.logWarning("Note: VBAT needs to be powered for Tamper I/O operation.", inst);
+
     if(inst.enabletio0 && inst.tio0toutControl == "HEARTBEAT" && inst.startHeartBeat == false) {
         validation.logInfo(
             "The heart beat generator will not start unless enabled below in heart beat configuration.",

@@ -50,6 +50,8 @@ int main(void)
     for (i = 0; i < NUM_CAPTURES; i++) {
         while (!DL_TRNG_isCaptureReady(TRNG))
             ;
+        DL_TRNG_clearInterruptStatus(
+            TRNG, DL_TRNG_INTERRUPT_CAPTURE_RDY_EVENT);
         gTRNGBuffer[i] = DL_TRNG_getCapture(TRNG);
     }
 

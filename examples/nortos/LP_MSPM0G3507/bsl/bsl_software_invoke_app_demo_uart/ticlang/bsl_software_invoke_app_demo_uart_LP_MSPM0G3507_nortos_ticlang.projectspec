@@ -43,7 +43,6 @@
             -L${CG_TOOL_ROOT}/lib
             -llibc.a
         "
-        enableSysConfigTool="true"
         sysConfigBuildOptions="
             --output .
             --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json

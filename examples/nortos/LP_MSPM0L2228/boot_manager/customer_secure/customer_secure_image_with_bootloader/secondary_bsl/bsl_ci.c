@@ -30,10 +30,10 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "ti_msp_dl_config.h"
-
-#include "boot_config.h"
 #include "bsl_ci.h"
+#include "aes_gcm.h"
+#include "boot_config.h"
+#include "ti_msp_dl_config.h"
 
 #define MAIN_SECTOR_SIZE (1024)
 #define PASSWORD_ERROR_LIMIT 5
@@ -439,6 +439,8 @@ uint8_t CMD_API_Flash_Range_Erase(uint32_t addrStart)
             if (erase_status == (uint8_t) 0) {
                 ret = BSL_FLASH_ERASE_FAILED;
             }
+        } else if (addrStart == ENCRYPTION_MAGIC_ADDR) {
+            // IGNORE
         } else {
             ret = BSL_INVALID_MEMORY_RANGE;
         }
@@ -540,16 +542,47 @@ uint8_t CMD_API_Program_Data(uint32_t addrStart)
                             main_flash_end_address))) {
                     flash_region = DL_FLASHCTL_REGION_SELECT_MAIN;
 
+                    uint8_t *source = &BSL_RXBuf[8];
+
+#ifdef ENCRYPTION_ENABLED
+                    // DECRYPT
+                    GCM_status gcm_status;
+
+                    gcm_status = GCM_streamDataToFlash(
+                        addrStart, (uint32_t *) source, length);
+
+                    if (!(gcm_status == GCM_OK ||
+                            gcm_status == GCM_OPERATION_CONTINUES)) {
+                        ret = BSL_FLASH_PROGRAM_FAILED;
+                        // erase the programming, as the authentication failed
+                        CMD_API_Mass_Erase();
+                    }
+
+#else
                     BSL_CI_disableCache();
                     /* Initiate Flash Programming */
                     if (DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(
-                            FLASHCTL, addrStart, (uint32_t *) &BSL_RXBuf[8],
+                            FLASHCTL, addrStart, (uint32_t *) source,
                             (uint32_t) length / (uint32_t) 4,
                             flash_region) == false) {
                         ret = BSL_FLASH_PROGRAM_FAILED;
                     }
                     BSL_CI_enableCache();
-                } else {
+
+#endif
+
+                }
+#ifdef ENCRYPTION_ENABLED
+                else if (addrStart == ENCRYPTION_MAGIC_ADDR) {
+                    GCM_status status;
+                    // set up the GCM in the correct manner
+                    status = GCM_init((uintptr_t) &BSL_RXBuf[8]);
+                    if (status != GCM_OK) {
+                        ret = BSL_PASSWORD_ERROR;
+                    }
+                }
+#endif  // ENCRYPTION Enabled
+                else {
                     ret = BSL_INVALID_MEMORY_RANGE;
                 }
             } else {

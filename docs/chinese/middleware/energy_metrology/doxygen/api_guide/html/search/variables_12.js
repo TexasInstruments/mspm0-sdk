@@ -1,6 +1,7 @@
 var searchData=
 [
   ['v_5fdc_5festimate',['V_dc_estimate',['../structphase_params.html#a50ca630aa4a0944932d2e1f5cfb3df42',1,'phaseParams']]],
+  ['v_5fdc_5festimate1',['V_dc_estimate1',['../structphase_params.html#a6715091345f2bfa6bca0e7a920c2b926',1,'phaseParams']]],
   ['v_5fdc_5festimate_5flogged',['V_dc_estimate_logged',['../structphase_params.html#a0d2032a8368479e687399ea09e69cdb3',1,'phaseParams']]],
   ['vacoffset',['VacOffset',['../structphase_calibration_data.html#a6c8915299252d21d977602a71c2cb24a',1,'phaseCalibrationData']]],
   ['vfundamentalacoffset',['VFundamentalAcOffset',['../structphase_calibration_data.html#ab4b4198746035ac2c11700b057ac9ee7',1,'phaseCalibrationData']]],

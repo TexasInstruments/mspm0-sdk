@@ -68,7 +68,7 @@
       S + Target_Addr+W+A + Cmd+A + ByteCountN+A + DataByte1+A +...+ DataByteN+A +
       Sr + Target_Addr+R+A + ByteCountM+A + DataByte1+A +...+ DataByteM+A + {PEC+A} + P
  */
-const t_SMB_Cmd SMB_CMD_List[CMD_LIST_LENGHT] =
+const t_SMB_Cmd SMB_CMD_List[CMD_LIST_LENGTH] =
 {
     /* Command          Quick_Led_toggle
         Type            QUICK_COMMAND
@@ -85,77 +85,87 @@ const t_SMB_Cmd SMB_CMD_List[CMD_LIST_LENGHT] =
     /* Command          Set_Reg_Ptr
         Type            SEND_BYTE
         CMD             0x00-0x03
+        Length          0 (only the cmd)
         Description     Changes the register pointer
                         Reg0 = SMBus Status (check t_SMBus_Status)
                         Reg1 = SMBus Control (check t_SMBus_Control)
                         Reg2 = P4 status
                         Reg3 = Demo Version
      */
-    {0x00, 0x03, Write_Reg_Ptr_hdlr},
+    {0x00, 0x03, 0x00, Write_Reg_Ptr_hdlr},
 
     /* Command          Write_Reg
         Type            WRITE_BYTE
         CMD             0x10-0x13
+        Length          1 (Fixed)
         Description     Changes the value of a register
                         (see previous definition of regs)
      */
-    {0x10, 0x03, Write_Reg_hdlr},
+    {0x10, 0x03, 0x01, Write_Reg_hdlr},
 
     /* Command          Read_Reg
         Type            READ_BYTE
         CMD             0x20-0x23
+        Length          1 (Fixed)
         Description     Reads the value of a register
                         (see previous definition of regs)
      */
 
-    {0x20, 0x03, Read_Reg_hdlr},
+    {0x20, 0x03, 0x01, Read_Reg_hdlr},
 
     /* Command          Read_ADC_Ch
         Type            READ_WORD16
         CMD             0x30
+        Length          2 (Fixed)
         Description     Reads the value of ADC channel
      */
-    {0x30, 0x00, Read_ADC_Ch_hdlr},
+    {0x30, 0x00, 0x02, Read_ADC_Ch_hdlr},
 
     /* Command          Read_ADC_Ch
         Type            READ_WORD32
         CMD             0x31
+        Length          4 (Fixed)
         Description     Reads the value of GPIOA
      */
-    {0x31, 0x00, Read_GPIOA_hdlr},
+    {0x31, 0x00, 0x04, Read_GPIOA_hdlr},
 
     /* Command          Read_ADC_Ch
         Type            READ_WORD64
         CMD             0x31
+        Length          8 (Fixed)
         Description     Reads the value of GPIOA
      */
-    {0x32, 0x00, Read_Transaction_Cnt_hdlr},
+    {0x32, 0x00, 0x08, Read_Transaction_Cnt_hdlr},
 
     /* Command          Mult_Bytes
         Type            PROCESS_CALL
         CMD             0x40
+        Length          2 + 2 (Fixed)
         Description     Multiplies 2 bytes
      */
-    {0x40, 0x00, Mult_Bytes_hdlr},
+    {0x40, 0x00, 0x04, Mult_Bytes_hdlr},
 
     /* Command          Write_String
         Type            BLOCK_WRITE
         CMD             0x50
+        Length          Block
         Description     Writes a block of data to local string
      */
-    {0x50, 0x00, Write_String_hdlr},
+    {0x50, 0x00, SMBUS_BLOCK_LENGTH, Write_String_hdlr},
 
     /* Command          Read_String
         Type            BLOCK_READ
         CMD             0x51
+        Length          Block
         Description     Reads a block of data from local string
      */
-    {0x51, 0x00, Read_String_hdlr},
+    {0x51, 0x00, SMBUS_BLOCK_LENGTH, Read_String_hdlr},
 
     /* Command          Calc_CRC
         Type            BLW_BLR_PROC_CALL
         CMD             0x60
+        Length          Block + Block
         Description     Calculates the CRC of a series of bytes
      */
-    {0x60, 0x00, Calc_Sum_hdlr},
+    {0x60, 0x00, SMBUS_BLOCK_LENGTH, Calc_Sum_hdlr},
 };

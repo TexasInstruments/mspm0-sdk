@@ -317,7 +317,7 @@ const uint_least8_t ADC_count          = CONFIG_ADC_COUNT;
 /*
  *  =============================== UART0 ===============================
  */
-#include <ti/drivers/uart/UARTMSPM0G1X0X_G3X0X.h>
+#include <ti/drivers/uart/UARTMSPM0.h>
 
 static const UARTMSP_HWAttrs UARTMSPHWAttrs[CONFIG_UART_COUNT] = {
     {

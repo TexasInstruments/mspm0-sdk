@@ -315,6 +315,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
         allPinsArray = allPinsArray.filter(function( obj ) {
             return (!excludedPins.some(v => (obj.designSignalName).includes(v)))
         });
+        let nonMuxablePins = ["OPA"];
+        allPinsArray = allPinsArray.filter(function( obj ) {
+            return (!nonMuxablePins.some(v => (obj.designSignalName).includes(v) && !(obj.designSignalName).includes("/" + v)))
+        });
         let allPinNamesArray = (allPinsArray).map(a => a.designSignalName);
         let allPinIDArray = (allPinsArray).map(a => a.name);
 

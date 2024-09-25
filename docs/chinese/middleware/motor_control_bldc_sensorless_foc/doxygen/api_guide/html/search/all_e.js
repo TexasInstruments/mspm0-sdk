@@ -13,6 +13,7 @@ var searchData=
   ['openloopfastaccelaccelslewratecentihzpersecpersec',['openLoopFastAccelAccelSlewRateCentiHzPerSecPerSec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a28d633ede01ad961148b344242fa99b7',1,'USER_INPUTS_T']]],
   ['openloopslowaccelaccelslewratecentihzpersecpersec',['openLoopSlowAccelAccelSlewRateCentiHzPerSecPerSec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#acddd1d1562425e2493f90c960b660d70',1,'USER_INPUTS_T']]],
   ['openloopslowaccelspeedslewratecentihzpersec',['openLoopSlowAccelSpeedSlewRateCentiHzPerSec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a16a4f580aa2b7854c8a340f51cf8bc04',1,'USER_INPUTS_T']]],
+  ['output_5fdq_5ft',['OUTPUT_DQ_T',['../struct_o_u_t_p_u_t___d_q___t.html',1,'']]],
   ['outputs_5fcurrent_5fpi_5ft',['OUTPUTS_CURRENT_PI_T',['../struct_o_u_t_p_u_t_s___c_u_r_r_e_n_t___p_i___t.html',1,'']]],
   ['outputs_5fpi_5ft',['OUTPUTS_PI_T',['../struct_o_u_t_p_u_t_s___p_i___t.html',1,'']]],
   ['overcurrentbase',['overCurrentBase',['../struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a79e5066f2698edcd282eb920f49f1ea9',1,'USER_INPUTS_INTERFACE_T']]],

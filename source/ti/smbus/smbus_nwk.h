@@ -129,6 +129,7 @@ extern SMBus_State SMBus_NWK_targetProcessStart(SMBus *smbus,
 //!   - \b SMBus_State_OK
 //!   - \b SMBus_State_Target_NotReady      : Packet in progress
 //!   - \b SMBus_State_Target_FirstByte     : First byte (Command) was received
+//!   - \b SMBus_State_Target_BlockLengthByte : Length byte (2nd) was received
 //!   - \b SMBus_State_Target_ByteReceived  : Data byte (2-n) was received
 //!   - \b SMBus_State_Target_Error         : not expecting RX
 //!   - \b SMBus_State_Target_NotReady      : not ready for RX

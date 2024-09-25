@@ -40,7 +40,7 @@
 #include "bootutil/image.h"
 #include "bootutil/security_cnt.h"
 #include "customer_secure_config.h"
-#include "lockable_storage.h"
+#include "lockable_storage_private.h"
 #include "mcuboot_config/mcuboot_logging.h"
 #include "rollback.h"
 #include "secret.h"

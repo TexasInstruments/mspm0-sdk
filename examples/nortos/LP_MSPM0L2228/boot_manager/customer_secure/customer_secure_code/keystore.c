@@ -32,7 +32,8 @@
 
 #include "keystore.h"
 #include <string.h>
-#include "lockable_storage.h"
+#include "lockable_storage_private.h"
+#include "msp-crypto/msp_crypto.h"
 #include "secret.h"
 
 #ifdef CSC_ENABLE_KEYSTORE
@@ -305,7 +306,7 @@ int Keystore_revokeKeyRequest(uint32_t hashPtr)
 static DL_KEYSTORECTL_KeyWrConfig keyWriteConfig = {
     .keySlot = DL_KEYSTORECTL_KEY_SLOT_0,
     .keySize = DL_KEYSTORECTL_KEY_SIZE_128_BITS,
-    .key     = (uint32_t *) &gSecretStgInFlash.keystore_staticKey0[2],
+    .key     = (uint32_t *) &gSecretStgInFlash.keystore_staticKey[2],
 };
 
 void Keystore_storeKeys(void)
@@ -322,7 +323,6 @@ void Keystore_storeKeys(void)
      * 2. Dynamic Keys Explicitly Referenced by the App Header for use, stored
      *    in gInputHashTable
      *
-     *
      */
 
     /* First cycle through the keys that are present to determine number and
@@ -330,12 +330,7 @@ void Keystore_storeKeys(void)
      */
 
     /* configure the keystore */
-    DL_KEYSTORECTL_KeyWrConfig keyWriteConfig = {
-        .keySlot = DL_KEYSTORECTL_KEY_SLOT_0,
-        .keySize = DL_KEYSTORECTL_KEY_SIZE_128_BITS,
-        .key     = (uint32_t *) &gSecretStgInFlash.keystore_staticKey0[2],
-    };
-
+    DL_KEYSTORECTL_KeyWrConfig keyWriteConfig;
     DL_KEYSTORECTL_STATUS keyStrStatus;
     uint8_t num256Keys = 0;
     uint8_t num128Keys = 0;
@@ -344,29 +339,31 @@ void Keystore_storeKeys(void)
 
 #ifdef CSC_ENABLE_KEYSTORE_STATIC_KEY
     // check if static key is populated with keyMaterial
-    if (gSecretStgInFlash.keystore_staticKey0[2] != 0x00) {
-        if (gSecretStgInFlash.keystore_staticKey0[1] == KEY_SIZE_128) {
-            num128KeyPtrs[num128Keys] =
-                &gSecretStgInFlash.keystore_staticKey0[2];
-            num128Keys++;
-        } else {
-            num256KeyPtrs[num256Keys] =
-                &gSecretStgInFlash.keystore_staticKey0[2];
-            num256Keys++;
+    for (uint8_t j = 0; j < CSC_NUM_STATIC_KEYS; j++) {
+        if (gSecretStgInFlash.keystore_staticKey[j][2] != 0x00) {
+            if (gSecretStgInFlash.keystore_staticKey[j][1] == KEY_SIZE_128) {
+                num128KeyPtrs[num128Keys] =
+                    &gSecretStgInFlash.keystore_staticKey[j][2];
+                num128Keys++;
+            } else {
+                num256KeyPtrs[num256Keys] =
+                    &gSecretStgInFlash.keystore_staticKey[j][2];
+                num256Keys++;
+            }
         }
     }
 #endif
 
 #ifdef CSC_ENABLE_KEYSTORE_DYNAMIC_KEY
-    for (int i = 0; i < CSC_NUM_DYNAMIC_KEYS; i++) {
-        if (gSecretStgInFlash.keystore_dynamicKeys[i][2] != 0x00) {
-            if (gSecretStgInFlash.keystore_dynamicKeys[i][1] == KEY_SIZE_128) {
+    for (int j = 0; j < CSC_NUM_DYNAMIC_KEYS; j++) {
+        if (gSecretStgInFlash.keystore_dynamicKeys[j][2] != 0x00) {
+            if (gSecretStgInFlash.keystore_dynamicKeys[j][1] == KEY_SIZE_128) {
                 num128KeyPtrs[num128Keys] =
-                    &gSecretStgInFlash.keystore_dynamicKeys[i][2];
+                    &gSecretStgInFlash.keystore_dynamicKeys[j][2];
                 num128Keys++;
             } else {
                 num256KeyPtrs[num256Keys] =
-                    &gSecretStgInFlash.keystore_dynamicKeys[i][2];
+                    &gSecretStgInFlash.keystore_dynamicKeys[j][2];
                 num256Keys++;
             }
         }
@@ -447,10 +444,11 @@ static void Keystore_outputKeyHash(
         MSPCrypto_sha256_finish((uint8_t *) gOutputHashTablePtr[index].hash);
 
     if (result == MSP_CRYPTO_SHA256_STATUS_SUCCESS) {
-        gOutputHashTablePtr[index].slotIndex = index;
-        gOutputHashTablePtr[index].keySize   = keySize;
+        gOutputHashTablePtr[index].keySlot =
+            Keystore_getKeySlotFromSlotIndex(index);
+        gOutputHashTablePtr[index].keySize = keySize;
     } else {
-        gOutputHashTablePtr[index].slotIndex = 0x1BAD;
+        gOutputHashTablePtr[index].keySlot = 0x1BAD2BAD;
     }
 }
 

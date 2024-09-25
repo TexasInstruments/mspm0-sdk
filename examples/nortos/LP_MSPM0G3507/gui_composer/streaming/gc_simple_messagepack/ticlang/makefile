@@ -8,7 +8,7 @@ LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj ti_msp_dl_config.obj HAL_UART_M0G3507.obj main.obj ticlang_startup_mspm0g350x_ticlang.obj
 NAME = gc_simple_messagepack
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0G3507__ \
     -O2 \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -19,16 +19,17 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a" \
+LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L${PROJECT_ROOT} \
+    -L.. \
     ../ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
     "-L$(TICLANG_ARMCOMPILER)/lib" \
     -llibc.a
+
 all: $(NAME).out
 
 callbacks_mpack.obj: ../callbacks_mpack.c

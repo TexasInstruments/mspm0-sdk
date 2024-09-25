@@ -8,7 +8,7 @@ LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 OBJECTS = empty_non_sysconfig.obj ti_msp_dl_config.obj iar_startup_mspm0l130x_iar.obj
 NAME = empty_non_sysconfig
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
     -D__MSPM0L1306__ \
     -Om \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -22,14 +22,15 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
+LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L$PROJ_DIR$ \
+    -L.. \
     --config ../iar/mspm0l1306.icf \
     --map "$(NAME).map" \
     --silent \
     --semihosting=iar_breakpoint \
     --cpu=Cortex-M0+
+
 all: $(NAME).out
 
 empty_non_sysconfig.obj: ../empty_non_sysconfig.c

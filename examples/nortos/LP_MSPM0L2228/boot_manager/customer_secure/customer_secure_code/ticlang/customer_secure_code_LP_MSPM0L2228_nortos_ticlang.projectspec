@@ -94,9 +94,13 @@
         </file>
         <file path="../boot_keys.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../lockable_storage.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../lockable_storage_common.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../lockable_storage.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../lockable_storage_private.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lockable_storage_public.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lockable_storage_private.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../hash_verify.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>

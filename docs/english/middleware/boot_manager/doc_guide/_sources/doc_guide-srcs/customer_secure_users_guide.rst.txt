@@ -12,9 +12,9 @@ The Customer Secure Code rigorously defined has the following features:
 
 -  It takes up less than 18 kB of flash per bank (allowing for two 110kB images on a 256kB device)
 
--  mcuboot is open source and can be modified to fit the end developer's needs
+-  mcuboot is open source and can be modified to fit the end developer's needs, additionally the CSC has it's own set of security features and is easily configurable via a header file or SysConfig to tailor the solution to the end needs of the user
 
--  It does not require additional HW support in order to verify images, but can utilize CMAC acceleration for quicker (< 100ms) booting from a power on reset (POR) when the image is unchanged.
+-  It does not require additional HW support in order to verify images, but can utilize a secure verification via CMAC for quicker (< 100ms) booting from a power on reset (POR) when the image is unchanged.
 
 -  It sets up security features on the device such as write, read, and IP protect firewalls
 
@@ -22,7 +22,7 @@ The Customer Secure Code rigorously defined has the following features:
 
 -  It can provide rollback protection
 
--  It can be made immutable and act as part of the Root of Trust (RoT) chain during a boot.
+-  It can (and should in production) be made immutable and act as part of the Root of Trust (RoT) chain during a boot.
 
 -  Provide easy feature configuration through the SysConfig tool, such that users can quickly build a CSC tailored to their needs
 
@@ -37,7 +37,7 @@ Some things the current CSC (rigorously defined) doesn't do:
 2. Using the Examples
 ---------------------
 
-It is recommended to run the existing example pair of the ``customer_secure_code`` and ``customer_secure_image_with_bootloader`` in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.6.0+). This example uses the MSPM0L2228 LaunchPad with settings shown in the project README.
+It is recommended to run the existing example pair of the ``customer_secure_code`` and ``customer_secure_image_with_bootloader`` in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.7.0+). This example uses the MSPM0L2228 LaunchPad with settings shown in the project README.
 
 2.0 Prerequisites
 ~~~~~~~~~~~~~~~~~
@@ -111,6 +111,12 @@ To load the binary images onto the device, follow these steps once the boot appl
 4. Also add the Customer Secure Code into the other bank, in the customer secure code project, go to the file **Debug/customer\_secure\_code\_LP\_MSPM0L2228\_ticlang-bank1-0x20000.bin** and add this at address 0x20000.
 
 5. Verify that the boot application has not been erased by checking early in flash memory in the memory browser (such as 0x0000). Also verify the image has been successfully loaded into the image slot by typing the starting address into the memory browser. If both elements are present, then the device can be reset using the reset button on the LaunchPad. This will issue a stronger BOOTRST than the debuggers SYSRST and enact the secure policy. During the boot, the RED LED will be solid while it is performing the boot routine. The highest version image that is correctly signed should be run, regardless of bank. The LED should transition from RED to a GREEN or BLUE LED (depending on which image was run).
+
+6. Perform an Update: Make sure the debugger is disconnected at this point and the device is running (it may interfere with serial bootloading over the same line). Press the left switch (S2 on the launchpad) for the device to enter the BSL sequence. This will turn the LED CYAN and solid (both blue and green simultaneously).
+
+7. Using Uniflash 8.5 (or newer) open the bootloader version for the MSPM0L2228 Launchpad. Next, add a new encrypted file. The new file should be a newer version of the file previously loaded, preferably one with the opposite LED color. The file should be the text file ending in ``_encrypted.txt`` for the given version. Examining the file, there is a header telling the secure bootloader key information, and the image is encrypted. Once the correct COM port is selected, click the **Load Image** button and the update will happen, a BOOTRST will automatically occur, and the new image should be jumped to.
+
+8. The device LED should become solid RED after the programming, and then the LED should transition to the color of the updated image.
 
 3 Developing using the Customer Secure Code
 -------------------------------------------
@@ -268,3 +274,12 @@ With the write protection enabled on NONMAIN, it is still possible for a factory
 One of the security features mcuboot provides is rollback protection: where a user can set a security version that new images must match or exceed in order to be accepted by the boot image manger. This prevents an attacker from installing a previous image which may contain a vulnerability that is fixed in later versions.
 
 This feature is not available on current M0L or M0G devices due to the non-main write protect occurring statically once upon startup. Rollback protection generally requires the hardware capability to prevent writes to a region dynamically (after verifying but before jumping to an image).
+
+5.4 Keystore
+~~~~~~~~~~~~
+
+It is important that unwanted entities do not have access to plaintext keys, but how does a user hide these keys, but still use them in the AES?
+
+The answer is to have a separate section of memory that cannot be read out from the device, but is able to send keys on a separate bus to the AES for use based on the slot that is present. This is the job of the KEYSTORE on our device.
+
+In order to communicate which keys are stored in the Keystore to the application, the CSC outputs in lockable storage the hashes of the keys, which an application can use to index the different slots and identify and use keys without being able to gain information about the key material itself.

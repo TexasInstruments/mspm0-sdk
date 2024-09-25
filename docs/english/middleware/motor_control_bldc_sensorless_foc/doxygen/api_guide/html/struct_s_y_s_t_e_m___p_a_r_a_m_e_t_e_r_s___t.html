@@ -84,6 +84,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a76b99ba23ab5dc9491453f9b1d397bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a387d94d6b45d59995ec3ae6b9a920c35"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a387d94d6b45d59995ec3ae6b9a920c35">mtrInductance</a></td></tr>
 <tr class="separator:a387d94d6b45d59995ec3ae6b9a920c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5a2cbf6c6df5200bc5af87376664c7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#adc5a2cbf6c6df5200bc5af87376664c7">mtrSaliency</a></td></tr>
+<tr class="separator:adc5a2cbf6c6df5200bc5af87376664c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16953d206851dadd324d823f077aec64"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a16953d206851dadd324d823f077aec64">mtrBemfConst</a></td></tr>
 <tr class="separator:a16953d206851dadd324d823f077aec64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f8629e9d6a12f5198110b9a71fdd7d2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a0f8629e9d6a12f5198110b9a71fdd7d2">voltageBase</a></td></tr>
@@ -100,6 +102,10 @@ Data Fields</h2></td></tr>
 <tr class="separator:aba0a9b15385d00e87fafc46e32869c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af533570b8b05a31e93aa16380088c210"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#af533570b8b05a31e93aa16380088c210">currLoopKi</a></td></tr>
 <tr class="separator:af533570b8b05a31e93aa16380088c210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bcce732d0cf31ce3d53402ec2cb7b8d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a3bcce732d0cf31ce3d53402ec2cb7b8d">fluxWeakeningKi</a></td></tr>
+<tr class="separator:a3bcce732d0cf31ce3d53402ec2cb7b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ef26bbb09f97cabea0e56c2cff23d68"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a2ef26bbb09f97cabea0e56c2cff23d68">fluxWeakeningKp</a></td></tr>
+<tr class="separator:a2ef26bbb09f97cabea0e56c2cff23d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>SYSTEM_CONFIGURATIONS. </p>
@@ -133,6 +139,23 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>motor inductance </p>
+
+<p>Referenced by <a class="el" href="app_user_inputs_config_8h.html#a93d69307dae1d0ee9b1552859a8f8b3d">update_SystemParams()</a>.</p>
+
+</div>
+</div>
+<a id="adc5a2cbf6c6df5200bc5af87376664c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc5a2cbf6c6df5200bc5af87376664c7">&sect;&nbsp;</a></span>mtrSaliency</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SYSTEM_PARAMETERS_T::mtrSaliency</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>motor inductance saliency percentage </p>
 
 <p>Referenced by <a class="el" href="app_user_inputs_config_8h.html#a93d69307dae1d0ee9b1552859a8f8b3d">update_SystemParams()</a>.</p>
 
@@ -269,6 +292,40 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Current Loop Ki </p>
+
+<p>Referenced by <a class="el" href="app_user_inputs_config_8h.html#a93d69307dae1d0ee9b1552859a8f8b3d">update_SystemParams()</a>.</p>
+
+</div>
+</div>
+<a id="a3bcce732d0cf31ce3d53402ec2cb7b8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bcce732d0cf31ce3d53402ec2cb7b8d">&sect;&nbsp;</a></span>fluxWeakeningKi</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SYSTEM_PARAMETERS_T::fluxWeakeningKi</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Integral Controller Gain for Flux Weakening </p>
+
+<p>Referenced by <a class="el" href="app_user_inputs_config_8h.html#a93d69307dae1d0ee9b1552859a8f8b3d">update_SystemParams()</a>.</p>
+
+</div>
+</div>
+<a id="a2ef26bbb09f97cabea0e56c2cff23d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ef26bbb09f97cabea0e56c2cff23d68">&sect;&nbsp;</a></span>fluxWeakeningKp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SYSTEM_PARAMETERS_T::fluxWeakeningKp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Proportional Control Gain for Flux Weakening </p>
 
 <p>Referenced by <a class="el" href="app_user_inputs_config_8h.html#a93d69307dae1d0ee9b1552859a8f8b3d">update_SystemParams()</a>.</p>
 

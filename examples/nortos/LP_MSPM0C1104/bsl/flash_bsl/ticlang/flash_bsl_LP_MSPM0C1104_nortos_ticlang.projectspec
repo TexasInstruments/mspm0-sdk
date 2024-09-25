@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0C1104"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="flash_bsl"
+        name="flash_bsl_LP_MSPM0C1104_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0C1104"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -D__MSPM0C1104__
+            -Oz
+            -mlittle-endian
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -Wl,--stack_size=0
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0c110x/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Provides BSL suport from flash memory">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../boot_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../boot_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_ci.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_ci.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_defines.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_i2c.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_i2c.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_invocation.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_invocation.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_modules.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_uart.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL_uart.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashBSL.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/mspm0c1104.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0c1104_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

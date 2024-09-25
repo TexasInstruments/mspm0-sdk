@@ -68,3 +68,5 @@ TIMERFault1.$name             = "FAULT_0";
 PWM1.associatedFault          = TIMERFault1;
 TIMERFault1.enabledFaults     = ["1"];
 TIMERFault1.faultPin1.$assign = "PB20";
+TIMERFault1.faultPin1Config.enableConfig     = true;
+TIMERFault1.faultPin1Config.internalResistor = "PULL_DOWN";

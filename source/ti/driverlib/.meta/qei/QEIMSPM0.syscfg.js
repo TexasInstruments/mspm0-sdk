@@ -287,6 +287,10 @@ let allEventOptions = [
     { name: "ZERO_EVENT", displayName: "Zero event", description: "Fires when counter reaches zero." },
     { name: "LOAD_EVENT", displayName: "Load event", description: "Used for QEI 3 signal mode when IDX signal triggers a load event" },
     { name: "DC_EVENT", displayName: "Direction change event", reason: "Direction has changed" },
+    { name: "CC0_DN_EVENT", displayName: "Channel 0 compare down event", description: "Channel 0 compare value reached in timer down counting mode" },
+    { name: "CC0_UP_EVENT", displayName: "Channel 0 compare up event"  , description: "Channel 0 compare value reached in timer up counting mode" },
+    { name: "CC1_DN_EVENT", displayName: "Channel 1 compare down event", description: "Channel 1 compare value reached in timer down counting mode" },
+    { name: "CC1_UP_EVENT", displayName: "Channel 1 compare up event"  , description: "Channel 1 compare value reached in timer up counting mode" },
 ];
 
 function getEventOptions(inst)

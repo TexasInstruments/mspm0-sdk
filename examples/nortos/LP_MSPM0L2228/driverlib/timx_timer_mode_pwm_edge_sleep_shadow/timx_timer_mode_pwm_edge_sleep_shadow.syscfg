@@ -25,7 +25,7 @@ GPIO1.associatedPins[0].assignedPin         = "0";
 GPIO1.associatedPins[0].initialValue        = "SET";
 GPIO1.associatedPins[1].assignedPort        = "PORTA";
 GPIO1.associatedPins[1].$name               = "USER_TEST";
-GPIO1.associatedPins[1].pin.$assign         = "PA25";
+GPIO1.associatedPins[1].pin.$assign         = "PA21";
 GPIO1.associatedPins[1].initialValue        = "SET";
 
 const gate7  = system.clockTree["MFCLKGATE"];

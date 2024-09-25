@@ -96,7 +96,7 @@ void SMBus_targetInit(SMBus *smbus, I2C_Regs *i2cAddr)
     smbus->nwk.txIndex = 0;
     smbus->nwk.txLen = 0;
     smbus->nwk.recByteTxPtr = &smbus->status.u8byte;
-    smbus->nwk.pec = 0;
+    smbus->nwk.pecBlockLenOverride = 0;
     smbus->ctrl.u8byte = 0;
     smbus->status.u8byte = 0;
     smbus->state = SMBus_State_OK;
@@ -179,6 +179,23 @@ uint8_t SMBus_targetGetCommand(SMBus *smbus)
     return (smbus->nwk.currentCmd);
 }
 
+void SMBus_targetReportBlock(SMBus *smbus){
+    /* report a block such that the next state upon receiving should be considered
+     * a block Length, such that it's interpreted as a length.
+     */
+    if (smbus->ctrl.bits.pecEn == 1) {
+        smbus->nwk.pecBlockLenOverride = 1;
+    }
+}
+
+
+void SMBus_targetReportLength(SMBus *smbus, uint16_t length){
+    /* The PECCount should be the length plus the PECbit as well*/
+    if (smbus->ctrl.bits.pecEn == 1) {
+        SMBus_PHY_targetSetPECCount(smbus, length + 1);
+    }
+}
+
 uint8_t SMBus_targetClearStatusReg(SMBus *smbus,
                                   uint8_t val)
 {
@@ -230,7 +247,7 @@ void SMBus_controllerInit(SMBus *smbus,
     smbus->nwk.txIndex = 0;
     smbus->nwk.txLen = 0;
     smbus->nwk.recByteTxPtr = &smbus->status.u8byte;
-    smbus->nwk.pec = 0;
+    smbus->nwk.pecBlockLenOverride = 0;
     smbus->ctrl.u8byte = 0;
     smbus->status.u8byte = 0;
     smbus->state = SMBus_State_OK;

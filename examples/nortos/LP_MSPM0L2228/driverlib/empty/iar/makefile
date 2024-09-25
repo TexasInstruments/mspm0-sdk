@@ -5,10 +5,19 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(IAR_ARMCOMPILER)/bin/iccarm"
 LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 
-OBJECTS = empty.obj ti_msp_dl_config.obj iar_startup_mspm0l222x_iar.obj
+SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler iar --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../empty.syscfg)
+
+SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
+SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
+
+OBJECTS = empty.obj iar_startup_mspm0l222x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = empty
 
-CFLAGS = -I.. \
+CFLAGS += -I.. \
+    -I. \
+    $(addprefix -f,$(SYSCFG_OPT_FILES)) \
     -D__MSPM0L2228__ \
     -Om \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -22,25 +31,38 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l122x_l222x/driverlib.a" \
+LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l122x_l222x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
-    -L$PROJ_DIR$ \
+    -L.. \
     --config ../iar/mspm0l2228.icf \
     --map "$(NAME).map" \
     --silent \
     --semihosting=iar_breakpoint \
     --cpu=Cortex-M0+
+
 all: $(NAME).out
 
-empty.obj: ../empty.c
+.INTERMEDIATE: syscfg
+$(SYSCFG_FILES): syscfg
+	@ echo generation complete
+
+syscfg: ../empty.syscfg
+	@ echo Generating configuration files...
+	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
+
+define C_RULE
+$(basename $(notdir $(1))).obj: $(1) $(SYSCFG_H_FILES)
+	@ echo Building $$@
+	@ $(CC) $(CFLAGS) $$< -o $$@
+endef
+
+$(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
+
+empty.obj: ../empty.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-ti_msp_dl_config.obj: ../ti_msp_dl_config.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-iar_startup_mspm0l222x_iar.obj: ../iar/startup_mspm0l222x_iar.c
+iar_startup_mspm0l222x_iar.obj: ../iar/startup_mspm0l222x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
@@ -53,3 +75,4 @@ clean:
 	@ $(RM) $(OBJECTS) > $(DEVNULL) 2>&1
 	@ $(RM) $(NAME).out > $(DEVNULL) 2>&1
 	@ $(RM) $(NAME).map > $(DEVNULL) 2>&1
+	@ $(RM) $(SYSCFG_FILES)> $(DEVNULL) 2>&1

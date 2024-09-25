@@ -31,6 +31,7 @@
  */
 
 #include "customer_secure_config.h"
+#include "lockable_storage_public.h"
 #include "secondary_bsl/bsl_main.h"
 #include "ti_msp_dl_config.h"
 
@@ -48,15 +49,6 @@
 
 #ifdef CSC_ENABLE_KEYSTORE_STATIC_KEY
 
-/* This information could later be passed from the secure boot side via
- * lockable flash or passed by the application. Currently we are just
- * assuming that both image and CSC will agree on the following: */
-DL_KEYSTORECTL_Config keystoreConfig = {
-    .keySlot   = DL_KEYSTORECTL_KEY_SLOT_0,
-    .keySize   = DL_KEYSTORECTL_KEY_SIZE_128_BITS,
-    .cryptoSel = DL_KEYSTORECTL_CRYPTO_SEL_AES,
-};
-
 static DL_AESADV_Config gAESADV_config = {
     .mode              = DL_AESADV_MODE_ECB,
     .direction         = DL_AESADV_DIR_DECRYPT,
@@ -64,6 +56,10 @@ static DL_AESADV_Config gAESADV_config = {
     .upperCryptoLength = 0,
     .aadLength         = 0,
 };
+
+/* Hash of the static key pre-calculated and public */
+static uint32_t aes_keyHash[] = {0xb7b8ffd4, 0x266b7d7f, 0x079a6e19,
+    0x673f980e, 0x2dc4a401, 0x4d3d81ec, 0xd235a5e1, 0x36f57d0a};
 
 static uint32_t aes_input[] = {0xb47bd73a, 0x60367a0d, 0xf3ca9ea8, 0x97ef6624};
 
@@ -92,9 +88,21 @@ int main(void)
     DL_GPIO_setPins(TOGGLED_PORT, TOGGLED_PIN);
 
 #ifdef CSC_ENABLE_KEYSTORE_STATIC_KEY
-    DL_AESADV_setKeySize(AESADV, DL_AESADV_KEY_SIZE_128_BIT);
+    DL_KEYSTORECTL_Config keyStrConfig;
+    uint32_t aesKeySize;
 
-    DL_KEYSTORECTL_transferKey(KEYSTORECTL, &keystoreConfig);
+    if (Lock_keySearch(aes_keyHash, &keyStrConfig) == 0) {
+        if (keyStrConfig.keySize == DL_KEYSTORECTL_KEY_SIZE_128_BITS) {
+            aesKeySize = DL_AESADV_KEY_SIZE_128_BIT;
+        } else {
+            aesKeySize = DL_AESADV_KEY_SIZE_256_BIT;
+        }
+        DL_AESADV_setKeySize(AESADV, aesKeySize);
+        DL_KEYSTORECTL_transferKey(KEYSTORECTL, &keyStrConfig);
+    } else {
+        while (1)
+            ;
+    }
 
     DL_AESADV_initECB(AESADV, &gAESADV_config);
 
@@ -133,6 +141,8 @@ int main(void)
         delay_cycles(cycleDelay);
     }
 
+    DL_AESADV_reset(AESADV);
+    DL_AESADV_enablePower(AESADV);
     BSL_Update();
 
     while (1) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2024, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,6 @@
 #include <ti_msp_dl_config.h>
 #define BSL_CRC (CRC)
 #define BSL_CRC_SEED ((uint32_t) 0xFFFFFFFFU)
-
 
 #define DL_MCAN_SET 1;
 #define DL_MCAN_RESET 0;
@@ -146,11 +145,7 @@ typedef enum {
 /*
  * Enum that lists the Modes in CAN protocol
  */
-typedef enum
-{
-    CAN_MODE = 0,
-    CAN_FD_MODE =1
-}CAN_MODES;
+typedef enum { CAN_MODE = 0, CAN_FD_MODE = 1 } CAN_MODES;
 
 /*
  * Flash Plugin APIs to be registered in Bootloader configuration

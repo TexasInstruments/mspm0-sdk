@@ -66,6 +66,7 @@ static int64_t trxnCnt = 0;
 //  Function prototypes
 //
 static int8_t Demo_isCmd_valid(uint8_t cmd);
+static uint16_t Demo_getCurrentCmdLength(void);
 static int8_t Demo_CmdComplete(SMBus *SMB);
 
 //*****************************************************************************
@@ -551,10 +552,10 @@ int8_t Calc_Sum_hdlr(SMBus * SMB){
 static int8_t Demo_isCmd_valid(uint8_t cmd)
 {
     uint8_t i;
-
+    int8_t ret;
     i8current_handler = -1; // Handler is invalid by default
 
-    for(i = 0; i < (CMD_LIST_LENGHT); i++)
+    for(i = 0; i < (CMD_LIST_LENGTH); i++)
     {
         if((cmd | SMB_CMD_List[i].mask) ==
            (SMB_CMD_List[i].cmd | SMB_CMD_List[i].mask))
@@ -562,11 +563,35 @@ static int8_t Demo_isCmd_valid(uint8_t cmd)
             // If the command is valid, save the handler which will be executed
             // if the command is received completely in Demo_CmdComplete
             i8current_handler = i;
-            return(SMBUS_RET_OK);
+            ret = (SMB_CMD_List[i].length == SMBUS_BLOCK_LENGTH)?SMBUS_RET_OK_BLOCK:SMBUS_RET_OK_FIXED;
+            return ret;
         }
     }
 
     return(SMBUS_RET_ERROR);
+}
+
+//*****************************************************************************
+//
+//! Returns the length associated with a given command
+//!
+//! \param cmd  Received command
+//!
+//! This function is called when a command is valid and the target needs to
+//! set the correct length for the PECCNT
+//! The function returns the length for the previously processed command, and
+//! must be called after Demo_isCmd_valid
+//!
+//! \return  Length of command if command was found
+//!          0 if command is not found
+//
+// *****************************************************************************
+static uint16_t Demo_getCurrentCmdLength(void){
+    if(i8current_handler >= 0){
+        return SMB_CMD_List[i8current_handler].length;
+    } else {
+        return 0;
+    }
 }
 
 //*****************************************************************************
@@ -614,6 +639,7 @@ static int8_t Demo_CmdComplete(SMBus *SMB)
 // *****************************************************************************
 void SMB_I2C_INST_IRQHandler (void)
 {
+    int8_t command_ret;
     // Check the state of SMBus
     switch(SMBus_targetProcessInt(&sSMBusTarget))
     {
@@ -626,7 +652,6 @@ void SMB_I2C_INST_IRQHandler (void)
         trxnCnt++;
 
         // If any other command besides Quick Command is detected, process it
-
         if(Demo_CmdComplete(&sSMBusTarget) == SMBUS_RET_ERROR)
         {
             SMBus_targetReportError(&sSMBusTarget, SMBus_ErrorCode_Packet);
@@ -636,18 +661,28 @@ void SMB_I2C_INST_IRQHandler (void)
         break;
     case SMBus_State_Target_FirstByte:
         // Validate the command here
-        if(Demo_isCmd_valid(SMBus_targetGetCommand(&sSMBusTarget)) !=
-           SMBUS_RET_OK)
+        command_ret = Demo_isCmd_valid(SMBus_targetGetCommand(&sSMBusTarget));
+
+        if(command_ret != SMBUS_RET_OK_FIXED &&
+           command_ret != SMBUS_RET_OK_BLOCK)
         {
             SMBus_targetReportError(&sSMBusTarget, SMBus_ErrorCode_Cmd);
             DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
             __NOP();
         }
+        else if (command_ret == SMBUS_RET_OK_BLOCK) {
+            SMBus_targetReportBlock(&sSMBusTarget);
+        }
+        else if (command_ret == SMBUS_RET_OK_FIXED) {
+            SMBus_targetReportLength(&sSMBusTarget, Demo_getCurrentCmdLength());
+        }
         break;
     case SMBus_State_DataSizeError:
     case SMBus_State_PECError:
     case SMBus_State_Target_Error:
-        DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
+        DL_GPIO_setPins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
+        delay_cycles(100);
+        DL_GPIO_clearPins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
         __NOP();
         break;
     case SMBus_State_TimeOutError:
