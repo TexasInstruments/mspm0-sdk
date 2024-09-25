@@ -103,6 +103,7 @@ exports = {
     isDeviceM0L                             : isDeviceM0L,
     isDeviceM0C                             : isDeviceM0C,
     isDeviceM0x110x                         : isDeviceM0x110x,
+    isDeviceM0x310x                         : isDeviceM0x310x,
     isDeviceFamily_PARENT_MSPM0L11XX_L13XX  : isDeviceFamily_PARENT_MSPM0L11XX_L13XX,
     isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X  : isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X,
     isDeviceFamily_PARENT_MSPM0L122X_L222X  : isDeviceFamily_PARENT_MSPM0L122X_L222X,
@@ -1737,7 +1738,13 @@ function isDeviceFamily_MSPS003FX(){
 /* checks if current device is one of M0x110x series */
 function isDeviceM0x110x(){
 	var deviceName = system.deviceData.device;
-    return (["MSPM0G310X","MSPM0G110X","MSPM0L110X","MSPM0C110X","MSPS003FX"].includes(deviceName));
+    return (["MSPM0G110X","MSPM0L110X","MSPM0C110X","MSPS003FX"].includes(deviceName));
+}
+
+/* checks if current device is one of M0x310x series */
+function isDeviceM0x310x(){
+	var deviceName = system.deviceData.device;
+    return (["MSPM0G310X"].includes(deviceName));
 }
 
 /* Generic Device Check Functions */

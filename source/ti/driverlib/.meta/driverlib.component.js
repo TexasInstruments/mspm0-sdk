@@ -125,27 +125,26 @@ if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
         "/ti/driverlib/GPAMP",
     )
 }
-/* add device-specific modules - not available on MSPM0G110x, MSPM0L110X, MSPM0C */
-if((Common.isDeviceM0G() || Common.isDeviceM0L()) && !Common.isDeviceM0x110x()){
+/* add device-specific modules - not available on MSPM0X110X, MSPM0C */
+if((Common.isDeviceM0G() || Common.isDeviceM0L()) && !Common.isDeviceM0x110x() && !Common.isDeviceM0x310x()){
     analogModulesList.push(
         "/ti/driverlib/COMP",
     );
 };
-/* add device-specific modules - not available on MSPM0G110x, MSPM0L110X or MSPM0L122X_L222X()*/
-if((Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()) && !Common.isDeviceM0x110x()){
+/* add device-specific modules - not available on MMSPM0X110X or MSPM0LX22X*/
+if((Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()) && !Common.isDeviceM0x110x() && !Common.isDeviceM0x310x()){
     analogModulesList.push(
         "/ti/driverlib/OPA",
     );
 };
-// TODO: confirm device list for DAC
-/* MSPM0Gxx-specific modules - not available for MSPM0G310X, MSPM0G110x */
+/* MSPM0Gxx-specific modules - only available for MSPM0G350X and MSPM0G150X */
 if(["MSPM0G350X","MSPM0G150X"].includes(system.deviceData.device)){
     analogModulesList.push(
         "/ti/driverlib/DAC12",
     );
 };
-/* MSPM0Gxx-specific modules - not available for MSPM0G150X, MSPM0G110x */
-if(["MSPM0G350X","MSPM0G150X"].includes(system.deviceData.device)){
+/* MSPM0Gxx-specific modules - only available for MSPM0G350X and MSPM0G310X */
+if(["MSPM0G350X","MSPM0G310X"].includes(system.deviceData.device)){
     commModulesList.push(
         "/ti/driverlib/MCAN",
     );

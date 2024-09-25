@@ -44,8 +44,6 @@ let Common = system.getScript("/ti/driverlib/Common.js");
 
 let MasterOrder = [];
 
-
-// TODO: confirm device list for DAC
 if(["MSPM0G350X"].includes(Common.getDeviceName())){
     MasterOrder = [
         "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
@@ -62,7 +60,7 @@ if(["MSPM0G350X"].includes(Common.getDeviceName())){
 else if(["MSPM0G310X"].includes(Common.getDeviceName())){
     MasterOrder = [
         "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
-        "SPI", "ADC12", "COMP", "VREF", "OPA", "GPAMP", "EVENT", "DMA",
+        "SPI", "ADC12", "VREF", "GPAMP", "EVENT", "DMA",
         "GPIO", "AES", "CRC", "RTC", "TRNG", "SYSTICK", "WWDT", "MATHACL", "MCAN"
     ];
 }
