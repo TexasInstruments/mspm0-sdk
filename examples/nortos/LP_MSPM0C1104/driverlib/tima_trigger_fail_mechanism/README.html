@@ -58,31 +58,36 @@
 <td>Standard Output</td>
 </tr>
 <tr class="odd">
+<td>TIMERFAULT0</td>
+<td>PA0</td>
+<td>Fault Pin 1</td>
+</tr>
+<tr class="even">
 <td>SYSCTL</td>
 <td>PA18</td>
 <td>CLK OUT</td>
 </tr>
-<tr class="even">
-<td>TIMA0</td>
-<td>PA2</td>
-<td>Counter Compare Pin 0</td>
-</tr>
 <tr class="odd">
 <td>TIMA0</td>
-<td>PA6</td>
-<td>Counter Compare Pin 1</td>
+<td>PA2</td>
+<td>Capture/Compare Pin 0</td>
 </tr>
 <tr class="even">
+<td>TIMA0</td>
+<td>PA6</td>
+<td>Capture/Compare Pin 1</td>
+</tr>
+<tr class="odd">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -117,34 +122,41 @@
 <td><ul><li>PA11 can be connected to an external 3.3V pull-up<br><ul><li><code>J6 OFF</code> Disconnect 3.3V pull-up<br><li><code>J6 ON</code> Connect 3.3V pull-up</ul></ul></td>
 </tr>
 <tr class="odd">
+<td>PA0</td>
+<td>TIMERFAULT0</td>
+<td>FAULT1</td>
+<td>J1_10</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J20 1:2</code> Use 3.3V pull-up<br><li><code>J20 2:3</code> Use 5V pull-up</ul></ul></td>
+</tr>
+<tr class="even">
 <td>PA18</td>
 <td>SYSCTL</td>
 <td>CLK_OUT</td>
 <td>J2_15</td>
 <td>N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA2</td>
 <td>TIMA0</td>
 <td>CCP0</td>
 <td>J2_13</td>
 <td>N/A</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA6</td>
 <td>TIMA0</td>
 <td>CCP1</td>
 <td>J1_7</td>
 <td>N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_11</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
@@ -158,7 +170,7 @@
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/tool/LP-MSPM0C1104">LP-MSPM0C1104 web page</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau908">LP-MSPM0C1104 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Make sure external fault pin logic level is low before running example. Compile, load and run the example. Monitor TIMA1_C0, TIMA1_C1, External fault pin and CLK_OUT. Analyze fault reaction behavior described in “Application Design Details” section.</p>
 <h2 id="application-design-details">Application Design Details</h2>
@@ -183,7 +195,7 @@
   with 100,000+ analog ICs and embedded processors, along with software, tools
   and the industry‘s largest sales/support staff.</p>
   <p>
-    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br>
+    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br>
     <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
   </p>
 </footer>

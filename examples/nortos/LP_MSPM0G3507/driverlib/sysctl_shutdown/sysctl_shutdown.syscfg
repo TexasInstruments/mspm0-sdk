@@ -36,7 +36,7 @@ GPIO2.associatedPins[0].assignedPin = "18";
 GPIO2.associatedPins[0].direction   = "INPUT";
 GPIO2.associatedPins[0].$name       = "USER_SWITCH_1";
 GPIO2.associatedPins[0].polarity    = "RISE";
-GPIO2.associatedPins[0].wakeupLogic = "ON_0";
+GPIO2.associatedPins[0].wakeupLogic = "ON_1";
 GPIO2.associatedPins[0].pin.$assign = "PA18";
 
 GPIO3.$name                              = "GPIO_INPUT";
@@ -44,12 +44,12 @@ GPIO3.port                               = "PORTB";
 GPIO3.associatedPins.create(2);
 GPIO3.associatedPins[0].$name            = "CONFIG_0";
 GPIO3.associatedPins[0].direction        = "INPUT";
-GPIO3.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO3.associatedPins[0].internalResistor = "PULL_UP";
 GPIO3.associatedPins[0].assignedPin      = "17";
 GPIO3.associatedPins[1].$name            = "CONFIG_1";
 GPIO3.associatedPins[1].assignedPin      = "12";
 GPIO3.associatedPins[1].direction        = "INPUT";
-GPIO3.associatedPins[1].internalResistor = "PULL_DOWN";
+GPIO3.associatedPins[1].internalResistor = "PULL_UP";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn  = true;

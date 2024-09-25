@@ -273,6 +273,7 @@ SMBus_State SMBus_NWK_targetProcessRx(SMBus *smbus,
         {
             smbus->status.bits.packErr = 1;
             smbus->nwk.eState = SMBus_NwkState_Error;
+            SMBus_PHY_targetManualACK(smbus, false);
             return(SMBus_State_Target_Error);
         }
         // Check packet size
@@ -281,12 +282,14 @@ SMBus_State SMBus_NWK_targetProcessRx(SMBus *smbus,
         {
             smbus->status.bits.packErr = 1;
             smbus->nwk.eState = SMBus_NwkState_Error;
+            SMBus_PHY_targetManualACK(smbus, false);
             return(SMBus_State_DataSizeError);
         }
         if((smbus->nwk.rxBuffPtr == NULL) || (smbus->nwk.rxSize == 0))
         {
             // Buffer hasn't been initialized
             smbus->nwk.eState = SMBus_NwkState_Error;
+            SMBus_PHY_targetManualACK(smbus, false);
             return(SMBus_State_Target_NotReady);
         }
 
@@ -302,6 +305,7 @@ SMBus_State SMBus_NWK_targetProcessRx(SMBus *smbus,
         // Pass the packet to application network, note that the SMBus spec
         // requires to validate the cmd+data and ACK/NACK appropiately and
         // immediately depending on its validity.
+        smbus->phy.SMBus_Phy_AckPending = true;
         if(smbus->nwk.rxIndex == 0)
         {
             // First byte (command) was received. Application should use this
@@ -420,6 +424,7 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
     /* Handle Target Stop when used as SMBus Target */
     if (smbus->ctrl.bits.controller == 0)
     {
+        DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
         // Quick command is detected when a TX is detected with no data
         // We can't detect Quick_Command(R) because of double-buffer mechanism
         if(smbus->nwk.eState == SMBus_NwkState_RX)
@@ -469,6 +474,7 @@ SMBus_State SMBus_NWK_targetProcessTimeout(SMBus *smbus)
 
     // Restart the SMBus Interface
     SMBus_PHY_disable(smbus);
+    delay_cycles(SMB_TIMEOUT_WAIT_CYCLES);
     SMBus_PHY_targetEnable(smbus);
     // After restart, be ready to accept new packet
     smbus->nwk.eState = SMBus_NwkState_Idle;
@@ -544,7 +550,12 @@ SMBus_State SMBus_NWK_controllerProcessRx(SMBus *smbus,
 SMBus_State SMBus_NWK_controllerProcessTx(SMBus *smbus,
                                       uint8_t *data)
 {
-    //DL_GPIO_setPins(GPIOA, DL_GPIO_PIN_27);
+    if (smbus->nwk.eState == SMBus_NwkState_Idle)
+    {
+        /* Ignore if TX is triggered during initialization */
+        *data = 0;
+        return(smbus->state);
+    }
     // Check current state of the State Machine
     if((smbus->nwk.eState != SMBus_NwkState_TX_Block) &&
        (smbus->nwk.eState != SMBus_NwkState_TX) &&
@@ -555,6 +566,7 @@ SMBus_State SMBus_NWK_controllerProcessTx(SMBus *smbus,
         smbus->state = SMBus_State_Controller_Error;
         return(smbus->state);
     }
+
 
     if(smbus->nwk.txIndex < smbus->nwk.txLen)
     {
@@ -594,7 +606,6 @@ SMBus_State SMBus_NWK_controllerProcessTx(SMBus *smbus,
 
     smbus->nwk.txIndex++;
 
-    //DL_GPIO_clearPins(GPIOA, DL_GPIO_PIN_27);
     return(smbus->state);
 }
 

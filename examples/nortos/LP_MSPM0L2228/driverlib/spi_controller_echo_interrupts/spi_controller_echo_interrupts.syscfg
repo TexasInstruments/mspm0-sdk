@@ -1,0 +1,46 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO  = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1 = GPIO.addInstance();
+const GPIO2 = GPIO.addInstance();
+const SPI   = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1  = SPI.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                         = "GPIO_LEDS";
+GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO2.$name                         = "GPIO_SWITCHES";
+GPIO2.associatedPins[0].$name       = "USER_SWITCH_1";
+GPIO2.associatedPins[0].direction   = "INPUT";
+GPIO2.associatedPins[0].interruptEn = true;
+GPIO2.associatedPins[0].polarity    = "RISE";
+GPIO2.associatedPins[0].pin.$assign = "PA18";
+
+SPI1.$name                      = "SPI_0";
+SPI1.targetBitRate              = 500000;
+SPI1.txFifoThreshold            = "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME";
+SPI1.enabledInterrupts          = ["RX"];
+SPI1.chipSelect                 = ["1"];
+SPI1.rxFifoThreshold            = "DL_SPI_RX_FIFO_LEVEL_ONE_FRAME";
+SPI1.peripheral.$assign         = "SPI1";
+SPI1.peripheral.sclkPin.$assign = "PA17";
+SPI1.peripheral.mosiPin.$assign = "PB8";
+SPI1.peripheral.misoPin.$assign = "PB7";
+SPI1.peripheral.cs1Pin.$assign  = "PA27";
+
+SYSCTL.clockTreeEn = true;

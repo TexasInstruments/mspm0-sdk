@@ -88,13 +88,13 @@ extern "C" {
  #define DL_SYSCTL_RESET_POR                       (SYSCTL_RESETLEVEL_LEVEL_POR)
 
 /*!
- * @brief Perform system reset and run bootloader
+ * @brief Perform system reset and exit bootloader to the application
  */
  #define DL_SYSCTL_RESET_BOOTLOADER_EXIT                                       \
                                         (SYSCTL_RESETLEVEL_LEVEL_BOOTLOADEREXIT)
 
  /*!
- * @brief Perform system reset and exit bootloader to the application
+ * @brief Perform system reset and run bootloader
  */
  #define DL_SYSCTL_RESET_BOOTLOADER_ENTRY                                      \
                                        (SYSCTL_RESETLEVEL_LEVEL_BOOTLOADERENTRY)
@@ -484,12 +484,6 @@ typedef enum {
     /*! BOR0 threshold level. This is the minimum allowed threshold.
      * A BOR0- violation will force a re-boot. */
     DL_SYSCTL_BOR_THRESHOLD_LEVEL_0 = SYSCTL_BORTHRESHOLD_LEVEL_BORMIN,
-    /*! BOR1 threshold level. A BOR1- violation generates an interrupt */
-    DL_SYSCTL_BOR_THRESHOLD_LEVEL_1 = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL1,
-    /*! BOR2 threshold level. A BOR2- violation generates an interrupt */
-    DL_SYSCTL_BOR_THRESHOLD_LEVEL_2 = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL2,
-    /*! BOR3 threshold level. A BOR3- violation generates an interrupt */
-    DL_SYSCTL_BOR_THRESHOLD_LEVEL_3 = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL3,
 } DL_SYSCTL_BOR_THRESHOLD_LEVEL;
 
 /** @enum DL_SYSCTL_SHUTDOWN_STORAGE_BYTE */

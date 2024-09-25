@@ -357,13 +357,13 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga116364e33ef2ff67b409b42bba9bca4b">DEFAULT_FUNDAMENTAL_Q_OFFSET_NEUTRAL</a>&#160;&#160;&#160;_IQ19(NEUTRAL_REACTIVE_POWER_FUNDAMENTAL_OFFSET)</td></tr>
 <tr class="memdesc:ga116364e33ef2ff67b409b42bba9bca4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines fundamental reactive power offset in neutral. <br /></td></tr>
 <tr class="separator:ga116364e33ef2ff67b409b42bba9bca4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac538d69988713471d032d12099dbd554"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gac538d69988713471d032d12099dbd554">DEFAULT_BASE_PHASE_A_CORRECTION</a>&#160;&#160;&#160;((int) (-2.4e-06f * SAMPLE_RATE * PHASE_SHIFT_FIR_TABLE_ELEMENTS))</td></tr>
+<tr class="memitem:gac538d69988713471d032d12099dbd554"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gac538d69988713471d032d12099dbd554">DEFAULT_BASE_PHASE_A_CORRECTION</a>&#160;&#160;&#160;((int) 0)</td></tr>
 <tr class="separator:gac538d69988713471d032d12099dbd554"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1e667545c6f4759ddb5861e60fa18448"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga1e667545c6f4759ddb5861e60fa18448">DEFAULT_BASE_PHASE_B_CORRECTION</a>&#160;&#160;&#160;((int) (-3.9e-06f * SAMPLE_RATE * PHASE_SHIFT_FIR_TABLE_ELEMENTS))</td></tr>
+<tr class="memitem:ga1e667545c6f4759ddb5861e60fa18448"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga1e667545c6f4759ddb5861e60fa18448">DEFAULT_BASE_PHASE_B_CORRECTION</a>&#160;&#160;&#160;((int) 0)</td></tr>
 <tr class="separator:ga1e667545c6f4759ddb5861e60fa18448"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0aa4ee2a79ba690bd4a7754eed8e19ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga0aa4ee2a79ba690bd4a7754eed8e19ab">DEFAULT_BASE_PHASE_C_CORRECTION</a>&#160;&#160;&#160;((int) (1.5e-06f * SAMPLE_RATE * PHASE_SHIFT_FIR_TABLE_ELEMENTS))</td></tr>
+<tr class="memitem:ga0aa4ee2a79ba690bd4a7754eed8e19ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga0aa4ee2a79ba690bd4a7754eed8e19ab">DEFAULT_BASE_PHASE_C_CORRECTION</a>&#160;&#160;&#160;((int) 0)</td></tr>
 <tr class="separator:ga0aa4ee2a79ba690bd4a7754eed8e19ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae8ea51564cac151c240157d56327de3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gae8ea51564cac151c240157d56327de3d">DEFAULT_BASE_NEUTRAL_PHASE_CORRECTION</a>&#160;&#160;&#160;((int) (1.5e-06f * SAMPLE_RATE * PHASE_SHIFT_FIR_TABLE_ELEMENTS))</td></tr>
+<tr class="memitem:gae8ea51564cac151c240157d56327de3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gae8ea51564cac151c240157d56327de3d">DEFAULT_BASE_NEUTRAL_PHASE_CORRECTION</a>&#160;&#160;&#160;((int) 0)</td></tr>
 <tr class="separator:gae8ea51564cac151c240157d56327de3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac745dc6f71ae6c042624514cb2d13f8d"><td class="memItemLeft" align="right" valign="top"><a id="gac745dc6f71ae6c042624514cb2d13f8d"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gac745dc6f71ae6c042624514cb2d13f8d">VRMS_SUPPORT</a>&#160;&#160;&#160;0x00000001</td></tr>
@@ -666,13 +666,29 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga93053651051fac50f2f1aa63611632fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines reactive energy pulses per kwh. <br /></td></tr>
 <tr class="separator:ga93053651051fac50f2f1aa63611632fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga923383ce984b79624739e562b7b291ca"><td class="memItemLeft" align="right" valign="top"><a id="ga923383ce984b79624739e562b7b291ca"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga923383ce984b79624739e562b7b291ca">TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD</a>&#160;&#160;&#160;_IQ13((<a class="el" href="group___metrology.html#gade7c2771fd05ff16b032e467db4d9981">ENERGY_100mWATT_HOUR_THRESHOLD</a> * 1000)/(<a class="el" href="group___metrology.html#ga90cb31ba6dd908e7c76153942b432c0d">TOTAL_ACTIVE_ENERGY_PULSES_PER_KW_HOUR</a> * 3600))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga923383ce984b79624739e562b7b291ca">TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD</a>&#160;&#160;&#160;((int64_t)<a class="el" href="group___metrology.html#gade7c2771fd05ff16b032e467db4d9981">ENERGY_100mWATT_HOUR_THRESHOLD</a> * 1000L * 8000L * 10000LL)/(TOTAL_ACTIVE_ENERGY_PULSES_PER_KW_HOUR)</td></tr>
 <tr class="memdesc:ga923383ce984b79624739e562b7b291ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines active energy pulse threshlod. <br /></td></tr>
 <tr class="separator:ga923383ce984b79624739e562b7b291ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacc50a34c2bda6b94c1ead390ae095167"><td class="memItemLeft" align="right" valign="top"><a id="gacc50a34c2bda6b94c1ead390ae095167"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gacc50a34c2bda6b94c1ead390ae095167">TOTAL_REACTIVE_ENERGY_PULSE_THRESHOLD</a>&#160;&#160;&#160;_IQ13((<a class="el" href="group___metrology.html#gade7c2771fd05ff16b032e467db4d9981">ENERGY_100mWATT_HOUR_THRESHOLD</a> * 1000)/(<a class="el" href="group___metrology.html#ga93053651051fac50f2f1aa63611632fe">TOTAL_REACTIVE_ENERGY_PULSES_PER_KW_HOUR</a> * 3600))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gacc50a34c2bda6b94c1ead390ae095167">TOTAL_REACTIVE_ENERGY_PULSE_THRESHOLD</a>&#160;&#160;&#160;((int64_t)<a class="el" href="group___metrology.html#gade7c2771fd05ff16b032e467db4d9981">ENERGY_100mWATT_HOUR_THRESHOLD</a> * 1000L * 8000L * 10000LL)/(TOTAL_REACTIVE_ENERGY_PULSES_PER_KW_HOUR)</td></tr>
 <tr class="memdesc:gacc50a34c2bda6b94c1ead390ae095167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines reactive energy pulse threshlod. <br /></td></tr>
 <tr class="separator:gacc50a34c2bda6b94c1ead390ae095167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93d74f976321411d6835a4557e948494"><td class="memItemLeft" align="right" valign="top"><a id="ga93d74f976321411d6835a4557e948494"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga93d74f976321411d6835a4557e948494">METROLOGY_DDS_BIT_RESOLUTION</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memdesc:ga93d74f976321411d6835a4557e948494"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines sin table bit resolution. <br /></td></tr>
+<tr class="separator:ga93d74f976321411d6835a4557e948494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a80d040da916a3156582133d6380eed"><td class="memItemLeft" align="right" valign="top"><a id="ga7a80d040da916a3156582133d6380eed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga7a80d040da916a3156582133d6380eed">METROLOGY_DDS_TABLE_RESOLUTION</a>&#160;&#160;&#160;24</td></tr>
+<tr class="memdesc:ga7a80d040da916a3156582133d6380eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines sin table resolution. <br /></td></tr>
+<tr class="separator:ga7a80d040da916a3156582133d6380eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"><td class="memItemLeft" align="right" valign="top"><a id="ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2">METROLOGY_DDS_STEPS</a>&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="group___metrology.html#ga93d74f976321411d6835a4557e948494">METROLOGY_DDS_BIT_RESOLUTION</a>)</td></tr>
+<tr class="memdesc:ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines steps in sin table. <br /></td></tr>
+<tr class="separator:ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5c5563bed76119ed6fe0fb535f03ea28"><td class="memItemLeft" align="right" valign="top"><a id="ga5c5563bed76119ed6fe0fb535f03ea28"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga5c5563bed76119ed6fe0fb535f03ea28">METROLOGY_DDS_BIT_SHIFT</a>&#160;&#160;&#160;(32 - 2 - <a class="el" href="group___metrology.html#ga93d74f976321411d6835a4557e948494">METROLOGY_DDS_BIT_RESOLUTION</a>)</td></tr>
+<tr class="memdesc:ga5c5563bed76119ed6fe0fb535f03ea28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines DDS bit shifted. <br /></td></tr>
+<tr class="separator:ga5c5563bed76119ed6fe0fb535f03ea28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafd1bc2335201775755766ec33aad6f60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gafd1bc2335201775755766ec33aad6f60">METROLOGY_IQ19_TO_MICROAMPS</a>&#160;&#160;&#160;_IQ19(1.9073486328125)</td></tr>
 <tr class="memdesc:gafd1bc2335201775755766ec33aad6f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines conversion factor from IQ19 to micro amps.  <a href="#gafd1bc2335201775755766ec33aad6f60">More...</a><br /></td></tr>
 <tr class="separator:gafd1bc2335201775755766ec33aad6f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -944,9 +960,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:gabce6343cd84e6de87e71c417213a7acb"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gabce6343cd84e6de87e71c417213a7acb">Metrology_getPhaseFundIOffset</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, <a class="el" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">PHASES</a> ph)</td></tr>
 <tr class="memdesc:gabce6343cd84e6de87e71c417213a7acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads phase fundamental current offset.  <a href="#gabce6343cd84e6de87e71c417213a7acb">More...</a><br /></td></tr>
 <tr class="separator:gabce6343cd84e6de87e71c417213a7acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab3663a24daeea499cdd38e02f822da59"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gab3663a24daeea499cdd38e02f822da59">Metrology_getPhaseCorrectionParameters</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, <a class="el" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">PHASES</a> ph)</td></tr>
-<tr class="memdesc:gab3663a24daeea499cdd38e02f822da59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads phase correction parameters.  <a href="#gab3663a24daeea499cdd38e02f822da59">More...</a><br /></td></tr>
-<tr class="separator:gab3663a24daeea499cdd38e02f822da59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga79d0a19be1ffa9e6a7a79dacb450802c"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga79d0a19be1ffa9e6a7a79dacb450802c">Metrology_getPhaseCorrectionParameters</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, <a class="el" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">PHASES</a> ph)</td></tr>
+<tr class="memdesc:ga79d0a19be1ffa9e6a7a79dacb450802c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads phase correction parameters.  <a href="#ga79d0a19be1ffa9e6a7a79dacb450802c">More...</a><br /></td></tr>
+<tr class="separator:ga79d0a19be1ffa9e6a7a79dacb450802c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3428d51c2ef57c60aede2306e5307fe0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga3428d51c2ef57c60aede2306e5307fe0">Metrology_getPhaseVRMSScaling</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, <a class="el" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">PHASES</a> ph)</td></tr>
 <tr class="memdesc:ga3428d51c2ef57c60aede2306e5307fe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads voltage scale factor.  <a href="#ga3428d51c2ef57c60aede2306e5307fe0">More...</a><br /></td></tr>
 <tr class="separator:ga3428d51c2ef57c60aede2306e5307fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1034,9 +1050,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:ga8f73c223f983ef81200a809b7075a701"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga8f73c223f983ef81200a809b7075a701">Metrology_setPhaseQOffset</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, int32_t data, <a class="el" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">PHASES</a> ph)</td></tr>
 <tr class="memdesc:ga8f73c223f983ef81200a809b7075a701"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update Phase reactive power offset.  <a href="#ga8f73c223f983ef81200a809b7075a701">More...</a><br /></td></tr>
 <tr class="separator:ga8f73c223f983ef81200a809b7075a701"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9aacf96f2d57ac434ba160c74246f16d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga9aacf96f2d57ac434ba160c74246f16d">Metrology_setPhaseOffset</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, int32_t data, <a class="el" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">PHASES</a> ph)</td></tr>
-<tr class="memdesc:ga9aacf96f2d57ac434ba160c74246f16d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update Phase calibration offset.  <a href="#ga9aacf96f2d57ac434ba160c74246f16d">More...</a><br /></td></tr>
-<tr class="separator:ga9aacf96f2d57ac434ba160c74246f16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa95294c06036cf78d569bc3b6cdaa0f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gaa95294c06036cf78d569bc3b6cdaa0f2">Metrology_setPhaseOffset</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, int16_t data, <a class="el" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">PHASES</a> ph)</td></tr>
+<tr class="memdesc:gaa95294c06036cf78d569bc3b6cdaa0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update Phase calibration offset.  <a href="#gaa95294c06036cf78d569bc3b6cdaa0f2">More...</a><br /></td></tr>
+<tr class="separator:gaa95294c06036cf78d569bc3b6cdaa0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga21850c9745cd17ab40709a97802dec65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga21850c9745cd17ab40709a97802dec65">Metrology_setNeutralIacOffset</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, int32_t data)</td></tr>
 <tr class="memdesc:ga21850c9745cd17ab40709a97802dec65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update Neutral current offset.  <a href="#ga21850c9745cd17ab40709a97802dec65">More...</a><br /></td></tr>
 <tr class="separator:ga21850c9745cd17ab40709a97802dec65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1073,12 +1089,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:ga57604026ac90ae6f3e62ce831f62a6fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga57604026ac90ae6f3e62ce831f62a6fb">Metrology_updateCalibrationData</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData)</td></tr>
 <tr class="memdesc:ga57604026ac90ae6f3e62ce831f62a6fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update calibration data.  <a href="#ga57604026ac90ae6f3e62ce831f62a6fb">More...</a><br /></td></tr>
 <tr class="separator:ga57604026ac90ae6f3e62ce831f62a6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac38db88031da3109861523870c979824"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gac38db88031da3109861523870c979824">Metrology_ddsSinLookup</a> (uint32_t phase)</td></tr>
+<tr class="memdesc:gac38db88031da3109861523870c979824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metrology sin lookup.  <a href="#gac38db88031da3109861523870c979824">More...</a><br /></td></tr>
+<tr class="separator:gac38db88031da3109861523870c979824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga99db09e1d05c351a8c1f04626c9d74fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga99db09e1d05c351a8c1f04626c9d74fe">Metrology_calculatePhaseReadings</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData, <a class="el" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">PHASES</a> ph)</td></tr>
 <tr class="memdesc:ga99db09e1d05c351a8c1f04626c9d74fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate phase parameters.  <a href="#ga99db09e1d05c351a8c1f04626c9d74fe">More...</a><br /></td></tr>
 <tr class="separator:ga99db09e1d05c351a8c1f04626c9d74fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga06bdac856958614521b13a12fe6d02cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc">Metrology_calculateThreePhaseParameters</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData)</td></tr>
 <tr class="memdesc:ga06bdac856958614521b13a12fe6d02cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate three phase parameters.  <a href="#ga06bdac856958614521b13a12fe6d02cc">More...</a><br /></td></tr>
 <tr class="separator:ga06bdac856958614521b13a12fe6d02cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71f443f99f1e52e3022a4f419cfa9093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093">Metrology_calculateTotalParameters</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData)</td></tr>
+<tr class="memdesc:ga71f443f99f1e52e3022a4f419cfa9093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate total parameters.  <a href="#ga71f443f99f1e52e3022a4f419cfa9093">More...</a><br /></td></tr>
+<tr class="separator:ga71f443f99f1e52e3022a4f419cfa9093"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga058718046af58da967607181e014bdd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga058718046af58da967607181e014bdd2">Metrology_calculateNeutralReadings</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData)</td></tr>
 <tr class="memdesc:ga058718046af58da967607181e014bdd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate neutral parameters.  <a href="#ga058718046af58da967607181e014bdd2">More...</a><br /></td></tr>
 <tr class="separator:ga058718046af58da967607181e014bdd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1307,9 +1329,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <tr class="memitem:ga27079dc46bd9843ec7f5d0a27a7ea1eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga27079dc46bd9843ec7f5d0a27a7ea1eb">Metrology_alignwithNVData</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData)</td></tr>
 <tr class="memdesc:ga27079dc46bd9843ec7f5d0a27a7ea1eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metrology Align with nv data.  <a href="#ga27079dc46bd9843ec7f5d0a27a7ea1eb">More...</a><br /></td></tr>
 <tr class="separator:ga27079dc46bd9843ec7f5d0a27a7ea1eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0eff6f7b27e9fab309d02b07c3e6267f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga0eff6f7b27e9fab309d02b07c3e6267f">Metrology_setPhaseCorrection</a> (<a class="el" href="structphase_correction.html">phaseCorrection</a> *phCorr, int correction)</td></tr>
-<tr class="memdesc:ga0eff6f7b27e9fab309d02b07c3e6267f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set phase Correction.  <a href="#ga0eff6f7b27e9fab309d02b07c3e6267f">More...</a><br /></td></tr>
-<tr class="separator:ga0eff6f7b27e9fab309d02b07c3e6267f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77569593b79c109dff0eedf069871221"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga77569593b79c109dff0eedf069871221">Metrology_setPhaseCorrection</a> (<a class="el" href="structphase_correction.html">phaseCorrection</a> *phCorr, int32_t correction)</td></tr>
+<tr class="memdesc:ga77569593b79c109dff0eedf069871221"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set phase Correction.  <a href="#ga77569593b79c109dff0eedf069871221">More...</a><br /></td></tr>
+<tr class="separator:ga77569593b79c109dff0eedf069871221"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga906c4159026d68656c338ab69ac3cc01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga906c4159026d68656c338ab69ac3cc01">Metrology_alignWithCalibrationData</a> (<a class="el" href="structmetrology_data.html">metrologyData</a> *workingData)</td></tr>
 <tr class="memdesc:ga906c4159026d68656c338ab69ac3cc01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metrology Align with calibration data.  <a href="#ga906c4159026d68656c338ab69ac3cc01">More...</a><br /></td></tr>
 <tr class="separator:ga906c4159026d68656c338ab69ac3cc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1323,6 +1345,10 @@ struct <a class="el" href="structinfo_mem.html">infoMem</a>&#160;</td><td class=
 <tr class="memitem:gacc2658ed800e17d0fdcb5b9356e9820c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcalibration_data.html">calibrationData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gacc2658ed800e17d0fdcb5b9356e9820c">calibrationDefaults</a></td></tr>
 <tr class="memdesc:gacc2658ed800e17d0fdcb5b9356e9820c"><td class="mdescLeft">&#160;</td><td class="mdescRight">structure to store default calibration parameters  <a href="#gacc2658ed800e17d0fdcb5b9356e9820c">More...</a><br /></td></tr>
 <tr class="separator:gacc2658ed800e17d0fdcb5b9356e9820c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6846d9a0cc6edbeb0b514bfd1272de7f"><td class="memItemLeft" align="right" valign="top"><a id="ga6846d9a0cc6edbeb0b514bfd1272de7f"></a>
+static const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga6846d9a0cc6edbeb0b514bfd1272de7f">sineTable</a> [<a class="el" href="group___metrology.html#ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2">METROLOGY_DDS_STEPS</a>+1]</td></tr>
+<tr class="memdesc:ga6846d9a0cc6edbeb0b514bfd1272de7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines First quarter Sine Table in Q(METROLOGY_DDS_TABLE_RESOLUTION-1) sin(x) for x = [0, PI/4] for ( i = 0; i &lt; METROLOGY_DDS_STEPS; i++ ) { sineTable[i] = sin(i * PI/(2 * METROLOGY_DDS_STEPS)) * 2^(METROLOGY_DDS_TABLE_RESOLUTION-1) }. <br /></td></tr>
+<tr class="separator:ga6846d9a0cc6edbeb0b514bfd1272de7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6d6e754004148b0a97cdcfe7d66c57e0"><td class="memItemLeft" align="right" valign="top"><a id="ga6d6e754004148b0a97cdcfe7d66c57e0"></a>
 const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga6d6e754004148b0a97cdcfe7d66c57e0">phase_shift_fir_coeffs</a> [<a class="el" href="group___metrology.html#ga222ae8f4b22aaa98bb2663c6f07a752f">PHASE_SHIFT_FIR_TABLE_ELEMENTS</a>][2]</td></tr>
 <tr class="memdesc:ga6d6e754004148b0a97cdcfe7d66c57e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">FIR coefficients to correct specific phase shift angles at 50 Hz and sampling 2000 times per second. There are 256 steps in this table. <br /></td></tr>
@@ -1337,7 +1363,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DEFAULT_BASE_PHASE_A_CORRECTION&#160;&#160;&#160;((int) (-2.4e-06f * SAMPLE_RATE * PHASE_SHIFT_FIR_TABLE_ELEMENTS))</td>
+          <td class="memname">#define DEFAULT_BASE_PHASE_A_CORRECTION&#160;&#160;&#160;((int) 0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1352,7 +1378,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DEFAULT_BASE_PHASE_B_CORRECTION&#160;&#160;&#160;((int) (-3.9e-06f * SAMPLE_RATE * PHASE_SHIFT_FIR_TABLE_ELEMENTS))</td>
+          <td class="memname">#define DEFAULT_BASE_PHASE_B_CORRECTION&#160;&#160;&#160;((int) 0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1367,7 +1393,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DEFAULT_BASE_PHASE_C_CORRECTION&#160;&#160;&#160;((int) (1.5e-06f * SAMPLE_RATE * PHASE_SHIFT_FIR_TABLE_ELEMENTS))</td>
+          <td class="memname">#define DEFAULT_BASE_PHASE_C_CORRECTION&#160;&#160;&#160;((int) 0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1382,7 +1408,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DEFAULT_BASE_NEUTRAL_PHASE_CORRECTION&#160;&#160;&#160;((int) (1.5e-06f * SAMPLE_RATE * PHASE_SHIFT_FIR_TABLE_ELEMENTS))</td>
+          <td class="memname">#define DEFAULT_BASE_NEUTRAL_PHASE_CORRECTION&#160;&#160;&#160;((int) 0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1580,7 +1606,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___metrology.html#ga33c453a2319179e39bb7284422a7e9d0">ACTIVE_POWER_SUPPORT</a>, <a class="el" href="structcurrent_d_p_set.html#a849e55c01ff42443d6962c1d536ee1a6">currentDPSet::activePower</a>, <a class="el" href="structphase_params.html#a06874ec2d66cc0682d475885ac3d9c1c">phaseParams::crossSum</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structcurrent_params.html#a3450a96b311dff7eeddf816343b1fff6">currentParams::currentEndStops</a>, <a class="el" href="structcurrent_d_p_set.html#a4959848181d590abeecc79948995f27b">currentDPSet::currentSq</a>, <a class="el" href="structphase_params.html#add425a02f840b43a7dbc091dad0de418">phaseParams::cycleDotProd</a>, <a class="el" href="structphase_params.html#a8fc15316fbcf4d70a379883dc2df38f0">phaseParams::cycleDpSet</a>, <a class="el" href="structcycle_phase_d_p_set.html#aaa9b406431303a13aafdae7005f5656a">cyclePhaseDPSet::cycleSampleCount</a>, <a class="el" href="structmains_params.html#af7347ac60de9272b4351a3531a25cc69">mainsParams::cycleSamples</a>, <a class="el" href="structphase_metrology.html#a583794924855e58182fd2b3964803292">phaseMetrology::cycleStatus</a>, <a class="el" href="structcycle_phase_d_p_set.html#acf0cb44c619f3fa6e37d6e41d2c50cd1">cyclePhaseDPSet::cycleVoltageSq</a>, <a class="el" href="structcurrent_params.html#a421b766000d68834e838ffc296351220">currentParams::dotProd</a>, <a class="el" href="structphase_params.html#a328d81266449b1fc4a46d37d5aa9f999">phaseParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structcurrent_d_p_set.html#a46c819135b041a0514cf172260b1a756">currentDPSet::FActivePower</a>, <a class="el" href="structphase_correction.html#a1dd523d8009a6dd8e9971dab4693671c">phaseCorrection::firBeta</a>, <a class="el" href="structcurrent_d_p_set.html#a43ef46acd69bc1a8ca8b4eb732145fe2">currentDPSet::FReactivePower</a>, <a class="el" href="group___metrology.html#ga2a23f7f8bfd00fc2a39ab562ae49360d">FREQUENCY_SUPPORT</a>, <a class="el" href="group___metrology.html#ga76f2445ffe29423ede204d8ec4ee6e2b">FUNDAMENTAL_ACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#ga55b6f4a76f0808576b4d693d45448a5b">FUNDAMENTAL_REACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gad07e45b1486a553deba44a9092d2c1a3">FUNDAMENTAL_VRMS_SUPPORT</a>, <a class="el" href="structvoltage_d_p_set.html#a9a1fd7744312d75e81ba49d0e74d6f4e">voltageDPSet::fVoltgaeSq</a>, <a class="el" href="group___metrology.html#ga84b49c6236a20e6a8329f095e301d065">I_ADC_MAX</a>, <a class="el" href="group___metrology.html#gae8b727ca42360b312bfaa5f0e2e49b76">I_ADC_MIN</a>, <a class="el" href="structcurrent_params.html#ab5ca6c88bca81001885de7ff88c2fb51">currentParams::I_dc_estimate</a>, <a class="el" href="structcurrent_params.html#af9044068216b3ad6124975f428074310">currentParams::IHistory</a>, <a class="el" href="group___metrology.html#gab62b63715ae9715ba9ec96ccb0ceeae8">IRMS_SUPPORT</a>, <a class="el" href="structphase_params.html#a68389498e30729d981c30fc2dcd4f307">phaseParams::lastVoltageSample</a>, <a class="el" href="group___metrology.html#gad1af0f47fa6cb2a8140954b44ec2883b">MAX_PER_SAMPLE_VOLTAGE_SLEW</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="group___metrology.html#ga4105c9e95b7d38715b0024599fb18517">metrology_dcFilter()</a>, <a class="el" href="group___metrology.html#gaa24e775d7d4ee56bad85bd90f038ac6b">METROLOGY_MAX_CYCLE_SAMPLES</a>, <a class="el" href="group___metrology.html#gga77bb3f25da2f7434577b32ec2b11a0b1aadc7a672b8f11f7838e132c947391f6e">OPERATING_MODE_NORMAL</a>, <a class="el" href="structmetrology_data.html#a8f23b3fded8b054d0e86070f841be6f1">metrologyData::operatingMode</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba21bf7d421176cf9a848758a630c61072">PHASE_STATUS_V_POS</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_params.html#ab2b203c5a456edd4b7fbf25ad1433d40">phaseParams::purePhase</a>, <a class="el" href="structphase_params.html#a895535c1a01f9f6059237c5873b7281d">phaseParams::purePhaseRate</a>, <a class="el" href="structcurrent_params.html#aab65a8050204ff6031d020f5acc08fa9">currentParams::quadratureCorrection</a>, <a class="el" href="structmetrology_data.html#a1a452b7ad9f22a7150d7216fbcedc02a">metrologyData::rawCurrentData</a>, <a class="el" href="structmetrology_data.html#a460697eef42ab031511b797f7e845c71">metrologyData::rawVoltageData</a>, <a class="el" href="group___metrology.html#ga015eb82732e0b2d79916434641da80f4">REACTIVE_POWER_SUPPORT</a>, <a class="el" href="structcurrent_d_p_set.html#a338e278bfb574197a9194ade29b9b69f">currentDPSet::reactivePower</a>, <a class="el" href="group___metrology.html#ga79ff78bac5b8d073d10cac9f919ff5fe">SAG_SWELL_SUPPORT</a>, <a class="el" href="structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a">currentDPSet::sampleCount</a>, <a class="el" href="structvoltage_d_p_set.html#a159d61a93006f5872745eb427f3397c8">voltageDPSet::sampleCount</a>, <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>, <a class="el" href="structphase_correction.html#aadc33447efebfb15c2eed6b47e709b19">phaseCorrection::step</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, <a class="el" href="group___metrology.html#gaa2ff3d73370237f6bf45c4175324b57f">V_ADC_MAX</a>, <a class="el" href="group___metrology.html#ga14d99e37d2e77ad7907f685a4dafb518">V_ADC_MIN</a>, <a class="el" href="structphase_params.html#a50ca630aa4a0944932d2e1f5cfb3df42">phaseParams::V_dc_estimate</a>, <a class="el" href="group___metrology.html#ga50e94c66dd5d5bd4677db586feebf5e4">V_HISTORY_MASK</a>, <a class="el" href="structphase_params.html#a8b8b70bcf3dc8cccbf3c45b20ccd44ae">phaseParams::vHistory</a>, <a class="el" href="structphase_params.html#a7c376b6f5f7d9d279d71aae0e60b2e3f">phaseParams::vHistoryIndex</a>, <a class="el" href="structphase_params.html#a55fcc810f4edd42c2de2b7749ea46e06">phaseParams::voltageEndStops</a>, <a class="el" href="structphase_params.html#a6d42dc03e651b2a97b2c4dc30b50521d">phaseParams::voltagePeriod</a>, <a class="el" href="structvoltage_d_p_set.html#ad168918d53a9a4a3609c503ee32b9a1b">voltageDPSet::voltageSq</a>, and <a class="el" href="group___metrology.html#gac745dc6f71ae6c042624514cb2d13f8d">VRMS_SUPPORT</a>.</p>
+<p>References <a class="el" href="group___metrology.html#ga33c453a2319179e39bb7284422a7e9d0">ACTIVE_POWER_SUPPORT</a>, <a class="el" href="structcurrent_d_p_set.html#a849e55c01ff42443d6962c1d536ee1a6">currentDPSet::activePower</a>, <a class="el" href="structphase_params.html#a06874ec2d66cc0682d475885ac3d9c1c">phaseParams::crossSum</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structcurrent_params.html#a3450a96b311dff7eeddf816343b1fff6">currentParams::currentEndStops</a>, <a class="el" href="structcurrent_d_p_set.html#a4959848181d590abeecc79948995f27b">currentDPSet::currentSq</a>, <a class="el" href="structphase_params.html#add425a02f840b43a7dbc091dad0de418">phaseParams::cycleDotProd</a>, <a class="el" href="structphase_params.html#a8fc15316fbcf4d70a379883dc2df38f0">phaseParams::cycleDpSet</a>, <a class="el" href="structcycle_phase_d_p_set.html#aaa9b406431303a13aafdae7005f5656a">cyclePhaseDPSet::cycleSampleCount</a>, <a class="el" href="structmains_params.html#af7347ac60de9272b4351a3531a25cc69">mainsParams::cycleSamples</a>, <a class="el" href="structphase_metrology.html#a583794924855e58182fd2b3964803292">phaseMetrology::cycleStatus</a>, <a class="el" href="structcycle_phase_d_p_set.html#acf0cb44c619f3fa6e37d6e41d2c50cd1">cyclePhaseDPSet::cycleVoltageSq</a>, <a class="el" href="structcurrent_params.html#a421b766000d68834e838ffc296351220">currentParams::dotProd</a>, <a class="el" href="structphase_params.html#a328d81266449b1fc4a46d37d5aa9f999">phaseParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structcurrent_d_p_set.html#a46c819135b041a0514cf172260b1a756">currentDPSet::FActivePower</a>, <a class="el" href="structphase_correction.html#a1dd523d8009a6dd8e9971dab4693671c">phaseCorrection::firBeta</a>, <a class="el" href="structcurrent_d_p_set.html#a43ef46acd69bc1a8ca8b4eb732145fe2">currentDPSet::FReactivePower</a>, <a class="el" href="group___metrology.html#ga2a23f7f8bfd00fc2a39ab562ae49360d">FREQUENCY_SUPPORT</a>, <a class="el" href="group___metrology.html#ga76f2445ffe29423ede204d8ec4ee6e2b">FUNDAMENTAL_ACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#ga55b6f4a76f0808576b4d693d45448a5b">FUNDAMENTAL_REACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gad07e45b1486a553deba44a9092d2c1a3">FUNDAMENTAL_VRMS_SUPPORT</a>, <a class="el" href="structvoltage_d_p_set.html#acf50729552f38fca3c2c4f5788651412">voltageDPSet::fVoltageSq</a>, <a class="el" href="group___metrology.html#ga84b49c6236a20e6a8329f095e301d065">I_ADC_MAX</a>, <a class="el" href="group___metrology.html#gae8b727ca42360b312bfaa5f0e2e49b76">I_ADC_MIN</a>, <a class="el" href="structcurrent_params.html#ab5ca6c88bca81001885de7ff88c2fb51">currentParams::I_dc_estimate</a>, <a class="el" href="structcurrent_params.html#af9044068216b3ad6124975f428074310">currentParams::IHistory</a>, <a class="el" href="group___metrology.html#gab62b63715ae9715ba9ec96ccb0ceeae8">IRMS_SUPPORT</a>, <a class="el" href="structphase_params.html#a68389498e30729d981c30fc2dcd4f307">phaseParams::lastVoltageSample</a>, <a class="el" href="group___metrology.html#gad1af0f47fa6cb2a8140954b44ec2883b">MAX_PER_SAMPLE_VOLTAGE_SLEW</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="group___metrology.html#ga4105c9e95b7d38715b0024599fb18517">metrology_dcFilter()</a>, <a class="el" href="group___metrology.html#gac38db88031da3109861523870c979824">Metrology_ddsSinLookup()</a>, <a class="el" href="group___metrology.html#gaa24e775d7d4ee56bad85bd90f038ac6b">METROLOGY_MAX_CYCLE_SAMPLES</a>, <a class="el" href="group___metrology.html#gga77bb3f25da2f7434577b32ec2b11a0b1aadc7a672b8f11f7838e132c947391f6e">OPERATING_MODE_NORMAL</a>, <a class="el" href="structmetrology_data.html#a8f23b3fded8b054d0e86070f841be6f1">metrologyData::operatingMode</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba21bf7d421176cf9a848758a630c61072">PHASE_STATUS_V_POS</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_params.html#a679be234f82cd0f15f9c48fed12b07bb">phaseParams::purePhase</a>, <a class="el" href="structphase_params.html#a895535c1a01f9f6059237c5873b7281d">phaseParams::purePhaseRate</a>, <a class="el" href="structcurrent_params.html#aab65a8050204ff6031d020f5acc08fa9">currentParams::quadratureCorrection</a>, <a class="el" href="structmetrology_data.html#a1a452b7ad9f22a7150d7216fbcedc02a">metrologyData::rawCurrentData</a>, <a class="el" href="structmetrology_data.html#a460697eef42ab031511b797f7e845c71">metrologyData::rawVoltageData</a>, <a class="el" href="group___metrology.html#ga015eb82732e0b2d79916434641da80f4">REACTIVE_POWER_SUPPORT</a>, <a class="el" href="structcurrent_d_p_set.html#a338e278bfb574197a9194ade29b9b69f">currentDPSet::reactivePower</a>, <a class="el" href="group___metrology.html#ga79ff78bac5b8d073d10cac9f919ff5fe">SAG_SWELL_SUPPORT</a>, <a class="el" href="structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a">currentDPSet::sampleCount</a>, <a class="el" href="structvoltage_d_p_set.html#a159d61a93006f5872745eb427f3397c8">voltageDPSet::sampleCount</a>, <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>, <a class="el" href="structphase_correction.html#aadc33447efebfb15c2eed6b47e709b19">phaseCorrection::step</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, <a class="el" href="group___metrology.html#gaa2ff3d73370237f6bf45c4175324b57f">V_ADC_MAX</a>, <a class="el" href="group___metrology.html#ga14d99e37d2e77ad7907f685a4dafb518">V_ADC_MIN</a>, <a class="el" href="structphase_params.html#a50ca630aa4a0944932d2e1f5cfb3df42">phaseParams::V_dc_estimate</a>, <a class="el" href="group___metrology.html#ga50e94c66dd5d5bd4677db586feebf5e4">V_HISTORY_MASK</a>, <a class="el" href="structphase_params.html#a8b8b70bcf3dc8cccbf3c45b20ccd44ae">phaseParams::vHistory</a>, <a class="el" href="structphase_params.html#a7c376b6f5f7d9d279d71aae0e60b2e3f">phaseParams::vHistoryIndex</a>, <a class="el" href="structphase_params.html#a55fcc810f4edd42c2de2b7749ea46e06">phaseParams::voltageEndStops</a>, <a class="el" href="structphase_params.html#a6d42dc03e651b2a97b2c4dc30b50521d">phaseParams::voltagePeriod</a>, <a class="el" href="structvoltage_d_p_set.html#ad168918d53a9a4a3609c503ee32b9a1b">voltageDPSet::voltageSq</a>, and <a class="el" href="group___metrology.html#gac745dc6f71ae6c042624514cb2d13f8d">VRMS_SUPPORT</a>.</p>
 
 <p>Referenced by <a class="el" href="group___t_i_d_a-010243.html#gaef108fc92eb7f83ec3e4a30cf24cca75">debugInit()</a>.</p>
 
@@ -1610,7 +1636,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___metrology.html#ga33c453a2319179e39bb7284422a7e9d0">ACTIVE_POWER_SUPPORT</a>, <a class="el" href="structphase_energy.html#a21db9180b094e9ab5f115d5ee66fc0f7">phaseEnergy::activeEnergyPulse</a>, <a class="el" href="struct_total_power_readings.html#a2672806f01366d8efb738ac30630cd87">TotalPowerReadings::activePower</a>, <a class="el" href="structtotal_params.html#a62bc22b1741410ad5a25d4a8ae7c0285">totalParams::energy</a>, <a class="el" href="group___metrology.html#ga2b9f2a550a1b2cf450dd70dcda3145ac">ENERGY_PULSE_DURATION</a>, <a class="el" href="structenergy_pulse.html#a4d7ef84f9ffb55c8eff46eac4f6a7a25">energyPulse::integrator</a>, <a class="el" href="structenergy_pulse.html#acddf91ff59b2769468902a60bc196965">energyPulse::pulseRemainingTime</a>, <a class="el" href="group___metrology.html#ga015eb82732e0b2d79916434641da80f4">REACTIVE_POWER_SUPPORT</a>, <a class="el" href="structphase_energy.html#ae4781f41058f5e09d370da5416c09f4a">phaseEnergy::reactiveEnergyPulse</a>, <a class="el" href="struct_total_power_readings.html#a4a54260ee761bbd23cd262bf5dcab72b">TotalPowerReadings::reactivePower</a>, <a class="el" href="structtotal_params.html#ac6cd3bbb3c8d2d186c19e5bb5d550ba9">totalParams::readings</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, <a class="el" href="group___metrology.html#ga923383ce984b79624739e562b7b291ca">TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD</a>, <a class="el" href="group___metrology.html#gacc50a34c2bda6b94c1ead390ae095167">TOTAL_REACTIVE_ENERGY_PULSE_THRESHOLD</a>, and <a class="el" href="structmetrology_data.html#a43a9cd09aefe84ccc65c3bdcaca76c71">metrologyData::totals</a>.</p>
+<p>References <a class="el" href="group___metrology.html#ga33c453a2319179e39bb7284422a7e9d0">ACTIVE_POWER_SUPPORT</a>, <a class="el" href="structphase_energy.html#a21db9180b094e9ab5f115d5ee66fc0f7">phaseEnergy::activeEnergyPulse</a>, <a class="el" href="struct_total_power_readings.html#a2672806f01366d8efb738ac30630cd87">TotalPowerReadings::activePower</a>, <a class="el" href="structtotal_params.html#a62bc22b1741410ad5a25d4a8ae7c0285">totalParams::energy</a>, <a class="el" href="group___metrology.html#ga2b9f2a550a1b2cf450dd70dcda3145ac">ENERGY_PULSE_DURATION</a>, <a class="el" href="structenergy_pulse.html#ac3d49fdf293ef2c086a2ad49733bf7e7">energyPulse::integrator</a>, <a class="el" href="structenergy_pulse.html#acddf91ff59b2769468902a60bc196965">energyPulse::pulseRemainingTime</a>, <a class="el" href="group___metrology.html#ga015eb82732e0b2d79916434641da80f4">REACTIVE_POWER_SUPPORT</a>, <a class="el" href="structphase_energy.html#ae4781f41058f5e09d370da5416c09f4a">phaseEnergy::reactiveEnergyPulse</a>, <a class="el" href="struct_total_power_readings.html#a4a54260ee761bbd23cd262bf5dcab72b">TotalPowerReadings::reactivePower</a>, <a class="el" href="structtotal_params.html#ac6cd3bbb3c8d2d186c19e5bb5d550ba9">totalParams::readings</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, <a class="el" href="group___metrology.html#ga923383ce984b79624739e562b7b291ca">TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD</a>, <a class="el" href="group___metrology.html#gacc50a34c2bda6b94c1ead390ae095167">TOTAL_REACTIVE_ENERGY_PULSE_THRESHOLD</a>, and <a class="el" href="structmetrology_data.html#a43a9cd09aefe84ccc65c3bdcaca76c71">metrologyData::totals</a>.</p>
 
 <p>Referenced by <a class="el" href="group___t_i_d_a-010243.html#gaef108fc92eb7f83ec3e4a30cf24cca75">debugInit()</a>.</p>
 
@@ -1818,7 +1844,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reactive Power in VAR (IQ13 format) </dd></dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structcurrent_params.html#a421b766000d68834e838ffc296351220">currentParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structphase_correction.html#a315831dbe557d2611b7b9136b90f1234">phaseCorrection::firGain</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba9cdf2986730f14dc156282bbf0c98de0">PHASE_STATUS_I_OVERRANGE</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba1fc0cf6bb20a88c8afd57c120f18f02e">PHASE_STATUS_V_OVERRANGE</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="group___metrology.html#gace218c2c0e01722c0479c87c04af67eb">POWER_OVERRANGE</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0">currentSensorCalibrationData::PscaleFactor</a>, <a class="el" href="structcurrent_d_p_set.html#a338e278bfb574197a9194ade29b9b69f">currentDPSet::reactivePower</a>, <a class="el" href="structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a">currentDPSet::sampleCount</a>, and <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structcurrent_params.html#a421b766000d68834e838ffc296351220">currentParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structphase_correction.html#a315831dbe557d2611b7b9136b90f1234">phaseCorrection::firGain</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba9cdf2986730f14dc156282bbf0c98de0">PHASE_STATUS_I_OVERRANGE</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba1fc0cf6bb20a88c8afd57c120f18f02e">PHASE_STATUS_V_OVERRANGE</a>, <a class="el" href="group___metrology.html#gace218c2c0e01722c0479c87c04af67eb">POWER_OVERRANGE</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0">currentSensorCalibrationData::PscaleFactor</a>, <a class="el" href="structcurrent_params.html#aab65a8050204ff6031d020f5acc08fa9">currentParams::quadratureCorrection</a>, <a class="el" href="structcurrent_d_p_set.html#a338e278bfb574197a9194ade29b9b69f">currentDPSet::reactivePower</a>, <a class="el" href="structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a">currentDPSet::sampleCount</a>, and <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>.</p>
 
 <p>Referenced by <a class="el" href="group___metrology.html#ga99db09e1d05c351a8c1f04626c9d74fe">Metrology_calculatePhaseReadings()</a>.</p>
 
@@ -1891,7 +1917,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Fundamental RMS Voltage in volts (IQ19 format) </dd></dl>
 
-<p>References <a class="el" href="structphase_params.html#a328d81266449b1fc4a46d37d5aa9f999">phaseParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structvoltage_d_p_set.html#a9a1fd7744312d75e81ba49d0e74d6f4e">voltageDPSet::fVoltgaeSq</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba1fc0cf6bb20a88c8afd57c120f18f02e">PHASE_STATUS_V_OVERRANGE</a>, <a class="el" href="group___metrology.html#gac594e9cd122229451d9f2aa517a674aa">RMS_VOLTAGE_OVERRANGE</a>, <a class="el" href="structvoltage_d_p_set.html#a159d61a93006f5872745eb427f3397c8">voltageDPSet::sampleCount</a>, <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>, <a class="el" href="structphase_calibration_data.html#ab4b4198746035ac2c11700b057ac9ee7">phaseCalibrationData::VFundamentalAcOffset</a>, and <a class="el" href="structphase_calibration_data.html#ad4c5ac69ef1c758f1af95ccc94896b31">phaseCalibrationData::VscaleFactor</a>.</p>
+<p>References <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structphase_params.html#a328d81266449b1fc4a46d37d5aa9f999">phaseParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structphase_correction.html#a315831dbe557d2611b7b9136b90f1234">phaseCorrection::firGain</a>, <a class="el" href="structvoltage_d_p_set.html#acf50729552f38fca3c2c4f5788651412">voltageDPSet::fVoltageSq</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba1fc0cf6bb20a88c8afd57c120f18f02e">PHASE_STATUS_V_OVERRANGE</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="group___metrology.html#gac594e9cd122229451d9f2aa517a674aa">RMS_VOLTAGE_OVERRANGE</a>, <a class="el" href="structvoltage_d_p_set.html#a159d61a93006f5872745eb427f3397c8">voltageDPSet::sampleCount</a>, <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>, <a class="el" href="structphase_calibration_data.html#ab4b4198746035ac2c11700b057ac9ee7">phaseCalibrationData::VFundamentalAcOffset</a>, and <a class="el" href="structphase_calibration_data.html#ad4c5ac69ef1c758f1af95ccc94896b31">phaseCalibrationData::VscaleFactor</a>.</p>
 
 <p>Referenced by <a class="el" href="group___metrology.html#ga99db09e1d05c351a8c1f04626c9d74fe">Metrology_calculatePhaseReadings()</a>.</p>
 
@@ -1975,7 +2001,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Fundamental Active Power in watts (IQ13 format) </dd></dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structcurrent_params.html#a421b766000d68834e838ffc296351220">currentParams::dotProd</a>, <a class="el" href="structphase_params.html#a328d81266449b1fc4a46d37d5aa9f999">phaseParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structcurrent_d_p_set.html#a46c819135b041a0514cf172260b1a756">currentDPSet::FActivePower</a>, <a class="el" href="structvoltage_d_p_set.html#a9a1fd7744312d75e81ba49d0e74d6f4e">voltageDPSet::fVoltgaeSq</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba9cdf2986730f14dc156282bbf0c98de0">PHASE_STATUS_I_OVERRANGE</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba1fc0cf6bb20a88c8afd57c120f18f02e">PHASE_STATUS_V_OVERRANGE</a>, <a class="el" href="group___metrology.html#gace218c2c0e01722c0479c87c04af67eb">POWER_OVERRANGE</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0">currentSensorCalibrationData::PscaleFactor</a>, <a class="el" href="structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a">currentDPSet::sampleCount</a>, and <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structcurrent_params.html#a421b766000d68834e838ffc296351220">currentParams::dotProd</a>, <a class="el" href="structphase_params.html#a328d81266449b1fc4a46d37d5aa9f999">phaseParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structcurrent_d_p_set.html#a46c819135b041a0514cf172260b1a756">currentDPSet::FActivePower</a>, <a class="el" href="structphase_correction.html#a315831dbe557d2611b7b9136b90f1234">phaseCorrection::firGain</a>, <a class="el" href="structvoltage_d_p_set.html#acf50729552f38fca3c2c4f5788651412">voltageDPSet::fVoltageSq</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba9cdf2986730f14dc156282bbf0c98de0">PHASE_STATUS_I_OVERRANGE</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba1fc0cf6bb20a88c8afd57c120f18f02e">PHASE_STATUS_V_OVERRANGE</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="group___metrology.html#gace218c2c0e01722c0479c87c04af67eb">POWER_OVERRANGE</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0">currentSensorCalibrationData::PscaleFactor</a>, <a class="el" href="structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a">currentDPSet::sampleCount</a>, and <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>.</p>
 
 <p>Referenced by <a class="el" href="group___metrology.html#ga99db09e1d05c351a8c1f04626c9d74fe">Metrology_calculatePhaseReadings()</a>.</p>
 
@@ -2017,7 +2043,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Fundamental Reactive Power in VAR (IQ13 format) </dd></dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structcurrent_params.html#a421b766000d68834e838ffc296351220">currentParams::dotProd</a>, <a class="el" href="structphase_params.html#a328d81266449b1fc4a46d37d5aa9f999">phaseParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structcurrent_d_p_set.html#a43ef46acd69bc1a8ca8b4eb732145fe2">currentDPSet::FReactivePower</a>, <a class="el" href="structvoltage_d_p_set.html#a9a1fd7744312d75e81ba49d0e74d6f4e">voltageDPSet::fVoltgaeSq</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba9cdf2986730f14dc156282bbf0c98de0">PHASE_STATUS_I_OVERRANGE</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba1fc0cf6bb20a88c8afd57c120f18f02e">PHASE_STATUS_V_OVERRANGE</a>, <a class="el" href="group___metrology.html#gace218c2c0e01722c0479c87c04af67eb">POWER_OVERRANGE</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0">currentSensorCalibrationData::PscaleFactor</a>, <a class="el" href="structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a">currentDPSet::sampleCount</a>, and <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structcurrent_params.html#a421b766000d68834e838ffc296351220">currentParams::dotProd</a>, <a class="el" href="structphase_params.html#a328d81266449b1fc4a46d37d5aa9f999">phaseParams::dotProd</a>, <a class="el" href="structphase_params.html#aa1bb31ebc5583b56adc2f0bf27831806">phaseParams::dpSet</a>, <a class="el" href="structphase_correction.html#a315831dbe557d2611b7b9136b90f1234">phaseCorrection::firGain</a>, <a class="el" href="structcurrent_d_p_set.html#a43ef46acd69bc1a8ca8b4eb732145fe2">currentDPSet::FReactivePower</a>, <a class="el" href="structvoltage_d_p_set.html#acf50729552f38fca3c2c4f5788651412">voltageDPSet::fVoltageSq</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba9cdf2986730f14dc156282bbf0c98de0">PHASE_STATUS_I_OVERRANGE</a>, <a class="el" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba1fc0cf6bb20a88c8afd57c120f18f02e">PHASE_STATUS_V_OVERRANGE</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="group___metrology.html#gace218c2c0e01722c0479c87c04af67eb">POWER_OVERRANGE</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0">currentSensorCalibrationData::PscaleFactor</a>, <a class="el" href="structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a">currentDPSet::sampleCount</a>, and <a class="el" href="structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e">phaseMetrology::status</a>.</p>
 
 <p>Referenced by <a class="el" href="group___metrology.html#ga99db09e1d05c351a8c1f04626c9d74fe">Metrology_calculatePhaseReadings()</a>.</p>
 
@@ -2522,7 +2548,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Mains Frequency (IQ15 format) </dd></dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structphase_params.html#aa89f26f30797ae20ae07dad5323f6797">phaseParams::interruptionLevel</a>, <a class="el" href="structphase_params.html#a9f9833dc255816d7606efeafbb1961a9">phaseParams::interruptionLevelHalf</a>, <a class="el" href="group___metrology.html#ga0eff6f7b27e9fab309d02b07c3e6267f">Metrology_setPhaseCorrection()</a>, <a class="el" href="group___metrology.html#ga20a5abd04abadd2ea4e7db10bcb920a0">MIN_SAG_VOLTAGE</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="structmains_params.html#a0cb018e8beb5c1bedb8988966e46fcc4">mainsParams::period</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe">currentSensorCalibrationData::phaseOffset</a>, <a class="el" href="structphase_params.html#a895535c1a01f9f6059237c5873b7281d">phaseParams::purePhaseRate</a>, <a class="el" href="structcurrent_params.html#aab65a8050204ff6031d020f5acc08fa9">currentParams::quadratureCorrection</a>, <a class="el" href="structphase_params.html#a6d42dc03e651b2a97b2c4dc30b50521d">phaseParams::voltagePeriod</a>, and <a class="el" href="structphase_calibration_data.html#ad4c5ac69ef1c758f1af95ccc94896b31">phaseCalibrationData::VscaleFactor</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="structphase_params.html#aa89f26f30797ae20ae07dad5323f6797">phaseParams::interruptionLevel</a>, <a class="el" href="structphase_params.html#a9f9833dc255816d7606efeafbb1961a9">phaseParams::interruptionLevelHalf</a>, <a class="el" href="group___metrology.html#ga77569593b79c109dff0eedf069871221">Metrology_setPhaseCorrection()</a>, <a class="el" href="group___metrology.html#ga20a5abd04abadd2ea4e7db10bcb920a0">MIN_SAG_VOLTAGE</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="structmains_params.html#a0cb018e8beb5c1bedb8988966e46fcc4">mainsParams::period</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe">currentSensorCalibrationData::phaseOffset</a>, <a class="el" href="structphase_params.html#a895535c1a01f9f6059237c5873b7281d">phaseParams::purePhaseRate</a>, <a class="el" href="structcurrent_params.html#aab65a8050204ff6031d020f5acc08fa9">currentParams::quadratureCorrection</a>, <a class="el" href="structphase_params.html#a6d42dc03e651b2a97b2c4dc30b50521d">phaseParams::voltagePeriod</a>, and <a class="el" href="structphase_calibration_data.html#ad4c5ac69ef1c758f1af95ccc94896b31">phaseCalibrationData::VscaleFactor</a>.</p>
 
 <p>Referenced by <a class="el" href="group___metrology.html#ga99db09e1d05c351a8c1f04626c9d74fe">Metrology_calculatePhaseReadings()</a>.</p>
 
@@ -2555,7 +2581,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>References <a class="el" href="structphase_readings.html#a3831fd482ee91286ee42dd65171f5ec1">phaseReadings::activePower</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_metrology.html#ac05ae8441f3bfa58297c57445a6f3c04">phaseMetrology::readings</a>, and <a class="el" href="group___metrology.html#ga8b5012541988d287b643de8ed48ef14a">TOTAL_RESIDUAL_POWER_CUTOFF</a>.</p>
 
-<p>Referenced by <a class="el" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc">Metrology_calculateThreePhaseParameters()</a>.</p>
+<p>Referenced by <a class="el" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093">Metrology_calculateTotalParameters()</a>.</p>
 
 </div>
 </div>
@@ -2586,7 +2612,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>References <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_readings.html#a9dc991a39af2393df798e1587e12235e">phaseReadings::reactivePower</a>, <a class="el" href="structphase_metrology.html#ac05ae8441f3bfa58297c57445a6f3c04">phaseMetrology::readings</a>, and <a class="el" href="group___metrology.html#ga8b5012541988d287b643de8ed48ef14a">TOTAL_RESIDUAL_POWER_CUTOFF</a>.</p>
 
-<p>Referenced by <a class="el" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc">Metrology_calculateThreePhaseParameters()</a>.</p>
+<p>Referenced by <a class="el" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093">Metrology_calculateTotalParameters()</a>.</p>
 
 </div>
 </div>
@@ -2617,7 +2643,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>References <a class="el" href="structphase_readings.html#af1df29dcdcd1503f224cb2a42d04f857">phaseReadings::apparentPower</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_metrology.html#ac05ae8441f3bfa58297c57445a6f3c04">phaseMetrology::readings</a>, and <a class="el" href="group___metrology.html#ga8b5012541988d287b643de8ed48ef14a">TOTAL_RESIDUAL_POWER_CUTOFF</a>.</p>
 
-<p>Referenced by <a class="el" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc">Metrology_calculateThreePhaseParameters()</a>.</p>
+<p>Referenced by <a class="el" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093">Metrology_calculateTotalParameters()</a>.</p>
 
 </div>
 </div>
@@ -2648,7 +2674,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>References <a class="el" href="structphase_readings.html#a9ba360bd3800c79636a1b014c732cc03">phaseReadings::FActivePower</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_metrology.html#ac05ae8441f3bfa58297c57445a6f3c04">phaseMetrology::readings</a>, and <a class="el" href="group___metrology.html#ga8b5012541988d287b643de8ed48ef14a">TOTAL_RESIDUAL_POWER_CUTOFF</a>.</p>
 
-<p>Referenced by <a class="el" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc">Metrology_calculateThreePhaseParameters()</a>.</p>
+<p>Referenced by <a class="el" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093">Metrology_calculateTotalParameters()</a>.</p>
 
 </div>
 </div>
@@ -2679,7 +2705,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>References <a class="el" href="structphase_readings.html#a0ea5c989c8765a91fb2f41823a12aaa2">phaseReadings::FReactivePower</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_metrology.html#ac05ae8441f3bfa58297c57445a6f3c04">phaseMetrology::readings</a>, and <a class="el" href="group___metrology.html#ga8b5012541988d287b643de8ed48ef14a">TOTAL_RESIDUAL_POWER_CUTOFF</a>.</p>
 
-<p>Referenced by <a class="el" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc">Metrology_calculateThreePhaseParameters()</a>.</p>
+<p>Referenced by <a class="el" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093">Metrology_calculateTotalParameters()</a>.</p>
 
 </div>
 </div>
@@ -2710,7 +2736,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>References <a class="el" href="structphase_readings.html#af5e7596893972616ca909b0dd3076288">phaseReadings::FApparentPower</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_metrology.html#ac05ae8441f3bfa58297c57445a6f3c04">phaseMetrology::readings</a>, and <a class="el" href="group___metrology.html#ga8b5012541988d287b643de8ed48ef14a">TOTAL_RESIDUAL_POWER_CUTOFF</a>.</p>
 
-<p>Referenced by <a class="el" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc">Metrology_calculateThreePhaseParameters()</a>.</p>
+<p>Referenced by <a class="el" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093">Metrology_calculateTotalParameters()</a>.</p>
 
 </div>
 </div>
@@ -2854,7 +2880,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Current vector sum in amps (IQ19 format) </dd></dl>
 
-<p>References <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_readings.html#a7585c443795dce14c9dd0ef7fb0011bd">phaseReadings::phasetoPhaseAngle</a>, <a class="el" href="structphase_metrology.html#ac05ae8441f3bfa58297c57445a6f3c04">phaseMetrology::readings</a>, and <a class="el" href="structphase_readings.html#a3a6a4607bd4d95c85a573bdddefabdb7">phaseReadings::RMSCurrent</a>.</p>
+<p>References <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="structphase_readings.html#a7585c443795dce14c9dd0ef7fb0011bd">phaseReadings::phasetoPhaseAngle</a>, <a class="el" href="structphase_readings.html#af13a7175df969e5780e69c29aa6df701">phaseReadings::powerFactorAngle</a>, <a class="el" href="structphase_metrology.html#ac05ae8441f3bfa58297c57445a6f3c04">phaseMetrology::readings</a>, and <a class="el" href="structphase_readings.html#a3a6a4607bd4d95c85a573bdddefabdb7">phaseReadings::RMSCurrent</a>.</p>
 
 <p>Referenced by <a class="el" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc">Metrology_calculateThreePhaseParameters()</a>.</p>
 
@@ -3560,14 +3586,14 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 </div>
 </div>
-<a id="gab3663a24daeea499cdd38e02f822da59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab3663a24daeea499cdd38e02f822da59">&sect;&nbsp;</a></span>Metrology_getPhaseCorrectionParameters()</h2>
+<a id="ga79d0a19be1ffa9e6a7a79dacb450802c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga79d0a19be1ffa9e6a7a79dacb450802c">&sect;&nbsp;</a></span>Metrology_getPhaseCorrectionParameters()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t Metrology_getPhaseCorrectionParameters </td>
+          <td class="memname">int16_t Metrology_getPhaseCorrectionParameters </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structmetrology_data.html">metrologyData</a> *&#160;</td>
           <td class="paramname"><em>workingData</em>, </td>
@@ -4147,7 +4173,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>, and <a class="el" href="structphase_calibration_data.html#a6c8915299252d21d977602a71c2cb24a">phaseCalibrationData::VacOffset</a>.</p>
+<p>References <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>, and <a class="el" href="structphase_calibration_data.html#a6c8915299252d21d977602a71c2cb24a">phaseCalibrationData::VacOffset</a>.</p>
 
 </div>
 </div>
@@ -4193,7 +4219,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>, and <a class="el" href="structphase_calibration_data.html#ab4b4198746035ac2c11700b057ac9ee7">phaseCalibrationData::VFundamentalAcOffset</a>.</p>
+<p>References <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>, and <a class="el" href="structphase_calibration_data.html#ab4b4198746035ac2c11700b057ac9ee7">phaseCalibrationData::VFundamentalAcOffset</a>.</p>
 
 </div>
 </div>
@@ -4239,7 +4265,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>, and <a class="el" href="structphase_calibration_data.html#a5cf7a7b5528159be0421670dd8d90e61">phaseCalibrationData::VinitialDcEstimate</a>.</p>
+<p>References <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>, and <a class="el" href="structphase_calibration_data.html#a5cf7a7b5528159be0421670dd8d90e61">phaseCalibrationData::VinitialDcEstimate</a>.</p>
 
 </div>
 </div>
@@ -4285,7 +4311,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>, and <a class="el" href="structphase_calibration_data.html#ad4c5ac69ef1c758f1af95ccc94896b31">phaseCalibrationData::VscaleFactor</a>.</p>
+<p>References <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>, and <a class="el" href="structphase_calibration_data.html#ad4c5ac69ef1c758f1af95ccc94896b31">phaseCalibrationData::VscaleFactor</a>.</p>
 
 </div>
 </div>
@@ -4331,7 +4357,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a0609c9f5912309c873c0338239b6c923">currentSensorCalibrationData::IacOffset</a>, and <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a0609c9f5912309c873c0338239b6c923">currentSensorCalibrationData::IacOffset</a>, and <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>.</p>
 
 </div>
 </div>
@@ -4377,7 +4403,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a814d5c43f020ab176489ad7282acf676">currentSensorCalibrationData::IFAcOffset</a>, and <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a814d5c43f020ab176489ad7282acf676">currentSensorCalibrationData::IFAcOffset</a>, and <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>.</p>
 
 </div>
 </div>
@@ -4423,7 +4449,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a2b5b567c945b0b8932e02648251b1237">currentSensorCalibrationData::IinitialDcEstimate</a>, and <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a2b5b567c945b0b8932e02648251b1237">currentSensorCalibrationData::IinitialDcEstimate</a>, and <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>.</p>
 
 </div>
 </div>
@@ -4469,7 +4495,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a99a72cfd561b6413d148ae8431f1ebd3">currentSensorCalibrationData::IscaleFactor</a>, and <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a99a72cfd561b6413d148ae8431f1ebd3">currentSensorCalibrationData::IscaleFactor</a>, and <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>.</p>
 
 </div>
 </div>
@@ -4515,7 +4541,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>, and <a class="el" href="structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0">currentSensorCalibrationData::PscaleFactor</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>, and <a class="el" href="structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0">currentSensorCalibrationData::PscaleFactor</a>.</p>
 
 </div>
 </div>
@@ -4561,7 +4587,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#ab4a5657c41b9089a52b88a8ef21695bb">currentSensorCalibrationData::FActivePowerOffset</a>, and <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#ab4a5657c41b9089a52b88a8ef21695bb">currentSensorCalibrationData::FActivePowerOffset</a>, and <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>.</p>
 
 </div>
 </div>
@@ -4607,7 +4633,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a3699883085a468d3868cfacd713fe60c">currentSensorCalibrationData::FReactivePowerOffset</a>, and <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#a3699883085a468d3868cfacd713fe60c">currentSensorCalibrationData::FReactivePowerOffset</a>, and <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>.</p>
 
 </div>
 </div>
@@ -4653,7 +4679,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structcurrent_sensor_calibration_data.html#a95b73ad08a54a4cfd60da84126ebd119">currentSensorCalibrationData::activePowerOffset</a>, <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, and <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>.</p>
+<p>References <a class="el" href="structcurrent_sensor_calibration_data.html#a95b73ad08a54a4cfd60da84126ebd119">currentSensorCalibrationData::activePowerOffset</a>, <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, and <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>.</p>
 
 </div>
 </div>
@@ -4699,12 +4725,12 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>, and <a class="el" href="structcurrent_sensor_calibration_data.html#a99d783fa06cf06838b7ef0e3df864e2d">currentSensorCalibrationData::reactivePowerOffset</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>, and <a class="el" href="structcurrent_sensor_calibration_data.html#a99d783fa06cf06838b7ef0e3df864e2d">currentSensorCalibrationData::reactivePowerOffset</a>.</p>
 
 </div>
 </div>
-<a id="ga9aacf96f2d57ac434ba160c74246f16d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9aacf96f2d57ac434ba160c74246f16d">&sect;&nbsp;</a></span>Metrology_setPhaseOffset()</h2>
+<a id="gaa95294c06036cf78d569bc3b6cdaa0f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa95294c06036cf78d569bc3b6cdaa0f2">&sect;&nbsp;</a></span>Metrology_setPhaseOffset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4718,7 +4744,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramtype">int16_t&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -4745,7 +4771,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe">currentSensorCalibrationData::phaseOffset</a>, and <a class="el" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7">calibrationData::phases</a>.</p>
+<p>References <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe">currentSensorCalibrationData::phaseOffset</a>, and <a class="el" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37">calibrationData::phases</a>.</p>
 
 </div>
 </div>
@@ -5195,6 +5221,37 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 </div>
 </div>
+<a id="gac38db88031da3109861523870c979824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac38db88031da3109861523870c979824">&sect;&nbsp;</a></span>Metrology_ddsSinLookup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t Metrology_ddsSinLookup </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>phase</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Metrology sin lookup. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">phase</td><td>The phase angle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>sinvalue </dd></dl>
+
+<p>References <a class="el" href="structmetrology_data.html#a81d30245ad80cac3dd0d1d7be1fe860a">metrologyData::activePulse</a>, <a class="el" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga4b486fecb727f909644cbc25d9047b49">HAL_writeGPIOPin()</a>, <a class="el" href="group___metrology.html#ga5c5563bed76119ed6fe0fb535f03ea28">METROLOGY_DDS_BIT_SHIFT</a>, <a class="el" href="group___metrology.html#ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2">METROLOGY_DDS_STEPS</a>, <a class="el" href="structmetrology_data.html#a9959ebf8ed9fa9334c54e94146a63be0">metrologyData::reactivePulse</a>, and <a class="el" href="group___metrology.html#ga6846d9a0cc6edbeb0b514bfd1272de7f">sineTable</a>.</p>
+
+<p>Referenced by <a class="el" href="group___metrology.html#ga4f1029d6a9758d19f1c588e47e0ba36b">Metrology_perSampleProcessing()</a>.</p>
+
+</div>
+</div>
 <a id="ga99db09e1d05c351a8c1f04626c9d74fe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga99db09e1d05c351a8c1f04626c9d74fe">&sect;&nbsp;</a></span>Metrology_calculatePhaseReadings()</h2>
 
@@ -5260,7 +5317,35 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="struct_total_power_readings.html#a2672806f01366d8efb738ac30630cd87">TotalPowerReadings::activePower</a>, <a class="el" href="group___metrology.html#ga4ff4d05468365abe778eb6afc92ffb75">AGGREGATE_POWER_FACTOR</a>, <a class="el" href="struct_total_power_readings.html#a4e6083a45b96bd40a7b94f26b18d98ac">TotalPowerReadings::apparentPower</a>, <a class="el" href="group___metrology.html#ga11142efe0be4eb8cbe3fa880a31654d1">calculateAggregatePowerfactor()</a>, <a class="el" href="group___metrology.html#ga182c8d1b453de038b214d19245d21a1d">calculateTotalActivePower()</a>, <a class="el" href="group___metrology.html#ga00f97e212ce611ccea5dc1340e040c7a">calculateTotalApparentPower()</a>, <a class="el" href="group___metrology.html#ga679227cb6e248d8f5d9d9f6df63075ad">calculateTotalFundamentalActivePower()</a>, <a class="el" href="group___metrology.html#ga381a98494928ebd1d4c39482857c0cc9">calculateTotalFundamentalApparentPower()</a>, <a class="el" href="group___metrology.html#gabd198bc803b8a53283a1bbc7f5bb8e97">calculateTotalFundamentalReactivePower()</a>, <a class="el" href="group___metrology.html#gad477a47f637fc4ce8c3cce49d151ebb4">calculateTotalReactivePower()</a>, <a class="el" href="group___metrology.html#gab3b0638bd327bc18ef2b7c41b4241a12">calculateVectorCurrentSum()</a>, <a class="el" href="group___metrology.html#gabfa69dc65f5f84041f6e40178d0b8972">CURRENT_VECTOR_SUM</a>, <a class="el" href="structtotal_params.html#a9caa3d156098dd0c47ec6e77906a8357">totalParams::currentVectorSum</a>, <a class="el" href="group___metrology.html#ga4eb12ef72cbb6908ee943c3fe05bb86c">FUNDAMENTAL_LINETOLINE_VOLTAGE_SUPPORT</a>, <a class="el" href="struct_total_power_readings.html#a8556b44086148384c17171ecac564d30">TotalPowerReadings::fundamentalActivePower</a>, <a class="el" href="struct_total_power_readings.html#ad1261d71a8a4d6719719ec57730fd6b9">TotalPowerReadings::fundamentalApparentPower</a>, <a class="el" href="struct_total_power_readings.html#a232c49934af6288153f6534e882579a5">TotalPowerReadings::fundamentalReactivePower</a>, <a class="el" href="group___metrology.html#gad7060abe6a56d7beee5aa193ee42628a">LINETOLINE_VOLTAGE_SUPPORT</a>, <a class="el" href="structtotal_params.html#a39dc8ef15a6390904c0250d986bce574">totalParams::powerFactor</a>, <a class="el" href="struct_total_power_readings.html#a4a54260ee761bbd23cd262bf5dcab72b">TotalPowerReadings::reactivePower</a>, <a class="el" href="group___metrology.html#gada0cef5ec2bfa5b1857d02f99f61c023">readFundamentalLinetoLineVoltage()</a>, <a class="el" href="structtotal_params.html#ac6cd3bbb3c8d2d186c19e5bb5d550ba9">totalParams::readings</a>, <a class="el" href="group___metrology.html#gae167738f8687e75ec3b390f46e18c53f">readLinetoLineVoltage()</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, <a class="el" href="group___metrology.html#ga4c8b621813cf477f21553c438edc3bde">TOTAL_ACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gae1d662329e79a3e498581e0e132ce75a">TOTAL_APPARENT_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gac0af39d11b6cdda96a92a60985362836">TOTAL_FUNDAMENTAL_ACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gaf4a35e5e6423beeec897259b555eb0c0">TOTAL_FUNDAMENTAL_APPARENT_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#ga716b4059d1aaa5434fef5d917505a12e">TOTAL_FUNDAMENTAL_REACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gac401d4af10aa28d29993b18935fccf6a">TOTAL_REACTIVE_POWER_SUPPORT</a>, and <a class="el" href="structmetrology_data.html#a43a9cd09aefe84ccc65c3bdcaca76c71">metrologyData::totals</a>.</p>
+<p>References <a class="el" href="group___metrology.html#ga4ff4d05468365abe778eb6afc92ffb75">AGGREGATE_POWER_FACTOR</a>, <a class="el" href="group___metrology.html#ga11142efe0be4eb8cbe3fa880a31654d1">calculateAggregatePowerfactor()</a>, <a class="el" href="group___metrology.html#gab3b0638bd327bc18ef2b7c41b4241a12">calculateVectorCurrentSum()</a>, <a class="el" href="group___metrology.html#gabfa69dc65f5f84041f6e40178d0b8972">CURRENT_VECTOR_SUM</a>, <a class="el" href="structtotal_params.html#a9caa3d156098dd0c47ec6e77906a8357">totalParams::currentVectorSum</a>, <a class="el" href="group___metrology.html#ga4eb12ef72cbb6908ee943c3fe05bb86c">FUNDAMENTAL_LINETOLINE_VOLTAGE_SUPPORT</a>, <a class="el" href="group___metrology.html#gad7060abe6a56d7beee5aa193ee42628a">LINETOLINE_VOLTAGE_SUPPORT</a>, <a class="el" href="structtotal_params.html#a39dc8ef15a6390904c0250d986bce574">totalParams::powerFactor</a>, <a class="el" href="group___metrology.html#gada0cef5ec2bfa5b1857d02f99f61c023">readFundamentalLinetoLineVoltage()</a>, <a class="el" href="group___metrology.html#gae167738f8687e75ec3b390f46e18c53f">readLinetoLineVoltage()</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, and <a class="el" href="structmetrology_data.html#a43a9cd09aefe84ccc65c3bdcaca76c71">metrologyData::totals</a>.</p>
+
+</div>
+</div>
+<a id="ga71f443f99f1e52e3022a4f419cfa9093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga71f443f99f1e52e3022a4f419cfa9093">&sect;&nbsp;</a></span>Metrology_calculateTotalParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Metrology_calculateTotalParameters </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structmetrology_data.html">metrologyData</a> *&#160;</td>
+          <td class="paramname"><em>workingData</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate total parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">workingData</td><td>The metrology instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="struct_total_power_readings.html#a2672806f01366d8efb738ac30630cd87">TotalPowerReadings::activePower</a>, <a class="el" href="struct_total_power_readings.html#a4e6083a45b96bd40a7b94f26b18d98ac">TotalPowerReadings::apparentPower</a>, <a class="el" href="group___metrology.html#ga182c8d1b453de038b214d19245d21a1d">calculateTotalActivePower()</a>, <a class="el" href="group___metrology.html#ga00f97e212ce611ccea5dc1340e040c7a">calculateTotalApparentPower()</a>, <a class="el" href="group___metrology.html#ga679227cb6e248d8f5d9d9f6df63075ad">calculateTotalFundamentalActivePower()</a>, <a class="el" href="group___metrology.html#ga381a98494928ebd1d4c39482857c0cc9">calculateTotalFundamentalApparentPower()</a>, <a class="el" href="group___metrology.html#gabd198bc803b8a53283a1bbc7f5bb8e97">calculateTotalFundamentalReactivePower()</a>, <a class="el" href="group___metrology.html#gad477a47f637fc4ce8c3cce49d151ebb4">calculateTotalReactivePower()</a>, <a class="el" href="struct_total_power_readings.html#a8556b44086148384c17171ecac564d30">TotalPowerReadings::fundamentalActivePower</a>, <a class="el" href="struct_total_power_readings.html#ad1261d71a8a4d6719719ec57730fd6b9">TotalPowerReadings::fundamentalApparentPower</a>, <a class="el" href="struct_total_power_readings.html#a232c49934af6288153f6534e882579a5">TotalPowerReadings::fundamentalReactivePower</a>, <a class="el" href="struct_total_power_readings.html#a4a54260ee761bbd23cd262bf5dcab72b">TotalPowerReadings::reactivePower</a>, <a class="el" href="structtotal_params.html#ac6cd3bbb3c8d2d186c19e5bb5d550ba9">totalParams::readings</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, <a class="el" href="group___metrology.html#ga4c8b621813cf477f21553c438edc3bde">TOTAL_ACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gae1d662329e79a3e498581e0e132ce75a">TOTAL_APPARENT_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gac0af39d11b6cdda96a92a60985362836">TOTAL_FUNDAMENTAL_ACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gaf4a35e5e6423beeec897259b555eb0c0">TOTAL_FUNDAMENTAL_APPARENT_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#ga716b4059d1aaa5434fef5d917505a12e">TOTAL_FUNDAMENTAL_REACTIVE_POWER_SUPPORT</a>, <a class="el" href="group___metrology.html#gac401d4af10aa28d29993b18935fccf6a">TOTAL_REACTIVE_POWER_SUPPORT</a>, and <a class="el" href="structmetrology_data.html#a43a9cd09aefe84ccc65c3bdcaca76c71">metrologyData::totals</a>.</p>
 
 </div>
 </div>
@@ -7996,14 +8081,14 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___metrology.html#ga4bce4a1aa5993e89a32dfd31e7a8fc72">calInfo</a>, <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="group___metrology.html#ga9998dbf894d070cfc0cc5ef28b5202ab">MAINS_NOMINAL_VOLTAGE_IQ19</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="group___metrology.html#ga0eff6f7b27e9fab309d02b07c3e6267f">Metrology_setPhaseCorrection()</a>, <a class="el" href="group___metrology.html#gga8645d99846aba3484e5fcb9a271b90c7afd4872f6e8bed9d07b7bc68a0be7c900">METROLOGY_STATUS_PHASE_VOLTAGE_OK</a>, <a class="el" href="structmetrology_data.html#a5a1081d62adca44e15efabd2050cf022">metrologyData::metrologyState</a>, <a class="el" href="group___metrology.html#ga20a5abd04abadd2ea4e7db10bcb920a0">MIN_SAG_VOLTAGE</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe">currentSensorCalibrationData::phaseOffset</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="group___metrology.html#ga6ba50e72ebfc669b26be3bad77ce4390">SAG_HYSTERESIS</a>, <a class="el" href="group___metrology.html#ga79ff78bac5b8d073d10cac9f919ff5fe">SAG_SWELL_SUPPORT</a>, <a class="el" href="group___metrology.html#ga76597ef75d90a82d2cd5cf9745a4f2e5">SAG_THRESHOLD</a>, <a class="el" href="structphase_params.html#a856b13d53b560ecc5f65e6225da7b506">phaseParams::sagMinVoltage</a>, <a class="el" href="structphase_params.html#ac9e7f98664a2b670cda80606b869bd1a">phaseParams::sagSwellState</a>, <a class="el" href="structphase_params.html#ab40db7dccaaf02a279dea064d99cec94">phaseParams::sagThresholdStart</a>, <a class="el" href="structphase_params.html#a6c0ebf9ca809a8d0b310abe92a050500">phaseParams::sagThresholdStop</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, <a class="el" href="group___metrology.html#ga080d20a08189e610bc7269a83241e31e">SWELL_HYSTERESIS</a>, <a class="el" href="group___metrology.html#ga9344d056ec5c1511d61cc7f4a8caf144">SWELL_THRESHOLD</a>, <a class="el" href="structphase_params.html#ac952dc08d2389082d1e0178d76ed1277">phaseParams::swellThresholdStart</a>, and <a class="el" href="structphase_params.html#a4e8ae6b4e2d79d94090f8b0812a958ef">phaseParams::swellThresholdStop</a>.</p>
+<p>References <a class="el" href="group___metrology.html#ga4bce4a1aa5993e89a32dfd31e7a8fc72">calInfo</a>, <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="group___metrology.html#ga9998dbf894d070cfc0cc5ef28b5202ab">MAINS_NOMINAL_VOLTAGE_IQ19</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="group___metrology.html#ga77569593b79c109dff0eedf069871221">Metrology_setPhaseCorrection()</a>, <a class="el" href="group___metrology.html#gga8645d99846aba3484e5fcb9a271b90c7afd4872f6e8bed9d07b7bc68a0be7c900">METROLOGY_STATUS_PHASE_VOLTAGE_OK</a>, <a class="el" href="structmetrology_data.html#a5a1081d62adca44e15efabd2050cf022">metrologyData::metrologyState</a>, <a class="el" href="group___metrology.html#ga20a5abd04abadd2ea4e7db10bcb920a0">MIN_SAG_VOLTAGE</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe">currentSensorCalibrationData::phaseOffset</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, <a class="el" href="group___metrology.html#ga6ba50e72ebfc669b26be3bad77ce4390">SAG_HYSTERESIS</a>, <a class="el" href="group___metrology.html#ga79ff78bac5b8d073d10cac9f919ff5fe">SAG_SWELL_SUPPORT</a>, <a class="el" href="group___metrology.html#ga76597ef75d90a82d2cd5cf9745a4f2e5">SAG_THRESHOLD</a>, <a class="el" href="structphase_params.html#a856b13d53b560ecc5f65e6225da7b506">phaseParams::sagMinVoltage</a>, <a class="el" href="structphase_params.html#ac9e7f98664a2b670cda80606b869bd1a">phaseParams::sagSwellState</a>, <a class="el" href="structphase_params.html#ab40db7dccaaf02a279dea064d99cec94">phaseParams::sagThresholdStart</a>, <a class="el" href="structphase_params.html#a6c0ebf9ca809a8d0b310abe92a050500">phaseParams::sagThresholdStop</a>, <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>, <a class="el" href="group___metrology.html#ga080d20a08189e610bc7269a83241e31e">SWELL_HYSTERESIS</a>, <a class="el" href="group___metrology.html#ga9344d056ec5c1511d61cc7f4a8caf144">SWELL_THRESHOLD</a>, <a class="el" href="structphase_params.html#ac952dc08d2389082d1e0178d76ed1277">phaseParams::swellThresholdStart</a>, and <a class="el" href="structphase_params.html#a4e8ae6b4e2d79d94090f8b0812a958ef">phaseParams::swellThresholdStop</a>.</p>
 
 <p>Referenced by <a class="el" href="group___metrology.html#ga04066c7fb6f252c45d9551551149dbd2">Metrology_init()</a>.</p>
 
 </div>
 </div>
-<a id="ga0eff6f7b27e9fab309d02b07c3e6267f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0eff6f7b27e9fab309d02b07c3e6267f">&sect;&nbsp;</a></span>Metrology_setPhaseCorrection()</h2>
+<a id="ga77569593b79c109dff0eedf069871221"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77569593b79c109dff0eedf069871221">&sect;&nbsp;</a></span>Metrology_setPhaseCorrection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -8017,7 +8102,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>correction</em>&#160;</td>
         </tr>
         <tr>
@@ -8067,7 +8152,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___metrology.html#ga4bce4a1aa5993e89a32dfd31e7a8fc72">calInfo</a>, <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="group___metrology.html#ga0eff6f7b27e9fab309d02b07c3e6267f">Metrology_setPhaseCorrection()</a>, <a class="el" href="structmetrology_data.html#adad1e40e77801e3dc6b1b26e1cda831f">metrologyData::neutral</a>, <a class="el" href="group___metrology.html#ga2b6e20c8dbd5b75ad926698738968403">NEUTRAL_MONITOR_SUPPORT</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="structneutral_metrology.html#af66ad501d5bc789b69289a0aa664b5d8">neutralMetrology::params</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="structneutral_params.html#a8588ac0e2bc92e9b5f634e1b0705a1f5">neutralParams::phaseCorrection</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe">currentSensorCalibrationData::phaseOffset</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, and <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>.</p>
+<p>References <a class="el" href="group___metrology.html#ga4bce4a1aa5993e89a32dfd31e7a8fc72">calInfo</a>, <a class="el" href="structphase_calibration_data.html#a7f11c3f77105130a7c8fde6e5337a763">phaseCalibrationData::current</a>, <a class="el" href="structphase_params.html#a7affc4a8710c68218bf0e3e33a3602b2">phaseParams::current</a>, <a class="el" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993">MAX_PHASES</a>, <a class="el" href="group___metrology.html#ga77569593b79c109dff0eedf069871221">Metrology_setPhaseCorrection()</a>, <a class="el" href="structmetrology_data.html#adad1e40e77801e3dc6b1b26e1cda831f">metrologyData::neutral</a>, <a class="el" href="group___metrology.html#ga2b6e20c8dbd5b75ad926698738968403">NEUTRAL_MONITOR_SUPPORT</a>, <a class="el" href="structphase_metrology.html#aabfada1124c0f4968752f2fb59f37184">phaseMetrology::params</a>, <a class="el" href="structneutral_metrology.html#af66ad501d5bc789b69289a0aa664b5d8">neutralMetrology::params</a>, <a class="el" href="structcurrent_params.html#a3ab766d1cb970ad51662bb9c4a82d206">currentParams::phaseCorrection</a>, <a class="el" href="structneutral_params.html#a8588ac0e2bc92e9b5f634e1b0705a1f5">neutralParams::phaseCorrection</a>, <a class="el" href="structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe">currentSensorCalibrationData::phaseOffset</a>, <a class="el" href="structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2">metrologyData::phases</a>, and <a class="el" href="structmetrology_data.html#ae964fccc98a7748b0b870253fe12a112">metrologyData::supportedParams</a>.</p>
 
 </div>
 </div>
@@ -8095,7 +8180,7 @@ const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

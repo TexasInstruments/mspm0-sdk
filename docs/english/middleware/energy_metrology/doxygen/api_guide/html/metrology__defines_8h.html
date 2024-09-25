@@ -72,7 +72,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">metrology_defines.h File Reference</div>  </div>
 </div><!--header-->
@@ -413,13 +415,29 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga93053651051fac50f2f1aa63611632fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines reactive energy pulses per kwh. <br /></td></tr>
 <tr class="separator:ga93053651051fac50f2f1aa63611632fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga923383ce984b79624739e562b7b291ca"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga923383ce984b79624739e562b7b291ca">TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD</a>&#160;&#160;&#160;_IQ13((<a class="el" href="group___metrology.html#gade7c2771fd05ff16b032e467db4d9981">ENERGY_100mWATT_HOUR_THRESHOLD</a> * 1000)/(<a class="el" href="group___metrology.html#ga90cb31ba6dd908e7c76153942b432c0d">TOTAL_ACTIVE_ENERGY_PULSES_PER_KW_HOUR</a> * 3600))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga923383ce984b79624739e562b7b291ca">TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD</a>&#160;&#160;&#160;((int64_t)<a class="el" href="group___metrology.html#gade7c2771fd05ff16b032e467db4d9981">ENERGY_100mWATT_HOUR_THRESHOLD</a> * 1000L * 8000L * 10000LL)/(TOTAL_ACTIVE_ENERGY_PULSES_PER_KW_HOUR)</td></tr>
 <tr class="memdesc:ga923383ce984b79624739e562b7b291ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines active energy pulse threshlod. <br /></td></tr>
 <tr class="separator:ga923383ce984b79624739e562b7b291ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacc50a34c2bda6b94c1ead390ae095167"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gacc50a34c2bda6b94c1ead390ae095167">TOTAL_REACTIVE_ENERGY_PULSE_THRESHOLD</a>&#160;&#160;&#160;_IQ13((<a class="el" href="group___metrology.html#gade7c2771fd05ff16b032e467db4d9981">ENERGY_100mWATT_HOUR_THRESHOLD</a> * 1000)/(<a class="el" href="group___metrology.html#ga93053651051fac50f2f1aa63611632fe">TOTAL_REACTIVE_ENERGY_PULSES_PER_KW_HOUR</a> * 3600))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gacc50a34c2bda6b94c1ead390ae095167">TOTAL_REACTIVE_ENERGY_PULSE_THRESHOLD</a>&#160;&#160;&#160;((int64_t)<a class="el" href="group___metrology.html#gade7c2771fd05ff16b032e467db4d9981">ENERGY_100mWATT_HOUR_THRESHOLD</a> * 1000L * 8000L * 10000LL)/(TOTAL_REACTIVE_ENERGY_PULSES_PER_KW_HOUR)</td></tr>
 <tr class="memdesc:gacc50a34c2bda6b94c1ead390ae095167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines reactive energy pulse threshlod. <br /></td></tr>
 <tr class="separator:gacc50a34c2bda6b94c1ead390ae095167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93d74f976321411d6835a4557e948494"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga93d74f976321411d6835a4557e948494">METROLOGY_DDS_BIT_RESOLUTION</a>&#160;&#160;&#160;8</td></tr>
+<tr class="memdesc:ga93d74f976321411d6835a4557e948494"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines sin table bit resolution. <br /></td></tr>
+<tr class="separator:ga93d74f976321411d6835a4557e948494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a80d040da916a3156582133d6380eed"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga7a80d040da916a3156582133d6380eed">METROLOGY_DDS_TABLE_RESOLUTION</a>&#160;&#160;&#160;24</td></tr>
+<tr class="memdesc:ga7a80d040da916a3156582133d6380eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines sin table resolution. <br /></td></tr>
+<tr class="separator:ga7a80d040da916a3156582133d6380eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2">METROLOGY_DDS_STEPS</a>&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="group___metrology.html#ga93d74f976321411d6835a4557e948494">METROLOGY_DDS_BIT_RESOLUTION</a>)</td></tr>
+<tr class="memdesc:ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines steps in sin table. <br /></td></tr>
+<tr class="separator:ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5c5563bed76119ed6fe0fb535f03ea28"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga5c5563bed76119ed6fe0fb535f03ea28">METROLOGY_DDS_BIT_SHIFT</a>&#160;&#160;&#160;(32 - 2 - <a class="el" href="group___metrology.html#ga93d74f976321411d6835a4557e948494">METROLOGY_DDS_BIT_RESOLUTION</a>)</td></tr>
+<tr class="memdesc:ga5c5563bed76119ed6fe0fb535f03ea28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines DDS bit shifted. <br /></td></tr>
+<tr class="separator:ga5c5563bed76119ed6fe0fb535f03ea28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -500,12 +518,25 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:gaed77a7c9b2819311be8e752edd17394b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gac38db88031da3109861523870c979824"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#gac38db88031da3109861523870c979824">Metrology_ddsSinLookup</a> (uint32_t phase)</td></tr>
+<tr class="memdesc:gac38db88031da3109861523870c979824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metrology sin lookup.  <a href="group___metrology.html#gac38db88031da3109861523870c979824">More...</a><br /></td></tr>
+<tr class="separator:gac38db88031da3109861523870c979824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga6846d9a0cc6edbeb0b514bfd1272de7f"><td class="memItemLeft" align="right" valign="top">
+static const int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___metrology.html#ga6846d9a0cc6edbeb0b514bfd1272de7f">sineTable</a> [<a class="el" href="group___metrology.html#ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2">METROLOGY_DDS_STEPS</a>+1]</td></tr>
+<tr class="memdesc:ga6846d9a0cc6edbeb0b514bfd1272de7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines First quarter Sine Table in Q(METROLOGY_DDS_TABLE_RESOLUTION-1) sin(x) for x = [0, PI/4] for ( i = 0; i &lt; METROLOGY_DDS_STEPS; i++ ) { sineTable[i] = sin(i * PI/(2 * METROLOGY_DDS_STEPS)) * 2^(METROLOGY_DDS_TABLE_RESOLUTION-1) }. <br /></td></tr>
+<tr class="separator:ga6846d9a0cc6edbeb0b514bfd1272de7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

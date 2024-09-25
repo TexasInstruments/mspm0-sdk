@@ -45,5 +45,3 @@ uartLIN1.tbitVal                          = 9.5;
 uartLIN1.profile                          = "CONFIG_PROFILE_1";
 uartLIN1.peripheral.rxPin.$assign         = "PA26";
 uartLIN1.peripheral.txPin.$assign         = "PA27";
-uartLIN1.txPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric0";
-uartLIN1.rxPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric1";

@@ -63,18 +63,21 @@ int main(void)
     controlGPIOPin gpioLED1(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
     controlGPIOPin gpioLED2(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_2_PIN);
     controlGPIOPin gpioLED3(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_3_PIN);
+    controlGPIOPin gpioUserTestPin(GPIO_LEDS_PORT, GPIO_LEDS_USER_TEST_PIN);
 
     /* Power on GPIO, initialize pins as digital outputs */
     SYSCFG_DL_init();
 
-    /* Default: LED1 and LED3 ON, LED2 OFF */
+    /* Default: LED1, LED3 and TestPin ON, LED2 OFF */
     gpioLED1.set();
     gpioLED2.clear();
     gpioLED3.set();
+    gpioUserTestPin.set();
     while (1) {
-        delay_cycles(10000000);
+        delay_cycles(CPUCLK_FREQ);
         gpioLED1.toggle();
         gpioLED2.toggle();
         gpioLED3.toggle();
+        gpioUserTestPin.toggle();
     }
 }

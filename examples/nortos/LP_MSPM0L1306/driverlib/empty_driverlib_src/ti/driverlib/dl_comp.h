@@ -246,9 +246,19 @@ typedef enum {
     /*! VREF selected as the reference source to DAC and DAC output applied
      * as reference to comparator */
     DL_COMP_REF_SOURCE_VREF_DAC = COMP_CTL2_REFSRC_VREF_DAC,
-    /*! VREF applied as reference to comparator. DAC is switched off. */
+    /*! VREF applied as reference to comparator. For some devices, DAC is
+     * switched off. Refer to the device datasheet for more information. */
     DL_COMP_REF_SOURCE_VREF = COMP_CTL2_REFSRC_VREF,
-
+    /*! VDDA is used as comparator reference. For some devices, DAC is
+     * switched off. Refer to the device datasheet for more information. */
+    DL_COMP_REF_SOURCE_VDDA = COMP_CTL2_REFSRC_VDDA,
+    /*! Internal reference selected as the reference source to the DAC and DAC
+     * output applied as reference to comparator */
+    DL_COMP_REF_SOURCE_INT_VREF_DAC = COMP_CTL2_REFSRC_INTVREF_DAC,
+#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
+    /*! Internal VREF used as reference source of comparator */
+    DL_COMP_REF_SOURCE_INT_VREF = COMP_CTL2_REFSRC_INTVREF,
+#endif
 } DL_COMP_REF_SOURCE;
 
 /*! @enum DL_COMP_REF_TERMINAL_SELECT */

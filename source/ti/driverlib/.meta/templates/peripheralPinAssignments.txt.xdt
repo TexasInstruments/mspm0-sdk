@@ -114,7 +114,7 @@
         }
     }
     /* Special Case of TimerFault module, get used pins */
-    if(Common.isDeviceM0G()){
+    if(Common.hasTimerA()){
         try{
             if(system.modules["/ti/driverlib/TIMERFault"].$instances){
                 for(let currentInstance of system.modules["/ti/driverlib/TIMERFault"].$instances){
@@ -152,6 +152,58 @@
         if(currentModule.$name == "/ti/driverlib/GPIO"){
             // do nothing, taken care of in outside case
         }
+        /* Special Case: Tamper IO pin filtering - only for MSPM0L122X_L222X family */
+        else if(currentModule == "/ti/driverlib/TAMPERIO"){
+            try{
+                /* Extract Current Instance resource name */
+                let readCurrentName = "TAMPER IO";
+                /* Initialize array of current instance pins*/
+                readUsed[readCurrentName] = [];
+                /* Iterate through current instance pins */
+                if(system.modules[currentModule].moduleStatic.pinmuxRequirements){
+                    if(system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)){
+                        for(let currentResource of system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)){
+                            /* Condition: skip the peripheral resource for text generation */
+                            if(currentResource.name !== "peripheral"){
+                                let pinWithResource = "";
+                                pinWithResource += currentResource.displayName + ": "
+                                pinWithResource += system.modules[currentModule].$static[currentResource.name].$solution.devicePinName;
+                                readUsed[readCurrentName].push(pinWithResource);
+                            }
+                        }
+                    }
+                }
+            }catch (e) {
+                // do nothing
+            }
+        }
+        /* Get used pins from static modules */
+        else if(system.modules[currentModule].moduleStatic){
+            /* Extract Current Instance resource name */
+            let readCurrentName = "";
+            try{
+                readCurrentName = system.modules[currentModule].displayName;
+            }catch (e) {
+                // do nothing
+            }
+            /* Initialize array of current instance pins*/
+            readUsed[readCurrentName] = [];
+            /* Iterate through current instance pins */
+            if(system.modules[currentModule].moduleStatic.pinmuxRequirements){
+                if(system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)[0]){
+                    for(let currentResource of system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)[0].resources){
+                        // Extract pin with resource name for per-instance pin list */
+                        if(readCurrentName.length>0){
+                            let pinWithResource = "";
+                            pinWithResource += currentResource.displayName + ": "
+                            pinWithResource += system.modules[currentModule].$static.peripheral[currentResource.name].$solution.devicePinName;
+                            readUsed[readCurrentName].push(pinWithResource);
+                        }
+
+                    }
+                }
+            }
+        }
         /* Get used pins from non-static modules */
         else if(system.modules[currentModule].$instances){
             for(let currentInstance of system.modules[currentModule].$instances){
@@ -176,33 +228,6 @@
                                 readUsed[readCurrentName].push(pinWithResource);
                             }
                         }
-                    }
-                }
-            }
-        }
-        /* Get used pins from static modules */
-        if(system.modules[currentModule].moduleStatic){
-            /* Extract Current Instance resource name */
-            let readCurrentName = "";
-            try{
-                readCurrentName = system.modules[currentModule].displayName;
-            }catch (e) {
-                // do nothing
-            }
-            /* Initialize array of current instance pins*/
-            readUsed[readCurrentName] = [];
-            /* Iterate through current instance pins */
-            if(system.modules[currentModule].moduleStatic.pinmuxRequirements){
-                if(system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)[0]){
-                    for(let currentResource of system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)[0].resources){
-                        // Extract pin with resource name for per-instance pin list */
-                        if(readCurrentName.length>0){
-                            let pinWithResource = "";
-                            pinWithResource += currentResource.displayName + ": "
-                            pinWithResource += system.modules[currentModule].$static.peripheral[currentResource.name].$solution.devicePinName;
-                            readUsed[readCurrentName].push(pinWithResource);
-                        }
-
                     }
                 }
             }
@@ -277,8 +302,8 @@
             readUsedPrint += nameToAdd;
             if(readUsed[key].length > 0)
             for(var pin of readUsed[key]){
-               readUsedPrint += ("\n\t+ "+pin+"");
-           }
+                readUsedPrint += ("\n\t+ "+pin+"");
+            }
         }
     }
 %%}

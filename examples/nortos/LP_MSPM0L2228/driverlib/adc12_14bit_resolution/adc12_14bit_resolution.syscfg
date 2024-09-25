@@ -1,0 +1,40 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                          = "ADC12_0";
+ADC121.repeatMode                     = true;
+ADC121.adcMem0chansel                 = "DL_ADC12_INPUT_CHAN_2";
+ADC121.adcMem0avgen                   = true;
+ADC121.hwNumerator                    = "DL_ADC12_HW_AVG_NUM_ACC_16";
+ADC121.sampleTime0                    = "62.5ns";
+ADC121.hwDenominator                  = "DL_ADC12_HW_AVG_DEN_DIV_BY_4";
+ADC121.powerDownMode                  = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.enabledInterrupts              = ["DL_ADC12_INTERRUPT_DMA_DONE"];
+ADC121.configureDMA                   = true;
+ADC121.sampCnt                        = 1;
+ADC121.enabledDMATriggers             = ["DL_ADC12_DMA_MEM0_RESULT_LOADED"];
+ADC121.peripheral.$assign             = "ADC0";
+ADC121.peripheral.adcPin2.$assign     = "PA25";
+ADC121.DMA_CHANNEL.$name              = "DMA_CH0";
+ADC121.DMA_CHANNEL.addressMode        = "f2b";
+ADC121.DMA_CHANNEL.srcLength          = "HALF_WORD";
+ADC121.DMA_CHANNEL.dstLength          = "HALF_WORD";
+ADC121.DMA_CHANNEL.transferMode       = "FULL_CH_REPEAT_SINGLE";
+ADC121.DMA_CHANNEL.peripheral.$assign = "DMA_CH0";
+
+SYSCTL.clockTreeEn = true;

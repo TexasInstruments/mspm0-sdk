@@ -2260,7 +2260,7 @@ config = config.concat([
                     if(inst.sampleTime0Actual === NaN){
                         return 0;
                     }
-                    let samplingCycles = inst.sampleTime0Actual*inst.sampleClk_Freq;
+                    let samplingCycles = Math.round(inst.sampleTime0Actual*inst.sampleClk_Freq);
                     return samplingCycles
                 }
             },

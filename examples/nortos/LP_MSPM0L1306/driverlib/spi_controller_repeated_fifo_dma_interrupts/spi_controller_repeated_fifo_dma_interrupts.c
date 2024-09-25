@@ -96,14 +96,13 @@ void SPI_send(void)
     DL_DMA_setSrcAddr(DMA, DMA_CH1_CHAN_ID, (uint32_t)(&SPI_0_INST->RXDATA));
     DL_DMA_setDestAddr(DMA, DMA_CH1_CHAN_ID, (uint32_t) &gRxPacket[0]);
     DL_DMA_setTransferSize(DMA, DMA_CH1_CHAN_ID, SPI_PACKET_SIZE);
-    DL_DMA_enableChannel(DMA, DMA_CH1_CHAN_ID);
 
     /*
      * The SPI TX interrupt is already set, indicating the SPI is ready to
      * transmit data, so enabling the DMA will start the transfer
      */
     DL_DMA_enableChannel(DMA, DMA_CH0_CHAN_ID);
-
+    DL_DMA_enableChannel(DMA, DMA_CH1_CHAN_ID);
     /*
      * Wait in SLEEP mode until SPI_PACKET_SIZE bytes have been transferred
      * from gTxPacket to the SPI TXFIFO, and the DMA interrupt is triggered
@@ -127,11 +126,10 @@ void SPI_send(void)
     while (false == gDMARXDataTransferred) {
         __WFE();
     }
-
     /*
      * Optional SW breakpoint to check results.
      * If this example is used with the
-     * spi_peripheral_repeated_multibyte_fifo_dma_interruptsexample,
+     * spi_peripheral_repeated_fifo_dma_interrupts example,
      * the expected data that will be received in gRxPacket is
      * {'x', 0x2, 0x3, 0x4}, where 'x' starts at 0x0 and
      * should increment every time the Peripheral example
@@ -171,7 +169,8 @@ void TIMER_0_INST_IRQHandler(void)
     switch (DL_Timer_getPendingInterrupt(TIMER_0_INST)) {
         case DL_TIMER_IIDX_ZERO:
             gTransmitReady = true;
-            DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
             break;
         default:
             break;

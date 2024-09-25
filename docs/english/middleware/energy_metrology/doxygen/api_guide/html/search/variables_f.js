@@ -11,6 +11,7 @@ var searchData=
   ['samplecount',['sampleCount',['../structcurrent_d_p_set.html#a735fd2033ef76155b3d01f957bf2f28a',1,'currentDPSet::sampleCount()'],['../structvoltage_d_p_set.html#a159d61a93006f5872745eb427f3397c8',1,'voltageDPSet::sampleCount()'],['../structneutral_d_p_set.html#a1e99693fd54bfeb4014411d8451ac0ce',1,'neutralDPSet::sampleCount()']]],
   ['seg_5fa',['seg_a',['../structinfo_mem.html#ad8b59fd4d04d05ad6b35f8bfa8fb349e',1,'infoMem']]],
   ['sincelast',['sinceLast',['../structphase_params.html#a3301f764a3f7a95d47f04781a8ab334b',1,'phaseParams']]],
+  ['sinetable',['sineTable',['../group___metrology.html#ga6846d9a0cc6edbeb0b514bfd1272de7f',1,'metrology_defines.h']]],
   ['spichan',['spiChan',['../struct_a_d_s___instance.html#a2dc0742d96b2eebf5a91582a6f66f3cd',1,'ADS_Instance']]],
   ['spics',['spiCs',['../struct_a_d_s___instance.html#a5ef2bb0c7a00b805543f6b9022f9c200',1,'ADS_Instance']]],
   ['status',['status',['../structphase_metrology.html#a3e562cc7e285fca8633726dac08aef3e',1,'phaseMetrology::status()'],['../structneutral_metrology.html#ae99978e998f5d06b91ceb6ca1758f134',1,'neutralMetrology::status()']]],

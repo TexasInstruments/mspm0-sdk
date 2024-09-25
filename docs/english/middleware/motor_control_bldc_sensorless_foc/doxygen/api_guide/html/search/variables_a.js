@@ -1,12 +1,18 @@
 var searchData=
 [
-  ['maxfreq',['maxFreq',['../struct_r_m_p_c_n_t_l___p_a_r_a.html#a448208c00f95c5cd9299ef09a732c4b6',1,'RMPCNTL_PARA::maxFreq()'],['../struct_u_s_e_r___p_a_r_a_m_s.html#ab2883e17e375918566b6917e6b4f667b',1,'USER_PARAMS::maxFreq()']]],
-  ['memidx',['memIDX',['../struct_h_a_l___a_d_c.html#aee779d95d6324df953048a3c001fd5ab',1,'HAL_ADC']]],
-  ['mfuncc1',['MfuncC1',['../struct_p_w_m_g_e_n___instance.html#a2ed958e195bb536a3447d2253516e2df',1,'PWMGEN_Instance']]],
-  ['mfuncc2',['MfuncC2',['../struct_p_w_m_g_e_n___instance.html#a1b25e0f67cca55c2f7d7f34817c9dea4',1,'PWMGEN_Instance']]],
-  ['mfuncc3',['MfuncC3',['../struct_p_w_m_g_e_n___instance.html#aa9c217a5acb9e9a2072664b7e524d8d2',1,'PWMGEN_Instance']]],
-  ['mfuncv1',['MfuncV1',['../struct_p_h_a_s_e_v_o_l_t___instance.html#a314973148467e57292059cf24645e6d7',1,'PHASEVOLT_Instance']]],
-  ['mfuncv2',['MfuncV2',['../struct_p_h_a_s_e_v_o_l_t___instance.html#abd2346d77a8055facee0403cfd2fdc42',1,'PHASEVOLT_Instance']]],
-  ['mfuncv3',['MfuncV3',['../struct_p_h_a_s_e_v_o_l_t___instance.html#aa1cad42b814b8ce4a92b676304ee9278',1,'PHASEVOLT_Instance']]],
-  ['motorstate',['motorState',['../struct_c_o_m_m_a_n_d.html#aca3b05dc89f3374b77d4a198c9902fbd',1,'COMMAND::motorState()'],['../struct_s_t_a_t_u_s___r_e_g_s.html#a607fff0fe7db68b0ceb10e3e5a16429c',1,'STATUS_REGS::motorState()']]]
+  ['l0dt',['L0Dt',['../struct_m_o_t_o_r___t.html#a0abd8f0c2299698d8adff8b1ad1d4caa',1,'MOTOR_T']]],
+  ['l0microhenry',['L0MicroHenry',['../struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#ac4d6d2a45ef00ec753670e7ced544835',1,'USER_INPUTS_INTERFACE_T']]],
+  ['l1dt',['L1Dt',['../struct_m_o_t_o_r___t.html#a67f87ded686f55c1d4dc8491c01fe322',1,'MOTOR_T']]],
+  ['lddt',['LdDt',['../struct_m_o_t_o_r___t.html#afb6973d64811109d6c16c8fe16f4749d',1,'MOTOR_T']]],
+  ['ldmicrohenry',['LdMicroHenry',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a11be28f0438d721d106618ff8128c693',1,'USER_INPUTS_T']]],
+  ['len',['len',['../struct_buffer_info.html#ace30fe5affc4757504df8d91053ce27e',1,'BufferInfo']]],
+  ['lock1en',['lock1En',['../structuser_input_fault_cfg2.html#a1f5f0b4582cbc333a811def546ce54b0',1,'userInputFaultCfg2']]],
+  ['lock2en',['lock2En',['../structuser_input_fault_cfg2.html#ad3534793d76fe263506da2c312d34283',1,'userInputFaultCfg2']]],
+  ['lock3en',['lock3En',['../structuser_input_fault_cfg2.html#a4567ed5d534e4710d7ea9fff5099d8fa',1,'userInputFaultCfg2']]],
+  ['lockabnspeed',['lockAbnSpeed',['../structuser_input_fault_cfg2.html#ad9ee9adfb8fe0b797407011c4892bb15',1,'userInputFaultCfg2']]],
+  ['lockretry',['lockRetry',['../structuser_input_fault_cfg1.html#ac2356010b75fa9442fe20a6f6ab944b0',1,'userInputFaultCfg1']]],
+  ['lowbemfemagthresholdpermil',['lowBemfEmagThresholdPerMil',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#ae02c8fe4d5fc222b69752c71a12ef11f',1,'USER_INPUTS_T']]],
+  ['lowbemfstalldetectenable',['lowBemfStallDetectEnable',['../structmodule_enable_flags.html#af05fdcaf7126f5a184337c69d9cab745',1,'moduleEnableFlags']]],
+  ['lqdt',['LqDt',['../struct_m_o_t_o_r___t.html#a3e8359f98530252a5bc772d4c7c08166',1,'MOTOR_T']]],
+  ['lqmicrohenry',['LqMicroHenry',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a8246b50528f09de342bdabe92724cbfd',1,'USER_INPUTS_T']]]
 ];

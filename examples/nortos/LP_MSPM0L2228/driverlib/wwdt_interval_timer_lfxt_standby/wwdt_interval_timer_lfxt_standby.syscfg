@@ -1,0 +1,50 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const WWDT   = scripting.addModule("/ti/driverlib/WWDT", {}, false);
+const WWDT1  = WWDT.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const mux5       = system.clockTree["EXLFMUX"];
+mux5.inputSelect = "EXLFMUX_XTAL";
+
+const mux9       = system.clockTree["LFXTMUX"];
+mux9.inputSelect = "LFXTMUX_TRUE";
+
+const pinFunction6     = system.clockTree["LFXT"];
+pinFunction6.enable    = true;
+pinFunction6.inputFreq = 32;
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].assignedPin         = "21";
+GPIO1.associatedPins[1].initialValue        = "SET";
+
+SYSCTL.powerPolicy = "STANDBY0";
+SYSCTL.LFCLKSource = "LFXT";
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
+
+WWDT1.$name             = "WWDT0";
+WWDT1.enabledInterrupts = true;
+WWDT1.wwdtMode          = "INTERVAL";
+WWDT1.sleepMode         = true;

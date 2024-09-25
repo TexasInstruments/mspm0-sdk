@@ -285,13 +285,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     DL_`flavorCat`_setCounterControl(`inst.$name`_INST,
         DL_TIMER_CZC_CCCTL0_ZCOND,
         DL_TIMER_CAC_CCCTL0_ACOND,
-        DL_TIMER_CLC_CCCTL0_LCOND,
+        DL_TIMER_CLC_CCCTL0_LCOND
     );
 %}else{
     DL_`flavorCat`_setCounterControl(`inst.$name`_INST,
         DL_TIMER_CZC_CCCTL`chToZero`_ZCOND,
         DL_TIMER_CAC_CCCTL`chToZero`_ACOND,
-        DL_TIMER_CLC_CCCTL`chToZero`_LCOND,
+        DL_TIMER_CLC_CCCTL`chToZero`_LCOND
     );
 %}
 

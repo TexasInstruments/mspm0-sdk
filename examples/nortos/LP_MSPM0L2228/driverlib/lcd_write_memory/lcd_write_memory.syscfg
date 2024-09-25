@@ -1,0 +1,85 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+
+/**
+ * Import the modules used in this configuration.
+ */
+const LCD           = scripting.addModule("/ti/driverlib/LCD");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+LCD.freqDiv                                     = 4;
+LCD.biasVSource                                 = "AVDD";
+LCD.pumpFreq                                    = "1024HZ";
+LCD.biasEnable                                  = true;
+LCD.associatedCOM.create(4);
+LCD.associatedCOM[0].$name                      = "LCD_COM_0";
+LCD.associatedCOM[0].peripheral.LCDCom.$assign  = "PB24";
+LCD.associatedCOM[1].$name                      = "LCD_COM_1";
+LCD.associatedCOM[1].peripheral.LCDCom.$assign  = "PB25";
+LCD.associatedCOM[2].$name                      = "LCD_COM_2";
+LCD.associatedCOM[2].peripheral.LCDCom.$assign  = "PB26";
+LCD.associatedCOM[3].$name                      = "LCD_COM_3";
+LCD.associatedCOM[3].peripheral.LCDCom.$assign  = "PB27";
+LCD.associatedSEG.create(24);
+LCD.associatedSEG[0].$name                      = "LCD_SEGMENT_LINE_58";
+LCD.associatedSEG[0].peripheral.LCDSeg.$assign  = "PC9";
+LCD.associatedSEG[1].$name                      = "LCD_SEGMENT_LINE_57";
+LCD.associatedSEG[1].peripheral.LCDSeg.$assign  = "PC8";
+LCD.associatedSEG[2].$name                      = "LCD_SEGMENT_LINE_56";
+LCD.associatedSEG[2].peripheral.LCDSeg.$assign  = "PC7";
+LCD.associatedSEG[3].$name                      = "LCD_SEGMENT_LINE_55";
+LCD.associatedSEG[3].peripheral.LCDSeg.$assign  = "PC6";
+LCD.associatedSEG[4].$name                      = "LCD_SEGMENT_LINE_36";
+LCD.associatedSEG[4].peripheral.LCDSeg.$assign  = "PB11";
+LCD.associatedSEG[5].$name                      = "LCD_SEGMENT_LINE_37";
+LCD.associatedSEG[5].peripheral.LCDSeg.$assign  = "PB12";
+LCD.associatedSEG[6].$name                      = "LCD_SEGMENT_LINE_38";
+LCD.associatedSEG[6].peripheral.LCDSeg.$assign  = "PB13";
+LCD.associatedSEG[7].$name                      = "LCD_SEGMENT_LINE_18";
+LCD.associatedSEG[7].peripheral.LCDSeg.$assign  = "PB17";
+LCD.associatedSEG[8].$name                      = "LCD_SEGMENT_LINE_19";
+LCD.associatedSEG[8].peripheral.LCDSeg.$assign  = "PB18";
+LCD.associatedSEG[9].$name                      = "LCD_SEGMENT_LINE_20";
+LCD.associatedSEG[9].peripheral.LCDSeg.$assign  = "PB19";
+LCD.associatedSEG[10].$name                     = "LCD_SEGMENT_LINE_23";
+LCD.associatedSEG[10].peripheral.LCDSeg.$assign = "PB20";
+LCD.associatedSEG[11].$name                     = "LCD_SEGMENT_LINE_39";
+LCD.associatedSEG[11].peripheral.LCDSeg.$assign = "PB21";
+LCD.associatedSEG[12].$name                     = "LCD_SEGMENT_LINE_40";
+LCD.associatedSEG[12].peripheral.LCDSeg.$assign = "PB22";
+LCD.associatedSEG[13].$name                     = "LCD_SEGMENT_LINE_41";
+LCD.associatedSEG[13].peripheral.LCDSeg.$assign = "PB23";
+LCD.associatedSEG[14].$name                     = "LCD_SEGMENT_LINE_54";
+LCD.associatedSEG[14].peripheral.LCDSeg.$assign = "PC5";
+LCD.associatedSEG[15].$name                     = "LCD_SEGMENT_LINE_53";
+LCD.associatedSEG[15].peripheral.LCDSeg.$assign = "PC4";
+LCD.associatedSEG[16].$name                     = "LCD_SEGMENT_LINE_52";
+LCD.associatedSEG[16].peripheral.LCDSeg.$assign = "PC3";
+LCD.associatedSEG[17].$name                     = "LCD_SEGMENT_LINE_51";
+LCD.associatedSEG[17].peripheral.LCDSeg.$assign = "PC2";
+LCD.associatedSEG[18].$name                     = "LCD_SEGMENT_LINE_50";
+LCD.associatedSEG[18].peripheral.LCDSeg.$assign = "PC1";
+LCD.associatedSEG[19].$name                     = "LCD_SEGMENT_LINE_49";
+LCD.associatedSEG[19].peripheral.LCDSeg.$assign = "PC0";
+LCD.associatedSEG[20].$name                     = "LCD_SEGMENT_LINE_48";
+LCD.associatedSEG[20].peripheral.LCDSeg.$assign = "PB31";
+LCD.associatedSEG[21].$name                     = "LCD_SEGMENT_LINE_47";
+LCD.associatedSEG[21].peripheral.LCDSeg.$assign = "PB30";
+LCD.associatedSEG[22].$name                     = "LCD_SEGMENT_LINE_46";
+LCD.associatedSEG[22].peripheral.LCDSeg.$assign = "PB29";
+LCD.associatedSEG[23].$name                     = "LCD_SEGMENT_LINE_45";
+LCD.associatedSEG[23].peripheral.LCDSeg.$assign = "PB28";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+
+ProjectConfig.deviceSpin = "MSPM0L2228";

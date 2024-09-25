@@ -48,6 +48,8 @@ var searchData=
   ['gdlt645',['gDLT645',['../group___t_i_d_a-010243.html#ga9908b6a37c76a49013359f6cda5c808e',1,'gDLT645():&#160;TIDA-010243.c'],['../group___t_i_d_a-010243.html#ga9908b6a37c76a49013359f6cda5c808e',1,'gDLT645():&#160;TIDA-010243.c']]],
   ['gen_5fgpio_5fin_5fpini_5f01_5fport',['GEN_GPIO_IN_PINI_01_PORT',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga180fddfb0b49db8d59167200f1397d5f',1,'hal.h']]],
   ['gen_5fgpio_5fin_5fpini_5f02_5fport',['GEN_GPIO_IN_PINI_02_PORT',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga266fee814d882d0af58c7c88634a11ab',1,'hal.h']]],
+  ['gen_5fgpio_5fin_5fpini_5f03_5fport',['GEN_GPIO_IN_PINI_03_PORT',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gabcf8ef9d0a73e7acb4a269ca5738c7f2',1,'hal.h']]],
+  ['gen_5fgpio_5fin_5fpini_5f04_5fport',['GEN_GPIO_IN_PINI_04_PORT',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga59b0964e2f3e1520813ba0cdfeb38019',1,'hal.h']]],
   ['gen_5fgpio_5fout_5fpino_5f01_5fport',['GEN_GPIO_OUT_PINO_01_PORT',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga60c4473159a3a92bff6b1c86fce40149',1,'hal.h']]],
   ['gen_5fgpio_5fout_5fpino_5f02_5fport',['GEN_GPIO_OUT_PINO_02_PORT',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga80abf202e5e922adc7f7a3f6ab24b50b',1,'hal.h']]],
   ['gen_5fgpio_5fout_5fpino_5f03_5fport',['GEN_GPIO_OUT_PINO_03_PORT',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga3ccfa522874e7d6ec529bb734bbd2235',1,'hal.h']]],

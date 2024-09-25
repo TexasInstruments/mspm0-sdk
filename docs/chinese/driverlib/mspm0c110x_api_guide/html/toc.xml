@@ -2185,6 +2185,7 @@
       </topic>
       <topic label="DL_TIMER_CLOCK" href="group___t_i_m_x.html#ga7d7852e0a1f7db7231224c8c03243d92">
         <topic label="DL_TIMER_CLOCK_BUSCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a4efaf8e7fab766a10685044d35160525"/>
+        <topic label="DL_TIMER_CLOCK_2X_BUSCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a421c83a82a0f0106586416e05e294dd5"/>
         <topic label="DL_TIMER_CLOCK_MFCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a68deb6141019f1e42569659e91b9c27c"/>
         <topic label="DL_TIMER_CLOCK_LFCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92ac690128c3f5d609c5c087b3eeff51f62"/>
         <topic label="DL_TIMER_CLOCK_DISABLE" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a5bed5705da974c39f007ad0533022e5e"/>
@@ -3682,6 +3683,9 @@
       <topic label="DL_VREF_enableInternalRef" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2"/>
       <topic label="DL_VREF_disableInternalRef" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde"/>
       <topic label="DL_VREF_isEnabled" href="group___v_r_e_f.html#gaa691a93de008515cf237c12ed35231b4"/>
+      <topic label="DL_VREF_enableInternalRefCOMP" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d"/>
+      <topic label="DL_VREF_isInternalRefCOMPEnabled" href="group___v_r_e_f.html#ga768d77dde635d1e780836e6db0410670"/>
+      <topic label="DL_VREF_disableInternalRefCOMP" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a"/>
       <topic label="DL_VREF_setClockConfig" href="group___v_r_e_f.html#gafd4635a309fa8632080ae1d044d46f12"/>
       <topic label="DL_VREF_getClockConfig" href="group___v_r_e_f.html#ga0adedffce176c98d2a3cfbfa04ba5462"/>
       <topic label="DL_VREF_reset" href="group___v_r_e_f.html#gaefeff903deb7460769e17033ddcd68f6"/>
@@ -4029,9 +4033,6 @@
       </topic>
       <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gab31acca537d5af4a0710888c9fcb6be8">
         <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL_0" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a0e8afb986eaf313b904b37a561f0f936"/>
-        <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL_1" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a000529e00d369928e99b2af14a81341d"/>
-        <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL_2" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a5f4c15d42beafe6fef957c646211fe75"/>
-        <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL_3" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a76000141ff342ac44d376a6c731b7658"/>
       </topic>
       <topic label="DL_SYSCTL_SHUTDOWN_STORAGE_BYTE" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gac4ba3ae564f39aac9884ee95b1a4bf50">
         <topic label="DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_0" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggac4ba3ae564f39aac9884ee95b1a4bf50a9a839986e475201a3bec706242dec6f6"/>
@@ -6349,9 +6350,6 @@
         </topic>
         <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gab31acca537d5af4a0710888c9fcb6be8">
           <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL_0" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a0e8afb986eaf313b904b37a561f0f936"/>
-          <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL_1" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a000529e00d369928e99b2af14a81341d"/>
-          <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL_2" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a5f4c15d42beafe6fef957c646211fe75"/>
-          <topic label="DL_SYSCTL_BOR_THRESHOLD_LEVEL_3" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a76000141ff342ac44d376a6c731b7658"/>
         </topic>
         <topic label="DL_SYSCTL_SHUTDOWN_STORAGE_BYTE" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gac4ba3ae564f39aac9884ee95b1a4bf50">
           <topic label="DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_0" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggac4ba3ae564f39aac9884ee95b1a4bf50a9a839986e475201a3bec706242dec6f6"/>
@@ -6655,6 +6653,7 @@
         <topic label="DL_TIMER_CCP3_DIS_OUT_ADV_SET_BY_OCTL" href="group___d_l___t_i_m_e_r___c_c_p3___d_i_s___o_u_t___a_d_v.html#gaea4eeb2314fa9dfd79387a3ab5b03034"/>
         <topic label="DL_TIMER_CLOCK" href="group___t_i_m_x.html#ga7d7852e0a1f7db7231224c8c03243d92">
           <topic label="DL_TIMER_CLOCK_BUSCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a4efaf8e7fab766a10685044d35160525"/>
+          <topic label="DL_TIMER_CLOCK_2X_BUSCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a421c83a82a0f0106586416e05e294dd5"/>
           <topic label="DL_TIMER_CLOCK_MFCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a68deb6141019f1e42569659e91b9c27c"/>
           <topic label="DL_TIMER_CLOCK_LFCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92ac690128c3f5d609c5c087b3eeff51f62"/>
           <topic label="DL_TIMER_CLOCK_DISABLE" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a5bed5705da974c39f007ad0533022e5e"/>
@@ -8071,6 +8070,9 @@
         <topic label="DL_VREF_enableInternalRef" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2"/>
         <topic label="DL_VREF_disableInternalRef" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde"/>
         <topic label="DL_VREF_isEnabled" href="group___v_r_e_f.html#gaa691a93de008515cf237c12ed35231b4"/>
+        <topic label="DL_VREF_enableInternalRefCOMP" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d"/>
+        <topic label="DL_VREF_isInternalRefCOMPEnabled" href="group___v_r_e_f.html#ga768d77dde635d1e780836e6db0410670"/>
+        <topic label="DL_VREF_disableInternalRefCOMP" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a"/>
         <topic label="DL_VREF_setClockConfig" href="group___v_r_e_f.html#gafd4635a309fa8632080ae1d044d46f12"/>
         <topic label="DL_VREF_getClockConfig" href="group___v_r_e_f.html#ga0adedffce176c98d2a3cfbfa04ba5462"/>
         <topic label="DL_VREF_reset" href="group___v_r_e_f.html#gaefeff903deb7460769e17033ddcd68f6"/>

@@ -1,5 +1,3 @@
-<span style="color:red">This example has not been fully validated at the time of this release. Functionality is not guaranteed. </span>
-
 ## Example Summary
 
 Configures different power policies based on the configuration of two input
@@ -33,8 +31,8 @@ input configuration.
 | GPIOA | PA18 | Standard with Wake Input |
 | GPIOB | PB22 | Standard Output |
 | GPIOB | PB26 | Standard Output |
-| GPIOB | PB17 | Standard Input with internal pull-down |
-| GPIOB | PB12 | Standard Input with internal pull-down |
+| GPIOB | PB17 | Standard Input with internal pull-up |
+| GPIOB | PB12 | Standard Input with internal pull-up |
 | SYSCTL |  |  |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |

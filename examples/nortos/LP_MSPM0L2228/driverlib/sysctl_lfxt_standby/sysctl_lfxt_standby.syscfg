@@ -1,0 +1,65 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const gate4  = system.clockTree["EXCLKGATE"];
+gate4.enable = true;
+
+const mux3       = system.clockTree["EXCLKMUX"];
+mux3.inputSelect = "EXCLKMUX_LFCLK";
+
+const mux5       = system.clockTree["EXLFMUX"];
+mux5.inputSelect = "EXLFMUX_XTAL";
+
+const mux9       = system.clockTree["LFXTMUX"];
+mux9.inputSelect = "LFXTMUX_TRUE";
+
+const pinFunction1                        = system.clockTree["CLKOUT"];
+pinFunction1.enable                       = true;
+pinFunction1.peripheral.clkOutPin.$assign = "PA14";
+
+const pinFunction6     = system.clockTree["LFXT"];
+pinFunction6.enable    = true;
+pinFunction6.inputFreq = 32.768;
+
+GPIO1.port                          = "PORTA";
+GPIO1.$name                         = "GPIO_LEDS";
+GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPin = "0";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SYSCTL.HFCLKSource = "HFXT";
+SYSCTL.HSCLKSource = "HFCLK";
+SYSCTL.enableEXCLK = true;
+SYSCTL.HFCLK_Freq  = 36000000;
+SYSCTL.powerPolicy = "STANDBY0";
+SYSCTL.EXCLKSource = "LFCLK";
+SYSCTL.MCLKSource  = "LFCLK";
+SYSCTL.LFCLKSource = "LFXT";
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn  = true;
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.timerClkPrescale   = 129;
+TIMER1.timerPeriod        = "500 ms";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.peripheral.$assign = "TIMG0";

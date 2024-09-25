@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.5.0+ &mdash; Code Composer Studio IDE for MSPM0 MCUs 1.0 documentation</title>
+  <title>适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.6.0+ &mdash; Code Composer Studio IDE for MSPM0 MCUs 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -43,7 +43,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.5.0+</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.6.0+</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">目录</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">请先阅读</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">如何使用本指南</a></li>
@@ -89,14 +89,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#id16">3.3 断点类型</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id17">3.4 调试预编译库</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dssm">3.5 DSSM 指令</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#dssm-mass-erase-and-factory-reset">3.5.1 DSSM Mass Erase and Factory Reset批量擦除和恢复出厂设置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dssm-mass-erase-factory-reset-wait-for-debug-and-set-reset-mode">3.5.1 DSSM Mass Erase, Factory Reset, Wait for Debug, and Set Reset Mode批量擦除，出厂重置，等待调试和设置重置模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">3.5.1.1 DSSM设置重置模式执行后步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">3.5.1.2 DSSM等待调试后执行步骤</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dssm-swd-password-mechanism">3.5.2 DSSM SWD Password Mechanism 密码机制</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">3.6 连接到一个不正确的设备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">3.6 连接到一个不正确的设备</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id19">4. 安装 Arm GCC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">4. 安装 Arm GCC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#faq">5. 已知问题和常见问题解答(FAQ)</a></li>
 </ul>
 </li>
@@ -116,7 +118,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.5.0+</li>
+      <li>适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.6.0+</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -125,8 +127,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mspm0-mcu-code-composer-studio-ide-12-5-0">
-<h1>适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.5.0+<a class="headerlink" href="#mspm0-mcu-code-composer-studio-ide-12-5-0" title="Permalink to this heading">¶</a></h1>
+  <section id="mspm0-mcu-code-composer-studio-ide-12-6-0">
+<h1>适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.6.0+<a class="headerlink" href="#mspm0-mcu-code-composer-studio-ide-12-6-0" title="Permalink to this heading">¶</a></h1>
 <section id="id1">
 <h2>目录<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -485,17 +487,19 @@
 </section>
 <section id="dssm">
 <h3>3.5 DSSM 指令<a class="headerlink" href="#dssm" title="Permalink to this heading">¶</a></h3>
-<p>MSPM0 支持通过调试器的SWD口， 使用Debug Subsystem Mailbox(DSSM)和设备通讯。 这些指令在 SWD 安全等级2中不可用，但它们可以选择在安全级别 0 和 1 中使用。请参阅设备 技术参考手册，了解有关安全策略和 DSSM 的更多信息。</p>
-<p>MSPM0 CCS 支持包中支持包括 GEL 文件，不仅可以执行器件 初始化，也可以发送DSSM指令，请参考以下章节。</p>
+<p>MSPM0 支持通过调试器的SWD口， 使用Debug Subsystem Mailbox(DSSM)和设备通讯。 这些指令在 SWD 安全等级2中不可用，但它们可以选择在安全级别 0 和 1 中使用。请参阅设备技术参考手册，了解有关安全策略和 DSSM 的更多信息。</p>
+<p>MSPM0 CCS 支持包中支持包括 GEL 文件，不仅可以执行芯片初始化，也可以发送DSSM指令，请参考以下章节。</p>
 <p>有关 CCS 中 GEL 指令的更多信息，请访问 <a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-gel.html">CCS 在线文档</a>。</p>
-<section id="dssm-mass-erase-and-factory-reset">
-<h4>3.5.1 DSSM Mass Erase and Factory Reset批量擦除和恢复出厂设置<a class="headerlink" href="#dssm-mass-erase-and-factory-reset" title="Permalink to this heading">¶</a></h4>
+<section id="dssm-mass-erase-factory-reset-wait-for-debug-and-set-reset-mode">
+<h4>3.5.1 DSSM Mass Erase, Factory Reset, Wait for Debug, and Set Reset Mode批量擦除，出厂重置，等待调试和设置重置模式<a class="headerlink" href="#dssm-mass-erase-factory-reset-wait-for-debug-and-set-reset-mode" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
-<li><p>DSSM Mass Erase批量擦除： DSSM Mass Erase仅擦除 MAIN 闪存区域，这通常 包括用户应用程序。 NONMAIN 闪存区域不受 Mass Erase 影响。 批量擦除可用于擦除所有应用程序代码和数据 同时保持设备配置本身完好无损。</p></li>
-<li><p>DSSM Factory Reset恢复出厂设置： DSSM 出厂重置是擦除 MAIN 闪存区域，然后进行重置 NONMAIN 闪存区域的默认值。 这样的擦除是用于想要 完全重置 NONMAIN 启动步骤，同时擦除 应用程序代码和数据。</p></li>
+<li><p>DSSM Mass Erase批量擦除： DSSM Mass Erase仅擦除 MAIN 闪存区域，这通常包括用户应用程序。 NONMAIN 闪存区域不受Mass Erase 影响。 批量擦除可用于擦除所有应用程序代码和数据同时保持设备配置本身完好无损。</p></li>
+<li><p>DSSM Factory Reset恢复出厂设置： DSSM 恢复出厂是擦除 MAIN 和NONMAIN闪存区域，然后进行重置 NONMAIN 闪存区域的默认值。 这样的擦除是用于想要完全重置 NONMAIN 的应用需求，同时擦除应用程序代码和数据。</p></li>
+<li><p>DSSM Wait for Debug等待调试: DSSM等待调试会使设备处于停止状态重置处理程序，直到用户运行应用程序或对电路板执行下电上电操作。此命令非常有用，因为它允许停止先前刷新的应用程序并强制在重置处理程序中等待。 这样做可以更好地调试会话允许用户查看在点击main()之前发生的情况。</p></li>
+<li><p>DSSM Set Reset Mode设置重置模式: 复位时设置的DSSM会使设备处于复位状态，从而停止先前的应用程序运行。 该命令将解除应用程序的控制权序允许在下载新的应用程序。</p></li>
 </ul>
-<p>SWD 批量擦除和出厂重置 DSSM 命令取代了静态写入 保护政策。 例如，如果 SWD 出厂重置配置为 enabled 或者 enabled with password, 即使器件是静态写保护的，NONMAIN 配置数据也可以进行重置。</p>
-<p>要执行 DSSM 批量擦除或 DSSM 出厂重置，请执行以下步骤：</p>
+<p><strong>Note</strong>: DSSM等待调试和设置重置模式在使用中略有不同。 Wait for Debug命令的主要用途是将设备置于已存在应用程序的重置处理程序中。 这样做可以为用户提供更好的调试体验，因为这允许用户在点击当前应用程序中的main()之前查看正在发生的情况。 设置重置命令的主要目的是在重置状态(而不是重置处理程序)中停止设备，用户可以在该状态下将新项目刷新到设备，而不管先前存在的应用程序中是否存在任何错误。 此命令不用于调试。</p>
+<p>要执行DSSM批量擦除，DSSM出厂重置，DSSM等待调试或DSSM设置重置模式，请执行以下步骤:</p>
 <ol class="arabic">
 <li><p>在 CCS 菜单上，选择 <strong>View</strong> → <strong>Target Configurations</strong>。</p></li>
 <li><p>在 <strong>Target Configurations</strong> 窗口中，右键单击活动的 .ccxml 项目并选择 <strong>Launch Selected Configuration</strong>。</p>
@@ -509,12 +513,52 @@
 <li><p><strong>MSPM0_MailboxMassErase_Auto</strong>：将执行批量擦除 使用 XDS110 复位线强制复位。</p></li>
 <li><p><strong>MSPM0_MailboxFactoryReset_Manual</strong>：将执行出厂重置 要求用户按下复位按钮。</p></li>
 <li><p><strong>MSPM0_MailboxFactoryReset_Auto</strong>：将执行出厂重置 使用 XDS110 复位线强制复位。</p></li>
+<li><p><strong>MSPM0_MailboxWaitForDebug_Auto</strong>: 等待调试将被执行 要求用户单击”清除重置”按钮。</p></li>
+<li><p><strong>MSPM0_MailboxSetResetMode</strong>: 将执行复位命令来让 设备保持在复位状态，直到下一个调试会话。</p></li>
 </ul>
 <figure class="align-default">
 <img alt="" src="../_images/ccs_dssm2.png" />
 </figure>
 </li>
 </ol>
+</section>
+<section id="id18">
+<h4>3.5.1.1 DSSM设置重置模式执行后步骤<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h4>
+<p>*<strong>注意</strong>:要成功执行DSSM命令，设备必须有一个复位pin。</p>
+<p>要正确放入设备，必须执行以下步骤 按照第3.5.1节中所述的步骤重置模式<strong>之后</strong>。</p>
+<p>1允许DSSM命令完全执行。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm3.png" />
+</figure>
+<p>2命令完成后，设备将处于重置状态。 之后，任何 尝试刷新设备将抛出预期的错误消息，指出设备正在重置。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm4.png" />
+</figure>
+<p>3在中选择了<strong>清除等待</strong>后，设备将退出重置状态 错误窗口。 允许将新应用程序闪存至设备。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm5.png" />
+</figure>
+</section>
+<section id="id19">
+<h4>3.5.1.2 DSSM等待调试后执行步骤<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h4>
+<p>*<strong>注意</strong>:要成功执行DSSM命令，设备必须有一个复位pin。</p>
+<p>要正确放入设备，必须执行以下步骤 按照第3.5.1节中所述的步骤等待调试<strong>之后</strong>。</p>
+<p>1允许DSSM命令完全执行。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm3.png" />
+</figure>
+<p>2命令完成后，设备将处于重置状态。 然后，连接 将自动尝试，导致出现预期的错误消息，指出设备正在重置。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm4.png" />
+</figure>
+<p>3在中选择了<strong>清除等待</strong>后，设备将退出重置状态 错误窗口</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm5.png" />
+</figure>
+<p>4现在设备应该在重置处理程序中。 这允许用户访问以前下载的 代码，或将新应用程序加载到设备上。</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm6.png" />
+</figure>
 </section>
 <section id="dssm-swd-password-mechanism">
 <h4>3.5.2 DSSM SWD Password Mechanism 密码机制<a class="headerlink" href="#dssm-swd-password-mechanism" title="Permalink to this heading">¶</a></h4>
@@ -554,15 +598,15 @@
 <p>注意：此机制有望在未来版本的 CCS 支持包中实现自动化。</p>
 </section>
 </section>
-<section id="id18">
-<h3>3.6 连接到一个不正确的设备<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h3>
+<section id="id20">
+<h3>3.6 连接到一个不正确的设备<a class="headerlink" href="#id20" title="Permalink to this heading">¶</a></h3>
 <p>如果连接了不受支持的设备，CCS 将显示警告，如下所示：</p>
 <p><img alt="image0" src="../_images/ccs_connectionerror1.png" /> <img alt="image1" src="../_images/ccs_connectionerror2.png" /></p>
 <p>不建议对不正确的设备进行写入，这可能会导致意外和不可恢复。</p>
 </section>
 </section>
-<section id="id19">
-<h2>4. 安装 Arm GCC<a class="headerlink" href="#id19" title="Permalink to this heading">¶</a></h2>
+<section id="id21">
+<h2>4. 安装 Arm GCC<a class="headerlink" href="#id21" title="Permalink to this heading">¶</a></h2>
 <p>MSPM0 SDK 包括同时支持 TI Arm Clang 和 GCC 的示例；但是、 默认情况下、TI Arm Clang 安装在 CCS 中、而 GCC 则不安装。</p>
 <p>可以通过选择<strong>Help→Install GCC ARM Compiler Tools</strong>来安装 GCC：</p>
 <figure class="align-default">

@@ -244,10 +244,15 @@ SYSCONFIG_WEAK bool SYSCFG_DL_restoreConfiguration(void)
 % /* Init Power */
 SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
 {
+%   if(Common.hasGPIOPortA()) {
     DL_GPIO_reset(GPIOA);
-%    if (Common.isDeviceM0G()){
+%   }
+%   if(Common.hasGPIOPortB()) {
     DL_GPIO_reset(GPIOB);
-%    }
+%   }
+%   if(Common.hasGPIOPortC()) {
+    DL_GPIO_reset(GPIOC);
+%   }
 % /* loop over all modules in the current configuration */
 % for (let i = 0; i < keys.length; i++) {
 %   let mod = system.modules[keys[i]];
@@ -258,10 +263,15 @@ SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
 `_.trimEnd(gen(mod,"Reset"))`
 % } }
 
+%   if(Common.hasGPIOPortA()) {
     DL_GPIO_enablePower(GPIOA);
-%    if (Common.isDeviceM0G()){
+%   }
+%   if(Common.hasGPIOPortB()) {
     DL_GPIO_enablePower(GPIOB);
-%    }
+%   }
+%   if(Common.hasGPIOPortC()) {
+    DL_GPIO_enablePower(GPIOC);
+%   }
 % for (let i = 0; i < keys.length; i++) {
 %   let mod = system.modules[keys[i]];
 %        /* Power template */
@@ -281,8 +291,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
     if(board.globalFastWakeEn){
 %%}
     DL_GPIO_enableGlobalFastWake(GPIOA);
-%       if (Common.isDeviceM0G()){
+%       if (Common.hasGPIOPortB()){
     DL_GPIO_enableGlobalFastWake(GPIOB);
+%       }
+%       if (Common.hasGPIOPortC()){
+    DL_GPIO_enableGlobalFastWake(GPIOC);
 %       }
 %   } // if(board.globalFastWake)
     % /* Unused Pin Configuration */
@@ -347,6 +360,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 %%{
         let unusedPortA = (unusedPinNames.filter(e => e.includes("PA")));
         let unusedPortB = (unusedPinNames.filter(e => e.includes("PB")));
+        let unusedPortC = (unusedPinNames.filter(e => e.includes("PC")));
 
         let pinCount = 0;
         var unusedPortAPins = "(";
@@ -423,6 +437,39 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
             pinCount++;
         }
         unusedPortBPins += ")";
+
+        pinCount = 0;
+        var unusedPortCPins = "(";
+        for (let pinToConfigure in unusedPortC)
+        {
+            let selectPin = unusedPortC[pinCount];
+            /* Filter out special case of combined functionality pins */
+            let specialPinCaseIdx = selectPin.indexOf("/", 0);
+            if(specialPinCaseIdx>=0){
+                selectPin = selectPin.substring(0, specialPinCaseIdx);
+            }
+
+            if ((pinCount != 0) && (pinCount % 4 == 0))
+            {
+                unusedPortCPins += "\n        ";
+            }
+
+            if (pinCount == (unusedPortC.length - 1))
+            {
+                unusedPortCPins += "DL_GPIO_PIN_"+selectPin.replace("PC", "");
+            }
+            else if ((pinCount + 1) % 4 == 0)
+            {
+                unusedPortCPins += "DL_GPIO_PIN_"+selectPin.replace("PC", "") + " |";
+            }
+            else
+            {
+                unusedPortCPins += "DL_GPIO_PIN_"+selectPin.replace("PC", "") + " | ";
+            }
+
+            pinCount++;
+        }
+        unusedPortCPins += ")";
 %%}
     % /* Determine if DL_GPIO_setPins or DL_GPIO_clearPins is used */
     % let outputDrive = (board.unusedOutputDrive == "HIGH") ? "set" : "clear";
@@ -437,6 +484,12 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
         `unusedPortBPins`);
     DL_GPIO_enableOutput(GPIOB,
         `unusedPortBPins`);
+    %}
+    %if(unusedPortC.length>0){
+    DL_GPIO_`outputDrive`Pins(GPIOC,
+        `unusedPortCPins`);
+    DL_GPIO_enableOutput(GPIOC,
+        `unusedPortCPins`);
     %}
     % } // if board.unusedDirection == "OUTPUT"
     % } // if(board.configureUnused)

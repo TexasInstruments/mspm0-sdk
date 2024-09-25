@@ -47,46 +47,51 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>GPIOA</td>
-<td>PA0</td>
-<td>Open-Drain Output</td>
+<td>GPIOB</td>
+<td>PB22</td>
+<td>Standard Output</td>
 </tr>
 <tr class="even">
+<td>GPIOB</td>
+<td>PB26</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>TIMG0</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>I2C1</td>
 <td>PB3</td>
 <td>I2C Serial Data line (SDA)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>I2C1</td>
 <td>PB2</td>
 <td>I2C Serial Clock line (SCL)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>ADC0</td>
 <td>PA27</td>
 <td>ADC12 Channel 0 Pin</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -107,41 +112,48 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>PA0</td>
-<td>GPIOA</td>
-<td>PA0</td>
-<td>J27_9</td>
-<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
+<td>PB22</td>
+<td>GPIOB</td>
+<td>PB22</td>
+<td>J27_5</td>
+<td><ul><li>PB22 can be connected to LED2 Blue<br><ul><li><code>J5 ON</code> Connect to LED2 Blue<br><li><code>J15 OFF</code> Disconnect from LED2 Blue</ul></ul></td>
 </tr>
 <tr class="even">
+<td>PB26</td>
+<td>GPIOB</td>
+<td>PB26</td>
+<td>J27_8</td>
+<td><ul><li>PB26 can be connected to LED2 Red<br><ul><li><code>J6 ON</code> Connect to LED2 Red<br><li><code>J6 OFF</code> Disconnect from LED2 Red</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PB3</td>
 <td>I2C1</td>
 <td>SDA</td>
 <td>J1_10</td>
 <td><ul><li>PB3 can be connected to an on-board pull-up resistor<br><ul><li><code>R60</code> is not soldered by default<br><li>Solder <code>R60</code> to use on-board pull-up</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PB2</td>
 <td>I2C1</td>
 <td>SCL</td>
 <td>J1_9</td>
 <td><ul><li>PB2 can be connected to an on-board pull-up resistor<br><ul><li><code>R59</code> is not soldered by default<br><li>Solder <code>R59</code> to use on-board pull-up</ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA27</td>
 <td>ADC0</td>
 <td>A0</td>
 <td>J1_8</td>
 <td><ul><li>PA27 can be connected to photodiode D1<br><ul><li><code>J17 OFF</code> Disconnect from photodiode D1</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
@@ -159,7 +171,7 @@
 <h2 id="example-usage">Example Usage</h2>
 <p>Connect SMBCLK (SCL), SMBDAT (SDA) and GND to the corresponding pins on a second MSPM0 LaunchPad running the smb_controller00_all_protocols example.</p>
 <p>Compile, load and run the example.</p>
-<p>The target example waits for each command from the SMBus controller and processes it. Optionally, an I2C sniffer can be used to observe the SMBus protocol.</p>
+<p>The target example waits for each command from the SMBus controller and processes it. A GPIO connected to LED_DEMO will toggle if Quick Command is received. A GPIO connected to LED_ERROR is used to signal SMBus errors. Optionally, an I2C sniffer can be used to observe the SMBus protocol.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">
@@ -167,7 +179,7 @@
   with 100,000+ analog ICs and embedded processors, along with software, tools
   and the industry‘s largest sales/support staff.</p>
   <p>
-    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br>
+    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br>
     <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
   </p>
 </footer>

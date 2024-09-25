@@ -25,6 +25,16 @@
             <UserProg1Name>cmd.exe /C "$P../../../../../../tools/keil/syscfg.bat '$P' sysctl_shutdown.syscfg"</UserProg1Name>
           </BeforeMake>
         </TargetCommonOption>
+        <DllOption>
+          <SimDllName>SARMCM3.DLL</SimDllName>
+          <SimDllArguments></SimDllArguments>
+          <SimDlgDll>DARMCM1.DLL</SimDlgDll>
+          <SimDlgDllArguments>-pCM0+</SimDlgDllArguments>
+          <TargetDllName>SARMCM3.DLL</TargetDllName>
+          <TargetDllArguments></TargetDllArguments>
+          <TargetDlgDll>TARMCM1.DLL</TargetDlgDll>
+          <TargetDlgDllArguments>-pCM0+</TargetDlgDllArguments>
+        </DllOption>
         <Utilities>
           <Flash1>
             <UseTargetDll>1</UseTargetDll>

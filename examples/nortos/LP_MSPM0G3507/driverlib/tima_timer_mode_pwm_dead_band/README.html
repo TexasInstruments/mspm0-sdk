@@ -53,23 +53,23 @@
 </tr>
 <tr class="even">
 <td>TIMA0</td>
-<td>PA0</td>
-<td>Counter Compare Pin 0</td>
+<td>PA8</td>
+<td>Capture/Compare Pin 0</td>
 </tr>
 <tr class="odd">
 <td>TIMA0</td>
 <td>PA22</td>
-<td>Counter Compare Complementary Pin 0</td>
+<td>Capture/Compare Complementary Pin 0</td>
 </tr>
 <tr class="even">
 <td>TIMA0</td>
-<td>PB20</td>
-<td>Counter Compare Pin 1</td>
+<td>PB9</td>
+<td>Capture/Compare Pin 1</td>
 </tr>
 <tr class="odd">
 <td>TIMA0</td>
-<td>PB13</td>
-<td>Counter Compare Complementary Pin 1</td>
+<td>PA25</td>
+<td>Capture/Compare Complementary Pin 1</td>
 </tr>
 <tr class="even">
 <td>EVENT</td>
@@ -102,11 +102,11 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>PA0</td>
+<td>PA8</td>
 <td>TIMA0</td>
 <td>CCP0</td>
-<td>J27_9</td>
-<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
+<td>J1_4</td>
+<td>N/A</td>
 </tr>
 <tr class="even">
 <td>PA22</td>
@@ -116,17 +116,17 @@
 <td><ul><li>PA22 can be connected to photodiode D1<br><ul><li><code>J16 OFF</code> Disconnect from photodiode D1</ul>&gt;</ul></td>
 </tr>
 <tr class="odd">
-<td>PB20</td>
+<td>PB9</td>
 <td>TIMA0</td>
 <td>CCP1</td>
-<td>J4_36</td>
+<td>J1_7</td>
 <td>N/A</td>
 </tr>
 <tr class="even">
-<td>PB13</td>
+<td>PA25</td>
 <td>TIMA0</td>
 <td>CCP1_CMPL</td>
-<td>J4_35</td>
+<td>J1_2</td>
 <td>N/A</td>
 </tr>
 <tr class="odd">
@@ -152,7 +152,6 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run the example. Monitor the PWM signals on PA0, PA22, PB20, and PB13. The pair of signals on PA0 and PA22 are complementary signals with deadband insertion. The second pair of signals on PB20 and PB13 are also complementary signals with deadband insertion.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">
@@ -160,7 +159,7 @@
   with 100,000+ analog ICs and embedded processors, along with software, tools
   and the industry‘s largest sales/support staff.</p>
   <p>
-    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br>
+    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br>
     <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
   </p>
 </footer>

@@ -22,17 +22,17 @@ ProjectConfig.genLibPMBUS     = true;
 
 GPIO1.$name                         = "GPIO_LED";
 GPIO1.associatedPins[0].$name       = "D0";
-GPIO1.associatedPins[0].pin.$assign = "PA0";
+GPIO1.associatedPins[0].pin.$assign = "PA26";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 
-i2cSMBUS1.basicEnableController     = true;
-i2cSMBUS1.enableTimeoutA            = true;
-i2cSMBUS1.timeoutACount             = 255;
-i2cSMBUS1.intGeneric                = ["TIMEOUT_A"];
-i2cSMBUS1.enableControllerPEC       = true;
-i2cSMBUS1.intController             = ["ARBITRATION_LOST","NACK","PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_TRIGGER"];
-i2cSMBUS1.$name                     = "PMB_I2C";
-i2cSMBUS1.peripheral.$assign        = "I2C0";
-i2cSMBUS1.peripheral.sdaPin.$assign = "PA10";
-i2cSMBUS1.peripheral.sclPin.$assign = "PA11";
+i2cSMBUS1.basicEnableController             = true;
+i2cSMBUS1.$name                             = "SMB_I2C";
+i2cSMBUS1.enableTimeoutA                    = true;
+i2cSMBUS1.intGeneric                        = ["TIMEOUT_A"];
+i2cSMBUS1.enableControllerPEC               = true;
+i2cSMBUS1.intController                     = ["ARBITRATION_LOST","NACK","PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_TRIGGER"];
+i2cSMBUS1.timeoutACount                     = 135;
+i2cSMBUS1.peripheral.$assign                = "I2C0";
+i2cSMBUS1.peripheral.sdaPin.$assign         = "PA0";
+i2cSMBUS1.peripheral.sclPin.$assign         = "PA1";

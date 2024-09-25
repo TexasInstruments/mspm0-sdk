@@ -53,7 +53,7 @@ RTC.calAlarm1DOW       = "1";
 RTC.calAlarm1DOM       = 5;
 RTC.calSec             = 58;
 RTC.enPerAlarm1        = true;
-RTC.perAlarm1Divider   = "128";
+RTC.perAlarm1Divider   = "DIVIDE_128";
 RTC.enabledInterrupts  = ["PRESCALER1"];
 
 SYSCTL.validateClkStatus = true;

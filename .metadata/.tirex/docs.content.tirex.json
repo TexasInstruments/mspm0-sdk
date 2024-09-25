@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_1_20_01_06.html",
+    "location": "../../release_notes_mspm0_sdk_1_30_00_03.html",
     "mainCategories": [
         [
             "Documents"
@@ -805,9 +805,9 @@
     ]
 },
 {
-    "name": "Boot Image Manager User's Guide",
+    "name": "Secure Booting User's Guide",
     "tags": [
-        "Boot Image Manager User's Guide",
+        "Secure Booting User's Guide",
         "Documentation",
         "BIM"
     ],
@@ -815,7 +815,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../docs/english/middleware/boot_manager/Boot_Image_Manager_Users_Guide.html",
+    "location": "../../docs/english/middleware/boot_manager/Secure_Booting_Users_Guide.html",
     "mainCategories": [
         [
             "Documents"
@@ -823,7 +823,7 @@
     ],
     "subCategories": [
         "Middleware",
-        "Boot Image Manager"
+        "Secure Booting"
     ]
 },
 {
@@ -846,6 +846,55 @@
     "subCategories": [
         "Third Party",
         "CMSIS DSP"
+    ]
+},
+{
+    "name": "IO-Link Support for MSPM0",
+    "tags": [
+        "IO-Link Support for MSPM0",
+        "IOLink",
+        "IEC 61131-9",
+        "TEConcept",
+        "Documentation",
+        "Third Party"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/third_party/io_link/IO_Link_Support_for_MSPM0.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Third Party",
+        "IO-Link"
+    ]
+},
+{
+    "name": "Zephyr Support for MSPM0",
+    "tags": [
+        "Zephyr Support for MSPM0",
+        "RTOS",
+        "Real Time Operating System",
+        "Documentation",
+        "Third Party"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/third_party/zephyr/Zephyr_RTOS_Support_for_MSPM0.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Third Party",
+        "Zephyr"
     ]
 },
 {
@@ -1091,7 +1140,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_1_20_01_06.html",
+    "location": "../../release_notes_mspm0_sdk_1_30_00_03.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -1883,7 +1932,7 @@
     ],
     "subCategories": [
         "Middleware 中间件",
-        "Motor Control"
+        "电机控制"
     ]
 },
 {
@@ -1904,14 +1953,14 @@
     ],
     "subCategories": [
         "Middleware 中间件",
-        "Motor Control"
+        "电机控制"
     ]
 },
 {
-    "name": "Boot Image 管理器指南",
+    "name": "Secure Booting 指南",
     "tags": [
-        "Boot Image 管理器指南",
-        "Boot Image Manager User's Guide",
+        "Secure Booting 指南",
+        "Secure Booting User's Guide",
         "Documentation",
         "BIM"
     ],
@@ -1919,7 +1968,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../docs/chinese/middleware/boot_manager/Boot_Image_Manager_Users_Guide_CN.html",
+    "location": "../../docs/chinese/middleware/boot_manager/Secure_Booting_Users_Guide_CN.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -1927,7 +1976,7 @@
     ],
     "subCategories": [
         "Middleware 中间件",
-        "Boot Image 管理器"
+        "Secure Booting"
     ]
 },
 {
@@ -1951,6 +2000,55 @@
     "subCategories": [
         "Third Party",
         "CMSIS DSP"
+    ]
+},
+{
+    "name": "IO-Link Support for MSPM0",
+    "tags": [
+        "IO-Link Support for MSPM0",
+        "IOLink",
+        "IEC 61131-9",
+        "TEConcept",
+        "Documentation",
+        "Third Party"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/chinese/third_party/io_link/IO_Link_Support_for_MSPM0_CN.html",
+    "mainCategories": [
+        [
+            "Documents - Chinese"
+        ]
+    ],
+    "subCategories": [
+        "Third Party",
+        "IO-Link"
+    ]
+},
+{
+    "name": "Zephyr Support for MSPM0",
+    "tags": [
+        "Zephyr Support for MSPM0",
+        "RTOS",
+        "Real Time Operating System",
+        "Documentation",
+        "Third Party"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/chinese/third_party/zephyr/Zephyr_RTOS_Support_for_MSPM0_CN.html",
+    "mainCategories": [
+        [
+            "Documents - Chinese"
+        ]
+    ],
+    "subCategories": [
+        "Third Party",
+        "Zephyr"
     ]
 },
 {

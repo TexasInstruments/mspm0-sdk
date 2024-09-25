@@ -121,6 +121,7 @@ int main(void)
         }
 
         gRxPacket2[i] = DL_UART_Main_receiveDataBlocking(UART_0_INST);
+
     }
 
     /*
@@ -128,6 +129,10 @@ int main(void)
      * inspect the received data in gRxPacket1 and gRxPacket2.
      */
     __BKPT(0);
+
+    /* Clear LED and USER_TEST pin */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     while (1) {
         __WFI();
@@ -161,7 +166,6 @@ void UART_0_INST_IRQHandler(void)
             while (!DL_UART_Main_isRXFIFOEmpty(UART_0_INST)) {
                 gRxPacket1[gRxPacket1Counter++] =
                     DL_UART_Main_receiveData(UART_0_INST);
-
                 if (gRxPacket1Counter == UART_PACKET_SIZE) {
                     /* All expected data has been received */
                     gAutoHWFlowControlDone = true;

@@ -8,7 +8,8 @@ controller (see smb_controller00_all_protocols).
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| GPIOA | PA0 | Open-Drain Output |
+| GPIOB | PB22 | Standard Output |
+| GPIOB | PB26 | Standard Output |
 | SYSCTL |  |  |
 | TIMG0 |  |  |
 | I2C1 | PB3 | I2C Serial Data line (SDA) |
@@ -24,7 +25,8 @@ Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA0 | GPIOA | PA0 | J27_9 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 1:2` Use 3.3V pull-up<br><li>`J19 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J4 ON` Connect to LED1<br><li>`J4 OFF` Disconnect from LED1</ul></ul> |
+| PB22 | GPIOB | PB22 | J27_5 | <ul><li>PB22 can be connected to LED2 Blue<br><ul><li>`J5 ON` Connect to LED2 Blue<br><li>`J15 OFF` Disconnect from LED2 Blue</ul></ul> |
+| PB26 | GPIOB | PB26 | J27_8 | <ul><li>PB26 can be connected to LED2 Red<br><ul><li>`J6 ON` Connect to LED2 Red<br><li>`J6 OFF` Disconnect from LED2 Red</ul></ul> |
 | PB3 | I2C1 | SDA | J1_10 | <ul><li>PB3 can be connected to an on-board pull-up resistor<br><ul><li>`R60` is not soldered by default<br><li>Solder `R60` to use on-board pull-up</ul></ul> |
 | PB2 | I2C1 | SCL | J1_9 | <ul><li>PB2 can be connected to an on-board pull-up resistor<br><ul><li>`R59` is not soldered by default<br><li>Solder `R59` to use on-board pull-up</ul></ul> |
 | PA27 | ADC0 | A0 | J1_8 | <ul><li>PA27 can be connected to photodiode D1<br><ul><li>`J17 OFF` Disconnect from photodiode D1</ul></ul> |
@@ -55,4 +57,6 @@ Compile, load and run the example.
 
 The target example waits for each command from the SMBus controller and 
 processes it.
+A GPIO connected to LED_DEMO will toggle if Quick Command is received.
+A GPIO connected to LED_ERROR is used to signal SMBus errors.
 Optionally, an I2C sniffer can be used to observe the SMBus protocol.

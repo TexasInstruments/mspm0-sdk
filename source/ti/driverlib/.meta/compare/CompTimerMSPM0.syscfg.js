@@ -1227,22 +1227,22 @@ function pinmuxRequirements(inst)
     let allResources = [
         {
             name: "ccp0Pin",
-            displayName: "Counter Compare Pin 0",
+            displayName: "Capture/Compare Pin 0",
             interfaceNames: ["CCP0"],
         },
         {
             name: "ccp1Pin",
-            displayName: "Counter Compare Pin 1",
+            displayName: "Capture/Compare Pin 1",
             interfaceNames: ["CCP1"],
         },
         {
             name: "ccp2Pin",
-            displayName: "Counter Compare Pin 2",
+            displayName: "Capture/Compare Pin 2",
             interfaceNames: ["CCP2"],
         },
         {
             name: "ccp3Pin",
-            displayName: "Counter Compare Pin 3",
+            displayName: "Capture/Compare Pin 3",
             interfaceNames: ["CCP3"],
         },
     ];
@@ -1409,19 +1409,19 @@ function moduleInstances(inst){
 
     /* CCP0 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   timerConfig[0],    "ccp0Pin",
-     "C0", "Counter Compare Pin 0",
+     "C0", "Capture/Compare Pin 0",
      "INPUT");
     /* CCP1 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   timerConfig[1],    "ccp1Pin",
-     "C1", "Counter Compare Pin 1",
+     "C1", "Capture/Compare Pin 1",
      "INPUT");
     /* CCP2 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   timerConfig[2],    "ccp2Pin",
-     "C2", "Counter Compare Pin 2",
+     "C2", "Capture/Compare Pin 2",
      "INPUT");
     /* CCP3 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   timerConfig[3],    "ccp3Pin",
-     "C3", "Counter Compare Pin 3",
+     "C3", "Capture/Compare Pin 3",
      "INPUT");
 
     return (modInstances);

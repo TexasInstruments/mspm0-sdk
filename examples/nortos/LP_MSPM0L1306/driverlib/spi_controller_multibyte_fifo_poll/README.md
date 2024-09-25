@@ -3,7 +3,7 @@
 Note: The use of "Master" and "Slave", along with "MOSI/MISO" terminology is being considered obsolete. These terms will be replaced with "Controller" and "Peripheral", and "PICO/POCI" respectively.
 
 The following example configures the SPI as a Controller.
-This example can be used with the spi_peripheral_multibyte_fifo_poll example running on another device.
+This example is intended to be used with the spi_peripheral_multibyte_fifo_poll example running on another device.
 This example fills the TX FIFO with 4 bytes of data and transmits it to the SPI Peripheral.
 It then waits to receive 4 bytes of data from the Peripheral to fill up the RX FIFO.
 
@@ -12,6 +12,7 @@ It then waits to receive 4 bytes of data from the Peripheral to fill up the RX F
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA1 | Open-Drain Output |
 | SYSCTL |  |  |
 | SPI0 | PA6 | SPI SCLK (Clock) |
 | SPI0 | PA5 | SPI PICO (Peripheral In, Controller Out) |
@@ -28,6 +29,7 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA0 | GPIOA | PA0 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 ON` Connect to LED1<br><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA1 | GPIOA | PA1 | J1_9 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
 | PA6 | SPI0 | SCLK | J1_7 | N/A |
 | PA5 | SPI0 | MOSI | J2_15 | N/A |
 | PA4 | SPI0 | MISO | J2_14 | N/A |
@@ -59,6 +61,8 @@ Make the following connections between the SPI Controller and SPI Peripheral:
 
 Compile, load and run the example. The SPI will automatically start
 to transmit and receive data.
+The example will set the LED high upon successful completion and reception of expected data.
+USER_TEST GPIO pin will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.
 
 The SPI is initialized with the following configuration:
 - SPI Controller

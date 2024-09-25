@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 Boot Image Manager (BIM) User’s Guide &mdash; Boot Image Manager User&#39;s Guide 0.8 documentation</title>
+  <title>MSPM0 Boot Image Manager (BIM) User’s Guide &mdash; Secure Booting User&#39;s Guide 0.8 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -21,7 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Boot Image Manager User’s Guide" href="index.html" /> 
+    <link rel="next" title="MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide" href="customer_secure_users_guide.html" />
+    <link rel="prev" title="Secure Booting User’s Guide" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,7 +30,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Boot Image Manager User's Guide
+            <a href="index.html" class="icon icon-home"> Secure Booting User's Guide
           </a>
               <div class="version">
                 0.8
@@ -80,6 +81,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="customer_secure_users_guide.html">MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide</a></li>
 </ul>
 
         </div>
@@ -88,7 +90,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Boot Image Manager User's Guide</a>
+          <a href="index.html">Secure Booting User's Guide</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -109,11 +111,7 @@
 <h1>MSPM0 Boot Image Manager (BIM) User’s Guide<a class="headerlink" href="#mspm0-boot-image-manager-bim-user-s-guide" title="Permalink to this heading">¶</a></h1>
 <section id="introduction">
 <h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>The Boot Image Manager (BIM) is an implementation of the publicly available mcuboot for MSP devices in order to allow for customers to have secure booting features in their development. The full set of features and execution flow will vary depending on the specific device used and features present on the device. Currently, the two classes of examples are classified as follows:</p>
-<ol class="arabic simple">
-<li><p>Single Stage: Devices with some security features but only one stage of flash memory. These devices also will not have dynamic write protection or firewalls in their architecture, so the implementation will support a more limited set of security options.</p></li>
-<li><p>Customer Secure: This refers currently to the device family MSPM0L122x_MSPM0L222x which is a multi-bank device with additional features such as write, read, and IP-protect firewalls, bank swapping, keystore controller, and a more advance AES-accelerating</p></li>
-</ol>
+<p>The Boot Image Manager (BIM) is an implementation of the publicly available mcuboot for MSP devices in order to allow for customers to have secure booting features in their development. The full set of features and execution flow will vary depending on the specific device used and features present on the device. Currently, the two classes of examples are classified as single stage and customer secure. Single stage refers to devices with some security features but only one stage of flash memory. These devices also will not have dynamic write protection or firewalls in their architecture, so the implementation will support a more limited set of security options. Customer secure refers to additional security features and multiple banks, and is covered in the Customer Secure User’s Guide.</p>
 <p>Some things the BIM does:</p>
 <ul class="simple">
 <li><p>It can verify one or more application images using Elliptic Curve Digital Signature Algorithm (ECDSA) with NIST P-256 curve and hashing algorithm SHA-256</p></li>
@@ -131,7 +129,7 @@
 </section>
 <section id="using-the-examples">
 <h2>2. Using the Examples<a class="headerlink" href="#using-the-examples" title="Permalink to this heading">¶</a></h2>
-<p>It is recommended to run the existing example set of the <code class="docutils literal notranslate"><span class="pre">boot_application</span></code> and <code class="docutils literal notranslate"><span class="pre">boot_sample_image</span></code> in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.5.0+). This example uses the MSPM0L1306 or MSPM0G3507 LaunchPad with settings shown in the project README.</p>
+<p>It is recommended to run the existing example set of the <code class="docutils literal notranslate"><span class="pre">boot_application</span></code> and <code class="docutils literal notranslate"><span class="pre">boot_sample_image</span></code> in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.6.0+). This example uses the MSPM0L1306 or MSPM0G3507 LaunchPad with settings shown in the project README.</p>
 <section id="prerequisites">
 <h3>2.0 Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h3>
 <p>To run the initial setup, make sure Python 3.7 or newer is installed with the latest pip package and run the following command to download the necessary requirements.</p>
@@ -299,7 +297,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Boot Image Manager User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Secure Booting User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="customer_secure_users_guide.html" class="btn btn-neutral float-right" title="MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

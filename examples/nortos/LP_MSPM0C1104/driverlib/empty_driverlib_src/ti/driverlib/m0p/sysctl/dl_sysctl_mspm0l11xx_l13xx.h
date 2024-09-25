@@ -88,13 +88,13 @@ extern "C" {
  #define DL_SYSCTL_RESET_POR                       (SYSCTL_RESETLEVEL_LEVEL_POR)
 
 /*!
- * @brief Perform system reset and run bootloader
+ * @brief Perform system reset and exit bootloader to the application
  */
  #define DL_SYSCTL_RESET_BOOTLOADER_EXIT                                       \
                                         (SYSCTL_RESETLEVEL_LEVEL_BOOTLOADEREXIT)
 
  /*!
- * @brief Perform system reset and exit bootloader to the application
+ * @brief Perform system reset and run bootloader
  */
  #define DL_SYSCTL_RESET_BOOTLOADER_ENTRY                                      \
                                        (SYSCTL_RESETLEVEL_LEVEL_BOOTLOADERENTRY)

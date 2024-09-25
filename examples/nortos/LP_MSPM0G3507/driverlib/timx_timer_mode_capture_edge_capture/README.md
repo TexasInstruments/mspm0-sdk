@@ -10,7 +10,7 @@ the capture operation to the signal edge.
 | GPIOA | PA0 | Open-Drain Output |
 | GPIOA | PA15 | Standard Output |
 | SYSCTL |  |  |
-| TIMG6 | PB2 | Counter Compare Pin 0 |
+| TIMG6 | PB2 | Capture/Compare Pin 0 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

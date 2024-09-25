@@ -39,6 +39,10 @@
 #include "SMBus_Commands_List.h"
 #include "ti_msp_dl_config.h"
 
+#if (SMB_TARGET_SUPPORTS_HOST_NOTIFY == false)
+    #error "This example requires Host Notify function. Enable in smbus.h"
+#endif
+
 //
 // Macros and definitions
 //

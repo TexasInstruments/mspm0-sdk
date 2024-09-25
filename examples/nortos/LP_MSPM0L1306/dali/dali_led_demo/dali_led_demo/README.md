@@ -15,8 +15,8 @@ and also allows users to modify this implementation to fit their needs.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG1 | PA0 | Counter Compare Pin 0 |
-| TIMG1 | PA1 | Counter Compare Pin 1 |
+| TIMG1 | PA0 | Capture/Compare Pin 0 |
+| TIMG1 | PA1 | Capture/Compare Pin 1 |
 | TIMG4 |  |  |
 | TIMG2 |  |  |
 | TIMG0 |  |  |

@@ -10,7 +10,7 @@ The device is configured to wait in SLEEP mode.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG4 | PA10 | Counter Compare Pin 0 |
+| TIMG4 | PA10 | Capture/Compare Pin 0 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

@@ -255,6 +255,44 @@ __STATIC_INLINE bool DL_VREF_isEnabled(VREF_Regs *vref)
     return ((vref->CTL0 & VREF_CTL0_ENABLE_MASK) == VREF_CTL0_ENABLE_ENABLE);
 }
 
+#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
+/**
+ *  @brief      Enable VREF buffer as internal reference input for comparator
+ *
+ * @param vref       Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_VREF_enableInternalRefCOMP(VREF_Regs *vref)
+{
+    vref->CTL0 |= VREF_CTL0_COMP_VREF_ENABLE_ENABLE;
+}
+
+/**
+ *  @brief      Checks if VREF buffer for comparator is enabled
+ *
+ * @param vref       Pointer to the register overlay for the peripheral
+ *
+ *  @return     Returns if VREF buffer for comparator is enabled
+ *
+ *  @retval     true  VREF buffer for comparator is enabled
+ *  @retval     false VREF buffer for comparator is disabled
+ */
+__STATIC_INLINE bool DL_VREF_isInternalRefCOMPEnabled(VREF_Regs *vref)
+{
+    return ((vref->CTL0 & VREF_CTL0_COMP_VREF_ENABLE_MASK) ==
+            VREF_CTL0_COMP_VREF_ENABLE_ENABLE);
+}
+
+/**
+ *  @brief      Disable VREF buffer as internal reference input for comparator
+ *
+ * @param vref       Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_VREF_disableInternalRefCOMP(VREF_Regs *vref)
+{
+    vref->CTL0 &= ~(VREF_CTL0_COMP_VREF_ENABLE_MASK);
+}
+#endif
+
 /**
  * @brief Set the clock select and clock divide fields in VREF
  *

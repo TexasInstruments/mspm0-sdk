@@ -212,7 +212,7 @@ static const DL_MCAN_MsgRAMConfigParams g`instName`MsgRAMConfigParams ={
     /* Tx Event FIFO Start Address. */
     .txEventFIFOStartAddr = `instName`_INST_MCAN_TX_EVENT_START_ADDR,
     /* Event FIFO Size. */
-    .txEventFIFOSize      = `instName`_INST_MCAN_TX_BUFF_SIZE,
+    .txEventFIFOSize      = `instName`_INST_MCAN_TX_EVENT_SIZE,
     /* Level for Tx Event FIFO watermark interrupt. */
     .txEventFIFOWaterMark = `inst.txEventFIFOWaterMark`,
     /* Rx FIFO0 Start Address. */
@@ -307,9 +307,9 @@ static const DL_MCAN_BitTimingParams   g`instName`BitTimes = {
 SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
     DL_MCAN_RevisionId revid_`instName`;
 
-    DL_MCAN_setClockConfig(`instName`_INST, (DL_MCAN_ClockConfig *) &g`instName`ClockConf);
-
     DL_MCAN_enableModuleClock(`instName`_INST);
+
+    DL_MCAN_setClockConfig(`instName`_INST, (DL_MCAN_ClockConfig *) &g`instName`ClockConf);
 
     /* Get MCANSS Revision ID. */
     DL_MCAN_getRevisionId(`instName`_INST, &revid_`instName`);

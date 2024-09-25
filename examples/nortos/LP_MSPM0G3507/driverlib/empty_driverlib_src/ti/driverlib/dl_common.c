@@ -36,6 +36,9 @@
 
 void DL_Common_delayCycles(uint32_t cycles)
 {
+    /* this is a scratch register for the compiler to use */
+    uint32_t scratch;
+
     /* There will be a 2 cycle delay here to fetch & decode instructions
      * if branch and linking to this function */
 
@@ -43,16 +46,16 @@ void DL_Common_delayCycles(uint32_t cycles)
      * +2 cycles for exit, -1 cycle for a shorter loop cycle on the last loop,
      * -1 for this instruction */
 
-#ifdef __GNUC__
-    __asm(".syntax unified");
-#endif
     __asm volatile(
-        "SUBS     r0, r0, #2; \n"
-        "DL_Common_delayCyclesLoop: \n"
-        "SUBS     r0, r0, #4; \n"
-        "NOP; \n"
-        "BHS     DL_Common_delayCyclesLoop; \n"
+#ifdef __GNUC__
+        ".syntax unified\n\t"
+#endif
+        "SUBS %0, %[numCycles], #2; \n"
+        "%=: \n\t"
+        "SUBS %0, %0, #4; \n\t"
+        "NOP; \n\t"
+        "BHS  %=b;" /* branches back to the label defined above if number > 0 */
         /* Return: 2 cycles */
-
-    );
+        : "=&r"(scratch)
+        : [ numCycles ] "r"(cycles));
 }

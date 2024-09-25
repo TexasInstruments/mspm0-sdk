@@ -13,6 +13,7 @@ The device remains in STANDBY mode while waiting for an interrupt.
 | GPIOA | PA15 | Standard Output with internal pull-up |
 | SYSCTL |  |  |
 | EVENT |  |  |
+| DMA |  |  |
 | RTC |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

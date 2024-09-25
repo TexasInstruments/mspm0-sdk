@@ -19,12 +19,17 @@ const TIMER1 = TIMER.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
-GPIO1.$name                          = "GPIO_LEDS";
-GPIO1.associatedPins.create(1);
-GPIO1.associatedPins[0].$name        = "USER_LED_1";
-GPIO1.associatedPins[0].assignedPort = "PORTA";
-GPIO1.associatedPins[0].assignedPin  = "0";
-GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.port                                  = "PORTA";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPortSegment = "Lower";
+GPIO1.associatedPins[1].assignedPin         = "1";
+GPIO1.associatedPins[1].initialValue        = "SET";
 
 SPI1.$name                          = "SPI_0";
 SPI1.targetBitRate                  = 500000;
@@ -39,6 +44,9 @@ SPI1.peripheral.sclkPin.$assign     = "PA6";
 SPI1.peripheral.mosiPin.$assign     = "PA5";
 SPI1.peripheral.misoPin.$assign     = "PA4";
 SPI1.peripheral.cs1Pin.$assign      = "PA3";
+SPI1.cs1PinConfig.enableConfig      =  true;
+SPI1.cs1PinConfig.internalResistor  = "PULL_UP";
+
 SPI1.DMA_CHANNEL_EVENT2.$name       = "DMA_CH0";
 SPI1.DMA_CHANNEL_EVENT2.addressMode = "b2f";
 SPI1.DMA_CHANNEL_EVENT2.srcLength   = "BYTE";

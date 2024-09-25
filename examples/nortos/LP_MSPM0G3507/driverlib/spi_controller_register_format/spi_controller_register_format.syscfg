@@ -26,7 +26,6 @@ GPIO1.associatedPins[1].$name        = "USER_TEST";
 GPIO1.associatedPins[1].initialValue = "SET";
 GPIO1.associatedPins[1].pin.$assign  = "PA15";
 
-
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SPI1.$name                      = "SPI_0";
@@ -40,7 +39,6 @@ SPI1.peripheral.sclkPin.$assign = "PB9";
 SPI1.peripheral.mosiPin.$assign = "PB8";
 SPI1.peripheral.misoPin.$assign = "PB7";
 SPI1.peripheral.cs1Pin.$assign  = "PB17";
-SPI1.cs1PinConfig.$name            = "ti_driverlib_gpio_cs1PinConfig";
 SPI1.cs1PinConfig.enableConfig     = true;
 SPI1.cs1PinConfig.internalResistor = "PULL_UP";
 SPI1.cs1PinConfig.hiZ              = "ENABLE";

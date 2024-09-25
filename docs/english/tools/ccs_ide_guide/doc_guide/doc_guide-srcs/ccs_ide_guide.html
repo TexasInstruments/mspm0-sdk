@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs &mdash; Code Composer Studio IDE for MSPM0 MCUs 1.0 documentation</title>
+  <title>Code Composer Studio IDE Version 12.6.0+ for MSPM0 MCUs &mdash; Code Composer Studio IDE for MSPM0 MCUs 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -43,7 +43,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Composer Studio IDE Version 12.6.0+ for MSPM0 MCUs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#read-this-first">Read This First</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-use-this-guide">How to Use This Guide</a></li>
@@ -90,7 +90,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#breakpoint-types">3.3 Breakpoint Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#debugging-pre-built-libraries">3.4 Debugging Pre-built Libraries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dssm-commands">3.5 DSSM Commands</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#dssm-mass-erase-and-factory-reset">3.5.1 DSSM Mass Erase and Factory Reset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dssm-mass-erase-factory-reset-wait-for-debug-and-set-reset-mode">3.5.1 DSSM Mass Erase, Factory Reset, Wait for Debug, and Set Reset Mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dssm-set-reset-mode-post-execution-steps">3.5.1.1 DSSM Set Reset Mode Post-Execution Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dssm-wait-for-debug-post-execution-steps">3.5.1.2 DSSM Wait for Debug Post-Execution Steps</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dssm-swd-password-mechanism">3.5.2 DSSM SWD Password Mechanism</a></li>
 </ul>
 </li>
@@ -117,7 +119,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs</li>
+      <li>Code Composer Studio IDE Version 12.6.0+ for MSPM0 MCUs</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -126,8 +128,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="code-composer-studio-ide-version-12-5-0-for-mspm0-mcus">
-<h1>Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs<a class="headerlink" href="#code-composer-studio-ide-version-12-5-0-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
+  <section id="code-composer-studio-ide-version-12-6-0-for-mspm0-mcus">
+<h1>Code Composer Studio IDE Version 12.6.0+ for MSPM0 MCUs<a class="headerlink" href="#code-composer-studio-ide-version-12-6-0-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -178,7 +180,7 @@
 <section id="software-installation">
 <h2>1. Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this heading">¶</a></h2>
 <p>Code Composer Studio IDE is available from <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">TI.com</a>.</p>
-<p>MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.5.0 or higher.</p>
+<p>MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.6.0 or higher.</p>
 <p>Code Composer Studio (CCS) IDE is available from <a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">TI.com</a>. Installation instructions for CCS 12.3 are available <a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/users_guide_12.3.0/ccs_installation.html#installation-process">here</a>.</p>
 <p><a class="reference external" href="https://www.ti.com/tool/ARM-CGT">TI Arm Clang</a> is the recommended compiler for CCS and it will be installed by default when MSPM0 is selected during installation.</p>
 <p>Arm GCC is also available for use inside CCS; however, it’s not installed by default. Section <a class="reference external" href="#installing-arm-gcc">Installing Arm GCC</a> explains how to install GCC for CCS.</p>
@@ -556,14 +558,17 @@ projects, where all the configuration files can be handled by the built-in devic
 <p>MSPM0 allows communication to the device over SWD from a debug probe using the Debug Subsystem Mailbox (DSSM). These commands are not available in SWD security level 2, but they are optionally available in security level 0 and 1. See the device Technical Reference Manual for more information about security policies and DSSM.</p>
 <p>The MSPM0 CCS support package includes GEL files not only to perform device initialization, but to send DSSM commands which are explained in the following sections.</p>
 <p>For more information about GEL commands in CCS, visit the <a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-gel.html">CCS online documentation</a>.</p>
-<section id="dssm-mass-erase-and-factory-reset">
-<h4>3.5.1 DSSM Mass Erase and Factory Reset<a class="headerlink" href="#dssm-mass-erase-and-factory-reset" title="Permalink to this heading">¶</a></h4>
+<section id="dssm-mass-erase-factory-reset-wait-for-debug-and-set-reset-mode">
+<h4>3.5.1 DSSM Mass Erase, Factory Reset, Wait for Debug, and Set Reset Mode<a class="headerlink" href="#dssm-mass-erase-factory-reset-wait-for-debug-and-set-reset-mode" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>DSSM Mass Erase: A DSSM mass erase is an erase of the MAIN flash regions only, which typically includes the user application. NONMAIN flash region are not affected by a mass erase. A mass erase is useful for erasing all application code and data while leaving the device configuration itself intact.</p></li>
 <li><p>DSSM Factory Reset: A DSSM factory reset is an erase of the MAIN flash regions followed by a reset of the NONMAIN flash region to default values. Such an erase is useful for completely resetting the NONMAIN boot policies while also erasing the application code and data.</p></li>
+<li><p>DSSM Wait for Debug: A DSSM wait for debug puts the device in a halted state where it remains at the reset handler until the user runs the application or power cycles the board. This command is useful because it allows the previously flashed application to be halted and forced to wait in the reset handler. Doing so allows for a better debugging session as it allows the user to see what occurs before hitting main().</p></li>
+<li><p>DSSM Set Reset Mode: A DSSM set reset mode puts the device in a reset state which halts the previously flashed application from running. The command will halt the application giving back control to the device allowing for a new project to be flashed onto the device.</p></li>
 </ul>
-<p>The SWD mass erase and factory reset DSSM commands superseded any static write protection policies. For example, if SWD factory reset is configured to be enabled or enabled with password, the NONMAIN configuration data can be reset even if it is statically write protected.</p>
-<p>To execute a DSSM Mass Erase or DSSM Factory Reset, follow the next steps:</p>
+<p>The SWD mass erase, factory reset, wait for debug, and set reset mode DSSM commands supersede any static write protection policies. For example, if SWD factory reset is configured to be enabled or enabled with password, the NONMAIN configuration data can be reset even if it is statically write protected.</p>
+<p><strong>Note</strong>: DSSM wait for debug and set reset mode vary slightly in use. The main purpose of the Wait for Debug command is to put the device inside the reset handler of the pre-existing application. Doing so provides the user with a better debug experience, as this allows the user to see what is happening before hitting main() in the current application. The main purpose of the Set Reset Command is to halt the device in a reset state (not the reset handler) where the user can flash a new project to the device, regardless of any errors in the pre-existing application. This command is not intended for debugging.</p>
+<p>To execute a DSSM Mass Erase, DSSM Factory Reset, DSSM Wait for Debug, or DSSM Set Reset Mode follow the next steps:</p>
 <ol class="arabic">
 <li><p>On the CCS menu, select <strong>View</strong> → <strong>Target Configurations</strong>.</p></li>
 <li><p>On the <strong>Target Configurations</strong> window, right-click the .ccxml of an active project and select <strong>Launch Selected Configuration</strong>.</p>
@@ -577,14 +582,65 @@ projects, where all the configuration files can be handled by the built-in devic
 <li><p><strong>MSPM0_MailboxMassErase_Auto</strong>: A mass erase will be performed forcing reset using the XDS110 reset line.</p></li>
 <li><p><strong>MSPM0_MailboxFactoryReset_Manual</strong>: A factory reset will be performed asking the user to press the reset button.</p></li>
 <li><p><strong>MSPM0_MailboxFactoryReset_Auto</strong>: A factory reset will be performed forcing reset using the XDS110 reset line.</p></li>
+<li><p><strong>MSPM0_MailboxWaitForDebug_Auto</strong>: Wait for debug will be performed using the XDS110 reset line and asking the user to click on “clear reset” button.</p></li>
+<li><p><strong>MSPM0_MailboxSetResetMode</strong>: Set in reset will be performed using the XDS110 reset line, putting the device in reset until the next debugging session.</p></li>
 </ul>
 <figure class="align-default">
 <img alt="" src="../_images/ccs_dssm2.png" />
 </figure>
 </li>
 </ol>
+</section>
+<section id="dssm-set-reset-mode-post-execution-steps">
+<h4>3.5.1.1 DSSM Set Reset Mode Post-Execution Steps<a class="headerlink" href="#dssm-set-reset-mode-post-execution-steps" title="Permalink to this heading">¶</a></h4>
+<p><strong>Note</strong>: To succesfully execute the DSSM Set Reset Mode command, the device must have a reset pin.</p>
+<p>The following steps must be followed for a DSSM Set Reset Mode command to properly put the device in reset mode <strong>after</strong> following the steps described in section 3.5.1.</p>
+<ol class="arabic">
+<li><p>Allow the DSSM command to fully execute.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm3.png" />
+</figure>
+</li>
+<li><p>Once the command is finished, the device will now be in a reset state. Afterwards, any attempt to flash the device will throw an expected error message stating the device is in reset.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm4.png" />
+</figure>
+</li>
+<li><p>The device will exit from the reset state once <strong>Clear wait</strong> has been selected in the error window. This allows the new application to be flashed on to the device.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm5.png" />
+</figure>
+</li>
+</ol>
+</section>
+<section id="dssm-wait-for-debug-post-execution-steps">
+<h4>3.5.1.2 DSSM Wait for Debug Post-Execution Steps<a class="headerlink" href="#dssm-wait-for-debug-post-execution-steps" title="Permalink to this heading">¶</a></h4>
+<p><strong>Note</strong>: To succesfully execute the DSSM Wait for Debug command, the device must have a reset pin.</p>
+<p>The following steps must be for a DSSM Wait for Debug command to properly put the device in wait for debug <strong>after</strong> following the steps described in section 3.5.1.</p>
+<ol class="arabic">
+<li><p>Allow the DSSM command to fully execute.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm3.png" />
+</figure>
+</li>
+<li><p>Once the command is finished, the device will now be in a reset state. Afterwards, a connection will be automatically attempted, causing an expected error message stating the device is in reset.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm4.png" />
+</figure>
+</li>
+<li><p>The device will exit from the reset state once <strong>Clear wait</strong> has been selected in the error window</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm5.png" />
+</figure>
+</li>
+<li><p>Now the device should be in the reset handler. This allows the user to access their previously downloaded code before it has reached main, or load a new application on to the device.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_dssm6.png" />
+</figure>
+</li>
+</ol>
 <section id="dssm-after-power-up">
-<h5>3.5.1.1 DSSM after Power-up<a class="headerlink" href="#dssm-after-power-up" title="Permalink to this heading">¶</a></h5>
+<h5>3.5.1.3 DSSM after Power-up<a class="headerlink" href="#dssm-after-power-up" title="Permalink to this heading">¶</a></h5>
 <p>The device might not respond to DSSM commands in some scenarios such as when the reset line or SWD pins are used for other functions. In such conditions, it can be useful to follow the next steps:</p>
 <ol class="arabic simple">
 <li><p>Power off the device</p></li>

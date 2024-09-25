@@ -50,12 +50,10 @@ let systemModulesList = [
     "/ti/driverlib/GPIO",
     "/ti/driverlib/WWDT",
 ];
-/* TODO: nonmain configurator needs to be updated for A2_LCD */
-if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
-    systemModulesList.push(
-        "/ti/driverlib/NONMAIN",
-    );
-};
+/* nonmain */
+systemModulesList.push(
+    "/ti/driverlib/NONMAIN",
+);
 /* MSPM0Gxx-specific modules */
 if(Common.isDeviceM0G()){
     systemModulesList.push(
@@ -66,7 +64,15 @@ if(Common.isDeviceM0G()){
 /* MSPM0L122X_L222X-specific modules */
 if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     systemModulesList.push(
-       // TODO: To be determined
+        "/ti/driverlib/IWDT",
+        "ti/driverlib/RTCA",
+        "ti/driverlib/TAMPERIO",
+    );
+};
+/* MSPM0L222X-specific modules */
+if(Common.isDeviceFamily_PARENT_MSPM0L222X()){
+    systemModulesList.push(
+        "/ti/driverlib/LCD",
     );
 };
 /* Devices with SysTick support */
@@ -154,22 +160,23 @@ if(Common.isDeviceM0G() && !Common.isDeviceM0x110x()){
         "/ti/driverlib/TRNG",
     );
 };
-/* A2LCD-specific modules */
+/* MSPM0L122X_L222X-specific modules */
 if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     securityModulesList.push(
         "/ti/driverlib/AESADV",
+        "/ti/driverlib/SECCONFIG",
     );
 };
 
 let dataIntegrityModulesList = [
 ]
-/* add device-specific modules - not available on A2LCD */
+/* add device-specific modules - not available on MSPM0L122X_L222X */
 if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C()){
     dataIntegrityModulesList.push(
         "/ti/driverlib/CRC",
     );
 };
-/* A2LCD-specific modules */
+/* MSPM0L122X_L222X-specific modules */
 if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     dataIntegrityModulesList.push(
         "/ti/driverlib/CRCP",
@@ -249,6 +256,11 @@ let templates = [
         "outputPath": "boot_config.h",
         "alwaysRun": false
     },
+    {
+        "name": "/ti/driverlib/sec_config/SECCONFIG.Board.h.xdt",
+        "outputPath": "customer_secure_config.h",
+        "alwaysRun": false
+    },
 ];
 
 /*
@@ -261,12 +273,9 @@ let templates = [
  */
 function getExtraMigrationMarkdown()
 {
-    const fixedMarkdown = `⚠ __Important: Additional device migration steps \
-    needed.__  Please follow the steps in the \
+    const fixedMarkdown = `See \
     [MSPM0 SDK CCS IDE Guide](https://dev.ti.com/tirex/explore/node?node=A__AGfjuVVhlYfXCIsTGwVuIA__MSPM0-SDK__a3PaaoK__LATEST)\
-    Section 2.5: Migrating Between MSPM0 Derivatives. These additional steps are \
-    needed when migrating between device variants or between devices. These \
-    steps are not needed when migrating between packages. \n\n`;
+    for extended details on Migrating Between MSPM0 Derivatives. \n\n`;
 
     return(fixedMarkdown);
 }

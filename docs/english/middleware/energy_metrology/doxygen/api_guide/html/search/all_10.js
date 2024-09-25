@@ -27,6 +27,7 @@ var searchData=
   ['serialmsgbuf',['SerialMsgBuf',['../struct_serial_msg_buf.html',1,'']]],
   ['set_5fphase_5fregister_5fvalue',['SET_PHASE_REGISTER_VALUE',['../group___a_d_s131_m0x.html#ga517368c52fc609a767ea7d99968de113',1,'ADS131M0x.h']]],
   ['sincelast',['sinceLast',['../structphase_params.html#a3301f764a3f7a95d47f04781a8ab334b',1,'phaseParams']]],
+  ['sinetable',['sineTable',['../group___metrology.html#ga6846d9a0cc6edbeb0b514bfd1272de7f',1,'metrology_defines.h']]],
   ['spi_5fcrc_5fenabled',['SPI_CRC_ENABLED',['../group___a_d_s131_m0x.html#ga285864eb979615ba63e453347150643a',1,'ADS131M0x.h']]],
   ['spi_5fcrc_5ftype',['SPI_CRC_TYPE',['../group___a_d_s131_m0x.html#ga441b7ab378e2f8af96fb7f9e9cd35c2b',1,'ADS131M0x.h']]],
   ['spi_5flocked',['SPI_LOCKED',['../group___a_d_s131_m0x.html#gae71577a88e49f5ee0f632f701336be57',1,'ADS131M0x.h']]],

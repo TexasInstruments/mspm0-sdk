@@ -13,6 +13,11 @@
         <topic label="dmaChanIdTx" href="struct_h_a_l___s_p_i_instance__.html#a8a4df4b52f3132462420e6c6e7aa9783"/>
         <topic label="dmaChanIdRx" href="struct_h_a_l___s_p_i_instance__.html#a102f4543c7271e838501a20ea2e29c18"/>
       </topic>
+      <topic label="HAL_UARTInstance_" href="struct_h_a_l___u_a_r_t_instance__.html">
+        <topic label="inst" href="struct_h_a_l___u_a_r_t_instance__.html#a568ffd138b951d770c3f6c72d8525276"/>
+        <topic label="dmaChanIdTx" href="struct_h_a_l___u_a_r_t_instance__.html#a6beaf79cebcb0faa270e95829ab9c02b"/>
+        <topic label="dmaChanIdRx" href="struct_h_a_l___u_a_r_t_instance__.html#a133db216c85021ee66aa44557002ba7f"/>
+      </topic>
       <topic label="TRUE" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gaa8cecfc5c5c054d2875c03e77b7be15d"/>
       <topic label="FALSE" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gaa93f0eb578d23995850d61f7d61c55c1"/>
       <topic label="HAL_SYSTEM_FREQ_MHZ" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga34ec5c2dff1e9d72ee4026879e121815"/>
@@ -23,8 +28,11 @@
       <topic label="GEN_GPIO_OUT_PINO_04_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga11c27725743ce0b8963b29d6af7e0f84"/>
       <topic label="GEN_GPIO_IN_PINI_01_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga180fddfb0b49db8d59167200f1397d5f"/>
       <topic label="GEN_GPIO_IN_PINI_02_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga266fee814d882d0af58c7c88634a11ab"/>
+      <topic label="GEN_GPIO_IN_PINI_03_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gabcf8ef9d0a73e7acb4a269ca5738c7f2"/>
+      <topic label="GEN_GPIO_IN_PINI_04_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga59b0964e2f3e1520813ba0cdfeb38019"/>
       <topic label="HAL_GPIOInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga23eed94bab6780b3f11ba9ab8d05f84a"/>
       <topic label="HAL_SPIInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga5eb849cd196a4fff81a5048f6c2484d0"/>
+      <topic label="HAL_UARTInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gabbfa45da7ea54806fa0ab46fa19e768f"/>
       <topic label="HAL_MEMORY_BLOCK_STARTADDR" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gac0e6bf6d8dca11e01e9c925cd42335b5">
         <topic label="HAL_MEMORY_BLOCK_STARTADDR01" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggac0e6bf6d8dca11e01e9c925cd42335b5ac10f67219dd76b2b2959caa93db569af"/>
       </topic>
@@ -51,6 +59,10 @@
         <topic label="HAL_SPI_CHAN_0" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggafd598002c976f8f7a713319892341f8ea66a5a45c33bf54cae088b92b2dcb20a9"/>
         <topic label="HAL_SPI_CHAN_MAX" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggafd598002c976f8f7a713319892341f8eaf37ee9b61a169cbbbed64d36c72d083a"/>
       </topic>
+      <topic label="HAL_UART_CHAN" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gaf75f1fbb9a032fdf17bae5747b59c5ad">
+        <topic label="HAL_UART_CHAN_0" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaf75f1fbb9a032fdf17bae5747b59c5adacc123392ffe852de4891ca1a47893c9f"/>
+        <topic label="HAL_UART_CHAN_MAX" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaf75f1fbb9a032fdf17bae5747b59c5adab5bc622e07fce680587f6180ec20271c"/>
+      </topic>
       <topic label="HAL_SPI_CS" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gadd8a694a4d051d1ed3e24f91cf3a5103">
         <topic label="HAL_SPI_CS_0" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a245e7d9e918d317a25632a2c741250d3"/>
         <topic label="HAL_SPI_CS_1" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a4dd1abcb56726a9e44d11ba048ed6059"/>
@@ -68,7 +80,11 @@
       <topic label="HAL_readGPIOPin" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga1aea5cc02cc69d4bd522f76b5f204dbf"/>
       <topic label="HAL_writeGPIOPin" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga4b486fecb727f909644cbc25d9047b49"/>
       <topic label="HAL_enableGPIOInterrupt" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga2d4abcb3128021c829897251b0c15057"/>
+      <topic label="HAL_getGPIOEnabledInterruptStatus" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gad39ea208df735a1ff3d413d2e600a5b9"/>
+      <topic label="HAL_clearGPIOInterruptStatus" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga480456e32d9e5562a8e05faaadd89c37"/>
       <topic label="HAL_startSPIDataTransfer" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gaeb349b38acdbebc9263a5d508953a92b"/>
+      <topic label="HAL_startUARTDMARecieve" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga56c60d2ee913e758cdaf4a785c47ffe9"/>
+      <topic label="HAL_startUARTDMATransmit" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga8d0acdae43d6c1b4f6f0ba775746139e"/>
       <topic label="HAL_clearMemoryBlock" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga54c3c9827b8776d8a93a41e327a7c0fc"/>
       <topic label="HAL_secureMemoryBlock" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga83a3b199202f2b94857b62efa475bbd1"/>
       <topic label="HAL_copyMemoryBlock" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga6ec784dd6417cb7fc9acb88ee66a43f7"/>
@@ -81,13 +97,6 @@
         <topic label="response" href="struct_a_d_s__channel_data.html#a75d4ac5903b275c9558c6336bcdd4a48"/>
         <topic label="crc" href="struct_a_d_s__channel_data.html#a75420666ea6df058ad7897a93fdfa899"/>
         <topic label="chan0" href="struct_a_d_s__channel_data.html#a01d70db73ab0c33b18c07b8d753ecf0b"/>
-        <topic label="chan1" href="struct_a_d_s__channel_data.html#ae528ed86915cad217f9f06c594211934"/>
-        <topic label="chan2" href="struct_a_d_s__channel_data.html#a9c6dd4868978c2e73111ec9f5b1d0069"/>
-        <topic label="chan3" href="struct_a_d_s__channel_data.html#a8f143b02f2e1ed3939af429e1fa32130"/>
-        <topic label="chan4" href="struct_a_d_s__channel_data.html#af45c7490d326ccc103f1105b1a6e15a0"/>
-        <topic label="chan5" href="struct_a_d_s__channel_data.html#a0fa20adae608849c28f0171056208a4f"/>
-        <topic label="chan6" href="struct_a_d_s__channel_data.html#a7642033eea75376a9095b483c1c2dd96"/>
-        <topic label="chan7" href="struct_a_d_s__channel_data.html#aad4abd1bec0107ed967c4201df426548"/>
       </topic>
       <topic label="ADS_Instance" href="struct_a_d_s___instance.html">
         <topic label="ready" href="struct_a_d_s___instance.html#ab76285885131bab2242ecd45e8015557"/>
@@ -105,23 +114,22 @@
         <topic label="crcPassCount" href="struct_a_d_s___instance.html#ab542bffc68423b7903ed12710f3a977e"/>
         <topic label="crcFailCount" href="struct_a_d_s___instance.html#af0cb43d1e1054d507cb6c639f00f4647"/>
       </topic>
-      <topic label="ADS01_CLOCK_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga88ded1e021b99bb0dab6573c81ad30e2"/>
-      <topic label="ADS01_MODE_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga167d4054bbb296b026c1ede1043c2c5e"/>
-      <topic label="ADS01_GAIN1_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gad698837c1aa00b3d105360bd2d7e46f1"/>
-      <topic label="ADS01_GAIN2_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga3701ba7874ef7ebf0474019eff2a34b7"/>
-      <topic label="ADS01_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaef9b5246e6c6083e2669e2559870b343"/>
-      <topic label="ADS01_THRSHLD_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gae4a63bfd9e7cc133a542116fa8d710ec"/>
-      <topic label="ADS01_THRSHLD_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga2156871c6d1c7c68917b441b887b3e7b"/>
-      <topic label="ADS01_CH0_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gab4c5d752f9ce7eda76205813aff44419"/>
-      <topic label="ADS01_CH0_OCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gada704a38aa040db9ca4293a899b22f78"/>
-      <topic label="ADS01_CH0_OCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga88e5883c8aa5ec3feb087a43ecca4f78"/>
-      <topic label="ADS01_CH0_GCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gafd95769078b3d08b78935ddd3babc48e"/>
-      <topic label="ADS01_CH0_GCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga548af2f31419f125ee2bd5cacb41e8b9"/>
-      <topic label="ADS01_CH1_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga0a75b7fd73537088f67f7e957321620f"/>
-      <topic label="ADS01_CH1_OCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga9d2187a9f06dc77bcd1dd8f8ee266edf"/>
-      <topic label="ADS01_CH1_OCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gadea25e34d03ffe52f35f2a30d93f8bd7"/>
-      <topic label="ADS01_CH1_GCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga8032fdd691b23ed375ce299c005ccca6"/>
-      <topic label="ADS01_CH1_GCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaa4e98926f6cea2f83bdc570a9ab035a4"/>
+      <topic label="ADS131M02_CLOCK_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga9308db6344a0423ab6afd8cc99d5ac21"/>
+      <topic label="ADS131M02_MODE_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gad1a2b8601d01d2859a5610e314f40063"/>
+      <topic label="ADS131M02_GAIN1_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gab7ac43398eb3373bfb5ad294204a940a"/>
+      <topic label="ADS131M02_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga8343f50d2284441d0f4abc07df9b1357"/>
+      <topic label="ADS131M02_THRSHLD_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga9b2aede6af08b01593bc93c65aab6930"/>
+      <topic label="ADS131M02_THRSHLD_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gab5213b96947f609dd885b3ca81c2d5c4"/>
+      <topic label="ADS131M02_CH0_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gab7c402e4f24b81d36a5fada65f21d1ed"/>
+      <topic label="ADS131M02_CH0_OCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga200fb90ab3e9af0610dc2bd1007a186c"/>
+      <topic label="ADS131M02_CH0_OCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaeaa07b3fd4ea6aff57768e7f0930d2c9"/>
+      <topic label="ADS131M02_CH0_GCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga63aec8cb8b60f52c3415b8e17a79ba86"/>
+      <topic label="ADS131M02_CH0_GCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaa2f03ff9c944bece44b5212e72c65133"/>
+      <topic label="ADS131M02_CH1_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga00b306700c49164f1c22aefeef0ea910"/>
+      <topic label="ADS131M02_CH1_OCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga4d66688c1ebfe3cd61192922b58e610c"/>
+      <topic label="ADS131M02_CH1_OCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga79797f3974a1e3e0c1303b4c72eb4273"/>
+      <topic label="ADS131M02_CH1_GCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga55d647ae408ed5731b2771ee38506fb7"/>
+      <topic label="ADS131M02_CH1_GCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaf99c698f4c8ab2f81e6fc871ed035a69"/>
       <topic label="ADS01_CLOCK_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga88ded1e021b99bb0dab6573c81ad30e2"/>
       <topic label="ADS01_MODE_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga167d4054bbb296b026c1ede1043c2c5e"/>
       <topic label="ADS01_GAIN1_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gad698837c1aa00b3d105360bd2d7e46f1"/>
@@ -466,7 +474,7 @@
       <topic label="ADS_getChannelData" href="group___a_d_s131_m0x.html#ga2babb99bc80e6a2043f5730dd4384e28"/>
       <topic label="ADS_initalizeADSRegisters" href="group___a_d_s131_m0x.html#ga4df2253ccca94dcef8d6972563c9b2e3"/>
       <topic label="ADS_verifyADSCRC" href="group___a_d_s131_m0x.html#ga254b5d1e64d096892e2c2fbecd8a1058"/>
-      <topic label="ADS02_initRegData" href="group___a_d_s131_m0x.html#ga1dfac0c2f29494232314259ace92c508"/>
+      <topic label="ADS131M02_initRegData" href="group___a_d_s131_m0x.html#ga04940169ed2c4b77490de4dde1c8b8a3"/>
       <topic label="ADS01_initRegData" href="group___a_d_s131_m0x.html#ga6ca35da4bc8a2ed9cede7ba289906d3c"/>
     </topic>
     <topic label="DLT645" href="group___d_l_t645.html">
@@ -486,6 +494,7 @@
         <topic label="txInProgress" href="struct_d_l_t645_buf.html#ab0ec2d21fb5c9b1804899b7598f234cc"/>
         <topic label="rxPending" href="struct_d_l_t645_buf.html#a95f5c6357340e782c4fa1b1e62bf3608"/>
         <topic label="RS485EN" href="struct_d_l_t645_buf.html#a1c5e7be0eee3a21772252a6aadf96d7d"/>
+        <topic label="uartChan" href="struct_d_l_t645_buf.html#a798f3704a94dd35342f7ccf0b6e0051c"/>
       </topic>
       <topic label="DLT645_PREAMBLE_BYTES" href="group___d_l_t645.html#ga1cb5f568f0bffa602e1712e34d0d49d7"/>
       <topic label="DLT645_MESSAGE_HEADER_BYTES" href="group___d_l_t645.html#gaf0f1f91ac500ff0acebcbbd20499918d"/>
@@ -572,9 +581,10 @@
         <topic label="METER_CONFIG_2_CURRENT_THD" href="group___d_l_t645.html#gga815ff7557a7bc3e1f03c625800d9d4cda57441886126e62b477b24d42763813c4"/>
         <topic label="METER_CONFIG_2_SAG_SWELL" href="group___d_l_t645.html#gga815ff7557a7bc3e1f03c625800d9d4cda9d22c43a7b7128a29b22fafb329d8998"/>
       </topic>
+      <topic label="DLT645_UARTRxdmaInit" href="group___d_l_t645.html#ga229f6ff9f1b27be2562be9700a682829"/>
       <topic label="DLT645_service" href="group___d_l_t645.html#gaaefe52d6cc1c29a17eba455a18b0cb78"/>
       <topic label="DLT645_rxByte" href="group___d_l_t645.html#ga8d50c36f341d92ce53b309448d7bba38"/>
-      <topic label="DLT645_UARTRxByte" href="group___d_l_t645.html#ga8fa1a23676f819faac68fdd1a30b6ccd"/>
+      <topic label="DLT645_UARTRxByte" href="group___d_l_t645.html#ga10f6d30cb3a3ca34fc68ab6170f3ed38"/>
       <topic label="DLT645_UARTTxByte" href="group___d_l_t645.html#ga6391c2a650f2524bf3c06efbcbcef7fa"/>
     </topic>
     <topic label="Metrology" href="group___metrology.html">
@@ -598,7 +608,7 @@
         <topic label="VscaleFactor" href="structphase_calibration_data.html#ad4c5ac69ef1c758f1af95ccc94896b31"/>
       </topic>
       <topic label="calibrationData" href="structcalibration_data.html">
-        <topic label="phases" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7"/>
+        <topic label="phases" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37"/>
         <topic label="neutral" href="structcalibration_data.html#a7ed352f8c8096f1a303b2fdb1079d02c"/>
         <topic label="structState" href="structcalibration_data.html#a5674bee611bf8a362852ce29350d95a9"/>
         <topic label="calibrationInitFlag" href="structcalibration_data.html#a6ac8f244f2772f52f9e46745c322d664"/>
@@ -671,7 +681,7 @@
       </topic>
       <topic label="voltageDPSet" href="structvoltage_d_p_set.html">
         <topic label="voltageSq" href="structvoltage_d_p_set.html#ad168918d53a9a4a3609c503ee32b9a1b"/>
-        <topic label="fVoltgaeSq" href="structvoltage_d_p_set.html#a9a1fd7744312d75e81ba49d0e74d6f4e"/>
+        <topic label="fVoltageSq" href="structvoltage_d_p_set.html#acf50729552f38fca3c2c4f5788651412"/>
         <topic label="sampleCount" href="structvoltage_d_p_set.html#a159d61a93006f5872745eb427f3397c8"/>
         <topic label="cycleNumber" href="structvoltage_d_p_set.html#a9d02acd18b83e2d88598b79e0c1b1863"/>
       </topic>
@@ -702,7 +712,7 @@
         <topic label="V_dc_estimate_logged" href="structphase_params.html#a0d2032a8368479e687399ea09e69cdb3"/>
         <topic label="vHistory" href="structphase_params.html#a8b8b70bcf3dc8cccbf3c45b20ccd44ae"/>
         <topic label="vHistoryIndex" href="structphase_params.html#a7c376b6f5f7d9d279d71aae0e60b2e3f"/>
-        <topic label="purePhase" href="structphase_params.html#ab2b203c5a456edd4b7fbf25ad1433d40"/>
+        <topic label="purePhase" href="structphase_params.html#a679be234f82cd0f15f9c48fed12b07bb"/>
         <topic label="purePhaseRate" href="structphase_params.html#a895535c1a01f9f6059237c5873b7281d"/>
         <topic label="crossSum" href="structphase_params.html#a06874ec2d66cc0682d475885ac3d9c1c"/>
         <topic label="sinceLast" href="structphase_params.html#a3301f764a3f7a95d47f04781a8ab334b"/>
@@ -742,7 +752,7 @@
         <topic label="dpSet" href="structneutral_params.html#ace8a42463aa9e2bc2dd6c6f87ccf4592"/>
       </topic>
       <topic label="energyPulse" href="structenergy_pulse.html">
-        <topic label="integrator" href="structenergy_pulse.html#a4d7ef84f9ffb55c8eff46eac4f6a7a25"/>
+        <topic label="integrator" href="structenergy_pulse.html#ac3d49fdf293ef2c086a2ad49733bf7e7"/>
         <topic label="pulseRemainingTime" href="structenergy_pulse.html#acddf91ff59b2769468902a60bc196965"/>
       </topic>
       <topic label="phaseEnergy" href="structphase_energy.html">
@@ -932,6 +942,10 @@
       <topic label="TOTAL_REACTIVE_ENERGY_PULSES_PER_KW_HOUR" href="group___metrology.html#ga93053651051fac50f2f1aa63611632fe"/>
       <topic label="TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD" href="group___metrology.html#ga923383ce984b79624739e562b7b291ca"/>
       <topic label="TOTAL_REACTIVE_ENERGY_PULSE_THRESHOLD" href="group___metrology.html#gacc50a34c2bda6b94c1ead390ae095167"/>
+      <topic label="METROLOGY_DDS_BIT_RESOLUTION" href="group___metrology.html#ga93d74f976321411d6835a4557e948494"/>
+      <topic label="METROLOGY_DDS_TABLE_RESOLUTION" href="group___metrology.html#ga7a80d040da916a3156582133d6380eed"/>
+      <topic label="METROLOGY_DDS_STEPS" href="group___metrology.html#ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"/>
+      <topic label="METROLOGY_DDS_BIT_SHIFT" href="group___metrology.html#ga5c5563bed76119ed6fe0fb535f03ea28"/>
       <topic label="METROLOGY_IQ19_TO_MICROAMPS" href="group___metrology.html#gafd1bc2335201775755766ec33aad6f60"/>
       <topic label="METROLOGY_IQ13_TO_MILLIWATTS" href="group___metrology.html#ga4f3ec52edeb2b65322b6c58e097d2767"/>
       <topic label="infoMem" href="group___metrology.html#gaa4a8aeefdd408a1328cbfbc08b5d884d"/>
@@ -1025,7 +1039,7 @@
       <topic label="Metrology_getPhaseFundQOffset" href="group___metrology.html#gab66c60c261bcc0db49245e95ead43ad9"/>
       <topic label="Metrology_getPhaseFundVOffset" href="group___metrology.html#ga5abbf2a25db86e8579d529f2430f8b77"/>
       <topic label="Metrology_getPhaseFundIOffset" href="group___metrology.html#gabce6343cd84e6de87e71c417213a7acb"/>
-      <topic label="Metrology_getPhaseCorrectionParameters" href="group___metrology.html#gab3663a24daeea499cdd38e02f822da59"/>
+      <topic label="Metrology_getPhaseCorrectionParameters" href="group___metrology.html#ga79d0a19be1ffa9e6a7a79dacb450802c"/>
       <topic label="Metrology_getPhaseVRMSScaling" href="group___metrology.html#ga3428d51c2ef57c60aede2306e5307fe0"/>
       <topic label="Metrology_getPhaseIRMSScaling" href="group___metrology.html#ga09a21dc363d47727b5138c7718e90bb0"/>
       <topic label="Metrology_getPhasePScaling" href="group___metrology.html#ga8783038efadd394c76af365aa82355e2"/>
@@ -1055,7 +1069,7 @@
       <topic label="Metrology_setPhaseFundQOffset" href="group___metrology.html#gae262deb8260085e7df09a6efc9586e87"/>
       <topic label="Metrology_setPhasePOffset" href="group___metrology.html#gafc15528ef1de7cbde76eb75be4322716"/>
       <topic label="Metrology_setPhaseQOffset" href="group___metrology.html#ga8f73c223f983ef81200a809b7075a701"/>
-      <topic label="Metrology_setPhaseOffset" href="group___metrology.html#ga9aacf96f2d57ac434ba160c74246f16d"/>
+      <topic label="Metrology_setPhaseOffset" href="group___metrology.html#gaa95294c06036cf78d569bc3b6cdaa0f2"/>
       <topic label="Metrology_setNeutralIacOffset" href="group___metrology.html#ga21850c9745cd17ab40709a97802dec65"/>
       <topic label="Metrology_setNeutralFundIOffset" href="group___metrology.html#ga2b7a48b0d854b9486a82d34dc050c948"/>
       <topic label="Metrology_setNeutralIdcEstimate" href="group___metrology.html#ga046f4c0efed4a7f0dde3d99d41efd125"/>
@@ -1068,8 +1082,10 @@
       <topic label="Metrology_setNeutralOffset" href="group___metrology.html#ga1aa112e2abee54817ebe7068a359cfbb"/>
       <topic label="Metrology_clearCalibrationData" href="group___metrology.html#gaf52dc5ec235c59d14a4ff315d86cb48d"/>
       <topic label="Metrology_updateCalibrationData" href="group___metrology.html#ga57604026ac90ae6f3e62ce831f62a6fb"/>
+      <topic label="Metrology_ddsSinLookup" href="group___metrology.html#gac38db88031da3109861523870c979824"/>
       <topic label="Metrology_calculatePhaseReadings" href="group___metrology.html#ga99db09e1d05c351a8c1f04626c9d74fe"/>
       <topic label="Metrology_calculateThreePhaseParameters" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc"/>
+      <topic label="Metrology_calculateTotalParameters" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093"/>
       <topic label="Metrology_calculateNeutralReadings" href="group___metrology.html#ga058718046af58da967607181e014bdd2"/>
       <topic label="Metrology_sagSwellDetection" href="group___metrology.html#gaf909158ac9db1b9a6515efe1c48b414b"/>
       <topic label="Metrology_getRMSVoltage" href="group___metrology.html#ga5daf10e86a9bdd008cf8dd0df814dfa4"/>
@@ -1146,10 +1162,11 @@
       <topic label="Metrology_init" href="group___metrology.html#ga04066c7fb6f252c45d9551551149dbd2"/>
       <topic label="Metrology_initNVData" href="group___metrology.html#gafaff70a66a3408523eaaf70380466f15"/>
       <topic label="Metrology_alignwithNVData" href="group___metrology.html#ga27079dc46bd9843ec7f5d0a27a7ea1eb"/>
-      <topic label="Metrology_setPhaseCorrection" href="group___metrology.html#ga0eff6f7b27e9fab309d02b07c3e6267f"/>
+      <topic label="Metrology_setPhaseCorrection" href="group___metrology.html#ga77569593b79c109dff0eedf069871221"/>
       <topic label="Metrology_alignWithCalibrationData" href="group___metrology.html#ga906c4159026d68656c338ab69ac3cc01"/>
       <topic label="nvParams" href="group___metrology.html#gab49c6cfda5a4cdcb3270b99008977ea5"/>
       <topic label="calibrationDefaults" href="group___metrology.html#gacc2658ed800e17d0fdcb5b9356e9820c"/>
+      <topic label="sineTable" href="group___metrology.html#ga6846d9a0cc6edbeb0b514bfd1272de7f"/>
       <topic label="phase_shift_fir_coeffs" href="group___metrology.html#ga6d6e754004148b0a97cdcfe7d66c57e0"/>
     </topic>
     <topic label="TIDA-010243" href="group___t_i_d_a-010243.html">
@@ -1160,6 +1177,7 @@
         <topic label="intr1Status" href="struct_t_i_d_a__instance.html#ad357a454e361a3db7da8b9bcca033275"/>
       </topic>
       <topic label="INITIAL_ZERO_CROSSINGS_TO_SKIP" href="group___t_i_d_a-010243.html#gad70f3a73f63051914fa2c4e2be76679d"/>
+      <topic label="THREE_PHASE_LOG_DONE" href="group___t_i_d_a-010243.html#ga51b6b485cdfad2588fb86fab9b64b18b"/>
       <topic label="EVENTS0" href="group___t_i_d_a-010243.html#ga96e88c90666b784fcea17cc8cf8e1177">
         <topic label="PHASE_ONE_ACTIVE_POWER_NEGATIVE" href="group___t_i_d_a-010243.html#gga96e88c90666b784fcea17cc8cf8e1177a799364ab5440ff83312f4ee8e42fadd7"/>
         <topic label="PHASE_TWO_ACTIVE_POWER_NEGATIVE" href="group___t_i_d_a-010243.html#gga96e88c90666b784fcea17cc8cf8e1177a8c333ede0ad4b06e0a9ab071d7a5e2d5"/>
@@ -1182,7 +1200,7 @@
         <topic label="SAG_EVENT_PHASE_THREE" href="group___t_i_d_a-010243.html#gga31805590b8d2a5114194ae8ed80a173aa60843d910d5fdb92d5d733efd2c8622d"/>
       </topic>
       <topic label="TIDA_calculateMetrologyParameters" href="group___t_i_d_a-010243.html#ga69798392acfbc2ff85fd67623b9268fa"/>
-      <topic label="TIDA_init" href="group___t_i_d_a-010243.html#gab9f9c5ed04b4ddc9abc54f0ddc9962d2"/>
+      <topic label="TIDA_init" href="group___t_i_d_a-010243.html#ga149e9577573f4a470f1d7c8c6c2d0653"/>
       <topic label="debugInit" href="group___t_i_d_a-010243.html#gaef108fc92eb7f83ec3e4a30cf24cca75"/>
       <topic label="gADSHandle" href="group___t_i_d_a-010243.html#ga0c9e07ba2b0a097486839d866b282942"/>
       <topic label="gMetrologyworkingData" href="group___t_i_d_a-010243.html#gad2930098eef4f324cf2be988b321bf62"/>
@@ -1196,13 +1214,6 @@
         <topic label="response" href="struct_a_d_s__channel_data.html#a75d4ac5903b275c9558c6336bcdd4a48"/>
         <topic label="crc" href="struct_a_d_s__channel_data.html#a75420666ea6df058ad7897a93fdfa899"/>
         <topic label="chan0" href="struct_a_d_s__channel_data.html#a01d70db73ab0c33b18c07b8d753ecf0b"/>
-        <topic label="chan1" href="struct_a_d_s__channel_data.html#ae528ed86915cad217f9f06c594211934"/>
-        <topic label="chan2" href="struct_a_d_s__channel_data.html#a9c6dd4868978c2e73111ec9f5b1d0069"/>
-        <topic label="chan3" href="struct_a_d_s__channel_data.html#a8f143b02f2e1ed3939af429e1fa32130"/>
-        <topic label="chan4" href="struct_a_d_s__channel_data.html#af45c7490d326ccc103f1105b1a6e15a0"/>
-        <topic label="chan5" href="struct_a_d_s__channel_data.html#a0fa20adae608849c28f0171056208a4f"/>
-        <topic label="chan6" href="struct_a_d_s__channel_data.html#a7642033eea75376a9095b483c1c2dd96"/>
-        <topic label="chan7" href="struct_a_d_s__channel_data.html#aad4abd1bec0107ed967c4201df426548"/>
       </topic>
       <topic label="ADS_Instance" href="struct_a_d_s___instance.html">
         <topic label="ready" href="struct_a_d_s___instance.html#ab76285885131bab2242ecd45e8015557"/>
@@ -1221,7 +1232,7 @@
         <topic label="crcFailCount" href="struct_a_d_s___instance.html#af0cb43d1e1054d507cb6c639f00f4647"/>
       </topic>
       <topic label="calibrationData" href="structcalibration_data.html">
-        <topic label="phases" href="structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7"/>
+        <topic label="phases" href="structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37"/>
         <topic label="neutral" href="structcalibration_data.html#a7ed352f8c8096f1a303b2fdb1079d02c"/>
         <topic label="structState" href="structcalibration_data.html#a5674bee611bf8a362852ce29350d95a9"/>
         <topic label="calibrationInitFlag" href="structcalibration_data.html#a6ac8f244f2772f52f9e46745c322d664"/>
@@ -1266,13 +1277,14 @@
         <topic label="txInProgress" href="struct_d_l_t645_buf.html#ab0ec2d21fb5c9b1804899b7598f234cc"/>
         <topic label="rxPending" href="struct_d_l_t645_buf.html#a95f5c6357340e782c4fa1b1e62bf3608"/>
         <topic label="RS485EN" href="struct_d_l_t645_buf.html#a1c5e7be0eee3a21772252a6aadf96d7d"/>
+        <topic label="uartChan" href="struct_d_l_t645_buf.html#a798f3704a94dd35342f7ccf0b6e0051c"/>
       </topic>
       <topic label="energyIntegrator" href="structenergy_integrator.html">
         <topic label="energy" href="structenergy_integrator.html#a432aa35af088cde6e6810cf4bbd64c28"/>
         <topic label="energyResidual" href="structenergy_integrator.html#a20dc9a7f886301db9ee8edc693b185ac"/>
       </topic>
       <topic label="energyPulse" href="structenergy_pulse.html">
-        <topic label="integrator" href="structenergy_pulse.html#a4d7ef84f9ffb55c8eff46eac4f6a7a25"/>
+        <topic label="integrator" href="structenergy_pulse.html#ac3d49fdf293ef2c086a2ad49733bf7e7"/>
         <topic label="pulseRemainingTime" href="structenergy_pulse.html#acddf91ff59b2769468902a60bc196965"/>
       </topic>
       <topic label="HAL_GPIO_Instance_" href="struct_h_a_l___g_p_i_o___instance__.html">
@@ -1285,6 +1297,11 @@
         <topic label="inst" href="struct_h_a_l___s_p_i_instance__.html#a15d4f2595dcbdde91a1792a782dea312"/>
         <topic label="dmaChanIdTx" href="struct_h_a_l___s_p_i_instance__.html#a8a4df4b52f3132462420e6c6e7aa9783"/>
         <topic label="dmaChanIdRx" href="struct_h_a_l___s_p_i_instance__.html#a102f4543c7271e838501a20ea2e29c18"/>
+      </topic>
+      <topic label="HAL_UARTInstance_" href="struct_h_a_l___u_a_r_t_instance__.html">
+        <topic label="inst" href="struct_h_a_l___u_a_r_t_instance__.html#a568ffd138b951d770c3f6c72d8525276"/>
+        <topic label="dmaChanIdTx" href="struct_h_a_l___u_a_r_t_instance__.html#a6beaf79cebcb0faa270e95829ab9c02b"/>
+        <topic label="dmaChanIdRx" href="struct_h_a_l___u_a_r_t_instance__.html#a133db216c85021ee66aa44557002ba7f"/>
       </topic>
       <topic label="infoMem" href="structinfo_mem.html">
         <topic label="s" href="structinfo_mem.html#a038c69c84b4c9040a8f79062af4f35b6"/>
@@ -1390,7 +1407,7 @@
         <topic label="V_dc_estimate_logged" href="structphase_params.html#a0d2032a8368479e687399ea09e69cdb3"/>
         <topic label="vHistory" href="structphase_params.html#a8b8b70bcf3dc8cccbf3c45b20ccd44ae"/>
         <topic label="vHistoryIndex" href="structphase_params.html#a7c376b6f5f7d9d279d71aae0e60b2e3f"/>
-        <topic label="purePhase" href="structphase_params.html#ab2b203c5a456edd4b7fbf25ad1433d40"/>
+        <topic label="purePhase" href="structphase_params.html#a679be234f82cd0f15f9c48fed12b07bb"/>
         <topic label="purePhaseRate" href="structphase_params.html#a895535c1a01f9f6059237c5873b7281d"/>
         <topic label="crossSum" href="structphase_params.html#a06874ec2d66cc0682d475885ac3d9c1c"/>
         <topic label="sinceLast" href="structphase_params.html#a3301f764a3f7a95d47f04781a8ab334b"/>
@@ -1473,7 +1490,7 @@
       </topic>
       <topic label="voltageDPSet" href="structvoltage_d_p_set.html">
         <topic label="voltageSq" href="structvoltage_d_p_set.html#ad168918d53a9a4a3609c503ee32b9a1b"/>
-        <topic label="fVoltgaeSq" href="structvoltage_d_p_set.html#a9a1fd7744312d75e81ba49d0e74d6f4e"/>
+        <topic label="fVoltageSq" href="structvoltage_d_p_set.html#acf50729552f38fca3c2c4f5788651412"/>
         <topic label="sampleCount" href="structvoltage_d_p_set.html#a159d61a93006f5872745eb427f3397c8"/>
         <topic label="cycleNumber" href="structvoltage_d_p_set.html#a9d02acd18b83e2d88598b79e0c1b1863"/>
       </topic>
@@ -1526,24 +1543,23 @@
   <topic label="Files">
     <topic label="File List" href="files.html">
       <topic label="ADS131M02_Defaults.h" href="_a_d_s131_m02___defaults_8h.html">
-        <topic label="ADS01_CLOCK_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga88ded1e021b99bb0dab6573c81ad30e2"/>
-        <topic label="ADS01_MODE_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga167d4054bbb296b026c1ede1043c2c5e"/>
-        <topic label="ADS01_GAIN1_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gad698837c1aa00b3d105360bd2d7e46f1"/>
-        <topic label="ADS01_GAIN2_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga3701ba7874ef7ebf0474019eff2a34b7"/>
-        <topic label="ADS01_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaef9b5246e6c6083e2669e2559870b343"/>
-        <topic label="ADS01_THRSHLD_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gae4a63bfd9e7cc133a542116fa8d710ec"/>
-        <topic label="ADS01_THRSHLD_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga2156871c6d1c7c68917b441b887b3e7b"/>
-        <topic label="ADS01_CH0_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gab4c5d752f9ce7eda76205813aff44419"/>
-        <topic label="ADS01_CH0_OCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gada704a38aa040db9ca4293a899b22f78"/>
-        <topic label="ADS01_CH0_OCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga88e5883c8aa5ec3feb087a43ecca4f78"/>
-        <topic label="ADS01_CH0_GCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gafd95769078b3d08b78935ddd3babc48e"/>
-        <topic label="ADS01_CH0_GCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga548af2f31419f125ee2bd5cacb41e8b9"/>
-        <topic label="ADS01_CH1_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga0a75b7fd73537088f67f7e957321620f"/>
-        <topic label="ADS01_CH1_OCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga9d2187a9f06dc77bcd1dd8f8ee266edf"/>
-        <topic label="ADS01_CH1_OCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gadea25e34d03ffe52f35f2a30d93f8bd7"/>
-        <topic label="ADS01_CH1_GCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga8032fdd691b23ed375ce299c005ccca6"/>
-        <topic label="ADS01_CH1_GCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaa4e98926f6cea2f83bdc570a9ab035a4"/>
-        <topic label="ADS02_initRegData" href="group___a_d_s131_m0x.html#ga1dfac0c2f29494232314259ace92c508"/>
+        <topic label="ADS131M02_CLOCK_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga9308db6344a0423ab6afd8cc99d5ac21"/>
+        <topic label="ADS131M02_MODE_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gad1a2b8601d01d2859a5610e314f40063"/>
+        <topic label="ADS131M02_GAIN1_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gab7ac43398eb3373bfb5ad294204a940a"/>
+        <topic label="ADS131M02_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga8343f50d2284441d0f4abc07df9b1357"/>
+        <topic label="ADS131M02_THRSHLD_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga9b2aede6af08b01593bc93c65aab6930"/>
+        <topic label="ADS131M02_THRSHLD_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gab5213b96947f609dd885b3ca81c2d5c4"/>
+        <topic label="ADS131M02_CH0_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gab7c402e4f24b81d36a5fada65f21d1ed"/>
+        <topic label="ADS131M02_CH0_OCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga200fb90ab3e9af0610dc2bd1007a186c"/>
+        <topic label="ADS131M02_CH0_OCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaeaa07b3fd4ea6aff57768e7f0930d2c9"/>
+        <topic label="ADS131M02_CH0_GCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga63aec8cb8b60f52c3415b8e17a79ba86"/>
+        <topic label="ADS131M02_CH0_GCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaa2f03ff9c944bece44b5212e72c65133"/>
+        <topic label="ADS131M02_CH1_CFG_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga00b306700c49164f1c22aefeef0ea910"/>
+        <topic label="ADS131M02_CH1_OCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga4d66688c1ebfe3cd61192922b58e610c"/>
+        <topic label="ADS131M02_CH1_OCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga79797f3974a1e3e0c1303b4c72eb4273"/>
+        <topic label="ADS131M02_CH1_GCAL_MSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga55d647ae408ed5731b2771ee38506fb7"/>
+        <topic label="ADS131M02_CH1_GCAL_LSB_ADDRESS_DATA" href="group___a_d_s131_m0x.html#gaf99c698f4c8ab2f81e6fc871ed035a69"/>
+        <topic label="ADS131M02_initRegData" href="group___a_d_s131_m0x.html#ga04940169ed2c4b77490de4dde1c8b8a3"/>
       </topic>
       <topic label="ADS131M08_Defaults.h" href="_a_d_s131_m08___defaults_8h.html">
         <topic label="ADS01_CLOCK_ADDRESS_DATA" href="group___a_d_s131_m0x.html#ga88ded1e021b99bb0dab6573c81ad30e2"/>
@@ -1980,9 +1996,10 @@
           <topic label="METER_CONFIG_2_CURRENT_THD" href="group___d_l_t645.html#gga815ff7557a7bc3e1f03c625800d9d4cda57441886126e62b477b24d42763813c4"/>
           <topic label="METER_CONFIG_2_SAG_SWELL" href="group___d_l_t645.html#gga815ff7557a7bc3e1f03c625800d9d4cda9d22c43a7b7128a29b22fafb329d8998"/>
         </topic>
+        <topic label="DLT645_UARTRxdmaInit" href="group___d_l_t645.html#ga229f6ff9f1b27be2562be9700a682829"/>
         <topic label="DLT645_service" href="group___d_l_t645.html#gaaefe52d6cc1c29a17eba455a18b0cb78"/>
         <topic label="DLT645_rxByte" href="group___d_l_t645.html#ga8d50c36f341d92ce53b309448d7bba38"/>
-        <topic label="DLT645_UARTRxByte" href="group___d_l_t645.html#ga8fa1a23676f819faac68fdd1a30b6ccd"/>
+        <topic label="DLT645_UARTRxByte" href="group___d_l_t645.html#ga10f6d30cb3a3ca34fc68ab6170f3ed38"/>
         <topic label="DLT645_UARTTxByte" href="group___d_l_t645.html#ga6391c2a650f2524bf3c06efbcbcef7fa"/>
       </topic>
       <topic label="hal.h" href="hal_8h.html">
@@ -1996,8 +2013,11 @@
         <topic label="GEN_GPIO_OUT_PINO_04_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga11c27725743ce0b8963b29d6af7e0f84"/>
         <topic label="GEN_GPIO_IN_PINI_01_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga180fddfb0b49db8d59167200f1397d5f"/>
         <topic label="GEN_GPIO_IN_PINI_02_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga266fee814d882d0af58c7c88634a11ab"/>
+        <topic label="GEN_GPIO_IN_PINI_03_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gabcf8ef9d0a73e7acb4a269ca5738c7f2"/>
+        <topic label="GEN_GPIO_IN_PINI_04_PORT" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga59b0964e2f3e1520813ba0cdfeb38019"/>
         <topic label="HAL_GPIOInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga23eed94bab6780b3f11ba9ab8d05f84a"/>
         <topic label="HAL_SPIInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga5eb849cd196a4fff81a5048f6c2484d0"/>
+        <topic label="HAL_UARTInstance" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gabbfa45da7ea54806fa0ab46fa19e768f"/>
         <topic label="HAL_MEMORY_BLOCK_STARTADDR" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gac0e6bf6d8dca11e01e9c925cd42335b5">
           <topic label="HAL_MEMORY_BLOCK_STARTADDR01" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggac0e6bf6d8dca11e01e9c925cd42335b5ac10f67219dd76b2b2959caa93db569af"/>
         </topic>
@@ -2024,6 +2044,10 @@
           <topic label="HAL_SPI_CHAN_0" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggafd598002c976f8f7a713319892341f8ea66a5a45c33bf54cae088b92b2dcb20a9"/>
           <topic label="HAL_SPI_CHAN_MAX" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggafd598002c976f8f7a713319892341f8eaf37ee9b61a169cbbbed64d36c72d083a"/>
         </topic>
+        <topic label="HAL_UART_CHAN" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gaf75f1fbb9a032fdf17bae5747b59c5ad">
+          <topic label="HAL_UART_CHAN_0" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaf75f1fbb9a032fdf17bae5747b59c5adacc123392ffe852de4891ca1a47893c9f"/>
+          <topic label="HAL_UART_CHAN_MAX" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaf75f1fbb9a032fdf17bae5747b59c5adab5bc622e07fce680587f6180ec20271c"/>
+        </topic>
         <topic label="HAL_SPI_CS" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gadd8a694a4d051d1ed3e24f91cf3a5103">
           <topic label="HAL_SPI_CS_0" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a245e7d9e918d317a25632a2c741250d3"/>
           <topic label="HAL_SPI_CS_1" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a4dd1abcb56726a9e44d11ba048ed6059"/>
@@ -2041,7 +2065,11 @@
         <topic label="HAL_readGPIOPin" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga1aea5cc02cc69d4bd522f76b5f204dbf"/>
         <topic label="HAL_writeGPIOPin" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga4b486fecb727f909644cbc25d9047b49"/>
         <topic label="HAL_enableGPIOInterrupt" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga2d4abcb3128021c829897251b0c15057"/>
+        <topic label="HAL_getGPIOEnabledInterruptStatus" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gad39ea208df735a1ff3d413d2e600a5b9"/>
+        <topic label="HAL_clearGPIOInterruptStatus" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga480456e32d9e5562a8e05faaadd89c37"/>
         <topic label="HAL_startSPIDataTransfer" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#gaeb349b38acdbebc9263a5d508953a92b"/>
+        <topic label="HAL_startUARTDMARecieve" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga56c60d2ee913e758cdaf4a785c47ffe9"/>
+        <topic label="HAL_startUARTDMATransmit" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga8d0acdae43d6c1b4f6f0ba775746139e"/>
         <topic label="HAL_clearMemoryBlock" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga54c3c9827b8776d8a93a41e327a7c0fc"/>
         <topic label="HAL_secureMemoryBlock" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga83a3b199202f2b94857b62efa475bbd1"/>
         <topic label="HAL_copyMemoryBlock" href="group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ga6ec784dd6417cb7fc9acb88ee66a43f7"/>
@@ -2113,7 +2141,7 @@
         <topic label="Metrology_getPhaseFundQOffset" href="group___metrology.html#gab66c60c261bcc0db49245e95ead43ad9"/>
         <topic label="Metrology_getPhaseFundVOffset" href="group___metrology.html#ga5abbf2a25db86e8579d529f2430f8b77"/>
         <topic label="Metrology_getPhaseFundIOffset" href="group___metrology.html#gabce6343cd84e6de87e71c417213a7acb"/>
-        <topic label="Metrology_getPhaseCorrectionParameters" href="group___metrology.html#gab3663a24daeea499cdd38e02f822da59"/>
+        <topic label="Metrology_getPhaseCorrectionParameters" href="group___metrology.html#ga79d0a19be1ffa9e6a7a79dacb450802c"/>
         <topic label="Metrology_getPhaseVRMSScaling" href="group___metrology.html#ga3428d51c2ef57c60aede2306e5307fe0"/>
         <topic label="Metrology_getPhaseIRMSScaling" href="group___metrology.html#ga09a21dc363d47727b5138c7718e90bb0"/>
         <topic label="Metrology_getPhasePScaling" href="group___metrology.html#ga8783038efadd394c76af365aa82355e2"/>
@@ -2143,7 +2171,7 @@
         <topic label="Metrology_setPhaseFundQOffset" href="group___metrology.html#gae262deb8260085e7df09a6efc9586e87"/>
         <topic label="Metrology_setPhasePOffset" href="group___metrology.html#gafc15528ef1de7cbde76eb75be4322716"/>
         <topic label="Metrology_setPhaseQOffset" href="group___metrology.html#ga8f73c223f983ef81200a809b7075a701"/>
-        <topic label="Metrology_setPhaseOffset" href="group___metrology.html#ga9aacf96f2d57ac434ba160c74246f16d"/>
+        <topic label="Metrology_setPhaseOffset" href="group___metrology.html#gaa95294c06036cf78d569bc3b6cdaa0f2"/>
         <topic label="Metrology_setNeutralIacOffset" href="group___metrology.html#ga21850c9745cd17ab40709a97802dec65"/>
         <topic label="Metrology_setNeutralFundIOffset" href="group___metrology.html#ga2b7a48b0d854b9486a82d34dc050c948"/>
         <topic label="Metrology_setNeutralIdcEstimate" href="group___metrology.html#ga046f4c0efed4a7f0dde3d99d41efd125"/>
@@ -2292,6 +2320,10 @@
         <topic label="TOTAL_REACTIVE_ENERGY_PULSES_PER_KW_HOUR" href="group___metrology.html#ga93053651051fac50f2f1aa63611632fe"/>
         <topic label="TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD" href="group___metrology.html#ga923383ce984b79624739e562b7b291ca"/>
         <topic label="TOTAL_REACTIVE_ENERGY_PULSE_THRESHOLD" href="group___metrology.html#gacc50a34c2bda6b94c1ead390ae095167"/>
+        <topic label="METROLOGY_DDS_BIT_RESOLUTION" href="group___metrology.html#ga93d74f976321411d6835a4557e948494"/>
+        <topic label="METROLOGY_DDS_TABLE_RESOLUTION" href="group___metrology.html#ga7a80d040da916a3156582133d6380eed"/>
+        <topic label="METROLOGY_DDS_STEPS" href="group___metrology.html#ga4fa4c3b6aaa3c4ac814b9fbe6bd5edd2"/>
+        <topic label="METROLOGY_DDS_BIT_SHIFT" href="group___metrology.html#ga5c5563bed76119ed6fe0fb535f03ea28"/>
         <topic label="PHASES" href="group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5">
           <topic label="MAX_PHASES" href="group___metrology.html#ggae6a39e138227c54e7c6f7e6831d1a4a5aed4dff7bac71cc9ab84a82b977966993"/>
         </topic>
@@ -2334,10 +2366,13 @@
           <topic label="PHASE_STATUS_UNBALANCED" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba0f1046259b9e896352a743a8eaf7f6ab"/>
           <topic label="PHASE_STATUS_ZERO_CROSSING_MISSED" href="group___metrology.html#ggaed77a7c9b2819311be8e752edd17394ba085c986ed0232c0cb960f124949650d3"/>
         </topic>
+        <topic label="Metrology_ddsSinLookup" href="group___metrology.html#gac38db88031da3109861523870c979824"/>
+        <topic label="sineTable" href="group___metrology.html#ga6846d9a0cc6edbeb0b514bfd1272de7f"/>
       </topic>
       <topic label="metrology_foreground.h" href="metrology__foreground_8h.html">
         <topic label="Metrology_calculatePhaseReadings" href="group___metrology.html#ga99db09e1d05c351a8c1f04626c9d74fe"/>
         <topic label="Metrology_calculateThreePhaseParameters" href="group___metrology.html#ga06bdac856958614521b13a12fe6d02cc"/>
+        <topic label="Metrology_calculateTotalParameters" href="group___metrology.html#ga71f443f99f1e52e3022a4f419cfa9093"/>
         <topic label="Metrology_calculateNeutralReadings" href="group___metrology.html#ga058718046af58da967607181e014bdd2"/>
         <topic label="Metrology_sagSwellDetection" href="group___metrology.html#gaf909158ac9db1b9a6515efe1c48b414b"/>
       </topic>
@@ -2423,7 +2458,7 @@
         <topic label="Metrology_init" href="group___metrology.html#ga04066c7fb6f252c45d9551551149dbd2"/>
         <topic label="Metrology_initNVData" href="group___metrology.html#gafaff70a66a3408523eaaf70380466f15"/>
         <topic label="Metrology_alignwithNVData" href="group___metrology.html#ga27079dc46bd9843ec7f5d0a27a7ea1eb"/>
-        <topic label="Metrology_setPhaseCorrection" href="group___metrology.html#ga0eff6f7b27e9fab309d02b07c3e6267f"/>
+        <topic label="Metrology_setPhaseCorrection" href="group___metrology.html#ga77569593b79c109dff0eedf069871221"/>
         <topic label="Metrology_alignWithCalibrationData" href="group___metrology.html#ga906c4159026d68656c338ab69ac3cc01"/>
         <topic label="phase_shift_fir_coeffs" href="group___metrology.html#ga6d6e754004148b0a97cdcfe7d66c57e0"/>
       </topic>
@@ -2431,6 +2466,7 @@
       </topic>
       <topic label="TIDA-010243.h" href="_t_i_d_a-010243_8h.html">
         <topic label="INITIAL_ZERO_CROSSINGS_TO_SKIP" href="group___t_i_d_a-010243.html#gad70f3a73f63051914fa2c4e2be76679d"/>
+        <topic label="THREE_PHASE_LOG_DONE" href="group___t_i_d_a-010243.html#ga51b6b485cdfad2588fb86fab9b64b18b"/>
         <topic label="EVENTS0" href="group___t_i_d_a-010243.html#ga96e88c90666b784fcea17cc8cf8e1177">
           <topic label="PHASE_ONE_ACTIVE_POWER_NEGATIVE" href="group___t_i_d_a-010243.html#gga96e88c90666b784fcea17cc8cf8e1177a799364ab5440ff83312f4ee8e42fadd7"/>
           <topic label="PHASE_TWO_ACTIVE_POWER_NEGATIVE" href="group___t_i_d_a-010243.html#gga96e88c90666b784fcea17cc8cf8e1177a8c333ede0ad4b06e0a9ab071d7a5e2d5"/>
@@ -2453,7 +2489,7 @@
           <topic label="SAG_EVENT_PHASE_THREE" href="group___t_i_d_a-010243.html#gga31805590b8d2a5114194ae8ed80a173aa60843d910d5fdb92d5d733efd2c8622d"/>
         </topic>
         <topic label="TIDA_calculateMetrologyParameters" href="group___t_i_d_a-010243.html#ga69798392acfbc2ff85fd67623b9268fa"/>
-        <topic label="TIDA_init" href="group___t_i_d_a-010243.html#gab9f9c5ed04b4ddc9abc54f0ddc9962d2"/>
+        <topic label="TIDA_init" href="group___t_i_d_a-010243.html#ga149e9577573f4a470f1d7c8c6c2d0653"/>
         <topic label="debugInit" href="group___t_i_d_a-010243.html#gaef108fc92eb7f83ec3e4a30cf24cca75"/>
         <topic label="gADSHandle" href="group___t_i_d_a-010243.html#ga0c9e07ba2b0a097486839d866b282942"/>
         <topic label="gMetrologyworkingData" href="group___t_i_d_a-010243.html#gad2930098eef4f324cf2be988b321bf62"/>

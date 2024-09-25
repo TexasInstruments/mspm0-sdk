@@ -53,7 +53,6 @@ SPI1.DMA_CHANNEL_EVENT1.addressMode = "f2b";
 SPI1.DMA_CHANNEL_EVENT1.srcLength   = "BYTE";
 SPI1.DMA_CHANNEL_EVENT1.dstLength   = "BYTE";
 SPI1.DMA_CHANNEL_EVENT1.peripheral.$assign = "DMA_CH1";
-SPI1.cs1PinConfig.$name                    = "ti_driverlib_gpio_GPIOPinGeneric3";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 SYSCTL.forceDefaultClkConfig = true;

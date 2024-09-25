@@ -44,9 +44,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html">MSPM0 Sensorless FOC Software User’s Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Sensorless_FOC_Motor_Control_User_Guide_CN.html">Sensorless FOC Motor Control Library Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_GUI_User_Guide_CN.html">DRV8323RS GUI User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">DRV8323RS Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sensorless_FOC_Motor_Control_Library_CN.html">Sensorless FOC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UART_Communication_User_Guide_CN.html">UART Communication User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8316 Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a></li>
 </ul>
 
         </div>
@@ -77,29 +78,39 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html">MSPM0 Sensorless FOC Software User’s Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#ccs-project-setup">CCS Project setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#adding-initial-parameters-optional">Adding Initial Parameters (optional)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#starting-the-project">Starting the Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#running-the-project">Running the Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#ccs-project-setup">1. CCS Project setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#register-map">2. Register Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#api-guide">3. API Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#known-issues">4. Known Issues</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#supported-devices">5. Supported Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#supported-devices">4. Supported Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html#tuning-documentation">5. Tuning Documentation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Sensorless_FOC_Motor_Control_User_Guide_CN.html">Sensorless FOC Motor Control Library Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Sensorless_FOC_Motor_Control_User_Guide_CN.html#software-overview">1. Software Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Sensorless_FOC_Motor_Control_Library_CN.html">Sensorless FOC Motor Control Library Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Sensorless_FOC_Motor_Control_Library_CN.html#software-overview">Software Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sensorless_FOC_Motor_Control_Library_CN.html#application-layer">1. Application Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sensorless_FOC_Motor_Control_Library_CN.html#hal-layer">2. HAL Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sensorless_FOC_Motor_Control_Library_CN.html#mspm0-driverlib-overview">3. MSPM0 DriverLib Overview</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_GUI_User_Guide_CN.html">DRV8323RS GUI User Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="drv8323rs/DRV8323RS_GUI_User_Guide_CN.html#overview">1. Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="drv8323rs/DRV8323RS_GUI_User_Guide_CN.html#getting-started-with-gui">1.1 Getting Started with GUI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="drv8323rs/DRV8323RS_GUI_User_Guide_CN.html#using-the-gui">2. Using the GUI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="drv8323rs/DRV8323RS_GUI_User_Guide_CN.html#gui-window">3. GUI Window</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UART_Communication_User_Guide_CN.html">UART Communication User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="UART_Communication_User_Guide_CN.html#overview">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UART_Communication_User_Guide_CN.html#peripheral-configurations">2. Peripheral Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UART_Communication_User_Guide_CN.html#communication-configuration">3. Communication Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UART_Communication_User_Guide_CN.html#frame-format">4. Frame Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UART_Communication_User_Guide_CN.html#example">5. Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UART_Communication_User_Guide_CN.html#acknowledge-response">6. Acknowledge Response</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">DRV8323RS Hardware User Guide</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8316 Gate Driver User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html#hardware-required">1. Hardware Required</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html#hardware-setup">2. Hardware Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html#gatedriver-register-configurations">3. Gatedriver Register Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html#hardware-required">1. Hardware Required</a></li>
 <li class="toctree-l2"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html#hardware-setup">2. Hardware Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html#gatedriver-register-configurations">3. Gatedriver Register Configurations</a></li>
 </ul>
 </li>
 </ul>

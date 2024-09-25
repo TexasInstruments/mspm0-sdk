@@ -40,10 +40,8 @@ UART1.digitalGlitchFilter      = 3;
 UART1.peripheral.$assign       = "UART0";
 UART1.peripheral.rxPin.$assign = "PA11";
 UART1.peripheral.txPin.$assign = "PA10";
-UART1.txPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
 UART1.txPinConfig.enableConfig = true;
 UART1.txPinConfig.invert       = "ENABLE";
-UART1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
 UART1.rxPinConfig.enableConfig = true;
 UART1.rxPinConfig.invert       = "ENABLE";
 

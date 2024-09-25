@@ -17,7 +17,7 @@ NAME = two_opa_instrumentation_amplifier
 CFLAGS = -I.. \
     -I. \
     -O2 \
-    @syscfg/device.opt \
+    @device.opt \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
     -mcpu=cortex-m0plus \
@@ -34,7 +34,7 @@ CFLAGS = -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
 LFLAGS = -nostartfiles \
-    -ldevice.lds.genlibs \
+    -Tdevice.lds.genlibs \
     -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \

@@ -1,0 +1,49 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].initialValue        = "SET";
+GPIO1.associatedPins[1].assignedPin         = "21";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SYSCTL.clockTreeEn = true;
+
+UART1.$name                     = "UART_0";
+UART1.flowControl               = "RTS_CTS";
+UART1.enableFIFO                = true;
+UART1.rxFifoThreshold           = "DL_UART_RX_FIFO_LEVEL_3_4_FULL";
+UART1.rxTimeoutValue            = 15;
+UART1.enableDMARX               = false;
+UART1.enableDMATX               = false;
+UART1.targetBaudRate            = 115200;
+UART1.enabledInterrupts         = ["RX","RX_TIMEOUT_ERROR"];
+UART1.peripheral.$assign        = "UART0";
+UART1.peripheral.rxPin.$assign  = "PA11";
+UART1.peripheral.txPin.$assign  = "PA10";
+UART1.peripheral.rtsPin.$assign = "PA8";
+UART1.peripheral.ctsPin.$assign = "PA9";

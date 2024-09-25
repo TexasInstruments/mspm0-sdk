@@ -33,7 +33,7 @@ let DMA_TRIGGERS = {
         "SW"    : ["DMA_SOFTWARE_TRIG"],
         "FSUB_0": ["DMA_GENERIC_SUB0_TRIG"],
         "FSUB_1": ["DMA_GENERIC_SUB1_TRIG"],
-        "AES"   : ["DMA_AESADVHP_AES_0_TRIG", "DMA_AESADVHP_AES_1_TRIG"],
+        "AES"   : ["DMA_AESADV_AES_0_TRIG", "DMA_AESADV_AES_1_TRIG"],
         "ADC0"  : ["DMA_ADC0_EVT_GEN_BD_TRIG"],
         "I2C0"  : ["DMA_I2C0_TX_TRIG", "DMA_I2C0_RX_TRIG"],
         "I2C1"  : ["DMA_I2C1_TX_TRIG", "DMA_I2C1_RX_TRIG"],

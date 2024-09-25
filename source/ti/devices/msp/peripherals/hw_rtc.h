@@ -1,33 +1,33 @@
 /*****************************************************************************
 
-  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/ 
 
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
+  Redistribution and use in source and binary forms, with or without 
+  modification, are permitted provided that the following conditions 
   are met:
 
-   Redistributions of source code must retain the above copyright
+   Redistributions of source code must retain the above copyright 
    notice, this list of conditions and the following disclaimer.
 
    Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the
+   notice, this list of conditions and the following disclaimer in the 
+   documentation and/or other materials provided with the   
    distribution.
 
    Neither the name of Texas Instruments Incorporated nor the names of
    its contributors may be used to endorse or promote products derived
    from this software without specific prior written permission.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 *****************************************************************************/
@@ -36,8 +36,8 @@
 #define ti_devices_msp_peripherals_hw_rtc__include
 
 /* Filename: hw_rtc.h */
-/* Revised: 2023-06-19 17:05:03 */
-/* Revision: dd7206add1cc10c98f9dc73f8babf5e8e190c73f */
+/* Revised: 2023-11-10 23:33:05 */
+/* Revision: 57bdd406cc3983634d43d73d4088fae123c0b478 */
 
 #ifndef __CORTEX_M
   #ifdef __cplusplus
@@ -79,16 +79,11 @@
 
 typedef struct {
   __I  uint32_t IIDX;                              /* !< (@ 0x00001050) Interrupt Index Register */
-       uint32_t RESERVED0;
-  __IO uint32_t IMASK;                             /* !< (@ 0x00001058) Interrupt mask */
-       uint32_t RESERVED1;
-  __I  uint32_t RIS;                               /* !< (@ 0x00001060) Raw interrupt status */
-       uint32_t RESERVED2;
-  __I  uint32_t MIS;                               /* !< (@ 0x00001068) Masked interrupt status */
-       uint32_t RESERVED3;
-  __O  uint32_t ISET;                              /* !< (@ 0x00001070) Interrupt set */
-       uint32_t RESERVED4;
-  __O  uint32_t ICLR;                              /* !< (@ 0x00001078) Interrupt clear */
+  __IO uint32_t IMASK;                             /* !< (@ 0x00001054) Interrupt mask */
+  __I  uint32_t RIS;                               /* !< (@ 0x00001058) Raw interrupt status */
+  __I  uint32_t MIS;                               /* !< (@ 0x0000105C) Masked interrupt status */
+  __O  uint32_t ISET;                              /* !< (@ 0x00001060) Interrupt set */
+  __O  uint32_t ICLR;                              /* !< (@ 0x00001064) Interrupt clear */
 } RTC_GEN_EVENT_Regs;
 
 /*@}*/ /* end of group RTC_GEN_EVENT */
@@ -142,7 +137,7 @@ typedef struct {
   RTC_CPU_INT_Regs  CPU_INT;                           /* !< (@ 0x00001020) */
        uint32_t RESERVED4;
   RTC_GEN_EVENT_Regs  GEN_EVENT;                         /* !< (@ 0x00001050) */
-       uint32_t RESERVED5[25];
+       uint32_t RESERVED5[30];
   __IO uint32_t EVT_MODE;                          /* !< (@ 0x000010E0) Event Mode */
        uint32_t RESERVED6[6];
   __I  uint32_t DESC;                              /* !< (@ 0x000010FC) RTC Descriptor Register */
@@ -177,6 +172,24 @@ typedef struct {
   __IO uint32_t A2DAY;                             /* !< (@ 0x00001144) RTC Alarm Day Of Week / Month Register - Calendar
                                                       Mode With Binary / BCD Format */
   __IO uint32_t PSCTL;                             /* !< (@ 0x00001148) RTC Prescale Timer 0/1 Control Register */
+  __IO uint32_t EXTPSCTL;                          /* !< (@ 0x0000114C) RTC Prescale Timer 2 Control Register */
+  __I  uint32_t TSSEC;                             /* !< (@ 0x00001150) Time Stamp Seconds Register - Calendar Mode With
+                                                      Binary / BCD Format */
+  __I  uint32_t TSMIN;                             /* !< (@ 0x00001154) Time Stamp Minutes Register - Calendar Mode With
+                                                      Binary / BCD Format */
+  __I  uint32_t TSHOUR;                            /* !< (@ 0x00001158) Time Stamp Hours Register - Calendar Mode With
+                                                      Binary / BCD Format */
+  __I  uint32_t TSDAY;                             /* !< (@ 0x0000115C) Time Stamp Day Of Week / MonthRegister - Calendar
+                                                      Mode With Binary / BCD Format */
+  __I  uint32_t TSMON;                             /* !< (@ 0x00001160) Time Stamp Month Register - Calendar Mode With
+                                                      Binary / BCD Format */
+  __I  uint32_t TSYEAR;                            /* !< (@ 0x00001164) Time Stamp Years Register - Calendar Mode With
+                                                      Binary / BCD Format */
+  __I  uint32_t TSSTAT;                            /* !< (@ 0x00001168) Time Stamp Status Register */
+  __IO uint32_t TSCTL;                             /* !< (@ 0x0000116C) Time Stamp Control Register */
+  __O  uint32_t TSCLR;                             /* !< (@ 0x00001170) Time Stamp Clear Register */
+  __IO uint32_t LFSSRST;                           /* !< (@ 0x00001174) Low frequency sub-system reset request */
+  __IO uint32_t RTCLOCK;                           /* !< (@ 0x00001178) Real time clock lock register */
 } RTC_Regs;
 
 /*@}*/ /* end of group RTC */
@@ -196,178 +209,664 @@ typedef struct {
 #define RTC_GEN_EVENT_IIDX_STAT_OFS              (0)                             /* !< STAT Offset */
 #define RTC_GEN_EVENT_IIDX_STAT_MASK             ((uint32_t)0x000000FFU)         /* !< Interrupt index status */
 #define RTC_GEN_EVENT_IIDX_STAT_NO_INTR          ((uint32_t)0x00000000U)         /* !< No interrupt pending */
-#define RTC_GEN_EVENT_IIDX_STAT_RTCRDY           ((uint32_t)0x00000001U)         /* !< RTC-Ready interrupt; Interrupt
-                                                                                    flag: RTCRDY */
-#define RTC_GEN_EVENT_IIDX_STAT_RTCTEV           ((uint32_t)0x00000002U)         /* !< Time-Event interrupt; Interrupt
-                                                                                    flag: RTCTEV */
-#define RTC_GEN_EVENT_IIDX_STAT_RTCA1            ((uint32_t)0x00000003U)         /* !< Alarm-1 interrupt; Interrupt flag:
-                                                                                    RTCA1 */
-#define RTC_GEN_EVENT_IIDX_STAT_RTCA2            ((uint32_t)0x00000004U)         /* !< Alarm-2 interrupt; Interrupt flag:
-                                                                                    RTCA2 */
-#define RTC_GEN_EVENT_IIDX_STAT_RT0PS            ((uint32_t)0x00000005U)         /* !< Prescaler-0 interrupt; Interrupt
-                                                                                    flag: RT0PS */
-#define RTC_GEN_EVENT_IIDX_STAT_RT1PS            ((uint32_t)0x00000006U)         /* !< Prescaler-1 interrupt; Interrupt
-                                                                                    flag: RT1PS */
+#define RTC_GEN_EVENT_IIDX_STAT_RTCRDY           ((uint32_t)0x00000001U)         /* !< RTC ready */
+#define RTC_GEN_EVENT_IIDX_STAT_RTCTEV           ((uint32_t)0x00000002U)         /* !< RTC time event */
+#define RTC_GEN_EVENT_IIDX_STAT_RTCA1            ((uint32_t)0x00000003U)         /* !< RTC alarm 1 */
+#define RTC_GEN_EVENT_IIDX_STAT_RTCA2            ((uint32_t)0x00000004U)         /* !< RTC alarm 2 */
+#define RTC_GEN_EVENT_IIDX_STAT_RT0PS            ((uint32_t)0x00000005U)         /* !< RTC prescale timer 0 */
+#define RTC_GEN_EVENT_IIDX_STAT_RT1PS            ((uint32_t)0x00000006U)         /* !< RTC prescale timer 1 */
+#define RTC_GEN_EVENT_IIDX_STAT_RT2PS            ((uint32_t)0x00000007U)         /* !< RTC prescale timer 2 */
+#define RTC_GEN_EVENT_IIDX_STAT_TSEVT            ((uint32_t)0x00000008U)         /* !< Time stamp event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO0             ((uint32_t)0x00000009U)         /* !< Tamper I/O 0 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO1             ((uint32_t)0x0000000AU)         /* !< Tamper I/O 1 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO2             ((uint32_t)0x0000000BU)         /* !< Tamper I/O 2 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO3             ((uint32_t)0x0000000CU)         /* !< Tamper I/O 3 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO4             ((uint32_t)0x0000000DU)         /* !< Tamper I/O 4 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO5             ((uint32_t)0x0000000EU)         /* !< Tamper I/O 5 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO6             ((uint32_t)0x0000000FU)         /* !< Tamper I/O 6 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO7             ((uint32_t)0x00000010U)         /* !< Tamper I/O 7 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO8             ((uint32_t)0x00000011U)         /* !< Tamper I/O 8 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO9             ((uint32_t)0x00000012U)         /* !< Tamper I/O 9 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO10            ((uint32_t)0x00000013U)         /* !< Tamper I/O 10 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO11            ((uint32_t)0x00000014U)         /* !< Tamper I/O 11 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO12            ((uint32_t)0x00000015U)         /* !< Tamper I/O 12 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO13            ((uint32_t)0x00000016U)         /* !< Tamper I/O 13 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO14            ((uint32_t)0x00000017U)         /* !< Tamper I/O 14 event */
+#define RTC_GEN_EVENT_IIDX_STAT_TIO15            ((uint32_t)0x00000018U)         /* !< Tamper I/O 15 event */
 
 /* RTC_GEN_EVENT_IMASK Bits */
+/* RTC_GEN_EVENT_IMASK[RTCRDY] Bits */
+#define RTC_GEN_EVENT_IMASK_RTCRDY_OFS           (0)                             /* !< RTCRDY Offset */
+#define RTC_GEN_EVENT_IMASK_RTCRDY_MASK          ((uint32_t)0x00000001U)         /* !< RTC ready */
+#define RTC_GEN_EVENT_IMASK_RTCRDY_CLR           ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_RTCRDY_SET           ((uint32_t)0x00000001U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[RTCTEV] Bits */
+#define RTC_GEN_EVENT_IMASK_RTCTEV_OFS           (1)                             /* !< RTCTEV Offset */
+#define RTC_GEN_EVENT_IMASK_RTCTEV_MASK          ((uint32_t)0x00000002U)         /* !< RTC time event */
+#define RTC_GEN_EVENT_IMASK_RTCTEV_CLR           ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_RTCTEV_SET           ((uint32_t)0x00000002U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[RTCA1] Bits */
+#define RTC_GEN_EVENT_IMASK_RTCA1_OFS            (2)                             /* !< RTCA1 Offset */
+#define RTC_GEN_EVENT_IMASK_RTCA1_MASK           ((uint32_t)0x00000004U)         /* !< RTC alarm 1 */
+#define RTC_GEN_EVENT_IMASK_RTCA1_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_RTCA1_SET            ((uint32_t)0x00000004U)         /* !< Set Interrrupt Mask */
 /* RTC_GEN_EVENT_IMASK[RTCA2] Bits */
 #define RTC_GEN_EVENT_IMASK_RTCA2_OFS            (3)                             /* !< RTCA2 Offset */
-#define RTC_GEN_EVENT_IMASK_RTCA2_MASK           ((uint32_t)0x00000008U)         /* !< Enable Alarm-2 interrupt */
+#define RTC_GEN_EVENT_IMASK_RTCA2_MASK           ((uint32_t)0x00000008U)         /* !< RTC alarm 2 */
 #define RTC_GEN_EVENT_IMASK_RTCA2_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
 #define RTC_GEN_EVENT_IMASK_RTCA2_SET            ((uint32_t)0x00000008U)         /* !< Set Interrrupt Mask */
 /* RTC_GEN_EVENT_IMASK[RT0PS] Bits */
 #define RTC_GEN_EVENT_IMASK_RT0PS_OFS            (4)                             /* !< RT0PS Offset */
-#define RTC_GEN_EVENT_IMASK_RT0PS_MASK           ((uint32_t)0x00000010U)         /* !< Enable Prescaler-0 interrupt */
+#define RTC_GEN_EVENT_IMASK_RT0PS_MASK           ((uint32_t)0x00000010U)         /* !< RTC prescale timer 0 */
 #define RTC_GEN_EVENT_IMASK_RT0PS_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
 #define RTC_GEN_EVENT_IMASK_RT0PS_SET            ((uint32_t)0x00000010U)         /* !< Set Interrrupt Mask */
 /* RTC_GEN_EVENT_IMASK[RT1PS] Bits */
 #define RTC_GEN_EVENT_IMASK_RT1PS_OFS            (5)                             /* !< RT1PS Offset */
-#define RTC_GEN_EVENT_IMASK_RT1PS_MASK           ((uint32_t)0x00000020U)         /* !< Enable Prescaler-1 interrupt */
+#define RTC_GEN_EVENT_IMASK_RT1PS_MASK           ((uint32_t)0x00000020U)         /* !< RTC prescale timer 1 */
 #define RTC_GEN_EVENT_IMASK_RT1PS_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
 #define RTC_GEN_EVENT_IMASK_RT1PS_SET            ((uint32_t)0x00000020U)         /* !< Set Interrrupt Mask */
-/* RTC_GEN_EVENT_IMASK[RTCTEV] Bits */
-#define RTC_GEN_EVENT_IMASK_RTCTEV_OFS           (1)                             /* !< RTCTEV Offset */
-#define RTC_GEN_EVENT_IMASK_RTCTEV_MASK          ((uint32_t)0x00000002U)         /* !< Enable Time-Event interrupt */
-#define RTC_GEN_EVENT_IMASK_RTCTEV_CLR           ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_IMASK_RTCTEV_SET           ((uint32_t)0x00000002U)         /* !< Set Interrrupt Mask */
-/* RTC_GEN_EVENT_IMASK[RTCRDY] Bits */
-#define RTC_GEN_EVENT_IMASK_RTCRDY_OFS           (0)                             /* !< RTCRDY Offset */
-#define RTC_GEN_EVENT_IMASK_RTCRDY_MASK          ((uint32_t)0x00000001U)         /* !< Enable RTC-Ready interrupt */
-#define RTC_GEN_EVENT_IMASK_RTCRDY_CLR           ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_IMASK_RTCRDY_SET           ((uint32_t)0x00000001U)         /* !< Set Interrrupt Mask */
-/* RTC_GEN_EVENT_IMASK[RTCA1] Bits */
-#define RTC_GEN_EVENT_IMASK_RTCA1_OFS            (2)                             /* !< RTCA1 Offset */
-#define RTC_GEN_EVENT_IMASK_RTCA1_MASK           ((uint32_t)0x00000004U)         /* !< Enable Alarm-1 interrupt */
-#define RTC_GEN_EVENT_IMASK_RTCA1_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_IMASK_RTCA1_SET            ((uint32_t)0x00000004U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[RT2PS] Bits */
+#define RTC_GEN_EVENT_IMASK_RT2PS_OFS            (6)                             /* !< RT2PS Offset */
+#define RTC_GEN_EVENT_IMASK_RT2PS_MASK           ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_GEN_EVENT_IMASK_RT2PS_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_RT2PS_SET            ((uint32_t)0x00000040U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TSEVT] Bits */
+#define RTC_GEN_EVENT_IMASK_TSEVT_OFS            (7)                             /* !< TSEVT Offset */
+#define RTC_GEN_EVENT_IMASK_TSEVT_MASK           ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_GEN_EVENT_IMASK_TSEVT_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TSEVT_SET            ((uint32_t)0x00000080U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO0] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO0_OFS             (8)                             /* !< TIO0 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO0_MASK            ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_GEN_EVENT_IMASK_TIO0_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO0_SET             ((uint32_t)0x00000100U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO1] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO1_OFS             (9)                             /* !< TIO1 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO1_MASK            ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_GEN_EVENT_IMASK_TIO1_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO1_SET             ((uint32_t)0x00000200U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO2] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO2_OFS             (10)                            /* !< TIO2 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO2_MASK            ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_GEN_EVENT_IMASK_TIO2_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO2_SET             ((uint32_t)0x00000400U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO3] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO3_OFS             (11)                            /* !< TIO3 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO3_MASK            ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_GEN_EVENT_IMASK_TIO3_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO3_SET             ((uint32_t)0x00000800U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO4] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO4_OFS             (12)                            /* !< TIO4 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO4_MASK            ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_GEN_EVENT_IMASK_TIO4_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO4_SET             ((uint32_t)0x00001000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO5] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO5_OFS             (13)                            /* !< TIO5 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO5_MASK            ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_GEN_EVENT_IMASK_TIO5_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO5_SET             ((uint32_t)0x00002000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO6] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO6_OFS             (14)                            /* !< TIO6 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO6_MASK            ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_GEN_EVENT_IMASK_TIO6_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO6_SET             ((uint32_t)0x00004000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO7] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO7_OFS             (15)                            /* !< TIO7 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO7_MASK            ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_GEN_EVENT_IMASK_TIO7_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO7_SET             ((uint32_t)0x00008000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO8] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO8_OFS             (16)                            /* !< TIO8 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO8_MASK            ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_GEN_EVENT_IMASK_TIO8_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO8_SET             ((uint32_t)0x00010000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO9] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO9_OFS             (17)                            /* !< TIO9 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO9_MASK            ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_GEN_EVENT_IMASK_TIO9_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO9_SET             ((uint32_t)0x00020000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO10] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO10_OFS            (18)                            /* !< TIO10 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO10_MASK           ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_GEN_EVENT_IMASK_TIO10_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO10_SET            ((uint32_t)0x00040000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO11] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO11_OFS            (19)                            /* !< TIO11 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO11_MASK           ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_GEN_EVENT_IMASK_TIO11_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO11_SET            ((uint32_t)0x00080000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO12] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO12_OFS            (20)                            /* !< TIO12 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO12_MASK           ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_GEN_EVENT_IMASK_TIO12_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO12_SET            ((uint32_t)0x00100000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO13] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO13_OFS            (21)                            /* !< TIO13 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO13_MASK           ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_GEN_EVENT_IMASK_TIO13_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO13_SET            ((uint32_t)0x00200000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO14] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO14_OFS            (22)                            /* !< TIO14 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO14_MASK           ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_GEN_EVENT_IMASK_TIO14_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO14_SET            ((uint32_t)0x00400000U)         /* !< Set Interrrupt Mask */
+/* RTC_GEN_EVENT_IMASK[TIO15] Bits */
+#define RTC_GEN_EVENT_IMASK_TIO15_OFS            (23)                            /* !< TIO15 Offset */
+#define RTC_GEN_EVENT_IMASK_TIO15_MASK           ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_GEN_EVENT_IMASK_TIO15_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_GEN_EVENT_IMASK_TIO15_SET            ((uint32_t)0x00800000U)         /* !< Set Interrrupt Mask */
 
 /* RTC_GEN_EVENT_RIS Bits */
 /* RTC_GEN_EVENT_RIS[RTCRDY] Bits */
 #define RTC_GEN_EVENT_RIS_RTCRDY_OFS             (0)                             /* !< RTCRDY Offset */
-#define RTC_GEN_EVENT_RIS_RTCRDY_MASK            ((uint32_t)0x00000001U)         /* !< Raw RTC-Ready interrupts status */
+#define RTC_GEN_EVENT_RIS_RTCRDY_MASK            ((uint32_t)0x00000001U)         /* !< RTC ready */
 #define RTC_GEN_EVENT_RIS_RTCRDY_CLR             ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_RIS_RTCRDY_SET             ((uint32_t)0x00000001U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_RIS_RTCRDY_SET             ((uint32_t)0x00000001U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_RIS[RTCTEV] Bits */
 #define RTC_GEN_EVENT_RIS_RTCTEV_OFS             (1)                             /* !< RTCTEV Offset */
-#define RTC_GEN_EVENT_RIS_RTCTEV_MASK            ((uint32_t)0x00000002U)         /* !< Raw Time-Event interrupt status */
+#define RTC_GEN_EVENT_RIS_RTCTEV_MASK            ((uint32_t)0x00000002U)         /* !< RTC time event */
 #define RTC_GEN_EVENT_RIS_RTCTEV_CLR             ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_RIS_RTCTEV_SET             ((uint32_t)0x00000002U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_RIS_RTCTEV_SET             ((uint32_t)0x00000002U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_RIS[RTCA1] Bits */
 #define RTC_GEN_EVENT_RIS_RTCA1_OFS              (2)                             /* !< RTCA1 Offset */
-#define RTC_GEN_EVENT_RIS_RTCA1_MASK             ((uint32_t)0x00000004U)         /* !< Raw Alarm-1 interrupt status */
+#define RTC_GEN_EVENT_RIS_RTCA1_MASK             ((uint32_t)0x00000004U)         /* !< RTC alarm 1 */
 #define RTC_GEN_EVENT_RIS_RTCA1_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_RIS_RTCA1_SET              ((uint32_t)0x00000004U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_RIS_RTCA1_SET              ((uint32_t)0x00000004U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_RIS[RTCA2] Bits */
 #define RTC_GEN_EVENT_RIS_RTCA2_OFS              (3)                             /* !< RTCA2 Offset */
-#define RTC_GEN_EVENT_RIS_RTCA2_MASK             ((uint32_t)0x00000008U)         /* !< Raw Alarm-2 interrupts status */
+#define RTC_GEN_EVENT_RIS_RTCA2_MASK             ((uint32_t)0x00000008U)         /* !< RTC alarm 2 */
 #define RTC_GEN_EVENT_RIS_RTCA2_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_RIS_RTCA2_SET              ((uint32_t)0x00000008U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_RIS_RTCA2_SET              ((uint32_t)0x00000008U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_RIS[RT0PS] Bits */
 #define RTC_GEN_EVENT_RIS_RT0PS_OFS              (4)                             /* !< RT0PS Offset */
-#define RTC_GEN_EVENT_RIS_RT0PS_MASK             ((uint32_t)0x00000010U)         /* !< Raw Prescaler-0 interrupt status */
+#define RTC_GEN_EVENT_RIS_RT0PS_MASK             ((uint32_t)0x00000010U)         /* !< RTC prescale timer 0 */
 #define RTC_GEN_EVENT_RIS_RT0PS_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_RIS_RT0PS_SET              ((uint32_t)0x00000010U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_RIS_RT0PS_SET              ((uint32_t)0x00000010U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_RIS[RT1PS] Bits */
 #define RTC_GEN_EVENT_RIS_RT1PS_OFS              (5)                             /* !< RT1PS Offset */
-#define RTC_GEN_EVENT_RIS_RT1PS_MASK             ((uint32_t)0x00000020U)         /* !< Raw Prescaler-1 interrupt status */
+#define RTC_GEN_EVENT_RIS_RT1PS_MASK             ((uint32_t)0x00000020U)         /* !< RTC prescale timer 1 */
 #define RTC_GEN_EVENT_RIS_RT1PS_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_RIS_RT1PS_SET              ((uint32_t)0x00000020U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_RIS_RT1PS_SET              ((uint32_t)0x00000020U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[RT2PS] Bits */
+#define RTC_GEN_EVENT_RIS_RT2PS_OFS              (6)                             /* !< RT2PS Offset */
+#define RTC_GEN_EVENT_RIS_RT2PS_MASK             ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_GEN_EVENT_RIS_RT2PS_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_RT2PS_SET              ((uint32_t)0x00000040U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TSEVT] Bits */
+#define RTC_GEN_EVENT_RIS_TSEVT_OFS              (7)                             /* !< TSEVT Offset */
+#define RTC_GEN_EVENT_RIS_TSEVT_MASK             ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_GEN_EVENT_RIS_TSEVT_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TSEVT_SET              ((uint32_t)0x00000080U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO0] Bits */
+#define RTC_GEN_EVENT_RIS_TIO0_OFS               (8)                             /* !< TIO0 Offset */
+#define RTC_GEN_EVENT_RIS_TIO0_MASK              ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_GEN_EVENT_RIS_TIO0_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO0_SET               ((uint32_t)0x00000100U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO1] Bits */
+#define RTC_GEN_EVENT_RIS_TIO1_OFS               (9)                             /* !< TIO1 Offset */
+#define RTC_GEN_EVENT_RIS_TIO1_MASK              ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_GEN_EVENT_RIS_TIO1_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO1_SET               ((uint32_t)0x00000200U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO2] Bits */
+#define RTC_GEN_EVENT_RIS_TIO2_OFS               (10)                            /* !< TIO2 Offset */
+#define RTC_GEN_EVENT_RIS_TIO2_MASK              ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_GEN_EVENT_RIS_TIO2_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO2_SET               ((uint32_t)0x00000400U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO3] Bits */
+#define RTC_GEN_EVENT_RIS_TIO3_OFS               (11)                            /* !< TIO3 Offset */
+#define RTC_GEN_EVENT_RIS_TIO3_MASK              ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_GEN_EVENT_RIS_TIO3_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO3_SET               ((uint32_t)0x00000800U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO4] Bits */
+#define RTC_GEN_EVENT_RIS_TIO4_OFS               (12)                            /* !< TIO4 Offset */
+#define RTC_GEN_EVENT_RIS_TIO4_MASK              ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_GEN_EVENT_RIS_TIO4_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO4_SET               ((uint32_t)0x00001000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO5] Bits */
+#define RTC_GEN_EVENT_RIS_TIO5_OFS               (13)                            /* !< TIO5 Offset */
+#define RTC_GEN_EVENT_RIS_TIO5_MASK              ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_GEN_EVENT_RIS_TIO5_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO5_SET               ((uint32_t)0x00002000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO6] Bits */
+#define RTC_GEN_EVENT_RIS_TIO6_OFS               (14)                            /* !< TIO6 Offset */
+#define RTC_GEN_EVENT_RIS_TIO6_MASK              ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_GEN_EVENT_RIS_TIO6_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO6_SET               ((uint32_t)0x00004000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO7] Bits */
+#define RTC_GEN_EVENT_RIS_TIO7_OFS               (15)                            /* !< TIO7 Offset */
+#define RTC_GEN_EVENT_RIS_TIO7_MASK              ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_GEN_EVENT_RIS_TIO7_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO7_SET               ((uint32_t)0x00008000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO8] Bits */
+#define RTC_GEN_EVENT_RIS_TIO8_OFS               (16)                            /* !< TIO8 Offset */
+#define RTC_GEN_EVENT_RIS_TIO8_MASK              ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_GEN_EVENT_RIS_TIO8_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO8_SET               ((uint32_t)0x00010000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO9] Bits */
+#define RTC_GEN_EVENT_RIS_TIO9_OFS               (17)                            /* !< TIO9 Offset */
+#define RTC_GEN_EVENT_RIS_TIO9_MASK              ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_GEN_EVENT_RIS_TIO9_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO9_SET               ((uint32_t)0x00020000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO10] Bits */
+#define RTC_GEN_EVENT_RIS_TIO10_OFS              (18)                            /* !< TIO10 Offset */
+#define RTC_GEN_EVENT_RIS_TIO10_MASK             ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_GEN_EVENT_RIS_TIO10_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO10_SET              ((uint32_t)0x00040000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO11] Bits */
+#define RTC_GEN_EVENT_RIS_TIO11_OFS              (19)                            /* !< TIO11 Offset */
+#define RTC_GEN_EVENT_RIS_TIO11_MASK             ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_GEN_EVENT_RIS_TIO11_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO11_SET              ((uint32_t)0x00080000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO12] Bits */
+#define RTC_GEN_EVENT_RIS_TIO12_OFS              (20)                            /* !< TIO12 Offset */
+#define RTC_GEN_EVENT_RIS_TIO12_MASK             ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_GEN_EVENT_RIS_TIO12_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO12_SET              ((uint32_t)0x00100000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO13] Bits */
+#define RTC_GEN_EVENT_RIS_TIO13_OFS              (21)                            /* !< TIO13 Offset */
+#define RTC_GEN_EVENT_RIS_TIO13_MASK             ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_GEN_EVENT_RIS_TIO13_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO13_SET              ((uint32_t)0x00200000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO14] Bits */
+#define RTC_GEN_EVENT_RIS_TIO14_OFS              (22)                            /* !< TIO14 Offset */
+#define RTC_GEN_EVENT_RIS_TIO14_MASK             ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_GEN_EVENT_RIS_TIO14_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO14_SET              ((uint32_t)0x00400000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_RIS[TIO15] Bits */
+#define RTC_GEN_EVENT_RIS_TIO15_OFS              (23)                            /* !< TIO15 Offset */
+#define RTC_GEN_EVENT_RIS_TIO15_MASK             ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_GEN_EVENT_RIS_TIO15_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_GEN_EVENT_RIS_TIO15_SET              ((uint32_t)0x00800000U)         /* !< Interrupt occurred */
 
 /* RTC_GEN_EVENT_MIS Bits */
 /* RTC_GEN_EVENT_MIS[RTCRDY] Bits */
 #define RTC_GEN_EVENT_MIS_RTCRDY_OFS             (0)                             /* !< RTCRDY Offset */
-#define RTC_GEN_EVENT_MIS_RTCRDY_MASK            ((uint32_t)0x00000001U)         /* !< Masked RTC-Ready interrupt status */
-#define RTC_GEN_EVENT_MIS_RTCRDY_CLR             ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_MIS_RTCRDY_SET             ((uint32_t)0x00000001U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_MIS_RTCRDY_MASK            ((uint32_t)0x00000001U)         /* !< RTC ready */
+#define RTC_GEN_EVENT_MIS_RTCRDY_CLR             ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_RTCRDY_SET             ((uint32_t)0x00000001U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_MIS[RTCTEV] Bits */
 #define RTC_GEN_EVENT_MIS_RTCTEV_OFS             (1)                             /* !< RTCTEV Offset */
-#define RTC_GEN_EVENT_MIS_RTCTEV_MASK            ((uint32_t)0x00000002U)         /* !< Masked Time-Event interrupt status */
-#define RTC_GEN_EVENT_MIS_RTCTEV_CLR             ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_MIS_RTCTEV_SET             ((uint32_t)0x00000002U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_MIS_RTCTEV_MASK            ((uint32_t)0x00000002U)         /* !< RTC time event */
+#define RTC_GEN_EVENT_MIS_RTCTEV_CLR             ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_RTCTEV_SET             ((uint32_t)0x00000002U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_MIS[RTCA1] Bits */
 #define RTC_GEN_EVENT_MIS_RTCA1_OFS              (2)                             /* !< RTCA1 Offset */
-#define RTC_GEN_EVENT_MIS_RTCA1_MASK             ((uint32_t)0x00000004U)         /* !< Masked Alarm-1 interrupt status */
-#define RTC_GEN_EVENT_MIS_RTCA1_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_MIS_RTCA1_SET              ((uint32_t)0x00000004U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_MIS_RTCA1_MASK             ((uint32_t)0x00000004U)         /* !< RTC alarm 1 */
+#define RTC_GEN_EVENT_MIS_RTCA1_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_RTCA1_SET              ((uint32_t)0x00000004U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_MIS[RTCA2] Bits */
 #define RTC_GEN_EVENT_MIS_RTCA2_OFS              (3)                             /* !< RTCA2 Offset */
-#define RTC_GEN_EVENT_MIS_RTCA2_MASK             ((uint32_t)0x00000008U)         /* !< Masked Alarm-2 interrupt status */
-#define RTC_GEN_EVENT_MIS_RTCA2_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_MIS_RTCA2_SET              ((uint32_t)0x00000008U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_MIS_RTCA2_MASK             ((uint32_t)0x00000008U)         /* !< RTC alarm 2 */
+#define RTC_GEN_EVENT_MIS_RTCA2_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_RTCA2_SET              ((uint32_t)0x00000008U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_MIS[RT0PS] Bits */
 #define RTC_GEN_EVENT_MIS_RT0PS_OFS              (4)                             /* !< RT0PS Offset */
-#define RTC_GEN_EVENT_MIS_RT0PS_MASK             ((uint32_t)0x00000010U)         /* !< Masked Prescaler-0 interrupt status */
-#define RTC_GEN_EVENT_MIS_RT0PS_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_MIS_RT0PS_SET              ((uint32_t)0x00000010U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_MIS_RT0PS_MASK             ((uint32_t)0x00000010U)         /* !< RTC prescale timer 0 */
+#define RTC_GEN_EVENT_MIS_RT0PS_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_RT0PS_SET              ((uint32_t)0x00000010U)         /* !< Interrupt occurred */
 /* RTC_GEN_EVENT_MIS[RT1PS] Bits */
 #define RTC_GEN_EVENT_MIS_RT1PS_OFS              (5)                             /* !< RT1PS Offset */
-#define RTC_GEN_EVENT_MIS_RT1PS_MASK             ((uint32_t)0x00000020U)         /* !< Masked Prescaler-1 interrupt status */
-#define RTC_GEN_EVENT_MIS_RT1PS_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
-#define RTC_GEN_EVENT_MIS_RT1PS_SET              ((uint32_t)0x00000020U)         /* !< Interrupt occured */
+#define RTC_GEN_EVENT_MIS_RT1PS_MASK             ((uint32_t)0x00000020U)         /* !< RTC prescale timer 1 */
+#define RTC_GEN_EVENT_MIS_RT1PS_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_RT1PS_SET              ((uint32_t)0x00000020U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[RT2PS] Bits */
+#define RTC_GEN_EVENT_MIS_RT2PS_OFS              (6)                             /* !< RT2PS Offset */
+#define RTC_GEN_EVENT_MIS_RT2PS_MASK             ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_GEN_EVENT_MIS_RT2PS_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_RT2PS_SET              ((uint32_t)0x00000040U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TSEVT] Bits */
+#define RTC_GEN_EVENT_MIS_TSEVT_OFS              (7)                             /* !< TSEVT Offset */
+#define RTC_GEN_EVENT_MIS_TSEVT_MASK             ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_GEN_EVENT_MIS_TSEVT_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TSEVT_SET              ((uint32_t)0x00000080U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO0] Bits */
+#define RTC_GEN_EVENT_MIS_TIO0_OFS               (8)                             /* !< TIO0 Offset */
+#define RTC_GEN_EVENT_MIS_TIO0_MASK              ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_GEN_EVENT_MIS_TIO0_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO0_SET               ((uint32_t)0x00000100U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO1] Bits */
+#define RTC_GEN_EVENT_MIS_TIO1_OFS               (9)                             /* !< TIO1 Offset */
+#define RTC_GEN_EVENT_MIS_TIO1_MASK              ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_GEN_EVENT_MIS_TIO1_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO1_SET               ((uint32_t)0x00000200U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO2] Bits */
+#define RTC_GEN_EVENT_MIS_TIO2_OFS               (10)                            /* !< TIO2 Offset */
+#define RTC_GEN_EVENT_MIS_TIO2_MASK              ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_GEN_EVENT_MIS_TIO2_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO2_SET               ((uint32_t)0x00000400U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO3] Bits */
+#define RTC_GEN_EVENT_MIS_TIO3_OFS               (11)                            /* !< TIO3 Offset */
+#define RTC_GEN_EVENT_MIS_TIO3_MASK              ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_GEN_EVENT_MIS_TIO3_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO3_SET               ((uint32_t)0x00000800U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO4] Bits */
+#define RTC_GEN_EVENT_MIS_TIO4_OFS               (12)                            /* !< TIO4 Offset */
+#define RTC_GEN_EVENT_MIS_TIO4_MASK              ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_GEN_EVENT_MIS_TIO4_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO4_SET               ((uint32_t)0x00001000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO5] Bits */
+#define RTC_GEN_EVENT_MIS_TIO5_OFS               (13)                            /* !< TIO5 Offset */
+#define RTC_GEN_EVENT_MIS_TIO5_MASK              ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_GEN_EVENT_MIS_TIO5_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO5_SET               ((uint32_t)0x00002000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO6] Bits */
+#define RTC_GEN_EVENT_MIS_TIO6_OFS               (14)                            /* !< TIO6 Offset */
+#define RTC_GEN_EVENT_MIS_TIO6_MASK              ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_GEN_EVENT_MIS_TIO6_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO6_SET               ((uint32_t)0x00004000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO7] Bits */
+#define RTC_GEN_EVENT_MIS_TIO7_OFS               (15)                            /* !< TIO7 Offset */
+#define RTC_GEN_EVENT_MIS_TIO7_MASK              ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_GEN_EVENT_MIS_TIO7_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO7_SET               ((uint32_t)0x00008000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO8] Bits */
+#define RTC_GEN_EVENT_MIS_TIO8_OFS               (16)                            /* !< TIO8 Offset */
+#define RTC_GEN_EVENT_MIS_TIO8_MASK              ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_GEN_EVENT_MIS_TIO8_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO8_SET               ((uint32_t)0x00010000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO9] Bits */
+#define RTC_GEN_EVENT_MIS_TIO9_OFS               (17)                            /* !< TIO9 Offset */
+#define RTC_GEN_EVENT_MIS_TIO9_MASK              ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_GEN_EVENT_MIS_TIO9_CLR               ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO9_SET               ((uint32_t)0x00020000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO10] Bits */
+#define RTC_GEN_EVENT_MIS_TIO10_OFS              (18)                            /* !< TIO10 Offset */
+#define RTC_GEN_EVENT_MIS_TIO10_MASK             ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_GEN_EVENT_MIS_TIO10_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO10_SET              ((uint32_t)0x00040000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO11] Bits */
+#define RTC_GEN_EVENT_MIS_TIO11_OFS              (19)                            /* !< TIO11 Offset */
+#define RTC_GEN_EVENT_MIS_TIO11_MASK             ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_GEN_EVENT_MIS_TIO11_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO11_SET              ((uint32_t)0x00080000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO12] Bits */
+#define RTC_GEN_EVENT_MIS_TIO12_OFS              (20)                            /* !< TIO12 Offset */
+#define RTC_GEN_EVENT_MIS_TIO12_MASK             ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_GEN_EVENT_MIS_TIO12_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO12_SET              ((uint32_t)0x00100000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO13] Bits */
+#define RTC_GEN_EVENT_MIS_TIO13_OFS              (21)                            /* !< TIO13 Offset */
+#define RTC_GEN_EVENT_MIS_TIO13_MASK             ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_GEN_EVENT_MIS_TIO13_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO13_SET              ((uint32_t)0x00200000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO14] Bits */
+#define RTC_GEN_EVENT_MIS_TIO14_OFS              (22)                            /* !< TIO14 Offset */
+#define RTC_GEN_EVENT_MIS_TIO14_MASK             ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_GEN_EVENT_MIS_TIO14_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO14_SET              ((uint32_t)0x00400000U)         /* !< Interrupt occurred */
+/* RTC_GEN_EVENT_MIS[TIO15] Bits */
+#define RTC_GEN_EVENT_MIS_TIO15_OFS              (23)                            /* !< TIO15 Offset */
+#define RTC_GEN_EVENT_MIS_TIO15_MASK             ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_GEN_EVENT_MIS_TIO15_CLR              ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_GEN_EVENT_MIS_TIO15_SET              ((uint32_t)0x00800000U)         /* !< Interrupt occurred */
 
 /* RTC_GEN_EVENT_ISET Bits */
 /* RTC_GEN_EVENT_ISET[RTCRDY] Bits */
 #define RTC_GEN_EVENT_ISET_RTCRDY_OFS            (0)                             /* !< RTCRDY Offset */
-#define RTC_GEN_EVENT_ISET_RTCRDY_MASK           ((uint32_t)0x00000001U)         /* !< Set RTC-Ready interrupt */
-#define RTC_GEN_EVENT_ISET_RTCRDY_CLR            ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
-#define RTC_GEN_EVENT_ISET_RTCRDY_SET            ((uint32_t)0x00000001U)         /* !< Set Interrupt */
+#define RTC_GEN_EVENT_ISET_RTCRDY_MASK           ((uint32_t)0x00000001U)         /* !< RTC ready */
+#define RTC_GEN_EVENT_ISET_RTCRDY_NO_EFFECT      ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_RTCRDY_SET            ((uint32_t)0x00000001U)         /* !< Set interrupt */
 /* RTC_GEN_EVENT_ISET[RTCTEV] Bits */
 #define RTC_GEN_EVENT_ISET_RTCTEV_OFS            (1)                             /* !< RTCTEV Offset */
-#define RTC_GEN_EVENT_ISET_RTCTEV_MASK           ((uint32_t)0x00000002U)         /* !< Set Time-Event interrupt */
-#define RTC_GEN_EVENT_ISET_RTCTEV_CLR            ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
-#define RTC_GEN_EVENT_ISET_RTCTEV_SET            ((uint32_t)0x00000002U)         /* !< Set Interrupt */
+#define RTC_GEN_EVENT_ISET_RTCTEV_MASK           ((uint32_t)0x00000002U)         /* !< RTC time event */
+#define RTC_GEN_EVENT_ISET_RTCTEV_NO_EFFECT      ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_RTCTEV_SET            ((uint32_t)0x00000002U)         /* !< Set interrupt */
 /* RTC_GEN_EVENT_ISET[RTCA1] Bits */
 #define RTC_GEN_EVENT_ISET_RTCA1_OFS             (2)                             /* !< RTCA1 Offset */
-#define RTC_GEN_EVENT_ISET_RTCA1_MASK            ((uint32_t)0x00000004U)         /* !< Set Alarm-1 interrupt */
-#define RTC_GEN_EVENT_ISET_RTCA1_CLR             ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
-#define RTC_GEN_EVENT_ISET_RTCA1_SET             ((uint32_t)0x00000004U)         /* !< Set Interrupt */
+#define RTC_GEN_EVENT_ISET_RTCA1_MASK            ((uint32_t)0x00000004U)         /* !< RTC alarm 1 */
+#define RTC_GEN_EVENT_ISET_RTCA1_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_RTCA1_SET             ((uint32_t)0x00000004U)         /* !< Set interrupt */
 /* RTC_GEN_EVENT_ISET[RTCA2] Bits */
 #define RTC_GEN_EVENT_ISET_RTCA2_OFS             (3)                             /* !< RTCA2 Offset */
-#define RTC_GEN_EVENT_ISET_RTCA2_MASK            ((uint32_t)0x00000008U)         /* !< Set Alarm-2 interrupt */
-#define RTC_GEN_EVENT_ISET_RTCA2_CLR             ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
-#define RTC_GEN_EVENT_ISET_RTCA2_SET             ((uint32_t)0x00000008U)         /* !< Set Interrupt */
+#define RTC_GEN_EVENT_ISET_RTCA2_MASK            ((uint32_t)0x00000008U)         /* !< RTC alarm 2 */
+#define RTC_GEN_EVENT_ISET_RTCA2_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_RTCA2_SET             ((uint32_t)0x00000008U)         /* !< Set interrupt */
 /* RTC_GEN_EVENT_ISET[RT0PS] Bits */
 #define RTC_GEN_EVENT_ISET_RT0PS_OFS             (4)                             /* !< RT0PS Offset */
-#define RTC_GEN_EVENT_ISET_RT0PS_MASK            ((uint32_t)0x00000010U)         /* !< Set Prescaler-0 interrupt */
-#define RTC_GEN_EVENT_ISET_RT0PS_CLR             ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
-#define RTC_GEN_EVENT_ISET_RT0PS_SET             ((uint32_t)0x00000010U)         /* !< Set Interrupt */
+#define RTC_GEN_EVENT_ISET_RT0PS_MASK            ((uint32_t)0x00000010U)         /* !< RTC prescale timer 0 */
+#define RTC_GEN_EVENT_ISET_RT0PS_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_RT0PS_SET             ((uint32_t)0x00000010U)         /* !< Set interrupt */
 /* RTC_GEN_EVENT_ISET[RT1PS] Bits */
 #define RTC_GEN_EVENT_ISET_RT1PS_OFS             (5)                             /* !< RT1PS Offset */
-#define RTC_GEN_EVENT_ISET_RT1PS_MASK            ((uint32_t)0x00000020U)         /* !< Set Prescaler-1 interrupt */
-#define RTC_GEN_EVENT_ISET_RT1PS_CLR             ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
-#define RTC_GEN_EVENT_ISET_RT1PS_SET             ((uint32_t)0x00000020U)         /* !< Set Interrupt */
+#define RTC_GEN_EVENT_ISET_RT1PS_MASK            ((uint32_t)0x00000020U)         /* !< RTC prescale timer 1 */
+#define RTC_GEN_EVENT_ISET_RT1PS_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_RT1PS_SET             ((uint32_t)0x00000020U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[RT2PS] Bits */
+#define RTC_GEN_EVENT_ISET_RT2PS_OFS             (6)                             /* !< RT2PS Offset */
+#define RTC_GEN_EVENT_ISET_RT2PS_MASK            ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_GEN_EVENT_ISET_RT2PS_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_RT2PS_SET             ((uint32_t)0x00000040U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TSEVT] Bits */
+#define RTC_GEN_EVENT_ISET_TSEVT_OFS             (7)                             /* !< TSEVT Offset */
+#define RTC_GEN_EVENT_ISET_TSEVT_MASK            ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_GEN_EVENT_ISET_TSEVT_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TSEVT_SET             ((uint32_t)0x00000080U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO0] Bits */
+#define RTC_GEN_EVENT_ISET_TIO0_OFS              (8)                             /* !< TIO0 Offset */
+#define RTC_GEN_EVENT_ISET_TIO0_MASK             ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_GEN_EVENT_ISET_TIO0_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO0_SET              ((uint32_t)0x00000100U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO1] Bits */
+#define RTC_GEN_EVENT_ISET_TIO1_OFS              (9)                             /* !< TIO1 Offset */
+#define RTC_GEN_EVENT_ISET_TIO1_MASK             ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_GEN_EVENT_ISET_TIO1_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO1_SET              ((uint32_t)0x00000200U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO2] Bits */
+#define RTC_GEN_EVENT_ISET_TIO2_OFS              (10)                            /* !< TIO2 Offset */
+#define RTC_GEN_EVENT_ISET_TIO2_MASK             ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_GEN_EVENT_ISET_TIO2_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO2_SET              ((uint32_t)0x00000400U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO3] Bits */
+#define RTC_GEN_EVENT_ISET_TIO3_OFS              (11)                            /* !< TIO3 Offset */
+#define RTC_GEN_EVENT_ISET_TIO3_MASK             ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_GEN_EVENT_ISET_TIO3_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO3_SET              ((uint32_t)0x00000800U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO4] Bits */
+#define RTC_GEN_EVENT_ISET_TIO4_OFS              (12)                            /* !< TIO4 Offset */
+#define RTC_GEN_EVENT_ISET_TIO4_MASK             ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_GEN_EVENT_ISET_TIO4_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO4_SET              ((uint32_t)0x00001000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO5] Bits */
+#define RTC_GEN_EVENT_ISET_TIO5_OFS              (13)                            /* !< TIO5 Offset */
+#define RTC_GEN_EVENT_ISET_TIO5_MASK             ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_GEN_EVENT_ISET_TIO5_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO5_SET              ((uint32_t)0x00002000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO6] Bits */
+#define RTC_GEN_EVENT_ISET_TIO6_OFS              (14)                            /* !< TIO6 Offset */
+#define RTC_GEN_EVENT_ISET_TIO6_MASK             ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_GEN_EVENT_ISET_TIO6_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO6_SET              ((uint32_t)0x00004000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO7] Bits */
+#define RTC_GEN_EVENT_ISET_TIO7_OFS              (15)                            /* !< TIO7 Offset */
+#define RTC_GEN_EVENT_ISET_TIO7_MASK             ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_GEN_EVENT_ISET_TIO7_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO7_SET              ((uint32_t)0x00008000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO8] Bits */
+#define RTC_GEN_EVENT_ISET_TIO8_OFS              (16)                            /* !< TIO8 Offset */
+#define RTC_GEN_EVENT_ISET_TIO8_MASK             ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_GEN_EVENT_ISET_TIO8_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO8_SET              ((uint32_t)0x00010000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO9] Bits */
+#define RTC_GEN_EVENT_ISET_TIO9_OFS              (17)                            /* !< TIO9 Offset */
+#define RTC_GEN_EVENT_ISET_TIO9_MASK             ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_GEN_EVENT_ISET_TIO9_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO9_SET              ((uint32_t)0x00020000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO10] Bits */
+#define RTC_GEN_EVENT_ISET_TIO10_OFS             (18)                            /* !< TIO10 Offset */
+#define RTC_GEN_EVENT_ISET_TIO10_MASK            ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_GEN_EVENT_ISET_TIO10_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO10_SET             ((uint32_t)0x00040000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO11] Bits */
+#define RTC_GEN_EVENT_ISET_TIO11_OFS             (19)                            /* !< TIO11 Offset */
+#define RTC_GEN_EVENT_ISET_TIO11_MASK            ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_GEN_EVENT_ISET_TIO11_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO11_SET             ((uint32_t)0x00080000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO12] Bits */
+#define RTC_GEN_EVENT_ISET_TIO12_OFS             (20)                            /* !< TIO12 Offset */
+#define RTC_GEN_EVENT_ISET_TIO12_MASK            ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_GEN_EVENT_ISET_TIO12_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO12_SET             ((uint32_t)0x00100000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO13] Bits */
+#define RTC_GEN_EVENT_ISET_TIO13_OFS             (21)                            /* !< TIO13 Offset */
+#define RTC_GEN_EVENT_ISET_TIO13_MASK            ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_GEN_EVENT_ISET_TIO13_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO13_SET             ((uint32_t)0x00200000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO14] Bits */
+#define RTC_GEN_EVENT_ISET_TIO14_OFS             (22)                            /* !< TIO14 Offset */
+#define RTC_GEN_EVENT_ISET_TIO14_MASK            ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_GEN_EVENT_ISET_TIO14_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO14_SET             ((uint32_t)0x00400000U)         /* !< Set interrupt */
+/* RTC_GEN_EVENT_ISET[TIO15] Bits */
+#define RTC_GEN_EVENT_ISET_TIO15_OFS             (23)                            /* !< TIO15 Offset */
+#define RTC_GEN_EVENT_ISET_TIO15_MASK            ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_GEN_EVENT_ISET_TIO15_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ISET_TIO15_SET             ((uint32_t)0x00800000U)         /* !< Set interrupt */
 
 /* RTC_GEN_EVENT_ICLR Bits */
 /* RTC_GEN_EVENT_ICLR[RTCRDY] Bits */
 #define RTC_GEN_EVENT_ICLR_RTCRDY_OFS            (0)                             /* !< RTCRDY Offset */
-#define RTC_GEN_EVENT_ICLR_RTCRDY_MASK           ((uint32_t)0x00000001U)         /* !< Clear RTC-Ready interrupt */
-#define RTC_GEN_EVENT_ICLR_RTCRDY_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_ICLR_RTCRDY_SET            ((uint32_t)0x00000001U)         /* !< Clear Interrupt */
+#define RTC_GEN_EVENT_ICLR_RTCRDY_MASK           ((uint32_t)0x00000001U)         /* !< RTC ready */
+#define RTC_GEN_EVENT_ICLR_RTCRDY_NO_EFFECT      ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_RTCRDY_CLR            ((uint32_t)0x00000001U)         /* !< Clear interrupt */
 /* RTC_GEN_EVENT_ICLR[RTCTEV] Bits */
 #define RTC_GEN_EVENT_ICLR_RTCTEV_OFS            (1)                             /* !< RTCTEV Offset */
-#define RTC_GEN_EVENT_ICLR_RTCTEV_MASK           ((uint32_t)0x00000002U)         /* !< Clear Time-Event interrupt */
-#define RTC_GEN_EVENT_ICLR_RTCTEV_CLR            ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_ICLR_RTCTEV_SET            ((uint32_t)0x00000002U)         /* !< Set Interrrupt Mask */
+#define RTC_GEN_EVENT_ICLR_RTCTEV_MASK           ((uint32_t)0x00000002U)         /* !< RTC time event */
+#define RTC_GEN_EVENT_ICLR_RTCTEV_NO_EFFECT      ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_RTCTEV_CLR            ((uint32_t)0x00000002U)         /* !< Clear interrupt */
 /* RTC_GEN_EVENT_ICLR[RTCA1] Bits */
 #define RTC_GEN_EVENT_ICLR_RTCA1_OFS             (2)                             /* !< RTCA1 Offset */
-#define RTC_GEN_EVENT_ICLR_RTCA1_MASK            ((uint32_t)0x00000004U)         /* !< Clear Alarm-1 interrupt */
-#define RTC_GEN_EVENT_ICLR_RTCA1_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_ICLR_RTCA1_SET             ((uint32_t)0x00000004U)         /* !< Set Interrrupt Mask */
+#define RTC_GEN_EVENT_ICLR_RTCA1_MASK            ((uint32_t)0x00000004U)         /* !< RTC alarm 1 */
+#define RTC_GEN_EVENT_ICLR_RTCA1_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_RTCA1_CLR             ((uint32_t)0x00000004U)         /* !< Clear interrupt */
 /* RTC_GEN_EVENT_ICLR[RTCA2] Bits */
 #define RTC_GEN_EVENT_ICLR_RTCA2_OFS             (3)                             /* !< RTCA2 Offset */
-#define RTC_GEN_EVENT_ICLR_RTCA2_MASK            ((uint32_t)0x00000008U)         /* !< Clear Alarm-2 interrupt */
-#define RTC_GEN_EVENT_ICLR_RTCA2_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_ICLR_RTCA2_SET             ((uint32_t)0x00000008U)         /* !< Set Interrrupt Mask */
+#define RTC_GEN_EVENT_ICLR_RTCA2_MASK            ((uint32_t)0x00000008U)         /* !< RTC alarm 2 */
+#define RTC_GEN_EVENT_ICLR_RTCA2_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_RTCA2_CLR             ((uint32_t)0x00000008U)         /* !< Clear interrupt */
 /* RTC_GEN_EVENT_ICLR[RT0PS] Bits */
 #define RTC_GEN_EVENT_ICLR_RT0PS_OFS             (4)                             /* !< RT0PS Offset */
-#define RTC_GEN_EVENT_ICLR_RT0PS_MASK            ((uint32_t)0x00000010U)         /* !< Clear Prescaler-0 interrupt */
-#define RTC_GEN_EVENT_ICLR_RT0PS_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_ICLR_RT0PS_SET             ((uint32_t)0x00000010U)         /* !< Set Interrrupt Mask */
+#define RTC_GEN_EVENT_ICLR_RT0PS_MASK            ((uint32_t)0x00000010U)         /* !< RTC prescale timer 0 */
+#define RTC_GEN_EVENT_ICLR_RT0PS_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_RT0PS_CLR             ((uint32_t)0x00000010U)         /* !< Clear interrupt */
 /* RTC_GEN_EVENT_ICLR[RT1PS] Bits */
 #define RTC_GEN_EVENT_ICLR_RT1PS_OFS             (5)                             /* !< RT1PS Offset */
-#define RTC_GEN_EVENT_ICLR_RT1PS_MASK            ((uint32_t)0x00000020U)         /* !< Clear Prescaler-1 interrupt */
-#define RTC_GEN_EVENT_ICLR_RT1PS_CLR             ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
-#define RTC_GEN_EVENT_ICLR_RT1PS_SET             ((uint32_t)0x00000020U)         /* !< Set Interrrupt Mask */
+#define RTC_GEN_EVENT_ICLR_RT1PS_MASK            ((uint32_t)0x00000020U)         /* !< RTC prescale timer 1 */
+#define RTC_GEN_EVENT_ICLR_RT1PS_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_RT1PS_CLR             ((uint32_t)0x00000020U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[RT2PS] Bits */
+#define RTC_GEN_EVENT_ICLR_RT2PS_OFS             (6)                             /* !< RT2PS Offset */
+#define RTC_GEN_EVENT_ICLR_RT2PS_MASK            ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_GEN_EVENT_ICLR_RT2PS_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_RT2PS_CLR             ((uint32_t)0x00000040U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TSEVT] Bits */
+#define RTC_GEN_EVENT_ICLR_TSEVT_OFS             (7)                             /* !< TSEVT Offset */
+#define RTC_GEN_EVENT_ICLR_TSEVT_MASK            ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_GEN_EVENT_ICLR_TSEVT_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TSEVT_CLR             ((uint32_t)0x00000080U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO0] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO0_OFS              (8)                             /* !< TIO0 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO0_MASK             ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_GEN_EVENT_ICLR_TIO0_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO0_CLR              ((uint32_t)0x00000100U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO1] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO1_OFS              (9)                             /* !< TIO1 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO1_MASK             ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_GEN_EVENT_ICLR_TIO1_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO1_CLR              ((uint32_t)0x00000200U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO2] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO2_OFS              (10)                            /* !< TIO2 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO2_MASK             ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_GEN_EVENT_ICLR_TIO2_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO2_CLR              ((uint32_t)0x00000400U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO3] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO3_OFS              (11)                            /* !< TIO3 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO3_MASK             ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_GEN_EVENT_ICLR_TIO3_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO3_CLR              ((uint32_t)0x00000800U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO4] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO4_OFS              (12)                            /* !< TIO4 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO4_MASK             ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_GEN_EVENT_ICLR_TIO4_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO4_CLR              ((uint32_t)0x00001000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO5] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO5_OFS              (13)                            /* !< TIO5 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO5_MASK             ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_GEN_EVENT_ICLR_TIO5_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO5_CLR              ((uint32_t)0x00002000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO6] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO6_OFS              (14)                            /* !< TIO6 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO6_MASK             ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_GEN_EVENT_ICLR_TIO6_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO6_CLR              ((uint32_t)0x00004000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO7] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO7_OFS              (15)                            /* !< TIO7 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO7_MASK             ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_GEN_EVENT_ICLR_TIO7_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO7_CLR              ((uint32_t)0x00008000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO8] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO8_OFS              (16)                            /* !< TIO8 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO8_MASK             ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_GEN_EVENT_ICLR_TIO8_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO8_CLR              ((uint32_t)0x00010000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO9] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO9_OFS              (17)                            /* !< TIO9 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO9_MASK             ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_GEN_EVENT_ICLR_TIO9_NO_EFFECT        ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO9_CLR              ((uint32_t)0x00020000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO10] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO10_OFS             (18)                            /* !< TIO10 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO10_MASK            ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_GEN_EVENT_ICLR_TIO10_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO10_CLR             ((uint32_t)0x00040000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO11] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO11_OFS             (19)                            /* !< TIO11 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO11_MASK            ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_GEN_EVENT_ICLR_TIO11_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO11_CLR             ((uint32_t)0x00080000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO12] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO12_OFS             (20)                            /* !< TIO12 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO12_MASK            ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_GEN_EVENT_ICLR_TIO12_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO12_CLR             ((uint32_t)0x00100000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO13] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO13_OFS             (21)                            /* !< TIO13 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO13_MASK            ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_GEN_EVENT_ICLR_TIO13_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO13_CLR             ((uint32_t)0x00200000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO14] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO14_OFS             (22)                            /* !< TIO14 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO14_MASK            ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_GEN_EVENT_ICLR_TIO14_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO14_CLR             ((uint32_t)0x00400000U)         /* !< Clear interrupt */
+/* RTC_GEN_EVENT_ICLR[TIO15] Bits */
+#define RTC_GEN_EVENT_ICLR_TIO15_OFS             (23)                            /* !< TIO15 Offset */
+#define RTC_GEN_EVENT_ICLR_TIO15_MASK            ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_GEN_EVENT_ICLR_TIO15_NO_EFFECT       ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_GEN_EVENT_ICLR_TIO15_CLR             ((uint32_t)0x00800000U)         /* !< Clear interrupt */
 
 /* RTC_CPU_INT_IIDX Bits */
 /* RTC_CPU_INT_IIDX[STAT] Bits */
@@ -386,6 +885,24 @@ typedef struct {
                                                                                     flag: RT0PS */
 #define RTC_CPU_INT_IIDX_STAT_RT1PS              ((uint32_t)0x00000006U)         /* !< Prescaler-1 interrupt; Interrupt
                                                                                     flag: RT1PS */
+#define RTC_CPU_INT_IIDX_STAT_RT2PS              ((uint32_t)0x00000007U)         /* !< RTC prescale timer 2 */
+#define RTC_CPU_INT_IIDX_STAT_TSEVT              ((uint32_t)0x00000008U)         /* !< Time stamp event */
+#define RTC_CPU_INT_IIDX_STAT_TIO0               ((uint32_t)0x00000009U)         /* !< Tamper I/O 0 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO1               ((uint32_t)0x0000000AU)         /* !< Tamper I/O 1 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO2               ((uint32_t)0x0000000BU)         /* !< Tamper I/O 2 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO3               ((uint32_t)0x0000000CU)         /* !< Tamper I/O 3 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO4               ((uint32_t)0x0000000DU)         /* !< Tamper I/O 4 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO5               ((uint32_t)0x0000000EU)         /* !< Tamper I/O 5 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO6               ((uint32_t)0x0000000FU)         /* !< Tamper I/O 6 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO7               ((uint32_t)0x00000010U)         /* !< Tamper I/O 7 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO8               ((uint32_t)0x00000011U)         /* !< Tamper I/O 8 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO9               ((uint32_t)0x00000012U)         /* !< Tamper I/O 9 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO10              ((uint32_t)0x00000013U)         /* !< Tamper I/O 10 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO11              ((uint32_t)0x00000014U)         /* !< Tamper I/O 11 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO12              ((uint32_t)0x00000015U)         /* !< Tamper I/O 12 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO13              ((uint32_t)0x00000016U)         /* !< Tamper I/O 13 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO14              ((uint32_t)0x00000017U)         /* !< Tamper I/O 14 event */
+#define RTC_CPU_INT_IIDX_STAT_TIO15              ((uint32_t)0x00000018U)         /* !< Tamper I/O 15 event */
 
 /* RTC_CPU_INT_IMASK Bits */
 /* RTC_CPU_INT_IMASK[RTCA2] Bits */
@@ -418,6 +935,96 @@ typedef struct {
 #define RTC_CPU_INT_IMASK_RTCA1_MASK             ((uint32_t)0x00000004U)         /* !< Enable Alarm-1 interrupt */
 #define RTC_CPU_INT_IMASK_RTCA1_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
 #define RTC_CPU_INT_IMASK_RTCA1_SET              ((uint32_t)0x00000004U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[RT2PS] Bits */
+#define RTC_CPU_INT_IMASK_RT2PS_OFS              (6)                             /* !< RT2PS Offset */
+#define RTC_CPU_INT_IMASK_RT2PS_MASK             ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_CPU_INT_IMASK_RT2PS_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_RT2PS_SET              ((uint32_t)0x00000040U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TSEVT] Bits */
+#define RTC_CPU_INT_IMASK_TSEVT_OFS              (7)                             /* !< TSEVT Offset */
+#define RTC_CPU_INT_IMASK_TSEVT_MASK             ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_CPU_INT_IMASK_TSEVT_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TSEVT_SET              ((uint32_t)0x00000080U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO0] Bits */
+#define RTC_CPU_INT_IMASK_TIO0_OFS               (8)                             /* !< TIO0 Offset */
+#define RTC_CPU_INT_IMASK_TIO0_MASK              ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_CPU_INT_IMASK_TIO0_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO0_SET               ((uint32_t)0x00000100U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO1] Bits */
+#define RTC_CPU_INT_IMASK_TIO1_OFS               (9)                             /* !< TIO1 Offset */
+#define RTC_CPU_INT_IMASK_TIO1_MASK              ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_CPU_INT_IMASK_TIO1_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO1_SET               ((uint32_t)0x00000200U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO2] Bits */
+#define RTC_CPU_INT_IMASK_TIO2_OFS               (10)                            /* !< TIO2 Offset */
+#define RTC_CPU_INT_IMASK_TIO2_MASK              ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_CPU_INT_IMASK_TIO2_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO2_SET               ((uint32_t)0x00000400U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO3] Bits */
+#define RTC_CPU_INT_IMASK_TIO3_OFS               (11)                            /* !< TIO3 Offset */
+#define RTC_CPU_INT_IMASK_TIO3_MASK              ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_CPU_INT_IMASK_TIO3_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO3_SET               ((uint32_t)0x00000800U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO4] Bits */
+#define RTC_CPU_INT_IMASK_TIO4_OFS               (12)                            /* !< TIO4 Offset */
+#define RTC_CPU_INT_IMASK_TIO4_MASK              ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_CPU_INT_IMASK_TIO4_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO4_SET               ((uint32_t)0x00001000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO5] Bits */
+#define RTC_CPU_INT_IMASK_TIO5_OFS               (13)                            /* !< TIO5 Offset */
+#define RTC_CPU_INT_IMASK_TIO5_MASK              ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_CPU_INT_IMASK_TIO5_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO5_SET               ((uint32_t)0x00002000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO6] Bits */
+#define RTC_CPU_INT_IMASK_TIO6_OFS               (14)                            /* !< TIO6 Offset */
+#define RTC_CPU_INT_IMASK_TIO6_MASK              ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_CPU_INT_IMASK_TIO6_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO6_SET               ((uint32_t)0x00004000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO7] Bits */
+#define RTC_CPU_INT_IMASK_TIO7_OFS               (15)                            /* !< TIO7 Offset */
+#define RTC_CPU_INT_IMASK_TIO7_MASK              ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_CPU_INT_IMASK_TIO7_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO7_SET               ((uint32_t)0x00008000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO8] Bits */
+#define RTC_CPU_INT_IMASK_TIO8_OFS               (16)                            /* !< TIO8 Offset */
+#define RTC_CPU_INT_IMASK_TIO8_MASK              ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_CPU_INT_IMASK_TIO8_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO8_SET               ((uint32_t)0x00010000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO9] Bits */
+#define RTC_CPU_INT_IMASK_TIO9_OFS               (17)                            /* !< TIO9 Offset */
+#define RTC_CPU_INT_IMASK_TIO9_MASK              ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_CPU_INT_IMASK_TIO9_CLR               ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO9_SET               ((uint32_t)0x00020000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO10] Bits */
+#define RTC_CPU_INT_IMASK_TIO10_OFS              (18)                            /* !< TIO10 Offset */
+#define RTC_CPU_INT_IMASK_TIO10_MASK             ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_CPU_INT_IMASK_TIO10_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO10_SET              ((uint32_t)0x00040000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO11] Bits */
+#define RTC_CPU_INT_IMASK_TIO11_OFS              (19)                            /* !< TIO11 Offset */
+#define RTC_CPU_INT_IMASK_TIO11_MASK             ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_CPU_INT_IMASK_TIO11_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO11_SET              ((uint32_t)0x00080000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO12] Bits */
+#define RTC_CPU_INT_IMASK_TIO12_OFS              (20)                            /* !< TIO12 Offset */
+#define RTC_CPU_INT_IMASK_TIO12_MASK             ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_CPU_INT_IMASK_TIO12_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO12_SET              ((uint32_t)0x00100000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO13] Bits */
+#define RTC_CPU_INT_IMASK_TIO13_OFS              (21)                            /* !< TIO13 Offset */
+#define RTC_CPU_INT_IMASK_TIO13_MASK             ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_CPU_INT_IMASK_TIO13_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO13_SET              ((uint32_t)0x00200000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO14] Bits */
+#define RTC_CPU_INT_IMASK_TIO14_OFS              (22)                            /* !< TIO14 Offset */
+#define RTC_CPU_INT_IMASK_TIO14_MASK             ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_CPU_INT_IMASK_TIO14_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO14_SET              ((uint32_t)0x00400000U)         /* !< Set Interrrupt Mask */
+/* RTC_CPU_INT_IMASK[TIO15] Bits */
+#define RTC_CPU_INT_IMASK_TIO15_OFS              (23)                            /* !< TIO15 Offset */
+#define RTC_CPU_INT_IMASK_TIO15_MASK             ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_CPU_INT_IMASK_TIO15_CLR              ((uint32_t)0x00000000U)         /* !< Clear Interrupt Mask */
+#define RTC_CPU_INT_IMASK_TIO15_SET              ((uint32_t)0x00800000U)         /* !< Set Interrrupt Mask */
 
 /* RTC_CPU_INT_RIS Bits */
 /* RTC_CPU_INT_RIS[RTCRDY] Bits */
@@ -450,6 +1057,96 @@ typedef struct {
 #define RTC_CPU_INT_RIS_RT1PS_MASK               ((uint32_t)0x00000020U)         /* !< Raw Prescaler-1 interrupt status */
 #define RTC_CPU_INT_RIS_RT1PS_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
 #define RTC_CPU_INT_RIS_RT1PS_SET                ((uint32_t)0x00000020U)         /* !< Interrupt occured */
+/* RTC_CPU_INT_RIS[RT2PS] Bits */
+#define RTC_CPU_INT_RIS_RT2PS_OFS                (6)                             /* !< RT2PS Offset */
+#define RTC_CPU_INT_RIS_RT2PS_MASK               ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_CPU_INT_RIS_RT2PS_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_RT2PS_SET                ((uint32_t)0x00000040U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TSEVT] Bits */
+#define RTC_CPU_INT_RIS_TSEVT_OFS                (7)                             /* !< TSEVT Offset */
+#define RTC_CPU_INT_RIS_TSEVT_MASK               ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_CPU_INT_RIS_TSEVT_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TSEVT_SET                ((uint32_t)0x00000080U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO0] Bits */
+#define RTC_CPU_INT_RIS_TIO0_OFS                 (8)                             /* !< TIO0 Offset */
+#define RTC_CPU_INT_RIS_TIO0_MASK                ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_CPU_INT_RIS_TIO0_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO0_SET                 ((uint32_t)0x00000100U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO1] Bits */
+#define RTC_CPU_INT_RIS_TIO1_OFS                 (9)                             /* !< TIO1 Offset */
+#define RTC_CPU_INT_RIS_TIO1_MASK                ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_CPU_INT_RIS_TIO1_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO1_SET                 ((uint32_t)0x00000200U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO2] Bits */
+#define RTC_CPU_INT_RIS_TIO2_OFS                 (10)                            /* !< TIO2 Offset */
+#define RTC_CPU_INT_RIS_TIO2_MASK                ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_CPU_INT_RIS_TIO2_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO2_SET                 ((uint32_t)0x00000400U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO3] Bits */
+#define RTC_CPU_INT_RIS_TIO3_OFS                 (11)                            /* !< TIO3 Offset */
+#define RTC_CPU_INT_RIS_TIO3_MASK                ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_CPU_INT_RIS_TIO3_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO3_SET                 ((uint32_t)0x00000800U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO4] Bits */
+#define RTC_CPU_INT_RIS_TIO4_OFS                 (12)                            /* !< TIO4 Offset */
+#define RTC_CPU_INT_RIS_TIO4_MASK                ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_CPU_INT_RIS_TIO4_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO4_SET                 ((uint32_t)0x00001000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO5] Bits */
+#define RTC_CPU_INT_RIS_TIO5_OFS                 (13)                            /* !< TIO5 Offset */
+#define RTC_CPU_INT_RIS_TIO5_MASK                ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_CPU_INT_RIS_TIO5_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO5_SET                 ((uint32_t)0x00002000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO6] Bits */
+#define RTC_CPU_INT_RIS_TIO6_OFS                 (14)                            /* !< TIO6 Offset */
+#define RTC_CPU_INT_RIS_TIO6_MASK                ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_CPU_INT_RIS_TIO6_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO6_SET                 ((uint32_t)0x00004000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO7] Bits */
+#define RTC_CPU_INT_RIS_TIO7_OFS                 (15)                            /* !< TIO7 Offset */
+#define RTC_CPU_INT_RIS_TIO7_MASK                ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_CPU_INT_RIS_TIO7_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO7_SET                 ((uint32_t)0x00008000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO8] Bits */
+#define RTC_CPU_INT_RIS_TIO8_OFS                 (16)                            /* !< TIO8 Offset */
+#define RTC_CPU_INT_RIS_TIO8_MASK                ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_CPU_INT_RIS_TIO8_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO8_SET                 ((uint32_t)0x00010000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO9] Bits */
+#define RTC_CPU_INT_RIS_TIO9_OFS                 (17)                            /* !< TIO9 Offset */
+#define RTC_CPU_INT_RIS_TIO9_MASK                ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_CPU_INT_RIS_TIO9_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO9_SET                 ((uint32_t)0x00020000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO10] Bits */
+#define RTC_CPU_INT_RIS_TIO10_OFS                (18)                            /* !< TIO10 Offset */
+#define RTC_CPU_INT_RIS_TIO10_MASK               ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_CPU_INT_RIS_TIO10_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO10_SET                ((uint32_t)0x00040000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO11] Bits */
+#define RTC_CPU_INT_RIS_TIO11_OFS                (19)                            /* !< TIO11 Offset */
+#define RTC_CPU_INT_RIS_TIO11_MASK               ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_CPU_INT_RIS_TIO11_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO11_SET                ((uint32_t)0x00080000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO12] Bits */
+#define RTC_CPU_INT_RIS_TIO12_OFS                (20)                            /* !< TIO12 Offset */
+#define RTC_CPU_INT_RIS_TIO12_MASK               ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_CPU_INT_RIS_TIO12_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO12_SET                ((uint32_t)0x00100000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO13] Bits */
+#define RTC_CPU_INT_RIS_TIO13_OFS                (21)                            /* !< TIO13 Offset */
+#define RTC_CPU_INT_RIS_TIO13_MASK               ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_CPU_INT_RIS_TIO13_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO13_SET                ((uint32_t)0x00200000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO14] Bits */
+#define RTC_CPU_INT_RIS_TIO14_OFS                (22)                            /* !< TIO14 Offset */
+#define RTC_CPU_INT_RIS_TIO14_MASK               ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_CPU_INT_RIS_TIO14_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO14_SET                ((uint32_t)0x00400000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_RIS[TIO15] Bits */
+#define RTC_CPU_INT_RIS_TIO15_OFS                (23)                            /* !< TIO15 Offset */
+#define RTC_CPU_INT_RIS_TIO15_MASK               ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_CPU_INT_RIS_TIO15_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
+#define RTC_CPU_INT_RIS_TIO15_SET                ((uint32_t)0x00800000U)         /* !< Interrupt occurred */
 
 /* RTC_CPU_INT_MIS Bits */
 /* RTC_CPU_INT_MIS[RTCRDY] Bits */
@@ -482,6 +1179,114 @@ typedef struct {
 #define RTC_CPU_INT_MIS_RT1PS_MASK               ((uint32_t)0x00000020U)         /* !< Masked Prescaler-1 interrupt status */
 #define RTC_CPU_INT_MIS_RT1PS_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur */
 #define RTC_CPU_INT_MIS_RT1PS_SET                ((uint32_t)0x00000020U)         /* !< Interrupt occured */
+/* RTC_CPU_INT_MIS[RT2PS] Bits */
+#define RTC_CPU_INT_MIS_RT2PS_OFS                (6)                             /* !< RT2PS Offset */
+#define RTC_CPU_INT_MIS_RT2PS_MASK               ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_CPU_INT_MIS_RT2PS_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_RT2PS_SET                ((uint32_t)0x00000040U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TSEVT] Bits */
+#define RTC_CPU_INT_MIS_TSEVT_OFS                (7)                             /* !< TSEVT Offset */
+#define RTC_CPU_INT_MIS_TSEVT_MASK               ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_CPU_INT_MIS_TSEVT_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TSEVT_SET                ((uint32_t)0x00000080U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO0] Bits */
+#define RTC_CPU_INT_MIS_TIO0_OFS                 (8)                             /* !< TIO0 Offset */
+#define RTC_CPU_INT_MIS_TIO0_MASK                ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_CPU_INT_MIS_TIO0_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO0_SET                 ((uint32_t)0x00000100U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO1] Bits */
+#define RTC_CPU_INT_MIS_TIO1_OFS                 (9)                             /* !< TIO1 Offset */
+#define RTC_CPU_INT_MIS_TIO1_MASK                ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_CPU_INT_MIS_TIO1_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO1_SET                 ((uint32_t)0x00000200U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO2] Bits */
+#define RTC_CPU_INT_MIS_TIO2_OFS                 (10)                            /* !< TIO2 Offset */
+#define RTC_CPU_INT_MIS_TIO2_MASK                ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_CPU_INT_MIS_TIO2_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO2_SET                 ((uint32_t)0x00000400U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO3] Bits */
+#define RTC_CPU_INT_MIS_TIO3_OFS                 (11)                            /* !< TIO3 Offset */
+#define RTC_CPU_INT_MIS_TIO3_MASK                ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_CPU_INT_MIS_TIO3_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO3_SET                 ((uint32_t)0x00000800U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO4] Bits */
+#define RTC_CPU_INT_MIS_TIO4_OFS                 (12)                            /* !< TIO4 Offset */
+#define RTC_CPU_INT_MIS_TIO4_MASK                ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_CPU_INT_MIS_TIO4_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO4_SET                 ((uint32_t)0x00001000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO5] Bits */
+#define RTC_CPU_INT_MIS_TIO5_OFS                 (13)                            /* !< TIO5 Offset */
+#define RTC_CPU_INT_MIS_TIO5_MASK                ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_CPU_INT_MIS_TIO5_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO5_SET                 ((uint32_t)0x00002000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO6] Bits */
+#define RTC_CPU_INT_MIS_TIO6_OFS                 (14)                            /* !< TIO6 Offset */
+#define RTC_CPU_INT_MIS_TIO6_MASK                ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_CPU_INT_MIS_TIO6_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO6_SET                 ((uint32_t)0x00004000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO7] Bits */
+#define RTC_CPU_INT_MIS_TIO7_OFS                 (15)                            /* !< TIO7 Offset */
+#define RTC_CPU_INT_MIS_TIO7_MASK                ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_CPU_INT_MIS_TIO7_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO7_SET                 ((uint32_t)0x00008000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO8] Bits */
+#define RTC_CPU_INT_MIS_TIO8_OFS                 (16)                            /* !< TIO8 Offset */
+#define RTC_CPU_INT_MIS_TIO8_MASK                ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_CPU_INT_MIS_TIO8_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO8_SET                 ((uint32_t)0x00010000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO9] Bits */
+#define RTC_CPU_INT_MIS_TIO9_OFS                 (17)                            /* !< TIO9 Offset */
+#define RTC_CPU_INT_MIS_TIO9_MASK                ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_CPU_INT_MIS_TIO9_CLR                 ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO9_SET                 ((uint32_t)0x00020000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO10] Bits */
+#define RTC_CPU_INT_MIS_TIO10_OFS                (18)                            /* !< TIO10 Offset */
+#define RTC_CPU_INT_MIS_TIO10_MASK               ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_CPU_INT_MIS_TIO10_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO10_SET                ((uint32_t)0x00040000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO11] Bits */
+#define RTC_CPU_INT_MIS_TIO11_OFS                (19)                            /* !< TIO11 Offset */
+#define RTC_CPU_INT_MIS_TIO11_MASK               ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_CPU_INT_MIS_TIO11_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO11_SET                ((uint32_t)0x00080000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO12] Bits */
+#define RTC_CPU_INT_MIS_TIO12_OFS                (20)                            /* !< TIO12 Offset */
+#define RTC_CPU_INT_MIS_TIO12_MASK               ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_CPU_INT_MIS_TIO12_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO12_SET                ((uint32_t)0x00100000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO13] Bits */
+#define RTC_CPU_INT_MIS_TIO13_OFS                (21)                            /* !< TIO13 Offset */
+#define RTC_CPU_INT_MIS_TIO13_MASK               ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_CPU_INT_MIS_TIO13_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO13_SET                ((uint32_t)0x00200000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO14] Bits */
+#define RTC_CPU_INT_MIS_TIO14_OFS                (22)                            /* !< TIO14 Offset */
+#define RTC_CPU_INT_MIS_TIO14_MASK               ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_CPU_INT_MIS_TIO14_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO14_SET                ((uint32_t)0x00400000U)         /* !< Interrupt occurred */
+/* RTC_CPU_INT_MIS[TIO15] Bits */
+#define RTC_CPU_INT_MIS_TIO15_OFS                (23)                            /* !< TIO15 Offset */
+#define RTC_CPU_INT_MIS_TIO15_MASK               ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_CPU_INT_MIS_TIO15_CLR                ((uint32_t)0x00000000U)         /* !< Interrupt did not occur or is
+                                                                                    masked out */
+#define RTC_CPU_INT_MIS_TIO15_SET                ((uint32_t)0x00800000U)         /* !< Interrupt occurred */
 
 /* RTC_CPU_INT_ISET Bits */
 /* RTC_CPU_INT_ISET[RTCRDY] Bits */
@@ -514,6 +1319,96 @@ typedef struct {
 #define RTC_CPU_INT_ISET_RT1PS_MASK              ((uint32_t)0x00000020U)         /* !< Set Prescaler-1 interrupt */
 #define RTC_CPU_INT_ISET_RT1PS_CLR               ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
 #define RTC_CPU_INT_ISET_RT1PS_SET               ((uint32_t)0x00000020U)         /* !< Set Interrupt */
+/* RTC_CPU_INT_ISET[RT2PS] Bits */
+#define RTC_CPU_INT_ISET_RT2PS_OFS               (6)                             /* !< RT2PS Offset */
+#define RTC_CPU_INT_ISET_RT2PS_MASK              ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_CPU_INT_ISET_RT2PS_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_RT2PS_SET               ((uint32_t)0x00000040U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TSEVT] Bits */
+#define RTC_CPU_INT_ISET_TSEVT_OFS               (7)                             /* !< TSEVT Offset */
+#define RTC_CPU_INT_ISET_TSEVT_MASK              ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_CPU_INT_ISET_TSEVT_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TSEVT_SET               ((uint32_t)0x00000080U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO0] Bits */
+#define RTC_CPU_INT_ISET_TIO0_OFS                (8)                             /* !< TIO0 Offset */
+#define RTC_CPU_INT_ISET_TIO0_MASK               ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_CPU_INT_ISET_TIO0_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO0_SET                ((uint32_t)0x00000100U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO1] Bits */
+#define RTC_CPU_INT_ISET_TIO1_OFS                (9)                             /* !< TIO1 Offset */
+#define RTC_CPU_INT_ISET_TIO1_MASK               ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_CPU_INT_ISET_TIO1_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO1_SET                ((uint32_t)0x00000200U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO2] Bits */
+#define RTC_CPU_INT_ISET_TIO2_OFS                (10)                            /* !< TIO2 Offset */
+#define RTC_CPU_INT_ISET_TIO2_MASK               ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_CPU_INT_ISET_TIO2_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO2_SET                ((uint32_t)0x00000400U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO3] Bits */
+#define RTC_CPU_INT_ISET_TIO3_OFS                (11)                            /* !< TIO3 Offset */
+#define RTC_CPU_INT_ISET_TIO3_MASK               ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_CPU_INT_ISET_TIO3_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO3_SET                ((uint32_t)0x00000800U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO4] Bits */
+#define RTC_CPU_INT_ISET_TIO4_OFS                (12)                            /* !< TIO4 Offset */
+#define RTC_CPU_INT_ISET_TIO4_MASK               ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_CPU_INT_ISET_TIO4_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO4_SET                ((uint32_t)0x00001000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO5] Bits */
+#define RTC_CPU_INT_ISET_TIO5_OFS                (13)                            /* !< TIO5 Offset */
+#define RTC_CPU_INT_ISET_TIO5_MASK               ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_CPU_INT_ISET_TIO5_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO5_SET                ((uint32_t)0x00002000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO6] Bits */
+#define RTC_CPU_INT_ISET_TIO6_OFS                (14)                            /* !< TIO6 Offset */
+#define RTC_CPU_INT_ISET_TIO6_MASK               ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_CPU_INT_ISET_TIO6_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO6_SET                ((uint32_t)0x00004000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO7] Bits */
+#define RTC_CPU_INT_ISET_TIO7_OFS                (15)                            /* !< TIO7 Offset */
+#define RTC_CPU_INT_ISET_TIO7_MASK               ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_CPU_INT_ISET_TIO7_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO7_SET                ((uint32_t)0x00008000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO8] Bits */
+#define RTC_CPU_INT_ISET_TIO8_OFS                (16)                            /* !< TIO8 Offset */
+#define RTC_CPU_INT_ISET_TIO8_MASK               ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_CPU_INT_ISET_TIO8_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO8_SET                ((uint32_t)0x00010000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO9] Bits */
+#define RTC_CPU_INT_ISET_TIO9_OFS                (17)                            /* !< TIO9 Offset */
+#define RTC_CPU_INT_ISET_TIO9_MASK               ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_CPU_INT_ISET_TIO9_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO9_SET                ((uint32_t)0x00020000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO10] Bits */
+#define RTC_CPU_INT_ISET_TIO10_OFS               (18)                            /* !< TIO10 Offset */
+#define RTC_CPU_INT_ISET_TIO10_MASK              ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_CPU_INT_ISET_TIO10_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO10_SET               ((uint32_t)0x00040000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO11] Bits */
+#define RTC_CPU_INT_ISET_TIO11_OFS               (19)                            /* !< TIO11 Offset */
+#define RTC_CPU_INT_ISET_TIO11_MASK              ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_CPU_INT_ISET_TIO11_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO11_SET               ((uint32_t)0x00080000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO12] Bits */
+#define RTC_CPU_INT_ISET_TIO12_OFS               (20)                            /* !< TIO12 Offset */
+#define RTC_CPU_INT_ISET_TIO12_MASK              ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_CPU_INT_ISET_TIO12_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO12_SET               ((uint32_t)0x00100000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO13] Bits */
+#define RTC_CPU_INT_ISET_TIO13_OFS               (21)                            /* !< TIO13 Offset */
+#define RTC_CPU_INT_ISET_TIO13_MASK              ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_CPU_INT_ISET_TIO13_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO13_SET               ((uint32_t)0x00200000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO14] Bits */
+#define RTC_CPU_INT_ISET_TIO14_OFS               (22)                            /* !< TIO14 Offset */
+#define RTC_CPU_INT_ISET_TIO14_MASK              ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_CPU_INT_ISET_TIO14_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO14_SET               ((uint32_t)0x00400000U)         /* !< Set interrupt */
+/* RTC_CPU_INT_ISET[TIO15] Bits */
+#define RTC_CPU_INT_ISET_TIO15_OFS               (23)                            /* !< TIO15 Offset */
+#define RTC_CPU_INT_ISET_TIO15_MASK              ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_CPU_INT_ISET_TIO15_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ISET_TIO15_SET               ((uint32_t)0x00800000U)         /* !< Set interrupt */
 
 /* RTC_CPU_INT_ICLR Bits */
 /* RTC_CPU_INT_ICLR[RTCRDY] Bits */
@@ -546,6 +1441,96 @@ typedef struct {
 #define RTC_CPU_INT_ICLR_RT1PS_MASK              ((uint32_t)0x00000020U)         /* !< Clear Prescaler-1 interrupt */
 #define RTC_CPU_INT_ICLR_RT1PS_CLR               ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
 #define RTC_CPU_INT_ICLR_RT1PS_SET               ((uint32_t)0x00000020U)         /* !< Clear Interrupt */
+/* RTC_CPU_INT_ICLR[RT2PS] Bits */
+#define RTC_CPU_INT_ICLR_RT2PS_OFS               (6)                             /* !< RT2PS Offset */
+#define RTC_CPU_INT_ICLR_RT2PS_MASK              ((uint32_t)0x00000040U)         /* !< RTC prescale timer 2 */
+#define RTC_CPU_INT_ICLR_RT2PS_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_RT2PS_CLR               ((uint32_t)0x00000040U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TSEVT] Bits */
+#define RTC_CPU_INT_ICLR_TSEVT_OFS               (7)                             /* !< TSEVT Offset */
+#define RTC_CPU_INT_ICLR_TSEVT_MASK              ((uint32_t)0x00000080U)         /* !< Time stamp event */
+#define RTC_CPU_INT_ICLR_TSEVT_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TSEVT_CLR               ((uint32_t)0x00000080U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO0] Bits */
+#define RTC_CPU_INT_ICLR_TIO0_OFS                (8)                             /* !< TIO0 Offset */
+#define RTC_CPU_INT_ICLR_TIO0_MASK               ((uint32_t)0x00000100U)         /* !< Tamper I/O 0 event */
+#define RTC_CPU_INT_ICLR_TIO0_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO0_CLR                ((uint32_t)0x00000100U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO1] Bits */
+#define RTC_CPU_INT_ICLR_TIO1_OFS                (9)                             /* !< TIO1 Offset */
+#define RTC_CPU_INT_ICLR_TIO1_MASK               ((uint32_t)0x00000200U)         /* !< Tamper I/O 1 event */
+#define RTC_CPU_INT_ICLR_TIO1_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO1_CLR                ((uint32_t)0x00000200U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO2] Bits */
+#define RTC_CPU_INT_ICLR_TIO2_OFS                (10)                            /* !< TIO2 Offset */
+#define RTC_CPU_INT_ICLR_TIO2_MASK               ((uint32_t)0x00000400U)         /* !< Tamper I/O 2 event */
+#define RTC_CPU_INT_ICLR_TIO2_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO2_CLR                ((uint32_t)0x00000400U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO3] Bits */
+#define RTC_CPU_INT_ICLR_TIO3_OFS                (11)                            /* !< TIO3 Offset */
+#define RTC_CPU_INT_ICLR_TIO3_MASK               ((uint32_t)0x00000800U)         /* !< Tamper I/O 3 event */
+#define RTC_CPU_INT_ICLR_TIO3_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO3_CLR                ((uint32_t)0x00000800U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO4] Bits */
+#define RTC_CPU_INT_ICLR_TIO4_OFS                (12)                            /* !< TIO4 Offset */
+#define RTC_CPU_INT_ICLR_TIO4_MASK               ((uint32_t)0x00001000U)         /* !< Tamper I/O 4 event */
+#define RTC_CPU_INT_ICLR_TIO4_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO4_CLR                ((uint32_t)0x00001000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO5] Bits */
+#define RTC_CPU_INT_ICLR_TIO5_OFS                (13)                            /* !< TIO5 Offset */
+#define RTC_CPU_INT_ICLR_TIO5_MASK               ((uint32_t)0x00002000U)         /* !< Tamper I/O 5 event */
+#define RTC_CPU_INT_ICLR_TIO5_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO5_CLR                ((uint32_t)0x00002000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO6] Bits */
+#define RTC_CPU_INT_ICLR_TIO6_OFS                (14)                            /* !< TIO6 Offset */
+#define RTC_CPU_INT_ICLR_TIO6_MASK               ((uint32_t)0x00004000U)         /* !< Tamper I/O 6 event */
+#define RTC_CPU_INT_ICLR_TIO6_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO6_CLR                ((uint32_t)0x00004000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO7] Bits */
+#define RTC_CPU_INT_ICLR_TIO7_OFS                (15)                            /* !< TIO7 Offset */
+#define RTC_CPU_INT_ICLR_TIO7_MASK               ((uint32_t)0x00008000U)         /* !< Tamper I/O 7 event */
+#define RTC_CPU_INT_ICLR_TIO7_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO7_CLR                ((uint32_t)0x00008000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO8] Bits */
+#define RTC_CPU_INT_ICLR_TIO8_OFS                (16)                            /* !< TIO8 Offset */
+#define RTC_CPU_INT_ICLR_TIO8_MASK               ((uint32_t)0x00010000U)         /* !< Tamper I/O 8 event */
+#define RTC_CPU_INT_ICLR_TIO8_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO8_CLR                ((uint32_t)0x00010000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO9] Bits */
+#define RTC_CPU_INT_ICLR_TIO9_OFS                (17)                            /* !< TIO9 Offset */
+#define RTC_CPU_INT_ICLR_TIO9_MASK               ((uint32_t)0x00020000U)         /* !< Tamper I/O 9 event */
+#define RTC_CPU_INT_ICLR_TIO9_NO_EFFECT          ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO9_CLR                ((uint32_t)0x00020000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO10] Bits */
+#define RTC_CPU_INT_ICLR_TIO10_OFS               (18)                            /* !< TIO10 Offset */
+#define RTC_CPU_INT_ICLR_TIO10_MASK              ((uint32_t)0x00040000U)         /* !< Tamper I/O 10 event */
+#define RTC_CPU_INT_ICLR_TIO10_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO10_CLR               ((uint32_t)0x00040000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO11] Bits */
+#define RTC_CPU_INT_ICLR_TIO11_OFS               (19)                            /* !< TIO11 Offset */
+#define RTC_CPU_INT_ICLR_TIO11_MASK              ((uint32_t)0x00080000U)         /* !< Tamper I/O 11 event */
+#define RTC_CPU_INT_ICLR_TIO11_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO11_CLR               ((uint32_t)0x00080000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO12] Bits */
+#define RTC_CPU_INT_ICLR_TIO12_OFS               (20)                            /* !< TIO12 Offset */
+#define RTC_CPU_INT_ICLR_TIO12_MASK              ((uint32_t)0x00100000U)         /* !< Tamper I/O 12 event */
+#define RTC_CPU_INT_ICLR_TIO12_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO12_CLR               ((uint32_t)0x00100000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO13] Bits */
+#define RTC_CPU_INT_ICLR_TIO13_OFS               (21)                            /* !< TIO13 Offset */
+#define RTC_CPU_INT_ICLR_TIO13_MASK              ((uint32_t)0x00200000U)         /* !< Tamper I/O 13 event */
+#define RTC_CPU_INT_ICLR_TIO13_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO13_CLR               ((uint32_t)0x00200000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO14] Bits */
+#define RTC_CPU_INT_ICLR_TIO14_OFS               (22)                            /* !< TIO14 Offset */
+#define RTC_CPU_INT_ICLR_TIO14_MASK              ((uint32_t)0x00400000U)         /* !< Tamper I/O 14 event */
+#define RTC_CPU_INT_ICLR_TIO14_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO14_CLR               ((uint32_t)0x00400000U)         /* !< Clear interrupt */
+/* RTC_CPU_INT_ICLR[TIO15] Bits */
+#define RTC_CPU_INT_ICLR_TIO15_OFS               (23)                            /* !< TIO15 Offset */
+#define RTC_CPU_INT_ICLR_TIO15_MASK              ((uint32_t)0x00800000U)         /* !< Tamper I/O 15 event */
+#define RTC_CPU_INT_ICLR_TIO15_NO_EFFECT         ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_CPU_INT_ICLR_TIO15_CLR               ((uint32_t)0x00800000U)         /* !< Clear interrupt */
 
 /* RTC_PWREN Bits */
 /* RTC_PWREN[ENABLE] Bits */
@@ -1310,9 +2295,456 @@ typedef struct {
 #define RTC_PSCTL_RT1IP_DIV128                   ((uint32_t)0x00180000U)         /* !< Divide by 128 - 1 second interval */
 #define RTC_PSCTL_RT1IP_DIV256                   ((uint32_t)0x001C0000U)         /* !< Divide by 256 - 2 second interval */
 
+/* RTC_EXTPSCTL Bits */
+/* RTC_EXTPSCTL[RT2PS] Bits */
+#define RTC_EXTPSCTL_RT2PS_OFS                   (2)                             /* !< RT2PS Offset */
+#define RTC_EXTPSCTL_RT2PS_MASK                  ((uint32_t)0x0000000CU)         /* !< Prescale timer 2 interrupt interval */
+#define RTC_EXTPSCTL_RT2PS_INT4S                 ((uint32_t)0x00000000U)         /* !< Interval every 4 second */
+#define RTC_EXTPSCTL_RT2PS_INT8S                 ((uint32_t)0x00000004U)         /* !< Interval every 8 second */
+#define RTC_EXTPSCTL_RT2PS_INT16S                ((uint32_t)0x00000008U)         /* !< Interval every 16 second */
+
+/* RTC_TSSEC Bits */
+/* RTC_TSSEC[SECBIN] Bits */
+#define RTC_TSSEC_SECBIN_OFS                     (0)                             /* !< SECBIN Offset */
+#define RTC_TSSEC_SECBIN_MASK                    ((uint32_t)0x0000003FU)         /* !< Time Stamp Second Binary (0 to 59).
+                                                                                    If RTCBCD=1 write to these bits will
+                                                                                    be ignored and read give the value 0. */
+#define RTC_TSSEC_SECBIN_MINIMUM                 ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSSEC_SECBIN_MAXIMUM                 ((uint32_t)0x0000003BU)         /* !< Highest possible value */
+/* RTC_TSSEC[SECLOWBCD] Bits */
+#define RTC_TSSEC_SECLOWBCD_OFS                  (8)                             /* !< SECLOWBCD Offset */
+#define RTC_TSSEC_SECLOWBCD_MASK                 ((uint32_t)0x00000F00U)         /* !< Time Stamp Seconds BCD  low digit
+                                                                                    (0 to 9). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSSEC_SECLOWBCD_MINIMUM              ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSSEC_SECLOWBCD_MAXIMUM              ((uint32_t)0x00000900U)         /* !< Highest possible value */
+/* RTC_TSSEC[SECHIGHBCD] Bits */
+#define RTC_TSSEC_SECHIGHBCD_OFS                 (12)                            /* !< SECHIGHBCD Offset */
+#define RTC_TSSEC_SECHIGHBCD_MASK                ((uint32_t)0x00007000U)         /* !< Time Stamp Seconds BCD  high digit
+                                                                                    (0 to 5). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSSEC_SECHIGHBCD_MINIMUM             ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSSEC_SECHIGHBCD_MAXIMUM             ((uint32_t)0x00005000U)         /* !< Highest possible value */
+
+/* RTC_TSMIN Bits */
+/* RTC_TSMIN[MINBIN] Bits */
+#define RTC_TSMIN_MINBIN_OFS                     (0)                             /* !< MINBIN Offset */
+#define RTC_TSMIN_MINBIN_MASK                    ((uint32_t)0x0000003FU)         /* !< Time Stamp Minutes Binary (0 to
+                                                                                    59). If RTCBCD=1 write to these bits
+                                                                                    will be ignored and read give the
+                                                                                    value 0. */
+#define RTC_TSMIN_MINBIN_MINIMUM                 ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSMIN_MINBIN_MAXIMUM                 ((uint32_t)0x0000003BU)         /* !< Highest possible value */
+/* RTC_TSMIN[MINLOWBCD] Bits */
+#define RTC_TSMIN_MINLOWBCD_OFS                  (8)                             /* !< MINLOWBCD Offset */
+#define RTC_TSMIN_MINLOWBCD_MASK                 ((uint32_t)0x00000F00U)         /* !< Time Stamp Minutes BCD  low digit
+                                                                                    (0 to 9). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSMIN_MINLOWBCD_MINIMUM              ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSMIN_MINLOWBCD_MAXIMUM              ((uint32_t)0x00000900U)         /* !< Highest possible value */
+/* RTC_TSMIN[MINHIGHBCD] Bits */
+#define RTC_TSMIN_MINHIGHBCD_OFS                 (12)                            /* !< MINHIGHBCD Offset */
+#define RTC_TSMIN_MINHIGHBCD_MASK                ((uint32_t)0x00007000U)         /* !< Time Stamp Minutes BCD  high digit
+                                                                                    (0 to 5). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSMIN_MINHIGHBCD_MINIMUM             ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSMIN_MINHIGHBCD_MAXIMUM             ((uint32_t)0x00005000U)         /* !< Highest possible value */
+
+/* RTC_TSHOUR Bits */
+/* RTC_TSHOUR[HOURBIN] Bits */
+#define RTC_TSHOUR_HOURBIN_OFS                   (0)                             /* !< HOURBIN Offset */
+#define RTC_TSHOUR_HOURBIN_MASK                  ((uint32_t)0x0000001FU)         /* !< Time Stamp Hours Binary (0 to 23).
+                                                                                    If RTCBCD=1 write to these bits will
+                                                                                    be ignored and read give the value 0. */
+#define RTC_TSHOUR_HOURBIN_MINIMUM               ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSHOUR_HOURBIN_MAXIMUM               ((uint32_t)0x00000017U)         /* !< Highest possible value */
+/* RTC_TSHOUR[HOURLOWBCD] Bits */
+#define RTC_TSHOUR_HOURLOWBCD_OFS                (8)                             /* !< HOURLOWBCD Offset */
+#define RTC_TSHOUR_HOURLOWBCD_MASK               ((uint32_t)0x00000F00U)         /* !< Time Stamp Hours BCD  low digit (0
+                                                                                    to 9). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSHOUR_HOURLOWBCD_MINIMUM            ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSHOUR_HOURLOWBCD_MAXIMUM            ((uint32_t)0x00000900U)         /* !< Highest possible value */
+/* RTC_TSHOUR[HOURHIGHBCD] Bits */
+#define RTC_TSHOUR_HOURHIGHBCD_OFS               (12)                            /* !< HOURHIGHBCD Offset */
+#define RTC_TSHOUR_HOURHIGHBCD_MASK              ((uint32_t)0x00003000U)         /* !< Time Stamp Hours BCD  high digit (0
+                                                                                    to 2). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSHOUR_HOURHIGHBCD_MINIMUM           ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSHOUR_HOURHIGHBCD_MAXIMUM           ((uint32_t)0x00002000U)         /* !< Highest possible value */
+
+/* RTC_TSDAY Bits */
+/* RTC_TSDAY[DOW] Bits */
+#define RTC_TSDAY_DOW_OFS                        (0)                             /* !< DOW Offset */
+#define RTC_TSDAY_DOW_MASK                       ((uint32_t)0x00000007U)         /* !< Time Stamp Day of week (0 to 6).
+                                                                                    These bits are valid if RTCBCD=1 or
+                                                                                    RTCBCD=0. */
+#define RTC_TSDAY_DOW_MINIMUM                    ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSDAY_DOW_MAXIMUM                    ((uint32_t)0x00000006U)         /* !< Highest possible value */
+/* RTC_TSDAY[DOMBIN] Bits */
+#define RTC_TSDAY_DOMBIN_OFS                     (8)                             /* !< DOMBIN Offset */
+#define RTC_TSDAY_DOMBIN_MASK                    ((uint32_t)0x00001F00U)         /* !< Time Stamp Day of month Binary (1
+                                                                                    to 28, 29, 30, 31) If RTCBCD=1 write
+                                                                                    to these bits will be ignored and
+                                                                                    read give the value 0. */
+#define RTC_TSDAY_DOMBIN_MINIMUM                 ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSDAY_DOMBIN_MAXIMUM                 ((uint32_t)0x00001F00U)         /* !< Highest possible value */
+/* RTC_TSDAY[DOMLOWBCD] Bits */
+#define RTC_TSDAY_DOMLOWBCD_OFS                  (16)                            /* !< DOMLOWBCD Offset */
+#define RTC_TSDAY_DOMLOWBCD_MASK                 ((uint32_t)0x000F0000U)         /* !< Time Stamp Day of month BCD  low
+                                                                                    digit (0 to 9). If RTCBCD=0 write to
+                                                                                    these bits will be ignored and read
+                                                                                    give the value 0. */
+#define RTC_TSDAY_DOMLOWBCD_MINIMUM              ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSDAY_DOMLOWBCD_MAXIMUM              ((uint32_t)0x00090000U)         /* !< Highest possible value */
+/* RTC_TSDAY[DOMHIGHBCD] Bits */
+#define RTC_TSDAY_DOMHIGHBCD_OFS                 (20)                            /* !< DOMHIGHBCD Offset */
+#define RTC_TSDAY_DOMHIGHBCD_MASK                ((uint32_t)0x00300000U)         /* !< Time Stamp Day of month BCD  high
+                                                                                    digit (0 to 3). If RTCBCD=0 write to
+                                                                                    these bits will be ignored and read
+                                                                                    give the value 0. */
+#define RTC_TSDAY_DOMHIGHBCD_MINIMUM             ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSDAY_DOMHIGHBCD_MAXIMUM             ((uint32_t)0x00300000U)         /* !< Highest possible value */
+
+/* RTC_TSMON Bits */
+/* RTC_TSMON[MONBIN] Bits */
+#define RTC_TSMON_MONBIN_OFS                     (0)                             /* !< MONBIN Offset */
+#define RTC_TSMON_MONBIN_MASK                    ((uint32_t)0x0000000FU)         /* !< Time Stamp Month Binary (1 to 12).
+                                                                                    If RTCBCD=1 write to these bits will
+                                                                                    be ignored and read give the value 0. */
+#define RTC_TSMON_MONBIN_MINIMUM                 ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSMON_MONBIN_MAXIMUM                 ((uint32_t)0x0000000CU)         /* !< Highest possible value */
+/* RTC_TSMON[MONLOWBCD] Bits */
+#define RTC_TSMON_MONLOWBCD_OFS                  (8)                             /* !< MONLOWBCD Offset */
+#define RTC_TSMON_MONLOWBCD_MASK                 ((uint32_t)0x00000F00U)         /* !< Time Stamp Month BCD  low digit (0
+                                                                                    to 9). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSMON_MONLOWBCD_MINIMUM              ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSMON_MONLOWBCD_MAXIMUM              ((uint32_t)0x00000900U)         /* !< Highest possible value */
+/* RTC_TSMON[MONHIGHBCD] Bits */
+#define RTC_TSMON_MONHIGHBCD_OFS                 (12)                            /* !< MONHIGHBCD Offset */
+#define RTC_TSMON_MONHIGHBCD_MASK                ((uint32_t)0x00001000U)         /* !< Time Stamp Month BCD  high digit (0
+                                                                                    or 1). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSMON_MONHIGHBCD_MINIMUM             ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSMON_MONHIGHBCD_MAXIMUM             ((uint32_t)0x00001000U)         /* !< Highest possible value */
+
+/* RTC_TSYEAR Bits */
+/* RTC_TSYEAR[YEARLOWBIN] Bits */
+#define RTC_TSYEAR_YEARLOWBIN_OFS                (0)                             /* !< YEARLOWBIN Offset */
+#define RTC_TSYEAR_YEARLOWBIN_MASK               ((uint32_t)0x000000FFU)         /* !< Time Stamp Year Binary  low byte.
+                                                                                    Valid values for Year are 0 to 4095.
+                                                                                    If RTCBCD=1 write to these bits will
+                                                                                    be ignored and read give the value 0. */
+#define RTC_TSYEAR_YEARLOWBIN_MINIMUM            ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSYEAR_YEARLOWBIN_MAXIMUM            ((uint32_t)0x000000FFU)         /* !< Highest possible value */
+/* RTC_TSYEAR[YEARHIGHBIN] Bits */
+#define RTC_TSYEAR_YEARHIGHBIN_OFS               (8)                             /* !< YEARHIGHBIN Offset */
+#define RTC_TSYEAR_YEARHIGHBIN_MASK              ((uint32_t)0x00000F00U)         /* !< Time Stamp Year Binary  high byte.
+                                                                                    Valid values for Year are 0 to 4095.
+                                                                                    If RTCBCD=1 write to these bits will
+                                                                                    be ignored and read give the value 0. */
+#define RTC_TSYEAR_YEARHIGHBIN_MINIMUM           ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSYEAR_YEARHIGHBIN_MAXIMUM           ((uint32_t)0x00000F00U)         /* !< Highest possible value */
+/* RTC_TSYEAR[YERARLOWESTBCD] Bits */
+#define RTC_TSYEAR_YERARLOWESTBCD_OFS            (16)                            /* !< YERARLOWESTBCD Offset */
+#define RTC_TSYEAR_YERARLOWESTBCD_MASK           ((uint32_t)0x000F0000U)         /* !< Time Stamp Year BCD  lowest digit
+                                                                                    (0 to 9). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSYEAR_YERARLOWESTBCD_MINIMUM        ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSYEAR_YERARLOWESTBCD_MAXIMUM        ((uint32_t)0x00090000U)         /* !< Highest possible value */
+/* RTC_TSYEAR[DECADEBCD] Bits */
+#define RTC_TSYEAR_DECADEBCD_OFS                 (20)                            /* !< DECADEBCD Offset */
+#define RTC_TSYEAR_DECADEBCD_MASK                ((uint32_t)0x00F00000U)         /* !< Time Stamp Decade BCD (0 to 9). If
+                                                                                    RTCBCD=0 write to these bits will be
+                                                                                    ignored and read give the value 0. */
+#define RTC_TSYEAR_DECADEBCD_MINIMUM             ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSYEAR_DECADEBCD_MAXIMUM             ((uint32_t)0x00900000U)         /* !< Highest possible value */
+/* RTC_TSYEAR[CENTLOWBCD] Bits */
+#define RTC_TSYEAR_CENTLOWBCD_OFS                (24)                            /* !< CENTLOWBCD Offset */
+#define RTC_TSYEAR_CENTLOWBCD_MASK               ((uint32_t)0x0F000000U)         /* !< Time Stamp Century BCD  low digit
+                                                                                    (0 to 9). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSYEAR_CENTLOWBCD_MINIMUM            ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSYEAR_CENTLOWBCD_MAXIMUM            ((uint32_t)0x09000000U)         /* !< Highest possible value */
+/* RTC_TSYEAR[CENTHIGHBCD] Bits */
+#define RTC_TSYEAR_CENTHIGHBCD_OFS               (28)                            /* !< CENTHIGHBCD Offset */
+#define RTC_TSYEAR_CENTHIGHBCD_MASK              ((uint32_t)0x70000000U)         /* !< Time Stamp Century BCD  high digit
+                                                                                    (0 to 4). If RTCBCD=0 write to these
+                                                                                    bits will be ignored and read give
+                                                                                    the value 0. */
+#define RTC_TSYEAR_CENTHIGHBCD_MINIMUM           ((uint32_t)0x00000000U)         /* !< Smallest value */
+#define RTC_TSYEAR_CENTHIGHBCD_MAXIMUM           ((uint32_t)0x40000000U)         /* !< Highest possible value */
+
+/* RTC_TSSTAT Bits */
+/* RTC_TSSTAT[TSTIOEVT0] Bits */
+#define RTC_TSSTAT_TSTIOEVT0_OFS                 (0)                             /* !< TSTIOEVT0 Offset */
+#define RTC_TSSTAT_TSTIOEVT0_MASK                ((uint32_t)0x00000001U)         /* !< Tamper I/O 0 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT0_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT0_SET                 ((uint32_t)0x00000001U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT1] Bits */
+#define RTC_TSSTAT_TSTIOEVT1_OFS                 (1)                             /* !< TSTIOEVT1 Offset */
+#define RTC_TSSTAT_TSTIOEVT1_MASK                ((uint32_t)0x00000002U)         /* !< Tamper I/O 1 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT1_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT1_SET                 ((uint32_t)0x00000002U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT2] Bits */
+#define RTC_TSSTAT_TSTIOEVT2_OFS                 (2)                             /* !< TSTIOEVT2 Offset */
+#define RTC_TSSTAT_TSTIOEVT2_MASK                ((uint32_t)0x00000004U)         /* !< Tamper I/O 2 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT2_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT2_SET                 ((uint32_t)0x00000004U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT3] Bits */
+#define RTC_TSSTAT_TSTIOEVT3_OFS                 (3)                             /* !< TSTIOEVT3 Offset */
+#define RTC_TSSTAT_TSTIOEVT3_MASK                ((uint32_t)0x00000008U)         /* !< Tamper I/O 3 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT3_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT3_SET                 ((uint32_t)0x00000008U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT4] Bits */
+#define RTC_TSSTAT_TSTIOEVT4_OFS                 (4)                             /* !< TSTIOEVT4 Offset */
+#define RTC_TSSTAT_TSTIOEVT4_MASK                ((uint32_t)0x00000010U)         /* !< Tamper I/O 4 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT4_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT4_SET                 ((uint32_t)0x00000010U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT5] Bits */
+#define RTC_TSSTAT_TSTIOEVT5_OFS                 (5)                             /* !< TSTIOEVT5 Offset */
+#define RTC_TSSTAT_TSTIOEVT5_MASK                ((uint32_t)0x00000020U)         /* !< Tamper I/O 5 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT5_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT5_SET                 ((uint32_t)0x00000020U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT6] Bits */
+#define RTC_TSSTAT_TSTIOEVT6_OFS                 (6)                             /* !< TSTIOEVT6 Offset */
+#define RTC_TSSTAT_TSTIOEVT6_MASK                ((uint32_t)0x00000040U)         /* !< Tamper I/O 6 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT6_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT6_SET                 ((uint32_t)0x00000040U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT7] Bits */
+#define RTC_TSSTAT_TSTIOEVT7_OFS                 (7)                             /* !< TSTIOEVT7 Offset */
+#define RTC_TSSTAT_TSTIOEVT7_MASK                ((uint32_t)0x00000080U)         /* !< Tamper I/O 7 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT7_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT7_SET                 ((uint32_t)0x00000080U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT8] Bits */
+#define RTC_TSSTAT_TSTIOEVT8_OFS                 (8)                             /* !< TSTIOEVT8 Offset */
+#define RTC_TSSTAT_TSTIOEVT8_MASK                ((uint32_t)0x00000100U)         /* !< Tamper I/O 8 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT8_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT8_SET                 ((uint32_t)0x00000100U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT9] Bits */
+#define RTC_TSSTAT_TSTIOEVT9_OFS                 (9)                             /* !< TSTIOEVT9 Offset */
+#define RTC_TSSTAT_TSTIOEVT9_MASK                ((uint32_t)0x00000200U)         /* !< Tamper I/O 9 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT9_CLR                 ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT9_SET                 ((uint32_t)0x00000200U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT10] Bits */
+#define RTC_TSSTAT_TSTIOEVT10_OFS                (10)                            /* !< TSTIOEVT10 Offset */
+#define RTC_TSSTAT_TSTIOEVT10_MASK               ((uint32_t)0x00000400U)         /* !< Tamper I/O 10 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT10_CLR                ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT10_SET                ((uint32_t)0x00000400U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT11] Bits */
+#define RTC_TSSTAT_TSTIOEVT11_OFS                (11)                            /* !< TSTIOEVT11 Offset */
+#define RTC_TSSTAT_TSTIOEVT11_MASK               ((uint32_t)0x00000800U)         /* !< Tamper I/O 11 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT11_CLR                ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT11_SET                ((uint32_t)0x00000800U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT12] Bits */
+#define RTC_TSSTAT_TSTIOEVT12_OFS                (12)                            /* !< TSTIOEVT12 Offset */
+#define RTC_TSSTAT_TSTIOEVT12_MASK               ((uint32_t)0x00001000U)         /* !< Tamper I/O 12 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT12_CLR                ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT12_SET                ((uint32_t)0x00001000U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT13] Bits */
+#define RTC_TSSTAT_TSTIOEVT13_OFS                (13)                            /* !< TSTIOEVT13 Offset */
+#define RTC_TSSTAT_TSTIOEVT13_MASK               ((uint32_t)0x00002000U)         /* !< Tamper I/O 13 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT13_CLR                ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT13_SET                ((uint32_t)0x00002000U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT14] Bits */
+#define RTC_TSSTAT_TSTIOEVT14_OFS                (14)                            /* !< TSTIOEVT14 Offset */
+#define RTC_TSSTAT_TSTIOEVT14_MASK               ((uint32_t)0x00004000U)         /* !< Tamper I/O 14 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT14_CLR                ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT14_SET                ((uint32_t)0x00004000U)         /* !< event detected */
+/* RTC_TSSTAT[TSTIOEVT15] Bits */
+#define RTC_TSSTAT_TSTIOEVT15_OFS                (15)                            /* !< TSTIOEVT15 Offset */
+#define RTC_TSSTAT_TSTIOEVT15_MASK               ((uint32_t)0x00008000U)         /* !< Tamper I/O 15 caused time stamp
+                                                                                    event */
+#define RTC_TSSTAT_TSTIOEVT15_CLR                ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSTIOEVT15_SET                ((uint32_t)0x00008000U)         /* !< event detected */
+/* RTC_TSSTAT[TSVDDEVT] Bits */
+#define RTC_TSSTAT_TSVDDEVT_OFS                  (16)                            /* !< TSVDDEVT Offset */
+#define RTC_TSSTAT_TSVDDEVT_MASK                 ((uint32_t)0x00010000U)         /* !< Loss of VDD caused time stamp event */
+#define RTC_TSSTAT_TSVDDEVT_CLR                  ((uint32_t)0x00000000U)         /* !< no event detected */
+#define RTC_TSSTAT_TSVDDEVT_SET                  ((uint32_t)0x00010000U)         /* !< event detected */
+
+/* RTC_TSCTL Bits */
+/* RTC_TSCTL[TSTIOEN0] Bits */
+#define RTC_TSCTL_TSTIOEN0_OFS                   (0)                             /* !< TSTIOEN0 Offset */
+#define RTC_TSCTL_TSTIOEN0_MASK                  ((uint32_t)0x00000001U)         /* !< Time Stamp by Tamper I/O 0 enable */
+#define RTC_TSCTL_TSTIOEN0_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN0_ENABLE                ((uint32_t)0x00000001U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN1] Bits */
+#define RTC_TSCTL_TSTIOEN1_OFS                   (1)                             /* !< TSTIOEN1 Offset */
+#define RTC_TSCTL_TSTIOEN1_MASK                  ((uint32_t)0x00000002U)         /* !< Time Stamp by Tamper I/O 1 enable */
+#define RTC_TSCTL_TSTIOEN1_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN1_ENABLE                ((uint32_t)0x00000002U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN2] Bits */
+#define RTC_TSCTL_TSTIOEN2_OFS                   (2)                             /* !< TSTIOEN2 Offset */
+#define RTC_TSCTL_TSTIOEN2_MASK                  ((uint32_t)0x00000004U)         /* !< Time Stamp by Tamper I/O 2 enable */
+#define RTC_TSCTL_TSTIOEN2_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN2_ENABLE                ((uint32_t)0x00000004U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN3] Bits */
+#define RTC_TSCTL_TSTIOEN3_OFS                   (3)                             /* !< TSTIOEN3 Offset */
+#define RTC_TSCTL_TSTIOEN3_MASK                  ((uint32_t)0x00000008U)         /* !< Time Stamp by Tamper I/O 3 enable */
+#define RTC_TSCTL_TSTIOEN3_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN3_ENABLE                ((uint32_t)0x00000008U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN4] Bits */
+#define RTC_TSCTL_TSTIOEN4_OFS                   (4)                             /* !< TSTIOEN4 Offset */
+#define RTC_TSCTL_TSTIOEN4_MASK                  ((uint32_t)0x00000010U)         /* !< Time Stamp by Tamper I/O 4 enable */
+#define RTC_TSCTL_TSTIOEN4_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN4_ENABLE                ((uint32_t)0x00000010U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN5] Bits */
+#define RTC_TSCTL_TSTIOEN5_OFS                   (5)                             /* !< TSTIOEN5 Offset */
+#define RTC_TSCTL_TSTIOEN5_MASK                  ((uint32_t)0x00000020U)         /* !< Time Stamp by Tamper I/O 5 enable */
+#define RTC_TSCTL_TSTIOEN5_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN5_ENABLE                ((uint32_t)0x00000020U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN6] Bits */
+#define RTC_TSCTL_TSTIOEN6_OFS                   (6)                             /* !< TSTIOEN6 Offset */
+#define RTC_TSCTL_TSTIOEN6_MASK                  ((uint32_t)0x00000040U)         /* !< Time Stamp by Tamper I/O 6 enable */
+#define RTC_TSCTL_TSTIOEN6_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN6_ENABLE                ((uint32_t)0x00000040U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN7] Bits */
+#define RTC_TSCTL_TSTIOEN7_OFS                   (7)                             /* !< TSTIOEN7 Offset */
+#define RTC_TSCTL_TSTIOEN7_MASK                  ((uint32_t)0x00000080U)         /* !< Time Stamp by Tamper I/O 7 enable */
+#define RTC_TSCTL_TSTIOEN7_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN7_ENABLE                ((uint32_t)0x00000080U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN8] Bits */
+#define RTC_TSCTL_TSTIOEN8_OFS                   (8)                             /* !< TSTIOEN8 Offset */
+#define RTC_TSCTL_TSTIOEN8_MASK                  ((uint32_t)0x00000100U)         /* !< Time Stamp by Tamper I/O 8 enable */
+#define RTC_TSCTL_TSTIOEN8_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN8_ENABLE                ((uint32_t)0x00000100U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN9] Bits */
+#define RTC_TSCTL_TSTIOEN9_OFS                   (9)                             /* !< TSTIOEN9 Offset */
+#define RTC_TSCTL_TSTIOEN9_MASK                  ((uint32_t)0x00000200U)         /* !< Time Stamp by Tamper I/O 9 enable */
+#define RTC_TSCTL_TSTIOEN9_DISABLE               ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN9_ENABLE                ((uint32_t)0x00000200U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN10] Bits */
+#define RTC_TSCTL_TSTIOEN10_OFS                  (10)                            /* !< TSTIOEN10 Offset */
+#define RTC_TSCTL_TSTIOEN10_MASK                 ((uint32_t)0x00000400U)         /* !< Time Stamp by Tamper I/O 10 enable */
+#define RTC_TSCTL_TSTIOEN10_DISABLE              ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN10_ENABLE               ((uint32_t)0x00000400U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN11] Bits */
+#define RTC_TSCTL_TSTIOEN11_OFS                  (11)                            /* !< TSTIOEN11 Offset */
+#define RTC_TSCTL_TSTIOEN11_MASK                 ((uint32_t)0x00000800U)         /* !< Time Stamp by Tamper I/O 11 enable */
+#define RTC_TSCTL_TSTIOEN11_DISABLE              ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN11_ENABLE               ((uint32_t)0x00000800U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN12] Bits */
+#define RTC_TSCTL_TSTIOEN12_OFS                  (12)                            /* !< TSTIOEN12 Offset */
+#define RTC_TSCTL_TSTIOEN12_MASK                 ((uint32_t)0x00001000U)         /* !< Time Stamp by Tamper I/O 12 enable */
+#define RTC_TSCTL_TSTIOEN12_DISABLE              ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN12_ENABLE               ((uint32_t)0x00001000U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN13] Bits */
+#define RTC_TSCTL_TSTIOEN13_OFS                  (13)                            /* !< TSTIOEN13 Offset */
+#define RTC_TSCTL_TSTIOEN13_MASK                 ((uint32_t)0x00002000U)         /* !< Time Stamp by Tamper I/O 13 enable */
+#define RTC_TSCTL_TSTIOEN13_DISABLE              ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN13_ENABLE               ((uint32_t)0x00002000U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN14] Bits */
+#define RTC_TSCTL_TSTIOEN14_OFS                  (14)                            /* !< TSTIOEN14 Offset */
+#define RTC_TSCTL_TSTIOEN14_MASK                 ((uint32_t)0x00004000U)         /* !< Time Stamp by Tamper I/O 14 enable */
+#define RTC_TSCTL_TSTIOEN14_DISABLE              ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN14_ENABLE               ((uint32_t)0x00004000U)         /* !< function enabled */
+/* RTC_TSCTL[TSTIOEN15] Bits */
+#define RTC_TSCTL_TSTIOEN15_OFS                  (15)                            /* !< TSTIOEN15 Offset */
+#define RTC_TSCTL_TSTIOEN15_MASK                 ((uint32_t)0x00008000U)         /* !< Time Stamp by Tamper I/O 15 enable */
+#define RTC_TSCTL_TSTIOEN15_DISABLE              ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSTIOEN15_ENABLE               ((uint32_t)0x00008000U)         /* !< function enabled */
+/* RTC_TSCTL[TSVDDEN] Bits */
+#define RTC_TSCTL_TSVDDEN_OFS                    (16)                            /* !< TSVDDEN Offset */
+#define RTC_TSCTL_TSVDDEN_MASK                   ((uint32_t)0x00010000U)         /* !< Time Stamp by VDD Loss detection
+                                                                                    enable */
+#define RTC_TSCTL_TSVDDEN_DISABLE                ((uint32_t)0x00000000U)         /* !< function disabled */
+#define RTC_TSCTL_TSVDDEN_ENABLE                 ((uint32_t)0x00010000U)         /* !< function enabled */
+/* RTC_TSCTL[TSCAPTURE] Bits */
+#define RTC_TSCTL_TSCAPTURE_OFS                  (20)                            /* !< TSCAPTURE Offset */
+#define RTC_TSCTL_TSCAPTURE_MASK                 ((uint32_t)0x00100000U)         /* !< Defines the capture method of the
+                                                                                    RTC timestamp when a time stamp event
+                                                                                    occurens. */
+#define RTC_TSCTL_TSCAPTURE_FIRST                ((uint32_t)0x00000000U)         /* !< Time stamp holds RTC capture at
+                                                                                    first occurrence of time stamp event. */
+#define RTC_TSCTL_TSCAPTURE_LAST                 ((uint32_t)0x00100000U)         /* !< Time stamp holds RTC capture at
+                                                                                    last occurrence of time stamp event. */
+/* RTC_TSCTL[KEY] Bits */
+#define RTC_TSCTL_KEY_OFS                        (24)                            /* !< KEY Offset */
+#define RTC_TSCTL_KEY_MASK                       ((uint32_t)0xFF000000U)         /* !< need to write (KEY=0xC5) to update
+                                                                                    this register */
+#define RTC_TSCTL_KEY_UNLOCK_W                   ((uint32_t)0xC5000000U)         /* !< This field must be written with
+                                                                                    0xC5 to be able to clear any of the
+                                                                                    enable bits */
+
+/* RTC_TSCLR Bits */
+/* RTC_TSCLR[CLR] Bits */
+#define RTC_TSCLR_CLR_OFS                        (0)                             /* !< CLR Offset */
+#define RTC_TSCLR_CLR_MASK                       ((uint32_t)0x00000001U)         /* !< Clear time stamp and status
+                                                                                    register. */
+#define RTC_TSCLR_CLR_NO_EFFECT                  ((uint32_t)0x00000000U)         /* !< Writing 0 has no effect */
+#define RTC_TSCLR_CLR_CLR                        ((uint32_t)0x00000001U)         /* !< clear time stamp event */
+/* RTC_TSCLR[KEY] Bits */
+#define RTC_TSCLR_KEY_OFS                        (24)                            /* !< KEY Offset */
+#define RTC_TSCLR_KEY_MASK                       ((uint32_t)0xFF000000U)         /* !< need to write (KEY=0xE2) to update
+                                                                                    this register */
+#define RTC_TSCLR_KEY_UNLOCK_W                   ((uint32_t)0xE2000000U)         /* !< This field must be written with
+                                                                                    0xE2 to be able to clear any of the
+                                                                                    enable bits */
+
+/* RTC_LFSSRST Bits */
+/* RTC_LFSSRST[VBATPOR] Bits */
+#define RTC_LFSSRST_VBATPOR_OFS                  (0)                             /* !< VBATPOR Offset */
+#define RTC_LFSSRST_VBATPOR_MASK                 ((uint32_t)0x00000001U)         /* !< If set, the register bit will
+                                                                                    request a power on reset to the PMU
+                                                                                    of the LFSS. */
+#define RTC_LFSSRST_VBATPOR_NO_EFFECT            ((uint32_t)0x00000000U)         /* !< Writing this value has no effect. */
+#define RTC_LFSSRST_VBATPOR_SET                  ((uint32_t)0x00000001U)         /* !< Request power on reset to the LFSS. */
+/* RTC_LFSSRST[KEY] Bits */
+#define RTC_LFSSRST_KEY_OFS                      (24)                            /* !< KEY Offset */
+#define RTC_LFSSRST_KEY_MASK                     ((uint32_t)0xFF000000U)         /* !< need to write (KEY=0x12) to update
+                                                                                    this register */
+#define RTC_LFSSRST_KEY_UNLOCK_W                 ((uint32_t)0x12000000U)         /* !< This field must be written with
+                                                                                    0x12 to be able to request the power
+                                                                                    on reset. */
+
+/* RTC_RTCLOCK Bits */
+/* RTC_RTCLOCK[PROTECT] Bits */
+#define RTC_RTCLOCK_PROTECT_OFS                  (0)                             /* !< PROTECT Offset */
+#define RTC_RTCLOCK_PROTECT_MASK                 ((uint32_t)0x00000001U)         /* !< If set, the register bit will
+                                                                                    protect the CLKCTL, SEC, MIN, HOUR,
+                                                                                    DAY, MON, YEAR and LFSSRST from
+                                                                                    accidental writes. */
+#define RTC_RTCLOCK_PROTECT_CLR                  ((uint32_t)0x00000000U)         /* !< RTC counter is writable. */
+#define RTC_RTCLOCK_PROTECT_SET                  ((uint32_t)0x00000001U)         /* !< RTC counter is read only access. */
+/* RTC_RTCLOCK[KEY] Bits */
+#define RTC_RTCLOCK_KEY_OFS                      (24)                            /* !< KEY Offset */
+#define RTC_RTCLOCK_KEY_MASK                     ((uint32_t)0xFF000000U)         /* !< need to write (KEY=0x22) to update
+                                                                                    this register */
+#define RTC_RTCLOCK_KEY_UNLOCK_W                 ((uint32_t)0x22000000U)         /* !< This field must be written with
+                                                                                    0x22 to be able to update any of the
+                                                                                    bits. */
+
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* ti_devices_msp_peripherals_hw_rtc__include */
+

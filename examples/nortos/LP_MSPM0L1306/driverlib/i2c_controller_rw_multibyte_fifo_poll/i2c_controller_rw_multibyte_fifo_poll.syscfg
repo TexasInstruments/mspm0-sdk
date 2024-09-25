@@ -23,10 +23,13 @@ Board.peripheral.swdioPin.$assign = "PA19";
 
 GPIO1.$name                                 = "GPIO_LEDS";
 GPIO1.port                                  = "PORTA";
+GPIO1.associatedPins.create(2);
 GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].initialValue        = "SET";
 GPIO1.associatedPins[0].assignedPin         = "26";
-GPIO1.associatedPins[0].assignedPortSegment = "Upper";
-GPIO1.associatedPins[0].pin.$assign         = "PA26";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].initialValue        = "SET";
+GPIO1.associatedPins[1].assignedPin         = "6";
 
 I2C1.$name                     = "I2C";
 I2C1.basicEnableController     = true;
@@ -37,5 +40,4 @@ I2C1.peripheral.sdaPin.$assign = "PA0";
 I2C1.peripheral.sclPin.$assign = "PA1";
 
 const SYSCTL              = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
-SYSCTL.peripheral.$assign = "SYSCTL";
 SYSCTL.clockTreeEn = true;

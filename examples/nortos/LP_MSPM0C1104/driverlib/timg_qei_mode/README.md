@@ -11,8 +11,8 @@ QEI is configured, and will turn an LED on or off depending on motor direction.
 | GPIOA | PA22 | Standard Output |
 | GPIOA | PA6 | Standard Output |
 | SYSCTL |  |  |
-| TIMG8 | PA0 | Counter Compare Pin 0 |
-| TIMG8 | PA2 | Counter Compare Pin 1 |
+| TIMG8 | PA0 | Capture/Compare Pin 0 |
+| TIMG8 | PA2 | Capture/Compare Pin 1 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
@@ -43,7 +43,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 web page](https://www.ti.com/tool/LP-MSPM0C1104).
+MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 User's Guide](https://www.ti.com/lit/slau908).
 
 ## Example Usage
 Compile, load and run the example. Attach quadrature encoder. Observe on board

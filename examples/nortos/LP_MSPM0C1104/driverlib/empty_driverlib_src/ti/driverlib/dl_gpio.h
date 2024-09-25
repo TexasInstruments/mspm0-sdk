@@ -2197,7 +2197,7 @@ __STATIC_INLINE void DL_GPIO_writePinsVal(
 {
     uint32_t doutVal = gpio->DOUT31_0;
     doutVal &= ~pinsMask;
-    doutVal |= pinsVal;
+    doutVal |= (pinsVal & pinsMask);
     gpio->DOUT31_0 = doutVal;
 }
 

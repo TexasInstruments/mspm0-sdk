@@ -53,6 +53,9 @@
     defined(MCUBOOT_SIGN_EC) || defined(MCUBOOT_SIGN_EC256)
 #include "mbedtls/asn1.h"
 #endif
+#ifdef TI_CUSTOM_TLV_DYNAMIC_KEY_MANAGEMENT
+#include "keystore.h"
+#endif
 
 #include "bootutil_priv.h"
 
@@ -496,6 +499,25 @@ bootutil_img_validate(struct enc_key_data *enc_state, int image_index,
             /* The image's security counter has been successfully verified. */
             security_counter_valid = fih_rc;
 #endif /* MCUBOOT_HW_ROLLBACK_PROT */
+#ifdef TI_CUSTOM_TLV_DYNAMIC_KEY_MANAGEMENT
+        } else if (type == IMAGE_TLV_CUSTOM_TI_ADD_KEY){
+            /* Check if Length is correct, and contains a full 256-bit hash */
+            if(len != 0x20){
+                // not a complete hash
+                rc = -1;
+                goto out;
+            }
+            /* The address of the hash pointer will be the current flash area
+             * plus the provided offset. */
+            FIH_CALL(Keystore_newKeyRequest, fih_rc, (fap->fa_off + off));
+        } else if (type == IMAGE_TLV_CUSTOM_TI_REVOKE_KEY){
+            if(len != 0x20){
+                // not a complete hash
+                rc = -1;
+                goto out;
+            }
+            FIH_CALL(Keystore_revokeKeyRequest, fih_rc, (fap->fa_off + off));
+#endif
         }
     }
 

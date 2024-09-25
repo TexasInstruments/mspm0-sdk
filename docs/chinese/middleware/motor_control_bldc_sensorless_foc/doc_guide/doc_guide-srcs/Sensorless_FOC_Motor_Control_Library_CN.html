@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensorless FOC Motor Control Library Overview &mdash; Sensorless FOC Motor Control User Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="UART Communication User Guide" href="UART_Communication_User_Guide_CN.html" />
+    <link rel="prev" title="MSPM0 Sensorless FOC Software User’s Guide" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Sensorless FOC Motor Control User Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html">MSPM0 Sensorless FOC Software User’s Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sensorless FOC Motor Control Library Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#software-overview">Software Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-layer">1. Application Layer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#foc-library">FOC Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motor-control-application">Motor Control Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-application">Main Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hal-layer">2. HAL Layer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gate-driver-interface-library">Gate Driver Interface Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enabling-simultaneous-current-sampling">Enabling simultaneous current sampling :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#controller-interface-library">Controller Interface Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-peripherals-and-configurations-used-in-foc">Important Peripherals and configurations used in FOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpios">1. GPIOs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spi">2. SPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pwm">3. PWM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adc">3. ADC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dac">4. DAC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-interface-library">Communication Interface Library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mspm0-driverlib-overview">3. MSPM0 DriverLib Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="UART_Communication_User_Guide_CN.html">UART Communication User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8316 Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sensorless FOC Motor Control User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Sensorless FOC Motor Control Library Overview</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sensorless-foc-motor-control-library-overview">
+<h1>Sensorless FOC Motor Control Library Overview<a class="headerlink" href="#sensorless-foc-motor-control-library-overview" title="Permalink to this heading">¶</a></h1>
+<section id="software-overview">
+<h2>Software Overview<a class="headerlink" href="#software-overview" title="Permalink to this heading">¶</a></h2>
+<p>Sensorless Field-Oriented Control (FOC) Library is made of three main layers: Application layer, HAL Layer, and MSPM0 DriverLib.</p>
+<figure class="align-default" id="id1">
+<img alt="Sensorless FOC Architecture" src="../_images/Library-Architecture.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Sensorless FOC Architecture</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="application-layer">
+<h2>1. Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this heading">¶</a></h2>
+<p>Application Layer is a software layer that does specific functions like Motor control. If any application perform any hardware specific actions, it is done through the HAL Layer APIs.</p>
+<section id="foc-library">
+<h3>FOC Library<a class="headerlink" href="#foc-library" title="Permalink to this heading">¶</a></h3>
+<p>FOC library is a static library that contains generic motor control algorithms algorithms for 3-phase sensorless FOC motor control.</p>
+<p>This Library has the following modules integrated :</p>
+<ul class="simple">
+<li><p>Align startup</p></li>
+<li><p>Slow first cycle startup</p></li>
+<li><p>IPD startup</p></li>
+<li><p>ISD startup</p></li>
+<li><p>Brake</p></li>
+<li><p>Reverse Drive</p></li>
+<li><p>Deadtime compensation</p></li>
+<li><p>PI controllers</p></li>
+<li><p>Openloop</p></li>
+<li><p>Closeloop</p></li>
+<li><p>Estimator</p></li>
+</ul>
+<p>FOC library also contains the Motor control state machines.</p>
+</section>
+<section id="motor-control-application">
+<h3>Motor Control Application<a class="headerlink" href="#motor-control-application" title="Permalink to this heading">¶</a></h3>
+<p>Motor control Application takes care of register value conversions from users inputs and feeds to the FOC library.</p>
+</section>
+<section id="main-application">
+<h3>Main Application<a class="headerlink" href="#main-application" title="Permalink to this heading">¶</a></h3>
+<p>Main application contains the user code which initializes the application modules.</p>
+</section>
+</section>
+<section id="hal-layer">
+<h2>2. HAL Layer<a class="headerlink" href="#hal-layer" title="Permalink to this heading">¶</a></h2>
+<p>The Hardware Abstraction Layer (HAL) creates an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configurations which simplifies porting of the library to various hardware by minimizing the updates needed to other components. The HAL is meant to abstract only the required pins or peripherals required for the application while still having flexibility and scalability for porting to other MSPM0 MCUs or motor drivers.</p>
+<p>HAL uses the defines generated from TI SysConfig, so it is very easy to change the pin in the TI SysConfig GUI. The HAL automatically follows this without the user having to change any code in the HAL layer.</p>
+<p>For Example below is the define for direction pin PORT it is referred by HAL Layer through FOC_GPIO_IN_PORT, this define is mapped to the port number by the TI SysConfig. Thus by changing the PORT in TI SysConfig GUI the direction pin PORT number can be controlled.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/*! @brief GPIO port for direction pin */
+#define FOC_GPIO_DIR_PORT           (FOC_GPIO_IN_PORT)
+</pre></div>
+</div>
+<section id="gate-driver-interface-library">
+<h3>Gate Driver Interface Library<a class="headerlink" href="#gate-driver-interface-library" title="Permalink to this heading">¶</a></h3>
+<p>Gate Driver Interface Library provides the APIs for reading the currents and voltage channels. Also if the DRV is used it configured the CSA gain and other gate driver register configurations.</p>
+<figure class="align-default" id="id2">
+<img alt="Gate Driver Interface" src="../_images/GatedriverInterface.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Gate Driver Interface</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The gate driver Interface has 3 parts:</p>
+<ul class="simple">
+<li><p>Gate driver Library</p></li>
+</ul>
+<p>Has the APIs to configure the gate driver registers through SPI if the gate driver is a SPI based.</p>
+<ul class="simple">
+<li><p>Gate driver peripheral peripheral defines</p></li>
+</ul>
+<p>The Gate driver peripheral defines are in gateDriver.h. Here the ADC memory indexes used for reading the current and voltages are defined.</p>
+<figure class="align-default" id="id3">
+<img alt="Gate Driver peripheral defines" src="../_images/Gatedriver_H.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Gate Driver peripheral defines</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In the above image we can see that phase U voltage is mapped to ADC channel 6 and the U phase voltage memory index is ADC1_ADCMEM_0, ie A1.6/PB19 is the pin used for U phase voltage, this pin has to be connected to the gate drivers U phase voltage pin. Please refer to the Hardware Guide to know how to connect the Gate driver to the launchpad to make the pin connections.</p>
+<ul class="simple">
+<li><p>Gate driver HAL Interface</p></li>
+</ul>
+<p>Gate driver HAL Interface handles the configurations of ADC channels to convert phase voltage inputs and phase current inputs from gate driver.</p>
+</section>
+<section id="enabling-simultaneous-current-sampling">
+<h3>Enabling simultaneous current sampling :<a class="headerlink" href="#enabling-simultaneous-current-sampling" title="Permalink to this heading">¶</a></h3>
+<p>Simultaneous current sampling helps to sample the current signals at the same time. This feature helps to improve the performance of FOC by improving the rotor position estimations.</p>
+<p>In MSPM0 to enable simultaneous current sampling we need to use both ADCs 0 and 1 and trigger both at the same time. For implementing Simultaneous sampling we need to have any one phase current input connected to both ADC 0 and ADC 1, this additional connection is the minimum requirement needed so that we can sample all the dual current sensing configurations.</p>
+<p>The simultaneous current sampling is implemented in DRV8316 gate driver library, refer to drv8316_focHalInterface.c for the implementation code. In DRV8316 gate driver library phase B current is routed for both the ADC 0 &amp; 1 channels to achieve simultaneous sampling in all the dual current sensing configurations : AB, BC, CA (ie, in AB, A is sampled by ADC 0 and B by ADC 1. In BC ,B is sampled by ADC 0 and C by ADC 1).</p>
+</section>
+<section id="controller-interface-library">
+<h3>Controller Interface Library<a class="headerlink" href="#controller-interface-library" title="Permalink to this heading">¶</a></h3>
+<p>Controller Interface Library provides HAL APIs for controlling the peripherals like timer, gpio etc. The Controller Interface Library uses the gate driver Interface library to set the correct phase and voltage channel configurations to the ADC.</p>
+<figure class="align-default" id="id4">
+<img alt="Peripheral defines in focPeripheralInit.h" src="../_images/focPeripheralInit.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Peripheral defines in focPeripheralInit.h</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="important-peripherals-and-configurations-used-in-foc">
+<h3>Important Peripherals and configurations used in FOC<a class="headerlink" href="#important-peripherals-and-configurations-used-in-foc" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="gpios">
+<h3>1. GPIOs<a class="headerlink" href="#gpios" title="Permalink to this heading">¶</a></h3>
+<p>Following are the GPIO’s used by the Application code:</p>
+<ol class="arabic simple">
+<li><p>Brake input:</p></li>
+</ol>
+<p>Pin input for applying brake</p>
+<ol class="arabic simple" start="2">
+<li><p>Direction pin</p></li>
+</ol>
+<p>Pin input for selecting direction</p>
+<ol class="arabic simple" start="3">
+<li><p>Nfault</p></li>
+</ol>
+<p>Output pin, set low if any fault is detected</p>
+<ol class="arabic simple" start="4">
+<li><p>nSleep</p></li>
+</ol>
+<p>Output pin, sets the gate driver sleep input</p>
+<p>User can change the GPIO pin selection in the TI SysConfig to select any desired pin as shown below.</p>
+<figure class="align-default" id="id5">
+<img alt="GPIO sysconfig" src="../_images/GPIO_SYSCONFIG.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">GPIO sysconfig</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="spi">
+<h3>2. SPI<a class="headerlink" href="#spi" title="Permalink to this heading">¶</a></h3>
+<p>SPI is configured in Sysconfig for gate drivers having SPI interface. The SPI configurations used are given below</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>SPI</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bit rate</p></td>
+<td><p>5Mhz</p></td>
+</tr>
+<tr class="row-odd"><td><p>Word size</p></td>
+<td><p>16 bits</p></td>
+</tr>
+<tr class="row-even"><td><p>Bit Order</p></td>
+<td><p>MSB First</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chip select</p></td>
+<td><p>Active low</p></td>
+</tr>
+<tr class="row-even"><td><p>Frame Format</p></td>
+<td><p>4 wire</p></td>
+</tr>
+<tr class="row-odd"><td><p>mode</p></td>
+<td><p>Controller</p></td>
+</tr>
+<tr class="row-even"><td><p>Clock polarity</p></td>
+<td><p>Low</p></td>
+</tr>
+<tr class="row-odd"><td><p>Clock Phase</p></td>
+<td><p>Data on Second clock edge</p></td>
+</tr>
+</tbody>
+</table>
+<p>User can user the same SPI connection to interface any other device, but need to see if the gate driver spi transmission is busy. Also user need to take care of using a different chip select line.</p>
+</section>
+<section id="pwm">
+<h3>3. PWM<a class="headerlink" href="#pwm" title="Permalink to this heading">¶</a></h3>
+<p>Three PWM channels with complementary outputs are used to drive the motor and one channel is used to trigger the ADC to convert the voltages and currents. TIMER A0 is reserved for generating the PWMs for FOC motor control and user should not use this timer.</p>
+<p>TIMER A0 triggers the ADC using event channels, the event channels used are specified in focPeripheralInit.h, user should not use the same event channel used by the Library.</p>
+</section>
+<section id="adc">
+<h3>3. ADC<a class="headerlink" href="#adc" title="Permalink to this heading">¶</a></h3>
+<p>The ADC configurations used are given below:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ADC</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Conversion Mode</p></td>
+<td><p>Sequence sampling</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trigger Source</p></td>
+<td><p>Event triggered</p></td>
+</tr>
+<tr class="row-even"><td><p>Sample timer</p></td>
+<td><p>Sample timer 0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chip select</p></td>
+<td><p>Active low</p></td>
+</tr>
+<tr class="row-even"><td><p>Hardware averaging</p></td>
+<td><p>8 conversions</p></td>
+</tr>
+</tbody>
+</table>
+<p>ADC hardware averaging is used to remove any noise in the signal</p>
+<p>ADC is used in converting DC bus voltage, three phase currents and three phase voltages. The gate driver library defines the ADC channel used for conversion and the memory index of the ADC used. Memory indexes used for current and voltages are listed in gateDriver.h. ADC Interrupt occurs after all currents or voltages are sampled.</p>
+<p>If user wishes to use ADC to convert any new channels the user should add new memory index by incrementing the Sequence End address in the TI SysConfig and modify the Trigger mode of the new index to “Valid trigger ..” as shown in the below images. Also note to change the Trigger mode of the default Sequence End address to “Trigger will automatically ..” while adding a new sequence end address. The user should not change the ADC interrupt used by FOC, user can enable a new ADC interrupt for their use case.</p>
+<figure class="align-default" id="id6">
+<img alt="ADC sysconfig" src="../_images/ADC_SYSCONFIG.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">ADC sysconfig</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7">
+<img alt="ADC Trigger" src="../_images/ADC_SYSCONFIG_TRIGGER.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">ADC Trigger</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>For phase voltage and phase current configuration the Library sets the channel using the channel listed in gateDriver.h. For DC bus voltage conversion the pin is specified by TI SysConfig and user needs to take care to update the defines in gateDriver.h, if the pin is changed in TI SysConfig.</p>
+</section>
+<section id="dac">
+<h3>4. DAC<a class="headerlink" href="#dac" title="Permalink to this heading">¶</a></h3>
+<p>The DAC configurations used are given below:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>DAC</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sample Time Generator Rate</p></td>
+<td><p>100kSPS</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output Resolution</p></td>
+<td><p>12 bit</p></td>
+</tr>
+<tr class="row-even"><td><p>Positive Voltage Reference</p></td>
+<td><p>VDDA</p></td>
+</tr>
+<tr class="row-odd"><td><p>Negative Voltage Reference</p></td>
+<td><p>VSSA</p></td>
+</tr>
+</tbody>
+</table>
+<p>DAC is used for real time output of the algorithm variables.</p>
+<p>NOTE: While enabling the DAC in TI SysConfig user needs to make sure the DAC output pin is not used</p>
+</section>
+<section id="communication-interface-library">
+<h3>Communication Interface Library<a class="headerlink" href="#communication-interface-library" title="Permalink to this heading">¶</a></h3>
+<p>Communication Interface Library helps to access the memory of the device using communication peripherals like UART, I2C etc. User can Read or write to the Sensorless FOC registers through the communication peripheral to control the motor externally.</p>
+<p>In the current library the UART communication is implementation. Please refer to <a class="reference external" href="UART_Communication_User_Guide_CN.html">UART Communication User Guide</a> for more details on communication protocol.</p>
+<p>For enabling UART communication with an external device use the below pinouts:</p>
+<p><strong>For DRV8316</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>UART comm pin</p></th>
+<th class="head"><p>LP-MSPM0G3507</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>UART TX</p></td>
+<td><p>PA26</p></td>
+</tr>
+<tr class="row-odd"><td><p>UART RX</p></td>
+<td><p>PA13</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>For DRV8323RS</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>UART comm pin</p></th>
+<th class="head"><p>LP-MSPM0G3507</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>UART TX</p></td>
+<td><p>PB12</p></td>
+</tr>
+<tr class="row-odd"><td><p>UART RX</p></td>
+<td><p>PA13</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="mspm0-driverlib-overview">
+<h2>3. MSPM0 DriverLib Overview<a class="headerlink" href="#mspm0-driverlib-overview" title="Permalink to this heading">¶</a></h2>
+<p>MSPM0 DriverLib is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. Please refer to the DriverLib documentation for more information.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html" class="btn btn-neutral float-left" title="MSPM0 Sensorless FOC Software User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="UART_Communication_User_Guide_CN.html" class="btn btn-neutral float-right" title="UART Communication User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

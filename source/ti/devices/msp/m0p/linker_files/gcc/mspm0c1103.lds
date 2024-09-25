@@ -39,7 +39,7 @@ SECTIONS
     PROVIDE (_vtable_base_address =
         DEFINED(_vtable_base_address) ? _vtable_base_address : 0x20000000);
 
-    .vtable (_vtable_base_address) : AT (_vtable_base_address) {
+    .vtable (_vtable_base_address) (NOLOAD) : AT (_vtable_base_address) {
         KEEP (*(.vtable))
     } > REGION_DATA
 
@@ -94,17 +94,17 @@ SECTIONS
         KEEP (*(SORT(.fini_array.*)))
         KEEP (*(.fini_array*))
         PROVIDE_HIDDEN (__fini_array_end = .);
+    	. = ALIGN(0x8);
     } > REGION_FINI_ARRAY AT> REGION_TEXT
 
     .ARM.exidx : {
-    	. = ALIGN(0x8);
         __exidx_start = .;
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-        . = ALIGN(0x8);
         __exidx_end = .;
     } > REGION_ARM_EXIDX AT> REGION_ARM_EXIDX
 
     .ARM.extab : {
+        . = ALIGN(0x8);
         KEEP (*(.ARM.extab* .gnu.linkonce.armextab.*))
          . = ALIGN(0x8);
     } > REGION_ARM_EXTAB AT> REGION_ARM_EXTAB

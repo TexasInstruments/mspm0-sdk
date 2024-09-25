@@ -9,8 +9,8 @@ PWM signal. This examples configures timers in down counting mode.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG1 | PA26 | Counter Compare Pin 0 |
-| TIMG4 | PA10 | Counter Compare Pin 0 |
+| TIMG1 | PA26 | Capture/Compare Pin 0 |
+| TIMG4 | PA10 | Capture/Compare Pin 0 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

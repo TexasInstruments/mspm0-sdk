@@ -52,6 +52,8 @@
 #include <ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0l11xx_l13xx.h>
 #elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0C110X) || (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPS003FX)
 #include <ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0c110x.h>
+#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
+#include <ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0l122x_l222x.h>
 /********************************************************************
  *
  ********************************************************************/

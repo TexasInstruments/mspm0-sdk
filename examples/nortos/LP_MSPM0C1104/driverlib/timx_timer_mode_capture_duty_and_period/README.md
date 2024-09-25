@@ -11,8 +11,8 @@ PWM signal.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG8 | PA0 | Counter Compare Pin 0 |
-| TIMG14 | PA23 | Counter Compare Pin 0 |
+| TIMG8 | PA0 | Capture/Compare Pin 0 |
+| TIMG14 | PA23 | Capture/Compare Pin 0 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
@@ -41,7 +41,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 web page](https://www.ti.com/tool/LP-MSPM0C1104).
+MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 User's Guide](https://www.ti.com/lit/slau908).
 
 ## Example Usage
 Connect a jumper cable between PA12 (GPIO_TIMER_CAPTURE_C0_PIN) and PB15

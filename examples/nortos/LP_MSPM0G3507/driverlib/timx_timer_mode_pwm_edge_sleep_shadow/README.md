@@ -13,7 +13,7 @@ is configured to update when the timer reaches a count of zero.
 | GPIOA | PA0 | Open-Drain Output |
 | GPIOA | PA15 | Standard Output |
 | SYSCTL |  |  |
-| TIMA1 | PB4 | Counter Compare Pin 0 |
+| TIMA1 | PB4 | Capture/Compare Pin 0 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

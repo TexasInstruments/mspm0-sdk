@@ -17,7 +17,7 @@ NAME = aes_cfb_256_decrypt
 CFLAGS = -I.. \
     -I. \
     -O2 \
-    @syscfg/device.opt \
+    @device.opt \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
     -gdwarf-3 \

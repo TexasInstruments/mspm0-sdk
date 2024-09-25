@@ -39,12 +39,12 @@ int main(void)
 
     while (1) {
         /*
-         * Toggle the Hi-Z pin.
+         * Toggle the Hi-Z pin and on board LED
          * The pin toggles if an external pull-up is connected, otherwise
          * it will be Hi-Z when high.
          */
-
         delay_cycles(10000000);
-        DL_GPIO_togglePins(GPIO_OUTPUTS_PORT, GPIO_OUTPUTS_USER_OUTPUT_1_PIN);
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
     }
 }

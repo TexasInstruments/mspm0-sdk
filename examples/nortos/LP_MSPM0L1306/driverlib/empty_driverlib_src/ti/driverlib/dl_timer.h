@@ -153,7 +153,7 @@ extern "C" {
 /*!
  * @brief No event generates zero pulse
  */
-#define DL_TIMER_CC_ZCOND_NONE                         (((uint32_t)0x00000000U))
+#define DL_TIMER_CC_ZCOND_NONE             (GPTIMER_CCCTL_01_ZCOND_CC_TRIG_NO_EFFECT)
 
 /*!
  * @brief Rising edge of CCP or trigger assertion edge generates zero pulse
@@ -180,7 +180,7 @@ extern "C" {
 /*!
  * @brief No event generates load pulse
  */
-#define DL_TIMER_CC_LCOND_NONE                         ((uint32_t)0x00000000U)
+#define DL_TIMER_CC_LCOND_NONE            (GPTIMER_CCCTL_01_LCOND_CC_TRIG_NO_EFFECT)
 
 /*!
  * @brief Rising edge of CCP or trigger assertion edge generates load pulse
@@ -1146,6 +1146,8 @@ event
 typedef enum {
     /*! Selects BUSCLK as clock source */
     DL_TIMER_CLOCK_BUSCLK = GPTIMER_CLKSEL_BUSCLK_SEL_ENABLE,
+    /*! Selects 2X BUSCLK as clock source */
+    DL_TIMER_CLOCK_2X_BUSCLK = GPTIMER_CLKSEL_BUS2XCLK_SEL_ENABLE,
     /*! Selects MFCLK as clock source */
     DL_TIMER_CLOCK_MFCLK = GPTIMER_CLKSEL_MFCLK_SEL_ENABLE,
     /*! Selects LFCLK as clock source */

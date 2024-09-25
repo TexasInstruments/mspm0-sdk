@@ -10,8 +10,8 @@ signals. The device is configured to wait in STOP mode.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG14 | PA23 | Counter Compare Pin 0 |
-| TIMG14 | PA24 | Counter Compare Pin 1 |
+| TIMG14 | PA23 | Capture/Compare Pin 0 |
+| TIMG14 | PA24 | Capture/Compare Pin 1 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
@@ -40,7 +40,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 web page](https://www.ti.com/tool/LP-MSPM0C1104).
+MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 User's Guide](https://www.ti.com/lit/slau908).
 
 ## Example Usage
 Compile, load and run the example.

@@ -12,8 +12,8 @@ This example demonstrates using the two switches on the MSPM0G3507 Launchpad to 
 | GPIOB | PB26 | Standard Output |
 | GPIOB | PB21 | Standard Input with internal pull-up |
 | SYSCTL |  |  |
-| TIMA1 | PA10 | Counter Compare Pin 0 |
-| TIMA1 | PA11 | Counter Compare Pin 1 |
+| TIMA1 | PA10 | Capture/Compare Pin 0 |
+| TIMA1 | PA11 | Capture/Compare Pin 1 |
 | TIMA0 |  |  |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |

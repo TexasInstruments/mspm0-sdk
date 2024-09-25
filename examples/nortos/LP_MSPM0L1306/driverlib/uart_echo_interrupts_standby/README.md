@@ -50,11 +50,3 @@ Connect to terminal if using Launchpad's back-channel UART, or connect to
 external device using BoosterPack.
 The UART will wait to receive data and respond with echo. Every time UART
 receives data the LED toggles and the USER_TEST matches the LED pin state.
-
-## Important Note
-Early experimental samples have a known issue where the user is unable to
-reconnect their debugger connection after the device has gone into STOP or
-STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain
-the ability to connect the device to the debugger. This information is located
-in the "MSPM0G and MSPM0L Families: Functional Differences With Early Samples"
-document.

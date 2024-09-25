@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">1.20.01.06</span>
+   &#160;<span id="projectnumber">1.30.00.03</span>
    </div>
   </td>
  </tr>
@@ -495,8 +495,17 @@ $(function() {
 <li>DL_COMP_REF_MODE_STATIC
 : <a class="el" href="group___c_o_m_p.html#gga3535e9704fa63ffff6386794ae58268eaa0441e84c606041685a4a1bd2d7f1668">dl_comp.h</a>
 </li>
+<li>DL_COMP_REF_SOURCE_INT_VREF
+: <a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfa6c3d79a6a66bf176aa97d7735d8518a2">dl_comp.h</a>
+</li>
+<li>DL_COMP_REF_SOURCE_INT_VREF_DAC
+: <a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfab91c55f66fc681cfd9f4f6b679bd96da">dl_comp.h</a>
+</li>
 <li>DL_COMP_REF_SOURCE_NONE
 : <a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfa1f3e95a913bd97653599e776ed8074d3">dl_comp.h</a>
+</li>
+<li>DL_COMP_REF_SOURCE_VDDA
+: <a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfa9e0aaaa0081f747635d581505731ade4">dl_comp.h</a>
 </li>
 <li>DL_COMP_REF_SOURCE_VDDA_DAC
 : <a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfacefb257cb2bc1e6c173a9dac27b9d314">dl_comp.h</a>
@@ -1947,125 +1956,197 @@ $(function() {
 <li>DL_OPA_PSEL_VREF
 : <a class="el" href="group___o_p_a.html#ggad74c172567011a8ee24900aaecdbe702acdfdd0548af5ce59323439cb0d1128dd">dl_opa.h</a>
 </li>
-<li>DL_RTC_COMPENSATION_STATUS_NOT_READY
-: <a class="el" href="group___r_t_c.html#gga07b383e67bcf042c8fc06550cbef98e2a84e4102270690a125a1856944279ff1a">dl_rtc.h</a>
+<li>DL_RTC_COMMON_COMPENSATION_STATUS_NOT_READY
+: <a class="el" href="group___r_t_c___common.html#ggaf8afeb95abdb45984c615b32f713f24ba13b6665140a913ad7744312d6100e131">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_COMPENSATION_STATUS_READY
-: <a class="el" href="group___r_t_c.html#gga07b383e67bcf042c8fc06550cbef98e2acff6f1f99172bbf4504443c57e1e2512">dl_rtc.h</a>
+<li>DL_RTC_COMMON_COMPENSATION_STATUS_READY
+: <a class="el" href="group___r_t_c___common.html#ggaf8afeb95abdb45984c615b32f713f24ba395f86b0a93fe4b7c5681cea19e3b0a1">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_COMPENSATION_WRITE_RESULT_NOT_OK
-: <a class="el" href="group___r_t_c.html#gga5445302ba35a6304837b6fe4bb2b696aa265ae8349001edc3c70893b9d3837374">dl_rtc.h</a>
+<li>DL_RTC_COMMON_COMPENSATION_WRITE_RESULT_NOT_OK
+: <a class="el" href="group___r_t_c___common.html#gga27df0d6aae7f92aec39a2e420745136da65b0a67c6a5f94e285270d6e66c07414">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_COMPENSATION_WRITE_RESULT_OK
-: <a class="el" href="group___r_t_c.html#gga5445302ba35a6304837b6fe4bb2b696aa6ec2015205e7bdaa4d7abff1fdf3d5a7">dl_rtc.h</a>
+<li>DL_RTC_COMMON_COMPENSATION_WRITE_RESULT_OK
+: <a class="el" href="group___r_t_c___common.html#gga27df0d6aae7f92aec39a2e420745136da113ee73dcf7aba4e08f1953abb2d725b">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_FORMAT_BCD
-: <a class="el" href="group___r_t_c.html#gga4191dfcacf7efd77e5330acbf8d6b2deae8f70895c5a08c3a8cdce532a1d0d0c4">dl_rtc.h</a>
+<li>DL_RTC_COMMON_FORMAT_BCD
+: <a class="el" href="group___r_t_c___common.html#gga281b5c9f2ff0d1f6324c056f87a85bf7a4d33c610c5acb17811fc59b31b46e193">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_FORMAT_BINARY
-: <a class="el" href="group___r_t_c.html#gga4191dfcacf7efd77e5330acbf8d6b2dea76c4d5691f758fa5c8a0596c09d5fb0d">dl_rtc.h</a>
+<li>DL_RTC_COMMON_FORMAT_BINARY
+: <a class="el" href="group___r_t_c___common.html#gga281b5c9f2ff0d1f6324c056f87a85bf7a355a6bbc4a12a6f48c7ecd26f726d831">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_IIDX_ALARM1
-: <a class="el" href="group___r_t_c.html#ggaba92e6ca8d1068765ddd4d07e97e8e74a41e04639c62ce7799a707ddc17af18e6">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_ALARM1
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a1478412411baac2b493a217b614d2b26">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_IIDX_ALARM2
-: <a class="el" href="group___r_t_c.html#ggaba92e6ca8d1068765ddd4d07e97e8e74ae671445e78f7b7a73f76060457fba147">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_ALARM2
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ac5f22e6d808244f0082cb8819864c150">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_IIDX_INTERVAL_TIMER
-: <a class="el" href="group___r_t_c.html#ggaba92e6ca8d1068765ddd4d07e97e8e74a756d3bdaeaf1f746a97f30cfe81e9922">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_INTERVAL_TIMER
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a676914d09b023a75bb5e905e1de4e351">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_IIDX_PRESCALER0
-: <a class="el" href="group___r_t_c.html#ggaba92e6ca8d1068765ddd4d07e97e8e74a7722046826188fc7f52b5c7bf54cf47c">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_PRESCALER0
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a6a3359222210126dddc2669c6274eba2">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_IIDX_PRESCALER1
-: <a class="el" href="group___r_t_c.html#ggaba92e6ca8d1068765ddd4d07e97e8e74afecd1f0b164a06fd4ee0603beb740fc4">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_PRESCALER1
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aab4c187e4294e47bfaaa63e3e4f80178">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_IIDX_READY
-: <a class="el" href="group___r_t_c.html#ggaba92e6ca8d1068765ddd4d07e97e8e74abf370327f67ffb0351c87003e2bd90f5">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_PRESCALER2
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a7b1c7830fe8b185174653c372b3b7c06">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_INTERVAL_ALARM_HOURCHANGE
-: <a class="el" href="group___r_t_c.html#gga839ad2871e1bcf6b944a493bee818735a87b825f1833e0791a8fb4520d6b4e176">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_READY
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aaefc22c11456b3ec30a4c16b59e8b20c">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_INTERVAL_ALARM_MIDNIGHT
-: <a class="el" href="group___r_t_c.html#gga839ad2871e1bcf6b944a493bee818735a8b14c8e5d7fa55d83ca320aefffe3587">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_0
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ad8f32792f6af3198219f2f97e95a0ae9">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_INTERVAL_ALARM_MINUTECHANGE
-: <a class="el" href="group___r_t_c.html#gga839ad2871e1bcf6b944a493bee818735ae1b9f62f15b2e382d3b1e93f1da81ee2">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_1
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ad95da8e0e26a4f939f91d6d32669264c">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_INTERVAL_ALARM_NOON
-: <a class="el" href="group___r_t_c.html#gga839ad2871e1bcf6b944a493bee818735aea59a9acca99088970eab802a5967590">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_10
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ae844a830d2361ff904bf052ad49b17e8">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_OFFSET_CALIBRATION_FREQUENCY_1
-: <a class="el" href="group___r_t_c.html#gga714ed59f0cad47ae7366d1ecff5c7196aecb2d00774e5e1fa92cc4f79cec4bfb7">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_11
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a4f35d135d0003b8272c7b6fc619352f3">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_OFFSET_CALIBRATION_FREQUENCY_256
-: <a class="el" href="group___r_t_c.html#gga714ed59f0cad47ae7366d1ecff5c7196a783c56b53740e554e8bb5da003a050a4">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_12
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ae21b9b828153b2f97416b46369d7003b">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_OFFSET_CALIBRATION_FREQUENCY_512
-: <a class="el" href="group___r_t_c.html#gga714ed59f0cad47ae7366d1ecff5c7196ab69e2f0241b068bb105470c97566828e">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_13
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3adef6f74a004f54949eda6c73a0c2bd37">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_OFFSET_CALIBRATION_FREQUENCY_OFF
-: <a class="el" href="group___r_t_c.html#gga714ed59f0cad47ae7366d1ecff5c7196a2869cc8273c97d3a564183ce3c81dd32">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_14
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aa5f947f121f9c6a4bd28bab8d6d5025a">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_OFFSET_CALIBRATION_SIGN_DOWN
-: <a class="el" href="group___r_t_c.html#gga5575fc86392d1cda65c357307e962cfda728dc080cba564bd0167e25f38771ff1">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_15
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a830d5071943a08fe621276e61ff59de7">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_OFFSET_CALIBRATION_SIGN_UP
-: <a class="el" href="group___r_t_c.html#gga5575fc86392d1cda65c357307e962cfda4a38bebcdef91392c2cb7cd3558ac490">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_2
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a4690fe48d832a2bb037575108d3b6dca">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER0_DIVIDE_128
-: <a class="el" href="group___r_t_c.html#ggabf0f494b4b8c1fcb1eed998bd40a6feca33e5da2fe3cc2662bd9d1598d6e23fb9">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_3
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aca053f4233a651e2be126f67e4c52f0f">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER0_DIVIDE_16
-: <a class="el" href="group___r_t_c.html#ggabf0f494b4b8c1fcb1eed998bd40a6fecac9cafae9b045d9a466129fc5bfbb79c9">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_4
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3acc4a8d4c1f486521c1f194d6ef2fd3d5">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER0_DIVIDE_256
-: <a class="el" href="group___r_t_c.html#ggabf0f494b4b8c1fcb1eed998bd40a6fecab316c04eb3781558cd2f44f998cc43f0">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_5
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a0e4ac4b147c455b68d5b0e7361e35325">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER0_DIVIDE_32
-: <a class="el" href="group___r_t_c.html#ggabf0f494b4b8c1fcb1eed998bd40a6feca3aecb7cd3449cbd3001e1513d58a138b">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_6
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ae961b18afd2c5f6a00799eab8a1d5be1">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER0_DIVIDE_64
-: <a class="el" href="group___r_t_c.html#ggabf0f494b4b8c1fcb1eed998bd40a6fecab7a3c504127c94e9798c7a3d4de09625">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_7
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a66098e4e3cb83cd5f3bb0656c1a85065">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER0_DIVIDE_8
-: <a class="el" href="group___r_t_c.html#ggabf0f494b4b8c1fcb1eed998bd40a6feca7958065b4852bd3213ff47d08562b07e">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_8
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aa32a2c5bb15819409570a4bbd367e335">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER1_DIVIDE_128
-: <a class="el" href="group___r_t_c.html#gga823225985f4107cf65baeb4c4b2e7a24a5a587384fabdaf4d2d93b60fcddc7ab0">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TAMPER_IO_9
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3af71ee258187677ef26fd1d5159e25917">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER1_DIVIDE_16
-: <a class="el" href="group___r_t_c.html#gga823225985f4107cf65baeb4c4b2e7a24a3f3ecc8b362c311136f8f1991ae13d19">dl_rtc.h</a>
+<li>DL_RTC_COMMON_IIDX_TSEVT
+: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3acba0baa35e90be12c8eda423d84c0072">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER1_DIVIDE_2
-: <a class="el" href="group___r_t_c.html#gga823225985f4107cf65baeb4c4b2e7a24adfe1c362eea2bdb7738fc340815ff12b">dl_rtc.h</a>
+<li>DL_RTC_COMMON_INTERVAL_ALARM_HOURCHANGE
+: <a class="el" href="group___r_t_c___common.html#gga48f88486b3b76fa0a33868883edd422da654f970e459f8e147f33ce01d9a5275d">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER1_DIVIDE_256
-: <a class="el" href="group___r_t_c.html#gga823225985f4107cf65baeb4c4b2e7a24ad2d89a62cd12c96c3ab1cedf194476d1">dl_rtc.h</a>
+<li>DL_RTC_COMMON_INTERVAL_ALARM_MIDNIGHT
+: <a class="el" href="group___r_t_c___common.html#gga48f88486b3b76fa0a33868883edd422da448281ff8d6630178a02651cd27f91f5">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER1_DIVIDE_32
-: <a class="el" href="group___r_t_c.html#gga823225985f4107cf65baeb4c4b2e7a24ac32b45e369a1550c2bb1c8116e48fd3c">dl_rtc.h</a>
+<li>DL_RTC_COMMON_INTERVAL_ALARM_MINUTECHANGE
+: <a class="el" href="group___r_t_c___common.html#gga48f88486b3b76fa0a33868883edd422daa41aa21b242dde6f0acb5f2e66761ef0">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER1_DIVIDE_4
-: <a class="el" href="group___r_t_c.html#gga823225985f4107cf65baeb4c4b2e7a24ab647184be54e7d33d2003fb7c695f4af">dl_rtc.h</a>
+<li>DL_RTC_COMMON_INTERVAL_ALARM_NOON
+: <a class="el" href="group___r_t_c___common.html#gga48f88486b3b76fa0a33868883edd422daad66d6cb6c6138ee5393f8d42b8f73de">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER1_DIVIDE_64
-: <a class="el" href="group___r_t_c.html#gga823225985f4107cf65baeb4c4b2e7a24a7c080ea4a3bc60a681c2fd2704b82bd3">dl_rtc.h</a>
+<li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_1
+: <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2ab840157b4690085b76fcc84db41a8147">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_PRESCALER1_DIVIDE_8
-: <a class="el" href="group___r_t_c.html#gga823225985f4107cf65baeb4c4b2e7a24a8c1e7e8a5e2d58c96663dc5a4fc7d677">dl_rtc.h</a>
+<li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_256
+: <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2a0b08171e9e9209ca79d32e9e0b303fbb">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_STATUS_NOT_READY
-: <a class="el" href="group___r_t_c.html#ggabb358a37af89a815bbc6283d2cda9351ad50ead12c184941fc5ac9642a835763c">dl_rtc.h</a>
+<li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_32_KHZ
+: <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2a4e0c3750c7d332c0a9aeea32dc99115f">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_STATUS_READY
-: <a class="el" href="group___r_t_c.html#ggabb358a37af89a815bbc6283d2cda9351ab31afbedfb152ecda068c0e22cdd872b">dl_rtc.h</a>
+<li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_512
+: <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2ae3c807a7fd2591a41ba568435c71baf8">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_TEMP_CALIBRATION_DOWN1PPM
-: <a class="el" href="group___r_t_c.html#ggab7424b7d523341c9df240196f9fdff2ea4888fdb1be7f001b12e834e47581aa9c">dl_rtc.h</a>
+<li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_OFF
+: <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2a515e20990cd7b1d667607d379027973a">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_TEMP_CALIBRATION_UP1PPM
-: <a class="el" href="group___r_t_c.html#ggab7424b7d523341c9df240196f9fdff2ea4e148f79fb73cbad2f41fe5e08f0cfee">dl_rtc.h</a>
+<li>DL_RTC_COMMON_OFFSET_CALIBRATION_SIGN_DOWN
+: <a class="el" href="group___r_t_c___common.html#gga1bd44257d69ab094470f73893fc87df7a181a230da0743693f40d3279ec254e1c">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_OFFSET_CALIBRATION_SIGN_UP
+: <a class="el" href="group___r_t_c___common.html#gga1bd44257d69ab094470f73893fc87df7a7341134c126066f9ab9c2dcbaec5ab16">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER0_DIVIDE_128
+: <a class="el" href="group___r_t_c___common.html#gga6808c7e47e35744d98d6e4170b135cbfa69d2ff8f96b9c6a7aee3ea7e9e709065">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER0_DIVIDE_16
+: <a class="el" href="group___r_t_c___common.html#gga6808c7e47e35744d98d6e4170b135cbfa2176519c52fb0be67c5262fc92322802">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER0_DIVIDE_256
+: <a class="el" href="group___r_t_c___common.html#gga6808c7e47e35744d98d6e4170b135cbfab43fcb94f7509ee1d8c1a5a07db4963c">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER0_DIVIDE_32
+: <a class="el" href="group___r_t_c___common.html#gga6808c7e47e35744d98d6e4170b135cbfa137c4de3f06cb79e0d5b5f8367e7226c">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER0_DIVIDE_64
+: <a class="el" href="group___r_t_c___common.html#gga6808c7e47e35744d98d6e4170b135cbfa700855c39ae12ea5275adbf91198d928">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER0_DIVIDE_8
+: <a class="el" href="group___r_t_c___common.html#gga6808c7e47e35744d98d6e4170b135cbfa82eaffca63712d33df04cbda124de8b8">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER1_DIVIDE_128
+: <a class="el" href="group___r_t_c___common.html#gga9e0b81075a4321abcd20c8bb9083f97da50b63818c73ef05087fc07962d15276a">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER1_DIVIDE_16
+: <a class="el" href="group___r_t_c___common.html#gga9e0b81075a4321abcd20c8bb9083f97da52b6ee3b9c98b81c4e0ff6e1a2e9455d">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER1_DIVIDE_2
+: <a class="el" href="group___r_t_c___common.html#gga9e0b81075a4321abcd20c8bb9083f97dad6c2c653a025e8ca95c2e59e8bac84f7">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER1_DIVIDE_256
+: <a class="el" href="group___r_t_c___common.html#gga9e0b81075a4321abcd20c8bb9083f97da3f582a8bff44410e5ba70c66be0c319d">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER1_DIVIDE_32
+: <a class="el" href="group___r_t_c___common.html#gga9e0b81075a4321abcd20c8bb9083f97dac37f66e896cd1c554c354e631aabe042">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER1_DIVIDE_4
+: <a class="el" href="group___r_t_c___common.html#gga9e0b81075a4321abcd20c8bb9083f97daf0434b8ddb0e2eebab90510e75a61c45">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER1_DIVIDE_64
+: <a class="el" href="group___r_t_c___common.html#gga9e0b81075a4321abcd20c8bb9083f97daff2a1d87d6564dd05fc8e82867b7f330">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER1_DIVIDE_8
+: <a class="el" href="group___r_t_c___common.html#gga9e0b81075a4321abcd20c8bb9083f97daa4d34bb3314954517e761c5e9d51981b">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER2_16_SEC
+: <a class="el" href="group___r_t_c___common.html#gga61b2e4f708ff21126435fe6265ed8a77af36b35de2372455d6603396ed09493c0">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER2_4_SEC
+: <a class="el" href="group___r_t_c___common.html#gga61b2e4f708ff21126435fe6265ed8a77a8377a227444e9a599afe063c682ca890">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_PRESCALER2_8_SEC
+: <a class="el" href="group___r_t_c___common.html#gga61b2e4f708ff21126435fe6265ed8a77a756ab8a8af3904585ff59f39d8336088">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_STATUS_NOT_READY
+: <a class="el" href="group___r_t_c___common.html#ggaf3626cb23d4f51c75cf765214356a81eaeb7fc69b3e4ff0bca3bb7cd6c8984a34">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_STATUS_READY
+: <a class="el" href="group___r_t_c___common.html#ggaf3626cb23d4f51c75cf765214356a81ea9b0c8062014f1c6d71100625f9d28218">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_TEMP_CALIBRATION_DOWN1PPM
+: <a class="el" href="group___r_t_c___common.html#gga3f6282ba753318ebb87d4175509c4864adf9b4678505e91c9de41ee98771639ff">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_TEMP_CALIBRATION_UP1PPM
+: <a class="el" href="group___r_t_c___common.html#gga3f6282ba753318ebb87d4175509c4864ab60213680f609e9bbfb37a1731101b24">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE_FIRST
+: <a class="el" href="group___r_t_c___common.html#gga8ae64f7f7f47cc86d46fc47c21cd4771a37af71bc4ac3e06b0b034957c7f39f51">dl_rtc_common.h</a>
+</li>
+<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE_LAST
+: <a class="el" href="group___r_t_c___common.html#gga8ae64f7f7f47cc86d46fc47c21cd4771a81c3fff77367a65369e8a9f3f963d4a4">dl_rtc_common.h</a>
 </li>
 <li>DL_SPI_BIT_ORDER_LSB_FIRST
 : <a class="el" href="group___s_p_i.html#gga79d02b79cd7d5383b93311454ed5f3efab084a7b9a774fbcf58eba78342e9f9ea">dl_spi.h</a>
@@ -2948,6 +3029,9 @@ $(function() {
 </li>
 <li>DL_TIMER_CLC_QEI_3INP
 : <a class="el" href="group___t_i_m_x.html#gga9eda8ceca2510928f79364577b0a5664a5e2f9283f19c04422cd2ac71a475431c">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CLOCK_2X_BUSCLK
+: <a class="el" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a421c83a82a0f0106586416e05e294dd5">dl_timer.h</a>
 </li>
 <li>DL_TIMER_CLOCK_BUSCLK
 : <a class="el" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a4efaf8e7fab766a10685044d35160525">dl_timer.h</a>
@@ -3932,7 +4016,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

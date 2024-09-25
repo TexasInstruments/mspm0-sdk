@@ -96,8 +96,14 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga02e8a7b7e55f1c9d99a3e40720970de0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga02e8a7b7e55f1c9d99a3e40720970de0">SMB_CRC8_USE_LOOKUP_TABLE</a>&#160;&#160;&#160;(1)</td></tr>
-<tr class="separator:ga02e8a7b7e55f1c9d99a3e40720970de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0da0ba11091b2d299119ac67d32dfa58"><td class="memItemLeft" align="right" valign="top"><a id="ga0da0ba11091b2d299119ac67d32dfa58"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga0da0ba11091b2d299119ac67d32dfa58">SMB_TARGET_SUPPORTS_HOST_NOTIFY</a>&#160;&#160;&#160;(true)</td></tr>
+<tr class="memdesc:ga0da0ba11091b2d299119ac67d32dfa58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables Host Notify support as target. <br /></td></tr>
+<tr class="separator:ga0da0ba11091b2d299119ac67d32dfa58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf442ab6537ae2a6671574889df40e193"><td class="memItemLeft" align="right" valign="top"><a id="gaf442ab6537ae2a6671574889df40e193"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#gaf442ab6537ae2a6671574889df40e193">SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY</a>&#160;&#160;&#160;(true)</td></tr>
+<tr class="memdesc:gaf442ab6537ae2a6671574889df40e193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables Host Notify support as Controller. <br /></td></tr>
+<tr class="separator:gaf442ab6537ae2a6671574889df40e193"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga625275b208812f476d0cb13e7adad4c4"><td class="memItemLeft" align="right" valign="top"><a id="ga625275b208812f476d0cb13e7adad4c4"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga625275b208812f476d0cb13e7adad4c4">SMB_MAX_PAYLOAD_SIZE</a>&#160;&#160;&#160;(255)</td></tr>
 <tr class="memdesc:ga625275b208812f476d0cb13e7adad4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum payload as specified by <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> Spec. <br /></td></tr>
@@ -249,6 +255,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaad7b9c43dd5b25fa23e70d5c4c281a79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#gaad7b9c43dd5b25fa23e70d5c4c281a79">SMBus_targetEnableInt</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
 <tr class="memdesc:gaad7b9c43dd5b25fa23e70d5c4c281a79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the I2C interrupts for a target.  <a href="#gaad7b9c43dd5b25fa23e70d5c4c281a79">More...</a><br /></td></tr>
 <tr class="separator:gaad7b9c43dd5b25fa23e70d5c4c281a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c22c62141a981063a276851b55dd85f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga0c22c62141a981063a276851b55dd85f">SMBus_targetDisableInt</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
+<tr class="memdesc:ga0c22c62141a981063a276851b55dd85f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the I2C interrupts for a target.  <a href="#ga0c22c62141a981063a276851b55dd85f">More...</a><br /></td></tr>
+<tr class="separator:ga0c22c62141a981063a276851b55dd85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga469af3fb5408b22ab7a5c9fe7e7fd8a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__smbus.html#ga4ed089729210ba2f995f3962843b14b9">SMBus_State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga469af3fb5408b22ab7a5c9fe7e7fd8a6">SMBus_targetProcessInt</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
 <tr class="memdesc:ga469af3fb5408b22ab7a5c9fe7e7fd8a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Interrupt Service routine for a target.  <a href="#ga469af3fb5408b22ab7a5c9fe7e7fd8a6">More...</a><br /></td></tr>
 <tr class="separator:ga469af3fb5408b22ab7a5c9fe7e7fd8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,6 +294,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2184e508e644bf156d635fbacc161255"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga2184e508e644bf156d635fbacc161255">SMBus_controllerEnableInt</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
 <tr class="memdesc:ga2184e508e644bf156d635fbacc161255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the I2C interrupts for a controller.  <a href="#ga2184e508e644bf156d635fbacc161255">More...</a><br /></td></tr>
 <tr class="separator:ga2184e508e644bf156d635fbacc161255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20c8ff6b79aa49b28ab5f08b0c49ff00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga20c8ff6b79aa49b28ab5f08b0c49ff00">SMBus_controllerDisableInt</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
+<tr class="memdesc:ga20c8ff6b79aa49b28ab5f08b0c49ff00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the I2C interrupts for a controller.  <a href="#ga20c8ff6b79aa49b28ab5f08b0c49ff00">More...</a><br /></td></tr>
+<tr class="separator:ga20c8ff6b79aa49b28ab5f08b0c49ff00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga44056371d29436f34dbab57f7d050985"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__smbus.html#ga4ed089729210ba2f995f3962843b14b9">SMBus_State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga44056371d29436f34dbab57f7d050985">SMBus_controllerProcessInt</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
 <tr class="memdesc:ga44056371d29436f34dbab57f7d050985"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Interrupt Service routine for a controller.  <a href="#ga44056371d29436f34dbab57f7d050985">More...</a><br /></td></tr>
 <tr class="separator:ga44056371d29436f34dbab57f7d050985"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -317,25 +329,6 @@ Functions</h2></td></tr>
 <tr class="separator:ga210d934e8339e4193e4f112febefb379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ga02e8a7b7e55f1c9d99a3e40720970de0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga02e8a7b7e55f1c9d99a3e40720970de0">&sect;&nbsp;</a></span>SMB_CRC8_USE_LOOKUP_TABLE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SMB_CRC8_USE_LOOKUP_TABLE&#160;&#160;&#160;(1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Define method used to calculate CRC8:</p><ul>
-<li><b>SMB_CRC8_USE_LOOKUP_TABLE</b> == 1 - Use a 256B lookup table (faster but takes more memory)</li>
-<li><b>SMB_CRC8_USE_LOOKUP_TABLE</b> == 0 - Calculate CRC8 manually (slower but takes less memory) </li>
-</ul>
-
-</div>
-</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="ga104f05f4f6df4ec5ecce045f0e6d6b2c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga104f05f4f6df4ec5ecce045f0e6d6b2c">&sect;&nbsp;</a></span>SMBus_NwkState</h2>
@@ -477,7 +470,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
-<p>References <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a4727755b4390946713b90f085d1359fa">SMBus_State_OK</a>, and <a class="el" href="struct_s_m_bus.html#a1d7c8633a2e9923a07cd2ea8f9b22864">SMBus::state</a>.</p>
+<p>References <a class="el" href="union_s_m_bus___ctrl.html#a18701d05ca7220f5093a016585e075e3">SMBus_Ctrl::bits</a>, <a class="el" href="struct_s_m_bus.html#a146dec1b882f30b68323f6190150f517">SMBus::ctrl</a>, <a class="el" href="struct_s_m_bus.html#a6e29744173332ae79d19370f4a8fab18">SMBus::phy</a>, <a class="el" href="struct_s_m_bus___phy.html#abc984daeba630348f119ec0cabc53b11">SMBus_Phy::SMBus_Phy_AckPending</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8b310fa25bfb9acab69affdde935a9dd">SMBus_PHY_targetManualACK()</a>, <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a4727755b4390946713b90f085d1359fa">SMBus_State_OK</a>, <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a1766cc130f0df608eb13433028fd9039">SMBus_State_Target_ByteReceived</a>, <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9ae8e68417f5eab2a64d60fb17e7358f61">SMBus_State_Target_FirstByte</a>, <a class="el" href="struct_s_m_bus.html#a1d7c8633a2e9923a07cd2ea8f9b22864">SMBus::state</a>, and <a class="el" href="union_s_m_bus___ctrl.html#a2ad32dc189b29cc905619031416d6e2d">SMBus_Ctrl::swackEn</a>.</p>
 
 </div>
 </div>
@@ -664,7 +657,34 @@ Functions</h2></td></tr>
 
 <p>References <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2fd6816c3722e970e50f1145a76fe67b">SMBus_PHY_targetEnableInt()</a>.</p>
 
-<p>Referenced by <a class="el" href="group__smbus___m_s_p_m0__phy.html#gad9c5087d175d1d9b64388e23dbb824d7">SMBus_PHY_targetEnable()</a>.</p>
+</div>
+</div>
+<a id="ga0c22c62141a981063a276851b55dd85f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0c22c62141a981063a276851b55dd85f">&sect;&nbsp;</a></span>SMBus_targetDisableInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SMBus_targetDisableInt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_s_m_bus.html">SMBus</a> *&#160;</td>
+          <td class="paramname"><em>smbus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disables the I2C interrupts for a target. </p>
+<p>This function disables the I2C Start, Stop, RX, TX, Timeout interrupts </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+<p>References <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga31fc7b0437fb5d857af5f3de8114dfbd">SMBus_PHY_targetDisableInt()</a>.</p>
 
 </div>
 </div>
@@ -903,7 +923,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
-<p>References <a class="el" href="union_s_m_bus___status.html#a6335324b5dd5a4f0176002a3808e83f7">SMBus_Status::bits</a>, <a class="el" href="union_s_m_bus___status.html#a1596e15eb6b1f815ae4ad607c6c0966a">SMBus_Status::cmdErr</a>, <a class="el" href="struct_s_m_bus___nwk.html#a1d1129b72d4f7f694b299ab20cd7a6fd">SMBus_Nwk::eState</a>, <a class="el" href="struct_s_m_bus.html#a40f1b5d03be7def2fa0426b0c3e363a4">SMBus::nwk</a>, <a class="el" href="union_s_m_bus___status.html#a3d64085d84fe61f63dd94324e3e5ac3e">SMBus_Status::packErr</a>, <a class="el" href="group__smbus.html#gga850ecb69ce66c09efb0cb1aad0ed7356ad89295bc2d9a7c3537d71a957af0b929">SMBus_ErrorCode_Cmd</a>, <a class="el" href="group__smbus.html#gga850ecb69ce66c09efb0cb1aad0ed7356a0eb8c650f4cf8b6de102d612973f7f13">SMBus_ErrorCode_Packet</a>, <a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2ca394608f42b2fed69b794e7a1c5d3f55c">SMBus_NwkState_Error</a>, and <a class="el" href="struct_s_m_bus.html#a5f985b1f5eb8a9047521d12df123a58f">SMBus::status</a>.</p>
+<p>References <a class="el" href="union_s_m_bus___status.html#a6335324b5dd5a4f0176002a3808e83f7">SMBus_Status::bits</a>, <a class="el" href="union_s_m_bus___status.html#a1596e15eb6b1f815ae4ad607c6c0966a">SMBus_Status::cmdErr</a>, <a class="el" href="struct_s_m_bus___nwk.html#a1d1129b72d4f7f694b299ab20cd7a6fd">SMBus_Nwk::eState</a>, <a class="el" href="struct_s_m_bus.html#a40f1b5d03be7def2fa0426b0c3e363a4">SMBus::nwk</a>, <a class="el" href="union_s_m_bus___status.html#a3d64085d84fe61f63dd94324e3e5ac3e">SMBus_Status::packErr</a>, <a class="el" href="group__smbus.html#gga850ecb69ce66c09efb0cb1aad0ed7356ad89295bc2d9a7c3537d71a957af0b929">SMBus_ErrorCode_Cmd</a>, <a class="el" href="group__smbus.html#gga850ecb69ce66c09efb0cb1aad0ed7356a0eb8c650f4cf8b6de102d612973f7f13">SMBus_ErrorCode_Packet</a>, <a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2ca394608f42b2fed69b794e7a1c5d3f55c">SMBus_NwkState_Error</a>, <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a663526590bd8912c3292ad338d2851d3">SMBus_State_Target_Error</a>, <a class="el" href="struct_s_m_bus.html#a1d7c8633a2e9923a07cd2ea8f9b22864">SMBus::state</a>, and <a class="el" href="struct_s_m_bus.html#a5f985b1f5eb8a9047521d12df123a58f">SMBus::status</a>.</p>
 
 </div>
 </div>
@@ -1136,7 +1156,34 @@ Functions</h2></td></tr>
 
 <p>References <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga9977098517c3823d976e15e6ab028da6">SMBus_PHY_controllerEnableInt()</a>.</p>
 
-<p>Referenced by <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga1ac90fc617113c9b3dbf69a88f796817">SMBus_PHY_controllerEnable()</a>.</p>
+</div>
+</div>
+<a id="ga20c8ff6b79aa49b28ab5f08b0c49ff00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga20c8ff6b79aa49b28ab5f08b0c49ff00">&sect;&nbsp;</a></span>SMBus_controllerDisableInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SMBus_controllerDisableInt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_s_m_bus.html">SMBus</a> *&#160;</td>
+          <td class="paramname"><em>smbus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disables the I2C interrupts for a controller. </p>
+<p>This function disables the I2C Start, Stop, RX, TX, Timeout interrupts. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+<p>References <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga9977098517c3823d976e15e6ab028da6">SMBus_PHY_controllerEnableInt()</a>.</p>
 
 </div>
 </div>
@@ -1695,7 +1742,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

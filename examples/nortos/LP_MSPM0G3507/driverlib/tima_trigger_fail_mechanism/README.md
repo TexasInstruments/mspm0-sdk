@@ -10,8 +10,8 @@ The following example configures fault detection feature on TimerA.
 | GPIOA | PA15 | Standard Output |
 | TIMERFAULT0 | PB20 | Fault Pin 1 |
 | SYSCTL | PA31 | CLK OUT |
-| TIMA1 | PB4 | Counter Compare Pin 0 |
-| TIMA1 | PB1 | Counter Compare Pin 1 |
+| TIMA1 | PB4 | Capture/Compare Pin 0 |
+| TIMA1 | PB1 | Capture/Compare Pin 1 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

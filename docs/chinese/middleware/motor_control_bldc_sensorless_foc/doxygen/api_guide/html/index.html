@@ -70,21 +70,19 @@ $(function() {
 <div class="title">Sensorless FOC Library API Reference </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Sensorless FOC Library uses an incremental system build to demonstrate a complete fixed-point Sensorless Field-oriented control solution across a wide range of speeds and takes into consideration torque changes with transient phases by processing a dynamic model of the motor. The library follows an architecture which allows configuring settings from TI SysConfig, which makes managing the hardware settings quite easy for the user.</p>
-<p>The Sensorless FOC consists of four modules:</p>
-<p><b>1. HAL Module</b></p>
-<p>HAL Module is an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configuration which simplifies porting of the library to various hardware by minimizing the updates needed to other components.</p>
-<p><b>2. Motor Module</b></p>
-<p>The motor module contains the parameters for various motors.</p>
-<p><b>2. Sensorless FOC Module</b></p>
-<p>The sensorless FOC library contains the generic algorithms for field oriented control. This module helps to reduce the code size when using multiple motor driver modules as all the different motor drivers can use the same generic algorithms in this module.</p>
-<p><b>3. Motor Driver Module</b></p>
-<p>Motor Driver Module abstracts all the motor driving tasks into simple APIs like start motor, stop motor, set speed etc. The idea of this module is to be independent of the hardware and use the HAL APIs to perform the hardware tasks. </p>
+<div class="textblock"><p>Sensorless FOC Library uses a complete fixed-point Sensorless Field-oriented control solution across a wide range of speeds and takes into consideration torque changes with transient phases by processing a dynamic model of the motor. The library follows an architecture which allows configuring settings from TI SysConfig, which makes managing the hardware settings quite easy for the user.</p>
+<p>Sensorless Field-Oriented Control (FOC) Library is made of three main layers: Application layer, HAL Layer, and MSPM0 DriverLib.</p>
+<p><b>1. Application Layer</b></p>
+<p>Application Layer is a software layer that does specific functions like Motor control. If any application perform any hardware specific actions, it is done through the HAL Layer APIs.</p>
+<p><b>2. HAL Layer</b></p>
+<p>The Hardware Abstraction Layer (HAL) creates an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configurations which simplifies porting of the library to various hardware by minimizing the updates needed to other components. The HAL is meant to abstract only the required pins or peripherals required for the application while still having flexibility and scalability for porting to other MSPM0 MCUs or motor drivers.</p>
+<p><b>3. MSPM0 DriverLib Layer</b></p>
+<p>MSPM0 DriverLib is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. Please refer to the DriverLib documentation for more information. </p>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

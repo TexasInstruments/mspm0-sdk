@@ -138,9 +138,7 @@ int main(void)
 // *****************************************************************************
 int8_t SMBus_App_Quickcommand(uint8_t Addr_RW)
 {
-    DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_PIN);
-
-
+    DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_DEMO_PIN);
     return(SMBUS_RET_OK);
 }
 
@@ -632,7 +630,8 @@ void SMB_I2C_INST_IRQHandler (void)
         if(Demo_CmdComplete(&sSMBusTarget) == SMBUS_RET_ERROR)
         {
             SMBus_targetReportError(&sSMBusTarget, SMBus_ErrorCode_Packet);
-            __BKPT(0);
+            DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
+            __NOP();
         }
         break;
     case SMBus_State_Target_FirstByte:
@@ -641,15 +640,21 @@ void SMB_I2C_INST_IRQHandler (void)
            SMBUS_RET_OK)
         {
             SMBus_targetReportError(&sSMBusTarget, SMBus_ErrorCode_Cmd);
-            __BKPT(0);
+            DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
+            __NOP();
         }
         break;
     case SMBus_State_DataSizeError:
     case SMBus_State_PECError:
     case SMBus_State_Target_Error:
+        DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
+        __NOP();
+        break;
     case SMBus_State_TimeOutError:
         // This demo simply updates the Status register when an error is
         // detected. The Host can check this register
+        DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);
+        __NOP();
         break;
     default:
         break;

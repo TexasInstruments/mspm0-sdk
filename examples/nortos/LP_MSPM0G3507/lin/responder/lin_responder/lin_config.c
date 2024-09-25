@@ -28,6 +28,8 @@ void sendLINResponderTXMessage(UART_Regs *uart, uint8_t tableIndex,
         ;
     }
 
+    DL_UART_Extend_receiveDataBlocking(uart);
+
     /* Enable LIN RX */
     DL_UART_Extend_clearInterruptStatus(uart, DL_UART_EXTEND_INTERRUPT_RX);
     DL_UART_Extend_enableInterrupt(uart, DL_UART_EXTEND_INTERRUPT_RX);

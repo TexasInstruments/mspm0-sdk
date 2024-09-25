@@ -5,25 +5,23 @@
 // @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
 // @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
 
-
 /**
  * Import the modules used in this configuration.
  */
+const ADC12         = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121        = ADC12.addInstance();
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const TIMER         = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1        = TIMER.addInstance();
+const i2cSMBUS      = scripting.addModule("/ti/driverlib/i2cSMBUS", {}, false);
+const i2cSMBUS1     = i2cSMBUS.addInstance();
 const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
-const ADC12     = scripting.addModule("/ti/driverlib/ADC12", {}, false);
-const ADC121    = ADC12.addInstance();
-const Board     = scripting.addModule("/ti/driverlib/Board");
-const GPIO      = scripting.addModule("/ti/driverlib/GPIO", {}, false);
-const GPIO1     = GPIO.addInstance();
-const TIMER     = scripting.addModule("/ti/driverlib/TIMER", {}, false);
-const TIMER1    = TIMER.addInstance();
-const i2cSMBUS  = scripting.addModule("/ti/driverlib/i2cSMBUS", {}, false);
-const i2cSMBUS1 = i2cSMBUS.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
  */
-ProjectConfig.genLibSMBUS     = true;
 ADC121.$name                             = "SMB_ADC";
 ADC121.adcMem0_name                      = "SMB_ADC_channel_0";
 ADC121.repeatMode                        = true;
@@ -40,10 +38,12 @@ ADC121.adcPin0Config.$name               = "ti_driverlib_gpio_GPIOPinGeneric0";
 ADC121.adcPin0Config.hideOutputInversion = scripting.forceWrite(false);
 
 
-GPIO1.$name                          = "SMB_GPIO";
-GPIO1.associatedPins[0].$name        = "LED";
-GPIO1.associatedPins[0].initialValue = "SET";
-GPIO1.associatedPins[0].pin.$assign  = "PA0";
+GPIO1.$name                         = "SMB_GPIO";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "LED_DEMO";
+GPIO1.associatedPins[0].pin.$assign = "PB22";
+GPIO1.associatedPins[1].$name       = "LED_ERROR";
+GPIO1.associatedPins[1].pin.$assign = "PB26";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 
@@ -59,23 +59,18 @@ TIMER1.peripheral.$assign          = "TIMG0";
 
 i2cSMBUS1.$name                             = "SMB_I2C";
 i2cSMBUS1.enableTimeoutA                    = true;
-i2cSMBUS1.timeoutACount                     = 255;
 i2cSMBUS1.intGeneric                        = ["TIMEOUT_A"];
 i2cSMBUS1.basicEnableTarget                 = true;
 i2cSMBUS1.advTargetTXEmptyEn                = true;
 i2cSMBUS1.basicTargetAddress                = 0x43;
-i2cSMBUS1.enableTargetPEC                   = true;
 i2cSMBUS1.intTarget                         = ["PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_EMPTY"];
+i2cSMBUS1.timeoutACount                     = 135;
+i2cSMBUS1.advTargetAckOverride              = true;
+i2cSMBUS1.enableTargetPECACKNext            = true;
+i2cSMBUS1.enableTargetPEC                   = true;
 i2cSMBUS1.peripheral.$assign                = "I2C1";
 i2cSMBUS1.peripheral.sdaPin.$assign         = "PB3";
 i2cSMBUS1.peripheral.sclPin.$assign         = "PB2";
-i2cSMBUS1.sdaPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric1";
-i2cSMBUS1.sdaPinConfig.direction            = scripting.forceWrite("OUTPUT");
-i2cSMBUS1.sdaPinConfig.hideOutputInversion  = scripting.forceWrite(false);
-i2cSMBUS1.sdaPinConfig.onlyInternalResistor = scripting.forceWrite(false);
-i2cSMBUS1.sdaPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
-i2cSMBUS1.sclPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric2";
-i2cSMBUS1.sclPinConfig.direction            = scripting.forceWrite("OUTPUT");
-i2cSMBUS1.sclPinConfig.hideOutputInversion  = scripting.forceWrite(false);
-i2cSMBUS1.sclPinConfig.onlyInternalResistor = scripting.forceWrite(false);
-i2cSMBUS1.sclPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
+
+ProjectConfig.genLibSMBUS = true;
+

@@ -51,6 +51,16 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>GPIOA</td>
+<td>PA22</td>
+<td>Standard Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA2</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
@@ -76,11 +86,16 @@
 <td>CTS Pin</td>
 </tr>
 <tr class="even">
+<td>EVENT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -100,6 +115,20 @@
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>PA22</td>
+<td>GPIOA</td>
+<td>PA22</td>
+<td>J1_8</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>PA2</td>
+<td>GPIOA</td>
+<td>PA2</td>
+<td>J2_13</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul></td>
+</tr>
 <tr class="odd">
 <td>PA26</td>
 <td>UART0</td>
@@ -149,14 +178,14 @@
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/tool/LP-MSPM0C1104">LP-MSPM0C1104 web page</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau908">LP-MSPM0C1104 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Connect this receiver device to a transmitter as follows:</p>
 <ul>
 <li>UART Receiver RX &lt;- UART Transmitter TX</li>
 <li>UART Receiver RTS -&gt; UART Transmitter CTS</li>
 </ul>
-<p>Compile, load and run the example. Optionally, connect a logic analyzer or oscilloscope to observe hardware flow control. Ensure that the UART Receiver example is running before starting the UART Transmitter example. Once the example is started, the UART Receiver will wait to receive data. A breakpoint will be asserted after receiving the data.</p>
+<p>Compile, load and run the example. Optionally, connect a logic analyzer or oscilloscope to observe hardware flow control. Ensure that the UART Receiver example is running before starting the UART Transmitter example. Once the example is started, the UART Receiver will wait to receive data. A breakpoint will be asserted after receiving the data. LED1 will turn on when the application completes. USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">
@@ -164,7 +193,7 @@
   with 100,000+ analog ICs and embedded processors, along with software, tools
   and the industry‘s largest sales/support staff.</p>
   <p>
-    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br>
+    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br>
     <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
   </p>
 </footer>

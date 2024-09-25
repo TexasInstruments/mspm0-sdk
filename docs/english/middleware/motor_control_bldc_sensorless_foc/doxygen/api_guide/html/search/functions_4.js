@@ -1,21 +1,5 @@
 var searchData=
 [
-  ['foc_5fclearfault',['FOC_clearFault',['../group___f_o_c___m_o_d_u_l_e.html#ga0cb6c930f3022d1d20148f64225bc17f',1,'FOC_clearFault(FOC_Instance *handle):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga0cb6c930f3022d1d20148f64225bc17f',1,'FOC_clearFault(FOC_Instance *handle):&#160;foc.c']]],
-  ['foc_5fcontrol_5frun',['FOC_CONTROL_run',['../group___f_o_c___m_o_d_u_l_e.html#ga6d2e1049e12bb536abdaac52137eeb10',1,'foc.h']]],
-  ['foc_5fgetpiiqlmt',['FOC_getPIIQLMT',['../group___f_o_c___m_o_d_u_l_e.html#ga68605d4b8caa17e2025293cd25e8eae0',1,'foc.h']]],
-  ['foc_5fgetpwmenablestatus',['FOC_getPwmEnableStatus',['../group___f_o_c___m_o_d_u_l_e.html#ga5aa02283a46d5cda6ff7eea569358ad5',1,'foc.h']]],
-  ['foc_5finit',['FOC_init',['../group___f_o_c___m_o_d_u_l_e.html#gac4bf377bbb5907f710ff3e34192fadc0',1,'FOC_init(FOC_Instance *handle):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#gac4bf377bbb5907f710ff3e34192fadc0',1,'FOC_init(FOC_Instance *handle):&#160;foc.c']]],
-  ['foc_5finitflash',['FOC_initFLASH',['../group___f_o_c___m_o_d_u_l_e.html#gabdbce38486e1224d703ae841385dacdf',1,'FOC_initFLASH(void):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#gabdbce38486e1224d703ae841385dacdf',1,'FOC_initFLASH(void):&#160;foc.c']]],
-  ['foc_5finituserparamsfoc',['FOC_initUserParamsFoc',['../group___f_o_c___m_o_d_u_l_e.html#ga471e5f5c31c987257b98590b6542f1f5',1,'FOC_initUserParamsFoc(USER_PARAMS *pUserParamsFoc, USER_PARAMS *pUserParams, uint32_t size):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga471e5f5c31c987257b98590b6542f1f5',1,'FOC_initUserParamsFoc(USER_PARAMS *userParamsFoc, USER_PARAMS *userParams, uint32_t size):&#160;foc.c']]],
-  ['foc_5floadsavedparams',['FOC_loadSavedParams',['../group___f_o_c___m_o_d_u_l_e.html#ga4715f9894b55436d8be9c8ee75ec1bce',1,'FOC_loadSavedParams(USER_PARAMS *dstParams, const USER_PARAMS *srcParams, uint32_t size):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga4715f9894b55436d8be9c8ee75ec1bce',1,'FOC_loadSavedParams(USER_PARAMS *dstParams, const USER_PARAMS *srcParams, uint32_t size):&#160;foc.c']]],
-  ['foc_5floop',['FOC_loop',['../group___f_o_c___m_o_d_u_l_e.html#gab1d73324c488b729c246e8f544d17639',1,'foc.h']]],
-  ['foc_5fparamsupdateprocess',['FOC_paramsUpdateProcess',['../group___f_o_c___m_o_d_u_l_e.html#ga558e021125a303fe0fe1bd221b7ef424',1,'FOC_paramsUpdateProcess(FOC_Instance *handle, USER_VAR *userVar):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga558e021125a303fe0fe1bd221b7ef424',1,'FOC_paramsUpdateProcess(FOC_Instance *handle, USER_VAR *userVar):&#160;foc.c']]],
-  ['foc_5frun',['FOC_run',['../group___f_o_c___m_o_d_u_l_e.html#ga13097ce87916333838494d5e16f9516a',1,'foc.h']]],
-  ['foc_5frunmonitor',['FOC_runMonitor',['../group___f_o_c___m_o_d_u_l_e.html#ga1be2a7918cf565093207bdc6bc5f643d',1,'foc.h']]],
-  ['foc_5fsetadctrig',['FOC_setADCTrig',['../group___f_o_c___m_o_d_u_l_e.html#ga79b327e145e068408a4014d33d864391',1,'foc.h']]],
-  ['foc_5fsetfault',['FOC_setFault',['../group___f_o_c___m_o_d_u_l_e.html#ga0205fa3b97a608615009f3b2e386ee9f',1,'FOC_setFault(FOC_Instance *handle):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga0205fa3b97a608615009f3b2e386ee9f',1,'FOC_setFault(FOC_Instance *handle):&#160;foc.c']]],
-  ['foc_5fsetpara',['FOC_setPara',['../group___f_o_c___m_o_d_u_l_e.html#ga711d56f828c6625569cc3d02fe826e25',1,'FOC_setPara(FOC_Instance *handle, PARA_IDX paraIdx, int32_t value):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga711d56f828c6625569cc3d02fe826e25',1,'FOC_setPara(FOC_Instance *handle, PARA_IDX paraIdx, int32_t value):&#160;foc.c']]],
-  ['foc_5fsetpwmenablestatus',['FOC_setPwmEnableStatus',['../group___f_o_c___m_o_d_u_l_e.html#ga10a215d20fc99e1af375106e5175da35',1,'foc.h']]],
-  ['foc_5fupdateadcraw',['FOC_UpdateADCRaw',['../group___f_o_c___m_o_d_u_l_e.html#ga17e84fe770033e627e17a363b60f6d42',1,'foc.h']]],
-  ['foc_5fwriteflash',['FOC_writeFLASH',['../group___f_o_c___m_o_d_u_l_e.html#ga75dd6b3ce92694295ff35d1ba4989330',1,'FOC_writeFLASH(USER_PARAMS *params, uint32_t size):&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga75dd6b3ce92694295ff35d1ba4989330',1,'FOC_writeFLASH(USER_PARAMS *params, uint32_t size):&#160;foc.c']]]
+  ['float2iq',['float2IQ',['../iq_num_8h.html#a9540be90d93899d569205b87a9715e9a',1,'iqNum.c']]],
+  ['float2iqx',['float2IQx',['../iq_num_8h.html#a97414581143a8c07f806d983aab0465e',1,'iqNum.c']]]
 ];

@@ -92,11 +92,11 @@ int main(void)
 
     SYSCFG_DL_init();
 
-    NVIC_ClearPendingIRQ(PMB_I2C_INST_INT_IRQN);
-    NVIC_EnableIRQ(PMB_I2C_INST_INT_IRQN);
+    NVIC_ClearPendingIRQ(SMB_I2C_INST_INT_IRQN);
+    NVIC_EnableIRQ(SMB_I2C_INST_INT_IRQN);
 
     // Initialize PMBus interface
-    PMBus_init(PMB_I2C_INST, (32 * 1000000));
+    PMBus_init(SMB_I2C_INST, (CPUCLK_FREQ));
 
 
 

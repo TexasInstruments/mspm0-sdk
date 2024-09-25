@@ -40,8 +40,21 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0L1306 User's Guide](https://www.ti.co
 
 ## Example Usage
 
-Compile, load and run the example.
-LED1 will blink every 1s.
+* For **CCS**:
+    Compile, load and run the example.
+* For **Keil**:
+    The .uvmpw project workspace file shall be used to bring the example project along with the freertos project to the IDE.
+    In Keil uVision,
+    * Select **Project** → **Batch Setup**
+    * Select all the project targets for the build
+    * Select **Project** → **Batch Build**, it will build all the projects in the workspace.
+* For **IAR**:
+    The .eww project workspace file shall be used to bring the example project along with the freertos project to the IDE.
+    In IAR IDE:
+    * Select **Project** → **Rebuild All**
+    * It should first build Freertos project followed by example project.
+
+LED1 will blink every 1s when the example run.
 
 ## Application Design Details
 

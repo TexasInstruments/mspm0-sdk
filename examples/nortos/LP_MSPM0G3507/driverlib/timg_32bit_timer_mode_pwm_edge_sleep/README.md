@@ -8,8 +8,8 @@ signals. The device is configured to wait in SLEEP mode.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG12 | PB13 | Counter Compare Pin 0 |
-| TIMG12 | PA31 | Counter Compare Pin 1 |
+| TIMG12 | PB13 | Capture/Compare Pin 0 |
+| TIMG12 | PA31 | Capture/Compare Pin 1 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

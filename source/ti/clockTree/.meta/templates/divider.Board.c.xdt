@@ -67,7 +67,7 @@
     }
 
     if(!_.isUndefined(udivInst)){
-        if(udivInst.isUDIVEnabled){
+        if(udivInst.isUDIVEnabled && !Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
             udivStr = "DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_" + udivInst.divideValue + ");";
         }
     }

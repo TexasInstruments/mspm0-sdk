@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['dl_5frtc_5fcalendar',['DL_RTC_Calendar',['../group___r_t_c.html#ga65c2fbcde2836a0bd8f3253d04771ccc',1,'dl_rtc.h']]],
+  ['dl_5frtc_5fcalendaralarm',['DL_RTC_CalendarAlarm',['../group___r_t_c.html#ga62ba0c72542b2a71fc8a0379249c959e',1,'dl_rtc.h']]],
   ['dl_5ftimera_5fcapturecombinedconfig',['DL_TimerA_CaptureCombinedConfig',['../group___t_i_m_a.html#ga3afd45e577f51ad7888e4ed0f263c93e',1,'dl_timera.h']]],
   ['dl_5ftimera_5fcaptureconfig',['DL_TimerA_CaptureConfig',['../group___t_i_m_a.html#gaa766ab460fbdb7bf680898cb7f4226bf',1,'dl_timera.h']]],
   ['dl_5ftimera_5fcapturetriggerconfig',['DL_TimerA_CaptureTriggerConfig',['../group___t_i_m_a.html#ga60e9a9948bd73237e6c0efbda73eb4f5',1,'dl_timera.h']]],

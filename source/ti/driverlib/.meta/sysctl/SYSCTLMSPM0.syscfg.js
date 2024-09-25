@@ -211,7 +211,6 @@ function validatePinmux(inst, validation){
                 inst, ["disableNRSTPin"]);
         }
     }
-
 }
 
 /*

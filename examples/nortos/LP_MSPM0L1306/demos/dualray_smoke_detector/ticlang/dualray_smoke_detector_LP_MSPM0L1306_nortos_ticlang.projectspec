@@ -25,7 +25,7 @@
             -D__AFE_TPS880X__
             -D__ENABLE_GUI__
             -O2
-            @syscfg/device.opt
+            @device.opt
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -gdwarf-3
@@ -46,6 +46,7 @@
         "
         enableSysConfigTool="true"
         sysConfigBuildOptions="
+            --output .
             --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
             --compiler ticlang
         "

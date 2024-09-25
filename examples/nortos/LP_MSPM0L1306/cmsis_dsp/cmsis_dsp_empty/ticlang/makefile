@@ -18,7 +18,7 @@ CFLAGS = -I.. \
     -I. \
     -DARM_MATH_CM0 \
     -O2 \
-    @syscfg/device.opt \
+    @device.opt \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \

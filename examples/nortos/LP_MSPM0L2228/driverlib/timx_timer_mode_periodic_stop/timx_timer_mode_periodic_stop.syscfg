@@ -1,0 +1,51 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const gate7  = system.clockTree["MFCLKGATE"];
+gate7.enable = true;
+
+const pinFunction1  = system.clockTree["CLKOUT"];
+pinFunction1.enable = true;
+
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort = "PORTA";
+GPIO1.associatedPins[0].assignedPin  = "0";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[1].assignedPort = "PORTA";
+GPIO1.associatedPins[1].assignedPin  = "21";
+GPIO1.associatedPins[1].initialValue = "SET";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.configureUnused = true;
+
+SYSCTL.enableEXCLK = true;
+SYSCTL.MFCLKEn     = true;
+SYSCTL.powerPolicy = "STOP0";
+SYSCTL.clockTreeEn = true;
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerPeriod        = "500 ms";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerClkSrc        = "MFCLK";
+TIMER1.timerClkPrescale   = 256;
+TIMER1.peripheral.$assign = "TIMG0";

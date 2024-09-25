@@ -399,6 +399,11 @@
               <FilePath>../ti/driverlib/dl_aes.h</FilePath>
             </File>
             <File>
+              <FileName>dl_aesadv.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_aesadv.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_common.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_common.h</FilePath>
@@ -412,6 +417,11 @@
               <FileName>dl_crc.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_crc.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_crcp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_crcp.h</FilePath>
             </File>
             <File>
               <FileName>dl_dac12.h</FileName>
@@ -444,6 +454,26 @@
               <FilePath>../ti/driverlib/dl_i2c.h</FilePath>
             </File>
             <File>
+              <FileName>dl_iwdt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_iwdt.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_keystorectl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_keystorectl.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_lcd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_lfss.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_lfss.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_mathacl.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_mathacl.h</FilePath>
@@ -464,9 +494,29 @@
               <FilePath>../ti/driverlib/dl_rtc.h</FilePath>
             </File>
             <File>
+              <FileName>dl_rtc_a.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_rtc_a.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_rtc_common.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_rtc_common.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_scratchpad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_scratchpad.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_tamperio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_tamperio.h</FilePath>
             </File>
             <File>
               <FileName>dl_timer.h</FileName>
@@ -559,6 +609,11 @@
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.h</FilePath>
             </File>
             <File>
+              <FileName>dl_sysctl_mspm0l122x_l222x.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_adc12.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_adc12.c</FilePath>
@@ -569,6 +624,11 @@
               <FilePath>../ti/driverlib/dl_aes.c</FilePath>
             </File>
             <File>
+              <FileName>dl_aesadv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_aesadv.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_common.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_common.c</FilePath>
@@ -577,6 +637,11 @@
               <FileName>dl_crc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_crcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_crcp.c</FilePath>
             </File>
             <File>
               <FileName>dl_dac12.c</FileName>
@@ -599,6 +664,21 @@
               <FilePath>../ti/driverlib/dl_i2c.c</FilePath>
             </File>
             <File>
+              <FileName>dl_keystorectl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_keystorectl.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_lfss.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_lfss.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_mathacl.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_mathacl.c</FilePath>
@@ -614,9 +694,9 @@
               <FilePath>../ti/driverlib/dl_opa.c</FilePath>
             </File>
             <File>
-              <FileName>dl_rtc.c</FileName>
+              <FileName>dl_rtc_common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../ti/driverlib/dl_rtc.c</FilePath>
+              <FilePath>../ti/driverlib/dl_rtc_common.c</FilePath>
             </File>
             <File>
               <FileName>dl_spi.c</FileName>
@@ -662,6 +742,11 @@
               <FileName>dl_sysctl_mspm0l11xx_l13xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0l122x_l222x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.c</FilePath>
             </File>
             <File>
               <FileName>empty.syscfg</FileName>

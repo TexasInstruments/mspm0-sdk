@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['three_5fphase_5flog_5fdone',['THREE_PHASE_LOG_DONE',['../group___t_i_d_a-010243.html#ga51b6b485cdfad2588fb86fab9b64b18b',1,'TIDA-010243.h']]],
   ['thrshld_5flsb_5faddress',['THRSHLD_LSB_ADDRESS',['../group___a_d_s131_m0x.html#gab448fdaff882cc9f5f1b466a2f276ac8',1,'ADS131M0x.h']]],
   ['thrshld_5flsb_5fcd_5fth_5flsb_5fmask',['THRSHLD_LSB_CD_TH_LSB_MASK',['../group___a_d_s131_m0x.html#gae3bc1677e20e1c0d790354e30e60ce35',1,'ADS131M0x.h']]],
   ['thrshld_5flsb_5fdcblock_5f10p0hz',['THRSHLD_LSB_DCBLOCK_10p0Hz',['../group___a_d_s131_m0x.html#ga5bad35d887d21f3cb0a8fb924636bf0c',1,'ADS131M0x.h']]],
@@ -27,7 +28,7 @@ var searchData=
   ['tida_2d010243',['TIDA-010243',['../group___t_i_d_a-010243.html',1,'']]],
   ['tida_2d010243_2eh',['TIDA-010243.h',['../_t_i_d_a-010243_8h.html',1,'']]],
   ['tida_5fcalculatemetrologyparameters',['TIDA_calculateMetrologyParameters',['../group___t_i_d_a-010243.html#ga69798392acfbc2ff85fd67623b9268fa',1,'TIDA_calculateMetrologyParameters(TIDA_instance *tidaHandle, metrologyData *workingData, ADS_Instance *adsHandle, DLT645Buf *dlt645):&#160;TIDA-010243.c'],['../group___t_i_d_a-010243.html#ga69798392acfbc2ff85fd67623b9268fa',1,'TIDA_calculateMetrologyParameters(TIDA_instance *tidaHandle, metrologyData *workingData, ADS_Instance *adsHandle, DLT645Buf *dlt645):&#160;TIDA-010243.c']]],
-  ['tida_5finit',['TIDA_init',['../group___t_i_d_a-010243.html#gab9f9c5ed04b4ddc9abc54f0ddc9962d2',1,'TIDA_init(TIDA_instance *tidaHandle, metrologyData *workingData, ADS_Instance *adsHandle):&#160;TIDA-010243.c'],['../group___t_i_d_a-010243.html#gab9f9c5ed04b4ddc9abc54f0ddc9962d2',1,'TIDA_init(TIDA_instance *tidaHandle, metrologyData *workingData, ADS_Instance *adsHandle):&#160;TIDA-010243.c']]],
+  ['tida_5finit',['TIDA_init',['../group___t_i_d_a-010243.html#ga149e9577573f4a470f1d7c8c6c2d0653',1,'TIDA_init(TIDA_instance *tidaHandle, metrologyData *workingData, ADS_Instance *adsHandle, DLT645Buf *dlt645):&#160;TIDA-010243.c'],['../group___t_i_d_a-010243.html#ga149e9577573f4a470f1d7c8c6c2d0653',1,'TIDA_init(TIDA_instance *tidaHandle, metrologyData *workingData, ADS_Instance *adsHandle, DLT645Buf *dlt645):&#160;TIDA-010243.c']]],
   ['tida_5finstance',['TIDA_instance',['../struct_t_i_d_a__instance.html',1,'']]],
   ['timeout',['timeOut',['../struct_serial_msg_buf.html#a3548727a8aa58cb491e3c0ceb7f9db03',1,'SerialMsgBuf']]],
   ['total_5factive_5fenergy_5fpulse_5fthreshold',['TOTAL_ACTIVE_ENERGY_PULSE_THRESHOLD',['../group___metrology.html#ga923383ce984b79624739e562b7b291ca',1,'metrology_defines.h']]],

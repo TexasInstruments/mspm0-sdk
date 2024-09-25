@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">1.20.01.06</span>
+   &#160;<span id="projectnumber">1.30.00.03</span>
    </div>
   </td>
  </tr>
@@ -178,7 +178,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga4a223c308468f55a4606cc1f37f817c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures CC in Capture mode. <br /></td></tr>
 <tr class="separator:ga4a223c308468f55a4606cc1f37f817c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadf97c6f208be9af25cb8c13d4ece0a3f"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___t_i_m_e_r___c_c___z_c_o_n_d.html#gadf97c6f208be9af25cb8c13d4ece0a3f">DL_TIMER_CC_ZCOND_NONE</a>&#160;&#160;&#160;(((uint32_t)0x00000000U))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___t_i_m_e_r___c_c___z_c_o_n_d.html#gadf97c6f208be9af25cb8c13d4ece0a3f">DL_TIMER_CC_ZCOND_NONE</a>&#160;&#160;&#160;(GPTIMER_CCCTL_01_ZCOND_CC_TRIG_NO_EFFECT)</td></tr>
 <tr class="memdesc:gadf97c6f208be9af25cb8c13d4ece0a3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">No event generates zero pulse. <br /></td></tr>
 <tr class="separator:gadf97c6f208be9af25cb8c13d4ece0a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga71e46b5f38d7c3290c35d3dae20f76f4"><td class="memItemLeft" align="right" valign="top">
@@ -194,7 +194,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:gad418ab6db3972d1ee505dd2c1df47f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Either edge of CCP or trigger change (assertion/de-assertion edge) generates zero pulse. <br /></td></tr>
 <tr class="separator:gad418ab6db3972d1ee505dd2c1df47f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8be8f3998dbb68e70a93352f82906653"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___t_i_m_e_r___c_c___l_c_o_n_d.html#ga8be8f3998dbb68e70a93352f82906653">DL_TIMER_CC_LCOND_NONE</a>&#160;&#160;&#160;((uint32_t)0x00000000U)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___t_i_m_e_r___c_c___l_c_o_n_d.html#ga8be8f3998dbb68e70a93352f82906653">DL_TIMER_CC_LCOND_NONE</a>&#160;&#160;&#160;(GPTIMER_CCCTL_01_LCOND_CC_TRIG_NO_EFFECT)</td></tr>
 <tr class="memdesc:ga8be8f3998dbb68e70a93352f82906653"><td class="mdescLeft">&#160;</td><td class="mdescRight">No event generates load pulse. <br /></td></tr>
 <tr class="separator:ga8be8f3998dbb68e70a93352f82906653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf98a4b921e6e3823587137b49ecaed83"><td class="memItemLeft" align="right" valign="top">
@@ -800,6 +800,8 @@ Macros</h2></td></tr>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga7d7852e0a1f7db7231224c8c03243d92"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#ga7d7852e0a1f7db7231224c8c03243d92">DL_TIMER_CLOCK</a> { <br />
 &#160;&#160;<a class="el" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a4efaf8e7fab766a10685044d35160525">DL_TIMER_CLOCK_BUSCLK</a> = GPTIMER_CLKSEL_BUSCLK_SEL_ENABLE, 
+<br />
+&#160;&#160;<a class="el" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a421c83a82a0f0106586416e05e294dd5">DL_TIMER_CLOCK_2X_BUSCLK</a> = GPTIMER_CLKSEL_BUS2XCLK_SEL_ENABLE, 
 <br />
 &#160;&#160;<a class="el" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a68deb6141019f1e42569659e91b9c27c">DL_TIMER_CLOCK_MFCLK</a> = GPTIMER_CLKSEL_MFCLK_SEL_ENABLE, 
 <br />
@@ -1744,7 +1746,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

@@ -1,0 +1,62 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const DMA    = scripting.addModule("/ti/driverlib/DMA");
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+COMP1.$name              = "COMP_0";
+COMP1.vSource            = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP1.controlSelect      = "DL_COMP_DAC_CONTROL_SW";
+COMP1.peripheral.$assign = "COMP0";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+DMA.subscriberIndex                     = ["0"];
+DMA.sub0ChanID                          = 1;
+DMA.associatedChannels.create(1);
+DMA.associatedChannels[0].$name         = "DMA_CH0";
+DMA.associatedChannels[0].triggerSelect = "FSUB_0";
+DMA.associatedChannels[0].srcLength     = "BYTE";
+DMA.associatedChannels[0].dstLength     = "BYTE";
+DMA.associatedChannels[0].transferSize  = 256;
+DMA.associatedChannels[0].srcIncrement  = "INCREMENT";
+DMA.associatedChannels[0].transferMode  = "FULL_CH_REPEAT_SINGLE";
+DMA.associatedChannels[0].addressMode   = "b2f";
+
+OPA1.$name                     = "OPA_0";
+OPA1.cfg0PSELChannel           = "DAC8_OUT";
+OPA1.cfg0NSELChannel           = "RTOP";
+OPA1.cfg0OutputPin             = "ENABLED";
+OPA1.cfg0Chop                  = "STANDARD";
+OPA1.advRRI                    = true;
+OPA1.advBW                     = "HIGH";
+OPA1.peripheral.$assign        = "OPA0";
+OPA1.peripheral.OutPin.$assign = "PA22";
+
+SYSCTL.clockTreeEn       = true;
+SYSCTL.validateClkStatus = true;
+
+TIMER1.$name                       = "TIMER_0";
+TIMER1.timerMode                   = "PERIODIC";
+TIMER1.timerClkPrescale            = 128;
+TIMER1.timerPeriod                 = "40us";
+TIMER1.subscriberChannel           = 1;
+TIMER1.event1PublisherChannel      = 1;
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.peripheral.$assign          = "TIMG0";

@@ -5,7 +5,7 @@ var searchData=
   ['scalefactor',['scaleFactor',['../struct_d_l___math_a_c_l__operation_config.html#ab107a5b16463f71b23f6010ca7d429be',1,'DL_MathACL_operationConfig']]],
   ['scheme',['scheme',['../struct_d_l___m_c_a_n___revision_id.html#a8656c592c1a577e63c354909b938edc5',1,'DL_MCAN_RevisionId::scheme()'],['../struct_d_l___m_c_a_n___e_c_c_aggr_revision_id.html#a196c251e6a01ae730e1aaf8a1e87aa40',1,'DL_MCAN_ECCAggrRevisionId::scheme()'],['../struct_d_l___m_c_a_n___e_c_c_wrap_revision_id.html#afbdf8b478f4e644044ad83827974b734',1,'DL_MCAN_ECCWrapRevisionId::scheme()']]],
   ['secerr',['secErr',['../struct_d_l___m_c_a_n___e_c_c_err_status.html#ad1d487216fda592c469db576f6ed7048',1,'DL_MCAN_ECCErrStatus']]],
-  ['seconds',['seconds',['../struct_d_l___r_t_c___calendar.html#a9c0bc4154768b560d161efe15f6f91cd',1,'DL_RTC_Calendar']]],
+  ['seconds',['seconds',['../struct_d_l___r_t_c___common___calendar.html#aee69e09661e680e6d4907228f033e271',1,'DL_RTC_Common_Calendar']]],
   ['sfec',['sfec',['../struct_d_l___m_c_a_n___std_msg_i_d_filter_element.html#abd3b725e9a96d06850cc944937814da5',1,'DL_MCAN_StdMsgIDFilterElement']]],
   ['sfid1',['sfid1',['../struct_d_l___m_c_a_n___std_msg_i_d_filter_element.html#a0ddd8c9e15375d9b2b2f33f6fbbf6d71',1,'DL_MCAN_StdMsgIDFilterElement']]],
   ['sfid2',['sfid2',['../struct_d_l___m_c_a_n___std_msg_i_d_filter_element.html#ac03774b5a38395d7096afcaab51d43a8',1,'DL_MCAN_StdMsgIDFilterElement']]],

@@ -1,4 +1,4 @@
-适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.5.0+
+适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本12.6.0+
 ========================================================
 
 目录
@@ -406,22 +406,26 @@ CCS 可以使用断点在 main 停止或在 exit 停止器件。 通过选择 **
 3.5 DSSM 指令
 ~~~~~~~~~~~~~
 
-MSPM0 支持通过调试器的SWD口， 使用Debug Subsystem Mailbox(DSSM)和设备通讯。 这些指令在 SWD 安全等级2中不可用，但它们可以选择在安全级别 0 和 1 中使用。请参阅设备 技术参考手册，了解有关安全策略和 DSSM 的更多信息。
+MSPM0 支持通过调试器的SWD口， 使用Debug Subsystem Mailbox(DSSM)和设备通讯。 这些指令在 SWD 安全等级2中不可用，但它们可以选择在安全级别 0 和 1 中使用。请参阅设备技术参考手册，了解有关安全策略和 DSSM 的更多信息。
 
-MSPM0 CCS 支持包中支持包括 GEL 文件，不仅可以执行器件 初始化，也可以发送DSSM指令，请参考以下章节。
+MSPM0 CCS 支持包中支持包括 GEL 文件，不仅可以执行芯片初始化，也可以发送DSSM指令，请参考以下章节。
 
 有关 CCS 中 GEL 指令的更多信息，请访问 `CCS 在线文档 <https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-gel.html>`__\ 。
 
-3.5.1 DSSM Mass Erase and Factory Reset批量擦除和恢复出厂设置
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3.5.1 DSSM Mass Erase, Factory Reset, Wait for Debug, and Set Reset Mode批量擦除，出厂重置，等待调试和设置重置模式
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  DSSM Mass Erase批量擦除： DSSM Mass Erase仅擦除 MAIN 闪存区域，这通常 包括用户应用程序。 NONMAIN 闪存区域不受 Mass Erase 影响。 批量擦除可用于擦除所有应用程序代码和数据 同时保持设备配置本身完好无损。
+-  DSSM Mass Erase批量擦除： DSSM Mass Erase仅擦除 MAIN 闪存区域，这通常包括用户应用程序。 NONMAIN 闪存区域不受Mass Erase 影响。 批量擦除可用于擦除所有应用程序代码和数据同时保持设备配置本身完好无损。
 
--  DSSM Factory Reset恢复出厂设置： DSSM 出厂重置是擦除 MAIN 闪存区域，然后进行重置 NONMAIN 闪存区域的默认值。 这样的擦除是用于想要 完全重置 NONMAIN 启动步骤，同时擦除 应用程序代码和数据。
+-  DSSM Factory Reset恢复出厂设置： DSSM 恢复出厂是擦除 MAIN 和NONMAIN闪存区域，然后进行重置 NONMAIN 闪存区域的默认值。 这样的擦除是用于想要完全重置 NONMAIN 的应用需求，同时擦除应用程序代码和数据。
 
-SWD 批量擦除和出厂重置 DSSM 命令取代了静态写入 保护政策。 例如，如果 SWD 出厂重置配置为 enabled 或者 enabled with password, 即使器件是静态写保护的，NONMAIN 配置数据也可以进行重置。
+-  DSSM Wait for Debug等待调试: DSSM等待调试会使设备处于停止状态重置处理程序，直到用户运行应用程序或对电路板执行下电上电操作。此命令非常有用，因为它允许停止先前刷新的应用程序并强制在重置处理程序中等待。 这样做可以更好地调试会话允许用户查看在点击main()之前发生的情况。
 
-要执行 DSSM 批量擦除或 DSSM 出厂重置，请执行以下步骤：
+-  DSSM Set Reset Mode设置重置模式: 复位时设置的DSSM会使设备处于复位状态，从而停止先前的应用程序运行。 该命令将解除应用程序的控制权序允许在下载新的应用程序。
+
+**Note**: DSSM等待调试和设置重置模式在使用中略有不同。 Wait for Debug命令的主要用途是将设备置于已存在应用程序的重置处理程序中。 这样做可以为用户提供更好的调试体验，因为这允许用户在点击当前应用程序中的main()之前查看正在发生的情况。 设置重置命令的主要目的是在重置状态(而不是重置处理程序)中停止设备，用户可以在该状态下将新项目刷新到设备，而不管先前存在的应用程序中是否存在任何错误。 此命令不用于调试。
+
+要执行DSSM批量擦除，DSSM出厂重置，DSSM等待调试或DSSM设置重置模式，请执行以下步骤:
 
 1. 在 CCS 菜单上，选择 **View** → **Target Configurations**\ 。
 2. 在 **Target Configurations** 窗口中，右键单击活动的 .ccxml 项目并选择 **Launch Selected Configuration**\ 。
@@ -435,9 +439,60 @@ SWD 批量擦除和出厂重置 DSSM 命令取代了静态写入 保护政策。
    -  **MSPM0\_MailboxMassErase\_Auto**\ ：将执行批量擦除 使用 XDS110 复位线强制复位。
    -  **MSPM0\_MailboxFactoryReset\_Manual**\ ：将执行出厂重置 要求用户按下复位按钮。
    -  **MSPM0\_MailboxFactoryReset\_Auto**\ ：将执行出厂重置 使用 XDS110 复位线强制复位。
+   -  **MSPM0\_MailboxWaitForDebug\_Auto**: 等待调试将被执行 要求用户单击"清除重置"按钮。
+   -  **MSPM0\_MailboxSetResetMode**: 将执行复位命令来让 设备保持在复位状态，直到下一个调试会话。
 
    .. figure:: ./images/ccs_ide_guide/ccs_dssm2.png
       :alt: 
+
+3.5.1.1 DSSM设置重置模式执行后步骤
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+\*\ **注意**:要成功执行DSSM命令，设备必须有一个复位pin。
+
+要正确放入设备，必须执行以下步骤 按照第3.5.1节中所述的步骤重置模式\ **之后**\ 。
+
+1允许DSSM命令完全执行。
+
+.. figure:: ./images/ccs_ide_guide/ccs_dssm3.png
+   :alt: 
+
+2命令完成后，设备将处于重置状态。 之后，任何 尝试刷新设备将抛出预期的错误消息，指出设备正在重置。
+
+.. figure:: ./images/ccs_ide_guide/ccs_dssm4.png
+   :alt: 
+
+3在中选择了\ **清除等待**\ 后，设备将退出重置状态 错误窗口。 允许将新应用程序闪存至设备。
+
+.. figure:: ./images/ccs_ide_guide/ccs_dssm5.png
+   :alt: 
+
+3.5.1.2 DSSM等待调试后执行步骤
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+\*\ **注意**:要成功执行DSSM命令，设备必须有一个复位pin。
+
+要正确放入设备，必须执行以下步骤 按照第3.5.1节中所述的步骤等待调试\ **之后**\ 。
+
+1允许DSSM命令完全执行。
+
+.. figure:: ./images/ccs_ide_guide/ccs_dssm3.png
+   :alt: 
+
+2命令完成后，设备将处于重置状态。 然后，连接 将自动尝试，导致出现预期的错误消息，指出设备正在重置。
+
+.. figure:: ./images/ccs_ide_guide/ccs_dssm4.png
+   :alt: 
+
+3在中选择了\ **清除等待**\ 后，设备将退出重置状态 错误窗口
+
+.. figure:: ./images/ccs_ide_guide/ccs_dssm5.png
+   :alt: 
+
+4现在设备应该在重置处理程序中。 这允许用户访问以前下载的 代码，或将新应用程序加载到设备上。
+
+.. figure:: ./images/ccs_ide_guide/ccs_dssm6.png
+   :alt: 
 
 3.5.2 DSSM SWD Password Mechanism 密码机制
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

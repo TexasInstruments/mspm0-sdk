@@ -24,6 +24,8 @@ var searchData=
   ['hal_5fspi_5fcs_5f2',['HAL_SPI_CS_2',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a7b39d1047b2fabfa2c879d967314b4d0',1,'hal.h']]],
   ['hal_5fspi_5fcs_5f3',['HAL_SPI_CS_3',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a01d825746893f18adc5fd812cb493702',1,'hal.h']]],
   ['hal_5fspi_5fcs_5fmax',['HAL_SPI_CS_MAX',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggadd8a694a4d051d1ed3e24f91cf3a5103a6590d0de26232afe1039fb74c7f5dc9f',1,'hal.h']]],
+  ['hal_5fuart_5fchan_5f0',['HAL_UART_CHAN_0',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaf75f1fbb9a032fdf17bae5747b59c5adacc123392ffe852de4891ca1a47893c9f',1,'hal.h']]],
+  ['hal_5fuart_5fchan_5fmax',['HAL_UART_CHAN_MAX',['../group___e_n_e_r_g_y___l_i_b_r_a_r_y___h_a_l.html#ggaf75f1fbb9a032fdf17bae5747b59c5adab5bc622e07fce680587f6180ec20271c',1,'hal.h']]],
   ['host_5fcmd_5falign_5fwith_5fcalibration_5ffactors',['HOST_CMD_ALIGN_WITH_CALIBRATION_FACTORS',['../group___d_l_t645.html#ggaae61001516bf8d585597eee46e702dbaa97b7cfc06c51d6288c28ae5dfd2f858a',1,'DLT645.h']]],
   ['host_5fcmd_5fcheck_5frtc_5ferror',['HOST_CMD_CHECK_RTC_ERROR',['../group___d_l_t645.html#ggaae61001516bf8d585597eee46e702dbaaea4e627b8810e8e1e954742bd590fdca',1,'DLT645.h']]],
   ['host_5fcmd_5fclear_5fcalibration_5fdata',['HOST_CMD_CLEAR_CALIBRATION_DATA',['../group___d_l_t645.html#ggaae61001516bf8d585597eee46e702dbaad03bddf6b24371b2b7d73ff32aec17c9',1,'DLT645.h']]],

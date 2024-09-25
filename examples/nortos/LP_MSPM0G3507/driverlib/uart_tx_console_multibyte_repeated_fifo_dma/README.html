@@ -52,41 +52,46 @@
 <td>Open-Drain Output</td>
 </tr>
 <tr class="even">
+<td>GPIOA</td>
+<td>PA15</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>TIMG0</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>UART0</td>
 <td>PA11</td>
 <td>RX Pin</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>UART0</td>
 <td>PA10</td>
 <td>TX Pin</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DMA</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -114,27 +119,34 @@
 <td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
+<td>PA15</td>
+<td>GPIOA</td>
+<td>PA15</td>
+<td>J3_30</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA11</td>
 <td>UART0</td>
 <td>RX</td>
 <td>J4_33/J26_6</td>
 <td><ul><li>PA11 can be used as UART RX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J22 1:2</code>: Connects XDS-110 backchannel UART RX to <code>J101</code><br> <code>J101 7:8</code> Connects XDS-110 backchannel to UART RX<br><li>To use UART on boosterpack connector:<br> <code>J22 2:3</code>: Connects UART RX to <code>J4_33</code><br><li>To use on J26 CAN/LIN connector:<br> <code>R63</code> is populated by default and connects pin to <code>J26_6</code></ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA10</td>
 <td>UART0</td>
 <td>TX</td>
 <td>J4_34/J26_5</td>
 <td><ul><li>PA10 can be used as UART TX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J21 1:2</code>: Connects XDS-110 backchannel UART TX to <code>J101</code><br> <code>J101 9:10</code> Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br> <code>J21 2:3</code>: Connects UART TX to <code>J4_34</code><br><li>To use on J26 CAN/LIN connector:<br> <code>R62</code> is populated by default and connects pin to <code>J26_5</code></ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
@@ -156,7 +168,7 @@
 <li>one stop bit</li>
 <li>no parity</li>
 </ul>
-<p>The MSPM0 should begin to output a welcome message and an incremental test message every second. LED1 will toggle each transmit.</p>
+<p>The MSPM0 should begin to output a welcome message and an incremental test message every second. LED1 will toggle each transmit. USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">
@@ -164,7 +176,7 @@
   with 100,000+ analog ICs and embedded processors, along with software, tools
   and the industry‘s largest sales/support staff.</p>
   <p>
-    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br>
+    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br>
     <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
   </p>
 </footer>

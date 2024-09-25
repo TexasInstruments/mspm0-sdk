@@ -104,7 +104,7 @@ function validate(inst, validation)
     if(inst.enableHallInput && !inst.enableIndexInput){
         validation.logError("3 Pin Mode must be enabled when configuring Hall Input Mode", inst, ["enableHallInput","enableIndexInput"]);
     }
-    
+
     /* Validate Event selection for case of switching devices.
      * Checks that selected event is withing the valid options
      * for current device.
@@ -201,13 +201,13 @@ function pinmuxRequirements(inst)
         resources: [
             {
                 name: "ccp0Pin",            /* config script name */
-                displayName: "Counter Compare Pin 0",    /* GUI name */
+                displayName: "Capture/Compare Pin 0",    /* GUI name */
                 interfaceNames: ["CCP0"],   /* pinmux tool name */
                 filter : memoizedQEIResourceFilter(inst)
             },
             {
                 name: "ccp1Pin",
-                displayName: "Counter Compare Pin 1",
+                displayName: "Capture/Compare Pin 1",
                 interfaceNames: ["CCP1"],
                 filter: memoizedQEIResourceFilter(inst)
             }
@@ -797,11 +797,11 @@ function moduleInstances(inst){
      */
     /* CCP0 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   true,    "ccp0Pin",
-     "PHA", "Counter Compare Pin 0",
+     "PHA", "Capture/Compare Pin 0",
      "INPUT");
     /* CCP1 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   true,    "ccp1Pin",
-     "PHB", "Counter Compare Pin 1",
+     "PHB", "Capture/Compare Pin 1",
      "INPUT");
     /* IDX */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   inst.enableIndexInput,    "idxPin",

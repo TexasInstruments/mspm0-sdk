@@ -9,6 +9,7 @@ controller (see smb_controller00_all_protocols).
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA13 | Standard Output |
+| GPIOA | PA26 | Standard Output |
 | SYSCTL |  |  |
 | TIMG0 |  |  |
 | I2C0 | PA0 | I2C Serial Data line (SDA) |
@@ -25,6 +26,7 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA13 | GPIOA | PA13 | J4_39 | <ul><li>PA13 can be connected to LED2 Green<br><ul><li>`J3 ON` Connect to LED2 Green<br><li>`J3 OFF` Disconnect from LED2 Green</ul></ul> |
+| PA26 | GPIOA | PA26 | J4_38 | <ul><li>PA26 can be connected to LED2 Red<br><ul><li>`J12 ON` Connect to LED2 Red<br><li>`J12 OFF` Disconnect from LED2 Red</ul></ul> |
 | PA0 | I2C0 | SDA | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 OFF` Disconnect from LED1</ul></ul> |
 | PA1 | I2C0 | SCL | J1_9 | <ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
 | PA27 | ADC0 | A0 | J4_37 | <ul><li>PA27 can be connected to LED2 Blue<br><ul><li>`J13 OFF` Disconnect from LED2 Blue</ul></ul> |
@@ -55,5 +57,7 @@ Compile, load and run the example.
 
 The target example waits for each command from the SMBus controller and 
 processes it.
+A GPIO connected to LED_DEMO will toggle if Quick Command is received.
+A GPIO connected to LED_ERROR is used to signal SMBus errors.
 Optionally, an I2C sniffer can be used to observe the SMBus protocol.
 

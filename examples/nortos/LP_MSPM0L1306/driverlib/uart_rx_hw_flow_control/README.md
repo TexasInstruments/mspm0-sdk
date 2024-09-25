@@ -20,11 +20,14 @@ After all data in the second packet has been received, a SW breakpoint is set to
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
+| GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA1 | Open-Drain Output |
 | SYSCTL |  |  |
 | UART0 | PA9 | RX Pin |
 | UART0 | PA8 | TX Pin |
 | UART0 | PA13 | RTS Pin |
 | UART0 | PA12 | CTS Pin |
+| EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
 
@@ -34,6 +37,8 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
+| PA0 | GPIOA | PA0 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 ON` Connect to LED1<br><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA1 | GPIOA | PA1 | J1_9 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
 | PA9 | UART0 | RX | J1_3 | <ul><li>PA9 can be used as UART RX connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use backchannel UART on J101:<br>  `J17 1:2`: Connects XDS-110 backchannel UART RX to `J101`<br>  `J101 7:8` Connects XDS-110 backchannel to UART RX<br><li>To use UART on boosterpack connector:<br>  `J17 2:3`: Connects UART RX to `J1_3`</ul></ul> |
 | PA8 | UART0 | TX | J1_4 | <ul><li>PA8 can be used as UART TX connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use backchannel UART on J101:<br>  `J16 1:2`: Connects XDS-110 backchannel UART TX to `J101`<br>  `J101 9:10` Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br>  `J16 2:3`: Connects UART TX to` J1_4`</ul></ul> |
 | PA13 | UART0 | RTS | J4_39 | <ul><li>PA13 can be connected to LED2 Green<br><ul><li>`J3 OFF` Disconnect from LED2 Green</ul></ul> |
@@ -66,3 +71,6 @@ Optionally, connect a logic analyzer or oscilloscope to observe hardware flow co
 Ensure that the UART Receiver example is running before starting the UART Transmitter example.
 Once the example is started, the UART Receiver will wait to receive data.
 A breakpoint will be asserted after receiving the data.
+LED1 will turn on when the application completes. USER_TEST_PIN GPIO will mimic the
+behavior of the LED pin on the BoosterPack header and can be used to verify the
+LED behavior.

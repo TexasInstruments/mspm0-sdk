@@ -1,4 +1,4 @@
-Code Composer Studio IDE Version 12.5.0+ for MSPM0 MCUs
+Code Composer Studio IDE Version 12.6.0+ for MSPM0 MCUs
 =======================================================
 
 Table of Contents
@@ -57,7 +57,7 @@ The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>
 
 Code Composer Studio IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__.
 
-MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.5.0 or higher.
+MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.6.0 or higher.
 
 Code Composer Studio (CCS) IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__. Installation instructions for CCS 12.3 are available `here <https://software-dl.ti.com/ccs/esd/documents/users_guide_12.3.0/ccs_installation.html#installation-process>`__.
 
@@ -479,16 +479,22 @@ The MSPM0 CCS support package includes GEL files not only to perform device init
 
 For more information about GEL commands in CCS, visit the `CCS online documentation <https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-gel.html>`__.
 
-3.5.1 DSSM Mass Erase and Factory Reset
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3.5.1 DSSM Mass Erase, Factory Reset, Wait for Debug, and Set Reset Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 -  DSSM Mass Erase: A DSSM mass erase is an erase of the MAIN flash regions only, which typically includes the user application. NONMAIN flash region are not affected by a mass erase. A mass erase is useful for erasing all application code and data while leaving the device configuration itself intact.
 
 -  DSSM Factory Reset: A DSSM factory reset is an erase of the MAIN flash regions followed by a reset of the NONMAIN flash region to default values. Such an erase is useful for completely resetting the NONMAIN boot policies while also erasing the application code and data.
 
-The SWD mass erase and factory reset DSSM commands superseded any static write protection policies. For example, if SWD factory reset is configured to be enabled or enabled with password, the NONMAIN configuration data can be reset even if it is statically write protected.
+-  DSSM Wait for Debug: A DSSM wait for debug puts the device in a halted state where it remains at the reset handler until the user runs the application or power cycles the board. This command is useful because it allows the previously flashed application to be halted and forced to wait in the reset handler. Doing so allows for a better debugging session as it allows the user to see what occurs before hitting main().
 
-To execute a DSSM Mass Erase or DSSM Factory Reset, follow the next steps:
+-  DSSM Set Reset Mode: A DSSM set reset mode puts the device in a reset state which halts the previously flashed application from running. The command will halt the application giving back control to the device allowing for a new project to be flashed onto the device.
+
+The SWD mass erase, factory reset, wait for debug, and set reset mode DSSM commands supersede any static write protection policies. For example, if SWD factory reset is configured to be enabled or enabled with password, the NONMAIN configuration data can be reset even if it is statically write protected.
+
+**Note**: DSSM wait for debug and set reset mode vary slightly in use. The main purpose of the Wait for Debug command is to put the device inside the reset handler of the pre-existing application. Doing so provides the user with a better debug experience, as this allows the user to see what is happening before hitting main() in the current application. The main purpose of the Set Reset Command is to halt the device in a reset state (not the reset handler) where the user can flash a new project to the device, regardless of any errors in the pre-existing application. This command is not intended for debugging.
+
+To execute a DSSM Mass Erase, DSSM Factory Reset, DSSM Wait for Debug, or DSSM Set Reset Mode follow the next steps:
 
 1. On the CCS menu, select **View** → **Target Configurations**.
 2. On the **Target Configurations** window, right-click the .ccxml of an active project and select **Launch Selected Configuration**.
@@ -502,11 +508,62 @@ To execute a DSSM Mass Erase or DSSM Factory Reset, follow the next steps:
    -  **MSPM0\_MailboxMassErase\_Auto**: A mass erase will be performed forcing reset using the XDS110 reset line.
    -  **MSPM0\_MailboxFactoryReset\_Manual**: A factory reset will be performed asking the user to press the reset button.
    -  **MSPM0\_MailboxFactoryReset\_Auto**: A factory reset will be performed forcing reset using the XDS110 reset line.
+   -  **MSPM0\_MailboxWaitForDebug\_Auto**: Wait for debug will be performed using the XDS110 reset line and asking the user to click on "clear reset" button.
+   -  **MSPM0\_MailboxSetResetMode**: Set in reset will be performed using the XDS110 reset line, putting the device in reset until the next debugging session.
 
    .. figure:: ./images/ccs_ide_guide/ccs_dssm2.png
       :alt: 
 
-3.5.1.1 DSSM after Power-up
+3.5.1.1 DSSM Set Reset Mode Post-Execution Steps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Note**: To succesfully execute the DSSM Set Reset Mode command, the device must have a reset pin.
+
+The following steps must be followed for a DSSM Set Reset Mode command to properly put the device in reset mode **after** following the steps described in section 3.5.1.
+
+1. Allow the DSSM command to fully execute.
+
+   .. figure:: ./images/ccs_ide_guide/ccs_dssm3.png
+      :alt: 
+
+2. Once the command is finished, the device will now be in a reset state. Afterwards, any attempt to flash the device will throw an expected error message stating the device is in reset.
+
+   .. figure:: ./images/ccs_ide_guide/ccs_dssm4.png
+      :alt: 
+
+3. The device will exit from the reset state once **Clear wait** has been selected in the error window. This allows the new application to be flashed on to the device.
+
+   .. figure:: ./images/ccs_ide_guide/ccs_dssm5.png
+      :alt: 
+
+3.5.1.2 DSSM Wait for Debug Post-Execution Steps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Note**: To succesfully execute the DSSM Wait for Debug command, the device must have a reset pin.
+
+The following steps must be for a DSSM Wait for Debug command to properly put the device in wait for debug **after** following the steps described in section 3.5.1.
+
+1. Allow the DSSM command to fully execute.
+
+   .. figure:: ./images/ccs_ide_guide/ccs_dssm3.png
+      :alt: 
+
+2. Once the command is finished, the device will now be in a reset state. Afterwards, a connection will be automatically attempted, causing an expected error message stating the device is in reset.
+
+   .. figure:: ./images/ccs_ide_guide/ccs_dssm4.png
+      :alt: 
+
+3. The device will exit from the reset state once **Clear wait** has been selected in the error window
+
+   .. figure:: ./images/ccs_ide_guide/ccs_dssm5.png
+      :alt: 
+
+4. Now the device should be in the reset handler. This allows the user to access their previously downloaded code before it has reached main, or load a new application on to the device.
+
+   .. figure:: ./images/ccs_ide_guide/ccs_dssm6.png
+      :alt: 
+
+3.5.1.3 DSSM after Power-up
 '''''''''''''''''''''''''''
 
 The device might not respond to DSSM commands in some scenarios such as when the reset line or SWD pins are used for other functions. In such conditions, it can be useful to follow the next steps:

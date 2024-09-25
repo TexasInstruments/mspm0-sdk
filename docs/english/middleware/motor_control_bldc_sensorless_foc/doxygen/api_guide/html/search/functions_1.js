@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['angle_5fgetsine',['ANGLE_getSine',['../group___f_o_c___m_a_t_h___a_n_g_l_e___m_a_t_h.html#ga7b423305c34b5ba1fc549133b567c50f',1,'ANGLE_getSine(uint32_t phase):&#160;angle_math.c'],['../group___f_o_c___m_a_t_h___a_n_g_l_e___m_a_t_h.html#ga7b423305c34b5ba1fc549133b567c50f',1,'ANGLE_getSine(uint32_t phase):&#160;angle_math.c']]]
+  ['appuserinputregsconfig',['appUserInputRegsConfig',['../app_user_inputs_config_8h.html#a90967c6eb29d224e2ce8bbbf2ea1b745',1,'appUserInputsConfig.c']]],
+  ['appuserinputsinit',['appUserInputsInit',['../app_user_inputs_config_8h.html#a9bc12c253ecc028b49d7077d9130dc56',1,'appUserInputsConfig.c']]],
+  ['arctan2',['arcTan2',['../iq_trig_8h.html#ad2877ebb0b3e32429427fd459f632e69',1,'iqTrig.c']]]
 ];

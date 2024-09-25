@@ -36,7 +36,7 @@
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
 <p>Note: The use of “Master” and “Slave”, along with “MOSI/MISO” terminology is being considered obsolete. These terms will be replaced with “Controller” and “Peripheral”, and “PICO/POCI” respectively.</p>
-<p>The following example configures the SPI as a Controller. This example can be used with the spi_peripheral_repeated_fifo_dma_interrupts example running on another device with the breakpoint disabled.</p>
+<p>The following example configures the SPI as a Controller. This example is intended to be used with the spi_peripheral_repeated_fifo_dma_interrupts example running on another device with the breakpoint disabled.</p>
 <p>This example sets up the SPI to trigger the DMA Channel 0 to do a transmit data transfer and the DMA Channel 1 to do a receive data transfer repeatedly every second as triggered by a timer.</p>
 <p>The DMA Channel 0 is configured in single transfer mode, using the static SPI TX DMA event as the DMA trigger. When the SPI TXINT is set (which indicates that the SPI is ready to transmit data), this triggers the DMA to transfer the data from a user buffer to the SPI TXFIFO. This transfer will start as soon as the channel is enabled, because the SPI TXINT should be set when the SPI is enabled. The DMA Channel 1 is configured in single transfer mode, using the static SPI RX DMA event as the DMA trigger. When data is received and the SPI RXINT is set, this triggers the DMA to transfer the data from the SPI RXFIFO to a user buffer. A workaround is currently implemented where the SPI RX DMA event is toggled each time to prevent the DMA from hanging.</p>
 <p>After SPI_PACKET_SIZE bytes have been transferred by the DMA, this will trigger the DL_SPI_IIDX_DMA_DONE_TX interrupt indicating that the DMA is done transferring all expected bytes from the buffer to the TXFIFO. The SPI Controller will then initiate the transaction. The SPI will transmit the data that is in the TXFIFO until it is empty. When the TXFIFO is empty, this will trigger the DL_SPI_IIDX_TX_EMPTY interrupt indicating that the transfer is complete.</p>
@@ -57,51 +57,56 @@
 <td>Open-Drain Output</td>
 </tr>
 <tr class="even">
+<td>GPIOA</td>
+<td>PA1</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>TIMG0</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SPI0</td>
 <td>PA6</td>
 <td>SPI SCLK (Clock)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SPI0</td>
 <td>PA5</td>
 <td>SPI PICO (Peripheral In, Controller Out)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SPI0</td>
 <td>PA4</td>
 <td>SPI POCI (Peripheral Out, Controller In)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SPI0</td>
 <td>PA3</td>
 <td>SPI CS1 (Chip Select 1)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DMA</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -129,41 +134,48 @@
 <td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J10 2:3</code> Use 3.3V pull-up<br><li><code>J10 1:2</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J2 ON</code> Connect to LED1<br><li><code>J2 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
+<td>PA1</td>
+<td>GPIOA</td>
+<td>PA1</td>
+<td>J1_9</td>
+<td><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 2:3</code> Use 3.3V pull-up<br><li><code>J9 1:2</code> Use 5V pull-up</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA6</td>
 <td>SPI0</td>
 <td>SCLK</td>
 <td>J1_7</td>
 <td>N/A</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA5</td>
 <td>SPI0</td>
 <td>MOSI</td>
 <td>J2_15</td>
 <td>N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA4</td>
 <td>SPI0</td>
 <td>MISO</td>
 <td>J2_14</td>
 <td>N/A</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA3</td>
 <td>SPI0</td>
 <td>CS1_MISO1</td>
 <td>J2_19</td>
 <td>N/A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_13</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
@@ -187,7 +199,7 @@
 <li>Controller CS -&gt; Peripheral CS</li>
 </ul>
 <p>Compile, load and run the example.</p>
-<p>Ensure that the SPI Peripheral example is running <strong>before</strong> starting the SPI Controller example. Once the example is started, the SPI Controller will automatically start to transmit data every 1s. The transmitted data packet is {‘M’, ‘S’, ‘P’, ‘x’}, where ‘x’ starts at ‘0’ and will increment with each new transfer. LED0 will toggle every time a new transmission starts.</p>
+<p>Ensure that the SPI Peripheral example is running <strong>before</strong> starting the SPI Controller example. Once the example is started, the SPI Controller will automatically start to transmit data every 1s. The transmitted data packet is {‘M’, ‘S’, ‘P’, ‘x’}, where ‘x’ starts at ‘0’ and will increment with each new transfer. LED0 and USER_TEST pin will toggle every time a new transmission starts.</p>
 <p>An optional SW breakpoint can be uncommented in the application to check the results of the received data. If this example is used with the spi_peripheral_repeated_multibyte_fifo_dma_interruptsexample, the expected data that will be received in gRxPacket is {‘x’, 0x2, 0x3, 0x4}, where ‘x’ starts at 0x0 and should increment every time the Peripheral example sends a new data packet.</p>
 <p>The SPI is initialized with the following configuration:</p>
 <ul>
@@ -204,7 +216,7 @@
   with 100,000+ analog ICs and embedded processors, along with software, tools
   and the industry‘s largest sales/support staff.</p>
   <p>
-    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br>
+    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br>
     <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
   </p>
 </footer>

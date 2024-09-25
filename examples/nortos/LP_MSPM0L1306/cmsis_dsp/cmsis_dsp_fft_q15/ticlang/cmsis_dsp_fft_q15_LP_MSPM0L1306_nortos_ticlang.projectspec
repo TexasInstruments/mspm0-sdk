@@ -24,7 +24,7 @@
             -I${PROJECT_ROOT}/${ConfigName}
             -DARM_MATH_CM0
             -O2
-            @syscfg/device.opt
+            @device.opt
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/DSP/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
@@ -46,6 +46,7 @@
         "
         enableSysConfigTool="true"
         sysConfigBuildOptions="
+            --output .
             --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
             --compiler ticlang
         "

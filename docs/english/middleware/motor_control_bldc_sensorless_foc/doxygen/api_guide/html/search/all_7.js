@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['global_5fiq',['GLOBAL_IQ',['../iqmath__rts_8h.html#a96615d6505f4650838ead852b54f29fc',1,'iqmath_rts.h']]]
+  ['g_5fpappinterface',['g_pAppInterface',['../app_interface_8h.html#a5ba568f984343462e3f8b57d0b769235',1,'appInterface.h']]],
+  ['gatedriver_2eh',['gateDriver.h',['../gate_driver_8h.html',1,'']]],
+  ['gatedriverclearfault',['gateDriverClearFault',['../gate_driver_8h.html#a61c2d20fee8e6b3131423a908c6f31c5',1,'gateDriver.h']]],
+  ['gatedriverconfig',['gateDriverConfig',['../gate_driver_8h.html#ad48c82f215ae30e5a12d911002b79512',1,'gateDriver.h']]],
+  ['gatedrivercsacalib',['gateDriverCSACalib',['../gate_driver_8h.html#af0bcf0cb8d4b7f98bc4f3c27624e1c0f',1,'gateDriver.h']]],
+  ['gatedriverfaultaction',['gateDriverFaultAction',['../gate_driver_8h.html#a0212fd7b400d1bdb4fce7a63ef4bb250',1,'gateDriver.h']]],
+  ['gatedriverfaultresponse',['gateDriverFaultResponse',['../gate_driver_8h.html#a4fb59a58f3c27383c2d24d651cbf8c9b',1,'gateDriver.h']]],
+  ['gatedriverfaultstatus',['gateDriverFaultStatus',['../struct_u_s_e_r___o_u_t_p_u_t_s___t.html#abed7dab0a4bd8d34475a3380f675ec79',1,'USER_OUTPUTS_T']]],
+  ['gatedrivergetfaultstatus',['gateDriverGetFaultStatus',['../gate_driver_8h.html#a27a18e5e037c2273e526198944d2a256',1,'gateDriver.h']]],
+  ['gatedrivergetminondutyovermod',['gateDriverGetMinOnDutyOverMod',['../services_h_a_l_8h.html#a850c3b17b0d32cbefcf304eda64600f6',1,'servicesHAL.c']]],
+  ['gatedrivergetminondutysinemod',['gateDriverGetMinOnDutySineMod',['../services_h_a_l_8h.html#ad229a50ea2a0d8277711908d0936b5ff',1,'servicesHAL.c']]],
+  ['gatedrivergetpropagationdelay',['gateDriverGetPropagationDelay',['../services_h_a_l_8h.html#ae04c498b176e31881eb5a1ca958384d1',1,'servicesHAL.c']]],
+  ['gatedriverinit',['gateDriverInit',['../gate_driver_8h.html#a8a26fad2bf7c5ea2d337b875c856576b',1,'gateDriver.h']]],
+  ['gatedrivernfaultreport',['gateDrivernFaultReport',['../gate_driver_8h.html#af9009b16919899c4bca23f853e323c06',1,'gateDriver.h']]],
+  ['gatedriveroffsetcalibreset',['gateDriverOffsetCalibReset',['../gate_driver_8h.html#a4157d4acf998392d8a64772df39dd601',1,'gateDriver.h']]],
+  ['gatedriveroffsetcalibset',['gateDriverOffsetCalibSet',['../gate_driver_8h.html#aa8ffaa93ff50e47e765f18788f45c129',1,'gateDriver.h']]],
+  ['gatedriverparamsupdate',['gateDriverParamsUpdate',['../gate_driver_8h.html#ad11c69ef81253c4e2b4c6dadcd8cff14',1,'gateDriver.h']]],
+  ['gatedriverregread',['gateDriverRegRead',['../gate_driver_8h.html#afd2f79fb3cf99391dda3f4f2512158b8',1,'gateDriver.h']]],
+  ['global_5fiq',['GLOBAL_IQ',['../_i_qmath__mathacl_8h.html#a96615d6505f4650838ead852b54f29fc',1,'IQmath_mathacl.h']]]
 ];

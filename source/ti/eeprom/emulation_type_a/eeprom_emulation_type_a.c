@@ -280,6 +280,8 @@ void EEPROM_TypeA_searchCheck(void)
             {
                 /* If active record is found, 4 global variables are updated, and gEEPROMTypeASearchFlag is set*/
                 gActiveRecordAddress = SearchRecordAddress;
+                gActiveRecordNum     = SearchRecordNum;
+                gActiveSectorNum     = SearchSectorNum;
                 if (gActiveRecordNum >=
                         EEPROM_EMULATION_ACTIVE_RECORD_NUM_MAX &&
                     gActiveSectorNum >=
@@ -289,8 +291,6 @@ void EEPROM_TypeA_searchCheck(void)
                     gNextRecordAddress =
                         gActiveRecordAddress + EEPROM_EMULATION_RECORD_SIZE;
                 }
-                gActiveRecordNum       = SearchRecordNum;
-                gActiveSectorNum       = SearchSectorNum;
                 gEEPROMTypeASearchFlag = 1;
             } else if (Temp0 == 0x0000ffff && Temp1 == 0xffffffff &&
                        SectorState == 0)  //Recording

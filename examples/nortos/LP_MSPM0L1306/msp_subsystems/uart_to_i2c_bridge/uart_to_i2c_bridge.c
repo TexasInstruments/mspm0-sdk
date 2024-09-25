@@ -37,7 +37,7 @@
 /* Delay for 5ms to ensure UART TX is idle before starting transmission */
 #define UART_TX_DELAY (160000)
 
-/* Define UART Headr and Start Byte*/
+/* Define UART Header and Start Byte*/
 #define UART_HEADER_LENGTH 0x03
 #define UART_START_BYTE 0xF8
 #define UART_READ_I2C_BYTE 0xFA
@@ -50,7 +50,7 @@
 #define I2C_MAX_PACKET_SIZE 16
 #define UART_MAX_PACKET_SIZE (I2C_MAX_PACKET_SIZE + UART_HEADER_LENGTH)
 
-/*global var for keeping track of bridge process*/
+/*global variables for keeping track of bridge process*/
 uint8_t gUartTxData[UART_MAX_PACKET_SIZE] ; 
 uint8_t gUartRxData[UART_MAX_PACKET_SIZE] ;
 volatile uint8_t gUartRxDataCount = 0;
@@ -117,7 +117,7 @@ int main(void)
     while (gDataReceived == false) {
         __WFE();
     }
-    /* Data recieved, start bridge */
+    /* Data received, start bridge */
     while (1) {
     /*
     * Optionally check for errors and do something
@@ -176,7 +176,7 @@ void Uart_Bridge(){
             if (gI2C_RW == UART_WRITE_I2C_BYTE) {
                 
                 while (gI2C_Length > (gUartRxDataCount - UART_HEADER_LENGTH) ) {
-                    /* Wait until full message is recieved*/
+                    /* Wait until full message is received*/
                      __WFE();
                 }
                 /*Transfer UART Buffer over */
@@ -194,7 +194,7 @@ void Uart_Bridge(){
                  gError = ERROR_I2C_NO_RW;
                  gUARTBridgeStatus = UART_STATUS_ERROR;
             }
-            /*Full message recieved, advance and reset UART RX */
+            /*Full message received, advance and reset UART RX */
             gUartRxDataCount = 0;
             gUartRxData[ADDRESS_INDEX] = 0;
             gUartRxData[LENGTH_INDEX] = 0;
@@ -379,6 +379,7 @@ void I2C_BRIDGE_INST_IRQHandler(void)
                 gI2cControllerStatus = I2C_STATUS_ERROR;
             }
             gError = ERROR_I2C_NACK;
+            break;
         case DL_I2C_IIDX_CONTROLLER_RXFIFO_FULL:
         case DL_I2C_IIDX_CONTROLLER_TXFIFO_EMPTY:
         case DL_I2C_IIDX_CONTROLLER_START:

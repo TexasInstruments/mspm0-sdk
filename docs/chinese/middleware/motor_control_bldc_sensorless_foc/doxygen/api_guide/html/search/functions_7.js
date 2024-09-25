@@ -1,20 +1,12 @@
 var searchData=
 [
-  ['para_5fcheckest',['PARA_checkEST',['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gad2a23ebbfc2c823dcf8c2dbf13f56049',1,'PARA_checkEST(uint32_t *parameter, EST_Instance *handle, PARA_IDX idx):&#160;parameter.c'],['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gad2a23ebbfc2c823dcf8c2dbf13f56049',1,'PARA_checkEST(uint32_t *parameter, EST_Instance *handle, PARA_IDX idx):&#160;parameter.c']]],
-  ['para_5fcheckipd',['PARA_checkIPD',['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga4c3844c0745605043351c51c5deed575',1,'PARA_checkIPD(uint32_t *parameter, IPD_Instance *handle, PARA_IDX idx):&#160;parameter.c'],['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga4c3844c0745605043351c51c5deed575',1,'PARA_checkIPD(uint32_t *parameter, IPD_Instance *handle, PARA_IDX idx):&#160;parameter.c']]],
-  ['para_5fcheckpiid',['PARA_checkPIID',['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab7b3280c242ead94846538ac9ff5e479',1,'PARA_checkPIID(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx):&#160;parameter.c'],['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab7b3280c242ead94846538ac9ff5e479',1,'PARA_checkPIID(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx):&#160;parameter.c']]],
-  ['para_5fcheckpiiq',['PARA_checkPIIQ',['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga1e36f8d4b4b2b7c46dbbac49776594e8',1,'PARA_checkPIIQ(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx):&#160;parameter.c'],['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga1e36f8d4b4b2b7c46dbbac49776594e8',1,'PARA_checkPIIQ(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx):&#160;parameter.c']]],
-  ['para_5fcheckpispd',['PARA_checkPISPD',['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga27a400d815a6d149a691eb65893978f2',1,'PARA_checkPISPD(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx):&#160;parameter.c'],['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga27a400d815a6d149a691eb65893978f2',1,'PARA_checkPISPD(uint32_t *parameter, PI_Instance *handle, PARA_IDX idx):&#160;parameter.c']]],
-  ['para_5fcheckpwmgen',['PARA_checkPWMGEN',['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab10c8bf78942b43285e7ab192ffba7c5',1,'PARA_checkPWMGEN(uint32_t *parameter, PWMGEN_Instance *handle, PARA_IDX idx):&#160;parameter.c'],['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gab10c8bf78942b43285e7ab192ffba7c5',1,'PARA_checkPWMGEN(uint32_t *parameter, PWMGEN_Instance *handle, PARA_IDX idx):&#160;parameter.c']]],
-  ['para_5fcheckrc',['PARA_checkRC',['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gad1916754a2e90049bb130be46a44db43',1,'PARA_checkRC(uint32_t *parameter, RMPCNTL_Instance *handle, PARA_IDX idx):&#160;parameter.c'],['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#gad1916754a2e90049bb130be46a44db43',1,'PARA_checkRC(uint32_t *parameter, RMPCNTL_Instance *handle, PARA_IDX idx):&#160;parameter.c']]],
-  ['para_5fcheckrg',['PARA_checkRG',['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga3572e05542ec6d8e647655609a939b77',1,'PARA_checkRG(uint32_t *parameter, RAMPGEN_Instance *handle, PARA_IDX idx):&#160;parameter.c'],['../group___f_o_c___p_a_r_a_m_e_t_e_r___p_a_r_a_m_e_t_e_r.html#ga3572e05542ec6d8e647655609a939b77',1,'PARA_checkRG(uint32_t *parameter, RAMPGEN_Instance *handle, PARA_IDX idx):&#160;parameter.c']]],
-  ['park_5freset',['PARK_reset',['../group___f_o_c___m_a_t_h___p_a_r_k.html#ga86585adc3ab400c70d88030e8503c9db',1,'park.h']]],
-  ['park_5frun',['PARK_run',['../group___f_o_c___m_a_t_h___p_a_r_k.html#ga1bd1294c5439cc4cd1b743a9dc82acfc',1,'park.h']]],
-  ['phasevolt_5frun',['PHASEVOLT_run',['../group___f_o_c___m_a_t_h___v_o_l_t___c_a_l_c.html#ga6ea89172dc150463a795f341492667a3',1,'volt_calc.h']]],
-  ['pi_5freset',['PI_reset',['../group___f_o_c___m_a_t_h___p_i.html#gaa181f843f634e0ee0d1162724fa03c41',1,'PI_reset(PI_Instance *handle):&#160;pi.c'],['../group___f_o_c___m_a_t_h___p_i.html#gaa181f843f634e0ee0d1162724fa03c41',1,'PI_reset(PI_Instance *handle):&#160;pi.c']]],
-  ['pi_5frun',['PI_run',['../group___f_o_c___m_a_t_h___p_i.html#ga99752bb5e1f0f4ef583684b7d97b49d9',1,'pi.h']]],
-  ['pi_5fupdateparams',['PI_UpdateParams',['../group___f_o_c___m_a_t_h___p_i.html#gaf8c9cf7f5e178e1e1f92aece7b629b5c',1,'pi.h']]],
-  ['pwmgen_5fchecklimits',['PWMGEN_checkLimits',['../group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga7c5b385d5ee50416a7f777594b58caad',1,'pwmgen.h']]],
-  ['pwmgen_5frun',['PWMGEN_run',['../group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga38a67d8e3ef7e172c218da328528937d',1,'pwmgen.h']]],
-  ['pwmgen_5fupdateparams',['PWMGEN_UpdateParams',['../group___f_o_c___m_a_t_h___p_w_m_g_e_n.html#ga51d947634e0bf86da4f7b4dc6ece3d51',1,'pwmgen.h']]]
+  ['mc_5fanglesectorgen',['MC_AngleSectorGen',['../mc_lib_8h.html#af97a017fc06096530ebcd49b31787af5',1,'mcLib.c']]],
+  ['mc_5fclarketransform',['MC_ClarkeTransform',['../mc_lib_8h.html#a6eff67e5538e4692b9fcb0c368a9c030',1,'mcLib.c']]],
+  ['mc_5fclarketransformnozeroseq',['MC_ClarkeTransformNoZeroSeq',['../mc_lib_8h.html#abad8ba90049eee2a812cd14acdbf6d75',1,'mcLib.c']]],
+  ['mc_5finverseclarketransform',['MC_InverseClarkeTransform',['../mc_lib_8h.html#affd4350cc7f3d519763a68176ca46d7c',1,'mcLib.c']]],
+  ['mc_5finverseparktransform',['MC_InverseParkTransform',['../mc_lib_8h.html#a9662a105072c7d1702573ba714486101',1,'mcLib.c']]],
+  ['mc_5fparktransform',['MC_ParkTransform',['../mc_lib_8h.html#acbff5f96424b8d0661e7424d3db6909f',1,'mcLib.c']]],
+  ['mc_5fsincos',['MC_SinCos',['../mc_lib_8h.html#a1f4cffd48586b5501e4cbf240a22ee90',1,'mcLib.c']]],
+  ['mc_5fspacevectorgen',['MC_SpaceVectorGen',['../mc_lib_8h.html#ac966c5784d80942fc53344ef23b33bf3',1,'mcLib.c']]],
+  ['mc_5fsvm_5fclarketransform',['MC_SVM_ClarkeTransform',['../mc_lib_8h.html#a8a943f2a9aa7844335b3a4ce3fd077fd',1,'mcLib.c']]]
 ];

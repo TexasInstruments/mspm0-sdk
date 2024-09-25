@@ -1,0 +1,43 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const PWM  = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1 = PWM.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+PWM1.$name                           = "PWM_0";
+PWM1.clockPrescale                   = 256;
+PWM1.timerCount                      = 2000;
+PWM1.deadBandEn                      = true;
+PWM1.dbRiseDelayTimerCount           = 50;
+PWM1.dbFallDelayTimerCount           = 25;
+PWM1.ccIndexCmpl                     = [0,1];
+PWM1.peripheral.$assign              = "TIMA0";
+PWM1.peripheral.ccp0Pin.$assign      = "PA0";
+PWM1.peripheral.ccp1Pin.$assign      = "PA1";
+PWM1.peripheral.ccp0Pin_cmpl.$assign = "PA22";
+PWM1.peripheral.ccp1Pin_cmpl.$assign = "PB5";
+PWM1.PWM_CHANNEL_0.$name             = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle         = 50;
+PWM1.PWM_CHANNEL_1.$name             = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_1.dutyCycle         = 75;
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+const SYSCTL              = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn = true;

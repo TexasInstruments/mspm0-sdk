@@ -288,21 +288,6 @@ extern void PMBus_init(I2C_Regs* i2cAddr,
 //*****************************************************************************
 extern void PMBus_processInt();
 
-
-//*****************************************************************************
-//
-//! \brief   Timer interrupt service routine for a controller
-//
-//! Handles the interrupts for PMBus tiemout processing for USCI devices.
-//! Should be called by application when Timer interrupt is detected
-//
-//! \return  None
-//
-//*****************************************************************************
-extern void PMBus_processTimeoutInt();
-
-
-
 //*****************************************************************************
 //
 //! \brief   Enables PEC support

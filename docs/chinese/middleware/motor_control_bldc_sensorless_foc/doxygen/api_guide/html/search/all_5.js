@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['enable',['enable',['../struct_d_r_v8323_r_s___instance.html#a51b11e102193718c93c267f91bbda15f',1,'DRV8323RS_Instance']]],
-  ['enablemotor',['enableMotor',['../struct_c_n_t_r_l___r_e_g__1.html#abc6cb2e852612c19c17f30b366a6ae91',1,'CNTRL_REG_1']]],
-  ['enablepwm',['enablePWM',['../struct_f_o_c___instance.html#a235652c9ac62c3bf05b8182edeb093c4',1,'FOC_Instance']]],
-  ['enablepwmstatus',['enablePWMStatus',['../struct_f_o_c___instance.html#ae3b9f2b74c1deb11077b825bc13b8321',1,'FOC_Instance']]],
-  ['endofseq',['endOfSeq',['../struct_h_a_l___a_d_c.html#a501e604d8ba64337b8909aed80a746e1',1,'HAL_ADC']]],
-  ['error',['error',['../struct_p_i___instance.html#aa7830f456b42192f5e1f2ca6bef74ee1',1,'PI_Instance']]],
-  ['est',['est',['../group___f_o_c___m_o_d_u_l_e.html#ga7db6a933f4590a5dd1e9da529ccc8e53',1,'est():&#160;foc.c'],['../group___f_o_c___m_o_d_u_l_e.html#ga7db6a933f4590a5dd1e9da529ccc8e53',1,'est():&#160;foc.c']]],
-  ['extfaultin',['extFaultIn',['../struct_f_a_u_l_t___s_t_a_t_u_s___b_i_t_s.html#a5fa2e7950b715a703d3228038ab121b5',1,'FAULT_STATUS_BITS']]]
+  ['end_5fbyte_5fsize',['END_BYTE_SIZE',['../uart__comm_8h.html#a83d5feffae324698881bc41151a2065e',1,'uart_comm.h']]],
+  ['end_5foffset',['END_OFFSET',['../uart__comm_8h.html#a48942c7427156052e2b1b901e85a9f77',1,'uart_comm.h']]],
+  ['error',['error',['../struct_u_a_r_t___instance.html#aec8fb0e1bf6c8d1f10c4c291df561e30',1,'UART_Instance']]],
+  ['error_5faddr_5frange',['ERROR_ADDR_RANGE',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa62cd76a829509411d0bd44d94dfafbb7',1,'uart_comm.h']]],
+  ['error_5fmismatch_5fcrc',['ERROR_MISMATCH_CRC',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aadcda995dcc17bff6d0e56d0cbc405461',1,'uart_comm.h']]],
+  ['error_5fmismatch_5fend_5fbyte',['ERROR_MISMATCH_END_BYTE',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa0e5499fcbd3e32d505accebd92c7b277',1,'uart_comm.h']]],
+  ['error_5fmismatch_5fstart_5fbyte',['ERROR_MISMATCH_START_BYTE',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aacc5748ad3407d078b4dd2019cdf6f76d',1,'uart_comm.h']]],
+  ['error_5fmismatch_5ftarget_5faddr',['ERROR_MISMATCH_TARGET_ADDR',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aae9ff793c745e0502abbfba95475f5eda',1,'uart_comm.h']]],
+  ['error_5fnone',['ERROR_NONE',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa4edc8aade11e1de7bbbdc04704baae5f',1,'uart_comm.h']]],
+  ['error_5foffset',['ERROR_OFFSET',['../uart__comm_8h.html#a34da2490156c0fde3a3a9e8b658e6639',1,'uart_comm.h']]],
+  ['errortype',['ErrorType',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45a',1,'uart_comm.h']]],
+  ['estimatedspeed',['estimatedSpeed',['../struct_u_s_e_r___o_u_t_p_u_t_s___t.html#ada1c41b61c4c91e2e742dfc4d81916b6',1,'USER_OUTPUTS_T']]]
 ];

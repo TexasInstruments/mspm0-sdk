@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">1.20.01.06</span>
+   &#160;<span id="projectnumber">1.30.00.03</span>
    </div>
   </td>
  </tr>
@@ -5307,15 +5307,6 @@ $(function() {
 <li>DL_SYSCTL_BOR_THRESHOLD_LEVEL_0
 : <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a0e8afb986eaf313b904b37a561f0f936">dl_sysctl_mspm0c110x.h</a>
 </li>
-<li>DL_SYSCTL_BOR_THRESHOLD_LEVEL_1
-: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a000529e00d369928e99b2af14a81341d">dl_sysctl_mspm0c110x.h</a>
-</li>
-<li>DL_SYSCTL_BOR_THRESHOLD_LEVEL_2
-: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a5f4c15d42beafe6fef957c646211fe75">dl_sysctl_mspm0c110x.h</a>
-</li>
-<li>DL_SYSCTL_BOR_THRESHOLD_LEVEL_3
-: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a76000141ff342ac44d376a6c731b7658">dl_sysctl_mspm0c110x.h</a>
-</li>
 <li>DL_SYSCTL_clearECCErrorStatus()
 : <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ga6ff18a52a5b1ddb681127f640453ceb0">dl_sysctl_mspm0c110x.h</a>
 </li>
@@ -6524,6 +6515,9 @@ $(function() {
 </li>
 <li>DL_TIMER_CLOCK
 : <a class="el" href="group___t_i_m_x.html#ga7d7852e0a1f7db7231224c8c03243d92">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CLOCK_2X_BUSCLK
+: <a class="el" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a421c83a82a0f0106586416e05e294dd5">dl_timer.h</a>
 </li>
 <li>DL_TIMER_CLOCK_BUSCLK
 : <a class="el" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a4efaf8e7fab766a10685044d35160525">dl_timer.h</a>
@@ -10563,6 +10557,9 @@ $(function() {
 <li>DL_VREF_disableInternalRef()
 : <a class="el" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde">dl_vref.h</a>
 </li>
+<li>DL_VREF_disableInternalRefCOMP()
+: <a class="el" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a">dl_vref.h</a>
+</li>
 <li>DL_VREF_disablePower()
 : <a class="el" href="group___v_r_e_f.html#ga9be6c1503d95a20c8255f40c4cd4472c">dl_vref.h</a>
 </li>
@@ -10577,6 +10574,9 @@ $(function() {
 </li>
 <li>DL_VREF_enableInternalRef()
 : <a class="el" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2">dl_vref.h</a>
+</li>
+<li>DL_VREF_enableInternalRefCOMP()
+: <a class="el" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d">dl_vref.h</a>
 </li>
 <li>DL_VREF_enablePower()
 : <a class="el" href="group___v_r_e_f.html#ga340691f570923e05d1b6033684c459fb">dl_vref.h</a>
@@ -10595,6 +10595,9 @@ $(function() {
 </li>
 <li>DL_VREF_isEnabled()
 : <a class="el" href="group___v_r_e_f.html#gaa691a93de008515cf237c12ed35231b4">dl_vref.h</a>
+</li>
+<li>DL_VREF_isInternalRefCOMPEnabled()
+: <a class="el" href="group___v_r_e_f.html#ga768d77dde635d1e780836e6db0410670">dl_vref.h</a>
 </li>
 <li>DL_VREF_isReset()
 : <a class="el" href="group___v_r_e_f.html#ga47e4c3916a531524765d9948b8e3fd64">dl_vref.h</a>
@@ -10811,7 +10814,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

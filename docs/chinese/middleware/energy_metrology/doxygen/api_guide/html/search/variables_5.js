@@ -27,5 +27,5 @@ var searchData=
   ['fundamentalreactiveenergyquardrantiii',['fundamentalReactiveEnergyQuardrantIII',['../structphase_energy.html#a84dbd23c26f2a6efa29eddee0525983a',1,'phaseEnergy']]],
   ['fundamentalreactiveenergyquardrantiv',['fundamentalReactiveEnergyQuardrantIV',['../structphase_energy.html#aad6675ac21d849bf8061673a32d3f49f',1,'phaseEnergy']]],
   ['fundamentalreactivepower',['fundamentalReactivePower',['../struct_total_power_readings.html#a232c49934af6288153f6534e882579a5',1,'TotalPowerReadings']]],
-  ['fvoltgaesq',['fVoltgaeSq',['../structvoltage_d_p_set.html#a9a1fd7744312d75e81ba49d0e74d6f4e',1,'voltageDPSet']]]
+  ['fvoltagesq',['fVoltageSq',['../structvoltage_d_p_set.html#acf50729552f38fca3c2c4f5788651412',1,'voltageDPSet']]]
 ];

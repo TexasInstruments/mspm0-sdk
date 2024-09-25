@@ -15,8 +15,8 @@ Overdrive support is included but untested.
 | GPIOA | PA4 | Standard Output |
 | GPIOA | PA5 | High-Speed Output |
 | SYSCTL |  |  |
-| TIMG4 | PA10 | Counter Compare Pin 0 |
-| TIMG1 | PA0 | Counter Compare Pin 0 |
+| TIMG4 | PA10 | Capture/Compare Pin 0 |
+| TIMG1 | PA0 | Capture/Compare Pin 0 |
 | TIMG0 |  |  |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |

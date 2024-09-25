@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['motor',['MOTOR',['../group___f_o_c___t_y_p_e_s.html#gadf17cf9b96a849b389399eecaf8f380a',1,'foc_types.h']]],
-  ['motor_5fstate',['MOTOR_STATE',['../group___f_o_c___t_y_p_e_s.html#gae676bf9c7f315eb5efae14987ca95856',1,'foc_types.h']]]
+  ['uart_5fstatus',['UART_Status',['../uart__comm_8h.html#a778bbef5f4b52a5651552136715f53c4',1,'uart_comm.h']]],
+  ['user_5ffault_5ftypes',['USER_FAULT_TYPES',['../app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71f',1,'appUserOutputs.h']]]
 ];

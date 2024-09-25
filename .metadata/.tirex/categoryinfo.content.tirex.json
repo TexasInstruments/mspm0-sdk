@@ -354,7 +354,7 @@
     "description": "<p>The MSPM0 PMBus Library is based on the MSPM0 SMBus library. The MSPM0 PMBus library provides a set of APIs to communicate over PMBus as a controller or a target.</p>"
   },
   {
-    "name": "Boot Image Manager",
+    "name": "Secure Booting",
     "mainCategories": [
       [
         "Documents"
@@ -369,7 +369,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
-    "description": "<p>The MSPM0 SDK includes a Boot Image Manager: an implementation of the publicly available mcuboot for MSP devices in order to allow for customers to have secure booting features in their development. It will check integrity and authenticate one or more application images loaded and signed on to the device using ECDSA and SHA-256.</p>"
+    "description": "<p>The MSPM0 SDK includes two solutions for secure booting: the Boot Image Manager (BIM) and Customer Secure Code (CSC). BIM implements firmware validation and authentication in devices with one stage of flash memory but a more limited set of security options. CSC utilizes more advanced security features and multiple banks for image validation, authentication and firmware updates.</p>"
   },
   {
     "name": "DALI",
@@ -388,24 +388,6 @@
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
     "description": "<p>DALI (Digitally Addressable Lighting Interface) is a serial protocol for digital lighting control that allows for simple and efficient communication between various lighting application gear and controllers. The MSPM0 SDK provides an easy way to start development of DALI applications using the MSPM0’s Universal Asynchronous Receiver Transmitter (UART) module.</p>"
-  },
-  {
-    "name": "Boot Image 管理器",
-    "mainCategories": [
-      [
-        "Documents"
-      ],
-      [
-        "Examples",
-        "Development Tools"
-      ]
-    ],
-    "subCategories": ["Middleware"],
-    "devices": ["$(MSPM0_all_devices)"],
-    "devtools": ["$(MSPM0_all_devtools)"],
-    "resourceType": "categoryInfo",
-    "resourceClass": ["document"],
-    "description": "<p>The MSPM0 SDK includes a Boot Image Manager: an implementation of the publicly available mcuboot for MSP devices in order to allow for customers to have secure booting features in their development. It will check integrity and authenticate one or more application images loaded and signed on to the device using ECDSA and SHA-256.</p>"
   },
   {
     "name": "Examples",
@@ -495,6 +477,42 @@
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
     "description": "<p></p>"
+  },
+  {
+    "name": "IO-Link",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "<p>IO-Link is the first standardized IO technology worldwide (IEC 61131-9) to communicate with sensors and actuators. IO-Link answers the need of these digital and analog sensors and actuators to exchange process data, diagnosis information, and parameters with a controller (PC or PLC) using a low-cost, digital communication technology. Texas Instruments has partnered with TEConcept to release the IO-Link device implementation for sensors and actuator reference design, providing a low-cost, efficient solution for IO-Link using MSPM0.</p>"
+  },
+  {
+    "name": "Zephyr",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "<p>Texas Instruments has begun development to support Zephyr as a Real-Time Operating option for MSPM0 devices. Zephyr’s implementation can be found on their Home Page, and this will provide the stable version with MSPM0 going forward.</p>"
   },
   {
     "name": "Energy Metrology Library",

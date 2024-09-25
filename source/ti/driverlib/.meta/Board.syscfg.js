@@ -90,12 +90,20 @@ else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() && Common.isDeviceM0x110
         "GPIO", "CRC", "SYSTICK", "WWDT"
     ];
 }
-/* MSPM0L122X_L222X specific options */
-else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+/* MSPM0L122X specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0L122X()){
     MasterOrder = [
-        "SYSCTL", "PWM", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SYSCTL", "RTCA", "PWM", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "SYSTICK", "WWDT"
+        "GPIO", "AESADV", "CRCP", "SYSTICK", "WWDT",
+    ];
+}
+/* MSPM0L222X specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0L222X()){
+    MasterOrder = [
+        "SYSCTL", "RTCA", "PWM", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
+        "GPIO", "AESADV", "CRCP", "SYSTICK", "WWDT", "LCD",
     ];
 }
 /* MSPM0C110X specific options */

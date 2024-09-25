@@ -1,6 +1,6 @@
 ## Example Summary
 
-Toggles a GPIO configured as Hi-Z.
+Toggles a GPIO configured as Hi-Z and on board LED.
 A logic low is forced actively, but a logic high sets the pin as Hi-Z.
 This feature is useful for open-drain digital input/output applications.
 This example expects an external pull-up, but an internal pull-up could be used.
@@ -9,7 +9,8 @@ This example expects an external pull-up, but an internal pull-up could be used.
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| GPIOA | PA11 | Standard Output |
+| GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA6 | Standard Output |
 | SYSCTL |  |  |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
@@ -21,7 +22,8 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA11 | GPIOA | PA11 | J2_11/J4_35 | <ul><li>PA11 can be connected to two locations in boosterpack connector:<br><ul><li>`J14 1:2`: Connect pin to `J2_11`<br><li>`J14 2:3`: Connect pin to `J4_35`</ul></ul> |
+| PA0 | GPIOA | PA0 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 ON` Connect to LED1<br><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA6 | GPIOA | PA6 | J1_7 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 

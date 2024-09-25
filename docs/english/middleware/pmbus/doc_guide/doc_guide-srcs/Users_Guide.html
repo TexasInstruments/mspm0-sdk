@@ -54,6 +54,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#pmbus-examples-supported-hardware">3.1 PMBus Examples Supported Hardware</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#library-footprint">4. Library Footprint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pmbus-controller">PMBus Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#library-versions">5. Library Versions</a></li>
 </ul>
 </li>
 </ul>
@@ -126,6 +131,169 @@
 <li><p>2 LP-MSPM0L1306 or LP-MSPM0G3507 LaunchPad evaluation boards</p></li>
 </ul>
 </section>
+</section>
+<section id="library-footprint">
+<h2>4. Library Footprint<a class="headerlink" href="#library-footprint" title="Permalink to this heading">¶</a></h2>
+<p>The following footprint was obtained with TI Arm Clang compiler v3.2.0 LTS using LP-MSPM0G3507.</p>
+<section id="pmbus-controller">
+<h3>PMBus Controller<a class="headerlink" href="#pmbus-controller" title="Permalink to this heading">¶</a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Example</p></th>
+<th class="head"><p>Module</p></th>
+<th class="head"><p>Optimization Level</p></th>
+<th class="head"><p>Code (bytes)</p></th>
+<th class="head"><p>Const (bytes)</p></th>
+<th class="head"><p>RAM (bytes)</p></th>
+<th class="head"><p>Options</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>pmbus_controller_tps544b20evm</strong></p></td>
+<td><p><strong>Total</strong></p></td>
+<td><p>-O2</p></td>
+<td><p>2572</p></td>
+<td><p>323</p></td>
+<td><p>1279</p></td>
+<td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = true</p></td>
+</tr>
+<tr class="row-odd"><td><p>“</p></td>
+<td><p><em>pmbus.o</em></p></td>
+<td><p>“</p></td>
+<td><p>304</p></td>
+<td><p>0</p></td>
+<td><p>243</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-even"><td><p>“</p></td>
+<td><p><em>smbus_nwk.o</em></p></td>
+<td><p>“</p></td>
+<td><p>234</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-odd"><td><p>“</p></td>
+<td><p><em>smbus_phy.o</em></p></td>
+<td><p>“</p></td>
+<td><p>416</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-even"><td><p>“</p></td>
+<td><p><em>smbus.o</em></p></td>
+<td><p>“</p></td>
+<td><p>376</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-odd"><td><p>“</p></td>
+<td><p><em>dl_i2c.o</em></p></td>
+<td><p>“</p></td>
+<td><p>192</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>pmbus_controller_tps544b20evm</strong></p></td>
+<td><p><strong>Total</strong></p></td>
+<td><p>-Oz -flto*</p></td>
+<td><p>1734</p></td>
+<td><p>409</p></td>
+<td><p>1084</p></td>
+<td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = true</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>pmbus_controller_tps544b20evm</strong></p></td>
+<td><p><strong>Total</strong></p></td>
+<td><p>-O2</p></td>
+<td><p>2556</p></td>
+<td><p>323</p></td>
+<td><p>1279</p></td>
+<td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = false</p></td>
+</tr>
+<tr class="row-even"><td><p>“</p></td>
+<td><p><em>pmbus.o</em></p></td>
+<td><p>“</p></td>
+<td><p>304</p></td>
+<td><p>0</p></td>
+<td><p>243</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-odd"><td><p>“</p></td>
+<td><p><em>smbus_nwk.o</em></p></td>
+<td><p>“</p></td>
+<td><p>234</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-even"><td><p>“</p></td>
+<td><p><em>smbus_phy.o</em></p></td>
+<td><p>“</p></td>
+<td><p>400</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-odd"><td><p>“</p></td>
+<td><p><em>smbus.o</em></p></td>
+<td><p>“</p></td>
+<td><p>376</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-even"><td><p>“</p></td>
+<td><p><em>dl_i2c.o</em></p></td>
+<td><p>“</p></td>
+<td><p>192</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>“</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>pmbus_controller_tps544b20evm</strong></p></td>
+<td><p><strong>Total</strong></p></td>
+<td><p>-Oz -flto*</p></td>
+<td><p>1718</p></td>
+<td><p>409</p></td>
+<td><p>1084</p></td>
+<td><p>SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY = false</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Note: Individual modules are not shown for LTO optimization since the linker optimizes modules and might skip them in .map file.</p></li>
+</ul>
+</section>
+</section>
+<section id="library-versions">
+<h2>5. Library Versions<a class="headerlink" href="#library-versions" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Version 1.10.00.00</strong></p>
+<ul>
+<li><p>SDK Release: 1.30.00.xx</p></li>
+<li><p>Updates:</p>
+<ul>
+<li><p>Updates to use SMBus 1.30.00.xx.</p></li>
+<li><p>Remove unimplemented PMBus_processTimeoutInt.</p></li>
+<li><p>Update examples to use I2C boosterPack standard.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Version 1.00.00.01</strong></p>
+<ul>
+<li><p>SDK Release: 1.10.00.xx</p></li>
+<li><p>Updates:</p>
+<ul>
+<li><p>Initial release.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </section>
 </section>
 

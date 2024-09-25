@@ -13,6 +13,7 @@ frequency using RTCCLK output.
 | SYSCTL | PA3 | LFXIN |
 | SYSCTL | PA4 | LFXOUT |
 | EVENT |  |  |
+| DMA |  |  |
 | RTC | PA9 | RTC Out Pin |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

@@ -11,6 +11,7 @@ control any I2C target, or to create custom drivers.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA26 | Standard Output |
+| GPIOA | PA6 | Standard Output |
 | SYSCTL |  |  |
 | I2C0 | PA0 | I2C Serial Data line (SDA) |
 | I2C0 | PA1 | I2C Serial Clock line (SCL) |
@@ -25,6 +26,7 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA26 | GPIOA | PA26 | J4_38 | <ul><li>PA26 can be connected to LED2 Red<br><ul><li>`J12 ON` Connect to LED2 Red<br><li>`J12 OFF` Disconnect from LED2 Red</ul></ul> |
+| PA6 | GPIOA | PA6 | J1_7 | N/A |
 | PA0 | I2C0 | SDA | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 OFF` Disconnect from LED1</ul></ul> |
 | PA1 | I2C0 | SCL | J1_9 | <ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
@@ -52,3 +54,5 @@ Compile, load and run the example.
 LED2.Red will toggle periodically if transmission and reception were successful.
 LED2.Red will remain off if there is a problem during initialization.
 LED2.Red will remain on if there is a problem during data transfers.
+USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack
+header and can be used to verify the LED behavior.

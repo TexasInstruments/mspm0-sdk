@@ -182,6 +182,19 @@ where:
 -  :math:`P_{act,ph}` = Active power of phase ph
 -  :math:`P_{react,ph}` = Reactive power of phase ph
 
+Per phase Fundamental Apparent Power
+------------------------------------
+
+The per phase Fundamental apparent Power is computed by calculateFundamentalApparentPower():
+
+:math:`P_{FAPP,ph} (mW) = \sqrt{ {P_{Fact,ph}}^2 + {P_{Freact,ph}}^2 }`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{Fact,ph}` = Fundamental active power of phase ph
+-  :math:`P_{Freact,ph}` = Fundamental reactive power of phase ph
+
 Per phase Power Factor
 ----------------------
 
@@ -270,6 +283,19 @@ where:
 -  :math:`P_{APP,ph}` = Apparent power of phase ph
 -  SamplCnt = Number of samples within the present frame
 
+Per phase Fundamental Apparent Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Per phase Fundamental apparent Power is computed by accumulateFundamentalApparentEnergy():
+
+:math:`E_{FAPP,ph} = P_{FAPP,ph} × SamplCnt`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{FAPP,ph}` = Apparent power of phase ph
+-  SamplCnt = Number of samples within the present frame
+
 Total Active Energy
 -------------------
 
@@ -335,6 +361,18 @@ where:
 -  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
 -  :math:`E_{APP,ph}` = Apparent energy of phase ph
 
+Total Fundamental Apparent Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Total Fundamental apparent Power is computed by:
+
+:math:`E_{TFAPP}` = :math:`\sum_{n=1}^{NumPhases} E_{FAPP,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`E_{FAPP,ph}` = Fundamental apparent energy of phase ph
+
 Other Calculations
 ==================
 
@@ -375,7 +413,7 @@ where:
 
 -  :math:`V_{RMS,x}` = RMS Voltage of phase x
 -  :math:`V_{RMS,y}` = RMS Voltage of phase y
--  k = angle betweeen x and y phases
+-  k = angle between x and y phases
 
 Fundamental Line-to-Line Voltage
 --------------------------------
@@ -388,7 +426,7 @@ where:
 
 -  :math:`V_{FRMS,x}` = RMS Fundamental voltage of phase x
 -  :math:`V_{FRMS,y}` = RMS Funcamental voltage of phase y
--  k = angle betweeen x and y phases
+-  k = angle between x and y phases
 
 Per Phase Voltage to Current Angle
 ----------------------------------

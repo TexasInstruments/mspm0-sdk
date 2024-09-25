@@ -2475,3 +2475,129 @@ boot_go(struct boot_rsp *rsp)
     FIH_CALL(context_boot_go, fih_rc, &boot_data, rsp);
     FIH_RET(fih_rc);
 }
+
+/* The following has been added by TI */
+fih_int
+context_return_highest_version(struct boot_loader_state *state, struct boot_rsp *rsp)
+{
+    struct image_header *hdr = NULL;
+    struct image_header *selected_image_header = NULL;
+    uint8_t slot_usage[BOOT_NUM_SLOTS];
+    uint32_t selected_slot;
+    uint32_t slot;
+    uint32_t img_cnt;
+    uint32_t i;
+    int fa_id;
+    int rc;
+    fih_int fih_rc = FIH_FAILURE;
+
+    memset(state, 0, sizeof(struct boot_loader_state));
+
+    /* Open primary and secondary image areas for the duration
+     * of this call.
+     */
+    for (slot = 0; slot < BOOT_NUM_SLOTS; slot++) {
+        fa_id = flash_area_id_from_image_slot(slot);
+        rc = flash_area_open(fa_id, &BOOT_IMG_AREA(state, slot));
+        assert(rc == 0);
+    }
+
+    /* Attempt to read an image header from each slot. */
+    rc = boot_read_image_headers(state, false, NULL);
+    if (rc != 0) {
+        BOOT_LOG_WRN("Failed reading image headers.");
+        goto out;
+    }
+
+    img_cnt = boot_get_slot_usage(state, slot_usage,
+                                  sizeof(slot_usage)/sizeof(slot_usage[0]));
+
+    if (img_cnt) {
+        /* Select the newest and valid image. */
+        for (i = 0; i < img_cnt; i++) {
+            selected_slot = 0;
+
+            /* Iterate over all the slots that are in use (contain an image)
+             * and select the one that holds the newest image.
+             */
+            for (slot = 0; slot < BOOT_NUM_SLOTS; slot++) {
+                if (slot_usage[slot]) {
+                    hdr = boot_img_hdr(state, slot);
+                    if (selected_image_header != NULL) {
+                        rc = boot_version_cmp(&hdr->ih_ver,
+                                              &selected_image_header->ih_ver);
+                        if (rc < 1) {
+                            /* The version of the image being examined wasn't
+                             * greater than the currently selected image's
+                             * version.
+                             */
+                            continue;
+                        }
+                    }
+                    selected_slot = slot;
+                    selected_image_header = hdr;
+
+                    rsp->br_hdr = selected_image_header;
+
+                    /* Return code used assigned during version-ing, and nonzero
+                     * value of 1 (representing a greater version) could
+                     * propagate through and be mistaken for a failure later on,
+                     * should be reset to 0 here to avoid this miscommunication.
+                     */
+                    rc = 0;
+                }
+            }
+        }
+
+    } else {
+        /* No candidate image available */
+        rc = BOOT_EBADIMAGE;
+        goto out;
+    }
+
+out:
+   for (slot = 0; slot < BOOT_NUM_SLOTS; slot++) {
+       flash_area_close(BOOT_IMG_AREA(state, BOOT_NUM_SLOTS - 1 - slot));
+   }
+
+   if (rc) {
+       fih_rc = fih_int_encode(rc);
+   }
+
+   FIH_RET(fih_rc);
+}
+
+fih_int
+boot_return_highest_version(struct boot_rsp *rsp){
+    fih_int fih_rc = FIH_FAILURE;
+    FIH_CALL(context_return_highest_version, fih_rc, &boot_data, rsp);
+    FIH_RET(fih_rc);
+}
+
+
+int
+boot_compare_version(struct image_version *ver1,
+                volatile const struct image_version *ver2){
+    if (ver1->iv_major > ver2->iv_major) {
+        return 1;
+    }
+    if (ver1->iv_major < ver2->iv_major) {
+        return -1;
+    }
+    /* The major version numbers are equal, continue comparison. */
+    if (ver1->iv_minor > ver2->iv_minor) {
+        return 1;
+    }
+    if (ver1->iv_minor < ver2->iv_minor) {
+        return -1;
+    }
+    /* The minor version numbers are equal, continue comparison. */
+    if (ver1->iv_revision > ver2->iv_revision) {
+        return 1;
+    }
+    if (ver1->iv_revision < ver2->iv_revision) {
+        return -1;
+    }
+
+    return 0;
+}

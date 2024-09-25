@@ -28,6 +28,11 @@ const StackSizeOptions = {
         "MSPM0L1346": 256,
     },
     "MSPM0L122X_L222X": {
+        "MSPM0L1226":256,
+        "MSPM0L1227":256,
+        "MSPM0L1228":256,
+        "MSPM0L2226":256,
+        "MSPM0L2227":256,
         "MSPM0L2228":256,
     },
     "MSPM0C110X": {
@@ -65,7 +70,12 @@ const FLASHOriginOptions = {
         "MSPM0L1346": "0x00000000",
     },
     "MSPM0L122X_L222X": {
-        "MSPM0L2228":"0x00000000",
+        "MSPM0L1226": "0x00000000",
+        "MSPM0L1227": "0x00000000",
+        "MSPM0L1228": "0x00000000",
+        "MSPM0L2226": "0x00000000",
+        "MSPM0L2227": "0x00000000",
+        "MSPM0L2228": "0x00000000",
     },
     "MSPM0C110X": {
         "MSPM0C1103"    :"0x00000000",
@@ -103,6 +113,11 @@ const FLASHLengthOptions = {
         "MSPM0L1346": "0x0000FFF8",
     },
     "MSPM0L122X_L222X": {
+        "MSPM0L1226": "0x00010000",
+        "MSPM0L1227": "0x00020000",
+        "MSPM0L1228": "0x00040000",
+        "MSPM0L2226": "0x00010000",
+        "MSPM0L2227": "0x00020000",
         "MSPM0L2228": "0x00040000",
     },
     "MSPM0C110X": {
@@ -140,7 +155,12 @@ const SRAMOriginOptions = {
         "MSPM0L1346": "0x20000000",
     },
     "MSPM0L122X_L222X": {
-        "MSPM0L2228":"0x20000000",
+        "MSPM0L1226": "0x20200000",
+        "MSPM0L1227": "0x20200000",
+        "MSPM0L1228": "0x20200000",
+        "MSPM0L2226": "0x20200000",
+        "MSPM0L2227": "0x20200000",
+        "MSPM0L2228": "0x20200000",
     },
     "MSPM0C110X": {
         "MSPM0C1103"    :"0x20000000",
@@ -177,6 +197,11 @@ const SRAMLengthOptions = {
         "MSPM0L1346": "0x00001000",
     },
     "MSPM0L122X_L222X": {
+        "MSPM0L1226": "0x00008000",
+        "MSPM0L1227": "0x00008000",
+        "MSPM0L1228": "0x00008000",
+        "MSPM0L2226": "0x00008000",
+        "MSPM0L2227": "0x00008000",
         "MSPM0L2228": "0x00008000",
     },
     "MSPM0C110X": {
@@ -214,7 +239,12 @@ const BCROriginOptions = {
         "MSPM0L1346": "0x41C00000",
     },
     "MSPM0L122X_L222X": {
-        "MSPM0L2228":"0x41C00000",
+        "MSPM0L1226": "0x41C00000",
+        "MSPM0L1227": "0x41C00000",
+        "MSPM0L1228": "0x41C00000",
+        "MSPM0L2226": "0x41C00000",
+        "MSPM0L2227": "0x41C00000",
+        "MSPM0L2228": "0x41C00000",
     },
     "MSPM0C110X": {
         "MSPM0C1103"    :"0x41C00000",
@@ -251,7 +281,12 @@ const BCRLengthOptions = {
         "MSPM0L1346": "0x00000080",
     },
     "MSPM0L122X_L222X": {
-        "MSPM0L2228": "0x00000080",
+        "MSPM0L1226": "0x000000FF",
+        "MSPM0L1227": "0x000000FF",
+        "MSPM0L1228": "0x000000FF",
+        "MSPM0L2226": "0x000000FF",
+        "MSPM0L2227": "0x000000FF",
+        "MSPM0L2228": "0x000000FF",
     },
     "MSPM0C110X": {
         "MSPM0C1103"    : "0x00000080",
@@ -288,7 +323,12 @@ const BSLOriginOptions = {
         "MSPM0L1346": "0x41C00100",
     },
     "MSPM0L122X_L222X": {
-        "MSPM0L2228":"0x41C00100",
+        "MSPM0L1226": "0x41C00100",
+        "MSPM0L1227": "0x41C00100",
+        "MSPM0L1228": "0x41C00100",
+        "MSPM0L2226": "0x41C00100",
+        "MSPM0L2227": "0x41C00100",
+        "MSPM0L2228": "0x41C00100",
     },
     "MSPM0C110X": {
         "MSPM0C1103"    :undefined,
@@ -325,7 +365,12 @@ const BSLLengthOptions = {
         "MSPM0L1346": "0x00000080",
     },
     "MSPM0L122X_L222X": {
-        "MSPM0L2228":"0x00000080",
+        "MSPM0L1226": "0x00000080",
+        "MSPM0L1227": "0x00000080",
+        "MSPM0L1228": "0x00000080",
+        "MSPM0L2226": "0x00000080",
+        "MSPM0L2227": "0x00000080",
+        "MSPM0L2228": "0x00000080",
     },
     "MSPM0C110X": {
         "MSPM0C1103"    :undefined,

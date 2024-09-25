@@ -128,7 +128,7 @@ function portGroupDetermine(pinstances, group, port) {
 %       throw 'cannot find the module you are looking for';
 %   }
 %
-%   let pinGroups = { GPIOA: { Outs: [], Ins: [] }, GPIOB: { Outs: [], Ins: [] } };
+%   let pinGroups = { GPIOA: { Outs: [], Ins: [] }, GPIOB: { Outs: [], Ins: [] }, GPIOC: { Outs: [], Ins: [] } };
 %   // if (pinstances.length === 0 ) return;
 %
 %   for(let pin in pinstances) {

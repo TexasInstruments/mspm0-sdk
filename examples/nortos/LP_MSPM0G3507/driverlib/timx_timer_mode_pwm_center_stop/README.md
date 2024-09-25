@@ -8,8 +8,8 @@ signals. The device is configured to wait in STOP mode.
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG0 | PA12 | Counter Compare Pin 0 |
-| TIMG0 | PA13 | Counter Compare Pin 1 |
+| TIMG0 | PA12 | Capture/Compare Pin 0 |
+| TIMG0 | PA13 | Capture/Compare Pin 1 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
@@ -47,11 +47,3 @@ PA12 and PA13.
 PA12 is configured at a 75% duty cycle.
 PA13 is configured at a 50% duty cycle.
 Monitor the PWM signals on PA12 and PA13.
-
-## Important Note
-Early experimental samples have a known issue where the user is unable to
-reconnect their debugger connection after the device has gone into STOP or
-STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain
-the ability to connect the device to the debugger. This information is located
-in the "MSPM0G and MSPM0L Families: Functional Differences With Early Samples"
-document.

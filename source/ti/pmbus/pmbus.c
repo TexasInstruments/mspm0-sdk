@@ -274,13 +274,6 @@ void PMBus_processInt()
 }
 
 
-void PMBus_processTimeoutInt()
-{
-    // Call the SMBUS function to handle a timeout error and restart the SMBUS
-    SMBus_State sSMBState = SMBus_controllerProcessTimeoutInt(&SMB);
-}
-
-
 void PMBus_enablePEC()
 {
     SMBus_enablePEC(&SMB);

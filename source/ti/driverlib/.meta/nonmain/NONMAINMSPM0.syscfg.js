@@ -201,6 +201,13 @@ function validateBCR(inst, validation)
             );
         }
     }
+
+    /* MSPM0L122X_L222X Validation */
+    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        validation.logInfo("For password fields in this device user should " +
+        "provide the SHA-2 256 hash of the password. See description for more "+
+        "details.", inst)
+    }
 }
 
 function validateBSL(inst, validation)
@@ -398,20 +405,38 @@ function createPWConfig(pwType, hiddenStatus, numPWRegs)
         "bslPW": "BSL Access",
     };
 
+    let pwDefaults = [0x761396AF,0x5F63720F,0x5A4AB4BD,0x9FC3630A,0xF930AF12,0x5CEEA650,0x88E11B97,0x51409CE8]
     for (let idx = 0; idx < numPWRegs; idx++)
     {
-        pwConfig.push(
-            {
-                name        : pwType + idx,
-                displayName : pwMap[pwType] + "[" + idx + "]",
-                description : "",
-                longDescription: ``,
-                hidden      : hiddenStatus,
-                displayFormat: "hex",
-                default     : 0xFFFFFFFF,
-                range       : [0, 0xFFFFFFFF]
-            },
-        )
+        /* BSL PW has device-specific configuration for MSPM0L122X_L222X */
+        if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && pwType == "bslPW"){
+            pwConfig.push(
+                {
+                    name        : pwType + idx,
+                    displayName : pwMap[pwType] + "[" + idx + "]",
+                    description : "",
+                    longDescription: ``,
+                    hidden      : hiddenStatus,
+                    displayFormat: "hex",
+                    default     : pwDefaults[idx],
+                    range       : [0, 0xFFFFFFFF]
+                },
+            )
+        }
+        else{
+            pwConfig.push(
+                {
+                    name        : pwType + idx,
+                    displayName : pwMap[pwType] + "[" + idx + "]",
+                    description : "",
+                    longDescription: ``,
+                    hidden      : hiddenStatus,
+                    displayFormat: "hex",
+                    default     : 0xFFFFFFFF,
+                    range       : [0, 0xFFFFFFFF]
+                },
+            )
+        }
     }
 
     return (pwConfig);
@@ -463,6 +488,12 @@ function updateGUISWDPassword(inst, ui)
         inst.swdPW1 = 0xFFFFFFFF;
         inst.swdPW2 = 0xFFFFFFFF;
         inst.swdPW3 = 0xFFFFFFFF;
+        if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            inst.swdPW4 = 0xFFFFFFFF;
+            inst.swdPW5 = 0xFFFFFFFF;
+            inst.swdPW6 = 0xFFFFFFFF;
+            inst.swdPW7 = 0xFFFFFFFF;
+        }
     }
 }
 
@@ -489,6 +520,12 @@ function updateGUIFRPassword(inst, ui)
         inst.frPW1 = 0xFFFFFFFF;
         inst.frPW2 = 0xFFFFFFFF;
         inst.frPW3 = 0xFFFFFFFF;
+        if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            inst.frPW4 = 0xFFFFFFFF;
+            inst.frPW5 = 0xFFFFFFFF;
+            inst.frPW6 = 0xFFFFFFFF;
+            inst.frPW7 = 0xFFFFFFFF;
+        }
     }
 }
 
@@ -515,6 +552,12 @@ function updateGUIMEPassword(inst, ui)
         inst.mePW1 = 0xFFFFFFFF;
         inst.mePW2 = 0xFFFFFFFF;
         inst.mePW3 = 0xFFFFFFFF;
+        if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            inst.mePW4 = 0xFFFFFFFF;
+            inst.mePW5 = 0xFFFFFFFF;
+            inst.mePW6 = 0xFFFFFFFF;
+            inst.mePW7 = 0xFFFFFFFF;
+        }
     }
 }
 
@@ -584,14 +627,26 @@ function updateGUIBSLPassword(inst, ui)
     if (!inst.bslMode)
     {
         /* Reset password */
-        inst.bslPW0 = 0xFFFFFFFF;
-        inst.bslPW1 = 0xFFFFFFFF;
-        inst.bslPW2 = 0xFFFFFFFF;
-        inst.bslPW3 = 0xFFFFFFFF;
-        inst.bslPW4 = 0xFFFFFFFF;
-        inst.bslPW5 = 0xFFFFFFFF;
-        inst.bslPW6 = 0xFFFFFFFF;
-        inst.bslPW7 = 0xFFFFFFFF;
+        if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            inst.bslPW0 = 0x761396AF;
+            inst.bslPW1 = 0x5F63720F;
+            inst.bslPW2 = 0x5A4AB4BD;
+            inst.bslPW3 = 0x9FC3630A;
+            inst.bslPW4 = 0xF930AF12;
+            inst.bslPW5 = 0x5CEEA650;
+            inst.bslPW6 = 0x88E11B97;
+            inst.bslPW7 = 0x51409CE8;
+        }
+        else{
+            inst.bslPW0 = 0xFFFFFFFF;
+            inst.bslPW1 = 0xFFFFFFFF;
+            inst.bslPW2 = 0xFFFFFFFF;
+            inst.bslPW3 = 0xFFFFFFFF;
+            inst.bslPW4 = 0xFFFFFFFF;
+            inst.bslPW5 = 0xFFFFFFFF;
+            inst.bslPW6 = 0xFFFFFFFF;
+            inst.bslPW7 = 0xFFFFFFFF;
+        }
     }
 }
 
@@ -609,7 +664,7 @@ function updateGUIGPIOInvokePinCheck(inst, ui)
     {
         /* If the invoke pin check is disabled, reset values to default */
         inst.bslDefaultInvokePin = true;
-        inst.bslInvokePin = pinOptions[0].name;
+        inst.bslInvokePin = filteredPinOptions[0].name;
         inst.bslInvokePinLevel = 0;
     }
 }
@@ -629,7 +684,7 @@ function updateGUIGPIODefaultInvokePin(inst, ui)
         ui.bslInvokePinLevel.hidden = true;
 
         /* Reset GPIO pin details to default */
-        inst.bslInvokePin = pinOptions[0].name;
+        inst.bslInvokePin = filteredPinOptions[0].name;
         inst.bslInvokePinLevel = 0;
     }
 }
@@ -743,6 +798,71 @@ function onChangeSetCustomProfile(inst,ui)
     }
 }
 
+/* Device-Specific Configurables */
+/* BCR Configurables */
+let extendedConfigBCR = [];
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    extendedConfigBCR = [
+        {
+            // .CSCexist
+            name: "cscExists",
+            displayName: "Enable CSC Policy",
+            description: "Enable / disable the CSC policy in SYSCTL",
+            default: false,
+        },
+        {
+            // .flashBankSwapPolicy
+            name: "flashBankSwap",
+            displayName: "Enable Flash Bank Swap Policy",
+            description: "Enable / Disable the Flash Bank Swap Policy in SYSCTL",
+            default: false,
+        },
+    ]
+};
+let extendedConfigBCRDebug = [];
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    extendedConfigBCRDebug = [
+        {
+            // .debugHold
+            name: "debugHold",
+            displayName: "Debug Hold",
+            description: "Controls the release of debug access until INITDONE is issued.",
+            default: false,
+        },
+    ];
+};
+let extendedConfigBCRCRC = [];
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    extendedConfigBCRCRC = [
+        {
+            // NOTE: this feature is currently disabled/hidden
+            // .userSecureAppHash
+            // TODO: this will most likely require separate fields
+            //          for each of the required values depending on
+            //          the chosen addresses/size. Leaving as
+            //          placeholder for now.
+            // TODO: this would be replaced by a GROUP of configurables similar
+            //          to the ones used for password, can create/repurpose
+            //          similar function. However, this is tied to re-enabling
+            //          the user app checking feature, so this is less priority.
+            name        : "appCRCHash",
+            displayName : "Application CRC Check Application Hash",
+            description : "",
+            longDescription: ``,
+            hidden      : true,
+            displayFormat: "hex",
+            default     : 0xFFFFFFFF,
+            range       : [0, 0xFFFFFFFF]
+        },
+    ];
+};
+
+/* Password Configurables: Device Specific */
+const passwordWordLen = (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ? 8:4);
+let mePWConfig = createPWConfig("mePW", true, passwordWordLen);
+let frPWConfig = createPWConfig("frPW", true, passwordWordLen);
+let swdPWConfig = createPWConfig("swdPW", true, passwordWordLen);
+
 let nonMainConfig = [
     /****** PROFILES CONFIGURATION *******/
     {
@@ -840,6 +960,7 @@ following at boot time:
                 description: "",
                 collapsed: true,
                 config: [
+                    // .swdpMode
                     {
                         name        : "swdEnable",
                         displayName : "Enable Physical Debug Port (SW-DP)",
@@ -866,6 +987,7 @@ for more details on the security levels.
                         default     : true,
                         onChange    : onChangeSWDEnable,
                     },
+                    // .debugAccess
                     {
                         name        : "apEnable",
                         displayName : "Enable Application Debug Access",
@@ -894,10 +1016,18 @@ for more details on the security levels.
                         onChange    : onChangeAPEnable,
                     },
                     {
+                        // .passwordDebugLock
                         /* SWDPW[0-3] */
                         name: "GROUP_SWD_PW",
-                        config: createPWConfig("swdPW", true, 4),
+                        displayName: "SWD Password",
+                        longDescription: `
+User should provide the SHA-2 256 Hash of the Password. In order to calculate
+the hash value, user can use online tools like the one provided here:
+[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
+                        `,
+                        config: swdPWConfig,
                     },
+                    // .tifaMode
                     {
                         name        : "tifaEnable",
                         displayName : "Enable TI Failure Analysis",
@@ -916,7 +1046,7 @@ initiated.
                         readOnly    : Common.isDeviceM0C(),
                         onChange    : onChangeTIFAEnable,
                     },
-                ],
+                ].concat(extendedConfigBCRDebug),
             },
             {
                 name: "GROUP_SWD_MASS_ERASE_FACTORY_RESET_CONFIG",
@@ -925,6 +1055,7 @@ initiated.
                 collapsed: true,
                 config: [
                     {
+                        // .factoryResetMode
                         /* BOOTCFG2.FRMODE */
                         name        : "frMode",
                         displayName : "Factory Reset Mode Policy",
@@ -950,11 +1081,19 @@ application code and data.
                         onChange    : onChangeFactoryReset,
                     },
                     {
+                        // .passwordFactoryReset
                         /* FRPW[0-3] */
                         name: "GROUP_FACTORY_RESET_PW",
-                        config: createPWConfig("frPW", true, 4),
+                        displayName: "Factory Reset Password",
+                        longDescription: `
+User should provide the SHA-2 256 Hash of the Password. In order to calculate
+the hash value, user can use online tools like the one provided here:
+[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
+                        `,
+                        config: frPWConfig,
                     },
                     {
+                        // .massEraseMode
                         /* BOOTCFG2.MEMODE */
                         name        : "meMode",
                         displayName : "Mass Erase Mode Policy",
@@ -981,9 +1120,16 @@ and data while leaving the device configuration intact.
                         onChange    : onChangeMassErase,
                     },
                     {
+                        // .passwordMassErase
                         /* MEPW[0-3] */
                         name: "GROUP_MASS_ERASE_PW",
-                        config: createPWConfig("mePW", true, 4),
+                        displayName: "Mass Erase Password",
+                        longDescription: `
+User should provide the SHA-2 256 Hash of the Password. In order to calculate
+the hash value, user can use online tools like the one provided here:
+[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
+                        `,
+                        config: mePWConfig,
                     },
                 ],
             },
@@ -993,6 +1139,7 @@ and data while leaving the device configuration intact.
                 description: "",
                 config: [
                     {
+                        // .staticWriteProtectionMainLow
                         /* FLASHSWP0 */
                         name        : "staticWriteProtectionMainLow",
                         displayName : "MAIN SWP (Lower Sectors)",
@@ -1018,6 +1165,7 @@ Refer to the TRM and the device datasheet for more information.
                         range       : [0, 0xFFFFFFFF]
                     },
                     {
+                        // .staticWriteProtectionMainHigh
                         /* FLASHSWP1 */
                         name        : "staticWriteProtectionMainHigh",
                         displayName : "MAIN SWP (Remaining Sectors)",
@@ -1042,6 +1190,7 @@ Refer to the TRM and the device datasheet for more information.
                         range       : [0, 0xFFFFFFFF]
                     },
                     {
+                        // .staticWriteProtectionNonMain
                         /* BOOTCFG3.NONMAINLOCK */
                         name        : "staticWriteProtectionNonMain",
                         displayName : "NONMAIN Static Write Protection",
@@ -1062,6 +1211,7 @@ change the configuration data.
                 description: "",
                 config: [
                     {
+                        // .secureBootMode
                         /* BOOTCFG3.APPCRCMODE */
                         name        : "appCRCCheck",
                         displayName : "Enable Application CRC Check",
@@ -1082,9 +1232,13 @@ be started. If the BSL is enabled, it is entered. If not, then the boot fails.
                             ui.appCRCCheckStartAddress.hidden = !(inst.appCRCCheck);
                             ui.appCRCCheckLength.hidden = !(inst.appCRCCheck);
                             ui.appCRC.hidden = !(inst.appCRCCheck);
+                            if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+                                ui.appCRCHash.hidden = !(inst.appCRCCheck);
+                            }
                         },
                     },
                     {
+                        // .userSecureAppStartAddr
                         /* APPCRCSTART */
                         name        : "appCRCCheckStartAddress",
                         displayName : "Application CRC Check Start Address",
@@ -1096,6 +1250,7 @@ be started. If the BSL is enabled, it is entered. If not, then the boot fails.
                         range       : [0, 0xFFFFFFFF]
                     },
                     {
+                        // .userSecureAppLength
                         /* APPCRCLEN */
                         name        : "appCRCCheckLength",
                         displayName : "Application CRC Check Application Length",
@@ -1107,6 +1262,7 @@ be started. If the BSL is enabled, it is entered. If not, then the boot fails.
                         range       : [0, 0xFFFFFFFF]
                     },
                     {
+                        // .userSecureAppCrc
                         /* APPCRC */
                         name        : "appCRC",
                         displayName : "Expected Application CRC Check Digest (CRC-32)",
@@ -1117,9 +1273,11 @@ be started. If the BSL is enabled, it is entered. If not, then the boot fails.
                         default     : 0xFFFFFFFF,
                         range       : [0, 0xFFFFFFFF]
                     },
-                ],
+                ].concat(extendedConfigBCRCRC),
             },
+        ].concat(extendedConfigBCR).concat([
             {
+                // .fastBootMode
                 /* BOOTCFG1.FASTBOOTMODE */
                 name        : "fastBootMode",
                 displayName : "Enable Fast Boot Mode",
@@ -1139,6 +1297,7 @@ boot mode speeds up the boot process via the following methods:
                 default     : false,
                 readOnly    : Common.isDeviceM0C(),
             },
+            // .bcrConfigID
             {
                 name        : "bcrConfigID",
                 displayName : "BCR Configuration ID",
@@ -1164,6 +1323,7 @@ boot mode speeds up the boot process via the following methods:
                 },
             },
             {
+                // .userCfgCRC
                 /* BOOTCRC */
                 name        : "bootCRC",
                 displayName : "Expected BCR Configuration CRC",
@@ -1182,7 +1342,10 @@ not possible to recover the device**.
                 displayFormat: "hex",
                 default     : 0,
                 getValue    : (inst) => {
-                    if (!Common.isDeviceM0C())
+                    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+                        return calculateBCRCRC_MSPM0L122X_L222X(inst);
+                    }
+                    else if (!Common.isDeviceM0C())
                     {
                         return calculateBCRCRC(inst);
                     }
@@ -1194,6 +1357,7 @@ not possible to recover the device**.
                 },
             },
             {
+                // .bootloaderMode
                 /* BOOTCFG1.BSLMODE */
                 name        : "bslMode",
                 displayName : "Enable BSL",
@@ -1207,15 +1371,14 @@ any invocation mechanism.
                 readOnly    : Common.isDeviceM0C(),
                 onChange    : onChangeBSLEnable,
             },
-        ],
+        ])
     },
 ]
 
 /* JS CRC implementation from https://github.com/SheetJS/js-crc32 */
 const CRC32 = require("./crc-32/crc32");
 
-function calculateBCRCRC(inst)
-{
+function calculateBCRCRC(inst){
     /*
      * Data is stored, LSB first. To emulate, create a string of the BCR struct
      * values, starting from the last struct field (excluding the BCR struct CRC).
@@ -1275,6 +1438,148 @@ function calculateBCRCRC(inst)
         (inst.swdPW2).toString(16).padStart(8, "0") +
         (inst.swdPW1).toString(16).padStart(8, "0") +
         (inst.swdPW0).toString(16).padStart(8, "0");
+
+    bcrConfigStr += (inst.bslInvokePinCheck) ? "AABB" : "FFFF";
+    bcrConfigStr += (inst.tifaEnable) ? "AABB" : "FFFF";
+    bcrConfigStr += (inst.swdEnable) ? "AABB" : "FFFF";
+
+    let debugAccessStr = "FFFF"
+    if (inst.apEnable == "enabled")
+    {
+        debugAccessStr = "AABB";
+    }
+    else if (inst.apEnable == "enabledWithPW")
+    {
+        debugAccessStr = "CCDD";
+    }
+
+    bcrConfigStr += debugAccessStr;
+    bcrConfigStr += (inst.bcrConfigID).toString(16).padStart(8, "0");
+
+    /* Convert into an array and reverse the values */
+    let bcrConfigArr = chunkString(bcrConfigStr, 2).reverse();
+
+    /* Convert array of strings into array of hex numbers */
+    let crc = CRC32.buf(bcrConfigArr.map(el => parseInt(el, 16)));
+
+    /* Calculate the JAMCRC and get the unsigned value */
+    crc = (~crc) >>> 0
+
+    return (crc);
+}
+
+function calculateBCRCRC_MSPM0L122X_L222X(inst)
+{
+    /*
+     * Data is stored, LSB first. To emulate, create a string of the BCR struct
+     * values, starting from the last struct field (excluding the BCR struct CRC).
+     *
+     * Once the string is created, convert to an array and reverse the values.
+     */
+    let bcrConfigStr = "";
+
+    /*
+     * Strings should be padded appropriately so that 0s are included in CRC
+     * calculations
+     */
+
+    /* Reserved, 32-bits (bc_reserved_1) */
+    bcrConfigStr +=  "FFFFFFFF"
+
+    /*
+     * App CRC Hash: option currently not handled by SysConfig, have default
+     * value in the meantime.
+     *
+     * Commented out the user-provided option for now.
+     */
+    // bcrConfigStr += (appCRCHash7).toString(16).padStart(8, "0") +
+    // (appCRCHash6).toString(16).padStart(8, "0") +
+    // (appCRCHash5).toString(16).padStart(8, "0") +
+    // (appCRCHash4).toString(16).padStart(8, "0") +
+    // (appCRCHash3).toString(16).padStart(8, "0") +
+    // (appCRCHash2).toString(16).padStart(8, "0") +
+    // (appCRCHash1).toString(16).padStart(8, "0") +
+    // (appCRCHash0).toString(16).padStart(8, "0");
+    //
+    /*
+     * App CRC Hash: option currently not handled by SysConfig, have default
+     * value in the meantime
+     *
+     * Using 0xFFFFFFFF (CFG_DEFAULT_VALUE) default value for now
+     */
+    bcrConfigStr += (0xFFFFFFFF).toString(16).padStart(8, "0") +
+    (0xFFFFFFFF).toString(16).padStart(8, "0") +
+    (0xFFFFFFFF).toString(16).padStart(8, "0") +
+    (0xFFFFFFFF).toString(16).padStart(8, "0") +
+    (0xFFFFFFFF).toString(16).padStart(8, "0") +
+    (0xFFFFFFFF).toString(16).padStart(8, "0") +
+    (0xFFFFFFFF).toString(16).padStart(8, "0") +
+    (0xFFFFFFFF).toString(16).padStart(8, "0");
+
+    bcrConfigStr += (inst.appCRCCheckLength).toString(16).padStart(8, "0");
+    bcrConfigStr += (inst.appCRCCheckStartAddress).toString(16).padStart(8, "0");
+    bcrConfigStr += (inst.appCRCCheck) ? "AABB" : "FFFF";
+
+    /* Reserved, 16-bits (bc_reserved_0) */
+    bcrConfigStr += "FFFF";
+
+    bcrConfigStr += (inst.swdPW7).toString(16).padStart(8, "0") +
+        (inst.swdPW6).toString(16).padStart(8, "0") +
+        (inst.swdPW5).toString(16).padStart(8, "0") +
+        (inst.swdPW4).toString(16).padStart(8, "0") +
+        (inst.swdPW3).toString(16).padStart(8, "0") +
+        (inst.swdPW2).toString(16).padStart(8, "0") +
+        (inst.swdPW1).toString(16).padStart(8, "0") +
+        (inst.swdPW0).toString(16).padStart(8, "0");
+    bcrConfigStr += (inst.frPW7).toString(16).padStart(8, "0") +
+        (inst.frPW6).toString(16).padStart(8, "0") +
+        (inst.frPW5).toString(16).padStart(8, "0") +
+        (inst.frPW4).toString(16).padStart(8, "0") +
+        (inst.frPW3).toString(16).padStart(8, "0") +
+        (inst.frPW2).toString(16).padStart(8, "0") +
+        (inst.frPW1).toString(16).padStart(8, "0") +
+        (inst.frPW0).toString(16).padStart(8, "0");
+    bcrConfigStr += (inst.mePW7).toString(16).padStart(8, "0") +
+        (inst.mePW6).toString(16).padStart(8, "0") +
+        (inst.mePW5).toString(16).padStart(8, "0") +
+        (inst.mePW4).toString(16).padStart(8, "0") +
+        (inst.mePW3).toString(16).padStart(8, "0") +
+        (inst.mePW2).toString(16).padStart(8, "0") +
+        (inst.mePW1).toString(16).padStart(8, "0") +
+        (inst.mePW0).toString(16).padStart(8, "0");
+
+    let meModeStr = "FFFF";
+    if (inst.meMode == "enabled")
+    {
+        meModeStr = "AABB";
+    }
+    else if (inst.meMode == "enabledWithPW")
+    {
+        meModeStr = "CCDD";
+    }
+
+    let frModeStr = "FFFF";
+    if (inst.frMode == "enabled")
+    {
+        frModeStr = "AABB";
+    }
+    else if (inst.frMode == "enabledWithPW")
+    {
+        frModeStr = "CCDD";
+    }
+
+    bcrConfigStr += frModeStr + meModeStr;
+
+    bcrConfigStr += (inst.bslMode) ? "AABB" : "FFFF";
+    bcrConfigStr += (inst.fastBootMode) ? "AABB" : "FFFF";
+
+    bcrConfigStr += (inst.flashBankSwap) ? "FFFF" : "AABB";
+    bcrConfigStr += (inst.cscExists) ? "FFFF" : "AABB";
+    bcrConfigStr += (inst.debugHold) ? "FFFF" : "AABB";
+
+    bcrConfigStr += (inst.staticWriteProtectionNonMain) ? "FFFF" : "AABB";
+    bcrConfigStr += (inst.staticWriteProtectionMainHigh).toString(16).padStart(8, "0");
+    bcrConfigStr += (inst.staticWriteProtectionMainLow).toString(16).padStart(8, "0");
 
     bcrConfigStr += (inst.bslInvokePinCheck) ? "AABB" : "FFFF";
     bcrConfigStr += (inst.tifaEnable) ? "AABB" : "FFFF";
@@ -1428,6 +1733,9 @@ let validDeviceDataPins = _.filter(system.deviceData.devicePins, (pin) =>
 const pinOptions = _.map(validDeviceDataPins, (pin) =>
     ({name: pin.mux.muxSetting[0].peripheralPin.peripheralName}));
 
+const filteredPinOptions = pinOptions.filter((pin) =>
+    {return Common.getGPIOPort(pin.name) !== "GPIOC"});
+
 /* Create array of GPIO pins with their associated PINCM */
 const iomuxPincmOptions = _.map(validDeviceDataPins, (pin) =>
     ({name: pin.designSignalName, num: pin.attributes.iomux_pincm}));
@@ -1479,7 +1787,7 @@ if (Common.isDeviceM0G())
 }
 else if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X())
 {
-    //TODO: A2_LCD may have different default BSL pins. Make sure to update
+    //TODO: Confirm/Update default pin selection.
     defaultBSLUARTRXPinCM = "25";
     defaultBSLUARTTXPinCM = "26";
     defaultBSLI2CSCLPinCM = "2";
@@ -1571,8 +1879,15 @@ if (!Common.isDeviceM0C())
             collapsed: true,
             config: [
                 {
+                    // .password
                     /* BSLPW[0-7] */
                     name: "GROUP_BSL_ACCESS_PW",
+                    displayName: "BSL Access Password",
+                    longDescription: `
+User should provide the SHA-2 256 Hash of the Password. In order to calculate
+the hash value, user can use online tools like the one provided here:
+[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
+                    `,
                     config: createPWConfig("bslPW", false, 8),
                 },
                 {
@@ -1581,6 +1896,7 @@ if (!Common.isDeviceM0C())
                     description: "",
                     config: [
                         {
+                            // .bslPinInvokeEnable
                             /* BOOTCFG0.BSLIVKPINEN */
                             name        : "bslInvokePinCheck",
                             displayName : "Enable BSL Invoke Pin Check",
@@ -1609,8 +1925,8 @@ if (!Common.isDeviceM0C())
                             description : "Select BSL Invoke Pin",
                             longDescription: ``,
                             hidden      : true,
-                            default     : pinOptions[0].name,
-                            options     : pinOptions,
+                            default     : filteredPinOptions[0].name,
+                            options     : filteredPinOptions,
                         },
                         {
                             /* BSLCFG.BSLIVK_PINCM */
@@ -1639,6 +1955,7 @@ if (!Common.isDeviceM0C())
                             ],
                         },
                         {
+                            // .pin.pinData0
                             /* For background calculation only */
                             name        : "bslInvokePinData0",
                             displayName : "BSL Invoke Pin Details: Data0",
@@ -1651,6 +1968,7 @@ if (!Common.isDeviceM0C())
                             getValue    : (inst) => calculatePinData0(inst),
                         },
                         {
+                            // .pin.pinData1
                             /* For background calculation only */
                             name        : "bslInvokePinData1",
                             displayName : "BSL Invoke Pin Details: Data1",
@@ -1687,6 +2005,7 @@ if (!Common.isDeviceM0C())
                             options: createUARTTXPinOptions,
                         },
                         {
+                            // .interfacePins.UART_TXD_pad_num
                             name: "uartTXPadNum",
                             displayName: "UART TX Pad Number",
                             description: "Pad number represents the IOMUX PINCM value",
@@ -1705,6 +2024,7 @@ if (!Common.isDeviceM0C())
                             }
                         },
                         {
+                            // .interfacePins.UART_TXD_PF_mux_sel
                             name: "uartTXMux",
                             displayName: "UART TX Mux",
                             description: "The mux value represents the pin function",
@@ -1730,6 +2050,7 @@ if (!Common.isDeviceM0C())
                             options: createUARTRXPinOptions,
                         },
                         {
+                            // .interfacePins.UART_RXD_pad_num
                             name: "uartRXPadNum",
                             displayName: "UART RX Pad Number",
                             description: "Pad number represents the IOMUX PINCM value",
@@ -1748,6 +2069,7 @@ if (!Common.isDeviceM0C())
                             }
                         },
                         {
+                            // .interfacePins.UART_RXD_PF_mux_sel
                             name: "uartRXMux",
                             displayName: "UART RX Mux",
                             description: "The mux value represents the pin function",
@@ -1789,6 +2111,7 @@ if (!Common.isDeviceM0C())
                             options: createI2CSCLPinOptions,
                         },
                         {
+                            // .interfacePins.I2C_SCL_pad_num
                             name: "i2cSCLPadNum",
                             displayName: "I2C SCL Pad Number",
                             description: "Pad number represents the IOMUX PINCM value",
@@ -1807,6 +2130,7 @@ if (!Common.isDeviceM0C())
                             }
                         },
                         {
+                            // .interfacePins.I2C_SCL_PF_mux_sel
                             name: "i2cSCLMux",
                             displayName: "I2C SCL Mux",
                             description: "The mux value represents the pin function",
@@ -1832,6 +2156,7 @@ if (!Common.isDeviceM0C())
                             options: createI2CSDAPinOptions,
                         },
                         {
+                            // .interfacePins.I2C_SDA_pad_num
                             name: "i2cSDAPadNum",
                             displayName: "I2C SDA Pad Number",
                             description: "Pad number represents the IOMUX PINCM value",
@@ -1850,6 +2175,7 @@ if (!Common.isDeviceM0C())
                             }
                         },
                         {
+                            // .interfacePins.I2C_SDA_PF_mux_sel
                             name: "i2cSDAMux",
                             displayName: "I2C SDA Mux",
                             description: "The mux value represents the pin function",
@@ -1867,6 +2193,7 @@ if (!Common.isDeviceM0C())
                             }
                         },
                         {
+                            // .i2cSlaveAddress
                             name: "i2cSlaveAddress",
                             displayName: "I2C Target Address (7-bit)",
                             default: 0x0048,
@@ -1881,6 +2208,7 @@ if (!Common.isDeviceM0C())
                     description: "",
                     config: [
                         {
+                            // .flashPluginEnable
                             /* BSLPLUGINCFG.PLUGINEXISTS */
                             name        : "bslFlashPluginEnable",
                             displayName : "BSL Flash Plugin Enable",
@@ -1896,6 +2224,7 @@ if (!Common.isDeviceM0C())
                             onChange    : onChangePluginConfig,
                         },
                         {
+                            // .pluginType
                             /* BSLPLUGINCFG.PLUGINTYPE */
                             name        : "bslPluginType",
                             displayName : "BSL Plugin Type",
@@ -1910,6 +2239,7 @@ if (!Common.isDeviceM0C())
                             ],
                         },
                         {
+                            // .pluginSramSize
                             /* BSL Plugin SRAM size */
                             name: "bslPluginSRAMSize",
                             displayName: "Plugin SRAM Size",
@@ -1949,6 +2279,7 @@ if (!Common.isDeviceM0C())
                             range: [0, 0xFF],
                         },
                         {
+                            // .pluginHook[0]
                             /* BSLPLUGINHOOK[0] */
                             name        : "bslPluginHookInit",
                             displayName : "Function Pointer for Plugin Init",
@@ -1972,6 +2303,7 @@ if (!Common.isDeviceM0C())
                             range: [0, 0xFFFFFFFF],
                         },
                         {
+                            // .pluginHook[1]
                             /* BSLPLUGINHOOK[1] */
                             name        : "bslPluginHookReceive",
                             displayName : "Function Pointer for Plugin Receive",
@@ -1995,6 +2327,7 @@ if (!Common.isDeviceM0C())
                             range: [0, 0xFFFFFFFF],
                         },
                         {
+                            // .pluginHook[2]
                             /* BSLPLUGINHOOK[2] */
                             name        : "bslPluginHookTransmit",
                             displayName : "Function Pointer for Plugin Transmit",
@@ -2018,6 +2351,7 @@ if (!Common.isDeviceM0C())
                             range: [0, 0xFFFFFFFF],
                         },
                         {
+                            // .pluginHook[3]
                             /* BSLPLUGINHOOK[3] */
                             name        : "bslPluginHookDeInit",
                             displayName : "Function Pointer for Plugin De-Init",
@@ -2048,6 +2382,7 @@ if (!Common.isDeviceM0C())
                     description: "",
                     config: [
                         {
+                            // .BSLAlternateConfig
                             /* BSLALTCFG */
                             name        : "bslAltConfig",
                             displayName : "Use Alternate BSL Configuration",
@@ -2064,6 +2399,7 @@ if (!Common.isDeviceM0C())
                             onChange    : onChangeAltBSLConfig,
                         },
                         {
+                            // .BSLAlternateAddr
                             /* BSLALTADDR */
                             name        : "bslAltAddress",
                             displayName : "Alternate BSL Address",
@@ -2089,6 +2425,7 @@ if (!Common.isDeviceM0C())
                     ],
                 },
                 {
+                    // .configID
                     /* BSLID */
                     name        : "bslConfigID",
                     displayName : "BSL Configuration ID",
@@ -2101,6 +2438,7 @@ if (!Common.isDeviceM0C())
                     range       : [0, 0xFFFFFFFF]
                 },
                 {
+                    // .appRev
                     /* BSLAPPVER */
                     name        : "bslAppVersion",
                     displayName : "BSL App Version",
@@ -2122,6 +2460,7 @@ if (!Common.isDeviceM0C())
                     range       : [0, 0xFFFFFFFF]
                 },
                 {
+                    // .memoryRead
                     /* BSLCFG.READOUTEN */
                     name        : "bslEnableReadOut",
                     displayName : "BSL Read Out Enable",
@@ -2135,6 +2474,7 @@ if (!Common.isDeviceM0C())
                     default     : false,
                 },
                 {
+                    // .securityAlert
                     /* BSLSECCFG */
                     name        : "bslSecurityConfig",
                     displayName : "BSL Security Alert Configuration",
@@ -2165,6 +2505,7 @@ if (!Common.isDeviceM0C())
                     ],
                 },
                 {
+                    // .userCfgCRC
                     /* BSLCRC */
                     name        : "bslCRC",
                     displayName : "Expected BSL Configuration CRC",
@@ -2173,7 +2514,9 @@ if (!Common.isDeviceM0C())
                     hidden      : false,
                     displayFormat: "hex",
                     default     : 0,
-                    getValue    : (inst) =>  calculateBSLCRC(inst),
+                    getValue    : (inst) =>  {
+                        return calculateBSLCRC(inst);
+                    },
                 },
             ],
         },
@@ -2192,6 +2535,10 @@ function calculatePinData0(inst)
     {
         /* Default pincm depends on the device family */
         let pinCM = (Common.isDeviceM0G()) ? 40 : 19;
+        /* TODO: update approach to get desired PinCM from deviceData + existing apis vs hardcoded */
+        if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            pinCM = 50;
+        }
 
         /* Default pin level is high */
         pinData0 = pinCM | (1 << 7);

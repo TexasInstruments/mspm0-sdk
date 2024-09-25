@@ -115,7 +115,8 @@ int main(void)
 
     /* If write and read were successful, toggle LED */
     while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
         delay_cycles(12000000);
     }
 }

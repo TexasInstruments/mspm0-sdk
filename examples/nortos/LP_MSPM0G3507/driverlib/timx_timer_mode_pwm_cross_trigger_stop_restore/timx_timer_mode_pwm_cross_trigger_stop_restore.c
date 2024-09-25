@@ -41,7 +41,6 @@
 #define TIMER_1_SEC_DELAY (32767)
 
 volatile bool gIsTimerExpired;
-
 int main(void)
 {
     bool isRetentionError;
@@ -55,15 +54,21 @@ int main(void)
 
     /* Start 1 sec timeout and PWM signals */
     DL_TimerG_startCounter(TIMER_0_INST);
+
+    /* Turn User Test Pin On */
+    DL_GPIO_setPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_TEST_PIN);
+
     DL_TimerA_generateCrossTrigger(PWM_0_INST);
 
     while (false == gIsTimerExpired) {
         __WFE();
     }
+    /* Turn User Test Pin Off */
+    DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_TEST_PIN);
 
     /* Make sure instances to be saved are in IDLE state */
     DL_TimerA_stopCounter(PWM_0_INST);
-    DL_TimerA_stopCounter(PWM_1_INST);
+    DL_TimerG_stopCounter(PWM_1_INST);
 
     if (true == SYSCFG_DL_saveConfiguration()) {
         gIsTimerExpired = false;
@@ -79,9 +84,13 @@ int main(void)
         DL_TimerG_setTimerCount(TIMER_0_INST, TIMER_1_SEC_DELAY);
         DL_TimerG_startCounter(TIMER_0_INST);
 
+        /* Turn User Test Pin On */
+        DL_GPIO_setPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_TEST_PIN);
         while (false == gIsTimerExpired) {
             __WFE();
         }
+        /* Turn User Test Pin Off */
+        DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_TEST_PIN);
 
         if (true == SYSCFG_DL_restoreConfiguration()) {
             isRetentionError = false;

@@ -42,6 +42,10 @@
 #include <ti/smbus/smbus.h>
 #include "SMB_Demo.h"
 
+#if (SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY == false)
+    #error "This example requires Host Notify function. Enable in smbus.h"
+#endif
+
 //
 // Macros and definitions
 //

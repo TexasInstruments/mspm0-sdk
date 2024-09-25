@@ -1,5 +1,3 @@
-
-// TODO: probably want to move this file to the /project_config/ folder so it lives together with the other updates
 let Common = system.getScript("/ti/driverlib/Common.js");
 
 const gpns = {
@@ -31,6 +29,11 @@ const gpns = {
         { name: "MSPM0L1346"},
     ],
     "MSPM0L122X_L222X": [
+        { name: "MSPM0L1226"},
+        { name: "MSPM0L1227"},
+        { name: "MSPM0L1228"},
+        { name: "MSPM0L2226"},
+        { name: "MSPM0L2227"},
         { name: "MSPM0L2228"},
     ],
     "MSPM0C110X": [
@@ -79,9 +82,13 @@ const GPNOptionsPerDevice = {
         { name: "MSPM0L1346"},
     ],
     "MSPM0L122X": [
-        // TODO: No existing file. Need to update once linker/startup are provided for this family and gpn
+        { name: "MSPM0L1226"},
+        { name: "MSPM0L1227"},
+        { name: "MSPM0L1228"},
     ],
     "MSPM0L222X": [
+        { name: "MSPM0L2226"},
+        { name: "MSPM0L2227"},
         { name: "MSPM0L2228"},
     ],
     "MSPM0C110X": [
@@ -96,9 +103,7 @@ const GPNOptionsPerDevice = {
 };
 
 let index = Common.getDeviceFamily();
-// let index = system.deviceData.device;
 
 exports = {
-    // gpnOptions  : gpns[index],
     gpnOptions : GPNOptionsPerDevice[system.deviceData.device],
 }

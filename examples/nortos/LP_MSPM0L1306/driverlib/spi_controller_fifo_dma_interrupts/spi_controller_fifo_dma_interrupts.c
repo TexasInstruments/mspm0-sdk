@@ -45,16 +45,26 @@ uint8_t gTxPacket[SPI_PACKET_SIZE] = {'M', 'S', 'P', '!'};
 /* Data for SPI to receive */
 uint8_t gRxPacket[SPI_PACKET_SIZE];
 
+/*
+ * Expected return value if transmission is successful
+ * using spi_peripheral_fifo_dma_interrupts
+ */
+uint8_t expectedRxMessage[SPI_PACKET_SIZE] = {1, 2, 3, 4};
+
 volatile bool gSPIDataTransmitted, gDMATXDataTransferred,
     gDMARXDataTransferred;
 
+
 int main(void)
 {
+    bool comparisonSuccessful = true;
+
     SYSCFG_DL_init();
 
     gSPIDataTransmitted   = false;
     gDMATXDataTransferred = false;
     gDMARXDataTransferred = false;
+
 
     /*
      * Configure DMA source, destination and size to transfer data from
@@ -111,14 +121,26 @@ int main(void)
         __WFE();
     }
 
+
     /*
-     * Set a SW breakpoint to check results.
      * If this example is used with the
      * spi_peripheral_fifo_dma_interrupts example,
      * the expected data that will be received in gRxPacket is
      * {0x1, 0x2, 0x3, 0x4}.
+     *
+     * Optionally, the user can comment out the following comparison and
+     * set a breakpoint to check results instead.
      */
-    __BKPT(0);
+    for (uint8_t i = 0; i < SPI_PACKET_SIZE; i++) {
+        comparisonSuccessful =
+            comparisonSuccessful && (gRxPacket[i] == expectedRxMessage[i]);
+    }
+
+    if (comparisonSuccessful) {
+        /* set LED to indicate successful completion */
+        DL_GPIO_clearPins(GPIO_LEDS_PORT,
+            (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
+    }
 
     while (1) {
         __WFI();

@@ -8,8 +8,8 @@ QEI is configured, and will turn an LED on or off depending on motor direction.
 | --- | --- | --- |
 | GPIOA | PA0 | Open-Drain Output |
 | SYSCTL |  |  |
-| TIMG8 | PA29 | Counter Compare Pin 0 |
-| TIMG8 | PA30 | Counter Compare Pin 1 |
+| TIMG8 | PA29 | Capture/Compare Pin 0 |
+| TIMG8 | PA30 | Capture/Compare Pin 1 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

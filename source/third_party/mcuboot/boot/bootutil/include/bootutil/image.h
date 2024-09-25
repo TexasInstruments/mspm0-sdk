@@ -99,6 +99,9 @@ struct flash_area;
 					    * ...
 					    * 0xffa0 - 0xfffe
 					    */
+#define IMAGE_TLV_CUSTOM_TI_ADD_KEY     0xCC /* Custom TLV to add key based on hash */
+#define IMAGE_TLV_CUSTOM_TI_REVOKE_KEY  0xCD /* Custom TLV to revoke key based on hash */
+
 #define IMAGE_TLV_ANY               0xffff /* Used to iterate over all TLV */
 
 struct image_version {
@@ -176,6 +179,10 @@ int bootutil_tlv_iter_next(struct image_tlv_iter *it, uint32_t *off,
 int32_t bootutil_get_img_security_cnt(struct image_header *hdr,
                                       const struct flash_area *fap,
                                       uint32_t *security_cnt);
+
+int boot_compare_version(struct image_version *ver1,
+                         volatile const struct image_version *ver2);
+
 
 #ifdef __cplusplus
 }

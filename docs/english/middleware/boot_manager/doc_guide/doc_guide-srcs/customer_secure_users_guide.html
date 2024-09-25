@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide &mdash; Secure Booting User&#39;s Guide 0.8 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="MSPM0 Boot Image Manager (BIM) User’s Guide" href="bim_users_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Secure Booting User's Guide
+          </a>
+              <div class="version">
+                0.8
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bim_users_guide.html">MSPM0 Boot Image Manager (BIM) User’s Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-examples">2. Using the Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">2.0 Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-versioning-in-osx-or-linux">2.0.1 Python Versioning in OSX or Linux</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application-image-example-building">2.1 Application Image Example Building</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-boot-example">2.2 Running the Boot Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-the-binary-images">2.3 Loading the Binary Images</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#developing-using-the-customer-secure-code">3 Developing using the Customer Secure Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-and-using-keys">3.1 Creating and Using Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-and-signing-the-application-image">3.2 Creating and Signing the Application Image</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-the-unsigned-image">3.2.1 Building the Unsigned Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#signing-the-image">3.2.2 Signing the Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encrypting-the-image">3.2.3 Encrypting the Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-the-image">3.2.4 Updating the Image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-the-csc">4 Modifying the CSC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#other-image-management-techniques">4.1 Other Image Management Techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customization-of-the-memory-map">4.2 Customization of the Memory Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#failure-behavior">4.3 Failure behavior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-configuration">4.4 Additional configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#security-principles-in-msp">5 Security Principles in MSP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#static-write-protection">5.1 Static Write Protection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#root-of-trust-using-nonmain">5.2 Root of Trust Using NONMAIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rollback-protection">5.3 Rollback Protection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Secure Booting User's Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-customer-secure-code-and-bootloader-csc-user-s-guide">
+<h1>MSPM0 Customer Secure Code and Bootloader (CSC) User’s Guide<a class="headerlink" href="#mspm0-customer-secure-code-and-bootloader-csc-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>The Customer Secure Code (CSC) is an implementation of the publicly available mcuboot for devices in the MSP Family with advanced security features, such as the device family MSPM0L122x_MSPM0L222x, in order to allow for customers to have additional and more advanced secure booting features in their development and deployment. When paired with an example such as the <code class="docutils literal notranslate"><span class="pre">customer_secure_image_with_bootloader</span></code> example, this represents a full solution for updates and verification of new images on the device. However, the customer secure code rigorous definition only refers to the verification of the image and configuring security settings, not loading the image onto the device. The full set of features and execution flow will vary depending on the specific device used and features present on the device.</p>
+<p>The Customer Secure Code rigorously defined has the following features:</p>
+<ul class="simple">
+<li><p>It can verify one or more application images using Elliptic Curve Digital Signature Algorithm (ECDSA) with NIST P-256 curve and hashing algorithm SHA-256</p></li>
+<li><p>It takes up less than 18 kB of flash per bank (allowing for two 110kB images on a 256kB device)</p></li>
+<li><p>mcuboot is open source and can be modified to fit the end developer’s needs</p></li>
+<li><p>It does not require additional HW support in order to verify images, but can utilize CMAC acceleration for quicker (&lt; 100ms) booting from a power on reset (POR) when the image is unchanged.</p></li>
+<li><p>It sets up security features on the device such as write, read, and IP protect firewalls</p></li>
+<li><p>It sets up the KEYSTORE and the bank-swapping policy, and dynamically manage and revoke keys as the user intends</p></li>
+<li><p>It can provide rollback protection</p></li>
+<li><p>It can be made immutable and act as part of the Root of Trust (RoT) chain during a boot.</p></li>
+<li><p>Provide easy feature configuration through the SysConfig tool, such that users can quickly build a CSC tailored to their needs</p></li>
+</ul>
+<p>Some things the current CSC (rigorously defined) doesn’t do:</p>
+<ul class="simple">
+<li><p>It does not load application images onto a device (doesn’t replace the bootloader), however a bootloader example is given where the bootloader resides within the application (allowing it to be securely updateable)</p></li>
+<li><p>It does not guarantee a full secure boot implementation on a device</p></li>
+</ul>
+<p><strong>NOTE: currently some features are still being developed as time goes on, so please contact TI with any questions and priorities of additional needs</strong></p>
+</section>
+<section id="using-the-examples">
+<h2>2. Using the Examples<a class="headerlink" href="#using-the-examples" title="Permalink to this heading">¶</a></h2>
+<p>It is recommended to run the existing example pair of the <code class="docutils literal notranslate"><span class="pre">customer_secure_code</span></code> and <code class="docutils literal notranslate"><span class="pre">customer_secure_image_with_bootloader</span></code> in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.6.0+). This example uses the MSPM0L2228 LaunchPad with settings shown in the project README.</p>
+<section id="prerequisites">
+<h3>2.0 Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h3>
+<p>To run the initial setup, make sure Python 3.7 or newer is installed with the latest pip package and run the following command to download the necessary requirements.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">-</span><span class="n">r</span> <span class="n">source</span><span class="o">/</span><span class="n">third_party</span><span class="o">/</span><span class="n">mcuboot</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<section id="python-versioning-in-osx-or-linux">
+<h4>2.0.1 Python Versioning in OSX or Linux<a class="headerlink" href="#python-versioning-in-osx-or-linux" title="Permalink to this heading">¶</a></h4>
+<p>The functions and pre-build steps will use Python 3.7 with the command <code class="docutils literal notranslate"><span class="pre">python</span></code> in order to envoke the python executable. Thus, the command <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> should yield 3.7 or greater.</p>
+<p>In Linux or Mac setups, python can refer to a separate version, so it is recommended either to alias the <code class="docutils literal notranslate"><span class="pre">python3</span></code> command to <code class="docutils literal notranslate"><span class="pre">python</span></code>, or if two distinct versions are needed, to modify the post build step in the example to use <code class="docutils literal notranslate"><span class="pre">python3</span></code> instead.</p>
+</section>
+</section>
+<section id="application-image-example-building">
+<h3>2.1 Application Image Example Building<a class="headerlink" href="#application-image-example-building" title="Permalink to this heading">¶</a></h3>
+<p>The application image example <code class="docutils literal notranslate"><span class="pre">customer_secure_image_with_bootloader</span></code> and the example <code class="docutils literal notranslate"><span class="pre">customer_secure_sample_image</span></code> are CCS projects that contain two configurations for creating two images: one that flashes green, and one that flashes blue. These images are both designed for execute in place, where the swapping is covered by bank-swapping.</p>
+<p><strong>NOTE: The application images cannot run in isolation on a device without the boot application present.</strong></p>
+<p>In order to switch the configurations, one can navigate to the <strong>properties</strong> of the project and select <strong>Manage Configurations</strong> to set the active configuration or build both configurations simultaneously using <strong>Build All</strong>.</p>
+<p>It is recommended to build both the configurations to be able to test more functionality of the boot application.</p>
+<p>This process also includes a post-build step that can be found in the <strong>Steps</strong> tabs of <strong>Properties → Build</strong>. This takes care of signing the image and outputting it into a binary and ti-txt file with important information about it. The output file will resemble <code class="docutils literal notranslate"><span class="pre">sample_image_signed_&lt;compile</span> <span class="pre">address&gt;_&lt;version&gt;_&lt;color&gt;</span></code></p>
+<p>The elements of the built image binary name are as follows:</p>
+<ul class="simple">
+<li><p>compile address: the address of where the image is compiled to be executed from, it should be loaded into (bank offset)+compile address. On a 256 kB device, a compile address of 0x4800 would be loaded into either 0x4800 (in an open device) or 0x24800 (once the device is in the field and operating).</p></li>
+<li><p>version: the version of the image</p></li>
+<li><p>color: the led flashing color of the image</p></li>
+</ul>
+<p>The version and other parameters can be modified in the <code class="docutils literal notranslate"><span class="pre">signedArgs.json</span></code> file included in the project. Currently, only version is supported in the v1.0. This is the version with which the images are signed. If different versions are desired, edit the version field of the file following the format specified, and rebuild the example.</p>
+</section>
+<section id="running-the-boot-example">
+<h3>2.2 Running the Boot Example<a class="headerlink" href="#running-the-boot-example" title="Permalink to this heading">¶</a></h3>
+<p>Build both examples. Before flashing the device, proceed to <strong>Properties → Debug</strong> and select the MSPM0 Flash Settings from the list on the left hand side of the Debug page. Then configure the Erase method to erase necessary sectors only (shown below), and Configure reset type to Hard Reset (if available).</p>
+<figure class="align-default">
+<img alt="" src="../_images/bim_userguide_bootapp_debug_erase.png" />
+</figure>
+<p>After this, begin to Debug the project. The main function should now be entered. There shouldn’t be any valid images present on the device now, so running the example should result in a flashing red LED.</p>
+</section>
+<section id="loading-the-binary-images">
+<h3>2.3 Loading the Binary Images<a class="headerlink" href="#loading-the-binary-images" title="Permalink to this heading">¶</a></h3>
+<p>To load the binary images onto the device, follow these steps once the boot application is being debugged:</p>
+<ol class="arabic">
+<li><p>Open the Memory browser for the device, which can be found by navigating to <strong>View → Memory Browser</strong>. To load the binary image, pause the running of the device and click the green silicon package with the arrow and select <strong>Load Memory</strong></p>
+<figure class="align-default">
+<img alt="" src="../_images/bim_userguide_load_image.png" />
+</figure>
+</li>
+<li><p>Point to the specific sample image built in <a class="reference external" href="#application-image-example-building">Build Application Image</a>. It is recommended to load the green image first. Select the binary file type from the drop down list as shown below. Click <strong>Next</strong> at the bottom.</p>
+<figure class="align-default">
+<img alt="" src="../_images/bim_userguide_load_image_path.png" />
+</figure>
+</li>
+<li><p>Finally, enter the start address. This should match the value of the first memory slot, as well as the value listed in the file name. Once written, select <strong>Finish</strong>.</p>
+<figure class="align-default">
+<img alt="" src="../_images/bim_userguide_load_start_address.png" />
+</figure>
+</li>
+<li><p>Also add the Customer Secure Code into the other bank, in the customer secure code project, go to the file <strong>Debug/customer_secure_code_LP_MSPM0L2228_ticlang-bank1-0x20000.bin</strong> and add this at address 0x20000.</p></li>
+<li><p>Verify that the boot application has not been erased by checking early in flash memory in the memory browser (such as 0x0000). Also verify the image has been successfully loaded into the image slot by typing the starting address into the memory browser. If both elements are present, then the device can be reset using the reset button on the LaunchPad. This will issue a stronger BOOTRST than the debuggers SYSRST and enact the secure policy. During the boot, the RED LED will be solid while it is performing the boot routine. The highest version image that is correctly signed should be run, regardless of bank. The LED should transition from RED to a GREEN or BLUE LED (depending on which image was run).</p></li>
+</ol>
+</section>
+</section>
+<section id="developing-using-the-customer-secure-code">
+<h2>3 Developing using the Customer Secure Code<a class="headerlink" href="#developing-using-the-customer-secure-code" title="Permalink to this heading">¶</a></h2>
+<p>While the examples provide a good starting point for some development techniques, this section elaborates on some of the developments that will likely be necessary in order to take full advantage of the CSC.</p>
+<section id="creating-and-using-keys">
+<h3>3.1 Creating and Using Keys<a class="headerlink" href="#creating-and-using-keys" title="Permalink to this heading">¶</a></h3>
+<p>ECDSA is currently the only supported authentication method for mcuboot. ECDSA is an asymmetric algorithm, meaning there is a separate public and private key. The public key will be stored in the device flash and the private will be maintained by the developer securely. Included in the mcuboot folder is the imgtool.py python script that can sign images and create keys.</p>
+<p>In order to generate a new key, the user can enter the following command creating a key called newkey.pem (or whatever name is suitable):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">source</span><span class="o">/</span><span class="n">third_party</span><span class="o">/</span><span class="n">mcuboot</span><span class="o">/</span>
+<span class="n">scripts</span><span class="o">/</span><span class="n">imgtool</span><span class="o">.</span><span class="n">py</span> <span class="n">keygen</span> <span class="o">-</span><span class="n">k</span> <span class="n">newkey</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">t</span> <span class="n">ecdsa</span><span class="o">-</span><span class="n">p256</span>
+</pre></div>
+</div>
+<p>The public key is then derived from the .pem file, encoded in the DER format. It is autogenerated from the following instruction.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scripts/imgtool.py<span class="w"> </span>getpub<span class="w"> </span>-k<span class="w"> </span>newkey.pem
+</pre></div>
+</div>
+<p>this will output to the console the public key information (encoded in DER format), which is then copied and pasted into <code class="docutils literal notranslate"><span class="pre">boot_keys.c</span></code> in the EC256 section (specifying the supported algorithm).</p>
+<p>The private key must now also be pointed to using its file location, and this can be provided when signing as a path within the SDK using the <strong>privateKeyPath</strong> argument.</p>
+<p><strong>IMPORTANT</strong>: for final deployment, it is very important to keep the private key secure and managed such that it is not easily accessible to sign images. Keeping the key on a local share drive is not a secure location! TI does not currently provision/store keys on behalf of other entities.</p>
+<p>For more information about generating keys, one can visit the <a class="reference external" href="https://github.com/mcu-tools/mcuboot/blob/main/docs/imgtool.md">imgtool ReadMe</a>.</p>
+</section>
+<section id="creating-and-signing-the-application-image">
+<h3>3.2 Creating and Signing the Application Image<a class="headerlink" href="#creating-and-signing-the-application-image" title="Permalink to this heading">¶</a></h3>
+<p>The mcuboot tool is capable of verifying and jumping to images, however these images must first be created in a format that is understood by mcuboot. This is done by a combination of linker modification to fit the memory map and using the imgtool provided by mcuboot, and included in this SDK under <code class="docutils literal notranslate"><span class="pre">source/third_party/mcuboot/scripts</span></code>.</p>
+<p>The default image memory map of the MSPM0L2228 is provided as a reference for 2 on-chip images of equal size (one in each bank). The flash size required for mcuboot is less than 0x4800 depending on build configurations and optimizations. Consequently, the largest image that can currently fit on this device is ~110kB.</p>
+<p>This document is intended as a summary guide in order to allow a developer to begin using the boot image manager for MSP, and not to comprehensively cover the image capabilities. To understand more about advanced features of the headers or develop other features, please consult the online mcuboot documentation such as the <a class="reference external" href="https://github.com/mcu-tools/mcuboot/blob/main/docs/design.md">mcuboot design documentation</a>.</p>
+<section id="building-the-unsigned-image">
+<h4>3.2.1 Building the Unsigned Image<a class="headerlink" href="#building-the-unsigned-image" title="Permalink to this heading">¶</a></h4>
+<p>Currently the only supported compiler for the boot application is ticlang. However, the developer can compile their application image with any compiler. Using a favorite IDE, the user can convert the image to a signed image by creating a binary unsigned output file. However, the application must fit in the size of the image slot on the device. In a 64kB flash device with two equal slots, the maximum size supported is 21 kB. Images do not have to be position independent or change information about headers or vectors in order to function appropriately. However, they must be linked to their execution slot.</p>
+<p>Additionally, the image cannot run on its own without the boot application present. When developing an application image, it may be better to develop it with respect to 0x0000 on the device, run on a device without the boot application. Then, when an image is ready to be created, change the linking properties to run from the slot.</p>
+<p><strong>Important:</strong> mcuboot will select between the images using execute in place (XIP), so the images will not be swapped by default. Because of this, the developer must create the image with respect to the image slot that the image will go into. In many cases, this could mean maintaining two images built for primary and secondary slots. Otherwise, unexpected behavior could occur.</p>
+<p>Building the image will require several modifications to a standard linker file:</p>
+<ul class="simple">
+<li><p>The start of the flash will need to be considered as the beginning of the image slot plus the header offset. For example, if the primary image slot starts at 0x5400, and the mcuboot header is of size 0x100, the first element of flash of the application (the interrupt vector table) should be at address 0x5500. <strong>NOTE</strong>: The interrupt vector table must be 256-bit aligned. Thus, the header has additional padding such that the vector table can be accessed correctly.</p></li>
+<li><p>The size of flash will be the image size minus the size of the header and trailer. The trailer for unencrypted, execute in place is generally very small (&lt;50 bytes) and is not considered in the calculations for the provided example. However, in future configurations, the trailer may need to be considered in image size.</p></li>
+<li><p>The RAM can remain unaltered, as all RAM from the BIM will be yielded to the application.</p></li>
+</ul>
+<p>A template of these modifications for a ticlang linker file can be found in the <code class="docutils literal notranslate"><span class="pre">customer_secure_image_with_bootloader</span></code> example.</p>
+<p>After compiling and creating the image, the output should be converted to binary format. The command to do this in CCS is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out --output-target binary ${ProjName}-unsigned.bin
+</pre></div>
+</div>
+<p>It is recommended to name the output file with the suffix “unsigned” as to avoid confusion. This can be automated by adding it to the post-build steps of the project for your IDE.</p>
+</section>
+<section id="signing-the-image">
+<h4>3.2.2 Signing the Image<a class="headerlink" href="#signing-the-image" title="Permalink to this heading">¶</a></h4>
+<p>The imgtool provided by mcuboot can then sign this image and provide the appropriate header. This call is done during the post build steps by the wrapping function <code class="docutils literal notranslate"><span class="pre">sign-image.py</span></code> The following instruction uses the imgtool to sign an image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>./scripts/imgtool.py sign --header-size 0x100 --align 4 --slot-size 0x5400 --pad --version 1.0.0 -s 1 --pad-header --key path/to/private/key.pem ${ProjName}-unsigned.bin ${ProjName}.bin
+</pre></div>
+</div>
+<p>The information that the developer may need to edit are as follows:</p>
+<ul class="simple">
+<li><p>Key - the developer must change the key path to their private key (pem file), which can be generated following the steps in <a class="reference external" href="#creating-and-using-keys">Creating and Using Keys</a>. This path can be edited to anywhere in the SDK using the <code class="docutils literal notranslate"><span class="pre">signingArgs.json</span></code> value <strong>privateKeyPath</strong>.</p></li>
+<li><p>Version - the developer should include their versioning for the image. This can also be edited in the JSON configurable file with a single version or a list of multiple versions.</p></li>
+<li><p>Slot size - if the memory map has been altered, see <a class="reference external" href="#customization-of-the-memory-map">Memory Map Customization</a>, the slot size will need to be accounted for.</p></li>
+<li><p>Security Version - the user can change the security version (-s option) of the software for rollback protection, however the feature is not currently supported in the beta release.</p></li>
+</ul>
+<p>This function is included in the python script <code class="docutils literal notranslate"><span class="pre">sign-image.py</span></code> project (with paths filled in).</p>
+</section>
+<section id="encrypting-the-image">
+<h4>3.2.3 Encrypting the Image<a class="headerlink" href="#encrypting-the-image" title="Permalink to this heading">¶</a></h4>
+<p>Image encryption in Flash is currently not supported. Image encryption over the air to be decrypted by the bootloader is planned for the full release.</p>
+</section>
+<section id="updating-the-image">
+<h4>3.2.4 Updating the Image<a class="headerlink" href="#updating-the-image" title="Permalink to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">customer_secure_image_with_bootloader</span></code> has a limited version of the BSL protocol such that a device could be updated in the field over UART via the BSL protocol. It can also be updated using the standard GUI tools such as UNIFLASH and the BSL GUI, although certain functionality like memory readback and factory reset is disabled. In the Beta Implementation, this feature is currently unencrypted and doesn’t require a password.</p>
+<p>To update, use the serial bootloader connection in UniFlash with the MSPM0L2228 device. Use the ti-txt file generated in the post-build steps in order to load to the device. If default memory addresses are used, the file should start at 0x24800.</p>
+<p>When ready to perform the bootloading, press S2 on the launchpad and the LED will turn cyan and remain solid. This indicated the device is attempting to perform a BSL update.</p>
+<p>Select the correct COM port and load the image via UniFlash. Upon completion the device will automatically restart and the CSC will attempt to validate the new image and jump to it.</p>
+<p><strong>Important</strong> this feature is released as a beta, and does not have all features or security settings that may be included. TI reserves the right to change the above information.</p>
+</section>
+</section>
+</section>
+<section id="modifying-the-csc">
+<h2>4 Modifying the CSC<a class="headerlink" href="#modifying-the-csc" title="Permalink to this heading">¶</a></h2>
+<p>The CSC has increase modularity via the configurable file <code class="docutils literal notranslate"><span class="pre">customer_secure_config.h</span></code>. This is native to the customer_secure_code example but is inherited by sample image examples. It is controlled by the <strong>Security Configurator</strong> tab in SysConfig and can be used as a reference.</p>
+<p><strong>Important</strong> This section is still under development so there are more elements and features being supported continuously. If one is not supported yet, it’s in the roadmap. Please contact TI for more information</p>
+<section id="other-image-management-techniques">
+<h3>4.1 Other Image Management Techniques<a class="headerlink" href="#other-image-management-techniques" title="Permalink to this heading">¶</a></h3>
+<p>While execute in-place (XIP) is the default image management technique, there are other methods such as swapping which offers different advantages. Currently only XIP is supported in the beta implementation.</p>
+</section>
+<section id="customization-of-the-memory-map">
+<h3>4.2 Customization of the Memory Map<a class="headerlink" href="#customization-of-the-memory-map" title="Permalink to this heading">¶</a></h3>
+<p>The memory map of the device is something that can be freely altered on the device. This can be changed by opening the file <code class="docutils literal notranslate"><span class="pre">flash_mem_backend.c</span></code> of the device and adjusting the defines to a user-specified setting. However, it is important to make sure whatever changes are made to the memory map are also accounted for in the applications linker and image size of the signing step.</p>
+<p><strong>Note</strong>. Some M0L devices have a known issue where the last 8 bytes of the memory cannot be programmed successfully. Because mcuboot works in sectors, it is not recommended to use the final sector of these devices as part of an image slot or scratch slot. The sector can be written to and erased and could be used by the application. The standard linker file for the device will have a slightly smaller flash size if the device is affected.</p>
+</section>
+<section id="failure-behavior">
+<h3>4.3 Failure behavior<a class="headerlink" href="#failure-behavior" title="Permalink to this heading">¶</a></h3>
+<p>Currently, upon a failure to load a successful image, the <code class="docutils literal notranslate"><span class="pre">mcubootFail</span></code> function will be entered, which is defined in the <code class="docutils literal notranslate"><span class="pre">customer_secure_code.c</span></code> file. The default behavior on a failure is to toggle LED2 (Red on the LaunchPad). However, this behavior can be customized to fit the developers needs. For example, a permanent, reduced functionality image could be included if all valid images fail.</p>
+</section>
+<section id="additional-configuration">
+<h3>4.4 Additional configuration<a class="headerlink" href="#additional-configuration" title="Permalink to this heading">¶</a></h3>
+<p>There are additional configurations available for mcuboot. More information can be found by consulting the <a class="reference external" href="https://github.com/mcu-tools/mcuboot/blob/main/docs/design.md">mcuboot documentation</a>. However, not all of these features are currently implemented or feasible on MSP.</p>
+<p>Additional Customer Secure Code Features are still under development. Contact TI for more information.</p>
+</section>
+</section>
+<section id="security-principles-in-msp">
+<h2>5 Security Principles in MSP<a class="headerlink" href="#security-principles-in-msp" title="Permalink to this heading">¶</a></h2>
+<section id="static-write-protection">
+<h3>5.1 Static Write Protection<a class="headerlink" href="#static-write-protection" title="Permalink to this heading">¶</a></h3>
+<p>To avoid unwanted erasure of the CSC, it is important to configure the NONMAIN region to disallow writes to the area of flash that the boot application will reside in. This requires changes to the default configuration of the examples, as these are designed chiefly for development and debugging.</p>
+<p>For more information about the NONMAIN region, consult the device specific Technical Reference Manual.</p>
+</section>
+<section id="root-of-trust-using-nonmain">
+<h3>5.2 Root of Trust Using NONMAIN<a class="headerlink" href="#root-of-trust-using-nonmain" title="Permalink to this heading">¶</a></h3>
+<p>With the write protection enabled on NONMAIN, it is still possible for a factory reset to wipe the entire device. Preventing a factory reset (or only allowing it with a password) is a mechanism that allows developers to ensure the booting of the device into NONMAIN.</p>
+</section>
+<section id="rollback-protection">
+<h3>5.3 Rollback Protection<a class="headerlink" href="#rollback-protection" title="Permalink to this heading">¶</a></h3>
+<p>One of the security features mcuboot provides is rollback protection: where a user can set a security version that new images must match or exceed in order to be accepted by the boot image manger. This prevents an attacker from installing a previous image which may contain a vulnerability that is fixed in later versions.</p>
+<p>This feature is not available on current M0L or M0G devices due to the non-main write protect occurring statically once upon startup. Rollback protection generally requires the hardware capability to prevent writes to a region dynamically (after verifying but before jumping to an image).</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bim_users_guide.html" class="btn btn-neutral float-left" title="MSPM0 Boot Image Manager (BIM) User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1995-2023, Texas Instruments Incorporated. All rights reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

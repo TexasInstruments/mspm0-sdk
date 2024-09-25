@@ -4,11 +4,7 @@ MSPM0 Boot Image Manager (BIM) User's Guide
 1. Introduction
 ---------------
 
-The Boot Image Manager (BIM) is an implementation of the publicly available mcuboot for MSP devices in order to allow for customers to have secure booting features in their development. The full set of features and execution flow will vary depending on the specific device used and features present on the device. Currently, the two classes of examples are classified as follows:
-
-1. Single Stage: Devices with some security features but only one stage of flash memory. These devices also will not have dynamic write protection or firewalls in their architecture, so the implementation will support a more limited set of security options.
-
-2. Customer Secure: This refers currently to the device family MSPM0L122x\_MSPM0L222x which is a multi-bank device with additional features such as write, read, and IP-protect firewalls, bank swapping, keystore controller, and a more advance AES-accelerating
+The Boot Image Manager (BIM) is an implementation of the publicly available mcuboot for MSP devices in order to allow for customers to have secure booting features in their development. The full set of features and execution flow will vary depending on the specific device used and features present on the device. Currently, the two classes of examples are classified as single stage and customer secure. Single stage refers to devices with some security features but only one stage of flash memory. These devices also will not have dynamic write protection or firewalls in their architecture, so the implementation will support a more limited set of security options. Customer secure refers to additional security features and multiple banks, and is covered in the Customer Secure User's Guide.
 
 Some things the BIM does:
 
@@ -33,7 +29,7 @@ Some things the current BIM doesn't do:
 2. Using the Examples
 ---------------------
 
-It is recommended to run the existing example set of the ``boot_application`` and ``boot_sample_image`` in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.5.0+). This example uses the MSPM0L1306 or MSPM0G3507 LaunchPad with settings shown in the project README.
+It is recommended to run the existing example set of the ``boot_application`` and ``boot_sample_image`` in order to better understand the development flow for each component before developing further. The example provided has a test key and several pre-built images that can get the developer acquainted with running and validating an example successfully. Both of these projects should be imported into a compatible CCS version (12.6.0+). This example uses the MSPM0L1306 or MSPM0G3507 LaunchPad with settings shown in the project README.
 
 2.0 Prerequisites
 ~~~~~~~~~~~~~~~~~

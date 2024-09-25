@@ -32,6 +32,7 @@ You can learn more about the MSPM0 product family supported by this SDK [here](h
 ## Evaluation Modules ##
 * [MSPM0G EVM - LP-MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507)
 * [MSPM0L EVM - LP-MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306)
+* [MSPM0L EVM - LP-MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228)
 * [MSPM0C EVM - LP-MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104)
 
 # Support #

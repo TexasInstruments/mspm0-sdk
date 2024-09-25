@@ -3,7 +3,7 @@
 Note: The use of "Master" and "Slave", along with "MOSI/MISO" terminology is being considered obsolete. These terms will be replaced with "Controller" and "Peripheral", and "PICO/POCI" respectively.
 
 The following example configures the SPI as a Controller.
-This example can be used with the spi_peripheral_fifo_dma_interrupts example running on another device.
+This example is intended to be used with the spi_peripheral_fifo_dma_interrupts example running on another device.
 
 This example sets up the SPI to trigger the DMA Channel 0 to do a transmit data transfer and the DMA Channel 1 to do a receive data transfer.
 
@@ -17,11 +17,14 @@ The SPI Controller will then initiate the transaction. The SPI will transmit the
 
 When the SPI Controller receives SPI_PACKET_SIZE bytes from the SPI Peripheral, this will trigger the DL_SPI_IIDX_DMA_DONE_RX interrupt indicating that the DMA is done transferring all expected bytes from the RXFIFO to the buffer.
 
+The SPI controller will then check the received bytes and compare against the expected bytes from the spi_peripheral_fifo_dma_interrupts example and set the LED and USER_TEST pin high upon a successful compare.
 
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
+| GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA1 | Open-Drain Output |
 | SYSCTL |  |  |
 | SPI0 | PA6 | SPI SCLK (Clock) |
 | SPI0 | PA5 | SPI PICO (Peripheral In, Controller Out) |
@@ -38,6 +41,8 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
+| PA0 | GPIOA | PA0 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 ON` Connect to LED1<br><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA1 | GPIOA | PA1 | J1_9 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul><ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
 | PA6 | SPI0 | SCLK | J1_7 | N/A |
 | PA5 | SPI0 | MOSI | J2_15 | N/A |
 | PA4 | SPI0 | MISO | J2_14 | N/A |
@@ -70,6 +75,8 @@ Make the following connections between the SPI Controller and SPI Peripheral:
 Compile, load and run the example.
 Ensure that the SPI Peripheral example is running **before** starting the SPI Controller example.
 Once the example is started, the SPI Controller will automatically start to transmit data.
+The example will set the LED high upon successful completion and reception of expected data.
+USER_TEST GPIO pin will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.
 
 The SPI is initialized with the following configuration:
 - SPI Controller

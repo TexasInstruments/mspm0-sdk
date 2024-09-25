@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">1.20.01.06</span>
+   &#160;<span id="projectnumber">1.30.00.03</span>
    </div>
   </td>
  </tr>
@@ -168,6 +168,15 @@ Functions</h2></td></tr>
 <tr class="memitem:gaa691a93de008515cf237c12ed35231b4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gaa691a93de008515cf237c12ed35231b4">DL_VREF_isEnabled</a> (VREF_Regs *vref)</td></tr>
 <tr class="memdesc:gaa691a93de008515cf237c12ed35231b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the internal VREF is enabled.  <a href="#gaa691a93de008515cf237c12ed35231b4">More...</a><br /></td></tr>
 <tr class="separator:gaa691a93de008515cf237c12ed35231b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d">DL_VREF_enableInternalRefCOMP</a> (VREF_Regs *vref)</td></tr>
+<tr class="memdesc:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable VREF buffer as internal reference input for comparator.  <a href="#gabc736fbcdc82be8e9b9fb35b6635293d">More...</a><br /></td></tr>
+<tr class="separator:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga768d77dde635d1e780836e6db0410670"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga768d77dde635d1e780836e6db0410670">DL_VREF_isInternalRefCOMPEnabled</a> (VREF_Regs *vref)</td></tr>
+<tr class="memdesc:ga768d77dde635d1e780836e6db0410670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if VREF buffer for comparator is enabled.  <a href="#ga768d77dde635d1e780836e6db0410670">More...</a><br /></td></tr>
+<tr class="separator:ga768d77dde635d1e780836e6db0410670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55680259230d5c7281c7821ccb9d5f0a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a">DL_VREF_disableInternalRefCOMP</a> (VREF_Regs *vref)</td></tr>
+<tr class="memdesc:ga55680259230d5c7281c7821ccb9d5f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable VREF buffer as internal reference input for comparator.  <a href="#ga55680259230d5c7281c7821ccb9d5f0a">More...</a><br /></td></tr>
+<tr class="separator:ga55680259230d5c7281c7821ccb9d5f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafd4635a309fa8632080ae1d044d46f12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gafd4635a309fa8632080ae1d044d46f12">DL_VREF_setClockConfig</a> (VREF_Regs *vref, <a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a> *config)</td></tr>
 <tr class="memdesc:gafd4635a309fa8632080ae1d044d46f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the clock select and clock divide fields in VREF.  <a href="#gafd4635a309fa8632080ae1d044d46f12">More...</a><br /></td></tr>
 <tr class="separator:gafd4635a309fa8632080ae1d044d46f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -439,6 +448,92 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+</div>
+</div>
+<a id="gabc736fbcdc82be8e9b9fb35b6635293d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabc736fbcdc82be8e9b9fb35b6635293d">&sect;&nbsp;</a></span>DL_VREF_enableInternalRefCOMP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void DL_VREF_enableInternalRefCOMP </td>
+          <td>(</td>
+          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramname"><em>vref</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable VREF buffer as internal reference input for comparator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vref</td><td>Pointer to the register overlay for the peripheral </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga768d77dde635d1e780836e6db0410670"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga768d77dde635d1e780836e6db0410670">&sect;&nbsp;</a></span>DL_VREF_isInternalRefCOMPEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE bool DL_VREF_isInternalRefCOMPEnabled </td>
+          <td>(</td>
+          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramname"><em>vref</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if VREF buffer for comparator is enabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vref</td><td>Pointer to the register overlay for the peripheral</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns if VREF buffer for comparator is enabled</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>VREF buffer for comparator is enabled </td></tr>
+    <tr><td class="paramname">false</td><td>VREF buffer for comparator is disabled </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga55680259230d5c7281c7821ccb9d5f0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga55680259230d5c7281c7821ccb9d5f0a">&sect;&nbsp;</a></span>DL_VREF_disableInternalRefCOMP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void DL_VREF_disableInternalRefCOMP </td>
+          <td>(</td>
+          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramname"><em>vref</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable VREF buffer as internal reference input for comparator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vref</td><td>Pointer to the register overlay for the peripheral </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>References <a class="el" href="group___v_r_e_f.html#ga0adedffce176c98d2a3cfbfa04ba5462">DL_VREF_getClockConfig()</a>, and <a class="el" href="group___v_r_e_f.html#gafd4635a309fa8632080ae1d044d46f12">DL_VREF_setClockConfig()</a>.</p>
 
 </div>
@@ -478,7 +573,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___v_r_e_f.html#gaa691a93de008515cf237c12ed35231b4">DL_VREF_isEnabled()</a>.</p>
+<p>Referenced by <a class="el" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a">DL_VREF_disableInternalRefCOMP()</a>.</p>
 
 </div>
 </div>
@@ -517,7 +612,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___v_r_e_f.html#gaa691a93de008515cf237c12ed35231b4">DL_VREF_isEnabled()</a>.</p>
+<p>Referenced by <a class="el" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a">DL_VREF_disableInternalRefCOMP()</a>.</p>
 
 </div>
 </div>
@@ -648,7 +743,7 @@ false if peripheral wasn't reset </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

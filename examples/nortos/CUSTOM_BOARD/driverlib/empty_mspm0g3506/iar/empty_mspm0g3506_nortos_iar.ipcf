@@ -78,7 +78,7 @@
         <path copyTo="$PROJ_DIR$/mspm0g3506.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3506/iar/mspm0g3506.icf</path>
         <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3506/README.md</path>
         <group name="iar" build="true">
-            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g3506_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3506/iar/startup_mspm0g3506_iar.c</path>
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g350x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3506/iar/startup_mspm0g350x_iar.c</path>
         </group>
     </files>
 </iarProjectConnection>

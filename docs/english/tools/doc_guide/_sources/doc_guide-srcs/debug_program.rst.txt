@@ -18,9 +18,10 @@ Documentation
 
 MSP-GANG
 ----------
-| The MSP Gang Programmer (MSP-GANG) is a device programmer supporting all MSP devices (MSPM0, MSP430, MSP432).
+| The MSP Gang Programmer (MSP-GANG) is a device programmer that supports MSPM0L110x, MSPM0L130x, MSPM0G150x, MSPM0G350x, and all variants of MSP430 and MSP432.
 | The MSP-GANG can program up to eight identical MSP Flash or FRAM devices at the same time.
 | It connects to a host PC using a standard RS-232 or USB connection and provides flexible programming options that allow the user to fully customize the process.
+| **At this time, MSPM0C110x is not supported by the MSP Gang Programmer.** Please use an alternative tool for production programming, such as the FlashPro or GangPro-ARM.
 
 Documentation
 ~~~~~~~~~~~~~~~~~~~

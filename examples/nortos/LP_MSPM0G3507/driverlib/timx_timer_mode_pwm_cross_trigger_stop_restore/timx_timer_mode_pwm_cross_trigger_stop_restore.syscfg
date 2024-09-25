@@ -20,40 +20,47 @@ const TIMER1 = TIMER.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
-GPIO1.$name                         = "GPIO_LEDS";
-GPIO1.associatedPins[0].$name       = "USER_LED_1";
-GPIO1.associatedPins[0].pin.$assign = "PA0";
-GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.$name                              = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name            = "USER_LED_1";
+GPIO1.associatedPins[0].initialValue     = "SET";
+GPIO1.associatedPins[0].pin.$assign      = "PA0";
+GPIO1.associatedPins[1].$name            = "USER_TEST";
+GPIO1.associatedPins[1].internalResistor = "PULL_DOWN";
+GPIO1.associatedPins[1].pin.$assign      = "PA15";
 
-const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+const Board           = scripting.addModule("/ti/driverlib/Board", {}, false);
 Board.configureUnused = true;
 
-PWM1.crossTriggerEn             = true;
-PWM1.timerCount                 = 99;
 PWM1.$name                      = "PWM_0";
+PWM1.crossTriggerEn             = true;
+PWM1.timerCount                 = 1600;
+PWM1.peripheral.$assign         = "TIMA1";
 PWM1.peripheral.ccp0Pin.$assign = "PB4";
 PWM1.peripheral.ccp1Pin.$assign = "PB1";
 PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
-PWM1.PWM_CHANNEL_0.ccValue      = 24;
+PWM1.PWM_CHANNEL_0.ccValue      = 399;
 PWM1.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC1";
-PWM1.PWM_CHANNEL_1.ccValue      = 74;
+PWM1.PWM_CHANNEL_1.ccValue      = 880;
 
-PWM2.timerCount                 = 99;
-PWM2.crossTriggerEn             = true;
-PWM2.$name                      = "PWM_1";
-PWM2.peripheral.ccp0Pin.$assign = "PA28";
-PWM2.peripheral.ccp1Pin.$assign = "PA31";
-PWM2.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC2";
-PWM2.PWM_CHANNEL_0.ccValue      = 24;
-PWM2.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC3";
-PWM2.PWM_CHANNEL_1.ccValue      = 74;
+PWM2.$name                       = "PWM_1";
+PWM2.crossTriggerEn              = true;
+PWM2.crossTriggerAuthority       = "Secondary";
+PWM2.secondaryCrossTriggerSource = "InputTrigger_1";
+PWM2.timerCount                  = 1600;
+PWM2.peripheral.$assign          = "TIMG7";
+PWM2.peripheral.ccp0Pin.$assign  = "PA28";
+PWM2.peripheral.ccp1Pin.$assign  = "PA31";
+PWM2.PWM_CHANNEL_0.$name         = "ti_driverlib_pwm_PWMTimerCC2";
+PWM2.PWM_CHANNEL_0.ccValue       = 479;
+PWM2.PWM_CHANNEL_1.$name         = "ti_driverlib_pwm_PWMTimerCC3";
+PWM2.PWM_CHANNEL_1.ccValue       = 639;
 
+SYSCTL.forceDefaultClkConfig = true;
 
+TIMER1.$name               = "TIMER_0";
 TIMER1.interrupts          = ["ZERO"];
 TIMER1.timerClkSrc         = "LFCLK";
 TIMER1.timerPeriod         = "1";
-TIMER1.$name               = "TIMER_0";
 TIMER1.retentionRestoreCnt = true;
 TIMER1.peripheral.$assign  = "TIMG0";
-
-SYSCTL.forceDefaultClkConfig = true;

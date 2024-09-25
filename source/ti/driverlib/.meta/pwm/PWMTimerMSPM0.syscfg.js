@@ -105,43 +105,43 @@ function pinmuxRequirements(inst)
     let allResources = [
         {
             name: "ccp0Pin",
-            displayName: "Counter Compare Pin 0",
+            displayName: "Capture/Compare Pin 0",
             interfaceNames: ["CCP0"],
         },
 
         {
             name: "ccp1Pin",
-            displayName: "Counter Compare Pin 1",
+            displayName: "Capture/Compare Pin 1",
             interfaceNames: ["CCP1"],
         },
         {
             name: "ccp2Pin",
-            displayName: "Counter Compare Pin 2",
+            displayName: "Capture/Compare Pin 2",
             interfaceNames: ["CCP2"],
         },
         {
             name: "ccp3Pin",
-            displayName: "Counter Compare Pin 3",
+            displayName: "Capture/Compare Pin 3",
             interfaceNames: ["CCP3"],
         },
         {
             name: "ccp0Pin_cmpl",
-            displayName: "Counter Compare Complementary Pin 0",
+            displayName: "Capture/Compare Complementary Pin 0",
             interfaceNames: ["CCP0_CMPL"],
         },
         {
             name: "ccp1Pin_cmpl",
-            displayName: "Counter Compare Complementary Pin 1",
+            displayName: "Capture/Compare Complementary Pin 1",
             interfaceNames: ["CCP1_CMPL"],
         },
         {
             name: "ccp2Pin_cmpl",
-            displayName: "Counter Compare Complementary Pin 2",
+            displayName: "Capture/Compare Complementary Pin 2",
             interfaceNames: ["CCP2_CMPL"],
         },
         {
             name: "ccp3Pin_cmpl",
-            displayName: "Counter Compare Complementary Pin 3",
+            displayName: "Capture/Compare Complementary Pin 3",
             interfaceNames: ["CCP3_CMPL"],
         },
     ];
@@ -292,35 +292,35 @@ function moduleInstances(inst) {
     /* CONDITIONS CODE END */
     /* CCP0 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   pwmConfig[0],    "ccp0Pin",
-     "C0", "Counter Compare Pin 0",
+     "C0", "Capture/Compare Pin 0",
      "OUTPUT");
     /* CCP1 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   pwmConfig[1],    "ccp1Pin",
-     "C1", "Counter Compare Pin 1",
+     "C1", "Capture/Compare Pin 1",
      "OUTPUT");
     /* CCP2 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   pwmConfig[2],    "ccp2Pin",
-     "C2", "Counter Compare Pin 2",
+     "C2", "Capture/Compare Pin 2",
      "OUTPUT");
     /* CCP3 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   pwmConfig[3],    "ccp3Pin",
-     "C3", "Counter Compare Pin 3",
+     "C3", "Capture/Compare Pin 3",
      "OUTPUT");
     /* CCP0_CMPL */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   pwmConfig[4],    "ccp0Pin_cmpl",
-     "C0_CMPL", "Counter Complementary Compare Pin 0",
+     "C0_CMPL", "Counter/Compare Complementary Pin 0",
      "OUTPUT");
     /* CCP1_CMPL */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   pwmConfig[5],    "ccp1Pin_cmpl",
-     "C1_CMPL", "Counter Complementary Compare Pin 1",
+     "C1_CMPL", "Counter/Compare Complementary Pin 1",
      "OUTPUT");
     /* CCP2_CMPL */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   pwmConfig[6],    "ccp2Pin_cmpl",
-     "C2_CMPL", "Counter Complementary Compare Pin 2",
+     "C2_CMPL", "Counter/Compare Complementary Pin 2",
      "OUTPUT");
     /* CCP_CMPL3 */
     Common.pushGPIOConfigInstAlt(inst, modInstances,   pwmConfig[7],    "ccp3Pin_cmpl",
-     "C3_CMPL", "Counter Complementary Compare Pin 3",
+     "C3_CMPL", "Counter/Compare Complementary Pin 3",
      "OUTPUT");
 
 

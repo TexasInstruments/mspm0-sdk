@@ -21,7 +21,7 @@ The main loop includes the sampling routine, averaging routines, determining if 
 | GPIOA | PA4 | Standard Input |
 | GPIOA | PA5 | High-Speed Input |
 | SYSCTL |  |  |
-| TIMG2 | PA3 | Counter Compare Pin 0 |
+| TIMG2 | PA3 | Capture/Compare Pin 0 |
 | TIMG1 |  |  |
 | TIMG0 |  |  |
 | I2C0 | PA10 | I2C Serial Data line (SDA) |

@@ -15,7 +15,7 @@ is configured to update when the timer reaches a count of zero.
 | GPIOA | PA22 | Standard Output |
 | GPIOA | PA11 | Standard Output |
 | SYSCTL |  |  |
-| TIMA0 | PA2 | Counter Compare Pin 0 |
+| TIMA0 | PA2 | Capture/Compare Pin 0 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
@@ -45,7 +45,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 web page](https://www.ti.com/tool/LP-MSPM0C1104).
+MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 User's Guide](https://www.ti.com/lit/slau908).
 
 ## Example Usage
 

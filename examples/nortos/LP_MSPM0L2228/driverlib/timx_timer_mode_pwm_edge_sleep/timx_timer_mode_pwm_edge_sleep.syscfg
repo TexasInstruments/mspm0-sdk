@@ -1,0 +1,35 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+ // @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+PWM1.$name                   = "PWM_0";
+PWM1.clockSource             = "BUSCLK";
+PWM1.clockPrescale           = 256;
+PWM1.timerCount              = 2000;
+PWM1.pwmMode                 = "EDGE_ALIGN";
+PWM1.PWM_CHANNEL_0.$name     = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle = 75;
+PWM1.PWM_CHANNEL_0.ccValue   = 500;
+PWM1.PWM_CHANNEL_1.$name     = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_1.dutyCycle = 50;
+PWM1.PWM_CHANNEL_1.ccValue   = 1000;
+PWM1.peripheral.$assign =      "TIMG0";
+PWM1.peripheral.ccp0Pin.$assign = "PB0";
+PWM1.peripheral.ccp1Pin.$assign = "PB1";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+SYSCTL.clockTreeEn = true;

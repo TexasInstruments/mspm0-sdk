@@ -1,21 +1,4 @@
 var searchData=
 [
-  ['drv8323rs_5fcsa_5fcontrol_5fcsa_5ffet',['DRV8323RS_CSA_CONTROL_CSA_FET',['../group___m_d___m_o_d_u_l_e.html#gaafe3e684db06068ecc2a86d0766b9ec2',1,'drv8323rs.h']]],
-  ['drv8323rs_5fcsa_5fcontrol_5fcsa_5fgain',['DRV8323RS_CSA_CONTROL_CSA_GAIN',['../group___m_d___m_o_d_u_l_e.html#ga60be9a296e3dfa9f3422c73e6bbd6f26',1,'drv8323rs.h']]],
-  ['drv8323rs_5fcsa_5fcontrol_5fdis_5fsen',['DRV8323RS_CSA_CONTROL_DIS_SEN',['../group___m_d___m_o_d_u_l_e.html#gaed278cd8c4bda21af5ce298c6f82906e',1,'drv8323rs.h']]],
-  ['drv8323rs_5fcsa_5fcontrol_5fls_5fref',['DRV8323RS_CSA_CONTROL_LS_REF',['../group___m_d___m_o_d_u_l_e.html#ga37723bd6e224a7f0a2764554a9bdd59e',1,'drv8323rs.h']]],
-  ['drv8323rs_5fcsa_5fcontrol_5fsen_5flvl',['DRV8323RS_CSA_CONTROL_SEN_LVL',['../group___m_d___m_o_d_u_l_e.html#ga7e4e2aded040e4f5e1bbcc1ad601fc98',1,'drv8323rs.h']]],
-  ['drv8323rs_5fcsa_5fcontrol_5fvref_5fdiv',['DRV8323RS_CSA_CONTROL_VREF_DIV',['../group___m_d___m_o_d_u_l_e.html#ga5aecb0783b800032d2ef2abe554f87cc',1,'drv8323rs.h']]],
-  ['drv8323rs_5fdriver_5fcontrol_5fpwm_5fmode',['DRV8323RS_DRIVER_CONTROL_PWM_MODE',['../group___m_d___m_o_d_u_l_e.html#ga71d6b050a8050cb657aaf2c5345de53e',1,'drv8323rs.h']]],
-  ['drv8323rs_5fgate_5fdrive_5fhs_5flock',['DRV8323RS_GATE_DRIVE_HS_LOCK',['../group___m_d___m_o_d_u_l_e.html#ga21731ac6aaefdc5192a00f6dc59804ad',1,'drv8323rs.h']]],
-  ['drv8323rs_5fgate_5fdrive_5fpeak_5fcur_5ftime',['DRV8323RS_GATE_DRIVE_PEAK_CUR_TIME',['../group___m_d___m_o_d_u_l_e.html#ga9f55c12b15f0db249a7c7cb3b656b5b1',1,'drv8323rs.h']]],
-  ['drv8323rs_5fgate_5fdrive_5fpeak_5fsink_5fcur',['DRV8323RS_GATE_DRIVE_PEAK_SINK_CUR',['../group___m_d___m_o_d_u_l_e.html#ga881d4aad86e6cf227c70f37f6303d9ef',1,'drv8323rs.h']]],
-  ['drv8323rs_5fgate_5fdrive_5fpeak_5fsource_5fcur',['DRV8323RS_GATE_DRIVE_PEAK_SOURCE_CUR',['../group___m_d___m_o_d_u_l_e.html#gafcb63bd901ada942068f23b5b481b9ae',1,'drv8323rs.h']]],
-  ['drv8323rs_5focp_5fcontrol_5fdeadtime',['DRV8323RS_OCP_CONTROL_DEADTIME',['../group___m_d___m_o_d_u_l_e.html#ga3a232e8cf8f9f7ea83231ca6969748e3',1,'drv8323rs.h']]],
-  ['drv8323rs_5focp_5fcontrol_5focp_5fdeg',['DRV8323RS_OCP_CONTROL_OCP_DEG',['../group___m_d___m_o_d_u_l_e.html#ga8f3c832ab2ba9505a49cf4ac916f97f6',1,'drv8323rs.h']]],
-  ['drv8323rs_5focp_5fcontrol_5focp_5fmode',['DRV8323RS_OCP_CONTROL_OCP_MODE',['../group___m_d___m_o_d_u_l_e.html#ga2e6cce2d5b3992c2d8eb3381ec62595e',1,'drv8323rs.h']]],
-  ['drv8323rs_5focp_5fcontrol_5ftretry',['DRV8323RS_OCP_CONTROL_TRETRY',['../group___m_d___m_o_d_u_l_e.html#ga0d836b5e7d02ddd8d2cae54814c47c4a',1,'drv8323rs.h']]],
-  ['drv8323rs_5focp_5fcontrol_5fvds_5flvl',['DRV8323RS_OCP_CONTROL_VDS_LVL',['../group___m_d___m_o_d_u_l_e.html#ga7124e1f9ad33b87be7a6a4aa8f38c55e',1,'drv8323rs.h']]],
-  ['drv8323rs_5freg_5faddr',['DRV8323RS_REG_ADDR',['../group___m_d___m_o_d_u_l_e.html#ga412717b328f1e96af94115511a877e5f',1,'drv8323rs.h']]],
-  ['drv8323rs_5fspi_5fcmd',['DRV8323RS_SPI_CMD',['../group___m_d___m_o_d_u_l_e.html#ga313eb87f11b349444a1327cfa92bafc3',1,'drv8323rs.h']]]
+  ['errortype',['ErrorType',['../uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45a',1,'uart_comm.h']]]
 ];

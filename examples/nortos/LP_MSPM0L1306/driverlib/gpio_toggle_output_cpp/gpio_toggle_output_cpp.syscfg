@@ -18,13 +18,18 @@ const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 GPIO1.$name                         = "GPIO_LEDS";
 GPIO1.port                          = "PORTA";
-GPIO1.associatedPins.create(3);
+GPIO1.associatedPins.create(4);
 GPIO1.associatedPins[0].$name       = "USER_LED_1";
 GPIO1.associatedPins[0].assignedPin = "27";
 GPIO1.associatedPins[1].$name       = "USER_LED_2";
 GPIO1.associatedPins[1].assignedPin = "26";
 GPIO1.associatedPins[2].$name       = "USER_LED_3";
 GPIO1.associatedPins[2].assignedPin = "13";
+GPIO1.associatedPins[3].$name               = "USER_TEST";
+GPIO1.associatedPins[3].assignedPort        = "PORTA";
+GPIO1.associatedPins[3].assignedPin         = "6";
+GPIO1.associatedPins[3].assignedPortSegment = "Lower";
+GPIO1.associatedPins[3].pin.$assign         = "PA6";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 

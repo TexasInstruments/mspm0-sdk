@@ -68,6 +68,7 @@
         "
         enableSysConfigTool="true"
         sysConfigBuildOptions="
+            --output .
             --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
             --compiler gcc
         "

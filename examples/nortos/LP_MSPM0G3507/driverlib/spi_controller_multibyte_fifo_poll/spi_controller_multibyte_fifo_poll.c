@@ -45,13 +45,9 @@ uint8_t gTxPacket[SPI_PACKET_SIZE] = {'M', 'S', 'P', '!'};
 
 /* Data received from SPI Peripheral */
 volatile uint8_t gRxPacket[SPI_PACKET_SIZE];
-
 int main(void)
 {
     SYSCFG_DL_init();
-
-    /* Set LED to indicate start of transfer */
-    DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
 
     /* Fill TX FIFO with data and transmit to SPI Peripheral */
     DL_SPI_fillTXFIFO8(SPI_0_INST, &gTxPacket[0], SPI_PACKET_SIZE);
@@ -67,7 +63,6 @@ int main(void)
     for (uint8_t i = 0; i < SPI_PACKET_SIZE; i++) {
         gRxPacket[i] = DL_SPI_receiveDataBlocking8(SPI_0_INST);
     }
-
     /*
      * If this example is used with the spi_peripheral_multibyte_fifo_poll
      * example, the expected data to receive in gRxPacket is
@@ -76,7 +71,8 @@ int main(void)
 
     /* If write and read were successful, toggle LED */
     while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
         delay_cycles(16000000);
     }
 }

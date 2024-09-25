@@ -504,6 +504,7 @@ function getSubscriberOptions(inst){
             dispStr += " => ";
             while(i < sub.length) {
                 dispStr += " " + sub[i].toString();
+                if(i<sub.length-1){dispStr+=","};
                 i++;
             }
         }

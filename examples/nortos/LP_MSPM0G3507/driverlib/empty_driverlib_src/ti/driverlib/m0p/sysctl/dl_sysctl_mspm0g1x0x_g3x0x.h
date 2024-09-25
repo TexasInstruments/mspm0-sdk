@@ -88,13 +88,13 @@ extern "C" {
  #define DL_SYSCTL_RESET_POR                       (SYSCTL_RESETLEVEL_LEVEL_POR)
 
 /*!
- * @brief Perform system reset and run bootloader
+ * @brief Perform system reset and exit bootloader to the application
  */
  #define DL_SYSCTL_RESET_BOOTLOADER_EXIT                                       \
                                         (SYSCTL_RESETLEVEL_LEVEL_BOOTLOADEREXIT)
 
  /*!
- * @brief Perform system reset and exit bootloader to the application
+ * @brief Perform system reset and run bootloader
  */
  #define DL_SYSCTL_RESET_BOOTLOADER_ENTRY                                      \
                                        (SYSCTL_RESETLEVEL_LEVEL_BOOTLOADERENTRY)
@@ -594,7 +594,7 @@ typedef enum {
     /*! Divide HFCLK by 7 before being used for MFPCLK */
     DL_SYSCTL_HFCLK_MFPCLK_DIVIDER_7 = 0x6,
     /*! Divide HFCLK by 8 before being used for MFPCLK */
-    DL_SYSCTL_HFCLK_MFPCLK_DIVIDER_8 = 0x6,
+    DL_SYSCTL_HFCLK_MFPCLK_DIVIDER_8 = 0x7,
     /*! Divide HFCLK by 9 before being used for MFPCLK */
     DL_SYSCTL_HFCLK_MFPCLK_DIVIDER_9 = 0x8,
     /*! Divide HFCLK by 10 before being used for MFPCLK */

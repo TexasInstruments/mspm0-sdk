@@ -1,8 +1,8 @@
 MSPM0 Sensorless FOC Software User's Guide
 ==========================================
 
-CCS Project setup
------------------
+1. CCS Project setup
+--------------------
 
 1. Go to Import CCS Projects as shown below.
 
@@ -12,417 +12,590 @@ CCS Project setup
 2. Click Browse. Navigate to ``C:\ti\mspm0_sdk_<SDK_Version>\examples\nortos\[LAUNCHPAD]\motor_control_bldc_sensorless_foc``.
 3. Click Select Folder. Check the desired hardware board, and click Finish to import the project into your workspace.
 
-   .. figure:: ./images/CCS_IMPORT_1.jpg
-      :alt: 
+.. figure:: ./images/CCS_IMPORT_1.jpg
+   :alt: 
 
-2.1 Setting the Motor Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Register Overview
+~~~~~~~~~~~~~~~~~
 
-The motor parameter can be found in the motor\_params.h file. These are the motor parameters required for Sensorless FOC:
+The Sensorless FOC Library is structured to be interfaced through Specific Registers, the Registers will be periodically parsed by the application interface to convert to the sensorless FOC algorithm variables. This helps users to have a clear interface to the motor control software.
 
--  Stator resistance, Rs (ohm)
--  Stator inductance, Ls (H)
--  Number of motor poles (optional)
--  Back Emf constant in V/Hz
--  Base maximum Frequency of the motor (Hz)
+For using the sensorless FOC library the user need to use the 3 main registers namely UserCtrlRegs, UserInputRegs and UserStatusRegs. The Library exposes these registers through pointers.
 
-.. figure:: images/FOC_MOTOR_PARAMS.jpg
-   :alt: Locate motor\_params.h file
+The pointers for 3 registers:
 
-   Locate motor\_params.h file
+-  pUserCtrlRegs
 
-These parameters are defined using an #elif statement for a motor. To define these parameters for a custom motor, modify the #define statements for MOTOR\_PARA\_RS, MOTOR\_PARA\_LS, MOTOR\_PARA\_POLES, and MOTOR\_PARA\_MAX\_FREQ for USER\_MOTOR. To add another motor, copy and paste the #elif statement below and rename USER\_MOTOR to another name.
+   All the variables used for controlling the motor like speed input is present in this user controls structure
 
-::
+-  pUserInputRegs
 
-    #elif (USER_MOTOR)
-    /* Define the electrical motor parameters (User motor) */
-    /* @brief Stator resistance (ohm) */
-    #define MOTOR_PARA_RS               8
-    /* @brief Stator inductance (H) */
-    #define MOTOR_PARA_LS               0.0032
-    /* @brief Number of poles */
-    #define MOTOR_PARA_POLES            6
-    /* @brief Back Emf constant in V/Hz */
-    #define MOTOR_PARA_KE               0.1
-    /* @brief Maximum Frequency */
-    #define MOTOR_PARA_MAX_FREQ         125
+   All the configurations like different startup modes etc are present in the User input registers
 
-To select a motor defined in motor\_params.h, click Project -> Properties in the toolbar. In the Properties window, go to Build -> Arm Compiler -> Predefined Symbols. The pre-defined motor name is LVSERVOMTR=1. To change the pre-defined motor name, click “Edit” and change LVSERVOMTR to another defined motor in motor\_params.h, such as LVBLDCMTR or USER\_MOTOR.
+-  pUserStatusRegs
 
-.. figure:: images/CCS_PREDEFINED_SYMBOL.jpg
-   :alt: LVSERVOMTR=1 symbol
+   Used for monitoring the algorithm status and algorithm variables
 
-   LVSERVOMTR=1 symbol
+Configuring the Project
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Adding Initial Parameters (optional)
-------------------------------------
+For running the motor we first need to configure the userInputRegs with the correct parameters.
 
-1. In the Project Explorer, open the project drop down menu and open “param\_[motor driver].h”.
+There are 2 types of parameters present in the userInputRegs:
 
-   .. figure:: ./images/CCS_PROJECT_EXPLORER_PARAM_H.jpg
-      :alt: Locate param\_[motor driver].h file
+-  System parameters
 
-      Locate param\_[motor driver].h file
+   This sets the motor parameters, and hardware defined parameters like Current base value, Voltage base value .etc. The system parameters are present in pUserInputRegs→systemParams.
 
-2. In the “param\_[motor driver].h” file change any of the “GUI\_DEFAULT\_xxxx” defines to some pre-defined parameters in the following folders, or the value inside of the parentheses.
+-  Tuning parameters
 
-   -  “foc\_types.h” (sensorless\_foc -> foc)
-   -  “motor\_params.h” (motor)
-   -  “drvxxxx.h” (motor\_driver -> drv83xx) The parameters that can be initially defined are below.
+   All the other elements in the userInputRegs except systemParams are the tuning parameters. The tuning parameter helps to tune the motor to the desired performance. for example in mtrStartUp1 we can configure the startup methods like align, slow first start and IPD. Refer to the Tuning Document for more details.
 
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Parameter                                    | Definition                                                                                                                      |
-+==============================================+=================================================================================================================================+
-| USER\_DEFAULT\_FOC\_VOLT\_RATIO              | Voltage divider ratio for th DC bus voltage input                                                                               |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_DRV\_RSHUNT                   | DRV shunt resistor in Ω                                                                                                         |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| DRV\_CSA\_GAIN\_MAP\_0                       | DRV gain mapped to FOC\_CSA\_GAIN\_0                                                                                            |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| DRV\_CSA\_GAIN\_MAP\_1                       | DRV gain mapped to FOC\_CSA\_GAIN\_1                                                                                            |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| DRV\_CSA\_GAIN\_MAP\_2                       | DRV gain mapped to FOC\_CSA\_GAIN\_2                                                                                            |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| DRV\_CSA\_GAIN\_MAP\_3                       | DRV gain mapped to FOC\_CSA\_GAIN\_3                                                                                            |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_CSA\_GAIN                     | Selected CSA gain settings                                                                                                      |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_ENABLE\_GAIN\_CHANGE          | FLAG used to enable DRV GAIN CHANGE while program runs                                                                          |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| DRV\_setCsaGain                              | Links to the DRV set gain function, need to be set if USER\_DEFAULT\_ENABLE\_GAIN\_CHANGE is defined                            |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| DRV\_HANDLE                                  | Links to the DRV instance, need to be set if USER\_DEFAULT\_ENABLE\_GAIN\_CHANGE is defined                                     |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| DRV\_CSA\_GAIN                               | Links to the DRV CSA gain enumeration, need to be set if USER\_DEFAULT\_ENABLE\_GAIN\_CHANGE is defined                         |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_ENABLE\_FAULT\_INPUT\_CHECK   | FLAG used to enable checking External fault input                                                                               |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| FAULT\_INPUT\_STATUS                         | Links to the API to poll for fault status, should return 1 to report external fault condition                                   |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| FAULT\_INPUT\_CLEAR                          | Links to the API to clear external fault condition                                                                              |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_RS                       | Motor stator resistance in Ω                                                                                                    |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_LS                       | Motor stator inductance in H                                                                                                    |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_KE                       | Motor back emf phase to phase in V/Hz                                                                                           |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_MAX\_FREQ                | Motor maximum frequency to command, speed reference upper limit is limited to this value                                        |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PWMFREQ                  | PWM frequency selection, can enter value in enum of FOC\_PWM\_FREQ                                                              |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_DEADBAND                 | Deadband to set in nanoseconds                                                                                                  |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_STARTUP\_METHOD          | Startup method selection, can enter value in enum of FOC\_STARTUP                                                               |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_SLOW\_FIRST\_CYC\_FREQ   | Slow first cycle frequency in Hz                                                                                                |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_RAMPUP\_CURRENT          | Current settings in rampup phase in Ampere                                                                                      |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_RAMPUP\_TARGET           | Target frequenct in ramp phase in Hz                                                                                            |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_ALIGN\_TIME              | Time spend in align in seconds                                                                                                  |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_ALIGN\_CURRENT           | Align or first cycle current                                                                                                    |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_IPD\_THRESHOLD\_COUNT         | Value between 1-100, higher the value higher the peak current in IPD, can enter value in enum of FOC\_IPD\_THRES\_COUNT         |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_IPD\_FREQ                | IPD frequency enum, can enter value in enum of FOC\_IPD\_FREQ                                                                   |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_SPEED\_REF\_RAMP\_RATE   | Ramp rate for PI speed reference in Hz/s                                                                                        |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PISPD\_KP                | Proportional constant for PI speed                                                                                              |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PISPD\_KI                | Integral constant for PI speed                                                                                                  |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PISPD\_DIV               | PI speed loop execution divider, can enter value in enum of FOC\_SPD\_DIV                                                       |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PIIQ\_KP                 | Proportional constant for PI IQ                                                                                                 |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PIIQ\_KI                 | Integral constant for PI IQ                                                                                                     |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PIID\_KP                 | Proportional constant for PI ID                                                                                                 |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PIID\_KI                 | Integral constant for PI ID                                                                                                     |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_OUTER\_LOOP              | Selection for outerloop speed or current, can enter value in enum of FOC\_OUTER\_LOOP                                           |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_DIRECTION\_REVERSAL      | Set the motor direction, can enter value in enum of FOC\_DIRECTION                                                              |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_PWMADCSAMPLE             | Number of PWM cycles to be spend in adc sampling, ie, if 40 and PWM clock is 80Mhz then 1us is available for current sampling   |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_ADC\_SETTLE\_DELAY       | ADC value rise time delay in PWM cycles, defines the delay to wait before ADC input voltage is stabilized before sampling       |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_OVER\_VOLT               | DC Bus voltage Over voltage threshold                                                                                           |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_UNDER\_VOLT              | DC Bus voltage Under voltage threshold                                                                                          |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| USER\_DEFAULT\_FOC\_OVER\_CURRENT            | Phase Over current threshold                                                                                                    |
-+----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+The Sensorless FOC library initializes the input registers to a default value it is present in the setUserDefaultMotorParameters() function in ISR.c file. The default motor parameters are for `LVSERVOMTR <https://www.ti.com/tool/LVSERVOMTR>`__ motor available at ti.com .
+
+Refer to the Tuning Document for details on configurations.
 
 Starting the Project
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 1. Connect the hardware and turn on the power supply. There should be no more than 50mA on the power supply.
 2. Click on the Build button.\ |image0| Project should build with no errors.
 3. Click on the Debug button. |image1|
-4. Open the Expressions window and add the following global structures and expressions. The expressions below in the userVar structure controls the motor system and has control parameters defined in it.
+4. Open the Expressions window and add the following global structures pointers.
 
-   The userVar structure has 3 structures:
+-  pUserCtrlRegs
 
-   -  controlRegs which holds the variables to control the motor
-   -  statusRegs which holds the status variables
-   -  userParams which holds the parameters for the foc
+-  pUserInputRegs
 
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | controlRegs components   | Description                                                                                                                                                   |
-   +==========================+===============================================================================================================================================================+
-   | cntri1.clearFault        | If set 1 clears all the faults                                                                                                                                |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | cntri1.flashAccessKey    | Stores the flash access key. Need to be set value in define FOC\_FLASH\_ACCESSKEY to do flashWrite, flashRead, or dafultRead                                  |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | cntri1.flashWrite        | If set 1 and flashAccessKey matches then values in userParams are saved to flash                                                                              |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | cntri1.flashRead         | If set 1 and flashAccessKey matches then values in flash are loaded into userParams                                                                           |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | cntri1.defaultRead       | If set 1 and flashAccessKey matches then default values or initial parameters in flash are loaded into userParams                                             |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | cntri1.disCL             | If set 1 disables the closed loop transition after rampup phase is completed                                                                                  |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | cntri1.enableMotor       | If set 1 starts to run motor, if set 0 stops the motor                                                                                                        |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | speedRef                 | If outer loop is speed this is set as reference to PI speed. Value is set in IQ20 and positive values are only used. User should not enter negative values.   |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | iqRef                    | If outer loop is current this is set as reference to PI IQ controller.Value is set in IQ20                                                                    |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | idRef                    | If outer loop is current this is set as reference to PI ID controller.Value is set in IQ20                                                                    |
-   +--------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | statusRegs components         | Description                                                                                                        |
-   +===============================+====================================================================================================================+
-   | faultStatus.bits.extFaultIn   | Shows the External fault input status, Set to 1 when falling edge on fault input pin                               |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | faultStatus.bits.uvlo         | Shows the undervoltage fault status, Set to 1 when dc bus voltage is lower than underVoltageLimit parameter        |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | faultStatus.bits.ovlo         | Shows the undervoltage fault status, Set to 1 when dc bus voltage is higher than overVoltageLimit parameter        |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | faultStatus.bits.ocp          | Shows the overcurrent fault status, Set to 1 when motor phase current is greater than overCurrentLimit parameter   |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | motorState                    | Shows the state of the foc control. Refer enum MOTOR.                                                              |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | vdc                           | DC bus current in IQ20                                                                                             |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | speedFbk                      | Estimated motor speed in IQ(20)                                                                                    |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | speedRef                      | Reference input for PI speed in IQ(20)                                                                             |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | iqCurr                        | Feedback input to PI IQ in IQ(20)                                                                                  |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | iqCurrRef                     | Reference input for PI ID in IQ(20)                                                                                |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | idCurr                        | Feedback input to PI ID in IQ(20)                                                                                  |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-   | idCurrRef                     | Reference input for PI ID in IQ(20)                                                                                |
-   +-------------------------------+--------------------------------------------------------------------------------------------------------------------+
-
-   userParams are initialized with the parameters saved in the flash in init time.
-
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | userParams components   | Description                                                                                        |
-   +=========================+====================================================================================================+
-   | rs                      | Stator resistance in IQ(20)                                                                        |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | ls                      | Stator inductance in IQ(20)                                                                        |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | ke                      | Motor back emf constant in IQ(20)                                                                  |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | maxFreq                 | Maximum motor frequency                                                                            |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | PWMFreq                 | Selection of PWM frequency. Refer enum FOC\_PWM\_FREQ                                              |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | deadband                | Deadband in nanoseconds                                                                            |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | CSAGain                 | Selection of CSA GAIN. Refer enum FOC\_CSA\_GAIN                                                   |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | outerLoop               | Selection of Outer loop. Refer enum FOC\_OUTER\_LOOP                                               |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | directionReversal       | Selection of direction. Refer enum FOC\_DIRECTION                                                  |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | startupMethod           | Startup method selection. Refer enum FOC\_STARTUP                                                  |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | slowCycFreq             | Slow first cycle frequency in Hz. Value in IQ(20)                                                  |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | alignCur                | Align current in Ampere in IQ(20)                                                                  |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | alignTime               | Align time in seconds in IQ(20)                                                                    |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | IPDCurrThresh           | Value between 1-100, higher the value higher the peak current. Refer enum FOC\_IPD\_THRES\_COUNT   |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | IPDFreq                 | IPD frequency selection. Refer enum FOC\_IPD\_FREQ                                                 |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | rampupCur               | Rampup current in Ampere in IQ(20)                                                                 |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | rampupRate              | Ramp up rate in Hz/s in IQ(20)                                                                     |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | rampupTarget            | Ramp up target in Hz in IQ(20)                                                                     |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | speedRefRampRate        | Speed reference ramp rate in Hz/s in IQ(20)                                                        |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | piSpdKp                 | PI speed proportionality constant in IQ(20)                                                        |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | piSpdKi                 | PI speed Ki in IQ(20)                                                                              |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | piSpdDiv                | PI speed execution rate divider                                                                    |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | piIdKp                  | PI ID proportionality constant in IQ(20)                                                           |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | piIdKi                  | PI ID integral constant in IQ(20)                                                                  |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | piIqKp                  | PI IQ proportionality constant in IQ(20)                                                           |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | piIqKi                  | PI IQ integral constant in IQ(20)                                                                  |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | overVoltageLimit        | Overvoltage limit in IQ(20)                                                                        |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | underVoltageLimit       | Undervoltage limit in IQ(20)                                                                       |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-   | overCurrentLimit        | Overcurrent limit in IQ(20)                                                                        |
-   +-------------------------+----------------------------------------------------------------------------------------------------+
-
-   **Note: Some of the variables are in IQ20 format. In order to be displayed and updated properly during debug, you should switch them to IQ(20) format in the CCS expressions window by right clicking the expression, select Q-Values, then click "Select Q-Value".**
-
-   .. figure:: images/CCS_SET_QVALUES.jpg
-      :alt: Select IQ value
-
-      Select IQ value
-
-5. For devices with SPI support only, you can add the guiSPI structure for SPI Configuration and controlling SPI reads/writes during runtime. The expressions below in the gui\_spi structure configure the SPI configuration and use expressions during run time.
-
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | gui\_spi               | structure that contains the SPI variables below                                           |
-   +========================+===========================================================================================+
-   | writeBitfieldRegFlag   | Writes writeBitfieldRegData to bitfieldRegPosData of writeBitfieldRegAddr when set to 1   |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | writeBitfieldRegAddr   | Set to address of a bitfield register write operation                                     |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | bitfieldRegPosData     | Bitfield position of a bitfield write operation to writeBitfieldRegAddr                   |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | bitfieldRegMaskData    | Mask value of a bitfield write operation to writeBitfieldRegAddr                          |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | writeBitfieldRegData   | Data value of a bitfield write register operation to writeBitfieldRegAddr                 |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | writeRegFlag           | Writes writeRegData to writeRegData of writeRegAddr when set to 1                         |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | writeRegAddr           | Set to address of a register write operation                                              |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | writeRegData           | Data value of a write register operation to writeRegAddr                                  |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | readRegFlag            | Reads data of readRegAddr and stores into to readRegData when set to 1                    |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | readRegAddr            | Set to address of a register read operation                                               |
-   +------------------------+-------------------------------------------------------------------------------------------+
-   | readRegData            | Data value read from read operation of readRegAddr                                        |
-   +------------------------+-------------------------------------------------------------------------------------------+
+-  pUserStatusRegs
 
 6. Press Play |image2| to start the code.
 7. Enable “Continuous Refresh” in the Expressions window. |image3|
 
-Running the Project
--------------------
+8. Refer to the `Tuning Document <https://www.ti.com/lit/pdf/slau927>`__ for spinning and tuning the motor.
 
-1. Open userVar. Set *outerloop* to FOC\_OUTER\_LOOP\_SPEED to select outer speed loop. Set *speedRef* to 100 to spin the motor at 100Hz and set *enableMotor* to 1 to start the motor. The motor starts spinning.
-2. set *enableMotor* to 0 to stop the motor. Set *directionReversal* to FOC\_DIRECTION\_CCW to reverse the motor direction. Set *enableMotor* to 1 and observe motor spinning in opposite direction.
-3. Stop the motor by setting *enableMotor* to 0. Change *PWMFreq* to FOC\_PWM\_FREQ\_15000 to select 15Khz PWM frequency. Enable the motor again and observe the PWM outputs.
-4. Change *deadband* to 500 to change the MCU deadband to 500 ns. Observe in waveforms.
-5. Change *speedRefRampRate* to change the acceleration and deceleration rate of the motor when *speedRef* is modified.
-6. Set *overVoltageLimit* to a low value and increase the DC bus voltage beyond it and observe *faultStatus.bits.ovlo* is set to 1, and the motor stops spinning. Reduce the voltage below the limit and set *cntrl1.clearFault* = 1 to clear the latched fault and enable the motor again to spin it.
-7. Create an undervoltage fault by decreasing the voltage below *underVoltageLimit*. Observe *faultStatus.bits.uvlo* is set and the motor stops spinning. Increase the voltage above the limit and set *cntrl1.clearFault* = 1 to clear the latched fault and enable the motor again to spin it.
+2. Register Map
+---------------
 
-   .. figure:: images/CCS_EXPRESSION_WINDOW.jpg
-      :alt: 
+1 UserCtrlRegs
+~~~~~~~~~~~~~~
 
-8. If the device has SPI registers, use the gui\_spi variables to perform a bitfield write, register write, or register read, or read all operation.
+Set of registers used to control the motor.
 
-   -  To perform a bitfield write operation:
+1.1 SpeedCtrl
+~~~~~~~~~~~~~
 
-      -  Select the drop-down register in *writeBitfieldRegAddr*
-      -  Enter the bitfield position in *bitfieldRegPosData*
-      -  Enter the mask of the setting in that bitfield position in *bitfieldRegMaskData* (for example, a 3-bit setting has mask 0x7)
-      -  Write the bitfield data in *writeBitfieldRegData*
-      -  Set the *writeBitfieldRegFlag* to 1. It will automatically clear to 0.
+Speed control register
 
-   -  To perform a register write operation:
++----------------+-------------------------------------------------------------------------------------------------+
+| SpeedCtrl      | Definition                                                                                      |
++================+=================================================================================================+
+| *speedInput*   | Speed Command in 15 bit value. Value to set = (Desired motor speed) x 32768/(Max motor speed)   |
++----------------+-------------------------------------------------------------------------------------------------+
 
-      -  Select the drop-down register in *writeRegAddr*
-      -  Write the data in *writeRegData*
-      -  Set the *writeRegFlag* to 1. It will automatically clear to 0.
+1.2 algoDebugCtrl1
+~~~~~~~~~~~~~~~~~~
 
-   -  To perform a register read operation:
+Algorithm debug register 1
 
-      -  Select the drop-down register in *readRegAddr*
-      -  Set the *readRegFlag* to 1. It will automatically clear to 0.
-      -  Read the data in *readRegData*
++--------------------------------+-----------------------------------------------+
+| algoDebugCtrl1                 | Definition                                    |
++================================+===============================================+
+| *iqRefSpeedLoopDis*            | Iq reference used if speed loop is disabled   |
++--------------------------------+-----------------------------------------------+
+| *forceAlignAngleSrcSelect*     | Force align angle state source select         |
++--------------------------------+-----------------------------------------------+
+| *forceISDEn*                   | Halts after ISD is complete                   |
++--------------------------------+-----------------------------------------------+
+| *forceIPDEn*                   | Halts after IPD is complete                   |
++--------------------------------+-----------------------------------------------+
+| *forceSlowCycleFirstCycleEn*   | Halts after slow first cycle is complete      |
++--------------------------------+-----------------------------------------------+
+| *forceAlignEn*                 | Halts after align is complete                 |
++--------------------------------+-----------------------------------------------+
+| *closeLoopDis*                 | Disable open to closed loop transition        |
++--------------------------------+-----------------------------------------------+
+| *forcedAlignAngle*             | Align angle used in forced align              |
++--------------------------------+-----------------------------------------------+
+| *clearFlt*                     | Clears all faults                             |
++--------------------------------+-----------------------------------------------+
 
-   .. figure:: images/CCS_SPI_WINDOW.jpg
-      :alt: gui\_spi variables
+1.3 algoDebugCtrl2
+~~~~~~~~~~~~~~~~~~
 
-      gui\_spi variables
+Algorithm debug register 2
 
-2.7 Logging the variables
-~~~~~~~~~~~~~~~~~~~~~~~~~
++------------------------+------------------------------------------------------------+
+| algoDebugCtrl2         | Definition                                                 |
++========================+============================================================+
+| *forceVQCurrLoopDis*   | Vq applied when current loop and speed loop are disabled   |
++------------------------+------------------------------------------------------------+
+| *forceVDCurrLoopDis*   | Vd applied when current loop and speed loop are disabled   |
++------------------------+------------------------------------------------------------+
+| *currLoopDis*          | Disable current loop and speed loop                        |
++------------------------+------------------------------------------------------------+
+| *statusUpdateEn*       | Enables continous update of the UserStatusRegs             |
++------------------------+------------------------------------------------------------+
 
-The user can add the \_\_ENABLE\_LOG predefined symbol to enable logging. The user can set the log index and variable as shown in the below code:
+1.4 dacCtrl
+~~~~~~~~~~~
 
-::
+DAC control register
 
-        FOC_addVarToLog(FOC_LOG_IDX_0, phaseVolt.Valpha);
++----------------------+---------------------------------------------------------------------+
+| dacCtrl              | Definition                                                          |
++======================+=====================================================================+
+| *dacEn*              | DAC enable                                                          |
++----------------------+---------------------------------------------------------------------+
+| *dacShift*           | Unipolar ouput Left or right shift, used if dacScalingFactor is 0   |
++----------------------+---------------------------------------------------------------------+
+| *dacScalingFactor*   | Dac scale factor in iq 27                                           |
++----------------------+---------------------------------------------------------------------+
+| *dacOutAddr*         | Variable address to output through DAC                              |
++----------------------+---------------------------------------------------------------------+
 
-To see the logged data as a graph, the user can add the variable cssLog[X], where X is the index. Right click the variable and select “Graph”.
+NOTE: Even if dacEn is set to 1 the output will not be seen in the DAC pin if DAC peripheral is not enabled, DAC peripheral need to be set enabled in TI Sysconfig for DAC peripheral to function. User has to take care the DAC pin is not used while enabling the DAC peripheral in TI SysConfig
 
-.. figure:: images/CCS_GRAPH.jpg
-   :alt: Image of graph
+2 UserInputRegs
+~~~~~~~~~~~~~~~
 
-   Image of graph
+Registers for user input parameters
 
-Select “Continuous Refresh” mode to see continuous data.
+2.1 System Parameters
+~~~~~~~~~~~~~~~~~~~~~
 
-.. figure:: images/CCS_GRAPH_CONT_REFRESH.jpg
-   :alt: Image of graph
+Configuration for system parameters
 
-   Image of graph
++---------------------+--------------------------------------------------------------------------------------+
+| System Parameters   | Definition                                                                           |
++=====================+======================================================================================+
+| *mtrResist*         | Motor Phase resistance in milli Ω (ohms)                                             |
++---------------------+--------------------------------------------------------------------------------------+
+| *mtrInductance*     | Motor Phase Inductance in Micro Henry                                                |
++---------------------+--------------------------------------------------------------------------------------+
+| *mtrBemfConst*      | Motor BEMF Constant in milli Volts Per Hertz                                         |
++---------------------+--------------------------------------------------------------------------------------+
+| *voltageBase*       | Maximum Board Supply voltage in Volts = (voltage division scaling ratio x 3.3v)      |
++---------------------+--------------------------------------------------------------------------------------+
+| *currentBase*       | Maximum Current measurable by the board = (3.3v/(2 x CSA\_GAIN x SENSE\_RESISTOR))   |
++---------------------+--------------------------------------------------------------------------------------+
+| *maxMotorSpeed*     | Rated Speed of the Motor/ Maximum operational Speed                                  |
++---------------------+--------------------------------------------------------------------------------------+
+| *speedLoopKp*       | Proportional Gain for Closed Loop Speed Control                                      |
++---------------------+--------------------------------------------------------------------------------------+
+| *speedLoopKi*       | Integral Gain for Closed Loop Speed Control                                          |
++---------------------+--------------------------------------------------------------------------------------+
+| *currLoopKp*        | Proportional Gain for Closed Loop Torque Control                                     |
++---------------------+--------------------------------------------------------------------------------------+
+| *currLoopKi*        | Integral Gain for Closed Loop Torque Control                                         |
++---------------------+--------------------------------------------------------------------------------------+
 
-**Note: the software consumes 24KB extra space in SRAM to store the values when logging is enabled.**
+2.2 isdCfg
+~~~~~~~~~~
+
+Configuration Parameters for Initial Speed Detection
+
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| isdCfg                  | Bit Wise Definition                                                                                                              |
++=========================+==================================================================================================================================+
+| *revDrvOpenLoopCurr*    | Open loop current limit during speed reversal                                                                                    |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *revDrvHandoffThr*      | Speed threshold used to transition to open loop during reverse deceleration (% of MAX\_SPEED)                                    |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *statDetectThr*         | BEMF threshold to detect if motor is stationary                                                                                  |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *hiZTime*               | Motor Coasting time when Coasting is Enabled during Initial Speed Synchronization                                                |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *brkTime*               | Motor Braking time when Braking is Enabled during Initial Speed Synchronization                                                  |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *brkConfig*             | Brake configuration for time based or current based braking                                                                      |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *fwDrvResyncThr*        | Minimum speed threshold to resynchronize to close loop (% of                                                                     |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| MAX\_SPEED)             |                                                                                                                                  |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *resyncEn*              | Enable Resynchronization of Motor when motor is already spinning during startup                                                  |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *rvsDrEn*               | Enable Resynchronization of Motor and reverse the direction when motor is already spinning in reverse direction during startup   |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *hiZEn*                 | Enable Coasting of Motor when motor is already spinning during startup with higher speeds before Resynchronization               |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *brakeEn*               | Enable Braking of Motor when motor is already spinning during startup with higher speeds before Resynchronization                |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *isdEn*                 | ISD enable                                                                                                                       |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| *bemfResynCThreshold*   | BEMF Estimate Margin for ISD Resync                                                                                              |
++-------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+2.3 rvsDrvCfg
+~~~~~~~~~~~~~
+
+Configuration Parameters for Reverse Drive Deceleration configuration
+
++---------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| rvsDrvCfg                 | Bit Wise Definition                                                                                                   |
++===========================+=======================================================================================================================+
+| *activeBrakeKi*           | Active Deceleration Braking Current loop Proportional Gain                                                            |
++---------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| *activeBrakeKp*           | Active Deceleration Braking Current loop Integral Gain                                                                |
++---------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| *revDrvOpenLoopAccelA2*   | Reverse Drive Open Loop Deceleration second order coeff                                                               |
++---------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| *revDrvOpenLoopAccelA1*   | Reverse Drive Open Loop Deceleration First order coeff                                                                |
++---------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| *revDrvConfig*            | Deceleration Configuration based Reverse Drive Configuration or based on the Motor Start up Acceleration Parameters   |
++---------------------------+-----------------------------------------------------------------------------------------------------------------------+
+
+2.4 mtrStartUp1
+~~~~~~~~~~~~~~~
+
+Configuration Parameters for Motor Start up methods
+
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| mtrStartUp1              | Bit Wise Definition                                                                                            |
++==========================+================================================================================================================+
+| *iqRampEn*               | Enable Ramping Iq Current component down before transitioning to close loop for smoother closed loop handoff   |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *olILimitCfg*            | Open loop current reference configuration                                                                      |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *ipdRepeat*              | Number of times IPD is executed to average the estimated resultant rotor position                              |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *ipdAdvAngle*            | Motor Startup angle advancement from IPD detected rotor angle for maximizing torque output                     |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *ipdRlsMode*             | IPD Pulse decay mode selection between Coasting and Braking                                                    |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *ipdCurrThresh*          | IPD current threshold                                                                                          |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *ipdClkFreq*             | IPD Clock Frequency                                                                                            |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *alignOrSlowCurrLimit*   | Align or slow first cycle current limit                                                                        |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *alignTime*              | Time in mS for aligning the rotor during Motor startup                                                         |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *alignSlowRampRate*      | Align, slow first cycle and open loop current ramp rate                                                        |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+| *mtrStartUpOption*       | Motor startup selection from Align/ IPD /Slow First Cycle after Initial Speed Detection                        |
++--------------------------+----------------------------------------------------------------------------------------------------------------+
+
+2.5 mtrStartUp2
+~~~~~~~~~~~~~~~
+
+Configuration Parameters for Motor Start up methods
+
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| mtrStartUp2          | Bit Wise Definition                                                                                                       |
++======================+===========================================================================================================================+
+| *thetaErrRampRate*   | Ramp rate for reducing difference between estimated theta and open loop theta while transitioning to closed loop          |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| *FirstCycFreqSel*    | First cycle frequency in open loop for align, double align and IPDn                                                       |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| *slowFirstCycFreq*   | Frequency of first cycle in close loop startup (% of MAX\_SPEED)                                                          |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| *alignAngle*         | Motor Start up Align Angle                                                                                                |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| *olClHandOffThr*     | Open to close loop handoff threshold (% of MAX\_SPEED)                                                                    |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| *autoHandOffEn*      | Enable Auto handoff to automatically switch to closed loop when the BEMF is sufficient for closed loop angle estimation   |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| *olAcc2*             | 2nd Order Open Loop Speed Ramp up                                                                                         |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| *olAcc1*             | 1st Order Open Loop Speed Ramp up                                                                                         |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+| *olILimit*           | Current Limit reference during Open Loop Acceleration                                                                     |
++----------------------+---------------------------------------------------------------------------------------------------------------------------+
+
+2.6 closeLoop1
+~~~~~~~~~~~~~~
+
+Configuration Parameters for Closed Loop Speed/Torque Mode
+
++--------------------+------------------------------------------------------------------------------------------------+
+| closeLoop1         | Bit Wise Definition                                                                            |
++====================+================================================================================================+
+| *speedLoopDis*     | Operate the Motor in Torque reference mode                                                     |
++--------------------+------------------------------------------------------------------------------------------------+
+| *deadTimeCompEn*   | Enable the Dead time compensation for better acoustic performance at low speed operation       |
++--------------------+------------------------------------------------------------------------------------------------+
+| *avsEn*            | Enable limiting sudden Rise in DC bus (Anti Voltage Surge) during Faster Motor decelerations   |
++--------------------+------------------------------------------------------------------------------------------------+
+| *pwmMode*          | Enable/Disable Continous SVM modulation                                                        |
++--------------------+------------------------------------------------------------------------------------------------+
+| *pwmFreqOut*       | Set the Switching PWM Frequency (Max : 75KHZ)                                                  |
++--------------------+------------------------------------------------------------------------------------------------+
+| *clDec*            | Closed loop Speed/torque reference Ramp down setting                                           |
++--------------------+------------------------------------------------------------------------------------------------+
+| *clDecCfg*         | Configuration selection for Cldec between ClAcc/ClDec                                          |
++--------------------+------------------------------------------------------------------------------------------------+
+| *clAcc*            | Closed loop Speed/torque reference Ramp up settingp                                            |
++--------------------+------------------------------------------------------------------------------------------------+
+| *overModEnable*    | Enable Over Modulation (non sinusoidal modulation over the modulation Index)                   |
++--------------------+------------------------------------------------------------------------------------------------+
+| *mtrStopOption*    | Motor Stop Option to choose from Hi-z / Active Spin Down                                       |
++--------------------+------------------------------------------------------------------------------------------------+
+| *iLimit*           | Maximum current reference in torque PI loop                                                    |
++--------------------+------------------------------------------------------------------------------------------------+
+
+2.7 closeLoop2
+~~~~~~~~~~~~~~
+
+Configuration Parameters for Closed Loop Speed/Torque Mode
+
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| closeLoop2      | Bit Wise Definition                                                                                                               |
++=================+===================================================================================================================================+
+| *brkCurrThr*    | Current reference during Braking operations                                                                                       |
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| *brkSpeedThr*   | Speed threshold for BRAKE pin and motor stop options (low-side braking or high-side braking or align braking) (% of MAX\_SPEED)   |
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| *actSpinThr*    | Speed threshold below which motor switches to coasting while stopping motor                                                       |
++-----------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+2.8 faultCfg1
+~~~~~~~~~~~~~
+
+Configuration Parameters for faults
+
++----------------+----------------------------------------------------------+
+| faultCfg1      | Bit Wise Definition                                      |
++================+==========================================================+
+| *mtrLckMode*   | Motor Lock Configuration                                 |
++----------------+----------------------------------------------------------+
+| *lockRetry*    | retry time span after the Motor Lock Fault is detected   |
++----------------+----------------------------------------------------------+
+
+2.9 faultCfg2
+~~~~~~~~~~~~~
+
+Configuration Parameters for faults
+
++------------------+-----------------------------------------------------+
+| faultCfg1        | Bit Wise Definition                                 |
++==================+=====================================================+
+| *maxVmMode*      | Overvoltage fault mode                              |
++------------------+-----------------------------------------------------+
+| *maxVmMtr*       | Maximum voltage for running motor                   |
++------------------+-----------------------------------------------------+
+| *minVmMode*      | Undervoltage fault mode                             |
++------------------+-----------------------------------------------------+
+| *minVmMtr*       | Minimum voltage for running motor                   |
++------------------+-----------------------------------------------------+
+| *noMtrThr*       | No motor lock threshold                             |
++------------------+-----------------------------------------------------+
+| *abnBemfThr*     | Abnormal BEMF lock threshold (% of expected BEMF)   |
++------------------+-----------------------------------------------------+
+| *lockAbnSpeed*   | Abnormal speed lock threshold (% of MAX\_SPEED)     |
++------------------+-----------------------------------------------------+
+| *lock3En*        | Lock 3 : No motor enable                            |
++------------------+-----------------------------------------------------+
+| *lock2En*        | Lock 2 : Abnormal BEMF enable                       |
++------------------+-----------------------------------------------------+
+| *lock1En*        | Lock 1 : Abnormal speed enable                      |
++------------------+-----------------------------------------------------+
+
+2.10 miscAlgo
+~~~~~~~~~~~~~
+
+Configuration Parameters for Miscellaneous Algorithm Configurations Commands
+
++------------------------+--------------------------------------------------------------------------------------------+
+| miscAlgo               | Bit Wise Definition                                                                        |
++========================+============================================================================================+
+| *avsRevDrvOLDec*       | % of open loop acceleration to be applied during open loop deceleration in reverse drive   |
++------------------------+--------------------------------------------------------------------------------------------+
+| *brkCurrPersist*       | Persistence time for declaring motor is stopped after applying brake                       |
++------------------------+--------------------------------------------------------------------------------------------+
+| *autoHandoffMinBemf*   | Minimum BEMF for handoff                                                                   |
++------------------------+--------------------------------------------------------------------------------------------+
+| *isdTimeOut*           | Timeout in case ISD is unable to reliably detect speed or direction                        |
++------------------------+--------------------------------------------------------------------------------------------+
+| *isdRunTime*           | Persistence time for declaring motor is running during Initial Speed Detection             |
++------------------------+--------------------------------------------------------------------------------------------+
+| *isdStopTime*          | Persistence time for declaring motor has stopped during Initial Speed Detection            |
++------------------------+--------------------------------------------------------------------------------------------+
+| *fastIsdEnable*        | Fast initial speed detection enable                                                        |
++------------------------+--------------------------------------------------------------------------------------------+
+| *ipdHiResolEn*         | IPD high resolution enable                                                                 |
++------------------------+--------------------------------------------------------------------------------------------+
+| *clSlowAcc*            | Close loop acceleration when estimator is not yet fully aligned                            |
++------------------------+--------------------------------------------------------------------------------------------+
+
+2.11 pinCfg
+~~~~~~~~~~~
+
+Configuration Parameters for Miscellaneous Pin Configuration Commands
+
++------------------+----------------------------------------------------------------------------------+
+| pinCfg           | Bit Wise Definition                                                              |
++==================+==================================================================================+
+| *brakeInp*       | Configuration to select Brake Input as PinBased/RegisterBased Align / No Brake   |
++------------------+----------------------------------------------------------------------------------+
+| *brakePinMode*   | Enable Low Side Braking / Align Based Braking                                    |
++------------------+----------------------------------------------------------------------------------+
+| *vdcFiltDis*     | DC Bus Voltage filter enable                                                     |
++------------------+----------------------------------------------------------------------------------+
+
+2.12 periphCfg1
+~~~~~~~~~~~~~~~
+
+Configuration Parameters for Peripheral Configuration Commands
+
++------------------------+---------------------------------------------------------------------------------------------------+
+| periphCfg1             | Bit Wise Definition                                                                               |
++========================+===================================================================================================+
+| *dirChangeMode*        | Selection of Motor Stop based Reverse startup / Active Spin down based reverse startup            |
++------------------------+---------------------------------------------------------------------------------------------------+
+| *dirInput*             | DIR pin mode selection from Pin based/Register based Forward Spin/Register based Reverse Spin\*   |
++------------------------+---------------------------------------------------------------------------------------------------+
+| *busCurrLimitEnable*   | Enable the DC bus Current limited to specified Value                                              |
++------------------------+---------------------------------------------------------------------------------------------------+
+| *busCurrLimit*         | Maximim Bus Current Limit beyond which modulation index is clamped                                |
++------------------------+---------------------------------------------------------------------------------------------------+
+| *mcuDeadTime*          | Dead Time value in nS                                                                             |
++------------------------+---------------------------------------------------------------------------------------------------+
+
+3 UserStatusRegs
+~~~~~~~~~~~~~~~~
+
+Registers for monitoring the algorithm status and algorithm variables
+
+3.1 systemFaultStatus
+~~~~~~~~~~~~~~~~~~~~~
+
+Shows if any system level fault occurred
+
+3.2 motorState
+~~~~~~~~~~~~~~
+
+Shows the state of motor
+
+3.3 VdqFilt
+~~~~~~~~~~~
+
+Filtered value of Voltage applied in d and q axis.
+
++-----------+---------------------------+
+| VdqFilt   | Bit Wise Definition       |
++===========+===========================+
+| *d*       | D axis voltage filtered   |
++-----------+---------------------------+
+| *q*       | Q axis voltage filtered   |
++-----------+---------------------------+
+
+Note: Values in fixed point 27 representation.
+
+3.4 currentPI
+~~~~~~~~~~~~~
+
+Shows the KP and KI values used by the D-axis and Q-axis Current controllers.
+
++-------------+----------------------------------------+
+| currentPI   | Bit Wise Definition                    |
++=============+========================================+
+| *kp*        | Float value of proportional constant   |
++-------------+----------------------------------------+
+| *ki*        | Float value of integral constant       |
++-------------+----------------------------------------+
+
+3.5 piSpeed
+~~~~~~~~~~~
+
+Shows the Reference and feedback values for PI speed controller.
+
++---------------+-----------------------+
+| piSpeed       | Bit Wise Definition   |
++===============+=======================+
+| *reference*   | PI speed Reference    |
++---------------+-----------------------+
+| *feedback*    | PI speed Feedback     |
++---------------+-----------------------+
+
+3.6 piId
+~~~~~~~~
+
+Shows the Reference and feedback values for PI ID controller.
+
++---------------+-----------------------+
+| piId          | Bit Wise Definition   |
++===============+=======================+
+| *reference*   | PI id Reference       |
++---------------+-----------------------+
+| *feedback*    | PI id Feedback        |
++---------------+-----------------------+
+
+3.7 piIq
+~~~~~~~~
+
+Shows the Reference and feedback values for PI IQ controller.
+
++---------------+-----------------------+
+| piIq          | Bit Wise Definition   |
++===============+=======================+
+| *reference*   | PI iq Reference       |
++---------------+-----------------------+
+| *feedback*    | PI iq Feedback        |
++---------------+-----------------------+
+
+3.8 estimatedSpeed
+~~~~~~~~~~~~~~~~~~
+
+Estimated value of motor speedin perunit. IQ27 value with Max motor speed as base value.
+
+3.9 dcBusVoltage
+~~~~~~~~~~~~~~~~
+
+DC bus voltage value in perunit. IQ27 value with DC Voltage base value as base value.
+
+3.10 torqueLimit
+~~~~~~~~~~~~~~~~
+
+Torque limit value in perunit, this is the Q axis current limit.
+
+3.11 gateDriverFaultStatus
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Gate driver faults status register for external reporting
+
+3.12 controllerFaultStatus
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Controller fault status register for external reporting
 
 3. API Guide
 ------------
 
+The Sensorless FOC API guide provides a detailed description of files, variables, and APIs for the MSPM0 FOC motor control library
+
 -  `Sensorless FOC API Guide <../../doxygen/api_guide/html/index.html>`__
 
-4. Known Issues
----------------
-
-1. Function implicit declaration warning for IQrepeat function while compiling.
-2. Current solution supports power up to 100W. Applying high torque at low speeds can cause motor to spin backwards with high rpm.
-
-5. Supported Devices
+4. Supported Devices
 --------------------
 
 DRV8323RS
 ~~~~~~~~~
 
-Supported MSPM0 Launchpads
+Supported MSPM0 LaunchPads
 
 -  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
 
 Links
 
--  `Hardware User Guide <drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html>`__
+-  `SENSORLESS FOC - DRV8323RS Gate Driver User Guide <drv8323rs/DRV8323RS_Hardware_User_Guide_CN.html>`__
 
--  `GUI User Guide <drv8323rs/DRV8323RS_GUI_User_Guide_CN.html>`__
+DRV8316
+~~~~~~~
 
--  `MSPM0G3507-DRV8323RS-EVM-GUI <https://dev.ti.com/gallery/view/TIMSPGC/MSPM0G-DRV8323RS-EVM-GUI>`__
+Supported MSPM0 LaunchPads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+
+Links
+
+-  `SENSORLESS FOC - DRV8316 Gate Driver User Guide <drv8316/DRV8316_Hardware_User_Guide_CN.html>`__
+
+5. Tuning Documentation
+-----------------------
+
+For tuning the motor please refer to `Tuning Document <https://www.ti.com/lit/pdf/slau927>`__
 
 .. |image0| image:: images/CCS_BUILD.jpg
 .. |image1| image:: images/CCS_DEBUG.jpg

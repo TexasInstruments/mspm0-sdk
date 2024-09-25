@@ -8,6 +8,8 @@ A specific UART data format is expected for proper operation. <br>
 UART data packet: <br>
 [Start Byte] [I2C Address] [I2C Read or Write indicator] [Message Length N] [D0] [D1]..[DN]
 
+Please see accompanying sub-system document for more information. [UART to I2C Sub-system](https://www.ti.com/lit/spradd0)
+
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |

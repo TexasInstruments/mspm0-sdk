@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">1.20.01.06</span>
+   &#160;<span id="projectnumber">1.30.00.03</span>
    </div>
   </td>
  </tr>
@@ -109,11 +109,11 @@ Macros</h2></td></tr>
 <tr class="separator:ga25e841560b3f4711a5081512eb5d82c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1c18cb940b72ca7a52af24e603e257ea"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#ga1c18cb940b72ca7a52af24e603e257ea">DL_SYSCTL_RESET_BOOTLOADER_EXIT</a>&#160;&#160;&#160;(SYSCTL_RESETLEVEL_LEVEL_BOOTLOADEREXIT)</td></tr>
-<tr class="memdesc:ga1c18cb940b72ca7a52af24e603e257ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform system reset and run bootloader. <br /></td></tr>
+<tr class="memdesc:ga1c18cb940b72ca7a52af24e603e257ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform system reset and exit bootloader to the application. <br /></td></tr>
 <tr class="separator:ga1c18cb940b72ca7a52af24e603e257ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf171e7ebdf3e748ebf23e6460d8640e0"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#gaf171e7ebdf3e748ebf23e6460d8640e0">DL_SYSCTL_RESET_BOOTLOADER_ENTRY</a>&#160;&#160;&#160;(SYSCTL_RESETLEVEL_LEVEL_BOOTLOADERENTRY)</td></tr>
-<tr class="memdesc:gaf171e7ebdf3e748ebf23e6460d8640e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform system reset and exit bootloader to the application. <br /></td></tr>
+<tr class="memdesc:gaf171e7ebdf3e748ebf23e6460d8640e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform system reset and run bootloader. <br /></td></tr>
 <tr class="separator:gaf171e7ebdf3e748ebf23e6460d8640e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga885d09f7b83cd9056dff79f004d67e2f"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga885d09f7b83cd9056dff79f004d67e2f">DL_SYSCTL_INTERRUPT_LFOSC_GOOD</a>&#160;&#160;&#160;(SYSCTL_IMASK_LFOSCGOOD_ENABLE)</td></tr>
@@ -455,15 +455,7 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:gaf84ef067c088e88595332daf7d0611b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab31acca537d5af4a0710888c9fcb6be8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gab31acca537d5af4a0710888c9fcb6be8">DL_SYSCTL_BOR_THRESHOLD_LEVEL</a> { <br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a0e8afb986eaf313b904b37a561f0f936">DL_SYSCTL_BOR_THRESHOLD_LEVEL_0</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORMIN, 
-<br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a000529e00d369928e99b2af14a81341d">DL_SYSCTL_BOR_THRESHOLD_LEVEL_1</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL1, 
-<br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a5f4c15d42beafe6fef957c646211fe75">DL_SYSCTL_BOR_THRESHOLD_LEVEL_2</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL2, 
-<br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a76000141ff342ac44d376a6c731b7658">DL_SYSCTL_BOR_THRESHOLD_LEVEL_3</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL3
-<br />
+<tr class="memitem:gab31acca537d5af4a0710888c9fcb6be8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gab31acca537d5af4a0710888c9fcb6be8">DL_SYSCTL_BOR_THRESHOLD_LEVEL</a> { <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a0e8afb986eaf313b904b37a561f0f936">DL_SYSCTL_BOR_THRESHOLD_LEVEL_0</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORMIN
  }</td></tr>
 <tr class="separator:gab31acca537d5af4a0710888c9fcb6be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac4ba3ae564f39aac9884ee95b1a4bf50"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gac4ba3ae564f39aac9884ee95b1a4bf50">DL_SYSCTL_SHUTDOWN_STORAGE_BYTE</a> { <br />
@@ -800,7 +792,7 @@ __STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

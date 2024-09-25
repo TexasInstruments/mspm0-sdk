@@ -14,6 +14,7 @@ The device remains in STANDBY mode while waiting for an interrupt.
 | SYSCTL | PA3 | LFXIN |
 | SYSCTL | PA4 | LFXOUT |
 | EVENT |  |  |
+| DMA |  |  |
 | RTC |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

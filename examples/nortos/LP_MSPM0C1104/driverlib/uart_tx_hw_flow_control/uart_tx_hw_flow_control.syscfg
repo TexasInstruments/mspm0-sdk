@@ -1,7 +1,6 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @versions {"tool":"1.0.0+dev"}
  */
 // @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
 // @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
@@ -24,6 +23,8 @@ UART1.$name = "UART_0";
 UART1.profile = "CONFIG_PROFILE_3";
 UART1.targetBaudRate = 115200;
 UART1.enableFIFO = true;
+UART1.rxTimeoutValue = 15;
+UART1.rxFifoThreshold = "DL_UART_RX_FIFO_LEVEL_3_4_FULL";
 UART1.peripheral.$assign = "UART0";
 
 UART1.peripheral.txPin.$assign = "PA27";

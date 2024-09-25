@@ -112,10 +112,12 @@
 %     let genPinFunc = system.getTemplate(mod.templates.boardc);
 %  tempStr = _.trimEnd(genPinFunc(mod, "Function"));
 %  funcStr += tempStr != ""?tempStr + "\n":"";
-%   if(Common.isDeviceM0G()) {
+%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
 %     let genHFCLK = system.getTemplate("/ti/clockTree/templates/hfclkSource.Board.c.xdt");
 %  tempStr = _.trimEnd(genHFCLK());
 %  funcStr += tempStr != ""?tempStr + "\n":"";
+%   }
+%   if(Common.isDeviceM0G()){
 %     let genPLL = system.getTemplate("/ti/clockTree/templates/syspll.Board.c.xdt");
 %  tempStr =_.trimEnd(genPLL("Call"));
 %  funcStr += tempStr != ""?tempStr + "\n":"";

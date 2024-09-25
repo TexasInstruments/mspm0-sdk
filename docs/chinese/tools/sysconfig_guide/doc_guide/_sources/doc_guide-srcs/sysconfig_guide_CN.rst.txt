@@ -59,7 +59,7 @@ SysConfig 工具作为独立安装程序交付并集成在 CCS 中，可将其�
 3.1.1 在 CCS 中启用 SysConfig
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-CCS 12.5.0 和 CCS Theia 1.1.0+ 包含与 MSPM0 兼容的 SysConfig 版本，因此无需任何额外步骤即可使用。以下步骤仅在集成独立版 SysConfig 时适用（例如升级 SysConfig 版本时）。
+CCS 12.6.0 和 CCS Theia 1.2.0+ 包含与 MSPM0 兼容的 SysConfig 版本，因此无需任何额外步骤即可使用。以下步骤仅在集成独立版 SysConfig 时适用（例如升级 SysConfig 版本时）。
 
 1. | 请遵循\ `适用于 CCS Theia 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia_CN.html>`__\ 中的说明，为 MSPM0 安装 CCS Theia。
    | 或者，遵循\ `适用于 CCS 的 MSPM0 SDK 快速入门指南 <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_CN.html>`__\ 中的说明，为 MSPM0 安装 CCS。
@@ -270,7 +270,7 @@ CCS 12.5.0 和 CCS Theia 1.1.0+ 包含与 MSPM0 兼容的 SysConfig 版本，因
 
 1. 运行 SysConfig 独立版本
 
-2. SysConfig 1.18.x 包含对 MSPM0 的支持并支持 M0 SDK：
+2. SysConfig 1.19.x 包含对 MSPM0 的支持并支持 M0 SDK：
 
    .. figure:: ./images/sysconfig_guide/sysconfig_pre_installed_product.png
       :alt: 

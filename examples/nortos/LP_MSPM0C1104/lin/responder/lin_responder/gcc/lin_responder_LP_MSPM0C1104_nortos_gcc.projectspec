@@ -23,7 +23,7 @@
             -I${PROJECT_ROOT}
             -I${PROJECT_ROOT}/${ConfigName}
             -O2
-            @syscfg/device.opt
+            @device.opt
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -mcpu=cortex-m0plus
@@ -42,7 +42,7 @@
         "
         linkerBuildOptions="
             -nostartfiles
-            -ldevice.lds.genlibs
+            -Tdevice.lds.genlibs
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
@@ -58,6 +58,7 @@
         "
         enableSysConfigTool="true"
         sysConfigBuildOptions="
+            --output .
             --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
             --compiler gcc
         "
@@ -66,11 +67,11 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
-        <file path="../lin_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../lin_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../lin_responder.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lin_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../lin_responder.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

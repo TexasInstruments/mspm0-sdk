@@ -177,29 +177,3 @@ VREF.basicMode                     = ["DL_VREF_ENABLE_DISABLE"];
 VREF.basicVrefPins                 = "VREF+-";
 VREF.peripheral.vrefPosPin.$assign = "PA23";
 VREF.peripheral.vrefNegPin.$assign = "PA21";
-
-/**
- * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
- * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
- * re-solve from scratch.
- */
-ADC121.peripheral.adcPin2.$suggestSolution   = "PA25";
-Board.peripheral.swclkPin.$suggestSolution   = "PA20";
-Board.peripheral.swdioPin.$suggestSolution   = "PA19";
-COMP1.peripheral.$suggestSolution            = "COMP0";
-GPIO1.associatedPins[0].pin.$suggestSolution = "PA14";
-GPIO2.associatedPins[0].pin.$suggestSolution = "PA24/OPA0.IN0-";
-GPIO3.associatedPins[0].pin.$suggestSolution = "PA6";
-GPIO4.associatedPins[0].pin.$suggestSolution = "PA22";
-GPIO5.associatedPins[0].pin.$suggestSolution = "PA12";
-GPIO6.associatedPins[0].pin.$suggestSolution = "PA13";
-GPIO7.associatedPins[0].pin.$suggestSolution = "PA7";
-GPIO7.associatedPins[1].pin.$suggestSolution = "PA27";
-GPIO7.associatedPins[2].pin.$suggestSolution = "PA26";
-GPIO7.associatedPins[3].pin.$suggestSolution = "PA4";
-GPIO7.associatedPins[4].pin.$suggestSolution = "PA5";
-PWM1.peripheral.$suggestSolution             = "TIMG2";
-SYSCTL.peripheral.$suggestSolution           = "SYSCTL";
-TIMER1.peripheral.$suggestSolution           = "TIMG1";
-TIMER2.peripheral.$suggestSolution           = "TIMG0";
-VREF.peripheral.$suggestSolution             = "VREF";

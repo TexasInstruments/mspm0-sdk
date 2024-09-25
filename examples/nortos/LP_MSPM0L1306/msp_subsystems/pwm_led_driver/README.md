@@ -8,7 +8,7 @@ signal that increases and decreases in duty cycle in a heartbeat manner to drive
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG0 | PA13 | Counter Compare Pin 1 |
+| TIMG0 | PA13 | Capture/Compare Pin 1 |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |

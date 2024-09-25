@@ -53,10 +53,17 @@ extern "C"
 #include "smbus_phy.h"
 #include "smbus.h"
 
-//! R/W state when write is received
+/*! R/W state when write is received */
 #define I2C_WRITE      0
-//! R/W state when read is received
+/*! R/W state when read is received */
 #define I2C_READ       1
+
+/*! Software timeout to avoid lockup */
+#define SMB_SW_TIMEOUT              (10000)
+/*! Delay cycles after reseting the I2C interface on timeout */
+#define SMB_TIMEOUT_WAIT_CYCLES     (200)
+/*! Delay cycles for module Power up */
+#define SMB_POWER_STARTUP_DELAY     (16)
 
 //*****************************************************************************
 //
@@ -71,17 +78,6 @@ extern void SMBus_PHY_disable(SMBus *smbus);
 
 //*****************************************************************************
 //
-//! \brief   Enables the PHY and Data Link layer
-//
-//! \param *smbus     Pointer to SMBus structure
-//
-//! \return  None
-//
-//*****************************************************************************
-extern void SMBus_PHY_enable(SMBus *smbus);
-
-//*****************************************************************************
-//
 //! \brief   Enables the PHY and Data Link layer for target operation
 //
 //! \param *smbus     Pointer to SMBus structure
@@ -90,20 +86,6 @@ extern void SMBus_PHY_enable(SMBus *smbus);
 //
 //*****************************************************************************
 extern void SMBus_PHY_targetEnable(SMBus *smbus);
-
-//*****************************************************************************
-//
-//! \brief   Enables the I2C interrupts
-//
-//!  This function enables the I2C Start ,Stop, RX ,TX, Timeout interrupts.
-//!  SMBus_PHY_targetInit() must be called before this function.
-//
-//! \param *smbus     Pointer to SMBus structure
-//
-//! \return  None
-//
-//*****************************************************************************
-extern void SMBus_PHY_targetEnableInt(SMBus *smbus);
 
 //*****************************************************************************
 //
@@ -124,6 +106,33 @@ extern void SMBus_PHY_targetInit(SMBus *smbus,
 
 //*****************************************************************************
 //
+//! \brief   Enables the I2C interrupts
+//
+//!  This function enables the I2C Start ,Stop, RX ,TX, Timeout interrupts.
+//!  SMBus_PHY_targetInit() must be called before this function.
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_PHY_targetEnableInt(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Disables the I2C interrupts
+//
+//!  This function disables the I2C Start ,Stop, RX ,TX, Timeout interrupts.
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_PHY_targetDisableInt(SMBus *smbus);
+
+//*****************************************************************************
+//
 //! \brief   I2C Interrupt Service routine for SMBus Target
 //
 //!  Handles the interrupts from I2C module and passes the information to
@@ -141,6 +150,22 @@ extern SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus);
 
 //*****************************************************************************
 //
+//! \brief   Send a Manual ACK or NACK depending on data validity
+//
+//!  Sends a NACK or ACK manually.
+//!  Note that the bus is stretched by the I2C hardware until data is validated
+//!   and a NACK/ACK is sent.
+//
+//! \param smbus    Pointer to SMBus structure
+//! \param ackVal   true for ACK, false for NACK
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_PHY_targetManualACK(SMBus *smbus, bool ackVal);
+
+//*****************************************************************************
+//
 //! \brief   Enables the PHY and Data Link layer
 //
 //! \param *smbus     Pointer to SMBus structure
@@ -149,20 +174,6 @@ extern SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus);
 //
 //*****************************************************************************
 extern void SMBus_PHY_controllerEnable(SMBus *smbus);
-
-//*****************************************************************************
-//
-//! \brief   Enables the I2C interrupts
-//
-//!  This function enables the I2C Start, Stop, RX,TX, Timeout interrupts.
-//!  SMBus_PHY_targetInit() must be called before this function.
-//
-//! \param *smbus     Pointer to SMBus structure
-//
-//! \return  None
-//
-//*****************************************************************************
-extern void SMBus_PHY_controllerEnableInt(SMBus *smbus);
 
 //*****************************************************************************
 //
@@ -181,6 +192,33 @@ extern void SMBus_PHY_controllerEnableInt(SMBus *smbus);
 extern void SMBus_PHY_controllerInit(SMBus *smbus,
                                  I2C_Regs *i2cAddr,
                                  uint32_t busClk);
+
+//*****************************************************************************
+//
+//! \brief   Enables the I2C interrupts for Controller
+//
+//!  This function enables the I2C Start, Stop, RX,TX, Timeout interrupts.
+//!  SMBus_PHY_targetInit() must be called before this function.
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_PHY_controllerEnableInt(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Disables the I2C interrupts for Controller
+//
+//!  This function disables the I2C Start, Stop, RX,TX, Timeout interrupts.
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_PHY_controllerDisableInt(SMBus *smbus);
 
 //*****************************************************************************
 //

@@ -1,7 +1,6 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @versions {"tool":"1.0.0+dev"}
  */
 // @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
 // @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
@@ -28,7 +27,6 @@ GPIO1.associatedPins[0].assignedPin  = "22";
 GPIO1.associatedPins[1].$name        = "USER_TEST";
 GPIO1.associatedPins[1].assignedPin  = "2";
 GPIO1.associatedPins[1].initialValue = "SET";
-
 
 UART1.$name                    = "UART_0";
 UART1.enableFIFO               = true;

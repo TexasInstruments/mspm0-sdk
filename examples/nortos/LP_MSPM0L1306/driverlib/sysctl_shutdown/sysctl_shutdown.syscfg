@@ -36,6 +36,7 @@ GPIO2.port                          = "PORTA";
 GPIO2.associatedPins[0].assignedPin = "18";
 GPIO2.associatedPins[0].direction   = "INPUT";
 GPIO2.associatedPins[0].$name       = "USER_SWITCH_1";
+GPIO2.associatedPins[0].wakeupLogic = "ON_0";
 GPIO2.associatedPins[0].pin.$assign = "PA18";
 
 GPIO3.$name                         = "GPIO_INPUT";

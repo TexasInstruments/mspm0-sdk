@@ -118,7 +118,7 @@
 %
 %
 % function printPreFunction() {
-%   if(Common.isDeviceM0G()){
+%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
 %   let lfxtInst = _.find(instances, ['$name','LFXT']);
 %   let exlfInst = _.find(instances, ['$name','LFCLKEXT']);
 %       if(lfxtInst.enable || exlfInst.enable){

@@ -67,6 +67,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#per-phase-reactive-power">Per phase Reactive Power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#per-phase-fundamental-reactive-power">Per phase Fundamental Reactive Power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#per-phase-apparent-power">Per phase Apparent Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-fundamental-apparent-power">Per phase Fundamental Apparent Power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#per-phase-power-factor">Per phase Power Factor</a></li>
 </ul>
 </li>
@@ -77,6 +78,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#per-phase-reactive-energy">Per phase Reactive Energy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#per-phase-fundamental-reactive-energy">Per phase Fundamental Reactive Energy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#per-phase-apparent-energy">Per phase Apparent Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-phase-fundamental-apparent-energy">Per phase Fundamental Apparent Energy</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#total-active-energy">Total Active Energy</a><ul>
@@ -85,6 +87,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#total-reactive-energy">Total Reactive Energy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#total-fundamental-reactive-energy">Total Fundamental Reactive Energy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#total-apparent-energy">Total Apparent Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#total-fundamental-apparent-energy">Total Fundamental Apparent Energy</a></li>
 </ul>
 </li>
 </ul>
@@ -290,6 +293,17 @@
 <li><p><span class="math notranslate nohighlight">\(P_{react,ph}\)</span> = Reactive power of phase ph</p></li>
 </ul>
 </section>
+<section id="per-phase-fundamental-apparent-power">
+<h2>Per phase Fundamental Apparent Power<a class="headerlink" href="#per-phase-fundamental-apparent-power" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Fundamental apparent Power is computed by calculateFundamentalApparentPower():</p>
+<p><span class="math notranslate nohighlight">\(P_{FAPP,ph} (mW) = \sqrt{ {P_{Fact,ph}}^2 + {P_{Freact,ph}}^2 }\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{Fact,ph}\)</span> = Fundamental active power of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{Freact,ph}\)</span> = Fundamental reactive power of phase ph</p></li>
+</ul>
+</section>
 <section id="per-phase-power-factor">
 <h2>Per phase Power Factor<a class="headerlink" href="#per-phase-power-factor" title="Permalink to this heading">¶</a></h2>
 <p>The Power Factor is computed by calculatePowerFactor():</p>
@@ -363,6 +377,17 @@
 <li><p>SamplCnt = Number of samples within the present frame</p></li>
 </ul>
 </section>
+<section id="per-phase-fundamental-apparent-energy">
+<h3>Per phase Fundamental Apparent Energy<a class="headerlink" href="#per-phase-fundamental-apparent-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Per phase Fundamental apparent Power is computed by accumulateFundamentalApparentEnergy():</p>
+<p><span class="math notranslate nohighlight">\(E_{FAPP,ph} = P_{FAPP,ph} × SamplCnt\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{FAPP,ph}\)</span> = Apparent power of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+</ul>
+</section>
 </section>
 <section id="total-active-energy">
 <h2>Total Active Energy<a class="headerlink" href="#total-active-energy" title="Permalink to this heading">¶</a></h2>
@@ -417,6 +442,16 @@
 <li><p><span class="math notranslate nohighlight">\(E_{APP,ph}\)</span> = Apparent energy of phase ph</p></li>
 </ul>
 </section>
+<section id="total-fundamental-apparent-energy">
+<h3>Total Fundamental Apparent Energy<a class="headerlink" href="#total-fundamental-apparent-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Total Fundamental apparent Power is computed by:</p>
+<p><span class="math notranslate nohighlight">\(E_{TFAPP}\)</span> = <span class="math notranslate nohighlight">\(\sum_{n=1}^{NumPhases} E_{FAPP,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{FAPP,ph}\)</span> = Fundamental apparent energy of phase ph</p></li>
+</ul>
+</section>
 </section>
 </section>
 <section id="other-calculations">
@@ -451,7 +486,7 @@
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(V_{RMS,x}\)</span> = RMS Voltage of phase x</p></li>
 <li><p><span class="math notranslate nohighlight">\(V_{RMS,y}\)</span> = RMS Voltage of phase y</p></li>
-<li><p>k = angle betweeen x and y phases</p></li>
+<li><p>k = angle between x and y phases</p></li>
 </ul>
 </section>
 <section id="fundamental-line-to-line-voltage">
@@ -462,7 +497,7 @@
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(V_{FRMS,x}\)</span> = RMS Fundamental voltage of phase x</p></li>
 <li><p><span class="math notranslate nohighlight">\(V_{FRMS,y}\)</span> = RMS Funcamental voltage of phase y</p></li>
-<li><p>k = angle betweeen x and y phases</p></li>
+<li><p>k = angle between x and y phases</p></li>
 </ul>
 </section>
 <section id="per-phase-voltage-to-current-angle">

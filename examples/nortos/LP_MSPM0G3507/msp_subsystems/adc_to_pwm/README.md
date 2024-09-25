@@ -7,7 +7,7 @@ This example demonstrates how to convert an analog signal to a 4kHz PWM output. 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | SYSCTL |  |  |
-| TIMG7 | PA17 | Counter Compare Pin 0 |
+| TIMG7 | PA17 | Capture/Compare Pin 0 |
 | TIMG0 |  |  |
 | ADC0 | PA27 | ADC12 Channel 0 Pin |
 | EVENT |  |  |

@@ -40,6 +40,22 @@
 
 void SMBus_processDone(SMBus *smbus)
 {
+    if (smbus->ctrl.bits.swackEn == true)
+    {
+        /* Send a manual ACK if no issues processing received data */
+        if (smbus->phy.SMBus_Phy_AckPending == true)
+        {
+            if ( (smbus->state == SMBus_State_Target_FirstByte) ||
+                 (smbus->state == SMBus_State_Target_ByteReceived) )
+            {
+                SMBus_PHY_targetManualACK(smbus,  true);
+            }
+            else
+            {
+                SMBus_PHY_targetManualACK(smbus,  false);
+            }
+        }
+    }
     // Clear the State of SMBus target
     smbus->state = SMBus_State_OK;
 }
@@ -94,6 +110,12 @@ void SMBus_targetEnableInt(SMBus *smbus)
     SMBus_PHY_targetEnableInt(smbus);
 }
 
+void SMBus_targetDisableInt(SMBus *smbus)
+{
+    SMBus_PHY_targetDisableInt(smbus);
+}
+
+
 SMBus_State SMBus_targetProcessInt(SMBus *smbus)
 {
     SMBus_State New_State;
@@ -139,9 +161,11 @@ void SMBus_targetReportError(SMBus *smbus,
     {
     case SMBus_ErrorCode_Packet:
         smbus->status.bits.packErr = 1;
+        smbus->state = SMBus_State_Target_Error;
         break;
     case SMBus_ErrorCode_Cmd:
         smbus->status.bits.cmdErr = 1;
+        smbus->state = SMBus_State_Target_Error;
         break;
     default:
         return;
@@ -219,6 +243,12 @@ void SMBus_controllerEnableInt(SMBus *smbus)
 {
     SMBus_PHY_controllerEnableInt(smbus);
 }
+
+void SMBus_controllerDisableInt(SMBus *smbus)
+{
+    SMBus_PHY_controllerEnableInt(smbus);
+}
+
 
 SMBus_State SMBus_controllerProcessInt(SMBus *smbus)
 {

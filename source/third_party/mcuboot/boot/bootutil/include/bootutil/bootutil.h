@@ -78,6 +78,9 @@ fih_int context_boot_go(struct boot_loader_state *state, struct boot_rsp *rsp);
 
 fih_int split_go(int loader_slot, int split_slot, void **entry);
 
+/* The following was added by TI */
+fih_int boot_return_highest_version(struct boot_rsp *rsp);
+
 #ifdef __cplusplus
 }
 #endif

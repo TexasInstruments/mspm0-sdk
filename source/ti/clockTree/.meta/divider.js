@@ -1,4 +1,5 @@
 const { isDeviceM0G } = system.getScript("/ti/driverlib/Common.js");
+let Common = system.getScript("/ti/driverlib/Common.js");
 
 /* Supporting functions for auto enable of the SYSPLL divider channels */
 function getEnableSYSPLL0(inst) {
@@ -80,13 +81,19 @@ function isMDIVEnabled(inst) {
 function validate(inst, validation){
 
 	if(inst.$name === "UDIV"){
-		if(inst.divideValue != 1 && !inst.isUDIVEnabled){
-			validation.logWarning("UDIV will be disabled (/1) when sourced from LFCLK or SYSOSC and not reflect current setting", inst, "divideValue");
-		} else {
-			let ulpclk = inst[inst.$ipInstance.outPins[0].name];
-			if(ulpclk > 40){
-				validation.logError("ULPCLK is limited to below 40MHz. Frequency is currently " + ulpclk + "MHz. Please increase UDIV for the given MCLK.", inst, "divideValue");
-				validation.logError("ULPCLK is limited to below 40MHz.", system.clockTree["net_ulpclk"]);
+		//Temporary fix for MSPM0L122X_L222X to not allow user to select UDIV value other than 1
+		if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && inst.divideValue != 1) {
+			validation.logError("MSPM0L122X_L222X only supports a UDIV value of 1.", inst, "divideValue");
+		}
+		else {
+			if(inst.divideValue != 1 && !inst.isUDIVEnabled){
+				validation.logWarning("UDIV will be disabled (/1) when sourced from LFCLK or SYSOSC and not reflect current setting", inst, "divideValue");
+			} else {
+				let ulpclk = inst[inst.$ipInstance.outPins[0].name];
+				if(ulpclk > 40){
+					validation.logError("ULPCLK is limited to below 40MHz. Frequency is currently " + ulpclk + "MHz. Please increase UDIV for the given MCLK.", inst, "divideValue");
+					validation.logError("ULPCLK is limited to below 40MHz.", system.clockTree["net_ulpclk"]);
+				}
 			}
 		}
 

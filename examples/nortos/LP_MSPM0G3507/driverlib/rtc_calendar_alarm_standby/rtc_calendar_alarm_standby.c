@@ -41,8 +41,10 @@ int main(void)
     /* Enable RTC interrupts on device */
     NVIC_EnableIRQ(RTC_INT_IRQn);
 
+
     /* Set LED to indicate RTC clock enable */
-    DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     /* Start RTC clock */
     DL_RTC_enableClockControl(RTC);
@@ -54,7 +56,8 @@ int main(void)
 
     /* After alarm has triggered, toggle LED */
     while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
         delay_cycles(16000000);
     }
 }

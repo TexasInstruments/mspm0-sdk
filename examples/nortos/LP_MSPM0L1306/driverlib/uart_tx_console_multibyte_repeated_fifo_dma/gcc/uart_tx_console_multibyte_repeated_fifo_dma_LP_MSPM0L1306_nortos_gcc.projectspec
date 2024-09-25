@@ -23,7 +23,7 @@
             -I${PROJECT_ROOT}
             -I${PROJECT_ROOT}/${ConfigName}
             -O2
-            @syscfg/device.opt
+            @device.opt
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -mcpu=cortex-m0plus
@@ -42,7 +42,7 @@
         "
         linkerBuildOptions="
             -nostartfiles
-            -ldevice.lds.genlibs
+            -Tdevice.lds.genlibs
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
@@ -58,11 +58,12 @@
         "
         enableSysConfigTool="true"
         sysConfigBuildOptions="
+            --output .
             --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
             --compiler gcc
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="UART TX to console using a continuous DMA Triggers">
+        description="UART TX to a console using a continous DMA trigger">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

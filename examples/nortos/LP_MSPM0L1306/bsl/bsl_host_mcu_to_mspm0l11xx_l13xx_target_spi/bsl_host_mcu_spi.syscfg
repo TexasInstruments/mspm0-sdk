@@ -1,0 +1,68 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board = scripting.addModule("/ti/driverlib/Board");
+const GPIO  = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1 = GPIO.addInstance();
+const GPIO2 = GPIO.addInstance();
+const GPIO3 = GPIO.addInstance();
+const SPI   = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1  = SPI.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const gate6  = system.clockTree["MFCLKGATE"];
+gate6.enable = true;
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.port                          = "PORTA";
+GPIO1.$name                         = "GPIO_LED";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "PA0";
+GPIO1.associatedPins[0].assignedPin = "0";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+GPIO1.associatedPins[1].$name       = "Error";
+GPIO1.associatedPins[1].assignedPin = "27";
+
+GPIO2.$name                          = "GPIO_BSL";
+GPIO2.associatedPins.create(2);
+GPIO2.associatedPins[0].$name        = "NRST";
+GPIO2.associatedPins[0].initialValue = "SET";
+GPIO2.associatedPins[0].assignedPort = "PORTA";
+GPIO2.associatedPins[0].assignedPin  = "3";
+GPIO2.associatedPins[0].pin.$assign  = "boosterpack.19";
+GPIO2.associatedPins[1].$name        = "Invoke";
+GPIO2.associatedPins[1].assignedPort = "PORTA";
+GPIO2.associatedPins[1].assignedPin  = "7";
+
+GPIO3.$name                              = "GPIO_Button";
+GPIO3.associatedPins[0].direction        = "INPUT";
+GPIO3.associatedPins[0].internalResistor = "PULL_UP";
+GPIO3.associatedPins[0].assignedPort     = "PORTA";
+GPIO3.associatedPins[0].assignedPin      = "14";
+GPIO3.associatedPins[0].$name            = "PIN_0";
+
+SPI1.$name                      = "SPI_0";
+SPI1.rxFifoThreshold            = "DL_SPI_RX_FIFO_LEVEL_ONE_FRAME";
+SPI1.targetBitRate              = 1000000;
+SPI1.spiClkSrc                  = "MFCLK";
+SPI1.txFifoThreshold            = "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME";
+SPI1.peripheral.sclkPin.$assign = "PA6";
+SPI1.peripheral.mosiPin.$assign = "PA5";
+SPI1.peripheral.misoPin.$assign = "PA4";
+SPI1.peripheral.cs0Pin.$assign  = "PA8";
+
+
+const SYSCTL       = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+SYSCTL.clockTreeEn = true;

@@ -106,6 +106,8 @@ exports = {
     isDeviceFamily_PARENT_MSPM0L11XX_L13XX  : isDeviceFamily_PARENT_MSPM0L11XX_L13XX,
     isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X  : isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X,
     isDeviceFamily_PARENT_MSPM0L122X_L222X  : isDeviceFamily_PARENT_MSPM0L122X_L222X,
+    isDeviceFamily_PARENT_MSPM0L122X        : isDeviceFamily_PARENT_MSPM0L122X,
+    isDeviceFamily_PARENT_MSPM0L222X        : isDeviceFamily_PARENT_MSPM0L222X,
     isDeviceFamily_PARENT_MSPM0C110X        : isDeviceFamily_PARENT_MSPM0C110X,
     isDeviceFamily_MSPS003FX                : isDeviceFamily_MSPS003FX,
 
@@ -1709,6 +1711,16 @@ function isDeviceFamily_PARENT_MSPM0L122X_L222X(){
     var deviceName = system.deviceData.device;
     return (["MSPM0L122X","MSPM0L222X"].includes(deviceName));
 }
+/* Checks if device is part of MSPM0L122X device family */
+function isDeviceFamily_PARENT_MSPM0L122X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0L122X"].includes(deviceName));
+}
+/* Checks if device is part of MSPM0L222X device family */
+function isDeviceFamily_PARENT_MSPM0L222X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0L222X"].includes(deviceName));
+}
 /* Checks if device is part of MSPM0C110X device family */
 function isDeviceFamily_PARENT_MSPM0C110X(){
     var deviceName = system.deviceData.device;
@@ -2472,7 +2484,7 @@ function getUsedPins(keys){
         }
     }
     /* Special Case of TimerFault module, get used pins */
-    if(isDeviceM0G()){
+    if(hasTimerA()){
         try{
             if(system.modules["/ti/driverlib/TIMERFault"].$instances){
                 for(let currentInstance of system.modules["/ti/driverlib/TIMERFault"].$instances){
@@ -2492,8 +2504,36 @@ function getUsedPins(keys){
     }
 
     for(let currentModule of keys){
+        /* Special Case: Tamper IO pin filtering - only for MSPM0L122X_L222X family */
+        if(currentModule == "/ti/driverlib/TAMPERIO"){
+            try{
+                if(system.modules[currentModule].moduleStatic.pinmuxRequirements){
+                    if(system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)){
+                        for(let currentResource of system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)){
+                            if(currentResource.interfaceName !== "LFSS"){
+                                usedPinNames.push(system.modules[currentModule].$static[currentResource.name].$solution.devicePinName);
+                                usedPinIDs.push(system.modules[currentModule].$static[currentResource.name].$solution.packagePinName);
+                            }
+                        }
+                    }
+                }
+            }catch (e) {
+                // do nothing
+            }
+        }
+        /* Get used pins from static modules */
+        else if(system.modules[currentModule].moduleStatic){
+            if(system.modules[currentModule].moduleStatic.pinmuxRequirements){
+                if(system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)[0]){
+                    for(let currentResource of system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)[0].resources){
+                        usedPinNames.push(system.modules[currentModule].$static.peripheral[currentResource.name].$solution.devicePinName);
+                        usedPinIDs.push(system.modules[currentModule].$static.peripheral[currentResource.name].$solution.packagePinName);
+                    }
+                }
+            }
+        }
         /* Get used pins from non-static modules */
-        if(system.modules[currentModule].$instances){
+        else if(system.modules[currentModule].$instances){
             for(let currentInstance of system.modules[currentModule].$instances){
                 if(system.modules[currentModule].pinmuxRequirements){
                     if(system.modules[currentModule].pinmuxRequirements(currentInstance)[0]){
@@ -2505,17 +2545,7 @@ function getUsedPins(keys){
                 }
             }
         }
-        /* Get used pins from static modules */
-        if(system.modules[currentModule].moduleStatic){
-            if(system.modules[currentModule].moduleStatic.pinmuxRequirements){
-                if(system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)[0]){
-                    for(let currentResource of system.modules[currentModule].moduleStatic.pinmuxRequirements(system.modules[currentModule].$static)[0].resources){
-                        usedPinNames.push(system.modules[currentModule].$static.peripheral[currentResource.name].$solution.devicePinName);
-                        usedPinIDs.push(system.modules[currentModule].$static.peripheral[currentResource.name].$solution.packagePinName);
-                    }
-                }
-            }
-        }
+
     }
     /* Special Case of Board module, get used pins */
     if(system.modules["/ti/driverlib/Board"].moduleStatic){

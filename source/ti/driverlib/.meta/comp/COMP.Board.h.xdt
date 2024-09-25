@@ -123,6 +123,7 @@
 /* GPIO configuration for `inst.$name` */
 %
 %   if (inst.channelEnable.includes("POS")) {
+%       let definePos = true;
 %       let inPosPinName;
 %       let inPosNumStr;
 %       let pinInterfaceName;
@@ -140,9 +141,10 @@
 %           pinInterfaceName = "IN2+"
 %       } else {
 %           /* Skip below generation if comp input channel isn't selected */
-%           continue;
+%           definePos = false;
 %       }
 %
+%       if(definePos) {
 %       let inPosPackagePin = inst.peripheral[inPosPinName].$solution.packagePinName;
 %       let inPosPinCM = Common.getPinCM(inPosPackagePin,inst,pinInterfaceName);
 %       let inPosGpioName = system.deviceData.devicePins[inPosPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
@@ -165,11 +167,13 @@
 %       let inPosFuncStr = "#define " + gpioStr + "_IOMUX" + inPosNumStr + "_FUNC";
 %       let inPosFuncStr2 = "(IOMUX_PINCM" + inPosPinCM + "_PF_UNCONNECTED)";
 `inPosFuncStr.padEnd(50, " ") + inPosFuncStr2.padStart(30, " ")`
+% } //ifDefinePos
 % //#define GPIO_x_IOMUX_INxP_FUNC
 
 %   }
 %
 %   if (inst.channelEnable.includes("NEG")) {
+%       let defineNeg = true;
 %       let inNegPinName;
 %       let inNegNumStr;
 %       let pinInterfaceName;
@@ -187,9 +191,10 @@
 %           pinInterfaceName = "IN2-"
 %       } else {
 %           /* Skip below generation if comp input channel isn't selected */
-%           continue;
+%           defineNeg = false;
 %       }
 %
+%       if(defineNeg) {
 %       let inNegPackagePin = inst.peripheral[inNegPinName].$solution.packagePinName;
 %       let inNegPinCM = Common.getPinCM(inNegPackagePin,inst,pinInterfaceName);
 %       let inNegGpioName = system.deviceData.devicePins[inNegPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
@@ -212,6 +217,7 @@
 %       let inNegFuncStr = "#define " + gpioStr + "_IOMUX" + inNegNumStr + "_FUNC";
 %       let inNegFuncStr2 = "(IOMUX_PINCM" + inNegPinCM + "_PF_UNCONNECTED)";
 `inNegFuncStr.padEnd(50, " ") + inNegFuncStr2.padStart(30, " ")`
+%  } //ifDefineNeg
 % //#define GPIO_x_IOMUX_INxN_FUNC
 %   }
 

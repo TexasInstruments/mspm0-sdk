@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">1.20.01.06</span>
+   &#160;<span id="projectnumber">1.30.00.03</span>
    </div>
   </td>
  </tr>
@@ -352,15 +352,7 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:gaf84ef067c088e88595332daf7d0611b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab31acca537d5af4a0710888c9fcb6be8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gab31acca537d5af4a0710888c9fcb6be8">DL_SYSCTL_BOR_THRESHOLD_LEVEL</a> { <br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a0e8afb986eaf313b904b37a561f0f936">DL_SYSCTL_BOR_THRESHOLD_LEVEL_0</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORMIN, 
-<br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a000529e00d369928e99b2af14a81341d">DL_SYSCTL_BOR_THRESHOLD_LEVEL_1</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL1, 
-<br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a5f4c15d42beafe6fef957c646211fe75">DL_SYSCTL_BOR_THRESHOLD_LEVEL_2</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL2, 
-<br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a76000141ff342ac44d376a6c731b7658">DL_SYSCTL_BOR_THRESHOLD_LEVEL_3</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORLEVEL3
-<br />
+<tr class="memitem:gab31acca537d5af4a0710888c9fcb6be8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gab31acca537d5af4a0710888c9fcb6be8">DL_SYSCTL_BOR_THRESHOLD_LEVEL</a> { <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#ggab31acca537d5af4a0710888c9fcb6be8a0e8afb986eaf313b904b37a561f0f936">DL_SYSCTL_BOR_THRESHOLD_LEVEL_0</a> = SYSCTL_BORTHRESHOLD_LEVEL_BORMIN
  }</td></tr>
 <tr class="separator:gab31acca537d5af4a0710888c9fcb6be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac4ba3ae564f39aac9884ee95b1a4bf50"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gac4ba3ae564f39aac9884ee95b1a4bf50">DL_SYSCTL_SHUTDOWN_STORAGE_BYTE</a> { <br />
@@ -1211,12 +1203,6 @@ __STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggab31acca537d5af4a0710888c9fcb6be8a0e8afb986eaf313b904b37a561f0f936"></a>DL_SYSCTL_BOR_THRESHOLD_LEVEL_0&#160;</td><td class="fielddoc"><p>BOR0 threshold level. This is the minimum allowed threshold. A BOR0- violation will force a re-boot. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggab31acca537d5af4a0710888c9fcb6be8a000529e00d369928e99b2af14a81341d"></a>DL_SYSCTL_BOR_THRESHOLD_LEVEL_1&#160;</td><td class="fielddoc"><p>BOR1 threshold level. A BOR1- violation generates an interrupt </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggab31acca537d5af4a0710888c9fcb6be8a5f4c15d42beafe6fef957c646211fe75"></a>DL_SYSCTL_BOR_THRESHOLD_LEVEL_2&#160;</td><td class="fielddoc"><p>BOR2 threshold level. A BOR2- violation generates an interrupt </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggab31acca537d5af4a0710888c9fcb6be8a76000141ff342ac44d376a6c731b7658"></a>DL_SYSCTL_BOR_THRESHOLD_LEVEL_3&#160;</td><td class="fielddoc"><p>BOR3 threshold level. A BOR3- violation generates an interrupt </p>
 </td></tr>
 </table>
 
@@ -3510,7 +3496,7 @@ DL_SYSCTL_getMCLKFreq </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

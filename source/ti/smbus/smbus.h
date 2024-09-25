@@ -67,15 +67,27 @@ extern "C"
 
 
 //*****************************************************************************
-//
-//! Define method used to calculate CRC8:
-//!     - \b SMB_CRC8_USE_LOOKUP_TABLE == 1 - Use a 256B lookup table (faster but
-//!       takes more memory)
-//!     - \b SMB_CRC8_USE_LOOKUP_TABLE == 0 - Calculate CRC8 manually (slower
-//!       but takes less memory)
-// FIXME delete when HW PEC is implemented
+// Configuration
 //*****************************************************************************
-#define SMB_CRC8_USE_LOOKUP_TABLE (1)
+
+//*****************************************************************************
+//
+//! Enables Host Notify support as target
+//
+//*****************************************************************************
+#define SMB_TARGET_SUPPORTS_HOST_NOTIFY         (true)
+
+//*****************************************************************************
+//
+//! Enables Host Notify support as Controller
+//
+//*****************************************************************************
+#define SMB_CONTROLLER_SUPPORTS_HOST_NOTIFY     (true)
+
+
+//*****************************************************************************
+// Constant definitions
+//*****************************************************************************
 
 //*****************************************************************************
 //
@@ -183,7 +195,7 @@ typedef union
         uint8_t hostNotifyEn : 1;
     /*! SW_ACK is enabled (read only) */
         uint8_t swackEn     : 1;
-    /*! Interupts are enabled (read only) */
+    /*! Interrupts are enabled (read only) */
         uint8_t intEn       : 1;
     /*! SMBus PHY is enabled (read only) */
         uint8_t phyEn       : 1;
@@ -219,6 +231,8 @@ typedef struct
     I2C_Regs*  SMBus_Phy_i2cBase;  
     /*! Send different types of Stop as controller */
     SMBus_Stop SMBus_Phy_stop;     
+    /*! Waiting for ACK */
+    bool       SMBus_Phy_AckPending;
 } SMBus_Phy;
 
 //*****************************************************************************
@@ -494,6 +508,19 @@ extern void SMBus_targetEnableInt(SMBus *smbus);
 
 //*****************************************************************************
 //
+//! \brief   Disables the I2C interrupts for a target
+//
+//! This function disables the I2C Start, Stop, RX, TX, Timeout interrupts
+//
+//! \param smbus     Pointer to SMBus structure
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_targetDisableInt(SMBus *smbus);
+
+//*****************************************************************************
+//
 //! \brief   I2C Interrupt Service routine for a target
 //
 //! Handles the interrupts for SMBus passing information to NWK layer
@@ -687,6 +714,20 @@ extern void SMBus_controllerInit(SMBus *smbus,
 //
 //*****************************************************************************
 extern void SMBus_controllerEnableInt(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Disables the I2C interrupts for a controller
+//
+//! This function disables the I2C Start, Stop, RX, TX, Timeout interrupts.
+//
+//! \param smbus     Pointer to SMBus structure
+//
+//! \return  none
+//
+//*****************************************************************************
+extern void SMBus_controllerDisableInt(SMBus *smbus);
+
 
 //*****************************************************************************
 //

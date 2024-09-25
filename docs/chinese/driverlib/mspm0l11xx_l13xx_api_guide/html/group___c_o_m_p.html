@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">1.20.01.06</span>
+   &#160;<span id="projectnumber">1.30.00.03</span>
    </div>
   </td>
  </tr>
@@ -221,7 +221,13 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfa07b94827cbb044438b003b3af1967ce4">DL_COMP_REF_SOURCE_VREF_DAC</a> = COMP_CTL2_REFSRC_VREF_DAC, 
 <br />
-&#160;&#160;<a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfa67b3cff4f3f7bb96879a16258c87b837">DL_COMP_REF_SOURCE_VREF</a> = COMP_CTL2_REFSRC_VREF
+&#160;&#160;<a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfa67b3cff4f3f7bb96879a16258c87b837">DL_COMP_REF_SOURCE_VREF</a> = COMP_CTL2_REFSRC_VREF, 
+<br />
+&#160;&#160;<a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfa9e0aaaa0081f747635d581505731ade4">DL_COMP_REF_SOURCE_VDDA</a> = COMP_CTL2_REFSRC_VDDA, 
+<br />
+&#160;&#160;<a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfab91c55f66fc681cfd9f4f6b679bd96da">DL_COMP_REF_SOURCE_INT_VREF_DAC</a> = COMP_CTL2_REFSRC_INTVREF_DAC, 
+<br />
+&#160;&#160;<a class="el" href="group___c_o_m_p.html#ggab09aeceda4fb3f241f263ad94b1f66dfa6c3d79a6a66bf176aa97d7735d8518a2">DL_COMP_REF_SOURCE_INT_VREF</a> = COMP_CTL2_REFSRC_INTVREF
 <br />
  }</td></tr>
 <tr class="separator:gab09aeceda4fb3f241f263ad94b1f66df"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -766,7 +772,13 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ggab09aeceda4fb3f241f263ad94b1f66dfa07b94827cbb044438b003b3af1967ce4"></a>DL_COMP_REF_SOURCE_VREF_DAC&#160;</td><td class="fielddoc"><p>VREF selected as the reference source to DAC and DAC output applied as reference to comparator </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggab09aeceda4fb3f241f263ad94b1f66dfa67b3cff4f3f7bb96879a16258c87b837"></a>DL_COMP_REF_SOURCE_VREF&#160;</td><td class="fielddoc"><p>VREF applied as reference to comparator. DAC is switched off. </p>
+<tr><td class="fieldname"><a id="ggab09aeceda4fb3f241f263ad94b1f66dfa67b3cff4f3f7bb96879a16258c87b837"></a>DL_COMP_REF_SOURCE_VREF&#160;</td><td class="fielddoc"><p>VREF applied as reference to comparator. For some devices, DAC is switched off. Refer to the device datasheet for more information. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab09aeceda4fb3f241f263ad94b1f66dfa9e0aaaa0081f747635d581505731ade4"></a>DL_COMP_REF_SOURCE_VDDA&#160;</td><td class="fielddoc"><p>VDDA is used as comparator reference. For some devices, DAC is switched off. Refer to the device datasheet for more information. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab09aeceda4fb3f241f263ad94b1f66dfab91c55f66fc681cfd9f4f6b679bd96da"></a>DL_COMP_REF_SOURCE_INT_VREF_DAC&#160;</td><td class="fielddoc"><p>Internal reference selected as the reference source to the DAC and DAC output applied as reference to comparator </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggab09aeceda4fb3f241f263ad94b1f66dfa6c3d79a6a66bf176aa97d7735d8518a2"></a>DL_COMP_REF_SOURCE_INT_VREF&#160;</td><td class="fielddoc"><p>Internal VREF used as reference source of comparator </p>
 </td></tr>
 </table>
 
@@ -3501,7 +3513,7 @@ If DACCTL is 1, then the DACSW bit is used to select between DACCODE0 or DACCODE
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

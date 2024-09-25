@@ -3,7 +3,7 @@
 Note: The use of "Master" and "Slave", along with "MOSI/MISO" terminology is being considered obsolete. These terms will be replaced with "Controller" and "Peripheral", and "PICO/POCI" respectively.
 
 The following example configures the SPI as a Controller.
-This example can be used with the spi_peripheral_repeated_fifo_dma_interrupts example running on another device with the breakpoint disabled.
+This example is intended to be used with the spi_peripheral_repeated_fifo_dma_interrupts example running on another device with the breakpoint disabled.
 
 This example sets up the SPI to trigger the DMA Channel 0 to do a transmit data transfer and the DMA Channel 1 to do a receive data transfer repeatedly every second as triggered by a timer.
 
@@ -23,6 +23,7 @@ When the SPI Controller receives SPI_PACKET_SIZE bytes from the SPI Peripheral, 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA1 | Open-Drain Output |
 | SYSCTL |  |  |
 | TIMG0 |  |  |
 | SPI0 | PA6 | SPI SCLK (Clock) |
@@ -41,6 +42,7 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA0 | GPIOA | PA0 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 ON` Connect to LED1<br><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA1 | GPIOA | PA1 | J1_9 | <ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
 | PA6 | SPI0 | SCLK | J1_7 | N/A |
 | PA5 | SPI0 | MOSI | J2_15 | N/A |
 | PA4 | SPI0 | MISO | J2_14 | N/A |
@@ -74,7 +76,7 @@ Compile, load and run the example.
 
 Ensure that the SPI Peripheral example is running **before** starting the SPI Controller example.
 Once the example is started, the SPI Controller will automatically start to transmit data every 1s.
-The transmitted data packet is {'M', 'S', 'P', 'x'}, where 'x' starts at '0' and will increment with each new transfer. LED0 will toggle every time a new transmission starts.
+The transmitted data packet is {'M', 'S', 'P', 'x'}, where 'x' starts at '0' and will increment with each new transfer. LED0 and USER_TEST pin will toggle every time a new transmission starts.
 
 An optional SW breakpoint can be uncommented in the application to check the results of the received data.
 If this example is used with the spi_peripheral_repeated_multibyte_fifo_dma_interruptsexample, the expected data that will be received in gRxPacket is {'x', 0x2, 0x3, 0x4}, where 'x' starts at 0x0 and should increment every time the Peripheral example sends a new data packet.

@@ -116,7 +116,21 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run the example. LED1 will blink every 1s.</p>
+<ul>
+<li>For <strong>CCS</strong>: Compile, load and run the example.</li>
+<li>For <strong>Keil</strong>: The .uvmpw project workspace file shall be used to bring the example project along with the freertos project to the IDE. In Keil uVision,
+<ul>
+<li>Select <strong>Project</strong> → <strong>Batch Setup</strong></li>
+<li>Select all the project targets for the build</li>
+<li>Select <strong>Project</strong> → <strong>Batch Build</strong>, it will build all the projects in the workspace.</li>
+</ul></li>
+<li>For <strong>IAR</strong>: The .eww project workspace file shall be used to bring the example project along with the freertos project to the IDE. In IAR IDE:
+<ul>
+<li>Select <strong>Project</strong> → <strong>Rebuild All</strong></li>
+<li>It should first build Freertos project followed by example project.</li>
+</ul></li>
+</ul>
+<p>LED1 will blink every 1s when the example run.</p>
 <h2 id="application-design-details">Application Design Details</h2>
 <ul>
 <li>This example shows how two tasks coordinate to blink LED1 every 1s.</li>
@@ -133,7 +147,7 @@
   with 100,000+ analog ICs and embedded processors, along with software, tools
   and the industry‘s largest sales/support staff.</p>
   <p>
-    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br>
+    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br>
     <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
   </p>
 </footer>

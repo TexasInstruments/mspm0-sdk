@@ -1097,9 +1097,11 @@ const clkFreqSuperset = {
     "HFCLK": [
         { name: "HFCLK_FreqOut", displayName: "HFCLK", default: 0, hidden: true, readOnly: true,
             getValue: (inst) => {
-                // TODO: the following line should not have a device check once clocktree is updated for A2LCD
-                if(inst.clockTreeEn && Common.isDeviceM0G()){
+                if(inst.clockTreeEn && (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X())){
                     return system.clockTree["net_hfclk"].in * 1000000;
+                }
+                if(inst.clockTreeEn && Common.isDeviceM0C()){
+                    return system.clockTree["net_hfclkext"].in * 1000000;
                 }
                 return inst.useHFCLK_Manual?inst.HFCLK_Freq:0;
             }

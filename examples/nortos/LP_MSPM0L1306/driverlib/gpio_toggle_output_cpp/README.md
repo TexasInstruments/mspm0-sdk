@@ -1,6 +1,6 @@
 ## Example Summary
 
-C++ example toggling three GPIO pins.
+C++ example toggling four GPIO pins.
 
 ## Peripherals & Pin Assignments
 
@@ -9,6 +9,7 @@ C++ example toggling three GPIO pins.
 | GPIOA | PA27 | Standard Output |
 | GPIOA | PA26 | Standard Output |
 | GPIOA | PA13 | Standard Output |
+| GPIOA | PA6 | Standard Output |
 | SYSCTL |  |  |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
@@ -23,6 +24,7 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 | PA27 | GPIOA | PA27 | J4_37 | <ul><li>PA27 can be connected to LED2 Blue<br><ul><li>`J13 ON` Connect to LED2 Blue<br><li>`J13 OFF` Disconnect from LED2 Blue</ul></ul> |
 | PA26 | GPIOA | PA26 | J4_38 | <ul><li>PA26 can be connected to LED2 Red<br><ul><li>`J12 ON` Connect to LED2 Red<br><li>`J12 OFF` Disconnect from LED2 Red</ul></ul> |
 | PA13 | GPIOA | PA13 | J4_39 | <ul><li>PA13 can be connected to LED2 Green<br><ul><li>`J3 ON` Connect to LED2 Green<br><li>`J3 OFF` Disconnect from LED2 Green</ul></ul> |
+| PA6 | GPIOA | PA6 | J1_7 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
@@ -43,4 +45,6 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0L1306 User's Guide](https://www.ti.co
 
 ## Example Usage
 Compile, load and run the example.
-RGB LEDs will toggle with red being opposite of blue and green.
+RGB LEDs will toggle with red being opposite of blue and green. USER_TEST_PIN
+GPIO will mimic the behavior of the LED1 and LED3 pins on the BoosterPack
+header and can be used to verify the LED behavior.

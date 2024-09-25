@@ -35,7 +35,7 @@ var searchData=
   ['phaseoffset',['phaseOffset',['../structcurrent_sensor_calibration_data.html#abc412ad46b9356eb320e71c6dfc07fbe',1,'currentSensorCalibrationData']]],
   ['phaseparams',['phaseParams',['../structphase_params.html',1,'']]],
   ['phasereadings',['phaseReadings',['../structphase_readings.html',1,'']]],
-  ['phases',['phases',['../structcalibration_data.html#a0f225ff783e66d7eff492bf462cb2ab7',1,'calibrationData::phases()'],['../structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2',1,'metrologyData::phases()'],['../group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5',1,'PHASES():&#160;metrology_defines.h']]],
+  ['phases',['phases',['../structcalibration_data.html#a6b0741d327a482e23ef01ecddd52ba37',1,'calibrationData::phases()'],['../structmetrology_data.html#a2c71844eb0604e2f0d15d678e9b6b9e2',1,'metrologyData::phases()'],['../group___metrology.html#gae6a39e138227c54e7c6f7e6831d1a4a5',1,'PHASES():&#160;metrology_defines.h']]],
   ['phasetophaseangle',['phasetoPhaseAngle',['../structphase_readings.html#a7585c443795dce14c9dd0ef7fb0011bd',1,'phaseReadings']]],
   ['pin',['pin',['../struct_h_a_l___g_p_i_o___instance__.html#aaa83ada754ff66496498c4eea4b899e8',1,'HAL_GPIO_Instance_']]],
   ['port',['port',['../struct_h_a_l___g_p_i_o___instance__.html#a92527b731343ebe40db848de9069cd89',1,'HAL_GPIO_Instance_']]],
@@ -48,6 +48,6 @@ var searchData=
   ['pscalefactor',['PscaleFactor',['../structcurrent_sensor_calibration_data.html#ac2909bd77bd0f1d8e57d66e9da816ce0',1,'currentSensorCalibrationData']]],
   ['ptr',['ptr',['../struct_serial_msg_buf.html#a7cb42f30d3f74bf667a6d023e02e1ef4',1,'SerialMsgBuf']]],
   ['pulseremainingtime',['pulseRemainingTime',['../structenergy_pulse.html#acddf91ff59b2769468902a60bc196965',1,'energyPulse']]],
-  ['purephase',['purePhase',['../structphase_params.html#ab2b203c5a456edd4b7fbf25ad1433d40',1,'phaseParams']]],
+  ['purephase',['purePhase',['../structphase_params.html#a679be234f82cd0f15f9c48fed12b07bb',1,'phaseParams']]],
   ['purephaserate',['purePhaseRate',['../structphase_params.html#a895535c1a01f9f6059237c5873b7281d',1,'phaseParams']]]
 ];

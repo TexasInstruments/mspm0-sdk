@@ -34,6 +34,7 @@
 #define __TI_MSP_CRYPTO_H__
 
 #include <stdint.h>
+#include "sha256sw.h"
 
 /*********************************************************************
  * GLOBAL VARIABLES
@@ -99,6 +100,18 @@
 
 /* Key size in uint32_t blocks */
 #define SECURE_FW_ECC_UINT32_BLK_LEN(len) (((len) + 3) / 4)
+
+/* Return Codes for the SHA256 */
+#define MSP_CRYPTO_SHA256_STATUS_SUCCESS SHA2SW_STATUS_SUCCESS
+
+#define MSP_CRYPTO_SHA256_STATUS_ERROR SHA2SW_STATUS_ERROR
+
+#define MSP_CRYPTO_SHA256_STATUS_UNSUPPORTED SHA2SW_STATUS_UNSUPPORTED
+
+#define MSP_CRYPTO_SHA256_STATUS_LENGTH_TOO_LARGE SHA2SW_STATUS_LENGTH_TOO_LARGE
+
+#define MSP_CRYPTO_SHA256_STATUS_NULL_INPUT SHA2SW_STATUS_NULL_INPUT
+
 
 void MSPCrypto_sha256_init(void);
 

@@ -14,7 +14,7 @@ The user is expected to have downloaded the following:
 -  `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__
 -  `Keil MDK-Arm with uVision <https://www2.keil.com/mdk5>`__ v5.38a or later, with Arm Clang compiler v6.16 or later.
 
--  `SysConfig 1.18.x <https://www.ti.com/tool/SYSCONFIG>`__
+-  `SysConfig 1.19.x <https://www.ti.com/tool/SYSCONFIG>`__
 
 3. Install the MSPM0 CMSIS-Pack
 -------------------------------
@@ -78,14 +78,24 @@ A detailed explanation of the installation and usage of SysConfig with MSPM0 is 
    .. figure:: ./images/quickstart_guide_keil/keil_example_1.png
       :alt: 
 
-2. Navigate to a Keil folder in SDK example at ``<MSPM0_SDK_INSTALL_DIR>/examples/`` and open the .uvprojx project file. For example ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output_hiz/keil/gpio_toggle_output_hiz.uvprojx``.
+2. Navigate to a Keil folder in SDK example at ``<MSPM0_SDK_INSTALL_DIR>/examples/`` and open the .uvprojx project file(\ **Note:** For the rtos example, use .uvmpw work space file). For example ``<MSPM0_SDK_INSTALL_DIR>/examples/nortos/LP_MSPM0L1306/driverlib/gpio_toggle_output_hiz/keil/gpio_toggle_output_hiz.uvprojx``.
 
    .. figure:: ./images/quickstart_guide_keil/keil_example_2.png
       :alt: 
 
-3. The project is ready to build and debug.
+   2.1. The project is ready to build and debug.
 
    .. figure:: ./images/quickstart_guide_keil/keil_example_3.png
+      :alt: 
+
+3. To build the FreeRTOS supported example, select **Project → Batch Setup**, select all the project targets for the build.
+
+   .. figure:: ./images/quickstart_guide_keil/Keil_Batch_Setup.png
+      :alt: 
+
+   3.1. Select Batch Build, it will build all the projects in the workspace.
+
+   .. figure:: ./images/quickstart_guide_keil/Keil_Batch_Build.png
       :alt: 
 
 7. Downloading and debugging to MSPM0 using Keil

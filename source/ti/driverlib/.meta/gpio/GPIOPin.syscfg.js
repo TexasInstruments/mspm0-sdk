@@ -29,7 +29,7 @@ function determineInvalidOptions(inst){
             }
             toDisable.HS = true; // disable High-Speed
             // HD only available on M0Gxx
-            if(Common.isDeviceM0G()){
+            if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
                 toDisable.HD = true; // disable High-Drive
             }
         }
@@ -256,12 +256,22 @@ structures to be used in the solution.\n
                     {name: "OD", displayName: "5V Tolerant Open Drain"}
                 ];
             }
-            else if(Common.isDeviceM0L()){
+            else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
                 return [
                     {name: "Any"},
                     {name: "SD", displayName: "Standard"},
                     {name: "SDW", displayName: "Standard with Wake"},
                     {name: "HS", displayName: "High-Speed"},
+                    {name: "OD", displayName: "5V Tolerant Open Drain"}
+                ];
+            }
+            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+                return [
+                    {name: "Any"},
+                    {name: "SD", displayName: "Standard"},
+                    {name: "SDW", displayName: "Standard with Wake"},
+                    {name: "HS", displayName: "High-Speed"},
+                    {name: "HD", displayName: "High-Drive"},
                     {name: "OD", displayName: "5V Tolerant Open Drain"}
                 ];
             }
@@ -1069,10 +1079,16 @@ function validatePinmux(inst, validation)
     *  Inform the user to use DL_GPIO_clearPins() to turn on the LED
     */
     if(_.startsWith(Common.boardName(), "LP")) {
-        if (inst.pin.$solution && inst.pin.$solution.peripheralPinName.includes("PA0")) {
-            validation.logInfo("Tip: LED PA0 on Launchpads is Active Low.",
-            inst, ["initialValue"]);
+        try{
+            if (inst.pin.$solution && inst.pin.$solution.peripheralPinName.includes("PA0")) {
+                validation.logInfo("Tip: LED PA0 on Launchpads is Active Low.",
+                inst, ["initialValue"]);
+            }
         }
+        catch(e){
+            // Avoid validation message if pin resource does not exist or there is a conflict.
+        }
+
     }
 
     /* EVENT validation */
