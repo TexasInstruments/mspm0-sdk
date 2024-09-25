@@ -50,11 +50,13 @@
 #ifndef ti_dl_dl_adc12__include
 #define ti_dl_dl_adc12__include
 
+#include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
 
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/dl_common.h>
+#include <ti/driverlib/m0p/dl_factoryregion.h>
 
 #ifdef __MSPM0_HAS_ADC12__
 
@@ -71,9 +73,9 @@ extern "C" {
 #define DEVICE_HAS_GREATER_THAN_16_INPUT_CHAN
 #endif
 
- /** @addtogroup DL_ADC12_SEQ_END_ADDR
- * @{
- */
+/** @addtogroup DL_ADC12_SEQ_END_ADDR
+* @{
+*/
 
 /*!
  * @brief Sequence end address set to 00
@@ -2308,6 +2310,30 @@ __STATIC_INLINE bool DL_ADC12_isSAMPCAPEnabled(ADC12_Regs *adc12)
             ADC12_CTL2_RSTSAMPCAPEN_ENABLE);
 }
 #endif /* ADC HAS SAMPLE AND HOLD CAPACITOR DISCHARGE*/
+
+#ifdef MSPM0C110X_ADC_ERR_06
+/**
+ *  @brief Get calibration ADC offset value
+ *
+ *  Workaround for errata on MSPM0C110x devices: ADC_ERR_06
+ *
+ *  Offset needs to be calibrated each time @ref DL_ADC12_configConversionMem
+ *  is configured with a new voltage reference.
+ *
+ *  User needs to add calibrated offset to the result of @ref DL_ADC12_getMemResult
+ *  to get correct ADC value.
+ *
+ *  @param[in] adc12    Pointer to the register overlay for the peripheral
+ *  @param[in] userRef  Reference voltage
+ *
+ *  @return Calibrated ADC offset value
+ */
+__STATIC_INLINE int16_t DL_ADC12_getADCOffsetCalibration(float userRef)
+{
+    float adcBuff = DL_FactoryRegion_getADCOffset() * (3.3 / userRef);
+    return (int16_t)(round(adcBuff));
+}
+#endif
 
 #ifdef __cplusplus
 }

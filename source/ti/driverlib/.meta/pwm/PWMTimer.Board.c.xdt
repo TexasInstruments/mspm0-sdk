@@ -202,7 +202,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 
 %   for (let cc of inst.ccIndex) {
 %       let ccInstance = inst["PWM_CHANNEL_"+cc];
-    DL_`flavorCat`_setCaptureCompareValue(`inst.$name`_INST, `ccInstance.ccValue`, DL_TIMER_CC_`cc`_INDEX);
 %
 %    let chosenOutSrc;
 %    let chosenInitVal = "DL_TIMER_CC_OCTL_INIT_VAL_"+ccInstance.initVal;
@@ -218,7 +217,14 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     `chanCtlFct`
 %
 %   let shadowUpdateMode = "DL_TIMER_CC_UPDATE_METHOD_" + ccInstance.shadowUpdateMode;
+%%{  
+    /* 
+     * Note: setCaptureCompareValue must be called after setCaptCompUpdateMethod
+     * to prevent blanking the capture compare value 
+     */
+%%}
     DL_`flavorCat`_setCaptCompUpdateMethod(`inst.$name`_INST, `shadowUpdateMode`, `channel`);
+    DL_`flavorCat`_setCaptureCompareValue(`inst.$name`_INST, `ccInstance.ccValue`, DL_TIMER_CC_`cc`_INDEX);
 
 %    } // for (cc of inst.ccIndex)
 %
@@ -350,6 +356,12 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 % if(inst.enableShadowLoad){
     DL_`flavorCat`_enableShadowFeatures(`inst.$name`_INST);
 %} //if(inst.enableShadowLoad)
+
+% /* Phase load */
+% if(inst.enablePhaseLoad){
+    DL_TimerA_setPhaseLoadValue(`inst.$name`_INST, `inst.phaseLoadValue`);
+    DL_TimerA_enablePhaseLoad(`inst.$name`_INST);
+%}
 
 % /* Cross-Triggering */
 %

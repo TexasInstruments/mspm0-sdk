@@ -11,7 +11,7 @@ NAME = mspm0l11xx_l13xx/driverlib
 OBJ_DIR = ../../../../obj/iar/m0p/mspm0l11xx_l13xx/driverlib
 SRC_DIR = ../../../..
 
-CFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" --cpu Cortex-M0+ -D__MSPM0L1306__ --aeabi --guard_calls --endian=little --thumb --silent -e --use_unix_directory_separators --diag_suppress=Pa050,Go005 --debug -Ohs
+CFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" --cpu Cortex-M0+ -D__MSPM0L1306__ --aeabi --guard_calls --endian=little --thumb --silent -e --use_unix_directory_separators --diag_suppress=Pa050,Go005
 AFLAGS = 
 ASMFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" 
 

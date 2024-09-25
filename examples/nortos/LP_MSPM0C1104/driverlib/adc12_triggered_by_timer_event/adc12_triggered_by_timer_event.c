@@ -34,10 +34,21 @@
 
 volatile bool gCheckADC;
 volatile uint16_t gADCResult[4];
+volatile int16_t gADCOffset[4];
 
 int main(void)
 {
     SYSCFG_DL_init();
+
+    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    gADCOffset[0] =
+        DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_0_REF_VOLTAGE_V);
+    gADCOffset[1] =
+        DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_1_REF_VOLTAGE_V);
+    gADCOffset[2] =
+        DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_2_REF_VOLTAGE_V);
+    gADCOffset[3] =
+        DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_3_REF_VOLTAGE_V);
 
     NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
 
@@ -53,6 +64,20 @@ int main(void)
     gADCResult[1] = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_1);
     gADCResult[2] = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_2);
     gADCResult[3] = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_3);
+
+    /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+    int16_t adcRaw;
+    for (int i = 0; i < sizeof(gADCResult); i++) {
+        adcRaw = (int16_t) gADCResult[i];
+        adcRaw = adcRaw + gADCOffset[i];
+        if (adcRaw < 0) {
+            adcRaw = 0;
+        }
+        if (adcRaw > 4095) {
+            adcRaw = 4095;
+        }
+        gADCResult[i] = (uint16_t) adcRaw;
+    }
 
     __BKPT(0);
 

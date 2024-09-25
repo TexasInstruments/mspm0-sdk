@@ -42,6 +42,12 @@ const gpns = {
         { name: "MSPS003F3"},
         { name: "MSPS003F4"},
     ],
+    "MSPM0GX51X": [
+        { name: "MSPM0G3518"},
+        { name: "MSPM0G3519"},
+        { name: "MSPM0G1518"},
+        { name: "MSPM0G1519"},
+    ],
 }
 
 const GPNOptionsPerDevice = {
@@ -100,6 +106,15 @@ const GPNOptionsPerDevice = {
         { name: "MSPS003F3"},
         { name: "MSPS003F4"},
     ],
+    "MSPM0G351X": [
+        { name: "MSPM0G3518"},
+        { name: "MSPM0G3519"},
+    ],
+    "MSPM0G151X": [
+        { name: "MSPM0G1518"},
+        { name: "MSPM0G1519"},
+    ],
+
 };
 
 let index = Common.getDeviceFamily();

@@ -1,0 +1,105 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const SPI    = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1   = SPI.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ProjectConfig.genDisable = true;
+
+ADC121.$name                      = "GENERIC_ADC_CHAN_0";
+ADC121.subChanID                  = 1;
+ADC121.adcMem1chansel             = "DL_ADC12_INPUT_CHAN_1";
+ADC121.repeatMode                 = true;
+ADC121.sampClkDiv                 = "DL_ADC12_CLOCK_DIVIDE_32";
+ADC121.trigSrc                    = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.samplingOperationMode      = "sequence";
+ADC121.endAdd                     = 1;
+ADC121.adcMem0trig                = "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT";
+ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM1_RESULT_LOADED"];
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin0.$assign = "PA27";
+ADC121.peripheral.adcPin1.$assign = "PA26";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.$name                              = "GEN_GPIO_OUTPUT";
+GPIO1.associatedPins.create(4);
+GPIO1.associatedPins[0].$name            = "PINO_2";
+GPIO1.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO1.associatedPins[0].pin.$assign      = "PA6";
+GPIO1.associatedPins[1].$name            = "PINO_1";
+GPIO1.associatedPins[1].internalResistor = "PULL_UP";
+GPIO1.associatedPins[1].pin.$assign      = "PA21";
+GPIO1.associatedPins[2].$name            = "PINO_0";
+GPIO1.associatedPins[2].internalResistor = "PULL_DOWN";
+GPIO1.associatedPins[2].pin.$assign      = "PA24/OPA0.IN0-";
+GPIO1.associatedPins[3].$name            = "PINO_3";
+GPIO1.associatedPins[3].internalResistor = "PULL_DOWN";
+GPIO1.associatedPins[3].pin.$assign      = "PA22";
+
+GPIO2.$name                              = "GEN_GPIO_INPUT";
+GPIO2.associatedPins[0].direction        = "INPUT";
+GPIO2.associatedPins[0].$name            = "PINI_0";
+GPIO2.associatedPins[0].interruptEn      = true;
+GPIO2.associatedPins[0].polarity         = "FALL";
+GPIO2.associatedPins[0].internalResistor = "PULL_UP";
+GPIO2.associatedPins[0].pin.$assign      = "PA17/OPA1.IN0-";
+
+PWM1.pwmMode                     = "CENTER_ALIGN";
+PWM1.clockDivider                = 2;
+PWM1.timerCount                  = 800;
+PWM1.timerStartTimer             = true;
+PWM1.$name                       = "GENERIC_PWM_CHAN_0";
+PWM1.PWM_CHANNEL_0.$name = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_1.$name = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.event1PublisherChannel      = 1;
+PWM1.event1ControllerInterruptEn = ["LOAD_EVENT"];
+PWM1.peripheral.$assign          = "TIMG0";
+PWM1.peripheral.ccp0Pin.$assign  = "PA12";
+PWM1.peripheral.ccp1Pin.$assign  = "PA13";
+
+SPI1.$name                             = "GENERIC_SPI_CHAN_0";
+SPI1.phase                             = "1";
+SPI1.chipSelect                        = ["2"];
+SPI1.targetBitRate                     = 500000;
+SPI1.dataSize                          = 16;
+SPI1.peripheral.$assign                = "SPI0";
+SPI1.peripheral.sclkPin.$assign        = "PA11";
+SPI1.peripheral.mosiPin.$assign        = "PA5";
+SPI1.peripheral.misoPin.$assign        = "PA10";
+SPI1.peripheral.cs2Pin.$assign         = "PA15";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.$name              = "GUI_TIMER";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerPeriod        = "16.6 ms";
+TIMER1.timerClkDiv        = 8;
+TIMER1.timerClkPrescale   = 2;
+TIMER1.timerStartTimer    = true;
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.peripheral.$assign = "TIMG1";

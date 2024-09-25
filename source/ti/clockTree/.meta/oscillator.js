@@ -1,3 +1,4 @@
+let Common = system.getScript("/ti/driverlib/Common.js");
 const { getDefaultValue } = system.getScript("./defaultValue.js");
 const { device2Family, isDeviceFamily_PARENT_MSPM0L122X_L222X } = system.getScript("../../driverlib/Common.js");
 const family = device2Family(system.deviceData);
@@ -76,20 +77,21 @@ function validateM0GSYSOSC(inst, validation)
         validation.logInfo("SYSOSC has been disabled, in RUN2 power mode", inst, "disableSYSOSC");
     }
     else{
-        /* FCL Validation */
-        if(inst.enableSYSOSCFCL && !inst.enableROSC){
-            validation.logError("ROSC should be enabled if Frequency Correction Loop is enabled", inst, ["enableSYSOSCFCL", "enableROSC"]);
-        }
-        else if(!inst.enableSYSOSCFCL && inst.enableROSC){
-            validation.logWarning("If ROSC has been enabled, its recommended Frequency Correction Loop is enabled.", inst, ["enableSYSOSCFCL", "enableROSC"]);
-
+        if(!_.isUndefined(inst.enableROSC)){
+            /* FCL Validation for devices that only have External Rosc supported */
+            if(inst.enableSYSOSCFCL && !inst.enableROSC && Common.hasExternalRoscOnly()){
+                validation.logError("External ROSC must be enabled for FCL usage with this device. See the device datasheet for more details.", inst, ["enableSYSOSCFCL", "enableROSC"]);
+            }
+            else if(!inst.enableSYSOSCFCL && inst.enableROSC){
+                validation.logWarning("If ROSC has been enabled, it's recommended Frequency Correction Loop is enabled.", inst, ["enableSYSOSCFCL", "enableROSC"]);
+            }
         }
     }
 }
 
 function validateM0LSYSOSC(inst, validation) {
 
-    if(isDeviceFamily_PARENT_MSPM0L122X_L222X) {
+    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
         let sysctl = system.modules["/ti/driverlib/SYSCTL"];
         if(sysctl && sysctl.$static.clockTreeEn) {
             let mod = system.modules["/ti/clockTree/mux.js"];
@@ -97,6 +99,11 @@ function validateM0LSYSOSC(inst, validation) {
             if(lfxtMux && _.endsWith(lfxtMux.inputSelect, "FALSE")){
                 validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", lfxtMux, "inputSelect");
             }
+        }
+
+        /* Special Case Validation for ROSC */
+        if(inst.enableROSC){
+            validation.logInfo("PA2 is being configured for ROSC and should not be used for other pin selections.", inst, "enableROSC");
         }
     }
 
@@ -182,12 +189,15 @@ function validate(inst, validation)
 function pinmuxRequirements(inst)
 {
     let resources = [];
+    // CLOCKTREE ROSC
     if(!inst.disableSYSOSC && inst.enableROSC){
-        resources.push({
-            name            : "roscPin",
-            displayName     : "ROSC",
-            interfaceNames  : ["ROSC"],
-        });
+        if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            resources.push({
+                name            : "roscPin",
+                displayName     : "ROSC",
+                interfaceNames  : ["ROSC"],
+            });
+        }
     }
 	let sysctl = {
         name          : "peripheral",
@@ -217,8 +227,16 @@ function pinmuxRequirements(inst)
 let SYSOSC_extraConfig = [
     {
         name: "enableSYSOSCFCL",
-        displayName: "Enable Frequency Correction Loop",
+        displayName: "Enable Frequency Correction Loop (FCL)",
         description: "Used to increase SYSOSC accuracy",
+        longDescription:
+`
+The SYSOSC frequency accuracy can be improved through the use of the SYSOSC frequency correction
+loop (FCL) feature.The FCL circuit utilizes either an internal resistor or external resistor,
+to stabilize the SYSOSC frequency by providing a precise reference current for the SYSOSC.
+
+By default, this configuration enables the internal resistor FCL mode for supported devices.
+`,
         default: false,
         hidden: false,
     },

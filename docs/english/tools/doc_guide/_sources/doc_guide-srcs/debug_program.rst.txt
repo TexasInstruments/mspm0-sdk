@@ -21,7 +21,7 @@ MSP-GANG
 | The MSP Gang Programmer (MSP-GANG) is a device programmer that supports MSPM0L110x, MSPM0L130x, MSPM0G150x, MSPM0G350x, and all variants of MSP430 and MSP432.
 | The MSP-GANG can program up to eight identical MSP Flash or FRAM devices at the same time.
 | It connects to a host PC using a standard RS-232 or USB connection and provides flexible programming options that allow the user to fully customize the process.
-| **At this time, MSPM0C110x is not supported by the MSP Gang Programmer.** Please use an alternative tool for production programming, such as the FlashPro or GangPro-ARM.
+| **At this time, any MSPM0 devices not stated above will not be supported by the MSP-Gang Programmer.** Please refer to this `E2E page <https://e2e.ti.com/support/microcontrollers/arm-based-microcontrollers-group/arm-based-microcontrollers/f/arm-based-microcontrollers-forum/1355236/faq-lp-mspm0g3507-what-programming-tools-are-supported-for-mspm0>`_ for alternative production programming tools.
 
 Documentation
 ~~~~~~~~~~~~~~~~~~~
@@ -131,3 +131,11 @@ Documentation
    :maxdepth: 1
 
    debug_program_lauterbach
+
+OpenOCD
+-------------
+| OpenOCD is an open-source project that provides command line debugging, in-system programming, and boundary-scan testing for embedded devices.
+|
+| MSPM0 support is currently available for OpenOCD, please contact your local TI sales representative to receive access to the Github branch it currently lives on.
+|
+| The branch currently supports MSPM0G and MSPM0L, it also contains support for our DSSM commands as well. It will be continuously updated and pushed to the main branch in the future.

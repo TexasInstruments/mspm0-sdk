@@ -70,6 +70,12 @@ int main(void)
      * executing an erase operation.
      * Memory must be unprotected before attempting to erase.
      */
+
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
     failType = DL_FlashCTL_getFailureStatus(FLASHCTL);
@@ -79,6 +85,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* Protect a specific sector in main memory */
         DL_FlashCTL_protectSector(
             FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -100,6 +111,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* Unprotect sector in main memory*/
         DL_FlashCTL_unprotectSector(
             FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -121,6 +137,12 @@ int main(void)
          * program and erase operation, so memory must be dynamically unprotected
          * again before the next operation is executed.
          */
+
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         DL_FlashCTL_unprotectSector(
             FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
         /* Program to flash in main memory */

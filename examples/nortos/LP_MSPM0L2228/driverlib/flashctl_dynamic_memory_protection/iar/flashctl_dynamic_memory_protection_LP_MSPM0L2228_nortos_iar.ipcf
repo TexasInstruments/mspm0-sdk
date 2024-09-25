@@ -79,11 +79,9 @@
         <path copyTo="$PROJ_DIR$/flashctl_dynamic_memory_protection.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L2228/driverlib/flashctl_dynamic_memory_protection/flashctl_dynamic_memory_protection.syscfg</path>
         <path copyTo="$PROJ_DIR$/mspm0l2228.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L2228/driverlib/flashctl_dynamic_memory_protection/iar/mspm0l2228.icf</path>
         <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L2228/driverlib/flashctl_dynamic_memory_protection/README.html</path>
+        <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L2228/driverlib/flashctl_dynamic_memory_protection/README.md</path>
         <group name="iar" build="true">
             <path copyTo="$PROJ_DIR$/iar/startup_mspm0l222x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L2228/driverlib/flashctl_dynamic_memory_protection/iar/startup_mspm0l222x_iar.c</path>
-        </group>
-        <group name="LP_MSPM0G3507" build="true">
-            <path copyTo="$PROJ_DIR$/LP_MSPM0G3507/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L2228/driverlib/flashctl_dynamic_memory_protection/LP_MSPM0G3507/README.md</path>
         </group>
     </files>
 </iarProjectConnection>

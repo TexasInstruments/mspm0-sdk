@@ -1,0 +1,35 @@
+[
+    {
+        "files": [
+            "+../Src/DualRaySmokeAFE_GUI/jsmn/jsmn.c -> Src/DualRaySmokeAFE_GUI/jsmn/jsmn.c",
+            "+../Src/DualRaySmokeAFE_GUI/jsmn/jsmn.h -> Src/DualRaySmokeAFE_GUI/jsmn/jsmn.h",
+            "+../Src/DualRaySmokeAFE_GUI/DualRaySmokeAFE_GUI.c -> Src/DualRaySmokeAFE_GUI/DualRaySmokeAFE_GUI.c",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_mspm0_i2c.c -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_mspm0_i2c.c",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_mspm0_i2c.h -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_mspm0_i2c.h",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_regs.h -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/tps880x_mspm0_i2c/tps880x_regs.h",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_AFE_MSPM0_TPS880x.c -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_AFE_MSPM0_TPS880x.c",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Config_MSPM0_TPS880x_Private.h -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Config_MSPM0_TPS880x_Private.h",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_GUIComm_UART_MSPM0_TPS880x.c -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_GUIComm_UART_MSPM0_TPS880x.c",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_IO_MSPM0_TPS880x.c -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_IO_MSPM0_TPS880x.c",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Sounder_MSPM0_TPS880x.c -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Sounder_MSPM0_TPS880x.c",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_System_MSPM0_TPS880x.c -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_System_MSPM0_TPS880x.c",
+            "+../Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Timing_MSPM0_TPS880x.c -> Src/DualRaySmokeAFE_HAL/MSPM0x_TPS880x/DualRaySmokeAFE_HAL_Timing_MSPM0_TPS880x.c",
+            "+../Src/DualRaySmokeAFE_HAL/DualRaySmokeAFE_HAL_Config_Private.h -> Src/DualRaySmokeAFE_HAL/DualRaySmokeAFE_HAL_Config_Private.h",
+            "+../Src/DualRaySmokeAFELib/DualRaySmokeAFELib_DetectionAlg.c -> Src/DualRaySmokeAFELib/DualRaySmokeAFELib_DetectionAlg.c",
+            "+../Src/DualRaySmokeAFELib/DualRaySmokeAFELib_Measurement.c -> Src/DualRaySmokeAFELib/DualRaySmokeAFELib_Measurement.c",
+            "+../Src/include/DualRaySmokeAFE_Config_Common.h -> Src/include/DualRaySmokeAFE_Config_Common.h",
+            "+../Src/include/DualRaySmokeAFE_GUI.h -> Src/include/DualRaySmokeAFE_GUI.h",
+            "+../Src/include/DualRaySmokeAFE_HAL.h -> Src/include/DualRaySmokeAFE_HAL.h",
+            "+../Src/include/DualRaySmokeAFELib_Config.h -> Src/include/DualRaySmokeAFELib_Config.h",
+            "+../Src/include/DualRaySmokeAFELib.h -> Src/include/DualRaySmokeAFELib.h",
+            "+../Src/DualRaySmokeAFE_App_Config.c -> Src/DualRaySmokeAFE_App_Config.c",
+            "+../Src/DualRaySmokeAFE_App_Config.h -> Src/DualRaySmokeAFE_App_Config.h",
+            "+../Src/DualRaySmokeAFE_App_GuiComm.c -> Src/DualRaySmokeAFE_App_GuiComm.c",
+            "+../Src/DualRaySmokeAFE_App_Main.c -> Src/DualRaySmokeAFE_App_Main.c",
+            "+../Src/DualRaySmokeAFE_App.h -> Src/DualRaySmokeAFE_App.h",
+            "+../DualRaySmokeAFE_MSPM0_TPS880x.syscfg -> DualRaySmokeAFE_MSPM0_TPS880x.syscfg",
+            "+../README.md -> README.md",
+            "+../README.html -> README.html"
+        ]
+    }
+]

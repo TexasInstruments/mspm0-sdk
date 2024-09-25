@@ -78,6 +78,11 @@ int main(void)
 
     DL_FLASHCTL_FAIL_TYPE failType;
 
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     /* Erase sector in main memory */
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -89,6 +94,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* 8-bit write to flash in main memory */
         DL_FlashCTL_unprotectSector(
             FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -101,6 +111,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* Read verify on the 8-bit data */
         gCmdStatus = DL_FlashCTL_readVerifyFromRAM8(
             FLASHCTL, MAIN_BASE_ADDRESS, &gData8);
@@ -111,6 +126,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* 16-bit write to flash in main memory  */
         DL_FlashCTL_unprotectSector(
             FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -123,6 +143,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* Read verify on the 16-bit data */
         gCmdStatus = DL_FlashCTL_readVerifyFromRAM16(
             FLASHCTL, (MAIN_BASE_ADDRESS + 8), &gData16);
@@ -133,6 +158,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* 32-bit write to flash in main memory */
         DL_FlashCTL_unprotectSector(
             FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -145,6 +175,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* Read verify on the 32-bit data */
         gCmdStatus = DL_FlashCTL_readVerifyFromRAM32(
             FLASHCTL, (MAIN_BASE_ADDRESS + 16), &gData32);
@@ -155,6 +190,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* 64-bit write to flash in main memory */
         DL_FlashCTL_unprotectSector(
             FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -167,6 +207,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* Read verify on the 64-bit data */
         gCmdStatus = DL_FlashCTL_readVerifyFromRAM64(
             FLASHCTL, (MAIN_BASE_ADDRESS + 24), &gDataArray64[0]);
@@ -177,6 +222,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* Demonstrate a failed read verify when data does not match */
         gCmdStatus = DL_FlashCTL_readVerifyFromRAM64(
             FLASHCTL, (MAIN_BASE_ADDRESS + 24), &gDataArray64Error[0]);

@@ -10,7 +10,7 @@ NAME = gauge_l2_rts
 OBJ_DIR = ../../../obj/ticlang/m0p/gauge_l2_rts
 SRC_DIR = ../../../gauge_level2
 
-CFLAGS = -I$(TICLANG_ARMCOMPILER)/include "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -c -g -gdwarf-3 -O2
+CFLAGS = -I$(TICLANG_ARMCOMPILER)/include "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -c
 AFLAGS = rc
 ASMFLAGS = -I$(TICLANG_ARMCOMPILER)/include 
 

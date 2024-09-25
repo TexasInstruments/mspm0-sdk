@@ -10,7 +10,7 @@ NAME = mspm0g1x0x_g3x0x/driverlib
 OBJ_DIR = ../../../../obj/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib
 SRC_DIR = ../../../..
 
-CFLAGS = -I$(TICLANG_ARMCOMPILER)/include "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -D__MSPM0G3507__ -c -g -gdwarf-3 -O2
+CFLAGS = -I$(TICLANG_ARMCOMPILER)/include "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -D__MSPM0G3507__ -c
 AFLAGS = rc
 ASMFLAGS = -I$(TICLANG_ARMCOMPILER)/include 
 

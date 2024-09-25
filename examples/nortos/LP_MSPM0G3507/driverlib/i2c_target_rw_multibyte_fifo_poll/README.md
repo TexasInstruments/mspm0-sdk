@@ -49,6 +49,10 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.co
 ## Example Usage
 
 Connect SDA and SCL between I2C Controller and Target.
+Note that I2C requires pull-up resistors. Internal pull-ups can be enabled in
+SysConfig (see datasheet for resistance specification), but external pull-ups
+might be required based on I2C speed and capacitance. External pull-ups can be
+connected or enabled using the LaunchPad.
 Compile, load and run the example.
 LED2 will toggle periodically if transmission and reception were successful.
 LED2 will remain off if there is a problem during initialization.

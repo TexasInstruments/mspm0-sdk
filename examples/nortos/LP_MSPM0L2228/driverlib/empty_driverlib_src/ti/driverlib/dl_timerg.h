@@ -122,6 +122,7 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 /** @addtogroup DL_TIMERG_CAPTURE_COMPARE_INDEX
  *  @{
  */
+
 /**
  * @brief  Index associated to Capture Compare 0
  */
@@ -131,6 +132,24 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
  * @brief  Index associated to Capture Compare 1
  */
 #define DL_TIMERG_CAPTURE_COMPARE_1_INDEX       DL_TIMER_CC_1_INDEX
+
+/**
+ * @brief  Index associated to Capture Compare 2
+ * @note   <b>This option is not supported by all device TimerG modules </b>
+ *         please refer to the "TIMx Configurations" table in the
+ *         device specific datasheet to determine Timer instances which
+ *         support "4 CC Channel" configuration.
+ */
+#define DL_TIMERG_CAPTURE_COMPARE_2_INDEX       DL_TIMER_CC_2_INDEX
+
+/**
+ * @brief  Index associated to Capture Compare 3
+ * @note   <b>This option is not supported by all device TimerG modules </b>
+ *         please refer to the "TIMx Configurations" table in the
+ *         device specific datasheet to determine Timer instances which
+ *         support "4 CC Channel" configuration.
+ */
+#define DL_TIMERG_CAPTURE_COMPARE_3_INDEX       DL_TIMER_CC_3_INDEX
 
 /** @}*/
 

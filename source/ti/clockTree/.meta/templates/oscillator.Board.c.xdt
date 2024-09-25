@@ -86,15 +86,20 @@
 
     if(!sysoscInst.disableSYSOSC)
     {
-
-        if(sysoscInst.frequencySelect === 4){
-            sysoscStr = "DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_4M);";
-        } else {
-            sysoscStr = "DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);";
-        }
         // frequency correction loop
         if(sysoscInst.enableSYSOSCFCL){
-            sysoscStr += "\n\tDL_SYSCTL_enableSYSOSCFCL();"
+            if(sysoscInst.enableROSC) {
+                sysoscStr = "\n\t/* Enable SYSOSC FCL in External Resistor Mode */"
+                sysoscStr += "\n\tDL_SYSCTL_enableSYSOSCFCLExternalResistor();"
+            } else if(!sysoscInst.enableROSC){
+                sysoscStr = "\n\t/* Enable SYSOSC FCL in Internal Resistor Mode */"
+                sysoscStr += "\n\tDL_SYSCTL_enableSYSOSCFCL();"
+            }
+        }
+        if(sysoscInst.frequencySelect === 4){
+            sysoscStr += "\n\tDL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_4M);";
+        } else {
+            sysoscStr += "\n\tDL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);";
         }
 
     }

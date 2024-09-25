@@ -36,8 +36,8 @@
 #define ti_devices_msp_peripherals_hw_gptimer__include
 
 /* Filename: hw_gptimer.h */
-/* Revised: 2024-01-19 11:03:20 */
-/* Revision: 29b8b3088aa08ebbb32546ae377f5951d9da7d26 */
+/* Revised: 2024-06-04 10:48:04 */
+/* Revision: a6be75578aae0bf7330b042a9fb5c36fc4988a43 */
 
 #ifndef __CORTEX_M
   #ifdef __cplusplus
@@ -258,9 +258,9 @@ typedef struct {
 /* GPTIMER_CTR Bits */
 /* GPTIMER_CTR[CCTR] Bits */
 #define GPTIMER_CTR_CCTR_OFS                     (0)                             /* !< CCTR Offset */
-#define GPTIMER_CTR_CCTR_MASK                    ((uint32_t)0x0000FFFFU)         /* !< Current Counter value */
+#define GPTIMER_CTR_CCTR_MASK                    ((uint32_t)0xFFFFFFFFU)         /* !< Current Counter value */
 #define GPTIMER_CTR_CCTR_MINIMUM                 ((uint32_t)0x00000000U)         /* !< Minimum value */
-#define GPTIMER_CTR_CCTR_MAXIMUM                 ((uint32_t)0x00FFFFFFU)         /* !< Maximum Value */
+#define GPTIMER_CTR_CCTR_MAXIMUM                 ((uint32_t)0xFFFFFFFFU)         /* !< Maximum Value */
 
 /* GPTIMER_CTRCTL Bits */
 /* GPTIMER_CTRCTL[EN] Bits */
@@ -452,30 +452,30 @@ typedef struct {
 /* GPTIMER_LOAD Bits */
 /* GPTIMER_LOAD[LD] Bits */
 #define GPTIMER_LOAD_LD_OFS                      (0)                             /* !< LD Offset */
-#define GPTIMER_LOAD_LD_MASK                     ((uint32_t)0x0000FFFFU)         /* !< Load Value */
+#define GPTIMER_LOAD_LD_MASK                     ((uint32_t)0xFFFFFFFFU)         /* !< Load Value */
 #define GPTIMER_LOAD_LD_MINIMUM                  ((uint32_t)0x00000000U)         /* !< Minimum value */
-#define GPTIMER_LOAD_LD_MAXIMUM                  ((uint32_t)0x00FFFFFFU)         /* !< Maximum Value */
+#define GPTIMER_LOAD_LD_MAXIMUM                  ((uint32_t)0xFFFFFFFFU)         /* !< Maximum Value */
 
 /* GPTIMER_CC_01 Bits */
 /* GPTIMER_CC_01[CCVAL] Bits */
 #define GPTIMER_CC_01_CCVAL_OFS                  (0)                             /* !< CCVAL Offset */
-#define GPTIMER_CC_01_CCVAL_MASK                 ((uint32_t)0x0000FFFFU)         /* !< Capture or compare value */
+#define GPTIMER_CC_01_CCVAL_MASK                 ((uint32_t)0xFFFFFFFFU)         /* !< Capture or compare value */
 #define GPTIMER_CC_01_CCVAL_MINIMUM              ((uint32_t)0x00000000U)         /* !< Minimum value */
-#define GPTIMER_CC_01_CCVAL_MAXIMUM              ((uint32_t)0x0000FFFFU)         /* !< Maximum Value */
+#define GPTIMER_CC_01_CCVAL_MAXIMUM              ((uint32_t)0xFFFFFFFFU)         /* !< Maximum Value */
 
 /* GPTIMER_CC_23 Bits */
 /* GPTIMER_CC_23[CCVAL] Bits */
 #define GPTIMER_CC_23_CCVAL_OFS                  (0)                             /* !< CCVAL Offset */
-#define GPTIMER_CC_23_CCVAL_MASK                 ((uint32_t)0x0000FFFFU)         /* !< Capture or compare value */
+#define GPTIMER_CC_23_CCVAL_MASK                 ((uint32_t)0xFFFFFFFFU)         /* !< Capture or compare value */
 #define GPTIMER_CC_23_CCVAL_MINIMUM              ((uint32_t)0x00000000U)         /* !< Minimum value */
-#define GPTIMER_CC_23_CCVAL_MAXIMUM              ((uint32_t)0x0000FFFFU)         /* !< Maximum Value */
+#define GPTIMER_CC_23_CCVAL_MAXIMUM              ((uint32_t)0xFFFFFFFFU)         /* !< Maximum Value */
 
 /* GPTIMER_CC_45 Bits */
 /* GPTIMER_CC_45[CCVAL] Bits */
 #define GPTIMER_CC_45_CCVAL_OFS                  (0)                             /* !< CCVAL Offset */
-#define GPTIMER_CC_45_CCVAL_MASK                 ((uint32_t)0x0000FFFFU)         /* !< Capture or compare value */
+#define GPTIMER_CC_45_CCVAL_MASK                 ((uint32_t)0xFFFFFFFFU)         /* !< Capture or compare value */
 #define GPTIMER_CC_45_CCVAL_MINIMUM              ((uint32_t)0x00000000U)         /* !< Minimum value */
-#define GPTIMER_CC_45_CCVAL_MAXIMUM              ((uint32_t)0x0000FFFFU)         /* !< Maximum Value */
+#define GPTIMER_CC_45_CCVAL_MAXIMUM              ((uint32_t)0xFFFFFFFFU)         /* !< Maximum Value */
 
 /* GPTIMER_CCCTL_01 Bits */
 /* GPTIMER_CCCTL_01[CCOND] Bits */
@@ -1387,9 +1387,9 @@ typedef struct {
 /* GPTIMER_PL Bits */
 /* GPTIMER_PL[PHASE] Bits */
 #define GPTIMER_PL_PHASE_OFS                     (0)                             /* !< PHASE Offset */
-#define GPTIMER_PL_PHASE_MASK                    ((uint32_t)0x0000FFFFU)         /* !< Phase Load value */
+#define GPTIMER_PL_PHASE_MASK                    ((uint32_t)0xFFFFFFFFU)         /* !< Phase Load value */
 #define GPTIMER_PL_PHASE_MINIMUM                 ((uint32_t)0x00000000U)         /* !< Minimum value */
-#define GPTIMER_PL_PHASE_MAXIMUM                 ((uint32_t)0x00FFFFFFU)         /* !< Maximum Value */
+#define GPTIMER_PL_PHASE_MAXIMUM                 ((uint32_t)0xFFFFFFFFU)         /* !< Maximum Value */
 
 /* GPTIMER_DBCTL Bits */
 /* GPTIMER_DBCTL[RISEDELAY] Bits */

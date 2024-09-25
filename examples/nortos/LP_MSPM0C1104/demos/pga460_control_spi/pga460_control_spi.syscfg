@@ -1,0 +1,62 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const GPIO3  = GPIO.addInstance();
+const GPIO4  = GPIO.addInstance();
+const SPI    = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1   = SPI.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+GPIO1.$name                          = "GPIO_GRP_0";
+GPIO1.associatedPins[0].$name        = "PIN_0";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].pin.$assign  = "PA2";
+
+GPIO2.$name                          = "GPIO_GRP_1";
+GPIO2.associatedPins[0].$name        = "PIN_1";
+GPIO2.associatedPins[0].initialValue = "SET";
+GPIO2.associatedPins[0].pin.$assign  = "PA23";
+
+GPIO3.$name                          = "GPIO_GRP_2";
+GPIO3.associatedPins[0].$name        = "PIN_2";
+GPIO3.associatedPins[0].initialValue = "SET";
+GPIO3.associatedPins[0].pin.$assign  = "PA17";
+
+GPIO4.$name                          = "GPIO_GRP_3";
+GPIO4.associatedPins[0].$name        = "PIN_3";
+GPIO4.associatedPins[0].initialValue = "SET";
+GPIO4.associatedPins[0].pin.$assign  = "PA28";
+
+SPI1.$name                          = "SPI_0";
+SPI1.frameFormat                    = "MOTO3";
+SPI1.bitOrder                       = "LSB";
+SPI1.polarity                       = "1";
+SPI1.targetBitRate                  = 1000000;
+SPI1.peripheral.$assign             = "SPI0";
+SPI1.peripheral.sclkPin.$assign     = "PA11";
+SPI1.peripheral.mosiPin.$assign     = "PA18";
+SPI1.peripheral.misoPin.$assign     = "PA4";
+SPI1.sclkPinConfig.internalResistor = "PULL_UP";
+SPI1.mosiPinConfig.internalResistor = "PULL_UP";
+
+UART1.$name                    = "UART_0";
+UART1.peripheral.$assign       = "UART0";
+UART1.peripheral.rxPin.$assign = "PA26";
+UART1.peripheral.txPin.$assign = "PA27";

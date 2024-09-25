@@ -61,6 +61,8 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0L2228 web page](https://www.ti.com/to
 ## Example Usage
 
 Connect SDA and SCL between I2C Controller and Target.
+Note that I2C requires external pull-ups which can be connected externally or enabled
+using the LaunchPad.
 Before compiling the example on the Target, make sure to set the define
 I2C_CONTROLLER_MODE to 0, and then load and run the example.
 Compile, load and run the example on the Controller device.

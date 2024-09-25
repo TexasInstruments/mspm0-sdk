@@ -70,13 +70,13 @@ function validate(inst, validation)
 		if(clockTreeEn){
 			validation.logInfo("After LFXT is enabled, the internal LFOSC is disabled, and cannot be re-enabled other than by executing a BOOTRST.",inst,"enable");
 		}
-		if(isDeviceFamily_PARENT_MSPM0L122X_L222X && clockTreeEn) {
+		if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && clockTreeEn) {
 			validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", inst, "enable");
 		}
 	}
 
 	if(inst.$name == "LFCLKEXT" && inst.enable && clockTreeEn){
-		if(isDeviceFamily_PARENT_MSPM0L122X_L222X) {
+		if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
 			validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", inst, "enable");
 		}
 	}

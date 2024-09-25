@@ -22,6 +22,7 @@ var searchData=
   ['update_5fmotorstartup2config',['update_MotorStartUp2Config',['../app_user_inputs_config_8h.html#a77ebce2b74f1f4e09d44ca035b5718a4',1,'appUserInputsConfig.c']]],
   ['update_5frvsdrvconfig',['update_RvsDrvConfig',['../app_user_inputs_config_8h.html#a951d27155b4abb01de6939a4020806bd',1,'appUserInputsConfig.c']]],
   ['update_5fsystemparams',['update_SystemParams',['../app_user_inputs_config_8h.html#a93d69307dae1d0ee9b1552859a8f8b3d',1,'appUserInputsConfig.c']]],
+  ['updateconfigs',['updateConfigs',['../structram_algo_debug_ctrl2.html#ac6444767b16a03250f732de796bc0353',1,'ramAlgoDebugCtrl2']]],
   ['updateddata',['updatedData',['../structdebug_enable_flags.html#a8029f2a099dd652c7e6ff75cc1a74752',1,'debugEnableFlags']]],
   ['updatedke',['updatedKe',['../structdebug_enable_flags.html#a06ae8a9d23abcd47314ec368b1e28e6d',1,'debugEnableFlags']]],
   ['user_5fctrl_5finterface_5ft',['USER_CTRL_INTERFACE_T',['../struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html',1,'']]],

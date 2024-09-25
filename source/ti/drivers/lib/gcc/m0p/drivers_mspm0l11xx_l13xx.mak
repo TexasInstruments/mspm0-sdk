@@ -10,7 +10,7 @@ NAME = drivers_mspm0l11xx_l13xx
 OBJ_DIR = ../../../obj/gcc/m0p/drivers_mspm0l11xx_l13xx
 SRC_DIR = ../../..
 
-CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -DDeviceFamily_MSPM0L130X -DUART_NO_DMA -Wall -ffunction-sections -fdata-sections -std=c99 -c -g -gstrict-dwarf -O2
+CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -DDeviceFamily_MSPM0L130X -DUART_NO_DMA -Wall -ffunction-sections -fdata-sections -std=c99 -c
 AFLAGS = -cr --target=elf32-little
 ASMFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" 
 

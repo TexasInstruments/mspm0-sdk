@@ -104,7 +104,7 @@ function isAveragingEnabled()
  *  param validation - object to hold detected validation issues
  */
 function validatePinmux(inst, validation){
-    if(Common.isDeviceM0G()){
+    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
         if(inst.peripheral.$solution.peripheralName == "ADC1"){
             if(isChannelSelected(inst,12) && !inst.disChan12){
                 validation.logError(
@@ -116,6 +116,21 @@ function validatePinmux(inst, validation){
             validation.logError(
                 "Channel 12 pin is required to be enabled for current configuration",
                 inst, "disChan12"
+            );
+        }
+    }
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+        if(inst.peripheral.$solution.peripheralName == "ADC0"){
+            if(isChannelSelected(inst,11) && !inst.disChan11){
+                validation.logError(
+                    "Channel 11 is an internal connection for the current configuration, requires disabling the pin resource",
+                    inst, "disChan11"
+                );
+            }
+        }else if(isChannelSelected(inst,11) && inst.disChan11){
+            validation.logError(
+                "Channel 11 pin is required to be enabled for current configuration",
+                inst, "disChan11"
             );
         }
     }
@@ -467,6 +482,13 @@ function pinmuxRequirements(inst)
             adcPin25: ["25"],
         }
     };
+    /*
+     * MSPM0G1X0X_G3X0X can configure Channels 0-8,11-15
+     * M0L11XX_L13XX family can configure channels 0-9, 11-15
+     * M0L122X_L222X family can configure channels 0-25,29-31
+     * M0C can configure channels 0-9,11,15
+     * MSPM0GX51X can configure channels 0-15
+     */
     let ind = 0;
     for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
         if( inst.enabledADCMems.includes(adcMemIdx) ){
@@ -479,20 +501,44 @@ function pinmuxRequirements(inst)
                     adc.resources.push(allResources[ind])
                 }
             }
-            /* MSPM0L11XX_L13XX can also configure channel 9 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C()) && ind<10){
+            /* MSPM0L11XX_L13XX, MSPM0C, MSPM0GX51X can also configure channel 9 to pins */
+            else if((Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind<10){
                 if(!((adc.resources).includes(allResources[ind]))){
                     adc.resources.push(allResources[ind])
                 }
             }
-            /* MSPM0L122X_L222X can also configure channels 10-23 to pins */
-            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && ind<26){
+            /* MSPM0L122X_L222X and M0GX51X can also configure channel 10 to pins */
+            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind==10){
                 if(!((adc.resources).includes(allResources[ind]))){
                     adc.resources.push(allResources[ind])
                 }
             }
-            /* Special case of M0G Channel 12 */
-            if(Common.isDeviceM0G() && ind == 12 && !inst.disChan12){
+            /* MSPM0L122X_L222X can also configure channel 11 to pins */
+            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) && ind==11){
+                if(!((adc.resources).includes(allResources[ind]))){
+                    adc.resources.push(allResources[ind])
+                }
+            }
+            /* MSPM0L122X_L222X and M0GX51X can also configure channels 12-14 to pins */
+            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind>11 && ind<15){
+                if(!((adc.resources).includes(allResources[ind]))){
+                    adc.resources.push(allResources[ind])
+                }
+            }
+            /* MSPM0L122X_L222X can also configure channels 15-25 to pins */
+            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && ind>14 && ind<26){
+                if(!((adc.resources).includes(allResources[ind]))){
+                    adc.resources.push(allResources[ind])
+                }
+            }
+            /* Special case of M0G Channel 12 on MSPM0G1X0X_G3X0X */
+            if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12 && !inst.disChan12){
+                if(!((adc.resources).includes(allResources[ind]))){
+                    adc.resources.push(allResources[ind])
+                }
+            }
+            /* Special case of M0G Channel 11 on MSPM0GX51X */
+            if(Common.isDeviceFamily_PARENT_MSPM0GX51X() && ind == 11 && !inst.disChan11){
                 if(!((adc.resources).includes(allResources[ind]))){
                     adc.resources.push(allResources[ind])
                 }
@@ -1236,13 +1282,14 @@ const chanselRange = 32;
 const channelSelectOptions = [];
 for(let chanselIdx = 0; chanselIdx < chanselRange; chanselIdx++){
     /*
-     * M0G can configure Channels 0-8,11-15
+     * MSPM0G1X0X_G3X0X can configure Channels 0-8,11-15
      * M0L11XX_L13XX family can configure channels 0-9, 11-15
      * M0L122X_L222X family can configure channels 0-25,29-31
      * M0C can configure channels 0-9,11,15
+     * MSPM0GX51X can configure channels 0-15
      */
-    if(!(chanselIdx == 9  && Common.isDeviceM0G()) &&
-        !(chanselIdx == 10 && (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C())) &&
+    if(!(chanselIdx == 9  && Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()) &&
+        !(chanselIdx == 10 && (Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C())) &&
         !(([12,13,14].includes(chanselIdx)) && (Common.isDeviceM0C())) &&
         ((!((chanselIdx) > 15 && !Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()))) &&(![26,27,28].includes(chanselIdx)))
     {
@@ -2655,12 +2702,23 @@ Power down modes:
 /* Add Pinmux Peripheral Configuration group */
 config = config.concat(Common.getGPIOGroupConfig());
 
-if(Common.isDeviceM0G()){
+if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
     config = config.concat([
         {
             name        : "disChan12",
             displayName : "Disable Channel 12 Pin",
             description : 'Disable Channel 12 Pin Resource from being reserved',
+            hidden      : false,
+            default     : false,
+        },
+    ]);
+}
+if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    config = config.concat([
+        {
+            name        : "disChan11",
+            displayName : "Disable Channel 11 Pin",
+            description : 'Disable Channel 11 Pin Resource from being reserved',
             hidden      : false,
             default     : false,
         },
@@ -2717,15 +2775,31 @@ function moduleInstances(inst){
                 adcConfig[ind] = true;
             }
             /* MSPM0L11XX_L13XX can also configure channel 9 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C()) && ind<10){
+            else if((Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind<10){
                 adcConfig[ind] = true;
             }
-            /* MSPM0L122X_L222X can also configure channels 10-23 to pins */
-            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && ind<26){
+            /* MSPM0L122X_L222X and M0GX51X can also configure channel 10 to pins */
+            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind==10){
                 adcConfig[ind] = true;
             }
-            /* Special case of M0G Channel 12 */
-            if(Common.isDeviceM0G() && ind == 12){
+            /* MSPM0L122X_L222X can also configure channel 11 to pins */
+            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) && ind==11){
+                adcConfig[ind] = true;
+            }
+            /* MSPM0L122X_L222X and M0GX51X can also configure channels 12-14 to pins */
+            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind>11 && ind<15){
+                adcConfig[ind] = true;
+            }
+            /* MSPM0L122X_L222X can also configure channels 15-25 to pins */
+            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && ind>14 && ind<26){
+                adcConfig[ind] = true;
+            }
+            /* Special case of MSPM0G1X0X_G3X0X Channel 12 */
+            if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12){
+                adcConfig[ind] = true;
+            }
+            /* Special case of M0GX51X Channel 11 */
+            if(Common.isDeviceFamily_PARENT_MSPM0GX51X() && ind == 11){
                 adcConfig[ind] = true;
             }
 
@@ -2736,6 +2810,7 @@ function moduleInstances(inst){
     for(let ix = 0; ix < 26; ix++){
         /* ADC Channel Pin Configuration */
         if(ix == 12 && inst.disChan12) continue;
+        if(ix == 11 && inst.disChan11) continue;
         Common.pushGPIOConfigInstOnlyIntRes(inst, modInstances,   adcConfig[ix],    "adcPin"+ix,
         "C"+ix, "ADC12 Channel "+ix+" Pin",
         "INPUT");

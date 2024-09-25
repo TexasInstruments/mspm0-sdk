@@ -228,6 +228,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 %   } else {
     DL_I2C_disableTargetClockStretching(`instNameModule`);
 %}
+%   if(!Common.I2CTargetWakeupWorkaroundFixed()) {
+
+    /* Workaround for errata I2C_ERR_04 */
+    DL_I2C_disableTargetWakeup(`instNameModule`);
+%} // if(!Common.I2CTargetWakeupWorkaroundFixed())
 %} // if (inst.basicEnableTarget)
 %    /* Interrupt generation */
 %    let interArgs = "";

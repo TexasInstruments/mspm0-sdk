@@ -10,7 +10,7 @@ NAME = gauge_l2_rts
 OBJ_DIR = ../../../obj/gcc/m0p/gauge_l2_rts
 SRC_DIR = ../../../gauge_level2
 
-CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -Wall -ffunction-sections -fdata-sections -std=c99 -c -g -gstrict-dwarf -O2
+CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -Wall -ffunction-sections -fdata-sections -std=c99 -c
 AFLAGS = -cr --target=elf32-little
 ASMFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" 
 

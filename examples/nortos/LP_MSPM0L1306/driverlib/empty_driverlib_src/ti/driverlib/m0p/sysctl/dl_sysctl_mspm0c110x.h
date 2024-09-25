@@ -1662,18 +1662,10 @@ __STATIC_INLINE DL_SYSCTL_FCC_TRIG_CNT DL_SYSCTL_getFCCPeriods(void)
 }
 
 /**
- *  @brief  Enable Frequency Correction Loop (FCL)
- *
- *  Used to increase SYSOSC accuracy. An ROSC reference resistor which is suitable
- *  to meet application accuracy reqiurements must be placed between ROSC pin and
- *  device ground (VSS).
+ *  @brief  Enable Frequency Correction Loop (FCL) in Internal Resistor mode
  *
  *  Once FCL is enable, it cannot be disabled by software. A BOOTRST is required.
  *
- *  Power consumption of SYSOSC will be marginally higher with FCL enabled due to
- *  reference current which flows through ROSC.
- *  Settling time from startup to specified accuracy may also be longer.
- *  See device-specific datasheet for startup times.
  */
 __STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCL(void)
 {
@@ -1844,8 +1836,7 @@ __STATIC_INLINE DL_SYSCTL_RESET_CAUSE DL_SYSCTL_getResetCause(void)
  */
 __STATIC_INLINE uint32_t DL_SYSCTL_getTempCalibrationConstant(void)
 {
-    // TODO replace hard coded temp cal address once available in device header file
-    return (*((uint32_t *) 0x41C4003C));
+    return DL_FactoryRegion_getTemperatureVoltage();
 }
 
 /**

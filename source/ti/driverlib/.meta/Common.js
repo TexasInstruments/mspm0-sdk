@@ -106,15 +106,20 @@ exports = {
     isDeviceM0x310x                         : isDeviceM0x310x,
     isDeviceFamily_PARENT_MSPM0L11XX_L13XX  : isDeviceFamily_PARENT_MSPM0L11XX_L13XX,
     isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X  : isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X,
+    isDeviceFamily_PARENT_MSPM0GX51X        : isDeviceFamily_PARENT_MSPM0GX51X,
     isDeviceFamily_PARENT_MSPM0L122X_L222X  : isDeviceFamily_PARENT_MSPM0L122X_L222X,
     isDeviceFamily_PARENT_MSPM0L122X        : isDeviceFamily_PARENT_MSPM0L122X,
     isDeviceFamily_PARENT_MSPM0L222X        : isDeviceFamily_PARENT_MSPM0L222X,
     isDeviceFamily_PARENT_MSPM0C110X        : isDeviceFamily_PARENT_MSPM0C110X,
     isDeviceFamily_MSPS003FX                : isDeviceFamily_MSPS003FX,
 
+    I2CTargetWakeupWorkaroundFixed          : I2CTargetWakeupWorkaroundFixed,
+
     getDeviceFamily                         : getDeviceFamily,
 
     hasTimerA                               : hasTimerA,
+    hasExternalRoscOnly                     : hasExternalRoscOnly,
+
     hasGPIOPortA                            : hasGPIOPortA,
     hasGPIOPortB                            : hasGPIOPortB,
     hasGPIOPortC                            : hasGPIOPortC,
@@ -162,6 +167,7 @@ exports = {
     getGPIOPortMultiPad     : getGPIOPortMultiPad,
     getGPIONumberMultiPad   : getGPIONumberMultiPad,
     getAllPorts             : getAllPorts,
+    getTimerPWMInstance     : getTimerPWMInstance,
 };
 
 /*
@@ -1709,6 +1715,11 @@ function isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X(){
     var deviceName = system.deviceData.device;
     return (["MSPM0G350X","MSPM0G310X","MSPM0G150X","MSPM0G110X"].includes(deviceName));
 }
+/* Checks if device is part of MSPM0GX51X device family */
+function isDeviceFamily_PARENT_MSPM0GX51X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0G351X","MSPM0G151X"].includes(deviceName));
+}
 /* Checks if device is part of MSPM0L122X_L222X device family */
 function isDeviceFamily_PARENT_MSPM0L122X_L222X(){
     var deviceName = system.deviceData.device;
@@ -1751,7 +1762,7 @@ function isDeviceM0x310x(){
 /* checks if current device is one of MSPM0G-series */
 function isDeviceM0G()
 {
-	return (isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X());
+	return (isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || isDeviceFamily_PARENT_MSPM0GX51X());
 }
 /* checks if current device is one of MSPM0L-series */
 function isDeviceM0L(){
@@ -1776,7 +1787,23 @@ function getDeviceFamily(){
     else if(isDeviceFamily_PARENT_MSPM0C110X()){
         return "MSPM0C110X";
     }
+    if(isDeviceFamily_PARENT_MSPM0GX51X()){
+        return "MSPM0GX51X";
+    }
     return undefined;
+}
+
+/*
+ * Check if the current device is not affected by I2C_ERR_04
+ * Currently affects all devices, but once we have a device it is fixed in
+   add it to list the of fixed devices.
+   TODO: Once the # of devices it is fixed in outnumbers the problem devices, likely want to reverse
+   logic.
+*/
+function I2CTargetWakeupWorkaroundFixed() {
+    var deviceName = system.deviceData.device;
+    let fixedDevices = [];
+    return (fixedDevices.includes(deviceName));
 }
 
 // TODO: confirm with documentation
@@ -1794,6 +1821,12 @@ function isInternalTimerChannel(cc){
     // Internal timer channels are currently defined as channels 4 and 5, only available for TIMA
     return(hasTimerA() && (cc>=4));
 }
+
+/* Checks if device only supports external resistor (rosc) for FCL*/
+function hasExternalRoscOnly(){
+    return (isDeviceFamily_PARENT_MSPM0L11XX_L13XX());
+}
+
 
 /* Check if device supports GPIO Port A configuration */
 function hasGPIOPortA(){
@@ -1975,10 +2008,10 @@ function getModeIndex(packagePin){
     let modes = (system.deviceData.devicePins[packagePin].mux.muxSetting).map(a => a.mode);
     for(let modeIdx in modes){
         /* In order to find the midpoint of that divides the pins, the logic is as follows:
-         * if(((mode[i]>=mode[i+1])&&(mode[i]!=0))||((mode[i]==0)&&(mode[i]<mode[i+1])))
+         * if(((mode[i]>mode[i+1])&&(mode[i]!=0))||((mode[i]==0)&&(mode[i]<mode[i+1])))
          * The midpoint exists when the mode decreases to a non-zero number, or increases after a zero
          */
-        if(((parseInt(modes[parseInt(modeIdx)])>=parseInt(modes[parseInt(modeIdx)+1]))&&(parseInt(modes[parseInt(modeIdx)+1])!==0))
+        if(((parseInt(modes[parseInt(modeIdx)])>parseInt(modes[parseInt(modeIdx)+1]))&&(parseInt(modes[parseInt(modeIdx)+1])!==0))
         ||((parseInt(modes[parseInt(modeIdx)])==0)&&(parseInt(modes[parseInt(modeIdx)])<parseInt(modes[parseInt(modeIdx)+1])))){
             return parseInt(modeIdx)
         }
@@ -2609,4 +2642,26 @@ function getUsedPins(keys){
         usedPinNames: usedPinNames,
         usedPinIDs  : usedPinIDs,
     }
+}
+
+/*
+ *  ======== getTimerPWMInstance ========
+ *  Gets the PWM instance that is assigned to a specific timer peripheral (if it
+ *  exists).
+ *
+ *  @param timerPeripheral the timer peripheral to search for (example: "TIMA0")
+ *
+ *  @return the desired instance if it exists, undefined otherwise.
+ *
+ */
+function getTimerPWMInstance(timerPeripheral){
+    let PWMMod = system.modules["/ti/driverlib/PWM"];
+    let index = -1;
+    if(PWMMod){
+        index = (PWMMod.$instances).findIndex((instance)=> instance.peripheral.$solution.peripheralName == timerPeripheral);
+    };
+    if(index==-1){
+        return undefined;
+    }
+    return PWMMod.$instances[index];
 }

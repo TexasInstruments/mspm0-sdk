@@ -68,7 +68,7 @@ function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
     /* Verify if using UART Advanced instance */
-    if(Common.isDeviceM0G()){
+    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
         if(!(/UART0/.test(solution))){
             validation.logError("LIN functionality is only available on the UART0 instance. Please select a UART0 instance from PinMux if available.",
                 inst,"peripheral");
@@ -77,6 +77,12 @@ function validatePinmux(inst, validation) {
     else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
         if(!(/UART0|UART1/.test(solution))){
             validation.logError("LIN functionality is only available on the UART0 and UART1 instances. Please select a valid instance from PinMux if available.",
+                inst,"peripheral");
+        }
+    }
+    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+        if(!(/UART0|UART7/.test(solution))){
+            validation.logError("LIN functionality is only available on the UART0 and UART7 instances. Please select a valid instance from PinMux if available.",
                 inst,"peripheral");
         }
     }

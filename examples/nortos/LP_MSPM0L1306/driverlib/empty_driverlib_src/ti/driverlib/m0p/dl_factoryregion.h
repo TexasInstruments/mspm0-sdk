@@ -607,6 +607,10 @@ __STATIC_INLINE uint8_t DL_FactoryRegion_getBSLPinInvokeGPIOModulePad(void)
 /**
  *  @brief   Get the ADC conversion results of temperature sensor output voltage
  *
+ * Returns the temperature sensor output voltage at the factory trim temperature
+ * in ADC result code format. This ADC result code is based upon 12-bit
+ * sampling mode together with the 1.4-V internal voltage reference.
+ *
  *  @return  The ADC conversion results of temperature sensor output voltage
  */
 __STATIC_INLINE uint32_t DL_FactoryRegion_getTemperatureVoltage(void)
@@ -649,6 +653,21 @@ __STATIC_INLINE uint32_t DL_FactoryRegion_getBOOTCRCData(void)
 
     return BOOTCRCData;
 }
+
+#ifdef MSPM0C110X_ADC_ERR_06
+/**
+ *  @brief Get the ADC offset value
+ *
+ *  Workaround for errata on MSPM0C110x devices: ADC_ERR_06
+ *  0x41C40040 is expected to point to factory region reserved0 bit
+ *
+ *  @return  ADC offset value
+ */
+__STATIC_INLINE float DL_FactoryRegion_getADCOffset(void)
+{
+    return ((float) (*(int16_t *) (0x41C40040)));
+}
+#endif
 
 #ifdef __cplusplus
 }

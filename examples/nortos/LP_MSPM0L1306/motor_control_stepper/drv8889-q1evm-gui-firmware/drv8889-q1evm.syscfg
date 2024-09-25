@@ -1,0 +1,99 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const SPI    = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1   = SPI.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ProjectConfig.genDisable = true;
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "ball.24";
+Board.peripheral.swdioPin.$assign = "ball.23";
+
+COMP1.$name              = "GENERIC_COMP";
+COMP1.hysteresis         = "DL_COMP_HYSTERESIS_20";
+COMP1.vSource            = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP1.terminalSelect     = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP1.controlSelect      = "DL_COMP_DAC_CONTROL_SW";
+COMP1.peripheral.$assign = "COMP0";
+
+GPIO1.$name                         = "GENERIC_GPIO_IN";
+GPIO1.associatedPins[0].$name       = "PINI_0";
+GPIO1.associatedPins[0].direction   = "INPUT";
+GPIO1.associatedPins[0].pin.$assign = "ball.9";
+
+GPIO2.$name                         = "GENERIC_GPIO_OUT";
+GPIO2.associatedPins.create(5);
+GPIO2.associatedPins[0].$name       = "PINO_0";
+GPIO2.associatedPins[0].pin.$assign = "ball.1";
+GPIO2.associatedPins[1].$name       = "PINO_1";
+GPIO2.associatedPins[1].pin.$assign = "ball.7";
+GPIO2.associatedPins[2].$name       = "PINO_2";
+GPIO2.associatedPins[2].pin.$assign = "ball.2";
+GPIO2.associatedPins[3].$name       = "PINO_3";
+GPIO2.associatedPins[3].pin.$assign = "ball.8";
+GPIO2.associatedPins[4].$name       = "PINO_4";
+GPIO2.associatedPins[4].pin.$assign = "ball.14";
+
+OPA1.cfg0PSELChannel           = "DAC8_OUT";
+OPA1.cfg0NSELChannel           = "RTOP";
+OPA1.cfg0OutputPin             = "ENABLED";
+OPA1.advBW                     = "HIGH";
+OPA1.$name                     = "GENERIC_OPA";
+OPA1.peripheral.$assign        = "OPA0";
+OPA1.peripheral.OutPin.$assign = "ball.26";
+
+PWM1.ccIndex                    = [0];
+PWM1.clockDivider               = 2;
+PWM1.$name                      = "GENERIC_PWM_CHANNEL_0";
+PWM1.interrupts                 = ["ZERO_EVENT"];
+PWM1.clockPrescale              = 3;
+PWM1.timerCount                 = 53333;
+PWM1.interruptPriority          = "1";
+PWM1.peripheral.$assign         = "TIMG0";
+PWM1.peripheral.ccp0Pin.$assign = "ball.16";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+
+SPI1.targetBitRate                     = 1000000;
+SPI1.phase                             = "1";
+SPI1.dataSize                          = 16;
+SPI1.rxFifoThreshold                   = "DL_SPI_RX_FIFO_LEVEL_FULL";
+SPI1.txFifoThreshold                   = "DL_SPI_TX_FIFO_LEVEL_EMPTY";
+SPI1.chipSelect                        = ["2"];
+SPI1.$name                             = "GENERIC_SPI_CHANNEL_0";
+SPI1.peripheral.$assign                = "SPI0";
+SPI1.peripheral.sclkPin.$assign        = "ball.10";
+SPI1.peripheral.mosiPin.$assign        = "ball.22";
+SPI1.peripheral.misoPin.$assign        = "ball.20";
+SPI1.peripheral.cs2Pin.$assign         = "ball.19";
+
+SYSCTL.MFCLKEn            = true;
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+VREF.basicIntVolt         = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.checkVREFReady       = true;
+VREF.advClockConfigEnable = true;
+VREF.advClkSrc            = "DL_VREF_CLOCK_BUSCLK";
+VREF.peripheral.$assign   = "VREF";

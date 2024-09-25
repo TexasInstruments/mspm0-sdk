@@ -1,0 +1,123 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const OPA    = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1   = OPA.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const TIMER2 = TIMER.addInstance();
+const TIMER3 = TIMER.addInstance();
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ProjectConfig.genDisable = true;
+
+ADC121.samplingOperationMode      = "sequence";
+ADC121.trigSrc                    = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.adcMem1chansel             = "DL_ADC12_INPUT_CHAN_1";
+ADC121.adcMem2chansel             = "DL_ADC12_INPUT_CHAN_2";
+ADC121.subChanID                  = 1;
+ADC121.powerDownMode              = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.sampleTime0                = "1us";
+ADC121.sampleTime1                = "1us";
+ADC121.endAdd                     = 1;
+ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM1_RESULT_LOADED"];
+ADC121.repeatMode                 = true;
+ADC121.adcMem0trig                = "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT";
+ADC121.$name                      = "GENERIC_ADC_0";
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin0.$assign = "ball.31";
+ADC121.peripheral.adcPin1.$assign = "ball.30";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "ball.24";
+Board.peripheral.swdioPin.$assign = "ball.23";
+
+COMP1.$name              = "GENERIC_COMP";
+COMP1.hysteresis         = "DL_COMP_HYSTERESIS_20";
+COMP1.vSource            = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP1.terminalSelect     = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP1.controlSelect      = "DL_COMP_DAC_CONTROL_SW";
+COMP1.peripheral.$assign = "COMP0";
+
+GPIO1.$name                         = "GENERIC_GPIO_IN";
+GPIO1.associatedPins[0].$name       = "PINI_0";
+GPIO1.associatedPins[0].direction   = "INPUT";
+GPIO1.associatedPins[0].pin.$assign = "ball.9";
+
+GPIO2.$name                         = "GENERIC_GPIO_OUT";
+GPIO2.associatedPins.create(5);
+GPIO2.associatedPins[0].$name       = "PINO_0";
+GPIO2.associatedPins[0].pin.$assign = "ball.1";
+GPIO2.associatedPins[1].$name       = "PINO_1";
+GPIO2.associatedPins[1].pin.$assign = "ball.7";
+GPIO2.associatedPins[2].$name       = "PINO_2";
+GPIO2.associatedPins[2].pin.$assign = "ball.2";
+GPIO2.associatedPins[3].$name       = "PINO_3";
+GPIO2.associatedPins[3].pin.$assign = "ball.8";
+GPIO2.associatedPins[4].$name       = "PINO_4";
+GPIO2.associatedPins[4].pin.$assign = "ball.14";
+
+OPA1.cfg0PSELChannel           = "DAC8_OUT";
+OPA1.cfg0NSELChannel           = "RTOP";
+OPA1.cfg0OutputPin             = "ENABLED";
+OPA1.advBW                     = "HIGH";
+OPA1.$name                     = "GENERIC_OPA";
+OPA1.peripheral.$assign        = "OPA0";
+OPA1.peripheral.OutPin.$assign = "ball.26";
+
+SYSCTL.MFCLKEn            = true;
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.timerMode                   = "PERIODIC";
+TIMER1.event1PublisherChannel      = 1;
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.timerStartTimer             = true;
+TIMER1.timerClkDiv                 = 8;
+TIMER1.$name                       = "GENERIC_TIM_CHANNEL_1";
+TIMER1.timerPeriod                 = "1ms";
+TIMER1.interruptPriority           = "0";
+TIMER1.peripheral.$assign          = "TIMG4";
+
+TIMER2.timerMode          = "PERIODIC";
+TIMER2.interrupts         = ["LOAD"];
+TIMER2.timerClkDiv        = 2;
+TIMER2.timerPeriod        = "1ms";
+TIMER2.$name              = "GENERIC_TIM_CHANNEL_0";
+TIMER2.timerClkPrescale   = 64;
+TIMER2.interruptPriority  = "1";
+TIMER2.peripheral.$assign = "TIMG1";
+
+TIMER3.$name              = "GUI_PLOT_UPDATE_TIMER";
+TIMER3.timerMode          = "PERIODIC";
+TIMER3.timerPeriod        = "16 ms";
+TIMER3.timerClkPrescale   = 8;
+TIMER3.timerStartTimer    = true;
+TIMER3.interrupts         = ["ZERO"];
+TIMER3.interruptPriority  = "3";
+TIMER3.peripheral.$assign = "TIMG0";
+
+VREF.basicIntVolt         = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.checkVREFReady       = true;
+VREF.advClockConfigEnable = true;
+VREF.advClkSrc            = "DL_VREF_CLOCK_BUSCLK";
+VREF.peripheral.$assign   = "VREF";

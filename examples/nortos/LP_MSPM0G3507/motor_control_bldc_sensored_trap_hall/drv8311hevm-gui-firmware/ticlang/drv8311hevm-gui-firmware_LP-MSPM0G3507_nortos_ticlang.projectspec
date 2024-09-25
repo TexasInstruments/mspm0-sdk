@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="Cortex M.MSPM0G3507"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="drv8311hevm-gui-firmware_LP-MSPM0G3507"
+        name="drv8311hevm-gui-firmware_LP-MSPM0G3507_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G3507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+
+        compilerBuildOptions="
+            -I${SDK_ROOT}/source/ti/motor_control_bldc_sensored_trap_hall/modules/hal/LP_MSPM0G3507/
+            -I${SDK_ROOT}/source/ti/motor_control_bldc_sensored_trap_hall/modules/hall_trap/
+	    -I${SDK_ROOT}/source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8311/
+            -I${ORIG_PROJ_ROOT_DIR}/
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__MSPM0G3507__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/ticlang/m0p/mathacl/iqmath.a
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -Wl,--stack_size=512
+            -L${PROJECT_BUILD_DIR}/syscfg            
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="drv8311hevm gui firmware">
+
+        <pathVariable name="SDK_ROOT" path="../../../../../../" scope="project"/>
+        <pathVariable name="ORIG_PROJ_ROOT_DIR" path="../" scope="project"/>
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../Hall_Trap.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>        
+        <file path="../drv8311hevm_gui.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>  
+  	<file path="../drv8311hevm_gui.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>     
+        <file path="../ticlang/mspm0g3507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0g350x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+
+        <file path="../../../../../../source/ti/motor_control_bldc_sensored_trap_hall/modules/hal/LP_MSPM0G3507/hal.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal">
+        </file>
+        <file path="../../../../../../source/ti/motor_control_bldc_sensored_trap_hall/modules/hal/LP_MSPM0G3507/hal.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal">
+        </file>
+        <file path="../../../../../../source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8311/drv8311.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/drv8311">
+        </file>
+        <file path="../../../../../../source/ti/motor_control_bldc_sensored_trap_hall/modules/motor_driver/drv8311/drv8311.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/drv8311">
+        </file>
+        <file path="../../../../../../source/ti/motor_control_bldc_sensored_trap_hall/modules/hall_trap/hall_trap.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hall_trap">
+        </file>
+        <file path="../../../../../../source/ti/motor_control_bldc_sensored_trap_hall/modules/hall_trap/hall_trap.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hall_trap">
+        </file>        
+    </project>
+</projectSpec>

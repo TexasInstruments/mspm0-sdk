@@ -614,6 +614,25 @@ function validatePinmux(inst, validation) {
         }
     }
 
+    /* Validate Timer instance supports Phase load */
+    if(inst.enablePhaseLoad){
+        if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
+            }
+        }
+        else if (Common.isDeviceM0G()){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
+            }
+        }
+        else if (Common.isDeviceM0C()){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
+            }
+        }
+    }
+
     let CCMod = system.modules["/ti/driverlib/pwm/PWMTimerCC"];
     if(CCMod){
         let CCInst = CCMod.$instances;
@@ -846,6 +865,16 @@ function updateGUI_Profile(inst, ui) {
 function onChangeEnableShadowLoad(inst,ui)
 {
     onChangeResetProfile(inst, ui);
+}
+
+/*  ======== onChange handlers ======== */
+function onChangeEnablePhaseLoad(inst,ui)
+{
+    onChangeSetCustomProfile(inst, ui);
+    if(inst.enablePhaseLoad)
+        ui.phaseLoadValue.hidden = false;
+    else
+        ui.phaseLoadValue.hidden = true;
 }
 
 function onChangeCrossTrigger(inst, ui){
@@ -1177,6 +1206,23 @@ let configAdvanced = [
         default         : false,
         onChange        : onChangeEnableShadowLoad
     },
+    {
+        name            : "enablePhaseLoad",
+        displayName     : "Enable Phase Load",
+        description     : "Enables Phase Load",
+        longDescription : `In TIMA only, phase load provides the capability count from a value other
+        \nthan zero or TIMA.LOAD in Up/Down counting mode.`,
+        default         : false,
+        onChange        : onChangeEnablePhaseLoad
+    },
+    {
+        name            : "phaseLoadValue",
+        displayName     : "Phase Load Value",
+        description     : "Sets the value for Phase Load",
+        hidden          : true,
+        default         : 0,
+        range           : [0, 0xFFFF],
+    }
 ]
 
 if(Common.hasTimerA()){
@@ -2372,8 +2418,8 @@ The Quick Profile Options are:
                             name: "clockDivider",
                             displayName: "Timer Clock Divider",
                             description: "Selects the timer module clock divide ratio",
-                            longDescription: `The clock divider is an can reduce the timer clock frequency from 1 (none) to 8.
-                            \nClock Frequency = Input Clock Frequency / ( divider * (prescale + 1))`,
+                            longDescription: `The clock divider reduces the timer clock frequency by a factor of 1 (none) to 8.
+                            \nClock Frequency = Input Clock Frequency / ( divider * (prescale))`,
                             default: 1,
                             options: [
                                 { name: 1, displayName: "Divided by 1"},
@@ -2399,7 +2445,7 @@ The Quick Profile Options are:
                             name: "clockPrescale",
                             displayName: "Timer Clock Prescale",
                             description: "Selects the timer module clock prescaler. Valid Range: 1-256",
-                            longDescription: `Provides a prescale value to reduce clock frequency from the bus on the specific peripheral.
+                            longDescription: `The clock prescale reduces the timer clock frequency by a factor of 1 (none) to 256.
                             Valid Range: 1 - 256
                             \nClock Frequency = Input Clock Frequency / ( divider * (prescale))`,
                             default: 1,
@@ -2736,8 +2782,8 @@ Timer clock prescale set to 4\n
             default: true,
             hidden: true,
             getValue: (inst) => {
-                let available = inst.timerAssignment.match("Any") || inst.timerAssignment.match("TIMA0");
-                let onDevice = inst.timers.includes("TIMA0");
+                let available = inst.timerAssignment.match("Any") || inst.timerAssignment.match("TIMA0|TIMG14");
+                let onDevice = inst.timers.includes("TIMA0") || inst.timers.includes("TIMG14");
                 return (available && onDevice)?true:false;
             }
         },

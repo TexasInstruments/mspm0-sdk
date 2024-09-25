@@ -477,8 +477,8 @@ let config = [
                             name: "clockDivider",
                             displayName: "Timer Clock Divider",
                             description: "Selects the timer module clock divide ratio",
-                            longDescription: `The clock divider is an can reduce the timer clock frequency from 1 (none) to 8.
-                            \nClock Frequency = Input Clock Frequency / ( divider * (prescale + 1))`,
+                            longDescription: `The clock divider reduces the timer clock frequency by a factor of 1 (none) to 8.
+                            \nClock Frequency = Input Clock Frequency / ( divider * (prescale))`,
                             default: 1,
                             options: [
                                 { name: 1, displayName: "Divided by 1"},
@@ -495,7 +495,7 @@ let config = [
                             name: "clockPrescale",
                             displayName: "Timer Clock Prescale",
                             description: "Selects the timer module clock prescaler. Valid range 1-256",
-                            longDescription: `Provides a prescale value to reduce clock frequency
+                            longDescription:  `The clock prescale reduces the timer clock frequency by a factor of 1 (none) to 256.
                             \nClock Frequency = Input Clock Frequency / ( divider * (prescale))`,
                             default: 1,
                             isInteger: true,

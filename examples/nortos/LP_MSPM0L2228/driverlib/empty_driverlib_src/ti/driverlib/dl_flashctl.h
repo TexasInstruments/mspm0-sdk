@@ -921,6 +921,12 @@ __STATIC_INLINE bool DL_FlashCTL_waitForCmdDone(FLASHCTL_Regs *flashctl)
 /**
  *  @brief      Sets clear status bit and executes command
  *
+ *  This will clear the STATCMD register and re-apply max protection to the
+ *  CMDWEPROTx registers
+ *
+ *  @pre        This command should be called before @ref DL_FlashCTL_unprotectSector
+ *              to ensure that memory is not re-protected after unprotecting it.
+ *
  *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
  */
 __STATIC_INLINE void DL_FlashCTL_executeClearStatus(FLASHCTL_Regs *flashctl)
@@ -929,6 +935,12 @@ __STATIC_INLINE void DL_FlashCTL_executeClearStatus(FLASHCTL_Regs *flashctl)
     flashctl->GEN.CMDTYPE = DL_FLASHCTL_COMMAND_TYPE_CLEAR_STATUS;
     /* Set bit to execute command */
     flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
+
+    /* Wait for the clear status command to finish*/
+    while ((FLASHCTL->GEN.STATCMD & FLASHCTL_STATCMD_CMDINPROGRESS_MASK) ==
+           FLASHCTL_STATCMD_CMDINPROGRESS_STATINPROGRESS) {
+        ;
+    }
 }
 
 /**
@@ -1069,10 +1081,11 @@ void DL_FlashCTL_eraseMemory(FLASHCTL_Regs *flashctl, uint32_t address,
  *                            @arg DL_FLASHCTL_COMMAND_SIZE_BANK
  *                            @arg DL_FLASHCTL_COMMAND_SIZE_SECTOR
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  * @post        This API just starts the erase process. Check the result of it
  *              using an interrupt or the @ref DL_FlashCTL_waitForCmdDone API
@@ -1117,10 +1130,11 @@ bool DL_FlashCTL_massErase(FLASHCTL_Regs *flashctl);
  *
  *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
  *
- *  @return     Whether or not the erase succeeded
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if erase didn't succeed
- *  @retval     true  if erase was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  NOTE: After completion of a program operation, the flash controller will
  *  configure all memory to a protected state.
@@ -1182,10 +1196,11 @@ bool DL_FlashCTL_factoryReset(FLASHCTL_Regs *flashctl);
  *
  *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
  *
- *  @return     Whether or not the erase succeeded
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if erase didn't succeed
- *  @retval     true  if erase was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  NOTE: After completion of a program operation, the flash controller will
  *  configure all memory to a protected state.
@@ -1267,10 +1282,11 @@ void DL_FlashCTL_programMemory8(
  *                         aligned to a 0b000 boundary.
  *  @param[in]  data       Pointer to the 8-bit source data
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -1317,10 +1333,11 @@ void DL_FlashCTL_programMemory16(
  *                         aligned to a 0b000 boundary.
  *  @param[in]  data       Pointer to the 16-bit source data
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -1367,10 +1384,11 @@ void DL_FlashCTL_programMemory32(
  *                         aligned to a 0b000 boundary.
  *  @param[in]  data       Pointer to the 32-bit source data
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -1417,10 +1435,11 @@ void DL_FlashCTL_programMemory64(
  *                         aligned to a 0b000 boundary.
  *  @param[in]  data       Pointer to the 32-bit source data
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -1479,10 +1498,11 @@ void DL_FlashCTL_programMemory8WithECCGenerated(
  *                         aligned to a 0b000 boundary.
  *  @param[in]  data       Pointer to the 8-bit source data
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -1543,10 +1563,11 @@ void DL_FlashCTL_programMemory16WithECCGenerated(
  *                         aligned to a 0b000 boundary.
  *  @param[in]  data       Pointer to the 16-bit source data
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -1607,10 +1628,11 @@ void DL_FlashCTL_programMemory32WithECCGenerated(
  *                         aligned to a 0b000 boundary.
  *  @param[in]  data       Pointer to the 32-bit source data
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -1671,10 +1693,11 @@ void DL_FlashCTL_programMemory64WithECCGenerated(
  *                         aligned to a 0b000 boundary.
  *  @param[in]  data       Pointer to the 32-bit source data
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -1742,10 +1765,11 @@ void DL_FlashCTL_programMemory8WithECCManual(FLASHCTL_Regs *flashctl,
  *  @param[in]  data       Pointer to the 8-bit source data
  *  @param[in]  eccCode    Pointer to the ECC code to program
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         User must call @ref DL_FlashCTL_enableOverrideHardwareGeneratedECC
  *               to disable hardware generation of the ECC code, so the ECC code
@@ -1819,10 +1843,11 @@ void DL_FlashCTL_programMemory16WithECCManual(FLASHCTL_Regs *flashctl,
  *  @param[in]  data       Pointer to the 16-bit source data
  *  @param[in]  eccCode    Pointer to the ECC code to program
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         User must call @ref DL_FlashCTL_enableOverrideHardwareGeneratedECC
  *               to disable hardware generation of the ECC code, so the ECC code
@@ -1896,10 +1921,11 @@ void DL_FlashCTL_programMemory32WithECCManual(FLASHCTL_Regs *flashctl,
  *  @param[in]  data       Pointer to the 32-bit source data
  *  @param[in]  eccCode    Pointer to the ECC code to program
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         User must call @ref DL_FlashCTL_enableOverrideHardwareGeneratedECC
  *               to disable hardware generation of the ECC code, so the ECC code
@@ -1973,10 +1999,11 @@ void DL_FlashCTL_programMemory64WithECCManual(FLASHCTL_Regs *flashctl,
  *  @param[in]  data       Pointer to the 32-bit source data
  *  @param[in]  eccCode    Pointer to the ECC code to program
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         User must call @ref DL_FlashCTL_enableOverrideHardwareGeneratedECC
  *               to disable hardware generation of the ECC code, so the ECC code
@@ -2057,10 +2084,11 @@ bool DL_FlashCTL_programMemoryBlocking64WithECCGenerated(
  *  @param[in]  regionSelect  The region of memory to erase. One of
  *                            @ref DL_FLASHCTL_REGION_SELECT
  *
- *  @return     Whether or not the program succeeded
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false   Program didn't succeed, or invalid dataSize
- *  @retval     true    Program was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @post        This API just starts the program process. Check the result of it
  *               using an interrupt or the @ref DL_FlashCTL_waitForCmdDone API
@@ -2142,10 +2170,11 @@ bool DL_FlashCTL_programMemoryBlocking64WithECCManual(FLASHCTL_Regs *flashctl,
  *  @param[in]  regionSelect  The region of memory to erase. One of
  *                            @ref DL_FLASHCTL_REGION_SELECT
  *
- *  @return     Whether or not the program succeeded
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false   Program didn't succeed, or invalid dataSize
- *  @retval     true    Program was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         User must call @ref DL_FlashCTL_enableOverrideHardwareGeneratedECC
  *               to disable hardware generation of the ECC code, so the ECC code
@@ -2220,10 +2249,11 @@ bool DL_FlashCTL_programMemoryBlocking(FLASHCTL_Regs *flashctl,
  *  @param[in]  regionSelect  The region of memory to erase. One of
  *                            @ref DL_FLASHCTL_REGION_SELECT
  *
- *  @return     Whether or not the program succeeded
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false   Program didn't succeed
- *  @retval     true    Program was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  *  @pre         Before programming memory, the user must unprotect the region
  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
@@ -2335,10 +2365,11 @@ void DL_FlashCTL_readVerify8(
  *  @param[in]  address     Memory address of flash to verify
  *  @param[in]  data        Pointer to the data source to verify
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8(
@@ -2370,10 +2401,11 @@ void DL_FlashCTL_readVerify16(
  *  @param[in]  address     Memory address of flash to verify
  *  @param[in]  data        Pointer to the data source to verify
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16(
@@ -2405,10 +2437,11 @@ void DL_FlashCTL_readVerify32(
  *  @param[in]  address     Memory address of flash to verify
  *  @param[in]  data        Pointer to the data source to verify
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32(
@@ -2440,10 +2473,11 @@ void DL_FlashCTL_readVerify64(
  *  @param[in]  address     Memory address of flash to verify.
  *  @param[in]  data        Pointer to the data source to verify
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64(
@@ -2488,10 +2522,11 @@ void DL_FlashCTL_readVerify8WithECCGenerated(
  *  disable programming of the ECC code (regardless of whether ECC code is
  *  hardware generated or manually provided).
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCGenerated(
     FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
@@ -2535,10 +2570,11 @@ void DL_FlashCTL_readVerify16WithECCGenerated(
  *  disable programming of the ECC code (regardless of whether ECC code is
  *  hardware generated or manually provided).
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCGenerated(
     FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
@@ -2582,10 +2618,11 @@ void DL_FlashCTL_readVerify32WithECCGenerated(
  *  disable programming of the ECC code (regardless of whether ECC code is
  *  hardware generated or manually provided).
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCGenerated(
     FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
@@ -2629,10 +2666,11 @@ void DL_FlashCTL_readVerify64WithECCGenerated(
  *  disable programming of the ECC code (regardless of whether ECC code is
  *  hardware generated or manually provided).
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
     FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
@@ -2690,10 +2728,11 @@ void DL_FlashCTL_readVerify8WithECCManual(FLASHCTL_Regs *flashctl,
  *  disable programming of the ECC code (regardless of whether ECC code is
  *  hardware generated or manually provided).
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCManual(
     FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data,
@@ -2752,10 +2791,11 @@ void DL_FlashCTL_readVerify16WithECCManual(FLASHCTL_Regs *flashctl,
  *  disable programming of the ECC code (regardless of whether ECC code is
  *  hardware generated or manually provided).
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCManual(
     FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data,
@@ -2814,10 +2854,11 @@ void DL_FlashCTL_readVerify32WithECCManual(FLASHCTL_Regs *flashctl,
  *  disable programming of the ECC code (regardless of whether ECC code is
  *  hardware generated or manually provided).
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCManual(
     FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
@@ -2876,10 +2917,11 @@ void DL_FlashCTL_readVerify64WithECCManual(FLASHCTL_Regs *flashctl,
  *  disable programming of the ECC code (regardless of whether ECC code is
  *  hardware generated or manually provided).
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCManual(
     FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
@@ -2943,10 +2985,11 @@ void DL_FlashCTL_blankVerify(FLASHCTL_Regs *flashctl, uint32_t address);
  *  @param[in]  flashctl    Pointer to the register overlay for the peripheral
  *  @param[in]  address     Memory address of flash to verify
  *
- *  @return     Whether or not the command was successful
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     false if command didn't succeed
- *  @retval     true  if command was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_blankVerifyFromRAM(
@@ -3128,10 +3171,11 @@ bool DL_FlashCTL_eraseDataBank(FLASHCTL_Regs *flashctl);
  *
  *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
  *
- *  @return     Whether or not the erase succeeded
+ *  @return     Whether or not the command was successful.
+ *              One of @ref DL_FLASHCTL_COMMAND_STATUS
  *
- *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED If erase didn't succeed
- *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED If erase was successful
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED   if command didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_eraseDataBankFromRAM(

@@ -75,8 +75,16 @@ const clkConfigSuperset = {
         // DL_SYSCTL_enableSYSOSCFCL [!]
         {
             name: "enableSYSOSCFCL",
-            displayName: "Enable Frequency Correction Loop",
+            displayName: "Enable Frequency Correction Loop (FCL)",
             description: "Used to increase SYSOSC accuracy.",
+            longDescription:
+`
+The SYSOSC frequency accuracy can be improved through the use of the SYSOSC frequency correction
+loop (FCL) feature.The FCL circuit utilizes either an internal resistor or external resistor,
+to stabilize the SYSOSC frequency by providing a precise reference current for the SYSOSC.
+
+By default, this configuration enables the internal resistor FCL mode for supported devices.
+`,
             default: false,
             hidden: false,
         },
@@ -1183,6 +1191,20 @@ const ClockSignals = {
     "MSPM0C110X": [
         "HFCLK",
         "HSCLK",
+        ... commonClockSignals,
+    ],
+    "MSPM0GX51X": [
+        "MFPCLK",
+        "ADCCLK_1",
+        "CANCLK",
+        "RTCCLK",
+        "HFCLK",
+        "HFXT",
+        "LFXT",
+        "HSCLK",
+        "SYSPLL",
+        "UDIV",
+        "ROSC",
         ... commonClockSignals,
     ],
 };

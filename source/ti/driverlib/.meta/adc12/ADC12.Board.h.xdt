@@ -75,8 +75,12 @@
 %           let irqnStr2 = "(" + peripheral.name + "_INT_IRQn)";
 `irqHandlerStr.padEnd(40," ")+irqHandlerStr2.padStart(40," ")`
 `irqnStr.padEnd(40," ")+irqnStr2.padStart(40," ")`
-% // ================================================================================================
-% // TODO: WIP analog pins. comments to be removed once functionality confirmed
+% if(inst.enableWinComp){
+% let lowThldDef = "#define " + inst.$name + "_WIN_COMP_LOW_THLD_VAL"
+% let highThldDef = "#define " + inst.$name + "_WIN_COMP_HIGH_THLD_VAL"
+`lowThldDef.padEnd(40, " ")+inst.configWinCompLowThld.toString().padStart(40, " ")`
+`highThldDef.padEnd(40, " ")+inst.configWinCompHighThld.toString().padStart(40, " ")`
+% }
 %%{
     /* ADCMEM range varies per device family */
     const adcMemRange = (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) ? 11:3;

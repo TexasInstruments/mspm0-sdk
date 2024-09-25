@@ -3628,7 +3628,7 @@
         <topic label="period" href="struct_d_l___timer___timer_config.html#afe79bca1552cebb24ee0fafd4e2c808f"/>
         <topic label="startTimer" href="struct_d_l___timer___timer_config.html#afc685629e52c8d97a8b009fcf077d653"/>
         <topic label="genIntermInt" href="struct_d_l___timer___timer_config.html#acda279eb8c01ce200ea06190bd0234f6"/>
-        <topic label="counterVal" href="struct_d_l___timer___timer_config.html#ab606ef9d7a0a7c35f3732c9b425ff84f"/>
+        <topic label="counterVal" href="struct_d_l___timer___timer_config.html#a17c4bea44304965c2226bee5cda0f787"/>
       </topic>
       <topic label="DL_Timer_CaptureConfig" href="struct_d_l___timer___capture_config.html">
         <topic label="captureMode" href="struct_d_l___timer___capture_config.html#afe3edde7d49aa1152308519cf5923af8"/>
@@ -3640,7 +3640,7 @@
       </topic>
       <topic label="DL_Timer_CaptureTriggerConfig" href="struct_d_l___timer___capture_trigger_config.html">
         <topic label="captureMode" href="struct_d_l___timer___capture_trigger_config.html#ad3a3dfd36d603f836a5e2cdf0a56b8e3"/>
-        <topic label="period" href="struct_d_l___timer___capture_trigger_config.html#afa27a68fa76429bf32d5965a0122b8f4"/>
+        <topic label="period" href="struct_d_l___timer___capture_trigger_config.html#a3f04cd5ba506bb9f06ceeb053c3ba407"/>
         <topic label="startTimer" href="struct_d_l___timer___capture_trigger_config.html#a6b7b622d9258eaaab8bffe72e98d22af"/>
       </topic>
       <topic label="DL_Timer_CaptureCombinedConfig" href="struct_d_l___timer___capture_combined_config.html">
@@ -3652,7 +3652,7 @@
       </topic>
       <topic label="DL_Timer_CompareConfig" href="struct_d_l___timer___compare_config.html">
         <topic label="compareMode" href="struct_d_l___timer___compare_config.html#a9807403022db3bfe99732da6012e58ef"/>
-        <topic label="count" href="struct_d_l___timer___compare_config.html#ab60eefd336427d464e21087918520a4d"/>
+        <topic label="count" href="struct_d_l___timer___compare_config.html#adf261ca43a472f6bc671b15c12a7b5ca"/>
         <topic label="edgeDetectMode" href="struct_d_l___timer___compare_config.html#addc91e62a4bf22be31bff8ae8ea0d635"/>
         <topic label="inputChan" href="struct_d_l___timer___compare_config.html#aad416efe46b0b78824c043aaf47f9421"/>
         <topic label="inputInvMode" href="struct_d_l___timer___compare_config.html#af76397483a526ed6c8ee121fe9f66028"/>
@@ -3660,7 +3660,7 @@
       </topic>
       <topic label="DL_Timer_CompareTriggerConfig" href="struct_d_l___timer___compare_trigger_config.html">
         <topic label="compareMode" href="struct_d_l___timer___compare_trigger_config.html#a17b898273185e6b68ae1af947fc4d08c"/>
-        <topic label="count" href="struct_d_l___timer___compare_trigger_config.html#a25277fdb71736e75b1a88cb41eb3ad3b"/>
+        <topic label="count" href="struct_d_l___timer___compare_trigger_config.html#aa49a3f9ecce21955ec4d8b9ae2fa6f19"/>
         <topic label="edgeDetectMode" href="struct_d_l___timer___compare_trigger_config.html#a2ed446ab886d4e4feb3f10a17d94472a"/>
         <topic label="startTimer" href="struct_d_l___timer___compare_trigger_config.html#a74226573fe308939e60f8788251270d0"/>
       </topic>
@@ -4083,8 +4083,8 @@
       <topic label="DL_Timer_enablePhaseLoad" href="group___t_i_m_x.html#ga85c9576913102bdc6d4d5fc20d697ced"/>
       <topic label="DL_Timer_disablePhaseLoad" href="group___t_i_m_x.html#ga82aa14d37ccbe116c7922b826a2f88f5"/>
       <topic label="DL_Timer_isPhaseLoadEnabled" href="group___t_i_m_x.html#gadba6f3f8a814951e9b851b086a39dd36"/>
-      <topic label="DL_Timer_setPhaseLoadValue" href="group___t_i_m_x.html#ga5f44d6898e489015a2ae37bfb36b2cfb"/>
-      <topic label="DL_Timer_getPhaseLoadValue" href="group___t_i_m_x.html#ga30b509634202bf96cb8217ad414ef9bc"/>
+      <topic label="DL_Timer_setPhaseLoadValue" href="group___t_i_m_x.html#gab5cf595b066e37f61f010c92ff014ca0"/>
+      <topic label="DL_Timer_getPhaseLoadValue" href="group___t_i_m_x.html#ga95ba76e66b01dbb4e149fbc380452c77"/>
       <topic label="DL_Timer_startCounter" href="group___t_i_m_x.html#gabce458b8549f86878a22a964f5634b09"/>
       <topic label="DL_Timer_stopCounter" href="group___t_i_m_x.html#ga530c569e5dfa455192837eb73cf21b83"/>
       <topic label="DL_Timer_isRunning" href="group___t_i_m_x.html#ga91ecfbb99fd514300320e4c8855754f9"/>
@@ -4505,6 +4505,8 @@
       <topic label="DL_TIMERG_CAPTURE_COMPARE_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html">
         <topic label="DL_TIMERG_CAPTURE_COMPARE_0_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html#ga73a60f580fb174fc46ea787d84fc2ccd"/>
         <topic label="DL_TIMERG_CAPTURE_COMPARE_1_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html#ga1315add74a179cdd1e4cadb2a407016b"/>
+        <topic label="DL_TIMERG_CAPTURE_COMPARE_2_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html#gac3c05df73ac27ead802987f3d4b895bc"/>
+        <topic label="DL_TIMERG_CAPTURE_COMPARE_3_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html#gae6f6baf8b286809fa106881be77a8c50"/>
       </topic>
       <topic label="DL_TIMERG_INTERRUPT" href="group___d_l___t_i_m_e_r_g___i_n_t_e_r_r_u_p_t.html">
         <topic label="DL_TIMERG_INTERRUPT_ZERO_EVENT" href="group___d_l___t_i_m_e_r_g___i_n_t_e_r_r_u_p_t.html#ga02b5fd01d7aebbb74f84ce0b755c1163"/>
@@ -6292,6 +6294,7 @@
       <topic label="DL_SYSCTL_setFCCPeriods" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga04566c3fe45eed79d9d05248c3173b16"/>
       <topic label="DL_SYSCTL_getFCCPeriods" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga5c3f461bd82d8f9dc1f3eb380502ab25"/>
       <topic label="DL_SYSCTL_enableSYSOSCFCL" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga8209173a763a90618c126b4f3a0a533a"/>
+      <topic label="DL_SYSCTL_enableSYSOSCFCLExternalResistor" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3974b94a8e546a7d399b77a90657f680"/>
       <topic label="DL_SYSCTL_enableWriteLock" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gae0b1c86e5a0be32ac2238c2a0e2540b2"/>
       <topic label="DL_SYSCTL_disableWriteLock" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga277a6e9bb37507630bc258f3d0cbcaed"/>
       <topic label="DL_SYSCTL_setVBOOSTConfig" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga5c2c4728010a6f06487971a43b594896"/>
@@ -7100,7 +7103,7 @@
       </topic>
       <topic label="DL_Timer_CaptureTriggerConfig" href="struct_d_l___timer___capture_trigger_config.html">
         <topic label="captureMode" href="struct_d_l___timer___capture_trigger_config.html#ad3a3dfd36d603f836a5e2cdf0a56b8e3"/>
-        <topic label="period" href="struct_d_l___timer___capture_trigger_config.html#afa27a68fa76429bf32d5965a0122b8f4"/>
+        <topic label="period" href="struct_d_l___timer___capture_trigger_config.html#a3f04cd5ba506bb9f06ceeb053c3ba407"/>
         <topic label="startTimer" href="struct_d_l___timer___capture_trigger_config.html#a6b7b622d9258eaaab8bffe72e98d22af"/>
       </topic>
       <topic label="DL_Timer_ClockConfig" href="struct_d_l___timer___clock_config.html">
@@ -7110,7 +7113,7 @@
       </topic>
       <topic label="DL_Timer_CompareConfig" href="struct_d_l___timer___compare_config.html">
         <topic label="compareMode" href="struct_d_l___timer___compare_config.html#a9807403022db3bfe99732da6012e58ef"/>
-        <topic label="count" href="struct_d_l___timer___compare_config.html#ab60eefd336427d464e21087918520a4d"/>
+        <topic label="count" href="struct_d_l___timer___compare_config.html#adf261ca43a472f6bc671b15c12a7b5ca"/>
         <topic label="edgeDetectMode" href="struct_d_l___timer___compare_config.html#addc91e62a4bf22be31bff8ae8ea0d635"/>
         <topic label="inputChan" href="struct_d_l___timer___compare_config.html#aad416efe46b0b78824c043aaf47f9421"/>
         <topic label="inputInvMode" href="struct_d_l___timer___compare_config.html#af76397483a526ed6c8ee121fe9f66028"/>
@@ -7118,7 +7121,7 @@
       </topic>
       <topic label="DL_Timer_CompareTriggerConfig" href="struct_d_l___timer___compare_trigger_config.html">
         <topic label="compareMode" href="struct_d_l___timer___compare_trigger_config.html#a17b898273185e6b68ae1af947fc4d08c"/>
-        <topic label="count" href="struct_d_l___timer___compare_trigger_config.html#a25277fdb71736e75b1a88cb41eb3ad3b"/>
+        <topic label="count" href="struct_d_l___timer___compare_trigger_config.html#aa49a3f9ecce21955ec4d8b9ae2fa6f19"/>
         <topic label="edgeDetectMode" href="struct_d_l___timer___compare_trigger_config.html#a2ed446ab886d4e4feb3f10a17d94472a"/>
         <topic label="startTimer" href="struct_d_l___timer___compare_trigger_config.html#a74226573fe308939e60f8788251270d0"/>
       </topic>
@@ -7132,7 +7135,7 @@
         <topic label="period" href="struct_d_l___timer___timer_config.html#afe79bca1552cebb24ee0fafd4e2c808f"/>
         <topic label="startTimer" href="struct_d_l___timer___timer_config.html#afc685629e52c8d97a8b009fcf077d653"/>
         <topic label="genIntermInt" href="struct_d_l___timer___timer_config.html#acda279eb8c01ce200ea06190bd0234f6"/>
-        <topic label="counterVal" href="struct_d_l___timer___timer_config.html#ab606ef9d7a0a7c35f3732c9b425ff84f"/>
+        <topic label="counterVal" href="struct_d_l___timer___timer_config.html#a17c4bea44304965c2226bee5cda0f787"/>
       </topic>
       <topic label="DL_TimerA_backupConfig" href="struct_d_l___timer_a__backup_config.html">
         <topic label="sub0PortConf" href="struct_d_l___timer_a__backup_config.html#a30ed8c0208b08da11e71f8710a59f869"/>
@@ -11022,6 +11025,7 @@
         <topic label="DL_SYSCTL_setFCCPeriods" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga04566c3fe45eed79d9d05248c3173b16"/>
         <topic label="DL_SYSCTL_getFCCPeriods" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga5c3f461bd82d8f9dc1f3eb380502ab25"/>
         <topic label="DL_SYSCTL_enableSYSOSCFCL" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga8209173a763a90618c126b4f3a0a533a"/>
+        <topic label="DL_SYSCTL_enableSYSOSCFCLExternalResistor" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3974b94a8e546a7d399b77a90657f680"/>
         <topic label="DL_SYSCTL_enableWriteLock" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gae0b1c86e5a0be32ac2238c2a0e2540b2"/>
         <topic label="DL_SYSCTL_disableWriteLock" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga277a6e9bb37507630bc258f3d0cbcaed"/>
         <topic label="DL_SYSCTL_setVBOOSTConfig" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga5c2c4728010a6f06487971a43b594896"/>
@@ -11617,8 +11621,8 @@
         <topic label="DL_Timer_enablePhaseLoad" href="group___t_i_m_x.html#ga85c9576913102bdc6d4d5fc20d697ced"/>
         <topic label="DL_Timer_disablePhaseLoad" href="group___t_i_m_x.html#ga82aa14d37ccbe116c7922b826a2f88f5"/>
         <topic label="DL_Timer_isPhaseLoadEnabled" href="group___t_i_m_x.html#gadba6f3f8a814951e9b851b086a39dd36"/>
-        <topic label="DL_Timer_setPhaseLoadValue" href="group___t_i_m_x.html#ga5f44d6898e489015a2ae37bfb36b2cfb"/>
-        <topic label="DL_Timer_getPhaseLoadValue" href="group___t_i_m_x.html#ga30b509634202bf96cb8217ad414ef9bc"/>
+        <topic label="DL_Timer_setPhaseLoadValue" href="group___t_i_m_x.html#gab5cf595b066e37f61f010c92ff014ca0"/>
+        <topic label="DL_Timer_getPhaseLoadValue" href="group___t_i_m_x.html#ga95ba76e66b01dbb4e149fbc380452c77"/>
         <topic label="DL_Timer_startCounter" href="group___t_i_m_x.html#gabce458b8549f86878a22a964f5634b09"/>
         <topic label="DL_Timer_stopCounter" href="group___t_i_m_x.html#ga530c569e5dfa455192837eb73cf21b83"/>
         <topic label="DL_Timer_isRunning" href="group___t_i_m_x.html#ga91ecfbb99fd514300320e4c8855754f9"/>
@@ -11927,6 +11931,8 @@
       <topic label="dl_timerg.h" href="dl__timerg_8h.html">
         <topic label="DL_TIMERG_CAPTURE_COMPARE_0_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html#ga73a60f580fb174fc46ea787d84fc2ccd"/>
         <topic label="DL_TIMERG_CAPTURE_COMPARE_1_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html#ga1315add74a179cdd1e4cadb2a407016b"/>
+        <topic label="DL_TIMERG_CAPTURE_COMPARE_2_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html#gac3c05df73ac27ead802987f3d4b895bc"/>
+        <topic label="DL_TIMERG_CAPTURE_COMPARE_3_INDEX" href="group___d_l___t_i_m_e_r_g___c_a_p_t_u_r_e___c_o_m_p_a_r_e___i_n_d_e_x.html#gae6f6baf8b286809fa106881be77a8c50"/>
         <topic label="DL_TIMERG_INTERRUPT_ZERO_EVENT" href="group___d_l___t_i_m_e_r_g___i_n_t_e_r_r_u_p_t.html#ga02b5fd01d7aebbb74f84ce0b755c1163"/>
         <topic label="DL_TIMERG_INTERRUPT_LOAD_EVENT" href="group___d_l___t_i_m_e_r_g___i_n_t_e_r_r_u_p_t.html#ga6d433dfda338b305ed96ddcc044a157e"/>
         <topic label="DL_TIMERG_INTERRUPT_CC0_DN_EVENT" href="group___d_l___t_i_m_e_r_g___i_n_t_e_r_r_u_p_t.html#gaa3d9508f5a004305601a69f7f58d20e1"/>

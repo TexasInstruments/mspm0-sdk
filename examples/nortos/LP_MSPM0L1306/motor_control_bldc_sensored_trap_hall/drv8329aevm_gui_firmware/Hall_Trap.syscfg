@@ -1,0 +1,139 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+const ADC12    = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121   = ADC12.addInstance();
+const CAPTURE  = scripting.addModule("/ti/driverlib/CAPTURE", {}, false);
+const CAPTURE1 = CAPTURE.addInstance();
+const GPIO     = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1    = GPIO.addInstance();
+const GPIO2    = GPIO.addInstance();
+const PWM      = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1     = PWM.addInstance();
+const PWM2     = PWM.addInstance();
+const PWM3     = PWM.addInstance();
+const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+const VREF     = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ProjectConfig.genDisable = true;
+
+ADC121.samplingOperationMode      = "sequence";
+ADC121.repeatMode                 = true;
+ADC121.trigSrc                    = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.sampleTime0                = "1us";
+ADC121.sampleTime1                = "1us";
+ADC121.$name                      = "GEN_ADC_CHAN_0";
+ADC121.adcMem0trig                = "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT";
+ADC121.adcMem2chansel             = "DL_ADC12_INPUT_CHAN_4";
+ADC121.adcMem3chansel             = "DL_ADC12_INPUT_CHAN_7";
+ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM3_RESULT_LOADED"];
+ADC121.adcMem1chansel             = "DL_ADC12_INPUT_CHAN_5";
+ADC121.subChanID                  = 1;
+ADC121.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_3";
+ADC121.endAdd                     = 1;
+ADC121.peripheral.$assign         = "ADC0";
+ADC121.peripheral.adcPin3.$assign = "PA24/OPA0.IN0-";
+ADC121.peripheral.adcPin5.$assign = "PA21";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+CAPTURE1.$name              = "CAPTURE_0";
+CAPTURE1.interrupts         = ["CC0_DN"];
+CAPTURE1.subscriberPort     = "FSUB0";
+CAPTURE1.captSelect         = "Trigger";
+CAPTURE1.subscriberChannel  = 2;
+CAPTURE1.timerStartTimer    = true;
+CAPTURE1.timerPeriod        = "0.5";
+CAPTURE1.timerClkDiv        = 8;
+CAPTURE1.timerClkPrescale   = 100;
+CAPTURE1.peripheral.$assign = "TIMG2";
+
+GPIO1.$name                         = "GEN_GPIO_OUT";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "PINO_01";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+GPIO1.associatedPins[1].$name       = "PINO_02";
+GPIO1.associatedPins[1].pin.$assign = "PA1";
+
+GPIO2.$name                         = "GEN_GPIO_IN";
+GPIO2.associatedPins.create(4);
+GPIO2.associatedPins[0].$name       = "PINI_01";
+GPIO2.associatedPins[0].direction   = "INPUT";
+GPIO2.associatedPins[0].interruptEn = true;
+GPIO2.associatedPins[0].polarity    = "RISE_FALL";
+GPIO2.associatedPins[0].pubChanID   = 2;
+GPIO2.associatedPins[0].pin.$assign = "PA6";
+GPIO2.associatedPins[1].$name       = "PINI_02";
+GPIO2.associatedPins[1].direction   = "INPUT";
+GPIO2.associatedPins[1].polarity    = "RISE_FALL";
+GPIO2.associatedPins[1].interruptEn = true;
+GPIO2.associatedPins[1].pin.$assign = "PA3";
+GPIO2.associatedPins[2].$name       = "PINI_03";
+GPIO2.associatedPins[2].direction   = "INPUT";
+GPIO2.associatedPins[2].polarity    = "RISE_FALL";
+GPIO2.associatedPins[2].interruptEn = true;
+GPIO2.associatedPins[2].pin.$assign = "PA4";
+GPIO2.associatedPins[3].direction   = "INPUT";
+GPIO2.associatedPins[3].$name       = "FAULT_1";
+GPIO2.associatedPins[3].pin.$assign = "PA23";
+
+PWM1.$name                       = "PWM_0";
+PWM1.pwmMode                     = "CENTER_ALIGN";
+PWM1.crossTriggerEn              = true;
+PWM1.event1ControllerInterruptEn = ["LOAD_EVENT"];
+PWM1.interrupts                  = ["ZERO_EVENT"];
+PWM1.event1PublisherChannel      = 1;
+PWM1.subscriberPort              = "FSUB0";
+PWM1.timerStartTimer             = true;
+PWM1.timerCount                  = 4000;
+PWM1.peripheral.$assign          = "TIMG4";
+PWM1.peripheral.ccp0Pin.$assign  = "PA10";
+PWM1.peripheral.ccp1Pin.$assign  = "PA11";
+PWM1.PWM_CHANNEL_0.$name         = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle     = 50;
+PWM1.PWM_CHANNEL_1.$name         = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_1.dutyCycle     = 50;
+PWM1.PWM_CHANNEL_1.invert        = true;
+
+PWM2.$name                       = "PWM_1";
+PWM2.pwmMode                     = "CENTER_ALIGN";
+PWM2.crossTriggerEn              = true;
+PWM2.event1ControllerInterruptEn = ["LOAD_EVENT"];
+PWM2.crossTriggerAuthority       = "Secondary";
+PWM2.timerStartTimer             = true;
+PWM2.peripheral.$assign          = "TIMG0";
+PWM2.peripheral.ccp0Pin.$assign  = "PA12";
+PWM2.peripheral.ccp1Pin.$assign  = "PA13";
+PWM2.PWM_CHANNEL_0.$name         = "ti_driverlib_pwm_PWMTimerCC2";
+PWM2.PWM_CHANNEL_0.dutyCycle     = 50;
+PWM2.PWM_CHANNEL_1.$name         = "ti_driverlib_pwm_PWMTimerCC3";
+PWM2.PWM_CHANNEL_1.dutyCycle     = 50;
+PWM2.PWM_CHANNEL_1.invert        = true;
+
+PWM3.$name                       = "PWM_2";
+PWM3.pwmMode                     = "CENTER_ALIGN";
+PWM3.crossTriggerEn              = true;
+PWM3.event1ControllerInterruptEn = ["LOAD_EVENT"];
+PWM3.crossTriggerAuthority       = "Secondary";
+PWM3.timerStartTimer             = true;
+PWM3.peripheral.$assign          = "TIMG1";
+PWM3.peripheral.ccp0Pin.$assign  = "PA26";
+PWM3.peripheral.ccp1Pin.$assign  = "PA27";
+PWM3.PWM_CHANNEL_0.$name         = "ti_driverlib_pwm_PWMTimerCC4";
+PWM3.PWM_CHANNEL_0.dutyCycle     = 50;
+PWM3.PWM_CHANNEL_1.$name         = "ti_driverlib_pwm_PWMTimerCC5";
+PWM3.PWM_CHANNEL_1.dutyCycle     = 50;
+PWM3.PWM_CHANNEL_1.invert        = true;
+
+SYSCTL.validateClkStatus = true;

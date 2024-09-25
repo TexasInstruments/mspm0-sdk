@@ -54,11 +54,15 @@
 
 volatile bool gCheckADC;
 volatile float gAdcResultVolts;
+volatile int16_t gADCOffset;
 
 int main(void)
 {
     uint16_t adcResult;
     SYSCFG_DL_init();
+
+    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    gADCOffset = DL_ADC12_getADCOffsetCalibration(ADC12_REF_VOLTAGE);
 
     NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
     gCheckADC = false;
@@ -74,6 +78,17 @@ int main(void)
 
         /* Result in integer for efficient processing */
         adcResult = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
+
+        /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+        int16_t adcRaw = (int16_t) adcResult + gADCOffset;
+        if (adcRaw < 0) {
+            adcRaw = 0;
+        }
+        if (adcRaw > 4095) {
+            adcRaw = 4095;
+        }
+        adcResult = (uint16_t) adcRaw;
+
         /* Result in float for simpler reading */
         gAdcResultVolts =
             (adcResult * ADC12_REF_VOLTAGE) / (1 << ADC12_BIT_RESOLUTION) * 3;

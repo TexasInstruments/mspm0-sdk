@@ -64,7 +64,7 @@ function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
     /* Verify if using UART Advanced instance */
-    if(Common.isDeviceM0G()){
+    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
         if(inst.enableExtend){
             if(!(/UART0/.test(solution))){
                 validation.logError("Extend features are only available on UART0 instances. Please select a UART0 instance from PinMux if available.",
@@ -76,6 +76,14 @@ function validatePinmux(inst, validation) {
         if(inst.enableExtend){
             if(!(/UART0|UART1/.test(solution))){
                 validation.logError("Extend features are only available on UART0 and UART1 instances. Please select a valid instance from PinMux if available.",
+                    inst,"enableExtend");
+            }
+        }
+    }
+    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+        if(inst.enableExtend){
+            if(!(/UART0|UART7/.test(solution))){
+                validation.logError("Extend features are only available on UART0 and UART7 instances. Please select a valid instance from PinMux if available.",
                     inst,"enableExtend");
             }
         }

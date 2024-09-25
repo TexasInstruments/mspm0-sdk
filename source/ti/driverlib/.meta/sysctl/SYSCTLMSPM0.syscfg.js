@@ -355,12 +355,12 @@ function validateSYSCTL(inst, validation)
     }
     else{
         if(!_.isUndefined(inst.enableROSC)){
-            /* FCL Validation */
-            if(inst.enableSYSOSCFCL && !inst.enableROSC){
-                validation.logError("ROSC should be enabled if Frequency Correction Loop is enabled", inst, ["enableSYSOSCFCL", "enableROSC"]);
+            /* FCL Validation for devices that only have External Rosc supported */
+            if(inst.enableSYSOSCFCL && !inst.enableROSC && Common.hasExternalRoscOnly()){
+                validation.logError("External ROSC must be enabled for FCL usage with this device. See the device datasheet for more details.", inst, ["enableSYSOSCFCL", "enableROSC"]);
             }
             else if(!inst.enableSYSOSCFCL && inst.enableROSC){
-                validation.logWarning("If ROSC has been enabled, its recommended Frequency Correction Loop is enabled.", inst, ["enableSYSOSCFCL", "enableROSC"]);
+                validation.logWarning("If ROSC has been enabled, it's recommended Frequency Correction Loop is enabled.", inst, ["enableSYSOSCFCL", "enableROSC"]);
             }
         }
     }
@@ -472,6 +472,13 @@ function validateSYSCTL(inst, validation)
 
     if(inst.ClkOutHighDriveEn){
         validation.logInfo("High Drive Enabled on the CLK_OUT pin", inst, "enableEXCLK");
+    }
+
+    /* Special Case Validation for ROSC */
+    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !inst.clockTreeEn){
+        if(inst.enableROSC){
+            validation.logInfo("PA2 is being configured for ROSC and should not be used for other pin selections.", inst, "enableROSC");
+        }
     }
 }
 
@@ -1853,6 +1860,7 @@ function validClkOutPinSet(inst){
  */
 function pinmuxRequirements(inst)
 {
+    /* Regular Pinmux Requirements for SysCtl */ 
     let resources = [];
     if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
         if(inst.LFCLKSource === "LFXT"){
@@ -1902,11 +1910,15 @@ function pinmuxRequirements(inst)
         });
     }
     if(inst.enableROSC){
-        resources.push({
-            name            : "roscPin",
-            displayName     : "ROSC",
-            interfaceNames  : ["ROSC"],
-        });
+        // SYSCTL ROSC
+        if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            resources.push({
+                name            : "roscPin",
+                displayName     : "ROSC",
+                interfaceNames  : ["ROSC"],
+            });
+        }
+        
     }
     if(inst.enableEXCLK){
         resources.push({

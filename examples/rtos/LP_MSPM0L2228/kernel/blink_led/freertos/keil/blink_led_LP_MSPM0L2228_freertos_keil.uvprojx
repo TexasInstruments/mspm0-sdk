@@ -68,7 +68,7 @@
             <RepFail>1</RepFail>
             <useFile>0</useFile>
             <ScatterFile>./mspm0l2228.sct</ScatterFile>
-            <Misc>../../../../../../../kernel/freertos/builds/LP_MSPM0L2228/release/keil/Objects/freertos_builds_LP_MSPM0L2228_release_keil.lib ../../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0l122x_l222x/driverlib.a</Misc>
+            <Misc>../../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0l122x_l222x/driverlib.a ../../../../../../../kernel/freertos/builds/LP_MSPM0L2228/release/keil/Objects/freertos_builds_LP_MSPM0L2228_release_keil.lib</Misc>
           </LDads>
         </TargetArmAds>
       </TargetOption>

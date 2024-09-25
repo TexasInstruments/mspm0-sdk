@@ -33,9 +33,6 @@
 /*
  *  ============ ti_drivers_config.c =============
  *  Configured MSPM0 DriverLib module definitions
- *
- *  DO NOT EDIT - This file is generated for the LP_MSPM0G3507
- *  by the SysConfig tool.
  */
 
 #include "ti_drivers_config.h"

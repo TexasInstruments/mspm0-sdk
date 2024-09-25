@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.00.01.00</span>
+   &#160;<span id="projectnumber">2.01.00.03</span>
    </div>
   </td>
  </tr>
@@ -797,8 +797,11 @@ __STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memdesc:ga5c3f461bd82d8f9dc1f3eb380502ab25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets number of rising-edge to rising-edge period for Frequency Clock Counter (FCC)  <a href="#ga5c3f461bd82d8f9dc1f3eb380502ab25">More...</a><br /></td></tr>
 <tr class="separator:ga5c3f461bd82d8f9dc1f3eb380502ab25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8209173a763a90618c126b4f3a0a533a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga8209173a763a90618c126b4f3a0a533a">DL_SYSCTL_enableSYSOSCFCL</a> (void)</td></tr>
-<tr class="memdesc:ga8209173a763a90618c126b4f3a0a533a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Frequency Correction Loop (FCL)  <a href="#ga8209173a763a90618c126b4f3a0a533a">More...</a><br /></td></tr>
+<tr class="memdesc:ga8209173a763a90618c126b4f3a0a533a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Frequency Correction Loop (FCL) in Internal Resistor Mode.  <a href="#ga8209173a763a90618c126b4f3a0a533a">More...</a><br /></td></tr>
 <tr class="separator:ga8209173a763a90618c126b4f3a0a533a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3974b94a8e546a7d399b77a90657f680"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3974b94a8e546a7d399b77a90657f680">DL_SYSCTL_enableSYSOSCFCLExternalResistor</a> (void)</td></tr>
+<tr class="memdesc:ga3974b94a8e546a7d399b77a90657f680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Frequency Correction Loop (FCL) in External Resistor Mode.  <a href="#ga3974b94a8e546a7d399b77a90657f680">More...</a><br /></td></tr>
+<tr class="separator:ga3974b94a8e546a7d399b77a90657f680"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae0b1c86e5a0be32ac2238c2a0e2540b2"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gae0b1c86e5a0be32ac2238c2a0e2540b2">DL_SYSCTL_enableWriteLock</a> (void)</td></tr>
 <tr class="memdesc:gae0b1c86e5a0be32ac2238c2a0e2540b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable write protection of selected SYSCTL registers.  <a href="#gae0b1c86e5a0be32ac2238c2a0e2540b2">More...</a><br /></td></tr>
 <tr class="separator:gae0b1c86e5a0be32ac2238c2a0e2540b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -4064,7 +4067,28 @@ This wait state is only applied if MCLK running from SYSPLL, HFXT, or HFCLK_IN.<
       </table>
 </div><div class="memdoc">
 
-<p>Enable Frequency Correction Loop (FCL) </p>
+<p>Enable Frequency Correction Loop (FCL) in Internal Resistor Mode. </p>
+<p>Once FCL is enable, it cannot be disabled by software. A BOOTRST is required. </p>
+
+</div>
+</div>
+<a id="ga3974b94a8e546a7d399b77a90657f680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3974b94a8e546a7d399b77a90657f680">&sect;&nbsp;</a></span>DL_SYSCTL_enableSYSOSCFCLExternalResistor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCLExternalResistor </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable Frequency Correction Loop (FCL) in External Resistor Mode. </p>
 <p>Used to increase SYSOSC accuracy. An ROSC reference resistor which is suitable to meet application accuracy reqiurements must be placed between ROSC pin and device ground (VSS).</p>
 <p>Once FCL is enable, it cannot be disabled by software. A BOOTRST is required.</p>
 <p>Power consumption of SYSOSC will be marginally higher with FCL enabled due to reference current which flows through ROSC. Settling time from startup to specified accuracy may also be longer. See device-specific datasheet for startup times. </p>
@@ -4482,6 +4506,8 @@ This wait state is only applied if MCLK running from SYSPLL, HFXT, or HFCLK_IN.<
   </table>
   </dd>
 </dl>
+
+<p>References <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gaadca77b3f265865214254f6df3dd1843">DL_FactoryRegion_getTemperatureVoltage()</a>.</p>
 
 </div>
 </div>

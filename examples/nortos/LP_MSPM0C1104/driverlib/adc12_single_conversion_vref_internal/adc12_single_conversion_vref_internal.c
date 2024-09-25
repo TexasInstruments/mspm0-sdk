@@ -33,12 +33,17 @@
 #include "ti_msp_dl_config.h"
 
 volatile bool gCheckADC;
+volatile int16_t gADCOffset;
 
 int main(void)
 {
     uint16_t adcResult;
 
     SYSCFG_DL_init();
+
+    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    gADCOffset =
+        DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_0_REF_VOLTAGE_V);
 
     NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
 
@@ -56,6 +61,16 @@ int main(void)
         }
 
         adcResult = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
+
+        /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+        int16_t adcRaw = (int16_t) adcResult + gADCOffset;
+        if (adcRaw < 0) {
+            adcRaw = 0;
+        }
+        if (adcRaw > 4095) {
+            adcRaw = 4095;
+        }
+        adcResult = (uint16_t) adcRaw;
 
         if (adcResult > 0x1ff) {
             DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);

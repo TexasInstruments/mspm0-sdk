@@ -40,7 +40,7 @@
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
 let EVENT = system.getScript("/ti/driverlib/EVENT.syscfg.js");
-
+let blankingOptionsRef = system.getScript("/ti/driverlib/comp/COMP_blankingSources.js").blankingSources;
 
 /*
  *  ======== _getPinResources ========
@@ -199,6 +199,7 @@ function validate(inst, validation)
         EVENT.validateSubscriberOptions(inst,validation,"sub0ChanID");
         EVENT.validateSubscriberOptions(inst,validation,"sub1ChanID");
     }
+
 }
 
 /*
@@ -233,6 +234,28 @@ function validatePinmux(inst, validation){
             validation.logError("Selected channel only available for COMP0 and COMP1", inst, ["negChannel"]);
         }
 
+    }
+
+    /* Blanking Validation */
+    if(inst.blankingSource != "DL_COMP_BLANKING_SOURCE_DISABLE"){
+        let PWMMod = system.modules["/ti/driverlib/PWM"];
+        let blankingEntry = parseInt(inst.blankingSource.replace("DL_COMP_BLANKING_SOURCE_",""));
+        let timerPeripheral = blankingOptionsRef[blankingEntry].peripheral;
+        if(!PWMMod){
+            /* PWM not configured */
+            validation.logError("Selected Blanking Source requires PWM Channel "+parseInt(blankingOptionsRef[blankingEntry].channel)+" to be configured for "+timerPeripheral+". PWM is currently not configured.", inst, ["blankingSource"]);
+        }
+        else{
+            let PWMInst = Common.getTimerPWMInstance(timerPeripheral);
+            if(!PWMInst){
+                /* Timer Peripheral Instance not configured */
+                validation.logError("Selected Blanking Source requires PWM Channel "+parseInt(blankingOptionsRef[blankingEntry].channel)+" to be configured for "+timerPeripheral+". "+timerPeripheral+" is not configured as PWM.", inst, ["blankingSource"]);
+            }
+            else if(!PWMInst.ccIndex.includes(parseInt(blankingOptionsRef[blankingEntry].channel))){
+                /* PWM Channel not configured for desired instance */
+                validation.logError("Selected Blanking Source requires PWM Channel "+parseInt(blankingOptionsRef[blankingEntry].channel)+" to be configured for "+timerPeripheral+". PWM Channel is not configured.", inst, ["blankingSource"]);
+            }
+        }
     }
 }
 
@@ -795,7 +818,6 @@ function getNegativeChannelDisabledOptions(inst) {
     return invalidChannels;
 }
 
-// TODO: need to establish timer dependency
 /*
  *  ======== getBlankingOptions ========
  *  Determine blanking options based on device family.
@@ -804,32 +826,12 @@ function getNegativeChannelDisabledOptions(inst) {
 function getBlankingOptions(inst){
     let blankingOptions =
     [
-        {name: "0", displayName: "No blanking"},
+        {name: "DL_COMP_BLANKING_SOURCE_DISABLE", displayName: "No blanking"},
     ];
-    // TODO: [11/16/22: do we want to keep these blanking sources with reference to the specific timers? or as just blanking source X? ]
-    /* MSPM0G-specific options */
-    if(Common.isDeviceM0G()){
-        blankingOptions =
-        [
-            {name: "DL_COMP_BLANKING_SOURCE_DISABLE", displayName: "No blanking"},
-            {name: "DL_COMP_BLANKING_SOURCE_1", displayName: "TIMA0 CC2"},
-            {name: "DL_COMP_BLANKING_SOURCE_2", displayName: "TIMA0 CC3"},
-            {name: "DL_COMP_BLANKING_SOURCE_3", displayName: "TIMA1 CC1"},
-            {name: "DL_COMP_BLANKING_SOURCE_4", displayName: "TIMG7 CC1"},
-            {name: "DL_COMP_BLANKING_SOURCE_5", displayName: "TIMG8 CC1"},
-            {name: "DL_COMP_BLANKING_SOURCE_6", displayName: "TIMG12 CC1"},
-        ];
-
-    }
-    /* MSPM0L-specific options */
-    else if(Common.isDeviceM0L()){
-        blankingOptions =
-        [
-            {name: "DL_COMP_BLANKING_SOURCE_DISABLE", displayName: "No blanking"},
-            {name: "DL_COMP_BLANKING_SOURCE_1", displayName: "TIMG0 CC1"},
-            {name: "DL_COMP_BLANKING_SOURCE_2", displayName: "TIMG1 CC1"},
-            {name: "DL_COMP_BLANKING_SOURCE_3", displayName: "TIMG2 CC1"},
-        ];
+    /* Get Blanking Options from reference file */
+    for(let entry in blankingOptionsRef){
+        let selectEntry = blankingOptionsRef[entry];
+        blankingOptions.push({name: "DL_COMP_BLANKING_SOURCE_"+entry, displayName:""+selectEntry.peripheral+" CC"+selectEntry.channel});
     }
     return blankingOptions;
 }

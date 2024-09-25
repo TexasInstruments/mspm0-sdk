@@ -406,6 +406,9 @@ This file is specific to the selected device family.
                     case "MSPM0C110X":
                         defaultSpin = "MSPM0C1104";
                         break;
+                    case "MSPM0GX51X":
+                        defaultSpin = "MSPM0G3519"
+                        break;
                     default:
                         break;
                 }

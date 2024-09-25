@@ -34,7 +34,16 @@ let ADC12_internalSignals = {
             CH11: "Temperature Sensor",
             CH15: "Supply Monitor"
         },
-    }
+    },
+    MSPM0GX51X: {
+        ADC0: {
+            CH11: "Temperature Sensor",
+            CH15: "Supply Monitor",
+        },
+        ADC1: {
+            CH15: "Supply Monitor",
+        }
+    },
 }
 
 exports = {

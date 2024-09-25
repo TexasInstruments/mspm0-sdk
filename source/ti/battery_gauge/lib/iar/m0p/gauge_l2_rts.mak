@@ -11,7 +11,7 @@ NAME = gauge_l2_rts
 OBJ_DIR = ../../../obj/iar/m0p/gauge_l2_rts
 SRC_DIR = ../../../gauge_level2
 
-CFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" --cpu Cortex-M0+ --aeabi --guard_calls --endian=little --thumb --silent -e --use_unix_directory_separators --diag_suppress=Pa050,Go005 --debug -Ohs
+CFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" --cpu Cortex-M0+ --aeabi --guard_calls --endian=little --thumb --silent -e --use_unix_directory_separators --diag_suppress=Pa050,Go005
 AFLAGS = 
 ASMFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" 
 

@@ -32,9 +32,41 @@
 
 #include "ti_msp_dl_config.h"
 
+volatile int16_t gADCOffset;
+
 int main(void)
 {
+    int16_t adcRaw;
+    uint16_t adcWinCompLowThld, adcWinCompHighThld;
+
     SYSCFG_DL_init();
+
+    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    gADCOffset =
+        DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_0_REF_VOLTAGE_V);
+
+    /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+    adcRaw = (int16_t) ADC12_0_WIN_COMP_LOW_THLD_VAL - gADCOffset;
+    if (adcRaw < 0) {
+        adcRaw = 0;
+    }
+    if (adcRaw > 4095) {
+        adcRaw = 4095;
+    }
+    adcWinCompLowThld = (uint16_t) adcRaw;
+
+    adcRaw = (int16_t) ADC12_0_WIN_COMP_HIGH_THLD_VAL - gADCOffset;
+    if (adcRaw < 0) {
+        adcRaw = 0;
+    }
+    if (adcRaw > 4095) {
+        adcRaw = 4095;
+    }
+    adcWinCompHighThld = (uint16_t) adcRaw;
+
+    /* Configure window comparators to detect changes greater than 1.5V */
+    DL_ADC12_configWinCompLowThld(ADC12_0_INST, adcWinCompLowThld);
+    DL_ADC12_configWinCompHighThld(ADC12_0_INST, adcWinCompHighThld);
 
     NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
 

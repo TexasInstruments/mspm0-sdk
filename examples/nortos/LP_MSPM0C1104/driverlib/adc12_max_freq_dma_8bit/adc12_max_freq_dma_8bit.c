@@ -39,10 +39,15 @@
 uint16_t gADCSamples[ADC_SAMPLE_SIZE];
 volatile bool gCheckADC;
 volatile bool gADCError;
+volatile int16_t gADCOffset;
 
 int main(void)
 {
     SYSCFG_DL_init();
+
+    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    gADCOffset =
+        DL_ADC12_getADCOffsetCalibration(ADC12_0_ADCMEM_0_REF_VOLTAGE_V);
 
     /* Configure DMA source, destination and size */
     DL_DMA_setSrcAddr(DMA, DMA_CH0_CHAN_ID,
@@ -79,6 +84,20 @@ int main(void)
 
         DL_ADC12_disableConversions(ADC12_0_INST);
         DL_ADC12_enableConversions(ADC12_0_INST);
+
+        /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+        int16_t adcRaw;
+        for (int i = 0; i < ADC_SAMPLE_SIZE; i++) {
+            adcRaw = (int16_t) gADCSamples[i];
+            adcRaw = adcRaw + gADCOffset;
+            if (adcRaw < 0) {
+                adcRaw = 0;
+            }
+            if (adcRaw > 4095) {
+                adcRaw = 4095;
+            }
+            gADCSamples[i] = (uint16_t) adcRaw;
+        }
 
         /* Inspect gADCSamples when application hits this breakpoint */
         __BKPT(0);

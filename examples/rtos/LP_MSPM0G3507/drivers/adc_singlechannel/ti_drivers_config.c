@@ -33,9 +33,6 @@
 /*
  *  ======== ti_drivers_config.c ========
  *  Configured TI-Drivers module definitions
- *
- *  DO NOT EDIT - This file is generated for the LP_MSPM0G350X
- *  by the SysConfig tool.
  */
 
 #include <stddef.h>

@@ -10,7 +10,7 @@ NAME = drivers_mspm0l122x_l222x
 OBJ_DIR = ../../../obj/ticlang/m0p/drivers_mspm0l122x_l222x
 SRC_DIR = ../../..
 
-CFLAGS = -I$(TICLANG_ARMCOMPILER)/include "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -DDeviceFamily_MSPM0L222X -c -g -gdwarf-3 -O2
+CFLAGS = -I$(TICLANG_ARMCOMPILER)/include "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source" -mcpu=cortex-m0plus -march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft -DDeviceFamily_MSPM0L222X -c
 AFLAGS = rc
 ASMFLAGS = -I$(TICLANG_ARMCOMPILER)/include 
 

@@ -62,7 +62,8 @@ int main(void)
 {
     SYSCFG_DL_init();
 
-    /* Unprotect and then erase NONMAIN memory */
+    /* Clear STATCMD register, unprotect NONMAIN, and then erase NONMAIN memory */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, NONMAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_NONMAIN);
     DL_FlashCTL_eraseMemory(
@@ -73,8 +74,6 @@ int main(void)
      * The BCR config struct has a size of 24 bytes, and 4 bytes are
      * programmed at a time, resulting in 24 / 4 = 6 writes to Flash
      */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, NONMAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_NONMAIN);
     DL_FlashCTL_programMemoryBlocking(FLASHCTL, BCR_USER_CFG_BASE_ADDRESS,
         (uint32_t *) &gBCRConfig, (BCR_CONFIG_SIZE_BYTES / 4),
         DL_FLASHCTL_REGION_SELECT_NONMAIN);

@@ -653,27 +653,27 @@ extern "C" {
 /*!
  * @brief subscriber 0 event as input source
  */
-#define DL_TIMER_CC_IN_SEL_FSUB0      (GPTIMER_IFCTL_01_ISEL_CCP_FSUB0)
+#define DL_TIMER_CC_IN_SEL_FSUB0      (GPTIMER_IFCTL_01_ISEL_FSUB0)
 
 /*!
  * @brief subscriber 1 event as input source
  */
-#define DL_TIMER_CC_IN_SEL_FSUB1      (GPTIMER_IFCTL_01_ISEL_CCP_FSUB1)
+#define DL_TIMER_CC_IN_SEL_FSUB1      (GPTIMER_IFCTL_01_ISEL_FSUB1)
 
 /*!
  * @brief Comparator 0 output
  */
-#define DL_TIMER_CC_IN_SEL_COMP0      (GPTIMER_IFCTL_01_ISEL_CCP_COMP0)
+#define DL_TIMER_CC_IN_SEL_COMP0      (GPTIMER_IFCTL_01_ISEL_COMP0)
 
 /*!
  * @brief Comparator 1 output
  */
-#define DL_TIMER_CC_IN_SEL_COMP1      (GPTIMER_IFCTL_01_ISEL_CCP_COMP1)
+#define DL_TIMER_CC_IN_SEL_COMP1      (GPTIMER_IFCTL_01_ISEL_COMP1)
 
 /*!
  * @brief Comparator 2 output.
  */
-#define DL_TIMER_CC_IN_SEL_COMP2      (GPTIMER_IFCTL_01_ISEL_CCP_COMP2)
+#define DL_TIMER_CC_IN_SEL_COMP2      (GPTIMER_IFCTL_01_ISEL_COMP2)
 
 
 
@@ -1926,7 +1926,7 @@ typedef struct {
     /*! Counter value when intermediate interrupt should be generated. This
      * member must be set to 0 when
      * @ref genIntermInt == DL_TIMER_INTERM_INT_DISABLED */
-    uint16_t counterVal;
+    uint32_t counterVal;
 } DL_Timer_TimerConfig;
 
 /*!
@@ -1958,7 +1958,7 @@ typedef struct {
     DL_TIMER_CAPTURE_MODE captureMode;
     /*! Specifies the capture period. period_actual=(period +1) * T_TIMCLK
      * where T_TIMCLK is the period of the timer source clock. */
-    uint16_t period;
+    uint32_t period;
     /*! Start timer after configuration. One of @ref DL_TIMER */
     DL_TIMER startTimer;
 } DL_Timer_CaptureTriggerConfig;
@@ -1990,8 +1990,8 @@ typedef struct {
     /*! Specifies the intial count value. In edge count mode this value will
      *  decrease everytime the configured edge detection mode is detected.
      *  The counter will be reset to this value after the reaching zero.
-     *  Valid range [0-65535]. */
-    uint16_t count;
+     */
+    uint32_t count;
     /*! Specifies the edge detection mode. One of
         @ref DL_TIMER_CAPTURE_EDGE_DETECTION_MODE*/
     DL_TIMER_COMPARE_EDGE_DETECTION_MODE edgeDetectMode;
@@ -2013,8 +2013,8 @@ typedef struct {
     /*! Specifies the intial count value. In edge count mode this value will
      *  decrease everytime the configured edge detection mode is detected.
      *  The counter will be reset to this value after the reaching zero.
-     *  Valid range [0-65535]. */
-    uint16_t count;
+     */
+    uint32_t count;
     /*! Specifies the edge detection mode. One of
         @ref DL_TIMER_CAPTURE_EDGE_DETECTION_MODE*/
     DL_TIMER_COMPARE_EDGE_DETECTION_MODE edgeDetectMode;
@@ -3586,7 +3586,7 @@ __STATIC_INLINE bool DL_Timer_isPhaseLoadEnabled(GPTIMER_Regs *gptimer)
  *
  */
 __STATIC_INLINE void DL_Timer_setPhaseLoadValue(
-    GPTIMER_Regs *gptimer, uint16_t value)
+    GPTIMER_Regs *gptimer, uint32_t value)
 {
     gptimer->COUNTERREGS.PL = (value);
 }
@@ -3599,9 +3599,9 @@ __STATIC_INLINE void DL_Timer_setPhaseLoadValue(
  *
  *  @return Phase load value
  */
-__STATIC_INLINE uint16_t DL_Timer_getPhaseLoadValue(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint32_t DL_Timer_getPhaseLoadValue(GPTIMER_Regs *gptimer)
 {
-    return ((uint16_t)(gptimer->COUNTERREGS.PL & GPTIMER_PL_PHASE_MASK));
+    return ((uint32_t)(gptimer->COUNTERREGS.PL & GPTIMER_PL_PHASE_MASK));
 }
 
 /**

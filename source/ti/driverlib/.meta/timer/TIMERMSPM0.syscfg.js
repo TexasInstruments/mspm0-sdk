@@ -500,6 +500,16 @@ function onChangeEnableShadowLoad(inst,ui)
     onChangeSetCustomProfile(inst, ui);
 }
 
+/*  ======== onChange handlers ======== */
+function onChangeEnablePhaseLoad(inst,ui)
+{
+    onChangeSetCustomProfile(inst, ui);
+    if(inst.enablePhaseLoad)
+        ui.phaseLoadValue.hidden = false;
+    else
+        ui.phaseLoadValue.hidden = true;
+}
+
 function onChangeEnableRepeatCounter(inst,ui)
 {
     onChangeSetCustomProfile(inst, ui);
@@ -681,6 +691,24 @@ let configAdvanced = [
         default         : false,
         onChange        : onChangeEnableShadowLoad
     },
+    {
+        name            : "enablePhaseLoad",
+        displayName     : "Enable Phase Load",
+        description     : "Enables Phase Load",
+        longDescription : `In TIMA only, phase load provides the capability count from a value other
+        \nthan zero or TIMA.LOAD in Up/Down counting mode.`,
+        default         : false,
+        onChange        : onChangeEnablePhaseLoad
+    },
+    {
+        name            : "phaseLoadValue",
+        displayName     : "Phase Load Value",
+        description     : "Sets the value for Phase Load",
+        hidden          : true,
+        default         : 0,
+        range           : [0, 0xFFFF],
+    }
+
 ];
 
 
@@ -1726,6 +1754,25 @@ function validatePinmux(inst, validation) {
         else if (Common.isDeviceM0C()){
             if(!(/TIMA/.test(solution))){
                 validation.logError("Shadow Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
+            }
+        }
+    }
+
+    /* Validate Timer instance supports Phase load */
+    if(inst.enablePhaseLoad){
+        if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
+            }
+        }
+        else if (Common.isDeviceM0G()){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
+            }
+        }
+        else if (Common.isDeviceM0C()){
+            if(!(/TIMA/.test(solution))){
+                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
             }
         }
     }

@@ -112,6 +112,21 @@ else if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
         "GPIO", "CRC", "WWDT",
     ];
 }
+/* MSPM0GX51X specific options */
+else if(["MSPM0G351X"].includes(Common.getDeviceName())){
+    MasterOrder = [
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "GPAMP", "EVENT", "DMA",
+        "GPIO", "AESADV", "CRCP", "RTC", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
+    ];
+}
+else if(["MSPM0G151X"].includes(Common.getDeviceName())){
+    MasterOrder = [
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "GPAMP", "EVENT", "DMA",
+        "GPIO", "AESADV", "CRCP", "RTC", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL"
+    ];
+}
 
 
 /* master sorted template list of modules */

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">2.00.01.00</span>
+   &#160;<span id="projectnumber">2.01.00.03</span>
    </div>
   </td>
  </tr>
@@ -1853,6 +1853,8 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
 </div><div class="memdoc">
 
 <p>Sets clear status bit and executes command. </p>
+<p>This will clear the STATCMD register and re-apply max protection to the CMDWEPROTx registers</p>
+<dl class="section pre"><dt>Precondition</dt><dd>This command should be called before <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaff740a4d3903a5813bdcf631e24389cb">DL_FlashCTL_unprotectSector</a> to ensure that memory is not re-protected after unprotecting it.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">flashctl</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -2121,11 +2123,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -2201,11 +2203,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the erase succeeded</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if erase didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if erase was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -2319,11 +2321,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the erase succeeded</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if erase didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if erase was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -2465,11 +2467,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -2572,11 +2574,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -2679,11 +2681,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -2786,11 +2788,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -2895,11 +2897,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -3004,11 +3006,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -3113,11 +3115,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -3222,11 +3224,11 @@ Ensure that you have enabled the correct bytes for programming ECC enabled with 
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -3347,11 +3349,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -3474,11 +3476,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -3601,11 +3603,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -3728,11 +3730,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -3874,11 +3876,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the program succeeded</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>Program didn't succeed, or invalid dataSize </td></tr>
-    <tr><td class="paramname">true</td><td>Program was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -4032,11 +4034,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the program succeeded</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>Program didn't succeed, or invalid dataSize </td></tr>
-    <tr><td class="paramname">true</td><td>Program was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -4177,11 +4179,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the program succeeded</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>Program didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>Program was successful</td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful</td></tr>
   </table>
   </dd>
 </dl>
@@ -4571,11 +4573,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -4674,11 +4676,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -4777,11 +4779,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -4880,11 +4882,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -4985,11 +4987,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </dd>
 </dl>
 <p>NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided).</p>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -5090,11 +5092,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </dd>
 </dl>
 <p>NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided).</p>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -5195,11 +5197,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </dd>
 </dl>
 <p>NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided).</p>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -5300,11 +5302,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </dd>
 </dl>
 <p>NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided).</p>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -5421,11 +5423,11 @@ Before programming memory, the user must unprotect the region of memory to progr
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>User must call <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacf328d7e267b95496ff4e0d7b37e831a">DL_FlashCTL_enableOverrideHardwareGeneratedECC</a> to disable hardware generation of the ECC code, so the ECC code can be manually provided for programming. This override setting will persist through multiple programs, until <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga425a9da6de8a129833b47834093f34fb">DL_FlashCTL_disableOverrideHardwareGeneratedECC</a> is called</dd></dl>
 <p>NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided).</p>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -5542,11 +5544,11 @@ Before programming memory, the user must unprotect the region of memory to progr
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>User must call <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacf328d7e267b95496ff4e0d7b37e831a">DL_FlashCTL_enableOverrideHardwareGeneratedECC</a> to disable hardware generation of the ECC code, so the ECC code can be manually provided for programming. This override setting will persist through multiple programs, until <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga425a9da6de8a129833b47834093f34fb">DL_FlashCTL_disableOverrideHardwareGeneratedECC</a> is called</dd></dl>
 <p>NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided).</p>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -5663,11 +5665,11 @@ Before programming memory, the user must unprotect the region of memory to progr
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>User must call <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacf328d7e267b95496ff4e0d7b37e831a">DL_FlashCTL_enableOverrideHardwareGeneratedECC</a> to disable hardware generation of the ECC code, so the ECC code can be manually provided for programming. This override setting will persist through multiple programs, until <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga425a9da6de8a129833b47834093f34fb">DL_FlashCTL_disableOverrideHardwareGeneratedECC</a> is called</dd></dl>
 <p>NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided).</p>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -5784,11 +5786,11 @@ Before programming memory, the user must unprotect the region of memory to progr
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>User must call <a class="el" href="group___f_l_a_s_h_c_t_l.html#gacf328d7e267b95496ff4e0d7b37e831a">DL_FlashCTL_enableOverrideHardwareGeneratedECC</a> to disable hardware generation of the ECC code, so the ECC code can be manually provided for programming. This override setting will persist through multiple programs, until <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga425a9da6de8a129833b47834093f34fb">DL_FlashCTL_disableOverrideHardwareGeneratedECC</a> is called</dd></dl>
 <p>NOTE: After completion of a program operation, the flash controller will disable programming of the ECC code (regardless of whether ECC code is hardware generated or manually provided).</p>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -5881,11 +5883,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">false</td><td>if command didn't succeed </td></tr>
-    <tr><td class="paramname">true</td><td>if command was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -6186,11 +6188,11 @@ Before programming memory, the user must unprotect the region of memory to progr
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether or not the erase succeeded</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the command was successful. One of <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a></dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>If erase didn't succeed </td></tr>
-    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>If erase was successful </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_FAILED</td><td>if command didn't succeed </td></tr>
+    <tr><td class="paramname">DL_FLASHCTL_COMMAND_STATUS_PASSED</td><td>if command was successful </td></tr>
   </table>
   </dd>
 </dl>

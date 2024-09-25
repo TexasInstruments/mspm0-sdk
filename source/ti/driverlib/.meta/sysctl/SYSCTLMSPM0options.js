@@ -17,6 +17,10 @@ const SYSOSCFreqOptions = {
     "MSPM0C110X": [
         { name: 24000000, displayName: "24 MHz" },
     ],
+    "MSPM0GX51X": [
+        { name: 32000000, displayName: "32 MHz" },
+        { name: 4000000,  displayName: "4 MHz"  },
+    ],
 }
 
 const LFCLKSourceOptions = {
@@ -37,6 +41,11 @@ const LFCLKSourceOptions = {
         { name: "LFOSC" },
         { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
     ],
+    "MSPM0GX51X": [
+        { name: "LFOSC" },
+        { name: "LFXT", displayName: "LF External XTAL" },
+        { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
+    ],
 };
 
 const MFPCLKSourceOptions = {
@@ -54,7 +63,11 @@ const MFPCLKSourceOptions = {
     "MSPM0C110X": [
         /* MFPCLK not present on MSPM0C devices */
         { name: "unavailable" },
-    ]
+    ],
+    "MSPM0GX51X": [
+        { name: "SYSOSC" },
+        { name: "HFCLK" },
+    ],
 }
 
 const MCLKSourceOptions = {
@@ -77,6 +90,11 @@ const MCLKSourceOptions = {
         { name: "LFCLK" },
         { name: "HSCLK" },
     ],
+    "MSPM0GX51X": [
+        { name: "SYSOSC" },
+        { name: "LFCLK" },
+        { name: "HSCLK" },
+    ],
 };
 
 const HFCLKSourceOptions = {
@@ -92,6 +110,10 @@ const HFCLKSourceOptions = {
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
     "MSPM0C110X": [
+        {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
+    ],
+    "MSPM0GX51X": [
+        {name: "HFXT", displayName: "HF External XTAL"},
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
 };
@@ -125,6 +147,14 @@ const EXCLKSourceOptions = {
         { name: "LFCLK" },
         { name: "HFCLK" },
     ],
+    "MSPM0GX51X": [
+        { name: "SYSOSC" },
+        { name: "ULPCLK" },
+        { name: "LFCLK" },
+        { name: "MFPCLK" },
+        { name: "HFCLK" },
+        { name: "SYSPLLOUT1", displayName: "SYSPLL Clock 1" },
+    ],
 };
 
 const HSCLKSourceOptions = {
@@ -142,7 +172,12 @@ const HSCLKSourceOptions = {
     ],
     "MSPM0C110X": [
         { name: "HFCLK" },
-    ]
+    ],
+    "MSPM0GX51X": [
+        { name: "SYSPLLCLK0" },
+        { name: "SYSPLLCLK2X" },
+        { name: "HFCLK" },
+    ],
 };
 
 const BORThreshOptions = {
@@ -166,6 +201,12 @@ const BORThreshOptions = {
     ],
     "MSPM0C110X": [
         {name: "0"},
+    ],
+    "MSPM0GX51X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+        {name: "3"},
     ],
 }
 

@@ -51,17 +51,25 @@ let systemModulesList = [
     "/ti/driverlib/WWDT",
 ];
 /* nonmain */
+// TODO: NONMAIN support for M0GX51X to be added later
+if(!Common.isDeviceFamily_PARENT_MSPM0GX51X()){
 systemModulesList.push(
     "/ti/driverlib/NONMAIN",
 );
-/* MSPM0Gxx-specific modules */
+}
+/* System: MSPM0Gxx-specific modules */
 if(Common.isDeviceM0G()){
     systemModulesList.push(
         "/ti/driverlib/MATHACL",
+    );
+};
+/* System: MSPM0Gxx-specific modules */
+if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
+    systemModulesList.push(
         "/ti/driverlib/RTC",
     );
 };
-/* MSPM0L122X_L222X-specific modules */
+/* System: MSPM0L122X_L222X-specific modules */
 if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     systemModulesList.push(
         "/ti/driverlib/IWDT",
@@ -69,19 +77,19 @@ if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
         "ti/driverlib/TAMPERIO",
     );
 };
-/* MSPM0L222X-specific modules */
+/* System (LCD): MSPM0L222X-specific modules */
 if(Common.isDeviceFamily_PARENT_MSPM0L222X()){
     systemModulesList.push(
         "/ti/driverlib/LCD",
     );
 };
-/* Devices with SysTick support */
+/* System (SYSTICK): Devices with SysTick support */
 if(Common.isDeviceM0G() || Common.isDeviceM0L()){
     systemModulesList.push(
         "/ti/driverlib/SYSTICK",
     );
 };
-/* MSPM0Cxx-specific modules */
+/* System (BEEPER): MSPM0Cxx-specific modules */
 if(Common.isDeviceM0C()){
     systemModulesList.push(
         "/ti/driverlib/BEEPER",
@@ -94,13 +102,13 @@ let timerModulesList = [
     "/ti/driverlib/CAPTURE",
     "/ti/driverlib/COMPARE",
 ];
-/* Devices with QEI support */
+/* Timer (QEI): Devices with QEI support */
 if(Common.isDeviceM0G() || Common.isDeviceM0C()){
     timerModulesList.push(
         "/ti/driverlib/QEI",
     );
 };
-/* Devices that support Timer Fault configuration */
+/* Timer (FAULT): Devices that support Timer Fault configuration */
 if(Common.hasTimerA()){
     timerModulesList.push(
         "/ti/driverlib/TIMERFault",
@@ -119,8 +127,8 @@ let analogModulesList = [
     "/ti/driverlib/ADC12",
     "/ti/driverlib/VREF",
 ];
-/* add device-specific modules - not available on MSPM0Cxx */
-if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+/* Analog (GPAMP): add device-specific modules - not available on MSPM0Cxx */
+if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
     analogModulesList.push(
         "/ti/driverlib/GPAMP",
     )
@@ -131,20 +139,20 @@ if((Common.isDeviceM0G() || Common.isDeviceM0L()) && !Common.isDeviceM0x110x() &
         "/ti/driverlib/COMP",
     );
 };
-/* add device-specific modules - not available on MMSPM0X110X or MSPM0LX22X*/
-if((Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()) && !Common.isDeviceM0x110x() && !Common.isDeviceM0x310x()){
+/* add device-specific modules - not available on MMSPM0X110X or MSPM0LX22X, or MSPM0GX51X*/
+if((Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()) && !Common.isDeviceM0x110x() && !Common.isDeviceM0x310x()){
     analogModulesList.push(
         "/ti/driverlib/OPA",
     );
 };
 /* MSPM0Gxx-specific modules - only available for MSPM0G350X and MSPM0G150X */
-if(["MSPM0G350X","MSPM0G150X"].includes(system.deviceData.device)){
+if(["MSPM0G350X","MSPM0G150X"].includes(system.deviceData.device) || Common.isDeviceFamily_PARENT_MSPM0GX51X()){
     analogModulesList.push(
         "/ti/driverlib/DAC12",
     );
 };
-/* MSPM0Gxx-specific modules - only available for MSPM0G350X and MSPM0G310X */
-if(["MSPM0G350X","MSPM0G310X"].includes(system.deviceData.device)){
+/* MSPM0Gxx-specific modules - only available for MSPM0G350X, MSPM0G310X, MSPM0G351X */
+if(["MSPM0G350X","MSPM0G310X", "MSPM0G351X"].includes(system.deviceData.device)){
     commModulesList.push(
         "/ti/driverlib/MCAN",
     );
@@ -153,16 +161,26 @@ if(["MSPM0G350X","MSPM0G310X"].includes(system.deviceData.device)){
 let securityModulesList = [
 ]
 /* MSPM0Gxx-specific modules - not available for MSPM0G110x */
-if(Common.isDeviceM0G() && !Common.isDeviceM0x110x()){
+if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && !Common.isDeviceM0x110x()){
     securityModulesList.push(
         "/ti/driverlib/AES",
+    );
+};
+/* MSPM0Gxx-specific modules - not available for MSPM0G110x */
+if(Common.isDeviceM0G() && !Common.isDeviceM0x110x()){
+    securityModulesList.push(
         "/ti/driverlib/TRNG",
     );
 };
-/* MSPM0L122X_L222X-specific modules */
-if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+/* Modules available on MSPM0L122X_L222X and MSPM0GX51X  */
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()){
     securityModulesList.push(
         "/ti/driverlib/AESADV",
+    );
+};
+/* Modules available on MSPM0L122X_L222X */
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    securityModulesList.push(
         "/ti/driverlib/SECCONFIG",
     );
 };
@@ -170,13 +188,13 @@ if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
 let dataIntegrityModulesList = [
 ]
 /* add device-specific modules - not available on MSPM0L122X_L222X */
-if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C()){
+if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C()){
     dataIntegrityModulesList.push(
         "/ti/driverlib/CRC",
     );
 };
-/* MSPM0L122X_L222X-specific modules */
-if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+/* Modules available on MSPM0L122X_L222X and MSPM0GX51X */
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()){
     dataIntegrityModulesList.push(
         "/ti/driverlib/CRCP",
     );

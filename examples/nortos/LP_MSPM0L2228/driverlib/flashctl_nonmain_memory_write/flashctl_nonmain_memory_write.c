@@ -157,7 +157,8 @@ int main(void)
     gBSLConfig.userCfgCRC = calcUserConfigCRC((uint8_t *) &gBSLConfig,
         BSL_CONFIG_SIZE_BYTES - ((uint32_t) sizeof(gBSLConfig.userCfgCRC)));
 
-    /* Unprotect and then erase NONMAIN memory */
+    /* Clear STATCMD register, unprotect NONMAIN, and then erase NONMAIN memory */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, NONMAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_NONMAIN);
     DL_FlashCTL_eraseMemoryFromRAM(
@@ -168,8 +169,6 @@ int main(void)
      * The BCR config struct has a size of 184 bytes, and 4 bytes are
      * programmed at a time, resulting in 184 / 4 = 46 writes to Flash
      */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, NONMAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_NONMAIN);
     DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
         BCR_USER_CFG_BASE_ADDRESS, (uint32_t *) &gBCRConfig,
         (BCR_CONFIG_SIZE_BYTES / 4), DL_FLASHCTL_REGION_SELECT_NONMAIN);
@@ -179,8 +178,6 @@ int main(void)
      * The BSL config struct has a size of 88 bytes, and 4 bytes are
      * programmed at a time, resulting in 88 / 4 = 22 writes to Flash
      */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, NONMAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_NONMAIN);
     DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(FLASHCTL,
         BSL_USER_CFG_BASE_ADDRESS, (uint32_t *) &gBSLConfig,
         (BSL_CONFIG_SIZE_BYTES / 4), DL_FLASHCTL_REGION_SELECT_NONMAIN);

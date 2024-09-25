@@ -1724,6 +1724,19 @@ __STATIC_INLINE DL_SYSCTL_FCC_TRIG_CNT DL_SYSCTL_getFCCPeriods(void)
 /**
  *  @brief  Enable Frequency Correction Loop (FCL)
  *
+ *  FCL for this device is using the external resistor by default.
+ *
+ *  This API calls @ref DL_SYSCTL_enableSYSOSCFCLExternalResistor
+ */
+__STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCL(void)
+{
+    SYSCTL->SOCLOCK.SYSOSCFCLCTL =
+        (SYSCTL_SYSOSCFCLCTL_KEY_VALUE | SYSCTL_SYSOSCFCLCTL_SETUSEFCL_TRUE);
+}
+
+/**
+ *  @brief  Enable Frequency Correction Loop (FCL) in External Resistor Mode
+ *
  *  Used to increase SYSOSC accuracy. An ROSC reference resistor which is suitable
  *  to meet application accuracy reqiurements must be placed between ROSC pin and
  *  device ground (VSS).
@@ -1735,10 +1748,9 @@ __STATIC_INLINE DL_SYSCTL_FCC_TRIG_CNT DL_SYSCTL_getFCCPeriods(void)
  *  Settling time from startup to specified accuracy may also be longer.
  *  See device-specific datasheet for startup times.
  */
-__STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCL(void)
+__STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCLExternalResistor(void)
 {
-    SYSCTL->SOCLOCK.SYSOSCFCLCTL =
-        (SYSCTL_SYSOSCFCLCTL_KEY_VALUE | SYSCTL_SYSOSCFCLCTL_SETUSEFCL_TRUE);
+    DL_SYSCTL_enableSYSOSCFCL();
 }
 
 /**
@@ -1904,8 +1916,7 @@ __STATIC_INLINE DL_SYSCTL_RESET_CAUSE DL_SYSCTL_getResetCause(void)
  */
 __STATIC_INLINE uint32_t DL_SYSCTL_getTempCalibrationConstant(void)
 {
-    // TODO replace hard coded temp cal address once available in device header file
-    return (*((uint32_t *) 0x41C4003C));
+    return DL_FactoryRegion_getTemperatureVoltage();
 }
 
 /**

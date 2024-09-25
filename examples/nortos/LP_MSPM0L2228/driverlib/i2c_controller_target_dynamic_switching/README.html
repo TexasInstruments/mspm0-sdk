@@ -167,7 +167,7 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/tool/LP-MSPM0L2228">LP-MSPM0L2228 web page</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Connect SDA and SCL between I2C Controller and Target. Before compiling the example on the Target, make sure to set the define I2C_CONTROLLER_MODE to 0, and then load and run the example. Compile, load and run the example on the Controller device. Make sure the Target device is running before starting the Controller.</p>
+<p>Connect SDA and SCL between I2C Controller and Target. Note that I2C requires external pull-ups which can be connected externally or enabled using the LaunchPad. Before compiling the example on the Target, make sure to set the define I2C_CONTROLLER_MODE to 0, and then load and run the example. Compile, load and run the example on the Controller device. Make sure the Target device is running before starting the Controller.</p>
 <p>In Controller mode, the Blue LED will toggle every 1s if transmission was successful. In Target mode, the Green LED will toggle every 1s if reception was successful.</p>
 <p>To switch between Controller and Target modes, press S2. Make sure to press S2 on the Controller device first, since the Target device should always be set up and running before the Controller.</p>
 <p>LEDs will remain off if there is a problem during initialization. LEDs will remain on if there is a problem during data transfers.</p>

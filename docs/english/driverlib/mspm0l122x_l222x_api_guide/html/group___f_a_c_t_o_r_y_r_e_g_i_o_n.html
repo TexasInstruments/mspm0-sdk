@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.00.01.00</span>
+   &#160;<span id="projectnumber">2.01.00.03</span>
    </div>
   </td>
  </tr>
@@ -733,9 +733,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the ADC conversion results of temperature sensor output voltage. </p>
+<p>Returns the temperature sensor output voltage at the factory trim temperature in ADC result code format. This ADC result code is based upon 12-bit sampling mode together with the 1.4-V internal voltage reference.</p>
 <dl class="section return"><dt>Returns</dt><dd>The ADC conversion results of temperature sensor output voltage </dd></dl>
 
 <p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
+
+<p>Referenced by <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#ga4b827d98ddbc2ba384560e36e12218f7">DL_SYSCTL_getTempCalibrationConstant()</a>.</p>
 
 </div>
 </div>

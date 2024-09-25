@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 Sensorless FOC Software User’s Guide &mdash; Sensorless FOC Motor Control User Guide 2.00.00.xx documentation</title>
+  <title>MSPM0 Sensorless FOC Software User’s Guide &mdash; Sensorless FOC Motor Control User Guide 2.01.00.xx documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> Sensorless FOC Motor Control User Guide
           </a>
               <div class="version">
-                2.00.00.xx
+                2.01.00.xx
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -92,6 +92,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#drv8323rs">DRV8323RS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drv8316">DRV8316</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drv8329">DRV8329</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tida010250">TIDA010250</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tuning-documentation">5. Tuning Documentation</a></li>
@@ -102,6 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide.html">Sensorless FOC - DRV8316 Gate Driver User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drv8323rs/DRV8323RS_Hardware_User_Guide.html">Sensorless FOC - DRV8323RS Gate Driver User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="drv8329/DRV8329_Hardware_User_Guide.html">Sensorless FOC - DRV8329 Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tida010250/TIDA010250_Hardware_User_Guide.html">Sensorless FOC - TIDA010250 User Guide</a></li>
 </ul>
 
         </div>
@@ -279,8 +281,12 @@
 <tr class="row-odd"><td><p><em>statusUpdateEn</em></p></td>
 <td><p>Enables continous update of the UserStatusRegs</p></td>
 </tr>
+<tr class="row-even"><td><p><em>updateConfigs</em></p></td>
+<td><p>If set 1, firmware will set to zero when all the motor control configurations updated</p></td>
+</tr>
 </tbody>
 </table>
+<p>NOTE: If user updates all or many of the configurations in pUserInputRegs, to ensure that the parameters are updated by the motor control application to the FOC variables user should make the updateConfigs as 1 and wait till it is set 0 by the firmware before giving any speed input. This done to ensure all the parameters set by the user gets updated to the FOC variables.</p>
 </section>
 <section id="algodebugctrl3">
 <h3>1.4 algoDebugCtrl3<a class="headerlink" href="#algodebugctrl3" title="Permalink to this heading">¶</a></h3>
@@ -966,6 +972,18 @@
 <p>Links</p>
 <ul class="simple">
 <li><p><a class="reference external" href="drv8329/DRV8329_Hardware_User_Guide.html">SENSORLESS FOC - DRV8329 Gate Driver User Guide</a></p></li>
+</ul>
+</section>
+<section id="tida010250">
+<h3>TIDA010250<a class="headerlink" href="#tida010250" title="Permalink to this heading">¶</a></h3>
+<p>Supported reference design</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/TIDA-010250">TIDA010250</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="tida010250/TIDA010250_Hardware_User_Guide.html">SENSORLESS FOC - TIDA010250 User Guide</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/lit/pdf/TIDUF31A">TIDA010250 Design Guide</a></p></li>
 </ul>
 </section>
 </section>

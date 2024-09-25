@@ -314,20 +314,14 @@ function getRTCSyscfgInit(stat, peripheral) {
         let perscalar1Freq;
         if(peripheral == "RTC_A") {
             var spliced = stat.perAlarm1Divider.split('_');
-            var MiliSeconds = spliced[0];
-            var timeType = " Miliseconds";
-            if(spliced.length > 2) {
-                MiliSeconds = MiliSeconds + "." + spliced[1];
-            }
-            if(spliced.length < 3 && (MiliSeconds == "1" || MiliSeconds == "2")) {
-                timeType = " Seconds";
-            }
-            initString += "\n\t/* Configure Periodic Alarm 1 interval to every " + MiliSeconds + timeType + " */";
+            var divideVal = spliced[1];
+            perscalar1Freq = 128/divideVal;
+            initString += "\n\t/* Configure Periodic Alarm 1 frequency to " + perscalar1Freq + "Hz */";
             initString += "\n\tDL_" + peripheral + "_setPeriodicAlarm1(" + peripheral + ", DL_" + peripheral + "_PRESCALER1_" + stat.perAlarm1Divider + ");";
             initString += "\n";
         }
         else {
-            perscalar1Freq = 32768/Common.sliceNumber(stat.perAlarm0Divider);
+            perscalar1Freq = 128/Common.sliceNumber(stat.perAlarm1Divider);
             initString += "\n\t/* Configure Periodic Alarm 1 frequency to " + perscalar1Freq + "Hz */";
             initString += "\n\tDL_" + peripheral + "_setPeriodicAlarm1(" + peripheral + ", DL_" + peripheral + "_PRESCALER1_" + stat.perAlarm1Divider + ");";
             initString += "\n";

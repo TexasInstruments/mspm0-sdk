@@ -232,10 +232,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void)
 %       }
 %       if(inst.enableWinComp){
 %           if(inst.configWinCompLowThld != 0){
-    DL_ADC12_configWinCompLowThld(`baseName`,`inst.configWinCompLowThld`);
+    DL_ADC12_configWinCompLowThld(`baseName`,`inst.$name`_WIN_COMP_LOW_THLD_VAL);
 %           }
 %           if(inst.configWinCompHighThld != 0){
-    DL_ADC12_configWinCompHighThld(`baseName`,`inst.configWinCompHighThld`);
+    DL_ADC12_configWinCompHighThld(`baseName`,`inst.$name`_WIN_COMP_HIGH_THLD_VAL);
 %           }
 %       }
 %%{

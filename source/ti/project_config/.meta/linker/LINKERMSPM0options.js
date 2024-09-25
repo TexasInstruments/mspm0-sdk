@@ -41,6 +41,13 @@ const StackSizeOptions = {
         "MSPS003F3"     :64,
         "MSPS003F4"     :64,
     },
+    // different on Paul's file?
+    "MSPM0GX51X": {
+        "MSPM0G3519": 256,
+        "MSPM0G3518": 256,
+        "MSPM0G3519": 256,
+        "MSPM0G3518": 256,
+    },
 };
 const FLASHOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -82,6 +89,12 @@ const FLASHOriginOptions = {
         "MSPM0C1104"    :"0x00000000",
         "MSPS003F3"     :"0x00000000",
         "MSPS003F4"     :"0x00000000",
+    },
+    "MSPM0GX51X": {
+        "MSPM0G3519": "0x00000000",
+        "MSPM0G3518": "0x00000000",
+        "MSPM0G1519": "0x00000000",
+        "MSPM0G1518": "0x00000000",
     },
 }
 
@@ -126,6 +139,12 @@ const FLASHLengthOptions = {
         "MSPS003F3"     :"0x00002000",
         "MSPS003F4"     :"0x00004000",
     },
+    "MSPM0GX51X": {
+        "MSPM0G3519": "0x00080000",
+        "MSPM0G3518": "0x00040000",
+        "MSPM0G1519": "0x00080000",
+        "MSPM0G1518": "0x00040000",
+    },
 };
 const SRAMOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -167,6 +186,12 @@ const SRAMOriginOptions = {
         "MSPM0C1104"    :"0x20000000",
         "MSPS003F3"     :"0x20000000",
         "MSPS003F4"     :"0x20000000",
+    },
+    "MSPM0GX51X": {
+        "MSPM0G3519": "0x20200000",
+        "MSPM0G3518": "0x20200000",
+        "MSPM0G1519": "0x20200000",
+        "MSPM0G1518": "0x20200000",
     },
 };
 const SRAMLengthOptions = {
@@ -210,6 +235,12 @@ const SRAMLengthOptions = {
         "MSPS003F3"     : "0x00000400",
         "MSPS003F4"     : "0x00000400",
     },
+    "MSPM0GX51X": {
+        "MSPM0G3519": "0x00020000",
+        "MSPM0G3518": "0x00020000",
+        "MSPM0G1519": "0x00020000",
+        "MSPM0G1518": "0x00020000",
+    },
 };
 const BCROriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -251,6 +282,12 @@ const BCROriginOptions = {
         "MSPM0C1104"    :"0x41C00000",
         "MSPS003F3"     :"0x41C00000",
         "MSPS003F4"     :"0x41C00000",
+    },
+    "MSPM0GX51X": {
+        "MSPM0G3519": "0x41C00000",
+        "MSPM0G3518": "0x41C00000",
+        "MSPM0G1519": "0x41C00000",
+        "MSPM0G1518": "0x41C00000",
     },
 };
 const BCRLengthOptions = {
@@ -294,6 +331,12 @@ const BCRLengthOptions = {
         "MSPS003F3"     : "0x00000080",
         "MSPS003F4"     : "0x00000080",
     },
+    "MSPM0GX51X": {
+        "MSPM0G3519": "0x00000080",
+        "MSPM0G3518": "0x00000080",
+        "MSPM0G1519": "0x00000080",
+        "MSPM0G1518": "0x00000080",
+    },
 };
 const BSLOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -336,6 +379,12 @@ const BSLOriginOptions = {
         "MSPS003F3"     :undefined,
         "MSPS003F4"     :undefined,
     },
+    "MSPM0GX51X": {
+        "MSPM0G3519": "0x41C00100",
+        "MSPM0G3518": "0x41C00100",
+        "MSPM0G1519": "0x41C00100",
+        "MSPM0G1518": "0x41C00100",
+    },
 };
 const BSLLengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -377,6 +426,12 @@ const BSLLengthOptions = {
         "MSPM0C1104"    :undefined,
         "MSPS003F3"     :undefined,
         "MSPS003F4"     :undefined,
+    },
+    "MSPM0GX51X": {
+        "MSPM0G3519": "0x00000080",
+        "MSPM0G3518": "0x00000080",
+        "MSPM0G1519": "0x00000080",
+        "MSPM0G1518": "0x00000080",
     },
 };
 

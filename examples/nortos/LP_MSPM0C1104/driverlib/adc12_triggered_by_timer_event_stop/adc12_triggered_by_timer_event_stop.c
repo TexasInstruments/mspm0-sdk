@@ -45,16 +45,31 @@
 #define ADC12_MONITOR_VALUE \
     ((1 << ADC12_BIT_RESOLUTION) * (ADC12_MONITOR_VOLTAGE / ADC12_REF_VOLTAGE))
 
+volatile int16_t gADCOffset;
+
 int main(void)
 {
+    int16_t adcRaw;
+    uint16_t adcMonitorValue;
+
     SYSCFG_DL_init();
 
-    /* Configure window comparators to detect changes above and below VDDA/2 */
-    DL_ADC12_configWinCompHighThld(
-        ADC12_0_INST, (uint16_t) ADC12_MONITOR_VALUE);
+    /* Get calibrated ADC offset - workaround for ADC_ERR_06 */
+    gADCOffset = DL_ADC12_getADCOffsetCalibration(ADC12_REF_VOLTAGE);
 
-    DL_ADC12_configWinCompLowThld(
-        ADC12_0_INST, (uint16_t) ADC12_MONITOR_VALUE);
+    /* Apply calibrated ADC offset - workaround for ADC_ERR_06 */
+    adcRaw = (int16_t) ADC12_MONITOR_VALUE - gADCOffset;
+    if (adcRaw < 0) {
+        adcRaw = 0;
+    }
+    if (adcRaw > 4095) {
+        adcRaw = 4095;
+    }
+    adcMonitorValue = (uint16_t) adcRaw;
+
+    /* Configure window comparators to detect changes above and below VDDA/2 */
+    DL_ADC12_configWinCompHighThld(ADC12_0_INST, adcMonitorValue);
+    DL_ADC12_configWinCompLowThld(ADC12_0_INST, adcMonitorValue);
 
     NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
 

@@ -58,6 +58,11 @@ int main(void)
 
     DL_FLASHCTL_FAIL_TYPE failType;
 
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     /* Erase sector in main memory */
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -74,6 +79,12 @@ int main(void)
          * was just erased, this is a blank flash word and the blank verify command
          * will be successful and return no failure.
          */
+
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         gCmdStatus =
             DL_FlashCTL_blankVerifyFromRAM(FLASHCTL, MAIN_BASE_ADDRESS);
         if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
@@ -83,6 +94,11 @@ int main(void)
     }
 
     if (gErrorType == NO_ERROR) {
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         /* 64-bit write to flash in main memory */
         DL_FlashCTL_unprotectSector(
             FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -101,6 +117,12 @@ int main(void)
         * blank flash word. Therefore the command will fail and the failure type
         * will be a  DL_FLASHCTL_FAIL_TYPE_VERIFY_ERROR.
         */
+
+        /*
+         * Ensure proper flash command execution by clearing the STATCMD
+         * register before executing a flash operation
+         */
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         gCmdStatus =
             DL_FlashCTL_blankVerifyFromRAM(FLASHCTL, MAIN_BASE_ADDRESS);
         if (gCmdStatus == DL_FLASHCTL_COMMAND_STATUS_FAILED) {

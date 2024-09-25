@@ -22,9 +22,9 @@ var searchData=
   ['controlword',['controlWord',['../struct_d_l___u_a_r_t___main__backup_config.html#a93fbbd9878228a849686652598858911',1,'DL_UART_Main_backupConfig::controlWord()'],['../struct_d_l___u_a_r_t___extend__backup_config.html#a00065774b57cfa0bd6211ea5d974e475',1,'DL_UART_Extend_backupConfig::controlWord()']]],
   ['controlword0',['controlWord0',['../struct_d_l___s_p_i__backup_config.html#af1ed144ceb586df971eb3cc2ce5a5f39',1,'DL_SPI_backupConfig']]],
   ['controlword1',['controlWord1',['../struct_d_l___s_p_i__backup_config.html#af141455349f29ba827afbb28e2083e68',1,'DL_SPI_backupConfig']]],
-  ['count',['count',['../struct_d_l___timer___compare_config.html#ab60eefd336427d464e21087918520a4d',1,'DL_Timer_CompareConfig::count()'],['../struct_d_l___timer___compare_trigger_config.html#a25277fdb71736e75b1a88cb41eb3ad3b',1,'DL_Timer_CompareTriggerConfig::count()']]],
+  ['count',['count',['../struct_d_l___timer___compare_config.html#adf261ca43a472f6bc671b15c12a7b5ca',1,'DL_Timer_CompareConfig::count()'],['../struct_d_l___timer___compare_trigger_config.html#aa49a3f9ecce21955ec4d8b9ae2fa6f19',1,'DL_Timer_CompareTriggerConfig::count()']]],
   ['countclkconf',['countClkConf',['../struct_d_l___timer__backup_config.html#a2868ac2580a3c84a4ca39f942026931a',1,'DL_Timer_backupConfig']]],
-  ['counterval',['counterVal',['../struct_d_l___timer___timer_config.html#ab606ef9d7a0a7c35f3732c9b425ff84f',1,'DL_Timer_TimerConfig']]],
+  ['counterval',['counterVal',['../struct_d_l___timer___timer_config.html#a17c4bea44304965c2226bee5cda0f787',1,'DL_Timer_TimerConfig']]],
   ['crosstrigconf',['crossTrigConf',['../struct_d_l___timer__backup_config.html#a1bc44e6f6e7312245348681e15e96488',1,'DL_Timer_backupConfig']]],
   ['crosstrigctl',['crossTrigCtl',['../struct_d_l___timer__backup_config.html#ad194cd4bf37fe31257b01d3be252a4e3',1,'DL_Timer_backupConfig']]]
 ];

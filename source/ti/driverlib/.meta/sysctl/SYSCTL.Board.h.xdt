@@ -189,7 +189,20 @@
 % let clkOutFuncStr2 = "IOMUX_PINCM"+clkOutPinCM+"_PF_"+"SYSCTL_CLK_OUT";
 `clkOutFuncStr.padEnd(40, " ")+clkOutFuncStr2.padStart(40, " ")`
 %}
-% if(!stat.disableSYSOSC && stat.enableROSC){
+% /* Temporary Workaround for MSPM0L122X_L222X */
+% if(!stat.disableSYSOSC && stat.enableROSC && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+% /* ROSC pins */
+% let roscPortStr = "#define "+gpioStr+"_ROSC_PORT";
+`roscPortStr.padEnd(40," ")+"GPIOA".padStart(40, " ")`
+% let roscPinStr = "#define "+gpioStr+"_ROSC_PIN";
+% let roscPinStr2 = "DL_GPIO_PIN_2";
+`roscPinStr.padEnd(40," ")+roscPinStr2.padStart(40," ")`
+% let roscIOmuxStr = "#define "+gpioStr+"_ROSC_IOMUX";
+% let roscIOmuxStr2 = "(IOMUX_PINCM7"+")";
+`roscIOmuxStr.padEnd(40," ")+roscIOmuxStr2.padStart(40," ")`
+%   }
+% /* Standard Pin Configuration for ROSC */
+% if(!stat.disableSYSOSC && stat.enableROSC && !Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
 % /* ROSC pins */
 %       let roscPinName = "rosc"+"Pin";
 %       let roscPackagePin = stat.peripheral[roscPinName].$solution.packagePinName;

@@ -57,6 +57,11 @@ int main(void)
 {
     SYSCFG_DL_init();
 
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     /* Unprotect sector in main memory*/
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -68,6 +73,11 @@ int main(void)
         __BKPT(0);
     }
 
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     /* 8-bit write to flash in main memory without ECC */
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -83,6 +93,12 @@ int main(void)
      * The target program address must be a flash word address
      * (8-byte aligned), so we increase the address in increments of 8.
      */
+
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
     gCmdStatus = DL_FlashCTL_programMemoryFromRAM16(
@@ -92,6 +108,11 @@ int main(void)
         __BKPT(0);
     }
 
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     /* 32-bit write to flash in main memory without ECC */
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -107,6 +128,12 @@ int main(void)
      * Data must be loaded 32-bits at a time, but a single word program
      * is executed
      */
+
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
     gCmdStatus = DL_FlashCTL_programMemoryFromRAM64(

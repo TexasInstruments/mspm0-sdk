@@ -80,13 +80,6 @@ RAMFUNC static DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_executeCommandFromRAM(
                 FLASHCTL_STATCMD_CMDPASS_STATFAIL);
     }
 
-#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G151X_G351X)
-    /* Set COMMAND bit within CMDTYPE register to clear status*/
-    flashctl->GEN.CMDTYPE = DL_FLASHCTL_COMMAND_TYPE_CLEAR_STATUS;
-    /* Set bit to execute command */
-    flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
-#endif
-
     return (DL_FLASHCTL_COMMAND_STATUS)(status);
 }
 
@@ -612,6 +605,9 @@ bool DL_FlashCTL_programMemoryBlocking64WithECCGenerated(
     }
 
     while ((dataSize != (uint32_t) 0) && status) {
+        /* Clear STATCMD register before executing a flash operation */
+        DL_FlashCTL_executeClearStatus(flashctl);
+
         /* Unprotect sector before every write */
         DL_FlashCTL_unprotectSector(flashctl, address, regionSelect);
 
@@ -641,6 +637,9 @@ DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(
 
     while ((dataSize != (uint32_t) 0) &&
            (status != DL_FLASHCTL_COMMAND_STATUS_FAILED)) {
+        /* Clear STATCMD register before executing a flash operation */
+        DL_FlashCTL_executeClearStatus(flashctl);
+
         /* Unprotect sector before every write */
         DL_FlashCTL_unprotectSector(flashctl, address, regionSelect);
 
@@ -667,6 +666,9 @@ bool DL_FlashCTL_programMemoryBlocking64WithECCManual(FLASHCTL_Regs *flashctl,
     }
 
     while ((dataSize != (uint32_t) 0) && status) {
+        /* Clear STATCMD register before executing a flash operation */
+        DL_FlashCTL_executeClearStatus(flashctl);
+
         /* Unprotect sector before every write */
         DL_FlashCTL_unprotectSector(flashctl, address, regionSelect);
 
@@ -699,6 +701,9 @@ DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual(
 
     while ((dataSize != (uint32_t) 0) &&
            (status != DL_FLASHCTL_COMMAND_STATUS_FAILED)) {
+        /* Clear STATCMD register before executing a flash operation */
+        DL_FlashCTL_executeClearStatus(flashctl);
+
         /* Unprotect sector before every write */
         DL_FlashCTL_unprotectSector(flashctl, address, regionSelect);
 
@@ -725,6 +730,9 @@ bool DL_FlashCTL_programMemoryBlocking(FLASHCTL_Regs *flashctl,
     }
 
     while ((dataSize != (uint32_t) 0) && status) {
+        /* Clear STATCMD register before executing a flash operation */
+        DL_FlashCTL_executeClearStatus(flashctl);
+
         /* Unprotect sector before every write */
         DL_FlashCTL_unprotectSector(flashctl, address, regionSelect);
 
@@ -851,7 +859,8 @@ void DL_FlashCTL_unprotectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
      */
 
     if ((uint32_t) regionSelect == FLASHCTL_CMDCTL_REGIONSEL_MAIN) {
-        sectorMask = (uint32_t) 1 << (sectorInBank / (uint32_t) 8);
+        sectorMask = (uint32_t) 1
+                     << ((sectorInBank / (uint32_t) 8) % (uint32_t) 32);
         flashctl->GEN.CMDWEPROTB &= ~sectorMask;
     } else if ((uint32_t) regionSelect == FLASHCTL_CMDCTL_REGIONSEL_NONMAIN) {
         sectorMask = (uint32_t) 1 << (sectorNumber % (uint32_t) 32);
@@ -1581,6 +1590,9 @@ bool DL_FlashCTL_programMemoryBlocking128WithECCGenerated(
     }
 
     while ((dataSize != (uint32_t) 0) && status) {
+        /* Clear STATCMD register before executing a flash operation */
+        DL_FlashCTL_executeClearStatus(flashctl);
+
         /* Unprotect sector before every write */
         DL_FlashCTL_unprotectSector(flashctl, address, regionSelect);
 

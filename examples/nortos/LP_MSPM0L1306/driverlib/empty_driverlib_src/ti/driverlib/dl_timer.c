@@ -964,10 +964,10 @@ void DL_TimerA_initPWMMode(GPTIMER_Regs *gptimer, DL_TimerA_PWMConfig *config)
                 break;
             case DL_TIMER_PWM_MODE_EDGE_ALIGN_UP:
                 DL_Timer_setCaptureCompareAction(gptimer,
-                    (DL_TIMER_CC_LACT_CCP_LOW | DL_TIMER_CC_CUACT_CCP_HIGH),
+                    (DL_TIMER_CC_ZACT_CCP_HIGH | DL_TIMER_CC_CUACT_CCP_LOW),
                     DL_TIMER_CC_2_INDEX);
                 DL_Timer_setCaptureCompareAction(gptimer,
-                    (DL_TIMER_CC_LACT_CCP_LOW | DL_TIMER_CC_CUACT_CCP_HIGH),
+                    (DL_TIMER_CC_ZACT_CCP_HIGH | DL_TIMER_CC_CUACT_CCP_LOW),
                     DL_TIMER_CC_3_INDEX);
                 break;
             default:  // DL_TIMER_PWM_MODE_CENTER_ALIGN

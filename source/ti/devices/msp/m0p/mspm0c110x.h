@@ -176,6 +176,8 @@ typedef enum IRQn
 #define __MSPM0_HAS_VREF__
 #define __MSPM0_HAS_WWDT__
 
+#define MSPM0C110X_ADC_ERR_06
+
 /*@}*/ /* end of group MSPM0C110X_Peripherals */
 
 /******************************************************************************

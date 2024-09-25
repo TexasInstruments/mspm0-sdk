@@ -140,7 +140,7 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/tool/LP-MSPM0L2228">LP-MSPM0L2228 web page</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Connect SDA and SCL between I2C Controller and Target. Compile, load and run the example. LED2.Red will toggle if transmission and/or reception are successful. LED2.Red will remain off if there is a problem during initialization. LED2.Red will remain on if there is a problem during data transfers.</p>
+<p>Connect SDA and SCL between I2C Controller and Target. Note that I2C requires pull-up resistors. Internal pull-ups can be enabled in SysConfig (see datasheet for resistance specification), but external pull-ups might be required based on I2C speed and capacitance. External pull-ups can be connected or enabled using the LaunchPad. Compile, load and run the example. LED2.Red will toggle if transmission and/or reception are successful. LED2.Red will remain off if there is a problem during initialization. LED2.Red will remain on if there is a problem during data transfers.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

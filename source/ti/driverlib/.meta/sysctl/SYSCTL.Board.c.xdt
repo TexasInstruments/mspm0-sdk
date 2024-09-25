@@ -273,10 +273,16 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
     }
 %%}
 % if(!stat.disableSYSOSC){
-    DL_SYSCTL_setSYSOSCFreq(`printSYSOSCFreq`);
 %   if(stat.enableSYSOSCFCL){
+%     if(stat.enableROSC) {
+    /* Enable SYSOSC FCL in External Resistor Mode */
+    DL_SYSCTL_enableSYSOSCFCLExternalResistor();
+% } else if(!stat.enableROSC){
+    /* Enable SYSOSC FCL in Internal Resistor Mode */
     DL_SYSCTL_enableSYSOSCFCL();
-%   }
+% } //(stat.enableSYSOSCFCL)
+%}
+    DL_SYSCTL_setSYSOSCFreq(`printSYSOSCFreq`);
 % }
 %if(stat.forceDefaultClkConfig) {
     /* Set default configuration */

@@ -80,6 +80,12 @@ int main(void)
      * Program single flash word (64-bit data) with ECC enabled.
      * The flash controller hardware will handle generating the 8-bit ECC code.
      */
+
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
     gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
@@ -109,6 +115,11 @@ int main(void)
      * this will trigger a SEC error.
      */
     DL_SYSCTL_clearECCErrorStatus();
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
     gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCManual(
@@ -155,6 +166,11 @@ int main(void)
      * this will trigger a DED error.
     */
     DL_SYSCTL_clearECCErrorStatus();
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
     gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCManual(
@@ -207,6 +223,11 @@ void NMI_Handler(void)
  */
 void FlashCtl_eraseSectorBlocking(uint32_t address)
 {
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     /* Erase memory before programming */
     DL_FlashCTL_unprotectSector(
         FLASHCTL, address, DL_FLASHCTL_REGION_SELECT_MAIN);
