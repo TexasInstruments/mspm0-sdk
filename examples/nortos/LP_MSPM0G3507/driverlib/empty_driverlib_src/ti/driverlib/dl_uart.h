@@ -243,6 +243,11 @@ typedef enum {
 #define DL_UART_DMA_INTERRUPT_RX              (UART_DMA_TRIG_RX_IMASK_RXINT_SET)
 
 /*!
+ * @brief UART interrupt indicating DMA is done with the RX
+ */
+#define DL_UART_DMA_DONE_INTERRUPT_RX         (UART_CPU_INT_IMASK_DMA_DONE_RX_SET)
+
+/*!
  * @brief UART interrupt for enabling UART receive timeout as DMA trigger
  */
 #define DL_UART_DMA_INTERRUPT_RX_TIMEOUT      (UART_DMA_TRIG_RX_IMASK_RTOUT_SET)
@@ -253,6 +258,11 @@ typedef enum {
  * @brief UART interrupt for enabling UART transmit as DMA trigger
  */
 #define DL_UART_DMA_INTERRUPT_TX              (UART_DMA_TRIG_TX_IMASK_TXINT_SET)
+
+/*!
+ * @brief UART interrupt indicating DMA is done with the TX
+ */
+#define DL_UART_DMA_DONE_INTERRUPT_TX         (UART_CPU_INT_IMASK_DMA_DONE_TX_SET)
 
 /** @addtogroup DL_UART_ERROR
  *  @{

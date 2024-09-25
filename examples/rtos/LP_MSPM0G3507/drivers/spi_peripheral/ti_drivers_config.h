@@ -34,8 +34,6 @@
  *  ============ ti_drivers_config.h =============
  *  Configured MSPM0 Driver module declarations
  *
- *  DO NOT EDIT - This file is generated for the LP_MSPM0G3507
- *  by the SysConfig tool.
  */
 #ifndef ti_drivers_config_h
 #define ti_drivers_config_h

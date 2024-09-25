@@ -323,6 +323,7 @@ static const DL_TimerG_PWMConfig gLIGHTSENSOR_PWM_RED_BLUE_INSTConfig = {
     .period     = RGB_LED_PERIOD, /* 64Hz PWM signal for visible light */
     .pwmMode    = DL_TIMER_PWM_MODE_EDGE_ALIGN,
     .startTimer = false,
+    .isTimerWithFourCC = false,
 };
 
 void lightsensor_PWM_RED_BLUE_init(void)
@@ -362,6 +363,7 @@ static const DL_TimerG_PWMConfig gLIGHTSENSOR_PWM_GREEN_INSTConfig = {
     .period     = RGB_LED_PERIOD, /* 64Hz PWM signal for visible light */
     .pwmMode    = DL_TIMER_PWM_MODE_EDGE_ALIGN,
     .startTimer = false,
+    .isTimerWithFourCC = false,
 };
 
 void lightsensor_PWN_GREEN_init(void)

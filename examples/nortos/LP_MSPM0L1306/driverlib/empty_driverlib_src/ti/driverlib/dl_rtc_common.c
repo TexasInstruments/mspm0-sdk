@@ -32,7 +32,8 @@
 
 #include <ti/driverlib/dl_rtc_common.h>
 
-#if defined __MSPM0_HAS_RTC_A__ || defined __MSPM0_HAS_RTC__
+#if defined __MSPM0_HAS_RTC_A__ || defined __MSPM0_HAS_RTC_B__ || \
+    defined __MSPM0_HAS_RTC__
 
 void DL_RTC_Common_initCalendar(RTC_Regs *rtc_common,
     DL_RTC_Common_Calendar calendarTime, DL_RTC_COMMON_FORMAT formatSelect)
@@ -276,4 +277,4 @@ void DL_RTC_Common_disableCalendarAlarm2(RTC_Regs *rtc_common)
     }
 }
 
-#endif /* __MSPM0_HAS_RTC_A__ || defined __MSPM0_HAS_RTC__ */
+#endif /* __MSPM0_HAS_RTC_A__ || __MSPM0_HAS_RTC_B__ || defined __MSPM0_HAS_RTC__ */

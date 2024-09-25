@@ -196,6 +196,6 @@ int main(void)
 //!
 //
 // *****************************************************************************
-void PMB_I2C_INST_IRQHandler(void) {
+void SMB_I2C_INST_IRQHandler(void) {
     PMBus_processInt();
 }

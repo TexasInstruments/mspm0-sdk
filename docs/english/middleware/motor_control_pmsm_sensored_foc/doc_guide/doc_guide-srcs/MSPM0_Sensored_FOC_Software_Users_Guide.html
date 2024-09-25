@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 Sensored FOC Software User’s Guide &mdash; Sensored FOC Motor Control User Guide 1.00.00.xx documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sensored FOC Motor Control Library Overview" href="Sensored_FOC_Motor_Control_Library.html" />
+    <link rel="prev" title="Sensored FOC Motor Control User Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Sensored FOC Motor Control User Guide
+          </a>
+              <div class="version">
+                1.00.00.xx
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 Sensored FOC Software User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ccs-project-setup">1. CCS Project setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#register-overview">Register Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-project">Configuring the Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-project">Starting the Project</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-guide">2. API Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-devices">3. Supported Devices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#drv8316">DRV8316</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tida010251">TIDA010251</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tuning-documentation">5. Tuning Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Sensored_FOC_Motor_Control_Library.html">Sensored FOC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UART_Communication_User_Guide.html">UART Communication User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drv8316/DRV8316_Hardware_User_Guide.html">Hall Sensored FOC - DRV8316 Gate Driver User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tida010251/TIDA010251_Hardware_User_Guide.html">HALL Sensored FOC - TIDA010251 User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sensored FOC Motor Control User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 Sensored FOC Software User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-sensored-foc-software-user-s-guide">
+<h1>MSPM0 Sensored FOC Software User’s Guide<a class="headerlink" href="#mspm0-sensored-foc-software-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="ccs-project-setup">
+<h2>1. CCS Project setup<a class="headerlink" href="#ccs-project-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Go to Import CCS Projects as shown below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_IMPORT.jpg" />
+</figure>
+</li>
+<li><p>Click Browse. Navigate to <code class="docutils literal notranslate"><span class="pre">C:\ti\mspm0_sdk_&lt;SDK_Version&gt;\examples\nortos\[LAUNCHPAD]\motor_control_pmsm_sensored_foc</span></code>.</p></li>
+<li><p>Click Select Folder. Check the desired hardware board, and click Finish to import the project into your workspace.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_IMPORT_1.jpg" />
+</figure>
+<section id="register-overview">
+<h3>Register Overview<a class="headerlink" href="#register-overview" title="Permalink to this heading">¶</a></h3>
+<p>The Sensored FOC Library is structured to be interfaced through Specific Registers, the Registers will be periodically parsed by the application interface to convert to the Sensored FOC algorithm variables. This helps users to have a clear interface to the motor control software via external communication.</p>
+<p>For using the Sensored FOC library the user need to use three registers namely UserCtrlRegs, UserInputRegs and UserStatusRegs. The Library exposes these registers through pointers.</p>
+<p>The pointers for 3 registers:</p>
+<ul>
+<li><p>pUserCtrlRegs</p>
+<p>All the variables used for controlling the motor like speed input is present in this user controls structure</p>
+</li>
+<li><p>pUserInputRegs</p>
+<p>All the configurations like different startup modes etc are present in the User input registers</p>
+</li>
+<li><p>pUserStatusRegs</p>
+<p>Used for monitoring the algorithm status and algorithm variables</p>
+</li>
+</ul>
+</section>
+<section id="configuring-the-project">
+<h3>Configuring the Project<a class="headerlink" href="#configuring-the-project" title="Permalink to this heading">¶</a></h3>
+<p>For running the motor we first need to configure the userInputRegs with the correct parameters.</p>
+<p>There are 2 types of parameters present in the userInputRegs:</p>
+<ul>
+<li><p>System parameters</p>
+<p>This sets the motor parameters, and hardware defined parameters like Current base value, Voltage base value .etc. The system parameters are present in pUserInputRegs→systemParams.</p>
+</li>
+<li><p>Tuning parameters</p>
+<p>All the other elements in the userInputRegs except systemParams are the tuning parameters. The tuning parameter helps to tune the motor to the desired performance. Refer to the Tuning Document <a class="reference external" href="https://www.ti.com/lit/pdf/slau948">Tuning Document</a> for further details on tuning specific motor for application use case.</p>
+</li>
+</ul>
+<p>The Sensored FOC library initializes the input registers to a default value it is present in the setUserDefaultMotorParameters() function in ISR.c file. The default motor parameters are for <a class="reference external" href="https://www.ti.com/tool/LVSERVOMTR">LVSERVOMTR</a> motor available at ti.com .</p>
+<p>Refer to the Tuning Document for details on configurations.</p>
+</section>
+<section id="starting-the-project">
+<h3>Starting the Project<a class="headerlink" href="#starting-the-project" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Connect the hardware and turn on the power supply. There should be no more than 50mA on the power supply.</p></li>
+<li><p>Click on the Build button.<img alt="image0" src="../_images/CCS_BUILD.jpg" /> Project should build with no errors.</p></li>
+<li><p>Click on the Debug button. <img alt="image1" src="../_images/CCS_DEBUG.jpg" /></p></li>
+<li><p>Open the Expressions window and add the following global structures pointers as below.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="doc_guide-srcs/images/ccs_espressions.jpg" />
+</figure>
+<ul class="simple">
+<li><p>pUserCtrlRegs</p></li>
+<li><p>pUserInputRegs</p></li>
+<li><p>pUserStatusRegs</p></li>
+</ul>
+<ol class="arabic simple" start="6">
+<li><p>Press Play <img alt="image2" src="../_images/CCS_PLAY.jpg" /> to start the code.</p></li>
+<li><p>Enable “Continuous Refresh” in the Expressions window. <img alt="image3" src="../_images/CCS_REFRESH.jpg" /></p></li>
+<li><p>Refer to the <a class="reference external" href="https://www.ti.com/lit/pdf/slau948">Tuning Document</a> for spinning and tuning the motor.</p></li>
+</ol>
+</section>
+</section>
+<section id="api-guide">
+<h2>2. API Guide<a class="headerlink" href="#api-guide" title="Permalink to this heading">¶</a></h2>
+<p>The Sensored FOC API guide provides a detailed description of files, variables, and APIs for the MSPM0 FOC motor control library</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doxygen/api_guide/html/index.html">Sensored FOC API Guide</a></p></li>
+</ul>
+</section>
+<section id="supported-devices">
+<h2>3. Supported Devices<a class="headerlink" href="#supported-devices" title="Permalink to this heading">¶</a></h2>
+<section id="drv8316">
+<h3>DRV8316<a class="headerlink" href="#drv8316" title="Permalink to this heading">¶</a></h3>
+<p>Supported MSPM0 LaunchPads</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="drv8316/DRV8316_Hardware_User_Guide.html">SENSORED FOC - DRV8316 Gate Driver User Guide</a></p></li>
+</ul>
+</section>
+<section id="tida010251">
+<h3>TIDA010251<a class="headerlink" href="#tida010251" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/TIDA-010251">TIDA010251</a></p></li>
+</ul>
+<p>Links</p>
+<ul class="simple">
+<li><p><a class="reference external" href="tida010251/TIDA010251_Hardware_User_Guide.html">SENSORED FOC - TIDA010251 User Guide</a></p></li>
+</ul>
+</section>
+</section>
+<section id="tuning-documentation">
+<h2>5. Tuning Documentation<a class="headerlink" href="#tuning-documentation" title="Permalink to this heading">¶</a></h2>
+<p>For tuning the motor for running FOC application please refer to <a class="reference external" href="https://www.ti.com/lit/pdf/slau948">Hall SENSORED FOC Guide</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Sensored FOC Motor Control User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Sensored_FOC_Motor_Control_Library.html" class="btn btn-neutral float-right" title="Sensored FOC Motor Control Library Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

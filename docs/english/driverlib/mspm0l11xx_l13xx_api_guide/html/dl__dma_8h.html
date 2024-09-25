@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -66,7 +66,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1ec8ed615bc2da65e0c30f17adbe5612.html">bazel-out</a></li><li class="navelem"><a class="el" href="dir_231710fef160230c0d793a19eca7d6c5.html">k8-fastbuild</a></li><li class="navelem"><a class="el" href="dir_7ce6e6bbdebed80a74588c9bb8f8de86.html">bin</a></li><li class="navelem"><a class="el" href="dir_3367b93674f2985c4702ec3e396ea8fb.html">docs</a></li><li class="navelem"><a class="el" href="dir_b6b173968e230032c7c3bed7cd5ff4ca.html">english</a></li><li class="navelem"><a class="el" href="dir_be8fb3255aa9b96b808bb2f7acc4afbe.html">driverlib</a></li><li class="navelem"><a class="el" href="dir_69d20c32adbf08d6ddb8442047185092.html">mspm0l11xx_l13xx_api_guide-srcs</a></li><li class="navelem"><a class="el" href="dir_941d6f4397aad76eca12e29da6767f8e.html">source</a></li><li class="navelem"><a class="el" href="dir_6e91cd45f2b4af8fdca616757c3e8b7b.html">ti</a></li><li class="navelem"><a class="el" href="dir_b23b07c02efd9a7956cf29dc786ad85d.html">driverlib</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_1ec8ed615bc2da65e0c30f17adbe5612.html">bazel-out</a></li><li class="navelem"><a class="el" href="dir_81796cf7b8c85abf4aaa4478eac07be3.html">k8-opt</a></li><li class="navelem"><a class="el" href="dir_7d9ef33ae1d656eb0f786113430116c5.html">bin</a></li><li class="navelem"><a class="el" href="dir_e0abc62f7a8fffc210aad9d69afc4cc1.html">docs</a></li><li class="navelem"><a class="el" href="dir_f0e6007746a7b6bf614bd6d461732893.html">english</a></li><li class="navelem"><a class="el" href="dir_879c3da419080b6b5ca3ffff95d8ae9b.html">driverlib</a></li><li class="navelem"><a class="el" href="dir_0c2f007c1c1665dc4843b9e92d1e7a4f.html">mspm0l11xx_l13xx_api_guide-srcs</a></li><li class="navelem"><a class="el" href="dir_b46a0319615e53ce89f7a948e01b0154.html">source</a></li><li class="navelem"><a class="el" href="dir_ba3f338d56d03954f813ed0e3885b9d0.html">ti</a></li><li class="navelem"><a class="el" href="dir_37ddbf42b588ed99358a361a5f8ed576.html">driverlib</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -105,6 +105,10 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga8f24fd5e050b3b5bffa83baa62eae24e"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga8f24fd5e050b3b5bffa83baa62eae24e">DEVICE_HAS_DMA_FULL_CHANNEL</a></td></tr>
+<tr class="memdesc:ga8f24fd5e050b3b5bffa83baa62eae24e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device has support for DMA FULL channels. <br /></td></tr>
+<tr class="separator:ga8f24fd5e050b3b5bffa83baa62eae24e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7e81b6dc74174d233feb796572f02902"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga7e81b6dc74174d233feb796572f02902">DL_DMA_INTERRUPT_CHANNEL0</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_DMACH0_SET)</td></tr>
 <tr class="memdesc:ga7e81b6dc74174d233feb796572f02902"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMA channel 0 interrupt. <br /></td></tr>
@@ -165,6 +169,38 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga4457cd646455c7e0138405ef3046ca6c">DL_DMA_INTERRUPT_CHANNEL15</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_DMACH15_SET)</td></tr>
 <tr class="memdesc:ga4457cd646455c7e0138405ef3046ca6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMA channel 15 interrupt. <br /></td></tr>
 <tr class="separator:ga4457cd646455c7e0138405ef3046ca6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadf2079e77d478e76fd7e061fdbc905f8"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gadf2079e77d478e76fd7e061fdbc905f8">DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL0</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_PREIRQCH0_SET)</td></tr>
+<tr class="memdesc:gadf2079e77d478e76fd7e061fdbc905f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 0 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:gadf2079e77d478e76fd7e061fdbc905f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7b4cbfb00c7f2c295f99b83a93a23970"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga7b4cbfb00c7f2c295f99b83a93a23970">DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL1</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_PREIRQCH1_SET)</td></tr>
+<tr class="memdesc:ga7b4cbfb00c7f2c295f99b83a93a23970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 1 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:ga7b4cbfb00c7f2c295f99b83a93a23970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6e6e24b795f25b859d95e593b753ad8"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad6e6e24b795f25b859d95e593b753ad8">DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL2</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_PREIRQCH2_SET)</td></tr>
+<tr class="memdesc:gad6e6e24b795f25b859d95e593b753ad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 2 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:gad6e6e24b795f25b859d95e593b753ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56942d52a45d492764a1068a9a9a1ad2"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga56942d52a45d492764a1068a9a9a1ad2">DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL3</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_PREIRQCH3_SET)</td></tr>
+<tr class="memdesc:ga56942d52a45d492764a1068a9a9a1ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 3 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:ga56942d52a45d492764a1068a9a9a1ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8224eb3c385aacf0e61a2d214cae8818"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8224eb3c385aacf0e61a2d214cae8818">DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL4</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_PREIRQCH4_SET)</td></tr>
+<tr class="memdesc:ga8224eb3c385aacf0e61a2d214cae8818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 4 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:ga8224eb3c385aacf0e61a2d214cae8818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3f368d2f2f2dd80721d0a0432c08f6aa"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga3f368d2f2f2dd80721d0a0432c08f6aa">DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL5</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_PREIRQCH5_SET)</td></tr>
+<tr class="memdesc:ga3f368d2f2f2dd80721d0a0432c08f6aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 5 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:ga3f368d2f2f2dd80721d0a0432c08f6aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5617a8d33a3e3c91e3bae8e8d385e68"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad5617a8d33a3e3c91e3bae8e8d385e68">DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL6</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_PREIRQCH6_SET)</td></tr>
+<tr class="memdesc:gad5617a8d33a3e3c91e3bae8e8d385e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 6 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:gad5617a8d33a3e3c91e3bae8e8d385e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c85d577dbf22790a2a02a0de0d22e63"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga2c85d577dbf22790a2a02a0de0d22e63">DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL7</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_PREIRQCH7_SET)</td></tr>
+<tr class="memdesc:ga2c85d577dbf22790a2a02a0de0d22e63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 7 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:ga2c85d577dbf22790a2a02a0de0d22e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8a8ddec51f7bb0c975b1b480f471ec39"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8a8ddec51f7bb0c975b1b480f471ec39">DL_DMA_INTERRUPT_ADDR_ERROR</a>&#160;&#160;&#160;(DMA_CPU_INT_IMASK_ADDRERR_SET)</td></tr>
 <tr class="memdesc:ga8a8ddec51f7bb0c975b1b480f471ec39"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMA address error, source address not reachable. <br /></td></tr>
@@ -233,6 +269,38 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga7bdb118fefd5adf23b0395091934e2a2">DL_DMA_EVENT_CHANNEL15</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_DMACH15_SET)</td></tr>
 <tr class="memdesc:ga7bdb118fefd5adf23b0395091934e2a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMA channel 15 interrupt. <br /></td></tr>
 <tr class="separator:ga7bdb118fefd5adf23b0395091934e2a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5dd1b80f3d57c35e03276bcda50e29d"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gad5dd1b80f3d57c35e03276bcda50e29d">DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL0</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_PREIRQCH0_SET)</td></tr>
+<tr class="memdesc:gad5dd1b80f3d57c35e03276bcda50e29d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 0 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:gad5dd1b80f3d57c35e03276bcda50e29d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27eeb0ea5ea1d87890fae1ff8ff4cd0f"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga27eeb0ea5ea1d87890fae1ff8ff4cd0f">DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL1</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_PREIRQCH1_SET)</td></tr>
+<tr class="memdesc:ga27eeb0ea5ea1d87890fae1ff8ff4cd0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 1 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:ga27eeb0ea5ea1d87890fae1ff8ff4cd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd59d3e2055a001e82f7e7eba7b44e68"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gabd59d3e2055a001e82f7e7eba7b44e68">DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL2</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_PREIRQCH2_SET)</td></tr>
+<tr class="memdesc:gabd59d3e2055a001e82f7e7eba7b44e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 2 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:gabd59d3e2055a001e82f7e7eba7b44e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab8d2eb41094bf0cde0d8fa0e94da8729"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gab8d2eb41094bf0cde0d8fa0e94da8729">DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL3</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_PREIRQCH3_SET)</td></tr>
+<tr class="memdesc:gab8d2eb41094bf0cde0d8fa0e94da8729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 3 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:gab8d2eb41094bf0cde0d8fa0e94da8729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa67d17e89be4e49e02a958444ca58461"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gaa67d17e89be4e49e02a958444ca58461">DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL4</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_PREIRQCH4_SET)</td></tr>
+<tr class="memdesc:gaa67d17e89be4e49e02a958444ca58461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 4 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:gaa67d17e89be4e49e02a958444ca58461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga41afd3a6f45e6ef2fecdce78d847929d"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga41afd3a6f45e6ef2fecdce78d847929d">DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL5</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_PREIRQCH5_SET)</td></tr>
+<tr class="memdesc:ga41afd3a6f45e6ef2fecdce78d847929d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 5 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:ga41afd3a6f45e6ef2fecdce78d847929d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaef3bfec44df506dd137ebe9fec477198"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gaef3bfec44df506dd137ebe9fec477198">DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL6</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_PREIRQCH6_SET)</td></tr>
+<tr class="memdesc:gaef3bfec44df506dd137ebe9fec477198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 6 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:gaef3bfec44df506dd137ebe9fec477198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b09f9fb4eeef5e9c4da98aafc4c4b06"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8b09f9fb4eeef5e9c4da98aafc4c4b06">DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL7</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_PREIRQCH7_SET)</td></tr>
+<tr class="memdesc:ga8b09f9fb4eeef5e9c4da98aafc4c4b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Available for FULL-channel configuration only. Early IRQ for DMA channel 7 interrupt. Size counter has reached early IRQ threshold. <br /></td></tr>
+<tr class="separator:ga8b09f9fb4eeef5e9c4da98aafc4c4b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaad568ccd15a3fd1016f87488c22949d2"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gaad568ccd15a3fd1016f87488c22949d2">DL_DMA_EVENT_ADDR_ERROR</a>&#160;&#160;&#160;(DMA_GEN_EVENT_IMASK_ADDRERR_SET)</td></tr>
 <tr class="memdesc:gaad568ccd15a3fd1016f87488c22949d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMA address error, source address not reachable. <br /></td></tr>
@@ -247,11 +315,21 @@ Enumerations</h2></td></tr>
 <tr class="memitem:ga7d1157042646cbffc613b6164c7ed5a8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga7d1157042646cbffc613b6164c7ed5a8">DL_DMA_TRANSFER_MODE</a> { <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a48adc65d25a06b14a63268aedf2e0e9f">DL_DMA_SINGLE_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_SINGLE, 
 <br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a95a10f0a1060426eca8c16f3c0718333">DL_DMA_SINGLE_BLOCK_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_BLOCK
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a95a10f0a1060426eca8c16f3c0718333">DL_DMA_SINGLE_BLOCK_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_BLOCK, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a6f096384bb41144646ee651936f288b0">DL_DMA_FULL_CH_REPEAT_SINGLE_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_RPTSNGL, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a03b8e4d1275507a7e06ac3fc2a41e827">DL_DMA_FULL_CH_REPEAT_BLOCK_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_RPTBLCK
 <br />
  }</td></tr>
 <tr class="separator:ga7d1157042646cbffc613b6164c7ed5a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga492a0576e98efee98bebd313be27fbf2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga492a0576e98efee98bebd313be27fbf2">DL_DMA_EXTENDED_MODE</a> { <a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a077f8a71dcd13137f82a58305d4af349">DL_DMA_NORMAL_MODE</a> = DMA_DMACTL_DMAEM_NORMAL
+<tr class="memitem:ga492a0576e98efee98bebd313be27fbf2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga492a0576e98efee98bebd313be27fbf2">DL_DMA_EXTENDED_MODE</a> { <br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a077f8a71dcd13137f82a58305d4af349">DL_DMA_NORMAL_MODE</a> = DMA_DMACTL_DMAEM_NORMAL, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2aca0f445c9e3358c80f6ad6ebcc9aadfb">DL_DMA_FULL_CH_FILL_MODE</a> = DMA_DMACTL_DMAEM_FILLMODE, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a1ede584989a704dd5b435015e0960640">DL_DMA_FULL_CH_TABLE_MODE</a> = DMA_DMACTL_DMAEM_TABLEMODE
+<br />
  }</td></tr>
 <tr class="separator:ga492a0576e98efee98bebd313be27fbf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae08767430c6d576fddbad7f2bb1157ee"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gae08767430c6d576fddbad7f2bb1157ee">DL_DMA_INCREMENT</a> { <br />
@@ -323,9 +401,7 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836">DL_DMA_WIDTH_WORD</a> = DMA_DMACTL_DMASRCWDTH_WORD, 
 <br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">DL_DMA_WIDTH_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONG, 
-<br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9">DL_DMA_WIDTH_LONG_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONGLONG
+&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">DL_DMA_WIDTH_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONG
 <br />
  }</td></tr>
 <tr class="separator:gab605141334a8b69900305c81ef998fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -364,6 +440,22 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5740dd2d4978aa4a088e1e45c9a3ce65">DL_DMA_EVENT_IIDX_DMACH15</a> = DMA_GEN_EVENT_IIDX_STAT_DMACH15, 
 <br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad44ecfa3278001c127078697c15a1d09">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH0</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH0, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8acc735933d41b9ce29029d0fefed63739">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH1</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH1, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a03bbf4447e73deef4da0df0e8fbcea69">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH2</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH2, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a1126d30c223677900837288277d65e7c">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH3</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH3, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad3e2c3cddfbcaa781a7b75c427ec75fb">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH4</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH4, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a4c89a802b27ec5c3385a94329ec7adad">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH5</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH5, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3e410b2358fe3059afb8710ef629eca7">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH6</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH6, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3d4ea06db3f44778b89e2c0856735f66">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH7</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH7, 
+<br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a210582d59f844caef1c1f03b0ccff809">DL_DMA_EVENT_IIDX_ADDR_ERROR</a> = DMA_GEN_EVENT_IIDX_STAT_ADDRERR, 
 <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a264038dc1206040d4714e6ec626677fc">DL_DMA_EVENT_IIDX_DATA_ERROR</a> = DMA_GEN_EVENT_IIDX_STAT_DATAERR
@@ -380,15 +472,7 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:gaa5cab158d8d96858b0905b602c0a846a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac3cfd8d2a08be11fe872cd08196e7eb1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> { <br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2">DL_DMA_AUTOEN_DISABLE</a> = DMA_DMACTL_DMAAUTOEN_DISABLE, 
-<br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe">DL_DMA_AUTOEN_DMASA</a> = DMA_DMACTL_DMAAUTOEN_DMASA, 
-<br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb">DL_DMA_AUTOEN_DMADA</a> = DMA_DMACTL_DMAAUTOEN_DMADA, 
-<br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5">DL_DMA_AUTOEN_DMASZ</a> = DMA_DMACTL_DMAAUTOEN_DMASZ
-<br />
+<tr class="memitem:gac3cfd8d2a08be11fe872cd08196e7eb1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> { <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2">DL_DMA_AUTOEN_DISABLE</a> = DMA_DMACTL_DMAAUTOEN_DISABLE
  }</td></tr>
 <tr class="separator:gac3cfd8d2a08be11fe872cd08196e7eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -493,6 +577,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga7b62531baf19f3cced8a1869f2096c00"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___d_m_a.html#gab605141334a8b69900305c81ef998fc9">DL_DMA_WIDTH</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga7b62531baf19f3cced8a1869f2096c00">DL_DMA_getDestWidth</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
 <tr class="memdesc:ga7b62531baf19f3cced8a1869f2096c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the width of the DMA destination address for a channel.  <a href="group___d_m_a.html#ga7b62531baf19f3cced8a1869f2096c00">More...</a><br /></td></tr>
 <tr class="separator:ga7b62531baf19f3cced8a1869f2096c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacc68c40f08f75d0bb0aa2cc028a52e69"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gacc68c40f08f75d0bb0aa2cc028a52e69">DL_DMA_Full_Ch_setEarlyInterruptThreshold</a> (DMA_Regs *dma, uint8_t channelNum, <a class="el" href="group___d_m_a.html#ga1da0bf5384dbbd60633b008428a834c7">DL_DMA_EARLY_INTERRUPT_THRESHOLD</a> threshold)</td></tr>
+<tr class="memdesc:gacc68c40f08f75d0bb0aa2cc028a52e69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the early interrupt event.  <a href="group___d_m_a.html#gacc68c40f08f75d0bb0aa2cc028a52e69">More...</a><br /></td></tr>
+<tr class="separator:gacc68c40f08f75d0bb0aa2cc028a52e69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1d3a556657ecde120f39d8151b855a9"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___d_m_a.html#ga1da0bf5384dbbd60633b008428a834c7">DL_DMA_EARLY_INTERRUPT_THRESHOLD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gad1d3a556657ecde120f39d8151b855a9">DL_DMA_Full_Ch_getEarlyInterruptThreshold</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
+<tr class="memdesc:gad1d3a556657ecde120f39d8151b855a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the early interrupt event threshold.  <a href="group___d_m_a.html#gad1d3a556657ecde120f39d8151b855a9">More...</a><br /></td></tr>
+<tr class="separator:gad1d3a556657ecde120f39d8151b855a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1d19ffe6b6f29f936f0f3e7498b66102"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga1d19ffe6b6f29f936f0f3e7498b66102">DL_DMA_enableInterrupt</a> (DMA_Regs *dma, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga1d19ffe6b6f29f936f0f3e7498b66102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable DMA interrupts.  <a href="group___d_m_a.html#ga1d19ffe6b6f29f936f0f3e7498b66102">More...</a><br /></td></tr>
 <tr class="separator:ga1d19ffe6b6f29f936f0f3e7498b66102"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -544,15 +634,6 @@ Functions</h2></td></tr>
 <tr class="memitem:gafece913351c1ce0970329bbe7f819432"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432">DL_DMA_clearEventsStatus</a> (DMA_Regs *dma, uint32_t eventMask)</td></tr>
 <tr class="memdesc:gafece913351c1ce0970329bbe7f819432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending dma events.  <a href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432">More...</a><br /></td></tr>
 <tr class="separator:gafece913351c1ce0970329bbe7f819432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">DL_DMA_enableAutoEnable</a> (DMA_Regs *dma, <a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> mode, uint8_t channelNum)</td></tr>
-<tr class="memdesc:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the DMA for auto-enable.  <a href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">More...</a><br /></td></tr>
-<tr class="separator:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">DL_DMA_disableAutoEnable</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
-<tr class="memdesc:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable auto-enable for DMA.  <a href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">More...</a><br /></td></tr>
-<tr class="separator:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad9a2039849be9ab98d67d7aa38d44c26"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">DL_DMA_isAutoEnableEnabled</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
-<tr class="memdesc:gad9a2039849be9ab98d67d7aa38d44c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if auto-enable is enabled for the DMA.  <a href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">More...</a><br /></td></tr>
-<tr class="separator:gad9a2039849be9ab98d67d7aa38d44c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

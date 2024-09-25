@@ -154,14 +154,29 @@ function portGroupDetermine(pinstances, group, port) {
 %           }
 %       } else {
 %           // input
+%%{
+            // Hysteresis Control
+            let hysteresisControl = pinst.hysteresisControl;
+            if(!pinst.hysteresisOverride){
+                let pin = pinst.pin.$solution;
+                let packagePin = pin.packagePinName;
+                let io_type = system.deviceData.devicePins[packagePin].attributes.io_type;
+                if(io_type.match(/Any|OD/) === null){
+                    hysteresisControl = "DISABLE";
+                }
+                else{
+                    hysteresisControl = "ENABLE";
+                }
+            }
+%%}
 %           if((pinst.wakeupLogic === "DISABLE" || !Common.hasWakeupLogic()) && pinst.internalResistor === "NONE" &&
-%              pinst.hysteresisControl === "DISABLE" && pinst.invert === "DISABLE"){
+%              hysteresisControl === "ENABLE" && pinst.invert === "DISABLE"){
 %               initIOMux = "DL_GPIO_initDigitalInput("+ ioMuxName +");";
 %           } else {
 %           initIOMux = "DL_GPIO_initDigitalInputFeatures("+ ioMuxName +
 %               ",\n\t\t DL_GPIO_INVERSION_" + pinst.invert +
 %               ", DL_GPIO_RESISTOR_" + pinst.internalResistor +
-%               ",\n\t\t DL_GPIO_HYSTERESIS_" + pinst.hysteresisControl +
+%               ",\n\t\t DL_GPIO_HYSTERESIS_" + hysteresisControl +
 %               ", DL_GPIO_WAKEUP_" + ((Common.hasWakeupLogic())?pinst.wakeupLogic:"DISABLE") + ");";
 %           }
 %       }

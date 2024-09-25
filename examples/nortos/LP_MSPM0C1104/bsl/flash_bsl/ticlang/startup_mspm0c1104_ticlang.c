@@ -66,6 +66,29 @@ extern void PendSV_Handler(void)
 extern void SysTick_Handler(void)
     __attribute__((weak, alias("Default_Handler")));
 
+/* Device Specific Interrupt Handlers */
+extern void GROUP0_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void GPIOA_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void TIMG8_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void ADC0_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void SPI0_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void UART0_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void TIMG14_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void TIMA0_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void I2C0_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+extern void DMA_IRQHandler(void)
+    __attribute__((weak, alias("Default_Handler")));
+
+
 /* Interrupt vector table.  Note that the proper constructs must be placed on this to */
 /* ensure that it ends up at physical address 0x0000.0000 or at the start of          */
 /* the program if located at a start address other than 0.                            */
@@ -96,7 +119,39 @@ void (*const interruptVectors[])(void) =
         DebugMon_Handler,         /* Debug monitor handler     */
         0,                        /* Reserved                  */
         PendSV_Handler,           /* The PendSV handler        */
-        SysTick_Handler           /* SysTick handler           */
+        SysTick_Handler,           /* SysTick handler           */
+        GROUP0_IRQHandler, /* GROUP0 interrupt handler  */
+        GPIOA_IRQHandler,  /* GPIOA interrupt handler   */
+        TIMG8_IRQHandler,  /* TIMG8 interrupt handler   */
+        0,                 /* Reserved                  */
+        ADC0_IRQHandler,   /* ADC0 interrupt handler    */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        SPI0_IRQHandler,   /* SPI0 interrupt handler    */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        UART0_IRQHandler,  /* UART0 interrupt handler   */
+        TIMG14_IRQHandler, /* TIMG14 interrupt handler  */
+        0,                 /* Reserved                  */
+        TIMA0_IRQHandler,  /* TIMA0 interrupt handler   */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        I2C0_IRQHandler,   /* I2C0 interrupt handler    */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        0,                 /* Reserved                  */
+        DMA_IRQHandler,    /* DMA interrupt handler     */
     };
 
 /* Forward declaration of the default fault handlers. */

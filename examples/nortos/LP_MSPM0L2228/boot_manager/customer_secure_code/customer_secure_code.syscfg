@@ -2,7 +2,8 @@
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
-// @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+//@cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+//@v2CliArgs --device "MSPM0L2228" --package "LQFP-80(PN)"
 // @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
 
 /**
@@ -32,19 +33,6 @@ SECCONFIG.cscAppImageBaseAddr = 0x4800;
 SECCONFIG.cscAppImageSize     = 0x2800;
 
 GPIO1.$name                         = "GPIO_LEDS";
-GPIO1.associatedPins.create(3);
-GPIO1.associatedPins[0].$name       = "USER_LED_1";
-GPIO1.associatedPins[0].pin.$assign = "PB9";
-GPIO1.associatedPins[1].$name       = "USER_LED_2";
-GPIO1.associatedPins[1].pin.$assign = "PB10";
-GPIO1.associatedPins[2].$name       = "USER_LED_3";
-GPIO1.associatedPins[2].pin.$assign = "PA23";
-
-GPIO2.$name                              = "GPIO_SWITCHES";
-GPIO2.associatedPins[0].$name            = "PIN_0";
-GPIO2.associatedPins[0].internalResistor = "PULL_DOWN";
-GPIO2.associatedPins[0].direction        = "INPUT";
-GPIO2.associatedPins[0].inputFilter      = "3_CYCLES";
-GPIO2.associatedPins[0].interruptEn      = true;
-GPIO2.associatedPins[0].polarity         = "RISE";
-GPIO2.associatedPins[0].pin.$assign      = "PA18";
+GPIO1.associatedPins.create(1);
+GPIO1.associatedPins[0].$name       = "USER_LED_RED";
+GPIO1.associatedPins[0].pin.$assign = "PB10";

@@ -39,8 +39,6 @@
  *  Library source code must extern the correct symbol--which is resolved
  *  when the application is linked.
  *
- *  DO NOT EDIT - This file is generated for the LP_MSPM0G350X
- *  by the SysConfig tool.
  */
 #ifndef ti_drivers_config_h
 #define ti_drivers_config_h

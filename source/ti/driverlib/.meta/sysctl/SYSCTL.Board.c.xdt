@@ -220,6 +220,11 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
 % if (printPolicy) {
     `printPolicy`
 % }
+% if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+%   if(stat.powerPolicy.includes("STOP")){
+    DL_SYSCTL_setSRAMBank1PowerLevelInSTOP(DL_SYSCTL_SRAM_BANK1_POWER_LEVEL_STOP_MODE_`stat.sramPowerLevel`);
+%   }
+% }
 % /* Disabled when TI Drivers configuration enabled */
 % if(!stat.driversEn){
     DL_SYSCTL_setBORThreshold(DL_SYSCTL_BOR_THRESHOLD_LEVEL_`stat.BORThresh`);

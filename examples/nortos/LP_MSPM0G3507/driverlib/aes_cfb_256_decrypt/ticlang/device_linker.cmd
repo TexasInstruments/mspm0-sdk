@@ -34,6 +34,7 @@
 -uinterruptVectors
 --stack_size=512
 
+
 MEMORY
 {
     FLASH           (RX)  : origin = 0x00000000, length = 0x00020000

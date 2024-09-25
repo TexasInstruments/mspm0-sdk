@@ -112,6 +112,8 @@
         </file>
         <file path="../ti/driverlib/dl_rtc_a.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
+        <file path="../ti/driverlib/dl_rtc_b.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
         <file path="../ti/driverlib/dl_rtc_common.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_scratchpad.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
@@ -153,6 +155,8 @@
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
@@ -202,11 +206,15 @@
         </file>
         <file path="../ti/driverlib/dl_vref.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
+        <file path="../ti/driverlib/m0p/dl_factoryregion.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p">
+        </file>
         <file path="../ti/driverlib/m0p/dl_interrupt.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>

@@ -34,8 +34,6 @@
  *  ============ ti_drivers_config.h =============
  *  Configured MSPM0 Driver module declarations
  *
- *  DO NOT EDIT - This file is generated for the LP_MSPM0L222X
- *  by the SysConfig tool.
  */
 
 /* clang-format off */

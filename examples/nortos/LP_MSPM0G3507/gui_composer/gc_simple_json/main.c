@@ -143,8 +143,8 @@ void GROUP1_IRQHandler(void)
     switch (DL_Interrupt_getPendingGroup(DL_INTERRUPT_GROUP_1)) {
         case DL_INTERRUPT_GROUP1_IIDX_GPIOB:
             /* When USER_SWITCH_1 is pressed, update 8-bit counter */
-            switch (DL_GPIO_getPendingInterrupt(GPIO_SWITCHES1_PORT)) {
-                case SWITCHES1_USER_SWITCH_1_IIDX:
+            switch (DL_GPIO_getPendingInterrupt(GPIO_SWITCHES_1_PORT)) {
+                case GPIO_SWITCHES_1_USER_SWITCH_1_IIDX:
                     u8Counter += 50;
                     break;
                 default:
@@ -153,8 +153,8 @@ void GROUP1_IRQHandler(void)
             break;
         case DL_INTERRUPT_GROUP1_IIDX_GPIOA:
             /* When USER_SWITCH_2 is pressed, update 16-bit counter */
-            switch (DL_GPIO_getPendingInterrupt(GPIO_SWITCHES2_PORT)) {
-                case SWITCHES2_USER_SWITCH_1_IIDX:
+            switch (DL_GPIO_getPendingInterrupt(GPIO_SWITCHES_2_PORT)) {
+                case GPIO_SWITCHES_2_USER_SWITCH_2_IIDX:
                     u16Counter += 5000;
                     break;
                 default:

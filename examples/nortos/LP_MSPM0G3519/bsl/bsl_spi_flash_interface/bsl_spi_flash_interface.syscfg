@@ -1,0 +1,31 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G351X" --package "LQFP-100(PZ)" --part "Default"
+// @v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3519 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const NONMAIN       = scripting.addModule("/ti/driverlib/NONMAIN");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+NONMAIN.nonmainWarning               = true;
+NONMAIN.staticWriteProtectionNonMain = true;
+NONMAIN.staticWriteProtectionMainLow = 0xFFFF00FF;
+NONMAIN.bslFlashPluginEnable         = true;
+NONMAIN.bslPluginHookInitAddress     = 0x2000;
+NONMAIN.bslPluginHookReceiveAddress  = 0x2100;
+NONMAIN.bslPluginHookTransmitAddress = 0x2300;
+NONMAIN.bslPluginHookDeInitAddress   = 0x2400;
+NONMAIN.bslPluginHookInit            = "BSL_PI_SPI_init";
+NONMAIN.bslPluginHookReceive         = "BSL_PI_SPI_receive";
+NONMAIN.bslPluginHookTransmit        = "BSL_PI_SPI_send";
+NONMAIN.bslPluginHookDeInit          = "BSL_PI_SPI_deinit";
+
+ProjectConfig.genLinker  = false;
+ProjectConfig.genStartup = false;
+ProjectConfig.genOpts    = false;
+ProjectConfig.genLibs    = false;

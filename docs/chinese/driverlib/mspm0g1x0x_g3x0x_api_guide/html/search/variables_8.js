@@ -4,8 +4,8 @@ var searchData=
   ['id',['id',['../struct_d_l___m_c_a_n___tx_buf_element.html#a2e436f3688ff09b3ec987915f0f19502',1,'DL_MCAN_TxBufElement::id()'],['../struct_d_l___m_c_a_n___rx_buf_element.html#aa76e4c8f4363000e8941f26e1fa1bc1c',1,'DL_MCAN_RxBufElement::id()'],['../struct_d_l___m_c_a_n___tx_event_f_i_f_o_element.html#a20bf9ebb81609d46c6a19e412ce83131',1,'DL_MCAN_TxEventFIFOElement::id()']]],
   ['in0filtctl',['in0FiltCtl',['../struct_d_l___timer__backup_config.html#a94650dcbc226ba8885b9974730a3218d',1,'DL_Timer_backupConfig::in0FiltCtl()'],['../struct_d_l___timer_a__backup_config.html#ada331f1abb603fe62be1c448b7b0ff6d',1,'DL_TimerA_backupConfig::in0FiltCtl()']]],
   ['in1filtctl',['in1FiltCtl',['../struct_d_l___timer__backup_config.html#a58b4f08b97717c8556e0cf79c0578a04',1,'DL_Timer_backupConfig::in1FiltCtl()'],['../struct_d_l___timer_a__backup_config.html#a98f5978b96c520480aa813d04c742085',1,'DL_TimerA_backupConfig::in1FiltCtl()']]],
-  ['in2filtctl',['in2FiltCtl',['../struct_d_l___timer_a__backup_config.html#aa08c625b1a3f4cef21af9cacd2b6f4b0',1,'DL_TimerA_backupConfig']]],
-  ['in3filtctl',['in3FiltCtl',['../struct_d_l___timer_a__backup_config.html#aa18af4fe205974741a111292f37fd46a',1,'DL_TimerA_backupConfig']]],
+  ['in2filtctl',['in2FiltCtl',['../struct_d_l___timer__backup_config.html#afa71dd1a4bd4a9aa304e5d0da18ba7f6',1,'DL_Timer_backupConfig::in2FiltCtl()'],['../struct_d_l___timer_a__backup_config.html#aa08c625b1a3f4cef21af9cacd2b6f4b0',1,'DL_TimerA_backupConfig::in2FiltCtl()']]],
+  ['in3filtctl',['in3FiltCtl',['../struct_d_l___timer__backup_config.html#a8abba786734bd06b830144c5948ed2e4',1,'DL_Timer_backupConfig::in3FiltCtl()'],['../struct_d_l___timer_a__backup_config.html#aa18af4fe205974741a111292f37fd46a',1,'DL_TimerA_backupConfig::in3FiltCtl()']]],
   ['inputchan',['inputChan',['../struct_d_l___timer___capture_config.html#ab854fc9f9968f4e438ca9e7fab07be2e',1,'DL_Timer_CaptureConfig::inputChan()'],['../struct_d_l___timer___capture_combined_config.html#a1d4c7d0a4b22cf2caf2693f3a2598f0f',1,'DL_Timer_CaptureCombinedConfig::inputChan()'],['../struct_d_l___timer___compare_config.html#aad416efe46b0b78824c043aaf47f9421',1,'DL_Timer_CompareConfig::inputChan()']]],
   ['inputfreq',['inputFreq',['../struct_d_l___s_y_s_c_t_l___s_y_s_p_l_l_config.html#a1b88460036d086ccb173c9b63950117c',1,'DL_SYSCTL_SYSPLLConfig']]],
   ['inputinvmode',['inputInvMode',['../struct_d_l___timer___capture_config.html#ae87a9cb1032d6f4c00d1bbf91f1bc0af',1,'DL_Timer_CaptureConfig::inputInvMode()'],['../struct_d_l___timer___capture_combined_config.html#a86893eacc8b47055fb7fe2b733c9eb2d',1,'DL_Timer_CaptureCombinedConfig::inputInvMode()'],['../struct_d_l___timer___compare_config.html#af76397483a526ed6c8ee121fe9f66028',1,'DL_Timer_CompareConfig::inputInvMode()']]],
@@ -23,6 +23,6 @@ var searchData=
   ['intlnenableconf',['intLnEnableConf',['../struct_d_l___m_c_a_n__backup_config.html#a39cc23893ddf8b3dc21ddd5a11e4b5a4',1,'DL_MCAN_backupConfig']]],
   ['intlnselconf',['intLnSelConf',['../struct_d_l___m_c_a_n__backup_config.html#acf0b73ec7c69c7c47b5f4294864eeb65',1,'DL_MCAN_backupConfig']]],
   ['irdacontrolword',['irdaControlWord',['../struct_d_l___u_a_r_t___extend__backup_config.html#ac2a4d4411d7ff543d1698720f9f1864b',1,'DL_UART_Extend_backupConfig']]],
-  ['istimerwithfourcc',['isTimerWithFourCC',['../struct_d_l___timer_a___p_w_m_config.html#a2424b2f2dce837389f7b925fcc4819fb',1,'DL_TimerA_PWMConfig']]],
+  ['istimerwithfourcc',['isTimerWithFourCC',['../struct_d_l___timer___p_w_m_config.html#a5b4a7e5a75939ae6d451fe92748b7b00',1,'DL_Timer_PWMConfig']]],
   ['iterations',['iterations',['../struct_d_l___math_a_c_l__operation_config.html#ab8ddaae6c0c5da4ef7a69334327ef8ad',1,'DL_MathACL_operationConfig']]]
 ];

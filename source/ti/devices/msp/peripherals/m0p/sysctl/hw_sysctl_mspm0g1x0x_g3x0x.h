@@ -2595,7 +2595,6 @@ typedef struct {
 #define SYSCTL_MCLKCFG_UDIV_NODIVIDE             ((uint32_t)0x00000000U)         /* !< ULPCLK is not divided and is equal
                                                                                     to MCLK */
 #define SYSCTL_MCLKCFG_UDIV_DIVIDE2              ((uint32_t)0x00000010U)         /* !< ULPCLK is MCLK/2 (divided-by-2) */
-#define SYSCTL_MCLKCFG_UDIV_DIVIDE3              ((uint32_t)0x00000020U)         /* !< ULPCLK is MCLK/3 (divided-by-3) */
 
 /* SYSCTL_HSCLKEN Bits */
 /* SYSCTL_HSCLKEN[HFXTEN] Bits */

@@ -142,8 +142,8 @@ typedef struct {
 /* IOMUX_PINCM[HYSTEN] Bits */
 #define IOMUX_PINCM_HYSTEN_OFS                   (19)                            /* !< HYSTEN Offset */
 #define IOMUX_PINCM_HYSTEN_MASK                  ((uint32_t)0x00080000U)         /* !< Hysteresis Enable Control Selection */
-#define IOMUX_PINCM_HYSTEN_DISABLE               ((uint32_t)0x00000000U)         /* !< hysteresis is disabled. */
-#define IOMUX_PINCM_HYSTEN_ENABLE                ((uint32_t)0x00080000U)         /* !< hysteresis is enabled */
+#define IOMUX_PINCM_HYSTEN_ENABLE                ((uint32_t)0x00000000U)         /* !< hysteresis is enabled. */
+#define IOMUX_PINCM_HYSTEN_DISABLE               ((uint32_t)0x00080000U)         /* !< hysteresis is disabled */
 /* IOMUX_PINCM[DRV] Bits */
 #define IOMUX_PINCM_DRV_OFS                      (20)                            /* !< DRV Offset */
 #define IOMUX_PINCM_DRV_MASK                     ((uint32_t)0x00100000U)         /* !< Drive strength control selection,

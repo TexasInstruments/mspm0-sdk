@@ -8,6 +8,11 @@ let MigrationController = system.modules["/ti/project_config/ProjectConfig"];
 let migration_inst = MigrationController.$static;
 let gpn = migration_inst.deviceSpinAdvanced;
 
+let SRAMSection = "SRAM";
+if(Common.hasTrimTable()){
+    SRAMSection = "SRAM_BANK0";
+}
+
 %%}
 /*****************************************************************************
 
@@ -45,13 +50,29 @@ let gpn = migration_inst.deviceSpinAdvanced;
 -uinterruptVectors
 --stack_size=`Options.StackSize[gpn]`
 
+% if(Common.hasTrimTable()){
+/* Note: SRAM is partitioned into two separate sections SRAM_BANK0 and SRAM_BANK1
+ * to account for SRAM_BANK1 being wiped out upon the device entering any low-power
+ * mode stronger than SLEEP. Thus, it is up to the end-user to enable SRAM_BANK1 for
+ * applications where the memory is considered lost outside of RUN and SLEEP Modes.
+ */
+% }
+
 MEMORY
 {
     FLASH           (RX)  : origin = `Options.FLASHOrigin[gpn]`, length = `Options.FLASHLength[gpn]`
+% if(Common.hasTrimTable()){
+    SRAM_BANK0      (RWX) : origin = `Options.SRAMOrigin[gpn]`, length = `Options.SRAMLength[gpn]`
+    SRAM_BANK1      (RWX) : origin = `Options.SRAMBank1Origin[gpn]`, length = `Options.SRAMBank1Length[gpn]`
+% } else{
     SRAM            (RWX) : origin = `Options.SRAMOrigin[gpn]`, length = `Options.SRAMLength[gpn]`
+% }
     BCR_CONFIG      (R)   : origin = `Options.BCROrigin[gpn]`, length = `Options.BCRLength[gpn]`
 % if(Common.hasBSLConfig()){
     BSL_CONFIG      (R)   : origin = `Options.BSLOrigin[gpn]`, length = `Options.BSLLength[gpn]`
+% }
+% if(Common.hasDataRegionConfig()){
+    DATA            (R)   : origin = `Options.DATAOrigin[gpn]`, length = `Options.DATALength[gpn]`
 % }
 }
 
@@ -66,17 +87,24 @@ SECTIONS
     .ARM.exidx    : palign(8) {} > FLASH
     .init_array   : palign(8) {} > FLASH
     .binit        : palign(8) {} > FLASH
-    .TI.ramfunc   : load = FLASH, palign(8), run=SRAM, table(BINIT)
+    .TI.ramfunc   : load = FLASH, palign(8), run=`SRAMSection`, table(BINIT)
 
-    .vtable :   > SRAM
-    .args   :   > SRAM
-    .data   :   > SRAM
-    .bss    :   > SRAM
-    .sysmem :   > SRAM
-    .stack  :   > SRAM (HIGH)
+    .vtable :   > `SRAMSection`
+    .args   :   > `SRAMSection`
+    .data   :   > `SRAMSection`
+    .bss    :   > `SRAMSection`
+    .sysmem :   > `SRAMSection`
+% /* Trim Workaround exclusive to MSPM0GX51X */
+% if(Common.hasTrimTable()){
+    .TrimTable :  > `SRAMSection`
+% }
+    .stack  :   > `SRAMSection` (HIGH)
 
     .BCRConfig  : {} > BCR_CONFIG
 % if(Common.hasBSLConfig()){
     .BSLConfig  : {} > BSL_CONFIG
+% }
+% if(Common.hasDataRegionConfig()){
+    .DataBank   : {} > DATA
 % }
 }

@@ -8,19 +8,40 @@ let MigrationController = system.modules["/ti/project_config/ProjectConfig"];
 let migration_inst = MigrationController.$static;
 let gpn = migration_inst.deviceSpinAdvanced;
 
+let SRAMSection = "SRAM";
+if(Common.hasTrimTable()){
+    SRAMSection = "SRAM_BANK0";
+}
+
 %%}
 /* Generate a link error if heap and stack don't fit into RAM */
 _Min_Heap_Size  = 0;      /* required amount of heap  */
 _Min_Stack_Size = 0x80; /* required amount of stack */
 
+% if(Common.hasTrimTable()){
+/* Note: SRAM is partitioned into two separate sections SRAM_BANK0 and SRAM_BANK1
+ * to account for SRAM_BANK1 being wiped out upon the device entering any low-power
+ * mode stronger than SLEEP. Thus, it is up to the end-user to enable SRAM_BANK1 for
+ * applications where the memory is considered lost outside of RUN and SLEEP Modes.
+ */
+% }
+
 /* Specify the memory areas */
 MEMORY
 {
     FLASH           (RX)  : ORIGIN = `Options.FLASHOrigin[gpn]`, LENGTH = `Options.FLASHLength[gpn]`
+% if(Common.hasTrimTable()){
+    SRAM_BANK0      (RWX) : ORIGIN = `Options.SRAMOrigin[gpn]`, LENGTH = `Options.SRAMLength[gpn]`
+    SRAM_BANK1      (RWX) : ORIGIN = `Options.SRAMBank1Origin[gpn]`, LENGTH = `Options.SRAMBank1Length[gpn]`
+% } else {
     SRAM            (RWX) : ORIGIN = `Options.SRAMOrigin[gpn]`, LENGTH = `Options.SRAMLength[gpn]`
+% }
     BCR_CONFIG      (R)   : ORIGIN = `Options.BCROrigin[gpn]`, LENGTH = `Options.BCRLength[gpn]`
 % if(Common.hasBSLConfig()){
     BSL_CONFIG      (R)   : ORIGIN = `Options.BSLOrigin[gpn]`, LENGTH = `Options.BSLLength[gpn]`
+% }
+% if(Common.hasDataRegionConfig()){
+    DATA            (R)   : ORIGIN = `Options.DATAOrigin[gpn]`, LENGTH = `Options.DATALength[gpn]`
 % }
 }
 
@@ -30,12 +51,15 @@ REGION_ALIAS("REGION_TEXT", FLASH);
 REGION_ALIAS("REGION_PREINIT_ARRAY", FLASH);
 REGION_ALIAS("REGION_INIT_ARRAY", FLASH);
 REGION_ALIAS("REGION_FINI_ARRAY", FLASH);
-REGION_ALIAS("REGION_BSS", SRAM);
-REGION_ALIAS("REGION_NOINIT", SRAM);
-REGION_ALIAS("REGION_DATA", SRAM);
-REGION_ALIAS("REGION_STACK", SRAM);
-REGION_ALIAS("REGION_HEAP", SRAM);
-REGION_ALIAS("REGION_TEXT_RAM", SRAM);
+REGION_ALIAS("REGION_BSS", `SRAMSection`);
+REGION_ALIAS("REGION_NOINIT", `SRAMSection`);
+REGION_ALIAS("REGION_DATA", `SRAMSection`);
+% if(Common.hasTrimTable()){
+REGION_ALIAS("REGION_TRIMTABLE", SRAM_BANK0);
+% }
+REGION_ALIAS("REGION_STACK", `SRAMSection`);
+REGION_ALIAS("REGION_HEAP", `SRAMSection`);
+REGION_ALIAS("REGION_TEXT_RAM", `SRAMSection`);
 REGION_ALIAS("REGION_ARM_EXIDX", FLASH);
 REGION_ALIAS("REGION_ARM_EXTAB", FLASH);
 
@@ -144,6 +168,15 @@ SECTIONS
         __bss_end__ = .;
     } > REGION_BSS AT> REGION_BSS
 
+% if(Common.hasTrimTable()){
+	.TrimTable : {
+        __TrimTable_start__ = .;
+        KEEP (*(.TrimTable))
+        . = ALIGN (8);
+        __TrimTable_end__ = .;
+	} > REGION_TRIMTABLE AT> REGION_TRIMTABLE
+
+% }
     .noinit : {
         /* place all symbols in input sections that start with .noinit */
         KEEP(*(*.noinit*))
@@ -175,6 +208,12 @@ SECTIONS
     {
         KEEP(*(.BSLConfig))
     } > BSL_CONFIG
+% }
+% if(Common.hasDataRegionConfig()){
+    .DataBank :
+    {
+        KEEP(*(.DataBank))
+    } > DATA
 % }
 
     __StackTop = ORIGIN(REGION_STACK) + LENGTH(REGION_STACK);

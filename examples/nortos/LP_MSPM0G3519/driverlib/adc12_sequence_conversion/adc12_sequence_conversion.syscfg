@@ -1,0 +1,46 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G351X" --package "LQFP-100(PZ)" --part "Default"
+//@v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3519 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                 = "ADC12_0";
+ADC121.sampClkSrc            = "DL_ADC12_CLOCK_ULPCLK";
+ADC121.sampClkDiv            = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.powerDownMode         = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.samplingOperationMode = "sequence";
+ADC121.endAdd                = 3;
+ADC121.enabledInterrupts     = ["DL_ADC12_INTERRUPT_MEM3_RESULT_LOADED"];
+ADC121.sampleTime0           = "40 us";
+ADC121.adcMem0chansel        = "DL_ADC12_INPUT_CHAN_5";
+ADC121.adcMem1chansel        = "DL_ADC12_INPUT_CHAN_4";
+ADC121.adcMem2chansel        = "DL_ADC12_INPUT_CHAN_12";
+ADC121.adcMem3chansel        = "DL_ADC12_INPUT_CHAN_2";
+ADC121.peripheral.$assign    = "ADC0";
+ADC121.adcPin5Config.$name   = "ti_driverlib_gpio_GPIOPinGeneric0";
+ADC121.adcPin4Config.$name   = "ti_driverlib_gpio_GPIOPinGeneric1";
+ADC121.adcPin12Config.$name  = "ti_driverlib_gpio_GPIOPinGeneric3";
+ADC121.adcPin2Config.$name   = "ti_driverlib_gpio_GPIOPinGeneric2";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.peripheral.$assign    = "SYSCTL";
+
+const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
+ProjectConfig.migrationCondition = true;

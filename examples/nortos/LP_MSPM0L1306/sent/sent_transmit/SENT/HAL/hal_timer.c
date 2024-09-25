@@ -47,9 +47,10 @@ static const DL_TimerG_ClockConfig gPWM_0ClockConfig = {
     .prescale    = 0U};
 
 static const DL_TimerG_PWMConfig gPWM_0Config = {
-    .pwmMode    = DL_TIMER_PWM_MODE_EDGE_ALIGN_UP,
-    .period     = 0,
-    .startTimer = DL_TIMER_STOP,
+    .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN_UP,
+    .period            = 0,
+    .startTimer        = DL_TIMER_STOP,
+    .isTimerWithFourCC = false,
 };
 
 void HAL_Timer_init(uint16_t load, uint16_t capture)

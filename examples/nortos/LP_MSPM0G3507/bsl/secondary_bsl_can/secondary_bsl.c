@@ -142,7 +142,7 @@ const BSLPluginInfo Interface = {
 
 #ifdef CAN_Plugin
 const BSLPluginInfo Interface = {
-#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20200170)
+#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20200200)
     .plugin_type = BSL_CFG_PLUGIN_TYPE_ANY,
     .init        = BSL_PI_MCAN_init,
     .receive     = BSL_PI_MCAN_receive,

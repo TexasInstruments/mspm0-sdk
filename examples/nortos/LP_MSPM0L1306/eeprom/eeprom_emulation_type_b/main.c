@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2021-24, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,8 +33,10 @@
 #include <ti/eeprom/emulation_type_b/eeprom_emulation_type_b.h>
 #include "ti_msp_dl_config.h"
 
-/* Address in main memory to write to */
-#define MAIN_BASE_ADDRESS (0x00001000)
+/* Address in main memory to write to. This is defined in the
+ * eeprom_emulation_type_a.h header file. Uncommenting the #define below will
+ * overwrite the default #define in the header file. */
+//#define EEPROM_EMULATION_ADDRESS    0x00001400
 
 /* Data and identifier used for test */
 uint16_t var_id        = 0;
@@ -57,7 +59,7 @@ int main(void)
     }
 
     num = 1;
-    while (1) {
+    for (uint32_t counter = 0; counter < 255; counter++) {
         /* data and identifier */
         var_id = num;
         var_data++;
@@ -79,9 +81,9 @@ int main(void)
              * In this demo, gEEPROMTypeBEraseFlag is checked after write
              * operation. If the group is full, it will be erased immediately
              */
+            __BKPT(0);
             EEPROM_TypeB_eraseGroup();
             gEEPROMTypeBEraseFlag = 0;
-            __BKPT(0);
         }
 
         /* Read operation */
@@ -91,6 +93,11 @@ int main(void)
             __BKPT(0);
         }
 
+        /* Can comment out to quickly see the functionality of the EEPROM_TypeB_eraseGroup() function */
         __BKPT(0);
     }
+
+    while(1) {
+        __WFI(); 
+    } 
 }

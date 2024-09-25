@@ -5,7 +5,8 @@
       "$(MSPM0L11xx_L13xx_devices)",
       "$(MSPM0G1x0x_G3x0x_devices)",
       "$(MSPM0C110x_devices)",
-      "$(MSPM0L122x_L222x_devices)"
+      "$(MSPM0L122x_L222x_devices)",
+      "$(MSPM0Gx51x_devices)"
     ]
   },
   {
@@ -59,12 +60,22 @@
     ]
   },
   {
+    "arraymacro": "MSPM0Gx51x_devices",
+    "value": [
+      "MSPM0G1518",
+      "MSPM0G1519",
+      "MSPM0G3518",
+      "MSPM0G3519"
+    ]
+  },
+  {
     "arraymacro": "MSPM0_all_devtools",
     "value": [
       "$(MSPM0L11xx_L13xx_devtools)",
       "$(MSPM0G1x0x_G3x0x_devtools)",
       "$(MSPM0C110x_devtools)",
-      "$(MSPM0L122x_L222x_devtools)"
+      "$(MSPM0L122x_L222x_devtools)",
+      "$(MSPM0G3519_devtools)"
     ]
   },
   {
@@ -89,6 +100,12 @@
     "arraymacro": "MSPM0L122x_L222x_devtools",
     "value": [
       "LP-MSPM0L2228"
+    ]
+  },
+  {
+    "arraymacro": "MSPM0G3519_devtools",
+    "value": [
+      "LP-MSPM0G3519"
     ]
   }
 ]

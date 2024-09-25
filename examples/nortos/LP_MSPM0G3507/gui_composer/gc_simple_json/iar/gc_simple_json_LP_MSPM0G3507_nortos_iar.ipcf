@@ -50,6 +50,14 @@
     </linkerExtraOptions>
 
     <customBuildTools>
+        <customBuildTool atRoot="true" name="SysConfig"> <!-- Custom build tool for entire project-->
+            <fileExtensions>.syscfg</fileExtensions>
+            <command>$SYSCONFIG_ROOT$/sysconfig_cli.bat -o $PROJ_DIR$ -s "$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json" --compiler iar $FILE_PATH$</command>
+            <output>
+                <path>SysConfig_Generated_Files.ipcf</path>
+            </output>
+            <hasPrio>true</hasPrio> <!-- true: run this tool before all other tools-->
+        </customBuildTool>
     </customBuildTools>
 
     <heaps>
@@ -70,13 +78,12 @@
     <files>
         <path copyTo="$PROJ_DIR$/callbacks_JSON.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/callbacks_JSON.c</path>
         <path copyTo="$PROJ_DIR$/callbacks_JSON.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/callbacks_JSON.h</path>
+        <path copyTo="$PROJ_DIR$/gc_simple_json.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/gc_simple_json.syscfg</path>
         <path copyTo="$PROJ_DIR$/HAL_UART_M0G3507.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/HAL_UART_M0G3507.c</path>
         <path copyTo="$PROJ_DIR$/main.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/main.c</path>
         <path copyTo="$PROJ_DIR$/mspm0g3507.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/iar/mspm0g3507.icf</path>
         <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/README.html</path>
         <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/README.md</path>
-        <path copyTo="$PROJ_DIR$/ti_msp_dl_config.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/ti_msp_dl_config.c</path>
-        <path copyTo="$PROJ_DIR$/ti_msp_dl_config.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/ti_msp_dl_config.h</path>
         <group name="iar" build="true">
             <path copyTo="$PROJ_DIR$/iar/startup_mspm0g350x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/gui_composer/gc_simple_json/iar/startup_mspm0g350x_iar.c</path>
         </group>

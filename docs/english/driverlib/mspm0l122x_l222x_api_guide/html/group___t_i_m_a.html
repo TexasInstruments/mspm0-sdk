@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -162,9 +162,6 @@ Modules</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___timer_a___p_w_m_config.html">DL_TimerA_PWMConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___t_i_m_a.html#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">DL_TimerA_initPWMMode</a>.  <a href="struct_d_l___timer_a___p_w_m_config.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___timer_a__backup_config.html">DL_TimerA_backupConfig</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure to backup Timer A peripheral state before entering STOP or STANDBY mode. Not required after PG 1.0 silicon. Used by <a class="el" href="group___t_i_m_a.html#ga24733298a4ff89389376656dbc9730a9">DL_TimerA_saveConfiguration</a> and <a class="el" href="group___t_i_m_a.html#gae6ac40d8762a7d1775b0d39c85f504e8">DL_TimerA_restoreConfiguration</a>.  <a href="struct_d_l___timer_a__backup_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -687,9 +684,17 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#ga4e8ba51c4980f139b57ae09be04783e7">DL_TimerA_getHaltBehavior</a>&#160;&#160;&#160;<a class="el" href="group___t_i_m_x.html#ga53105b387aeefc751d098437e07aae56">DL_Timer_getCoreHaltBehavior</a></td></tr>
 <tr class="memdesc:ga4e8ba51c4980f139b57ae09be04783e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="group___t_i_m_x.html#ga53105b387aeefc751d098437e07aae56">DL_Timer_getCoreHaltBehavior</a>. <br /></td></tr>
 <tr class="separator:ga4e8ba51c4980f139b57ae09be04783e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga102ebcb322db4c2bf320afeccbc911fe"><td class="memItemLeft" align="right" valign="top"><a id="ga102ebcb322db4c2bf320afeccbc911fe"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#ga102ebcb322db4c2bf320afeccbc911fe">DL_TimerA_initPWMMode</a>&#160;&#160;&#160;<a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">DL_Timer_initFourCCPWMMode</a></td></tr>
+<tr class="memdesc:ga102ebcb322db4c2bf320afeccbc911fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">DL_Timer_initFourCCPWMMode</a>. <br /></td></tr>
+<tr class="separator:ga102ebcb322db4c2bf320afeccbc911fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:gab9ddb2e475539aec95d1df593860ef9c"><td class="memItemLeft" align="right" valign="top"><a id="gab9ddb2e475539aec95d1df593860ef9c"></a>
+typedef <a class="el" href="struct_d_l___timer___p_w_m_config.html">DL_Timer_PWMConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#gab9ddb2e475539aec95d1df593860ef9c">DL_TimerA_PWMConfig</a></td></tr>
+<tr class="memdesc:gab9ddb2e475539aec95d1df593860ef9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="struct_d_l___timer___p_w_m_config.html">DL_Timer_PWMConfig</a>. <br /></td></tr>
+<tr class="separator:gab9ddb2e475539aec95d1df593860ef9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad1241d1ffa0201908ca41beac9fd5bb0"><td class="memItemLeft" align="right" valign="top"><a id="gad1241d1ffa0201908ca41beac9fd5bb0"></a>
 typedef <a class="el" href="struct_d_l___timer___clock_config.html">DL_Timer_ClockConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#gad1241d1ffa0201908ca41beac9fd5bb0">DL_TimerA_ClockConfig</a></td></tr>
 <tr class="memdesc:gad1241d1ffa0201908ca41beac9fd5bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="struct_d_l___timer___clock_config.html">DL_Timer_ClockConfig</a>. <br /></td></tr>
@@ -721,9 +726,6 @@ typedef <a class="el" href="struct_d_l___timer___compare_trigger_config.html">DL
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">DL_TimerA_initPWMMode</a> (GPTIMER_Regs *gptimer, <a class="el" href="struct_d_l___timer_a___p_w_m_config.html">DL_TimerA_PWMConfig</a> *config)</td></tr>
-<tr class="memdesc:ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure timer in Pulse Width Modulation (PWM) Mode Initializes all the common configurable options for the TIMA peripheral when used in PWM mode. Any other custom configuration can be done after calling this API.  <a href="#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">More...</a><br /></td></tr>
-<tr class="separator:ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga24733298a4ff89389376656dbc9730a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#ga24733298a4ff89389376656dbc9730a9">DL_TimerA_saveConfiguration</a> (GPTIMER_Regs *gptimer, <a class="el" href="struct_d_l___timer_a__backup_config.html">DL_TimerA_backupConfig</a> *ptr)</td></tr>
 <tr class="memdesc:ga24733298a4ff89389376656dbc9730a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves TimerA configuration before entering STOP or STANDBY mode. Only necessary for PG 1.0 silicon. Timer must be in IDLE state before calling this API. Timer can be put IDLE state by calling <a class="el" href="group___t_i_m_a.html#gadbb760ee0ef207273baa3d6e6a116978">DL_TimerA_stopCounter</a>.  <a href="#ga24733298a4ff89389376656dbc9730a9">More...</a><br /></td></tr>
 <tr class="separator:ga24733298a4ff89389376656dbc9730a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -735,43 +737,6 @@ Functions</h2></td></tr>
 <p><a class="anchor" id="ti_dl_dl_timera__Overview"></a></p><h1>Overview</h1>
 <p>The TimerA Driver Library allows you to configure the Advanced Timer (TIMA) module in output compare, input capture, PWM output, one-shot and periodic modes. For detailed TIMA features please refer to the Device Technical Reference Manual (TRM). </p><hr/>
  <h2 class="groupheader">Function Documentation</h2>
-<a id="ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">&sect;&nbsp;</a></span>DL_TimerA_initPWMMode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DL_TimerA_initPWMMode </td>
-          <td>(</td>
-          <td class="paramtype">GPTIMER_Regs *&#160;</td>
-          <td class="paramname"><em>gptimer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_l___timer_a___p_w_m_config.html">DL_TimerA_PWMConfig</a> *&#160;</td>
-          <td class="paramname"><em>config</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Configure timer in Pulse Width Modulation (PWM) Mode Initializes all the common configurable options for the TIMA peripheral when used in PWM mode. Any other custom configuration can be done after calling this API. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gptimer</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramname">config</td><td>Pointer to the mode configuration struct <a class="el" href="struct_d_l___timer_a___p_w_m_config.html">DL_TimerA_PWMConfig</a>. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ga24733298a4ff89389376656dbc9730a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga24733298a4ff89389376656dbc9730a9">&sect;&nbsp;</a></span>DL_TimerA_saveConfiguration()</h2>
 

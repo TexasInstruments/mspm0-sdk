@@ -102,6 +102,7 @@ exports = {
     isDeviceM0G                             : isDeviceM0G,
     isDeviceM0L                             : isDeviceM0L,
     isDeviceM0C                             : isDeviceM0C,
+    isDeviceM0H                             : isDeviceM0H,
     isDeviceM0x110x                         : isDeviceM0x110x,
     isDeviceM0x310x                         : isDeviceM0x310x,
     isDeviceFamily_PARENT_MSPM0L11XX_L13XX  : isDeviceFamily_PARENT_MSPM0L11XX_L13XX,
@@ -124,6 +125,8 @@ exports = {
     hasGPIOPortB                            : hasGPIOPortB,
     hasGPIOPortC                            : hasGPIOPortC,
     hasBSLConfig                            : hasBSLConfig,
+    hasDataRegionConfig                     : hasDataRegionConfig,
+    hasTrimTable                            : hasTrimTable,
 
     isInternalTimerChannel                  : isInternalTimerChannel,
 
@@ -168,6 +171,8 @@ exports = {
     getGPIONumberMultiPad   : getGPIONumberMultiPad,
     getAllPorts             : getAllPorts,
     getTimerPWMInstance     : getTimerPWMInstance,
+
+    isTimerFourCCCapable    : isTimerFourCCCapable,
 };
 
 /*
@@ -1740,6 +1745,11 @@ function isDeviceFamily_PARENT_MSPM0C110X(){
     var deviceName = system.deviceData.device;
     return (["MSPM0C110X","MSPS003FX"].includes(deviceName));
 }
+/* Checks if device is part of MSPM0C110X device family */
+function isDeviceFamily_PARENT_MSPM0H321X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0H321X"].includes(deviceName));
+}
 /* Checks if device is part of MSPS003FX device family */
 function isDeviceFamily_MSPS003FX(){
     var deviceName = system.deviceData.device;
@@ -1771,6 +1781,10 @@ function isDeviceM0L(){
 /* checks if current device is one of MSPM0C-series */
 function isDeviceM0C(){
     return (isDeviceFamily_PARENT_MSPM0C110X());
+}
+/* checks if current device is one of MSPM0H-series */
+function isDeviceM0H(){
+    return (isDeviceFamily_PARENT_MSPM0H321X());
 }
 
 /* gets the device family name */
@@ -1811,6 +1825,12 @@ function I2CTargetWakeupWorkaroundFixed() {
 function hasBSLConfig(){
     return (isDeviceM0G() || isDeviceM0L());
 }
+
+/* Check if device supports Data Region configuration */
+function hasDataRegionConfig(){
+    return (isDeviceFamily_PARENT_MSPM0GX51X());
+}
+
 
 /* Check if device supports Timer A configuration */
 function hasTimerA(){
@@ -2362,7 +2382,7 @@ function getGPIOConfigBoardC(inst){
                         } else {
                             // input
                             if((pinst.wakeupLogic === "DISABLE" || !hasWakeupLogic()) && pinst.internalResistor === "NONE" &&
-                                pinst.hysteresisControl === "DISABLE" && pinst.invert === "DISABLE"){
+                                pinst.hysteresisControl === "ENABLE" && pinst.invert === "DISABLE"){
                                     initIOMux = "DL_GPIO_initPeripheralInputFunction("+
                                     "\n\t\t "+ioMuxName +", "+ioMuxName+"_FUNC);";
                             } else {
@@ -2664,4 +2684,37 @@ function getTimerPWMInstance(timerPeripheral){
         return undefined;
     }
     return PWMMod.$instances[index];
+}
+
+
+/*
+ *  ======== hasTrimTable ========
+ *  Checks if selected device requires Trim Table workaround for linker generation
+ *  
+ *  @return boolean answer
+ * 
+ */
+function hasTrimTable(){
+    if(isDeviceFamily_PARENT_MSPM0GX51X()){
+        return true;
+    }
+    return false;
+}
+
+/*
+ *  ======== isTimerFourCCCapable ========
+ *  Checks if passed timer instance supports four channels
+ *
+ *  @param timerPeripheral the timer instance to check
+ *
+ *  @return true if four channel capable, false if not
+ *
+ */
+function isTimerFourCCCapable(inst)
+{
+    try{
+        return (inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) !== null);
+    }catch (e) {
+        return false;
+    }
 }

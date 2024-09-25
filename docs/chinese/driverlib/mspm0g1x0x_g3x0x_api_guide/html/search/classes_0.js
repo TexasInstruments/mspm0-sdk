@@ -54,7 +54,6 @@ var searchData=
   ['dl_5ftimer_5fpwmconfig',['DL_Timer_PWMConfig',['../struct_d_l___timer___p_w_m_config.html',1,'']]],
   ['dl_5ftimer_5ftimerconfig',['DL_Timer_TimerConfig',['../struct_d_l___timer___timer_config.html',1,'']]],
   ['dl_5ftimera_5fbackupconfig',['DL_TimerA_backupConfig',['../struct_d_l___timer_a__backup_config.html',1,'']]],
-  ['dl_5ftimera_5fpwmconfig',['DL_TimerA_PWMConfig',['../struct_d_l___timer_a___p_w_m_config.html',1,'']]],
   ['dl_5ftrng_5fbackupconfig',['DL_TRNG_backupConfig',['../struct_d_l___t_r_n_g__backup_config.html',1,'']]],
   ['dl_5fuart_5fclockconfig',['DL_UART_ClockConfig',['../struct_d_l___u_a_r_t___clock_config.html',1,'']]],
   ['dl_5fuart_5fconfig',['DL_UART_Config',['../struct_d_l___u_a_r_t___config.html',1,'']]],

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['outdisconf',['outDisConf',['../struct_d_l___timer__backup_config.html#a9a2bf04346117cd149ffd8b0002f3b79',1,'DL_Timer_backupConfig::outDisConf()'],['../struct_d_l___timer_a__backup_config.html#a939226c5d4364d383a87ec4c7e7e83fb',1,'DL_TimerA_backupConfig::outDisConf()']]]
+  ['negchannel',['negChannel',['../struct_d_l___c_o_m_p___config.html#a3eac756666f466d12cceb34b10f9981d',1,'DL_COMP_Config']]],
+  ['nonce',['nonce',['../struct_d_l___a_e_s_a_d_v___config.html#a74c3e09782e4f4419560ebcc541d06d9',1,'DL_AESADV_Config']]]
 ];

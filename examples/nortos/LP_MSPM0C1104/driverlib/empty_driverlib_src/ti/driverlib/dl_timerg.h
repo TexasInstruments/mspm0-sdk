@@ -358,6 +358,16 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 #define DL_TIMERG_IIDX_CC1_DN                               DL_TIMER_IIDX_CC1_DN
 
 /**
+ * @brief Redirects to common @ref DL_TIMER_IIDX_CC2_DN
+ */
+#define DL_TIMERG_IIDX_CC2_DN                               DL_TIMER_IIDX_CC2_DN
+
+/**
+ * @brief Redirects to common @ref DL_TIMER_IIDX_CC3_DN
+ */
+#define DL_TIMERG_IIDX_CC3_DN                               DL_TIMER_IIDX_CC3_DN
+
+/**
  * @brief Redirects to common @ref DL_TIMER_IIDX_ZERO
  */
 #define DL_TIMERG_IIDX_CC0_UP                               DL_TIMER_IIDX_CC0_UP
@@ -366,6 +376,16 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
  * @brief Redirects to common @ref DL_TIMER_IIDX_ZERO
  */
 #define DL_TIMERG_IIDX_CC1_UP                               DL_TIMER_IIDX_CC1_UP
+
+/**
+ * @brief Redirects to common @ref DL_TIMER_IIDX_CC2_UP
+ */
+#define DL_TIMERG_IIDX_CC2_UP                               DL_TIMER_IIDX_CC2_UP
+
+/**
+ * @brief Redirects to common @ref DL_TIMER_IIDX_CC3_UP
+ */
+#define DL_TIMERG_IIDX_CC3_UP                               DL_TIMER_IIDX_CC3_UP
 
 /**
  * @brief Redirects to common @ref DL_TIMER_IIDX_ZERO
@@ -677,9 +697,9 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 #define DL_TimerG_initCompareTriggerMode         DL_Timer_initCompareTriggerMode
 
 /*!
- * @brief Redirects to common @ref DL_Timer_initPWMMode
+ * @brief Redirects to common @ref DL_Timer_initFourCCPWMMode
  */
-#define DL_TimerG_initPWMMode                               DL_Timer_initPWMMode
+#define DL_TimerG_initPWMMode                               DL_Timer_initFourCCPWMMode
 
 /*!
  * @brief Redirects to common @ref DL_Timer_resetCounterMode

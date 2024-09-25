@@ -47,11 +47,9 @@ For more information about jumper configuration to achieve low-power using the
 MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873).
 
 ## Example Usage
-Connect COMP0_IN0- to an external signal.
-Compile, load and run the example.
-A breakpoint will be triggered after 1sec. Use the debugger to check the number
-of captures and the timing of each capture.
+Connect COMP_IN- to an external signal that varies above and below
+the voltage specified by COMP_INST_DAC8_OUTPUT_VOLTAGE_mV.
 
-On powerup, the COMP pin(s) used in this example are by default set to
-the correct analog mode. Therefore, calls to
-DL_GPIO_initPeripheralAnalogFunction for pinmuxing those pins are not needed.
+Compile, load and run the example.
+A breakpoint will be triggered after 1sec. Check gCaptureCounter to see the
+number of rising or falling edges seen on COMP_IN-.

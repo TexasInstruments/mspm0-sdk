@@ -9,21 +9,23 @@ I2C data packet: [PORT] [REGISTER] [B3] [B2] [B1] [B0]<br>
 
 Please see accompanying sub-system document for more information. [I2C IO Exander Sub-system](https://www.ti.com/lit/????)
 
-## Peripherals & Pin Assignments Used in this example
+## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| SYSCTL | --- | --- |
-| TIMG1 | --- | Blocking Delay |
-| TIMG0 | --- | Non-Blocking Delay |
+| GPIOA | PA13 | Standard Output |
+| GPIOA | PA26 | Standard Output |
+| GPIOA | PA27 | Standard Output |
+| GPIOA | PA23 | Standard Output with internal pull-up |
+| GPIOA | PA12 | Standard Output |
+| GPIOA | PA7 | Standard Input with internal pull-down |
+| GPIOA | PA18 | Standard with Wake Input |
+| GPIOA | PA14 | Standard Input with internal pull-up |
+| SYSCTL |  |  |
+| TIMG0 |  |  |
 | I2C0 | PA0 | I2C Serial Data line (SDA) |
 | I2C0 | PA1 | I2C Serial Clock line (SCL) |
-| GPIO | PA23 | IRQ_OUT |
-| GPIO | PA27 | LED_RGB_BLUE |
-| GPIO | PA26 | LED_RGB_RED |
-| GPIO | PA13 | LED_RGB_GREEN |
-| GPIO | PA18 | SW_1 - BSL Button|
-| GPIO | PA14 | SW_2 - User Button|
+| EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
 
@@ -33,16 +35,18 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
+| PA13 | GPIOA | PA13 | J4_39 | <ul><li>PA13 can be connected to LED2 Green<br><ul><li>`J3 ON` Connect to LED2 Green<br><li>`J3 OFF` Disconnect from LED2 Green</ul></ul> |
+| PA26 | GPIOA | PA26 | J4_38 | <ul><li>PA26 can be connected to LED2 Red<br><ul><li>`J12 ON` Connect to LED2 Red<br><li>`J12 OFF` Disconnect from LED2 Red</ul></ul> |
+| PA27 | GPIOA | PA27 | J4_37 | <ul><li>PA27 can be connected to LED2 Blue<br><ul><li>`J13 ON` Connect to LED2 Blue<br><li>`J13 OFF` Disconnect from LED2 Blue</ul></ul> |
+| PA23 | GPIOA | PA23 | J2_12 | N/A |
+| PA12 | GPIOA | PA12 | J4_40 | N/A |
+| PA7 | GPIOA | PA7 | J2_18 | N/A |
+| PA18 | GPIOA | PA18 | J3_26 | <ul><li>PA18 can be connected to S1 button to VCC with external pull-down<br><ul><li>`J11 ON` Connect S1 button and external pull-down<br><li>`J11 OFF` Disconnect S1 button and external pull-down</ul><br><li>PA18 can be connected to XDS-110 BSL_Invoke<br><ul><li>`J101 17:18 OFF` Disconnect pin to XDS-110 BSL Invoke</ul></ul> |
+| PA14 | GPIOA | PA14 | N/A | <ul><li>PA14 is connected to S2 button to GND with no external pull resistor<br><ul><li>Press `S2` button to connect pin to GND<br><li>Don't use `S2` button if not needed by application</ul></ul> |
 | PA0 | I2C0 | SDA | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 OFF` Disconnect from LED1</ul></ul> |
 | PA1 | I2C0 | SCL | J1_9 | <ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
-| PA23 | GPIO | OUTPUT | J2_12 |  <ul><li>Interrupt Output Pin<br><ul><li>This pin is configured as output<br><li>Jumper to target MCU IO Expander interrupt output pin.  See target demo for details.<br></ul></ul>|
-| PA27 | GPIO | OUTPUT | J4_37 | <ul><li>BLUE RGB LED<br><ul></ul> |
-| PA26 | GPIO | OUTPUT | J4_38 | <ul><li>RED RGB LED<br><ul></ul> |
-| PA13 | GPIO | OUTPUT | J4_39 | <ul><li>GREEN RGB LED<br><ul></ul> |
-| PA18 | GPIO | INPUT | J3_26 | <ul><li>SW_1 (BSL Button)<br><ul><li>This pin is configured as input</ul>|
-| PA14 | GPIO | INPUT | --- | <ul><li>SW_2 (USER Button)<br><ul><li>This pin is configured as input with pull up resistors enabled</ul>|
-| PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
-| PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+| PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the LP_MSPM0L1306 LaunchPad. Please
@@ -57,7 +61,7 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0L1306 User's Guide](https://www.ti.com/lit/slau873).
+MSPM0 LaunchPad, please visit the [LP-MSPM0L1306 User's Guide](https://www.ti.com/lit/slau869).
 
 ## Example Usage
 Make connections to target MSPM0 as described above.

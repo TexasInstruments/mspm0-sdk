@@ -68,7 +68,9 @@
 /*!
  * @brief The sector address to use
  */
-#define EEPROM_EMULATION_ADDRESS                                    (0x00001000)
+#ifndef EEPROM_EMULATION_ADDRESS
+#define EEPROM_EMULATION_ADDRESS                                    (0x00001400)
+#endif
 /*!
  * @brief The number of groups to use
  */

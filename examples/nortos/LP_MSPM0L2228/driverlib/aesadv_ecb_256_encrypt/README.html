@@ -37,15 +37,82 @@
 <h2 id="example-summary">Example Summary</h2>
 <p>The following example performs 256-bit AES ECB encryption using the on-board AESADV engine with a software wrapper.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
-<p>N/A</p>
+<table>
+<thead>
+<tr class="header">
+<th>Peripheral</th>
+<th>Pin</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GPIOA</td>
+<td>PA0</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="even">
+<td>SYSCTL</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>EVENT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>AESADV</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>DEBUGSS</td>
+<td>PA20</td>
+<td>Debug Clock</td>
+</tr>
+<tr class="even">
+<td>DEBUGSS</td>
+<td>PA19</td>
+<td>Debug Data In Out</td>
+</tr>
+</tbody>
+</table>
 <h2 id="boosterpacks-board-resources-jumper-settings">BoosterPacks, Board Resources &amp; Jumper Settings</h2>
-<p>N/A</p>
+<p>Visit <a href="https://www.ti.com/tool/LP-MSPM0L2228">LP_MSPM0L2228</a> for LaunchPad information, including user guide and hardware files.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Pin</th>
+<th>Peripheral</th>
+<th>Function</th>
+<th>LaunchPad Pin</th>
+<th>LaunchPad Settings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PA20</td>
+<td>DEBUGSS</td>
+<td>SWCLK</td>
+<td>N/A</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J14 15:16 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J14 15:16 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA19</td>
+<td>DEBUGSS</td>
+<td>SWDIO</td>
+<td>N/A</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J14 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J14 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
+</tr>
+</tbody>
+</table>
+<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
+<p>This project was developed for a superset device included in the LP_MSPM0L2228 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the LP-MSPM0L2228 User’s Guide (link to be determined).</p>
-<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
-<p>This project was developed for a superset device included in the LP_MSPM0L2228 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#non-sysconfig-compatible-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/tool/LP-MSPM0L2228">LP-MSPM0L2228 web page</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Compile, load and run the example. The application will hit a SW breakpoint to allow the user to inspect the value of gCorrectResults and gSuccessfulOperation to see if the AES operation completed successfully and the results of the golden value comparison to the ciphertext after initial encryption.</p>
 <!-- Close div from before_body_template.html -->

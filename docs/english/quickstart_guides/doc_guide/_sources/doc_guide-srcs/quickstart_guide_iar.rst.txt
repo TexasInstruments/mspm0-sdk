@@ -16,7 +16,7 @@ The user is expected to have downloaded the following:
 
    -  The TI XDS drivers are required when using the MSPM0 Launchpad's integrated XDS-110 programmer. For more information, please visit the `release notes for IAR C-SPY XDS driver <https://updates.iar.com/filestore/standard/001/001/123/arm/doc/infocenter/csxds.ENU.html>`__.
 
--  `SysConfig 1.20.x <https://www.ti.com/tool/SYSCONFIG>`__
+-  `SysConfig 1.21.x <https://www.ti.com/tool/SYSCONFIG>`__
 
 3. Install the MSPM0 SDK
 ------------------------
@@ -79,7 +79,7 @@ The SDK includes a preliminary version of SysConfig metadata which can be used t
 
 For more general information about using SysConfig with MSPM0, please refer to `Using SysConfig with MSPM0 <../../../tools/sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ available in the SDK's Tools Guide.
 
-1. Download and install the standalone version (1.20.x) of SysConfig from `ti.com <https://www.ti.com/tool/SYSCONFIG>`__
+1. Download and install the standalone version (1.21.x) of SysConfig from `ti.com <https://www.ti.com/tool/SYSCONFIG>`__
 
 2. In IAR, select **Tools → Configure Viewers** from the menu.
 

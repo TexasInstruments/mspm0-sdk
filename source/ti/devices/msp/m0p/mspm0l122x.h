@@ -226,7 +226,7 @@ typedef enum IRQn
 #define __MSPM0_HAS_LFSS__
 #define __MSPM0_HAS_SCRATCHPAD__
 #define __MSPM0_HAS_TIO__
-#define __MSPM0_HAS_WDT__
+#define  __MSPM0_HAS_IWDT__
 #define __MSPM0_HAS_ECC__
 
 

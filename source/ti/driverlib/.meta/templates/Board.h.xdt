@@ -54,6 +54,7 @@
 #define ti_msp_dl_config_h
 
 #define CONFIG_`boardName`
+#define CONFIG_`system.deviceData.gpn`
 
 #if defined(__ti_version__) || defined(__TI_COMPILER_VERSION__)
 #define SYSCONFIG_WEAK __attribute__((weak))

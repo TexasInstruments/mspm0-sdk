@@ -1,0 +1,62 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+//@v2CliArgs --device "MSPM0C1104" --package "VSSOP-20(DGS20)"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const GPIO2         = GPIO.addInstance();
+const GPIO3         = GPIO.addInstance();
+const I2C           = scripting.addModule("/ti/driverlib/I2C", {}, false);
+const I2C1          = I2C.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.port                          = "PORTA";
+GPIO1.$name                         = "GPIO_LED";
+GPIO1.associatedPins[0].$name       = "Error";
+GPIO1.associatedPins[0].assignedPin = "22";
+
+GPIO2.$name                          = "GPIO_BSL";
+GPIO2.associatedPins.create(2);
+GPIO2.associatedPins[0].$name        = "NRST";
+GPIO2.associatedPins[0].initialValue = "SET";
+GPIO2.associatedPins[0].assignedPort = "PORTA";
+GPIO2.associatedPins[0].assignedPin  = "2";
+GPIO2.associatedPins[1].$name        = "Invoke";
+GPIO2.associatedPins[1].assignedPort = "PORTA";
+GPIO2.associatedPins[1].assignedPin  = "4";
+
+GPIO3.$name                              = "GPIO_Button";
+GPIO3.associatedPins[0].direction        = "INPUT";
+GPIO3.associatedPins[0].internalResistor = "PULL_UP";
+GPIO3.associatedPins[0].assignedPort     = "PORTA";
+GPIO3.associatedPins[0].$name            = "PIN_0";
+GPIO3.associatedPins[0].assignedPin      = "16";
+
+I2C1.$name                           = "I2C_0";
+I2C1.basicEnableController           = true;
+I2C1.enableTimeoutA                  = true;
+I2C1.timeoutACount                   = 255;
+I2C1.basicControllerStandardBusSpeed = "Fast";
+I2C1.peripheral.$assign              = "I2C0";
+I2C1.peripheral.sdaPin.$assign       = "PA0";
+I2C1.peripheral.sclPin.$assign       = "PA11";
+
+const SYSCTL       = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+SYSCTL.clockTreeEn = true;
+
+ProjectConfig.deviceSpin = "MSPM0C1104";

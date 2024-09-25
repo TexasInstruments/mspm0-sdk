@@ -1,0 +1,93 @@
+HALL Sensored FOC - TIDA010251 User Guide
+=========================================
+
+This User Guide outlines the usage of TIDA010251 along with the Hall Sensored FOC Application running on MSPM0.
+
+For more details refer to the `TIDA010251 Design Guide <https://www.ti.com/lit/ug/tiduf36a/tiduf36a>`__
+
+1. Hardware Required
+--------------------
+
+-  `TIDA010251 <https://www.ti.com/tool/TIDA-010251>`__ - 600W brushless DC motor inverter reference design
+-  Isolated DC source
+-  3ph Permanent Magnet Synchronous Motor with 3 Hall Sensors.
+-  Serial Wire Debug (SWD) debugger with isolator
+
+2. Hardware Setup
+-----------------
+
+1. Connect a serial wire debug (SWD) debugger to connector J5 to debug or program the MSPM01507. Isolate the host PC from TIDA010251 board.
+
+.. figure:: images/TIDA010251-DEBUG-CONNECTIONS.jpg
+   :alt: J5 header
+
+   J5 header
+
+2. Connect 3phase motor terminals to the U,V, and W ports.
+
+3. Connect the 3 Hall sensor outputs to the port J6.
+
+.. figure:: images/TIDA010251-HALL_INTERFACE.jpg
+   :alt: J6 header
+
+   J6 header
+
+4. Apply DC bus power to the inverter by connecting the power across the Battery Input Terminals Vm(+) and GND(-).
+
+-  The maximum output of the DC power supply is 21v DC.
+
+.. figure:: images/TIDA010251-HW-LAYOUT.jpg
+   :alt: TIDA010251 Layout
+
+   TIDA010251 Layout
+
+5. Once all steps are completed, Please refer to `Hall Sensored Software User Guide <../MSPM0_Sensored_FOC_Software_Users_Guide_CN.html>`__ for steps on importing the CCS project or `HALL SENSORED FOC Tuning Guide <https://www.ti.com/lit/pdf/SLAU948>`__ for steps to tune and spin the motor.
+
+3. Pin Mapping
+--------------
+
++--------------------------------+--------------------------+
+| Connection                     | MSPM0G1507               |
++================================+==========================+
+| Phase A HS input               | PA8                      |
++--------------------------------+--------------------------+
+| Phase A LS input               | PA9                      |
++--------------------------------+--------------------------+
+| Phase B HS input               | PA10                     |
++--------------------------------+--------------------------+
+| Phase B LS input               | PA11                     |
++--------------------------------+--------------------------+
+| Phase C HS input               | PA23                     |
++--------------------------------+--------------------------+
+| Phase C LS input               | PA24                     |
++--------------------------------+--------------------------+
+| Bus voltage input              | PA26                     |
++--------------------------------+--------------------------+
+| DC Bus Current Samp1 OPA +ve   | PA18                     |
++--------------------------------+--------------------------+
+| DC Bus Current Samp1 OPA -ve   | PA17                     |
++--------------------------------+--------------------------+
+| DC Bus Current Samp2           | Internal Op-Amp Output   |
++--------------------------------+--------------------------+
+| Fault Input                    | PA5                      |
++--------------------------------+--------------------------+
+| DAC                            | PA15                     |
++--------------------------------+--------------------------+
+| UART2-TX                       | PA21                     |
++--------------------------------+--------------------------+
+| UART2-RX                       | PA22                     |
++--------------------------------+--------------------------+
+| DEBUG-SWDIO                    | PA19                     |
++--------------------------------+--------------------------+
+| DEBUG-SWCLK                    | PA20                     |
++--------------------------------+--------------------------+
+| Fault Output LED               | PA7                      |
++--------------------------------+--------------------------+
+| Hall Sensor A                  | PA7                      |
++--------------------------------+--------------------------+
+| Hall Sensor B                  | PA7                      |
++--------------------------------+--------------------------+
+| Hall Sensor C                  | PA7                      |
++--------------------------------+--------------------------+
+
+Note: There are two DC Bus current inputs used because we use simultaneous current sampling, Refer to 'Enabling simultaneous current sampling' in `FOC Library Overview <../Sensored_FOC_Motor_Control_Library_CN.html>`__.

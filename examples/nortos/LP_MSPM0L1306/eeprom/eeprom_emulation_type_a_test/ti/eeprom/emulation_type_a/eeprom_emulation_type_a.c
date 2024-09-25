@@ -53,6 +53,7 @@ uint32_t EEPROM_TypeA_writeData(uint32_t *data)
     }
 
     /* Set the new record's header to Recording */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, gNextRecordAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
 #ifdef __MSPM0_HAS_ECC__
@@ -83,6 +84,7 @@ uint32_t EEPROM_TypeA_writeData(uint32_t *data)
 
     /* Set the new record's header to Active */
     HeaderArray64[1] = 0x0000ffff;
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, gNextRecordAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
     FlashAPIState = DL_FlashCTL_programMemoryFromRAM64(
@@ -104,6 +106,7 @@ uint32_t EEPROM_TypeA_writeData(uint32_t *data)
     /* if last active record exists, set the last active record's header to Used */
     if (gEEPROMTypeASearchFlag == 1) {
         HeaderArray64[0] = 0x00000000;
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         DL_FlashCTL_unprotectSector(
             FLASHCTL, gActiveRecordAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
         FlashAPIState = DL_FlashCTL_programMemoryFromRAM64(
@@ -191,6 +194,7 @@ bool EEPROM_TypeA_repairFormat(uint32_t *data)
     }
 
     /* Set the new record's header to Recording */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, FormatRepairAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
 #ifdef __MSPM0_HAS_ECC__
@@ -219,6 +223,7 @@ bool EEPROM_TypeA_repairFormat(uint32_t *data)
 
     /* Set the new record's header to Active */
     HeaderArray64[1] = 0x0000ffff;
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, FormatRepairAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
     FlashAPIState = DL_FlashCTL_programMemoryFromRAM64(
@@ -318,6 +323,7 @@ bool EEPROM_TypeA_eraseLastSector(void)
             1024 * (EEPROM_EMULATION_ACTIVE_SECTOR_NUM_MAX - 1);
     }
 
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, EraseSectorAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
     FlashAPIState = DL_FlashCTL_eraseMemoryFromRAM(
@@ -335,6 +341,7 @@ bool EEPROM_TypeA_eraseNonActiveSectors(void)
     for (num = 0; num < EEPROM_EMULATION_SECTOR_ACCOUNT; num++) {
         if (num != (gActiveSectorNum - 1)) {
             EraseSectorAddress = EEPROM_EMULATION_ADDRESS + 1024 * num;
+            DL_FlashCTL_executeClearStatus(FLASHCTL);
             DL_FlashCTL_unprotectSector(
                 FLASHCTL, EraseSectorAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
             FlashAPIState = DL_FlashCTL_eraseMemoryFromRAM(
@@ -353,6 +360,7 @@ bool EEPROM_TypeA_eraseAllSectors(void)
     uint16_t num;
     for (num = 0; num < EEPROM_EMULATION_SECTOR_ACCOUNT; num++) {
         EraseSectorAddress = EEPROM_EMULATION_ADDRESS + 1024 * num;
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         DL_FlashCTL_unprotectSector(
             FLASHCTL, EraseSectorAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
         FlashAPIState = DL_FlashCTL_eraseMemoryFromRAM(

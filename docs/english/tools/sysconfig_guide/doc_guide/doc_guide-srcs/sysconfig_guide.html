@@ -97,6 +97,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#switching-between-devices-and-packages">4.8 Switching Between Devices and Packages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#project-configuration">4.8.1 Project Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#project-configuration-files">4.8.1.1 Project Configuration Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-older-configurations">4.8.1.2 Importing Older Configurations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#event-configuration">4.9 Event Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pinmux-configuration">4.10 PinMux Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reserving-hardware-peripherals">4.11 Reserving Hardware Peripherals</a><ul>
@@ -178,7 +179,7 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 <p>These instructions are required in order to integrate the standalone SysConfig in CCS, and successfully build an example.</p>
 <section id="enabling-sysconfig-in-ccs">
 <h4>3.1.1 Enabling SysConfig in CCS<a class="headerlink" href="#enabling-sysconfig-in-ccs" title="Permalink to this heading">¶</a></h4>
-<p>CCS 12.7.1 and CCS Theia 1.4.0+ include a SysConfig version which is compatible with MSPM0, thus not requiring any additional steps to use it. The steps below apply only when integrating a standalone version of SysConfig in cases such as upgrading the SysConfig version.</p>
+<p>CCS 12.8.0 and CCS Theia 1.5.0+ include a SysConfig version which is compatible with MSPM0, thus not requiring any additional steps to use it. The steps below apply only when integrating a standalone version of SysConfig in cases such as upgrading the SysConfig version.</p>
 <ol class="arabic">
 <li><div class="line-block">
 <div class="line">Follow instructions from the <a class="reference external" href="../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html">MSPM0 SDK QuickStart Guide for CCS Theia</a> to install CCS Theia for MSPM0.</div>
@@ -402,7 +403,7 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 <p>The following steps describe how to start a SysConfig project using MSPM0 without an IDE. The standalone version can be used for code generation and to evaluate the capabilities of the device, but is not capable of runnning an example.</p>
 <ol class="arabic">
 <li><p>Run the standalone version of SysConfig</p></li>
-<li><p>SysConfig 1.20.x includes support for MSPM0 and supports M0 SDK:</p>
+<li><p>SysConfig 1.21.x includes support for MSPM0 and supports M0 SDK:</p>
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_pre_installed_product.png" />
 </figure>
@@ -754,6 +755,11 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 <li><p><strong>Compiler Options</strong>: This file will be generated as SysConfig output based on the selected device, it includes compiler build options.</p></li>
 <li><p><strong>Library Includes</strong>: This file will be generated as SysConfig output based on the selected device and library parameters, and is specific to each compiler. The libraries included in this file can be selected by the user through the <strong>Include Libraries</strong> group parameters, which include. The libraries included in this list are the statically generated libraries included in the SDK, in order to add any other libraries users can manually add their source to the project. <strong>Note:</strong> If the user wants to manually modify any Project Configuration files, they should disable the option to generate that file from the Project Configuration module and then manually add their desired file to the project.</p></li>
 </ol>
+</section>
+<section id="importing-older-configurations">
+<h3>4.8.1.2 Importing Older Configurations<a class="headerlink" href="#importing-older-configurations" title="Permalink to this heading">¶</a></h3>
+<p>When importing configurations and projects created on earlier versions of the SDK (2.01.00.xx or below), the specific device GPN will have to be selected. Users should follow on-screen instructions to select the specific device GPN and continue with their project.</p>
+<p>New projects will automatically include the update device selection.</p>
 </section>
 <section id="event-configuration">
 <h3>4.9 Event Configuration<a class="headerlink" href="#event-configuration" title="Permalink to this heading">¶</a></h3>

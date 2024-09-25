@@ -566,16 +566,9 @@ function validatePinmux(inst, validation) {
             chanEnabled[cc] = true;
         }
         if(chanEnabled[2] || chanEnabled[3]) {
-            if(Common.isDeviceM0C()){
-                if(!(/TIMA0|TIMG14/.test(solution))){
-                    validation.logError("PWM Channels 2 & 3 only available on TIMA0 module. Please select a TIMA0 instance from PinMux if available.",inst,"ccIndex");
-                };
-            }
-            else{
-                if(!(/TIMA0/.test(solution))){
-                    validation.logError("PWM Channels 2 & 3 only available on TIMA0 module. Please select a TIMA0 instance from PinMux if available.",inst,"ccIndex");
-                };
-            }
+            if(!(/TIMA0|TIMG14/.test(solution))){
+                validation.logError("PWM Channels 2 & 3 only available on TIMA0 and TIMG14 module. Please select one of those instance from PinMux if its available for your device.",inst,"ccIndex");
+            };
         }
     }
     /* Prescale validation */

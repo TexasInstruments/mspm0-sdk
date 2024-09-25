@@ -67,13 +67,13 @@ INPUT("ti/drivers/lib/gcc/m0p/drivers_`Common.getDeviceFamily().toLowerCase()`.a
 INPUT("ti/gui_composer/lib/gcc/m0p/gui_composer.a")
 % }
 % if(migration_inst.genLibMC){
-INPUT("ti/motor_control_bldc_sensorless_foc/lib/gcc/m0p/estimator.a")
+INPUT("ti/motor_control_pmsm_foc/lib/gcc/m0p/FOC_Lib.lib")
 % }
 % if(migration_inst.genLibIQ && migration_inst.genLibIQVersion == "RTS"){
-INPUT("ti/iqmath/lib/gcc/m0p/rts/iqmath.a")
+INPUT("ti/iqmath/lib/gcc/m0p/rts/`Common.getDeviceFamily().toLowerCase()`/iqmath.a")
 % }
 % if(migration_inst.genLibIQ && migration_inst.genLibIQVersion == "MATHACL"){
-INPUT("ti/iqmath/lib/gcc/m0p/mathacl/iqmath.a")
+INPUT("ti/iqmath/lib/gcc/m0p/mathacl/`Common.getDeviceFamily().toLowerCase()`/iqmath.a")
 % }
 % if(migration_inst.genLibPMBUS){
 INPUT("ti/pmbus/lib/gcc/m0p/pmbus.a")
@@ -85,10 +85,10 @@ INPUT("ti/smbus/lib/gcc/m0p/smbus.a")
 INPUT("third_party/CMSIS/DSP/lib/gcc/m0p/arm_cortexM0l_math.a")
 % }
 % if(migration_inst.genLibGaugeL2 && migration_inst.genLibGaugeL2Version == "RTS"){
-INPUT("ti/battery_gauge/lib/gcc/m0p/gauge_l2_rts.a")
+INPUT("ti/battery_gauge/lib/gcc/m0p/`Common.getDeviceFamily().toLowerCase()`/gauge_l2_rts.a")
 % }
 % if(migration_inst.genLibGaugeL2 && migration_inst.genLibGaugeL2Version == "MATHACL"){
-INPUT("ti/battery_gauge/lib/gcc/m0p/gauge_l2_mathacl.a")
+INPUT("ti/battery_gauge/lib/gcc/m0p/`Common.getDeviceFamily().toLowerCase()`/gauge_l2_mathacl.a")
 % }
 % if(migration_inst.genLibDL){
 INPUT("ti/driverlib/lib/gcc/m0p/`Common.getDeviceFamily().toLowerCase()`/driverlib.a")

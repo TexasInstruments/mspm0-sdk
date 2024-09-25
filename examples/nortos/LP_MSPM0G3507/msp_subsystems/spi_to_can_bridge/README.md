@@ -24,8 +24,6 @@ The instruction format for above instructions are mentioned in "Instruction Form
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| CANFD0 | PA12 | TX Pin |
-| CANFD0 | PA13 | RX Pin |
 | GPIOA | PA0 | Open-Drain Output |
 | GPIOB | PB8 | Standard Output |
 | GPIOB | PB7 | Standard Output |
@@ -49,8 +47,6 @@ Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA13 | CANFD0 | CANRX | J4_32/J26_3 | <ul><li>PA13 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br>  `R65` is populated by default and connects pin to `J26_3`</ul></ul> |
-| PA12 | CANFD0 | CANTX | J4_32/J26_1 | <ul><li>PA12 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br>  `R64` is populated by default and connects pin to `J26_1`</ul></ul> |
 | PA0 | GPIOA | PA0 | J27_9 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 1:2` Use 3.3V pull-up<br><li>`J19 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J4 ON` Connect to LED1<br><li>`J4 OFF` Disconnect from LED1</ul></ul> |
 | PB8 | GPIOB | PB8 | J2_15 | N/A |
 | PB7 | GPIOB | PB7 | J2_14 | N/A |

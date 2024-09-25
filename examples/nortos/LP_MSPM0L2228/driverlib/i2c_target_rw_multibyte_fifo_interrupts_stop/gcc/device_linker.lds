@@ -2,6 +2,7 @@
 _Min_Heap_Size  = 0;      /* required amount of heap  */
 _Min_Stack_Size = 0x80; /* required amount of stack */
 
+
 /* Specify the memory areas */
 MEMORY
 {

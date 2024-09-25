@@ -3,6 +3,7 @@
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
 // @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
 // @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
 
 /**
@@ -185,12 +186,10 @@ PWM1.associatedFault              = TIMERFault1;
 TIMERFault1.$name                 = "FAULT_1";
 TIMERFault1.enabledFaults         = ["2"];
 TIMERFault1.faultPin2.$assign     = "PA27";
-TIMERFault1.faultPin2Config.$name = "ti_driverlib_gpio_GPIOPinGeneric18";
 
 VREF.advClockConfigEnable          = true;
 VREF.advClkSrc                     = "DL_VREF_CLOCK_BUSCLK";
 VREF.basicIntVolt                  = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
 VREF.peripheral.$assign            = "VREF";
 VREF.peripheral.vrefPosPin.$assign = "PA23";
-VREF.vrefPosPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric9";
 

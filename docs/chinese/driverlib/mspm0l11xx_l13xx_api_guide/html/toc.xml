@@ -520,8 +520,10 @@
       <topic label="DL_COMP_clearEventsStatus" href="group___c_o_m_p.html#gac7864c128a3c132706e3321c914610ff"/>
     </topic>
     <topic label="Cyclic Redundancy Check (CRC)" href="group___c_r_c.html">
+      <topic label="DEVICE_HAS_CRC_32_BIT_POLYNOMIAL" href="group___c_r_c.html#gace9dca35a065dc4696e663d8555fc0b4"/>
       <topic label="DL_CRC_POLYNOMIAL" href="group___c_r_c.html#ga28e7aa78509d87ff66ba2b3622103647">
         <topic label="DL_CRC_16_POLYNOMIAL" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a982d11667140edabf2e96e11754ded95"/>
+        <topic label="DL_CRC_32_POLYNOMIAL" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a754185214a80ecbe4ce980db267b2f69"/>
       </topic>
       <topic label="DL_CRC_BIT" href="group___c_r_c.html#ga543dd9f05de27a7bf199d82c439cb13a">
         <topic label="DL_CRC_BIT_REVERSED" href="group___c_r_c.html#gga543dd9f05de27a7bf199d82c439cb13aa0a82b8901d6c30d13a66d73b1b316a1a"/>
@@ -571,6 +573,14 @@
         <topic label="DL_DMA_INTERRUPT_CHANNEL13" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga23966789efe54dd7174d9e2c50744d41"/>
         <topic label="DL_DMA_INTERRUPT_CHANNEL14" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8d0404299241e610ac48843087c55997"/>
         <topic label="DL_DMA_INTERRUPT_CHANNEL15" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga4457cd646455c7e0138405ef3046ca6c"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL0" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gadf2079e77d478e76fd7e061fdbc905f8"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL1" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga7b4cbfb00c7f2c295f99b83a93a23970"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL2" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad6e6e24b795f25b859d95e593b753ad8"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL3" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga56942d52a45d492764a1068a9a9a1ad2"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL4" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8224eb3c385aacf0e61a2d214cae8818"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL5" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga3f368d2f2f2dd80721d0a0432c08f6aa"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL6" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad5617a8d33a3e3c91e3bae8e8d385e68"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL7" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga2c85d577dbf22790a2a02a0de0d22e63"/>
         <topic label="DL_DMA_INTERRUPT_ADDR_ERROR" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8a8ddec51f7bb0c975b1b480f471ec39"/>
         <topic label="DL_DMA_INTERRUPT_DATA_ERROR" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gae1fde9dc3ec9b9dc35bb8a344ff8767f"/>
       </topic>
@@ -590,6 +600,14 @@
         <topic label="DL_DMA_EVENT_CHANNEL13" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8f451400550431595a790a213c290a75"/>
         <topic label="DL_DMA_EVENT_CHANNEL14" href="group___d_l___d_m_a___e_v_e_n_t.html#gab4a41a972b3530a196afdfda88ca254c"/>
         <topic label="DL_DMA_EVENT_CHANNEL15" href="group___d_l___d_m_a___e_v_e_n_t.html#ga7bdb118fefd5adf23b0395091934e2a2"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL0" href="group___d_l___d_m_a___e_v_e_n_t.html#gad5dd1b80f3d57c35e03276bcda50e29d"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL1" href="group___d_l___d_m_a___e_v_e_n_t.html#ga27eeb0ea5ea1d87890fae1ff8ff4cd0f"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL2" href="group___d_l___d_m_a___e_v_e_n_t.html#gabd59d3e2055a001e82f7e7eba7b44e68"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL3" href="group___d_l___d_m_a___e_v_e_n_t.html#gab8d2eb41094bf0cde0d8fa0e94da8729"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL4" href="group___d_l___d_m_a___e_v_e_n_t.html#gaa67d17e89be4e49e02a958444ca58461"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL5" href="group___d_l___d_m_a___e_v_e_n_t.html#ga41afd3a6f45e6ef2fecdce78d847929d"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL6" href="group___d_l___d_m_a___e_v_e_n_t.html#gaef3bfec44df506dd137ebe9fec477198"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL7" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8b09f9fb4eeef5e9c4da98aafc4c4b06"/>
         <topic label="DL_DMA_EVENT_ADDR_ERROR" href="group___d_l___d_m_a___e_v_e_n_t.html#gaad568ccd15a3fd1016f87488c22949d2"/>
         <topic label="DL_DMA_EVENT_DATA_ERROR" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8d4bc214598ff023efdd7e30142e143e"/>
       </topic>
@@ -603,12 +621,17 @@
         <topic label="srcIncrement" href="struct_d_l___d_m_a___config.html#ad0c2af4e1c6ad78a15ca03180065decb"/>
         <topic label="destIncrement" href="struct_d_l___d_m_a___config.html#a7782fe2ffc3ba230d58530e56c14ed6c"/>
       </topic>
+      <topic label="DEVICE_HAS_DMA_FULL_CHANNEL" href="group___d_m_a.html#ga8f24fd5e050b3b5bffa83baa62eae24e"/>
       <topic label="DL_DMA_TRANSFER_MODE" href="group___d_m_a.html#ga7d1157042646cbffc613b6164c7ed5a8">
         <topic label="DL_DMA_SINGLE_TRANSFER_MODE" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a48adc65d25a06b14a63268aedf2e0e9f"/>
         <topic label="DL_DMA_SINGLE_BLOCK_TRANSFER_MODE" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a95a10f0a1060426eca8c16f3c0718333"/>
+        <topic label="DL_DMA_FULL_CH_REPEAT_SINGLE_TRANSFER_MODE" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a6f096384bb41144646ee651936f288b0"/>
+        <topic label="DL_DMA_FULL_CH_REPEAT_BLOCK_TRANSFER_MODE" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a03b8e4d1275507a7e06ac3fc2a41e827"/>
       </topic>
       <topic label="DL_DMA_EXTENDED_MODE" href="group___d_m_a.html#ga492a0576e98efee98bebd313be27fbf2">
         <topic label="DL_DMA_NORMAL_MODE" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a077f8a71dcd13137f82a58305d4af349"/>
+        <topic label="DL_DMA_FULL_CH_FILL_MODE" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2aca0f445c9e3358c80f6ad6ebcc9aadfb"/>
+        <topic label="DL_DMA_FULL_CH_TABLE_MODE" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a1ede584989a704dd5b435015e0960640"/>
       </topic>
       <topic label="DL_DMA_INCREMENT" href="group___d_m_a.html#gae08767430c6d576fddbad7f2bb1157ee">
         <topic label="DL_DMA_ADDR_UNCHANGED" href="group___d_m_a.html#ggae08767430c6d576fddbad7f2bb1157eea0a128e784f9f16966845e78293b9f389"/>
@@ -648,7 +671,6 @@
         <topic label="DL_DMA_WIDTH_HALF_WORD" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9aedc17c2fd6c23e189017519faf2a9450"/>
         <topic label="DL_DMA_WIDTH_WORD" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836"/>
         <topic label="DL_DMA_WIDTH_LONG" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e"/>
-        <topic label="DL_DMA_WIDTH_LONG_LONG" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9"/>
       </topic>
       <topic label="DL_DMA_EVENT_IIDX" href="group___d_m_a.html#ga9c5dfde9fc934940ba9aac298be440b8">
         <topic label="DL_DMA_EVENT_IIDX_NO_INTR" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5c8dbcebf4546d277afe8da3522156bb"/>
@@ -668,6 +690,14 @@
         <topic label="DL_DMA_EVENT_IIDX_DMACH13" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8abcc6d64271b30a4563a087c83fa8a99a"/>
         <topic label="DL_DMA_EVENT_IIDX_DMACH14" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5f7e0a6a4937405ca4f4d88e9a44ae2d"/>
         <topic label="DL_DMA_EVENT_IIDX_DMACH15" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5740dd2d4978aa4a088e1e45c9a3ce65"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH0" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad44ecfa3278001c127078697c15a1d09"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH1" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8acc735933d41b9ce29029d0fefed63739"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH2" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a03bbf4447e73deef4da0df0e8fbcea69"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH3" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a1126d30c223677900837288277d65e7c"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH4" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad3e2c3cddfbcaa781a7b75c427ec75fb"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH5" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a4c89a802b27ec5c3385a94329ec7adad"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH6" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3e410b2358fe3059afb8710ef629eca7"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH7" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3d4ea06db3f44778b89e2c0856735f66"/>
         <topic label="DL_DMA_EVENT_IIDX_ADDR_ERROR" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a210582d59f844caef1c1f03b0ccff809"/>
         <topic label="DL_DMA_EVENT_IIDX_DATA_ERROR" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a264038dc1206040d4714e6ec626677fc"/>
       </topic>
@@ -680,9 +710,6 @@
       </topic>
       <topic label="DL_DMA_AUTOEN" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">
         <topic label="DL_DMA_AUTOEN_DISABLE" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2"/>
-        <topic label="DL_DMA_AUTOEN_DMASA" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe"/>
-        <topic label="DL_DMA_AUTOEN_DMADA" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb"/>
-        <topic label="DL_DMA_AUTOEN_DMASZ" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5"/>
       </topic>
       <topic label="DL_DMA_initChannel" href="group___d_m_a.html#ga57e87a0fce4c224edea31b79515cfb2d"/>
       <topic label="DL_DMA_configTransfer" href="group___d_m_a.html#ga28e4595240333440fb932a78c70729cd"/>
@@ -717,6 +744,8 @@
       <topic label="DL_DMA_getSrcWidth" href="group___d_m_a.html#gaee8dfcdec5f2c1f09a9c1741311b8f2e"/>
       <topic label="DL_DMA_setDestWidth" href="group___d_m_a.html#gacde9d2eac104122645fc4316ddb8e425"/>
       <topic label="DL_DMA_getDestWidth" href="group___d_m_a.html#ga7b62531baf19f3cced8a1869f2096c00"/>
+      <topic label="DL_DMA_Full_Ch_setEarlyInterruptThreshold" href="group___d_m_a.html#gacc68c40f08f75d0bb0aa2cc028a52e69"/>
+      <topic label="DL_DMA_Full_Ch_getEarlyInterruptThreshold" href="group___d_m_a.html#gad1d3a556657ecde120f39d8151b855a9"/>
       <topic label="DL_DMA_enableInterrupt" href="group___d_m_a.html#ga1d19ffe6b6f29f936f0f3e7498b66102"/>
       <topic label="DL_DMA_disableInterrupt" href="group___d_m_a.html#ga81c9c1075a26f2084257cbb131a86f7f"/>
       <topic label="DL_DMA_getEnabledInterrupts" href="group___d_m_a.html#ga5612fc9b038c3f284bb5dcd0c5d5c70e"/>
@@ -734,9 +763,6 @@
       <topic label="DL_DMA_getEnabledEventStatus" href="group___d_m_a.html#ga81ee2d5a31952301b0d75a910be6a521"/>
       <topic label="DL_DMA_getRawEventsStatus" href="group___d_m_a.html#ga5aa4c5d2963c2b3c304610874cbd3977"/>
       <topic label="DL_DMA_clearEventsStatus" href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432"/>
-      <topic label="DL_DMA_enableAutoEnable" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e"/>
-      <topic label="DL_DMA_disableAutoEnable" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05"/>
-      <topic label="DL_DMA_isAutoEnableEnabled" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26"/>
     </topic>
     <topic label="Flash Controller (FLASHCTL)" href="group___f_l_a_s_h_c_t_l.html">
       <topic label="DL_FLASHCTL_INTERRUPT" href="group___d_l___f_l_a_s_h_c_t_l___i_n_t_e_r_r_u_p_t.html">
@@ -751,7 +777,6 @@
         <topic label="DL_FLASHCTL_COMMAND_TYPE_MODE_CHANGE" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga6bb6fecf9bd8e480c419b06411fb963f"/>
         <topic label="DL_FLASHCTL_COMMAND_TYPE_CLEAR_STATUS" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga0dc1855e5deb8366972d3b0ebc1842a1"/>
       </topic>
-      <topic label="DEVICE_HAS_NO_CMDWEPROTA" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb"/>
       <topic label="FLASHCTL_BANK0_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga3deb3bf1642e247a461ed82407086e3c"/>
       <topic label="FLASHCTL_MAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga7bb2935fff71f76119f77b221e8318a8"/>
       <topic label="FLASHCTL_NONMAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#gaa232fcaa2594403eca8a196d91fb418e"/>
@@ -2532,6 +2557,7 @@
       <topic label="DL_Timer_PWMConfig" href="struct_d_l___timer___p_w_m_config.html">
         <topic label="period" href="struct_d_l___timer___p_w_m_config.html#a08d1a64d0b67f19a602ef97da13c5a4c"/>
         <topic label="pwmMode" href="struct_d_l___timer___p_w_m_config.html#a6ae0abc6d9f987c59bc2ecb517c102b1"/>
+        <topic label="isTimerWithFourCC" href="struct_d_l___timer___p_w_m_config.html#a5b4a7e5a75939ae6d451fe92748b7b00"/>
         <topic label="startTimer" href="struct_d_l___timer___p_w_m_config.html#a45994360c3017a7e6cafdeded646cacd"/>
       </topic>
       <topic label="DL_Timer_backupConfig" href="struct_d_l___timer__backup_config.html">
@@ -2556,16 +2582,27 @@
         <topic label="loadVal" href="struct_d_l___timer__backup_config.html#ab00964d76dfd60404f40d0ee972fe3b0"/>
         <topic label="cc0Val" href="struct_d_l___timer__backup_config.html#ae6c4252ff270b148c246831435d96a47"/>
         <topic label="cc1Val" href="struct_d_l___timer__backup_config.html#a9a5055a16f9af7adbb94daddf8e5b478"/>
+        <topic label="cc2Val" href="struct_d_l___timer__backup_config.html#acd55febf1e4c5ee2e1c7e1e43aeff54f"/>
+        <topic label="cc3Val" href="struct_d_l___timer__backup_config.html#a85399d45b38fe6c184b52603bab81de9"/>
         <topic label="cc0Ctl" href="struct_d_l___timer__backup_config.html#a3c2558b89c3e9f380456ef6afb8a44f5"/>
         <topic label="cc1Ctl" href="struct_d_l___timer__backup_config.html#abb1a63926193b96dcf117cffc5a2bec0"/>
+        <topic label="cc2Ctl" href="struct_d_l___timer__backup_config.html#a72e699c7299cd81272e15b31f177f447"/>
+        <topic label="cc3Ctl" href="struct_d_l___timer__backup_config.html#a399c527811060228c83889b253ce5434"/>
         <topic label="cc0OutCtl" href="struct_d_l___timer__backup_config.html#ab115ef4e32489a4cce9f86f362c48103"/>
         <topic label="cc1OutCtl" href="struct_d_l___timer__backup_config.html#a2ff6657323375d2e1371996ad702becf"/>
+        <topic label="cc2OutCtl" href="struct_d_l___timer__backup_config.html#a3a66f31871d95efe1d42e111157c7713"/>
+        <topic label="cc3OutCtl" href="struct_d_l___timer__backup_config.html#a94250139c3e478e2bead9b0629d680df"/>
         <topic label="cc0ActCtl" href="struct_d_l___timer__backup_config.html#a6f2b3465145b60ed5e58610984a60864"/>
         <topic label="cc1ActCtl" href="struct_d_l___timer__backup_config.html#a295fa6015e2a9ee8895c0fe122cb47c9"/>
+        <topic label="cc2ActCtl" href="struct_d_l___timer__backup_config.html#a2f57eafc992b79afddf1fbc967b8891a"/>
+        <topic label="cc3ActCtl" href="struct_d_l___timer__backup_config.html#adc0411743cc883e2e94e4328d9260fd6"/>
         <topic label="in0FiltCtl" href="struct_d_l___timer__backup_config.html#a94650dcbc226ba8885b9974730a3218d"/>
         <topic label="in1FiltCtl" href="struct_d_l___timer__backup_config.html#a58b4f08b97717c8556e0cf79c0578a04"/>
+        <topic label="in2FiltCtl" href="struct_d_l___timer__backup_config.html#afa71dd1a4bd4a9aa304e5d0da18ba7f6"/>
+        <topic label="in3FiltCtl" href="struct_d_l___timer__backup_config.html#a8abba786734bd06b830144c5948ed2e4"/>
         <topic label="backupRdy" href="struct_d_l___timer__backup_config.html#af8978fc27fdabcb74623c4c905aa2c8c"/>
       </topic>
+      <topic label="DL_Timer_initPWMMode" href="group___t_i_m_x.html#ga62ed6b5a665c8c9b3b06a230924b6477"/>
       <topic label="DL_TIMER_CLOCK" href="group___t_i_m_x.html#ga7d7852e0a1f7db7231224c8c03243d92">
         <topic label="DL_TIMER_CLOCK_BUSCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a4efaf8e7fab766a10685044d35160525"/>
         <topic label="DL_TIMER_CLOCK_2X_BUSCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a421c83a82a0f0106586416e05e294dd5"/>
@@ -2905,7 +2942,7 @@
       <topic label="DL_Timer_initCaptureCombinedMode" href="group___t_i_m_x.html#ga1183cc42f090a5064b097e8378001f53"/>
       <topic label="DL_Timer_initCompareMode" href="group___t_i_m_x.html#ga019e82f5dc3db42649fd51869237ff06"/>
       <topic label="DL_Timer_initCompareTriggerMode" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b"/>
-      <topic label="DL_Timer_initPWMMode" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036"/>
+      <topic label="DL_Timer_initFourCCPWMMode" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21"/>
       <topic label="DL_Timer_resetCounterMode" href="group___t_i_m_x.html#gafa6d8f3917f340dc4bdb4e9692c0b29e"/>
       <topic label="DL_Timer_setCaptureCompareValue" href="group___t_i_m_x.html#ga7dfcc39fcb45e035275c3be5f281cc75"/>
       <topic label="DL_Timer_getCaptureCompareValue" href="group___t_i_m_x.html#gafd824de3b860e45eda8d1cdc583304a1"/>
@@ -3034,8 +3071,12 @@
         <topic label="DL_TIMERG_IIDX_LOAD" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga13dea0126e07d59e3602a64621236b6b"/>
         <topic label="DL_TIMERG_IIDX_CC0_DN" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga4549c824ea0c9715443a9429a08c1951"/>
         <topic label="DL_TIMERG_IIDX_CC1_DN" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gad9ac0966e0ee2a28fb5df9baa7c97717"/>
+        <topic label="DL_TIMERG_IIDX_CC2_DN" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga25c9c662eaf6144b4400e8fed7f01763"/>
+        <topic label="DL_TIMERG_IIDX_CC3_DN" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gaa8196bed6379ac8e5d2e8582a70a0b23"/>
         <topic label="DL_TIMERG_IIDX_CC0_UP" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga85882096d08a3c6fdedaf537517d7e25"/>
         <topic label="DL_TIMERG_IIDX_CC1_UP" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga52076f6e80c99ad89e967749d6121ef6"/>
+        <topic label="DL_TIMERG_IIDX_CC2_UP" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga5e2883a8d2267be6119fc348f7210110"/>
+        <topic label="DL_TIMERG_IIDX_CC3_UP" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gae55e8af4c5d52263393c577597e9a121"/>
         <topic label="DL_TIMERG_IIDX_OVERFLOW" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga0adbca1480aed14e6abd9084d8cc5b65"/>
         <topic label="DL_TIMERG_IIDX_DIR_CHANGE" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga562ebfbc0da130ee56376686a627cf8a"/>
         <topic label="DL_TIMERG_IIDX_QEIERR" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga6290feed35863ce2fd0bbd6d69ee33dc"/>
@@ -3192,6 +3233,7 @@
       </topic>
       <topic label="DL_UART_DMA_INTERRUPT_RX" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html">
         <topic label="DL_UART_DMA_INTERRUPT_RX" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#ga4c6ec53d43c964313c3aec2dc9b8ed43"/>
+        <topic label="DL_UART_DMA_DONE_INTERRUPT_RX" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#gaae49a60a8c0c28a27aedff63bd1eeea6"/>
         <topic label="DL_UART_DMA_INTERRUPT_RX_TIMEOUT" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#ga4f911a37146e28259a5573a722670890"/>
       </topic>
       <topic label="DL_UART_ERROR" href="group___d_l___u_a_r_t___e_r_r_o_r.html">
@@ -3245,6 +3287,7 @@
         <topic label="backupRdy" href="struct_d_l___u_a_r_t___extend__backup_config.html#a3e4d4871cf0b5ac11a7e6f54cf68ec89"/>
       </topic>
       <topic label="DL_UART_DMA_INTERRUPT_TX" href="group___u_a_r_t.html#ga0fd32c20e337d3b7e1c8df67d8f313ce"/>
+      <topic label="DL_UART_DMA_DONE_INTERRUPT_TX" href="group___u_a_r_t.html#ga2ff9892c769fb5afb98536b81b158805"/>
       <topic label="DL_UART_PULSE_WIDTH_3_16_BIT_PERIOD" href="group___u_a_r_t.html#ga4687e2ee146aa62ee05af90c439aeb36"/>
       <topic label="DL_UART_IIDX" href="group___u_a_r_t.html#ga514e6188da8aac54003a5b9e0416beab">
         <topic label="DL_UART_IIDX_DMA_DONE_TX" href="group___u_a_r_t.html#gga514e6188da8aac54003a5b9e0416beaba28aaeb2acd4e4b1a867f5ba12a370005"/>
@@ -4660,14 +4703,24 @@
         <topic label="loadVal" href="struct_d_l___timer__backup_config.html#ab00964d76dfd60404f40d0ee972fe3b0"/>
         <topic label="cc0Val" href="struct_d_l___timer__backup_config.html#ae6c4252ff270b148c246831435d96a47"/>
         <topic label="cc1Val" href="struct_d_l___timer__backup_config.html#a9a5055a16f9af7adbb94daddf8e5b478"/>
+        <topic label="cc2Val" href="struct_d_l___timer__backup_config.html#acd55febf1e4c5ee2e1c7e1e43aeff54f"/>
+        <topic label="cc3Val" href="struct_d_l___timer__backup_config.html#a85399d45b38fe6c184b52603bab81de9"/>
         <topic label="cc0Ctl" href="struct_d_l___timer__backup_config.html#a3c2558b89c3e9f380456ef6afb8a44f5"/>
         <topic label="cc1Ctl" href="struct_d_l___timer__backup_config.html#abb1a63926193b96dcf117cffc5a2bec0"/>
+        <topic label="cc2Ctl" href="struct_d_l___timer__backup_config.html#a72e699c7299cd81272e15b31f177f447"/>
+        <topic label="cc3Ctl" href="struct_d_l___timer__backup_config.html#a399c527811060228c83889b253ce5434"/>
         <topic label="cc0OutCtl" href="struct_d_l___timer__backup_config.html#ab115ef4e32489a4cce9f86f362c48103"/>
         <topic label="cc1OutCtl" href="struct_d_l___timer__backup_config.html#a2ff6657323375d2e1371996ad702becf"/>
+        <topic label="cc2OutCtl" href="struct_d_l___timer__backup_config.html#a3a66f31871d95efe1d42e111157c7713"/>
+        <topic label="cc3OutCtl" href="struct_d_l___timer__backup_config.html#a94250139c3e478e2bead9b0629d680df"/>
         <topic label="cc0ActCtl" href="struct_d_l___timer__backup_config.html#a6f2b3465145b60ed5e58610984a60864"/>
         <topic label="cc1ActCtl" href="struct_d_l___timer__backup_config.html#a295fa6015e2a9ee8895c0fe122cb47c9"/>
+        <topic label="cc2ActCtl" href="struct_d_l___timer__backup_config.html#a2f57eafc992b79afddf1fbc967b8891a"/>
+        <topic label="cc3ActCtl" href="struct_d_l___timer__backup_config.html#adc0411743cc883e2e94e4328d9260fd6"/>
         <topic label="in0FiltCtl" href="struct_d_l___timer__backup_config.html#a94650dcbc226ba8885b9974730a3218d"/>
         <topic label="in1FiltCtl" href="struct_d_l___timer__backup_config.html#a58b4f08b97717c8556e0cf79c0578a04"/>
+        <topic label="in2FiltCtl" href="struct_d_l___timer__backup_config.html#afa71dd1a4bd4a9aa304e5d0da18ba7f6"/>
+        <topic label="in3FiltCtl" href="struct_d_l___timer__backup_config.html#a8abba786734bd06b830144c5948ed2e4"/>
         <topic label="backupRdy" href="struct_d_l___timer__backup_config.html#af8978fc27fdabcb74623c4c905aa2c8c"/>
       </topic>
       <topic label="DL_Timer_CaptureCombinedConfig" href="struct_d_l___timer___capture_combined_config.html">
@@ -4712,6 +4765,7 @@
       <topic label="DL_Timer_PWMConfig" href="struct_d_l___timer___p_w_m_config.html">
         <topic label="period" href="struct_d_l___timer___p_w_m_config.html#a08d1a64d0b67f19a602ef97da13c5a4c"/>
         <topic label="pwmMode" href="struct_d_l___timer___p_w_m_config.html#a6ae0abc6d9f987c59bc2ecb517c102b1"/>
+        <topic label="isTimerWithFourCC" href="struct_d_l___timer___p_w_m_config.html#a5b4a7e5a75939ae6d451fe92748b7b00"/>
         <topic label="startTimer" href="struct_d_l___timer___p_w_m_config.html#a45994360c3017a7e6cafdeded646cacd"/>
       </topic>
       <topic label="DL_Timer_TimerConfig" href="struct_d_l___timer___timer_config.html">
@@ -5259,8 +5313,10 @@
         <topic label="DL_CORE_getInstructionConfig" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9"/>
       </topic>
       <topic label="dl_crc.h" href="dl__crc_8h.html">
+        <topic label="DEVICE_HAS_CRC_32_BIT_POLYNOMIAL" href="group___c_r_c.html#gace9dca35a065dc4696e663d8555fc0b4"/>
         <topic label="DL_CRC_POLYNOMIAL" href="group___c_r_c.html#ga28e7aa78509d87ff66ba2b3622103647">
           <topic label="DL_CRC_16_POLYNOMIAL" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a982d11667140edabf2e96e11754ded95"/>
+          <topic label="DL_CRC_32_POLYNOMIAL" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a754185214a80ecbe4ce980db267b2f69"/>
         </topic>
         <topic label="DL_CRC_BIT" href="group___c_r_c.html#ga543dd9f05de27a7bf199d82c439cb13a">
           <topic label="DL_CRC_BIT_REVERSED" href="group___c_r_c.html#gga543dd9f05de27a7bf199d82c439cb13aa0a82b8901d6c30d13a66d73b1b316a1a"/>
@@ -5294,6 +5350,7 @@
         <topic label="DL_CRC_getCRCINAddr" href="group___c_r_c.html#ga3d041668ae86892850af51aa7af48b9b"/>
       </topic>
       <topic label="dl_dma.h" href="dl__dma_8h.html">
+        <topic label="DEVICE_HAS_DMA_FULL_CHANNEL" href="group___d_m_a.html#ga8f24fd5e050b3b5bffa83baa62eae24e"/>
         <topic label="DL_DMA_INTERRUPT_CHANNEL0" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga7e81b6dc74174d233feb796572f02902"/>
         <topic label="DL_DMA_INTERRUPT_CHANNEL1" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga4a4f8b371e2912389d43098dd1313ca6"/>
         <topic label="DL_DMA_INTERRUPT_CHANNEL2" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga512f958ca10dbec9d4ac388f0257b0aa"/>
@@ -5309,6 +5366,14 @@
         <topic label="DL_DMA_INTERRUPT_CHANNEL13" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga23966789efe54dd7174d9e2c50744d41"/>
         <topic label="DL_DMA_INTERRUPT_CHANNEL14" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8d0404299241e610ac48843087c55997"/>
         <topic label="DL_DMA_INTERRUPT_CHANNEL15" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga4457cd646455c7e0138405ef3046ca6c"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL0" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gadf2079e77d478e76fd7e061fdbc905f8"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL1" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga7b4cbfb00c7f2c295f99b83a93a23970"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL2" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad6e6e24b795f25b859d95e593b753ad8"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL3" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga56942d52a45d492764a1068a9a9a1ad2"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL4" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8224eb3c385aacf0e61a2d214cae8818"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL5" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga3f368d2f2f2dd80721d0a0432c08f6aa"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL6" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad5617a8d33a3e3c91e3bae8e8d385e68"/>
+        <topic label="DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL7" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga2c85d577dbf22790a2a02a0de0d22e63"/>
         <topic label="DL_DMA_INTERRUPT_ADDR_ERROR" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8a8ddec51f7bb0c975b1b480f471ec39"/>
         <topic label="DL_DMA_INTERRUPT_DATA_ERROR" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gae1fde9dc3ec9b9dc35bb8a344ff8767f"/>
         <topic label="DL_DMA_EVENT_CHANNEL0" href="group___d_l___d_m_a___e_v_e_n_t.html#gaed7f7a9f1743f108a66e83c5a61985e7"/>
@@ -5326,14 +5391,26 @@
         <topic label="DL_DMA_EVENT_CHANNEL13" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8f451400550431595a790a213c290a75"/>
         <topic label="DL_DMA_EVENT_CHANNEL14" href="group___d_l___d_m_a___e_v_e_n_t.html#gab4a41a972b3530a196afdfda88ca254c"/>
         <topic label="DL_DMA_EVENT_CHANNEL15" href="group___d_l___d_m_a___e_v_e_n_t.html#ga7bdb118fefd5adf23b0395091934e2a2"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL0" href="group___d_l___d_m_a___e_v_e_n_t.html#gad5dd1b80f3d57c35e03276bcda50e29d"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL1" href="group___d_l___d_m_a___e_v_e_n_t.html#ga27eeb0ea5ea1d87890fae1ff8ff4cd0f"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL2" href="group___d_l___d_m_a___e_v_e_n_t.html#gabd59d3e2055a001e82f7e7eba7b44e68"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL3" href="group___d_l___d_m_a___e_v_e_n_t.html#gab8d2eb41094bf0cde0d8fa0e94da8729"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL4" href="group___d_l___d_m_a___e_v_e_n_t.html#gaa67d17e89be4e49e02a958444ca58461"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL5" href="group___d_l___d_m_a___e_v_e_n_t.html#ga41afd3a6f45e6ef2fecdce78d847929d"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL6" href="group___d_l___d_m_a___e_v_e_n_t.html#gaef3bfec44df506dd137ebe9fec477198"/>
+        <topic label="DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL7" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8b09f9fb4eeef5e9c4da98aafc4c4b06"/>
         <topic label="DL_DMA_EVENT_ADDR_ERROR" href="group___d_l___d_m_a___e_v_e_n_t.html#gaad568ccd15a3fd1016f87488c22949d2"/>
         <topic label="DL_DMA_EVENT_DATA_ERROR" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8d4bc214598ff023efdd7e30142e143e"/>
         <topic label="DL_DMA_TRANSFER_MODE" href="group___d_m_a.html#ga7d1157042646cbffc613b6164c7ed5a8">
           <topic label="DL_DMA_SINGLE_TRANSFER_MODE" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a48adc65d25a06b14a63268aedf2e0e9f"/>
           <topic label="DL_DMA_SINGLE_BLOCK_TRANSFER_MODE" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a95a10f0a1060426eca8c16f3c0718333"/>
+          <topic label="DL_DMA_FULL_CH_REPEAT_SINGLE_TRANSFER_MODE" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a6f096384bb41144646ee651936f288b0"/>
+          <topic label="DL_DMA_FULL_CH_REPEAT_BLOCK_TRANSFER_MODE" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a03b8e4d1275507a7e06ac3fc2a41e827"/>
         </topic>
         <topic label="DL_DMA_EXTENDED_MODE" href="group___d_m_a.html#ga492a0576e98efee98bebd313be27fbf2">
           <topic label="DL_DMA_NORMAL_MODE" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a077f8a71dcd13137f82a58305d4af349"/>
+          <topic label="DL_DMA_FULL_CH_FILL_MODE" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2aca0f445c9e3358c80f6ad6ebcc9aadfb"/>
+          <topic label="DL_DMA_FULL_CH_TABLE_MODE" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a1ede584989a704dd5b435015e0960640"/>
         </topic>
         <topic label="DL_DMA_INCREMENT" href="group___d_m_a.html#gae08767430c6d576fddbad7f2bb1157ee">
           <topic label="DL_DMA_ADDR_UNCHANGED" href="group___d_m_a.html#ggae08767430c6d576fddbad7f2bb1157eea0a128e784f9f16966845e78293b9f389"/>
@@ -5373,7 +5450,6 @@
           <topic label="DL_DMA_WIDTH_HALF_WORD" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9aedc17c2fd6c23e189017519faf2a9450"/>
           <topic label="DL_DMA_WIDTH_WORD" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836"/>
           <topic label="DL_DMA_WIDTH_LONG" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e"/>
-          <topic label="DL_DMA_WIDTH_LONG_LONG" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9"/>
         </topic>
         <topic label="DL_DMA_EVENT_IIDX" href="group___d_m_a.html#ga9c5dfde9fc934940ba9aac298be440b8">
           <topic label="DL_DMA_EVENT_IIDX_NO_INTR" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5c8dbcebf4546d277afe8da3522156bb"/>
@@ -5393,6 +5469,14 @@
           <topic label="DL_DMA_EVENT_IIDX_DMACH13" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8abcc6d64271b30a4563a087c83fa8a99a"/>
           <topic label="DL_DMA_EVENT_IIDX_DMACH14" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5f7e0a6a4937405ca4f4d88e9a44ae2d"/>
           <topic label="DL_DMA_EVENT_IIDX_DMACH15" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5740dd2d4978aa4a088e1e45c9a3ce65"/>
+          <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH0" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad44ecfa3278001c127078697c15a1d09"/>
+          <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH1" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8acc735933d41b9ce29029d0fefed63739"/>
+          <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH2" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a03bbf4447e73deef4da0df0e8fbcea69"/>
+          <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH3" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a1126d30c223677900837288277d65e7c"/>
+          <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH4" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad3e2c3cddfbcaa781a7b75c427ec75fb"/>
+          <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH5" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a4c89a802b27ec5c3385a94329ec7adad"/>
+          <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH6" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3e410b2358fe3059afb8710ef629eca7"/>
+          <topic label="DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH7" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3d4ea06db3f44778b89e2c0856735f66"/>
           <topic label="DL_DMA_EVENT_IIDX_ADDR_ERROR" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a210582d59f844caef1c1f03b0ccff809"/>
           <topic label="DL_DMA_EVENT_IIDX_DATA_ERROR" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a264038dc1206040d4714e6ec626677fc"/>
         </topic>
@@ -5405,9 +5489,6 @@
         </topic>
         <topic label="DL_DMA_AUTOEN" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">
           <topic label="DL_DMA_AUTOEN_DISABLE" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2"/>
-          <topic label="DL_DMA_AUTOEN_DMASA" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe"/>
-          <topic label="DL_DMA_AUTOEN_DMADA" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb"/>
-          <topic label="DL_DMA_AUTOEN_DMASZ" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5"/>
         </topic>
         <topic label="DL_DMA_initChannel" href="group___d_m_a.html#ga57e87a0fce4c224edea31b79515cfb2d"/>
         <topic label="DL_DMA_configTransfer" href="group___d_m_a.html#ga28e4595240333440fb932a78c70729cd"/>
@@ -5442,6 +5523,8 @@
         <topic label="DL_DMA_getSrcWidth" href="group___d_m_a.html#gaee8dfcdec5f2c1f09a9c1741311b8f2e"/>
         <topic label="DL_DMA_setDestWidth" href="group___d_m_a.html#gacde9d2eac104122645fc4316ddb8e425"/>
         <topic label="DL_DMA_getDestWidth" href="group___d_m_a.html#ga7b62531baf19f3cced8a1869f2096c00"/>
+        <topic label="DL_DMA_Full_Ch_setEarlyInterruptThreshold" href="group___d_m_a.html#gacc68c40f08f75d0bb0aa2cc028a52e69"/>
+        <topic label="DL_DMA_Full_Ch_getEarlyInterruptThreshold" href="group___d_m_a.html#gad1d3a556657ecde120f39d8151b855a9"/>
         <topic label="DL_DMA_enableInterrupt" href="group___d_m_a.html#ga1d19ffe6b6f29f936f0f3e7498b66102"/>
         <topic label="DL_DMA_disableInterrupt" href="group___d_m_a.html#ga81c9c1075a26f2084257cbb131a86f7f"/>
         <topic label="DL_DMA_getEnabledInterrupts" href="group___d_m_a.html#ga5612fc9b038c3f284bb5dcd0c5d5c70e"/>
@@ -5459,9 +5542,6 @@
         <topic label="DL_DMA_getEnabledEventStatus" href="group___d_m_a.html#ga81ee2d5a31952301b0d75a910be6a521"/>
         <topic label="DL_DMA_getRawEventsStatus" href="group___d_m_a.html#ga5aa4c5d2963c2b3c304610874cbd3977"/>
         <topic label="DL_DMA_clearEventsStatus" href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432"/>
-        <topic label="DL_DMA_enableAutoEnable" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e"/>
-        <topic label="DL_DMA_disableAutoEnable" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05"/>
-        <topic label="DL_DMA_isAutoEnableEnabled" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26"/>
       </topic>
       <topic label="dl_factoryregion.h" href="dl__factoryregion_8h.html">
         <topic label="DL_FactoryRegion_getMAINFlashSize" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga40ce96a6b6a3f1174104010cc8abc028"/>
@@ -5492,7 +5572,6 @@
         <topic label="DL_FactoryRegion_getBOOTCRCData" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga30ed496165c67dac65333c7704a33d5a"/>
       </topic>
       <topic label="dl_flashctl.h" href="dl__flashctl_8h.html">
-        <topic label="DEVICE_HAS_NO_CMDWEPROTA" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb"/>
         <topic label="FLASHCTL_BANK0_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga3deb3bf1642e247a461ed82407086e3c"/>
         <topic label="FLASHCTL_MAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga7bb2935fff71f76119f77b221e8318a8"/>
         <topic label="FLASHCTL_NONMAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#gaa232fcaa2594403eca8a196d91fb418e"/>
@@ -7431,6 +7510,7 @@
         <topic label="DL_TIMER_CCP2_DIS_OUT_ADV_SET_BY_OCTL" href="group___d_l___t_i_m_e_r___c_c_p2___d_i_s___o_u_t___a_d_v.html#ga79e7c047b8fbbe0f6c3b8090cdcb9c66"/>
         <topic label="DL_TIMER_CCP3_DIS_OUT_ADV_FORCE_LOW" href="group___d_l___t_i_m_e_r___c_c_p3___d_i_s___o_u_t___a_d_v.html#ga91f6be46ee366bf74c59651e841af01e"/>
         <topic label="DL_TIMER_CCP3_DIS_OUT_ADV_SET_BY_OCTL" href="group___d_l___t_i_m_e_r___c_c_p3___d_i_s___o_u_t___a_d_v.html#gaea4eeb2314fa9dfd79387a3ab5b03034"/>
+        <topic label="DL_Timer_initPWMMode" href="group___t_i_m_x.html#ga62ed6b5a665c8c9b3b06a230924b6477"/>
         <topic label="DL_TIMER_CLOCK" href="group___t_i_m_x.html#ga7d7852e0a1f7db7231224c8c03243d92">
           <topic label="DL_TIMER_CLOCK_BUSCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a4efaf8e7fab766a10685044d35160525"/>
           <topic label="DL_TIMER_CLOCK_2X_BUSCLK" href="group___t_i_m_x.html#gga7d7852e0a1f7db7231224c8c03243d92a421c83a82a0f0106586416e05e294dd5"/>
@@ -7770,7 +7850,7 @@
         <topic label="DL_Timer_initCaptureCombinedMode" href="group___t_i_m_x.html#ga1183cc42f090a5064b097e8378001f53"/>
         <topic label="DL_Timer_initCompareMode" href="group___t_i_m_x.html#ga019e82f5dc3db42649fd51869237ff06"/>
         <topic label="DL_Timer_initCompareTriggerMode" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b"/>
-        <topic label="DL_Timer_initPWMMode" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036"/>
+        <topic label="DL_Timer_initFourCCPWMMode" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21"/>
         <topic label="DL_Timer_resetCounterMode" href="group___t_i_m_x.html#gafa6d8f3917f340dc4bdb4e9692c0b29e"/>
         <topic label="DL_Timer_setCaptureCompareValue" href="group___t_i_m_x.html#ga7dfcc39fcb45e035275c3be5f281cc75"/>
         <topic label="DL_Timer_getCaptureCompareValue" href="group___t_i_m_x.html#gafd824de3b860e45eda8d1cdc583304a1"/>
@@ -7892,8 +7972,12 @@
         <topic label="DL_TIMERG_IIDX_LOAD" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga13dea0126e07d59e3602a64621236b6b"/>
         <topic label="DL_TIMERG_IIDX_CC0_DN" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga4549c824ea0c9715443a9429a08c1951"/>
         <topic label="DL_TIMERG_IIDX_CC1_DN" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gad9ac0966e0ee2a28fb5df9baa7c97717"/>
+        <topic label="DL_TIMERG_IIDX_CC2_DN" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga25c9c662eaf6144b4400e8fed7f01763"/>
+        <topic label="DL_TIMERG_IIDX_CC3_DN" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gaa8196bed6379ac8e5d2e8582a70a0b23"/>
         <topic label="DL_TIMERG_IIDX_CC0_UP" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga85882096d08a3c6fdedaf537517d7e25"/>
         <topic label="DL_TIMERG_IIDX_CC1_UP" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga52076f6e80c99ad89e967749d6121ef6"/>
+        <topic label="DL_TIMERG_IIDX_CC2_UP" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga5e2883a8d2267be6119fc348f7210110"/>
+        <topic label="DL_TIMERG_IIDX_CC3_UP" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gae55e8af4c5d52263393c577597e9a121"/>
         <topic label="DL_TIMERG_IIDX_OVERFLOW" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga0adbca1480aed14e6abd9084d8cc5b65"/>
         <topic label="DL_TIMERG_IIDX_DIR_CHANGE" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga562ebfbc0da130ee56376686a627cf8a"/>
         <topic label="DL_TIMERG_IIDX_QEIERR" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga6290feed35863ce2fd0bbd6d69ee33dc"/>
@@ -8040,8 +8124,10 @@
         <topic label="DL_UART_INTERRUPT_RX_TIMEOUT_ERROR" href="group___d_l___u_a_r_t___i_n_t_e_r_r_u_p_t.html#ga40555731748cc80fd81d6622c663185d"/>
         <topic label="DL_UART_INTERRUPT_NOISE_ERROR" href="group___d_l___u_a_r_t___i_n_t_e_r_r_u_p_t.html#ga8e82473db23aea94012fa39dd245c43d"/>
         <topic label="DL_UART_DMA_INTERRUPT_RX" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#ga4c6ec53d43c964313c3aec2dc9b8ed43"/>
+        <topic label="DL_UART_DMA_DONE_INTERRUPT_RX" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#gaae49a60a8c0c28a27aedff63bd1eeea6"/>
         <topic label="DL_UART_DMA_INTERRUPT_RX_TIMEOUT" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#ga4f911a37146e28259a5573a722670890"/>
         <topic label="DL_UART_DMA_INTERRUPT_TX" href="group___u_a_r_t.html#ga0fd32c20e337d3b7e1c8df67d8f313ce"/>
+        <topic label="DL_UART_DMA_DONE_INTERRUPT_TX" href="group___u_a_r_t.html#ga2ff9892c769fb5afb98536b81b158805"/>
         <topic label="DL_UART_ERROR_OVERRUN" href="group___d_l___u_a_r_t___e_r_r_o_r.html#gace2cae8b31393a8b849c76929a1a6d46"/>
         <topic label="DL_UART_ERROR_BREAK" href="group___d_l___u_a_r_t___e_r_r_o_r.html#gab7fe7a2a2b5d4402fa0d784b4db99f6c"/>
         <topic label="DL_UART_ERROR_PARITY" href="group___d_l___u_a_r_t___e_r_r_o_r.html#ga3a7eb7307a9b715f53b4f9fd5c4b6afb"/>

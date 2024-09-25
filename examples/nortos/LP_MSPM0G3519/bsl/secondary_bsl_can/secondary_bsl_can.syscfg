@@ -1,0 +1,103 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G351X" --package "LQFP-100(PZ)" --part "Default"
+// @v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3519 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const MCAN          = scripting.addModule("/ti/driverlib/MCAN", {}, false);
+const MCAN1         = MCAN.addInstance();
+const NONMAIN       = scripting.addModule("/ti/driverlib/NONMAIN");
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider5       = system.clockTree["PLL_CLK1_DIV"];
+divider5.divideValue = 4;
+
+const divider6       = system.clockTree["PLL_CLK2X_DIV"];
+divider6.divideValue = 4;
+
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 4;
+
+const mux2       = system.clockTree["CANCLKMUX"];
+mux2.inputSelect = "CANCLKMUX_PLLCLK1_OUT";
+
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_SYSPLL2X";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction4                        = system.clockTree["HFXT"];
+pinFunction4.enable                       = true;
+pinFunction4.inputFreq                    = 40;
+pinFunction4.HFCLKMonitor                 = true;
+pinFunction4.HFXTStartup                  = 100;
+pinFunction4.peripheral.$assign           = "SYSCTL";
+pinFunction4.peripheral.hfxInPin.$assign  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$assign = "PA6";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+MCAN1.$name                    = "MCAN0";
+MCAN1.fdMode                   = false;
+MCAN1.darEnable                = true;
+MCAN1.wkupReqEnable            = true;
+MCAN1.autoWkupEnable           = true;
+MCAN1.emulationEnable          = true;
+MCAN1.tdcEnable                = true;
+MCAN1.desiredNomRate           = 1000;
+MCAN1.desiredDataRate          = 0;
+MCAN1.stdFiltElem              = "001";
+MCAN1.stdFiltType              = "10";
+MCAN1.stdFiltID1               = 3;
+MCAN1.stdFiltID2               = 1023;
+MCAN1.txEventFIFOWaterMark     = 0;
+MCAN1.rxFIFO0size              = 10;
+MCAN1.rxFIFO1startAddr         = 288;
+MCAN1.rxFIFO1waterMark         = 0;
+MCAN1.additionalCoreConfig     = true;
+MCAN1.rrfe                     = true;
+MCAN1.rrfs                     = true;
+MCAN1.overrideRetention        = true;
+MCAN1.enableInterrupt          = true;
+MCAN1.interruptFlags           = ["DL_MCAN_INTR_MASK_ALL"];
+MCAN1.interruptLine            = ["DL_MCAN_INTR_LINE_NUM_1"];
+MCAN1.interruptLine1Flag       = ["DL_MCAN_INTR_MASK_ALL"];
+MCAN1.m0interrupts             = ["DL_MCAN_MSP_INTERRUPT_LINE1"];
+MCAN1.anfs                     = "2";
+MCAN1.anfe                     = "2";
+MCAN1.peripheral.$assign       = "CANFD0";
+MCAN1.peripheral.rxPin.$assign = "PA13";
+MCAN1.peripheral.txPin.$assign = "PA12";
+
+NONMAIN.nonmainWarning               = true;
+NONMAIN.staticWriteProtectionNonMain = true;
+NONMAIN.bslAltConfig                 = true;
+NONMAIN.bslAltAddress                = 0x20C1;
+NONMAIN.staticWriteProtectionMainLow = 0xFF0000FF;
+
+SYSCTL.clockTreeEn = true;
+
+ProjectConfig.genLinker  = false;
+ProjectConfig.genStartup = false;
+ProjectConfig.genOpts    = false;
+ProjectConfig.genLibs    = false;
+scripting.suppress("All four File Generation options must be enabled in order to guarantee Device Migration support\\. If an option is disabled, the user must manually configure that setting on its own file\\.", ProjectConfig);

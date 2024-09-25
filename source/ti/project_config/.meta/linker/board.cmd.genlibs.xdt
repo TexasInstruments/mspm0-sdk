@@ -67,13 +67,13 @@ let migration_inst = MigrationController.$static;
 -l"ti/gui_composer/lib/ticlang/m0p/gui_composer.a"
 % }
 % if(migration_inst.genLibMC){
--l"ti/motor_control_bldc_sensorless_foc/lib/ticlang/m0p/estimator.a"
+-l"ti/motor_control_pmsm_foc/lib/ticlang/m0p/FOC_Lib.lib"
 % }
 % if(migration_inst.genLibIQ && migration_inst.genLibIQVersion == "RTS"){
--l"ti/iqmath/lib/ticlang/m0p/rts/iqmath.a"
+-l"ti/iqmath/lib/ticlang/m0p/rts/`Common.getDeviceFamily().toLowerCase()`/iqmath.a"
 % }
 % if(migration_inst.genLibIQ && migration_inst.genLibIQVersion == "MATHACL"){
--l"ti/iqmath/lib/ticlang/m0p/mathacl/iqmath.a"
+-l"ti/iqmath/lib/ticlang/m0p/mathacl/`Common.getDeviceFamily().toLowerCase()`/iqmath.a"
 % }
 % if(migration_inst.genLibPMBUS){
 -l"ti/pmbus/lib/ticlang/m0p/pmbus.a"
@@ -85,10 +85,10 @@ let migration_inst = MigrationController.$static;
 -l"third_party/CMSIS/DSP/lib/ticlang/m0p/arm_cortexM0l_math.a"
 % }
 % if(migration_inst.genLibGaugeL2 && migration_inst.genLibGaugeL2Version == "RTS"){
--l"ti/battery_gauge/lib/ticlang/m0p/gauge_l2_rts.a"
+-l"ti/battery_gauge/lib/ticlang/m0p/`Common.getDeviceFamily().toLowerCase()`/gauge_l2_rts.a"
 % }
 % if(migration_inst.genLibGaugeL2 && migration_inst.genLibGaugeL2Version == "MATHACL"){
--l"ti/battery_gauge/lib/ticlang/m0p/gauge_l2_mathacl.a"
+-l"ti/battery_gauge/lib/ticlang/m0p/`Common.getDeviceFamily().toLowerCase()`/gauge_l2_mathacl.a"
 % }
 % if(migration_inst.genLibDL){
 -l"ti/driverlib/lib/ticlang/m0p/`Common.getDeviceFamily().toLowerCase()`/driverlib.a"

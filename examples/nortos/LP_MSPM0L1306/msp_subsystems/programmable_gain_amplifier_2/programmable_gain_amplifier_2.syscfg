@@ -2,7 +2,8 @@
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
-// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+//@cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+//@v2CliArgs --device "MSPM0L1306" --package "VQFN-32(RHB)"
 // @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
 
 /**
@@ -27,7 +28,6 @@ ADC121.sampleTime0           = "125us";
 ADC121.configWinCompLowThld  = 1638;
 ADC121.configWinCompHighThld = 3889;
 ADC121.enabledInterrupts     = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED","DL_ADC12_INTERRUPT_WINDOW_COMP_HIGH","DL_ADC12_INTERRUPT_WINDOW_COMP_LOW"];
-
 
 OPA1.$name                        = "OPA_0";
 OPA1.cfg0OutputPin                = "ENABLED";

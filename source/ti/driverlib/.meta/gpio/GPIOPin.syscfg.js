@@ -19,7 +19,7 @@ function determineInvalidOptions(inst){
             toDisable.SDL = true; // disable Low-leakage Standard
             toDisable.HS = true; // disable High-Speed
         }
-        if(inst.hysteresisControl == "ENABLE"){
+        if(inst.hysteresisOverride && inst.hysteresisControl == "ENABLE"){
             // disable all but Open Drain
             toDisable.SD = true; // disable Standard
             toDisable.SDL = true; // disable Low-leakage Standard
@@ -202,7 +202,9 @@ let config = [
             // input specifics
             ui.fastWakeEn.hidden = hideInput;
             ui.inputFilter.hidden = hideInput;
-            ui.hysteresisControl.hidden = hideInput;
+            ui.hysteresisControl.hidden = (inst.hysteresisOverride)?hideInput:true;
+            ui.hysteresisControlCalculated.hidden = (!inst.hysteresisOverride)?hideInput:true;
+            ui.hysteresisOverride.hidden = hideInput;
             ui.wakeupLogic.hidden = (Common.hasWakeupLogic())?hideInput:true;
             ui.interruptEn.hidden = hideInput;
             ui.interruptPriority.hidden = hideInput || !inst.interruptEn;
@@ -421,15 +423,47 @@ NOTE: Fast-Wake can be utilized on any GPIO, but only works down to STANDBY mode
                 readOnly: false,
             },
             {
+                name: "hysteresisOverride",
+                displayName: "Override Pin Hysteresis Default", // TODO: update display name
+                default: false,
+                hidden: true,
+                onChange: (inst,ui) => {
+                    ui.hysteresisControl.hidden = !inst.hysteresisOverride;
+                    ui.hysteresisControlCalculated.hidden = inst.hysteresisOverride;
+                }
+            },
+            {
+                name: "hysteresisControlCalculated",
+                displayName: "Hysteresis Control",
+                default: "Enabled",
+                hidden: true,
+                getValue: (inst) => {
+                    // Hysteresis Control
+                    let hysteresisControl = "Undefined";
+                    if(!inst.hysteresisOverride){
+                        let pin = inst.pin.$solution;
+                        let packagePin = pin.packagePinName;
+                        let io_type = system.deviceData.devicePins[packagePin].attributes.io_type;
+                        if(io_type.match(/Any|OD/) === null){
+                            hysteresisControl = "Disabled";
+                        }
+                        else{
+                            hysteresisControl = "Enabled";
+                        }
+                    }
+                    return hysteresisControl;
+                }
+            },
+            {
                 name: "hysteresisControl", // INPUT only
                 displayName: "Hysteresis Control",
                 description: "Hysteresis Control on IO pins",
                 longDescription: `Only available on 5V tolerant open drain IO structure`,
                 hidden: true,
-                default: "DISABLE",
+                default: "ENABLE",
                 options: [
-                    {name: "DISABLE", displayName: "Disabled"},
-                    {name: "ENABLE", displayName: "Enabled"}
+                    {name: "ENABLE", displayName: "Enabled"},
+                    {name: "DISABLE", displayName: "Disabled"}
                 ],
 
             },
@@ -1007,7 +1041,7 @@ function validate(inst, validation)
             validation.logError("Drive Strength not possible on selected IO Structure", inst, "ioStructure");
         }
     } else {
-        if(inst.hysteresisControl === "ENABLE" && (inst.ioStructure.match(/Any|OD/) === null)){
+        if(inst.hysteresisOverride && inst.hysteresisControl === "ENABLE" && (inst.ioStructure.match(/Any|OD/) === null)){
             validation.logError("Hysteresis only valid on Open Drain", inst, "ioStructure");
         }
         // wakeupLogic option not configurable in M0C

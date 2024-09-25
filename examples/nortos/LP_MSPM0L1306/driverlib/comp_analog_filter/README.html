@@ -145,8 +145,7 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau869">LP-MSPM0L1306 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Connect COMP0_IN0+ and COMP0_IN0- to external circuitry. Compile, load and run the example. Check output COMP0_OUT based on inputs using an oscilloscope.</p>
-<p>On powerup, the COMP pin(s) used in this example are by default set to the correct analog mode. Therefore, calls to DL_GPIO_initPeripheralAnalogFunction for pinmuxing those pins are not needed.</p>
+<p>Connect COMP_PIN+ and COMP_IN- pins to external circuitry. COMP_OUT will go HIGH if COMP_IN+ is &gt; COMP_IN-. Otherwise COMP_OUT is low. Verify correct state is seen on COMP_OUT in.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

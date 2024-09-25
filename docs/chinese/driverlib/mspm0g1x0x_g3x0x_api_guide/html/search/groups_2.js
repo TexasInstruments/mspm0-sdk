@@ -45,8 +45,6 @@ var searchData=
   ['dl_5fmcan_5fmsp_5finterrupt',['DL_MCAN_MSP_INTERRUPT',['../group___d_l___m_c_a_n___m_s_p___i_n_t_e_r_r_u_p_t.html',1,'']]],
   ['dl_5frtc_5fcommon_5fevent',['DL_RTC_COMMON_EVENT',['../group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html',1,'']]],
   ['dl_5frtc_5fcommon_5finterrupt',['DL_RTC_COMMON_INTERRUPT',['../group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html',1,'']]],
-  ['dl_5frtc_5fcommon_5ftime_5fstamp_5fevent_5fcause',['DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE',['../group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html',1,'']]],
-  ['dl_5frtc_5fcommon_5ftime_5fstamp_5fevent_5fsource',['DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE',['../group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html',1,'']]],
   ['dl_5frtc_5fevent',['DL_RTC_EVENT',['../group___d_l___r_t_c___e_v_e_n_t.html',1,'']]],
   ['dl_5frtc_5finterrupt',['DL_RTC_INTERRUPT',['../group___d_l___r_t_c___i_n_t_e_r_r_u_p_t.html',1,'']]],
   ['dl_5fspi_5fcd_5fmode',['DL_SPI_CD_MODE',['../group___d_l___s_p_i___c_d___m_o_d_e.html',1,'']]],

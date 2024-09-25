@@ -87,6 +87,7 @@ uint32_t EEPROM_TypeB_writeDataItem(uint16_t Identifier, uint32_t Data,
 
     /* If all group is empty, update the group header to active */
     if (DataItemNum == 0) {
+        DL_FlashCTL_executeClearStatus(FLASHCTL);
         DL_FlashCTL_unprotectSector(
             FLASHCTL, WriteGroupAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
 #ifdef __MSPM0_HAS_ECC__
@@ -103,6 +104,7 @@ uint32_t EEPROM_TypeB_writeDataItem(uint16_t Identifier, uint32_t Data,
     /* Combines data and identifiers into new data item */
     ItemArray64[0] = ((uint32_t) Identifier) + 0xffff0000;
     ItemArray64[1] = Data;
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, WriteDataItemAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
 #ifdef __MSPM0_HAS_ECC__
@@ -117,6 +119,7 @@ uint32_t EEPROM_TypeB_writeDataItem(uint16_t Identifier, uint32_t Data,
 
     /* Set the end of write flag */
     ItemArray64[0] = ItemArray64[0] & 0x0000ffff;
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, WriteDataItemAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
     FlashAPIState = DL_FlashCTL_programMemoryFromRAM64(
@@ -160,6 +163,7 @@ uint32_t EEPROM_TypeB_transferDataItem(uint16_t GroupNum)
                                        (ReceivingGroupNum - 1) * 1024;
 
     /* Update receiving group's header */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, ReceivingGroupAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
 #ifdef __MSPM0_HAS_ECC__
@@ -214,6 +218,7 @@ uint32_t EEPROM_TypeB_transferDataItem(uint16_t GroupNum)
 
     /* Update receiving group's header to 'Active' */
     HeaderArray64[0] = 0x00000000;
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, ReceivingGroupAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
 #ifdef __MSPM0_HAS_ECC__
@@ -228,6 +233,7 @@ uint32_t EEPROM_TypeB_transferDataItem(uint16_t GroupNum)
 
     /* Update transfer group's header to 'Erasing' */
     HeaderArray64[1] = 0x00000000;
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, TransferGroupAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
 #ifdef __MSPM0_HAS_ECC__
@@ -427,6 +433,7 @@ bool EEPROM_TypeB_eraseGroup(void)
             for (num = 0; num < EEPROM_EMULATION_SECTOR_INGROUP_ACCOUNT;
                  num++) {
                 EraseSectorAddress = EraseGroupAddress + 1024 * num;
+                DL_FlashCTL_executeClearStatus(FLASHCTL);
                 DL_FlashCTL_unprotectSector(FLASHCTL, EraseSectorAddress,
                     DL_FLASHCTL_REGION_SELECT_MAIN);
                 FlashAPIState = DL_FlashCTL_eraseMemoryFromRAM(FLASHCTL,
@@ -455,6 +462,7 @@ bool EEPROM_TypeB_eraseNonActiveGroups(void)
             for (num = 0; num < EEPROM_EMULATION_SECTOR_INGROUP_ACCOUNT;
                  num++) {
                 EraseSectorAddress = EraseGroupAddress + 1024 * num;
+                DL_FlashCTL_executeClearStatus(FLASHCTL);
                 DL_FlashCTL_unprotectSector(FLASHCTL, EraseSectorAddress,
                     DL_FLASHCTL_REGION_SELECT_MAIN);
                 FlashAPIState = DL_FlashCTL_eraseMemoryFromRAM(FLASHCTL,
@@ -481,6 +489,7 @@ bool EEPROM_TypeB_eraseAllGroups(void)
                                 (EraseGroupNum - 1) * 1024;
         for (num = 0; num < EEPROM_EMULATION_SECTOR_INGROUP_ACCOUNT; num++) {
             EraseSectorAddress = EraseGroupAddress + 1024 * num;
+            DL_FlashCTL_executeClearStatus(FLASHCTL);
             DL_FlashCTL_unprotectSector(
                 FLASHCTL, EraseSectorAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
             FlashAPIState = DL_FlashCTL_eraseMemoryFromRAM(

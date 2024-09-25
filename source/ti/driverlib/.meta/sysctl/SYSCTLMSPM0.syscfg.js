@@ -969,6 +969,26 @@ Note: LFXT is not disabled by this setting since it requires a BOOTRST.
         ]
     }
 }
+
+/* SRAM Power Level Configuration is exclusive to MSPM0GX51X */
+let sramPowerLevelConfig = [];
+if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    sramPowerLevelConfig = [
+        {
+            name: "sramPowerLevel",
+            displayName: "SRAM Bank1 Power Level",
+            description: `Set the power level for SRAM Bank 1 when in STOP mode`,
+            longDescription: `Set the power level for SRAM Bank 1 when in STOP mode`,
+            default: "RETAIN",
+            hidden: true,
+            options: [
+                { name: "RETAIN", displayName: "Retain SRAM Bank1 power when in STOP mode" },
+                { name: "OFF", displayName: "Disable SRAM Bank1 power when in STOP mode" },
+            ]
+        },
+    ];
+}
+
 /*
  *  ======== devSpecific ========
  *  Device-specific extensions to be added to base sysctl configuration
@@ -1104,8 +1124,14 @@ Additionally, higher numbers save more power by disabling more features`,
                         { name: "STOP2" },
                         { name: "STANDBY0" },
                         { name: "STANDBY1" }
-                    ]
-                },
+                    ],
+                    onChange: (inst,ui)=> {
+                        if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+                            let isStopMode = inst.powerPolicy.includes("STOP");
+                            ui.sramPowerLevel.hidden = !isStopMode;
+                        }
+                    }
+                },].concat(sramPowerLevelConfig).concat([
                 {
                     name        : "VDD",
                     displayName : "Supplied Operational Voltage (VDD)",
@@ -1223,7 +1249,7 @@ The default behavior for some system error conditions can be configured.
                     collapsed: false,
                     config: getNMIConfig(),
                 },
-            ]
+            ])
         },
         {
             name: "GROUP_CLK",
@@ -1860,7 +1886,7 @@ function validClkOutPinSet(inst){
  */
 function pinmuxRequirements(inst)
 {
-    /* Regular Pinmux Requirements for SysCtl */ 
+    /* Regular Pinmux Requirements for SysCtl */
     let resources = [];
     if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
         if(inst.LFCLKSource === "LFXT"){
@@ -1918,7 +1944,7 @@ function pinmuxRequirements(inst)
                 interfaceNames  : ["ROSC"],
             });
         }
-        
+
     }
     if(inst.enableEXCLK){
         resources.push({

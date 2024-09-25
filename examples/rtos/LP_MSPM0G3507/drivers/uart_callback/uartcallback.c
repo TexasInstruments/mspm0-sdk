@@ -59,7 +59,7 @@ void callbackFxn(UART_Handle handle, void *buffer, size_t count, void *userArg,
     int_fast16_t status)
 {
     if (status != UART_STATUS_SUCCESS) {
-        /* RX error occured in UART_read() */
+        /* RX error occur in UART_read() */
         while (1) {
         }
     }

@@ -9,7 +9,7 @@
         </when>
     </applicability>
 
-    <import spec="${COM_TI_MSPM0_SDK_INSTALL_DIR}/examples/nortos/LP_MSPM0L2228/boot_manager/customer_secure/customer_secure_code/ticlang/customer_secure_code_LP_MSPM0L2228_nortos_ticlang.projectspec"/>
+    <import spec="${COM_TI_MSPM0_SDK_INSTALL_DIR}/examples/nortos/LP_MSPM0L2228/boot_manager/customer_secure_code/ticlang/customer_secure_code_LP_MSPM0L2228_nortos_ticlang.projectspec"/>
 
     <project
         title="customer_secure_sample_image"
@@ -24,6 +24,7 @@
         compilerBuildOptions="
             -I${PROJECT_ROOT}
             -I${PROJECT_ROOT}/${ConfigName}
+            -I${PROJECT_ROOT}/${ConfigName}/syscfg
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${WORKSPACE_LOC}/customer_secure_code_LP_MSPM0L2228_nortos_ticlang/Debug/syscfg
@@ -84,7 +85,7 @@
         </file>
         <file path="mspm0l2228.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="startup_mspm0l2228_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        <file path="startup_mspm0l222x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
         </file>
         <file path="../signingArgs.json" openOnCreation="false" excludeFromBuild="true" action="copy">
         </file>

@@ -63,13 +63,49 @@ volatile bool gDEDFault;
 uint32_t* gECCCodeAddress     = (void*) ECC_CODE_ADDRESS_SPACE;
 uint32_t* gUncorrectedAddress = (void*) UNCORRECTED_ADDRESS_SPACE;
 uint32_t* gCorrectedAddress   = (void*) CORRECTED_ADDRESS_SPACE;
-uint32_t gUncorrectedData __attribute__((unused));
-uint32_t gCorrectedData __attribute__((unused));
+uint32_t gUncorrectedData[2] __attribute__((unused));
+uint32_t gCorrectedData[2] __attribute__((unused));
 uint32_t gFaultStatus __attribute__((unused));
 uint8_t gECCCode;
 
-/* Local function prototype */
-static void FlashCtl_eraseSectorBlocking();
+/*
+ *  Helper function to perform erase of sector at the specified
+ *  address. Function will block if command does not pass.
+ *
+ *  address   The address of sector to erase
+ */
+void FlashCtl_eraseSectorBlocking(uint32_t address)
+{
+    /*
+     * Ensure proper flash command execution by clearing the STATCMD
+     * register before executing a flash operation
+     */
+    DL_FlashCTL_executeClearStatus(FLASHCTL);
+    /* Erase memory before programming */
+    DL_FlashCTL_unprotectSector(
+        FLASHCTL, address, DL_FLASHCTL_REGION_SELECT_MAIN);
+    gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
+        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+        /* If command did not pass, set a SW breakpoint. */
+        __BKPT(0);
+    }
+}
+
+/*
+ *  Helper function to set buffer either gUncorrectedData or gCorrectedData
+ *  with data passed in from CORRECTED_ADDRESS_SPACE and
+ *  UNCORRECTED_ADDRESS_SPACE.
+ *
+ *  buffer  The array being passed in to store data from read
+ *  address The address of memory being read from
+ *
+ */
+void FlashCtl_readMemoryAndSetBuffer(uint32_t buffer[], uint32_t* address)
+{
+    buffer[0] = *address;
+    buffer[1] = *(address + 1);
+}
 int main(void)
 {
     SYSCFG_DL_init();
@@ -137,8 +173,8 @@ int main(void)
      * programmed. The 'corrected' data of gDataArray64SEC will match the data
      * of gDataArray64
      */
-    gUncorrectedData = *gUncorrectedAddress;
-    gCorrectedData   = *gCorrectedAddress;
+    FlashCtl_readMemoryAndSetBuffer(gUncorrectedData, gUncorrectedAddress);
+    FlashCtl_readMemoryAndSetBuffer(gCorrectedData, gCorrectedAddress);
     /* Delay in order for register to update gFaultStatus accordingly */
     delay_cycles(1000000);
     gFaultStatus = DL_SYSCTL_getStatus() & DL_SYSCTL_STATUS_FLASH_SEC;
@@ -180,7 +216,7 @@ int main(void)
         __BKPT(0);
     }
     /* Reading the location will result in NMI triggered since ECC is incorrect */
-    gCorrectedData = *gCorrectedAddress;
+    FlashCtl_readMemoryAndSetBuffer(gCorrectedData, gCorrectedAddress);
 
     while (1) {
         __WFI();
@@ -202,8 +238,9 @@ void NMI_Handler(void)
             * gUncorrectedData = {0xABCDEF11, 0x12345678}
             * gCorrectedData = {0xABCDEF11, 0x12345678}
             */
-            gCorrectedData   = *gCorrectedAddress;
-            gUncorrectedData = *gUncorrectedAddress;
+            FlashCtl_readMemoryAndSetBuffer(
+                gUncorrectedData, gUncorrectedAddress);
+            FlashCtl_readMemoryAndSetBuffer(gCorrectedData, gCorrectedAddress);
             gFaultStatus = DL_SYSCTL_getStatus() & DL_SYSCTL_STATUS_FLASH_DED;
             gDEDFault    = true;
             DL_GPIO_clearPins(GPIO_LEDS_PORT,
@@ -212,29 +249,5 @@ void NMI_Handler(void)
             break;
         default:
             break;
-    }
-}
-
-/*
- *  Helper function to perform erase of sector at the specified
- *  address. Function will block if command does not pass.
- *
- *  address   The address of sector to erase
- */
-void FlashCtl_eraseSectorBlocking(uint32_t address)
-{
-    /*
-     * Ensure proper flash command execution by clearing the STATCMD
-     * register before executing a flash operation
-     */
-    DL_FlashCTL_executeClearStatus(FLASHCTL);
-    /* Erase memory before programming */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, address, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
     }
 }

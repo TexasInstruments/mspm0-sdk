@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IAR Embedded Workbench IDE Version 9.50.2+ for MSPM0 MCUs &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 2.01.00.03 documentation</title>
+  <title>IAR Embedded Workbench IDE Version 9.50.2+ for MSPM0 MCUs &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 2.02.00.05 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> IAR Embedded Workbench IDE for MSPM0 MCUs Documentation
           </a>
               <div class="version">
-                2.01.00.03
+                2.02.00.05
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -73,7 +73,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#debugging-pre-built-libraries">3.5 Debugging Pre-built Libraries</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">4. Known Issues and Frequently Asked Questions (FAQs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">4. Known Issues and Frequently Asked Questions (FAQs)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#low-power-mode-issues-while-debugging">4.1 Low-Power Mode Issues While Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mspm0gx51x-support-with-iar">4.2 MSPM0Gx51x Support With IAR</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -348,6 +352,8 @@
 </section>
 <section id="known-issues-and-frequently-asked-questions-faqs">
 <h2>4. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
+<section id="low-power-mode-issues-while-debugging">
+<h3>4.1 Low-Power Mode Issues While Debugging<a class="headerlink" href="#low-power-mode-issues-while-debugging" title="Permalink to this heading">¶</a></h3>
 <p>In versions of IAR before 9.60.1, handling of low-power mode debugging is not natively supported.</p>
 <p>To enable support of low-power mode debugging in older versions of IAR, please follow these steps:</p>
 <ol class="arabic simple">
@@ -364,8 +370,14 @@
 </ul>
 </li>
 </ol>
-<p>`` By patching the installation of IAR with these files, connection to the debugger should be maintained when the device enters a low-power state.</p>
+<p>By patching the installation of IAR with these files, connection to the debugger should be maintained when the device enters a low-power state.</p>
+</section>
+<section id="mspm0gx51x-support-with-iar">
+<h3>4.2 MSPM0Gx51x Support With IAR<a class="headerlink" href="#mspm0gx51x-support-with-iar" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0Gx51x family will not be natively supported in IAR until version 9.60.2.</p>
+<p>For early access to MSPM0Gx51x support, please contact your local sales representative, TI support team or <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/">E2E</a>.</p>
 <p>For other issues please refer to <a class="reference external" href="../../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
+</section>
 </section>
 </section>
 

@@ -1,7 +1,9 @@
 ## Example Summary
 
 This example configures the UART as a LIN Responder, and demonstrates basic
-transmit and receive of LIN 2.0 packets using enhanced checksum.
+transmit and receive of LIN 2.0 packets using enhanced checksum. Additionally,
+the example has the ability to automatically reconfigure baud rate if the commander
+sends data at a rate within a 15% difference of what the responder expects.
 LIN is a feature only usable with a UART Extend instance.
 
 **Note**: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.
@@ -70,8 +72,12 @@ the Network Analyzer and LIN BoosterPack:
 - Network Analyzer GND    -> BoosterPack GND
 - Network Analyzer LINbus -> BoosterPack LIN_TERM
 
-The LIN responder is configured to run at 24MHz at 19200 baud. These settings
-can be updated in SysConfig.
+The LIN responder is configured to run at 32MHz at 19200 baud. These settings
+can be updated in SysConfig. If desired, an automatic baud rate synchronizer can be disabled,
+since it is enabled by default. This feature uses the sync field to determine a new baud rate
+given the responder receives data at a rate different than what it is expecting. The feature has
+a 15% tolerance. To turn off the automatic baud rate synchronization, find line 56 in "lin_config.h"
+and set "AUTO_BAUD_ENABLED" to false.
 
 Compile, load and run the example.
 

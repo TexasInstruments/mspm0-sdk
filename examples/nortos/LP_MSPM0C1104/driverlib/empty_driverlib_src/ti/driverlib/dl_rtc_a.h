@@ -31,7 +31,7 @@
  */
 /*!****************************************************************************
  *  @file       dl_rtc_a.h
- *  @brief      Real Time Clock A (RTC_a) Peripheral Interface
+ *  @brief      Real Time Clock A (RTC_A) Peripheral Interface
  *  @defgroup   RTC_A Real Time Clock A (RTC_A)
  *
  *  @anchor ti_devices_msp_dl_rtc_a_Overview
@@ -445,7 +445,7 @@ extern "C" {
 /*!
  * @brief Redirects to common @ref DL_RTC_COMMON_PRESCALER0_DIVIDE_16
  */
-#define DL_RTC_A_PRESCALER0_DIVIDE_16                       DL_RTC_COMMON_PRESCaLER0_DIVIDE_16
+#define DL_RTC_A_PRESCALER0_DIVIDE_16                       DL_RTC_COMMON_PRESCALER0_DIVIDE_16
 
 /*!
  * @brief Redirects to common @ref DL_RTC_COMMON_PRESCALER0_DIVIDE_32

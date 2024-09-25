@@ -57,16 +57,16 @@
 #endif
 
 /* UART PIN Config */
-#define DEF_UART_RXD_PAD                                    ((uint8_t) 22)
-#define DEF_UART_RXD_MUX                                    ((uint8_t) 2)
-#define DEF_UART_TXD_PAD                                    ((uint8_t) 23)
-#define DEF_UART_TXD_MUX                                    ((uint8_t) 2)
+#define DEF_UART_RXD_PAD                                    ((uint8_t) 26)
+#define DEF_UART_RXD_MUX                                    ((uint8_t) 3)
+#define DEF_UART_TXD_PAD                                    ((uint8_t) 27)
+#define DEF_UART_TXD_MUX                                    ((uint8_t) 5)
 
 /* I2C PIN Config */
 #define DEF_I2C_SDA_PAD                                     ((uint8_t) 0)
 #define DEF_I2C_SDA_MUX                                     ((uint8_t) 3)
-#define DEF_I2C_SCL_PAD                                     ((uint8_t) 1)
-#define DEF_I2C_SCL_MUX                                     ((uint8_t) 3)
+#define DEF_I2C_SCL_PAD                                     ((uint8_t) 11)
+#define DEF_I2C_SCL_MUX                                     ((uint8_t) 4)
 #define BSL_CFG_I2C_SLAVE_ADDRESS                           ((uint8_t) 0x48)
 
 /* INVOCATION PIN Config */

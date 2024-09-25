@@ -93,7 +93,7 @@ else if(Common.isDeviceFamily_PARENT_MSPM0L122X()){
     MasterOrder = [
         "SYSCTL", "RTCA", "PWM", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "SYSTICK", "WWDT",
+        "GPIO", "AESADV", "CRCP", "TRNG", "SYSTICK", "WWDT",
     ];
 }
 /* MSPM0L222X specific options */
@@ -101,7 +101,7 @@ else if(Common.isDeviceFamily_PARENT_MSPM0L222X()){
     MasterOrder = [
         "SYSCTL", "RTCA", "PWM", "CAPTURE", "COMPARE",  "TIMER", "TAMPERIO", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "SYSTICK", "WWDT", "LCD",
+        "GPIO", "AESADV", "CRCP", "TRNG", "SYSTICK", "WWDT", "LCD",
     ];
 }
 /* MSPM0C110X specific options */
@@ -115,16 +115,16 @@ else if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
 /* MSPM0GX51X specific options */
 else if(["MSPM0G351X"].includes(Common.getDeviceName())){
     MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "RTC", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
+        "GPIO", "AESADV", "CRCP", "RTCB", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL", "MCAN"
     ];
 }
 else if(["MSPM0G151X"].includes(Common.getDeviceName())){
     MasterOrder = [
-        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "AESADV", "CRCP", "RTC", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL"
+        "GPIO", "AESADV", "CRCP", "RTCB", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL"
     ];
 }
 
@@ -445,6 +445,28 @@ Any conflicting configurations will be overriden by these settings.`,
                 longDescription: ``,
                 default: false,
             },
+            {
+                name: "genResourceCSV",
+                displayName: "Generate Resource Usage CSV",
+                description: "Generate Resource Usage CSV",
+                longDescription: ``,
+                default: false,
+                onChange: (inst,ui) =>{
+                    ui.genResourceCSVAdvanced.hidden = !inst.genResourceCSV;
+                }
+            },
+            {
+                name: "genResourceCSVAdvanced",
+                displayName: "Pin Description for CSV",
+                description: "Format Pin Description for CSV",
+                longDescription: ``,
+                default: "brief",
+                hidden: true,
+                options: [
+                    {name: "brief", displayName: "Brief Pin Description"},
+                    {name: "detailed", displayName: "Detailed Pin Description"},
+                ]
+            },
         ],
     },
     {
@@ -513,11 +535,23 @@ function moduleInstances(inst){
         }
         modInstances.push(mod);
     }
-    return modInstances;
-}
+    if(inst.genResourceCSV){
+        let mod = {
+            name: "genFileCSV",
+            displayName: "Resource Usage",
+            moduleName: '/ti/driverlib/ResourcesCSV',
+            group: "GROUP_GLOBAL_GPIO",
+            args: {
 
-function isFileGen(inst){
-    return inst.genPeriphPinFile;
+            },
+            requiredArgs: {
+
+            },
+
+        }
+        modInstances.push(mod);
+    }
+    return modInstances;
 }
 
 

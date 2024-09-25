@@ -62,22 +62,6 @@ extern "C" {
 #endif
 
 /**
- * @brief Configuration struct for @ref DL_TimerA_initPWMMode.
- */
-typedef struct {
-    /*! Specifies the pwm period. */
-    uint32_t period;
-    /*! Specifies the PWM Mode. One of @ref DL_TIMER_PWM_MODE */
-    DL_TIMER_PWM_MODE pwmMode;
-    /*! Specifies if this is a counter with four capture compare registers.
-        Please refer to the device datasheet to determine if Timer instance
-        supports four capture compare registers */
-    bool isTimerWithFourCC;
-    /*! Start timer after configuration @ref DL_TIMER */
-    DL_TIMER startTimer;
-} DL_TimerA_PWMConfig;
-
-/**
  * @brief Configuration structure to backup Timer A peripheral state before
  *        entering STOP or STANDBY mode. Not required after PG 1.0 silicon.
  *        Used by @ref DL_TimerA_saveConfiguration and
@@ -988,6 +972,12 @@ typedef struct {
 /** @}*/
 
 /**
+ * @brief Redirects to common @ref DL_Timer_PWMConfig
+ *
+ */
+typedef DL_Timer_PWMConfig                              DL_TimerA_PWMConfig;
+
+/**
  * @brief Redirects to common @ref DL_Timer_ClockConfig
  *
  */
@@ -1693,20 +1683,12 @@ typedef DL_Timer_CompareTriggerConfig            DL_TimerA_CompareTriggerConfig;
  */
 #define DL_TimerA_getHaltBehavior                   DL_Timer_getCoreHaltBehavior
 
-/* clang-format on */
-
-/**
- * @brief Configure timer in Pulse Width Modulation (PWM) Mode
- *  Initializes all the common configurable options for the TIMA peripheral when
- *  used in PWM mode. Any other custom configuration can be done after calling
- *  this API.
- *
- * @param gptimer              Pointer to the register overlay for the
- *                             peripheral
- * @param config               Pointer to the mode configuration struct
- *                             @ref DL_TimerA_PWMConfig.
+/*!
+ * @brief Redirects to common @ref DL_Timer_initFourCCPWMMode
  */
-void DL_TimerA_initPWMMode(GPTIMER_Regs *gptimer, DL_TimerA_PWMConfig *config);
+#define DL_TimerA_initPWMMode                   DL_Timer_initFourCCPWMMode
+
+/* clang-format on */
 
 /**
  *  @brief      Saves TimerA configuration before entering STOP or STANDBY mode.

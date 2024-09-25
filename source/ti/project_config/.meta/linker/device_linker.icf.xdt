@@ -57,7 +57,10 @@ define symbol use_IRAM2 = (__ICFEDIT_region_IRAM2_start__ != 0x0 || __ICFEDIT_re
 define symbol use_ERAM1 = (__ICFEDIT_region_ERAM1_start__ != 0x0 || __ICFEDIT_region_ERAM1_end__ != 0x0);
 define symbol use_ERAM2 = (__ICFEDIT_region_ERAM2_start__ != 0x0 || __ICFEDIT_region_ERAM2_end__ != 0x0);
 define symbol use_ERAM3 = (__ICFEDIT_region_ERAM3_start__ != 0x0 || __ICFEDIT_region_ERAM3_end__ != 0x0);
-
+% if(Common.hasDataRegionConfig()){
+define symbol __ICFEDIT_region_DATA_start__ = 0x41D00000;
+define symbol __ICFEDIT_region_DATA_end__   = 0x41D03FFF;
+% }
 if (use_IROM1)
 {
     define region IROM1_region = mem:[from __ICFEDIT_region_IROM1_start__ to __ICFEDIT_region_IROM1_end__];
@@ -149,7 +152,9 @@ define region ERAM_region = ERAM1_region | ERAM2_region | ERAM3_region;
 
 define region NON_MAIN_BCR_region = mem:[from __ICFEDIT_region_NON_MAIN_BCR_start__ to __ICFEDIT_region_NON_MAIN_BCR_end__];
 define region NON_MAIN_BSL_region = mem:[from __ICFEDIT_region_NON_MAIN_BSL_start__ to __ICFEDIT_region_NON_MAIN_BSL_end__];
-
+% if(Common.hasDataRegionConfig()){
+define region DATA_region = mem:[from __ICFEDIT_region_DATA_start__ to __ICFEDIT_region_DATA_end__];
+% }
 initialize by copy { readwrite };
 do not initialize  { section .noinit };
 
@@ -184,3 +189,7 @@ if (!isempty(ERAM_region))
 place in NON_MAIN_BCR_region  { section .BCRConfig };
 
 place in NON_MAIN_BSL_region  { section .BSLConfig };
+
+% if(Common.hasDataRegionConfig()){
+place in DATA_region  { section DataBank };
+% }

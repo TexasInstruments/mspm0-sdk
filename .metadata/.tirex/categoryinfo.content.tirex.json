@@ -22,6 +22,23 @@
     "description": "<p>The Texas Instruments MSPM0 Driver Library (DriverLib) is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. The DriverLib layer consists of comprehensive low-level drivers providing support for all device features with the highest optimization for performance and low memory footprint.</p>"
   },
   {
+    "name": "TI Drivers",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Development Tools"
+      ]
+    ],
+    "subCategories": [],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "<p>TI-Drivers is a collective of peripheral drivers that acts as a HAL (Hardware Abstraction Layer). The drivers are centered around a portable application programming interface (API) which enables seamless migration across the MSPM0 and Connectivity family devices portfolio. Unless specifically stated otherwise, TI-Drivers are designed to be thread-safe and work seamlessly inside of a real time operating system (RTOS) application. The drivers support FreeRTOS with examples provided for each variant. <br><br> Features: <ul><li>Portable APIs</li> <li>Native support for FreeRTOS and NoRTOS</li> <li>Thread safe APIs</li> <li>Example usage</li></ul></p>"
+  },
+  {
     "name": "Middleware",
     "mainCategories": [
       [

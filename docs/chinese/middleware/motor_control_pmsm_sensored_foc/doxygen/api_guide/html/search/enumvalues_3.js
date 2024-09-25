@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['fault_5fhardware_5fover_5fcurrent',['FAULT_HARDWARE_OVER_CURRENT',['../app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa2ca1806b9ab9205480f777808f01a2ee',1,'appUserOutputs.h']]],
+  ['fault_5fhv_5fdie',['FAULT_HV_DIE',['../app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71faa73a8c359fdd99e40c124f43b19572a5',1,'appUserOutputs.h']]],
+  ['fault_5fload_5fstall',['FAULT_LOAD_STALL',['../app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fad1d5d56c1da497f573c7c3bc9649a4e2',1,'appUserOutputs.h']]],
+  ['fault_5fmotor_5fstall',['FAULT_MOTOR_STALL',['../app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa6c93bf80b8388bf9710a9a4b5b79f0aa',1,'appUserOutputs.h']]],
+  ['fault_5fnone',['FAULT_NONE',['../app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa310bdf86a6ad78c2997c0f88e11aae28',1,'appUserOutputs.h']]],
+  ['fault_5fstop_5fhi_5fz',['FAULT_STOP_HI_Z',['../faults_8h.html#a1a0ec401c444e59c105dc58e5b4a99d9a2377137da6d9a5eb2f7ab44362d92d80',1,'faults.h']]],
+  ['fault_5fstop_5fhigh_5fbrake',['FAULT_STOP_HIGH_BRAKE',['../faults_8h.html#a1a0ec401c444e59c105dc58e5b4a99d9ad021a9d9f8d87b82e2863277bfaf5f90',1,'faults.h']]],
+  ['fault_5fstop_5flow_5fbrake',['FAULT_STOP_LOW_BRAKE',['../faults_8h.html#a1a0ec401c444e59c105dc58e5b4a99d9a3dc8431562681d7c17e14405d4a81fff',1,'faults.h']]],
+  ['fault_5fvoltage_5fout_5fof_5fbounds',['FAULT_VOLTAGE_OUT_OF_BOUNDS',['../app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa915c7a17b6e0008954f0f6334d2c0482',1,'appUserOutputs.h']]],
+  ['foc_5fclose_5floop',['FOC_CLOSE_LOOP',['../foc_8h.html#aace61fb955c18397ffed9a328716e785ad5dfd03a907434059a037bffc65780a7',1,'foc.h']]],
+  ['foc_5fhall_5fangle_5finit',['FOC_HALL_ANGLE_INIT',['../foc_8h.html#aace61fb955c18397ffed9a328716e785a44df13c137e4cfb9c602a57ac9366597',1,'foc.h']]],
+  ['foc_5fhall_5fcalib',['FOC_HALL_CALIB',['../foc_8h.html#aace61fb955c18397ffed9a328716e785aaf64a36c8c4cbccf49820cbcaa1f38ef',1,'foc.h']]],
+  ['foc_5finit',['FOC_INIT',['../foc_8h.html#aace61fb955c18397ffed9a328716e785a3c254ce582bc41a91887a1420dbd526a',1,'foc.h']]],
+  ['foc_5fopen_5floop',['FOC_OPEN_LOOP',['../foc_8h.html#aace61fb955c18397ffed9a328716e785a12e6d57a7a26ba8210d7975d3e33dae5',1,'foc.h']]],
+  ['foc_5frotor_5falign',['FOC_ROTOR_ALIGN',['../foc_8h.html#aace61fb955c18397ffed9a328716e785af399cf503292d4bbe6e73d9496997c8d',1,'foc.h']]],
+  ['foc_5fstall',['FOC_STALL',['../foc_8h.html#aace61fb955c18397ffed9a328716e785aef468c96214c1d0d5d1088e5a94b4b56',1,'foc.h']]],
+  ['foc_5fstop',['FOC_STOP',['../foc_8h.html#aace61fb955c18397ffed9a328716e785af40a4c0085a6875b4ededa9c7f9c8c7a',1,'foc.h']]]
+];

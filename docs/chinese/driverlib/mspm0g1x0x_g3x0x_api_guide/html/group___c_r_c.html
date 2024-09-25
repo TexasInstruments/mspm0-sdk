@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -67,6 +67,7 @@ $(function() {
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -74,9 +75,20 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gace9dca35a065dc4696e663d8555fc0b4"><td class="memItemLeft" align="right" valign="top"><a id="gace9dca35a065dc4696e663d8555fc0b4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_r_c.html#gace9dca35a065dc4696e663d8555fc0b4">DEVICE_HAS_CRC_32_BIT_POLYNOMIAL</a></td></tr>
+<tr class="memdesc:gace9dca35a065dc4696e663d8555fc0b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device has support for CRC 32-bit polynomials. <br /></td></tr>
+<tr class="separator:gace9dca35a065dc4696e663d8555fc0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga28e7aa78509d87ff66ba2b3622103647"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_r_c.html#ga28e7aa78509d87ff66ba2b3622103647">DL_CRC_POLYNOMIAL</a> { <a class="el" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a982d11667140edabf2e96e11754ded95">DL_CRC_16_POLYNOMIAL</a> = CRC_CRCCTRL_POLYSIZE_CRC16
+<tr class="memitem:ga28e7aa78509d87ff66ba2b3622103647"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_r_c.html#ga28e7aa78509d87ff66ba2b3622103647">DL_CRC_POLYNOMIAL</a> { <br />
+&#160;&#160;<a class="el" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a982d11667140edabf2e96e11754ded95">DL_CRC_16_POLYNOMIAL</a> = CRC_CRCCTRL_POLYSIZE_CRC16, 
+<br />
+&#160;&#160;<a class="el" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a754185214a80ecbe4ce980db267b2f69">DL_CRC_32_POLYNOMIAL</a> = CRC_CRCCTRL_POLYSIZE_CRC32
+<br />
  }</td></tr>
 <tr class="separator:ga28e7aa78509d87ff66ba2b3622103647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga543dd9f05de27a7bf199d82c439cb13a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_r_c.html#ga543dd9f05de27a7bf199d82c439cb13a">DL_CRC_BIT</a> { <br />
@@ -176,6 +188,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga28e7aa78509d87ff66ba2b3622103647a982d11667140edabf2e96e11754ded95"></a>DL_CRC_16_POLYNOMIAL&#160;</td><td class="fielddoc"><p>Use 16-bit polynomial for calculation. Follows CRC-16-CCITT standard with a polynomial value of 0x1021. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28e7aa78509d87ff66ba2b3622103647a754185214a80ecbe4ce980db267b2f69"></a>DL_CRC_32_POLYNOMIAL&#160;</td><td class="fielddoc"><p>Use 32-bit polynomial for calculation. Follows CRC32-ISO3309 standard with a polynomial value of 0x04C11DB7. </p>
 </td></tr>
 </table>
 

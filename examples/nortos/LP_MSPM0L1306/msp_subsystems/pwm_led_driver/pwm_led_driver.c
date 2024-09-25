@@ -1,4 +1,3 @@
-
 #include "ti_msp_dl_config.h"
 
 int pwm_count = 1800; // initial ccr count based on 10% duty cycle

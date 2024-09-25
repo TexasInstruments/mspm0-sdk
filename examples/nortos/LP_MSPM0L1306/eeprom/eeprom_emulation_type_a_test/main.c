@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2021-24, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,8 +33,14 @@
 #include <ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h>
 #include "ti_msp_dl_config.h"
 
-/* Address in main memory to write to */
-#define MAIN_BASE_ADDRESS (0x00001000)
+/* Address in main memory to write to. This is defined in the
+ * eeprom_emulation_type_a.h header file. Uncommenting the #define below will
+ * overwrite the default #define in the header file. */
+//#define EEPROM_EMULATION_ADDRESS    0x00001000
+
+#define SECTOR_SIZE (1024)
+
+#define NUMBER_OF_WRITES ((SECTOR_SIZE / EEPROM_EMULATION_DATA_SIZE) + 1)
 
 uint32_t header1[] = {0x0000ffff, 0x0000ffff};  //active
 uint32_t header2[] = {0x0000ffff, 0xffffffff};  //recording
@@ -75,6 +81,9 @@ int main(void)
 
     SYSCFG_DL_init();
 
+    /* Counter for number of times to write to the EEPROM region */
+    uint32_t counter;
+
     /* Test for EEPROM_TypeA_init */
 
     __BKPT(0);
@@ -104,7 +113,9 @@ int main(void)
      * */
 
     /* Test for EEPROM_TypeA_writeData */
-    while (1) {
+
+    /* Write NUMBER_OF_WRITE times to the EEPROM region specified in memory */
+    for (counter = 0; counter < NUMBER_OF_WRITES; counter++) {
         /* Change the content of EEPROMEmulationBuffer */
         EEPROMEmulationBuffer[0] += 1;
         EEPROMEmulationBuffer[1] += 0x1000;
@@ -131,4 +142,8 @@ int main(void)
          * flash, and the last record's header is updated too
          */
     }
+ 
+    while(1) {
+        __WFI(); 
+    } 
 }

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -75,8 +75,11 @@ $(function() {
 <li>delay_cycles
 : <a class="el" href="group___c_o_r_e.html#ga37a29402ad70bd40dd5f7630a77034be">dl_core.h</a>
 </li>
-<li>DEVICE_HAS_NO_CMDWEPROTA
-: <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb">dl_flashctl.h</a>
+<li>DEVICE_HAS_CRC_32_BIT_POLYNOMIAL
+: <a class="el" href="group___c_r_c.html#gace9dca35a065dc4696e663d8555fc0b4">dl_crc.h</a>
+</li>
+<li>DEVICE_HAS_DMA_FULL_CHANNEL
+: <a class="el" href="group___d_m_a.html#ga8f24fd5e050b3b5bffa83baa62eae24e">dl_dma.h</a>
 </li>
 <li>DL_ADC12_AVERAGING_MODE_DISABLED
 : <a class="el" href="group___d_l___a_d_c12___a_v_e_r_a_g_i_n_g___m_o_d_e.html#ga324f3dd958313618c5cb3cb0f39a412a">dl_adc12.h</a>
@@ -1698,6 +1701,9 @@ $(function() {
 <li>DL_CRC_16_POLYNOMIAL
 : <a class="el" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a982d11667140edabf2e96e11754ded95">dl_crc.h</a>
 </li>
+<li>DL_CRC_32_POLYNOMIAL
+: <a class="el" href="group___c_r_c.html#gga28e7aa78509d87ff66ba2b3622103647a754185214a80ecbe4ce980db267b2f69">dl_crc.h</a>
+</li>
 <li>DL_CRC_BIT
 : <a class="el" href="group___c_r_c.html#ga543dd9f05de27a7bf199d82c439cb13a">dl_crc.h</a>
 </li>
@@ -2229,15 +2235,6 @@ $(function() {
 <li>DL_DMA_AUTOEN_DISABLE
 : <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2">dl_dma.h</a>
 </li>
-<li>DL_DMA_AUTOEN_DMADA
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb">dl_dma.h</a>
-</li>
-<li>DL_DMA_AUTOEN_DMASA
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe">dl_dma.h</a>
-</li>
-<li>DL_DMA_AUTOEN_DMASZ
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5">dl_dma.h</a>
-</li>
 <li>DL_DMA_BURST_SIZE
 : <a class="el" href="group___d_m_a.html#ga7e3e053c6a9c5586e2bfd6a0015e870d">dl_dma.h</a>
 </li>
@@ -2264,9 +2261,6 @@ $(function() {
 </li>
 <li>DL_DMA_configTransfer()
 : <a class="el" href="group___d_m_a.html#ga28e4595240333440fb932a78c70729cd">dl_dma.h</a>
-</li>
-<li>DL_DMA_disableAutoEnable()
-: <a class="el" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">dl_dma.h</a>
 </li>
 <li>DL_DMA_disableChannel()
 : <a class="el" href="group___d_m_a.html#ga5df220a6523711b5b8e9c4f7a530e169">dl_dma.h</a>
@@ -2306,9 +2300,6 @@ $(function() {
 </li>
 <li>DL_DMA_EARLY_INTERRUPT_THRESHOLD_HALF
 : <a class="el" href="group___d_m_a.html#gga1da0bf5384dbbd60633b008428a834c7a21ec3f0d25c2ab9c65f9eff88ab0748c">dl_dma.h</a>
-</li>
-<li>DL_DMA_enableAutoEnable()
-: <a class="el" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">dl_dma.h</a>
 </li>
 <li>DL_DMA_enableChannel()
 : <a class="el" href="group___d_m_a.html#ga7f23920a43794e7d5de8f5edf0721c27">dl_dma.h</a>
@@ -2436,6 +2427,96 @@ $(function() {
 <li>DL_DMA_EXTENDED_MODE
 : <a class="el" href="group___d_m_a.html#ga492a0576e98efee98bebd313be27fbf2">dl_dma.h</a>
 </li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL0
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gad5dd1b80f3d57c35e03276bcda50e29d">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL1
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga27eeb0ea5ea1d87890fae1ff8ff4cd0f">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL2
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gabd59d3e2055a001e82f7e7eba7b44e68">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL3
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gab8d2eb41094bf0cde0d8fa0e94da8729">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL4
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gaa67d17e89be4e49e02a958444ca58461">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL5
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga41afd3a6f45e6ef2fecdce78d847929d">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL6
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gaef3bfec44df506dd137ebe9fec477198">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL7
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8b09f9fb4eeef5e9c4da98aafc4c4b06">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH0
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad44ecfa3278001c127078697c15a1d09">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH1
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8acc735933d41b9ce29029d0fefed63739">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH2
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a03bbf4447e73deef4da0df0e8fbcea69">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH3
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a1126d30c223677900837288277d65e7c">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH4
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad3e2c3cddfbcaa781a7b75c427ec75fb">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH5
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a4c89a802b27ec5c3385a94329ec7adad">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH6
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3e410b2358fe3059afb8710ef629eca7">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH7
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3d4ea06db3f44778b89e2c0856735f66">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_FILL_MODE
+: <a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2aca0f445c9e3358c80f6ad6ebcc9aadfb">dl_dma.h</a>
+</li>
+<li>DL_DMA_Full_Ch_getEarlyInterruptThreshold()
+: <a class="el" href="group___d_m_a.html#gad1d3a556657ecde120f39d8151b855a9">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL0
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gadf2079e77d478e76fd7e061fdbc905f8">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL1
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga7b4cbfb00c7f2c295f99b83a93a23970">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL2
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad6e6e24b795f25b859d95e593b753ad8">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL3
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga56942d52a45d492764a1068a9a9a1ad2">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL4
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8224eb3c385aacf0e61a2d214cae8818">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL5
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga3f368d2f2f2dd80721d0a0432c08f6aa">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL6
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad5617a8d33a3e3c91e3bae8e8d385e68">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL7
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga2c85d577dbf22790a2a02a0de0d22e63">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_REPEAT_BLOCK_TRANSFER_MODE
+: <a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a03b8e4d1275507a7e06ac3fc2a41e827">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_REPEAT_SINGLE_TRANSFER_MODE
+: <a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a6f096384bb41144646ee651936f288b0">dl_dma.h</a>
+</li>
+<li>DL_DMA_Full_Ch_setEarlyInterruptThreshold()
+: <a class="el" href="group___d_m_a.html#gacc68c40f08f75d0bb0aa2cc028a52e69">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_TABLE_MODE
+: <a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a1ede584989a704dd5b435015e0960640">dl_dma.h</a>
+</li>
 <li>DL_DMA_getBurstSize()
 : <a class="el" href="group___d_m_a.html#ga83862400ca8d2f3fef959e8067fe433c">dl_dma.h</a>
 </li>
@@ -2556,9 +2637,6 @@ $(function() {
 <li>DL_DMA_INTERRUPT_DATA_ERROR
 : <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gae1fde9dc3ec9b9dc35bb8a344ff8767f">dl_dma.h</a>
 </li>
-<li>DL_DMA_isAutoEnableEnabled()
-: <a class="el" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">dl_dma.h</a>
-</li>
 <li>DL_DMA_isChannelEnabled()
 : <a class="el" href="group___d_m_a.html#ga4834aa3e846be0f6c08a24496e23655c">dl_dma.h</a>
 </li>
@@ -2654,9 +2732,6 @@ $(function() {
 </li>
 <li>DL_DMA_WIDTH_LONG
 : <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">dl_dma.h</a>
-</li>
-<li>DL_DMA_WIDTH_LONG_LONG
-: <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9">dl_dma.h</a>
 </li>
 <li>DL_DMA_WIDTH_WORD
 : <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836">dl_dma.h</a>
@@ -7272,9 +7347,6 @@ $(function() {
 <li>DL_RTC_Common_clearInterruptStatus()
 : <a class="el" href="group___r_t_c___common.html#gadad3e89761251a244e20a641984c92f7">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_clearTimeStamp()
-: <a class="el" href="group___r_t_c___common.html#ga022ee7a77242e843528c6bbd047b3cdb">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_COMMON_COMPENSATION_STATUS
 : <a class="el" href="group___r_t_c___common.html#gaf8afeb95abdb45984c615b32f713f24b">dl_rtc_common.h</a>
 </li>
@@ -7365,9 +7437,6 @@ $(function() {
 <li>DL_RTC_Common_disablePower()
 : <a class="el" href="group___r_t_c___common.html#ga0ddeab703b80c979c5b4cba4a621cfec">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_disableWriteProtect()
-: <a class="el" href="group___r_t_c___common.html#ga7204973319656de5d531e24cb2781027">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_Common_enableAlarm1DayOfMonthBCD()
 : <a class="el" href="group___r_t_c___common.html#ga81c73577994ae08f095b01905a4968de">dl_rtc_common.h</a>
 </li>
@@ -7440,9 +7509,6 @@ $(function() {
 <li>DL_RTC_Common_enablePower()
 : <a class="el" href="group___r_t_c___common.html#gae0d66fa841b53f07a456f9abc92c8050">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_enableWriteProtect()
-: <a class="el" href="group___r_t_c___common.html#gafdef799b97c5d0694807571e0f085eb7">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_COMMON_EVENT_CALENDAR_ALARM1
 : <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gae109b53633b3d0f6a97abebeda9932ce">dl_rtc_common.h</a>
 </li>
@@ -7458,14 +7524,8 @@ $(function() {
 <li>DL_RTC_COMMON_EVENT_PRESCALER1
 : <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#ga8f9fef500d9b83db11b8d22244d7d6b8">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_COMMON_EVENT_PRESCALER2
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gae035442e8adea17f11e07d9527b08fba">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_COMMON_EVENT_READY
 : <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#ga23ba05a17f72305b794e881a56b3470b">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_EVENT_TSEVT
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gaa11c45af57f69a626f11e8883e87a33b">dl_rtc_common.h</a>
 </li>
 <li>DL_RTC_COMMON_FORMAT
 : <a class="el" href="group___r_t_c___common.html#ga281b5c9f2ff0d1f6324c056f87a85bf7">dl_rtc_common.h</a>
@@ -7635,15 +7695,6 @@ $(function() {
 <li>DL_RTC_Common_getTimeStampDayOfWeekBinary()
 : <a class="el" href="group___r_t_c___common.html#gad87262513d0c0b8276ad30bb68267d2e">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_getTimeStampEventCapture()
-: <a class="el" href="group___r_t_c___common.html#gadcf0fa5eed60ee8ca799a913af558e48">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_getTimeStampEventCause()
-: <a class="el" href="group___r_t_c___common.html#ga50d25a356b3eb5ad22d1e03af64d0832">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_getTimeStampEventSource()
-: <a class="el" href="group___r_t_c___common.html#gac8ca25a11b1cf98b0f73ae18e3475d55">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_Common_getTimeStampHoursBCD()
 : <a class="el" href="group___r_t_c___common.html#ga9224211fc8045e637253eac877975175">dl_rtc_common.h</a>
 </li>
@@ -7698,57 +7749,6 @@ $(function() {
 <li>DL_RTC_COMMON_IIDX_READY
 : <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aaefc22c11456b3ec30a4c16b59e8b20c">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_0
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ad8f32792f6af3198219f2f97e95a0ae9">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_1
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ad95da8e0e26a4f939f91d6d32669264c">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_10
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ae844a830d2361ff904bf052ad49b17e8">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_11
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a4f35d135d0003b8272c7b6fc619352f3">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_12
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ae21b9b828153b2f97416b46369d7003b">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_13
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3adef6f74a004f54949eda6c73a0c2bd37">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_14
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aa5f947f121f9c6a4bd28bab8d6d5025a">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_15
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a830d5071943a08fe621276e61ff59de7">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_2
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a4690fe48d832a2bb037575108d3b6dca">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_3
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aca053f4233a651e2be126f67e4c52f0f">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_4
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3acc4a8d4c1f486521c1f194d6ef2fd3d5">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_5
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a0e4ac4b147c455b68d5b0e7361e35325">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_6
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3ae961b18afd2c5f6a00799eab8a1d5be1">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_7
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3a66098e4e3cb83cd5f3bb0656c1a85065">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_8
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3aa32a2c5bb15819409570a4bbd367e335">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TAMPER_IO_9
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3af71ee258187677ef26fd1d5159e25917">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_IIDX_TSEVT
-: <a class="el" href="group___r_t_c___common.html#gga9e59c5fe892284ce65c680a16f1d34f3acba0baa35e90be12c8eda423d84c0072">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_Common_initCalendar()
 : <a class="el" href="group___r_t_c___common.html#gaa0501e1c894b1b2542de6a1df3de00c2">dl_rtc_common.h</a>
 </li>
@@ -7767,14 +7767,8 @@ $(function() {
 <li>DL_RTC_COMMON_INTERRUPT_PRESCALER1
 : <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga6034ab4b86b2726bb761dd27c11e61a3">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_COMMON_INTERRUPT_PRESCALER2
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga9fbc9fd2402ed792a7a0bcbb549f8b86">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_COMMON_INTERRUPT_READY
 : <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga54eaa42fe045895d52c6367398cfc22f">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_INTERRUPT_TSEVT
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga308864129f1706da453ad2dd46de8c1e">dl_rtc_common.h</a>
 </li>
 <li>DL_RTC_COMMON_INTERVAL_ALARM
 : <a class="el" href="group___r_t_c___common.html#ga48f88486b3b76fa0a33868883edd422d">dl_rtc_common.h</a>
@@ -7809,9 +7803,6 @@ $(function() {
 <li>DL_RTC_Common_isSafeToRead()
 : <a class="el" href="group___r_t_c___common.html#ga6c8bdaed37947d22da141eed8713bcac">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_isWriteProtectEnabled()
-: <a class="el" href="group___r_t_c___common.html#ga303f5a85ea3b48fa4785c4e0b54c175d">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY
 : <a class="el" href="group___r_t_c___common.html#ga7bad30cc0c084db0b1527949f2d99aa2">dl_rtc_common.h</a>
 </li>
@@ -7820,9 +7811,6 @@ $(function() {
 </li>
 <li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_256
 : <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2a0b08171e9e9209ca79d32e9e0b303fbb">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_32_KHZ
-: <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2a4e0c3750c7d332c0a9aeea32dc99115f">dl_rtc_common.h</a>
 </li>
 <li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_512
 : <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2ae3c807a7fd2591a41ba568435c71baf8">dl_rtc_common.h</a>
@@ -8031,12 +8019,6 @@ $(function() {
 <li>DL_RTC_Common_setTemperatureCompensation()
 : <a class="el" href="group___r_t_c___common.html#gacc829531d289265a4298524ac55b962c">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_setTimeStampEventCapture()
-: <a class="el" href="group___r_t_c___common.html#gaf48c3ca43da2b3b23a087a349db59aec">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_setTimeStampEventSource()
-: <a class="el" href="group___r_t_c___common.html#ga0523b6f9bd6c11ceb2ece2bcdd7a3471">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_COMMON_STATUS
 : <a class="el" href="group___r_t_c___common.html#gaf3626cb23d4f51c75cf765214356a81e">dl_rtc_common.h</a>
 </li>
@@ -8054,117 +8036,6 @@ $(function() {
 </li>
 <li>DL_RTC_COMMON_TEMP_CALIBRATION_UP1PPM
 : <a class="el" href="group___r_t_c___common.html#gga3f6282ba753318ebb87d4175509c4864ab60213680f609e9bbfb37a1731101b24">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE
-: <a class="el" href="group___r_t_c___common.html#ga8ae64f7f7f47cc86d46fc47c21cd4771">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE_FIRST
-: <a class="el" href="group___r_t_c___common.html#gga8ae64f7f7f47cc86d46fc47c21cd4771a37af71bc4ac3e06b0b034957c7f39f51">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE_LAST
-: <a class="el" href="group___r_t_c___common.html#gga8ae64f7f7f47cc86d46fc47c21cd4771a81c3fff77367a65369e8a9f3f963d4a4">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_0
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#gad8b6e5a80a74bf53c698a273afe38364">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_1
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga9cf117446cf27e531d199d05cb4a2cbe">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_10
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#gae384525fbb4fde8c561983508286d027">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_11
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#gab60cd58ca0728bb79e1e04410f372b1f">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_12
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga44d807fe4f16fc70237faa1111db4c76">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_13
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga7be086e9a76bfbf201e6433d93616b64">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_14
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#gaf9617e76617460b39dc8f4bbf2175e80">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_15
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga0d71d9858db0ae6fa20381e3a4139e45">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_2
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga91d1e87877d90c7b3a866649befeb974">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_3
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga91e1c959697761d461b4b72ce97f5e61">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_4
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga155c6aab84375f2aa02d32abb022032c">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_5
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#gacdf485dd8840ad1ab3a0503937eff5bf">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_6
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#gadd3d83215f043ea5850a057e45baac1b">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_7
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga5cafea56dd0edf2a44e9aeb563ae73c4">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_8
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#gade5d755eb4327f6768543026c18600d5">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_TIO_9
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga3a3bfacdc4134e22821ed6725e34690b">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE_VDD_LOSS
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___c_a_u_s_e.html#ga3f322b31234798992df75a1bac6f100f">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_0
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#gafc8b9da4bfd24206dcf142064d08fe30">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_1
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#gacf5a9632c298ecdb60b1e403229f899b">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_10
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga4f0dde8b017b98050b205cbbe4975364">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_11
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga98d129f94a73bd3db08c7e13b0236965">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_12
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga151d84ed69c3ad98a182bc4645f32567">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_13
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga1fb15923759b3e495426a863522c209d">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_14
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga9316159b9b26733ccbf9645f7dbf0ab6">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_15
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#gabf193d99826d6159ee15f915b8529913">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_2
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga258def013010f21d7ffa9bb498ba5807">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_3
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#gab99f023c50a6a27c722cb35c1268a340">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_4
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#gac32f21bb472a1ca9a50f1257a6adeb03">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_5
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga7c78894c7e6833623b86c96acad93347">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_6
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga0141fe7e5a386e3a7744847c2bcdd0c6">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_7
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga4c4837e0998dfd5b05f1956fc3aa54f1">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_8
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga218ebc973b6d709443d05ab56604e7dc">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_TIO_9
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#ga776f37feab10784521dc702b25e579ea">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE_VDD_LOSS
-: <a class="el" href="group___d_l___r_t_c___c_o_m_m_o_n___t_i_m_e___s_t_a_m_p___e_v_e_n_t___s_o_u_r_c_e.html#gacc57807cb51fdb4f5ada342b8e51546d">dl_rtc_common.h</a>
 </li>
 <li>DL_RTC_COMPENSATION_STATUS_NOT_READY
 : <a class="el" href="group___r_t_c.html#ga037ad155fadfe31742e6dadbbac62035">dl_rtc.h</a>
@@ -10542,9 +10413,6 @@ $(function() {
 <li>DL_SYSCTL_ULPCLK_DIV_2
 : <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gga30905901ec99d62a476407bf7b648c04a65ef5fb94da6b996f74b055e96164d61">dl_sysctl_mspm0g1x0x_g3x0x.h</a>
 </li>
-<li>DL_SYSCTL_ULPCLK_DIV_3
-: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#gga30905901ec99d62a476407bf7b648c04a35655ff21ab615b9d674331d51e49296">dl_sysctl_mspm0g1x0x_g3x0x.h</a>
-</li>
 <li>DL_SYSCTL_VBOOST
 : <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_g1_x0_x___g3_x0_x.html#ga4bac12ff08dc5a074df489d69ae0cc80">dl_sysctl_mspm0g1x0x_g3x0x.h</a>
 </li>
@@ -11310,9 +11178,9 @@ $(function() {
 <li>DL_Timer_disableShadowFeatures()
 : <a class="el" href="group___t_i_m_x.html#ga981154ec4693d7c45b1cbaa1b73adb99">dl_timer.h</a>
 </li>
-<li>DL_Timer_disableSuppressionOfCompEvent()
-: <a class="el" href="group___t_i_m_x.html#gaa64faafd07868c4dcfb28f08967c9628">dl_timer.h</a>
-, <a class="el" href="group___t_i_m_a.html#ga287f87908ac0e909e7c61739c3c297b9">dl_timera.h</a>
+<li>DL_Timer_disableSuppressionOfCompEvent
+: <a class="el" href="group___t_i_m_a.html#ga287f87908ac0e909e7c61739c3c297b9">dl_timera.h</a>
+, <a class="el" href="group___t_i_m_x.html#gaa64faafd07868c4dcfb28f08967c9628">dl_timer.h</a>
 </li>
 <li>DL_Timer_enableCaptureCompareInputFilter()
 : <a class="el" href="group___t_i_m_x.html#gaaf1dbfecb1cf0d91d192d7335c46a361">dl_timer.h</a>
@@ -11866,8 +11734,11 @@ $(function() {
 <li>DL_Timer_initCompareTriggerMode()
 : <a class="el" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b">dl_timer.h</a>
 </li>
-<li>DL_Timer_initPWMMode()
-: <a class="el" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036">dl_timer.h</a>
+<li>DL_Timer_initFourCCPWMMode()
+: <a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">dl_timer.h</a>
+</li>
+<li>DL_Timer_initPWMMode
+: <a class="el" href="group___t_i_m_x.html#ga62ed6b5a665c8c9b3b06a230924b6477">dl_timer.h</a>
 </li>
 <li>DL_Timer_initTimerMode()
 : <a class="el" href="group___t_i_m_x.html#ga68272d2f890b1e0b8e69a446dad41df5">dl_timer.h</a>
@@ -12829,8 +12700,8 @@ $(function() {
 <li>DL_TimerA_initCompareTriggerMode
 : <a class="el" href="group___t_i_m_a.html#ga783966368a3edfa66c5cd7d955ddcb9d">dl_timera.h</a>
 </li>
-<li>DL_TimerA_initPWMMode()
-: <a class="el" href="group___t_i_m_a.html#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">dl_timera.h</a>
+<li>DL_TimerA_initPWMMode
+: <a class="el" href="group___t_i_m_a.html#ga102ebcb322db4c2bf320afeccbc911fe">dl_timera.h</a>
 </li>
 <li>DL_TimerA_initTimerMode
 : <a class="el" href="group___t_i_m_a.html#ga1574f1ca14dc38917e633f8cea6bf1a2">dl_timera.h</a>
@@ -12921,6 +12792,9 @@ $(function() {
 </li>
 <li>DL_TIMERA_PUBLISHER_INDEX_1
 : <a class="el" href="group___d_l___t_i_m_e_r_a___p_u_b_l_i_s_h_e_r___i_n_d_e_x.html#gaef677c4655c4c5887ec49098cc98c80b">dl_timera.h</a>
+</li>
+<li>DL_TimerA_PWMConfig
+: <a class="el" href="group___t_i_m_a.html#gab9ddb2e475539aec95d1df593860ef9c">dl_timera.h</a>
 </li>
 <li>DL_TimerA_reset
 : <a class="el" href="group___t_i_m_a.html#ga40fd9a04e365f8fe36462643711e5774">dl_timera.h</a>
@@ -13311,6 +13185,18 @@ $(function() {
 </li>
 <li>DL_TIMERG_IIDX_CC1_UP
 : <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga52076f6e80c99ad89e967749d6121ef6">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC2_DN
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga25c9c662eaf6144b4400e8fed7f01763">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC2_UP
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga5e2883a8d2267be6119fc348f7210110">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC3_DN
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gaa8196bed6379ac8e5d2e8582a70a0b23">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC3_UP
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gae55e8af4c5d52263393c577597e9a121">dl_timerg.h</a>
 </li>
 <li>DL_TIMERG_IIDX_DIR_CHANGE
 : <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga562ebfbc0da130ee56376686a627cf8a">dl_timerg.h</a>
@@ -13890,6 +13776,12 @@ $(function() {
 </li>
 <li>DL_UART_disableTransmitPinManualControl()
 : <a class="el" href="group___u_a_r_t.html#ga3cf985e585b6f4bb006d0360b517c720">dl_uart.h</a>
+</li>
+<li>DL_UART_DMA_DONE_INTERRUPT_RX
+: <a class="el" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#gaae49a60a8c0c28a27aedff63bd1eeea6">dl_uart.h</a>
+</li>
+<li>DL_UART_DMA_DONE_INTERRUPT_TX
+: <a class="el" href="group___u_a_r_t.html#ga2ff9892c769fb5afb98536b81b158805">dl_uart.h</a>
 </li>
 <li>DL_UART_DMA_IIDX_RX
 : <a class="el" href="group___u_a_r_t.html#ga0429ae4fb40aa91a0f50cd43f607b757">dl_uart.h</a>

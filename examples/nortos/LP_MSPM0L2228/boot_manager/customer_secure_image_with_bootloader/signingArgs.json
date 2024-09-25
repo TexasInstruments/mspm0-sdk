@@ -1,4 +1,7 @@
 {
 	"version": ["1.0.0", "2.0.0", "3.0.0"],
-    "privateKeyPath" : "/source/third_party/mcuboot/image_signTEST.pem"
+    "privateKeyPath" : "/source/third_party/mcuboot/image_signTEST.pem",
+    "slotSize": 10240,
+    "bankSize": 131072,
+    "offset": 18432
 }

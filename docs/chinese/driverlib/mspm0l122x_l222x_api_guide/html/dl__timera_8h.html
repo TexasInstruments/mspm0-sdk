@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -66,7 +66,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1ec8ed615bc2da65e0c30f17adbe5612.html">bazel-out</a></li><li class="navelem"><a class="el" href="dir_231710fef160230c0d793a19eca7d6c5.html">k8-fastbuild</a></li><li class="navelem"><a class="el" href="dir_7ce6e6bbdebed80a74588c9bb8f8de86.html">bin</a></li><li class="navelem"><a class="el" href="dir_3367b93674f2985c4702ec3e396ea8fb.html">docs</a></li><li class="navelem"><a class="el" href="dir_1326816c3db4bd9e5e63224f4bcedb5e.html">chinese</a></li><li class="navelem"><a class="el" href="dir_c9faca0033c7f9a3f7a810262b3402b3.html">driverlib</a></li><li class="navelem"><a class="el" href="dir_08de37d0894c4a2f865fb216fa4e811e.html">mspm0l122x_l222x_api_guide-srcs</a></li><li class="navelem"><a class="el" href="dir_aeae84726ac6fcde255446497ce3358c.html">source</a></li><li class="navelem"><a class="el" href="dir_dbcebd59f82dcd70b523baa0cfdea476.html">ti</a></li><li class="navelem"><a class="el" href="dir_60fed03aae0801049e1913185b992fcb.html">driverlib</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_1ec8ed615bc2da65e0c30f17adbe5612.html">bazel-out</a></li><li class="navelem"><a class="el" href="dir_81796cf7b8c85abf4aaa4478eac07be3.html">k8-opt</a></li><li class="navelem"><a class="el" href="dir_7d9ef33ae1d656eb0f786113430116c5.html">bin</a></li><li class="navelem"><a class="el" href="dir_e0abc62f7a8fffc210aad9d69afc4cc1.html">docs</a></li><li class="navelem"><a class="el" href="dir_a1b67bd9de939d499eb32d6d220671a0.html">chinese</a></li><li class="navelem"><a class="el" href="dir_bbe32cf608396e186d702eea875dea8c.html">driverlib</a></li><li class="navelem"><a class="el" href="dir_b0f84b4758fedff83037748d66a71535.html">mspm0l122x_l222x_api_guide-srcs</a></li><li class="navelem"><a class="el" href="dir_f3d041167f1c7b5e35886a465a28598e.html">source</a></li><li class="navelem"><a class="el" href="dir_3b4231fb28ec806e9b914ede3b1a903c.html">ti</a></li><li class="navelem"><a class="el" href="dir_518ba46d2422cb6d1609ff74f80ed87f.html">driverlib</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,9 +99,6 @@ Include dependency graph for dl_timera.h:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___timer_a___p_w_m_config.html">DL_TimerA_PWMConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___t_i_m_a.html#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">DL_TimerA_initPWMMode</a>.  <a href="struct_d_l___timer_a___p_w_m_config.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___timer_a__backup_config.html">DL_TimerA_backupConfig</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure to backup Timer A peripheral state before entering STOP or STANDBY mode. Not required after PG 1.0 silicon. Used by <a class="el" href="group___t_i_m_a.html#ga24733298a4ff89389376656dbc9730a9">DL_TimerA_saveConfiguration</a> and <a class="el" href="group___t_i_m_a.html#gae6ac40d8762a7d1775b0d39c85f504e8">DL_TimerA_restoreConfiguration</a>.  <a href="struct_d_l___timer_a__backup_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1098,9 +1095,17 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#ga4e8ba51c4980f139b57ae09be04783e7">DL_TimerA_getHaltBehavior</a>&#160;&#160;&#160;<a class="el" href="group___t_i_m_x.html#ga53105b387aeefc751d098437e07aae56">DL_Timer_getCoreHaltBehavior</a></td></tr>
 <tr class="memdesc:ga4e8ba51c4980f139b57ae09be04783e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="group___t_i_m_x.html#ga53105b387aeefc751d098437e07aae56">DL_Timer_getCoreHaltBehavior</a>. <br /></td></tr>
 <tr class="separator:ga4e8ba51c4980f139b57ae09be04783e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga102ebcb322db4c2bf320afeccbc911fe"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#ga102ebcb322db4c2bf320afeccbc911fe">DL_TimerA_initPWMMode</a>&#160;&#160;&#160;<a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">DL_Timer_initFourCCPWMMode</a></td></tr>
+<tr class="memdesc:ga102ebcb322db4c2bf320afeccbc911fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">DL_Timer_initFourCCPWMMode</a>. <br /></td></tr>
+<tr class="separator:ga102ebcb322db4c2bf320afeccbc911fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:gab9ddb2e475539aec95d1df593860ef9c"><td class="memItemLeft" align="right" valign="top">
+typedef <a class="el" href="struct_d_l___timer___p_w_m_config.html">DL_Timer_PWMConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#gab9ddb2e475539aec95d1df593860ef9c">DL_TimerA_PWMConfig</a></td></tr>
+<tr class="memdesc:gab9ddb2e475539aec95d1df593860ef9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="struct_d_l___timer___p_w_m_config.html">DL_Timer_PWMConfig</a>. <br /></td></tr>
+<tr class="separator:gab9ddb2e475539aec95d1df593860ef9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad1241d1ffa0201908ca41beac9fd5bb0"><td class="memItemLeft" align="right" valign="top">
 typedef <a class="el" href="struct_d_l___timer___clock_config.html">DL_Timer_ClockConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#gad1241d1ffa0201908ca41beac9fd5bb0">DL_TimerA_ClockConfig</a></td></tr>
 <tr class="memdesc:gad1241d1ffa0201908ca41beac9fd5bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="struct_d_l___timer___clock_config.html">DL_Timer_ClockConfig</a>. <br /></td></tr>
@@ -1132,9 +1137,6 @@ typedef <a class="el" href="struct_d_l___timer___compare_trigger_config.html">DL
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">DL_TimerA_initPWMMode</a> (GPTIMER_Regs *gptimer, <a class="el" href="struct_d_l___timer_a___p_w_m_config.html">DL_TimerA_PWMConfig</a> *config)</td></tr>
-<tr class="memdesc:ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure timer in Pulse Width Modulation (PWM) Mode Initializes all the common configurable options for the TIMA peripheral when used in PWM mode. Any other custom configuration can be done after calling this API.  <a href="group___t_i_m_a.html#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">More...</a><br /></td></tr>
-<tr class="separator:ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga24733298a4ff89389376656dbc9730a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_a.html#ga24733298a4ff89389376656dbc9730a9">DL_TimerA_saveConfiguration</a> (GPTIMER_Regs *gptimer, <a class="el" href="struct_d_l___timer_a__backup_config.html">DL_TimerA_backupConfig</a> *ptr)</td></tr>
 <tr class="memdesc:ga24733298a4ff89389376656dbc9730a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves TimerA configuration before entering STOP or STANDBY mode. Only necessary for PG 1.0 silicon. Timer must be in IDLE state before calling this API. Timer can be put IDLE state by calling <a class="el" href="group___t_i_m_a.html#gadbb760ee0ef207273baa3d6e6a116978">DL_TimerA_stopCounter</a>.  <a href="group___t_i_m_a.html#ga24733298a4ff89389376656dbc9730a9">More...</a><br /></td></tr>
 <tr class="separator:ga24733298a4ff89389376656dbc9730a9"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -83,7 +83,7 @@ int main(void)
                 delay_cycles(ENTRY_DELAY);
 #endif
 #ifdef Software_Invoke
-                Host_BSL_software_trigger();  //PLACE TARGET INTO BSL MODE by hardware invoke
+                Host_BSL_software_trigger();  //PLACE TARGET INTO BSL MODE by software invoke
                 delay_cycles(20000000);  //wait for target go into BSL
 #endif
                 bsl_err = Host_BSL_Connection();

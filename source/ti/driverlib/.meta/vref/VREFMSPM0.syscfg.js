@@ -162,7 +162,10 @@ function validateVREF(inst, validation)
     // I don't see a reason to remove it
     //Common.validateNames(inst, validation);
 
-
+    /* Info message for MSPM0GX51X pin workaround/issue */
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+        validation.logInfo("Please refer to device datasheet for valid VREF pin selection", inst, "basicVrefPins")
+    }
 }
 
 
@@ -175,6 +178,13 @@ function validateVREF(inst, validation)
  */
 function pinmuxRequirements(inst)
 {
+    let vrefPosInterfaces = ["VREF+"];
+    let vrefNegInterfaces = ["VREF-"];
+    /* Workaround for MSPM0GX51X device data error */
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+        let vrefPosInterfaces = ["VREF+","VREF-"];
+        let vrefNegInterfaces = ["VREF-", "VREF+"];
+    }
     /* No External Pins to be configured for M0C */
     if(Common.isDeviceM0C()){
         return [];
@@ -185,7 +195,7 @@ function pinmuxRequirements(inst)
             {
                 name:"vrefPosPin",
                 displayName:"VREF Positive (VREF+)",
-                interfaceNames:["VREF+"],
+                interfaceNames:["VREF+","VREF-"],
             },
         );
 
@@ -195,7 +205,7 @@ function pinmuxRequirements(inst)
                 {
                     name:"vrefNegPin",
                     displayName:"VREF Negative (VREF-)",
-                    interfaceNames:["VREF-"],
+                    interfaceNames:["VREF-", "VREF+"],
                 }
             )
         }

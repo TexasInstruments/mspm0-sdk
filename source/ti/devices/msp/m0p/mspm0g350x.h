@@ -242,6 +242,9 @@ typedef enum IRQn
 
 #define __MSPM0_HAS_ECC__
 
+/*! @brief Workaround added for bug in sineCosine operation in MATHACL */
+#define _IQMATH_MATHACL_SINCOS_BUG_WORKAROUND_
+
 /*@}*/ /* end of group MSPM0G350X_Peripherals */
 
 /******************************************************************************

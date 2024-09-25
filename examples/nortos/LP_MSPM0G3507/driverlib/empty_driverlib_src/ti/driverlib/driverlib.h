@@ -55,6 +55,7 @@
 #include <ti/driverlib/dl_opa.h>
 #include <ti/driverlib/dl_rtc.h>
 #include <ti/driverlib/dl_rtc_a.h>
+#include <ti/driverlib/dl_rtc_b.h>
 #include <ti/driverlib/dl_rtc_common.h>
 #include <ti/driverlib/dl_scratchpad.h>
 #include <ti/driverlib/dl_spi.h>

@@ -965,7 +965,7 @@ fSYSPLLCLK2 = 80MHz \n
             displayName: "ULPCLK Divider",
             description: "ULPCLK is MCLK divided by this value.",
             default: "1",
-            options: [ { name: "1" }, { name: "2" }, { name: "3" } ]
+            options: [ { name: "1" }, { name: "2" } ]
         }
     ],
 }

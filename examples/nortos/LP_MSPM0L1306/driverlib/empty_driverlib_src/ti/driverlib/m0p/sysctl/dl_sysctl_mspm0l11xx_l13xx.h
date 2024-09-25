@@ -55,6 +55,7 @@
 
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/dl_common.h>
+#include <ti/driverlib/m0p/dl_factoryregion.h>
 
 #ifdef __cplusplus
 extern "C" {

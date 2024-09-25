@@ -1,0 +1,214 @@
+MSPM0 Communication Modules - I2C User Guide
+============================================
+
+1. Introduction
+---------------
+
+MSPM0 Communication Modules - I2C module provides a simple way for the application developer to integrate this I2C based communication module for communication.
+
+This module consists of both controller and target code. Target code is to integrate with application and controller code is included to show the working of target code. Target code is implemented using DMA for reducing CPU load during communication.
+
+Controller sends a read/write command with a maximum of 64 data bytes and receives a response from target based on the status of the operation.
+
+2. Peripheral Configurations
+----------------------------
+
+I2C
+~~~
+
+Target's own address is set as 0x48 and can be modified in sys-config.
+
+It supports Standard(100kHz) and Fast Mode(400kHz) transfer rates.
+
+DMA Configuration
+^^^^^^^^^^^^^^^^^
+
+Two DMA Channels (DMA Channel RX and DMA Channel TX) are configured in target with I2C for storing and transmitting the data to user respectively.
+
++------------------+------------------------------+
+| DMA              | Description                  |
++==================+==============================+
+| DMA RX Trigger   | I2C Target RX FIFO Trigger   |
++------------------+------------------------------+
+| DMA TX Trigger   | I2C Target TX FIFO Trigger   |
++------------------+------------------------------+
+
+DMA Channel RX is triggered when the data in the I2C RX FIFO exceeds the threshold level set. Fixed to Block Addressing mode is used. Destination address gets incremented by one for every transfer.
+
+DMA Channel TX is enabled when response data for the latest command is ready and the I2C TX FIFO is empty. Block to Fixed Addressing mode is used. Source Address gets incremented by one for every transfer. Stale Data is cleared from TX FIFO before enabling DMA Channel TX.
+
+CRC
+~~~
+
++------------------+----------------+
+| CRC              | Description    |
++==================+================+
+| CRC Polynomial   | CRC-16 CCITT   |
++------------------+----------------+
+| Seed             | 0xFFFF         |
++------------------+----------------+
+
+3. Frame Format
+---------------
+
+Command Frame
+~~~~~~~~~~~~~
+
+.. figure:: images/I2C_COMMAND_FRAME.jpg
+   :alt: I2C command frame
+
+   I2C command frame
+
+**TARGET\_ID & R/W Bit:** The first byte includes the 7-bit I2C target ID (0x48 is set as the I2C TARGET OWN ADDRESS, but can be modified in SYS CONFIG), followed by the read/write command bit. Every command packet in this communication protocol starts with writing a control byte and memory address hence the R/W bit is always 0.
+
+**CONTROL\_BYTE**
+
+.. figure:: images/I2C_CONTROL_BYTE.jpg
+   :alt: I2C control Byte
+
+   I2C control Byte
+
+-  **CMD:** This bit gives information on whether this is a read operation or write operation.
+
+   -  Bit value 0 indicates it is a read operation.
+   -  Bit value 1 indicates it is a write operation.
+
+-  **CRC\_EN:** This bit controls whether the CRC feature is enabled or not.
+
+   -  Bit value 0 indicates CRC16 is not sent along the frame.
+   -  Bit value 1 indicates it is enabled and CRC16 should be sent in the frame.
+
+-  **DATA\_LEN:** This field contains actual data length for the read/write operation minus one. Data lengths from 1 to 64 are supported in this protocol.
+
+   -  For a write operation, Command frame's data bytes should be equal to the value of this field plus one.
+   -  For a read operation, Response frame will have data bytes equal to the value of this field plus one.
+
+**MEMORY\_ADDRESS:** This field denotes the actual memory address for the read or write operation. In cases where data length exceeds 1, the operation initiates at this memory address, with subsequent bytes being written sequentially until the specified data length is reached. The address in the frame should be sent in little endian byte order. If the memory address is 0x20207C00, it should be sent in this order: {0x00} {0x7C} {0x20} {0x20}.
+
+**DATA:** DATA\_LEN field in the control byte should correspond with the number of bytes sent in this field for a write operation. No bytes are sent in this field for a read operation.
+
+**CRC:** CRC16 is calculated for the entire packet (Ctrl + Mem Addr + Data) and verified if CRC\_EN bit in control byte is set. The 2 bytes CRC value should be sent in little endian byte order. If the CRC is 0xABCD, it should be sent in this order: {0xCD} {0xAB}.
+
+Response Frame Format
+~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: images/I2C_RESPONSE_FRAME.jpg
+   :alt: I2C control Byte
+
+   I2C control Byte
+
+-  **RESPONSE CONTROL BYTE:**
+
+.. figure:: images/I2C_RESPONSE_CTRL_BYTE.jpg
+   :alt: I2C control Byte
+
+   I2C control Byte
+
+-  **ERROR\_BIT:** This bit indicates the status of the operation.
+
+   -  Bit value 0 indicates no error occurred during the operation.
+   -  Bit value 1 indicates error occurred during the operation and in data section, the appropriate error code will be sent.
+
+-  **DATA\_LEN:** This field will contain the value same as what is received in the command frame for a successful operation. If any error in the operation the DATA\_LEN is 1 and the error code is returned as the DATA. See below ERROR CODES for details on the error codes.
+
+   -  **ERROR CODES:**
+
+   +--------------+-------------------------------+
+   | Error Code   | Description                   |
+   +==============+===============================+
+   | 0xE1         | Incorrect CRC                 |
+   +--------------+-------------------------------+
+   | 0xE2         | Memory address out of range   |
+   +--------------+-------------------------------+
+
+4. Communication Configuration
+------------------------------
+
+The memory region allowed to read or write is mentioned by ADDR\_RANGE\_START and ADDR\_RANGE\_END. User can modify ADDR\_RANGE\_START and ADDR\_RANGE\_END to specify the region of memory location where read or write operation is allowed.
+
+Repeated Start condition is supported. Controller code can be modified to send a repeated start command to get the response (I2C Read) after sending a command (I2C Write) without losing the bus.
+
+5. Example
+----------
+
+Example for 32-bit Write Operation:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Command to write 4 bytes of data (0x12,0x34,0xAB,0xCD) to Address (0x20207C00 to 0x20207C03).
+
+.. figure:: images/I2C_EG_32_WRITE.jpg
+   :alt: Example for 32bit Write
+
+   Example for 32bit Write
+
+1. Control Byte
+^^^^^^^^^^^^^^^
+
+.. figure:: images/I2C_EG_32_WRITE_CTRL.jpg
+   :alt: Control Byte for 32bit Write
+
+   Control Byte for 32bit Write
+
+Set gSendCommand to 1 to send the command from controller.
+
+|Controller side Expressions before command| #### 2. Response
+
+.. figure:: images/I2C_EG_32_WRITE_RESPONSE.jpg
+   :alt: Response for 32bit Write
+
+   Response for 32bit Write
+
+0xAC in response for a write command represents the write is successful.
+
+.. figure:: images/I2C_EG_32_WRITE_AFTER_CMD.jpg
+   :alt: Controller side Expressions after command
+
+   Controller side Expressions after command
+
+.. figure:: images/I2C_EG_32_WRITE_MEMORY.jpg
+   :alt: Target side Memory Browser
+
+   Target side Memory Browser
+
+Example for 32-bit Read Operation:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Command to read 4 bytes of data from Address (0x20207C00 - 0x20207C03).
+
+.. figure:: images/I2C_EG_32_READ.jpg
+   :alt: Example for 32bit Read
+
+   Example for 32bit Read
+
+1. Control Byte
+^^^^^^^^^^^^^^^
+
+.. figure:: images/I2C_EG_32_READ_CTRL.jpg
+   :alt: Control Byte for 32bit Read
+
+   Control Byte for 32bit Read
+
+Set gSendCommand to 1 to send the command.
+
+.. figure:: images/I2C_EG_32_READ_BEFORE_CMD.jpg
+   :alt: Controller side Expressions
+
+   Controller side Expressions
+
+2. Response
+^^^^^^^^^^^
+
+.. figure:: images/I2C_EG_32_READ_RESPONSE.jpg
+   :alt: Response for 32bit Read
+
+   Response for 32bit Read
+
+|Controller side Expressions| ## 6. Acknowledge Response
+
+For a successful write operation, Acknowledgement(0xAC by default, can be modified by setting ACK\_WRITE) is sent in the response.
+
+For an Erroneous operation, Appropriate Error code (can be modified by setting ErrorType enum) is sent in the response.
+
+.. |Controller side Expressions before command| image:: images/I2C_EG_32_WRITE_BEFORE_CMD.jpg
+.. |Controller side Expressions| image:: images/I2C_EG_32_READ_AFTER_CMD.jpg
+

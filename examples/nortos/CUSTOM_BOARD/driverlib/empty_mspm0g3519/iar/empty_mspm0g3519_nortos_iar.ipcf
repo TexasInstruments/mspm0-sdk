@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IAR Project Connection File -->
+
+<iarProjectConnection version="1.2" name="empty_mspm0g3519" oneShot="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="IarProjectConnection_1.2.xsd">
+
+    <device>
+        <name>MSPM0G3519</name>
+    </device>
+
+    <asmIncludePath>
+        <path>$PROJ_DIR$</path>
+    </asmIncludePath>
+
+    <includePath>
+        <path>$PROJ_DIR$</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source/third_party/CMSIS/Core/Include</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source</path>
+    </includePath>
+
+    <defines>
+        <define>__MSPM0G3519__</define>
+    </defines>
+
+    <extraOptions>
+        <args>
+            <arg>--debug</arg>
+            <arg>--silent</arg>
+            <arg>-e</arg>
+            <arg>--aeabi</arg>
+            <arg>--thumb</arg>
+            <arg>--diag_suppress=Pa050</arg>
+        </args>
+    </extraOptions>
+
+    <linkerFile>
+        <override>true</override>
+        <path>$PROJ_DIR$/mspm0g3519.icf</path>
+    </linkerFile>
+
+    <linkerExtraOptions>
+        <args>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0gx51x/driverlib.a</arg>
+            <arg>--silent</arg>
+        </args>
+    </linkerExtraOptions>
+
+    <customBuildTools>
+        <customBuildTool atRoot="true" name="SysConfig"> <!-- Custom build tool for entire project-->
+            <fileExtensions>.syscfg</fileExtensions>
+            <command>$SYSCONFIG_ROOT$/sysconfig_cli.bat -o $PROJ_DIR$ -s "$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json" --compiler iar $FILE_PATH$</command>
+            <output>
+                <path>SysConfig_Generated_Files.ipcf</path>
+            </output>
+            <hasPrio>true</hasPrio> <!-- true: run this tool before all other tools-->
+        </customBuildTool>
+    </customBuildTools>
+
+    <heaps>
+        <heap> <!-- If omitted, id="0" -->
+            <size>0</size>
+        </heap>
+        <heap id="1">
+            <size>0</size>
+        </heap>
+    </heaps>
+    <stacks>
+        <stack> <!-- If omitted, id="0" -->
+            <size>512</size>
+        </stack>
+    </stacks>
+
+
+    <files>
+        <path copyTo="$PROJ_DIR$/empty_mspm0g3519.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3519/empty_mspm0g3519.c</path>
+        <path copyTo="$PROJ_DIR$/empty_mspm0g3519.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3519/empty_mspm0g3519.syscfg</path>
+        <path copyTo="$PROJ_DIR$/mspm0g3519.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3519/iar/mspm0g3519.icf</path>
+        <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3519/README.md</path>
+        <group name="iar" build="true">
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g351x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/CUSTOM_BOARD/driverlib/empty_mspm0g3519/iar/startup_mspm0g351x_iar.c</path>
+        </group>
+    </files>
+</iarProjectConnection>

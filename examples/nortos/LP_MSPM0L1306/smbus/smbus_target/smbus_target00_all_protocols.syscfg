@@ -2,7 +2,8 @@
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
-// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+//@cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+//@v2CliArgs --device "MSPM0L1306" --package "VQFN-32(RHB)"
 // @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
 
 /**
@@ -36,7 +37,6 @@ ADC121.peripheral.$assign                = "ADC0";
 ADC121.peripheral.adcPin0.$assign        = "PA27";
 ADC121.adcPin0Config.$name               = "ti_driverlib_gpio_GPIOPinGeneric0";
 ADC121.adcPin0Config.hideOutputInversion = scripting.forceWrite(false);
-
 
 GPIO1.$name                         = "SMB_GPIO";
 GPIO1.associatedPins.create(2);

@@ -1,0 +1,72 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+//@v2CliArgs --device "MSPM0L2228" --package "LQFP-80(PN)"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const I2C           = scripting.addModule("/ti/driverlib/I2C", {}, false);
+const I2C1          = I2C.addInstance();
+const I2C2          = I2C.addInstance();
+const I2C3          = I2C.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                          = "GPIO_GRP_0";
+GPIO1.associatedPins[0].$name        = "PIN_0";
+GPIO1.associatedPins[0].assignedPort = "PORTA";
+GPIO1.associatedPins[0].assignedPin  = "9";
+GPIO1.associatedPins[0].pin.$assign  = "PA9";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+I2C1.basicEnableController             = true;
+I2C1.advAnalogGlitchFilter             = "DISABLED";
+I2C1.advControllerTXFIFOTRIG           = "BYTES_1";
+I2C1.intController                     = ["NACK","RXFIFO_TRIGGER","RX_DONE","TX_DONE"];
+I2C1.$name                             = "I2C_2";
+I2C1.basicControllerStandardBusSpeed   = "Fast";
+I2C1.peripheral.$assign                = "I2C2";
+I2C1.peripheral.sdaPin.$assign         = "PA16";
+I2C1.peripheral.sclPin.$assign         = "PA15";
+I2C1.sdaPinConfig.enableConfig         = true;
+I2C1.sdaPinConfig.internalResistor     = "PULL_UP";
+I2C1.sclPinConfig.enableConfig         = true;
+I2C1.sclPinConfig.internalResistor     = "PULL_UP";
+
+I2C2.$name                           = "I2C_1";
+I2C2.basicEnableController           = true;
+I2C2.advAnalogGlitchFilter           = "DISABLED";
+I2C2.advControllerTXFIFOTRIG         = "BYTES_1";
+I2C2.intController                   = ["NACK","RXFIFO_TRIGGER","RX_DONE","TX_DONE"];
+I2C2.basicControllerStandardBusSpeed = "Fast";
+I2C2.peripheral.$assign              = "I2C1";
+I2C2.peripheral.sdaPin.$assign       = "PA10";
+I2C2.peripheral.sclPin.$assign       = "PA11";
+I2C2.sdaPinConfig.enableConfig       = true;
+I2C2.sdaPinConfig.internalResistor   = "PULL_UP";
+I2C2.sclPinConfig.enableConfig       = true;
+I2C2.sclPinConfig.internalResistor   = "PULL_UP";
+
+I2C3.advAnalogGlitchFilter             = "DISABLED";
+I2C3.advControllerTXFIFOTRIG           = "BYTES_1";
+I2C3.$name                             = "I2C_0";
+I2C3.basicEnableTarget                 = true;
+I2C3.intTarget                         = ["RXFIFO_TRIGGER","START","STOP"];
+I2C3.peripheral.$assign                = "I2C0";
+I2C3.peripheral.sdaPin.$assign         = "PA0";
+I2C3.peripheral.sclPin.$assign         = "PA1";
+
+scripting.suppress("Note: VBAT needs to be powered for LFCLK operation\\.", SYSCTL, "LFCLKSource");
+
+ProjectConfig.deviceSpin = "MSPM0L2228";
+scripting.suppress("Migrating requires going through the Switch Board or Device menu in the Device View section\\.", ProjectConfig, "deviceSpin");

@@ -5,10 +5,19 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(IAR_ARMCOMPILER)/bin/iccarm"
 LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 
-OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj ti_msp_dl_config.obj HAL_UART_M0G3507.obj main.obj iar_startup_mspm0g350x_iar.obj
+SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler iar --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../gc_simple_messagepack.syscfg)
+
+SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
+SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
+
+OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj HAL_UART_M0G3507.obj main.obj iar_startup_mspm0g350x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = gc_simple_messagepack
 
 CFLAGS += -I.. \
+    -I. \
+    $(addprefix -f,$(SYSCFG_OPT_FILES)) \
     -D__MSPM0G3507__ \
     -Om \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
@@ -34,31 +43,43 @@ LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/iar/m0p/gui_compo
 
 all: $(NAME).out
 
-callbacks_mpack.obj: ../callbacks_mpack.c
+.INTERMEDIATE: syscfg
+$(SYSCFG_FILES): syscfg
+	@ echo generation complete
+
+syscfg: ../gc_simple_messagepack.syscfg
+	@ echo Generating configuration files...
+	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
+
+define C_RULE
+$(basename $(notdir $(1))).obj: $(1) $(SYSCFG_H_FILES)
+	@ echo Building $$@
+	@ $(CC) $(CFLAGS) $$< -o $$@
+endef
+
+$(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
+
+callbacks_mpack.obj: ../callbacks_mpack.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-MSP_GUI_GUI_mpack.obj: ../MSP_GUI/GUI_mpack.c
+MSP_GUI_GUI_mpack.obj: ../MSP_GUI/GUI_mpack.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-MSP_GUI_GUIComm_mpack.obj: ../MSP_GUI/GUIComm_mpack.c
+MSP_GUI_GUIComm_mpack.obj: ../MSP_GUI/GUIComm_mpack.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-ti_msp_dl_config.obj: ../ti_msp_dl_config.c
+HAL_UART_M0G3507.obj: ../HAL_UART_M0G3507.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-HAL_UART_M0G3507.obj: ../HAL_UART_M0G3507.c
+main.obj: ../main.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-main.obj: ../main.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-iar_startup_mspm0g350x_iar.obj: ../iar/startup_mspm0g350x_iar.c
+iar_startup_mspm0g350x_iar.obj: ../iar/startup_mspm0g350x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
@@ -71,3 +92,4 @@ clean:
 	@ $(RM) $(OBJECTS) > $(DEVNULL) 2>&1
 	@ $(RM) $(NAME).out > $(DEVNULL) 2>&1
 	@ $(RM) $(NAME).map > $(DEVNULL) 2>&1
+	@ $(RM) $(SYSCFG_FILES)> $(DEVNULL) 2>&1

@@ -35,10 +35,21 @@
 #include "ti_msp_dl_config.h"
 
 volatile LIN_STATE gStateMachine = LIN_STATE_WAIT_FOR_BREAK;
-volatile uint16_t gNumCycles     = 0;
+volatile uint8_t gNumCycles      = 0;
 volatile LIN_Sync_Bits gBitTimes[LIN_RESPONDER_SYNC_CYCLES];
 uint8_t gResponderRXBuffer[LIN_DATA_MAX_BUFFER_SIZE]      = {0};
 uint8_t gResponderTXMessageData[LIN_DATA_MAX_BUFFER_SIZE] = {0};
+
+/* Variables for autobaud feature */
+
+volatile uint8_t gNumSyncErrors        = 0;
+volatile bool gFirstSyncBit            = true;
+volatile uint16_t gTotalBitTime        = 0;
+volatile uint16_t gLinResponseLapseVar = LIN_RESPONSE_LAPSE;
+volatile bool gAutoBaudUsed            = false;
+volatile uint32_t gLin0TbitWidthVar    = LIN_0_TBIT_WIDTH;
+volatile uint16_t gPrevBaudRate        = LIN_0_BAUD_RATE;
+volatile uint16_t gCurrBaudRate        = LIN_0_BAUD_RATE;
 
 void LIN_Message_1_Handler(void)
 {
@@ -111,7 +122,7 @@ void setLINResponderRXMessage(
                      * Delay is used to ensure STOP bit after PID is completely
                      * received before data transmitted.
                      */
-                    delay_cycles(LIN_RESPONSE_LAPSE);
+                    delay_cycles(gLinResponseLapseVar);
                     sendLINResponderTXMessage(uart, msgTableIndex,
                         gResponderTXMessageData, responderMessageTable);
                     /* Toggle LED2 with TX packet */
@@ -178,8 +189,10 @@ int main(void)
 
 void LIN_0_INST_IRQHandler(void)
 {
-    uint16_t counterVal = 0;
-    uint8_t data        = 0;
+    uint16_t counterVal       = 0;
+    uint8_t data              = 0;
+    uint16_t averageBitTime   = 0;
+    uint16_t measuredBaudRate = 0;
     switch (DL_UART_Extend_getPendingInterrupt(LIN_0_INST)) {
         /* LIN Minimum Break Field Width Interrupt. */
         case DL_UART_EXTEND_IIDX_LIN_FALLING_EDGE:
@@ -189,9 +202,9 @@ void LIN_0_INST_IRQHandler(void)
 
                 counterVal = DL_UART_Extend_getLINCounterValue(LIN_0_INST);
                 /* Validation check of the length of the break field. */
-                if (counterVal < (LIN_0_TBIT_WIDTH * 13.5) &&
+                if (counterVal < (gLin0TbitWidthVar * 13.5) &&
                     counterVal >
-                        (LIN_0_TBIT_WIDTH * LIN_0_TBIT_COUNTER_COEFFICIENT))
+                        (gLin0TbitWidthVar * LIN_0_TBIT_COUNTER_COEFFICIENT))
 
                 {
                     gStateMachine = LIN_STATE_SYNC_FIELD_NEG_EDGE;
@@ -215,21 +228,70 @@ void LIN_0_INST_IRQHandler(void)
             if (gStateMachine == LIN_STATE_SYNC_FIELD_POS_EDGE) {
                 gBitTimes[gNumCycles].posEdge =
                     DL_UART_Extend_getLINRisingEdgeCaptureValue(LIN_0_INST);
-                /* Validation check of the timing of the sync field segment. */
+                /* Validation check of the timing of the sync field segment.
+                 * Finding an invalid sync bit stores each bit time to
+                 * calculate new baud rate */
                 if (gBitTimes[gNumCycles].posEdge >
-                        (LIN_0_TBIT_WIDTH * 0.95) &&
+                        ((gLin0TbitWidthVar * 95) / 100) &&
                     gBitTimes[gNumCycles].posEdge <
-                        (LIN_0_TBIT_WIDTH * 1.05)) {
+                        ((gLin0TbitWidthVar * 105) / 100)) {
                     gNumCycles++;
+                } else if (!gFirstSyncBit) {
+                    gTotalBitTime =
+                        gTotalBitTime + gBitTimes[gNumCycles].posEdge;
+                    gNumSyncErrors++;
+                } else {
+                    gFirstSyncBit = false;
                 }
                 /* Only 5 segments of a sync field. */
-                if (gNumCycles == LIN_RESPONDER_SYNC_CYCLES) {
+                if ((gNumSyncErrors + gNumCycles) ==
+                    LIN_RESPONDER_SYNC_CYCLES) {
                     DL_UART_Extend_enableInterrupt(
                         LIN_0_INST, DL_UART_EXTEND_INTERRUPT_RX);
                     DL_UART_Extend_disableInterrupt(
                         LIN_0_INST, DL_UART_EXTEND_INTERRUPT_RXD_NEG_EDGE);
-                    gNumCycles = 0;
-                } else {
+
+                    /* Track new and previous baud rate for validation when
+                     * increasing baud rate. Ensures that resets to deal with
+                     * overrun errors happen on the appropriate frame.
+                     * Reset all variables relevant to sync field */
+                    if (gNumCycles == LIN_RESPONDER_SYNC_CYCLES) {
+                        gPrevBaudRate = gCurrBaudRate;
+                        gAutoBaudUsed = false;
+                    }
+                    gNumCycles     = 0;
+                    gNumSyncErrors = 0;
+                    gTotalBitTime  = 0;
+                    gFirstSyncBit  = true;
+
+                    /* If 4 sync errors are detected, update baud rate given
+                 * autobaud is enabled*/
+
+                } else if ((gNumSyncErrors == AUTO_BAUD_THRESHOLD) &&
+                           AUTO_BAUD_ENABLED) {
+                    averageBitTime   = gTotalBitTime / gNumSyncErrors;
+                    measuredBaudRate = LIN_0_INST_FREQUENCY / averageBitTime;
+
+                    DL_UART_disable(LIN_0_INST);
+                    delay_cycles(AUTO_BAUD_CONFIG_DELAY);
+                    DL_UART_disableFIFOs(LIN_0_INST);
+                    gLinResponseLapseVar =
+                        LIN_0_INST_FREQUENCY / (2 * measuredBaudRate);
+                    gLin0TbitWidthVar = averageBitTime;
+                    DL_UART_configBaudRate(
+                        LIN_0_INST, LIN_0_INST_FREQUENCY, measuredBaudRate);
+
+                    DL_UART_Extend_setLINCounterCompareValue(LIN_0_INST,
+                        gLin0TbitWidthVar * LIN_0_TBIT_COUNTER_COEFFICIENT);
+                    DL_UART_Extend_enable(LIN_0_INST);
+                    gPrevBaudRate = gCurrBaudRate;
+                    gCurrBaudRate = measuredBaudRate;
+
+                    gAutoBaudUsed = true;
+                    gStateMachine = LIN_STATE_SYNC_FIELD_NEG_EDGE;
+                }
+
+                else {
                     gStateMachine = LIN_STATE_SYNC_FIELD_NEG_EDGE;
                 }
             }
@@ -242,6 +304,14 @@ void LIN_0_INST_IRQHandler(void)
         case DL_UART_EXTEND_IIDX_RXD_NEG_EDGE:
             /* Signals the negative edge of a sync field segment. */
             if (gStateMachine == LIN_STATE_SYNC_FIELD_NEG_EDGE) {
+                /* If flag for overrun has gone off and previous
+                 * baud rate < current baud rate, turn counter off and on. */
+                if ((gCurrBaudRate > gPrevBaudRate) &&
+                    DL_UART_getErrorStatus(
+                        LIN_0_INST, DL_UART_ERROR_OVERRUN)) {
+                    DL_UART_disableLINCounter(LIN_0_INST);
+                    DL_UART_enableLINCounter(LIN_0_INST);
+                }
                 gBitTimes[gNumCycles].negEdge =
                     DL_UART_Extend_getLINFallingEdgeCaptureValue(LIN_0_INST);
                 gStateMachine = LIN_STATE_SYNC_FIELD_POS_EDGE;
@@ -255,24 +325,35 @@ void LIN_0_INST_IRQHandler(void)
                 if (data == LIN_SYNC_BYTE) {
                     /* First received byte is SYNC. Ignore it and wait for PID */
                     gStateMachine = LIN_STATE_PID_FIELD;
+                } else if ((data != LIN_SYNC_BYTE) && gAutoBaudUsed) {
+                    /* Incorrect baud rate can cause an incorrect sync byte to be received.
+                     * If autobaud was used and the sync byte was incorrect, the state machine
+                     * proceeds as usual.*/
+                    gStateMachine = LIN_STATE_PID_FIELD;
                 } else {
                     /* Unexpected byte, return to idle status */
-                    gStateMachine = LIN_STATE_BREAK_FIELD;
+                    gStateMachine = LIN_STATE_WAIT_FOR_BREAK;
                 }
             } else if (gStateMachine == LIN_STATE_PID_FIELD) {
                 data = DL_UART_Extend_receiveData(LIN_0_INST);
+
                 /* Process the PID. The state machine will be updated */
                 setLINResponderRXMessage(LIN_0_INST, data, &gStateMachine);
             }
             /* Signals the data field */
             else if (gStateMachine == LIN_STATE_DATA_FIELD) {
                 data = DL_UART_Extend_receiveData(LIN_0_INST);
+
                 /*
                  *  Process data byte.
                  *  If data byte matches ID byte from "responderMessageTable"
                  *  then performs the matching function. Otherwise does nothing.
                  */
                 setLINResponderRXMessage(LIN_0_INST, data, &gStateMachine);
+            }
+            /* Flushes any data that comes after an invalid PID*/
+            else if (gStateMachine == LIN_STATE_WAIT_FOR_BREAK) {
+                data = DL_UART_Extend_receiveData(LIN_0_INST);
             }
         default:
             break;

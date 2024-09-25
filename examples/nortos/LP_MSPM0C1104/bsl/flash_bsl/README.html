@@ -80,6 +80,7 @@
 </ul>
 <p>NOTE:</p>
 <ul>
+<li>Always make sure to perform factory reset on device before loading FlashBSL example to avoid <em>Lockout scenarios</em></li>
 <li>By enabling/ disabling features, the RAM buffer size for BSL communication and Flash start address for Application are altered. The values are to be updated in <code>flash_bsl_defines.h</code> accordingly</li>
 <li>While creating flash bootloader make sure that, flash bootloader is static write protected. Otherwise there are chances for device to get locked during the boot loading process.</li>
 </ul>
@@ -103,6 +104,26 @@
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
+</tr>
+<tr class="odd">
+<td>UART0</td>
+<td>PA24</td>
+<td>RX Pin</td>
+</tr>
+<tr class="even">
+<td>UART0</td>
+<td>PA27</td>
+<td>TX Pin</td>
+</tr>
+<tr class="odd">
+<td>I2C0</td>
+<td>PA0</td>
+<td>I2C Serial Data line (SDA)</td>
+</tr>
+<tr class="even">
+<td>I2C0</td>
+<td>PA11</td>
+<td>I2C Serial Clock line (SCL)</td>
 </tr>
 </tbody>
 </table>
@@ -133,12 +154,40 @@
 <td>N/A</td>
 <td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
+<tr class="odd">
+<td>PA0</td>
+<td>I2C0</td>
+<td>SDA</td>
+<td>J1_10</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J20 1:2</code> Use 3.3V pull-up<br><li><code>J20 2:3</code> Use 5V pull-up</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA11</td>
+<td>I2C0</td>
+<td>SCL</td>
+<td>J1_9</td>
+<td><ul><li>PA11 can be connected to an external 3.3V pull-up<br><ul><li><code>J6 OFF</code> Disconnect 3.3V pull-up<br><li><code>J6 ON</code> Connect 3.3V pull-up</ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PA26</td>
+<td>UART0</td>
+<td>RX</td>
+<td>J1_3</td>
+<td><ul><li>PA26 can be used as UART RX connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J101 5:6 ON</code> Connects XDS-110 backchannel to UART RX<br><li>To use UART on boosterpack connector:<br> <code>J101 5:6 OFF</code>: Disconnects XDS-110 backchannel</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA27</td>
+<td>UART0</td>
+<td>TX</td>
+<td>J1_4</td>
+<td><ul><li>PA27 can be used as UART TX connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J101 7:8 ON</code> Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br> <code>J101 7:8 OFF</code>: Disconnects XDS-110 backchannel</ul></ul></td>
+</tr>
 </tbody>
 </table>
 <h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
 <p>This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#non-sysconfig-compatible-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Connect UART_RX and UART_TX or I2C_SDA and I2C SCL with the BSL Host (any microcontroller with UART/I2C respectively). Compile, load the example. Create BSL invocation condition using BSL Invoke pin or any other invocation methods. Send GetDeviceInfo command from the host. Device should respond back with the version information and SRAM buffer space available. Similarly Send erase, program, verification commands to program data in the memory.</p>
+<p>Enable only the required BSL functionalities in <code>flash_bsl_modules.h</code> Connect UART_RX and UART_TX or I2C_SDA and I2C SCL with the BSL Host (any microcontroller with UART/I2C respectively). Compile, load the example. Create BSL invocation condition using BSL Invoke pin or any other invocation methods. Send GetDeviceInfo command from the host. Device should respond back with the version information and SRAM buffer space available. Similarly Send erase, program, verification commands to program data in the memory.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

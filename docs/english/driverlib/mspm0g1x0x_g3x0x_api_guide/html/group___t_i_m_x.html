@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -69,6 +69,7 @@ $(function() {
   <div class="summary">
 <a href="#groups">Modules</a> &#124;
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -222,11 +223,18 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b">DL_Timer_initCompareTriggerMode</a>.  <a href="struct_d_l___timer___compare_trigger_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___timer___p_w_m_config.html">DL_Timer_PWMConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036">DL_Timer_initPWMMode</a>.  <a href="struct_d_l___timer___p_w_m_config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___t_i_m_x.html#ga62ed6b5a665c8c9b3b06a230924b6477">DL_Timer_initPWMMode</a>.  <a href="struct_d_l___timer___p_w_m_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___timer__backup_config.html">DL_Timer_backupConfig</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure to backup Timer peripheral state before entering STOP or STANDBY mode. Not required after PG 1.0 silicon. Used by <a class="el" href="group___t_i_m_x.html#gab08e8af6833105339b7e68f35d3700b1">DL_Timer_saveConfiguration</a> and <a class="el" href="group___t_i_m_x.html#ga9c856684d17e40664aa17cd25ab88a7d">DL_Timer_restoreConfiguration</a>.  <a href="struct_d_l___timer__backup_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga62ed6b5a665c8c9b3b06a230924b6477"><td class="memItemLeft" align="right" valign="top"><a id="ga62ed6b5a665c8c9b3b06a230924b6477"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#ga62ed6b5a665c8c9b3b06a230924b6477">DL_Timer_initPWMMode</a>&#160;&#160;&#160;<a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">DL_Timer_initFourCCPWMMode</a></td></tr>
+<tr class="memdesc:ga62ed6b5a665c8c9b3b06a230924b6477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects to common <a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">DL_Timer_initFourCCPWMMode</a>. <br /></td></tr>
+<tr class="separator:ga62ed6b5a665c8c9b3b06a230924b6477"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -916,9 +924,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga62910c270d5a373581d1137f3e36e87b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b">DL_Timer_initCompareTriggerMode</a> (GPTIMER_Regs *gptimer, <a class="el" href="struct_d_l___timer___compare_trigger_config.html">DL_Timer_CompareTriggerConfig</a> *config)</td></tr>
 <tr class="memdesc:ga62910c270d5a373581d1137f3e36e87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure timer in edge count compare mode using the trigger as input source Initializes all the common configurable options for the TIMx peripheral when used in Compare mode. Any other custom configuration can be done after calling this API.  <a href="#ga62910c270d5a373581d1137f3e36e87b">More...</a><br /></td></tr>
 <tr class="separator:ga62910c270d5a373581d1137f3e36e87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga07fc25cff6e716f607af8b6276e73036"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036">DL_Timer_initPWMMode</a> (GPTIMER_Regs *gptimer, <a class="el" href="struct_d_l___timer___p_w_m_config.html">DL_Timer_PWMConfig</a> *config)</td></tr>
-<tr class="memdesc:ga07fc25cff6e716f607af8b6276e73036"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure timer in Pulse Width Modulation Mode Initializes all the common configurable options for the TIMx peripheral when used in PWM mode. Any other custom configuration can be done after calling this API.  <a href="#ga07fc25cff6e716f607af8b6276e73036">More...</a><br /></td></tr>
-<tr class="separator:ga07fc25cff6e716f607af8b6276e73036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga82ab2327ca6ce98971529d970a12aa21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">DL_Timer_initFourCCPWMMode</a> (GPTIMER_Regs *gptimer, <a class="el" href="struct_d_l___timer___p_w_m_config.html">DL_Timer_PWMConfig</a> *config)</td></tr>
+<tr class="memdesc:ga82ab2327ca6ce98971529d970a12aa21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure timer in Pulse Width Modulation Mode Initializes all the common configurable options for the TIMx peripheral when used in PWM mode. Any other custom configuration can be done after calling this API. Configures the top two CC blocks and then configures the bottom two CC blocks.  <a href="#ga82ab2327ca6ce98971529d970a12aa21">More...</a><br /></td></tr>
+<tr class="separator:ga82ab2327ca6ce98971529d970a12aa21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafa6d8f3917f340dc4bdb4e9692c0b29e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_i_m_x.html#gafa6d8f3917f340dc4bdb4e9692c0b29e">DL_Timer_resetCounterMode</a> (GPTIMER_Regs *gptimer)</td></tr>
 <tr class="memdesc:gafa6d8f3917f340dc4bdb4e9692c0b29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset register controlling counter operation.  <a href="#gafa6d8f3917f340dc4bdb4e9692c0b29e">More...</a><br /></td></tr>
 <tr class="separator:gafa6d8f3917f340dc4bdb4e9692c0b29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3715,7 +3723,7 @@ false if clock is disabled </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group___t_i_m_x.html#ga63049c8b6cee8d89faa6e8904798029d">DL_TIMER_REPEAT_MODE</a> </dd></dl>
 
-<p>References <a class="el" href="group___t_i_m_x.html#ga1183cc42f090a5064b097e8378001f53">DL_Timer_initCaptureCombinedMode()</a>, <a class="el" href="group___t_i_m_x.html#gab48db4e870d6a9a9ab8f8297c600aac7">DL_Timer_initCaptureMode()</a>, <a class="el" href="group___t_i_m_x.html#ga3af9f8f402f529e9a19e89e726903c0c">DL_Timer_initCaptureTriggerMode()</a>, <a class="el" href="group___t_i_m_x.html#ga019e82f5dc3db42649fd51869237ff06">DL_Timer_initCompareMode()</a>, <a class="el" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b">DL_Timer_initCompareTriggerMode()</a>, <a class="el" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036">DL_Timer_initPWMMode()</a>, and <a class="el" href="group___t_i_m_x.html#ga68272d2f890b1e0b8e69a446dad41df5">DL_Timer_initTimerMode()</a>.</p>
+<p>References <a class="el" href="group___t_i_m_x.html#ga1183cc42f090a5064b097e8378001f53">DL_Timer_initCaptureCombinedMode()</a>, <a class="el" href="group___t_i_m_x.html#gab48db4e870d6a9a9ab8f8297c600aac7">DL_Timer_initCaptureMode()</a>, <a class="el" href="group___t_i_m_x.html#ga3af9f8f402f529e9a19e89e726903c0c">DL_Timer_initCaptureTriggerMode()</a>, <a class="el" href="group___t_i_m_x.html#ga019e82f5dc3db42649fd51869237ff06">DL_Timer_initCompareMode()</a>, <a class="el" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b">DL_Timer_initCompareTriggerMode()</a>, <a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">DL_Timer_initFourCCPWMMode()</a>, and <a class="el" href="group___t_i_m_x.html#ga68272d2f890b1e0b8e69a446dad41df5">DL_Timer_initTimerMode()</a>.</p>
 
 </div>
 </div>
@@ -3953,14 +3961,14 @@ false if clock is disabled </dd></dl>
 
 </div>
 </div>
-<a id="ga07fc25cff6e716f607af8b6276e73036"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga07fc25cff6e716f607af8b6276e73036">&sect;&nbsp;</a></span>DL_Timer_initPWMMode()</h2>
+<a id="ga82ab2327ca6ce98971529d970a12aa21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga82ab2327ca6ce98971529d970a12aa21">&sect;&nbsp;</a></span>DL_Timer_initFourCCPWMMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DL_Timer_initPWMMode </td>
+          <td class="memname">void DL_Timer_initFourCCPWMMode </td>
           <td>(</td>
           <td class="paramtype">GPTIMER_Regs *&#160;</td>
           <td class="paramname"><em>gptimer</em>, </td>
@@ -3979,7 +3987,7 @@ false if clock is disabled </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Configure timer in Pulse Width Modulation Mode Initializes all the common configurable options for the TIMx peripheral when used in PWM mode. Any other custom configuration can be done after calling this API. </p>
+<p>Configure timer in Pulse Width Modulation Mode Initializes all the common configurable options for the TIMx peripheral when used in PWM mode. Any other custom configuration can be done after calling this API. Configures the top two CC blocks and then configures the bottom two CC blocks. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gptimer</td><td>Pointer to the register overlay for the peripheral </td></tr>

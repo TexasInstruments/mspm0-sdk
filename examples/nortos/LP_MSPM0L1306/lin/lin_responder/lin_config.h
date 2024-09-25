@@ -51,7 +51,16 @@
 #define LIN_SYNC_BYTE (0x55)
 
 /* Number of delay cycles between PID STOP bit and data transmission START bit*/
-#define LIN_RESPONSE_LAPSE (CPUCLK_FREQ / (2 * LIN_0_BAUD_RATE))
+#define LIN_RESPONSE_LAPSE (LIN_0_INST_FREQUENCY / (2 * LIN_0_BAUD_RATE))
+
+/*Defaults the system to enable the automatic baud rate synchronization feature*/
+#define AUTO_BAUD_ENABLED (true)
+
+/*Number of cycles in a sync validation that must fail to utilize the automatic baud rate synchronization feature*/
+#define AUTO_BAUD_THRESHOLD (4)
+
+/*Number of clock cycles to delay when configuring the new baud rate*/
+#define AUTO_BAUD_CONFIG_DELAY (10)
 
 /*! @enum LIN_RX_STATE */
 typedef enum {

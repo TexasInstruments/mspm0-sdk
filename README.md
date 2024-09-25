@@ -30,6 +30,7 @@ Full SDK documentation is located in the repository. An online version of the do
 You can learn more about the MSPM0 product family supported by this SDK [here](https://www.ti.com/microcontrollers-mcus-processors/arm-based-microcontrollers/arm-cortex-m0-mcus/overview.html)
 
 ## Evaluation Modules ##
+* [MSPM0G EVM - LP-MSPM0G3519](https://www.ti.com/tool/LP-MSPM0G3519)
 * [MSPM0G EVM - LP-MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507)
 * [MSPM0L EVM - LP-MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306)
 * [MSPM0L EVM - LP-MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228)

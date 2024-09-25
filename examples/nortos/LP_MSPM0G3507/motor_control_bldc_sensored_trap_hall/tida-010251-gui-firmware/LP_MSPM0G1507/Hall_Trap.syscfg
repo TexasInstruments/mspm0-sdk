@@ -3,6 +3,7 @@
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
 // @cliArgs --device "MSPM0G150X" --package "LQFP-64(PM)" --part "Default"
+// @v2CliArgs --device "MSPM0G1507" --package "LQFP-64(PM)"
 // @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
 
 /**
@@ -57,7 +58,6 @@ ADC121.enabledInterrupts     = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
 ADC121.adcMem1chansel        = "DL_ADC12_INPUT_CHAN_3";
 ADC121.adcMem0chansel        = "DL_ADC12_INPUT_CHAN_1";
 ADC121.peripheral.$assign    = "ADC0";
-ADC121.adcPin1Config.$name   = "ti_driverlib_gpio_GPIOPinGeneric0";
 
 ADC122.samplingOperationMode             = "sequence";
 ADC122.trigSrc                           = "DL_ADC12_TRIG_SRC_EVENT";
@@ -73,8 +73,6 @@ ADC122.endAdd                            = 1;
 ADC122.adcMem1chansel                    = "DL_ADC12_INPUT_CHAN_13";
 ADC122.enabledInterrupts                 = ["DL_ADC12_INTERRUPT_MEM1_RESULT_LOADED"];
 ADC122.peripheral.$assign                = "ADC1";
-ADC122.adcPin0Config.$name               = "ti_driverlib_gpio_GPIOPinGeneric1";
-ADC122.adcPin0Config.hideOutputInversion = scripting.forceWrite(false);
 
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";

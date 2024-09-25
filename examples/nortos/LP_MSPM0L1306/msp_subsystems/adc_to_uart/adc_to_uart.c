@@ -54,11 +54,10 @@ int main(void)
         *  Split the ADC result into 2 then send via UART.
         */
         gADCResult = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
-        uint8_t lowbyte  = (uint8_t)(gADCResult & 0xFF);
-        uint8_t highbyte = (uint8_t)((gADCResult >> 8) & 0xFF);
-        DL_UART_Main_transmitData(UART_0_INST, highbyte);
-        DL_UART_Main_transmitData(UART_0_INST, lowbyte);
-
+        volatile uint8_t lowbyte  = (uint8_t)(gADCResult & 0xFF);
+        volatile uint8_t highbyte = (uint8_t)((gADCResult >> 8) & 0xFF);
+        DL_UART_Main_transmitDataBlocking(UART_0_INST, highbyte);
+        DL_UART_Main_transmitDataBlocking(UART_0_INST, lowbyte);
         gCheckADC = false;
         DL_ADC12_enableConversions(ADC12_0_INST);
     }

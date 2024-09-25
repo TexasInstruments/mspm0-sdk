@@ -58,8 +58,8 @@
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/dl_common.h>
 
-#if defined __MSPM0_HAS_RTC_A__ || defined __MSPM0_HAS_RTC__ || \
-    defined(DOXYGEN__INCLUDE)
+#if defined __MSPM0_HAS_RTC_A__ || defined __MSPM0_HAS_RTC_B__ || \
+    defined __MSPM0_HAS_RTC__ || defined(DOXYGEN__INCLUDE)
 
 #ifdef __cplusplus
 extern "C" {
@@ -3053,6 +3053,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getPublisherChanID(RTC_Regs *rtc_common)
     return (uint8_t)(rtc_common->FPUB_0 & RTC_FPUB_0_CHANID_MAXIMUM);
 }
 
+#ifdef __MSPM0_HAS_RTC_A__
 /**
  *  @brief      Gets the cause of the time stamp event
 
@@ -3069,6 +3070,7 @@ __STATIC_INLINE uint32_t DL_RTC_Common_getTimeStampEventCause(
 {
     return (rtc_common->TSSTAT & tsEventMask);
 }
+#endif
 
 /**
  *  @brief      Initializes the settings to operate the RTC Common in Calendar mode.
@@ -3317,7 +3319,7 @@ __STATIC_INLINE void DL_RTC_Common_disableWriteProtect(RTC_Regs *rtc_common)
 }
 #endif
 
-#endif /* __MSPM0_HAS_RTC_A__ || __MSPM0_HAS_RTC__ */
+#endif /* __MSPM0_HAS_RTC_A__ || __MSPM0_HAS_RTC_B__ || __MSPM0_HAS_RTC__ */
 
 #endif /* ti_dl_dl_rtc_common__include */
 /** @}*/

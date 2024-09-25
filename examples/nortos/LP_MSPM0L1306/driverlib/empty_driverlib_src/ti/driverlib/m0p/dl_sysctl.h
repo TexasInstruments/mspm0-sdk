@@ -57,6 +57,8 @@
 #include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h>
 #elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
 #include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.h>
+#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X)
+#include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.h>
 
 /********************************************************************
  *

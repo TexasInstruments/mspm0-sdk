@@ -53,13 +53,13 @@ int main(void) {
 
     while (1) 
     {
-    __WFI();
+        __WFI();
 
-    if (gCheckADC) {
-    
-        gCheckADC = false;
-        gAdcResult = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
-        /* Check if the gAdcResult is above the minmum threshold */
+        if (gCheckADC) {
+        
+            gCheckADC = false;
+            gAdcResult = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
+            /* Check if the gAdcResult is above the minmum threshold */
             if (gAdcResult > ADC_MINIMUM_VALUE)
             {
                 /* Start counter in case it was previously stopped. */
@@ -82,12 +82,12 @@ int main(void) {
 }
 
 void ADC12_0_INST_IRQHandler(void) {
-  switch (DL_ADC12_getPendingInterrupt(ADC12_0_INST)) {
-  case DL_ADC12_IIDX_MEM0_RESULT_LOADED:
-    gCheckADC = true;
-    break;
-  default:
-    break;
-  }
-  DL_ADC12_enableConversions(ADC12_0_INST);
+    switch (DL_ADC12_getPendingInterrupt(ADC12_0_INST)) {
+        case DL_ADC12_IIDX_MEM0_RESULT_LOADED:
+            gCheckADC = true;
+            break;
+        default:
+            break;
+    }
+    DL_ADC12_enableConversions(ADC12_0_INST);
 }

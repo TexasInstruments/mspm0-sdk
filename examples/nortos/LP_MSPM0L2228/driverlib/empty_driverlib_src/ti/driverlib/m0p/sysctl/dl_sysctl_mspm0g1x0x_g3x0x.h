@@ -55,6 +55,7 @@
 
 #include <ti/devices/msp/msp.h>
 #include <ti/driverlib/dl_common.h>
+#include <ti/driverlib/m0p/dl_factoryregion.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -430,8 +431,6 @@ typedef enum {
     DL_SYSCTL_ULPCLK_DIV_1 = (SYSCTL_MCLKCFG_UDIV_NODIVIDE),
     /*! ULPCLK is MCLK divided by 2 */
     DL_SYSCTL_ULPCLK_DIV_2 = (SYSCTL_MCLKCFG_UDIV_DIVIDE2),
-    /*! ULPCLK is MCLK divided by 3 */
-    DL_SYSCTL_ULPCLK_DIV_3 = (SYSCTL_MCLKCFG_UDIV_DIVIDE3),
 } DL_SYSCTL_ULPCLK_DIV;
 
 /** @enum DL_SYSCTL_LFXT_DRIVE_STRENGTH */

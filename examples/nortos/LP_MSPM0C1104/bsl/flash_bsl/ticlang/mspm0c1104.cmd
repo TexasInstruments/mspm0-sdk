@@ -36,10 +36,10 @@
 
 MEMORY
 {
-	INTVEC(RWX)  			:	org = 0x00000000,		len = 0x00000040,
-    INVOCATION_START(RWX)   :	org = 0x00000040,		len = 0x00000010,
+	INTVEC(RWX)  			:	org = 0x00000000,		len = 0x000000C0,
+    INVOCATION_START(RWX)   :	org = 0x000000C0,		len = 0x00000010,
 
-    FLASH_BSL_START(RWX)	:	org = 0x00000050,		len = 0x00000030,
+    FLASH_BSL_START(RWX)	:	org = 0x000000D0,		len = 0x00000030,
 	FLASH_BSL (RWX)			:	org = 0x00000100,		len = 0x00001700,
 
 	SRAM (RW)				:	org = 0x20000000,		len = 0x00000400,

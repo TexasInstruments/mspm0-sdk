@@ -60,7 +60,7 @@
         postBuildStep="
             ${CG_TOOL_ROOT}/bin/tiarmobjcopy ${ProjName}.out -R .BCRConfig -R .BSLConfig -R .TI.bound* --output-target binary ${ProjName}-bank1-0x20000.bin
         "
-        description="Boot Image Manager Using MCUBoot">
+        description="Customer Secure Code using MCUBoot">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

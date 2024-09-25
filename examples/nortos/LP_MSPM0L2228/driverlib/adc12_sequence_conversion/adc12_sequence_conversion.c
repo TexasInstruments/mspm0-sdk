@@ -73,9 +73,8 @@ int main(void)
         if (i >= RESULT_SIZE) {
             __BKPT(0);
             i = 0;
-        }
-        else{
-            ;/*No action required*/
+        } else {
+            ; /*No action required*/
         }
         DL_ADC12_enableConversions(ADC12_0_INST);
     }

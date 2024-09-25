@@ -2311,7 +2311,7 @@ __STATIC_INLINE bool DL_ADC12_isSAMPCAPEnabled(ADC12_Regs *adc12)
 }
 #endif /* ADC HAS SAMPLE AND HOLD CAPACITOR DISCHARGE*/
 
-#ifdef MSPM0C110X_ADC_ERR_06
+#ifdef __MSPM0C110X_ADC_ERR_06__
 /**
  *  @brief Get calibration ADC offset value
  *
@@ -2323,7 +2323,6 @@ __STATIC_INLINE bool DL_ADC12_isSAMPCAPEnabled(ADC12_Regs *adc12)
  *  User needs to add calibrated offset to the result of @ref DL_ADC12_getMemResult
  *  to get correct ADC value.
  *
- *  @param[in] adc12    Pointer to the register overlay for the peripheral
  *  @param[in] userRef  Reference voltage
  *
  *  @return Calibrated ADC offset value

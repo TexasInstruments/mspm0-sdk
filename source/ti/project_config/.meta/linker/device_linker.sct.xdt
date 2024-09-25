@@ -37,3 +37,10 @@ LR_BSL 0x41C00100 0x00000100  {    ; load region size_region
 	.ANY (.BSLConfig)
   }
 }
+% if(Common.hasDataRegionConfig()){
+LR_DATA 0x41D00000 0x00004000  {    ; load region size_region
+   DATA 0x41D00000 0x00004000{
+	.ANY (.DataBank)
+  }
+}
+% }

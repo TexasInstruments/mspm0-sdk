@@ -41,21 +41,13 @@ let Common = system.getScript("/ti/driverlib/Common.js");
 /* Determine channe availability depending on device */
 let dmaInstances = 0;
 let dmaFullInstances = 0;
-if(Common.isDeviceM0G()){
-    dmaInstances = 7;
-    dmaFullInstances = 3;
-}
-else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
-    dmaInstances = 3;
-    dmaFullInstances = 1;
-}
-else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-    dmaInstances = 7;
-    dmaFullInstances = 3;
-}
-else if(Common.isDeviceM0C()){
-    dmaInstances = 1;
-    dmaFullInstances = 0;
+let test = "DMA_CH" + dmaInstances;
+while(system.deviceData.peripherals[test]) {
+        if(system.deviceData.peripherals[test].attributes.full_channel) {
+            dmaFullInstances++;
+        }
+        dmaInstances++;
+        test = "DMA_CH" + dmaInstances;
 }
 
 /*
@@ -108,11 +100,14 @@ function validate(inst, validation){
 
 function validatePinmux(inst, validation){
     // FULL CHANNEL VALIDATION
-    if(inst.channelID>(dmaFullInstances-1)){
+    if(!system.deviceData.peripherals[`DMA_CH` + inst.channelID].attributes.full_channel) {
         if(["FULL_CH_REPEAT_BLOCK","FULL_CH_REPEAT_SINGLE"].includes(inst.transferMode)){
             validation.logError("Repeat Mode only available on Full DMA Channels.", inst, ["transferMode", "channelID"]);
         }
         if(["fill","table"].includes(inst.addressMode)){
+            validation.logError("Selected Address Mode only available on Full DMA Channels.", inst, ["addressMode", "channelID"]);
+        }
+        if(["gather"].includes(inst.addressMode) && hasGatherMode()){
             validation.logError("Selected Address Mode only available on Full DMA Channels.", inst, ["addressMode", "channelID"]);
         }
         if(inst.enableEarlyInterrupt){
@@ -125,6 +120,15 @@ function validatePinmux(inst, validation){
     }
     else{
         validation.logInfo("Currently using a Full Channel.", inst, ["channelID"])
+    }
+    if(!["AUTOEN_DISABLE"].includes(inst.automaticEnable) && !hasAutomaticEnable()){
+        validation.logError("Selected Automatic Enable Mode is not available on this device.", inst, ["automaticEnable", "channelID"]);
+    }
+    if(["LONGLONG"].includes(inst.srcLength) && !hasLongLongOption()) {
+        validation.logError("Selected source length is not available on this device.", inst, ["srcLength", "channelID"]);
+    }
+    if(["LONGLONG"].includes(inst.dstLength) && !hasLongLongOption()) {
+        validation.logError("Selected destination length is not available on this device.", inst, ["dstLength", "channelID"]);
     }
 
     // Cascading Trigger Validation
@@ -168,6 +172,7 @@ function onChangeAddressMode(inst, ui) {
             ui.fillIncAmount.hidden = true;
             ui.tableSize.hidden = true;
             ui.tableSrcAddressInc.hidden = true;
+            ui.destIncrement.readOnly = false;
             break;
         case "f2b":
             ui.transferMode.hidden = false;
@@ -182,6 +187,7 @@ function onChangeAddressMode(inst, ui) {
             ui.fillIncAmount.hidden = true;
             ui.tableSize.hidden = true;
             ui.tableSrcAddressInc.hidden = true;
+            ui.destIncrement.readOnly = false;
             break;
         case "b2f":
             ui.transferMode.hidden = false;
@@ -196,6 +202,7 @@ function onChangeAddressMode(inst, ui) {
             ui.fillIncAmount.hidden = true;
             ui.tableSize.hidden = true;
             ui.tableSrcAddressInc.hidden = true;
+            ui.destIncrement.readOnly = false;
             break;
         case "b2b":
             ui.transferMode.hidden = false;
@@ -210,6 +217,7 @@ function onChangeAddressMode(inst, ui) {
             ui.fillIncAmount.hidden = true;
             ui.tableSize.hidden = true;
             ui.tableSrcAddressInc.hidden = true;
+            ui.destIncrement.readOnly = false;
             break;
         case "fill":
             // also set transfer mode to block
@@ -226,6 +234,7 @@ function onChangeAddressMode(inst, ui) {
             ui.fillIncAmount.hidden = false;
             ui.tableSize.hidden = true;
             ui.tableSrcAddressInc.hidden = true;
+            ui.destIncrement.readOnly = false;
             break;
         case "table":
             inst.transferMode = "SINGLE_BLOCK";
@@ -243,7 +252,23 @@ function onChangeAddressMode(inst, ui) {
             ui.fillIncAmount.hidden = true;
             ui.tableSize.hidden = false;
             ui.tableSrcAddressInc.hidden = false;
+            ui.destIncrement.readOnly = false;
             break;
+        case "gather":
+            ui.transferMode.hidden = false;
+            ui.transferMode.readOnly = false;
+            ui.configureTransferSize.hidden = false;
+            ui.transferSize.hidden = !inst.configureTransferSize;
+            ui.srcLength.readOnly = false;
+            ui.srcIncDec.hidden = false;
+            ui.dstLength.readOnly = false;
+            ui.dstIncDec.hidden = true;
+            ui.fillIncrement.hidden = true;
+            ui.fillIncAmount.hidden = true;
+            ui.tableSize.hidden = true;
+            ui.tableSrcAddressInc.hidden = true;
+            inst.destIncrement = "UNCHANGED";
+            ui.destIncrement.readOnly = true;
         default:
             //throw 'onChangeAddressMode given incorrect inst';
             break;
@@ -314,6 +339,59 @@ function triggerMapNumber(inst) {
 }
 */
 
+function getAddressModeOptions() {
+    let options = [
+        {name: "f2f", displayName: "Fixed addr. to Fixed addr."},
+        {name: "f2b", displayName: "Fixed addr. to Block addr."},
+        {name: "b2f", displayName: "Block addr. to Fixed addr."},
+        {name: "b2b", displayName: "Block addr. to Block addr."},
+        {name: "fill", displayName: "Fill Data Extended Mode"},
+        {name: "table", displayName: "Data Table Extended Mode"}
+    ];
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+        options.push(
+            {name: "gather", displayName: "Gather Data Extended Mode"}
+        );
+    }
+    return options;
+}
+
+function getLengthOptions() {
+    let options = [
+        {name: "BYTE", displayName: "Byte"},
+        {name: "HALF_WORD", displayName: "Half Word (2 Bytes)"},
+        {name: "WORD", displayName: "Word (4 Bytes)"},
+        {name: "LONG", displayName: "Long (8 Bytes)"}
+    ];
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+        options.push(
+            {name: "LONGLONG", displayName: "Long Long (16 Bytes)"}
+        );
+    }
+    return options;
+}
+
+function hasAutomaticEnable() {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+        return true;
+    }
+    return false;
+}
+
+function hasGatherMode() {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+        return true;
+    }
+    return false;
+}
+
+function hasLongLongOption() {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+        return true;
+    }
+    return false;
+}
+
 const eventOptions = [
     // DL_DMA_[...]
     {name: "EVENT_CHANNEL", displayName: "DMA channel interrupt"},
@@ -339,10 +417,13 @@ the Pinmux Section.
         getValue: (inst) => {
             if(!_.isUndefined(inst.peripheral.$solution) && inst.peripheral.$solution.error == ""){
                 // valid solution without error, parse should be successful
-                let val = parseInt(inst.peripheral.$solution.peripheralName.slice(-1));
+                // support channel IDs > 9
+                let val = parseInt(inst.peripheral.$solution.peripheralName.slice(-2));
+                if(isNaN(val)) val = parseInt(inst.peripheral.$solution.peripheralName.slice(-1));
                 if(!_.isInteger(val)){
                     throw "val not an integer?" + val.toString();
-                } else {
+                }
+                 else {
                     return val;
                 }
             } else {
@@ -437,15 +518,31 @@ of addresses and data and uses the DMA to efficiently program that data to their
 addresses without CPU intervention
         `,
         default: "f2f",
-        options: [
-            {name: "f2f", displayName: "Fixed addr. to Fixed addr."},
-            {name: "f2b", displayName: "Fixed addr. to Block addr."},
-            {name: "b2f", displayName: "Block addr. to Fixed addr."},
-            {name: "b2b", displayName: "Block addr. to Block addr."},
-            {name: "fill", displayName: "Fill Data Extended Mode"},
-            {name: "table", displayName: "Data Table Extended Mode"}
-        ],
+        options: getAddressModeOptions,
         onChange: onChangeAddressMode
+    },
+    {
+        name: "automaticEnable",
+        displayName: "Automatic Enable",
+        description: "Configures Automatic Enable Mode of the specific DMA channel.",
+        longDescription: `
+
+        Automatic Enable Mode allows the DMA to be automatically triggered after any update is made
+        to one register in the DMA, rather than requiring two registers accesses to restart the transfer.
+        Automatic Enable Mode can be configured when one of the following registers change:
+
+        * DMASA - DMA Source Address
+        * DMADA - DMA Destination Address
+        * DMASZ - DMA Size
+                `,
+        hidden: !hasAutomaticEnable(),
+        default: "AUTOEN_DISABLE",
+        options: [
+            {name: "AUTOEN_DISABLE", displayName: "Disabled"},
+            {name: "AUTOEN_DMASA", displayName: "On Source Address Change"},
+            {name: "AUTOEN_DMADA", displayName: "On Destination Address Change"},
+            {name: "AUTOEN_DMASZ", displayName: "On Size Change"},
+        ]
     },
     {
         name: "srcLength",
@@ -461,12 +558,7 @@ the entire segment.
 \n**NOTE: Source Length is not used by the Fill Address Mode**
         `,
         default: "WORD",
-        options: [
-            {name: "BYTE", displayName: "Byte"},
-            {name: "HALF_WORD", displayName: "Half Word (2 Bytes)"},
-            {name: "WORD", displayName: "Word (4 Bytes)"},
-            {name: "LONG", displayName: "Long (8 Bytes)"}
-        ]
+        options: getLengthOptions
     },
     {
         name: "srcIncDec",
@@ -479,7 +571,7 @@ in DMASAx by the amount given in Source Length. This configures the direction of
         options: [
             {name: "INCREMENT", displayName: "Increment"},
             {name: "DECREMENT", displayName: "Decrement"},
-            {name: "UNCHANGED", displayName: "Unchanged"},
+            {name: "UNCHANGED", displayName: "Unchanged"}
         ],
         hidden: true
 
@@ -497,12 +589,7 @@ is ignored. If the destination is larger, the upper portion source is zero-padde
 the entire segment.
         `,
         default: "WORD",
-        options: [
-            {name: "BYTE", displayName: "Byte"},
-            {name: "HALF_WORD", displayName: "Half Word (2 Bytes)"},
-            {name: "WORD", displayName: "Word (4 Bytes)"},
-            {name: "LONG", displayName: "Long (8 Bytes)"}
-        ]
+        options: getLengthOptions
     },
     {
         name: "dstIncDec",

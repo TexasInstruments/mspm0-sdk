@@ -272,6 +272,9 @@ See `Overriding Pre-built Libraries <#overriding-pre-built-libraries>`__ for inf
 4. Known Issues and Frequently Asked Questions (FAQs)
 -----------------------------------------------------
 
+4.1 Low-Power Mode Issues While Debugging
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 In versions of IAR before 9.60.1, handling of low-power mode debugging is not natively supported.
 
 To enable support of low-power mode debugging in older versions of IAR, please follow these steps:
@@ -288,6 +291,13 @@ To enable support of low-power mode debugging in older versions of IAR, please f
 
    -  ``C:/Program Files/IAR Systems/EWARM/arm/config/debugger/TexasInstruments``
 
-\`\` By patching the installation of IAR with these files, connection to the debugger should be maintained when the device enters a low-power state.
+By patching the installation of IAR with these files, connection to the debugger should be maintained when the device enters a low-power state.
+
+4.2 MSPM0Gx51x Support With IAR
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MSPM0Gx51x family will not be natively supported in IAR until version 9.60.2.
+
+For early access to MSPM0Gx51x support, please contact your local sales representative, TI support team or `E2E <https://e2e.ti.com/support/microcontrollers/>`__.
 
 For other issues please refer to `Known Issues and FAQ <../../../../../../known_issues_FAQ.html>`__ inside the SDK.

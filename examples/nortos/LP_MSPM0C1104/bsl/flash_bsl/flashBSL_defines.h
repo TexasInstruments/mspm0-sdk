@@ -64,8 +64,8 @@
 #define BSL_GPIO_UART_RX_PIN ((&BSLConfig)->interfacePins.UART_RXD_pad_num)
 
 /* MUX Selection*/
-#define BSL_GPIO_UART_TX ((&BSLConfig)->interfacePins.UART_RXD_PF_mux_sel)
-#define BSL_GPIO_UART_RX ((&BSLConfig)->interfacePins.UART_TXD_PF_mux_sel)
+#define BSL_GPIO_UART_TX ((&BSLConfig)->interfacePins.UART_TXD_PF_mux_sel)
+#define BSL_GPIO_UART_RX ((&BSLConfig)->interfacePins.UART_RXD_PF_mux_sel)
 
 /* GPIO configuration - I2C */
 #define BSL_GPIO_I2C_SDA_PIN ((&BSLConfig)->interfacePins.I2C_SDA_pad_num)

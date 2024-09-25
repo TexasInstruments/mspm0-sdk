@@ -127,7 +127,7 @@ function validate(inst, validation)
         if (OPAMod){
             let OPAInsts = OPAMod.$instances
             for(let singleOPA of OPAInsts){
-                if (singleOPA.cfg0PSELChannel == "DAC_OUT" || singleOPA.cfg0MSELChannel == "DAC_OUT"){
+                if (singleOPA.cfg0MSELChannel == "DAC_OUT"){
                     validation.logError("DAC Output pin should be enabled when configured for OPA input.", inst, ["dacOutputPinEn"]);
                 }
             }

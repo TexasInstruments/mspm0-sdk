@@ -13,5 +13,8 @@
  */
 var crovFiles = [
     "kernel/freertos/rov/FreeRTOS.rov.js", /* /ti/drivers/Board ROV support */
+];
 
+var objectViewerFiles = [
+    "kernel/freertos/rov_theia/FreeRTOS_Theia.rov.js", /* /ti/drivers/Board ROV support */
 ];

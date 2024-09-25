@@ -44,11 +44,6 @@ For more information about jumper configuration to achieve low-power using the
 MSPM0 LaunchPad, please visit the [LP-MSPM0L1306 User's Guide](https://www.ti.com/lit/slau869).
 
 ## Example Usage
-
-Connect COMP0_IN0+ and COMP0_IN0- to external circuitry.
-Compile, load and run the example.
-Check output COMP0_OUT based on inputs using an oscilloscope.
-
-On powerup, the COMP pin(s) used in this example are by default set to
-the correct analog mode. Therefore, calls to
-DL_GPIO_initPeripheralAnalogFunction for pinmuxing those pins are not needed.
+Connect COMP_PIN+ and COMP_IN- pins to external circuitry.
+COMP_OUT will go HIGH if COMP_IN+ is > COMP_IN-. Otherwise COMP_OUT is low.
+Verify correct state is seen on COMP_OUT in.

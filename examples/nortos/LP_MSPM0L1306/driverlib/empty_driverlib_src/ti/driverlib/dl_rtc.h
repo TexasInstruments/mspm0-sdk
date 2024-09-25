@@ -180,7 +180,7 @@ typedef DL_RTC_Common_CalendarAlarm             DL_RTC_CalendarAlarm;
 /*!
  * @brief Redirects to common @ref DL_RTC_COMMON_PRESCALER0_DIVIDE_16
  */
-#define DL_RTC_PRESCALER0_DIVIDE_16              DL_RTC_COMMON_PRESCaLER0_DIVIDE_16
+#define DL_RTC_PRESCALER0_DIVIDE_16              DL_RTC_COMMON_PRESCALER0_DIVIDE_16
 
 /*!
  * @brief Redirects to common @ref DL_RTC_COMMON_PRESCALER0_DIVIDE_32

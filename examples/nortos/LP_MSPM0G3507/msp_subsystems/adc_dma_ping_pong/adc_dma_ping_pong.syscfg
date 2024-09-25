@@ -2,7 +2,8 @@
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
- //@cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+//@cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
 // @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
 
 /**
@@ -50,4 +51,3 @@ VREF.checkVREFReady                = true;
 VREF.basicIntVolt                  = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
 VREF.peripheral.$assign            = "VREF";
 VREF.peripheral.vrefPosPin.$assign = "PA23";
-VREF.vrefPosPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";

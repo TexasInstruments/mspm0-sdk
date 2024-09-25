@@ -8,6 +8,7 @@ var searchData=
   ['dl_5ftimera_5fclockconfig',['DL_TimerA_ClockConfig',['../group___t_i_m_a.html#gad1241d1ffa0201908ca41beac9fd5bb0',1,'dl_timera.h']]],
   ['dl_5ftimera_5fcompareconfig',['DL_TimerA_CompareConfig',['../group___t_i_m_a.html#ga95cd1934b2063b57e6c49a020fd8eff5',1,'dl_timera.h']]],
   ['dl_5ftimera_5fcomparetriggerconfig',['DL_TimerA_CompareTriggerConfig',['../group___t_i_m_a.html#ga1176d607976358bb2bcd0dc635538c35',1,'dl_timera.h']]],
+  ['dl_5ftimera_5fpwmconfig',['DL_TimerA_PWMConfig',['../group___t_i_m_a.html#gab9ddb2e475539aec95d1df593860ef9c',1,'dl_timera.h']]],
   ['dl_5ftimera_5ftimerconfig',['DL_TimerA_TimerConfig',['../group___t_i_m_a.html#ga9ce18ba0b2269fd80ccfe976d659e08f',1,'dl_timera.h']]],
   ['dl_5ftimerg_5fbackupconfig',['DL_TimerG_backupConfig',['../group___t_i_m_g.html#ga4f499da61e6e96253b527cdde214b931',1,'dl_timerg.h']]],
   ['dl_5ftimerg_5fcapturecombinedconfig',['DL_TimerG_CaptureCombinedConfig',['../group___t_i_m_g.html#ga5852c440a9aefa1e8913c7c861635831',1,'dl_timerg.h']]],

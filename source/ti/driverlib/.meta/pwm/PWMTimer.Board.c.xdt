@@ -186,9 +186,7 @@ static const DL_`flavorCat`_PWMConfig g`inst.$name`Config = {
 %    let timerCommence = inst.timerStartTimer?"START":"STOP";
     .pwmMode = DL_TIMER_PWM_MODE_`inst.pwmMode`,
     .period = `inst.timerCount`,
-%if(flavorCat === "TimerA") {
     .isTimerWithFourCC = `inst.fourChannelCapable`,
-% } /* if (flavorCat === "TimerA") */
     .startTimer = DL_TIMER_`timerCommence`,
 };
 
@@ -217,10 +215,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     `chanCtlFct`
 %
 %   let shadowUpdateMode = "DL_TIMER_CC_UPDATE_METHOD_" + ccInstance.shadowUpdateMode;
-%%{  
-    /* 
+%%{
+    /*
      * Note: setCaptureCompareValue must be called after setCaptCompUpdateMethod
-     * to prevent blanking the capture compare value 
+     * to prevent blanking the capture compare value
      */
 %%}
     DL_`flavorCat`_setCaptCompUpdateMethod(`inst.$name`_INST, `shadowUpdateMode`, `channel`);

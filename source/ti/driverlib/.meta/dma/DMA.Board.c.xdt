@@ -164,6 +164,11 @@ switch(content){
 %               srcIncrement = inst.srcIncDec;
 %               destIncrement = inst.dstIncDec;
 %               break;
+%            case "gather":
+%               extendedMode = "FULL_CH_GATHER";
+%               srcIncrement = inst.srcIncDec;
+%               destIncrement = "UNCHANGED";
+%               break;
 %            case "fill":
 %               extendedMode = "FULL_CH_FILL";
 %               if(inst.fillIncrement !== "UNCHANGED"){
@@ -248,7 +253,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
 % } // if inst.enableInterrupt
 % if(inst.enableEarlyInterrupt) {
     DL_DMA_clearInterruptStatus(DMA, DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL`inst.channelID`);
-    DL_DMA_Full_Ch_setEarlyInterruptThreshold(DMA, `instName`_CHAN_ID, DL_DMA_EARLY_INTERRUPT_THRESHOLD_`inst.earlyIntThresh`);
     DL_DMA_enableInterrupt(DMA, DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL`inst.channelID`);
 % } // if inst.enableEarlyInterrupt
 % if(inst.srcIncrement !== "UNCHANGED"){
@@ -260,7 +264,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
 % if(inst.configureTransferSize){
     DL_DMA_setTransferSize(DMA, `instName`_CHAN_ID, `inst.transferSize`);
 % } //if inst.configureTransferSize
+% if(inst.automaticEnable != "AUTOEN_DISABLE") {
+    DL_DMA_enableAutoEnable(DMA, DL_DMA_`inst.automaticEnable`, `instName`_CHAN_ID);
+%}
     DL_DMA_initChannel(DMA, `instName`_CHAN_ID , (DL_DMA_Config *) &g`instName`Config);
+% if(inst.enableEarlyInterrupt) {
+    DL_DMA_Full_Ch_setEarlyInterruptThreshold(DMA, `instName`_CHAN_ID, DL_DMA_EARLY_INTERRUPT_THRESHOLD_`inst.earlyIntThresh`);
+%}
 }
 % } // for i < instances.length
 SYSCONFIG_WEAK void SYSCFG_DL_DMA_init(void){

@@ -423,7 +423,8 @@ void DL_Timer_initCompareTriggerMode(
     }
 }
 
-void DL_Timer_initPWMMode(GPTIMER_Regs *gptimer, DL_Timer_PWMConfig *config)
+static void DL_Timer_initTwoCCPWMMode(
+    GPTIMER_Regs *gptimer, DL_Timer_PWMConfig *config)
 {
     switch (config->pwmMode) {
         case DL_TIMER_PWM_MODE_EDGE_ALIGN:
@@ -864,16 +865,30 @@ bool DL_Timer_saveConfiguration(
         ptr->outDisConf = gptimer->COMMONREGS.ODIS;
 
         /* Capture or Compare configuration */
-        ptr->cc0Val     = gptimer->COUNTERREGS.CC_01[0];
-        ptr->cc1Val     = gptimer->COUNTERREGS.CC_01[1];
-        ptr->cc0Ctl     = gptimer->COUNTERREGS.CCCTL_01[0];
-        ptr->cc1Ctl     = gptimer->COUNTERREGS.CCCTL_01[1];
-        ptr->cc0OutCtl  = gptimer->COUNTERREGS.OCTL_01[0];
-        ptr->cc1OutCtl  = gptimer->COUNTERREGS.OCTL_01[1];
-        ptr->cc0ActCtl  = gptimer->COUNTERREGS.CCACT_01[0];
-        ptr->cc1ActCtl  = gptimer->COUNTERREGS.CCACT_01[1];
+        ptr->cc0Val = gptimer->COUNTERREGS.CC_01[0];
+        ptr->cc1Val = gptimer->COUNTERREGS.CC_01[1];
+        ptr->cc2Val = gptimer->COUNTERREGS.CC_23[0];
+        ptr->cc3Val = gptimer->COUNTERREGS.CC_23[1];
+
+        ptr->cc0Ctl = gptimer->COUNTERREGS.CCCTL_01[0];
+        ptr->cc1Ctl = gptimer->COUNTERREGS.CCCTL_01[1];
+        ptr->cc2Ctl = gptimer->COUNTERREGS.CCCTL_23[0];
+        ptr->cc3Ctl = gptimer->COUNTERREGS.CCCTL_23[1];
+
+        ptr->cc0OutCtl = gptimer->COUNTERREGS.OCTL_01[0];
+        ptr->cc1OutCtl = gptimer->COUNTERREGS.OCTL_01[1];
+        ptr->cc2OutCtl = gptimer->COUNTERREGS.OCTL_23[0];
+        ptr->cc3OutCtl = gptimer->COUNTERREGS.OCTL_23[1];
+
+        ptr->cc0ActCtl = gptimer->COUNTERREGS.CCACT_01[0];
+        ptr->cc1ActCtl = gptimer->COUNTERREGS.CCACT_01[1];
+        ptr->cc2ActCtl = gptimer->COUNTERREGS.CCACT_23[0];
+        ptr->cc3ActCtl = gptimer->COUNTERREGS.CCACT_23[1];
+
         ptr->in0FiltCtl = gptimer->COUNTERREGS.IFCTL_01[0];
         ptr->in1FiltCtl = gptimer->COUNTERREGS.IFCTL_01[1];
+        ptr->in2FiltCtl = gptimer->COUNTERREGS.IFCTL_23[0];
+        ptr->in3FiltCtl = gptimer->COUNTERREGS.IFCTL_23[1];
 
         ptr->backupRdy = true;
     }
@@ -919,16 +934,30 @@ bool DL_Timer_restoreConfiguration(
         gptimer->COMMONREGS.ODIS  = ptr->outDisConf;
 
         /* Capture or Compare Configuration */
-        gptimer->COUNTERREGS.CC_01[0]    = ptr->cc0Val;
-        gptimer->COUNTERREGS.CC_01[1]    = ptr->cc1Val;
+        gptimer->COUNTERREGS.CC_01[0] = ptr->cc0Val;
+        gptimer->COUNTERREGS.CC_01[1] = ptr->cc1Val;
+        gptimer->COUNTERREGS.CC_23[0] = ptr->cc2Val;
+        gptimer->COUNTERREGS.CC_23[1] = ptr->cc3Val;
+
         gptimer->COUNTERREGS.CCCTL_01[0] = ptr->cc0Ctl;
         gptimer->COUNTERREGS.CCCTL_01[1] = ptr->cc1Ctl;
-        gptimer->COUNTERREGS.OCTL_01[0]  = ptr->cc0OutCtl;
-        gptimer->COUNTERREGS.OCTL_01[1]  = ptr->cc1OutCtl;
+        gptimer->COUNTERREGS.CCCTL_23[0] = ptr->cc2Ctl;
+        gptimer->COUNTERREGS.CCCTL_23[1] = ptr->cc3Ctl;
+
+        gptimer->COUNTERREGS.OCTL_01[0] = ptr->cc0OutCtl;
+        gptimer->COUNTERREGS.OCTL_01[1] = ptr->cc1OutCtl;
+        gptimer->COUNTERREGS.OCTL_23[0] = ptr->cc2OutCtl;
+        gptimer->COUNTERREGS.OCTL_23[1] = ptr->cc3OutCtl;
+
         gptimer->COUNTERREGS.CCACT_01[0] = ptr->cc0ActCtl;
         gptimer->COUNTERREGS.CCACT_01[1] = ptr->cc1ActCtl;
+        gptimer->COUNTERREGS.CCACT_23[0] = ptr->cc2ActCtl;
+        gptimer->COUNTERREGS.CCACT_23[1] = ptr->cc3ActCtl;
+
         gptimer->COUNTERREGS.IFCTL_01[0] = ptr->in0FiltCtl;
         gptimer->COUNTERREGS.IFCTL_01[1] = ptr->in1FiltCtl;
+        gptimer->COUNTERREGS.IFCTL_23[0] = ptr->in2FiltCtl;
+        gptimer->COUNTERREGS.IFCTL_23[1] = ptr->in3FiltCtl;
 
         /* Cross-trigger Configuration */
         gptimer->COMMONREGS.CTTRIGCTL = ptr->crossTrigCtl;
@@ -946,9 +975,8 @@ bool DL_Timer_restoreConfiguration(
     return stateRestored;
 }
 
-#ifdef __MSPM0_HAS_TIMER_A__
-
-void DL_TimerA_initPWMMode(GPTIMER_Regs *gptimer, DL_TimerA_PWMConfig *config)
+void DL_Timer_initFourCCPWMMode(
+    GPTIMER_Regs *gptimer, DL_Timer_PWMConfig *config)
 {
     DL_Timer_PWMConfig pwmConfig;
 
@@ -1007,8 +1035,10 @@ void DL_TimerA_initPWMMode(GPTIMER_Regs *gptimer, DL_TimerA_PWMConfig *config)
     pwmConfig.pwmMode    = config->pwmMode;
     pwmConfig.startTimer = config->startTimer;
 
-    DL_Timer_initPWMMode(gptimer, &pwmConfig);
+    DL_Timer_initTwoCCPWMMode(gptimer, &pwmConfig);
 }
+
+#ifdef __MSPM0_HAS_TIMER_A__
 
 void DL_Timer_setFaultSourceConfig(GPTIMER_Regs *gptimer, uint32_t source)
 {

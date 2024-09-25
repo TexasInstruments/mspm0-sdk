@@ -9,7 +9,7 @@ let compiler_file_name = (system.compiler == "keil")?("uvision"):(system.compile
 var references = [
     {
         name: "startup",
-        path: "../source/ti/devices/msp/m0p/startup_system_files/${COMPILER_NAME}/startup_${DEVICE_NAME}_${COMPILER_FILE_NAME}.${STARTUP_EXTENSION}",
+        path: "${PRODUCT_PATH}../source/ti/devices/msp/m0p/startup_system_files/${COMPILER_NAME}/startup_${DEVICE_NAME}_${COMPILER_FILE_NAME}.${STARTUP_EXTENSION}",
         alwaysInclude: false,
     },
 ]
@@ -29,6 +29,17 @@ function getReferencePath(name)
 var componentReferences = []
 for (var ref of references)
 {
+    let sysconfigProducts = system.getProducts();
+    try{
+        if((sysconfigProducts)[0].name == "mspm0_sdk"){
+            ref.path = ref.path.replace(/\$\{PRODUCT_PATH\}/g, "");
+        }
+        else{
+            ref.path = ref.path.replace(/\$\{PRODUCT_PATH\}/g, "../../")
+        }
+    } catch(e){
+        ref.path = ref.path.replace(/\$\{PRODUCT_PATH\}/g, "");
+    }
     /* DEVICE_NAME : MSPM0G350X */
     ref.path = ref.path.replace(/\$\{DEVICE_NAME\}/g, system.deviceData.device.toLowerCase())
     /* COMPILER_NAME: ticlang */

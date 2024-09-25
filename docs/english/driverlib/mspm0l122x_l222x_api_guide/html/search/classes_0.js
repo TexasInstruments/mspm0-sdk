@@ -1,10 +1,13 @@
 var searchData=
 [
   ['dl_5fadc12_5fclockconfig',['DL_ADC12_ClockConfig',['../struct_d_l___a_d_c12___clock_config.html',1,'']]],
+  ['dl_5faesadv_5fconfig',['DL_AESADV_Config',['../struct_d_l___a_e_s_a_d_v___config.html',1,'']]],
   ['dl_5fcomp_5fconfig',['DL_COMP_Config',['../struct_d_l___c_o_m_p___config.html',1,'']]],
   ['dl_5fcomp_5frefvoltageconfig',['DL_COMP_RefVoltageConfig',['../struct_d_l___c_o_m_p___ref_voltage_config.html',1,'']]],
   ['dl_5fdma_5fconfig',['DL_DMA_Config',['../struct_d_l___d_m_a___config.html',1,'']]],
   ['dl_5fi2c_5fclockconfig',['DL_I2C_ClockConfig',['../struct_d_l___i2_c___clock_config.html',1,'']]],
+  ['dl_5fkeystorectl_5fconfig',['DL_KEYSTORECTL_Config',['../struct_d_l___k_e_y_s_t_o_r_e_c_t_l___config.html',1,'']]],
+  ['dl_5fkeystorectl_5fkeywrconfig',['DL_KEYSTORECTL_KeyWrConfig',['../struct_d_l___k_e_y_s_t_o_r_e_c_t_l___key_wr_config.html',1,'']]],
   ['dl_5flcd_5fconfig',['DL_LCD_Config',['../struct_d_l___l_c_d___config.html',1,'']]],
   ['dl_5frtc_5fcommon_5fcalendar',['DL_RTC_Common_Calendar',['../struct_d_l___r_t_c___common___calendar.html',1,'']]],
   ['dl_5frtc_5fcommon_5fcalendaralarm',['DL_RTC_Common_CalendarAlarm',['../struct_d_l___r_t_c___common___calendar_alarm.html',1,'']]],
@@ -23,7 +26,6 @@ var searchData=
   ['dl_5ftimer_5fpwmconfig',['DL_Timer_PWMConfig',['../struct_d_l___timer___p_w_m_config.html',1,'']]],
   ['dl_5ftimer_5ftimerconfig',['DL_Timer_TimerConfig',['../struct_d_l___timer___timer_config.html',1,'']]],
   ['dl_5ftimera_5fbackupconfig',['DL_TimerA_backupConfig',['../struct_d_l___timer_a__backup_config.html',1,'']]],
-  ['dl_5ftimera_5fpwmconfig',['DL_TimerA_PWMConfig',['../struct_d_l___timer_a___p_w_m_config.html',1,'']]],
   ['dl_5ftrng_5fbackupconfig',['DL_TRNG_backupConfig',['../struct_d_l___t_r_n_g__backup_config.html',1,'']]],
   ['dl_5fuart_5fclockconfig',['DL_UART_ClockConfig',['../struct_d_l___u_a_r_t___clock_config.html',1,'']]],
   ['dl_5fuart_5fconfig',['DL_UART_Config',['../struct_d_l___u_a_r_t___config.html',1,'']]],

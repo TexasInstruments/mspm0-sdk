@@ -18,9 +18,10 @@
         device="MSPM0G3507"
         ignoreDefaultDeviceSettings="true"
         ignoreDefaultCCSSettings="true"
-        products="MSPM0-SDK"
+        products="MSPM0-SDK;sysconfig"
         compilerBuildOptions="
             -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
             -D__MSPM0G3507__
             -O2
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
@@ -36,10 +37,16 @@
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
             -Wl,--rom_model
             -Wl,--warn_sections
             -L${CG_TOOL_ROOT}/lib
             -llibc.a
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
         description="Demonstrates basic usage of GUI Composer communication using JSON-formatted strings">
@@ -58,13 +65,11 @@
         </file>
         <file path="../MSP_GUI/GUIComm_JSON.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
         </file>
-        <file path="../ti_msp_dl_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../ti_msp_dl_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../HAL_UART_M0G3507.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../gc_simple_json.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

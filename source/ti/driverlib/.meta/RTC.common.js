@@ -65,7 +65,7 @@ function getIntOptions(peripheral)
             {name: "TSEVT", displayName: "Time Stamp Event"}
         ]);
     }
-    else if (peripheral == "RTC")
+    else if (peripheral == "RTC" || peripheral == "RTC_B")
     {
         allOptions = allOptions.concat([
             {name: "CALENDAR_ALARM1", displayName: "Calendar Alarm 1 interrupt"},
@@ -95,7 +95,7 @@ function getEventOptions(peripheral)
             {name: "TSEVT", displayName: "Time Stamp Event"},
         ]);
     }
-    else if (peripheral == "RTC")
+    else if (peripheral == "RTC" || peripheral == "RTC_B")
     {
         allOptions = allOptions.concat([
             {name: "CALENDAR_ALARM1", displayName: "Calendar Alarm 1 event"},
@@ -110,7 +110,7 @@ function getEventOptions(peripheral)
 }
 
 function getTimeStampEventOptions() {
-    // Only applies to RTC_A for now
+    // Only applies to RTC_A
     let tsOptions = [];
     tsOptions = tsOptions.concat([
         {name: "TIME_STAMP_EVENT_SOURCE_VDD_LOSS", displayName: "VDD loss"},
@@ -960,7 +960,7 @@ function getAdvancedConfig(peripheral)
         },
         ])
     }
-    if(peripheral == "RTC") {
+    else if(peripheral == "RTC" || peripheral == "RTC_B") {
         advancedConfig = advancedConfig.concat([
         {
             name        : "offsetCalFreq",
@@ -1028,7 +1028,7 @@ function getEventConfigs(peripheral) {
             }
         }])
     }
-    else if(peripheral == "RTC") {
+    else if(peripheral == "RTC" || peripheral == "RTC_B") {
         eventConfig = eventConfig.concat([
             {
                 name        : "pubChanID",

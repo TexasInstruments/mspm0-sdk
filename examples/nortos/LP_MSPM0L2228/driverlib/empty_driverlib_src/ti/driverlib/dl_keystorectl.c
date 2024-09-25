@@ -57,6 +57,7 @@ DL_KEYSTORECTL_STATUS DL_KEYSTORECTL_writeKey(
 {
     DL_KEYSTORECTL_STATUS status = DL_KEYSTORECTL_STATUS_VALID;
     uint32_t validSlot;
+    uint32_t slotNum;
     uint8_t numWords;
     volatile uint32_t *destPtr = (volatile uint32_t *) &keystorectl->KEYIN;
 
@@ -89,10 +90,11 @@ DL_KEYSTORECTL_STATUS DL_KEYSTORECTL_writeKey(
     }
 
     /* 6. Confirm key slots were successfully written */
+    slotNum   = (keyWrConfig->keySlot >> KEYSTORECTL_KEYWR_KEYSLOTSEL_OFS);
+    validSlot = (1 << (slotNum + KEYSTORECTL_STATUS_VALID_OFS));
     if (status == DL_KEYSTORECTL_STATUS_VALID) {
-        validSlot = (keyWrConfig->keySlot &
-                     DL_KEYSTORECTL_getValidKeySlots(keystorectl));
-        if (validSlot != keyWrConfig->keySlot) {
+        validSlot = (validSlot & DL_KEYSTORECTL_getValidKeySlots(keystorectl));
+        if (validSlot == 0) {
             status = DL_KEYSTORECTL_STATUS_WRITE_FAILED;
         }
     }

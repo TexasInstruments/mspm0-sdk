@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_01_00_03.html",
+    "location": "../../release_notes_mspm0_sdk_2_02_00_05.html",
     "mainCategories": [
         [
             "Documents"
@@ -171,6 +171,26 @@
     ]
 },
 {
+    "name": "MSPM0 SDK Manifest",
+    "tags": [
+        "Manifest",
+        "MSPM0",
+        "Documentation",
+        "FAQ",
+        "License"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../manifest_mspm0_sdk_2_02_00_05.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ]
+},
+{
     "name": "Driverlib API Guide",
     "tags": [
         "Driverlib API Guide",
@@ -211,6 +231,42 @@
     ],
     "subCategories": [
         "DriverLib"
+    ]
+},
+{
+    "name": "TI Drivers API Guide",
+    "tags": [
+        "TI Drivers API Guide",
+        "Documentation",
+        "MSPM0 TI Drivers API Reference Guide",
+        "API",
+        "ADC",
+        "DMA",
+        "I2C",
+        "SPI",
+        "UART",
+        "GPIO",
+        "Dependency",
+        "File Reference",
+        "Source code",
+        "Data Structure",
+        "Variables",
+        "Modules",
+        "Functions",
+        "CCS IAR Keil",
+        "Code Composer Studio",
+        "Register Level"
+    ],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/drivers/Drivers_Overview.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "TI Drivers"
     ]
 },
 {
@@ -768,8 +824,8 @@
         "Hall Sensored Trap Control User Guide",
         "Documentation"
     ],
-    "devices": ["$(MSPM0L11xx_L13xx_devices)"],
-    "devtools": ["$(MSPM0L11xx_L13xx_devtools)"],
+    "devices": ["$(MSPM0G1x0x_G3x0x_devices)"],
+    "devtools": ["$(MSPM0G1x0x_G3x0x_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
     "location": "../../docs/english/middleware/motor_control_bldc_sensored_trap_hall/Hall_sensored_Motor_Control_Software_User_Guide.html",
@@ -789,11 +845,32 @@
         "Sensorless FOC Control User Guide",
         "Documentation"
     ],
-    "devices": ["$(MSPM0L11xx_L13xx_devices)"],
-    "devtools": ["$(MSPM0L11xx_L13xx_devtools)"],
+    "devices": ["$(MSPM0G1x0x_G3x0x_devices)"],
+    "devtools": ["$(MSPM0G1x0x_G3x0x_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../docs/english/middleware/motor_control_bldc_sensorless_foc/Sensorless_FOC_Motor_Control_User_Guide.html",
+    "location": "../../docs/english/middleware/motor_control_pmsm_sensorless_foc/Sensorless_FOC_Motor_Control_User_Guide.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "Motor Control"
+    ]
+},
+{
+    "name": "Sensored FOC Motor Control User Guide",
+    "tags": [
+        "Sensored FOC Control User Guide",
+        "Documentation"
+    ],
+    "devices": ["$(MSPM0G1x0x_G3x0x_devices)"],
+    "devtools": ["$(MSPM0G1x0x_G3x0x_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/motor_control_pmsm_sensored_foc/Sensored_FOC_Motor_Control_User_Guide.html",
     "mainCategories": [
         [
             "Documents"
@@ -1163,7 +1240,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_01_00_03.html",
+    "location": "../../release_notes_mspm0_sdk_2_02_00_05.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -1368,6 +1445,43 @@
     ],
     "subCategories": [
         "DriverLib"
+    ]
+},
+{
+    "name": "TI Drivers API 指南",
+    "tags": [
+        "TI Drivers API 指南",
+        "TI Drivers API Guide",
+        "Documentation",
+        "MSPM0 TI Drivers API Reference Guide",
+        "API",
+        "ADC",
+        "DMA",
+        "I2C",
+        "SPI",
+        "UART",
+        "GPIO",
+        "Dependency",
+        "File Reference",
+        "Source code",
+        "Data Structure",
+        "Variables",
+        "Modules",
+        "Functions",
+        "CCS IAR Keil",
+        "Code Composer Studio",
+        "Register Level"
+    ],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/drivers/Drivers_Overview.html",
+    "mainCategories": [
+        [
+            "Documents - Chinese"
+        ]
+    ],
+    "subCategories": [
+        "TI Drivers"
     ]
 },
 {
@@ -1964,11 +2078,32 @@
         "Sensorless FOC Control User Guide",
         "Documentation"
     ],
-    "devices": ["$(MSPM0L11xx_L13xx_devices)"],
-    "devtools": ["$(MSPM0L11xx_L13xx_devtools)"],
+    "devices": ["$(MSPM0G1x0x_G3x0x_devices)"],
+    "devtools": ["$(MSPM0G1x0x_G3x0x_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../docs/chinese/middleware/motor_control_bldc_sensorless_foc/Sensorless_FOC_Motor_Control_User_Guide_CN.html",
+    "location": "../../docs/chinese/middleware/motor_control_pmsm_sensorless_foc/Sensorless_FOC_Motor_Control_User_Guide_CN.html",
+    "mainCategories": [
+        [
+            "Documents - Chinese"
+        ]
+    ],
+    "subCategories": [
+        "Middleware 中间件",
+        "电机控制"
+    ]
+},
+{
+    "name": "Sensored FOC Motor Control User Guide",
+    "tags": [
+        "Sensored FOC Control User Guide",
+        "Documentation"
+    ],
+    "devices": ["$(MSPM0G1x0x_G3x0x_devices)"],
+    "devtools": ["$(MSPM0G1x0x_G3x0x_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/chinese/middleware/motor_control_pmsm_sensored_foc/Sensored_FOC_Motor_Control_User_Guide_CN.html",
     "mainCategories": [
         [
             "Documents - Chinese"

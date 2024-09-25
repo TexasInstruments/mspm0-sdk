@@ -2,7 +2,8 @@
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
-// @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+//@cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+//@v2CliArgs --device "MSPM0L2228" --package "LQFP-80(PN)"
 // @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
 
 /**
@@ -15,7 +16,6 @@ const ADC121 = ADC12.addInstance();
 const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1  = GPIO.addInstance();
 const VREF   = scripting.addModule("/ti/driverlib/VREF");
-
 
 /**
  * Write custom configuration values to the imported modules.

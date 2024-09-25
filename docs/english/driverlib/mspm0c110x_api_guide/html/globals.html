@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -74,9 +74,6 @@ $(function() {
 </li>
 <li>delay_cycles
 : <a class="el" href="group___c_o_r_e.html#ga37a29402ad70bd40dd5f7630a77034be">dl_core.h</a>
-</li>
-<li>DEVICE_HAS_NO_CMDWEPROTA
-: <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb">dl_flashctl.h</a>
 </li>
 <li>DL_ADC12_AVERAGING_MODE_DISABLED
 : <a class="el" href="group___d_l___a_d_c12___a_v_e_r_a_g_i_n_g___m_o_d_e.html#ga324f3dd958313618c5cb3cb0f39a412a">dl_adc12.h</a>
@@ -278,6 +275,9 @@ $(function() {
 </li>
 <li>DL_ADC12_forceSYSOSCOnInStopMode()
 : <a class="el" href="group___a_d_c12.html#gad54f55af74f20b5730e371b3e8f8af2b">dl_adc12.h</a>
+</li>
+<li>DL_ADC12_getADCOffsetCalibration()
+: <a class="el" href="group___a_d_c12.html#ga59014796aa8b79a5331f32ebea907a6f">dl_adc12.h</a>
 </li>
 <li>DL_ADC12_getClockConfig()
 : <a class="el" href="group___a_d_c12.html#ga5c3245e23b031616795d35a9cbb4d24d">dl_adc12.h</a>
@@ -1035,15 +1035,6 @@ $(function() {
 <li>DL_DMA_AUTOEN_DISABLE
 : <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2">dl_dma.h</a>
 </li>
-<li>DL_DMA_AUTOEN_DMADA
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb">dl_dma.h</a>
-</li>
-<li>DL_DMA_AUTOEN_DMASA
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe">dl_dma.h</a>
-</li>
-<li>DL_DMA_AUTOEN_DMASZ
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5">dl_dma.h</a>
-</li>
 <li>DL_DMA_BURST_SIZE
 : <a class="el" href="group___d_m_a.html#ga7e3e053c6a9c5586e2bfd6a0015e870d">dl_dma.h</a>
 </li>
@@ -1070,9 +1061,6 @@ $(function() {
 </li>
 <li>DL_DMA_configTransfer()
 : <a class="el" href="group___d_m_a.html#ga28e4595240333440fb932a78c70729cd">dl_dma.h</a>
-</li>
-<li>DL_DMA_disableAutoEnable()
-: <a class="el" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">dl_dma.h</a>
 </li>
 <li>DL_DMA_disableChannel()
 : <a class="el" href="group___d_m_a.html#ga5df220a6523711b5b8e9c4f7a530e169">dl_dma.h</a>
@@ -1112,9 +1100,6 @@ $(function() {
 </li>
 <li>DL_DMA_EARLY_INTERRUPT_THRESHOLD_HALF
 : <a class="el" href="group___d_m_a.html#gga1da0bf5384dbbd60633b008428a834c7a21ec3f0d25c2ab9c65f9eff88ab0748c">dl_dma.h</a>
-</li>
-<li>DL_DMA_enableAutoEnable()
-: <a class="el" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">dl_dma.h</a>
 </li>
 <li>DL_DMA_enableChannel()
 : <a class="el" href="group___d_m_a.html#ga7f23920a43794e7d5de8f5edf0721c27">dl_dma.h</a>
@@ -1362,9 +1347,6 @@ $(function() {
 <li>DL_DMA_INTERRUPT_DATA_ERROR
 : <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gae1fde9dc3ec9b9dc35bb8a344ff8767f">dl_dma.h</a>
 </li>
-<li>DL_DMA_isAutoEnableEnabled()
-: <a class="el" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">dl_dma.h</a>
-</li>
 <li>DL_DMA_isChannelEnabled()
 : <a class="el" href="group___d_m_a.html#ga4834aa3e846be0f6c08a24496e23655c">dl_dma.h</a>
 </li>
@@ -1461,11 +1443,11 @@ $(function() {
 <li>DL_DMA_WIDTH_LONG
 : <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">dl_dma.h</a>
 </li>
-<li>DL_DMA_WIDTH_LONG_LONG
-: <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9">dl_dma.h</a>
-</li>
 <li>DL_DMA_WIDTH_WORD
 : <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836">dl_dma.h</a>
+</li>
+<li>DL_FactoryRegion_getADCOffset()
+: <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gaecc7f405e71090a1fd694a249df56d3d">dl_factoryregion.h</a>
 </li>
 <li>DL_FactoryRegion_getBOOTCRCData()
 : <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga30ed496165c67dac65333c7704a33d5a">dl_factoryregion.h</a>
@@ -7416,8 +7398,11 @@ $(function() {
 <li>DL_Timer_initCompareTriggerMode()
 : <a class="el" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b">dl_timer.h</a>
 </li>
-<li>DL_Timer_initPWMMode()
-: <a class="el" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036">dl_timer.h</a>
+<li>DL_Timer_initFourCCPWMMode()
+: <a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">dl_timer.h</a>
+</li>
+<li>DL_Timer_initPWMMode
+: <a class="el" href="group___t_i_m_x.html#ga62ed6b5a665c8c9b3b06a230924b6477">dl_timer.h</a>
 </li>
 <li>DL_Timer_initTimerMode()
 : <a class="el" href="group___t_i_m_x.html#ga68272d2f890b1e0b8e69a446dad41df5">dl_timer.h</a>
@@ -8085,6 +8070,18 @@ $(function() {
 <li>DL_TIMERG_IIDX_CC1_UP
 : <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga52076f6e80c99ad89e967749d6121ef6">dl_timerg.h</a>
 </li>
+<li>DL_TIMERG_IIDX_CC2_DN
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga25c9c662eaf6144b4400e8fed7f01763">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC2_UP
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga5e2883a8d2267be6119fc348f7210110">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC3_DN
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gaa8196bed6379ac8e5d2e8582a70a0b23">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC3_UP
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gae55e8af4c5d52263393c577597e9a121">dl_timerg.h</a>
+</li>
 <li>DL_TIMERG_IIDX_DIR_CHANGE
 : <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga562ebfbc0da130ee56376686a627cf8a">dl_timerg.h</a>
 </li>
@@ -8459,6 +8456,12 @@ $(function() {
 </li>
 <li>DL_UART_disableTransmitPinManualControl()
 : <a class="el" href="group___u_a_r_t.html#ga3cf985e585b6f4bb006d0360b517c720">dl_uart.h</a>
+</li>
+<li>DL_UART_DMA_DONE_INTERRUPT_RX
+: <a class="el" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#gaae49a60a8c0c28a27aedff63bd1eeea6">dl_uart.h</a>
+</li>
+<li>DL_UART_DMA_DONE_INTERRUPT_TX
+: <a class="el" href="group___u_a_r_t.html#ga2ff9892c769fb5afb98536b81b158805">dl_uart.h</a>
 </li>
 <li>DL_UART_DMA_IIDX_RX
 : <a class="el" href="group___u_a_r_t.html#ga0429ae4fb40aa91a0f50cd43f607b757">dl_uart.h</a>

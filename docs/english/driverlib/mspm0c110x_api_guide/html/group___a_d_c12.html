@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -540,6 +540,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga77bd801686fc71a7c4c8cadfc37077ff"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___a_d_c12.html#ga77bd801686fc71a7c4c8cadfc37077ff">DL_ADC12_clearDMATriggerStatus</a> (ADC12_Regs *adc12, uint32_t dmaMask)</td></tr>
 <tr class="memdesc:ga77bd801686fc71a7c4c8cadfc37077ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending adc12 DMA triggers.  <a href="#ga77bd801686fc71a7c4c8cadfc37077ff">More...</a><br /></td></tr>
 <tr class="separator:ga77bd801686fc71a7c4c8cadfc37077ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga59014796aa8b79a5331f32ebea907a6f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___a_d_c12.html#ga59014796aa8b79a5331f32ebea907a6f">DL_ADC12_getADCOffsetCalibration</a> (float userRef)</td></tr>
+<tr class="memdesc:ga59014796aa8b79a5331f32ebea907a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get calibration ADC offset value.  <a href="#ga59014796aa8b79a5331f32ebea907a6f">More...</a><br /></td></tr>
+<tr class="separator:ga59014796aa8b79a5331f32ebea907a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><a class="anchor" id="ti_dl_dl_adc12_Overview"></a></p><h1>Overview</h1>
@@ -3499,6 +3502,38 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga59014796aa8b79a5331f32ebea907a6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga59014796aa8b79a5331f32ebea907a6f">&sect;&nbsp;</a></span>DL_ADC12_getADCOffsetCalibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE int16_t DL_ADC12_getADCOffsetCalibration </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>userRef</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get calibration ADC offset value. </p>
+<p>Workaround for errata on MSPM0C110x devices: ADC_ERR_06</p>
+<p>Offset needs to be calibrated each time <a class="el" href="group___a_d_c12.html#ga522ad367c31c731c196d0e30f3e420c5">DL_ADC12_configConversionMem</a> is configured with a new voltage reference.</p>
+<p>User needs to add calibrated offset to the result of <a class="el" href="group___a_d_c12.html#gad0fe9d19a4327732ce773f2344513235">DL_ADC12_getMemResult</a> to get correct ADC value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">userRef</td><td>Reference voltage</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Calibrated ADC offset value </dd></dl>
+
+<p>References <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gaecc7f405e71090a1fd694a249df56d3d">DL_FactoryRegion_getADCOffset()</a>.</p>
 
 </div>
 </div>

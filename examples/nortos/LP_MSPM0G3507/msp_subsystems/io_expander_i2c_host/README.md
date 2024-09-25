@@ -9,21 +9,24 @@ I2C data packet: [PORT] [REGISTER] [B3] [B2] [B1] [B0]<br>
 
 Please see accompanying sub-system document for more information. [I2C IO Exander Sub-system](https://www.ti.com/lit/????)
 
-## Peripherals & Pin Assignments Used in this example
+## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| SYSCTL | --- | --- |
-| TIMG0 | --- | Blocking Delay |
-| TIMG6 | --- | Non-Blocking Delay |
+| GPIOA | PA18 | Standard with Wake Input |
+| GPIOA | PA0 | Open-Drain Output |
+| GPIOB | PB27 | Standard Output |
+| GPIOB | PB26 | Standard Output |
+| GPIOB | PB22 | Standard Output |
+| GPIOB | PB21 | Standard Input with internal pull-up |
+| GPIOB | PB0 | Standard Input with internal pull-up |
+| SYSCTL |  |  |
+| TIMG0 |  |  |
+| TIMG6 |  |  |
 | I2C1 | PB3 | I2C Serial Data line (SDA) |
 | I2C1 | PB2 | I2C Serial Clock line (SCL) |
-| GPIO | PB0 | IRQ_IN |
-| GPIO | PB22 | LED_RGB_BLUE |
-| GPIO | PB26 | LED_RGB_RED |
-| GPIO | PB27 | LED_RGB_GREEN |
-| GPIO | PA18 | SW_2 - BSL Button|
-| GPIO | PB21 | SW_3 - User Button|
+| EVENT |  |  |
+| CRC |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
 
@@ -33,14 +36,15 @@ Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PB3 | I2C1 | SDA | J1_10 | <ul><li>PB3 Jumper to target MCU I2C-SDA</ul></ul> |
-| PB2 | I2C1 | SCL | J1_9 | <ul><li>PB2 Jumper to target MCU I2C-SCL</ul></ul> |
-| PB0 | GPIO | INPUT | J2_12 | <ul><li>Interrupt Input Pin<br><ul><li>This pin is configured as input with pull up resistors enabled<br><li>Jumper to target MCU IO Expander interrupt output pin.  See target demo for details.<br></ul></ul>|
-PB22 | GPIO | OUTPUT | J16 | <ul><li>BLUE RGB LED<br><ul></ul> |
-| PB26 | GPIO | OUTPUT | J18 | <ul><li>RED RGB LED<br><ul></ul> |
-| PB27 | GPIO | OUTPUT | J17 | <ul><li>GREEN RGB LED<br><ul></ul> |
-| PA18 | GPIO | INPUT | J3_26 | <ul><li>SW_2 (BSL Button)<br><ul><li>This pin is configured as input</ul>|
-| PB21 | GPIO | INPUT | --- | <ul><li>SW_3 (USER Button)<br><ul><li>This pin is configured as input with pull up resistors enabled</ul>|
+| PA18 | GPIOA | PA18 | J3_26/J3_29 | <ul><li>PA18 can be connected to S1 button to VCC with external pull-down<br><ul><li>`J8 ON` Connect S1 button and external pull-down<br><li>`J8 OFF` Disconnect S1 button and external pull-down</ul><br><li>PA18 can be connected to XDS-110 BSL_Invoke<br><ul><li>`J101 17:18 OFF` Disconnect pin to XDS-110 BSL Invoke</ul><br><li>PA18 can be connected to boosterpack pin J3_29<br><ul><li>`J15 2:3` Connect pin to J3_29<br><li>`J15 1:2/OFF` Disconnect pin from J3_29</ul><br><li>PA18 can be connected to boosterpack pin J3_26<br><ul><li>`R58` is soldered and connects pin to J3_26 by default</ul></ul> |
+| PA0 | GPIOA | PA0 | J27_9 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 1:2` Use 3.3V pull-up<br><li>`J19 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J4 ON` Connect to LED1<br><li>`J4 OFF` Disconnect from LED1</ul></ul> |
+| PB27 | GPIOB | PB27 | J27_10 | <ul><li>PB27 can be connected to LED2 Green<br><ul><li>`J7 ON` Connect to LED2 Green<br><li>`J7 OFF` Disconnect from LED2 Green</ul></ul> |
+| PB26 | GPIOB | PB26 | J27_8 | <ul><li>PB26 can be connected to LED2 Red<br><ul><li>`J6 ON` Connect to LED2 Red<br><li>`J6 OFF` Disconnect from LED2 Red</ul></ul> |
+| PB22 | GPIOB | PB22 | J27_5 | <ul><li>PB22 can be connected to LED2 Blue<br><ul><li>`J5 ON` Connect to LED2 Blue<br><li>`J15 OFF` Disconnect from LED2 Blue</ul></ul> |
+| PB21 | GPIOB | PB21 | J27_4 | <ul><li>PB21 is connected to S2 button to GND with no external pull resistor<br><ul><li>Press `S2` button to connect pin to GND<br><li>Don't use `S2` button if not needed by application</ul></ul> |
+| PB0 | GPIOB | PB0 | J2_12 | N/A |
+| PB3 | I2C1 | SDA | J1_10 | <ul><li>PB3 can be connected to an on-board pull-up resistor<br><ul><li>`R60` is not soldered by default<br><li>Solder `R60` to use on-board pull-up</ul></ul> |
+| PB2 | I2C1 | SCL | J1_9 | <ul><li>PB2 can be connected to an on-board pull-up resistor<br><ul><li>`R59` is not soldered by default<br><li>Solder `R59` to use on-board pull-up</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 

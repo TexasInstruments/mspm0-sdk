@@ -86,6 +86,10 @@ function validate(inst, validation){
 			validation.logError("MSPM0L122X_L222X only supports a UDIV value of 1.", inst, "divideValue");
 		}
 		else {
+			//Temporary fix for MSPM0G to not allow user to select UDIV value of 3
+			if(Common.isDeviceM0G() && inst.divideValue == 3) {
+				validation.logError("MSPM0G does not support UDIV value of 3.", inst, "divideValue");
+			}
 			if(inst.divideValue != 1 && !inst.isUDIVEnabled){
 				validation.logWarning("UDIV will be disabled (/1) when sourced from LFCLK or SYSOSC and not reflect current setting", inst, "divideValue");
 			} else {

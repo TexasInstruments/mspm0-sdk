@@ -42,12 +42,30 @@ def make_binary(sdk,toolchain,name,color):
     else:
         versionList = config["version"]
 
+    retVal = config.get("slotSize")
+    if(retVal is not None): 
+        slotSize = retVal
+    else:
+        slotSize = 0x2800
+
+    retVal = config.get("bankSize")
+    if(retVal is not None): 
+        bankSize = retVal
+    else:
+        bankSize = 0x20000
+    
+    retVal = config.get("offset")
+    if(retVal is not None): 
+        offset = retVal
+    else:
+        offset = 0x4800
+
     # iterate over all versions provided
     for ver in versionList:
 
         versionStr = ver.replace('.','_')
 
-        imgtool_optional_args = ['--header-size','0x100','--align','4','--slot-size','0x2800',
+        imgtool_optional_args = ['--header-size','0x100','--align','4','--slot-size', hex(slotSize),
                 '--pad','--version',ver,'--pad-header','--overwrite-only','--key',
                 sdk+config["privateKeyPath"]]
 
@@ -65,7 +83,7 @@ def make_binary(sdk,toolchain,name,color):
             print("removing a key")
             imgtool_optional_args.extend(["--custom-tlv", "0xCD", "0x555555555555555555555555555555"])
 
-        outFilename = 'sample_image_signed_0x4800_v'+versionStr+'_'+color
+        outFilename = 'sample_image_signed_' + hex(offset) + '_v'+versionStr+'_'+color
 
         imgtool_args = [python_exe,sdk+'/source/third_party/mcuboot/scripts/imgtool.py',
                     'sign'] + imgtool_optional_args + ['sample_image-unsigned.bin',
@@ -77,7 +95,7 @@ def make_binary(sdk,toolchain,name,color):
 
         txtConversion_args = [python_exe,sdk+'/source/third_party/mcuboot/scripts/bin-to-ti-txt.py',
                             '-f',outFilename+'.bin','-o',outFilename+'.txt','--encrypt','-c',
-                            outFilename+'_encrypted.txt','-s',"24800"]
+                            outFilename+'_encrypted.txt','-s',hex(bankSize+offset)]
 
         proc = subprocess.run(txtConversion_args, capture_output=True)
         print(proc)

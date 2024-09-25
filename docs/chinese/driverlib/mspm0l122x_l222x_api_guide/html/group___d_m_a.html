@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -69,6 +69,7 @@ $(function() {
   <div class="summary">
 <a href="#groups">Modules</a> &#124;
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -99,16 +100,33 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___d_m_a.html#ga57e87a0fce4c224edea31b79515cfb2d">DL_DMA_initChannel</a>.  <a href="struct_d_l___d_m_a___config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga8f24fd5e050b3b5bffa83baa62eae24e"><td class="memItemLeft" align="right" valign="top"><a id="ga8f24fd5e050b3b5bffa83baa62eae24e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga8f24fd5e050b3b5bffa83baa62eae24e">DEVICE_HAS_DMA_FULL_CHANNEL</a></td></tr>
+<tr class="memdesc:ga8f24fd5e050b3b5bffa83baa62eae24e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device has support for DMA FULL channels. <br /></td></tr>
+<tr class="separator:ga8f24fd5e050b3b5bffa83baa62eae24e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga7d1157042646cbffc613b6164c7ed5a8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga7d1157042646cbffc613b6164c7ed5a8">DL_DMA_TRANSFER_MODE</a> { <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a48adc65d25a06b14a63268aedf2e0e9f">DL_DMA_SINGLE_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_SINGLE, 
 <br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a95a10f0a1060426eca8c16f3c0718333">DL_DMA_SINGLE_BLOCK_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_BLOCK
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a95a10f0a1060426eca8c16f3c0718333">DL_DMA_SINGLE_BLOCK_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_BLOCK, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a6f096384bb41144646ee651936f288b0">DL_DMA_FULL_CH_REPEAT_SINGLE_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_RPTSNGL, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a03b8e4d1275507a7e06ac3fc2a41e827">DL_DMA_FULL_CH_REPEAT_BLOCK_TRANSFER_MODE</a> = DMA_DMACTL_DMATM_RPTBLCK
 <br />
  }</td></tr>
 <tr class="separator:ga7d1157042646cbffc613b6164c7ed5a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga492a0576e98efee98bebd313be27fbf2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga492a0576e98efee98bebd313be27fbf2">DL_DMA_EXTENDED_MODE</a> { <a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a077f8a71dcd13137f82a58305d4af349">DL_DMA_NORMAL_MODE</a> = DMA_DMACTL_DMAEM_NORMAL
+<tr class="memitem:ga492a0576e98efee98bebd313be27fbf2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga492a0576e98efee98bebd313be27fbf2">DL_DMA_EXTENDED_MODE</a> { <br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a077f8a71dcd13137f82a58305d4af349">DL_DMA_NORMAL_MODE</a> = DMA_DMACTL_DMAEM_NORMAL, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2aca0f445c9e3358c80f6ad6ebcc9aadfb">DL_DMA_FULL_CH_FILL_MODE</a> = DMA_DMACTL_DMAEM_FILLMODE, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a1ede584989a704dd5b435015e0960640">DL_DMA_FULL_CH_TABLE_MODE</a> = DMA_DMACTL_DMAEM_TABLEMODE
+<br />
  }</td></tr>
 <tr class="separator:ga492a0576e98efee98bebd313be27fbf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae08767430c6d576fddbad7f2bb1157ee"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gae08767430c6d576fddbad7f2bb1157ee">DL_DMA_INCREMENT</a> { <br />
@@ -180,9 +198,7 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836">DL_DMA_WIDTH_WORD</a> = DMA_DMACTL_DMASRCWDTH_WORD, 
 <br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">DL_DMA_WIDTH_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONG, 
-<br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9">DL_DMA_WIDTH_LONG_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONGLONG
+&#160;&#160;<a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">DL_DMA_WIDTH_LONG</a> = DMA_DMACTL_DMASRCWDTH_LONG
 <br />
  }</td></tr>
 <tr class="separator:gab605141334a8b69900305c81ef998fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,6 +237,22 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a5740dd2d4978aa4a088e1e45c9a3ce65">DL_DMA_EVENT_IIDX_DMACH15</a> = DMA_GEN_EVENT_IIDX_STAT_DMACH15, 
 <br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad44ecfa3278001c127078697c15a1d09">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH0</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH0, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8acc735933d41b9ce29029d0fefed63739">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH1</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH1, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a03bbf4447e73deef4da0df0e8fbcea69">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH2</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH2, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a1126d30c223677900837288277d65e7c">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH3</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH3, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad3e2c3cddfbcaa781a7b75c427ec75fb">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH4</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH4, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a4c89a802b27ec5c3385a94329ec7adad">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH5</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH5, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3e410b2358fe3059afb8710ef629eca7">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH6</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH6, 
+<br />
+&#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3d4ea06db3f44778b89e2c0856735f66">DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH7</a> = DMA_GEN_EVENT_IIDX_STAT_PREIRQCH7, 
+<br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a210582d59f844caef1c1f03b0ccff809">DL_DMA_EVENT_IIDX_ADDR_ERROR</a> = DMA_GEN_EVENT_IIDX_STAT_ADDRERR, 
 <br />
 &#160;&#160;<a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a264038dc1206040d4714e6ec626677fc">DL_DMA_EVENT_IIDX_DATA_ERROR</a> = DMA_GEN_EVENT_IIDX_STAT_DATAERR
@@ -237,15 +269,7 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:gaa5cab158d8d96858b0905b602c0a846a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac3cfd8d2a08be11fe872cd08196e7eb1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> { <br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2">DL_DMA_AUTOEN_DISABLE</a> = DMA_DMACTL_DMAAUTOEN_DISABLE, 
-<br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe">DL_DMA_AUTOEN_DMASA</a> = DMA_DMACTL_DMAAUTOEN_DMASA, 
-<br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb">DL_DMA_AUTOEN_DMADA</a> = DMA_DMACTL_DMAAUTOEN_DMADA, 
-<br />
-&#160;&#160;<a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5">DL_DMA_AUTOEN_DMASZ</a> = DMA_DMACTL_DMAAUTOEN_DMASZ
-<br />
+<tr class="memitem:gac3cfd8d2a08be11fe872cd08196e7eb1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> { <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2">DL_DMA_AUTOEN_DISABLE</a> = DMA_DMACTL_DMAAUTOEN_DISABLE
  }</td></tr>
 <tr class="separator:gac3cfd8d2a08be11fe872cd08196e7eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -350,6 +374,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga7b62531baf19f3cced8a1869f2096c00"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___d_m_a.html#gab605141334a8b69900305c81ef998fc9">DL_DMA_WIDTH</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga7b62531baf19f3cced8a1869f2096c00">DL_DMA_getDestWidth</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
 <tr class="memdesc:ga7b62531baf19f3cced8a1869f2096c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the width of the DMA destination address for a channel.  <a href="#ga7b62531baf19f3cced8a1869f2096c00">More...</a><br /></td></tr>
 <tr class="separator:ga7b62531baf19f3cced8a1869f2096c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacc68c40f08f75d0bb0aa2cc028a52e69"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gacc68c40f08f75d0bb0aa2cc028a52e69">DL_DMA_Full_Ch_setEarlyInterruptThreshold</a> (DMA_Regs *dma, uint8_t channelNum, <a class="el" href="group___d_m_a.html#ga1da0bf5384dbbd60633b008428a834c7">DL_DMA_EARLY_INTERRUPT_THRESHOLD</a> threshold)</td></tr>
+<tr class="memdesc:gacc68c40f08f75d0bb0aa2cc028a52e69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the early interrupt event.  <a href="#gacc68c40f08f75d0bb0aa2cc028a52e69">More...</a><br /></td></tr>
+<tr class="separator:gacc68c40f08f75d0bb0aa2cc028a52e69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1d3a556657ecde120f39d8151b855a9"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___d_m_a.html#ga1da0bf5384dbbd60633b008428a834c7">DL_DMA_EARLY_INTERRUPT_THRESHOLD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gad1d3a556657ecde120f39d8151b855a9">DL_DMA_Full_Ch_getEarlyInterruptThreshold</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
+<tr class="memdesc:gad1d3a556657ecde120f39d8151b855a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the early interrupt event threshold.  <a href="#gad1d3a556657ecde120f39d8151b855a9">More...</a><br /></td></tr>
+<tr class="separator:gad1d3a556657ecde120f39d8151b855a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1d19ffe6b6f29f936f0f3e7498b66102"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga1d19ffe6b6f29f936f0f3e7498b66102">DL_DMA_enableInterrupt</a> (DMA_Regs *dma, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga1d19ffe6b6f29f936f0f3e7498b66102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable DMA interrupts.  <a href="#ga1d19ffe6b6f29f936f0f3e7498b66102">More...</a><br /></td></tr>
 <tr class="separator:ga1d19ffe6b6f29f936f0f3e7498b66102"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -401,15 +431,6 @@ Functions</h2></td></tr>
 <tr class="memitem:gafece913351c1ce0970329bbe7f819432"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gafece913351c1ce0970329bbe7f819432">DL_DMA_clearEventsStatus</a> (DMA_Regs *dma, uint32_t eventMask)</td></tr>
 <tr class="memdesc:gafece913351c1ce0970329bbe7f819432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending dma events.  <a href="#gafece913351c1ce0970329bbe7f819432">More...</a><br /></td></tr>
 <tr class="separator:gafece913351c1ce0970329bbe7f819432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">DL_DMA_enableAutoEnable</a> (DMA_Regs *dma, <a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> mode, uint8_t channelNum)</td></tr>
-<tr class="memdesc:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the DMA for auto-enable.  <a href="#ga9bbc76b66ca83bca6d1afc2c7a828f4e">More...</a><br /></td></tr>
-<tr class="separator:ga9bbc76b66ca83bca6d1afc2c7a828f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">DL_DMA_disableAutoEnable</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
-<tr class="memdesc:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable auto-enable for DMA.  <a href="#gaf798a5e35ca3a7ebd18a7d71b4c8af05">More...</a><br /></td></tr>
-<tr class="separator:gaf798a5e35ca3a7ebd18a7d71b4c8af05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad9a2039849be9ab98d67d7aa38d44c26"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">DL_DMA_isAutoEnableEnabled</a> (DMA_Regs *dma, uint8_t channelNum)</td></tr>
-<tr class="memdesc:gad9a2039849be9ab98d67d7aa38d44c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if auto-enable is enabled for the DMA.  <a href="#gad9a2039849be9ab98d67d7aa38d44c26">More...</a><br /></td></tr>
-<tr class="separator:gad9a2039849be9ab98d67d7aa38d44c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><a class="anchor" id="ti_dl_dl_m0p_dma_Overview"></a></p><h1>Overview</h1>
@@ -431,6 +452,10 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="gga7d1157042646cbffc613b6164c7ed5a8a95a10f0a1060426eca8c16f3c0718333"></a>DL_DMA_SINGLE_BLOCK_TRANSFER_MODE&#160;</td><td class="fielddoc"><p>Each DMA trigger results in a transfer of a block of data, once </p>
 </td></tr>
+<tr><td class="fieldname"><a id="gga7d1157042646cbffc613b6164c7ed5a8a6f096384bb41144646ee651936f288b0"></a>DL_DMA_FULL_CH_REPEAT_SINGLE_TRANSFER_MODE&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Each DMA trigger results in a single data transfer, repeating </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga7d1157042646cbffc613b6164c7ed5a8a03b8e4d1275507a7e06ac3fc2a41e827"></a>DL_DMA_FULL_CH_REPEAT_BLOCK_TRANSFER_MODE&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Each DMA trigger results in a transfer of a block of data, repeating </p>
+</td></tr>
 </table>
 
 </div>
@@ -448,6 +473,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga492a0576e98efee98bebd313be27fbf2a077f8a71dcd13137f82a58305d4af349"></a>DL_DMA_NORMAL_MODE&#160;</td><td class="fielddoc"><p>Normal operation </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga492a0576e98efee98bebd313be27fbf2aca0f445c9e3358c80f6ad6ebcc9aadfb"></a>DL_DMA_FULL_CH_FILL_MODE&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Fills the destination with a specific value </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga492a0576e98efee98bebd313be27fbf2a1ede584989a704dd5b435015e0960640"></a>DL_DMA_FULL_CH_TABLE_MODE&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. The source data contains addresses and data </p>
 </td></tr>
 </table>
 
@@ -587,8 +616,6 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e"></a>DL_DMA_WIDTH_LONG&#160;</td><td class="fielddoc"><p>Long Acccess (64-bit) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9"></a>DL_DMA_WIDTH_LONG_LONG&#160;</td><td class="fielddoc"><p>Long-long Acccess (128-bit) </p>
-</td></tr>
 </table>
 
 </div>
@@ -638,6 +665,22 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8a5f7e0a6a4937405ca4f4d88e9a44ae2d"></a>DL_DMA_EVENT_IIDX_DMACH14&#160;</td><td class="fielddoc"><p>Enum to indicate that the channel 14 interrupt has fired </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8a5740dd2d4978aa4a088e1e45c9a3ce65"></a>DL_DMA_EVENT_IIDX_DMACH15&#160;</td><td class="fielddoc"><p>Enum to indicate that the channel 15 interrupt has fired </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8ad44ecfa3278001c127078697c15a1d09"></a>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH0&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Enum to indicate that the early interrupt event for channel 0 interrupt has fired </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8acc735933d41b9ce29029d0fefed63739"></a>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH1&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Enum to indicate that the early interrupt event for channel 1 interrupt has fired </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8a03bbf4447e73deef4da0df0e8fbcea69"></a>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH2&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Enum to indicate that the early interrupt event for channel 2 interrupt has fired </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8a1126d30c223677900837288277d65e7c"></a>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH3&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Enum to indicate that the early interrupt event for channel 3 interrupt has fired </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8ad3e2c3cddfbcaa781a7b75c427ec75fb"></a>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH4&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Enum to indicate that the early interrupt event for channel 4 interrupt has fired </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8a4c89a802b27ec5c3385a94329ec7adad"></a>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH5&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Enum to indicate that the early interrupt event for channel 5 interrupt has fired </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8a3e410b2358fe3059afb8710ef629eca7"></a>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH6&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Enum to indicate that the early interrupt event for channel 6 interrupt has fired </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8a3d4ea06db3f44778b89e2c0856735f66"></a>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH7&#160;</td><td class="fielddoc"><p>Available for FULL-channel configuration only. Enum to indicate that the early interrupt event for channel 7 interrupt has fired </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga9c5dfde9fc934940ba9aac298be440b8a210582d59f844caef1c1f03b0ccff809"></a>DL_DMA_EVENT_IIDX_ADDR_ERROR&#160;</td><td class="fielddoc"><p>Enum to indicate that a DMA address error has occurred </p>
 </td></tr>
@@ -698,12 +741,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2"></a>DL_DMA_AUTOEN_DISABLE&#160;</td><td class="fielddoc"><p>No automatic DMA enable </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe"></a>DL_DMA_AUTOEN_DMASA&#160;</td><td class="fielddoc"><p>Automatic DMA enable on DMASA register write </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb"></a>DL_DMA_AUTOEN_DMADA&#160;</td><td class="fielddoc"><p>Automatic DMA enable on DMADA register write </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5"></a>DL_DMA_AUTOEN_DMASZ&#160;</td><td class="fielddoc"><p>Automatic DMA enable on DMASZ register write </p>
 </td></tr>
 </table>
 
@@ -2167,7 +2204,99 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
+</div>
+</div>
+<a id="gacc68c40f08f75d0bb0aa2cc028a52e69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacc68c40f08f75d0bb0aa2cc028a52e69">&sect;&nbsp;</a></span>DL_DMA_Full_Ch_setEarlyInterruptThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void DL_DMA_Full_Ch_setEarlyInterruptThreshold </td>
+          <td>(</td>
+          <td class="paramtype">DMA_Regs *&#160;</td>
+          <td class="paramname"><em>dma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channelNum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___d_m_a.html#ga1da0bf5384dbbd60633b008428a834c7">DL_DMA_EARLY_INTERRUPT_THRESHOLD</a>&#160;</td>
+          <td class="paramname"><em>threshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the early interrupt event. </p>
+<p>This functionality is available for FULL-channel configuration only. Please refer to the device datasheet to map which channels have FULL or BASIC capability.</p>
+<p>The DMA has the capability to generate an early interrupt with a given amount of transfer cycles before the DMA complete-interrupt is issued. This allows to start the ISR context switch in parallel with the completion of the DMA, and compensates the latency for the task switch into the ISR.</p>
+<p>Ideally when the ISR starts to execute and read IIDX, the IIDX will already point to the channel-complete interrupt (always higher priority than the PRE-IRQ). In this case the latency is minimal and the ISR needs to clear the PRE-IRQ interrupt flag (RIS) manually. Should for whatever reason the DMA not complete in time, the IIDX will point to the PRE-IRQ handler and the handler needs to poll for the DMAEN bit in the DMA channel control register (DMACTL) to catch the moment that the DMA transfer has completed. Then the handler needs to clear the DMA channel-complete IRQ flag manually.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dma</td><td>Pointer to the register overlay for the peripheral </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">channelNum</td><td>DMA channel to operate on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>When to generate the early interrupt. One of <a class="el" href="group___d_m_a.html#ga1da0bf5384dbbd60633b008428a834c7">DL_DMA_EARLY_INTERRUPT_THRESHOLD</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>References <a class="el" href="group___d_l_common.html#ga37cb77ac2e81fdb12f6a95ad02cbb0e4">DL_Common_updateReg()</a>.</p>
+
+</div>
+</div>
+<a id="gad1d3a556657ecde120f39d8151b855a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad1d3a556657ecde120f39d8151b855a9">&sect;&nbsp;</a></span>DL_DMA_Full_Ch_getEarlyInterruptThreshold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE <a class="el" href="group___d_m_a.html#ga1da0bf5384dbbd60633b008428a834c7">DL_DMA_EARLY_INTERRUPT_THRESHOLD</a> DL_DMA_Full_Ch_getEarlyInterruptThreshold </td>
+          <td>(</td>
+          <td class="paramtype">DMA_Regs *&#160;</td>
+          <td class="paramname"><em>dma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channelNum</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the early interrupt event threshold. </p>
+<p>This functionality is available for FULL-channel configuration only. Please refer to the device datasheet to map which channels have FULL or BASIC capability.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dma</td><td>Pointer to the register overlay for the peripheral </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">channelNum</td><td>DMA channel to operate on</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The early interrupt event threshold</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">One</td><td>of <a class="el" href="group___d_m_a.html#ga1da0bf5384dbbd60633b008428a834c7">DL_DMA_EARLY_INTERRUPT_THRESHOLD</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -2855,132 +2984,6 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">dma</td><td>Pointer to the register overlay for the peripheral </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">eventMask</td><td>Bit mask of events to clear. Bitwise OR of <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html">DL_DMA_EVENT</a>. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ga9bbc76b66ca83bca6d1afc2c7a828f4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9bbc76b66ca83bca6d1afc2c7a828f4e">&sect;&nbsp;</a></span>DL_DMA_enableAutoEnable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">__STATIC_INLINE void DL_DMA_enableAutoEnable </td>
-          <td>(</td>
-          <td class="paramtype">DMA_Regs *&#160;</td>
-          <td class="paramname"><em>dma</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a>&#160;</td>
-          <td class="paramname"><em>mode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>channelNum</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Configure the DMA for auto-enable. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dma</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>Enable auto-enable for DMA on a specified register write. One of <a class="el" href="group___d_m_a.html#gac3cfd8d2a08be11fe872cd08196e7eb1">DL_DMA_AUTOEN</a> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">channelNum</td><td>DMA channel to operate on </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="gaf798a5e35ca3a7ebd18a7d71b4c8af05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf798a5e35ca3a7ebd18a7d71b4c8af05">&sect;&nbsp;</a></span>DL_DMA_disableAutoEnable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">__STATIC_INLINE void DL_DMA_disableAutoEnable </td>
-          <td>(</td>
-          <td class="paramtype">DMA_Regs *&#160;</td>
-          <td class="paramname"><em>dma</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>channelNum</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Disable auto-enable for DMA. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dma</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">channelNum</td><td>DMA channel to operate on </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="gad9a2039849be9ab98d67d7aa38d44c26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad9a2039849be9ab98d67d7aa38d44c26">&sect;&nbsp;</a></span>DL_DMA_isAutoEnableEnabled()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">__STATIC_INLINE bool DL_DMA_isAutoEnableEnabled </td>
-          <td>(</td>
-          <td class="paramtype">DMA_Regs *&#160;</td>
-          <td class="paramname"><em>dma</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>channelNum</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Check if auto-enable is enabled for the DMA. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dma</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">channelNum</td><td>DMA channel to operate on</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The status of auto-enable</dd></dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">true</td><td>auto-enable is enabled </td></tr>
-    <tr><td class="paramname">false</td><td>auto-enable is disabled </td></tr>
   </table>
   </dd>
 </dl>

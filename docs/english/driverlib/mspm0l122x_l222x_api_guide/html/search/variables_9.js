@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['lincontrolword',['linControlWord',['../struct_d_l___u_a_r_t___extend__backup_config.html#afb4bac49b08837bffdf49be5cb3dc0a3',1,'DL_UART_Extend_backupConfig']]],
-  ['linecontrolregisterword',['lineControlRegisterWord',['../struct_d_l___u_a_r_t___main__backup_config.html#ae90b0eb0a2b3ab3dca6143a90b01e372',1,'DL_UART_Main_backupConfig::lineControlRegisterWord()'],['../struct_d_l___u_a_r_t___extend__backup_config.html#a174fbb15172739f0ebd98a0e1fcbb706',1,'DL_UART_Extend_backupConfig::lineControlRegisterWord()']]],
-  ['loadval',['loadVal',['../struct_d_l___timer__backup_config.html#ab00964d76dfd60404f40d0ee972fe3b0',1,'DL_Timer_backupConfig::loadVal()'],['../struct_d_l___timer_a__backup_config.html#a9bc869df06e0b179a5ba6b7fa8c6637e',1,'DL_TimerA_backupConfig::loadVal()']]],
-  ['lowcap',['lowCap',['../struct_d_l___s_y_s_c_t_l___l_f_c_l_k_config.html#a694b89c6e7885e7910d3fa475d3535cc',1,'DL_SYSCTL_LFCLKConfig']]],
-  ['lowpowerwaveform',['lowPowerWaveform',['../struct_d_l___l_c_d___config.html#a1341f45b51fe7f5f5f81fea76331e5f5',1,'DL_LCD_Config']]]
+  ['k1',['k1',['../struct_d_l___a_e_s_a_d_v___config.html#aa703b34269f82ac6c1eb281f4baded57',1,'DL_AESADV_Config']]],
+  ['k2',['k2',['../struct_d_l___a_e_s_a_d_v___config.html#a53fc7f399aad630cc1da5e459800224c',1,'DL_AESADV_Config']]],
+  ['key',['key',['../struct_d_l___k_e_y_s_t_o_r_e_c_t_l___key_wr_config.html#ab9613ca2f68148aba5ca9844bb1c220f',1,'DL_KEYSTORECTL_KeyWrConfig']]],
+  ['keysize',['keySize',['../struct_d_l___k_e_y_s_t_o_r_e_c_t_l___key_wr_config.html#a9afa4cfad9b3d3e688d043370a67fc1a',1,'DL_KEYSTORECTL_KeyWrConfig::keySize()'],['../struct_d_l___k_e_y_s_t_o_r_e_c_t_l___config.html#a6e699d720f02f148351c9cd5cc3386cd',1,'DL_KEYSTORECTL_Config::keySize()']]],
+  ['keyslot',['keySlot',['../struct_d_l___k_e_y_s_t_o_r_e_c_t_l___key_wr_config.html#a23036664eff8dfe5a34f4a43d1ed5761',1,'DL_KEYSTORECTL_KeyWrConfig::keySlot()'],['../struct_d_l___k_e_y_s_t_o_r_e_c_t_l___config.html#a4648e46b05b15f4f88562e15c94ffe39',1,'DL_KEYSTORECTL_Config::keySlot()']]]
 ];

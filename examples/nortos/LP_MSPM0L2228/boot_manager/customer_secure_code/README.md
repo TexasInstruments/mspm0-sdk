@@ -1,16 +1,12 @@
 ## Example Summary
 
-Empty project using DriverLib.
-This example shows a basic empty project using DriverLib with just main file
-and SysConfig initialization.
+This is a sample customer secure code showcasing several cybersecurity features of the device while retaining the ability to debug and evaluate/modify the example for a given application. It is designed to be used with either the ```customer_secure_image_with_bootloader``` or ```customer_secure_sample_image``` projects.
 
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| GPIOA | PA18 | Standard with Wake Input with internal pull-down |
-| GPIOA | PA23 | Standard Output |
-| GPIOB | PB9 | Standard Output |
+| GPIOA | PA0 | Open-Drain Output |
 | GPIOB | PB10 | Standard Output |
 | SYSCTL |  |  |
 | EVENT |  |  |
@@ -24,9 +20,7 @@ Visit [LP_MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA18 | GPIOA | PA18 | J3_23 | <ul><li>PA18 can be connected to S2 button to VCC with external pull-down<br><ul><li>`J1 ON` Connect S2 button and external pull-down<br><li>`J1 OFF` Disconnect S2 button and external pull-down</ul><br><li>PA18 can be connected to XDS-110 BSL_Invoke<br><ul><li>`J14 17:18 OFF` Disconnect pin to XDS-110 BSL Invoke</ul></ul> |
-| PA23 | GPIOA | PA23 | N/A | <ul><li>PA23 can be connected to VCC using R8 or to GND using C9<br><ul><li>`R8` and `C9` are not soldered by default allowing the pin to be used for other functions</ul><br><li>PA23 can be connected to LED4 Blue<br><ul><li>`J4 ON` Connect to LED4 Blue<br><li>`J4 OFF` Disconnect from LED4 Blue</ul></ul> |
-| PB9 | GPIOB | PB9 | N/A | <ul><li>PB9 can be connected to LED4 Green<br><ul><li>`J6 ON` Connect to LED4 Green<br><li>`J6 OFF` Disconnect from LED4 Green</ul></ul> |
+| PA0 | GPIOA | PA0 | J3_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J12 1:2` Use 3.3V pull-up<br><li>`J12 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED3<br><ul><li>`J2 ON` Connect to LED3<br><li>`J2 OFF` Disconnect from LED3</ul></ul> |
 | PB10 | GPIOB | PB10 | N/A | <ul><li>PB10 can be connected to LED4 Red<br><ul><li>`J5 ON` Connect to LED4 Red<br><li>`J5 OFF` Disconnect from LED4 Red</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J14 15:16 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J14 15:16 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J14 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J14 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
@@ -48,4 +42,4 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0L2228 web page](https://www.ti.com/to
 
 ## Example Usage
 
-Compile, load and run the example.
+Follow the prerequisites and guide found in ```docs/*/middleware/boot_manager```. When debugging, make sure to load the second, identical CSC image into the far bank as well as described in the guide.

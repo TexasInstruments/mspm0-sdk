@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2021-24, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,6 +33,15 @@
 #include <ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h>
 #include "ti_msp_dl_config.h"
 
+/* Address in main memory to write to. This is defined in the
+ * eeprom_emulation_type_a.h header file. Uncommenting the #define below will
+ * overwrite the default #define in the header file. */
+//#define EEPROM_EMULATION_ADDRESS    0x00001000
+
+#define SECTOR_SIZE (1024)
+
+#define NUMBER_OF_WRITES ((SECTOR_SIZE / EEPROM_EMULATION_DATA_SIZE) + 1)
+
 uint32_t DataArray[EEPROM_EMULATION_DATA_SIZE / sizeof(uint32_t)] = {
     0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678,
     0x00FEDCBA, 0x87654321, 0xABCDEF00, 0x12345678, 0x00FEDCBA, 0x87654321,
@@ -47,13 +56,17 @@ int main(void)
 
     SYSCFG_DL_init();
 
+    /* Counter for number of times to write to the EEPROM region */
+    uint32_t counter;
+
     /* Initialize the virtual EEPROM */
     EEPROMEmulationState = EEPROM_TypeA_init(&EEPROMEmulationBuffer[0]);
     if (EEPROMEmulationState != EEPROM_EMULATION_INIT_OK) {
         __BKPT(0);
     }
 
-    while (1) {
+    /* Write NUMBER_OF_WRITE times to the EEPROM region specified in memory */
+    for (counter = 0; counter < NUMBER_OF_WRITES; counter++) {
         /* Change the content of EEPROMEmulationBuffer */
         for (uint16_t num = 0;
              num < EEPROM_EMULATION_DATA_SIZE / sizeof(uint32_t); num++) {
@@ -74,4 +87,8 @@ int main(void)
         }
         __BKPT(0);
     }
+
+    while(1) {
+        __WFI(); 
+    } 
 }

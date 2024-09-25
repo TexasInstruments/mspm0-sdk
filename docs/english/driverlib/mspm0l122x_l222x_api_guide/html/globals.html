@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -75,8 +75,8 @@ $(function() {
 <li>delay_cycles
 : <a class="el" href="group___c_o_r_e.html#ga37a29402ad70bd40dd5f7630a77034be">dl_core.h</a>
 </li>
-<li>DEVICE_HAS_NO_CMDWEPROTA
-: <a class="el" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb">dl_flashctl.h</a>
+<li>DEVICE_HAS_DMA_FULL_CHANNEL
+: <a class="el" href="group___d_m_a.html#ga8f24fd5e050b3b5bffa83baa62eae24e">dl_dma.h</a>
 </li>
 <li>DL_ADC12_AVERAGING_MODE_DISABLED
 : <a class="el" href="group___d_l___a_d_c12___a_v_e_r_a_g_i_n_g___m_o_d_e.html#ga324f3dd958313618c5cb3cb0f39a412a">dl_adc12.h</a>
@@ -864,6 +864,477 @@ $(function() {
 <li>DL_ADC12_WINDOWS_COMP_MODE_ENABLED
 : <a class="el" href="group___d_l___a_d_c12___w_i_n_d_o_w_s___c_o_m_p___m_o_d_e.html#ga9e425ac32db323522dce8506fa218a2d">dl_adc12.h</a>
 </li>
+<li>DL_AESADV_CCM_CTR_WIDTH
+: <a class="el" href="group___a_e_s_a_d_v.html#gab9b86859a9a4b0bc1a58f35e65b7fc06">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_CTR_WIDTH_2_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab9b86859a9a4b0bc1a58f35e65b7fc06ac3a1081c02f24332c3d167f2d509936c">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_CTR_WIDTH_3_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab9b86859a9a4b0bc1a58f35e65b7fc06a30abeba3eab6d600bc28d20ebea315f6">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_CTR_WIDTH_4_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab9b86859a9a4b0bc1a58f35e65b7fc06a8b32ffca542563b243fd428a7f89b6a3">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_CTR_WIDTH_5_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab9b86859a9a4b0bc1a58f35e65b7fc06a927366b2bace5c90256c0abd2d42c472">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_CTR_WIDTH_6_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab9b86859a9a4b0bc1a58f35e65b7fc06a20579185f9b2c5505c0291861a9403ed">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_CTR_WIDTH_7_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab9b86859a9a4b0bc1a58f35e65b7fc06a4022e8fb44247c3854a8d7f19ae3f804">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_CTR_WIDTH_8_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab9b86859a9a4b0bc1a58f35e65b7fc06aba95065a6cb3bef0d61b4a9e80636e52">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH
+: <a class="el" href="group___a_e_s_a_d_v.html#gacbb14a5048e4b37f6f1f412a610c2e95">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH_1_BYTE
+: <a class="el" href="group___a_e_s_a_d_v.html#ggacbb14a5048e4b37f6f1f412a610c2e95adc37ceebb4af7ca1ecf75efdf4491255">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH_2_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggacbb14a5048e4b37f6f1f412a610c2e95ae9ceba6a60bdeb0551e47ba7d6ad08b1">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH_3_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggacbb14a5048e4b37f6f1f412a610c2e95ab9ec3ea2fe106f025c33bd0d24dc3b25">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH_4_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggacbb14a5048e4b37f6f1f412a610c2e95a8d860a90beaef2b9258f2eb9adf4394b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH_5_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggacbb14a5048e4b37f6f1f412a610c2e95a155c95adc309162e182eae167e40814e">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH_6_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggacbb14a5048e4b37f6f1f412a610c2e95af0749e2c686681d368ebe5d0fe179f45">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH_7_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggacbb14a5048e4b37f6f1f412a610c2e95ab4c0830f066bb0d2c3cc197934519b78">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CCM_TAG_WIDTH_8_BYTES
+: <a class="el" href="group___a_e_s_a_d_v.html#ggacbb14a5048e4b37f6f1f412a610c2e95a46d4c6095e48978432a3a6a68b17e592">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_clearDMAInputTriggerEventStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga3d43af51870a418b9803f8dc420765de">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_clearDMAOutputTriggerEventStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga4dc6f4ca16d58a6ba9a3ebd4b44d6d75">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_clearInterruptStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaf7eb3a7cc695446381c4d6c8f2b64fb0">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CTR_WIDTH
+: <a class="el" href="group___a_e_s_a_d_v.html#gab097955be26dd9f1ab86c2abcbf17caa">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CTR_WIDTH_128_BIT
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab097955be26dd9f1ab86c2abcbf17caaa96ede50c9129432ba32cccbe3252fa41">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CTR_WIDTH_32_BIT
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab097955be26dd9f1ab86c2abcbf17caaaebc6e305c92c43a4aa5a227e7ee3471d">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CTR_WIDTH_64_BIT
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab097955be26dd9f1ab86c2abcbf17caaa6bc9e327775289184023517cee1dfebf">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_CTR_WIDTH_96_BIT
+: <a class="el" href="group___a_e_s_a_d_v.html#ggab097955be26dd9f1ab86c2abcbf17caaa6f1d551cd4a6bf6eb868714a3de72fb5">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_DIR
+: <a class="el" href="group___a_e_s_a_d_v.html#ga44eb3717710d41193938f41e4961db04">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_DIR_DECRYPT
+: <a class="el" href="group___a_e_s_a_d_v.html#gga44eb3717710d41193938f41e4961db04aea2bc95f98202e1a25e28495a68fc865">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_DIR_ENCRYPT
+: <a class="el" href="group___a_e_s_a_d_v.html#gga44eb3717710d41193938f41e4961db04addab5de3ec225d83295e04d87422547e">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_disableDMAInputTriggerEvent()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga76929642b261317b0a55e7ddd24599ac">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_disableDMAOperation()
+: <a class="el" href="group___a_e_s_a_d_v.html#gab89dc856fb0fe426c0b7313ec57dc5a6">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_disableDMAOutputTriggerEvent()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga10672e657d89dc89e973027e763d1912">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_disableInterrupt()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga7922537cf28b5963a7ceffaf2d6e87fb">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_disablePower()
+: <a class="el" href="group___a_e_s_a_d_v.html#gac1cbde23c65a5652fb5c7fd7fab591ab">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_disableSavedOutputContext()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaeb562db39a3d3416ced4a9b558b21cd1">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_enableDMAInputTriggerEvent()
+: <a class="el" href="group___a_e_s_a_d_v.html#gabe0964efd679714bba0ae610539735ae">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_enableDMAOperation()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga908ceb58d56dd2b3e840ea585f7c263a">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_enableDMAOutputTriggerEvent()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga355109409c8bf8e2dfd29a18732539e7">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_enableInterrupt()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga54e6c8aa4200a171548d3b4b9cb00eaa">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_enablePower()
+: <a class="el" href="group___a_e_s_a_d_v.html#gafe1dc62b1a7bd85b54ecbd8bc6351ad8">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_enableSavedOutputContext()
+: <a class="el" href="group___a_e_s_a_d_v.html#gafb0789492acbbedcda4f07101d743669">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_EVENT_DMA_DATA_INPUT_TRIGGER
+: <a class="el" href="group___d_l___a_e_s_a_d_v___e_v_e_n_t.html#ga662e26fd875c2da456c1eb727fe3a2c8">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_EVENT_DMA_DATA_OUTPUT_TRIGGER
+: <a class="el" href="group___d_l___a_e_s_a_d_v___e_v_e_n_t.html#ga3502cafdf58f2ad39a3dbaaf9649eeee">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_FB_WIDTH
+: <a class="el" href="group___a_e_s_a_d_v.html#ga0aaeae07de1db467360828b0321d2308">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_forceInputDataAvailable()
+: <a class="el" href="group___a_e_s_a_d_v.html#gac4c3ef83b58e47e5257c5b2062b81f20">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getCCMAlignWord()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaf10328d6107f5e0d23b97551b503e205">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getCCMCounterWidth()
+: <a class="el" href="group___a_e_s_a_d_v.html#gab164b25baf2079cae07cd03c23b21b34">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getCCMTagWidth()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga570b83a179bfc833a238b10e5a9b7f66">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getCounterWidth()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga72a1e427c41e166aacca75a2749a9390">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getDATAINAddr()
+: <a class="el" href="group___a_e_s_a_d_v.html#gae9fb067333e7483ffa53affe3d421dfa">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getDATAOUTAddr()
+: <a class="el" href="group___a_e_s_a_d_v.html#gad42fbf6b54ca22ad3c77763e536e99bc">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getDirection()
+: <a class="el" href="group___a_e_s_a_d_v.html#gac7e5c04bb848c01cd5ed889c7caee35f">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getEnabledDMAInputTriggerEvent()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaafa84766e69205910048bac7406670e8">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getEnabledDMAInputTriggerEventStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaee04021b1592689592071997d3ef5632">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getEnabledDMAOutputTriggerEvent()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga5263499b084d8be0a3b806e245ded37a">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getEnabledDMAOutputTriggerEventStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#gad7db4f0c08f559de9f6316e140b58644">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getEnabledInterrupts()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga34b40ca7af65a822253baab374818ed6">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getEnabledInterruptStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga641d258f06a59af13bb6684cb3cb98a3">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getFeedbackWidth()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga99c4dfaea7e7dae244432b1b813fa87b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getKeySize()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga93ed1b5b40dd940ccbcb99cab130bdfe">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getLowerBlockCount()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga2b11b77fcf1b9332af7a7be001b29a9e">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getMode()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga950eb45769a9f89de0486c194c5fd9c3">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getPendingDMAInputTriggerEvent()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga5043f37f00c3d9a539757f23ccdfda56">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getPendingDMAOutputTriggerEvent()
+: <a class="el" href="group___a_e_s_a_d_v.html#gac6d22987a7c144ee08f693c5f9d898c8">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getPendingInterrupt()
+: <a class="el" href="group___a_e_s_a_d_v.html#gafa3bcfddbea9c4f94077c1764500e0d5">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getRawDMAInputTriggerEventStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaca83c520da88dc58ba8a424ca05c7c27">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getRawDMAOutputTriggerEventStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#gad429df075322df125ff95a13c4499660">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getRawInterruptStatus()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga3e890fdb285aac39c6e2af3e5b6560d4">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_getUpperBlockCount()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga32d5339ae35e560ea3ba1ffb10967c85">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_haltOperationAndGenerateDigest()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga741c350c430fd94c0d035b132e6f7704">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_IIDX
+: <a class="el" href="group___a_e_s_a_d_v.html#ga3f7504f482098af84c7e1f6ee2ee5170">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_IIDX_DMA_INPUT_TRIGGER
+: <a class="el" href="group___a_e_s_a_d_v.html#gga3f7504f482098af84c7e1f6ee2ee5170ab5ff5a8820a00fb99e159c65196e5eb6">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_IIDX_DMA_OUTPUT_TRIGGER
+: <a class="el" href="group___a_e_s_a_d_v.html#gga3f7504f482098af84c7e1f6ee2ee5170a47ac891f2f41b45bd5da61cd84c871c0">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_IIDX_INPUT_CONTEXT_READY
+: <a class="el" href="group___a_e_s_a_d_v.html#gga3f7504f482098af84c7e1f6ee2ee5170aae03d48295ca3b4dd12a665907e5a88a">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_IIDX_INPUT_READY
+: <a class="el" href="group___a_e_s_a_d_v.html#gga3f7504f482098af84c7e1f6ee2ee5170a4f0cd2c8ee9cd9f9975b5d0d9e4c197b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_IIDX_OUTPUT_READY
+: <a class="el" href="group___a_e_s_a_d_v.html#gga3f7504f482098af84c7e1f6ee2ee5170a500793ed5043fd71d11927d14124e44a">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_IIDX_SAVED_OUTPUT_CONTEXT_READY
+: <a class="el" href="group___a_e_s_a_d_v.html#gga3f7504f482098af84c7e1f6ee2ee5170a7e7c6306114c886f9803d4fbba6a53e8">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initCBC()
+: <a class="el" href="group___a_e_s_a_d_v.html#gae3b3cc9112086f408b5eea59f8e41f35">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initCBCMAC()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaa836dbd55c6e863ef5e1edf5fcffb736">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initCCM()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga6c966e126355e7911d6b087ec23dc928">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initCFB()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga0e5a10cfcd416a473e2bf412d4477f0f">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initCMAC()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga4a1efd0c29094ecac44b43ffc6c07e06">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initCTR()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga287fe784914f24e63851bfcb35a0c506">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initECB()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaff7742ee7e6522eb1ef157286a04798b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initGCM()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga928d296fd23baf61ad6a1fa5de654270">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initICM()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga28d4d7b0d537d217622448a409f3167b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_initOFB()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga193bf8b2113dafe60846af8ca24a26ac">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_INTERRUPT_INPUT_CONTEXT_READY
+: <a class="el" href="group___d_l___a_e_s_a_d_v___i_n_t_e_r_r_u_p_t.html#ga5968721ba7528d94221c49a3843b0f65">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_INTERRUPT_INPUT_READY
+: <a class="el" href="group___d_l___a_e_s_a_d_v___i_n_t_e_r_r_u_p_t.html#ga5c8d9e1f7aa456202307f0c2e9747c5e">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_INTERRUPT_OUTPUT_READY
+: <a class="el" href="group___d_l___a_e_s_a_d_v___i_n_t_e_r_r_u_p_t.html#gab6dcfe49ee3336b07c793b9efd26ca59">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_INTERRUPT_SAVED_OUTPUT_CONTEXT_READY
+: <a class="el" href="group___d_l___a_e_s_a_d_v___i_n_t_e_r_r_u_p_t.html#ga4b294e5183f3823d7d8854dc517506a5">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isDMAOperationEnabled()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga057cae21235aacaabcda9811af47d591">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isInputContextWriteable()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga0f742600626ceb5d1d84bc994317d8f0">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isInputReady()
+: <a class="el" href="group___a_e_s_a_d_v.html#gad80338d82caffae574bed913c37e0fb3">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isOutputReady()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga27f2b04d1a77e8e575edd943effc6f3a">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isPowerEnabled()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga2d1dd1072f013f4c75b5a0a1f31a0d3c">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isReset()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaa9f2016ed1c31a1afe017fd7a911a18b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isSavedOutputContextEnabled()
+: <a class="el" href="group___a_e_s_a_d_v.html#gabe235f923167112a64168ff23c749032">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isSavedOutputContextReady()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaa1d5d9dccd07bbd6c7dc839a10bcc5e5">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_isUserKeyWriteEnabled()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaa66cea3474d8849aa91f6128c2c594b9">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_KEY_SIZE
+: <a class="el" href="group___a_e_s_a_d_v.html#ga8b4def1e5cd8a87acc22c34575f4d855">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_KEY_SIZE_128_BIT
+: <a class="el" href="group___a_e_s_a_d_v.html#gga8b4def1e5cd8a87acc22c34575f4d855a3eb042f8b9e27f93aeba4d4d6216442b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_KEY_SIZE_256_BIT
+: <a class="el" href="group___a_e_s_a_d_v.html#gga8b4def1e5cd8a87acc22c34575f4d855aedd219ebf1a4171b923088d1aa98e759">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_loadCCMNonceAndCounter()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga960f99bd9c3df04b0ae95082cc548830">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_loadInitializationVector()
+: <a class="el" href="group___a_e_s_a_d_v.html#gacc0b3aad60f181cf1b8dd9bae596ad60">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_loadInitializationVectorAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga504a0692aa18bb98c173782a320a69c0">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_loadInputData()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga871f6a5702614fa0a09a73a9d71aab74">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_loadInputDataAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga6fdb7aa60ad5f94769b1e864888dc7f9">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_loadIntermediateTAG()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga8481998bca0b6424bb58bf934959c0ff">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_loadIntermediateTAGAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga478a85fb154516cb486a48042f3abff3">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE
+: <a class="el" href="group___a_e_s_a_d_v.html#ga554c682ff764f2162c9abe010f1c2f41">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_CBC
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a1c53f534357e64ed95e2f23f9e9d997b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_CBCMAC
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a95279211ddbba2278742d305672536d9">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_CCM
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41acfd482c2ea990d6b972b70a787c558a3">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_CFB
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41ada27fe9c3fdb098a96a846c3d84c2bb4">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_CMAC
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a9b8907917f2198ad604063536053445c">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_CTR
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41afb3fe7ec94e5f80a44c8b9afd9520176">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_ECB
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a8368bd9fd3ee972286fbd476554890c2">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_GCM_AUTONOMOUS
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a0af9f69c546948653096b3413d7ea1c8">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_GCM_FORCE_ZERO
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a2a9b600bf2e669990c93ad9c5bcb6773">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_GCM_GHASH_ONLY
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41acf72d401f056baa3b4602fe4d81ca929">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_GCM_LOAD_HASH_KEY
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a70b566f2250234f650c5847e28decb9f">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_ICM
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a186f7f626dd1e667bc12fcb95643bba2">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_MASK
+: <a class="el" href="group___a_e_s_a_d_v.html#ga029b393df6a4dea6cd9fd94c4ec80ff6">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_MODE_OFB
+: <a class="el" href="group___a_e_s_a_d_v.html#gga554c682ff764f2162c9abe010f1c2f41a3891b979740127bed9ea08b316540881">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_readInitializationVector()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga727d2b23f1063a2c4cc2f28fa10db01c">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_readInitializationVectorAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#gac1aadf159a751b94643c6ea7c1e58889">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_readOutputData()
+: <a class="el" href="group___a_e_s_a_d_v.html#gad68fcba17ae6f277d5601a975cfa5ef8">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_readOutputDataAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga806eaf2c61d6066968d05631408956cd">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_readTAG()
+: <a class="el" href="group___a_e_s_a_d_v.html#gab5b4c58d3ef8dac6de11c0ae509e5c21">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_readTAGAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga22fa690b0f346a252f68c83af7c8ab25">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_reset()
+: <a class="el" href="group___a_e_s_a_d_v.html#gabf73902aca6c5d54becaa4d2ab4a901c">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_resumeAADPhase()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga634fb648c5bc89cf6ca987ffcd99ae09">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_resumeDataPhase()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga1128df7b533eb3f0fc4484df027f8321">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setAADLength()
+: <a class="el" href="group___a_e_s_a_d_v.html#gade5f751db1b66488f578fb6689e43d45">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setCCMAlignWord()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga67c05bb974304ca516e46c72ae7a02ff">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setCCMCounterWidth()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga675dcafb57bfb1f227d2fd322841f157">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setCCMTagWidth()
+: <a class="el" href="group___a_e_s_a_d_v.html#gafe52e1e19026511529593869a5d155ca">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setCounterWidth()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga2786383ab4632aee2efbd0a4d73247e0">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setDirection()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga8bf3917b12c2477a3253921b775ead8a">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setFeedbackWidth()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga9579c342b7e0fb73ed299b0ee5ddd8b8">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setGCMHashKey()
+: <a class="el" href="group___a_e_s_a_d_v.html#gad2cb3af978007f1b262249d13017a2a7">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setGCMHashKeyAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaff639fc3d8cba3e593785ac00788028d">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setKey()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga89f2de712fd99550d60ee31265b1f54e">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setKeyAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#gab0ff127e7be121c2b91f48258645b507">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setKeySize()
+: <a class="el" href="group___a_e_s_a_d_v.html#gae68377b3cf16f636529dd083b76f674c">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setLowerBlockCount()
+: <a class="el" href="group___a_e_s_a_d_v.html#gae0f27b2740b67c402c7bdb271f399f21">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setLowerCryptoLength()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaade07293524fc2235e0dff5965bbf100">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setMode()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga0402a5a48ccdde46d4e8d0276a7ef85b">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setSecondKey()
+: <a class="el" href="group___a_e_s_a_d_v.html#gaabb73edea2a94b4cb4c243515dd60f58">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setSecondKeyAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga308393d0b482b34cc5e5d9e4c233e484">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setThirdKey()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga94c4fa30691ed5cb78ab6d8c39f1c5ed">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setThirdKeyAligned()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga85195b695e19629d95405a45c68b908c">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setUpperBlockCount()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga4c1bd8ad42f507be84bdeb2f77467e11">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_setUpperCryptoLength()
+: <a class="el" href="group___a_e_s_a_d_v.html#ga8fffb47d19570b163cec0e773f47c2fc">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_STATUS
+: <a class="el" href="group___a_e_s_a_d_v.html#ga1afb4e0ea2478e30ffc11bd6b35d4f9d">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_STATUS_SUCCESS
+: <a class="el" href="group___a_e_s_a_d_v.html#gga1afb4e0ea2478e30ffc11bd6b35d4f9da9bab81bf201f8ed2c2cec461bd23930c">dl_aesadv.h</a>
+</li>
+<li>DL_AESADV_STATUS_UNALIGNED_ACCESS
+: <a class="el" href="group___a_e_s_a_d_v.html#gga1afb4e0ea2478e30ffc11bd6b35d4f9da8a177e5c6621d150ad0ab38504c460a9">dl_aesadv.h</a>
+</li>
 <li>DL_Common_delayCycles()
 : <a class="el" href="group___d_l_common.html#ga947f15555603c54b9b7334a51b9d6132">dl_common.h</a>
 </li>
@@ -1599,15 +2070,6 @@ $(function() {
 <li>DL_DMA_AUTOEN_DISABLE
 : <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a7e8c78fd7a18b4f5f353c2b145147dd2">dl_dma.h</a>
 </li>
-<li>DL_DMA_AUTOEN_DMADA
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a098a4e87b2d74fdd0648126f171a43cb">dl_dma.h</a>
-</li>
-<li>DL_DMA_AUTOEN_DMASA
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1ab5984312d489626c72184fb1fae63ebe">dl_dma.h</a>
-</li>
-<li>DL_DMA_AUTOEN_DMASZ
-: <a class="el" href="group___d_m_a.html#ggac3cfd8d2a08be11fe872cd08196e7eb1a0e268e129d4cacc65292af40374985c5">dl_dma.h</a>
-</li>
 <li>DL_DMA_BURST_SIZE
 : <a class="el" href="group___d_m_a.html#ga7e3e053c6a9c5586e2bfd6a0015e870d">dl_dma.h</a>
 </li>
@@ -1634,9 +2096,6 @@ $(function() {
 </li>
 <li>DL_DMA_configTransfer()
 : <a class="el" href="group___d_m_a.html#ga28e4595240333440fb932a78c70729cd">dl_dma.h</a>
-</li>
-<li>DL_DMA_disableAutoEnable()
-: <a class="el" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">dl_dma.h</a>
 </li>
 <li>DL_DMA_disableChannel()
 : <a class="el" href="group___d_m_a.html#ga5df220a6523711b5b8e9c4f7a530e169">dl_dma.h</a>
@@ -1676,9 +2135,6 @@ $(function() {
 </li>
 <li>DL_DMA_EARLY_INTERRUPT_THRESHOLD_HALF
 : <a class="el" href="group___d_m_a.html#gga1da0bf5384dbbd60633b008428a834c7a21ec3f0d25c2ab9c65f9eff88ab0748c">dl_dma.h</a>
-</li>
-<li>DL_DMA_enableAutoEnable()
-: <a class="el" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">dl_dma.h</a>
 </li>
 <li>DL_DMA_enableChannel()
 : <a class="el" href="group___d_m_a.html#ga7f23920a43794e7d5de8f5edf0721c27">dl_dma.h</a>
@@ -1806,6 +2262,96 @@ $(function() {
 <li>DL_DMA_EXTENDED_MODE
 : <a class="el" href="group___d_m_a.html#ga492a0576e98efee98bebd313be27fbf2">dl_dma.h</a>
 </li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL0
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gad5dd1b80f3d57c35e03276bcda50e29d">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL1
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga27eeb0ea5ea1d87890fae1ff8ff4cd0f">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL2
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gabd59d3e2055a001e82f7e7eba7b44e68">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL3
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gab8d2eb41094bf0cde0d8fa0e94da8729">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL4
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gaa67d17e89be4e49e02a958444ca58461">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL5
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga41afd3a6f45e6ef2fecdce78d847929d">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL6
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#gaef3bfec44df506dd137ebe9fec477198">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL7
+: <a class="el" href="group___d_l___d_m_a___e_v_e_n_t.html#ga8b09f9fb4eeef5e9c4da98aafc4c4b06">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH0
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad44ecfa3278001c127078697c15a1d09">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH1
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8acc735933d41b9ce29029d0fefed63739">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH2
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a03bbf4447e73deef4da0df0e8fbcea69">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH3
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a1126d30c223677900837288277d65e7c">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH4
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8ad3e2c3cddfbcaa781a7b75c427ec75fb">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH5
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a4c89a802b27ec5c3385a94329ec7adad">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH6
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3e410b2358fe3059afb8710ef629eca7">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_EVENT_IIDX_EARLY_IRQ_DMACH7
+: <a class="el" href="group___d_m_a.html#gga9c5dfde9fc934940ba9aac298be440b8a3d4ea06db3f44778b89e2c0856735f66">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_FILL_MODE
+: <a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2aca0f445c9e3358c80f6ad6ebcc9aadfb">dl_dma.h</a>
+</li>
+<li>DL_DMA_Full_Ch_getEarlyInterruptThreshold()
+: <a class="el" href="group___d_m_a.html#gad1d3a556657ecde120f39d8151b855a9">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL0
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gadf2079e77d478e76fd7e061fdbc905f8">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL1
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga7b4cbfb00c7f2c295f99b83a93a23970">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL2
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad6e6e24b795f25b859d95e593b753ad8">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL3
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga56942d52a45d492764a1068a9a9a1ad2">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL4
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga8224eb3c385aacf0e61a2d214cae8818">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL5
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga3f368d2f2f2dd80721d0a0432c08f6aa">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL6
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gad5617a8d33a3e3c91e3bae8e8d385e68">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL7
+: <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#ga2c85d577dbf22790a2a02a0de0d22e63">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_REPEAT_BLOCK_TRANSFER_MODE
+: <a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a03b8e4d1275507a7e06ac3fc2a41e827">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_REPEAT_SINGLE_TRANSFER_MODE
+: <a class="el" href="group___d_m_a.html#gga7d1157042646cbffc613b6164c7ed5a8a6f096384bb41144646ee651936f288b0">dl_dma.h</a>
+</li>
+<li>DL_DMA_Full_Ch_setEarlyInterruptThreshold()
+: <a class="el" href="group___d_m_a.html#gacc68c40f08f75d0bb0aa2cc028a52e69">dl_dma.h</a>
+</li>
+<li>DL_DMA_FULL_CH_TABLE_MODE
+: <a class="el" href="group___d_m_a.html#gga492a0576e98efee98bebd313be27fbf2a1ede584989a704dd5b435015e0960640">dl_dma.h</a>
+</li>
 <li>DL_DMA_getBurstSize()
 : <a class="el" href="group___d_m_a.html#ga83862400ca8d2f3fef959e8067fe433c">dl_dma.h</a>
 </li>
@@ -1926,9 +2472,6 @@ $(function() {
 <li>DL_DMA_INTERRUPT_DATA_ERROR
 : <a class="el" href="group___d_l___d_m_a___i_n_t_e_r_r_u_p_t.html#gae1fde9dc3ec9b9dc35bb8a344ff8767f">dl_dma.h</a>
 </li>
-<li>DL_DMA_isAutoEnableEnabled()
-: <a class="el" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">dl_dma.h</a>
-</li>
 <li>DL_DMA_isChannelEnabled()
 : <a class="el" href="group___d_m_a.html#ga4834aa3e846be0f6c08a24496e23655c">dl_dma.h</a>
 </li>
@@ -2024,9 +2567,6 @@ $(function() {
 </li>
 <li>DL_DMA_WIDTH_LONG
 : <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a1a708457117247baa843d434a2d37a2e">dl_dma.h</a>
-</li>
-<li>DL_DMA_WIDTH_LONG_LONG
-: <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9a9a8c969ddfb83518ab4027f48af7f0f9">dl_dma.h</a>
 </li>
 <li>DL_DMA_WIDTH_WORD
 : <a class="el" href="group___d_m_a.html#ggab605141334a8b69900305c81ef998fc9adc3ad93a92404f7bdda3ee6452e21836">dl_dma.h</a>
@@ -5358,6 +5898,162 @@ $(function() {
 <li>DL_IWDT_TIMER_PERIOD_8_BITS
 : <a class="el" href="group___i_w_d_t.html#gac2ce7fa4674aca060a965c141b60ad97">dl_iwdt.h</a>
 </li>
+<li>DL_KEYSTORECTL_CRYPTO_SEL
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga6467e25fb2575c93285cb83d411fe134">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_CRYPTO_SEL_AES
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga6467e25fb2575c93285cb83d411fe134a776795789a1006d514b141bd587ddae4">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_getDestinationKeySize()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga535c8b6e06522ef43c516a2c7258a944">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_getDestinationKeySlot()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gab2a39d08d697c64b875703b66a2f1f6d">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_getNumberOf256Keys()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gabbbc5b0c2001bd382231a97b2be01953">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_getNumSlots()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga4b098a8dedd5a87a294b287ecd2cf4e4">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_getSourceKeySize()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gaee6726be538661298919720c762faa3e">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_getSourceKeySlot()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga5b4fda2270d74f9cac72b53fa2190503">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_getStatus()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga74baf45cce4b944e7a743e4139f2f23a">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_getValidKeySlots()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gae079c7ed6f6a66bf36ba620da5d403ba">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SIZE
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga5e10ff9202cce3a7d9f1c0b493273b97">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SIZE_128_BITS
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga5e10ff9202cce3a7d9f1c0b493273b97aad1906e1cdca3129b9e5e1666a288379">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SIZE_256_BITS
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga5e10ff9202cce3a7d9f1c0b493273b97a5cf0289dfeb8d451ae02665c5091ebf4">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_0
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#ga08bbb0977ef301a2b2b34105f4eb8832">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_0_AND_1
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#ga261608a8daf35fe5e403556ffca7dd1f">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_1
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#ga8e3165c1bbf7ef29f208d0bee6477d4f">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_2
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#ga2441a9220ad821a2469dd90877501c03">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_2_AND_3
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#gaafd8a1434c6393e784f0405e55067615">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_3
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#gaaf3ff116c968228db06779700fbf6866">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_4
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#gafc0c1558bd9920c4697b056b655dccc7">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_4_AND_5
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#ga5c3f6e61daed58b3a391fb3d0a2a2d94">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_5
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#ga27811f79e8bd6424f5869a708d681bbc">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_6
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#gad9e9fee6cfbf822a51864df4b0184ac9">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_6_AND_7
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#ga4daa1d85e40dd6cfd3cb77ccc5c89f19">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_KEY_SLOT_7
+: <a class="el" href="group___d_l___k_e_y_s_t_o_r_e_c_t_l___k_e_y___s_l_o_t.html#ga4420dd761faf52174536a8f2ab23c50b">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_loadKey()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gad7d7420137f51ccb98c9a6f1d3630f9d">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_256_KEYS
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gac06826be4a179ffce8cd0d941f6a9bb9">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_256_KEYS_FOUR
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ggac06826be4a179ffce8cd0d941f6a9bb9aa06160603f66bd22ab31bbfc503443f7">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_256_KEYS_ONE
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ggac06826be4a179ffce8cd0d941f6a9bb9ac4e7a893e72ced4562ff888d266de2ca">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_256_KEYS_THREE
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ggac06826be4a179ffce8cd0d941f6a9bb9ac9984fb903980394595beb6c042e8213">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_256_KEYS_TWO
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ggac06826be4a179ffce8cd0d941f6a9bb9a2c0c6fa51558942ea42c009d471bf7ee">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_256_KEYS_ZERO
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ggac06826be4a179ffce8cd0d941f6a9bb9ab095a91a0cd124eb564057ac45487e9a">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_SLOTS
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gaaaf6bfe245f7749a9168d331b34633fa">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_SLOTS_FOUR
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ggaaaf6bfe245f7749a9168d331b34633faa5c0b81536a29b0d2730cb5e2a367dcde">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_SLOTS_THREE
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ggaaaf6bfe245f7749a9168d331b34633faa44a1d61a53d12db8e7fcfad4338570bc">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_NUM_SLOTS_TWO
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ggaaaf6bfe245f7749a9168d331b34633faa908435375e98e0cda109b9659fd2b2b3">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_setDestinationKeySize()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga300371e2848732bb877b7f68f80db100">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_setDestinationKeySlot()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga25ad167d05d23129514e032f6426913f">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_setNumberOf256Keys()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga57ed789d42bacbb14699c3feef29dde7">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_setSourceKeySize()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga1b2152740da3285d9e66fb2437f2a968">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_setSourceKeySlot()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga41b6cf7f9d7e5bc146377d003d85efb7">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga550dacb98d239ba285547d580e7c3ea6">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS_BUSY_RX
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga550dacb98d239ba285547d580e7c3ea6a9c606697d10383ef1f419f32ae60a1b1">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS_BUSY_TX
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga550dacb98d239ba285547d580e7c3ea6a0cdf9d6c7fc3548334ad8bf5c4e3c1d6">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS_INVALID_NUM_KEYS
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga550dacb98d239ba285547d580e7c3ea6aee04a51ad4d46a29ae7c22fbf96df343">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS_INVALID_SLOT_RD
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga550dacb98d239ba285547d580e7c3ea6a9f1ef3f63d78a9ac559e9be8c0c3de66">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS_INVALID_SLOT_WR
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga550dacb98d239ba285547d580e7c3ea6aa0da69056366176ebedd63345be48abc">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS_NO_CONFIG
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga550dacb98d239ba285547d580e7c3ea6aa5ab6fd14c1e08832d8944337b08dfdb">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS_VALID
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga550dacb98d239ba285547d580e7c3ea6acc8d71c57858d38e579281596d75dbf0">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_STATUS_WRITE_FAILED
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gga550dacb98d239ba285547d580e7c3ea6a44f7dc0fccc518ef9c763ae4218a777c">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_transferKey()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#ga1e91a7f955b587046c5a816e1ec05413">dl_keystorectl.h</a>
+</li>
+<li>DL_KEYSTORECTL_writeKey()
+: <a class="el" href="group___k_e_y_s_t_o_r_e_c_t_l.html#gab613cfaa11616a65ee6f2252595ace36">dl_keystorectl.h</a>
+</li>
 <li>DL_LCD_BIAS
 : <a class="el" href="group___l_c_d.html#ga68e46172bceb842dc2e49e4a3ef12afc">dl_lcd.h</a>
 </li>
@@ -8588,9 +9284,6 @@ $(function() {
 </li>
 <li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_512
 : <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2ae3c807a7fd2591a41ba568435c71baf8">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY_OFF
-: <a class="el" href="group___r_t_c___common.html#gga7bad30cc0c084db0b1527949f2d99aa2a515e20990cd7b1d667607d379027973a">dl_rtc_common.h</a>
 </li>
 <li>DL_RTC_COMMON_OFFSET_CALIBRATION_SIGN
 : <a class="el" href="group___r_t_c___common.html#ga1bd44257d69ab094470f73893fc87df7">dl_rtc_common.h</a>
@@ -12463,8 +13156,11 @@ $(function() {
 <li>DL_Timer_initCompareTriggerMode()
 : <a class="el" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b">dl_timer.h</a>
 </li>
-<li>DL_Timer_initPWMMode()
-: <a class="el" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036">dl_timer.h</a>
+<li>DL_Timer_initFourCCPWMMode()
+: <a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">dl_timer.h</a>
+</li>
+<li>DL_Timer_initPWMMode
+: <a class="el" href="group___t_i_m_x.html#ga62ed6b5a665c8c9b3b06a230924b6477">dl_timer.h</a>
 </li>
 <li>DL_Timer_initTimerMode()
 : <a class="el" href="group___t_i_m_x.html#ga68272d2f890b1e0b8e69a446dad41df5">dl_timer.h</a>
@@ -13426,8 +14122,8 @@ $(function() {
 <li>DL_TimerA_initCompareTriggerMode
 : <a class="el" href="group___t_i_m_a.html#ga783966368a3edfa66c5cd7d955ddcb9d">dl_timera.h</a>
 </li>
-<li>DL_TimerA_initPWMMode()
-: <a class="el" href="group___t_i_m_a.html#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">dl_timera.h</a>
+<li>DL_TimerA_initPWMMode
+: <a class="el" href="group___t_i_m_a.html#ga102ebcb322db4c2bf320afeccbc911fe">dl_timera.h</a>
 </li>
 <li>DL_TimerA_initTimerMode
 : <a class="el" href="group___t_i_m_a.html#ga1574f1ca14dc38917e633f8cea6bf1a2">dl_timera.h</a>
@@ -13518,6 +14214,9 @@ $(function() {
 </li>
 <li>DL_TIMERA_PUBLISHER_INDEX_1
 : <a class="el" href="group___d_l___t_i_m_e_r_a___p_u_b_l_i_s_h_e_r___i_n_d_e_x.html#gaef677c4655c4c5887ec49098cc98c80b">dl_timera.h</a>
+</li>
+<li>DL_TimerA_PWMConfig
+: <a class="el" href="group___t_i_m_a.html#gab9ddb2e475539aec95d1df593860ef9c">dl_timera.h</a>
 </li>
 <li>DL_TimerA_reset
 : <a class="el" href="group___t_i_m_a.html#ga40fd9a04e365f8fe36462643711e5774">dl_timera.h</a>
@@ -13908,6 +14607,18 @@ $(function() {
 </li>
 <li>DL_TIMERG_IIDX_CC1_UP
 : <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga52076f6e80c99ad89e967749d6121ef6">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC2_DN
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga25c9c662eaf6144b4400e8fed7f01763">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC2_UP
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga5e2883a8d2267be6119fc348f7210110">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC3_DN
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gaa8196bed6379ac8e5d2e8582a70a0b23">dl_timerg.h</a>
+</li>
+<li>DL_TIMERG_IIDX_CC3_UP
+: <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#gae55e8af4c5d52263393c577597e9a121">dl_timerg.h</a>
 </li>
 <li>DL_TIMERG_IIDX_DIR_CHANGE
 : <a class="el" href="group___d_l___t_i_m_e_r_g___i_i_d_x.html#ga562ebfbc0da130ee56376686a627cf8a">dl_timerg.h</a>
@@ -14487,6 +15198,12 @@ $(function() {
 </li>
 <li>DL_UART_disableTransmitPinManualControl()
 : <a class="el" href="group___u_a_r_t.html#ga3cf985e585b6f4bb006d0360b517c720">dl_uart.h</a>
+</li>
+<li>DL_UART_DMA_DONE_INTERRUPT_RX
+: <a class="el" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#gaae49a60a8c0c28a27aedff63bd1eeea6">dl_uart.h</a>
+</li>
+<li>DL_UART_DMA_DONE_INTERRUPT_TX
+: <a class="el" href="group___u_a_r_t.html#ga2ff9892c769fb5afb98536b81b158805">dl_uart.h</a>
 </li>
 <li>DL_UART_DMA_IIDX_RX
 : <a class="el" href="group___u_a_r_t.html#ga0429ae4fb40aa91a0f50cd43f607b757">dl_uart.h</a>

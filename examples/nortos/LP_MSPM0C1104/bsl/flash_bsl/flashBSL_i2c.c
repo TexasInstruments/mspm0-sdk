@@ -370,17 +370,13 @@ void BSL_PI_I2C_ISR(void)
         case (uint32_t) DL_I2C_IIDX_TARGET_RX_DONE:
             receivedData = DL_I2C_receiveTargetData(BSL_I2C);
 
-            /*
+        /*
          * If a byte is received when RX is in IDLE state, it is treated as
          * a new command packet and buffer parameters are initialized
          * to receive the packet.
-         *
-         * To have robust interface auto detection, only if the Header byte is received
-         * as the first byte, the data transfer is considered as valid and
-         * the interface is chosen as active interface
          */
-            if ((BSL_RX_state == RX_idle) &&
-                (receivedData == BSL_PACKET_HEADER_BYTE)) {
+            if (BSL_RX_state == RX_idle)
+            {
                 BSL_PI_RxDataCnt   = (uint16_t) 1;
                 BSL_PI_dataPointer = (uint32_t) 0;
                 BSL_Back_Buf[0]    = receivedData;

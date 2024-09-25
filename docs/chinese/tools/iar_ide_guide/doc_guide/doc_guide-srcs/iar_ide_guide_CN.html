@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.2+ 版 &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 2.01.00.03 documentation</title>
+  <title>适用于 MSPM0 MCU 的 IAR Embedded Workbench IDE 9.50.2+ 版 &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 2.02.00.05 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> IAR Embedded Workbench IDE for MSPM0 MCUs Documentation
           </a>
               <div class="version">
-                2.01.00.03
+                2.02.00.05
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -73,7 +73,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id13">3.5 调试预编译库</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#faq">4. 已知问题和常见问题解答 （FAQ）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faq">4. 已知问题和常见问题解答 （FAQ）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">4.1 调试时出现低功耗模式问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mspm0gx51x-iar">4.2 MSPM0Gx51x 支持IAR</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -348,7 +352,9 @@
 </section>
 <section id="faq">
 <h2>4. 已知问题和常见问题解答 （FAQ）<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h2>
-<p>在9.60.1之前的IAR版本中，本机不支持处理低功耗模式调试。</p>
+<section id="id14">
+<h3>4.1 调试时出现低功耗模式问题<a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h3>
+<p>在9.60.1之前的IAR版本中，默认不支持低功耗模式调试。</p>
 <p>要在旧版本的IAR中启用低功耗模式调试支持，请执行以下步骤：</p>
 <ol class="arabic simple">
 <li><p>联系IAR获取最新版本的armXds.dll。</p></li>
@@ -364,8 +370,14 @@
 </ul>
 </li>
 </ol>
-<p>`` 通过使用这些文件修补IAR安装，当设备进入低功耗状态时，应保持与调试器的连接。</p>
+<p>通过使用这些文件修补IAR安装，当设备进入低功耗状态时，应保持与调试器的连接。</p>
+</section>
+<section id="mspm0gx51x-iar">
+<h3>4.2 MSPM0Gx51x 支持IAR<a class="headerlink" href="#mspm0gx51x-iar" title="Permalink to this heading">¶</a></h3>
+<p>在IAR 9.60.2及之后的版本开始支持MSPM0Gx51x系列。</p>
+<p>用于早期访问 MSPM0Gx51x 支持, 请联系您当地的销售代表, TI支持团队或 <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/">E2E</a>.</p>
 <p>请参阅 SDK 中的<a class="reference external" href="../../../../../../known_issues_FAQ.html">已知问题和 FAQ</a>。</p>
+</section>
 </section>
 </section>
 

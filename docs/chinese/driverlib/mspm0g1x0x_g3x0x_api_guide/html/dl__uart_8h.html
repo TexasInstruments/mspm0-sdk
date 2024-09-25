@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -66,7 +66,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1ec8ed615bc2da65e0c30f17adbe5612.html">bazel-out</a></li><li class="navelem"><a class="el" href="dir_231710fef160230c0d793a19eca7d6c5.html">k8-fastbuild</a></li><li class="navelem"><a class="el" href="dir_7ce6e6bbdebed80a74588c9bb8f8de86.html">bin</a></li><li class="navelem"><a class="el" href="dir_3367b93674f2985c4702ec3e396ea8fb.html">docs</a></li><li class="navelem"><a class="el" href="dir_1326816c3db4bd9e5e63224f4bcedb5e.html">chinese</a></li><li class="navelem"><a class="el" href="dir_c9faca0033c7f9a3f7a810262b3402b3.html">driverlib</a></li><li class="navelem"><a class="el" href="dir_5e9b13ae6ad69230ffa09b8513292c72.html">mspm0g1x0x_g3x0x_api_guide-srcs</a></li><li class="navelem"><a class="el" href="dir_1144c4fcce1bcffb0435d3b05f81fd10.html">source</a></li><li class="navelem"><a class="el" href="dir_f2d61a663419e9bd5d25558733564e5c.html">ti</a></li><li class="navelem"><a class="el" href="dir_9d11f8422d6b6f3fa8153311069dd19f.html">driverlib</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_1ec8ed615bc2da65e0c30f17adbe5612.html">bazel-out</a></li><li class="navelem"><a class="el" href="dir_81796cf7b8c85abf4aaa4478eac07be3.html">k8-opt</a></li><li class="navelem"><a class="el" href="dir_7d9ef33ae1d656eb0f786113430116c5.html">bin</a></li><li class="navelem"><a class="el" href="dir_e0abc62f7a8fffc210aad9d69afc4cc1.html">docs</a></li><li class="navelem"><a class="el" href="dir_a1b67bd9de939d499eb32d6d220671a0.html">chinese</a></li><li class="navelem"><a class="el" href="dir_bbe32cf608396e186d702eea875dea8c.html">driverlib</a></li><li class="navelem"><a class="el" href="dir_eb1754e66e17f8645a838c771a241536.html">mspm0g1x0x_g3x0x_api_guide-srcs</a></li><li class="navelem"><a class="el" href="dir_26947027a1a7e9aabd35db434e5d5e0d.html">source</a></li><li class="navelem"><a class="el" href="dir_9118a0dd9f6f6eebb139b07968cd782d.html">ti</a></li><li class="navelem"><a class="el" href="dir_50aea775a7460bce0ea013f10953c68f.html">driverlib</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -203,6 +203,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#ga4c6ec53d43c964313c3aec2dc9b8ed43">DL_UART_DMA_INTERRUPT_RX</a>&#160;&#160;&#160;(UART_DMA_TRIG_RX_IMASK_RXINT_SET)</td></tr>
 <tr class="memdesc:ga4c6ec53d43c964313c3aec2dc9b8ed43"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART interrupt for enabling UART receive as DMA trigger. <br /></td></tr>
 <tr class="separator:ga4c6ec53d43c964313c3aec2dc9b8ed43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaae49a60a8c0c28a27aedff63bd1eeea6"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#gaae49a60a8c0c28a27aedff63bd1eeea6">DL_UART_DMA_DONE_INTERRUPT_RX</a>&#160;&#160;&#160;(UART_CPU_INT_IMASK_DMA_DONE_RX_SET)</td></tr>
+<tr class="memdesc:gaae49a60a8c0c28a27aedff63bd1eeea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART interrupt indicating DMA is done with the RX. <br /></td></tr>
+<tr class="separator:gaae49a60a8c0c28a27aedff63bd1eeea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4f911a37146e28259a5573a722670890"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___u_a_r_t___d_m_a___i_n_t_e_r_r_u_p_t___r_x.html#ga4f911a37146e28259a5573a722670890">DL_UART_DMA_INTERRUPT_RX_TIMEOUT</a>&#160;&#160;&#160;(UART_DMA_TRIG_RX_IMASK_RTOUT_SET)</td></tr>
 <tr class="memdesc:ga4f911a37146e28259a5573a722670890"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART interrupt for enabling UART receive timeout as DMA trigger. <br /></td></tr>
@@ -211,6 +215,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_a_r_t.html#ga0fd32c20e337d3b7e1c8df67d8f313ce">DL_UART_DMA_INTERRUPT_TX</a>&#160;&#160;&#160;(UART_DMA_TRIG_TX_IMASK_TXINT_SET)</td></tr>
 <tr class="memdesc:ga0fd32c20e337d3b7e1c8df67d8f313ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART interrupt for enabling UART transmit as DMA trigger. <br /></td></tr>
 <tr class="separator:ga0fd32c20e337d3b7e1c8df67d8f313ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2ff9892c769fb5afb98536b81b158805"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___u_a_r_t.html#ga2ff9892c769fb5afb98536b81b158805">DL_UART_DMA_DONE_INTERRUPT_TX</a>&#160;&#160;&#160;(UART_CPU_INT_IMASK_DMA_DONE_TX_SET)</td></tr>
+<tr class="memdesc:ga2ff9892c769fb5afb98536b81b158805"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART interrupt indicating DMA is done with the TX. <br /></td></tr>
+<tr class="separator:ga2ff9892c769fb5afb98536b81b158805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gace2cae8b31393a8b849c76929a1a6d46"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___u_a_r_t___e_r_r_o_r.html#gace2cae8b31393a8b849c76929a1a6d46">DL_UART_ERROR_OVERRUN</a>&#160;&#160;&#160;(UART_RXDATA_OVRERR_SET)</td></tr>
 <tr class="memdesc:gace2cae8b31393a8b849c76929a1a6d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overrun error ocurred. <br /></td></tr>

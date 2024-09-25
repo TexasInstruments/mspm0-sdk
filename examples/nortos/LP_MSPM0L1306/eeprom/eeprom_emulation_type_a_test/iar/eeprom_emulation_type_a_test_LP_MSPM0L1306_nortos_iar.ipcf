@@ -69,6 +69,8 @@
     <files>
         <path copyTo="$PROJ_DIR$/main.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/eeprom_emulation_type_a_test/main.c</path>
         <path copyTo="$PROJ_DIR$/mspm0l1306.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/eeprom_emulation_type_a_test/iar/mspm0l1306.icf</path>
+        <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/eeprom_emulation_type_a_test/README.html</path>
+        <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/eeprom_emulation_type_a_test/README.md</path>
         <path copyTo="$PROJ_DIR$/ti_msp_dl_config.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/eeprom_emulation_type_a_test/ti_msp_dl_config.c</path>
         <path copyTo="$PROJ_DIR$/ti_msp_dl_config.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/eeprom_emulation_type_a_test/ti_msp_dl_config.h</path>
         <group name="iar" build="true">

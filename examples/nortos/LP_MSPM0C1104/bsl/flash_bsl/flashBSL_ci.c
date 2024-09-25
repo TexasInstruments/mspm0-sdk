@@ -670,7 +670,7 @@ uint32_t BSL_CI_calculateCRC(uint8_t *data, uint32_t dataSize)
     uint32_t bufferIndex = (uint32_t) 0;
 
     /* Set the Seed value to reset the calculation */
-    DL_CRC_setSeed32(BSL_CRC, BSL_CRC_SEED);
+    DL_CRC_setSeed16(BSL_CRC, BSL_CRC_SEED);
 
     /* Feed the data to CRC module */
     for (bufferIndex = (uint32_t) 0; bufferIndex < dataSize; bufferIndex++) {
@@ -678,7 +678,7 @@ uint32_t BSL_CI_calculateCRC(uint8_t *data, uint32_t dataSize)
     }
 
     /* Return the 32 bit result */
-    return (DL_CRC_getResult32(BSL_CRC));
+    return (uint32_t) (DL_CRC_getResult16(BSL_CRC));
 }
 
 /*

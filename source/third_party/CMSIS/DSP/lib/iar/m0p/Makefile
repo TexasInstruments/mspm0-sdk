@@ -11,7 +11,7 @@ NAME = arm_cortexM0l_math
 OBJ_DIR = ../../../obj/iar/m0p/arm_cortexM0l_math
 SRC_DIR = ../../../Source
 
-CFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/Include" "-I$(SDK_INSTALL_DIR)/source" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/PrivateInclude" --cpu Cortex-M0+ -DARM_MATH_CM0 --aeabi --guard_calls --endian=little --thumb --silent -e --use_unix_directory_separators --diag_suppress=Pa050,Go005
+CFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/Include" "-I$(SDK_INSTALL_DIR)/source" "-I$(SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/PrivateInclude" --cpu Cortex-M0+ -DARM_MATH_CM0 --aeabi --guard_calls --endian=little --thumb --silent -e --use_unix_directory_separators --diag_suppress=Pa050,Go005 --debug -Ohs
 AFLAGS = 
 ASMFLAGS = "-I$(IAR_ARMCOMPILER)/inc/c" 
 

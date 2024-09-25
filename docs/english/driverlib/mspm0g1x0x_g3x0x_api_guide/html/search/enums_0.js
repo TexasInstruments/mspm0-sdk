@@ -149,7 +149,6 @@ var searchData=
   ['dl_5frtc_5fcommon_5fprescaler2_5fdivide',['DL_RTC_COMMON_PRESCALER2_DIVIDE',['../group___r_t_c___common.html#ga61b2e4f708ff21126435fe6265ed8a77',1,'dl_rtc_common.h']]],
   ['dl_5frtc_5fcommon_5fstatus',['DL_RTC_COMMON_STATUS',['../group___r_t_c___common.html#gaf3626cb23d4f51c75cf765214356a81e',1,'dl_rtc_common.h']]],
   ['dl_5frtc_5fcommon_5ftemp_5fcalibration',['DL_RTC_COMMON_TEMP_CALIBRATION',['../group___r_t_c___common.html#ga3f6282ba753318ebb87d4175509c4864',1,'dl_rtc_common.h']]],
-  ['dl_5frtc_5fcommon_5ftime_5fstamp_5fevent_5fcapture',['DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE',['../group___r_t_c___common.html#ga8ae64f7f7f47cc86d46fc47c21cd4771',1,'dl_rtc_common.h']]],
   ['dl_5fspi_5fbit_5forder',['DL_SPI_BIT_ORDER',['../group___s_p_i.html#ga79d02b79cd7d5383b93311454ed5f3ef',1,'dl_spi.h']]],
   ['dl_5fspi_5fchip_5fselect',['DL_SPI_CHIP_SELECT',['../group___s_p_i.html#gac5b7531f268fb581f2f3117bd08eb4a0',1,'dl_spi.h']]],
   ['dl_5fspi_5fclock',['DL_SPI_CLOCK',['../group___s_p_i.html#gacadd49262d90984a5c6ff8aec05762f8',1,'dl_spi.h']]],

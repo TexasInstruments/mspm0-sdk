@@ -51,8 +51,19 @@ let systemModulesList = [
     "/ti/driverlib/WWDT",
 ];
 /* nonmain */
-// TODO: NONMAIN support for M0GX51X to be added later
-if(!Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+/*
+ * TODO: NONMAIN currently supported for:
+ *  - MSPM0G1X0X_G3X0X
+ *  - MSPM0L11XX_L13XX
+ *  - MSPM0C110X
+ *  - MSPM0L122X_L222X
+ *  - MSPM0GX51X
+ */
+if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() ||
+    Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() ||
+    Common.isDeviceFamily_PARENT_MSPM0C110X() ||
+    Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
+    Common.isDeviceFamily_PARENT_MSPM0GX51X()){
 systemModulesList.push(
     "/ti/driverlib/NONMAIN",
 );
@@ -69,10 +80,15 @@ if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
         "/ti/driverlib/RTC",
     );
 };
+/* System (IWDT): available for MSPM0L122X_L222X and MSPM0GX51X */
+if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    systemModulesList.push(
+        "/ti/driverlib/IWDT",
+    );
+};
 /* System: MSPM0L122X_L222X-specific modules */
 if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     systemModulesList.push(
-        "/ti/driverlib/IWDT",
         "ti/driverlib/RTCA",
         "ti/driverlib/TAMPERIO",
     );
@@ -83,6 +99,11 @@ if(Common.isDeviceFamily_PARENT_MSPM0L222X()){
         "/ti/driverlib/LCD",
     );
 };
+if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    systemModulesList.push(
+        "/ti/driverlib/RTCB",
+    );
+}
 /* System (SYSTICK): Devices with SysTick support */
 if(Common.isDeviceM0G() || Common.isDeviceM0L()){
     systemModulesList.push(
@@ -167,7 +188,7 @@ if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && !Common.isDeviceM0x110x())
     );
 };
 /* MSPM0Gxx-specific modules - not available for MSPM0G110x */
-if(Common.isDeviceM0G() && !Common.isDeviceM0x110x()){
+if((Common.isDeviceM0G() && !Common.isDeviceM0x110x()) || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     securityModulesList.push(
         "/ti/driverlib/TRNG",
     );
@@ -176,11 +197,6 @@ if(Common.isDeviceM0G() && !Common.isDeviceM0x110x()){
 if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()){
     securityModulesList.push(
         "/ti/driverlib/AESADV",
-    );
-};
-/* Modules available on MSPM0L122X_L222X */
-if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-    securityModulesList.push(
         "/ti/driverlib/SECCONFIG",
     );
 };
@@ -255,6 +271,11 @@ let templates = [
     {
         "name": "/ti/driverlib/templates/peripheralPinAssignments.txt.xdt",
         "outputPath": "peripheralPinAssignments.txt",
+        "alwaysRun": false
+    },
+    {
+        "name": "/ti/driverlib/templates/resourceUsageReport.csv.xdt",
+        "outputPath": "resourceUsageReport.csv",
         "alwaysRun": false
     },
     {

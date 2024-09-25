@@ -62,25 +62,29 @@ static void DL_FlashCTL_programMemory64Config(
 RAMFUNC static DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_executeCommandFromRAM(
     FLASHCTL_Regs *flashctl)
 {
+    volatile uint32_t status;
     /* Set bit to execute command */
     flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
 
-    uint32_t status =
-        flashctl->GEN.STATCMD &
-        (FLASHCTL_STATCMD_CMDDONE_MASK | FLASHCTL_STATCMD_CMDPASS_MASK |
-            FLASHCTL_STATCMD_CMDINPROGRESS_MASK |
-            FLASHCTL_STATCMD_CMDPASS_STATFAIL);
-
-    while ((DL_FLASHCTL_COMMAND_STATUS) status ==
-           DL_FLASHCTL_COMMAND_STATUS_IN_PROGRESS) {
+    /*
+     * After executing a flash operation, we will enter a do-while and read the
+     * STATCMD register using the status variable. Within the loop it will
+     * poll until DL_FLASHCTL_COMMAND_STATUS_PASSED or DL_FLASHCTL_COMMAND_STATUS_FAILED
+     * is read from the STATCMD register. This is to ensure that it will properly poll
+     * even when the CPU is running at maximum speeds.
+     */
+    do {
         status =
             flashctl->GEN.STATCMD &
             (FLASHCTL_STATCMD_CMDDONE_MASK | FLASHCTL_STATCMD_CMDPASS_MASK |
                 FLASHCTL_STATCMD_CMDINPROGRESS_MASK |
                 FLASHCTL_STATCMD_CMDPASS_STATFAIL);
-    }
+    } while ((DL_FLASHCTL_COMMAND_STATUS) status !=
+                 (DL_FLASHCTL_COMMAND_STATUS_PASSED) &&
+             (DL_FLASHCTL_COMMAND_STATUS) status !=
+                 (DL_FLASHCTL_COMMAND_STATUS_FAILED));
 
-    return (DL_FLASHCTL_COMMAND_STATUS)(status);
+    return ((DL_FLASHCTL_COMMAND_STATUS) status);
 }
 
 void DL_FlashCTL_eraseMemory(FLASHCTL_Regs *flashctl, uint32_t address,
@@ -1489,9 +1493,8 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_eraseDataBankFromRAM(
         DL_FlashCTL_executeClearStatus(flashctl);
         DL_FlashCTL_unprotectSector(
             flashctl, address, DL_FLASHCTL_REGION_SELECT_MAIN);
-        DL_FlashCTL_eraseMemory(
+        status = DL_FlashCTL_eraseMemoryFromRAM(
             flashctl, address, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
-        status = DL_FlashCTL_waitForCmdDone(flashctl);
 
         address          = address + (uint32_t) DL_FLASHCTL_SECTOR_SIZE;
         dataFlashSectors = dataFlashSectors - (uint8_t) 1;

@@ -34,8 +34,6 @@
  *  ============ ti_drivers_config.h =============
  *  Configured MSPM0 Driver module declarations
  *
- *  DO NOT EDIT - This file is generated for the MSPM0G350X
- *  by the SysConfig tool.
  */
 
 /* clang-format off */

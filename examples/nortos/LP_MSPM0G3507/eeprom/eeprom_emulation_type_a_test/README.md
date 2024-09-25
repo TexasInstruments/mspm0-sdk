@@ -22,5 +22,6 @@ for information about migrating to other MSPM0 devices.
 
 Compile, load and run the example.
 After initialization, part of the Flash area will be used as emulated EEPROM.
-In the application, the data is continuously saved to the emulated EEPROM
+In the application, the data is saved to the emulated EEPROM 9 times, with the 
+9th iteration erasing the sector for FLASH which had been written to.
 The application will stop at breakpoints so the user can verify the values.

@@ -1,4 +1,3 @@
-
 ## Example Summary
 
 This example demonstrates the use of Type B EEPROM emulation to store user data.
@@ -22,5 +21,6 @@ for information about migrating to other MSPM0 devices.
 
 Compile, load and run the example.
 After initialization, part of the Flash area will be used as emulated EEPROM.
-In the application, the data is continuously saved to the emulated EEPROM
+In the application, the data is saved to the emulated EEPROM 255 times, with the 
+255th iteration erasing the block for FLASH which had been written to.
 The application will stop at breakpoints so the user can verify the values.

@@ -1,4 +1,4 @@
-Code Composer Studio IDE Version 12.7.1+ for MSPM0 MCUs
+Code Composer Studio IDE Version 12.8.0+ for MSPM0 MCUs
 =======================================================
 
 Table of Contents
@@ -57,7 +57,7 @@ The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>
 
 Code Composer Studio IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__.
 
-MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.7.1 or higher.
+MSPM0 microcontrollers and the MSPM0 SDK require CCS 12.8.0 or higher.
 
 Code Composer Studio (CCS) IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__. Installation instructions for CCS 12.3 are available `here <https://software-dl.ti.com/ccs/esd/documents/users_guide_12.3.0/ccs_installation.html#installation-process>`__.
 
@@ -155,19 +155,14 @@ For more details on generated Project Configuration files, visit the `Using SysC
 .. figure:: ./images/ccs_ide_guide/ccs_migrate1.png
    :alt: 
 
-2. Select the New Values for the **Device**, **Package**, and **CCS Launch Device** to migrate the project configuration to, and then click **CONFIRM**.
+2. Select the New Values for the **Device** and **Package** to migrate the project configuration to, and then click **CONFIRM**.
 
 .. figure:: ./images/ccs_ide_guide/ccs_migrate2.png
    :alt: 
 
-3. After Confirming the new device values, SysConfig will highlight an error on the Project Configuration module. The user must choose the new device in the **Select Device** options. Make sure the device selection matches what was chosen for **CCS Launch Device** in the previous step.
+4. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed, and **save** all the changes to the SysConfig configuration script.
 
-.. figure:: ./images/ccs_ide_guide/ccs_migrate6.png
-   :alt: 
-
-4. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed, and save all the changes to the SysConfig configuration script.
-
-CCS will automatically migrate the device variant and will add a corresponding .ccxml file. SysConfig will update the relevant project configuration files, including linker and startup files.
+CCS will automatically migrate the device variant and will add a corresponding .ccxml file when the updated SysConfig script is saved. SysConfig will update the relevant project configuration files, including linker and startup files.
 
 Migration is now complete and the user can build their project for the new target device.
 

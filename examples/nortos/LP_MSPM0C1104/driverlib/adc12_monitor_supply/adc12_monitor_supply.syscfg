@@ -2,7 +2,8 @@
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
-// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+//@cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+//@v2CliArgs --device "MSPM0C1104" --package "VSSOP-20(DGS20)"
 // @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
 
 /**
@@ -28,7 +29,6 @@ ADC121.adcMem0vref        = "VREF";
 ADC121.sampleTime0        = "125 us";
 ADC121.enabledInterrupts  = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
 ADC121.peripheral.$assign = "ADC0";
-
 
 GPIO1.$name                          = "GPIO_LEDS";
 GPIO1.associatedPins.create(2);

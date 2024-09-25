@@ -38,12 +38,12 @@ MEMORY
      * Flash memory for the BSL plugin. This can be any valid Main flash
      * memory region.
      */
-    FLASH_PLUGIN_INIT(RWX)		:	 org = 0x00001000,     len = 0x00000100,
-    FLASH_PLUGIN_RECEIVE(RWX)	:	 org = 0x00001100,     len = 0x00000200,
-    FLASH_PLUGIN_SEND(RWX)		:	 org = 0x00001300,     len = 0x00000100,
-    FLASH_PLUGIN_DEINIT(RWX)	:	 org = 0x00001400,     len = 0x00000080,
+    FLASH_PLUGIN_INIT(RWX)		:	 org = 0x00002000,     len = 0x00000100,
+    FLASH_PLUGIN_RECEIVE(RWX)	:	 org = 0x00002100,     len = 0x00000200,
+    FLASH_PLUGIN_SEND(RWX)		:	 org = 0x00002300,     len = 0x00000100,
+    FLASH_PLUGIN_DEINIT(RWX)	:	 org = 0x00002400,     len = 0x00000080,
 
-    FLASH_PLUGIN_OTHERS(RWX)	:	 org = 0x00001480,     len = 0x00000400,
+    FLASH_PLUGIN_OTHERS(RWX)	:	 org = 0x00002480,     len = 0x00000400,
 
     /*
      * SRAM memory marked as reserved are used for the ROM BSL execution.

@@ -30,9 +30,9 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 //*****************************************************************************
-//        GUI HAL for MSP430FR2xxx using UART
+//        GUI HAL for MSPM0G3507 using UART
 //
-// Driver to send and receive data from GUI using FR2xxx UART
+// Driver to send and receive data from GUI using UART
 // Texas Instruments, Inc.
 // *****************************************************************************
 #include <ti/gui_composer/HAL.h>
@@ -47,12 +47,12 @@ void HAL_System_Init(void)
     DL_SYSCTL_disableSleepOnExit();
 
     /* Enable UART interrupts */
-    NVIC_ClearPendingIRQ(UART_INST_NVIC_IRQn);
-    NVIC_EnableIRQ(UART_INST_NVIC_IRQn);
+    NVIC_ClearPendingIRQ(UART_INST_INT_IRQN);
+    NVIC_EnableIRQ(UART_INST_INT_IRQN);
 
     /* Enable GPIO interrupts */
-    NVIC_EnableIRQ(SWITCHES1_USER_SWITCH_1_INT_IRQN);
-    NVIC_EnableIRQ(SWITCHES2_USER_SWITCH_1_INT_IRQN);
+    NVIC_EnableIRQ(GPIO_SWITCHES_1_INT_IRQN);
+    NVIC_EnableIRQ(GPIO_SWITCHES_2_INT_IRQN);
 
     /* Enable Timer interrupts */
     NVIC_EnableIRQ(TIMER_INST_INT_IRQN);

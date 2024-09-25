@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.01.00.03</span>
+   &#160;<span id="projectnumber">2.02.00.05</span>
    </div>
   </td>
  </tr>
@@ -981,9 +981,6 @@ $(function() {
 <li>DL_DMA_configTransfer()
 : <a class="el" href="group___d_m_a.html#ga28e4595240333440fb932a78c70729cd">dl_dma.h</a>
 </li>
-<li>DL_DMA_disableAutoEnable()
-: <a class="el" href="group___d_m_a.html#gaf798a5e35ca3a7ebd18a7d71b4c8af05">dl_dma.h</a>
-</li>
 <li>DL_DMA_disableChannel()
 : <a class="el" href="group___d_m_a.html#ga5df220a6523711b5b8e9c4f7a530e169">dl_dma.h</a>
 </li>
@@ -996,9 +993,6 @@ $(function() {
 <li>DL_DMA_disableRoundRobinPriority()
 : <a class="el" href="group___d_m_a.html#ga9be0a7ff077399526d8abfec135abc33">dl_dma.h</a>
 </li>
-<li>DL_DMA_enableAutoEnable()
-: <a class="el" href="group___d_m_a.html#ga9bbc76b66ca83bca6d1afc2c7a828f4e">dl_dma.h</a>
-</li>
 <li>DL_DMA_enableChannel()
 : <a class="el" href="group___d_m_a.html#ga7f23920a43794e7d5de8f5edf0721c27">dl_dma.h</a>
 </li>
@@ -1010,6 +1004,12 @@ $(function() {
 </li>
 <li>DL_DMA_enableRoundRobinPriority()
 : <a class="el" href="group___d_m_a.html#gaccb0c9605b8bf5a6d4848234a877b0eb">dl_dma.h</a>
+</li>
+<li>DL_DMA_Full_Ch_getEarlyInterruptThreshold()
+: <a class="el" href="group___d_m_a.html#gad1d3a556657ecde120f39d8151b855a9">dl_dma.h</a>
+</li>
+<li>DL_DMA_Full_Ch_setEarlyInterruptThreshold()
+: <a class="el" href="group___d_m_a.html#gacc68c40f08f75d0bb0aa2cc028a52e69">dl_dma.h</a>
 </li>
 <li>DL_DMA_getBurstSize()
 : <a class="el" href="group___d_m_a.html#ga83862400ca8d2f3fef959e8067fe433c">dl_dma.h</a>
@@ -1076,9 +1076,6 @@ $(function() {
 </li>
 <li>DL_DMA_initChannel()
 : <a class="el" href="group___d_m_a.html#ga57e87a0fce4c224edea31b79515cfb2d">dl_dma.h</a>
-</li>
-<li>DL_DMA_isAutoEnableEnabled()
-: <a class="el" href="group___d_m_a.html#gad9a2039849be9ab98d67d7aa38d44c26">dl_dma.h</a>
 </li>
 <li>DL_DMA_isChannelEnabled()
 : <a class="el" href="group___d_m_a.html#ga4834aa3e846be0f6c08a24496e23655c">dl_dma.h</a>
@@ -2934,9 +2931,6 @@ $(function() {
 <li>DL_RTC_Common_clearInterruptStatus()
 : <a class="el" href="group___r_t_c___common.html#gadad3e89761251a244e20a641984c92f7">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_clearTimeStamp()
-: <a class="el" href="group___r_t_c___common.html#ga022ee7a77242e843528c6bbd047b3cdb">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_Common_disableAlarm1DayOfMonthBCD()
 : <a class="el" href="group___r_t_c___common.html#ga90333ce28d964ab2eed45ed9fca106fd">dl_rtc_common.h</a>
 </li>
@@ -3009,9 +3003,6 @@ $(function() {
 <li>DL_RTC_Common_disablePower()
 : <a class="el" href="group___r_t_c___common.html#ga0ddeab703b80c979c5b4cba4a621cfec">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_disableWriteProtect()
-: <a class="el" href="group___r_t_c___common.html#ga7204973319656de5d531e24cb2781027">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_Common_enableAlarm1DayOfMonthBCD()
 : <a class="el" href="group___r_t_c___common.html#ga81c73577994ae08f095b01905a4968de">dl_rtc_common.h</a>
 </li>
@@ -3083,9 +3074,6 @@ $(function() {
 </li>
 <li>DL_RTC_Common_enablePower()
 : <a class="el" href="group___r_t_c___common.html#gae0d66fa841b53f07a456f9abc92c8050">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_enableWriteProtect()
-: <a class="el" href="group___r_t_c___common.html#gafdef799b97c5d0694807571e0f085eb7">dl_rtc_common.h</a>
 </li>
 <li>DL_RTC_Common_getAlarm1DayOfMonthBCD()
 : <a class="el" href="group___r_t_c___common.html#ga17063120aa30b0f4c796b5a656d0f3f1">dl_rtc_common.h</a>
@@ -3246,15 +3234,6 @@ $(function() {
 <li>DL_RTC_Common_getTimeStampDayOfWeekBinary()
 : <a class="el" href="group___r_t_c___common.html#gad87262513d0c0b8276ad30bb68267d2e">dl_rtc_common.h</a>
 </li>
-<li>DL_RTC_Common_getTimeStampEventCapture()
-: <a class="el" href="group___r_t_c___common.html#gadcf0fa5eed60ee8ca799a913af558e48">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_getTimeStampEventCause()
-: <a class="el" href="group___r_t_c___common.html#ga50d25a356b3eb5ad22d1e03af64d0832">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_getTimeStampEventSource()
-: <a class="el" href="group___r_t_c___common.html#gac8ca25a11b1cf98b0f73ae18e3475d55">dl_rtc_common.h</a>
-</li>
 <li>DL_RTC_Common_getTimeStampHoursBCD()
 : <a class="el" href="group___r_t_c___common.html#ga9224211fc8045e637253eac877975175">dl_rtc_common.h</a>
 </li>
@@ -3305,9 +3284,6 @@ $(function() {
 </li>
 <li>DL_RTC_Common_isSafeToRead()
 : <a class="el" href="group___r_t_c___common.html#ga6c8bdaed37947d22da141eed8713bcac">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_isWriteProtectEnabled()
-: <a class="el" href="group___r_t_c___common.html#ga303f5a85ea3b48fa4785c4e0b54c175d">dl_rtc_common.h</a>
 </li>
 <li>DL_RTC_Common_reset()
 : <a class="el" href="group___r_t_c___common.html#ga23472a98195b8c97ac27462de8faf0c5">dl_rtc_common.h</a>
@@ -3440,12 +3416,6 @@ $(function() {
 </li>
 <li>DL_RTC_Common_setTemperatureCompensation()
 : <a class="el" href="group___r_t_c___common.html#gacc829531d289265a4298524ac55b962c">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_setTimeStampEventCapture()
-: <a class="el" href="group___r_t_c___common.html#gaf48c3ca43da2b3b23a087a349db59aec">dl_rtc_common.h</a>
-</li>
-<li>DL_RTC_Common_setTimeStampEventSource()
-: <a class="el" href="group___r_t_c___common.html#ga0523b6f9bd6c11ceb2ece2bcdd7a3471">dl_rtc_common.h</a>
 </li>
 <li>DL_SPI_clearDMAReceiveEventStatus()
 : <a class="el" href="group___s_p_i.html#ga211e65c5c974b47eb771c0b5949fdd80">dl_spi.h</a>
@@ -4389,8 +4359,8 @@ $(function() {
 <li>DL_Timer_initCompareTriggerMode()
 : <a class="el" href="group___t_i_m_x.html#ga62910c270d5a373581d1137f3e36e87b">dl_timer.h</a>
 </li>
-<li>DL_Timer_initPWMMode()
-: <a class="el" href="group___t_i_m_x.html#ga07fc25cff6e716f607af8b6276e73036">dl_timer.h</a>
+<li>DL_Timer_initFourCCPWMMode()
+: <a class="el" href="group___t_i_m_x.html#ga82ab2327ca6ce98971529d970a12aa21">dl_timer.h</a>
 </li>
 <li>DL_Timer_initTimerMode()
 : <a class="el" href="group___t_i_m_x.html#ga68272d2f890b1e0b8e69a446dad41df5">dl_timer.h</a>
@@ -4541,9 +4511,6 @@ $(function() {
 </li>
 <li>DL_Timer_stopCounter()
 : <a class="el" href="group___t_i_m_x.html#ga530c569e5dfa455192837eb73cf21b83">dl_timer.h</a>
-</li>
-<li>DL_TimerA_initPWMMode()
-: <a class="el" href="group___t_i_m_a.html#ga0c8e7ed3f3c4cd79ca7b3a7f8ab9b71d">dl_timera.h</a>
 </li>
 <li>DL_TimerA_restoreConfiguration()
 : <a class="el" href="group___t_i_m_a.html#gae6ac40d8762a7d1775b0d39c85f504e8">dl_timera.h</a>

@@ -237,11 +237,16 @@ function validate(inst, validation)
                 let DACInst = DACMod.$static
                 if (!DACInst.dacOutputPinEn){
                     if(inst.cfg0PSELChannel == "DAC_OUT"){
-                        validation.logError("DAC Output Pin should be enabled when configured as Non-Inverting Channel.", inst, ["cfg0PSELChannel"]);
+                        validation.logInfo("If DAC Output Pin is not enabled when configuring Non-Inverting Channel (PSEL), configuration will require applying external input signal", inst, ["cfg0PSELChannel"]);
                     }
                     if(inst.cfg0MSELChannel == "DAC_OUT"){
                         validation.logError("DAC Output Pin should be enabled when configured as Input MUX.", inst, ["cfg0MSELChannel"]);
                     }
+                }
+            }
+            else{
+                if(inst.cfg0PSELChannel == "DAC_OUT"){
+                    validation.logInfo("If DAC Output Pin is not enabled when configuring Non-Inverting Channel (PSEL), configuration will require applying external input signal", inst, ["cfg0PSELChannel"]);
                 }
             }
         }
@@ -909,7 +914,7 @@ function setRequiredModules(inst){
         theModules.push("VREF");
     }
     /* Add DAC to required modules: only selectable in MSPM0G devices*/
-    if(Common.isDeviceM0G() && (inst.cfg0PSELChannel == "DAC_OUT" || inst.cfg0MSELChannel == "DAC_OUT")){
+    if(Common.isDeviceM0G() && (inst.cfg0MSELChannel == "DAC_OUT")){
         theModules.push("DAC12");
     }
 

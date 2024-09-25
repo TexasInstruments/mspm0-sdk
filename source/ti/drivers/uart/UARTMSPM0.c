@@ -707,6 +707,8 @@ void UARTMSP_dmaStopRx(UART_Handle handle)
     {
         DMAMSPM0_disableChannel(uartObject->DMA_Handle, uartObject->rxDmaChannel);
         DL_UART_disableDMAReceiveEvent(hwAttrs->regs, DL_UART_DMA_INTERRUPT_RX); /* Disable the trigger */
+        /* Clear the interrupt */
+        DL_UART_clearInterruptStatus(hwAttrs->regs, DL_UART_DMA_DONE_INTERRUPT_RX);
         bytesRemaining = DMAMSPM0_getCurrTransferSize(uartObject->rxDmaChannel);
         rxCount  = callbackObject->rxSize - bytesRemaining;
         advanced = RingBuf_putAdvance(&uartBufferObj->rxBuf, rxCount);
@@ -734,6 +736,8 @@ uint32_t UARTMSP_dmaStopTx(UART_Handle handle)
     {
         DMAMSPM0_disableChannel(uartObject->DMA_Handle, uartObject->txDmaChannel);
         DL_UART_disableDMATransmitEvent(hwAttrs->regs); /* Disable the trigger */
+        /* Clear the interrupt */
+        DL_UART_clearInterruptStatus(hwAttrs->regs, DL_UART_DMA_DONE_INTERRUPT_TX);
         bytesRemaining = DMAMSPM0_getCurrTransferSize(uartObject->txDmaChannel);
         txCount  = callbackObject->txSize - bytesRemaining;
         consumed = RingBuf_getConsume(&uartBufferObj->txBuf, txCount);

@@ -66,8 +66,11 @@
 %       let inst = instances[i];
 %       let flavor = inst.peripheral.$solution.peripheralName;
 %       let nameStr = "#define "+inst.$name+"_INST"
+%       let freqLin = nameStr+"_FREQUENCY"
+%       let baudRate = ((inst.basicClockSourceCalculatedHidden).toString())
 /* Defines for `inst.$name` */
 `nameStr.padEnd(40," ")+flavor.padStart(40," ")`
+`freqLin.padEnd(40," ")+baudRate.padStart(40," ")`
 %       let irqNameStr = nameStr+"_IRQHandler"
 %       let flavorIRQ = inst.peripheral.$solution.peripheralName+"_IRQHandler";
 `irqNameStr.padEnd(40," ")+flavorIRQ.padStart(40," ")`

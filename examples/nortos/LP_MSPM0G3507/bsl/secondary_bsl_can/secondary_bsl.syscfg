@@ -2,11 +2,8 @@
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
-/**
- * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
- * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- */
 // @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)" 
 // @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
 
 /**
@@ -21,7 +18,7 @@ const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 NONMAIN.bslAltConfig                 = true;
 NONMAIN.bslAltAddress                = 0x1041;
 NONMAIN.nonmainWarning               = true;
-NONMAIN.staticWriteProtectionMainLow = 0xFFFFC00F;
+NONMAIN.staticWriteProtectionMainLow = 0xFF0000FF;
 
 ProjectConfig.genLinker  = false;
 ProjectConfig.genStartup = false;

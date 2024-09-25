@@ -2035,6 +2035,10 @@ typedef struct {
     uint32_t period;
     /*! Specifies the PWM Mode. One of @ref DL_TIMER_PWM_MODE */
     DL_TIMER_PWM_MODE pwmMode;
+    /*! Specifies if this is a counter with four capture compare registers.
+        Please refer to the device datasheet to determine if Timer instance
+        supports four capture compare registers */
+    bool isTimerWithFourCC;
     /*! Start timer after configuration @ref DL_TIMER */
     DL_TIMER startTimer;
 } DL_Timer_PWMConfig;
@@ -2090,24 +2094,46 @@ typedef struct {
     uint32_t cc0Val;
     /*! Timer Capture or Compare 1 value */
     uint32_t cc1Val;
+    /*! Timer Capture or Compare 2 value */
+    uint32_t cc2Val;
+    /*! Timer Capture or Compare 3 value */
+    uint32_t cc3Val;
     /*! Timer Capture or Compare Control Register 0 */
     uint32_t cc0Ctl;
     /*! Timer Capture or Compare Control Register 1 */
     uint32_t cc1Ctl;
+    /*! Timer Capture or Compare Control Register 2 */
+    uint32_t cc2Ctl;
+    /*! Timer Capture or Compare Control Register 3 */
+    uint32_t cc3Ctl;
     /*! Timer Capture or Compare Output Control Register 0 */
     uint32_t cc0OutCtl;
     /*! Timer Capture or Compare Output Control Register 1 */
     uint32_t cc1OutCtl;
+    /*! Timer Capture or Compare Output Control Register 2 */
+    uint32_t cc2OutCtl;
+    /*! Timer Capture or Compare Output Control Register 3 */
+    uint32_t cc3OutCtl;
     /*! Timer Capture or Compare Signal Generator Action Control Register 0 */
     uint32_t cc0ActCtl;
     /*! Timer Capture or Compare Signal Generator Action Control Register 1 */
     uint32_t cc1ActCtl;
+    /*! Timer Capture or Compare Signal Generator Action Control Register 2 */
+    uint32_t cc2ActCtl;
+    /*! Timer Capture or Compare Signal Generator Action Control Register 3 */
+    uint32_t cc3ActCtl;
     /*! Timer Capture or Compare Input Filter and Inversion Control
      *  Register 0 */
     uint32_t in0FiltCtl;
     /*! Timer Capture or Compare Input Filter and Inversion Control
      *  Register 1 */
     uint32_t in1FiltCtl;
+    /*! Timer Capture or Compare Input Filter and Inversion Control
+     *  Register 2 */
+    uint32_t in2FiltCtl;
+    /*! Timer Capture or Compare Input Filter and Inversion Control
+     *  Register 3 */
+    uint32_t in3FiltCtl;
     /*! Boolean flag indicating whether or not a valid configuration structure
      *  exists. Should not be modified by the user. */
     bool backupRdy;
@@ -2933,14 +2959,21 @@ void DL_Timer_initCompareTriggerMode(
  * @brief Configure timer in Pulse Width Modulation Mode
  *  Initializes all the common configurable options for the TIMx peripheral when
  *  used in PWM mode. Any other custom configuration can be done after calling
- *  this API.
+ *  this API. Configures the top two CC blocks and then configures the bottom
+ *  two CC blocks.
  *
  * @param gptimer              Pointer to the register overlay for the
  *                             peripheral
  * @param config               Pointer to the mode configuration struct
  *                             @ref DL_Timer_PWMConfig.
  */
-void DL_Timer_initPWMMode(GPTIMER_Regs *gptimer, DL_Timer_PWMConfig *config);
+void DL_Timer_initFourCCPWMMode(
+    GPTIMER_Regs *gptimer, DL_Timer_PWMConfig *config);
+
+/*!
+ * @brief Redirects to common @ref DL_Timer_initFourCCPWMMode
+ */
+#define DL_Timer_initPWMMode DL_Timer_initFourCCPWMMode
 
 /**
  *  @brief      Reset register controlling counter operation

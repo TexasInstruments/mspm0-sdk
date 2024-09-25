@@ -73,18 +73,6 @@ function validate(inst, validation)
     }
     /* For Projects that use SysConfig Project Configuration Files */
     else{
-        let compilerWarning = "";
-        if((["ccs","ticlang","gcc"].includes(system.compiler))&&(!system.isStandAloneGUI())){
-            compilerWarning = "User must make sure to select the same device as the CCS Launch Device setting for proper configuration."
-        }
-        if(inst.switchCondition){
-            validation.logWarning("Migrating requires going through the Switch Board or Device menu in the Device View section.",inst,"deviceSpin")
-        }
-        if(inst.migrationCondition){
-            validation.logError("User must select device after migration. "+compilerWarning,inst,"deviceSpin")
-        }else{
-            validation.logInfo("Note: User must select a device after migration. "+compilerWarning,inst,"deviceSpin")
-        }
         if(!inst.genLinker | !inst.genStartup | !inst.genOpts| !inst.genLibs){
             validation.logWarning("All four File Generation options must be enabled in order to guarantee Device Migration support. If an option is disabled, the user must manually configure that setting on its own file.",inst);
         }
@@ -292,10 +280,10 @@ This file is specific to the selected device family.
                             {name: "MATHACL"},
                         ]
                     },
-                    // motor control bldc sensorless foc
+                    // motor control pmsm sensorless foc
                     {
                         name: "genLibMC",
-                        displayName: "Motor Control BLDC Sensorless FOC",
+                        displayName: "Motor Control PMSM Sensorless FOC",
                         default: false,
                         onChange: (inst,ui) => {
                             if(inst.genLibMC){
@@ -366,21 +354,13 @@ This file is specific to the selected device family.
         default: false,
         hidden: true,
     },
+    /* DEPRECATED VALUE - KEEP FOR COMPATIBILITY */
     {
         name: "deviceSpin",
         displayName: "Select Device",
         longDescription: deviceSelectLongDesc,
         default: "Unknown",
-        options: [
-            {name:  "Unknown", displayName: "Default Board Configuration"},
-        ].concat(deviceList.gpnOptions),
-        onChange: (inst,ui) => {
-            if(!inst.migrationCondition){
-                inst.switchCondition = true;
-            }
-            inst.migrationCondition = false;
-
-        }
+        hidden: true,
     },
     {
         name: "deviceSpinAdvanced",
@@ -388,32 +368,7 @@ This file is specific to the selected device family.
         default: "Unknown",
         hidden: true,
         getValue: (inst) => {
-            if(inst.deviceSpin !== "Unknown"){
-                return inst.deviceSpin;
-            }
-            else{
-                let defaultSpin = "MSPM0G3507";
-                switch(Common.getDeviceFamily()){
-                    case "MSPM0G1X0X_G3X0X":
-                        defaultSpin = "MSPM0G3507";
-                        break;
-                    case "MSPM0L11XX_L13XX":
-                        defaultSpin = "MSPM0L1306";
-                        break;
-                    case "MSPM0L122X_L222X":
-                        defaultSpin = "MSPM0L2228"
-                        break;
-                    case "MSPM0C110X":
-                        defaultSpin = "MSPM0C1104";
-                        break;
-                    case "MSPM0GX51X":
-                        defaultSpin = "MSPM0G3519"
-                        break;
-                    default:
-                        break;
-                }
-                return defaultSpin;
-            }
+            return system.deviceData.gpn;
         },
     }
 ];
@@ -527,7 +482,7 @@ let base = {
         validate        : validate,
         modules         : modules,
         onMigrate       : function (newInst, oldInst, oldSystem) {
-            newInst.deviceSpin = "Unknown";
+            newInst.deviceSpin = "Unknown"; // Deprecated Value - do not remove
             newInst.migrationCondition = true;
             newInst.switchCondition = false;
         },
