@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1  = GPIO.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
@@ -15,6 +16,8 @@ const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable = true;
+
 GPIO1.$name                         = "GPIO_LEDS";
 GPIO1.associatedPins[0].$name       = "USER_LED_1";
 GPIO1.associatedPins[0].assignedPin = "0";

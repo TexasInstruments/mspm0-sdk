@@ -18,5 +18,5 @@ var searchData=
   ['adcposrefdio',['adcPosRefDIO',['../struct_a_d_c_m_s_p_m0___h_w_attrs.html#a839c004129bca92afca5c97406ca9674',1,'ADCMSPM0_HWAttrs']]],
   ['adcposrefpincm',['adcPosRefPincm',['../struct_a_d_c_m_s_p_m0___h_w_attrs.html#a2d46092a48663a4f37af6af4b987c347',1,'ADCMSPM0_HWAttrs']]],
   ['adcposrefpinmux',['adcPosRefPinMux',['../struct_a_d_c_m_s_p_m0___h_w_attrs.html#a6bc28181272d8f862d40a970e537c325',1,'ADCMSPM0_HWAttrs']]],
-  ['arg',['arg',['../struct_i2_c___transaction.html#a29ec65addac2d4ef5d1235c2329e2fc1',1,'I2C_Transaction']]]
+  ['arg',['arg',['../struct_i2_c___transaction.html#a29ec65addac2d4ef5d1235c2329e2fc1',1,'I2C_Transaction::arg()'],['../struct_s_p_i___transaction.html#ac47daaa10705d748ace918a098aa1945',1,'SPI_Transaction::arg()']]]
 ];

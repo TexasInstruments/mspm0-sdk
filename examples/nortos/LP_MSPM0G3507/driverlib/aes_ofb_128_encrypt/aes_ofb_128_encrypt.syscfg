@@ -9,6 +9,8 @@
  * Import the modules used in this configuration.
  */
 const AES    = scripting.addModule("/ti/driverlib/AES");
+const GPIO    = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1   = GPIO.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
@@ -18,6 +20,18 @@ const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 AES.keyLength       = "DL_AES_KEY_LENGTH_128";
 AES.blockCipherMode = "OFB_MODE";
 
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].assignedPortSegment = "Lower";
+GPIO1.associatedPins[1].assignedPin         = "15";
+GPIO1.associatedPins[1].initialValue        = "SET";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn  = true;

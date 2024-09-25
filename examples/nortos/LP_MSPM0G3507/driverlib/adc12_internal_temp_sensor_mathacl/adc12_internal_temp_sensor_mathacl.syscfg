@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const Board = scripting.addModule("/ti/driverlib/Board");
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
@@ -18,6 +19,9 @@ const MATHACL = scripting.addModule("/ti/driverlib/MATHACL");
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genLibIQ        = true;
+ProjectConfig.genLibIQVersion = "MATHACL";
+
 ADC121.$name              = "ADC12_0";
 ADC121.adcMem0chansel     = "DL_ADC12_INPUT_CHAN_11";
 ADC121.sampClkDiv         = "DL_ADC12_CLOCK_DIVIDE_8";

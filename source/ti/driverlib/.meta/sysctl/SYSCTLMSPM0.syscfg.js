@@ -981,6 +981,36 @@ let devSpecific = {
 
     config: [
         {
+            name: "GRAPHICAL_CLOCK_TREE",
+            displayName: "Graphical Clock Configuration",
+            description: "",
+            longDescription: "",
+            collapsed: false,
+            config: [
+                {
+                    name: "clockTreeEn",
+                    displayName: "Use Clock Tree",
+                    description: "Use the graphical Clock Tree to configure clocking",
+                    longDescription: `
+Clock Tree is a feature supported by SysConfig that allows a graphical configuration of all clocks present in the system.
+The Clock Tree window can be accessed by clicking on the following signal icon in the top left:
+
+![Clock Tree Icon](../docs/english/sysconfig/images/clock_tree.png "Clock Tree Icon")
+
+This view allows the user to configure clocks graphically and easily see signal flows and
+connections rather than using menus. Code generation is supported and validation of clock configurations is also checked.
+
+To get started:
+* Enable Clock Tree using this button
+* Click the signal icon on the top left of the sysconfig window
+* Begin to click blocks of interest in order to manipulate the clock values
+                    `,
+                    default: false,
+                    onChange: onChangeClockTree
+                },
+            ]
+        },
+        {
             name: "GROUP_PWR_SYS",
             displayName: "Power & Systems Configuration",
             description: "",
@@ -1196,25 +1226,6 @@ The default behavior for some system error conditions can be configured.
             longDescription: getClockTreeDesc(),
             collapsed: false,
             config: [
-
-                {
-                    name: "clockTreeEn",
-                    displayName: "Use Clock Tree",
-                    description: "Use the graphical Clock Tree to configure clocking",
-                    longDescription: `
-_Beta_: Clock Tree is a new feature supported by SysConfig that allows a graphical configuration of all clocks present in the system. It is found
-by clicking the signal icon in the top left of the window. There are two views that allow for the user to configure clocks graphically and
-easily see signal flows and connections rather than using menus. Code generation is supported for most cases but is not guaranteed. Validation
-of clock configurations is also not checked thoroughly yet, but is planned for future releases.
-
-To get started:
-* Enable Clock Tree using this button
-* Click the signal icon on the top left of the sysconfig window
-* Begin to click blocks of interest in order to manipulate the clock values
-                    `,
-                    default: false,
-                    onChange: onChangeClockTree
-                },
             ].concat(getForceDefaultClkConfig()).concat([
                 {
                     name: "validateClkStatus",
@@ -1883,6 +1894,13 @@ function pinmuxRequirements(inst)
                 interfaceNames  : ["HFXOUT"],
             });
         }
+    }
+    if(inst.fccTrigSrc == "FCC_IN" && inst.enableFCC){
+        resources.push({
+            name            : "fccInPin",
+            displayName     : "FCC IN",
+            interfaceNames  : ["FCC_IN"],
+        });
     }
     if(inst.enableROSC){
         resources.push({

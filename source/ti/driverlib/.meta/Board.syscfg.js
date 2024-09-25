@@ -436,9 +436,6 @@ Any conflicting configurations will be overriden by these settings.`,
     },
 ]
 
-/*
- * Gets a DMA module if available
- */
 function moduleInstances(inst){
     let modInstances = []
     if(inst.genPeriphPinFile){

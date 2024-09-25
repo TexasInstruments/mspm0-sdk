@@ -7,7 +7,7 @@ KERNEL_BUILD := $(MSPM0_SDK_INSTALL_DIR)/kernel/freertos/builds/LP_MSPM0G3507/re
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = main_freertos.obj ti_drivers_config.obj ti_msp_dl_config.obj gpiointerrupt.obj freertos_ticlang_startup_mspm0g3507_ticlang.obj
+OBJECTS = main_freertos.obj ti_drivers_config.obj ti_msp_dl_config.obj gpiointerrupt.obj freertos_ticlang_startup_mspm0g350x_ticlang.obj
 NAME = gpio_interrupt
 
 CFLAGS = -I../.. \
@@ -29,6 +29,8 @@ LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/drivers/lib/ticlang/m0p/drivers_m
     -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0G3507_release_ticlang/Debug \
     -lfreertos_builds_LP_MSPM0G3507_release_ticlang.lib \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     ../../freertos/ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
@@ -59,7 +61,7 @@ gpiointerrupt.obj: ../../gpiointerrupt.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-freertos_ticlang_startup_mspm0g3507_ticlang.obj: ../../freertos/ticlang/startup_mspm0g3507_ticlang.c
+freertos_ticlang_startup_mspm0g350x_ticlang.obj: ../../freertos/ticlang/startup_mspm0g350x_ticlang.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

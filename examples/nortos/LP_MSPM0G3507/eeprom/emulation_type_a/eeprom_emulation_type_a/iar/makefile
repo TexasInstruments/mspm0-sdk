@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(IAR_ARMCOMPILER)/bin/iccarm"
 LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 
-OBJECTS = main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj ti_msp_dl_config.obj iar_startup_mspm0g3507_iar.obj
+OBJECTS = main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj ti_msp_dl_config.obj iar_startup_mspm0g350x_iar.obj
 NAME = eeprom_emulation_type_a
 
 CFLAGS = -I.. \
@@ -23,6 +23,8 @@ CFLAGS = -I.. \
     --vla
 
 LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
     --config ../iar/mspm0g3507.icf \
     --map "$(NAME).map" \
     --silent \
@@ -46,7 +48,7 @@ ti_msp_dl_config.obj: ../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-iar_startup_mspm0g3507_iar.obj: ../iar/startup_mspm0g3507_iar.c
+iar_startup_mspm0g350x_iar.obj: ../iar/startup_mspm0g350x_iar.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

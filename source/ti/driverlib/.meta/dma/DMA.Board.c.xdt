@@ -283,7 +283,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_DMA_init(void){
             enabledEventsList.push("DL_DMA_EVENT_CHANNEL"+(instChannel.channelID).toString());
         }
         if(instChannel.enabledEvents.includes("FULL_CH_EVENT_EARLY_CHANNEL")){
-            enabledEventsList.push("FULL_CH_EVENT_EARLY_CHANNEL"+(instChannel.channelID).toString());
+            enabledEventsList.push("DL_DMA_FULL_CH_EVENT_EARLY_CHANNEL"+(instChannel.channelID).toString());
         }
     } // for (let i in instances)
     if(inst.enabledEvents.includes("EVENT_ADDR_ERROR")){

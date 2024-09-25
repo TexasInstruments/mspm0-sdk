@@ -29,6 +29,8 @@ LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/drivers/lib/ticlang/m0p/drivers_m
     -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0G3507_release_ticlang/Debug \
     -lfreertos_builds_LP_MSPM0G3507_release_ticlang.lib \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     ../../freertos/ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \

@@ -11,13 +11,13 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = opa_general_purpose_rri.obj gcc_startup_mspm0g3507_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = opa_general_purpose_rri.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = opa_general_purpose_rri
 
 CFLAGS = -I.. \
     -I. \
-    -D__MSPM0G3507__ \
     -O2 \
+    @syscfg/device.opt \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
     -mcpu=cortex-m0plus \
@@ -33,11 +33,12 @@ CFLAGS = -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x" \
-    -nostartfiles \
-    -Wl,-T,../gcc/mspm0g3507.lds \
+LFLAGS = -nostartfiles \
+    -ldevice.lds.genlibs \
+    -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
-    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -67,10 +68,6 @@ endef
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
 opa_general_purpose_rri.obj: ../opa_general_purpose_rri.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-gcc_startup_mspm0g3507_gcc.obj: ../gcc/startup_mspm0g3507_gcc.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

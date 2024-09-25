@@ -1,16 +1,18 @@
 ## Example Summary
 
-This example implements an SMBus target using the MSPM0 SMBus software library. This example will respond to a variety of SMBus commands to an SMBus target (see smb_controller00_all_protocols).
+This example implements an SMBus target using the MSPM0 SMBus software library. 
+This example will respond to a variety of SMBus commands sent by a SMBus
+controller (see smb_controller00_all_protocols).
 
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA13 | Standard Output |
 | SYSCTL |  |  |
 | TIMG0 |  |  |
-| I2C0 | PA10 | I2C Serial Data line (SDA) |
-| I2C0 | PA11 | I2C Serial Clock line (SCL) |
+| I2C0 | PA0 | I2C Serial Data line (SDA) |
+| I2C0 | PA1 | I2C Serial Clock line (SCL) |
 | ADC0 | PA27 | ADC12 Channel 0 Pin |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
@@ -22,12 +24,17 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA0 | GPIOA | PA0 | J1_10 | This pin is 5V tolerant open-drain and requires pull-up.<br>J2 ON/OFF: Connect/Disconnect LED1<br>J10 1:2 5V Pull-up<br>J10 2:3 3.3V Pull-up |
-| PA10 | I2C0 | SDA | J4_36 | N/A |
-| PA11 | I2C0 | SCL | J2_11/J4_35 | J14 1:2 Connect to J2_11<br>J14 2:3 Connect to J4_35 |
-| PA27 | ADC0 | A0 | J4_37 | J13 OFF: Disconnect LED2 Blue |
-| PA20 | DEBUGSS | SWCLK | J2_13 | J101 15:16 ON: Connect to XDS-110 SWCLK (debug) |
-| PA19 | DEBUGSS | SWDIO | J2_17 | J101 13:14 ON: Connect to XDS-110 SWDIO (debug) |
+| PA13 | GPIOA | PA13 | J4_39 | <ul><li>PA13 can be connected to LED2 Green<br><ul><li>`J3 ON` Connect to LED2 Green<br><li>`J3 OFF` Disconnect from LED2 Green</ul></ul> |
+| PA0 | I2C0 | SDA | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA1 | I2C0 | SCL | J1_9 | <ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
+| PA27 | ADC0 | A0 | J4_37 | <ul><li>PA27 can be connected to LED2 Blue<br><ul><li>`J13 OFF` Disconnect from LED2 Blue</ul></ul> |
+| PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Device Migration Recommendations
+This project was developed for a superset device included in the LP_MSPM0L1306 LaunchPad. Please
+visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration)
+for information about migrating to other MSPM0 devices.
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to
@@ -41,9 +48,12 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0L1306 User's Guide](https://www.ti.co
 
 ## Example Usage
 
-Compile, load and run the example on an LP-MSPM0L1306.
+Connect SMBCLK (SCL), SMBDAT (SDA) and GND to the corresponding pins on a second
+MSPM0 LaunchPad running the smb_controller00_all_protocols example.
 
-Connect SMBCLK (SCL) and SMBDAT (SDA) to the corresponding SMBCLK and SMBDAT pins on an LP-MSPM0L1306 running the smb_controller00_all_protocols example. Ensure that the LaunchPads share a common ground, by connecting a jumper between GND on both LaunchPads.
+Compile, load and run the example.
 
-Waits for command from the SMBus Controller and processes it.
+The target example waits for each command from the SMBus controller and 
+processes it.
+Optionally, an I2C sniffer can be used to observe the SMBus protocol.
 

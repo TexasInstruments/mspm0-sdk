@@ -166,7 +166,7 @@ function moduleInstances(inst){
             group: "GROUP_PINMUX_PERIPH",
             collapsed: true,
             requiredArgs: {
-                passedPinName: "GPIO_"+inst.$name+"_"+"FAULT_PIN_0",
+                passedPinName: "GPIO_"+inst.$name+"_IOMUX_"+"FAULT_PIN_0",
                 passedResourceName: "faultPin0",
                 passedPeripheralType: "Digital",
                 direction: "OUTPUT",
@@ -184,7 +184,7 @@ function moduleInstances(inst){
             group: "GROUP_PINMUX_PERIPH",
             collapsed: true,
             requiredArgs: {
-                passedPinName: "GPIO_"+inst.$name+"_"+"FAULT_PIN_1",
+                passedPinName: "GPIO_"+inst.$name+"_IOMUX_"+"FAULT_PIN_1",
                 passedResourceName: "faultPin1",
                 passedPeripheralType: "Digital",
                 direction: "OUTPUT",
@@ -202,7 +202,7 @@ function moduleInstances(inst){
             group: "GROUP_PINMUX_PERIPH",
             collapsed: true,
             requiredArgs: {
-                passedPinName: "GPIO_"+inst.$name+"_"+"FAULT_PIN_2",
+                passedPinName: "GPIO_"+inst.$name+"_IOMUX_"+"FAULT_PIN_2",
                 passedResourceName: "faultPin2",
                 passedPeripheralType: "Digital",
                 direction: "OUTPUT",

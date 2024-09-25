@@ -110,10 +110,8 @@ void DL_SYSCTL_setLFCLKSourceLFXT(DL_SYSCTL_LFCLKConfig *config)
 {
     DL_Common_updateReg(&SYSCTL->SOCLOCK.LFCLKCFG,
         ((uint32_t) config->lowCap << SYSCTL_LFCLKCFG_LOWCAP_OFS) |
-            ((uint32_t) config->monitor << SYSCTL_LFCLKCFG_MONITOR_OFS) |
             (uint32_t) config->xt1Drive,
-        (SYSCTL_LFCLKCFG_XT1DRIVE_MASK | SYSCTL_LFCLKCFG_MONITOR_MASK |
-            SYSCTL_LFCLKCFG_LOWCAP_MASK));
+        (SYSCTL_LFCLKCFG_XT1DRIVE_MASK | SYSCTL_LFCLKCFG_LOWCAP_MASK));
     // start the LFXT oscillator
     SYSCTL->SOCLOCK.LFXTCTL =
         (SYSCTL_LFXTCTL_KEY_VALUE | SYSCTL_LFXTCTL_STARTLFXT_TRUE);
@@ -123,6 +121,11 @@ void DL_SYSCTL_setLFCLKSourceLFXT(DL_SYSCTL_LFCLKConfig *config)
            DL_SYSCTL_CLK_STATUS_LFXT_GOOD) {
         ;
     }
+    if (config->monitor) {
+        // set the LFCLK monitor
+        SYSCTL->SOCLOCK.LFCLKCFG |= SYSCTL_LFCLKCFG_MONITOR_ENABLE;
+    }
+
     // switch LFCLK source from LFOSC to LFXT
     SYSCTL->SOCLOCK.LFXTCTL =
         (SYSCTL_LFXTCTL_KEY_VALUE | SYSCTL_LFXTCTL_SETUSELFXT_TRUE);

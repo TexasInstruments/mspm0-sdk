@@ -16,7 +16,7 @@
         toolChain="TICLANG"
         connection="TIXDS110_Connection.xml"
         device="MSPM0G3507"
-        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultDeviceSettings="false"
         ignoreDefaultCCSSettings="true"
         products="MSPM0-SDK"
         compilerBuildOptions="
@@ -35,6 +35,8 @@
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/drivers/lib/ticlang/m0p/drivers_mspm0g1x0x_g3x0x.a
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/nortos/lib/ticlang/m0p/nortos_mspm0g1x0x_g3x0x.a
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
             -Wl,--rom_model
             -Wl,--warn_sections
             -L${CG_TOOL_ROOT}/lib
@@ -54,10 +56,6 @@
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../ticlang/mspm0g3507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../ticlang/startup_mspm0g3507_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
         </file>
     </project>
 </projectSpec>

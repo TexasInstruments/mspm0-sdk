@@ -469,6 +469,9 @@ function validate(inst, validation)
                     validation.logWarning("Selected Cross Trigger Source is not configured.", inst, "mainCTSubscriberChannel");
                 }
             }
+            if(!inst.timerStartTimer) {
+                validation.logInfo("Note that the cross trigger will not be generated unless Start Timer is enabled.", inst, ["crossTriggerAuthority","timerStartTimer"]);
+            }
         }
         else if(inst.crossTriggerAuthority == "Secondary"){
             if(inst.secondaryCrossTriggerSource.includes("SubscriberPort")){

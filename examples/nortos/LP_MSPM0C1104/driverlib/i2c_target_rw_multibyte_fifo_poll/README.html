@@ -37,6 +37,7 @@
 <h2 id="example-summary">Example Summary</h2>
 <p>I2C Target responds to write and read request from I2C Controller. The example uses FIFO and polling. It can only handle a maximum of 4 bytes due to FIFO size. LED toggles if transmission and reception are successful. The Target device must be enabled and active before running the Controller example.</p>
 <p>This example can be used to validate I2C communication, as a starting point to enable I2C functionality, or to create custom drivers.</p>
+<p><strong>Note</strong>: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -49,35 +50,40 @@
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>PA4</td>
+<td>PA22</td>
 <td>Standard Output</td>
 </tr>
 <tr class="even">
+<td>GPIOA</td>
+<td>PA2</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>I2C0</td>
 <td>PA0</td>
 <td>I2C Serial Data line (SDA)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>I2C0</td>
 <td>PA11</td>
 <td>I2C Serial Clock line (SCL)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -98,34 +104,41 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>PA4</td>
+<td>PA22</td>
 <td>GPIOA</td>
-<td>PA4</td>
-<td>J2_14</td>
+<td>PA22</td>
+<td>J1_8</td>
 <td>N/A</td>
 </tr>
 <tr class="even">
+<td>PA2</td>
+<td>GPIOA</td>
+<td>PA2</td>
+<td>J2_13</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
 <td>PA0</td>
 <td>I2C0</td>
 <td>SDA</td>
 <td>J1_10</td>
 <td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J20 1:2</code> Use 3.3V pull-up<br><li><code>J20 2:3</code> Use 5V pull-up</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA11</td>
 <td>I2C0</td>
 <td>SCL</td>
 <td>J1_9</td>
 <td><ul><li>PA11 can be connected to an external 3.3V pull-up<br><ul><li><code>J6 OFF</code> Disconnect 3.3V pull-up<br><li><code>J6 ON</code> Connect 3.3V pull-up</ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_11</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
@@ -134,6 +147,8 @@
 </tr>
 </tbody>
 </table>
+<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
+<p>This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>

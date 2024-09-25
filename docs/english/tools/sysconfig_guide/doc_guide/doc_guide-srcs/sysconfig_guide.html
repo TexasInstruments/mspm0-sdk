@@ -95,6 +95,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#switching-between-devices-and-packages">4.8 Switching Between Devices and Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-configuration">4.8.1 Project Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-configuration-files">4.8.1.1 Project Configuration Files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#event-configuration">4.9 Event Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pinmux-configuration">4.10 PinMux Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reserving-hardware-peripherals">4.11 Reserving Hardware Peripherals</a><ul>
@@ -732,6 +734,26 @@ data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&q
 <figure class="align-default">
 <img alt="" src="../_images/sysconfig_device_switch_error.png" />
 </figure>
+</section>
+<section id="project-configuration">
+<h3>4.8.1 Project Configuration<a class="headerlink" href="#project-configuration" title="Permalink to this heading">¶</a></h3>
+<p>MSPM0 SysConfig includes a Project Configuration module that is intended to help provide the necessary project configuration files as well as facilitate device migration for projects. From this module the user will be able to select which files to generate, as well as which libraries their project should include.</p>
+<figure class="align-default">
+<img alt="" src="../_images/sysconfig_device_switch_project_config.png" />
+</figure>
+</section>
+<section id="project-configuration-files">
+<h3>4.8.1.1 Project Configuration Files<a class="headerlink" href="#project-configuration-files" title="Permalink to this heading">¶</a></h3>
+<p>SysConfig will generate Project Configuration files for CCS projects using TI Arm Clang and Arm GCC by default.</p>
+<p>When using SysConfig through an IDE, the tool will automatically detect the compiler for the project and generate the appropiate files. When using standalone SysConfig, the user will be given the choice of generating all the files or filtering for a specific compiler.</p>
+<p>In either case, file generation can be disabled through the Project Configuration Files module.</p>
+<p>Project Configuration files are split into categories, which can be seen from the SysConfig Generated Files view.</p>
+<ol class="arabic simple">
+<li><p><strong>Linker Command</strong>: File will be generated as SysConfig output based on the selected device. Linker file includes memory configurations, and is specific to each compiler.</p></li>
+<li><p><strong>Startup</strong>: The relevant startup file will be referenced from the SDK based on the selected device family. Startup file includes peripheral configuration options.</p></li>
+<li><p><strong>Compiler Options</strong>: This file will be generated as SysConfig output based on the selected device, it includes compiler build options.</p></li>
+<li><p><strong>Library Includes</strong>: This file will be generated as SysConfig output based on the selected device and library parameters, and is specific to each compiler. The libraries included in this file can be selected by the user through the <strong>Include Libraries</strong> group parameters, which include. The libraries included in this list are the statically generated libraries included in the SDK, in order to add any other libraries users can manually add their source to the project. <strong>Note:</strong> If the user wants to manually modify any Project Configuration files, they should disable the option to generate that file from the Project Configuration module and then manually add their desired file to the project.</p></li>
+</ol>
 </section>
 <section id="event-configuration">
 <h3>4.9 Event Configuration<a class="headerlink" href="#event-configuration" title="Permalink to this heading">¶</a></h3>

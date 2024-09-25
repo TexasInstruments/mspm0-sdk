@@ -464,7 +464,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_TIMER_Cross_Trigger_init(void) {
 %       let inst = instances[i];
 %       let flavor = inst.peripheral.$solution.peripheralName;
 %       let flavorCat = "Timer"+(flavor.replace(/[0-9]/g, '')).slice(3);
-%if(inst.crossTriggerEn && (inst.crossTriggerAuthority == "Main")){
+%if(inst.crossTriggerEn && inst.timerStartTimer && (inst.crossTriggerAuthority == "Main")){
     DL_`flavorCat`_generateCrossTrigger(`inst.$name`_INST);
 %}
 %   }

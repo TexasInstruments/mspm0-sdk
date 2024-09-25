@@ -84,7 +84,6 @@ var searchData=
   ['uartsupport_5ffxns',['UARTSupport_Fxns',['../struct_u_a_r_t_support___fxns.html',1,'']]],
   ['uart_20mspm0l11xx_5fl13xx_20driver_20support_20apis',['UART MSPM0L11XX_L13XX driver support APIs',['../group___u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x.html',1,'']]],
   ['uartsupportmspm0l11xx_5fl13xx_2eh',['UARTSupportMSPM0L11XX_L13XX.h',['../_u_a_r_t_support_m_s_p_m0_l11_x_x___l13_x_x_8h.html',1,'']]],
-  ['unused',['unused',['../struct_d_m_a_m_s_p_m0___object.html#a9abd490a4df34078590eb5a1a44ef3c2',1,'DMAMSPM0_Object']]],
   ['userarg',['userArg',['../struct_u_a_r_t___object.html#a4525123d0c1ff2fe0567895cf38779f9',1,'UART_Object::userArg()'],['../struct_u_a_r_t___callback___object.html#ae237ba53a2d0df992edd2f394597e449',1,'UART_Callback_Object::userArg()'],['../struct_u_a_r_t___params.html#acca56fbd486b68476e5757ff547b6aa5',1,'UART_Params::userArg()']]],
   ['userargs',['userArgs',['../struct_g_p_i_o___config.html#ae88eb9b0c507389101e024057d2fa1aa',1,'GPIO_Config']]]
 ];

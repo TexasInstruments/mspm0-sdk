@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['owntargetaddr',['ownTargetAddr',['../struct_s_m_bus.html#a5d1a8c65b87e9ddead80f09a078444e9',1,'SMBus']]]
+  ['nwk',['nwk',['../struct_s_m_bus.html#a40f1b5d03be7def2fa0426b0c3e363a4',1,'SMBus']]],
+  ['nwk_20layer',['NWK layer',['../group__smbus__nwk.html',1,'']]]
 ];

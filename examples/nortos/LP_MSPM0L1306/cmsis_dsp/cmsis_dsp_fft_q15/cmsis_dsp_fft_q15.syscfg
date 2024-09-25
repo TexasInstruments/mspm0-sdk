@@ -8,12 +8,13 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 /**
  * Write custom configuration values to the imported modules.
  */
-
+ProjectConfig.genLibCMSIS = true;
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.clockTreeEn = true;

@@ -2271,6 +2271,7 @@ context_boot_go(struct boot_loader_state *state, struct boot_rsp *rsp)
     uint32_t i;
     int fa_id;
     int rc;
+    int boot_version_rc;
 #ifdef MCUBOOT_RAM_LOAD
     uint32_t img_dst;
     uint32_t img_sz;
@@ -2314,9 +2315,9 @@ context_boot_go(struct boot_loader_state *state, struct boot_rsp *rsp)
                 if (slot_usage[slot]) {
                     hdr = boot_img_hdr(state, slot);
                     if (selected_image_header != NULL) {
-                        rc = boot_version_cmp(&hdr->ih_ver,
+                        boot_version_rc = boot_version_cmp(&hdr->ih_ver,
                                               &selected_image_header->ih_ver);
-                        if (rc < 1) {
+                        if (boot_version_rc < 1) {
                             /* The version of the image being examined wasn't
                              * greater than the currently selected image's
                              * version.

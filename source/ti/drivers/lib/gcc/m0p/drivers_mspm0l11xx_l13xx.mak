@@ -14,7 +14,7 @@ CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/sour
 AFLAGS = -cr --target=elf32-little
 ASMFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" 
 
-OBJECTS = $(OBJ_DIR)/DMAMSPM0.o $(OBJ_DIR)/List.o $(OBJ_DIR)/RingBuf.o $(OBJ_DIR)/StructRingBuf.o $(OBJ_DIR)/ADC.o $(OBJ_DIR)/GPIO.o $(OBJ_DIR)/I2C.o $(OBJ_DIR)/UART.o $(OBJ_DIR)/ADCMSPM0.o $(OBJ_DIR)/GPIOMSPM0.o $(OBJ_DIR)/I2CMSPM0.o $(OBJ_DIR)/UARTMSPM0L11XX_L13XX.o
+OBJECTS = $(OBJ_DIR)/DMAMSPM0.o $(OBJ_DIR)/List.o $(OBJ_DIR)/RingBuf.o $(OBJ_DIR)/StructRingBuf.o $(OBJ_DIR)/ADC.o $(OBJ_DIR)/GPIO.o $(OBJ_DIR)/I2C.o $(OBJ_DIR)/UART.o $(OBJ_DIR)/SPI.o $(OBJ_DIR)/ADCMSPM0.o $(OBJ_DIR)/GPIOMSPM0.o $(OBJ_DIR)/I2CMSPM0.o $(OBJ_DIR)/UARTMSPM0L11XX_L13XX.o $(OBJ_DIR)/SPIMSPM0.o
 
 all: $(NAME).a
 
@@ -62,6 +62,11 @@ $(OBJ_DIR)/UART.o: $(SRC_DIR)/UART.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/SPI.o: $(SRC_DIR)/SPI.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/ADCMSPM0.o: $(SRC_DIR)/adc/ADCMSPM0.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
@@ -78,6 +83,11 @@ $(OBJ_DIR)/I2CMSPM0.o: $(SRC_DIR)/i2c/I2CMSPM0.c
 	@ $(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR)/UARTMSPM0L11XX_L13XX.o: $(SRC_DIR)/uart/UARTMSPM0L11XX_L13XX.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/SPIMSPM0.o: $(SRC_DIR)/spi/SPIMSPM0.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@

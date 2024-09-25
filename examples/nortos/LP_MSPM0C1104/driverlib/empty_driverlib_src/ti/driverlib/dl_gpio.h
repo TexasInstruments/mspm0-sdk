@@ -2306,7 +2306,7 @@ __STATIC_INLINE uint32_t DL_GPIO_isDMAccessEnabled(
 __STATIC_INLINE void DL_GPIO_setLowerPinsPolarity(
     GPIO_Regs* gpio, uint32_t polarity)
 {
-    gpio->POLARITY15_0 = polarity;
+    gpio->POLARITY15_0 |= polarity;
 }
 
 /**
@@ -2319,7 +2319,7 @@ __STATIC_INLINE void DL_GPIO_setLowerPinsPolarity(
 __STATIC_INLINE void DL_GPIO_setUpperPinsPolarity(
     GPIO_Regs* gpio, uint32_t polarity)
 {
-    gpio->POLARITY31_16 = polarity;
+    gpio->POLARITY31_16 |= polarity;
 }
 
 /**
@@ -2360,7 +2360,7 @@ __STATIC_INLINE uint32_t DL_GPIO_getUpperPinsPolarity(GPIO_Regs* gpio)
 __STATIC_INLINE void DL_GPIO_setLowerPinsInputFilter(
     GPIO_Regs* gpio, uint32_t filter)
 {
-    gpio->FILTEREN15_0 = filter;
+    gpio->FILTEREN15_0 |= filter;
 }
 
 /**
@@ -2373,7 +2373,7 @@ __STATIC_INLINE void DL_GPIO_setLowerPinsInputFilter(
 __STATIC_INLINE void DL_GPIO_setUpperPinsInputFilter(
     GPIO_Regs* gpio, uint32_t filter)
 {
-    gpio->FILTEREN31_16 = filter;
+    gpio->FILTEREN31_16 |= filter;
 }
 
 /**

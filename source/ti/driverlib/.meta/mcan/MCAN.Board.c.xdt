@@ -335,6 +335,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
     /* Configure Bit timings. */
     DL_MCAN_setBitTime(`instName`_INST, (DL_MCAN_BitTimingParams*) &g`instName`BitTimes);
 
+% if (inst.msgRamConfig){
+    /* Configure Message RAM Sections */
+    DL_MCAN_msgRAMConfig(`instName`_INST, (DL_MCAN_MsgRAMConfigParams*) &g`instName`MsgRAMConfigParams);
+% }
+
 %if ((inst.stdFiltElem != "000") && (inst.lss > 0) ){
     /* Configure Standard ID filter element */
     DL_MCAN_addStdMsgIDFilter(`instName`_INST, 0U, (DL_MCAN_StdMsgIDFilterElement *) &g`instName`StdFiltelem);
@@ -347,11 +352,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 
     /* Set Extended ID Mask. */
     DL_MCAN_setExtIDAndMask(`instName`_INST, `instName`_INST_MCAN_EXT_ID_AND_MASK );
-
-    % if (inst.msgRamConfig){
-    /* Configure Message RAM Sections */
-    DL_MCAN_msgRAMConfig(`instName`_INST, (DL_MCAN_MsgRAMConfigParams*) &g`instName`MsgRAMConfigParams);
-    % }
 
     /* Loopback mode */
 %   if(inst.loopbackMode == "external"){

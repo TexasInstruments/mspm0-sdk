@@ -11,13 +11,13 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = adc12_triggered_by_timer_event_stop.obj gcc_startup_mspm0c1104_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = adc12_triggered_by_timer_event_stop.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = adc12_triggered_by_timer_event_stop
 
 CFLAGS = -I.. \
     -I. \
-    -D__MSPM0C1104__ \
     -O2 \
+    @syscfg/device.opt \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
     -mcpu=cortex-m0plus \
@@ -33,11 +33,12 @@ CFLAGS = -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0c110x" \
-    -nostartfiles \
-    -Wl,-T,../gcc/mspm0c1104.lds \
+LFLAGS = -nostartfiles \
+    -ldevice.lds.genlibs \
+    -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
-    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0c110x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -67,10 +68,6 @@ endef
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
 adc12_triggered_by_timer_event_stop.obj: ../adc12_triggered_by_timer_event_stop.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-gcc_startup_mspm0c1104_gcc.obj: ../gcc/startup_mspm0c1104_gcc.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

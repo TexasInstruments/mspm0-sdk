@@ -67,7 +67,7 @@ void TIMER_0_INST_IRQHandler(void)
     switch (DL_TimerG_getPendingInterrupt(TIMER_0_INST)) {
         case DL_TIMERG_IIDX_ZERO:
             if (flag == 0) {
-                DL_GPIO_togglePins(GPIO_LED_PORT, GPIO_LED_USER_LED_1_PIN);
+                DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
             }
             break;
         case DL_TIMERG_IIDX_LOAD:
@@ -93,7 +93,7 @@ void GROUP0_IRQHandler(void)
                     switch (flag) {
                         case 0:
                             DL_GPIO_clearPins(
-                                GPIO_LED_PORT, GPIO_LED_USER_LED_1_PIN);
+                                GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
                             flag = 1;
                             break;
                         case 1:

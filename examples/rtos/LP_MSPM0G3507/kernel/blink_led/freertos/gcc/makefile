@@ -13,7 +13,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = main.obj main-blinky.obj freertos_gcc_startup_mspm0g3507_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = main.obj main-blinky.obj freertos_gcc_startup_mspm0g350x_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = blink_led
 
 CFLAGS = -I../.. \
@@ -41,11 +41,13 @@ CFLAGS = -I../.. \
 
 LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x" \
     -nostartfiles \
+    -l:driverlib.a \
     -Wl,-T,../../freertos/gcc/mspm0g3507.lds \
     "-Wl,-Map,$(NAME).map" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     "-L$(KERNEL_BUILD)/gcc" \
     -l:freertos.lib \
-    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -88,7 +90,7 @@ main-blinky.obj: ../../main-blinky.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
-freertos_gcc_startup_mspm0g3507_gcc.obj: ../../freertos/gcc/startup_mspm0g3507_gcc.c $(SYSCFG_H_FILES)
+freertos_gcc_startup_mspm0g350x_gcc.obj: ../../freertos/gcc/startup_mspm0g350x_gcc.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

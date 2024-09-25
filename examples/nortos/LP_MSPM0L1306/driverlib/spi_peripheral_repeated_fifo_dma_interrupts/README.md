@@ -19,6 +19,7 @@ During the transaction, the SPI Peripheral will transmit the data that is in the
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA0 | Open-Drain Output |
+| GPIOA | PA1 | Open-Drain Output |
 | SYSCTL |  |  |
 | SPI0 | PA6 | SPI SCLK (Clock) |
 | SPI0 | PA5 | SPI PICO (Peripheral In, Controller Out) |
@@ -36,12 +37,18 @@ Visit [LP_MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA0 | GPIOA | PA0 | J1_10 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J10 2:3` Use 3.3V pull-up<br><li>`J10 1:2` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J2 ON` Connect to LED1<br><li>`J2 OFF` Disconnect from LED1</ul></ul> |
+| PA1 | GPIOA | PA1 | J1_9 | <ul><li>PA1 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 2:3` Use 3.3V pull-up<br><li>`J9 1:2` Use 5V pull-up</ul></ul> |
 | PA6 | SPI0 | SCLK | J1_7 | N/A |
 | PA5 | SPI0 | MOSI | J2_15 | N/A |
 | PA4 | SPI0 | MISO | J2_14 | N/A |
 | PA3 | SPI0 | CS1_MISO1 | J2_19 | N/A |
 | PA20 | DEBUGSS | SWCLK | J2_13 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Device Migration Recommendations
+This project was developed for a superset device included in the LP_MSPM0L1306 LaunchPad. Please
+visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration)
+for information about migrating to other MSPM0 devices.
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to
@@ -64,7 +71,7 @@ Compile, load and run the example.
 
 Ensure that the SPI Peripheral example is running **before** starting the SPI Controller example.
 
-Once the example is started, the SPI Peripheral will wait to receive data. Every time data is received, LED0 will toggle. When the Controller initiates a transfer with the Peripheral, the Peripheral will transmit a data packet of {'x', 0x2, 0x3, 0x4}, where 'x' starts at '0' and should increment every time the Peripheral example sends a new data packet.
+Once the example is started, the SPI Peripheral will wait to receive data. Every time data is received, LED0 will toggle. The USER_TEST pin will toggle with LED1.  When the Controller initiates a transfer with the Peripheral, the Peripheral will transmit a data packet of {'x', 0x2, 0x3, 0x4}, where 'x' starts at '0' and should increment every time the Peripheral example sends a new data packet.
 
 An optional SW breakpoint can be uncommented in the application to check the results of the received data.
 If this example is used with the spi_controller_repeated_multibyte_fifo_dma_interrupts example, the expected data that will be received in gRxPacket is {'M', 'S', 'P', 'x'}, where 'x' starts at '0' and should increment every time the Controller example sends a new data packet.

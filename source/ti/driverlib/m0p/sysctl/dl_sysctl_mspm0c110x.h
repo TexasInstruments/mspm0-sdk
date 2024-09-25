@@ -34,7 +34,7 @@
  *  @brief      System Control (SysCtl)
  *  @defgroup   SYSCTL_MSPM0C110X MSPM0C110X System Control (SYSCTL)
  *
- *  @anchor ti_dl_m0p_mspm0c_dl_sysctl_Overview
+ *  @anchor ti_dl_m0p_mspm0c110x_dl_sysctl_Overview
  *  # Overview
  *
  *  The System Control (SysCtl) module enables control over system wide
@@ -497,11 +497,11 @@ typedef enum {
     /*! Shutdown Storage Byte 0 */
     DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_0 = 0x0,
     /*! Shutdown Storage Byte 1 */
-    DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_1 = 0x4,
+    DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_1 = 0x1,
     /*! Shutdown Storage Byte 2 */
-    DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_2 = 0x8,
+    DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_2 = 0x2,
     /*! Shutdown Storage Byte 3 */
-    DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_3 = 0xC,
+    DL_SYSCTL_SHUTDOWN_STORAGE_BYTE_3 = 0x3,
 } DL_SYSCTL_SHUTDOWN_STORAGE_BYTE;
 
 /** @enum DL_SYSCTL_RESET_CAUSE */

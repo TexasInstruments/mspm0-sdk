@@ -46,9 +46,7 @@
       <topic label="DMAMSPM0_HWAttrs" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html">
         <topic label="dmaIsrFxn" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#aaa249f1ea874ab783337ba700ba92e16"/>
         <topic label="intPriority" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#af674ed538149edc488580357b1854f0e"/>
-      </topic>
-      <topic label="DMAMSPM0_Object" href="struct_d_m_a_m_s_p_m0___object.html">
-        <topic label="unused" href="struct_d_m_a_m_s_p_m0___object.html#a9abd490a4df34078590eb5a1a44ef3c2"/>
+        <topic label="roundRobinPriority" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#a591f7065e5eb3f9cb3da8ff0f7cb6215"/>
       </topic>
       <topic label="DMAMSPM0_Transfer" href="struct_d_m_a_m_s_p_m0___transfer.html">
         <topic label="txTrigger" href="struct_d_m_a_m_s_p_m0___transfer.html#a36aafd8ec70c45af89205708dc2919b0"/>
@@ -65,26 +63,30 @@
         <topic label="dmaTransferSource" href="struct_d_m_a_m_s_p_m0___transfer.html#a0ebebafdd013070d0833cf16d3f63cfb"/>
         <topic label="dmaTransferDestination" href="struct_d_m_a_m_s_p_m0___transfer.html#a230b86a92925475564175d390917785a"/>
         <topic label="noOfData" href="struct_d_m_a_m_s_p_m0___transfer.html#a9123b47b6f6ee4af2705ff7c591ed99e"/>
-        <topic label="roundRobinPriority" href="struct_d_m_a_m_s_p_m0___transfer.html#a386da2d8a26856976ed44abbd475a744"/>
+        <topic label="dmaChIsrFxn" href="struct_d_m_a_m_s_p_m0___transfer.html#aa2a80f908af7bf81799ef1b11acf8ed2"/>
         <topic label="enableDMAISR" href="struct_d_m_a_m_s_p_m0___transfer.html#ad88deea44659872e6803e6cee2c75bc9"/>
       </topic>
+      <topic label="DMAMSPM0_Object" href="struct_d_m_a_m_s_p_m0___object.html">
+        <topic label="dmaTransfer" href="struct_d_m_a_m_s_p_m0___object.html#ad7e7237725e56bf2b3d74e179f212ad6"/>
+      </topic>
       <topic label="DMAMSPM0_Cfg" href="struct_d_m_a_m_s_p_m0___cfg.html">
-        <topic label="object" href="struct_d_m_a_m_s_p_m0___cfg.html#af95b4b92269f4c872aab141a92f02b3a"/>
-        <topic label="hwAttrs" href="struct_d_m_a_m_s_p_m0___cfg.html#aacdefe7b3fc5cd387a665f90d5159dee"/>
+        <topic label="hwAttrs" href="struct_d_m_a_m_s_p_m0___cfg.html#a478566f90635171da7b9f3ec828a0838"/>
+        <topic label="object" href="struct_d_m_a_m_s_p_m0___cfg.html#ae368ad211e9ffca060917bb67db00d3d"/>
       </topic>
       <topic label="NUM_DMA_CHANNELS" href="group___d_m_a.html#gaee3ce80a589ee0a658d1f1d293083692"/>
       <topic label="DMAMSPM0_IsrFxn" href="group___d_m_a.html#ga1d63418e0aacc8c97993301127d8de20"/>
       <topic label="DMAMSPM0_Handle" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a"/>
       <topic label="DMAMSPM0_close" href="group___d_m_a.html#gae95a2c66447e2ddd3ae9d9b645c53942"/>
       <topic label="DMAMSPM0_init" href="group___d_m_a.html#ga8a379aa65552a10e85cc4b1cb394896b"/>
-      <topic label="DMAMSPM0_open" href="group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2"/>
+      <topic label="DMAMSPM0_open" href="group___d_m_a.html#ga88e5d02f8c8a69e7159ea12874c178b4"/>
       <topic label="DMAMSPM0_setupTransfer" href="group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31"/>
-      <topic label="DMA_Init" href="group___d_m_a.html#gaa469f6d48b00671eeb013a691dc81529"/>
+      <topic label="DMA_Init" href="group___d_m_a.html#gafdc13f6d8d07e139cb4454439936e7bd"/>
       <topic label="DMAMSPM0_disableChannel" href="group___d_m_a.html#ga7f580446972a92c87d13cda5a2d666e8"/>
       <topic label="DMAMSPM0_getCurrTransferSize" href="group___d_m_a.html#ga8fb50a12e77ce31821a6fa827460144d"/>
       <topic label="DMA_Params_init" href="group___d_m_a.html#gad58062cd1e508a3fdf174bc65639b9e3"/>
       <topic label="DMAMSPM0_copyDMAParams" href="group___d_m_a.html#gae6ed9ea7cefc32ae6528cf9bc2da1f2e"/>
-      <topic label="DMAMSPM0_Config" href="group___d_m_a.html#gacaa3ef9937116a3377e8181d9c036ea9"/>
+      <topic label="DMAMSPM0_Config" href="group___d_m_a.html#ga0b835cf9a1f0f768cf8c18efe2abe02c"/>
+      <topic label="DMA_Count" href="group___d_m_a.html#ga691a5faa765d34c7d5469426a7690f1a"/>
     </topic>
     <topic label="General Purpose Input Output (GPIO)" href="group___g_p_i_o.html">
       <topic label="GPIO status codes" href="group___g_p_i_o___s_t_a_t_u_s.html">
@@ -251,6 +253,190 @@
       <topic label="I2C_transferTimeout" href="group___i2_c.html#gaaee4f0689acbe5f0596e35b18402abf3"/>
       <topic label="I2C_config" href="group___i2_c.html#gaff23dd4a23f45b3bf8b634c56c272ebc"/>
       <topic label="I2C_count" href="group___i2_c.html#ga2f7b47492e348b701dc5add470d898e8"/>
+    </topic>
+    <topic label="Serial Peripheral Interface (SPI)" href="group___s_p_i.html">
+      <topic label="SPI_control command and status codes" href="group___s_p_i___c_o_n_t_r_o_l.html">
+        <topic label="Status Codes" href="group___s_p_i___s_t_a_t_u_s.html">
+          <topic label="SPI_STATUS_SUCCESS" href="group___s_p_i___s_t_a_t_u_s.html#gab38fa90ff62128dbc98b2ecd84ca106f"/>
+          <topic label="SPI_STATUS_ERROR" href="group___s_p_i___s_t_a_t_u_s.html#ga2d0020dd673cc28a9e1c20b0ff101073"/>
+          <topic label="SPI_STATUS_UNDEFINEDCMD" href="group___s_p_i___s_t_a_t_u_s.html#gacfcd15e1eecdb99b4867adc7592a8d6e"/>
+        </topic>
+        <topic label="Command Codes" href="group___s_p_i___c_m_d.html">
+        </topic>
+        <topic label="SPI_CMD_RESERVED" href="group___s_p_i___c_o_n_t_r_o_l.html#ga3d23d16525ee76f77276472d8dea80b0"/>
+        <topic label="SPI_STATUS_RESERVED" href="group___s_p_i___c_o_n_t_r_o_l.html#gae1af8c6ebf5e8fe481649f65e37b1b9f"/>
+      </topic>
+      <topic label="SPI driver APIs" href="group___s_p_i_m_s_p_m0.html">
+        <topic label="SPIMSPM0_STATUS" href="group___s_p_i_m_s_p_m0___s_t_a_t_u_s.html">
+        </topic>
+        <topic label="SPIMSPM0_CMD" href="group___s_p_i_m_s_p_m0___c_m_d.html">
+          <topic label="SPIMSPM0_CMD_RETURN_PARTIAL_ENABLE" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga0f4cca3db31c6b6fc8fee5a979696353"/>
+          <topic label="SPIMSPM0_CMD_RETURN_PARTIAL_DISABLE" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga0e3e30cb4488579367853ae51c0a68af"/>
+          <topic label="SPIMSPM0_CMD_SET_CSN_PIN" href="group___s_p_i_m_s_p_m0___c_m_d.html#gab4714c9b484cb394d114880133ce5d39"/>
+          <topic label="SPIMSPM0_CMD_CLEAR_CSN_PIN" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga4c08a0413ed09d987cf067e4fe934f29"/>
+          <topic label="SPIMSPM0_CMD_SET_MANUAL" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga2a5a217cdeadd965d7e6a222698776ec"/>
+          <topic label="SPIMSPM0_CMD_CLR_MANUAL" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga6635712259b8c67d51bc97acbfdbbc68"/>
+          <topic label="SPIMSPM0_CMD_MANUAL_START" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga243ecdc4c5cdc1215ae0e9cc4c824988"/>
+          <topic label="SPIMSPM0_CMD_SET_SAMPLE_DELAY" href="group___s_p_i_m_s_p_m0___c_m_d.html#gac97ae76777138a093ed7f194b04351d1"/>
+        </topic>
+        <topic label="SPIMSPM0_HWAttrs" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html">
+          <topic label="spi" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#abd53cd1b93ac1a35fee572ea5a274501"/>
+          <topic label="intNum" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aba1639bfdf966def40f42f7363302571"/>
+          <topic label="intPriority" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a9dbf9c9e34291b3a6708fd90c12675e8"/>
+          <topic label="defaultTxBufValue" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aa39c2b3a8b4621089bcfcc633d05c815"/>
+          <topic label="clockSource" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a3e2d4f09f065061e99b1736d793f88ab"/>
+          <topic label="clockDivider" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a6a64d36ce2eb67a183f59e81c81c2dc3"/>
+          <topic label="pociPinMux" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a230dffba9be082cdeffc7dbf7dc06e18"/>
+          <topic label="picoPinMux" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a38c10032c7c15ba42fedae6f69facc35"/>
+          <topic label="sclkPinMux" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a0ec6a0bf27817b4a07437efe0cb242ca"/>
+          <topic label="csnPinMux" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a82032f2a4b4ae9cd2cc0de03caa05ca1"/>
+          <topic label="pociPincm" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a50b7246f429a121dba1fda730b0ecc7d"/>
+          <topic label="pociPin" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aceb9d7986c1411fad9e106aeddf19f21"/>
+          <topic label="picoPincm" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aa927e4e7e22c022171184e037d5f7ee5"/>
+          <topic label="picoPin" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a33f93a13febafc51e57f1f947d3778aa"/>
+          <topic label="sclkPincm" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#affa8c2ebf8d4eba6d0edbf627454d655"/>
+          <topic label="sclkPin" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a8d156d00d9f4b786cda30592d50f65c6"/>
+          <topic label="csnPincm" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aa25dc9256f7fa90dbbd0ee23998ca6f2"/>
+          <topic label="csnPin" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a3a607cb011b5dbf6d0958b4eb71c3ba1"/>
+          <topic label="txFifoThreshold" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#ac2335e7fc4f00a03d81d8af5e02e818b"/>
+          <topic label="rxFifoThreshold" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a1498c77e55bdc3706b167fd012ddd2ee"/>
+          <topic label="cssel" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a2b1dfe9eeafb54d3012f882ba8f115df"/>
+          <topic label="noOfDMAChannels" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#ab8f1553ff6765ed3a8159772e0001b05"/>
+        </topic>
+        <topic label="SPIMSPM0_Object" href="struct_s_p_i_m_s_p_m0___object.html">
+          <topic label="hwi" href="struct_s_p_i_m_s_p_m0___object.html#a82bfe8d3f32a2b4b619822446cd97177"/>
+          <topic label="transferComplete" href="struct_s_p_i_m_s_p_m0___object.html#ab4d27f1d8e9cd354149129a188706baf"/>
+          <topic label="DMA_Handle" href="struct_s_p_i_m_s_p_m0___object.html#adc3c5d73834c9445156fb5972236edec"/>
+          <topic label="transferCallbackFxn" href="struct_s_p_i_m_s_p_m0___object.html#ad124795f0b0417ecffc764948146802f"/>
+          <topic label="headPtr" href="struct_s_p_i_m_s_p_m0___object.html#a8bb7d7e4a2270fe6b49d6812be8a6e45"/>
+          <topic label="tailPtr" href="struct_s_p_i_m_s_p_m0___object.html#acdbc71b5baf22cb92eec15c40dabf5c6"/>
+          <topic label="framesQueued" href="struct_s_p_i_m_s_p_m0___object.html#a51b1badba081ef455b4e326f9fdaf464"/>
+          <topic label="framesTransferred" href="struct_s_p_i_m_s_p_m0___object.html#ad2b3d6585278ffc97de0f146609bb4b2"/>
+          <topic label="transferSize" href="struct_s_p_i_m_s_p_m0___object.html#aa4ea204d772ceaed50a325252ef647d9"/>
+          <topic label="txDMAChannel" href="struct_s_p_i_m_s_p_m0___object.html#aafb493b68fe88621b5c72a7904d1c6e1"/>
+          <topic label="rxDMAChannel" href="struct_s_p_i_m_s_p_m0___object.html#a66182b911bb74b165c714dc6b45a560b"/>
+          <topic label="bitRate" href="struct_s_p_i_m_s_p_m0___object.html#a496905162ff9e572e80d05144592501d"/>
+          <topic label="dataSize" href="struct_s_p_i_m_s_p_m0___object.html#a2c4c95930724092cfaafce2fa9bc8a92"/>
+          <topic label="transferTimeout" href="struct_s_p_i_m_s_p_m0___object.html#a901bee615ecde6b371f6e2b90e681b5d"/>
+          <topic label="busyBit" href="struct_s_p_i_m_s_p_m0___object.html#a87f4702a5e85588682bd99039d72d241"/>
+          <topic label="dsample" href="struct_s_p_i_m_s_p_m0___object.html#a6fbf9a538132df11d1cb34a05455ff5e"/>
+          <topic label="rxScratchBuf" href="struct_s_p_i_m_s_p_m0___object.html#a1bfc960d4730d8d458f37f2c4b9c2fca"/>
+          <topic label="txScratchBuf" href="struct_s_p_i_m_s_p_m0___object.html#a8e0e1a68195586c5e7501ca0242dfd47"/>
+          <topic label="transferMode" href="struct_s_p_i_m_s_p_m0___object.html#abe9b80bd5bfd5ea02bd24a2404189285"/>
+          <topic label="mode" href="struct_s_p_i_m_s_p_m0___object.html#aef473be71ccb5e65eb6ae3a20c2aa222"/>
+          <topic label="format" href="struct_s_p_i_m_s_p_m0___object.html#a3d04e130ce401e5390a409fe1a4bdf62"/>
+          <topic label="bitOrder" href="struct_s_p_i_m_s_p_m0___object.html#a90fc26790ae53d067eab27c593a77066"/>
+          <topic label="csnPin" href="struct_s_p_i_m_s_p_m0___object.html#af31124669719cf821c12ff340b253ecb"/>
+          <topic label="returnPartial" href="struct_s_p_i_m_s_p_m0___object.html#a43952599434cca224b11cca315aedb29"/>
+          <topic label="parity" href="struct_s_p_i_m_s_p_m0___object.html#a6f3635d3706499902d2f22cdc3c4691e"/>
+          <topic label="isOpen" href="struct_s_p_i_m_s_p_m0___object.html#a32ddc8ae8500bf96d9cd17e0ef445f95"/>
+          <topic label="manualStart" href="struct_s_p_i_m_s_p_m0___object.html#a67b47f88baba2eaf803e1a0ba89a6830"/>
+        </topic>
+        <topic label="SPIMSPM0_FrameSize" href="group___s_p_i_m_s_p_m0.html#ga19d7d203a1e73d4fdf18add8e6bda371">
+          <topic label="SPIMSPM0_8bit" href="group___s_p_i_m_s_p_m0.html#gga19d7d203a1e73d4fdf18add8e6bda371af1079c2402b17c3529d9c42a42d31e00"/>
+          <topic label="SPIMSPM0_16bit" href="group___s_p_i_m_s_p_m0.html#gga19d7d203a1e73d4fdf18add8e6bda371a54bb8a176ef256dcc8672cb52c1f6e82"/>
+        </topic>
+        <topic label="SPIMSPM0_ReturnPartial" href="group___s_p_i_m_s_p_m0.html#ga7fba94adf8e4fc2252260108d1097e76">
+          <topic label="SPIMSPM0_retPartDisabled" href="group___s_p_i_m_s_p_m0.html#gga7fba94adf8e4fc2252260108d1097e76a6c70e9cb9b6f2bc190272c740d9f16ee"/>
+          <topic label="SPIMSPM0_retPartEnabledIntNotSet" href="group___s_p_i_m_s_p_m0.html#gga7fba94adf8e4fc2252260108d1097e76aba17e0035fe92196aa47f57c28972c78"/>
+          <topic label="SPIMSPM0_retPartEnabledIntSet" href="group___s_p_i_m_s_p_m0.html#gga7fba94adf8e4fc2252260108d1097e76a967c890f4b33974e0a40f88b958ba762"/>
+        </topic>
+        <topic label="SPIMSPM0_fxnTable" href="group___s_p_i_m_s_p_m0.html#ga87b97d9d108f5880b21f2242ad937fff"/>
+      </topic>
+      <topic label="SPI_Transaction" href="struct_s_p_i___transaction.html">
+        <topic label="count" href="struct_s_p_i___transaction.html#ad049d6a900c4bdb59a5ee8ce3d5bced2"/>
+        <topic label="txBuf" href="struct_s_p_i___transaction.html#a9461a248f1cceb4048668d44b323a0b8"/>
+        <topic label="rxBuf" href="struct_s_p_i___transaction.html#a214f57d7809c875fb9456a62a406e041"/>
+        <topic label="arg" href="struct_s_p_i___transaction.html#ac47daaa10705d748ace918a098aa1945"/>
+        <topic label="status" href="struct_s_p_i___transaction.html#aa244504b2384411f7de17340be62128a"/>
+        <topic label="nextPtr" href="struct_s_p_i___transaction.html#a3857151eff782605a3b3c4edeb884130"/>
+      </topic>
+      <topic label="SPI_Params" href="struct_s_p_i___params.html">
+        <topic label="transferMode" href="struct_s_p_i___params.html#a16dbcc3768a01fb7deae25b48fc0d69c"/>
+        <topic label="transferTimeout" href="struct_s_p_i___params.html#a600801907cf396a96825eaf69781913a"/>
+        <topic label="transferCallbackFxn" href="struct_s_p_i___params.html#a68d1d610da6a6bf299121b939ef2a352"/>
+        <topic label="mode" href="struct_s_p_i___params.html#abe5eca64adf4ca96bed206a271d9b157"/>
+        <topic label="bitRate" href="struct_s_p_i___params.html#ab3f035044fdbe75adac8c1d729d8cf20"/>
+        <topic label="dataSize" href="struct_s_p_i___params.html#a30722b1de5e3b089ecf0c669da42ed2d"/>
+        <topic label="frameFormat" href="struct_s_p_i___params.html#a67b5ebb8ec72796a0260c427c91cc093"/>
+        <topic label="parity" href="struct_s_p_i___params.html#ad573c07574d20e4826537d99cbc585a8"/>
+        <topic label="bitOrder" href="struct_s_p_i___params.html#a75b275c518d981db1ca6cde1fdb597d1"/>
+        <topic label="custom" href="struct_s_p_i___params.html#a909f58a310514d16b4fee1b51033d976"/>
+      </topic>
+      <topic label="SPI_FxnTable" href="struct_s_p_i___fxn_table.html">
+        <topic label="closeFxn" href="struct_s_p_i___fxn_table.html#a4cfaf232f1b8c27f570a7e48f31cdffd"/>
+        <topic label="controlFxn" href="struct_s_p_i___fxn_table.html#a8823765c2e1d303e18da6bec1a432210"/>
+        <topic label="initFxn" href="struct_s_p_i___fxn_table.html#aa4a0b45347320aed418d45cdb6609664"/>
+        <topic label="openFxn" href="struct_s_p_i___fxn_table.html#a938876d892f41db4a3837f93e1ef04c0"/>
+        <topic label="transferFxn" href="struct_s_p_i___fxn_table.html#ae4294e8e6273b581459432386439ca88"/>
+        <topic label="transferCancelFxn" href="struct_s_p_i___fxn_table.html#a50f7f21536780c912dedf32c0918034c"/>
+      </topic>
+      <topic label="SPI_Config_" href="struct_s_p_i___config__.html">
+        <topic label="fxnTablePtr" href="struct_s_p_i___config__.html#a422fb4ed4cc7ceb4d8f7d03d9f37639f"/>
+        <topic label="object" href="struct_s_p_i___config__.html#a99ceb1a7284c7f76c6ce19f599721df3"/>
+        <topic label="hwAttrs" href="struct_s_p_i___config__.html#aa0e01417e2e18ecf220f5f580882b94e"/>
+      </topic>
+      <topic label="SPI_WAIT_FOREVER" href="group___s_p_i.html#ga7cab73b936e6e08392882196df41277e"/>
+      <topic label="SPI_Handle" href="group___s_p_i.html#ga93072bc33543d36c9603198df25ee388"/>
+      <topic label="SPI_CallbackFxn" href="group___s_p_i.html#ga207e2d5a7e7ea5606b6995b6485ca015"/>
+      <topic label="SPI_CloseFxn" href="group___s_p_i.html#gaa361d580eb0a5a052d0a1403e0aa5746"/>
+      <topic label="SPI_ControlFxn" href="group___s_p_i.html#ga0505b9eca5030ca4fc27959e2b5134ca"/>
+      <topic label="SPI_InitFxn" href="group___s_p_i.html#gaa3b32db8f017fd0ce92bf46a089659e6"/>
+      <topic label="SPI_OpenFxn" href="group___s_p_i.html#ga7e0786f4c1487f9daec49adbc3ac1cf5"/>
+      <topic label="SPI_TransferFxn" href="group___s_p_i.html#ga470d264d053b30edb0aaafcafd335c26"/>
+      <topic label="SPI_TransferCancelFxn" href="group___s_p_i.html#ga33f5b214451ac89ea462083eeba0bf8c"/>
+      <topic label="SPI_Config" href="group___s_p_i.html#ga9ce9680cc88c403db466864c02ee4733"/>
+      <topic label="SPI_Status" href="group___s_p_i.html#ga913c57c335166de9caa54b7eb9ad95fb">
+        <topic label="SPI_TRANSFER_COMPLETED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbabb35466595b950df7e3e3d880336502b"/>
+        <topic label="SPI_TRANSFER_STARTED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbad5266453aecb2fdedc0c23cd90921627"/>
+        <topic label="SPI_TRANSFER_CANCELED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fba78957da92681e8400d84d9d3ede55836"/>
+        <topic label="SPI_TRANSFER_FAILED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbac01b83da31c34da13025a5b987ef013f"/>
+        <topic label="SPI_TRANSFER_CSN_DEASSERT" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbaa363cddc53c1f44ca73aa661e6535816"/>
+        <topic label="SPI_TRANSFER_PEND_CSN_ASSERT" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbad9c52e5a8cefc5b6926e19a8dd62125b"/>
+        <topic label="SPI_TRANSFER_QUEUED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fba296a4fda0015070e612ab8e1ee5bc287"/>
+      </topic>
+      <topic label="SPI_Mode" href="group___s_p_i.html#ga60a7e3d74577b38aa79ea6983362f942">
+        <topic label="SPI_CONTROLLER" href="group___s_p_i.html#gga60a7e3d74577b38aa79ea6983362f942a061361eeeb9e87265edcc0c70868111a"/>
+        <topic label="SPI_PERIPHERAL" href="group___s_p_i.html#gga60a7e3d74577b38aa79ea6983362f942adf4cb39226caf2dcd726e13d39546393"/>
+      </topic>
+      <topic label="SPI_Parity" href="group___s_p_i.html#gab75f5a479e95ad0e98360055bc1c1f35">
+        <topic label="SPI_PARITY_EVEN" href="group___s_p_i.html#ggab75f5a479e95ad0e98360055bc1c1f35a2fa64e21889916ca4254f1e44a21a3b0"/>
+        <topic label="SPI_PARITY_ODD" href="group___s_p_i.html#ggab75f5a479e95ad0e98360055bc1c1f35a5c6222b22c7680bb883e92db7bee9aaf"/>
+        <topic label="SPI_PARITY_NONE" href="group___s_p_i.html#ggab75f5a479e95ad0e98360055bc1c1f35a606bf2c59faca5c1c4f5ab5727f99092"/>
+      </topic>
+      <topic label="SPI_BitOrder" href="group___s_p_i.html#ga106b6ebb4e3ef7cb032ff3aa268845dc">
+        <topic label="SPI_BIT_ORDER_MSB_FIRST" href="group___s_p_i.html#gga106b6ebb4e3ef7cb032ff3aa268845dca2f62df128ff20f3a9632c7f72732491a"/>
+        <topic label="SPI_BIT_ORDER_LSB_FIRST" href="group___s_p_i.html#gga106b6ebb4e3ef7cb032ff3aa268845dca8b9afce8db1ee080e7f9d65aa1aaeae5"/>
+      </topic>
+      <topic label="SPI_Chip_Select" href="group___s_p_i.html#ga698a8a81a50a4680e01a61a2bc6cd448">
+        <topic label="SPI_CHIP_SELECT_0" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448ae77428c6bcd683075755afd9ffa6cf69"/>
+        <topic label="SPI_CHIP_SELECT_1" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448ad6501b0988ea961fde16494ce39613d0"/>
+        <topic label="SPI_CHIP_SELECT_2" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448a27cd24e29ab63f4d4366b935ca257279"/>
+        <topic label="SPI_CHIP_SELECT_3" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448a67138f6074fc8482903346d672f04735"/>
+        <topic label="SPI_CHIP_SELECT_NONE" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448a074d517c8409cc3546fff69d1586ee1b"/>
+      </topic>
+      <topic label="SPI_FrameFormat" href="group___s_p_i.html#ga4e1f33555dfa8147205af5b266f3a489">
+        <topic label="SPI_MOTO3_POL0_PHA0" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489ab1c47ac2363171b45688a8f93efd54ba"/>
+        <topic label="SPI_MOTO3_POL0_PHA1" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489adddab699b871d83218973f83abe427a6"/>
+        <topic label="SPI_MOTO3_POL1_PHA0" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a513311435bbe54b20bc1134dc6048282"/>
+        <topic label="SPI_MOTO3_POL1_PHA1" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489afebf4381b28492519eef2417975a6895"/>
+        <topic label="SPI_MOTO4_POL0_PHA0" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a8d214eb370e47cad9eb1661435f519ec"/>
+        <topic label="SPI_MOTO4_POL0_PHA1" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a95bf04ad7004a36ff16bb476b47848e8"/>
+        <topic label="SPI_MOTO4_POL1_PHA0" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a2641cbe59252d39c28b8caf5b10cfc41"/>
+        <topic label="SPI_MOTO4_POL1_PHA1" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a5d9d0fc18249b143c8fedc893b882e3a"/>
+        <topic label="SPI_TI" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489ac3cb11b3a833e28368e267161551eb1d"/>
+      </topic>
+      <topic label="SPI_TransferMode" href="group___s_p_i.html#gab9ea76c6529d6076eee5e1c4a5a92c6f">
+        <topic label="SPI_MODE_BLOCKING" href="group___s_p_i.html#ggab9ea76c6529d6076eee5e1c4a5a92c6fa0dfb2358e008316426895e7237c398e8"/>
+        <topic label="SPI_MODE_CALLBACK" href="group___s_p_i.html#ggab9ea76c6529d6076eee5e1c4a5a92c6fa5631e69925c47a62a261c78ebbda39fb"/>
+      </topic>
+      <topic label="SPI_close" href="group___s_p_i.html#ga0e3448b30b88609fa120915e49560601"/>
+      <topic label="SPI_control" href="group___s_p_i.html#ga1b3fafc9892141b7bab1bc9c19ede9ef"/>
+      <topic label="SPI_init" href="group___s_p_i.html#gafd9b09f58917f0e2d14c61b956eba214"/>
+      <topic label="SPI_open" href="group___s_p_i.html#ga9c9022decfb136991d6b53f7dd2ae2fc"/>
+      <topic label="SPI_Params_init" href="group___s_p_i.html#ga9c3dd1748332fd6e31c79a6538a71642"/>
+      <topic label="SPI_transfer" href="group___s_p_i.html#ga989e17f96b54fcc3dc2cac5f8ac6bdb2"/>
+      <topic label="SPI_transferCancel" href="group___s_p_i.html#ga6819f7761fc3505c4f885653ff8121f0"/>
     </topic>
     <topic label="Universal Asynchronous Receiver-Transmitter (UART)" href="group___u_a_r_t.html">
       <topic label="UART MSPM0L11XX_L13XX driver APIs" href="group___u_a_r_t_m_s_p_m0_l11_x_x___l13_x_x.html">
@@ -455,15 +641,16 @@
         <topic label="isProtected" href="struct_a_d_c___params.html#afcfab4dda63383c2dcf0bb21fe519c53"/>
       </topic>
       <topic label="DMAMSPM0_Cfg" href="struct_d_m_a_m_s_p_m0___cfg.html">
-        <topic label="object" href="struct_d_m_a_m_s_p_m0___cfg.html#af95b4b92269f4c872aab141a92f02b3a"/>
-        <topic label="hwAttrs" href="struct_d_m_a_m_s_p_m0___cfg.html#aacdefe7b3fc5cd387a665f90d5159dee"/>
+        <topic label="hwAttrs" href="struct_d_m_a_m_s_p_m0___cfg.html#a478566f90635171da7b9f3ec828a0838"/>
+        <topic label="object" href="struct_d_m_a_m_s_p_m0___cfg.html#ae368ad211e9ffca060917bb67db00d3d"/>
       </topic>
       <topic label="DMAMSPM0_HWAttrs" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html">
         <topic label="dmaIsrFxn" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#aaa249f1ea874ab783337ba700ba92e16"/>
         <topic label="intPriority" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#af674ed538149edc488580357b1854f0e"/>
+        <topic label="roundRobinPriority" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#a591f7065e5eb3f9cb3da8ff0f7cb6215"/>
       </topic>
       <topic label="DMAMSPM0_Object" href="struct_d_m_a_m_s_p_m0___object.html">
-        <topic label="unused" href="struct_d_m_a_m_s_p_m0___object.html#a9abd490a4df34078590eb5a1a44ef3c2"/>
+        <topic label="dmaTransfer" href="struct_d_m_a_m_s_p_m0___object.html#ad7e7237725e56bf2b3d74e179f212ad6"/>
       </topic>
       <topic label="DMAMSPM0_Transfer" href="struct_d_m_a_m_s_p_m0___transfer.html">
         <topic label="txTrigger" href="struct_d_m_a_m_s_p_m0___transfer.html#a36aafd8ec70c45af89205708dc2919b0"/>
@@ -480,7 +667,7 @@
         <topic label="dmaTransferSource" href="struct_d_m_a_m_s_p_m0___transfer.html#a0ebebafdd013070d0833cf16d3f63cfb"/>
         <topic label="dmaTransferDestination" href="struct_d_m_a_m_s_p_m0___transfer.html#a230b86a92925475564175d390917785a"/>
         <topic label="noOfData" href="struct_d_m_a_m_s_p_m0___transfer.html#a9123b47b6f6ee4af2705ff7c591ed99e"/>
-        <topic label="roundRobinPriority" href="struct_d_m_a_m_s_p_m0___transfer.html#a386da2d8a26856976ed44abbd475a744"/>
+        <topic label="dmaChIsrFxn" href="struct_d_m_a_m_s_p_m0___transfer.html#aa2a80f908af7bf81799ef1b11acf8ed2"/>
         <topic label="enableDMAISR" href="struct_d_m_a_m_s_p_m0___transfer.html#ad88deea44659872e6803e6cee2c75bc9"/>
       </topic>
       <topic label="GPIO_Config" href="struct_g_p_i_o___config.html">
@@ -533,6 +720,92 @@
         <topic label="sdaPincm" href="struct_i2_c_m_s_p_m0___object.html#adbc35635a515b979d6f95ac03016e6f6"/>
         <topic label="sclPincm" href="struct_i2_c_m_s_p_m0___object.html#a99c74a516c7f5af573871fb8ddb145c3"/>
         <topic label="i2cPostFxn" href="struct_i2_c_m_s_p_m0___object.html#a7eace6e7fc1c4b67aa27ae08463650a3"/>
+      </topic>
+      <topic label="SPI_Config_" href="struct_s_p_i___config__.html">
+        <topic label="fxnTablePtr" href="struct_s_p_i___config__.html#a422fb4ed4cc7ceb4d8f7d03d9f37639f"/>
+        <topic label="object" href="struct_s_p_i___config__.html#a99ceb1a7284c7f76c6ce19f599721df3"/>
+        <topic label="hwAttrs" href="struct_s_p_i___config__.html#aa0e01417e2e18ecf220f5f580882b94e"/>
+      </topic>
+      <topic label="SPI_FxnTable" href="struct_s_p_i___fxn_table.html">
+        <topic label="closeFxn" href="struct_s_p_i___fxn_table.html#a4cfaf232f1b8c27f570a7e48f31cdffd"/>
+        <topic label="controlFxn" href="struct_s_p_i___fxn_table.html#a8823765c2e1d303e18da6bec1a432210"/>
+        <topic label="initFxn" href="struct_s_p_i___fxn_table.html#aa4a0b45347320aed418d45cdb6609664"/>
+        <topic label="openFxn" href="struct_s_p_i___fxn_table.html#a938876d892f41db4a3837f93e1ef04c0"/>
+        <topic label="transferFxn" href="struct_s_p_i___fxn_table.html#ae4294e8e6273b581459432386439ca88"/>
+        <topic label="transferCancelFxn" href="struct_s_p_i___fxn_table.html#a50f7f21536780c912dedf32c0918034c"/>
+      </topic>
+      <topic label="SPI_Params" href="struct_s_p_i___params.html">
+        <topic label="transferMode" href="struct_s_p_i___params.html#a16dbcc3768a01fb7deae25b48fc0d69c"/>
+        <topic label="transferTimeout" href="struct_s_p_i___params.html#a600801907cf396a96825eaf69781913a"/>
+        <topic label="transferCallbackFxn" href="struct_s_p_i___params.html#a68d1d610da6a6bf299121b939ef2a352"/>
+        <topic label="mode" href="struct_s_p_i___params.html#abe5eca64adf4ca96bed206a271d9b157"/>
+        <topic label="bitRate" href="struct_s_p_i___params.html#ab3f035044fdbe75adac8c1d729d8cf20"/>
+        <topic label="dataSize" href="struct_s_p_i___params.html#a30722b1de5e3b089ecf0c669da42ed2d"/>
+        <topic label="frameFormat" href="struct_s_p_i___params.html#a67b5ebb8ec72796a0260c427c91cc093"/>
+        <topic label="parity" href="struct_s_p_i___params.html#ad573c07574d20e4826537d99cbc585a8"/>
+        <topic label="bitOrder" href="struct_s_p_i___params.html#a75b275c518d981db1ca6cde1fdb597d1"/>
+        <topic label="custom" href="struct_s_p_i___params.html#a909f58a310514d16b4fee1b51033d976"/>
+      </topic>
+      <topic label="SPI_Transaction" href="struct_s_p_i___transaction.html">
+        <topic label="count" href="struct_s_p_i___transaction.html#ad049d6a900c4bdb59a5ee8ce3d5bced2"/>
+        <topic label="txBuf" href="struct_s_p_i___transaction.html#a9461a248f1cceb4048668d44b323a0b8"/>
+        <topic label="rxBuf" href="struct_s_p_i___transaction.html#a214f57d7809c875fb9456a62a406e041"/>
+        <topic label="arg" href="struct_s_p_i___transaction.html#ac47daaa10705d748ace918a098aa1945"/>
+        <topic label="status" href="struct_s_p_i___transaction.html#aa244504b2384411f7de17340be62128a"/>
+        <topic label="nextPtr" href="struct_s_p_i___transaction.html#a3857151eff782605a3b3c4edeb884130"/>
+      </topic>
+      <topic label="SPIMSPM0_HWAttrs" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html">
+        <topic label="spi" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#abd53cd1b93ac1a35fee572ea5a274501"/>
+        <topic label="intNum" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aba1639bfdf966def40f42f7363302571"/>
+        <topic label="intPriority" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a9dbf9c9e34291b3a6708fd90c12675e8"/>
+        <topic label="defaultTxBufValue" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aa39c2b3a8b4621089bcfcc633d05c815"/>
+        <topic label="clockSource" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a3e2d4f09f065061e99b1736d793f88ab"/>
+        <topic label="clockDivider" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a6a64d36ce2eb67a183f59e81c81c2dc3"/>
+        <topic label="pociPinMux" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a230dffba9be082cdeffc7dbf7dc06e18"/>
+        <topic label="picoPinMux" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a38c10032c7c15ba42fedae6f69facc35"/>
+        <topic label="sclkPinMux" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a0ec6a0bf27817b4a07437efe0cb242ca"/>
+        <topic label="csnPinMux" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a82032f2a4b4ae9cd2cc0de03caa05ca1"/>
+        <topic label="pociPincm" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a50b7246f429a121dba1fda730b0ecc7d"/>
+        <topic label="pociPin" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aceb9d7986c1411fad9e106aeddf19f21"/>
+        <topic label="picoPincm" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aa927e4e7e22c022171184e037d5f7ee5"/>
+        <topic label="picoPin" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a33f93a13febafc51e57f1f947d3778aa"/>
+        <topic label="sclkPincm" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#affa8c2ebf8d4eba6d0edbf627454d655"/>
+        <topic label="sclkPin" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a8d156d00d9f4b786cda30592d50f65c6"/>
+        <topic label="csnPincm" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#aa25dc9256f7fa90dbbd0ee23998ca6f2"/>
+        <topic label="csnPin" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a3a607cb011b5dbf6d0958b4eb71c3ba1"/>
+        <topic label="txFifoThreshold" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#ac2335e7fc4f00a03d81d8af5e02e818b"/>
+        <topic label="rxFifoThreshold" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a1498c77e55bdc3706b167fd012ddd2ee"/>
+        <topic label="cssel" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#a2b1dfe9eeafb54d3012f882ba8f115df"/>
+        <topic label="noOfDMAChannels" href="struct_s_p_i_m_s_p_m0___h_w_attrs.html#ab8f1553ff6765ed3a8159772e0001b05"/>
+      </topic>
+      <topic label="SPIMSPM0_Object" href="struct_s_p_i_m_s_p_m0___object.html">
+        <topic label="hwi" href="struct_s_p_i_m_s_p_m0___object.html#a82bfe8d3f32a2b4b619822446cd97177"/>
+        <topic label="transferComplete" href="struct_s_p_i_m_s_p_m0___object.html#ab4d27f1d8e9cd354149129a188706baf"/>
+        <topic label="DMA_Handle" href="struct_s_p_i_m_s_p_m0___object.html#adc3c5d73834c9445156fb5972236edec"/>
+        <topic label="transferCallbackFxn" href="struct_s_p_i_m_s_p_m0___object.html#ad124795f0b0417ecffc764948146802f"/>
+        <topic label="headPtr" href="struct_s_p_i_m_s_p_m0___object.html#a8bb7d7e4a2270fe6b49d6812be8a6e45"/>
+        <topic label="tailPtr" href="struct_s_p_i_m_s_p_m0___object.html#acdbc71b5baf22cb92eec15c40dabf5c6"/>
+        <topic label="framesQueued" href="struct_s_p_i_m_s_p_m0___object.html#a51b1badba081ef455b4e326f9fdaf464"/>
+        <topic label="framesTransferred" href="struct_s_p_i_m_s_p_m0___object.html#ad2b3d6585278ffc97de0f146609bb4b2"/>
+        <topic label="transferSize" href="struct_s_p_i_m_s_p_m0___object.html#aa4ea204d772ceaed50a325252ef647d9"/>
+        <topic label="txDMAChannel" href="struct_s_p_i_m_s_p_m0___object.html#aafb493b68fe88621b5c72a7904d1c6e1"/>
+        <topic label="rxDMAChannel" href="struct_s_p_i_m_s_p_m0___object.html#a66182b911bb74b165c714dc6b45a560b"/>
+        <topic label="bitRate" href="struct_s_p_i_m_s_p_m0___object.html#a496905162ff9e572e80d05144592501d"/>
+        <topic label="dataSize" href="struct_s_p_i_m_s_p_m0___object.html#a2c4c95930724092cfaafce2fa9bc8a92"/>
+        <topic label="transferTimeout" href="struct_s_p_i_m_s_p_m0___object.html#a901bee615ecde6b371f6e2b90e681b5d"/>
+        <topic label="busyBit" href="struct_s_p_i_m_s_p_m0___object.html#a87f4702a5e85588682bd99039d72d241"/>
+        <topic label="dsample" href="struct_s_p_i_m_s_p_m0___object.html#a6fbf9a538132df11d1cb34a05455ff5e"/>
+        <topic label="rxScratchBuf" href="struct_s_p_i_m_s_p_m0___object.html#a1bfc960d4730d8d458f37f2c4b9c2fca"/>
+        <topic label="txScratchBuf" href="struct_s_p_i_m_s_p_m0___object.html#a8e0e1a68195586c5e7501ca0242dfd47"/>
+        <topic label="transferMode" href="struct_s_p_i_m_s_p_m0___object.html#abe9b80bd5bfd5ea02bd24a2404189285"/>
+        <topic label="mode" href="struct_s_p_i_m_s_p_m0___object.html#aef473be71ccb5e65eb6ae3a20c2aa222"/>
+        <topic label="format" href="struct_s_p_i_m_s_p_m0___object.html#a3d04e130ce401e5390a409fe1a4bdf62"/>
+        <topic label="bitOrder" href="struct_s_p_i_m_s_p_m0___object.html#a90fc26790ae53d067eab27c593a77066"/>
+        <topic label="csnPin" href="struct_s_p_i_m_s_p_m0___object.html#af31124669719cf821c12ff340b253ecb"/>
+        <topic label="returnPartial" href="struct_s_p_i_m_s_p_m0___object.html#a43952599434cca224b11cca315aedb29"/>
+        <topic label="parity" href="struct_s_p_i_m_s_p_m0___object.html#a6f3635d3706499902d2f22cdc3c4691e"/>
+        <topic label="isOpen" href="struct_s_p_i_m_s_p_m0___object.html#a32ddc8ae8500bf96d9cd17e0ef445f95"/>
+        <topic label="manualStart" href="struct_s_p_i_m_s_p_m0___object.html#a67b47f88baba2eaf803e1a0ba89a6830"/>
       </topic>
       <topic label="UART_Buffers_Object" href="struct_u_a_r_t___buffers___object.html">
         <topic label="rxBufPtr" href="struct_u_a_r_t___buffers___object.html#ad13320ac32a6fc4791ea063097fbaffe"/>
@@ -635,8 +908,44 @@
       </topic>
     </topic>
     <topic label="Data Fields" href="functions.html">
-      <topic label="All" href="functions.html"/>
-      <topic label="Variables" href="functions_vars.html"/>
+      <topic label="All" href="functions.html">
+        <topic label="a" href="functions.html"/>
+        <topic label="b" href="functions_b.html"/>
+        <topic label="c" href="functions_c.html"/>
+        <topic label="d" href="functions_d.html"/>
+        <topic label="e" href="functions_e.html"/>
+        <topic label="f" href="functions_f.html"/>
+        <topic label="h" href="functions_h.html"/>
+        <topic label="i" href="functions_i.html"/>
+        <topic label="m" href="functions_m.html"/>
+        <topic label="n" href="functions_n.html"/>
+        <topic label="o" href="functions_o.html"/>
+        <topic label="p" href="functions_p.html"/>
+        <topic label="r" href="functions_r.html"/>
+        <topic label="s" href="functions_s.html"/>
+        <topic label="t" href="functions_t.html"/>
+        <topic label="u" href="functions_u.html"/>
+        <topic label="w" href="functions_w.html"/>
+      </topic>
+      <topic label="Variables" href="functions_vars.html">
+        <topic label="a" href="functions_vars.html"/>
+        <topic label="b" href="functions_vars_b.html"/>
+        <topic label="c" href="functions_vars_c.html"/>
+        <topic label="d" href="functions_vars_d.html"/>
+        <topic label="e" href="functions_vars_e.html"/>
+        <topic label="f" href="functions_vars_f.html"/>
+        <topic label="h" href="functions_vars_h.html"/>
+        <topic label="i" href="functions_vars_i.html"/>
+        <topic label="m" href="functions_vars_m.html"/>
+        <topic label="n" href="functions_vars_n.html"/>
+        <topic label="o" href="functions_vars_o.html"/>
+        <topic label="p" href="functions_vars_p.html"/>
+        <topic label="r" href="functions_vars_r.html"/>
+        <topic label="s" href="functions_vars_s.html"/>
+        <topic label="t" href="functions_vars_t.html"/>
+        <topic label="u" href="functions_vars_u.html"/>
+        <topic label="w" href="functions_vars_w.html"/>
+      </topic>
     </topic>
   </topic>
   <topic label="Files">
@@ -673,14 +982,15 @@
         <topic label="DMAMSPM0_Handle" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a"/>
         <topic label="DMAMSPM0_close" href="group___d_m_a.html#gae95a2c66447e2ddd3ae9d9b645c53942"/>
         <topic label="DMAMSPM0_init" href="group___d_m_a.html#ga8a379aa65552a10e85cc4b1cb394896b"/>
-        <topic label="DMAMSPM0_open" href="group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2"/>
+        <topic label="DMAMSPM0_open" href="group___d_m_a.html#ga88e5d02f8c8a69e7159ea12874c178b4"/>
         <topic label="DMAMSPM0_setupTransfer" href="group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31"/>
-        <topic label="DMA_Init" href="group___d_m_a.html#gaa469f6d48b00671eeb013a691dc81529"/>
+        <topic label="DMA_Init" href="group___d_m_a.html#gafdc13f6d8d07e139cb4454439936e7bd"/>
         <topic label="DMAMSPM0_disableChannel" href="group___d_m_a.html#ga7f580446972a92c87d13cda5a2d666e8"/>
         <topic label="DMAMSPM0_getCurrTransferSize" href="group___d_m_a.html#ga8fb50a12e77ce31821a6fa827460144d"/>
         <topic label="DMA_Params_init" href="group___d_m_a.html#gad58062cd1e508a3fdf174bc65639b9e3"/>
         <topic label="DMAMSPM0_copyDMAParams" href="group___d_m_a.html#gae6ed9ea7cefc32ae6528cf9bc2da1f2e"/>
-        <topic label="DMAMSPM0_Config" href="group___d_m_a.html#gacaa3ef9937116a3377e8181d9c036ea9"/>
+        <topic label="DMAMSPM0_Config" href="group___d_m_a.html#ga0b835cf9a1f0f768cf8c18efe2abe02c"/>
+        <topic label="DMA_Count" href="group___d_m_a.html#ga691a5faa765d34c7d5469426a7690f1a"/>
       </topic>
       <topic label="GPIO.h" href="_g_p_i_o_8h.html">
         <topic label="GPIO_PIN_TO_MASK" href="group___g_p_i_o.html#ga6647f1addd6e8522e5b38566d8d6bf7e"/>
@@ -791,6 +1101,94 @@
         <topic label="I2CSupport_powerRelConstraint" href="group___i2_c_support.html#ga62fde0ccc035195b08603937652a63e3"/>
         <topic label="I2CSupport_primeTransfer" href="group___i2_c_support.html#gaf638babf4e177a40cf4f04324de3c711"/>
       </topic>
+      <topic label="SPI.h" href="_s_p_i_8h.html">
+        <topic label="SPI_CMD_RESERVED" href="group___s_p_i___c_o_n_t_r_o_l.html#ga3d23d16525ee76f77276472d8dea80b0"/>
+        <topic label="SPI_STATUS_RESERVED" href="group___s_p_i___c_o_n_t_r_o_l.html#gae1af8c6ebf5e8fe481649f65e37b1b9f"/>
+        <topic label="SPI_STATUS_SUCCESS" href="group___s_p_i___s_t_a_t_u_s.html#gab38fa90ff62128dbc98b2ecd84ca106f"/>
+        <topic label="SPI_STATUS_ERROR" href="group___s_p_i___s_t_a_t_u_s.html#ga2d0020dd673cc28a9e1c20b0ff101073"/>
+        <topic label="SPI_STATUS_UNDEFINEDCMD" href="group___s_p_i___s_t_a_t_u_s.html#gacfcd15e1eecdb99b4867adc7592a8d6e"/>
+        <topic label="SPI_WAIT_FOREVER" href="group___s_p_i.html#ga7cab73b936e6e08392882196df41277e"/>
+        <topic label="SPI_Handle" href="group___s_p_i.html#ga93072bc33543d36c9603198df25ee388"/>
+        <topic label="SPI_CallbackFxn" href="group___s_p_i.html#ga207e2d5a7e7ea5606b6995b6485ca015"/>
+        <topic label="SPI_CloseFxn" href="group___s_p_i.html#gaa361d580eb0a5a052d0a1403e0aa5746"/>
+        <topic label="SPI_ControlFxn" href="group___s_p_i.html#ga0505b9eca5030ca4fc27959e2b5134ca"/>
+        <topic label="SPI_InitFxn" href="group___s_p_i.html#gaa3b32db8f017fd0ce92bf46a089659e6"/>
+        <topic label="SPI_OpenFxn" href="group___s_p_i.html#ga7e0786f4c1487f9daec49adbc3ac1cf5"/>
+        <topic label="SPI_TransferFxn" href="group___s_p_i.html#ga470d264d053b30edb0aaafcafd335c26"/>
+        <topic label="SPI_TransferCancelFxn" href="group___s_p_i.html#ga33f5b214451ac89ea462083eeba0bf8c"/>
+        <topic label="SPI_Config" href="group___s_p_i.html#ga9ce9680cc88c403db466864c02ee4733"/>
+        <topic label="SPI_Status" href="group___s_p_i.html#ga913c57c335166de9caa54b7eb9ad95fb">
+          <topic label="SPI_TRANSFER_COMPLETED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbabb35466595b950df7e3e3d880336502b"/>
+          <topic label="SPI_TRANSFER_STARTED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbad5266453aecb2fdedc0c23cd90921627"/>
+          <topic label="SPI_TRANSFER_CANCELED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fba78957da92681e8400d84d9d3ede55836"/>
+          <topic label="SPI_TRANSFER_FAILED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbac01b83da31c34da13025a5b987ef013f"/>
+          <topic label="SPI_TRANSFER_CSN_DEASSERT" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbaa363cddc53c1f44ca73aa661e6535816"/>
+          <topic label="SPI_TRANSFER_PEND_CSN_ASSERT" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fbad9c52e5a8cefc5b6926e19a8dd62125b"/>
+          <topic label="SPI_TRANSFER_QUEUED" href="group___s_p_i.html#gga913c57c335166de9caa54b7eb9ad95fba296a4fda0015070e612ab8e1ee5bc287"/>
+        </topic>
+        <topic label="SPI_Mode" href="group___s_p_i.html#ga60a7e3d74577b38aa79ea6983362f942">
+          <topic label="SPI_CONTROLLER" href="group___s_p_i.html#gga60a7e3d74577b38aa79ea6983362f942a061361eeeb9e87265edcc0c70868111a"/>
+          <topic label="SPI_PERIPHERAL" href="group___s_p_i.html#gga60a7e3d74577b38aa79ea6983362f942adf4cb39226caf2dcd726e13d39546393"/>
+        </topic>
+        <topic label="SPI_Parity" href="group___s_p_i.html#gab75f5a479e95ad0e98360055bc1c1f35">
+          <topic label="SPI_PARITY_EVEN" href="group___s_p_i.html#ggab75f5a479e95ad0e98360055bc1c1f35a2fa64e21889916ca4254f1e44a21a3b0"/>
+          <topic label="SPI_PARITY_ODD" href="group___s_p_i.html#ggab75f5a479e95ad0e98360055bc1c1f35a5c6222b22c7680bb883e92db7bee9aaf"/>
+          <topic label="SPI_PARITY_NONE" href="group___s_p_i.html#ggab75f5a479e95ad0e98360055bc1c1f35a606bf2c59faca5c1c4f5ab5727f99092"/>
+        </topic>
+        <topic label="SPI_BitOrder" href="group___s_p_i.html#ga106b6ebb4e3ef7cb032ff3aa268845dc">
+          <topic label="SPI_BIT_ORDER_MSB_FIRST" href="group___s_p_i.html#gga106b6ebb4e3ef7cb032ff3aa268845dca2f62df128ff20f3a9632c7f72732491a"/>
+          <topic label="SPI_BIT_ORDER_LSB_FIRST" href="group___s_p_i.html#gga106b6ebb4e3ef7cb032ff3aa268845dca8b9afce8db1ee080e7f9d65aa1aaeae5"/>
+        </topic>
+        <topic label="SPI_Chip_Select" href="group___s_p_i.html#ga698a8a81a50a4680e01a61a2bc6cd448">
+          <topic label="SPI_CHIP_SELECT_0" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448ae77428c6bcd683075755afd9ffa6cf69"/>
+          <topic label="SPI_CHIP_SELECT_1" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448ad6501b0988ea961fde16494ce39613d0"/>
+          <topic label="SPI_CHIP_SELECT_2" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448a27cd24e29ab63f4d4366b935ca257279"/>
+          <topic label="SPI_CHIP_SELECT_3" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448a67138f6074fc8482903346d672f04735"/>
+          <topic label="SPI_CHIP_SELECT_NONE" href="group___s_p_i.html#gga698a8a81a50a4680e01a61a2bc6cd448a074d517c8409cc3546fff69d1586ee1b"/>
+        </topic>
+        <topic label="SPI_FrameFormat" href="group___s_p_i.html#ga4e1f33555dfa8147205af5b266f3a489">
+          <topic label="SPI_MOTO3_POL0_PHA0" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489ab1c47ac2363171b45688a8f93efd54ba"/>
+          <topic label="SPI_MOTO3_POL0_PHA1" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489adddab699b871d83218973f83abe427a6"/>
+          <topic label="SPI_MOTO3_POL1_PHA0" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a513311435bbe54b20bc1134dc6048282"/>
+          <topic label="SPI_MOTO3_POL1_PHA1" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489afebf4381b28492519eef2417975a6895"/>
+          <topic label="SPI_MOTO4_POL0_PHA0" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a8d214eb370e47cad9eb1661435f519ec"/>
+          <topic label="SPI_MOTO4_POL0_PHA1" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a95bf04ad7004a36ff16bb476b47848e8"/>
+          <topic label="SPI_MOTO4_POL1_PHA0" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a2641cbe59252d39c28b8caf5b10cfc41"/>
+          <topic label="SPI_MOTO4_POL1_PHA1" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489a5d9d0fc18249b143c8fedc893b882e3a"/>
+          <topic label="SPI_TI" href="group___s_p_i.html#gga4e1f33555dfa8147205af5b266f3a489ac3cb11b3a833e28368e267161551eb1d"/>
+        </topic>
+        <topic label="SPI_TransferMode" href="group___s_p_i.html#gab9ea76c6529d6076eee5e1c4a5a92c6f">
+          <topic label="SPI_MODE_BLOCKING" href="group___s_p_i.html#ggab9ea76c6529d6076eee5e1c4a5a92c6fa0dfb2358e008316426895e7237c398e8"/>
+          <topic label="SPI_MODE_CALLBACK" href="group___s_p_i.html#ggab9ea76c6529d6076eee5e1c4a5a92c6fa5631e69925c47a62a261c78ebbda39fb"/>
+        </topic>
+        <topic label="SPI_close" href="group___s_p_i.html#ga0e3448b30b88609fa120915e49560601"/>
+        <topic label="SPI_control" href="group___s_p_i.html#ga1b3fafc9892141b7bab1bc9c19ede9ef"/>
+        <topic label="SPI_init" href="group___s_p_i.html#gafd9b09f58917f0e2d14c61b956eba214"/>
+        <topic label="SPI_open" href="group___s_p_i.html#ga9c9022decfb136991d6b53f7dd2ae2fc"/>
+        <topic label="SPI_Params_init" href="group___s_p_i.html#ga9c3dd1748332fd6e31c79a6538a71642"/>
+        <topic label="SPI_transfer" href="group___s_p_i.html#ga989e17f96b54fcc3dc2cac5f8ac6bdb2"/>
+        <topic label="SPI_transferCancel" href="group___s_p_i.html#ga6819f7761fc3505c4f885653ff8121f0"/>
+      </topic>
+      <topic label="SPIMSPM0.h" href="_s_p_i_m_s_p_m0_8h.html">
+        <topic label="SPIMSPM0_CMD_RETURN_PARTIAL_ENABLE" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga0f4cca3db31c6b6fc8fee5a979696353"/>
+        <topic label="SPIMSPM0_CMD_RETURN_PARTIAL_DISABLE" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga0e3e30cb4488579367853ae51c0a68af"/>
+        <topic label="SPIMSPM0_CMD_SET_CSN_PIN" href="group___s_p_i_m_s_p_m0___c_m_d.html#gab4714c9b484cb394d114880133ce5d39"/>
+        <topic label="SPIMSPM0_CMD_CLEAR_CSN_PIN" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga4c08a0413ed09d987cf067e4fe934f29"/>
+        <topic label="SPIMSPM0_CMD_SET_MANUAL" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga2a5a217cdeadd965d7e6a222698776ec"/>
+        <topic label="SPIMSPM0_CMD_CLR_MANUAL" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga6635712259b8c67d51bc97acbfdbbc68"/>
+        <topic label="SPIMSPM0_CMD_MANUAL_START" href="group___s_p_i_m_s_p_m0___c_m_d.html#ga243ecdc4c5cdc1215ae0e9cc4c824988"/>
+        <topic label="SPIMSPM0_CMD_SET_SAMPLE_DELAY" href="group___s_p_i_m_s_p_m0___c_m_d.html#gac97ae76777138a093ed7f194b04351d1"/>
+        <topic label="SPIMSPM0_FrameSize" href="group___s_p_i_m_s_p_m0.html#ga19d7d203a1e73d4fdf18add8e6bda371">
+          <topic label="SPIMSPM0_8bit" href="group___s_p_i_m_s_p_m0.html#gga19d7d203a1e73d4fdf18add8e6bda371af1079c2402b17c3529d9c42a42d31e00"/>
+          <topic label="SPIMSPM0_16bit" href="group___s_p_i_m_s_p_m0.html#gga19d7d203a1e73d4fdf18add8e6bda371a54bb8a176ef256dcc8672cb52c1f6e82"/>
+        </topic>
+        <topic label="SPIMSPM0_ReturnPartial" href="group___s_p_i_m_s_p_m0.html#ga7fba94adf8e4fc2252260108d1097e76">
+          <topic label="SPIMSPM0_retPartDisabled" href="group___s_p_i_m_s_p_m0.html#gga7fba94adf8e4fc2252260108d1097e76a6c70e9cb9b6f2bc190272c740d9f16ee"/>
+          <topic label="SPIMSPM0_retPartEnabledIntNotSet" href="group___s_p_i_m_s_p_m0.html#gga7fba94adf8e4fc2252260108d1097e76aba17e0035fe92196aa47f57c28972c78"/>
+          <topic label="SPIMSPM0_retPartEnabledIntSet" href="group___s_p_i_m_s_p_m0.html#gga7fba94adf8e4fc2252260108d1097e76a967c890f4b33974e0a40f88b958ba762"/>
+        </topic>
+        <topic label="SPIMSPM0_fxnTable" href="group___s_p_i_m_s_p_m0.html#ga87b97d9d108f5880b21f2242ad937fff"/>
+      </topic>
       <topic label="UART.h" href="_u_a_r_t_8h.html">
         <topic label="UART_STATUS_SUCCESS" href="group___u_a_r_t___s_t_a_t_u_s.html#ga101b7761f89b3ec49f0c6726669acfed"/>
         <topic label="UART_STATUS_SREADTIMEOUT" href="group___u_a_r_t___s_t_a_t_u_s.html#gaa569dea0492ecf314467c1a34572ff19"/>
@@ -873,7 +1271,15 @@
       </topic>
     </topic>
     <topic label="Globals" href="globals.html">
-      <topic label="All" href="globals.html"/>
+      <topic label="All" href="globals.html">
+        <topic label="a" href="globals.html"/>
+        <topic label="d" href="globals_d.html"/>
+        <topic label="g" href="globals_g.html"/>
+        <topic label="i" href="globals_i.html"/>
+        <topic label="n" href="globals_n.html"/>
+        <topic label="s" href="globals_s.html"/>
+        <topic label="u" href="globals_u.html"/>
+      </topic>
       <topic label="Functions" href="globals_func.html"/>
       <topic label="Variables" href="globals_vars.html"/>
       <topic label="Typedefs" href="globals_type.html"/>

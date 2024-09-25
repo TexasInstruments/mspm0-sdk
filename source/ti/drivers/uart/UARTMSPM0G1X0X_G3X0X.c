@@ -170,7 +170,10 @@ static bool UARTMSP_enable(UART_Handle handle, UART_Params *params)
 
     if ((params->readMode == UART_Mode_CALLBACK || params->writeMode == UART_Mode_CALLBACK) && (uartObject->dmaSupported == true))
     {
-        uartObject->DMA_Handle = DMA_Init(&DMATransfer, &dlDMACfg);
+        /* This function will return pointer to array of DMA handles
+         * which depends on the number of DMA channels
+         * */
+        uartObject->DMA_Handle = DMA_Init(&DMATransfer, &dlDMACfg, uartObject->noOfDMAChannels);
 
         if (params->readMode == UART_Mode_CALLBACK)
         {

@@ -79,6 +79,8 @@ int main(void)
         gCorrectResults &= (g_goldenData[i] == plaintext[i]);
     }
 
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
     /*
      * Stop the debugger to examine the output. At this point,
      * gCorrectResults should be equal to "true" and plaintext

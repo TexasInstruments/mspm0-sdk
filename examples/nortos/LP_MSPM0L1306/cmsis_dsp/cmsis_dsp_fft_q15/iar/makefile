@@ -11,7 +11,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = cmsis_dsp_fft_q15.obj iar_startup_mspm0l1306_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = cmsis_dsp_fft_q15.obj iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = cmsis_dsp_fft_q15
 
 CFLAGS = -I.. \
@@ -31,7 +31,8 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/lib/iar/m0p/arm_cortexM0l_math.a" \
+LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
     "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
     --config ../iar/mspm0l1306.icf \
     --map "$(NAME).map" \
@@ -60,7 +61,7 @@ cmsis_dsp_fft_q15.obj: ../cmsis_dsp_fft_q15.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-iar_startup_mspm0l1306_iar.obj: ../iar/startup_mspm0l1306_iar.c $(SYSCFG_H_FILES)
+iar_startup_mspm0l130x_iar.obj: ../iar/startup_mspm0l130x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

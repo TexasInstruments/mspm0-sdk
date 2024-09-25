@@ -25,7 +25,6 @@
             -D__MSPM0L1306__
             -DEXCLUDE_TRACE
             -Oz
-            -flto
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/boot/bootutil/include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/ext/mbedtls-asn1/include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/ext/
@@ -43,8 +42,10 @@
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/boot_manager/lib/ticlang/m0p/bimsupport.a
             -Wl,--stack_size=256
             -Wl,--heap_size=128
-            -L${PROJECT_BUILD_DIR}/syscfg
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
             -Wl,--rom_model
             -Wl,--warn_sections
             -L${CG_TOOL_ROOT}/lib
@@ -144,7 +145,7 @@
         </file>
         <file path="../ticlang/mspm0l1306.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../ticlang/startup_mspm0l1306_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        <file path="../ticlang/startup_mspm0l130x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

@@ -37,6 +37,7 @@
 #include "smbus_nwk.h"
 #include "smbus_phy.h"
 
+
 void SMBus_processDone(SMBus *smbus)
 {
     // Clear the State of SMBus target
@@ -63,6 +64,7 @@ void SMBus_disablePEC(SMBus *smbus)
 {
     smbus->ctrl.bits.pecEn = 0;
 }
+
 
 void SMBus_targetInit(SMBus *smbus, I2C_Regs *i2cAddr)
 {
@@ -166,6 +168,27 @@ uint8_t SMBus_targetWriteCtrlReg(SMBus *smbus,
     smbus->ctrl.writeableBits.writeBits = val;
 
     return(smbus->ctrl.u8byte);
+}
+
+int8_t SMBus_targetHostAlert(SMBus *smbus,
+                                 uint8_t deviceAddress,
+                                 uint8_t *txData)
+{
+    if(smbus->nwk.eState != SMBus_NwkState_Idle)
+    {
+        return(SMBUS_RET_ERROR);
+    }
+
+    smbus->nwk.currentCmd = deviceAddress;
+    smbus->nwk.rxLen = 0; // No bytes to read
+    smbus->nwk.txLen = 1 + 2; // Command + Size
+    smbus->nwk.txBuffPtr = txData;
+    smbus->nwk.eState = SMBus_NwkState_TXHostAlert;
+    smbus->nwk.currentAddr = SMB_HOST_DEFAULT_ADDRESS;
+
+    SMBus_NWK_startTxTransfer(smbus);
+
+    return(SMBUS_RET_OK);
 }
 
 void SMBus_controllerInit(SMBus *smbus,
@@ -448,4 +471,18 @@ int8_t SMBus_controllerWaitUntilDone(SMBus *smbus,
     {
         return(SMBUS_RET_OK);
     }
+}
+
+void SMBus_controllerEnableHostNotify(SMBus *smbus, uint8_t *hostAlertBuffer)
+{
+    SMBus_NWK_controllerEnableHostNotify(smbus, hostAlertBuffer);
+    SMBus_PHY_controllerEnableHostNotify(smbus);
+    smbus->ctrl.bits.hostNotifyEn = 1;
+}
+
+void SMBus_controllerDisableHostNotify(SMBus *smbus)
+{
+    SMBus_NWK_controllerDisableHostNotify(smbus);
+    SMBus_PHY_controllerDisableHostNotify(smbus);
+    smbus->ctrl.bits.hostNotifyEn = 0;
 }

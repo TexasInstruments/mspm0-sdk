@@ -4,6 +4,8 @@ This example configures the UART as a LIN Commander, and demonstrates basic
 transmit and receive of LIN 2.0 packets using enhanced checksum.
 LIN is a feature only usable with a UART Extend instance.
 
+**Note**: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.
+
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
@@ -33,6 +35,11 @@ Visit [LP_MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104) for LaunchPad infor
 | PA27 | UART0 | TX | J1_4 | <ul><li>PA27 can be used as UART TX connected to XDS-110 backchannel or to boosterpack connector:<br><ul><li>To use backchannel UART on J101:<br>  `J101 7:8 ON` Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br>  `J101 7:8 OFF`: Disconnects XDS-110 backchannel</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | J2_11 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 11:12 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 11:12 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Device Migration Recommendations
+This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please
+visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration)
+for information about migrating to other MSPM0 devices.
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to

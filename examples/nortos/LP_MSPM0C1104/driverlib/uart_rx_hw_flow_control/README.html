@@ -39,6 +39,7 @@
 <p>First, automatic hardware flow control is enabled, so the RTS flow control logic is linked to the RX FIFO threshold level. The RTS is asserted (low) until the RX FIFO is filled up to the threshold level. When the threshold level is reached and the interrupt is triggered, then RTS is automatically de-asserted (high), indicating there is no more room for data. After data has been read out of the RX FIFO so it is filled less than the threshold, then the RTS is re-asserted (low). After a specified number of bytes have been read, the application will pause transmission by not reading the RX FIFO and emulating a delay. This will keep RTS de-asserted during the delay, and pausing transmission. After the delay, the RX FIFO is read, which will re-assert RTS and signal to continue transmission. The RX Timeout interrupt is triggered after a set timeout. This will handle the scenario where the TX application has sent some final bytes, but it is not enough to pass the RX FIFO threshold, so the RX Timeout interrupt will trigger which will allow the application to read the final bytes.</p>
 <p>After all the expected data in the first packet has been received, then the application disables automatic HW flow control. This allows the user to manually assert or de-assert the RTS signal. The application manually asserts the RTS signal, and after receiving some bytes, de-asserts RTS and emulates a delay to pause transmission, and then re-asserts RTS to signal to continue tranmission.</p>
 <p>After all data in the second packet has been received, a SW breakpoint is set to allow the user to inspect the data in the packets.</p>
+<p><strong>Note</strong>: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -143,6 +144,8 @@
 </tr>
 </tbody>
 </table>
+<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
+<p>This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>

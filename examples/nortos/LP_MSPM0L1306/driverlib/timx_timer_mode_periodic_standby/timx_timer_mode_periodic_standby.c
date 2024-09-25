@@ -60,26 +60,27 @@ void TIMER_0_INST_IRQHandler(void)
              * Counter stopped to avoid a conflict with the timer reading
              * the LOAD value while it's being set
              */
-            DL_TimerG_stopCounter(TIMER_0_INST);
+                DL_TimerG_stopCounter(TIMER_0_INST);
 
             /*
              * Count progressively gets smaller in 0.05 s increments until
              * reset with 0.5s
              */
-            if (count > (TIMER_500_MILLISECONDS_TICKS / 5)) {
-                count = count - TIMER_50_MILLISECONDS_TICKS;
-            } else {
-                count = TIMER_500_MILLISECONDS_TICKS;
-            }
+                if (count > (TIMER_500_MILLISECONDS_TICKS / 5)) {
+                    count = count - TIMER_50_MILLISECONDS_TICKS;
+                } else {
+                    count = TIMER_500_MILLISECONDS_TICKS;
+                }
 
-            DL_Timer_setLoadValue(TIMER_0_INST, count);
+                DL_Timer_setLoadValue(TIMER_0_INST, count);
             /*
              * By default, this should load the new count value and count down
              * from there (CVAE = 0)
              */
-            DL_TimerG_startCounter(TIMER_0_INST);
+                DL_TimerG_startCounter(TIMER_0_INST);
 
-            DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
             break;
         default:
             break;

@@ -27,7 +27,7 @@ const pinFunction4                       = system.clockTree["HFXT"];
 pinFunction4.enable                      = true;
 pinFunction4.HFXTStartup                 = 10;
 pinFunction4.HFCLKMonitor                = true;
-pinFunction4.inputFreq                   = 48;
+pinFunction4.inputFreq                   = 40;
 pinFunction4.peripheral.hfxInPin.$assign = "PA5";
 
 GPIO1.$name                              = "GPIO_SWITCHES";

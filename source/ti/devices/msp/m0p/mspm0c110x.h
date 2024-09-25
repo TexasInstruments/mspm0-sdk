@@ -248,6 +248,9 @@ static GPTIMER_Regs                             * const TIMG14                  
 #define FLASHCTL_SYS_DATAWIDTH                        (64)      /* !< Data bit width of a single flash word. */
 #define ADC_SYS_NUM_ANALOG_CHAN                       (16)      /* !< Number of analog channels. */
 #define I2C_SYS_FENTRIES                              (4)       /* !< Number of FIFO entries */
+#define FLASHCTL_SYS_WEPROTAWIDTH                     (16)      /* !< Bit width of WEPROTA register */
+#define FLASHCTL_SYS_WEPROTBWIDTH                     (0)       /* !< Bit width of WEPROTB register */
+#define FLASHCTL_SYS_WEPROTCWIDTH                     (0)       /* !< Bit width of WEPROTC register */
 
 /******************************************************************************
 * DMA Triggers                                                                *

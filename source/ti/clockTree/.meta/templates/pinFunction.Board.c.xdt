@@ -79,7 +79,13 @@
 %           let prefix = _.trimEnd(inst.$name, "EXT");
 %           let string = prefix + "IN"
 %           if(prefix == "FCC") { string = "FCC_IN"; }
+%           if(prefix == "HFCLK" || prefix == "LFCLK") {
+    DL_GPIO_initPeripheralInputFunction(GPIO_`string`_IOMUX, GPIO_`string`_IOMUX_FUNC);
+%}
+%           else {
     DL_GPIO_initDigitalInput(GPIO_`string`_IOMUX);
+%}
+
 %           } else { // HFXT or LFXT crystal
 %           let prefix = _.trimEnd(inst.$name, "T");
     DL_GPIO_initPeripheralAnalogFunction(GPIO_`prefix`IN_IOMUX);
@@ -124,7 +130,7 @@
 %               lowCap = lfxtInst.LFCLKLowCap;
 %               driveStrength = lfxtInst.LFCLKDriveStrength;
 %           } else {
-%               monitor = exlfInst.LFCLKMonitor.enable;
+%               monitor = exlfInst.LFCLKMonitorEnable;
 %           }
 static const DL_SYSCTL_LFCLKConfig gLFCLKConfig = {
     .lowCap   = `lowCap`,

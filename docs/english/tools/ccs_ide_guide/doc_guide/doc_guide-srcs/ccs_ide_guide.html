@@ -59,6 +59,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#using-ti-resource-explorer-in-ccs">2.3 Using TI Resource Explorer in CCS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-sysconfig-with-ccs">2.4 Using SysConfig with CCS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#migrating-between-mspm0-derivatives">2.5 Migrating Between MSPM0 Derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sysconfig-project-migration">2.5.1 SysConfig Project Migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#non-sysconfig-compatible-project-migration">2.5.2 Non-SysConfig Compatible Project Migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-migration">2.5.3 Manual Migration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stack-and-heap-management-and-linker-files">2.6 Stack and Heap Management and Linker Files</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#configure-stack-and-heap-using-ti-arm-clang-compiler">2.6.1 Configure Stack and Heap using TI Arm Clang compiler</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configure-stack-and-heap-using-arm-gcc">2.6.2 Configure Stack and Heap using Arm GCC</a></li>
@@ -240,7 +243,76 @@
 </section>
 <section id="migrating-between-mspm0-derivatives">
 <h3>2.5 Migrating Between MSPM0 Derivatives<a class="headerlink" href="#migrating-between-mspm0-derivatives" title="Permalink to this heading">¶</a></h3>
-<p>SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required. The steps below apply to TI Arm Clang but similar steps apply to Arm GCC.</p>
+<p>In order to migrate a project configuration to a new MSPM0 derivative (such as a new board, device, or package), the MSPM0 SDK supports several project migration processes. Project migration in this scope means updating relevant project configuration files and settings that are specific to the derivative, including linker files, startup files, and included libraries. The available options for migration depend on the project configuration, and the user should consult the desired project’s README for more information on which approach is supported. An overview of the available migration options and when they can be used are given below: - <a class="reference external" href="#251-sysconfig-project-migration">SysConfig Project Migration</a>: This is the default approach for SysConfig compatible projects, in which all the configuration files can be handled by SysConfig. - <a class="reference external" href="#252-non-sysconfig-compatible-project-migration">Non-SysConfig Compatible Project Migration</a>: This is the default approach for non-SysConfig compatible
+projects, where all the configuration files can be handled by the built-in device support package - <a class="reference external" href="#253-manual-migration">Manual Migration</a>: For all other cases that require custom projectspecs or other incompatible configurations, the user can follow these steps for manual migration.</p>
+</section>
+<section id="sysconfig-project-migration">
+<h3>2.5.1 SysConfig Project Migration<a class="headerlink" href="#sysconfig-project-migration" title="Permalink to this heading">¶</a></h3>
+<p>In order to facilitate project migration, SysConfig will generate Project Configuration files by default, which can be controlled through the Project Configuration module. The steps below apply to TI Arm Clang and Arm GCC.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_migrate8.png" />
+</figure>
+<p>For more details on generated Project Configuration files, visit the <a class="reference external" href="../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html">Using SysConfig with MSPM0</a> Guide.</p>
+<ol class="arabic simple">
+<li><p>In SysConfig, enable the Device View and click on <strong>SWITCH</strong></p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_migrate1.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Select the New Values for the <strong>Device</strong>, <strong>Package</strong>, and <strong>CCS Launch Device</strong> to migrate the project configuration to, and then click <strong>CONFIRM</strong>.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_migrate2.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>After Confirming the new device values, SysConfig will highlight an error on the Project Configuration module. The user must choose the new device in the <strong>Select Device</strong> options. Make sure the device selection matches what was chosen for <strong>CCS Launch Device</strong> in the previous step.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_migrate6.png" />
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed, and save all the changes to the SysConfig configuration script.</p></li>
+</ol>
+<p>CCS will automatically migrate the device variant and will add a corresponding .ccxml file. SysConfig will update the relevant project configuration files, including linker and startup files.</p>
+<p>Migration is now complete and the user can build their project for the new target device.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_migrate3.png" />
+</figure>
+<p>Note: If the user wants to manually modify any Project Configuration files, they should disable the option to generate that file from the Project Configuration module and then manually add their desired file to the project. Otherwise, changes that are made to any generated file will be overwritten by SysConfig when the project is built. Keep in mind that the steps above are intended to be followed when all the project configuration files are handled by SysConfig.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_migrate7.png" />
+</figure>
+</section>
+<section id="non-sysconfig-compatible-project-migration">
+<h3>2.5.2 Non-SysConfig Compatible Project Migration<a class="headerlink" href="#non-sysconfig-compatible-project-migration" title="Permalink to this heading">¶</a></h3>
+<p>For non-SysConfig compatible projects, migration is handled seamlessly by the built-in device support package.</p>
+<ol class="arabic simple">
+<li><p>In CCS, open the example project Properties and choose a different MSPM0 device.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_migrate_non_sysconfig_properties.png" />
+</figure>
+<ol class="arabic" start="2">
+<li><p>Hitting <strong>Apply and Close</strong> will automatically make the following updates to the project, corresponding to the newly selected device:</p>
+<ul class="simple">
+<li><p>Include a new CMSIS startup file</p></li>
+<li><p>Include a new linker command file</p></li>
+<li><p>Switch the device <em>Predefine Symbol</em> in the project compiler settings</p></li>
+<li><p>Switch the linked DriverLib library in the project linker settings</p></li>
+</ul>
+<p><strong>Important Note</strong>: The CMSIS startup file and linker command file from the previous device are NOT removed. Instead they are simply excluded from the project build.</p>
+</li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_migrate_non_sysconfig_updated_files.png" />
+</figure>
+<p>Migration is now complete and the user can build their project for the new target device.</p>
+</section>
+<section id="manual-migration">
+<h3>2.5.3 Manual Migration<a class="headerlink" href="#manual-migration" title="Permalink to this heading">¶</a></h3>
+<p>SysConfig allows for an easier migration between MSPM0 derivatives; however for some projects manual modifications are required. The steps below apply to TI Arm Clang but similar steps apply to Arm GCC.</p>
+<p>Note: Steps 1-3 don’t apply when not using SysConfig, and step 4 needs to be done manually.</p>
 <ol class="arabic simple">
 <li><p>In SysConfig, enable the Device View and click on <strong>SWITCH</strong></p></li>
 </ol>
@@ -260,7 +332,7 @@
 <figure class="align-default">
 <img alt="" src="../_images/ccs_migrate3.png" />
 </figure>
-<ol class="arabic simple">
+<ol class="arabic simple" start="5">
 <li><p>In the project properties, select <strong>Build</strong> → <strong>Arm Compiler</strong> → <strong>Predefined Symbols</strong>. Select the device definition and update it.</p></li>
 </ol>
 <figure class="align-default">
@@ -276,7 +348,6 @@
 <ol class="arabic simple" start="7">
 <li><p>Resolve any other dependencies such as incompatible libraries and source code.</p></li>
 </ol>
-<p>Note: Steps 1-3 don’t apply when not using SysConfig, and step 4 needs to be done manually.</p>
 </section>
 <section id="stack-and-heap-management-and-linker-files">
 <h3>2.6 Stack and Heap Management and Linker Files<a class="headerlink" href="#stack-and-heap-management-and-linker-files" title="Permalink to this heading">¶</a></h3>

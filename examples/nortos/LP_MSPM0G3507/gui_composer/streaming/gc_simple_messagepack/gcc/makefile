@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 
-OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj ti_msp_dl_config.obj HAL_UART_M0G3507.obj main.obj gcc_startup_mspm0g3507_gcc.obj
+OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj ti_msp_dl_config.obj HAL_UART_M0G3507.obj main.obj gcc_startup_mspm0g350x_gcc.obj
 NAME = gc_simple_messagepack
 
 CFLAGS = -I.. \
@@ -30,9 +30,11 @@ LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/gcc/m0p" \
     -l:gui_composer.a \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x" \
     -nostartfiles \
+    -l:driverlib.a \
     -Wl,-T,../gcc/mspm0g3507.lds \
     "-Wl,-Map,$(NAME).map" \
-    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -69,7 +71,7 @@ main.obj: ../main.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
-gcc_startup_mspm0g3507_gcc.obj: ../gcc/startup_mspm0g3507_gcc.c
+gcc_startup_mspm0g350x_gcc.obj: ../gcc/startup_mspm0g350x_gcc.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

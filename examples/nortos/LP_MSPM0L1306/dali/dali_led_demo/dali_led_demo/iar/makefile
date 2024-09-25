@@ -11,7 +11,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = dali_target_main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_dali_dali_target_comm.obj ti_dali_dali_target_command.obj ti_dali_dali_target_led_command.obj iar_startup_mspm0l1306_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = dali_target_main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_dali_dali_target_comm.obj ti_dali_dali_target_command.obj ti_dali_dali_target_led_command.obj iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = dali_led_demo
 
 CFLAGS = -I.. \
@@ -29,7 +29,8 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/iar/m0p/rts/iqmath.a" \
+LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
     "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
     --config ../iar/mspm0l1306.icf \
     --map "$(NAME).map" \
@@ -62,19 +63,19 @@ ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj: ../ti/eeprom/emulation_t
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-ti_dali_dali_target_comm.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/ec28c0257c34e3a2a7ccf595093095a4/sandbox/linux-sandbox/3181/execroot/__main__/source/ti/dali/dali_target_comm.c $(SYSCFG_H_FILES)
+ti_dali_dali_target_comm.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/ec28c0257c34e3a2a7ccf595093095a4/sandbox/linux-sandbox/902/execroot/__main__/source/ti/dali/dali_target_comm.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-ti_dali_dali_target_command.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/ec28c0257c34e3a2a7ccf595093095a4/sandbox/linux-sandbox/3181/execroot/__main__/source/ti/dali/dali_target_command.c $(SYSCFG_H_FILES)
+ti_dali_dali_target_command.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/ec28c0257c34e3a2a7ccf595093095a4/sandbox/linux-sandbox/902/execroot/__main__/source/ti/dali/dali_target_command.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-ti_dali_dali_target_led_command.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/ec28c0257c34e3a2a7ccf595093095a4/sandbox/linux-sandbox/3181/execroot/__main__/source/ti/dali/dali_target_led_command.c $(SYSCFG_H_FILES)
+ti_dali_dali_target_led_command.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/ec28c0257c34e3a2a7ccf595093095a4/sandbox/linux-sandbox/902/execroot/__main__/source/ti/dali/dali_target_led_command.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-iar_startup_mspm0l1306_iar.obj: ../iar/startup_mspm0l1306_iar.c $(SYSCFG_H_FILES)
+iar_startup_mspm0l130x_iar.obj: ../iar/startup_mspm0l130x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

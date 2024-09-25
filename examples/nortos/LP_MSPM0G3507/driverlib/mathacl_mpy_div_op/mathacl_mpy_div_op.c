@@ -55,8 +55,13 @@ const DL_MathACL_operationConfig gDivConfig = {
     .scaleFactor = 1,
     .qType       = DL_MATHACL_Q_TYPE_Q18};
 
+
 int main(void)
 {
+    volatile uint32_t mpyRes __attribute__((unused));
+    volatile uint32_t divResultQuotient __attribute__((unused));
+    volatile uint32_t divResultRemainder __attribute__((unused));
+
     SYSCFG_DL_init();
 
     /* Setup unsigned multiply operation, OP1 = 0.5, OP2 = 0.3 */
@@ -64,17 +69,14 @@ int main(void)
     DL_MathACL_waitForOperation(MATHACL);
 
     /* Get result -- floating point Q31 equivalent of 0.15 = 0x1333 3333 */
-    __attribute__((unused)) volatile uint32_t mpyRes =
-        DL_MathACL_getResultOne(MATHACL);
+    mpyRes = DL_MathACL_getResultOne(MATHACL);
 
     /* Divide result OP3 = 15 by OP4 = 4 */
     DL_MathACL_startDivOperation(MATHACL, &gDivConfig, OP3_Q18, OP4_Q18);
     DL_MathACL_waitForOperation(MATHACL);
     /* Get result -- floating point Q31 equivalent of 3.75 = 0xF 0000, remainder = 0 */
-    __attribute__((unused)) volatile uint32_t divResultQuotient =
-        DL_MathACL_getResultOne(MATHACL);
-    __attribute__((unused)) volatile uint32_t divResultRemainder =
-        DL_MathACL_getResultTwo(MATHACL);
+    divResultQuotient  = DL_MathACL_getResultOne(MATHACL);
+    divResultRemainder = DL_MathACL_getResultTwo(MATHACL);
 
     /*
      * Stop at the break point to examine and verify the outputs:
@@ -82,6 +84,9 @@ int main(void)
      *   divResultQuotient = 3.75 (0x000F 0000)
      *   divResultRemainder = 0
      */
+
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
     __BKPT(0);
 
     while (1) {

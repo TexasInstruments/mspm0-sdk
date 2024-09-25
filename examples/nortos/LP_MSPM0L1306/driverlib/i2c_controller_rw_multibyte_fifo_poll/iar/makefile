@@ -11,7 +11,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = i2c_controller_rw_multibyte_fifo_poll.obj iar_startup_mspm0l1306_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = i2c_controller_rw_multibyte_fifo_poll.obj iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = i2c_controller_rw_multibyte_fifo_poll
 
 CFLAGS = -I.. \
@@ -29,7 +29,9 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
+LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
+    "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
     --config ../iar/mspm0l1306.icf \
     --map "$(NAME).map" \
     --silent \
@@ -57,7 +59,7 @@ i2c_controller_rw_multibyte_fifo_poll.obj: ../i2c_controller_rw_multibyte_fifo_p
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-iar_startup_mspm0l1306_iar.obj: ../iar/startup_mspm0l1306_iar.c $(SYSCFG_H_FILES)
+iar_startup_mspm0l130x_iar.obj: ../iar/startup_mspm0l130x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

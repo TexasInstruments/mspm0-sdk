@@ -11,13 +11,13 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = SENT_SENT.obj SENT_HAL_HAL_GPIO.obj SENT_HAL_hal_interrupts.obj SENT_HAL_hal_system.obj SENT_HAL_hal_timer.obj sent_transmit.obj ticlang_startup_mspm0l1306_ticlang.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = SENT_SENT.obj SENT_HAL_HAL_GPIO.obj SENT_HAL_hal_interrupts.obj SENT_HAL_hal_system.obj SENT_HAL_hal_timer.obj sent_transmit.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = sent_transmit
 
 CFLAGS = -I.. \
     -I. \
-    -D__MSPM0L1306__ \
     -O2 \
+    @syscfg/device.opt \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
     -gdwarf-3 \
@@ -26,8 +26,10 @@ CFLAGS = -I.. \
     -mfloat-abi=soft \
     -mthumb
 
-LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a" \
-    ../ticlang/mspm0l1306.cmd \
+LFLAGS = -ldevice.cmd.genlibs \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
+    ../ticlang/device_linker.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
@@ -72,10 +74,6 @@ SENT_HAL_hal_timer.obj: ../SENT/HAL/hal_timer.c $(SYSCFG_H_FILES)
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
 sent_transmit.obj: ../sent_transmit.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-ticlang_startup_mspm0l1306_ticlang.obj: ../ticlang/startup_mspm0l1306_ticlang.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

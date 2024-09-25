@@ -495,6 +495,41 @@
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
     "description": "<p></p>"
+  },
+  {
+    "name": "Energy Metrology Library",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "<p>The Energy Metrology Library is built to compute voltage, current, power, energy, and other parameters of a 3 phase power system using MSPM0. The library uses high precesion ADCs to capture the voltage and current signals.</p>"
+  },
+  {
+    "name": "Energy Metrology 库",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "<p>The Energy Metrology Library is built to compute voltage, current, power, energy, and other parameters of a 3 phase power system using MSPM0. The library uses high precesion ADCs to capture the voltage and current signals.</p>"
   }
-
 ]

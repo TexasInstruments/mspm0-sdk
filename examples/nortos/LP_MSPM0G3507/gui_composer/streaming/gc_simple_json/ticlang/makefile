@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = callbacks_JSON.obj MSP_GUI_GUI_JSON.obj MSP_GUI_GUIComm_JSON.obj ti_msp_dl_config.obj HAL_UART_M0G3507.obj main.obj ticlang_startup_mspm0g3507_ticlang.obj
+OBJECTS = callbacks_JSON.obj MSP_GUI_GUI_JSON.obj MSP_GUI_GUIComm_JSON.obj ti_msp_dl_config.obj HAL_UART_M0G3507.obj main.obj ticlang_startup_mspm0g350x_ticlang.obj
 NAME = gc_simple_json
 
 CFLAGS = -I.. \
@@ -21,6 +21,8 @@ CFLAGS = -I.. \
 
 LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     ../ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
@@ -53,7 +55,7 @@ main.obj: ../main.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ticlang_startup_mspm0g3507_ticlang.obj: ../ticlang/startup_mspm0g3507_ticlang.c
+ticlang_startup_mspm0g350x_ticlang.obj: ../ticlang/startup_mspm0g350x_ticlang.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

@@ -105,6 +105,7 @@
 <li><p>Process call</p></li>
 <li><p>Block read/write (up to 255 bytes)</p></li>
 <li><p>Block write-block read process call (up to 255 bytes)</p></li>
+<li><p>Host notify protocol</p></li>
 </ul>
 </section>
 <section id="smbus-target-supported-features">
@@ -121,6 +122,7 @@
 <li><p>Process call</p></li>
 <li><p>Block read/write (up to 255 bytes)</p></li>
 <li><p>Block write-block read process call (up to 255 bytes)</p></li>
+<li><p>Host notify protocol</p></li>
 </ul>
 </section>
 <section id="smbus-features-not-currently-implemented">
@@ -128,7 +130,6 @@
 <p>The SMBus features listed below are supported in hardware but have not been implemented in this release:</p>
 <ul class="simple">
 <li><p>FastMode+ 1MHz operation</p></li>
-<li><p>Host notify protocol</p></li>
 <li><p>Address resolution protocol</p></li>
 <li><p>SMBAlert#</p></li>
 <li><p>SMBSUS#</p></li>
@@ -137,16 +138,27 @@
 </section>
 <section id="smbus-example-usage">
 <h2>3. SMBus Example Usage<a class="headerlink" href="#smbus-example-usage" title="Permalink to this heading">¶</a></h2>
-<p>This software library contains 2 examples that demonstrate communication between a SMBus Controller and SMBus Target using all of the supported SMBus protocols:</p>
+<p>This software library contains 4 examples that demonstrate communication between a SMBus Controller and SMBus Target:</p>
 <ul class="simple">
-<li><p>smb_target00_all_protocols</p></li>
-<li><p>smb_controller00_all_protocols</p></li>
+<li><p>Target:</p>
+<ul>
+<li><p>smb_target00_all_protocols: shows the implementation of all basic SMBus protocols</p></li>
+<li><p>smbus_target_host_notify: shows implementation of host notify protocol</p></li>
+</ul>
+</li>
+<li><p>Controller:</p>
+<ul>
+<li><p>smb_controller00_all_protocols: shows the implementation of all basic SMBus protocols</p></li>
+<li><p>smbus_controller_host_notify: shows implementation of host notify protocol</p></li>
+</ul>
+</li>
 </ul>
 <p>Each example contains source code which can be compiled and loaded onto a supported device as-is. Connect SMBCLK and SMBDAT on 2 devices running the Controller and Target examples.</p>
 <section id="smbus-examples-supported-hardware">
 <h3>3.1 SMBus Examples Supported Hardware<a class="headerlink" href="#smbus-examples-supported-hardware" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>2 LP-MSPM0L1306 LaunchPad evaluation boards</p></li>
+<li><p>LP-MSPM0L1306 LaunchPad evaluation boards</p></li>
+<li><p>LP-MSPM0G3507 LaunchPad evaluation boards</p></li>
 </ul>
 </section>
 </section>

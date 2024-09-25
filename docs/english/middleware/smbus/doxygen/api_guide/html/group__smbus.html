@@ -106,6 +106,14 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga2b1647a90141e75a4af905f1518376c6">SMB_MAX_PACKET_SIZE</a>&#160;&#160;&#160;(<a class="el" href="group__smbus.html#ga625275b208812f476d0cb13e7adad4c4">SMB_MAX_PAYLOAD_SIZE</a> + 3)</td></tr>
 <tr class="memdesc:ga2b1647a90141e75a4af905f1518376c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max packet size = Payload+PEC+CMD+Len. <br /></td></tr>
 <tr class="separator:ga2b1647a90141e75a4af905f1518376c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2bdfc1522e3005d10c4e9a7fc0fa7369"><td class="memItemLeft" align="right" valign="top"><a id="ga2bdfc1522e3005d10c4e9a7fc0fa7369"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga2bdfc1522e3005d10c4e9a7fc0fa7369">SMB_HOST_ALERT_PACKET_SIZE</a>&#160;&#160;&#160;(3)</td></tr>
+<tr class="memdesc:ga2bdfc1522e3005d10c4e9a7fc0fa7369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Host Alert packet size = Address + Data Byte Low + Data Byte High. <br /></td></tr>
+<tr class="separator:ga2bdfc1522e3005d10c4e9a7fc0fa7369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga61fceac2bd8745030d9c769d214f3d21"><td class="memItemLeft" align="right" valign="top"><a id="ga61fceac2bd8745030d9c769d214f3d21"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga61fceac2bd8745030d9c769d214f3d21">SMB_HOST_DEFAULT_ADDRESS</a>&#160;&#160;&#160;(0x08)</td></tr>
+<tr class="memdesc:ga61fceac2bd8745030d9c769d214f3d21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Host Address used for Host Alert. <br /></td></tr>
+<tr class="separator:ga61fceac2bd8745030d9c769d214f3d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga74dbbd358b57b09f91d0366f34bab9d7"><td class="memItemLeft" align="right" valign="top"><a id="ga74dbbd358b57b09f91d0366f34bab9d7"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga74dbbd358b57b09f91d0366f34bab9d7">RESPONSE_NTR</a>&#160;&#160;&#160;0x00</td></tr>
 <tr class="memdesc:ga74dbbd358b57b09f91d0366f34bab9d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default response when there's nothing to send. <br /></td></tr>
@@ -151,6 +159,8 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2caaea42e0e756bed4845478ee3dd4c7239">SMBus_NwkState_RX</a>, 
 <br />
 &#160;&#160;<a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2cabdf29d7fcd850e964ab885a6b8c3d0a9">SMBus_NwkState_TX</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2ca236f787abc86b9fcfc826e7798ae6fd0">SMBus_NwkState_TXHostAlert</a>, 
 <br />
 &#160;&#160;<a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2ca3eb670a338291ad59f2ada8e15481681">SMBus_NwkState_TXQuickCMD</a>, 
 <br />
@@ -208,6 +218,8 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a4256f3369896050b59b6472f2f566880">SMBus_State_Controller_Error</a>, 
 <br />
+&#160;&#160;<a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a88ad56b77f68277fc3fbe3f0fc9e2dd8">SMBus_State_Controller_HostNotify</a>, 
+<br />
 &#160;&#160;<a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a663371ea792f831d77e3af5fe2b2b1da">SMBus_State_Unknown</a>
 <br />
  }<tr class="memdesc:ga4ed089729210ba2f995f3962843b14b9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> state sent to application layer.  <a href="group__smbus.html#ga4ed089729210ba2f995f3962843b14b9">More...</a><br /></td></tr>
@@ -264,6 +276,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8fbdd3f6187e83a1d7e608239da23aa5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga8fbdd3f6187e83a1d7e608239da23aa5">SMBus_targetWriteCtrlReg</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus, uint8_t val)</td></tr>
 <tr class="memdesc:ga8fbdd3f6187e83a1d7e608239da23aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a value to the target's control register.  <a href="#ga8fbdd3f6187e83a1d7e608239da23aa5">More...</a><br /></td></tr>
 <tr class="separator:ga8fbdd3f6187e83a1d7e608239da23aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3bea7c055d202ee1a6f187831563f6d"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#gac3bea7c055d202ee1a6f187831563f6d">SMBus_targetHostAlert</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus, uint8_t deviceAddress, uint8_t *txData)</td></tr>
+<tr class="memdesc:gac3bea7c055d202ee1a6f187831563f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a Host Alert from the target.  <a href="#gac3bea7c055d202ee1a6f187831563f6d">More...</a><br /></td></tr>
+<tr class="separator:gac3bea7c055d202ee1a6f187831563f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabb9ea515bb36eb4508e4b27cfc47ae2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#gabb9ea515bb36eb4508e4b27cfc47ae2f">SMBus_controllerInit</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus, I2C_Regs *i2cAddr, uint32_t busClk)</td></tr>
 <tr class="memdesc:gabb9ea515bb36eb4508e4b27cfc47ae2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> Interface for a controller.  <a href="#gabb9ea515bb36eb4508e4b27cfc47ae2f">More...</a><br /></td></tr>
 <tr class="separator:gabb9ea515bb36eb4508e4b27cfc47ae2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -294,6 +309,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gacf25596619d17d98c914ad3cdff15bb6"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#gacf25596619d17d98c914ad3cdff15bb6">SMBus_controllerWaitUntilDone</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus, int32_t timeout)</td></tr>
 <tr class="memdesc:gacf25596619d17d98c914ad3cdff15bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until the previous <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> command is executed.  <a href="#gacf25596619d17d98c914ad3cdff15bb6">More...</a><br /></td></tr>
 <tr class="separator:gacf25596619d17d98c914ad3cdff15bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab11fb2b687bc68cfb2b7e0862241ee6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#gab11fb2b687bc68cfb2b7e0862241ee6c">SMBus_controllerEnableHostNotify</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus, uint8_t *hostAlertBuffer)</td></tr>
+<tr class="memdesc:gab11fb2b687bc68cfb2b7e0862241ee6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable support for Host Notify Protocol.  <a href="#gab11fb2b687bc68cfb2b7e0862241ee6c">More...</a><br /></td></tr>
+<tr class="separator:gab11fb2b687bc68cfb2b7e0862241ee6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga210d934e8339e4193e4f112febefb379"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus.html#ga210d934e8339e4193e4f112febefb379">SMBus_controllerDisableHostNotify</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
+<tr class="memdesc:ga210d934e8339e4193e4f112febefb379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable support for Host Notify Protocol.  <a href="#ga210d934e8339e4193e4f112febefb379">More...</a><br /></td></tr>
+<tr class="separator:ga210d934e8339e4193e4f112febefb379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -335,6 +356,8 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="gga104f05f4f6df4ec5ecce045f0e6d6b2caaea42e0e756bed4845478ee3dd4c7239"></a>SMBus_NwkState_RX&#160;</td><td class="fielddoc"><p>Network is receiving a packet </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga104f05f4f6df4ec5ecce045f0e6d6b2cabdf29d7fcd850e964ab885a6b8c3d0a9"></a>SMBus_NwkState_TX&#160;</td><td class="fielddoc"><p>Network is transmitting after receive byte </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga104f05f4f6df4ec5ecce045f0e6d6b2ca236f787abc86b9fcfc826e7798ae6fd0"></a>SMBus_NwkState_TXHostAlert&#160;</td><td class="fielddoc"><p>Network is transmitting Host Alert </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga104f05f4f6df4ec5ecce045f0e6d6b2ca3eb670a338291ad59f2ada8e15481681"></a>SMBus_NwkState_TXQuickCMD&#160;</td><td class="fielddoc"><p>Network is sending Quick Command </p>
 </td></tr>
@@ -419,6 +442,8 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="gga4ed089729210ba2f995f3962843b14b9a02e9823d44558b4b2b835905a520ae6f"></a>SMBus_State_Controller_NACK&#160;</td><td class="fielddoc"><p>Unexpected NACKed </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga4ed089729210ba2f995f3962843b14b9a4256f3369896050b59b6472f2f566880"></a>SMBus_State_Controller_Error&#160;</td><td class="fielddoc"><p><a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> Controller error </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga4ed089729210ba2f995f3962843b14b9a88ad56b77f68277fc3fbe3f0fc9e2dd8"></a>SMBus_State_Controller_HostNotify&#160;</td><td class="fielddoc"><p><a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> Controller Host Notify Received </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga4ed089729210ba2f995f3962843b14b9a663371ea792f831d77e3af5fe2b2b1da"></a>SMBus_State_Unknown&#160;</td><td class="fielddoc"><p><a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> State Unknown </p>
 </td></tr>
@@ -991,6 +1016,53 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gac3bea7c055d202ee1a6f187831563f6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac3bea7c055d202ee1a6f187831563f6d">&sect;&nbsp;</a></span>SMBus_targetHostAlert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t SMBus_targetHostAlert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_s_m_bus.html">SMBus</a> *&#160;</td>
+          <td class="paramname"><em>smbus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>deviceAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>txData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send a Host Alert from the target. </p>
+<div class="fragment"><div class="line"><a class="code" href="struct_s_m_bus.html">SMBus</a> Host Alert protocol</div><div class="line"></div><div class="line">Modified Write Word:</div><div class="line">     1         7         1    1         8        1       8           1          8         1   1</div><div class="line">   ----------------------------------------------------------------------------------------------</div><div class="line">   | S | Default Host Address | Wr | A | Device Address | A | Data Byte Low | A | Data Byte High | A | P |</div><div class="line">   ----------------------------------------------------------------------------------------------</div><div class="line"></div><div class="line">where:</div><div class="line">    S = Start bit</div><div class="line">    Wr = Write bit (0)</div><div class="line">    Default Host Address = 0x08</div><div class="line">    Device Address = Own address to transmit</div><div class="line">    Data Byte = data sent to target</div><div class="line">    A = Acknowledge from target</div><div class="line">    P = Stop bit</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
+    <tr><td class="paramname">deviceAddress</td><td>Own Address </td></tr>
+    <tr><td class="paramname">txData</td><td>Pointer to TX data (2 bytes) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><b>SMBUS_RET_ERROR</b>, or <b>SMBUS_RET_OK</b> </dd></dl>
+
+<p>References <a class="el" href="struct_s_m_bus___nwk.html#a397c600d2adb49b09d91d760498dcf81">SMBus_Nwk::currentAddr</a>, <a class="el" href="struct_s_m_bus___nwk.html#a228acaadfd117cb9e9192350808181f8">SMBus_Nwk::currentCmd</a>, <a class="el" href="struct_s_m_bus___nwk.html#a1d1129b72d4f7f694b299ab20cd7a6fd">SMBus_Nwk::eState</a>, <a class="el" href="struct_s_m_bus.html#a40f1b5d03be7def2fa0426b0c3e363a4">SMBus::nwk</a>, <a class="el" href="struct_s_m_bus___nwk.html#a5860ad35ecfe83b2a21f323a0367eecf">SMBus_Nwk::rxLen</a>, <a class="el" href="group__smbus.html#ga61fceac2bd8745030d9c769d214f3d21">SMB_HOST_DEFAULT_ADDRESS</a>, <a class="el" href="group__smbus__nwk.html#ga30408fa613f9a796b7815c16cb91432e">SMBus_NWK_startTxTransfer()</a>, <a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2cac5c408e7bed3653e70bcc1fe1d52e287">SMBus_NwkState_Idle</a>, <a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2ca236f787abc86b9fcfc826e7798ae6fd0">SMBus_NwkState_TXHostAlert</a>, <a class="el" href="group__smbus.html#gabf1ce655070830677f610278e52bb705">SMBUS_RET_ERROR</a>, <a class="el" href="group__smbus.html#gac263e3b08448bf581f16a08607ef4d33">SMBUS_RET_OK</a>, <a class="el" href="struct_s_m_bus___nwk.html#ab7f95f138076dd503083e61ccbd70b7b">SMBus_Nwk::txBuffPtr</a>, and <a class="el" href="struct_s_m_bus___nwk.html#a23957f8a00d9c24dca2fe53264c06e38">SMBus_Nwk::txLen</a>.</p>
+
+</div>
+</div>
 <a id="gabb9ea515bb36eb4508e4b27cfc47ae2f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gabb9ea515bb36eb4508e4b27cfc47ae2f">&sect;&nbsp;</a></span>SMBus_controllerInit()</h2>
 
@@ -1547,6 +1619,75 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><b>SMBUS_RET_ERROR</b>, or <b>SMBUS_RET_OK</b> </dd></dl>
 
 <p>References <a class="el" href="struct_s_m_bus___nwk.html#a1d1129b72d4f7f694b299ab20cd7a6fd">SMBus_Nwk::eState</a>, <a class="el" href="struct_s_m_bus.html#a40f1b5d03be7def2fa0426b0c3e363a4">SMBus::nwk</a>, <a class="el" href="group__smbus.html#gga104f05f4f6df4ec5ecce045f0e6d6b2cac5c408e7bed3653e70bcc1fe1d52e287">SMBus_NwkState_Idle</a>, <a class="el" href="group__smbus.html#gabf1ce655070830677f610278e52bb705">SMBUS_RET_ERROR</a>, and <a class="el" href="group__smbus.html#gac263e3b08448bf581f16a08607ef4d33">SMBUS_RET_OK</a>.</p>
+
+</div>
+</div>
+<a id="gab11fb2b687bc68cfb2b7e0862241ee6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab11fb2b687bc68cfb2b7e0862241ee6c">&sect;&nbsp;</a></span>SMBus_controllerEnableHostNotify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SMBus_controllerEnableHostNotify </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_s_m_bus.html">SMBus</a> *&#160;</td>
+          <td class="paramname"><em>smbus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>hostAlertBuffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable support for Host Notify Protocol. </p>
+<p>Controller will respond to Default host address and recognize a host notify protocol. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
+    <tr><td class="paramname">hostAlertBuffer</td><td>Pointer to buffer to store host Alert response </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+<p>References <a class="el" href="union_s_m_bus___ctrl.html#a18701d05ca7220f5093a016585e075e3">SMBus_Ctrl::bits</a>, <a class="el" href="struct_s_m_bus.html#a146dec1b882f30b68323f6190150f517">SMBus::ctrl</a>, <a class="el" href="union_s_m_bus___ctrl.html#a7d7641c9e9281be5738bf28f4948f392">SMBus_Ctrl::hostNotifyEn</a>, <a class="el" href="group__smbus__nwk.html#ga37553273faa6b516e63ddc093476c508">SMBus_NWK_controllerEnableHostNotify()</a>, and <a class="el" href="group__smbus___m_s_p_m0__phy.html#gad610eec32d0a6ff025c60e5fcd00dbce">SMBus_PHY_controllerEnableHostNotify()</a>.</p>
+
+</div>
+</div>
+<a id="ga210d934e8339e4193e4f112febefb379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga210d934e8339e4193e4f112febefb379">&sect;&nbsp;</a></span>SMBus_controllerDisableHostNotify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SMBus_controllerDisableHostNotify </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_s_m_bus.html">SMBus</a> *&#160;</td>
+          <td class="paramname"><em>smbus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable support for Host Notify Protocol. </p>
+<p>Controller will not respond to Default host address and won't recognize the host notify protocol. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+<p>References <a class="el" href="union_s_m_bus___ctrl.html#a18701d05ca7220f5093a016585e075e3">SMBus_Ctrl::bits</a>, <a class="el" href="struct_s_m_bus.html#a146dec1b882f30b68323f6190150f517">SMBus::ctrl</a>, <a class="el" href="union_s_m_bus___ctrl.html#a7d7641c9e9281be5738bf28f4948f392">SMBus_Ctrl::hostNotifyEn</a>, <a class="el" href="group__smbus__nwk.html#gad7829f79142e4ecc07085b24c5dc7807">SMBus_NWK_controllerDisableHostNotify()</a>, and <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d">SMBus_PHY_controllerDisableHostNotify()</a>.</p>
 
 </div>
 </div>

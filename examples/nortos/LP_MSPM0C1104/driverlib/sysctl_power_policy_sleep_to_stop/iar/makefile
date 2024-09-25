@@ -11,7 +11,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = sysctl_power_policy_sleep_to_stop.obj iar_startup_mspm0c1104_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = sysctl_power_policy_sleep_to_stop.obj iar_startup_mspm0c110x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = sysctl_power_policy_sleep_to_stop
 
 CFLAGS = -I.. \
@@ -29,7 +29,9 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0c110x/driverlib.a" \
+LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
+    "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0c110x/driverlib.a" \
     --config ../iar/mspm0c1104.icf \
     --map "$(NAME).map" \
     --silent \
@@ -57,7 +59,7 @@ sysctl_power_policy_sleep_to_stop.obj: ../sysctl_power_policy_sleep_to_stop.c $(
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-iar_startup_mspm0c1104_iar.obj: ../iar/startup_mspm0c1104_iar.c $(SYSCFG_H_FILES)
+iar_startup_mspm0c110x_iar.obj: ../iar/startup_mspm0c110x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

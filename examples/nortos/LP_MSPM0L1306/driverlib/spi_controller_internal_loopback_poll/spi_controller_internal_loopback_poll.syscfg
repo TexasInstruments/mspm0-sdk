@@ -8,12 +8,28 @@
 /**
  * Import the modules used in this configuration.
  */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
 const SPI  = scripting.addModule("/ti/driverlib/SPI", {}, false);
 const SPI1 = SPI.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
  */
+
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].assignedPortSegment = "Lower";
+GPIO1.associatedPins[1].initialValue        = "SET";
+GPIO1.associatedPins[1].assignedPin         = "1";
+
 SPI1.$name                  = "SPI_0";
 SPI1.targetBitRate          = 500000;
 SPI1.enableInternalLoopback = true;

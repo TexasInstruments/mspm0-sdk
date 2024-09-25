@@ -42,6 +42,8 @@
     <linkerExtraOptions>
         <args>
             <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a</arg>
+            <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
+            <arg>-L$PROJ_DIR$</arg>
             <arg>--silent</arg>
         </args>
     </linkerExtraOptions>
@@ -72,7 +74,7 @@
         <path copyTo="$PROJ_DIR$/ti_msp_dl_config.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/eeprom/emulation_type_a/eeprom_emulation_type_a/ti_msp_dl_config.c</path>
         <path copyTo="$PROJ_DIR$/ti_msp_dl_config.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/eeprom/emulation_type_a/eeprom_emulation_type_a/ti_msp_dl_config.h</path>
         <group name="iar" build="true">
-            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g3507_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/eeprom/emulation_type_a/eeprom_emulation_type_a/iar/startup_mspm0g3507_iar.c</path>
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g350x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/eeprom/emulation_type_a/eeprom_emulation_type_a/iar/startup_mspm0g350x_iar.c</path>
         </group>
         <group name="ti/eeprom/emulation_type_a" build="true">
             <path copyTo="$PROJ_DIR$/ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/eeprom/emulation_type_a/eeprom_emulation_type_a/ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c</path>

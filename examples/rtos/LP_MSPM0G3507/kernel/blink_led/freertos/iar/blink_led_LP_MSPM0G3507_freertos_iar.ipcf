@@ -46,8 +46,10 @@
 
     <linkerExtraOptions>
         <args>
-            <arg>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/builds/LP_MSPM0G3507/release/iar/freertos.lib</arg>
             <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a</arg>
+            <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
+            <arg>-L$PROJ_DIR$</arg>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/builds/LP_MSPM0G3507/release/iar/freertos.lib</arg>
             <arg>--silent</arg>
         </args>
     </linkerExtraOptions>
@@ -92,7 +94,7 @@
             <path copyTo="$PROJ_DIR$/Excluded_From_Build/syscfg_c.rov.xs">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0G3507/kernel/blink_led/syscfg_c.rov.xs</path>
         </group>
         <group name="freertos/iar" build="true">
-            <path copyTo="$PROJ_DIR$/freertos/iar/startup_mspm0g3507_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0G3507/kernel/blink_led/freertos/iar/startup_mspm0g3507_iar.c</path>
+            <path copyTo="$PROJ_DIR$/freertos/iar/startup_mspm0g350x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/rtos/LP_MSPM0G3507/kernel/blink_led/freertos/iar/startup_mspm0g350x_iar.c</path>
         </group>
     </files>
 </iarProjectConnection>

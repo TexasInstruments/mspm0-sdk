@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = main.obj App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj UserConfig_UserConfig.obj ticlang_startup_mspm0l1306_ticlang.obj
+OBJECTS = main.obj App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj UserConfig_UserConfig.obj ticlang_startup_mspm0l130x_ticlang.obj
 NAME = self_calibrate_current_detection
 
 CFLAGS = -I.. \
@@ -21,6 +21,8 @@ CFLAGS = -I.. \
 
 LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/ticlang/m0p/rts/iqmath.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     ../ticlang/mspm0l1306.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
@@ -49,7 +51,7 @@ UserConfig_UserConfig.obj: ../UserConfig/UserConfig.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ticlang_startup_mspm0l1306_ticlang.obj: ../ticlang/startup_mspm0l1306_ticlang.c
+ticlang_startup_mspm0l130x_ticlang.obj: ../ticlang/startup_mspm0l130x_ticlang.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

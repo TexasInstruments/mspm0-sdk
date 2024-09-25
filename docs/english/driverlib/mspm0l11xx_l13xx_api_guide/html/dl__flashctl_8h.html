@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">1.20.00.05</span>
+   &#160;<span id="projectnumber">1.20.01.06</span>
    </div>
   </td>
  </tr>
@@ -102,6 +102,10 @@ Include dependency graph for dl_flashctl.h:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga1fbc2d1db2bec0ea44c58a1dcde072bb"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb">DEVICE_HAS_NO_CMDWEPROTA</a></td></tr>
+<tr class="memdesc:ga1fbc2d1db2bec0ea44c58a1dcde072bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device does not have CMDWEPROTA. <br /></td></tr>
+<tr class="separator:ga1fbc2d1db2bec0ea44c58a1dcde072bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3deb3bf1642e247a461ed82407086e3c"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga3deb3bf1642e247a461ed82407086e3c">FLASHCTL_BANK0_ADDRESS</a>&#160;&#160;&#160;(0x00000000)</td></tr>
 <tr class="memdesc:ga3deb3bf1642e247a461ed82407086e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address for Bank 0. <br /></td></tr>
@@ -118,6 +122,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gadf0bf0d8889b1ca8d7073a67cff7c391">NUMBER_OF_NONMAIN_SECTORS</a>&#160;&#160;&#160;(1)</td></tr>
 <tr class="memdesc:gadf0bf0d8889b1ca8d7073a67cff7c391"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of NONMAIN sectors. <br /></td></tr>
 <tr class="separator:gadf0bf0d8889b1ca8d7073a67cff7c391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga392705d339fddbc783a53d53643022be"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga392705d339fddbc783a53d53643022be">FLASHCTL_DATA_ADDRESS</a>&#160;&#160;&#160;(0x41d00000)</td></tr>
+<tr class="memdesc:ga392705d339fddbc783a53d53643022be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address for DATA memory region. <br /></td></tr>
+<tr class="separator:ga392705d339fddbc783a53d53643022be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac37215b452881babe46dd71bcd74f40e"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gac37215b452881babe46dd71bcd74f40e">DL_FLASHCTL_PROGRAM_8_WITHOUT_ECC</a>&#160;&#160;&#160;(0x00000001)</td></tr>
 <tr class="memdesc:gac37215b452881babe46dd71bcd74f40e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable programming 8 bits without ECC enabled. <br /></td></tr>
@@ -378,6 +386,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga18538b0b2eb9257188f6b488fbf0a164"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga18538b0b2eb9257188f6b488fbf0a164">DL_FlashCTL_waitForCmdDone</a> (FLASHCTL_Regs *flashctl)</td></tr>
 <tr class="memdesc:ga18538b0b2eb9257188f6b488fbf0a164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocking function that waits for a command execution to finish.  <a href="group___f_l_a_s_h_c_t_l.html#ga18538b0b2eb9257188f6b488fbf0a164">More...</a><br /></td></tr>
 <tr class="separator:ga18538b0b2eb9257188f6b488fbf0a164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacbd4eaed6070854f2691339142ca9397"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gacbd4eaed6070854f2691339142ca9397">DL_FlashCTL_executeClearStatus</a> (FLASHCTL_Regs *flashctl)</td></tr>
+<tr class="memdesc:gacbd4eaed6070854f2691339142ca9397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets clear status bit and executes command.  <a href="group___f_l_a_s_h_c_t_l.html#gacbd4eaed6070854f2691339142ca9397">More...</a><br /></td></tr>
+<tr class="separator:gacbd4eaed6070854f2691339142ca9397"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7aeadf2178f1a939be163efedbeec566"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga7aeadf2178f1a939be163efedbeec566">DL_FlashCTL_getFlashSectorNumber</a> (FLASHCTL_Regs *flashctl, uint32_t addr)</td></tr>
 <tr class="memdesc:ga7aeadf2178f1a939be163efedbeec566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sector number of the input address over the whole memory map.  <a href="group___f_l_a_s_h_c_t_l.html#ga7aeadf2178f1a939be163efedbeec566">More...</a><br /></td></tr>
 <tr class="separator:ga7aeadf2178f1a939be163efedbeec566"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -507,6 +518,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga12f380dc9c7ead7114cabd8a35391c08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga12f380dc9c7ead7114cabd8a35391c08">DL_FlashCTL_unprotectMainMemory</a> (FLASHCTL_Regs *flashctl)</td></tr>
 <tr class="memdesc:ga12f380dc9c7ead7114cabd8a35391c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unprotects all main memory from erase/program.  <a href="group___f_l_a_s_h_c_t_l.html#ga12f380dc9c7ead7114cabd8a35391c08">More...</a><br /></td></tr>
 <tr class="separator:ga12f380dc9c7ead7114cabd8a35391c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga199e8316ff42b06115435a8fa7fe786b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga199e8316ff42b06115435a8fa7fe786b">DL_FlashCTL_unprotectDataMemory</a> (FLASHCTL_Regs *flashctl)</td></tr>
+<tr class="memdesc:ga199e8316ff42b06115435a8fa7fe786b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unprotects all data memory from erase/program.  <a href="group___f_l_a_s_h_c_t_l.html#ga199e8316ff42b06115435a8fa7fe786b">More...</a><br /></td></tr>
+<tr class="separator:ga199e8316ff42b06115435a8fa7fe786b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga043bf21b804a375035999cf54693ac93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga043bf21b804a375035999cf54693ac93">DL_FlashCTL_protectMainMemory</a> (FLASHCTL_Regs *flashctl)</td></tr>
 <tr class="memdesc:ga043bf21b804a375035999cf54693ac93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protects all main memory from erase/program.  <a href="group___f_l_a_s_h_c_t_l.html#ga043bf21b804a375035999cf54693ac93">More...</a><br /></td></tr>
 <tr class="separator:ga043bf21b804a375035999cf54693ac93"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -618,6 +632,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gaec5d51f9e035e2846289fd948e267cfe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gaec5d51f9e035e2846289fd948e267cfe">DL_FlashCTL_programMemoryBlocking128WithECCGenerated</a> (FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data, uint32_t dataSize, <a class="el" href="group___f_l_a_s_h_c_t_l.html#gad8b5345481dd655cbd20dadc84e7621b">DL_FLASHCTL_REGION_SELECT</a> regionSelect)</td></tr>
 <tr class="memdesc:gaec5d51f9e035e2846289fd948e267cfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Programs provided data up to 128-bits with ECC generated while blocking between writes.  <a href="group___f_l_a_s_h_c_t_l.html#gaec5d51f9e035e2846289fd948e267cfe">More...</a><br /></td></tr>
 <tr class="separator:gaec5d51f9e035e2846289fd948e267cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d8baaa47934cdb852dcfcd0a1645d90"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga0d8baaa47934cdb852dcfcd0a1645d90">DL_FlashCTL_eraseDataBank</a> (FLASHCTL_Regs *flashctl)</td></tr>
+<tr class="memdesc:ga0d8baaa47934cdb852dcfcd0a1645d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs an erase on DATA bank.  <a href="group___f_l_a_s_h_c_t_l.html#ga0d8baaa47934cdb852dcfcd0a1645d90">More...</a><br /></td></tr>
+<tr class="separator:ga0d8baaa47934cdb852dcfcd0a1645d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6a81dc3536f56ce1a552f2102fca181"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___f_l_a_s_h_c_t_l.html#ga81a568bc9c0c10f386e22832683db339">DL_FLASHCTL_COMMAND_STATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_l_a_s_h_c_t_l.html#gad6a81dc3536f56ce1a552f2102fca181">DL_FlashCTL_eraseDataBankFromRAM</a> (FLASHCTL_Regs *flashctl)</td></tr>
+<tr class="memdesc:gad6a81dc3536f56ce1a552f2102fca181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs an erase on DATA bank, and executes command from RAM.  <a href="group___f_l_a_s_h_c_t_l.html#gad6a81dc3536f56ce1a552f2102fca181">More...</a><br /></td></tr>
+<tr class="separator:gad6a81dc3536f56ce1a552f2102fca181"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

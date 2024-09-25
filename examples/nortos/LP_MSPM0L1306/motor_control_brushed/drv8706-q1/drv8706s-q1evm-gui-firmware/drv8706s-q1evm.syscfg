@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
 const ADC121 = ADC12.addInstance();
 const Board  = scripting.addModule("/ti/driverlib/Board");
@@ -25,6 +26,8 @@ const TIMER1 = TIMER.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable = true;
+
 ADC121.$name                      = "GENERIC_ADC_CHAN_0";
 ADC121.subChanID                  = 1;
 ADC121.adcMem1chansel             = "DL_ADC12_INPUT_CHAN_1";

@@ -138,9 +138,9 @@
 % /* HFXIN pins */
 %       let hfxOutPinName = "hfxOut"+"Pin";
 %       let hfxOutPackagePin = stat.peripheral[hfxOutPinName].$solution.packagePinName;
-%       let hfxOutPinCM = Common.getPinCM(lfclkInPackagePin,stat,"LFCLKIN");
+%       let hfxOutPinCM = Common.getPinCM(hfxOutPackagePin,stat,"HFXOUT");
 %       let hfxOutGpioName = system.deviceData.devicePins[hfxOutPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let hfxOutGpioPin = Common.getGPIONumberMultiPad(hfclkInPackagePin,stat,"HFCLKIN");
+%       let hfxOutGpioPin = Common.getGPIONumberMultiPad(hfxOutPackagePin,stat,"HFXOUT");
 % let hfxOutPinStr = "#define "+gpioStr+"_HFXOUT_PIN";
 % let hfxOutPinStr2 = "DL_GPIO_PIN_"+hfxOutGpioPin;
 `hfxOutPinStr.padEnd(40," ")+hfxOutPinStr2.padStart(40," ")`

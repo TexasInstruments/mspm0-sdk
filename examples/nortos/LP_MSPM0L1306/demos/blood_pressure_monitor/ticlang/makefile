@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj MSP_GUI_mpack.obj callbacks_mpack.obj HAL_UART_M0L1306.obj cuff.obj main.obj ti_msp_dl_config.obj ticlang_startup_mspm0l1306_ticlang.obj
+OBJECTS = MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj MSP_GUI_mpack.obj callbacks_mpack.obj HAL_UART_M0L1306.obj cuff.obj main.obj ti_msp_dl_config.obj ticlang_startup_mspm0l130x_ticlang.obj
 NAME = blood_pressure_monitor
 
 CFLAGS = -I.. \
@@ -21,6 +21,8 @@ CFLAGS = -I.. \
 
 LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     ../ticlang/mspm0l1306.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
@@ -61,7 +63,7 @@ ti_msp_dl_config.obj: ../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ticlang_startup_mspm0l1306_ticlang.obj: ../ticlang/startup_mspm0l1306_ticlang.c
+ticlang_startup_mspm0l130x_ticlang.obj: ../ticlang/startup_mspm0l130x_ticlang.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

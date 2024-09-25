@@ -35,7 +35,7 @@
 <div id="content">
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
-<p>This example implements an SMBus target using the MSPM0 SMBus software library. This example will respond to a variety of SMBus commands to an SMBus target (see smb_controller00_all_protocols).</p>
+<p>This example implements an SMBus target using the MSPM0 SMBus software library. This example will respond to a variety of SMBus commands sent by a SMBus controller (see smb_controller00_all_protocols).</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -62,13 +62,13 @@
 <td></td>
 </tr>
 <tr class="even">
-<td>I2C0</td>
-<td>PA10</td>
+<td>I2C1</td>
+<td>PB3</td>
 <td>I2C Serial Data line (SDA)</td>
 </tr>
 <tr class="odd">
-<td>I2C0</td>
-<td>PA11</td>
+<td>I2C1</td>
+<td>PB2</td>
 <td>I2C Serial Clock line (SCL)</td>
 </tr>
 <tr class="even">
@@ -111,53 +111,55 @@
 <td>GPIOA</td>
 <td>PA0</td>
 <td>J27_9</td>
-<td>This pin is 5V tolerant open-drain and requires pull-up.<br>J4 ON/OFF: Connect/Disconnect LED1<br>J19 1:2 3.3V Pull-up<br>J19 2:3 5V Pull-up</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
-<td>PA10</td>
-<td>I2C0</td>
+<td>PB3</td>
+<td>I2C1</td>
 <td>SDA</td>
-<td>J4_34/J26_5</td>
-<td>J21 2:3 Connect to J4_34<br>R62 connects J26_5 (default)</td>
+<td>J1_10</td>
+<td><ul><li>PB3 can be connected to an on-board pull-up resistor<br><ul><li><code>R60</code> is not soldered by default<br><li>Solder <code>R60</code> to use on-board pull-up</ul></ul></td>
 </tr>
 <tr class="odd">
-<td>PA11</td>
-<td>I2C0</td>
+<td>PB2</td>
+<td>I2C1</td>
 <td>SCL</td>
-<td>J4_33/J26_6</td>
-<td>J22 2:3 Connect to J4_33<br>R63 connects J26_6 (default)</td>
+<td>J1_9</td>
+<td><ul><li>PB2 can be connected to an on-board pull-up resistor<br><ul><li><code>R59</code> is not soldered by default<br><li>Solder <code>R59</code> to use on-board pull-up</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA27</td>
 <td>ADC0</td>
 <td>A0</td>
 <td>J1_8</td>
-<td>J17 OFF Disconnect from Light Sensor D1</td>
+<td><ul><li>PA27 can be connected to photodiode D1<br><ul><li><code>J17 OFF</code> Disconnect from photodiode D1</ul></ul></td>
 </tr>
 <tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
+<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
+<p>This project was developed for a superset device included in the LP_MSPM0G3507 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau846">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run the example on an LP-MSPM0L1306.</p>
-<p>Connect SMBCLK (SCL) and SMBDAT (SDA) to the corresponding SMBCLK and SMBDAT pins on an LP-MSPM0L1306 running the smb_controller00_all_protocols example. Ensure that the LaunchPads share a common ground, by connecting a jumper between GND on both LaunchPads.</p>
-<p>Waits for command from the SMBus Controller and processes it.</p>
+<p>Connect SMBCLK (SCL), SMBDAT (SDA) and GND to the corresponding pins on a second MSPM0 LaunchPad running the smb_controller00_all_protocols example.</p>
+<p>Compile, load and run the example.</p>
+<p>The target example waits for each command from the SMBus controller and processes it. Optionally, an I2C sniffer can be used to observe the SMBus protocol.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

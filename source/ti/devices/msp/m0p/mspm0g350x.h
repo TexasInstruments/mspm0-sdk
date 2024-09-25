@@ -361,6 +361,9 @@ static DEBUGSS_Regs                             * const DEBUGSS                 
 #define FLASHCTL_SYS_DATAWIDTH                        (64)      /* !< Data bit width of a single flash word. */
 #define ADC_SYS_NUM_ANALOG_CHAN                       (16)      /* !< Number of analog channels. */
 #define I2C_SYS_FENTRIES                              (8)       /* !< Number of FIFO entries */
+#define FLASHCTL_SYS_WEPROTAWIDTH                     (32)      /* !< Bit width of WEPROTA register */
+#define FLASHCTL_SYS_WEPROTBWIDTH                     (12)      /* !< Bit width of WEPROTB register */
+#define FLASHCTL_SYS_WEPROTCWIDTH                     (0)       /* !< Bit width of WEPROTC register */
 
 /******************************************************************************
 * DMA Triggers                                                                *

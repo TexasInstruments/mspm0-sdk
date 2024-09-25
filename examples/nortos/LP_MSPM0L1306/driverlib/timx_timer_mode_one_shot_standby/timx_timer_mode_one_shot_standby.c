@@ -31,15 +31,14 @@
  */
 
 #include "ti_msp_dl_config.h"
-
 int main(void)
 {
     SYSCFG_DL_init();
 
     NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);
     DL_SYSCTL_enableSleepOnExit();
-
-    DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
     DL_TimerG_startCounter(TIMER_0_INST);
 
     while (1) {
@@ -51,7 +50,8 @@ void TIMER_0_INST_IRQHandler(void)
 {
     switch (DL_TimerG_getPendingInterrupt(TIMER_0_INST)) {
         case DL_TIMER_IIDX_ZERO:
-            DL_GPIO_setPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            DL_GPIO_setPins(GPIO_LEDS_PORT,
+                (GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN));
             break;
         default:
             break;

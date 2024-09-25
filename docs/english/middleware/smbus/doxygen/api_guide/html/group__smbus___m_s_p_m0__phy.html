@@ -103,7 +103,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:gab9202564c768c00f51c15a99114621ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the I2C Target module supporting <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> functionality.  <a href="#gab9202564c768c00f51c15a99114621ae">More...</a><br /></td></tr>
 <tr class="separator:gab9202564c768c00f51c15a99114621ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2dd61b10c2394a521fc5c02c10e6f441"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__smbus.html#ga4ed089729210ba2f995f3962843b14b9">SMBus_State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2dd61b10c2394a521fc5c02c10e6f441">SMBus_PHY_targetProcessInt</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
-<tr class="memdesc:ga2dd61b10c2394a521fc5c02c10e6f441"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Interrupt Service routine.  <a href="#ga2dd61b10c2394a521fc5c02c10e6f441">More...</a><br /></td></tr>
+<tr class="memdesc:ga2dd61b10c2394a521fc5c02c10e6f441"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Interrupt Service routine for <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> Target.  <a href="#ga2dd61b10c2394a521fc5c02c10e6f441">More...</a><br /></td></tr>
 <tr class="separator:ga2dd61b10c2394a521fc5c02c10e6f441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1ac90fc617113c9b3dbf69a88f796817"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus___m_s_p_m0__phy.html#ga1ac90fc617113c9b3dbf69a88f796817">SMBus_PHY_controllerEnable</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
 <tr class="memdesc:ga1ac90fc617113c9b3dbf69a88f796817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the PHY and Data Link layer.  <a href="#ga1ac90fc617113c9b3dbf69a88f796817">More...</a><br /></td></tr>
@@ -124,8 +124,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga6a2c2c522e20b1caef05f371f8866a9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a RX transfer.  <a href="#ga6a2c2c522e20b1caef05f371f8866a9b">More...</a><br /></td></tr>
 <tr class="separator:ga6a2c2c522e20b1caef05f371f8866a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e86c2f96215dfc3ccff6cd8496a1390"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__smbus.html#ga4ed089729210ba2f995f3962843b14b9">SMBus_State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus___m_s_p_m0__phy.html#ga3e86c2f96215dfc3ccff6cd8496a1390">SMBus_PHY_controllerProcessInt</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
-<tr class="memdesc:ga3e86c2f96215dfc3ccff6cd8496a1390"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Interrupt Service routine.  <a href="#ga3e86c2f96215dfc3ccff6cd8496a1390">More...</a><br /></td></tr>
+<tr class="memdesc:ga3e86c2f96215dfc3ccff6cd8496a1390"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Interrupt Service routine for <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> Controller.  <a href="#ga3e86c2f96215dfc3ccff6cd8496a1390">More...</a><br /></td></tr>
 <tr class="separator:ga3e86c2f96215dfc3ccff6cd8496a1390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad610eec32d0a6ff025c60e5fcd00dbce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus___m_s_p_m0__phy.html#gad610eec32d0a6ff025c60e5fcd00dbce">SMBus_PHY_controllerEnableHostNotify</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
+<tr class="memdesc:gad610eec32d0a6ff025c60e5fcd00dbce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the hardware functionality to respond to Host Default address (0b000_1000)  <a href="#gad610eec32d0a6ff025c60e5fcd00dbce">More...</a><br /></td></tr>
+<tr class="separator:gad610eec32d0a6ff025c60e5fcd00dbce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d">SMBus_PHY_controllerDisableHostNotify</a> (<a class="el" href="struct_s_m_bus.html">SMBus</a> *smbus)</td></tr>
+<tr class="memdesc:ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the hardware functionality to respond to Host Default address (0b000_1000)  <a href="#ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d">More...</a><br /></td></tr>
+<tr class="separator:ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -313,8 +319,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>I2C Interrupt Service routine. </p>
-<p>Handles the interrupts from I2C module and passes the information to the network layer. Should be called by application when an I2C interrupt is detected. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>I2C Interrupt Service routine for <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> Target. </p>
+<p>Handles the interrupts from I2C module and passes the information to the network layer. Should be called by application when acting as a target and an I2C interrupt is detected. Note that a target can also act as Host in some scenarios (like Host notify), so the ISR needs to handle such cases. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
   </table>
@@ -322,7 +328,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new state of Target (see <a class="el" href="group__smbus.html#ga469af3fb5408b22ab7a5c9fe7e7fd8a6" title="I2C Interrupt Service routine for a target. ">SMBus_targetProcessInt()</a>) </dd></dl>
 
-<p>References <a class="el" href="union_s_m_bus___status.html#a6335324b5dd5a4f0176002a3808e83f7">SMBus_Status::bits</a>, <a class="el" href="union_s_m_bus___status.html#a6975b54f0b8603da7bf2279b310bbe1e">SMBus_Status::pecErr</a>, <a class="el" href="struct_s_m_bus.html#a6e29744173332ae79d19370f4a8fab18">SMBus::phy</a>, <a class="el" href="group__smbus__nwk.html#ga37e24a26a17d4540ca6470cbff5b8263">SMBus_NWK_targetProcessRx()</a>, <a class="el" href="group__smbus__nwk.html#gabf230685664f8376a48560c7cf0d3353">SMBus_NWK_targetProcessStart()</a>, <a class="el" href="group__smbus__nwk.html#ga8cb8e0e1a4ebc9a7731e4ad7bcaa9f44">SMBus_NWK_targetProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#gafb81be811186a0a5c68296470fbfa59e">SMBus_NWK_targetProcessTx()</a>, <a class="el" href="struct_s_m_bus___phy.html#ad907588fbd2269897ec007f8d95e3b1c">SMBus_Phy::SMBus_Phy_i2cBase</a>, <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9ae59f300a0edbe5ac7a558c2548ddbda7">SMBus_State_PECError</a>, <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a106f830a926768b7417b771b8f1bedff">SMBus_State_Target_NTR</a>, and <a class="el" href="struct_s_m_bus.html#a5f985b1f5eb8a9047521d12df123a58f">SMBus::status</a>.</p>
+<p>References <a class="el" href="union_s_m_bus___status.html#a6335324b5dd5a4f0176002a3808e83f7">SMBus_Status::bits</a>, <a class="el" href="union_s_m_bus___status.html#a6975b54f0b8603da7bf2279b310bbe1e">SMBus_Status::pecErr</a>, <a class="el" href="struct_s_m_bus.html#a6e29744173332ae79d19370f4a8fab18">SMBus::phy</a>, <a class="el" href="group__smbus__nwk.html#ga453d34467538f6c77de48620b65a4f20">SMBus_NWK_controllerProcessNACK()</a>, <a class="el" href="group__smbus__nwk.html#ga5c06afc93bb57125e2c9e020114204ab">SMBus_NWK_controllerProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#ga1aea091c19677969528758abf32ea4d9">SMBus_NWK_controllerProcessTx()</a>, <a class="el" href="group__smbus__nwk.html#gac140ff6d2ea7dd942d282341b9c08ebf">SMBus_NWK_controllerTxDone()</a>, <a class="el" href="group__smbus__nwk.html#ga37e24a26a17d4540ca6470cbff5b8263">SMBus_NWK_targetProcessRx()</a>, <a class="el" href="group__smbus__nwk.html#gabf230685664f8376a48560c7cf0d3353">SMBus_NWK_targetProcessStart()</a>, <a class="el" href="group__smbus__nwk.html#ga8cb8e0e1a4ebc9a7731e4ad7bcaa9f44">SMBus_NWK_targetProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#gafb81be811186a0a5c68296470fbfa59e">SMBus_NWK_targetProcessTx()</a>, <a class="el" href="struct_s_m_bus___phy.html#ad907588fbd2269897ec007f8d95e3b1c">SMBus_Phy::SMBus_Phy_i2cBase</a>, <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9ae59f300a0edbe5ac7a558c2548ddbda7">SMBus_State_PECError</a>, <a class="el" href="group__smbus.html#gga4ed089729210ba2f995f3962843b14b9a106f830a926768b7417b771b8f1bedff">SMBus_State_Target_NTR</a>, and <a class="el" href="struct_s_m_bus.html#a5f985b1f5eb8a9047521d12df123a58f">SMBus::status</a>.</p>
 
 <p>Referenced by <a class="el" href="group__smbus.html#ga469af3fb5408b22ab7a5c9fe7e7fd8a6">SMBus_targetProcessInt()</a>.</p>
 
@@ -622,8 +628,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>I2C Interrupt Service routine. </p>
-<p>Handles the interrupts from I2C module and passes the information to the network layer. Should be called by application when an I2C interrupt is detected. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>I2C Interrupt Service routine for <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> Controller. </p>
+<p>Handles the interrupts from I2C module and passes the information to the network layer. Should be called by application when acting as a controller and an I2C interrupt is detected. Note that a controller can also act as target in some scenarios (like Host notify), so the ISR needs to handle such cases. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
   </table>
@@ -631,9 +637,71 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new state of controller (see <a class="el" href="group__smbus.html#ga44056371d29436f34dbab57f7d050985" title="I2C Interrupt Service routine for a controller. ">SMBus_controllerProcessInt()</a>) </dd></dl>
 
-<p>References <a class="el" href="struct_s_m_bus.html#a6e29744173332ae79d19370f4a8fab18">SMBus::phy</a>, <a class="el" href="group__smbus__nwk.html#ga453d34467538f6c77de48620b65a4f20">SMBus_NWK_controllerProcessNACK()</a>, <a class="el" href="group__smbus__nwk.html#ga1f3dddf946a55da47616d335be5c656d">SMBus_NWK_controllerProcessRx()</a>, <a class="el" href="group__smbus__nwk.html#ga5c06afc93bb57125e2c9e020114204ab">SMBus_NWK_controllerProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#gac337564c93eeab65a85a82da0e27246f">SMBus_NWK_controllerProcessTimeout()</a>, <a class="el" href="group__smbus__nwk.html#ga1aea091c19677969528758abf32ea4d9">SMBus_NWK_controllerProcessTx()</a>, <a class="el" href="group__smbus__nwk.html#gac140ff6d2ea7dd942d282341b9c08ebf">SMBus_NWK_controllerTxDone()</a>, and <a class="el" href="struct_s_m_bus___phy.html#ad907588fbd2269897ec007f8d95e3b1c">SMBus_Phy::SMBus_Phy_i2cBase</a>.</p>
+<p>References <a class="el" href="struct_s_m_bus.html#a6e29744173332ae79d19370f4a8fab18">SMBus::phy</a>, <a class="el" href="group__smbus__nwk.html#ga453d34467538f6c77de48620b65a4f20">SMBus_NWK_controllerProcessNACK()</a>, <a class="el" href="group__smbus__nwk.html#ga1f3dddf946a55da47616d335be5c656d">SMBus_NWK_controllerProcessRx()</a>, <a class="el" href="group__smbus__nwk.html#ga5c06afc93bb57125e2c9e020114204ab">SMBus_NWK_controllerProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#gac337564c93eeab65a85a82da0e27246f">SMBus_NWK_controllerProcessTimeout()</a>, <a class="el" href="group__smbus__nwk.html#ga1aea091c19677969528758abf32ea4d9">SMBus_NWK_controllerProcessTx()</a>, <a class="el" href="group__smbus__nwk.html#gac140ff6d2ea7dd942d282341b9c08ebf">SMBus_NWK_controllerTxDone()</a>, <a class="el" href="group__smbus__nwk.html#ga37e24a26a17d4540ca6470cbff5b8263">SMBus_NWK_targetProcessRx()</a>, <a class="el" href="group__smbus__nwk.html#gabf230685664f8376a48560c7cf0d3353">SMBus_NWK_targetProcessStart()</a>, <a class="el" href="group__smbus__nwk.html#ga8cb8e0e1a4ebc9a7731e4ad7bcaa9f44">SMBus_NWK_targetProcessStop()</a>, and <a class="el" href="struct_s_m_bus___phy.html#ad907588fbd2269897ec007f8d95e3b1c">SMBus_Phy::SMBus_Phy_i2cBase</a>.</p>
 
 <p>Referenced by <a class="el" href="group__smbus.html#ga44056371d29436f34dbab57f7d050985">SMBus_controllerProcessInt()</a>.</p>
+
+</div>
+</div>
+<a id="gad610eec32d0a6ff025c60e5fcd00dbce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad610eec32d0a6ff025c60e5fcd00dbce">&sect;&nbsp;</a></span>SMBus_PHY_controllerEnableHostNotify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SMBus_PHY_controllerEnableHostNotify </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_s_m_bus.html">SMBus</a> *&#160;</td>
+          <td class="paramname"><em>smbus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable the hardware functionality to respond to Host Default address (0b000_1000) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new state of controller (see <a class="el" href="group__smbus.html#ga44056371d29436f34dbab57f7d050985" title="I2C Interrupt Service routine for a controller. ">SMBus_controllerProcessInt()</a>) </dd></dl>
+
+<p>References <a class="el" href="struct_s_m_bus.html#a6e29744173332ae79d19370f4a8fab18">SMBus::phy</a>, and <a class="el" href="struct_s_m_bus___phy.html#ad907588fbd2269897ec007f8d95e3b1c">SMBus_Phy::SMBus_Phy_i2cBase</a>.</p>
+
+<p>Referenced by <a class="el" href="group__smbus.html#gab11fb2b687bc68cfb2b7e0862241ee6c">SMBus_controllerEnableHostNotify()</a>.</p>
+
+</div>
+</div>
+<a id="ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d">&sect;&nbsp;</a></span>SMBus_PHY_controllerDisableHostNotify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SMBus_PHY_controllerDisableHostNotify </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_s_m_bus.html">SMBus</a> *&#160;</td>
+          <td class="paramname"><em>smbus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable the hardware functionality to respond to Host Default address (0b000_1000) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">smbus</td><td>Pointer to <a class="el" href="struct_s_m_bus.html" title="Main SMBus object. ">SMBus</a> structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The new state of controller (see <a class="el" href="group__smbus.html#ga44056371d29436f34dbab57f7d050985" title="I2C Interrupt Service routine for a controller. ">SMBus_controllerProcessInt()</a>) </dd></dl>
+
+<p>References <a class="el" href="struct_s_m_bus.html#a6e29744173332ae79d19370f4a8fab18">SMBus::phy</a>, and <a class="el" href="struct_s_m_bus___phy.html#ad907588fbd2269897ec007f8d95e3b1c">SMBus_Phy::SMBus_Phy_i2cBase</a>.</p>
+
+<p>Referenced by <a class="el" href="group__smbus.html#ga210d934e8339e4193e4f112febefb379">SMBus_controllerDisableHostNotify()</a>.</p>
 
 </div>
 </div>

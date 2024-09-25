@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X TI-Driver Library
-   &#160;<span id="projectnumber">1.20.00.05</span>
+   &#160;<span id="projectnumber">1.20.01.06</span>
    </div>
   </td>
  </tr>
@@ -99,8 +99,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_d_m_a_m_s_p_m0_8h__dep__incl.png" border="0" usemap="#_d_m_a_m_s_p_m0_8hdep" alt=""/></div>
 <map name="_d_m_a_m_s_p_m0_8hdep" id="_d_m_a_m_s_p_m0_8hdep">
-<area shape="rect" id="node2" href="_u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x_8h.html" title="UART driver support APIs for the MSPM0G1X0X_G3X0X devices. " alt="" coords="12,80,211,121"/>
-<area shape="rect" id="node3" href="_u_a_r_t_m_s_p_m0_g1_x0_x___g3_x0_x_8h.html" title="UART driver interface for the MSPM0G1X0X_G3X0X devices. " alt="" coords="5,169,217,196"/>
+<area shape="rect" id="node2" href="_s_p_i_m_s_p_m0_8h.html" title="SPI driver implementation for MSPM0 SPI controller using the DMA controller. " alt="" coords="5,87,108,114"/>
+<area shape="rect" id="node3" href="_u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x_8h.html" title="UART driver support APIs for the MSPM0G1X0X_G3X0X devices. " alt="" coords="132,80,331,121"/>
+<area shape="rect" id="node4" href="_u_a_r_t_m_s_p_m0_g1_x0_x___g3_x0_x_8h.html" title="UART driver interface for the MSPM0G1X0X_G3X0X devices. " alt="" coords="125,169,337,196"/>
 </map>
 </div>
 </div>
@@ -111,11 +112,11 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html">DMAMSPM0_HWAttrs</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMAMSPM0 Hardware attributes.  <a href="struct_d_m_a_m_s_p_m0___h_w_attrs.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html">DMAMSPM0_Transfer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMAMSPM0 channel based Transfer configuration.  <a href="struct_d_m_a_m_s_p_m0___transfer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___object.html">DMAMSPM0_Object</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMAMSPM0 object.  <a href="struct_d_m_a_m_s_p_m0___object.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html">DMAMSPM0_Transfer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMAMSPM0 Transfer configuration.  <a href="struct_d_m_a_m_s_p_m0___transfer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___cfg.html">DMAMSPM0_Cfg</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMAMSPM0 Global configuration.  <a href="struct_d_m_a_m_s_p_m0___cfg.html#details">More...</a><br /></td></tr>
@@ -135,7 +136,7 @@ typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 <tr class="separator:ga1d63418e0aacc8c97993301127d8de20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga35a0f510eb6e8994bb47a19c96e8534a"><td class="memItemLeft" align="right" valign="top">
 typedef <a class="el" href="struct_d_m_a_m_s_p_m0___cfg.html">DMAMSPM0_Cfg</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a">DMAMSPM0_Handle</a></td></tr>
-<tr class="memdesc:ga35a0f510eb6e8994bb47a19c96e8534a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A handle that is returned from a <a class="el" href="group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2" title="Function to initialize the MSPM0 DMA peripheral and corresponding interrupt. ">DMAMSPM0_open()</a> call. <br /></td></tr>
+<tr class="memdesc:ga35a0f510eb6e8994bb47a19c96e8534a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A handle that is returned from a <a class="el" href="group___d_m_a.html#ga88e5d02f8c8a69e7159ea12874c178b4" title="Function to initialize the MSPM0 DMA peripheral and corresponding interrupt. ">DMAMSPM0_open()</a> call. <br /></td></tr>
 <tr class="separator:ga35a0f510eb6e8994bb47a19c96e8534a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -146,15 +147,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8a379aa65552a10e85cc4b1cb394896b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga8a379aa65552a10e85cc4b1cb394896b">DMAMSPM0_init</a> (void)</td></tr>
 <tr class="memdesc:ga8a379aa65552a10e85cc4b1cb394896b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to initialize the MSPM0 DMA driver.  <a href="group___d_m_a.html#ga8a379aa65552a10e85cc4b1cb394896b">More...</a><br /></td></tr>
 <tr class="separator:ga8a379aa65552a10e85cc4b1cb394896b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafb9cb8beeccb88058e01805a877ad6f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a">DMAMSPM0_Handle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2">DMAMSPM0_open</a> (uint8_t channelNum)</td></tr>
-<tr class="memdesc:gafb9cb8beeccb88058e01805a877ad6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to initialize the MSPM0 DMA peripheral and corresponding interrupt.  <a href="group___d_m_a.html#gafb9cb8beeccb88058e01805a877ad6f2">More...</a><br /></td></tr>
-<tr class="separator:gafb9cb8beeccb88058e01805a877ad6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88e5d02f8c8a69e7159ea12874c178b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a">DMAMSPM0_Handle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga88e5d02f8c8a69e7159ea12874c178b4">DMAMSPM0_open</a> (uint_least8_t index, uint8_t channelNum)</td></tr>
+<tr class="memdesc:ga88e5d02f8c8a69e7159ea12874c178b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to initialize the MSPM0 DMA peripheral and corresponding interrupt.  <a href="group___d_m_a.html#ga88e5d02f8c8a69e7159ea12874c178b4">More...</a><br /></td></tr>
+<tr class="separator:ga88e5d02f8c8a69e7159ea12874c178b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae12feff18a33167fc759a8f842e8cc31"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31">DMAMSPM0_setupTransfer</a> (<a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html">DMAMSPM0_Transfer</a> *transfer, DL_DMA_Config *DMACfg)</td></tr>
 <tr class="memdesc:gae12feff18a33167fc759a8f842e8cc31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set up a DMA channel for data transfer.  <a href="group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31">More...</a><br /></td></tr>
 <tr class="separator:gae12feff18a33167fc759a8f842e8cc31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa469f6d48b00671eeb013a691dc81529"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a">DMAMSPM0_Handle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gaa469f6d48b00671eeb013a691dc81529">DMA_Init</a> (<a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html">DMAMSPM0_Transfer</a> *dmaParams, DL_DMA_Config *DMACfg)</td></tr>
-<tr class="memdesc:gaa469f6d48b00671eeb013a691dc81529"><td class="mdescLeft">&#160;</td><td class="mdescRight">One Function that initialize DMA by calling all needed functions in sequence. User may call this function to initialize DMA without calling other needed functions separately.  <a href="group___d_m_a.html#gaa469f6d48b00671eeb013a691dc81529">More...</a><br /></td></tr>
-<tr class="separator:gaa469f6d48b00671eeb013a691dc81529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafdc13f6d8d07e139cb4454439936e7bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a">DMAMSPM0_Handle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gafdc13f6d8d07e139cb4454439936e7bd">DMA_Init</a> (<a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html">DMAMSPM0_Transfer</a> *dmaParams, DL_DMA_Config *DMACfg, uint8_t noOfChs)</td></tr>
+<tr class="memdesc:gafdc13f6d8d07e139cb4454439936e7bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">One Function that initialize DMA by calling all needed functions in sequence. User may call this function to initialize DMA without calling other needed functions separately.  <a href="group___d_m_a.html#gafdc13f6d8d07e139cb4454439936e7bd">More...</a><br /></td></tr>
+<tr class="separator:gafdc13f6d8d07e139cb4454439936e7bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7f580446972a92c87d13cda5a2d666e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga7f580446972a92c87d13cda5a2d666e8">DMAMSPM0_disableChannel</a> (<a class="el" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a">DMAMSPM0_Handle</a> handle, uint8_t dmaChannel)</td></tr>
 <tr class="memdesc:ga7f580446972a92c87d13cda5a2d666e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will disable the channel and related flags.  <a href="group___d_m_a.html#ga7f580446972a92c87d13cda5a2d666e8">More...</a><br /></td></tr>
 <tr class="separator:ga7f580446972a92c87d13cda5a2d666e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,10 +171,14 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:gacaa3ef9937116a3377e8181d9c036ea9"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="struct_d_m_a_m_s_p_m0___cfg.html">DMAMSPM0_Cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#gacaa3ef9937116a3377e8181d9c036ea9">DMAMSPM0_Config</a></td></tr>
-<tr class="memdesc:gacaa3ef9937116a3377e8181d9c036ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instance of a DMA Config structure. <br /></td></tr>
-<tr class="separator:gacaa3ef9937116a3377e8181d9c036ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0b835cf9a1f0f768cf8c18efe2abe02c"><td class="memItemLeft" align="right" valign="top">
+const <a class="el" href="struct_d_m_a_m_s_p_m0___cfg.html">DMAMSPM0_Cfg</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga0b835cf9a1f0f768cf8c18efe2abe02c">DMAMSPM0_Config</a> []</td></tr>
+<tr class="memdesc:ga0b835cf9a1f0f768cf8c18efe2abe02c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instance of a DMA Config structure. <br /></td></tr>
+<tr class="separator:ga0b835cf9a1f0f768cf8c18efe2abe02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga691a5faa765d34c7d5469426a7690f1a"><td class="memItemLeft" align="right" valign="top">
+const uint_least8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_m_a.html#ga691a5faa765d34c7d5469426a7690f1a">DMA_Count</a></td></tr>
+<tr class="memdesc:ga691a5faa765d34c7d5469426a7690f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of DMA channels. <br /></td></tr>
+<tr class="separator:ga691a5faa765d34c7d5469426a7690f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

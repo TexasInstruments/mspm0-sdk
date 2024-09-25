@@ -22,8 +22,8 @@
         compilerBuildOptions="
             -I${PROJECT_ROOT}
             -I${PROJECT_ROOT}/${ConfigName}
-            -D__MSPM0G1505__
             -O2
+            @syscfg/device.opt
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -mcpu=cortex-m0plus
@@ -41,9 +41,9 @@
             -I${CG_TOOL_ROOT}/arm-none-eabi/include
         "
         linkerBuildOptions="
-            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x
             -L${PROJECT_BUILD_DIR}/syscfg
-            -l:${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -ldevice.lds.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -nostartfiles
             -march=armv6-m
             -mthumb
@@ -70,10 +70,6 @@
         <file path="../empty_mspm0g1505.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../gcc/mspm0g1505.lds" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../gcc/startup_mspm0g1505_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="gcc">
         </file>
     </project>
 </projectSpec>

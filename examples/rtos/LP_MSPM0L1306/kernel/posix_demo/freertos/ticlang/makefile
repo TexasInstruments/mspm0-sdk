@@ -13,7 +13,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = main.obj main-posix.obj freertos_ticlang_startup_mspm0l1306_ticlang.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = main.obj main-posix.obj freertos_ticlang_startup_mspm0l130x_ticlang.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = posix_demo
 
 CFLAGS = -I../.. \
@@ -35,6 +35,8 @@ CFLAGS = -I../.. \
 LFLAGS = -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L1306_release_ticlang/Debug \
     -lfreertos_builds_LP_MSPM0L1306_release_ticlang.lib \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     ../../freertos/ticlang/mspm0l1306.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
@@ -73,7 +75,7 @@ main-posix.obj: ../../main-posix.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-freertos_ticlang_startup_mspm0l1306_ticlang.obj: ../../freertos/ticlang/startup_mspm0l1306_ticlang.c $(SYSCFG_H_FILES)
+freertos_ticlang_startup_mspm0l130x_ticlang.obj: ../../freertos/ticlang/startup_mspm0l130x_ticlang.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

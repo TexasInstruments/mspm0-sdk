@@ -93,6 +93,20 @@ extern "C"
 
 //*****************************************************************************
 //
+//! Host Alert packet size = Address + Data Byte Low + Data Byte High
+//
+//*****************************************************************************
+#define SMB_HOST_ALERT_PACKET_SIZE              (3)
+
+//*****************************************************************************
+//
+//! Default Host Address used for Host Alert
+//
+//*****************************************************************************
+#define SMB_HOST_DEFAULT_ADDRESS                (0x08)
+
+//*****************************************************************************
+//
 //! Default response when there's nothing to send
 //
 //*****************************************************************************
@@ -164,17 +178,19 @@ typedef union
     struct
     {
     /*! Enables PEC functionality */
-        uint8_t pecEn      : 1;  
+        uint8_t pecEn       : 1;
+    /*! Enable Host Notify  */
+        uint8_t hostNotifyEn : 1;
     /*! SW_ACK is enabled (read only) */
-        uint8_t swackEn    : 1;  
+        uint8_t swackEn     : 1;
     /*! Interupts are enabled (read only) */
-        uint8_t intEn      : 1;  
+        uint8_t intEn       : 1;
     /*! SMBus PHY is enabled (read only) */
-        uint8_t phyEn      : 1;  
+        uint8_t phyEn       : 1;
     /*! Acting in Controller mode (read only) */
-        uint8_t controller     : 1;  
+        uint8_t controller  : 1;
     /*! Reserved */
-        uint8_t reserved2  : 3;  
+        uint8_t reserved2   : 2;
     } bits;
     //*****************************************************************************
     //
@@ -184,9 +200,9 @@ typedef union
     struct
     {
     /*! Control bits that are writable */
-        uint8_t writeBits  : 1; 
+        uint8_t writeBits  : 2;
     /*! Masks the read only control */
-        uint8_t reserved   : 7; 
+        uint8_t reserved   : 6;
     } writeableBits;
     /*! Whole Control byte access */
     uint8_t u8byte;
@@ -217,7 +233,9 @@ typedef enum
     /*! Network is receiving a packet */
     SMBus_NwkState_RX,                    
     /*! Network is transmitting after receive byte */
-    SMBus_NwkState_TX,                    
+    SMBus_NwkState_TX,
+    /*! Network is transmitting Host Alert*/
+    SMBus_NwkState_TXHostAlert,
     /*! Network is sending Quick Command */
     SMBus_NwkState_TXQuickCMD,            
     /*! Network is transmitting a response after restart */
@@ -267,7 +285,9 @@ typedef struct
     /*! Max size of buffer */
     uint16_t txSize;
     /*! Current PEC value */
-    uint8_t pec;                          
+    uint8_t pec;
+    /*! Host Notify Buffer pointer */
+    uint8_t *hostNotifyRxBuffPtr;
 } SMBus_Nwk;
 
 //*****************************************************************************
@@ -320,6 +340,8 @@ typedef enum
     SMBus_State_Controller_NACK,            
     /*! SMBus Controller error */
     SMBus_State_Controller_Error,           
+    /*! SMBus Controller Host Notify Received*/
+    SMBus_State_Controller_HostNotify,
     /*! SMBus State Unknown */
     SMBus_State_Unknown
 } SMBus_State;
@@ -600,6 +622,40 @@ extern uint8_t SMBus_targetClearStatusReg(SMBus *smbus,
 extern uint8_t SMBus_targetWriteCtrlReg(SMBus *smbus,
                                        uint8_t val);
 
+//*****************************************************************************
+//
+//! \brief   Send a Host Alert from the target
+//
+//!
+//!~~~~~~~~
+//! SMBus Host Alert protocol
+//!
+//! Modified Write Word:
+//!      1         7         1    1         8        1       8           1          8         1   1
+//!    ----------------------------------------------------------------------------------------------
+//!    | S | Default Host Address | Wr | A | Device Address | A | Data Byte Low | A | Data Byte High | A | P |
+//!    ----------------------------------------------------------------------------------------------
+//!
+//! where:
+//!     S = Start bit
+//!     Wr = Write bit (0)
+//!     Default Host Address = 0x08
+//!     Device Address = Own address to transmit
+//!     Data Byte = data sent to target
+//!     A = Acknowledge from target
+//!     P = Stop bit
+//!~~~~~~~~
+//
+//! \param smbus            Pointer to SMBus structure
+//! \param deviceAddress    Own Address
+//! \param txData           Pointer to TX data (2 bytes)
+//
+//! \return  \b SMBUS_RET_ERROR, or \b SMBUS_RET_OK
+//
+//*****************************************************************************
+extern int8_t SMBus_targetHostAlert(SMBus *smbus,
+                                 uint8_t deviceAddress,
+                                 uint8_t *txData);
 
 //*****************************************************************************
 //
@@ -1141,6 +1197,35 @@ extern int8_t SMBus_controllerQuickCommand(SMBus *smbus,
 //*****************************************************************************
 extern int8_t SMBus_controllerWaitUntilDone(SMBus *smbus,
                                         int32_t timeout);
+
+//*****************************************************************************
+//
+//! \brief   Enable support for Host Notify Protocol
+//
+//! Controller will respond to Default host address and recognize a host notify
+//!   protocol.
+//
+//! \param smbus            Pointer to SMBus structure
+//! \param hostAlertBuffer  Pointer to buffer to store host Alert response
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_controllerEnableHostNotify(SMBus *smbus, uint8_t *hostAlertBuffer);
+
+//*****************************************************************************
+//
+//! \brief   Disable support for Host Notify Protocol
+//
+//! Controller will not respond to Default host address and won't recognize 
+//! the host notify protocol.
+//
+//! \param smbus    Pointer to SMBus structure
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_controllerDisableHostNotify(SMBus *smbus);
 
 //*****************************************************************************
 //

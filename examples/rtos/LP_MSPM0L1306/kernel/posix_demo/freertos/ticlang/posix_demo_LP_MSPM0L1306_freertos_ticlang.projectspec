@@ -42,8 +42,10 @@
         linkerBuildOptions="
             -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L1306_release_ticlang/Debug
             -lfreertos_builds_LP_MSPM0L1306_release_ticlang.lib
-            -L${PROJECT_BUILD_DIR}/syscfg
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
             -Wl,--rom_model
             -Wl,--warn_sections
             -L${CG_TOOL_ROOT}/lib
@@ -73,7 +75,7 @@
         </file>
         <file path="../../freertos/ticlang/mspm0l1306.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../../freertos/ticlang/startup_mspm0l1306_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="freertos/ticlang">
+        <file path="../../freertos/ticlang/startup_mspm0l130x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="freertos/ticlang">
         </file>
     </project>
 </projectSpec>

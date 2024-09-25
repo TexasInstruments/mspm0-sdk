@@ -8,7 +8,7 @@ var searchData=
   ['uart_5fcallback_5fobject',['UART_Callback_Object',['../struct_u_a_r_t___callback___object.html',1,'']]],
   ['uart_5fcallbackobject',['UART_callbackObject',['../group___u_a_r_t_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga1636c584a56888ddf04fcda92e7b1a9c',1,'UARTMSPM0G1X0X_G3X0X.h']]],
   ['uart_5fclose',['UART_close',['../group___u_a_r_t.html#ga6b49b65f3db709c408dc4db23a68895d',1,'UART.h']]],
-  ['uart_5fconfig',['UART_config',['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#gad24e1d95c2d7232d55dc5b1d00a56bb5',1,'UART_config():&#160;UARTSupportMSPM0G1X0X_G3X0X.h'],['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga68be81b9ce429a5e5c3ac02d285dbd3b',1,'UART_Config():&#160;UARTSupportMSPM0G1X0X_G3X0X.h']]],
+  ['uart_5fconfig',['UART_Config',['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga68be81b9ce429a5e5c3ac02d285dbd3b',1,'UART_Config():&#160;UARTSupportMSPM0G1X0X_G3X0X.h'],['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#gad24e1d95c2d7232d55dc5b1d00a56bb5',1,'UART_config():&#160;UARTSupportMSPM0G1X0X_G3X0X.h']]],
   ['uart_5fconfig_5f',['UART_Config_',['../struct_u_a_r_t___config__.html',1,'']]],
   ['uart_5fcount',['UART_count',['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga3e40006b96c9c55e5ac52d51d094dbac',1,'UARTSupportMSPM0G1X0X_G3X0X.h']]],
   ['uart_5fdata_5fobject',['UART_Data_Object',['../struct_u_a_r_t___data___object.html',1,'']]],
@@ -88,7 +88,6 @@ var searchData=
   ['uartsupport_5ffxns',['UARTSupport_Fxns',['../struct_u_a_r_t_support___fxns.html',1,'']]],
   ['uart_20mspm0g1x0x_5fg3x0x_20driver_20supporting_20apis',['UART MSPM0G1X0X_G3X0X driver supporting APIs',['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html',1,'']]],
   ['uartsupportmspm0g1x0x_5fg3x0x_2eh',['UARTSupportMSPM0G1X0X_G3X0X.h',['../_u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x_8h.html',1,'']]],
-  ['unused',['unused',['../struct_d_m_a_m_s_p_m0___object.html#a9abd490a4df34078590eb5a1a44ef3c2',1,'DMAMSPM0_Object']]],
   ['userarg',['userArg',['../struct_u_a_r_t___object.html#a4525123d0c1ff2fe0567895cf38779f9',1,'UART_Object::userArg()'],['../struct_u_a_r_t___callback___object.html#ae237ba53a2d0df992edd2f394597e449',1,'UART_Callback_Object::userArg()'],['../struct_u_a_r_t___params.html#acca56fbd486b68476e5757ff547b6aa5',1,'UART_Params::userArg()']]],
   ['userargs',['userArgs',['../struct_g_p_i_o___config.html#ae88eb9b0c507389101e024057d2fa1aa',1,'GPIO_Config']]]
 ];

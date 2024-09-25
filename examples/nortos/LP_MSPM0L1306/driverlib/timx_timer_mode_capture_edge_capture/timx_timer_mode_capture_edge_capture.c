@@ -32,8 +32,7 @@
 
 #include "ti_msp_dl_config.h"
 
-#define TIMER_CAPTURE_DURATION (2000)
-
+#define TIMER_CAPTURE_DURATION (CAPTURE_0_INST_LOAD_VALUE)
 volatile bool gCheckEdgeCaptureTime;
 int main(void)
 {
@@ -42,13 +41,20 @@ int main(void)
 
     NVIC_EnableIRQ(CAPTURE_0_INST_INT_IRQN);
 
+    gCheckEdgeCaptureTime = false;
     DL_TimerG_startCounter(CAPTURE_0_INST);
 
+    /*
+    * LED_1 is turned on to indicate edge capture has started
+    */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+
     while (1) {
-        gCheckEdgeCaptureTime = false;
         while (false == gCheckEdgeCaptureTime) {
             __WFE();
         }
+        gCheckEdgeCaptureTime = false;
 
         /*
          * When the timer is operating in DL_TIMER_CAPTURE_MODE_EDGE_TIME mode,
@@ -61,7 +67,16 @@ int main(void)
             TIMER_CAPTURE_DURATION - (DL_Timer_getCaptureCompareValue(
                                          CAPTURE_0_INST, DL_TIMER_CC_0_INDEX));
 
+        /*
+         * LED_1 is toggled every time a capture is detected
+         */
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
+
         __BKPT(0);
+
+        /* Setting timer count manually due to TIMER_ERR_01 errata */
+        DL_TimerG_setTimerCount(CAPTURE_0_INST, TIMER_CAPTURE_DURATION);
     }
 }
 

@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const GPIO    = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1   = GPIO.addInstance();
 const Board   = scripting.addModule("/ti/driverlib/Board", {}, false);
@@ -17,6 +18,8 @@ const NONMAIN = scripting.addModule("/ti/driverlib/NONMAIN");
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable = true;
+
 GPIO1.$name                         = "GPIO_LEDS";
 GPIO1.port                          = "PORTB";
 GPIO1.associatedPins.create(3);

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0L1306"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="empty_non_sysconfig"
+        name="empty_non_sysconfig_LP_MSPM0L1306_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0L1306"
+        ignoreDefaultDeviceSettings="false"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -D__MSPM0L1306__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Empty, non-SysConfig, start-up project using DriverLib">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../empty_non_sysconfig.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ti_msp_dl_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ti_msp_dl_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

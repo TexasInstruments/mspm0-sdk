@@ -1,0 +1,70 @@
+Energy Metrology CCS User's Guide
+=================================
+
+This Guide helps the user to import the energy library projects into CCS and test the functionality.
+
+CCS Project setup
+-----------------
+
+1. Go to Import CCS Projects as shown below.
+
+.. figure:: ./images/CCS_Import.png
+   :alt: 
+
+2. Click Browse. Navigate to energy measurement project folder.
+3. Click Select Folder. Check the desired hardware board (TIDA-010243), and click Finish to import the project into your workspace.
+
+.. figure:: ./images/CCS_Import_1.png
+   :alt: 
+
+Adding Initial Parameters (optional)
+------------------------------------
+
+1. In the Project Explorer, open the modules/ADS/ADS\_defaults.h file, modify the defaults for ADS registers (optional).
+2. Open template.h file, modify the metrology parameters (optional).
+
+.. figure:: ./images/defaults.png
+   :alt: 
+
+Starting the Project
+--------------------
+
+1. Connect the hardware and turn on the power supply.
+2. Click on the Build button.\ |image0| Project should build with no errors.
+3. Click on the Debug button. |image1|
+4. Open the Expressions window and add the following global structures and expressions.
+
++-------------------------+--------------------------------------+
+| Structure               | Description                          |
++=========================+======================================+
+| gMetrologyWorkingData   | Holds all the metrology parameters   |
++-------------------------+--------------------------------------+
+| gAdsHandle              | Holds all the ADS131M0x parameters   |
++-------------------------+--------------------------------------+
+| gDLT645                 | Holds the UART communication data    |
++-------------------------+--------------------------------------+
+
+.. figure:: ./images/expression_window.png
+   :alt: 
+
+5. Expand the structures and add IQ values to respective parameters. Refer to metrology library to find the IQ values of each parameters.
+
+.. figure:: ./images/Q_values.png
+   :alt: 
+
+6. Press Play |image2| to start the code.
+7. Enable “Continuous Refresh” in the Expressions window. |image3|
+
+Running the Project
+-------------------
+
+1. Turn ON the voltage source and set the voltage to nominal voltage (230V), the ADS will capture this voltage and computed value is displayed in CCS expression window. This should match with the applied voltage.
+2. Start applying the load, current starts flowing to load. The ADS will capture this current and computed value is displayed in CCS expression window. This should match with the actual current flowing to load.
+3. Along with voltage and current, metrology library continuously computes power, energy, power factor and other parameters. All the parameters are displayed in CCS expression window.
+4. Vary the voltage and current to test with various ranges of input.
+
+.. |image0| image:: images/Build.png
+.. |image1| image:: images/Debug.png
+.. |image2| image:: images/Play.png
+.. |image3| image:: images/refresh.png
+

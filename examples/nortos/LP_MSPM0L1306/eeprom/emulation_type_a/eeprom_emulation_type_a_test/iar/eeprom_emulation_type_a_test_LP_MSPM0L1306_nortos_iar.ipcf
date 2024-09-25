@@ -42,6 +42,8 @@
     <linkerExtraOptions>
         <args>
             <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a</arg>
+            <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
+            <arg>-L$PROJ_DIR$</arg>
             <arg>--silent</arg>
         </args>
     </linkerExtraOptions>
@@ -70,7 +72,7 @@
         <path copyTo="$PROJ_DIR$/ti_msp_dl_config.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/emulation_type_a/eeprom_emulation_type_a_test/ti_msp_dl_config.c</path>
         <path copyTo="$PROJ_DIR$/ti_msp_dl_config.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/emulation_type_a/eeprom_emulation_type_a_test/ti_msp_dl_config.h</path>
         <group name="iar" build="true">
-            <path copyTo="$PROJ_DIR$/iar/startup_mspm0l1306_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/emulation_type_a/eeprom_emulation_type_a_test/iar/startup_mspm0l1306_iar.c</path>
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0l130x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/emulation_type_a/eeprom_emulation_type_a_test/iar/startup_mspm0l130x_iar.c</path>
         </group>
         <group name="ti/eeprom/emulation_type_a" build="true">
             <path copyTo="$PROJ_DIR$/ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/eeprom/emulation_type_a/eeprom_emulation_type_a_test/ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c</path>

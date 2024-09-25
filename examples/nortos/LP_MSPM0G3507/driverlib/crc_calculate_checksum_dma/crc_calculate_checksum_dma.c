@@ -79,6 +79,8 @@ int main(void)
 
     if (CRC_EXPECTED_RESULT == crcChecksum) {
         crcChecksumMatch = true;
+        DL_GPIO_clearPins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
     } else {
         crcChecksumMatch = false;
     }

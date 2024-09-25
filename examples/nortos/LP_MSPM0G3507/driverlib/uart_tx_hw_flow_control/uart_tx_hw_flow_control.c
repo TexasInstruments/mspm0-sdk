@@ -71,14 +71,15 @@ int main(void)
 
     /* Optional delay to ensure UART TX is idle before starting transmission */
     delay_cycles(UART_TX_DELAY);
-
     transmitPacketBlocking(gTxPacket1, UART_PACKET_SIZE);
-
     /* Spin for some cycles to pause transmission between packets */
     delay_cycles(100000);
 
     transmitPacketBlocking(gTxPacket2, UART_PACKET_SIZE);
 
+    /* Clear LED and USER_TEST pin */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
     /* Transmission of all data is complete */
     while (1) {
         __WFI();

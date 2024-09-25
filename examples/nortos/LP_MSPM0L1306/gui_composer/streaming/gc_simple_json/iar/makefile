@@ -11,7 +11,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = callbacks_JSON.obj MSP_GUI_GUI_JSON.obj MSP_GUI_GUIComm_JSON.obj HAL_UART_M0L1306.obj main.obj iar_startup_mspm0l1306_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = callbacks_JSON.obj MSP_GUI_GUI_JSON.obj MSP_GUI_GUIComm_JSON.obj HAL_UART_M0L1306.obj main.obj iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = gc_simple_json
 
 CFLAGS = -I.. \
@@ -31,6 +31,8 @@ CFLAGS = -I.. \
 
 LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/iar/m0p/gui_composer.a" \
     "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
     --config ../iar/mspm0l1306.icf \
     --map "$(NAME).map" \
     --silent \
@@ -74,7 +76,7 @@ main.obj: ../main.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-iar_startup_mspm0l1306_iar.obj: ../iar/startup_mspm0l1306_iar.c $(SYSCFG_H_FILES)
+iar_startup_mspm0l130x_iar.obj: ../iar/startup_mspm0l130x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

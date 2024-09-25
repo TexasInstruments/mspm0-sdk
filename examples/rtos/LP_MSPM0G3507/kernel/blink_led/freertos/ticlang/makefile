@@ -13,7 +13,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = main.obj main-blinky.obj freertos_ticlang_startup_mspm0g3507_ticlang.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = main.obj main-blinky.obj freertos_ticlang_startup_mspm0g350x_ticlang.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = blink_led
 
 CFLAGS = -I../.. \
@@ -35,6 +35,8 @@ CFLAGS = -I../.. \
 LFLAGS = -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0G3507_release_ticlang/Debug \
     -lfreertos_builds_LP_MSPM0G3507_release_ticlang.lib \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     ../../freertos/ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
@@ -73,7 +75,7 @@ main-blinky.obj: ../../main-blinky.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-freertos_ticlang_startup_mspm0g3507_ticlang.obj: ../../freertos/ticlang/startup_mspm0g3507_ticlang.c $(SYSCFG_H_FILES)
+freertos_ticlang_startup_mspm0g350x_ticlang.obj: ../../freertos/ticlang/startup_mspm0g350x_ticlang.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

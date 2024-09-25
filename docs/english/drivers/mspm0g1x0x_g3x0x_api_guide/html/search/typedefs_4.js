@@ -1,7 +1,12 @@
 var searchData=
 [
-  ['uart_5fcallback',['UART_Callback',['../group___u_a_r_t.html#gad76c76927ec6631b4866dad2aad1a65f',1,'UART.h']]],
-  ['uart_5fconfig',['UART_Config',['../group___u_a_r_t_support_m_s_p_m0_g1_x0_x___g3_x0_x.html#ga68be81b9ce429a5e5c3ac02d285dbd3b',1,'UARTSupportMSPM0G1X0X_G3X0X.h']]],
-  ['uart_5feventcallback',['UART_EventCallback',['../group___u_a_r_t.html#ga73ea5d30bfa43c6989d0526453835570',1,'UART.h']]],
-  ['uart_5fhandle',['UART_Handle',['../group___u_a_r_t.html#gab69886c7119a5054a972d8c735f15928',1,'UART.h']]]
+  ['spi_5fcallbackfxn',['SPI_CallbackFxn',['../group___s_p_i.html#ga207e2d5a7e7ea5606b6995b6485ca015',1,'SPI.h']]],
+  ['spi_5fclosefxn',['SPI_CloseFxn',['../group___s_p_i.html#gaa361d580eb0a5a052d0a1403e0aa5746',1,'SPI.h']]],
+  ['spi_5fconfig',['SPI_Config',['../group___s_p_i.html#ga9ce9680cc88c403db466864c02ee4733',1,'SPI.h']]],
+  ['spi_5fcontrolfxn',['SPI_ControlFxn',['../group___s_p_i.html#ga0505b9eca5030ca4fc27959e2b5134ca',1,'SPI.h']]],
+  ['spi_5fhandle',['SPI_Handle',['../group___s_p_i.html#ga93072bc33543d36c9603198df25ee388',1,'SPI.h']]],
+  ['spi_5finitfxn',['SPI_InitFxn',['../group___s_p_i.html#gaa3b32db8f017fd0ce92bf46a089659e6',1,'SPI.h']]],
+  ['spi_5fopenfxn',['SPI_OpenFxn',['../group___s_p_i.html#ga7e0786f4c1487f9daec49adbc3ac1cf5',1,'SPI.h']]],
+  ['spi_5ftransfercancelfxn',['SPI_TransferCancelFxn',['../group___s_p_i.html#ga33f5b214451ac89ea462083eeba0bf8c',1,'SPI.h']]],
+  ['spi_5ftransferfxn',['SPI_TransferFxn',['../group___s_p_i.html#ga470d264d053b30edb0aaafcafd335c26',1,'SPI.h']]]
 ];

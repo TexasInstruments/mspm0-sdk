@@ -30,25 +30,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 /*
- * ======== main.c ========
- * smb_controller00_all_protocols
- *
- * This example implements a Controller testing all SMBus protocols one-by-one
- *
- *                               /|\  /|\
- *                               Rp    Rp
- *                  target        |    |        controller
- *            -----------------   |    |   -----------------
- *           |             SDA*|<-|----+->|SDA*             |
- *           |                 |  |       |                 |
- *           |                 |  |       |                 |
- *           |             SCL*|<-+------>|SCL*             |
- *   LED0 <--|Px.y*            |          |            Px.y*|--> LED0
- *   LED1 <--|Pz.a*            |          |            Pz.a*|--> LED1
- *           |                 |          |                 |
- *   ADC  -->|Ayy*             |          |                 |
- *
- *                          * Check SysConfig to determine which I/Os are used
  *+----------------------------------------------------------------------------+
  * Please refer to the Examples Guide for more details.
  * ---------------------------------------------------------------------------*/
@@ -314,7 +295,15 @@ int main(void)
     }
 }
 
-
+//*****************************************************************************
+//
+//! I2C SMBus ISR
+//!
+//! Handles Controller interrupts
+//!
+//! \return  None
+//
+// *****************************************************************************
 void SMB_I2C_INST_IRQHandler(void) {
     sSMBState = SMBus_controllerProcessInt(&sSMBController);
 }

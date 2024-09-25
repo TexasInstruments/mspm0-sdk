@@ -65,14 +65,20 @@ void SMBus_NWK_startTxTransfer(SMBus *smbus)
         stop = SMBus_Stop_After_Transfer; // Nothing after TX only, so send a stop
         ack = SMBus_Auto_Ack_Last_Byte; // ack is a don't care because the target will perform the ack
 
-        if (smbus->nwk.eState != SMBus_NwkState_TXQuickCMD)
+        if ((smbus->nwk.eState != SMBus_NwkState_TXQuickCMD) && ((smbus->nwk.eState != SMBus_NwkState_TXHostAlert)))
         {
           if (smbus->ctrl.bits.pecEn == 1) {
               // Add 1 to account for pec after payload
               length += 1;
           }
         }
-        setPEC = 1;
+        if (smbus->nwk.eState != SMBus_NwkState_TXHostAlert){
+            setPEC = 1;
+        }
+        else
+        {
+            setPEC = 0;
+        }
     }
     // TX packet followed by RX
     else
@@ -198,36 +204,49 @@ SMBus_State SMBus_NWK_targetProcessStart(SMBus *smbus,
     smbus->nwk.txIndex = 0;
     smbus->nwk.currentAddr = addrRw;
 
-    // SMBus set the PEC counter to 0. It will be set correctly before it is needed.
-    DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
-
-    // Clear rxIndex if previous bus state was Idle. If the bus was
-    // not idle assume we are in a restart condition where the application
-    // may want to read this counter
-    if (smbus->nwk.eState == SMBus_NwkState_Idle)
+    /* Handle Target Start when used as SMBus Target */
+    if (smbus->ctrl.bits.controller == 0)
     {
+        // SMBus set the PEC counter to 0. It will be set correctly before it is needed.
+        DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
+
+        // Clear rxIndex if previous bus state was Idle. If the bus was
+        // not idle assume we are in a restart condition where the application
+        // may want to read this counter
+        if (smbus->nwk.eState == SMBus_NwkState_Idle)
+        {
+            smbus->nwk.rxIndex = 0;
+        }
+
+        if((smbus->state == SMBus_State_Target_QCMD) ||
+           (smbus->state == SMBus_State_Target_CmdComplete))
+        {
+            // If the previous packet wasn't cleared by application, flag overrun
+            smbus->status.bits.packOvrErr = 1;
+        }
+
+        // If we receive a start condition and eState is RX we assume that
+        // the host is requesting to read back data
+        if(smbus->nwk.eState == SMBus_NwkState_RX)
+        {
+            smbus->nwk.txLen = 0;  // Nothing to respond by default
+            // Previous Start was a Write from the host. This is a restart condition.
+            // Process packet and prepare response
+
+            ret_state = SMBus_State_Target_CmdComplete; // Command is ready to process
+            smbus->nwk.eState = SMBus_NwkState_TX_Resp;  // Responding
+        }
+    }
+    else
+    {
+        /* Handle Target Start when used as SMBus Controller */
         smbus->nwk.rxIndex = 0;
+        if ((smbus->nwk.currentAddr == SMB_HOST_DEFAULT_ADDRESS) && (smbus->ctrl.bits.hostNotifyEn))
+        {
+            /* Expecting to receive 3 bytes for Host Notify */
+            smbus->nwk.rxLen = 3;
+        }
     }
-
-    if((smbus->state == SMBus_State_Target_QCMD) ||
-       (smbus->state == SMBus_State_Target_CmdComplete))
-    {
-        // If the previous packet wasn't cleared by application, flag overrun
-        smbus->status.bits.packOvrErr = 1;
-    }
-
-    // If we receive a start condition and eState is RX we assume that
-    // the host is requesting to read back data
-    if(smbus->nwk.eState == SMBus_NwkState_RX)
-    {
-        smbus->nwk.txLen = 0;  // Nothing to respond by default
-        // Previous Start was a Write from the host. This is a restart condition.
-        // Process packet and prepare response
-
-        ret_state = SMBus_State_Target_CmdComplete; // Command is ready to process
-        smbus->nwk.eState = SMBus_NwkState_TX_Resp;  // Responding
-    }
-
 
     return(ret_state);
 }
@@ -238,62 +257,85 @@ SMBus_State SMBus_NWK_targetProcessRx(SMBus *smbus,
 
     SMBus_State ret_state = SMBus_State_OK;
 
-    // Host is requesting to Write data
-    if(smbus->nwk.eState == SMBus_NwkState_Idle)
+    /* Handle Target RX when used as SMBus Target */
+    if (smbus->ctrl.bits.controller == 0)
     {
-        // Default packet is QUICK_COMMAND(W) unless data is received
-        smbus->nwk.rxIndex = 0;
-        smbus->nwk.eState = SMBus_NwkState_RX;
-    }
+        // Host is requesting to Write data
+        if(smbus->nwk.eState == SMBus_NwkState_Idle)
+        {
+            // Default packet is QUICK_COMMAND(W) unless data is received
+            smbus->nwk.rxIndex = 0;
+            smbus->nwk.eState = SMBus_NwkState_RX;
+        }
 
-    // Check if the SMBus is expecting reception
-    if(smbus->nwk.eState != SMBus_NwkState_RX)
-    {
-        smbus->status.bits.packErr = 1;
-        smbus->nwk.eState = SMBus_NwkState_Error;
-        return(SMBus_State_Target_Error);
-    }
-    // Check packet size
-    if((smbus->nwk.rxIndex >= SMB_MAX_PACKET_SIZE) ||
-       (smbus->nwk.rxIndex >= smbus->nwk.rxSize))
-    {
-        smbus->status.bits.packErr = 1;
-        smbus->nwk.eState = SMBus_NwkState_Error;
-        return(SMBus_State_DataSizeError);
-    }
-    if((smbus->nwk.rxBuffPtr == NULL) || (smbus->nwk.rxSize == 0))
-    {
-        // Buffer hasn't been initialized
-        smbus->nwk.eState = SMBus_NwkState_Error;
-        return(SMBus_State_Target_NotReady);
-    }
+        // Check if the SMBus is expecting reception
+        if(smbus->nwk.eState != SMBus_NwkState_RX)
+        {
+            smbus->status.bits.packErr = 1;
+            smbus->nwk.eState = SMBus_NwkState_Error;
+            return(SMBus_State_Target_Error);
+        }
+        // Check packet size
+        if((smbus->nwk.rxIndex >= SMB_MAX_PACKET_SIZE) ||
+           (smbus->nwk.rxIndex >= smbus->nwk.rxSize))
+        {
+            smbus->status.bits.packErr = 1;
+            smbus->nwk.eState = SMBus_NwkState_Error;
+            return(SMBus_State_DataSizeError);
+        }
+        if((smbus->nwk.rxBuffPtr == NULL) || (smbus->nwk.rxSize == 0))
+        {
+            // Buffer hasn't been initialized
+            smbus->nwk.eState = SMBus_NwkState_Error;
+            return(SMBus_State_Target_NotReady);
+        }
 
-    // If no errors, continue
-    if((smbus->state == SMBus_State_Target_FirstByte) ||
-       (smbus->state == SMBus_State_Target_ByteReceived))
-    {
-        // Previous byte wasn't processed, flag byte overrun
-        smbus->status.bits.byteOvrErr = 1;
-    }
+        // If no errors, continue
+        if((smbus->state == SMBus_State_Target_FirstByte) ||
+           (smbus->state == SMBus_State_Target_ByteReceived))
+        {
+            // Previous byte wasn't processed, flag byte overrun
+            smbus->status.bits.byteOvrErr = 1;
+        }
 
-    smbus->nwk.rxBuffPtr[smbus->nwk.rxIndex] = data;
-    // Pass the packet to application network, note that the SMBus spec
-    // requires to validate the cmd+data and ACK/NACK appropiately and
-    // immediately depending on its validity.
-    if(smbus->nwk.rxIndex == 0)
-    {
-        // First byte (command) was received. Application should use this
-        // state in order to validate the command
-        ret_state = SMBus_State_Target_FirstByte;
-        smbus->nwk.currentCmd = data;
+        smbus->nwk.rxBuffPtr[smbus->nwk.rxIndex] = data;
+        // Pass the packet to application network, note that the SMBus spec
+        // requires to validate the cmd+data and ACK/NACK appropiately and
+        // immediately depending on its validity.
+        if(smbus->nwk.rxIndex == 0)
+        {
+            // First byte (command) was received. Application should use this
+            // state in order to validate the command
+            ret_state = SMBus_State_Target_FirstByte;
+            smbus->nwk.currentCmd = data;
+        }
+        else
+        {
+            // Data byte was received. Application can use this to process each
+            // byte
+            ret_state = SMBus_State_Target_ByteReceived;
+        }
+        smbus->nwk.rxIndex++;
     }
     else
     {
-        // Data byte was received. Application can use this to process each
-        // byte
-        ret_state = SMBus_State_Target_ByteReceived;
+        /* Handle Target RX when used as SMBus Controller */
+        if ( (smbus->nwk.currentAddr == SMB_HOST_DEFAULT_ADDRESS) && (smbus->ctrl.bits.hostNotifyEn))
+        {
+            if((smbus->nwk.rxIndex >= SMB_MAX_PACKET_SIZE) ||
+                       (smbus->nwk.rxIndex >= smbus->nwk.rxLen))
+            {
+                smbus->status.bits.packErr = 1;
+                smbus->nwk.eState = SMBus_NwkState_Error;
+                return(SMBus_State_DataSizeError);
+            }
+            else
+            {
+                smbus->nwk.hostNotifyRxBuffPtr[smbus->nwk.rxIndex] = data;
+                smbus->nwk.rxIndex++;
+            }
+        }
     }
-    smbus->nwk.rxIndex++;
 
     return(ret_state);
 }
@@ -305,62 +347,66 @@ SMBus_State SMBus_NWK_targetProcessTx(SMBus *smbus,
     SMBus_State ret_state = SMBus_State_OK;
     *data = RESPONSE_NTR;   // Default data if nothing to report
 
-    if(smbus->nwk.eState == SMBus_NwkState_Idle)
+    /* Handle Target TX when used as SMBus Target */
+    if (smbus->ctrl.bits.controller == 0)
     {
-        // If the previous state was not Write_Req, then we need to respond
-        // to a receive byte or QUICK_COMMAND(R)
-        // We can't recognize QUICK_COMMAND(R) because of the double-buffer
-        // mechanism. By default, we will try to respond as a RECEIVE_BYTE
-        // sending the TxPtr
-        smbus->nwk.txLen = 1;
-        smbus->nwk.eState = SMBus_NwkState_TX;
-    }
-
-    if((smbus->nwk.eState != SMBus_NwkState_TX_Resp) &&
-       (smbus->nwk.eState != SMBus_NwkState_TX))
-    {
-        // Invalid state
-        smbus->status.bits.packErr = 1;
-        smbus->nwk.eState = SMBus_NwkState_Error;
-        return(SMBus_State_Target_Error);
-    }
-
-    if((smbus->nwk.txIndex > SMB_MAX_PACKET_SIZE) ||
-       (smbus->nwk.txIndex > smbus->nwk.txSize))
-    {
-        smbus->status.bits.packErr = 1;
-        smbus->nwk.eState = SMBus_NwkState_Error;
-        return(SMBus_State_DataSizeError);
-    }
-
-    if((smbus->nwk.txBuffPtr == NULL) || (smbus->nwk.txSize == 0))
-    {
-        // Buffer hasn't been initialized
-        smbus->nwk.eState = SMBus_NwkState_Error;
-        return(SMBus_State_Target_NotReady);
-    }
-
-    // If no errors, continue
-    if(smbus->nwk.txIndex < smbus->nwk.txLen)
-    {
-        if(smbus->nwk.eState == SMBus_NwkState_TX)
+        if(smbus->nwk.eState == SMBus_NwkState_Idle)
         {
-            // Send the TX Pointer if this is a RECEIVE_BYTE
-            *data = *smbus->nwk.recByteTxPtr;
+            // If the previous state was not Write_Req, then we need to respond
+            // to a receive byte or QUICK_COMMAND(R)
+            // We can't recognize QUICK_COMMAND(R) because of the double-buffer
+            // mechanism. By default, we will try to respond as a RECEIVE_BYTE
+            // sending the TxPtr
+            smbus->nwk.txLen = 1;
+            smbus->nwk.eState = SMBus_NwkState_TX;
         }
-        else
+
+        if((smbus->nwk.eState != SMBus_NwkState_TX_Resp) &&
+           (smbus->nwk.eState != SMBus_NwkState_TX))
         {
-            // Send buffer if this is a Response
-            *data = smbus->nwk.txBuffPtr[smbus->nwk.txIndex];
+            // Invalid state
+            smbus->status.bits.packErr = 1;
+            smbus->nwk.eState = SMBus_NwkState_Error;
+            return(SMBus_State_Target_Error);
         }
-        smbus->nwk.txIndex++;
-    }
-    else if((smbus->ctrl.bits.pecEn == 1)  &&
-            (smbus->nwk.txIndex == smbus->nwk.txLen))
-    {
-        DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 1);
-        *data = 0x00; // Dummy data, I2C PEC HW will overlay correct PEC value
-        smbus->nwk.txIndex++;
+
+        if((smbus->nwk.txIndex > SMB_MAX_PACKET_SIZE) ||
+           (smbus->nwk.txIndex > smbus->nwk.txSize))
+        {
+            smbus->status.bits.packErr = 1;
+            smbus->nwk.eState = SMBus_NwkState_Error;
+            return(SMBus_State_DataSizeError);
+        }
+
+        if((smbus->nwk.txBuffPtr == NULL) || (smbus->nwk.txSize == 0))
+        {
+            // Buffer hasn't been initialized
+            smbus->nwk.eState = SMBus_NwkState_Error;
+            return(SMBus_State_Target_NotReady);
+        }
+
+        // If no errors, continue
+        if(smbus->nwk.txIndex < smbus->nwk.txLen)
+        {
+            if(smbus->nwk.eState == SMBus_NwkState_TX)
+            {
+                // Send the TX Pointer if this is a RECEIVE_BYTE
+                *data = *smbus->nwk.recByteTxPtr;
+            }
+            else
+            {
+                // Send buffer if this is a Response
+                *data = smbus->nwk.txBuffPtr[smbus->nwk.txIndex];
+            }
+            smbus->nwk.txIndex++;
+        }
+        else if((smbus->ctrl.bits.pecEn == 1)  &&
+                (smbus->nwk.txIndex == smbus->nwk.txLen))
+        {
+            DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 1);
+            *data = 0x00; // Dummy data, I2C PEC HW will overlay correct PEC value
+            smbus->nwk.txIndex++;
+        }
     }
 
 
@@ -371,36 +417,47 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
 {
     SMBus_State ret_state = SMBus_State_OK;
 
-
-
-    // Quick command is detected when a TX is detected with no data
-    // We can't detect Quick_Command(R) because of double-buffer mechanism
-    if(smbus->nwk.eState == SMBus_NwkState_RX)
+    /* Handle Target Stop when used as SMBus Target */
+    if (smbus->ctrl.bits.controller == 0)
     {
-        if(smbus->nwk.rxIndex == 0)
+        // Quick command is detected when a TX is detected with no data
+        // We can't detect Quick_Command(R) because of double-buffer mechanism
+        if(smbus->nwk.eState == SMBus_NwkState_RX)
         {
-            // Process quick command
-            ret_state = SMBus_State_Target_QCMD;
-        } 
-        else {
-            ret_state = SMBus_State_Target_CmdComplete;
+            if(smbus->nwk.rxIndex == 0)
+            {
+                // Process quick command
+                ret_state = SMBus_State_Target_QCMD;
+            }
+            else {
+                ret_state = SMBus_State_Target_CmdComplete;
+            }
         }
-    }
-    else if((smbus->nwk.eState == SMBus_NwkState_Idle) &&
-            (smbus->nwk.rxIndex == 0))
-    {
-        // case when Quick command is detected but Stop flag cleared Start
-        // before it was set
-        ret_state = SMBus_State_Target_QCMD;
+        else if((smbus->nwk.eState == SMBus_NwkState_Idle) &&
+                (smbus->nwk.rxIndex == 0))
+        {
+            // case when Quick command is detected but Stop flag cleared Start
+            // before it was set
+            ret_state = SMBus_State_Target_QCMD;
+        }
+        else
+        {
+            // If the state is SMBus_State_Respond or SMBus_State_ReadReq, then we
+            // don't need to do anything during a stop
+        }
+
+        // Set the network state machine to idle in order to get new packet
+        smbus->nwk.eState = SMBus_NwkState_Idle;
     }
     else
     {
-        // If the state is SMBus_State_Respond or SMBus_State_ReadReq, then we
-        // don't need to do anything during a stop
+        /* Handle Target Stop when used as SMBus Controller */
+        if ( (smbus->nwk.currentAddr == SMB_HOST_DEFAULT_ADDRESS) &&
+             (smbus->ctrl.bits.hostNotifyEn) )
+        {
+            ret_state = SMBus_State_Controller_HostNotify;
+        }
     }
-
-    // Set the network state machine to idle in order to get new packet
-    smbus->nwk.eState = SMBus_NwkState_Idle;
 
     return(ret_state);
 }
@@ -491,7 +548,8 @@ SMBus_State SMBus_NWK_controllerProcessTx(SMBus *smbus,
     // Check current state of the State Machine
     if((smbus->nwk.eState != SMBus_NwkState_TX_Block) &&
        (smbus->nwk.eState != SMBus_NwkState_TX) &&
-       (smbus->nwk.eState != SMBus_NwkState_TXQuickCMD))
+       (smbus->nwk.eState != SMBus_NwkState_TXQuickCMD) &&
+       (smbus->nwk.eState != SMBus_NwkState_TXHostAlert))
     {
         smbus->nwk.eState = SMBus_NwkState_Error;
         smbus->state = SMBus_State_Controller_Error;
@@ -555,22 +613,37 @@ SMBus_State SMBus_NWK_controllerTxDone(SMBus *smbus)
 
 SMBus_State SMBus_NWK_controllerProcessStop(SMBus *smbus)
 {
-    if((smbus->nwk.eState == SMBus_NwkState_RX) ||
-       (smbus->nwk.eState == SMBus_NwkState_RX_Block_Payload))
+    /* Handle Stop bit as a Controller */
+    if (smbus->ctrl.bits.controller == 1)
     {
-        if(smbus->ctrl.bits.pecEn == 1)
+        if((smbus->nwk.eState == SMBus_NwkState_RX) ||
+           (smbus->nwk.eState == SMBus_NwkState_RX_Block_Payload))
         {
-            if(smbus->nwk.pec != 0x00)
+            if(smbus->ctrl.bits.pecEn == 1)
             {
-                smbus->status.bits.pecErr = 1;
-                smbus->nwk.eState = SMBus_NwkState_Idle;
-                smbus->state = SMBus_State_PECError;
+                if(smbus->nwk.pec != 0x00)
+                {
+                    smbus->status.bits.pecErr = 1;
+                    smbus->nwk.eState = SMBus_NwkState_Idle;
+                    smbus->state = SMBus_State_PECError;
+                }
             }
+        }
+        // Set machine to Idle in order to set next packet
+        smbus->nwk.eState = SMBus_NwkState_Idle;
+    }
+    else
+    {
+        /*
+         * When used as a Target, this routine is only used for Host Notify.
+         */
+        if (smbus->nwk.eState == SMBus_NwkState_TXHostAlert)
+        {
+            // Set machine to Idle in order to set next packet
+            smbus->nwk.eState = SMBus_NwkState_Idle;
         }
     }
 
-    // Set machine to Idle in order to set next packet
-    smbus->nwk.eState = SMBus_NwkState_Idle;
     return(smbus->state);
 }
 
@@ -609,4 +682,14 @@ SMBus_State SMBus_NWK_controllerProcessNACK(SMBus *smbus)
     }
 
     return(smbus->state);
+}
+
+void SMBus_NWK_controllerEnableHostNotify(SMBus *smbus, uint8_t *buff)
+{
+    smbus->nwk.hostNotifyRxBuffPtr = buff;
+}
+
+void SMBus_NWK_controllerDisableHostNotify(SMBus *smbus)
+{
+    /* Nothing to do */
 }

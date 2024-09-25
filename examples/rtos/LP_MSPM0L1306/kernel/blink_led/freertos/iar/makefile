@@ -13,7 +13,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = main.obj main-blinky.obj freertos_iar_startup_mspm0l1306_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = main.obj main-blinky.obj freertos_iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = blink_led
 
 CFLAGS = -I../.. \
@@ -35,8 +35,10 @@ CFLAGS = -I../.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(KERNEL_BUILD)/iar/freertos.lib" \
-    "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
+LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
+    "$(KERNEL_BUILD)/iar/freertos.lib" \
     --config ../../freertos/iar/mspm0l1306.icf \
     --map "$(NAME).map" \
     --silent \
@@ -74,7 +76,7 @@ main-blinky.obj: ../../main-blinky.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-freertos_iar_startup_mspm0l1306_iar.obj: ../../freertos/iar/startup_mspm0l1306_iar.c $(SYSCFG_H_FILES)
+freertos_iar_startup_mspm0l130x_iar.obj: ../../freertos/iar/startup_mspm0l130x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

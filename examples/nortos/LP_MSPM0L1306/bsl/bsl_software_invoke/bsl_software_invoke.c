@@ -59,10 +59,7 @@ int main(void)
     DL_GPIO_setPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_2_PIN);
     delay_cycles(32000000);
 
-    /*
-     * This example implements a workaround for BSL_ERR_01 using linker files.
-     * Refer to the linker file for more information.
-     */
+    /* Force Reset calling BSL entry*/
     DL_SYSCTL_resetDevice(DL_SYSCTL_RESET_BOOTLOADER_ENTRY);
 
     while (1) {

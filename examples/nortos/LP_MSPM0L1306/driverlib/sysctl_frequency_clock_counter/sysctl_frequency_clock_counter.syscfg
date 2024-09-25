@@ -1,0 +1,47 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const fcc1      = system.clockTree["FCC"];
+fcc1.enable     = true;
+fcc1.fccPeriods = "02";
+
+const gate3  = system.clockTree["EXCLKGATE"];
+gate3.enable = true;
+
+const mux2       = system.clockTree["FCCSELCLKMUX"];
+mux2.inputSelect = "FCCSELCLKMUX_SYSOSC";
+
+const mux3       = system.clockTree["FCCTRIGMUX"];
+mux3.inputSelect = "FCCTRIGMUX_LFCLK";
+
+const pinFunction1  = system.clockTree["CLKOUT"];
+pinFunction1.enable = true;
+
+
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.port                           = "PORTA";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].assignedPin  = "0";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[1].initialValue = "SET";
+GPIO1.associatedPins[1].assignedPin  = "1";
+
+SYSCTL.clockTreeEn       = true;
+SYSCTL.validateClkStatus = true;

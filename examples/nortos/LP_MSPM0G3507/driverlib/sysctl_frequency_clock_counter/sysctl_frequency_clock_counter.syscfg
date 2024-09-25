@@ -47,19 +47,20 @@ pinFunction6.enable    = true;
 pinFunction6.inputFreq = 32.768;
 
 
-GPIO1.$name                         = "GPIO_LEDS";
-GPIO1.port                          = "PORTB";
-GPIO1.portSegment                   = "Upper";
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.port                           = "PORTA";
 GPIO1.associatedPins.create(2);
-GPIO1.associatedPins[0].$name       = "USER_LED_1";
-GPIO1.associatedPins[0].assignedPin = "26";
-GPIO1.associatedPins[1].$name       = "USER_LED_2";
-GPIO1.associatedPins[1].assignedPin = "27";
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPin  = "0";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[1].assignedPin  = "15";
+GPIO1.associatedPins[1].initialValue = "SET";
 
-SYSCTL.LFCLKSource = "LFXT";
-SYSCTL.enableEXCLK = true;
-SYSCTL.fccClkSrc   = "SYSOSC";
+SYSCTL.LFCLKSource           = "LFXT";
+SYSCTL.enableEXCLK           = true;
+SYSCTL.fccClkSrc             = "SYSOSC";
 SYSCTL.forceDefaultClkConfig = true;
-SYSCTL.clockTreeEn  = true;
-SYSCTL.fccTrigSrc  = "LFCLK";
-SYSCTL.fccPeriods  = "03";
+SYSCTL.clockTreeEn           = true;
+SYSCTL.fccTrigSrc            = "LFCLK";
+SYSCTL.fccPeriods            = "03";

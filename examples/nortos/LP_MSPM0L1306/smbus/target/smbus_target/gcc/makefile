@@ -11,13 +11,13 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = smb_target00_all_protocols.obj SMBus_Commands_List.obj gcc_startup_mspm0l1306_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = smb_target00_all_protocols.obj SMBus_Commands_List.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = smbus_target
 
 CFLAGS = -I.. \
     -I. \
-    -D__MSPM0L1306__ \
     -O2 \
+    @syscfg/device.opt \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
     -mcpu=cortex-m0plus \
@@ -33,13 +33,12 @@ CFLAGS = -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/smbus/lib/gcc/m0p" \
-    -l:smbus.a \
-    "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx" \
-    -nostartfiles \
-    -Wl,-T,../gcc/mspm0l1306.lds \
+LFLAGS = -nostartfiles \
+    -ldevice.lds.genlibs \
+    -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
-    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -73,10 +72,6 @@ smb_target00_all_protocols.obj: ../smb_target00_all_protocols.c $(SYSCFG_H_FILES
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
 SMBus_Commands_List.obj: ../SMBus_Commands_List.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-gcc_startup_mspm0l1306_gcc.obj: ../gcc/startup_mspm0l1306_gcc.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

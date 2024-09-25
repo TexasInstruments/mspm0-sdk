@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const Board   = scripting.addModule("/ti/driverlib/Board");
 const MCAN    = scripting.addModule("/ti/driverlib/MCAN", {}, false);
 const MCAN1   = MCAN.addInstance();
@@ -17,6 +18,8 @@ const SYSCTL  = scripting.addModule("/ti/driverlib/SYSCTL");
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable = true;
+
 const divider4       = system.clockTree["PLL_CLK0_DIV"];
 divider4.divideValue = 4;
 

@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj MSP_GUI_mpack.obj blink_led.obj callbacks_mpack.obj common.obj HAL_MSPM0G3507.obj lightsensor.obj main.obj thermistor.obj ti_msp_dl_config.obj function_generator.obj ticlang_startup_mspm0g3507_ticlang.obj
+OBJECTS = MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj MSP_GUI_mpack.obj blink_led.obj callbacks_mpack.obj common.obj HAL_MSPM0G3507.obj lightsensor.obj main.obj thermistor.obj ti_msp_dl_config.obj function_generator.obj ticlang_startup_mspm0g350x_ticlang.obj
 NAME = out_of_box
 
 CFLAGS = -I.. \
@@ -21,6 +21,8 @@ CFLAGS = -I.. \
 
 LFLAGS = "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/ticlang/m0p/gui_composer.a" \
     "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     ../ticlang/mspm0g3507.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
@@ -77,7 +79,7 @@ function_generator.obj: ../function_generator.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ticlang_startup_mspm0g3507_ticlang.obj: ../ticlang/startup_mspm0g3507_ticlang.c
+ticlang_startup_mspm0g350x_ticlang.obj: ../ticlang/startup_mspm0g350x_ticlang.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

@@ -53,14 +53,14 @@
 
 /* GPIO defines for LED1 */
 #define GPIO_LEDS_PORT                                                  (GPIOA)
-#define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_4)
-#define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM5)
+#define GPIO_LEDS_USER_LED_1_PIN                               (DL_GPIO_PIN_22)
+#define GPIO_LEDS_USER_LED_1_IOMUX                              (IOMUX_PINCM23)
 
 /* Definitions for SWITCHES_USER_SWITCH_1 */
 #define SWITCHES_USER_SWITCH_1_IIDX                        (DL_GPIO_IIDX_DIO16)
 #define SWITCHES_USER_SWITCH_1_INT_IRQN                        (GPIOA_INT_IRQn)
-#define SWITCHES_USER_SWITCH_1_PIN                              (DL_GPIO_PIN_16)
-#define SWITCHES_USER_SWITCH_1_IOMUX                             (IOMUX_PINCM17)
+#define SWITCHES_USER_SWITCH_1_PIN                             (DL_GPIO_PIN_16)
+#define SWITCHES_USER_SWITCH_1_IOMUX                            (IOMUX_PINCM17)
 
 /* Definitions for UART_INST */
 #define UART_INST                                                       (UART0)

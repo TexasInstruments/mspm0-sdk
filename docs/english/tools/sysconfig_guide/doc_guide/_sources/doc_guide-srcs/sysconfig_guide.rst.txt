@@ -596,6 +596,30 @@ Select the new hardware and click on **CONFIRM**.
 .. figure:: ./images/sysconfig_guide/sysconfig_device_switch_error.png
    :alt: 
 
+4.8.1 Project Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MSPM0 SysConfig includes a Project Configuration module that is intended to help provide the necessary project configuration files as well as facilitate device migration for projects. From this module the user will be able to select which files to generate, as well as which libraries their project should include.
+
+.. figure:: ./images/sysconfig_guide/sysconfig_device_switch_project_config.png
+   :alt: 
+
+4.8.1.1 Project Configuration Files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SysConfig will generate Project Configuration files for CCS projects using TI Arm Clang and Arm GCC by default.
+
+When using SysConfig through an IDE, the tool will automatically detect the compiler for the project and generate the appropiate files. When using standalone SysConfig, the user will be given the choice of generating all the files or filtering for a specific compiler.
+
+In either case, file generation can be disabled through the Project Configuration Files module.
+
+Project Configuration files are split into categories, which can be seen from the SysConfig Generated Files view.
+
+1. **Linker Command**: File will be generated as SysConfig output based on the selected device. Linker file includes memory configurations, and is specific to each compiler.
+2. **Startup**: The relevant startup file will be referenced from the SDK based on the selected device family. Startup file includes peripheral configuration options.
+3. **Compiler Options**: This file will be generated as SysConfig output based on the selected device, it includes compiler build options.
+4. **Library Includes**: This file will be generated as SysConfig output based on the selected device and library parameters, and is specific to each compiler. The libraries included in this file can be selected by the user through the **Include Libraries** group parameters, which include. The libraries included in this list are the statically generated libraries included in the SDK, in order to add any other libraries users can manually add their source to the project. **Note:** If the user wants to manually modify any Project Configuration files, they should disable the option to generate that file from the Project Configuration module and then manually add their desired file to the project.
+
 4.9 Event Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~
 

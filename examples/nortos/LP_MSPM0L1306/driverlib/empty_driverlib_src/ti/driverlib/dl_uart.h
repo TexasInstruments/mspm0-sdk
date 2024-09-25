@@ -270,7 +270,7 @@ typedef enum {
 /*!
  * @brief Parity error ocurred
  */
-#define DL_UART_ERROR_PARITY                           (UART_RXDATA_BRKERR_SET)
+#define DL_UART_ERROR_PARITY                           (UART_RXDATA_PARERR_SET)
 
 /*!
  * @brief Framing error ocurred
@@ -1972,12 +1972,15 @@ __STATIC_INLINE void DL_UART_setBaudRateDivisor(
  *                                 divisor
  *  @param[in]  clkDivisor2        The additional factor to divide the clock,
  *                                 One of @ref DL_UART_CLOCK_DIVIDE2_RATIO
- * 
+ *
  */
-__STATIC_INLINE void DL_UART_setIrDABaudRateDivisor(
-    UART_Regs *uart, uint32_t integerDivisor, uint32_t fractionalDivisor, DL_UART_CLOCK_DIVIDE2_RATIO clkDivisor2)
+__STATIC_INLINE void DL_UART_setIrDABaudRateDivisor(UART_Regs *uart,
+    uint32_t integerDivisor, uint32_t fractionalDivisor,
+    DL_UART_CLOCK_DIVIDE2_RATIO clkDivisor2)
 {
-    DL_Common_updateReg(&uart->IBRD, (integerDivisor / ((uint32_t)clkDivisor2 + 1)), UART_IBRD_DIVINT_MASK);
+    DL_Common_updateReg(&uart->IBRD,
+        (integerDivisor / ((uint32_t) clkDivisor2 + 1)),
+        UART_IBRD_DIVINT_MASK);
     DL_Common_updateReg(
         &uart->FBRD, fractionalDivisor, UART_FBRD_DIVFRAC_MASK);
 
@@ -1987,7 +1990,6 @@ __STATIC_INLINE void DL_UART_setIrDABaudRateDivisor(
     DL_Common_updateReg(
         &uart->LCRH, (uart->LCRH & UART_LCRH_BRK_MASK), UART_LCRH_BRK_MASK);
 }
-
 
 /**
  *  @brief      Set the pulse width select for the digital glitch suppresion

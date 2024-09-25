@@ -11,7 +11,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj HAL_UART_M0L1306.obj main.obj gcc_startup_mspm0l1306_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj HAL_UART_M0L1306.obj main.obj gcc_startup_mspm0l130x_gcc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = gc_simple_messagepack
 
 CFLAGS = -I.. \
@@ -37,9 +37,11 @@ LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/gcc/m0p" \
     -l:gui_composer.a \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx" \
     -nostartfiles \
+    -l:driverlib.a \
     -Wl,-T,../gcc/mspm0l1306.lds \
     "-Wl,-Map,$(NAME).map" \
-    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -88,7 +90,7 @@ main.obj: ../main.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
-gcc_startup_mspm0l1306_gcc.obj: ../gcc/startup_mspm0l1306_gcc.c $(SYSCFG_H_FILES)
+gcc_startup_mspm0l130x_gcc.obj: ../gcc/startup_mspm0l130x_gcc.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

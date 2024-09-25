@@ -1,0 +1,137 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L130X" --package "VQFN-32(RHB)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0L1306 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const GPIO3  = GPIO.addInstance();
+const GPIO4  = GPIO.addInstance();
+const GPIO5  = GPIO.addInstance();
+const GPIO6  = GPIO.addInstance();
+const GPIO7  = GPIO.addInstance();
+const GPIO8  = GPIO.addInstance();
+const GPIO9  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.$name                              = "GPIO_Signal_14";
+GPIO1.associatedPins[0].assignedPort     = "PORTA";
+GPIO1.associatedPins[0].assignedPin      = "14";
+GPIO1.associatedPins[0].direction        = "INPUT";
+GPIO1.associatedPins[0].internalResistor = "PULL_UP";
+GPIO1.associatedPins[0].interruptEn      = true;
+GPIO1.associatedPins[0].polarity         = "FALL";
+GPIO1.associatedPins[0].$name            = "USER_Signal_14";
+GPIO1.associatedPins[0].pin.$assign      = "PA14";
+
+GPIO2.$name                              = "GPIO_Signal_13";
+GPIO2.associatedPins[0].direction        = "INPUT";
+GPIO2.associatedPins[0].assignedPort     = "PORTA";
+GPIO2.associatedPins[0].$name            = "PIN_0";
+GPIO2.associatedPins[0].assignedPin      = "13";
+GPIO2.associatedPins[0].interruptEn      = true;
+GPIO2.associatedPins[0].polarity         = "RISE";
+GPIO2.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO2.associatedPins[0].pin.$assign      = "PA13";
+
+GPIO3.$name                              = "GPIO_Signal_15";
+GPIO3.associatedPins[0].$name            = "PIN_1";
+GPIO3.associatedPins[0].direction        = "INPUT";
+GPIO3.associatedPins[0].assignedPort     = "PORTA";
+GPIO3.associatedPins[0].assignedPin      = "15";
+GPIO3.associatedPins[0].interruptEn      = true;
+GPIO3.associatedPins[0].polarity         = "RISE";
+GPIO3.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO3.associatedPins[0].pin.$assign      = "PA15";
+
+GPIO4.$name                              = "GPIO_Signal_16";
+GPIO4.associatedPins[0].$name            = "PIN_2";
+GPIO4.associatedPins[0].direction        = "INPUT";
+GPIO4.associatedPins[0].assignedPort     = "PORTA";
+GPIO4.associatedPins[0].assignedPin      = "16";
+GPIO4.associatedPins[0].interruptEn      = true;
+GPIO4.associatedPins[0].polarity         = "RISE";
+GPIO4.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO4.associatedPins[0].pin.$assign      = "PA16";
+
+GPIO5.$name                              = "GPIO_Signal_17";
+GPIO5.associatedPins[0].$name            = "PIN_3";
+GPIO5.associatedPins[0].direction        = "INPUT";
+GPIO5.associatedPins[0].assignedPort     = "PORTA";
+GPIO5.associatedPins[0].assignedPin      = "17";
+GPIO5.associatedPins[0].interruptEn      = true;
+GPIO5.associatedPins[0].polarity         = "RISE";
+GPIO5.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO5.associatedPins[0].pin.$assign      = "PA17/OPA1.IN0-";
+
+GPIO6.$name                              = "GPIO_Signal_18";
+GPIO6.associatedPins[0].$name            = "PIN_4";
+GPIO6.associatedPins[0].direction        = "INPUT";
+GPIO6.associatedPins[0].assignedPort     = "PORTA";
+GPIO6.associatedPins[0].assignedPin      = "18";
+GPIO6.associatedPins[0].interruptEn      = true;
+GPIO6.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO6.associatedPins[0].polarity         = "RISE";
+GPIO6.associatedPins[0].pin.$assign      = "PA18";
+
+GPIO7.$name                              = "GPIO_Signal_12";
+GPIO7.associatedPins[0].$name            = "PIN_5";
+GPIO7.associatedPins[0].direction        = "INPUT";
+GPIO7.associatedPins[0].assignedPort     = "PORTA";
+GPIO7.associatedPins[0].assignedPin      = "12";
+GPIO7.associatedPins[0].interruptEn      = true;
+GPIO7.associatedPins[0].polarity         = "RISE";
+GPIO7.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO7.associatedPins[0].pin.$assign      = "PA12";
+
+GPIO8.$name                              = "GPIO_Signal_11";
+GPIO8.associatedPins[0].$name            = "PIN_6";
+GPIO8.associatedPins[0].direction        = "INPUT";
+GPIO8.associatedPins[0].assignedPort     = "PORTA";
+GPIO8.associatedPins[0].assignedPin      = "11";
+GPIO8.associatedPins[0].interruptEn      = true;
+GPIO8.associatedPins[0].polarity         = "RISE";
+GPIO8.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO8.associatedPins[0].pin.$assign      = "PA11";
+
+GPIO9.$name                              = "GPIO_Signal_10";
+GPIO9.associatedPins[0].$name            = "PIN_7";
+GPIO9.associatedPins[0].direction        = "INPUT";
+GPIO9.associatedPins[0].assignedPort     = "PORTA";
+GPIO9.associatedPins[0].assignedPin      = "10";
+GPIO9.associatedPins[0].interruptEn      = true;
+GPIO9.associatedPins[0].polarity         = "RISE";
+GPIO9.associatedPins[0].internalResistor = "PULL_DOWN";
+GPIO9.associatedPins[0].pin.$assign      = "PA10";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerClkPrescale   = 256;
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerPeriod        = "40 ms";
+TIMER1.peripheral.$assign = "TIMG0";
+
+UART1.$name                    = "UART_0";
+UART1.peripheral.$assign       = "UART0";
+UART1.peripheral.rxPin.$assign = "PA9";
+UART1.peripheral.txPin.$assign = "PA8";

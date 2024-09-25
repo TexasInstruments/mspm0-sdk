@@ -1,6 +1,8 @@
 ## Example Summary
 
-This example implements an SMBus target using the MSPM0 SMBus software library. This example will respond to a variety of SMBus commands to an SMBus target (see smb_controller00_all_protocols).
+This example implements an SMBus target using the MSPM0 SMBus software library. 
+This example will respond to a variety of SMBus commands sent by a SMBus
+controller (see smb_controller00_all_protocols).
 
 ## Peripherals & Pin Assignments
 
@@ -9,8 +11,8 @@ This example implements an SMBus target using the MSPM0 SMBus software library. 
 | GPIOA | PA0 | Open-Drain Output |
 | SYSCTL |  |  |
 | TIMG0 |  |  |
-| I2C0 | PA10 | I2C Serial Data line (SDA) |
-| I2C0 | PA11 | I2C Serial Clock line (SCL) |
+| I2C1 | PB3 | I2C Serial Data line (SDA) |
+| I2C1 | PB2 | I2C Serial Clock line (SCL) |
 | ADC0 | PA27 | ADC12 Channel 0 Pin |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
@@ -22,12 +24,17 @@ Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA0 | GPIOA | PA0 | J27_9 | This pin is 5V tolerant open-drain and requires pull-up.<br>J4 ON/OFF: Connect/Disconnect LED1<br>J19 1:2 3.3V Pull-up<br>J19 2:3 5V Pull-up |
-| PA10 | I2C0 | SDA | J4_34/J26_5 | J21 2:3 Connect to J4_34<br>R62 connects J26_5 (default) |
-| PA11 | I2C0 | SCL | J4_33/J26_6 | J22 2:3 Connect to J4_33<br>R63 connects J26_6 (default) |
-| PA27 | ADC0 | A0 | J1_8 | J17 OFF Disconnect from Light Sensor D1 |
-| PA20 | DEBUGSS | SWCLK | N/A | J101 15:16 ON: Connect to XDS-110 SWCLK (debug) |
-| PA19 | DEBUGSS | SWDIO | N/A | J101 13:14 ON: Connect to XDS-110 SWDIO (debug) |
+| PA0 | GPIOA | PA0 | J27_9 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 1:2` Use 3.3V pull-up<br><li>`J19 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J4 ON` Connect to LED1<br><li>`J4 OFF` Disconnect from LED1</ul></ul> |
+| PB3 | I2C1 | SDA | J1_10 | <ul><li>PB3 can be connected to an on-board pull-up resistor<br><ul><li>`R60` is not soldered by default<br><li>Solder `R60` to use on-board pull-up</ul></ul> |
+| PB2 | I2C1 | SCL | J1_9 | <ul><li>PB2 can be connected to an on-board pull-up resistor<br><ul><li>`R59` is not soldered by default<br><li>Solder `R59` to use on-board pull-up</ul></ul> |
+| PA27 | ADC0 | A0 | J1_8 | <ul><li>PA27 can be connected to photodiode D1<br><ul><li>`J17 OFF` Disconnect from photodiode D1</ul></ul> |
+| PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Device Migration Recommendations
+This project was developed for a superset device included in the LP_MSPM0G3507 LaunchPad. Please
+visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration)
+for information about migrating to other MSPM0 devices.
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to
@@ -37,13 +44,15 @@ pullup/pulldown resistor.
 SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
 
 For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau846).
+MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873).
 
 ## Example Usage
 
-Compile, load and run the example on an LP-MSPM0L1306.
+Connect SMBCLK (SCL), SMBDAT (SDA) and GND to the corresponding pins on a second
+MSPM0 LaunchPad running the smb_controller00_all_protocols example.
 
-Connect SMBCLK (SCL) and SMBDAT (SDA) to the corresponding SMBCLK and SMBDAT pins on an LP-MSPM0L1306 running the smb_controller00_all_protocols example. Ensure that the LaunchPads share a common ground, by connecting a jumper between GND on both LaunchPads.
+Compile, load and run the example.
 
-Waits for command from the SMBus Controller and processes it.
-
+The target example waits for each command from the SMBus controller and 
+processes it.
+Optionally, an I2C sniffer can be used to observe the SMBus protocol.

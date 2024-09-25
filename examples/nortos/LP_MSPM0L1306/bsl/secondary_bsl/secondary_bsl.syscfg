@@ -8,11 +8,14 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const NONMAIN = scripting.addModule("/ti/driverlib/NONMAIN");
 
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable = true;
+
 NONMAIN.staticWriteProtectionMainLow = 0xFFFFF00F;
 NONMAIN.staticWriteProtectionNonMain = true;
 NONMAIN.bslAltConfig                 = true;

@@ -34,7 +34,7 @@
  *  @brief      System Control (SysCtl)
  *  @defgroup   SYSCTL_MSPM0G1X0X_G3X0X MSPM0G1X0X_G3X0X System Control (SYSCTL)
  *
- *  @anchor ti_dl_m0p_dl_mspm0g_sysctl_Overview
+ *  @anchor ti_dl_m0p_dl_mspm0g1x0x_g3x0x_sysctl_Overview
  *  # Overview
  *
  *  The System Control (SysCtl) module enables control over system wide

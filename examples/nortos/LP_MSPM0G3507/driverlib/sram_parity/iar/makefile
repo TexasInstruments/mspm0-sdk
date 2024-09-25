@@ -30,6 +30,8 @@ CFLAGS = -I.. \
     --vla
 
 LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
     --config ../iar/mspm0g3507.icf \
     --map "$(NAME).map" \
     --silent \

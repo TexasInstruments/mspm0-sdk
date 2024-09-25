@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const GPIO  = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1 = GPIO.addInstance();
 const GPIO2 = GPIO.addInstance();

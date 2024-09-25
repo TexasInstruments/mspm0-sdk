@@ -41,7 +41,6 @@ int main(void)
 
     NVIC_ClearPendingIRQ(SPI_0_INST_INT_IRQN);
     NVIC_EnableIRQ(SPI_0_INST_INT_IRQN);
-
     gData = 1;
 
     while (1) {
@@ -58,8 +57,9 @@ void SPI_0_INST_IRQHandler(void)
             gData = DL_SPI_receiveData8(SPI_0_INST);
             DL_SPI_transmitData8(SPI_0_INST, gData);
 
-            /* Toggle the LED after data reception */
-            DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            /* Toggle the USER LED after data reception */
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
             break;
         default:

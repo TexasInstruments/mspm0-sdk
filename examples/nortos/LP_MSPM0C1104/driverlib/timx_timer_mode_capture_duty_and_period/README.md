@@ -4,8 +4,7 @@ The following example configures TimerG0 in combined capture mode (configure to
 measure a PWM signal's period and duty cycle). TimerG1 is used to generate a the
 PWM signal.
 
-**Note: The examples for LP_MSPM0G3507 haven't been tested on silicon.
-Refer to the "Early Samples Migration Guide" inside the SDK if using early experimental devices.**
+**Note**: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.
 
 ## Peripherals & Pin Assignments
 
@@ -28,6 +27,11 @@ Visit [LP_MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104) for LaunchPad infor
 | PA23 | TIMG14 | CCP0 | J2_12 | N/A |
 | PA20 | DEBUGSS | SWCLK | J2_11 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 11:12 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 11:12 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Device Migration Recommendations
+This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please
+visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration)
+for information about migrating to other MSPM0 devices.
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to

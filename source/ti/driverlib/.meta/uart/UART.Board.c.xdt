@@ -325,14 +325,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
 %    }
 %
 %    /* DMA generation */
-%if ((inst.enabledDMARXTriggers != "None") || (inst.enabledDMATXTriggers != "None") > 0){
-    /* Configure DMA */
 %    if (inst.enabledDMARXTriggers != "None" && inst.enableDMARX) {
+    /* Configure DMA Receive Event */
     DL_UART_`flavorLower`_enableDMAReceiveEvent(`instName`_INST, `inst.enabledDMARXTriggers`);
 %   }
 %    if (inst.enabledDMATXTriggers != "None" && inst.enableDMATX) {
+    /* Configure DMA Transmit Event */
     DL_UART_`flavorLower`_enableDMATransmitEvent(`instName`_INST);
-%   }
 %   }
 %    /* FIFO config generation */
 %if (inst.enableFIFO){

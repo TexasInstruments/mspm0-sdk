@@ -107,12 +107,15 @@ exports = {
     isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X  : isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X,
     isDeviceFamily_PARENT_MSPM0L122X_L222X  : isDeviceFamily_PARENT_MSPM0L122X_L222X,
     isDeviceFamily_PARENT_MSPM0C110X        : isDeviceFamily_PARENT_MSPM0C110X,
+    isDeviceFamily_MSPS003FX                : isDeviceFamily_MSPS003FX,
+
     getDeviceFamily                         : getDeviceFamily,
 
     hasTimerA                               : hasTimerA,
     hasGPIOPortA                            : hasGPIOPortA,
     hasGPIOPortB                            : hasGPIOPortB,
     hasGPIOPortC                            : hasGPIOPortC,
+    hasBSLConfig                            : hasBSLConfig,
 
     sliceNumber : sliceNumber,
     getGPIOPort : getGPIOPort,
@@ -1711,6 +1714,12 @@ function isDeviceFamily_PARENT_MSPM0C110X(){
     var deviceName = system.deviceData.device;
     return (["MSPM0C110X","MSPS003FX"].includes(deviceName));
 }
+/* Checks if device is part of MSPS003FX device family */
+function isDeviceFamily_MSPS003FX(){
+    var deviceName = system.deviceData.device;
+    return (["MSPS003FX"].includes(deviceName));
+}
+
 /* checks if current device is one of M0x110x series */
 function isDeviceM0x110x(){
 	var deviceName = system.deviceData.device;
@@ -1747,6 +1756,12 @@ function getDeviceFamily(){
         return "MSPM0C110X";
     }
     return undefined;
+}
+
+// TODO: confirm with documentation
+/* Check if device supports BSL configuration */
+function hasBSLConfig(){
+    return (isDeviceM0G() || isDeviceM0L());
 }
 
 /* Check if device supports Timer A configuration */

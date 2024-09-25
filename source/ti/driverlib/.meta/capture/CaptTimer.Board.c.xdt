@@ -261,7 +261,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
 %      zCCOND = "DL_TIMER_CC_ZCOND_NONE"
 %  }
     DL_`flavorCat`_setCaptureCompareCtl(`inst.$name`_INST,
-    (DL_TIMER_CC_MODE_CAPTURE | `zCCOND` | DL_TIMER_CC_ACOND_TIMCLK | `chCapDet`),
+    DL_TIMER_CC_MODE_CAPTURE, (`zCCOND` | DL_TIMER_CC_ACOND_TIMCLK | `chCapDet`),
     DL_TIMER_CC_`cc`_INDEX);
 
     DL_`flavorCat`_setCaptureCompareInput(`inst.$name`_INST,
@@ -473,7 +473,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_TIMER_Cross_Trigger_init(void) {
 %       let inst = instances[i];
 %       let flavor = inst.peripheral.$solution.peripheralName;
 %       let flavorCat = "Timer"+(flavor.replace(/[0-9]/g, '')).slice(3);
-%if(inst.crossTriggerEn && (inst.crossTriggerAuthority == "Main")){
+%if(inst.crossTriggerEn && inst.timerStartTimer && (inst.crossTriggerAuthority == "Main")){
     DL_`flavorCat`_generateCrossTrigger(`inst.$name`_INST);
 %}
 %   }

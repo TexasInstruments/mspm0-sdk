@@ -36,7 +36,7 @@
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
 <p>The following example configures TimerA to output a single PWM signal and update the signal’s frequency and duty cycle by using the shadow load and shadow capture compare feature. Shadow load will only update the timer load values on a zero event and the shadow capture compare value (which controls the PWM duty cycle) update is configured to update when the timer reaches a count of zero.</p>
-<p><strong>Note: The examples for LP_MSPM0G3507 haven’t been tested on silicon. Refer to the “Early Samples Migration Guide” inside the SDK if using early experimental devices.</strong></p>
+<p><strong>Note</strong>: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -47,6 +47,16 @@
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>GPIOA</td>
+<td>PA22</td>
+<td>Standard Output</td>
+</tr>
+<tr class="even">
+<td>GPIOA</td>
+<td>PA11</td>
+<td>Standard Output</td>
+</tr>
 <tr class="odd">
 <td>SYSCTL</td>
 <td></td>
@@ -88,6 +98,20 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>PA22</td>
+<td>GPIOA</td>
+<td>PA22</td>
+<td>J1_8</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>PA11</td>
+<td>GPIOA</td>
+<td>PA11</td>
+<td>J1_9</td>
+<td><ul><li>PA11 can be connected to an external 3.3V pull-up<br><ul><li><code>J6 OFF</code> Disconnect 3.3V pull-up<br><li><code>J6 ON</code> Connect 3.3V pull-up</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA2</td>
 <td>TIMA0</td>
 <td>CCP0</td>
@@ -110,12 +134,15 @@
 </tr>
 </tbody>
 </table>
+<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
+<p>This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/tool/LP-MSPM0C1104">LP-MSPM0C1104 web page</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run the example. Monitor the PWM signal on PB26.</p>
+<p>LED_1 will be off at the beginning of the program execution. LED_1 will turn on once the PWM signal starts to be generated. USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the BoosterPack header and can be used to verify the LED behavior.</p>
+<p>PWM signal on PA2.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

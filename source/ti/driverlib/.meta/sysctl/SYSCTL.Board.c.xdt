@@ -88,7 +88,7 @@
     DL_GPIO_initPeripheralAnalogFunction(GPIO_LFXOUT_IOMUX);
 %    }
 %   else if(stat.LFCLKSource === "LFCLK_IN"){
-    DL_GPIO_initDigitalInput(GPIO_LFCLKIN_IOMUX);
+    DL_GPIO_initPeripheralInputFunction(GPIO_LFCLKIN_IOMUX, GPIO_LFCLKIN_IOMUX_FUNC);
 %   }
 %    if(stat.useHFCLK && stat.HFCLKSource === "HFXT"){
     /* Configure GPIO/IOMUX for HFXT functionality */
@@ -96,7 +96,7 @@
     DL_GPIO_initPeripheralAnalogFunction(GPIO_HFXOUT_IOMUX);
 %    }
 %   else if(stat.useHFCLK && stat.HFCLKSource === "HFCLK_IN"){
-    DL_GPIO_initDigitalInput(GPIO_HFCLKIN_IOMUX);
+    DL_GPIO_initPeripheralInputFunction(GPIO_HFCLKIN_IOMUX, GPIO_HFCLKIN_IOMUX_FUNC);
 %   }
 %}
 %   if(stat.enableEXCLK){
@@ -187,6 +187,71 @@ static const DL_SYSCTL_LFCLKConfig gSYSCTLConfig = {
 % } // if Clock Tree
 SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 {
+% /* Power & System Configuration */
+% /* Power Policy Config */
+%%{ /* Helper function for powerPolicy */
+let nameStr = "DL_SYSCTL_setPowerPolicy";
+let policy = stat.powerPolicy;
+let printPolicy = "";
+let printPolicyComment = "\t// Run Mode is configured to be " + stat.runPowerPolicy;
+    printPolicyComment = "\n\t//Low Power Mode is configured to be " + stat.powerPolicy;
+if(!stat.powerPolicy.match(/SLEEP/)) {
+    printPolicy = nameStr + policy + "();";
+} else {
+    //printPolicy = "// No additional configuration necessary for SLEEP";
+}
+%%}
+%%{ /* Helper function for Clock Tree needs */
+    let isHSCLK = stat.MCLKSource == "HSCLK";
+    if(stat.clockTreeEn && Common.isDeviceM0G())
+    {
+        let mod = system.modules["/ti/clockTree/mux.js"];
+        let mclkMuxInst = _.find(mod.$instances, ['$name', 'SYSCTLMUX']);
+        let hsclkMuxInst = _.find(mod.$instances, ['$name', 'HSCLKMUX']);
+        if(!_.endsWith(mclkMuxInst.inputSelect, "LFCLK") &&
+            !_.endsWith(hsclkMuxInst.inputSelect, "SYSOSC")){
+            isHSCLK = true;
+        } else {
+            isHSCLK = false;
+        }
+    }
+%%}
+`printPolicyComment`
+% if (printPolicy) {
+    `printPolicy`
+% }
+% /* Disabled when TI Drivers configuration enabled */
+% if(!stat.driversEn){
+    DL_SYSCTL_setBORThreshold(DL_SYSCTL_BOR_THRESHOLD_LEVEL_`stat.BORThresh`);
+    % if (stat.enableWriteLock){
+    DL_SYSCTL_enableWriteLock();
+    % }
+    % if (stat.enableSleepOnExit){
+    DL_SYSCTL_enableSleepOnExit();
+    % }
+    % if(stat.enableEventOnPending){
+    DL_SYSCTL_enableEventOnPend();
+    % }
+    % if(stat.disableNRSTPin){
+    DL_SYSCTL_disableNRSTPin();
+    % }
+    % if(stat.vboostMode !== "ONDEMAND"){
+    DL_SYSCTL_setVBOOSTConfig(DL_SYSCTL_VBOOST_`stat.vboostMode`);
+    % }
+    % if(stat.enableFCC && !stat.clockTreeEn){
+    DL_SYSCTL_configFCC(DL_SYSCTL_FCC_TRIG_TYPE_`stat.fccTrigLvl`, DL_SYSCTL_FCC_TRIG_SOURCE_`stat.fccTrigSrc`, DL_SYSCTL_FCC_CLOCK_SOURCE_`stat.fccClkSrc`);
+        % if(stat.fccTrigLvl == "RISE_RISE"){
+    DL_SYSCTL_setFCCPeriods(DL_SYSCTL_FCC_TRIG_CNT_`stat.fccPeriods`);
+        % }
+    % }
+% } // if(!stat.driversEn)
+% /* Disabled when TI Drivers configuration enabled */
+% if(!stat.driversEn){
+%   if(isHSCLK){
+    DL_SYSCTL_setFlashWaitState(DL_SYSCTL_FLASH_WAIT_STATE_`stat.waitState`);
+%   }
+% } // if(!stat.driversEn)
+
 %  if(stat.clockTreeEn){
 %       let gen = system.getTemplate("/ti/driverlib/sysctl/SYSCTLclockTree.Board.c.xdt")
 `_.trimEnd(gen(SYSCTL,"Function"))`
@@ -253,6 +318,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 % if(stat.MFCLKEn === true){
     DL_SYSCTL_enableMFCLK();
 %}
+% /* ULPCLK Config */
+% if(Common.isDeviceM0G()){
+    DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_`stat.UDIV`);
+% }
 % /* MCLK Config */
 %%{ /* Helper function for mClkSource*/
     let printMClkSource = "";
@@ -306,81 +375,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 %   }
     DL_SYSCTL_enableMFPCLK();
 %}
-% /* ULPCLK Config */
-% if(Common.isDeviceM0G()){
-    DL_SYSCTL_setULPCLKDivider(DL_SYSCTL_ULPCLK_DIV_`stat.UDIV`);
-% }
 % /* CLK_OUT Config */
 % if(stat.enableEXCLK){
     DL_SYSCTL_enableExternalClock(DL_SYSCTL_CLK_OUT_SOURCE_`stat.EXCLKSource`, DL_SYSCTL_CLK_OUT_DIVIDE_`stat.EXCLKDivider`);
 % }
 % } // if clockTreeEn = false
-% /* Power & System Configuration */
-% /* Power Policy Config */
-%%{ /* Helper function for powerPolicy */
-let nameStr = "DL_SYSCTL_setPowerPolicy";
-let policy = stat.powerPolicy;
-let printPolicy = "";
-let printPolicyComment = "\t// Run Mode is configured to be " + stat.runPowerPolicy;
-    printPolicyComment = "\n\t//Low Power Mode is configured to be " + stat.powerPolicy;
-if(!stat.powerPolicy.match(/SLEEP/)) {
-    printPolicy = nameStr + policy + "();";
-} else {
-    //printPolicy = "// No additional configuration necessary for SLEEP";
-}
-
-%%}
-%%{ /* Helper function for Clock Tree needs */
-    let isHSCLK = stat.MCLKSource == "HSCLK";
-    if(stat.clockTreeEn && Common.isDeviceM0G())
-    {
-        let mod = system.modules["/ti/clockTree/mux.js"];
-        let mclkMuxInst = _.find(mod.$instances, ['$name', 'SYSCTLMUX']);
-        let hsclkMuxInst = _.find(mod.$instances, ['$name', 'HSCLKMUX']);
-        if(!_.endsWith(mclkMuxInst.inputSelect, "LFCLK") &&
-           !_.endsWith(hsclkMuxInst.inputSelect, "SYSOSC")){
-            isHSCLK = true;
-        } else {
-            isHSCLK = false;
-        }
-    }
-
-%%}
-`printPolicyComment`
-% if (printPolicy) {
-    `printPolicy`
-% }
-% /* Disabled when TI Drivers configuration enabled */
-% if(!stat.driversEn){
-    DL_SYSCTL_setBORThreshold(DL_SYSCTL_BOR_THRESHOLD_LEVEL_`stat.BORThresh`);
-    % if (stat.enableWriteLock){
-    DL_SYSCTL_enableWriteLock();
-    % }
-    % if (stat.enableSleepOnExit){
-    DL_SYSCTL_enableSleepOnExit();
-    % }
-    % if(stat.enableEventOnPending){
-    DL_SYSCTL_enableEventOnPend();
-    % }
-    % if(stat.disableNRSTPin){
-    DL_SYSCTL_disableNRSTPin();
-    % }
-    % if(stat.vboostMode !== "ONDEMAND"){
-    DL_SYSCTL_setVBOOSTConfig(DL_SYSCTL_VBOOST_`stat.vboostMode`);
-    % }
-    % if(stat.enableFCC && !stat.clockTreeEn){
-    DL_SYSCTL_configFCC(DL_SYSCTL_FCC_TRIG_TYPE_`stat.fccTrigLvl`, DL_SYSCTL_FCC_TRIG_SOURCE_`stat.fccTrigSrc`, DL_SYSCTL_FCC_CLOCK_SOURCE_`stat.fccClkSrc`);
-        % if(stat.fccTrigLvl == "RISE_RISE"){
-    DL_SYSCTL_setFCCPeriods(DL_SYSCTL_FCC_TRIG_CNT_`stat.fccPeriods`);
-        % }
-    % }
-% } // if(!stat.driversEn)
-% /* Disabled when TI Drivers configuration enabled */
-% if(!stat.driversEn){
-%   if(isHSCLK){
-    DL_SYSCTL_setFlashWaitState(DL_SYSCTL_FLASH_WAIT_STATE_`stat.waitState`);
-%   }
-% } // if(!stat.driversEn)
 % /* Disabled when TI Drivers configuration enabled */
 % if(!stat.driversEn){
     % /* Interrupt Config */

@@ -8,10 +8,14 @@ copies a block of data from FLASH main memory to SRAM memory. The processor
 blocks in a WFE pending the DMA interrupt, then data transfer is confirmed by
 status of boolean verifyResult before executing a WFI.
 
+**Note**: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.
+
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
+| GPIOA | PA22 | Standard Output |
+| GPIOA | PA2 | Standard Output |
 | SYSCTL |  |  |
 | EVENT |  |  |
 | DMA |  |  |
@@ -24,8 +28,15 @@ Visit [LP_MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
+| PA22 | GPIOA | PA22 | J1_8 | N/A |
+| PA2 | GPIOA | PA2 | J2_13 | N/A |
 | PA20 | DEBUGSS | SWCLK | J2_11 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 11:12 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 11:12 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Device Migration Recommendations
+This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please
+visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration)
+for information about migrating to other MSPM0 devices.
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to

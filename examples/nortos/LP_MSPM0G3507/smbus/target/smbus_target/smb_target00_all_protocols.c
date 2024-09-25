@@ -30,25 +30,6 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 /*
- * ======== main.c ========
- * smb_target00_all_protocols
- *
- * This example implements a target which responds to all SMBus protocols
- *
- *                               /|\  /|\
- *                               Rp    Rp
- *                  target        |    |        controller
- *            -----------------   |    |   -----------------
- *           |             SDA*|<-|----+->|SDA*             |
- *           |                 |  |       |                 |
- *           |                 |  |       |                 |
- *           |             SCL*|<-+------>|SCL*             |
- *   LED0 <--|Px.y*            |          |            Px.y*|--> LED0
- *   LED1 <--|Pz.a*            |          |            Pz.a*|--> LED1
- *           |                 |          |                 |
- *   ADC  -->|Ayy*             |          |                 |
- *
- *                          * Check SysConfig to determine which I/Os are used
  *+----------------------------------------------------------------------------+
  * Please refer to the Examples Guide for more details.
  * ---------------------------------------------------------------------------*/
@@ -633,11 +614,8 @@ static int8_t Demo_CmdComplete(SMBus *SMB)
 //! \return  true to wake-up MCU, false to stay in LPMx
 //
 // *****************************************************************************
-void I2C0_IRQHandler (void)
+void SMB_I2C_INST_IRQHandler (void)
 {
-
-
-
     // Check the state of SMBus
     switch(SMBus_targetProcessInt(&sSMBusTarget))
     {

@@ -47,14 +47,44 @@
 </thead>
 <tbody>
 <tr class="odd">
+<td>GPIOA</td>
+<td>PA0</td>
+<td>Open-Drain Output</td>
+</tr>
+<tr class="even">
+<td>GPIOB</td>
+<td>PB21</td>
+<td>Standard Input with internal pull-up</td>
+</tr>
+<tr class="odd">
+<td>GPIOB</td>
+<td>PB0</td>
+<td>Standard Output</td>
+</tr>
+<tr class="even">
+<td>GPIOB</td>
+<td>PB16</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
+<td>GPIOB</td>
+<td>PB27</td>
+<td>Standard Output</td>
+</tr>
+<tr class="even">
 <td>SYSCTL</td>
 <td>PA5</td>
 <td>HFXIN</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SYSCTL</td>
 <td>PA6</td>
 <td>HFXOUT</td>
+</tr>
+<tr class="even">
+<td>EVENT</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>CANFD0</td>
@@ -76,16 +106,6 @@
 <td>PA19</td>
 <td>Debug Data In Out</td>
 </tr>
-<tr class="odd">
-<td>BSL</td>
-<td>PA18</td>
-<td>BSL Invoke Pin</td>
-</tr>
-<tr class="even">
-<td>BSL</td>
-<td>NRST</td>
-<td>NRST</td>
-</tr>
 </tbody>
 </table>
 <h2 id="boosterpacks-board-resources-jumper-settings">BoosterPacks, Board Resources &amp; Jumper Settings</h2>
@@ -102,66 +122,90 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>PA5</td>
-<td>SYSCTL</td>
-<td>FCC_IN</td>
-<td>J28_4</td>
-<td>Connected to HFXT Y2<br>Remove Y2 for other functions<br>Solder R15 to connect to J28_4</td>
+<td>PA0</td>
+<td>GPIOA</td>
+<td>PA0</td>
+<td>J27_9</td>
+<td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PB21</td>
+<td>GPIOB</td>
+<td>PB21</td>
+<td>J27_4</td>
+<td><ul><li>PB21 is connected to S2 button to GND with no external pull resistor<br><ul><li>Press <code>S2</code> button to connect pin to GND<br><li>Don’t use <code>S2</code> button if not needed by application</ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PB0</td>
+<td>GPIOB</td>
+<td>PB0</td>
+<td>J2_12</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>PB16</td>
+<td>GPIOB</td>
+<td>PB16</td>
+<td>J2_11</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>PB27</td>
+<td>GPIOB</td>
+<td>PB27</td>
+<td>J27_10</td>
+<td><ul><li>PB27 can be connected to LED2 Green<br><ul><li><code>J7 ON</code> Connect to LED2 Green<br><li><code>J7 OFF</code> Disconnect from LED2 Green</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA5</td>
 <td>SYSCTL</td>
 <td>HFXIN</td>
 <td>J28_4</td>
-<td>Connected to HFXT Y2<br>Solder R15 to connect to J28_4</td>
+<td><ul><li>PA5 is used for HFXT functionality by default in Launchpad<br><ul><li><code>Y2</code> crystal is soldered and connected by default</ul><br><li>PA5 can be connected to J28_4<br><ul><li><code>R15</code> is not soldered soldered by default<br><li>Solder <code>R15</code> to connect pin to J28_4</ul></td>
 </tr>
 <tr class="odd">
-<td>PA6</td>
-<td>SYSCTL</td>
-<td>HFCLKIN</td>
-<td>J28_5</td>
-<td>Connected to HFXT Y2<br>Remove Y2 for other functions<br>Solder R17 to connect to J28_5</td>
-</tr>
-<tr class="even">
 <td>PA6</td>
 <td>SYSCTL</td>
 <td>HFXOUT</td>
 <td>J28_5</td>
-<td>Connected to HFXT Y2<br>Solder R17 to connect to J28_5</td>
+<td><ul><li>PA6 is used for HFXT functionality by default in Launchpad<br><ul><li><code>Y2</code> crystal is soldered and connected by default</ul><br><li>PA6 can be connected to J28_5<br><ul><li><code>R17</code> is not soldered soldered by default<br><li>Solder <code>R17</code> to connect pin to J28_5</ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA13</td>
 <td>CANFD0</td>
 <td>CANRX</td>
 <td>J4_32/J26_3</td>
-<td>R65 connects J26_3 for CAN (default)</td>
+<td><ul><li>PA13 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br> <code>R65</code> is populated by default and connects pin to <code>J26_3</code></ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA12</td>
 <td>CANFD0</td>
 <td>CANTX</td>
 <td>J4_32/J26_1</td>
-<td>R64 connects J26_1 for CAN (default)</td>
+<td><ul><li>PA12 can be connected to CAN/LIN connector in addition to boosterpack connector:<br><ul><li>To use on J26 CAN/LIN connector:<br> <code>R64</code> is populated by default and connects pin to <code>J26_1</code></ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
-<td>J101 15:16 ON: Connect to XDS-110 SWCLK (debug)</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
 <td>N/A</td>
-<td>J101 13:14 ON: Connect to XDS-110 SWDIO (debug)</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
 </tr>
 </tbody>
 </table>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/tool/LP-MSPM0G3507">LP-MSPM0G3507 web page</a>.</p>
+<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
+<p>This project was developed for a superset device included in the LP_MSPM0G3507 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
+<p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>The device CAN_RX and CAN_TX are to be connected to a CAN transceiver which will route the lines to the CAN Bus.</p>
 <p>Make the following connections, which can Invoke BSL through GPIO togggling,</p>

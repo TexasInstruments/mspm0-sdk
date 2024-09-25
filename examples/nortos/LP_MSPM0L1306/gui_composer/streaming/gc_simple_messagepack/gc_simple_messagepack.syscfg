@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1  = GPIO.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
@@ -19,6 +20,8 @@ const UART1  = UART.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable                 = true;
+
 GPIO1.$name                              = "GPIO_SWITCHES";
 GPIO1.port                               = "PORTA";
 GPIO1.associatedPins.create(2);

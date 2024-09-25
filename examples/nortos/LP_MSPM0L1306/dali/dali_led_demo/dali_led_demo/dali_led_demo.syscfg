@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const Board  = scripting.addModule("/ti/driverlib/Board");
 const CRC    = scripting.addModule("/ti/driverlib/CRC");
 const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
@@ -23,7 +24,7 @@ const UART1  = UART.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
-
+ProjectConfig.genLibIQ        = true;
 PWM1.$name                      = "PWM_0";
 PWM1.peripheral.ccp0Pin.$assign = "PA0";
 PWM1.peripheral.ccp1Pin.$assign = "PA1";
@@ -69,4 +70,3 @@ UART1.txPinConfig.enableConfig = true;
 UART1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric3";
 UART1.rxPinConfig.invert       = "ENABLE";
 UART1.rxPinConfig.enableConfig = true;
-

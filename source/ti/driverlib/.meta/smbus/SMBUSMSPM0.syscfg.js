@@ -368,12 +368,12 @@ function moduleInstances(inst){
     /* SDA */
     Common.pushGPIOConfigInst(inst, modInstances,   true,    "sdaPin",
      "SDA", "I2C Serial Data line (SDA)",
-     "OUTPUT");
+     "INPUT");
 
     /* SCL */
     Common.pushGPIOConfigInst(inst, modInstances,   true,    "sclPin",
      "SCL", "I2C Serial Clock line (SDL)",
-     "OUTPUT");
+     "INPUT");
 
     return modInstances;
 }

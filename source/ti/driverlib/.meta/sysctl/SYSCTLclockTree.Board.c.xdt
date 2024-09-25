@@ -120,6 +120,9 @@
 %  tempStr =_.trimEnd(genPLL("Call"));
 %  funcStr += tempStr != ""?tempStr + "\n":"";
 %   } // if is M0G
+%     let genMDIV = system.getTemplate("/ti/clockTree/templates/divider.Board.c.xdt");
+%  tempStr = _.trimEnd(genMDIV());
+%  funcStr += tempStr != ""?tempStr + "\n":"";
 %     let genLFCLK = system.getTemplate("/ti/clockTree/templates/lfclkSource.Board.c.xdt");
 %  tempStr = _.trimEnd(genLFCLK());
 %  funcStr += tempStr != ""?tempStr + "\n":"";
@@ -128,9 +131,6 @@
 %  funcStr += tempStr != ""?tempStr + "\n":"";
 %     let genMCLK = system.getTemplate("/ti/clockTree/templates/mclkSource.Board.c.xdt");
 %  tempStr = _.trimEnd(genMCLK());
-%  funcStr += tempStr != ""?tempStr + "\n":"";
-%     let genMDIV = system.getTemplate("/ti/clockTree/templates/divider.Board.c.xdt");
-%  tempStr = _.trimEnd(genMDIV());
 %  funcStr += tempStr != ""?tempStr + "\n":"";
 %     let genEXCLK = system.getTemplate("/ti/clockTree/templates/exclkSource.Board.c.xdt");
 %  tempStr = _.trimEnd(genEXCLK());

@@ -132,7 +132,54 @@ For more information about using SysConfig with MSPM0, visit the `Using SysConfi
 2.5 Migrating Between MSPM0 Derivatives
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required. The steps below apply to TI Arm Clang but similar steps apply to Arm GCC.
+In order to migrate a project configuration to a new MSPM0 derivative (such as a new board, device, or package), the MSPM0 SDK supports several project migration processes. Project migration in this scope means updating relevant project configuration files and settings that are specific to the derivative, including linker files, startup files, and included libraries. The available options for migration depend on the project configuration, and the user should consult the desired project's README for more information on which approach is supported. An overview of the available migration options and when they can be used are given below: - `SysConfig Project Migration <#251-sysconfig-project-migration>`__: This is the default approach for SysConfig compatible projects, in which all the configuration files can be handled by SysConfig. - `Manual Migration <#252-manual-migration>`__: For all other cases that require custom projectspecs or other incompatible configurations, the user can
+follow these steps for manual migration.
+
+2.5.1 SysConfig Project Migration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to facilitate project migration, SysConfig will generate Project Configuration files by default, which can be controlled through the Project Configuration module. The steps below apply to TI Arm Clang and Arm GCC.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate8.png
+   :alt: 
+
+For more details on generated Project Configuration files, visit the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ Guide.
+
+1. In SysConfig, enable the Device View and click on **SWITCH**
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate1.png
+   :alt: 
+
+2. Select the New Values for the **Device**, **Package**, and **CCS Launch Device** to migrate the project configuration to, and then click **CONFIRM**.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate2.png
+   :alt: 
+
+3. After Confirming the new device values, SysConfig will highlight an error on the Project Configuration module. The user must choose the new device in the **Select Device** options. Make sure the device selection matches what was chosen for **CCS Launch Device** in the previous step.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate6.png
+   :alt: 
+
+4. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed, and save all the changes to the SysConfig configuration script.
+
+CCS will automatically migrate the device variant and will add a corresponding .ccxml file. SysConfig will update the relevant project configuration files, including linker and startup files.
+
+Migration is now complete and the user can build their project for the new target device.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate3.png
+   :alt: 
+
+Note: If the user wants to manually modify any Project Configuration files, they should disable the option to generate that file from the Project Configuration module and then manually add their desired file to the project. Otherwise, changes that are made to any generated file will be overwritten by SysConfig when the project is built. Keep in mind that the steps above are intended to be followed when all the project configuration files are handled by SysConfig.
+
+.. figure:: ./images/theia_ide_guide/ccstheia_migrate7.png
+   :alt: 
+
+2.5.2 Manual Migration
+~~~~~~~~~~~~~~~~~~~~~~
+
+SysConfig allows for an easier migration between MSPM0 derivatives; however for some projects manual modifications are required. The steps below apply to TI Arm Clang but similar steps apply to Arm GCC.
+
+Note: Steps 1-3 don't apply when not using SysConfig, and step 4 needs to be done manually.
 
 1. In SysConfig, enable the Device View and click on **SWITCH**
 
@@ -164,8 +211,6 @@ Note that previous files should be excluded or removed from the project.
    :alt: 
 
 7. Resolve any other dependencies such as incompatible libraries and source code.
-
-Note: Steps 1-3 don't apply when not using SysConfig, and step 4 needs to be done manually.
 
 2.6 Stack and Heap Management and Linker Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -376,6 +421,102 @@ CCS Theia will show an error if an unsupported device is connected as shown belo
 |image4| |image5|
 
 Programming an incorrect device is not recommended and can lead to unexpected and unrecoverable behavior.
+
+3.4 DSSM Commands
+~~~~~~~~~~~~~~~~~
+
+MSPM0 allows communication to the device over SWD from a debug probe using the Debug Subsystem Mailbox (DSSM). These commands are not available in SWD security level 2, but they are optionally available in security level 0 and 1. See the device Technical Reference Manual for more information about security policies and DSSM.
+
+The MSPM0 CCS support package includes GEL files not only to perform device initialization, but to send DSSM commands which are explained in the following sections.
+
+For more information about GEL commands in CCS, visit the `CCS online documentation <https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-gel.html>`__.
+
+3.4.1 DSSM Mass Erase and Factory Reset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  DSSM Mass Erase: A DSSM mass erase is an erase of the MAIN flash regions only, which typically includes the user application. NONMAIN flash region are not affected by a mass erase. A mass erase is useful for erasing all application code and data while leaving the device configuration itself intact.
+
+-  DSSM Factory Reset: A DSSM factory reset is an erase of the MAIN flash regions followed by a reset of the NONMAIN flash region to default values. Such an erase is useful for completely resetting the NONMAIN boot policies while also erasing the application code and data.
+
+The SWD mass erase and factory reset DSSM commands superseded any static write protection policies. For example, if SWD factory reset is configured to be enabled or enabled with password, the NONMAIN configuration data can be reset even if it is statically write protected.
+
+To execute a DSSM Mass Erase or DSSM Factory Reset, follow the next steps:
+
+1. Go to an active project and open the **targetConfigs** folder.
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm1.png
+      :alt: 
+
+2. Right-click the .ccxml file and select **Start Project-less Debug**.
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm2.png
+      :alt: 
+
+3. On the debugger window menu, select **Scripts** → **MSPM0xxxx\_Commands** (where MSPM0xxxx depends on the current MSPM0 device), and select one of the following options:
+
+   -  **MSPM0\_MailboxMassErase\_Manual**: A mass erase will be performed asking the user to press the reset button.
+   -  **MSPM0\_MailboxMassErase\_Auto**: A mass erase will be performed forcing reset using the XDS110 reset line.
+   -  **MSPM0\_MailboxFactoryReset\_Manual**: A factory reset will be performed asking the user to press the reset button.
+   -  **MSPM0\_MailboxFactoryReset\_Auto**: A factory reset will be performed forcing reset using the XDS110 reset line.
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm3.png
+      :alt: 
+
+3.4.1.1 DSSM after Power-up
+'''''''''''''''''''''''''''
+
+The device might not respond to DSSM commands in some scenarios such as when the reset line or SWD pins are used for other functions. In such conditions, it can be useful to follow the next steps:
+
+1. Power off the device
+2. Hold the reset line (NRST) low
+3. Power up the device, while holding NRST low
+4. Execute one of the **Manual** DSSM commands mentioned in previous section
+5. When prompted, release NRST
+
+3.4.2 DSSM SWD Password Mechanism
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The SWD interface can be configured to be disabled, enabled, or enabled with a 128-bit password by writing the BOOTCFG0 and SWDPW registers in NONMAIN. See the device Technical Reference Manual for more information about NONMAIN and SWD password.
+
+TI recommends using the NONMAIN configurator available in SysConfig when configuring NONMAIN. See `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ for more information.
+
+The following steps can be followed to unlock a device using DSSM Password mechanism.
+
+1. Assume the following password configured in NONMAIN configurator:
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm_password1.png
+      :alt: 
+
+2. Attempting to program the device after configuring the password will show the following error:
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm_password2.png
+      :alt: 
+
+3. To configure the password, double-click the .ccxml inside the CCS project, go to the **Advanced** tab and select the MSPM0 device:
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm_password3.png
+      :alt: 
+
+4. Write the password
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm_password4.png
+      :alt: 
+
+5. Go to an active project and open the **targetConfigs** folder.
+
+6. Right-click the .ccxml file and select **Start Project-less Debug**.
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm_password5.png
+      :alt: 
+
+7. On the debugger window menu, select **Scripts** → **MSPM0xxxx\_Commands** (where MSPM0xxxx depends on the current MSPM0 device), and select **MSPM0\_MailboxPasswordAuthentication\_Auto**.
+
+   .. figure:: ./images/theia_ide_guide/ccstheia_dssm_password6.png
+      :alt: 
+
+8. CCS should be able to connect to the device. At this point, the device can be reprogrammed but note that this action doesn't erase NONMAIN, so the password will remain active unless NONMAIN is modified.
+
+Note: this mechanism is expected to be automated in future versions of the CCS support package.
 
 4. Known Issues and Frequently Asked Questions (FAQs)
 -----------------------------------------------------

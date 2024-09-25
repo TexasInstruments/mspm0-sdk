@@ -39,7 +39,6 @@
 
 /* get ti/drivers common utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
-
 let topModules;
 let displayName = "MSPM0 Driver Library";
 let description = "MSPM0 DriverLib System Configuration";
@@ -217,7 +216,6 @@ topModules = [
         ]
     },
 ];
-
 
 let templates = [
     {

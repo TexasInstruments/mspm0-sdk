@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X TI-Driver Library
-   &#160;<span id="projectnumber">1.20.00.05</span>
+   &#160;<span id="projectnumber">1.20.01.06</span>
    </div>
   </td>
  </tr>
@@ -82,10 +82,8 @@ Collaboration diagram for UART_Object:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct_u_a_r_t___object__coll__graph.png" border="0" usemap="#_u_a_r_t___object_coll__map" alt="Collaboration graph"/></div>
 <map name="_u_a_r_t___object_coll__map" id="_u_a_r_t___object_coll__map">
-<area shape="rect" id="node2" href="struct_u_a_r_t_support___fxns.html" title="Function pointers to implementation/hardware specific logic. " alt="" coords="5,95,151,121"/>
-<area shape="rect" id="node3" href="struct_d_m_a_m_s_p_m0___cfg.html" title="DMAMSPM0 Global configuration. " alt="" coords="175,95,306,121"/>
-<area shape="rect" id="node4" href="struct_d_m_a_m_s_p_m0___transfer.html" title="DMAMSPM0 Transfer configuration. " alt="" coords="69,5,229,32"/>
-<area shape="rect" id="node5" href="struct_d_m_a_m_s_p_m0___h_w_attrs.html" title="DMAMSPM0 Hardware attributes. " alt="" coords="253,5,415,32"/>
+<area shape="rect" id="node2" href="struct_u_a_r_t_support___fxns.html" title="Function pointers to implementation/hardware specific logic. " alt="" coords="5,5,151,32"/>
+<area shape="rect" id="node3" href="struct_d_m_a_m_s_p_m0___cfg.html" title="DMAMSPM0 Global configuration. " alt="" coords="175,5,306,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -131,6 +129,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:ac97ce506eb8107d54fc216ff13c69503"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a803fee144e297b484f6800f88e97e887"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_u_a_r_t___object.html#a803fee144e297b484f6800f88e97e887">overrunCount</a></td></tr>
 <tr class="separator:a803fee144e297b484f6800f88e97e887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeea7e1ab653e678cf2a3aa28bef43c16"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_u_a_r_t___object.html#aeea7e1ab653e678cf2a3aa28bef43c16">noOfDMAChannels</a></td></tr>
+<tr class="separator:aeea7e1ab653e678cf2a3aa28bef43c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4616cbf8d6eb4a034beabc5bc10bfaa4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___d_m_a.html#ga35a0f510eb6e8994bb47a19c96e8534a">DMAMSPM0_Handle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_u_a_r_t___object.html#a4616cbf8d6eb4a034beabc5bc10bfaa4">DMA_Handle</a></td></tr>
 <tr class="separator:a4616cbf8d6eb4a034beabc5bc10bfaa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -434,6 +434,21 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Total counts of overruns </p>
+
+</div>
+</div>
+<a id="aeea7e1ab653e678cf2a3aa28bef43c16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeea7e1ab653e678cf2a3aa28bef43c16">&sect;&nbsp;</a></span>noOfDMAChannels</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t UART_Object::noOfDMAChannels</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Total DMA channels used </p>
 
 </div>
 </div>

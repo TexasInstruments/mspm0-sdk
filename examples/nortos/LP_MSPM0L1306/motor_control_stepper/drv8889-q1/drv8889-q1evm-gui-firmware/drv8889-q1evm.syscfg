@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const Board  = scripting.addModule("/ti/driverlib/Board");
 const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
 const COMP1  = COMP.addInstance();
@@ -26,6 +27,7 @@ const VREF   = scripting.addModule("/ti/driverlib/VREF");
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable = true;
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "ball.24";
 Board.peripheral.swdioPin.$assign = "ball.23";

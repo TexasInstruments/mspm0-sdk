@@ -115,6 +115,7 @@ function updateGUIEnableTarget(inst, ui) {
     if (inst.basicEnableTarget == false)
     {
         ui.basicEnableTarget10BitAddress.hidden = true;
+        ui.basicTargetOwnAddressEnable.hidden = true;
         ui.basicTargetAddress.hidden = true;
         ui.basicTargetSecAddressEnable.hidden = true;
         ui.basicTargetSecAddress.hidden = true;
@@ -144,7 +145,11 @@ function updateGUIEnableTarget(inst, ui) {
     else
     {
         ui.basicEnableTarget10BitAddress.hidden = false;
-        ui.basicTargetAddress.hidden = false;
+        ui.basicTargetOwnAddressEnable.hidden = false;
+        if (inst.basicTargetOwnAddressEnable == true)
+        {
+            ui.basicTargetAddress.hidden = false;
+        }
         ui.basicTargetSecAddressEnable.hidden = false;
         if (inst.basicTargetSecAddressEnable == true)
         {
@@ -180,6 +185,13 @@ function updateGUIbasicControllerBusSpeed(inst, ui) {
     inst.basicControllerBusSpeedArray = 0;
 }
 
+function updateGUIEnableTargetOwnAddress(inst, ui) {
+    if (ui.basicTargetOwnAddressEnable.hidden == false)
+    {
+        ui.basicTargetAddress.hidden = (inst.basicTargetOwnAddressEnable === false);
+    }
+}
+
 function updateGUIEnableTargetSecAddress(inst, ui) {
     if (ui.basicTargetSecAddressEnable.hidden == false)
     {
@@ -199,6 +211,7 @@ function updateGUIbasedonConfig(inst, ui)
     updateGUIEnableController(inst, ui);
     updateGUIbasicControllerStandardBusSpeed(inst, ui);
     updateGUIEnableTarget(inst, ui);
+    updateGUIEnableTargetOwnAddress(inst,ui);
     updateGUIEnableTargetSecAddress(inst,ui);
     updateGUIInterrupts(inst, ui);
 }
@@ -447,7 +460,14 @@ function getValueI2CBusSpeedTPR(inst)
 /* onChange functions for Target - Basic */
 function onChangeEnableTarget(inst, ui) {
     updateGUIEnableTarget(inst, ui);
+    updateGUIEnableTargetOwnAddress(inst,ui);
     updateGUIEnableTargetSecAddress(inst, ui);
+    onChangeSetCustomProfile(inst, ui);
+}
+
+function onChangebasicTargetOwnAddressEnable(inst, ui)
+{
+    updateGUIEnableTargetOwnAddress(inst, ui);
     onChangeSetCustomProfile(inst, ui);
 }
 
@@ -728,6 +748,15 @@ The controller to communicate with should use 10-bit addresses.
                         hidden      : true,
                         default     : false,
                         onChange    : onChangeSetCustomProfile,
+                    },
+                    {
+                        name        : "basicTargetOwnAddressEnable",
+                        displayName : "Enable Target's Own Address",
+                        description : `The target's own address is usually enabled
+                        but it can be optionally disabled.`,
+                        hidden      : true,
+                        default     : true,
+                        onChange    : onChangebasicTargetOwnAddressEnable
                     },
                     {
                         name        : "basicTargetAddress",
@@ -1192,6 +1221,14 @@ function getDMAModInstances(inst, modInstances){
     /* I2C does not support DMA configuration for MSPM0Cxx */
     if(!Common.isDeviceM0C()){
     if(!["None"].includes(inst.DMAEvent1)){
+        let triggerType;
+        if(inst.DMAEvent1 == "CONTROLLER_TXFIFO_TRIGGER" || inst.DMAEvent1 == "TARGET_TXFIFO_TRIGGER") {
+            triggerType = 0;
+        }
+        else if(inst.DMAEvent1 == "CONTROLLER_RXFIFO_TRIGGER" || inst.DMAEvent1 == "TARGET_RXFIFO_TRIGGER") {
+            triggerType = 1;
+        }
+
         let mod = {
             name: "DMA_CHANNEL_EVENT1",
             displayName: "DMA Channel Event 1",
@@ -1202,14 +1239,20 @@ function getDMAModInstances(inst, modInstances){
             },
             requiredArgs: {
                 hideTriggerSelect: true,
-                passedTriggerSelect: 0,
-
+                passedTriggerSelect: triggerType,
             },
 
         }
         modInstances.push(mod);
     }
     if(!["None"].includes(inst.DMAEvent2)){
+        let triggerType;
+        if(inst.DMAEvent2 == "CONTROLLER_TXFIFO_TRIGGER" || inst.DMAEvent2 == "TARGET_TXFIFO_TRIGGER") {
+            triggerType = 0;
+        }
+        else if(inst.DMAEvent2 == "CONTROLLER_RXFIFO_TRIGGER" || inst.DMAEvent2 == "TARGET_RXFIFO_TRIGGER") {
+            triggerType = 1;
+        }
         let mod = {
             name: "DMA_CHANNEL_EVENT2",
             displayName: "DMA Channel Event 2",
@@ -1220,8 +1263,7 @@ function getDMAModInstances(inst, modInstances){
             },
             requiredArgs: {
                 hideTriggerSelect: true,
-                passedTriggerSelect: 1,
-
+                passedTriggerSelect: triggerType,
             },
 
         }
@@ -1271,7 +1313,7 @@ function getValidation(inst, validation){
     if (inst.basicEnableTarget == true)
     {
         if (inst.basicEnableTarget10BitAddress == false) {
-            if (inst.basicTargetAddress > 0x7F) {
+            if (inst.basicTargetOwnAddressEnable && inst.basicTargetAddress > 0x7F) {
                 Common.logError(validation, inst,
                 "basicTargetAddress",
                 "I2C Target's Own Address must be a valid 7-bit address.");
@@ -1283,7 +1325,7 @@ function getValidation(inst, validation){
             }
         }
         else {
-            if (inst.basicTargetAddress > 0x3FF) {
+            if (inst.basicTargetOwnAddressEnable && inst.basicTargetAddress > 0x3FF) {
                 Common.logError(validation, inst,
                 "basicTargetAddress",
                 "I2C Target's Own Address must be a valid 10-bit address.");

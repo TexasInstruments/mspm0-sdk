@@ -8,5 +8,13 @@
 /**
  * Import the modules used in this configuration.
  */
+const SYSCTL    = scripting.addModule("/ti/driverlib/SYSCTL");
+const Migration = scripting.addModule("/ti/project_config/ProjectConfig");
 
-const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+Migration.genLibIQ = true;

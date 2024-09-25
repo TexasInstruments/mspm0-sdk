@@ -289,6 +289,29 @@ extern void SMBus_NWK_controllerReset(SMBus *smbus);
 
 //*****************************************************************************
 //
+//! \brief   Enable network functions for Host Notify
+//
+//! \param smbus    Pointer to SMBus structure
+//! \param buff     Pointer to Host Notify buffer
+//
+//! \return  The new state of controller (see SMBus_controllerProcessInt())
+//
+//*****************************************************************************
+extern void SMBus_NWK_controllerEnableHostNotify(SMBus *smbus, uint8_t *buff);
+
+//*****************************************************************************
+//
+//! \brief   Disable network functions for Host Notify
+//
+//! \param smbus    Pointer to SMBus structure
+//
+//! \return  The new state of controller (see SMBus_controllerProcessInt())
+//
+//*****************************************************************************
+extern void SMBus_NWK_controllerDisableHostNotify(SMBus *smbus);
+
+//*****************************************************************************
+//
 // Mark the end of the C bindings section for C++ compilers.
 //
 //*****************************************************************************

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Texas Instruments Incorporated
+ * Copyright (c) 2023, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,6 @@ uint8_t gTxPacket[SPI_PACKET_SIZE] = {0x1, 0x2, 0x3, 0x4};
 uint8_t gRxPacket[SPI_PACKET_SIZE];
 
 volatile bool gDMARXDataTransferred, gReceiveReady;
-
 void SPI_receive(void);
 
 int main(void)
@@ -67,7 +66,6 @@ int main(void)
              * requested by the Controller.
              */
             DL_SPI_fillTXFIFO8(SPI_0_INST, &gTxPacket[0], SPI_PACKET_SIZE);
-
             gReceiveReady = false;
             SPI_receive();
         } else {
@@ -109,7 +107,6 @@ void SPI_receive(void)
 
     gDMARXDataTransferred = false;
     gReceiveReady         = true;
-
     /* Increment data to send */
     gTxPacket[0]++;
 }
@@ -120,7 +117,8 @@ void SPI_0_INST_IRQHandler(void)
         case DL_SPI_IIDX_DMA_DONE_RX:
             /* DMA is done transferring data from RXFIFO to gRxPacket*/
             gDMARXDataTransferred = true;
-            DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+            DL_GPIO_togglePins(GPIO_LEDS_PORT,
+                GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
             break;
 
         default:

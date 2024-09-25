@@ -42,7 +42,7 @@
 #include <ti/drivers/dpl/SemaphoreP.h>
 
 /* This structure must be defined in the peripheral application using DMA */
-__WEAK DMAMSPM0_Cfg DMAMSPM0_Config;
+__WEAK const DMAMSPM0_Cfg DMAMSPM0_Config[];
 
 /*
  * Lock for exclusive access to hwiFxnArgs, hwiFxnHandlers & hwiHandles arrays
@@ -72,7 +72,7 @@ static uintptr_t hwiFxnArgs[NUM_DMA_CHANNELS];
 static void DMAMSPM0_hwiFxn(uintptr_t arg);
 
 
-/* Default UART parameters structure */
+/* Default DMA parameters structure */
 const DMAMSPM0_Transfer DMA_Ch_defaultParams =
 {
     .txTrigger = DMA_SOFTWARE_TRIG,  /* default is sw trigger */
@@ -88,7 +88,8 @@ const DMAMSPM0_Transfer DMA_Ch_defaultParams =
     .dmaChannel             = 0,      /* default DMA ch is 0 */
     .dmaTransferSource      = NULL,   /* default source address is null */
     .dmaTransferDestination = NULL,   /* default destination address is null */
-    .roundRobinPriority     = false,  /* default round robin priority is false */
+    .dmaChIsrFxn            = NULL,   /* default the DMA channel isr function is NULL */
+    .enableDMAISR           = false,  /* default the DMA channel isr is disabled */
 };
 
 /*
@@ -201,6 +202,16 @@ bool DMAMSPM0_init(void)
         }
 
         dmaInitialized = true;
+
+        /* if round robin priority is not enabled before then enable it */
+        if ((hwAttrs->roundRobinPriority) && (!DL_DMA_isRoundRobinPriorityEnabled(DMA)))
+        {
+            DL_DMA_enableRoundRobinPriority(DMA);
+        }
+        else if (!(hwAttrs->roundRobinPriority) && (DL_DMA_isRoundRobinPriorityEnabled(DMA)))
+        {
+            DL_DMA_disableRoundRobinPriority(DMA);
+        }
     }
 
     SemaphoreP_post(interruptSetupLock);
@@ -217,20 +228,20 @@ void DMA_Params_init(DMAMSPM0_Transfer *params)
 
 /*
  *  ======== DMAMSPM0_open ========
+ * index: DMA object struct index
  * channelNum: 0-3 or 0-7
- * enableInt: enable channel interrupt if peripheral interrupt is not being used.
- * hwiFxn: interrupt ISR Fn pointer
  *
  */
-DMAMSPM0_Handle DMAMSPM0_open(uint8_t channelNum)
+DMAMSPM0_Handle DMAMSPM0_open(uint_least8_t index, uint8_t channelNum)
 {
     uintptr_t key;
     uint8_t channelNo;
     uint32_t channelMask;
 
-    DMAMSPM0_Handle handle = (DMAMSPM0_Handle)&DMAMSPM0_Config;
-
-    if (!dmaInitialized || hwiHandle == NULL) {
+    DMAMSPM0_Handle handle = (DMAMSPM0_Handle)DMAMSPM0_Config;
+    DMAMSPM0_Transfer* object = ((DMAMSPM0_Transfer*)handle->object)+index;
+    if (!dmaInitialized || hwiHandle == NULL)
+    {
         /* Driver did not initialize correctly */
         return (NULL);
     }
@@ -258,7 +269,7 @@ DMAMSPM0_Handle DMAMSPM0_open(uint8_t channelNum)
     channelsInUse |= channelMask;
 
     /* Configure Hwi for DMA channel */
-    if (handle->object->enableDMAISR && (handle->hwAttrs->dmaIsrFxn != NULL))
+    if (object->enableDMAISR && (object->dmaChIsrFxn != NULL))
     {
         /* Acquire exclusive access to interrupt arrays & masks */
         SemaphoreP_pend(interruptSetupLock, SemaphoreP_WAIT_FOREVER);
@@ -266,7 +277,7 @@ DMAMSPM0_Handle DMAMSPM0_open(uint8_t channelNum)
         /* Clear DMA interrupt flags before creating the Hwi */
         DL_DMA_clearInterruptStatus(DMA, channelMask);
 
-        hwiFxnHandlers[channelNum] = handle->hwAttrs->dmaIsrFxn;
+        hwiFxnHandlers[channelNum] = object->dmaChIsrFxn;
         hwiFxnArgs[channelNum]     = (uintptr_t) handle;
         dmaIntRefCount++;
 
@@ -305,16 +316,6 @@ bool DMAMSPM0_setupTransfer(DMAMSPM0_Transfer *transfer, DL_DMA_Config* DMACfg)
 
     /* A lock is needed because we are accessing shared DMA registers */
     key = HwiP_disable();
-
-    /* if round robin priority is not enabled before then enable it */
-    if ((transferHandle->roundRobinPriority) && (!DL_DMA_isRoundRobinPriorityEnabled(DMA)))
-    {
-        DL_DMA_enableRoundRobinPriority(DMA);
-    }
-    else if (!(transferHandle->roundRobinPriority) && (DL_DMA_isRoundRobinPriorityEnabled(DMA)))
-    {
-        DL_DMA_disableRoundRobinPriority(DMA);
-    }
 
     /* set source address */
     DL_DMA_setSrcAddr(DMA, dmaChannelIndex, (uint32_t)transferHandle->dmaTransferSource);
@@ -403,27 +404,40 @@ static void DMAMSPM0_hwiFxn(uintptr_t arg)
     }
 }
 
-DMAMSPM0_Handle DMA_Init(DMAMSPM0_Transfer* dmaParams, DL_DMA_Config* DMACfg)
+/*
+ *  ======== DMA_Init ========
+ *  This function expect dmaParams would be an array of pointers if multiple DMA channels are being configured
+ */
+DMAMSPM0_Handle DMA_Init(DMAMSPM0_Transfer* dmaParams, DL_DMA_Config* DMACfg, uint8_t noOfChs)
 {
+    uint8_t i = 0;
     DMAMSPM0_Handle dmaHandle;
-    /* Init with default params first */
-    DMA_Params_init(dmaParams);
-    /* Copy all User config DMA params to use for configuration */
-    memcpy(dmaParams, DMAMSPM0_Config.object, sizeof(DMAMSPM0_Transfer));
-
+    /* This init function will initialize the HWIP */
     DMAMSPM0_init();
-    dmaHandle = DMAMSPM0_open(dmaParams->dmaChannel);
-
-    if (dmaHandle == NULL)
+    for(i = 0; i < noOfChs; i++)
     {
-        return NULL;
-    }
-    DMAMSPM0_copyDMAParams(dmaParams, DMACfg);
-    DL_DMA_initChannel(DMA, dmaParams->dmaChannel, DMACfg);
+        /* Init with default params first */
+        DMA_Params_init(&dmaParams[i]);
+        /* Copy all User config DMA params to use for configuration */
+        memcpy(&dmaParams[i], ((DMAMSPM0_Transfer*)DMAMSPM0_Config[0].object)+i, sizeof(DMAMSPM0_Transfer));
 
+        /* channel specific interrupt configuration */
+        dmaHandle = DMAMSPM0_open(i, dmaParams[i].dmaChannel);
+
+        if (dmaHandle == NULL)
+        {
+            return NULL;
+        }
+        DMAMSPM0_copyDMAParams(&dmaParams[i], DMACfg);
+        DL_DMA_initChannel(DMA, dmaParams[i].dmaChannel, DMACfg);
+    }
     return dmaHandle;
 }
-/* This function will copy data from application struct to the DL struct */
+
+/*
+ *  ======== DMAMSPM0_hwiFxn ========
+ *  This function will copy data from application struct to the DL struct
+ */
 void DMAMSPM0_copyDMAParams(DMAMSPM0_Transfer* dmaParams, DL_DMA_Config* dmaConfig)
 {
     /* Default value for trigger and triggerType are from RX */

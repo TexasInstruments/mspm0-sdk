@@ -22,8 +22,8 @@
         compilerBuildOptions="
             -I${PROJECT_ROOT}
             -I${PROJECT_ROOT}/${ConfigName}
-            -D__MSPM0C1104__
             -O2
+            @syscfg/device.opt
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -mcpu=cortex-m0plus
@@ -41,10 +41,11 @@
             -I${CG_TOOL_ROOT}/arm-none-eabi/include
         "
         linkerBuildOptions="
-            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0c110x
             -nostartfiles
+            -ldevice.lds.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
-            -l:${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0c110x/driverlib.a
             -march=armv6-m
             -mthumb
             -static
@@ -76,10 +77,6 @@
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../gcc/mspm0c1104.lds" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../gcc/startup_mspm0c1104_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="gcc">
         </file>
     </project>
 </projectSpec>

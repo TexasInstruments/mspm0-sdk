@@ -33,7 +33,6 @@
 #include "ti_msp_dl_config.h"
 
 volatile uint8_t gRxData, gTxData;
-
 int main(void)
 {
     SYSCFG_DL_init();
@@ -44,10 +43,12 @@ int main(void)
         /* Transmit data and wait to receive it */
         DL_SPI_transmitData8(SPI_0_INST, gTxData);
         gRxData = DL_SPI_receiveDataBlocking8(SPI_0_INST);
+        /* Toggle LED and USER_TEST pin */
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
         /* Pause code execution to allow user to check value of gRxData */
         __BKPT(0);
-
         gTxData++;
     }
 }

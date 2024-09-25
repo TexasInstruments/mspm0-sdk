@@ -37,8 +37,10 @@
         "
         linkerBuildOptions="
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/ticlang/m0p/mathacl/iqmath.a
-            -L${PROJECT_BUILD_DIR}/syscfg
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
             -Wl,--rom_model
             -Wl,--warn_sections
             -L${CG_TOOL_ROOT}/lib
@@ -104,7 +106,7 @@
         </file>
         <file path="../ticlang/mspm0g3507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../ticlang/startup_mspm0g3507_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        <file path="../ticlang/startup_mspm0g350x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

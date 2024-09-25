@@ -18,9 +18,12 @@ const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
  */
 
 GPIO1.$name                          = "GPIO_OUTPUTS";
+GPIO1.associatedPins.create(2);
 GPIO1.associatedPins[0].$name        = "USER_OUTPUT_1";
 GPIO1.associatedPins[0].hiZ          = "ENABLE";
-GPIO1.associatedPins[0].assignedPort = "PORTA";
 GPIO1.associatedPins[0].assignedPin  = "0";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[0].hiZ          = "ENABLE";
+GPIO1.associatedPins[1].assignedPin  = "2";
 
 SYSCTL.clockTreeEn = true;

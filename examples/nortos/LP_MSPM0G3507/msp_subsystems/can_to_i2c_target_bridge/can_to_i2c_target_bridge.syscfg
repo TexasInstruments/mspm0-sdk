@@ -1,0 +1,113 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const I2C    = scripting.addModule("/ti/driverlib/I2C", {}, false);
+const I2C1   = I2C.addInstance();
+const MCAN   = scripting.addModule("/ti/driverlib/MCAN", {}, false);
+const MCAN1  = MCAN.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const pinFunction3     = system.clockTree["HFCLKEXT"];
+pinFunction3.inputFreq = 40;
+
+const pinFunction4        = system.clockTree["HFXT"];
+pinFunction4.enable       = true;
+pinFunction4.HFXTStartup  = 10;
+pinFunction4.HFCLKMonitor = true;
+pinFunction4.inputFreq    = 40;
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.$name                              = "GPIO_SWITCHES";
+GPIO1.port                               = "PORTB";
+GPIO1.portSegment                        = "Upper";
+GPIO1.associatedPins[0].$name            = "USER_SWITCH_1";
+GPIO1.associatedPins[0].internalResistor = "PULL_UP";
+GPIO1.associatedPins[0].polarity         = "FALL";
+GPIO1.associatedPins[0].interruptEn      = true;
+GPIO1.associatedPins[0].assignedPin      = "20";
+GPIO1.associatedPins[0].initialValue     = "SET";
+GPIO1.associatedPins[0].pin.$assign      = "PB20";
+
+GPIO2.$name                          = "GPIO_LEDS";
+GPIO2.associatedPins[0].$name        = "USER_LED_1";
+GPIO2.associatedPins[0].assignedPort = "PORTB";
+GPIO2.associatedPins[0].assignedPin  = "26";
+GPIO2.associatedPins[0].pin.$assign  = "PB26";
+
+I2C1.basicControllerStandardBusSpeed   = "Fast";
+I2C1.advAnalogGlitchFilter             = "DISABLED";
+I2C1.advControllerTXFIFOTRIG           = "BYTES_1";
+I2C1.$name                             = "I2C";
+I2C1.basicEnableTarget                 = true;
+I2C1.basicTargetAddress                = 0x48;
+I2C1.intTarget                         = ["RXFIFO_TRIGGER","START","STOP","TX_DONE"];
+I2C1.advTargetTXFIFOTRIG               = "BYTES_1";
+I2C1.advTargetTXEmptyEn                = true;
+I2C1.peripheral.$assign                = "I2C1";
+I2C1.peripheral.sdaPin.$assign         = "PB3";
+I2C1.peripheral.sclPin.$assign         = "PB2";
+
+MCAN1.$name                    = "MCAN0";
+MCAN1.wkupReqEnable            = true;
+MCAN1.autoWkupEnable           = true;
+MCAN1.emulationEnable          = true;
+MCAN1.tdcEnable                = true;
+MCAN1.additionalCoreConfig     = true;
+MCAN1.rrfe                     = true;
+MCAN1.rrfs                     = true;
+MCAN1.anfe                     = "1";
+MCAN1.anfs                     = "1";
+MCAN1.txEventFIFOWaterMark     = 0;
+MCAN1.interruptLine            = ["DL_MCAN_INTR_LINE_NUM_1"];
+MCAN1.interruptLine1Flag       = ["DL_MCAN_INTR_MASK_ALL"];
+MCAN1.m0interrupts             = ["DL_MCAN_MSP_INTERRUPT_LINE1"];
+MCAN1.overrideRetention        = true;
+MCAN1.desiredNomRate           = 250;
+MCAN1.stdFiltType              = "01";
+MCAN1.flesa                    = 0;
+MCAN1.lse                      = 0;
+MCAN1.desiredDataRate          = 2;
+MCAN1.rxFIFO0waterMark         = 0;
+MCAN1.lss                      = 0;
+MCAN1.txFIFOSize               = 10;
+MCAN1.enableInterrupt          = true;
+MCAN1.spPercent                = 80;
+MCAN1.rxFIFO0startAddr         = 8;
+MCAN1.rxFIFO0size              = 5;
+MCAN1.rxFIFO1startAddr         = 368;
+MCAN1.rxFIFO1size              = 5;
+MCAN1.rxBufStartAddr           = 600;
+MCAN1.rxFIFO1ElemSize          = "DL_MCAN_ELEM_SIZE_8BYTES";
+MCAN1.interruptFlags           = ["DL_MCAN_INTERRUPT_ARA","DL_MCAN_INTERRUPT_BEU","DL_MCAN_INTERRUPT_BO","DL_MCAN_INTERRUPT_DRX","DL_MCAN_INTERRUPT_ELO","DL_MCAN_INTERRUPT_EP","DL_MCAN_INTERRUPT_EW","DL_MCAN_INTERRUPT_MRAF","DL_MCAN_INTERRUPT_PEA","DL_MCAN_INTERRUPT_PED","DL_MCAN_INTERRUPT_RF0N","DL_MCAN_INTERRUPT_TC","DL_MCAN_INTERRUPT_TEFN","DL_MCAN_INTERRUPT_TOO","DL_MCAN_INTERRUPT_TSW","DL_MCAN_INTERRUPT_WDI"];
+MCAN1.peripheral.$assign       = "CANFD0";
+MCAN1.peripheral.rxPin.$assign = "PA13";
+MCAN1.peripheral.txPin.$assign = "PA12";
+
+SYSCTL.CANCLKSource          = "HFCLK";
+SYSCTL.useHFCLK_Manual       = true;
+SYSCTL.HFCLKSource           = "HFXT";
+SYSCTL.HFCLK_Freq            = 48000000;
+SYSCTL.HFCLKMonitor          = true;
+SYSCTL.HFXTStartup           = 10;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;

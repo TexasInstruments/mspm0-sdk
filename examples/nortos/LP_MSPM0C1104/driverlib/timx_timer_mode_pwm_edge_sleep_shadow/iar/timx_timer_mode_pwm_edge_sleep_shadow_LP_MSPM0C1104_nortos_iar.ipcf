@@ -41,6 +41,8 @@
 
     <linkerExtraOptions>
         <args>
+            <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
+            <arg>-L$PROJ_DIR$</arg>
             <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0c110x/driverlib.a</arg>
             <arg>--silent</arg>
         </args>
@@ -79,7 +81,7 @@
         <path copyTo="$PROJ_DIR$/timx_timer_mode_pwm_edge_sleep_shadow.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1104/driverlib/timx_timer_mode_pwm_edge_sleep_shadow/timx_timer_mode_pwm_edge_sleep_shadow.c</path>
         <path copyTo="$PROJ_DIR$/timx_timer_mode_pwm_edge_sleep_shadow.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1104/driverlib/timx_timer_mode_pwm_edge_sleep_shadow/timx_timer_mode_pwm_edge_sleep_shadow.syscfg</path>
         <group name="iar" build="true">
-            <path copyTo="$PROJ_DIR$/iar/startup_mspm0c1104_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1104/driverlib/timx_timer_mode_pwm_edge_sleep_shadow/iar/startup_mspm0c1104_iar.c</path>
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0c110x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0C1104/driverlib/timx_timer_mode_pwm_edge_sleep_shadow/iar/startup_mspm0c110x_iar.c</path>
         </group>
     </files>
 </iarProjectConnection>

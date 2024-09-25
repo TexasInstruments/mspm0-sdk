@@ -419,9 +419,19 @@
               <FilePath>../ti_msp_dl_config.c</FilePath>
             </File>
             <File>
-              <FileName>startup_mspm0g3507_uvision.s</FileName>
+              <FileName>startup_mspm0g350x_uvision.s</FileName>
               <FileType>2</FileType>
-              <FilePath>startup_mspm0g3507_uvision.s</FilePath>
+              <FilePath>startup_mspm0g350x_uvision.s</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Driverlib</GroupName>
+          <Files>
+            <File>
+              <FileName>driverlib.a</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0g1x0x_g3x0x/driverlib.a</FilePath>
             </File>
           </Files>
         </Group>

@@ -3879,7 +3879,7 @@ __STATIC_INLINE uint32_t DL_Timer_getEnabledInterruptStatus(
 /**
  *  @brief      Check interrupt flag of any timer interrupt
  *
- *  Checks if any of the UART interrupts are pending. Interrupts do not have to
+ *  Checks if any of the timer interrupts are pending. Interrupts do not have to
  *  be previously enabled.
  *
  *  @param[in]  gptimer        Pointer to the register overlay for the

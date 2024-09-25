@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const Board     = scripting.addModule("/ti/driverlib/Board");
 const i2cSMBUS  = scripting.addModule("/ti/driverlib/i2cSMBUS", {}, false);
 const i2cSMBUS1 = i2cSMBUS.addInstance();
@@ -15,16 +16,27 @@ const i2cSMBUS1 = i2cSMBUS.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genLibSMBUS     = true;
 
-i2cSMBUS1.basicEnableController     = true;
-i2cSMBUS1.$name                     = "SMB_I2C";
-i2cSMBUS1.enableTimeoutA            = true;
-i2cSMBUS1.timeoutACount             = 255;
-i2cSMBUS1.intGeneric                = ["TIMEOUT_A"];
-i2cSMBUS1.enableControllerPEC       = true;
-i2cSMBUS1.intController             = ["ARBITRATION_LOST","NACK","PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_TRIGGER"];
-i2cSMBUS1.peripheral.$assign        = "I2C0";
-i2cSMBUS1.peripheral.sdaPin.$assign = "PA10";
-i2cSMBUS1.peripheral.sclPin.$assign = "PA11";
+i2cSMBUS1.basicEnableController             = true;
+i2cSMBUS1.$name                             = "SMB_I2C";
+i2cSMBUS1.enableTimeoutA                    = true;
+i2cSMBUS1.timeoutACount                     = 255;
+i2cSMBUS1.intGeneric                        = ["TIMEOUT_A"];
+i2cSMBUS1.enableControllerPEC               = true;
+i2cSMBUS1.intController                     = ["ARBITRATION_LOST","NACK","PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_TRIGGER"];
+i2cSMBUS1.peripheral.$assign                = "I2C0";
+i2cSMBUS1.peripheral.sdaPin.$assign         = "PA0";
+i2cSMBUS1.peripheral.sclPin.$assign         = "PA1";
+i2cSMBUS1.sdaPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric0";
+i2cSMBUS1.sdaPinConfig.direction            = scripting.forceWrite("OUTPUT");
+i2cSMBUS1.sdaPinConfig.hideOutputInversion  = scripting.forceWrite(false);
+i2cSMBUS1.sdaPinConfig.onlyInternalResistor = scripting.forceWrite(false);
+i2cSMBUS1.sdaPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
+i2cSMBUS1.sclPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric1";
+i2cSMBUS1.sclPinConfig.direction            = scripting.forceWrite("OUTPUT");
+i2cSMBUS1.sclPinConfig.hideOutputInversion  = scripting.forceWrite(false);
+i2cSMBUS1.sclPinConfig.onlyInternalResistor = scripting.forceWrite(false);
+i2cSMBUS1.sclPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);

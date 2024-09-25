@@ -61,9 +61,10 @@
 
 /* clang-format on */
 
+volatile uint32_t fccVal;
+
 int main(void)
 {
-    static uint32_t fccVal;
     SYSCFG_DL_init();
 
     DL_SYSCTL_startFCC();
@@ -73,10 +74,11 @@ int main(void)
 
     fccVal = DL_SYSCTL_readFCC();
 
-    /* Determine if mesured FCC source periods are within expected range */
+    /* Determine if measured FCC source periods are within expected range */
     if ((fccVal <= EXPECTED_FCC_VAL_MAX) && (fccVal >= EXPECTED_FCC_VAL_MIN)) {
         /* Test passed */
-        DL_GPIO_clearPins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+        DL_GPIO_clearPins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
     }
 
     DL_SYSCTL_disableSleepOnExit();

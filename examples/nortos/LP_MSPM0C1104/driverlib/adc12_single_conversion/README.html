@@ -36,6 +36,7 @@
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
 <p>The following example configures ADC0 to trigger single conversion and turn on LED1 if ADC &gt; 0.5*VDD. Otherwise, LED1 remains off. Note that the ADC resolution is 10-bit by default.</p>
+<p><strong>Note</strong>: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -48,30 +49,35 @@
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>PA4</td>
+<td>PA22</td>
 <td>Standard Output</td>
 </tr>
 <tr class="even">
+<td>GPIOA</td>
+<td>PA2</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>ADC0</td>
 <td>PA25</td>
 <td>ADC12 Channel 2 Pin</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -92,27 +98,34 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>PA4</td>
+<td>PA22</td>
 <td>GPIOA</td>
-<td>PA4</td>
-<td>J2_14</td>
+<td>PA22</td>
+<td>J1_8</td>
 <td>N/A</td>
 </tr>
 <tr class="even">
+<td>PA2</td>
+<td>GPIOA</td>
+<td>PA2</td>
+<td>J2_13</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
 <td>PA25</td>
 <td>ADC0</td>
 <td>A2</td>
 <td>J1_2</td>
 <td>N/A</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>J2_11</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
@@ -121,6 +134,8 @@
 </tr>
 </tbody>
 </table>
+<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
+<p>This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>

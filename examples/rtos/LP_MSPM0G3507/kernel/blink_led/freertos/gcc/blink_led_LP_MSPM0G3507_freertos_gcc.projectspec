@@ -50,10 +50,12 @@
         linkerBuildOptions="
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x
             -nostartfiles
+            -l:driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
             -L${WORKSPACE_LOC}/freertos_builds_LP_MSPM0G3507_release_gcc/Debug
             -l:libfreertos_builds_LP_MSPM0G3507_release_gcc.a
-            -l:${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a
             -march=armv6-m
             -mthumb
             -static
@@ -88,7 +90,7 @@
         </file>
         <file path="../../freertos/gcc/mspm0g3507.lds" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../../freertos/gcc/startup_mspm0g3507_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="freertos/gcc">
+        <file path="../../freertos/gcc/startup_mspm0g350x_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="freertos/gcc">
         </file>
     </project>
 </projectSpec>

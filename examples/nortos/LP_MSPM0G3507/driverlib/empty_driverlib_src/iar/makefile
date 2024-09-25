@@ -11,7 +11,7 @@ SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferenced
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 
-OBJECTS = empty.obj ti_driverlib_dl_adc12.obj ti_driverlib_dl_aes.obj ti_driverlib_dl_common.obj ti_driverlib_dl_crc.obj ti_driverlib_dl_dac12.obj ti_driverlib_dl_dma.obj ti_driverlib_dl_flashctl.obj ti_driverlib_dl_i2c.obj ti_driverlib_dl_mathacl.obj ti_driverlib_dl_mcan.obj ti_driverlib_dl_opa.obj ti_driverlib_dl_rtc.obj ti_driverlib_dl_spi.obj ti_driverlib_dl_timer.obj ti_driverlib_dl_trng.obj ti_driverlib_dl_uart.obj ti_driverlib_dl_vref.obj ti_driverlib_m0p_dl_interrupt.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj iar_startup_mspm0g3507_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = empty.obj ti_driverlib_dl_adc12.obj ti_driverlib_dl_aes.obj ti_driverlib_dl_common.obj ti_driverlib_dl_crc.obj ti_driverlib_dl_dac12.obj ti_driverlib_dl_dma.obj ti_driverlib_dl_flashctl.obj ti_driverlib_dl_i2c.obj ti_driverlib_dl_mathacl.obj ti_driverlib_dl_mcan.obj ti_driverlib_dl_opa.obj ti_driverlib_dl_rtc.obj ti_driverlib_dl_spi.obj ti_driverlib_dl_timer.obj ti_driverlib_dl_trng.obj ti_driverlib_dl_uart.obj ti_driverlib_dl_vref.obj ti_driverlib_m0p_dl_interrupt.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj iar_startup_mspm0g350x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = empty_driverlib_src
 
 CFLAGS = -I.. \
@@ -29,7 +29,9 @@ CFLAGS = -I.. \
     --cpu=Cortex-M0+ \
     --vla
 
-LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
+    "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
     --config ../iar/mspm0g3507.icf \
     --map "$(NAME).map" \
     --silent \
@@ -141,7 +143,7 @@ ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj: ../ti/driverlib/m0p/sysc
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-iar_startup_mspm0g3507_iar.obj: ../iar/startup_mspm0g3507_iar.c $(SYSCFG_H_FILES)
+iar_startup_mspm0g350x_iar.obj: ../iar/startup_mspm0g350x_iar.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

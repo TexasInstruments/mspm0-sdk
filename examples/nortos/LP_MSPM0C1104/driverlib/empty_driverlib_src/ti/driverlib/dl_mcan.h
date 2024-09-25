@@ -1954,11 +1954,16 @@ void DL_MCAN_readTxEventFIFO(
 /**
  *  @brief   This API is used to add Standard Message ID Filter Element.
  *
+ *  @note MCAN RAM must be configured @ref DL_MCAN_msgRAMConfig before
+ *  calling this API.
+ *
  *  @param[in]  mcan       Pointer to the register overlay for the peripheral
  *  @param[in]  filtNum    Filter number.
  *  @param[in]  elem       Filter Object. @ref DL_MCAN_StdMsgIDFilterElement.
  *
  *  @return  None.
+ *
+ *  @sa DL_MCAN_msgRAMConfig
  */
 void DL_MCAN_addStdMsgIDFilter(MCAN_Regs *mcan, uint32_t filtNum,
     const DL_MCAN_StdMsgIDFilterElement *elem);
@@ -1966,11 +1971,16 @@ void DL_MCAN_addStdMsgIDFilter(MCAN_Regs *mcan, uint32_t filtNum,
 /**
  *  @brief   This API is used to add Extended Message ID Filter Element.
  *
+ *  @note MCAN RAM must be configured @ref DL_MCAN_msgRAMConfig before
+ *  calling this API.
+ *
  *  @param[in]  mcan     Pointer to the register overlay for the peripheral
  *  @param[in]  filtNum  Filter  number.
  *  @param[in]  elem     Filter Object. @ref DL_MCAN_ExtMsgIDFilterElement.
  *
  *  @return  None.
+ *
+ *  @sa DL_MCAN_msgRAMConfig
  */
 void DL_MCAN_addExtMsgIDFilter(MCAN_Regs *mcan, uint32_t filtNum,
     const DL_MCAN_ExtMsgIDFilterElement *elem);

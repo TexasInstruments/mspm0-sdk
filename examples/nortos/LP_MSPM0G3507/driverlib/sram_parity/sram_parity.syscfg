@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1  = GPIO.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
@@ -25,5 +26,6 @@ GPIO1.associatedPins[1].initialValue = "SET";
 GPIO1.associatedPins[1].pin.$assign  = "PA15";
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn  = true;
+ProjectConfig.genDisable = true;
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);

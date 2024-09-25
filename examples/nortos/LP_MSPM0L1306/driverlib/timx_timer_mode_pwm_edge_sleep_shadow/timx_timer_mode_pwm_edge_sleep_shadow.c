@@ -39,7 +39,6 @@ const uint32_t gDutyVal[3]   = {799, 499, 49};
 
 volatile uint32_t gIndex;
 volatile uint32_t gUpdateCnt;
-
 int main(void)
 {
     SYSCFG_DL_init();
@@ -50,6 +49,12 @@ int main(void)
     NVIC_EnableIRQ(PWM_0_INST_INT_IRQN);
 
     DL_TimerG_startCounter(PWM_0_INST);
+    /*
+     * USER_LED_1 is turned on and USER_TEST_PIN is set low to indicate
+     * PWM generation has started
+     */
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     while (1) {
         __WFI();

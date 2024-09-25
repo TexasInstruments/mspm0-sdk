@@ -25,12 +25,11 @@
  * 1 tab == 4 spaces!
  */
 
-
 /******************************************************************************
     See http://www.freertos.org/a00110.html for an explanation of the
     definitions contained in this file.
 ******************************************************************************/
-
+/* clang-format off */
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
@@ -47,10 +46,6 @@
 
 /* Constants related to the behaviour or the scheduler. */
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
-/* The Power policy in PowerCC23X0_freertos.c assumes this value is 1000.
- * If the tick rate is changed, the file must be updated and recompiled
- * accordingly.
- */
 #define configTICK_RATE_HZ              ( ( TickType_t ) 1000 )
 #define configUSE_PREEMPTION            1
 /*
@@ -79,7 +74,7 @@
 /* Smallest stack size allowed in words */
 #define configMINIMAL_STACK_SIZE        ( ( unsigned short ) 128 )
 #define configMAX_TASK_NAME_LEN         ( 12 )
-#define configTOTAL_HEAP_SIZE           ((size_t)(5 * 512))
+#define configTOTAL_HEAP_SIZE           ((size_t)(6 * 512))
 
 /*
  * If static allocation is used (as well as timers, configUSE_TIMERS = 1),
@@ -132,7 +127,12 @@
  * is provided in AppHooks_freertos,c
  */
 #define configCHECK_FOR_STACK_OVERFLOW  2
-#define configASSERT( x ) if( ( x ) == 0 ) { taskDISABLE_INTERRUPTS(); for( ;; ); }
+#define configASSERT(x)           \
+    if ((x) == 0) {               \
+        taskDISABLE_INTERRUPTS(); \
+        for (;;)                  \
+            ;                     \
+    }
 /*
  * The queue registry allows a textual name to be associated with a queue for
  * easy queue identification within a RTOS kernel aware debugger

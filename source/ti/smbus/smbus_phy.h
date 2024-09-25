@@ -124,11 +124,13 @@ extern void SMBus_PHY_targetInit(SMBus *smbus,
 
 //*****************************************************************************
 //
-//! \brief   I2C Interrupt Service routine
+//! \brief   I2C Interrupt Service routine for SMBus Target
 //
 //!  Handles the interrupts from I2C module and passes the information to
-//!  the network layer. Should be called by application when an I2C
-//!  interrupt is detected.
+//!  the network layer. Should be called by application when acting as 
+//!  a target and an I2C interrupt is detected.
+//!  Note that a target can also act as Host in some scenarios (like Host 
+//!  notify), so the ISR needs to handle such cases.
 //
 //! \param smbus    Pointer to SMBus structure
 //
@@ -234,11 +236,13 @@ extern void SMBus_PHY_controllerStartRx(SMBus *smbus,
 
 //*****************************************************************************
 //
-//! \brief   I2C Interrupt Service routine
+//! \brief   I2C Interrupt Service routine for SMBus Controller
 //
 //!  Handles the interrupts from I2C module and passes the information to
-//!  the network layer. Should be called by application when an I2C
-//!  interrupt is detected.
+//!  the network layer. Should be called by application when acting as 
+//!  a controller and an I2C interrupt is detected.
+//!  Note that a controller can also act as target in some scenarios (like Host 
+//!  notify), so the ISR needs to handle such cases.
 //
 //! \param smbus    Pointer to SMBus structure
 //
@@ -246,6 +250,30 @@ extern void SMBus_PHY_controllerStartRx(SMBus *smbus,
 //
 //*****************************************************************************
 extern SMBus_State SMBus_PHY_controllerProcessInt(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Enable the hardware functionality to respond to Host Default
+//!          address (0b000_1000)
+//
+//! \param smbus    Pointer to SMBus structure
+//
+//! \return  The new state of controller (see SMBus_controllerProcessInt())
+//
+//*****************************************************************************
+extern void SMBus_PHY_controllerEnableHostNotify(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Disable the hardware functionality to respond to Host Default
+//!          address (0b000_1000)
+//
+//! \param smbus    Pointer to SMBus structure
+//
+//! \return  The new state of controller (see SMBus_controllerProcessInt())
+//
+//*****************************************************************************
+extern void SMBus_PHY_controllerDisableHostNotify(SMBus *smbus);
 
 //*****************************************************************************
 //

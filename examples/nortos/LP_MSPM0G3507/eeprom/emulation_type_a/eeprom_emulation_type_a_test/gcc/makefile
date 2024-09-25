@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 
-OBJECTS = main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj ti_msp_dl_config.obj gcc_startup_mspm0g3507_gcc.obj
+OBJECTS = main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj ti_msp_dl_config.obj gcc_startup_mspm0g350x_gcc.obj
 NAME = eeprom_emulation_type_a_test
 
 CFLAGS = -I.. \
@@ -28,9 +28,11 @@ CFLAGS = -I.. \
 
 LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x" \
     -nostartfiles \
+    -l:driverlib.a \
     -Wl,-T,../gcc/mspm0g3507.lds \
     "-Wl,-Map,$(NAME).map" \
-    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -59,7 +61,7 @@ ti_msp_dl_config.obj: ../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
-gcc_startup_mspm0g3507_gcc.obj: ../gcc/startup_mspm0g3507_gcc.c
+gcc_startup_mspm0g350x_gcc.obj: ../gcc/startup_mspm0g350x_gcc.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

@@ -155,6 +155,7 @@ typedef struct {
     uint8_t readInUse : 1;          /*!< Flag to show ongoing read */
     uint8_t writeInUse : 1;         /*!< Flag to show ongoing write */
     uint32_t overrunCount;          /*!< Total counts of overruns */
+    uint8_t noOfDMAChannels;        /*!< Total DMA channels used */
     DMAMSPM0_Handle DMA_Handle;     /*!< DMA handle */
 
 } UART_Object;

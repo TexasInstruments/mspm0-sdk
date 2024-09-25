@@ -738,10 +738,12 @@
         <topic label="DL_FLASHCTL_COMMAND_TYPE_MODE_CHANGE" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga6bb6fecf9bd8e480c419b06411fb963f"/>
         <topic label="DL_FLASHCTL_COMMAND_TYPE_CLEAR_STATUS" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga0dc1855e5deb8366972d3b0ebc1842a1"/>
       </topic>
+      <topic label="DEVICE_HAS_NO_CMDWEPROTA" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb"/>
       <topic label="FLASHCTL_BANK0_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga3deb3bf1642e247a461ed82407086e3c"/>
       <topic label="FLASHCTL_MAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga7bb2935fff71f76119f77b221e8318a8"/>
       <topic label="FLASHCTL_NONMAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#gaa232fcaa2594403eca8a196d91fb418e"/>
       <topic label="NUMBER_OF_NONMAIN_SECTORS" href="group___f_l_a_s_h_c_t_l.html#gadf0bf0d8889b1ca8d7073a67cff7c391"/>
+      <topic label="FLASHCTL_DATA_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga392705d339fddbc783a53d53643022be"/>
       <topic label="DL_FLASHCTL_PROGRAM_8_WITHOUT_ECC" href="group___f_l_a_s_h_c_t_l.html#gac37215b452881babe46dd71bcd74f40e"/>
       <topic label="DL_FLASHCTL_PROGRAM_16_WITHOUT_ECC" href="group___f_l_a_s_h_c_t_l.html#gabd8c0b18b625a4c29f82b58a1bd9aa28"/>
       <topic label="DL_FLASHCTL_PROGRAM_32_WITHOUT_ECC" href="group___f_l_a_s_h_c_t_l.html#gac64cbad891c3ef3c3e2b36a1a88eb931"/>
@@ -825,6 +827,7 @@
       <topic label="DL_FlashCTL_getCommandStatus" href="group___f_l_a_s_h_c_t_l.html#gae4038e68679f48a425a6aa9bdf742aee"/>
       <topic label="DL_FlashCTL_getFailureStatus" href="group___f_l_a_s_h_c_t_l.html#gacd1725b916170899bb83bbde43f4bdad"/>
       <topic label="DL_FlashCTL_waitForCmdDone" href="group___f_l_a_s_h_c_t_l.html#ga18538b0b2eb9257188f6b488fbf0a164"/>
+      <topic label="DL_FlashCTL_executeClearStatus" href="group___f_l_a_s_h_c_t_l.html#gacbd4eaed6070854f2691339142ca9397"/>
       <topic label="DL_FlashCTL_getFlashSectorNumber" href="group___f_l_a_s_h_c_t_l.html#ga7aeadf2178f1a939be163efedbeec566"/>
       <topic label="DL_FlashCTL_getFlashSectorNumberInBank" href="group___f_l_a_s_h_c_t_l.html#gaec5c6d11afcd6bcac2db0e2789892b5d"/>
       <topic label="DL_FlashCTL_setWaitState" href="group___f_l_a_s_h_c_t_l.html#ga2df0ed388d831b60b05b484767af9da6"/>
@@ -868,6 +871,7 @@
       <topic label="DL_FlashCTL_programMemoryBlocking" href="group___f_l_a_s_h_c_t_l.html#ga5644da91bdbf6df26ea6550da3dbc226"/>
       <topic label="DL_FlashCTL_programMemoryFromRAM" href="group___f_l_a_s_h_c_t_l.html#gab8a38f51d18afd14036b7e83b431a8c9"/>
       <topic label="DL_FlashCTL_unprotectMainMemory" href="group___f_l_a_s_h_c_t_l.html#ga12f380dc9c7ead7114cabd8a35391c08"/>
+      <topic label="DL_FlashCTL_unprotectDataMemory" href="group___f_l_a_s_h_c_t_l.html#ga199e8316ff42b06115435a8fa7fe786b"/>
       <topic label="DL_FlashCTL_protectMainMemory" href="group___f_l_a_s_h_c_t_l.html#ga043bf21b804a375035999cf54693ac93"/>
       <topic label="DL_FlashCTL_unprotectNonMainMemory" href="group___f_l_a_s_h_c_t_l.html#gab4b4326886983e1a9eedb3a8f723a031"/>
       <topic label="DL_FlashCTL_protectNonMainMemory" href="group___f_l_a_s_h_c_t_l.html#ga487b9695b457dda8eb0d3375e9db8288"/>
@@ -905,6 +909,8 @@
       <topic label="DL_FlashCTL_programMemory128WithECCGenerated" href="group___f_l_a_s_h_c_t_l.html#gaaa5b1e53f5b28f1fcee50ed96e953dc1"/>
       <topic label="DL_FlashCTL_programMemory128WithECCManual" href="group___f_l_a_s_h_c_t_l.html#gac21a63a6a685cf066a3d20c74c48f9d5"/>
       <topic label="DL_FlashCTL_programMemoryBlocking128WithECCGenerated" href="group___f_l_a_s_h_c_t_l.html#gaec5d51f9e035e2846289fd948e267cfe"/>
+      <topic label="DL_FlashCTL_eraseDataBank" href="group___f_l_a_s_h_c_t_l.html#ga0d8baaa47934cdb852dcfcd0a1645d90"/>
+      <topic label="DL_FlashCTL_eraseDataBankFromRAM" href="group___f_l_a_s_h_c_t_l.html#gad6a81dc3536f56ce1a552f2102fca181"/>
     </topic>
     <topic label="General Purpose Amplifier (GPAMP)" href="group___g_p_a_m_p.html">
       <topic label="DL_GPAMP_Config" href="struct_d_l___g_p_a_m_p___config.html">
@@ -5417,10 +5423,12 @@
         <topic label="DL_FactoryRegion_getBOOTCRCData" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga30ed496165c67dac65333c7704a33d5a"/>
       </topic>
       <topic label="dl_flashctl.h" href="dl__flashctl_8h.html">
+        <topic label="DEVICE_HAS_NO_CMDWEPROTA" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb"/>
         <topic label="FLASHCTL_BANK0_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga3deb3bf1642e247a461ed82407086e3c"/>
         <topic label="FLASHCTL_MAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga7bb2935fff71f76119f77b221e8318a8"/>
         <topic label="FLASHCTL_NONMAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#gaa232fcaa2594403eca8a196d91fb418e"/>
         <topic label="NUMBER_OF_NONMAIN_SECTORS" href="group___f_l_a_s_h_c_t_l.html#gadf0bf0d8889b1ca8d7073a67cff7c391"/>
+        <topic label="FLASHCTL_DATA_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga392705d339fddbc783a53d53643022be"/>
         <topic label="DL_FLASHCTL_PROGRAM_8_WITHOUT_ECC" href="group___f_l_a_s_h_c_t_l.html#gac37215b452881babe46dd71bcd74f40e"/>
         <topic label="DL_FLASHCTL_PROGRAM_16_WITHOUT_ECC" href="group___f_l_a_s_h_c_t_l.html#gabd8c0b18b625a4c29f82b58a1bd9aa28"/>
         <topic label="DL_FLASHCTL_PROGRAM_32_WITHOUT_ECC" href="group___f_l_a_s_h_c_t_l.html#gac64cbad891c3ef3c3e2b36a1a88eb931"/>
@@ -5512,6 +5520,7 @@
         <topic label="DL_FlashCTL_getCommandStatus" href="group___f_l_a_s_h_c_t_l.html#gae4038e68679f48a425a6aa9bdf742aee"/>
         <topic label="DL_FlashCTL_getFailureStatus" href="group___f_l_a_s_h_c_t_l.html#gacd1725b916170899bb83bbde43f4bdad"/>
         <topic label="DL_FlashCTL_waitForCmdDone" href="group___f_l_a_s_h_c_t_l.html#ga18538b0b2eb9257188f6b488fbf0a164"/>
+        <topic label="DL_FlashCTL_executeClearStatus" href="group___f_l_a_s_h_c_t_l.html#gacbd4eaed6070854f2691339142ca9397"/>
         <topic label="DL_FlashCTL_getFlashSectorNumber" href="group___f_l_a_s_h_c_t_l.html#ga7aeadf2178f1a939be163efedbeec566"/>
         <topic label="DL_FlashCTL_getFlashSectorNumberInBank" href="group___f_l_a_s_h_c_t_l.html#gaec5c6d11afcd6bcac2db0e2789892b5d"/>
         <topic label="DL_FlashCTL_setWaitState" href="group___f_l_a_s_h_c_t_l.html#ga2df0ed388d831b60b05b484767af9da6"/>
@@ -5555,6 +5564,7 @@
         <topic label="DL_FlashCTL_programMemoryBlocking" href="group___f_l_a_s_h_c_t_l.html#ga5644da91bdbf6df26ea6550da3dbc226"/>
         <topic label="DL_FlashCTL_programMemoryFromRAM" href="group___f_l_a_s_h_c_t_l.html#gab8a38f51d18afd14036b7e83b431a8c9"/>
         <topic label="DL_FlashCTL_unprotectMainMemory" href="group___f_l_a_s_h_c_t_l.html#ga12f380dc9c7ead7114cabd8a35391c08"/>
+        <topic label="DL_FlashCTL_unprotectDataMemory" href="group___f_l_a_s_h_c_t_l.html#ga199e8316ff42b06115435a8fa7fe786b"/>
         <topic label="DL_FlashCTL_protectMainMemory" href="group___f_l_a_s_h_c_t_l.html#ga043bf21b804a375035999cf54693ac93"/>
         <topic label="DL_FlashCTL_unprotectNonMainMemory" href="group___f_l_a_s_h_c_t_l.html#gab4b4326886983e1a9eedb3a8f723a031"/>
         <topic label="DL_FlashCTL_protectNonMainMemory" href="group___f_l_a_s_h_c_t_l.html#ga487b9695b457dda8eb0d3375e9db8288"/>
@@ -5592,6 +5602,8 @@
         <topic label="DL_FlashCTL_programMemory128WithECCGenerated" href="group___f_l_a_s_h_c_t_l.html#gaaa5b1e53f5b28f1fcee50ed96e953dc1"/>
         <topic label="DL_FlashCTL_programMemory128WithECCManual" href="group___f_l_a_s_h_c_t_l.html#gac21a63a6a685cf066a3d20c74c48f9d5"/>
         <topic label="DL_FlashCTL_programMemoryBlocking128WithECCGenerated" href="group___f_l_a_s_h_c_t_l.html#gaec5d51f9e035e2846289fd948e267cfe"/>
+        <topic label="DL_FlashCTL_eraseDataBank" href="group___f_l_a_s_h_c_t_l.html#ga0d8baaa47934cdb852dcfcd0a1645d90"/>
+        <topic label="DL_FlashCTL_eraseDataBankFromRAM" href="group___f_l_a_s_h_c_t_l.html#gad6a81dc3536f56ce1a552f2102fca181"/>
       </topic>
       <topic label="dl_gpamp.h" href="dl__gpamp_8h.html">
         <topic label="DL_GPAMP_NSEL" href="group___g_p_a_m_p.html#ga49ea64d599a8148fcc6f3c6acad673df">

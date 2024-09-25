@@ -63,6 +63,13 @@ uint8_t gECCArray[] = {0x67, 0xF9, 0xF6, 0x68, 0xEB};
 
 volatile DL_FLASHCTL_COMMAND_STATUS gCmdStatus;
 
+/* Codes to understand where error occured */
+#define NO_ERROR 0
+#define ERROR_ERASE 1
+#define ERROR_64BIT_W 2
+
+volatile uint8_t gErrorType = NO_ERROR;
+
 int main(void)
 {
     SYSCFG_DL_init();
@@ -73,54 +80,66 @@ int main(void)
     gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
         FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
     if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+        /* If command did not pass, set error flag */
+        gErrorType = ERROR_ERASE;
+    }
+
+
+    if (gErrorType == NO_ERROR) {
+        /*
+        * Program single flash word (64-bit data) write to flash in main memory
+        * with ECC enabled. Data must be loaded 32-bits at a time, but a single
+        * word program is executed. The flash controller hardware will handle
+        * generating the 8-bit ECC code.
+        */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
+            FLASHCTL, (MAIN_BASE_ADDRESS), &gDataArray64[0]);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag */
+            gErrorType = ERROR_64BIT_W;
+        }
     }
 
     /*
-     * Program single flash word (64-bit data) write to flash in main memory
-     * with ECC enabled. Data must be loaded 32-bits at a time, but a single
-     * word program is executed. The flash controller hardware will handle
-     * generating the 8-bit ECC code.
-     */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS), &gDataArray64[0]);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
-    }
-
-    /*
-     * Set a breakpoint to check the contents of MAIN_BASE_ADDRESS:
+     * Signal to check the contents of MAIN_BASE_ADDRESS:
      * AB CD EF 00
      * 12 34 56 78
      */
-    __BKPT(0);
 
-    /* Erase sector in main memory */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Erase sector in main memory */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag */
+            gErrorType = ERROR_ERASE;
+        }
+    }
+
+
+    if (gErrorType == NO_ERROR) {
+        /*
+        * Write five, 64-bit flash words, but one flash word is programmed at a
+        * time. The flash controller hardware will handle generating the 8-bit
+        * ECC code for each flash word.
+        */
+        gCmdStatus =
+            DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(
+                FLASHCTL, (MAIN_BASE_ADDRESS), &gDataArray64MultipleWords1[0],
+                sizeof(gDataArray64MultipleWords1) / sizeof(uint32_t),
+                DL_FLASHCTL_REGION_SELECT_MAIN);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag */
+            gErrorType = ERROR_64BIT_W;
+        }
     }
 
     /*
-     * Write five, 64-bit flash words, but one flash word is programmed at a
-     * time. The flash controller hardware will handle generating the 8-bit
-     * ECC code for each flash word.
-     */
-    gCmdStatus = DL_FlashCTL_programMemoryBlockingFromRAM64WithECCGenerated(
-        FLASHCTL, (MAIN_BASE_ADDRESS), &gDataArray64MultipleWords1[0],
-        sizeof(gDataArray64MultipleWords1) / sizeof(uint32_t),
-        DL_FLASHCTL_REGION_SELECT_MAIN);
-
-    /*
-     * Set a breakpoint to check the contents of MAIN_BASE_ADDRESS:
+     * Signal to check the contents of MAIN_BASE_ADDRESS:
      * CA FE BA BE
      * DE AD BE EF
      * CA FE BA BE
@@ -132,34 +151,44 @@ int main(void)
      * CA FE BA BE
      * DE AD BE EF
      */
-    __BKPT(0);
 
-    /* Erase sector in main memory */
-    DL_FlashCTL_unprotectSector(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
-    gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
-        FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
-    if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
-        /* If command did not pass, set a SW breakpoint. */
-        __BKPT(0);
+    if (gErrorType == NO_ERROR) {
+        /* Erase sector in main memory */
+        DL_FlashCTL_unprotectSector(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_REGION_SELECT_MAIN);
+        gCmdStatus = DL_FlashCTL_eraseMemoryFromRAM(
+            FLASHCTL, MAIN_BASE_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_SECTOR);
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag */
+            gErrorType = ERROR_ERASE;
+        }
+    }
+
+
+    if (gErrorType == NO_ERROR) {
+        /*
+        * Write five, 64-bit flash words, but one flash word is programmed
+        * at a time. The corresponding ECC code for each flash word is
+        * manually provided after overriding ECC generated by the flash
+        * controller hardware
+        */
+        DL_FlashCTL_enableOverrideHardwareGeneratedECC(FLASHCTL);
+        gCmdStatus = DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual(
+            FLASHCTL, (MAIN_BASE_ADDRESS), &gDataArray64MultipleWords2[0],
+            &gECCArray[0],
+            sizeof(gDataArray64MultipleWords2) / sizeof(uint32_t),
+            DL_FLASHCTL_REGION_SELECT_MAIN);
+
+        if (gCmdStatus != DL_FLASHCTL_COMMAND_STATUS_PASSED) {
+            /* If command did not pass, set error flag */
+            gErrorType = ERROR_64BIT_W;
+        }
+
+        DL_FlashCTL_disableOverrideHardwareGeneratedECC(FLASHCTL);
     }
 
     /*
-     * Write five, 64-bit flash words, but one flash word is programmed
-     * at a time. The corresponding ECC code for each flash word is
-     * manually provided after overriding ECC generated by the flash
-     * controller hardware
-     */
-    DL_FlashCTL_enableOverrideHardwareGeneratedECC(FLASHCTL);
-    gCmdStatus = DL_FlashCTL_programMemoryBlockingFromRAM64WithECCManual(
-        FLASHCTL, (MAIN_BASE_ADDRESS), &gDataArray64MultipleWords2[0],
-        &gECCArray[0], sizeof(gDataArray64MultipleWords2) / sizeof(uint32_t),
-        DL_FLASHCTL_REGION_SELECT_MAIN);
-
-    DL_FlashCTL_disableOverrideHardwareGeneratedECC(FLASHCTL);
-
-    /*
-     * Set a breakpoint to check the contents of MAIN_BASE_ADDRESS:
+     * Signal to check the contents of MAIN_BASE_ADDRESS:
      * DE AD BE EF
      * CA FE BA BE
      * DE AD BE EF
@@ -171,11 +200,15 @@ int main(void)
      * DE AD BE EF
      * CA FE BA BE
      */
-    __BKPT(0);
 
+    /* Set Breakpoint if error status exists on completion */
+    if (gErrorType != NO_ERROR) {
+        __BKPT(0);
+    }
     /* After completion, toggle LED */
     while (1) {
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
+        DL_GPIO_togglePins(GPIO_LEDS_PORT,
+            GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
         delay_cycles(16000000);
     }
 }

@@ -8,6 +8,8 @@
 /**
  * Import the modules used in this configuration.
  */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 const CAPTURE  = scripting.addModule("/ti/driverlib/CAPTURE", {}, false);
@@ -16,12 +18,25 @@ const CAPTURE1 = CAPTURE.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPin         = "0";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].assignedPortSegment = "Lower";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].pin.$assign         = "PA15";
+GPIO1.associatedPins[1].initialValue        = "SET";
+
+
 CAPTURE1.$name                      = "CAPTURE_0";
 CAPTURE1.timerClkSrc                = "LFCLK";
 CAPTURE1.timerClkPrescale           = 256;
 CAPTURE1.interrupts                 = ["CC0_DN"];
 CAPTURE1.timerPeriod                = "15.63 s";
-CAPTURE1.peripheral.$assign         = "TIMG0";
-CAPTURE1.peripheral.ccp0Pin.$assign = "PA12";
+CAPTURE1.peripheral.$assign         = "TIMG6";
+CAPTURE1.peripheral.ccp0Pin.$assign = "PB2";
 
 SYSCTL.forceDefaultClkConfig = true;

@@ -14,11 +14,14 @@ remain off if the test fails.
 The example is also configured to output SYSOSC via CLK_OUT to allow monitoring
 the clock externally.
 
+**Note**: Example requires Rev E3 or later of the MSPM0C1104 LaunchPad.
+
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| GPIOA | PA4 | Standard Output |
+| GPIOA | PA22 | Standard Output |
+| GPIOA | PA2 | Standard Output |
 | SYSCTL | PA18 | CLK OUT |
 | EVENT |  |  |
 | DEBUGSS | PA20 | Debug Clock |
@@ -30,10 +33,16 @@ Visit [LP_MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA4 | GPIOA | PA4 | J2_14 | N/A |
+| PA22 | GPIOA | PA22 | J1_8 | N/A |
+| PA2 | GPIOA | PA2 | J2_13 | N/A |
 | PA18 | SYSCTL | CLK_OUT | J2_15 | N/A |
 | PA20 | DEBUGSS | SWCLK | J2_11 | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | J2_17 | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 11:12 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 11:12 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+
+### Device Migration Recommendations
+This project was developed for a superset device included in the LP_MSPM0C1104 LaunchPad. Please
+visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration)
+for information about migrating to other MSPM0 devices.
 
 ### Low-Power Recommendations
 TI recommends to terminate unused pins by setting the corresponding functions to
@@ -47,6 +56,7 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0C1104 web page](https://www.ti.com/to
 
 ## Example Usage
 Compile, load and run the example.
-The red LED should turn on after executing if the FCC counter is within the
-expected range, otherwise the LED will remain off if the test fails.
-Confirm FCC mesurement by measuring SYSOSC frequency via CLK_OUT.
+LED1 should turn on after executing if the FCC counter is within the
+expected range. USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the
+BoosterPack header and can be used to verify the LED behavior.
+Confirm FCC measurement by measuring SYSOSC frequency via CLK_OUT.

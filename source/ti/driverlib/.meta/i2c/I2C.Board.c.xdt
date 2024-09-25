@@ -197,8 +197,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 
 % } //if (inst.basicEnableController)
 % if (inst.basicEnableTarget){
+%   if (inst.basicTargetOwnAddressEnable) {
     /* Configure Target Mode */
     DL_I2C_setTargetOwnAddress(`instNameModule`, `inst.$name`_TARGET_OWN_ADDR);
+% }
+% else {
+    DL_I2C_disableTargetOwnAddress(`instNameModule`);
+%}
 %   if (inst.basicTargetSecAddressEnable) {
     DL_I2C_setTargetOwnAddressAlternate(`instNameModule`, `inst.$name`_TARGET_SEC_OWN_ADDR);
     DL_I2C_enableTargetOwnAddressAlternate(`instNameModule`);
@@ -251,18 +256,17 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 %        }
 %    }
 %    /* DMA generation */
-%if ((inst.DMAEvent1 != "None") || (inst.DMAEvent2 != "None") ){
-    /* Configure DMA */
 %    if (inst.DMAEvent1 != "None" && inst.enableDMAEvent1) {
+    /* Configure DMA Event 1 */
     DL_I2C_enableDMAEvent(`instNameModule`, DL_I2C_EVENT_ROUTE_1,
                           DL_I2C_DMA_INTERRUPT_`inst.DMAEvent1`);
 %   }
 %    if (inst.DMAEvent2 != "None" && inst.enableDMAEvent2) {
+    /* Configure DMA Event 2 */
     DL_I2C_enableDMAEvent(`instNameModule`, DL_I2C_EVENT_ROUTE_2,
                           DL_I2C_DMA_INTERRUPT_`inst.DMAEvent2`);
 %   }
 
-%}
 %if (inst.advEnableAfterInit){
 %if ((inst.basicEnableController) || (inst.basicEnableTarget)){
     /* Enable module */

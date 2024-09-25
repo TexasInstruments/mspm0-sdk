@@ -113,7 +113,7 @@
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/dpl/HwiPMSPM0_freertos.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="dpl" >
         </file>
-        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/devices/msp/m0p/startup_system_files/gcc/startup_mspm0g3507_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="freertos/startup" >
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/devices/msp/m0p/startup_system_files/gcc/startup_mspm0g350x_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="freertos/startup" >
         </file>
         <file path="../FreeRTOSConfig.h" openOnCreation="false" excludeFromBuild="false" action="copy" >
         </file>

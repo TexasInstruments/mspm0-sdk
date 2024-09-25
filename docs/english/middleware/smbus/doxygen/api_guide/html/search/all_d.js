@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['writeablebits',['writeableBits',['../union_s_m_bus___ctrl.html#ae036e4a5cdec235ab53d952569111fb8',1,'SMBus_Ctrl']]],
-  ['writebits',['writeBits',['../union_s_m_bus___ctrl.html#afd7c5c4bc9fa7cd3bda23ef4caeb0776',1,'SMBus_Ctrl']]]
+  ['u8byte',['u8byte',['../union_s_m_bus___ctrl.html#a0b3013755d982052a678ad0484ae6482',1,'SMBus_Ctrl::u8byte()'],['../union_s_m_bus___status.html#ac893de6cea080568ed6f0cfa9c578e79',1,'SMBus_Status::u8byte()']]]
 ];

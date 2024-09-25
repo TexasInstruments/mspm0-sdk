@@ -70,6 +70,13 @@ extern "C" {
 #define DEVICE_HAS_FLASH_128_BIT_WORD
 #endif
 
+#if (FLASHCTL_SYS_WEPROTAWIDTH == 0)
+/*!
+ *  @brief Device does not have CMDWEPROTA
+ */
+#define DEVICE_HAS_NO_CMDWEPROTA
+#endif
+
 /* clang-format off */
 
 /*!
@@ -91,6 +98,11 @@ extern "C" {
  * @brief Number of NONMAIN sectors
  */
 #define NUMBER_OF_NONMAIN_SECTORS                                            (1)
+
+/*!
+ * @brief Address for DATA memory region
+ */
+#define FLASHCTL_DATA_ADDRESS                                       (0x41d00000)
 
 /*!
  * @brief Enable programming 8 bits without ECC enabled
@@ -899,6 +911,19 @@ __STATIC_INLINE bool DL_FlashCTL_waitForCmdDone(FLASHCTL_Regs *flashctl)
 
     return ((flashctl->GEN.STATCMD & FLASHCTL_STATCMD_CMDPASS_MASK) ==
             FLASHCTL_STATCMD_CMDPASS_STATPASS);
+}
+
+/**
+ *  @brief      Sets clear status bit and executes command
+ *
+ *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_FlashCTL_executeClearStatus(FLASHCTL_Regs *flashctl)
+{
+    /* Set COMMAND bit within CMDTYPE register to clear status*/
+    flashctl->GEN.CMDTYPE = DL_FLASHCTL_COMMAND_TYPE_CLEAR_STATUS;
+    /* Set bit to execute command */
+    flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
 }
 
 /**
@@ -2216,6 +2241,13 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM(
 void DL_FlashCTL_unprotectMainMemory(FLASHCTL_Regs *flashctl);
 
 /**
+ *  @brief      Unprotects all data memory from erase/program
+ *
+ *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
+ */
+void DL_FlashCTL_unprotectDataMemory(FLASHCTL_Regs *flashctl);
+
+/**
  *  @brief      Protects all main memory from erase/program
  *
  *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
@@ -3057,6 +3089,48 @@ void DL_FlashCTL_programMemory128WithECCManual(FLASHCTL_Regs *flashctl,
 bool DL_FlashCTL_programMemoryBlocking128WithECCGenerated(
     FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
     uint32_t dataSize, DL_FLASHCTL_REGION_SELECT regionSelect);
+
+/**
+ *  @brief      Performs an erase on DATA bank
+ *
+ *  Performs an erase on DATA bank only. This API should be used
+ *  on devices with a DATA bank. To determine if device has DATA
+ *  bank use @ref DL_FactoryRegion_getDATAFlashSize API.
+ *
+ *  NOTE: This API erases all of DATA bank
+ *
+ *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
+ *
+ *  @return     Whether or not the erase succeeded
+ *
+ *  @retval     false If erase didn't succeed
+ *  @retval     true  If erase was successful
+ *
+ */
+bool DL_FlashCTL_eraseDataBank(FLASHCTL_Regs *flashctl);
+
+/**
+ *  @brief      Performs an erase on DATA bank, and executes command
+ *              from RAM
+ *
+ *  Performs an erase on DATA bank only. This API should be used
+ *  on devices with a DATA bank. To determine if device has DATA
+ *  bank use @ref DL_FactoryRegion_getDATAFlashSize API.
+ *
+ *  The command is executed from RAM, and blocks until the command is finished.
+ *
+ *  NOTE: This API erases all of DATA bank
+ *
+ *  @param[in]  flashctl  Pointer to the register overlay for the peripheral
+ *
+ *  @return     Whether or not the erase succeeded
+ *
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_FAILED If erase didn't succeed
+ *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED If erase was successful
+ *
+ */
+DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_eraseDataBankFromRAM(
+    FLASHCTL_Regs *flashctl);
 
 #ifdef __cplusplus
 }

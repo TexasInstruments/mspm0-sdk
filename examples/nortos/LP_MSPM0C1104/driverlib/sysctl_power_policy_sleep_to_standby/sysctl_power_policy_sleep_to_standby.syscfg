@@ -36,10 +36,13 @@ pinFunction1.enable = true;
 
 
 GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
 GPIO1.associatedPins[0].$name        = "USER_LED_1";
-GPIO1.associatedPins[0].invert       = "ENABLE";
-GPIO1.associatedPins[0].assignedPin  = "4";
 GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].assignedPin  = "22";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[1].assignedPin  = "2";
+GPIO1.associatedPins[1].initialValue = "SET";
 
 SYSCTL.clockTreeEn = true;
 SYSCTL.powerPolicy = "STANDBY0";

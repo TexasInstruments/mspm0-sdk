@@ -76,6 +76,11 @@ int main(void)
     GUI_InitRxCmd(&gGUI_RXCommands[0],
         (sizeof(gGUI_RXCommands) / sizeof(gGUI_RXCommands[0])));
 
+    /* LED toggle by default and toggle GUI switch on */
+    bEnableBlinkLED = 1;
+    gDemoMode       = BLINK_LED_MODE;
+    GUIComm_sendBool("blinkEnable", STR_LEN_ELEVEN, true);
+
     while (1) {
         /* The particular demo mode can be changed by GUI */
         switch (gDemoMode) {

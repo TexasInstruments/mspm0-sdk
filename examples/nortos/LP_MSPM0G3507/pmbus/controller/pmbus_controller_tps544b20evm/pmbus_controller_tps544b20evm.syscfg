@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const GPIO      = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1     = GPIO.addInstance();
 const SYSCTL    = scripting.addModule("/ti/driverlib/SYSCTL");
@@ -17,6 +18,8 @@ const i2cSMBUS1 = i2cSMBUS.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genLibPMBUS     = true;
+
 GPIO1.$name                         = "GPIO_LED";
 GPIO1.associatedPins[0].$name       = "D0";
 GPIO1.associatedPins[0].invert      = "ENABLE";

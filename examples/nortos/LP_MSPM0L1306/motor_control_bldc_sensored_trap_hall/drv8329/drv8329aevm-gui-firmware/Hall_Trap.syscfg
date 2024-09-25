@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const ADC12    = scripting.addModule("/ti/driverlib/ADC12", {}, false);
 const ADC121   = ADC12.addInstance();
 const CAPTURE  = scripting.addModule("/ti/driverlib/CAPTURE", {}, false);
@@ -25,6 +26,8 @@ const VREF     = scripting.addModule("/ti/driverlib/VREF");
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable = true;
+
 ADC121.samplingOperationMode      = "sequence";
 ADC121.repeatMode                 = true;
 ADC121.trigSrc                    = "DL_ADC12_TRIG_SRC_EVENT";

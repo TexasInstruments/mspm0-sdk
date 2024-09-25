@@ -137,7 +137,78 @@ For more information about using SysConfig with MSPM0, visit the `Using SysConfi
 2.5 Migrating Between MSPM0 Derivatives
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SysConfig allows for an easier migration between MSPM0 derivatives; however some manual modifications are required. The steps below apply to TI Arm Clang but similar steps apply to Arm GCC.
+In order to migrate a project configuration to a new MSPM0 derivative (such as a new board, device, or package), the MSPM0 SDK supports several project migration processes. Project migration in this scope means updating relevant project configuration files and settings that are specific to the derivative, including linker files, startup files, and included libraries. The available options for migration depend on the project configuration, and the user should consult the desired project's README for more information on which approach is supported. An overview of the available migration options and when they can be used are given below: - `SysConfig Project Migration <#251-sysconfig-project-migration>`__: This is the default approach for SysConfig compatible projects, in which all the configuration files can be handled by SysConfig. - `Non-SysConfig Compatible Project Migration <#252-non-sysconfig-compatible-project-migration>`__: This is the default approach for non-SysConfig compatible
+projects, where all the configuration files can be handled by the built-in device support package - `Manual Migration <#253-manual-migration>`__: For all other cases that require custom projectspecs or other incompatible configurations, the user can follow these steps for manual migration.
+
+2.5.1 SysConfig Project Migration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to facilitate project migration, SysConfig will generate Project Configuration files by default, which can be controlled through the Project Configuration module. The steps below apply to TI Arm Clang and Arm GCC.
+
+.. figure:: ./images/ccs_ide_guide/ccs_migrate8.png
+   :alt: 
+
+For more details on generated Project Configuration files, visit the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ Guide.
+
+1. In SysConfig, enable the Device View and click on **SWITCH**
+
+.. figure:: ./images/ccs_ide_guide/ccs_migrate1.png
+   :alt: 
+
+2. Select the New Values for the **Device**, **Package**, and **CCS Launch Device** to migrate the project configuration to, and then click **CONFIRM**.
+
+.. figure:: ./images/ccs_ide_guide/ccs_migrate2.png
+   :alt: 
+
+3. After Confirming the new device values, SysConfig will highlight an error on the Project Configuration module. The user must choose the new device in the **Select Device** options. Make sure the device selection matches what was chosen for **CCS Launch Device** in the previous step.
+
+.. figure:: ./images/ccs_ide_guide/ccs_migrate6.png
+   :alt: 
+
+4. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed, and save all the changes to the SysConfig configuration script.
+
+CCS will automatically migrate the device variant and will add a corresponding .ccxml file. SysConfig will update the relevant project configuration files, including linker and startup files.
+
+Migration is now complete and the user can build their project for the new target device.
+
+.. figure:: ./images/ccs_ide_guide/ccs_migrate3.png
+   :alt: 
+
+Note: If the user wants to manually modify any Project Configuration files, they should disable the option to generate that file from the Project Configuration module and then manually add their desired file to the project. Otherwise, changes that are made to any generated file will be overwritten by SysConfig when the project is built. Keep in mind that the steps above are intended to be followed when all the project configuration files are handled by SysConfig.
+
+.. figure:: ./images/ccs_ide_guide/ccs_migrate7.png
+   :alt: 
+
+2.5.2 Non-SysConfig Compatible Project Migration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For non-SysConfig compatible projects, migration is handled seamlessly by the built-in device support package.
+
+1. In CCS, open the example project Properties and choose a different MSPM0 device.
+
+.. figure:: ./images/ccs_ide_guide/ccs_migrate_non_sysconfig_properties.png
+   :alt: 
+
+2. Hitting **Apply and Close** will automatically make the following updates to the project, corresponding to the newly selected device:
+
+   -  Include a new CMSIS startup file
+   -  Include a new linker command file
+   -  Switch the device *Predefine Symbol* in the project compiler settings
+   -  Switch the linked DriverLib library in the project linker settings
+
+   **Important Note**: The CMSIS startup file and linker command file from the previous device are NOT removed. Instead they are simply excluded from the project build.
+
+.. figure:: ./images/ccs_ide_guide/ccs_migrate_non_sysconfig_updated_files.png
+   :alt: 
+
+Migration is now complete and the user can build their project for the new target device.
+
+2.5.3 Manual Migration
+~~~~~~~~~~~~~~~~~~~~~~
+
+SysConfig allows for an easier migration between MSPM0 derivatives; however for some projects manual modifications are required. The steps below apply to TI Arm Clang but similar steps apply to Arm GCC.
+
+Note: Steps 1-3 don't apply when not using SysConfig, and step 4 needs to be done manually.
 
 1. In SysConfig, enable the Device View and click on **SWITCH**
 
@@ -156,7 +227,7 @@ SysConfig allows for an easier migration between MSPM0 derivatives; however some
 .. figure:: ./images/ccs_ide_guide/ccs_migrate3.png
    :alt: 
 
-1. In the project properties, select **Build** → **Arm Compiler** → **Predefined Symbols**. Select the device definition and update it.
+5. In the project properties, select **Build** → **Arm Compiler** → **Predefined Symbols**. Select the device definition and update it.
 
 .. figure:: ./images/ccs_ide_guide/ccs_migrate4.png
    :alt: 
@@ -169,8 +240,6 @@ Note that previous files should be excluded or removed from the project.
    :alt: 
 
 7. Resolve any other dependencies such as incompatible libraries and source code.
-
-Note: Steps 1-3 don't apply when not using SysConfig, and step 4 needs to be done manually.
 
 2.6 Stack and Heap Management and Linker Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

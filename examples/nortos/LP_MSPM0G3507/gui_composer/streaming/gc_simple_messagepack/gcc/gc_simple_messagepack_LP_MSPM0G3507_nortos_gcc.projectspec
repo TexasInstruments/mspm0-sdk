@@ -44,7 +44,9 @@
             -l:gui_composer.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x
             -nostartfiles
-            -l:${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -l:driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
             -march=armv6-m
             -mthumb
             -static
@@ -86,7 +88,7 @@
         </file>
         <file path="../gcc/mspm0g3507.lds" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../gcc/startup_mspm0g3507_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="gcc">
+        <file path="../gcc/startup_mspm0g350x_gcc.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

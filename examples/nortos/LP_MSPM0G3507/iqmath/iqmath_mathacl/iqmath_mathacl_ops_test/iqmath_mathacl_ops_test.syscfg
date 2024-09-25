@@ -8,5 +8,15 @@
 /**
  * Import the modules used in this configuration.
  */
-const MATHACL = scripting.addModule("/ti/driverlib/MATHACL");
-const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const MATHACL   = scripting.addModule("/ti/driverlib/MATHACL");
+const Migration = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+
+Migration.genLibIQ        = true;
+Migration.genLibIQVersion = "MATHACL";

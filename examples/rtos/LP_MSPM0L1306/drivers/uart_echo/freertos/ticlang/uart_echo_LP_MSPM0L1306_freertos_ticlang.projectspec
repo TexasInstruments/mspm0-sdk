@@ -42,6 +42,8 @@
             -i${WORKSPACE_LOC}/freertos_builds_LP_MSPM0L1306_release_ticlang/Debug
             -lfreertos_builds_LP_MSPM0L1306_release_ticlang.lib
             -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0l11xx_l13xx/driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
             -Wl,--rom_model
             -Wl,--warn_sections
             -L${CG_TOOL_ROOT}/lib

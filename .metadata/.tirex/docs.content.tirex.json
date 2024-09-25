@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_1_20_00_05.html",
+    "location": "../../release_notes_mspm0_sdk_1_20_01_06.html",
     "mainCategories": [
         [
             "Documents"
@@ -871,6 +871,31 @@
     ]
 },
 {
+    "name": "Energy Metrology Guide",
+    "tags": [
+        "Energy Metrology Guide",
+        "Energy Metrology Library",
+        "Energy Library",
+        "Emeter",
+        "Documentation",
+        "Middleware"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/energy_metrology/Energy_Metrology_SW_Overview.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "Energy Metrology Library"
+    ]
+},
+{
     "name": "Quick Start Guide Overview",
     "tags": [
         "Quick Start Guide Overview",
@@ -1066,7 +1091,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_1_20_00_05.html",
+    "location": "../../release_notes_mspm0_sdk_1_20_01_06.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -1949,6 +1974,32 @@
     "subCategories": [
         "Middleware 中间件",
         "DALI"
+    ]
+},
+{
+    "name": "Energy Metrology 指南",
+    "tags": [
+        "Energy Metrology 指南",
+        "Energy Metrology Guide",
+        "Energy Metrology Library",
+        "Energy Library",
+        "Emeter",
+        "Documentation",
+        "Middleware"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/chinese/middleware/energy_metrology/Energy_Metrology_SW_Overview_CN.html",
+    "mainCategories": [
+        [
+            "Documents - Chinese"
+        ]
+    ],
+    "subCategories": [
+        "Middleware 中间件",
+        "Energy Metrology 库"
     ]
 },
 {

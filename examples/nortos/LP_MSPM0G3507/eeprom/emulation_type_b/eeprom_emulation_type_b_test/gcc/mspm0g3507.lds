@@ -15,7 +15,11 @@ MEMORY
 /* Note: SRAM length must match MPPC/MEMSS config! Please edit it manually. */
 
 REGION_ALIAS("REGION_TEXT", FLASH);
+REGION_ALIAS("REGION_PREINIT_ARRAY", FLASH);
+REGION_ALIAS("REGION_INIT_ARRAY", FLASH);
+REGION_ALIAS("REGION_FINI_ARRAY", FLASH);
 REGION_ALIAS("REGION_BSS", SRAM);
+REGION_ALIAS("REGION_NOINIT", SRAM);
 REGION_ALIAS("REGION_DATA", SRAM);
 REGION_ALIAS("REGION_STACK", SRAM);
 REGION_ALIAS("REGION_HEAP", SRAM);
@@ -51,10 +55,6 @@ SECTIONS
         . = ALIGN(0x8);
         KEEP (*(.dtors))
         . = ALIGN(0x8);
-        __init_array_start = .;
-        KEEP (*(.init_array*))
-        . = ALIGN(0x8);
-        __init_array_end = .;
         KEEP (*(.init))
         . = ALIGN(0x8);
         KEEP (*(.fini*))
@@ -76,10 +76,33 @@ SECTIONS
         . = ALIGN(0x8);
     } > REGION_TEXT AT> REGION_TEXT
 
+    .preinit_array : {
+        PROVIDE_HIDDEN (__preinit_array_start = .);
+        KEEP (*(.preinit_array*));
+        PROVIDE_HIDDEN (__preinit_array_end = .);
+    } > REGION_PREINIT_ARRAY AT> REGION_TEXT
+
+    .init_array : {
+        . = ALIGN(0x8);
+        PROVIDE_HIDDEN (__init_array_start = .);
+        KEEP (*(SORT(.init_array.*)))
+        KEEP (*(.init_array*))
+        PROVIDE_HIDDEN (__init_array_end = .);
+    } > REGION_INIT_ARRAY AT> REGION_TEXT
+
+    .fini_array : {
+        . = ALIGN(0x8);
+        PROVIDE_HIDDEN (__fini_array_start = .);
+        KEEP (*(SORT(.fini_array.*)))
+        KEEP (*(.fini_array*))
+        PROVIDE_HIDDEN (__fini_array_end = .);
+    } > REGION_FINI_ARRAY AT> REGION_TEXT
 
     .ARM.exidx : {
+    	. = ALIGN(0x8);
         __exidx_start = .;
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+        . = ALIGN(0x8);
         __exidx_end = .;
     } > REGION_ARM_EXIDX AT> REGION_ARM_EXIDX
 
@@ -105,9 +128,15 @@ SECTIONS
         KEEP (*(.bss))
         *(.bss.*)
         *(COMMON)
-        . = ALIGN (4);
+        . = ALIGN (8);
         __bss_end__ = .;
     } > REGION_BSS AT> REGION_BSS
+
+    .noinit : {
+        /* place all symbols in input sections that start with .noinit */
+        KEEP(*(*.noinit*))
+        . = ALIGN (8);
+    } > REGION_NOINIT AT> REGION_NOINIT
 
     .heap : {
         __heap_start__ = .;

@@ -41,6 +41,8 @@
 
     <linkerExtraOptions>
         <args>
+            <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
+            <arg>-L$PROJ_DIR$</arg>
             <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0g1x0x_g3x0x/driverlib.a</arg>
             <arg>--silent</arg>
         </args>
@@ -79,7 +81,7 @@
         <path copyTo="$PROJ_DIR$/tima_timer_mode_periodic_repeat_count.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/tima_timer_mode_periodic_repeat_count/tima_timer_mode_periodic_repeat_count.c</path>
         <path copyTo="$PROJ_DIR$/tima_timer_mode_periodic_repeat_count.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/tima_timer_mode_periodic_repeat_count/tima_timer_mode_periodic_repeat_count.syscfg</path>
         <group name="iar" build="true">
-            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g3507_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/tima_timer_mode_periodic_repeat_count/iar/startup_mspm0g3507_iar.c</path>
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g350x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3507/driverlib/tima_timer_mode_periodic_repeat_count/iar/startup_mspm0g350x_iar.c</path>
         </group>
     </files>
 </iarProjectConnection>

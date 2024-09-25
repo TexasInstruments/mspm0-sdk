@@ -35,6 +35,7 @@
 #include <ti/driverlib/dl_aes.h>
 #include "ti_msp_dl_config.h"
 
+
 uint8_t g_plaintext[16] = {0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96,
     0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a};
 
@@ -106,6 +107,9 @@ int main(void)
     for (i = 0; i < 16; i++) {
         gCorrectResults &= (buffer[i] == g_plaintext[i]);
     }
+
+    DL_GPIO_clearPins(
+        GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
     /*
      * Stop the debugger to examine the output. At this point,

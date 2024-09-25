@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 
-OBJECTS = main.obj Gauge_App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj Gauge_Algorithm_VoltGauge.obj Gauge_UserConfig_Gauge_UserConfig.obj gcc_startup_mspm0l1306_gcc.obj
+OBJECTS = main.obj Gauge_App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj Gauge_Algorithm_VoltGauge.obj Gauge_UserConfig_Gauge_UserConfig.obj gcc_startup_mspm0l130x_gcc.obj
 NAME = gauge_level1
 
 CFLAGS = -I.. \
@@ -30,9 +30,11 @@ LFLAGS = "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/gcc/m0p/rts" \
     -l:iqmath.a \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx" \
     -nostartfiles \
+    -l:driverlib.a \
     -Wl,-T,../gcc/mspm0l1306.lds \
     "-Wl,-Map,$(NAME).map" \
-    "-l:$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L${PROJECT_ROOT} \
     -march=armv6-m \
     -mthumb \
     -static \
@@ -69,7 +71,7 @@ Gauge_UserConfig_Gauge_UserConfig.obj: ../Gauge_UserConfig/Gauge_UserConfig.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
-gcc_startup_mspm0l1306_gcc.obj: ../gcc/startup_mspm0l1306_gcc.c
+gcc_startup_mspm0l130x_gcc.obj: ../gcc/startup_mspm0l130x_gcc.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

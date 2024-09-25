@@ -116,6 +116,7 @@ typedef void (*DMAMSPM0_IsrFxn)(uintptr_t arg);
  *  {
  *      .dmaIsrFxn = NULL,
  *      .intPriority = DEFAULT_DMA_PRIORITY,
+ *      .roundRobinPriority = false,
  *  };
  *  @endcode
  *
@@ -124,21 +125,13 @@ typedef struct
 {
     DMAMSPM0_IsrFxn dmaIsrFxn; /*!< interrupt handler*/
     uint8_t intPriority;       /*!< interrupt priority */
-
+    bool roundRobinPriority;   /*!< Round robin priority for DMA channels*/
 } DMAMSPM0_HWAttrs;
 
-/*!
- *  @brief  DMAMSPM0 object
- *
- *  The application must not access any member variables of this structure!
- */
-typedef struct
-{
-    bool unused;  /*!< unused */
-} DMAMSPM0_Object;
+
 
 /*!
- *  @brief  DMAMSPM0 Transfer configuration.
+ *  @brief  DMAMSPM0 channel based Transfer configuration.
  *
  *  The DMAMSPM0_Transfer structure contains parameters for initializing a
  *  DMA transfer using a given DMA channel number.
@@ -161,12 +154,21 @@ typedef struct
     uint8_t dmaChannel;                 /*!< DMA channel */
     void *dmaTransferSource;            /*!< Source of DMA transfer */
     void *dmaTransferDestination;       /*!< Destination of DMA transfer */
-    uint32_t noOfData;                  /*!< no of data bytes to be transferred*/
-    bool roundRobinPriority;            /*!< Round robin priority for DMA channels*/
-    bool enableDMAISR;                  /*!< true: Enable DMA ISR, false:use Peripheral ISR*/
-
+    uint32_t noOfData;                  /*!< no of data bytes to be transferred (DMASZ) */
+    DMAMSPM0_IsrFxn dmaChIsrFxn;        /*!< Channel based interrupt handler*/
+    bool enableDMAISR;                  /*!< true: Enable DMA ISR for the channel, false:use Peripheral ISR*/
 } DMAMSPM0_Transfer;
 
+/*!
+ *  @brief  DMAMSPM0 object
+ *
+ *  The application must not access any member variables of this structure!
+ */
+typedef struct
+{
+    /*! dmaTransfer should me configured for each DMA channels using configuration */
+    DMAMSPM0_Transfer dmaTransfer;
+} DMAMSPM0_Object;
 /*!
  *  @brief      DMAMSPM0 Global configuration.
  *
@@ -178,19 +180,24 @@ typedef struct
  */
 typedef struct
 {
-    DMAMSPM0_Transfer *object;        /*!< Pointer to DMAMSPM0 object */
-    DMAMSPM0_HWAttrs *hwAttrs;        /*!< Pointer to hardware attributes */
+    void const *hwAttrs;        /*!< Pointer to hardware attributes */
+    void *object;        /*!< Pointer to DMAMSPM0 object */
 } DMAMSPM0_Cfg;
 
 /*!
  *  @brief      Instance of a DMA Config structure.
  */
-extern DMAMSPM0_Cfg DMAMSPM0_Config;
+extern const DMAMSPM0_Cfg DMAMSPM0_Config[];
+
+/*!
+ *  @brief      Number of DMA channels.
+ */
+extern const uint_least8_t DMA_Count;
 
 /*!
  *  @brief      A handle that is returned from a DMAMSPM0_open() call.
  */
-typedef DMAMSPM0_Cfg *DMAMSPM0_Handle;
+typedef DMAMSPM0_Cfg* DMAMSPM0_Handle;
 
 /*!
  *  @brief  Function to close the DMA channel.
@@ -227,14 +234,14 @@ extern bool DMAMSPM0_init(void);
  *  This function can be called multiple times. This function is being called in DMA_Init().
  *  @pre    DMAMSPM0_init() has to be called first.
  *          Calling context: Task
- *
+ *  @param  index:  A DMA config index.
  *  @param  channelNum:  A DMA channel.
  *
  *  @return DMAMSPM0_Handle on success or NULL if an error has occurred.
  *
  *  @sa     DMAMSPM0_close()
  */
-extern DMAMSPM0_Handle DMAMSPM0_open(uint8_t channelNum);
+extern DMAMSPM0_Handle DMAMSPM0_open(uint_least8_t index, uint8_t channelNum);
 
 /*!
  *  @brief  Function to set up a DMA channel for data transfer.
@@ -260,12 +267,13 @@ bool DMAMSPM0_setupTransfer(DMAMSPM0_Transfer *transfer, DL_DMA_Config* DMACfg);
  *
  *  @param  dmaParams:  Pointer to DMA transfer params.
  *  @param  DMACfg:   Pointer to DMA config params.
+ *  @param  noOfChs:   No of DMA channels being used
  *
  *  @return DMAMSPM0_Handle on success or NULL if an error has occurred.
  *
  *  @sa     DMAMSPM0_close()
  */
-DMAMSPM0_Handle DMA_Init(DMAMSPM0_Transfer* dmaParams, DL_DMA_Config* DMACfg);
+DMAMSPM0_Handle DMA_Init(DMAMSPM0_Transfer* dmaParams, DL_DMA_Config* DMACfg, uint8_t noOfChs);
 
 /*!
  *  @brief  This function will disable the channel and related flags.

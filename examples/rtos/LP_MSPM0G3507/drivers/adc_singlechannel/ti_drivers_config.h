@@ -138,6 +138,8 @@ extern const uint_least8_t CONFIG_UART_0_CONST;
 #define CONFIG_UART_COUNT 1
 #define CONFIG_UART_BUFFER_LENGTH 1
 
+#define CONFIG_DMA_COUNT 1
+#define CONFIG_DMA_CH_COUNT 1
 #define DEFAULT_DMA_PRIORITY 31
 
 extern const uint_least8_t CONFIG_UART_0;

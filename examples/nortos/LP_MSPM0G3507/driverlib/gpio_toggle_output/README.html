@@ -62,21 +62,26 @@
 <td>Standard Output</td>
 </tr>
 <tr class="even">
+<td>GPIOB</td>
+<td>PB16</td>
+<td>Standard Output</td>
+</tr>
+<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>EVENT</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DEBUGSS</td>
 <td>PA20</td>
 <td>Debug Clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DEBUGSS</td>
 <td>PA19</td>
 <td>Debug Data In Out</td>
@@ -118,13 +123,20 @@
 <td><ul><li>PB27 can be connected to LED2 Green<br><ul><li><code>J7 ON</code> Connect to LED2 Green<br><li><code>J7 OFF</code> Disconnect from LED2 Green</ul></ul></td>
 </tr>
 <tr class="even">
+<td>PB16</td>
+<td>GPIOB</td>
+<td>PB16</td>
+<td>J2_11</td>
+<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul></td>
+</tr>
+<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
@@ -133,12 +145,15 @@
 </tr>
 </tbody>
 </table>
+<h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
+<p>This project was developed for a superset device included in the LP_MSPM0G3507 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Compile, load and run the example. RGB LEDs will toggle with red being opposite of blue and green.</p>
+<p>USER_TEST_PIN GPIO will mimic the behavior of the LED1 and LED3 pins on the BoosterPack header and can be used to verify the LED behavior.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

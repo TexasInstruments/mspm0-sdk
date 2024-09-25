@@ -21,6 +21,12 @@ The example is created to demo a self-calibratable, high precision and low-cost 
 
 - Please refer to the related [app note](https://www.ti.com/lit/slaaee6) for more hardware details.
 
+
+### Device Migration Recommendations
+This project was developed for a superset device included in the LP_MSPM0L1306 LaunchPad. Please
+visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#non-sysconfig-compatible-project-migration)
+for information about migrating to other MSPM0 devices.
+
 ## Example Usage
 
 This example was developed and tested based on MSPM0L1306. Please refer to the related [app note](https://www.ti.com/lit/slaaee6) for more details.

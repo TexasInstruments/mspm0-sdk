@@ -114,7 +114,7 @@ const TimerProfiles = [
     {
         name: "Basic_OneShot",
         timerClkPrescale: 256,
-        timerPeriod: "250 s",
+        timerPeriod: "500 ms",
         timerMode: "ONE_SHOT",
         interrupts: ["ZERO"]
     }
@@ -1157,7 +1157,7 @@ The profiles that are given are:
                 default: "CUSTOM",
                 options: [
                     { name: "Basic_Periodic", displayName: "Periodic with 500 ms Period and Zero Event"},
-                    { name: "Basic_OneShot", displayName: "One-Shot with 1 s Period and Zero Event" },
+                    { name: "Basic_OneShot", displayName: "One-Shot with 500 ms Period and Zero Event" },
                     { name: "CUSTOM", displayName: "Custom" }
                 ],
                 onChange: onChangeTimerProfile
@@ -1624,6 +1624,9 @@ function validate(inst, validation)
                 if (inst.mainCTSubscriberChannel == 0){
                     validation.logWarning("Selected Cross Trigger Source is not configured.", inst, "mainCTSubscriberChannel");
                 }
+            }
+            if(!inst.timerStartTimer) {
+                validation.logInfo("Note that the cross trigger will not be generated unless Start Timer is enabled.", inst, ["crossTriggerAuthority","timerStartTimer"]);
             }
         }
         else if(inst.crossTriggerAuthority == "Secondary"){

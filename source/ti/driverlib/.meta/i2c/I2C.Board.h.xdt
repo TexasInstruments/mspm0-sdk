@@ -88,10 +88,12 @@
 % //#define `inst.$name`_BUS_SPEED_HZ               `inst.basicControllerBusSpeedSelected`
 %}
 %if(inst.basicEnableTarget){
+%if(inst.basicTargetOwnAddressEnable){
 % let ownAddrStr = "#define "+inst.$name+"_TARGET_OWN_ADDR";
 % let ownAddrStr2 = "0x"+(inst.basicTargetAddress).toString(16);
 `ownAddrStr.padEnd(40, " ")+ownAddrStr2.padStart(40, " ")`
 % //#define `inst.$name`_TARGET_OWN_ADDR             `inst.basicTargetAddress`
+%}
 %if(inst.basicTargetSecAddressEnable){
 % let ownSecAddrStr = "#define "+inst.$name+"_TARGET_SEC_OWN_ADDR";
 % let ownSecAddrStr2 = "0x"+(inst.basicTargetSecAddress).toString(16);

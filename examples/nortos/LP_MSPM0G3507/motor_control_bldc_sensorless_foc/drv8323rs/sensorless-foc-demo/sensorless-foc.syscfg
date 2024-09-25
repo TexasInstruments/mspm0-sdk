@@ -8,6 +8,7 @@
 /**
  * Import the modules used in this configuration.
  */
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const ADC12       = scripting.addModule("/ti/driverlib/ADC12", {}, false);
 const ADC121      = ADC12.addInstance();
 const ADC122      = ADC12.addInstance();
@@ -35,6 +36,8 @@ const TIMERFault1 = TIMERFault.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
+ProjectConfig.genDisable = true;
+
 const divider6       = system.clockTree["PLL_CLK2X_DIV"];
 divider6.divideValue = 4;
 

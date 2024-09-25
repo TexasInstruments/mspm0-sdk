@@ -80,6 +80,13 @@ RAMFUNC static DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_executeCommandFromRAM(
                 FLASHCTL_STATCMD_CMDPASS_STATFAIL);
     }
 
+#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G151X_G351X)
+    /* Set COMMAND bit within CMDTYPE register to clear status*/
+    flashctl->GEN.CMDTYPE = DL_FLASHCTL_COMMAND_TYPE_CLEAR_STATUS;
+    /* Set bit to execute command */
+    flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
+#endif
+
     return (DL_FLASHCTL_COMMAND_STATUS)(status);
 }
 
@@ -123,17 +130,29 @@ bool DL_FlashCTL_massErase(FLASHCTL_Regs *flashctl)
         flashctl, FLASHCTL_BANK0_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_BANK);
     status = DL_FlashCTL_waitForCmdDone(flashctl);
 
+    if (DL_FactoryRegion_getDATAFlashSize() && (status == true)) {
+        status = DL_FlashCTL_eraseDataBank(flashctl);
+    }
     return (status);
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_massEraseFromRAM(
     FLASHCTL_Regs *flashctl)
 {
+    DL_FLASHCTL_COMMAND_STATUS status;
+
     DL_FlashCTL_unprotectMainMemory(flashctl);
     DL_FlashCTL_protectNonMainMemory(flashctl);
 
-    return DL_FlashCTL_eraseMemoryFromRAM(
+    status = DL_FlashCTL_eraseMemoryFromRAM(
         flashctl, FLASHCTL_BANK0_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_BANK);
+
+    if (DL_FactoryRegion_getDATAFlashSize() &&
+        (status != DL_FLASHCTL_COMMAND_STATUS_FAILED)) {
+        status = DL_FlashCTL_eraseDataBankFromRAM(flashctl);
+    }
+
+    return (status);
 }
 
 bool DL_FlashCTL_massEraseMultiBank(FLASHCTL_Regs *flashctl)
@@ -193,6 +212,10 @@ bool DL_FlashCTL_massEraseMultiBank(FLASHCTL_Regs *flashctl)
         bankIndex++;
     }
     DL_FlashCTL_disableAddressOverrideMode(flashctl);
+
+    if (DL_FactoryRegion_getDATAFlashSize() && status == true) {
+        status = DL_FlashCTL_eraseDataBank(flashctl);
+    }
 
     return (status);
 }
@@ -770,6 +793,13 @@ void DL_FlashCTL_unprotectMainMemory(FLASHCTL_Regs *flashctl)
     flashctl->GEN.CMDWEPROTC = 0;
 }
 
+void DL_FlashCTL_unprotectDataMemory(FLASHCTL_Regs *flashctl)
+{
+    flashctl->GEN.CMDWEPROTA = 0;
+    flashctl->GEN.CMDWEPROTB = 0;
+    flashctl->GEN.CMDWEPROTC = 0;
+}
+
 void DL_FlashCTL_protectMainMemory(FLASHCTL_Regs *flashctl)
 {
     flashctl->GEN.CMDWEPROTA = FLASHCTL_CMDWEPROTA_VAL_MAXIMUM;
@@ -807,6 +837,30 @@ void DL_FlashCTL_protectAllMemory(FLASHCTL_Regs *flashctl)
     flashctl->GEN.CMDWEPROTEN = FLASHCTL_CMDWEPROTEN_VAL_MAXIMUM;
 }
 
+#ifdef DEVICE_HAS_NO_CMDWEPROTA
+void DL_FlashCTL_unprotectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
+    DL_FLASHCTL_REGION_SELECT regionSelect)
+{
+    uint32_t sectorNumber = DL_FlashCTL_getFlashSectorNumber(flashctl, addr);
+    uint32_t sectorInBank =
+        DL_FlashCTL_getFlashSectorNumberInBank(flashctl, addr);
+    uint32_t sectorMask;
+
+    /*
+     * Devices without CMDWEPROTA will use CMDWEPROTB to unprotect all sectors of MAIN memory
+     */
+
+    if ((uint32_t) regionSelect == FLASHCTL_CMDCTL_REGIONSEL_MAIN) {
+        sectorMask = (uint32_t) 1 << (sectorInBank / (uint32_t) 8);
+        flashctl->GEN.CMDWEPROTB &= ~sectorMask;
+    } else if ((uint32_t) regionSelect == FLASHCTL_CMDCTL_REGIONSEL_NONMAIN) {
+        sectorMask = (uint32_t) 1 << (sectorNumber % (uint32_t) 32);
+        flashctl->GEN.CMDWEPROTNM &= ~sectorMask;
+    } else {
+        ; /* Not expected to reach this else statement */
+    }
+}
+#else
 void DL_FlashCTL_unprotectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
     DL_FLASHCTL_REGION_SELECT regionSelect)
 {
@@ -870,7 +924,33 @@ void DL_FlashCTL_unprotectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
         ; /* Not expected to reach this else statement */
     }
 }
+#endif
 
+#ifdef DEVICE_HAS_NO_CMDWEPROTA
+void DL_FlashCTL_protectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
+    DL_FLASHCTL_REGION_SELECT regionSelect)
+{
+    uint32_t sectorNumber = DL_FlashCTL_getFlashSectorNumber(flashctl, addr);
+    uint32_t sectorInBank =
+        DL_FlashCTL_getFlashSectorNumberInBank(flashctl, addr);
+    uint32_t sectorMask;
+
+    /*
+     * Devices without CMDWEPROTA will use CMDWEPROTB to protect all sectors of MAIN memory
+     */
+
+    if ((uint32_t) regionSelect == FLASHCTL_CMDCTL_REGIONSEL_MAIN) {
+        sectorMask = ((uint32_t) 1 << (sectorInBank / (uint32_t) 8));
+        flashctl->GEN.CMDWEPROTB |= sectorMask;
+    } else if ((uint32_t) regionSelect == FLASHCTL_CMDCTL_REGIONSEL_NONMAIN) {
+        sectorNumber = DL_FlashCTL_getFlashSectorNumber(flashctl, addr);
+        sectorMask   = (uint32_t) 1 << (sectorNumber % (uint32_t) 32);
+        flashctl->GEN.CMDWEPROTNM |= sectorMask;
+    } else {
+        ; /* Not expected to reach this else statement */
+    }
+}
+#else
 void DL_FlashCTL_protectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
     DL_FLASHCTL_REGION_SELECT regionSelect)
 {
@@ -936,6 +1016,7 @@ void DL_FlashCTL_protectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
         ; /* Not expected to reach this else statement */
     }
 }
+#endif
 
 static void DL_FlashCTL_readVerifyConfig(
     FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd)
@@ -1364,6 +1445,30 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_blankVerifyFromRAM(
 
     /* Jump to RAM to execute command and wait for completion */
     return DL_FlashCTL_executeCommandFromRAM(flashctl);
+}
+
+bool DL_FlashCTL_eraseDataBank(FLASHCTL_Regs *flashctl)
+{
+    bool status;
+
+    DL_FlashCTL_unprotectDataMemory(flashctl);
+    DL_FlashCTL_eraseMemory(
+        flashctl, FLASHCTL_DATA_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_BANK);
+    status = DL_FlashCTL_waitForCmdDone(flashctl);
+
+    return (status);
+}
+
+DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_eraseDataBankFromRAM(
+    FLASHCTL_Regs *flashctl)
+{
+    DL_FLASHCTL_COMMAND_STATUS status;
+
+    DL_FlashCTL_unprotectDataMemory(flashctl);
+    status = DL_FlashCTL_eraseMemoryFromRAM(
+        flashctl, FLASHCTL_DATA_ADDRESS, DL_FLASHCTL_COMMAND_SIZE_BANK);
+
+    return (status);
 }
 
 #ifdef DEVICE_HAS_FLASH_128_BIT_WORD

@@ -9,4 +9,11 @@
 /**
  * Import the modules used in this configuration.
  */
-const Board = scripting.addModule("/ti/driverlib/Board");
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+ProjectConfig.genLibDL = false;

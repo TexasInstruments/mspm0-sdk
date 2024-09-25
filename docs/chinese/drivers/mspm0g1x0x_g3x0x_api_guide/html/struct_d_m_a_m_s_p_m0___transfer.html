@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X TI-Driver Library
-   &#160;<span id="projectnumber">1.20.00.05</span>
+   &#160;<span id="projectnumber">1.20.01.06</span>
    </div>
   </td>
  </tr>
@@ -73,7 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>DMAMSPM0 Transfer configuration.  
+<p>DMAMSPM0 channel based Transfer configuration.  
  <a href="struct_d_m_a_m_s_p_m0___transfer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_d_m_a_m_s_p_m0_8h_source.html">DMAMSPM0.h</a>&gt;</code></p>
@@ -108,14 +108,14 @@ Data Fields</h2></td></tr>
 <tr class="separator:a230b86a92925475564175d390917785a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9123b47b6f6ee4af2705ff7c591ed99e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html#a9123b47b6f6ee4af2705ff7c591ed99e">noOfData</a></td></tr>
 <tr class="separator:a9123b47b6f6ee4af2705ff7c591ed99e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a386da2d8a26856976ed44abbd475a744"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html#a386da2d8a26856976ed44abbd475a744">roundRobinPriority</a></td></tr>
-<tr class="separator:a386da2d8a26856976ed44abbd475a744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2a80f908af7bf81799ef1b11acf8ed2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___d_m_a.html#ga1d63418e0aacc8c97993301127d8de20">DMAMSPM0_IsrFxn</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html#aa2a80f908af7bf81799ef1b11acf8ed2">dmaChIsrFxn</a></td></tr>
+<tr class="separator:aa2a80f908af7bf81799ef1b11acf8ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad88deea44659872e6803e6cee2c75bc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html#ad88deea44659872e6803e6cee2c75bc9">enableDMAISR</a></td></tr>
 <tr class="separator:ad88deea44659872e6803e6cee2c75bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>DMAMSPM0 Transfer configuration. </p>
-<p>The <a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html" title="DMAMSPM0 Transfer configuration. ">DMAMSPM0_Transfer</a> structure contains parameters for initializing a DMA transfer using a given DMA channel number.</p>
+<div class="textblock"><p>DMAMSPM0 channel based Transfer configuration. </p>
+<p>The <a class="el" href="struct_d_m_a_m_s_p_m0___transfer.html" title="DMAMSPM0 channel based Transfer configuration. ">DMAMSPM0_Transfer</a> structure contains parameters for initializing a DMA transfer using a given DMA channel number.</p>
 <p>This struct is used in <a class="el" href="group___d_m_a.html#gae12feff18a33167fc759a8f842e8cc31" title="Function to set up a DMA channel for data transfer. ">DMAMSPM0_setupTransfer()</a>. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a36aafd8ec70c45af89205708dc2919b0"></a>
@@ -324,22 +324,22 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>no of data bytes to be transferred </p>
+<p>no of data bytes to be transferred (DMASZ) </p>
 
 </div>
 </div>
-<a id="a386da2d8a26856976ed44abbd475a744"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a386da2d8a26856976ed44abbd475a744">&sect;&nbsp;</a></span>roundRobinPriority</h2>
+<a id="aa2a80f908af7bf81799ef1b11acf8ed2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2a80f908af7bf81799ef1b11acf8ed2">&sect;&nbsp;</a></span>dmaChIsrFxn</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool DMAMSPM0_Transfer::roundRobinPriority</td>
+          <td class="memname"><a class="el" href="group___d_m_a.html#ga1d63418e0aacc8c97993301127d8de20">DMAMSPM0_IsrFxn</a> DMAMSPM0_Transfer::dmaChIsrFxn</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Round robin priority for DMA channels </p>
+<p>Channel based interrupt handler </p>
 
 </div>
 </div>
@@ -354,7 +354,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>true: Enable DMA ISR, false:use Peripheral ISR </p>
+<p>true: Enable DMA ISR for the channel, false:use Peripheral ISR </p>
 
 </div>
 </div>

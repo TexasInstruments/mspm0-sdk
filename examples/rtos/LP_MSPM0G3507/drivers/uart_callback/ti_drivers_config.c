@@ -95,29 +95,39 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_CLK_init(void)
  *  =============================== DMA ===============================
  */
 #include <ti/drivers/dma/DMAMSPM0.h>
-
-DMAMSPM0_Transfer DMAMSPM0Cfg = {
-    .rxTrigger              = DMA_UART0_RX_TRIG,
-    .rxTriggerType          = DL_DMA_TRIGGER_TYPE_EXTERNAL,
-    .transferMode           = DL_DMA_SINGLE_TRANSFER_MODE,
-    .extendedMode           = DL_DMA_NORMAL_MODE,
-    .destWidth              = DL_DMA_WIDTH_BYTE,
-    .srcWidth               = DL_DMA_WIDTH_BYTE,
-    .destIncrement          = DL_DMA_ADDR_INCREMENT,
-    .dmaChannel             = 0,
-    .roundRobinPriority     = 0,
-    .dmaTransferSource      = NULL,
-    .dmaTransferDestination = NULL,
-    .enableDMAISR           = false,
+const uint_least8_t CONFIG_DMA_0               = 0;
+const uint_least8_t DMA_Count                  = CONFIG_DMA_COUNT;
+DMAMSPM0_Object DMAObject[CONFIG_DMA_CH_COUNT] = {
+    {.dmaTransfer =
+            {
+                .txTrigger              = DMA_UART0_TX_TRIG,
+                .txTriggerType          = DL_DMA_TRIGGER_TYPE_EXTERNAL,
+                .rxTrigger              = DMA_UART0_RX_TRIG,
+                .rxTriggerType          = DL_DMA_TRIGGER_TYPE_EXTERNAL,
+                .transferMode           = DL_DMA_SINGLE_TRANSFER_MODE,
+                .extendedMode           = DL_DMA_NORMAL_MODE,
+                .destWidth              = DL_DMA_WIDTH_BYTE,
+                .srcWidth               = DL_DMA_WIDTH_BYTE,
+                .destIncrement          = DL_DMA_ADDR_INCREMENT,
+                .dmaChannel             = 0,
+                .dmaTransferSource      = NULL,
+                .dmaTransferDestination = NULL,
+                .enableDMAISR           = false,
+            }},
 };
 
-DMAMSPM0_HWAttrs DMAMSP0HWAttrs = {
-    .dmaIsrFxn   = NULL,
-    .intPriority = DEFAULT_DMA_PRIORITY,
+static const DMAMSPM0_HWAttrs DMAMSP0HWAttrs[CONFIG_DMA_COUNT] = {
+    {
+        .dmaIsrFxn          = NULL,
+        .intPriority        = DEFAULT_DMA_PRIORITY,
+        .roundRobinPriority = 0,
+    },
 };
-DMAMSPM0_Cfg DMAMSPM0_Config = {
-    &DMAMSPM0Cfg,
-    &DMAMSP0HWAttrs,
+const DMAMSPM0_Cfg DMAMSPM0_Config[CONFIG_DMA_COUNT] = {
+    {
+        &DMAMSP0HWAttrs[CONFIG_DMA_0],
+        &DMAObject[CONFIG_DMA_0],
+    },
 };
 
 /*
@@ -155,6 +165,7 @@ UART_Data_Object UARTObject[CONFIG_UART_COUNT] = {
                 .eventsSupported    = false,
                 .callbacksSupported = true,
                 .dmaSupported       = true,
+                .noOfDMAChannels    = 1,
             },
         .buffersObject =
             {

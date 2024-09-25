@@ -22,9 +22,9 @@
         compilerBuildOptions="
             -I${PROJECT_ROOT}
             -I${PROJECT_ROOT}/${ConfigName}
-            -D__MSPM0G3507__
             -DARM_MATH_CM0
             -O2
+            @syscfg/device.opt
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/DSP/Include
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
@@ -35,9 +35,10 @@
             -mthumb
         "
         linkerBuildOptions="
-            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/DSP/lib/ticlang/m0p/arm_cortexM0l_math.a
+            -ldevice.cmd.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
-            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
             -Wl,--rom_model
             -Wl,--warn_sections
             -L${CG_TOOL_ROOT}/lib
@@ -60,10 +61,6 @@
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../ticlang/mspm0g3507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../ticlang/startup_mspm0g3507_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
         </file>
     </project>
 </projectSpec>

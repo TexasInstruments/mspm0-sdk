@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(IAR_ARMCOMPILER)/bin/iccarm"
 LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 
-OBJECTS = main.obj App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj UserConfig_UserConfig.obj iar_startup_mspm0l1306_iar.obj
+OBJECTS = main.obj App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj UserConfig_UserConfig.obj iar_startup_mspm0l130x_iar.obj
 NAME = self_calibrate_current_detection
 
 CFLAGS = -I.. \
@@ -24,6 +24,8 @@ CFLAGS = -I.. \
 
 LFLAGS = "$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/iar/m0p/rts/iqmath.a" \
     "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l11xx_l13xx/driverlib.a" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
+    -L$PROJ_DIR$ \
     --config ../iar/mspm0l1306.icf \
     --map "$(NAME).map" \
     --silent \
@@ -51,7 +53,7 @@ UserConfig_UserConfig.obj: ../UserConfig/UserConfig.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-iar_startup_mspm0l1306_iar.obj: ../iar/startup_mspm0l1306_iar.c
+iar_startup_mspm0l130x_iar.obj: ../iar/startup_mspm0l130x_iar.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
