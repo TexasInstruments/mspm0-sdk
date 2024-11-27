@@ -37,6 +37,8 @@
 <h2 id="example-summary">Example Summary</h2>
 <p>This example will provide a beginning beta implementation of the boot image manger. It is comprised of all the necessary files and procedures in order to run application images. The default public key is image_signTEST found in <code>source/third_party/mcuboot/</code>. This is an example with a companion example <code>bim_sample_image</code> that will provide application images that work with this boot application.</p>
 <p>It is highly recommended to read the users guide found in <code>docs/*/middleware/boot_manager/Boot_Image_Manager_Users_guide.html</code> prior to running the example.</p>
+<h2 id="requirements">Requirements</h2>
+<p>The ECC and SHA libaries used by this example are compiled with TI Clang 4.0.0 with Link Time Optimization (LTO). This is not compatible with previous versions of TI Clang (3.X and older). Thus, the user must download and use the updated TI Clang toolchain from <a href="https://www.ti.com/tool/download/ARM-CGT-CLANG/4.0.0.LTS">the product page</a> if not installed already.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>

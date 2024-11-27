@@ -886,7 +886,21 @@ extern "C" {
 
 /*!
  * @brief  This is an internal macro is used to resolve the offset to ADC12 SVT
- *         aperture
+ *
+ * The offset from ADC12 base to ADC12 SVT is 0x556000. However the FIFODATA
+ * and MEMRES registers within SVT are offset by an additional 0x1000. For example,
+ * the FIFODATA register from ADC12 base has offset 0x1160. The same register
+ * in ADC12 SVT has offset 0x0160.
+ *
+ * This 0x1000 difference is taken in to consideration by DL_ADC12_SVT_OFFSET.
+ * Formula: (ADC12 SVT - ADC12 BASE) - 0x1000
+ *
+ * Used by the following APIs:
+ *  @ref DL_ADC12_getFIFOData
+ *  @ref DL_ADC12_getFIFOAddress
+ *  @ref DL_ADC12_getMemResult
+ *  @ref DL_ADC12_getMemResultAddress
+ *
  */
 #define DL_ADC12_SVT_OFFSET                  ((uint32_t)0x555000 >> (uint32_t)2)
 

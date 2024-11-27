@@ -1,5 +1,5 @@
-Code Composer Studio Theia IDE Version 1.5.0+ for MSPM0 MCUs
-============================================================
+Code Composer Studio IDE Version 20.0.0+ for MSPM0 MCUs
+=======================================================
 
 Table of Contents
 -----------------
@@ -44,7 +44,7 @@ MSPM0 device documentation:
 Code Composer documentation:
 
 -  `Code Composer Studio Documentation <https://www.ti.com/tool/CCSTUDIO#tech-docs>`__
--  `Code Composer Studio Theia User's Guide <https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_theia/index.html>`__
+-  `Code Composer Studio User's Guide <https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_theia/index.html>`__
 
 If You Need Assistance
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -54,45 +54,45 @@ The `E2E Community Support Forums <https://e2e.ti.com/support/microcontrollers/>
 1. Software Installation
 ------------------------
 
-Code Composer Studio Theia IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__.
+Code Composer Studio IDE is available from `TI.com <https://www.ti.com/tool/CCSTUDIO>`__.
 
-MSPM0 microcontrollers and the MSPM0 SDK require CCS Theia 1.5.0 or higher.
+MSPM0 microcontrollers and the MSPM0 SDK require CCS 20.0.0 or higher.
 
 See the `MSPM0 SDK <https://www.ti.com/tool/MSPM0-SDK>`__ documentation for finding the right SDK for your IDE version.
 
 2. Development Flow
 -------------------
 
-This chapter describes how to use CCS Theia to run the demonstration programs and develop application software.
+This chapter describes how to use Code Composer Studio to run the demonstration programs and develop application software.
 
 2.1 Overview
 ~~~~~~~~~~~~
 
-Code Composer Studio (CCS) Theia is an integrated development environment (IDE) that supports TI’s Microcontroller and Embedded Processors portfolio. Code Composer Studio Theia comprises a suite of tools used to develop and debug embedded applications.
+Code Composer Studio (CCS) is an integrated development environment (IDE) that supports TI’s Microcontroller and Embedded Processors portfolio. Code Composer Studio comprises a suite of tools used to develop and debug embedded applications.
 
-This guide only explains some features and capabilities of the Code Composer Studio Theia IDE using MSPM0.
+This guide only explains some features and capabilities of the Code Composer Studio IDE using MSPM0.
 
-More documentation for CCS Theia is available at `TI.com <https://www.ti.com/tool/CCSTUDIO#tech-docs>`__ or in the Help menu included in the IDE.
+More documentation for Code Composer Studio is available at `TI.com <https://www.ti.com/tool/CCSTUDIO#tech-docs>`__ or in the Help menu included in the IDE.
 
 2.2 Creating a New Project using Project Wizard
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-CCS Theia includes a new project wizard which provides an intuitive and easy way to create new project.
+Code Composer Studio includes a new project wizard which provides an intuitive and easy way to create new project.
 
 1. Select **File** → **Create New Project**
 2. Select the board or device and use filters as needed
 3. Select a project and click on **Create** |image0|
 
-Note that CCS Theia will automatically detect any dependencies, including SDKs and compilers, and it will request installation if needed.
+Note that Code Composer Studio will automatically detect any dependencies, including SDKs and compilers, and it will request installation if needed.
 
-2.3 Using TI Resource Explorer in CCS Theia
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.3 Using TI Resource Explorer in Code Composer Studio
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TI Resource Explorer (TI-Rex) helps you find all the latest examples, libraries, demo applications, datasheets, and more for your chosen platform.
 
-This tool is available at https://dev.ti.com/tirex, but it's also integrated into CCS Theia allowing for a more integrated user experience.
+This tool is available at https://dev.ti.com/tirex, but it's also integrated into Code Composer Studio allowing for a more integrated user experience.
 
-1. Select **Help** → **Getting Started**. Note that CCS Theia can automatically detect your LaunchPad for easier navigation.
+1. Select **Help** → **Getting Started**. Note that Code Composer Studio can automatically detect your LaunchPad for easier navigation.
 
    .. figure:: ./images/theia_ide_guide/ccstheia_gettingstarted.png
       :alt: 
@@ -116,16 +116,16 @@ This tool is available at https://dev.ti.com/tirex, but it's also integrated int
    .. figure:: ./images/theia_ide_guide/ccstheia_tirex_projectimport.png
       :alt: 
 
-Note that CCS Theia will automatically detect any dependencies, including SDKs and compilers, and it will request installation if needed.
+Note that Code Composer Studio will automatically detect any dependencies, including SDKs and compilers, and it will request installation if needed.
 
-2.4 Using SysConfig with CCS Theia
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.4 Using SysConfig with Code Composer Studio
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some examples in the MSPM0 SDK have SysConfig support. `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ is an intuitive and comprehensive collection of graphical utilities for configuring pins, peripherals, radios, subsystems, and other components. SysConfig helps you manage, expose, and resolve conflicts visually so that you have more time to create differentiated applications.
 
-The SysConfig tool is delivered as a standalone installer, it can be used on the cloud at `dev.ti.com <https://dev.ti.com/sysconfig>`__, or it's integrated into CCS Theia for better and easier experience.
+The SysConfig tool is delivered as a standalone installer, it can be used on the cloud at `dev.ti.com <https://dev.ti.com/sysconfig>`__, or it's integrated into Code Composer Studio for better and easier experience.
 
-After importing a MSPM0 project in CCS Theia, simply double-click the ``.syscfg`` file and this will open SysConfig. |image2|
+After importing a MSPM0 project in Code Composer Studio, simply double-click the ``.syscfg`` file and this will open SysConfig. |image2|
 
 For more information about using SysConfig with MSPM0, visit the `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide.html>`__ guide.
 
@@ -193,7 +193,7 @@ Note: Steps 1-3 don't apply when not using SysConfig, and step 4 needs to be don
 
 3. Note that SysConfig will highlight any conflicts with the migration, such as unavailable pins and peripherals. Fix any conflicts as needed.
 
-4. CCS Theia will automatically migrate the device variant and will add a corresponding .ccxml file.
+4. Code Composer Studio will automatically migrate the device variant and will add a corresponding .ccxml file.
 
 .. figure:: ./images/theia_ide_guide/ccstheia_migrate3.png
    :alt: 
@@ -346,7 +346,7 @@ The following steps show how to declare a function which is executed from SRAM.
 3. Debugging the Application
 ----------------------------
 
-The following debug probes have been tested successfully with Code Composer Studio Theia IDE.
+The following debug probes have been tested successfully with Code Composer Studio IDE.
 
 -  TI XDS Tools, including the XDS-110 integrated into MSPM0 LaunchPads.
 
@@ -401,9 +401,9 @@ Note that the Flash Loader will erase NONMAIN if any of these options are enable
 3.2 Breakpoint Types
 ~~~~~~~~~~~~~~~~~~~~
 
-The CCS Theia debugger uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints in Flash are not supported on MSPM0. This means that a maximum of 4 hardware breakpoints can be set within CCS Theia.
+The Code Composer Studio debugger uses a limited number of on-chip debugging resources (specifically 4 hardware breakpoints and 2 hardware watchpoints). Software breakpoints in Flash are not supported on MSPM0. This means that a maximum of 4 hardware breakpoints can be set within Code Composer Studio.
 
-CCS Theia can use a breakpoint to stop at main or halt the device at exit. These settings can be updated in the project properties by selecting **Debug** → **Category:Program/Memory Load Options**.
+Code Composer Studio can use a breakpoint to stop at main or halt the device at exit. These settings can be updated in the project properties by selecting **Debug** → **Category:Program/Memory Load Options**.
 
 .. figure:: ./images/theia_ide_guide/ccstheia_breakpoint.png
    :alt: 
@@ -416,7 +416,7 @@ If the max number of breakpoints are set, the following warning will be displaye
 3.3 Connecting to an Incorrect Device
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-CCS Theia will show an error if an unsupported device is connected as shown below:
+Code Composer Studio will show an error if an unsupported device is connected as shown below:
 
 |image4| |image5|
 

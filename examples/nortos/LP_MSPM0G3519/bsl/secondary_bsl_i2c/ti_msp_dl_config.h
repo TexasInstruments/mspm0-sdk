@@ -58,21 +58,6 @@
 #define BSL_I2C_CLOCK_SOURCE (DL_I2C_CLOCK_BUSCLK)
 #define BSL_I2C_TARGET_ADDRESS ((uint32_t) 0x00000048)
 
-
-void SYSCFG_DL_init(void);
-void SYSCFG_DL_initPower_(void);
-void SYSCFG_DL_GPIO_init_(void);
-void SYSCFG_DL_SYSCTL_init_(void);
-void SYSCFG_DL_SYSCTL_CLK_init_(void);
-void SYSCFG_DL_MCAN0_init(void);
-
-#define GPIO_HFXT_PORT GPIOA
-#define GPIO_HFXIN_PIN DL_GPIO_PIN_5
-#define GPIO_HFXIN_IOMUX (IOMUX_PINCM10)
-#define GPIO_HFXOUT_PIN DL_GPIO_PIN_6
-#define GPIO_HFXOUT_IOMUX (IOMUX_PINCM11)
-#define CPUCLK_FREQ 80000000
-
 #define POWER_STARTUP_DELAY (16)
 /* Definitions for CRC */
 #define BSL_CRC (CRCP0)

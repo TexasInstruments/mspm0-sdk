@@ -353,45 +353,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
         else
             secCrossTrigSource = inst.secondaryCrossTriggerSource.split("Timer_")[1];
     }
-    else{
-        switch(flavor){
-            case "TIMA0":
-                secCrossTrigSource = "0";
-                break;
-            case "TIMA1":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG7":
-                secCrossTrigSource = "2";
-                break;
-            case "TIMG8":
-                secCrossTrigSource = "3";
-                break;
-            case "TIMG12":
-                secCrossTrigSource = "4";
-                break;
-            case "TIMG0":
-                secCrossTrigSource = "0";
-                break;
-            case "TIMG1":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG6":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG2":
-                secCrossTrigSource = "2";
-                break;
-            case "TIMG4":
-                secCrossTrigSource = "3";
-                break;
-            default:
-                /* do nothing */
-                break;
-        }
-    }
 %%}
+%   if(inst.crossTriggerAuthority == "Secondary") {
     DL_`flavorCat`_setExternalTriggerEvent(`inst.$name`_INST,DL_TIMER_EXT_TRIG_SEL_TRIG_`secCrossTrigSource`);
+%}
+%   else {
+    DL_`flavorCat`_setExternalTriggerEvent(`inst.$name`_INST,DL_TIMER_EXT_TRIG_SEL_TRIG_`inst.etselMainTriggerValue`);
+%}
     DL_`flavorCat`_enableExternalTrigger(`inst.$name`_INST);
     uint32_t temp;
     temp = DL_`flavorCat`_getCaptureCompareCtl(`inst.$name`_INST, DL_TIMER_CC_0_INDEX);

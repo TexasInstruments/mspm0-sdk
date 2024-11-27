@@ -1,5 +1,5 @@
-适用于 MSPM0 MCU 的 Code Composer Studio Theia IDE 版本1.5.0+
-=============================================================
+适用于 MSPM0 MCU 的 Code Composer Studio IDE 版本20.0.0+
+========================================================
 
 目录
 ----
@@ -44,7 +44,7 @@ MSPM0器件文档：
 Code Composer 文档：
 
 -  `Code Composer Studio 文档 <https://www.ti.com/tool/CCSTUDIO#tech-docs>`__
--  `Code Composer Studio Theia 用户指南 <https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_theia/index.html>`__
+-  `Code Composer Studio 用户指南 <https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_theia/index.html>`__
 
 如果您需要帮助
 ~~~~~~~~~~~~~~
@@ -54,9 +54,9 @@ MSPM0 MCU 的 `E2E 社区支持论坛 <https://e2e.ti.com/support/microcontrolle
 1. 软件安装
 -----------
 
-Code Composer Studio Theia IDE 可从 `TI.com <https://www.ti.com/tool/CCSTUDIO>`__ 获取。
+Code Composer Studio IDE 可从 `TI.com <https://www.ti.com/tool/CCSTUDIO>`__ 获取。
 
-MSPM0微控制器和 MSPM0 SDK 需要 CCS Theia 1.5.0或更高版本。
+MSPM0微控制器和 MSPM0 SDK 需要 Code Composer Studio 20.0.0或更高版本。
 
 **注** 此版本包括对 MSPM0量产型号的支持，不支持早期型号。
 
@@ -65,36 +65,36 @@ MSPM0微控制器和 MSPM0 SDK 需要 CCS Theia 1.5.0或更高版本。
 2. 开发流程
 -----------
 
-本章介绍了如何使用 CCS Theia 来运行演示程序和开发应用软件。
+本章介绍了如何使用 Code Composer Studio 来运行演示程序和开发应用软件。
 
 2.1 概览
 ~~~~~~~~
 
-Code Composer Studio (CCS) Theia 是一种集成开发环境(IDE)，支持 TI 的微控制器和嵌入式处理器产品系列。 Code Composer Studio Theia 包含一整套用于开发和调试嵌入式应用的工具。
+Code Composer Studio (CCS) 是一种集成开发环境(IDE)，支持 TI 的微控制器和嵌入式处理器产品系列。 Code Composer Studio 包含一整套用于开发和调试嵌入式应用的工具。
 
-本指南仅介绍了使用 MSPM0的 Code Composer Studio Theia IDE 的一些特性和功能。
+本指南仅介绍了使用 MSPM0的 Code Composer Studio IDE 的一些特性和功能。
 
-有关 CCS Theia 的更多文档、请访问 `TI.com <https://www.ti.com/tool/CCSTUDIO#tech-docs>`__ 或 IDE 中包含的"Help"菜单。
+有关 Code Composer Studio 的更多文档、请访问 `TI.com <https://www.ti.com/tool/CCSTUDIO#tech-docs>`__ 或 IDE 中包含的"Help"菜单。
 
 2.2 使用项目向导创建新项目
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-CCS Theia 包括一个新的项目向导、该向导提供了一种创建新项目的直观且简单的方法。
+Code Composer Studio 包括一个新的项目向导、该向导提供了一种创建新项目的直观且简单的方法。
 
 1. 选择 **File** → **Create New Project**
 2. 选择硬件评估板或器件并根据需要使用过滤器
 3. 选择一个项目，然后单击 **Create** |image0|
 
-请注意、CCS Theia 将自动检测需要的安装包、包括 SDK 和编译器、 如果需要、它将请求安装。
+请注意、Code Composer Studio 将自动检测需要的安装包、包括 SDK 和编译器、 如果需要、它将请求安装。
 
-2.3 在 CCS Theia 中使用 TI Resource Explorer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.3 在 Code Composer Studio 中使用 TI Resource Explorer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 TI Resource Explorer (TI-Rex)可帮助您查找适用于所选平台的所有最新示例、库、演示应用、数据手册等。
 
-此工具可从 https://dev.ti.com/tirex 获取、但它也集成到 CCS Theia 中、从而实现更集成的用户体验。
+此工具可从 https://dev.ti.com/tirex 获取、但它也集成到 Code Composer Studio 中、从而实现更集成的用户体验。
 
-1. 选择 **Help** → **Getting Started**\ 。 请注意、CCS Theia 可以自动检测您的 LaunchPad、以便于导航。
+1. 选择 **Help** → **Getting Started**\ 。 请注意、Code Composer Studio 可以自动检测您的 LaunchPad、以便于导航。
 
    .. figure:: ./images/theia_ide_guide/ccstheia_gettingstarted.png
       :alt: 
@@ -118,16 +118,16 @@ TI Resource Explorer (TI-Rex)可帮助您查找适用于所选平台的所有最
    .. figure:: ./images/theia_ide_guide/ccstheia_tirex_projectimport.png
       :alt: 
 
-请注意、CCS Theia 将自动检测需要的安装包、包括 SDK 和编译器、 如果需要、它将请求安装。
+请注意、Code Composer Studio 将自动检测需要的安装包、包括 SDK 和编译器、 如果需要、它将请求安装。
 
-2.4 将 SysConfig 与 CCS Theia 结合使用
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.4 将 SysConfig 与 Code Composer Studio 结合使用
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MSPM0 SDK 中的一些示例支持 SysConfig 。 `SysConfig <https://www.ti.com/tool/SYSCONFIG>`__ 是一个直观而全面的图形实用程序集合、用于配置引脚、外设、子系统等 组件。 SysConfig 可帮助您直观地管理、暴露和解决冲突、以便您有更多时间去处理 创建差异化应用程序。
 
-SysConfig 工具可作为独立安装程序提供、也可在\ `dev.ti.com <https://dev.ti.com/sysconfig>`__ 的云上使用、或是集成到 CCS Theia 中以获得更好、更轻松的体验。
+SysConfig 工具可作为独立安装程序提供、也可在\ `dev.ti.com <https://dev.ti.com/sysconfig>`__ 的云上使用、或是集成到 Code Composer Studio 中以获得更好、更轻松的体验。
 
-在 CCS Theia 中导入 MSPM0项目后、只需双击 ``.syscfg`` 文件即可打开 SysConfig。 |image2|
+在 Code Composer Studio 中导入 MSPM0项目后、只需双击 ``.syscfg`` 文件即可打开 SysConfig。 |image2|
 
 有关将 SysConfig 与 MSPM0一起使用的更多信息、请访问 `Using SysConfig with MSPM0 <../../../sysconfig_guide/doc_guide/doc_guide-srcs/sysconfig_guide_CN.html>`__ 指南。
 
@@ -148,7 +148,7 @@ SysConfig 允许在 MSPM0衍生产品之间更轻松地进行移植；但需要�
 
 3. 请注意、SysConfig 将突出显示与移植发生的任何冲突、例如不可用的引脚和外设。 根据需要修复任何冲突。
 
-4. CCS Theia 将自动完成移植并添加相应的.ccxml 文件。
+4. Code Composer Studio 将自动完成移植并添加相应的.ccxml 文件。
 
 .. figure:: ./images/theia_ide_guide/ccstheia_migrate3.png
    :alt: 
@@ -358,9 +358,9 @@ NONMAIN 是flash memory里的一块特定区域，用来存储器件启动后的
 3.2 断点类型
 ~~~~~~~~~~~~
 
-CCS Theia 调试器使用有限数量的片上调试资源(特别是4个硬件断点和2个硬件观察点)。 MSPM0不支持闪存中的软件断点。 这意味着在 CCS Theia 内最多可以设置4个硬件断点。
+Code Composer Studio 调试器使用有限数量的片上调试资源(特别是4个硬件断点和2个硬件观察点)。 MSPM0不支持闪存中的软件断点。 这意味着在 Code Composer Studio 内最多可以设置4个硬件断点。
 
-CCS Theia 可以使用断点在 main 停止或在 exit 停止器件。 通过选择 **Debug** → **Category:Program/Memory Load Options**\ ，可以在项目属性中更新这些设置。
+Code Composer Studio 可以使用断点在 main 停止或在 exit 停止器件。 通过选择 **Debug** → **Category:Program/Memory Load Options**\ ，可以在项目属性中更新这些设置。
 
 .. figure:: ./images/theia_ide_guide/ccstheia_breakpoint.png
    :alt: 

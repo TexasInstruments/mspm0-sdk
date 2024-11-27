@@ -49,8 +49,16 @@ function isUDIVEnabled(inst) {
 	let hsclkMux = _.find(mod.$instances, ['$name', 'HSCLKMUX']);
 	let sysctlMux = _.find(mod.$instances, ['$name', 'SYSCTLMUX']);
 
-	if(_.endsWith(sysctlMux.inputSelect, "LFCLK") ||
-		_.endsWith(hsclkMux.inputSelect, "SYSOSC")) {
+	if(hsclkMux){
+		if(_.endsWith(sysctlMux.inputSelect, "LFCLK") ||
+			_.endsWith(hsclkMux.inputSelect, "SYSOSC")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	if(_.endsWith(sysctlMux.inputSelect, "LFCLK")) {
 		return false;
 	} else {
 		return true;
@@ -82,8 +90,8 @@ function validate(inst, validation){
 
 	if(inst.$name === "UDIV"){
 		//Temporary fix for MSPM0L122X_L222X to not allow user to select UDIV value other than 1
-		if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && inst.divideValue != 1) {
-			validation.logError("MSPM0L122X_L222X only supports a UDIV value of 1.", inst, "divideValue");
+		if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()) && inst.divideValue != 1) {
+			validation.logError("Selected Device only supports a UDIV value of 1.", inst, "divideValue");
 		}
 		else {
 			//Temporary fix for MSPM0G to not allow user to select UDIV value of 3

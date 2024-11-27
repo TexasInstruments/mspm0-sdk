@@ -19,6 +19,7 @@ ProjectConfig.genDisable = true;
 
 NONMAIN.bslFlashPluginEnable         = true;
 NONMAIN.staticWriteProtectionMainLow = 0xFFFFFF0F;
+NONMAIN.staticWriteProtectionNonMain = true;
 NONMAIN.bslPluginHookInit            = "BSL_PI_SPI_init";
 NONMAIN.bslPluginHookReceive         = "BSL_PI_SPI_receive";
 NONMAIN.bslPluginHookTransmit        = "BSL_PI_SPI_send";

@@ -45,7 +45,7 @@
 #define PMB_NO_READ                                 0x01
 #define PMB_READ_BYTE                               0x02
 #define PMB_READ_WORD                               0x03
-#define PMB_BLOCK_READ                              0x40
+#define PMB_BLOCK_READ                              0x04
 
 #define PMB_NO_WRITE                                0x10
 #define PMB_SEND_BYTE                               0x20

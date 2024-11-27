@@ -85,6 +85,8 @@
             <path copyTo="$PROJ_DIR$/iar/startup_mspm0l130x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/dali/dali_led_demo/iar/startup_mspm0l130x_iar.c</path>
         </group>
         <group name="ti/dali" build="true">
+            <path reference="$PROJ_DIR$/ti/dali/dali_gpio_comm.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_gpio_comm.c</path>
+            <path reference="$PROJ_DIR$/ti/dali/dali_gpio_comm.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_gpio_comm.h</path>
             <path reference="$PROJ_DIR$/ti/dali/dali_target_comm.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_comm.c</path>
             <path reference="$PROJ_DIR$/ti/dali/dali_target_comm.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_comm.h</path>
             <path reference="$PROJ_DIR$/ti/dali/dali_target_command.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_command.c</path>

@@ -80,7 +80,7 @@ extern uint32_t BSL_factoryResetPassword[BSL_FACT_RST_PASSWORD_LEN];
 #define BSL_PI_init BSL_PI_I2C_init
 #define BSL_PI_receive BSL_PI_I2C_receive
 #define BSL_PI_send BSL_PI_I2C_send
-#define BSL_PI_deinit BSL_PI_I2c_deinit
+#define BSL_PI_deinit BSL_PI_I2C_deinit
 #endif
 
 #endif /* SECONDARY_BSL_H_ */

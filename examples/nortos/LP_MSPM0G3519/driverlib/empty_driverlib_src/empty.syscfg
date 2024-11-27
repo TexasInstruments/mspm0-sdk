@@ -11,6 +11,7 @@
  */
 const Board         = scripting.addModule("/ti/driverlib/Board");
 const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 /**
  * Write custom configuration values to the imported modules.
@@ -18,5 +19,8 @@ const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";
 Board.peripheral.swdioPin.$assign = "PA19";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;
 
 ProjectConfig.migrationCondition = true;

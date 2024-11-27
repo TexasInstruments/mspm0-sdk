@@ -1614,6 +1614,10 @@ typedef enum {
      * @note <b> Please refer the Timer TRM to determine TIMG instances which
      * support this feature. </b> */
     DL_TIMER_IIDX_DIR_CHANGE = GPTIMER_CPU_INT_IIDX_STAT_DC,
+    /*! Timer interrupt index for QEI incorrect state transition
+     * @note <b> Please refer the Timer TRM to determine TIMG instances which
+     * support this feature. </b> */
+    DL_TIMER_IIDX_QEIERR = GPTIMER_CPU_INT_IIDX_STAT_QEIERR,
 } DL_TIMER_IIDX;
 
 /*! @enum DL_TIMER_PUBLISHER_INDEX */

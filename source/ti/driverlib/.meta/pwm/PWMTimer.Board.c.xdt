@@ -198,6 +198,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     DL_`flavorCat`_initPWMMode(
         `inst.$name`_INST, (DL_`flavorCat`_PWMConfig *) &g`inst.$name`Config);
 
+    // Set Counter control to the smallest CC index being used
+    DL_`flavorCat`_setCounterControl(`inst.$name`_INST,DL_TIMER_CZC_CCCTL`inst.ccIndex[0]`_ZCOND,DL_TIMER_CAC_CCCTL`inst.ccIndex[0]`_ACOND,DL_TIMER_CLC_CCCTL`inst.ccIndex[0]`_LCOND);
+
 %   for (let cc of inst.ccIndex) {
 %       let ccInstance = inst["PWM_CHANNEL_"+cc];
 %
@@ -402,45 +405,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
         else
             secCrossTrigSource = inst.secondaryCrossTriggerSource.split("InputTrigger_")[1];
     }
-    else{
-        switch(flavor){
-            case "TIMA0":
-                secCrossTrigSource = "0";
-                break;
-            case "TIMA1":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG7":
-                secCrossTrigSource = "2";
-                break;
-            case "TIMG8":
-                secCrossTrigSource = "3";
-                break;
-            case "TIMG12":
-                secCrossTrigSource = "4";
-                break;
-            case "TIMG0":
-                secCrossTrigSource = "0";
-                break;
-            case "TIMG1":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG6":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG2":
-                secCrossTrigSource = "2";
-                break;
-            case "TIMG4":
-                secCrossTrigSource = "3";
-                break;
-            default:
-                /* do nothing */
-                break;
-        }
-    }
 %%}
+%   if(inst.crossTriggerAuthority == "Secondary") {
     DL_`flavorCat`_setExternalTriggerEvent(`inst.$name`_INST,DL_TIMER_EXT_TRIG_SEL_TRIG_`secCrossTrigSource`);
+%}
+%   else {
+    DL_`flavorCat`_setExternalTriggerEvent(`inst.$name`_INST,DL_TIMER_EXT_TRIG_SEL_TRIG_`inst.etselMainTriggerValue`);
+%}
     DL_`flavorCat`_enableExternalTrigger(`inst.$name`_INST);
     uint32_t temp;
 %   for (let cc of inst.ccIndex) { // 3

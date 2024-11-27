@@ -99,7 +99,7 @@
 
 /* Definitions for Memory range */
 
-#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20000120)
+#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20000180)
 #define BSL_STACK_SIZE ((uint32_t) 120)
 
 #define MSPM0_MAIN_FLASH_START_ADDRESS ((uint32_t) 0x00000000)

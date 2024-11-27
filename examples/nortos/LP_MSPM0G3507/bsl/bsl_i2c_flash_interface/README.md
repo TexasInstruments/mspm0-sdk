@@ -18,16 +18,25 @@ For more details on the Flash plugin refer to BSL User Guide.
 This example can be used to customize the I2C interface implementation.
 
 NOTE:
-While creating Custom Flash plugin make sure that, Flash region in which
-the Flash plugin resides and Non-main Flash memory are Static write protected
-in the BCR configuration. Otherwise there are chances for device to get locked
-during the Bootloading process.
+---
+* While creating Custom Flash plugin make sure that, Flash region in which the
+Flash plugin resides and Non-main Flash memory are Static write protected in the BCR configuration.
+* Otherwise there are chances for device to get locked during the Bootloading process.
+* This BSL example uses a provided ti_msp_dl_config.h file that is not generated
+by SysConfig, and it's recommended to use this provided file. 
+* If it's necessary to generate Driverlib configuration files (ti_msp_dl_config.h/c), copy the content of the generated ti_msp_dl_config.h file into the provided version.
 
-NOTE:
-This BSL example uses a provided ti_msp_dl_config.h file that is not generated
-by SysConfig, and it's recommended to use this provided file. If it's necessary
-to generate Driverlib configuration files (ti_msp_dl_config.h/c), copy the
-content of the generated ti_msp_dl_config.h file into the provided version.
+* The following SRAM memory are marked as reserved for the ROM BSL execution
+    * 0x20000000 to 0x20000160
+    * 0x20007EE0 to 0x20007FFF
+* The Plugin used for SRAM is allotted from 0x20000160
+
+TIPS:
+---
+* If SRAM size for plugin(0xFF) configured in Non main is not sufficient, 
+  users can consume required space at the end of first Buffer in SRAM, 
+  but this will impact the maximum BSL packet size.
+  The plugin SRAM size in BSL user config can be updated to 0 and free that space for buffers.
 
 ## Peripherals & Pin Assignments
 

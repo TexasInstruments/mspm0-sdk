@@ -9,8 +9,15 @@ var searchData=
   ['i2c_5fsetclocktimeout',['I2C_setClockTimeout',['../group___i2_c.html#ga999fa1c606163ca9bbb4252a27c8eb9d',1,'I2C.h']]],
   ['i2c_5ftransfer',['I2C_transfer',['../group___i2_c.html#gac5d827b67fe77d7d179026941cc069d7',1,'I2C.h']]],
   ['i2c_5ftransfertimeout',['I2C_transferTimeout',['../group___i2_c.html#gaaee4f0689acbe5f0596e35b18402abf3',1,'I2C.h']]],
+  ['i2cbasevalid',['I2CBaseValid',['../group___i2_c_target_m_s_p_m0.html#gadf8f323cc23e395591220fc2ddc0015b',1,'I2CTargetMSPM0.h']]],
   ['i2csupport_5fcontrollerfinish',['I2CSupport_controllerFinish',['../group___i2_c_support.html#gae288e1f7276da493a9c41e9ddc9f4cf7',1,'I2CSupport.h']]],
   ['i2csupport_5fpowerrelconstraint',['I2CSupport_powerRelConstraint',['../group___i2_c_support.html#ga62fde0ccc035195b08603937652a63e3',1,'I2CSupport.h']]],
   ['i2csupport_5fpowersetconstraint',['I2CSupport_powerSetConstraint',['../group___i2_c_support.html#gaef0c9ca06b4e0e7b132bb4ba77fa49dc',1,'I2CSupport.h']]],
-  ['i2csupport_5fprimetransfer',['I2CSupport_primeTransfer',['../group___i2_c_support.html#gaf638babf4e177a40cf4f04324de3c711',1,'I2CSupport.h']]]
+  ['i2csupport_5fprimetransfer',['I2CSupport_primeTransfer',['../group___i2_c_support.html#gaf638babf4e177a40cf4f04324de3c711',1,'I2CSupport.h']]],
+  ['i2ctarget_5fclose',['I2CTarget_close',['../group___i2_c_target.html#ga46658ccc9c5d8a0629b0a62d3cbc24f8',1,'I2CTarget.h']]],
+  ['i2ctarget_5finit',['I2CTarget_init',['../group___i2_c_target.html#ga5f578878f04a8e076bb506742dc5ad12',1,'I2CTarget.h']]],
+  ['i2ctarget_5fopen',['I2CTarget_open',['../group___i2_c_target.html#ga7cf668fd60483da3ed5c671e38600771',1,'I2CTarget.h']]],
+  ['i2ctarget_5fparams_5finit',['I2CTarget_Params_init',['../group___i2_c_target.html#ga0cf4249c45faf70b8776305971454b93',1,'I2CTarget.h']]],
+  ['i2ctarget_5fstart',['I2CTarget_start',['../group___i2_c_target.html#ga5ed8fe25ded597238d25b45f827b33fb',1,'I2CTarget.h']]],
+  ['i2ctarget_5fstop',['I2CTarget_stop',['../group___i2_c_target.html#gaccdd4268b980d2f83756a7b148a17405',1,'I2CTarget.h']]]
 ];

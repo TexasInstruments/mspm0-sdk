@@ -39,3 +39,6 @@ TIMER1.timerMode        = "PERIODIC";
 TIMER1.timerPeriod      = "250 ms";
 TIMER1.timerClkPrescale = 255;
 TIMER1.interrupts       = ["ZERO"];
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;

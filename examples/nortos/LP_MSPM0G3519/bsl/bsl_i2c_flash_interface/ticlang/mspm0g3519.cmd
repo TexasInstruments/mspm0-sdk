@@ -31,6 +31,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 *****************************************************************************/
+
 MEMORY
 {
     /*
@@ -46,10 +47,9 @@ MEMORY
 
 	/*
 	 * SRAM memory marked as reserved are used for the ROM BSL execution.
-	 * Hence it can't be used for Flash plugin.
+	 * Hence it can't be used for Flash plugin. 
+     * Refer Readme for reserved SRAM regions
 	 */
-//	SRAM_RESERVED_1			:	 org = 0x20000000,     len = 0x00000178,
-//	SRAM_RESERVED_2			:	 org = 0x20007EE0,	   len = 0x00000120,
 
     /*
      * SRAM interrupt vectors should be placed at the start of SRAM to
@@ -57,14 +57,11 @@ MEMORY
      */
     SRAM_BANK0_INT_VECS(RWX)		:    org = 0x20000000,     len = 0x000000C0,
 
+    SRAM_BANK0            (RWX) : org = 0x20000160, len = 0x00000080,
     /*
-     * SRAM for flash plugin operation allocated towards the end of the first
-     * data buffer used for BSL communication. If more memory is needed origin
-     * should be adjusted accordingly.
-     * For example, if 0x100 bytes are required, then org will be 0x20003B80
-     * and length will be 0x100.
-     */
-    SRAM_BANK0            (RWX) : org = 0x20003C00, len = 0x00000080,
+    * Below is the SRAM space available for user application   
+    * This can be derived from the response of Get_device_info command too.
+    */
 	SRAM_BANK1            (RWX) : org = 0x20210000, len = 0x00010000,
 
 	/* Non-Main configuration memory */

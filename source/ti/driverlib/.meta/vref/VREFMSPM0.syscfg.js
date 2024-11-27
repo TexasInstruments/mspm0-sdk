@@ -70,11 +70,6 @@ function _getPinResources(inst)
  */
 function validateVREF(inst, validation)
 {
-    // // the 3rd argument is a "field" argument and it dictates where the warning
-    // // will appear. It usually makes sense to put the name of the configurable
-    // // that is causing the warning.
-    // Common.logWarning(validation, inst, "moduleHigh", "Here's an example warning");
-
     /* Internal Mode */
     if (inst.basicMode.includes("DL_VREF_ENABLE_ENABLE"))
     {
@@ -190,7 +185,7 @@ function pinmuxRequirements(inst)
         return [];
     }
     let pinResources = []
-    if(Common.isDeviceM0G() || ((Common.isDeviceM0L() || Common.isDeviceM0C()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
+    if(Common.isDeviceM0G() || ((Common.isDeviceM0L() || Common.isDeviceM0H()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
         pinResources.push(
             {
                 name:"vrefPosPin",
@@ -247,13 +242,21 @@ function filterHardware(component)
     return (result);
 }
 
-let profileOptions = [
-    {name: "INT_1_4_V", displayName: "Internal 1.4V with Sample-and-Hold using LFCLK"},
-    {name: "INT_2_5_V", displayName: "Internal 2.5V with Sample-and-Hold disabled"},
-];
-if(!Common.isDeviceM0C()){
+let profileOptions = [];
+
+/* MSPM0H321X supports any internal voltage of only 4V */
+if(Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+    profileOptions.push({name: "INT_4_V", displayName: "Internal 4V with Sample-and-Hold disabled"});
+}
+else {
+    profileOptions.push({name: "INT_1_4_V", displayName: "Internal 1.4V with Sample-and-Hold using LFCLK"});
+    profileOptions.push({name: "INT_2_5_V", displayName: "Internal 2.5V with Sample-and-Hold disabled"});
+}
+
+if(!Common.isDeviceM0C() && !Common.isDeviceFamily_PARENT_MSPM0H321X()){
     profileOptions.push({name: "EXT_2_0_V", displayName: "External 2V"});
 }
+
 profileOptions.push({name: "CUSTOM", displayName: "Custom"});
 
 
@@ -270,7 +273,7 @@ let vrefConfig = [
                 displayName : "VREF Profiles",
                 description : 'Pre-defined profiles for typical VREF configurations',
                 longDescription: `
-The VREF module for the MSPM0Gxx family is a shared voltage reference module
+The VREF module  is a shared voltage reference module
 which can be leveraged by a variety on on-board analog peripherals.
 VREF allows users to choose between using an internally generated reference
 voltage or using an externally provided reference voltage from outside the MCU.
@@ -345,7 +348,7 @@ if(Common.isDeviceM0G()){
             },
         ]
         )
-    } else if(Common.isDeviceM0L() ){
+    } else if(Common.isDeviceM0L() || Common.isDeviceM0H()){
         vrefBasicConfig = vrefBasicConfig.concat(
             [
                 {
@@ -365,7 +368,7 @@ if(Common.isDeviceM0G()){
             ]
         )
     } else if(Common.isDeviceM0C()){
-        /* MSPM0C only supports internal VREF */
+        /* MSPM0C only supports an internal VREF */
         vrefBasicConfig = vrefBasicConfig.concat(
             [
                 {
@@ -415,24 +418,55 @@ When not enabled, VSS is used as ground reference.
                 getDisabledOptions: getVrefPinsDisabledOptions,
                 onChange    : onChangeVrefPins,
             },
-            {
-                name        : "basicIntVolt",
-                displayName : "Internal Voltage (V)",
-                description : 'Configures output voltage of internal VREF',
-                longDescription:`
-    When enabled as an internal source, VREF can be configured to output:
-    * 2.5V, or
-    * 1.4V
+        ]);
 
-    Consult datasheet for specifications. `,
-                hidden      : false,
-                default     : "DL_VREF_BUFCONFIG_OUTPUT_1_4V",
-                options     : [
-                    {name: "DL_VREF_BUFCONFIG_OUTPUT_1_4V", displayName: "1.4"},
-                    {name: "DL_VREF_BUFCONFIG_OUTPUT_2_5V", displayName: "2.5"},
-                ],
-                onChange    : onChangeBasicIntVolt,
-            },
+// M0H321X only supports an internal VREF of 4V
+if(Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+    vrefBasicConfig = vrefBasicConfig.concat([
+        {
+            name        : "basicIntVolt",
+            displayName : "Internal Voltage (V)",
+            description : 'Configures output voltage of internal VREF',
+            longDescription:`
+When enabled as an internal source, VREF can be configured to output:
+* 2.5V, or
+* 1.4V
+
+Consult datasheet for specifications. `,
+            hidden      : false,
+            default     : "DL_VREF_BUFCONFIG_OUTPUT_4V",
+            options     : [
+                //This is not actually a DL define. There is no bitfield to configure.
+                {name: "DL_VREF_BUFCONFIG_OUTPUT_4V", displayName: "4"},
+            ],
+            onChange    : onChangeBasicIntVolt,
+        },
+    ])
+}
+else {
+    vrefBasicConfig = vrefBasicConfig.concat([
+        {
+            name        : "basicIntVolt",
+            displayName : "Internal Voltage (V)",
+            description : 'Configures output voltage of internal VREF',
+            longDescription:`
+When enabled as an internal source, VREF can be configured to output:
+* 2.5V, or
+* 1.4V
+
+Consult datasheet for specifications. `,
+            hidden      : false,
+            default     : "DL_VREF_BUFCONFIG_OUTPUT_1_4V",
+            options     : [
+                {name: "DL_VREF_BUFCONFIG_OUTPUT_1_4V", displayName: "1.4"},
+                {name: "DL_VREF_BUFCONFIG_OUTPUT_2_5V", displayName: "2.5"},
+            ],
+            onChange    : onChangeBasicIntVolt,
+        },
+    ])
+}
+
+vrefBasicConfig = vrefBasicConfig.concat([
             {
                 name        : "basicExtVolt",
                 displayName : "External Voltage (V)",
@@ -482,8 +516,7 @@ application.`,
                 default     : false,
                 onChange    : onChangeSetCustomProfile,
             },
-        ]
-    );
+        ]);
 
     vrefConfig = vrefConfig.concat([
         /****** BASIC CONFIGURATION *******/
@@ -708,7 +741,7 @@ function moduleInstances(inst){
      */
     /* CONDITIONS CODE START */
     let vrefPosConfig, vrefNegConfig = false;
-    if(Common.isDeviceM0G() || (Common.isDeviceM0L() && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
+    if(Common.isDeviceM0G() || ((Common.isDeviceM0L() || Common.isDeviceM0H()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
         vrefPosConfig = true;
 
         if (inst.basicVrefPins == "VREF+-")
@@ -843,6 +876,18 @@ const profilesVref = [
         advSHSample     : 0,
         advSHHold       : 0,
     },
+    {
+        name            : "INT_4_V",
+        basicMode       : (["DL_VREF_ENABLE_ENABLE"]),
+        basicIntVolt    : "DL_VREF_BUFCONFIG_OUTPUT_4V",
+        basicVrefPins   : "VREF+",
+        advClockConfigEnable     : true,
+        advClkSrc       : "DL_VREF_CLOCK_LFCLK",
+        advClkDiv       : "DL_VREF_CLOCK_DIVIDE_1",
+        advSHEnable     : false,
+        advSHSample     : 0,
+        advSHHold       : 0,
+    }
 ];
 if(!Common.isDeviceM0C()){
     profilesVref.push({

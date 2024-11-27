@@ -28,4 +28,4 @@ MSPM0 LaunchPad, please visit the LP-MSPM0G3519 User's Guide.
 
 ## Example Usage
 
-Compile, load and run the example.
+Compile, load and run the example. There are software breakpoints after encryption and decryption gCorrectResult should be true if the result is expected.

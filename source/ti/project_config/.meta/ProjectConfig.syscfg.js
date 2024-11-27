@@ -89,8 +89,6 @@ function validate(inst, validation)
 
 }
 
-let deviceList = system.getScript("/ti/project_config/deviceList.js")
-
 let compilerConfig = {
     name: "compiler",
     displayName: "Compiler",

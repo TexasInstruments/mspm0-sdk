@@ -7,7 +7,7 @@ KERNEL_BUILD := $(MSPM0_SDK_INSTALL_DIR)/kernel/freertos/builds/LP_MSPM0G3519/re
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = main_freertos.obj ti_drivers_config.obj ti_msp_dl_config.obj uartcallback.obj freertos_ticlang_startup_mspm0g3519_ticlang.obj
+OBJECTS = main_freertos.obj ti_drivers_config.obj ti_msp_dl_config.obj uartcallback.obj freertos_ticlang_startup_mspm0g351x_ticlang.obj
 NAME = uart_callback
 
 CFLAGS += -I../.. \
@@ -62,7 +62,7 @@ uartcallback.obj: ../../uartcallback.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-freertos_ticlang_startup_mspm0g3519_ticlang.obj: ../../freertos/ticlang/startup_mspm0g3519_ticlang.c
+freertos_ticlang_startup_mspm0g351x_ticlang.obj: ../../freertos/ticlang/startup_mspm0g351x_ticlang.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

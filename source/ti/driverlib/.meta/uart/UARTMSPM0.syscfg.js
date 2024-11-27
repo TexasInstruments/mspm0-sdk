@@ -41,6 +41,18 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 let UARTCommon = system.getScript("/ti/driverlib/UART.common.js");
 
+/* Pull advanced UART instances from device data */
+let advancedUARTPeripherals = [];
+let instance = 0;
+let test = "UART" + instance;
+while(system.deviceData.peripherals[test]) {
+    if(system.deviceData.peripherals[test].attributes.SYS_UARTADV == 'true') {
+        advancedUARTPeripherals.push(test);
+    }
+    instance++;
+    test = "UART" + instance;
+}
+
 /*
  *  ======== validate ========
  *  Validate this inst's configuration
@@ -64,31 +76,12 @@ function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
     /* Verify if using UART Advanced instance */
-    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
-        if(inst.enableExtend){
-            if(!(/UART0/.test(solution))){
-                validation.logError("Extend features are only available on UART0 instances. Please select a UART0 instance from PinMux if available.",
-                    inst,"enableExtend");
-            }
+    if(inst.enableExtend) {
+        if(!advancedUARTPeripherals.includes(solution)) {
+            validation.logError("Extend features are only available on: " + advancedUARTPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
+            inst,"enableExtend");
         }
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-        if(inst.enableExtend){
-            if(!(/UART0|UART1/.test(solution))){
-                validation.logError("Extend features are only available on UART0 and UART1 instances. Please select a valid instance from PinMux if available.",
-                    inst,"enableExtend");
-            }
-        }
-    }
-    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
-        if(inst.enableExtend){
-            if(!(/UART0|UART7/.test(solution))){
-                validation.logError("Extend features are only available on UART0 and UART7 instances. Please select a valid instance from PinMux if available.",
-                    inst,"enableExtend");
-            }
-        }
-    }
-    // /* Retention Validation */
     Common.getRetentionValidation(inst,validation);
 }
 

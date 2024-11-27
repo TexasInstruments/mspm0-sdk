@@ -207,7 +207,14 @@ typedef struct
 */
 static bool I2CBaseValid(I2C_Regs *i2c)
 {
-    return ((i2c == (I2C_Regs *) I2C0_BASE)||(i2c == (I2C_Regs *) I2C1_BASE));
+    #if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
+        return ((i2c == (I2C_Regs *) I2C0_BASE)||(i2c == (I2C_Regs *) I2C1_BASE));
+    #elif ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X) || \
+       (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X))
+       return ((i2c == (I2C_Regs *) I2C0_BASE)||(i2c == (I2C_Regs *) I2C1_BASE)||(i2c == (I2C_Regs *) I2C2_BASE));
+    #else
+        return (i2c == (I2C_Regs *) I2C0_BASE);
+    #endif
 }
 
 /*!

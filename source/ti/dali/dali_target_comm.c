@@ -89,7 +89,6 @@ void DALI_Target_receive(uint8_t * rxBuffer)
     {
 
     }
-    DL_UART_Extend_drainRXFIFO(UART_0_INST, rxBuffer, DATA_SIZE);
     gReceive = false;
     if((rxBuffer[0] & 0x80) == 0x00){
         if(((rxBuffer[0] & 0x7F) >> 1) == gControlVar1.shortAddress){
@@ -399,7 +398,6 @@ void DALI_Target_transmit(void){
     if(gControlVar1.transmitDataFlag){
         delay_cycles(32000000 * 0.007);
         DL_UART_transmitData(UART_0_INST, gControlVar1.transmitData);
-        DL_UART_receiveDataBlocking(UART_0_INST);
     }
     gControlVar1.transmitDataFlag = false;
 }

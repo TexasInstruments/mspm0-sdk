@@ -59,9 +59,9 @@ These instructions are required in order to integrate the standalone SysConfig i
 3.1.1 Enabling SysConfig in CCS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-CCS 12.8.0 and CCS Theia 1.5.0+ include a SysConfig version which is compatible with MSPM0, thus not requiring any additional steps to use it. The steps below apply only when integrating a standalone version of SysConfig in cases such as upgrading the SysConfig version.
+Code Composer Studio (Eclipse) 12.8.0 and Code Composer Studio 20.0.0+ include a SysConfig version which is compatible with MSPM0, thus not requiring any additional steps to use it. The steps below apply only when integrating a standalone version of SysConfig in cases such as upgrading the SysConfig version.
 
-1. | Follow instructions from the `MSPM0 SDK QuickStart Guide for CCS Theia <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html>`__ to install CCS Theia for MSPM0.
+1. | Follow instructions from the `MSPM0 SDK QuickStart Guide for Code Composer Studio <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html>`__ to install Code Composer Studio for MSPM0.
    | Alternatively, follow instructions from the `MSPM0 SDK QuickStart Guide for CCS <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs.html>`__ to install CCS for MSPM0.
 
 2. Update CCS tool path. This can be done by clicking **Window→Preferences** then in the pop-up choose **Code Composer Studio→Products**, simply refresh after the install and the product should be found underneath SysConfig. Hit apply and close to make the change take effect.
@@ -72,7 +72,7 @@ CCS 12.8.0 and CCS Theia 1.5.0+ include a SysConfig version which is compatible 
 3.1.2 Importing MSPM0 SysConfig Project using CCS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. | Follow instructions in `MSPM0 SDK QuickStart Guide for CCS Theia <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html>`__ to install the MSPM0 SDK and import an example in CCS Theia.
+1. | Follow instructions in `MSPM0 SDK QuickStart Guide for Code Composer Studio <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html>`__ to install the MSPM0 SDK and import an example in Code Composer Studio.
    | Alternatively, follow instructions in `MSPM0 SDK QuickStart Guide for CCS <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs.html>`__ to install the MSPM0 SDK and import an example in CCS.
    | Refer to the `MSPM0 SDK Examples Guide <../../../../sdk_users_guide/doc_guide/doc_guide-srcs/examples_guide.html>`__ for a full list of examples with SysConfig support.
    | For an empty example, use the "empty" example.
@@ -270,7 +270,7 @@ The following steps describe how to start a SysConfig project using MSPM0 withou
 
 1. Run the standalone version of SysConfig
 
-2. SysConfig 1.21.x includes support for MSPM0 and supports M0 SDK:
+2. SysConfig 1.22.x includes support for MSPM0 and supports M0 SDK:
 
    .. figure:: ./images/sysconfig_guide/sysconfig_pre_installed_product.png
       :alt: 

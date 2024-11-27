@@ -1453,9 +1453,10 @@ __STATIC_INLINE bool DL_UART_isParityEnabled(UART_Regs *uart)
  *
  *  For 9-bit UART mode transmissions, the parity mode affects the address
  *  byte and data byte indication (9th bit). If DL_UART_PARITY_EVEN or
- *  DL_UART_PARITY_STICK_ZERO is enabled, then the transferred byte is a data
- *  byte.  If DL_UART_PARITY_EVEN or DL_UART_PARITY_STICK_ZERO is not enabled,
- *  then the transferred byte is an address byte.
+ *  DL_UART_PARITY_STICK_ZERO is enabled, then the transferred byte is an
+ *  address byte with Parity bit '1'. If DL_UART_PARITY_EVEN or
+ *  DL_UART_PARITY_STICK_ZERO is not enabled, then the transferred byte is an
+ *  address byte with Parity bit '0'.
  *
  *  @param[in]  uart    Pointer to the register overlay for the peripheral
  *  @param[in]  parity  Parity mode to set UART to.

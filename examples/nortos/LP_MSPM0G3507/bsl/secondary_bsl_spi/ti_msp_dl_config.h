@@ -162,7 +162,7 @@ void SYSCFG_DL_MCAN0_init(void);
 #define MSPM0_INFO_FLASH_START_ADDRESS ((uint32_t) 0x41C00000)
 #define MSPM0_INFO_FLASH_END_ADDRESS ((uint32_t) 0x41C00400)
 
-#define MSPM0_RAM_START_ADDRESS ((uint32_t) 0x20200000)
+#define MSPM0_RAM_START_ADDRESS ((uint32_t) 0x20000000)
 
 /*
  * Function declaration

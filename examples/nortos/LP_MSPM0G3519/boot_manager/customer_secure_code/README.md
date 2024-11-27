@@ -2,6 +2,11 @@
 
 This is a sample customer secure code showcasing several cybersecurity features of the device while retaining the ability to debug and evaluate/modify the example for a given application. It is designed to be used with either the ```customer_secure_image_with_bootloader``` or ```customer_secure_sample_image``` projects.
 
+## Requirements
+
+The ECC and SHA libaries used by this example are compiled with TI Clang 4.0.0 with Link Time Optimization (LTO). This is not compatible
+with previous versions of TI Clang (3.X and older). Thus, the user must download and use the updated TI Clang toolchain from [the product page](https://www.ti.com/tool/download/ARM-CGT-CLANG/4.0.0.LTS) if not installed already.
+
 ## Peripherals & Pin Assignments
 | Peripheral | Function | Pin | Launchpad Pin |
 | --- | --- | --- | --- |

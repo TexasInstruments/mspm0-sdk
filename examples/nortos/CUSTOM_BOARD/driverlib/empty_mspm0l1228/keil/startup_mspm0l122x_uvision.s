@@ -99,7 +99,7 @@ __Vectors       DCD     __initial_sp              ; Top of Stack
                 DCD     0                         ;  9:  Reserved
                 DCD     SPI0_IRQHandler           ; 10:  SPI0 interrupt handler
                 DCD     SPI1_IRQHandler           ; 11:  SPI1 interrupt handler
-                DCD     SPI2_IRQHandler           ; 12:  SPI2 interrupt handler
+                DCD     0                         ; 12:  Reserved
                 DCD     0                         ; 13:  Reserved
                 DCD     UART2_IRQHandler          ; 14:  UART2 interrupt handler
                 DCD     UART3_IRQHandler          ; 15:  UART3 interrupt handler
@@ -107,7 +107,7 @@ __Vectors       DCD     __initial_sp              ; Top of Stack
                 DCD     UART1_IRQHandler          ; 17:  UART1 interrupt handler
                 DCD     0                         ; 18:  Reserved
                 DCD     TIMA0_IRQHandler          ; 19:  TIMA0 interrupt handler
-                DCD     TIMA1_IRQHandler          ; 20:  TIMA1 interrupt handler
+                DCD     0                         ; 20:  Reserved
                 DCD     TIMG8_IRQHandler          ; 21:  TIMG8 interrupt handler
                 DCD     TIMG0_IRQHandler          ; 22:  TIMG0 interrupt handler
                 DCD     TIMG4_IRQHandler          ; 23:  TIMG4 interrupt handler
@@ -175,13 +175,11 @@ Default_Handler PROC
                 EXPORT  ADC0_IRQHandler           [WEAK]
                 EXPORT  SPI0_IRQHandler           [WEAK]
                 EXPORT  SPI1_IRQHandler           [WEAK]
-                EXPORT  SPI2_IRQHandler           [WEAK]
                 EXPORT  UART2_IRQHandler          [WEAK]
                 EXPORT  UART3_IRQHandler          [WEAK]
                 EXPORT  UART0_IRQHandler          [WEAK]
                 EXPORT  UART1_IRQHandler          [WEAK]
                 EXPORT  TIMA0_IRQHandler          [WEAK]
-                EXPORT  TIMA1_IRQHandler          [WEAK]
                 EXPORT  TIMG8_IRQHandler          [WEAK]
                 EXPORT  TIMG0_IRQHandler          [WEAK]
                 EXPORT  TIMG4_IRQHandler          [WEAK]
@@ -200,13 +198,11 @@ UART4_IRQHandler
 ADC0_IRQHandler
 SPI0_IRQHandler
 SPI1_IRQHandler
-SPI2_IRQHandler
 UART2_IRQHandler
 UART3_IRQHandler
 UART0_IRQHandler
 UART1_IRQHandler
 TIMA0_IRQHandler
-TIMA1_IRQHandler
 TIMG8_IRQHandler
 TIMG0_IRQHandler
 TIMG4_IRQHandler

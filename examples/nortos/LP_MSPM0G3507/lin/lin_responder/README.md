@@ -8,31 +8,31 @@ LIN is a feature only usable with a UART Extend instance.
 
 ## Peripherals & Pin Assignments
 
-| Peripheral | Pin | Function |
-| --- | --- | --- |
-| GPIOB | PB15 | Standard Output |
-| GPIOB | PB22 | Standard Output |
-| GPIOB | PB26 | Standard Output |
-| SYSCTL |  |  |
-| UART0 | PA11 | RX Pin |
-| UART0 | PA10 | TX Pin |
-| EVENT |  |  |
-| DEBUGSS | PA20 | Debug Clock |
-| DEBUGSS | PA19 | Debug Data In Out |
+| Peripheral | Pin  | Function          |
+| ---------- | ---- | ----------------- |
+| GPIOB      | PB15 | Standard Output   |
+| GPIOB      | PB22 | Standard Output   |
+| GPIOB      | PB26 | Standard Output   |
+| SYSCTL     |      |                   |
+| UART0      | PA11 | RX Pin            |
+| UART0      | PA10 | TX Pin            |
+| EVENT      |      |                   |
+| DEBUGSS    | PA20 | Debug Clock       |
+| DEBUGSS    | PA19 | Debug Data In Out |
 
 ## BoosterPacks, Board Resources & Jumper Settings
 
 Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad information, including user guide and hardware files.
 
-| Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
-| --- | --- | --- | --- | --- |
-| PB15 | GPIOB | PB15 | J2_17 | N/A |
-| PB22 | GPIOB | PB22 | J27_5 | <ul><li>PB22 can be connected to LED2 Blue<br><ul><li>`J5 ON` Connect to LED2 Blue<br><li>`J15 OFF` Disconnect from LED2 Blue</ul></ul> |
-| PB26 | GPIOB | PB26 | J27_8 | <ul><li>PB26 can be connected to LED2 Red<br><ul><li>`J6 ON` Connect to LED2 Red<br><li>`J6 OFF` Disconnect from LED2 Red</ul></ul> |
-| PA11 | UART0 | RX | J4_33/J26_6 | <ul><li>PA11 can be used as UART RX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br>  `J22 1:2`: Connects XDS-110 backchannel UART RX to `J101`<br>  `J101 7:8` Connects XDS-110 backchannel to UART RX<br><li>To use UART on boosterpack connector:<br>  `J22 2:3`: Connects UART RX to `J4_33`<br><li>To use on J26 CAN/LIN connector:<br>  `R63` is populated by default and connects pin to `J26_6`</ul></ul> |
-| PA10 | UART0 | TX | J4_34/J26_5 | <ul><li>PA10 can be used as UART TX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br>  `J21 1:2`: Connects XDS-110 backchannel UART TX to `J101`<br>  `J101 9:10` Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br>  `J21 2:3`: Connects UART TX to `J4_34`<br><li>To use on J26 CAN/LIN connector:<br>  `R62` is populated by default and connects pin to `J26_5`</ul></ul> |
-| PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
-| PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
+| Pin  | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
+| ---- | ---------- | -------- | ------------- | ------------------ |
+| PB15 | GPIOB      | PB15     | J2_17         | N/A                |
+| PB22 | GPIOB      | PB22     | J27_5         | <ul><li>PB22 can be connected to LED2 Blue<br><ul><li>`J5 ON` Connect to LED2 Blue<br><li>`J15 OFF` Disconnect from LED2 Blue</ul></ul> |
+| PB26 | GPIOB      | PB26     | J27_8         | <ul><li>PB26 can be connected to LED2 Red<br><ul><li>`J6 ON` Connect to LED2 Red<br><li>`J6 OFF` Disconnect from LED2 Red</ul></ul> |
+| PA11 | UART0      | RX       | J4_33/J26_6   | <ul><li>PA11 can be used as UART RX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br>  `J22 1:2`: Connects XDS-110 backchannel UART RX to `J101`<br>  `J101 7:8` Connects XDS-110 backchannel to UART RX<br><li>To use UART on boosterpack connector:<br>  `J22 2:3`: Connects UART RX to `J4_33`<br><li>To use on J26 CAN/LIN connector:<br>  `R63` is populated by default and connects pin to `J26_6`</ul></ul> |
+| PA10 | UART0      | TX       | J4_34/J26_5   | <ul><li>PA10 can be used as UART TX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br>  `J21 1:2`: Connects XDS-110 backchannel UART TX to `J101`<br>  `J101 9:10` Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br>  `J21 2:3`: Connects UART TX to `J4_34`<br><li>To use on J26 CAN/LIN connector:<br>  `R62` is populated by default and connects pin to `J26_5`</ul></ul> |
+| PA20 | DEBUGSS    | SWCLK    | N/A           | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
+| PA19 | DEBUGSS    | SWDIO    | N/A           | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the LP_MSPM0G3507 LaunchPad. Please
@@ -62,7 +62,7 @@ Connect the LIN Responder to a LIN BoosterPack with the following connections:
 - Responder TX          -> BoosterPack UATX (LIN TX)
 - Responder RX          -> BoosterPack UARX (LIN RX)
 
-Note: the BOOSTXL-CANFD-LIN BoosterPack is not directly compatible with the LP_MSPM0L1306 LaunchPad since the pins on the UART connector don't support LIN. For this reason, the BoosterPack shouldn't be stacked on top of the LaunchPad.
+Note: the BOOSTXL-CANFD-LIN BoosterPack is not directly compatible with the LP_MSPM0G3507 LaunchPad since the pins on the UART connector don't support LIN. For this reason, the BoosterPack shouldn't be stacked on top of the LaunchPad.
 
 Connect the LIN Commander BoosterPack and the LIN Responder BoosterPack using the LIN bus lines in J5.
 

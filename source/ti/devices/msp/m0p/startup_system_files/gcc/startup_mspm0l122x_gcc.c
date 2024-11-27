@@ -68,13 +68,11 @@ extern void UART4_IRQHandler    (void) __attribute__((weak, alias("Default_Handl
 extern void ADC0_IRQHandler     (void) __attribute__((weak, alias("Default_Handler")));
 extern void SPI0_IRQHandler     (void) __attribute__((weak, alias("Default_Handler")));
 extern void SPI1_IRQHandler     (void) __attribute__((weak, alias("Default_Handler")));
-extern void SPI2_IRQHandler     (void) __attribute__((weak, alias("Default_Handler")));
 extern void UART2_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void UART3_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void UART0_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void UART1_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void TIMA0_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
-extern void TIMA1_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void TIMG8_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void TIMG0_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
 extern void TIMG4_IRQHandler    (void) __attribute__((weak, alias("Default_Handler")));
@@ -119,7 +117,7 @@ void (* const interruptVectors[])(void) __attribute__ ((used)) __attribute__ ((s
     0,                                     /* Reserved                  */
     SPI0_IRQHandler,                       /* SPI0 interrupt handler    */
     SPI1_IRQHandler,                       /* SPI1 interrupt handler    */
-    SPI2_IRQHandler,                       /* SPI1 interrupt handler    */
+    0,                                     /* Reserved                  */
     0,                                     /* Reserved                  */
     UART2_IRQHandler,                      /* UART2 interrupt handler   */
     UART3_IRQHandler,                      /* UART3 interrupt handler   */
@@ -127,7 +125,7 @@ void (* const interruptVectors[])(void) __attribute__ ((used)) __attribute__ ((s
     UART1_IRQHandler,                      /* UART1 interrupt handler   */
     0,                                     /* Reserved                  */
     TIMA0_IRQHandler,                      /* TIMA0 interrupt handler   */
-    TIMA1_IRQHandler,                      /* TIMA1 interrupt handler   */
+    0,                                     /* Reserved                  */
     TIMG8_IRQHandler,                      /* TIMG8 interrupt handler   */
     TIMG0_IRQHandler,                      /* TIMG0 interrupt handler   */
     TIMG4_IRQHandler,                      /* TIMG4 interrupt handler   */

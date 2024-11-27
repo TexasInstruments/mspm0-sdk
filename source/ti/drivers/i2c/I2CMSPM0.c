@@ -824,7 +824,7 @@ static void I2CMSPM0_completeTransfer(I2C_Handle handle, uint32_t intStatus)
         object->transferCallbackFxn(handle, object->currentTransaction, false);
         object->currentTransaction->status = I2C_STATUS_CANCEL;
 
-        /*Power_releaseConstraint(PowerCC32XX_DISALLOW_LPDS);*/
+        /*Power_releaseConstraint(Power_DISALLOW_LPDS);*/
 
         /* also dequeue and call the transfer callbacks for any queued transfers */
         while (object->headPtr != object->tailPtr) {
@@ -854,7 +854,7 @@ static void I2CMSPM0_completeTransfer(I2C_Handle handle, uint32_t intStatus)
             (object->currentTransaction->status == I2C_STATUS_SUCCESS));
 
         /* Release constraint since transaction is done */
-        /* Power_releaseConstraint(PowerCC32XX_DISALLOW_LPDS);*/
+        /* Power_releaseConstraint(Power_DISALLOW_LPDS);*/
     } else {
         /* Another transfer needs to take place */
         object->headPtr = object->headPtr->nextPtr;

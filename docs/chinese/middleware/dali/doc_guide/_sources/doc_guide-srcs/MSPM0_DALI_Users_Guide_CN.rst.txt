@@ -1,30 +1,30 @@
 MSPM0 DALI 用户指南
 ===================
 
-1.引言
-------
+1. 简介
+-------
 
-`数字可寻址照明接口 （DALI） <https://www.dali-alliance.org/dali/>`__ 是一种数字照明控制串行协议，支持各种照明应用设备与控制器之间进行简单、高效的通信。
+`数字可寻址照明接口(DALI) <https://www.dali-alliance.org/dali/>`__\ 是一种数字照明控制串行协议、支持各种照明应用设备与控制器之间进行简单高效的通信。
 
 .. figure:: ./images/DALI_logo.png
    :alt: 
 
-**注意**\ ：“主”和“从”术语已过时，已分别替换为“控制器”和“设备”。
+**注意**\ ："主"和"从属"术语的使用被视为过时。 已分别替换为"控制器"和"设备"。
 
-MSPM0 SDK 提供了一种使用 MSPM0 的通用异步接收器发送器 （UART）模块启动开发 DALI 应用程序的简单方法，并包含以下部分：
+MSPM0 SDK 提供了一种使用 MSPM0的通用异步接收器发送器(UART)模块开始开发 DALI 应用程序的简单方法、并包含以下部分：
 
 -  对 DALI 2 的支持
 -  DALI 库的完整源代码
--  使用 SysConfig 的 UART 模块图形配置
+-  使用 SysConfig 的 UART (DALI Tx)和 TIMER (DALI Rx)模块的图形配置
 
-2.MSPM0 SDK 中的 DALI
----------------------
+2. MSPM0 SDK 中的 DALI
+----------------------
 
-MSPM0 SDK 中的 DALI 源代码原本应在 MSPM0 器件上运行。 此处的源代码实现侧重 DALI 的基本能力和功能，用于展示 MSPM0 器件通过 UART 处理 DALI 通信的能力。 此示例对常规类控制设备和 LED 模块类控制设备分别实施了 DALI 标准 IEC 62386-102 和 IEC 62386-207。 dali\_target\_commands.h/c 和 dali\_target\_led\_commands.h/c 文件中包含对 IEC 62386-102/207 要求的大多数特性的支持，例外情况标记在\ `已知问题 <#known-issues>`__\ 部分以及源代码中。 此实现中排除了面向 IEC 62386-102/207 的可选特性。 源代码也可供修改和编辑，因此客户可以根据需要修改或自定义任何特性。
+MSPM0 SDK 中的 DALI 源代码原本应在 MSPM0器件上运行。 此处的源代码实现侧重 DALI 的基本能力和功能、用于展示 MSPM0器件通过 UART 处理 DALI 通信的能力。 此示例对控制设备(通用)实施了 DALI 标准 IEC 62386-102、对控制设备(LED 模块)实施了 IEC 62386-207。 dali\_target\_commands.h/c 和 dali\_target\_led\_commands.h/c 文件中包含对 IEC 62386-102/207要求的大多数特性的支持、例外情况标记在\ `已知问题 <#known-issues>`__\ 部分以及源代码中。 此实现中排除了面向 IEC 62386-102/207的可选特性。 源代码也可用于修改和编辑、使客户能够根据需要修改或自定义任何功能。
 
-**注意**\ ：虽然源代码原本应在所有 MSPM0 器件上使用，但示例代码仅在 MSPM0L1306 上进行了测试和验证。
+**注意**\ ：虽然源代码是为在所有 MSPM0器件上使用而开发的、但示例代码仅在 MSPM0L1306上进行了测试和验证。
 
-**包含的特性**
+**包含功能**
 
 -  分别接收和发送 DALI 命令和响应的函数
 -  使用 EEPROM 在闪存中存储特定 DALI 信息并在启动时重新加载此类信息的模板函数
@@ -46,46 +46,62 @@ MSPM0 SDK 中的 DALI 源代码原本应在 MSPM0 器件上运行。 此处的�
    -  IEC 62386-207 支持线性淡出曲线（如果选择）
    -  如果为连接的器件启用了 LED 模块，则可以使用配置命令来选择调光曲线
 
-3.使用 SysConfig 为 DALI 配置 UART
-----------------------------------
+3. 使用 SysConfig 为 DALI 配置 UART 和 TIMER
+--------------------------------------------
 
-此示例中提供的源代码主要使用 PWM 控制 MSPM0 上的 LED。 但是，让 MSPM0 能够理解 DALI 命令的主要特性是 UART DALI 接口。 DALI 模式允许使用地址和地址掩码接收前向帧，并将命令存储在 RX FIFO 中，直到命令执行。 MSPM0 上的 UART 模块支持通过软件和硬件实现执行地址匹配，此示例中使用了软件实现版本。 请参阅以下各部分，了解通过 UART 成功启用 DALI 模式所需的所有特定配置。
+此示例中提供的源代码主要使用 PWM 控制 MSPM0上的 LED。 然而、使 MSPM0能够解释 DALI 命令的主要特性是通过计时器捕捉、以及通过 UART DALI 接口发送。 请参阅以下部分、了解成功启用 DALI 通信所需的所有特定配置。
 
-启用 DALI 模式
-~~~~~~~~~~~~~~
+注意：UART DALI 接口中的 Rx 模式目前不支持 DALI 规范中指定的半位持续时间的宽容差范围。
 
-在 SysConfig 中，导航到“Communications”选项卡下的“UART”模块
+启用 DALI Tx 模式
+~~~~~~~~~~~~~~~~~
+
+在 SysConfig 中、导航到"Communications"选项卡下的 UART 模块
 
 .. figure:: ./images/UART_under_communications.png
    :alt: 
 
-在标记为“Basic Configuration”的部分中，将“Target Baud Rate”更改为 1200，将“Stop Bits”数更改为 2。
+在标记为 Basic Configuration 的部分中、将 Target Baud Rate 更改为1200、将 STOP 位数更改为2。
 
 .. figure:: ./images/UART_basic_config.png
    :alt: 
 
-在标记为“Advanced Configuration”的部分中，选择“UART Mode”的下拉菜单，发现“DALI Mode”已禁用/不可选择。 导航到下面的“Extend Configuration”部分以及“Enable Extend Features”和“Enable Manchester Encoding”。 由于 DALI 模式是作为一种 UART 扩展特性提供的，而且 DALI 消息是按照 DALI 标准进行曼彻斯特编码的，所以需要选择以上两项。 选择这两个选项后，返回到“Advanced Configuration”部分，在“UART Mode”中选择“DALI Mode”。 对于“Address”和“Address Mask”，如果使用软件实现地址匹配，设置为 0。 启用两个 FIFO，将“RX FIFO Threshold”设置为“>= 2 Entries”，而将“TX FIFO Threshold”设置为“<= 1 entry”。 在“Advanced Configuration”部分中，最后一步是“Enable MSB first”。
+在标记为"Advanced Configuration"的部分中、选择"UART Mode"的下拉菜单、注意"DALI Mode"已禁用/不可选择。 导航到下面的"Extend Configuration"部分以及"Enable Extend Features"和"Enable Manchester Encoding"。 由于 DALI 模式是作为一种 UART 扩展特性提供的、并且 DALI 消息是按照 DALI 标准进行曼彻斯特编码的、所以需要选择这些选项。 选择这些选项后、返回到"Advanced Configuration"部分、在"UART Mode"中选择"DALI Mode"。 仅启用 TX 作为通信方向、并设置 TX FIFO Threshold <= 1条目。 在"Advanced Configuration"部分中、最后一步是"Enable MSB first"。
 
 .. figure:: ./images/UART_advanced_config_extend_config.png
    :alt: 
 
-DALI UART 配置
-~~~~~~~~~~~~~~
-
-在“Interrupt Configuration”部分中，启用“9 bit mode address match”和“Receive interrupt”。 如果使用硬件实现 DALI 的地址匹配，启用“9 bit mode address match”。 否则，仅使用“Receive interrupt”。
-
-.. figure:: ./images/UART_interrupt_config.png
-   :alt: 
-
-最后需要的 UART 配置是“Pin Configuration”部分。 对于 TX 引脚，选择“Enable pin configuration”，在“Digital IOMUX Features”中，仅启用“Invert”特性。 对 RX 引脚执行相同的操作， 反转引脚是为了正确解释控制器发出的 DALI 命令；如不反转引脚，器件会将广播命令读取为单独的命令，反之亦然。 它也可以影响命令解释为 DAPC 命令还是常规 DALI 命令。
+最后需要的 UART 配置是"Pin Configuration"部分。 对于 TX 引脚、选择 ENABLE 引脚配置、在"Digital IOMUX Features"中、仅启用"Invert"特性。
 
 .. figure:: ./images/UART_pin_config.png
    :alt: 
 
-4.示例应用程序 - LED 演示
+启用 DALI Rx 模式
+~~~~~~~~~~~~~~~~~
+
+在 SysConfig 中、导航到 TIMER-CAPTURE 模块的 TIMERS 选项卡下
+
+.. figure:: ./images/TIMER_basic_config.png
+   :alt: 
+
+将所需的 TIMER 周期设置为2ms、以检测停止条件。
+
+在标记为"Capture Configuration"的部分中、将"Input Capture"模式设置为"Multi"。 如下图所示配置捕获多输入配置
+
+.. figure:: ./images/TIMER_capture_config.png
+   :alt: 
+
+在捕获通道配置一节中、对于通道0和1、将输入模式设置为外部引脚 CCP1、并在需要时启用输入滤波。 将捕获边沿检测模式设置为通道0的下降沿检测和通道1的上升沿检测。
+
+.. figure:: ./images/TIMER_capture_channel_config.png
+   :alt: 
+
+在中断配置部分、启用加载事件、通道0比较递增事件和通道1比较递增事件中断。
+
+4. 示例应用程序- LED 演示
 -------------------------
 
-要求的物料
+所需材料
 
 -  `MSPM0L1306 LaunchPad(LP) <https://www.ti.com/product/MSPM0L1306>`__
 
@@ -100,14 +116,14 @@ DALI UART 配置
 
    -  |image3|
 
-要导入 DALI 示例，请在 Code Composer Studio （CCS）中选择“Import Project”，导航到 SDK 中的“Examples”文件夹，选择“DALI”，选择“MSPM0L”文件夹，导航到 ticlang 目录。 导入后，可以将代码闪存到器件上。
+要导入 DALI 示例、请在 Code Composer Studio (CCS)中选择"Import Project"、导航到 SDK 中的"Examples"文件夹、选择"DALI"、选择"MSPM0L"文件夹、导航到 ticlang 目录。 导入后、可以将代码刷写到器件中。
 
-要测试此示例，请将 DALI 2 Click 连接到 MSPM0，方法是将 RX 和 TX 引脚连接到 MSPM0L 器件上的相应引脚，同时将 Click 板上的 3.3V、5V 和 GND 引脚连接到 MSPM0L1306 LP 上的 3.3V、5V 和 GND 引脚。 把两根导线拧进 DALI 2 Click 上的螺纹接线端子中，再将这两根导线连接到 Hasseb DALI 2 控制器上的对应接线端子。 将电源连接到控制器，并将控制器上的 USB 连接到笔记本电脑。 将 MSPM0L1306 LP 连接到笔记本电脑，并通过 CCS 闪存示例。 示例闪存后，器件运行示例，启动 DALI 2 控制器 GUI 并按下“Initialize”。 一旦显示短地址、随机地址和器件类型，就可以开始向器件发送支持/实现的命令。 将看到器件上的 LED 响应支持的执行命令。
+要测试此示例、请将 DALI 2 Click 连接到 MSPM0、方法是将 RX 和 TX 引脚连接到 MSPM0L 器件上的相应引脚、同时将 Click 板上的3.3V、5V 和 GND 引脚连接到 MSPM0L1306 LP 上的3.3V、5V 和 GND 引脚。 将两根导线拧入 DALI 2 Click 上的螺纹接线端子、并将这些导线连接到 Hasseb DALI 2控制器上的相应接线端子。 将电源连接到控制器、并将控制器上的 USB 连接到笔记本电脑。 将 MSPM0L1306 LP 连接到笔记本电脑、并通过 CCS 刷写示例。 示例闪存后、器件运行示例、启动 DALI 2控制器 GUI 并按下"Initialize"。 一旦显示短地址、随机地址和器件类型、就可以开始向器件发送支持/实现的命令。 您将看到器件上的 LED 响应支持的执行命令
 
 修改示例应用程序
 ~~~~~~~~~~~~~~~~
 
-MSPM0L 的 DALI 实现源代码是可以编辑的。 因此，客户和用户可以重新实现或修改现有特性，以符合个人的规格。 某些特性可能因实现而异，例如器件识别和更新闪存中的变量。 这里列出了需要用户修改以实现的特性。 这些特性要么是特定于用户的，要么是已知问题。
+MSPM0L 的 DALI 实现源代码是可以编辑的。 这使客户和用户能够重新实现或修改现有功能、以符合个人规格。 某些特性可能因实现而异、例如器件识别和更新闪存中的变量。 下面列出了需要用户修改才能实现的功能。 这些功能要么是特定于用户的、要么是已知问题。
 
 -  更新闪存 - 控制设备结构中的变量，控制闪存何时获得更新的值。 在任何所需的函数中将此标志设置为 true，以触发主执行循环中的更新闪存程序。
 -  识别器件 - 此程序因用户而异，可利用 recall min 和 recall max 函数触发要切换的 LED
@@ -116,8 +132,8 @@ MSPM0L 的 DALI 实现源代码是可以编辑的。 因此，客户和用户可
 -  失败/状态位 - 可用的模板函数，但实现取决于客户
 -  延长淡出时间/快速淡出时间 - 参阅\ `已知问题 <#known-issues>`__
 
-5.已知问题
-----------
+5. 已知问题
+-----------
 
 -  仅支持 IEC62386-102:2014 的淡出时间
 

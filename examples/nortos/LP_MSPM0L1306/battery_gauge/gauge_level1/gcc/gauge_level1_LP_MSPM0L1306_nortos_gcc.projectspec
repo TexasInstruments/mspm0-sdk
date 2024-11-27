@@ -55,7 +55,7 @@
             -lgcc
             -lc
             -lm
-            -lnosys
+            --specs=nosys.specs
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
         description="The level1 gauge approach utilizes the ADC to implement a low-cost voltage detection solution">

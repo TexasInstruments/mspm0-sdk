@@ -53,7 +53,7 @@
             -lgcc
             -lc
             -lm
-            -lnosys
+            --specs=nosys.specs
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
         description="RTC sets calendar alarm and toggles GPIO when alarm is triggered">

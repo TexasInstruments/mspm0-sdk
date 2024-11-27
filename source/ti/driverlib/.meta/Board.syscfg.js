@@ -127,6 +127,22 @@ else if(["MSPM0G151X"].includes(Common.getDeviceName())){
         "GPIO", "AESADV", "CRCP", "RTCB", "TRNG", "SYSTICK", "DAC12", "WWDT", "MATHACL"
     ];
 }
+/* MSPM0L111X specific options */
+else if(["MSPM0L111X"].includes(Common.getDeviceName())){
+    MasterOrder = [
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "VREF","EVENT", "DMA",
+        "GPIO", "AESADV", "CRCP", "RTCB", "TRNG", "SYSTICK", "WWDT",
+    ];
+}
+/* MSPM0H321X specific options */
+else if(["MSPM0H321X"].includes(Common.getDeviceName())){
+    MasterOrder = [
+        "SYSCTL", "BEEPER", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "VREF", "EVENT", "DMA",
+        "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT",
+    ];
+}
 
 
 /* master sorted template list of modules */
@@ -328,6 +344,25 @@ for(let i = 0; i < MasterList.length; i ++){
     })
 }
 
+function getDefaultVDDA() {
+    if(Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+        return 5;
+    }
+    else {
+        return 3.3;
+    }
+}
+
+function getVDDARange() {
+    if(Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+        return [4.5, 5.5];
+    }
+    else {
+        return [1.62, 3.6];
+    }
+}
+
+
 let config = [
     {
         name: "GROUP_DEBUG",
@@ -499,9 +534,9 @@ Any conflicting configurations will be overriden by these settings.`,
                         name: "voltageVDDA",
                         displayName: "ADC VDDA (V)",
                         description: "Configure VDDA",
-                        default: 3.3,
+                        default: getDefaultVDDA(),
                         hidden: true,
-                        range: [1.62, 3.6],
+                        range: getVDDARange(),
                     },
                 ],
             },

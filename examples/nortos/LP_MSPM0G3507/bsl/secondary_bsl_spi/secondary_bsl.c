@@ -108,7 +108,7 @@ extern void Reset_Handler(void);
 volatile BSL_Config *pBSLConfig = (volatile BSL_Config *) &BSLConfig;
 volatile BCR_Config *pBCRConfig = (volatile BCR_Config *) &BCRConfig;
 #ifdef UART_Plugin
-#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20200120)
+#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20000170)
 const BSLPluginInfo Interface = {
     .plugin_type = BSL_CFG_PLUGIN_TYPE_UART,
     .init        = BSL_PI_UART_init,
@@ -119,7 +119,7 @@ const BSLPluginInfo Interface = {
 #endif
 
 #ifdef I2C_Plugin
-#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20200120)
+#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20000170)
 const BSLPluginInfo Interface = {
     .plugin_type = BSL_CFG_PLUGIN_TYPE_I2C,
     .init        = BSL_PI_I2C_init,
@@ -130,7 +130,7 @@ const BSLPluginInfo Interface = {
 #endif
 
 #ifdef SPI_Plugin
-#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20200120)
+#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20000170)
 const BSLPluginInfo Interface = {
     .plugin_type = BSL_CFG_PLUGIN_TYPE_ANY,
     .init        = BSL_PI_SPI_init,
@@ -142,7 +142,7 @@ const BSLPluginInfo Interface = {
 
 #ifdef CAN_Plugin
 const BSLPluginInfo Interface = {
-#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20200170)
+#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20000200)
     .plugin_type = BSL_CFG_PLUGIN_TYPE_ANY,
     .init        = BSL_PI_MCAN_init,
     .receive     = BSL_PI_MCAN_receive,

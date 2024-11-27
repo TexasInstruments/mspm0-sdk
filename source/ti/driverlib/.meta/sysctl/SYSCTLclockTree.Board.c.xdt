@@ -103,7 +103,7 @@
 % if(stat.forceDefaultClkConfig) {
 %    funcStr += "\t/* Set default configuration */"
 %    funcStr += "\n\tDL_SYSCTL_disableHFXT();"
-%    if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+%    if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
 %    funcStr += "\n\tDL_SYSCTL_disableSYSPLL();"
 %    }
 %    funcStr += "\n"

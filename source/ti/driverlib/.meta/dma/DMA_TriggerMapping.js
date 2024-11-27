@@ -74,6 +74,30 @@ let DMA_TRIGGERS = {
         "ADC0"  : ["DMA_ADC0_EVT_GEN_BD_TRIG"],
         "ADC1"  : ["DMA_ADC1_EVT_GEN_BD_TRIG"]
     },
+    MSPM0L111X: {
+        "SW"    : ["DMA_SOFTWARE_TRIG"],
+        "FSUB_0": ["DMA_GENERIC_SUB0_TRIG"],
+        "FSUB_1": ["DMA_GENERIC_SUB1_TRIG"],
+        "AES"   : ["DMA_AESADV_AES_0_TRIG", "DMA_AESADV_AES_1_TRIG"],
+        "ADC0"  : ["DMA_ADC0_EVT_GEN_BD_TRIG"],
+        "I2C0"  : ["DMA_I2C0_TX_TRIG", "DMA_I2C0_RX_TRIG"],
+        "SPI0"  : ["DMA_SPI0_RX_TRIG", "DMA_SPI0_TX_TRIG"],
+        "UART0" : ["DMA_UART0_RX_TRIG", "DMA_UART0_TX_TRIG"],
+        "UART1" : ["DMA_UART1_RX_TRIG", "DMA_UART1_TX_TRIG"],
+    },
+    MSPM0H321X: {
+        "SW"    : ["DMA_SOFTWARE_TRIG"],
+        "FSUB_0": ["DMA_GENERIC_SUB0_TRIG"],
+        "FSUB_1": ["DMA_GENERIC_SUB1_TRIG"],
+        "ADC0"  : ["DMA_ADC0_EVT_GEN_BD_TRIG"],
+        "I2C0"  : ["DMA_I2C0_TX_TRIG", "DMA_I2C0_RX_TRIG"],
+        "I2C1"  : ["DMA_I2C1_TX_TRIG", "DMA_I2C1_RX_TRIG"],
+        "I2C2"  : ["DMA_I2C2_TX_TRIG", "DMA_I2C2_RX_TRIG"],
+        "SPI0"  : ["DMA_SPI0_RX_TRIG", "DMA_SPI0_TX_TRIG"],
+        "UART0" : ["DMA_UART0_RX_TRIG", "DMA_UART0_TX_TRIG"],
+        "UART1" : ["DMA_UART1_RX_TRIG", "DMA_UART1_TX_TRIG"],
+        "UART2" : ["DMA_UART2_RX_TRIG", "DMA_UART2_TX_TRIG"],
+    },
 };
 
 let index = Common.getDeviceFamily();

@@ -40,7 +40,8 @@ GPIO1.associatedPins[0].assignedPortSegment = "Lower";
 GPIO1.associatedPins[0].assignedPin         = "0";
 GPIO1.associatedPins[0].pin.$assign         = "PA0";
 
-SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;
 
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;

@@ -829,7 +829,7 @@ __STATIC_INLINE bool DL_I2C_isControllerTXFIFOFull(I2C_Regs *i2c)
 __STATIC_INLINE bool DL_I2C_isControllerTXFIFOEmpty(I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK) ==
-            I2C_MFIFOSR_TXFIFOCNT_MAXIMUM);
+            DL_I2C_TX_FIFO_COUNT_MAXIMUM);
 }
 
 /**

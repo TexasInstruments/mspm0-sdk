@@ -61,35 +61,33 @@ DL_KEYSTORECTL_STATUS DL_KEYSTORECTL_writeKey(
     uint8_t numWords;
     volatile uint32_t *destPtr = (volatile uint32_t *) &keystorectl->KEYIN;
 
-    /* 1. Confirm valid status on the KEYSTORECTL */
+    /* 1. Configure the key write by writing size and slot */
+
+    DL_Common_updateReg(&keystorectl->KEYWR,
+        (((uint32_t) keyWrConfig->keySize) |
+            ((uint32_t) keyWrConfig->keySlot)),
+        (KEYSTORECTL_KEYWR_KEYSZSEL_MASK | KEYSTORECTL_KEYWR_KEYSLOTSEL_MASK));
+
+    /* 2. Confirm a valid write configuration (pre-existing condition may)
+     * not have been valid so we only check after writing the intended
+     * config
+     */
     status = DL_KEYSTORECTL_getStatus(keystorectl);
 
-    /* 2. Configure the key write by writing size and slot */
-    if (status == DL_KEYSTORECTL_STATUS_VALID) {
-        DL_Common_updateReg(&keystorectl->KEYWR,
-            (((uint32_t) keyWrConfig->keySize) |
-                ((uint32_t) keyWrConfig->keySlot)),
-            (KEYSTORECTL_KEYWR_KEYSZSEL_MASK |
-                KEYSTORECTL_KEYWR_KEYSLOTSEL_MASK));
-
-        /* 3. Confirm a valid write configuration */
-        status = DL_KEYSTORECTL_getStatus(keystorectl);
-    }
-
-    /* 4. Write key to the input buffer*/
+    /* 3. Write key to the input buffer*/
     if (status == DL_KEYSTORECTL_STATUS_VALID) {
         numWords = DL_KEYSTORECTL_getWordsFromSize(keyWrConfig->keySize);
 
         DL_KEYSTORECTL_loadData(destPtr, keyWrConfig->key, numWords);
 
-        /* 5. Loop until status is back to valid (no longer busy) */
+        /* 4. Loop until status is back to valid (no longer busy) */
         status = DL_KEYSTORECTL_getStatus(keystorectl);
         while (status == DL_KEYSTORECTL_STATUS_BUSY_RX) {
             status = DL_KEYSTORECTL_getStatus(keystorectl);
         }
     }
 
-    /* 6. Confirm key slots were successfully written */
+    /* 5. Confirm key slots were successfully written */
     slotNum   = (keyWrConfig->keySlot >> KEYSTORECTL_KEYWR_KEYSLOTSEL_OFS);
     validSlot = (1 << (slotNum + KEYSTORECTL_STATUS_VALID_OFS));
     if (status == DL_KEYSTORECTL_STATUS_VALID) {
@@ -121,11 +119,8 @@ DL_KEYSTORECTL_STATUS DL_KEYSTORECTL_transferKey(
 
         /* 3. Confirm a valid status and transfer configuration */
         status = DL_KEYSTORECTL_getStatus(keystorectl);
-    }
 
-    /* 4. Loop until status is back to valid */
-    if (status == DL_KEYSTORECTL_STATUS_VALID) {
-        status = DL_KEYSTORECTL_getStatus(keystorectl);
+        /* 4. Loop until status is back to valid */
         while (status == DL_KEYSTORECTL_STATUS_BUSY_TX) {
             status = DL_KEYSTORECTL_getStatus(keystorectl);
         }

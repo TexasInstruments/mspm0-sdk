@@ -15,7 +15,7 @@ The MSPM0 SDK provides an easy way to start development of DALI applications usi
 
 -  Support for DALI 2
 -  Full source code for DALI Library
--  Graphical configuration of UART module using SysConfig
+-  Graphical configuration of UART (DALI Tx) and TIMER (DALI Rx) module using SysConfig
 
 2. DALI in the MSPM0 SDK
 ------------------------
@@ -49,13 +49,15 @@ The DALI source code in the MSPM0 SDK was developed to be run on the MSPM0 devic
    -  IEC 62386-207 supports a linear fade curve if selected
    -  If LED Module is enabled for a connected device, it will allow you to use a configuration command to select a dimming curve
 
-3. Configuring the UART for DALI with SysConfig
------------------------------------------------
+3. Configuring the UART and TIMER for DALI with SysConfig
+---------------------------------------------------------
 
-The source code provided for this example is mostly for controlling the LED on the MSPM0 using a PWM. However, the key feature that enables the MSPM0 to interpret DALI commands is the UART DALI interface. DALI Mode enables the use of the address and address mask to receive forward frames and store the command in the RX FIFO's until they are executed. The UART module on the MSPM0 supports both a software and hardware implementation of performing address matching, of which the software version was used for this example. See the sections below for all the specific configurations needed to successfully enable DALI mode through UART.
+The source code provided for this example is mostly for controlling the LED on the MSPM0 using a PWM. However, the key feature that enables the MSPM0 to interpret DALI commands is through Timer Capture and to transmit is through UART DALI interface. See the sections below for all the specific configurations needed to successfully enable DALI Communication.
 
-Enable DALI Mode
-~~~~~~~~~~~~~~~~
+Note: Rx Mode in UART DALI interface currently doesn't support a wide tolerance range for half bit duration as specified in the DALI Spec.
+
+Enable DALI Tx Mode
+~~~~~~~~~~~~~~~~~~~
 
 In SysConfig, navigate to the UART module under the communications tab
 
@@ -67,23 +69,37 @@ In the section labeled Basic Configuration, change the Target Baud Rate to 1200,
 .. figure:: ./images/UART_basic_config.png
    :alt: 
 
-In the section labeled Advanced Configuration, select the drop-down menu for UART mode, and notice that DALI Mode is disabled/not available for selection. Navigate to the Extend Configuration section below and Enable Extend Features and Manchester Encoding. These selections are needed as DALI mode is available as an UART Extend feature, and DALI messages are Manchester encoded according to the DALI standards. Once these options are selected, go back to the Advanced Configuration section and select DALI mode for UART mode. For Address and Address Mask, set to 0 if using the software address match implementation. Enable both FIFO's, and set the RX FIFO Threshold to >= 2 Entries, while making the TX FIFO Threshold <= 1 entry. Enable MSB first as the final step for the Advanced Configuration section.
+In the section labeled Advanced Configuration, select the drop-down menu for UART mode, and notice that DALI Mode is disabled/not available for selection. Navigate to the Extend Configuration section below and Enable Extend Features and Manchester Encoding. These selections are needed as DALI mode is available as an UART Extend feature, and DALI messages are Manchester encoded according to the DALI standards. Once these options are selected, go back to the Advanced Configuration section and select DALI mode for UART mode. Enable only TX as the Communication Direction, and set the TX FIFO Threshold <= 1 entry. Enable MSB first as the final step for the Advanced Configuration section.
 
 .. figure:: ./images/UART_advanced_config_extend_config.png
    :alt: 
 
-DALI UART Configurations
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-In the Interrupt Configuration section, enable 9 bit mode address match and the Receive interrupt. The 9-bit mode address match is enabled if using the hardware implementation of address matching for DALI. Otherwise, only the Receive interrupt is used.
-
-.. figure:: ./images/UART_interrupt_config.png
-   :alt: 
-
-The final UART configuration required is the Pin Configuration section. For the TX pin, select enable pin configuration, and in the Digital IOMUX Features, only enable the invert feature. Do the same for the RX pin. The pins are inverted so that the DALI commands from the controller are interpreted correctly; without inverting the pins, the device reads broadcast commands as individual commands and vice versa. It can also impact whether a command is interpreted as a DAPC command or regular DALI command.
+The final UART configuration required is the Pin Configuration section. For the TX pin, select enable pin configuration, and in the Digital IOMUX Features, only enable the invert feature.
 
 .. figure:: ./images/UART_pin_config.png
    :alt: 
+
+Enable DALI Rx Mode
+~~~~~~~~~~~~~~~~~~~
+
+In SysConfig, navigate to the TIMER-CAPTURE module under the Timers tab
+
+.. figure:: ./images/TIMER_basic_config.png
+   :alt: 
+
+Set Desired Timer Period to 2ms for detecting stop condition.
+
+In the section labeled Capture Configuration, Set Input Capture mode as Multi. Configure Capture Multi Input Configuration as given in the picture below
+
+.. figure:: ./images/TIMER_capture_config.png
+   :alt: 
+
+In the section Capture Channel Configuration, for Both Channels 0 and 1, Set Input Mode as External Pin CCP1 and enable Input Filtering if needed. Set Capture Edge detection mode as Falling Edge detection for Channel 0 and Rising Edge detection for Channel 1.
+
+.. figure:: ./images/TIMER_capture_channel_config.png
+   :alt: 
+
+In the Interrupt Configuration section, enable Load event, Channel 0 compare up event and Channel 1 compare up event interrupt.
 
 4. Example Applications - LED Demo
 ----------------------------------
@@ -140,7 +156,7 @@ The source code to the DALI implementation for MSPM0L is available for editing. 
 
 -  Timing for Identify Device Command
 
-   -  Due to the limitations of the number of timers that can be enabled on the MSPM0L, and the desire to keep one timer available for a PWM controlling an LED, no timer is available to indivdually control the identify device process
+   -  Due to the limitations of the number of timers that can be enabled on the MSPM0L, and the desire to keep one timer available for a PWM controlling an LED and one timer for DALI Rx, no timer is available to indivdually control the identify device process
    -  However, the initialization timer is designed to run for 15 minutes, so it can be utilized for the identify device process as well
 
 -  Hasseb DALI 2 Controller GUI does not have support for LED commands

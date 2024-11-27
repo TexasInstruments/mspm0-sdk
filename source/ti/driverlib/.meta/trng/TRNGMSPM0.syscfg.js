@@ -85,8 +85,8 @@ function validatePinmux(inst, validation) {
  */
 function validate(inst, validation)
 {
-    /* TRNG is only available on M0G devices */
-    if (Common.isDeviceM0G())
+    /* TRNG is available on M0G and MSPM0L111X devices */
+    if (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L111X())
     {
         /* TRNG functional clock must be within allowed frequency range */
         if (inst.clockFreq > 25000000)

@@ -197,7 +197,6 @@ typedef enum IRQn
 #include <ti/devices/msp/peripherals/hw_iomux.h>
 #include <ti/devices/msp/peripherals/hw_keystorectl.h>
 #include <ti/devices/msp/peripherals/hw_lcd.h>
-#include <ti/devices/msp/peripherals/hw_lfss.h>
 #include <ti/devices/msp/peripherals/hw_rtc.h>
 #include <ti/devices/msp/peripherals/hw_spi.h>
 #include <ti/devices/msp/peripherals/hw_trng.h>

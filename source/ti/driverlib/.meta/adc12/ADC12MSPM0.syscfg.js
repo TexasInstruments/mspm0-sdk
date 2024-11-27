@@ -93,7 +93,7 @@ function isCNameOrNum(id)
  */
 function isAveragingEnabled()
 {
-    return(Common.isDeviceM0G() || Common.isDeviceM0L() || Common.isDeviceM0C());
+    return(Common.isDeviceM0G() || Common.isDeviceM0L() || Common.isDeviceM0C() || Common.isDeviceM0H());
 }
 
 /*
@@ -402,15 +402,21 @@ function validate(inst, validation)
 
 function getPinmuxResources(){
     let resources = [];
-    for(let ix = 0; ix < 26; ix++){
+    //Grab all ADC resources in device -> this does not include internal channels!
+    let adc_pins = Object.keys(system.deviceData.peripheralPins).filter(element => (element.includes("ADC")));
+    adc_pins = adc_pins.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+    for(let i = 0; i < adc_pins.length; i++) {
+        let channel_num = adc_pins[i].slice(-2);
+        if(channel_num.includes('.')) channel_num = adc_pins[i].slice(-1);
         resources.push(
             {
-                name:"adcPin"+ix,
-                displayName:"ADC12 Channel "+ix+" Pin",
-                interfaceNames:[ix.toString()],
+                name:"adcPin"+channel_num,
+                displayName:"ADC12 Channel "+channel_num+" Pin",
+                interfaceNames:[channel_num.toString()],
             },
         )
     }
+
     return resources;
 }
 
@@ -480,6 +486,12 @@ function pinmuxRequirements(inst)
             adcPin23: ["23"],
             adcPin24: ["24"],
             adcPin25: ["25"],
+            adcPin26: ["26"],
+            adcPin27: ["27"],
+            adcPin28: ["28"],
+            adcPin29: ["29"],
+            adcPin30: ["30"],
+            adcPin31: ["31"],
         }
     };
     /*
@@ -488,6 +500,8 @@ function pinmuxRequirements(inst)
      * M0L122X_L222X family can configure channels 0-25,29-31
      * M0C can configure channels 0-9,11,15
      * MSPM0GX51X can configure channels 0-15
+     * MSPM0L111X can configure Channels 0-9, 11-14,28,31
+     * MSPM0H321X can configure channels 0-26, 28, 29, 31
      */
     let ind = 0;
     for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
@@ -495,55 +509,26 @@ function pinmuxRequirements(inst)
             let tempIdx = inst["adcMem" + adcMemIdx.toString() + "chansel"]
             let tempIdxTrim = tempIdx.slice(20);
             ind = parseInt(tempIdxTrim);
-            /* Channels 1-8 Configuration */
-            if(ind<9){
-                if(!((adc.resources).includes(allResources[ind]))){
-                    adc.resources.push(allResources[ind])
+            try{
+                // if (system.deviceData.peripheralPins[inst.peripheral.$solution.peripheralName+"."+ind]) {
+                if((Object.keys(system.deviceData.peripheralPins).filter(element => (element.includes("ADC")&&(element.endsWith("."+ind))))).length){
+                    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12 && inst.disChan12){
+                        // do nothing
+                    }
+                    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X() && ind == 11 && inst.disChan11){
+                        // do nothing
+                    }
+                    else {
+                        //Find the resource with interface name equal to ind
+                        let resource = allResources.find((element) => element.interfaceNames == ind);
+                        if(!adc.resources.includes(resource)) {
+                            adc.resources.push(resource)
+                        }
+                    }
                 }
+            }catch (e) {
+                // do nothing
             }
-            /* MSPM0L11XX_L13XX, MSPM0C, MSPM0GX51X can also configure channel 9 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind<10){
-                if(!((adc.resources).includes(allResources[ind]))){
-                    adc.resources.push(allResources[ind])
-                }
-            }
-            /* MSPM0L122X_L222X and M0GX51X can also configure channel 10 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind==10){
-                if(!((adc.resources).includes(allResources[ind]))){
-                    adc.resources.push(allResources[ind])
-                }
-            }
-            /* MSPM0L122X_L222X can also configure channel 11 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) && ind==11){
-                if(!((adc.resources).includes(allResources[ind]))){
-                    adc.resources.push(allResources[ind])
-                }
-            }
-            /* MSPM0L122X_L222X and M0GX51X can also configure channels 12-14 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind>11 && ind<15){
-                if(!((adc.resources).includes(allResources[ind]))){
-                    adc.resources.push(allResources[ind])
-                }
-            }
-            /* MSPM0L122X_L222X can also configure channels 15-25 to pins */
-            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && ind>14 && ind<26){
-                if(!((adc.resources).includes(allResources[ind]))){
-                    adc.resources.push(allResources[ind])
-                }
-            }
-            /* Special case of M0G Channel 12 on MSPM0G1X0X_G3X0X */
-            if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12 && !inst.disChan12){
-                if(!((adc.resources).includes(allResources[ind]))){
-                    adc.resources.push(allResources[ind])
-                }
-            }
-            /* Special case of M0G Channel 11 on MSPM0GX51X */
-            if(Common.isDeviceFamily_PARENT_MSPM0GX51X() && ind == 11 && !inst.disChan11){
-                if(!((adc.resources).includes(allResources[ind]))){
-                    adc.resources.push(allResources[ind])
-                }
-            }
-
         }
     }
 
@@ -621,7 +606,7 @@ function updateGUIEnabledADCMem(inst,ui){
             "adcMem" + adcMemIdx.toString() + "channelConnection",
             // "adcMem" + adcMemIdx.toString() + "calcVoltage", // calcVoltage cannot be turned on always
         ];
-        if(Common.isDeviceM0G() || Common.isDeviceM0C()){
+        if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
             adcMemConfigs.push(
                 "adcMem" + adcMemIdx.toString() + "vrefDependency",
             )
@@ -664,7 +649,7 @@ function updateGUIVREF(inst,ui){
             isHidden = false;
             if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
                 /* un-hide VREF components, hide VDDA components */
-                if(Common.isDeviceM0G() || Common.isDeviceM0C()) {
+                if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()) {
                     ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = isHidden;
                 }
                 else if(Common.isDeviceM0L()){
@@ -678,7 +663,7 @@ function updateGUIVREF(inst,ui){
                 /* un-hide VDDA components, hide VREF components */
                 ui["adcMem"+adcMemIdx.toString()+"getVDDA"].hidden = isHidden;
 
-                if(Common.isDeviceM0G() || Common.isDeviceM0C()) {
+                if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()) {
                     ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = !isHidden;
                 }
                 else if(Common.isDeviceM0L()){
@@ -701,7 +686,7 @@ function calculateVREFDependency(inst,adcMemIdx){
     if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VDDA"){
         calcDependency="DL_ADC12_REFERENCE_VOLTAGE_VDDA"
     }
-    else if(Common.isDeviceM0G() || Common.isDeviceM0C()){
+    else if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
         if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
             if(vrefMode=="DL_VREF_ENABLE_ENABLE"){
                 calcDependency="DL_ADC12_REFERENCE_VOLTAGE_INTREF"
@@ -1278,23 +1263,18 @@ let adcMem_configs = [
     }
 ]
 
-const chanselRange = 32;
 const channelSelectOptions = [];
-for(let chanselIdx = 0; chanselIdx < chanselRange; chanselIdx++){
+let channelList = InternalConnections.ADC12_channels;
+for(let chanselIdx = 0; chanselIdx < channelList.length; chanselIdx++){
     /*
      * MSPM0G1X0X_G3X0X can configure Channels 0-8,11-15
      * M0L11XX_L13XX family can configure channels 0-9, 11-15
      * M0L122X_L222X family can configure channels 0-25,29-31
      * M0C can configure channels 0-9,11,15
      * MSPM0GX51X can configure channels 0-15
+     * MSPM0L111X can configure Channels 0-9, 11-14,28,31
      */
-    if(!(chanselIdx == 9  && Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()) &&
-        !(chanselIdx == 10 && (Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C())) &&
-        !(([12,13,14].includes(chanselIdx)) && (Common.isDeviceM0C())) &&
-        ((!((chanselIdx) > 15 && !Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()))) &&(![26,27,28].includes(chanselIdx)))
-    {
-        channelSelectOptions.push({name: "DL_ADC12_INPUT_CHAN_"+chanselIdx.toString(),displayName: "Channel "+chanselIdx.toString()})
-    }
+    channelSelectOptions.push({name: "DL_ADC12_INPUT_CHAN_"+channelList[chanselIdx].toString(),displayName: "Channel "+channelList[chanselIdx].toString()})
 }
 
 
@@ -1407,7 +1387,7 @@ function calculateConversionRate(inst,adcMemIdx){
         convTime = (convTimeStruct[inst.sampClkFreqRange][inst.resolution])/inst.sampleClk_Freq;
     }
     /* MSPM0L-specific options */
-    else if(Common.isDeviceM0L() || Common.isDeviceM0C()){
+    else if(Common.isDeviceM0L() || Common.isDeviceM0C() || Common.isDeviceM0H()){
         if(inst.resolution  == "DL_ADC12_SAMP_CONV_RES_12_BIT"){
             convTime = 14/inst.sampleClk_Freq;
         }
@@ -1449,7 +1429,7 @@ function calculateVoltage(inst, adcMemIdx){
     let vrefInstance = system.modules["/ti/driverlib/VREF"];
 
     if (vrefInstance){
-        if(Common.isDeviceM0G() || Common.isDeviceM0C()){
+        if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
             vrefVoltage = (vrefInstance.$static.basicVREFVoltage)
         }
         else if(Common.isDeviceM0L()){
@@ -1477,6 +1457,11 @@ function calculateVoltage(inst, adcMemIdx){
 function getVDDAVoltage(inst, adcMemIdx){
 
     let vddaVoltage = 3.3;
+
+    /* VDDA voltage default to 5V for M0H321X */
+    if(Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+        vddaVoltage = 5;
+    }
 
     let vddaInstance = system.modules["/ti/driverlib/Board"];
 
@@ -1816,7 +1801,7 @@ The Quick Profile Options are:
             });
     }
 
-    if(Common.isDeviceM0L() || Common.isDeviceM0C()){quickProfilesConfig.push(
+    if(Common.isDeviceM0L() || Common.isDeviceM0C() || Common.isDeviceM0H()){quickProfilesConfig.push(
     {
                 name        : "chosenProfile",
                 displayName : "ADC12 Profiles",
@@ -1883,7 +1868,7 @@ function getClockOptions(inst)
         {name: "DL_ADC12_CLOCK_ULPCLK", displayName: "ULPCLK"},
     ];
 
-    if (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C())
+    if (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceM0H())
     {
         clockOptions.push(
             {name: "DL_ADC12_CLOCK_HFCLK", displayName: "HFCLK"},
@@ -2754,7 +2739,7 @@ function moduleInstances(inst){
      */
     /* CONDITIONS CODE START */
     // ADC Channel 0-9 Pins
-    let adcConfig = [...new Array(26)].map(() => false);
+    let adcConfig = [...new Array(32)].map(() => false);
 
     let ind = 0;
     for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){

@@ -19,13 +19,23 @@ For more details on the Flash plugin refer to [MSPM0 Bootloader User's Guide](ht
 This example can be used to register new CAN interface implementation.
 
 NOTE:
+---
 * While creating Custom Flash plugin make sure that, Flash region in which the
 Flash plugin resides and Non-main Flash memory are Static write protected in the BCR configuration.
 * Otherwise there are chances for device to get locked during the Bootloading process.
 * Refer to "boot_config.c" and "boot_config.h" to understand the configuration used for Non Main.
 * This BSL example uses "bsl_mcan_flash_interface.syscfg" for the initalization and configuration of CAN modules
+* The following SRAM memory are marked as reserved for the ROM BSL execution
+    * 0x20000000 to 0x20000160
+    * 0x20007EE0 to 0x20007FFF
+* The Plugin used for SRAM is allotted from 0x20000160
 
-
+TIPS:
+---
+* If SRAM size for plugin(0xFF) configured in Non main is not sufficient, 
+  users can consume required space at the end of first Buffer in SRAM, 
+  but this will impact the maximum BSL packet size.
+  The plugin SRAM size in BSL user config can be updated to 0 and free that space for buffers.
 
 ## Peripherals & Pin Assignments
 

@@ -4,6 +4,11 @@ This example will provide a beginning beta implementation of the boot image mang
 
 It is highly recommended to read the users guide found in```docs/*/middleware/boot_manager/Boot_Image_Manager_Users_guide.html``` prior to running the example.
 
+## Requirements
+
+The ECC and SHA libaries used by this example are compiled with TI Clang 4.0.0 with Link Time Optimization (LTO). This is not compatible
+with previous versions of TI Clang (3.X and older). Thus, the user must download and use the updated TI Clang toolchain from [the product page](https://www.ti.com/tool/download/ARM-CGT-CLANG/4.0.0.LTS) if not installed already.
+
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |

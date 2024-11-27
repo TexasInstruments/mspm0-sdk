@@ -893,7 +893,7 @@ void DL_FlashCTL_unprotectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
         if (DL_SYSCTL_isExecuteFromUpperFlashBank() && numBanks > 1) {
             /* physical sectors are swapped. Calculate physical sector to
              * determine use of CMDWEPROTA */
-            if (sectorNumber > (mainFlashSize / 2)) {
+            if (sectorNumber >= (mainFlashSize / 2)) {
                 physicalSectorNumber = sectorNumber - (mainFlashSize / 2);
             } else {
                 physicalSectorNumber = sectorNumber + (mainFlashSize / 2);
@@ -983,7 +983,7 @@ void DL_FlashCTL_protectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
         if (DL_SYSCTL_isExecuteFromUpperFlashBank() && numBanks > 1) {
             /* physical sectors are swapped. Calculate physical sector to
              * determine use of CMDWEPROTA */
-            if (sectorNumber > (mainFlashSize / 2)) {
+            if (sectorNumber >= (mainFlashSize / 2)) {
                 physicalSectorNumber = sectorNumber - (mainFlashSize / 2);
             } else {
                 physicalSectorNumber = sectorNumber + (mainFlashSize / 2);
@@ -1002,8 +1002,8 @@ void DL_FlashCTL_protectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
                 /* Single bank system */
                 if (DL_FactoryRegion_getNumBanks() == (uint32_t) 1) {
                     sectorMask =
-                        ((uint32_t) 1 << ((
-                             sectorInBank - (uint32_t) 32 / (uint32_t) 8)));
+                        (uint32_t) 1
+                        << ((sectorInBank - (uint32_t) 32) / (uint32_t) 8);
                     flashctl->GEN.CMDWEPROTB |= sectorMask;
                 } else { /* Multi bank system */
                     sectorMask =

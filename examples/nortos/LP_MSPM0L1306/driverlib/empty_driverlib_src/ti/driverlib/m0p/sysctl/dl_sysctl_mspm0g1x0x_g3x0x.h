@@ -333,7 +333,7 @@ typedef struct {
     DL_SYSCTL_SYSPLL_MCLK sysPLLMCLK;
     /*! SYSPLL reference clock source. @ref DL_SYSCTL_SYSPLL_REF */
     DL_SYSCTL_SYSPLL_REF sysPLLRef;
-    /*! PLL feedback clock divider. [0x01,0x7F,1] => [/1,/127,1] */
+    /*! PLL feedback clock divider. [0x01,0x7E,1] => [/2,/127,1] */
     uint32_t qDiv;
     /*! PLL reference clock divider. @ref DL_SYSCTL_SYSPLL_PDIV */
     DL_SYSCTL_SYSPLL_PDIV pDiv;
@@ -431,6 +431,8 @@ typedef enum {
     DL_SYSCTL_ULPCLK_DIV_1 = (SYSCTL_MCLKCFG_UDIV_NODIVIDE),
     /*! ULPCLK is MCLK divided by 2 */
     DL_SYSCTL_ULPCLK_DIV_2 = (SYSCTL_MCLKCFG_UDIV_DIVIDE2),
+    /*! ULPCLK is MCLK divided by 3 */
+    DL_SYSCTL_ULPCLK_DIV_3 = (SYSCTL_MCLKCFG_UDIV_DIVIDE3),
 } DL_SYSCTL_ULPCLK_DIV;
 
 /** @enum DL_SYSCTL_LFXT_DRIVE_STRENGTH */

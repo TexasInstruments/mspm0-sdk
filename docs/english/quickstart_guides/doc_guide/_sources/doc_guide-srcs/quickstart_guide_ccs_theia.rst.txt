@@ -1,26 +1,26 @@
-MSPM0 SDK QuickStart Guide for CCS Theia
-========================================
+MSPM0 SDK QuickStart Guide for Code Composer Studio
+===================================================
 
 1. Introduction
 ---------------
 
-This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with CCS Theia.
+This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with Code Composer Studio.
 
-This guide is not intended to explain the functionality of CCS Theia. Please refer to the documentation available through the Help menu in CCS Theia or the `CCS Theia IDE Guide for MSPM0 MCUs <../../../tools/ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide.html>`__ included with the MSPM0 SDK documentation.
+This guide is not intended to explain the functionality of Code Composer Studio. Please refer to the documentation available through the Help menu in CCS or the `Code Composer Studio IDE Guide for MSPM0 MCUs <../../../tools/ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide.html>`__ included with the MSPM0 SDK documentation.
 
 2. Prerequisites
 ----------------
 
 The user is expected to have downloaded and installed the following:
 
--  `CCS Theia <https://www.ti.com/tool/CCSTUDIO>`__
+-  `Code Composer Studio <https://www.ti.com/tool/CCSTUDIO>`__
 
-3. Start a MSPM0 project on CCS Theia
--------------------------------------
+3. Start a MSPM0 project on Code Composer Studio
+------------------------------------------------
 
-1.  Open CCS Theia. The Getting Started page will show up, or it can be opened by selecting **Help** → **Getting Started**.
+1.  Open Code Composer Studio. The Getting Started page will show up, or it can be opened by selecting **Help** → **Getting Started**.
 
-    Note that CCS Theia will automatically detect a MSPM0 LaunchPad if connected.
+    Note that Code Composer Studio will automatically detect a MSPM0 LaunchPad if connected.
 
     .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_gettingstarted.png
        :alt: 
@@ -32,14 +32,14 @@ The user is expected to have downloaded and installed the following:
     -  Device or Launchpad
     -  Project to open, note that a brief description is provided and search filters can be used
     -  Project name
-    -  Compiler, note that CCS Theia support TI Arm Clang and Arm GCC
+    -  Compiler, note that Code Composer Studio support TI Arm Clang and Arm GCC
     -  RTOS or No-RTOS, if available for example
 
     .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_projectwizard.png
        :alt: 
 
 4.  Click on **Create**.
-5.  If the MSPM0 SDK hasn't been installed, CCS Theia will request to install it. Any other dependencies such as compilers can also be installed.
+5.  If the MSPM0 SDK hasn't been installed, Code Composer Studio will request to install it. Any other dependencies such as compilers can also be installed.
 
     .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_projectwizard_install.png
        :alt: 
@@ -80,7 +80,7 @@ The user is expected to have downloaded and installed the following:
 
 TI Resource Explorer (TI-Rex) helps you find all the latest examples, libraries, demo applications, datasheets, and more for your chosen platform.
 
-This tool is available at https://dev.ti.com/tirex, but it’s also integrated into CCS Theia allowing for a more integrated user experience.
+This tool is available at https://dev.ti.com/tirex, but it’s also integrated into Code Composer Studio allowing for a more integrated user experience.
 
 .. figure:: ./images/quickstart_guide_ccs_theia/theia_qsg_tirex_project.png
    :alt: 

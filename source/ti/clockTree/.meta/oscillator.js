@@ -91,7 +91,7 @@ function validateM0GSYSOSC(inst, validation)
 
 function validateM0LSYSOSC(inst, validation) {
 
-    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
+    if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X())) {
         let sysctl = system.modules["/ti/driverlib/SYSCTL"];
         if(sysctl && sysctl.$static.clockTreeEn) {
             let mod = system.modules["/ti/clockTree/mux.js"];
@@ -100,7 +100,8 @@ function validateM0LSYSOSC(inst, validation) {
                 validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", lfxtMux, "inputSelect");
             }
         }
-
+    }
+    if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X())) {
         /* Special Case Validation for ROSC */
         if(inst.enableROSC){
             validation.logInfo("PA2 is being configured for ROSC and should not be used for other pin selections.", inst, "enableROSC");
@@ -179,6 +180,9 @@ function validate(inst, validation)
             case "MSPM0C":
                 validateM0CSYSOSC(inst, validation);
                 break;
+            case "MSPM0H":
+                validateM0LSYSOSC(inst, validation);
+                break;
             default:
                 throw "family not recognized";
                 break;
@@ -191,7 +195,7 @@ function pinmuxRequirements(inst)
     let resources = [];
     // CLOCKTREE ROSC
     if(!inst.disableSYSOSC && inst.enableROSC){
-        if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
             resources.push({
                 name            : "roscPin",
                 displayName     : "ROSC",

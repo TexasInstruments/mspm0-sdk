@@ -43,8 +43,8 @@ LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/gcc/m0p/rts/mspm0l11x
     -lgcc \
     -lc \
     -lm \
-    -lnosys \
-    --specs=nano.specs
+    --specs=nano.specs \
+    --specs=nosys.specs
 
 all: $(NAME).out
 

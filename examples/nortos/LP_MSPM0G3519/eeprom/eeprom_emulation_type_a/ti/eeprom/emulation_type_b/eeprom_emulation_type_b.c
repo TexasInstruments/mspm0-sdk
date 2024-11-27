@@ -122,8 +122,14 @@ uint32_t EEPROM_TypeB_writeDataItem(uint16_t Identifier, uint32_t Data,
     DL_FlashCTL_executeClearStatus(FLASHCTL);
     DL_FlashCTL_unprotectSector(
         FLASHCTL, WriteDataItemAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
+#ifdef __MSPM0_HAS_ECC__
+    FlashAPIState = DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
+        FLASHCTL, WriteDataItemAddress, &ItemArray64[0]);
+#else
     FlashAPIState = DL_FlashCTL_programMemoryFromRAM64(
         FLASHCTL, WriteDataItemAddress, &ItemArray64[0]);
+#endif
+
     if (FlashAPIState == DL_FLASHCTL_COMMAND_STATUS_FAILED)
         return EEPROM_EMULATION_WRITE_ERROR;
 

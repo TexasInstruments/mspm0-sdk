@@ -796,6 +796,14 @@ configAdvanced.push(
                 onChange: onChangeCrossTrigger,
             },
             {
+                name: "etselMainTriggerValue",
+                displayName: "mainTriggerEtselValue",
+                description: "ETSEL value for API",
+                hidden: true,
+                default: 0,
+                getValue: (inst) => Common.getMainTriggerETSELValue(inst)
+            },
+            {
                 name: "mainCTSubscriberChannel",
                 displayName: "Subscriber Channel ID",
                 description: "Corresponding Channel of The Subscriber Port",
@@ -1736,44 +1744,55 @@ function validatePinmux(inst, validation) {
     /* Validate Timer instance supports Shadow load */
     if(inst.enableShadowLoad){
 
-        if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
-            if(!(/TIMG4/.test(solution))){
-                validation.logError("Shadow Load is only supported on Timer G4 instances. Please select a Timer G4 instance from PinMux if available.",inst,"enableShadowLoad");
+        var errorStr = "Shadow Load for this device is only supported by timer instance(s): <VALID_INSTANCE>. Please select one of these Timer instances from Pinmux."
+
+        /* Loop through peripherals and generate list of timers that matches to
+         * this regexp of timers that support shadow load.
+         */
+        var validInstances = []
+        for(var key in system.deviceData.peripherals) {
+            if((/TIMA/.test(key)) || (/TIMG(4|5|6|7)/.test(key))){
+                validInstances.push(key);
             }
         }
-        else if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-            if(!(/TIMA/.test(solution)) && !(/TIMG4/.test(solution))){
-                validation.logError("Shadow Load is only supported on Timer A instances and Timer G4 instances . Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
-            }
+
+        validInstances.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+        if (validInstances.length == 0) {
+            errorStr = "Shadow Load is not supported by this device.";
+        } else {
+            errorStr = errorStr.replace("<VALID_INSTANCE>",validInstances.toString())
         }
-        else if (Common.isDeviceM0G()){
-            if(!(/TIMA/.test(solution)) && !(/TIMG6|TIMG7/.test(solution))){
-                validation.logError("Shadow Load is only supported on Timer A instances and Timer G6-G7 instances . Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
-            }
-        }
-        else if (Common.isDeviceM0C()){
-            if(!(/TIMA/.test(solution))){
-                validation.logError("Shadow Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enableShadowLoad");
-            }
+
+        if(!(validInstances.includes(solution))){
+            validation.logError(errorStr,inst,"enableShadowLoad");
         }
     }
 
     /* Validate Timer instance supports Phase load */
     if(inst.enablePhaseLoad){
-        if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-            if(!(/TIMA/.test(solution))){
-                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
+        var errorStr = "Phase Load for this device is only supported by timer instance(s): <VALID_INSTANCE>. Please select one of these Timer instances from Pinmux."
+
+        /* Loop through peripherals and generate list of timers that matches to
+         * this regexp of timers that support phase load.
+         */
+        var validInstances = []
+        for(var key in system.deviceData.peripherals) {
+            if((/TIMA/.test(key))){
+                validInstances.push(key);
             }
         }
-        else if (Common.isDeviceM0G()){
-            if(!(/TIMA/.test(solution))){
-                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
-            }
+
+        validInstances.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+        if (validInstances.length == 0) {
+            errorStr = "Phase Load is not supported by this device.";
+        } else {
+            errorStr = errorStr.replace("<VALID_INSTANCE>",validInstances.toString())
         }
-        else if (Common.isDeviceM0C()){
-            if(!(/TIMA/.test(solution))){
-                validation.logError("Phase Load is only supported on Timer A instances. Please select a valid Timer instance from PinMux if available.",inst,"enablePhaseLoad");
-            }
+
+        if(!(validInstances.includes(solution))){
+            validation.logError(errorStr,inst,"enablePhaseLoad");
         }
     }
 

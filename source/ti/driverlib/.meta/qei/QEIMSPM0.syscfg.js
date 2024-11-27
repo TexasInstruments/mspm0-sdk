@@ -640,6 +640,14 @@ generator actions.`,
 
                 },
                 {
+                    name: "etselMainTriggerValue",
+                    displayName: "mainTriggerEtselValue",
+                    description: "ETSEL value for API",
+                    hidden: true,
+                    default: 0,
+                    getValue: (inst) => Common.getMainTriggerETSELValue(inst)
+                },
+                {
                     name: "secondaryCrossTriggerConfig",
                     displayName: "Secondary Cross Trigger Configuration",
                     longDescription: `Enable this module to be triggered by other timer modules`,

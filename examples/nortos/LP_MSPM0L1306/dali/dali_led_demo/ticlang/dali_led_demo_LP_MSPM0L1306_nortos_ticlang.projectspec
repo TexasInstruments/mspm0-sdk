@@ -58,11 +58,15 @@
         </file>
         <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
         </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/dali/dali_gpio_comm.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/dali">
+        </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/dali/dali_target_comm.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/dali">
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/dali/dali_target_command.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/dali">
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/dali/dali_target_led_command.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/dali">
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/dali/dali_gpio_comm.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/dali">
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/dali/dali_target_comm.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="ti/dali">
         </file>

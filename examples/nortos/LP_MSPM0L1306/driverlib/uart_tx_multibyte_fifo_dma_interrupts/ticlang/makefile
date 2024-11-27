@@ -5,7 +5,9 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
+SYSCONFIG_GUI_TOOL = $(dir $(SYSCONFIG_TOOL))sysconfig_gui$(suffix $(SYSCONFIG_TOOL))
 SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler ticlang --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
+SYSCFG_GUI_CMD_STUB = $(SYSCONFIG_GUI_TOOL) --compiler ticlang --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
 SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../uart_tx_multibyte_fifo_dma_interrupts.syscfg)
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
@@ -47,6 +49,18 @@ $(SYSCFG_FILES): syscfg
 syscfg: ../uart_tx_multibyte_fifo_dma_interrupts.syscfg
 	@ echo Generating configuration files...
 	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
+
+
+# Helpful hint that the user needs to use a standalone SysConfig installation
+$(SYSCONFIG_GUI_TOOL):
+	$(error $(dir $(SYSCONFIG_TOOL)) does not contain the GUI framework \
+        necessary to launch the SysConfig GUI.  Please set SYSCONFIG_TOOL \
+        (in your SDK's imports.mak) to a standalone SysConfig installation \
+        rather than one inside CCS)
+
+syscfg-gui: ../uart_tx_multibyte_fifo_dma_interrupts.syscfg $(SYSCONFIG_GUI_TOOL)
+	@ echo Opening SysConfig GUI
+	@ $(SYSCFG_GUI_CMD_STUB) $<
 
 define C_RULE
 $(basename $(notdir $(1))).obj: $(1) $(SYSCFG_H_FILES)

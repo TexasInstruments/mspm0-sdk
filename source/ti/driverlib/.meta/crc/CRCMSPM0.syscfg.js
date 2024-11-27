@@ -93,7 +93,7 @@ const profilesCRC = [
 /*
  * Polynomial Configuration:
  * MSPM0G / MSPM0L support 32 and 16-bit polynomial.
- * MSPM0C only supports 16-bit polynomial
+ * MSPM0C / MSPM0H only supports 16-bit polynomial
  */
 let polyOptions = [];
 if(Common.isDeviceM0G() || Common.isDeviceM0L()){
@@ -241,7 +241,7 @@ The Quick Profile Options are:
 /*
  * Polynomial Configuration:
  * MSPM0G / MSPM0L support 32 and 16-bit polynomial.
- * MSPM0C only supports 16-bit polynomial
+ * MSPM0C / MSPM0H only supports 16-bit polynomial
  */
 let polyConfig = {
     name        : "polynomial",
@@ -256,7 +256,7 @@ The CRC Polynomial can be configured to used the following options:\n
     options     : polyOptions,
     onChange    : onChangeCfgPoly,
 };
-if(Common.isDeviceM0C()){
+if(Common.isDeviceM0C() || Common.isDeviceM0H()){
     polyConfig = {
         name        : "polynomial",
         displayName : "CRC Polynomial",
@@ -269,7 +269,7 @@ if(Common.isDeviceM0C()){
         default     : "16_POLYNOMIAL",
         options     : polyOptions,
         onChange    : onChangeCfgPoly,
-        readOnly    : Common.isDeviceM0C(),
+        readOnly    : Common.isDeviceM0C() || Common.isDeviceM0H(),
     };
 }
 
@@ -353,8 +353,8 @@ the valid ranges based on the CRC polynomial selected:
     },
 ])
 
-/* CRC does not support DMA configuration for MSPM0Cxx */
-if(!Common.isDeviceM0C()){
+/* CRC does not support DMA configuration for MSPM0Cxx or MSPM0Hxx */
+if(!Common.isDeviceM0C() && !Common.isDeviceM0H()){
 CRCConfig = CRCConfig.concat([
     {
         name: "GROUP_DMA",

@@ -235,12 +235,12 @@ const uint_least8_t CONFIG_GPIO_LED_0_CONST = CONFIG_GPIO_LED_0;
 #define CONFIG_I2C_COUNT 1
 
 /*
- *  ======== i2cCC32XXObjects ========
+ *  ======== i2cObjects ========
  */
 I2CMSPM0_Object I2CMSPM0Objects[CONFIG_I2C_COUNT];
 
 /*
- *  ======== i2cCC32XXHWAttrs ========
+ *  ======== i2cHWAttrs ========
  */
 const I2CMSPM0_HWAttrs I2CMSPM0HWAttrs[CONFIG_I2C_COUNT] = {
     /* CONFIG_I2C_CONTROLLER */

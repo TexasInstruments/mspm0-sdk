@@ -46,6 +46,13 @@ int main(void)
     DL_GPIO_clearPins(
         GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN | GPIO_LEDS_USER_TEST_PIN);
 
+    /*
+     * Configures timer to be halted if CPU is halted. This ensures
+     * that timer is always aligned with the WWDT so it is never serviced
+     * too late or too early.
+     */
+    DL_Timer_setCoreHaltBehavior(TIMER_0_INST, DL_TIMER_CORE_HALT_IMMEDIATE);
+
     /* Start TimerG counter */
     DL_TimerG_startCounter(TIMER_0_INST);
 

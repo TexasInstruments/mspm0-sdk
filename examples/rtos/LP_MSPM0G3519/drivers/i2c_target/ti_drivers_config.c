@@ -254,12 +254,12 @@ const GPIO_Config GPIO_config = {.configs = (GPIO_PinConfig *) gpioPinConfigs,
 #define CONFIG_I2CTARGET_COUNT 1
 
 /*
- *  ======== i2cCC32XXObjects ========
+ *  ======== i2cObjects ========
  */
 I2CTargetMSPM0_Object I2CTargetMSPM0Objects[CONFIG_I2CTARGET_COUNT];
 
 /*
- *  ======== i2cCC32XXHWAttrs ========
+ *  ======== i2cHWAttrs ========
  */
 const I2CTargetMSPM0_HWAttrs I2CTargetMSPM0HWAttrs[CONFIG_I2CTARGET_COUNT] = {
     /* CONFIG_I2C_Target */

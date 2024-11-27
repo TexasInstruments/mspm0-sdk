@@ -684,6 +684,14 @@ configAdvanced.push(
                 onChange: onChangeCrossTrigger,
             },
             {
+                name: "etselMainTriggerValue",
+                displayName: "mainTriggerEtselValue",
+                description: "ETSEL value for API",
+                hidden: true,
+                default: 0,
+                getValue: (inst) => Common.getMainTriggerETSELValue(inst)
+            },
+            {
                 name: "mainCTSubscriberChannel",
                 displayName: "Subscriber Channel ID",
                 description: "Corresponding Channel of The Subscriber Port",

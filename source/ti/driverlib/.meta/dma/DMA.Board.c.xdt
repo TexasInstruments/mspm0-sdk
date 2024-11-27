@@ -255,12 +255,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
     DL_DMA_clearInterruptStatus(DMA, DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL`inst.channelID`);
     DL_DMA_enableInterrupt(DMA, DL_DMA_FULL_CH_INTERRUPT_EARLY_CHANNEL`inst.channelID`);
 % } // if inst.enableEarlyInterrupt
-% if(inst.srcIncrement !== "UNCHANGED"){
-    DL_DMA_setSrcIncrement(DMA, `instName`_CHAN_ID, DL_DMA_ADDR_`inst.srcIncrement`);
-% } //if inst.srcIncrement !== "UNCHANGED"
-% if(inst.destIncrement !== "UNCHANGED"){
-    DL_DMA_setDestIncrement(DMA, `instName`_CHAN_ID, DL_DMA_ADDR_`inst.destIncrement`);
-% } //if inst.destIncrement !== "UNCHANGED"
 % if(inst.configureTransferSize){
     DL_DMA_setTransferSize(DMA, `instName`_CHAN_ID, `inst.transferSize`);
 % } //if inst.configureTransferSize

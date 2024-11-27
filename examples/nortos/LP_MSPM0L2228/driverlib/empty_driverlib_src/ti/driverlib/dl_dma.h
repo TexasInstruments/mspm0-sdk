@@ -68,7 +68,7 @@ extern "C" {
 #define DEVICE_HAS_DMA_FULL_CHANNEL
 #endif
 
-#if (DMA_SYS_MMR_LLONG == 1)
+#ifdef DMA_SYS_MMR_LLONG
 /*!
  * @brief Device has support for DMA 128-bit access on all channels
  */

@@ -379,6 +379,10 @@ static FACTORYREGION_OPEN_Regs                  * const FACTORYREGION           
 
 #define DMA_SYS_N_DMA_CHANNEL                         (12)      /* !< Number of DMA channels implemented in DMA. */
 #define DMA_SYS_N_DMA_FULL_CHANNEL                    (6)       /* !< Number of FULL-DMA channels implemented in DMA. */
+#define DMA_SYS_MMR_AUTO                              (1)       /* !< Boolean for if auto enable channels implemented in DMA. */
+#define DMA_SYS_MMR_EM                                (1)       /* !< Boolean for if extended mode channels implemented in DMA. */
+#define DMA_SYS_MMR_LLONG                             (1)       /* !< Boolean for if channels implemented in DMA with 128-bit access. */
+#define DMA_SYS_MMR_STRIDE                            (1)       /* !< Boolean for if channels implemented in DMA with stride mode. */
 #define FLASHCTL_SYS_DATAWIDTH                        (128)     /* !< Data bit width of a single flash word. */
 #define ADC_SYS_NUM_ANALOG_CHAN                       (16)      /* !< Number of analog channels. */
 #define I2C_SYS_FENTRIES                              (8)       /* !< Number of FIFO entries */

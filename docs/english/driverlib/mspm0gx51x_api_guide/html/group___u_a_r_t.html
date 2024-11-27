@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0GX51X Driver Library
-   &#160;<span id="projectnumber">2.02.00.05</span>
+   &#160;<span id="projectnumber">2.03.00.07</span>
    </div>
   </td>
  </tr>
@@ -2919,7 +2919,7 @@ DL_UART_setTXDPin </dd></dl>
 </div><div class="memdoc">
 
 <p>Set the parity mode. </p>
-<p>For 9-bit UART mode transmissions, the parity mode affects the address byte and data byte indication (9th bit). If DL_UART_PARITY_EVEN or DL_UART_PARITY_STICK_ZERO is enabled, then the transferred byte is a data byte. If DL_UART_PARITY_EVEN or DL_UART_PARITY_STICK_ZERO is not enabled, then the transferred byte is an address byte.</p>
+<p>For 9-bit UART mode transmissions, the parity mode affects the address byte and data byte indication (9th bit). If DL_UART_PARITY_EVEN or DL_UART_PARITY_STICK_ZERO is enabled, then the transferred byte is an address byte with Parity bit '1'. If DL_UART_PARITY_EVEN or DL_UART_PARITY_STICK_ZERO is not enabled, then the transferred byte is an address byte with Parity bit '0'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">uart</td><td>Pointer to the register overlay for the peripheral </td></tr>

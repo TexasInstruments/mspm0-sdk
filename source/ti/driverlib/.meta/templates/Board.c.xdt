@@ -112,7 +112,12 @@ SYSCONFIG_WEAK void SYSCFG_DL_init(void)
 %}
 % /* generate init calls in priority order */
 % /* loop over all modules in the current configuration */
+% let lfssKeys = [];
 % for (let i = 0; i < keys.length; i++) {
+%       if(keys[i] == "/ti/driverlib/RTCA" || keys[i] == "/ti/driverlib/IWDT" || keys[i] == "/ti/driverlib/TAMPERIO") {
+%           lfssKeys.push(keys[i]);
+%           continue;
+% }
 %       let mod = system.modules[keys[i]];
 %           if (mod.templates && mod.templates.boardc && mod.templates.Call) {
 %           /* load its template and expand it with args */
@@ -160,6 +165,22 @@ SYSCONFIG_WEAK void SYSCFG_DL_init(void)
 %%}
     SYSCFG_DL_SYSCTL_CLK_init();
 %   }
+%}
+% if(lfssKeys.length > 0) {
+%    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
+        /* Ensure VBAT Power domain status is good before any initialization */
+    while ((DL_SYSCTL_getStatus() & (DL_SYSCTL_STATUS_VBAT_GOOD)) !=
+        (DL_SYSCTL_STATUS_VBAT_GOOD));
+%    }
+%   for(let i = 0; i < lfssKeys.length; i++) {
+%       let mod = system.modules[lfssKeys[i]];
+%           if (mod.templates && mod.templates.boardc && mod.templates.Call) {
+%           /* load its template and expand it with args */
+%           let gen = system.getTemplate(mod.templates.boardc);
+%     /* ==== `mod.$name` initialization ==== */
+`_.trimEnd(gen(mod,"Call"))`
+%       }
+%}
 %}
 % /* Retention: ensure backup structure has no valid state */
 % if(retentionCount>0){

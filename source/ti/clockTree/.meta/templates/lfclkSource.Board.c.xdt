@@ -62,7 +62,7 @@
 
     let lfclkStr = ""
 
-    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
 
         /* Traverse the MCLK table to look for clock source */
         if(_.endsWith(lfxtMuxInst.inputSelect, "FALSE")){

@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_02_00_05.html",
+    "location": "../../release_notes_mspm0_sdk_2_03_00_07.html",
     "mainCategories": [
         [
             "Documents"
@@ -183,7 +183,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../manifest_mspm0_sdk_2_02_00_05.html",
+    "location": "../../manifest_mspm0_sdk_2_03_00_07.html",
     "mainCategories": [
         [
             "Documents"
@@ -354,12 +354,14 @@
     ]
 },
 {
-    "name": "Code Composer Studio (CCS) Theia IDE Guide",
+    "name": "Code Composer Studio IDE Guide",
     "tags": [
-        "Code Composer Studio (CCS) Theia IDE Guide",
+        "Code Composer Studio IDE Guide",
         "Documentation",
         "Tools",
+        "CCS IDE Guide",
         "CCS Theia IDE Guide",
+        "Code Composer Studio Theia IDE Guide",
         "Code Composer Studio Theia IDE Guide",
         "CCS Theia",
         "Visual Studio Code",
@@ -370,7 +372,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../docs/english/tools/ccs_theia_ide_guide/Code_Composer_Studio_Theia_IDE_for_MSPM0_MCUs.html",
+    "location": "../../docs/english/tools/ccs_theia_ide_guide/Code_Composer_Studio_IDE_for_MSPM0_MCUs.html",
     "mainCategories": [
         [
             "Documents"
@@ -381,9 +383,9 @@
     ]
 },
 {
-    "name": "Code Composer Studio (CCS) IDE Guide",
+    "name": "Code Composer Studio v12 (Eclipse) IDE Guide",
     "tags": [
-        "Code Composer Studio (CCS) IDE Guide",
+        "Code Composer Studio v12 (Eclipse) IDE Guide",
         "Documentation",
         "Tools",
         "CCS IDE Guide",
@@ -398,7 +400,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../docs/english/tools/ccs_ide_guide/Code_Composer_Studio_IDE_for_MSPM0_MCUs.html",
+    "location": "../../docs/english/tools/ccs_ide_guide/Code_Composer_Studio_v12_Eclipse_IDE_for_MSPM0_MCUs.html",
     "mainCategories": [
         [
             "Documents"
@@ -882,6 +884,27 @@
     ]
 },
 {
+    "name": "Universal FOC Motor Control User Guide",
+    "tags": [
+        "Universal FOC Control User Guide",
+        "Documentation"
+    ],
+    "devices": ["$(MSPM0G1x0x_G3x0x_devices)"],
+    "devtools": ["$(MSPM0G1x0x_G3x0x_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/motor_control_universal_foc/Universal_FOC_Motor_Control_User_Guide.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "Motor Control"
+    ]
+},
+{
     "name": "Secure Booting User's Guide",
     "tags": [
         "Secure Booting User's Guide",
@@ -1085,7 +1108,7 @@
     ]
 },
 {
-    "name": "Code Composer Studio (CCS) Theia Quick Start Guide",
+    "name": "Code Composer Studio Quick Start Guide",
     "tags": [
         "Code Composer Studio (CCS) Theia Quick Start Guide",
         "Documentation",
@@ -1119,7 +1142,7 @@
     ]
 },
 {
-    "name": "Code Composer Studio (CCS) Quick Start Guide",
+    "name": "Code Composer Studio v12 (Eclipse) Quick Start Guide",
     "tags": [
         "Code Composer Studio (CCS) Quick Start Guide",
         "Documentation",
@@ -1240,7 +1263,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_02_00_05.html",
+    "location": "../../release_notes_mspm0_sdk_2_03_00_07.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -1571,14 +1594,16 @@
     ]
 },
 {
-    "name": "Code Composer Studio (CCS) Theia IDE 指南",
+    "name": "Code Composer Studio IDE 指南",
     "tags": [
-        "Code Composer Studio (CCS) Theia IDE 指南",
-        "Code Composer Studio (CCS) Theia IDE Guide",
+        "Code Composer Studio IDE 指南",
+        "Code Composer Studio IDE Guide",
         "Documentation",
         "Tools",
+        "CCS IDE Guide",
         "CCS Theia IDE Guide",
         "Code Composer Studio Theia IDE Guide",
+        "Code Composer Studio IDE Guide",
         "CCS Theia",
         "Visual Studio Code",
         "VS Code",
@@ -1588,7 +1613,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../docs/chinese/tools/ccs_theia_ide_guide/Code_Composer_Studio_Theia_IDE_for_MSPM0_MCUs_CN.html",
+    "location": "../../docs/chinese/tools/ccs_theia_ide_guide/Code_Composer_Studio_IDE_for_MSPM0_MCUs_CN.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -1599,10 +1624,10 @@
     ]
 },
 {
-    "name": "Code Composer Studio (CCS) IDE 指南",
+    "name": "Code Composer Studio v12 (Eclipse) IDE 指南",
     "tags": [
-        "Code Composer Studio (CCS) IDE 指南",
-        "Code Composer Studio (CCS) IDE Guide",
+        "Code Composer Studio v12 (Eclipse) IDE 指南",
+        "Code Composer Studio v12 (Eclipse) IDE Guide",
         "Documentation",
         "Tools",
         "CCS IDE Guide",
@@ -1617,7 +1642,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../docs/chinese/tools/ccs_ide_guide/Code_Composer_Studio_IDE_for_MSPM0_MCUs_CN.html",
+    "location": "../../docs/chinese/tools/ccs_ide_guide/Code_Composer_Studio_v12_Eclipse_IDE_for_MSPM0_MCUs_CN.html",
     "mainCategories": [
         [
             "Documents - Chinese"
@@ -2115,6 +2140,27 @@
     ]
 },
 {
+    "name": "Universal FOC Motor Control User Guide",
+    "tags": [
+        "Universal FOC Control User Guide",
+        "Documentation"
+    ],
+    "devices": ["$(MSPM0G1x0x_G3x0x_devices)"],
+    "devtools": ["$(MSPM0G1x0x_G3x0x_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/motor_control_universal_foc/Universal_FOC_Motor_Control_User_Guide.html",
+    "mainCategories": [
+        [
+            "Documents - Chinese"
+        ]
+    ],
+    "subCategories": [
+        "Middleware 中间件",
+        "电机控制"
+    ]
+},
+{
     "name": "Secure Booting 指南",
     "tags": [
         "Secure Booting 指南",
@@ -2324,7 +2370,7 @@
     ]
 },
 {
-    "name": "Code Composer Studio (CCS) Theia 快速上手指南",
+    "name": "Code Composer Studio 快速上手指南",
     "tags": [
         "Code Composer Studio (CCS) Theia 快速上手指南",
         "Code Composer Studio (CCS) Theia Quick Start Guide",
@@ -2359,7 +2405,7 @@
     ]
 },
 {
-    "name": "Code Composer Studio (CCS) 快速上手指南",
+    "name": "Code Composer Studio v12 (Eclipse) 快速上手指南",
     "tags": [
         "Code Composer Studio (CCS) 快速上手指南",
         "Code Composer Studio (CCS) Quick Start Guide",

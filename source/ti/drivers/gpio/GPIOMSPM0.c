@@ -71,7 +71,8 @@ static const PortConfig portConfigs[NUM_PORTS] = {
     {GPIOA_INT_IRQn, GPIOA_BASE},
 };
 
-#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)
+#elif ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X) || \
+       (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X))
 
 #define NUM_PORTS (2)
 #define PORTA_INDEX (0)
@@ -182,8 +183,6 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
     uint32_t pinIndex            = 0;
     uint32_t flagIndex           = 0;
     uint32_t pendingIntMaskGPIOA = 0;
-    uint32_t pendingIntMaskGPIOB = 0;
-    uint32_t pendingIntMaskGPIOC = 0;
 
     /* Determine if a GPIO interrupt occurred, not another group element */
     uint32_t groupIIDX = DL_Interrupt_getPendingGroup(DL_INTERRUPT_GROUP_1);
@@ -221,7 +220,9 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
         }
 #if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X) || \
      (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X) || \
-     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X))
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) ||       \
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X))
+        uint32_t pendingIntMaskGPIOB = 0;
         pendingIntMaskGPIOB =
             DL_GPIO_getEnabledInterruptStatus(GPIOB, ALL_INTERRUPTS_MASK);
         DL_GPIO_clearInterruptStatus(GPIOB, ALL_INTERRUPTS_MASK);
@@ -242,6 +243,7 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
 #endif
 #if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X) || \
      (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X))
+        uint32_t pendingIntMaskGPIOC = 0;
         pendingIntMaskGPIOC =
             DL_GPIO_getEnabledInterruptStatus(GPIOC, ALL_INTERRUPTS_MASK);
         DL_GPIO_clearInterruptStatus(GPIOC, ALL_INTERRUPTS_MASK);
@@ -442,7 +444,7 @@ void GPIO_write(uint_least8_t index, unsigned int value)
 
     /* Write the value to the GPIO pins */
     if (value) {
-        DL_GPIO_writePins(port, pinMask);
+        DL_GPIO_setPins(port, pinMask);
     } else {
         DL_GPIO_clearPins(port, pinMask);
     }

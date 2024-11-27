@@ -46,12 +46,22 @@
 <p>CAN flash plugin image shall be built like any other application and will be loaded to main flash. Once this plugin image is loaded, the CAN interface will become active in interface list along with UART, I2C during BSL ROM Auto detection phase. To revert the device to disable ROM CAN interface, use SWD_Factory_Reset.</p>
 <p>For more details on the Flash plugin refer to <a href="https://www.ti.com/lit/slau887">MSPM0 Bootloader User’s Guide</a>.</p>
 <p>This example can be used to register new CAN interface implementation.</p>
-<p>NOTE:</p>
+<h2 id="note">NOTE:</h2>
 <ul>
 <li>While creating Custom Flash plugin make sure that, Flash region in which the Flash plugin resides and Non-main Flash memory are Static write protected in the BCR configuration.</li>
 <li>Otherwise there are chances for device to get locked during the Bootloading process.</li>
 <li>Refer to “boot_config.c” and “boot_config.h” to understand the configuration used for Non Main.</li>
 <li>This BSL example uses “bsl_mcan_flash_interface.syscfg” for the initalization and configuration of CAN modules</li>
+<li>The following SRAM memory are marked as reserved for the ROM BSL execution
+<ul>
+<li>0x20000000 to 0x20000160</li>
+<li>0x20007EE0 to 0x20007FFF</li>
+</ul></li>
+<li>The Plugin used for SRAM is allotted from 0x20000160</li>
+</ul>
+<h2 id="tips">TIPS:</h2>
+<ul>
+<li>If SRAM size for plugin(0xFF) configured in Non main is not sufficient, users can consume required space at the end of first Buffer in SRAM, but this will impact the maximum BSL packet size. The plugin SRAM size in BSL user config can be updated to 0 and free that space for buffers.</li>
 </ul>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
@@ -167,7 +177,7 @@
 </ul>
 <p>Compile, load the example. Set up Initial CAN configurations as * CAN Mode : Classical CAN (BRS disabled) * Nominal Speed : 1 Mbps * Sampling point : 87.5</p>
 <p>Create BSL invocation condition using BSL Invoke pin or any other invocation methods. Send Connection command from the host. BSL Acknowledgement should be received. Send GetDeviceInfo command from the host. BSL should respond back with the CAN interface Flash plugin version information. Similarly Send erase, program, verification commands to program data in the memory.</p>
-<h1 id="note">Note</h1>
+<h1 id="note-1">Note</h1>
 <ul>
 <li>The Example is configured to work in CAN mode initially at 1 Mbps.</li>
 <li>To change the bitrate of communication based on the configuration obtained from host through Change Baudrate Command

@@ -30,7 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 //*****************************************************************************
-//         GUI Composer Simple JSON Demo using MSP430
+//         GUI Composer Simple JSON Demo using MSPM0G3519
 //
 // Texas Instruments, Inc.
 //*****************************************************************************

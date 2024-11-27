@@ -30,7 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 //*****************************************************************************
-//         Generic GUI Demo using MSP430
+//         Generic GUI Demo using MSPM0
 //
 // API to communicate with GUI and abstract transport layer protocol
 // Texas Instruments, Inc.

@@ -1,6 +1,6 @@
 ## Example Summary
 
-This example demonstrates the use of Type B EEPROM emulation to store user data.
+This example demonstrates a more detailed use case of Type B EEPROM emulation to store user data.
 
 Type B EEPROM Emulation maximizes the lifetime of Flash memory when writing individual words of non-volatile data.
 Please check the Type A implementation when writing blocks of data.

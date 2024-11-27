@@ -1,0 +1,663 @@
+/*
+ * Copyright (c) 2024 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/*
+ *  ======== LP_MSPM0G3519.syscfg.json ========
+ *  Board schematics: http://www.ti.com/lit/ug/slau597f/slau597f.pdf
+ */
+
+ {
+    "name": "LP_MSPM0G3519",
+    "displayName": "MSPM0G3519 LaunchPad",
+    "gpn": "MSPM0G3519",
+    "pkg": "LQFP-100(PZ)",
+    "headers": [
+        {
+            /* http://www.ti.com/tools-software/launchpads/boosterpacks/build.html */
+            "type": "BoosterPack 40 pin",
+            "default": true,
+            "name": "boosterpack",
+            "displayName": "BoosterPack Standard Header",
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 10 },
+                    { "top": 21, "bottom": 30 },
+
+                    { "blank": true },
+
+                    { "top": 40, "bottom": 31 },
+                    { "top": 20, "bottom": 11 }
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,     /* 3.3 V */
+                    "name": "3V3"
+                },
+                {
+                    "number": 2,     /* Analog in */
+                    "name": "PA14",
+                    "ball": "53"
+                },
+                {
+                    "number": 3,     /* UART RX */
+                    "name": "PA9",
+                    "ball": "28"
+                },
+                {
+                    "number": 4,     /* UART TX */
+                    "name": "PA8",
+                    "ball": "27"
+                },
+                {
+                    "number": 5,     /* GPIO (with interrupt) */
+                    "name": "PB29",
+                    "ball": "30"
+                },
+                {
+                    "number": 6,     /* Analog in */
+                    "name": "PA25",
+                    "ball": "94"
+                },
+                {
+                    "number": 7,
+                    "name": "PB31",
+                    "ball": "32",
+                    "preferredType": ["SPI_SCLK"]
+                },
+                {
+                    "number": 8,     /* GPIO (with interrupt) */
+                    "name": "PB30",
+                    "ball": "31"
+                },
+                {
+                    "number": 9,     /* I2C SCL */
+                    "name": "PC2",
+                    "ball": "65",
+                    "preferredType": ["I2C_SCL"]
+                },
+                {
+                    "number": 10,    /* I2C SDA */
+                    "name": "PC3",
+                    "ball": "66",
+                    "preferredType": ["I2C_SDA"]
+                },
+
+                {
+                    "number": 21,    /* 5 V */
+                    "name": "5V"
+                },
+                {
+                    "number": 22,    /* Ground */
+                    "name": "GND"
+                },
+                {
+                    "number": 23,    /* Analog input */
+                    "name": "PA27",
+                    "ball": "99"
+                },
+                {
+                    "number": 24,    /* Analog input */
+                    "name": "PA26",
+                    "ball": "98"
+                },
+                {
+                    "number": 25,    /* Analog input */
+                    "name": "PB24",
+                    "ball": "86"
+                },
+                {
+                    "number": 26,    /* Analog input */
+                    "name": "PB25",
+                    "ball": "95"
+                },
+                {
+                    "number": 27,    /* Analog input | I2S WS */
+                    "name": "PB26",
+                    "ball": "96"
+                },
+                {
+                    "number": 28,    /* Analog input | I2S SCLX */
+                    "name": "PB27",
+                    "ball": "97"
+                },
+                {
+                    "number": 29,    /* Analog Out | I2S SDout */
+                    "name": "PB10",
+                    "ball": "44",
+                    "preferredType" : ["AIN"]
+                },
+                {
+                    "number": 30,    /* Analog Out | I2S SDin */
+                    "name": "PA15",
+                    "ball": "54",
+                    "preferredType" : ["AIN"]
+                },
+
+                {
+                    "number": 40,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB3",
+                    "ball": "24"
+                },
+                {
+                    "number": 39,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB9",
+                    "ball": "43"
+                },
+                {
+                    "number": 38,    /* PWM | GPIO (with interrupt) */
+                    "name": "PC4",
+                    "ball": "67"
+                },
+                {
+                    "number": 37,    /* PWM | GPIO (with interrupt) */
+                    "name": "PC5",
+                    "ball": "68"
+                },
+                {
+                    "number": 36,    /* Timer Capture | GPIO (with interrupt) */
+                    "name": "PB4",
+                    "ball": "25"
+                },
+                {
+                    "number": 35,    /* Timer Capture | GPIO (with interrupt) */
+                    "name": "PB5",
+                    "ball": "26"
+                },
+                {
+                    "number": 34,    /* GPIO (with interrupt) */
+                    "name": "PA10",
+                    "ball": "33"
+                },
+                {
+                    "number": 33,    /* GPIO (with interrupt) */
+                    "name": "PA11",
+                    "ball": "34"
+                },
+                {
+                    "number": 32,    /* GPIO (with interrupt) */
+                    "name": "PA12",
+                    "ball": "51"
+                },
+                {
+                    "number": 31,    /* GPIO (with interrupt) */
+                    "name": "PA13",
+                    "ball": "52"
+                },
+
+                {
+                    "number": 20,    /* Ground */
+                    "name": "GND"
+                },
+                {
+                    "number": 19,    /* PWM | GPIO (with interrupt) */
+                    "name": "PA7",
+                    "ball": "22"
+                },
+                {
+                    "number": 18,    /* SPI CS (Wireless) | GPIO (with interrupt) */
+                    "name": "PB6",
+                    "ball": "40"
+                },
+                {
+                    "number": 17,    /* GPIO */
+                    "name": "PA30",
+                    "ball": "5"
+                },
+                {
+                    "number": 16,    /* Reset */
+                    "name": "RST"
+                },
+                {
+                    "number": 15,
+                    "name": "PB8",
+                    "ball": "42",
+                    "preferredType" : ["SPI_MOSI"]
+                },
+                {
+                    "number": 14,
+                    "name": "PB7",
+                    "ball": "41",
+                    "preferredType" : ["SPI_MISO"]
+                },
+                {
+                    "number": 13,    /* SPI CS (Display) | GPIO (with interrupt) */
+                    "name": "PB12",
+                    "ball": "46"
+                },
+                {
+                    "number": 12,    /* SPI CS (other) | GPIO (with interrupt) */
+                    "name": "PB11",
+                    "ball": "45"
+                },
+                {
+                    "number": 11,    /* GPIO (with interrupt) */
+                    "name": "PB14",
+                    "ball": "48"
+                }
+            ]
+        },
+        {
+            /* http://www.ti.com/tools-software/launchpads/boosterpacks/build.html */
+            "type": "BoosterPack 40 pin",
+            "default": true,
+            "name": "boosterpack",
+            "displayName": "BoosterPack Standard Header",
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 10 },
+                    { "top": 21, "bottom": 30 },
+
+                    { "blank": true },
+
+                    { "top": 40, "bottom": 31 },
+                    { "top": 20, "bottom": 11 }
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,     /* 3.3 V */
+                    "name": "3V3"
+                },
+                {
+                    "number": 2,     /* Analog in */
+                    "name": "PB10",
+                    "ball": "44"
+                },
+                {
+                    "number": 3,     /* UART RX */
+                    "name": "PC10",
+                    "ball": "87"
+                },
+                {
+                    "number": 4,     /* UART TX */
+                    "name": "PC11",
+                    "ball": "88"
+                },
+                {
+                    "number": 5,     /* GPIO (with interrupt) */
+                    "name": "PC25",
+                    "ball": "89"
+                },
+                {
+                    "number": 6,     /* Analog in */
+                    "name": "PB20",
+                    "ball": "82"
+                },
+                {
+                    "number": 7,
+                    "name": "PB18",
+                    "ball": "74",
+                    "preferredType": ["SPI_SCLK"]
+                },
+                {
+                    "number": 8,     /* GPIO (with interrupt) */
+                    "name": "PB28",
+                    "ball": "29"
+                },
+                {
+                    "number": 9,     /* I2C SCL */
+                    "name": "PA1",
+                    "ball": "2",
+                    "preferredType": ["I2C_SCL"]
+                },
+                {
+                    "number": 10,    /* I2C SDA */
+                    "name": "PA0",
+                    "ball": "1",
+                    "preferredType": ["I2C_SDA"]
+                },
+
+                {
+                    "number": 21,    /* 5 V */
+                    "name": "5V"
+                },
+                {
+                    "number": 22,    /* Ground */
+                    "name": "GND"
+                },
+                {
+                    "number": 23,    /* Analog input */
+                    "name": "PC6",
+                    "ball": "78"
+                },
+                {
+                    "number": 24,    /* Analog input */
+                    "name": "PA18",
+                    "ball": "70"
+                },
+                {
+                    "number": 25,    /* Analog input */
+                    "name": "PA17",
+                    "ball": "69"
+                },
+                {
+                    "number": 26,    /* Analog input */
+                    "name": "PB21",
+                    "ball": "83"
+                },
+                {
+                    "number": 27,    /* Analog input | I2S WS */
+                    "name": "PB22",
+                    "ball": "84"
+                },
+                {
+                    "number": 28,    /* Analog input | I2S SCLX */
+                    "name": "PA16",
+                    "ball": "55"
+                },
+                {
+                    "number": 29,    /* Analog Out | I2S SDout */
+                    "name": "PB23",
+                    "ball": "85",
+                    "preferredType" : ["AIN"]
+                },
+                {
+                    "number": 30,    /* Analog Out | I2S SDin */
+                    "name": "PB1",
+                    "ball": "21",
+                    "preferredType" : ["AIN"]
+                },
+
+                {
+                    "number": 40,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB2",
+                    "ball": "23"
+                },
+                {
+                    "number": 39,    /* PWM | GPIO (with interrupt) */
+                    "name": "PA31",
+                    "ball": "7"
+                },
+                {
+                    "number": 38,    /* PWM | GPIO (with interrupt) */
+                    "name": "PA29",
+                    "ball": "4"
+                },
+                {
+                    "number": 37,    /* PWM | GPIO (with interrupt) */
+                    "name": "PC17",
+                    "ball": "36"
+                },
+                {
+                    "number": 36,    /* Timer Capture | GPIO (with interrupt) */
+                    "name": "PA28",
+                    "ball": "3"
+                },
+                {
+                    "number": 35,    /* Timer Capture | GPIO (with interrupt) */
+                    "name": "PC14",
+                    "ball": "13"
+                },
+                {
+                    "number": 34,    /* GPIO (with interrupt) */
+                    "name": "PA23",
+                    "ball": "92"
+                },
+                {
+                    "number": 33,    /* GPIO (with interrupt) */
+                    "name": "PA24",
+                    "ball": "93"
+                },
+                {
+                    "number": 32,    /* GPIO (with interrupt) */
+                    "name": "PC26",
+                    "ball": "90"
+                },
+                {
+                    "number": 31,    /* GPIO (with interrupt) */
+                    "name": "PC27",
+                    "ball": "91"
+                },
+
+                {
+                    "number": 20,    /* Ground */
+                    "name": "GND"
+                },
+                {
+                    "number": 19,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB13",
+                    "ball": "47"
+                },
+                {
+                    "number": 18,    /* SPI CS (Wireless) | GPIO (with interrupt) */
+                    "name": "PC7",
+                    "ball": "79"
+                },
+                {
+                    "number": 17,    /* GPIO */
+                    "name": "PB15",
+                    "ball": "49"
+                },
+                {
+                    "number": 16,    /* Reset */
+                    "name": "RST"
+                },
+                {
+                    "number": 15,
+                    "name": "PB17",
+                    "ball": "73",
+                    "preferredType" : ["SPI_MOSI"]
+                },
+                {
+                    "number": 14,
+                    "name": "PB19",
+                    "ball": "75",
+                    "preferredType" : ["SPI_MISO"]
+                },
+                {
+                    "number": 13,    /* SPI CS (Display) | GPIO (with interrupt) */
+                    "name": "PA21",
+                    "ball": "76"
+                },
+                {
+                    "number": 12,    /* SPI CS (other) | GPIO (with interrupt) */
+                    "name": "PA22",
+                    "ball": "77"
+                },
+                {
+                    "number": 11,    /* GPIO (with interrupt) */
+                    "name": "PB16",
+                    "ball": "50"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G3519 J18 Edge Connector",
+            "default": true,
+            "name": "j18_expansion",
+            "displayName": "Edge Connector for QEI Interface",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 5}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PB29",
+                    "ball": "30"
+                },
+                {
+                    "number": 2,
+                    "name": "PB30",
+                    "ball": "31"
+                },
+                    {
+                    "number": 3,
+                    "name": "PB31",
+                    "ball": "32"
+                },
+                {
+                    "number": 4,
+                    "name": "3V3"
+                },
+                {
+                    "number": 5,
+                    "name": "GND"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G3519 J18 Edge Connector",
+            "default": true,
+            "name": "j18_expansion",
+            "displayName": "Edge Connector for QEI Interface",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 5}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PB29",
+                    "ball": "30"
+                },
+                {
+                    "number": 2,
+                    "name": "PB30",
+                    "ball": "31"
+                },
+                    {
+                    "number": 3,
+                    "name": "PB31",
+                    "ball": "32"
+                },
+                {
+                    "number": 4,
+                    "name": "3V3"
+                },
+                {
+                    "number": 5,
+                    "name": "GND"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G3519 J19 Edge Connector",
+            "default": true,
+            "name": "j19_expansion",
+            "displayName": "Edge Connector for Unused Pin Access",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 17},
+                    { "top":  2, "bottom": 18}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "XDS_GND"
+                },
+                {
+                    "number": 2,
+                    "name": "GND"
+                },
+				{
+                    "number": 3,
+                    "name": "XDS_VBUS"
+                },
+                {
+                    "number": 4,
+                    "name": "5V"
+                },
+                {
+                    "number": 5,
+                    "name": "XDS_VCCTARGET"
+                },
+                {
+                    "number": 6,
+                    "name": "3V3"
+                },
+                {
+                    "number": 7,
+                    "name": "XDS_TXD"
+                },
+                {
+                    "number": 8,
+                    "name": "PA11",
+                    "ball": "34"
+                },
+                {
+                    "number": 9,
+                    "name": "XDS_RXD"
+                },
+                {
+                    "number": 10,
+                    "name": "PA10",
+                    "ball": "33"
+                },
+                {
+                    "number": 11,
+                    "name": "XDS_RESET_OUT"
+                },
+                {
+                    "number": 12,
+                    "name": "RST"
+                },
+                {
+                    "number": 13,
+                    "name": "XDS_TMS_SWDIO"
+                },
+                {
+                    "number": 14,
+                    "name": "PA19",
+                    "ball": "71"
+                },
+                {
+                    "number": 15,
+                    "name": "XDS_TCK_SWDCLK"
+                },
+                {
+                    "number": 16,
+                    "name": "PA20",
+                    "ball": "72"
+                },
+                {
+                    "number": 17,
+                    "name": "BSL_INVOKE"
+                },
+                {
+                    "number": 18,
+                    "name": "PA18",
+                    "ball": "70"
+                }
+            ]
+        }
+    ],
+    "components": {}
+}

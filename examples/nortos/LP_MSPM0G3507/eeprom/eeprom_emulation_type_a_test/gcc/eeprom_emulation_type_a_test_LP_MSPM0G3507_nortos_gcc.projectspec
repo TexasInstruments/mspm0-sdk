@@ -53,7 +53,7 @@
             -lgcc
             -lc
             -lm
-            -lnosys
+            --specs=nosys.specs
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
         description="Demonstrates a more detailed use case of Type A EEPROM emulation to store blocks of non-volatile data">

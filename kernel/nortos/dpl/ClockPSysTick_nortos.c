@@ -41,6 +41,9 @@
 
 #include <ti/driverlib/m0p/dl_systick.h>
 
+/* Note: The below product specific defines are give so user
+ * can change the clock if they want to.
+ */
 #if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L11XX_L13XX)
 
 #define CPU_CLOCK_HZ ((uint32_t) 32000000)
@@ -49,10 +52,15 @@
 #elif ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X) || \
        (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X))
 
-#define CPU_CLOCK_HZ ((uint32_t) 80000000)
-#define CPU_CLOCK_MHZ ((uint32_t) 80)
+#define CPU_CLOCK_HZ ((uint32_t) 32000000)
+#define CPU_CLOCK_MHZ ((uint32_t) 32)
 
 #elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
+
+#define CPU_CLOCK_HZ ((uint32_t) 32000000)
+#define CPU_CLOCK_MHZ ((uint32_t) 32)
+
+#elif (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X)
 
 #define CPU_CLOCK_HZ ((uint32_t) 32000000)
 #define CPU_CLOCK_MHZ ((uint32_t) 32)

@@ -1,0 +1,55 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+// @v2CliArgs --device "MSPM0C1104" --package "VSSOP-20(DGS20)"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER         = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1        = TIMER.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                              = "WDT";
+GPIO1.associatedPins.create(3);
+GPIO1.associatedPins[0].direction        = "INPUT";
+GPIO1.associatedPins[0].polarity         = "FALL";
+GPIO1.associatedPins[0].internalResistor = "PULL_UP";
+GPIO1.associatedPins[0].assignedPort     = "PORTA";
+GPIO1.associatedPins[0].interruptEn      = true;
+GPIO1.associatedPins[0].$name            = "WDI";
+GPIO1.associatedPins[0].pin.$assign      = "PA24";
+GPIO1.associatedPins[1].$name            = "Start";
+GPIO1.associatedPins[1].direction        = "INPUT";
+GPIO1.associatedPins[1].interruptEn      = true;
+GPIO1.associatedPins[1].polarity         = "FALL";
+GPIO1.associatedPins[1].pin.$assign      = "PA27";
+GPIO1.associatedPins[2].initialValue     = "SET";
+GPIO1.associatedPins[2].$name            = "WDO";
+GPIO1.associatedPins[2].pin.$assign      = "PA0";
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+SYSCTL.disableNRSTPin     = true;
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.$name              = "watchdog_timer";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerPeriod        = "1 s";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.peripheral.$assign = "TIMA0";
+
+ProjectConfig.deviceSpin = "MSPM0C1104";
+scripting.suppress("Migrating requires going through the Switch Board or Device menu in the Device View section\\.", ProjectConfig, "deviceSpin");

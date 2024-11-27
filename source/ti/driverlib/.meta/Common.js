@@ -35,6 +35,8 @@
  *  ======== Common.js ========
  */
 
+let peripherals = Object.keys(system.deviceData.peripherals);
+
 const InterruptPriorityOptions = [
     { name: "DEFAULT", displayName: "Default", description: "Default interrupt priority" },
     { name: "0", displayName: "Level 0 - Highest", description: "Priority Level: Highest" },
@@ -112,6 +114,8 @@ exports = {
     isDeviceFamily_PARENT_MSPM0L122X        : isDeviceFamily_PARENT_MSPM0L122X,
     isDeviceFamily_PARENT_MSPM0L222X        : isDeviceFamily_PARENT_MSPM0L222X,
     isDeviceFamily_PARENT_MSPM0C110X        : isDeviceFamily_PARENT_MSPM0C110X,
+    isDeviceFamily_PARENT_MSPM0L111X        : isDeviceFamily_PARENT_MSPM0L111X,
+    isDeviceFamily_PARENT_MSPM0H321X        : isDeviceFamily_PARENT_MSPM0H321X,
     isDeviceFamily_MSPS003FX                : isDeviceFamily_MSPS003FX,
 
     I2CTargetWakeupWorkaroundFixed          : I2CTargetWakeupWorkaroundFixed,
@@ -173,6 +177,7 @@ exports = {
     getTimerPWMInstance     : getTimerPWMInstance,
 
     isTimerFourCCCapable    : isTimerFourCCCapable,
+    getMainTriggerETSELValue : getMainTriggerETSELValue,
 };
 
 /*
@@ -302,7 +307,7 @@ function device2Family(device)
     /* deviceId is the directory name within the pinmux/deviceData */
     let deviceId = device.deviceId;
 
-    let family = deviceId.match(/MSP(M0G|M0L|M0C)/)[0];
+    let family = deviceId.match(/MSP(M0G|M0L|M0C|M0H)/)[0];
 
     return(family);
 }
@@ -1755,6 +1760,11 @@ function isDeviceFamily_MSPS003FX(){
     var deviceName = system.deviceData.device;
     return (["MSPS003FX"].includes(deviceName));
 }
+/* Checks if device is part of MSPM0L111X device family */
+function isDeviceFamily_PARENT_MSPM0L111X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0L111X"].includes(deviceName));
+}
 
 /* checks if current device is one of M0x110x series */
 function isDeviceM0x110x(){
@@ -1776,7 +1786,7 @@ function isDeviceM0G()
 }
 /* checks if current device is one of MSPM0L-series */
 function isDeviceM0L(){
-    return (isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || isDeviceFamily_PARENT_MSPM0L122X_L222X());
+    return (isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || isDeviceFamily_PARENT_MSPM0L122X_L222X() || isDeviceFamily_PARENT_MSPM0L111X());
 }
 /* checks if current device is one of MSPM0C-series */
 function isDeviceM0C(){
@@ -1801,8 +1811,14 @@ function getDeviceFamily(){
     else if(isDeviceFamily_PARENT_MSPM0C110X()){
         return "MSPM0C110X";
     }
-    if(isDeviceFamily_PARENT_MSPM0GX51X()){
+    else if(isDeviceFamily_PARENT_MSPM0GX51X()){
         return "MSPM0GX51X";
+    }
+    else if(isDeviceFamily_PARENT_MSPM0L111X()){
+        return "MSPM0L111X";
+    }
+    else if(isDeviceFamily_PARENT_MSPM0H321X()){
+        return "MSPM0H321X";
     }
     return undefined;
 }
@@ -1834,7 +1850,7 @@ function hasDataRegionConfig(){
 
 /* Check if device supports Timer A configuration */
 function hasTimerA(){
-    return (isDeviceM0G() || isDeviceM0C() || isDeviceFamily_PARENT_MSPM0L122X_L222X());
+    return /TIMA/.test(peripherals);
 }
 
 function isInternalTimerChannel(cc){
@@ -2690,9 +2706,9 @@ function getTimerPWMInstance(timerPeripheral){
 /*
  *  ======== hasTrimTable ========
  *  Checks if selected device requires Trim Table workaround for linker generation
- *  
+ *
  *  @return boolean answer
- * 
+ *
  */
 function hasTrimTable(){
     if(isDeviceFamily_PARENT_MSPM0GX51X()){
@@ -2716,5 +2732,170 @@ function isTimerFourCCCapable(inst)
         return (inst.peripheral.$solution.peripheralName.match(/TIMA0|TIMG14/) !== null);
     }catch (e) {
         return false;
+    }
+}
+
+/*
+ *  ======== isTimerFourCCCapable ========
+ *  For a given timer peripheral, returns the ETSEL value that needs to be
+ *  set for that timer to trigger itself as the main cross triger configuration.
+ *
+ *  @param Timer module instance
+ *
+ *  @return ETSEL value
+ *
+ */
+function getMainTriggerETSELValue(inst) {
+    let main_timer;
+    try {
+        main_timer = inst.peripheral.$solution.peripheralName;
+    }
+    catch(e) {
+        return 0;
+    }
+    if(isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()) {
+        switch (true) {
+            case (main_timer == "TIMA0" || main_timer == "TIMG0"):
+                return 0;
+                break;
+            case (main_timer == "TIMA1" || main_timer == "TIMG8"):
+                return 1;
+                break;
+            case main_timer == "TIMG6":
+                return 2;
+                break;
+            case main_timer == "TIMG7":
+                return 3;
+                break;
+            case main_timer == "TIMG12":
+                return 4;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if(isDeviceFamily_PARENT_MSPM0L11XX_L13XX()) {
+        switch (true) {
+            case main_timer == "TIMG0":
+                return 0;
+                break;
+            case main_timer == "TIMG1":
+                return 1;
+                break;
+            case main_timer == "TIMG2":
+                return 2;
+                break;
+            case main_timer == "TIMG4":
+                return 3;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if(isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
+        switch (true) {
+            case main_timer == "TIMA0":
+                return 0;
+                break;
+            case main_timer == "TIMG0":
+                return 1;
+                break;
+            case main_timer == "TIMG4":
+                return 2;
+                break;
+            case main_timer == "TIMG5":
+                return 3;
+                break;
+            case main_timer == "TIMG8":
+                return 4;
+                break;
+            case main_timer == "TIMG12":
+                return 5;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if(isDeviceFamily_PARENT_MSPM0GX51X()) {
+        switch (true) {
+            case (main_timer == "TIMA0" || main_timer == "TIMG0"):
+                return 0;
+                break;
+            case (main_timer == "TIMA1" || main_timer == "TIMG8"):
+                return 1;
+                break;
+            case (main_timer == "TIMG6" || main_timer == "TIMG14"):
+                return 2;
+                break;
+            case (main_timer == "TIMG7" || main_timer == "TIMG9"):
+                return 3;
+                break;
+            case main_timer == "TIMG12":
+                return 4;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if(isDeviceFamily_PARENT_MSPM0L111X()) {
+        switch (true) {
+            case main_timer == "TIMA0":
+                return 0;
+                break;
+            case main_timer == "TIMG0":
+                return 1;
+                break;
+            case main_timer == "TIMG1":
+                return 2;
+                break;
+            case main_timer == "TIMG8":
+                return 3;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if(isDeviceFamily_PARENT_MSPM0C110X()) {
+        switch (true) {
+            case main_timer == "TIMA0":
+                return 0;
+                break;
+            case main_timer == "TIMG0":
+                return 1;
+                break;
+            case main_timer == "TIMG8":
+                return 2;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if(isDeviceFamily_PARENT_MSPM0H321X()) {
+        switch (true) {
+            case main_timer == "TIMA0":
+                return 0;
+                break;
+            case main_timer == "TIMG0":
+                return 1;
+                break;
+            case main_timer == "TIMG8":
+                return 2;
+                break;
+            case main_timer == "TIMG2":
+                return 3;
+                break;
+            case main_timer == "TIMG1":
+                return 4;
+                break;
+            default:
+                return 0;
+                break;
+        }
     }
 }

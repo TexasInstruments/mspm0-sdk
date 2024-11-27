@@ -3,7 +3,7 @@
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
  */
 // @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
-// @v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+// @v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)" 
 // @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
 
 /**
@@ -19,6 +19,7 @@ ProjectConfig.genDisable = true;
 
 NONMAIN.bslFlashPluginEnable         = true;
 NONMAIN.staticWriteProtectionMainLow = 0xFFFFFF0F;
+NONMAIN.staticWriteProtectionNonMain = true;
 NONMAIN.bslPluginHookInit            = "BSL_PI_SPI_init";
 NONMAIN.bslPluginHookReceive         = "BSL_PI_SPI_receive";
 NONMAIN.bslPluginHookTransmit        = "BSL_PI_SPI_send";

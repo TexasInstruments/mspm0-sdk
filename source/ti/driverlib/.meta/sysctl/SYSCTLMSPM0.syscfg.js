@@ -239,7 +239,8 @@ function validateSYSCTL(inst, validation)
 
     if(!inst.clockTreeEn){
     /* HFCLK Validation */
-    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
+    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+       Common.isDeviceFamily_PARENT_MSPM0H321X()) {
         /* Validate case of disabled HFCLK */
         if(!["None"].includes(inst.usesHFCLK) && !inst.useHFCLK_Manual){
             validation.logError("Must enable HFCLK for this configuration", inst, ["useHFCLK_Manual"]);
@@ -319,20 +320,23 @@ function validateSYSCTL(inst, validation)
         }
     }
 
-    /* MSPM0L122X_L222X Unavailable Sources Validation */
-    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
+    /* MSPM0L122X_L222X Unavailable Sources Validation and MSPM0L111X Unavailable Sources Validation */
+    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceFamily_PARENT_MSPM0H321X()) {
         if(["SYSPLLOUT1"].includes(inst.EXCLKSource)){
             validation.logError("Please select a valid source", inst, "EXCLKSource");
         }
     }
     /* MSPM0L11XX_L13XX Unavailable Sources Validation */
-    if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+    if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() ){
         if(["SYSPLLOUT1","HFCLK"].includes(inst.EXCLKSource)){
             validation.logError("Please select a valid source", inst, "EXCLKSource");
         }
         if(inst.MCLKSource === "HSCLK"){
             validation.logError("Please select a valid source", inst, "MCLKSource");
         }
+    }
+    /* MSPM0L11XX_L13XX Unavailable Sources Validation */
+    if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
         if(["LFCLK_IN","LFXT"].includes(inst.LFCLKSource)){
             validation.logError("Please select a valid source", inst, "LFCLKSource");
         }
@@ -395,7 +399,8 @@ function validateSYSCTL(inst, validation)
         if((inst.fccClkSrc == "CLK_OUT")&&(!inst.enableEXCLK)){
             validation.logError("Must enable CLK_OUT for this configuration", inst, ["fccClkSrc","enableEXCLK"]);
         }
-        if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
+        if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceM0C() ||
+           Common.isDeviceFamily_PARENT_MSPM0H321X()) {
             if((inst.fccClkSrc == "HFCLK")&&(!inst.useHFCLK_Manual)){
                 validation.logError("Must enable HFCLK for this configuration", inst, ["fccClkSrc"]);
             }
@@ -475,7 +480,7 @@ function validateSYSCTL(inst, validation)
     }
 
     /* Special Case Validation for ROSC */
-    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !inst.clockTreeEn){
+    if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()) && !inst.clockTreeEn){
         if(inst.enableROSC){
             validation.logInfo("PA2 is being configured for ROSC and should not be used for other pin selections.", inst, "enableROSC");
         }
@@ -697,7 +702,9 @@ INT_GROUP0:
             options: Common.InterruptPriorityOptions
         }
     ];
-    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){flashConfig.push(
+    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceM0C() ||
+       Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+        flashConfig.push(
             //DL_SYSCTL_setFlashWaitState()
             {
                 name        : "waitState",
@@ -949,7 +956,7 @@ function getInterruptGroupConfig(){
 }
 
 function getForceDefaultClkConfig(){
-    if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()||Common.isDeviceM0C()){
+    if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()||Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
         return [];
     }
     else{
@@ -1284,7 +1291,7 @@ The default behavior for some system error conditions can be configured.
                             onChange: (inst, ui) => {
                                 ui.disableSYSOSC.hidden = !(inst.MCLKSource == "LFCLK");
                                 inst.disableSYSOSC = false;
-                                if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
+                                if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
                                     ui.HSCLKSource.hidden = !(inst.MCLKSource == "HSCLK");
                                     /* Wait configuration available only when MCLK source is HSCLK */
                                     ui.waitState.hidden = !inst.clockTreeEn && !(inst.MCLKSource == "HSCLK");
@@ -1726,7 +1733,7 @@ function getClockInterrupts(inst){
             {name: "ANALOG_CLOCK_ERROR", displayName: "Analog clocking consistency error"},
         ];
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
         return [
             // DL_SYSCTL_INTERRUPT_[...]
             {name: "LFOSC_GOOD", displayName: "Low Frequency Oscillator is stabilized and ready to use"},
@@ -1741,6 +1748,16 @@ function getClockInterrupts(inst){
             // DL_SYSCTL_INTERRUPT_[...]
             {name: "LFOSC_GOOD", displayName: "Low Frequency Oscillator is stabilized and ready to use"},
             {name: "ANALOG_CLOCK_ERROR", displayName: "Analog clocking consistency error"},
+            {name: "HFCLK_GOOD", displayName: "High Frequency Clock is stabilized and ready to use"},
+            {name: "HSCLK_GOOD", displayName: "High Speed Clock is stabilized and ready to use"},
+        ];
+    }
+    else if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
+        return [
+            // DL_SYSCTL_INTERRUPT_[...]
+            {name: "LFOSC_GOOD", displayName: "Low Frequency Oscillator is stabilized and ready to use"},
+            {name: "ANALOG_CLOCK_ERROR", displayName: "Analog clocking consistency error"},
+            {name: "LFXT_GOOD", displayName: "Low Frequency Crystal is stabilized and ready to use"},
             {name: "HFCLK_GOOD", displayName: "High Frequency Clock is stabilized and ready to use"},
             {name: "HSCLK_GOOD", displayName: "High Speed Clock is stabilized and ready to use"},
         ];
@@ -1784,7 +1801,8 @@ function getFCCClkSrcs(inst){
             {name: "FCC_IN",},
         ];
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+            Common.isDeviceFamily_PARENT_MSPM0H321X()){
         return [
             {name: "MCLK",},
             {name: "SYSOSC",},
@@ -1888,7 +1906,7 @@ function pinmuxRequirements(inst)
 {
     /* Regular Pinmux Requirements for SysCtl */
     let resources = [];
-    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
         if(inst.LFCLKSource === "LFXT"){
             resources.push({
                 name            : "lfxInPin",
@@ -1908,6 +1926,8 @@ function pinmuxRequirements(inst)
                 interfaceNames  : ["LFXOUT"],
             });
         }
+    }
+    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
         if(inst.useHFCLK_Manual && inst.HFCLKSource === "HFXT"){
             resources.push({
                 name            : "hfxInPin",
@@ -1937,7 +1957,7 @@ function pinmuxRequirements(inst)
     }
     if(inst.enableROSC){
         // SYSCTL ROSC
-        if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X() || !Common.isDeviceFamily_PARENT_MSPM0H321X()){
             resources.push({
                 name            : "roscPin",
                 displayName     : "ROSC",

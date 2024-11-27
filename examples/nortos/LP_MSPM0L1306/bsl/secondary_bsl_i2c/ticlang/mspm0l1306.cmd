@@ -69,6 +69,7 @@ SECTIONS
         .bss           	: {}
    } > SRAM
 
+	.TI.ramfunc   : load = FLASH_SBSL, palign(8), run=SRAM, table(BINIT)
     .stack  :   > SRAM (HIGH) SIZE(BSL_CI_stackSize)
 
     .factoryConfig          : {} > FACTORY_CFG

@@ -41,4 +41,4 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0L2228 web page](https://www.ti.com/to
 
 ## Example Usage
 
-Compile, load and run the example.
+Compile, load and run the example. There are software breakpoint after code execution gCorrectResult should be true if the decrypted data come as expected.

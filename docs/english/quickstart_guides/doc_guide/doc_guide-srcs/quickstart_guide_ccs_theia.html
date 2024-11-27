@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 SDK QuickStart Guide for CCS Theia &mdash; MSPM0 SDK Quick Start Guides 2.02.00.05 documentation</title>
+  <title>MSPM0 SDK QuickStart Guide for Code Composer Studio &mdash; MSPM0 SDK Quick Start Guides 2.03.00.07 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="MSPM0 SDK QuickStart Guide for CCS" href="quickstart_guide_ccs.html" />
+    <link rel="next" title="MSPM0 SDK QuickStart Guide for Code Composer Studio v12 (Eclipse)" href="quickstart_guide_ccs.html" />
     <link rel="prev" title="MSPM0 SDK Quick Start Guides" href="index.html" /> 
 </head>
 
@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> MSPM0 SDK Quick Start Guides
           </a>
               <div class="version">
-                2.02.00.05
+                2.03.00.07
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -44,15 +44,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SDK QuickStart Guide for CCS Theia</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SDK QuickStart Guide for Code Composer Studio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">2. Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#start-a-mspm0-project-on-ccs-theia">3. Start a MSPM0 project on CCS Theia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-a-mspm0-project-on-code-composer-studio">3. Start a MSPM0 project on Code Composer Studio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-ti-resource-explorer">4. Using TI Resource Explorer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">5. Known Issues and Frequently Asked Questions (FAQs)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs.html">MSPM0 SDK QuickStart Guide for CCS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart_guide_ccs.html">MSPM0 SDK QuickStart Guide for Code Composer Studio v12 (Eclipse)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart_guide_iar.html">MSPM0 SDK QuickStart Guide for IAR</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart_guide_keil.html">MSPM0 SDK QuickStart Guide for Keil</a></li>
 </ul>
@@ -71,7 +71,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>MSPM0 SDK QuickStart Guide for CCS Theia</li>
+      <li>MSPM0 SDK QuickStart Guide for Code Composer Studio</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -80,25 +80,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mspm0-sdk-quickstart-guide-for-ccs-theia">
-<h1>MSPM0 SDK QuickStart Guide for CCS Theia<a class="headerlink" href="#mspm0-sdk-quickstart-guide-for-ccs-theia" title="Permalink to this heading">¶</a></h1>
+  <section id="mspm0-sdk-quickstart-guide-for-code-composer-studio">
+<h1>MSPM0 SDK QuickStart Guide for Code Composer Studio<a class="headerlink" href="#mspm0-sdk-quickstart-guide-for-code-composer-studio" title="Permalink to this heading">¶</a></h1>
 <section id="introduction">
 <h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with CCS Theia.</p>
-<p>This guide is not intended to explain the functionality of CCS Theia. Please refer to the documentation available through the Help menu in CCS Theia or the <a class="reference external" href="../../../tools/ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide.html">CCS Theia IDE Guide for MSPM0 MCUs</a> included with the MSPM0 SDK documentation.</p>
+<p>This guide is intended to assist users in the initial setup and demonstration of running their first MSPM0 application with Code Composer Studio.</p>
+<p>This guide is not intended to explain the functionality of Code Composer Studio. Please refer to the documentation available through the Help menu in CCS or the <a class="reference external" href="../../../tools/ccs_theia_ide_guide/doc_guide/doc_guide-srcs/ccs_theia_ide_guide.html">Code Composer Studio IDE Guide for MSPM0 MCUs</a> included with the MSPM0 SDK documentation.</p>
 </section>
 <section id="prerequisites">
 <h2>2. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <p>The user is expected to have downloaded and installed the following:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">CCS Theia</a></p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/CCSTUDIO">Code Composer Studio</a></p></li>
 </ul>
 </section>
-<section id="start-a-mspm0-project-on-ccs-theia">
-<h2>3. Start a MSPM0 project on CCS Theia<a class="headerlink" href="#start-a-mspm0-project-on-ccs-theia" title="Permalink to this heading">¶</a></h2>
+<section id="start-a-mspm0-project-on-code-composer-studio">
+<h2>3. Start a MSPM0 project on Code Composer Studio<a class="headerlink" href="#start-a-mspm0-project-on-code-composer-studio" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
-<li><p>Open CCS Theia. The Getting Started page will show up, or it can be opened by selecting <strong>Help</strong> → <strong>Getting Started</strong>.</p>
-<p>Note that CCS Theia will automatically detect a MSPM0 LaunchPad if connected.</p>
+<li><p>Open Code Composer Studio. The Getting Started page will show up, or it can be opened by selecting <strong>Help</strong> → <strong>Getting Started</strong>.</p>
+<p>Note that Code Composer Studio will automatically detect a MSPM0 LaunchPad if connected.</p>
 <figure class="align-default">
 <img alt="" src="../_images/theia_qsg_gettingstarted.png" />
 </figure>
@@ -109,7 +109,7 @@
 <li><p>Device or Launchpad</p></li>
 <li><p>Project to open, note that a brief description is provided and search filters can be used</p></li>
 <li><p>Project name</p></li>
-<li><p>Compiler, note that CCS Theia support TI Arm Clang and Arm GCC</p></li>
+<li><p>Compiler, note that Code Composer Studio support TI Arm Clang and Arm GCC</p></li>
 <li><p>RTOS or No-RTOS, if available for example</p></li>
 </ul>
 <figure class="align-default">
@@ -117,7 +117,7 @@
 </figure>
 </li>
 <li><p>Click on <strong>Create</strong>.</p></li>
-<li><p>If the MSPM0 SDK hasn’t been installed, CCS Theia will request to install it. Any other dependencies such as compilers can also be installed.</p>
+<li><p>If the MSPM0 SDK hasn’t been installed, Code Composer Studio will request to install it. Any other dependencies such as compilers can also be installed.</p>
 <figure class="align-default">
 <img alt="" src="../_images/theia_qsg_projectwizard_install.png" />
 </figure>
@@ -155,7 +155,7 @@
 <section id="using-ti-resource-explorer">
 <h2>4. Using TI Resource Explorer<a class="headerlink" href="#using-ti-resource-explorer" title="Permalink to this heading">¶</a></h2>
 <p>TI Resource Explorer (TI-Rex) helps you find all the latest examples, libraries, demo applications, datasheets, and more for your chosen platform.</p>
-<p>This tool is available at <a class="reference external" href="https://dev.ti.com/tirex">https://dev.ti.com/tirex</a>, but it’s also integrated into CCS Theia allowing for a more integrated user experience.</p>
+<p>This tool is available at <a class="reference external" href="https://dev.ti.com/tirex">https://dev.ti.com/tirex</a>, but it’s also integrated into Code Composer Studio allowing for a more integrated user experience.</p>
 <figure class="align-default">
 <img alt="" src="../_images/theia_qsg_tirex_project.png" />
 </figure>
@@ -171,7 +171,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="MSPM0 SDK Quick Start Guides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="quickstart_guide_ccs.html" class="btn btn-neutral float-right" title="MSPM0 SDK QuickStart Guide for CCS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart_guide_ccs.html" class="btn btn-neutral float-right" title="MSPM0 SDK QuickStart Guide for Code Composer Studio v12 (Eclipse)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

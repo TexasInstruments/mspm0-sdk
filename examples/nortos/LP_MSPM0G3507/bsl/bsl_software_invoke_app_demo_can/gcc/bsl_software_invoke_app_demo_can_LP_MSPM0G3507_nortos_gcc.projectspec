@@ -55,7 +55,7 @@
             -lgcc
             -lc
             -lm
-            -lnosys
+            --specs=nosys.specs
         "
         sysConfigBuildOptions="
             --output .

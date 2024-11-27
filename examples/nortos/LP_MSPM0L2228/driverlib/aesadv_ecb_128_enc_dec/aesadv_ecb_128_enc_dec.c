@@ -35,7 +35,7 @@
 #define AES_TRANSACTION_LENGTH (4)
 
 /* AES_ADV configuration for ECB mode in encrypt direction */
-static DL_AESADV_Config AESADV_config = {
+static DL_AESADV_Config gAESADV_config = {
       .mode              = DL_AESADV_MODE_ECB,
       .direction         = DL_AESADV_DIR_ENCRYPT,
       .iv                = NULL,
@@ -46,22 +46,22 @@ static DL_AESADV_Config AESADV_config = {
 };
 
 
-static uint32_t key[4] = {0x16157e2b , 0xa6d2ae28 , 0x8815f7ab, 0x3c4fcf09};
+static uint32_t gKey[4] = {0x16157e2b , 0xa6d2ae28 , 0x8815f7ab, 0x3c4fcf09};
 
-static const uint32_t aes_expectedCiphertext[AES_TRANSACTION_LENGTH] = {0xB47BD73A, 0x60367A0D, 0xF3CA9EA8, 0x97EF6624};
+static const uint32_t gAesExpectedCiphertext[AES_TRANSACTION_LENGTH] = {0xB47BD73A, 0x60367A0D, 0xF3CA9EA8, 0x97EF6624};
 
-static uint32_t aes_input[AES_TRANSACTION_LENGTH] = {0xe2bec16b, 0x969f402e, 0x117e3de9, 0x2a179373};
+static uint32_t gAesInput[AES_TRANSACTION_LENGTH] = {0xe2bec16b, 0x969f402e, 0x117e3de9, 0x2a179373};
 
-static uint32_t aes_decrypt_output[AES_TRANSACTION_LENGTH];
+static uint32_t gAesDecryptOutput[AES_TRANSACTION_LENGTH];
 
-static uint32_t aes_encrypt_output[AES_TRANSACTION_LENGTH];
+static uint32_t gAesEncryptOutput[AES_TRANSACTION_LENGTH];
+
+volatile bool gCorrectResult = true;
 
 int main(void)
 {
-    volatile uint8_t status = 0x00;
 
-    uint32_t cycleDelay     = 10000000;
-    /* Power on GPIO, initialize pins as digital outputs */
+    /* Perform any initialization needed before using any board APIs*/
     SYSCFG_DL_init();
 
     /*
@@ -70,11 +70,11 @@ int main(void)
      */
     DL_AESADV_setKeySize(AESADV, DL_AESADV_KEY_SIZE_128_BIT);
 
-    DL_AESADV_setKeyAligned(AESADV,&key[0],DL_AESADV_KEY_SIZE_128_BIT);
+    DL_AESADV_setKeyAligned(AESADV,&gKey[0],DL_AESADV_KEY_SIZE_128_BIT);
 
 
     /* Write the rest of the AES context */
-    DL_AESADV_initECB(AESADV, &AESADV_config);
+    DL_AESADV_initECB(AESADV, &gAESADV_config);
 
 
     /* wait for input register to be ready to filled up with input data */
@@ -83,7 +83,7 @@ int main(void)
     }
 
     /* Load plaintext into engine */
-    DL_AESADV_loadInputDataAligned(AESADV, aes_input);
+    DL_AESADV_loadInputDataAligned(AESADV, gAesInput);
 
 
     /* Wait for engine to complete operation */
@@ -92,23 +92,30 @@ int main(void)
     }
 
     /* Get encrypted result */
-    DL_AESADV_readOutputDataAligned(AESADV, aes_encrypt_output);
+    DL_AESADV_readOutputDataAligned(AESADV, gAesEncryptOutput);
 
 
     /* Compare ciphertext to golden data */
     for (int i = 0; i < AES_TRANSACTION_LENGTH; i++) {
-        if (aes_encrypt_output[i] != aes_expectedCiphertext[i]) {
-            status = 0x01;
+        if (gAesEncryptOutput[i] != gAesExpectedCiphertext[i]) {
+            gCorrectResult = false;
         }
     }
 
+    /*
+       * Stop the debugger to examine the output. At this point,
+       * gCorrectResults should be equal to "true" and gAesEncryptOutput
+       * should be equal to gAesExpectedCiphertext.
+       */
+   __BKPT(0);
+
 
     /* change the configuration direction decyrption */
-    AESADV_config.direction = DL_AESADV_DIR_DECRYPT;
+    gAESADV_config.direction = DL_AESADV_DIR_DECRYPT;
 
 
     /* Re-Write the AES context to signify a new operation */
-    DL_AESADV_initECB(AESADV, &AESADV_config);
+    DL_AESADV_initECB(AESADV, &gAESADV_config);
 
 
     /* wait for input register to be ready to filled up with input data */
@@ -117,7 +124,7 @@ int main(void)
     }
 
     /* Load ciphertext into engine */
-    DL_AESADV_loadInputDataAligned(AESADV, aes_encrypt_output);
+    DL_AESADV_loadInputDataAligned(AESADV, gAesEncryptOutput);
 
     /* Wait for engine to complete operation */
     while (!DL_AESADV_isOutputReady(AESADV)) {
@@ -125,29 +132,27 @@ int main(void)
     }
 
     /* Get encrypted result */
-    DL_AESADV_readOutputDataAligned(AESADV, aes_decrypt_output);
+    DL_AESADV_readOutputDataAligned(AESADV, gAesDecryptOutput);
 
 
     /* Compare decrypted text to original input data */
     for (int i = 0; i < AES_TRANSACTION_LENGTH; i++) {
-        if (aes_decrypt_output[i] != aes_input[i]) {
-            status = 0x01;
+        if (gAesDecryptOutput[i] != gAesInput[i]) {
+            gCorrectResult = false;
         }
     }
 
-    if (status == 0x01) {
-        /* if the AES output is not matching expected output value, flash faster to indicate */
-        cycleDelay = cycleDelay / 5;
-    }
+    /*
+   * Stop the debugger to examine the output. At this point,
+   * gCorrectResults should be equal to "true" and gAesDecryptOutput
+   * should be equal to gAesInput.
+   */
+   __BKPT(0);
 
-    while (1) {
-        /*
-         * Call togglePins API to flip the current value of LED PIN 1
-         */
 
-        delay_cycles(cycleDelay);
-        DL_GPIO_togglePins(GPIO_LEDS_PORT, GPIO_LEDS_USER_LED_1_PIN);
-    }
+   while (1) {
+       __WFI();
+   }
 
 }
 

@@ -432,7 +432,7 @@ function pinmuxRequirements(inst)
                 });
                 break;
             case "HFCLKEXT":
-				if(!isDeviceM0C()){
+				if(!isDeviceM0C() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
 					resources.push({
 						name            : "hfclkInPin",
 						displayName     : "HFCLK In",

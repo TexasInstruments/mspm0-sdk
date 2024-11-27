@@ -109,8 +109,8 @@ uint8_t DL_GPIO_readPinStatus(uint32_t pins);
 // communication part
 void transmitPacket(uint8_t *buffer, uint32_t size,int mode);
 void receivePacket(uint8_t u8Data);
-uint8_t  checkSum(uint8_t* data, int len);
-void uartTxData(uint8_t * u8Data,uint16_t Len);
+uint8_t  checkSum(volatile uint8_t* data, int len);
+void uartTxData(volatile uint8_t* u8Data,uint16_t Len);
 
 // command part
 void gpioDirectionSet(void);

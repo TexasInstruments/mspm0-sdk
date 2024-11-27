@@ -36,6 +36,8 @@
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
 <p>This is a sample customer secure code showcasing several cybersecurity features of the device while retaining the ability to debug and evaluate/modify the example for a given application. It is designed to be used with either the <code>customer_secure_image_with_bootloader</code> or <code>customer_secure_sample_image</code> projects.</p>
+<h2 id="requirements">Requirements</h2>
+<p>The ECC and SHA libaries used by this example are compiled with TI Clang 4.0.0 with Link Time Optimization (LTO). This is not compatible with previous versions of TI Clang (3.X and older). Thus, the user must download and use the updated TI Clang toolchain from <a href="https://www.ti.com/tool/download/ARM-CGT-CLANG/4.0.0.LTS">the product page</a> if not installed already.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>

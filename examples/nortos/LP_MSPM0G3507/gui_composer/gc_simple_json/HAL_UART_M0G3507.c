@@ -30,7 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 //*****************************************************************************
-//        GUI HAL for MSP430FR2xxx using UART
+//        GUI HAL for MSPM0G3507 using UART
 //
 // Driver to send and receive data from GUI using FR2xxx UART
 // Texas Instruments, Inc.

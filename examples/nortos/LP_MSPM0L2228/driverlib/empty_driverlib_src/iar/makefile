@@ -5,14 +5,16 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(IAR_ARMCOMPILER)/bin/iccarm"
 LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 
+SYSCONFIG_GUI_TOOL = $(dir $(SYSCONFIG_TOOL))sysconfig_gui$(suffix $(SYSCONFIG_TOOL))
 SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler iar --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
+SYSCFG_GUI_CMD_STUB = $(SYSCONFIG_GUI_TOOL) --compiler iar --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
 SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../empty.syscfg)
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = empty.obj ti_driverlib_dl_adc12.obj ti_driverlib_dl_aes.obj ti_driverlib_dl_aesadv.obj ti_driverlib_dl_common.obj ti_driverlib_dl_crc.obj ti_driverlib_dl_crcp.obj ti_driverlib_dl_dac12.obj ti_driverlib_dl_dma.obj ti_driverlib_dl_flashctl.obj ti_driverlib_dl_i2c.obj ti_driverlib_dl_keystorectl.obj ti_driverlib_dl_lcd.obj ti_driverlib_dl_lfss.obj ti_driverlib_dl_mathacl.obj ti_driverlib_dl_mcan.obj ti_driverlib_dl_opa.obj ti_driverlib_dl_rtc_common.obj ti_driverlib_dl_spi.obj ti_driverlib_dl_timer.obj ti_driverlib_dl_trng.obj ti_driverlib_dl_uart.obj ti_driverlib_dl_vref.obj ti_driverlib_m0p_dl_factoryregion.obj ti_driverlib_m0p_dl_interrupt.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0gx51x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l122x_l222x.obj iar_startup_mspm0l222x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = empty.obj ti_driverlib_dl_adc12.obj ti_driverlib_dl_aes.obj ti_driverlib_dl_aesadv.obj ti_driverlib_dl_common.obj ti_driverlib_dl_crc.obj ti_driverlib_dl_crcp.obj ti_driverlib_dl_dac12.obj ti_driverlib_dl_dma.obj ti_driverlib_dl_flashctl.obj ti_driverlib_dl_i2c.obj ti_driverlib_dl_keystorectl.obj ti_driverlib_dl_lcd.obj ti_driverlib_dl_lfss.obj ti_driverlib_dl_mathacl.obj ti_driverlib_dl_mcan.obj ti_driverlib_dl_opa.obj ti_driverlib_dl_rtc_common.obj ti_driverlib_dl_spi.obj ti_driverlib_dl_timer.obj ti_driverlib_dl_trng.obj ti_driverlib_dl_uart.obj ti_driverlib_dl_vref.obj ti_driverlib_m0p_dl_factoryregion.obj ti_driverlib_m0p_dl_interrupt.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0gx51x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l111x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l122x_l222x.obj iar_startup_mspm0l222x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = empty_driverlib_src
 
 CFLAGS += -I.. \
@@ -49,6 +51,18 @@ $(SYSCFG_FILES): syscfg
 syscfg: ../empty.syscfg
 	@ echo Generating configuration files...
 	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
+
+
+# Helpful hint that the user needs to use a standalone SysConfig installation
+$(SYSCONFIG_GUI_TOOL):
+	$(error $(dir $(SYSCONFIG_TOOL)) does not contain the GUI framework \
+        necessary to launch the SysConfig GUI.  Please set SYSCONFIG_TOOL \
+        (in your SDK's imports.mak) to a standalone SysConfig installation \
+        rather than one inside CCS)
+
+syscfg-gui: ../empty.syscfg $(SYSCONFIG_GUI_TOOL)
+	@ echo Opening SysConfig GUI
+	@ $(SYSCFG_GUI_CMD_STUB) $<
 
 define C_RULE
 $(basename $(notdir $(1))).obj: $(1) $(SYSCFG_H_FILES)
@@ -167,6 +181,10 @@ ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj: ../ti/driverlib/m0p/sysc
 	@ $(CC) $(CFLAGS) $< -o $@
 
 ti_driverlib_m0p_sysctl_dl_sysctl_mspm0gx51x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -o $@
+
+ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l111x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l111x.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

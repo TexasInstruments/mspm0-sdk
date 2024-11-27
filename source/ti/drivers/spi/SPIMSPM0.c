@@ -1149,7 +1149,7 @@ static void initIO(SPI_Handle handle)
         GPIO_setConfigAndMux(hwAttrs->sclkPin, GPIO_CFG_OUTPUT | hwAttrs->sclkPincm, hwAttrs->sclkPinMux);
         GPIO_setConfigAndMux(hwAttrs->picoPin, GPIO_CFG_OUTPUT | hwAttrs->picoPincm, hwAttrs->picoPinMux);
         GPIO_setConfigAndMux(hwAttrs->pociPin, GPIO_CFG_INPUT | hwAttrs->pociPincm, hwAttrs->pociPinMux);
-        GPIO_setConfigAndMux(hwAttrs->csnPin, GPIO_CFG_OUTPUT | GPIO_CFG_OUT_HIGH | GPIO_CFG_HIZ_ON | hwAttrs->csnPincm, hwAttrs->csnPinMux);
+        GPIO_setConfigAndMux(hwAttrs->csnPin, GPIO_CFG_OUTPUT | GPIO_CFG_OUT_HIGH | GPIO_CFG_OUT_OD_PU | hwAttrs->csnPincm, hwAttrs->csnPinMux);
     }
 }
 

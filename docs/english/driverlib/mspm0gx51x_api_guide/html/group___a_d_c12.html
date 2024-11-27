@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0GX51X Driver Library
-   &#160;<span id="projectnumber">2.02.00.05</span>
+   &#160;<span id="projectnumber">2.03.00.07</span>
    </div>
   </td>
  </tr>
@@ -150,9 +150,8 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:gaea86ca98d3364186f29677a34a7a98e1"><td class="memItemLeft" align="right" valign="top"><a id="gaea86ca98d3364186f29677a34a7a98e1"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___a_d_c12.html#gaea86ca98d3364186f29677a34a7a98e1">DL_ADC12_SVT_OFFSET</a>&#160;&#160;&#160;((uint32_t)0x555000 &gt;&gt; (uint32_t)2)</td></tr>
-<tr class="memdesc:gaea86ca98d3364186f29677a34a7a98e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an internal macro is used to resolve the offset to ADC12 SVT aperture. <br /></td></tr>
+<tr class="memitem:gaea86ca98d3364186f29677a34a7a98e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___a_d_c12.html#gaea86ca98d3364186f29677a34a7a98e1">DL_ADC12_SVT_OFFSET</a>&#160;&#160;&#160;((uint32_t)0x555000 &gt;&gt; (uint32_t)2)</td></tr>
+<tr class="memdesc:gaea86ca98d3364186f29677a34a7a98e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an internal macro is used to resolve the offset to ADC12 SVT.  <a href="#gaea86ca98d3364186f29677a34a7a98e1">More...</a><br /></td></tr>
 <tr class="separator:gaea86ca98d3364186f29677a34a7a98e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -545,7 +544,29 @@ Functions</h2></td></tr>
 <p><a class="anchor" id="ti_dl_dl_adc12_Overview"></a></p><h1>Overview</h1>
 <p>The Analog to Digital Converter Driver Library allows full configuration of the MSPM0 ADC module. The ADC is a high-performance successive-approximation-register (SAR) analog-to-digital converter.</p>
 <hr/>
- <h2 class="groupheader">Enumeration Type Documentation</h2>
+ <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="gaea86ca98d3364186f29677a34a7a98e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaea86ca98d3364186f29677a34a7a98e1">&sect;&nbsp;</a></span>DL_ADC12_SVT_OFFSET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DL_ADC12_SVT_OFFSET&#160;&#160;&#160;((uint32_t)0x555000 &gt;&gt; (uint32_t)2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This is an internal macro is used to resolve the offset to ADC12 SVT. </p>
+<p>The offset from ADC12 base to ADC12 SVT is 0x556000. However the FIFODATA and MEMRES registers within SVT are offset by an additional 0x1000. For example, the FIFODATA register from ADC12 base has offset 0x1160. The same register in ADC12 SVT has offset 0x0160.</p>
+<p>This 0x1000 difference is taken in to consideration by DL_ADC12_SVT_OFFSET. Formula: (ADC12 SVT - ADC12 BASE) - 0x1000</p>
+<p>Used by the following APIs: <a class="el" href="group___a_d_c12.html#gab62a7ab2c1f4f894fa170b891686e354">DL_ADC12_getFIFOData</a> <a class="el" href="group___a_d_c12.html#gac76c83d3689ae0a53465d7cf36504168">DL_ADC12_getFIFOAddress</a> <a class="el" href="group___a_d_c12.html#gad0fe9d19a4327732ce773f2344513235">DL_ADC12_getMemResult</a> <a class="el" href="group___a_d_c12.html#ga63c683688e09b0f387a252ce70ed7f48">DL_ADC12_getMemResultAddress</a> </p>
+
+<p>Referenced by <a class="el" href="group___a_d_c12.html#gac76c83d3689ae0a53465d7cf36504168">DL_ADC12_getFIFOAddress()</a>, <a class="el" href="group___a_d_c12.html#gab62a7ab2c1f4f894fa170b891686e354">DL_ADC12_getFIFOData()</a>, <a class="el" href="group___a_d_c12.html#gad0fe9d19a4327732ce773f2344513235">DL_ADC12_getMemResult()</a>, and <a class="el" href="group___a_d_c12.html#ga63c683688e09b0f387a252ce70ed7f48">DL_ADC12_getMemResultAddress()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="ga23c28418c3602c4e8083a97462d6a322"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga23c28418c3602c4e8083a97462d6a322">&sect;&nbsp;</a></span>DL_ADC12_MEM_IDX</h2>
 

@@ -68,7 +68,7 @@ function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
     /* Verify if using UART Advanced instance */
-    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
+    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
         if(!(/UART0/.test(solution))){
             validation.logError("LIN functionality is only available on the UART0 instance. Please select a UART0 instance from PinMux if available.",
                 inst,"peripheral");

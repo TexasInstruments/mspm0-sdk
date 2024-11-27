@@ -126,8 +126,10 @@ static const DL_VREF_Config gVREFConfig = {
 % let vrefEn = ((inst.basicMode.includes("DL_VREF_ENABLE_ENABLE"))?"DL_VREF_ENABLE_ENABLE":"DL_VREF_ENABLE_DISABLE")
     .vrefEnable     = `vrefEn`,
 %   if (inst.basicMode.includes("DL_VREF_ENABLE_ENABLE")){
-%   // Internal mode
+%   // Internal mode, but do not generate define for M0H321X since there is no selection available
+%   if(!Common.isDeviceFamily_PARENT_MSPM0H321X()) {
     .bufConfig      = `inst.basicIntVolt`,
+% }
 %   } else{
 %   // External mode
     .bufConfig      = DL_VREF_BUFCONFIG_OUTPUT_2_5V,

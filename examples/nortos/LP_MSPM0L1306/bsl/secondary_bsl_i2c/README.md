@@ -21,8 +21,14 @@ For more details refer to BSL User Guide.
 This example can be used to create custom Bootloader.
 
 NOTE:
-While creating Custom Bootloader make sure that, Flash region in which the custom Bootloader resides is Static write protected in
-the BCR configuration. Otherwise there are chances for device to get locked during the Bootloading process.
+1. While creating Custom Bootloader make sure that, Flash region in which
+the custom Bootloader resides is Static write protected in the
+BCR configuration. Otherwise there are chances for device to get locked
+during the Bootloading process.
+2. The default password is given as all '0xFFFFFFFF'. It can be changed in
+secondary_bsl.c
+3. The values of the defines BSL_SRAM_BUF_START_ADDR, BSL_STACK_SIZE has to be
+changed according to the SRAM usage. 
 
 NOTE:
 This BSL example uses a provided ti_msp_dl_config.h file that is not generated

@@ -139,7 +139,7 @@ const BCR_Config BCRConfig =
 %   if (!Common.isDeviceM0C()) {
     .tifaMode             = `inst.tifaEnable ? "BCR_CFG_TIFA_EN" : "BCR_CFG_TIFA_DIS"`,
     .bslPinInvokeEnable   = `inst.bslInvokePinCheck ? "BCR_CFG_BSL_PIN_INVOKE_EN" : "BCR_CFG_BSL_PIN_INVOKE_DIS"`,
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X())){
+%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
     .staticWriteProtectionMainLow  = `createHexStr(inst.staticWriteProtectionMainLow)`,
     .staticWriteProtectionMainHigh = `createHexStr(inst.staticWriteProtectionMainHigh)`,
     .staticWriteProtectionNonMain  = `inst.staticWriteProtectionNonMain ? "BCR_CFG_NON_MAIN_STATIC_PROT_EN" : "BCR_CFG_NON_MAIN_STATIC_PROT_DIS"`,
@@ -147,7 +147,11 @@ const BCR_Config BCRConfig =
     .CSCexist             = `inst.cscExists ? "BCR_CFG_CSC_EXIST" : "BCR_CFG_CSC_NOT_EXIST"`,
     .flashBankSwapPolicy  = `inst.flashBankSwap ? "BCR_CFG_FLASH_BS_EN" : "BCR_CFG_FLASH_BS_DIS"`,
 %   }
-%   if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X())){
+%   if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%       if ((Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() ||
+%            Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()) && (inst.apEnable == "disabled")) {
+    /* Randomly generated password will differ at build time */
+%       }
     .passwordDebugLock    = {`createHexStr(inst.swdPW0)`, `createHexStr(inst.swdPW1)`,
         `createHexStr(inst.swdPW2)`, `createHexStr(inst.swdPW3)`},
 %   } // device is MSPM0L122X_L222X
@@ -156,13 +160,13 @@ const BCR_Config BCRConfig =
     .massEraseMode        = `massEraseStr`,
 %   } // device is not M0C
     .factoryResetMode     = `factoryResetStr`,
-%   if (!Common.isDeviceM0C() && !(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X())) {
+%   if (!Common.isDeviceM0C() && !(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())) {
     .passwordMassErase    = {`createHexStr(inst.mePW0)`, `createHexStr(inst.mePW1)`,
         `createHexStr(inst.mePW2)`, `createHexStr(inst.mePW3)`},
     .passwordFactoryReset = {`createHexStr(inst.frPW0)`, `createHexStr(inst.frPW1)`,
         `createHexStr(inst.frPW2)`, `createHexStr(inst.frPW3)`},
 %   } // device is not M0C or MSPM0L122X_L222X
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X())){
+%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
     .passwordMassErase    = {`createHexStr(inst.mePW0)`, `createHexStr(inst.mePW1)`,
         `createHexStr(inst.mePW2)`, `createHexStr(inst.mePW3)`,
         `createHexStr(inst.mePW4)`, `createHexStr(inst.mePW5)`,
@@ -178,7 +182,7 @@ const BCR_Config BCRConfig =
 %   } // device is MSPM0L122X_L222X
 %
 %   /* Due to structure padding, write protection fields for M0C need to be in a different order */
-%   if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X())){
+%   if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
 %       if (!Common.isDeviceM0C()) {
     .staticWriteProtectionMainLow  = `createHexStr(inst.staticWriteProtectionMainLow)`,
     .staticWriteProtectionMainHigh = `createHexStr(inst.staticWriteProtectionMainHigh)`,
@@ -190,17 +194,17 @@ const BCR_Config BCRConfig =
     .staticWriteProtectionMainHigh = `createHexStr(inst.staticWriteProtectionMainHigh)`,
 %       } // device is M0C
 %   } // device is not MSPM0L122X_L222X
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X())){
+%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
     .bc_reserved_0 = 0xFFFF,
 %   }
 %   if (!Common.isDeviceM0C()){
     .secureBootMode                = `inst.appCRCCheck ? "BCR_CFG_SECURE_BOOT_EN" : "BCR_CFG_SECURE_BOOT_DIS"`,
     .userSecureAppStartAddr        = `createHexStr(inst.appCRCCheckStartAddress)`,
     .userSecureAppLength           = `createHexStr(inst.appCRCCheckLength)`,
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X())){
+%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
     .userSecureAppHash = {CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,
     CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE},
-%       if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+%       if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
 %    /*! Reserved */
     .bc_reserved_1 = 0xFFFFFFFFU,
 %       }
@@ -269,17 +273,22 @@ const BSL_Config BSLConfig =
     .pluginHook[1]      = `(inst.bslPluginHookReceive.length) ? "(uint32_t) " + inst.bslPluginHookReceive : "CFG_DEFAULT_VALUE"`,
     .pluginHook[2]      = `(inst.bslPluginHookTransmit.length) ? "(uint32_t) " + inst.bslPluginHookTransmit : "CFG_DEFAULT_VALUE"`,
     .pluginHook[3]      = `(inst.bslPluginHookDeInit.length) ? "(uint32_t) " + inst.bslPluginHookDeInit : "CFG_DEFAULT_VALUE"`,
-%   if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+%   if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
     .uartBaudRate       = DEF_UART_BAUD_RATE,
 %   }
     .BSLAlternateConfig = `inst.bslAltConfig ? "BSL_CFG_FLASH_BSL_EXIST" : "BSL_CFG_FLASH_BSL_NOT_EXIST"`,
-%   if(!Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+%   if(!Common.isDeviceFamily_PARENT_MSPM0GX51X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
     .reserved           = 0xFFFF,
 %   }
     .BSLAlternateAddr   = `createHexStr(inst.bslAltAddress)`,
     .appRev             = `"(uint32_t *) " + createHexStr(inst.bslAppVersion)`,
     .securityAlert      = `securityAlertStr`,
     .i2cSlaveAddress    = `createHexStr(inst.i2cSlaveAddress)`,
+%   if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
+    .disableNRST        = `inst.disableNRST ? "BSL_CFG_NRST_DISABLE" : "BSL_CFG_NRST_ENABLE"`,
+    .bl_reserved_0      = 0xFFFF,
+    .bl_reserved_1      = 0xFFFFFFFF,
+%   }
     .userCfgCRC         = `createHexStr(inst.bslCRC)`,
 };
 

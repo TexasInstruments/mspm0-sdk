@@ -1,9 +1,9 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "MSPM0G351X" --part "Default" --package "LQFP-100(PZ)" 
+ * @v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
  */
-//@cliArgs --device "MSPM0G351X" --package "LQFP-100(PZ)" --part "Default"
-//@v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
 // @cliArgs --board /ti/boards/LP_MSPM0G3519 --rtos nortos
 
 /**
@@ -11,8 +11,6 @@
  */
 const AESADV = scripting.addModule("/ti/driverlib/AESADV");
 const DMA    = scripting.addModule("/ti/driverlib/DMA");
-const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
-const GPIO1  = GPIO.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 /**
@@ -33,5 +31,5 @@ DMA.associatedChannels[1].enableInterrupt = true;
 DMA.associatedChannels[1].$name           = "DMA_CH0";
 DMA.associatedChannels[1].addressMode     = "b2f";
 
-GPIO1.$name                   = "GPIO_LED";
-GPIO1.associatedPins[0].$name = "USER_LED_1";
+SYSCTL.clockTreeEn           = true;
+SYSCTL.forceDefaultClkConfig = true;

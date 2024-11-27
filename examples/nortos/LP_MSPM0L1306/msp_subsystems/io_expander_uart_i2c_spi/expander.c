@@ -278,7 +278,7 @@ void gpioStateRead(void)
     }
 }
 
-uint8_t checkSum(uint8_t* data, int len)
+uint8_t checkSum(volatile uint8_t* data, int len)
 {
     uint16_t checksum = 0;
     for (int i = 0; i < len; i++) {
@@ -327,7 +327,7 @@ void receivePacket(uint8_t u8Data)
 }
 
 //UART TX
-void uartTxData(uint8_t * u8Data,uint16_t Len)
+void uartTxData(volatile uint8_t* u8Data,uint16_t Len)
 {
     uint16_t u16Cnt;
 
@@ -367,7 +367,7 @@ void I2C_INST_IRQHandler(void)
                 if (gTxCount < TX_PACKET_LEN)
                 {
                     gTxCount += DL_I2C_fillTargetTXFIFO(
-                        I2C_INST, &ioExpander.txDataPkt[gTxCount], (TX_PACKET_LEN - gTxCount));
+                        I2C_INST, (uint8_t *)&ioExpander.txDataPkt[gTxCount], (TX_PACKET_LEN - gTxCount));
                 }
 
                 if (gTxCount == TX_PACKET_LEN)

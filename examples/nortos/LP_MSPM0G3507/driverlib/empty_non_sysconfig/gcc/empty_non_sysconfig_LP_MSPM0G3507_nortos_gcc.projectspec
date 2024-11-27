@@ -53,10 +53,10 @@
             -lgcc
             -lc
             -lm
-            -lnosys
+            --specs=nosys.specs
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Empty, non-SysConfig, start-up project using DriverLib">
+        description="Empty start-up project that does not use SysConfig">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>

@@ -50,7 +50,8 @@
 %%}
 %
 %
-% if(!sysoscInst.disableSYSOSC && sysoscInst.enableROSC && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+% if(!sysoscInst.disableSYSOSC && sysoscInst.enableROSC && (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+%     Common.isDeviceFamily_PARENT_MSPM0H321X())){
 % /* ROSC pins */
 % let roscPortStr = "#define GPIO_ROSC_PORT";
 `roscPortStr.padEnd(40," ")+"GPIOA".padStart(40, " ")`
@@ -61,7 +62,8 @@
 % let roscIOmuxStr2 = "(IOMUX_PINCM7"+")";
 `roscIOmuxStr.padEnd(40," ")+roscIOmuxStr2.padStart(40," ")`
 %   }
-% if(!sysoscInst.disableSYSOSC && sysoscInst.enableROSC && !Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+% if(!sysoscInst.disableSYSOSC && sysoscInst.enableROSC && !(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+%    Common.isDeviceFamily_PARENT_MSPM0H321X())){
 % /* ROSC pins */
 %       let roscPinName = "roscPin";
 %       let roscPackagePin = sysoscInst.peripheral[roscPinName].$solution.packagePinName;

@@ -19,6 +19,7 @@ NONMAIN.bslAltConfig                 = true;
 NONMAIN.bslAltAddress                = 0x1041;
 NONMAIN.nonmainWarning               = true;
 NONMAIN.staticWriteProtectionMainLow = 0xFF0000FF;
+NONMAIN.staticWriteProtectionNonMain = true;
 
 ProjectConfig.genLinker  = false;
 ProjectConfig.genStartup = false;

@@ -1,5 +1,5 @@
-适用于 CCS 的 MSPM0 SDK 快速入门指南
-====================================
+适用于 Code Composer Studio v12 (Eclipse) 的 MSPM0 SDK 快速入门指南
+===================================================================
 
 1. 简介
 -------
@@ -11,11 +11,11 @@
 
 用户应已下载以下内容：
 
--  `CCS 12.8.0 or later <https://www.ti.com/tool/download/CCSTUDIO>`__
+-  `Code Composer Studio (Eclipse) 12.8.0 or later <https://www.ti.com/tool/download/CCSTUDIO>`__
 
    -  **注：**\ 此版本包括对 MSPM0量产型号的支持，不支持早期的实验型号。
 
--  `SysConfig 1.21.x <https://www.ti.com/tool/SYSCONFIG>`__ (包含在最新版本的 CCS 中)
+-  `SysConfig 1.22.x <https://www.ti.com/tool/SYSCONFIG>`__ (包含在最新版本的 CCS 中)
 -  `TI Clang 3.2.2.LTS <https://www.ti.com/tool/download/ARM-CGT-CLANG-1/>`__ (包含在最新版本的 CCS 中)
 
 3. 在 CCS 中导入和构建示例

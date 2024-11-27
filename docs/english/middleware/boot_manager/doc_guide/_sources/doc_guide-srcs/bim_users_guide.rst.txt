@@ -40,6 +40,8 @@ To run the initial setup, make sure Python 3.7 or newer is installed with the la
 
     python -m pip install --user -r source/third_party/mcuboot/scripts/requirements.txt
 
+The ECC and SHA libaries used by this example are compiled with TI Clang 4.0.0 with Link Time Optimization (LTO). This is not compatible with previous versions of TI Clang (3.X and older). Thus, the user must download and use the updated TI Clang toolchain from `the product page <https://www.ti.com/tool/download/ARM-CGT-CLANG/4.0.0.LTS>`__ if not installed already.
+
 2.0.1 Python Versioning in OSX or Linux
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

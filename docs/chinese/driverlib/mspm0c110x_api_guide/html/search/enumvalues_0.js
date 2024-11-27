@@ -680,6 +680,7 @@ var searchData=
   ['dl_5ftimer_5fiidx_5ffault',['DL_TIMER_IIDX_FAULT',['../group___t_i_m_x.html#ggac2fe50d5692d7b1a6c419a4d3f185a4aae45b629c7abbe4f133402e855f368968',1,'dl_timer.h']]],
   ['dl_5ftimer_5fiidx_5fload',['DL_TIMER_IIDX_LOAD',['../group___t_i_m_x.html#ggac2fe50d5692d7b1a6c419a4d3f185a4aadff756b388141e8b0e0f055460f503a9',1,'dl_timer.h']]],
   ['dl_5ftimer_5fiidx_5foverflow',['DL_TIMER_IIDX_OVERFLOW',['../group___t_i_m_x.html#ggac2fe50d5692d7b1a6c419a4d3f185a4aaaeaf999695c5def2b6d6f29039a24f3c',1,'dl_timer.h']]],
+  ['dl_5ftimer_5fiidx_5fqeierr',['DL_TIMER_IIDX_QEIERR',['../group___t_i_m_x.html#ggac2fe50d5692d7b1a6c419a4d3f185a4aa1af00b6326ab4a68d1072979c2b35ddd',1,'dl_timer.h']]],
   ['dl_5ftimer_5fiidx_5frepeat_5fcount',['DL_TIMER_IIDX_REPEAT_COUNT',['../group___t_i_m_x.html#ggac2fe50d5692d7b1a6c419a4d3f185a4aaa4cd372a3dd98c5ffe1fc9c6e29728c7',1,'dl_timer.h']]],
   ['dl_5ftimer_5fiidx_5fzero',['DL_TIMER_IIDX_ZERO',['../group___t_i_m_x.html#ggac2fe50d5692d7b1a6c419a4d3f185a4aaadfb2f9cb5d229db8554dd38d7c0f625',1,'dl_timer.h']]],
   ['dl_5ftimer_5finput_5fchan_5f0',['DL_TIMER_INPUT_CHAN_0',['../group___t_i_m_x.html#gga054cbefc5b47f5a811f5acaced478217aa75013315328ba022e3ff6bc422923e7',1,'dl_timer.h']]],

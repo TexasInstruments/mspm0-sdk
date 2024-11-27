@@ -594,7 +594,8 @@ void CMD_API_Get_Identity(void)
          * Access the data only if it is not blank
          * Else return '0' as application revision
          */
-        DL_FlashCTL_blankVerify(FLASHCTL, (uint32_t) pBSLConfig->appRev);
+        DL_FlashCTL_blankVerifyFromRAM(
+                FLASHCTL, (uint32_t) pBSLConfig->appRev);
         DL_FlashCTL_waitForCmdDone(FLASHCTL);
         if (DL_FlashCTL_getFailureStatus(FLASHCTL) ==
             DL_FLASHCTL_FAIL_TYPE_VERIFY_ERROR) {

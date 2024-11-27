@@ -19,6 +19,7 @@ NONMAIN.staticWriteProtectionMainLow = 0xFFFFF00F;
 NONMAIN.bslAltConfig                 = true;
 NONMAIN.bslAltAddress                = 0x1041;
 NONMAIN.nonmainWarning               = true;
+NONMAIN.staticWriteProtectionNonMain = true;
 
 ProjectConfig.genDisable = true;
 scripting.suppress("Project Configuration File generation is disabled for this project\\. SysConfig Project Migration is not currently supported for this project\\.", ProjectConfig);

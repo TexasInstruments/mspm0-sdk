@@ -34,8 +34,6 @@
  *  ============ ti_msp_dl_config.c =============
  *  Configured MSPM0 DriverLib module definitions
  *
- *  DO NOT EDIT - This file is generated for the LP_MSPM0G3507
- *  by the SysConfig tool.
  */
 
 #include "ti_drivers_config.h"
@@ -91,9 +89,9 @@ static const UARTMSP_HWAttrs UARTMSPHWAttrs[CONFIG_UART_COUNT] = {
     {
         .regs          = UART0,
         .irq           = UART0_INT_IRQn,
-        .rxPin         = IOMUX_PINCM22, /* 17 */
+        .rxPin         = IOMUX_PINCM22, /* PA11 */
         .rxPinFunction = IOMUX_PINCM22_PF_UART0_RX,
-        .txPin         = IOMUX_PINCM21, /* 16 */
+        .txPin         = IOMUX_PINCM21, /* PA10 */
         .txPinFunction = IOMUX_PINCM21_PF_UART0_TX,
         .mode          = DL_UART_MODE_NORMAL,
         .direction     = DL_UART_DIRECTION_TX_RX,

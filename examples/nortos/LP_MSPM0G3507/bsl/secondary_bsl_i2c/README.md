@@ -1,26 +1,37 @@
 ## Example Summary
 
-Secondary Bootloader supports programming / verifying data in the memory, with same BSL protocol format as Primary BSL (ROM BSL) in the device. It can be invoked in the same way as the ROM BSL.
-- Init
-- Receive
-- Send
-- Deinit
+Secondary Bootloader supports programming / verifying data in the memory,
+with same BSL protocol format as Primary BSL (ROM BSL) in the device.
+It can be invoked in the same way as the ROM BSL.
+
+It supports the following major functions
+- Program data
+- Flash memory erase
+- Readback data
+- CRC verification
+- Start Application
 
 It uses I2C interface to communicate with the Host
 
-Once this plugin image is loaded, ROM I2C interface will become inactive.
-To revert the device to use ROM I2C use SWD_Factory_Reset.
+This example takes care of secondary Bootloader implementation as well as
+the registration of it. Hence once this image is loaded to the device, the
+primary Bootloader in the device can't be used. Only the secondary Bootloader
+will be active. To revert the device to use primary Bootloader
+SWD_Factory_Reset command has to be used.
 
 For more details refer to BSL User Guide.
 
-This example takes care of secondary Bootloader implementation as well as the registration of it.
- Hence once this image is loaded to the device, the primary Bootloader in the device can’t be used.
- Only the secondary Bootloader will be active. To revert the device to use primary Bootloader SWD_Factory_Reset command has to be used.
-This example can be used to customize the I2C interface implementation.
+This example can be used to create custom Bootloader.
 
 NOTE:
-While creating Custom Bootloader make sure that, Flash region in which the custom Bootloader resides is Static write protected in the BCR configuration.
-Otherwise there are chances for device to get locked during the Bootloading process.
+1. While creating Custom Bootloader make sure that, Flash region in which
+the custom Bootloader resides is Static write protected in the
+BCR configuration. Otherwise there are chances for device to get locked
+during the Bootloading process.
+2. The default password is given as all '0xFFFFFFFF'. It can be changed in
+secondary_bsl.c
+3. The values of the defines BSL_SRAM_BUF_START_ADDR, BSL_STACK_SIZE has to be
+changed according to the SRAM usage. 
 
 NOTE:
 This BSL example uses a provided ti_msp_dl_config.h file that is not generated
@@ -66,8 +77,7 @@ Connect I2C_SDA and I2C_SCL with the BSL Host (any microcontroller with I2C).
 Compile, load the example.
 
 Create BSL invocation condition using BSL Invoke pin or any other invocation methods.
-Send Connection command from the host. BSL Acknowledgement should be received.
 Send GetDeviceInfo command from the host.
-BSL should respond back with the I2C interface Flash plugin version information.
+Device should respond back with the version information and SRAM buffer space available.
 
 Similarly Send erase, program, verification commands to program data in the memory.

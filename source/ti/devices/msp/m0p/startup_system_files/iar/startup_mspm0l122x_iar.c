@@ -64,13 +64,11 @@ extern void UART4_IRQHandler(void);
 extern void ADC0_IRQHandler(void);
 extern void SPI0_IRQHandler(void);
 extern void SPI1_IRQHandler(void);
-extern void SPI2_IRQHandler(void);
 extern void UART2_IRQHandler(void);
 extern void UART3_IRQHandler(void);
 extern void UART0_IRQHandler(void);
 extern void UART1_IRQHandler(void);
 extern void TIMA0_IRQHandler(void);
-extern void TIMA1_IRQHandler(void);
 extern void TIMG8_IRQHandler(void);
 extern void TIMG0_IRQHandler(void);
 extern void TIMG4_IRQHandler(void);
@@ -97,13 +95,11 @@ extern void DMA_IRQHandler(void);
 #pragma weak ADC0_IRQHandler     = Default_Handler
 #pragma weak SPI0_IRQHandler     = Default_Handler
 #pragma weak SPI1_IRQHandler     = Default_Handler
-#pragma weak SPI2_IRQHandler     = Default_Handler
 #pragma weak UART2_IRQHandler    = Default_Handler
 #pragma weak UART3_IRQHandler    = Default_Handler
 #pragma weak UART0_IRQHandler    = Default_Handler
 #pragma weak UART1_IRQHandler    = Default_Handler
 #pragma weak TIMA0_IRQHandler    = Default_Handler
-#pragma weak TIMA1_IRQHandler    = Default_Handler
 #pragma weak TIMG8_IRQHandler    = Default_Handler
 #pragma weak TIMG0_IRQHandler    = Default_Handler
 #pragma weak TIMG4_IRQHandler    = Default_Handler
@@ -175,7 +171,7 @@ __root const uVectorEntry __vector_table[] @ ".intvec" = {
     0,                                   /* Reserved                  */
     SPI0_IRQHandler,                     /* SPI0 interrupt handler    */
     SPI1_IRQHandler,                     /* SPI1 interrupt handler    */
-    SPI2_IRQHandler,                     /* SPI1 interrupt handler    */
+    0,                                   /* Reserved                  */
     0,                                   /* Reserved                  */
     UART2_IRQHandler,                    /* UART2 interrupt handler   */
     UART3_IRQHandler,                    /* UART3 interrupt handler   */
@@ -183,7 +179,7 @@ __root const uVectorEntry __vector_table[] @ ".intvec" = {
     UART1_IRQHandler,                    /* UART1 interrupt handler   */
     0,                                   /* Reserved                  */
     TIMA0_IRQHandler,                    /* TIMA0 interrupt handler   */
-    TIMA1_IRQHandler,                    /* TIMA1 interrupt handler   */
+    0,                                   /* Reserved                  */
     TIMG8_IRQHandler,                    /* TIMG8 interrupt handler   */
     TIMG0_IRQHandler,                    /* TIMG0 interrupt handler   */
     TIMG4_IRQHandler,                    /* TIMG4 interrupt handler   */

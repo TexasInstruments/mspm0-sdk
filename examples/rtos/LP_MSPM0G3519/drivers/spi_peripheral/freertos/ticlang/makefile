@@ -7,7 +7,7 @@ KERNEL_BUILD := $(MSPM0_SDK_INSTALL_DIR)/kernel/freertos/builds/LP_MSPM0G3519/re
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = main_freertos.obj spiperipheral.obj ti_display_Display.obj ti_display_DisplayUart.obj ti_drivers_config.obj ti_msp_dl_config.obj freertos_ticlang_startup_mspm0g3519_ticlang.obj
+OBJECTS = main_freertos.obj spiperipheral.obj ti_display_Display.obj ti_display_DisplayUart.obj ti_drivers_config.obj ti_msp_dl_config.obj freertos_ticlang_startup_mspm0g351x_ticlang.obj
 NAME = spi_peripheral
 
 CFLAGS += -I../.. \
@@ -54,11 +54,11 @@ spiperipheral.obj: ../../spiperipheral.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_Display.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/ec28c0257c34e3a2a7ccf595093095a4/sandbox/linux-sandbox/5497/execroot/__main__/source/ti/display/Display.c
+ti_display_Display.obj: /home/developer/.cache/bazel/_bazel_developer/2ca1f4ebdc59348ffdc31d97a51a98d5/sandbox/processwrapper-sandbox/6138/execroot/__main__/source/ti/display/Display.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_DisplayUart.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/ec28c0257c34e3a2a7ccf595093095a4/sandbox/linux-sandbox/5497/execroot/__main__/source/ti/display/DisplayUart.c
+ti_display_DisplayUart.obj: /home/developer/.cache/bazel/_bazel_developer/2ca1f4ebdc59348ffdc31d97a51a98d5/sandbox/processwrapper-sandbox/6138/execroot/__main__/source/ti/display/DisplayUart.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
@@ -70,7 +70,7 @@ ti_msp_dl_config.obj: ../../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-freertos_ticlang_startup_mspm0g3519_ticlang.obj: ../../freertos/ticlang/startup_mspm0g3519_ticlang.c
+freertos_ticlang_startup_mspm0g351x_ticlang.obj: ../../freertos/ticlang/startup_mspm0g351x_ticlang.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

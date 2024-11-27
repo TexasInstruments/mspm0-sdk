@@ -118,7 +118,8 @@
 %
 %
 % function printPreFunction() {
-%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+%   if(Common.isDeviceM0G() || (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+%      Common.isDeviceFamily_PARENT_MSPM0H321X())){
 %   let lfxtInst = _.find(instances, ['$name','LFXT']);
 %   let exlfInst = _.find(instances, ['$name','LFCLKEXT']);
 %       if(lfxtInst.enable || exlfInst.enable){

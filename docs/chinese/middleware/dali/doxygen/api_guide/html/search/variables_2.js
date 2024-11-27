@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['dataarr',['dataArr',['../structdali___rx.html#a030f8752ec21f53d6388cc87e9cb60f1',1,'dali_Rx']]],
   ['datatransferregister0',['dataTransferRegister0',['../structdali__control_gear_var.html#a6b48eca8ae115534af49b66d4c3eeb5c',1,'dali_controlGearVar']]],
   ['datatransferregister1',['dataTransferRegister1',['../structdali__control_gear_var.html#af678c9f19dfb789faf067922e2be0393',1,'dali_controlGearVar']]],
   ['datatransferregister2',['dataTransferRegister2',['../structdali__control_gear_var.html#a34d92f16184f03c2f47f292b3209078e',1,'dali_controlGearVar']]],

@@ -81,7 +81,7 @@
 %       let gen = system.getTemplate("/ti/driverlib/sysctl/SYSCTLclockTree.Board.c.xdt")
 `_.trimEnd(gen(SYSCTL,"GPIO"))`
 %   } else {
-%if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
 %   if(stat.LFCLKSource === "LFXT"){
     /* Configure GPIO/IOMUX for LFXT functionality */
     DL_GPIO_initPeripheralAnalogFunction(GPIO_LFXIN_IOMUX);
@@ -90,6 +90,8 @@
 %   else if(stat.LFCLKSource === "LFCLK_IN"){
     DL_GPIO_initPeripheralInputFunction(GPIO_LFCLKIN_IOMUX, GPIO_LFCLKIN_IOMUX_FUNC);
 %   }
+% }
+%if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
 %    if(stat.useHFCLK && stat.HFCLKSource === "HFXT"){
     /* Configure GPIO/IOMUX for HFXT functionality */
     DL_GPIO_initPeripheralAnalogFunction(GPIO_HFXIN_IOMUX);
@@ -100,7 +102,7 @@
 %   }
 %}
 %   if(stat.enableEXCLK){
-%        if((Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()) && (["HFCLK","SYSPLLOUT1"].includes(stat.EXCLKSource))){
+%        if((Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceM0C()) && (["HFCLK","SYSPLLOUT1"].includes(stat.EXCLKSource))){
     /*
      * To output a signal that is greater than 32MHz a High-Speed IO (HSIO) pin
      * needs to be used and have high drive enabled.
@@ -174,7 +176,7 @@ static const DL_SYSCTL_SYSPLLConfig gSYSPLLConfig = {
 %   }
 % }
 % /* LFCLK Config */
-%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
     %   if(stat.LFCLKSource == "LFXT"){
 static const DL_SYSCTL_LFCLKConfig gSYSCTLConfig = {
     .lowCap   = `stat.LFCLKLowCap`,
@@ -292,12 +294,12 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
 %if(stat.forceDefaultClkConfig) {
     /* Set default configuration */
     DL_SYSCTL_disableHFXT();
-%   if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+%   if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
     DL_SYSCTL_disableSYSPLL();
 %   }
 %}
 % /* HFCLK Config */
-% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
+% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceM0C()){
 %   if(stat.useHFCLK){
 %       if(stat.HFCLKSource == "HFXT"){
     DL_SYSCTL_setHFCLKSourceHFXTParams(`stat.HFXTRange`, `stat.HFXTStartup`, `stat.HFCLKMonitor`);
@@ -317,7 +319,7 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
 %   }
 % }
 % /* LFCLK Config */
-%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
     %   if(stat.LFCLKSource == "LFXT"){
     DL_SYSCTL_setLFCLKSourceLFXT((DL_SYSCTL_LFCLKConfig *) &gSYSCTLConfig);
     %   }
@@ -342,7 +344,7 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
             break;
        /* HSCLK Config */
         case "HSCLK":
-            if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C()){
+            if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceM0C()){
                 switch(stat.HSCLKSource){
                     case "SYSPLLCLK0":
                         printMClkSource += "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_SYSPLL);";

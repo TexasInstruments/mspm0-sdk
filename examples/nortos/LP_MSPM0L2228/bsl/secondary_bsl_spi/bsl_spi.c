@@ -151,7 +151,6 @@ uint16_t BSL_PI_SPI_init(uint8_t* buffer, uint16_t bufferSize)
 {
     BSL_initBuffers(buffer, bufferSize);
 
-    DL_TimerG_reset(TIMG0);
 
     /* Reset and enable power to peripheral */
     DL_SPI_reset(BSL_SPI);

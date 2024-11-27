@@ -389,8 +389,7 @@ void BSL_PI_I2C_ISR(void)
              * the interface is chosen as active interface
              */
             if ((BSL_RX_state == RX_idle) &&
-                ((receivedData == BSL_PACKET_HEADER_BYTE) ||
-                    (BSL_activePluginType == FLASH_PLUGIN_VERSION_I2C))) {
+                (BSL_activePluginType == FLASH_PLUGIN_VERSION_I2C)) {
                 BSL_activePluginType = FLASH_PLUGIN_VERSION_I2C;
                 BSL_PI_RxDataCnt     = (uint16_t) 1;
                 BSL_PI_dataPointer   = (uint32_t) 0;

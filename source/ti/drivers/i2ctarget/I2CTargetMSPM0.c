@@ -308,7 +308,7 @@ static void I2CTargetMSPM0_hwiFxn(uintptr_t arg)
     I2CTarget_Event event;
 
     /* Get interrupt status and clear */
-    uint32_t intFlags = DL_I2C_getEnabledInterruptStatus(hwAttrs->i2c, 0xFFFF);
+    uint32_t intFlags = DL_I2C_getEnabledInterruptStatus(hwAttrs->i2c, 0xFFFF0000);
     DL_I2C_clearInterruptStatus(hwAttrs->i2c, I2CTARGET_INT_FLAGS);
 
     /* Check if controller has written or requested data */

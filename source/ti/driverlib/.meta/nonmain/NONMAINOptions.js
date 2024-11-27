@@ -5,6 +5,7 @@ let BSL_CFG_INVOKE_PIN_PINCM_INDEX_MASK   = {
     MSPM0L122X_L222X    : "0x7FU",
     MSPM0C110X          : undefined,
     MSPM0GX51X          : "0x7FU",
+    MSPM0L111X          : "0x3FU",
 }
 
 let BSL_CFG_INVOKE_PIN_GPIO_PORT_NUM_MASK    = {
@@ -13,6 +14,7 @@ let BSL_CFG_INVOKE_PIN_GPIO_PORT_NUM_MASK    = {
     MSPM0L122X_L222X    : "0x60U",
     MSPM0C110X          : undefined,
     MSPM0GX51X          : "0x60U",
+    MSPM0L111X          : "0x20U",
 }
 
 /* Number of words for BSL Password */
@@ -22,6 +24,7 @@ let BSL_PASSWORD_LEN    = {
     MSPM0L122X_L222X    : 8,
     MSPM0C110X          : undefined,
     MSPM0GX51X          : 8,
+    MSPM0L111X          : 8,
 }
 
 let index = Common.getDeviceFamily();

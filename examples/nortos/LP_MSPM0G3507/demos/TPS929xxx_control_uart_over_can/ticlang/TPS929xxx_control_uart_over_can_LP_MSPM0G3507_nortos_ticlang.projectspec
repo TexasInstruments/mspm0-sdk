@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0G3507"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="TPS929xxx_control_uart_over_can"
+        name="TPS929xxx_control_uart_over_can_LP_MSPM0G3507_nortos_ticlang"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G3507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -O2
+            @device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -ldevice.cmd.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="This example shows the implementation of using MSPM0 to control BQ79616 to detect the battery status.">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../led_driver/TPS929120.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="led_driver">
+        </file>
+        <file path="../led_driver/TPS929120A.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="led_driver">
+        </file>
+        <file path="../led_driver/TPS929121.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="led_driver">
+        </file>
+        <file path="../led_driver/TPS929121A.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="led_driver">
+        </file>
+        <file path="../led_driver/TPS929160.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="led_driver">
+        </file>
+        <file path="../led_driver/TPS929240.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="led_driver">
+        </file>
+        <file path="../led_driver/TPS929240A.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="led_driver">
+        </file>
+        <file path="../CRC_LUT.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../CRC_LUT.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../dma.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../dma.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../eeprom_data.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../eeprom_data.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../eeprom_default.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../eeprom_default.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../eeprom.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../eeprom.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../FlexWire.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../FlexWire.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../FW_protocol_def_1st_gen.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../FW_protocol_def_2nd_gen.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../FW_protocol_def.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../IOPORT.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../IOPORT.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../led_driver.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Patterns.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Patterns.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../system_info.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../system_info.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Timer.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Timer.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS929xxx_APIs.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS929xxx_APIs.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS929240.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../tps929xxx_control.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

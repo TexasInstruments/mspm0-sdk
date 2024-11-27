@@ -24,12 +24,12 @@ function determineInvalidOptions(inst){
             toDisable.SD = true; // disable Standard
             toDisable.SDL = true; // disable Low-leakage Standard
             // SDW not available for M0C
-            if(!Common.isDeviceM0C()){
+            if(!Common.isDeviceM0C() && !Common.isDeviceM0H()){
                 toDisable.SDW = true; // disable Standard with Wake
             }
             toDisable.HS = true; // disable High-Speed
-            // HD only available on M0Gxx
-            if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+            // Only Disable HD on devices where it is available
+            if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
                 toDisable.HD = true; // disable High-Drive
             }
         }
@@ -40,8 +40,8 @@ function determineInvalidOptions(inst){
         if(inst.driveStrength === "HIGH"){
             toDisable.SD = true; // disable Standard
             toDisable.SDL = true; // disable Low-leakage Standard
-            // SDW not available for M0C
-            if(!Common.isDeviceM0C()){
+            // SDW not available for M0C or M0H
+            if(!Common.isDeviceM0C() && !Common.isDeviceM0H()){
                 toDisable.SDW = true; // disable Standard with Wake
             }
             toDisable.OD = true; // disable Open Drain
@@ -60,7 +60,6 @@ const LPInfo = [
         name: "LED1En",
         displayName: "Launchpad LED1",
         description: "Shortcut to enable LED1 on PA.0 of the LaunchPad",
-        longDescription: "Shortcut to enable LED1 on PA.0 of the LaunchPad",
         direction: "OUTPUT",
         assignedPort: "PORTA",
         assignedPortSegment: "Lower",
@@ -70,7 +69,6 @@ const LPInfo = [
         name: "LED2RedEn",
         displayName: "Launchpad LED2 Red",
         description: "Shortcut to enable Red on LED2 on PB.26 of the LaunchPad",
-        longDescription: "Shortcut to enable Red on LED2 on PB.26 of the LaunchPad",
         direction: "OUTPUT",
         assignedPort: "PORTB",
         assignedPortSegment: "Upper",
@@ -80,7 +78,6 @@ const LPInfo = [
         name: "LED2GreenEn",
         displayName: "Launchpad LED2 Green",
         description: "Shortcut to enable Green on LED2 on PB.27 of the LaunchPad",
-        longDescription: "Shortcut to enable Green on LED2 on PB.27 of the LaunchPad",
         direction: "OUTPUT",
         assignedPort: "PORTB",
         assignedPortSegment: "Upper",
@@ -90,7 +87,6 @@ const LPInfo = [
         name: "LED2BlueEn",
         displayName: "Launchpad LED2 Blue",
         description: "Shortcut to enable Blue on LED2 on PB.22 of the LaunchPad",
-        longDescription: "Shortcut to enable Blue on LED2 on PB.22 of the LaunchPad",
         direction: "OUTPUT",
         assignedPort: "PORTB",
         assignedPortSegment: "Upper",
@@ -100,7 +96,6 @@ const LPInfo = [
         name: "Button2En",
         displayName: "Launchpad Button 2",
         description: "Shortcut to enable Button 2 on PA.18 of the LaunchPad",
-        longDescription: "Shortcut to enable Button 2 on PA.18 of the LaunchPad",
         direction: "INPUT",
         assignedPort: "PORTA",
         assignedPortSegment: "Upper",
@@ -111,7 +106,6 @@ const LPInfo = [
         name: "Button3En",
         displayName: "Launchpad Button 3",
         description: "Shortcut to enable Button 3 on PB.21 of the LaunchPad",
-        longDescription: "Shortcut to enable Button 3 on PB.21 of the LaunchPad",
         direction: "INPUT",
         assignedPort: "PORTB",
         assignedPortSegment: "Upper",
@@ -128,7 +122,7 @@ function getLPOptions(inst){
         },
     ];
     for(let info of LPInfo){
-        opts.push(_.pick(info,["name","displayName","description","longDescription"]));
+        opts.push(_.pick(info,["name","displayName","description"]));
     }
     return opts;
 }
@@ -171,10 +165,6 @@ let gpioLaunchPadConfig = [
         name: "launchPadShortcut",
         displayName: "LaunchPad-Specific Pin",
         description: "A quick-configuration method allowing for ease of LED/Button Use",
-        longDescription: `
-Users of a LaunchPad can quickly go to this section of the configuration, and can edit the
-pin configuration such that only the peripheral pieces can be added.
-        `,
         default: "off",
         options: getLPOptions,
         getDisabledOptions: getDisabledLPOptions,
@@ -248,48 +238,21 @@ structures to be used in the solution.\n
         `,
         default: "Any",
         options: (inst) => {
-            if(Common.isDeviceM0G()){
-                return [
-                    {name: "Any"},
-                    {name: "SD", displayName: "Standard"},
-                    {name: "SDW", displayName: "Standard with Wake"},
-                    {name: "HS", displayName: "High-Speed"},
-                    {name: "HD", displayName: "High-Drive"},
-                    {name: "OD", displayName: "5V Tolerant Open Drain"}
-                ];
+            let master_list = [
+                {name: "Any"},
+                {name: "SD", displayName: "Standard"},
+                {name: "SDW", displayName: "Standard with Wake"},
+                {name: "HS", displayName: "High-Speed"},
+                {name: "HD", displayName: "High-Drive"},
+                {name: "OD", displayName: "5V Tolerant Open Drain"}
+            ]
+            if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+                master_list = master_list.filter(io_type => io_type.name != "HD");
             }
-            else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
-                return [
-                    {name: "Any"},
-                    {name: "SD", displayName: "Standard"},
-                    {name: "SDW", displayName: "Standard with Wake"},
-                    {name: "HS", displayName: "High-Speed"},
-                    {name: "OD", displayName: "5V Tolerant Open Drain"}
-                ];
+            else if(Common.isDeviceM0C() || Common.isDeviceM0H()){
+                master_list = master_list.filter(io_type => io_type.name != "HD" && io_type.name != "SDW");
             }
-            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-                return [
-                    {name: "Any"},
-                    {name: "SD", displayName: "Standard"},
-                    {name: "SDW", displayName: "Standard with Wake"},
-                    {name: "HS", displayName: "High-Speed"},
-                    {name: "HD", displayName: "High-Drive"},
-                    {name: "OD", displayName: "5V Tolerant Open Drain"}
-                ];
-            }
-            else if(Common.isDeviceM0C()){
-                return [
-                    {name: "Any"},
-                    {name: "SD", displayName: "Standard"},
-                    {name: "HS", displayName: "High-Speed"},
-                    {name: "OD", displayName: "5V Tolerant Open Drain"}
-                ];
-            }
-            else{
-                return [
-                    {name: "Any"},
-                ];
-            }
+            return master_list;
         },
         getDisabledOptions: (inst) => {
             let disabledOptions = [];
@@ -443,7 +406,13 @@ NOTE: Fast-Wake can be utilized on any GPIO, but only works down to STANDBY mode
                     if(!inst.hysteresisOverride){
                         let pin = inst.pin.$solution;
                         let packagePin = pin.packagePinName;
-                        let io_type = system.deviceData.devicePins[packagePin].attributes.io_type;
+                        let io_type = "SD";
+                        try{
+                            io_type = system.deviceData.devicePins[packagePin].attributes.io_type;
+                        }
+                        catch(e){
+                            return "Disabled"
+                        }
                         if(io_type.match(/Any|OD/) === null){
                             hysteresisControl = "Disabled";
                         }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Texas Instruments Incorporated
+ * Copyright (c) 2024, Texas Instruments Incorporated
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,22 +30,23 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <ti/dali/dali_gpio_comm.h>
 #include <ti/dali/dali_target_comm.h>
 #include "ti_msp_dl_config.h"
 
-#define SELECTOR_BIT  (uint8_t)(0x01)
 #define DATA_SIZE 2
 
 volatile bool gReceive = false;
 
 volatile dali_controlGearVar gControlVar1;
+volatile dali_Rx gDALI_Rx;
 
 uint8_t receivedData[DATA_SIZE] = {0};
 
 int main(void)
 {
     SYSCFG_DL_init();
-    NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
+    NVIC_EnableIRQ(TIMER_DALI_RX_INST_INT_IRQN);
     /*DALI initialization
     wait for query regarding address and send address to controller*/
     DALI_Target_init();
@@ -62,15 +63,63 @@ int main(void)
     }
 }
 
+void TIMER_DALI_RX_INST_IRQHandler(void)
+{
+    switch (DL_TimerG_getPendingInterrupt(TIMER_DALI_RX_INST))
+    {
+        /* Rising Edge */
+        case DL_TIMER_IIDX_CC1_UP:
+            /* Reset Timer Counter */
+            DL_TimerG_setTimerCount(TIMER_DALI_RX_INST, 0);
 
-void UART_0_INST_IRQHandler(){
-    switch(DL_UART_getPendingInterrupt(UART_0_INST)){
-        case DL_UART_IIDX_RX:
-            gReceive = true;
+            /* Check if index is within array bounds */
+            if(gDALI_Rx.captIndex < MAX_CAPTURE_BITS_LENGTH)
+            {
+                gDALI_Rx.captBits[gDALI_Rx.captIndex] = 0;
+                gDALI_Rx.captBitTimings[gDALI_Rx.captIndex++] = DL_TimerG_getCaptureCompareValue(TIMER_DALI_RX_INST,DL_TIMER_CC_1_INDEX) \
+                                                                - DL_TimerG_getCaptureCompareValue(TIMER_DALI_RX_INST,DL_TIMER_CC_0_INDEX);
+            }
             break;
-        case DL_UART_IIDX_ADDRESS_MATCH:
-            /* Utilize this interrupt if using a hardware implementation of address matching */
+
+        /* Falling Edge */
+        case DL_TIMER_IIDX_CC0_UP:
+            /* Setting Trigger for Rising Edge */
+            DL_TimerG_setCaptureCompareCtl(TIMER_DALI_RX_INST,
+            DL_TIMER_CC_MODE_CAPTURE, (DL_TIMER_CC_ZCOND_NONE | DL_TIMER_CC_ACOND_TIMCLK | DL_TIMER_CC_CCOND_TRIG_RISE),
+            DL_TIMER_CC_1_INDEX);
+
+            /* Check if index is within array bounds */
+            if(gDALI_Rx.captIndex < MAX_CAPTURE_BITS_LENGTH)
+            {
+                gDALI_Rx.captBits[gDALI_Rx.captIndex] = 1;
+                gDALI_Rx.captBitTimings[gDALI_Rx.captIndex++] = DL_TimerG_getCaptureCompareValue(TIMER_DALI_RX_INST,DL_TIMER_CC_0_INDEX);
+            }
             break;
+
+        /* Stop Condition */
+        case DL_TIMER_IIDX_LOAD:
+            DL_TimerG_stopCounter(TIMER_DALI_RX_INST);
+
+            /* Verify if it's a proper frame */
+            if(DALI_RX_decodeFrame())
+            {
+                gReceive = true;
+                receivedData[0] = gDALI_Rx.dataArr[0];
+                receivedData[1] = gDALI_Rx.dataArr[1];
+            }
+            else
+            {
+                /* Handle Rx Error Case */
+            }
+
+            gDALI_Rx.captIndex = 0;
+
+            /* Re-Configure ZCOND to start the timer for Rising edge */
+            DL_TimerG_setCaptureCompareCtl(TIMER_DALI_RX_INST,
+            DL_TIMER_CC_MODE_CAPTURE, (DL_TIMER_CC_ZCOND_TRIG_RISE | DL_TIMER_CC_ACOND_TIMCLK | DL_TIMER_CC_CCOND_TRIG_RISE),
+            DL_TIMER_CC_1_INDEX);
+            break;
+        
         default:
             break;
     }

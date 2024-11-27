@@ -103,12 +103,90 @@
 </tr>
 </tbody>
 </table>
+<h2 id="boosterpacks-board-resources-jumper-settings">BoosterPacks, Board Resources &amp; Jumper Settings</h2>
+<p>Visit <a href="https://www.ti.com/tool/LP-MSPM0G3519">LP_MSPM0G3519</a> for LaunchPad information, including user guide and hardware files.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Pin</th>
+<th>Peripheral</th>
+<th>Function</th>
+<th>LaunchPad Pin</th>
+<th>LaunchPad Settings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PA18</td>
+<td>GPIOA</td>
+<td>PA18</td>
+<td>J3_26/J3_29</td>
+<td><ul><li>PA18 can be connected to S1 button to VCC with external pull-down<br><ul><li><code>J8 ON</code> Connect S1 button and external pull-down<br><li><code>J8 OFF</code> Disconnect S1 button and external pull-down</ul><br><li>PA18 can be connected to XDS-110 BSL_Invoke<br><ul><li><code>J101 17:18 OFF</code> Disconnect pin to XDS-110 BSL Invoke</ul><br><li>PA18 can be connected to boosterpack pin J3_29<br><ul><li><code>J15 2:3</code> Connect pin to J3_29<br><li><code>J15 1:2/OFF</code> Disconnect pin from J3_29</ul><br><li>PA18 can be connected to boosterpack pin J3_26<br><ul><li><code>R58</code> is soldered and connects pin to J3_26 by default</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PB15</td>
+<td>GPIOB</td>
+<td>PB15</td>
+<td>J2_17</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>PB21</td>
+<td>GPIOB</td>
+<td>PB21</td>
+<td>J27_4</td>
+<td><ul><li>PB21 is connected to S2 button to GND with no external pull resistor<br><ul><li>Press <code>S2</code> button to connect pin to GND<br><li>Don’t use <code>S2</code> button if not needed by application</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PB22</td>
+<td>GPIOB</td>
+<td>PB22</td>
+<td>J27_5</td>
+<td><ul><li>PB22 can be connected to LED2 Blue<br><ul><li><code>J5 ON</code> Connect to LED2 Blue<br><li><code>J15 OFF</code> Disconnect from LED2 Blue</ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PB26</td>
+<td>GPIOB</td>
+<td>PB26</td>
+<td>J27_8</td>
+<td><ul><li>PB26 can be connected to LED2 Red<br><ul><li><code>J6 ON</code> Connect to LED2 Red<br><li><code>J6 OFF</code> Disconnect from LED2 Red</ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA11</td>
+<td>UART0</td>
+<td>RX</td>
+<td>J4_33/J26_6</td>
+<td><ul><li>PA11 can be used as UART RX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J22 1:2</code>: Connects XDS-110 backchannel UART RX to <code>J101</code><br> <code>J101 7:8</code> Connects XDS-110 backchannel to UART RX<br><li>To use UART on boosterpack connector:<br> <code>J22 2:3</code>: Connects UART RX to <code>J4_33</code><br><li>To use on J26 CAN/LIN connector:<br> <code>R63</code> is populated by default and connects pin to <code>J26_6</code></ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PA10</td>
+<td>UART0</td>
+<td>TX</td>
+<td>J4_34/J26_5</td>
+<td><ul><li>PA10 can be used as UART TX connected to XDS-110 backchannel, to boosterpack connector or to CAN/LIN connector:<br><ul><li>To use backchannel UART on J101:<br> <code>J21 1:2</code>: Connects XDS-110 backchannel UART TX to <code>J101</code><br> <code>J101 9:10</code> Connects XDS-110 backchannel to UART TX<br><li>To use UART on boosterpack connector:<br> <code>J21 2:3</code>: Connects UART TX to <code>J4_34</code><br><li>To use on J26 CAN/LIN connector:<br> <code>R62</code> is populated by default and connects pin to <code>J26_5</code></ul></ul></td>
+</tr>
+<tr class="even">
+<td>PA20</td>
+<td>DEBUGSS</td>
+<td>SWCLK</td>
+<td>N/A</td>
+<td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
+</tr>
+<tr class="odd">
+<td>PA19</td>
+<td>DEBUGSS</td>
+<td>SWDIO</td>
+<td>N/A</td>
+<td><ul><li>PA19 is used by SWD during debugging<br><ul><li><code>J101 13:14 ON</code> Connect to XDS-110 SWDIO while debugging<br><li><code>J101 13:14 OFF</code> Disconnect from XDS-110 SWDIO if using pin in application</ul></ul></td>
+</tr>
+</tbody>
+</table>
 <h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
-<p>This project was developed for a superset device included in the MSPM0 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
+<p>This project was developed for a superset device included in the MSPM0G3519 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h3 id="low-power-recommendations">Low-Power Recommendations</h3>
 <p>TI recommends to terminate unused pins by setting the corresponding functions to GPIO and configure the pins to output low or input with internal pullup/pulldown resistor.</p>
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
-<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau873">LP-MSPM0G3507 User’s Guide</a>.</p>
+<p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/lit/slau947">LP-MSPM0G3519 User’s Guide</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
 <p>Connect the LIN Commander to a LIN BoosterPack with the following connections:</p>
 <ul>
@@ -124,7 +202,7 @@
 <li>Responder TX -&gt; BoosterPack UATX (LIN TX)</li>
 <li>Responder RX -&gt; BoosterPack UARX (LIN RX)</li>
 </ul>
-<p>Note: the BOOSTXL-CANFD-LIN BoosterPack is not directly compatible with the LP_MSPM0L1306 LaunchPad since the pins on the UART connector don’t support LIN. For this reason, the BoosterPack shouldn’t be stacked on top of the LaunchPad.</p>
+<p>Note: the BOOSTXL-CANFD-LIN BoosterPack is not directly compatible with the LP_MSPM0G3519 LaunchPad since the pins on the UART connector don’t support LIN. For this reason, the BoosterPack shouldn’t be stacked on top of the LaunchPad.</p>
 <p>Connect the LIN Commander BoosterPack and the LIN Responder BoosterPack using the LIN bus lines in J5.</p>
 <p>NOTE: Alternatively, a Network Analyzer compatible with LIN 2.0 can be substituted for a LIN Responder. To use the Network Analyzer, make the following connections between the Network Analyzer and LIN BoosterPack:</p>
 <ul>

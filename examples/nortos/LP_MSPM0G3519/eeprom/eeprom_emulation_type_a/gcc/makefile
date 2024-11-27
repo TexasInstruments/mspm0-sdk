@@ -41,8 +41,8 @@ LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0gx51x
     -lgcc \
     -lc \
     -lm \
-    -lnosys \
-    --specs=nano.specs
+    --specs=nano.specs \
+    --specs=nosys.specs
 
 all: $(NAME).out
 

@@ -197,6 +197,8 @@ typedef enum {
 #define DL_SYSCTL_STATUS_PMU_IFREF_GOOD      (SYSCTL_SYSSTATUS_PMUIREFGOOD_TRUE)
 /*! @brief VBOOST (Analog Charge Pump) started up properly */
 #define DL_SYSCTL_STATUS_VBOOST_GOOD        (SYSCTL_SYSSTATUS_ANACPUMPGOOD_TRUE)
+/*! @brief VBAT POWER good */
+#define DL_SYSCTL_STATUS_VBAT_GOOD          (SYSCTL_SYSSTATUS_VBATGOOD_TRUE)
 /*! @brief Brown Out Reset event status indicator */
 #define DL_SYSCTL_STATUS_BOR_EVENT                (SYSCTL_SYSSTATUS_BORLVL_TRUE)
 /*! @brief MCAN0 ready */

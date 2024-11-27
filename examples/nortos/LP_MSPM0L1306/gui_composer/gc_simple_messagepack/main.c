@@ -30,7 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 //*****************************************************************************
-//         GUI Composer Simple MessagePack Demo using MSP430
+//         GUI Composer Simple MessagePack Demo using MSPM0L1306
 //
 // Texas Instruments, Inc.
 //*****************************************************************************

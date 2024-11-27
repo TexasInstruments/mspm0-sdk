@@ -275,45 +275,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void) {
     if(inst.crossTriggerAuthority == "Secondary"){
         secCrossTrigSource = inst.secondaryCrossTriggerSource.split("InputTrigger_")[1];
     }
-    else{
-        switch(timerInstance){
-            case "TIMA0":
-                secCrossTrigSource = "0";
-                break;
-            case "TIMA1":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG7":
-                secCrossTrigSource = "2";
-                break;
-            case "TIMG8":
-                secCrossTrigSource = "3";
-                break;
-            case "TIMG12":
-                secCrossTrigSource = "4";
-                break;
-            case "TIMG0":
-                secCrossTrigSource = "0";
-                break;
-            case "TIMG1":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG6":
-                secCrossTrigSource = "1";
-                break;
-            case "TIMG2":
-                secCrossTrigSource = "2";
-                break;
-            case "TIMG4":
-                secCrossTrigSource = "3";
-                break;
-            default:
-                /* do nothing */
-                break;
-        }
-    }
 %%}
-    DL_`timerName`_setExternalTriggerEvent(`inst.$name`_INST,DL_TIMER_EXT_TRIG_SEL_TRIG_`secCrossTrigSource`);
+%   if(inst.crossTriggerAuthority == "Secondary") {
+    DL_`flavorCat`_setExternalTriggerEvent(`inst.$name`_INST,DL_TIMER_EXT_TRIG_SEL_TRIG_`secCrossTrigSource`);
+%}
+%   else {
+    DL_`flavorCat`_setExternalTriggerEvent(`inst.$name`_INST,DL_TIMER_EXT_TRIG_SEL_TRIG_`inst.etselMainTriggerValue`);
+%}
     DL_`timerName`_enableExternalTrigger(`inst.$name`_INST);
 %
 %   }

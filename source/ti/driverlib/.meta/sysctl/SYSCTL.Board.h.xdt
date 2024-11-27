@@ -66,7 +66,7 @@
 %   } else {
 %   /* This is one possible way to do GPIO defines. Good if you need to find out PINCM */
 %       let gpioStr = "GPIO"
-% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
 %    if(stat.LFCLKSource === "LFXT"){
 % /* figure out pin number and pinCMx */
 % /* LFXIN pins */
@@ -190,7 +190,7 @@
 `clkOutFuncStr.padEnd(40, " ")+clkOutFuncStr2.padStart(40, " ")`
 %}
 % /* Temporary Workaround for MSPM0L122X_L222X */
-% if(!stat.disableSYSOSC && stat.enableROSC && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+% if(!stat.disableSYSOSC && stat.enableROSC && (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
 % /* ROSC pins */
 % let roscPortStr = "#define "+gpioStr+"_ROSC_PORT";
 `roscPortStr.padEnd(40," ")+"GPIOA".padStart(40, " ")`
@@ -202,7 +202,7 @@
 `roscIOmuxStr.padEnd(40," ")+roscIOmuxStr2.padStart(40," ")`
 %   }
 % /* Standard Pin Configuration for ROSC */
-% if(!stat.disableSYSOSC && stat.enableROSC && !Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+% if(!stat.disableSYSOSC && stat.enableROSC && !Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
 % /* ROSC pins */
 %       let roscPinName = "rosc"+"Pin";
 %       let roscPackagePin = stat.peripheral[roscPinName].$solution.packagePinName;
@@ -239,7 +239,7 @@ void SYSCFG_DL_SYSCTL_init(void);
         else if(Common.isDeviceM0G()){
             clkSrcCheck = (stat.useSYSPLL || (stat.useHFCLK) || (stat.MCLKSource === "HSCLK") || (stat.LFCLKSource === "LFXT"));
         }
-        else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
             clkSrcCheck = (stat.LFCLKSource === "LFXT");
         }
     }

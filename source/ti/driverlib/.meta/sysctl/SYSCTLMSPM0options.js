@@ -21,6 +21,14 @@ const SYSOSCFreqOptions = {
         { name: 32000000, displayName: "32 MHz" },
         { name: 4000000,  displayName: "4 MHz"  },
     ],
+    "MSPM0L111X": [
+        { name: 32000000, displayName: "32 MHz" },
+        { name: 4000000,  displayName: "4 MHz"  },
+    ],
+    "MSPM0H321X": [
+        { name: 32000000, displayName: "32 MHz" },
+        { name: 4000000,  displayName: "4 MHz"  },
+    ],
 }
 
 const LFCLKSourceOptions = {
@@ -46,6 +54,16 @@ const LFCLKSourceOptions = {
         { name: "LFXT", displayName: "LF External XTAL" },
         { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
     ],
+    "MSPM0L111X": [
+        { name: "LFOSC" },
+        { name: "LFXT", displayName: "LF External XTAL" },
+        { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
+    ],
+    "MSPM0H321X": [
+        { name: "LFOSC" },
+        { name: "LFXT", displayName: "LF External XTAL" },
+        { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
+    ],
 };
 
 const MFPCLKSourceOptions = {
@@ -65,6 +83,14 @@ const MFPCLKSourceOptions = {
         { name: "unavailable" },
     ],
     "MSPM0GX51X": [
+        { name: "SYSOSC" },
+        { name: "HFCLK" },
+    ],
+    "MSPM0L111X": [
+        { name: "SYSOSC" },
+        { name: "HFCLK" },
+    ],
+    "MSPM0H321X": [
         { name: "SYSOSC" },
         { name: "HFCLK" },
     ],
@@ -95,6 +121,16 @@ const MCLKSourceOptions = {
         { name: "LFCLK" },
         { name: "HSCLK" },
     ],
+    "MSPM0L111X": [
+        { name: "SYSOSC" },
+        { name: "LFCLK" },
+        { name: "HSCLK" },
+    ],
+    "MSPM0H321X": [
+        { name: "SYSOSC" },
+        { name: "LFCLK" },
+        { name: "HSCLK" },
+    ],
 };
 
 const HFCLKSourceOptions = {
@@ -113,6 +149,13 @@ const HFCLKSourceOptions = {
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
     "MSPM0GX51X": [
+        {name: "HFXT", displayName: "HF External XTAL"},
+        {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
+    ],
+    "MSPM0L111X": [
+        {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
+    ],
+    "MSPM0H321X": [
         {name: "HFXT", displayName: "HF External XTAL"},
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
@@ -155,6 +198,20 @@ const EXCLKSourceOptions = {
         { name: "HFCLK" },
         { name: "SYSPLLOUT1", displayName: "SYSPLL Clock 1" },
     ],
+    "MSPM0L111X": [
+        { name: "SYSOSC" },
+        { name: "ULPCLK" },
+        { name: "LFCLK" },
+        { name: "MFPCLK" },
+        { name: "HFCLK" },
+    ],
+    "MSPM0H321X": [
+        { name: "SYSOSC" },
+        { name: "ULPCLK" },
+        { name: "LFCLK" },
+        { name: "MFPCLK" },
+        { name: "HFCLK" },
+    ],
 };
 
 const HSCLKSourceOptions = {
@@ -176,6 +233,12 @@ const HSCLKSourceOptions = {
     "MSPM0GX51X": [
         { name: "SYSPLLCLK0" },
         { name: "SYSPLLCLK2X" },
+        { name: "HFCLK" },
+    ],
+    "MSPM0L111X": [
+        { name: "HFCLK" },
+    ],
+    "MSPM0H321X": [
         { name: "HFCLK" },
     ],
 };
@@ -203,6 +266,18 @@ const BORThreshOptions = {
         {name: "0"},
     ],
     "MSPM0GX51X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+        {name: "3"},
+    ],
+    "MSPM0L111X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+        {name: "3"},
+    ],
+    "MSPM0H321X": [
         {name: "0"},
         {name: "1"},
         {name: "2"},

@@ -183,12 +183,6 @@ function _getPinResources(inst)
 
 function setRequiredModules(inst){
     let theModules = ["Board", "SYSCTL"]
-    /* SPI does not support DMA configuration for MSPM0Cxx */
-    if(!Common.isDeviceM0C()){
-        if(!["None"].includes(inst.enabledDMAEvent1Triggers) || !["None"].includes(inst.enabledDMAEvent2Triggers)){
-            theModules.push("DMA");
-        }
-    }
 
     let kwargs = theModules;
     let modArray = [];

@@ -141,6 +141,14 @@ function validatePinmux(inst, validation){
             validation.logError("Please select a valid trigger, selected DMA trigger is not configured.", inst, ["triggerSelectInternal"]);
         }
     }
+
+    // Deprecated srcIncrement and destIncrement
+    if(inst.srcIncrement != "UNCHANGED") {
+        validation.logWarning("Source Increment is controlled by the Source Address Direction configurable.", inst, ["srcIncDec"]);
+    }
+    if(inst.destIncrement != "UNCHANGED") {
+        validation.logWarning("Destination Increment is controlled by the Destination Address Direction configurable.", inst, ["dstIncDec"]);
+    }
 }
 
 function pinmuxRequirements(inst) {
@@ -267,7 +275,6 @@ function onChangeAddressMode(inst, ui) {
             ui.fillIncAmount.hidden = true;
             ui.tableSize.hidden = true;
             ui.tableSrcAddressInc.hidden = true;
-            inst.destIncrement = "UNCHANGED";
             ui.destIncrement.readOnly = true;
         default:
             //throw 'onChangeAddressMode given incorrect inst';
@@ -565,13 +572,38 @@ the entire segment.
         displayName: "Source Address Direction",
         description: "Block Address Increment/Decrement Direction",
         longDescription: `
-If the Source Is configured as a Block, then the source address will increment or decrement the given address
-in DMASAx by the amount given in Source Length. This configures the direction of that amount.`,
+After each DMA transfer the channel source address can be incremented,
+decremented or remain unchanged. This controls if the DMA is copying from a
+fixed address or a block of addresses.
+
+The amount that is incremented/decremented is controlled by the Source Length.
+
+The increment options are:
+* Do not change address after each transfer
+* **Decrement:** Decrement address by 1 * Source Length after each transfer
+* **Increment:** Increment address by 1 * Source Length after each transfer
+* **Stride Mode 2:** Increment address by 2 * Source Length (skip over every other element)
+* **Stride Mode 3:** Increment address by 3 * Source Length (skip over two elements)
+* **Stride Mode 4:** Increment address by 4 * Source Length (skip over three elements)
+* **Stride Mode 5:** Increment address by 5 * Source Length (skip over four elements)
+* **Stride Mode 6:** Increment address by 6 * Source Length (skip over five elements)
+* **Stride Mode 7:** Increment address by 7 * Source Length (skip over six elements)
+* **Stride Mode 8:** Increment address by 8 * Source Length (skip over seven elements)
+* **Stride Mode 9:** Increment address by 9 * Source Length (skip over eight elements)
+        `,
         default: "INCREMENT",
         options: [
             {name: "INCREMENT", displayName: "Increment"},
             {name: "DECREMENT", displayName: "Decrement"},
-            {name: "UNCHANGED", displayName: "Unchanged"}
+            {name: "UNCHANGED", displayName: "Unchanged"},
+            {name: "STRIDE_2", displayName: "Stride Mode 2"},
+            {name: "STRIDE_3", displayName: "Stride Mode 3"},
+            {name: "STRIDE_4", displayName: "Stride Mode 4"},
+            {name: "STRIDE_5", displayName: "Stride Mode 5"},
+            {name: "STRIDE_6", displayName: "Stride Mode 6"},
+            {name: "STRIDE_7", displayName: "Stride Mode 7"},
+            {name: "STRIDE_8", displayName: "Stride Mode 8"},
+            {name: "STRIDE_9", displayName: "Stride Mode 9"},
         ],
         hidden: true
 
@@ -596,13 +628,38 @@ the entire segment.
         displayName: "Destination Address Direction",
         description: "Block Address Increment/Decrement Direction",
         longDescription: `
-If the Destination Is configured as a Block, then the destination address will increment or decrement the given address
-in DMADAx by the amount given in Destination Length. This configures the direction of that amount.`,
+        After each DMA transfer the channel destination address can be incremented,
+        decremented or remain unchanged. This controls if the DMA is copying from a
+        fixed address or a block of addresses.
+
+        The amount that is incremented/decremented is controlled by the Destination Length.
+
+        The increment options are:
+        * Do not change address after each transfer
+        * **Decrement:** Decrement address by 1 * Destination Length after each transfer
+        * **Increment:** Increment address by 1 * Destination Length after each transfer
+        * **Stride Mode 2:** Increment address by 2 * Destination Length (skip over every other element)
+        * **Stride Mode 3:** Increment address by 3 * Destination Length (skip over two elements)
+        * **Stride Mode 4:** Increment address by 4 * Destination Length (skip over three elements)
+        * **Stride Mode 5:** Increment address by 5 * Destination Length (skip over four elements)
+        * **Stride Mode 6:** Increment address by 6 * Destination Length (skip over five elements)
+        * **Stride Mode 7:** Increment address by 7 * Destination Length (skip over six elements)
+        * **Stride Mode 8:** Increment address by 8 * Destination Length (skip over seven elements)
+        * **Stride Mode 9:** Increment address by 9 * Destination Length (skip over eight elements)
+                `,
         default: "INCREMENT",
         options: [
             {name: "INCREMENT", displayName: "Increment"},
             {name: "DECREMENT", displayName: "Decrement"},
             {name: "UNCHANGED", displayName: "Unchanged"},
+            {name: "STRIDE_2", displayName: "Stride Mode 2"},
+            {name: "STRIDE_3", displayName: "Stride Mode 3"},
+            {name: "STRIDE_4", displayName: "Stride Mode 4"},
+            {name: "STRIDE_5", displayName: "Stride Mode 5"},
+            {name: "STRIDE_6", displayName: "Stride Mode 6"},
+            {name: "STRIDE_7", displayName: "Stride Mode 7"},
+            {name: "STRIDE_8", displayName: "Stride Mode 8"},
+            {name: "STRIDE_9", displayName: "Stride Mode 9"},
         ],
         hidden: true
     },
@@ -757,7 +814,8 @@ The increment options are:
             {name: "STRIDE_7", displayName: "Stride Mode 7"},
             {name: "STRIDE_8", displayName: "Stride Mode 8"},
             {name: "STRIDE_9", displayName: "Stride Mode 9"},
-        ]
+        ],
+        hidden: true
     },
     // DL_DMA_setDestIncrement
     {
@@ -798,7 +856,8 @@ The increment options are:
             {name: "STRIDE_7", displayName: "Stride Mode 7"},
             {name: "STRIDE_8", displayName: "Stride Mode 8"},
             {name: "STRIDE_9", displayName: "Stride Mode 9"},
-        ]
+        ],
+        hidden: true
     },
     {
         name: "INTERRUPT_GROUP",

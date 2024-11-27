@@ -48,7 +48,7 @@
             --compiler ticlang
         "
         sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
-        description="Empty C++ start-up project using DriverLib">
+        description="Empty start-up project in C++">
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
