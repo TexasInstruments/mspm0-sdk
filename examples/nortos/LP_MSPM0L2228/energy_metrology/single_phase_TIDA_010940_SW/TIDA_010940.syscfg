@@ -1,0 +1,350 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
+// @v2CliArgs --device "MSPM0L2228" --package "LQFP-80(PN)"
+// @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const CRCP          = scripting.addModule("/ti/driverlib/CRCP");
+const DMA           = scripting.addModule("/ti/driverlib/DMA");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const GPIO2         = GPIO.addInstance();
+const GPIO3         = GPIO.addInstance();
+const LCD           = scripting.addModule("/ti/driverlib/LCD");
+const SPI           = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1          = SPI.addInstance();
+const SPI2          = SPI.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const SYSTICK       = scripting.addModule("/ti/driverlib/SYSTICK");
+const TIMER         = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1        = TIMER.addInstance();
+const UART          = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1         = UART.addInstance();
+const UART2         = UART.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider1       = system.clockTree["EXCLKDIV"];
+divider1.divideValue = 2;
+
+const gate3  = system.clockTree["EXCLKGATE"];
+gate3.enable = true;
+
+const mux2       = system.clockTree["EXCLKMUX"];
+mux2.inputSelect = "EXCLKMUX_HFCLK";
+
+const mux3       = system.clockTree["EXHFMUX"];
+mux3.inputSelect = "EXHFMUX_XTAL";
+
+const mux4       = system.clockTree["EXLFMUX"];
+mux4.inputSelect = "EXLFMUX_XTAL";
+
+const mux5       = system.clockTree["FCCSELCLKMUX"];
+mux5.inputSelect = "FCCSELCLKMUX_EXTCLK";
+
+const pinFunction1                        = system.clockTree["CLKOUT"];
+pinFunction1.enable                       = true;
+pinFunction1.peripheral.$assign           = "SYSCTL";
+pinFunction1.peripheral.clkOutPin.$assign = "PA27";
+
+const pinFunction3     = system.clockTree["HFCLKEXT"];
+pinFunction3.inputFreq = 8;
+
+const pinFunction4                        = system.clockTree["HFXT"];
+pinFunction4.inputFreq                    = 16.384;
+pinFunction4.HFCLKMonitor                 = true;
+pinFunction4.HFXTStartup                  = 100;
+pinFunction4.enable                       = true;
+pinFunction4.peripheral.$assign           = "SYSCTL";
+pinFunction4.peripheral.hfxInPin.$assign  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$assign = "PA6";
+
+const pinFunction6              = system.clockTree["LFXT"];
+pinFunction6.inputFreq          = 32.768;
+pinFunction6.LFCLKMonitorEnable = true;
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+CRCP.polynomial = "16_POLYNOMIAL_AUG_CCIT";
+CRCP.seed       = 0xFFFF;
+
+GPIO1.$name                          = "GEN_GPIO_OUT";
+GPIO1.associatedPins.create(3);
+GPIO1.associatedPins[0].$name        = "PINO_01";
+GPIO1.associatedPins[0].assignedPort = "PORTA";
+GPIO1.associatedPins[0].assignedPin  = "30";
+GPIO1.associatedPins[0].pin.$assign  = "PA30";
+GPIO1.associatedPins[1].$name        = "PINO_02";
+GPIO1.associatedPins[1].assignedPort = "PORTB";
+GPIO1.associatedPins[1].assignedPin  = "7";
+GPIO1.associatedPins[1].pin.$assign  = "PB7";
+GPIO1.associatedPins[2].$name        = "PINO_03";
+GPIO1.associatedPins[2].assignedPort = "PORTB";
+GPIO1.associatedPins[2].assignedPin  = "28";
+GPIO1.associatedPins[2].pin.$assign  = "PB28";
+
+GPIO2.$name                          = "GEN_GPIO_IN";
+GPIO2.associatedPins[0].direction    = "INPUT";
+GPIO2.associatedPins[0].interruptEn  = true;
+GPIO2.associatedPins[0].$name        = "PINI_01";
+GPIO2.associatedPins[0].polarity     = "FALL";
+GPIO2.associatedPins[0].assignedPort = "PORTA";
+GPIO2.associatedPins[0].assignedPin  = "29";
+
+GPIO3.$name                          = "GPIO_GRP_0";
+GPIO3.associatedPins.create(6);
+GPIO3.associatedPins[0].$name        = "TAMPER_1";
+GPIO3.associatedPins[0].direction    = "INPUT";
+GPIO3.associatedPins[0].assignedPort = "PORTB";
+GPIO3.associatedPins[0].assignedPin  = "2";
+GPIO3.associatedPins[0].interruptEn  = true;
+GPIO3.associatedPins[0].polarity     = "FALL";
+GPIO3.associatedPins[0].pin.$assign  = "PB2";
+GPIO3.associatedPins[1].$name        = "TAMPER_2";
+GPIO3.associatedPins[1].direction    = "INPUT";
+GPIO3.associatedPins[1].assignedPort = "PORTB";
+GPIO3.associatedPins[1].assignedPin  = "3";
+GPIO3.associatedPins[1].interruptEn  = true;
+GPIO3.associatedPins[1].polarity     = "FALL";
+GPIO3.associatedPins[1].pin.$assign  = "PB3";
+GPIO3.associatedPins[2].$name        = "DRV_OUT";
+GPIO3.associatedPins[2].direction    = "INPUT";
+GPIO3.associatedPins[2].assignedPort = "PORTA";
+GPIO3.associatedPins[2].assignedPin  = "26";
+GPIO3.associatedPins[2].interruptEn  = true;
+GPIO3.associatedPins[2].polarity     = "FALL";
+GPIO3.associatedPins[3].$name        = "MENU_SW";
+GPIO3.associatedPins[3].direction    = "INPUT";
+GPIO3.associatedPins[3].assignedPort = "PORTA";
+GPIO3.associatedPins[3].assignedPin  = "7";
+GPIO3.associatedPins[3].interruptEn  = true;
+GPIO3.associatedPins[3].polarity     = "FALL";
+GPIO3.associatedPins[4].$name        = "SERIAL_RE_DE";
+GPIO3.associatedPins[4].assignedPort = "PORTB";
+GPIO3.associatedPins[4].assignedPin  = "5";
+GPIO3.associatedPins[5].$name        = "M0_VCC_OPTO";
+GPIO3.associatedPins[5].assignedPort = "PORTB";
+GPIO3.associatedPins[5].assignedPin  = "8";
+
+LCD.biasVSource                                 = "AVDD";
+LCD.biasEnable                                  = true;
+LCD.freqDiv                                     = 4;
+LCD.peripheral.$assign                          = "LCD";
+LCD.associatedCOM.create(4);
+LCD.associatedCOM[0].$name                      = "LCD_COM_0";
+LCD.associatedCOM[0].peripheral.$assign         = "LCD";
+LCD.associatedCOM[0].peripheral.LCDCom.$assign  = "PA24";
+LCD.associatedCOM[1].$name                      = "LCD_COM_1";
+LCD.associatedCOM[1].peripheral.$assign         = "LCD";
+LCD.associatedCOM[1].peripheral.LCDCom.$assign  = "PB25";
+LCD.associatedCOM[2].$name                      = "LCD_COM_2";
+LCD.associatedCOM[2].peripheral.$assign         = "LCD";
+LCD.associatedCOM[2].peripheral.LCDCom.$assign  = "PB21";
+LCD.associatedCOM[3].$name                      = "LCD_COM_3";
+LCD.associatedCOM[3].peripheral.$assign         = "LCD";
+LCD.associatedCOM[3].peripheral.LCDCom.$assign  = "PB20";
+LCD.associatedSEG.create(32);
+LCD.associatedSEG[0].$name                      = "LCD_SEG_0";
+LCD.associatedSEG[0].peripheral.$assign         = "LCD";
+LCD.associatedSEG[0].peripheral.LCDSeg.$assign  = "PB9";
+LCD.associatedSEG[1].$name                      = "LCD_SEG_1";
+LCD.associatedSEG[1].peripheral.$assign         = "LCD";
+LCD.associatedSEG[1].peripheral.LCDSeg.$assign  = "PB11";
+LCD.associatedSEG[2].$name                      = "LCD_SEG_2";
+LCD.associatedSEG[2].peripheral.$assign         = "LCD";
+LCD.associatedSEG[2].peripheral.LCDSeg.$assign  = "PB13";
+LCD.associatedSEG[3].$name                      = "LCD_SEG_3";
+LCD.associatedSEG[3].peripheral.$assign         = "LCD";
+LCD.associatedSEG[3].peripheral.LCDSeg.$assign  = "PB15";
+LCD.associatedSEG[4].$name                      = "LCD_SEG_4";
+LCD.associatedSEG[4].peripheral.$assign         = "LCD";
+LCD.associatedSEG[4].peripheral.LCDSeg.$assign  = "PA12";
+LCD.associatedSEG[5].$name                      = "LCD_SEG_5";
+LCD.associatedSEG[5].peripheral.$assign         = "LCD";
+LCD.associatedSEG[5].peripheral.LCDSeg.$assign  = "PA14";
+LCD.associatedSEG[6].$name                      = "LCD_SEG_6";
+LCD.associatedSEG[6].peripheral.$assign         = "LCD";
+LCD.associatedSEG[6].peripheral.LCDSeg.$assign  = "PC1";
+LCD.associatedSEG[7].$name                      = "LCD_SEG_7";
+LCD.associatedSEG[7].peripheral.$assign         = "LCD";
+LCD.associatedSEG[7].peripheral.LCDSeg.$assign  = "PC3";
+LCD.associatedSEG[8].$name                      = "LCD_SEG_8";
+LCD.associatedSEG[8].peripheral.$assign         = "LCD";
+LCD.associatedSEG[8].peripheral.LCDSeg.$assign  = "PC5";
+LCD.associatedSEG[9].$name                      = "LCD_SEG_9";
+LCD.associatedSEG[9].peripheral.$assign         = "LCD";
+LCD.associatedSEG[9].peripheral.LCDSeg.$assign  = "PB22";
+LCD.associatedSEG[10].$name                     = "LCD_SEG_10";
+LCD.associatedSEG[10].peripheral.$assign        = "LCD";
+LCD.associatedSEG[10].peripheral.LCDSeg.$assign = "PA22";
+LCD.associatedSEG[11].$name                     = "LCD_SEG_11";
+LCD.associatedSEG[11].peripheral.$assign        = "LCD";
+LCD.associatedSEG[11].peripheral.LCDSeg.$assign = "PA23";
+LCD.associatedSEG[12].$name                     = "LCD_SEG_12";
+LCD.associatedSEG[12].peripheral.$assign        = "LCD";
+LCD.associatedSEG[12].peripheral.LCDSeg.$assign = "PA25";
+LCD.associatedSEG[13].$name                     = "LCD_SEG_13";
+LCD.associatedSEG[13].peripheral.$assign        = "LCD";
+LCD.associatedSEG[13].peripheral.LCDSeg.$assign = "PB27";
+LCD.associatedSEG[14].$name                     = "LCD_SEG_14";
+LCD.associatedSEG[14].peripheral.$assign        = "LCD";
+LCD.associatedSEG[14].peripheral.LCDSeg.$assign = "PA28";
+LCD.associatedSEG[15].$name                     = "LCD_SEG_15";
+LCD.associatedSEG[15].peripheral.$assign        = "LCD";
+LCD.associatedSEG[15].peripheral.LCDSeg.$assign = "PB24";
+LCD.associatedSEG[16].$name                     = "LCD_SEG_16";
+LCD.associatedSEG[16].peripheral.$assign        = "LCD";
+LCD.associatedSEG[17].$name                     = "LCD_SEG_17";
+LCD.associatedSEG[17].peripheral.$assign        = "LCD";
+LCD.associatedSEG[18].$name                     = "LCD_SEG_18";
+LCD.associatedSEG[18].peripheral.$assign        = "LCD";
+LCD.associatedSEG[18].peripheral.LCDSeg.$assign = "PC9";
+LCD.associatedSEG[19].$name                     = "LCD_SEG_19";
+LCD.associatedSEG[19].peripheral.$assign        = "LCD";
+LCD.associatedSEG[19].peripheral.LCDSeg.$assign = "PC8";
+LCD.associatedSEG[20].$name                     = "LCD_SEG_20";
+LCD.associatedSEG[20].peripheral.$assign        = "LCD";
+LCD.associatedSEG[20].peripheral.LCDSeg.$assign = "PC7";
+LCD.associatedSEG[21].$name                     = "LCD_SEG_21";
+LCD.associatedSEG[21].peripheral.$assign        = "LCD";
+LCD.associatedSEG[21].peripheral.LCDSeg.$assign = "PC6";
+LCD.associatedSEG[22].$name                     = "LCD_SEG_22";
+LCD.associatedSEG[22].peripheral.$assign        = "LCD";
+LCD.associatedSEG[22].peripheral.LCDSeg.$assign = "PA21";
+LCD.associatedSEG[23].$name                     = "LCD_SEG_23";
+LCD.associatedSEG[23].peripheral.$assign        = "LCD";
+LCD.associatedSEG[23].peripheral.LCDSeg.$assign = "PB23";
+LCD.associatedSEG[24].$name                     = "LCD_SEG_24";
+LCD.associatedSEG[24].peripheral.$assign        = "LCD";
+LCD.associatedSEG[24].peripheral.LCDSeg.$assign = "PC4";
+LCD.associatedSEG[25].$name                     = "LCD_SEG_25";
+LCD.associatedSEG[25].peripheral.$assign        = "LCD";
+LCD.associatedSEG[25].peripheral.LCDSeg.$assign = "PC2";
+LCD.associatedSEG[26].$name                     = "LCD_SEG_26";
+LCD.associatedSEG[26].peripheral.$assign        = "LCD";
+LCD.associatedSEG[26].peripheral.LCDSeg.$assign = "PC0";
+LCD.associatedSEG[27].$name                     = "LCD_SEG_27";
+LCD.associatedSEG[27].peripheral.$assign        = "LCD";
+LCD.associatedSEG[27].peripheral.LCDSeg.$assign = "PA13";
+LCD.associatedSEG[28].$name                     = "LCD_SEG_28";
+LCD.associatedSEG[28].peripheral.$assign        = "LCD";
+LCD.associatedSEG[28].peripheral.LCDSeg.$assign = "PB16";
+LCD.associatedSEG[29].$name                     = "LCD_SEG_29";
+LCD.associatedSEG[29].peripheral.$assign        = "LCD";
+LCD.associatedSEG[29].peripheral.LCDSeg.$assign = "PB14";
+LCD.associatedSEG[30].$name                     = "LCD_SEG_30";
+LCD.associatedSEG[30].peripheral.$assign        = "LCD";
+LCD.associatedSEG[30].peripheral.LCDSeg.$assign = "PB12";
+LCD.associatedSEG[31].$name                     = "LCD_SEG_31";
+LCD.associatedSEG[31].peripheral.$assign        = "LCD";
+LCD.associatedSEG[31].peripheral.LCDSeg.$assign = "PB10";
+
+SPI1.phase                                 = "1";
+SPI1.$name                                 = "GEN_SPI_0";
+SPI1.rxFifoThreshold                       = "DL_SPI_RX_FIFO_LEVEL_ONE_FRAME";
+SPI1.enabledInterrupts                     = ["DMA_DONE_RX","DMA_DONE_TX","TX_EMPTY"];
+SPI1.enabledDMAEvent1Triggers              = "DL_SPI_DMA_INTERRUPT_RX";
+SPI1.enabledDMAEvent2Triggers              = "DL_SPI_DMA_INTERRUPT_TX";
+SPI1.txFifoThreshold                       = "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME";
+SPI1.chipSelect                            = ["1"];
+SPI1.peripheral.$assign                    = "SPI0";
+SPI1.peripheral.sclkPin.$assign            = "PB18";
+SPI1.peripheral.mosiPin.$assign            = "PB17";
+SPI1.peripheral.misoPin.$assign            = "PB19";
+SPI1.peripheral.cs1Pin.$assign             = "PB26";
+SPI1.DMA_CHANNEL_EVENT1.$name              = "DMA_CH1";
+SPI1.DMA_CHANNEL_EVENT1.srcLength          = "BYTE";
+SPI1.DMA_CHANNEL_EVENT1.dstLength          = "BYTE";
+SPI1.DMA_CHANNEL_EVENT1.addressMode        = "f2b";
+SPI1.DMA_CHANNEL_EVENT1.enableInterrupt    = true;
+SPI1.DMA_CHANNEL_EVENT1.peripheral.$assign = "DMA_CH1";
+SPI1.DMA_CHANNEL_EVENT2.$name              = "DMA_CH0";
+SPI1.DMA_CHANNEL_EVENT2.addressMode        = "b2f";
+SPI1.DMA_CHANNEL_EVENT2.srcLength          = "BYTE";
+SPI1.DMA_CHANNEL_EVENT2.dstLength          = "BYTE";
+SPI1.DMA_CHANNEL_EVENT2.peripheral.$assign = "DMA_CH0";
+
+SPI2.phase                              = "1";
+SPI2.$name                              = "GEN_SPI_1";
+SPI2.peripheral.$assign                 = "SPI1";
+SPI2.peripheral.sclkPin.$assign         = "PB31";
+SPI2.peripheral.mosiPin.$assign         = "PB30";
+SPI2.peripheral.misoPin.$assign         = "PB29";
+SPI2.peripheral.cs0Pin.$assign          = "PB6";
+
+SYSCTL.MCLKSource        = "HSCLK";
+SYSCTL.validateClkStatus = true;
+SYSCTL.EXCLKSource       = "HFCLK";
+SYSCTL.HFCLK_Freq        = 16384000;
+SYSCTL.EXCLKDivider      = "2";
+SYSCTL.enableEXCLK       = true;
+SYSCTL.useHFCLK_Manual   = true;
+SYSCTL.HFCLKSource       = "HFXT";
+SYSCTL.HFXTStartup       = 32;
+SYSCTL.HFCLKMonitor      = true;
+SYSCTL.clockTreeEn       = true;
+
+SYSTICK.systickEnable = true;
+SYSTICK.periodEnable  = true;
+SYSTICK.period        = 10000000;
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerPeriod        = "2s";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.interrupts         = ["LOAD"];
+TIMER1.interruptPriority  = "3";
+TIMER1.timerStartTimer    = true;
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.peripheral.$assign = "TIMA0";
+
+UART1.enableMajorityVoting                 = true;
+UART1.digitalGlitchFilter                  = 10;
+UART1.enabledInterrupts                    = ["RX_TIMEOUT_ERROR"];
+UART1.enabledDMARXTriggers                 = "DL_UART_DMA_INTERRUPT_RX";
+UART1.enabledDMATXTriggers                 = "DL_UART_DMA_INTERRUPT_TX";
+UART1.$name                                = "GEN_UART_0";
+UART1.peripheral.$assign                   = "UART1";
+UART1.peripheral.rxPin.$assign             = "PA9";
+UART1.peripheral.txPin.$assign             = "PA8";
+UART1.txPinConfig.enableConfig             = true;
+UART1.txPinConfig.internalResistor         = "PULL_UP";
+UART1.rxPinConfig.enableConfig             = true;
+UART1.rxPinConfig.internalResistor         = "PULL_UP";
+UART1.DMA_CHANNEL_RX.$name                 = "DMA_CH2";
+UART1.DMA_CHANNEL_RX.addressMode           = "f2b";
+UART1.DMA_CHANNEL_RX.srcLength             = "BYTE";
+UART1.DMA_CHANNEL_RX.dstLength             = "BYTE";
+UART1.DMA_CHANNEL_RX.configureTransferSize = true;
+UART1.DMA_CHANNEL_RX.destIncrement         = "INCREMENT";
+UART1.DMA_CHANNEL_RX.enableInterrupt       = true;
+UART1.DMA_CHANNEL_RX.peripheral.$assign    = "DMA_CH2";
+UART1.DMA_CHANNEL_TX.$name                 = "DMA_CH3";
+UART1.DMA_CHANNEL_TX.addressMode           = "b2f";
+UART1.DMA_CHANNEL_TX.srcLength             = "BYTE";
+UART1.DMA_CHANNEL_TX.dstLength             = "BYTE";
+UART1.DMA_CHANNEL_TX.configureTransferSize = true;
+UART1.DMA_CHANNEL_TX.srcIncrement          = "INCREMENT";
+UART1.DMA_CHANNEL_TX.enableInterrupt       = true;
+UART1.DMA_CHANNEL_TX.peripheral.$assign    = "DMA_CH3";
+
+UART2.$name                            = "GEN_UART_1";
+UART2.peripheral.$assign               = "UART0";
+UART2.peripheral.rxPin.$assign         = "PB1";
+UART2.peripheral.txPin.$assign         = "PB0";
+
+ProjectConfig.genLinker  = false;
+ProjectConfig.genStartup = false;
+ProjectConfig.genOpts    = false;
+ProjectConfig.genLibs    = false;
+ProjectConfig.deviceSpin = "MSPM0L2228";
+

@@ -1,6 +1,6 @@
 /*****************************************************************************
 
-  Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/ 
+  Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/ 
 
   Redistribution and use in source and binary forms, with or without 
   modification, are permitted provided that the following conditions 
@@ -36,8 +36,8 @@
 #define ti_devices_msp_peripherals_m0p_hw_sysctl_mspm0l111x__include
 
 /* Filename: hw_sysctl_mspm0l111x.h */
-/* Revised: 2024-02-01 09:48:02 */
-/* Revision: 4b4bfb3cee6c3c04bd5e97eb92d6af3202c2a17b */
+/* Revised: 2025-01-24 03:07:20 */
+/* Revision: de5fa514dae5770a04896a2fd503d41abbc67a43 */
 
 #ifndef __CORTEX_M
   #ifdef __cplusplus
@@ -776,8 +776,8 @@ typedef struct {
 #define SYSCTL_GENCLKCFG_MFPCLKSRC_SYSOSC        ((uint32_t)0x00000000U)         /* !< MFPCLK is sourced from SYSOSC */
 #define SYSCTL_GENCLKCFG_MFPCLKSRC_HFCLK         ((uint32_t)0x00000200U)         /* !< MFPCLK is sourced from HFCLK */
 /* SYSCTL_GENCLKCFG[FCCLFCLKSRC] Bits */
-#define SYSCTL_GENCLKCFG_FCCLFCLKSRC_OFS         (23)                            /* !< FCCLFCLKSRC Offset */
-#define SYSCTL_GENCLKCFG_FCCLFCLKSRC_MASK        ((uint32_t)0x00800000U)         /* !< FCCLFCLKSRC selects between SYSTEM
+#define SYSCTL_GENCLKCFG_FCCLFCLKSRC_OFS         (29)                            /* !< FCCLFCLKSRC Offset */
+#define SYSCTL_GENCLKCFG_FCCLFCLKSRC_MASK        ((uint32_t)0x20000000U)         /* !< FCCLFCLKSRC selects between SYSTEM
                                                                                     LFCLK and EXTERNAL SOURCED LFCLK. */
 /* SYSCTL_GENCLKCFG[FCCTRIGCNT] Bits */
 #define SYSCTL_GENCLKCFG_FCCTRIGCNT_OFS          (24)                            /* !< FCCTRIGCNT Offset */
@@ -1086,15 +1086,6 @@ typedef struct {
 #define SYSCTL_SYSSTATUS_REBOOTATTEMPTS_MASK     ((uint32_t)0xC0000000U)         /* !< REBOOTATTEMPTS indicates the number
                                                                                     of boot attempts taken before the
                                                                                     user application starts. */
-/* SYSCTL_SYSSTATUS[SWALTSELEN] Bits */
-#define SYSCTL_SYSSTATUS_SWALTSELEN_OFS          (15)                            /* !< SWALTSELEN Offset */
-#define SYSCTL_SYSSTATUS_SWALTSELEN_MASK         ((uint32_t)0x00008000U)         /* !< SWALTSELEN indicates when user has
-                                                                                    enabled the use of alternate
-                                                                                    SWD/SWCLK pins */
-#define SYSCTL_SYSSTATUS_SWALTSELEN_FALSE        ((uint32_t)0x00000000U)         /* !< Alternate SWD/SWCLK pins are
-                                                                                    disabled */
-#define SYSCTL_SYSSTATUS_SWALTSELEN_TRUE         ((uint32_t)0x00008000U)         /* !< Alternate SWD/SWCLK pins are
-                                                                                    enabled */
 /* SYSCTL_SYSSTATUS[BORLVL] Bits */
 #define SYSCTL_SYSSTATUS_BORLVL_OFS              (4)                             /* !< BORLVL Offset */
 #define SYSCTL_SYSSTATUS_BORLVL_MASK             ((uint32_t)0x00000010U)         /* !< BORLVL indicates if a BOR event
@@ -1387,4 +1378,3 @@ typedef struct {
 #endif
 
 #endif /* ti_devices_msp_peripherals_m0p_hw_sysctl_mspm0l111x__include */
-

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -1055,6 +1055,9 @@ $(function() {
 </li>
 <li>DL_GPIO_IIDX_DIO9
 : <a class="el" href="group___g_p_i_o.html#ggaae0fa4ddc593efbd9f80f4332932e62faba2ba01d0da50cc4575b71d81d372af7">dl_gpio.h</a>
+</li>
+<li>DL_GPIO_IIDX_NO_INTR
+: <a class="el" href="group___g_p_i_o.html#ggaae0fa4ddc593efbd9f80f4332932e62fa5e70c65451590a4dbba445a4a145adac">dl_gpio.h</a>
 </li>
 <li>DL_GPIO_INVERSION_DISABLE
 : <a class="el" href="group___g_p_i_o.html#ggaa1fff704ca7e5a5fe949190a548fbf6da310ea637da74614fd33dcb2e902a6b45">dl_gpio.h</a>
@@ -3153,8 +3156,23 @@ $(function() {
 <li>DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR
 : <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#gga11f6187e683dcf2a0892c4ca5a818156af66353af425d4fdab66d1b89d4d0080c">dl_sysctl_mspm0l122x_l222x.h</a>
 </li>
+<li>DL_SYSCTL_IIDX_FLASH_SEC
+: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#gga11f6187e683dcf2a0892c4ca5a818156ab9b42fe9e21276a511cfa8762c3b5521">dl_sysctl_mspm0l122x_l222x.h</a>
+</li>
+<li>DL_SYSCTL_IIDX_HFCLK_GOOD
+: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#gga11f6187e683dcf2a0892c4ca5a818156ac0b2b14d77cbbdd7ae23701ca09e7cf4">dl_sysctl_mspm0l122x_l222x.h</a>
+</li>
+<li>DL_SYSCTL_IIDX_HSCLK_GOOD
+: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#gga11f6187e683dcf2a0892c4ca5a818156a78a5d4fb99a0d4398b0ee09f921f5c00">dl_sysctl_mspm0l122x_l222x.h</a>
+</li>
 <li>DL_SYSCTL_IIDX_LFOSC_GOOD
 : <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#gga11f6187e683dcf2a0892c4ca5a818156a2f3e40fca586aecb1441f01a6754528b">dl_sysctl_mspm0l122x_l222x.h</a>
+</li>
+<li>DL_SYSCTL_IIDX_LFXT_GOOD
+: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#gga11f6187e683dcf2a0892c4ca5a818156aaed008cb41818421b22cf98b1eb987cd">dl_sysctl_mspm0l122x_l222x.h</a>
+</li>
+<li>DL_SYSCTL_IIDX_SRAM_SEC
+: <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#gga11f6187e683dcf2a0892c4ca5a818156a1dbdd9ef94c4e5278f9a4c185eb964e2">dl_sysctl_mspm0l122x_l222x.h</a>
 </li>
 <li>DL_SYSCTL_LFXT_DRIVE_STRENGTH_HIGHER
 : <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l122_x___l222_x.html#ggada7eec2f3ea44a593a298c232fa8b98aabf6b3e301f9c103463d099e597c8098b">dl_sysctl_mspm0l122x_l222x.h</a>
@@ -3408,6 +3426,9 @@ $(function() {
 <li>DL_TIMER_CAPTURE_COMBINED_MODE_PULSE_WIDTH_AND_PERIOD_UP
 : <a class="el" href="group___t_i_m_x.html#gga8e8d7949224cce8f7306608e5414cc19a614b69f6a2f9d13fef6743602535a0fd">dl_timer.h</a>
 </li>
+<li>DL_TIMER_CAPTURE_EDGE_DETECTION_MODE_EDGE
+: <a class="el" href="group___t_i_m_x.html#gga301090df5f37e34251d720ac6b27b46aa1bc3e13bd9db721ff9e17201dbf19ed6">dl_timer.h</a>
+</li>
 <li>DL_TIMER_CAPTURE_EDGE_DETECTION_MODE_FALLING
 : <a class="el" href="group___t_i_m_x.html#gga301090df5f37e34251d720ac6b27b46aaf3019a1af9222d2ae0114526a68a50b2">dl_timer.h</a>
 </li>
@@ -3470,6 +3491,27 @@ $(function() {
 </li>
 <li>DL_TIMER_CC_UPDATE_METHOD_ZERO_RC_EVT
 : <a class="el" href="group___t_i_m_x.html#gga3c5241acef0cec52c2ab68760fd56e70a1b361835f748cc4449a2d694ede6d56c">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CCACT_UPDATE_METHOD_COMP_DN_EVT
+: <a class="el" href="group___t_i_m_x.html#gga9ec86ee202719cb538a9ab67f5a00079ae0104a584dc0192f921cc26324669c53">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CCACT_UPDATE_METHOD_COMP_UP_EVT
+: <a class="el" href="group___t_i_m_x.html#gga9ec86ee202719cb538a9ab67f5a00079a88fc02a1d0f139c014e975b7ce493ef6">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CCACT_UPDATE_METHOD_IMMEDIATE
+: <a class="el" href="group___t_i_m_x.html#gga9ec86ee202719cb538a9ab67f5a00079a574e898f6fb6e736dfe8898aef260897">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CCACT_UPDATE_METHOD_TRIG_EVT
+: <a class="el" href="group___t_i_m_x.html#gga9ec86ee202719cb538a9ab67f5a00079a0828e4b0b037eee2346757f4a8e0458e">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CCACT_UPDATE_METHOD_ZERO_EVT
+: <a class="el" href="group___t_i_m_x.html#gga9ec86ee202719cb538a9ab67f5a00079aed42d6e67ec721391aa7f22cfa0aa2ee">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CCACT_UPDATE_METHOD_ZERO_OR_LOAD_EVT
+: <a class="el" href="group___t_i_m_x.html#gga9ec86ee202719cb538a9ab67f5a00079aa1ca42bbc384f1821c8d19274147a497">dl_timer.h</a>
+</li>
+<li>DL_TIMER_CCACT_UPDATE_METHOD_ZERO_RC_EVT
+: <a class="el" href="group___t_i_m_x.html#gga9ec86ee202719cb538a9ab67f5a00079ac64716f524ceee476098acfb22979c17">dl_timer.h</a>
 </li>
 <li>DL_TIMER_CCP_DIS_OUT_LOW
 : <a class="el" href="group___t_i_m_x.html#gga90ea6d4b0c69f1be5386a4f3307837cda824e481ad0533e1bf0010d2043679cc7">dl_timer.h</a>
@@ -4490,7 +4532,7 @@ $(function() {
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

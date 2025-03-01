@@ -45,6 +45,7 @@
 #include "gateDriver.h"
 #include "appUserInputsConfig.h"
 
+#define EBPAST_MOTOR
 /*! @brief FW Version register for reference and code maintenance */
 uint32_t *pAppFWVersion = (uint32_t*)APP_FW_VER_BASE;
 

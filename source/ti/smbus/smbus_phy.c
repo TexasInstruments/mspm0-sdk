@@ -63,6 +63,7 @@ void SMBus_PHY_targetEnable(SMBus *smbus)
     */
     SYSCFG_DL_SMB_I2C_init();
     smbus->ctrl.bits.phyEn = 1;      // Set global flag
+    SMBusARP_RESET(smbus);           // Set the ARP status
 }
 
 void SMBus_PHY_targetInit(SMBus *smbus, I2C_Regs *i2cInst)
@@ -151,6 +152,7 @@ SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus)
     else if ( DL_I2C_getEnabledInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
                                                DL_I2C_INTERRUPT_TARGET_START) )
     {
+
         data = (uint8_t) DL_I2C_getTargetAddressMatch(SMBusPHY->SMBus_Phy_i2cBase);
         ret_state = SMBus_NWK_targetProcessStart(smbus, data);
         DL_I2C_clearInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
@@ -188,6 +190,9 @@ SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus)
             case DL_I2C_IIDX_TARGET_PEC_RX_ERROR:
                 smbus->status.bits.pecErr = 1;
                 ret_state = SMBus_State_PECError;
+            break;
+            case DL_I2C_IIDX_TARGET_ARBITRATION_LOST:
+                ret_state = SMBus_NWK_targetArbLost(smbus);
             break;
             /* SMBus Timeout interrupt */
             case DL_I2C_IIDX_TIMEOUT_A:
@@ -240,7 +245,26 @@ void SMBus_PHY_targetManualACK(SMBus *smbus, bool ackVal)
     }
     smbus->phy.SMBus_Phy_AckPending = false;
 }
-
+void SMBus_Phy_ARP_TARGET_ADDR_Reset(SMBus *smbus)
+{
+    if(smbus->arpStatus.arpAddressValid)
+    {
+        DL_I2C_setTargetOwnAddress(smbus->phy.SMBus_Phy_i2cBase, smbus->ownTargetAddr);
+        DL_I2C_enableTargetOwnAddress(smbus->phy.SMBus_Phy_i2cBase);
+    }
+    else
+    {
+        DL_I2C_disableTargetOwnAddress(smbus->phy.SMBus_Phy_i2cBase);
+    }
+}
+uint8_t SMBus_Phy_ARP_Get_Write_Status(SMBus *smbus)
+{
+    return(smbus->arpStatus.arpWriteState & I2C_SSR_RXMODE_SET);
+}
+uint8_t SMBus_Phy_ARP_Get_Read_Status(SMBus *smbus)
+{
+    return(smbus->arpStatus.arpWriteState & I2C_SSR_TXMODE_SET);
+}
 void SMBus_PHY_controllerEnable(SMBus *smbus)
 {
     extern void SYSCFG_DL_SMB_I2C_init(void);

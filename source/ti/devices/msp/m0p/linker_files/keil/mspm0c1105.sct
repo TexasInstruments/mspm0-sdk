@@ -53,3 +53,9 @@ LR_BCR 0x41C00000 0x00000100  {    ; load region size_region
 	.ANY (.BCRConfig)
   }
 }
+
+LR_BSL 0x41C00100 0x00000100  {    ; load region size_region
+   BSL_CONFIG 0x41C00100 0x000000FF{
+	.ANY (.BSLConfig)
+  }
+}

@@ -1,0 +1,92 @@
+Sensorless FOC - TIDA010250 User Guide
+======================================
+
+This User Guide outlines the usage of TIDA010250 along with the sensorless FOC Application running on MSPM0.
+
+For more details refer to the `TIDA010250 Design Guide <https://www.ti.com/lit/pdf/TIDUF31A>`__
+
+1. Hardware Required
+--------------------
+
+-  `TIDA010250 <https://www.ti.com/tool/TIDA-010250>`__ - 1-kW brushless DC motor inverter reference design
+-  Isolated AC source
+-  Brushless-DC Motor
+-  Serial Wire Debug (SWD) debugger with isolator
+
+NOTE: If user want to use non-isolated AC source always an isolated debugger
+
+2. Hardware Setup
+-----------------
+
+1. Connect a serial wire debug (SWD) debugger to connector J8 to debug or program the MSPM01507. Isolate the host PC from TIDA010250 board.
+
+.. figure:: images/TIDA010250-J8.jpg
+   :alt: J8 header
+
+   J8 header
+
+2. Connect a motor cable to the terminals J4, J5, and J6.
+
+3. Apply a DC bus power, AC power supply or AC mains power to the inverter by connecting the power to J1, J2, and J3.
+
+-  The maximum output of the DC power supply is 380VDC.
+-  The maximum output of the AC power supply is 265VAC, 50/60Hz.
+-  AC main power is 220VAC, 50/60Hz.
+
+.. figure:: images/TIDA010250-Layout.jpg
+   :alt: TIDA010250 Layout
+
+   TIDA010250 Layout
+
+4. Once all steps are completed, Please refer to `Software User Guide <../MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html>`__ for steps on importing the CCS project or `FOC Tuning Guide <https://www.ti.com/lit/pdf/SLAU927>`__ for steps to tune and spin the motor.
+
+3. Pin Mapping
+--------------
+
++-------------------------+--------------+
+| Connection              | MSPM0G1507   |
++=========================+==============+
+| Phase A HS input        | PA8          |
++-------------------------+--------------+
+| Phase A LS input        | PA9          |
++-------------------------+--------------+
+| Phase B HS input        | PB2          |
++-------------------------+--------------+
+| Phase B LS input        | PB3          |
++-------------------------+--------------+
+| Phase C HS input        | PA3          |
++-------------------------+--------------+
+| Phase C LS input        | PA4          |
++-------------------------+--------------+
+| Bus voltage input       | PA26         |
++-------------------------+--------------+
+| Phase A current input   | PB19         |
++-------------------------+--------------+
+| Phase B current input   | PB18         |
++-------------------------+--------------+
+| Phase C current input   | PB17         |
++-------------------------+--------------+
+| Phase A Voltage input   | PA25         |
++-------------------------+--------------+
+| Phase B Voltage input   | PA24         |
++-------------------------+--------------+
+| Phase C Voltage input   | PB24         |
++-------------------------+--------------+
+| Fault Input             | PB20         |
++-------------------------+--------------+
+| Relay                   | PA28         |
++-------------------------+--------------+
+| DAC                     | PA15         |
++-------------------------+--------------+
+| UART0 TX                | PA10         |
++-------------------------+--------------+
+| UART0 RX                | PA11         |
++-------------------------+--------------+
+| DEBUG1                  | PB15         |
++-------------------------+--------------+
+| DIR                     | PA31         |
++-------------------------+--------------+
+| BRAKE                   | PB8          |
++-------------------------+--------------+
+| Fault Output            | PA5          |
++-------------------------+--------------+

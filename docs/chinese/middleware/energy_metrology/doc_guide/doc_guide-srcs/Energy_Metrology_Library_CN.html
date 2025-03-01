@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Energy Measurement Library &mdash; Energy_Metrology_SW_Overview 2.1.0.x documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Energy Metrology SW Overview" href="Energy_Metrology_SW_Overview_CN.html" />
+    <link rel="prev" title="Energy Library GUI User Guide" href="Energy_Metrology_GUI_User_Guide_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Energy_Metrology_SW_Overview
+          </a>
+              <div class="version">
+                2.1.0.x
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_CCS_User_Guide_CN.html">Energy Metrology CCS User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_GUI_User_Guide_CN.html">Energy Library GUI User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Energy Measurement Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#background-process">Background Process</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#per-sample-processing">Per Sample Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#foreground-process">Foreground Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#metrology-calculations">Metrology Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#rms-calculations">RMS Calculations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-rms-voltage">Per phase RMS Voltage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-fundamental-rms-voltage">Per phase Fundamental RMS Voltage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-rms-current">Per phase RMS Current</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-fundamental-rms-current">Per phase Fundamental RMS Current</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#power-calculations">Power Calculations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-active-power">Per phase Active Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-fundamental-active-power">Per phase Fundamental Active Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-reactive-power">Per phase Reactive Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-fundamental-reactive-power">Per phase Fundamental Reactive Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-apparent-power">Per phase Apparent Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-fundamental-apparent-power">Per phase Fundamental Apparent Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-power-factor">Per phase Power Factor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#energy-calculations">Energy Calculations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-energy-calculations">Per Phase Energy Calculations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#per-phase-active-energy">Per phase Active Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-phase-fundamental-active-energy">Per phase Fundamental Active Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-phase-reactive-energy">Per phase Reactive Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-phase-fundamental-reactive-energy">Per phase Fundamental Reactive Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-phase-apparent-energy">Per phase Apparent Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-phase-fundamental-apparent-energy">Per phase Fundamental Apparent Energy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#total-active-energy">Total Active Energy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Total Active Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#total-fundamental-active-energy">Total Fundamental Active Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#total-reactive-energy">Total Reactive Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#total-fundamental-reactive-energy">Total Fundamental Reactive Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#total-apparent-energy">Total Apparent Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#total-fundamental-apparent-energy">Total Fundamental Apparent Energy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#other-calculations">Other Calculations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#voltage-harmonics">Voltage Harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-harmonics">Current Harmonics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#line-to-line-voltage">Line-to-Line Voltage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fundamental-line-to-line-voltage">Fundamental Line-to-Line Voltage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#per-phase-voltage-to-current-angle">Per Phase Voltage to Current Angle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-vector-sum">Current Vector Sum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#sag-or-swell-detection">Sag or Swell Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_SW_Overview_CN.html">Energy Metrology SW Overview</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Energy_Metrology_SW_Overview</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Energy Measurement Library</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="energy-measurement-library">
+<h1>Energy Measurement Library<a class="headerlink" href="#energy-measurement-library" title="Permalink to this heading">¶</a></h1>
+<p>The energy measurement library contains full software implementation of sample collection, power calculations and energy accumulations. The library takes inputs from user through template.h where user specifies the parameters and definitions as per the requirement. The library works around two processes:</p>
+<ul class="simple">
+<li><p>Background Process</p>
+<ul>
+<li><p>Operates for every sample of data from ADC</p></li>
+</ul>
+</li>
+<li><p>Foreground Process</p>
+<ul>
+<li><p>Operates after every 10 cycles of accumulated voltage and current from the background process.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="background-process">
+<h1>Background Process<a class="headerlink" href="#background-process" title="Permalink to this heading">¶</a></h1>
+<section id="per-sample-processing">
+<h2>Per Sample Processing<a class="headerlink" href="#per-sample-processing" title="Permalink to this heading">¶</a></h2>
+<p>The per sample processing updates the intermediate dot product quantities used to calculate metrology parameters. It always works on the new set of data received through ADC so that the previous set of data is used to calculate metrology calculations in foreground process. Everytime a new sample data is available, per sampling processing accumulates the samples. This routine, process and accumulates both voltage and current samples, along with per-phase active power and reactive power.</p>
+</section>
+</section>
+<section id="foreground-process">
+<h1>Foreground Process<a class="headerlink" href="#foreground-process" title="Permalink to this heading">¶</a></h1>
+<p>The foreground process performs the following activities on the previous set of acquired voltage and current samples:</p>
+<ul class="simple">
+<li><p>Computes RMS values, active power, reactive power.</p></li>
+<li><p>Computes voltage THD, Current THD, power factor.</p></li>
+<li><p>Computes three phase power, aggregate power factor.</p></li>
+<li><p>Computes line to line voltage, phase to phase angle.</p></li>
+<li><p>Checks for sag/swell condition.</p></li>
+</ul>
+</section>
+<section id="metrology-calculations">
+<h1>Metrology Calculations<a class="headerlink" href="#metrology-calculations" title="Permalink to this heading">¶</a></h1>
+<p>The following sections describes the Energy Metrology Library that performs energy measurements. The overall software architecture assumes background process that operates on every sample to square voltage and current, as well as accumulate active and reactive power. Once enough samples for a whole cycle are captured, then the following calculations are computed.</p>
+</section>
+<section id="rms-calculations">
+<h1>RMS Calculations<a class="headerlink" href="#rms-calculations" title="Permalink to this heading">¶</a></h1>
+<p>The following sections show the RMS voltage and current calculations.</p>
+<section id="per-phase-rms-voltage">
+<h2>Per phase RMS Voltage<a class="headerlink" href="#per-phase-rms-voltage" title="Permalink to this heading">¶</a></h2>
+<p>The per phase RMS Voltage is computed by calculateRMSVoltage():</p>
+<p><span class="math notranslate nohighlight">\(V_{RMS,ph} (mV) = K_{V,ph} × \sqrt{ \sum_{n=1}^{SamplCnt} \frac{V_{ADC,ph}\,\,(n) × V_{ADC,ph}\,\,(n)}{SamplCnt}} - V_{offset,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{ADC,ph}(n)\)</span> = Voltage sample of ADC of phase ph at a sample instant n</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{offset,ph}\)</span> = Offset used to subtract effects of the additive white Gaussian noise from the voltage converter</p></li>
+<li><p>SamplCnt = Number of samples within the present frame.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{v,ph}\)</span> = Scaling calibration factor for voltage</p></li>
+</ul>
+</section>
+<section id="per-phase-fundamental-rms-voltage">
+<h2>Per phase Fundamental RMS Voltage<a class="headerlink" href="#per-phase-fundamental-rms-voltage" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Fundamental RMS Voltage is computed by calculateFundamentalRMSVoltage():</p>
+<p><span class="math notranslate nohighlight">\(V_{FRMS,ph} (mV)= \frac{K_{V,ph}}{\sqrt{2}} × \sqrt{ \frac{ \sum_{n=1}^{SamplCnt}V_{F,ph}\,\,\,(n)}{SamplCnt}}× T_{a}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{F,ph}(n)\)</span> = Voltage of fundamental of phase ph at sample intant n</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{v,ph}\)</span> = Scaling calibration factor for voltage of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{a}\)</span> = temperature correction amplitude factor</p></li>
+</ul>
+</section>
+<section id="per-phase-rms-current">
+<h2>Per phase RMS Current<a class="headerlink" href="#per-phase-rms-current" title="Permalink to this heading">¶</a></h2>
+<p>The per phase RMS Current is computed by calculateRMSCurrent():</p>
+<p><span class="math notranslate nohighlight">\(I_{RMS,ph} (µA) = K_{I,ph}× \sqrt{ \frac{\sum_{n=1}^{SamplCnt}I_{ADC,ph}\,\,(n)×I_{ADC,ph}\,\,(n)}{SamplCnt}} - I_{offset,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{ADC,ph}(n)\)</span> = Current sample of ADC of phase ph at a sample instant n</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{offset,ph}\)</span> = Offset used to subtract effects of the additive white Gaussian noise from the current converter of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{I,ph}\)</span> = Scaling calibration factor for current of phase ph</p></li>
+</ul>
+</section>
+<section id="per-phase-fundamental-rms-current">
+<h2>Per phase Fundamental RMS Current<a class="headerlink" href="#per-phase-fundamental-rms-current" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Fundamental RMS Current is computed by calculateFundamentalRMSCurrent():</p>
+<p><span class="math notranslate nohighlight">\(I_{FRMS,ph} (µA) = \sqrt{ \frac{{P_{Fact,ph}}^2 + {P_{Freact,ph}}^2 }{V_{FRMS,ph}}} × T_{a}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{FRMS,ph}\)</span> = RMS Voltage of fundamental of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{Fact,ph}\)</span> = Fundamental Active Power of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{Freact,ph}\)</span> = Fundamental Reactive Power of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{a}\)</span> = temperature correction amplitude factor</p></li>
+</ul>
+</section>
+</section>
+<section id="power-calculations">
+<h1>Power Calculations<a class="headerlink" href="#power-calculations" title="Permalink to this heading">¶</a></h1>
+<section id="per-phase-active-power">
+<h2>Per phase Active Power<a class="headerlink" href="#per-phase-active-power" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Active Power is computed by calculateActivePower():</p>
+<p><span class="math notranslate nohighlight">\(P_{ACT,ph} (mW) = K_{P,ph} × \frac{\sum_{n=1}^{SamplCnt}V_{firACT}\,\,(n) × I_{ADC,ph}\,\,(n))}{SamplCnt} × K_{firACTgain} - P_{ACToffset,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{ADC,ph}(n)\)</span> = Current sample of ADC at a sample instant n of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{ACT_Offset,ph}\)</span> = Offset used to subtract effects of crosstalk on the active power measurements from other phases and the neutral of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{P,ph}\)</span> = Scaling calibration power factor of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{firACT}(n)\)</span> = voltage sample at sample instant n, shifted by the phase compensation value. This voltage sample is generated by feeding voltage samples into a fractional delay fir to generate the phase shift for phase compensation. The actual fir filter coefficient used depends on the desired phase shift. Different coefficients lead to different gains, which are compensated out.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{firACTgain}\)</span> = Coefficient used to compensate the fir filter gain from <span class="math notranslate nohighlight">\(V_{firACT}\,\,(n)\)</span>.</p></li>
+</ul>
+</section>
+<section id="per-phase-fundamental-active-power">
+<h2>Per phase Fundamental Active Power<a class="headerlink" href="#per-phase-fundamental-active-power" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Fundamental Active Power is computed by calculateFundamentalActivePower():</p>
+<p><span class="math notranslate nohighlight">\(P_{Fact,ph} (mW) = K_{P,ph} × \sum_{n=1}^{SamplCnt}\frac{V_{Real,ph}\,\,(n) × I_{ADC,ph}\,\,(n)}{SamplCnt}×\sum_{n=1}^{SamplCnt}\frac{V_{F}\,\,(n)}{SamplCnt}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{Real,ph}\)</span> = Real Voltage of phase ph at a sample instant n</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{ADC,ph}(n)\)</span> = Current sample of ADC of phase ph at a sample instant n</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{P,ph}\)</span> = Scaling calibration power factor of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{F,ph}\)</span> = Voltage of fundamental of phase ph</p></li>
+</ul>
+</section>
+<section id="per-phase-reactive-power">
+<h2>Per phase Reactive Power<a class="headerlink" href="#per-phase-reactive-power" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Reactive Power is computed by calculateReactivePower():</p>
+<p><span class="math notranslate nohighlight">\(P_{react,ph} (mW) = K_{P,ph} × \sum_{n=1}^{SamplCnt} \frac{V_{firREACT}\,\,(n) × I_{ADC,ph}\,\,(n)}{SamplCnt} × K_{firREACTgain} - P_{REACToffset,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{ADC,ph}(n)\)</span> = Current sample of ADC of phase ph at a sample instant n</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{REACToffset,ph}\)</span> = Offset used to subtract effects of crosstalk on the reactive power measurements from other phases and the neutral of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{P,ph}\)</span> = Scaling calibration power factor of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{firREACT}(n)\)</span> = voltage sample at sample instant n, shifted by the phase compensation value and 90°. This voltage sample is generated by - feeding voltage samples into a fractional delay fir to generate the phase shift for phase compensation. The actual fir filter coefficient used depends on the desired phase shift. Different coefficients lead to different gains, which are compensated out.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{firREACTgain}\)</span> = Coefficient used to compensate the fir filter gain from <span class="math notranslate nohighlight">\(V_{firREACT}\,\,(n)\)</span>.</p></li>
+</ul>
+</section>
+<section id="per-phase-fundamental-reactive-power">
+<h2>Per phase Fundamental Reactive Power<a class="headerlink" href="#per-phase-fundamental-reactive-power" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Fundamental Reactive Power is computed by calculateFundamentalReactivePower():</p>
+<p><span class="math notranslate nohighlight">\(P_{Freact,ph} (mW) = K_{P,ph}×\sum_{n=1}^{SamplCnt}\frac{V_{Quad,ph}\,\,(n) × I_{ADC,ph}\,\,(n)}{SamplCnt} × \sum_{n=1}^{SamplCnt} \frac{(V_{F}\,\,(n)}{SamplCnt}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{Quad,ph}\)</span> = Synthesized quadrature voltage of phase ph at a sample instant</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{ADC,ph}(n)\)</span> = Current sample of ADC of phase ph at a sample instant n</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{P,ph}\)</span> = Scaling calibration power factor of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{F,ph}\)</span> = Voltage of fundamental of phase ph</p></li>
+</ul>
+</section>
+<section id="per-phase-apparent-power">
+<h2>Per phase Apparent Power<a class="headerlink" href="#per-phase-apparent-power" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Apparent Power is computed by calculateApparentPower():</p>
+<p><span class="math notranslate nohighlight">\(P_{APP,ph} (mW) = \sqrt{ {P_{act,ph}}^2 + {P_{react,ph}}^2 }\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{act,ph}\)</span> = Active power of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{react,ph}\)</span> = Reactive power of phase ph</p></li>
+</ul>
+</section>
+<section id="per-phase-fundamental-apparent-power">
+<h2>Per phase Fundamental Apparent Power<a class="headerlink" href="#per-phase-fundamental-apparent-power" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Fundamental apparent Power is computed by calculateFundamentalApparentPower():</p>
+<p><span class="math notranslate nohighlight">\(P_{FAPP,ph} (mW) = \sqrt{ {P_{Fact,ph}}^2 + {P_{Freact,ph}}^2 }\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{Fact,ph}\)</span> = Fundamental active power of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{Freact,ph}\)</span> = Fundamental reactive power of phase ph</p></li>
+</ul>
+</section>
+<section id="per-phase-power-factor">
+<h2>Per phase Power Factor<a class="headerlink" href="#per-phase-power-factor" title="Permalink to this heading">¶</a></h2>
+<p>The Power Factor is computed by calculatePowerFactor():</p>
+<p><span class="math notranslate nohighlight">\(P_{APP,ph} (mW) = \begin{cases}  \frac{P_{act,ph}}{P_{APP,ph}} &amp; if capactive load,  \frac{-P_{act,ph}}{P_{APP,ph}} &amp; if inductive load  \end{cases}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{act}\)</span> = Active power of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{App}\)</span> = Apparent power of phase ph</p></li>
+</ul>
+</section>
+</section>
+<section id="energy-calculations">
+<h1>Energy Calculations<a class="headerlink" href="#energy-calculations" title="Permalink to this heading">¶</a></h1>
+<p>The following sections show the per phase and total energy calculations.</p>
+<section id="per-phase-energy-calculations">
+<h2>Per Phase Energy Calculations<a class="headerlink" href="#per-phase-energy-calculations" title="Permalink to this heading">¶</a></h2>
+<p>The following sections show the per phase energy calculations.</p>
+<section id="per-phase-active-energy">
+<h3>Per phase Active Energy<a class="headerlink" href="#per-phase-active-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Per phase Active Energy is computed by accumulateActiveEnergy():</p>
+<p><span class="math notranslate nohighlight">\(E_{act,ph}= P_{act,ph} × SamplCnt\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{act,ph}\)</span> = Active power of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+</ul>
+</section>
+<section id="per-phase-fundamental-active-energy">
+<h3>Per phase Fundamental Active Energy<a class="headerlink" href="#per-phase-fundamental-active-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Per phase Fundamental Active Energy is computed by accumulateFundamentalActiveEnergy():</p>
+<p><span class="math notranslate nohighlight">\(E_{Fact,ph} = P_{Fact,ph} × SamplCnt\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{Fact,ph}\)</span> = Fundamental Active power of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+</ul>
+</section>
+<section id="per-phase-reactive-energy">
+<h3>Per phase Reactive Energy<a class="headerlink" href="#per-phase-reactive-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Per phase Reactive Power is computed by accumulateReactiveEnergy():</p>
+<p><span class="math notranslate nohighlight">\(E_{react,ph} = P_{react,ph} × SamplCnt\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{react,ph}\)</span> = Reactive power of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+</ul>
+</section>
+<section id="per-phase-fundamental-reactive-energy">
+<h3>Per phase Fundamental Reactive Energy<a class="headerlink" href="#per-phase-fundamental-reactive-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Per phase Fundamental Reactive Energy is computed by accumulateFundamentalReactiveEnergy():</p>
+<p><span class="math notranslate nohighlight">\(E_{Freact,ph} = P_{Freact,ph} × SamplCnt\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{Freact,ph}\)</span> = Fundamental Reactive power of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+</ul>
+</section>
+<section id="per-phase-apparent-energy">
+<h3>Per phase Apparent Energy<a class="headerlink" href="#per-phase-apparent-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Per phase Apparent Power is computed by accumulateApparentEnergy():</p>
+<p><span class="math notranslate nohighlight">\(E_{APP,ph} = P_{APP,ph} × SamplCnt\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{APP,ph}\)</span> = Apparent power of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+</ul>
+</section>
+<section id="per-phase-fundamental-apparent-energy">
+<h3>Per phase Fundamental Apparent Energy<a class="headerlink" href="#per-phase-fundamental-apparent-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Per phase Fundamental apparent Power is computed by accumulateFundamentalApparentEnergy():</p>
+<p><span class="math notranslate nohighlight">\(E_{FAPP,ph} = P_{FAPP,ph} × SamplCnt\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{FAPP,ph}\)</span> = Apparent power of phase ph</p></li>
+<li><p>SamplCnt = Number of samples within the present frame</p></li>
+</ul>
+</section>
+</section>
+<section id="total-active-energy">
+<h2>Total Active Energy<a class="headerlink" href="#total-active-energy" title="Permalink to this heading">¶</a></h2>
+<p>The following sections show the total energy calculations.</p>
+<section id="id1">
+<h3>Total Active Energy<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>The Total Active Energy is computed by:</p>
+<p><span class="math notranslate nohighlight">\(E_{Tact}\)</span> = <span class="math notranslate nohighlight">\(\sum_{n=1}^{NumPhases} E_{act,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{act,ph}\)</span> = Active energy of phase ph</p></li>
+</ul>
+</section>
+<section id="total-fundamental-active-energy">
+<h3>Total Fundamental Active Energy<a class="headerlink" href="#total-fundamental-active-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Total Fundamental Active Energy is computed by:</p>
+<p><span class="math notranslate nohighlight">\(E_{TFact}\)</span> = <span class="math notranslate nohighlight">\(\sum_{n=1}^{NumPhases} E_{Fact,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{Fact,ph}\)</span> = Fundamental Active energy of phase ph</p></li>
+</ul>
+</section>
+<section id="total-reactive-energy">
+<h3>Total Reactive Energy<a class="headerlink" href="#total-reactive-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Total Reactive Power is computed by:</p>
+<p><span class="math notranslate nohighlight">\(E_{Treact}\)</span> = <span class="math notranslate nohighlight">\(\sum_{n=1}^{NumPhases} E_{react,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p>Ereact,ph = Reactive energy of phase ph</p></li>
+</ul>
+</section>
+<section id="total-fundamental-reactive-energy">
+<h3>Total Fundamental Reactive Energy<a class="headerlink" href="#total-fundamental-reactive-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Total Fundamental Reactive Energy is computed by:</p>
+<p><span class="math notranslate nohighlight">\(E_{TFreact}\)</span> = <span class="math notranslate nohighlight">\(\sum_{n=1}^{NumPhases} E_{Freact,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{Freact,ph}\)</span> = Fundamental Reactive energy of phase ph</p></li>
+</ul>
+</section>
+<section id="total-apparent-energy">
+<h3>Total Apparent Energy<a class="headerlink" href="#total-apparent-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Total Apparent Power is computed by:</p>
+<p><span class="math notranslate nohighlight">\(E_{TAPP}\)</span> = <span class="math notranslate nohighlight">\(\sum_{n=1}^{NumPhases} E_{APP,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{APP,ph}\)</span> = Apparent energy of phase ph</p></li>
+</ul>
+</section>
+<section id="total-fundamental-apparent-energy">
+<h3>Total Fundamental Apparent Energy<a class="headerlink" href="#total-fundamental-apparent-energy" title="Permalink to this heading">¶</a></h3>
+<p>The Total Fundamental apparent Power is computed by:</p>
+<p><span class="math notranslate nohighlight">\(E_{TFAPP}\)</span> = <span class="math notranslate nohighlight">\(\sum_{n=1}^{NumPhases} E_{FAPP,ph}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{FAPP,ph}\)</span> = Fundamental apparent energy of phase ph</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="other-calculations">
+<h1>Other Calculations<a class="headerlink" href="#other-calculations" title="Permalink to this heading">¶</a></h1>
+<section id="voltage-harmonics">
+<h2>Voltage Harmonics<a class="headerlink" href="#voltage-harmonics" title="Permalink to this heading">¶</a></h2>
+<p>Total harmonic voltage distortion is computed by calculateVoltageTHD():</p>
+<p><span class="math notranslate nohighlight">\(V_{THD,ph} = \frac{ \sqrt{{V_{RMS,ph}}^2 - {V_{FRMS,ph}}^2 }}{V_{FRMS,ph}}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{RMS,ph}\)</span> = Total RMS Voltage of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{FRMS,ph}\)</span> = Fundamental RMS Voltage of phase ph</p></li>
+</ul>
+</section>
+<section id="current-harmonics">
+<h2>Current Harmonics<a class="headerlink" href="#current-harmonics" title="Permalink to this heading">¶</a></h2>
+<p>Total harmonic current distortion is computed by calculateCurrentTHD():</p>
+<p><span class="math notranslate nohighlight">\(I_{THD,ph} = \frac{ \sqrt{{I_{RMS,ph}}^2 - {I_{FRMS,ph}}^2}}{I_{FRMS,ph}}\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{RMS,ph}\)</span> = Total RMS Current of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{FRMS,ph}\)</span> = Fundamental RMS Current of phase ph</p></li>
+</ul>
+</section>
+<section id="line-to-line-voltage">
+<h2>Line-to-Line Voltage<a class="headerlink" href="#line-to-line-voltage" title="Permalink to this heading">¶</a></h2>
+<p>The Line-to-Line Voltage is computed by calculateLinetoLineVoltage():</p>
+<p><span class="math notranslate nohighlight">\(V_{RMS,xy} (mV) = \sqrt{ {[V_{RMS,x} + V_{RMS,y} * sin(k - 90) ]}^2 + {[V_{RMS,y} * sin(k)]}^2 }\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V_{RMS,x}\)</span> = RMS Voltage of phase x</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{RMS,y}\)</span> = RMS Voltage of phase y</p></li>
+<li><p>k = angle between x and y phases</p></li>
+</ul>
+</section>
+<section id="fundamental-line-to-line-voltage">
+<h2>Fundamental Line-to-Line Voltage<a class="headerlink" href="#fundamental-line-to-line-voltage" title="Permalink to this heading">¶</a></h2>
+<p>The Line-to-Line Voltage is computed by calculateFundamentalLinetoLineVoltage():</p>
+<p><span class="math notranslate nohighlight">\(V_{FRMS,xy} (mV) = \sqrt{ {[V_{FRMS,x} + V_{FRMS,y} * sin(k - 90)]}^2 + {[V_{FRMS,y} * sin(k)]}^2 }\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V_{FRMS,x}\)</span> = RMS Fundamental voltage of phase x</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{FRMS,y}\)</span> = RMS Funcamental voltage of phase y</p></li>
+<li><p>k = angle between x and y phases</p></li>
+</ul>
+</section>
+<section id="per-phase-voltage-to-current-angle">
+<h2>Per Phase Voltage to Current Angle<a class="headerlink" href="#per-phase-voltage-to-current-angle" title="Permalink to this heading">¶</a></h2>
+<p>The per phase Voltage to Current Angle is computed by calculateAngleVoltagetoCurrent():</p>
+<p><span class="math notranslate nohighlight">\(Angle_{ph} (rad) = arctan{ P_{react,ph} / P_{act,ph} }\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{react,ph}\)</span> = Reactive power of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{act,ph}\)</span> = Active power of phase ph</p></li>
+<li><p><span class="math notranslate nohighlight">\(Angle_{ph}\)</span> = Angle in radians in Q15, to convert to degrees:</p></li>
+<li><p><span class="math notranslate nohighlight">\(Angle_{ph}\)</span> = <span class="math notranslate nohighlight">\(Angle_{ph} * 360 / (\pi * 2^{15})\)</span></p></li>
+</ul>
+</section>
+<section id="current-vector-sum">
+<h2>Current Vector Sum<a class="headerlink" href="#current-vector-sum" title="Permalink to this heading">¶</a></h2>
+<p>The Current Vector Sum is computed by calculateVectorCurrentSum():</p>
+<p><span class="math notranslate nohighlight">\(I_{TRMS} (uA) = \sqrt{ {I_{x}}^2 + {I_{y}}^2 }\)</span></p>
+<p><span class="math notranslate nohighlight">\(I_{x} (uA) = -I_{RMS,a} * sin(k_{a} - 90) - I_{RMS,b} * sin(k_{b} - 90) - I_{RMS,c} * sin(k_{c} - 90)\)</span></p>
+<p><span class="math notranslate nohighlight">\(I_{y} (uA) = I_{RMS,a} * sin(k_{a}) + I_{RMS,b} * sin(k_{b}) + I_{RMS,c} * sin(k_{c})\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I_{RMS,a}\)</span> = RMS Current of phase a in uA</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{RMS,b}\)</span> = RMS Current of phase b in uA</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{RMS,c}\)</span> = RMS Current of phase c in uA</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{a}\)</span> = angle of phase a</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{b}\)</span> = angle of phase b</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_{c}\)</span> = angle of phase c</p></li>
+</ul>
+</section>
+</section>
+<section id="sag-or-swell-detection">
+<h1>Sag or Swell Detection<a class="headerlink" href="#sag-or-swell-detection" title="Permalink to this heading">¶</a></h1>
+<p>Sag or Swell detection determines if the per-phase RMS voltage drops below or above a pre-set threshold within a window of time. The sag_swell_event() routine updates the following global variables:</p>
+<ul class="simple">
+<li><p>Swell global variables:</p>
+<ul>
+<li><p>swell_events: This variable logs the total number of swell events that have occurred since the meter was first reset.</p>
+<ul>
+<li><p>The start of a swell event occurs whenever the 1-cycle RMS is above a user-defined sag.</p></li>
+<li><p>The end of a sag event occurs when the 1-cycle RMS is below the user-defined swell threshold minus a user-defined hysteresis value.</p></li>
+</ul>
+</li>
+<li><p>swell_duration: This variable logs the number of cycles during the current ongoing swell event. If a swell event isn’t currently occurring, this variable represents the duration of the previously completed swell event.</p></li>
+</ul>
+</li>
+<li><p>Sag global variables:</p>
+<ul>
+<li><p>sag_events: This variable logs the total number of sag events that have occurred since the meter was first reset.</p>
+<ul>
+<li><p>The start of a sag event occurs whenever the 1-cycle RMS is below a user-defined sag threshold but is still greater than the user-defined interruption threshold.</p></li>
+<li><p>The end of a sag event occurs when the 1-cycle RMS is above the user-defined sag threshold plus a user-defined hysteresis value.</p></li>
+</ul>
+</li>
+<li><p>sag_duration: This variable logs the number of cycles during the current ongoing sag event. If a sag event isn’t currently occurring, this variable represents the duration of the previously completed sag event.</p></li>
+</ul>
+</li>
+<li><p>Swell internal variables</p>
+<ul>
+<li><p>max_swell_value: This variable is the maximum 1-cycle RMS reading that was observed during the current ongoing swell event. If a swell event isn’t currently occurring, this variable represents the maximum 1-cycle RMS reading during the previously completed swell event.</p></li>
+</ul>
+</li>
+<li><p>Sag internal variables</p>
+<ul>
+<li><p>min_sag_value: This variable is the minimum 1-cycle RMS reading that was observed during the current ongoing sag event. If a sag event isn’t currently occurring, this variable represents the minimum 1-cycle RMS reading during the previously completed sag event.</p></li>
+</ul>
+</li>
+<li><p>Interruption internal variables</p>
+<ul>
+<li><p>interruption_events: This variable logs the total number of interruption events that have occurred since the meter was first reset.</p>
+<ul>
+<li><p>The start of an interruption event occurs whenever the 1-cycle RMS is below a user-defined interruption threshold, which is lower than the sag voltage threshold.</p></li>
+<li><p>interruption_duration: This variable logs the number of cycles during the current ongoing sag event. If a sag event isn’t currently occurring, this variable represents the duration of the previously completed sag event. Note that this variable does not increment when there is no voltage applied to the meter since there are no cycles to count; however, the absence of voltage is still able to be counted as an interruption event.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Energy_Metrology_GUI_User_Guide_CN.html" class="btn btn-neutral float-left" title="Energy Library GUI User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Energy_Metrology_SW_Overview_CN.html" class="btn btn-neutral float-right" title="Energy Metrology SW Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -34,7 +34,8 @@
 
 #ifdef __MSPM0_HAS_TRNG__
 
-bool DL_TRNG_saveConfiguration(TRNG_Regs *trng, DL_TRNG_backupConfig *ptr)
+bool DL_TRNG_saveConfiguration(
+    const TRNG_Regs *trng, DL_TRNG_backupConfig *ptr)
 {
     bool stateSaved = !ptr->backupRdy;
     if (stateSaved) {

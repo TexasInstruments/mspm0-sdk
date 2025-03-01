@@ -114,7 +114,16 @@ extern "C" {
 #define DL_SYSCTL_INTERRUPT_LFOSC_GOOD           (SYSCTL_IMASK_LFOSCGOOD_ENABLE)
 /*! @brief  Analog clocking consistency error */
 #define DL_SYSCTL_INTERRUPT_ANALOG_CLOCK_ERROR   (SYSCTL_IMASK_ANACLKERR_ENABLE)
-
+/*! @brief  Flash Single Error Correct */
+#define DL_SYSCTL_INTERRUPT_FLASH_SEC            (SYSCTL_IMASK_FLASHSEC_ENABLE)
+/*! @brief  SRAM Single Error Correct */
+#define DL_SYSCTL_INTERRUPT_SRAM_SEC             (SYSCTL_IMASK_SRAMSEC_ENABLE)
+/*! @brief  Low Frequency Crystal is stabilized and ready to use */
+#define DL_SYSCTL_INTERRUPT_LFXT_GOOD            (SYSCTL_IMASK_LFXTGOOD_ENABLE)
+/*! @brief  High Frequency Clock is stabilized and ready to use */
+#define DL_SYSCTL_INTERRUPT_HFCLK_GOOD           (SYSCTL_IMASK_HFCLKGOOD_ENABLE)
+/*! @brief  High Speed Clock is stabilized and ready to use */
+#define DL_SYSCTL_INTERRUPT_HSCLK_GOOD           (SYSCTL_IMASK_HSCLKGOOD_ENABLE)
 /** @}*/
 
 /*! @enum DL_SYSCTL_IIDX */
@@ -123,6 +132,16 @@ typedef enum {
     DL_SYSCTL_IIDX_LFOSC_GOOD = SYSCTL_IIDX_STAT_LFOSCGOOD,
     /*! @brief  Analog clocking consistency error */
     DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR = SYSCTL_IIDX_STAT_ANACLKERR,
+    /*! @brief  Flash Single Error Correct */
+    DL_SYSCTL_IIDX_FLASH_SEC = SYSCTL_IIDX_STAT_FLASHSEC,
+    /*! @brief  SRAM Single Error Correct */
+    DL_SYSCTL_IIDX_SRAM_SEC = SYSCTL_IIDX_STAT_SRAMSEC,
+    /*! @brief  Low Frequency Crystal is stabilized and ready to use */
+    DL_SYSCTL_IIDX_LFXT_GOOD = SYSCTL_IIDX_STAT_LFXTGOOD,
+    /*! @brief  High Frequency Clock is stabilized and ready to use */
+    DL_SYSCTL_IIDX_HFCLK_GOOD = SYSCTL_IIDX_STAT_HFCLKGOOD,
+    /*! @brief  High Speed Clock is stabilized and ready to use */
+    DL_SYSCTL_IIDX_HSCLK_GOOD = SYSCTL_IIDX_STAT_HSCLKGOOD,
 } DL_SYSCTL_IIDX;
 
 
@@ -209,7 +228,7 @@ typedef enum {
 #define DL_SYSCTL_STATUS_FLASH_SEC              (SYSCTL_SYSSTATUS_FLASHSEC_TRUE)
 /*! @brief Current Brown Out Reset minimum level */
 #define DL_SYSCTL_STATUS_BOR_LEVEL0                                            \
-                                  (SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORLEVELMIN)
+                                       (SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORMIN)
 /*! @brief Current Brown Out Reset level 1 */
 #define DL_SYSCTL_STATUS_BOR_LEVEL1 (SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORLEVEL1)
 /*! @brief Current Brown Out Reset level 2 */
@@ -1469,7 +1488,7 @@ __STATIC_INLINE void DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ freq)
  *  @sa DL_SYSCTL_setMCLKDivider
  */
 __STATIC_INLINE void DL_SYSCTL_configSYSOSCUserTrim(
-    DL_SYSCTL_SYSOSCUserTrimConfig *config)
+    const DL_SYSCTL_SYSOSCUserTrimConfig *config)
 {
     SYSCTL->SOCLOCK.SYSOSCTRIMUSER =
         ((config->rDiv << SYSCTL_SYSOSCTRIMUSER_RDIV_OFS) &
@@ -1581,7 +1600,7 @@ __STATIC_INLINE void DL_SYSCTL_clearECCErrorStatus(void)
  *  @param[in]  config         Pointer to the LFCLK configuration struct
  *                             @ref DL_SYSCTL_LFCLKConfig.
  */
-void DL_SYSCTL_setLFCLKSourceLFXT(DL_SYSCTL_LFCLKConfig *config);
+void DL_SYSCTL_setLFCLKSourceLFXT(const DL_SYSCTL_LFCLKConfig *config);
 
 /**
  *  @brief Change LFCLK source to external digital LFCLK_IN

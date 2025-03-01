@@ -34,7 +34,7 @@
 
 #ifdef __MSPM0_HAS_DAC12__
 
-void DL_DAC12_init(DAC12_Regs *dac12, DL_DAC12_Config *config)
+void DL_DAC12_init(DAC12_Regs *dac12, const DL_DAC12_Config *config)
 {
     /* CTL 0 - Input Data Formatting */
     DL_DAC12_configDataFormat(
@@ -81,7 +81,8 @@ void DL_DAC12_outputBlocking12(DAC12_Regs *dac12, uint16_t data)
     DL_DAC12_output12(dac12, data);
 }
 
-uint32_t DL_DAC12_fillFIFO8(DAC12_Regs *dac12, uint8_t *buffer, uint32_t count)
+uint32_t DL_DAC12_fillFIFO8(
+    DAC12_Regs *dac12, const uint8_t *buffer, uint32_t count)
 {
     uint32_t i;
     for (i = 0; i < count; i++) {
@@ -96,7 +97,7 @@ uint32_t DL_DAC12_fillFIFO8(DAC12_Regs *dac12, uint8_t *buffer, uint32_t count)
 }
 
 uint32_t DL_DAC12_fillFIFO12(
-    DAC12_Regs *dac12, uint16_t *buffer, uint32_t count)
+    DAC12_Regs *dac12, const uint16_t *buffer, uint32_t count)
 {
     uint32_t i;
     for (i = 0; i < count; i++) {

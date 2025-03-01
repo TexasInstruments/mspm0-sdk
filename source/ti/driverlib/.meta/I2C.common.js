@@ -81,7 +81,7 @@ function updateGUIEnableController(inst, ui)
         ui.advControllerClkStretch.hidden = true;
         inst.intController = [];
         /* MSPM0Cxx does not support DMA configuration for I2C */
-        if(!Common.isDeviceM0C()){
+        if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
             if ((inst.DMAEvent1).includes("CONTROLLER"))
             {
                 inst.DMAEvent1 = "None";
@@ -127,7 +127,7 @@ function updateGUIEnableTarget(inst, ui) {
         ui.advTargetClkStretch.hidden = true;
         inst.intTarget = [];
         /* MSPM0Cxx does not support DMA configuration for I2C */
-        if(!Common.isDeviceM0C()){
+        if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
             if ((inst.DMAEvent1).includes("TARGET"))
             {
                 inst.DMAEvent1 = "None";
@@ -1170,7 +1170,7 @@ the FIFO is written or read on time.
 
 function getDMAConfig(inst,ui){
     // I2C does not support DMA for MSPM0Cxx
-    if(Common.isDeviceM0C()){
+    if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
         return [];
     }
     return [
@@ -1219,7 +1219,7 @@ function getDMAConfig(inst,ui){
 /************************* devSpecific functions *******************************/
 function getDMAModInstances(inst, modInstances){
     /* I2C does not support DMA configuration for MSPM0Cxx */
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
     if(!["None"].includes(inst.DMAEvent1)){
         let triggerType;
         if(inst.DMAEvent1 == "CONTROLLER_TXFIFO_TRIGGER" || inst.DMAEvent1 == "TARGET_TXFIFO_TRIGGER") {
@@ -1275,7 +1275,7 @@ function getDMAModInstances(inst, modInstances){
 function setRequiredModules(inst){
     let theModules = ["Board", "SYSCTL"]
     /* I2C does not support DMA configuration for MSPM0Cxx */
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         if(!["None"].includes(inst.DMAEvent1) || !["None"].includes(inst.DMAEvent2)){
             theModules.push("DMA");
         }

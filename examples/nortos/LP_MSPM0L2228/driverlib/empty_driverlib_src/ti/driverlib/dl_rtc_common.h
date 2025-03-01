@@ -602,7 +602,8 @@ typedef struct {
  *  @return true  If LFCLK is selected as the clock source
  *  @return false If LFCLK is not selected as the clock source
  */
-__STATIC_INLINE bool DL_RTC_Common_isClockSourceLFCLK(RTC_Regs *rtc_common)
+__STATIC_INLINE bool DL_RTC_Common_isClockSourceLFCLK(
+    const RTC_Regs *rtc_common)
 {
     return ((rtc_common->CLKSEL & RTC_CLKSEL_LFCLK_SEL_MASK) ==
             RTC_CLKSEL_LFCLK_SEL_MASK);
@@ -631,8 +632,11 @@ __STATIC_INLINE void DL_RTC_Common_disableClockControl(RTC_Regs *rtc_common)
 }
 
 /**
- *  @brief      Enable power to the RTC Common module.
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the RTC
  *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  *  @param[in]  rtc_common  Pointer to the register overlay for the RTC Common peripheral
  */
@@ -643,8 +647,12 @@ __STATIC_INLINE void DL_RTC_Common_enablePower(RTC_Regs *rtc_common)
 }
 
 /**
- *  @brief      Disable power to the RTC Common module.
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the RTC
  *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  *  @param[in]  rtc_common  Pointer to the register overlay for the RTC Common peripheral
  */
@@ -655,14 +663,22 @@ __STATIC_INLINE void DL_RTC_Common_disablePower(RTC_Regs *rtc_common)
 }
 
 /**
- *  @brief Returns if power is enabled for the RTC Common module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the RTC
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  *  @param[in]  rtc_common  Pointer to the register overlay for the RTC Common peripheral
  *
- *  @return true if power is enabled
- *  @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_RTC_Common_isPowerEnabled(RTC_Regs *rtc_common)
+__STATIC_INLINE bool DL_RTC_Common_isPowerEnabled(const RTC_Regs *rtc_common)
 {
     return ((rtc_common->GPRCM.PWREN & RTC_PWREN_ENABLE_MASK) ==
             RTC_PWREN_ENABLE_ENABLE);
@@ -690,7 +706,7 @@ __STATIC_INLINE void DL_RTC_Common_reset(RTC_Regs *rtc_common)
  *  @return true if module was reset
  *  @return false if module was not reset
  */
-__STATIC_INLINE bool DL_RTC_Common_isReset(RTC_Regs *rtc_common)
+__STATIC_INLINE bool DL_RTC_Common_isReset(const RTC_Regs *rtc_common)
 {
     return ((rtc_common->GPRCM.STAT & RTC_STAT_RESETSTKY_MASK) ==
             RTC_STAT_RESETSTKY_RESET);
@@ -769,7 +785,7 @@ __STATIC_INLINE void DL_RTC_Common_setClockFormat(
  *  @retval            One of @ref DL_RTC_COMMON_FORMAT
  */
 __STATIC_INLINE DL_RTC_COMMON_FORMAT DL_RTC_Common_getClockFormat(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     uint32_t format = (rtc_common->CTL & RTC_CTL_RTCBCD_MASK);
 
@@ -814,7 +830,7 @@ __STATIC_INLINE void DL_RTC_Common_setIntervalAlarm(
  *  @return DL_RTC_COMMON_INTERVAL_ALARM
  */
 __STATIC_INLINE DL_RTC_COMMON_INTERVAL_ALARM DL_RTC_Common_getIntervalAlarm(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     uint32_t alarm = (rtc_common->CTL & RTC_CTL_RTCTEVTX_MASK);
 
@@ -838,7 +854,7 @@ __STATIC_INLINE DL_RTC_COMMON_INTERVAL_ALARM DL_RTC_Common_getIntervalAlarm(
  *  @return false if RTC Common values are in transition
  *
  */
-__STATIC_INLINE bool DL_RTC_Common_isSafeToRead(RTC_Regs *rtc_common)
+__STATIC_INLINE bool DL_RTC_Common_isSafeToRead(const RTC_Regs *rtc_common)
 {
     return ((rtc_common->STA & RTC_STA_RTCRDY_MASK) == RTC_STA_RTCRDY_READY);
 }
@@ -852,7 +868,8 @@ __STATIC_INLINE bool DL_RTC_Common_isSafeToRead(RTC_Regs *rtc_common)
  *  @return false if RTC Common is not ready to get new calibration values
  *
  */
-__STATIC_INLINE bool DL_RTC_Common_isReadyToCalibrate(RTC_Regs *rtc_common)
+__STATIC_INLINE bool DL_RTC_Common_isReadyToCalibrate(
+    const RTC_Regs *rtc_common)
 {
     return (
         (rtc_common->STA & RTC_STA_RTCTCRDY_MASK) == RTC_STA_RTCTCRDY_READY);
@@ -868,7 +885,7 @@ __STATIC_INLINE bool DL_RTC_Common_isReadyToCalibrate(RTC_Regs *rtc_common)
  *
  */
 __STATIC_INLINE bool DL_RTC_Common_isCalibrationWriteResultOK(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return ((rtc_common->STA & RTC_STA_RTCTCOK_MASK) == RTC_STA_RTCTCOK_OK);
 }
@@ -957,7 +974,7 @@ __STATIC_INLINE void DL_RTC_Common_setOffsetCalibration(RTC_Regs *rtc_common,
  *  @retval            One of @ref DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY
  */
 __STATIC_INLINE DL_RTC_COMMON_OFFSET_CALIBRATION_FREQUENCY
-DL_RTC_Common_getOffsetCalibrationFrequency(RTC_Regs *rtc_common)
+DL_RTC_Common_getOffsetCalibrationFrequency(const RTC_Regs *rtc_common)
 {
     uint32_t freq = (rtc_common->CAL & RTC_CAL_RTCCALFX_MASK);
 
@@ -974,7 +991,7 @@ DL_RTC_Common_getOffsetCalibrationFrequency(RTC_Regs *rtc_common)
  *  @retval            One of @ref DL_RTC_COMMON_OFFSET_CALIBRATION_SIGN
  */
 __STATIC_INLINE DL_RTC_COMMON_OFFSET_CALIBRATION_SIGN
-DL_RTC_Common_getOffsetCalibrationSign(RTC_Regs *rtc_common)
+DL_RTC_Common_getOffsetCalibrationSign(const RTC_Regs *rtc_common)
 {
     uint32_t sign = (rtc_common->CAL & RTC_CAL_RTCOCALS_MASK);
 
@@ -1017,7 +1034,7 @@ __STATIC_INLINE void DL_RTC_Common_setTemperatureCompensation(
  *
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getTemperatureCompensation(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (rtc_common->TCMP);
 }
@@ -1051,7 +1068,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarSecondsBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarSecondsBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->SEC &
                          (RTC_SEC_SECLOWBCD_MASK | RTC_SEC_SECHIGHBCD_MASK)) >>
@@ -1087,7 +1104,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarMinutesBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarMinutesBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->MIN &
                          (RTC_MIN_MINLOWBCD_MASK | RTC_MIN_MINHIGHBCD_MASK)) >>
@@ -1122,7 +1139,8 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarHoursBCD(
  *  @retval            Value in range: 0x0-0x23
  *
  */
-__STATIC_INLINE uint8_t DL_RTC_Common_getCalendarHoursBCD(RTC_Regs *rtc_common)
+__STATIC_INLINE uint8_t DL_RTC_Common_getCalendarHoursBCD(
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->HOUR & (RTC_HOUR_HOURLOWBCD_MASK |
                                              RTC_HOUR_HOURHIGHBCD_MASK)) >>
@@ -1157,7 +1175,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarDayOfWeekBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarDayOfWeekBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->DAY & RTC_DAY_DOW_MASK);
 }
@@ -1192,7 +1210,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarDayOfMonthBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarDayOfMonthBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->DAY &
                          (RTC_DAY_DOMLOWBCD_MASK | RTC_DAY_DOMHIGHBCD_MASK)) >>
@@ -1227,7 +1245,8 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarMonthBCD(
  *  @retval            Value in range: 0x1-0x12
  *
  */
-__STATIC_INLINE uint8_t DL_RTC_Common_getCalendarMonthBCD(RTC_Regs *rtc_common)
+__STATIC_INLINE uint8_t DL_RTC_Common_getCalendarMonthBCD(
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->MON &
                          (RTC_MON_MONLOWBCD_MASK | RTC_MON_MONHIGHBCD_MASK)) >>
@@ -1264,7 +1283,8 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarYearBCD(
  *  @retval            Value in range: 0x0-0x4095
  *
  */
-__STATIC_INLINE uint16_t DL_RTC_Common_getCalendarYearBCD(RTC_Regs *rtc_common)
+__STATIC_INLINE uint16_t DL_RTC_Common_getCalendarYearBCD(
+    const RTC_Regs *rtc_common)
 {
     return (uint16_t)(
         (rtc_common->YEAR &
@@ -1322,7 +1342,8 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm1MinutesBCD(
  *  @retval            Value in range: 0x0-0x59
  *
  */
-__STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1MinutesBCD(RTC_Regs *rtc_common)
+__STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1MinutesBCD(
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->A1MIN & (RTC_A1MIN_AMINLOWBCD_MASK |
                                               RTC_A1MIN_AMINHIGHBCD_MASK)) >>
@@ -1376,7 +1397,8 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm1HoursBCD(
  *  @retval            Value in range: 0x0-0x23
  *
  */
-__STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1HoursBCD(RTC_Regs *rtc_common)
+__STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1HoursBCD(
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(
         (rtc_common->A1HOUR &
@@ -1432,7 +1454,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm1DayOfWeekBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1DayOfWeekBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->DAY & RTC_A1DAY_ADOW_MASK);
 }
@@ -1487,7 +1509,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm1DayOfMonthBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1DayOfMonthBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->A1DAY & (RTC_A1DAY_ADOMLOWBCD_MASK |
                                               RTC_A1DAY_ADOMHIGHBCD_MASK)) >>
@@ -1543,7 +1565,8 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm2MinutesBCD(
  *  @retval            Value in range: 0x0-0x59
  *
  */
-__STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2MinutesBCD(RTC_Regs *rtc_common)
+__STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2MinutesBCD(
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->A2MIN & (RTC_A2MIN_AMINLOWBCD_MASK |
                                               RTC_A2MIN_AMINHIGHBCD_MASK)) >>
@@ -1597,7 +1620,8 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm2HoursBCD(
  *  @retval            Value in range: 0x0-0x23
  *
  */
-__STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2HoursBCD(RTC_Regs *rtc_common)
+__STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2HoursBCD(
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(
         (rtc_common->A2HOUR &
@@ -1653,7 +1677,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm2DayOfWeekBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2DayOfWeekBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->DAY & RTC_A2DAY_ADOW_MASK);
 }
@@ -1708,7 +1732,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm2DayOfMonthBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2DayOfMonthBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->A2DAY & (RTC_A2DAY_ADOMLOWBCD_MASK |
                                               RTC_A2DAY_ADOMHIGHBCD_MASK)) >>
@@ -1743,7 +1767,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarSecondsBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarSecondsBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->SEC & RTC_SEC_SECBIN_MASK);
 }
@@ -1776,7 +1800,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarMinutesBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarMinutesBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->MIN & RTC_MIN_MINBIN_MASK);
 }
@@ -1809,7 +1833,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarHoursBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarHoursBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->HOUR & RTC_HOUR_HOURBIN_MASK);
 }
@@ -1842,7 +1866,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarDayOfWeekBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarDayOfWeekBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->DAY & RTC_DAY_DOW_MASK);
 }
@@ -1876,7 +1900,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarDayOfMonthBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarDayOfMonthBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(
         (rtc_common->DAY & RTC_DAY_DOMBIN_MASK) >> RTC_DAY_DOMBIN_OFS);
@@ -1910,7 +1934,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarMonthBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getCalendarMonthBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->MON & RTC_MON_MONBIN_MASK);
 }
@@ -1944,7 +1968,7 @@ __STATIC_INLINE void DL_RTC_Common_setCalendarYearBinary(
  *
  */
 __STATIC_INLINE uint16_t DL_RTC_Common_getCalendarYearBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint16_t)(rtc_common->YEAR &
                       (RTC_YEAR_YEARLOWBIN_MASK | RTC_YEAR_YEARHIGHBIN_MASK));
@@ -1999,7 +2023,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm1MinutesBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1MinutesBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->A1MIN & RTC_A1MIN_AMINBIN_MASK);
 }
@@ -2052,7 +2076,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm1HoursBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1HoursBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->A1HOUR & RTC_A1HOUR_AHOURBIN_MASK);
 }
@@ -2105,7 +2129,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm1DayOfWeekBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1DayOfWeekBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->A1DAY & RTC_A1DAY_ADOW_MASK);
 }
@@ -2159,7 +2183,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm1DayOfMonthBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1DayOfMonthBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(
         (rtc_common->A1DAY & RTC_A1DAY_ADOMBIN_MASK) >> RTC_A1DAY_ADOMBIN_OFS);
@@ -2214,7 +2238,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm2MinutesBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2MinutesBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->A2MIN & RTC_A2MIN_AMINBIN_MASK);
 }
@@ -2267,7 +2291,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm2HoursBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2HoursBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->A2HOUR & RTC_A2HOUR_AHOURBIN_MASK);
 }
@@ -2320,7 +2344,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm2DayOfWeekBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2DayOfWeekBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->A2DAY & RTC_A2DAY_ADOW_MASK);
 }
@@ -2374,7 +2398,7 @@ __STATIC_INLINE void DL_RTC_Common_setAlarm2DayOfMonthBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2DayOfMonthBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(
         (rtc_common->A2DAY & RTC_A2DAY_ADOMBIN_MASK) >> RTC_A2DAY_ADOMBIN_OFS);
@@ -2469,7 +2493,7 @@ __STATIC_INLINE void DL_RTC_Common_setPeriodicAlarm2(
  *
  */
 __STATIC_INLINE DL_RTC_COMMON_PRESCALER0_DIVIDE DL_RTC_Common_getPrescaler0(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     uint32_t prescaler = (rtc_common->PSCTL & RTC_PSCTL_RT0IP_MASK);
 
@@ -2486,7 +2510,7 @@ __STATIC_INLINE DL_RTC_COMMON_PRESCALER0_DIVIDE DL_RTC_Common_getPrescaler0(
  *  @retval            One of @ref DL_RTC_COMMON_PRESCALER1_DIVIDE
  */
 __STATIC_INLINE DL_RTC_COMMON_PRESCALER1_DIVIDE DL_RTC_Common_getPrescaler1(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     uint32_t prescaler = (rtc_common->PSCTL & RTC_PSCTL_RT1IP_MASK);
 
@@ -2503,7 +2527,7 @@ __STATIC_INLINE DL_RTC_COMMON_PRESCALER1_DIVIDE DL_RTC_Common_getPrescaler1(
  *  @retval            One of @ref DL_RTC_COMMON_PRESCALER2_DIVIDE
  */
 __STATIC_INLINE DL_RTC_COMMON_PRESCALER2_DIVIDE DL_RTC_Common_getPrescaler2(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     uint32_t prescaler = (rtc_common->EXTPSCTL & RTC_EXTPSCTL_RT2PS_MASK);
 
@@ -2525,7 +2549,7 @@ __STATIC_INLINE DL_RTC_COMMON_PRESCALER2_DIVIDE DL_RTC_Common_getPrescaler2(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampSecondsBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->TSSEC & (RTC_TSSEC_SECLOWBCD_MASK |
                                               RTC_TSSEC_SECHIGHBCD_MASK)) >>
@@ -2547,7 +2571,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampSecondsBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampMinutesBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->TSMIN & (RTC_TSMIN_MINLOWBCD_MASK |
                                               RTC_TSMIN_MINHIGHBCD_MASK)) >>
@@ -2569,7 +2593,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampMinutesBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampHoursBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->TSHOUR & (RTC_TSHOUR_HOURLOWBCD_MASK |
                                                RTC_TSHOUR_HOURHIGHBCD_MASK)) >>
@@ -2591,7 +2615,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampHoursBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampDayOfWeekBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->TSDAY & RTC_TSDAY_DOW_MASK);
 }
@@ -2611,7 +2635,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampDayOfWeekBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampDayOfMonthBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->TSDAY & (RTC_TSDAY_DOMLOWBCD_MASK |
                                               RTC_TSDAY_DOMHIGHBCD_MASK)) >>
@@ -2633,7 +2657,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampDayOfMonthBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampMonthBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)((rtc_common->TSMON & (RTC_TSMON_MONLOWBCD_MASK |
                                               RTC_TSMON_MONHIGHBCD_MASK)) >>
@@ -2655,7 +2679,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampMonthBCD(
  *
  */
 __STATIC_INLINE uint16_t DL_RTC_Common_getTimeStampYearBCD(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint16_t)(
         (rtc_common->TSYEAR &
@@ -2678,7 +2702,7 @@ __STATIC_INLINE uint16_t DL_RTC_Common_getTimeStampYearBCD(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampSecondsBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->TSSEC & RTC_TSSEC_SECBIN_MASK);
 }
@@ -2698,7 +2722,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampSecondsBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampMinutesBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->TSMIN & RTC_TSMIN_MINBIN_MASK);
 }
@@ -2718,7 +2742,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampMinutesBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampHoursBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->TSHOUR & RTC_TSHOUR_HOURBIN_MASK);
 }
@@ -2738,7 +2762,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampHoursBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampDayOfWeekBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->TSDAY & RTC_TSDAY_DOW_MASK);
 }
@@ -2758,7 +2782,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampDayOfWeekBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampDayOfMonthBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(
         (rtc_common->TSDAY & RTC_TSDAY_DOMBIN_MASK) >> RTC_TSDAY_DOMBIN_OFS);
@@ -2779,7 +2803,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampDayOfMonthBinary(
  *
  */
 __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampMonthBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->TSMON & RTC_TSMON_MONBIN_MASK);
 }
@@ -2799,7 +2823,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getTimeStampMonthBinary(
  *
  */
 __STATIC_INLINE uint16_t DL_RTC_Common_getTimeStampYearBinary(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (uint16_t)(rtc_common->TSYEAR & (RTC_TSYEAR_YEARLOWBIN_MASK |
                                                RTC_TSYEAR_YEARHIGHBIN_MASK));
@@ -2846,7 +2870,7 @@ __STATIC_INLINE void DL_RTC_Common_disableInterrupt(
  *  @retval     Logical OR of @ref DL_RTC_COMMON_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getEnabledInterrupts(
-    RTC_Regs *rtc_common, uint32_t interruptMask)
+    const RTC_Regs *rtc_common, uint32_t interruptMask)
 {
     return (rtc_common->CPU_INT.IMASK & interruptMask);
 }
@@ -2869,7 +2893,7 @@ __STATIC_INLINE uint32_t DL_RTC_Common_getEnabledInterrupts(
  *  @sa         DL_RTC_COMMON_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getEnabledInterruptStatus(
-    RTC_Regs *rtc_common, uint32_t interruptMask)
+    const RTC_Regs *rtc_common, uint32_t interruptMask)
 {
     return (rtc_common->CPU_INT.MIS & interruptMask);
 }
@@ -2890,7 +2914,7 @@ __STATIC_INLINE uint32_t DL_RTC_Common_getEnabledInterruptStatus(
  *  @retval     Logical OR of @ref DL_RTC_COMMON_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getRawInterruptStatus(
-    RTC_Regs *rtc_common, uint32_t interruptMask)
+    const RTC_Regs *rtc_common, uint32_t interruptMask)
 {
     return (rtc_common->CPU_INT.RIS & interruptMask);
 }
@@ -2908,7 +2932,7 @@ __STATIC_INLINE uint32_t DL_RTC_Common_getRawInterruptStatus(
  *  @retval     One of @ref DL_RTC_COMMON_IIDX
  */
 __STATIC_INLINE DL_RTC_COMMON_IIDX DL_RTC_Common_getPendingInterrupt(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     return (DL_RTC_COMMON_IIDX)(rtc_common->CPU_INT.IIDX);
 }
@@ -2965,7 +2989,7 @@ __STATIC_INLINE void DL_RTC_Common_disableEvent(
  *  @retval     Bitwise OR of @ref DL_RTC_COMMON_EVENT values
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getEnabledEvents(
-    RTC_Regs *rtc_common, uint32_t eventMask)
+    const RTC_Regs *rtc_common, uint32_t eventMask)
 {
     return ((rtc_common->GEN_EVENT.IMASK) & (eventMask));
 }
@@ -2987,7 +3011,7 @@ __STATIC_INLINE uint32_t DL_RTC_Common_getEnabledEvents(
  *  @sa         DL_RTC_COMMON_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getEnabledEventStatus(
-    RTC_Regs *rtc_common, uint32_t eventMask)
+    const RTC_Regs *rtc_common, uint32_t eventMask)
 {
     return ((rtc_common->GEN_EVENT.MIS) & eventMask);
 }
@@ -3007,7 +3031,7 @@ __STATIC_INLINE uint32_t DL_RTC_Common_getEnabledEventStatus(
  *  @retval     Bitwise OR of @ref DL_RTC_COMMON_EVENT values
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getRawEventsStatus(
-    RTC_Regs *rtc_common, uint32_t eventMask)
+    const RTC_Regs *rtc_common, uint32_t eventMask)
 {
     return ((rtc_common->GEN_EVENT.RIS) & eventMask);
 }
@@ -3048,7 +3072,8 @@ __STATIC_INLINE void DL_RTC_Common_setPublisherChanID(
  *  @return     Event publisher channel ID
  *
  */
-__STATIC_INLINE uint8_t DL_RTC_Common_getPublisherChanID(RTC_Regs *rtc_common)
+__STATIC_INLINE uint8_t DL_RTC_Common_getPublisherChanID(
+    const RTC_Regs *rtc_common)
 {
     return (uint8_t)(rtc_common->FPUB_0 & RTC_FPUB_0_CHANID_MAXIMUM);
 }
@@ -3066,7 +3091,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getPublisherChanID(RTC_Regs *rtc_common)
  *  @retval     Logical OR of @ref DL_RTC_COMMON_TIME_STAMP_EVENT_CAUSE values
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getTimeStampEventCause(
-    RTC_Regs *rtc_common, uint32_t tsEventMask)
+    const RTC_Regs *rtc_common, uint32_t tsEventMask)
 {
     return (rtc_common->TSSTAT & tsEventMask);
 }
@@ -3100,7 +3125,8 @@ void DL_RTC_Common_initCalendar(RTC_Regs *rtc_common,
  *  @return            A Calendar structure containing the current time.
  *
  */
-DL_RTC_Common_Calendar DL_RTC_Common_getCalendarTime(RTC_Regs *rtc_common);
+DL_RTC_Common_Calendar DL_RTC_Common_getCalendarTime(
+    const RTC_Regs *rtc_common);
 
 /**
  *  @brief      Set calendar alarm 1
@@ -3124,7 +3150,7 @@ void DL_RTC_Common_setCalendarAlarm1(
  *
  */
 DL_RTC_Common_CalendarAlarm DL_RTC_Common_getCalendarAlarm1(
-    RTC_Regs *rtc_common);
+    const RTC_Regs *rtc_common);
 
 /**
  *  @brief      Enable calendar alarm 1
@@ -3164,7 +3190,7 @@ void DL_RTC_Common_setCalendarAlarm2(
  *
  */
 DL_RTC_Common_CalendarAlarm DL_RTC_Common_getCalendarAlarm2(
-    RTC_Regs *rtc_common);
+    const RTC_Regs *rtc_common);
 
 /**
  *  @brief      Enable calendar alarm 2
@@ -3214,7 +3240,7 @@ __STATIC_INLINE void DL_RTC_Common_setTimeStampEventSource(
  *  @retval     Logical OR of @ref DL_RTC_COMMON_TIME_STAMP_EVENT_SOURCE values
  */
 __STATIC_INLINE uint32_t DL_RTC_Common_getTimeStampEventSource(
-    RTC_Regs *rtc_common, uint32_t sourceMask)
+    const RTC_Regs *rtc_common, uint32_t sourceMask)
 {
     return (rtc_common->TSCTL & sourceMask);
 }
@@ -3252,7 +3278,7 @@ __STATIC_INLINE void DL_RTC_Common_setTimeStampEventCapture(
  *  @retval     One of @ref DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE
  */
 __STATIC_INLINE DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE
-DL_RTC_Common_getTimeStampEventCapture(RTC_Regs *rtc_common)
+DL_RTC_Common_getTimeStampEventCapture(const RTC_Regs *rtc_common)
 {
     uint32_t capture = (rtc_common->TSCTL & RTC_TSCTL_TSCAPTURE_MASK);
 
@@ -3297,7 +3323,8 @@ __STATIC_INLINE void DL_RTC_Common_enableWriteProtect(RTC_Regs *rtc_common)
  *  @retval     true  Write protection lock is enabled
  *  @retval     false Write protection lock is disabled
  */
-__STATIC_INLINE bool DL_RTC_Common_isWriteProtectEnabled(RTC_Regs *rtc_common)
+__STATIC_INLINE bool DL_RTC_Common_isWriteProtectEnabled(
+    const RTC_Regs *rtc_common)
 {
     return ((rtc_common->RTCLOCK & RTC_RTCLOCK_PROTECT_MASK) ==
             RTC_RTCLOCK_PROTECT_SET);

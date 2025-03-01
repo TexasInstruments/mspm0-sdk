@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -257,41 +257,44 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga9a28296d28d7ae48b234a39de6853494"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga9a28296d28d7ae48b234a39de6853494">DL_MathACL_enablePower</a> (MATHACL_Regs *mathacl)</td></tr>
-<tr class="memdesc:ga9a28296d28d7ae48b234a39de6853494"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on MATHACL module.  <a href="group___m_a_t_h_a_c_l.html#ga9a28296d28d7ae48b234a39de6853494">More...</a><br /></td></tr>
+<tr class="memdesc:ga9a28296d28d7ae48b234a39de6853494"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the MATHACL.  <a href="group___m_a_t_h_a_c_l.html#ga9a28296d28d7ae48b234a39de6853494">More...</a><br /></td></tr>
 <tr class="separator:ga9a28296d28d7ae48b234a39de6853494"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaacba2e339f31591281f141ac66bae90"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gaaacba2e339f31591281f141ac66bae90">DL_MathACL_disablePower</a> (MATHACL_Regs *mathacl)</td></tr>
-<tr class="memdesc:gaaacba2e339f31591281f141ac66bae90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable power on MATHACL module.  <a href="group___m_a_t_h_a_c_l.html#gaaacba2e339f31591281f141ac66bae90">More...</a><br /></td></tr>
+<tr class="memdesc:gaaacba2e339f31591281f141ac66bae90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the MATHACL.  <a href="group___m_a_t_h_a_c_l.html#gaaacba2e339f31591281f141ac66bae90">More...</a><br /></td></tr>
 <tr class="separator:gaaacba2e339f31591281f141ac66bae90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3c9885b5076fabfee9dc17a4bd61fd7"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gac3c9885b5076fabfee9dc17a4bd61fd7">DL_MathACL_isPowerEnabled</a> (MATHACL_Regs *mathacl)</td></tr>
+<tr class="memdesc:gac3c9885b5076fabfee9dc17a4bd61fd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the MATHACL is enabled.  <a href="group___m_a_t_h_a_c_l.html#gac3c9885b5076fabfee9dc17a4bd61fd7">More...</a><br /></td></tr>
+<tr class="separator:gac3c9885b5076fabfee9dc17a4bd61fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga62f179382765f03dd019de19c2ff9c93"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga62f179382765f03dd019de19c2ff9c93">DL_MathACL_reset</a> (MATHACL_Regs *mathacl)</td></tr>
 <tr class="memdesc:ga62f179382765f03dd019de19c2ff9c93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the MATHACL module.  <a href="group___m_a_t_h_a_c_l.html#ga62f179382765f03dd019de19c2ff9c93">More...</a><br /></td></tr>
 <tr class="separator:ga62f179382765f03dd019de19c2ff9c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadf1154ca9d7b10858d08f380280a1c89"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gadf1154ca9d7b10858d08f380280a1c89">DL_MathACL_isReset</a> (MATHACL_Regs *mathacl)</td></tr>
-<tr class="memdesc:gadf1154ca9d7b10858d08f380280a1c89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if MATHACL peripheral was reset.  <a href="group___m_a_t_h_a_c_l.html#gadf1154ca9d7b10858d08f380280a1c89">More...</a><br /></td></tr>
-<tr class="separator:gadf1154ca9d7b10858d08f380280a1c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafbcd6e899359b5894e8d5e16c535a899"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gafbcd6e899359b5894e8d5e16c535a899">DL_MathACL_isReset</a> (const MATHACL_Regs *mathacl)</td></tr>
+<tr class="memdesc:gafbcd6e899359b5894e8d5e16c535a899"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if MATHACL peripheral was reset.  <a href="group___m_a_t_h_a_c_l.html#gafbcd6e899359b5894e8d5e16c535a899">More...</a><br /></td></tr>
+<tr class="separator:gafbcd6e899359b5894e8d5e16c535a899"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabcc02c010c834ca914f96ae03ff890d0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gabcc02c010c834ca914f96ae03ff890d0">DL_MathACL_enableSaturation</a> (MATHACL_Regs *mathacl)</td></tr>
 <tr class="memdesc:gabcc02c010c834ca914f96ae03ff890d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable saturation.  <a href="group___m_a_t_h_a_c_l.html#gabcc02c010c834ca914f96ae03ff890d0">More...</a><br /></td></tr>
 <tr class="separator:gabcc02c010c834ca914f96ae03ff890d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga38813f4a732a135782cd7afa554cb425"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga38813f4a732a135782cd7afa554cb425">DL_MathACL_disableSaturation</a> (MATHACL_Regs *mathacl)</td></tr>
 <tr class="memdesc:ga38813f4a732a135782cd7afa554cb425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable saturation.  <a href="group___m_a_t_h_a_c_l.html#ga38813f4a732a135782cd7afa554cb425">More...</a><br /></td></tr>
 <tr class="separator:ga38813f4a732a135782cd7afa554cb425"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga10c1f8899fa026c6a7d06a58f75ecf1c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga10c1f8899fa026c6a7d06a58f75ecf1c">DL_MathACL_isSaturationEnabled</a> (MATHACL_Regs *mathacl)</td></tr>
-<tr class="memdesc:ga10c1f8899fa026c6a7d06a58f75ecf1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if saturation is enabled.  <a href="group___m_a_t_h_a_c_l.html#ga10c1f8899fa026c6a7d06a58f75ecf1c">More...</a><br /></td></tr>
-<tr class="separator:ga10c1f8899fa026c6a7d06a58f75ecf1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga092f6633b4ae67e481f525f93021d039"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga092f6633b4ae67e481f525f93021d039">DL_MathACL_isSaturationEnabled</a> (const MATHACL_Regs *mathacl)</td></tr>
+<tr class="memdesc:ga092f6633b4ae67e481f525f93021d039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if saturation is enabled.  <a href="group___m_a_t_h_a_c_l.html#ga092f6633b4ae67e481f525f93021d039">More...</a><br /></td></tr>
+<tr class="separator:ga092f6633b4ae67e481f525f93021d039"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga93c0502159e4f8da51ec4f203ff78461"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga93c0502159e4f8da51ec4f203ff78461">DL_MathACL_setOperandOne</a> (MATHACL_Regs *mathacl, uint32_t op)</td></tr>
 <tr class="memdesc:ga93c0502159e4f8da51ec4f203ff78461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load Operand one into the math accelerator.  <a href="group___m_a_t_h_a_c_l.html#ga93c0502159e4f8da51ec4f203ff78461">More...</a><br /></td></tr>
 <tr class="separator:ga93c0502159e4f8da51ec4f203ff78461"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaad811b1999bffe3c8e0daf38af640b41"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gaad811b1999bffe3c8e0daf38af640b41">DL_MathACL_setOperandTwo</a> (MATHACL_Regs *mathacl, uint32_t op)</td></tr>
 <tr class="memdesc:gaad811b1999bffe3c8e0daf38af640b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load Operand two into the math accelerator.  <a href="group___m_a_t_h_a_c_l.html#gaad811b1999bffe3c8e0daf38af640b41">More...</a><br /></td></tr>
 <tr class="separator:gaad811b1999bffe3c8e0daf38af640b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4a705969c4a8d4532baa9c80d269cce2"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga4a705969c4a8d4532baa9c80d269cce2">DL_MathACL_getResultOne</a> (MATHACL_Regs *mathacl)</td></tr>
-<tr class="memdesc:ga4a705969c4a8d4532baa9c80d269cce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns MATHACL result one register.  <a href="group___m_a_t_h_a_c_l.html#ga4a705969c4a8d4532baa9c80d269cce2">More...</a><br /></td></tr>
-<tr class="separator:ga4a705969c4a8d4532baa9c80d269cce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacdef5873746181d8f49dd81a4ef8b661"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gacdef5873746181d8f49dd81a4ef8b661">DL_MathACL_getResultTwo</a> (MATHACL_Regs *mathacl)</td></tr>
-<tr class="memdesc:gacdef5873746181d8f49dd81a4ef8b661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns MATHACL result two register.  <a href="group___m_a_t_h_a_c_l.html#gacdef5873746181d8f49dd81a4ef8b661">More...</a><br /></td></tr>
-<tr class="separator:gacdef5873746181d8f49dd81a4ef8b661"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga23809e2206e7e6ea3ee47dd05f9a5d7e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga23809e2206e7e6ea3ee47dd05f9a5d7e">DL_MathACL_getStatus</a> (MATHACL_Regs *mathacl)</td></tr>
-<tr class="memdesc:ga23809e2206e7e6ea3ee47dd05f9a5d7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns MATHACL operation status.  <a href="group___m_a_t_h_a_c_l.html#ga23809e2206e7e6ea3ee47dd05f9a5d7e">More...</a><br /></td></tr>
-<tr class="separator:ga23809e2206e7e6ea3ee47dd05f9a5d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga28215ccaddd79d17828bb23e9d7508b3"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga28215ccaddd79d17828bb23e9d7508b3">DL_MathACL_getResultOne</a> (const MATHACL_Regs *mathacl)</td></tr>
+<tr class="memdesc:ga28215ccaddd79d17828bb23e9d7508b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns MATHACL result one register.  <a href="group___m_a_t_h_a_c_l.html#ga28215ccaddd79d17828bb23e9d7508b3">More...</a><br /></td></tr>
+<tr class="separator:ga28215ccaddd79d17828bb23e9d7508b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab43f38f03b864dca6377f1dfd7fd00f4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gab43f38f03b864dca6377f1dfd7fd00f4">DL_MathACL_getResultTwo</a> (const MATHACL_Regs *mathacl)</td></tr>
+<tr class="memdesc:gab43f38f03b864dca6377f1dfd7fd00f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns MATHACL result two register.  <a href="group___m_a_t_h_a_c_l.html#gab43f38f03b864dca6377f1dfd7fd00f4">More...</a><br /></td></tr>
+<tr class="separator:gab43f38f03b864dca6377f1dfd7fd00f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff481c842c1ab04b374b13443cb2e00a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gaff481c842c1ab04b374b13443cb2e00a">DL_MathACL_getStatus</a> (const MATHACL_Regs *mathacl)</td></tr>
+<tr class="memdesc:gaff481c842c1ab04b374b13443cb2e00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns MATHACL operation status.  <a href="group___m_a_t_h_a_c_l.html#gaff481c842c1ab04b374b13443cb2e00a">More...</a><br /></td></tr>
+<tr class="separator:gaff481c842c1ab04b374b13443cb2e00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad6b899d791b3779056bde6d5dfe0e957"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gad6b899d791b3779056bde6d5dfe0e957">DL_MathACL_clearOverflowStatus</a> (MATHACL_Regs *mathacl)</td></tr>
 <tr class="memdesc:gad6b899d791b3779056bde6d5dfe0e957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the overflow status bit.  <a href="group___m_a_t_h_a_c_l.html#gad6b899d791b3779056bde6d5dfe0e957">More...</a><br /></td></tr>
 <tr class="separator:gad6b899d791b3779056bde6d5dfe0e957"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -301,9 +304,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga109acf539124075e5dda09c29a256122"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#ga109acf539124075e5dda09c29a256122">DL_MathACL_clearErrorStatus</a> (MATHACL_Regs *mathacl)</td></tr>
 <tr class="memdesc:ga109acf539124075e5dda09c29a256122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the error status bit.  <a href="group___m_a_t_h_a_c_l.html#ga109acf539124075e5dda09c29a256122">More...</a><br /></td></tr>
 <tr class="separator:ga109acf539124075e5dda09c29a256122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf25bd83e4d1eb1c61ed55f74e3e8139c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gaf25bd83e4d1eb1c61ed55f74e3e8139c">DL_MathACL_waitForOperation</a> (MATHACL_Regs *mathacl)</td></tr>
-<tr class="memdesc:gaf25bd83e4d1eb1c61ed55f74e3e8139c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block until MATHACL_STATUS_BUSY_DONE is active in MATHACL.  <a href="group___m_a_t_h_a_c_l.html#gaf25bd83e4d1eb1c61ed55f74e3e8139c">More...</a><br /></td></tr>
-<tr class="separator:gaf25bd83e4d1eb1c61ed55f74e3e8139c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab7a1de421e9883fe78f68a7a92dcb275"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gab7a1de421e9883fe78f68a7a92dcb275">DL_MathACL_waitForOperation</a> (const MATHACL_Regs *mathacl)</td></tr>
+<tr class="memdesc:gab7a1de421e9883fe78f68a7a92dcb275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block until MATHACL_STATUS_BUSY_DONE is active in MATHACL.  <a href="group___m_a_t_h_a_c_l.html#gab7a1de421e9883fe78f68a7a92dcb275">More...</a><br /></td></tr>
+<tr class="separator:gab7a1de421e9883fe78f68a7a92dcb275"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaabc8051a4ffcdee81cf344b7a51dff8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_a_t_h_a_c_l.html#gaabc8051a4ffcdee81cf344b7a51dff8b">DL_MathACL_configOperation</a> (MATHACL_Regs *mathacl, const <a class="el" href="struct_d_l___math_a_c_l__operation_config.html">DL_MathACL_operationConfig</a> *opConfig, uint32_t op1, uint32_t op2)</td></tr>
 <tr class="memdesc:gaabc8051a4ffcdee81cf344b7a51dff8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure and execute a Math accelerator operation.  <a href="group___m_a_t_h_a_c_l.html#gaabc8051a4ffcdee81cf344b7a51dff8b">More...</a><br /></td></tr>
 <tr class="separator:gaabc8051a4ffcdee81cf344b7a51dff8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -321,7 +324,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

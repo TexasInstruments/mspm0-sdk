@@ -142,15 +142,15 @@ typedef enum
     /*! IPD sector Ac */
     Ac = 0,
     /*! IPD sector aC */
-    aC,
+    aC = 1,
     /*! IPD sector Bc */
-    Bc,
+    Bc = 2,
     /*! IPD sector bC */
-    bC,
+    bC = 3,
     /*! IPD sector aB */
-    aB,
+    aB = 4,
     /*! IPD sector Ab */
-    Ab,
+    Ab = 5,
     /*! Max number of IPD sector */
     IPD_IDENTIFIED_SECTOR_MAX =  0xFFFFFFFF
 }IPD_IDENTIFIED_SECTOR_T;

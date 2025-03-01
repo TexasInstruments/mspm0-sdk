@@ -42,6 +42,11 @@ extern int  main( void );
 extern uint32_t __data_load__;
 extern uint32_t __data_start__;
 extern uint32_t __data_end__;
+extern uint32_t __ramfunct_load__;
+extern uint32_t __ramfunct_start__;
+extern uint32_t __ramfunct_end__;
+extern uint32_t __bss_start__;
+extern uint32_t __bss_end__;
 extern uint32_t __StackTop;
 
 typedef void( *pFunc )( void );
@@ -151,6 +156,7 @@ void (* const interruptVectors[])(void) __attribute__ ((used)) __attribute__ ((s
 void Reset_Handler(void)
 {
     uint32_t *pui32Src, *pui32Dest;
+    uint32_t *bs, *be;
 
     //
     // Copy the data segment initializers from flash to SRAM.
@@ -159,6 +165,24 @@ void Reset_Handler(void)
     for(pui32Dest = &__data_start__; pui32Dest < &__data_end__; )
     {
         *pui32Dest++ = *pui32Src++;
+    }
+
+    //
+    // Copy the ramfunct segment initializers from flash to SRAM.
+    //
+    pui32Src = &__ramfunct_load__;
+    for(pui32Dest = &__ramfunct_start__; pui32Dest < &__ramfunct_end__; )
+    {
+        *pui32Dest++ = *pui32Src++;
+    }
+
+    // Initialize .bss to zero
+    bs = &__bss_start__;
+    be = &__bss_end__;
+    while (bs < be)
+    {
+        *bs = 0;
+        bs++;
     }
 
     /*
@@ -175,6 +199,11 @@ void Reset_Handler(void)
 
     /* Jump to the main initialization routine. */
     main();
+
+    //
+    // If we ever return signal Error
+    //
+    HardFault_Handler();
 }
 
 /* This is the code that gets called when the processor receives an unexpected  */

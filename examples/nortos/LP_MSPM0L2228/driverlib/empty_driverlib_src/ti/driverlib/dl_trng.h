@@ -185,8 +185,7 @@ typedef enum {
 
 /**
  * @brief Configuration structure to backup TRNG peripheral state before
- *        going to STOP/STANDBY mode. Not required after PG 1.0 silicon. Used
- *        by @ref DL_TRNG_saveConfiguration
+ *        going to STOP/STANDBY mode. Used by @ref DL_TRNG_saveConfiguration
  */
 typedef struct {
     /*! TRNG control word. Combination of @ref DL_TRNG_DECIMATION_RATE and
@@ -202,7 +201,11 @@ typedef struct {
 } DL_TRNG_backupConfig;
 
 /**
- * @brief Enables power on TRNG module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the TRNG
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  * @param trng  Pointer to the register overlay for the peripheral
  */
@@ -212,7 +215,12 @@ __STATIC_INLINE void DL_TRNG_enablePower(TRNG_Regs *trng)
 }
 
 /**
- * @brief Disable power on TRNG module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the TRNG
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  * @param trng  Pointer to the register overlay for the peripheral
  */
@@ -222,13 +230,36 @@ __STATIC_INLINE void DL_TRNG_disablePower(TRNG_Regs *trng)
 }
 
 /**
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the TRNG
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ * @param trng        Pointer to the register overlay for the peripheral
+ *
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
+ */
+__STATIC_INLINE bool DL_TRNG_isPowerEnabled(TRNG_Regs *trng)
+{
+    return ((TRNG->GPRCM.PWREN & TRNG_PWREN_ENABLE_MASK) ==
+            TRNG_PWREN_ENABLE_ENABLE);
+}
+
+/**
  * @brief Get the clock divider on the TRNG module
  *
  * @param trng  Pointer to the register overlay for the peripheral
  *
  * @return      Clock divider value for the TRNG module
  */
-__STATIC_INLINE DL_TRNG_CLOCK_DIVIDE DL_TRNG_getClockDivider(TRNG_Regs *trng)
+__STATIC_INLINE DL_TRNG_CLOCK_DIVIDE DL_TRNG_getClockDivider(
+    const TRNG_Regs *trng)
 {
     return (DL_TRNG_CLOCK_DIVIDE) trng->CLKDIVIDE;
 }
@@ -266,7 +297,7 @@ __STATIC_INLINE void DL_TRNG_reset(TRNG_Regs *trng)
  * @return true if peripheral was reset
  * @return false if peripheral wasn't reset
  */
-__STATIC_INLINE bool DL_TRNG_isReset(TRNG_Regs *trng)
+__STATIC_INLINE bool DL_TRNG_isReset(const TRNG_Regs *trng)
 {
     return (trng->GPRCM.STAT & TRNG_GPRCM_STAT_RESETSTKY_MASK) ==
            TRNG_GPRCM_STAT_RESETSTKY_RESET;
@@ -280,7 +311,7 @@ __STATIC_INLINE bool DL_TRNG_isReset(TRNG_Regs *trng)
  * @return true if the data capture is ready
  * @return false if the data capture is not ready
  */
-__STATIC_INLINE bool DL_TRNG_isCaptureReady(TRNG_Regs *trng)
+__STATIC_INLINE bool DL_TRNG_isCaptureReady(const TRNG_Regs *trng)
 {
     return ((trng->CPU_INT.RIS & TRNG_RIS_IRQ_CAPTURED_RDY_MASK)) ==
            TRNG_RIS_IRQ_CAPTURED_RDY_SET;
@@ -294,7 +325,7 @@ __STATIC_INLINE bool DL_TRNG_isCaptureReady(TRNG_Regs *trng)
  * @return true if the issued command is done
  * @return false if the issued command is not done
  */
-__STATIC_INLINE bool DL_TRNG_isCommandDone(TRNG_Regs *trng)
+__STATIC_INLINE bool DL_TRNG_isCommandDone(const TRNG_Regs *trng)
 {
     return ((trng->CPU_INT.RIS & TRNG_RIS_IRQ_CMD_DONE_MASK)) ==
            TRNG_RIS_IRQ_CMD_DONE_SET;
@@ -308,7 +339,7 @@ __STATIC_INLINE bool DL_TRNG_isCommandDone(TRNG_Regs *trng)
  * @return true if the issued command failed
  * @return false if the issued command failed
  */
-__STATIC_INLINE bool DL_TRNG_isCommandFail(TRNG_Regs *trng)
+__STATIC_INLINE bool DL_TRNG_isCommandFail(const TRNG_Regs *trng)
 {
     return ((trng->CPU_INT.RIS & TRNG_RIS_IRQ_CMD_FAIL_MASK)) ==
            TRNG_RIS_IRQ_CMD_FAIL_SET;
@@ -322,7 +353,7 @@ __STATIC_INLINE bool DL_TRNG_isCommandFail(TRNG_Regs *trng)
  * @return true if a health test is failed
  * @return false if a health test did not fail
  */
-__STATIC_INLINE bool DL_TRNG_isHealthTestFail(TRNG_Regs *trng)
+__STATIC_INLINE bool DL_TRNG_isHealthTestFail(const TRNG_Regs *trng)
 {
     return ((trng->CPU_INT.RIS & TRNG_RIS_IRQ_HEALTH_FAIL_MASK)) ==
            TRNG_RIS_IRQ_HEALTH_FAIL_SET;
@@ -354,7 +385,7 @@ __STATIC_INLINE void DL_TRNG_setDecimationRate(
  *  @retval     One of @ref DL_TRNG_DECIMATION_RATE
  */
 __STATIC_INLINE DL_TRNG_DECIMATION_RATE DL_TRNG_getDecimationRate(
-    TRNG_Regs *trng)
+    const TRNG_Regs *trng)
 {
     uint32_t decimationRate =
         ((trng->CTL & TRNG_CTL_DECIM_RATE_MASK) >> TRNG_CTL_DECIM_RATE_OFS);
@@ -375,7 +406,8 @@ __STATIC_INLINE DL_TRNG_DECIMATION_RATE DL_TRNG_getDecimationRate(
  * @retval DL_TRNG_DIGITAL_HEALTH_TEST_SUCCESS if all tests passed,
  *         otherwise a bitmask of which tests passed
  */
-__STATIC_INLINE uint8_t DL_TRNG_getDigitalHealthTestResults(TRNG_Regs *trng)
+__STATIC_INLINE uint8_t DL_TRNG_getDigitalHealthTestResults(
+    const TRNG_Regs *trng)
 {
     return (uint8_t)(trng->TEST_RESULTS & TRNG_TEST_RESULTS_DIG_TEST_MASK);
 }
@@ -390,7 +422,8 @@ __STATIC_INLINE uint8_t DL_TRNG_getDigitalHealthTestResults(TRNG_Regs *trng)
  * @retval DL_TRNG_ANALOG_HEALTH_TEST_SUCCESS if success
  * @retval 0 if test failed
  */
-__STATIC_INLINE uint8_t DL_TRNG_getAnalogHealthTestResults(TRNG_Regs *trng)
+__STATIC_INLINE uint8_t DL_TRNG_getAnalogHealthTestResults(
+    const TRNG_Regs *trng)
 {
     return (uint8_t)((trng->TEST_RESULTS & TRNG_TEST_RESULTS_ANA_TEST_MASK) >>
                      TRNG_TEST_RESULTS_ANA_TEST_OFS);
@@ -408,7 +441,7 @@ __STATIC_INLINE uint8_t DL_TRNG_getAnalogHealthTestResults(TRNG_Regs *trng)
  *
  * @retval One of @ref DL_TRNG_STATE
  */
-__STATIC_INLINE uint32_t DL_TRNG_getCurrentState(TRNG_Regs *trng)
+__STATIC_INLINE uint32_t DL_TRNG_getCurrentState(const TRNG_Regs *trng)
 {
     return ((trng->STAT & TRNG_STAT_FSM_STATE_MASK)) >>
            TRNG_STAT_FSM_STATE_OFS;
@@ -423,7 +456,7 @@ __STATIC_INLINE uint32_t DL_TRNG_getCurrentState(TRNG_Regs *trng)
  *
  * @retval One of @ref DL_TRNG_CMD
  */
-__STATIC_INLINE uint32_t DL_TRNG_getIssuedCommand(TRNG_Regs *trng)
+__STATIC_INLINE uint32_t DL_TRNG_getIssuedCommand(const TRNG_Regs *trng)
 {
     return ((trng->STAT & TRNG_STAT_ISSUED_CMD_MASK)) >>
            TRNG_STAT_ISSUED_CMD_OFS;
@@ -440,7 +473,7 @@ __STATIC_INLINE uint32_t DL_TRNG_getIssuedCommand(TRNG_Regs *trng)
  * @retval true if the repetition test failed
  * @retval false if the repetition test did not fail
  */
-__STATIC_INLINE bool DL_TRNG_isRepetitionTestFail(TRNG_Regs *trng)
+__STATIC_INLINE bool DL_TRNG_isRepetitionTestFail(const TRNG_Regs *trng)
 {
     return ((trng->STAT & TRNG_STAT_REP_FAIL_MASK)) == TRNG_STAT_REP_FAIL_MASK;
 }
@@ -456,7 +489,7 @@ __STATIC_INLINE bool DL_TRNG_isRepetitionTestFail(TRNG_Regs *trng)
  * @retval true if the repetition test failed
  * @retval false if the repetition test did not fail
  */
-__STATIC_INLINE bool DL_TRNG_isAdaptiveTestFail(TRNG_Regs *trng)
+__STATIC_INLINE bool DL_TRNG_isAdaptiveTestFail(const TRNG_Regs *trng)
 {
     return ((trng->STAT & TRNG_STAT_ADAP_FAIL_MASK)) ==
            TRNG_STAT_ADAP_FAIL_MASK;
@@ -503,7 +536,7 @@ __STATIC_INLINE void DL_TRNG_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_TRNG_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_TRNG_getEnabledInterrupts(
-    TRNG_Regs *trng, uint32_t interruptMask)
+    const TRNG_Regs *trng, uint32_t interruptMask)
 {
     return trng->CPU_INT.IMASK & interruptMask;
 }
@@ -524,7 +557,7 @@ __STATIC_INLINE uint32_t DL_TRNG_getEnabledInterrupts(
  *  @sa         DL_TRNG_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_TRNG_getEnabledInterruptStatus(
-    TRNG_Regs *trng, uint32_t interruptMask)
+    const TRNG_Regs *trng, uint32_t interruptMask)
 {
     return (trng->CPU_INT.MIS & interruptMask);
 }
@@ -544,7 +577,7 @@ __STATIC_INLINE uint32_t DL_TRNG_getEnabledInterruptStatus(
  *  @return     If the trng interrupt is pending
  */
 __STATIC_INLINE uint32_t DL_TRNG_getRawInterruptStatus(
-    TRNG_Regs *trng, uint32_t interruptMask)
+    const TRNG_Regs *trng, uint32_t interruptMask)
 {
     return trng->CPU_INT.RIS & interruptMask;
 }
@@ -561,7 +594,7 @@ __STATIC_INLINE uint32_t DL_TRNG_getRawInterruptStatus(
  *
  *  @retval     One of @ref DL_TRNG_IIDX
  */
-__STATIC_INLINE DL_TRNG_IIDX DL_TRNG_getPendingInterrupt(TRNG_Regs *trng)
+__STATIC_INLINE DL_TRNG_IIDX DL_TRNG_getPendingInterrupt(const TRNG_Regs *trng)
 {
     return (DL_TRNG_IIDX) trng->CPU_INT.IIDX;
 }
@@ -607,14 +640,13 @@ __STATIC_INLINE void DL_TRNG_sendCommand(TRNG_Regs *trng, DL_TRNG_CMD cmd)
  *
  *  @sa         DL_TRNG_isCaptureReady
  */
-__STATIC_INLINE uint32_t DL_TRNG_getCapture(TRNG_Regs *trng)
+__STATIC_INLINE uint32_t DL_TRNG_getCapture(const TRNG_Regs *trng)
 {
     return trng->DATA_CAPTURE;
 }
 
 /**
  *  @brief      Save TRNG configuration before entering a power loss state.
- *              Only necessary for PG 1.0 silicon.
  *
  *  @param[in]  trng  Pointer to the register overlay for the peripheral
  *
@@ -624,13 +656,13 @@ __STATIC_INLINE uint32_t DL_TRNG_getCapture(TRNG_Regs *trng)
  *  @retval     FALSE if a configuration already exists in ptr (will not be
  *              overwritten). TRUE if a configuration was successfully saved
  */
-bool DL_TRNG_saveConfiguration(TRNG_Regs *trng, DL_TRNG_backupConfig *ptr);
+bool DL_TRNG_saveConfiguration(
+    const TRNG_Regs *trng, DL_TRNG_backupConfig *ptr);
 
 /**
  *  @brief      Restore TRNG configuration after leaving a power loss state.
  *              Upon restoration, if the TRNG was not originally in OFF state,
  *              then the TRNG will be set to the normal operating mode.
- *              Only necessary for PG 1.0 silicon.
  *
  *  @param[in]  trng  Pointer to the register overlay for the peripheral
  *

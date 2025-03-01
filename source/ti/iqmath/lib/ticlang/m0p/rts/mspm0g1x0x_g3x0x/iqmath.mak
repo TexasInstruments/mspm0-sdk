@@ -5,7 +5,7 @@ include $(SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 AR = "$(TICLANG_ARMCOMPILER)/bin/tiarmar"
 
-NAME = rts/mspm0g1x0x_g3x0x/iqmath
+NAME = iqmath
 
 OBJ_DIR = ../../../../../obj/ticlang/m0p/rts/mspm0g1x0x_g3x0x/iqmath
 SRC_DIR = ../../../../../_IQNfunctions

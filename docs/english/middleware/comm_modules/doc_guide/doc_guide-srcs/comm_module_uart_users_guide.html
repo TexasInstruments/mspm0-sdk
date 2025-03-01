@@ -72,6 +72,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#acknowledge-response">6. Acknowledge Response</a></li>
 </ul>
 </li>
 </ul>
@@ -182,7 +183,7 @@
 <figure class="align-default" id="id2">
 <img alt="UART command frame" src="../_images/UART_COMM_COMMAND_FRAME.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">UART command frame</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">UART command frame</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p><strong>START:</strong> The first byte indicates the initiation of frame (0x68 by default, but can be modified by setting FRAME_START_BYTE).</p>
@@ -191,7 +192,7 @@
 <figure class="align-default" id="id3">
 <img alt="UART control Byte" src="../_images/UART_COMM_CNTRL_BYTE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 15 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -224,7 +225,7 @@
 <figure class="align-default" id="id4">
 <img alt="UART control Byte" src="../_images/UART_COMM_RESPONSE_FRAME.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 16 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -233,7 +234,7 @@
 <figure class="align-default" id="id5">
 <img alt="UART control Byte" src="../_images/UART_COMM_RESPONSE_CNTRL_BYTE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 17 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">UART control Byte</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -284,7 +285,7 @@
 <figure class="align-default" id="id6">
 <img alt="Example for 32bit Write" src="../_images/UART_EG_32_WRITE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Example for 32bit Write</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Example for 32bit Write</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <section id="control-byte">
@@ -292,7 +293,7 @@
 <figure class="align-default" id="id7">
 <img alt="Control Byte for 32bit Write" src="../_images/UART_EG_32_WRITE_CNTRL.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Control Byte for 32bit Write</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Control Byte for 32bit Write</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Set gSendCommand to 1 to send the command from controller.</p>
@@ -300,20 +301,20 @@
 <figure class="align-default" id="id8">
 <img alt="Response for 32bit Write" src="../_images/UART_EG_32_WRITE_RESPONSE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Response for 32bit Write</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Response for 32bit Write</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>0xAC in response for a write command represents the write is successful.</p>
 <figure class="align-default" id="id9">
 <img alt="Controller side Expressions after command" src="../_images/UART_EG_32_WRITE_AFTER_CMD.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Controller side Expressions after command</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Controller side Expressions after command</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id10">
 <img alt="Target side Memory Browser" src="../_images/UART_EG_32_WRITE_MEMORY.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Target side Memory Browser</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">Target side Memory Browser</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -324,7 +325,7 @@
 <figure class="align-default" id="id11">
 <img alt="Example for 32bit Read" src="../_images/UART_EG_32_READ.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 23 </span><span class="caption-text">Example for 32bit Read</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">Example for 32bit Read</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <section id="id1">
@@ -332,14 +333,14 @@
 <figure class="align-default" id="id12">
 <img alt="Control Byte for 32bit Read" src="../_images/UART_EG_32_READ_CNTRL.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 24 </span><span class="caption-text">Control Byte for 32bit Read</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Control Byte for 32bit Read</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Set gSendCommand to 1 to send the command.</p>
 <figure class="align-default" id="id13">
 <img alt="Controller side Expressions" src="../_images/UART_EG_32_READ_BEFORE_CMD.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Controller side Expressions</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Controller side Expressions</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -348,15 +349,23 @@
 <figure class="align-default" id="id14">
 <img alt="Response for 32bit Read" src="../_images/UART_EG_32_READ_RESPONSE.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Response for 32bit Read</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 27 </span><span class="caption-text">Response for 32bit Read</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p><img alt="Controller side Expressions" src="../_images/UART_EG_32_READ_AFTER_CMD.jpg" /> ## 6. Acknowledge Response</p>
-<p>For a successful write operation, Acknowledgement(0xAC by default, can be modified by setting ACK_WRITE) is sent in the response.</p>
+<figure class="align-default" id="id15">
+<img alt="Controller side Expressions" src="../_images/UART_EG_32_READ_AFTER_CMD.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 28 </span><span class="caption-text">Controller side Expressions</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="acknowledge-response">
+<h2>6. Acknowledge Response<a class="headerlink" href="#acknowledge-response" title="Permalink to this heading">¶</a></h2>
+<p>For a successful write operation, Acknowledgement (0xAC by default, can be modified by setting ACK_WRITE) is sent in the response.</p>
 <p>For an Erroneous operation, Appropriate Error code (can be modified by setting ErrorType enum) is sent in the response.</p>
 <p>For a proper Command frame, if the response contains Incorrect start byte or Incorrect end byte error code. Then the issue is most likely the target and controller are not synchronized. The controller needs to send the command again in such conditions.</p>
-</section>
-</section>
 </section>
 </section>
 

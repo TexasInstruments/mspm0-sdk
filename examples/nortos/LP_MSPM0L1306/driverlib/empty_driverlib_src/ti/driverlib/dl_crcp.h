@@ -68,6 +68,314 @@
 extern "C" {
 #endif
 
+/* clang-format off */
+
+/**
+ * @brief Redirects to @ref DL_CRCP_POLYNOMIAL_SIZE_16 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_POLYNOMIAL_SIZE_16                    DL_CRCP_POLYNOMIAL_SIZE_16
+
+/**
+ * @brief Redirects to @ref DL_CRCP_POLYNOMIAL_SIZE_32 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_POLYNOMIAL_SIZE_32                    DL_CRCP_POLYNOMIAL_SIZE_32
+
+/**
+ * @brief Redirects to @ref DL_CRCP_BIT_REVERSED for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_BIT_REVERSED                                DL_CRCP_BIT_REVERSED
+
+/**
+ * @brief Redirects to @ref DL_CRCP_BIT_NOT_REVERSED for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_BIT_NOT_REVERSED                        DL_CRCP_BIT_NOT_REVERSED
+
+/**
+ * @brief Redirects to @ref DL_CRCP_INPUT_ENDIANESS_LITTLE_ENDIAN for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_INPUT_ENDIANESS_LITTLE_ENDIAN                                  \
+                                           DL_CRCP_INPUT_ENDIANESS_LITTLE_ENDIAN
+
+/**
+ * @brief Redirects to @ref DL_CRCP_INPUT_ENDIANESS_BIG_ENDIAN for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_INPUT_ENDIANESS_BIG_ENDIAN    DL_CRCP_INPUT_ENDIANESS_BIG_ENDIAN
+
+/**
+ * @brief Redirects to @ref DL_CRCP_OUTPUT_BYTESWAP_ENABLED for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_OUTPUT_BYTESWAP_ENABLED          DL_CRCP_OUTPUT_BYTESWAP_ENABLED
+
+/**
+ * @brief Redirects to @ref DL_CRCP_OUTPUT_BYTESWAP_DISABLED for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_OUTPUT_BYTESWAP_DISABLED        DL_CRCP_OUTPUT_BYTESWAP_DISABLED
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_32_MPEG2 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_32_MPEG2  DL_CRCP_CRCPOLY_POLYNOMIAL_32_MPEG2
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_32_Q for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_32_Q          DL_CRCP_CRCPOLY_POLYNOMIAL_32_Q
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_32_JAMCRC for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_32_JAMCRC                                   \
+                                            DL_CRCP_CRCPOLY_POLYNOMIAL_32_JAMCRC
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_32_XFER for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_32_XFER                                     \
+                                              DL_CRCP_CRCPOLY_POLYNOMIAL_32_XFER
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_32_MPEG2 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_32_MPEG2  DL_CRCP_CRCPOLY_POLYNOMIAL_32_MPEG2
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_16_CCIT_ZERO for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_16_CCIT_ZERO                                \
+                                         DL_CRCP_CRCPOLY_POLYNOMIAL_16_CCIT_ZERO
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_16_ARC for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_16_ARC                                      \
+                                               DL_CRCP_CRCPOLY_POLYNOMIAL_16_ARC
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_16_AUG_CCIT for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_16_AUG_CCIT                                 \
+                                          DL_CRCP_CRCPOLY_POLYNOMIAL_16_AUG_CCIT
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_16_BUYPASS for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_16_BUYPASS                                  \
+                                           DL_CRCP_CRCPOLY_POLYNOMIAL_16_BUYPASS
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_16_CCIT_FALSE for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_16_CCIT_FALSE                               \
+                                        DL_CRCP_CRCPOLY_POLYNOMIAL_16_CCIT_FALSE
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_16_CDMA2000 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_16_CDMA2000                                 \
+                                          DL_CRCP_CRCPOLY_POLYNOMIAL_16_CDMA2000
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCPOLY_POLYNOMIAL_16_MODBUS for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCPOLY_POLYNOMIAL_16_MODBUS                                   \
+                                            DL_CRCP_CRCPOLY_POLYNOMIAL_16_MODBUS
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_32_MPEG2 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_32_MPEG2              DL_CRCP_CRCSEED_SEED_32_MPEG2
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_32_Q for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_32_Q                      DL_CRCP_CRCSEED_SEED_32_Q
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_32_JAMCRC for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_32_JAMCRC            DL_CRCP_CRCSEED_SEED_32_JAMCRC
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_32_XFER for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_32_XFER                DL_CRCP_CRCSEED_SEED_32_XFER
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_32_MPEG2 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_32_MPEG2              DL_CRCP_CRCSEED_SEED_32_MPEG2
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_16_AUG_CCIT for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_16_AUG_CCIT        DL_CRCP_CRCSEED_SEED_16_AUG_CCIT
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_16_BUYPASS for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_16_BUYPASS          DL_CRCP_CRCSEED_SEED_16_BUYPASS
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_16_CCIT_FALSE for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_16_CCIT_FALSE    DL_CRCP_CRCSEED_SEED_16_CCIT_FALSE
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_16_CDMA2000 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_16_CDMA2000        DL_CRCP_CRCSEED_SEED_16_CDMA2000
+
+/**
+ * @brief Redirects to @ref DL_CRCP_CRCSEED_SEED_16_MODBUS for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_CRCSEED_SEED_16_MODBUS            DL_CRCP_CRCSEED_SEED_16_MODBUS
+
+/**
+ * @brief Redirects to @ref DL_CRCP_enablePower for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_enablePower                                   DL_CRCP_enablePower
+
+/**
+ * @brief Redirects to @ref DL_CRCP_isPowerEnabled for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_isPowerEnabled                             DL_CRCP_isPowerEnabled
+
+/**
+ * @brief Redirects to @ref DL_CRCP_reset for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_reset                                               DL_CRCP_reset
+
+/**
+ * @brief Redirects to @ref DL_CRCP_isReset for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_isReset                                           DL_CRCP_isReset
+
+/**
+ * @brief Redirects to @ref DL_CRCP_init for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_init                                                 DL_CRCP_init
+
+/**
+ * @brief Redirects to @ref DL_CRCP_setSeed16 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_setSeed16                                       DL_CRCP_setSeed16
+
+/**
+ * @brief Redirects to @ref DL_CRCP_setSeed32 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_setSeed32                                       DL_CRCP_setSeed32
+
+/**
+ * @brief Redirects to @ref DL_CRCP_feedData8 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_feedData8                                       DL_CRCP_feedData8
+
+/**
+ * @brief Redirects to @ref DL_CRCP_feedData16 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_feedData16                                     DL_CRCP_feedData16
+
+/**
+ * @brief Redirects to @ref DL_CRCP_feedData32 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_feedData32                                     DL_CRCP_feedData32
+
+/**
+ * @brief Redirects to @ref DL_CRCP_getResult16 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_getResult16                                   DL_CRCP_getResult16
+
+/**
+ * @brief Redirects to @ref DL_CRCP_getResult32 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_getResult32                                   DL_CRCP_getResult32
+
+/**
+ * @brief Redirects to @ref DL_CRCP_setPolynomial for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_setPolynomial                               DL_CRCP_setPolynomial
+
+/**
+ * @brief Redirects to @ref DL_CRCP_getPolynomial for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_getPolynomial                               DL_CRCP_getPolynomial
+
+/**
+ * @brief Redirects to @ref DL_CRCP_calculateBlock32 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_calculateBlock32                         DL_CRCP_calculateBlock32
+
+/**
+ * @brief Redirects to @ref DL_CRCP_calculateMemoryRange32 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_calculateMemoryRange32             DL_CRCP_calculateMemoryRange32
+
+/**
+ * @brief Redirects to @ref DL_CRCP_calculateBlock16 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_calculateBlock16                         DL_CRCP_calculateBlock16
+
+/**
+ * @brief Redirects to @ref DL_CRCP_calculateMemoryRange16 for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_calculateMemoryRange16             DL_CRCP_calculateMemoryRange16
+
+/**
+ * @brief Redirects to @ref DL_CRCP_getCRCINAddr for compatibility
+ *        between CRC and CRCP DriverLib modules
+ */
+#define DL_CRC_getCRCINAddr                                 DL_CRCP_getCRCINAddr
+
+/* clang-format on */
+
 /*! @enum DL_CRCP_POLYNOMIAL_SIZE */
 typedef enum {
     /*! Use lower 16-bit value of CRCPOLY as polynomial for calculation.
@@ -198,7 +506,11 @@ typedef enum {
 } DL_CRCP_CRCSEED_SEED;
 
 /**
- * @brief Enables power on CRCP module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the CRCP
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  * @param crcp         Pointer to the register overlay for the CRCP peripheral
  */
@@ -208,7 +520,12 @@ __STATIC_INLINE void DL_CRCP_enablePower(CRCP_Regs *crcp)
 }
 
 /**
- * @brief Disables power on CRCP module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the CRCP
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  * @param crcp         Pointer to the register overlay for the CRCP peripheral
  */
@@ -218,15 +535,23 @@ __STATIC_INLINE void DL_CRCP_disablePower(CRCP_Regs *crcp)
 }
 
 /**
- * @brief Returns if power on CRCP module is enabled
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the CRCP
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param crcp         Pointer to the register overlay for the CRCP peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  *
  */
-__STATIC_INLINE bool DL_CRCP_isPowerEnabled(CRCP_Regs *crcp)
+__STATIC_INLINE bool DL_CRCP_isPowerEnabled(const CRCP_Regs *crcp)
 {
     return ((crcp->GPRCM.PWREN & CRCP_PWREN_ENABLE_MASK) ==
             CRCP_PWREN_ENABLE_ENABLE);
@@ -253,7 +578,7 @@ __STATIC_INLINE void DL_CRCP_reset(CRCP_Regs *crcp)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_CRCP_isReset(CRCP_Regs *crcp)
+__STATIC_INLINE bool DL_CRCP_isReset(const CRCP_Regs *crcp)
 {
     return ((crcp->GPRCM.STAT & CRCP_STAT_RESETSTKY_MASK) ==
             CRCP_STAT_RESETSTKY_RESET);
@@ -387,7 +712,7 @@ __STATIC_INLINE void DL_CRCP_feedData32(CRCP_Regs *crcp, uint32_t dataIn)
  *
  *  @return     The calculation result for the 16-bit polynomial
  */
-__STATIC_INLINE uint16_t DL_CRCP_getResult16(CRCP_Regs *crcp)
+__STATIC_INLINE uint16_t DL_CRCP_getResult16(const CRCP_Regs *crcp)
 {
     return ((uint16_t) crcp->CRCOUT);
 }
@@ -407,7 +732,7 @@ __STATIC_INLINE uint16_t DL_CRCP_getResult16(CRCP_Regs *crcp)
  *
  *  @return     The calculation result for the 32-bit polynomial
  */
-__STATIC_INLINE uint32_t DL_CRCP_getResult32(CRCP_Regs *crcp)
+__STATIC_INLINE uint32_t DL_CRCP_getResult32(const CRCP_Regs *crcp)
 {
     return (crcp->CRCOUT);
 }
@@ -444,7 +769,7 @@ __STATIC_INLINE void DL_CRCP_setPolynomial(CRCP_Regs *crcp, uint32_t poly)
  *
  *  @returns    Active polynomial (normal representation)
  */
-__STATIC_INLINE uint32_t DL_CRCP_getPolynomial(CRCP_Regs *crcp)
+__STATIC_INLINE uint32_t DL_CRCP_getPolynomial(const CRCP_Regs *crcp)
 {
     return (crcp->CRCPOLY);
 }
@@ -463,7 +788,7 @@ __STATIC_INLINE uint32_t DL_CRCP_getPolynomial(CRCP_Regs *crcp)
  *  @return     The calculated CRC signature value
  */
 extern uint32_t DL_CRCP_calculateBlock32(
-    CRCP_Regs *crcp, uint32_t seed, uint32_t *ptr, uint32_t size);
+    CRCP_Regs *crcp, uint32_t seed, const uint32_t *ptr, uint32_t size);
 
 /*!
  *  @brief      Calculates the CRC over a memory range
@@ -480,8 +805,8 @@ extern uint32_t DL_CRCP_calculateBlock32(
  *
  *  @return     The calculated CRC signature value
  */
-extern uint32_t DL_CRCP_calculateMemoryRange32(
-    CRCP_Regs *crcp, uint32_t seed, uint32_t *ptrStart, uint32_t *ptrEnd);
+extern uint32_t DL_CRCP_calculateMemoryRange32(CRCP_Regs *crcp, uint32_t seed,
+    uint32_t *ptrStart, const uint32_t *ptrEnd);
 
 /*!
  *  @brief      Calculates the CRC over a range of 16-bit values
@@ -497,7 +822,7 @@ extern uint32_t DL_CRCP_calculateMemoryRange32(
  *  @return     The calculated CRC signature value
  */
 extern uint16_t DL_CRCP_calculateBlock16(
-    CRCP_Regs *crcp, uint16_t seed, uint16_t *ptr, uint16_t size);
+    CRCP_Regs *crcp, uint16_t seed, const uint16_t *ptr, uint16_t size);
 
 /*!
  *  @brief      Calculates the CRC over a memory range
@@ -514,8 +839,8 @@ extern uint16_t DL_CRCP_calculateBlock16(
  *
  *  @return     The calculated CRC signature value
  */
-extern uint16_t DL_CRCP_calculateMemoryRange16(
-    CRCP_Regs *crcp, uint16_t seed, uint16_t *ptrStart, uint16_t *ptrEnd);
+extern uint16_t DL_CRCP_calculateMemoryRange16(CRCP_Regs *crcp, uint16_t seed,
+    uint16_t *ptrStart, const uint16_t *ptrEnd);
 
 /**
  *  @brief Returns the address of the CRC input data register.
@@ -527,7 +852,7 @@ extern uint16_t DL_CRCP_calculateMemoryRange16(
  *                        peripheral
  *  @return Address of the CRC input data register
  */
-__STATIC_INLINE uintptr_t DL_CRCP_getCRCINAddr(CRCP_Regs *crcp)
+__STATIC_INLINE uintptr_t DL_CRCP_getCRCINAddr(const CRCP_Regs *crcp)
 {
     return ((uintptr_t) &crcp->CRCIN);
 }

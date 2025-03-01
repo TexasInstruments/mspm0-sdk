@@ -41,7 +41,7 @@ mux9.inputSelect = "LFXTMUX_TRUE";
 
 const pinFunction1                        = system.clockTree["CLKOUT"];
 pinFunction1.enable                       = true;
-pinFunction1.peripheral.clkOutPin.$assign = "PA14";
+pinFunction1.peripheral.clkOutPin.$assign = "PA22";
 
 const pinFunction6     = system.clockTree["LFXT"];
 pinFunction6.enable    = true;

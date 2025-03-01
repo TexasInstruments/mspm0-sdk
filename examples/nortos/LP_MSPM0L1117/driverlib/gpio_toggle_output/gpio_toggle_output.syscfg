@@ -31,6 +31,7 @@ GPIO1.associatedPins[2].pin.$assign = "PB18";
 GPIO1.associatedPins[3].$name       = "USER_TEST";
 GPIO1.associatedPins[3].pin.$assign = "PB14";
 
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 SYSCTL.clockTreeEn = true;

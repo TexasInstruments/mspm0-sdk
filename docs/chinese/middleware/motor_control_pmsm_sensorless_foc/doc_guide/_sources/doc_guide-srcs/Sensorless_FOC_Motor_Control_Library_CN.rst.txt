@@ -1,0 +1,402 @@
+Sensorless FOC Motor Control Library Overview
+=============================================
+
+Software Overview
+-----------------
+
+Sensorless Field-Oriented Control (FOC) Library is made of three main layers: Application layer, HAL Layer, and MSPM0 DriverLib.
+
+.. figure:: images/Library-Architecture.jpg
+   :alt: Sensorless FOC Architecture
+
+   Sensorless FOC Architecture
+
+1. Application Layer
+--------------------
+
+Application Layer is a software layer that does specific functions like Motor control. If any application perform any hardware specific actions, it is done through the HAL Layer APIs.
+
+FOC Library
+~~~~~~~~~~~
+
+FOC library is a static library that contains generic motor control algorithms algorithms for 3-phase sensorless FOC motor control.
+
+This Library has the following modules integrated :
+
+-  Align startup
+
+-  Slow first cycle startup
+
+-  IPD startup
+
+-  ISD startup
+
+-  Brake
+
+-  Reverse Drive
+
+-  Deadtime compensation
+
+-  PI controllers
+
+-  Openloop
+
+-  Closeloop
+
+-  Estimator
+
+-  Align brake
+
+-  MTPA
+
+-  Field Weakening
+
+FOC library also contains the Motor control state machines.
+
+Motor Control Application
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Motor control Application takes care of register value conversions from users inputs and feeds to the FOC library.
+
+Application Module
+^^^^^^^^^^^^^^^^^^
+
+**appInterface** : This folder contains the header files for the Input, Control and Status variables.
+
+User can add their custom Input / Ctrl configurations to "appUserInputRegsConfig" API which is periodically called by the application every 200mS when the motor is in not spinning.
+
+**ConfigTables** All the register map tuning configurations for a given index is defined in the Config tables.
+
+User can add custom values to these tables based on the application use case
+
+Main Application
+~~~~~~~~~~~~~~~~
+
+Main application contains the user code which initializes the application modules and periodically calls the configuration updates in While(1) loop.
+
+main.h Configurations
+^^^^^^^^^^^^^^^^^^^^^
+
+User Can define the Default System Configurations from the main.h
+
+**Base Address** : The default RAM address space for the Input,Ctrl & Status register map structures are defined in main.h. It is recommended to not alter the address space as these will be used by the GUI application for variable referencing.
+
+**Hardware Configurations**
+
+**Gate Driver Selection** - Select the connected HW using #ifdef Macro with the available Gate Driver Configurations. Ex: DRV8329/DRV8323/DRV8316/CUSTOM
+
+If user selects a Custom gate driver , It is recommended to choose any of the Gate driver configurations as a starting point and update the SYSCONFIG and HAL based on the pin configurations. The DRV8316/DRV8323 has SPI based Gate Driver Communication with Three Shunt Configuration & DRV8329 Example is based on Single Shunt configuration without SPI communication.
+
+**Current Shunt Configuration** - User can choose the Current shunt configurations based on the actual number of Shunt Resistors used for Current Sensing.
+
+"#define CURRENT\_SHUNT\_CONFIG" Macro will be used for the definition of given shunt configuration
+
+Below #ifdef Macro's can be used to select various current shunt configurations available in the FW.
+
+-  \_\_CURRENT\_THREE\_SHUNT\_DYNAMIC - For three shunt configuration with dynamic selection of any two shunts based on the Sector
+
+-  \_\_CURRENT\_THREE\_SHUNT\_XY\_Z - For three shunt configuration with Fixed current sensing where XY phases are used for simultaneous sampling and Z phase used for lateral sample.
+
+-  \_\_CURRENT\_TWO\_SHUNT\_X\_Y - For Dual Shunt configurations with X & Y as the respective phases of the three phases used for current sensing
+
+-  \_\_CURRENT\_SINGLE\_SHUNT - For Single Shunt current sense Configuration.
+
+For Single shunt configuration user can select \_NONINVERT\_ISEN or \_INVERT\_ISEN based on the amplifier input configuration.
+
+For Inverted Isense Configuration - The Voltage across the amplifier decreases as the Current increases.
+
+FULL\_SCALE\_CURRENT\_BASE - Set the Maximum measurable current based on the Current Shunt Amplifier Gain and the Current Sense Resistor.
+
+DC\_VOLTAGE\_BASE - Set the Maximum measurable phase Voltage based on the Scaled down voltage fed to ADC from the Voltage Divider Circuit.
+
+2. HAL Layer
+------------
+
+The Hardware Abstraction Layer (HAL) creates an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configurations which simplifies porting of the library to various hardware by minimizing the updates needed to other components. The HAL is meant to abstract only the required pins or peripherals required for the application while still having flexibility and scalability for porting to other MSPM0 MCUs or motor drivers.
+
+HAL uses the defines generated from TI SysConfig, so it is very easy to change the pin in the TI SysConfig GUI. The HAL automatically follows this without the user having to change any code in the HAL layer.
+
+For Example below is the define for direction pin PORT it is referred by HAL Layer through FOC\_GPIO\_IN\_PORT, this define is mapped to the port number by the TI SysConfig. Thus by changing the PORT in TI SysConfig GUI the direction pin PORT number can be controlled.
+
+::
+
+    /*! @brief GPIO port for direction pin */
+    #define FOC_GPIO_DIR_PORT           (FOC_GPIO_IN_PORT)
+
+Gate Driver Interface Library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Gate Driver Interface Library provides the APIs for reading the currents and voltage channels. Also if the DRV is used it configured the CSA gain and other gate driver register configurations.
+
+.. figure:: images/GatedriverInterface.jpg
+   :alt: Gate Driver Interface
+
+   Gate Driver Interface
+
+The gate driver Interface has 3 parts:
+
+-  Gate driver Library
+
+Has the APIs to configure the gate driver registers through SPI if the gate driver is a SPI based.
+
+-  Gate driver peripheral peripheral defines
+
+The Gate driver peripheral defines are in gateDriver.h. Here the ADC memory indexes used for reading the current and voltages are defined.
+
+.. figure:: images/Gatedriver_H.jpg
+   :alt: Gate Driver peripheral defines
+
+   Gate Driver peripheral defines
+
+In the above image we can see that phase U voltage is mapped to ADC channel 6 and the U phase voltage memory index is ADC1\_ADCMEM\_0, ie A1.6/PB19 is the pin used for U phase voltage, this pin has to be connected to the gate drivers U phase voltage pin. Please refer to the Hardware Guide to know how to connect the Gate driver to the launchpad to make the pin connections.
+
+-  Gate driver HAL Interface
+
+Gate driver HAL Interface handles the configurations of ADC channels to convert phase voltage inputs and phase current inputs from gate driver.
+
+Single Shunt PWM Configurations:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In single shunt based current sensing method, the three phase currents are estimated based on sampled DC bus current from multiple instances. Unlike in three phase current sensing, where the currents are sampled at center of PWM's, the currents in 1-shunt method are sampled at various phase switching points within one PWM cycle. To realize this, the PWM's are dynamically shifted to enable sampling at different voltage vectors in a given sector. This way enough margin is created for current sampling in the non overlapping regions. For this reason, the PWM's are not center aligned and we assign Compare B indexes of Timer A to achieve this shifting. It is important for user to configure the Compare B index for the PWM's based on the Pin configuration.
+
+.. figure:: images/SingleShuntCompareBConfig.png
+   :alt: Compare B Index Configuration
+
+   Compare B Index Configuration
+
+In the above example for DRV8329 ,The primary compare events are selected based on HS PWM pins and the corresponding Timer Compare ports. The secondary Compare events are selected from the remaining Compare indexes from 0-5.
+
+Enabling simultaneous current sampling :
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Simultaneous current sampling helps to sample the current signals at the same time. This feature helps to improve the performance of FOC by improving the rotor position estimations.
+
+In MSPM0 to enable simultaneous current sampling we need to use both ADCs 0 and 1 and trigger both at the same time. For implementing Simultaneous sampling we need to have any one phase current input connected to both ADC 0 and ADC 1, this additional connection is the minimum requirement needed so that we can sample all the dual current sensing configurations.
+
+The simultaneous current sampling is implemented in DRV8316 gate driver library, refer to drv8316\_focHalInterface.c for the implementation code. In DRV8316 gate driver library phase B current is routed for both the ADC 0 & 1 channels to achieve simultaneous sampling in all the dual current sensing configurations : AB, BC, CA (ie, in AB, A is sampled by ADC 0 and B by ADC 1. In BC ,B is sampled by ADC 0 and C by ADC 1).
+
+Controller Interface Library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Controller Interface Library provides HAL APIs for controlling the peripherals like timer, gpio etc. The Controller Interface Library uses the gate driver Interface library to set the correct phase and voltage channel configurations to the ADC.
+
+.. figure:: images/focPeripheralInit.jpg
+   :alt: Peripheral defines in focPeripheralInit.h
+
+   Peripheral defines in focPeripheralInit.h
+
+Important Peripherals and configurations used in FOC
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. GPIOs
+^^^^^^^^
+
+Following are the GPIO's used by the Application code:
+
+1. Brake input:
+
+Pin input for applying brake
+
+2. Direction pin
+
+Pin input for selecting direction
+
+3. Nfault
+
+Output pin, set low if any fault is detected
+
+4. nSleep
+
+Output pin, sets the gate driver sleep input
+
+User can change the GPIO pin selection in the TI SysConfig to select any desired pin as shown below.
+
+.. figure:: images/GPIO_SYSCONFIG.jpg
+   :alt: GPIO sysconfig
+
+   GPIO sysconfig
+
+2. SPI
+^^^^^^
+
+SPI is configured in Sysconfig for gate drivers having SPI interface. The SPI configurations used are given below
+
++------------------+-----------------------------+
+| SPI              | Description                 |
++==================+=============================+
+| Bit rate         | 5Mhz                        |
++------------------+-----------------------------+
+| Word size        | 16 bits                     |
++------------------+-----------------------------+
+| Bit Order        | MSB First                   |
++------------------+-----------------------------+
+| Chip select      | Active low                  |
++------------------+-----------------------------+
+| Frame Format     | 4 wire                      |
++------------------+-----------------------------+
+| mode             | Controller                  |
++------------------+-----------------------------+
+| Clock polarity   | Low                         |
++------------------+-----------------------------+
+| Clock Phase      | Data on Second clock edge   |
++------------------+-----------------------------+
+
+User can use the same SPI connection to interface any other device, but need to see if the gate driver spi transmission is busy. Also user need to take care of using a different chip select line.
+
+3. PWM
+^^^^^^
+
+Three PWM channels with complementary outputs are used to drive the motor and one channel is used to trigger the ADC to convert the voltages and currents. TIMER A0 is reserved for generating the PWMs for FOC motor control and user should not use this timer.
+
+TIMER A0 triggers the ADC using event channels, the event channels used are specified in focPeripheralInit.h, user should not use the same event channel used by the Library.
+
+4. ADC
+^^^^^^
+
+The ADC configurations used are given below:
+
++----------------------+---------------------+
+| ADC                  | Description         |
++======================+=====================+
+| Conversion Mode      | Sequence sampling   |
++----------------------+---------------------+
+| Trigger Source       | Event triggered     |
++----------------------+---------------------+
+| Sample timer         | Sample timer 0      |
++----------------------+---------------------+
+| Chip select          | Active low          |
++----------------------+---------------------+
+| Hardware averaging   | 4 conversions       |
++----------------------+---------------------+
+
+ADC hardware averaging is used to remove any noise in the signal
+
+ADC is used in converting DC bus voltage, three phase currents and three phase voltages. The gate driver library defines the ADC channel used for conversion and the memory index of the ADC used. Memory indexes used for current and voltages are listed in gateDriver.h. ADC Interrupt occurs after all currents or voltages are sampled.
+
+If user wishes to use ADC to convert any new channels the user should add new memory index by incrementing the Sequence End address in the TI SysConfig and modify the Trigger mode of the new index to "Valid trigger .." as shown in the below images. Also note to change the Trigger mode of the default Sequence End address to "Trigger will automatically .." while adding a new sequence end address. The user should not change the ADC interrupt used by FOC, user can enable a new ADC interrupt for their use case.
+
+.. figure:: images/ADC_SYSCONFIG.jpg
+   :alt: ADC sysconfig
+
+   ADC sysconfig
+
+.. figure:: images/ADC_SYSCONFIG_TRIGGER.jpg
+   :alt: ADC Trigger
+
+   ADC Trigger
+
+For phase voltage and phase current configuration the Library sets the channel using the channel listed in gateDriver.h. For DC bus voltage conversion the pin is specified by TI SysConfig and user needs to take care to update the defines in gateDriver.h, if the pin is changed in TI SysConfig.
+
+The first Two memory indices of the ADC 0 & 1 are used for the Current Sampling / Voltage sampling and shound't be modified. The DC bus Voltage is sampled from the 2nd Memory Index and user can choose to use any other Memory Index apart from 0 & 1 of ADC 0 & ADC 1 for any custom ADC addition.
+
+In case ISD is enabled, Voltage signals are sampled instead of phase current at the startup. It is recommended to use the same memory indices as phase currents for phase voltages to ensure a smooth ISD operation.
+
+*Ex:* If phase currents A & B are connected to ADC-0 indices 0 & 1 , Phase C currents is connected to ADC-1 memory index - 0. The same ADC, memory indices can be allocated to voltage channels in the gateDriver.h file.
+
+In the existing FOC architecture, The ADC-0 is configured to generate the core FOC Interrupt. User needs to configure this interrupt based on the phase current memory indices as below.
+
+In case all three phase currents are chosen from the same ADC, then memory Index 2 or higher is to be selected for the Interrupt generation.
+
+In case two phase currents are chosen from 1 ADC instance & third phase current is from different ADC instance , memory index 1 or higher to be choosen from the Interrupts
+
+In the below configuration, All the phase voltages are sampled from same ADC thus memory 3 index is chosen so that all the phase voltages are sampled before generating the FOC interrupt for a smooth ISD operation.
+
+.. figure:: images/SingleShuntADCInterruptSyscfg.png
+   :alt: ADC Trigger
+
+   ADC Trigger
+
+*Note* : If none of the phase currents/ Voltages / any sensing pins are connected to ADC-0 , Dummy memory indices are to be created to generate the ADC-0 interrupt matching with above criteria.
+
+Single Shunt FOC Current Sensing ADC Configurations
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+In Single shunt current sensing , First two ADC indices of a selected ADC are to be allocated for sampling the Current sensing pin. Also for the 0th memory index , trigger option to be selected as *Valid Trigger will step to next conversion register*. The last memory index of this ADC is to be selected again with *Valid Trigger will step to next conversion register* .The in between memory indices if used are to be selected with *Trigger will automatically step to next conversion register*
+
+In the below configuration, Memory Index 0 & 1 are the only two ADC indices used thus both are set with "Valid trigger..."
+
+.. figure:: images/SingleShuntADCSyscfg.png
+   :alt: ADC sysconfig
+
+   ADC sysconfig
+
+Single Shunt FOC Trigger configurations
+'''''''''''''''''''''''''''''''''''''''
+
+In single shunt operation, Timer A1's compare down events are allocated for triggering the ADC. Timer A1 is cross triggered from Timer A0 thus Timer A0/Timer A1 are never to be stopped by the application code.
+
+Two triggers are generated for FOC algorithm with a minimum seperation of "Sampling time + Settling time" requirements to read the Single shunt current sample.
+
+Either of ADC -0 or ADC - 1 used for sampling the DC Bus current is triggered from Timer A1 - compare down Events 0 & 1. First sample is associated with Channel '1' compare down Event and Second ADC sample is linked with Channel '0' compare down event.
+
+.. figure:: images/SingleShuntTimerA1Config.png
+   :alt: Timer A1 sysconfig
+
+   Timer A1 sysconfig
+
+*Note :* If ADC-1 is chosen for sampling the DC Bus current, ADC 0 is also to be triggered with Timer -A1 compare down channel 0 event as the core FOC interrupt is associated with ADC-0 interrupt. This ensures timely interrupt at the end of ADC-1 current sample.
+
+5. DAC
+^^^^^^
+
+The DAC configurations used are given below:
+
++------------------------------+---------------+
+| DAC                          | Description   |
++==============================+===============+
+| Sample Time Generator Rate   | 100kSPS       |
++------------------------------+---------------+
+| Output Resolution            | 12 bit        |
++------------------------------+---------------+
+| Positive Voltage Reference   | VDDA          |
++------------------------------+---------------+
+| Negative Voltage Reference   | VSSA          |
++------------------------------+---------------+
+
+DAC is used for real time output of the algorithm variables.
+
+NOTE: While enabling the DAC in TI SysConfig user needs to make sure the DAC output pin is not used
+
+Communication Interface Library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Communication Interface Library helps to access the memory of the device using communication peripherals like UART, I2C etc. User can Read or write to the Sensorless FOC registers through the communication peripheral to control the motor externally.
+
+In the current library the UART communication is implementation. Please refer to `UART Communication User Guide <UART_Communication_User_Guide_CN.html>`__ for more details on communication protocol.
+
+For enabling UART communication with an external device use the below pinouts:
+
+**For DRV8316**
+
++-----------------+-----------------+-----------------+
+| UART comm pin   | LP-MSPM0G3507   | LP-MSPM0G3519   |
++=================+=================+=================+
+| UART TX         | PA26            | PA8             |
++-----------------+-----------------+-----------------+
+| UART RX         | PA13            | PA9             |
++-----------------+-----------------+-----------------+
+
+**For DRV8323RS**
+
++-----------------+-----------------+-----------------+
+| UART comm pin   | LP-MSPM0G3507   | LP-MSPM0G3519   |
++=================+=================+=================+
+| UART TX         | PB12            | PA8             |
++-----------------+-----------------+-----------------+
+| UART RX         | PA13            | PA9             |
++-----------------+-----------------+-----------------+
+
+**For DRV8329**
+
++-----------------+-----------------+-----------------+
+| UART comm pin   | LP-MSPM0G3507   | LP-MSPM0G3519   |
++=================+=================+=================+
+| UART TX         | PB12            | PA8             |
++-----------------+-----------------+-----------------+
+| UART RX         | PA13            | PA9             |
++-----------------+-----------------+-----------------+
+
+3. MSPM0 DriverLib Overview
+---------------------------
+
+MSPM0 DriverLib is a set of fully functional APIs used to configure, control, and manipulate the hardware peripherals of the MSPM0 platform. Please refer to the DriverLib documentation for more information.

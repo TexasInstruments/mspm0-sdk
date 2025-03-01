@@ -35,7 +35,7 @@
 
 #if defined(__MSPM0_HAS_UART_MAIN__) || defined(__MSPM0_HAS_UART_EXTD__)
 
-void DL_UART_init(UART_Regs *uart, DL_UART_Config *config)
+void DL_UART_init(UART_Regs *uart, const DL_UART_Config *config)
 {
     DL_UART_disable(uart);
 
@@ -52,14 +52,14 @@ void DL_UART_init(UART_Regs *uart, DL_UART_Config *config)
             UART_LCRH_WLEN_MASK | UART_LCRH_STP2_MASK);
 }
 
-void DL_UART_setClockConfig(UART_Regs *uart, DL_UART_ClockConfig *config)
+void DL_UART_setClockConfig(UART_Regs *uart, const DL_UART_ClockConfig *config)
 {
     uart->CLKSEL = (uint32_t) config->clockSel;
 
     uart->CLKDIV = (uint32_t) config->divideRatio;
 }
 
-void DL_UART_getClockConfig(UART_Regs *uart, DL_UART_ClockConfig *config)
+void DL_UART_getClockConfig(const UART_Regs *uart, DL_UART_ClockConfig *config)
 {
     config->clockSel = (DL_UART_CLOCK) uart->CLKSEL;
 
@@ -152,7 +152,7 @@ void DL_UART_setIrDAPulseLength(
     }
 }
 
-uint8_t DL_UART_receiveDataBlocking(UART_Regs *uart)
+uint8_t DL_UART_receiveDataBlocking(const UART_Regs *uart)
 {
     while (DL_UART_isRXFIFOEmpty(uart)) {
     };
@@ -167,7 +167,7 @@ void DL_UART_transmitDataBlocking(UART_Regs *uart, uint8_t data)
     DL_UART_transmitData(uart, data);
 }
 
-bool DL_UART_receiveDataCheck(UART_Regs *uart, uint8_t *buffer)
+bool DL_UART_receiveDataCheck(const UART_Regs *uart, uint8_t *buffer)
 {
     bool status;
     if (DL_UART_isRXFIFOEmpty(uart)) {
@@ -194,7 +194,7 @@ bool DL_UART_transmitDataCheck(UART_Regs *uart, uint8_t data)
 }
 
 uint32_t DL_UART_drainRXFIFO(
-    UART_Regs *uart, uint8_t *buffer, uint32_t maxCount)
+    const UART_Regs *uart, uint8_t *buffer, uint32_t maxCount)
 {
     uint32_t i;
     for (i = 0; i < maxCount; i++) {
@@ -208,7 +208,8 @@ uint32_t DL_UART_drainRXFIFO(
     return i;
 }
 
-uint32_t DL_UART_fillTXFIFO(UART_Regs *uart, uint8_t *buffer, uint32_t count)
+uint32_t DL_UART_fillTXFIFO(
+    UART_Regs *uart, const uint8_t *buffer, uint32_t count)
 {
     uint32_t i;
     for (i = 0; i < count; i++) {
@@ -224,7 +225,7 @@ uint32_t DL_UART_fillTXFIFO(UART_Regs *uart, uint8_t *buffer, uint32_t count)
 #ifdef __MSPM0_HAS_UART_MAIN__
 
 bool DL_UART_Main_saveConfiguration(
-    UART_Regs *uart, DL_UART_Main_backupConfig *ptr)
+    const UART_Regs *uart, DL_UART_Main_backupConfig *ptr)
 {
     bool stateSaved = !ptr->backupRdy;
     if (stateSaved) {
@@ -277,7 +278,7 @@ bool DL_UART_Main_restoreConfiguration(
 #ifdef __MSPM0_HAS_UART_EXTD__
 
 bool DL_UART_Extend_saveConfiguration(
-    UART_Regs *uart, DL_UART_Extend_backupConfig *ptr)
+    const UART_Regs *uart, DL_UART_Extend_backupConfig *ptr)
 {
     bool stateSaved = !ptr->backupRdy;
     if (stateSaved) {

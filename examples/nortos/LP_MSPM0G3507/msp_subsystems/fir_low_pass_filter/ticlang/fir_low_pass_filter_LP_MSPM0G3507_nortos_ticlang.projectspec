@@ -54,11 +54,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../fir_low_pass_filter.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../fir_low_pass_filter.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../fir_low_pass_filter.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

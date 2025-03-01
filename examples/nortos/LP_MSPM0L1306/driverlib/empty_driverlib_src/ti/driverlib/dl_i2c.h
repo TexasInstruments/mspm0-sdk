@@ -762,7 +762,7 @@ typedef struct {
  *  @param[in]  config  Pointer to the clock configuration struct
  *                       @ref DL_I2C_ClockConfig.
  */
-void DL_I2C_setClockConfig(I2C_Regs *i2c, DL_I2C_ClockConfig *config);
+void DL_I2C_setClockConfig(I2C_Regs *i2c, const DL_I2C_ClockConfig *config);
 
 /**
  *  @brief      Get I2C source clock configuration
@@ -772,7 +772,7 @@ void DL_I2C_setClockConfig(I2C_Regs *i2c, DL_I2C_ClockConfig *config);
  *  @param[in]  config  Pointer to the clock configuration struct
  *                      @ref DL_I2C_ClockConfig.
  */
-void DL_I2C_getClockConfig(I2C_Regs *i2c, DL_I2C_ClockConfig *config);
+void DL_I2C_getClockConfig(const I2C_Regs *i2c, DL_I2C_ClockConfig *config);
 
 /**
  *  @brief      Fills the controller TX FIFO with data
@@ -784,7 +784,7 @@ void DL_I2C_getClockConfig(I2C_Regs *i2c, DL_I2C_ClockConfig *config);
  *  @return     Number of bytes that were successfully written
  */
 uint16_t DL_I2C_fillControllerTXFIFO(
-    I2C_Regs *i2c, uint8_t *buffer, uint16_t count);
+    I2C_Regs *i2c, const uint8_t *buffer, uint16_t count);
 
 /**
  *  @brief      Flushes/removes all elements in the controller TX FIFO
@@ -810,7 +810,7 @@ void DL_I2C_flushControllerRXFIFO(I2C_Regs *i2c);
  *  @retval     true if controller TX FIFO is full
  *  @retval     false if controller TX FIFO is not full
  */
-__STATIC_INLINE bool DL_I2C_isControllerTXFIFOFull(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerTXFIFOFull(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK) ==
             I2C_MFIFOSR_TXFIFOCNT_MINIMUM);
@@ -826,7 +826,7 @@ __STATIC_INLINE bool DL_I2C_isControllerTXFIFOFull(I2C_Regs *i2c)
  *  @retval     true if controller TX FIFO is empty
  *  @retval     false if controller TX FIFO is not empty
  */
-__STATIC_INLINE bool DL_I2C_isControllerTXFIFOEmpty(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerTXFIFOEmpty(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK) ==
             DL_I2C_TX_FIFO_COUNT_MAXIMUM);
@@ -842,7 +842,7 @@ __STATIC_INLINE bool DL_I2C_isControllerTXFIFOEmpty(I2C_Regs *i2c)
  *  @retval     true if controller RX FIFO is empty
  *  @retval     false if controller RX FIFO is not empty
  */
-__STATIC_INLINE bool DL_I2C_isControllerRXFIFOEmpty(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerRXFIFOEmpty(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MFIFOSR & I2C_MFIFOSR_RXFIFOCNT_MASK) ==
             I2C_MFIFOSR_RXFIFOCNT_MINIMUM);
@@ -930,7 +930,7 @@ __STATIC_INLINE void DL_I2C_startControllerTransferAdvanced(I2C_Regs *i2c,
  *  @retval     true if target TX FIFO is full
  *  @retval     false if target TX FIFO is not full
  */
-__STATIC_INLINE bool DL_I2C_isTargetTXFIFOFull(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetTXFIFOFull(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SFIFOSR & I2C_SFIFOSR_TXFIFOCNT_MASK) ==
             I2C_SFIFOSR_TXFIFOCNT_MINIMUM);
@@ -946,7 +946,7 @@ __STATIC_INLINE bool DL_I2C_isTargetTXFIFOFull(I2C_Regs *i2c)
  *  @retval     true if target TX FIFO is empty
  *  @retval     false if target TX FIFO is not empty
  */
-__STATIC_INLINE bool DL_I2C_isTargetTXFIFOEmpty(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetTXFIFOEmpty(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SFIFOSR & I2C_SFIFOSR_TXFIFOCNT_MASK) ==
             DL_I2C_TX_FIFO_COUNT_MAXIMUM);
@@ -962,7 +962,7 @@ __STATIC_INLINE bool DL_I2C_isTargetTXFIFOEmpty(I2C_Regs *i2c)
  *  @retval     true if target RX FIFO is empty
  *  @retval     false if target RX FIFO is not empty
  */
-__STATIC_INLINE bool DL_I2C_isTargetRXFIFOEmpty(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetRXFIFOEmpty(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SFIFOSR & I2C_SFIFOSR_RXFIFOCNT_MASK) ==
             I2C_SFIFOSR_RXFIFOCNT_MINIMUM);
@@ -977,7 +977,8 @@ __STATIC_INLINE bool DL_I2C_isTargetRXFIFOEmpty(I2C_Regs *i2c)
  *
  *  @return     Number of bytes that were successfully written
  */
-uint8_t DL_I2C_fillTargetTXFIFO(I2C_Regs *i2c, uint8_t *buffer, uint8_t count);
+uint8_t DL_I2C_fillTargetTXFIFO(
+    I2C_Regs *i2c, const uint8_t *buffer, uint8_t count);
 
 /**
  *  @brief      Flushes/removes all elements in the target TX FIFO
@@ -1029,7 +1030,7 @@ bool DL_I2C_transmitTargetDataCheck(I2C_Regs *i2c, uint8_t data);
  *
  *  @return Data received from target
  */
-uint8_t DL_I2C_receiveTargetDataBlocking(I2C_Regs *i2c);
+uint8_t DL_I2C_receiveTargetDataBlocking(const I2C_Regs *i2c);
 
 /**
  *  @brief  Receive target data
@@ -1044,10 +1045,14 @@ uint8_t DL_I2C_receiveTargetDataBlocking(I2C_Regs *i2c);
  *  @retval true if data could be received
  *  @retval false if data could not be received
  */
-bool DL_I2C_receiveTargetDataCheck(I2C_Regs *i2c, uint8_t *buffer);
+bool DL_I2C_receiveTargetDataCheck(const I2C_Regs *i2c, uint8_t *buffer);
 
 /**
- * @brief Enables power on I2C module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the I2C
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  * @param i2c        Pointer to the register overlay for the peripheral
  */
@@ -1057,7 +1062,12 @@ __STATIC_INLINE void DL_I2C_enablePower(I2C_Regs *i2c)
 }
 
 /**
- * @brief Disables power on i2c module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the I2C
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  * @param i2c        Pointer to the register overlay for the peripheral
  */
@@ -1067,14 +1077,22 @@ __STATIC_INLINE void DL_I2C_disablePower(I2C_Regs *i2c)
 }
 
 /**
- * @brief Returns if  power on i2c module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the I2C
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param i2c        Pointer to the register overlay for the peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_I2C_isPowerEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isPowerEnabled(const I2C_Regs *i2c)
 {
     return (
         (i2c->GPRCM.PWREN & I2C_PWREN_ENABLE_MASK) == I2C_PWREN_ENABLE_ENABLE);
@@ -1101,7 +1119,7 @@ __STATIC_INLINE void DL_I2C_reset(I2C_Regs *i2c)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_I2C_isReset(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isReset(const I2C_Regs *i2c)
 {
     return ((i2c->GPRCM.STAT & I2C_STAT_RESETSTKY_MASK) ==
             I2C_STAT_RESETSTKY_RESET);
@@ -1151,7 +1169,7 @@ __STATIC_INLINE void DL_I2C_selectClockDivider(
  *  @retval     One of @ref DL_I2C_ANALOG_GLITCH_FILTER_WIDTH.
  */
 __STATIC_INLINE DL_I2C_ANALOG_GLITCH_FILTER_WIDTH
-DL_I2C_getAnalogGlitchFilterPulseWidth(I2C_Regs *i2c)
+DL_I2C_getAnalogGlitchFilterPulseWidth(const I2C_Regs *i2c)
 {
     uint32_t filterWidth = i2c->GFCTL & I2C_GFCTL_AGFSEL_MASK;
 
@@ -1187,7 +1205,7 @@ __STATIC_INLINE void DL_I2C_setAnalogGlitchFilterPulseWidth(
  *  @retval     One of @ref DL_I2C_DIGITAL_GLITCH_FILTER_WIDTH.
  */
 __STATIC_INLINE DL_I2C_DIGITAL_GLITCH_FILTER_WIDTH
-DL_I2C_getDigitalGlitchFilterPulseWidth(I2C_Regs *i2c)
+DL_I2C_getDigitalGlitchFilterPulseWidth(const I2C_Regs *i2c)
 {
     uint32_t filterWidth = i2c->GFCTL & I2C_GFCTL_DGFSEL_MASK;
 
@@ -1231,7 +1249,7 @@ __STATIC_INLINE void DL_I2C_disableAnalogGlitchFilter(I2C_Regs *i2c)
  *  @retval     true if analog glitch suppression is enabled
  *  @retval     false if analog glitch suppression is disabled
  */
-__STATIC_INLINE bool DL_I2C_isAnalogGlitchFilterEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isAnalogGlitchFilterEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->GFCTL & I2C_GFCTL_AGFEN_MASK) == I2C_GFCTL_AGFEN_ENABLE);
 }
@@ -1256,7 +1274,7 @@ __STATIC_INLINE void DL_I2C_enableAnalogGlitchFilter(I2C_Regs *i2c)
  *  @retval     One of @ref DL_I2C_CONTROLLER_DIRECTION
  */
 __STATIC_INLINE DL_I2C_CONTROLLER_DIRECTION DL_I2C_getControllerDirection(
-    I2C_Regs *i2c)
+    const I2C_Regs *i2c)
 {
     uint32_t direction = i2c->MASTER.MSA & I2C_MSA_DIR_MASK;
 
@@ -1294,7 +1312,7 @@ __STATIC_INLINE void DL_I2C_setControllerDirection(
  *
  *  @sa         DL_I2C_setTargetAddressingMode
  */
-__STATIC_INLINE uint32_t DL_I2C_getTargetAddress(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTargetAddress(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MSA & I2C_MSA_SADDR_MASK) >> I2C_MSA_SADDR_OFS);
 }
@@ -1330,7 +1348,7 @@ __STATIC_INLINE void DL_I2C_setTargetAddress(
  *
  */
 __STATIC_INLINE DL_I2C_CONTROLLER_ADDRESSING_MODE
-DL_I2C_getControllerAddressingMode(I2C_Regs *i2c)
+DL_I2C_getControllerAddressingMode(const I2C_Regs *i2c)
 {
     uint32_t mode = i2c->MASTER.MSA & I2C_MSA_MMODE_MASK;
 
@@ -1373,7 +1391,7 @@ __STATIC_INLINE void DL_I2C_disableControllerACKOverride(I2C_Regs *i2c)
  *  @retval     true if controller ACK override is enabled
  *  @retval     false if controller ACK override is disabled
  */
-__STATIC_INLINE bool DL_I2C_isControllerACKOverrideEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerACKOverrideEnabled(const I2C_Regs *i2c)
 {
     return (
         (i2c->MASTER.MCTR & I2C_MCTR_MACKOEN_MASK) == I2C_MCTR_MACKOEN_ENABLE);
@@ -1419,7 +1437,8 @@ __STATIC_INLINE void DL_I2C_disableControllerReadOnTXEmpty(I2C_Regs *i2c)
  *  @retval     true if controller read on TX empty is enabled
  *  @retval     false if controller read on TX empty is disabled
  */
-__STATIC_INLINE bool DL_I2C_isControllerReadOnTXEmptyEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerReadOnTXEmptyEnabled(
+    const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCTR & I2C_MCTR_RD_ON_TXEMPTY_MASK) ==
             I2C_MCTR_RD_ON_TXEMPTY_ENABLE);
@@ -1456,7 +1475,7 @@ __STATIC_INLINE void DL_I2C_enableControllerReadOnTXEmpty(I2C_Regs *i2c)
  *
  *  @retval     Value between [0x0, 0x01FF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getControllerPECCountValue(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getControllerPECCountValue(const I2C_Regs *i2c)
 {
     return (i2c->MASTER.CONTROLLER_I2CPECCTL &
             I2C_CONTROLLER_I2CPECCTL_PECCNT_MASK);
@@ -1500,7 +1519,7 @@ __STATIC_INLINE void DL_I2C_disableControllerPEC(I2C_Regs *i2c)
  *  @retval     true if controller PEC is enabled
  *  @retval     false if controller PEC is disabled
  */
-__STATIC_INLINE bool DL_I2C_isControllerPECEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerPECEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.CONTROLLER_I2CPECCTL &
                 I2C_CONTROLLER_I2CPECCTL_PECEN_MASK) ==
@@ -1536,7 +1555,8 @@ __STATIC_INLINE void DL_I2C_enableControllerPEC(I2C_Regs *i2c)
  *
  *  @retval     Value between [0x0, 0x01FF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getControllerCurrentPECCount(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getControllerCurrentPECCount(
+    const I2C_Regs *i2c)
 {
     return (
         i2c->MASTER.CONTROLLER_PECSR & I2C_CONTROLLER_PECSR_PECSTS_CHECK_MASK);
@@ -1555,7 +1575,7 @@ __STATIC_INLINE uint32_t DL_I2C_getControllerCurrentPECCount(I2C_Regs *i2c)
  *  @retval     One of @ref DL_I2C_CONTROLLER_PEC_STATUS
  */
 __STATIC_INLINE DL_I2C_CONTROLLER_PEC_STATUS
-DL_I2C_getControllerPECCheckedStatus(I2C_Regs *i2c)
+DL_I2C_getControllerPECCheckedStatus(const I2C_Regs *i2c)
 {
     uint32_t status =
         i2c->MASTER.CONTROLLER_PECSR & I2C_CONTROLLER_PECSR_PECSTS_CHECK_MASK;
@@ -1576,7 +1596,7 @@ DL_I2C_getControllerPECCheckedStatus(I2C_Regs *i2c)
  *  @retval     One of @ref DL_I2C_CONTROLLER_PEC_CHECK_ERROR
  */
 __STATIC_INLINE DL_I2C_CONTROLLER_PEC_CHECK_ERROR
-DL_I2C_getControllerPECCheckError(I2C_Regs *i2c)
+DL_I2C_getControllerPECCheckError(const I2C_Regs *i2c)
 {
     uint32_t error =
         i2c->MASTER.CONTROLLER_PECSR & I2C_CONTROLLER_PECSR_PECSTS_ERROR_MASK;
@@ -1604,7 +1624,7 @@ __STATIC_INLINE void DL_I2C_disableControllerBurst(I2C_Regs *i2c)
  *  @retval     true if I2C controller burst mode is enabled
  *  @retval     false if I2C controller burst mode is disabled
  */
-__STATIC_INLINE bool DL_I2C_isControllerBurstEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerBurstEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->GFCTL & I2C_MCTR_BURSTRUN_MASK) == I2C_MCTR_BURSTRUN_ENABLE);
 }
@@ -1639,7 +1659,7 @@ __STATIC_INLINE void DL_I2C_disableStartCondition(I2C_Regs *i2c)
  *  @retval     true if I2C START generation is enabled
  *  @retval     false if I2C START generation is disabled
  */
-__STATIC_INLINE bool DL_I2C_isStartConditionEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isStartConditionEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCTR & I2C_MCTR_START_MASK) == I2C_MCTR_START_ENABLE);
 }
@@ -1674,7 +1694,7 @@ __STATIC_INLINE void DL_I2C_disableStopCondition(I2C_Regs *i2c)
  *  @retval     true if I2C STOP generation is enabled
  *  @retval     false if I2C STOP generation is disabled
  */
-__STATIC_INLINE bool DL_I2C_isStopConditionEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isStopConditionEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCTR & I2C_MCTR_STOP_MASK) == I2C_MCTR_STOP_ENABLE);
 }
@@ -1714,7 +1734,7 @@ __STATIC_INLINE void DL_I2C_disableControllerACK(I2C_Regs *i2c)
  *  @retval     true if I2C controller data acknowledge is enabled
  *  @retval     false if I2C controller data acknowledge is disabled
  */
-__STATIC_INLINE bool DL_I2C_isControllerACKEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerACKEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCTR & I2C_MCTR_ACK_MASK) == I2C_MCTR_ACK_ENABLE);
 }
@@ -1742,7 +1762,7 @@ __STATIC_INLINE void DL_I2C_enableControllerACK(I2C_Regs *i2c)
  *
  *  @retval     [0x000, 0xfff]
  */
-__STATIC_INLINE uint32_t DL_I2C_getTransactionLength(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTransactionLength(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCTR & I2C_MCTR_MBLEN_MASK) >> I2C_MCTR_MBLEN_OFS);
 }
@@ -1770,7 +1790,7 @@ __STATIC_INLINE void DL_I2C_setTransactionLength(
  *
  *  @retval     Bitwise OR of @ref DL_I2C_CONTROLLER_STATUS
  */
-__STATIC_INLINE uint32_t DL_I2C_getControllerStatus(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getControllerStatus(const I2C_Regs *i2c)
 {
     return (i2c->MASTER.MSR);
 }
@@ -1784,7 +1804,7 @@ __STATIC_INLINE uint32_t DL_I2C_getControllerStatus(I2C_Regs *i2c)
  *
  *  @retval     [0x000, 0xfff]
  */
-__STATIC_INLINE uint16_t DL_I2C_getTransactionCount(I2C_Regs *i2c)
+__STATIC_INLINE uint16_t DL_I2C_getTransactionCount(const I2C_Regs *i2c)
 {
     return ((uint16_t)(
         (i2c->MASTER.MSR & I2C_MSR_MBCNT_MASK) >> I2C_MSR_MBCNT_OFS));
@@ -1801,7 +1821,7 @@ __STATIC_INLINE uint16_t DL_I2C_getTransactionCount(I2C_Regs *i2c)
  *
  *  @retval     [0x00, 0xff]
  */
-__STATIC_INLINE uint8_t DL_I2C_receiveControllerData(I2C_Regs *i2c)
+__STATIC_INLINE uint8_t DL_I2C_receiveControllerData(const I2C_Regs *i2c)
 {
     return ((uint8_t)(i2c->MASTER.MRXDATA & I2C_MRXDATA_VALUE_MASK));
 }
@@ -1841,7 +1861,7 @@ __STATIC_INLINE void DL_I2C_transmitControllerData(I2C_Regs *i2c, uint8_t data)
  *
  *  @retval     [0x00, 0x7f]
  */
-__STATIC_INLINE uint8_t DL_I2C_getTimerPeriod(I2C_Regs *i2c)
+__STATIC_INLINE uint8_t DL_I2C_getTimerPeriod(const I2C_Regs *i2c)
 {
     return ((uint8_t)(i2c->MASTER.MTPR & I2C_MTPR_TPR_MASK));
 }
@@ -1890,7 +1910,7 @@ __STATIC_INLINE void DL_I2C_disableLoopbackMode(I2C_Regs *i2c)
  *  @retval     true if loopback mode is enabled
  *  @retval     false if loopback mode is disabled
  */
-__STATIC_INLINE bool DL_I2C_isLoopbackModeEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isLoopbackModeEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCR & I2C_MCR_LPBK_MASK) == I2C_MCR_LPBK_ENABLE);
 }
@@ -1925,7 +1945,7 @@ __STATIC_INLINE void DL_I2C_disableMultiControllerMode(I2C_Regs *i2c)
  *  @retval     true if multicontroller mode is enabled
  *  @retval     false if multicontroller mode is disabled
  */
-__STATIC_INLINE bool DL_I2C_isMultiControllerModeEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isMultiControllerModeEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCR & I2C_MCR_MMST_MASK) == I2C_MCR_MMST_ENABLE);
 }
@@ -1964,7 +1984,7 @@ __STATIC_INLINE void DL_I2C_disableController(I2C_Regs *i2c)
  *  @retval     true if controller is enabled
  *  @retval     false if controller is disabled
  */
-__STATIC_INLINE bool DL_I2C_isControllerEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCR & I2C_MCR_ACTIVE_MASK) == I2C_MCR_ACTIVE_ENABLE);
 }
@@ -2006,7 +2026,8 @@ __STATIC_INLINE void DL_I2C_disableControllerClockStretching(I2C_Regs *i2c)
  *  @retval     true if controller clock stretching is enabled
  *  @retval     false if controller clock stretching is disabled
  */
-__STATIC_INLINE bool DL_I2C_isControllerClockStretchingEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerClockStretchingEnabled(
+    const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MCR & I2C_MCR_CLKSTRETCH_MASK) ==
             I2C_MCR_CLKSTRETCH_ENABLE);
@@ -2035,7 +2056,7 @@ __STATIC_INLINE void DL_I2C_enableControllerClockStretching(I2C_Regs *i2c)
  *
  *  @retval     One of @ref DL_I2C_CONTROLLER_SCL
  */
-__STATIC_INLINE DL_I2C_CONTROLLER_SCL DL_I2C_getSCLStatus(I2C_Regs *i2c)
+__STATIC_INLINE DL_I2C_CONTROLLER_SCL DL_I2C_getSCLStatus(const I2C_Regs *i2c)
 {
     uint32_t sclStatus = i2c->MASTER.MBMON & I2C_MBMON_SCL_MASK;
 
@@ -2051,7 +2072,7 @@ __STATIC_INLINE DL_I2C_CONTROLLER_SCL DL_I2C_getSCLStatus(I2C_Regs *i2c)
  *
  *  @retval     One of @ref DL_I2C_CONTROLLER_SDA
  */
-__STATIC_INLINE DL_I2C_CONTROLLER_SDA DL_I2C_getSDAStatus(I2C_Regs *i2c)
+__STATIC_INLINE DL_I2C_CONTROLLER_SDA DL_I2C_getSDAStatus(const I2C_Regs *i2c)
 {
     uint32_t sdaStatus = i2c->MASTER.MBMON & I2C_MBMON_SDA_MASK;
 
@@ -2068,7 +2089,7 @@ __STATIC_INLINE DL_I2C_CONTROLLER_SDA DL_I2C_getSDAStatus(I2C_Regs *i2c)
  *  @retval     One of @ref DL_I2C_TX_FIFO_LEVEL
  */
 __STATIC_INLINE DL_I2C_TX_FIFO_LEVEL DL_I2C_getControllerTXFIFOThreshold(
-    I2C_Regs *i2c)
+    const I2C_Regs *i2c)
 {
     uint32_t level = i2c->MASTER.MFIFOCTL & I2C_MFIFOCTL_TXTRIG_MASK;
 
@@ -2123,7 +2144,7 @@ __STATIC_INLINE void DL_I2C_startFlushControllerTXFIFO(I2C_Regs *i2c)
  *  @retval     One of @ref DL_I2C_RX_FIFO_LEVEL
  */
 __STATIC_INLINE DL_I2C_RX_FIFO_LEVEL DL_I2C_getControllerRXFIFOThreshold(
-    I2C_Regs *i2c)
+    const I2C_Regs *i2c)
 {
     uint32_t level = i2c->MASTER.MFIFOCTL & I2C_MFIFOCTL_RXTRIG_MASK;
 
@@ -2177,7 +2198,7 @@ __STATIC_INLINE void DL_I2C_startFlushControllerRXFIFO(I2C_Regs *i2c)
  *
  *  @retval     [0x0, 0x8]
  */
-__STATIC_INLINE uint32_t DL_I2C_getControllerRXFIFOCounter(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getControllerRXFIFOCounter(const I2C_Regs *i2c)
 {
     return (i2c->MASTER.MFIFOSR & I2C_MFIFOSR_RXFIFOCNT_MASK);
 }
@@ -2191,7 +2212,7 @@ __STATIC_INLINE uint32_t DL_I2C_getControllerRXFIFOCounter(I2C_Regs *i2c)
  *
  *  @retval     [0x0, 0x8]
  */
-__STATIC_INLINE uint32_t DL_I2C_getControllerTXFIFOCounter(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getControllerTXFIFOCounter(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MFIFOSR & I2C_MFIFOSR_TXFIFOCNT_MASK) >>
             I2C_MFIFOSR_TXFIFOCNT_OFS);
@@ -2207,7 +2228,7 @@ __STATIC_INLINE uint32_t DL_I2C_getControllerTXFIFOCounter(I2C_Regs *i2c)
  *  @retval     true if controller RX FIFO flush is active
  *  @retval     false if controller RX FIFO flush is not active
  */
-__STATIC_INLINE bool DL_I2C_isControllerRXFIFOFlushActive(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerRXFIFOFlushActive(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MFIFOSR & I2C_MFIFOSR_RXFLUSH_MASK) ==
             I2C_MFIFOSR_RXFLUSH_ACTIVE);
@@ -2223,7 +2244,7 @@ __STATIC_INLINE bool DL_I2C_isControllerRXFIFOFlushActive(I2C_Regs *i2c)
  *  @retval     true if controller TX FIFO flush is active
  *  @retval     false if controller TX FIFO flush is not active
  */
-__STATIC_INLINE bool DL_I2C_isControllerTXFIFOFlushActive(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isControllerTXFIFOFlushActive(const I2C_Regs *i2c)
 {
     return ((i2c->MASTER.MFIFOSR & I2C_MFIFOSR_TXFLUSH_MASK) ==
             I2C_MFIFOSR_TXFLUSH_ACTIVE);
@@ -2258,7 +2279,7 @@ __STATIC_INLINE void DL_I2C_setTargetOwnAddress(I2C_Regs *i2c, uint32_t addr)
  *
  *  @retval     [0x00, 0x3FF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getTargetOwnAddress(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTargetOwnAddress(const I2C_Regs *i2c)
 {
     return (i2c->SLAVE.SOAR & I2C_SOAR_OAR_MASK);
 }
@@ -2295,7 +2316,7 @@ __STATIC_INLINE void DL_I2C_disableTargetOwnAddress(I2C_Regs *i2c)
  *  @retval     true if target own address is enabled
  *  @retval     false if target own address is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetOwnAddressEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetOwnAddressEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SOAR & I2C_SOAR_OAREN_MASK) == I2C_SOAR_OAREN_ENABLE);
 }
@@ -2327,7 +2348,7 @@ __STATIC_INLINE void DL_I2C_setTargetAddressingMode(
  *  @retval     One of @ref DL_I2C_TARGET_ADDRESSING_MODE
  */
 __STATIC_INLINE DL_I2C_TARGET_ADDRESSING_MODE DL_I2C_getTargetAddressingMode(
-    I2C_Regs *i2c)
+    const I2C_Regs *i2c)
 {
     uint32_t mode = i2c->SLAVE.SOAR & I2C_SOAR_SMODE_MASK;
 
@@ -2342,7 +2363,7 @@ __STATIC_INLINE DL_I2C_TARGET_ADDRESSING_MODE DL_I2C_getTargetAddressingMode(
  *
  *  @retval     [0x00, 0x7f]
  */
-__STATIC_INLINE uint32_t I2C_getTargetOwnAddressAlternate(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t I2C_getTargetOwnAddressAlternate(const I2C_Regs *i2c)
 {
     return (i2c->SLAVE.SOAR2 & I2C_SOAR2_OAR2_MASK);
 }
@@ -2369,7 +2390,8 @@ __STATIC_INLINE void DL_I2C_setTargetOwnAddressAlternate(
  *  @retval     Bit mask with each bit corresponding to bits A6 through A0 of
  *              the target address. Value between [0x00, 0x7F]
  */
-__STATIC_INLINE uint32_t I2C_getTargetOwnAddressAlternateMask(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t I2C_getTargetOwnAddressAlternateMask(
+    const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SOAR2 & I2C_SOAR2_OAR2_MASK_MASK) >>
             I2C_SOAR2_OAR2_MASK_OFS);
@@ -2414,7 +2436,8 @@ __STATIC_INLINE void DL_I2C_disableTargetOwnAddressAlternate(I2C_Regs *i2c)
  *  @retval     true if target own address alternate is enabled
  *  @retval     false if target own address alternate is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetOwnAddressAlternateEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetOwnAddressAlternateEnabled(
+    const I2C_Regs *i2c)
 {
     return (
         (i2c->SLAVE.SOAR2 & I2C_SOAR2_OAR2EN_MASK) == I2C_SOAR2_OAR2EN_ENABLE);
@@ -2440,7 +2463,7 @@ __STATIC_INLINE void DL_I2C_enableTargetOwnAddressAlternate(I2C_Regs *i2c)
  *  @retval     Bit mask with each bit corresponding to the target address.
  *  Value between [0x00, 0x7F] in 7-bit mode, or [0x00, 0x3FF] in 10-bit mode.
  */
-__STATIC_INLINE uint32_t DL_I2C_getTargetAddressMatch(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTargetAddressMatch(const I2C_Regs *i2c)
 {
     return (
         (i2c->SLAVE.SSR & I2C_SSR_ADDRMATCH_MASK) >> I2C_SSR_ADDRMATCH_OFS);
@@ -2472,7 +2495,7 @@ __STATIC_INLINE void DL_I2C_disableTargetClockStretching(I2C_Regs *i2c)
  *  @retval     true if target clock stretching is enabled
  *  @retval     false if target clock stretching is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetClockStretchingEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetClockStretchingEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_SCLKSTRETCH_MASK) ==
             I2C_SCTR_SCLKSTRETCH_ENABLE);
@@ -2521,7 +2544,8 @@ __STATIC_INLINE void DL_I2C_disableTargetTXEmptyOnTXRequest(I2C_Regs *i2c)
  *  @retval     true if TX empty interrupt on transmit request is enabled
  *  @retval     false if TX empty interrupt on transmit request disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetTXEmptyOnTXRequestEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetTXEmptyOnTXRequestEnabled(
+    const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_TXEMPTY_ON_TREQ_MASK) ==
             I2C_SCTR_TXEMPTY_ON_TREQ_ENABLE);
@@ -2564,7 +2588,8 @@ __STATIC_INLINE void DL_I2C_disableTargetTXTriggerInTXMode(I2C_Regs *i2c)
  *  @retval     true if target TX trigger in TX mode is enabled
  *  @retval     false if target TX trigger in TX mode is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetTXTriggerInTXModeEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetTXTriggerInTXModeEnabled(
+    const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_TXTRIG_TXMODE_MASK) ==
             I2C_SCTR_TXTRIG_TXMODE_ENABLE);
@@ -2618,7 +2643,8 @@ __STATIC_INLINE void DL_I2C_disableTargetTXWaitWhenTXFIFOStale(I2C_Regs *i2c)
  *  @retval     false  if target TX transfer waits when stale data in TX FIFO
  *                     is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetTXWaitWhenTXFIFOStaleEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetTXWaitWhenTXFIFOStaleEnabled(
+    const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_TXWAIT_STALE_TXFIFO_MASK) ==
             I2C_SCTR_TXWAIT_STALE_TXFIFO_ENABLE);
@@ -2668,7 +2694,8 @@ __STATIC_INLINE void DL_I2C_disableTargetRXFullOnRXRequest(I2C_Regs *i2c)
  *  @retval     true   if target RX full interrupt on receive request enabled
  *  @retval     false  if target RX full interrupt on receive request disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetRXFullOnRXRequestEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetRXFullOnRXRequestEnabled(
+    const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_RXFULL_ON_RREQ_MASK) ==
             I2C_SCTR_RXFULL_ON_RREQ_ENABLE);
@@ -2716,7 +2743,7 @@ __STATIC_INLINE void DL_I2C_disableDefaultHostAddress(I2C_Regs *i2c)
  *  @retval     true   if default host address is enabled
  *  @retval     false  if default host address disabled
  */
-__STATIC_INLINE bool DL_I2C_isDefaultHostAddressEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isDefaultHostAddressEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_EN_DEFHOSTADR_MASK) ==
             I2C_SCTR_EN_DEFHOSTADR_ENABLE);
@@ -2762,7 +2789,7 @@ __STATIC_INLINE void DL_I2C_disableAlertResponseAddress(I2C_Regs *i2c)
  *  @retval     true   if alert response address is enabled
  *  @retval     false  if alert response address disabled
  */
-__STATIC_INLINE bool DL_I2C_isAlertResponseAddressEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isAlertResponseAddressEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_EN_ALRESPADR_MASK) ==
             I2C_SCTR_EN_ALRESPADR_ENABLE);
@@ -2808,7 +2835,7 @@ __STATIC_INLINE void DL_I2C_disableDefaultDeviceAddress(I2C_Regs *i2c)
  *  @retval     true   if default device address is enabled
  *  @retval     false  if default device address disabled
  */
-__STATIC_INLINE bool DL_I2C_isDefaultDeviceAddressEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isDefaultDeviceAddressEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_EN_DEFDEVADR_MASK) ==
             I2C_SCTR_EN_DEFDEVADR_ENABLE);
@@ -2850,7 +2877,7 @@ __STATIC_INLINE void DL_I2C_disableTargetWakeup(I2C_Regs *i2c)
  *  @retval     true   if target wakeup is enabled
  *  @retval     false  if target wakeup disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetWakeupEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetWakeupEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SCTR & I2C_SCTR_SWUEN_MASK) == I2C_SCTR_SWUEN_ENABLE);
 }
@@ -2890,7 +2917,7 @@ __STATIC_INLINE void DL_I2C_disableTarget(I2C_Regs *i2c)
  *  @retval     true if target functionality is enabled
  *  @retval     false if target functionality is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetEnabled(const I2C_Regs *i2c)
 {
     return (
         (i2c->SLAVE.SCTR & I2C_SCTR_ACTIVE_MASK) == I2C_SCTR_ACTIVE_ENABLE);
@@ -2926,7 +2953,7 @@ __STATIC_INLINE void DL_I2C_disableGeneralCall(I2C_Regs *i2c)
  *  @retval     true if general call is enabled
  *  @retval     false if general call is disabled
  */
-__STATIC_INLINE bool DL_I2C_isGeneralCallEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isGeneralCallEnabled(const I2C_Regs *i2c)
 {
     return (
         (i2c->SLAVE.SCTR & I2C_SCTR_GENCALL_MASK) == I2C_SCTR_GENCALL_ENABLE);
@@ -2951,7 +2978,7 @@ __STATIC_INLINE void DL_I2C_enableGeneralCall(I2C_Regs *i2c)
  *
  *  @retval     Bitwise OR of @ref DL_I2C_TARGET_STATUS
  */
-__STATIC_INLINE uint32_t DL_I2C_getTargetStatus(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTargetStatus(const I2C_Regs *i2c)
 {
     return (i2c->SLAVE.SSR);
 }
@@ -2967,7 +2994,7 @@ __STATIC_INLINE uint32_t DL_I2C_getTargetStatus(I2C_Regs *i2c)
  *
  *  @retval     [0x00, 0xff]
  */
-__STATIC_INLINE uint8_t DL_I2C_receiveTargetData(I2C_Regs *i2c)
+__STATIC_INLINE uint8_t DL_I2C_receiveTargetData(const I2C_Regs *i2c)
 {
     return (uint8_t)(i2c->SLAVE.SRXDATA & I2C_SRXDATA_VALUE_MASK);
 }
@@ -3007,7 +3034,7 @@ __STATIC_INLINE void DL_I2C_disableTargetACKOverride(I2C_Regs *i2c)
  *  @retval     true if target ACK override is enabled
  *  @retval     false if target ACK override is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetACKOverrideEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetACKOverrideEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SACKCTL & I2C_SACKCTL_ACKOEN_MASK) ==
             I2C_SACKCTL_ACKOEN_ENABLE);
@@ -3042,7 +3069,7 @@ __STATIC_INLINE void DL_I2C_enableTargetACKOverride(I2C_Regs *i2c)
  *  @retval     One of @ref DL_I2C_TARGET_RESPONSE_OVERRIDE_VALUE.
  */
 __STATIC_INLINE DL_I2C_TARGET_RESPONSE_OVERRIDE_VALUE
-DL_I2C_getTargetACKOverrideValue(I2C_Regs *i2c)
+DL_I2C_getTargetACKOverrideValue(const I2C_Regs *i2c)
 {
     uint32_t value = i2c->SLAVE.SACKCTL & I2C_SACKCTL_ACKOVAL_MASK;
 
@@ -3088,7 +3115,7 @@ __STATIC_INLINE void DL_I2C_disableACKOverrideOnStart(I2C_Regs *i2c)
  *  @retval     true if target ACK override on Start condition is enabled
  *  @retval     false if target ACK override on Start condition is disabled
  */
-__STATIC_INLINE bool DL_I2C_isACKOverrideOnStartEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isACKOverrideOnStartEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SACKCTL & I2C_SACKCTL_ACKOEN_ON_START_MASK) ==
             I2C_SACKCTL_ACKOEN_ON_START_ENABLE);
@@ -3130,7 +3157,7 @@ __STATIC_INLINE void DL_I2C_disableACKOverrideOnPECNext(I2C_Regs *i2c)
  *  @retval     true if target ACK override when PEC is next byte is enabled
  *  @retval     false if target ACK override when PEC is next byte is disabled
  */
-__STATIC_INLINE bool DL_I2C_isACKOverrideOnPECNextEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isACKOverrideOnPECNextEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SACKCTL & I2C_SACKCTL_ACKOEN_ON_PECNEXT_MASK) ==
             I2C_SACKCTL_ACKOEN_ON_PECNEXT_ENABLE);
@@ -3175,7 +3202,7 @@ __STATIC_INLINE void DL_I2C_disableACKOverrideOnPECDone(I2C_Regs *i2c)
  *  @retval     true if target ACK override when PEC is next byte is enabled
  *  @retval     false if target ACK override when PEC is next byte is disabled
  */
-__STATIC_INLINE bool DL_I2C_isACKOverrideOnPECDoneEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isACKOverrideOnPECDoneEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SACKCTL & I2C_SACKCTL_ACKOEN_ON_PECDONE_MASK) ==
             I2C_SACKCTL_ACKOEN_ON_PECDONE_ENABLE);
@@ -3206,7 +3233,7 @@ __STATIC_INLINE void DL_I2C_enableACKOverrideOnPECDone(I2C_Regs *i2c)
  *
  *  @retval     Value between [0x0, 0x01FF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getTargetPECCountValue(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTargetPECCountValue(const I2C_Regs *i2c)
 {
     return (i2c->SLAVE.TARGET_PECCTL & I2C_TARGET_PECCTL_PECCNT_MASK);
 }
@@ -3250,7 +3277,7 @@ __STATIC_INLINE void DL_I2C_disableTargetPEC(I2C_Regs *i2c)
  *  @retval     true if target PEC is enabled
  *  @retval     false if target PEC is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTargetPECEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetPECEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.TARGET_PECCTL & I2C_TARGET_PECCTL_PECEN_MASK) ==
             I2C_TARGET_PECCTL_PECEN_ENABLE);
@@ -3285,7 +3312,7 @@ __STATIC_INLINE void DL_I2C_enableTargetPEC(I2C_Regs *i2c)
  *
  *  @retval     Value between [0x0, 0x01FF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getTargetCurrentPECCount(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTargetCurrentPECCount(const I2C_Regs *i2c)
 {
     return (i2c->SLAVE.TARGET_PECCTL & I2C_TARGET_PECSR_PECBYTECNT_MASK);
 }
@@ -3304,7 +3331,7 @@ __STATIC_INLINE uint32_t DL_I2C_getTargetCurrentPECCount(I2C_Regs *i2c)
  *  @retval     One of @ref DL_I2C_TARGET_PEC_STATUS
  */
 __STATIC_INLINE DL_I2C_TARGET_PEC_STATUS DL_I2C_getTargetPECCheckedStatus(
-    I2C_Regs *i2c)
+    const I2C_Regs *i2c)
 {
     uint32_t status =
         i2c->SLAVE.TARGET_PECSR & I2C_TARGET_PECSR_PECSTS_CHECK_MASK;
@@ -3325,7 +3352,7 @@ __STATIC_INLINE DL_I2C_TARGET_PEC_STATUS DL_I2C_getTargetPECCheckedStatus(
  *  @retval     One of @ref DL_I2C_TARGET_PEC_CHECK_ERROR
  */
 __STATIC_INLINE DL_I2C_TARGET_PEC_CHECK_ERROR DL_I2C_getTargetPECCheckError(
-    I2C_Regs *i2c)
+    const I2C_Regs *i2c)
 {
     uint32_t status =
         i2c->SLAVE.TARGET_PECSR & I2C_TARGET_PECSR_PECSTS_ERROR_MASK;
@@ -3343,7 +3370,7 @@ __STATIC_INLINE DL_I2C_TARGET_PEC_CHECK_ERROR DL_I2C_getTargetPECCheckError(
  *  @retval     One of @ref DL_I2C_TX_FIFO_LEVEL
  */
 __STATIC_INLINE DL_I2C_TX_FIFO_LEVEL DL_I2C_getTargetTXFIFOThreshold(
-    I2C_Regs *i2c)
+    const I2C_Regs *i2c)
 {
     uint32_t level = i2c->SLAVE.SFIFOCTL & I2C_SFIFOCTL_TXTRIG_MASK;
 
@@ -3421,7 +3448,7 @@ __STATIC_INLINE void DL_I2C_startFlushTargetRXFIFO(I2C_Regs *i2c)
  *  @retval     One of @ref DL_I2C_RX_FIFO_LEVEL
  */
 __STATIC_INLINE DL_I2C_RX_FIFO_LEVEL DL_I2C_getTargetRXFIFOThreshold(
-    I2C_Regs *i2c)
+    const I2C_Regs *i2c)
 {
     uint32_t level = i2c->SLAVE.SFIFOCTL & I2C_SFIFOCTL_RXTRIG_MASK;
 
@@ -3452,7 +3479,7 @@ __STATIC_INLINE void DL_I2C_setTargetRXFIFOThreshold(
  *
  *  @retval     [0x0, 0x8]
  */
-__STATIC_INLINE uint32_t DL_I2C_getTargetRXFIFOCounter(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTargetRXFIFOCounter(const I2C_Regs *i2c)
 {
     return (i2c->SLAVE.SFIFOSR & I2C_SFIFOSR_RXFIFOCNT_MASK);
 }
@@ -3466,7 +3493,7 @@ __STATIC_INLINE uint32_t DL_I2C_getTargetRXFIFOCounter(I2C_Regs *i2c)
  *
  *  @retval     [0x0, 0x8]
  */
-__STATIC_INLINE uint32_t DL_I2C_getTargetTXFIFOCounter(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTargetTXFIFOCounter(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SFIFOSR & I2C_SFIFOSR_TXFIFOCNT_MASK) >>
             I2C_SFIFOSR_TXFIFOCNT_OFS);
@@ -3482,7 +3509,7 @@ __STATIC_INLINE uint32_t DL_I2C_getTargetTXFIFOCounter(I2C_Regs *i2c)
  *  @retval     true if target RX FIFO flush is active
  *  @retval     false if target RX FIFO flush is not active
  */
-__STATIC_INLINE bool DL_I2C_isTargetRXFIFOFlushActive(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetRXFIFOFlushActive(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SFIFOSR & I2C_SFIFOSR_RXFLUSH_MASK) ==
             I2C_SFIFOSR_RXFLUSH_ACTIVE);
@@ -3498,7 +3525,7 @@ __STATIC_INLINE bool DL_I2C_isTargetRXFIFOFlushActive(I2C_Regs *i2c)
  *  @retval     true if target TX FIFO flush is active
  *  @retval     false if target TX FIFO flush is not active
  */
-__STATIC_INLINE bool DL_I2C_isTargetTXFIFOFlushActive(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTargetTXFIFOFlushActive(const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SFIFOSR & I2C_SFIFOSR_TXFLUSH_MASK) ==
             I2C_SFIFOSR_TXFLUSH_ACTIVE);
@@ -3545,7 +3572,7 @@ __STATIC_INLINE void DL_I2C_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_I2C_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_I2C_getEnabledInterrupts(
-    I2C_Regs *i2c, uint32_t interruptMask)
+    const I2C_Regs *i2c, uint32_t interruptMask)
 {
     return (i2c->CPU_INT.IMASK & interruptMask);
 }
@@ -3568,7 +3595,7 @@ __STATIC_INLINE uint32_t DL_I2C_getEnabledInterrupts(
  *  @sa         DL_I2C_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_I2C_getEnabledInterruptStatus(
-    I2C_Regs *i2c, uint32_t interruptMask)
+    const I2C_Regs *i2c, uint32_t interruptMask)
 {
     return (i2c->CPU_INT.MIS & interruptMask);
 }
@@ -3589,7 +3616,7 @@ __STATIC_INLINE uint32_t DL_I2C_getEnabledInterruptStatus(
  *  @retval     Bitwise OR of @ref DL_I2C_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_I2C_getRawInterruptStatus(
-    I2C_Regs *i2c, uint32_t interruptMask)
+    const I2C_Regs *i2c, uint32_t interruptMask)
 {
     return (i2c->CPU_INT.RIS & interruptMask);
 }
@@ -3606,7 +3633,7 @@ __STATIC_INLINE uint32_t DL_I2C_getRawInterruptStatus(
  *
  *  @retval     One of @ref DL_I2C_IIDX
  */
-__STATIC_INLINE DL_I2C_IIDX DL_I2C_getPendingInterrupt(I2C_Regs *i2c)
+__STATIC_INLINE DL_I2C_IIDX DL_I2C_getPendingInterrupt(const I2C_Regs *i2c)
 {
     return ((DL_I2C_IIDX) i2c->CPU_INT.IIDX);
 }
@@ -3734,7 +3761,7 @@ __STATIC_INLINE uint32_t DL_I2C_getEnabledDMAEvents(
  *  @sa         DL_I2C_enableDMAEvent
  */
 __STATIC_INLINE uint32_t DL_I2C_getEnabledDMAEventStatus(
-    I2C_Regs *i2c, DL_I2C_EVENT_ROUTE index, uint32_t interruptMask)
+    const I2C_Regs *i2c, DL_I2C_EVENT_ROUTE index, uint32_t interruptMask)
 {
     const volatile uint32_t *pReg = &i2c->DMA_TRIG1.MIS;
 
@@ -3760,7 +3787,7 @@ __STATIC_INLINE uint32_t DL_I2C_getEnabledDMAEventStatus(
  *  @retval     Bitwise OR of @ref DL_I2C_DMA_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_I2C_getRawDMAEventStatus(
-    I2C_Regs *i2c, DL_I2C_EVENT_ROUTE index, uint32_t interruptMask)
+    const I2C_Regs *i2c, DL_I2C_EVENT_ROUTE index, uint32_t interruptMask)
 {
     const volatile uint32_t *pReg = &i2c->DMA_TRIG1.RIS;
 
@@ -3784,7 +3811,7 @@ __STATIC_INLINE uint32_t DL_I2C_getRawDMAEventStatus(
  *  @retval     One of @ref DL_I2C_DMA_IIDX
  */
 __STATIC_INLINE DL_I2C_DMA_IIDX DL_I2C_getPendingDMAEvent(
-    I2C_Regs *i2c, DL_I2C_EVENT_ROUTE index)
+    const I2C_Regs *i2c, DL_I2C_EVENT_ROUTE index)
 {
     const volatile uint32_t *pReg = &i2c->DMA_TRIG1.IIDX;
 
@@ -3840,7 +3867,7 @@ __STATIC_INLINE void DL_I2C_disableGlitchFilterChaining(I2C_Regs *i2c)
  *  @retval     true if glitch filter chaining is enabled
  *  @retval     false if glitch filter chaining is disabled
  */
-__STATIC_INLINE bool DL_I2C_isGlitchFilterChainingEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isGlitchFilterChainingEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->GFCTL & I2C_GFCTL_CHAIN_MASK) == I2C_GFCTL_CHAIN_ENABLE);
 }
@@ -3867,7 +3894,7 @@ __STATIC_INLINE void DL_I2C_enableGlitchFilterChaining(I2C_Regs *i2c)
  *
  *  @retval     Value between [0x0, 0xFF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getTimeoutACount(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTimeoutACount(const I2C_Regs *i2c)
 {
     return (i2c->TIMEOUT_CTL & I2C_TIMEOUT_CTL_TCNTLA_MASK);
 }
@@ -3913,7 +3940,7 @@ __STATIC_INLINE void DL_I2C_disableTimeoutA(I2C_Regs *i2c)
  *  @retval     true if Timeout Counter A is enabled
  *  @retval     false if Timeout Counter A is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTimeoutAEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTimeoutAEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->TIMEOUT_CTL & I2C_TIMEOUT_CTL_TCNTAEN_MASK) ==
             I2C_TIMEOUT_CTL_TCNTAEN_ENABLE);
@@ -3941,7 +3968,7 @@ __STATIC_INLINE void DL_I2C_enableTimeoutA(I2C_Regs *i2c)
  *
  *  @retval     Value between [0x0, 0xFF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getCurrentTimeoutACounter(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getCurrentTimeoutACounter(const I2C_Regs *i2c)
 {
     return (i2c->TIMEOUT_CNT & I2C_TIMEOUT_CNT_TCNTA_MASK);
 }
@@ -3955,7 +3982,7 @@ __STATIC_INLINE uint32_t DL_I2C_getCurrentTimeoutACounter(I2C_Regs *i2c)
  *
  *  @retval     Value between [0x0, 0xFF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getTimeoutBCount(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getTimeoutBCount(const I2C_Regs *i2c)
 {
     return ((i2c->TIMEOUT_CTL & I2C_TIMEOUT_CTL_TCNTLB_MASK) >>
             I2C_TIMEOUT_CTL_TCNTLB_OFS);
@@ -4001,7 +4028,7 @@ __STATIC_INLINE void DL_I2C_disableTimeoutB(I2C_Regs *i2c)
  *  @retval     true if Timeout Counter B is enabled
  *  @retval     false if Timeout Counter B is disabled
  */
-__STATIC_INLINE bool DL_I2C_isTimeoutBEnabled(I2C_Regs *i2c)
+__STATIC_INLINE bool DL_I2C_isTimeoutBEnabled(const I2C_Regs *i2c)
 {
     return ((i2c->TIMEOUT_CTL & I2C_TIMEOUT_CTL_TCNTBEN_MASK) ==
             I2C_TIMEOUT_CTL_TCNTBEN_ENABLE);
@@ -4029,7 +4056,7 @@ __STATIC_INLINE void DL_I2C_enableTimeoutB(I2C_Regs *i2c)
  *
  *  @retval     Value between [0x0, 0xFF]
  */
-__STATIC_INLINE uint32_t DL_I2C_getCurrentTimeoutBCounter(I2C_Regs *i2c)
+__STATIC_INLINE uint32_t DL_I2C_getCurrentTimeoutBCounter(const I2C_Regs *i2c)
 {
     return (i2c->TIMEOUT_CNT & I2C_TIMEOUT_CNT_TCNTB_MASK);
 }

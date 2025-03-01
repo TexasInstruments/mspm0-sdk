@@ -62,7 +62,7 @@ bool DL_SYSCTL_initIPProtectFirewall(uint32_t startAddr, uint32_t endAddr)
     return status;
 }
 
-void DL_SYSCTL_setLFCLKSourceLFXT(DL_SYSCTL_LFCLKConfig *config)
+void DL_SYSCTL_setLFCLKSourceLFXT(const DL_SYSCTL_LFCLKConfig *config)
 {
     DL_Common_updateReg(&SYSCTL->SOCLOCK.LFCLKCFG,
         ((uint32_t) config->lowCap << SYSCTL_LFCLKCFG_LOWCAP_OFS) |

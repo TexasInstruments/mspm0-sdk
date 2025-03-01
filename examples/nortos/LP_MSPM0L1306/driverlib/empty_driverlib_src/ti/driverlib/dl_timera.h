@@ -63,8 +63,8 @@ extern "C" {
 
 /**
  * @brief Configuration structure to backup Timer A peripheral state before
- *        entering STOP or STANDBY mode. Not required after PG 1.0 silicon.
- *        Used by @ref DL_TimerA_saveConfiguration and
+ *        entering STOP or STANDBY mode. Used by
+ *        @ref DL_TimerA_saveConfiguration and
  *        @ref DL_TimerA_restoreConfiguration
  */
 typedef struct {
@@ -1331,6 +1331,16 @@ typedef DL_Timer_CompareTriggerConfig            DL_TimerA_CompareTriggerConfig;
  */
 #define DL_TimerA_getCaptCompUpdateMethod          DL_Timer_getCaptCompUpdateMethod
 
+/*!
+ * @brief Redirects to common @ref DL_Timer_setCaptCompActUpdateMethod
+ */
+#define DL_TimerA_setCaptCompActUpdateMethod          DL_Timer_setCaptCompActUpdateMethod
+
+/*!
+ * @brief Redirects to common @ref DL_Timer_getCaptCompActUpdateMethod
+ */
+#define DL_TimerA_getCaptCompActUpdateMethod          DL_Timer_getCaptCompActUpdateMethod
+
 
 /*!
  * @brief Redirects to common @ref DL_Timer_enableSuppressionOfCompEvent
@@ -1692,9 +1702,8 @@ typedef DL_Timer_CompareTriggerConfig            DL_TimerA_CompareTriggerConfig;
 
 /**
  *  @brief      Saves TimerA configuration before entering STOP or STANDBY mode.
- *              Only necessary for PG 1.0 silicon. Timer must be in IDLE state
- *              before calling this API. Timer can be put IDLE state by calling
- *              @ref DL_TimerA_stopCounter.
+ *              Timer must be in IDLE state before calling this API. Timer can
+ *              be put IDLE state by calling @ref DL_TimerA_stopCounter.
  *
  *  @param[in]  gptimer  Pointer to the register overlay for the peripheral
  *
@@ -1706,11 +1715,11 @@ typedef DL_Timer_CompareTriggerConfig            DL_TimerA_CompareTriggerConfig;
  *
  */
 bool DL_TimerA_saveConfiguration(
-    GPTIMER_Regs *gptimer, DL_TimerA_backupConfig *ptr);
+    const GPTIMER_Regs *gptimer, DL_TimerA_backupConfig *ptr);
 
 /**
  *  @brief      Restore TimerA configuration after leaving a STOP or STANDBY
- *              mode. Only necessary for PG 1.0 silicon.
+ *              mode.
  *
  *  @param[in]  gptimer  Pointer to the register overlay for the peripheral
  *

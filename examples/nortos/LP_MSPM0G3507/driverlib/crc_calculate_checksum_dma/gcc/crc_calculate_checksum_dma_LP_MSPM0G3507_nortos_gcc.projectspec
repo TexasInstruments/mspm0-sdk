@@ -68,11 +68,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../crc_calculate_checksum_dma.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../crc_calculate_checksum_dma.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../crc_calculate_checksum_dma.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

@@ -52,7 +52,7 @@ static void DL_Timer_getInChanPairConfig(
     DL_TIMER_INPUT_CHAN chan, Timer_Input_Pair_Chan_Config *config);
 
 void DL_Timer_setClockConfig(
-    GPTIMER_Regs *gptimer, DL_Timer_ClockConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_ClockConfig *config)
 {
     gptimer->CLKSEL = (uint32_t)(config->clockSel);
 
@@ -62,7 +62,7 @@ void DL_Timer_setClockConfig(
 }
 
 void DL_Timer_getClockConfig(
-    GPTIMER_Regs *gptimer, DL_Timer_ClockConfig *config)
+    const GPTIMER_Regs *gptimer, DL_Timer_ClockConfig *config)
 {
     config->clockSel = (DL_TIMER_CLOCK)(gptimer->CLKSEL);
 
@@ -72,7 +72,7 @@ void DL_Timer_getClockConfig(
 }
 
 void DL_Timer_initTimerMode(
-    GPTIMER_Regs *gptimer, DL_Timer_TimerConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_TimerConfig *config)
 {
     DL_Timer_setLoadValue(gptimer, config->period);
 
@@ -107,7 +107,7 @@ void DL_Timer_initTimerMode(
 }
 
 void DL_Timer_initCaptureMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CaptureConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_CaptureConfig *config)
 {
     Timer_Input_Chan_Config captConfig;
 
@@ -134,6 +134,14 @@ void DL_Timer_initCaptureMode(
                     DL_TIMER_CC_MODE_CAPTURE,
                     (DL_TIMER_CC_ZCOND_NONE | DL_TIMER_CC_ACOND_TIMCLK |
                         DL_TIMER_CC_LCOND_TRIG_RISE |
+                        (uint32_t) config->edgeCaptMode),
+                    captConfig.index);
+            } else if (DL_TIMER_CAPTURE_EDGE_DETECTION_MODE_EDGE ==
+                       config->edgeCaptMode) {
+                DL_Timer_setCaptureCompareCtl(gptimer,
+                    DL_TIMER_CC_MODE_CAPTURE,
+                    (DL_TIMER_CC_ZCOND_NONE | DL_TIMER_CC_ACOND_TIMCLK |
+                        DL_TIMER_CC_LCOND_TRIG_EDGE |
                         (uint32_t) config->edgeCaptMode),
                     captConfig.index);
             } else {
@@ -194,7 +202,7 @@ void DL_Timer_initCaptureMode(
 }
 
 void DL_Timer_initCaptureTriggerMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CaptureTriggerConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_CaptureTriggerConfig *config)
 {
     DL_Timer_setLoadValue(gptimer, config->period);
 
@@ -257,7 +265,7 @@ void DL_Timer_initCaptureTriggerMode(
 }
 
 void DL_Timer_initCaptureCombinedMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CaptureCombinedConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_CaptureCombinedConfig *config)
 {
     Timer_Input_Chan_Config captConfig;
     Timer_Input_Pair_Chan_Config captPairConfig;
@@ -308,7 +316,7 @@ void DL_Timer_initCaptureCombinedMode(
 }
 
 void DL_Timer_initCompareMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CompareConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_CompareConfig *config)
 {
     Timer_Input_Chan_Config inChanConfig;
 
@@ -365,7 +373,7 @@ void DL_Timer_initCompareMode(
 }
 
 void DL_Timer_initCompareTriggerMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CompareTriggerConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_CompareTriggerConfig *config)
 {
     DL_Timer_setCaptureCompareInput(gptimer, DL_TIMER_CC_INPUT_INV_NOINVERT,
         DL_TIMER_CC_IN_SEL_TRIG, DL_TIMER_CC_0_INDEX);
@@ -424,7 +432,7 @@ void DL_Timer_initCompareTriggerMode(
 }
 
 static void DL_Timer_initTwoCCPWMMode(
-    GPTIMER_Regs *gptimer, DL_Timer_PWMConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_PWMConfig *config)
 {
     switch (config->pwmMode) {
         case DL_TIMER_PWM_MODE_EDGE_ALIGN:
@@ -683,6 +691,31 @@ DL_TIMER_CC_UPDATE_METHOD DL_Timer_getCaptCompUpdateMethod(
     return ((DL_TIMER_CC_UPDATE_METHOD)(ccUpdtMode));
 }
 
+void DL_Timer_setCaptCompActUpdateMethod(GPTIMER_Regs *gptimer,
+    DL_TIMER_CCACT_UPDATE_METHOD ccActUpdtMode, DL_TIMER_CC_INDEX ccIndex)
+{
+    volatile uint32_t *pReg;
+
+    pReg = &gptimer->COUNTERREGS.CCCTL_01[0];
+    pReg += (uint32_t) ccIndex;
+
+    DL_Common_updateReg(
+        pReg, (uint32_t) ccActUpdtMode, GPTIMER_CCCTL_01_CCACTUPD_MASK);
+}
+
+DL_TIMER_CCACT_UPDATE_METHOD DL_Timer_getCaptCompActUpdateMethod(
+    GPTIMER_Regs *gptimer, DL_TIMER_CC_INDEX ccIndex)
+{
+    volatile uint32_t *pReg;
+
+    pReg = &gptimer->COUNTERREGS.CCCTL_01[0];
+    pReg += (uint32_t) ccIndex;
+
+    uint32_t ccActUpdtMode = *pReg & GPTIMER_CCCTL_01_CCACTUPD_MASK;
+
+    return ((DL_TIMER_CCACT_UPDATE_METHOD)(ccActUpdtMode));
+}
+
 void DL_Timer_setCaptureCompareOutCtl(GPTIMER_Regs *gptimer, uint32_t ccpIV,
     uint32_t ccpOInv, uint32_t ccpO, DL_TIMER_CC_INDEX ccIndex)
 {
@@ -831,7 +864,7 @@ bool DL_Timer_isCaptureCompareInputFilterEnabled(
 }
 
 bool DL_Timer_saveConfiguration(
-    GPTIMER_Regs *gptimer, DL_Timer_backupConfig *ptr)
+    const GPTIMER_Regs *gptimer, DL_Timer_backupConfig *ptr)
 {
     bool saveState = !ptr->backupRdy;
     if (saveState) {
@@ -976,7 +1009,7 @@ bool DL_Timer_restoreConfiguration(
 }
 
 void DL_Timer_initFourCCPWMMode(
-    GPTIMER_Regs *gptimer, DL_Timer_PWMConfig *config)
+    GPTIMER_Regs *gptimer, const DL_Timer_PWMConfig *config)
 {
     DL_Timer_PWMConfig pwmConfig;
 
@@ -1057,7 +1090,7 @@ void DL_Timer_setFaultSourceConfig(GPTIMER_Regs *gptimer, uint32_t source)
             GPTIMER_FSCTL_FEX1EN_MASK | GPTIMER_FSCTL_FEX2EN_MASK));
 }
 
-uint32_t DL_Timer_getFaultSourceConfig(GPTIMER_Regs *gptimer)
+uint32_t DL_Timer_getFaultSourceConfig(const GPTIMER_Regs *gptimer)
 {
     uint32_t faultMode;
     uint32_t faultSense;
@@ -1077,7 +1110,7 @@ uint32_t DL_Timer_getFaultSourceConfig(GPTIMER_Regs *gptimer)
 }
 
 bool DL_TimerA_saveConfiguration(
-    GPTIMER_Regs *gptimer, DL_TimerA_backupConfig *ptr)
+    const GPTIMER_Regs *gptimer, DL_TimerA_backupConfig *ptr)
 {
     bool saveState = !ptr->backupRdy;
     if (saveState) {

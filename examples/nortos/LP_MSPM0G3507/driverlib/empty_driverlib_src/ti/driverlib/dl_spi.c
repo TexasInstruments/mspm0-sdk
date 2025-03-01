@@ -34,7 +34,7 @@
 
 #ifdef __MSPM0_HAS_SPI__
 
-void DL_SPI_init(SPI_Regs *spi, DL_SPI_Config *config)
+void DL_SPI_init(SPI_Regs *spi, const DL_SPI_Config *config)
 {
     DL_Common_updateReg(&spi->CTL0,
         (uint32_t) config->chipSelectPin | (uint32_t) config->frameFormat |
@@ -49,21 +49,21 @@ void DL_SPI_init(SPI_Regs *spi, DL_SPI_Config *config)
             SPI_CTL1_MSB_MASK | SPI_CTL1_CP_MASK);
 }
 
-void DL_SPI_setClockConfig(SPI_Regs *spi, DL_SPI_ClockConfig *config)
+void DL_SPI_setClockConfig(SPI_Regs *spi, const DL_SPI_ClockConfig *config)
 {
     spi->CLKSEL = (uint32_t) config->clockSel;
 
     spi->CLKDIV = (uint32_t) config->divideRatio;
 }
 
-void DL_SPI_getClockConfig(SPI_Regs *spi, DL_SPI_ClockConfig *config)
+void DL_SPI_getClockConfig(const SPI_Regs *spi, DL_SPI_ClockConfig *config)
 {
     config->clockSel = (DL_SPI_CLOCK) spi->CLKSEL;
 
     config->divideRatio = (DL_SPI_CLOCK_DIVIDE_RATIO) spi->CLKDIV;
 }
 
-uint8_t DL_SPI_receiveDataBlocking8(SPI_Regs *spi)
+uint8_t DL_SPI_receiveDataBlocking8(const SPI_Regs *spi)
 {
     while (DL_SPI_isRXFIFOEmpty(spi)) {
     };
@@ -71,14 +71,14 @@ uint8_t DL_SPI_receiveDataBlocking8(SPI_Regs *spi)
     return DL_SPI_receiveData8(spi);
 }
 
-uint16_t DL_SPI_receiveDataBlocking16(SPI_Regs *spi)
+uint16_t DL_SPI_receiveDataBlocking16(const SPI_Regs *spi)
 {
     while (DL_SPI_isRXFIFOEmpty(spi)) {
     };
     return DL_SPI_receiveData16(spi);
 }
 
-uint32_t DL_SPI_receiveDataBlocking32(SPI_Regs *spi)
+uint32_t DL_SPI_receiveDataBlocking32(const SPI_Regs *spi)
 {
     while (DL_SPI_isRXFIFOEmpty(spi)) {
     };
@@ -106,7 +106,7 @@ void DL_SPI_transmitDataBlocking32(SPI_Regs *spi, uint32_t data)
     DL_SPI_transmitData32(spi, data);
 }
 
-bool DL_SPI_receiveDataCheck8(SPI_Regs *spi, uint8_t *buffer)
+bool DL_SPI_receiveDataCheck8(const SPI_Regs *spi, uint8_t *buffer)
 {
     bool status;
     if (DL_SPI_isRXFIFOEmpty(spi)) {
@@ -119,7 +119,7 @@ bool DL_SPI_receiveDataCheck8(SPI_Regs *spi, uint8_t *buffer)
     return status;
 }
 
-bool DL_SPI_receiveDataCheck16(SPI_Regs *spi, uint16_t *buffer)
+bool DL_SPI_receiveDataCheck16(const SPI_Regs *spi, uint16_t *buffer)
 {
     bool status;
     if (DL_SPI_isRXFIFOEmpty(spi)) {
@@ -132,7 +132,7 @@ bool DL_SPI_receiveDataCheck16(SPI_Regs *spi, uint16_t *buffer)
     return status;
 }
 
-bool DL_SPI_receiveDataCheck32(SPI_Regs *spi, uint32_t *buffer)
+bool DL_SPI_receiveDataCheck32(const SPI_Regs *spi, uint32_t *buffer)
 {
     bool status;
     if (DL_SPI_isRXFIFOEmpty(spi)) {
@@ -184,7 +184,8 @@ bool DL_SPI_transmitDataCheck32(SPI_Regs *spi, uint32_t data)
     return status;
 }
 
-uint32_t DL_SPI_drainRXFIFO8(SPI_Regs *spi, uint8_t *buffer, uint32_t maxCount)
+uint32_t DL_SPI_drainRXFIFO8(
+    const SPI_Regs *spi, uint8_t *buffer, uint32_t maxCount)
 {
     uint32_t i;
     for (i = 0; i < maxCount; i++) {
@@ -199,7 +200,7 @@ uint32_t DL_SPI_drainRXFIFO8(SPI_Regs *spi, uint8_t *buffer, uint32_t maxCount)
 }
 
 uint32_t DL_SPI_drainRXFIFO16(
-    SPI_Regs *spi, uint16_t *buffer, uint32_t maxCount)
+    const SPI_Regs *spi, uint16_t *buffer, uint32_t maxCount)
 {
     uint32_t i;
     for (i = 0; i < maxCount; i++) {
@@ -214,7 +215,7 @@ uint32_t DL_SPI_drainRXFIFO16(
 }
 
 uint32_t DL_SPI_drainRXFIFO32(
-    SPI_Regs *spi, uint32_t *buffer, uint32_t maxCount)
+    const SPI_Regs *spi, uint32_t *buffer, uint32_t maxCount)
 {
     uint32_t i;
     for (i = 0; i < maxCount; i++) {
@@ -228,7 +229,8 @@ uint32_t DL_SPI_drainRXFIFO32(
     return i;
 }
 
-uint32_t DL_SPI_fillTXFIFO8(SPI_Regs *spi, uint8_t *buffer, uint32_t count)
+uint32_t DL_SPI_fillTXFIFO8(
+    SPI_Regs *spi, const uint8_t *buffer, uint32_t count)
 {
     uint32_t i;
     for (i = 0; i < count; i++) {
@@ -242,7 +244,8 @@ uint32_t DL_SPI_fillTXFIFO8(SPI_Regs *spi, uint8_t *buffer, uint32_t count)
     return i;
 }
 
-uint32_t DL_SPI_fillTXFIFO16(SPI_Regs *spi, uint16_t *buffer, uint32_t count)
+uint32_t DL_SPI_fillTXFIFO16(
+    SPI_Regs *spi, const uint16_t *buffer, uint32_t count)
 {
     uint32_t i;
     for (i = 0; i < count; i++) {
@@ -256,7 +259,7 @@ uint32_t DL_SPI_fillTXFIFO16(SPI_Regs *spi, uint16_t *buffer, uint32_t count)
     return i;
 }
 
-bool DL_SPI_saveConfiguration(SPI_Regs *spi, DL_SPI_backupConfig *ptr)
+bool DL_SPI_saveConfiguration(const SPI_Regs *spi, DL_SPI_backupConfig *ptr)
 {
     bool stateSaved = !ptr->backupRdy;
     if (stateSaved) {
@@ -299,7 +302,8 @@ bool DL_SPI_restoreConfiguration(SPI_Regs *spi, DL_SPI_backupConfig *ptr)
     return stateRestored;
 }
 
-uint32_t DL_SPI_fillTXFIFO32(SPI_Regs *spi, uint32_t *buffer, uint32_t count)
+uint32_t DL_SPI_fillTXFIFO32(
+    SPI_Regs *spi, const uint32_t *buffer, uint32_t count)
 {
     uint32_t i;
     for (i = 0; i < count; i++) {

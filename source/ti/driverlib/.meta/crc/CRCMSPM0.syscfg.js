@@ -353,8 +353,6 @@ the valid ranges based on the CRC polynomial selected:
     },
 ])
 
-/* CRC does not support DMA configuration for MSPM0Cxx or MSPM0Hxx */
-if(!Common.isDeviceM0C() && !Common.isDeviceM0H()){
 CRCConfig = CRCConfig.concat([
     {
         name: "GROUP_DMA",
@@ -382,7 +380,6 @@ and the CRC seed value have been loaded.\n
         ]
     },
 ])
-}
 
 
 /*
@@ -434,6 +431,8 @@ function moduleInstances(inst){
                 triggerNumber: "DMA_SOFTWARE_TRIG",
                 triggerSelect:"SW",
                 addressMode:"b2f",
+                srcLength: (Common.isDeviceM0C() || Common.isDeviceM0H()) ? "HALF_WORD" : "WORD",
+                dstLength: (Common.isDeviceM0C() || Common.isDeviceM0H()) ? "HALF_WORD" : "WORD",
                 transferMode:"SINGLE_BLOCK",
                 transferSize: 1,
                 tableSrcAddressInc:"UNCHANGED",

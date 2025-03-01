@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Energy Library GUI User Guide &mdash; Energy_Metrology_SW_Overview 2.1.0.x documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Energy Measurement Library" href="Energy_Metrology_Library_CN.html" />
+    <link rel="prev" title="Energy Metrology CCS User’s Guide" href="Energy_Metrology_CCS_User_Guide_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Energy_Metrology_SW_Overview
+          </a>
+              <div class="version">
+                2.1.0.x
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_CCS_User_Guide_CN.html">Energy Metrology CCS User’s Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Energy Library GUI User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-setup">Hardware setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gui-setup">GUI setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameter-monitoring">Parameter Monitoring.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#meter-calibration">Meter calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html">Energy Measurement Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#background-process">Background Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#foreground-process">Foreground Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#metrology-calculations">Metrology Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#rms-calculations">RMS Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#power-calculations">Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#energy-calculations">Energy Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#other-calculations">Other Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#sag-or-swell-detection">Sag or Swell Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_SW_Overview_CN.html">Energy Metrology SW Overview</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Energy_Metrology_SW_Overview</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Energy Library GUI User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="energy-library-gui-user-guide">
+<h1>Energy Library GUI User Guide<a class="headerlink" href="#energy-library-gui-user-guide" title="Permalink to this heading">¶</a></h1>
+<p>The Energy Metrology Software includes a PC GUI to monitor metrology parameters. The GUI can be used for various energy library projects. The GUI guide helps the user to monitor the metrology parameters, calibrate the meter and test the functionality.</p>
+<section id="hardware-setup">
+<h2>Hardware setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Connect the voltage source and load to the hardware(TIDA-010243).</p></li>
+<li><p>Make sure the right project is flashed into the hardware.</p></li>
+<li><p>Turn ON the voltage source and apply some load.</p></li>
+</ol>
+</section>
+<section id="gui-setup">
+<h2>GUI setup<a class="headerlink" href="#gui-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Open the file calibration-config.xml in the Energy Metrology GUI directory in a text editor program.</p></li>
+<li><p>Change the port name field within the meter tag to the corresponding COM port connected to the system. For example, setting it to COM17:</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/xml_file.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>Run the calibrator.exe file, located in the Energy Metrology GUI directory.</p></li>
+<li><p>If the GUI connects to the design properly, the Comms button turns green. If there are problems with connections or if the code is not configured correctly, the Comms button turns red.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/gui_window.png" />
+</figure>
+</section>
+<section id="parameter-monitoring">
+<h2>Parameter Monitoring.<a class="headerlink" href="#parameter-monitoring" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Click on the Green Comms button in the GUI window to view the results.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/meter_status.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>To view the meter consumption, click on the “Meter Consumption Button” at the bottom.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/meter_consumption.png" />
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>To view the meter calibration factors, click on the “Meter Calibration factors” at the bottom.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/meter_calibration_factors.png" />
+</figure>
+</section>
+<section id="meter-calibration">
+<h2>Meter calibration<a class="headerlink" href="#meter-calibration" title="Permalink to this heading">¶</a></h2>
+<p>Calibration is key to any meter performance, and calibration is absolutely necessary for every meter to go through this process. Initially, every meter exhibits different accuracies due to silicon-to-silicon differences, sensor accuracies, and other passive tolerances. To nullify their effects, every meter must be calibrated. To perform calibration accurately, there must be an accurate AC test source and a reference meter available. The GUI can also easily be used to calibrate the design. During calibration, parameters called calibration factors are modified in the test software to give the least error in measurement.</p>
+<ol class="arabic simple">
+<li><p>Click on the “Manual calibration” at the bottom.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/manual_calibration.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Configure the test source to supply the desired voltage and current for all phases.</p></li>
+<li><p>calculate the correction values for each voltage and current. The correction values entered in the voltage and current fields are calculated using</p></li>
+</ol>
+<p>correction = <span class="math notranslate nohighlight">\({\frac{value_{observed}}{value_{desired}} - 1} × 100\)</span></p>
+<ol class="arabic simple" start="4">
+<li><p>After calculating for all voltages and currents input these values in the voltage and current fields of corresponding phases.</p></li>
+<li><p>click on the update meter button and the values are calibrated immediately.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Energy_Metrology_CCS_User_Guide_CN.html" class="btn btn-neutral float-left" title="Energy Metrology CCS User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Energy_Metrology_Library_CN.html" class="btn btn-neutral float-right" title="Energy Measurement Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

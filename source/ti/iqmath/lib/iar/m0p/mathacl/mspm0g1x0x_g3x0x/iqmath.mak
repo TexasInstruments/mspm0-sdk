@@ -6,7 +6,7 @@ CC  = "$(IAR_ARMCOMPILER)/bin/iccarm"
 ASM = "$(IAR_ARMCOMPILER)/bin/iasmarm"
 AR  = "$(IAR_ARMCOMPILER)/bin/iarchive"
 
-NAME = mathacl/mspm0g1x0x_g3x0x/iqmath
+NAME = iqmath
 
 OBJ_DIR = ../../../../../obj/iar/m0p/mathacl/mspm0g1x0x_g3x0x/iqmath
 SRC_DIR = ../../../../../_IQNfunctions

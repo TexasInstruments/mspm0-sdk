@@ -850,12 +850,33 @@ void DALI_dtr0(uint8_t * receivedData){
 void DALI_randomiseAddress(void){
     /* Generate Random Address*/
     gRandCounter++;
+
     if(gControlVar1.initialisationState == ENABLED && gRandCounter == 2){
-        DL_CRC_setSeed32(CRC, gInitCounter);
-        DL_CRC_feedData32(CRC, gInitCounter);
-        gControlVar1.randomAddress = (DL_CRC_getResult32(CRC) && 0x00FFFFFF);
+        #ifdef __MSPM0_HAS_TRNG__
+
+        /* Define GENERATE_RANDOM_ADDR_TRNG to generate random address using TRNG */
+        #ifdef GENERATE_RANDOM_ADDR_TRNG
+
+        while (!DL_TRNG_isCaptureReady(TRNG));
+        DL_TRNG_clearInterruptStatus(
+            TRNG, DL_TRNG_INTERRUPT_CAPTURE_RDY_EVENT);
+
+        gControlVar1.randomAddress = (DL_TRNG_getCapture(TRNG) & 0x00FFFFFF);
+        
+        #else 
+        gControlVar1.randomAddress = 1;
+
+        #endif
+
+        #else
+            DL_CRC_setSeed32(CRC, gInitCounter);
+            DL_CRC_feedData32(CRC, gInitCounter);
+            gControlVar1.randomAddress = (DL_CRC_getResult32(CRC) && 0x00FFFFFF);
+        #endif
+
         gRandCounter = 0;
     }
+    
 }
 
 void DALI_compareAddress(void){

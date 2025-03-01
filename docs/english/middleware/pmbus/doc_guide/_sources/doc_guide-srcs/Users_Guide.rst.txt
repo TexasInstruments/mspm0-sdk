@@ -35,61 +35,52 @@ The PMBus features listed below are supported in hardware but have not been impl
 3. PMBus Example Usage
 ----------------------
 
-This software library contains an example that demonstrate communication between a PMBus Controller and the TPS544B20EVM-634 evaluation module. The example configures the TPS544B20EVM-634's behavior during under-voltage or over current events.
+Three examples are given in the SDK demonstrating the PMBus controller , PMBus target and PMBus controller using group command.
 
--  pmbus\_controller\_tps544b20evm
+To test the PMBus controller and target example connect the SDL and SDA pins of controller and target. Load the program to controller and target. The example services the following commands.
 
-The above example contains source code which can be compiled and loaded onto a supported device as-is. Connect SMBCLK and SMBDAT between the controller and the TPS544B20EVM-634. Ensure properly sized pullup resistors are provisioned.
++----------------------+----------+---------------+--------------+
+| PMBus CMD            | CMD ID   | Write Type    | Read Type    |
++======================+==========+===============+==============+
+| Device ID            | 0xAD     | -             | Block read   |
++----------------------+----------+---------------+--------------+
+| Clear Faults         | 0x03     | Send Byte     | -            |
++----------------------+----------+---------------+--------------+
+| Vout Mode            | 0x020    | Write Byte    | Read Byte    |
++----------------------+----------+---------------+--------------+
+| Vout OV warn Limit   | 0x42     | Write Word    | Read Word    |
++----------------------+----------+---------------+--------------+
+| MRF ID               | 0x99     | Block Write   | Block Read   |
++----------------------+----------+---------------+--------------+
+| Read Vout            | 0x8B     | -             | Read Word    |
++----------------------+----------+---------------+--------------+
+| EXT\_BYTE\_CMD       | 0x01FF   | Write Byte    | Read Byte    |
++----------------------+----------+---------------+--------------+
+| EXT\_WORD\_CMD       | 0x02FF   | Write Word    | Read Word    |
++----------------------+----------+---------------+--------------+
+| Process call Byte    | 0xD0     | Write Word    | Read Word    |
++----------------------+----------+---------------+--------------+
+| Process call Block   | 0xD1     | Block Write   | Block Read   |
++----------------------+----------+---------------+--------------+
+
+To test the group command, load the target examples to 2 launchpads with different slave addresses specified in the group commamnd examples. The group command example will communicate with both targets and service the PMBus comamnds.
 
 3.1 PMBus Examples Supported Hardware
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  2 LP-MSPM0L1306 or LP-MSPM0G3507 LaunchPad evaluation boards
+-  LP-MSPM0G3519 or LP-MSPM0G3507 LaunchPad evaluation boards
 
-4. Library Footprint
---------------------
-
-The following footprint was obtained with TI Arm Clang compiler v3.2.0 LTS using LP-MSPM0G3507.
-
-PMBus Controller
-~~~~~~~~~~~~~~~~
-
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| Example                               | Module           | Optimization Level   | Code (bytes)   | Const (bytes)   | RAM (bytes)   | Options                                           |
-+=======================================+==================+======================+================+=================+===============+===================================================+
-| **pmbus\_controller\_tps544b20evm**   | **Total**        | -O2                  | 2572           | 323             | 1279          | SMB\_CONTROLLER\_SUPPORTS\_HOST\_NOTIFY = true    |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *pmbus.o*        | "                    | 304            | 0               | 243           | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *smbus\_nwk.o*   | "                    | 234            | 0               | 0             | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *smbus\_phy.o*   | "                    | 416            | 0               | 0             | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *smbus.o*        | "                    | 376            | 0               | 0             | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *dl\_i2c.o*      | "                    | 192            | 0               | 0             | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| **pmbus\_controller\_tps544b20evm**   | **Total**        | -Oz -flto\*          | 1734           | 409             | 1084          | SMB\_CONTROLLER\_SUPPORTS\_HOST\_NOTIFY = true    |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| **pmbus\_controller\_tps544b20evm**   | **Total**        | -O2                  | 2556           | 323             | 1279          | SMB\_CONTROLLER\_SUPPORTS\_HOST\_NOTIFY = false   |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *pmbus.o*        | "                    | 304            | 0               | 243           | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *smbus\_nwk.o*   | "                    | 234            | 0               | 0             | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *smbus\_phy.o*   | "                    | 400            | 0               | 0             | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *smbus.o*        | "                    | 376            | 0               | 0             | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| "                                     | *dl\_i2c.o*      | "                    | 192            | 0               | 0             | "                                                 |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-| **pmbus\_controller\_tps544b20evm**   | **Total**        | -Oz -flto\*          | 1718           | 409             | 1084          | SMB\_CONTROLLER\_SUPPORTS\_HOST\_NOTIFY = false   |
-+---------------------------------------+------------------+----------------------+----------------+-----------------+---------------+---------------------------------------------------+
-
--  Note: Individual modules are not shown for LTO optimization since the linker optimizes modules and might skip them in .map file.
-
-5. Library Versions
+4. Library Versions
 -------------------
+
+-  **Version 2.00.00.00**
+
+   -  SDK release: 2.04.00.xx
+   -  Updates:
+
+      -  Updated PMBus stack to support both as controller and target.
+      -  Added PMBus controller and target examples.
+      -  Added PMBus controller to support group commands.
 
 -  **Version 1.11.01.00**
 

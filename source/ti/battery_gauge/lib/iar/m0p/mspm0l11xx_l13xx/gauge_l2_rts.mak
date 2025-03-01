@@ -6,7 +6,7 @@ CC  = "$(IAR_ARMCOMPILER)/bin/iccarm"
 ASM = "$(IAR_ARMCOMPILER)/bin/iasmarm"
 AR  = "$(IAR_ARMCOMPILER)/bin/iarchive"
 
-NAME = mspm0l11xx_l13xx/gauge_l2_rts
+NAME = gauge_l2_rts
 
 OBJ_DIR = ../../../../obj/iar/m0p/mspm0l11xx_l13xx/gauge_l2_rts
 SRC_DIR = ../../../../gauge_level2

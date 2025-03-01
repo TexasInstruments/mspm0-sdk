@@ -34,7 +34,7 @@
 #include "ti_msp_dl_config.h"
 
 /* Address in main memory to write to. This is defined in the
- * eeprom_emulation_type_a.h header file. Uncommenting the #define below will
+ * eeprom_emulation_type_b.h header file. Uncommenting the #define below will
  * overwrite the default #define in the header file. */
 //#define EEPROM_EMULATION_ADDRESS    0x00001400
 
@@ -69,7 +69,8 @@ int main(void)
      *
      */
     DL_FlashCTL_programMemoryBlocking64WithECCGenerated(FLASHCTL,
-        EEPROM_EMULATION_ADDRESS, &DataArray[0], 16, DL_FLASHCTL_REGION_SELECT_MAIN);
+        EEPROM_EMULATION_ADDRESS, &DataArray[0], 16,
+        DL_FLASHCTL_REGION_SELECT_MAIN);
     __BKPT(0);
     /* In memory browser, search the address 0x00001400
      * Before EEPROM_TypeB_init, Flash is populated with the following 64-byte irrelevant data:
@@ -301,7 +302,7 @@ int main(void)
         }
     }
 
-    while(1) {
-        __WFI(); 
-    } 
+    while (1) {
+        __WFI();
+    }
 }

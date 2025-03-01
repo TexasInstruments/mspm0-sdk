@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 DALI 用户指南 &mdash; MSPM0 DALI User&#39;s Guide 1.1.0.x documentation</title>
+  <title>MSPM0 DALI 用户指南 &mdash; MSPM0 DALI User&#39;s Guide 1.2.0.x documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MSPM0 DALI User's Guide
           </a>
               <div class="version">
-                1.1.0.x
+                1.2.0.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -193,7 +193,7 @@
 </li>
 </ul>
 <p>要导入 DALI 示例、请在 Code Composer Studio (CCS)中选择”Import Project”、导航到 SDK 中的”Examples”文件夹、选择”DALI”、选择”MSPM0L”文件夹、导航到 ticlang 目录。 导入后、可以将代码刷写到器件中。</p>
-<p>要测试此示例、请将 DALI 2 Click 连接到 MSPM0、方法是将 RX 和 TX 引脚连接到 MSPM0L 器件上的相应引脚、同时将 Click 板上的3.3V、5V 和 GND 引脚连接到 MSPM0L1306 LP 上的3.3V、5V 和 GND 引脚。 将两根导线拧入 DALI 2 Click 上的螺纹接线端子、并将这些导线连接到 Hasseb DALI 2控制器上的相应接线端子。 将电源连接到控制器、并将控制器上的 USB 连接到笔记本电脑。 将 MSPM0L1306 LP 连接到笔记本电脑、并通过 CCS 刷写示例。 示例闪存后、器件运行示例、启动 DALI 2控制器 GUI 并按下”Initialize”。 一旦显示短地址、随机地址和器件类型、就可以开始向器件发送支持/实现的命令。 您将看到器件上的 LED 响应支持的执行命令</p>
+<p>要测试此示例、请将 DALI 2 Click 连接到 MSPM0、方法是将 RX 和 TX 引脚连接到 MSPM0L 器件上的相应引脚、同时将 Click 板上的3.3V、5V 和 GND 引脚连接到 Launchpad 上的3.3V、5V 和 GND 引脚。 将两根导线拧入 DALI 2 Click 上的螺纹接线端子、并将这些导线连接到 Hasseb DALI 2控制器上的相应接线端子。 将电源连接到控制器、并将控制器上的 USB 连接到笔记本电脑。 将 Launchpad 连接到笔记本电脑、并通过 CCS 刷写示例。 示例闪存后、器件运行示例、启动 DALI 2控制器 GUI 并按下”Initialize”。 一旦显示短地址、随机地址和器件类型、就可以开始向器件发送支持/实现的命令。 您将看到器件上的 LED 响应支持的执行命令</p>
 <section id="id2">
 <h3>修改示例应用程序<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <p>MSPM0L 的 DALI 实现源代码是可以编辑的。 这使客户和用户能够重新实现或修改现有功能、以符合个人规格。 某些特性可能因实现而异、例如器件识别和更新闪存中的变量。 下面列出了需要用户修改才能实现的功能。 这些功能要么是特定于用户的、要么是已知问题。</p>
@@ -219,8 +219,9 @@
 </li>
 <li><p>随机地址将始终生成 1</p>
 <ul>
-<li><p>这不会影响功能，因为器件仍然能够初始化，但每次初始化时都会生成相同的随机地址</p></li>
-<li><p>L 器件没有 TRNG，如果工程成功移植到 G， 可利用该模块生成一个更随机的地址</p></li>
+<li><p>当连接的设备的随机地址超过特定值时, GUI 工具在初始化期间崩溃</p></li>
+<li><p>这不会影响功能,因为设备仍然能够初始化,但将在每次初始化时生成相同的随机地址</p></li>
+<li><p>如果使用不同的 DALI 控制器,请定义 <em>GENERATE_RANDOM_ADDR_TRNG</em> 宏,以在支持 TRNG 的 MSPM0设备中生成随机地址</p></li>
 </ul>
 </li>
 <li><p>初始化多个器件</p>

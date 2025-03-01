@@ -102,7 +102,7 @@ function validate(inst, validation)
         }
         // validate if MSPM0L11XX_L13XX & VREF enabled, check that its not internal reference.
         let vrefInstance = system.modules["/ti/driverlib/VREF"];
-        if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+        if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
             if (vrefInstance){
                 if(!(vrefInstance.$static.basicMode).includes("DL_VREF_ENABLE_DISABLE"))
                 validation.logError(
@@ -707,7 +707,7 @@ function getPositiveChannelOptionsWithReason(inst){
 
     }
     /* MSPM0L-specific options */
-    else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
         PositiveChannelOptionsWithReason = [
             {name: "DL_COMP_IPSEL_CHANNEL_0", displayName: "COMPx_IN0+", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IPSEL_CHANNEL_1", displayName: "COMPx_IN1+", reason: "not available on chosen COMP instance"},
@@ -773,7 +773,7 @@ function getNegativeChannelOptionsWithReason(inst){
 
     }
     /* MSPM0L-specific options */
-    else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
         NegativeChannelOptionsWithReason = [
             {name: "DL_COMP_IMSEL_CHANNEL_0", displayName: "COMPx_IN0-", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IMSEL_CHANNEL_1", displayName: "COMPx_IN1-", reason: "not available on chosen COMP instance"},

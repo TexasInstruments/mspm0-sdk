@@ -34,7 +34,8 @@
 
 #ifdef __MSPM0_HAS_ADC12__
 
-void DL_ADC12_setClockConfig(ADC12_Regs *adc12, DL_ADC12_ClockConfig *config)
+void DL_ADC12_setClockConfig(
+    ADC12_Regs *adc12, const DL_ADC12_ClockConfig *config)
 {
     DL_Common_updateReg(&adc12->ULLMEM.GPRCM.CLKCFG,
         (ADC12_CLKCFG_KEY_UNLOCK_W | (uint32_t) config->clockSel),
@@ -46,7 +47,8 @@ void DL_ADC12_setClockConfig(ADC12_Regs *adc12, DL_ADC12_ClockConfig *config)
     adc12->ULLMEM.CLKFREQ = (uint32_t) config->freqRange;
 }
 
-void DL_ADC12_getClockConfig(ADC12_Regs *adc12, DL_ADC12_ClockConfig *config)
+void DL_ADC12_getClockConfig(
+    const ADC12_Regs *adc12, DL_ADC12_ClockConfig *config)
 {
     uint32_t clockConfig =
         adc12->ULLMEM.GPRCM.CLKCFG & ADC12_CLKCFG_SAMPCLK_MASK;

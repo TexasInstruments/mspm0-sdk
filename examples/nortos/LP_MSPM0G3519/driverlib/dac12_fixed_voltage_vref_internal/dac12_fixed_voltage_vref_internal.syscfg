@@ -41,8 +41,6 @@ VREF.checkVREFReady                = true;
 VREF.advClockConfigEnable          = true;
 VREF.advClkSrc                     = "DL_VREF_CLOCK_BUSCLK";
 VREF.peripheral.$assign            = "VREF";
-VREF.peripheral.vrefPosPin.$assign = "PA21";
-VREF.peripheral.vrefNegPin.$assign = "PA23";
 
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;

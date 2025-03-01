@@ -55,11 +55,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../flash_bsl_app_invoke.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../flash_bsl_app_invoke_uart.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flash_bsl_app_invoke_uart.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../ticlang/mspm0c1104.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>

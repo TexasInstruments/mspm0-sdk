@@ -1,0 +1,182 @@
+Sensorless FOC - DRV8323RS Gate Driver User Guide
+=================================================
+
+This User Guide outlines the usage of DRV8323RS gate driver along with the sensorless FOC Application running on MSPM0.
+
+1. Hardware Required
+--------------------
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__ - MSPM0G3507 Launchpad
+-  `LP-MSPM0G3519 <https://www.ti.com/tool/LP-MSPM0G3519>`__ - MSPM0G3519 Launchpad
+-  `BOOSTXL-DRV8323RS <https://www.ti.com/tool/BOOSTXL-DRV8323RS>`__ - BOOSTXL-DRV8323RS is a 15A, 3-phase brushless DC drive stage based on the DRV8323RH gate driver and CSD88599Q5DC NexFET™ power block
+-  DC Power supply that supports the required voltage and current
+-  Brushless-DC Motor
+-  Micro-USB cable
+
+2. Hardware Setup
+-----------------
+
+1. Remove the PA26 jumper J18 in the LP-MSPM0G3507 as shown below.
+
+.. figure:: images/LPMSPM0G3507-J18.jpg
+   :alt: J18 header removed in LP-MSPM0G3507
+
+   J18 header removed in LP-MSPM0G3507
+
+2. Connect the LP-MSPM0G3507/LP-MSPM0G3519 to the BOOSTXL-DRV8323RS in one of two ways:
+
+   -  1 Plug the connectors J3 and J4 of the BOOSTXL-DRV8323RS to the top of the connectors J3/J4 of the LP-MSPM0G3507.
+
+   -  2 If using the jumper wires, connect as shown in the table below. Refer to the schematic of J3 and J4 connector pinout on BOOSTXL-DRV8323RS for the location of the signals.
+
+      +---------------------------+--------------+--------------+---------------------+
+      | Connection                | MSPM0G3507   | MSPM0G3519   | BOOSTXL-DRV8323RS   |
+      +===========================+==============+==============+=====================+
+      | Phase A HS input          | PB4          | PB3          | INHA                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase A LS input          | PB1          | PB9          | INLA                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase B HS input          | PA28         | PC4          | INHB                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase B LS input          | PA31         | PC5          | INLB                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase C HS input          | PB20         | PB4          | INHC                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase C LS input          | PB13         | PB5          | INLC                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Serial clock input        | PB9          | PB31         | SCLK                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Serial data input         | PB8          | PB8          | SDI                 |
+      +---------------------------+--------------+--------------+---------------------+
+      | Serial data output        | PB7          | PB7          | SDO                 |
+      +---------------------------+--------------+--------------+---------------------+
+      | Chip Select               | PB0          | PB11         | nSCS                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Bus voltage input         | PA25         | PA14         | VSENVM              |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase A current input     | PA17         | PB27         | ISENA               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase B current input     | PA24         | PB26         | ISENB               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase C current input     | PA18         | PB25         | ISENC               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase A Voltage input     | PB19         | PA27         | VSENA               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase B Voltage input     | PA22         | PA26         | VSENB               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase C Voltage input     | PB18         | PB24         | VSENC               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Fault Input               | PA27         | PB30         | nFAULT              |
+      +---------------------------+--------------+--------------+---------------------+
+      | DRV Enable output         | PA26         | PB29         | ENABLE              |
+      +---------------------------+--------------+--------------+---------------------+
+      | Controller Fault Output   | PA11         | PA11         | LED                 |
+      +---------------------------+--------------+--------------+---------------------+
+      | Common Ground             | GND          | GND          | GND                 |
+      +---------------------------+--------------+--------------+---------------------+
+      | UART TX                   | PB12         | PA9          | TX                  |
+      +---------------------------+--------------+--------------+---------------------+
+      | UART RX                   | PA13         | PA8          | RX                  |
+      +---------------------------+--------------+--------------+---------------------+
+
+.. figure:: images/DRV-CONNECTOR.jpg
+   :alt: BOOSTXL-DRV8323RS J3 and J4 connector pinout
+
+   BOOSTXL-DRV8323RS J3 and J4 connector pinout
+
+3. Connect the 3 phases of the BLDC motor to A/B/C of connector J5 on the BOOSTXL-DRV8323RS.
+
+4. Connect the positive and negative of the power supply to VM and GND of the power connector terminal block.
+
+5. Set the power supply to a motor voltage between 4.5V to 48V within the DRV8323RS specifications and a 15-A current limit.
+
+6. Connect a Micro-USB cable from the MSPM0G launchpad to the PC.
+
+7. Turn on the power supply. The green VM LED on the BOOSTXL-DRV8323RS should turn on.
+
+8. Once all steps are completed, you can start to run the motor. Please refer to `Software User Guide <../MSPM0_Sensorless_FOC_Software_Users_Guide_CN.html>`__ or `FOC Tuning Guide <https://www.ti.com/lit/pdf/SLAU927C>`__
+
+3. Gatedriver Register Configurations
+-------------------------------------
+
+Sensorless FOC application FW periodically configures the gate driver registers using SPI. The gatedriverInterface sub folder in the Hal directory provides users ability to add the custom gate driver functions.
+
+The gatedriver register configurations defined under HV\_DIE\_EEPROM\_INTERFACE\_T in the DRV8323.h file are periodically updated using the API : gateDriverParamsUpdate() when the motor is not spinning. Below are the gate driver register settings available for user configuration.
+
+Note: some of the register settings are not applicable for FOC Application FW and shouldn't be altered from the default values.
+
+gateDrvCfg1 configurations
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-------------+----------------------------------------------------+
+| Bit Field   | Bit Definition                                     |
++=============+====================================================+
+| iDriveNLS   | LS Idrive N setting                                |
++-------------+----------------------------------------------------+
+| vdsLevel    | VDS Level setting                                  |
++-------------+----------------------------------------------------+
+| ocpDeg      | OCP Deglitch setting                               |
++-------------+----------------------------------------------------+
+| ocpMode     | OCP Mode setting                                   |
++-------------+----------------------------------------------------+
+| deadTime    | Dead Time setting                                  |
++-------------+----------------------------------------------------+
+| tRetry      | retry Time setting                                 |
++-------------+----------------------------------------------------+
+| senLvl      | Sense Level setting                                |
++-------------+----------------------------------------------------+
+| csaCalC     | CSA CAL - Ph C Config                              |
++-------------+----------------------------------------------------+
+| csaCalB     | CSA CAL - Ph B Config                              |
++-------------+----------------------------------------------------+
+| csaCalA     | CSA CAL - Ph A Config                              |
++-------------+----------------------------------------------------+
+| disSen      | Disable Current Sense Config                       |
++-------------+----------------------------------------------------+
+| csaGain     | CSA Gain Configuration                             |
++-------------+----------------------------------------------------+
+| lsRef       | VDS LS Reference Configuration                     |
++-------------+----------------------------------------------------+
+| vrefDiv     | Not Applicable for FOC FW / Not to be configured   |
++-------------+----------------------------------------------------+
+| csaFET      | Not Applicable for FOC FW / Not to be configured   |
++-------------+----------------------------------------------------+
+
+gateDrvCfg2 configurations
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++-------------+----------------------------------------------------+
+| Bit Field   | Bit Definition                                     |
++=============+====================================================+
+| clrFLT      | Gate Driver Clear Fault Bit                        |
++-------------+----------------------------------------------------+
+| brake       | Not Applicable for FOC FW / Not to be configured   |
++-------------+----------------------------------------------------+
+| coast       | Not Applicable for FOC FW / Not to be configured   |
++-------------+----------------------------------------------------+
+| pwmDir      | Not Applicable for FOC FW / Not to be configured   |
++-------------+----------------------------------------------------+
+| pwmComm     | Not Applicable for FOC FW / Not to be configured   |
++-------------+----------------------------------------------------+
+| pwmMode     | Not Applicable for FOC FW / Not to be configured   |
++-------------+----------------------------------------------------+
+| repOTW      | Over Temperature warning report                    |
++-------------+----------------------------------------------------+
+| disGDF      | Disable Gate Driver                                |
++-------------+----------------------------------------------------+
+| disCPUV     | Disable Charge Pump Under Voltage Fault            |
++-------------+----------------------------------------------------+
+| iDriveNHS   | iDrive N HS Setting                                |
++-------------+----------------------------------------------------+
+| iDrivePHS   | iDrive P HS Setting                                |
++-------------+----------------------------------------------------+
+| lock        | Built In Lock Setting - Masked by Algo             |
++-------------+----------------------------------------------------+
+| iDrivePLS   | iDrive P LS Setting                                |
++-------------+----------------------------------------------------+
+| tDrive      | tDrive Setting                                     |
++-------------+----------------------------------------------------+
+| cbc         | Not Applicable for FOC FW / Not to be configured   |
++-------------+----------------------------------------------------+
+
+Note: User would need to program the currentBase in the System parameters based on the CSA Gain configured in the gate driver.

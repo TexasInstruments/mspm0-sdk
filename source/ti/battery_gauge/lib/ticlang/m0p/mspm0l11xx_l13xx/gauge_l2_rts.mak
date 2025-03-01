@@ -5,7 +5,7 @@ include $(SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 AR = "$(TICLANG_ARMCOMPILER)/bin/tiarmar"
 
-NAME = mspm0l11xx_l13xx/gauge_l2_rts
+NAME = gauge_l2_rts
 
 OBJ_DIR = ../../../../obj/ticlang/m0p/mspm0l11xx_l13xx/gauge_l2_rts
 SRC_DIR = ../../../../gauge_level2

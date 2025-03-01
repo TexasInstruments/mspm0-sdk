@@ -1,0 +1,63 @@
+Energy Library GUI User Guide
+=============================
+
+The Energy Metrology Software includes a PC GUI to monitor metrology parameters. The GUI can be used for various energy library projects. The GUI guide helps the user to monitor the metrology parameters, calibrate the meter and test the functionality.
+
+Hardware setup
+--------------
+
+1. Connect the voltage source and load to the hardware(TIDA-010243).
+2. Make sure the right project is flashed into the hardware.
+3. Turn ON the voltage source and apply some load.
+
+GUI setup
+---------
+
+1. Open the file calibration-config.xml in the Energy Metrology GUI directory in a text editor program.
+2. Change the port name field within the meter tag to the corresponding COM port connected to the system. For example, setting it to COM17:
+
+.. figure:: ./images/xml_file.png
+   :alt: 
+
+3. Run the calibrator.exe file, located in the Energy Metrology GUI directory.
+4. If the GUI connects to the design properly, the Comms button turns green. If there are problems with connections or if the code is not configured correctly, the Comms button turns red.
+
+.. figure:: ./images/gui_window.png
+   :alt: 
+
+Parameter Monitoring.
+---------------------
+
+1. Click on the Green Comms button in the GUI window to view the results.
+
+.. figure:: ./images/meter_status.png
+   :alt: 
+
+2. To view the meter consumption, click on the "Meter Consumption Button" at the bottom.
+
+.. figure:: ./images/meter_consumption.png
+   :alt: 
+
+3. To view the meter calibration factors, click on the "Meter Calibration factors" at the bottom.
+
+.. figure:: ./images/meter_calibration_factors.png
+   :alt: 
+
+Meter calibration
+-----------------
+
+Calibration is key to any meter performance, and calibration is absolutely necessary for every meter to go through this process. Initially, every meter exhibits different accuracies due to silicon-to-silicon differences, sensor accuracies, and other passive tolerances. To nullify their effects, every meter must be calibrated. To perform calibration accurately, there must be an accurate AC test source and a reference meter available. The GUI can also easily be used to calibrate the design. During calibration, parameters called calibration factors are modified in the test software to give the least error in measurement.
+
+1. Click on the "Manual calibration" at the bottom.
+
+.. figure:: ./images/manual_calibration.png
+   :alt: 
+
+2. Configure the test source to supply the desired voltage and current for all phases.
+
+3. calculate the correction values for each voltage and current. The correction values entered in the voltage and current fields are calculated using
+
+correction = :math:`{\frac{value_{observed}}{value_{desired}} - 1} × 100`
+
+4. After calculating for all voltages and currents input these values in the voltage and current fields of corresponding phases.
+5. click on the update meter button and the values are calibrated immediately.

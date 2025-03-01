@@ -247,7 +247,11 @@ __STATIC_INLINE void DL_WWDT_initIntervalTimerMode(WWDT_Regs *wwdt,
 }
 
 /**
- * @brief Enables power on WWDT module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the WWDT
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  * @param wwdt        Pointer to the register overlay for the peripheral
  */
@@ -257,7 +261,12 @@ __STATIC_INLINE void DL_WWDT_enablePower(WWDT_Regs *wwdt)
 }
 
 /**
- * @brief Disables power on wwdt module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the WWDT
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  * @param wwdt        Pointer to the register overlay for the peripheral
  */
@@ -267,12 +276,20 @@ __STATIC_INLINE void DL_WWDT_disablePower(WWDT_Regs *wwdt)
 }
 
 /**
- * @brief Returns if  power on wwdt module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the WWDT
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param wwdt        Pointer to the register overlay for the peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
 __STATIC_INLINE bool DL_WWDT_isPowerEnabled(WWDT_Regs *wwdt)
 {

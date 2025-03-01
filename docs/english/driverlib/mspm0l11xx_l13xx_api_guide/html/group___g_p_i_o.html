@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -243,6 +243,8 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:gabe7b75a82c8bf0d3cbdce0706ec0899b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaae0fa4ddc593efbd9f80f4332932e62f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#gaae0fa4ddc593efbd9f80f4332932e62f">DL_GPIO_IIDX</a> { <br />
+&#160;&#160;<a class="el" href="group___g_p_i_o.html#ggaae0fa4ddc593efbd9f80f4332932e62fa5e70c65451590a4dbba445a4a145adac">DL_GPIO_IIDX_NO_INTR</a> = GPIO_CPU_INT_IIDX_STAT_NO_INTR, 
+<br />
 &#160;&#160;<a class="el" href="group___g_p_i_o.html#ggaae0fa4ddc593efbd9f80f4332932e62faa68d484272a3990cdf7b8fcb971e318d">DL_GPIO_IIDX_DIO0</a> = GPIO_CPU_INT_IIDX_STAT_DIO0, 
 <br />
 &#160;&#160;<a class="el" href="group___g_p_i_o.html#ggaae0fa4ddc593efbd9f80f4332932e62fa0df2826b080c63d28dc01260bb566ff5">DL_GPIO_IIDX_DIO1</a> = GPIO_CPU_INT_IIDX_STAT_DIO1, 
@@ -313,13 +315,13 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga2ebc5d7047ed15cecdf0b47388827cae"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga2ebc5d7047ed15cecdf0b47388827cae">DL_GPIO_enablePower</a> (GPIO_Regs *gpio)</td></tr>
-<tr class="memdesc:ga2ebc5d7047ed15cecdf0b47388827cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on GPIO module.  <a href="#ga2ebc5d7047ed15cecdf0b47388827cae">More...</a><br /></td></tr>
+<tr class="memdesc:ga2ebc5d7047ed15cecdf0b47388827cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the GPIO.  <a href="#ga2ebc5d7047ed15cecdf0b47388827cae">More...</a><br /></td></tr>
 <tr class="separator:ga2ebc5d7047ed15cecdf0b47388827cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga238314f8acad06095c1b4faa8824c441"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga238314f8acad06095c1b4faa8824c441">DL_GPIO_disablePower</a> (GPIO_Regs *gpio)</td></tr>
-<tr class="memdesc:ga238314f8acad06095c1b4faa8824c441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables power on gpio module.  <a href="#ga238314f8acad06095c1b4faa8824c441">More...</a><br /></td></tr>
+<tr class="memdesc:ga238314f8acad06095c1b4faa8824c441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the GPIO.  <a href="#ga238314f8acad06095c1b4faa8824c441">More...</a><br /></td></tr>
 <tr class="separator:ga238314f8acad06095c1b4faa8824c441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0c8baa7edf96cd4cac360177a8afd113"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga0c8baa7edf96cd4cac360177a8afd113">DL_GPIO_isPowerEnabled</a> (GPIO_Regs *gpio)</td></tr>
-<tr class="memdesc:ga0c8baa7edf96cd4cac360177a8afd113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if power on gpio module.  <a href="#ga0c8baa7edf96cd4cac360177a8afd113">More...</a><br /></td></tr>
+<tr class="memdesc:ga0c8baa7edf96cd4cac360177a8afd113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the GPIO is enabled.  <a href="#ga0c8baa7edf96cd4cac360177a8afd113">More...</a><br /></td></tr>
 <tr class="separator:ga0c8baa7edf96cd4cac360177a8afd113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga451a119acb2eba5bfead03432b1d740b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga451a119acb2eba5bfead03432b1d740b">DL_GPIO_reset</a> (GPIO_Regs *gpio)</td></tr>
 <tr class="memdesc:ga451a119acb2eba5bfead03432b1d740b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets gpio peripheral.  <a href="#ga451a119acb2eba5bfead03432b1d740b">More...</a><br /></td></tr>
@@ -822,7 +824,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaae0fa4ddc593efbd9f80f4332932e62faa68d484272a3990cdf7b8fcb971e318d"></a>DL_GPIO_IIDX_DIO0&#160;</td><td class="fielddoc"><p>Interrupt index for GPIO DIO0 </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaae0fa4ddc593efbd9f80f4332932e62fa5e70c65451590a4dbba445a4a145adac"></a>DL_GPIO_IIDX_NO_INTR&#160;</td><td class="fielddoc"><p>Interrupt index for no interrupt </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaae0fa4ddc593efbd9f80f4332932e62faa68d484272a3990cdf7b8fcb971e318d"></a>DL_GPIO_IIDX_DIO0&#160;</td><td class="fielddoc"><p>Interrupt index for GPIO DIO0 </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ggaae0fa4ddc593efbd9f80f4332932e62fa0df2826b080c63d28dc01260bb566ff5"></a>DL_GPIO_IIDX_DIO1&#160;</td><td class="fielddoc"><p>Interrupt index for GPIO DIO1 </p>
 </td></tr>
@@ -907,7 +911,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables power on GPIO module. </p>
+<p>Enables the Peripheral Write Enable (PWREN) register for the GPIO. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gpio</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -933,7 +938,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Disables power on gpio module. </p>
+<p>Disables the Peripheral Write Enable (PWREN) register for the GPIO. </p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
+<dl class="section note"><dt>Note</dt><dd>This API does not provide large power savings.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gpio</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -959,16 +966,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns if power on gpio module. </p>
+<p>Returns if the Peripheral Write Enable (PWREN) register for the GPIO is enabled. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gpio</td><td>Pointer to the register overlay for the peripheral</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if power is enabled </dd>
+<dl class="section return"><dt>Returns</dt><dd>true if peripheral register access is enabled </dd>
 <dd>
-false if power is disabled </dd></dl>
+false if peripheral register access is disabled </dd></dl>
 
 </div>
 </div>
@@ -3469,7 +3478,7 @@ false if GPIO subscriber is disabled </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

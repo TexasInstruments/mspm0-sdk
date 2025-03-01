@@ -54,11 +54,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../temp_sense_thermistor.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../temp_sense_thermistor.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../temp_sense_thermistor.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

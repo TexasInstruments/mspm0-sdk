@@ -187,11 +187,20 @@ if(Common.hasTimerA()){
     ])
 };
 
-const TimerClockSourceOptions = [
-    { name: "BUSCLK", displayName: "BUSCLK" },
-    { name: "MFCLK", displayName: "MFCLK" },
-    { name: "LFCLK", displayName: "LFCLK" },
-];
+
+function getTimerClockSourceOptions(inst) {
+    let TimerClockSourceOptions = [];
+    TimerClockSourceOptions = [
+        { name: "BUSCLK", displayName: "BUSCLK" },
+        { name: "MFCLK", displayName: "MFCLK" },
+        { name: "LFCLK", displayName: "LFCLK" },
+    ];
+    if (Common.isTimerA2XBUSCLKSupported() && (inst.peripheral.$solution.peripheralName.match(/TIMA0/))){
+        TimerClockSourceOptions.unshift({ name: "2X_BUSCLK", displayName: "2x BUSCLK" });
+    }
+
+    return TimerClockSourceOptions;
+}
 
 const TimerClockDividerOptions = [
     { name: 1, displayName: "Divided by 1"},
@@ -323,6 +332,9 @@ function getTimerClockSourceFreq(inst) {
        case "BUSCLK":
             timerClockFreq = Common.getBUSCLKFreq(inst, "GPTIMER");
         break;
+        case "2X_BUSCLK":
+            timerClockFreq = (Common.getBUSCLKFreq(inst, "GPTIMER") * 2);
+        break;
         case "MFCLK":
             timerClockFreq = system.modules["/ti/driverlib/SYSCTL"].$static.MFCLK_Freq;
         break;
@@ -345,6 +357,9 @@ function getTimerClockFreq(inst,ui)
     {
         case "BUSCLK":
             timerClkFreq = Common.getBUSCLKFreq(inst, "GPTIMER");
+            break;
+        case "2X_BUSCLK":
+            timerClkFreq = (Common.getBUSCLKFreq(inst, "GPTIMER") * 2);
             break;
         case "MFCLK":
             timerClkFreq = system.modules["/ti/driverlib/SYSCTL"].$static.MFCLK_Freq;
@@ -1251,7 +1266,7 @@ The profiles that are given are:
                             description : 'Timer clock source selection',
                             hidden      : false,
                             default     : "BUSCLK",
-                            options     : TimerClockSourceOptions,
+                            options     : (inst) => getTimerClockSourceOptions(inst),
                             onChange    : onChangeSetCustomProfile
                         },
                         {
@@ -1739,6 +1754,10 @@ function validatePinmux(inst, validation) {
                 validation.logError("Fault Handler only available on Timer A instances. Please select a Timer A instance from PinMux if available.",inst,"faultHandlerEn");
             }
         }
+    }
+
+    if ((inst.timerClkSrc == "2X_BUSCLK") && (solution.match(/TIMA0/) == null)){
+        validation.logError("2x BUSCLK is not supported for timer instances outside of TIMA. Please select a different timer instance", inst, "timerClkSrc");
     }
 
     /* Validate Timer instance supports Shadow load */

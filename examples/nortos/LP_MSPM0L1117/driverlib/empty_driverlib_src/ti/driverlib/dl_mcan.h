@@ -1570,9 +1570,8 @@ typedef struct {
 
 /**
  * @brief Configuration structure to backup MCAN peripheral state before
- *        entering STOP or STANDBY mode. Not required after PG 1.0 silicon.
- *        Used by @ref DL_MCAN_saveConfiguration and
- *        @ref DL_MCAN_restoreConfiguration
+ *        entering STOP or STANDBY mode. Used by @ref DL_MCAN_saveConfiguration
+ *        and @ref DL_MCAN_restoreConfiguration
  */
 typedef struct {
     /*! MCAN Clock Divider Configuration */
@@ -1738,7 +1737,8 @@ bool DL_MCAN_isReady(DL_MCAN_INSTANCE instance);
  *  @param[in]  config         Pointer to the clock configuration struct
  *                             @ref DL_MCAN_ClockConfig.
  */
-void DL_MCAN_setClockConfig(MCAN_Regs *mcan, DL_MCAN_ClockConfig *config);
+void DL_MCAN_setClockConfig(
+    MCAN_Regs *mcan, const DL_MCAN_ClockConfig *config);
 
 /**
  *  @brief     Get  CANCLK clock configuration
@@ -1756,7 +1756,7 @@ void DL_MCAN_getClockConfig(MCAN_Regs *mcan, DL_MCAN_ClockConfig *config);
  * @retval  state     Returns TRUE if reset is in progress.
  *                    Else returns FALSE.
  */
-bool DL_MCAN_isInReset(MCAN_Regs *mcan);
+bool DL_MCAN_isInReset(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will return flexible data rate operation status
@@ -1767,7 +1767,7 @@ bool DL_MCAN_isInReset(MCAN_Regs *mcan);
  * @return  state     Returns TRUE if flexible data rate operation
  *                    is enabled. Else returns FALSE.
  */
-bool DL_MCAN_isFDOpEnable(MCAN_Regs *mcan);
+bool DL_MCAN_isFDOpEnable(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This function checks if the memory initialization is done for
@@ -1778,7 +1778,7 @@ bool DL_MCAN_isFDOpEnable(MCAN_Regs *mcan);
  *  @retval  state    Returns TRUE if memory initialization is done.
  *                    Else returns FALSE.
  */
-bool DL_MCAN_isMemInitDone(MCAN_Regs *mcan);
+bool DL_MCAN_isMemInitDone(const MCAN_Regs *mcan);
 
 /**
  *  @brief  This API will set MCAN module mode of operation.
@@ -1797,7 +1797,7 @@ void DL_MCAN_setOpMode(MCAN_Regs *mcan, uint32_t mode);
  *
  *  @return  mode     Mode of operation. One of @ref DL_MCAN_OPERATION_MODE.
  */
-uint32_t DL_MCAN_getOpMode(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getOpMode(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will initialize MCAN module.
@@ -1906,7 +1906,7 @@ int32_t DL_MCAN_TXBufAddReq(MCAN_Regs *mcan, uint32_t bufNum);
  *  @return  None.
  */
 void DL_MCAN_getNewDataStatus(
-    MCAN_Regs *mcan, DL_MCAN_RxNewDataStatus *newDataStatus);
+    const MCAN_Regs *mcan, DL_MCAN_RxNewDataStatus *newDataStatus);
 
 /**
  *  @brief   This API clear New Data Message Status.
@@ -1936,8 +1936,8 @@ void DL_MCAN_clearNewDataStatus(
  *
  *  @return  None.
  */
-void DL_MCAN_readMsgRam(MCAN_Regs *mcan, uint32_t memType, uint32_t bufNum,
-    uint32_t fifoNum, DL_MCAN_RxBufElement *elem);
+void DL_MCAN_readMsgRam(const MCAN_Regs *mcan, uint32_t memType,
+    uint32_t bufNum, uint32_t fifoNum, DL_MCAN_RxBufElement *elem);
 
 /**
  *  @brief   This API is used to read message form Tx Event FIFO.
@@ -1949,7 +1949,7 @@ void DL_MCAN_readMsgRam(MCAN_Regs *mcan, uint32_t memType, uint32_t bufNum,
  *  @return  None.
  */
 void DL_MCAN_readTxEventFIFO(
-    MCAN_Regs *mcan, DL_MCAN_TxEventFIFOElement *txEventElem);
+    const MCAN_Regs *mcan, DL_MCAN_TxEventFIFOElement *txEventElem);
 
 /**
  *  @brief   This API is used to add Standard Message ID Filter Element.
@@ -2009,7 +2009,8 @@ void DL_MCAN_lpbkModeEnable(MCAN_Regs *mcan, uint32_t lpbkMode, bool enable);
  *
  *  @return  None.
  */
-void DL_MCAN_getErrCounters(MCAN_Regs *mcan, DL_MCAN_ErrCntStatus *errCounter);
+void DL_MCAN_getErrCounters(
+    const MCAN_Regs *mcan, DL_MCAN_ErrCntStatus *errCounter);
 
 /**
  *  @brief   This API will return protocol status for MCAN module.
@@ -2020,7 +2021,7 @@ void DL_MCAN_getErrCounters(MCAN_Regs *mcan, DL_MCAN_ErrCntStatus *errCounter);
  *  @return  None.
  */
 void DL_MCAN_getProtocolStatus(
-    MCAN_Regs *mcan, DL_MCAN_ProtocolStatus *protStatus);
+    const MCAN_Regs *mcan, DL_MCAN_ProtocolStatus *protStatus);
 
 /**
  *  @brief   This API is used to enable/disable interrupts.
@@ -2055,7 +2056,7 @@ void DL_MCAN_selectIntrLine(
  *
  *  @return  status   Interrupt Line Select Status.
  */
-uint32_t DL_MCAN_getIntrLineSelectStatus(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getIntrLineSelectStatus(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API is used to enable/disable selected interrupt line.
@@ -2077,7 +2078,7 @@ void DL_MCAN_enableIntrLine(MCAN_Regs *mcan, uint32_t lineNum, bool enable);
  *
  *  @return  status   Interrupt Status.
  */
-uint32_t DL_MCAN_getIntrStatus(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getIntrStatus(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API is used to clear the interrupt status.
@@ -2101,7 +2102,7 @@ void DL_MCAN_clearIntrStatus(
  *  @return  None.
  */
 void DL_MCAN_getHighPriorityMsgStatus(
-    MCAN_Regs *mcan, DL_MCAN_HighPriorityMsgInfo *hpm);
+    const MCAN_Regs *mcan, DL_MCAN_HighPriorityMsgInfo *hpm);
 
 /**
  *  @brief   This API will Rx FIFO status.
@@ -2112,7 +2113,7 @@ void DL_MCAN_getHighPriorityMsgStatus(
  *  @return  None.
  */
 void DL_MCAN_getRxFIFOStatus(
-    MCAN_Regs *mcan, DL_MCAN_RxFIFOStatus *fifoStatus);
+    const MCAN_Regs *mcan, DL_MCAN_RxFIFOStatus *fifoStatus);
 
 /**
  *  @brief   This API will write Rx FIFO Acknowledgement.
@@ -2135,7 +2136,7 @@ int32_t DL_MCAN_writeRxFIFOAck(
  *  @return  None.
  */
 void DL_MCAN_getTxFIFOQueStatus(
-    MCAN_Regs *mcan, DL_MCAN_TxFIFOStatus *fifoStatus);
+    const MCAN_Regs *mcan, DL_MCAN_TxFIFOStatus *fifoStatus);
 
 /**
  *  @brief   This API will return Tx Buffer Request Pending status.
@@ -2144,7 +2145,7 @@ void DL_MCAN_getTxFIFOQueStatus(
  *
  *  @return  status   Tx Buffer Request Pending status.
  */
-uint32_t DL_MCAN_getTxBufReqPend(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getTxBufReqPend(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will set Tx Buffer Cancellation Request.
@@ -2163,7 +2164,7 @@ int32_t DL_MCAN_txBufCancellationReq(MCAN_Regs *mcan, uint32_t buffNum);
  *
  *  @return  status   Tx Buffer Transmission Occurred status.
  */
-uint32_t DL_MCAN_getTxBufTransmissionStatus(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getTxBufTransmissionStatus(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will return Transmit Buffer Cancellation Finished status.
@@ -2172,7 +2173,7 @@ uint32_t DL_MCAN_getTxBufTransmissionStatus(MCAN_Regs *mcan);
  *
  *  @return  status   Transmit Buffer Cancellation Finished status.
  */
-uint32_t DL_MCAN_txBufCancellationStatus(MCAN_Regs *mcan);
+uint32_t DL_MCAN_txBufCancellationStatus(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API is used to enable/disable Tx Buffer Transmission Interrupt.
@@ -2199,7 +2200,7 @@ int32_t DL_MCAN_TXBufTransIntrEnable(
  *  @return  status          Configuration status.
  */
 int32_t DL_MCAN_getTxBufCancellationIntrEnable(
-    MCAN_Regs *mcan, uint32_t bufNum, bool enable);
+    const MCAN_Regs *mcan, uint32_t bufNum, bool enable);
 
 /**
  *  @brief   This API add clock stop request for MCAN module to put it in
@@ -2224,7 +2225,7 @@ void DL_MCAN_addClockStopRequest(MCAN_Regs *mcan, bool enable);
  *  @return  None.
  */
 void DL_MCAN_getTxEventFIFOStatus(
-    MCAN_Regs *mcan, DL_MCAN_TxEventFIFOStatus *fifoStatus);
+    const MCAN_Regs *mcan, DL_MCAN_TxEventFIFOStatus *fifoStatus);
 
 /**
  *  @brief   This API will write Event FIFO Acknowledge Index.
@@ -2300,7 +2301,7 @@ void DL_MCAN_eccEnableIntr(MCAN_Regs *mcan, uint32_t errType, bool enable);
  *
  *  @return  None.
  */
-uint32_t DL_MCAN_eccGetIntrStatus(MCAN_Regs *mcan, uint32_t errType);
+uint32_t DL_MCAN_eccGetIntrStatus(const MCAN_Regs *mcan, uint32_t errType);
 
 /**
  *  @brief   This API is used to clear ECC interrupt status.
@@ -2371,7 +2372,7 @@ void DL_MCAN_extTSWriteEOI(MCAN_Regs *mcan);
  *                    interrupts for external TimeStamp counter.
  *                    Maximum number of unserviced interrupts is 0xF.
  */
-uint32_t DL_MCAN_extTSGetUnservicedIntrCount(MCAN_Regs *mcan);
+uint32_t DL_MCAN_extTSGetUnservicedIntrCount(const MCAN_Regs *mcan);
 
 /* ========================================================================== */
 /*                          Advance Functions                                 */
@@ -2386,7 +2387,7 @@ uint32_t DL_MCAN_extTSGetUnservicedIntrCount(MCAN_Regs *mcan);
  *
  *  @return  None.
  */
-void DL_MCAN_getRevisionId(MCAN_Regs *mcan, DL_MCAN_RevisionId *revId);
+void DL_MCAN_getRevisionId(const MCAN_Regs *mcan, DL_MCAN_RevisionId *revId);
 
 /**
  *  @brief   This API get clock stop acknowledgement for MCAN module.
@@ -2398,7 +2399,7 @@ void DL_MCAN_getRevisionId(MCAN_Regs *mcan, DL_MCAN_RevisionId *revId);
  *                   Return '1' if M_CAN is set in power down mode else
  *                   returns '0'.
  */
-uint32_t DL_MCAN_getClockStopAck(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getClockStopAck(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will set External TimeStamp Counter Overflow Interrupt
@@ -2429,7 +2430,7 @@ void DL_MCAN_extTSClearRawStatus(MCAN_Regs *mcan);
  *                    0= The CAN bus is dominant
  *                    1= The CAN bus is recessive
  */
-uint32_t DL_MCAN_getRxPinState(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getRxPinState(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will set Tx pin state of MCAN module.
@@ -2457,7 +2458,7 @@ void DL_MCAN_setTxPinState(MCAN_Regs *mcan, uint32_t state);
  *                    10= The CAN bus is dominant
  *                    11= The CAN bus is recessive
  */
-uint32_t DL_MCAN_getTxPinState(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getTxPinState(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will return current timestamp counter value.
@@ -2466,7 +2467,7 @@ uint32_t DL_MCAN_getTxPinState(MCAN_Regs *mcan);
  *
  *  @return  val             Current Timestamp counter value.
  */
-uint32_t DL_MCAN_getTSCounterVal(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getTSCounterVal(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will return clock stop acknowledgement
@@ -2478,7 +2479,7 @@ uint32_t DL_MCAN_getTSCounterVal(MCAN_Regs *mcan);
  *                 0= No clock stop acknowledged
  *                 1= M_CAN may be set in power down
  */
-uint32_t DL_MCAN_getClkStopAck(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getClkStopAck(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will get the configured bit timings for MCAN module.
@@ -2490,7 +2491,7 @@ uint32_t DL_MCAN_getClkStopAck(MCAN_Regs *mcan);
  *  @return  None.
  */
 void DL_MCAN_getBitTime(
-    MCAN_Regs *mcan, DL_MCAN_BitTimingParams *configParams);
+    const MCAN_Regs *mcan, DL_MCAN_BitTimingParams *configParams);
 
 /**
  *  @brief   This API will reset timestamp counter value.
@@ -2508,7 +2509,7 @@ void DL_MCAN_resetTSCounter(MCAN_Regs *mcan);
  *
  *  @return  val      Current Time-out counter value.
  */
-uint32_t DL_MCAN_getTOCounterVal(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getTOCounterVal(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API is used get the ECC AGGR revision ID.
@@ -2520,7 +2521,7 @@ uint32_t DL_MCAN_getTOCounterVal(MCAN_Regs *mcan);
  *  @return  None.
  */
 void DL_MCAN_eccAggrGetRevisionId(
-    MCAN_Regs *mcan, DL_MCAN_ECCAggrRevisionId *revId);
+    const MCAN_Regs *mcan, DL_MCAN_ECCAggrRevisionId *revId);
 
 /**
  *  @brief   This API is used get the ECC Wrapper revision ID.
@@ -2544,7 +2545,7 @@ void DL_MCAN_eccWrapGetRevisionId(
  *                    Interrupt is enabled.
  *                    Else returns FALSE.
  */
-bool DL_MCAN_extTSIsIntrEnable(MCAN_Regs *mcan);
+bool DL_MCAN_extTSIsIntrEnable(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This function return endianness value of MCAN module.
@@ -2553,7 +2554,7 @@ bool DL_MCAN_extTSIsIntrEnable(MCAN_Regs *mcan);
  *
  * @retval  val             Endianness value. (0x87654321)
  */
-uint32_t DL_MCAN_getEndianVal(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getEndianVal(const MCAN_Regs *mcan);
 
 /**
  *  @brief   This API will get the configured Extended ID AND Mask.
@@ -2562,10 +2563,14 @@ uint32_t DL_MCAN_getEndianVal(MCAN_Regs *mcan);
  *
  *  @return  idMask          Extended ID AND Mask.
  */
-uint32_t DL_MCAN_getExtIDANDMask(MCAN_Regs *mcan);
+uint32_t DL_MCAN_getExtIDANDMask(const MCAN_Regs *mcan);
 
 /**
- * @brief Enables power on MCAN module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the MCAN
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  *  @param mcan         Pointer to the register overlay for the peripheral
  */
@@ -2575,7 +2580,12 @@ __STATIC_INLINE void DL_MCAN_enablePower(MCAN_Regs *mcan)
 }
 
 /**
- * @brief Disables power on mcan module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the MCAN
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  *  @param mcan         Pointer to the register overlay for the peripheral
  */
@@ -2585,14 +2595,22 @@ __STATIC_INLINE void DL_MCAN_disablePower(MCAN_Regs *mcan)
 }
 
 /**
- * @brief Returns if  power on mcan module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the MCAN
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  *  @param mcan         Pointer to the register overlay for the peripheral
  *
- *  @return true if power is enabled
- *  @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_MCAN_isPowerEnabled(MCAN_Regs *mcan)
+__STATIC_INLINE bool DL_MCAN_isPowerEnabled(const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.PWREN & MCAN_PWREN_ENABLE_MASK) ==
             MCAN_PWREN_ENABLE_ENABLE);
@@ -2619,7 +2637,7 @@ __STATIC_INLINE void DL_MCAN_reset(MCAN_Regs *mcan)
  *  @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_MCAN_isReset(MCAN_Regs *mcan)
+__STATIC_INLINE bool DL_MCAN_isReset(const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.STAT & MCAN_STAT_RESETSTKY_MASK) ==
             MCAN_STAT_RESETSTKY_RESET);
@@ -2666,7 +2684,7 @@ __STATIC_INLINE void DL_MCAN_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_MCAN_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_MCAN_getEnabledInterrupts(
-    MCAN_Regs *mcan, uint32_t interruptMask)
+    const MCAN_Regs *mcan, uint32_t interruptMask)
 {
     return (mcan->MCANSS.TI_WRAPPER.MSP.CPU_INT.IMASK & interruptMask);
 }
@@ -2687,7 +2705,7 @@ __STATIC_INLINE uint32_t DL_MCAN_getEnabledInterrupts(
  *  @retval     Bitwise OR of @ref DL_MCAN_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_MCAN_getEnabledInterruptStatus(
-    MCAN_Regs *mcan, uint32_t interruptMask)
+    const MCAN_Regs *mcan, uint32_t interruptMask)
 {
     return (mcan->MCANSS.TI_WRAPPER.MSP.CPU_INT.MIS & interruptMask);
 }
@@ -2708,7 +2726,7 @@ __STATIC_INLINE uint32_t DL_MCAN_getEnabledInterruptStatus(
  *  @retval     Bitwise OR of @ref DL_MCAN_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_MCAN_getRawInterruptStatus(
-    MCAN_Regs *mcan, uint32_t interruptMask)
+    const MCAN_Regs *mcan, uint32_t interruptMask)
 {
     return (mcan->MCANSS.TI_WRAPPER.MSP.CPU_INT.RIS & interruptMask);
 }
@@ -2725,7 +2743,7 @@ __STATIC_INLINE uint32_t DL_MCAN_getRawInterruptStatus(
  *              @ref DL_MCAN_IIDX
  *
  */
-__STATIC_INLINE DL_MCAN_IIDX DL_MCAN_getPendingInterrupt(MCAN_Regs *mcan)
+__STATIC_INLINE DL_MCAN_IIDX DL_MCAN_getPendingInterrupt(const MCAN_Regs *mcan)
 {
     // TODO: Need to figure out return values for this.
     return ((DL_MCAN_IIDX) mcan->MCANSS.TI_WRAPPER.MSP.CPU_INT.IIDX);
@@ -2753,7 +2771,7 @@ __STATIC_INLINE void DL_MCAN_clearInterruptStatus(
  *  @return     If the MCAN module clock request is enabled
  *
  */
-__STATIC_INLINE bool DL_MCAN_isModuleClockEnabled(MCAN_Regs *mcan)
+__STATIC_INLINE bool DL_MCAN_isModuleClockEnabled(const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.TI_WRAPPER.MSP.MCANSS_CLKEN &
                 MCAN_CLKEN_CLK_REQEN_MASK) == MCAN_CLKEN_CLK_REQEN_SET);
@@ -2789,7 +2807,7 @@ __STATIC_INLINE void DL_MCAN_disableModuleClock(MCAN_Regs *mcan)
  *  @return     The current clock divide ratio, one of @ref DL_MCAN_CLOCK_DIVIDE
  *
  */
-__STATIC_INLINE uint32_t DL_MCAN_getModuleClockDivider(MCAN_Regs *mcan)
+__STATIC_INLINE uint32_t DL_MCAN_getModuleClockDivider(const MCAN_Regs *mcan)
 {
     return (
         mcan->MCANSS.TI_WRAPPER.MSP.MCANSS_CLKDIV & MCAN_CLKDIV_RATIO_MASK);
@@ -2819,7 +2837,8 @@ __STATIC_INLINE void DL_MCAN_setModuleClockDivider(
  *  @return     If the the MCAN module clock gating request is enabled/disabled
  *
  */
-__STATIC_INLINE bool DL_MCAN_isClockStopGateRequestEnabled(MCAN_Regs *mcan)
+__STATIC_INLINE bool DL_MCAN_isClockStopGateRequestEnabled(
+    const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.TI_WRAPPER.MSP.MCANSS_CLKCTL &
                 MCAN_CLKCTL_STOPREQ_MASK) == MCAN_CLKCTL_STOPREQ_ENABLE);
@@ -2858,7 +2877,8 @@ __STATIC_INLINE void DL_MCAN_disableClockStopGateRequest(MCAN_Regs *mcan)
  *              enabled/disabled
  *
  */
-__STATIC_INLINE bool DL_MCAN_isClockStopWakeupInterruptEnabled(MCAN_Regs *mcan)
+__STATIC_INLINE bool DL_MCAN_isClockStopWakeupInterruptEnabled(
+    const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.TI_WRAPPER.MSP.MCANSS_CLKCTL &
                 MCAN_CLKCTL_WAKEUP_INT_EN_MASK) ==
@@ -2900,7 +2920,7 @@ __STATIC_INLINE void DL_MCAN_disableClockStopWakeupInterrupt(MCAN_Regs *mcan)
  *  @return     If the the glitch filter on MCAN RXD input is enabled/disabled
  *
  */
-__STATIC_INLINE bool DL_MCAN_isGlitchFilterWakeupEnabled(MCAN_Regs *mcan)
+__STATIC_INLINE bool DL_MCAN_isGlitchFilterWakeupEnabled(const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.TI_WRAPPER.MSP.MCANSS_CLKCTL &
                 MCAN_CLKCTL_WKUP_GLTFLT_EN_MASK) ==
@@ -2945,7 +2965,8 @@ __STATIC_INLINE void DL_MCAN_disableGlitchFilterWakeup(MCAN_Regs *mcan)
  *  @return     The clock stop acknowledge status
  *
  */
-__STATIC_INLINE bool DL_MCAN_getClockStopAcknowledgeStatus(MCAN_Regs *mcan)
+__STATIC_INLINE bool DL_MCAN_getClockStopAcknowledgeStatus(
+    const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.TI_WRAPPER.MSP.MCANSS_CLKSTS &
                 MCAN_CLKSTS_CLKSTOP_ACKSTS_MASK) ==
@@ -2964,7 +2985,7 @@ __STATIC_INLINE bool DL_MCAN_getClockStopAcknowledgeStatus(MCAN_Regs *mcan)
  *
  */
 __STATIC_INLINE bool DL_MCAN_getClockStopHardwareOverrideStatus(
-    MCAN_Regs *mcan)
+    const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.TI_WRAPPER.MSP.MCANSS_CLKSTS &
                 MCAN_CLKSTS_STOPREQ_HW_OVR_MASK) ==
@@ -2979,7 +3000,8 @@ __STATIC_INLINE bool DL_MCAN_getClockStopHardwareOverrideStatus(
  *  @return     The status of the MCAN controller clock request from GPRCM
  *
  */
-__STATIC_INLINE bool DL_MCAN_getControllerClockRequestStatus(MCAN_Regs *mcan)
+__STATIC_INLINE bool DL_MCAN_getControllerClockRequestStatus(
+    const MCAN_Regs *mcan)
 {
     return ((mcan->MCANSS.TI_WRAPPER.MSP.MCANSS_CLKSTS &
                 MCAN_CLKSTS_CCLKDONE_MASK) == MCAN_CLKSTS_CCLKDONE_SET);
@@ -2987,7 +3009,6 @@ __STATIC_INLINE bool DL_MCAN_getControllerClockRequestStatus(MCAN_Regs *mcan)
 
 /**
  *  @brief      Saves MCAN configuration before entering STOP or STANDBY mode.
- *              Only necessary for PG 1.0 silicon.
  *
  *  @param[in]  mcan  Pointer to the register overlay for the peripheral
  *
@@ -2998,11 +3019,11 @@ __STATIC_INLINE bool DL_MCAN_getControllerClockRequestStatus(MCAN_Regs *mcan)
  *              overwritten). TRUE if a configuration was successfully saved
  *
  */
-bool DL_MCAN_saveConfiguration(MCAN_Regs *mcan, DL_MCAN_backupConfig *ptr);
+bool DL_MCAN_saveConfiguration(
+    const MCAN_Regs *mcan, DL_MCAN_backupConfig *ptr);
 
 /**
  *  @brief      Restore MCAN configuration after leaving STOP or STANDBY mode.
- *              Only necessary for PG 1.0 silicon.
  *
  *  @param[in]  mcan  Pointer to the register overlay for the peripheral
  *

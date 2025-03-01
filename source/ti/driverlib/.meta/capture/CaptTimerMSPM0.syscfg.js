@@ -122,6 +122,20 @@ function onChangeTimerProfile(inst, ui) {
     }
 }
 
+function getTimerClockSourceOptions(inst) {
+    let TimerClockSourceOptions = [];
+    TimerClockSourceOptions = [
+        { name: "BUSCLK", displayName: "BUSCLK" },
+        { name: "MFCLK", displayName: "MFCLK" },
+        { name: "LFCLK", displayName: "LFCLK" },
+    ];
+    if (Common.isTimerA2XBUSCLKSupported() && (inst.peripheral.$solution.peripheralName.match(/TIMA0/))){
+        TimerClockSourceOptions.unshift({ name: "2X_BUSCLK", displayName: "2x BUSCLK" });
+    }
+
+    return TimerClockSourceOptions;
+}
+
 const InterruptOptions = [
     { name: "ZERO", displayName: "Zero event", description: "Timer reaches zero" },
     { name: "LOAD", displayName: "Load event", description: "Timer reloads count value" },
@@ -151,11 +165,6 @@ const EventOptions = [
     { name: "CC3_UP_EVENT", displayName: "Channel 3 compare up event"},
 ];
 
-const TimerClockSourceOptions = [
-    { name: "BUSCLK", displayName: "BUSCLK" },
-    { name: "MFCLK", displayName: "MFCLK" },
-    { name: "LFCLK", displayName: "LFCLK" },
-];
 
 const TimerClockDividerOptions = [
     { name: 1, displayName: "Divided by 1"},
@@ -250,6 +259,9 @@ function getTimerClockSourceFreq(inst) {
         case "BUSCLK":
             timerClockFreq = Common.getBUSCLKFreq(inst, "GPTIMER");
         break;
+        case "2X_BUSCLK":
+            timerClockFreq = (Common.getBUSCLKFreq(inst, "GPTIMER") * 2);
+        break;
         case "MFCLK":
             timerClockFreq = system.modules["/ti/driverlib/SYSCTL"].$static.MFCLK_Freq;
         break;
@@ -272,6 +284,9 @@ function getTimerClockFreq(inst,ui)
     {
         case "BUSCLK":
             timerClkFreq = Common.getBUSCLKFreq(inst, "GPTIMER");
+            break;
+        case "2X_BUSCLK":
+            timerClkFreq = (Common.getBUSCLKFreq(inst, "GPTIMER") * 2);
             break;
         case "MFCLK":
             timerClkFreq = system.modules["/ti/driverlib/SYSCTL"].$static.MFCLK_Freq;
@@ -893,7 +908,7 @@ The Quick Profile Options are:
                             description : 'Timer clock source selection',
                             hidden      : false,
                             default     : "BUSCLK",
-                            options     : TimerClockSourceOptions,
+                            options     : (inst) => getTimerClockSourceOptions(inst),
                             onChange    : onChangeSetCustomProfile
                         },
                         {
@@ -1177,6 +1192,13 @@ custom capture mode.\n`,
                                 {name: "FALLING", displayName: "Falling Edge detection"},
                                 {name: "EDGE", displayName: "Rising and Falling Edge detection"},
                             ],
+                            getDisabledOptions:(inst) => {
+                                if(inst.captMode == "PULSE_WIDTH_UP" || inst.captMode == "PULSE_WIDTH"){
+                                    return [{name: "EDGE", displayName: "Rising and Falling Edge detection", reason: "not supported"}];
+                                } else {
+                                    return [];
+                                }
+                            },
                             onChange    : onChangeSetCustomProfile,
                         },
                         // DL_TIMER_INPUT_CHAN inputChan
@@ -1899,6 +1921,7 @@ function TimerFilter(peripheral, inst) {
             let multiCCName = "multi_ch"+ cc.toString() +"_input_mode"
             switch (inst[multiCCName] ) {
                 case "DL_TIMER_CC_IN_SEL_CCPX":
+                    break;
                 case "DL_TIMER_CC_IN_SEL_CCP_XOR":
                     chanEnabled[cc] = true;
                     break;
@@ -2000,7 +2023,9 @@ function pinmuxRequirements(inst)
                     case "DL_TIMER_CC_IN_SEL_CCPX":
                     case "DL_TIMER_CC_IN_SEL_CCP_XOR":
                         if(timer.resources)
-                        timer.resources.push(allResources[cc]);
+                        if(!timer.resources.some(val=>val.name==allResources[cc].name)){
+                            timer.resources.push(allResources[cc]);
+                        }
                         break;
                     case "DL_TIMER_CC_IN_SEL_CCPX_PAIR":
                         let pairCh;
@@ -2020,17 +2045,23 @@ function pinmuxRequirements(inst)
                             default:
                                 break;
                         }
-                        timer.resources.push(allResources[pairCh]);
+                        if(!timer.resources.some(val=>val.name==allResources[pairCh].name)){
+                            timer.resources.push(allResources[pairCh]);
+                        }
                         break;
                     case "DL_TIMER_CC_IN_SEL_CCP0":
-                        timer.resources.push(allResources[0]);
+                        if(!timer.resources.some(val=>val.name==allResources[0].name)){
+                            timer.resources.push(allResources[0]);
+                        }
                         break;
                     default:
                         break;
                 }
             }
         }else{
-            timer.resources.push(allResources[inst.ccIndex]);
+            if(!timer.resources.some(val=>val.name==allResources[inst.ccIndex].name)){
+                timer.resources.push(allResources[inst.ccIndex]);
+            }
         }
     }
 
@@ -2046,6 +2077,14 @@ function pinmuxRequirements(inst)
  */
 function validate(inst, validation)
 {
+    /* If capture mode is pulse width and capture edge detection is EDGE, throw error */
+    if (inst.captMode == "PULSE_WIDTH" || inst.captMode == "PULSE_WIDTH_UP"){
+        if (inst.captEdgeDetection == "EDGE"){
+            validation.logError("Both rising and falling edge detection is not supported for pulse width modes. Please reselect a new Capture Edge Detection Mode", inst, "captEdgeDetection");
+        }
+    }
+
+
     /* validate dynmaicEnums */
     let dynamicEnums = ["secondaryCrossTriggerSource"];
     for(let dE of dynamicEnums){
@@ -2100,6 +2139,16 @@ function validate(inst, validation)
         EVENT.validateSubscriberOptions(inst,validation,"subscriberChannel");
     }
 
+    // Multi Input Validation
+    if(inst.captureInputMode == "multi"){
+        for (let cc of inst.ccIndexMulti) {
+            let multiCCName = "multi_ch"+ cc.toString() +"_input_mode"
+            if(!["DL_TIMER_CC_IN_SEL_CCPX","DL_TIMER_CC_IN_SEL_CCP_XOR"].includes(inst[multiCCName] )) {
+                validation.logInfo("Channel is no longer configured to default pin", inst, [multiCCName]);
+            }
+        }
+    }
+
     Common.validateNames(inst, validation);
 }
 
@@ -2119,6 +2168,10 @@ function validatePinmux(inst, validation) {
                 validation.logError("Repeat Counter only available on Timer A instances. Please select a Timer A instance from PinMux if available.",inst,"enableRepeatCounter");
             }
         }
+    }
+
+    if ((inst.timerClkSrc == "2X_BUSCLK") && (solution.match(/TIMA0/) == null)){
+        validation.logError("2x BUSCLK is not supported for timer instances outside of TIMA. Please select a different timer instance", inst, "timerClkSrc");
     }
 
     /* timerClkPrescale validation */

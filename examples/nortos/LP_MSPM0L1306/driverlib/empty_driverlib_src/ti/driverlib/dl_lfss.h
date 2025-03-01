@@ -528,7 +528,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_enableOutputInversion(
  *  @retval     false Output inversion for the Tamper I/O is disabled
  */
 __STATIC_INLINE bool DL_LFSS_TamperIO_isOutputInversionEnabled(
-    LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     return ((lfss->IPSPECIFIC_TIO.TIOCTL[(uint32_t) tamperIO] &
                 LFSS_TIOCTL_OUTINV_MASK) == LFSS_TIOCTL_OUTINV_ENABLE);
@@ -578,7 +578,8 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setOutputSource(LFSS_Regs *lfss,
  *  @retval     One of @ref DL_LFSS_TAMPERIO_OUTPUT_SOURCE
  */
 __STATIC_INLINE DL_LFSS_TAMPERIO_OUTPUT_SOURCE
-DL_LFSS_TamperIO_getOutputSource(LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+DL_LFSS_TamperIO_getOutputSource(
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     return ((DL_LFSS_TAMPERIO_OUTPUT_SOURCE)(
         lfss->IPSPECIFIC_TIO.TIOCTL[(uint32_t) tamperIO] &
@@ -623,7 +624,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setGlitchFilterWidth(LFSS_Regs *lfss,
  */
 __STATIC_INLINE DL_LFSS_TAMPERIO_GLITCH_FILTER_WIDTH
 DL_LFSS_TamperIO_getGlitchFilterWidth(
-    LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     return ((DL_LFSS_TAMPERIO_GLITCH_FILTER_WIDTH)(
         lfss->IPSPECIFIC_TIO.TIOCTL[(uint32_t) tamperIO] &
@@ -660,7 +661,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setEdgeDetectionPolarity(LFSS_Regs *lfss,
  */
 __STATIC_INLINE DL_LFSS_TAMPERIO_EDGE_DETECTION_POLARITY
 DL_LFSS_TamperIO_getEdgeDetectionPolarity(
-    LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     return ((DL_LFSS_TAMPERIO_EDGE_DETECTION_POLARITY)(
         lfss->IPSPECIFIC_TIO.TIOCTL[(uint32_t) tamperIO] &
@@ -695,7 +696,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_enableInternalPullUp(
  *  @retval     false Internal pull-up resistor for the Tamper I/O is disabled
  */
 __STATIC_INLINE bool DL_LFSS_TamperIO_isInternalPullUpEnabled(
-    LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     return ((lfss->IPSPECIFIC_TIO.TIOCTL[(uint32_t) tamperIO] &
                 LFSS_TIOCTL_PIPU_MASK) == LFSS_TIOCTL_PIPU_ENABLE);
@@ -743,7 +744,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_enableInternalPullDown(
  *  @retval     false Internal pull-down resistor for the Tamper I/O is disabled
  */
 __STATIC_INLINE bool DL_LFSS_TamperIO_isInternalPullDownEnabled(
-    LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     return ((lfss->IPSPECIFIC_TIO.TIOCTL[(uint32_t) tamperIO] &
                 LFSS_TIOCTL_PIPD_MASK) == LFSS_TIOCTL_PIPD_ENABLE);
@@ -790,7 +791,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_enableInput(
  *  @retval     false Input for the Tamper I/O is disabled
  */
 __STATIC_INLINE bool DL_LFSS_TamperIO_isInputEnabled(
-    LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     return ((lfss->IPSPECIFIC_TIO.TIOCTL[(uint32_t) tamperIO] &
                 LFSS_TIOCTL_INENA_MASK) == LFSS_TIOCTL_INENA_ENABLE);
@@ -846,7 +847,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setMode(
  *  @retval     One of @ref DL_LFSS_TAMPERIO_MODE
  */
 __STATIC_INLINE DL_LFSS_TAMPERIO_MODE DL_LFSS_TamperIO_getMode(
-    LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     return ((DL_LFSS_TAMPERIO_MODE)(
         lfss->IPSPECIFIC_TIO.TIOCTL[(uint32_t) tamperIO] &
@@ -983,7 +984,7 @@ __STATIC_INLINE DL_LFSS_TAMPERIO_VALUE DL_LFSS_TamperIO_getOutputValue(
  *  @retval     One of @ref DL_LFSS_TAMPERIO_VALUE
  */
 __STATIC_INLINE DL_LFSS_TAMPERIO_VALUE DL_LFSS_TamperIO_getInputValue(
-    LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
+    const LFSS_Regs *lfss, DL_LFSS_TAMPERIO tamperIO)
 {
     const volatile uint32_t *pReg = &lfss->IPSPECIFIC_TIO.TIN3_0;
 
@@ -1022,7 +1023,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setHeartBeatInterval(
  *  @retval     One of @ref DL_LFSS_HEARTBEAT_INTERVAL
  */
 __STATIC_INLINE DL_LFSS_HEARTBEAT_INTERVAL
-DL_LFSS_TamperIO_getHeartBeatInterval(LFSS_Regs *lfss)
+DL_LFSS_TamperIO_getHeartBeatInterval(const LFSS_Regs *lfss)
 {
     uint32_t interval =
         lfss->IPSPECIFIC_TIO.HEARTBEAT & LFSS_HEARTBEAT_HBINTERVAL_MASK;
@@ -1054,7 +1055,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setHeartBeatPulseWidth(
  *  @retval     One of @ref DL_LFSS_HEARTBEAT_PULSE_WIDTH
  */
 __STATIC_INLINE DL_LFSS_HEARTBEAT_PULSE_WIDTH
-DL_LFSS_TamperIO_getHeartBeatPulseWidth(LFSS_Regs *lfss)
+DL_LFSS_TamperIO_getHeartBeatPulseWidth(const LFSS_Regs *lfss)
 {
     uint32_t width =
         (lfss->IPSPECIFIC_TIO.HEARTBEAT & LFSS_HEARTBEAT_HBWIDTH_MASK);
@@ -1086,7 +1087,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setHeartBeatMode(
  *  @retval     One of @ref DL_LFSS_HEARTBEAT_MODE
  */
 __STATIC_INLINE DL_LFSS_HEARTBEAT_MODE DL_LFSS_TamperIO_getHeartBeatMode(
-    LFSS_Regs *lfss)
+    const LFSS_Regs *lfss)
 {
     uint32_t mode =
         (lfss->IPSPECIFIC_TIO.HEARTBEAT & LFSS_HEARTBEAT_HBMODE_MASK);
@@ -1120,7 +1121,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_enableWriteProtectLock(LFSS_Regs *lfss)
  *  @retval     false Write protection lock is disabled
  */
 __STATIC_INLINE bool DL_LFSS_TamperIO_isWriteProtectLockEnabled(
-    LFSS_Regs *lfss)
+    const LFSS_Regs *lfss)
 {
     return ((lfss->IPSPECIFIC_TIO.TIOLOCK & LFSS_TIOLOCK_PROTECT_MASK) ==
             LFSS_TIOLOCK_PROTECT_SET);
@@ -1168,7 +1169,7 @@ __STATIC_INLINE void DL_LFSS_IWDT_disableModule(LFSS_Regs *lfss)
  * @return true  Watchdog is enabled
  * @return false Watchdog is disabled
  */
-__STATIC_INLINE bool DL_LFSS_IWDT_isModuleEnabled(LFSS_Regs *lfss)
+__STATIC_INLINE bool DL_LFSS_IWDT_isModuleEnabled(const LFSS_Regs *lfss)
 {
     return ((lfss->IPSPECIFIC_WDT.WDTEN & LFSS_WDTEN_ENABLE_MASK) ==
             LFSS_WDTEN_ENABLE_SET);
@@ -1205,7 +1206,7 @@ __STATIC_INLINE void DL_LFSS_IWDT_disableFreeRun(LFSS_Regs *lfss)
  * @return true  Watchdog free run control is enabled
  * @return false Watchdog free run control is disabled
  */
-__STATIC_INLINE bool DL_LFSS_IWDT_isFreeRunEnabled(LFSS_Regs *lfss)
+__STATIC_INLINE bool DL_LFSS_IWDT_isFreeRunEnabled(const LFSS_Regs *lfss)
 {
     return ((lfss->IPSPECIFIC_WDT.WDTDBGCTL & LFSS_WDTDBGCTL_FREE_MASK) ==
             LFSS_WDTDBGCTL_FREE_RUN);
@@ -1236,7 +1237,7 @@ __STATIC_INLINE void DL_LFSS_IWDT_setClockDivider(
  *  @retval     One of @ref DL_LFSS_IWDT_CLOCK_DIVIDE
  */
 __STATIC_INLINE DL_LFSS_IWDT_CLOCK_DIVIDE DL_LFSS_IWDT_getClockDivider(
-    LFSS_Regs *lfss)
+    const LFSS_Regs *lfss)
 {
     uint32_t divider =
         (lfss->IPSPECIFIC_WDT.WDTCTL & LFSS_WDTCTL_CLKDIV_MASK) + (uint32_t) 1;
@@ -1269,7 +1270,7 @@ __STATIC_INLINE void DL_LFSS_IWDT_setTimerPeriod(
  *  @retval     One of @ref DL_LFSS_IWDT_TIMER_PERIOD
  */
 __STATIC_INLINE DL_LFSS_IWDT_TIMER_PERIOD DL_LFSS_IWDT_getTimerPeriod(
-    LFSS_Regs *lfss)
+    const LFSS_Regs *lfss)
 {
     uint32_t period = (lfss->IPSPECIFIC_WDT.WDTCTL & LFSS_WDTCTL_PER_MASK);
 
@@ -1294,7 +1295,7 @@ __STATIC_INLINE void DL_LFSS_IWDT_restart(LFSS_Regs *lfss)
  * @return true  Watchdog module is running
  * @return false Watchdog counter has stopped
  */
-__STATIC_INLINE bool DL_LFSS_IWDT_isWatchdogRunning(LFSS_Regs *lfss)
+__STATIC_INLINE bool DL_LFSS_IWDT_isWatchdogRunning(const LFSS_Regs *lfss)
 {
     return ((lfss->IPSPECIFIC_WDT.WDTSTAT & LFSS_WDTSTAT_RUN_MASK) ==
             LFSS_WDTSTAT_RUN_RUN);
@@ -1325,7 +1326,7 @@ __STATIC_INLINE void DL_LFSS_IWDT_enableWriteProtect(LFSS_Regs *lfss)
  *  @retval     true  Write protection lock is enabled
  *  @retval     false Write protection lock is disabled
  */
-__STATIC_INLINE bool DL_LFSS_IWDT_isWriteProtectEnabled(LFSS_Regs *lfss)
+__STATIC_INLINE bool DL_LFSS_IWDT_isWriteProtectEnabled(const LFSS_Regs *lfss)
 {
     return ((lfss->IPSPECIFIC_WDT.WDTLOCK & LFSS_WDTLOCK_PROTECT_MASK) ==
             LFSS_WDTLOCK_PROTECT_SET);
@@ -1417,7 +1418,7 @@ __STATIC_INLINE void DL_LFSS_writeScratchPadData8(LFSS_Regs *lfss,
  *  @return     The 32-bit data in the specified scratch pad memory word
  */
 __STATIC_INLINE uint32_t DL_LFSS_readScratchPadDataWord(
-    LFSS_Regs *lfss, DL_LFSS_SCRATCHPAD_MEM_WORD memIndex)
+    const LFSS_Regs *lfss, DL_LFSS_SCRATCHPAD_MEM_WORD memIndex)
 {
     return (lfss->IPSPECIFIC_MEM.SPMEM[(uint32_t) memIndex]);
 }
@@ -1679,7 +1680,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_disableInterrupt(
  *  @retval     Logical OR of @ref DL_LFSS_TAMPERIO_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getEnabledInterrupts(
-    LFSS_Regs *lfss, uint32_t interruptMask)
+    const LFSS_Regs *lfss, uint32_t interruptMask)
 {
     return (lfss->CPU_INT.IMASK & interruptMask);
 }
@@ -1702,7 +1703,7 @@ __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getEnabledInterrupts(
  *  @sa         DL_LFSS_TAMPERIO_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getEnabledInterruptStatus(
-    LFSS_Regs *lfss, uint32_t interruptMask)
+    const LFSS_Regs *lfss, uint32_t interruptMask)
 {
     return (lfss->CPU_INT.MIS & interruptMask);
 }
@@ -1723,7 +1724,7 @@ __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getEnabledInterruptStatus(
  *  @retval     Logical OR of @ref DL_LFSS_TAMPERIO_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getRawInterruptStatus(
-    LFSS_Regs *lfss, uint32_t interruptMask)
+    const LFSS_Regs *lfss, uint32_t interruptMask)
 {
     return (lfss->CPU_INT.RIS & interruptMask);
 }
@@ -1741,7 +1742,7 @@ __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getRawInterruptStatus(
  *  @retval     One of @ref DL_LFSS_TAMPERIO_IIDX
  */
 __STATIC_INLINE DL_LFSS_TAMPERIO_IIDX DL_LFSS_TamperIO_getPendingInterrupt(
-    LFSS_Regs *lfss)
+    const LFSS_Regs *lfss)
 {
     return (DL_LFSS_TAMPERIO_IIDX)(lfss->CPU_INT.IIDX);
 }
@@ -1798,7 +1799,7 @@ __STATIC_INLINE void DL_LFSS_TamperIO_disableEvent(
  *  @retval     Bitwise OR of @ref DL_LFSS_TAMPERIO_EVENT values
  */
 __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getEnabledEvents(
-    LFSS_Regs *lfss, uint32_t eventMask)
+    const LFSS_Regs *lfss, uint32_t eventMask)
 {
     return ((lfss->GEN_EVENT.IMASK) & (eventMask));
 }
@@ -1820,7 +1821,7 @@ __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getEnabledEvents(
  *  @sa         DL_LFSS_TamperIO_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getEnabledEventStatus(
-    LFSS_Regs *lfss, uint32_t eventMask)
+    const LFSS_Regs *lfss, uint32_t eventMask)
 {
     return ((lfss->GEN_EVENT.MIS) & eventMask);
 }
@@ -1840,7 +1841,7 @@ __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getEnabledEventStatus(
  *  @retval     Bitwise OR of @ref DL_LFSS_TAMPERIO_EVENT values
  */
 __STATIC_INLINE uint32_t DL_LFSS_TamperIO_getRawEventsStatus(
-    LFSS_Regs *lfss, uint32_t eventMask)
+    const LFSS_Regs *lfss, uint32_t eventMask)
 {
     return ((lfss->GEN_EVENT.RIS) & eventMask);
 }
@@ -1879,7 +1880,8 @@ __STATIC_INLINE void DL_LFSS_TamperIO_setPublisherChanID(
  *  @return     Event publisher channel ID
  *
  */
-__STATIC_INLINE uint8_t DL_LFSS_TamperIO_getPublisherChanID(LFSS_Regs *lfss)
+__STATIC_INLINE uint8_t DL_LFSS_TamperIO_getPublisherChanID(
+    const LFSS_Regs *lfss)
 {
     return (uint8_t)(lfss->FPUB_0 & LFSS_FPUB_0_CHANID_MAXIMUM);
 }

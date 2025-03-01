@@ -11,7 +11,7 @@ SYSOSC is within the expected frequency range.
 The red LED is turned on if the FCC counter is within the expected range or will
 remain off if the test fails.
 
-The example is also configured to output SYSOSC via CLK_OUT to allow monitoring
+The example is also configured to output LFCLK via CLK_OUT to allow monitoring
 the clock externally.
 
 ## Peripherals & Pin Assignments

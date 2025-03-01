@@ -186,14 +186,20 @@ typedef struct {
     DL_VREF_BUFCONFIG bufConfig;
     /*! VREF sample and hold enable configuration setting. Either @ref DL_VREF_SHMODE_DISABLE or @ref DL_VREF_SHMODE_ENABLE */
     DL_VREF_SHMODE shModeEnable;
-    /*! Number of cycles to sample and hold for, if sample and hold mode is enabled. Minimum @ref DL_VREF_SH_MAX, maximum @ref DL_VREF_SH_MAX */
+    /*! Number of cycles to sample and hold for, if sample and hold mode is enabled. Minimum @ref DL_VREF_SH_MIN, maximum @ref DL_VREF_SH_MAX */
     uint32_t shCycleCount;
-    /*! Number of cycles to hold for, if sample and hold mode is enabled. Minimum @ref DL_VREF_HOLD_MAX, maximum @ref DL_VREF_HOLD_MIN */
+    /*! Number of cycles to hold for, if sample and hold mode is enabled. Minimum @ref DL_VREF_HOLD_MIN, maximum @ref DL_VREF_HOLD_MAX */
     uint32_t holdCycleCount;
 } DL_VREF_Config;
 
 /**
- * @brief Enables power on VREF module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the VREF
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  @note For power savings, please refer to @ref DL_VREF_enableInternalRef
  *
  * @param vref       Pointer to the register overlay for the peripheral
  */
@@ -203,13 +209,40 @@ __STATIC_INLINE void DL_VREF_enablePower(VREF_Regs *vref)
 }
 
 /**
- * @brief Disable power on VREF module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the VREF
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings. For power savings,
+ *  please refer to @ref DL_VREF_disableInternalRef
  *
  * @param vref       Pointer to the register overlay for the peripheral
  */
 __STATIC_INLINE void DL_VREF_disablePower(VREF_Regs *vref)
 {
     vref->GPRCM.PWREN = VREF_PWREN_KEY_UNLOCK_W | VREF_PWREN_ENABLE_DISABLE;
+}
+/**
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the VREF
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ * @param vref        Pointer to the register overlay for the peripheral
+ *
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
+ */
+__STATIC_INLINE bool DL_VREF_isPowerEnabled(VREF_Regs *vref)
+{
+    return ((VREF->GPRCM.PWREN & VREF_PWREN_ENABLE_MASK) ==
+            VREF_PWREN_ENABLE_ENABLE);
 }
 
 /**
@@ -250,7 +283,7 @@ __STATIC_INLINE void DL_VREF_disableInternalRef(VREF_Regs *vref)
  *  @retval     true  The internal VREF is enabled
  *  @retval     false The internal VREF is disabled, external VREF can be used
  */
-__STATIC_INLINE bool DL_VREF_isEnabled(VREF_Regs *vref)
+__STATIC_INLINE bool DL_VREF_isEnabled(const VREF_Regs *vref)
 {
     return ((vref->CTL0 & VREF_CTL0_ENABLE_MASK) == VREF_CTL0_ENABLE_ENABLE);
 }
@@ -276,7 +309,7 @@ __STATIC_INLINE void DL_VREF_enableInternalRefCOMP(VREF_Regs *vref)
  *  @retval     true  VREF buffer for comparator is enabled
  *  @retval     false VREF buffer for comparator is disabled
  */
-__STATIC_INLINE bool DL_VREF_isInternalRefCOMPEnabled(VREF_Regs *vref)
+__STATIC_INLINE bool DL_VREF_isInternalRefCOMPEnabled(const VREF_Regs *vref)
 {
     return ((vref->CTL0 & VREF_CTL0_COMP_VREF_ENABLE_MASK) ==
             VREF_CTL0_COMP_VREF_ENABLE_ENABLE);
@@ -300,7 +333,8 @@ __STATIC_INLINE void DL_VREF_disableInternalRefCOMP(VREF_Regs *vref)
  *
  * @param config     Pointer to the configuration structure
  */
-void DL_VREF_setClockConfig(VREF_Regs *vref, DL_VREF_ClockConfig *config);
+void DL_VREF_setClockConfig(
+    VREF_Regs *vref, const DL_VREF_ClockConfig *config);
 
 /**
  * @brief Copy the clock select and clock divide fields in VREF to config
@@ -309,7 +343,8 @@ void DL_VREF_setClockConfig(VREF_Regs *vref, DL_VREF_ClockConfig *config);
  *
  * @param config     Pointer to the configuration structure
  */
-void DL_VREF_getClockConfig(VREF_Regs *vref, DL_VREF_ClockConfig *config);
+void DL_VREF_getClockConfig(
+    const VREF_Regs *vref, DL_VREF_ClockConfig *config);
 
 /**
  * @brief Resets the VREF module
@@ -331,7 +366,7 @@ __STATIC_INLINE void DL_VREF_reset(VREF_Regs *vref)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_VREF_isReset(VREF_Regs *vref)
+__STATIC_INLINE bool DL_VREF_isReset(const VREF_Regs *vref)
 {
     return (vref->GPRCM.STAT & VREF_STAT_RESETSTKY_MASK) ==
            VREF_STAT_RESETSTKY_RESET;
@@ -345,7 +380,7 @@ __STATIC_INLINE bool DL_VREF_isReset(VREF_Regs *vref)
  * @return VREF status bits set. Either @ref DL_VREF_CTL1_READY_NOTRDY or @ref DL_VREF_CTL1_READY_RDY
  *
  */
-__STATIC_INLINE uint32_t DL_VREF_getStatus(VREF_Regs *vref)
+__STATIC_INLINE uint32_t DL_VREF_getStatus(const VREF_Regs *vref)
 {
     return vref->CTL1 & VREF_CTL1_READY_MASK;
 }
@@ -358,7 +393,7 @@ __STATIC_INLINE uint32_t DL_VREF_getStatus(VREF_Regs *vref)
  * @param config      Pointer to @ref DL_VREF_Config structure to configure the peripheral
  *
  */
-void DL_VREF_configReference(VREF_Regs *vref, DL_VREF_Config *config);
+void DL_VREF_configReference(VREF_Regs *vref, const DL_VREF_Config *config);
 
 #ifdef __cplusplus
 }

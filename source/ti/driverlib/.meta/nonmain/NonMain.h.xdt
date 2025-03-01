@@ -89,12 +89,12 @@
 /* clang-format off */
 
 /* General defines */
-%if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+% /* Password hash is SHA256 hash, meaning PW length is 8 for some devices */
+% if (deviceOptions.SUPPORT_PW_HASH == true) {
 #define PASSWORD_WORD_LEN                                                  (8U)
-%}
-%else{
+% } else {
 #define PASSWORD_WORD_LEN                                                  (4U)
-%}
+% }
 
 /*! The default value used in the BCR and BSL Config structures */
 #define CFG_DEFAULT_VALUE                                         (0xFFFFFFFFU)
@@ -110,13 +110,17 @@
 #error "Non-Main table currently not supported for this compiler"
 #endif
 
-% if (!Common.isDeviceM0C()) {
+% if (deviceOptions.SUPPORT_BSL == true) {
 %
-% if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+% if ((deviceOptions.BSL_SUPPORT_UART_BAUD == true) &&
+%     (deviceOptions.SUPPORT_ROM_BSL == true)) {
 % let uartBaudRateStr = "#define DEF_UART_BAUD_RATE";
 % let uartBaudRateStr2 = "(" + "0x" + inst.uartBaudDefault + ")";
 `uartBaudRateStr.padEnd(40, " ") + uartBaudRateStr2.padStart(39, " ")`
 % }
+%
+% if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN == true) {
+%
 /* Defines for BSL UART and I2C interface pins */
 % let uartRXPadNumStr = "#define DEF_UART_RXD_PAD";
 % let uartRXPadNumStr2 = "(" + "0x" + inst.uartRXPadNum.toString(16) + ")";
@@ -150,6 +154,7 @@
 % let i2cSCLMuxStr2 = "(" + "0x" + inst.i2cSCLMux.toString(16) + ")";
 `i2cSCLMuxStr.padEnd(40, " ") + i2cSCLMuxStr2.padStart(39, " ")`
 
+% } // device BSL flash plugin check end
 % /* Defines for BSL invoke GPIO pin */
 % /* Convert pin data to hex format */
 % let pinData0Str = "0x" + inst.bslInvokePinData0.toString(16);
@@ -157,7 +162,7 @@
 %
 #define DEFAULT_BSL_PIN_INVOCATION_DATA0                       ((uint8_t) `pinData0Str`)
 #define DEFAULT_BSL_PIN_INVOCATION_DATA1                       ((uint8_t) `pinData1Str`)
-%   } // !Common.isDeviceM0C()
+% } // device BSL check end
 %
 
 /**
@@ -168,12 +173,14 @@
 typedef enum {
     /*! AHB-AP, ET-AP, PWR-AP are enabled */
     BCR_CFG_DEBUG_ACCESS_EN = 0xAABBU,
-% if (!Common.isDeviceM0C()) {
+% if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
     /*! AHB-AP, ET-AP, PWR-AP are enabled with password through DSSM */
     BCR_CFG_DEBUG_ACCESS_EN_PW = 0xCCDDU,
-%   } // !Common.isDeviceM0C()
+% }
+% if (deviceOptions.SUPPORT_PW_HASH != false) {
     /*! AHB-AP, ET-AP, PWR-AP are disabled */
     BCR_CFG_DEBUG_ACCESS_DIS = 0xFFFFU,
+% }
 } BCR_CFG_DEBUG_ACCESS;
 
 /*! @enum BCR_CFG_SWDP_MODE */
@@ -184,7 +191,7 @@ typedef enum {
     BCR_CFG_SWDP_DIS = 0xFFFFU,
 } BCR_CFG_SWDP_MODE;
 
-% if (!Common.isDeviceM0C()) {
+% if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
 /*! @enum BCR_CFG_TIFA_MODE */
 typedef enum {
     /*! If enabled, re-test request through DSSM is serviced */
@@ -201,7 +208,7 @@ typedef enum {
     BCR_CFG_BSL_PIN_INVOKE_DIS = 0xFFFFU,
 } BCR_CFG_BSL_PIN_INVOKE;
 
-% if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+% if(deviceOptions.BCR_SUPPORT_CSC == true){
 /*! @enum BCR_CFG_DEBUG_HOLD_MODE */
 typedef enum {
     /*! Controls the release of debug access until INITDONE is issued */
@@ -217,6 +224,7 @@ typedef enum {
     /*! Disable the CSC policy in SYSCTL */
     BCR_CFG_CSC_NOT_EXIST = 0xAABBU,
 } BCR_CFG_CSC_MODE;
+%   if (deviceOptions.BCR_SUPPORT_BANK_SWAP == true) {
 
 /*! @enum BCR_CFG_FLASH_BS_MODE */
 typedef enum {
@@ -225,8 +233,9 @@ typedef enum {
     /*! Disable the Flash Bank Swap Policy in SYSCTL */
     BCR_CFG_FLASH_BS_DIS = 0xAABBU,
 } BCR_CFG_FLASH_BS_MODE;
+%   } // if device supports bank swap
 
-% } // if MSPM0L122X_L222X
+% } // if device supports CSC
 /*! @enum BCR_CFG_FAST_BOOT */
 typedef enum {
     /*! If enabled, checks only the register invoke condition and skips other
@@ -253,16 +262,16 @@ typedef enum {
     /*! Disable Mass Erase */
     BCR_CFG_MASS_ERASE_DIS = 0xFFFFU,
 } BCR_CFG_MASS_ERASE;
-%   } // !Common.isDeviceM0C()
+%   } // device is not C1104_1103 end
 
 /*! @enum BCR_CFG_FACTORY_RESET */
 typedef enum {
     /*! Enable Factory Reset without password */
     BCR_CFG_FACTORY_RESET_EN = 0xAABBU,
-% if (!Common.isDeviceM0C()) {
+% if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
     /*! Enable Factory Reset with password */
     BCR_CFG_FACTORY_RESET_EN_PW = 0xCCDDU,
-%   } // !Common.isDeviceM0C()
+%   }
     /*! Disable Factory Reset */
     BCR_CFG_FACTORY_RESET_DIS = 0xFFFFU,
 } BCR_CFG_FACTORY_RESET;
@@ -270,36 +279,48 @@ typedef enum {
 /*! @enum BCR_CFG_NON_MAIN_STATIC_PROT */
 typedef enum {
     /*! Enable static write protection for non-main memory */
-%  let BCR_CFG_NON_MAIN_STATIC_PROT_EN = "0xFFFEU";
-% if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-%   BCR_CFG_NON_MAIN_STATIC_PROT_EN = "0xFFFFU";
-% }
+%%{
+    let BCR_CFG_NON_MAIN_STATIC_PROT_EN = "0xFFFEU";
+
+    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
+        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+        Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+        BCR_CFG_NON_MAIN_STATIC_PROT_EN = "0xFFFFU";
+    }
+%%}
     BCR_CFG_NON_MAIN_STATIC_PROT_EN = `BCR_CFG_NON_MAIN_STATIC_PROT_EN`,
     /*! Disable static write protection for non-main memory */
-%  let BCR_CFG_NON_MAIN_STATIC_PROT_DIS = "0xFFFFU";
-% if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-%   BCR_CFG_NON_MAIN_STATIC_PROT_DIS = "0xAABBU";
-% }
+%%{
+    let BCR_CFG_NON_MAIN_STATIC_PROT_DIS = "0xFFFFU";
+
+    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
+        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+        Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+        BCR_CFG_NON_MAIN_STATIC_PROT_DIS = "0xAABBU";
+    }
+%%}
     BCR_CFG_NON_MAIN_STATIC_PROT_DIS = `BCR_CFG_NON_MAIN_STATIC_PROT_DIS`,
 } BCR_CFG_NON_MAIN_STATIC_PROT;
 
-% if (!Common.isDeviceM0C()) {
+% if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
 /*! @enum BCR_CFG_SECURE_BOOT */
 typedef enum {
     /*! Enable CRC check part of application */
     BCR_CFG_SECURE_BOOT_EN = 0xAABBU,
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%   if (deviceOptions.BCR_SUPPORT_USER_APP_HASH == true) {
     /*! Enable Hash check part of application */
     BCR_CFG_SECURE_BOOT_HASH_EN = 0xCCDDU,
     /*! Disable application check */
-%   }
-%   else{
+%   } else {
     /*! Disable CRC check part of application */
 %   }
     BCR_CFG_SECURE_BOOT_DIS = 0xFFFFU,
 } BCR_CFG_SECURE_BOOT;
-%   } // !Common.isDeviceM0C()
-
+%   }
 
 /* Bootcode user configuration structure */
 typedef struct
@@ -311,14 +332,14 @@ typedef struct
     BCR_CFG_DEBUG_ACCESS debugAccess;
     /*! Enable/disable SWD port access. One of @ref BCR_CFG_SWDP_MODE */
     BCR_CFG_SWDP_MODE swdpMode;
-%   if (!Common.isDeviceM0C()) {
+%   if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
     /*! Enable/disable servicing re-test request through DSSM.
      * One of @ref BCR_CFG_TIFA_MODE */
     BCR_CFG_TIFA_MODE tifaMode;
     /*! Enable/disable BSL pin invocation.
     * One of @ref BCR_CFG_BSL_PIN_INVOKE */
     BCR_CFG_BSL_PIN_INVOKE bslPinInvokeEnable;
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%   if (deviceOptions.BCR_SUPPORT_CSC == true){
     /*! Programs static write protection of first 32K bytes.
      * One bit corresponds to one sector, LSB is Sector 0. Setting a bit
      * to 0 disables write, setting a bit to 1 enables write Possible values:
@@ -336,36 +357,42 @@ typedef struct
     uint16_t  debugHold;
     /*! CSCexist*/
     uint16_t CSCexist;
+%       if (deviceOptions.BCR_SUPPORT_BANK_SWAP == true) {
     /*! flashBankSwapPolicy*/
     uint16_t flashBankSwapPolicy;
-%   } // device is MSPM0L122X_L222X
-%   if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%       } else {
+    /*! * Reserve for word alignment */
+    uint16_t bc_reserved_0;
+%       } // device flash bank swap check end
+%   } else if (deviceOptions.BCR_SUPPORT_CSC == false) {
     /*! Used with Command DSSM_BC_PW_AUTH_REQUEST */
     uint32_t passwordDebugLock [PASSWORD_WORD_LEN];
-% } // device is not MSPM0L122X_L222X
+%   } // device CSC check end
+%
     /*! The fast boot mode. One of @ref BCR_CFG_FAST_BOOT*/
     BCR_CFG_FAST_BOOT fastBootMode;
     /*! The bootloader mode. One of @ref BCR_CFG_BOOTLOADER_MODE */
     BCR_CFG_BOOTLOADER_MODE bootloaderMode;
     /*! The mass erase mode. One of @ref BCR_CFG_MASS_ERASE */
     BCR_CFG_MASS_ERASE massEraseMode;
-%   } // !Common.isDeviceM0C()
+%   } // device is not C1104_1103 check end
+%
     /*! The factory reset mode. One of @ref BCR_CFG_FACTORY_RESET */
     BCR_CFG_FACTORY_RESET factoryResetMode;
-%   if (!Common.isDeviceM0C()) {
+%   if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
     /*! DSSM_BC_MASS_ERASE_REQUEST, DSSM_DATA_EXCHANGE */
     uint32_t passwordMassErase [PASSWORD_WORD_LEN];
     /*! DSSM_BC_FACTORY_RESET_REQUEST, DSSM_DATA_EXCHANGE */
     uint32_t passwordFactoryReset [PASSWORD_WORD_LEN];
-%   } // !Common.isDeviceM0C()
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%   } // device is not C1104_1103 check end
+%   if (deviceOptions.BCR_SUPPORT_CSC == true){
     /*! Used with Command DSSM_BC_PW_AUTH_REQUEST */
     uint32_t passwordDebugLock [PASSWORD_WORD_LEN];
-%   }
+%   } // device CSC check end
 %
-%   if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%   if (deviceOptions.BCR_SUPPORT_CSC == false){
 %   /* Due to padding, M0C BCR field order is different for write protection fields */
-%       if (!Common.isDeviceM0C()) {
+%       if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
     /*! Programs static write protection of first 32K bytes.
      * One bit corresponds to one sector, LSB is Sector 0. Setting a bit
      * to 0 disables write, setting a bit to 1 enables write Possible values:
@@ -379,8 +406,7 @@ typedef struct
     /*! Non Main Flash Static Write Protection.
     * One of @ref BCR_CFG_NON_MAIN_STATIC_PROT */
     BCR_CFG_NON_MAIN_STATIC_PROT staticWriteProtectionNonMain;
-%       } // device is not M0C
-%       else {
+%       } else {
     /*! Non Main Flash Static Write Protection.
     * One of @ref BCR_CFG_NON_MAIN_STATIC_PROT */
     BCR_CFG_NON_MAIN_STATIC_PROT staticWriteProtectionNonMain;
@@ -394,35 +420,47 @@ typedef struct
      * to 0 disables write, setting a bit to 1 enables write Possible values:
      *    - 0x0 to 0xFFFFFFF0 */
     uint32_t staticWriteProtectionMainHigh;
-%       } // device is M0C
-%   }
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-    /*! bc_reserved_0*/
+%       } // device M0C check end
+%   } //device CSC check end
+%
+%   if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
+%       if (deviceOptions.BCR_SUPPORT_BANK_SWAP == true) {
+    /*! Reserved for word alignment */
     uint16_t bc_reserved_0;
-%   }
-%   if (!Common.isDeviceM0C()) {
+%       } else {
+%           if (!(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() ||
+%                 Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX())) {
+%   /* Offset by 1 since non-bank swap devices use bc_reserved_0 for that field */
+    /*! Reserved for word alignment */
+    uint16_t bc_reserved_1;
+%           }
+%       }
     /*! CRC check part of the application. One of @ref BCR_CFG_SECURE_BOOT */
     BCR_CFG_SECURE_BOOT secureBootMode;
     /*! The Starting address from where CRC has to be calculated for the application */
     uint32_t userSecureAppStartAddr;
     /*! The Length of the application for which CRC is calculated */
     uint32_t userSecureAppLength;
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%   if (deviceOptions.BCR_SUPPORT_USER_APP_HASH == true) {
     /*! userSecureAppHash*/
     uint32_t userSecureAppHash [PASSWORD_WORD_LEN];
-%       if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
-    /*! Reserved */
-    uint32_t bc_reserved_1;
-%       }
-%       else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+%       if (deviceOptions.BCR_SUPPORT_DUAL_BANK == true) {
     /*! staticWriteProtectionMainHigh_2 */
     uint32_t staticWriteProtectionMainHigh_2;
-%       }
-%   } // device is MSPM0L122X_L222X
-%   else {
+%       } else {
+%           if (deviceOptions.BCR_SUPPORT_BANK_SWAP == true) {
+    /*! Reserved for word alignment */
+    uint32_t bc_reserved_1;
+%           } else {
+%   /* Offset by 1 since non-bank swap devices use bc_reserved_0 for that field */
+    /*! Reserved for word alignment */
+    uint32_t bc_reserved_2;
+%           } // device bank swap check end (for offsets)
+%       } // device dual bank check end
+%   } else {
     /*! CRC-32 of application range defined by above two parameters */
     uint32_t userSecureAppCrc;
-%   } // device is not MSPM0L122X_L222X
+%   } // device user app hash check end
     /*! CRC-32 of this structure*/
     uint32_t userCfgCRC;
 %   } // device is not M0C
@@ -432,7 +470,7 @@ typedef struct
 %   } // device is M0C
 } BCR_Config;
 
-%   if (!Common.isDeviceM0C()) {
+%   if (deviceOptions.SUPPORT_BSL == true) {
 /* Structure to store the Bootloader UART and I2C Pin details. */
 typedef struct
 {
@@ -449,14 +487,18 @@ typedef struct
 /* Structure to store the Bootloader invocation Pin details.
  * This structure is followed in TRIM memory where default BSL invocation
  * pin details are stored and also in Bootloader configuration memory.
+ * See BSL_CFG_INVOKE_PIN defines for more details on mask widths and offsets.
  *
  * Pin_data_0
- * BIT [0-5]  :pincmIndex   -> IOMUX_SECCFG_PINCM index for the pin (0 to 63)
- * BIT [7]    :pinLevel     -> Pin state High(1)/ Low(0) which should be
- *                             considered as BSL invocation condition
+ * pincmIndex   -> IOMUX_SECCFG_PINCM index for the pin. See device datasheet
+ *                 for index range
+ * pinLevel     -> Pin state High(1)/ Low(0) which should be
+ *                 considered as BSL invocation condition
  * Pin_data_1
- * BIT [0-4]  :gpioNum      -> GPIO Pin number (0 to 31)
- * BIT [5]    :gpioBase     -> GPIO Instance number or GPIO Base Index (0 or 1)
+ * gpioNum      -> GPIO Pin number (0 to 31)
+ * gpioBase     -> GPIO Instance number (GPIO Base Index or GPIO Port). See
+ *                 device datasheet for ports available on the device. Port A
+ *                 is 0, port B is 1, etc.
  */
 typedef struct
 {
@@ -540,16 +582,20 @@ typedef enum {
 
 %%{
     let generatePluginFunctionCodeGen = false;
-    /*
-     * Don't generate plugin function code-gen unless the user has provided
-     * function names for all plugin functions.
-     */
-    if (inst.bslFlashPluginEnable && inst.bslPluginHookInit.length &&
-        inst.bslPluginHookReceive.length &&
-        inst.bslPluginHookTransmit.length &&
-        inst.bslPluginHookDeInit.length)
+
+    if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN == true)
     {
-        generatePluginFunctionCodeGen = true;
+        /*
+         * Don't generate plugin function code-gen unless the user has provided
+         * function names for all plugin functions.
+         */
+        if (inst.bslFlashPluginEnable && inst.bslPluginHookInit.length &&
+            inst.bslPluginHookReceive.length &&
+            inst.bslPluginHookTransmit.length &&
+            inst.bslPluginHookDeInit.length)
+        {
+            generatePluginFunctionCodeGen = true;
+        }
     }
 %%}
 %
@@ -590,6 +636,8 @@ typedef struct
     BSL_CFG_MEMORY_READOUT memoryRead;
     /*! Bootloader 64-byte password */
     uint32_t password[`deviceOptions.BSL_PASSWORD_LEN`];
+%
+%   if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN == true) {
     /*! Plugin type. One of @ref BSL_CFG_PLUGIN_TYPE */
     BSL_CFG_PLUGIN_TYPE pluginType;
     /*! Enable use of Flash plugin or ROM plugin.
@@ -603,17 +651,24 @@ typedef struct
      *   - Byte [11-8] : Send
      *   - Byte [15-12] : Deinit */
     uint32_t pluginHook[4];
-%   if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+%   } else {
+    /*! Reserved fields */
+    uint32_t bl_reserved_0[5];
+%   } // device does not support flash plugins
+%
+%   if (deviceOptions.BSL_SUPPORT_UART_BAUD == true) {
     /*! UART Baud Rate */
     uint16_t uartBaudRate;
-%   }
+%   } // device does not support UART baud
+%
     /*! ID field to enable invocation of an alternate BSL.
      * One of @ref BSL_CFG_FLASH_BSL */
     BSL_CFG_FLASH_BSL  BSLAlternateConfig;
-%   if(!Common.isDeviceFamily_PARENT_MSPM0GX51X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
+%   if (deviceOptions.BSL_SUPPORT_UART_BAUD == false){
     /*! Reserved */
     uint16_t reserved;
 %   }
+%
     /*! Address of the alternate BSL */
     uint32_t  BSLAlternateAddr;
     /*! Pointer to the version information in MAIN flash. Possible values:
@@ -624,21 +679,33 @@ typedef struct
     BSL_CFG_SECURITY securityAlert;
     /* I2C slave address to be used for BSL I2C communication. Any 7-bit value */
     uint16_t i2cSlaveAddress;
-%   if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
-    /*! Address of the alternate BSL */
+%
+%   if ((deviceOptions.BSL_DISABLE_NRST == true) ||
+%       (deviceOptions.SUPPORT_ROM_BSL == false)) {
+    /*! Disable NRST */
     BSL_CFG_NRST disableNRST;
+%       if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN == true) {
     /*! Reserved */
     uint16_t bl_reserved_0;
     /*! Reserved */
     uint32_t bl_reserved_1;
-%   }
+%       } else {
+    /*! Reserved */
+    uint16_t bl_reserved_1;
+    /*! Reserved */
+    uint32_t bl_reserved_2;
+%       }
+%   } // device does not support disabling NRST
+%
     /*! CRC of this BSL_Config structure */
     uint32_t userCfgCRC;
 } BSL_Config;
 
 /* Added for secondary_bsl to build */
 extern const BSL_Config BSLConfig;
-%   } // !Common.isDeviceM0C()
+%
+% } // device support BSL check end
+%
 extern const BCR_Config BCRConfig;
 
 /* clang-format on */

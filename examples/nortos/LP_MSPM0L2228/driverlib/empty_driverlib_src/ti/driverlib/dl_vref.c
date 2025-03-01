@@ -34,7 +34,7 @@
 
 #ifdef __MSPM0_HAS_VREF__
 
-void DL_VREF_configReference(VREF_Regs *vref, DL_VREF_Config *config)
+void DL_VREF_configReference(VREF_Regs *vref, const DL_VREF_Config *config)
 {
     vref->CTL0 = (uint32_t) config->vrefEnable | (uint32_t) config->bufConfig |
                  (uint32_t) config->shModeEnable;
@@ -42,13 +42,13 @@ void DL_VREF_configReference(VREF_Regs *vref, DL_VREF_Config *config)
                  (config->holdCycleCount << VREF_CTL2_HCYCLE_OFS);
 }
 
-void DL_VREF_setClockConfig(VREF_Regs *vref, DL_VREF_ClockConfig *config)
+void DL_VREF_setClockConfig(VREF_Regs *vref, const DL_VREF_ClockConfig *config)
 {
     vref->CLKSEL = (uint32_t) config->clockSel;
     vref->CLKDIV = (uint32_t) config->divideRatio;
 }
 
-void DL_VREF_getClockConfig(VREF_Regs *vref, DL_VREF_ClockConfig *config)
+void DL_VREF_getClockConfig(const VREF_Regs *vref, DL_VREF_ClockConfig *config)
 {
     config->clockSel    = (DL_VREF_CLOCK) vref->CLKSEL;
     config->divideRatio = (DL_VREF_CLOCK_DIVIDE) vref->CLKDIV;

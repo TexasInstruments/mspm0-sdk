@@ -104,10 +104,10 @@
 `chanIDStr.padEnd(40," ")+chanIDNum.padStart(40," ")`
 %
 %       let peripheralTriggerString = "";
-%       let peripheralTriggerSource = ""
+%       let peripheralTriggerSource = "";
+%       let parentPeripheral = undefined;
 %       if(ownedBy !== undefined && inst.$ownedBy.$name !== "/ti/driverlib/DMA") {
 %%{
-            let parentPeripheral;
             if(inst.$ownedBy.peripheral !== undefined){
                 parentPeripheral = inst.$ownedBy.peripheral.$solution.peripheralName;
                 peripheralTriggerString = "#define " + (inst.$ownedBy.$name).replace("/ti/driverlib/","") + "_INST_DMA_TRIGGER";
@@ -119,37 +119,46 @@
             }
 %%}
 %%{
-    if(ownedCollection[parentPeripheral] !== undefined){
-        ownedCollection[parentPeripheral] = ownedCollection[parentPeripheral]+1;
-    }
-    else{
-        ownedCollection[parentPeripheral] = 0;
-    }
+            if(ownedCollection[parentPeripheral] !== undefined){
+                ownedCollection[parentPeripheral] = ownedCollection[parentPeripheral]+1;
+            }
+            else{
+                ownedCollection[parentPeripheral] = 0;
+            }
 %%}
 %%{
-    let inheritedTrigger;
-    if (["/ti/driverlib/CRC","/ti/driverlib/CRCP"].includes(parentPeripheral)){
-        inheritedTrigger = "DMA_SOFTWARE_TRIG";
-    }
-    else{
-        inheritedTrigger = mapping.dma_triggers[parentPeripheral.replace("/ti/driverlib/","")][inst.passedTriggerSelect];
-        if(inheritedTrigger === undefined){ throw "undefined trigger"; }
-    }
+            let inheritedTrigger;
+            if (["/ti/driverlib/CRC","/ti/driverlib/CRCP"].includes(parentPeripheral)){
+                inheritedTrigger = "DMA_SOFTWARE_TRIG";
+            }
+            else{
+                inheritedTrigger = mapping.dma_triggers[parentPeripheral.replace("/ti/driverlib/","")][inst.passedTriggerSelect];
+                if(inheritedTrigger === undefined){ throw "undefined trigger"; }
+            }
 %%}
 %%{
-    if(ownedCollectionTotal[parentPeripheral] !== undefined){
-        if(ownedCollectionTotal[parentPeripheral] >0){
-            peripheralTriggerString += ("_"+ownedCollection[parentPeripheral]);
-        }
-    }
+            if(ownedCollectionTotal[parentPeripheral] !== undefined){
+                if(ownedCollectionTotal[parentPeripheral] >0){
+                    peripheralTriggerString += ("_"+ownedCollection[parentPeripheral]);
+                }
+            }
 %%}
 %           peripheralTriggerSource = "("+inheritedTrigger+")";
 %       } else {
 %           peripheralTriggerString = "#define "+inst.$name+"_TRIGGER_SEL_"+inst.triggerSelect;
 %           peripheralTriggerSource = "("+inst.triggerNumber+")";
 %       }
+%if (["/ti/driverlib/CRCP"].includes(parentPeripheral)){
+%   peripheralTriggerString = "#define CRCP_DMA_TRIGGER";
+%   let peripheralTriggerString2 = "#define CRC_DMA_TRIGGER";
+%   let peripheralTriggerSource2 = "(CRCP_DMA_TRIGGER)";
 `peripheralTriggerString.padEnd(45," ")+peripheralTriggerSource.padStart(35," ")`
-
+/* Redirects to CRCP_DMA_TRIGGER for compatibility between CRC and CRCP modules */
+`peripheralTriggerString2.padEnd(45," ")+peripheralTriggerSource2.padStart(35," ")`
+%}
+% else{
+`peripheralTriggerString.padEnd(45," ")+peripheralTriggerSource.padStart(35," ")`
+% }
 % } // for let i in instances
 %
 % } // function printDefine

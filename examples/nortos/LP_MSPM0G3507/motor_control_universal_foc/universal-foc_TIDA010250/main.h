@@ -39,7 +39,7 @@ extern "C" {
 /*! @brief Application Major FW Version */
 #define APP_MAJOR_VER  (0x01)
 /*! @brief Application Minor FW Version */
-#define APP_MINOR_VER  (0x00)
+#define APP_MINOR_VER  (0x01)
 /*! @brief Application Patch FW Version */
 #define APP_PATCH_VER  (0x00)
 /*! @brief Application FW Version */
@@ -104,7 +104,7 @@ calculated using (FULL Scale Voltage(3.3) - CSA_REF(3.3/8) )/(Rsense(20mOhm) * C
 /*! @brief DC voltage base value */
 #define DC_VOLTAGE_BASE                             57.42
 /*! @brief Full scale readable current used as current base value,
-calculated using (FULL Scale Voltage(3.3)/2*(Rsense(7mOhm) * CSA Gain(5)) */
+calculated using (FULL Scale Voltage(3.3)/2*(Rsense(7mOhm) * CSA Gain(20)) */
 #define FULL_SCALE_CURRENT_BASE                    11.785
 /*! @brief Current shunt configuration */
 #define __CURRENT_THREE_SHUNT_DYNAMIC

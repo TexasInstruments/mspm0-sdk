@@ -208,6 +208,33 @@ SMBus_State SMBus_NWK_targetProcessStart(SMBus *smbus,
     /* Handle Target Start when used as SMBus Target */
     if (smbus->ctrl.bits.controller == 0)
     {
+        /* ARP Device Default Address */
+        if(smbus->nwk.currentAddr == SMBUS_ADR_DEFAULT_DEVICE)
+        {
+            /* Read the ARP Start transaction Bit - Read/Write */
+
+            smbus->arpStatus.arpWriteState = (DL_I2C_getTargetStatus(smbus->phy.SMBus_Phy_i2cBase));
+
+            /* Wait till one of the Read/Write status is reflected */
+            while(!SMBus_Phy_ARP_Get_Write_Status(smbus) &&
+                    !SMBus_Phy_ARP_Get_Read_Status(smbus))
+            {
+                smbus->arpStatus.arpWriteState = (DL_I2C_getTargetStatus(smbus->phy.SMBus_Phy_i2cBase));
+            }
+
+            /* If ARP UDID status return is not expected, Invalidate the Command and report error */
+            /* If Read is initiated from Controller, Nothing to respond code is sent by the Target */
+            if((smbus->arpStatus.arpUDIDTransmit == 0) && (smbus->arpStatus.arpWriteState & I2C_SSR_TXMODE_SET))
+            {
+                smbus->arpStatus.errorState = SMBus_State_Invalid_ARP_Cmd;
+                smbus->nwk.eState = SMBus_NwkState_Error;
+            }
+            else
+            {
+                smbus->arpStatus.arpInProgress = 1;
+                smbus->arpStatus.errorState = SMBus_State_Target_NTR;
+            }
+        }
         // SMBus set the PEC counter to 0. It will be set correctly before it is needed.
         DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
 
@@ -236,6 +263,10 @@ SMBus_State SMBus_NWK_targetProcessStart(SMBus *smbus,
 
             ret_state = SMBus_State_Target_CmdComplete; // Command is ready to process
             smbus->nwk.eState = SMBus_NwkState_TX_Resp;  // Responding
+        }
+        else if(smbus->nwk.eState == SMBus_NwkState_Error)
+        {
+            ret_state = SMBus_State_Unknown;
         }
     }
     else
@@ -498,7 +529,19 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
 
     return(ret_state);
 }
+SMBus_State SMBus_NWK_targetArbLost(SMBus *smbus)
+{
+    if(smbus->arpStatus.arpUDIDNacked == 1)
+    {
+        smbus->arpStatus.arpUDIDNacked = 0;
+        return(SMBus_State_OK);
+    }
+    // Signal the error
+    smbus->status.bits.toErr = 1;
+    smbus->nwk.eState = SMBus_NwkState_Idle;
 
+    return(SMBus_State_Controller_ArbLost);
+}
 SMBus_State SMBus_NWK_targetProcessTimeout(SMBus *smbus)
 {
     // Signal the error

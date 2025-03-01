@@ -43,7 +43,6 @@ LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l111x/d
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
     -L../.. \
     "$(KERNEL_BUILD)/iar/freertos.lib" \
-    "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0h321x/driverlib.a" \
     --config ../../freertos/iar/mspm0l1117.icf \
     --map "$(NAME).map" \
     --silent \

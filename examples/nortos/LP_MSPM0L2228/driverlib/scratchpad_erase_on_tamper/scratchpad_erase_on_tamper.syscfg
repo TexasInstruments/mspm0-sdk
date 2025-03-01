@@ -14,6 +14,7 @@ const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1         = GPIO.addInstance();
 const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
 const TAMPERIO      = scripting.addModule("/ti/driverlib/TAMPERIO");
+const RTCA          = scripting.addModule("/ti/driverlib/RTCA");
 const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 
 /**
@@ -32,6 +33,9 @@ GPIO1.associatedPins[1].initialValue        = "SET";
 GPIO1.associatedPins[1].assignedPort        = "PORTA";
 GPIO1.associatedPins[1].assignedPin         = "21";
 GPIO1.associatedPins[1].assignedPortSegment = "Upper";
+
+RTCA.calYear         = 2025;
+RTCA.timeStampEvents = ["TIME_STAMP_EVENT_SOURCE_TIO_0"];
 
 SYSCTL.LFCLKSource = "LFXT";
 

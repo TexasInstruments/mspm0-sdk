@@ -38,7 +38,7 @@ _Min_Stack_Size = 0x80; /* required amount of stack */
 /* Specify the memory areas */
 MEMORY
 {
-    FLASH (WX)  : ORIGIN = 0x00000000, LENGTH = 0x00020000
+    FLASH (RX)  : ORIGIN = 0x00000000, LENGTH = 0x00020000
     SRAM (RWX)  : ORIGIN = 0x20200000, LENGTH = 0x00008000
     /* Non-Main configuration memory */
 	BCR_CONFIG(R): ORIGIN = 0x41C00000,LENGTH = 0x000000FF
@@ -94,6 +94,14 @@ SECTIONS
         . = ALIGN(0x8);
     } > REGION_TEXT AT> REGION_TEXT
 
+    .ramfunc : {
+        __ramfunct_load__ = LOADADDR (.ramfunc);
+        __ramfunct_start__ = .;
+       *(.ramfunc)
+       . = ALIGN(0x8);
+       __ramfunct_end__ = .;
+    } > REGION_TEXT_RAM AT> REGION_TEXT
+
     .rodata : {
         *(.rodata)
         . = ALIGN(0x8);
@@ -113,6 +121,7 @@ SECTIONS
         KEEP (*(SORT(.init_array.*)))
         KEEP (*(.init_array*))
         PROVIDE_HIDDEN (__init_array_end = .);
+        . = ALIGN(0x8);
     } > REGION_INIT_ARRAY AT> REGION_TEXT
 
     .fini_array : {

@@ -41,6 +41,7 @@ MEMORY
     FLASH           (RX)  : ORIGIN = 0x00000000, LENGTH = 0x00008000
     SRAM            (RWX) : ORIGIN = 0x20000000, LENGTH = 0x00002000
     BCR_CONFIG      (R)   : ORIGIN = 0x41C00000, LENGTH = 0x000000FF
+    BSL_CONFIG      (R)   : ORIGIN = 0x41C00100, LENGTH = 0x000000FF
 }
 
 /* Note: SRAM length must match MPPC/MEMSS config! Please edit it manually. */
@@ -188,6 +189,11 @@ SECTIONS
     {
         KEEP(*(.BCRConfig))
     } > BCR_CONFIG
+
+    .BSLConfig :
+    {
+        KEEP(*(.BSLConfig))
+    } > BSL_CONFIG
 
     __StackTop = ORIGIN(REGION_STACK) + LENGTH(REGION_STACK);
     PROVIDE(__stack = __StackTop);

@@ -252,7 +252,7 @@ function getSPIDefaultCSDisabledOptions(inst)
         enabledInterrupts : [],
         interruptPriority : "DEFAULT",
     };
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile1 = {...configProfile1, ...defaultDMAConfig};
     };
     let configProfile2 = {
@@ -283,7 +283,7 @@ function getSPIDefaultCSDisabledOptions(inst)
         enabledInterrupts : [],
         interruptPriority : "DEFAULT",
     };
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile2 = {...configProfile2, ...defaultDMAConfig};
     };
     let configProfile3 = {
@@ -312,7 +312,7 @@ function getSPIDefaultCSDisabledOptions(inst)
         enabledInterrupts : [],
         interruptPriority : "DEFAULT",
     };
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile3 = {...configProfile3, ...defaultDMAConfig};
     };
 const profilesSPI = [
@@ -1433,8 +1433,8 @@ This is relevant only in the peripheral mode.`,
     },
 ]);
 
-/* CRC does not support DMA configuration for MSPM0Cxx */
-if(!Common.isDeviceM0C()){
+/* SPI does not support DMA configuration for MSPM0Cxx */
+if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
 config = config.concat([
     {
         name: "GROUP_DMA",
@@ -1504,7 +1504,7 @@ config = config.concat(Common.getGPIOGroupConfig());
 function moduleInstances(inst){
     let modInstances = []
     /* SPI does not support DMA configuration for MSPM0Cxx */
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         /*
         * Gets a DMA module if available
         */
@@ -1690,7 +1690,7 @@ let devSpecific = {
 function setRequiredModules(inst){
     let theModules = ["Board", "SYSCTL"]
     /* SPI does not support DMA configuration for MSPM0Cxx */
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         if(!["None"].includes(inst.enabledDMAEvent1Triggers) || !["None"].includes(inst.enabledDMAEvent2Triggers)){
             theModules.push("DMA");
         }

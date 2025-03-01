@@ -40,7 +40,7 @@ MEMORY
 {
     FLASH           (RX)  : ORIGIN = 0x00000000, LENGTH = 0x00002000
     SRAM            (RWX) : ORIGIN = 0x20000000, LENGTH = 0x00000400
-    BCR_CONFIG      (R)   : ORIGIN = 0x41C00000, LENGTH = 0x00000080
+    BCR_CONFIG      (R)   : ORIGIN = 0x41C00000, LENGTH = 0x000000FF
 }
 
 /* Note: SRAM length must match MPPC/MEMSS config! Please edit it manually. */

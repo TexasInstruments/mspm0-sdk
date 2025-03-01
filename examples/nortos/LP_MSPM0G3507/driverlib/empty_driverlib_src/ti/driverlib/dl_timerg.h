@@ -737,6 +737,16 @@ typedef DL_Timer_PWMConfig                                  DL_TimerG_PWMConfig;
 #define DL_TimerG_setCaptCompUpdateMethod       DL_Timer_setCaptCompUpdateMethod
 
 /*!
+ * @brief Redirects to common @ref DL_Timer_getCaptCompUpdateMethod
+ */
+#define DL_TimerG_getCaptCompActUpdateMethod       DL_Timer_getCaptCompUpdateMethod
+
+/*!
+ * @brief Redirects to common @ref DL_Timer_setCaptCompActUpdateMethod
+ */
+#define DL_TimerG_setCaptCompActUpdateMethod       DL_Timer_setCaptCompActUpdateMethod
+
+/*!
  * @brief Redirects to common @ref DL_Timer_enableShadowFeatures
  */
 #define DL_TimerG_enableShadowFeatures             DL_Timer_enableShadowFeatures

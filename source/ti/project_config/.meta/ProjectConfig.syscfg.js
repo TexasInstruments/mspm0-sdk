@@ -76,14 +76,24 @@ function validate(inst, validation)
         if(!inst.genLinker | !inst.genStartup | !inst.genOpts| !inst.genLibs){
             validation.logWarning("All four File Generation options must be enabled in order to guarantee Device Migration support. If an option is disabled, the user must manually configure that setting on its own file.",inst);
         }
-        if(inst.genLibs && !inst.genLibDL){
-            validation.logWarning("Driverlib inclusion is required for most use cases. Disable with caution.",inst,"genLibDL");
-        }
-        if(inst.genLibs && inst.genLibPMBUS){
-            validation.logInfo("SMBUS is automatically included when adding PMBUS.",inst,"genLibSMBUS");
-        }
-        if(inst.genLibs && inst.genLibMC){
-            validation.logInfo("IQMath is automatically included when adding Motor Control.",inst,"genLibIQ");
+        if(inst.genLibs){
+            if(!inst.genLibDL){
+                validation.logWarning("Driverlib inclusion is required for most use cases. Disable with caution.",inst,"genLibDL");
+            }
+            if(inst.genLibPMBUS){
+                validation.logInfo("SMBUS is automatically included when adding PMBUS.",inst,"genLibSMBUS");
+            }
+            if(inst.genLibMC){
+                validation.logInfo("IQMath is automatically included when adding Motor Control.",inst,"genLibIQ");
+            }
+            if(!Common.hasMATHACL()){
+                if(inst.genLibIQ && inst.genLibIQVersion == "MATHACL"){
+                    validation.logError("MATHACL is not available for the selected device",inst,"genLibIQVersion");
+                }
+                if(inst.genLibGaugeL2 && inst.genLibGaugeL2Version == "MATHACL"){
+                    validation.logError("MATHACL is not available for the selected device",inst,"genLibGaugeL2");
+                }
+            }
         }
     }
 

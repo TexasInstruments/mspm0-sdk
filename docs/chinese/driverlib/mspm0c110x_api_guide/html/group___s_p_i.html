@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -100,13 +100,13 @@ Modules</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___s_p_i___config.html">DL_SPI_Config</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___s_p_i.html#ga57d6b6b93006b01995bd0f2b1c4b1ce6">DL_SPI_init</a>.  <a href="struct_d_l___s_p_i___config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___s_p_i.html#ga7bcdb2b1100ab58dbd64366feadfbf1e">DL_SPI_init</a>.  <a href="struct_d_l___s_p_i___config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___s_p_i___clock_config.html">DL_SPI_ClockConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___s_p_i.html#gaa05f0246f8d95f8151ef07f2bec4a481">DL_SPI_setClockConfig</a>.  <a href="struct_d_l___s_p_i___clock_config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___s_p_i.html#ga506f26dd75f5319b437ad6cf6fd44e2f">DL_SPI_setClockConfig</a>.  <a href="struct_d_l___s_p_i___clock_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___s_p_i__backup_config.html">DL_SPI_backupConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure to backup SPI peripheral state before going to STOP/STANDBY mode. Not required after PG 1.0 silicon. Used by <a class="el" href="group___s_p_i.html#ga6853ab8f3aa1110f74a46660b473d77d">DL_SPI_saveConfiguration</a> and <a class="el" href="group___s_p_i.html#gab6405771e41906765135cf943ef43d03">DL_SPI_restoreConfiguration</a>.  <a href="struct_d_l___s_p_i__backup_config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure to backup SPI peripheral state before going to STOP/STANDBY mode. Used by <a class="el" href="group___s_p_i.html#gae172cfc4e1d9695af65d87198d19e89f">DL_SPI_saveConfiguration</a> and <a class="el" href="group___s_p_i.html#gab6405771e41906765135cf943ef43d03">DL_SPI_restoreConfiguration</a>.  <a href="struct_d_l___s_p_i__backup_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -296,192 +296,192 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga57d6b6b93006b01995bd0f2b1c4b1ce6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga57d6b6b93006b01995bd0f2b1c4b1ce6">DL_SPI_init</a> (SPI_Regs *spi, <a class="el" href="struct_d_l___s_p_i___config.html">DL_SPI_Config</a> *config)</td></tr>
-<tr class="memdesc:ga57d6b6b93006b01995bd0f2b1c4b1ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the SPI peripheral.  <a href="#ga57d6b6b93006b01995bd0f2b1c4b1ce6">More...</a><br /></td></tr>
-<tr class="separator:ga57d6b6b93006b01995bd0f2b1c4b1ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7bcdb2b1100ab58dbd64366feadfbf1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga7bcdb2b1100ab58dbd64366feadfbf1e">DL_SPI_init</a> (SPI_Regs *spi, const <a class="el" href="struct_d_l___s_p_i___config.html">DL_SPI_Config</a> *config)</td></tr>
+<tr class="memdesc:ga7bcdb2b1100ab58dbd64366feadfbf1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the SPI peripheral.  <a href="#ga7bcdb2b1100ab58dbd64366feadfbf1e">More...</a><br /></td></tr>
+<tr class="separator:ga7bcdb2b1100ab58dbd64366feadfbf1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga251d33c1951365dad8e4850bfe49bcc7"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga251d33c1951365dad8e4850bfe49bcc7">DL_SPI_enablePower</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga251d33c1951365dad8e4850bfe49bcc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on SPI module.  <a href="#ga251d33c1951365dad8e4850bfe49bcc7">More...</a><br /></td></tr>
+<tr class="memdesc:ga251d33c1951365dad8e4850bfe49bcc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the SPI.  <a href="#ga251d33c1951365dad8e4850bfe49bcc7">More...</a><br /></td></tr>
 <tr class="separator:ga251d33c1951365dad8e4850bfe49bcc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga750d9c1fcb11d51008a1b760e741f38e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga750d9c1fcb11d51008a1b760e741f38e">DL_SPI_disablePower</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga750d9c1fcb11d51008a1b760e741f38e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables power on spi module.  <a href="#ga750d9c1fcb11d51008a1b760e741f38e">More...</a><br /></td></tr>
+<tr class="memdesc:ga750d9c1fcb11d51008a1b760e741f38e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the SPI.  <a href="#ga750d9c1fcb11d51008a1b760e741f38e">More...</a><br /></td></tr>
 <tr class="separator:ga750d9c1fcb11d51008a1b760e741f38e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac3de375b827e1c8a442f8d4fc8a98aaf"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gac3de375b827e1c8a442f8d4fc8a98aaf">DL_SPI_isPowerEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gac3de375b827e1c8a442f8d4fc8a98aaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if power on spi module.  <a href="#gac3de375b827e1c8a442f8d4fc8a98aaf">More...</a><br /></td></tr>
-<tr class="separator:gac3de375b827e1c8a442f8d4fc8a98aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabe45eb6bdf7219a5ebe6124bc11989a0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gabe45eb6bdf7219a5ebe6124bc11989a0">DL_SPI_isPowerEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gabe45eb6bdf7219a5ebe6124bc11989a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the SPI is enabled.  <a href="#gabe45eb6bdf7219a5ebe6124bc11989a0">More...</a><br /></td></tr>
+<tr class="separator:gabe45eb6bdf7219a5ebe6124bc11989a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga12b8798df3c18c5065d9eb86c568ee6b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga12b8798df3c18c5065d9eb86c568ee6b">DL_SPI_reset</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga12b8798df3c18c5065d9eb86c568ee6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets spi peripheral.  <a href="#ga12b8798df3c18c5065d9eb86c568ee6b">More...</a><br /></td></tr>
 <tr class="separator:ga12b8798df3c18c5065d9eb86c568ee6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaff17331111624e7c55cd2df0c78ca4b9"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaff17331111624e7c55cd2df0c78ca4b9">DL_SPI_isReset</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaff17331111624e7c55cd2df0c78ca4b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if spi peripheral was reset.  <a href="#gaff17331111624e7c55cd2df0c78ca4b9">More...</a><br /></td></tr>
-<tr class="separator:gaff17331111624e7c55cd2df0c78ca4b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab51bd85ac83b08f3bae584a82492e17f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gab51bd85ac83b08f3bae584a82492e17f">DL_SPI_isReset</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gab51bd85ac83b08f3bae584a82492e17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if spi peripheral was reset.  <a href="#gab51bd85ac83b08f3bae584a82492e17f">More...</a><br /></td></tr>
+<tr class="separator:gab51bd85ac83b08f3bae584a82492e17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0a40961940d940325e1b41ead149a843"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga0a40961940d940325e1b41ead149a843">DL_SPI_enable</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga0a40961940d940325e1b41ead149a843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the SPI peripheral.  <a href="#ga0a40961940d940325e1b41ead149a843">More...</a><br /></td></tr>
 <tr class="separator:ga0a40961940d940325e1b41ead149a843"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4701ed19b15d5cba398f905a9159ceef"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4701ed19b15d5cba398f905a9159ceef">DL_SPI_isEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga4701ed19b15d5cba398f905a9159ceef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the SPI peripheral is enabled.  <a href="#ga4701ed19b15d5cba398f905a9159ceef">More...</a><br /></td></tr>
-<tr class="separator:ga4701ed19b15d5cba398f905a9159ceef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga192cea97b92bf07c52f9d4701c364720"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga192cea97b92bf07c52f9d4701c364720">DL_SPI_isEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga192cea97b92bf07c52f9d4701c364720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the SPI peripheral is enabled.  <a href="#ga192cea97b92bf07c52f9d4701c364720">More...</a><br /></td></tr>
+<tr class="separator:ga192cea97b92bf07c52f9d4701c364720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga09199015c560aefd53f38b724bf2377e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga09199015c560aefd53f38b724bf2377e">DL_SPI_disable</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga09199015c560aefd53f38b724bf2377e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the SPI peripheral.  <a href="#ga09199015c560aefd53f38b724bf2377e">More...</a><br /></td></tr>
 <tr class="separator:ga09199015c560aefd53f38b724bf2377e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa05f0246f8d95f8151ef07f2bec4a481"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaa05f0246f8d95f8151ef07f2bec4a481">DL_SPI_setClockConfig</a> (SPI_Regs *spi, <a class="el" href="struct_d_l___s_p_i___clock_config.html">DL_SPI_ClockConfig</a> *config)</td></tr>
-<tr class="memdesc:gaa05f0246f8d95f8151ef07f2bec4a481"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure SPI source clock.  <a href="#gaa05f0246f8d95f8151ef07f2bec4a481">More...</a><br /></td></tr>
-<tr class="separator:gaa05f0246f8d95f8151ef07f2bec4a481"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac077cef3400e52977ef7b12215f6d800"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gac077cef3400e52977ef7b12215f6d800">DL_SPI_getClockConfig</a> (SPI_Regs *spi, <a class="el" href="struct_d_l___s_p_i___clock_config.html">DL_SPI_ClockConfig</a> *config)</td></tr>
-<tr class="memdesc:gac077cef3400e52977ef7b12215f6d800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get SPI source clock configuration.  <a href="#gac077cef3400e52977ef7b12215f6d800">More...</a><br /></td></tr>
-<tr class="separator:gac077cef3400e52977ef7b12215f6d800"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5fae7ae41a7dbcf190603bf5fa28910a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga5fae7ae41a7dbcf190603bf5fa28910a">DL_SPI_isBusy</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga5fae7ae41a7dbcf190603bf5fa28910a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the SPI is busy transmitting.  <a href="#ga5fae7ae41a7dbcf190603bf5fa28910a">More...</a><br /></td></tr>
-<tr class="separator:ga5fae7ae41a7dbcf190603bf5fa28910a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4600f20a23bd75824947fb7fda604c1e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4600f20a23bd75824947fb7fda604c1e">DL_SPI_isTXFIFOEmpty</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga4600f20a23bd75824947fb7fda604c1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the TX FIFO is empty.  <a href="#ga4600f20a23bd75824947fb7fda604c1e">More...</a><br /></td></tr>
-<tr class="separator:ga4600f20a23bd75824947fb7fda604c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4b9692743916049e036472704cef2986"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4b9692743916049e036472704cef2986">DL_SPI_isTXFIFOFull</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga4b9692743916049e036472704cef2986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the TX FIFO is full.  <a href="#ga4b9692743916049e036472704cef2986">More...</a><br /></td></tr>
-<tr class="separator:ga4b9692743916049e036472704cef2986"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae400f22f357e5d5f65b93c688cee23f4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gae400f22f357e5d5f65b93c688cee23f4">DL_SPI_isRXFIFOEmpty</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gae400f22f357e5d5f65b93c688cee23f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the RX FIFO is empty.  <a href="#gae400f22f357e5d5f65b93c688cee23f4">More...</a><br /></td></tr>
-<tr class="separator:gae400f22f357e5d5f65b93c688cee23f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacc7a3496cb44f35185c1ad67471ee25c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gacc7a3496cb44f35185c1ad67471ee25c">DL_SPI_isRXFIFOFull</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gacc7a3496cb44f35185c1ad67471ee25c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the RX FIFO is full.  <a href="#gacc7a3496cb44f35185c1ad67471ee25c">More...</a><br /></td></tr>
-<tr class="separator:gacc7a3496cb44f35185c1ad67471ee25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga506f26dd75f5319b437ad6cf6fd44e2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga506f26dd75f5319b437ad6cf6fd44e2f">DL_SPI_setClockConfig</a> (SPI_Regs *spi, const <a class="el" href="struct_d_l___s_p_i___clock_config.html">DL_SPI_ClockConfig</a> *config)</td></tr>
+<tr class="memdesc:ga506f26dd75f5319b437ad6cf6fd44e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure SPI source clock.  <a href="#ga506f26dd75f5319b437ad6cf6fd44e2f">More...</a><br /></td></tr>
+<tr class="separator:ga506f26dd75f5319b437ad6cf6fd44e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabc50a08fe4900de16ca36f49bfd4d793"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gabc50a08fe4900de16ca36f49bfd4d793">DL_SPI_getClockConfig</a> (const SPI_Regs *spi, <a class="el" href="struct_d_l___s_p_i___clock_config.html">DL_SPI_ClockConfig</a> *config)</td></tr>
+<tr class="memdesc:gabc50a08fe4900de16ca36f49bfd4d793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get SPI source clock configuration.  <a href="#gabc50a08fe4900de16ca36f49bfd4d793">More...</a><br /></td></tr>
+<tr class="separator:gabc50a08fe4900de16ca36f49bfd4d793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18c0f490973a924325b5e99e9efd9033"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga18c0f490973a924325b5e99e9efd9033">DL_SPI_isBusy</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga18c0f490973a924325b5e99e9efd9033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the SPI is busy transmitting.  <a href="#ga18c0f490973a924325b5e99e9efd9033">More...</a><br /></td></tr>
+<tr class="separator:ga18c0f490973a924325b5e99e9efd9033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacaadbd0fa4cd5497cea0e15f723fd328"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gacaadbd0fa4cd5497cea0e15f723fd328">DL_SPI_isTXFIFOEmpty</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gacaadbd0fa4cd5497cea0e15f723fd328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the TX FIFO is empty.  <a href="#gacaadbd0fa4cd5497cea0e15f723fd328">More...</a><br /></td></tr>
+<tr class="separator:gacaadbd0fa4cd5497cea0e15f723fd328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02f1ebf87a797e2be89ae2b2843db431"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga02f1ebf87a797e2be89ae2b2843db431">DL_SPI_isTXFIFOFull</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga02f1ebf87a797e2be89ae2b2843db431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the TX FIFO is full.  <a href="#ga02f1ebf87a797e2be89ae2b2843db431">More...</a><br /></td></tr>
+<tr class="separator:ga02f1ebf87a797e2be89ae2b2843db431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b4632aa604b78631e255e974e4d6e77"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga8b4632aa604b78631e255e974e4d6e77">DL_SPI_isRXFIFOEmpty</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga8b4632aa604b78631e255e974e4d6e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the RX FIFO is empty.  <a href="#ga8b4632aa604b78631e255e974e4d6e77">More...</a><br /></td></tr>
+<tr class="separator:ga8b4632aa604b78631e255e974e4d6e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8ec87dd4175e15a2987824d2a3e172ce"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga8ec87dd4175e15a2987824d2a3e172ce">DL_SPI_isRXFIFOFull</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga8ec87dd4175e15a2987824d2a3e172ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the RX FIFO is full.  <a href="#ga8ec87dd4175e15a2987824d2a3e172ce">More...</a><br /></td></tr>
+<tr class="separator:ga8ec87dd4175e15a2987824d2a3e172ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaff618299ef6569927676f5e6ca6a1922"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaff618299ef6569927676f5e6ca6a1922">DL_SPI_setParity</a> (SPI_Regs *spi, <a class="el" href="group___s_p_i.html#ga773029828a0b68cdff80d13e1fda363b">DL_SPI_PARITY</a> parity)</td></tr>
 <tr class="memdesc:gaff618299ef6569927676f5e6ca6a1922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parity configuration used for transactions.  <a href="#gaff618299ef6569927676f5e6ca6a1922">More...</a><br /></td></tr>
 <tr class="separator:gaff618299ef6569927676f5e6ca6a1922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga727aabe92e1c4d05dd724644f6556fcb"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga773029828a0b68cdff80d13e1fda363b">DL_SPI_PARITY</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga727aabe92e1c4d05dd724644f6556fcb">DL_SPI_getParity</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga727aabe92e1c4d05dd724644f6556fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current receive and transmit parity configuration.  <a href="#ga727aabe92e1c4d05dd724644f6556fcb">More...</a><br /></td></tr>
-<tr class="separator:ga727aabe92e1c4d05dd724644f6556fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5c4a7b9791ecca17d0271fe7ecf0395b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga773029828a0b68cdff80d13e1fda363b">DL_SPI_PARITY</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga5c4a7b9791ecca17d0271fe7ecf0395b">DL_SPI_getParity</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga5c4a7b9791ecca17d0271fe7ecf0395b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current receive and transmit parity configuration.  <a href="#ga5c4a7b9791ecca17d0271fe7ecf0395b">More...</a><br /></td></tr>
+<tr class="separator:ga5c4a7b9791ecca17d0271fe7ecf0395b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4881e1a2ac73d62c56314387df91437f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4881e1a2ac73d62c56314387df91437f">DL_SPI_enableReceiveParity</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga4881e1a2ac73d62c56314387df91437f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables receive parity.  <a href="#ga4881e1a2ac73d62c56314387df91437f">More...</a><br /></td></tr>
 <tr class="separator:ga4881e1a2ac73d62c56314387df91437f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga711ec7e7000ae8647244df1ec0e000ad"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga711ec7e7000ae8647244df1ec0e000ad">DL_SPI_disableReceiveParity</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga711ec7e7000ae8647244df1ec0e000ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables receive parity.  <a href="#ga711ec7e7000ae8647244df1ec0e000ad">More...</a><br /></td></tr>
 <tr class="separator:ga711ec7e7000ae8647244df1ec0e000ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacfa28461c287d67b49ca0192a5bb275e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gacfa28461c287d67b49ca0192a5bb275e">DL_SPI_isReceiveParityEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gacfa28461c287d67b49ca0192a5bb275e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if receive parity is enabled.  <a href="#gacfa28461c287d67b49ca0192a5bb275e">More...</a><br /></td></tr>
-<tr class="separator:gacfa28461c287d67b49ca0192a5bb275e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabefe2e5c8312d0e85359f7c6061e69ce"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gabefe2e5c8312d0e85359f7c6061e69ce">DL_SPI_isReceiveParityEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gabefe2e5c8312d0e85359f7c6061e69ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if receive parity is enabled.  <a href="#gabefe2e5c8312d0e85359f7c6061e69ce">More...</a><br /></td></tr>
+<tr class="separator:gabefe2e5c8312d0e85359f7c6061e69ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadf3c638f0e8aaa977f819be8a30d04ca"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gadf3c638f0e8aaa977f819be8a30d04ca">DL_SPI_enableTransmitParity</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:gadf3c638f0e8aaa977f819be8a30d04ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables transmit parity.  <a href="#gadf3c638f0e8aaa977f819be8a30d04ca">More...</a><br /></td></tr>
 <tr class="separator:gadf3c638f0e8aaa977f819be8a30d04ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad881d36c83db69c35fe1211e0c53920b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gad881d36c83db69c35fe1211e0c53920b">DL_SPI_disableTransmitParity</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:gad881d36c83db69c35fe1211e0c53920b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables transmit parity.  <a href="#gad881d36c83db69c35fe1211e0c53920b">More...</a><br /></td></tr>
 <tr class="separator:gad881d36c83db69c35fe1211e0c53920b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8ec1f529080e99ac971d0734aa8ee022"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga8ec1f529080e99ac971d0734aa8ee022">DL_SPI_isTransmitParityEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga8ec1f529080e99ac971d0734aa8ee022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if transmit parity is enabled.  <a href="#ga8ec1f529080e99ac971d0734aa8ee022">More...</a><br /></td></tr>
-<tr class="separator:ga8ec1f529080e99ac971d0734aa8ee022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabfb2de588357e1010fc4d25afb110dd3"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gabfb2de588357e1010fc4d25afb110dd3">DL_SPI_isTransmitParityEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gabfb2de588357e1010fc4d25afb110dd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if transmit parity is enabled.  <a href="#gabfb2de588357e1010fc4d25afb110dd3">More...</a><br /></td></tr>
+<tr class="separator:gabfb2de588357e1010fc4d25afb110dd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae4913586ba59c5143952522934ca550a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gae4913586ba59c5143952522934ca550a">DL_SPI_setFrameFormat</a> (SPI_Regs *spi, <a class="el" href="group___s_p_i.html#ga1778f795709b41d93eb1408b279e1bd1">DL_SPI_FRAME_FORMAT</a> frameFormat)</td></tr>
 <tr class="memdesc:gae4913586ba59c5143952522934ca550a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the frame format to use.  <a href="#gae4913586ba59c5143952522934ca550a">More...</a><br /></td></tr>
 <tr class="separator:gae4913586ba59c5143952522934ca550a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0bd42c3090f7d2619e52020f5a357978"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga1778f795709b41d93eb1408b279e1bd1">DL_SPI_FRAME_FORMAT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga0bd42c3090f7d2619e52020f5a357978">DL_SPI_getFrameFormat</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga0bd42c3090f7d2619e52020f5a357978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the frame format configuration.  <a href="#ga0bd42c3090f7d2619e52020f5a357978">More...</a><br /></td></tr>
-<tr class="separator:ga0bd42c3090f7d2619e52020f5a357978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga10784e1384b10451ec0d6d732f2b70d4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga1778f795709b41d93eb1408b279e1bd1">DL_SPI_FRAME_FORMAT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga10784e1384b10451ec0d6d732f2b70d4">DL_SPI_getFrameFormat</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga10784e1384b10451ec0d6d732f2b70d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the frame format configuration.  <a href="#ga10784e1384b10451ec0d6d732f2b70d4">More...</a><br /></td></tr>
+<tr class="separator:ga10784e1384b10451ec0d6d732f2b70d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabb7227ea45c66da923fc1dd644f27122"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gabb7227ea45c66da923fc1dd644f27122">DL_SPI_setDataSize</a> (SPI_Regs *spi, <a class="el" href="group___s_p_i.html#ga06925b84fe07eb69a8e1f23ab30d80da">DL_SPI_DATA_SIZE</a> dataSize)</td></tr>
 <tr class="memdesc:gabb7227ea45c66da923fc1dd644f27122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the size for transfers.  <a href="#gabb7227ea45c66da923fc1dd644f27122">More...</a><br /></td></tr>
 <tr class="separator:gabb7227ea45c66da923fc1dd644f27122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9ccb2a4da3bea80332f2a6973ac4b048"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga06925b84fe07eb69a8e1f23ab30d80da">DL_SPI_DATA_SIZE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga9ccb2a4da3bea80332f2a6973ac4b048">DL_SPI_getDataSize</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga9ccb2a4da3bea80332f2a6973ac4b048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured size for transfers.  <a href="#ga9ccb2a4da3bea80332f2a6973ac4b048">More...</a><br /></td></tr>
-<tr class="separator:ga9ccb2a4da3bea80332f2a6973ac4b048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9d6329786f3972f228b324b03c2f649e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga06925b84fe07eb69a8e1f23ab30d80da">DL_SPI_DATA_SIZE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga9d6329786f3972f228b324b03c2f649e">DL_SPI_getDataSize</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga9d6329786f3972f228b324b03c2f649e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the configured size for transfers.  <a href="#ga9d6329786f3972f228b324b03c2f649e">More...</a><br /></td></tr>
+<tr class="separator:ga9d6329786f3972f228b324b03c2f649e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7d153fe0c2f28f8c4165c0bce4c895cf"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga7d153fe0c2f28f8c4165c0bce4c895cf">DL_SPI_setMode</a> (SPI_Regs *spi, <a class="el" href="group___s_p_i.html#gab5d9c38bb4fa37d93aaa0e67eb22b7ae">DL_SPI_MODE</a> mode)</td></tr>
 <tr class="memdesc:ga7d153fe0c2f28f8c4165c0bce4c895cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set whether the device should be in controller/peripheral mode.  <a href="#ga7d153fe0c2f28f8c4165c0bce4c895cf">More...</a><br /></td></tr>
 <tr class="separator:ga7d153fe0c2f28f8c4165c0bce4c895cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga69be5f67e62f2ba8176271fb25fd73af"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gab5d9c38bb4fa37d93aaa0e67eb22b7ae">DL_SPI_MODE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga69be5f67e62f2ba8176271fb25fd73af">DL_SPI_getMode</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga69be5f67e62f2ba8176271fb25fd73af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current mode for the SPI (controller/peripheral)  <a href="#ga69be5f67e62f2ba8176271fb25fd73af">More...</a><br /></td></tr>
-<tr class="separator:ga69be5f67e62f2ba8176271fb25fd73af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6004442fbd29c2ed4cb07a7ad16e140b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gab5d9c38bb4fa37d93aaa0e67eb22b7ae">DL_SPI_MODE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga6004442fbd29c2ed4cb07a7ad16e140b">DL_SPI_getMode</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga6004442fbd29c2ed4cb07a7ad16e140b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current mode for the SPI (controller/peripheral)  <a href="#ga6004442fbd29c2ed4cb07a7ad16e140b">More...</a><br /></td></tr>
+<tr class="separator:ga6004442fbd29c2ed4cb07a7ad16e140b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2eef87b89f47d4bfa2b110ee2232fc7a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga2eef87b89f47d4bfa2b110ee2232fc7a">DL_SPI_setBitOrder</a> (SPI_Regs *spi, <a class="el" href="group___s_p_i.html#ga79d02b79cd7d5383b93311454ed5f3ef">DL_SPI_BIT_ORDER</a> bitOrder)</td></tr>
 <tr class="memdesc:ga2eef87b89f47d4bfa2b110ee2232fc7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bit order used for transfers.  <a href="#ga2eef87b89f47d4bfa2b110ee2232fc7a">More...</a><br /></td></tr>
 <tr class="separator:ga2eef87b89f47d4bfa2b110ee2232fc7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga67cd45e37d7926cd58a2175b446e1531"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga79d02b79cd7d5383b93311454ed5f3ef">DL_SPI_BIT_ORDER</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga67cd45e37d7926cd58a2175b446e1531">DL_SPI_getBitOrder</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga67cd45e37d7926cd58a2175b446e1531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current bit order used for transfers.  <a href="#ga67cd45e37d7926cd58a2175b446e1531">More...</a><br /></td></tr>
-<tr class="separator:ga67cd45e37d7926cd58a2175b446e1531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gace909483aab21f028a68e76f11b03a04"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga79d02b79cd7d5383b93311454ed5f3ef">DL_SPI_BIT_ORDER</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gace909483aab21f028a68e76f11b03a04">DL_SPI_getBitOrder</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gace909483aab21f028a68e76f11b03a04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current bit order used for transfers.  <a href="#gace909483aab21f028a68e76f11b03a04">More...</a><br /></td></tr>
+<tr class="separator:gace909483aab21f028a68e76f11b03a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga95f58fa6481f1096caf19b5bde02a721"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga95f58fa6481f1096caf19b5bde02a721">DL_SPI_enableLoopbackMode</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga95f58fa6481f1096caf19b5bde02a721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables loopback mode.  <a href="#ga95f58fa6481f1096caf19b5bde02a721">More...</a><br /></td></tr>
 <tr class="separator:ga95f58fa6481f1096caf19b5bde02a721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1fea93168e5ed13fdbfcbb2fdc5eaf29"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga1fea93168e5ed13fdbfcbb2fdc5eaf29">DL_SPI_disableLoopbackMode</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga1fea93168e5ed13fdbfcbb2fdc5eaf29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables loopback mode.  <a href="#ga1fea93168e5ed13fdbfcbb2fdc5eaf29">More...</a><br /></td></tr>
 <tr class="separator:ga1fea93168e5ed13fdbfcbb2fdc5eaf29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadc826acff5d99b02b9b49f11bf418b8d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gadc826acff5d99b02b9b49f11bf418b8d">DL_SPI_isLoopbackModeEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gadc826acff5d99b02b9b49f11bf418b8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the loopback mode is enabled.  <a href="#gadc826acff5d99b02b9b49f11bf418b8d">More...</a><br /></td></tr>
-<tr class="separator:gadc826acff5d99b02b9b49f11bf418b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1ba6608163cf3db3f01ef92acfc605e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gad1ba6608163cf3db3f01ef92acfc605e">DL_SPI_isLoopbackModeEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gad1ba6608163cf3db3f01ef92acfc605e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the loopback mode is enabled.  <a href="#gad1ba6608163cf3db3f01ef92acfc605e">More...</a><br /></td></tr>
+<tr class="separator:gad1ba6608163cf3db3f01ef92acfc605e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab702c162ca66cbe0fb435f42c4e45bed"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gab702c162ca66cbe0fb435f42c4e45bed">DL_SPI_setRepeatTransmit</a> (SPI_Regs *spi, uint32_t numRepeats)</td></tr>
 <tr class="memdesc:gab702c162ca66cbe0fb435f42c4e45bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set counter for repeated transmit.  <a href="#gab702c162ca66cbe0fb435f42c4e45bed">More...</a><br /></td></tr>
 <tr class="separator:gab702c162ca66cbe0fb435f42c4e45bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf1d17b75e29b8c51b3cedb7a48d3e3a0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaf1d17b75e29b8c51b3cedb7a48d3e3a0">DL_SPI_getRepeatTransmit</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaf1d17b75e29b8c51b3cedb7a48d3e3a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get counter for repeated transmit.  <a href="#gaf1d17b75e29b8c51b3cedb7a48d3e3a0">More...</a><br /></td></tr>
-<tr class="separator:gaf1d17b75e29b8c51b3cedb7a48d3e3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga28a91c75a55dbfdc5b67c82fd14f51ec"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga28a91c75a55dbfdc5b67c82fd14f51ec">DL_SPI_getRepeatTransmit</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga28a91c75a55dbfdc5b67c82fd14f51ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get counter for repeated transmit.  <a href="#ga28a91c75a55dbfdc5b67c82fd14f51ec">More...</a><br /></td></tr>
+<tr class="separator:ga28a91c75a55dbfdc5b67c82fd14f51ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga95013d33706c0f408ea5059cfcdbdd6e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga95013d33706c0f408ea5059cfcdbdd6e">DL_SPI_enablePeripheralAlignDataOnChipSelect</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga95013d33706c0f408ea5059cfcdbdd6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables data alignment on chip select for peripherals.  <a href="#ga95013d33706c0f408ea5059cfcdbdd6e">More...</a><br /></td></tr>
 <tr class="separator:ga95013d33706c0f408ea5059cfcdbdd6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gada4a4222d9d346236330744ce648be80"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gada4a4222d9d346236330744ce648be80">DL_SPI_disablePeripheralAlignDataOnChipSelect</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:gada4a4222d9d346236330744ce648be80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables data alignment on chip select for peripherals.  <a href="#gada4a4222d9d346236330744ce648be80">More...</a><br /></td></tr>
 <tr class="separator:gada4a4222d9d346236330744ce648be80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga669430d52eeec5dc038b52ce70468e5d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga669430d52eeec5dc038b52ce70468e5d">DL_SPI_isPeripheralAlignDataOnChipSelectEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga669430d52eeec5dc038b52ce70468e5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if data alignment on chip select for peripherals is enabled.  <a href="#ga669430d52eeec5dc038b52ce70468e5d">More...</a><br /></td></tr>
-<tr class="separator:ga669430d52eeec5dc038b52ce70468e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6427aead1f56189686c9b3fc295624bf"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga6427aead1f56189686c9b3fc295624bf">DL_SPI_isPeripheralAlignDataOnChipSelectEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga6427aead1f56189686c9b3fc295624bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if data alignment on chip select for peripherals is enabled.  <a href="#ga6427aead1f56189686c9b3fc295624bf">More...</a><br /></td></tr>
+<tr class="separator:ga6427aead1f56189686c9b3fc295624bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad1c1d31aeb86e180b4d617956b2b90b6"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gad1c1d31aeb86e180b4d617956b2b90b6">DL_SPI_enablePacking</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:gad1c1d31aeb86e180b4d617956b2b90b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables packing feature.  <a href="#gad1c1d31aeb86e180b4d617956b2b90b6">More...</a><br /></td></tr>
 <tr class="separator:gad1c1d31aeb86e180b4d617956b2b90b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafe32a2370e84eb7db0673e2affd338aa"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gafe32a2370e84eb7db0673e2affd338aa">DL_SPI_disablePacking</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:gafe32a2370e84eb7db0673e2affd338aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables packing feature.  <a href="#gafe32a2370e84eb7db0673e2affd338aa">More...</a><br /></td></tr>
 <tr class="separator:gafe32a2370e84eb7db0673e2affd338aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5bbd52a2c6f8375158e96c1dfb99997b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga5bbd52a2c6f8375158e96c1dfb99997b">DL_SPI_isPackingEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga5bbd52a2c6f8375158e96c1dfb99997b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if packing feature is enabled.  <a href="#ga5bbd52a2c6f8375158e96c1dfb99997b">More...</a><br /></td></tr>
-<tr class="separator:ga5bbd52a2c6f8375158e96c1dfb99997b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a5a5107f72c4dc7788d0750f4b0c169"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga0a5a5107f72c4dc7788d0750f4b0c169">DL_SPI_isPackingEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga0a5a5107f72c4dc7788d0750f4b0c169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if packing feature is enabled.  <a href="#ga0a5a5107f72c4dc7788d0750f4b0c169">More...</a><br /></td></tr>
+<tr class="separator:ga0a5a5107f72c4dc7788d0750f4b0c169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga49d8de0e6e9fe919c8879e9ec8256359"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga49d8de0e6e9fe919c8879e9ec8256359">DL_SPI_setChipSelect</a> (SPI_Regs *spi, <a class="el" href="group___s_p_i.html#gac5b7531f268fb581f2f3117bd08eb4a0">DL_SPI_CHIP_SELECT</a> chipSelect)</td></tr>
 <tr class="memdesc:ga49d8de0e6e9fe919c8879e9ec8256359"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set chip select used for controller or peripheral mode.  <a href="#ga49d8de0e6e9fe919c8879e9ec8256359">More...</a><br /></td></tr>
 <tr class="separator:ga49d8de0e6e9fe919c8879e9ec8256359"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa00da1beafcaaf43cf3e801ef67a76d2"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gac5b7531f268fb581f2f3117bd08eb4a0">DL_SPI_CHIP_SELECT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaa00da1beafcaaf43cf3e801ef67a76d2">DL_SPI_getChipSelect</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaa00da1beafcaaf43cf3e801ef67a76d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get chip select used for controller or peripheral mode.  <a href="#gaa00da1beafcaaf43cf3e801ef67a76d2">More...</a><br /></td></tr>
-<tr class="separator:gaa00da1beafcaaf43cf3e801ef67a76d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffadbc18dce16e01845061cec9539998"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gac5b7531f268fb581f2f3117bd08eb4a0">DL_SPI_CHIP_SELECT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaffadbc18dce16e01845061cec9539998">DL_SPI_getChipSelect</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gaffadbc18dce16e01845061cec9539998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get chip select used for controller or peripheral mode.  <a href="#gaffadbc18dce16e01845061cec9539998">More...</a><br /></td></tr>
+<tr class="separator:gaffadbc18dce16e01845061cec9539998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6d77b7c9ab09a76d23b905e014b483ab"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga6d77b7c9ab09a76d23b905e014b483ab">DL_SPI_setPeripheralReceiveTimeout</a> (SPI_Regs *spi, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga6d77b7c9ab09a76d23b905e014b483ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set peripheral receive timeout.  <a href="#ga6d77b7c9ab09a76d23b905e014b483ab">More...</a><br /></td></tr>
 <tr class="separator:ga6d77b7c9ab09a76d23b905e014b483ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa611834ad05f9de32862d5c81404430f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaa611834ad05f9de32862d5c81404430f">DL_SPI_getPeripheralReceiveTimeout</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaa611834ad05f9de32862d5c81404430f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get peripheral receive timeout.  <a href="#gaa611834ad05f9de32862d5c81404430f">More...</a><br /></td></tr>
-<tr class="separator:gaa611834ad05f9de32862d5c81404430f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab8110072434861d79f3b125c14b97327"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gab8110072434861d79f3b125c14b97327">DL_SPI_getPeripheralReceiveTimeout</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gab8110072434861d79f3b125c14b97327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get peripheral receive timeout.  <a href="#gab8110072434861d79f3b125c14b97327">More...</a><br /></td></tr>
+<tr class="separator:gab8110072434861d79f3b125c14b97327"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga80b3037d10bf86943a061938fe71af66"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga80b3037d10bf86943a061938fe71af66">DL_SPI_setControllerCommandDataModeConfig</a> (SPI_Regs *spi, uint32_t config)</td></tr>
 <tr class="memdesc:ga80b3037d10bf86943a061938fe71af66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure the command/data mode.  <a href="#ga80b3037d10bf86943a061938fe71af66">More...</a><br /></td></tr>
 <tr class="separator:ga80b3037d10bf86943a061938fe71af66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa4e51075abb1609beb7f6fe68d0f5fec"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaa4e51075abb1609beb7f6fe68d0f5fec">DL_SPI_getControllerCommandDataModeConfig</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaa4e51075abb1609beb7f6fe68d0f5fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the command/data mode configuration.  <a href="#gaa4e51075abb1609beb7f6fe68d0f5fec">More...</a><br /></td></tr>
-<tr class="separator:gaa4e51075abb1609beb7f6fe68d0f5fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff81d2cfa6dbfaf0df1c002f793f204a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaff81d2cfa6dbfaf0df1c002f793f204a">DL_SPI_getControllerCommandDataModeConfig</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gaff81d2cfa6dbfaf0df1c002f793f204a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the command/data mode configuration.  <a href="#gaff81d2cfa6dbfaf0df1c002f793f204a">More...</a><br /></td></tr>
+<tr class="separator:gaff81d2cfa6dbfaf0df1c002f793f204a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga755438cfca0ea7692c0828b107b8d72a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga755438cfca0ea7692c0828b107b8d72a">DL_SPI_enableControllerCommandDataMode</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga755438cfca0ea7692c0828b107b8d72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables command/data mode.  <a href="#ga755438cfca0ea7692c0828b107b8d72a">More...</a><br /></td></tr>
 <tr class="separator:ga755438cfca0ea7692c0828b107b8d72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2c8385ae7f94401e02abb79d198c4ced"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga2c8385ae7f94401e02abb79d198c4ced">DL_SPI_disableControllerCommandDataMode</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga2c8385ae7f94401e02abb79d198c4ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables command/data mode.  <a href="#ga2c8385ae7f94401e02abb79d198c4ced">More...</a><br /></td></tr>
 <tr class="separator:ga2c8385ae7f94401e02abb79d198c4ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1e005b758379714a3b70efbe18d46f12"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga1e005b758379714a3b70efbe18d46f12">DL_SPI_isControllerCommandDataModeEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga1e005b758379714a3b70efbe18d46f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if command/data mode is enabled.  <a href="#ga1e005b758379714a3b70efbe18d46f12">More...</a><br /></td></tr>
-<tr class="separator:ga1e005b758379714a3b70efbe18d46f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga936e03e47bb826f48cde00b2490cb0df"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga936e03e47bb826f48cde00b2490cb0df">DL_SPI_isControllerCommandDataModeEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga936e03e47bb826f48cde00b2490cb0df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if command/data mode is enabled.  <a href="#ga936e03e47bb826f48cde00b2490cb0df">More...</a><br /></td></tr>
+<tr class="separator:ga936e03e47bb826f48cde00b2490cb0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadeab493584934784e399b486d8d706d6"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gadeab493584934784e399b486d8d706d6">DL_SPI_enablePeripheralDataOutput</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:gadeab493584934784e399b486d8d706d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables peripheral data output.  <a href="#gadeab493584934784e399b486d8d706d6">More...</a><br /></td></tr>
 <tr class="separator:gadeab493584934784e399b486d8d706d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga477925103d4cf5e813b3dd322a94e491"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga477925103d4cf5e813b3dd322a94e491">DL_SPI_disablePeripheralDataOutput</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga477925103d4cf5e813b3dd322a94e491"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables peripheral data output.  <a href="#ga477925103d4cf5e813b3dd322a94e491">More...</a><br /></td></tr>
 <tr class="separator:ga477925103d4cf5e813b3dd322a94e491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaed5eb192dede332f3c6576bc96c63896"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaed5eb192dede332f3c6576bc96c63896">DL_SPI_isPeripheralDataOutputEnabled</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaed5eb192dede332f3c6576bc96c63896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if peripheral data output is enabled.  <a href="#gaed5eb192dede332f3c6576bc96c63896">More...</a><br /></td></tr>
-<tr class="separator:gaed5eb192dede332f3c6576bc96c63896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6acfb31a26f9d040539205f7e5a5506"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gad6acfb31a26f9d040539205f7e5a5506">DL_SPI_isPeripheralDataOutputEnabled</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gad6acfb31a26f9d040539205f7e5a5506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if peripheral data output is enabled.  <a href="#gad6acfb31a26f9d040539205f7e5a5506">More...</a><br /></td></tr>
+<tr class="separator:gad6acfb31a26f9d040539205f7e5a5506"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga69517779fd6a6dc63b7035a382afe938"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga69517779fd6a6dc63b7035a382afe938">DL_SPI_setDelayedSampling</a> (SPI_Regs *spi, uint32_t delay)</td></tr>
 <tr class="memdesc:ga69517779fd6a6dc63b7035a382afe938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the delay sampling.  <a href="#ga69517779fd6a6dc63b7035a382afe938">More...</a><br /></td></tr>
 <tr class="separator:ga69517779fd6a6dc63b7035a382afe938"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9bab3add31780b685dbc4c2b3bcd8c72"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga9bab3add31780b685dbc4c2b3bcd8c72">DL_SPI_getDelayedSampling</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga9bab3add31780b685dbc4c2b3bcd8c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the delay sampling.  <a href="#ga9bab3add31780b685dbc4c2b3bcd8c72">More...</a><br /></td></tr>
-<tr class="separator:ga9bab3add31780b685dbc4c2b3bcd8c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0131073cd9e16115e96f091371d3399c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga0131073cd9e16115e96f091371d3399c">DL_SPI_getDelayedSampling</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga0131073cd9e16115e96f091371d3399c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the delay sampling.  <a href="#ga0131073cd9e16115e96f091371d3399c">More...</a><br /></td></tr>
+<tr class="separator:ga0131073cd9e16115e96f091371d3399c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga964944349d443791436c86969f5dd490"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga964944349d443791436c86969f5dd490">DL_SPI_setFIFOThreshold</a> (SPI_Regs *spi, <a class="el" href="group___s_p_i.html#gad62dc10499a7ad2a0285128125f75b51">DL_SPI_RX_FIFO_LEVEL</a> rxThreshold, <a class="el" href="group___s_p_i.html#ga15208bcdee85c9fdd007a85e761a4843">DL_SPI_TX_FIFO_LEVEL</a> txThreshold)</td></tr>
 <tr class="memdesc:ga964944349d443791436c86969f5dd490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the RX and TX FIFO interrupt threshold level.  <a href="#ga964944349d443791436c86969f5dd490">More...</a><br /></td></tr>
 <tr class="separator:ga964944349d443791436c86969f5dd490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8f70ece785dac3bf4bfcb8c55855fefc"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga15208bcdee85c9fdd007a85e761a4843">DL_SPI_TX_FIFO_LEVEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga8f70ece785dac3bf4bfcb8c55855fefc">DL_SPI_getTXFIFOThreshold</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga8f70ece785dac3bf4bfcb8c55855fefc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TX FIFO interrupt threshold level.  <a href="#ga8f70ece785dac3bf4bfcb8c55855fefc">More...</a><br /></td></tr>
-<tr class="separator:ga8f70ece785dac3bf4bfcb8c55855fefc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga31ee5c6c5d860a60ee941f01136fe49d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gad62dc10499a7ad2a0285128125f75b51">DL_SPI_RX_FIFO_LEVEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga31ee5c6c5d860a60ee941f01136fe49d">DL_SPI_getRXFIFOThreshold</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga31ee5c6c5d860a60ee941f01136fe49d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the RX FIFO interrupt threshold level.  <a href="#ga31ee5c6c5d860a60ee941f01136fe49d">More...</a><br /></td></tr>
-<tr class="separator:ga31ee5c6c5d860a60ee941f01136fe49d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad7a261d22530dd8159a4127225cb11f9"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga15208bcdee85c9fdd007a85e761a4843">DL_SPI_TX_FIFO_LEVEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gad7a261d22530dd8159a4127225cb11f9">DL_SPI_getTXFIFOThreshold</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gad7a261d22530dd8159a4127225cb11f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TX FIFO interrupt threshold level.  <a href="#gad7a261d22530dd8159a4127225cb11f9">More...</a><br /></td></tr>
+<tr class="separator:gad7a261d22530dd8159a4127225cb11f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5c0965ede169729e0671efefc86039b4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gad62dc10499a7ad2a0285128125f75b51">DL_SPI_RX_FIFO_LEVEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga5c0965ede169729e0671efefc86039b4">DL_SPI_getRXFIFOThreshold</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga5c0965ede169729e0671efefc86039b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the RX FIFO interrupt threshold level.  <a href="#ga5c0965ede169729e0671efefc86039b4">More...</a><br /></td></tr>
+<tr class="separator:ga5c0965ede169729e0671efefc86039b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3c4a02c29afd23921de3499f67fac64e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga3c4a02c29afd23921de3499f67fac64e">DL_SPI_setBitRateSerialClockDivider</a> (SPI_Regs *spi, uint32_t SCR)</td></tr>
 <tr class="memdesc:ga3c4a02c29afd23921de3499f67fac64e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the SPI bit rate serial clock divider (SCR)  <a href="#ga3c4a02c29afd23921de3499f67fac64e">More...</a><br /></td></tr>
 <tr class="separator:ga3c4a02c29afd23921de3499f67fac64e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1e0b41e8be0be30828f7f55fd5a84369"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga1e0b41e8be0be30828f7f55fd5a84369">DL_SPI_getBitRateSerialClockDivider</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga1e0b41e8be0be30828f7f55fd5a84369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the SPI bit rate serial clock divider (SCR)  <a href="#ga1e0b41e8be0be30828f7f55fd5a84369">More...</a><br /></td></tr>
-<tr class="separator:ga1e0b41e8be0be30828f7f55fd5a84369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0ae83a4e6b86488a627f86cb42e881c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gae0ae83a4e6b86488a627f86cb42e881c">DL_SPI_getBitRateSerialClockDivider</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gae0ae83a4e6b86488a627f86cb42e881c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the SPI bit rate serial clock divider (SCR)  <a href="#gae0ae83a4e6b86488a627f86cb42e881c">More...</a><br /></td></tr>
+<tr class="separator:gae0ae83a4e6b86488a627f86cb42e881c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1db81249e51e1d7d083b1f08ac3c74f8"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga1db81249e51e1d7d083b1f08ac3c74f8">DL_SPI_transmitData8</a> (SPI_Regs *spi, uint8_t data)</td></tr>
 <tr class="memdesc:ga1db81249e51e1d7d083b1f08ac3c74f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes 8-bit data into the TX FIFO for transmit.  <a href="#ga1db81249e51e1d7d083b1f08ac3c74f8">More...</a><br /></td></tr>
 <tr class="separator:ga1db81249e51e1d7d083b1f08ac3c74f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -491,33 +491,33 @@ Functions</h2></td></tr>
 <tr class="memitem:gaea8f2bccfe6a5d794262a9b6820c8275"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaea8f2bccfe6a5d794262a9b6820c8275">DL_SPI_transmitData32</a> (SPI_Regs *spi, uint32_t data)</td></tr>
 <tr class="memdesc:gaea8f2bccfe6a5d794262a9b6820c8275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes 32-bit data into the TX FIFO for transmit.  <a href="#gaea8f2bccfe6a5d794262a9b6820c8275">More...</a><br /></td></tr>
 <tr class="separator:gaea8f2bccfe6a5d794262a9b6820c8275"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3ad1b72ff835f7cc756991dbdad964fe"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga3ad1b72ff835f7cc756991dbdad964fe">DL_SPI_receiveData8</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga3ad1b72ff835f7cc756991dbdad964fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads 8-bit data from the RX FIFO.  <a href="#ga3ad1b72ff835f7cc756991dbdad964fe">More...</a><br /></td></tr>
-<tr class="separator:ga3ad1b72ff835f7cc756991dbdad964fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa6543c466da35691515f27c017f1512a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaa6543c466da35691515f27c017f1512a">DL_SPI_receiveData16</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaa6543c466da35691515f27c017f1512a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads 16-bit data from the RX FIFO.  <a href="#gaa6543c466da35691515f27c017f1512a">More...</a><br /></td></tr>
-<tr class="separator:gaa6543c466da35691515f27c017f1512a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaca2d9e206cd78bd8172a33ac830b9a4d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaca2d9e206cd78bd8172a33ac830b9a4d">DL_SPI_receiveData32</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaca2d9e206cd78bd8172a33ac830b9a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads 32-bit data from the RX FIFO.  <a href="#gaca2d9e206cd78bd8172a33ac830b9a4d">More...</a><br /></td></tr>
-<tr class="separator:gaca2d9e206cd78bd8172a33ac830b9a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4567c4c2551bafbfc9b4646e8522631f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4567c4c2551bafbfc9b4646e8522631f">DL_SPI_receiveData8</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga4567c4c2551bafbfc9b4646e8522631f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads 8-bit data from the RX FIFO.  <a href="#ga4567c4c2551bafbfc9b4646e8522631f">More...</a><br /></td></tr>
+<tr class="separator:ga4567c4c2551bafbfc9b4646e8522631f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac94abca28d5be6a6e8ef3587012b6071"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gac94abca28d5be6a6e8ef3587012b6071">DL_SPI_receiveData16</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gac94abca28d5be6a6e8ef3587012b6071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads 16-bit data from the RX FIFO.  <a href="#gac94abca28d5be6a6e8ef3587012b6071">More...</a><br /></td></tr>
+<tr class="separator:gac94abca28d5be6a6e8ef3587012b6071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga717ecfe8b54b8135b448419d25659d01"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga717ecfe8b54b8135b448419d25659d01">DL_SPI_receiveData32</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga717ecfe8b54b8135b448419d25659d01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads 32-bit data from the RX FIFO.  <a href="#ga717ecfe8b54b8135b448419d25659d01">More...</a><br /></td></tr>
+<tr class="separator:ga717ecfe8b54b8135b448419d25659d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0a86c2fb7c36d466076b497af09b18e5"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga0a86c2fb7c36d466076b497af09b18e5">DL_SPI_enableInterrupt</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga0a86c2fb7c36d466076b497af09b18e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable SPI interrupts.  <a href="#ga0a86c2fb7c36d466076b497af09b18e5">More...</a><br /></td></tr>
 <tr class="separator:ga0a86c2fb7c36d466076b497af09b18e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga65638f5a3719afe2856ba0da9a2921ba"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga65638f5a3719afe2856ba0da9a2921ba">DL_SPI_disableInterrupt</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga65638f5a3719afe2856ba0da9a2921ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable SPI interrupts.  <a href="#ga65638f5a3719afe2856ba0da9a2921ba">More...</a><br /></td></tr>
 <tr class="separator:ga65638f5a3719afe2856ba0da9a2921ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8e3e6bbce946fb656f1a518eb1ba4f60"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga8e3e6bbce946fb656f1a518eb1ba4f60">DL_SPI_getEnabledInterrupts</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:ga8e3e6bbce946fb656f1a518eb1ba4f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check which SPI interrupts are enabled.  <a href="#ga8e3e6bbce946fb656f1a518eb1ba4f60">More...</a><br /></td></tr>
-<tr class="separator:ga8e3e6bbce946fb656f1a518eb1ba4f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3d9c4e855d6bc53bb21db33f6a96996e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga3d9c4e855d6bc53bb21db33f6a96996e">DL_SPI_getEnabledInterruptStatus</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:ga3d9c4e855d6bc53bb21db33f6a96996e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of enabled SPI interrupts.  <a href="#ga3d9c4e855d6bc53bb21db33f6a96996e">More...</a><br /></td></tr>
-<tr class="separator:ga3d9c4e855d6bc53bb21db33f6a96996e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2e7453f5be41fb52bf13676517df854f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga2e7453f5be41fb52bf13676517df854f">DL_SPI_getRawInterruptStatus</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:ga2e7453f5be41fb52bf13676517df854f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of any SPI interrupt.  <a href="#ga2e7453f5be41fb52bf13676517df854f">More...</a><br /></td></tr>
-<tr class="separator:ga2e7453f5be41fb52bf13676517df854f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga73ba5863505021f90030a4add94e2a0a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga2856971e4f44c549983e6358d0fde683">DL_SPI_IIDX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga73ba5863505021f90030a4add94e2a0a">DL_SPI_getPendingInterrupt</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga73ba5863505021f90030a4add94e2a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get highest priority pending SPI interrupt.  <a href="#ga73ba5863505021f90030a4add94e2a0a">More...</a><br /></td></tr>
-<tr class="separator:ga73ba5863505021f90030a4add94e2a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga970ffa57f3c30c27b6219db984ae4dd8"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga970ffa57f3c30c27b6219db984ae4dd8">DL_SPI_getEnabledInterrupts</a> (const SPI_Regs *spi, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:ga970ffa57f3c30c27b6219db984ae4dd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check which SPI interrupts are enabled.  <a href="#ga970ffa57f3c30c27b6219db984ae4dd8">More...</a><br /></td></tr>
+<tr class="separator:ga970ffa57f3c30c27b6219db984ae4dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabe8d63c06cb83e51b8f0859cbeca8fd8"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gabe8d63c06cb83e51b8f0859cbeca8fd8">DL_SPI_getEnabledInterruptStatus</a> (const SPI_Regs *spi, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:gabe8d63c06cb83e51b8f0859cbeca8fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of enabled SPI interrupts.  <a href="#gabe8d63c06cb83e51b8f0859cbeca8fd8">More...</a><br /></td></tr>
+<tr class="separator:gabe8d63c06cb83e51b8f0859cbeca8fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadfa0c97668147c1537616b25d041543e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gadfa0c97668147c1537616b25d041543e">DL_SPI_getRawInterruptStatus</a> (const SPI_Regs *spi, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:gadfa0c97668147c1537616b25d041543e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of any SPI interrupt.  <a href="#gadfa0c97668147c1537616b25d041543e">More...</a><br /></td></tr>
+<tr class="separator:gadfa0c97668147c1537616b25d041543e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa5561e3632fa0de4f0d2637a4a59bfb9"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga2856971e4f44c549983e6358d0fde683">DL_SPI_IIDX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaa5561e3632fa0de4f0d2637a4a59bfb9">DL_SPI_getPendingInterrupt</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gaa5561e3632fa0de4f0d2637a4a59bfb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get highest priority pending SPI interrupt.  <a href="#gaa5561e3632fa0de4f0d2637a4a59bfb9">More...</a><br /></td></tr>
+<tr class="separator:gaa5561e3632fa0de4f0d2637a4a59bfb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3a3adedc52cb49293eb395e3b61a3365"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga3a3adedc52cb49293eb395e3b61a3365">DL_SPI_clearInterruptStatus</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga3a3adedc52cb49293eb395e3b61a3365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending SPI interrupts.  <a href="#ga3a3adedc52cb49293eb395e3b61a3365">More...</a><br /></td></tr>
 <tr class="separator:ga3a3adedc52cb49293eb395e3b61a3365"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -530,15 +530,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ga9b8cd4c5a324feeeb75e9ad05576d762"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga9b8cd4c5a324feeeb75e9ad05576d762">DL_SPI_transmitDataBlocking32</a> (SPI_Regs *spi, uint32_t data)</td></tr>
 <tr class="memdesc:ga9b8cd4c5a324feeeb75e9ad05576d762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure transmit is ready before sending data.  <a href="#ga9b8cd4c5a324feeeb75e9ad05576d762">More...</a><br /></td></tr>
 <tr class="separator:ga9b8cd4c5a324feeeb75e9ad05576d762"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0eecb3e7f2130f703d97aa21c132f6bc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga0eecb3e7f2130f703d97aa21c132f6bc">DL_SPI_receiveDataBlocking8</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga0eecb3e7f2130f703d97aa21c132f6bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure receive is ready before reading data.  <a href="#ga0eecb3e7f2130f703d97aa21c132f6bc">More...</a><br /></td></tr>
-<tr class="separator:ga0eecb3e7f2130f703d97aa21c132f6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga887dc15031c26b9c34efd0ab9806da44"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga887dc15031c26b9c34efd0ab9806da44">DL_SPI_receiveDataBlocking16</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga887dc15031c26b9c34efd0ab9806da44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure receive is ready before reading data.  <a href="#ga887dc15031c26b9c34efd0ab9806da44">More...</a><br /></td></tr>
-<tr class="separator:ga887dc15031c26b9c34efd0ab9806da44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga221d94b17bd63e063a4234e5a0f3ffc5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga221d94b17bd63e063a4234e5a0f3ffc5">DL_SPI_receiveDataBlocking32</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga221d94b17bd63e063a4234e5a0f3ffc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure receive is ready before reading data.  <a href="#ga221d94b17bd63e063a4234e5a0f3ffc5">More...</a><br /></td></tr>
-<tr class="separator:ga221d94b17bd63e063a4234e5a0f3ffc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6042d86a27dc1f0ac793a6b14c19d60f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga6042d86a27dc1f0ac793a6b14c19d60f">DL_SPI_receiveDataBlocking8</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga6042d86a27dc1f0ac793a6b14c19d60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure receive is ready before reading data.  <a href="#ga6042d86a27dc1f0ac793a6b14c19d60f">More...</a><br /></td></tr>
+<tr class="separator:ga6042d86a27dc1f0ac793a6b14c19d60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4bcdc016db3fa393f09bd17e624856fd"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4bcdc016db3fa393f09bd17e624856fd">DL_SPI_receiveDataBlocking16</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga4bcdc016db3fa393f09bd17e624856fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure receive is ready before reading data.  <a href="#ga4bcdc016db3fa393f09bd17e624856fd">More...</a><br /></td></tr>
+<tr class="separator:ga4bcdc016db3fa393f09bd17e624856fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1d5a7664cd307273cbcaf9da299b3b91"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga1d5a7664cd307273cbcaf9da299b3b91">DL_SPI_receiveDataBlocking32</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga1d5a7664cd307273cbcaf9da299b3b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks to ensure receive is ready before reading data.  <a href="#ga1d5a7664cd307273cbcaf9da299b3b91">More...</a><br /></td></tr>
+<tr class="separator:ga1d5a7664cd307273cbcaf9da299b3b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa747ac1ef89a31a25f59edd36e7434b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaa747ac1ef89a31a25f59edd36e7434b1">DL_SPI_transmitDataCheck8</a> (SPI_Regs *spi, uint8_t data)</td></tr>
 <tr class="memdesc:gaa747ac1ef89a31a25f59edd36e7434b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the TX FIFO before trying to transmit data.  <a href="#gaa747ac1ef89a31a25f59edd36e7434b1">More...</a><br /></td></tr>
 <tr class="separator:gaa747ac1ef89a31a25f59edd36e7434b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -548,33 +548,33 @@ Functions</h2></td></tr>
 <tr class="memitem:ga49621278af197222784b1d12bea75fc3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga49621278af197222784b1d12bea75fc3">DL_SPI_transmitDataCheck32</a> (SPI_Regs *spi, uint32_t data)</td></tr>
 <tr class="memdesc:ga49621278af197222784b1d12bea75fc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the TX FIFO before trying to transmit data.  <a href="#ga49621278af197222784b1d12bea75fc3">More...</a><br /></td></tr>
 <tr class="separator:ga49621278af197222784b1d12bea75fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac6fc009060563c15b7977dcfee318217"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gac6fc009060563c15b7977dcfee318217">DL_SPI_receiveDataCheck8</a> (SPI_Regs *spi, uint8_t *buffer)</td></tr>
-<tr class="memdesc:gac6fc009060563c15b7977dcfee318217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the RX FIFO before trying to transmit data.  <a href="#gac6fc009060563c15b7977dcfee318217">More...</a><br /></td></tr>
-<tr class="separator:gac6fc009060563c15b7977dcfee318217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa1b2bcc74bb7ec126ac096723a688a40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaa1b2bcc74bb7ec126ac096723a688a40">DL_SPI_receiveDataCheck16</a> (SPI_Regs *spi, uint16_t *buffer)</td></tr>
-<tr class="memdesc:gaa1b2bcc74bb7ec126ac096723a688a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the RX FIFO before trying to transmit data.  <a href="#gaa1b2bcc74bb7ec126ac096723a688a40">More...</a><br /></td></tr>
-<tr class="separator:gaa1b2bcc74bb7ec126ac096723a688a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga893172c6848fd376f400dd9cf1c87e66"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga893172c6848fd376f400dd9cf1c87e66">DL_SPI_receiveDataCheck32</a> (SPI_Regs *spi, uint32_t *buffer)</td></tr>
-<tr class="memdesc:ga893172c6848fd376f400dd9cf1c87e66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the RX FIFO before trying to transmit data.  <a href="#ga893172c6848fd376f400dd9cf1c87e66">More...</a><br /></td></tr>
-<tr class="separator:ga893172c6848fd376f400dd9cf1c87e66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga028c654b0302902ac2f751ac607e86aa"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga028c654b0302902ac2f751ac607e86aa">DL_SPI_drainRXFIFO8</a> (SPI_Regs *spi, uint8_t *buffer, uint32_t maxCount)</td></tr>
-<tr class="memdesc:ga028c654b0302902ac2f751ac607e86aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 8 bit access.  <a href="#ga028c654b0302902ac2f751ac607e86aa">More...</a><br /></td></tr>
-<tr class="separator:ga028c654b0302902ac2f751ac607e86aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac91ec18aad967db0722250db55d6a92a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gac91ec18aad967db0722250db55d6a92a">DL_SPI_drainRXFIFO16</a> (SPI_Regs *spi, uint16_t *buffer, uint32_t maxCount)</td></tr>
-<tr class="memdesc:gac91ec18aad967db0722250db55d6a92a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 16 bit access.  <a href="#gac91ec18aad967db0722250db55d6a92a">More...</a><br /></td></tr>
-<tr class="separator:gac91ec18aad967db0722250db55d6a92a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7ec3f5d7a20dcc165b57cd4e9537ca4a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga7ec3f5d7a20dcc165b57cd4e9537ca4a">DL_SPI_drainRXFIFO32</a> (SPI_Regs *spi, uint32_t *buffer, uint32_t maxCount)</td></tr>
-<tr class="memdesc:ga7ec3f5d7a20dcc165b57cd4e9537ca4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 32 bit access.  <a href="#ga7ec3f5d7a20dcc165b57cd4e9537ca4a">More...</a><br /></td></tr>
-<tr class="separator:ga7ec3f5d7a20dcc165b57cd4e9537ca4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga19f6bf0b7549e4500c88a860ac3a3f25"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga19f6bf0b7549e4500c88a860ac3a3f25">DL_SPI_fillTXFIFO8</a> (SPI_Regs *spi, uint8_t *buffer, uint32_t count)</td></tr>
-<tr class="memdesc:ga19f6bf0b7549e4500c88a860ac3a3f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the TX FIFO using 8 bit access.  <a href="#ga19f6bf0b7549e4500c88a860ac3a3f25">More...</a><br /></td></tr>
-<tr class="separator:ga19f6bf0b7549e4500c88a860ac3a3f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafec74ce77c3bc51975bfb4a41bb9fbc8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gafec74ce77c3bc51975bfb4a41bb9fbc8">DL_SPI_fillTXFIFO16</a> (SPI_Regs *spi, uint16_t *buffer, uint32_t count)</td></tr>
-<tr class="memdesc:gafec74ce77c3bc51975bfb4a41bb9fbc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the TX FIFO using 16 bit access.  <a href="#gafec74ce77c3bc51975bfb4a41bb9fbc8">More...</a><br /></td></tr>
-<tr class="separator:gafec74ce77c3bc51975bfb4a41bb9fbc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga32cfe0dcf1f630a337d3dbb31824a888"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga32cfe0dcf1f630a337d3dbb31824a888">DL_SPI_fillTXFIFO32</a> (SPI_Regs *spi, uint32_t *buffer, uint32_t count)</td></tr>
-<tr class="memdesc:ga32cfe0dcf1f630a337d3dbb31824a888"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the TX FIFO using 32 bit access.  <a href="#ga32cfe0dcf1f630a337d3dbb31824a888">More...</a><br /></td></tr>
-<tr class="separator:ga32cfe0dcf1f630a337d3dbb31824a888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed7d1780e6dbf7b1429c4add272accdf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaed7d1780e6dbf7b1429c4add272accdf">DL_SPI_receiveDataCheck8</a> (const SPI_Regs *spi, uint8_t *buffer)</td></tr>
+<tr class="memdesc:gaed7d1780e6dbf7b1429c4add272accdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the RX FIFO before trying to transmit data.  <a href="#gaed7d1780e6dbf7b1429c4add272accdf">More...</a><br /></td></tr>
+<tr class="separator:gaed7d1780e6dbf7b1429c4add272accdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf632787409736f5804b74a8e78995100"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaf632787409736f5804b74a8e78995100">DL_SPI_receiveDataCheck16</a> (const SPI_Regs *spi, uint16_t *buffer)</td></tr>
+<tr class="memdesc:gaf632787409736f5804b74a8e78995100"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the RX FIFO before trying to transmit data.  <a href="#gaf632787409736f5804b74a8e78995100">More...</a><br /></td></tr>
+<tr class="separator:gaf632787409736f5804b74a8e78995100"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga222c7dffefa2bf155766cd7c84d023f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga222c7dffefa2bf155766cd7c84d023f2">DL_SPI_receiveDataCheck32</a> (const SPI_Regs *spi, uint32_t *buffer)</td></tr>
+<tr class="memdesc:ga222c7dffefa2bf155766cd7c84d023f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the RX FIFO before trying to transmit data.  <a href="#ga222c7dffefa2bf155766cd7c84d023f2">More...</a><br /></td></tr>
+<tr class="separator:ga222c7dffefa2bf155766cd7c84d023f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1636bbb8fd41d76c6d9514306477e914"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga1636bbb8fd41d76c6d9514306477e914">DL_SPI_drainRXFIFO8</a> (const SPI_Regs *spi, uint8_t *buffer, uint32_t maxCount)</td></tr>
+<tr class="memdesc:ga1636bbb8fd41d76c6d9514306477e914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 8 bit access.  <a href="#ga1636bbb8fd41d76c6d9514306477e914">More...</a><br /></td></tr>
+<tr class="separator:ga1636bbb8fd41d76c6d9514306477e914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf3476eca47770d35f187b5c04e60b632"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaf3476eca47770d35f187b5c04e60b632">DL_SPI_drainRXFIFO16</a> (const SPI_Regs *spi, uint16_t *buffer, uint32_t maxCount)</td></tr>
+<tr class="memdesc:gaf3476eca47770d35f187b5c04e60b632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 16 bit access.  <a href="#gaf3476eca47770d35f187b5c04e60b632">More...</a><br /></td></tr>
+<tr class="separator:gaf3476eca47770d35f187b5c04e60b632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5ce50f3a0f751d8cb2f4ed499755e93"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gab5ce50f3a0f751d8cb2f4ed499755e93">DL_SPI_drainRXFIFO32</a> (const SPI_Regs *spi, uint32_t *buffer, uint32_t maxCount)</td></tr>
+<tr class="memdesc:gab5ce50f3a0f751d8cb2f4ed499755e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all available data out of the RX FIFO using 32 bit access.  <a href="#gab5ce50f3a0f751d8cb2f4ed499755e93">More...</a><br /></td></tr>
+<tr class="separator:gab5ce50f3a0f751d8cb2f4ed499755e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad002b7ba9034c365ad8fde923bdf0107"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gad002b7ba9034c365ad8fde923bdf0107">DL_SPI_fillTXFIFO8</a> (SPI_Regs *spi, const uint8_t *buffer, uint32_t count)</td></tr>
+<tr class="memdesc:gad002b7ba9034c365ad8fde923bdf0107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the TX FIFO using 8 bit access.  <a href="#gad002b7ba9034c365ad8fde923bdf0107">More...</a><br /></td></tr>
+<tr class="separator:gad002b7ba9034c365ad8fde923bdf0107"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93e856d5f712743ea02f133d3292c5ea"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga93e856d5f712743ea02f133d3292c5ea">DL_SPI_fillTXFIFO16</a> (SPI_Regs *spi, const uint16_t *buffer, uint32_t count)</td></tr>
+<tr class="memdesc:ga93e856d5f712743ea02f133d3292c5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the TX FIFO using 16 bit access.  <a href="#ga93e856d5f712743ea02f133d3292c5ea">More...</a><br /></td></tr>
+<tr class="separator:ga93e856d5f712743ea02f133d3292c5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7af3ac6f55af2348e02d16d5c67e1b29"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga7af3ac6f55af2348e02d16d5c67e1b29">DL_SPI_fillTXFIFO32</a> (SPI_Regs *spi, const uint32_t *buffer, uint32_t count)</td></tr>
+<tr class="memdesc:ga7af3ac6f55af2348e02d16d5c67e1b29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the TX FIFO using 32 bit access.  <a href="#ga7af3ac6f55af2348e02d16d5c67e1b29">More...</a><br /></td></tr>
+<tr class="separator:ga7af3ac6f55af2348e02d16d5c67e1b29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga19bfcce992f283ee00bddb23bf50d18a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga19bfcce992f283ee00bddb23bf50d18a">DL_SPI_enableDMAReceiveEvent</a> (SPI_Regs *spi, uint32_t interrupt)</td></tr>
 <tr class="memdesc:ga19bfcce992f283ee00bddb23bf50d18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable SPI interrupt for triggering the DMA receive event.  <a href="#ga19bfcce992f283ee00bddb23bf50d18a">More...</a><br /></td></tr>
 <tr class="separator:ga19bfcce992f283ee00bddb23bf50d18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -587,39 +587,39 @@ Functions</h2></td></tr>
 <tr class="memitem:ga77eb49fb26f889729b483357839ea907"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga77eb49fb26f889729b483357839ea907">DL_SPI_disableDMATransmitEvent</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga77eb49fb26f889729b483357839ea907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables SPI interrupt from triggering the DMA transmit event.  <a href="#ga77eb49fb26f889729b483357839ea907">More...</a><br /></td></tr>
 <tr class="separator:ga77eb49fb26f889729b483357839ea907"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae0e89f455dfc248d5deb1acdc48edcb1"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gae0e89f455dfc248d5deb1acdc48edcb1">DL_SPI_getEnabledDMAReceiveEvent</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:gae0e89f455dfc248d5deb1acdc48edcb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check which SPI interrupt for DMA receive events is enabled.  <a href="#gae0e89f455dfc248d5deb1acdc48edcb1">More...</a><br /></td></tr>
-<tr class="separator:gae0e89f455dfc248d5deb1acdc48edcb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaca55b65426f0959d8874c9e147e593d3"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaca55b65426f0959d8874c9e147e593d3">DL_SPI_getEnabledDMATransmitEvent</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaca55b65426f0959d8874c9e147e593d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if SPI interrupt for DMA transmit event is enabled.  <a href="#gaca55b65426f0959d8874c9e147e593d3">More...</a><br /></td></tr>
-<tr class="separator:gaca55b65426f0959d8874c9e147e593d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7e4a80646e1dc849e10ba520ccda591d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga7e4a80646e1dc849e10ba520ccda591d">DL_SPI_getEnabledDMAReceiveEventStatus</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:ga7e4a80646e1dc849e10ba520ccda591d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of enabled SPI interrupt for DMA receive event.  <a href="#ga7e4a80646e1dc849e10ba520ccda591d">More...</a><br /></td></tr>
-<tr class="separator:ga7e4a80646e1dc849e10ba520ccda591d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6a8deff5da283604d407bb9218bd938a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga6a8deff5da283604d407bb9218bd938a">DL_SPI_getEnabledDMATransmitEventStatus</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga6a8deff5da283604d407bb9218bd938a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of enabled SPI interrupt for DMA transmit event.  <a href="#ga6a8deff5da283604d407bb9218bd938a">More...</a><br /></td></tr>
-<tr class="separator:ga6a8deff5da283604d407bb9218bd938a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4f19545cef469202bdef5b945d25d896"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4f19545cef469202bdef5b945d25d896">DL_SPI_getRawDMAReceiveEventStatus</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:ga4f19545cef469202bdef5b945d25d896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of any SPI interrupt for DMA receive event.  <a href="#ga4f19545cef469202bdef5b945d25d896">More...</a><br /></td></tr>
-<tr class="separator:ga4f19545cef469202bdef5b945d25d896"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacf7f0e0435ad966aed8ccb71a3296b24"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gacf7f0e0435ad966aed8ccb71a3296b24">DL_SPI_getRawDMATransmitEventStatus</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gacf7f0e0435ad966aed8ccb71a3296b24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of any SPI interrupt for DMA transmit event.  <a href="#gacf7f0e0435ad966aed8ccb71a3296b24">More...</a><br /></td></tr>
-<tr class="separator:gacf7f0e0435ad966aed8ccb71a3296b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf57ab53eefe268ce08739d8ff297750e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gac662dc4ffc6d7fbd2c8059f9d978f0f6">DL_SPI_DMA_IIDX_RX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gaf57ab53eefe268ce08739d8ff297750e">DL_SPI_getPendingDMAReceiveEvent</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:gaf57ab53eefe268ce08739d8ff297750e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get highest priority pending SPI interrupt for DMA receive event.  <a href="#gaf57ab53eefe268ce08739d8ff297750e">More...</a><br /></td></tr>
-<tr class="separator:gaf57ab53eefe268ce08739d8ff297750e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga98a8763570191a8d451075a707fe35c7"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga4edac7e2fad897c33fddb539363eabdd">DL_SPI_DMA_IIDX_TX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga98a8763570191a8d451075a707fe35c7">DL_SPI_getPendingDMATransmitEvent</a> (SPI_Regs *spi)</td></tr>
-<tr class="memdesc:ga98a8763570191a8d451075a707fe35c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get highest priority pending SPI interrupt for DMA transmit event.  <a href="#ga98a8763570191a8d451075a707fe35c7">More...</a><br /></td></tr>
-<tr class="separator:ga98a8763570191a8d451075a707fe35c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab89a3ffb4daa9ef6b8efb5fdf6f2377d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gab89a3ffb4daa9ef6b8efb5fdf6f2377d">DL_SPI_getEnabledDMAReceiveEvent</a> (const SPI_Regs *spi, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:gab89a3ffb4daa9ef6b8efb5fdf6f2377d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check which SPI interrupt for DMA receive events is enabled.  <a href="#gab89a3ffb4daa9ef6b8efb5fdf6f2377d">More...</a><br /></td></tr>
+<tr class="separator:gab89a3ffb4daa9ef6b8efb5fdf6f2377d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5d4d2f49631235e03bd43133b31892a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gac5d4d2f49631235e03bd43133b31892a">DL_SPI_getEnabledDMATransmitEvent</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gac5d4d2f49631235e03bd43133b31892a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if SPI interrupt for DMA transmit event is enabled.  <a href="#gac5d4d2f49631235e03bd43133b31892a">More...</a><br /></td></tr>
+<tr class="separator:gac5d4d2f49631235e03bd43133b31892a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c1428ee1b7bbadb399ebc3d04b01a82"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4c1428ee1b7bbadb399ebc3d04b01a82">DL_SPI_getEnabledDMAReceiveEventStatus</a> (const SPI_Regs *spi, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:ga4c1428ee1b7bbadb399ebc3d04b01a82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of enabled SPI interrupt for DMA receive event.  <a href="#ga4c1428ee1b7bbadb399ebc3d04b01a82">More...</a><br /></td></tr>
+<tr class="separator:ga4c1428ee1b7bbadb399ebc3d04b01a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac76266ff3cef7b9efe539a338ab6763e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gac76266ff3cef7b9efe539a338ab6763e">DL_SPI_getEnabledDMATransmitEventStatus</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gac76266ff3cef7b9efe539a338ab6763e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of enabled SPI interrupt for DMA transmit event.  <a href="#gac76266ff3cef7b9efe539a338ab6763e">More...</a><br /></td></tr>
+<tr class="separator:gac76266ff3cef7b9efe539a338ab6763e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7ba09f8f4c7f038edd29869306f19176"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga7ba09f8f4c7f038edd29869306f19176">DL_SPI_getRawDMAReceiveEventStatus</a> (const SPI_Regs *spi, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:ga7ba09f8f4c7f038edd29869306f19176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of any SPI interrupt for DMA receive event.  <a href="#ga7ba09f8f4c7f038edd29869306f19176">More...</a><br /></td></tr>
+<tr class="separator:ga7ba09f8f4c7f038edd29869306f19176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafcd3c71425a2848f31ed24f325c6e403"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gafcd3c71425a2848f31ed24f325c6e403">DL_SPI_getRawDMATransmitEventStatus</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:gafcd3c71425a2848f31ed24f325c6e403"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of any SPI interrupt for DMA transmit event.  <a href="#gafcd3c71425a2848f31ed24f325c6e403">More...</a><br /></td></tr>
+<tr class="separator:gafcd3c71425a2848f31ed24f325c6e403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b2a07f8b6ddc8e504898d6b26ff0aea"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gac662dc4ffc6d7fbd2c8059f9d978f0f6">DL_SPI_DMA_IIDX_RX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga4b2a07f8b6ddc8e504898d6b26ff0aea">DL_SPI_getPendingDMAReceiveEvent</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga4b2a07f8b6ddc8e504898d6b26ff0aea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get highest priority pending SPI interrupt for DMA receive event.  <a href="#ga4b2a07f8b6ddc8e504898d6b26ff0aea">More...</a><br /></td></tr>
+<tr class="separator:ga4b2a07f8b6ddc8e504898d6b26ff0aea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga96cd4c2386a039ab586535d66972d8d4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga4edac7e2fad897c33fddb539363eabdd">DL_SPI_DMA_IIDX_TX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga96cd4c2386a039ab586535d66972d8d4">DL_SPI_getPendingDMATransmitEvent</a> (const SPI_Regs *spi)</td></tr>
+<tr class="memdesc:ga96cd4c2386a039ab586535d66972d8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get highest priority pending SPI interrupt for DMA transmit event.  <a href="#ga96cd4c2386a039ab586535d66972d8d4">More...</a><br /></td></tr>
+<tr class="separator:ga96cd4c2386a039ab586535d66972d8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga211e65c5c974b47eb771c0b5949fdd80"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga211e65c5c974b47eb771c0b5949fdd80">DL_SPI_clearDMAReceiveEventStatus</a> (SPI_Regs *spi, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga211e65c5c974b47eb771c0b5949fdd80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending SPI interrupts for DMA receive event.  <a href="#ga211e65c5c974b47eb771c0b5949fdd80">More...</a><br /></td></tr>
 <tr class="separator:ga211e65c5c974b47eb771c0b5949fdd80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1cc267432eef43cd197ed315bf9d22f4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga1cc267432eef43cd197ed315bf9d22f4">DL_SPI_clearDMATransmitEventStatus</a> (SPI_Regs *spi)</td></tr>
 <tr class="memdesc:ga1cc267432eef43cd197ed315bf9d22f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending SPI interrupt for DMA transmit event.  <a href="#ga1cc267432eef43cd197ed315bf9d22f4">More...</a><br /></td></tr>
 <tr class="separator:ga1cc267432eef43cd197ed315bf9d22f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6853ab8f3aa1110f74a46660b473d77d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#ga6853ab8f3aa1110f74a46660b473d77d">DL_SPI_saveConfiguration</a> (SPI_Regs *spi, <a class="el" href="struct_d_l___s_p_i__backup_config.html">DL_SPI_backupConfig</a> *ptr)</td></tr>
-<tr class="memdesc:ga6853ab8f3aa1110f74a46660b473d77d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save SPI configuration before entering a power loss state.  <a href="#ga6853ab8f3aa1110f74a46660b473d77d">More...</a><br /></td></tr>
-<tr class="separator:ga6853ab8f3aa1110f74a46660b473d77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae172cfc4e1d9695af65d87198d19e89f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gae172cfc4e1d9695af65d87198d19e89f">DL_SPI_saveConfiguration</a> (const SPI_Regs *spi, <a class="el" href="struct_d_l___s_p_i__backup_config.html">DL_SPI_backupConfig</a> *ptr)</td></tr>
+<tr class="memdesc:gae172cfc4e1d9695af65d87198d19e89f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save SPI configuration before entering a power loss state.  <a href="#gae172cfc4e1d9695af65d87198d19e89f">More...</a><br /></td></tr>
+<tr class="separator:gae172cfc4e1d9695af65d87198d19e89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab6405771e41906765135cf943ef43d03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_p_i.html#gab6405771e41906765135cf943ef43d03">DL_SPI_restoreConfiguration</a> (SPI_Regs *spi, <a class="el" href="struct_d_l___s_p_i__backup_config.html">DL_SPI_backupConfig</a> *ptr)</td></tr>
 <tr class="memdesc:gab6405771e41906765135cf943ef43d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore SPI configuration after leaving a power loss state.  <a href="#gab6405771e41906765135cf943ef43d03">More...</a><br /></td></tr>
 <tr class="separator:gab6405771e41906765135cf943ef43d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -976,8 +976,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga57d6b6b93006b01995bd0f2b1c4b1ce6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga57d6b6b93006b01995bd0f2b1c4b1ce6">&sect;&nbsp;</a></span>DL_SPI_init()</h2>
+<a id="ga7bcdb2b1100ab58dbd64366feadfbf1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7bcdb2b1100ab58dbd64366feadfbf1e">&sect;&nbsp;</a></span>DL_SPI_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -991,7 +991,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_l___s_p_i___config.html">DL_SPI_Config</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_d_l___s_p_i___config.html">DL_SPI_Config</a> *&#160;</td>
           <td class="paramname"><em>config</em>&#160;</td>
         </tr>
         <tr>
@@ -1030,7 +1030,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables power on SPI module. </p>
+<p>Enables the Peripheral Write Enable (PWREN) register for the SPI. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<dl class="section note"><dt>Note</dt><dd>For power savings, please refer to <a class="el" href="group___s_p_i.html#ga0a40961940d940325e1b41ead149a843">DL_SPI_enable</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">spi</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -1056,7 +1058,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Disables power on spi module. </p>
+<p>Disables the Peripheral Write Enable (PWREN) register for the SPI. </p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
+<dl class="section note"><dt>Note</dt><dd>This API does not provide large power savings. For power savings, please refer to <a class="el" href="group___s_p_i.html#ga0a40961940d940325e1b41ead149a843">DL_SPI_enable</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">spi</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -1066,8 +1070,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gac3de375b827e1c8a442f8d4fc8a98aaf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac3de375b827e1c8a442f8d4fc8a98aaf">&sect;&nbsp;</a></span>DL_SPI_isPowerEnabled()</h2>
+<a id="gabe45eb6bdf7219a5ebe6124bc11989a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe45eb6bdf7219a5ebe6124bc11989a0">&sect;&nbsp;</a></span>DL_SPI_isPowerEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1075,23 +1079,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isPowerEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns if power on spi module. </p>
+<p>Returns if the Peripheral Write Enable (PWREN) register for the SPI is enabled. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">spi</td><td>Pointer to the register overlay for the peripheral</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if power is enabled </dd>
+<dl class="section return"><dt>Returns</dt><dd>true if peripheral register access is enabled </dd>
 <dd>
-false if power is disabled </dd></dl>
+false if peripheral register access is disabled </dd></dl>
 
 </div>
 </div>
@@ -1121,8 +1127,8 @@ false if power is disabled </dd></dl>
 
 </div>
 </div>
-<a id="gaff17331111624e7c55cd2df0c78ca4b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaff17331111624e7c55cd2df0c78ca4b9">&sect;&nbsp;</a></span>DL_SPI_isReset()</h2>
+<a id="gab51bd85ac83b08f3bae584a82492e17f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab51bd85ac83b08f3bae584a82492e17f">&sect;&nbsp;</a></span>DL_SPI_isReset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1130,7 +1136,7 @@ false if power is disabled </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isReset </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1176,8 +1182,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga4701ed19b15d5cba398f905a9159ceef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4701ed19b15d5cba398f905a9159ceef">&sect;&nbsp;</a></span>DL_SPI_isEnabled()</h2>
+<a id="ga192cea97b92bf07c52f9d4701c364720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga192cea97b92bf07c52f9d4701c364720">&sect;&nbsp;</a></span>DL_SPI_isEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1185,7 +1191,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1234,12 +1240,12 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___s_p_i.html#gac077cef3400e52977ef7b12215f6d800">DL_SPI_getClockConfig()</a>, and <a class="el" href="group___s_p_i.html#gaa05f0246f8d95f8151ef07f2bec4a481">DL_SPI_setClockConfig()</a>.</p>
+<p>References <a class="el" href="group___s_p_i.html#gabc50a08fe4900de16ca36f49bfd4d793">DL_SPI_getClockConfig()</a>, and <a class="el" href="group___s_p_i.html#ga506f26dd75f5319b437ad6cf6fd44e2f">DL_SPI_setClockConfig()</a>.</p>
 
 </div>
 </div>
-<a id="gaa05f0246f8d95f8151ef07f2bec4a481"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa05f0246f8d95f8151ef07f2bec4a481">&sect;&nbsp;</a></span>DL_SPI_setClockConfig()</h2>
+<a id="ga506f26dd75f5319b437ad6cf6fd44e2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga506f26dd75f5319b437ad6cf6fd44e2f">&sect;&nbsp;</a></span>DL_SPI_setClockConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1253,7 +1259,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_l___s_p_i___clock_config.html">DL_SPI_ClockConfig</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_d_l___s_p_i___clock_config.html">DL_SPI_ClockConfig</a> *&#160;</td>
           <td class="paramname"><em>config</em>&#160;</td>
         </tr>
         <tr>
@@ -1277,8 +1283,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gac077cef3400e52977ef7b12215f6d800"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac077cef3400e52977ef7b12215f6d800">&sect;&nbsp;</a></span>DL_SPI_getClockConfig()</h2>
+<a id="gabc50a08fe4900de16ca36f49bfd4d793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabc50a08fe4900de16ca36f49bfd4d793">&sect;&nbsp;</a></span>DL_SPI_getClockConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1286,7 +1292,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">void DL_SPI_getClockConfig </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -1316,8 +1322,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga5fae7ae41a7dbcf190603bf5fa28910a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5fae7ae41a7dbcf190603bf5fa28910a">&sect;&nbsp;</a></span>DL_SPI_isBusy()</h2>
+<a id="ga18c0f490973a924325b5e99e9efd9033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga18c0f490973a924325b5e99e9efd9033">&sect;&nbsp;</a></span>DL_SPI_isBusy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1325,7 +1331,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isBusy </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1350,8 +1356,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga4600f20a23bd75824947fb7fda604c1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4600f20a23bd75824947fb7fda604c1e">&sect;&nbsp;</a></span>DL_SPI_isTXFIFOEmpty()</h2>
+<a id="gacaadbd0fa4cd5497cea0e15f723fd328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacaadbd0fa4cd5497cea0e15f723fd328">&sect;&nbsp;</a></span>DL_SPI_isTXFIFOEmpty()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1359,7 +1365,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isTXFIFOEmpty </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1384,8 +1390,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga4b9692743916049e036472704cef2986"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4b9692743916049e036472704cef2986">&sect;&nbsp;</a></span>DL_SPI_isTXFIFOFull()</h2>
+<a id="ga02f1ebf87a797e2be89ae2b2843db431"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga02f1ebf87a797e2be89ae2b2843db431">&sect;&nbsp;</a></span>DL_SPI_isTXFIFOFull()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1393,7 +1399,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isTXFIFOFull </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1418,8 +1424,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gae400f22f357e5d5f65b93c688cee23f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae400f22f357e5d5f65b93c688cee23f4">&sect;&nbsp;</a></span>DL_SPI_isRXFIFOEmpty()</h2>
+<a id="ga8b4632aa604b78631e255e974e4d6e77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8b4632aa604b78631e255e974e4d6e77">&sect;&nbsp;</a></span>DL_SPI_isRXFIFOEmpty()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1427,7 +1433,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isRXFIFOEmpty </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1452,8 +1458,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gacc7a3496cb44f35185c1ad67471ee25c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacc7a3496cb44f35185c1ad67471ee25c">&sect;&nbsp;</a></span>DL_SPI_isRXFIFOFull()</h2>
+<a id="ga8ec87dd4175e15a2987824d2a3e172ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8ec87dd4175e15a2987824d2a3e172ce">&sect;&nbsp;</a></span>DL_SPI_isRXFIFOFull()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1461,7 +1467,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isRXFIFOFull </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1522,7 +1528,7 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga57d6b6b93006b01995bd0f2b1c4b1ce6" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga7bcdb2b1100ab58dbd64366feadfbf1e" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd>
 <dd>
 <a class="el" href="group___s_p_i.html#ga4881e1a2ac73d62c56314387df91437f" title="Enables receive parity. ">DL_SPI_enableReceiveParity</a> </dd>
 <dd>
@@ -1536,8 +1542,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga727aabe92e1c4d05dd724644f6556fcb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga727aabe92e1c4d05dd724644f6556fcb">&sect;&nbsp;</a></span>DL_SPI_getParity()</h2>
+<a id="ga5c4a7b9791ecca17d0271fe7ecf0395b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5c4a7b9791ecca17d0271fe7ecf0395b">&sect;&nbsp;</a></span>DL_SPI_getParity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1545,7 +1551,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga773029828a0b68cdff80d13e1fda363b">DL_SPI_PARITY</a> DL_SPI_getParity </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1625,8 +1631,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gacfa28461c287d67b49ca0192a5bb275e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacfa28461c287d67b49ca0192a5bb275e">&sect;&nbsp;</a></span>DL_SPI_isReceiveParityEnabled()</h2>
+<a id="gabefe2e5c8312d0e85359f7c6061e69ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabefe2e5c8312d0e85359f7c6061e69ce">&sect;&nbsp;</a></span>DL_SPI_isReceiveParityEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1634,7 +1640,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isReceiveParityEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1715,8 +1721,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga8ec1f529080e99ac971d0734aa8ee022"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8ec1f529080e99ac971d0734aa8ee022">&sect;&nbsp;</a></span>DL_SPI_isTransmitParityEnabled()</h2>
+<a id="gabfb2de588357e1010fc4d25afb110dd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabfb2de588357e1010fc4d25afb110dd3">&sect;&nbsp;</a></span>DL_SPI_isTransmitParityEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1724,7 +1730,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isTransmitParityEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1784,14 +1790,14 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga57d6b6b93006b01995bd0f2b1c4b1ce6" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga7bcdb2b1100ab58dbd64366feadfbf1e" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd></dl>
 
 <p>References <a class="el" href="group___d_l_common.html#ga37cb77ac2e81fdb12f6a95ad02cbb0e4">DL_Common_updateReg()</a>.</p>
 
 </div>
 </div>
-<a id="ga0bd42c3090f7d2619e52020f5a357978"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0bd42c3090f7d2619e52020f5a357978">&sect;&nbsp;</a></span>DL_SPI_getFrameFormat()</h2>
+<a id="ga10784e1384b10451ec0d6d732f2b70d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga10784e1384b10451ec0d6d732f2b70d4">&sect;&nbsp;</a></span>DL_SPI_getFrameFormat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1799,7 +1805,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga1778f795709b41d93eb1408b279e1bd1">DL_SPI_FRAME_FORMAT</a> DL_SPI_getFrameFormat </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1857,14 +1863,14 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga57d6b6b93006b01995bd0f2b1c4b1ce6" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga7bcdb2b1100ab58dbd64366feadfbf1e" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd></dl>
 
 <p>References <a class="el" href="group___d_l_common.html#ga37cb77ac2e81fdb12f6a95ad02cbb0e4">DL_Common_updateReg()</a>.</p>
 
 </div>
 </div>
-<a id="ga9ccb2a4da3bea80332f2a6973ac4b048"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9ccb2a4da3bea80332f2a6973ac4b048">&sect;&nbsp;</a></span>DL_SPI_getDataSize()</h2>
+<a id="ga9d6329786f3972f228b324b03c2f649e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9d6329786f3972f228b324b03c2f649e">&sect;&nbsp;</a></span>DL_SPI_getDataSize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1872,7 +1878,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga06925b84fe07eb69a8e1f23ab30d80da">DL_SPI_DATA_SIZE</a> DL_SPI_getDataSize </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1930,14 +1936,14 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga57d6b6b93006b01995bd0f2b1c4b1ce6" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga7bcdb2b1100ab58dbd64366feadfbf1e" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd></dl>
 
 <p>References <a class="el" href="group___d_l_common.html#ga37cb77ac2e81fdb12f6a95ad02cbb0e4">DL_Common_updateReg()</a>.</p>
 
 </div>
 </div>
-<a id="ga69be5f67e62f2ba8176271fb25fd73af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga69be5f67e62f2ba8176271fb25fd73af">&sect;&nbsp;</a></span>DL_SPI_getMode()</h2>
+<a id="ga6004442fbd29c2ed4cb07a7ad16e140b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6004442fbd29c2ed4cb07a7ad16e140b">&sect;&nbsp;</a></span>DL_SPI_getMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1945,7 +1951,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gab5d9c38bb4fa37d93aaa0e67eb22b7ae">DL_SPI_MODE</a> DL_SPI_getMode </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2003,14 +2009,14 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga57d6b6b93006b01995bd0f2b1c4b1ce6" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga7bcdb2b1100ab58dbd64366feadfbf1e" title="Initialize the SPI peripheral. ">DL_SPI_init</a> </dd></dl>
 
 <p>References <a class="el" href="group___d_l_common.html#ga37cb77ac2e81fdb12f6a95ad02cbb0e4">DL_Common_updateReg()</a>.</p>
 
 </div>
 </div>
-<a id="ga67cd45e37d7926cd58a2175b446e1531"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga67cd45e37d7926cd58a2175b446e1531">&sect;&nbsp;</a></span>DL_SPI_getBitOrder()</h2>
+<a id="gace909483aab21f028a68e76f11b03a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gace909483aab21f028a68e76f11b03a04">&sect;&nbsp;</a></span>DL_SPI_getBitOrder()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2018,7 +2024,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga79d02b79cd7d5383b93311454ed5f3ef">DL_SPI_BIT_ORDER</a> DL_SPI_getBitOrder </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2096,8 +2102,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gadc826acff5d99b02b9b49f11bf418b8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gadc826acff5d99b02b9b49f11bf418b8d">&sect;&nbsp;</a></span>DL_SPI_isLoopbackModeEnabled()</h2>
+<a id="gad1ba6608163cf3db3f01ef92acfc605e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad1ba6608163cf3db3f01ef92acfc605e">&sect;&nbsp;</a></span>DL_SPI_isLoopbackModeEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2105,7 +2111,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isLoopbackModeEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2174,8 +2180,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaf1d17b75e29b8c51b3cedb7a48d3e3a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf1d17b75e29b8c51b3cedb7a48d3e3a0">&sect;&nbsp;</a></span>DL_SPI_getRepeatTransmit()</h2>
+<a id="ga28a91c75a55dbfdc5b67c82fd14f51ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga28a91c75a55dbfdc5b67c82fd14f51ec">&sect;&nbsp;</a></span>DL_SPI_getRepeatTransmit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2183,7 +2189,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getRepeatTransmit </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2265,8 +2271,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga669430d52eeec5dc038b52ce70468e5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga669430d52eeec5dc038b52ce70468e5d">&sect;&nbsp;</a></span>DL_SPI_isPeripheralAlignDataOnChipSelectEnabled()</h2>
+<a id="ga6427aead1f56189686c9b3fc295624bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6427aead1f56189686c9b3fc295624bf">&sect;&nbsp;</a></span>DL_SPI_isPeripheralAlignDataOnChipSelectEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2274,7 +2280,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isPeripheralAlignDataOnChipSelectEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2353,8 +2359,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga5bbd52a2c6f8375158e96c1dfb99997b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5bbd52a2c6f8375158e96c1dfb99997b">&sect;&nbsp;</a></span>DL_SPI_isPackingEnabled()</h2>
+<a id="ga0a5a5107f72c4dc7788d0750f4b0c169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0a5a5107f72c4dc7788d0750f4b0c169">&sect;&nbsp;</a></span>DL_SPI_isPackingEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2362,7 +2368,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isPackingEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2414,7 +2420,7 @@ false if peripheral wasn't reset </dd></dl>
 </div><div class="memdoc">
 
 <p>Set chip select used for controller or peripheral mode. </p>
-<p>Choose which chip select should be used for data transfer. User must ensure one of the 4-wire frame formats were selected using <a class="el" href="group___s_p_i.html#ga57d6b6b93006b01995bd0f2b1c4b1ce6">DL_SPI_init</a> or <a class="el" href="group___s_p_i.html#gae4913586ba59c5143952522934ca550a">DL_SPI_setFrameFormat</a>.</p>
+<p>Choose which chip select should be used for data transfer. User must ensure one of the 4-wire frame formats were selected using <a class="el" href="group___s_p_i.html#ga7bcdb2b1100ab58dbd64366feadfbf1e">DL_SPI_init</a> or <a class="el" href="group___s_p_i.html#gae4913586ba59c5143952522934ca550a">DL_SPI_setFrameFormat</a>.</p>
 <p>This API is for both controller and peripheral modes, and the chip select can be changed in the application by calling this API.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2428,8 +2434,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaa00da1beafcaaf43cf3e801ef67a76d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa00da1beafcaaf43cf3e801ef67a76d2">&sect;&nbsp;</a></span>DL_SPI_getChipSelect()</h2>
+<a id="gaffadbc18dce16e01845061cec9539998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaffadbc18dce16e01845061cec9539998">&sect;&nbsp;</a></span>DL_SPI_getChipSelect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2437,7 +2443,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gac5b7531f268fb581f2f3117bd08eb4a0">DL_SPI_CHIP_SELECT</a> DL_SPI_getChipSelect </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2507,8 +2513,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaa611834ad05f9de32862d5c81404430f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa611834ad05f9de32862d5c81404430f">&sect;&nbsp;</a></span>DL_SPI_getPeripheralReceiveTimeout()</h2>
+<a id="gab8110072434861d79f3b125c14b97327"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab8110072434861d79f3b125c14b97327">&sect;&nbsp;</a></span>DL_SPI_getPeripheralReceiveTimeout()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2516,7 +2522,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getPeripheralReceiveTimeout </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2589,8 +2595,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaa4e51075abb1609beb7f6fe68d0f5fec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa4e51075abb1609beb7f6fe68d0f5fec">&sect;&nbsp;</a></span>DL_SPI_getControllerCommandDataModeConfig()</h2>
+<a id="gaff81d2cfa6dbfaf0df1c002f793f204a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff81d2cfa6dbfaf0df1c002f793f204a">&sect;&nbsp;</a></span>DL_SPI_getControllerCommandDataModeConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2598,7 +2604,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getControllerCommandDataModeConfig </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2679,8 +2685,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga1e005b758379714a3b70efbe18d46f12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1e005b758379714a3b70efbe18d46f12">&sect;&nbsp;</a></span>DL_SPI_isControllerCommandDataModeEnabled()</h2>
+<a id="ga936e03e47bb826f48cde00b2490cb0df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga936e03e47bb826f48cde00b2490cb0df">&sect;&nbsp;</a></span>DL_SPI_isControllerCommandDataModeEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2688,7 +2694,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isControllerCommandDataModeEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2768,8 +2774,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaed5eb192dede332f3c6576bc96c63896"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaed5eb192dede332f3c6576bc96c63896">&sect;&nbsp;</a></span>DL_SPI_isPeripheralDataOutputEnabled()</h2>
+<a id="gad6acfb31a26f9d040539205f7e5a5506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad6acfb31a26f9d040539205f7e5a5506">&sect;&nbsp;</a></span>DL_SPI_isPeripheralDataOutputEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2777,7 +2783,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_SPI_isPeripheralDataOutputEnabled </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2843,8 +2849,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga9bab3add31780b685dbc4c2b3bcd8c72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9bab3add31780b685dbc4c2b3bcd8c72">&sect;&nbsp;</a></span>DL_SPI_getDelayedSampling()</h2>
+<a id="ga0131073cd9e16115e96f091371d3399c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0131073cd9e16115e96f091371d3399c">&sect;&nbsp;</a></span>DL_SPI_getDelayedSampling()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2852,7 +2858,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getDelayedSampling </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2926,8 +2932,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga8f70ece785dac3bf4bfcb8c55855fefc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8f70ece785dac3bf4bfcb8c55855fefc">&sect;&nbsp;</a></span>DL_SPI_getTXFIFOThreshold()</h2>
+<a id="gad7a261d22530dd8159a4127225cb11f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad7a261d22530dd8159a4127225cb11f9">&sect;&nbsp;</a></span>DL_SPI_getTXFIFOThreshold()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2935,7 +2941,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga15208bcdee85c9fdd007a85e761a4843">DL_SPI_TX_FIFO_LEVEL</a> DL_SPI_getTXFIFOThreshold </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2959,8 +2965,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga31ee5c6c5d860a60ee941f01136fe49d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga31ee5c6c5d860a60ee941f01136fe49d">&sect;&nbsp;</a></span>DL_SPI_getRXFIFOThreshold()</h2>
+<a id="ga5c0965ede169729e0671efefc86039b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5c0965ede169729e0671efefc86039b4">&sect;&nbsp;</a></span>DL_SPI_getRXFIFOThreshold()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2968,7 +2974,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gad62dc10499a7ad2a0285128125f75b51">DL_SPI_RX_FIFO_LEVEL</a> DL_SPI_getRXFIFOThreshold </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3033,8 +3039,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga1e0b41e8be0be30828f7f55fd5a84369"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1e0b41e8be0be30828f7f55fd5a84369">&sect;&nbsp;</a></span>DL_SPI_getBitRateSerialClockDivider()</h2>
+<a id="gae0ae83a4e6b86488a627f86cb42e881c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae0ae83a4e6b86488a627f86cb42e881c">&sect;&nbsp;</a></span>DL_SPI_getBitRateSerialClockDivider()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3042,7 +3048,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getBitRateSerialClockDivider </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3195,8 +3201,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga3ad1b72ff835f7cc756991dbdad964fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3ad1b72ff835f7cc756991dbdad964fe">&sect;&nbsp;</a></span>DL_SPI_receiveData8()</h2>
+<a id="ga4567c4c2551bafbfc9b4646e8522631f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4567c4c2551bafbfc9b4646e8522631f">&sect;&nbsp;</a></span>DL_SPI_receiveData8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3204,7 +3210,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint8_t DL_SPI_receiveData8 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3221,14 +3227,14 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The data in the RX FIFO</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga0eecb3e7f2130f703d97aa21c132f6bc" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking8</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga6042d86a27dc1f0ac793a6b14c19d60f" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking8</a> </dd>
 <dd>
-<a class="el" href="group___s_p_i.html#gac6fc009060563c15b7977dcfee318217" title="Checks the RX FIFO before trying to transmit data. ">DL_SPI_receiveDataCheck8</a> </dd></dl>
+<a class="el" href="group___s_p_i.html#gaed7d1780e6dbf7b1429c4add272accdf" title="Checks the RX FIFO before trying to transmit data. ">DL_SPI_receiveDataCheck8</a> </dd></dl>
 
 </div>
 </div>
-<a id="gaa6543c466da35691515f27c017f1512a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa6543c466da35691515f27c017f1512a">&sect;&nbsp;</a></span>DL_SPI_receiveData16()</h2>
+<a id="gac94abca28d5be6a6e8ef3587012b6071"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac94abca28d5be6a6e8ef3587012b6071">&sect;&nbsp;</a></span>DL_SPI_receiveData16()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3236,7 +3242,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint16_t DL_SPI_receiveData16 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3253,14 +3259,14 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The data in the RX FIFO</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga887dc15031c26b9c34efd0ab9806da44" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking16</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga4bcdc016db3fa393f09bd17e624856fd" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking16</a> </dd>
 <dd>
-<a class="el" href="group___s_p_i.html#gaa1b2bcc74bb7ec126ac096723a688a40" title="Checks the RX FIFO before trying to transmit data. ">DL_SPI_receiveDataCheck16</a> </dd></dl>
+<a class="el" href="group___s_p_i.html#gaf632787409736f5804b74a8e78995100" title="Checks the RX FIFO before trying to transmit data. ">DL_SPI_receiveDataCheck16</a> </dd></dl>
 
 </div>
 </div>
-<a id="gaca2d9e206cd78bd8172a33ac830b9a4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaca2d9e206cd78bd8172a33ac830b9a4d">&sect;&nbsp;</a></span>DL_SPI_receiveData32()</h2>
+<a id="ga717ecfe8b54b8135b448419d25659d01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga717ecfe8b54b8135b448419d25659d01">&sect;&nbsp;</a></span>DL_SPI_receiveData32()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3268,7 +3274,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_receiveData32 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3287,9 +3293,9 @@ false if peripheral wasn't reset </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The data in the RX FIFO</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>DL_SPI_enablePacking</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga221d94b17bd63e063a4234e5a0f3ffc5" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking32</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga1d5a7664cd307273cbcaf9da299b3b91" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking32</a> </dd>
 <dd>
-<a class="el" href="group___s_p_i.html#ga893172c6848fd376f400dd9cf1c87e66" title="Checks the RX FIFO before trying to transmit data. ">DL_SPI_receiveDataCheck32</a> </dd></dl>
+<a class="el" href="group___s_p_i.html#ga222c7dffefa2bf155766cd7c84d023f2" title="Checks the RX FIFO before trying to transmit data. ">DL_SPI_receiveDataCheck32</a> </dd></dl>
 
 </div>
 </div>
@@ -3367,8 +3373,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga8e3e6bbce946fb656f1a518eb1ba4f60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8e3e6bbce946fb656f1a518eb1ba4f60">&sect;&nbsp;</a></span>DL_SPI_getEnabledInterrupts()</h2>
+<a id="ga970ffa57f3c30c27b6219db984ae4dd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga970ffa57f3c30c27b6219db984ae4dd8">&sect;&nbsp;</a></span>DL_SPI_getEnabledInterrupts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3376,7 +3382,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getEnabledInterrupts </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -3411,8 +3417,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga3d9c4e855d6bc53bb21db33f6a96996e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3d9c4e855d6bc53bb21db33f6a96996e">&sect;&nbsp;</a></span>DL_SPI_getEnabledInterruptStatus()</h2>
+<a id="gabe8d63c06cb83e51b8f0859cbeca8fd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe8d63c06cb83e51b8f0859cbeca8fd8">&sect;&nbsp;</a></span>DL_SPI_getEnabledInterruptStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3420,7 +3426,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getEnabledInterruptStatus </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -3457,8 +3463,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga2e7453f5be41fb52bf13676517df854f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2e7453f5be41fb52bf13676517df854f">&sect;&nbsp;</a></span>DL_SPI_getRawInterruptStatus()</h2>
+<a id="gadfa0c97668147c1537616b25d041543e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadfa0c97668147c1537616b25d041543e">&sect;&nbsp;</a></span>DL_SPI_getRawInterruptStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3466,7 +3472,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getRawInterruptStatus </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -3502,8 +3508,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga73ba5863505021f90030a4add94e2a0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga73ba5863505021f90030a4add94e2a0a">&sect;&nbsp;</a></span>DL_SPI_getPendingInterrupt()</h2>
+<a id="gaa5561e3632fa0de4f0d2637a4a59bfb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa5561e3632fa0de4f0d2637a4a59bfb9">&sect;&nbsp;</a></span>DL_SPI_getPendingInterrupt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3511,7 +3517,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga2856971e4f44c549983e6358d0fde683">DL_SPI_IIDX</a> DL_SPI_getPendingInterrupt </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3565,7 +3571,7 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___s_p_i.html#gac91ec18aad967db0722250db55d6a92a">DL_SPI_drainRXFIFO16()</a>, <a class="el" href="group___s_p_i.html#ga7ec3f5d7a20dcc165b57cd4e9537ca4a">DL_SPI_drainRXFIFO32()</a>, <a class="el" href="group___s_p_i.html#ga028c654b0302902ac2f751ac607e86aa">DL_SPI_drainRXFIFO8()</a>, <a class="el" href="group___s_p_i.html#gafec74ce77c3bc51975bfb4a41bb9fbc8">DL_SPI_fillTXFIFO16()</a>, <a class="el" href="group___s_p_i.html#ga32cfe0dcf1f630a337d3dbb31824a888">DL_SPI_fillTXFIFO32()</a>, <a class="el" href="group___s_p_i.html#ga19f6bf0b7549e4500c88a860ac3a3f25">DL_SPI_fillTXFIFO8()</a>, <a class="el" href="group___s_p_i.html#ga887dc15031c26b9c34efd0ab9806da44">DL_SPI_receiveDataBlocking16()</a>, <a class="el" href="group___s_p_i.html#ga221d94b17bd63e063a4234e5a0f3ffc5">DL_SPI_receiveDataBlocking32()</a>, <a class="el" href="group___s_p_i.html#ga0eecb3e7f2130f703d97aa21c132f6bc">DL_SPI_receiveDataBlocking8()</a>, <a class="el" href="group___s_p_i.html#gaa1b2bcc74bb7ec126ac096723a688a40">DL_SPI_receiveDataCheck16()</a>, <a class="el" href="group___s_p_i.html#ga893172c6848fd376f400dd9cf1c87e66">DL_SPI_receiveDataCheck32()</a>, <a class="el" href="group___s_p_i.html#gac6fc009060563c15b7977dcfee318217">DL_SPI_receiveDataCheck8()</a>, <a class="el" href="group___s_p_i.html#ga6adff0a4426d68ec4460498076edd045">DL_SPI_transmitDataBlocking16()</a>, <a class="el" href="group___s_p_i.html#ga9b8cd4c5a324feeeb75e9ad05576d762">DL_SPI_transmitDataBlocking32()</a>, <a class="el" href="group___s_p_i.html#ga5a49cffcc93cd7f5f28691656084aa35">DL_SPI_transmitDataBlocking8()</a>, <a class="el" href="group___s_p_i.html#ga0ccfdddda9f493d31a7886b93fe97ffd">DL_SPI_transmitDataCheck16()</a>, <a class="el" href="group___s_p_i.html#ga49621278af197222784b1d12bea75fc3">DL_SPI_transmitDataCheck32()</a>, and <a class="el" href="group___s_p_i.html#gaa747ac1ef89a31a25f59edd36e7434b1">DL_SPI_transmitDataCheck8()</a>.</p>
+<p>References <a class="el" href="group___s_p_i.html#gaf3476eca47770d35f187b5c04e60b632">DL_SPI_drainRXFIFO16()</a>, <a class="el" href="group___s_p_i.html#gab5ce50f3a0f751d8cb2f4ed499755e93">DL_SPI_drainRXFIFO32()</a>, <a class="el" href="group___s_p_i.html#ga1636bbb8fd41d76c6d9514306477e914">DL_SPI_drainRXFIFO8()</a>, <a class="el" href="group___s_p_i.html#ga93e856d5f712743ea02f133d3292c5ea">DL_SPI_fillTXFIFO16()</a>, <a class="el" href="group___s_p_i.html#ga7af3ac6f55af2348e02d16d5c67e1b29">DL_SPI_fillTXFIFO32()</a>, <a class="el" href="group___s_p_i.html#gad002b7ba9034c365ad8fde923bdf0107">DL_SPI_fillTXFIFO8()</a>, <a class="el" href="group___s_p_i.html#ga4bcdc016db3fa393f09bd17e624856fd">DL_SPI_receiveDataBlocking16()</a>, <a class="el" href="group___s_p_i.html#ga1d5a7664cd307273cbcaf9da299b3b91">DL_SPI_receiveDataBlocking32()</a>, <a class="el" href="group___s_p_i.html#ga6042d86a27dc1f0ac793a6b14c19d60f">DL_SPI_receiveDataBlocking8()</a>, <a class="el" href="group___s_p_i.html#gaf632787409736f5804b74a8e78995100">DL_SPI_receiveDataCheck16()</a>, <a class="el" href="group___s_p_i.html#ga222c7dffefa2bf155766cd7c84d023f2">DL_SPI_receiveDataCheck32()</a>, <a class="el" href="group___s_p_i.html#gaed7d1780e6dbf7b1429c4add272accdf">DL_SPI_receiveDataCheck8()</a>, <a class="el" href="group___s_p_i.html#ga6adff0a4426d68ec4460498076edd045">DL_SPI_transmitDataBlocking16()</a>, <a class="el" href="group___s_p_i.html#ga9b8cd4c5a324feeeb75e9ad05576d762">DL_SPI_transmitDataBlocking32()</a>, <a class="el" href="group___s_p_i.html#ga5a49cffcc93cd7f5f28691656084aa35">DL_SPI_transmitDataBlocking8()</a>, <a class="el" href="group___s_p_i.html#ga0ccfdddda9f493d31a7886b93fe97ffd">DL_SPI_transmitDataCheck16()</a>, <a class="el" href="group___s_p_i.html#ga49621278af197222784b1d12bea75fc3">DL_SPI_transmitDataCheck32()</a>, and <a class="el" href="group___s_p_i.html#gaa747ac1ef89a31a25f59edd36e7434b1">DL_SPI_transmitDataCheck8()</a>.</p>
 
 </div>
 </div>
@@ -3704,8 +3710,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga0eecb3e7f2130f703d97aa21c132f6bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0eecb3e7f2130f703d97aa21c132f6bc">&sect;&nbsp;</a></span>DL_SPI_receiveDataBlocking8()</h2>
+<a id="ga6042d86a27dc1f0ac793a6b14c19d60f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6042d86a27dc1f0ac793a6b14c19d60f">&sect;&nbsp;</a></span>DL_SPI_receiveDataBlocking8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3713,7 +3719,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">uint8_t DL_SPI_receiveDataBlocking8 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3738,8 +3744,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga887dc15031c26b9c34efd0ab9806da44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga887dc15031c26b9c34efd0ab9806da44">&sect;&nbsp;</a></span>DL_SPI_receiveDataBlocking16()</h2>
+<a id="ga4bcdc016db3fa393f09bd17e624856fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4bcdc016db3fa393f09bd17e624856fd">&sect;&nbsp;</a></span>DL_SPI_receiveDataBlocking16()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3747,7 +3753,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">uint16_t DL_SPI_receiveDataBlocking16 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3772,8 +3778,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga221d94b17bd63e063a4234e5a0f3ffc5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga221d94b17bd63e063a4234e5a0f3ffc5">&sect;&nbsp;</a></span>DL_SPI_receiveDataBlocking32()</h2>
+<a id="ga1d5a7664cd307273cbcaf9da299b3b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1d5a7664cd307273cbcaf9da299b3b91">&sect;&nbsp;</a></span>DL_SPI_receiveDataBlocking32()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3781,7 +3787,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_SPI_receiveDataBlocking32 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3967,8 +3973,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gac6fc009060563c15b7977dcfee318217"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac6fc009060563c15b7977dcfee318217">&sect;&nbsp;</a></span>DL_SPI_receiveDataCheck8()</h2>
+<a id="gaed7d1780e6dbf7b1429c4add272accdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaed7d1780e6dbf7b1429c4add272accdf">&sect;&nbsp;</a></span>DL_SPI_receiveDataCheck8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3976,7 +3982,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">bool DL_SPI_receiveDataCheck8 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4011,16 +4017,16 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga3ad1b72ff835f7cc756991dbdad964fe" title="Reads 8-bit data from the RX FIFO. ">DL_SPI_receiveData8</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga4567c4c2551bafbfc9b4646e8522631f" title="Reads 8-bit data from the RX FIFO. ">DL_SPI_receiveData8</a> </dd>
 <dd>
-<a class="el" href="group___s_p_i.html#ga0eecb3e7f2130f703d97aa21c132f6bc" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking8</a> </dd></dl>
+<a class="el" href="group___s_p_i.html#ga6042d86a27dc1f0ac793a6b14c19d60f" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking8</a> </dd></dl>
 
 <p>Referenced by <a class="el" href="group___s_p_i.html#ga3a3adedc52cb49293eb395e3b61a3365">DL_SPI_clearInterruptStatus()</a>.</p>
 
 </div>
 </div>
-<a id="gaa1b2bcc74bb7ec126ac096723a688a40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa1b2bcc74bb7ec126ac096723a688a40">&sect;&nbsp;</a></span>DL_SPI_receiveDataCheck16()</h2>
+<a id="gaf632787409736f5804b74a8e78995100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf632787409736f5804b74a8e78995100">&sect;&nbsp;</a></span>DL_SPI_receiveDataCheck16()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4028,7 +4034,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">bool DL_SPI_receiveDataCheck16 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4063,16 +4069,16 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#gaa6543c466da35691515f27c017f1512a" title="Reads 16-bit data from the RX FIFO. ">DL_SPI_receiveData16</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#gac94abca28d5be6a6e8ef3587012b6071" title="Reads 16-bit data from the RX FIFO. ">DL_SPI_receiveData16</a> </dd>
 <dd>
-<a class="el" href="group___s_p_i.html#ga887dc15031c26b9c34efd0ab9806da44" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking16</a> </dd></dl>
+<a class="el" href="group___s_p_i.html#ga4bcdc016db3fa393f09bd17e624856fd" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking16</a> </dd></dl>
 
 <p>Referenced by <a class="el" href="group___s_p_i.html#ga3a3adedc52cb49293eb395e3b61a3365">DL_SPI_clearInterruptStatus()</a>.</p>
 
 </div>
 </div>
-<a id="ga893172c6848fd376f400dd9cf1c87e66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga893172c6848fd376f400dd9cf1c87e66">&sect;&nbsp;</a></span>DL_SPI_receiveDataCheck32()</h2>
+<a id="ga222c7dffefa2bf155766cd7c84d023f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga222c7dffefa2bf155766cd7c84d023f2">&sect;&nbsp;</a></span>DL_SPI_receiveDataCheck32()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4080,7 +4086,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">bool DL_SPI_receiveDataCheck32 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4117,16 +4123,16 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>DL_SPI_enablePacking</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#gaca2d9e206cd78bd8172a33ac830b9a4d" title="Reads 32-bit data from the RX FIFO. ">DL_SPI_receiveData32</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga717ecfe8b54b8135b448419d25659d01" title="Reads 32-bit data from the RX FIFO. ">DL_SPI_receiveData32</a> </dd>
 <dd>
-<a class="el" href="group___s_p_i.html#ga221d94b17bd63e063a4234e5a0f3ffc5" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking32</a> </dd></dl>
+<a class="el" href="group___s_p_i.html#ga1d5a7664cd307273cbcaf9da299b3b91" title="Blocks to ensure receive is ready before reading data. ">DL_SPI_receiveDataBlocking32</a> </dd></dl>
 
 <p>Referenced by <a class="el" href="group___s_p_i.html#ga3a3adedc52cb49293eb395e3b61a3365">DL_SPI_clearInterruptStatus()</a>.</p>
 
 </div>
 </div>
-<a id="ga028c654b0302902ac2f751ac607e86aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga028c654b0302902ac2f751ac607e86aa">&sect;&nbsp;</a></span>DL_SPI_drainRXFIFO8()</h2>
+<a id="ga1636bbb8fd41d76c6d9514306477e914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1636bbb8fd41d76c6d9514306477e914">&sect;&nbsp;</a></span>DL_SPI_drainRXFIFO8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4134,7 +4140,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_SPI_drainRXFIFO8 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4172,8 +4178,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gac91ec18aad967db0722250db55d6a92a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac91ec18aad967db0722250db55d6a92a">&sect;&nbsp;</a></span>DL_SPI_drainRXFIFO16()</h2>
+<a id="gaf3476eca47770d35f187b5c04e60b632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf3476eca47770d35f187b5c04e60b632">&sect;&nbsp;</a></span>DL_SPI_drainRXFIFO16()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4181,7 +4187,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_SPI_drainRXFIFO16 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4219,8 +4225,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga7ec3f5d7a20dcc165b57cd4e9537ca4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7ec3f5d7a20dcc165b57cd4e9537ca4a">&sect;&nbsp;</a></span>DL_SPI_drainRXFIFO32()</h2>
+<a id="gab5ce50f3a0f751d8cb2f4ed499755e93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab5ce50f3a0f751d8cb2f4ed499755e93">&sect;&nbsp;</a></span>DL_SPI_drainRXFIFO32()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4228,7 +4234,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_SPI_drainRXFIFO32 </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4268,8 +4274,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga19f6bf0b7549e4500c88a860ac3a3f25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga19f6bf0b7549e4500c88a860ac3a3f25">&sect;&nbsp;</a></span>DL_SPI_fillTXFIFO8()</h2>
+<a id="gad002b7ba9034c365ad8fde923bdf0107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad002b7ba9034c365ad8fde923bdf0107">&sect;&nbsp;</a></span>DL_SPI_fillTXFIFO8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4283,7 +4289,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
@@ -4316,8 +4322,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gafec74ce77c3bc51975bfb4a41bb9fbc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafec74ce77c3bc51975bfb4a41bb9fbc8">&sect;&nbsp;</a></span>DL_SPI_fillTXFIFO16()</h2>
+<a id="ga93e856d5f712743ea02f133d3292c5ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga93e856d5f712743ea02f133d3292c5ea">&sect;&nbsp;</a></span>DL_SPI_fillTXFIFO16()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4331,7 +4337,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramtype">const uint16_t *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
@@ -4364,8 +4370,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga32cfe0dcf1f630a337d3dbb31824a888"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga32cfe0dcf1f630a337d3dbb31824a888">&sect;&nbsp;</a></span>DL_SPI_fillTXFIFO32()</h2>
+<a id="ga7af3ac6f55af2348e02d16d5c67e1b29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7af3ac6f55af2348e02d16d5c67e1b29">&sect;&nbsp;</a></span>DL_SPI_fillTXFIFO32()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4379,7 +4385,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramtype">const uint32_t *&#160;</td>
           <td class="paramname"><em>buffer</em>, </td>
         </tr>
         <tr>
@@ -4547,8 +4553,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gae0e89f455dfc248d5deb1acdc48edcb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae0e89f455dfc248d5deb1acdc48edcb1">&sect;&nbsp;</a></span>DL_SPI_getEnabledDMAReceiveEvent()</h2>
+<a id="gab89a3ffb4daa9ef6b8efb5fdf6f2377d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab89a3ffb4daa9ef6b8efb5fdf6f2377d">&sect;&nbsp;</a></span>DL_SPI_getEnabledDMAReceiveEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4556,7 +4562,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getEnabledDMAReceiveEvent </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4593,8 +4599,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaca55b65426f0959d8874c9e147e593d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaca55b65426f0959d8874c9e147e593d3">&sect;&nbsp;</a></span>DL_SPI_getEnabledDMATransmitEvent()</h2>
+<a id="gac5d4d2f49631235e03bd43133b31892a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac5d4d2f49631235e03bd43133b31892a">&sect;&nbsp;</a></span>DL_SPI_getEnabledDMATransmitEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4602,7 +4608,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getEnabledDMATransmitEvent </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4627,8 +4633,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga7e4a80646e1dc849e10ba520ccda591d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7e4a80646e1dc849e10ba520ccda591d">&sect;&nbsp;</a></span>DL_SPI_getEnabledDMAReceiveEventStatus()</h2>
+<a id="ga4c1428ee1b7bbadb399ebc3d04b01a82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4c1428ee1b7bbadb399ebc3d04b01a82">&sect;&nbsp;</a></span>DL_SPI_getEnabledDMAReceiveEventStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4636,7 +4642,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getEnabledDMAReceiveEventStatus </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4674,8 +4680,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga6a8deff5da283604d407bb9218bd938a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6a8deff5da283604d407bb9218bd938a">&sect;&nbsp;</a></span>DL_SPI_getEnabledDMATransmitEventStatus()</h2>
+<a id="gac76266ff3cef7b9efe539a338ab6763e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac76266ff3cef7b9efe539a338ab6763e">&sect;&nbsp;</a></span>DL_SPI_getEnabledDMATransmitEventStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4683,7 +4689,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getEnabledDMATransmitEventStatus </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4709,8 +4715,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga4f19545cef469202bdef5b945d25d896"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4f19545cef469202bdef5b945d25d896">&sect;&nbsp;</a></span>DL_SPI_getRawDMAReceiveEventStatus()</h2>
+<a id="ga7ba09f8f4c7f038edd29869306f19176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7ba09f8f4c7f038edd29869306f19176">&sect;&nbsp;</a></span>DL_SPI_getRawDMAReceiveEventStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4718,7 +4724,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getRawDMAReceiveEventStatus </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -4754,8 +4760,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gacf7f0e0435ad966aed8ccb71a3296b24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacf7f0e0435ad966aed8ccb71a3296b24">&sect;&nbsp;</a></span>DL_SPI_getRawDMATransmitEventStatus()</h2>
+<a id="gafcd3c71425a2848f31ed24f325c6e403"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafcd3c71425a2848f31ed24f325c6e403">&sect;&nbsp;</a></span>DL_SPI_getRawDMATransmitEventStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4763,7 +4769,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_SPI_getRawDMATransmitEventStatus </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4788,8 +4794,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaf57ab53eefe268ce08739d8ff297750e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf57ab53eefe268ce08739d8ff297750e">&sect;&nbsp;</a></span>DL_SPI_getPendingDMAReceiveEvent()</h2>
+<a id="ga4b2a07f8b6ddc8e504898d6b26ff0aea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b2a07f8b6ddc8e504898d6b26ff0aea">&sect;&nbsp;</a></span>DL_SPI_getPendingDMAReceiveEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4797,7 +4803,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#gac662dc4ffc6d7fbd2c8059f9d978f0f6">DL_SPI_DMA_IIDX_RX</a> DL_SPI_getPendingDMAReceiveEvent </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4822,8 +4828,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga98a8763570191a8d451075a707fe35c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga98a8763570191a8d451075a707fe35c7">&sect;&nbsp;</a></span>DL_SPI_getPendingDMATransmitEvent()</h2>
+<a id="ga96cd4c2386a039ab586535d66972d8d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga96cd4c2386a039ab586535d66972d8d4">&sect;&nbsp;</a></span>DL_SPI_getPendingDMATransmitEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4831,7 +4837,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___s_p_i.html#ga4edac7e2fad897c33fddb539363eabdd">DL_SPI_DMA_IIDX_TX</a> DL_SPI_getPendingDMATransmitEvent </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4920,12 +4926,12 @@ false if peripheral wasn't reset </dd></dl>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>DMA_TRIG_TX only has one transmit interrupt source </dd></dl>
 
-<p>References <a class="el" href="group___s_p_i.html#gab6405771e41906765135cf943ef43d03">DL_SPI_restoreConfiguration()</a>, and <a class="el" href="group___s_p_i.html#ga6853ab8f3aa1110f74a46660b473d77d">DL_SPI_saveConfiguration()</a>.</p>
+<p>References <a class="el" href="group___s_p_i.html#gab6405771e41906765135cf943ef43d03">DL_SPI_restoreConfiguration()</a>, and <a class="el" href="group___s_p_i.html#gae172cfc4e1d9695af65d87198d19e89f">DL_SPI_saveConfiguration()</a>.</p>
 
 </div>
 </div>
-<a id="ga6853ab8f3aa1110f74a46660b473d77d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6853ab8f3aa1110f74a46660b473d77d">&sect;&nbsp;</a></span>DL_SPI_saveConfiguration()</h2>
+<a id="gae172cfc4e1d9695af65d87198d19e89f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae172cfc4e1d9695af65d87198d19e89f">&sect;&nbsp;</a></span>DL_SPI_saveConfiguration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4933,7 +4939,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">bool DL_SPI_saveConfiguration </td>
           <td>(</td>
-          <td class="paramtype">SPI_Regs *&#160;</td>
+          <td class="paramtype">const SPI_Regs *&#160;</td>
           <td class="paramname"><em>spi</em>, </td>
         </tr>
         <tr>
@@ -5012,7 +5018,7 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#ga6853ab8f3aa1110f74a46660b473d77d" title="Save SPI configuration before entering a power loss state. ">DL_SPI_saveConfiguration</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___s_p_i.html#gae172cfc4e1d9695af65d87198d19e89f" title="Save SPI configuration before entering a power loss state. ">DL_SPI_saveConfiguration</a> </dd></dl>
 
 <p>Referenced by <a class="el" href="group___s_p_i.html#ga1cc267432eef43cd197ed315bf9d22f4">DL_SPI_clearDMATransmitEventStatus()</a>.</p>
 
@@ -5022,7 +5028,7 @@ false if peripheral wasn't reset </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

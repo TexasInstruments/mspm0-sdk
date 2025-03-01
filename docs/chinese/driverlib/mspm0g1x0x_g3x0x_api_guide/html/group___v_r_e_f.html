@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -99,7 +99,7 @@ Modules</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___v_r_e_f.html#gafd4635a309fa8632080ae1d044d46f12">DL_VREF_setClockConfig</a>.  <a href="struct_d_l___v_r_e_f___clock_config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b">DL_VREF_setClockConfig</a>.  <a href="struct_d_l___v_r_e_f___clock_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___v_r_e_f___config.html">DL_VREF_Config</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="struct_d_l___v_r_e_f___config.html">DL_VREF_Config</a>.  <a href="struct_d_l___v_r_e_f___config.html#details">More...</a><br /></td></tr>
@@ -154,47 +154,50 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga340691f570923e05d1b6033684c459fb"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga340691f570923e05d1b6033684c459fb">DL_VREF_enablePower</a> (VREF_Regs *vref)</td></tr>
-<tr class="memdesc:ga340691f570923e05d1b6033684c459fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on VREF module.  <a href="#ga340691f570923e05d1b6033684c459fb">More...</a><br /></td></tr>
+<tr class="memdesc:ga340691f570923e05d1b6033684c459fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the VREF.  <a href="#ga340691f570923e05d1b6033684c459fb">More...</a><br /></td></tr>
 <tr class="separator:ga340691f570923e05d1b6033684c459fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9be6c1503d95a20c8255f40c4cd4472c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga9be6c1503d95a20c8255f40c4cd4472c">DL_VREF_disablePower</a> (VREF_Regs *vref)</td></tr>
-<tr class="memdesc:ga9be6c1503d95a20c8255f40c4cd4472c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable power on VREF module.  <a href="#ga9be6c1503d95a20c8255f40c4cd4472c">More...</a><br /></td></tr>
+<tr class="memdesc:ga9be6c1503d95a20c8255f40c4cd4472c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the VREF.  <a href="#ga9be6c1503d95a20c8255f40c4cd4472c">More...</a><br /></td></tr>
 <tr class="separator:ga9be6c1503d95a20c8255f40c4cd4472c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20ff74fc226613aeb0a917c016483e9c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga20ff74fc226613aeb0a917c016483e9c">DL_VREF_isPowerEnabled</a> (VREF_Regs *vref)</td></tr>
+<tr class="memdesc:ga20ff74fc226613aeb0a917c016483e9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the VREF is enabled.  <a href="#ga20ff74fc226613aeb0a917c016483e9c">More...</a><br /></td></tr>
+<tr class="separator:ga20ff74fc226613aeb0a917c016483e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad0408e81503f7d9a3e3d1d84f07277b2"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2">DL_VREF_enableInternalRef</a> (VREF_Regs *vref)</td></tr>
 <tr class="memdesc:gad0408e81503f7d9a3e3d1d84f07277b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables Internal VREF.  <a href="#gad0408e81503f7d9a3e3d1d84f07277b2">More...</a><br /></td></tr>
 <tr class="separator:gad0408e81503f7d9a3e3d1d84f07277b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga986041cf943fe8d29f39862a06e85cde"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde">DL_VREF_disableInternalRef</a> (VREF_Regs *vref)</td></tr>
 <tr class="memdesc:ga986041cf943fe8d29f39862a06e85cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables Internal VREF, allows for External VREF.  <a href="#ga986041cf943fe8d29f39862a06e85cde">More...</a><br /></td></tr>
 <tr class="separator:ga986041cf943fe8d29f39862a06e85cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa691a93de008515cf237c12ed35231b4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gaa691a93de008515cf237c12ed35231b4">DL_VREF_isEnabled</a> (VREF_Regs *vref)</td></tr>
-<tr class="memdesc:gaa691a93de008515cf237c12ed35231b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the internal VREF is enabled.  <a href="#gaa691a93de008515cf237c12ed35231b4">More...</a><br /></td></tr>
-<tr class="separator:gaa691a93de008515cf237c12ed35231b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77a294efa26e0416fa3ed03dc9542a17"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga77a294efa26e0416fa3ed03dc9542a17">DL_VREF_isEnabled</a> (const VREF_Regs *vref)</td></tr>
+<tr class="memdesc:ga77a294efa26e0416fa3ed03dc9542a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the internal VREF is enabled.  <a href="#ga77a294efa26e0416fa3ed03dc9542a17">More...</a><br /></td></tr>
+<tr class="separator:ga77a294efa26e0416fa3ed03dc9542a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d">DL_VREF_enableInternalRefCOMP</a> (VREF_Regs *vref)</td></tr>
 <tr class="memdesc:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable VREF buffer as internal reference input for comparator.  <a href="#gabc736fbcdc82be8e9b9fb35b6635293d">More...</a><br /></td></tr>
 <tr class="separator:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga768d77dde635d1e780836e6db0410670"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga768d77dde635d1e780836e6db0410670">DL_VREF_isInternalRefCOMPEnabled</a> (VREF_Regs *vref)</td></tr>
-<tr class="memdesc:ga768d77dde635d1e780836e6db0410670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if VREF buffer for comparator is enabled.  <a href="#ga768d77dde635d1e780836e6db0410670">More...</a><br /></td></tr>
-<tr class="separator:ga768d77dde635d1e780836e6db0410670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga85de96b92b1160058f1992c93259b663"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga85de96b92b1160058f1992c93259b663">DL_VREF_isInternalRefCOMPEnabled</a> (const VREF_Regs *vref)</td></tr>
+<tr class="memdesc:ga85de96b92b1160058f1992c93259b663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if VREF buffer for comparator is enabled.  <a href="#ga85de96b92b1160058f1992c93259b663">More...</a><br /></td></tr>
+<tr class="separator:ga85de96b92b1160058f1992c93259b663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga55680259230d5c7281c7821ccb9d5f0a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a">DL_VREF_disableInternalRefCOMP</a> (VREF_Regs *vref)</td></tr>
 <tr class="memdesc:ga55680259230d5c7281c7821ccb9d5f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable VREF buffer as internal reference input for comparator.  <a href="#ga55680259230d5c7281c7821ccb9d5f0a">More...</a><br /></td></tr>
 <tr class="separator:ga55680259230d5c7281c7821ccb9d5f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafd4635a309fa8632080ae1d044d46f12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gafd4635a309fa8632080ae1d044d46f12">DL_VREF_setClockConfig</a> (VREF_Regs *vref, <a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a> *config)</td></tr>
-<tr class="memdesc:gafd4635a309fa8632080ae1d044d46f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the clock select and clock divide fields in VREF.  <a href="#gafd4635a309fa8632080ae1d044d46f12">More...</a><br /></td></tr>
-<tr class="separator:gafd4635a309fa8632080ae1d044d46f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0adedffce176c98d2a3cfbfa04ba5462"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga0adedffce176c98d2a3cfbfa04ba5462">DL_VREF_getClockConfig</a> (VREF_Regs *vref, <a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a> *config)</td></tr>
-<tr class="memdesc:ga0adedffce176c98d2a3cfbfa04ba5462"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy the clock select and clock divide fields in VREF to config.  <a href="#ga0adedffce176c98d2a3cfbfa04ba5462">More...</a><br /></td></tr>
-<tr class="separator:ga0adedffce176c98d2a3cfbfa04ba5462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad1551de5613602b2d2940ce3d89e852b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b">DL_VREF_setClockConfig</a> (VREF_Regs *vref, const <a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a> *config)</td></tr>
+<tr class="memdesc:gad1551de5613602b2d2940ce3d89e852b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the clock select and clock divide fields in VREF.  <a href="#gad1551de5613602b2d2940ce3d89e852b">More...</a><br /></td></tr>
+<tr class="separator:gad1551de5613602b2d2940ce3d89e852b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8fa96202e9c9d76b8e5c2b92f26bf401"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga8fa96202e9c9d76b8e5c2b92f26bf401">DL_VREF_getClockConfig</a> (const VREF_Regs *vref, <a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a> *config)</td></tr>
+<tr class="memdesc:ga8fa96202e9c9d76b8e5c2b92f26bf401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy the clock select and clock divide fields in VREF to config.  <a href="#ga8fa96202e9c9d76b8e5c2b92f26bf401">More...</a><br /></td></tr>
+<tr class="separator:ga8fa96202e9c9d76b8e5c2b92f26bf401"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaefeff903deb7460769e17033ddcd68f6"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gaefeff903deb7460769e17033ddcd68f6">DL_VREF_reset</a> (VREF_Regs *vref)</td></tr>
 <tr class="memdesc:gaefeff903deb7460769e17033ddcd68f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the VREF module.  <a href="#gaefeff903deb7460769e17033ddcd68f6">More...</a><br /></td></tr>
 <tr class="separator:gaefeff903deb7460769e17033ddcd68f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga47e4c3916a531524765d9948b8e3fd64"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga47e4c3916a531524765d9948b8e3fd64">DL_VREF_isReset</a> (VREF_Regs *vref)</td></tr>
-<tr class="memdesc:ga47e4c3916a531524765d9948b8e3fd64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if VREF peripheral was reset.  <a href="#ga47e4c3916a531524765d9948b8e3fd64">More...</a><br /></td></tr>
-<tr class="separator:ga47e4c3916a531524765d9948b8e3fd64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1f7f976d9b6647c81b02f05ed31de794"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga1f7f976d9b6647c81b02f05ed31de794">DL_VREF_getStatus</a> (VREF_Regs *vref)</td></tr>
-<tr class="memdesc:ga1f7f976d9b6647c81b02f05ed31de794"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns VREF register status.  <a href="#ga1f7f976d9b6647c81b02f05ed31de794">More...</a><br /></td></tr>
-<tr class="separator:ga1f7f976d9b6647c81b02f05ed31de794"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga19cc10d34cbabd6ffcd33f008be8e73c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga19cc10d34cbabd6ffcd33f008be8e73c">DL_VREF_configReference</a> (VREF_Regs *vref, <a class="el" href="struct_d_l___v_r_e_f___config.html">DL_VREF_Config</a> *config)</td></tr>
-<tr class="memdesc:ga19cc10d34cbabd6ffcd33f008be8e73c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure VREF enable, control registers.  <a href="#ga19cc10d34cbabd6ffcd33f008be8e73c">More...</a><br /></td></tr>
-<tr class="separator:ga19cc10d34cbabd6ffcd33f008be8e73c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae011455692141229971f2c17d77f6c65"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gae011455692141229971f2c17d77f6c65">DL_VREF_isReset</a> (const VREF_Regs *vref)</td></tr>
+<tr class="memdesc:gae011455692141229971f2c17d77f6c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if VREF peripheral was reset.  <a href="#gae011455692141229971f2c17d77f6c65">More...</a><br /></td></tr>
+<tr class="separator:gae011455692141229971f2c17d77f6c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf2dc053d9851f6efb5bcff19c7c94bfa"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gaf2dc053d9851f6efb5bcff19c7c94bfa">DL_VREF_getStatus</a> (const VREF_Regs *vref)</td></tr>
+<tr class="memdesc:gaf2dc053d9851f6efb5bcff19c7c94bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns VREF register status.  <a href="#gaf2dc053d9851f6efb5bcff19c7c94bfa">More...</a><br /></td></tr>
+<tr class="separator:gaf2dc053d9851f6efb5bcff19c7c94bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga52cb0696de2d06890c903064f659ccfe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga52cb0696de2d06890c903064f659ccfe">DL_VREF_configReference</a> (VREF_Regs *vref, const <a class="el" href="struct_d_l___v_r_e_f___config.html">DL_VREF_Config</a> *config)</td></tr>
+<tr class="memdesc:ga52cb0696de2d06890c903064f659ccfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure VREF enable, control registers.  <a href="#ga52cb0696de2d06890c903064f659ccfe">More...</a><br /></td></tr>
+<tr class="separator:ga52cb0696de2d06890c903064f659ccfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><a class="anchor" id="ti_dl_dl_vref_Overview"></a></p><h1>Overview</h1>
@@ -326,7 +329,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables power on VREF module. </p>
+<p>Enables the Peripheral Write Enable (PWREN) register for the VREF. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<dl class="section note"><dt>Note</dt><dd>For power savings, please refer to <a class="el" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2">DL_VREF_enableInternalRef</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vref</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -352,13 +357,46 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Disable power on VREF module. </p>
+<p>Disables the Peripheral Write Enable (PWREN) register for the VREF. </p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
+<dl class="section note"><dt>Note</dt><dd>This API does not provide large power savings. For power savings, please refer to <a class="el" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde">DL_VREF_disableInternalRef</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vref</td><td>Pointer to the register overlay for the peripheral </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga20ff74fc226613aeb0a917c016483e9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga20ff74fc226613aeb0a917c016483e9c">&sect;&nbsp;</a></span>DL_VREF_isPowerEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE bool DL_VREF_isPowerEnabled </td>
+          <td>(</td>
+          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramname"><em>vref</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if the Peripheral Write Enable (PWREN) register for the VREF is enabled. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vref</td><td>Pointer to the register overlay for the peripheral</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if peripheral register access is enabled </dd>
+<dd>
+false if peripheral register access is disabled </dd></dl>
 
 </div>
 </div>
@@ -379,7 +417,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enables Internal VREF. </p>
-<p>This function only enables the internal VREF but doesn't configure all settings. It's recommended to use <a class="el" href="group___v_r_e_f.html#ga19cc10d34cbabd6ffcd33f008be8e73c">DL_VREF_configReference</a> to configure and enable VREF with all parameters.</p>
+<p>This function only enables the internal VREF but doesn't configure all settings. It's recommended to use <a class="el" href="group___v_r_e_f.html#ga52cb0696de2d06890c903064f659ccfe">DL_VREF_configReference</a> to configure and enable VREF with all parameters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vref</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -416,8 +454,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gaa691a93de008515cf237c12ed35231b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa691a93de008515cf237c12ed35231b4">&sect;&nbsp;</a></span>DL_VREF_isEnabled()</h2>
+<a id="ga77a294efa26e0416fa3ed03dc9542a17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77a294efa26e0416fa3ed03dc9542a17">&sect;&nbsp;</a></span>DL_VREF_isEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,7 +463,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_VREF_isEnabled </td>
           <td>(</td>
-          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramtype">const VREF_Regs *&#160;</td>
           <td class="paramname"><em>vref</em></td><td>)</td>
           <td></td>
         </tr>
@@ -476,8 +514,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga768d77dde635d1e780836e6db0410670"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga768d77dde635d1e780836e6db0410670">&sect;&nbsp;</a></span>DL_VREF_isInternalRefCOMPEnabled()</h2>
+<a id="ga85de96b92b1160058f1992c93259b663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga85de96b92b1160058f1992c93259b663">&sect;&nbsp;</a></span>DL_VREF_isInternalRefCOMPEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -485,7 +523,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_VREF_isInternalRefCOMPEnabled </td>
           <td>(</td>
-          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramtype">const VREF_Regs *&#160;</td>
           <td class="paramname"><em>vref</em></td><td>)</td>
           <td></td>
         </tr>
@@ -534,12 +572,12 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>References <a class="el" href="group___v_r_e_f.html#ga0adedffce176c98d2a3cfbfa04ba5462">DL_VREF_getClockConfig()</a>, and <a class="el" href="group___v_r_e_f.html#gafd4635a309fa8632080ae1d044d46f12">DL_VREF_setClockConfig()</a>.</p>
+<p>References <a class="el" href="group___v_r_e_f.html#ga8fa96202e9c9d76b8e5c2b92f26bf401">DL_VREF_getClockConfig()</a>, and <a class="el" href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b">DL_VREF_setClockConfig()</a>.</p>
 
 </div>
 </div>
-<a id="gafd4635a309fa8632080ae1d044d46f12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafd4635a309fa8632080ae1d044d46f12">&sect;&nbsp;</a></span>DL_VREF_setClockConfig()</h2>
+<a id="gad1551de5613602b2d2940ce3d89e852b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad1551de5613602b2d2940ce3d89e852b">&sect;&nbsp;</a></span>DL_VREF_setClockConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -553,7 +591,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a> *&#160;</td>
           <td class="paramname"><em>config</em>&#160;</td>
         </tr>
         <tr>
@@ -577,8 +615,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga0adedffce176c98d2a3cfbfa04ba5462"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0adedffce176c98d2a3cfbfa04ba5462">&sect;&nbsp;</a></span>DL_VREF_getClockConfig()</h2>
+<a id="ga8fa96202e9c9d76b8e5c2b92f26bf401"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8fa96202e9c9d76b8e5c2b92f26bf401">&sect;&nbsp;</a></span>DL_VREF_getClockConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -586,7 +624,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void DL_VREF_getClockConfig </td>
           <td>(</td>
-          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramtype">const VREF_Regs *&#160;</td>
           <td class="paramname"><em>vref</em>, </td>
         </tr>
         <tr>
@@ -642,8 +680,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga47e4c3916a531524765d9948b8e3fd64"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga47e4c3916a531524765d9948b8e3fd64">&sect;&nbsp;</a></span>DL_VREF_isReset()</h2>
+<a id="gae011455692141229971f2c17d77f6c65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae011455692141229971f2c17d77f6c65">&sect;&nbsp;</a></span>DL_VREF_isReset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -651,7 +689,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_VREF_isReset </td>
           <td>(</td>
-          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramtype">const VREF_Regs *&#160;</td>
           <td class="paramname"><em>vref</em></td><td>)</td>
           <td></td>
         </tr>
@@ -671,8 +709,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga1f7f976d9b6647c81b02f05ed31de794"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1f7f976d9b6647c81b02f05ed31de794">&sect;&nbsp;</a></span>DL_VREF_getStatus()</h2>
+<a id="gaf2dc053d9851f6efb5bcff19c7c94bfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf2dc053d9851f6efb5bcff19c7c94bfa">&sect;&nbsp;</a></span>DL_VREF_getStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -680,7 +718,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_VREF_getStatus </td>
           <td>(</td>
-          <td class="paramtype">VREF_Regs *&#160;</td>
+          <td class="paramtype">const VREF_Regs *&#160;</td>
           <td class="paramname"><em>vref</em></td><td>)</td>
           <td></td>
         </tr>
@@ -696,12 +734,12 @@ false if peripheral wasn't reset </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>VREF status bits set. Either <a class="el" href="group___d_l___v_r_e_f___c_t_l1___r_e_a_d_y.html#ga7bd87226eb45b7a53c04426c9fec534c">DL_VREF_CTL1_READY_NOTRDY</a> or <a class="el" href="group___d_l___v_r_e_f___c_t_l1___r_e_a_d_y.html#ga171d48a5e50ba586e7aee3002b8cc76f">DL_VREF_CTL1_READY_RDY</a> </dd></dl>
 
-<p>References <a class="el" href="group___v_r_e_f.html#ga19cc10d34cbabd6ffcd33f008be8e73c">DL_VREF_configReference()</a>.</p>
+<p>References <a class="el" href="group___v_r_e_f.html#ga52cb0696de2d06890c903064f659ccfe">DL_VREF_configReference()</a>.</p>
 
 </div>
 </div>
-<a id="ga19cc10d34cbabd6ffcd33f008be8e73c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga19cc10d34cbabd6ffcd33f008be8e73c">&sect;&nbsp;</a></span>DL_VREF_configReference()</h2>
+<a id="ga52cb0696de2d06890c903064f659ccfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga52cb0696de2d06890c903064f659ccfe">&sect;&nbsp;</a></span>DL_VREF_configReference()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -715,7 +753,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_l___v_r_e_f___config.html">DL_VREF_Config</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_d_l___v_r_e_f___config.html">DL_VREF_Config</a> *&#160;</td>
           <td class="paramname"><em>config</em>&#160;</td>
         </tr>
         <tr>
@@ -735,7 +773,7 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___v_r_e_f.html#ga1f7f976d9b6647c81b02f05ed31de794">DL_VREF_getStatus()</a>.</p>
+<p>Referenced by <a class="el" href="group___v_r_e_f.html#gaf2dc053d9851f6efb5bcff19c7c94bfa">DL_VREF_getStatus()</a>.</p>
 
 </div>
 </div>
@@ -743,7 +781,7 @@ false if peripheral wasn't reset </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

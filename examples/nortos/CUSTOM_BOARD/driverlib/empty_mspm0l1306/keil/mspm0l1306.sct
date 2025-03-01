@@ -49,7 +49,7 @@ LR_IROM1 0x00000000 0x0000FFF8  {    ; load region size_region
 }
 
 LR_BCR 0x41C00000 0x00000100  {    ; load region size_region
-  BCR_CONFIG 0x41C00000 0x00000080{
+  BCR_CONFIG 0x41C00000 0x000000FF{
 	.ANY (.BCRConfig)
   }
 }

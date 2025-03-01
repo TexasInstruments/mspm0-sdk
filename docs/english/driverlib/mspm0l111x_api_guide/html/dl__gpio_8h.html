@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L111X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -1397,6 +1397,8 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:gabe7b75a82c8bf0d3cbdce0706ec0899b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaae0fa4ddc593efbd9f80f4332932e62f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#gaae0fa4ddc593efbd9f80f4332932e62f">DL_GPIO_IIDX</a> { <br />
+&#160;&#160;<a class="el" href="group___g_p_i_o.html#ggaae0fa4ddc593efbd9f80f4332932e62fa5e70c65451590a4dbba445a4a145adac">DL_GPIO_IIDX_NO_INTR</a> = GPIO_CPU_INT_IIDX_STAT_NO_INTR, 
+<br />
 &#160;&#160;<a class="el" href="group___g_p_i_o.html#ggaae0fa4ddc593efbd9f80f4332932e62faa68d484272a3990cdf7b8fcb971e318d">DL_GPIO_IIDX_DIO0</a> = GPIO_CPU_INT_IIDX_STAT_DIO0, 
 <br />
 &#160;&#160;<a class="el" href="group___g_p_i_o.html#ggaae0fa4ddc593efbd9f80f4332932e62fa0df2826b080c63d28dc01260bb566ff5">DL_GPIO_IIDX_DIO1</a> = GPIO_CPU_INT_IIDX_STAT_DIO1, 
@@ -1467,13 +1469,13 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga2ebc5d7047ed15cecdf0b47388827cae"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga2ebc5d7047ed15cecdf0b47388827cae">DL_GPIO_enablePower</a> (GPIO_Regs *gpio)</td></tr>
-<tr class="memdesc:ga2ebc5d7047ed15cecdf0b47388827cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on GPIO module.  <a href="group___g_p_i_o.html#ga2ebc5d7047ed15cecdf0b47388827cae">More...</a><br /></td></tr>
+<tr class="memdesc:ga2ebc5d7047ed15cecdf0b47388827cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the GPIO.  <a href="group___g_p_i_o.html#ga2ebc5d7047ed15cecdf0b47388827cae">More...</a><br /></td></tr>
 <tr class="separator:ga2ebc5d7047ed15cecdf0b47388827cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga238314f8acad06095c1b4faa8824c441"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga238314f8acad06095c1b4faa8824c441">DL_GPIO_disablePower</a> (GPIO_Regs *gpio)</td></tr>
-<tr class="memdesc:ga238314f8acad06095c1b4faa8824c441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables power on gpio module.  <a href="group___g_p_i_o.html#ga238314f8acad06095c1b4faa8824c441">More...</a><br /></td></tr>
+<tr class="memdesc:ga238314f8acad06095c1b4faa8824c441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the GPIO.  <a href="group___g_p_i_o.html#ga238314f8acad06095c1b4faa8824c441">More...</a><br /></td></tr>
 <tr class="separator:ga238314f8acad06095c1b4faa8824c441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0c8baa7edf96cd4cac360177a8afd113"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga0c8baa7edf96cd4cac360177a8afd113">DL_GPIO_isPowerEnabled</a> (GPIO_Regs *gpio)</td></tr>
-<tr class="memdesc:ga0c8baa7edf96cd4cac360177a8afd113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if power on gpio module.  <a href="group___g_p_i_o.html#ga0c8baa7edf96cd4cac360177a8afd113">More...</a><br /></td></tr>
+<tr class="memdesc:ga0c8baa7edf96cd4cac360177a8afd113"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the GPIO is enabled.  <a href="group___g_p_i_o.html#ga0c8baa7edf96cd4cac360177a8afd113">More...</a><br /></td></tr>
 <tr class="separator:ga0c8baa7edf96cd4cac360177a8afd113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga451a119acb2eba5bfead03432b1d740b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga451a119acb2eba5bfead03432b1d740b">DL_GPIO_reset</a> (GPIO_Regs *gpio)</td></tr>
 <tr class="memdesc:ga451a119acb2eba5bfead03432b1d740b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets gpio peripheral.  <a href="group___g_p_i_o.html#ga451a119acb2eba5bfead03432b1d740b">More...</a><br /></td></tr>
@@ -1675,7 +1677,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

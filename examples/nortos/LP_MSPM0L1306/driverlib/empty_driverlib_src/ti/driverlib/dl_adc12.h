@@ -534,7 +534,7 @@ extern "C" {
  */
 #define DL_ADC12_REFERENCE_VOLTAGE_INTREF            (ADC12_MEMCTL_VRSEL_INTREF_VSSA)
 
-#if defined(ti_devices_msp_m0p_mspm0h321x__include) || defined(ti_devices_msp_m0p_mspm0g351x__include)
+#ifndef __MSPM0_HAS_LEGACY_ADC_REFERENCE__
 /*!
  * @brief ADC12 voltage reference VDDA
  */
@@ -1143,7 +1143,13 @@ typedef struct {
 } DL_ADC12_ClockConfig;
 
 /**
- * @brief Enables power on adc12 module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the ADC12
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  @note For power savings, please refer to @ref DL_ADC12_setPowerDownMode
  *
  * @param adc12        Pointer to the register overlay for the peripheral
  */
@@ -1154,7 +1160,13 @@ __STATIC_INLINE void DL_ADC12_enablePower(ADC12_Regs *adc12)
 }
 
 /**
- * @brief Disables power on adc12 module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the ADC12
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings. For power savings
+ *  please refer to @ref DL_ADC12_setPowerDownMode
  *
  * @param adc12        Pointer to the register overlay for the peripheral
  */
@@ -1165,14 +1177,22 @@ __STATIC_INLINE void DL_ADC12_disablePower(ADC12_Regs *adc12)
 }
 
 /**
- * @brief Returns if  power on adc12 module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the ADC12
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param adc12        Pointer to the register overlay for the peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_ADC12_isPowerEnabled(ADC12_Regs *adc12)
+__STATIC_INLINE bool DL_ADC12_isPowerEnabled(const ADC12_Regs *adc12)
 {
     return ((adc12->ULLMEM.GPRCM.PWREN & ADC12_PWREN_ENABLE_MASK) ==
             ADC12_PWREN_ENABLE_ENABLE);
@@ -1199,7 +1219,7 @@ __STATIC_INLINE void DL_ADC12_reset(ADC12_Regs *adc12)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_ADC12_isReset(ADC12_Regs *adc12)
+__STATIC_INLINE bool DL_ADC12_isReset(const ADC12_Regs *adc12)
 {
     return ((adc12->ULLMEM.GPRCM.STAT & ADC12_STAT_RESETSTKY_MASK) ==
             ADC12_STAT_RESETSTKY_RESET);
@@ -1268,7 +1288,7 @@ __STATIC_INLINE void DL_ADC12_setStartAddress(
  *  @return One of @ref DL_ADC12_SEQ_END_ADDR
  *
  */
-__STATIC_INLINE uint32_t DL_ADC12_getStartAddress(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getStartAddress(const ADC12_Regs *adc12)
 {
     return (adc12->ULLMEM.CTL2 & ADC12_CTL2_STARTADD_MASK);
 }
@@ -1295,7 +1315,7 @@ __STATIC_INLINE void DL_ADC12_setEndAddress(ADC12_Regs *adc12, uint32_t endAdd)
  *  @return One of @ref DL_ADC12_SEQ_END_ADDR
  *
  */
-__STATIC_INLINE uint32_t DL_ADC12_getEndAddress(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getEndAddress(const ADC12_Regs *adc12)
 {
     return (adc12->ULLMEM.CTL2 & ADC12_CTL2_ENDADD_MASK);
 }
@@ -1342,7 +1362,7 @@ __STATIC_INLINE void DL_ADC12_initSeqSample(ADC12_Regs *adc12,
  *
  * @return One of @ref DL_ADC12_SAMP_CONV_RES
  */
-__STATIC_INLINE uint32_t DL_ADC12_getResolution(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getResolution(const ADC12_Regs *adc12)
 {
     return (adc12->ULLMEM.CTL2 & ADC12_CTL2_RES_MASK);
 }
@@ -1354,7 +1374,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getResolution(ADC12_Regs *adc12)
  *
  * @return One of @ref DL_ADC12_SAMP_CONV_DATA_FORMAT
  */
-__STATIC_INLINE uint32_t DL_ADC12_getDataFormat(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getDataFormat(const ADC12_Regs *adc12)
 {
     return (adc12->ULLMEM.CTL2 & ADC12_CTL2_DF_MASK);
 }
@@ -1366,7 +1386,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getDataFormat(ADC12_Regs *adc12)
  *
  * @return  One of @ref DL_ADC12_SAMPLING_SOURCE
  */
-__STATIC_INLINE uint32_t DL_ADC12_getSamplingSource(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getSamplingSource(const ADC12_Regs *adc12)
 {
     return (adc12->ULLMEM.CTL1 & ADC12_CTL1_SAMPMODE_MASK);
 }
@@ -1378,7 +1398,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getSamplingSource(ADC12_Regs *adc12)
  *
  * @return One of @ref DL_ADC12_SAMP_MODE
  */
-__STATIC_INLINE uint32_t DL_ADC12_getSampleMode(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getSampleMode(const ADC12_Regs *adc12)
 {
     return (adc12->ULLMEM.CTL1 & ADC12_CTL1_CONSEQ_MASK);
 }
@@ -1390,7 +1410,8 @@ __STATIC_INLINE uint32_t DL_ADC12_getSampleMode(ADC12_Regs *adc12)
  *
  * @return One of @ref DL_ADC12_TRIG_SRC
  */
-__STATIC_INLINE DL_ADC12_TRIG_SRC DL_ADC12_getTriggerSource(ADC12_Regs *adc12)
+__STATIC_INLINE DL_ADC12_TRIG_SRC DL_ADC12_getTriggerSource(
+    const ADC12_Regs *adc12)
 {
     uint32_t trigSrc = adc12->ULLMEM.CTL1 & ADC12_CTL1_TRIGSRC_MASK;
 
@@ -1427,7 +1448,7 @@ __STATIC_INLINE void DL_ADC12_stopConversion(ADC12_Regs *adc12)
  * @retval  true  ADC12 conversion is started
  * @retval  false ADC12 conversion is stopped
  */
-__STATIC_INLINE bool DL_ADC12_isConversionStarted(ADC12_Regs *adc12)
+__STATIC_INLINE bool DL_ADC12_isConversionStarted(const ADC12_Regs *adc12)
 {
     return ((adc12->ULLMEM.CTL1 & ADC12_CTL1_SC_MASK) == ADC12_CTL1_SC_START);
 }
@@ -1462,7 +1483,7 @@ __STATIC_INLINE void DL_ADC12_disableDMA(ADC12_Regs *adc12)
  * @retval  true  DMA is enabled
  * @retval  false DMA is disabled
  */
-__STATIC_INLINE bool DL_ADC12_isDMAEnabled(ADC12_Regs *adc12)
+__STATIC_INLINE bool DL_ADC12_isDMAEnabled(const ADC12_Regs *adc12)
 {
     return ((adc12->ULLMEM.CTL2 & ADC12_CTL2_DMAEN_ENABLE) ==
             ADC12_CTL2_DMAEN_ENABLE);
@@ -1490,7 +1511,7 @@ __STATIC_INLINE void DL_ADC12_setDMASamplesCnt(
  *
  * @return Number of ADC results to be transfer on a DMA trigger
  */
-__STATIC_INLINE uint8_t DL_ADC12_getDMASampleCnt(ADC12_Regs *adc12)
+__STATIC_INLINE uint8_t DL_ADC12_getDMASampleCnt(const ADC12_Regs *adc12)
 {
     return (uint8_t)((adc12->ULLMEM.CTL2 & ADC12_CTL2_SAMPCNT_MASK) >> 11);
 }
@@ -1527,7 +1548,7 @@ __STATIC_INLINE void DL_ADC12_disableFIFO(ADC12_Regs *adc12)
  * @retval  false FIFO mode is disabled
  *
  */
-__STATIC_INLINE bool DL_ADC12_isFIFOEnabled(ADC12_Regs *adc12)
+__STATIC_INLINE bool DL_ADC12_isFIFOEnabled(const ADC12_Regs *adc12)
 {
     return ((adc12->ULLMEM.CTL2 & ADC12_CTL2_FIFOEN_MASK) ==
             ADC12_CTL2_FIFOEN_ENABLE);
@@ -1540,7 +1561,8 @@ __STATIC_INLINE bool DL_ADC12_isFIFOEnabled(ADC12_Regs *adc12)
  * @param[in] config      Pointer to the clock configuration struct
  *                        @ref DL_ADC12_ClockConfig.
  */
-void DL_ADC12_setClockConfig(ADC12_Regs *adc12, DL_ADC12_ClockConfig *config);
+void DL_ADC12_setClockConfig(
+    ADC12_Regs *adc12, const DL_ADC12_ClockConfig *config);
 
 /**
  * @brief Returns ADC12 sample clock configuration
@@ -1549,7 +1571,8 @@ void DL_ADC12_setClockConfig(ADC12_Regs *adc12, DL_ADC12_ClockConfig *config);
  * @param[in] config      Pointer to the clock configuration struct
  *                        @ref DL_ADC12_ClockConfig.
  */
-void DL_ADC12_getClockConfig(ADC12_Regs *adc12, DL_ADC12_ClockConfig *config);
+void DL_ADC12_getClockConfig(
+    const ADC12_Regs *adc12, DL_ADC12_ClockConfig *config);
 
 /**
  * @brief Configures ADC12 power down mode
@@ -1574,7 +1597,7 @@ __STATIC_INLINE void DL_ADC12_setPowerDownMode(
  *
  * @retval  One of @ref DL_ADC12_POWER_DOWN_MODE
  */
-__STATIC_INLINE uint32_t DL_ADC12_getPowerDownMode(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getPowerDownMode(const ADC12_Regs *adc12)
 {
     return (adc12->ULLMEM.CTL0 & ADC12_CTL0_PWRDN_MASK);
 }
@@ -1610,7 +1633,7 @@ __STATIC_INLINE void DL_ADC12_disableConversions(ADC12_Regs *adc12)
  *  @retval     false The ADC12 conversion is disabled
  *
  */
-__STATIC_INLINE bool DL_ADC12_isConversionsEnabled(ADC12_Regs *adc12)
+__STATIC_INLINE bool DL_ADC12_isConversionsEnabled(const ADC12_Regs *adc12)
 {
     return ((adc12->ULLMEM.CTL0 & ADC12_CTL0_ENC_MASK) == ADC12_CTL0_ENC_ON);
 }
@@ -1638,7 +1661,7 @@ __STATIC_INLINE void DL_ADC12_configHwAverage(
  *
  * @return Bitwise OR of @ref DL_ADC12_HW_AVG_NUM and @ref DL_ADC12_HW_AVG_DEN
  */
-__STATIC_INLINE uint32_t DL_ADC12_getHwAverageConfig(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getHwAverageConfig(const ADC12_Regs *adc12)
 {
     return (
         adc12->ULLMEM.CTL1 & (ADC12_CTL1_AVGN_MASK | ADC12_CTL1_AVGD_MASK));
@@ -1665,7 +1688,7 @@ __STATIC_INLINE void DL_ADC12_setSampleTime0(
  *
  * @return Sample time 0 in ADCCLKS.
  */
-__STATIC_INLINE uint16_t DL_ADC12_getSampleTime0(ADC12_Regs *adc12)
+__STATIC_INLINE uint16_t DL_ADC12_getSampleTime0(const ADC12_Regs *adc12)
 {
     return (uint16_t)(adc12->ULLMEM.SCOMP0 + (uint32_t) 1);
 }
@@ -1691,7 +1714,7 @@ __STATIC_INLINE void DL_ADC12_setSampleTime1(
  *
  * @return Sample time 1 in ADCCLKS.
  */
-__STATIC_INLINE uint16_t DL_ADC12_getSampleTime1(ADC12_Regs *adc12)
+__STATIC_INLINE uint16_t DL_ADC12_getSampleTime1(const ADC12_Regs *adc12)
 {
     return (uint16_t)(adc12->ULLMEM.SCOMP1 + (uint32_t) 1);
 }
@@ -1733,7 +1756,7 @@ __STATIC_INLINE void DL_ADC12_configWinCompHighThld(
  *
  * @return Data from the top of FIFO.
  */
-__STATIC_INLINE uint32_t DL_ADC12_getFIFOData(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getFIFOData(const ADC12_Regs *adc12)
 {
     volatile const uint32_t *pReg = &adc12->ULLMEM.FIFODATA;
 
@@ -1747,7 +1770,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getFIFOData(ADC12_Regs *adc12)
  *
  * @return Address of FIFO data register
  */
-__STATIC_INLINE uint32_t DL_ADC12_getFIFOAddress(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getFIFOAddress(const ADC12_Regs *adc12)
 {
     return ((uint32_t)(&adc12->ULLMEM.FIFODATA + DL_ADC12_SVT_OFFSET));
 }
@@ -1791,7 +1814,7 @@ __STATIC_INLINE void DL_ADC12_configConversionMem(ADC12_Regs *adc12,
  *
  */
 __STATIC_INLINE uint32_t DL_ADC12_getConversionMemConfig(
-    ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
+    const ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
 {
     return (adc12->ULLMEM.MEMCTL[idx]);
 }
@@ -1806,7 +1829,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getConversionMemConfig(
  *
  */
 __STATIC_INLINE uint16_t DL_ADC12_getMemResult(
-    ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
+    const ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
 {
     volatile const uint32_t *pReg = &adc12->ULLMEM.MEMRES[idx];
 
@@ -1823,7 +1846,7 @@ __STATIC_INLINE uint16_t DL_ADC12_getMemResult(
  *
  */
 __STATIC_INLINE uint32_t DL_ADC12_getMemResultAddress(
-    ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
+    const ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
 {
     return ((uint32_t)(&adc12->ULLMEM.MEMRES[idx] + DL_ADC12_SVT_OFFSET));
 }
@@ -1837,7 +1860,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getMemResultAddress(
  *         @ref DL_ADC12_STATUS_REFERENCE
  *
  */
-__STATIC_INLINE uint32_t DL_ADC12_getStatus(ADC12_Regs *adc12)
+__STATIC_INLINE uint32_t DL_ADC12_getStatus(const ADC12_Regs *adc12)
 {
     return (adc12->ULLMEM.STATUS);
 }
@@ -1940,7 +1963,7 @@ __STATIC_INLINE void DL_ADC12_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_ADC12_INTERRUPTS values
  */
 __STATIC_INLINE uint32_t DL_ADC12_getEnabledInterrupts(
-    ADC12_Regs *adc12, uint32_t interruptMask)
+    const ADC12_Regs *adc12, uint32_t interruptMask)
 {
     return (adc12->ULLMEM.CPU_INT.IMASK & interruptMask);
 }
@@ -1960,7 +1983,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getEnabledInterrupts(
  *  @sa         DL_ADC12_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_ADC12_getEnabledInterruptStatus(
-    ADC12_Regs *adc12, uint32_t interruptMask)
+    const ADC12_Regs *adc12, uint32_t interruptMask)
 {
     return (adc12->ULLMEM.CPU_INT.MIS & interruptMask);
 }
@@ -1980,7 +2003,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getEnabledInterruptStatus(
  *
  */
 __STATIC_INLINE uint32_t DL_ADC12_getRawInterruptStatus(
-    ADC12_Regs *adc12, uint32_t interruptMask)
+    const ADC12_Regs *adc12, uint32_t interruptMask)
 {
     return (adc12->ULLMEM.CPU_INT.RIS & interruptMask);
 }
@@ -1997,7 +2020,8 @@ __STATIC_INLINE uint32_t DL_ADC12_getRawInterruptStatus(
  *
  *  @retval     One of @ref DL_ADC12_IIDX
  */
-__STATIC_INLINE DL_ADC12_IIDX DL_ADC12_getPendingInterrupt(ADC12_Regs *adc12)
+__STATIC_INLINE DL_ADC12_IIDX DL_ADC12_getPendingInterrupt(
+    const ADC12_Regs *adc12)
 {
     return ((DL_ADC12_IIDX) adc12->ULLMEM.CPU_INT.IIDX);
 }
@@ -2040,7 +2064,7 @@ __STATIC_INLINE void DL_ADC12_setPublisherChanID(
  *  @return     Event publisher channel ID
  *
  */
-__STATIC_INLINE uint8_t DL_ADC12_getPublisherChanID(ADC12_Regs *adc12)
+__STATIC_INLINE uint8_t DL_ADC12_getPublisherChanID(const ADC12_Regs *adc12)
 {
     return (uint8_t)(adc12->ULLMEM.FPUB_1 & ADC12_FPUB_1_CHANID_MAXIMUM);
 }
@@ -2068,7 +2092,7 @@ __STATIC_INLINE void DL_ADC12_setSubscriberChanID(
  *  @return     Event subscriber channel ID
  *
  */
-__STATIC_INLINE uint8_t DL_ADC12_getSubscriberChanID(ADC12_Regs *adc12)
+__STATIC_INLINE uint8_t DL_ADC12_getSubscriberChanID(const ADC12_Regs *adc12)
 {
     return (uint8_t)(adc12->ULLMEM.FSUB_0 & ADC12_FSUB_0_CHANID_MAXIMUM);
 }
@@ -2114,7 +2138,7 @@ __STATIC_INLINE void DL_ADC12_disableEvent(
  *  @retval     Bitwise OR of @ref DL_ADC12_EVENT values
  */
 __STATIC_INLINE uint32_t DL_ADC12_getEnabledEvents(
-    ADC12_Regs *adc12, uint32_t eventMask)
+    const ADC12_Regs *adc12, uint32_t eventMask)
 {
     return (adc12->ULLMEM.GEN_EVENT.IMASK & eventMask);
 }
@@ -2137,7 +2161,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getEnabledEvents(
  *  @sa         DL_ADC12_enableEvent
  */
 __STATIC_INLINE uint32_t DL_ADC12_getEnabledEventStatus(
-    ADC12_Regs *adc12, uint32_t eventMask)
+    const ADC12_Regs *adc12, uint32_t eventMask)
 {
     return (adc12->ULLMEM.GEN_EVENT.MIS & ~(eventMask));
 }
@@ -2158,7 +2182,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getEnabledEventStatus(
  *  @retval     Bitwise OR of @ref DL_ADC12_EVENT values
  */
 __STATIC_INLINE uint32_t DL_ADC12_getRawEventsStatus(
-    ADC12_Regs *adc12, uint32_t eventMask)
+    const ADC12_Regs *adc12, uint32_t eventMask)
 {
     return (adc12->ULLMEM.GEN_EVENT.RIS & ~(eventMask));
 }
@@ -2218,7 +2242,7 @@ __STATIC_INLINE void DL_ADC12_disableDMATrigger(
  *  @retval     Bitwise OR of @ref DL_ADC12_DMA values
  */
 __STATIC_INLINE uint32_t DL_ADC12_getEnabledDMATrigger(
-    ADC12_Regs *adc12, uint32_t dmaMask)
+    const ADC12_Regs *adc12, uint32_t dmaMask)
 {
     return (adc12->ULLMEM.DMA_TRIG.IMASK & dmaMask);
 }
@@ -2241,7 +2265,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getEnabledDMATrigger(
  *  @sa         DL_ADC12_enableDMATrigger
  */
 __STATIC_INLINE uint32_t DL_ADC12_getEnabledDMATriggerStatus(
-    ADC12_Regs *adc12, uint32_t dmaMask)
+    const ADC12_Regs *adc12, uint32_t dmaMask)
 {
     return (adc12->ULLMEM.DMA_TRIG.MIS & ~(dmaMask));
 }
@@ -2262,7 +2286,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getEnabledDMATriggerStatus(
  *  @retval     Bitwise OR of @ref DL_ADC12_DMA values
  */
 __STATIC_INLINE uint32_t DL_ADC12_getRawDMATriggerStatus(
-    ADC12_Regs *adc12, uint32_t dmaMask)
+    const ADC12_Regs *adc12, uint32_t dmaMask)
 {
     return (adc12->ULLMEM.DMA_TRIG.RIS & ~(dmaMask));
 }
@@ -2318,7 +2342,7 @@ __STATIC_INLINE void DL_ADC12_disableSAMPCAP(ADC12_Regs *adc12)
  *  @retval  false sample and hold capacitor discharge is disabled
  *
  */
-__STATIC_INLINE bool DL_ADC12_isSAMPCAPEnabled(ADC12_Regs *adc12)
+__STATIC_INLINE bool DL_ADC12_isSAMPCAPEnabled(const ADC12_Regs *adc12)
 {
     return ((adc12->ULLMEM.CTL2 & ADC12_CTL2_RSTSAMPCAPEN_MASK) ==
             ADC12_CTL2_RSTSAMPCAPEN_ENABLE);

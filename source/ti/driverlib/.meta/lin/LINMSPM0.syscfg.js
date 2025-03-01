@@ -144,7 +144,7 @@ function updateFifoThresholds(inst, ui) {
         enabledInterrupts : ["BREAK_ERROR","LINC0_MATCH","LIN_COUNTER_OVERFLOW","LIN_FALLING_EDGE","RXD_POS_EDGE"],
         interruptPriority : "DEFAULT",
     };
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile1 = {...configProfile1, ...defaultDMAConfig};
     };
 const profilesUART = [

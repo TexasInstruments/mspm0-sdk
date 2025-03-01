@@ -50,7 +50,6 @@
             <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
             <arg>-L$PROJ_DIR$</arg>
             <arg>$MSPM0_SDK_INSTALL_DIR$/kernel/freertos/builds/LP_MSPM0L1117/release/iar/freertos.lib</arg>
-            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0h321x/driverlib.a</arg>
             <arg>--silent</arg>
         </args>
     </linkerExtraOptions>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hostnotifyen',['hostNotifyEn',['../union_s_m_bus___ctrl.html#a7d7641c9e9281be5738bf28f4948f392',1,'SMBus_Ctrl']]],
-  ['hostnotifyrxbuffptr',['hostNotifyRxBuffPtr',['../struct_s_m_bus___nwk.html#ad4f3e2aba10d5fcdddca4d104cc6a452',1,'SMBus_Nwk']]]
+  ['errorstate',['errorState',['../struct_s_m_bus___a_r_p___status.html#a7ffdfcf7dbfcee4d73f7d6f6b7cd34f6',1,'SMBus_ARP_Status']]],
+  ['estate',['eState',['../struct_s_m_bus___nwk.html#a1d1129b72d4f7f694b299ab20cd7a6fd',1,'SMBus_Nwk']]]
 ];

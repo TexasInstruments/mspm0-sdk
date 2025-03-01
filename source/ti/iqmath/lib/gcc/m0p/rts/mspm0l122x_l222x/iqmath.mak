@@ -5,7 +5,7 @@ include $(SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 AR = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-ar"
 
-NAME = rts/mspm0l122x_l222x/iqmath
+NAME = iqmath
 
 OBJ_DIR = ../../../../../obj/gcc/m0p/rts/mspm0l122x_l222x/iqmath
 SRC_DIR = ../../../../../_IQNfunctions

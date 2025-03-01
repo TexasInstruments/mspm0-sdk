@@ -1,7 +1,7 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 
 const { getDefaultValue } = system.getScript("./defaultValue.js");
-const { isDeviceM0G, isDeviceM0C, isDeviceFamily_PARENT_MSPM0L122X_L222X, getUnitPrefix } = system.getScript("/ti/driverlib/Common.js");
+const { isDeviceM0G, isDeviceFamily_PARENT_MSPM0C110X, isDeviceFamily_PARENT_MSPM0L122X_L222X, getUnitPrefix } = system.getScript("/ti/driverlib/Common.js");
 
 function validatePinmux(inst, validation){
 	/* CLK_OUT validation */
@@ -23,6 +23,53 @@ function validatePinmux(inst, validation){
 				}
 			} catch (e){
 				// do nothing
+			}
+		}
+	}
+	// LFXT Validation
+	/* MSPM0H321x Validation - LFXIN/LFXOUT Workaround*/
+	if(inst.$name == "LFXT"){
+		if(inst.enable){
+			if(Common.isDeviceFamily_PARENT_MSPM0H321X()){
+				if(["LQFP-44(NNA)","LQFP-32(VFC)"].includes(system.deviceData.package)){
+					let validationMsgLFXIN = ""
+					if(system.deviceData.package == "LQFP-32(VFC)"){
+						try{
+							if((inst.peripheral["lfxInPin"].$solution.devicePinName == "PA3") || (inst.peripheral["lfxOutPin"].$solution.devicePinName == "PA4")){
+								validation.logError("LFXT configuration is not available for the selected package.",
+									inst, ["enable"]);
+							}
+						}catch(e){}
+					}
+					else{
+						try{
+							if(inst.peripheral["lfxInPin"].$solution.devicePinName == "PA3"){
+								validation.logError("The selected pin is not available for LFXIN configuration on this package, please select a different one.",
+									inst, ["enable"]);
+							}
+						}catch(e){}
+						try{
+							if(inst.peripheral["lfxOutPin"].$solution.devicePinName == "PA4"){
+								validation.logError("The selected pin is not available for LFXOUT configuration on this package, please select a different one.",
+									inst, ["enable"]);
+							}
+						}catch(e){}
+					}
+				}
+				else{
+					try{
+						if(inst.peripheral["lfxInPin"].$solution.devicePinName == "PA27"){
+							validation.logError("The selected pin is not available for LFXIN configuration on this package, please select a different one.",
+								inst, ["enable"]);
+						}
+					}catch(e){}
+					try{
+						if(inst.peripheral["lfxOutPin"].$solution.devicePinName == "PA26"){
+							validation.logError("The selected pin is not available for LFXOUT configuration on this package, please select a different one.",
+								inst, ["enable"]);
+						}
+					}catch(e){}
+				}
 			}
 		}
 	}
@@ -386,7 +433,7 @@ function pinmuxRequirements(inst)
 		clkOutPin   : ["CLK_OUT"],
 		fccInPin	: ["FCC_IN"],
 	};
-	if(isDeviceM0C()){
+	if(isDeviceFamily_PARENT_MSPM0C110X()){
 		signalTypes.lfclkInPin = ["LFCLKIN"];
 		signalTypes.hfclkInPin = ["HFCLKIN"];
 	}
@@ -405,7 +452,7 @@ function pinmuxRequirements(inst)
                 });
                 break;
             case "LFCLKEXT":
-				if(!isDeviceM0C()){
+				if(!isDeviceFamily_PARENT_MSPM0C110X()){
 					resources.push({
 						name            : "lfclkInPin",
 						displayName     : "LFCLK In",
@@ -432,7 +479,7 @@ function pinmuxRequirements(inst)
                 });
                 break;
             case "HFCLKEXT":
-				if(!isDeviceM0C() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
+				if(!isDeviceFamily_PARENT_MSPM0C110X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
 					resources.push({
 						name            : "hfclkInPin",
 						displayName     : "HFCLK In",

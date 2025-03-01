@@ -68,11 +68,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../sysctl_shutdown.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../sysctl_shutdown.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../sysctl_shutdown.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

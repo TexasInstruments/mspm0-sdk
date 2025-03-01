@@ -315,7 +315,11 @@ typedef struct {
 } DL_AESADV_Config;
 
 /**
- *  @brief Enables power on AESADV module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the AESADV
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  *  @param[in] aesadv       Pointer to the register overlay for the peripheral
  */
@@ -326,7 +330,12 @@ __STATIC_INLINE void DL_AESADV_enablePower(AESADV_Regs *aesadv)
 }
 
 /**
- *  @brief Disables power on AESADV module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the AESADV
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings
  *
  *  @param[in] aesadv        Pointer to the register overlay for the peripheral
  */
@@ -337,14 +346,22 @@ __STATIC_INLINE void DL_AESADV_disablePower(AESADV_Regs *aesadv)
 }
 
 /**
- *  @brief Returns if power enabled on AESADV module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the AESADV
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  *  @param[in] aesadv       Pointer to the register overlay for the peripheral
  *
- *  @retval true   Power is enabled
- *  @retval false  Power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_AESADV_isPowerEnabled(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isPowerEnabled(const AESADV_Regs *aesadv)
 {
     return ((aesadv->GPRCM.PWREN & AESADV_PWREN_ENABLE_MASK) ==
             AESADV_PWREN_ENABLE_ENABLE);
@@ -370,7 +387,7 @@ __STATIC_INLINE void DL_AESADV_reset(AESADV_Regs *aesadv)
  *  @retval true   Peripheral was reset
  *  @retval false  Peripheral wasn't reset
  */
-__STATIC_INLINE bool DL_AESADV_isReset(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isReset(const AESADV_Regs *aesadv)
 {
     return ((aesadv->GPRCM.STAT & AESADV_STAT_RESETSTKY_MASK) ==
             AESADV_STAT_RESETSTKY_RESET);
@@ -384,7 +401,7 @@ __STATIC_INLINE bool DL_AESADV_isReset(AESADV_Regs *aesadv)
  *  @retval true   AES output block is available
  *  @retval false  No AES output block is available
  */
-__STATIC_INLINE bool DL_AESADV_isOutputReady(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isOutputReady(const AESADV_Regs *aesadv)
 {
     return ((aesadv->CTRL & AESADV_CTRL_OUTPUT_RDY_MASK) ==
             AESADV_CTRL_OUTPUT_RDY_READY);
@@ -398,7 +415,7 @@ __STATIC_INLINE bool DL_AESADV_isOutputReady(AESADV_Regs *aesadv)
  *  @retval true   Input buffer is empty
  *  @retval false  Input buffer is not empty
  */
-__STATIC_INLINE bool DL_AESADV_isInputReady(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isInputReady(const AESADV_Regs *aesadv)
 {
     return ((aesadv->CTRL & AESADV_CTRL_INPUT_RDY_MASK) ==
             AESADV_CTRL_INPUT_RDY_EMPTY);
@@ -426,7 +443,7 @@ __STATIC_INLINE void DL_AESADV_setDirection(
  *
  *  @return one of @ref DL_AESADV_DIR
  */
-__STATIC_INLINE DL_AESADV_DIR DL_AESADV_getDirection(AESADV_Regs *aesadv)
+__STATIC_INLINE DL_AESADV_DIR DL_AESADV_getDirection(const AESADV_Regs *aesadv)
 {
     uint32_t direction = (aesadv->CTRL & AESADV_CTRL_DIR_MASK);
 
@@ -453,7 +470,8 @@ __STATIC_INLINE void DL_AESADV_setKeySize(
  *
  *  @return one of @ref DL_AESADV_KEY_SIZE.
  */
-__STATIC_INLINE DL_AESADV_KEY_SIZE DL_AESADV_getKeySize(AESADV_Regs *aesadv)
+__STATIC_INLINE DL_AESADV_KEY_SIZE DL_AESADV_getKeySize(
+    const AESADV_Regs *aesadv)
 {
     uint32_t keySize = (aesadv->CTRL & AESADV_CTRL_KEYSIZE_MASK);
 
@@ -494,7 +512,7 @@ __STATIC_INLINE void DL_AESADV_setMode(
  *
  *  @sa DL_AESADV_setMode
  */
-__STATIC_INLINE DL_AESADV_MODE DL_AESADV_getMode(AESADV_Regs *aesadv)
+__STATIC_INLINE DL_AESADV_MODE DL_AESADV_getMode(const AESADV_Regs *aesadv)
 {
     uint32_t mode = (aesadv->CTRL & DL_AESADV_MODE_MASK);
     return (DL_AESADV_MODE)(mode);
@@ -526,7 +544,7 @@ __STATIC_INLINE void DL_AESADV_setFeedbackWidth(
  *  @sa DL_AESADV_setFeedbackWidth
  */
 __STATIC_INLINE DL_AESADV_FB_WIDTH DL_AESADV_getFeedbackWidth(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     uint32_t fbWidth = (aesadv->CTRL & AESADV_CTRL_CTR_WIDTH_MASK);
 
@@ -564,7 +582,7 @@ __STATIC_INLINE void DL_AESADV_setCounterWidth(
  *  @sa DL_AESADV_setCounterWidth
  */
 __STATIC_INLINE DL_AESADV_CTR_WIDTH DL_AESADV_getCounterWidth(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     uint32_t ctrWidth = (aesadv->CTRL & AESADV_CTRL_CTR_WIDTH_MASK);
 
@@ -617,7 +635,7 @@ __STATIC_INLINE void DL_AESADV_setCCMCounterWidth(
  *  @sa DL_AESADV_setCCMCounterWidth
  */
 __STATIC_INLINE DL_AESADV_CCM_CTR_WIDTH DL_AESADV_getCCMCounterWidth(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     uint32_t ccm_ctrWidth = (aesadv->CTRL & AESADV_CTRL_CCML_MASK);
 
@@ -654,7 +672,7 @@ __STATIC_INLINE void DL_AESADV_setCCMTagWidth(
  *  @sa DL_AESADV_setCCMTagWidth
  */
 __STATIC_INLINE DL_AESADV_CCM_TAG_WIDTH DL_AESADV_getCCMTagWidth(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     uint32_t ccm_tagWidth = (aesadv->CTRL & AESADV_CTRL_CCMM_MASK);
 
@@ -785,7 +803,8 @@ __STATIC_INLINE void DL_AESADV_disableSavedOutputContext(AESADV_Regs *aesadv)
  *
  *  @sa DL_AESADV_enableSavedOutputContext
  */
-__STATIC_INLINE bool DL_AESADV_isSavedOutputContextEnabled(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isSavedOutputContextEnabled(
+    const AESADV_Regs *aesadv)
 {
     return ((aesadv->CTRL & AESADV_CTRL_SAVE_CNTXT_MASK) ==
             AESADV_CTRL_SAVE_CNTXT_ENABLE);
@@ -805,7 +824,8 @@ __STATIC_INLINE bool DL_AESADV_isSavedOutputContextEnabled(AESADV_Regs *aesadv)
  *
  *  @sa DL_AESADV_enableSavedOutputContext
  */
-__STATIC_INLINE bool DL_AESADV_isSavedOutputContextReady(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isSavedOutputContextReady(
+    const AESADV_Regs *aesadv)
 {
     return ((aesadv->CTRL & AESADV_CTRL_SAVED_CNTXT_RDY_MASK) ==
             AESADV_CTRL_SAVED_CNTXT_RDY_READY);
@@ -827,7 +847,8 @@ __STATIC_INLINE bool DL_AESADV_isSavedOutputContextReady(AESADV_Regs *aesadv)
  *                 are available and must be read before context can be
  *                 interrupted
  */
-__STATIC_INLINE bool DL_AESADV_isInputContextWriteable(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isInputContextWriteable(
+    const AESADV_Regs *aesadv)
 {
     return ((aesadv->CTRL & AESADV_CTRL_CNTXT_RDY_MASK) ==
             AESADV_CTRL_CNTXT_RDY_READY);
@@ -945,7 +966,7 @@ __STATIC_INLINE void DL_AESADV_disableDMAOperation(AESADV_Regs *aesadv)
  *  @retval true   Configured to read/write data using the DMA
  *  @retval false  Configured to read/write data using the CPU (Default)
  */
-__STATIC_INLINE bool DL_AESADV_isDMAOperationEnabled(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isDMAOperationEnabled(const AESADV_Regs *aesadv)
 {
     return ((aesadv->DMA_HS & AESADV_DMA_HS_DMA_DATA_ACK_MASK) ==
             AESADV_DMA_HS_DMA_DATA_ACK_DMA_ENABLE);
@@ -962,7 +983,7 @@ __STATIC_INLINE bool DL_AESADV_isDMAOperationEnabled(AESADV_Regs *aesadv)
  *  @note If user key writes are disabled but desired, a module reset is
  *        required
  */
-__STATIC_INLINE bool DL_AESADV_isUserKeyWriteEnabled(AESADV_Regs *aesadv)
+__STATIC_INLINE bool DL_AESADV_isUserKeyWriteEnabled(const AESADV_Regs *aesadv)
 {
     return ((aesadv->STATUS & AESADV_STATUS_KEYWR_MASK) ==
             AESADV_STATUS_KEYWR_ENABLED);
@@ -1171,7 +1192,7 @@ void DL_AESADV_loadIntermediateTAGAligned(
  *  @sa DL_AESADV_loadCCMNonceAndCounter
  */
 DL_AESADV_STATUS DL_AESADV_loadInitializationVector(
-    AESADV_Regs *aesadv, uint8_t *iv);
+    AESADV_Regs *aesadv, const uint8_t *iv);
 
 /**
  *  @brief Loads the 128-bit initialization vector to the AESADV module.
@@ -1192,7 +1213,7 @@ DL_AESADV_STATUS DL_AESADV_loadInitializationVector(
  *  @sa DL_AESADV_loadInitializationVector
  */
 void DL_AESADV_loadInitializationVectorAligned(
-    AESADV_Regs *aesadv, uint32_t *ivAligned);
+    AESADV_Regs *aesadv, const uint32_t *ivAligned);
 
 /**
  *  @brief Reads the 128-bit initialization vector from the AES Module
@@ -1213,7 +1234,7 @@ void DL_AESADV_loadInitializationVectorAligned(
  *        @ref DL_AESADV_readInitializationVectorAligned
  */
 DL_AESADV_STATUS DL_AESADV_readInitializationVector(
-    AESADV_Regs *aesadv, uint8_t *iv);
+    AESADV_Regs *aesadv, const uint8_t *iv);
 
 /**
  *  @brief Reads the 128-bit initialization vector from the AES Module
@@ -1307,7 +1328,8 @@ void DL_AESADV_loadCCMNonceAndCounter(
  *
  *  @sa DL_AESADV_readOutputData
  */
-DL_AESADV_STATUS DL_AESADV_loadInputData(AESADV_Regs *aesadv, uint8_t *data);
+DL_AESADV_STATUS DL_AESADV_loadInputData(
+    AESADV_Regs *aesadv, const uint8_t *data);
 
 /**
  *  @brief loads 128 bits (4 words) of input data
@@ -1329,7 +1351,7 @@ DL_AESADV_STATUS DL_AESADV_loadInputData(AESADV_Regs *aesadv, uint8_t *data);
  *  @sa DL_AESADV_readOutputDataAligned
  */
 void DL_AESADV_loadInputDataAligned(
-    AESADV_Regs *aesadv, uint32_t *dataAligned);
+    AESADV_Regs *aesadv, const uint32_t *dataAligned);
 
 /**
  *  @brief reads 128-bits of output data that has been encrypted/decrypted.
@@ -1353,7 +1375,8 @@ void DL_AESADV_loadInputDataAligned(
  *        access, if this is not necessary, consider using uint32_t pointers and
  *        @ref DL_AESADV_readOutputDataAligned
  */
-DL_AESADV_STATUS DL_AESADV_readOutputData(AESADV_Regs *aesadv, uint8_t *data);
+DL_AESADV_STATUS DL_AESADV_readOutputData(
+    const AESADV_Regs *aesadv, const uint8_t *data);
 
 /**
  *  @brief reads 128-bits of output data that has been encrypted/decrypted.
@@ -1373,7 +1396,7 @@ DL_AESADV_STATUS DL_AESADV_readOutputData(AESADV_Regs *aesadv, uint8_t *data);
  *  @sa DL_AESADV_readOutputData
  */
 void DL_AESADV_readOutputDataAligned(
-    AESADV_Regs *aesadv, uint32_t *dataAligned);
+    const AESADV_Regs *aesadv, uint32_t *dataAligned);
 
 /**
  *  @brief reads 128-bit output tag at the conclusion of operation/halt
@@ -1396,7 +1419,8 @@ void DL_AESADV_readOutputDataAligned(
 
  *  @sa DL_AESADV_isSavedOutputContextReady
  */
-DL_AESADV_STATUS DL_AESADV_readTAG(AESADV_Regs *aesadv, uint8_t *tag);
+DL_AESADV_STATUS DL_AESADV_readTAG(
+    const AESADV_Regs *aesadv, const uint8_t *tag);
 
 /**
  *  @brief reads 128-bit output tag at the conclusion of operation/halt
@@ -1412,7 +1436,7 @@ DL_AESADV_STATUS DL_AESADV_readTAG(AESADV_Regs *aesadv, uint8_t *tag);
  *
  *  @sa DL_AESADV_isSavedOutputContextReady
  */
-void DL_AESADV_readTAGAligned(AESADV_Regs *aesadv, uint32_t *tagAligned);
+void DL_AESADV_readTAGAligned(const AESADV_Regs *aesadv, uint32_t *tagAligned);
 
 /**
  *  @brief Forces AESADV to begin processing input data.
@@ -1455,7 +1479,7 @@ __STATIC_INLINE void DL_AESADV_setCCMAlignWord(
  *
  *  @return Current AAD alignment word of type uint32_t
  */
-__STATIC_INLINE uint32_t DL_AESADV_getCCMAlignWord(AESADV_Regs *aesadv)
+__STATIC_INLINE uint32_t DL_AESADV_getCCMAlignWord(const AESADV_Regs *aesadv)
 {
     return (aesadv->CCM_ALN_WRD);
 }
@@ -1496,7 +1520,8 @@ __STATIC_INLINE void DL_AESADV_setLowerBlockCount(
  *
  *  @sa DL_AESADV_setLowerBlockCount
  */
-__STATIC_INLINE uint32_t DL_AESADV_getLowerBlockCount(AESADV_Regs *aesadv)
+__STATIC_INLINE uint32_t DL_AESADV_getLowerBlockCount(
+    const AESADV_Regs *aesadv)
 {
     return aesadv->BLK_CNT0;
 }
@@ -1537,7 +1562,8 @@ __STATIC_INLINE void DL_AESADV_setUpperBlockCount(
  *
  *  @sa DL_AESADV_setUpperBlockCount
  */
-__STATIC_INLINE uint32_t DL_AESADV_getUpperBlockCount(AESADV_Regs *aesadv)
+__STATIC_INLINE uint32_t DL_AESADV_getUpperBlockCount(
+    const AESADV_Regs *aesadv)
 {
     return (aesadv->BLK_CNT1 & 0x01FFFFFFU);
 }
@@ -1582,7 +1608,7 @@ __STATIC_INLINE void DL_AESADV_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_AESADV_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_AESADV_getEnabledInterrupts(
-    AESADV_Regs *aesadv, uint32_t interruptMask)
+    const AESADV_Regs *aesadv, uint32_t interruptMask)
 {
     return (aesadv->CPU_INT.IMASK & interruptMask);
 }
@@ -1605,7 +1631,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getEnabledInterrupts(
  *  @sa         DL_AESADV_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_AESADV_getEnabledInterruptStatus(
-    AESADV_Regs *aesadv, uint32_t interruptMask)
+    const AESADV_Regs *aesadv, uint32_t interruptMask)
 {
     return (aesadv->CPU_INT.MIS & interruptMask);
 }
@@ -1626,7 +1652,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getEnabledInterruptStatus(
  *  @retval     Bitwise OR of @ref DL_AESADV_INTERRUPT
  */
 __STATIC_INLINE uint32_t DL_AESADV_getRawInterruptStatus(
-    AESADV_Regs *aesadv, uint32_t interruptMask)
+    const AESADV_Regs *aesadv, uint32_t interruptMask)
 {
     return (aesadv->CPU_INT.RIS & interruptMask);
 }
@@ -1644,7 +1670,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getRawInterruptStatus(
  *  @retval     One of @ref DL_AESADV_IIDX
  */
 __STATIC_INLINE DL_AESADV_IIDX DL_AESADV_getPendingInterrupt(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     return ((DL_AESADV_IIDX) aesadv->CPU_INT.IIDX);
 }
@@ -1719,7 +1745,7 @@ __STATIC_INLINE void DL_AESADV_disableDMAOutputTriggerEvent(
  *  @retval     0 if DMA input trigger event is not enabled
  */
 __STATIC_INLINE uint32_t DL_AESADV_getEnabledDMAInputTriggerEvent(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     return (aesadv->DMA_TRIG_DATAIN.IMASK &
             DL_AESADV_EVENT_DMA_DATA_INPUT_TRIGGER);
@@ -1737,7 +1763,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getEnabledDMAInputTriggerEvent(
  *  @retval     0 if DMA output trigger event is not enabled
  */
 __STATIC_INLINE uint32_t DL_AESADV_getEnabledDMAOutputTriggerEvent(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     return (aesadv->DMA_TRIG_DATAOUT.IMASK &
             DL_AESADV_EVENT_DMA_DATA_OUTPUT_TRIGGER);
@@ -1759,7 +1785,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getEnabledDMAOutputTriggerEvent(
  *  @sa         DL_AESADV_enableDMAInputTriggerEvent
  */
 __STATIC_INLINE uint32_t DL_AESADV_getEnabledDMAInputTriggerEventStatus(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     return (
         aesadv->DMA_TRIG_DATAIN.MIS & DL_AESADV_EVENT_DMA_DATA_INPUT_TRIGGER);
@@ -1781,7 +1807,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getEnabledDMAInputTriggerEventStatus(
  *  @sa         DL_AESADV_enableDMAOutputTriggerEvent
  */
 __STATIC_INLINE uint32_t DL_AESADV_getEnabledDMAOutputTriggerEventStatus(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     return (aesadv->DMA_TRIG_DATAOUT.MIS &
             DL_AESADV_EVENT_DMA_DATA_OUTPUT_TRIGGER);
@@ -1802,7 +1828,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getEnabledDMAOutputTriggerEventStatus(
  *  @retval     0 if DMA input trigger event is not pending
  */
 __STATIC_INLINE uint32_t DL_AESADV_getRawDMAInputTriggerEventStatus(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     return (
         aesadv->DMA_TRIG_DATAIN.RIS & DL_AESADV_EVENT_DMA_DATA_INPUT_TRIGGER);
@@ -1823,7 +1849,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getRawDMAInputTriggerEventStatus(
  *  @retval     0 if DMA output trigger event is not pending
  */
 __STATIC_INLINE uint32_t DL_AESADV_getRawDMAOutputTriggerEventStatus(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     return (aesadv->DMA_TRIG_DATAOUT.RIS &
             DL_AESADV_EVENT_DMA_DATA_OUTPUT_TRIGGER);
@@ -1840,7 +1866,7 @@ __STATIC_INLINE uint32_t DL_AESADV_getRawDMAOutputTriggerEventStatus(
  *  @return     The highest priority pending DMA input trigger event
  */
 __STATIC_INLINE DL_AESADV_IIDX DL_AESADV_getPendingDMAInputTriggerEvent(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     uint32_t eventIIDX = aesadv->DMA_TRIG_DATAIN.IIDX;
 
@@ -1858,7 +1884,7 @@ __STATIC_INLINE DL_AESADV_IIDX DL_AESADV_getPendingDMAInputTriggerEvent(
  *  @return     The highest priority pending DMA output trigger event
  */
 __STATIC_INLINE DL_AESADV_IIDX DL_AESADV_getPendingDMAOutputTriggerEvent(
-    AESADV_Regs *aesadv)
+    const AESADV_Regs *aesadv)
 {
     uint32_t eventIIDX = aesadv->DMA_TRIG_DATAOUT.IIDX;
 
@@ -1903,7 +1929,7 @@ __STATIC_INLINE void DL_AESADV_clearDMAOutputTriggerEventStatus(
  *
  *  @sa DL_AESADV_enableDMAOperation
  */
-__STATIC_INLINE uintptr_t DL_AESADV_getDATAINAddr(AESADV_Regs *aesadv)
+__STATIC_INLINE uintptr_t DL_AESADV_getDATAINAddr(const AESADV_Regs *aesadv)
 {
     return ((uintptr_t) &aesadv->DATA0);
 }
@@ -1924,7 +1950,7 @@ __STATIC_INLINE uintptr_t DL_AESADV_getDATAINAddr(AESADV_Regs *aesadv)
  *
  *  @sa DL_AESADV_enableDMAOperation
  */
-__STATIC_INLINE uintptr_t DL_AESADV_getDATAOUTAddr(AESADV_Regs *aesadv)
+__STATIC_INLINE uintptr_t DL_AESADV_getDATAOUTAddr(const AESADV_Regs *aesadv)
 {
     return ((uintptr_t) &aesadv->DATA0);
 }
@@ -1944,7 +1970,7 @@ __STATIC_INLINE uintptr_t DL_AESADV_getDATAOUTAddr(AESADV_Regs *aesadv)
  *
  *  @sa DL_AESADV_setKey
  */
-void DL_AESADV_initECB(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initECB(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the Cipher-Block Chaining (CBC) mode
@@ -1962,7 +1988,7 @@ void DL_AESADV_initECB(AESADV_Regs *aesadv, DL_AESADV_Config *config);
  *
  *  @sa DL_AESADV_setKey
  */
-void DL_AESADV_initCBC(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initCBC(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the Cipher Feedback (CFB) mode
@@ -1980,7 +2006,7 @@ void DL_AESADV_initCBC(AESADV_Regs *aesadv, DL_AESADV_Config *config);
  *
  *  @sa DL_AESADV_setKey
  */
-void DL_AESADV_initCFB(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initCFB(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the Output Feedback (OFB) mode
@@ -1998,7 +2024,7 @@ void DL_AESADV_initCFB(AESADV_Regs *aesadv, DL_AESADV_Config *config);
  *
  *  @sa DL_AESADV_setKey
  */
-void DL_AESADV_initOFB(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initOFB(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the Counter (CTR) mode
@@ -2017,7 +2043,7 @@ void DL_AESADV_initOFB(AESADV_Regs *aesadv, DL_AESADV_Config *config);
  *
  *  @sa DL_AESADV_setKey
  */
-void DL_AESADV_initCTR(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initCTR(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the Integer Counter Mode (ICM)
@@ -2036,7 +2062,7 @@ void DL_AESADV_initCTR(AESADV_Regs *aesadv, DL_AESADV_Config *config);
  *
  *  @sa DL_AESADV_setKey
  */
-void DL_AESADV_initICM(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initICM(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the block cipher-based Message
@@ -2060,7 +2086,7 @@ void DL_AESADV_initICM(AESADV_Regs *aesadv, DL_AESADV_Config *config);
  *
  *  @sa DL_AESADV_setKey
  */
-void DL_AESADV_initCMAC(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initCMAC(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the Cipher Block Chaining Message
@@ -2079,7 +2105,7 @@ void DL_AESADV_initCMAC(AESADV_Regs *aesadv, DL_AESADV_Config *config);
  *
  *  @sa DL_AESADV_setKey
  */
-void DL_AESADV_initCBCMAC(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initCBCMAC(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the Galois/Counter Mode (GCM)
@@ -2105,7 +2131,7 @@ void DL_AESADV_initCBCMAC(AESADV_Regs *aesadv, DL_AESADV_Config *config);
  *  @sa DL_AESADV_setKey
  *  @sa DL_AESADV_setHashKey
  */
-void DL_AESADV_initGCM(AESADV_Regs *aesadv, DL_AESADV_Config *config);
+void DL_AESADV_initGCM(AESADV_Regs *aesadv, const DL_AESADV_Config *config);
 
 /**
  *  @brief Initializes the engine in the Counter & CBC-MAC (CCM)mode

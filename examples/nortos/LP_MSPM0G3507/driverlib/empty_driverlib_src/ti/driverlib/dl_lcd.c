@@ -37,7 +37,7 @@
  *  @brief LCD APIs
  */
 
-void DL_LCD_init(LCD_Regs *lcd, DL_LCD_Config *config)
+void DL_LCD_init(LCD_Regs *lcd, const DL_LCD_Config *config)
 {
     DL_Common_updateReg(&lcd->LCDCTL0,
         (uint32_t) config->frequencyDivider | (uint32_t) config->muxRate |
@@ -99,6 +99,11 @@ void DL_LCD_setPinAsPortFunction(LCD_Regs *lcd, uint8_t pin)
 void DL_LCD_setPinAsCommon(LCD_Regs *lcd, uint8_t pin, uint32_t com)
 {
     lcd->LCDCTL0 &= ~(LCD_LCDCTL0_LCDON_MASK);
+
+    /* If pin value is > 64, then exit function*/
+    if (pin > 64) {
+        return;
+    }
 
     uint8_t idx  = pin >> 4;          /* 0-15 -> 0, 16-31 -> 1, etc. */
     uint16_t val = 1 << (pin & 0x0F); /* getting mask for val based on pin */

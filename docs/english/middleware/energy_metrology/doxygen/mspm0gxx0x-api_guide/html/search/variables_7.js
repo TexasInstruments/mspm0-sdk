@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['i_5fdc_5festimate',['I_dc_estimate',['../structcurrent_params.html#ab5ca6c88bca81001885de7ff88c2fb51',1,'currentParams::I_dc_estimate()'],['../structneutral_params.html#a3dcb225e2150ff808d2da6188bc83d8d',1,'neutralParams::I_dc_estimate()']]],
+  ['i_5fdc_5festimate_5fintegral',['I_dc_estimate_integral',['../structcurrent_params.html#a53c27059a70520cd589fc1cd0f8c746e',1,'currentParams']]],
+  ['i_5fdc_5festimate_5flogged',['I_dc_estimate_logged',['../structcurrent_params.html#a3d4e4f6b58e52e875e723f0ed25b2a20',1,'currentParams::I_dc_estimate_logged()'],['../structneutral_params.html#a46e6ecf5f281f608ce44c02e9ec50c09',1,'neutralParams::I_dc_estimate_logged()']]],
+  ['i_5fhistory',['I_History',['../structneutral_params.html#a9f4f9bcd5cd63971ce696dbfb4f3c82c',1,'neutralParams']]],
+  ['iacoffset',['IacOffset',['../structcurrent_sensor_calibration_data.html#a0609c9f5912309c873c0338239b6c923',1,'currentSensorCalibrationData']]],
+  ['ifacoffset',['IFAcOffset',['../structcurrent_sensor_calibration_data.html#a814d5c43f020ab176489ad7282acf676',1,'currentSensorCalibrationData']]],
+  ['ihistory',['IHistory',['../structcurrent_params.html#af9044068216b3ad6124975f428074310',1,'currentParams']]],
+  ['iinitialdcestimate',['IinitialDcEstimate',['../structcurrent_sensor_calibration_data.html#a2b5b567c945b0b8932e02648251b1237',1,'currentSensorCalibrationData']]],
+  ['inst',['inst',['../struct_h_a_l___s_p_i_instance__.html#a15d4f2595dcbdde91a1792a782dea312',1,'HAL_SPIInstance_::inst()'],['../struct_h_a_l___u_a_r_t_instance__.html#a568ffd138b951d770c3f6c72d8525276',1,'HAL_UARTInstance_::inst()'],['../struct_h_a_l___c_r_c_instance__.html#aed2194c81df8cd2dacd612b26e6196d7',1,'HAL_CRCInstance_::inst()']]],
+  ['integrator',['integrator',['../structenergy_pulse.html#ac3d49fdf293ef2c086a2ad49733bf7e7',1,'energyPulse']]],
+  ['interruptionduration',['interruptionDuration',['../structphase_params.html#aa900f4a912398eeee7668d99daeab620',1,'phaseParams']]],
+  ['interruptionevents',['interruptionEvents',['../structphase_params.html#af117493f85d4fb5fe400853e17df33a6',1,'phaseParams']]],
+  ['interruptionlevel',['interruptionLevel',['../structphase_params.html#aa89f26f30797ae20ae07dad5323f6797',1,'phaseParams']]],
+  ['interruptionlevelhalf',['interruptionLevelHalf',['../structphase_params.html#a9f9833dc255816d7606efeafbb1961a9',1,'phaseParams']]],
+  ['iomux',['iomux',['../struct_h_a_l___g_p_i_o___instance__.html#abdb5a32b907c90eb314405d670784cef',1,'HAL_GPIO_Instance_']]],
+  ['irqn',['IRQn',['../struct_h_a_l___g_p_i_o___instance__.html#a79e28d6c48d68a210df60c4549485b45',1,'HAL_GPIO_Instance_']]],
+  ['iscalefactor',['IscaleFactor',['../structcurrent_sensor_calibration_data.html#a99a72cfd561b6413d148ae8431f1ebd3',1,'currentSensorCalibrationData']]]
+];

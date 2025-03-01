@@ -201,6 +201,7 @@ typedef enum IRQn
 #define __MSPM0_HAS_IWDT__
 #define __MSPM0_HAS_LFSS__
 #define __MSPM0_HAS_ECC__
+#define __MSPM0_HAS_LEGACY_ADC_REFERENCE__ 
 
 /*@}*/ /* end of group MSPM0L111X_Peripherals */
 
@@ -263,6 +264,8 @@ static TRNG_Regs                                * const TRNG                    
 static KEYSTORECTL_Regs                         * const KEYSTORECTL                    = ((KEYSTORECTL_Regs *) KEYSTORECTL_BASE);
 static GPIO_Regs                                * const GPIOA                          = ((GPIO_Regs *) GPIOA_BASE);
 static CRCP_Regs                                * const CRCP0                          = ((CRCP_Regs *) CRCP0_BASE);
+static CRCP_Regs                                * const CRC0                           = ((CRCP_Regs *) CRCP0_BASE);
+static CRCP_Regs                                * const CRC                            = ((CRCP_Regs *) CRCP0_BASE);
 static VREF_Regs                                * const VREF                           = ((VREF_Regs *) VREF_BASE);
 static GPIO_Regs                                * const GPIOB                          = ((GPIO_Regs *) GPIOB_BASE);
 static ADC12_Regs                               * const ADC0                           = ((ADC12_Regs *) ADC0_BASE);

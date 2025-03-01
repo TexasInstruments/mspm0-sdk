@@ -695,10 +695,16 @@ typedef struct {
  *  @param[in]  uart    Pointer to the register overlay for the peripheral
  *  @param[in]  config  Configuration for UART peripheral
  */
-void DL_UART_init(UART_Regs *uart, DL_UART_Config *config);
+void DL_UART_init(UART_Regs *uart, const DL_UART_Config *config);
 
 /**
- * @brief Enables power on UART module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the UART
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  @note For power savings, please refer to @ref DL_UART_enable
  *
  * @param uart        Pointer to the register overlay for the peripheral
  */
@@ -708,7 +714,13 @@ __STATIC_INLINE void DL_UART_enablePower(UART_Regs *uart)
 }
 
 /**
- * @brief Disables power on uart module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the UART
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings. For power savings,
+ *  please refer to @ref DL_UART_enable
  *
  * @param uart        Pointer to the register overlay for the peripheral
  */
@@ -718,14 +730,22 @@ __STATIC_INLINE void DL_UART_disablePower(UART_Regs *uart)
 }
 
 /**
- * @brief Returns if  power on uart module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the UART
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param uart        Pointer to the register overlay for the peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_UART_isPowerEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isPowerEnabled(const UART_Regs *uart)
 {
     return ((uart->GPRCM.PWREN & UART_PWREN_ENABLE_MASK) ==
             UART_PWREN_ENABLE_ENABLE);
@@ -752,7 +772,7 @@ __STATIC_INLINE void DL_UART_reset(UART_Regs *uart)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_UART_isReset(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isReset(const UART_Regs *uart)
 {
     return ((uart->GPRCM.STAT & UART_GPRCM_STAT_RESETSTKY_MASK) ==
             UART_GPRCM_STAT_RESETSTKY_RESET);
@@ -779,7 +799,7 @@ __STATIC_INLINE void DL_UART_enable(UART_Regs *uart)
  *  @retval     false The UART peripheral is disabled
 
  */
-__STATIC_INLINE bool DL_UART_isEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isEnabled(const UART_Regs *uart)
 {
     return ((uart->CTL0 & UART_CTL0_ENABLE_MASK) == UART_CTL0_ENABLE_ENABLE);
 }
@@ -802,7 +822,8 @@ __STATIC_INLINE void DL_UART_disable(UART_Regs *uart)
  *  @param[in]  config  Pointer to the clock configuration struct
  *                       @ref DL_UART_ClockConfig.
  */
-void DL_UART_setClockConfig(UART_Regs *uart, DL_UART_ClockConfig *config);
+void DL_UART_setClockConfig(
+    UART_Regs *uart, const DL_UART_ClockConfig *config);
 
 /**
  *  @brief      Get UART source clock configuration
@@ -812,7 +833,8 @@ void DL_UART_setClockConfig(UART_Regs *uart, DL_UART_ClockConfig *config);
  *  @param[in]  config  Pointer to the clock configuration struct
  *                      @ref DL_UART_ClockConfig.
  */
-void DL_UART_getClockConfig(UART_Regs *uart, DL_UART_ClockConfig *config);
+void DL_UART_getClockConfig(
+    const UART_Regs *uart, DL_UART_ClockConfig *config);
 
 /**
  *  @brief      Configure the baud rate
@@ -867,7 +889,7 @@ __STATIC_INLINE void DL_UART_setOversampling(
  *
  */
 __STATIC_INLINE DL_UART_OVERSAMPLING_RATE DL_UART_getOversampling(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     uint32_t rate = uart->CTL0 & UART_CTL0_HSE_MASK;
 
@@ -902,7 +924,7 @@ __STATIC_INLINE void DL_UART_enableLoopbackMode(UART_Regs *uart)
  *  @retval     true  Loopback mode is enabled
  *  @retval     false Loopback mode is disabled
  */
-__STATIC_INLINE bool DL_UART_isLoopbackModeEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isLoopbackModeEnabled(const UART_Regs *uart)
 {
     return ((uart->CTL0 & UART_CTL0_LBE_MASK) == UART_CTL0_LBE_ENABLE);
 }
@@ -957,7 +979,7 @@ __STATIC_INLINE void DL_UART_setDirection(
  *
  *  @retval     One of @ref DL_UART_DIRECTION
  */
-__STATIC_INLINE DL_UART_DIRECTION DL_UART_getDirection(UART_Regs *uart)
+__STATIC_INLINE DL_UART_DIRECTION DL_UART_getDirection(const UART_Regs *uart)
 {
     uint32_t direction =
         uart->CTL0 & (UART_CTL0_TXE_MASK | UART_CTL0_RXE_MASK);
@@ -1005,7 +1027,7 @@ __STATIC_INLINE void DL_UART_enableMajorityVoting(UART_Regs *uart)
  *  @retval     true  Majority voting is enabled
  *  @retval     false Majority voting is disabled
  */
-__STATIC_INLINE bool DL_UART_isMajorityVotingEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isMajorityVotingEnabled(const UART_Regs *uart)
 {
     return ((uart->CTL0 & UART_CTL0_MAJVOTE_MASK) == UART_CTL0_MAJVOTE_ENABLE);
 }
@@ -1056,7 +1078,7 @@ __STATIC_INLINE void DL_UART_enableMSBFirst(UART_Regs *uart)
  *  @retval     true  MSB first is enabled
  *  @retval     false MSB first is disabled
  */
-__STATIC_INLINE bool DL_UART_isMSBFirstEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isMSBFirstEnabled(const UART_Regs *uart)
 {
     return (
         (uart->CTL0 & UART_CTL0_MSBFIRST_MASK) == UART_CTL0_MSBFIRST_ENABLE);
@@ -1112,7 +1134,8 @@ __STATIC_INLINE void DL_UART_enableTransmitPinManualControl(UART_Regs *uart)
  *  @retval     true  Control of the TXD pin is enabled
  *  @retval     false Control of the TXD pin is disabled
  */
-__STATIC_INLINE bool DL_UART_isTransmitPinManualControlEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isTransmitPinManualControlEnabled(
+    const UART_Regs *uart)
 {
     return ((uart->CTL0 & UART_CTL0_TXD_OUT_EN_MASK) ==
             UART_CTL0_TXD_OUT_EN_ENABLE);
@@ -1174,7 +1197,7 @@ __STATIC_INLINE void DL_UART_setTransmitPinManualOutput(
  *  @retval     One of @ref DL_UART_TXD_OUT
  */
 __STATIC_INLINE DL_UART_TXD_OUT DL_UART_getTransmitPinManualOutput(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     uint32_t txdOutVal = uart->CTL0 & UART_CTL0_TXD_OUT_MASK;
 
@@ -1211,7 +1234,7 @@ __STATIC_INLINE void DL_UART_disableManchesterEncoding(UART_Regs *uart)
  *  @retval     true  Manchester encoding is enabled
  *  @retval     false Manchester encoding is disabled
  */
-__STATIC_INLINE bool DL_UART_isManchesterEncodingEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isManchesterEncodingEnabled(const UART_Regs *uart)
 {
     return ((uart->CTL0 & UART_CTL0_MENC_MASK) == UART_CTL0_MENC_ENABLE);
 }
@@ -1243,7 +1266,8 @@ __STATIC_INLINE void DL_UART_setCommunicationMode(
  *
  *  @retval     One of @ref DL_UART_MODE
  */
-__STATIC_INLINE DL_UART_MODE DL_UART_getCommunicationMode(UART_Regs *uart)
+__STATIC_INLINE DL_UART_MODE DL_UART_getCommunicationMode(
+    const UART_Regs *uart)
 {
     uint32_t mode = uart->CTL0 & UART_CTL0_MODE_MASK;
 
@@ -1279,7 +1303,8 @@ __STATIC_INLINE void DL_UART_setFlowControl(
  *
  *  @retval     One of @ref DL_UART_FLOW_CONTROL values
  */
-__STATIC_INLINE DL_UART_FLOW_CONTROL DL_UART_getFlowControl(UART_Regs *uart)
+__STATIC_INLINE DL_UART_FLOW_CONTROL DL_UART_getFlowControl(
+    const UART_Regs *uart)
 {
     uint32_t config =
         uart->CTL0 & (UART_CTL0_RTSEN_MASK | UART_CTL0_CTSEN_MASK);
@@ -1332,7 +1357,7 @@ __STATIC_INLINE void DL_UART_setRTSOutput(UART_Regs *uart, DL_UART_RTS val)
  *
  *  @sa         DL_UART_setTXFIFOThreshold
  */
-__STATIC_INLINE DL_UART_RTS DL_UART_getRTSOutput(UART_Regs *uart)
+__STATIC_INLINE DL_UART_RTS DL_UART_getRTSOutput(const UART_Regs *uart)
 {
     uint32_t val = uart->CTL0 & UART_CTL0_RTS_MASK;
 
@@ -1386,7 +1411,7 @@ __STATIC_INLINE void DL_UART_disableFIFOs(UART_Regs *uart)
  *  @retval     true  FIFOs are enabled
  *  @retval     false FIFOs are disabled
  */
-__STATIC_INLINE bool DL_UART_isFIFOsEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isFIFOsEnabled(const UART_Regs *uart)
 {
     return ((uart->CTL0 & UART_CTL0_FEN_MASK) == UART_CTL0_FEN_ENABLE);
 }
@@ -1428,7 +1453,7 @@ __STATIC_INLINE void DL_UART_disableLINSendBreak(UART_Regs *uart)
  *  @retval     true  Send break is enabled
  *  @retval     false Send break is disabled
  */
-__STATIC_INLINE bool DL_UART_isLINSendBreakEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isLINSendBreakEnabled(const UART_Regs *uart)
 {
     return ((uart->LCRH & UART_LCRH_BRK_MASK) == UART_LCRH_BRK_ENABLE);
 }
@@ -1443,7 +1468,7 @@ __STATIC_INLINE bool DL_UART_isLINSendBreakEnabled(UART_Regs *uart)
  *  @retval     true  Parity is enabled
  *  @retval     false Parity is disabled
  */
-__STATIC_INLINE bool DL_UART_isParityEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isParityEnabled(const UART_Regs *uart)
 {
     return ((uart->LCRH & UART_LCRH_PEN_MASK) == UART_LCRH_PEN_ENABLE);
 }
@@ -1479,7 +1504,7 @@ __STATIC_INLINE void DL_UART_setParityMode(
  *  @retval     One of @ref DL_UART_PARITY
  *
  */
-__STATIC_INLINE DL_UART_PARITY DL_UART_getParityMode(UART_Regs *uart)
+__STATIC_INLINE DL_UART_PARITY DL_UART_getParityMode(const UART_Regs *uart)
 {
     uint32_t parity = uart->LCRH & (UART_LCRH_PEN_MASK | UART_LCRH_EPS_MASK |
                                        UART_LCRH_SPS_MASK);
@@ -1513,7 +1538,7 @@ __STATIC_INLINE void DL_UART_setStopBits(
  *
  *  @retval     One of @ref DL_UART_STOP_BITS
  */
-__STATIC_INLINE DL_UART_STOP_BITS DL_UART_getStopBits(UART_Regs *uart)
+__STATIC_INLINE DL_UART_STOP_BITS DL_UART_getStopBits(const UART_Regs *uart)
 {
     uint32_t numStopBits = uart->LCRH & UART_LCRH_STP2_MASK;
 
@@ -1543,7 +1568,8 @@ __STATIC_INLINE void DL_UART_setWordLength(
  *
  *  @retval     One of @ref DL_UART_WORD_LENGTH
  */
-__STATIC_INLINE DL_UART_WORD_LENGTH DL_UART_getWordLength(UART_Regs *uart)
+__STATIC_INLINE DL_UART_WORD_LENGTH DL_UART_getWordLength(
+    const UART_Regs *uart)
 {
     uint32_t wordLength = uart->LCRH & UART_LCRH_WLEN_MASK;
 
@@ -1583,7 +1609,7 @@ __STATIC_INLINE void DL_UART_disableSendIdlePattern(UART_Regs *uart)
  *  @retval     true  Send idle pattern is enabled
  *  @retval     false Send idle pattern is disabled
  */
-__STATIC_INLINE bool DL_UART_isSendIdlePatternEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isSendIdlePatternEnabled(const UART_Regs *uart)
 {
     return (
         (uart->LCRH & UART_LCRH_SENDIDLE_MASK) == UART_LCRH_SENDIDLE_ENABLE);
@@ -1616,7 +1642,7 @@ __STATIC_INLINE void DL_UART_setExternalDriverSetup(
  *
  *  @retval     0 - 31 The number of UARTclk ticks
  */
-__STATIC_INLINE uint32_t DL_UART_getExternalDriverSetup(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getExternalDriverSetup(const UART_Regs *uart)
 {
     return ((uart->LCRH &
              UART_LCRH_EXTDIR_SETUP_MASK >> UART_LCRH_EXTDIR_SETUP_OFS));
@@ -1652,7 +1678,7 @@ __STATIC_INLINE void DL_UART_setExternalDriverHold(
  *
  *  @retval     0 - 31 The number of UARTclk ticks
  */
-__STATIC_INLINE uint32_t DL_UART_getExternalDriverHold(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getExternalDriverHold(const UART_Regs *uart)
 {
     return ((
         uart->LCRH & UART_LCRH_EXTDIR_HOLD_MASK >> UART_LCRH_EXTDIR_HOLD_OFS));
@@ -1677,7 +1703,7 @@ __STATIC_INLINE uint32_t DL_UART_getExternalDriverHold(UART_Regs *uart)
  *  @retval     false  The UART is not busy
  *
  */
-__STATIC_INLINE bool DL_UART_isBusy(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isBusy(const UART_Regs *uart)
 {
     return ((uart->STAT & UART_STAT_BUSY_MASK) == UART_STAT_BUSY_SET);
 }
@@ -1697,7 +1723,7 @@ __STATIC_INLINE bool DL_UART_isBusy(UART_Regs *uart)
  *
  *  @sa         DL_UART_enableFIFOs
  */
-__STATIC_INLINE bool DL_UART_isRXFIFOEmpty(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isRXFIFOEmpty(const UART_Regs *uart)
 {
     return ((uart->STAT & UART_STAT_RXFE_MASK) == UART_STAT_RXFE_SET);
 }
@@ -1718,7 +1744,7 @@ __STATIC_INLINE bool DL_UART_isRXFIFOEmpty(UART_Regs *uart)
  *
  *  @sa         DL_UART_enableFIFOs
  */
-__STATIC_INLINE bool DL_UART_isRXFIFOFull(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isRXFIFOFull(const UART_Regs *uart)
 {
     return ((uart->STAT & UART_STAT_RXFF_MASK) == UART_STAT_RXFF_SET);
 }
@@ -1738,7 +1764,7 @@ __STATIC_INLINE bool DL_UART_isRXFIFOFull(UART_Regs *uart)
  *
  *  @sa         DL_UART_enableFIFOs
  */
-__STATIC_INLINE bool DL_UART_isTXFIFOEmpty(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isTXFIFOEmpty(const UART_Regs *uart)
 {
     return ((uart->STAT & UART_STAT_TXFE_MASK) == UART_STAT_TXFE_SET);
 }
@@ -1759,7 +1785,7 @@ __STATIC_INLINE bool DL_UART_isTXFIFOEmpty(UART_Regs *uart)
  *
  *  @sa         DL_UART_enableFIFOs
  */
-__STATIC_INLINE bool DL_UART_isTXFIFOFull(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isTXFIFOFull(const UART_Regs *uart)
 {
     return ((uart->STAT & UART_STAT_TXFF_MASK) == UART_STAT_TXFF_SET);
 }
@@ -1776,7 +1802,7 @@ __STATIC_INLINE bool DL_UART_isTXFIFOFull(UART_Regs *uart)
  *
  *  @sa         DL_UART_isClearToSendEnabled
  */
-__STATIC_INLINE bool DL_UART_isClearToSend(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isClearToSend(const UART_Regs *uart)
 {
     return ((uart->STAT & UART_STAT_CTS_MASK) == UART_STAT_CTS_SET);
 }
@@ -1797,7 +1823,7 @@ __STATIC_INLINE bool DL_UART_isClearToSend(UART_Regs *uart)
  *  @retval     false Idle has not been detected before last received character
  *
  */
-__STATIC_INLINE bool DL_UART_isIdleModeDetected(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isIdleModeDetected(const UART_Regs *uart)
 {
     return ((uart->STAT & UART_STAT_IDLE_MASK) == UART_STAT_IDLE_SET);
 }
@@ -1835,7 +1861,7 @@ __STATIC_INLINE void DL_UART_setTXFIFOThreshold(
  *  @retval     One of @ref DL_UART_TX_FIFO_LEVEL
  */
 __STATIC_INLINE DL_UART_TX_FIFO_LEVEL DL_UART_getTXFIFOThreshold(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     uint32_t threshold = uart->IFLS & UART_IFLS_TXIFLSEL_MASK;
 
@@ -1871,7 +1897,7 @@ __STATIC_INLINE void DL_UART_setRXFIFOThreshold(
  *  @retval     One of @ref DL_UART_RX_FIFO_LEVEL
  */
 __STATIC_INLINE DL_UART_RX_FIFO_LEVEL DL_UART_getRXFIFOThreshold(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     uint32_t threshold = uart->IFLS & UART_IFLS_RXIFLSEL_MASK;
 
@@ -1906,7 +1932,7 @@ __STATIC_INLINE void DL_UART_setRXInterruptTimeout(
  *  @retval     0 - 15  The RX interrupt timeout value
  *
  */
-__STATIC_INLINE uint32_t DL_UART_getRXInterruptTimeout(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getRXInterruptTimeout(const UART_Regs *uart)
 {
     return ((uart->IFLS & UART_IFLS_RXTOSEL_MASK) >> UART_IFLS_RXTOSEL_OFS);
 }
@@ -1920,7 +1946,8 @@ __STATIC_INLINE uint32_t DL_UART_getRXInterruptTimeout(UART_Regs *uart)
  *
  *  @retval     0 - 65535 The integer baud date divisor
  */
-__STATIC_INLINE uint32_t DL_UART_getIntegerBaudRateDivisor(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getIntegerBaudRateDivisor(
+    const UART_Regs *uart)
 {
     return (uart->IBRD & UART_IBRD_DIVINT_MASK);
 }
@@ -1934,7 +1961,8 @@ __STATIC_INLINE uint32_t DL_UART_getIntegerBaudRateDivisor(UART_Regs *uart)
  *
  *  @retval     0 - 63  The fractional baud date divisor
  */
-__STATIC_INLINE uint32_t DL_UART_getFractionalBaudRateDivisor(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getFractionalBaudRateDivisor(
+    const UART_Regs *uart)
 {
     return (uart->FBRD & UART_FBRD_DIVFRAC_MASK);
 }
@@ -2034,7 +2062,7 @@ __STATIC_INLINE void DL_UART_setDigitalPulseWidth(
  *  @retval     0 indicating digital glitch suppression is disabled
  *  @retval     1 - 63 the digital glitch suppression pulse width
  */
-__STATIC_INLINE uint32_t DL_UART_getDigitalPulseWidth(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getDigitalPulseWidth(const UART_Regs *uart)
 {
     return (uart->GFCTL & UART_GFCTL_DGFSEL_MASK);
 }
@@ -2069,6 +2097,10 @@ __STATIC_INLINE void DL_UART_transmitData(UART_Regs *uart, uint8_t data)
  *  already sure the RX FIFO has data available. See related APIs for
  *  additional receive options.
  *
+ *  @note:      As a result of reading the RX FIFO data, the corresponding
+ *              error status in the RXDATA register (OVRERR, BRKERR, PARERR,
+ *              FRMERR bits) will be dropped.
+ *
  *  @param[in]  uart  Pointer to the register overlay for the peripheral
  *
  *  @return     The data in the RX FIFO
@@ -2076,13 +2108,16 @@ __STATIC_INLINE void DL_UART_transmitData(UART_Regs *uart, uint8_t data)
  *  @sa         DL_UART_receiveDataBlocking
  *  @sa         DL_UART_receiveDataCheck
  */
-__STATIC_INLINE uint8_t DL_UART_receiveData(UART_Regs *uart)
+__STATIC_INLINE uint8_t DL_UART_receiveData(const UART_Regs *uart)
 {
     return ((uint8_t)(uart->RXDATA & UART_RXDATA_DATA_MASK));
 }
 
 /**
  *  @brief      Gets the status of the error flags of the received data
+ *
+ *  @note:      As a result of reading the error status, the corresponding
+ *              RX FIFO data in the RXDATA.DATA bit field will be dropped.
  *
  *  @param[in]  uart       Pointer to the register overlay for the peripheral
  *  @param[in]  errorMask  Bit mask of error flags to check. Bitwise OR of
@@ -2093,7 +2128,7 @@ __STATIC_INLINE uint8_t DL_UART_receiveData(UART_Regs *uart)
  *  @retval     Bitwise OR of @ref DL_UART_ERROR values
  */
 __STATIC_INLINE uint32_t DL_UART_getErrorStatus(
-    UART_Regs *uart, uint32_t errorMask)
+    const UART_Regs *uart, uint32_t errorMask)
 {
     return (uart->RXDATA & errorMask);
 }
@@ -2126,7 +2161,7 @@ __STATIC_INLINE void DL_UART_setLINCounterValue(
  *  @retval     0 - 65535  The clock counter value
  *
  */
-__STATIC_INLINE uint16_t DL_UART_getLINCounterValue(UART_Regs *uart)
+__STATIC_INLINE uint16_t DL_UART_getLINCounterValue(const UART_Regs *uart)
 {
     return ((uint16_t)(uart->LINCNT & UART_LINCNT_VALUE_MASK));
 }
@@ -2153,7 +2188,7 @@ __STATIC_INLINE void DL_UART_enableLINCounter(UART_Regs *uart)
  *  @retval     true   LIN counter is enabled
  *  @retval     false  LIN counter is disabled
  */
-__STATIC_INLINE bool DL_UART_isLINCounterEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isLINCounterEnabled(const UART_Regs *uart)
 {
     return (
         (uart->LINCTL & UART_LINCTL_CTRENA_MASK) == UART_LINCTL_CTRENA_ENABLE);
@@ -2199,7 +2234,8 @@ __STATIC_INLINE void DL_UART_enableLINCounterClearOnFallingEdge(
  *  @retval     true   Counting on falling edge is enabled
  *  @retval     false  Counting on falling edge is disabled
  */
-__STATIC_INLINE bool DL_UART_isLINCounterClearOnFallingEdge(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isLINCounterClearOnFallingEdge(
+    const UART_Regs *uart)
 {
     return (
         (uart->LINCTL & UART_LINCTL_ZERONE_MASK) == UART_LINCTL_ZERONE_ENABLE);
@@ -2241,7 +2277,7 @@ __STATIC_INLINE void DL_UART_enableLINCountWhileLow(UART_Regs *uart)
  *  @retval     true   Counter increments while RXD signal is low is enabled
  *  @retval     false  Counter increments while RXD signal is low is disabled
  */
-__STATIC_INLINE bool DL_UART_isLINCountWhileLowEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isLINCountWhileLowEnabled(const UART_Regs *uart)
 {
     return ((uart->LINCTL & UART_LINCTL_CNTRXLOW_MASK) ==
             UART_LINCTL_CNTRXLOW_ENABLE);
@@ -2288,7 +2324,8 @@ __STATIC_INLINE void DL_UART_enableLINFallingEdgeCapture(UART_Regs *uart)
  *  @retval     true   Capture to LINC0 on falling RXD edge is enabled
  *  @retval     false  Capture to LINC0 on falling RXD edge is disabled
  */
-__STATIC_INLINE bool DL_UART_isLINFallingEdgeCaptureEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isLINFallingEdgeCaptureEnabled(
+    const UART_Regs *uart)
 {
     return ((uart->LINCTL & UART_LINCTL_LINC0CAP_MASK) ==
             UART_LINCTL_LINC0CAP_ENABLE);
@@ -2328,7 +2365,8 @@ __STATIC_INLINE void DL_UART_enableLINRisingEdgeCapture(UART_Regs *uart)
  *  @retval     true   Capture to LINC1 on rising RXD edge is enabled
  *  @retval     false  Capture to LINC1 on rising RXD edge is disabled
  */
-__STATIC_INLINE bool DL_UART_isLINRisingEdgeCaptureEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isLINRisingEdgeCaptureEnabled(
+    const UART_Regs *uart)
 {
     return ((uart->LINCTL & UART_LINCTL_LINC1CAP_MASK) ==
             UART_LINCTL_LINC1CAP_ENABLE);
@@ -2404,7 +2442,8 @@ __STATIC_INLINE void DL_UART_enableLINReceptionCountControl(UART_Regs *uart)
  *  @retval     true   LIN counter compare match mode is enabled
  *  @retval     false  LIN counter compare match mode is disabled
  */
-__STATIC_INLINE bool DL_UART_isLINCounterCompareMatchEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isLINCounterCompareMatchEnabled(
+    const UART_Regs *uart)
 {
     return ((uart->LINCTL & UART_LINCTL_LINC0_MATCH_MASK) ==
             UART_LINCTL_LINC0_MATCH_ENABLE);
@@ -2457,7 +2496,8 @@ __STATIC_INLINE void DL_UART_setLINCounterCompareValue(
  *  @sa  DL_UART_enableLINFallingEdgeCapture
  *  @sa  DL_UART_enableLINCounterCompareMatch
  */
-__STATIC_INLINE uint16_t DL_UART_getLINFallingEdgeCaptureValue(UART_Regs *uart)
+__STATIC_INLINE uint16_t DL_UART_getLINFallingEdgeCaptureValue(
+    const UART_Regs *uart)
 {
     return ((uint16_t)(uart->LINC0 & UART_LINC0_DATA_MASK));
 }
@@ -2476,7 +2516,8 @@ __STATIC_INLINE uint16_t DL_UART_getLINFallingEdgeCaptureValue(UART_Regs *uart)
  *
  *  @sa  DL_UART_enableLINRisingEdgeCapture
  */
-__STATIC_INLINE uint16_t DL_UART_getLINRisingEdgeCaptureValue(UART_Regs *uart)
+__STATIC_INLINE uint16_t DL_UART_getLINRisingEdgeCaptureValue(
+    const UART_Regs *uart)
 {
     return ((uint16_t)(uart->LINC1 & UART_LINC1_DATA_MASK));
 }
@@ -2501,7 +2542,7 @@ __STATIC_INLINE void DL_UART_enableIrDAMode(UART_Regs *uart)
  *  @retval     true   IrDA mode is enabled
  *  @retval     false  IrDA mode is disabled
  */
-__STATIC_INLINE bool DL_UART_isIrDAModeEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isIrDAModeEnabled(const UART_Regs *uart)
 {
     return ((uart->IRCTL & UART_IRCTL_IREN_MASK) == UART_IRCTL_IREN_ENABLE);
 }
@@ -2541,7 +2582,7 @@ __STATIC_INLINE void DL_UART_setIrDATXPulseClockSelect(
  *
  */
 __STATIC_INLINE DL_UART_IRDA_CLOCK DL_UART_getIrDATXPulseClockSelect(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     uint32_t uartClock = uart->IRCTL & UART_IRCTL_IRTXCLK_MASK;
 
@@ -2593,7 +2634,7 @@ void DL_UART_setIrDAPulseLength(
  *
  *  @retval     0 - 63  The IrDA transmit pulse length
  */
-__STATIC_INLINE uint32_t DL_UART_getIrDATXPulseLength(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getIrDATXPulseLength(const UART_Regs *uart)
 {
     return (uart->IRCTL & UART_IRCTL_IRTXPL_MASK);
 }
@@ -2622,7 +2663,7 @@ __STATIC_INLINE void DL_UART_setIrDARXPulsePolarity(
  *  @retval     One of @ref DL_UART_IRDA_POLARITY
  */
 __STATIC_INLINE DL_UART_IRDA_POLARITY DL_UART_getIrDARXPulsePolarity(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     uint32_t polarity = uart->IRCTL & UART_IRCTL_IRRXPL_MASK;
 
@@ -2671,7 +2712,7 @@ __STATIC_INLINE void DL_UART_setAddressMask(
  *  @retval     0-255  The address mask
  *
  */
-__STATIC_INLINE uint32_t DL_UART_getAddressMask(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getAddressMask(const UART_Regs *uart)
 {
     return (uart->AMASK & UART_AMASK_VALUE_MASK);
 }
@@ -2711,7 +2752,7 @@ __STATIC_INLINE void DL_UART_setAddress(UART_Regs *uart, uint32_t address)
  *  @retval     0-255  The address being used
  *
  */
-__STATIC_INLINE uint32_t DL_UART_getAddress(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getAddress(const UART_Regs *uart)
 {
     return (uart->ADDR & UART_ADDR_VALUE_MASK);
 }
@@ -2757,7 +2798,7 @@ __STATIC_INLINE void DL_UART_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_UART_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_UART_getEnabledInterrupts(
-    UART_Regs *uart, uint32_t interruptMask)
+    const UART_Regs *uart, uint32_t interruptMask)
 {
     return (uart->CPU_INT.IMASK & interruptMask);
 }
@@ -2780,7 +2821,7 @@ __STATIC_INLINE uint32_t DL_UART_getEnabledInterrupts(
  *  @sa         DL_UART_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_UART_getEnabledInterruptStatus(
-    UART_Regs *uart, uint32_t interruptMask)
+    const UART_Regs *uart, uint32_t interruptMask)
 {
     return (uart->CPU_INT.MIS & interruptMask);
 }
@@ -2801,7 +2842,7 @@ __STATIC_INLINE uint32_t DL_UART_getEnabledInterruptStatus(
  *  @retval     Bitwise OR of @ref DL_UART_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_UART_getRawInterruptStatus(
-    UART_Regs *uart, uint32_t interruptMask)
+    const UART_Regs *uart, uint32_t interruptMask)
 {
     return (uart->CPU_INT.RIS & interruptMask);
 }
@@ -2819,7 +2860,7 @@ __STATIC_INLINE uint32_t DL_UART_getRawInterruptStatus(
  *
  *  @retval     TBD
  */
-__STATIC_INLINE DL_UART_IIDX DL_UART_getPendingInterrupt(UART_Regs *uart)
+__STATIC_INLINE DL_UART_IIDX DL_UART_getPendingInterrupt(const UART_Regs *uart)
 {
     return (DL_UART_IIDX)(uart->CPU_INT.IIDX);
 }
@@ -2892,7 +2933,7 @@ __STATIC_INLINE void DL_UART_disableAnalogGlitchFilter(UART_Regs *uart)
  * @return true   if analog glitch filter is enabled
  * @return false  if analog glitch filter is disabled
  */
-__STATIC_INLINE bool DL_UART_isAnalogGlitchFilterEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isAnalogGlitchFilterEnabled(const UART_Regs *uart)
 {
     return ((uart->GFCTL & UART_GFCTL_AGFEN_MASK) == UART_GFCTL_AGFEN_ENABLE);
 }
@@ -2931,7 +2972,8 @@ __STATIC_INLINE void DL_UART_disableGlitchFilterChaining(UART_Regs *uart)
  * @return true   if glitch filter chaining is enabled
  * @return false  if glitch filter chaining is disabled
  */
-__STATIC_INLINE bool DL_UART_isGlitchFilterChainingEnabled(UART_Regs *uart)
+__STATIC_INLINE bool DL_UART_isGlitchFilterChainingEnabled(
+    const UART_Regs *uart)
 {
     return ((uart->GFCTL & UART_GFCTL_CHAIN_MASK) == UART_GFCTL_CHAIN_ENABLED);
 }
@@ -2971,7 +3013,7 @@ __STATIC_INLINE void DL_UART_setAnalogPulseWidth(
 
  */
 __STATIC_INLINE DL_UART_PULSE_WIDTH DL_UART_getAnalogPulseWidth(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     uint32_t pulseWidth = uart->GFCTL & UART_GFCTL_AGFSEL_MASK;
 
@@ -3004,6 +3046,10 @@ void DL_UART_transmitDataBlocking(UART_Regs *uart, uint8_t data);
  *
  *  Can be used for any data transfers that are less than or equal to 8 bits.
  *
+ *  @note:      As a result of reading the RX FIFO data, the corresponding
+ *              error status in the RXDATA register (OVRERR, BRKERR, PARERR,
+ *              FRMERR bits) will be dropped.
+ *
  *  @param[in]  uart  pointer to the register overlay for the peripheral
  *
  *  @return     The data in the RX FIFO
@@ -3011,7 +3057,7 @@ void DL_UART_transmitDataBlocking(UART_Regs *uart, uint8_t data);
  *  @sa         DL_UART_transmitData
  *  @sa         DL_UART_transmitDataCheck
  */
-uint8_t DL_UART_receiveDataBlocking(UART_Regs *uart);
+uint8_t DL_UART_receiveDataBlocking(const UART_Regs *uart);
 
 /**
  *  @brief      Checks the TX FIFO before trying to transmit data
@@ -3044,6 +3090,10 @@ bool DL_UART_transmitDataCheck(UART_Regs *uart, uint8_t data);
  *
  *  Can be used for any data transfers that are less than or equal to 8 bits.
  *
+ *  @note:      As a result of reading the RX FIFO data, the corresponding
+ *              error status in the RXDATA register (OVRERR, BRKERR, PARERR,
+ *              FRMERR bits) will be dropped.
+ *
  *  @param[in]  uart   pointer to the register overlay for the peripheral
  *  @param[in]  buffer a buffer to write the received data into
  *
@@ -3055,7 +3105,7 @@ bool DL_UART_transmitDataCheck(UART_Regs *uart, uint8_t data);
  *  @sa         DL_UART_receiveData
  *  @sa         DL_UART_receiveDataBlocking
  */
-bool DL_UART_receiveDataCheck(UART_Regs *uart, uint8_t *buffer);
+bool DL_UART_receiveDataCheck(const UART_Regs *uart, uint8_t *buffer);
 
 /**
  *  @brief       Read all available data out of the RX FIFO using 8 bit access
@@ -3067,7 +3117,7 @@ bool DL_UART_receiveDataCheck(UART_Regs *uart, uint8_t *buffer);
  *  @return      Number of bytes read from the RX FIFO
  */
 uint32_t DL_UART_drainRXFIFO(
-    UART_Regs *uart, uint8_t *buffer, uint32_t maxCount);
+    const UART_Regs *uart, uint8_t *buffer, uint32_t maxCount);
 
 /**
  *  @brief      Fill the TX FIFO until full using 8 bit access
@@ -3081,7 +3131,8 @@ uint32_t DL_UART_drainRXFIFO(
  *
  *  @return     Number of bytes written to the TX FIFO
  */
-uint32_t DL_UART_fillTXFIFO(UART_Regs *uart, uint8_t *buffer, uint32_t count);
+uint32_t DL_UART_fillTXFIFO(
+    UART_Regs *uart, const uint8_t *buffer, uint32_t count);
 
 /**
  *  @brief      Enable UART interrupt for triggering the DMA receive event
@@ -3175,7 +3226,7 @@ __STATIC_INLINE void DL_UART_disableDMATransmitEvent(UART_Regs *uart)
  *  @retval     One of @ref DL_UART_DMA_INTERRUPT_RX
  */
 __STATIC_INLINE uint32_t DL_UART_getEnabledDMAReceiveEvent(
-    UART_Regs *uart, uint32_t interruptMask)
+    const UART_Regs *uart, uint32_t interruptMask)
 {
     return (uart->DMA_TRIG_RX.IMASK & interruptMask);
 }
@@ -3193,7 +3244,8 @@ __STATIC_INLINE uint32_t DL_UART_getEnabledDMAReceiveEvent(
  *
  *  @retval     DL_UART_DMA_INTERRUPT_TX if enabled, 0 if not enabled
  */
-__STATIC_INLINE uint32_t DL_UART_getEnabledDMATransmitEvent(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getEnabledDMATransmitEvent(
+    const UART_Regs *uart)
 {
     return (uart->DMA_TRIG_TX.IMASK & UART_DMA_TRIG_TX_IMASK_TXINT_MASK);
 }
@@ -3218,7 +3270,7 @@ __STATIC_INLINE uint32_t DL_UART_getEnabledDMATransmitEvent(UART_Regs *uart)
  *  @sa         DL_UART_enableDMAReceiveEvent
  */
 __STATIC_INLINE uint32_t DL_UART_getEnabledDMAReceiveEventStatus(
-    UART_Regs *uart, uint32_t interruptMask)
+    const UART_Regs *uart, uint32_t interruptMask)
 {
     return (uart->DMA_TRIG_RX.MIS & interruptMask);
 }
@@ -3241,7 +3293,7 @@ __STATIC_INLINE uint32_t DL_UART_getEnabledDMAReceiveEventStatus(
  *  @sa         DL_UART_enableDMATransmitEvent
  */
 __STATIC_INLINE uint32_t DL_UART_getEnabledDMATransmitEventStatus(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     return (uart->DMA_TRIG_TX.MIS & UART_DMA_TRIG_TX_MIS_TXINT_MASK);
 }
@@ -3264,7 +3316,7 @@ __STATIC_INLINE uint32_t DL_UART_getEnabledDMATransmitEventStatus(
  *  @retval     Bitwise OR of @ref DL_UART_DMA_INTERRUPT_RX values
  */
 __STATIC_INLINE uint32_t DL_UART_getRawDMAReceiveEventStatus(
-    UART_Regs *uart, uint32_t interruptMask)
+    const UART_Regs *uart, uint32_t interruptMask)
 {
     return (uart->DMA_TRIG_RX.RIS & interruptMask);
 }
@@ -3284,7 +3336,8 @@ __STATIC_INLINE uint32_t DL_UART_getRawDMAReceiveEventStatus(
  *
  *  @retval     DL_UART_DMA_INTERRUPT_TX if enabled, 0 if not enabled
  */
-__STATIC_INLINE uint32_t DL_UART_getRawDMATransmitEventStatus(UART_Regs *uart)
+__STATIC_INLINE uint32_t DL_UART_getRawDMATransmitEventStatus(
+    const UART_Regs *uart)
 {
     return (uart->DMA_TRIG_TX.RIS & UART_DMA_TRIG_TX_RIS_TXINT_MASK);
 }
@@ -3306,7 +3359,7 @@ __STATIC_INLINE uint32_t DL_UART_getRawDMATransmitEventStatus(UART_Regs *uart)
  *  @retval     One of @ref DL_UART_DMA_IIDX_RX
  */
 __STATIC_INLINE DL_UART_DMA_IIDX_RX DL_UART_getPendingDMAReceiveEvent(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     return (DL_UART_DMA_IIDX_RX)(uart->DMA_TRIG_RX.IIDX);
 }
@@ -3328,7 +3381,7 @@ __STATIC_INLINE DL_UART_DMA_IIDX_RX DL_UART_getPendingDMAReceiveEvent(
  *  @retval     DL_UART_DMA_IIDX_TX if pending, 0 if not pending
  */
 __STATIC_INLINE DL_UART_DMA_IIDX_TX DL_UART_getPendingDMATransmitEvent(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     return (DL_UART_DMA_IIDX_TX)(uart->DMA_TRIG_TX.IIDX);
 }
@@ -3394,7 +3447,7 @@ __STATIC_INLINE void DL_UART_setClockDivider2(
  */
 
 __STATIC_INLINE DL_UART_CLOCK_DIVIDE2_RATIO DL_UART_getClockDivider2(
-    UART_Regs *uart)
+    const UART_Regs *uart)
 {
     uint32_t ratio = uart->CLKDIV2;
     return (DL_UART_CLOCK_DIVIDE2_RATIO) ratio;
@@ -3418,7 +3471,7 @@ __STATIC_INLINE DL_UART_CLOCK_DIVIDE2_RATIO DL_UART_getClockDivider2(
  *
  */
 bool DL_UART_Main_saveConfiguration(
-    UART_Regs *uart, DL_UART_Main_backupConfig *ptr);
+    const UART_Regs *uart, DL_UART_Main_backupConfig *ptr);
 
 /**
  *  @brief      Restore UART Main configuration after leaving a power loss state.
@@ -3461,7 +3514,7 @@ bool DL_UART_Main_restoreConfiguration(
  *
  */
 bool DL_UART_Extend_saveConfiguration(
-    UART_Regs *uart, DL_UART_Extend_backupConfig *ptr);
+    const UART_Regs *uart, DL_UART_Extend_backupConfig *ptr);
 
 /**
  *  @brief      Restore UART Extend configuration after leaving a power loss

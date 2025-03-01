@@ -206,6 +206,7 @@ typedef enum IRQn
 #define __MSPM0_HAS_WWDT__
 
 #define __MSPM0_HAS_ECC__
+#define __MSPM0_HAS_LEGACY_ADC_REFERENCE__ 
 
 /*@}*/ /* end of group MSPM0G110X_Peripherals */
 

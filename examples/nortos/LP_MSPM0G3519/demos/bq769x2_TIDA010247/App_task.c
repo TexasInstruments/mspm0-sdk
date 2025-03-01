@@ -39,41 +39,42 @@
 /******************************************************************
  * Variables:
  */
-volatile uint8_t Working_mode     = 3;
+volatile uint8_t Working_mode = 3;
+volatile uint8_t FET_TEST     = 0;
+
 volatile uint32_t Systick_counter = 1;
-volatile bool gWAKEINMCU          = false;
-volatile bool gCANIDSet           = false;
-volatile bool gTIMER0             = false;
-volatile bool gTOP_Volt_Updated   = false;
-volatile bool gBOT_Volt_Updated   = false;
-volatile bool Temp_polling;
-volatile uint8_t FET_TEST          = 0;
-volatile uint8_t BOTFULLSCANCycle  = 0;
-volatile uint8_t BOTFULLSCANCycle2 = 0;
-volatile uint8_t TOPFULLSCANCycle  = 0;
-volatile uint8_t TOPFULLSCANCycle2 = 0;
-volatile uint16_t gADCResult;
-volatile uint16_t BOTBatteryStatus  = 0x00;
-volatile uint16_t BOTProtectionFlag = 0x00;
-volatile uint16_t TOPBatteryStatus  = 0x00;
-volatile uint16_t TOPProtectionFlag = 0x00;
 
-extern uint16_t AlarmBits;
-extern uint8_t TOP_FULLSCAN;
-extern uint8_t BOT_FULLSCAN;
-extern uint8_t TOP_ADCSCAN;
-extern uint8_t BOT_ADCSCAN;
+volatile bool gWAKEINMCU = false;
+volatile bool gCANIDSet  = false;
+volatile bool gTIMER0    = false;
 
-uint16_t TOPStack_Voltage   = 0x00;
-uint16_t TOPPack_Voltage    = 0x00;
-uint16_t TOPLD_Voltage      = 0x00;
-uint16_t BOTStack_Voltage   = 0x00;
-uint16_t BOTPack_Voltage    = 0x00;
-uint16_t BOTLD_Voltage      = 0x00;
-uint16_t cellvoltageholder1 = 0x00;
-uint16_t cellvoltageholder2 = 0x00;
+uint8_t BOTFULLSCANCycle  = 0;
+uint8_t BOTFULLSCANCycle2 = 0;
+uint8_t TOPFULLSCANCycle  = 0;
+uint8_t TOPFULLSCANCycle2 = 0;
+uint8_t PASSQ_TIME_MIN    = 0;
+
+uint16_t TOPStack_Voltage = 0x00;
+uint16_t TOPPack_Voltage  = 0x00;
+uint16_t TOPLD_Voltage    = 0x00;
+uint16_t BOTStack_Voltage = 0x00;
+uint16_t BOTPack_Voltage  = 0x00;
+uint16_t BOTLD_Voltage    = 0x00;
+uint16_t gADCResult;
+uint16_t BOTBatteryStatus  = 0x00;
+uint16_t BOTProtectionFlag = 0x00;
+uint16_t TOPBatteryStatus  = 0x00;
+uint16_t TOPProtectionFlag = 0x00;
 
 bool send_success;
+bool PASSQ_read;
+
+uint16_t TopCellVoltage_raw[16] = {0x01, 0x02, 0x03, 0x04, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+uint16_t BotCellVoltage_raw[16] = {0x02, 0x03, 0x04, 0x05, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+uint32_t Qtime_30min[30] = {0x0000};
 /******************************************************************
  * array:
  */
@@ -105,28 +106,27 @@ float TOP_HDQ_Volt[4]   = {0x0000};
 float TOP_DCHG_Volt[4]  = {0x0000};
 float TOP_DDSG_Volt[4]  = {0x0000};
 
+float PASSQ_30min[30] = {0x0000};
+
 float THRM_Coefficients_10k_3V3[5] = {-4.232811E+02, 4.728797E+02,
     -1.988841E+02, 4.869521E+01, -1.158754E+00};  //3V3, 10K, 12bits ADC
 float THRM_Coefficients_18k_1V8[5] = {-4.232811E+02, 4.728797E+02,
     -1.988841E+02, 4.869521E+01, -1.158754E+00};  //1V8, 18k, 16bits ADC
+float Cell_fixed_offset_LFP[16]    = {-0.6, -0.8, -0.8, -0.8, -0.5, -0.6, -0.6,
+    -0.6, -0.3, -0.4, -0.1, -0.1, -1.3, -1.1, -1.2, -0.7};
+float TopCellVoltage_cali[16]      = {0x00};
+float BotCellVoltage_cali[16]      = {0x00};
+float THRM_Res_L_Table_1V8_18k[166][2] = {0x00};
+
 float TMP61_MCU;
 float TMP61_MCU_filtered;
-extern float THRM_Coefficients_10k_3V3[5];
-
-float Cell_fixed_offset_LFP[16] = {-0.6, -0.8, -0.8, -0.8, -0.5, -0.6, -0.6,
-    -0.6, -0.3, -0.4, -0.1, -0.1, -1.3, -1.1, -1.2, -0.7};
-float TopCellVoltage_cali[16]   = {0x00};
-float BotCellVoltage_cali[16]   = {0x00};
-float THRM_Res_L_Table_1V8_18k[166][2] = {0x00};
-uint16_t TopCellVoltage_raw[16] = {0x01, 0x02, 0x03, 0x04, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-uint16_t BotCellVoltage_raw[16] = {0x02, 0x03, 0x04, 0x05, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+float inttemp;
+float BOTCFETTEMP;
 
 /******************************************************************
  * Functions:
  */
-float inttemp;
+
 void BMU_Normal_Mode(void)
 {
     //In Normal Mode, refresh 32s cells voltage, battery voltage, pack voltage, 32 PTCs temperature and pack current every 100ms and transmit it out through RS485/CAN
@@ -147,11 +147,18 @@ void BMU_Normal_Mode(void)
     {
         Working_mode = Shutdown_mode;
     }
+
+#if Current_Calibration
+    BQ769x2_Current_BoardOffset_Calibration();
+    BQ769x2_Current_Gain_Calibration();
+#else
 #if !TMP_MUX_Enabled
     BatteryDataUpdate_32s();
 #else
     Temp_Mux_Polling();
 #endif
+#endif
+
     if (Systick_counter % 10 == 0)  // run every 1s
     {
         if (send_success) {
@@ -164,6 +171,26 @@ void BMU_Normal_Mode(void)
     } else {
         send_success = true;
     }
+
+    if (Systick_counter % 600 == 0)  // run every 1min
+    {
+        if (PASSQ_read) {
+            I2C_TARGET_ADDRESS = BOTAFE_I2C_ADDR;
+            BQ769x2_ReadPassQ();
+            PASSQ_read = false;
+
+            PASSQ_30min[PASSQ_TIME_MIN] = PASS_Q;  //report by mAh
+            Qtime_30min[PASSQ_TIME_MIN] =
+                AccumulatedCharge_Time;  // report by second
+            PASSQ_TIME_MIN++;
+            //            if (PASSQ_TIME_MIN == 30) PASSQ_TIME_MIN = 0;
+            if (PASSQ_TIME_MIN == 30)
+                while (1)
+                    ;  //Stop at 30min
+        }
+    } else {
+        PASSQ_read = true;
+    }
 }
 
 void BMU_Standby_Mode(void)
@@ -172,7 +199,7 @@ void BMU_Standby_Mode(void)
     DL_GPIO_clearPins(LED_PORT, LED_LED2_Red_PIN);
     DL_GPIO_setPins(
         LED_PORT, LED_LED1_Blue_PIN);  // Set Blue LED to indicate Standby Mode
-    DL_GPIO_clearPins(Power_PORT, Power_Enable_PIN);  // Disable DC/DC
+    DL_GPIO_clearPins(Power_Enable_PORT, Power_Enable_PIN);  // Disable DC/DC
 
     if (Systick_counter % 50 == 0)  //run every 5s
     {
@@ -183,31 +210,6 @@ void BMU_Standby_Mode(void)
         I2C_TARGET_ADDRESS = TOPAFE_I2C_ADDR;
         TOPBatteryStatus   = BQ769x2_ReadBatteryStatus();
         TOPProtectionFlag  = BQ769x2_ReadSafetyStatus();
-
-        //BOT AFE
-        I2C_TARGET_ADDRESS = BOTAFE_I2C_ADDR;
-        BQ769x2_ReadCurrent();  //Update Pack Current,read CC3 average current, default 80 average samples
-        for (int x = 0; x < 16; x++) {  //Reads all cell voltages
-            BotCellVoltage_raw[x] = BQ769x2_ReadVoltage(cellvoltageholder2);
-            BotCellVoltage_cali[x] =
-                BotCellVoltage_raw[x] - Cell_fixed_offset_LFP[x];
-            cellvoltageholder2 = cellvoltageholder2 + 2;
-        }
-        if (cellvoltageholder2 > (Cell16Voltage)) {
-            cellvoltageholder2 = Cell1Voltage;
-        }
-
-        //TOP AFE
-        I2C_TARGET_ADDRESS = TOPAFE_I2C_ADDR;
-        for (int x = 0; x < 16; x++) {  //Reads all cell voltages
-            TopCellVoltage_raw[x] = BQ769x2_ReadVoltage(cellvoltageholder1);
-            TopCellVoltage_cali[x] =
-                TopCellVoltage_raw[x] - Cell_fixed_offset_LFP[x];
-            cellvoltageholder1 = cellvoltageholder1 + 2;
-        }
-        if (cellvoltageholder1 > (Cell16Voltage)) {
-            cellvoltageholder1 = Cell1Voltage;
-        }
     }
 
     if ((BOTBatteryStatus & 0x8000) == 0)  //If BOTAFE exit Sleep mode
@@ -255,7 +257,7 @@ void BMU_Shutdown_Mode(void)
 void BMU_Ship_Mode(void)
 {
     DL_GPIO_clearPins(LED_PORT, LED_LED3_Green_PIN);
-    DL_GPIO_clearPins(Power_PORT, Power_Enable_PIN);  // Disable DC/DC
+    DL_GPIO_clearPins(Power_Enable_PORT, Power_Enable_PIN);  // Disable DC/DC
     DL_GPIO_clearPins(Isolator_PORT, Isolator_EN_PIN);
 
     I2C_TARGET_ADDRESS = TOPAFE_I2C_ADDR;
@@ -275,47 +277,31 @@ void BMU_Latch_Mode(void)
  */
 void BatteryDataUpdate_32s(void)
 {
-    //Update Voltage and Current,take 43ms@100khz I2C, take 19ms @400kHZ I2C
-
-    //BOT AFE
-    I2C_TARGET_ADDRESS = BOTAFE_I2C_ADDR;
+    //Update Voltage and Current,take 13.6ms@400khz I2C
     if (gTIMER0) {
-        DirectCommands(AlarmStatus, 0x0002, W);
+        //        DL_GPIO_setPins(Test_Port_PORT, Test_Port_T1_PIN);
+        //BOT AFE
+        I2C_TARGET_ADDRESS = BOTAFE_I2C_ADDR;
         BQ769x2_ReadCurrent();  //Update Pack Current,read CC3 average current, default 80 average samples
-        for (int x = 0; x < 16; x++) {  //Reads all cell voltages
-            BotCellVoltage_raw[x] = BQ769x2_ReadVoltage(cellvoltageholder2);
+        BQ769x2_ReadAllCellVoltage(BotCellVoltage_raw);
+        for (int x = 0; x < 16; x++) {  //Cali all cell voltages
             BotCellVoltage_cali[x] =
                 BotCellVoltage_raw[x] - Cell_fixed_offset_LFP[x];
-            cellvoltageholder2 = cellvoltageholder2 + 2;
         }
-        if (cellvoltageholder2 > (Cell16Voltage)) {
-            cellvoltageholder2 = Cell1Voltage;
-            gBOT_Volt_Updated  = true;
-        }
-    }
-    if (gBOT_Volt_Updated & gTOP_Volt_Updated) {
-        gTIMER0           = false;
-        gTOP_Volt_Updated = false;
-        gBOT_Volt_Updated = false;
-    }
 
-    //TOP AFE
-    I2C_TARGET_ADDRESS = TOPAFE_I2C_ADDR;
-    if (gTIMER0) {
-        DirectCommands(AlarmStatus, 0x0002, W);
-        for (int x = 0; x < 16; x++) {  //Reads all cell voltages
-            TopCellVoltage_raw[x] = BQ769x2_ReadVoltage(cellvoltageholder1);
+        //TOP AFE
+        I2C_TARGET_ADDRESS = TOPAFE_I2C_ADDR;
+        BQ769x2_ReadAllCellVoltage(TopCellVoltage_raw);
+        for (int x = 0; x < 16; x++) {  //Cali all cell voltages
             TopCellVoltage_cali[x] =
                 TopCellVoltage_raw[x] - Cell_fixed_offset_LFP[x];
-            cellvoltageholder1 = cellvoltageholder1 + 2;
         }
-        if (cellvoltageholder1 > (Cell16Voltage)) {
-            cellvoltageholder1 = Cell1Voltage;
-            gTOP_Volt_Updated  = true;
-        }
+
+        gTIMER0 = false;
+        //        DL_GPIO_clearPins(Test_Port_PORT, Test_Port_T1_PIN);
     }
 
-#if 1
+#if 0
     if (Systick_counter % 5 == 0) {
         I2C_TARGET_ADDRESS = BOTAFE_I2C_ADDR;
         BOTBatteryStatus   = BQ769x2_ReadBatteryStatus();
@@ -383,6 +369,7 @@ void TempDataUpdate_BOT(void)
     BQ769x2_ReadAllTemperature_Count();  //24bit data, LSB=0.358uV
 
     BOT_CFET_Volt[BOTFULLSCANCycle] = CFETOFF_Count * 0.000358;  //report by mV
+    //    BOTCFETTEMP=BQ769x2_ReadTemperature(CFETOFFTemperature);
     BOT_Alert_Volt[BOTFULLSCANCycle] = ALERT_Count * 0.000358;
     BOT_TS3_Volt[BOTFULLSCANCycle]   = TS3_Count * 0.000358;
     BOT_HDQ_Volt[BOTFULLSCANCycle]   = HDQ_Count * 0.000358;
@@ -751,26 +738,31 @@ float IIR_Filtering(int16_t input)
 
 void Variables_Init(void)
 {
-    FET_TEST           = 1;
-    gWAKEINMCU         = false;
-    gCANIDSet          = false;
-    Temp_polling       = false;
-    Systick_counter    = 1;
-    TOPFULLSCANCycle   = 0;
-    TOPFULLSCANCycle2  = 0;
-    BOTFULLSCANCycle   = 0;
-    BOTFULLSCANCycle2  = 0;
-    Working_mode       = Normal_mode;
-    cellvoltageholder1 = Cell1Voltage;  //Cell1Voltage direct command is 0x14
-    cellvoltageholder2 = Cell1Voltage;  //Cell1Voltage direct command is 0x14
+    FET_TEST          = 1;
+    gWAKEINMCU        = false;
+    gCANIDSet         = false;
+    PASSQ_read        = false;
+    Systick_counter   = 1;
+    TOPFULLSCANCycle  = 0;
+    TOPFULLSCANCycle2 = 0;
+    BOTFULLSCANCycle  = 0;
+    BOTFULLSCANCycle2 = 0;
+    PASSQ_TIME_MIN    = 0;
+    Working_mode      = Normal_mode;
 }
 
 void Gpio_Init(void)
 {
-    DL_GPIO_setPins(LED_PORT, LED_LED3_Green_PIN);
-    DL_GPIO_setPins(Power_PORT, Power_Enable_PIN);  // Enable DC/DC
+    DL_GPIO_setPins(Power_Enable_PORT, Power_Enable_PIN);  // Enable DC/DC
+    delayUS(60000);
+    delayUS(60000);  //delay 12ms for start-up
+    DL_GPIO_setPins(
+        Power_UCC_EN2_PORT, Power_UCC_EN2_PIN);  // Enable ISO1640 power
+    DL_GPIO_setPins(
+        Power_UCC_EN1_PORT, Power_UCC_EN1_PIN);  // Enable Communications power
     DL_GPIO_setPins(Isolator_PORT, Isolator_EN_PIN);
     DL_GPIO_setPins(PTC_MCU_PORT, PTC_MCU_En_PIN);  //Enable TMP61 MSMT
+    DL_GPIO_setPins(LED_PORT, LED_LED3_Green_PIN);  //Set Green LED
 
 #if TMP_MUX_Enabled
     DL_GPIO_clearPins(Temp_Inhibit_IN_PORT,

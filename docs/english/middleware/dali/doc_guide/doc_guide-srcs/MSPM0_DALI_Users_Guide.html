@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 DALI User’s Guide &mdash; MSPM0 DALI User&#39;s Guide 1.1.0.x documentation</title>
+  <title>MSPM0 DALI User’s Guide &mdash; MSPM0 DALI User&#39;s Guide 1.2.0.x documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MSPM0 DALI User's Guide
           </a>
               <div class="version">
-                1.1.0.x
+                1.2.0.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -197,7 +197,7 @@
 </li>
 </ul>
 <p>To import the DALI example, select import project in Code Composer Studio(CCS), navigate to the examples folder in the SDK, select DALI, select the MSPM0L folder, and navigate to the ticlang directory. Once imported, you can flash the code onto the device.</p>
-<p>To test this example, attach the DALI 2 Click to the MSPM0 by connecting the RX and TX pins to the appropriate pins on the MSPM0L device, while connecting the 3.3V, 5V, and GND pins on the Click board to the 3.3V, 5V, and GND pins on the MSPM0L1306 LP. Screw in two wires into the screw terminals on the DALI 2 Click, and connect those wires to the corresponding terminal on the Hasseb DALI 2 Controller. Connect the power to the controller, and the USB from the controller to the laptop. Connect the MSPM0L1306 LP to the laptop and flash the example via CCS. Once the example is flashed device is running example, launch the DALI 2 Controller GUI and press initialize. Once a short address, random address, and device type appear, you can begin sending supported/implemented commands to the device. You will see an LED on the device respond to the supported execution commands</p>
+<p>To test this example, attach the DALI 2 Click to the MSPM0 by connecting the RX and TX pins to the appropriate pins on the MSPM0L device, while connecting the 3.3V, 5V, and GND pins on the Click board to the 3.3V, 5V, and GND pins on the Launchpad. Screw in two wires into the screw terminals on the DALI 2 Click, and connect those wires to the corresponding terminal on the Hasseb DALI 2 Controller. Connect the power to the controller, and the USB from the controller to the laptop. Connect the Launchpad to the laptop and flash the example via CCS. Once the example is flashed device is running example, launch the DALI 2 Controller GUI and press initialize. Once a short address, random address, and device type appear, you can begin sending supported/implemented commands to the device. You will see an LED on the device respond to the supported execution commands</p>
 <section id="modifying-the-example-applications">
 <h3>Modifying the Example Applications<a class="headerlink" href="#modifying-the-example-applications" title="Permalink to this heading">¶</a></h3>
 <p>The source code to the DALI implementation for MSPM0L is available for editing. This allows customers and users to re-implement or modify existing features to match personal specifications. Certain features, such as device identification and updating variables in flash, can differ from implementation to implementation. Here are a list of features that require user modification to implement. These are features that are either user specific or known issues.</p>
@@ -221,10 +221,11 @@
 <li><p>Will have to modify timeToPeriodConversion to support use in DAPC</p></li>
 </ul>
 </li>
-<li><p>Random Address will always generate 1</p>
+<li><p>Random Address will generate 1</p>
 <ul>
+<li><p>GUI Tool crashes during initialization when the connected device’s random address exceeds a certain value</p></li>
 <li><p>This does not impact functionality, as the device is still able to be initialized, but will generate the same random address every time it is initialized</p></li>
-<li><p>L device does not have TRNG, if project is ported successfully to G, can utilize that module to generate a more random address</p></li>
+<li><p>If using a different DALI controller, define <em>GENERATE_RANDOM_ADDR_TRNG</em> macro to generate random address in the MSPM0 devices that supports TRNG.</p></li>
 </ul>
 </li>
 <li><p>Initializing Multiple Devices</p>

@@ -9,7 +9,7 @@ The MSPM0 SMBus Library provides a simple way to start development of SMBus appl
 2. SMBus Library Supported Features
 -----------------------------------
 
-This library was developed in compliance with the SMBus 3.2 specification.
+This library was developed in compliance with the SMBus 3.2 specification. This library supports optional Address resolution Protocol and Host notification as two examples
 
 2.1 SMBus Controller Supported Features
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -24,6 +24,7 @@ This library was developed in compliance with the SMBus 3.2 specification.
 -  Process call
 -  Block read/write (up to 255 bytes)
 -  Block write-block read process call (up to 255 bytes)
+-  Address Resolution protocol Commands
 -  Host notify protocol
 
 2.2 SMBus Target Supported Features
@@ -40,6 +41,7 @@ This library was developed in compliance with the SMBus 3.2 specification.
 -  Process call
 -  Block read/write (up to 255 bytes)
 -  Block write-block read process call (up to 255 bytes)
+-  Address resolution protocol
 -  Host notify protocol
 
 2.3 SMBus Features Not Currently Implemented
@@ -48,24 +50,27 @@ This library was developed in compliance with the SMBus 3.2 specification.
 The SMBus features listed below are supported in hardware but have not been implemented in this release:
 
 -  FastMode+ 1MHz operation
--  Address resolution protocol
+-  Controller Side Full ARP state machine.
+-  Storing Persistent Target Address , AR , AV flags in Flash for ARP.
 -  SMBAlert#
 -  SMBSUS#
 
 3. SMBus Example Usage
 ----------------------
 
-This software library contains 4 examples that demonstrate communication between a SMBus Controller and SMBus Target:
+This software library contains 6 examples that demonstrate communication between a SMBus Controller and SMBus Target:
 
 -  Target:
 
    -  smb\_target00\_all\_protocols: shows the implementation of all basic SMBus protocols
    -  smbus\_target\_host\_notify: shows implementation of host notify protocol
+   -  smbus\_target\_ARP: demonstrates implementation of ARP State Machine on the SMBus stack as per SMBus 3.2 Specification
 
 -  Controller:
 
    -  smb\_controller00\_all\_protocols: shows the implementation of all basic SMBus protocols
    -  smbus\_controller\_host\_notify: shows implementation of host notify protocol
+   -  smbus\_controller\_ARP: shows basic commands to test the target side ARP implementation
 
 Each example contains source code which can be compiled and loaded onto a supported device as-is. Connect SMBCLK and SMBDAT on 2 devices running the Controller and Target examples.
 
@@ -74,6 +79,7 @@ Each example contains source code which can be compiled and loaded onto a suppor
 
 -  LP-MSPM0L1306 LaunchPad evaluation boards
 -  LP-MSPM0G3507 LaunchPad evaluation boards
+-  LP-MSPM0G3519 LaunchPad evaluation boards
 
 4. SMBus Library API Guide
 --------------------------
@@ -177,6 +183,20 @@ SMBus Target
 
 6. Library Versions
 -------------------
+
+-  **Version 2.01.00.00**
+
+   -  SDK Release: 2.04.00.xx
+   -  Updates:
+
+      -  Added Support for Address Resolution protocol (ARP).
+      -  Added two examples for Controller and Target demonstrating ARP functionality.
+      -  Added complete ARP statemachine on the Target side with below commands
+
+         -  Prepare for ARP.
+         -  Device Reset.
+         -  Get UDID (Direct & General).
+         -  Assign Address (Direct & General).
 
 -  **Version 2.00.00.00**
 

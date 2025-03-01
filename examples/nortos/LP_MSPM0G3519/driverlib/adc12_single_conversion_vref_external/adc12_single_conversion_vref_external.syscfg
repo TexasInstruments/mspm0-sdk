@@ -26,7 +26,8 @@ ADC121.sampClkDiv                 = "DL_ADC12_CLOCK_DIVIDE_8";
 ADC121.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_2";
 ADC121.sampleTime0                = "125 us";
 ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
-ADC121.adcMem0vref                = "VREF";
+ADC121.adcMem0vrefp               = "EXTREF";
+ADC121.adcMem0vrefm               = "VREFM";
 ADC121.peripheral.$assign         = "ADC0";
 ADC121.peripheral.adcPin2.$assign = "PA25";
 
@@ -42,5 +43,6 @@ SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn  = true;
 VREF.basicMode                     = "DL_VREF_ENABLE_DISABLE";
 VREF.profile                       = "EXT_2_0_V";
+VREF.basicVrefPins                 = "VREF+-";
 VREF.peripheral.$assign            = "VREF";
 VREF.peripheral.vrefPosPin.$assign = "PA23";

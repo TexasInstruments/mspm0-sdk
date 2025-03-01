@@ -18,7 +18,7 @@ const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 NONMAIN.bslAltConfig                 = true;
 NONMAIN.bslAltAddress                = 0x1041;
 NONMAIN.nonmainWarning               = true;
-NONMAIN.staticWriteProtectionMainLow = 0xFF0000FF;
+NONMAIN.staticWriteProtectionMainLow = 0xFFFFC00F;
 NONMAIN.staticWriteProtectionNonMain = true;
 
 ProjectConfig.genLinker  = false;

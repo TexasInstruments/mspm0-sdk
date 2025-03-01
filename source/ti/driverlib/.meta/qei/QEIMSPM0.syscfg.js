@@ -827,7 +827,7 @@ let devSpecific = {
 
     config: config,
 
-    maxInstances: 1,
+    maxInstances: Common.getTimerInstances("QEI").length,
 
     /* override generic requirements with  device-specific reqs (if any) */
     validate: validate,

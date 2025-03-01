@@ -40,6 +40,9 @@ uint16_t gActiveGroupNum    = EEPROM_EMULATION_ACTIVE_GROUP_NUM_MIN;
 bool gEEPROMTypeBSearchFlag = 0;
 bool gEEPROMTypeBEraseFlag  = 0;
 
+/* 1 global variable for transfer procedure to avoid premature access */
+bool gEEPROMTypeBTransferInProgressFlag = 0;
+
 uint32_t EEPROM_TypeB_write(uint16_t Identifier, uint32_t Data)
 {
     uint32_t EEPROMEmulationState;
@@ -85,8 +88,10 @@ uint32_t EEPROM_TypeB_writeDataItem(uint16_t Identifier, uint32_t Data,
         return EEPROM_EMULATION_FORMAT_ERROR;
     }
 
-    /* If all group is empty, update the group header to active */
-    if (DataItemNum == 0) {
+    /* If all groups are empty and not undergoing a transfer,
+     * update the group header to active, as this is the first write.
+     */
+    if ((DataItemNum == 0) && (gEEPROMTypeBTransferInProgressFlag == 0)) {
         DL_FlashCTL_executeClearStatus(FLASHCTL);
         DL_FlashCTL_unprotectSector(
             FLASHCTL, WriteGroupAddress, DL_FLASHCTL_REGION_SELECT_MAIN);
@@ -189,6 +194,9 @@ uint32_t EEPROM_TypeB_transferDataItem(uint16_t GroupNum)
     TransferDataItemAddress =
         TransferGroupAddress + (EEPROM_EMULATION_DATAITEM_ACCOUNT - 1) * 8 + 8;
 
+    /* Set transfer flag to true */
+    gEEPROMTypeBTransferInProgressFlag = 1;
+
     /* Traverses the transfer group from the back to the front */
     DataItemCount = EEPROM_EMULATION_DATAITEM_ACCOUNT;
     while (DataItemCount > 0) {
@@ -209,6 +217,8 @@ uint32_t EEPROM_TypeB_transferDataItem(uint16_t GroupNum)
                     EEPROM_TypeB_writeDataItem(TransferIdentifier,
                         TransferData, ReceivingGroupNum, ReceivingDataItemNum);
                 if (EEPROMEmulationState != EEPROM_EMULATION_WRITE_OK) {
+                    /* Set transfer flag to false */
+                    gEEPROMTypeBTransferInProgressFlag = 0;
                     return EEPROM_EMULATION_TRANSFER_ERROR;
                 }
                 ReceivingDataItemNum++;
@@ -221,6 +231,9 @@ uint32_t EEPROM_TypeB_transferDataItem(uint16_t GroupNum)
     /* Update gActiveDataItemNum, gActiveGroupNum */
     gActiveDataItemNum = ReceivingDataItemNum;
     gActiveGroupNum    = ReceivingGroupNum;
+
+    /* Set transfer flag to false */
+    gEEPROMTypeBTransferInProgressFlag = 0;
 
     /* Update receiving group's header to 'Active' */
     HeaderArray64[0] = 0x00000000;

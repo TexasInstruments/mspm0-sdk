@@ -41,7 +41,6 @@ SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;
 
 VREF.peripheral.$assign            = "VREF";
-VREF.peripheral.vrefPosPin.$assign = "PA23";
 
 const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
 ProjectConfig.migrationCondition = true;

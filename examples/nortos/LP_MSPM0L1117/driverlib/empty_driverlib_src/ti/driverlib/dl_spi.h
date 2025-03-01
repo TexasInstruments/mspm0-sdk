@@ -418,8 +418,8 @@ typedef struct {
 
 /**
  * @brief Configuration structure to backup SPI peripheral state before going
- *        to STOP/STANDBY mode. Not required after PG 1.0 silicon. Used by
- *        @ref DL_SPI_saveConfiguration and @ref DL_SPI_restoreConfiguration
+ *        to STOP/STANDBY mode. Used by @ref DL_SPI_saveConfiguration and
+ *        @ref DL_SPI_restoreConfiguration
  */
 typedef struct {
     /*! Combination of basic SPI control configurations that are
@@ -476,10 +476,16 @@ typedef struct {
  *  @param[in]  spi     Pointer to the register overlay for the peripheral
  *  @param[in]  config  Configuration for SPI peripheral
  */
-void DL_SPI_init(SPI_Regs *spi, DL_SPI_Config *config);
+void DL_SPI_init(SPI_Regs *spi, const DL_SPI_Config *config);
 
 /**
- * @brief Enables power on SPI module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the SPI
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  @note For power savings, please refer to @ref DL_SPI_enable
  *
  * @param spi        Pointer to the register overlay for the peripheral
  */
@@ -489,7 +495,13 @@ __STATIC_INLINE void DL_SPI_enablePower(SPI_Regs *spi)
 }
 
 /**
- * @brief Disables power on spi module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the SPI
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings. For power savings,
+ *  please refer to @ref DL_SPI_enable
  *
  * @param spi        Pointer to the register overlay for the peripheral
  */
@@ -499,14 +511,22 @@ __STATIC_INLINE void DL_SPI_disablePower(SPI_Regs *spi)
 }
 
 /**
- * @brief Returns if  power on spi module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the SPI
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param spi        Pointer to the register overlay for the peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_SPI_isPowerEnabled(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isPowerEnabled(const SPI_Regs *spi)
 {
     return (
         (spi->GPRCM.PWREN & SPI_PWREN_ENABLE_MASK) == SPI_PWREN_ENABLE_ENABLE);
@@ -533,7 +553,7 @@ __STATIC_INLINE void DL_SPI_reset(SPI_Regs *spi)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_SPI_isReset(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isReset(const SPI_Regs *spi)
 {
     return ((spi->GPRCM.STAT & SPI_GPRCM_STAT_RESETSTKY_MASK) ==
             SPI_GPRCM_STAT_RESETSTKY_RESET);
@@ -559,7 +579,7 @@ __STATIC_INLINE void DL_SPI_enable(SPI_Regs *spi)
  *  @retval     true  The SPI peripheral is enabled
  *  @retval     false The SPI peripheral is disabled
  */
-__STATIC_INLINE bool DL_SPI_isEnabled(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isEnabled(const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_ENABLE_MASK) == SPI_CTL1_ENABLE_ENABLE);
 }
@@ -582,7 +602,7 @@ __STATIC_INLINE void DL_SPI_disable(SPI_Regs *spi)
  *  @param[in]  config  Pointer to the clock configuration struct
  *                       @ref DL_SPI_ClockConfig.
  */
-void DL_SPI_setClockConfig(SPI_Regs *spi, DL_SPI_ClockConfig *config);
+void DL_SPI_setClockConfig(SPI_Regs *spi, const DL_SPI_ClockConfig *config);
 
 /**
  *  @brief      Get SPI source clock configuration
@@ -592,7 +612,7 @@ void DL_SPI_setClockConfig(SPI_Regs *spi, DL_SPI_ClockConfig *config);
  *  @param[in]  config  Pointer to the clock configuration struct
  *                      @ref DL_SPI_ClockConfig.
  */
-void DL_SPI_getClockConfig(SPI_Regs *spi, DL_SPI_ClockConfig *config);
+void DL_SPI_getClockConfig(const SPI_Regs *spi, DL_SPI_ClockConfig *config);
 
 /**
  *  @brief      Checks if the SPI is busy transmitting
@@ -604,7 +624,7 @@ void DL_SPI_getClockConfig(SPI_Regs *spi, DL_SPI_ClockConfig *config);
  *  @retval     true  The SPI is transmitting
  *  @retval     false The SPI is idle
  */
-__STATIC_INLINE bool DL_SPI_isBusy(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isBusy(const SPI_Regs *spi)
 {
     return ((spi->STAT & SPI_STAT_BUSY_MASK) == SPI_STAT_BUSY_ACTIVE);
 }
@@ -619,7 +639,7 @@ __STATIC_INLINE bool DL_SPI_isBusy(SPI_Regs *spi)
  *  @retval     true  The TX FIFO is empty
  *  @retval     false The TX FIFO is not empty
  */
-__STATIC_INLINE bool DL_SPI_isTXFIFOEmpty(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isTXFIFOEmpty(const SPI_Regs *spi)
 {
     return ((spi->STAT & SPI_STAT_TFE_MASK) == SPI_STAT_TFE_EMPTY);
 }
@@ -634,7 +654,7 @@ __STATIC_INLINE bool DL_SPI_isTXFIFOEmpty(SPI_Regs *spi)
  *  @retval     true  The TX FIFO is full
  *  @retval     false The TX FIFO is not full
  */
-__STATIC_INLINE bool DL_SPI_isTXFIFOFull(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isTXFIFOFull(const SPI_Regs *spi)
 {
     return ((spi->STAT & SPI_STAT_TNF_MASK) == SPI_STAT_TNF_FULL);
 }
@@ -649,7 +669,7 @@ __STATIC_INLINE bool DL_SPI_isTXFIFOFull(SPI_Regs *spi)
  *  @retval     true  The RX FIFO is empty
  *  @retval     false The RX FIFO is not empty
  */
-__STATIC_INLINE bool DL_SPI_isRXFIFOEmpty(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isRXFIFOEmpty(const SPI_Regs *spi)
 {
     return ((spi->STAT & SPI_STAT_RFE_MASK) == SPI_STAT_RFE_EMPTY);
 }
@@ -664,7 +684,7 @@ __STATIC_INLINE bool DL_SPI_isRXFIFOEmpty(SPI_Regs *spi)
  *  @retval     true  The RX FIFO is full
  *  @retval     false The RX FIFO is not full
  */
-__STATIC_INLINE bool DL_SPI_isRXFIFOFull(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isRXFIFOFull(const SPI_Regs *spi)
 {
     return ((spi->STAT & SPI_STAT_RNF_MASK) == SPI_STAT_RNF_FULL);
 }
@@ -702,7 +722,7 @@ __STATIC_INLINE void DL_SPI_setParity(SPI_Regs *spi, DL_SPI_PARITY parity)
  *
  *  @retval     One of @ref DL_SPI_PARITY
  */
-__STATIC_INLINE DL_SPI_PARITY DL_SPI_getParity(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_PARITY DL_SPI_getParity(const SPI_Regs *spi)
 {
     uint32_t parity = spi->CTL1 & (SPI_CTL1_PES_MASK | SPI_CTL1_PREN_MASK |
                                       SPI_CTL1_PTEN_MASK);
@@ -750,7 +770,7 @@ __STATIC_INLINE void DL_SPI_disableReceiveParity(SPI_Regs *spi)
  *  @retval     true   Receive parity is enabled
  *  @retval     false  Receive parity is disabled
  */
-__STATIC_INLINE bool DL_SPI_isReceiveParityEnabled(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isReceiveParityEnabled(const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_PREN_MASK) == SPI_CTL1_PREN_ENABLE);
 }
@@ -795,7 +815,7 @@ __STATIC_INLINE void DL_SPI_disableTransmitParity(SPI_Regs *spi)
  *  @retval     true   Transmit parity is enabled
  *  @retval     false  Transmit parity is disabled
  */
-__STATIC_INLINE bool DL_SPI_isTransmitParityEnabled(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isTransmitParityEnabled(const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_PTEN_MASK) == SPI_CTL1_PTEN_ENABLE);
 }
@@ -828,7 +848,7 @@ __STATIC_INLINE void DL_SPI_setFrameFormat(
  *
  *  @retval     One of @ref DL_SPI_FRAME_FORMAT
  */
-__STATIC_INLINE DL_SPI_FRAME_FORMAT DL_SPI_getFrameFormat(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_FRAME_FORMAT DL_SPI_getFrameFormat(const SPI_Regs *spi)
 {
     uint32_t frameFormat = spi->CTL0 & (SPI_CTL0_FRF_MASK | SPI_CTL0_SPO_MASK |
                                            SPI_CTL0_SPH_MASK);
@@ -860,7 +880,7 @@ __STATIC_INLINE void DL_SPI_setDataSize(
  *
  *  @retval     One of @ref DL_SPI_DATA_SIZE
  */
-__STATIC_INLINE DL_SPI_DATA_SIZE DL_SPI_getDataSize(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_DATA_SIZE DL_SPI_getDataSize(const SPI_Regs *spi)
 {
     uint32_t dataSize = spi->CTL0 & SPI_CTL0_DSS_MASK;
 
@@ -877,7 +897,7 @@ __STATIC_INLINE DL_SPI_DATA_SIZE DL_SPI_getDataSize(SPI_Regs *spi)
  */
 __STATIC_INLINE void DL_SPI_setMode(SPI_Regs *spi, DL_SPI_MODE mode)
 {
-    DL_Common_updateReg(&spi->CTL1, SPI_CTL1_CP_ENABLE, SPI_CTL1_CP_MASK);
+    DL_Common_updateReg(&spi->CTL1, (uint32_t) mode, SPI_CTL1_CP_MASK);
 }
 
 /**
@@ -889,7 +909,7 @@ __STATIC_INLINE void DL_SPI_setMode(SPI_Regs *spi, DL_SPI_MODE mode)
  *
  *  @retval     One of @ref DL_SPI_MODE.
  */
-__STATIC_INLINE DL_SPI_MODE DL_SPI_getMode(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_MODE DL_SPI_getMode(const SPI_Regs *spi)
 {
     uint32_t mode = spi->CTL1 & SPI_CTL1_CP_MASK;
 
@@ -920,7 +940,7 @@ __STATIC_INLINE void DL_SPI_setBitOrder(
  *
  *  @retval     One of @ref DL_SPI_BIT_ORDER.
  */
-__STATIC_INLINE DL_SPI_BIT_ORDER DL_SPI_getBitOrder(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_BIT_ORDER DL_SPI_getBitOrder(const SPI_Regs *spi)
 {
     uint32_t bitOrder = spi->CTL1 & SPI_CTL1_MSB_MASK;
 
@@ -963,7 +983,7 @@ __STATIC_INLINE void DL_SPI_disableLoopbackMode(SPI_Regs *spi)
  *  @retval     true if loopback mode is enabled
  *  @retval     false if loopback mode is disabled
  */
-__STATIC_INLINE bool DL_SPI_isLoopbackModeEnabled(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isLoopbackModeEnabled(const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_LBM_MASK) == SPI_CTL1_LBM_ENABLE);
 }
@@ -1003,7 +1023,7 @@ __STATIC_INLINE void DL_SPI_setRepeatTransmit(
  *  @retval     0      Repeated transfer is disabled
  *  @retval     1-255  Repeat that many times.
  */
-__STATIC_INLINE uint32_t DL_SPI_getRepeatTransmit(SPI_Regs *spi)
+__STATIC_INLINE uint32_t DL_SPI_getRepeatTransmit(const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_REPEATTX_MASK) >> SPI_CTL1_REPEATTX_OFS);
 }
@@ -1053,7 +1073,7 @@ __STATIC_INLINE void DL_SPI_disablePeripheralAlignDataOnChipSelect(
  *  @retval     false  Data alignment on chip select is disabled
  */
 __STATIC_INLINE bool DL_SPI_isPeripheralAlignDataOnChipSelectEnabled(
-    SPI_Regs *spi)
+    const SPI_Regs *spi)
 {
     return ((spi->CTL0 & SPI_CTL0_CSCLR_MASK) == SPI_CTL0_CSCLR_ENABLE);
 }
@@ -1100,7 +1120,7 @@ __STATIC_INLINE void DL_SPI_disablePacking(SPI_Regs *spi)
  *  @retval     true   Packing is enabled
  *  @retval     false  Packing is disabled
  */
-__STATIC_INLINE bool DL_SPI_isPackingEnabled(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isPackingEnabled(const SPI_Regs *spi)
 {
     return ((spi->CTL0 & SPI_CTL0_PACKEN_MASK) == SPI_CTL0_PACKEN_ENABLED);
 }
@@ -1137,7 +1157,7 @@ __STATIC_INLINE void DL_SPI_setChipSelect(
  *
  *  @retval     One of @ref DL_SPI_CHIP_SELECT.
  */
-__STATIC_INLINE DL_SPI_CHIP_SELECT DL_SPI_getChipSelect(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_CHIP_SELECT DL_SPI_getChipSelect(const SPI_Regs *spi)
 {
     uint32_t chipSelect = spi->CTL0 & SPI_CTL0_CSSEL_MASK;
 
@@ -1176,7 +1196,8 @@ __STATIC_INLINE void DL_SPI_setPeripheralReceiveTimeout(
  *  @retval     0     indicating that receive timeout is disabled
  *  @retval     1-63  number of clock cycles before a receive timeout occurs
  */
-__STATIC_INLINE uint32_t DL_SPI_getPeripheralReceiveTimeout(SPI_Regs *spi)
+__STATIC_INLINE uint32_t DL_SPI_getPeripheralReceiveTimeout(
+    const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_RXTIMEOUT_MASK) >> SPI_CTL1_RXTIMEOUT_OFS);
 }
@@ -1226,7 +1247,7 @@ __STATIC_INLINE void DL_SPI_setControllerCommandDataModeConfig(
  *  @retval     1-14 indicating how many command bytes still need to be sent
  */
 __STATIC_INLINE uint32_t DL_SPI_getControllerCommandDataModeConfig(
-    SPI_Regs *spi)
+    const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_CDMODE_MASK) >> SPI_CTL1_CDMODE_OFS);
 }
@@ -1266,7 +1287,8 @@ __STATIC_INLINE void DL_SPI_disableControllerCommandDataMode(SPI_Regs *spi)
  *  @retval     true  Command/data mode is enabled
  *  @retval     false Command/data mode is disabled
  */
-__STATIC_INLINE bool DL_SPI_isControllerCommandDataModeEnabled(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isControllerCommandDataModeEnabled(
+    const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_CDENABLE_MASK) == SPI_CTL1_CDENABLE_ENABLE);
 }
@@ -1314,7 +1336,7 @@ __STATIC_INLINE void DL_SPI_disablePeripheralDataOutput(SPI_Regs *spi)
  *  @retval     true if peripheral data output is enabled
  *  @retval     false if peripheral data output is disabled
  */
-__STATIC_INLINE bool DL_SPI_isPeripheralDataOutputEnabled(SPI_Regs *spi)
+__STATIC_INLINE bool DL_SPI_isPeripheralDataOutputEnabled(const SPI_Regs *spi)
 {
     return ((spi->CTL1 & SPI_CTL1_POD_MASK) == SPI_CTL1_POD_DISABLE);
 }
@@ -1352,7 +1374,7 @@ __STATIC_INLINE void DL_SPI_setDelayedSampling(SPI_Regs *spi, uint32_t delay)
  *
  *  @retval     0 - 15. The amount of delay sampling in SPI clock cycles.
  */
-__STATIC_INLINE uint32_t DL_SPI_getDelayedSampling(SPI_Regs *spi)
+__STATIC_INLINE uint32_t DL_SPI_getDelayedSampling(const SPI_Regs *spi)
 {
     return (spi->CLKCTL & SPI_CLKCTL_DSAMPLE_MASK >> SPI_CLKCTL_DSAMPLE_OFS);
 }
@@ -1392,7 +1414,8 @@ __STATIC_INLINE void DL_SPI_setFIFOThreshold(SPI_Regs *spi,
  *
  *  @retval     One of @ref DL_SPI_TX_FIFO_LEVEL
  */
-__STATIC_INLINE DL_SPI_TX_FIFO_LEVEL DL_SPI_getTXFIFOThreshold(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_TX_FIFO_LEVEL DL_SPI_getTXFIFOThreshold(
+    const SPI_Regs *spi)
 {
     uint32_t txThreshold = spi->IFLS & SPI_IFLS_TXIFLSEL_MASK;
 
@@ -1408,7 +1431,8 @@ __STATIC_INLINE DL_SPI_TX_FIFO_LEVEL DL_SPI_getTXFIFOThreshold(SPI_Regs *spi)
  *
  *  @retval     One of @ref DL_SPI_RX_FIFO_LEVEL
  */
-__STATIC_INLINE DL_SPI_RX_FIFO_LEVEL DL_SPI_getRXFIFOThreshold(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_RX_FIFO_LEVEL DL_SPI_getRXFIFOThreshold(
+    const SPI_Regs *spi)
 {
     uint32_t rxThreshold = spi->IFLS & SPI_IFLS_RXIFLSEL_MASK;
 
@@ -1446,7 +1470,8 @@ __STATIC_INLINE void DL_SPI_setBitRateSerialClockDivider(
  *
  *  @retval     The SPI SCR. Value from 0-1023
  */
-__STATIC_INLINE uint32_t DL_SPI_getBitRateSerialClockDivider(SPI_Regs *spi)
+__STATIC_INLINE uint32_t DL_SPI_getBitRateSerialClockDivider(
+    const SPI_Regs *spi)
 {
     return (spi->CLKCTL & SPI_CLKCTL_SCR_MASK);
 }
@@ -1533,7 +1558,7 @@ __STATIC_INLINE void DL_SPI_transmitData32(SPI_Regs *spi, uint32_t data)
  *  @sa         DL_SPI_receiveDataBlocking8
  *  @sa         DL_SPI_receiveDataCheck8
  */
-__STATIC_INLINE uint8_t DL_SPI_receiveData8(SPI_Regs *spi)
+__STATIC_INLINE uint8_t DL_SPI_receiveData8(const SPI_Regs *spi)
 {
     return ((uint8_t)(spi->RXDATA));
 }
@@ -1554,7 +1579,7 @@ __STATIC_INLINE uint8_t DL_SPI_receiveData8(SPI_Regs *spi)
  *  @sa         DL_SPI_receiveDataBlocking16
  *  @sa         DL_SPI_receiveDataCheck16
  */
-__STATIC_INLINE uint16_t DL_SPI_receiveData16(SPI_Regs *spi)
+__STATIC_INLINE uint16_t DL_SPI_receiveData16(const SPI_Regs *spi)
 {
     return ((uint16_t)(spi->RXDATA));
 }
@@ -1581,7 +1606,7 @@ __STATIC_INLINE uint16_t DL_SPI_receiveData16(SPI_Regs *spi)
  *  @sa         DL_SPI_receiveDataBlocking32
  *  @sa         DL_SPI_receiveDataCheck32
  */
-__STATIC_INLINE uint32_t DL_SPI_receiveData32(SPI_Regs *spi)
+__STATIC_INLINE uint32_t DL_SPI_receiveData32(const SPI_Regs *spi)
 {
     return spi->RXDATA;
 }
@@ -1627,7 +1652,7 @@ __STATIC_INLINE void DL_SPI_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_SPI_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_SPI_getEnabledInterrupts(
-    SPI_Regs *spi, uint32_t interruptMask)
+    const SPI_Regs *spi, uint32_t interruptMask)
 {
     return (spi->CPU_INT.IMASK & interruptMask);
 }
@@ -1650,7 +1675,7 @@ __STATIC_INLINE uint32_t DL_SPI_getEnabledInterrupts(
  *  @sa         DL_SPI_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_SPI_getEnabledInterruptStatus(
-    SPI_Regs *spi, uint32_t interruptMask)
+    const SPI_Regs *spi, uint32_t interruptMask)
 {
     return (spi->CPU_INT.MIS & interruptMask);
 }
@@ -1671,7 +1696,7 @@ __STATIC_INLINE uint32_t DL_SPI_getEnabledInterruptStatus(
  *  @retval     Bitwise OR of @ref DL_SPI_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_SPI_getRawInterruptStatus(
-    SPI_Regs *spi, uint32_t interruptMask)
+    const SPI_Regs *spi, uint32_t interruptMask)
 {
     return (spi->CPU_INT.RIS & interruptMask);
 }
@@ -1688,7 +1713,7 @@ __STATIC_INLINE uint32_t DL_SPI_getRawInterruptStatus(
  *  @return     The highest priority pending SPI interrupt. One of @ref
  *               DL_SPI_IIDX
  */
-__STATIC_INLINE DL_SPI_IIDX DL_SPI_getPendingInterrupt(SPI_Regs *spi)
+__STATIC_INLINE DL_SPI_IIDX DL_SPI_getPendingInterrupt(const SPI_Regs *spi)
 {
     return ((DL_SPI_IIDX) spi->CPU_INT.IIDX);
 }
@@ -1780,7 +1805,7 @@ void DL_SPI_transmitDataBlocking32(SPI_Regs *spi, uint32_t data);
  *  @sa         DL_SPI_transmitData8
  *  @sa         DL_SPI_transmitDataCheck8
  */
-uint8_t DL_SPI_receiveDataBlocking8(SPI_Regs *spi);
+uint8_t DL_SPI_receiveDataBlocking8(const SPI_Regs *spi);
 
 /**
  *  @brief      Blocks to ensure receive is ready before reading data
@@ -1798,7 +1823,7 @@ uint8_t DL_SPI_receiveDataBlocking8(SPI_Regs *spi);
  *  @sa         DL_SPI_transmitData16
  *  @sa         DL_SPI_transmitDataCheck16
  */
-uint16_t DL_SPI_receiveDataBlocking16(SPI_Regs *spi);
+uint16_t DL_SPI_receiveDataBlocking16(const SPI_Regs *spi);
 
 /**
  *  @brief      Blocks to ensure receive is ready before reading data
@@ -1822,7 +1847,7 @@ uint16_t DL_SPI_receiveDataBlocking16(SPI_Regs *spi);
  *  @sa         DL_SPI_transmitData32
  *  @sa         DL_SPI_transmitDataCheck32
  */
-uint32_t DL_SPI_receiveDataBlocking32(SPI_Regs *spi);
+uint32_t DL_SPI_receiveDataBlocking32(const SPI_Regs *spi);
 
 /**
  *  @brief      Checks the TX FIFO before trying to transmit data
@@ -1916,7 +1941,7 @@ bool DL_SPI_transmitDataCheck32(SPI_Regs *spi, uint32_t data);
  *  @sa         DL_SPI_receiveData8
  *  @sa         DL_SPI_receiveDataBlocking8
  */
-bool DL_SPI_receiveDataCheck8(SPI_Regs *spi, uint8_t *buffer);
+bool DL_SPI_receiveDataCheck8(const SPI_Regs *spi, uint8_t *buffer);
 
 /**
  *  @brief      Checks the RX FIFO before trying to transmit data
@@ -1938,7 +1963,7 @@ bool DL_SPI_receiveDataCheck8(SPI_Regs *spi, uint8_t *buffer);
  *  @sa         DL_SPI_receiveData16
  *  @sa         DL_SPI_receiveDataBlocking16
  */
-bool DL_SPI_receiveDataCheck16(SPI_Regs *spi, uint16_t *buffer);
+bool DL_SPI_receiveDataCheck16(const SPI_Regs *spi, uint16_t *buffer);
 
 /**
  *  @brief      Checks the RX FIFO before trying to transmit data
@@ -1966,7 +1991,7 @@ bool DL_SPI_receiveDataCheck16(SPI_Regs *spi, uint16_t *buffer);
  *  @sa         DL_SPI_receiveData32
  *  @sa         DL_SPI_receiveDataBlocking32
  */
-bool DL_SPI_receiveDataCheck32(SPI_Regs *spi, uint32_t *buffer);
+bool DL_SPI_receiveDataCheck32(const SPI_Regs *spi, uint32_t *buffer);
 
 /**
  *  @brief       Read all available data out of the RX FIFO using 8 bit access
@@ -1978,7 +2003,7 @@ bool DL_SPI_receiveDataCheck32(SPI_Regs *spi, uint32_t *buffer);
  *  @return      Number of bytes read from the RX FIFO
  */
 uint32_t DL_SPI_drainRXFIFO8(
-    SPI_Regs *spi, uint8_t *buffer, uint32_t maxCount);
+    const SPI_Regs *spi, uint8_t *buffer, uint32_t maxCount);
 
 /**
  *  @brief       Read all available data out of the RX FIFO using 16 bit access
@@ -1990,7 +2015,7 @@ uint32_t DL_SPI_drainRXFIFO8(
  *  @return      Number of halfwords read from the RX FIFO
  */
 uint32_t DL_SPI_drainRXFIFO16(
-    SPI_Regs *spi, uint16_t *buffer, uint32_t maxCount);
+    const SPI_Regs *spi, uint16_t *buffer, uint32_t maxCount);
 
 /**
  *  @brief       Read all available data out of the RX FIFO using 32 bit access
@@ -2009,7 +2034,7 @@ uint32_t DL_SPI_drainRXFIFO16(
  *
  */
 uint32_t DL_SPI_drainRXFIFO32(
-    SPI_Regs *spi, uint32_t *buffer, uint32_t maxCount);
+    const SPI_Regs *spi, uint32_t *buffer, uint32_t maxCount);
 
 /**
  *  @brief      Fill the TX FIFO using 8 bit access
@@ -2023,7 +2048,8 @@ uint32_t DL_SPI_drainRXFIFO32(
  *
  *  @return     Number of bytes written to the TX FIFO
  */
-uint32_t DL_SPI_fillTXFIFO8(SPI_Regs *spi, uint8_t *buffer, uint32_t count);
+uint32_t DL_SPI_fillTXFIFO8(
+    SPI_Regs *spi, const uint8_t *buffer, uint32_t count);
 
 /**
  *  @brief      Fill the TX FIFO using 16 bit access
@@ -2037,7 +2063,8 @@ uint32_t DL_SPI_fillTXFIFO8(SPI_Regs *spi, uint8_t *buffer, uint32_t count);
  *
  *  @return     Number of halfwords written to the TX FIFO
  */
-uint32_t DL_SPI_fillTXFIFO16(SPI_Regs *spi, uint16_t *buffer, uint32_t count);
+uint32_t DL_SPI_fillTXFIFO16(
+    SPI_Regs *spi, const uint16_t *buffer, uint32_t count);
 
 /**
  *  @brief      Fill the TX FIFO using 32 bit access
@@ -2058,7 +2085,8 @@ uint32_t DL_SPI_fillTXFIFO16(SPI_Regs *spi, uint16_t *buffer, uint32_t count);
  *
  *  @sa         DL_SPI_enablePacking
  */
-uint32_t DL_SPI_fillTXFIFO32(SPI_Regs *spi, uint32_t *buffer, uint32_t count);
+uint32_t DL_SPI_fillTXFIFO32(
+    SPI_Regs *spi, const uint32_t *buffer, uint32_t count);
 
 /**
  *  @brief      Enable SPI interrupt for triggering the DMA receive event
@@ -2154,7 +2182,7 @@ __STATIC_INLINE void DL_SPI_disableDMATransmitEvent(SPI_Regs *spi)
  *  @retval     One of @ref DL_SPI_DMA_INTERRUPT_RX
  */
 __STATIC_INLINE uint32_t DL_SPI_getEnabledDMAReceiveEvent(
-    SPI_Regs *spi, uint32_t interruptMask)
+    const SPI_Regs *spi, uint32_t interruptMask)
 {
     return (spi->DMA_TRIG_RX.IMASK & interruptMask);
 }
@@ -2172,7 +2200,7 @@ __STATIC_INLINE uint32_t DL_SPI_getEnabledDMAReceiveEvent(
  *
  *  @retval     DL_SPI_DMA_INTERRUPT_TX if enabled, 0 if not enabled
  */
-__STATIC_INLINE uint32_t DL_SPI_getEnabledDMATransmitEvent(SPI_Regs *spi)
+__STATIC_INLINE uint32_t DL_SPI_getEnabledDMATransmitEvent(const SPI_Regs *spi)
 {
     return (spi->DMA_TRIG_TX.IMASK & SPI_DMA_TRIG_TX_IMASK_TX_MASK);
 }
@@ -2199,7 +2227,7 @@ __STATIC_INLINE uint32_t DL_SPI_getEnabledDMATransmitEvent(SPI_Regs *spi)
  *  @sa         DL_SPI_enableDMAReceiveEvent
  */
 __STATIC_INLINE uint32_t DL_SPI_getEnabledDMAReceiveEventStatus(
-    SPI_Regs *spi, uint32_t interruptMask)
+    const SPI_Regs *spi, uint32_t interruptMask)
 {
     return (spi->DMA_TRIG_RX.MIS & interruptMask);
 }
@@ -2221,7 +2249,8 @@ __STATIC_INLINE uint32_t DL_SPI_getEnabledDMAReceiveEventStatus(
  *
  *  @sa         DL_SPI_enableDMATransmitEvent
  */
-__STATIC_INLINE uint32_t DL_SPI_getEnabledDMATransmitEventStatus(SPI_Regs *spi)
+__STATIC_INLINE uint32_t DL_SPI_getEnabledDMATransmitEventStatus(
+    const SPI_Regs *spi)
 {
     return (spi->DMA_TRIG_TX.MIS & SPI_DMA_TRIG_TX_MIS_TX_MASK);
 }
@@ -2244,7 +2273,7 @@ __STATIC_INLINE uint32_t DL_SPI_getEnabledDMATransmitEventStatus(SPI_Regs *spi)
  *  @retval     Bitwise OR of @ref DL_SPI_DMA_INTERRUPT_RX values
  */
 __STATIC_INLINE uint32_t DL_SPI_getRawDMAReceiveEventStatus(
-    SPI_Regs *spi, uint32_t interruptMask)
+    const SPI_Regs *spi, uint32_t interruptMask)
 {
     return (spi->DMA_TRIG_RX.RIS & interruptMask);
 }
@@ -2264,7 +2293,8 @@ __STATIC_INLINE uint32_t DL_SPI_getRawDMAReceiveEventStatus(
  *
  *  @retval     DL_SPI_DMA_INTERRUPT_TX if enabled, 0 if not enabled
  */
-__STATIC_INLINE uint32_t DL_SPI_getRawDMATransmitEventStatus(SPI_Regs *spi)
+__STATIC_INLINE uint32_t DL_SPI_getRawDMATransmitEventStatus(
+    const SPI_Regs *spi)
 {
     return (spi->DMA_TRIG_TX.RIS & SPI_DMA_TRIG_TX_RIS_TX_MASK);
 }
@@ -2286,7 +2316,7 @@ __STATIC_INLINE uint32_t DL_SPI_getRawDMATransmitEventStatus(SPI_Regs *spi)
  *  @retval     One of @ref DL_SPI_DMA_IIDX_RX
  */
 __STATIC_INLINE DL_SPI_DMA_IIDX_RX DL_SPI_getPendingDMAReceiveEvent(
-    SPI_Regs *spi)
+    const SPI_Regs *spi)
 {
     return (DL_SPI_DMA_IIDX_RX)(spi->DMA_TRIG_RX.IIDX);
 }
@@ -2308,7 +2338,7 @@ __STATIC_INLINE DL_SPI_DMA_IIDX_RX DL_SPI_getPendingDMAReceiveEvent(
  *  @retval     DL_SPI_DMA_IIDX_TX if pending, 0 if not pending
  */
 __STATIC_INLINE DL_SPI_DMA_IIDX_TX DL_SPI_getPendingDMATransmitEvent(
-    SPI_Regs *spi)
+    const SPI_Regs *spi)
 {
     return (DL_SPI_DMA_IIDX_TX)(spi->DMA_TRIG_TX.IIDX);
 }
@@ -2362,7 +2392,7 @@ __STATIC_INLINE void DL_SPI_clearDMATransmitEventStatus(SPI_Regs *spi)
  *
  *  @sa         DL_SPI_restoreConfiguration
  */
-bool DL_SPI_saveConfiguration(SPI_Regs *spi, DL_SPI_backupConfig *ptr);
+bool DL_SPI_saveConfiguration(const SPI_Regs *spi, DL_SPI_backupConfig *ptr);
 
 /**
  *  @brief      Restore SPI configuration after leaving a power loss state.

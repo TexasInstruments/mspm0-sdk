@@ -90,6 +90,7 @@ int main(void)
                 ToggleLeds();  // Show we are starting BSL
 #ifdef Hardware_Invoke
                 Host_BSL_entry_sequence();  //PLACE TARGET INTO BSL MODE by hardware invoke
+				//Note: need the application code(include software invoke) exist on the chip
                 delay_cycles(500000);
 #endif
 #ifdef Software_Invoke

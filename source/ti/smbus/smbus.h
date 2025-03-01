@@ -125,15 +125,25 @@ extern "C"
 //! Default response when there's nothing to send
 //
 //*****************************************************************************
-#define RESPONSE_NTR                             0x00
+#define RESPONSE_NTR                             0xFF
 
 //*****************************************************************************
 //
-//! Return value when successful
+//! SMBus Return value when successful
 //
 //*****************************************************************************
 #define SMBUS_RET_OK                            (1)
+//*****************************************************************************
+//
+//! SMBUS_RET_OK_FIXED Return value when successful
+//
+//*****************************************************************************
 #define SMBUS_RET_OK_FIXED                      (2)
+//*****************************************************************************
+//
+//! SMBUS_RET_OK_BLOCK Return value when successful
+//
+//*****************************************************************************
 #define SMBUS_RET_OK_BLOCK                      (3)
 
 
@@ -150,6 +160,95 @@ extern "C"
 //
 //*****************************************************************************
 #define SMBUS_BLOCK_LENGTH                      (0xFFFF)
+
+//*****************************************************************************
+//
+//! ARP Command PREPARE_TO_ARP
+//
+//*****************************************************************************
+#define SMBUS_CMD_PREPARE_TO_ARP            0x01
+//*****************************************************************************
+//
+//! ARP Command RESET_DEVICE
+//
+//*****************************************************************************
+#define SMBUS_CMD_ARP_RESET_DEVICE          0x02
+//*****************************************************************************
+//
+//! ARP Command GET_UDID
+//
+//*****************************************************************************
+#define SMBUS_CMD_ARP_GET_UDID              0x03
+//*****************************************************************************
+//
+//! ARP Commands ASSIGN_ADDRESS
+//
+//*****************************************************************************
+#define SMBUS_CMD_ARP_ASSIGN_ADDRESS        0x04
+
+//*****************************************************************************
+//
+// Fixed addresses defined by the SMBus specification.
+//
+//*****************************************************************************
+//*****************************************************************************
+//
+//! SMBus Specification Host Address
+//
+//*****************************************************************************
+#define SMBUS_ADR_HOST                      0x08
+//*****************************************************************************
+//
+//! SMBus Specification SMART_BATTERY_CHARGER Address
+//
+//*****************************************************************************
+#define SMBUS_ADR_SMART_BATTERY_CHARGER     0x09
+//*****************************************************************************
+//
+//! SMBus Specification SMART_BATTERY_CHARGER Address
+//
+//*****************************************************************************
+#define SMBUS_ADR_SMART_BATTERY_SELECTOR    0x0A
+//*****************************************************************************
+//
+//! SMBus Specification SMART_BATTERY  Address
+//
+//*****************************************************************************
+#define SMBUS_ADR_SMART_BATTERY             0x0B
+//*****************************************************************************
+//
+//! SMBus Specification DEFAULT Device  Address
+//
+//*****************************************************************************
+#define SMBUS_ADR_DEFAULT_DEVICE            0x61
+//*****************************************************************************
+//
+//! SMBus Specification TARGET_OWN_ADDRESS    Address
+//
+//*****************************************************************************
+#define SMBUS_TARGET_OWN_ADDRESS            SMBUS_ADR_SMART_BATTERY_CHARGER
+//*****************************************************************************
+//
+//! Length of UDID Packet including Target Address.
+//
+//*****************************************************************************
+#define SMBUS_ARP_UDID_LEN                  0x11
+
+//*****************************************************************************
+//
+//! Default ARP Address Resolved Flags Status
+//*****************************************************************************
+#define ARP_ADD_RESOLVED                    0x00
+//*****************************************************************************
+//
+//! Default ARP Address Valid Flags Status
+//*****************************************************************************
+#define ARP_ADD_VALID                       0x00
+//*****************************************************************************
+//
+//! Default ARP Address Type
+//*****************************************************************************
+#define ARP_ADD_TYPE                        0x00
 
 //*****************************************************************************
 // typedefs
@@ -173,7 +272,9 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
+    /*! SMBus start before the Transfer */
     SMBus_Start_Before_Transfer = 0,
+    /*! SMBus do not start before the Transfer */
     SMBus_No_Start_Before_Transfer
 } SMBus_Start;
 
@@ -184,7 +285,9 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
+    /*! SMBus Auto acknowledge last byte */
     SMBus_Auto_Ack_Last_Byte = 0,
+    /*! SMBus do not Auto acknowledge last byte  */
     SMBus_No_Auto_Ack_Last_Byte
 } SMBus_Auto_Ack;
 
@@ -279,6 +382,65 @@ typedef enum
     SMBus_NwkState_Error                  
 } SMBus_NwkState;
 
+//*****************************************************************************
+//
+//! This structure holds the SMBus Unique Device ID (UDID).  For detailed
+//! information, please refer to the SMBus Specification.
+//
+//*****************************************************************************
+typedef struct
+{
+    /*!
+    //! Device capabilities field.  This 8-bit field reports generic SMBus
+    //! capabilities such as address type for ARP.
+    */
+    uint8_t ui8DeviceCapabilities;
+
+    /*!
+    //! Version Revision field.  This 8-bit field reports UDID revision
+    //! information as well as some vendor-specific things such as silicon
+    //! revision.
+    */
+    uint8_t ui8Version;
+
+    /*!
+    //! Vendor ID.  This 16-bit field contains the manufacturer's ID as
+    //! assigned by the SBS Implementers' Forum of the PCI SIG.
+    */
+    uint16_t ui16VendorID;
+
+    /*!
+    //! Device ID.  This 16-bit field contains the device ID assigned by the
+    //! device manufacturer.
+    */
+    uint16_t ui16DeviceID;
+
+    /*!
+    //! Interface.  This 16-bit field identifies the protocol layer interfaces
+    //! supported over the SMBus connection.
+    */
+    uint16_t ui16Interface;
+
+    /*!
+    //! Subsystem Vendor ID.  This 16-bit field holds additional information
+    //! that may be derived from the vendor ID or other information.
+    */
+    uint16_t ui16SubSystemVendorID;
+
+    /*!
+    //! Subsystem Device ID.  This 16-bit field holds additional information
+    //! that may be derived from the device ID or other information.
+    */
+    uint16_t ui16SubSystemDeviceID;
+
+    /*!
+    //! Vendor-specific ID.  This 32-bit field contains a unique number that
+    //! can be assigned per device by the manufacturer.
+    */
+    uint32_t ui32VendorSpecificID;
+}
+tSMBusUDID;
+
 /****************************************************************************** */
 
 //
@@ -315,6 +477,16 @@ typedef struct
     uint8_t pecBlockLenOverride;
     /*! Host Notify Buffer pointer */
     uint8_t *hostNotifyRxBuffPtr;
+
+    /*! The SMBus Unique Device ID (UDID) for this SMBus instance.  If
+      ! operating as a host, master-only, or on a bus that does not use Address
+      ! Resolution Protocol (ARP), this is not required.  This member can be
+      ! set via a direct structure access or using the SMBusSlaveInit
+      ! function.  For detailed information about the UDID, refer to the SMBus
+      ! spec.
+     */
+     tSMBusUDID *pUDID;
+
 } SMBus_Nwk;
 
 //*****************************************************************************
@@ -369,6 +541,8 @@ typedef enum
     SMBus_State_Controller_Error,           
     /*! SMBus Controller Host Notify Received*/
     SMBus_State_Controller_HostNotify,
+    /*! SMBus State Invalid ARP Command */
+    SMBus_State_Invalid_ARP_Cmd,
     /*! SMBus State Unknown */
     SMBus_State_Unknown
 } SMBus_State;
@@ -407,6 +581,34 @@ typedef union
     uint8_t u8byte;
 } SMBus_Status;
 
+/****************************************************************************** */
+//
+//! SMBus ARP Status Register
+//
+//*****************************************************************************
+typedef struct
+{
+        /*! ARP Address resolved */
+        uint8_t arpAddResolved;
+        /*! ARP Address Valid    */
+        uint8_t arpAddressValid;
+        /*! ARP in Progress */
+        uint8_t arpInProgress;
+        /*! ARP Command */
+        uint8_t arpCommand;
+        /*! ARP Data Length */
+        uint16_t arpDataLength;
+        /*! ARP RX Data */
+        uint8_t arpRxData;
+        /*! ARP Error State */
+        SMBus_State errorState;
+        /*! ARP UDID NACK FLAG */
+        uint8_t arpUDIDNacked;
+        /*! ARP UDID Transmit FLAG */
+        uint8_t arpUDIDTransmit;
+        /*! ARP WRITE STATUS */
+        uint32_t arpWriteState;
+} SMBus_ARP_Status;
 //*****************************************************************************
 //
 //! Main SMBus object
@@ -421,11 +623,15 @@ typedef struct
     /*! SMBus Control register */
     SMBus_Ctrl ctrl;                
     /*! SMBus Status register */
-    SMBus_Status status;            
+    SMBus_Status status;
+    /*! SMBus ARP Status register */
+    SMBus_ARP_Status arpStatus;
     /*! SMBus reported state */
-    SMBus_State state;              
+    SMBus_State state;
     /*! Own Target address */
-    uint8_t ownTargetAddr;           
+    uint8_t ownTargetAddr;
+    /*! ARP UDID NACK FLAG */
+    uint8_t arpUDIDNacked;
 } SMBus;
 
 //*****************************************************************************
@@ -444,7 +650,7 @@ typedef struct
 //
 //! \param smbus     Pointer to SMBus structure
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_processDone(SMBus *smbus);
@@ -477,7 +683,7 @@ extern SMBus_State SMBus_getState(SMBus *smbus);
 //
 //! \param smbus    Pointer to SMBus structure
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_enablePEC(SMBus *smbus);
@@ -487,7 +693,7 @@ extern void SMBus_enablePEC(SMBus *smbus);
 //
 //! \param smbus    Pointer to SMBus structure
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_disablePEC(SMBus *smbus);
@@ -501,7 +707,7 @@ extern void SMBus_disablePEC(SMBus *smbus);
 //!  \param smbus     Pointer to SMBus structure
 //!  \param i2cAddr   Base address of I2C module.
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_targetInit(SMBus *smbus, I2C_Regs *i2cAddr);
@@ -514,7 +720,7 @@ extern void SMBus_targetInit(SMBus *smbus, I2C_Regs *i2cAddr);
 //
 //! \param smbus     Pointer to SMBus structure
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_targetEnableInt(SMBus *smbus);
@@ -527,7 +733,7 @@ extern void SMBus_targetEnableInt(SMBus *smbus);
 //
 //! \param smbus     Pointer to SMBus structure
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_targetDisableInt(SMBus *smbus);
@@ -562,7 +768,7 @@ extern SMBus_State SMBus_targetProcessInt(SMBus *smbus);
 //
 //! \param smbus    Pointer to SMBus structure
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_controllerReset(SMBus *smbus);
@@ -574,7 +780,7 @@ extern void SMBus_controllerReset(SMBus *smbus);
 //! \param smbus     Pointer to SMBus structure
 //! \param targetAddr  Target I2C address
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_targetSetAddress(SMBus *smbus,
@@ -588,7 +794,7 @@ extern void SMBus_targetSetAddress(SMBus *smbus,
 //! \param data      Pointer to Application RX buffer
 //! \param size       Maximum size of buffer
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_targetSetRxBuffer(SMBus *smbus,
@@ -603,7 +809,7 @@ extern void SMBus_targetSetRxBuffer(SMBus *smbus,
 //! \param data     Pointer to Application TX buffer
 //! \param size      Maximum size of buffer
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_targetSetTxBuffer(SMBus *smbus,
@@ -619,7 +825,7 @@ extern void SMBus_targetSetTxBuffer(SMBus *smbus,
 //! \param smbus       Pointer to SMBus structure
 //! \param errorCode    SMBus_ErrorCode
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_targetReportError(SMBus *smbus,
@@ -742,7 +948,7 @@ extern void SMBus_controllerInit(SMBus *smbus,
 //
 //! \param smbus     Pointer to SMBus structure
 //
-//! \return  none
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_controllerEnableInt(SMBus *smbus);
@@ -755,7 +961,7 @@ extern void SMBus_controllerEnableInt(SMBus *smbus);
 //
 //! \param smbus     Pointer to SMBus structure
 //
-//! \return  none
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_controllerDisableInt(SMBus *smbus);
@@ -1281,7 +1487,7 @@ extern int8_t SMBus_controllerWaitUntilDone(SMBus *smbus,
 //! \param smbus            Pointer to SMBus structure
 //! \param hostAlertBuffer  Pointer to buffer to store host Alert response
 //
-//! \return  None
+//  \return  None
 //
 //*****************************************************************************
 extern void SMBus_controllerEnableHostNotify(SMBus *smbus, uint8_t *hostAlertBuffer);
@@ -1295,11 +1501,245 @@ extern void SMBus_controllerEnableHostNotify(SMBus *smbus, uint8_t *hostAlertBuf
 //
 //! \param smbus    Pointer to SMBus structure
 //
-//! \return  None
+// \return  None
 //
 //*****************************************************************************
 extern void SMBus_controllerDisableHostNotify(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief  Get the target's own I2C address
+//
+//! \param smbus     Pointer to SMBus structure
+//
+//! \return  Target I2C address
+//
+//*****************************************************************************
+extern uint8_t SMBus_targetGetAddress(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief  Validates the Received Address into SMBus-transferable byte order.
+//
+//! This function takes a tSMBusUDID and Acknowledges the Target Address
+//! Upon Successful Identification of UDID
+//
+//! \param smbus specifies the SMBUS structure UDIA Data to encode.
+//!
+//!
+// \return None.
+//
+//*****************************************************************************
+extern void SMBusARPAssignAddress(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief Validates the Received UDID Byte and address into SMBus-transferable byte order.
+//!
+//! \param smbus specifies the SMBUS structure UDIA Data to encode.
+//!
+//! This function takes a tSMBusUDID structure and re-orders the bytes so that
+//! it can be transferred on the bus.  The destination data buffer must contain
+//! at least 17 bytes.
+//!
+//! \return SMBUS_RET_ERROR
+//
+//*****************************************************************************
+extern int8_t SMBusARPUDIDByteValidate(SMBus *smbus);
 
+//*****************************************************************************
+//
+//! \brief Encodes a UDID structure and address into SMBus-transferable byte order.
+//!
+//! \param smbus specifies the SMBUS structure UDIA Data to encode.
+//!
+//! This function takes a tSMBusUDID structure and re-orders the bytes so that
+//! it can be transferred on the bus.  The destination data buffer must contain
+//! at least 17 bytes.
+//!
+// \return None.
+//
+//*****************************************************************************
+extern void SMBusARPGetUDIDPacket(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief Encodes a UDID structure and address into SMBus-transferable byte order.
+//!
+//! \param smbus specifies the SMBUS structure UDIA Data to encode.
+//!
+//! This function takes a tSMBusUDID structure and re-orders the bytes so that
+//! it can be transferred on the bus.  The destination data buffer must contain
+//! at least 17 bytes.
+//!
+// \return None.
+//
+//*****************************************************************************
+extern void SMBusARPGetUDIDPacketDirect(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief Resets the States of the AR Flag and AV flag based on POR status
+//!
+//! \param smbus specifies the SMBUS structure UDIA Data to encode.
+//!
+//! This function takes a data buffer and decodes it into a tSMBusUDID
+//! structure and an address variable.  It is assumed that there are 17 bytes
+//! in the data buffer.
+//!
+// \return None.
+//
+//*****************************************************************************
+extern void SMBusARP_RESET(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief Decodes an SMBus packet into a UDID structure and address.
+//!
+//! \param pUDID specifies the EDID structure.
+//!
+//! \param pui8Data specifies the EDID that is updated with new data.
+//!
+// \return None.
+//
+//*****************************************************************************
+extern void SMBusARPUDIDPacketDecode(tSMBusUDID *pUDID, uint8_t *pui8Data);
+//*****************************************************************************
+//
+//! \brief Get ARP Address Progress Status
+//!
+//! \param smbus With Received command
+//!
+//!
+//! \return  ARP Progress
+//!
+//
+// *****************************************************************************
+extern uint8_t SMBus_targetGetARPInProgress(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief Get ARP Address Valid Status
+//!
+//! \param smbus With Received command
+//!
+//!
+//! \return  AV Flag Status
+//!
+//
+// *****************************************************************************
+extern uint8_t SMBus_targetGetARStatus(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief Set ARP Address Resolved Status
+//!
+//! \param smbus With ARP Status
+//! \param val : AR Flag Value
+//!
+//!
+//  \return  None
+//!
+//
+// *****************************************************************************
+extern void SMBus_targetSetARStatus(SMBus *smbus , uint8_t val);
+//*****************************************************************************
+//
+//! \brief Set ARP Address Valid Status
+//!
+//! \param smbus With ARP Status
+//! \param val : AV Flag Value
+//!
+//!
+//  \return  None
+//!
+//
+// *****************************************************************************
+extern void SMBus_targetSetAVStatus(SMBus *smbus, uint8_t val);
+//*****************************************************************************
+//
+//! \brief Get ARP Address Valid Status
+//!
+//! \param smbus With Received command
+//!
+//!
+//! \return  AV Flag Status
+//!
+//
+// *****************************************************************************
+extern uint8_t SMBus_targetGetAVStatus(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief Get Target Direct Address in ARP Direct Address Call
+//!
+//! \param smbus With Received command
+//!
+//!
+//! \return  MSB 7 bits of the Command
+//!
+//
+// *****************************************************************************
+extern uint8_t SMBus_targetGetAddressDirect(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief Get Target Direct Command with Direct Address Call
+//!
+//! \param smbus With Received command
+//!
+//!
+//! \return  1b for Direct GetUDID Command
+//!          0b for Direct Reser Command
+//
+// *****************************************************************************
+extern uint8_t SMBus_targetGetDirectCmd(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief ARP_UDIDValidate
+//!
+//! \param smbus  SMBus structure with UDID and ARP Status
+//!
+//! This function is called when a new RX packet is received and to be Validated
+//!
+//! \return  SMBUS_RET_OK if command executed successfully
+//!          SMBUS_RET_ERROR if unsuccessful
+//
+// *****************************************************************************
+extern int8_t ARP_UDIDValidate(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief ARP Invalid Command  Routine
+//!
+//! \param smbus  SMBus structure which received the command with SMBus Default Address
+//!
+//! This function is called when a received packet is invalid
+//!
+// *****************************************************************************
+extern void  ARP_invalidCMD(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief Validates a command for ARP
+//!
+//! \param smbus With Received command and ARP Status
+//!
+//! This function is called when a command is received with Default Device Address
+//! (0x61) and the target needs to Respond with NACK for Invalid Scenarios
+//! check if the command is valid
+//! \return  SMBUS_RET_OK if command was found
+//!          SMBUS_RET_ERROR if command is invalid
+//
+// *****************************************************************************
+extern int8_t ARP_isCmdValid(SMBus *smbus);
+//*****************************************************************************
+//*****************************************************************************
+//
+//! \brief ARP Command complete callback
+//!
+//! \param smbus  SMBus structure which received the command with SMBus Default Address
+//!
+//! This function is called when a received packet is ready to process
+//! after a STOP or RE-START.
+//!
+//! \return  SMBUS_RET_OK if command executed successfully
+//!          SMBUS_RET_ERROR if unsuccessful
+//
+// *****************************************************************************
+extern int8_t ARP_CmdComplete(SMBus *smbus);
 //*****************************************************************************
 //
 // Mark the end of the C bindings section for C++ compilers.

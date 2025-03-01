@@ -68,11 +68,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../opa_dac8_output_buffer.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../opa_dac8_output_buffer.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../opa_dac8_output_buffer.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

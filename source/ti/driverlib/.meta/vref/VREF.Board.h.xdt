@@ -66,8 +66,9 @@
 `vrefVoltStr.padEnd(40, " ")+vrefVoltStr2.padStart(40, " ")`
 %   /* This is one possible way to do GPIO defines. Good if you need to find out PINCM */
 %       let gpioStr = "GPIO_VREF";
-% if(Common.isDeviceM0G() || ((Common.isDeviceM0L() || Common.isDeviceM0C()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
-% /* figure out pin number and pinCMx */
+% if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || ((Common.isDeviceM0L() || Common.isDeviceM0C() || Common.isDeviceM0H() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
+%       if(["VREF+","VREF+-"].includes(inst.basicVrefPins)) {
+%       /* figure out pin number and pinCMx */
 %       let vrefPosPinName = "vrefPos"+"Pin";
 %       let vrefPosPackagePin = inst.peripheral[vrefPosPinName].$solution.packagePinName;
 %       let vrefPosPinCM = Common.getPinCM(vrefPosPackagePin,inst,"VREF+");
@@ -85,7 +86,8 @@
 %       let vrefPosFuncStr = "#define "+gpioStr+"_IOMUX_VREFPOS_FUNC";
 %       let vrefPosFuncStr2 = "IOMUX_PINCM"+vrefPosPinCM+"_PF_UNCONNECTED";
 `vrefPosFuncStr.padEnd(40, " ")+vrefPosFuncStr2.padStart(40, " ")`
-%       if (inst.basicVrefPins == "VREF+-") {
+%        } // if(["VREF+","VREF+-"].includes(inst.basicVrefPins))
+%       if(["VREF-","VREF+-"].includes(inst.basicVrefPins)) {
 %           let vrefNegPinName = "vrefNeg"+"Pin";
 %           let vrefNegPackagePin = inst.peripheral[vrefNegPinName].$solution.packagePinName;
 %           let vrefNegPinCM = Common.getPinCM(vrefNegPackagePin,inst,"VREF-");
@@ -103,7 +105,7 @@
 %           let vrefNegFuncStr = "#define "+gpioStr+"_IOMUX_VREFNEG_FUNC";
 % let vrefNegFuncStr2 = "IOMUX_PINCM"+vrefNegPinCM+"_PF_UNCONNECTED";
 `vrefNegFuncStr.padEnd(40, " ")+vrefNegFuncStr2.padStart(40, " ")`
-%        } //  if (inst.basicVrefPins == "VREF+-")
+%        } // if(["VREF-","VREF+-"].includes(inst.basicVrefPins))
 % }
 % // TODO: [(H) JAN] need to confirm actual delay time with Luis.(MSPSWSDK-2038)
 % if (inst.checkVREFReady) {

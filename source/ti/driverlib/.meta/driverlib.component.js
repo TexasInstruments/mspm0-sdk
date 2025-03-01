@@ -63,20 +63,24 @@ let systemModulesList = [
  *  - MSPM0L122X_L222X
  *  - MSPM0GX51X
  *  - MSPM0L111X
+ *  - MSPM0H321X
+ *  - MSPM0C1105_C1106
  */
 if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() ||
     Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() ||
     Common.isDeviceFamily_PARENT_MSPM0C110X() ||
     Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
     Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-    Common.isDeviceFamily_PARENT_MSPM0L111X()){
+    Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+    Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+    Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
 systemModulesList.push(
     "/ti/driverlib/NONMAIN",
 );
 }
 
 /* System: MSPM0Gxx-specific modules */
-if(Common.isDeviceM0G()){
+if(Common.hasMATHACL()){
     systemModulesList.push(
         "/ti/driverlib/MATHACL",
     );
@@ -89,7 +93,8 @@ if(/RTC/.test(peripherals)) {
 }
 
 /* System (IWDT): Part of LFSS peripheral */
-if(/LFSS/.test(peripherals) && system.deviceData.peripherals['LFSS'].attributes.SYS_LFSS_WDT_PRESENT) {
+let IWDTlegacyCheck = (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X());
+if(IWDTlegacyCheck || (/LFSS/.test(peripherals) && system.deviceData.peripherals['LFSS'].attributes.SYS_LFSS_WDT_PRESENT)) {
     systemModulesList.push(
         "/ti/driverlib/IWDT",
     );
@@ -104,7 +109,8 @@ if(/LFSS/.test(peripherals) && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
 };
 
 /* System: GX51X, L111X, and H321X have an RTC_B within the LFSS Peripheral */
-if(/LFSS/.test(peripherals) && (Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceFamily_PARENT_MSPM0H321X())) {
+if(/LFSS/.test(peripherals) && (Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())) {
     systemModulesList.push(
         "/ti/driverlib/RTCB",
     );
@@ -138,14 +144,15 @@ let timerModulesList = [
     "/ti/driverlib/COMPARE",
 ];
 
-/* QEI is available on TIMG8-TIMG11 */
-if(/TIMG8|9|10|11/.test(peripherals)) {
+// Add QEI module if device has TIMGx with QEI support
+if (Common.getTimerInstances("QEI").length != 0) {
     timerModulesList.push(
         "/ti/driverlib/QEI",
     );
 }
 
-if(/TIMA/.test(peripherals)) {
+// Add TIMERFault module if device has TIMAx with Fault support
+if (Common.getTimerInstances("TIMERFault").length != 0) {
     timerModulesList.push(
         "/ti/driverlib/TIMERFault",
     );
@@ -223,8 +230,19 @@ if(/AESADV/.test(peripherals)) {
     );
 }
 
-/* SECURITY CONFIGURATOR available on MSPM0L122X_L222X, MSPM0GX51X and MSPM0L111X  */
-if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+/*
+ * SECURITY CONFIGURATOR available on:
+ * - MSPM0L122X_L222X
+ * - MSPM0GX51X
+ * - MSPM0L111X
+ * - MSPM0H321x
+ * - MSPM0C1105_C1106
+ */
+if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
+    Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+    Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+    Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+    Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
     securityModulesList.push(
         "/ti/driverlib/SECCONFIG",
     );
@@ -327,6 +345,11 @@ let templates = [
     {
         "name": "/ti/driverlib/sec_config/SECCONFIG.Board.h.xdt",
         "outputPath": "customer_secure_config.h",
+        "alwaysRun": false
+    },
+    {
+        "name": "/ti/driverlib/templates/nonmainCRCOutput.txt.xdt",
+        "outputPath": "nonmainCRCOutput.txt",
         "alwaysRun": false
     },
 ];

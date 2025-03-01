@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IAR Embedded Workbench IDE Version 9.60.3+ for MSPM0 MCUs &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 2.03.00.07 documentation</title>
+  <title>IAR Embedded Workbench IDE Version 9.60.4+ for MSPM0 MCUs &mdash; IAR Embedded Workbench IDE for MSPM0 MCUs Documentation 2.04.00.06 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> IAR Embedded Workbench IDE for MSPM0 MCUs Documentation
           </a>
               <div class="version">
-                2.03.00.07
+                2.04.00.06
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -43,7 +43,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">IAR Embedded Workbench IDE Version 9.60.3+ for MSPM0 MCUs</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IAR Embedded Workbench IDE Version 9.60.4+ for MSPM0 MCUs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#read-this-first">Read This First</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-use-this-guide">How to Use This Guide</a></li>
@@ -71,11 +71,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#using-iar-i-jet-debug-probe">3.3 Using IAR I-jet Debug Probe</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#breakpoint-types">3.4 Breakpoint Types</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#debugging-pre-built-libraries">3.5 Debugging Pre-built Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diagnostic-readings-in-iar">3.6 Diagnostic readings in IAR</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">4. Known Issues and Frequently Asked Questions (FAQs)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#low-power-mode-issues-while-debugging">4.1 Low-Power Mode Issues While Debugging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mspm0gx51x-support-with-iar">4.2 MSPM0Gx51x Support With IAR</a></li>
 </ul>
 </li>
 </ul>
@@ -96,7 +96,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>IAR Embedded Workbench IDE Version 9.60.3+ for MSPM0 MCUs</li>
+      <li>IAR Embedded Workbench IDE Version 9.60.4+ for MSPM0 MCUs</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -105,8 +105,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="iar-embedded-workbench-ide-version-9-60-3-for-mspm0-mcus">
-<h1>IAR Embedded Workbench IDE Version 9.60.3+ for MSPM0 MCUs<a class="headerlink" href="#iar-embedded-workbench-ide-version-9-60-3-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
+  <section id="iar-embedded-workbench-ide-version-9-60-4-for-mspm0-mcus">
+<h1>IAR Embedded Workbench IDE Version 9.60.4+ for MSPM0 MCUs<a class="headerlink" href="#iar-embedded-workbench-ide-version-9-60-4-for-mspm0-mcus" title="Permalink to this heading">¶</a></h1>
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -152,7 +152,7 @@
 </section>
 <section id="software-installation">
 <h2>1. Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this heading">¶</a></h2>
-<p>IAR Embedded Workbench for Arm (EWARM) IDE is available from the <a class="reference external" href="https://www.iar.com/">IAR website</a> or the <a class="reference external" href="https://www.ti.com/tool/IAR-KICKSTART">TI IAR kickstart page</a>. MSPM0 microcontrollers and the MSPM0 SDK require EWARM 9.60.3 or higher.</p>
+<p>IAR Embedded Workbench for Arm (EWARM) IDE is available from the <a class="reference external" href="https://www.iar.com/">IAR website</a> or the <a class="reference external" href="https://www.ti.com/tool/IAR-KICKSTART">TI IAR kickstart page</a>. MSPM0 microcontrollers and the MSPM0 SDK require EWARM 9.60.4 or higher.</p>
 <p>See the <a class="reference external" href="https://www.ti.com/tool/MSPM0-SDK">MSPM0 SDK</a> documentation for finding the right SDK for your IDE version.</p>
 </section>
 <section id="development-flow">
@@ -349,6 +349,14 @@
 </figure>
 <p>See <a class="reference external" href="#overriding-pre-built-libraries">Overriding Pre-built Libraries</a> for information on how to override and modify source code from libraries.</p>
 </section>
+<section id="diagnostic-readings-in-iar">
+<h3>3.6 Diagnostic readings in IAR<a class="headerlink" href="#diagnostic-readings-in-iar" title="Permalink to this heading">¶</a></h3>
+<p>In IAR version 9.60.4+, if there are issues connecting to the MSPM0, a diagnosis is performed on the device to determine its current state by utilizing the BOOTDIAG register from our CFG-AP. This is done by reading and then decoding the output to provide a list of possible root causes and solutions.</p>
+<p>Below is a screenshot of an example output depicting the possible errors unique to the BOOTDIAG reading and solutions.</p>
+<figure class="align-default">
+<img alt="" src="../_images/iar_ide_debug_prompt.png" />
+</figure>
+</section>
 </section>
 <section id="known-issues-and-frequently-asked-questions-faqs">
 <h2>4. Known Issues and Frequently Asked Questions (FAQs)<a class="headerlink" href="#known-issues-and-frequently-asked-questions-faqs" title="Permalink to this heading">¶</a></h2>
@@ -371,12 +379,6 @@
 </li>
 </ol>
 <p>By patching the installation of IAR with these files, connection to the debugger should be maintained when the device enters a low-power state.</p>
-</section>
-<section id="mspm0gx51x-support-with-iar">
-<h3>4.2 MSPM0Gx51x Support With IAR<a class="headerlink" href="#mspm0gx51x-support-with-iar" title="Permalink to this heading">¶</a></h3>
-<p>MSPM0Gx51x family will not be natively supported in IAR until version 9.60.2.</p>
-<p>For early access to MSPM0Gx51x support, please contact your local sales representative, TI support team or <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/">E2E</a>.</p>
-<p>For other issues please refer to <a class="reference external" href="../../../../../../known_issues_FAQ.html">Known Issues and FAQ</a> inside the SDK.</p>
 </section>
 </section>
 </section>

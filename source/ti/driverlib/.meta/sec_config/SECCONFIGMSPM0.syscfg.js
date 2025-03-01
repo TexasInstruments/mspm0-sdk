@@ -39,6 +39,7 @@
 
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
+let deviceOptions = system.getScript("/ti/driverlib/sec_config/SECCONFIGOptions.js");
 
 /*
  *  ======== validate ========
@@ -49,6 +50,12 @@ let Common = system.getScript("/ti/driverlib/Common.js");
  */
 function validate(inst, validation)
 {
+    if (deviceOptions.SUPPORT_BANKSWAP == false)
+    {
+        validation.logInfo("This device does not support dual-bank. " +
+            "Bank-swapping portions are fixed for this device.", inst);
+    }
+
     if (!inst.unprivVerifyOptions.includes("writeExecuteOnly"))
     {
         validation.logInfo(
@@ -98,6 +105,12 @@ function validate(inst, validation)
         inst, "cscAppImageBaseAddr");
     }
 
+    if (inst.cscSecAppImageBaseAddr && (inst.cscSecAppImageBaseAddr % 0x400) != 0)
+    {
+        validation.logError("CSC secondary application base address should be aligned on a multiple of a flash sector size (1024 bytes)",
+        inst, "cscSecAppImageBaseAddr");
+    }
+
     if ((inst.cscAppImageSize % 0x400) != 0)
     {
         validation.logError("CSC application image size should be a multiple of a flash sector size (1024 bytes)",
@@ -134,6 +147,23 @@ Pre-defined profiles for Security Configurator
     return quickProfilesConfig;
 }
 
+function createEncryptionOptions()
+{
+    let encryptionOptions = [
+        {name: "asymmetric", displayName: "Asymmetric Encryption (ECDSA)"},
+    ];
+
+    if (deviceOptions.SUPPORT_ADVANCED_AES == true)
+    {
+        encryptionOptions.push(
+            {name: "symmetric", displayName: "Symmetric Encryption"},
+        );
+    }
+
+    return encryptionOptions;
+}
+
+
 function getVerificationConfig()
 {
     let verificationConfig = [
@@ -149,46 +179,52 @@ See the TI App Note [Cybersecurity Enablers for MSPM0 MCUs](https://www.ti.com/l
 and the generated header file for more details.
 `,
             default: "asymmetric",
-            options: [
-                {name: "asymmetric", displayName: "Asymmetric Encryption (ECDSA)"},
-                {name: "symmetric", displayName: "Symmetric Encryption"},
-            ],
+            options: createEncryptionOptions,
             onChange: onChangePrivVerifyOptions,
         },
-        {
-            name: "enableCMACAcceleration",
-            displayName: "Enable CMAC Acceleration",
-            description: "",
-            longDescription: `
-Used exclusively by the CSC during privileged mode on power up. If an image has
-been previously verified using ECDSA, the CMAC key and tag can be computed and
-stored in a read-protected region of flash. During power up, if the image has
-not been updated (and is the same version), the tag can be re-computed for the
-image using the key and ECDSA can be bypassed.
+    ];
 
-This greatly speeds up power-on-resets/BOOTRSTs where updates are not being
-performed without compromising a thorough, 128-bit secure verification
-(as key and tag are not exposed).
+    if (deviceOptions.SUPPORT_ADVANCED_AES == true)
+    {
+        verificationConfig.push(
+            {
+                name: "enableCMACAcceleration",
+                displayName: "Enable CMAC Acceleration",
+                description: "",
+                longDescription: `
+    Used exclusively by the CSC during privileged mode on power up. If an image has
+    been previously verified using ECDSA, the CMAC key and tag can be computed and
+    stored in a read-protected region of flash. During power up, if the image has
+    not been updated (and is the same version), the tag can be re-computed for the
+    image using the key and ECDSA can be bypassed.
 
-This also is separate from a standard symmetric encryption as the CMAC key is
-unique per device, thus the leaking of a CMAC key does not represent a breach
-in security to all devices, or that a user can begin signing arbitrary images
-that will run in all devices.
-`,
-            default: true,
-            hidden: false,
-        },
-        {
-            name: "enableSymmEncOnlyNoECDSA",
-            displayName: "Enable Symmetric Encryption Only (Remove ECDSA Support)",
-            description: "",
-            longDescription: `
-This option will remove additional ECDSA cryptographic primitives if selected.
-Requires Symmetric Encryption option to be selected.
-`,
-            default: true,
-            hidden: true,
-        },
+    This greatly speeds up power-on-resets/BOOTRSTs where updates are not being
+    performed without compromising a thorough, 128-bit secure verification
+    (as key and tag are not exposed).
+
+    This also is separate from a standard symmetric encryption as the CMAC key is
+    unique per device, thus the leaking of a CMAC key does not represent a breach
+    in security to all devices, or that a user can begin signing arbitrary images
+    that will run in all devices.
+    `,
+                default: true,
+                hidden: false,
+            },
+            {
+                name: "enableSymmEncOnlyNoECDSA",
+                displayName: "Enable Symmetric Encryption Only (Remove ECDSA Support)",
+                description: "",
+                longDescription: `
+    This option will remove additional ECDSA cryptographic primitives if selected.
+    Requires Symmetric Encryption option to be selected.
+    `,
+                default: true,
+                hidden: true,
+            },
+        );
+    }
+
+    verificationConfig.push(
         {
             name: "unprivVerifyOptions",
             displayName: "Unprivileged Verification Options",
@@ -227,7 +263,7 @@ See generated header file for more details.
             default: true,
             hidden: false,
         },
-    ];
+    );
 
     return verificationConfig;
 }
@@ -236,13 +272,19 @@ function onChangePrivVerifyOptions(inst, ui)
 {
     if (inst.privVerifyOptions == "asymmetric")
     {
-        ui.enableCMACAcceleration.hidden = false;
-        ui.enableSymmEncOnlyNoECDSA.hidden = true;
+        if (deviceOptions.SUPPORT_ADVANCED_AES == true)
+        {
+            ui.enableCMACAcceleration.hidden = false;
+            ui.enableSymmEncOnlyNoECDSA.hidden = true;
+        }
     }
     else
     {
-        ui.enableCMACAcceleration.hidden = true;
-        ui.enableSymmEncOnlyNoECDSA.hidden = false;
+        if (deviceOptions.SUPPORT_ADVANCED_AES == true)
+        {
+            ui.enableCMACAcceleration.hidden = true;
+            ui.enableSymmEncOnlyNoECDSA.hidden = false;
+        }
     }
 }
 
@@ -324,6 +366,17 @@ See generated header file for more details.
 
 function getMiscConfig()
 {
+    let developmentOptions = [
+        {name: "enableDevErrorCodes", displayName: "Generate Dev Error Codes"},
+    ]
+
+    if (deviceOptions.SUPPORT_ADVANCED_AES == true)
+    {
+        developmentOptions.push(
+            {name: "enablePseudoRandom", displayName: "Enable Pseudo Random CMAC Key Generation"},
+        )
+    }
+
     let miscConfig = [
         {
             name: "developmentOptions",
@@ -335,15 +388,14 @@ file for more details.
 `,
             default: [],
             minSelections: 0,
-            options: [
-                {name: "enablePseudoRandom", displayName: "Enable Pseudo Random CMAC Key Generation"},
-                {name: "enableDevErrorCodes", displayName: "Generate Dev Error Codes"},
-            ],
+            options: developmentOptions,
         },
         {
             name: "enableIPProtection",
             displayName: "Enable IP Protection",
             description: "",
+            //TODO: Eventually customer should add IP range in the header
+            //currently unsupported for now (and IP range varies per device)
             longDescription: `
 The customer will provide an IP Protection range in the header, such that the
 CSC can enable the IP Protect firewall over a region of memory. The IP Protect
@@ -369,9 +421,49 @@ hashing and ECDSA by way of a function table in the output.
     return miscConfig;
 }
 
+function onChangeDisableBankswap(inst, ui)
+{
+    onDisableBankswap(inst, ui);
+}
+
+function onDisableBankswap(inst, ui)
+{
+    if (inst.disableBankswap)
+    {
+        ui.cscSecAppImageBaseAddr.hidden = false;
+    }
+    else
+    {
+        ui.cscSecAppImageBaseAddr.hidden = true;
+    }
+}
+
 function getMemoryMapConfig()
 {
     let memoryMapConfig = [
+        {
+            name: "disableBankswap",
+            displayName: "Disable Bankswap",
+            description: "Disable Bankswap",
+            longDescription: `
+If the device supports multiple banks, it is recommended to leave bankswap
+enabled to allow the CSC to handle images at the bank level
+(and use write^execute exclusion permissions specific to the bank).
+Banks also allow for logical address space changes, meaning images can always
+be compiled with respect to the image offset.
+
+If the device is only equipped with one bank, or this functionality is not
+desired, then it is possible to use eXecute-In-Place (XIP), where two sets
+of images are used and swapped between. The CSC will write-protect the image
+in use (at 8kB granularity) and not write-protect the other image. Two sets
+of images, primary and secondary, must be kept.
+
+NOTE: Only Bankswap is enabled currently
+`,
+            default: false,
+            hidden: false,
+            onChange: onChangeDisableBankswap,
+        },
         {
             name: "cscBankSize",
             displayName: "CSC Bank Size (Bytes)",
@@ -444,6 +536,20 @@ read-protect it accordingly.
             range: [0, 0xFFFFFFFF],
             isInteger: true,
         },
+        {
+            name: "cscSecAppImageBaseAddr",
+            displayName: "CSC Secondary Application Image Base Address",
+            description: "Set the CSC Secondary Application Image Base Address",
+            longDescription: `
+The secondary application image size is the same as the primary application
+image size.
+`,
+            default: 0,
+            range: [0, 0xFFFFFFFF],
+            displayFormat: "hex",
+            isInteger: true,
+            hidden: true,
+        },
     ];
 
     return memoryMapConfig;
@@ -489,12 +595,21 @@ on using Configuration NVM (NONMAIN) and CSC.
         collapsed: false,
         config: getVerificationConfig(),
     },
-    {
-        name: "GROUP_KEY_CONFIGURATION",
-        displayName: "Key Configuration",
-        collapsed: false,
-        config: getKeyConfig(),
-    },
+];
+
+if (deviceOptions.SUPPORT_KEYSTORE)
+{
+    securityConfiguratorConfig.push(
+        {
+            name: "GROUP_KEY_CONFIGURATION",
+            displayName: "Key Configuration",
+            collapsed: false,
+            config: getKeyConfig(),
+        },
+    );
+}
+
+securityConfiguratorConfig.push(
     {
         name: "GROUP_MISC",
         displayName: "Miscellaneous",
@@ -507,7 +622,7 @@ on using Configuration NVM (NONMAIN) and CSC.
         collapsed: false,
         config: getMemoryMapConfig(),
     },
-];
+);
 
 /*
  *  ======== devSpecific ========

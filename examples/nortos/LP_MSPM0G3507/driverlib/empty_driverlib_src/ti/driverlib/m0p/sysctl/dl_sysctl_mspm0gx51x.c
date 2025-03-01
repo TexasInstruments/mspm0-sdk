@@ -38,8 +38,15 @@
 #include <ti/driverlib/m0p/dl_core.h>
 #include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.h>
 
-void DL_SYSCTL_configSYSPLL(DL_SYSCTL_SYSPLLConfig *config)
+void DL_SYSCTL_configSYSPLL(const DL_SYSCTL_SYSPLLConfig *config)
 {
+    /*
+     * PLL configurations are retained in lower reset levels. Set default
+     * behavior of disabling the PLL to keep a consistent behavior regardless
+     * of reset level.
+     */
+    DL_SYSCTL_disableSYSPLL();
+
     /*
      * Before any configuration is done, a check is performed first to
      * ensure that the trim table within SRAM has been initialized first.
@@ -50,11 +57,6 @@ void DL_SYSCTL_configSYSPLL(DL_SYSCTL_SYSPLLConfig *config)
     if (!DL_FactoryRegion_isTrimTableInSram()) {
         DL_FactoryRegion_initTrimTable();
     }
-
-    /* PLL configurations are retained in lower reset levels. Set default
-     * behavior of disabling the PLL to keep a consistent behavior regardless
-     * of reset level. */
-    DL_SYSCTL_disableSYSPLL();
 
     /* Check that SYSPLL is disabled before configuration */
     while ((DL_SYSCTL_getClockStatus() & (DL_SYSCTL_CLK_STATUS_SYSPLL_OFF)) !=
@@ -117,7 +119,7 @@ void DL_SYSCTL_configSYSPLL(DL_SYSCTL_SYSPLLConfig *config)
     }
 }
 
-void DL_SYSCTL_setLFCLKSourceLFXT(DL_SYSCTL_LFCLKConfig *config)
+void DL_SYSCTL_setLFCLKSourceLFXT(const DL_SYSCTL_LFCLKConfig *config)
 {
     DL_Common_updateReg(&SYSCTL->SOCLOCK.LFCLKCFG,
         ((uint32_t) config->lowCap << SYSCTL_LFCLKCFG_LOWCAP_OFS) |
@@ -212,6 +214,13 @@ void DL_SYSCTL_switchMCLKfromHSCLKtoSYSOSC(void)
 void DL_SYSCTL_setHFCLKSourceHFXT(DL_SYSCTL_HFXT_RANGE range)
 {
     /*
+     * Some crystal configurations are retained in lower reset levels. Set
+     * default behavior of HFXT to keep a consistent behavior regardless of
+     * reset level.
+     */
+    DL_SYSCTL_disableHFXT();
+
+    /*
      * Before any configuration is done, a check is performed first to
      * ensure that the trim table within SRAM has been initialized first.
      * If it has not been initialized then the table within SRAM will be
@@ -221,11 +230,6 @@ void DL_SYSCTL_setHFCLKSourceHFXT(DL_SYSCTL_HFXT_RANGE range)
     if (!DL_FactoryRegion_isTrimTableInSram()) {
         DL_FactoryRegion_initTrimTable();
     }
-
-    /* Some crystal configurations are retained in lower reset levels. Set
-     * default behavior of HFXT to keep a consistent behavior regardless of
-     * reset level. */
-    DL_SYSCTL_disableHFXT();
 
     DL_SYSCTL_setHFXTFrequencyRange(range);
     /* Set startup time to ~0.512ms based on TYP datasheet recommendation */

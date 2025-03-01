@@ -100,7 +100,7 @@ void isdRun(ISD_T *pIsd)
 
             if(pIsd->motorRunCount > pIsd->motorRunCountMax)
             {
-                if(_IQabs(pIsd->motorSpeedPositive - pIsd->motorSpeedNegative) < (pIsd->motorRunCountMax >> 1))
+                if(_IQabs(pIsd->motorSpeedPositive - pIsd->motorSpeedNegative) < (pIsd->motorRunCountMax >> 4))
                 {
                     pIsd->direction = DIRECTION_UNIDENTIFIED;
                 }

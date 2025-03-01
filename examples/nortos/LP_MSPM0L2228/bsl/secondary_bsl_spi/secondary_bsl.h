@@ -41,7 +41,7 @@
  * NOTE: The value of BSL_SRAM_BUF_START_ADDR might change based on the
  * SRAM usage. Refer to the final map file to get the correct value.
  */
-#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20000170)
+#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x200001A0)
 #define BSL_STACK_SIZE ((uint32_t) 0x100)
 
 /* Definitions for FLASH */

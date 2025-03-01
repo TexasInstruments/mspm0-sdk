@@ -1,0 +1,224 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const CRC           = scripting.addModule("/ti/driverlib/CRC");
+const DMA           = scripting.addModule("/ti/driverlib/DMA");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const GPIO2         = GPIO.addInstance();
+const MATHACL       = scripting.addModule("/ti/driverlib/MATHACL");
+const SPI           = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1          = SPI.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const SYSTICK       = scripting.addModule("/ti/driverlib/SYSTICK");
+const UART          = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1         = UART.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider6       = system.clockTree["PLL_CLK2X_DIV"];
+divider6.divideValue = 4;
+
+const divider7       = system.clockTree["PLL_PDIV"];
+divider7.divideValue = 2;
+
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const gate4  = system.clockTree["EXCLKGATE"];
+gate4.enable = true;
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 39;
+
+const mux2       = system.clockTree["CANCLKMUX"];
+mux2.inputSelect = "CANCLKMUX_PLLCLK1_OUT";
+
+const mux3       = system.clockTree["EXCLKMUX"];
+mux3.inputSelect = "EXCLKMUX_HFCLK";
+
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux6       = system.clockTree["FCCSELCLKMUX"];
+mux6.inputSelect = "FCCSELCLKMUX_EXTCLK";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_SYSPLL2X";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction1                        = system.clockTree["CLKOUT"];
+pinFunction1.enable                       = true;
+pinFunction1.peripheral.$assign           = "SYSCTL";
+pinFunction1.peripheral.clkOutPin.$assign = "PB11";
+
+const pinFunction4                        = system.clockTree["HFXT"];
+pinFunction4.enable                       = true;
+pinFunction4.HFCLKMonitor                 = true;
+pinFunction4.HFXTStartup                  = 150;
+pinFunction4.inputFreq                    = 8.192;
+pinFunction4.peripheral.$assign           = "SYSCTL";
+pinFunction4.peripheral.hfxInPin.$assign  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$assign = "PA6";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+CRC.profile = "CONFIG_PROFILE_2";
+
+GPIO1.$name                          = "GEN_GPIO_OUT";
+GPIO1.associatedPins.create(5);
+GPIO1.associatedPins[0].$name        = "PINO_01";
+GPIO1.associatedPins[0].assignedPort = "PORTB";
+GPIO1.associatedPins[0].assignedPin  = "4";
+GPIO1.associatedPins[0].pin.$assign  = "PB4";
+GPIO1.associatedPins[1].$name        = "PINO_02";
+GPIO1.associatedPins[1].assignedPort = "PORTB";
+GPIO1.associatedPins[1].pin.$assign  = "PB13";
+GPIO1.associatedPins[2].$name        = "PINO_03";
+GPIO1.associatedPins[2].assignedPort = "PORTB";
+GPIO1.associatedPins[2].assignedPin  = "2";
+GPIO1.associatedPins[2].pin.$assign  = "PB2";
+GPIO1.associatedPins[3].$name        = "PINO_04";
+GPIO1.associatedPins[3].assignedPort = "PORTA";
+GPIO1.associatedPins[3].pin.$assign  = "PA7";
+GPIO1.associatedPins[4].$name        = "PINO_06";
+GPIO1.associatedPins[4].assignedPort = "PORTA";
+GPIO1.associatedPins[4].assignedPin  = "10";
+GPIO1.associatedPins[4].initialValue = "SET";
+GPIO1.associatedPins[4].pin.$assign  = "PA10";
+
+GPIO2.$name                          = "GEN_GPIO_IN";
+GPIO2.associatedPins.create(4);
+GPIO2.associatedPins[0].direction    = "INPUT";
+GPIO2.associatedPins[0].interruptEn  = true;
+GPIO2.associatedPins[0].$name        = "PINI_01";
+GPIO2.associatedPins[0].assignedPort = "PORTB";
+GPIO2.associatedPins[0].polarity     = "FALL";
+GPIO2.associatedPins[0].assignedPin  = "20";
+GPIO2.associatedPins[0].pin.$assign  = "PB20";
+GPIO2.associatedPins[1].$name        = "PINI_02";
+GPIO2.associatedPins[1].direction    = "INPUT";
+GPIO2.associatedPins[1].interruptEn  = true;
+GPIO2.associatedPins[1].polarity     = "FALL";
+GPIO2.associatedPins[1].assignedPort = "PORTB";
+GPIO2.associatedPins[1].assignedPin  = "24";
+GPIO2.associatedPins[1].pin.$assign  = "PB24";
+GPIO2.associatedPins[2].$name        = "PINI_03";
+GPIO2.associatedPins[2].direction    = "INPUT";
+GPIO2.associatedPins[2].interruptEn  = true;
+GPIO2.associatedPins[2].polarity     = "FALL";
+GPIO2.associatedPins[2].assignedPort = "PORTB";
+GPIO2.associatedPins[2].assignedPin  = "3";
+GPIO2.associatedPins[2].pin.$assign  = "PB3";
+GPIO2.associatedPins[3].$name        = "PINI_04";
+GPIO2.associatedPins[3].direction    = "INPUT";
+GPIO2.associatedPins[3].interruptEn  = true;
+GPIO2.associatedPins[3].polarity     = "FALL";
+GPIO2.associatedPins[3].assignedPort = "PORTB";
+GPIO2.associatedPins[3].assignedPin  = "5";
+GPIO2.associatedPins[3].pin.$assign  = "PB5";
+
+SPI1.phase                                 = "1";
+SPI1.$name                                 = "GEN_SPI_0";
+SPI1.rxFifoThreshold                       = "DL_SPI_RX_FIFO_LEVEL_ONE_FRAME";
+SPI1.enabledInterrupts                     = ["DMA_DONE_RX","DMA_DONE_TX","TX_EMPTY"];
+SPI1.enabledDMAEvent1Triggers              = "DL_SPI_DMA_INTERRUPT_RX";
+SPI1.enabledDMAEvent2Triggers              = "DL_SPI_DMA_INTERRUPT_TX";
+SPI1.txFifoThreshold                       = "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME";
+SPI1.targetBitRate                         = 20000000;
+SPI1.calculatedBitRate                     = 1;
+SPI1.chipSelect                            = ["0","1","2","3"];
+SPI1.peripheral.$assign                    = "SPI1";
+SPI1.peripheral.sclkPin.$assign            = "PB9";
+SPI1.peripheral.mosiPin.$assign            = "PB8";
+SPI1.peripheral.misoPin.$assign            = "PB7";
+SPI1.peripheral.cs0Pin.$assign             = "PB6";
+SPI1.peripheral.cs1Pin.$assign             = "PA27";
+SPI1.peripheral.cs2Pin.$assign             = "PB0";
+SPI1.peripheral.cs3Pin.$assign             = "PA25";
+SPI1.DMA_CHANNEL_EVENT1.$name              = "DMA_CH1";
+SPI1.DMA_CHANNEL_EVENT1.srcLength          = "BYTE";
+SPI1.DMA_CHANNEL_EVENT1.dstLength          = "BYTE";
+SPI1.DMA_CHANNEL_EVENT1.addressMode        = "f2b";
+SPI1.DMA_CHANNEL_EVENT1.enableInterrupt    = true;
+SPI1.DMA_CHANNEL_EVENT1.peripheral.$assign = "DMA_CH1";
+SPI1.DMA_CHANNEL_EVENT2.$name              = "DMA_CH0";
+SPI1.DMA_CHANNEL_EVENT2.addressMode        = "b2f";
+SPI1.DMA_CHANNEL_EVENT2.srcLength          = "BYTE";
+SPI1.DMA_CHANNEL_EVENT2.dstLength          = "BYTE";
+SPI1.DMA_CHANNEL_EVENT2.peripheral.$assign = "DMA_CH0";
+
+SYSCTL.MCLKSource        = "HSCLK";
+SYSCTL.validateClkStatus = true;
+SYSCTL.EXCLKSource       = "HFCLK";
+SYSCTL.HFCLK_Freq        = 16384000;
+SYSCTL.EXCLKDivider      = "2";
+SYSCTL.enableEXCLK       = true;
+SYSCTL.useHFCLK_Manual   = true;
+SYSCTL.HFCLKSource       = "HFXT";
+SYSCTL.SYSPLLSource      = "HFCLK";
+SYSCTL.SYSPLL_Pdiv       = 4;
+SYSCTL.SYSPLL_Qdiv       = 39;
+SYSCTL.SYSPLL_CLK2XEn    = true;
+SYSCTL.SYSPLL_CLK2XDiv   = 3;
+SYSCTL.HSCLKSource       = "SYSPLLCLK2X";
+SYSCTL.HFXTStartup       = 32;
+SYSCTL.HFCLKMonitor      = true;
+SYSCTL.clockTreeEn       = true;
+
+SYSTICK.systickEnable = true;
+SYSTICK.periodEnable  = true;
+SYSTICK.period        = 10000000;
+
+UART1.$name                                = "UART_0";
+UART1.enableMajorityVoting                 = true;
+UART1.digitalGlitchFilter                  = 10;
+UART1.enableFIFO                           = true;
+UART1.rxFifoThreshold                      = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+UART1.txFifoThreshold                      = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
+UART1.enabledInterrupts                    = ["RX_TIMEOUT_ERROR"];
+UART1.enabledDMARXTriggers                 = "DL_UART_DMA_INTERRUPT_RX";
+UART1.enabledDMATXTriggers                 = "DL_UART_DMA_INTERRUPT_TX";
+UART1.targetBaudRate                       = 115200;
+UART1.peripheral.$assign                   = "UART1";
+UART1.peripheral.rxPin.$assign             = "PA9";
+UART1.peripheral.txPin.$assign             = "PA8";
+UART1.txPinConfig.enableConfig             = true;
+UART1.txPinConfig.internalResistor         = "PULL_UP";
+UART1.rxPinConfig.enableConfig             = true;
+UART1.rxPinConfig.internalResistor         = "PULL_UP";
+UART1.DMA_CHANNEL_RX.$name                 = "DMA_CH2";
+UART1.DMA_CHANNEL_RX.srcLength             = "BYTE";
+UART1.DMA_CHANNEL_RX.srcIncDec             = "UNCHANGED";
+UART1.DMA_CHANNEL_RX.dstLength             = "BYTE";
+UART1.DMA_CHANNEL_RX.configureTransferSize = true;
+UART1.DMA_CHANNEL_RX.addressMode           = "f2b";
+UART1.DMA_CHANNEL_RX.destIncrement         = "INCREMENT";
+UART1.DMA_CHANNEL_RX.enableInterrupt       = true;
+UART1.DMA_CHANNEL_RX.peripheral.$assign    = "DMA_CH2";
+UART1.DMA_CHANNEL_TX.$name                 = "DMA_CH3";
+UART1.DMA_CHANNEL_TX.addressMode           = "b2f";
+UART1.DMA_CHANNEL_TX.srcLength             = "BYTE";
+UART1.DMA_CHANNEL_TX.dstLength             = "BYTE";
+UART1.DMA_CHANNEL_TX.configureTransferSize = true;
+UART1.DMA_CHANNEL_TX.srcIncrement          = "INCREMENT";
+UART1.DMA_CHANNEL_TX.enableInterrupt       = true;
+UART1.DMA_CHANNEL_TX.peripheral.$assign    = "DMA_CH3";
+
+ProjectConfig.genDisable = true;
+ProjectConfig.deviceSpin = "MSPM0G3507";

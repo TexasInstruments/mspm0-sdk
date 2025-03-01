@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Energy Metrology CCS User’s Guide &mdash; Energy_Metrology_SW_Overview 2.1.0.x documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Energy Library GUI User Guide" href="Energy_Metrology_GUI_User_Guide_CN.html" />
+    <link rel="prev" title="Energy_Metrology_SW_Overview" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Energy_Metrology_SW_Overview
+          </a>
+              <div class="version">
+                2.1.0.x
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Energy Metrology CCS User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ccs-project-setup">CCS Project setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-initial-parameters-optional">Adding Initial Parameters (optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#starting-the-project">Starting the Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-project">Running the Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_GUI_User_Guide_CN.html">Energy Library GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html">Energy Measurement Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#background-process">Background Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#foreground-process">Foreground Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#metrology-calculations">Metrology Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#rms-calculations">RMS Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#power-calculations">Power Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#energy-calculations">Energy Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#other-calculations">Other Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_Library_CN.html#sag-or-swell-detection">Sag or Swell Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Energy_Metrology_SW_Overview_CN.html">Energy Metrology SW Overview</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Energy_Metrology_SW_Overview</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Energy Metrology CCS User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="energy-metrology-ccs-user-s-guide">
+<h1>Energy Metrology CCS User’s Guide<a class="headerlink" href="#energy-metrology-ccs-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<p>This Guide helps the user to import the energy library projects into CCS and test the functionality.</p>
+<section id="ccs-project-setup">
+<h2>CCS Project setup<a class="headerlink" href="#ccs-project-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Go to Import CCS Projects as shown below.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_Import.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Click Browse. Navigate to energy measurement project folder.</p></li>
+<li><p>Click Select Folder. Check the desired hardware board (TIDA-010243), and click Finish to import the project into your workspace.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/CCS_Import_1.png" />
+</figure>
+</section>
+<section id="adding-initial-parameters-optional">
+<h2>Adding Initial Parameters (optional)<a class="headerlink" href="#adding-initial-parameters-optional" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>In the Project Explorer, open the modules/ADS/ADS_defaults.h file, modify the defaults for ADS registers (optional).</p></li>
+<li><p>Open template.h file, modify the metrology parameters (optional).</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/defaults.png" />
+</figure>
+</section>
+<section id="starting-the-project">
+<h2>Starting the Project<a class="headerlink" href="#starting-the-project" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Connect the hardware and turn on the power supply.</p></li>
+<li><p>Click on the Build button.<img alt="image0" src="../_images/Build.png" /> Project should build with no errors.</p></li>
+<li><p>Click on the Debug button. <img alt="image1" src="../_images/Debug.png" /></p></li>
+<li><p>Open the Expressions window and add the following global structures and expressions.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>gMetrologyWorkingData</p></td>
+<td><p>Holds all the metrology parameters</p></td>
+</tr>
+<tr class="row-odd"><td><p>gAdsHandle</p></td>
+<td><p>Holds all the ADS131M0x parameters</p></td>
+</tr>
+<tr class="row-even"><td><p>gDLT645</p></td>
+<td><p>Holds the UART communication data</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-default">
+<img alt="" src="../_images/expression_window.png" />
+</figure>
+<ol class="arabic simple" start="5">
+<li><p>Expand the structures and add IQ values to respective parameters. Refer to metrology library to find the IQ values of each parameters.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../_images/Q_values.png" />
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Press Play <img alt="image2" src="../_images/Play.png" /> to start the code.</p></li>
+<li><p>Enable “Continuous Refresh” in the Expressions window. <img alt="image3" src="../_images/refresh.png" /></p></li>
+</ol>
+</section>
+<section id="running-the-project">
+<h2>Running the Project<a class="headerlink" href="#running-the-project" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Turn ON the voltage source and set the voltage to nominal voltage (230V), the ADS will capture this voltage and computed value is displayed in CCS expression window. This should match with the applied voltage.</p></li>
+<li><p>Start applying the load, current starts flowing to load. The ADS will capture this current and computed value is displayed in CCS expression window. This should match with the actual current flowing to load.</p></li>
+<li><p>Along with voltage and current, metrology library continuously computes power, energy, power factor and other parameters. All the parameters are displayed in CCS expression window.</p></li>
+<li><p>Vary the voltage and current to test with various ranges of input.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Energy_Metrology_SW_Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Energy_Metrology_GUI_User_Guide_CN.html" class="btn btn-neutral float-right" title="Energy Library GUI User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

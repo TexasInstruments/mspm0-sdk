@@ -42,6 +42,8 @@
     /* get ti/drivers common utility functions */
     let Common = system.getScript("/ti/driverlib/Common.js");
 
+    let deviceOptions = system.getScript("/ti/driverlib/sec_config/SECCONFIGOptions.js");
+
     /* Helper function to create hex-formatted string */
     function createHexFormattedString(str)
     {
@@ -333,9 +335,10 @@
 `appImageSizeStr.padEnd(40, " ") + appImageSizeStr2.padStart(39, " ")`
 
 #define CSC_PRIMARY_SLOT_OFFSET               (CSC_APPLICATION_IMAGE_BASE_ADDR)
+
 %       }
 %
-%   if (inst.keystoreProvisionMethods.includes("runTime")) {
+%       if (deviceOptions.SUPPORT_KEYSTORE && inst.keystoreProvisionMethods.includes("runTime")) {
 #ifdef CSC_ENABLE_KEYSTORE_DYNAMIC_KEY
 #define CSC_KEY_EXCHANGE_REGION_BASE_ADDR   (CSC_APPLICATION_IMAGE_BASE_ADDR + \
                                                      CSC_APPLICATION_IMAGE_SIZE)
@@ -345,12 +348,41 @@
 #endif
 %       }
 %   }
+%
+%   if (inst.disableBankswap && inst.cscSecAppImageBaseAddr) {
+%       let secAppImageBaseAddrStr = "#define CSC_APPLICATION_SECONDARY_IMAGE_BASE_ADDR";
+%       let secAppImageBaseAddrStr2 = createHexFormattedString(inst.cscSecAppImageBaseAddr);
+#ifdef CSC_DISABLE_BANKSWAP
+`secAppImageBaseAddrStr.padEnd(49, " ") + secAppImageBaseAddrStr2.padStart(30, " ")`
+#define CSC_SECONDARY_SLOT_OFFSET   (CSC_APPLICATION_SECONDARY_IMAGE_BASE_ADDR)
+#endif
+%   }
 % }
 %
 /*******************************************************************************
  *  MEMORY MAPS                                                                *
  ******************************************************************************/
+/* CSC_DISABLE_BANKSWAP - if the device supports multiple banks, it is
+ * recommended to leave bankswap enabled to allow the CSC to handle images at
+ * the bank level (and use write^execute exclusion permissions specific to the
+ * bank). Banks also allow for logical address space changes, meaning images can
+ * always be compiled with respect to the image offset.
+ *
+ * If the device is only equipped with one bank, or this functionality is not
+ * desired, then it is possible to use eXecute-In-Place (XIP), where two sets
+ * of images are used and swapped between. The CSC will write-protect the image
+ * in use (at 8kB granularity) and not write-protect the other image. Two sets
+ * of images, primary and secondary, must be kept.
+ *
+ * NOTE: Only Bankswap is enabled currently
+ */
+% if (inst.disableBankswap) {
+#define CSC_DISABLE_BANKSWAP
 
+% } else {
+//#define CSC_DISABLE_BANKSWAP
+
+% }
 /* clang-format off */
 
 % createMemoryMapStrings()

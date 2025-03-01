@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L111X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -103,7 +103,7 @@ Include dependency graph for dl_sysctl_mspm0l111x.h:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___s_y_s_c_t_l___s_y_s_o_s_c_user_trim_config.html">DL_SYSCTL_SYSOSCUserTrimConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga28af843e1dbc1a3546497dfe872e3a14">DL_SYSCTL_configSYSOSCUserTrim</a>.  <a href="struct_d_l___s_y_s_c_t_l___s_y_s_o_s_c_user_trim_config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga24a8058e617b55c859d4fc7b8dce56ca">DL_SYSCTL_configSYSOSCUserTrim</a>.  <a href="struct_d_l___s_y_s_c_t_l___s_y_s_o_s_c_user_trim_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___s_y_s_c_t_l___l_f_c_l_k_config.html">DL_SYSCTL_LFCLKConfig</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="struct_d_l___s_y_s_c_t_l___l_f_c_l_k_config.html">DL_SYSCTL_LFCLKConfig</a>.  <a href="struct_d_l___s_y_s_c_t_l___l_f_c_l_k_config.html#details">More...</a><br /></td></tr>
@@ -251,7 +251,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga09260cad81b3c734f214fc8fd15f68d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single Error Correction on Flash. <br /></td></tr>
 <tr class="separator:ga09260cad81b3c734f214fc8fd15f68d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga629e7262b6859ae47022af2569c63814"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___s_t_a_t_u_s.html#ga629e7262b6859ae47022af2569c63814">DL_SYSCTL_STATUS_BOR_LEVEL0</a>&#160;&#160;&#160;(SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORLEVELMIN)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___s_t_a_t_u_s.html#ga629e7262b6859ae47022af2569c63814">DL_SYSCTL_STATUS_BOR_LEVEL0</a>&#160;&#160;&#160;(SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORMIN)</td></tr>
 <tr class="memdesc:ga629e7262b6859ae47022af2569c63814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current Brown Out Reset minimum level. <br /></td></tr>
 <tr class="separator:ga629e7262b6859ae47022af2569c63814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5f0ab496566ad38ebb4b555f84bf8066"><td class="memItemLeft" align="right" valign="top">
@@ -782,9 +782,9 @@ __STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:ga561ed1294f48e5d0c04ff6e6f5856a1e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga561ed1294f48e5d0c04ff6e6f5856a1e">DL_SYSCTL_setSYSOSCFreq</a> (<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga2d02be2892b083ae42dc5ec338f52e46">DL_SYSCTL_SYSOSC_FREQ</a> freq)</td></tr>
 <tr class="memdesc:ga561ed1294f48e5d0c04ff6e6f5856a1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the target frequency of the System Oscillator (SYSOSC)  <a href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga561ed1294f48e5d0c04ff6e6f5856a1e">More...</a><br /></td></tr>
 <tr class="separator:ga561ed1294f48e5d0c04ff6e6f5856a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga28af843e1dbc1a3546497dfe872e3a14"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga28af843e1dbc1a3546497dfe872e3a14">DL_SYSCTL_configSYSOSCUserTrim</a> (<a class="el" href="struct_d_l___s_y_s_c_t_l___s_y_s_o_s_c_user_trim_config.html">DL_SYSCTL_SYSOSCUserTrimConfig</a> *config)</td></tr>
-<tr class="memdesc:ga28af843e1dbc1a3546497dfe872e3a14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trim the System Oscillator (SYSOSC) to 16MHz or 24MHz.  <a href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga28af843e1dbc1a3546497dfe872e3a14">More...</a><br /></td></tr>
-<tr class="separator:ga28af843e1dbc1a3546497dfe872e3a14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga24a8058e617b55c859d4fc7b8dce56ca"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga24a8058e617b55c859d4fc7b8dce56ca">DL_SYSCTL_configSYSOSCUserTrim</a> (const <a class="el" href="struct_d_l___s_y_s_c_t_l___s_y_s_o_s_c_user_trim_config.html">DL_SYSCTL_SYSOSCUserTrimConfig</a> *config)</td></tr>
+<tr class="memdesc:ga24a8058e617b55c859d4fc7b8dce56ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trim the System Oscillator (SYSOSC) to 16MHz or 24MHz.  <a href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga24a8058e617b55c859d4fc7b8dce56ca">More...</a><br /></td></tr>
+<tr class="separator:ga24a8058e617b55c859d4fc7b8dce56ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacc3bac88b735b1939e09de8296381872"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga2d02be2892b083ae42dc5ec338f52e46">DL_SYSCTL_SYSOSC_FREQ</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gacc3bac88b735b1939e09de8296381872">DL_SYSCTL_getTargetSYSOSCFreq</a> (void)</td></tr>
 <tr class="memdesc:gacc3bac88b735b1939e09de8296381872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the target frequency of the System Oscillator (SYSOSC) Target/desired SYSOSC frequency may be different than current/actual SYSOSC frequency during gear shift and other operations. This function matches what is input by <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga561ed1294f48e5d0c04ff6e6f5856a1e">DL_SYSCTL_setSYSOSCFreq</a>.  <a href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gacc3bac88b735b1939e09de8296381872">More...</a><br /></td></tr>
 <tr class="separator:gacc3bac88b735b1939e09de8296381872"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -800,9 +800,9 @@ __STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memitem:ga6ff18a52a5b1ddb681127f640453ceb0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga6ff18a52a5b1ddb681127f640453ceb0">DL_SYSCTL_clearECCErrorStatus</a> (void)</td></tr>
 <tr class="memdesc:ga6ff18a52a5b1ddb681127f640453ceb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the ECC error bits in SYSSTATUS.  <a href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga6ff18a52a5b1ddb681127f640453ceb0">More...</a><br /></td></tr>
 <tr class="separator:ga6ff18a52a5b1ddb681127f640453ceb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2113d66b16676e6d18a098bb0835d376"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga2113d66b16676e6d18a098bb0835d376">DL_SYSCTL_setLFCLKSourceLFXT</a> (<a class="el" href="struct_d_l___s_y_s_c_t_l___l_f_c_l_k_config.html">DL_SYSCTL_LFCLKConfig</a> *config)</td></tr>
-<tr class="memdesc:ga2113d66b16676e6d18a098bb0835d376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change LFCLK source to external crystal LFXT.  <a href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga2113d66b16676e6d18a098bb0835d376">More...</a><br /></td></tr>
-<tr class="separator:ga2113d66b16676e6d18a098bb0835d376"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b11d6f9180b94ee3cd0ae8088f52ecf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga1b11d6f9180b94ee3cd0ae8088f52ecf">DL_SYSCTL_setLFCLKSourceLFXT</a> (const <a class="el" href="struct_d_l___s_y_s_c_t_l___l_f_c_l_k_config.html">DL_SYSCTL_LFCLKConfig</a> *config)</td></tr>
+<tr class="memdesc:ga1b11d6f9180b94ee3cd0ae8088f52ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change LFCLK source to external crystal LFXT.  <a href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga1b11d6f9180b94ee3cd0ae8088f52ecf">More...</a><br /></td></tr>
+<tr class="separator:ga1b11d6f9180b94ee3cd0ae8088f52ecf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac9ae1fe965282a867dfd06090393fce1"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gac9ae1fe965282a867dfd06090393fce1">DL_SYSCTL_setLFCLKSourceEXLF</a> (void)</td></tr>
 <tr class="memdesc:gac9ae1fe965282a867dfd06090393fce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change LFCLK source to external digital LFCLK_IN.  <a href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gac9ae1fe965282a867dfd06090393fce1">More...</a><br /></td></tr>
 <tr class="separator:gac9ae1fe965282a867dfd06090393fce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1013,7 +1013,7 @@ __STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

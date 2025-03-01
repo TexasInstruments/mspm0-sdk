@@ -55,6 +55,10 @@ const StackSizeOptions = {
         "MSPM0H3215": 256,
         "MSPM0H3216": 256,
     },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": 256,
+        "MSPM0C1106": 256,
+    }
 };
 const FLASHOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -110,6 +114,10 @@ const FLASHOriginOptions = {
     "MSPM0H321X": {
         "MSPM0H3215": "0x00000000",
         "MSPM0H3216": "0x00000000",
+    },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x00000000",
+        "MSPM0C1106": "0x00000000",
     },
 }
 const FLASHLengthOptions = {
@@ -167,6 +175,10 @@ const FLASHLengthOptions = {
         "MSPM0H3215": "0x00008000",
         "MSPM0H3216": "0x00010000",
     },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x00008000",
+        "MSPM0C1106": "0x00010000",
+    },
 };
 const SRAMOriginOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -222,6 +234,10 @@ const SRAMOriginOptions = {
     "MSPM0H321X": {
         "MSPM0H3215": "0x20000000",
         "MSPM0H3216": "0x20000000",
+    },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x20000000",
+        "MSPM0C1106": "0x20000000",
     },
 };
 const SRAMBank1OriginOptions = {
@@ -335,6 +351,10 @@ const SRAMLengthOptions = {
         "MSPM0H3215": "0x00002000",
         "MSPM0H3216": "0x00002000",
     },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x00002000",
+        "MSPM0C1106": "0x00002000",
+    },
 };
 const SRAMBank1LengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -390,6 +410,10 @@ const SRAMBank1LengthOptions = {
     "MSPM0H321X": {
         "MSPM0H3215": undefined,
         "MSPM0H3216": undefined,
+    },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": undefined,
+        "MSPM0C1106": undefined,
     },
 };
 const BCROriginOptions = {
@@ -447,33 +471,37 @@ const BCROriginOptions = {
         "MSPM0H3215": "0x41C00000",
         "MSPM0H3216": "0x41C00000",
     },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x41C00000",
+        "MSPM0C1106": "0x41C00000",
+    },
 };
 const BCRLengthOptions = {
     "MSPM0G1X0X_G3X0X": {
-        "MSPM0G1105": "0x00000080",
-        "MSPM0G1106": "0x00000080",
-        "MSPM0G1107": "0x00000080",
-        "MSPM0G1505": "0x00000080",
-        "MSPM0G1506": "0x00000080",
-        "MSPM0G1507": "0x00000080",
-        "MSPM0G3105": "0x00000080",
-        "MSPM0G3106": "0x00000080",
-        "MSPM0G3107": "0x00000080",
-        "MSPM0G3505": "0x00000080",
-        "MSPM0G3506": "0x00000080",
-        "MSPM0G3507": "0x00000080",
+        "MSPM0G1105": "0x000000FF",
+        "MSPM0G1106": "0x000000FF",
+        "MSPM0G1107": "0x000000FF",
+        "MSPM0G1505": "0x000000FF",
+        "MSPM0G1506": "0x000000FF",
+        "MSPM0G1507": "0x000000FF",
+        "MSPM0G3105": "0x000000FF",
+        "MSPM0G3106": "0x000000FF",
+        "MSPM0G3107": "0x000000FF",
+        "MSPM0G3505": "0x000000FF",
+        "MSPM0G3506": "0x000000FF",
+        "MSPM0G3507": "0x000000FF",
     },
     "MSPM0L11XX_L13XX": {
-        "MSPM0L1105": "0x00000080",
-        "MSPM0L1106": "0x00000080",
-        "MSPM0L1303": "0x00000080",
-        "MSPM0L1304": "0x00000080",
-        "MSPM0L1305": "0x00000080",
-        "MSPM0L1306": "0x00000080",
-        "MSPM0L1343": "0x00000080",
-        "MSPM0L1344": "0x00000080",
-        "MSPM0L1345": "0x00000080",
-        "MSPM0L1346": "0x00000080",
+        "MSPM0L1105": "0x000000FF",
+        "MSPM0L1106": "0x000000FF",
+        "MSPM0L1303": "0x000000FF",
+        "MSPM0L1304": "0x000000FF",
+        "MSPM0L1305": "0x000000FF",
+        "MSPM0L1306": "0x000000FF",
+        "MSPM0L1343": "0x000000FF",
+        "MSPM0L1344": "0x000000FF",
+        "MSPM0L1345": "0x000000FF",
+        "MSPM0L1346": "0x000000FF",
     },
     "MSPM0L122X_L222X": {
         "MSPM0L1226": "0x000000FF",
@@ -484,10 +512,10 @@ const BCRLengthOptions = {
         "MSPM0L2228": "0x000000FF",
     },
     "MSPM0C110X": {
-        "MSPM0C1103"    : "0x00000080",
-        "MSPM0C1104"    : "0x00000080",
-        "MSPS003F3"     : "0x00000080",
-        "MSPS003F4"     : "0x00000080",
+        "MSPM0C1103"    : "0x000000FF",
+        "MSPM0C1104"    : "0x000000FF",
+        "MSPS003F3"     : "0x000000FF",
+        "MSPS003F4"     : "0x000000FF",
     },
     "MSPM0GX51X": {
         "MSPM0G3519": "0x000000FF",
@@ -500,8 +528,16 @@ const BCRLengthOptions = {
         "MSPM0L1117": "0x000000FF",
     },
     "MSPM0H321X": {
-        "MSPM0H3215": "0x00000080",
-        "MSPM0H3216": "0x00000080",
+        "MSPM0H3215": "0x000000FF",
+        "MSPM0H3216": "0x000000FF",
+    },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x000000FF",
+        "MSPM0C1106": "0x000000FF",
+    },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x000000FF",
+        "MSPM0C1106": "0x000000FF",
     },
 };
 const BSLOriginOptions = {
@@ -559,6 +595,10 @@ const BSLOriginOptions = {
         "MSPM0H3215": "0x41C00100",
         "MSPM0H3216": "0x41C00100",
     },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x41C00100",
+        "MSPM0C1106": "0x41C00100",
+    },
 };
 const BSLLengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -614,6 +654,10 @@ const BSLLengthOptions = {
     "MSPM0H321X": {
         "MSPM0H3215": "0x00000080",
         "MSPM0H3216": "0x00000080",
+    },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": "0x00000080",
+        "MSPM0C1106": "0x00000080",
     },
 };
 const DATAOriginOptions = {
@@ -671,6 +715,10 @@ const DATAOriginOptions = {
         "MSPM0H3215": undefined,
         "MSPM0H3216": undefined,
     },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": undefined,
+        "MSPM0C1106": undefined,
+    },
 };
 const DATALengthOptions = {
     "MSPM0G1X0X_G3X0X": {
@@ -726,6 +774,10 @@ const DATALengthOptions = {
     "MSPM0H321X": {
         "MSPM0H3215": undefined,
         "MSPM0H3216": undefined,
+    },
+    "MSPM0C1105_C1106": {
+        "MSPM0C1105": undefined,
+        "MSPM0C1106": undefined,
     },
 };
 

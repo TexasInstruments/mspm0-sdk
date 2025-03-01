@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['a',['a',['../struct_m_c___a_b_c___t.html#a1006fabf4d30260be633c418bd0c39c5',1,'MC_ABC_T']]],
+  ['abnbemfthr',['abnBemfThr',['../structuser_input_fault_cfg2.html#a85d040aa2b12f8396faf7b9d612b0ffc',1,'userInputFaultCfg2']]],
+  ['abnormalspeedlimitpermil',['abnormalSpeedLimitPerMil',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a2e03b7cd3f8ec2528bd1975b09980efc',1,'USER_INPUTS_T']]],
+  ['abnormalspeedstalldetectenable',['abnormalSpeedStallDetectEnable',['../structmodule_enable_flags.html#a29bbe281d6113c2c3c22d0b3bd18504c',1,'moduleEnableFlags']]],
+  ['activebrakeki',['activeBrakeKi',['../structuser_input_rvr_drv_cfg.html#a0d1774795acbc1358ed8078ed254b788',1,'userInputRvrDrvCfg']]],
+  ['activebrakekp',['activeBrakeKp',['../structuser_input_rvr_drv_cfg.html#a084bd468699ce32a6591f2ddd827174f',1,'userInputRvrDrvCfg']]],
+  ['actspinthr',['actSpinThr',['../structuser_input_close_loop2.html#a84af8c944881cbb9fa3d73877ccddb2e',1,'userInputCloseLoop2']]],
+  ['adcsamplingfrequencykhz',['adcSamplingFrequencyKHz',['../struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a24320463be4b8113e65658d2ede3162c',1,'USER_INPUTS_INTERFACE_T']]],
+  ['adcsamplingrate',['adcSamplingRate',['../struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a0dd8537c98ae2e9b6af3308775ffc123',1,'USER_INPUTS_INTERFACE_T']]],
+  ['adcsamplingratio',['adcSamplingRatio',['../struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a7ee80456253dc8470701af92ab9625c9',1,'HAL_MEASURE_MOTOR_INPUTS_T']]],
+  ['algodebugctrl1',['algoDebugCtrl1',['../struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a88dab47126e93d189c3d2846cb1cc0cd',1,'USER_CTRL_INTERFACE_T']]],
+  ['algodebugctrl2',['algoDebugCtrl2',['../struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a6547c63945f909164e009efca83d947d',1,'USER_CTRL_INTERFACE_T']]],
+  ['algodebugctrl3',['algoDebugCtrl3',['../struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a426f7184476ffb551950ffad7a44a21d',1,'USER_CTRL_INTERFACE_T']]],
+  ['alignangle',['alignAngle',['../structuser_input_motor_start_up2.html#a7115b3c05b68fc34480dda57b9cc1158',1,'userInputMotorStartUp2']]],
+  ['alignorslowcurrlimit',['alignOrSlowCurrLimit',['../structuser_input_motor_start_up1.html#aea9dcadc8ac09daaf54312cff5b4c86c',1,'userInputMotorStartUp1']]],
+  ['alignslowramprate',['alignSlowRampRate',['../structuser_input_motor_start_up1.html#a0a0fb0760829ee3db869e002e736d793',1,'userInputMotorStartUp1']]],
+  ['aligntime',['alignTime',['../structuser_input_motor_start_up1.html#a472fedaaaac0c44e88d4fcb5099e6636',1,'userInputMotorStartUp1']]],
+  ['alpha',['alpha',['../struct_m_c___a_l_p_h_a_b_e_t_a___t.html#a79f7d3703f4577843f3a135ccd6fba3f',1,'MC_ALPHABETA_T']]],
+  ['angleerrorslewratemillidegreespermsec',['angleErrorSlewRateMilliDegreesPerMsec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#aabac3b0d75085a8cc55aa9d3ff96e819',1,'USER_INPUTS_T']]],
+  ['anglesector',['angleSector',['../struct_m_c___s_v_m___t.html#a288b894d37c1b94eddb27bbf1ca96222',1,'MC_SVM_T']]],
+  ['appversion',['appVersion',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a3d7ecc0500c59b0dae6dcecb689c2199',1,'USER_STATUS_INTERFACE_T']]],
+  ['autohandoffen',['autoHandOffEn',['../structuser_input_motor_start_up2.html#a6ba63ed95889007b88d8668e9c8fca72',1,'userInputMotorStartUp2']]],
+  ['autohandoffminbemf',['autoHandoffMinBemf',['../structuser_input_misc_algo.html#a37b755b49d896c2d4cf2718080cdd1aa',1,'userInputMiscAlgo']]],
+  ['avsen',['avsEn',['../structuser_input_close_loop1.html#a14a3cd45c9f6f1761cb9fdd0ecd4146d',1,'userInputCloseLoop1']]],
+  ['avsrevdrvoldec',['avsRevDrvOLDec',['../structuser_input_misc_algo.html#a95e0531482fb1b083de4eb7ebf6aacdb',1,'userInputMiscAlgo']]]
+];

@@ -57,3 +57,4 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0L1306 User's Guide](https://www.ti.co
 
 Connect the hardware that descriped in the document. Compile, load and run the example.
 Push the S2 button to start program MSPM0L1306.
+Note: if use software trigger need the application code(include software invoke) exist on the chip. 

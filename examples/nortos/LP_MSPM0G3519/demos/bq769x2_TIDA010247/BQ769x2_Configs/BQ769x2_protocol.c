@@ -41,36 +41,13 @@
 #define Current_6A 0
 #define CCA_CCB_Ready 0
 
-volatile uint16_t Battery_status = 0;
-volatile uint8_t ProtectionsTriggered =
-    0;  // Set to 1 if any protection triggers
-volatile uint32_t CFETOFF_Count = 0x0000;
-volatile uint32_t DFETOFF_Count = 0x0000;
-volatile uint32_t ALERT_Count   = 0x0000;
-volatile uint32_t TS1_Count     = 0x0000;
-volatile uint32_t TS2_Count     = 0x0000;
-volatile uint32_t TS3_Count     = 0x0000;
-volatile uint32_t HDQ_Count     = 0x0000;
-volatile uint32_t DCHG_Count    = 0x0000;
-volatile uint32_t DDSG_Count    = 0x0000;
-
-// Global Variables for cell voltages, temperatures, Stack voltage, PACK Pin voltage, LD Pin voltage, CC2 current
-uint16_t CellVoltage[16] = {0x01, 0x02, 0x03, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-
-uint16_t Stack_Voltage = 0x00;
-uint16_t Pack_Voltage  = 0x00;
-uint16_t LD_Voltage    = 0x00;
-int16_t Pack_Current   = 0x00;
-//int16_t Pack_Current_filtered = 0x00;
-uint16_t AlarmBits = 0x00;
-
-uint8_t value_SafetyStatusA;  // Safety Status Register A
-uint8_t value_SafetyStatusB;  // Safety Status Register B
-uint8_t value_SafetyStatusC;  // Safety Status Register C
-uint8_t value_PFStatusA;      // Permanent Fail Status Register A
-uint8_t value_PFStatusB;      // Permanent Fail Status Register B
-uint8_t value_PFStatusC;      // Permanent Fail Status Register C
+uint8_t ProtectionsTriggered = 0;  // Set to 1 if any protection triggers
+uint8_t value_SafetyStatusA;       // Safety Status Register A
+uint8_t value_SafetyStatusB;       // Safety Status Register B
+uint8_t value_SafetyStatusC;       // Safety Status Register C
+uint8_t value_PFStatusA;           // Permanent Fail Status Register A
+uint8_t value_PFStatusB;           // Permanent Fail Status Register B
+uint8_t value_PFStatusC;           // Permanent Fail Status Register C
 uint8_t FET_Status;  // FET Status register contents  - Shows states of FETs
 uint16_t CB_ActiveCells;  // Cell Balancing Active Cells
 
@@ -91,24 +68,48 @@ uint8_t CHG   = 0;  // charge FET state
 uint8_t PCHG  = 0;  // pre-charge FET state
 uint8_t PDSG  = 0;  // pre-discharge FET state
 
-uint32_t AccumulatedCharge_Int;   // in AFE_READPASSQ func
-uint32_t AccumulatedCharge_Frac;  // in AFE_READPASSQ func
-uint32_t AccumulatedCharge_Time;  // in AFE_READPASSQ func
-
 uint8_t OTP_condition          = 0;
 uint8_t OTP_write_check        = 0;
 uint8_t OTP_write_success_flag = 0;
 uint8_t FULLACCESS             = 0;
 uint8_t FET_EN;
+uint8_t deadband;
 
-int16_t CC2_Counts_Raw[10]    = {0x0000};
+int16_t CC2_Counts_Raw[100]   = {0x0000};
 int16_t CC2_Counts_Calibrated = 0x00;
 int16_t CC2_Counts_Average    = 0x00;
 int16_t CC_Offset_Samples     = 0x00;
 int16_t Board_Offset          = 0x00;
 int16_t CC2_Counts_A          = 0x00;
 int16_t CC2_Counts_B          = 0x00;
-float CC_Gain                 = 0x00;
+
+// Global Variables for cell voltages, temperatures, Stack voltage, PACK Pin voltage, LD Pin voltage, CC2 current
+uint16_t CellVoltage[16] = {0x01, 0x02, 0x03, 0x04, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+uint16_t Stack_Voltage   = 0x00;
+uint16_t Pack_Voltage    = 0x00;
+uint16_t LD_Voltage      = 0x00;
+int16_t Pack_Current     = 0x00;
+//int16_t Pack_Current_filtered = 0x00;
+uint16_t AlarmBits      = 0x00;
+uint16_t Battery_status = 0;
+
+int32_t AccumulatedCharge_Int;  // in AFE_READPASSQ func
+
+uint32_t CFETOFF_Count = 0x0000;
+uint32_t DFETOFF_Count = 0x0000;
+uint32_t ALERT_Count   = 0x0000;
+uint32_t TS1_Count     = 0x0000;
+uint32_t TS2_Count     = 0x0000;
+uint32_t TS3_Count     = 0x0000;
+uint32_t HDQ_Count     = 0x0000;
+uint32_t DCHG_Count    = 0x0000;
+uint32_t DDSG_Count    = 0x0000;
+uint32_t AccumulatedCharge_Frac;  // in AFE_READPASSQ func
+uint32_t AccumulatedCharge_Time;  // in AFE_READPASSQ func
+
+float PASS_Q  = 0x00;
+float CC_Gain = 0x00;
 
 // Arrays
 unsigned char RX_32Byte[32] = {0x00};
@@ -428,6 +429,17 @@ uint16_t BQ769x2_ReadVoltage(uint8_t command)
     }
 }
 
+void BQ769x2_ReadAllCellVoltage(uint16_t *Cell_V)
+//This function can be used to read all the cell voltage in the fastest speed
+{
+    uint8_t Cell_V_Rx_data[Cell_count * 2] = {0x00};
+    I2C_ReadReg(Cell1Voltage, Cell_V_Rx_data, Cell_count * 2);
+    for (int i = 1, j = 0; i < Cell_count * 2; i += 2, j++) {
+        Cell_V[j] =
+            (uint16_t)((Cell_V_Rx_data[i] << 8) + Cell_V_Rx_data[i - 1]);
+    }
+}
+
 void BQ769x2_ReadCurrent()
 // Reads PACK current
 {
@@ -436,7 +448,7 @@ void BQ769x2_ReadCurrent()
     //        (int16_t)((uint16_t) RX_data[1] * 256 +
     //                  (uint16_t) RX_data[0]);  // current is reported in mA
 
-    Subcommands(DASTATUS5, 0x00, R);
+    Subcommands(DASTATUS5, 0x00, R);  //read CC3 current
     Pack_Current =
         (int16_t)((uint16_t) RX_32Byte[21] * 256 +
                   (uint16_t) RX_32Byte[20]);  // current is reported in mA
@@ -447,7 +459,7 @@ float BQ769x2_ReadTemperature(uint8_t command)
     DirectCommands(command, 0x00, R);
     //RX_data is a global var
     return (0.1 * (float) (RX_data[1] * 256 + RX_data[0])) -
-           273.15;  // converts from 0.1K to Celcius
+           273.15;  // converts from 0.1K to Celsius
 }
 
 void BQ769x2_ReadPassQ()
@@ -460,6 +472,12 @@ void BQ769x2_ReadPassQ()
     AccumulatedCharge_Time =
         ((RX_32Byte[11] << 24) + (RX_32Byte[10] << 16) + (RX_32Byte[9] << 8) +
             RX_32Byte[8]);  //Bytes 8-11
+
+    PASS_Q =
+        AccumulatedCharge_Int + (float) AccumulatedCharge_Frac / 4294967296;
+
+    Subcommands(CoulombCounterDeadband, 0x00, R);
+    deadband = RX_32Byte[0];
 }
 
 void BQ769x2_EnableAllFETs()  // Enable FET and Trun on all FET
@@ -478,8 +496,10 @@ void BQ769x2_EnableAllFETs()  // Enable FET and Trun on all FET
  */
 void BQ769x2_OTP_Programming()
 {
-    I2C_TARGET_ADDRESS = AFE_Default_I2C_ADDR;
+    DL_GPIO_clearPins(LED_PORT, LED_LED3_Green_PIN);
     DL_GPIO_setPins(LED_PORT, LED_LED1_Blue_PIN);
+
+    I2C_TARGET_ADDRESS = AFE_Default_I2C_ADDR;
 
     BQ769x2_ReadBatteryStatus();  //Read the 0x12 Battery Status[SEC1,SEC0] bits to verify the device is in FULL ACCESS mode (0x01).
 
@@ -587,14 +607,15 @@ uint16_t BQ769x2_Current_BoardOffset_Calibration()
 
     delayUS(50000);
     delayUS(50000);
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 100; i++) {
         Subcommands(READ_CAL1, 0x00, R);
         CC2_Counts_Raw[i] =
             (RX_32Byte[4] << 8) + RX_32Byte[3];  //middle 16bit value
         sum += CC2_Counts_Raw[i];
     }
 
-    CC2_Counts_Average = sum / 10;
+    CC2_Counts_Average =
+        sum / 100;  // take 100 readings and calculate the average
     Subcommands(CoulombCounterOffsetSamples, 0x00, R);
     CC_Offset_Samples = (RX_32Byte[1] << 8) + RX_32Byte[0];
     Board_Offset      = CC2_Counts_Average * CC_Offset_Samples;  // got 0 @0mA
@@ -696,6 +717,8 @@ void BQ769x2_BOT_Init()
 
     BQ769x2_SetRegister(BoardOffset, 0x00, 1);  //0x91C8 default 0
 
+    //    BQ769x2_SetRegister(CoulombCounterDeadband, 0x00, 1);  //Set deadband to 0
+
 #if !TMP_MUX_Enabled
     //bestA [A1 A2 A3 A4 A5] =  [-11279 -16652 -22025 -11282 272]
     //bestB [B1 B2 B3 B4] =  [ 7956  22863  25932  13143]
@@ -759,8 +782,9 @@ void BQ769x2_BOT_Init()
 
     // 'VCell Mode' - Enable 16 cells - 0x9304 = 0xFFFF;
     BQ769x2_SetRegister(VCellMode, 0xFFFF, 2);
-    // Set USER_AMPs to 10mA
-    BQ769x2_SetRegister(DAConfiguration, 0x06, 1);
+    // Set USER_AMPs to 10mA/0x06
+    BQ769x2_SetRegister(DAConfiguration, 0x05,
+        1);  // set to 1mA for small accumulated charged reading
 
     /*
  *  Settings->Protections
@@ -851,6 +875,8 @@ void BQ769x2_BOT_Init()
     delayUS(8000);
     CommandSubcommands(SLEEP_DISABLE);
     delayUS(8000);
+    CommandSubcommands(RESET_PASSQ);  //Reset PASSQ after device reset
+    delayUS(8000);
     delayUS(10000);
 }
 
@@ -886,7 +912,7 @@ void BQ769x2_TOP_Init()
 
 #if TMP_MUX_Enabled
     BQ769x2_SetRegister(CFETOFFPinConfig, 0x3B, 1);
-    BQ769x2_SetRegister(DFETOFFPinConfig, 0x3B, 1);  // 0x42 BOTHOFF
+    BQ769x2_SetRegister(DFETOFFPinConfig, 0x3B, 1);
     BQ769x2_SetRegister(TS2Config, 0x3B, 1);
 #else
     BQ769x2_SetRegister(CFETOFFPinConfig, 0x82, 1);

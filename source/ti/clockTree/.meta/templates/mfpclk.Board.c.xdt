@@ -49,7 +49,7 @@
     let mfpclkGateInst = _.find(mod.$instances, ['$name', 'MFPCLKGATE']);
     let mfclkGateInst = _.find(mod.$instances, ['$name', 'MFCLKGATE']);
 
-    if( (!Common.isDeviceM0C() && _.isUndefined(mfpclkGateInst)) || (Common.isDeviceM0G() && _.isUndefined(mfpclkMuxInst))) {
+    if( (!Common.isDeviceFamily_PARENT_MSPM0C110X() && _.isUndefined(mfpclkGateInst)) || (Common.isDeviceM0G() && _.isUndefined(mfpclkMuxInst))) {
         throw 'Not all MFPCLK elements are defined appropriately';
     }
 

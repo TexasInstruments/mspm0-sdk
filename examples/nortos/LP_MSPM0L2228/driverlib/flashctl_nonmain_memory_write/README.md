@@ -1,16 +1,27 @@
 ## Example Summary
 
-This example demonstrates program multiple size (8/16/32/64-bit) data to flash
-with automatic hardware generated ECC.
+This example demonstrates how to write to the BCR and BSL configuration structures that are in NONMAIN Memory.
+
+The BCR and BSL configuration data structures are both contained within a single flash sector in the NONMAIN
+flash memory region.
+
+Both the BCR and BSL configuration data structures are protected by individual 32-bit CRCs to improve security.
+The application first calculates the 32-bit CRCs for both structures based on the user configuration values, and then sets the calculated CRC for each structure.
+
+To successfully change any parameter in the boot configuration, the application must erase the entire NONMAIN sector. Then both the BCR and BSL configuration structures are re-programed with the given user configuration values.
+
+The BCR and BSL configuration structures at application startup are configured with the default values. To update the values, the user should refer to  boot_config.h to view the possible values that may be configured to BCR and BSL configuration structures.
+
+*Note*: Please use caution before erasing and writing to NONMAIN memory.
 
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
 | GPIOA | PA0 | Open-Drain Output |
-| GPIOA | PA15 | Standard Output |
 | SYSCTL |  |  |
 | EVENT |  |  |
+| CRC |  |  |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
 
@@ -21,7 +32,6 @@ Visit [LP_MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228) for LaunchPad infor
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
 | PA0 | GPIOA | PA0 | J27_9 | <ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li>`J19 1:2` Use 3.3V pull-up<br><li>`J19 2:3` Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li>`J4 ON` Connect to LED1<br><li>`J4 OFF` Disconnect from LED1</ul></ul> |
-| PA15 | GPIOA | PA15 | J3_30 | <ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul> |
 | PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
 | PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
 
@@ -34,5 +44,5 @@ for information about migrating to other MSPM0 devices.
 
 Compile, load and run the example.
 The flash operations will start automatically when the example is run.
-If all flash operations complete, the LED will turn on.
-The application will stop at a breakpoint so the user can verify the values in memory match those expected in the comments.
+LED0 will blink after all flash executions are completed.
+The user can view the contents of memory to verify the results of the write operations.

@@ -11,6 +11,17 @@ function validateMultiplier(inst, validation){
 		if(pllClk0Div && pllClk1Div && pllClk2XDiv){
 			pllEnabled = pllClk0Div.enable || pllClk1Div.enable || pllClk2XDiv.enable;
 		}
+
+		/* To avoid throwing the error by default on tool open, only throw when clock tree is in use and SYSPLL is actually sourcing something */
+		let sysctl = system.modules["/ti/driverlib/SYSCTL"];
+		if(sysctl && sysctl.$static.clockTreeEn && pllEnabled) {
+			if(inst.PLL_QDIV_OUT < 80) {
+				validation.logError("The combination of PDIV and QDIV values drives the output frequency to VCO below minimum possible value. Please refer to device datasheet for exact operating range.", inst, "PLL_QDIV_OUT");
+			}
+			else if(inst.PLL_QDIV_OUT > 400) {
+				validation.logError("The combination of PDIV and QDIV values drives the output frequency to VCO above maximum possible value. Please refer to device datasheet for exact operating range.", inst, "PLL_QDIV_OUT");
+			}
+		}
 	}
 }
 

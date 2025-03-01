@@ -1442,6 +1442,9 @@ typedef enum {
     /*! Selects falling edge detection */
     DL_TIMER_CAPTURE_EDGE_DETECTION_MODE_FALLING =
         GPTIMER_CCCTL_01_CCOND_CC_TRIG_FALL,
+    /*! Selects both falling and rising edge detection */
+    DL_TIMER_CAPTURE_EDGE_DETECTION_MODE_EDGE =
+        GPTIMER_CCCTL_01_CCOND_CC_TRIG_EDGE,
 } DL_TIMER_CAPTURE_EDGE_DETECTION_MODE;
 
 /*! @enum  DL_TIMER_COMPARE_EDGE_DETECTION_MODE */
@@ -1776,6 +1779,42 @@ typedef enum {
     DL_TIMER_CC_UPDATE_METHOD_TRIG_EVT = (GPTIMER_CCCTL_01_CCUPD_TRIG),
 } DL_TIMER_CC_UPDATE_METHOD;
 
+/*! @enum  DL_TIMER_CCACT_UPDATE_METHOD */
+typedef enum {
+    /*! Value written to the CCACT register has immediate effect */
+    DL_TIMER_CCACT_UPDATE_METHOD_IMMEDIATE =
+        (GPTIMER_CCCTL_01_CCACTUPD_IMMEDIATELY),
+    /*! Following a zero event (CTR=0) Writes to the CCACTx_y register
+     *  are stored in shadow register and transferred to CCACTx_y in the
+     *  TIMCLK cycle following CTR equals 0.  */
+    DL_TIMER_CCACT_UPDATE_METHOD_ZERO_EVT =
+        (GPTIMER_CCCTL_01_CCACTUPD_ZERO_EVT),
+    /*! Following a CCD event (CTR=CC_xy). Writes to the CCACTx_y register
+     *  are stored in shadow register and transferred to CCACTx_y in the TIMCLK
+     *  cycle following CTR equals the CCx_y register value. */
+    DL_TIMER_CCACT_UPDATE_METHOD_COMP_DN_EVT =
+        (GPTIMER_CCCTL_01_CCACTUPD_COMPARE_DOWN_EVT),
+    /*! Following a CCU event (CTR=CC_xy) Writes to the CCACTx_y register are
+     *  stored in shadow register and transferred to CCACTx_y in the TIMCLK
+     *  cycle following CTR equals the CCx_y register value. */
+    DL_TIMER_CCACT_UPDATE_METHOD_COMP_UP_EVT =
+        (GPTIMER_CCCTL_01_CCACTUPD_COMPARE_UP_EVT),
+    /*! Following a zero event (CTR=0) or load event (CTR = LOAD) Writes to the
+     *  CCACTx_y register are stored in shadow register and transferred to
+     *  CCACTx_y in the TIMCLK cycle following CTR equals 0 or CTR. E */
+    DL_TIMER_CCACT_UPDATE_METHOD_ZERO_OR_LOAD_EVT =
+        (GPTIMER_CCCTL_01_CCACTUPD_ZERO_LOAD_EVT),
+    /*! Following a zero event (CTR=0) with repeat count also zero (RC=0).
+     *  Writes to the CCACTx_y register are stored in shadow register and
+     *  transferred to CCACTx_y in the TIMCLK cycle following CTR equals 0
+     *  and if RC equal 0.*/
+    DL_TIMER_CCACT_UPDATE_METHOD_ZERO_RC_EVT =
+        (GPTIMER_CCCTL_01_CCACTUPD_ZERO_RC_ZERO_EVT),
+    /*! On a TRIG pulse, the value stored in CCACT_xy shadow register is loaded
+     *  into CCACT_xy register. */
+    DL_TIMER_CCACT_UPDATE_METHOD_TRIG_EVT = (GPTIMER_CCCTL_01_CCACTUPD_TRIG),
+} DL_TIMER_CCACT_UPDATE_METHOD;
+
 /*! @enum  DL_TIMER_SEC_COMP_DOWN_EVT */
 typedef enum {
     /*! Selects Capture Compare down event based on Capture Compare register 0
@@ -2049,9 +2088,8 @@ typedef struct {
 
 /**
  * @brief Configuration structure to backup Timer peripheral state before
- *        entering STOP or STANDBY mode. Not required after PG 1.0 silicon.
- *        Used by @ref DL_Timer_saveConfiguration and
- *        @ref DL_Timer_restoreConfiguration
+ *        entering STOP or STANDBY mode. Used by @ref DL_Timer_saveConfiguration
+ *        and @ref DL_Timer_restoreConfiguration
  */
 typedef struct {
     /*! Timer subscriber 0 channel ID. Value between 0 - 15. */
@@ -2164,7 +2202,11 @@ typedef enum {
 } DL_TIMER_QEI_DIRECTION;
 
 /**
- * @brief Enables power on timer module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the timer
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  * @param gptimer              Pointer to the register overlay for the
  *                             peripheral
@@ -2176,7 +2218,12 @@ __STATIC_INLINE void DL_Timer_enablePower(GPTIMER_Regs *gptimer)
 }
 
 /**
- * @brief Disables power on timer module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the timer
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  * @param gptimer              Pointer to the register overlay for the
  *                             peripheral
@@ -2188,15 +2235,23 @@ __STATIC_INLINE void DL_Timer_disablePower(GPTIMER_Regs *gptimer)
 }
 
 /**
- * @brief Returns if power on timer module is enabled
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the timer
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param gptimer              Pointer to the register overlay for the
  *                             peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_Timer_isPowerEnabled(GPTIMER_Regs *gptimer)
+__STATIC_INLINE bool DL_Timer_isPowerEnabled(const GPTIMER_Regs *gptimer)
 {
     return ((gptimer->GPRCM.PWREN & GPTIMER_PWREN_ENABLE_MASK) ==
             GPTIMER_PWREN_ENABLE_ENABLE);
@@ -2224,7 +2279,7 @@ __STATIC_INLINE void DL_Timer_reset(GPTIMER_Regs *gptimer)
  * @return true if peripheral was reset
  * @return false if peripheral wasn't reset
  */
-__STATIC_INLINE bool DL_Timer_isReset(GPTIMER_Regs *gptimer)
+__STATIC_INLINE bool DL_Timer_isReset(const GPTIMER_Regs *gptimer)
 {
     return ((gptimer->GPRCM.STAT & GPTIMER_STAT_RESETSTKY_MASK) ==
             GPTIMER_STAT_RESETSTKY_RESET);
@@ -2252,7 +2307,7 @@ __STATIC_INLINE void DL_Timer_setCCPDirection(
  *
  *  @return     Bitwise OR of CCP Direction configuration @ref DL_TIMER_CCx
  */
-__STATIC_INLINE uint32_t DL_Timer_getCCPDirection(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint32_t DL_Timer_getCCPDirection(const GPTIMER_Regs *gptimer)
 {
     return (gptimer->COMMONREGS.CCPD);
 }
@@ -2316,7 +2371,7 @@ __STATIC_INLINE void DL_Timer_setCCPOutputDisabledAdv(
  *                             @ref DL_Timer_ClockConfig.
  */
 void DL_Timer_setClockConfig(
-    GPTIMER_Regs *gptimer, DL_Timer_ClockConfig *config);
+    GPTIMER_Regs *gptimer, const DL_Timer_ClockConfig *config);
 
 /**
  *  @brief      Get  timer source clock configuration
@@ -2326,7 +2381,7 @@ void DL_Timer_setClockConfig(
  *                             @ref DL_Timer_ClockConfig.
  */
 void DL_Timer_getClockConfig(
-    GPTIMER_Regs *gptimer, DL_Timer_ClockConfig *config);
+    const GPTIMER_Regs *gptimer, DL_Timer_ClockConfig *config);
 
 /**
  *  @brief      Enable timer clock
@@ -2358,7 +2413,7 @@ __STATIC_INLINE void DL_Timer_disableClock(GPTIMER_Regs *gptimer)
  *  @return true if clock is enabled
  *  @return false if clock is disabled
  */
-__STATIC_INLINE bool DL_Timer_isClockEnabled(GPTIMER_Regs *gptimer)
+__STATIC_INLINE bool DL_Timer_isClockEnabled(const GPTIMER_Regs *gptimer)
 {
     return ((gptimer->COMMONREGS.CCLKCTL & GPTIMER_CCLKCTL_CLKEN_MASK) ==
             GPTIMER_CCLKCTL_CLKEN_ENABLED);
@@ -2449,7 +2504,8 @@ __STATIC_INLINE void DL_Timer_configCrossTriggerEnable(
  *          @ref DL_TIMER_CROSS_TRIGGER_INPUT, @ref DL_TIMER_CROSS_TRIGGER_MODE,
  *
  */
-__STATIC_INLINE uint32_t DL_Timer_getCrossTriggerConfig(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint32_t DL_Timer_getCrossTriggerConfig(
+    const GPTIMER_Regs *gptimer)
 {
     return (gptimer->COMMONREGS.CTTRIGCTL);
 }
@@ -2464,7 +2520,7 @@ __STATIC_INLINE uint32_t DL_Timer_getCrossTriggerConfig(GPTIMER_Regs *gptimer)
  *
  */
 __STATIC_INLINE DL_TIMER_CROSS_TRIG_SRC DL_Timer_getCrossTriggerSrc(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t ctSource =
         gptimer->COMMONREGS.CTTRIGCTL & GPTIMER_CTTRIGCTL_EVTCTTRIGSEL_MASK;
@@ -2482,7 +2538,7 @@ __STATIC_INLINE DL_TIMER_CROSS_TRIG_SRC DL_Timer_getCrossTriggerSrc(
  *
  */
 __STATIC_INLINE DL_TIMER_CROSS_TRIGGER_INPUT DL_Timer_getCrossTriggerInputCond(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t triggerCondition =
         gptimer->COMMONREGS.CTTRIGCTL & GPTIMER_CTTRIGCTL_EVTCTEN_MASK;
@@ -2500,7 +2556,7 @@ __STATIC_INLINE DL_TIMER_CROSS_TRIGGER_INPUT DL_Timer_getCrossTriggerInputCond(
  *
  */
 __STATIC_INLINE DL_TIMER_CROSS_TRIGGER_MODE DL_Timer_getCrossTriggerEnable(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t mode =
         gptimer->COMMONREGS.CTTRIGCTL & GPTIMER_CTTRIGCTL_CTEN_MASK;
@@ -2576,7 +2632,7 @@ __STATIC_INLINE void DL_Timer_setLoadValue(
  *  @return     Returns the timer's LOAD register value.
  *
  */
-__STATIC_INLINE uint32_t DL_Timer_getLoadValue(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint32_t DL_Timer_getLoadValue(const GPTIMER_Regs *gptimer)
 {
     return (gptimer->COUNTERREGS.LOAD & GPTIMER_LOAD_LD_MAXIMUM);
 }
@@ -2589,7 +2645,7 @@ __STATIC_INLINE uint32_t DL_Timer_getLoadValue(GPTIMER_Regs *gptimer)
  *
  *  @return     Returns the timer counter value
  */
-__STATIC_INLINE uint32_t DL_Timer_getTimerCount(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint32_t DL_Timer_getTimerCount(const GPTIMER_Regs *gptimer)
 {
     return (gptimer->COUNTERREGS.CTR & GPTIMER_CTR_CCTR_MASK);
 }
@@ -2661,7 +2717,7 @@ __STATIC_INLINE void DL_Timer_disableLZEventSuppression(GPTIMER_Regs *gptimer)
  *
  */
 __STATIC_INLINE bool DL_Timer_isLZEventSuppressionEnabled(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     return (GPTIMER_CTRCTL_SLZERCNEZ_ENABLED ==
             (gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_SLZERCNEZ_MASK));
@@ -2694,7 +2750,7 @@ __STATIC_INLINE void DL_Timer_setDebugReleaseBehavior(
  *
  */
 __STATIC_INLINE DL_TIMER_DEBUG_RES DL_Timer_getDebugReleaseBehavior(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t debResB = gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_DRB_MASK;
 
@@ -2732,7 +2788,7 @@ __STATIC_INLINE void DL_Timer_setCounterControl(GPTIMER_Regs *gptimer,
  *  @return @ref DL_TIMER_CZC
  */
 __STATIC_INLINE DL_TIMER_CZC DL_Timer_getCounterZeroControl(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t zeroCtl = gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_CZC_MASK;
 
@@ -2747,7 +2803,7 @@ __STATIC_INLINE DL_TIMER_CZC DL_Timer_getCounterZeroControl(
  *  @return @ref DL_TIMER_CAC
  */
 __STATIC_INLINE DL_TIMER_CAC DL_Timer_getCounterAdvanceControl(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t advCtl = gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_CAC_MASK;
 
@@ -2762,7 +2818,7 @@ __STATIC_INLINE DL_TIMER_CAC DL_Timer_getCounterAdvanceControl(
  *  @return @ref DL_TIMER_CLC
  */
 __STATIC_INLINE DL_TIMER_CLC DL_Timer_getCounterLoadControl(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t loadCtl = gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_CLC_MASK;
 
@@ -2793,7 +2849,7 @@ __STATIC_INLINE void DL_Timer_setCounterMode(
  *  @return @ref DL_TIMER_COUNT_MODE
  */
 __STATIC_INLINE DL_TIMER_COUNT_MODE DL_Timer_getCounterMode(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t cmMode = (gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_CM_MASK);
     return ((DL_TIMER_COUNT_MODE) cmMode);
@@ -2824,7 +2880,7 @@ __STATIC_INLINE void DL_Timer_setCounterValueAfterEnable(
  *
  */
 __STATIC_INLINE DL_TIMER_COUNT_AFTER_EN DL_Timer_getCounterValueAfterEnable(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t cvae = gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_CVAE_MASK;
 
@@ -2858,7 +2914,7 @@ __STATIC_INLINE void DL_Timer_setCounterRepeatMode(
  *  @return @ref DL_TIMER_REPEAT_MODE
  */
 __STATIC_INLINE DL_TIMER_REPEAT_MODE DL_Timer_getCounterRepeatMode(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t repeatMode =
         gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_REPEAT_MASK;
@@ -2879,7 +2935,7 @@ __STATIC_INLINE DL_TIMER_REPEAT_MODE DL_Timer_getCounterRepeatMode(
  *
  */
 void DL_Timer_initTimerMode(
-    GPTIMER_Regs *gptimer, DL_Timer_TimerConfig *config);
+    GPTIMER_Regs *gptimer, const DL_Timer_TimerConfig *config);
 
 /**
  *  @brief      Configure timer in edge count, period capture, edge time or
@@ -2895,7 +2951,7 @@ void DL_Timer_initTimerMode(
  *
  */
 void DL_Timer_initCaptureMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CaptureConfig *config);
+    GPTIMER_Regs *gptimer, const DL_Timer_CaptureConfig *config);
 
 /**
  *  @brief      Configure timer in edge count, period capture, edge time or
@@ -2911,7 +2967,7 @@ void DL_Timer_initCaptureMode(
  *
  */
 void DL_Timer_initCaptureTriggerMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CaptureTriggerConfig *config);
+    GPTIMER_Regs *gptimer, const DL_Timer_CaptureTriggerConfig *config);
 
 /**
  *  @brief      Configure timer in combined pulse-width and period capture
@@ -2926,7 +2982,7 @@ void DL_Timer_initCaptureTriggerMode(
  *
  */
 void DL_Timer_initCaptureCombinedMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CaptureCombinedConfig *config);
+    GPTIMER_Regs *gptimer, const DL_Timer_CaptureCombinedConfig *config);
 
 /**
  *  @brief      Configure timer in edge count compare mode
@@ -2941,7 +2997,7 @@ void DL_Timer_initCaptureCombinedMode(
  *
  */
 void DL_Timer_initCompareMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CompareConfig *config);
+    GPTIMER_Regs *gptimer, const DL_Timer_CompareConfig *config);
 
 /**
  *  @brief      Configure timer in edge count compare mode using the trigger as
@@ -2957,7 +3013,7 @@ void DL_Timer_initCompareMode(
  *
  */
 void DL_Timer_initCompareTriggerMode(
-    GPTIMER_Regs *gptimer, DL_Timer_CompareTriggerConfig *config);
+    GPTIMER_Regs *gptimer, const DL_Timer_CompareTriggerConfig *config);
 
 /**
  * @brief Configure timer in Pulse Width Modulation Mode
@@ -2972,7 +3028,7 @@ void DL_Timer_initCompareTriggerMode(
  *                             @ref DL_Timer_PWMConfig.
  */
 void DL_Timer_initFourCCPWMMode(
-    GPTIMER_Regs *gptimer, DL_Timer_PWMConfig *config);
+    GPTIMER_Regs *gptimer, const DL_Timer_PWMConfig *config);
 
 /*!
  * @brief Redirects to common @ref DL_Timer_initFourCCPWMMode
@@ -3155,6 +3211,32 @@ void DL_Timer_setCaptCompUpdateMethod(GPTIMER_Regs *gptimer,
  * @return @ref DL_TIMER_CC_UPDATE_METHOD
  */
 DL_TIMER_CC_UPDATE_METHOD DL_Timer_getCaptCompUpdateMethod(
+    GPTIMER_Regs *gptimer, DL_TIMER_CC_INDEX ccIndex);
+
+/**
+ *  @brief Configures capture compare action shadow register update method
+ *
+ *  @param[in] gptimer       Pointer to the register overlay for the
+ *                           peripheral
+ *  @param[in] ccUpdtMode    Specifies capture compare action shadow register
+ *                           update method. @ref DL_TIMER_CCACT_UPDATE_METHOD
+ *  @param[in]  ccIndex      Index associated to capture compare register
+ *                           @ref DL_TIMER_CC_INDEX.
+ *
+ */
+void DL_Timer_setCaptCompActUpdateMethod(GPTIMER_Regs *gptimer,
+    DL_TIMER_CCACT_UPDATE_METHOD ccUpdtMode, DL_TIMER_CC_INDEX ccIndex);
+
+/**
+ *  @brief Gets capture compare action shadow register update method
+ *
+ *  @param[in] gptimer       Pointer to the register overlay for the
+ *                           peripheral
+ *  @param[in]  ccIndex      Index associated to capture compare action
+ *                           register @ref DL_TIMER_CC_INDEX.
+ * @return @ref DL_TIMER_CCACT_UPDATE_METHOD
+ */
+DL_TIMER_CCACT_UPDATE_METHOD DL_Timer_getCaptCompActUpdateMethod(
     GPTIMER_Regs *gptimer, DL_TIMER_CC_INDEX ccIndex);
 
 /**
@@ -3437,7 +3519,8 @@ __STATIC_INLINE void DL_Timer_setDeadBand(GPTIMER_Regs *gptimer,
  *
  *  @return Dead Band Fall delay in TIMCLK
  */
-__STATIC_INLINE uint16_t DL_Timer_getDeadBandFallDelay(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint16_t DL_Timer_getDeadBandFallDelay(
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t temp =
         (gptimer->COUNTERREGS.DBCTL & GPTIMER_DBCTL_FALLDELAY_MASK) >>
@@ -3454,7 +3537,8 @@ __STATIC_INLINE uint16_t DL_Timer_getDeadBandFallDelay(GPTIMER_Regs *gptimer)
  *
  *  @return Dead Band Rise delay in TIMCLK
  */
-__STATIC_INLINE uint16_t DL_Timer_getDeadBandRiseDelay(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint16_t DL_Timer_getDeadBandRiseDelay(
+    const GPTIMER_Regs *gptimer)
 {
     return (uint16_t)(
         (gptimer->COUNTERREGS.DBCTL) & (GPTIMER_DBCTL_RISEDELAY_MASK));
@@ -3486,7 +3570,7 @@ __STATIC_INLINE void DL_Timer_setExternalTriggerEvent(
  *
  */
 __STATIC_INLINE DL_TIMER_EXT_TRIG_SEL DL_Timer_getExternalTriggerEvent(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t trigSel = gptimer->COUNTERREGS.TSEL & GPTIMER_TSEL_ETSEL_MASK;
 
@@ -3528,7 +3612,8 @@ __STATIC_INLINE void DL_Timer_disableExternalTrigger(GPTIMER_Regs *gptimer)
  *  @retval     true  external trigger is enabled
  *  @retval     false external trigger is disabled
  */
-__STATIC_INLINE bool DL_Timer_isExternalTriggerEnabled(GPTIMER_Regs *gptimer)
+__STATIC_INLINE bool DL_Timer_isExternalTriggerEnabled(
+    const GPTIMER_Regs *gptimer)
 {
     return ((gptimer->COUNTERREGS.TSEL & GPTIMER_TSEL_TE_MASK) ==
             GPTIMER_TSEL_TE_ENABLED);
@@ -3567,7 +3652,7 @@ __STATIC_INLINE void DL_Timer_setRepeatCounter(
  *  @return Repeat counter value.
  *
  */
-__STATIC_INLINE uint8_t DL_Timer_getRepeatCounter(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint8_t DL_Timer_getRepeatCounter(const GPTIMER_Regs *gptimer)
 {
     return ((uint8_t)(gptimer->COUNTERREGS.RC & GPTIMER_RC_RC_MASK));
 }
@@ -3608,7 +3693,7 @@ __STATIC_INLINE void DL_Timer_disablePhaseLoad(GPTIMER_Regs *gptimer)
  *  @retval     false phase load is disabled
  *
  */
-__STATIC_INLINE bool DL_Timer_isPhaseLoadEnabled(GPTIMER_Regs *gptimer)
+__STATIC_INLINE bool DL_Timer_isPhaseLoadEnabled(const GPTIMER_Regs *gptimer)
 {
     return (GPTIMER_CTRCTL_PLEN_ENABLED ==
             (gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_PLEN_MASK));
@@ -3636,7 +3721,8 @@ __STATIC_INLINE void DL_Timer_setPhaseLoadValue(
  *
  *  @return Phase load value
  */
-__STATIC_INLINE uint32_t DL_Timer_getPhaseLoadValue(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint32_t DL_Timer_getPhaseLoadValue(
+    const GPTIMER_Regs *gptimer)
 {
     return ((uint32_t)(gptimer->COUNTERREGS.PL & GPTIMER_PL_PHASE_MASK));
 }
@@ -3676,7 +3762,7 @@ __STATIC_INLINE void DL_Timer_stopCounter(GPTIMER_Regs *gptimer)
  *  @retval     true  Timer is running
  *  @retval     false Timer is not running
  */
-__STATIC_INLINE bool DL_Timer_isRunning(GPTIMER_Regs *gptimer)
+__STATIC_INLINE bool DL_Timer_isRunning(const GPTIMER_Regs *gptimer)
 {
     return ((gptimer->COUNTERREGS.CTRCTL & GPTIMER_CTRCTL_EN_MASK) ==
             GPTIMER_CTRCTL_EN_ENABLED);
@@ -3732,7 +3818,7 @@ void DL_Timer_configQEIHallInputMode(GPTIMER_Regs *gptimer);
  *  @retval     One of @ref DL_TIMER_QEI_DIRECTION values
  */
 __STATIC_INLINE DL_TIMER_QEI_DIRECTION DL_Timer_getQEIDirection(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t qeiDirection = gptimer->COUNTERREGS.QDIR & GPTIMER_QDIR_DIR_MASK;
 
@@ -3770,7 +3856,7 @@ __STATIC_INLINE void DL_Timer_setFaultConfig(
   *          @ref DL_TIMER_FAULT_CONFIG_FIEN
   *
   */
-__STATIC_INLINE uint32_t DL_Timer_getFaultConfig(GPTIMER_Regs *gptimer)
+__STATIC_INLINE uint32_t DL_Timer_getFaultConfig(const GPTIMER_Regs *gptimer)
 {
     return (gptimer->COUNTERREGS.FCTL &
             (GPTIMER_FCTL_FIEN_MASK | GPTIMER_FCTL_FI_MASK |
@@ -3807,7 +3893,7 @@ __STATIC_INLINE void DL_Timer_disableFaultInput(GPTIMER_Regs *gptimer)
   *  @return  true  Fault input is enabled
   *  @return  false Fault input is disabled
   */
-__STATIC_INLINE bool DL_Timer_isFaultInputEnabled(GPTIMER_Regs *gptimer)
+__STATIC_INLINE bool DL_Timer_isFaultInputEnabled(const GPTIMER_Regs *gptimer)
 {
     return (GPTIMER_FCTL_FIEN_ENABLED ==
             (gptimer->COUNTERREGS.FCTL & GPTIMER_FCTL_FIEN_MASK));
@@ -3844,7 +3930,7 @@ __STATIC_INLINE void DL_Timer_disableClockFaultDetection(GPTIMER_Regs *gptimer)
  *  @return false if source clock fault detection is disabled
  */
 __STATIC_INLINE bool DL_Timer_isClockFaultDetectionEnabled(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     return (GPTIMER_FSCTL_FCEN_ENABLE ==
             (gptimer->COMMONREGS.FSCTL & GPTIMER_FSCTL_FCEN_MASK));
@@ -3869,7 +3955,7 @@ void DL_Timer_setFaultSourceConfig(GPTIMER_Regs *gptimer, uint32_t source);
   *  @return The fault source and and fault input mode. One of
   *          @ref DL_TIMER_FAULT_SOURCE.
   */
-uint32_t DL_Timer_getFaultSourceConfig(GPTIMER_Regs *gptimer);
+uint32_t DL_Timer_getFaultSourceConfig(const GPTIMER_Regs *gptimer);
 
 /**
   *  @brief     Set Fault Input Filtering Configuration
@@ -3900,7 +3986,7 @@ __STATIC_INLINE void DL_Timer_setFaultInputFilterConfig(
   *
   */
 __STATIC_INLINE uint32_t DL_Timer_getFaultInputFilterConfig(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     return (gptimer->COUNTERREGS.FIFCTL);
 }
@@ -3987,7 +4073,7 @@ __STATIC_INLINE void DL_Timer_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_TIMER_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_Timer_getEnabledInterrupts(
-    GPTIMER_Regs *gptimer, uint32_t interruptMask)
+    const GPTIMER_Regs *gptimer, uint32_t interruptMask)
 {
     return (gptimer->CPU_INT.IMASK & interruptMask);
 }
@@ -4010,7 +4096,7 @@ __STATIC_INLINE uint32_t DL_Timer_getEnabledInterrupts(
  *  @sa         DL_Timer_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_Timer_getEnabledInterruptStatus(
-    GPTIMER_Regs *gptimer, uint32_t interruptMask)
+    const GPTIMER_Regs *gptimer, uint32_t interruptMask)
 {
     return (gptimer->CPU_INT.MIS & interruptMask);
 }
@@ -4031,7 +4117,7 @@ __STATIC_INLINE uint32_t DL_Timer_getEnabledInterruptStatus(
  *  @retval     Bitwise OR of @ref DL_TIMER_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_Timer_getRawInterruptStatus(
-    GPTIMER_Regs *gptimer, uint32_t interruptMask)
+    const GPTIMER_Regs *gptimer, uint32_t interruptMask)
 {
     return (gptimer->CPU_INT.RIS & interruptMask);
 }
@@ -4049,7 +4135,7 @@ __STATIC_INLINE uint32_t DL_Timer_getRawInterruptStatus(
  *              @ref DL_TIMER_IIDX
  */
 __STATIC_INLINE DL_TIMER_IIDX DL_Timer_getPendingInterrupt(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     return ((DL_TIMER_IIDX) gptimer->CPU_INT.IIDX);
 }
@@ -4218,7 +4304,8 @@ __STATIC_INLINE uint32_t DL_Timer_getEnabledEvents(
  *  @sa         DL_Timer_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_Timer_getEnabledEventStatus(
-    GPTIMER_Regs *gptimer, DL_TIMER_EVENT_ROUTE index, uint32_t eventMask)
+    const GPTIMER_Regs *gptimer, DL_TIMER_EVENT_ROUTE index,
+    uint32_t eventMask)
 {
     const volatile uint32_t *pReg =
         (const volatile uint32_t *) &gptimer->GEN_EVENT0.MIS;
@@ -4244,7 +4331,8 @@ __STATIC_INLINE uint32_t DL_Timer_getEnabledEventStatus(
  *  @retval     Bitwise OR of @ref DL_TIMER_EVENT values
  */
 __STATIC_INLINE uint32_t DL_Timer_getRawEventsStatus(
-    GPTIMER_Regs *gptimer, DL_TIMER_EVENT_ROUTE index, uint32_t eventMask)
+    const GPTIMER_Regs *gptimer, DL_TIMER_EVENT_ROUTE index,
+    uint32_t eventMask)
 {
     const volatile uint32_t *pReg =
         (const volatile uint32_t *) &gptimer->GEN_EVENT0.RIS;
@@ -4272,9 +4360,9 @@ __STATIC_INLINE void DL_Timer_clearEventsStatus(
 
 /**
  *  @brief      Saves Timer configuration before entering STOP or STANDBY mode.
- *              Only necessary for PG 1.0 silicon. Timer must be in IDLE state
- *              before calling this API. Timer can be put IDLE state by calling
- *              DL_TimerG_stopCounter or DL_TimerH_stopCounter.
+ *              Timer must be in IDLE state before calling this API. Timer can
+ *              be put IDLE state by calling @ref DL_TimerG_stopCounter or
+ *              @ref DL_Timer_stopCounter.
  *
  *  @param[in]  gptimer  Pointer to the register overlay for the peripheral
  *
@@ -4286,11 +4374,10 @@ __STATIC_INLINE void DL_Timer_clearEventsStatus(
  *
  */
 bool DL_Timer_saveConfiguration(
-    GPTIMER_Regs *gptimer, DL_Timer_backupConfig *ptr);
+    const GPTIMER_Regs *gptimer, DL_Timer_backupConfig *ptr);
 
 /**
  *  @brief      Restore Timer configuration after leaving STOP or STANDBY mode.
- *              Only necessary for PG 1.0 silicon.
  *
  *  @param[in]  gptimer  Pointer to the register overlay for the peripheral
  *
@@ -4332,7 +4419,7 @@ __STATIC_INLINE void DL_Timer_setCoreHaltBehavior(
  *
  */
 __STATIC_INLINE DL_TIMER_CORE_HALT DL_Timer_getCoreHaltBehavior(
-    GPTIMER_Regs *gptimer)
+    const GPTIMER_Regs *gptimer)
 {
     uint32_t haltMode = (gptimer->PDBGCTL & (GPTIMER_PDBGCTL_FREE_MASK |
                                                 GPTIMER_PDBGCTL_SOFT_MASK));

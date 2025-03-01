@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -78,7 +78,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___o_p_a___config.html">DL_OPA_Config</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___o_p_a.html#ga654af3af936dd051883bf2588452b89c">DL_OPA_init</a>.  <a href="struct_d_l___o_p_a___config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration struct for <a class="el" href="group___o_p_a.html#ga3c1ff6be191828c3a95997fd85ce5150">DL_OPA_init</a>.  <a href="struct_d_l___o_p_a___config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -176,38 +176,38 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga21b175db2080e4e7934a481291b493c7"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga21b175db2080e4e7934a481291b493c7">DL_OPA_enablePower</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga21b175db2080e4e7934a481291b493c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on OPA module.  <a href="#ga21b175db2080e4e7934a481291b493c7">More...</a><br /></td></tr>
+<tr class="memdesc:ga21b175db2080e4e7934a481291b493c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the OPA.  <a href="#ga21b175db2080e4e7934a481291b493c7">More...</a><br /></td></tr>
 <tr class="separator:ga21b175db2080e4e7934a481291b493c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2d3336b3d15ec62c7e22b6d451c38998"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga2d3336b3d15ec62c7e22b6d451c38998">DL_OPA_disablePower</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga2d3336b3d15ec62c7e22b6d451c38998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables power on OPA module.  <a href="#ga2d3336b3d15ec62c7e22b6d451c38998">More...</a><br /></td></tr>
+<tr class="memdesc:ga2d3336b3d15ec62c7e22b6d451c38998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the OPA.  <a href="#ga2d3336b3d15ec62c7e22b6d451c38998">More...</a><br /></td></tr>
 <tr class="separator:ga2d3336b3d15ec62c7e22b6d451c38998"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga922354efc517a94176511a9c030594c0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga922354efc517a94176511a9c030594c0">DL_OPA_isPowerEnabled</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga922354efc517a94176511a9c030594c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if power on opa module.  <a href="#ga922354efc517a94176511a9c030594c0">More...</a><br /></td></tr>
-<tr class="separator:ga922354efc517a94176511a9c030594c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad3c9ddff94395fa1521c2151c77bc0ef"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gad3c9ddff94395fa1521c2151c77bc0ef">DL_OPA_isPowerEnabled</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:gad3c9ddff94395fa1521c2151c77bc0ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the OPA is enabled.  <a href="#gad3c9ddff94395fa1521c2151c77bc0ef">More...</a><br /></td></tr>
+<tr class="separator:gad3c9ddff94395fa1521c2151c77bc0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e642f33903802a6b636af056740fe28"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga3e642f33903802a6b636af056740fe28">DL_OPA_reset</a> (OA_Regs *opa)</td></tr>
 <tr class="memdesc:ga3e642f33903802a6b636af056740fe28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets OPA peripheral.  <a href="#ga3e642f33903802a6b636af056740fe28">More...</a><br /></td></tr>
 <tr class="separator:ga3e642f33903802a6b636af056740fe28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab0d53839ed1851b75fdb14ba6f00c13d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gab0d53839ed1851b75fdb14ba6f00c13d">DL_OPA_isReset</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:gab0d53839ed1851b75fdb14ba6f00c13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if OPA peripheral was reset.  <a href="#gab0d53839ed1851b75fdb14ba6f00c13d">More...</a><br /></td></tr>
-<tr class="separator:gab0d53839ed1851b75fdb14ba6f00c13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5f3eb119979d18c03fed6f7aabee65ff"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga5f3eb119979d18c03fed6f7aabee65ff">DL_OPA_isReset</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga5f3eb119979d18c03fed6f7aabee65ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if OPA peripheral was reset.  <a href="#ga5f3eb119979d18c03fed6f7aabee65ff">More...</a><br /></td></tr>
+<tr class="separator:ga5f3eb119979d18c03fed6f7aabee65ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5332f04f3a859bc7e7e72babc5523136"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga5332f04f3a859bc7e7e72babc5523136">DL_OPA_enable</a> (OA_Regs *opa)</td></tr>
 <tr class="memdesc:ga5332f04f3a859bc7e7e72babc5523136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the OPA peripheral.  <a href="#ga5332f04f3a859bc7e7e72babc5523136">More...</a><br /></td></tr>
 <tr class="separator:ga5332f04f3a859bc7e7e72babc5523136"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabbe3c28bd9b24ae80db2c78b9452cb9f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gabbe3c28bd9b24ae80db2c78b9452cb9f">DL_OPA_isEnabled</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:gabbe3c28bd9b24ae80db2c78b9452cb9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the OPA peripheral is enabled.  <a href="#gabbe3c28bd9b24ae80db2c78b9452cb9f">More...</a><br /></td></tr>
-<tr class="separator:gabbe3c28bd9b24ae80db2c78b9452cb9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a26969682d54ebea6a307d3ee540e14"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga9a26969682d54ebea6a307d3ee540e14">DL_OPA_isEnabled</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga9a26969682d54ebea6a307d3ee540e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the OPA peripheral is enabled.  <a href="#ga9a26969682d54ebea6a307d3ee540e14">More...</a><br /></td></tr>
+<tr class="separator:ga9a26969682d54ebea6a307d3ee540e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadb94d2021375848eb8d84d5fd293b60d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gadb94d2021375848eb8d84d5fd293b60d">DL_OPA_disable</a> (OA_Regs *opa)</td></tr>
 <tr class="memdesc:gadb94d2021375848eb8d84d5fd293b60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the OPA peripheral.  <a href="#gadb94d2021375848eb8d84d5fd293b60d">More...</a><br /></td></tr>
 <tr class="separator:gadb94d2021375848eb8d84d5fd293b60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga654af3af936dd051883bf2588452b89c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga654af3af936dd051883bf2588452b89c">DL_OPA_init</a> (OA_Regs *opa, <a class="el" href="struct_d_l___o_p_a___config.html">DL_OPA_Config</a> *config)</td></tr>
-<tr class="memdesc:ga654af3af936dd051883bf2588452b89c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the OPA peripheral.  <a href="#ga654af3af936dd051883bf2588452b89c">More...</a><br /></td></tr>
-<tr class="separator:ga654af3af936dd051883bf2588452b89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c1ff6be191828c3a95997fd85ce5150"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga3c1ff6be191828c3a95997fd85ce5150">DL_OPA_init</a> (OA_Regs *opa, const <a class="el" href="struct_d_l___o_p_a___config.html">DL_OPA_Config</a> *config)</td></tr>
+<tr class="memdesc:ga3c1ff6be191828c3a95997fd85ce5150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the OPA peripheral.  <a href="#ga3c1ff6be191828c3a95997fd85ce5150">More...</a><br /></td></tr>
+<tr class="separator:ga3c1ff6be191828c3a95997fd85ce5150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga102f250c2f3ad61d8a50f73aec75c052"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga102f250c2f3ad61d8a50f73aec75c052">DL_OPA_setGainBandwidth</a> (OA_Regs *opa, <a class="el" href="group___o_p_a.html#gaf63cd3f3126109dec2ff4d046657d2ef">DL_OPA_GBW</a> bandwidth)</td></tr>
 <tr class="memdesc:ga102f250c2f3ad61d8a50f73aec75c052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gain bandwidth (GBW)  <a href="#ga102f250c2f3ad61d8a50f73aec75c052">More...</a><br /></td></tr>
 <tr class="separator:ga102f250c2f3ad61d8a50f73aec75c052"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0ff92b8f24a7f27bf435cbf30b8e7e8b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gaf63cd3f3126109dec2ff4d046657d2ef">DL_OPA_GBW</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga0ff92b8f24a7f27bf435cbf30b8e7e8b">DL_OPA_getGainBandwidth</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga0ff92b8f24a7f27bf435cbf30b8e7e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the gain bandwidth (GBW)  <a href="#ga0ff92b8f24a7f27bf435cbf30b8e7e8b">More...</a><br /></td></tr>
-<tr class="separator:ga0ff92b8f24a7f27bf435cbf30b8e7e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga16be07e338a38b647da49e59a4ce31a7"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gaf63cd3f3126109dec2ff4d046657d2ef">DL_OPA_GBW</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga16be07e338a38b647da49e59a4ce31a7">DL_OPA_getGainBandwidth</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga16be07e338a38b647da49e59a4ce31a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the gain bandwidth (GBW)  <a href="#ga16be07e338a38b647da49e59a4ce31a7">More...</a><br /></td></tr>
+<tr class="separator:ga16be07e338a38b647da49e59a4ce31a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacb9082f7d510410057173b5b40508a9d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gacb9082f7d510410057173b5b40508a9d">DL_OPA_enableRailToRailInput</a> (OA_Regs *opa)</td></tr>
 <tr class="memdesc:gacb9082f7d510410057173b5b40508a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the rail-to-rail input (RRI)  <a href="#gacb9082f7d510410057173b5b40508a9d">More...</a><br /></td></tr>
 <tr class="separator:gacb9082f7d510410057173b5b40508a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,51 +220,51 @@ Functions</h2></td></tr>
 <tr class="memitem:gab48c9dffd20be1d76af634f9253616be"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gab48c9dffd20be1d76af634f9253616be">DL_OPA_setChoppingMode</a> (OA_Regs *opa, <a class="el" href="group___o_p_a.html#gad1439478762d69f06d85c5f3744736a1">DL_OPA_CHOPPING_MODE</a> mode)</td></tr>
 <tr class="memdesc:gab48c9dffd20be1d76af634f9253616be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set and enable the chopping mode.  <a href="#gab48c9dffd20be1d76af634f9253616be">More...</a><br /></td></tr>
 <tr class="separator:gab48c9dffd20be1d76af634f9253616be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga16688783b8aa017bc3e17dcab18e4bd9"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gad1439478762d69f06d85c5f3744736a1">DL_OPA_CHOPPING_MODE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga16688783b8aa017bc3e17dcab18e4bd9">DL_OPA_getChoppingMode</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga16688783b8aa017bc3e17dcab18e4bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the chopping mode.  <a href="#ga16688783b8aa017bc3e17dcab18e4bd9">More...</a><br /></td></tr>
-<tr class="separator:ga16688783b8aa017bc3e17dcab18e4bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga826a7cb347a9aa696891a705e86e591c"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gad1439478762d69f06d85c5f3744736a1">DL_OPA_CHOPPING_MODE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga826a7cb347a9aa696891a705e86e591c">DL_OPA_getChoppingMode</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga826a7cb347a9aa696891a705e86e591c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the chopping mode.  <a href="#ga826a7cb347a9aa696891a705e86e591c">More...</a><br /></td></tr>
+<tr class="separator:ga826a7cb347a9aa696891a705e86e591c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga88dc16ef587badacad7dc164ab498a05"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga88dc16ef587badacad7dc164ab498a05">DL_OPA_setOutputPinState</a> (OA_Regs *opa, <a class="el" href="group___o_p_a.html#ga91db858c553f76fe7cee7317959fbf4e">DL_OPA_OUTPUT_PIN_STATE</a> state)</td></tr>
 <tr class="memdesc:ga88dc16ef587badacad7dc164ab498a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the state of the output pin.  <a href="#ga88dc16ef587badacad7dc164ab498a05">More...</a><br /></td></tr>
 <tr class="separator:ga88dc16ef587badacad7dc164ab498a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8d19763daa068872ff1d848069f9d746"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga91db858c553f76fe7cee7317959fbf4e">DL_OPA_OUTPUT_PIN_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga8d19763daa068872ff1d848069f9d746">DL_OPA_getOutputPinState</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga8d19763daa068872ff1d848069f9d746"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the state of the output pin.  <a href="#ga8d19763daa068872ff1d848069f9d746">More...</a><br /></td></tr>
-<tr class="separator:ga8d19763daa068872ff1d848069f9d746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga524dd8e10a637af20d982f0887b0568a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga91db858c553f76fe7cee7317959fbf4e">DL_OPA_OUTPUT_PIN_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga524dd8e10a637af20d982f0887b0568a">DL_OPA_getOutputPinState</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga524dd8e10a637af20d982f0887b0568a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the state of the output pin.  <a href="#ga524dd8e10a637af20d982f0887b0568a">More...</a><br /></td></tr>
+<tr class="separator:ga524dd8e10a637af20d982f0887b0568a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga678f9a31cd016727081c170abbdbdb40"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga678f9a31cd016727081c170abbdbdb40">DL_OPA_disableOutputPin</a> (OA_Regs *opa)</td></tr>
 <tr class="memdesc:ga678f9a31cd016727081c170abbdbdb40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the OPA output signal to be accessed by a device pin.  <a href="#ga678f9a31cd016727081c170abbdbdb40">More...</a><br /></td></tr>
 <tr class="separator:ga678f9a31cd016727081c170abbdbdb40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae7f3882855834808dc339063c3e19cd9"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gae7f3882855834808dc339063c3e19cd9">DL_OPA_setNonInvertingInputChannel</a> (OA_Regs *opa, <a class="el" href="group___o_p_a.html#gad74c172567011a8ee24900aaecdbe702">DL_OPA_PSEL</a> inputChannel)</td></tr>
 <tr class="memdesc:gae7f3882855834808dc339063c3e19cd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the non-inverting input channel.  <a href="#gae7f3882855834808dc339063c3e19cd9">More...</a><br /></td></tr>
 <tr class="separator:gae7f3882855834808dc339063c3e19cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga31ec173dc3740f7e531f79150553f2ab"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gad74c172567011a8ee24900aaecdbe702">DL_OPA_PSEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga31ec173dc3740f7e531f79150553f2ab">DL_OPA_getNonInvertingInputChannel</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga31ec173dc3740f7e531f79150553f2ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the non-inverting input channel.  <a href="#ga31ec173dc3740f7e531f79150553f2ab">More...</a><br /></td></tr>
-<tr class="separator:ga31ec173dc3740f7e531f79150553f2ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga018437c97188ad44798db7c015a892e5"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gad74c172567011a8ee24900aaecdbe702">DL_OPA_PSEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga018437c97188ad44798db7c015a892e5">DL_OPA_getNonInvertingInputChannel</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga018437c97188ad44798db7c015a892e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the non-inverting input channel.  <a href="#ga018437c97188ad44798db7c015a892e5">More...</a><br /></td></tr>
+<tr class="separator:ga018437c97188ad44798db7c015a892e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5852181759bb1c4e8800680abb7c51cf"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga5852181759bb1c4e8800680abb7c51cf">DL_OPA_setInvertingInputChannel</a> (OA_Regs *opa, <a class="el" href="group___o_p_a.html#ga6f5187556809b41a1bf6514ba624b856">DL_OPA_NSEL</a> inputChannel)</td></tr>
 <tr class="memdesc:ga5852181759bb1c4e8800680abb7c51cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the inverting input channel.  <a href="#ga5852181759bb1c4e8800680abb7c51cf">More...</a><br /></td></tr>
 <tr class="separator:ga5852181759bb1c4e8800680abb7c51cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga137598697c81a0772a4f65eaf906090a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga6f5187556809b41a1bf6514ba624b856">DL_OPA_NSEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga137598697c81a0772a4f65eaf906090a">DL_OPA_getInvertingInputChannel</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga137598697c81a0772a4f65eaf906090a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the inverting input channel.  <a href="#ga137598697c81a0772a4f65eaf906090a">More...</a><br /></td></tr>
-<tr class="separator:ga137598697c81a0772a4f65eaf906090a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga789fd84212a090df8b874810b546d82b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga6f5187556809b41a1bf6514ba624b856">DL_OPA_NSEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga789fd84212a090df8b874810b546d82b">DL_OPA_getInvertingInputChannel</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga789fd84212a090df8b874810b546d82b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the inverting input channel.  <a href="#ga789fd84212a090df8b874810b546d82b">More...</a><br /></td></tr>
+<tr class="separator:ga789fd84212a090df8b874810b546d82b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadd7c073c7a75e1fe7a949f32374ebbda"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gadd7c073c7a75e1fe7a949f32374ebbda">DL_OPA_setMMUXInputChannel</a> (OA_Regs *opa, <a class="el" href="group___o_p_a.html#ga3651d99997beeeff93bfdaf45e0452ea">DL_OPA_MSEL</a> inputChannel)</td></tr>
 <tr class="memdesc:gadd7c073c7a75e1fe7a949f32374ebbda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the M-MUX input channel.  <a href="#gadd7c073c7a75e1fe7a949f32374ebbda">More...</a><br /></td></tr>
 <tr class="separator:gadd7c073c7a75e1fe7a949f32374ebbda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabfa4e86fa20f626a85f485aa1d3357c2"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga3651d99997beeeff93bfdaf45e0452ea">DL_OPA_MSEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gabfa4e86fa20f626a85f485aa1d3357c2">DL_OPA_getMMUXInputChannel</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:gabfa4e86fa20f626a85f485aa1d3357c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the M-MUX input channel.  <a href="#gabfa4e86fa20f626a85f485aa1d3357c2">More...</a><br /></td></tr>
-<tr class="separator:gabfa4e86fa20f626a85f485aa1d3357c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb185fd8711a25ab03343f0fbee2d209"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga3651d99997beeeff93bfdaf45e0452ea">DL_OPA_MSEL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gacb185fd8711a25ab03343f0fbee2d209">DL_OPA_getMMUXInputChannel</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:gacb185fd8711a25ab03343f0fbee2d209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the M-MUX input channel.  <a href="#gacb185fd8711a25ab03343f0fbee2d209">More...</a><br /></td></tr>
+<tr class="separator:gacb185fd8711a25ab03343f0fbee2d209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6e07471cab378d73d3aab38898e5190a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga6e07471cab378d73d3aab38898e5190a">DL_OPA_setGain</a> (OA_Regs *opa, <a class="el" href="group___o_p_a.html#gadf480a729bbddbcbb5133f05aae794de">DL_OPA_GAIN</a> gain)</td></tr>
 <tr class="memdesc:ga6e07471cab378d73d3aab38898e5190a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gain for the programmable gain stage.  <a href="#ga6e07471cab378d73d3aab38898e5190a">More...</a><br /></td></tr>
 <tr class="separator:ga6e07471cab378d73d3aab38898e5190a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacb9ad72cb65bb259fad5fcd5d73e4a2f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gadf480a729bbddbcbb5133f05aae794de">DL_OPA_GAIN</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gacb9ad72cb65bb259fad5fcd5d73e4a2f">DL_OPA_getGain</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:gacb9ad72cb65bb259fad5fcd5d73e4a2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the gain from the programmable gain stage.  <a href="#gacb9ad72cb65bb259fad5fcd5d73e4a2f">More...</a><br /></td></tr>
-<tr class="separator:gacb9ad72cb65bb259fad5fcd5d73e4a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77d2950cf695c580e4fc25c403bc6000"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gadf480a729bbddbcbb5133f05aae794de">DL_OPA_GAIN</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga77d2950cf695c580e4fc25c403bc6000">DL_OPA_getGain</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga77d2950cf695c580e4fc25c403bc6000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the gain from the programmable gain stage.  <a href="#ga77d2950cf695c580e4fc25c403bc6000">More...</a><br /></td></tr>
+<tr class="separator:ga77d2950cf695c580e4fc25c403bc6000"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafd0405cccd96f2c5cee8137be5d6a245"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___o_p_a.html#gadf480a729bbddbcbb5133f05aae794de">DL_OPA_GAIN</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#gafd0405cccd96f2c5cee8137be5d6a245">DL_OPA_increaseGain</a> (OA_Regs *opa)</td></tr>
 <tr class="memdesc:gafd0405cccd96f2c5cee8137be5d6a245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment gain to the next <a class="el" href="group___o_p_a.html#gadf480a729bbddbcbb5133f05aae794de">DL_OPA_GAIN</a> enum value.  <a href="#gafd0405cccd96f2c5cee8137be5d6a245">More...</a><br /></td></tr>
 <tr class="separator:gafd0405cccd96f2c5cee8137be5d6a245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1c8539f526afbc79df72723afdbff9d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___o_p_a.html#gadf480a729bbddbcbb5133f05aae794de">DL_OPA_GAIN</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga1c8539f526afbc79df72723afdbff9d2">DL_OPA_decreaseGain</a> (OA_Regs *opa)</td></tr>
 <tr class="memdesc:ga1c8539f526afbc79df72723afdbff9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement gain to the next <a class="el" href="group___o_p_a.html#gadf480a729bbddbcbb5133f05aae794de">DL_OPA_GAIN</a> enum value.  <a href="#ga1c8539f526afbc79df72723afdbff9d2">More...</a><br /></td></tr>
 <tr class="separator:ga1c8539f526afbc79df72723afdbff9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga18d589282bbdeaef06b936700d1efffb"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga18d589282bbdeaef06b936700d1efffb">DL_OPA_isReady</a> (OA_Regs *opa)</td></tr>
-<tr class="memdesc:ga18d589282bbdeaef06b936700d1efffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the OPA is ready.  <a href="#ga18d589282bbdeaef06b936700d1efffb">More...</a><br /></td></tr>
-<tr class="separator:ga18d589282bbdeaef06b936700d1efffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a6a4c8e345f64f01492d922bfcd98c4"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___o_p_a.html#ga1a6a4c8e345f64f01492d922bfcd98c4">DL_OPA_isReady</a> (const OA_Regs *opa)</td></tr>
+<tr class="memdesc:ga1a6a4c8e345f64f01492d922bfcd98c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the OPA is ready.  <a href="#ga1a6a4c8e345f64f01492d922bfcd98c4">More...</a><br /></td></tr>
+<tr class="separator:ga1a6a4c8e345f64f01492d922bfcd98c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><a class="anchor" id="ti_dl_dl_opa_Overview"></a></p><h1>Overview</h1>
@@ -468,7 +468,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables power on OPA module. </p>
+<p>Enables the Peripheral Write Enable (PWREN) register for the OPA. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<dl class="section note"><dt>Note</dt><dd>For power savings, please refer to <a class="el" href="group___o_p_a.html#ga5332f04f3a859bc7e7e72babc5523136">DL_OPA_enable</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">opa</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -494,7 +496,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Disables power on OPA module. </p>
+<p>Disables the Peripheral Write Enable (PWREN) register for the OPA. </p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
+<dl class="section note"><dt>Note</dt><dd>This API does not provide large power savings. For power savings, please refer to <a class="el" href="group___o_p_a.html#ga5332f04f3a859bc7e7e72babc5523136">DL_OPA_enable</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">opa</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -504,8 +508,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga922354efc517a94176511a9c030594c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga922354efc517a94176511a9c030594c0">&sect;&nbsp;</a></span>DL_OPA_isPowerEnabled()</h2>
+<a id="gad3c9ddff94395fa1521c2151c77bc0ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad3c9ddff94395fa1521c2151c77bc0ef">&sect;&nbsp;</a></span>DL_OPA_isPowerEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -513,23 +517,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_OPA_isPowerEnabled </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns if power on opa module. </p>
+<p>Returns if the Peripheral Write Enable (PWREN) register for the OPA is enabled. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">opa</td><td>Pointer to the register overlay for the peripheral</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if power is enabled </dd>
+<dl class="section return"><dt>Returns</dt><dd>true if peripheral register access is enabled </dd>
 <dd>
-false if power is disabled </dd></dl>
+false if peripheral register access is disabled </dd></dl>
 
 </div>
 </div>
@@ -559,8 +565,8 @@ false if power is disabled </dd></dl>
 
 </div>
 </div>
-<a id="gab0d53839ed1851b75fdb14ba6f00c13d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab0d53839ed1851b75fdb14ba6f00c13d">&sect;&nbsp;</a></span>DL_OPA_isReset()</h2>
+<a id="ga5f3eb119979d18c03fed6f7aabee65ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5f3eb119979d18c03fed6f7aabee65ff">&sect;&nbsp;</a></span>DL_OPA_isReset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -568,7 +574,7 @@ false if power is disabled </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_OPA_isReset </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -614,8 +620,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gabbe3c28bd9b24ae80db2c78b9452cb9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabbe3c28bd9b24ae80db2c78b9452cb9f">&sect;&nbsp;</a></span>DL_OPA_isEnabled()</h2>
+<a id="ga9a26969682d54ebea6a307d3ee540e14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a26969682d54ebea6a307d3ee540e14">&sect;&nbsp;</a></span>DL_OPA_isEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -623,7 +629,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_OPA_isEnabled </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -674,8 +680,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga654af3af936dd051883bf2588452b89c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga654af3af936dd051883bf2588452b89c">&sect;&nbsp;</a></span>DL_OPA_init()</h2>
+<a id="ga3c1ff6be191828c3a95997fd85ce5150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c1ff6be191828c3a95997fd85ce5150">&sect;&nbsp;</a></span>DL_OPA_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -689,7 +695,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_l___o_p_a___config.html">DL_OPA_Config</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_d_l___o_p_a___config.html">DL_OPA_Config</a> *&#160;</td>
           <td class="paramname"><em>config</em>&#160;</td>
         </tr>
         <tr>
@@ -752,8 +758,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga0ff92b8f24a7f27bf435cbf30b8e7e8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0ff92b8f24a7f27bf435cbf30b8e7e8b">&sect;&nbsp;</a></span>DL_OPA_getGainBandwidth()</h2>
+<a id="ga16be07e338a38b647da49e59a4ce31a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga16be07e338a38b647da49e59a4ce31a7">&sect;&nbsp;</a></span>DL_OPA_getGainBandwidth()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -761,7 +767,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gaf63cd3f3126109dec2ff4d046657d2ef">DL_OPA_GBW</a> DL_OPA_getGainBandwidth </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -911,8 +917,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga16688783b8aa017bc3e17dcab18e4bd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga16688783b8aa017bc3e17dcab18e4bd9">&sect;&nbsp;</a></span>DL_OPA_getChoppingMode()</h2>
+<a id="ga826a7cb347a9aa696891a705e86e591c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga826a7cb347a9aa696891a705e86e591c">&sect;&nbsp;</a></span>DL_OPA_getChoppingMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -920,7 +926,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gad1439478762d69f06d85c5f3744736a1">DL_OPA_CHOPPING_MODE</a> DL_OPA_getChoppingMode </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -984,8 +990,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga8d19763daa068872ff1d848069f9d746"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8d19763daa068872ff1d848069f9d746">&sect;&nbsp;</a></span>DL_OPA_getOutputPinState()</h2>
+<a id="ga524dd8e10a637af20d982f0887b0568a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga524dd8e10a637af20d982f0887b0568a">&sect;&nbsp;</a></span>DL_OPA_getOutputPinState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -993,7 +999,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga91db858c553f76fe7cee7317959fbf4e">DL_OPA_OUTPUT_PIN_STATE</a> DL_OPA_getOutputPinState </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1085,8 +1091,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga31ec173dc3740f7e531f79150553f2ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga31ec173dc3740f7e531f79150553f2ab">&sect;&nbsp;</a></span>DL_OPA_getNonInvertingInputChannel()</h2>
+<a id="ga018437c97188ad44798db7c015a892e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga018437c97188ad44798db7c015a892e5">&sect;&nbsp;</a></span>DL_OPA_getNonInvertingInputChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1094,7 +1100,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gad74c172567011a8ee24900aaecdbe702">DL_OPA_PSEL</a> DL_OPA_getNonInvertingInputChannel </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1158,8 +1164,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga137598697c81a0772a4f65eaf906090a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga137598697c81a0772a4f65eaf906090a">&sect;&nbsp;</a></span>DL_OPA_getInvertingInputChannel()</h2>
+<a id="ga789fd84212a090df8b874810b546d82b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga789fd84212a090df8b874810b546d82b">&sect;&nbsp;</a></span>DL_OPA_getInvertingInputChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1167,7 +1173,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga6f5187556809b41a1bf6514ba624b856">DL_OPA_NSEL</a> DL_OPA_getInvertingInputChannel </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1231,8 +1237,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gabfa4e86fa20f626a85f485aa1d3357c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabfa4e86fa20f626a85f485aa1d3357c2">&sect;&nbsp;</a></span>DL_OPA_getMMUXInputChannel()</h2>
+<a id="gacb185fd8711a25ab03343f0fbee2d209"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb185fd8711a25ab03343f0fbee2d209">&sect;&nbsp;</a></span>DL_OPA_getMMUXInputChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1240,7 +1246,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___o_p_a.html#ga3651d99997beeeff93bfdaf45e0452ea">DL_OPA_MSEL</a> DL_OPA_getMMUXInputChannel </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1305,8 +1311,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gacb9ad72cb65bb259fad5fcd5d73e4a2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacb9ad72cb65bb259fad5fcd5d73e4a2f">&sect;&nbsp;</a></span>DL_OPA_getGain()</h2>
+<a id="ga77d2950cf695c580e4fc25c403bc6000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga77d2950cf695c580e4fc25c403bc6000">&sect;&nbsp;</a></span>DL_OPA_getGain()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1314,7 +1320,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___o_p_a.html#gadf480a729bbddbcbb5133f05aae794de">DL_OPA_GAIN</a> DL_OPA_getGain </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1374,7 +1380,7 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___o_p_a.html#gacb9ad72cb65bb259fad5fcd5d73e4a2f">DL_OPA_getGain()</a>.</p>
+<p>Referenced by <a class="el" href="group___o_p_a.html#ga77d2950cf695c580e4fc25c403bc6000">DL_OPA_getGain()</a>.</p>
 
 </div>
 </div>
@@ -1411,12 +1417,12 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___o_p_a.html#gacb9ad72cb65bb259fad5fcd5d73e4a2f">DL_OPA_getGain()</a>.</p>
+<p>Referenced by <a class="el" href="group___o_p_a.html#ga77d2950cf695c580e4fc25c403bc6000">DL_OPA_getGain()</a>.</p>
 
 </div>
 </div>
-<a id="ga18d589282bbdeaef06b936700d1efffb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga18d589282bbdeaef06b936700d1efffb">&sect;&nbsp;</a></span>DL_OPA_isReady()</h2>
+<a id="ga1a6a4c8e345f64f01492d922bfcd98c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1a6a4c8e345f64f01492d922bfcd98c4">&sect;&nbsp;</a></span>DL_OPA_isReady()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1424,7 +1430,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_OPA_isReady </td>
           <td>(</td>
-          <td class="paramtype">OA_Regs *&#160;</td>
+          <td class="paramtype">const OA_Regs *&#160;</td>
           <td class="paramname"><em>opa</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1453,7 +1459,7 @@ false if peripheral wasn't reset </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

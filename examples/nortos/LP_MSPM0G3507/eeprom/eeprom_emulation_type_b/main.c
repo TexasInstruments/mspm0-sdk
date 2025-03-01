@@ -34,7 +34,7 @@
 #include "ti_msp_dl_config.h"
 
 /* Address in main memory to write to. This is defined in the
- * eeprom_emulation_type_a.h header file. Uncommenting the #define below will
+ * eeprom_emulation_type_b.h header file. Uncommenting the #define below will
  * overwrite the default #define in the header file. */
 //#define EEPROM_EMULATION_ADDRESS    0x00001400
 
@@ -97,7 +97,7 @@ int main(void)
         __BKPT(0);
     }
 
-    while(1) {
-        __WFI(); 
-    } 
+    while (1) {
+        __WFI();
+    }
 }

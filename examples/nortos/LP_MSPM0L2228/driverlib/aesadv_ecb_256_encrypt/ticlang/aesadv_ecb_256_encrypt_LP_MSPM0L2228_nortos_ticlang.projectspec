@@ -54,11 +54,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../aesadv_ecb_256_encrypt.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../aesadv_ecb_256_encrypt.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../aesadv_ecb_256_encrypt.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

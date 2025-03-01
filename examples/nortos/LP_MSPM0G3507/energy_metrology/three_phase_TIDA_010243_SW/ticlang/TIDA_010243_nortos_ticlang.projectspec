@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="Cortex M.MSPM0G3507"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="Emeter_three_phase_TIDA_010243_SW"
+        name="Emeter_three_phase_TIDA_010243_SW"
+        configurations="Debug"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="Cortex M.MSPM0G3507"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+
+        compilerBuildOptions="
+		    -I${PROJECT_ROOT}/TIDA_010243/
+            -I${PROJECT_ROOT}/modules/hal/
+	        -I${PROJECT_ROOT}/modules/ADS131M08/
+            -I${PROJECT_ROOT}/modules/metrology/
+	        -I${PROJECT_ROOT}/modules/DLT645/
+            -I${PROJECT_ROOT}/ticlang/
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -D__MSPM0G3507__
+            -O2
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -gdwarf-3
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+        "
+        linkerBuildOptions="
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/ticlang/m0p/mathacl/mspm0g1x0x_g3x0x/iqmath.a
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g1x0x_g3x0x/driverlib.a
+            -Wl,--stack_size=512
+            -L${PROJECT_BUILD_DIR}/syscfg            
+            -Wl,--rom_model
+            -Wl,--warn_sections
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+        "
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Three phase solution on TIDA_010243 hardware">
+
+        <pathVariable name="SDK_ROOT" path="../../../../../../" scope="project"/>
+        <pathVariable name="ORIG_PROJ_ROOT_DIR" path="../" scope="project"/>
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../template.h" openOnCreation="false" excludeFromBuild="false" action="copy"></file>
+        <file path="../TIDA_010243.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>   
+        <file path="../ticlang/mspm0g3507.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ticlang/startup_mspm0g350x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>     
+        <file path="../TIDA_010243/TIDA_010243.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="TIDA_010243">
+        </file>
+        <file path="../TIDA_010243/TIDA_010243.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="TIDA_010243">
+        </file> 
+        <file path="../TIDA_010243/irq_handler.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="TIDA_010243">
+        </file>
+  
+        <file path="../../../../../../source/ti/energy_metrology/modules/hal/MSPM0Gxx0x/hal.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/hal/MSPM0Gxx0x/hal.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/hal">
+        </file>   
+        <file path="../../../../../../source/ti/energy_metrology/modules/ADS131M/ADS131M0x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/ADS131M08">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/ADS131M/ADS131M0x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/ADS131M08">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/ADS131M/ADS131M08_Defaults.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/ADS131M08">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/ADS131M/ADS131M08_Defaults.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/ADS131M08">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_background.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_background.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>   
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_structs.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_defines.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_calculations.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_calculations.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_calibration.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_calibration.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_calibration_defaults.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_readings.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_readings.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_nv_structs.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_foreground.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_foreground.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>     
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_setup.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_setup.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file> 
+        <file path="../../../../../../source/ti/energy_metrology/modules/metrology/metrology_fir_table.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/metrology">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/DLT645/DLT645.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/DLT645">
+        </file>  
+        <file path="../../../../../../source/ti/energy_metrology/modules/DLT645/DLT645.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="modules/DLT645">
+        </file>  
+  
+    </project>
+</projectSpec>

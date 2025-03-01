@@ -94,7 +94,7 @@ void DL_AES_loadDataInAligned(AES_Regs *aes, const uint32_t *dataAligned)
     DL_AES_loadDataWord(&aes->AESADIN, dataAligned, 4);
 }
 
-DL_AES_STATUS DL_AES_getDataOut(AES_Regs *aes, uint8_t *data)
+DL_AES_STATUS DL_AES_getDataOut(const AES_Regs *aes, uint8_t *data)
 {
     DL_AES_STATUS status = DL_AES_STATUS_SUCCESS;
     uint32_t *dataAligned;
@@ -111,7 +111,7 @@ DL_AES_STATUS DL_AES_getDataOut(AES_Regs *aes, uint8_t *data)
     return status;
 }
 
-void DL_AES_getDataOutAligned(AES_Regs *aes, uint32_t *dataAligned)
+void DL_AES_getDataOutAligned(const AES_Regs *aes, uint32_t *dataAligned)
 {
     uint8_t i;
     uint32_t *pData;
@@ -167,7 +167,7 @@ void DL_AES_loadXORDataInWithoutTriggerAligned(
 }
 
 DL_AES_STATUS DL_AES_xorData(
-    uint8_t *data, uint8_t *xorData, uint8_t *xorOutputData)
+    const uint8_t *data, const uint8_t *xorData, uint8_t *xorOutputData)
 {
     DL_AES_STATUS status = DL_AES_STATUS_SUCCESS;
     uint32_t *dataAligned;
@@ -240,7 +240,7 @@ static const uint32_t *DL_AES_checkAlignmentAndReturnPointer(
     return alignedPtr;
 }
 
-bool DL_AES_saveConfiguration(AES_Regs *aes, DL_AES_backupConfig *ptr)
+bool DL_AES_saveConfiguration(const AES_Regs *aes, DL_AES_backupConfig *ptr)
 {
     bool stateSaved = !ptr->backupRdy;
     if (stateSaved) {

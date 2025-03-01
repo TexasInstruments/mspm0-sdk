@@ -393,10 +393,16 @@ typedef struct {
  *  @param[in]  dac12   Pointer to the register overlay for the peripheral
  *  @param[in]  config  Configuration for DAC12 peripheral
  */
-void DL_DAC12_init(DAC12_Regs *dac12, DL_DAC12_Config *config);
+void DL_DAC12_init(DAC12_Regs *dac12, const DL_DAC12_Config *config);
 
 /**
- * @brief Enables power on DAC12 module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the DAC12
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  @note For power savings, please refer to @ref DL_DAC12_enable
  *
  * @param dac12        Pointer to the register overlay for the peripheral
  */
@@ -407,7 +413,13 @@ __STATIC_INLINE void DL_DAC12_enablePower(DAC12_Regs *dac12)
 }
 
 /**
- * @brief Disables power on dac12 module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the DAC12
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings. For power savings,
+ *  please refer to @ref DL_DAC12_enable
  *
  * @param dac12        Pointer to the register overlay for the peripheral
  */
@@ -418,14 +430,23 @@ __STATIC_INLINE void DL_DAC12_disablePower(DAC12_Regs *dac12)
 }
 
 /**
- * @brief Returns if  power on dac12 module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the DAC12
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
  *
  * @param dac12        Pointer to the register overlay for the peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_DAC12_isPowerEnabled(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isPowerEnabled(const DAC12_Regs *dac12)
 {
     return ((dac12->GPRCM.PWREN & DAC12_PWREN_ENABLE_MASK) ==
             DAC12_PWREN_ENABLE_ENABLE);
@@ -452,7 +473,7 @@ __STATIC_INLINE void DL_DAC12_reset(DAC12_Regs *dac12)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_DAC12_isReset(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isReset(const DAC12_Regs *dac12)
 {
     return ((dac12->GPRCM.STAT & DAC12_STAT_RESETSTKY_MASK) ==
             DAC12_STAT_RESETSTKY_RESET);
@@ -488,7 +509,7 @@ __STATIC_INLINE void DL_DAC12_disable(DAC12_Regs *dac12)
  *  @retval     true    Module enabled
  *  @retval     false   Module disabled
  */
-__STATIC_INLINE bool DL_DAC12_isEnabled(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isEnabled(const DAC12_Regs *dac12)
 {
     uint32_t t = (dac12->CTL0 & DAC12_CTL0_ENABLE_MASK);
     return (t == DAC12_CTL0_ENABLE_SET);
@@ -518,7 +539,7 @@ __STATIC_INLINE void DL_DAC12_configDataFormat(
  *
  *  @retval     One of @ref DL_DAC12_AMP
  */
-__STATIC_INLINE DL_DAC12_AMP DL_DAC12_getAmplifier(DAC12_Regs *dac12)
+__STATIC_INLINE DL_DAC12_AMP DL_DAC12_getAmplifier(const DAC12_Regs *dac12)
 {
     uint32_t ampVal =
         (dac12->CTL1 & (DAC12_CTL1_AMPEN_MASK | DAC12_CTL1_AMPHIZ_MASK));
@@ -549,7 +570,7 @@ __STATIC_INLINE void DL_DAC12_setAmplifier(
  *  @retval     Bitwise OR of @ref DL_DAC12_VREF_SOURCE
  */
 __STATIC_INLINE DL_DAC12_VREF_SOURCE DL_DAC12_getReferenceVoltageSource(
-    DAC12_Regs *dac12)
+    const DAC12_Regs *dac12)
 {
     uint32_t refsVal =
         (dac12->CTL1 & (DAC12_CTL1_REFSP_MASK | DAC12_CTL1_REFSN_MASK));
@@ -601,7 +622,7 @@ __STATIC_INLINE void DL_DAC12_disableOutputPin(DAC12_Regs *dac12)
  *  @retval     true  Output is connected
  *  @retval     false Output is not connected
  */
-__STATIC_INLINE bool DL_DAC12_isOutputPinEnabled(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isOutputPinEnabled(const DAC12_Regs *dac12)
 {
     return ((dac12->CTL1 & DAC12_CTL1_OPS_MASK) == DAC12_CTL1_OPS_OUT0);
 }
@@ -642,7 +663,7 @@ __STATIC_INLINE void DL_DAC12_disableFIFO(DAC12_Regs *dac12)
  *  @retval     true    FIFO is enabled
  *  @retval     false   FIFO is not enabled
  */
-__STATIC_INLINE bool DL_DAC12_isFIFOEnabled(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isFIFOEnabled(const DAC12_Regs *dac12)
 {
     uint32_t t = (dac12->CTL2 & DAC12_CTL2_FIFOEN_MASK);
     return (t == DAC12_CTL2_FIFOEN_SET);
@@ -660,7 +681,7 @@ __STATIC_INLINE bool DL_DAC12_isFIFOEnabled(DAC12_Regs *dac12)
  *  @sa         DL_DAC12_setFIFOThreshold
  */
 __STATIC_INLINE DL_DAC12_FIFO_THRESHOLD DL_DAC12_getFIFOThreshold(
-    DAC12_Regs *dac12)
+    const DAC12_Regs *dac12)
 {
     uint32_t fifoThreshold = (dac12->CTL2 & DAC12_CTL2_FIFOTH_MASK);
 
@@ -699,7 +720,7 @@ __STATIC_INLINE void DL_DAC12_setFIFOThreshold(
  *  @sa         DL_DAC12_setFIFOTriggerSource
  */
 __STATIC_INLINE DL_DAC12_FIFO_TRIGGER DL_DAC12_getFIFOTriggerSource(
-    DAC12_Regs *dac12)
+    const DAC12_Regs *dac12)
 {
     uint32_t fifoTrig = (dac12->CTL2 & DAC12_CTL2_FIFOTRIGSEL_MASK);
 
@@ -766,7 +787,7 @@ __STATIC_INLINE void DL_DAC12_disableDMATrigger(DAC12_Regs *dac12)
  *  @retval     true   DMA Trigger enabled
  *  @retval     false  DMA Trigger not enabled
  */
-__STATIC_INLINE bool DL_DAC12_isDMATriggerEnabled(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isDMATriggerEnabled(const DAC12_Regs *dac12)
 {
     uint32_t t = (dac12->CTL2 & DAC12_CTL2_DMATRIGEN_MASK);
     return (t == DAC12_CTL2_DMATRIGEN_SET);
@@ -810,7 +831,8 @@ __STATIC_INLINE void DL_DAC12_disableSampleTimeGenerator(DAC12_Regs *dac12)
  *  @retval     true  Sample time generator is enabled
  *  @retval     false Sample time generator is not enabled
  */
-__STATIC_INLINE bool DL_DAC12_isSampleTimeGeneratorEnabled(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isSampleTimeGeneratorEnabled(
+    const DAC12_Regs *dac12)
 {
     uint32_t t = (dac12->CTL3 & DAC12_CTL3_STIMEN_MASK);
     return (t == DAC12_CTL3_STIMEN_SET);
@@ -826,7 +848,7 @@ __STATIC_INLINE bool DL_DAC12_isSampleTimeGeneratorEnabled(DAC12_Regs *dac12)
  *  @retval     One of @ref DL_DAC12_SAMPLES_PER_SECOND
  */
 __STATIC_INLINE DL_DAC12_SAMPLES_PER_SECOND DL_DAC12_getSampleRate(
-    DAC12_Regs *dac12)
+    const DAC12_Regs *dac12)
 {
     uint32_t sampleRate = (dac12->CTL3 & DAC12_CTL3_STIMCONFIG_MASK);
 
@@ -864,7 +886,7 @@ __STATIC_INLINE void DL_DAC12_setSampleRate(
  *
  *  @sa         DL_DAC12_startCalibration
  */
-__STATIC_INLINE bool DL_DAC12_isCalibrationRunning(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isCalibrationRunning(const DAC12_Regs *dac12)
 {
     uint32_t t = (dac12->CALCTL & DAC12_CALCTL_CALON_MASK);
     return (t == DAC12_CALCTL_CALON_ACTIVE);
@@ -909,7 +931,7 @@ __STATIC_INLINE void DL_DAC12_startCalibration(DAC12_Regs *dac12)
  *
  *  @retval     -64 to +63 in two's complement
  */
-__STATIC_INLINE uint32_t DL_DAC12_getCalibrationData(DAC12_Regs *dac12)
+__STATIC_INLINE uint32_t DL_DAC12_getCalibrationData(const DAC12_Regs *dac12)
 {
     return (dac12->CALDATA & DAC12_CALDATA_DATA_MASK);
 }
@@ -988,7 +1010,7 @@ __STATIC_INLINE void DL_DAC12_output12(DAC12_Regs *dac12, uint32_t dataValue)
  *  @retval     0 - max(number of empty fifo slots, count)
  */
 uint32_t DL_DAC12_fillFIFO8(
-    DAC12_Regs *dac12, uint8_t *buffer, uint32_t count);
+    DAC12_Regs *dac12, const uint8_t *buffer, uint32_t count);
 
 /**
  *  @brief      Fills the DAC fifo with 12-bit data values from the buffer
@@ -1006,7 +1028,7 @@ uint32_t DL_DAC12_fillFIFO8(
  *  @retval     0 - max(number of empty fifo slots, count)
  */
 uint32_t DL_DAC12_fillFIFO12(
-    DAC12_Regs *dac12, uint16_t *buffer, uint32_t count);
+    DAC12_Regs *dac12, const uint16_t *buffer, uint32_t count);
 
 /**
  *  @brief      Blocking 8-bit output to the DAC FIFO
@@ -1046,7 +1068,7 @@ void DL_DAC12_outputBlocking12(DAC12_Regs *dac12, uint16_t data);
  *                      registers that are currently asserted.
  */
 __STATIC_INLINE uint32_t DL_DAC12_getInterruptStatus(
-    DAC12_Regs *dac12, uint32_t interruptMask)
+    const DAC12_Regs *dac12, uint32_t interruptMask)
 {
     return (dac12->CPU_INT.RIS & interruptMask);
 }
@@ -1113,7 +1135,8 @@ __STATIC_INLINE void DL_DAC12_disableInterrupt(
  *
  *  @retval     One of @ref DL_DAC12_IIDX
  */
-__STATIC_INLINE DL_DAC12_IIDX DL_DAC12_getPendingInterrupt(DAC12_Regs *dac12)
+__STATIC_INLINE DL_DAC12_IIDX DL_DAC12_getPendingInterrupt(
+    const DAC12_Regs *dac12)
 {
     return ((DL_DAC12_IIDX) dac12->CPU_INT.IIDX);
 }
@@ -1131,7 +1154,7 @@ __STATIC_INLINE DL_DAC12_IIDX DL_DAC12_getPendingInterrupt(DAC12_Regs *dac12)
  *  @retval     true   FIFO is currently full
  *  @retval     false  FIFO is not full
  */
-__STATIC_INLINE bool DL_DAC12_isFIFOFull(DAC12_Regs *dac12)
+__STATIC_INLINE bool DL_DAC12_isFIFOFull(const DAC12_Regs *dac12)
 {
     uint32_t t =
         DL_DAC12_getInterruptStatus(dac12, DL_DAC12_INTERRUPT_FIFO_FULL);
@@ -1160,7 +1183,7 @@ __STATIC_INLINE void DL_DAC12_setPublisherChanID(
  *  @return     Event publisher channel ID
  *
  */
-__STATIC_INLINE uint8_t DL_DAC12_getPublisherChanID(DAC12_Regs *dac12)
+__STATIC_INLINE uint8_t DL_DAC12_getPublisherChanID(const DAC12_Regs *dac12)
 {
     return ((uint8_t)((dac12->FPUB_1) & DAC12_FPUB_1_CHANID_MASK));
 }
@@ -1237,7 +1260,7 @@ __STATIC_INLINE void DL_DAC12_disableEvent(
  *  @retval     Bitwise OR of @ref DL_DAC12_EVENT values
  */
 __STATIC_INLINE uint32_t DL_DAC12_getEnabledEvents(
-    DAC12_Regs *dac12, uint32_t eventMask)
+    const DAC12_Regs *dac12, uint32_t eventMask)
 {
     return ((dac12->GEN_EVENT.IMASK) & (eventMask));
 }
@@ -1259,7 +1282,7 @@ __STATIC_INLINE uint32_t DL_DAC12_getEnabledEvents(
  *  @sa         DL_DAC12_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_DAC12_getEnabledEventStatus(
-    DAC12_Regs *dac12, uint32_t eventMask)
+    const DAC12_Regs *dac12, uint32_t eventMask)
 {
     return ((dac12->GEN_EVENT.MIS) & eventMask);
 }
@@ -1279,7 +1302,7 @@ __STATIC_INLINE uint32_t DL_DAC12_getEnabledEventStatus(
  *  @retval     Bitwise OR of @ref DL_DAC12_EVENT values
  */
 __STATIC_INLINE uint32_t DL_DAC12_getRawEventsStatus(
-    DAC12_Regs *dac12, uint32_t eventMask)
+    const DAC12_Regs *dac12, uint32_t eventMask)
 {
     return ((dac12->GEN_EVENT.RIS) & eventMask);
 }

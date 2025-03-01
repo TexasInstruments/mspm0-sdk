@@ -258,7 +258,11 @@ typedef struct {
 } DL_MathACL_operationConfig;
 
 /**
- * @brief Enables power on MATHACL module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the MATHACL
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  * @param mathacl       Pointer to the register overlay for the peripheral
  */
@@ -269,7 +273,12 @@ __STATIC_INLINE void DL_MathACL_enablePower(MATHACL_Regs *mathacl)
 }
 
 /**
- * @brief Disable power on MATHACL module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the MATHACL
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  * @param mathacl       Pointer to the register overlay for the peripheral
  */
@@ -278,6 +287,29 @@ __STATIC_INLINE void DL_MathACL_disablePower(MATHACL_Regs *mathacl)
     mathacl->GPRCM.PWREN =
         MATHACL_PWREN_KEY_UNLOCK_W | MATHACL_PWREN_ENABLE_DISABLE;
 }
+
+/**
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the MATHACL
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ * @param mathacl        Pointer to the register overlay for the peripheral
+ *
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
+ */
+__STATIC_INLINE bool DL_MathACL_isPowerEnabled(MATHACL_Regs *mathacl)
+{
+    return ((mathacl->GPRCM.PWREN & MATHACL_PWREN_ENABLE_MASK) ==
+            MATHACL_PWREN_ENABLE_ENABLE);
+}
+
 /**
  * @brief Resets the MATHACL module
  *
@@ -298,7 +330,7 @@ __STATIC_INLINE void DL_MathACL_reset(MATHACL_Regs *mathacl)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_MathACL_isReset(MATHACL_Regs *mathacl)
+__STATIC_INLINE bool DL_MathACL_isReset(const MATHACL_Regs *mathacl)
 {
     return (mathacl->GPRCM.STAT & MATHACL_STAT_RESETSTKY_MASK) ==
            MATHACL_STAT_RESETSTKY_RESET;
@@ -344,7 +376,8 @@ __STATIC_INLINE void DL_MathACL_disableSaturation(MATHACL_Regs *mathacl)
  * @return false if saturation is not enabled
  *
  */
-__STATIC_INLINE bool DL_MathACL_isSaturationEnabled(MATHACL_Regs *mathacl)
+__STATIC_INLINE bool DL_MathACL_isSaturationEnabled(
+    const MATHACL_Regs *mathacl)
 {
     return (
         (mathacl->CTL & MATHACL_CTL_SATEN_MASK) == MATHACL_CTL_SATEN_ENABLE);
@@ -385,7 +418,7 @@ __STATIC_INLINE void DL_MathACL_setOperandTwo(
  *
  *  @return Value stored in MATHACUL Result 1 status
  */
-__STATIC_INLINE uint32_t DL_MathACL_getResultOne(MATHACL_Regs *mathacl)
+__STATIC_INLINE uint32_t DL_MathACL_getResultOne(const MATHACL_Regs *mathacl)
 {
     return mathacl->RES1;
 }
@@ -398,7 +431,7 @@ __STATIC_INLINE uint32_t DL_MathACL_getResultOne(MATHACL_Regs *mathacl)
  *  @return Value stored in MATHACUL Result 2 status
  *
  */
-__STATIC_INLINE uint32_t DL_MathACL_getResultTwo(MATHACL_Regs *mathacl)
+__STATIC_INLINE uint32_t DL_MathACL_getResultTwo(const MATHACL_Regs *mathacl)
 {
     return mathacl->RES2;
 }
@@ -411,7 +444,7 @@ __STATIC_INLINE uint32_t DL_MathACL_getResultTwo(MATHACL_Regs *mathacl)
  *  @return One of @ref DL_MATHACL_STATUS
  *
  */
-__STATIC_INLINE uint32_t DL_MathACL_getStatus(MATHACL_Regs *mathacl)
+__STATIC_INLINE uint32_t DL_MathACL_getStatus(const MATHACL_Regs *mathacl)
 {
     return mathacl->STATUS;
 }
@@ -464,7 +497,7 @@ __STATIC_INLINE void DL_MathACL_clearErrorStatus(MATHACL_Regs *mathacl)
  *  @param[in]  mathacl  Pointer to the register overlay for the peripheral
  *
  */
-__STATIC_INLINE void DL_MathACL_waitForOperation(MATHACL_Regs *mathacl)
+__STATIC_INLINE void DL_MathACL_waitForOperation(const MATHACL_Regs *mathacl)
 {
     while ((mathacl->STATUS & MATHACL_STATUS_BUSY_MASK) ==
            MATHACL_STATUS_BUSY_NOTDONE) {

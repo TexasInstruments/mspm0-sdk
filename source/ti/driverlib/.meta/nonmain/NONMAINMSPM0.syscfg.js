@@ -39,6 +39,7 @@
 
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
+let deviceOptions = system.getScript("/ti/driverlib/nonmain/NONMAINOptions.js");
 
 /*
  * Get sfc32 PRNG function for A2 and A3_CAN random PW generation.
@@ -47,6 +48,10 @@ let Common = system.getScript("/ti/driverlib/Common.js");
  */
 let customPRNG = system.getScript("./sfc32.js");
 
+/*
+ * Keep this array to prevent compatibility breaks/errors from being generated
+ * due to debug disable workaround
+ */
 let enableOptions = [
     {name: "enabled", displayName: "Enabled"},
     {name: "enabledWithPW", displayName: "Enabled with password match"},
@@ -54,12 +59,83 @@ let enableOptions = [
 ];
 
 let warningNoteM0C = "";
-if(Common.isDeviceM0C()){
+if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
     warningNoteM0C= `
-**Note: This feature is not available on the following devices: MSPM0C110x, MSPS003Fx.**
+**Note: This feature is not available on the following devices: MSPM0C1103, MSPM0C1104, MSPS003Fx.**
     `;
 }
 
+let sha256Note = "";
+if (deviceOptions.SUPPORT_PW_HASH == true)
+{
+    sha256Note = `
+**Note**: Password fields for this device **require** the user to provide the SHA256
+hash of the 128-bit password. Refer to the following steps on correctly converting
+between 128-bit plaintext password and hash:
+
+1. Determine the 128-bit password to use. These steps will use the following
+example password:
+
+0x12345678\n
+0xCAFECAFE\n
+0xDEADBEEF\n
+0xCAFEBABE\n
+
+2. Reverse the password endianness. Combine it into one string.
+0x78563412\n
+0xFECAFECA\n
+0xEFBEADDE\n
+0xBEBAFECA\n
+
+Combined String: 78563412FECAFECAEFBEADDEBEBAFECA
+
+3. Calculate the SHA256 of the string. Break the output into 8 32-bit words.
+The user can use online tools like the one provided here:
+[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
+
+Output String: 2738a5682ad52550177227468dd2b55f552c34bd25560b9067b0a3f3d5c648f9
+
+Result:\n
+0x2738a568\n
+0x2ad52550\n
+0x17722746\n
+0x8dd2b55f\n
+0x552c34bd\n
+0x25560b90\n
+0x67b0a3f3\n
+0xd5c648f9\n
+
+4. Reverse endianness of the 32-bit words.
+
+Original   -> Converted\n
+0x2738a568 -> 0x68A53827\n
+0x2ad52550 -> 0x5025D52A\n
+0x17722746 -> 0x46277217\n
+0x8dd2b55f -> 0x5FB5D28D\n
+0x552c34bd -> 0xBD342C55\n
+0x25560b90 -> 0x900B5625\n
+0x67b0a3f3 -> 0xF3A3B067\n
+0xd5c648f9 -> 0xF948C6D5\n
+
+5. Enter the converted password into the BCR (boot configuration routine) structure
+for the desired function e.g. mass erase, factory reset, or debug lock.
+`;
+}
+
+function getAPEnableOptions(inst)
+{
+    let apEnableOptions = [
+        {name: "enabled", displayName: "Enabled"},
+        {name: "enabledWithPW", displayName: "Enabled with password match"},
+    ];
+
+    if (deviceOptions.SUPPORT_PW_HASH != false)
+    {
+        apEnableOptions.push({name: "disabled", displayName: "Disabled"});
+    }
+
+    return apEnableOptions;
+}
 
 function getDisabledEnableOptions(inst)
 {
@@ -67,10 +143,10 @@ function getDisabledEnableOptions(inst)
     let disabledOption = [
         {name: "enabledWithPW",
          displayName: "Enabled with password match",
-         reason: "Not available on M0C devices"}
+         reason: "Not available on M0C1103/M0C1104 devices"}
     ];
 
-    if (Common.isDeviceM0C())
+    if (Common.isDeviceFamily_PARENT_MSPM0C110X())
     {
         return disabledOption;
     }
@@ -132,8 +208,8 @@ function validateNONMAIN(inst, validation)
     /* Validate BCR region */
     validateBCR(inst, validation);
 
-    /* M0C does not support BSL */
-    if (!Common.isDeviceM0C())
+    /* Some devices don't support BSL */
+    if (deviceOptions.SUPPORT_BSL == true)
     {
         validateBSL(inst, validation);
     }
@@ -167,8 +243,10 @@ function validateBCR(inst, validation)
             inst, ["staticWriteProtectionMainLow", "staticWriteProtectionMainHigh"]
         );
     }
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
-        if(inst.staticWriteProtectionMainHigh_2){
+    if (deviceOptions.BCR_SUPPORT_DUAL_BANK == true)
+    {
+        if (inst.staticWriteProtectionMainHigh_2)
+        {
             validation.logInfo(
                 "Mass erase and factory reset commands sent to the BCR via the " +
                 "DSSM will override the specified static write protection policy. " +
@@ -202,147 +280,173 @@ function validateBCR(inst, validation)
         );
     }
 
-    /* M0C-specific BCR validation */
-    if (Common.isDeviceM0C())
+    /* C1104_C1103-specific BCR validation */
+    if (Common.isDeviceFamily_PARENT_MSPM0C110X())
     {
-        if (inst.apEnable == "enabledWithPW")
+        if (inst.debugAccessEnable == "enabledWithPW")
         {
             validation.logError(
-                "The selected option is not supported on M0C. Please reselect.",
-                inst, "apEnable"
+                warningNoteM0C + " Please reselect.",
+                inst, "debugAccessEnable"
             );
         }
 
         if (inst.frMode == "enabledWithPW")
         {
             validation.logError(
-                "The selected option is not supported on M0C. Please reselect.",
+                warningNoteM0C + " Please reselect.",
                 inst, "frMode"
             );
         }
     }
 
-    /* MSPM0L122X_L222X Validation */
-    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
-        validation.logInfo("For password fields in this device user should " +
-        "provide the SHA-2 256 hash of the password. See description for more "+
-        "details.", inst)
+    /* Check that user provides SHA-2 256 hash of password */
+    if (deviceOptions.SUPPORT_PW_HASH == true)
+    {
+        validation.logInfo("For password fields in this device, user should " +
+            "provide SHA256 hash of 128-bit password. See field descriptions " +
+            "for more details.", inst)
     }
 }
 
 function validateBSL(inst, validation)
 {
     /*
-     * Throw meaningful error message when no default BSL UART or I2C pins
-     * are available for the package
+     * Devices that don't support ROM BSL should only need to validate the
+     * custom BSL and BSL Invoke Pin configurations
      */
-    if (inst.uartRXPin == "")
+    if (deviceOptions.SUPPORT_ROM_BSL == true)
     {
-        validation.logError(
-            "Package does not have default BLS UART RX pin. Select a valid pin option.",
-            inst, "uartRXPin"
-        );
-    }
-
-    if (inst.uartTXPin == "")
-    {
-        validation.logError(
-            "Package does not have default BLS UART TX pin. Select a valid pin option.",
-            inst, "uartTXPin"
-        );
-    }
-
-    if (inst.i2cSCLPin == "")
-    {
-        validation.logError(
-            "Package does not have default BLS I2C SCL pin. Select a valid pin option.",
-            inst, "i2cSCLPin"
-        );
-    }
-
-    if (inst.i2cSDAPin == "")
-    {
-        validation.logError(
-            "Package does not have default BLS I2C SDA pin. Select a valid pin option.",
-            inst, "i2cSDAPin"
-        );
-    }
-
-    /* Check that function pointer names are valid in C */
-    if (inst.bslPluginHookInit.length > 0)
-    {
-        if (!Common.isCName(inst.bslPluginHookInit))
+        /*
+         * Throw meaningful error message when no default BSL UART or I2C pins
+         * are available for the package
+         */
+        if (inst.uartRXPin == "")
         {
             validation.logError(
-                "Function name must be a valid C identifier.",
-                inst, "bslPluginHookInit"
+                "Package does not have default BSL UART RX pin. Select a valid pin option.",
+                inst, "uartRXPin"
             );
+        }
+
+        if (inst.uartTXPin == "")
+        {
+            validation.logError(
+                "Package does not have default BSL UART TX pin. Select a valid pin option.",
+                inst, "uartTXPin"
+            );
+        }
+
+        if (inst.i2cSCLPin == "")
+        {
+            validation.logError(
+                "Package does not have default BSL I2C SCL pin. Select a valid pin option.",
+                inst, "i2cSCLPin"
+            );
+        }
+
+        if (inst.i2cSDAPin == "")
+        {
+            validation.logError(
+                "Package does not have default BSL I2C SDA pin. Select a valid pin option.",
+                inst, "i2cSDAPin"
+            );
+        }
+
+        /* Validate dynamic enums to pass sanity tests */
+        let dynamicEnums = ["uartRXPin", "uartTXPin", "i2cSCLPin", "i2cSDAPin"];
+
+        for(let dE of dynamicEnums)
+        {
+            let validOptions = inst.$module.$configByName[dE].options(inst);
+            let selectedOption = inst[dE];
+            let found = _.find(validOptions, (o) => o.name === selectedOption);
+
+            if(!found)
+            {
+                validation.logError("Invalid Option, please Reselect", inst, dE);
+            }
         }
     }
 
-    if (inst.bslPluginHookInitAddress != 0xFFFFFFFF)
+    if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN)
     {
-        validation.logInfo(
-            "Make sure that the plugin address matches the linker file.",
-            inst, "bslPluginHookInitAddress"
-        );
-    }
-
-    if (inst.bslPluginHookReceive.length > 0)
-    {
-        if (!Common.isCName(inst.bslPluginHookReceive))
+        /* Check that function pointer names are valid in C */
+        if (inst.bslPluginHookInit.length > 0)
         {
-            validation.logError(
-                "Function name must be a valid C identifier.",
-                inst, "bslPluginHookReceive"
+            if (!Common.isCName(inst.bslPluginHookInit))
+            {
+                validation.logError(
+                    "Function name must be a valid C identifier.",
+                    inst, "bslPluginHookInit"
+                );
+            }
+        }
+
+        if (inst.bslPluginHookInitAddress != 0xFFFFFFFF)
+        {
+            validation.logInfo(
+                "Make sure that the plugin address matches the linker file.",
+                inst, "bslPluginHookInitAddress"
             );
         }
-    }
 
-    if (inst.bslPluginHookReceiveAddress != 0xFFFFFFFF)
-    {
-        validation.logInfo(
-            "Make sure that the plugin address matches the linker file.",
-            inst, "bslPluginHookReceiveAddress"
-        );
-    }
-
-    if (inst.bslPluginHookTransmit.length > 0)
-    {
-        if (!Common.isCName(inst.bslPluginHookTransmit))
+        if (inst.bslPluginHookReceive.length > 0)
         {
-            validation.logError(
-                "Function name must be a valid C identifier.",
-                inst, "bslPluginHookTransmit"
+            if (!Common.isCName(inst.bslPluginHookReceive))
+            {
+                validation.logError(
+                    "Function name must be a valid C identifier.",
+                    inst, "bslPluginHookReceive"
+                );
+            }
+        }
+
+        if (inst.bslPluginHookReceiveAddress != 0xFFFFFFFF)
+        {
+            validation.logInfo(
+                "Make sure that the plugin address matches the linker file.",
+                inst, "bslPluginHookReceiveAddress"
             );
         }
-    }
 
-    if (inst.bslPluginHookTransmitAddress != 0xFFFFFFFF)
-    {
-        validation.logInfo(
-            "Make sure that the plugin address matches the linker file.",
-            inst, "bslPluginHookTransmitAddress"
-        );
-    }
-
-    if (inst.bslPluginHookDeInit.length > 0)
-    {
-        if (!Common.isCName(inst.bslPluginHookDeInit))
+        if (inst.bslPluginHookTransmit.length > 0)
         {
-            validation.logError(
-                "Function name must be a valid C identifier.",
-                inst, "bslPluginHookDeInit"
+            if (!Common.isCName(inst.bslPluginHookTransmit))
+            {
+                validation.logError(
+                    "Function name must be a valid C identifier.",
+                    inst, "bslPluginHookTransmit"
+                );
+            }
+        }
+
+        if (inst.bslPluginHookTransmitAddress != 0xFFFFFFFF)
+        {
+            validation.logInfo(
+                "Make sure that the plugin address matches the linker file.",
+                inst, "bslPluginHookTransmitAddress"
             );
         }
-    }
 
-    if (inst.bslPluginHookDeInitAddress != 0xFFFFFFFF)
-    {
-        validation.logInfo(
-            "Make sure that the plugin address matches the linker file.",
-            inst, "bslPluginHookDeInitAddress"
-        );
+        if (inst.bslPluginHookDeInit.length > 0)
+        {
+            if (!Common.isCName(inst.bslPluginHookDeInit))
+            {
+                validation.logError(
+                    "Function name must be a valid C identifier.",
+                    inst, "bslPluginHookDeInit"
+                );
+            }
+        }
+
+        if (inst.bslPluginHookDeInitAddress != 0xFFFFFFFF)
+        {
+            validation.logInfo(
+                "Make sure that the plugin address matches the linker file.",
+                inst, "bslPluginHookDeInitAddress"
+            );
+        }
     }
 
     /* BSL alternate address validation */
@@ -365,21 +469,6 @@ function validateBSL(inst, validation)
                 "Cortex-M type ARM processors only support thumb mode.",
                 inst, "bslAltAddress"
             );
-        }
-    }
-
-    /* Validate dynamic enums to pass sanity tests */
-    let dynamicEnums = ["uartRXPin", "uartTXPin", "i2cSCLPin", "i2cSDAPin"];
-
-    for(let dE of dynamicEnums)
-    {
-        let validOptions = inst.$module.$configByName[dE].options(inst);
-        let selectedOption = inst[dE];
-        let found = _.find(validOptions, (o) => o.name === selectedOption);
-
-        if(!found)
-        {
-            validation.logError("Invalid Option, please Reselect", inst, dE);
         }
     }
 }
@@ -428,8 +517,8 @@ function createPWConfig(pwType, hiddenStatus, numPWRegs)
     let pwDefaults = [0x761396AF,0x5F63720F,0x5A4AB4BD,0x9FC3630A,0xF930AF12,0x5CEEA650,0x88E11B97,0x51409CE8]
     for (let idx = 0; idx < numPWRegs; idx++)
     {
-        /* BSL PW has device-specific configuration for MSPM0L122X_L222X */
-        if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()) && pwType == "bslPW"){
+        /* BSL PW has device-specific configuration involving hash */
+        if ((pwType == "bslPW") && (deviceOptions.SUPPORT_PW_HASH == true)){
             pwConfig.push(
                 {
                     name        : pwType + idx,
@@ -468,8 +557,8 @@ function onChangeAPEnable(inst, ui)
     updateGUIAPEnable(inst, ui);
     updateGUIFactoryReset(inst, ui);
 
-    /* M0C doesn't support mass erase */
-    if (!Common.isDeviceM0C())
+    /* C1104_C1103 doesn't support mass erase */
+    if (!Common.isDeviceFamily_PARENT_MSPM0C110X())
     {
         updateGUIMassErase(inst, ui);
     }
@@ -477,7 +566,7 @@ function onChangeAPEnable(inst, ui)
 
 function updateGUIAPEnable(inst, ui)
 {
-    if (inst.apEnable == "enabledWithPW")
+    if (inst.debugAccessEnable == "enabledWithPW")
     {
         system.utils.showGroupConfig("GROUP_SWD_PW", inst, ui);
     }
@@ -528,25 +617,12 @@ function updateGUISWDPassword(inst, ui)
     inst.swdPW1 = 0xFFFFFFFF;
     inst.swdPW2 = 0xFFFFFFFF;
     inst.swdPW3 = 0xFFFFFFFF;
-    if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+    if (deviceOptions.SUPPORT_PW_HASH == true)
+    {
         inst.swdPW4 = 0xFFFFFFFF;
         inst.swdPW5 = 0xFFFFFFFF;
         inst.swdPW6 = 0xFFFFFFFF;
         inst.swdPW7 = 0xFFFFFFFF;
-    }
-
-    if (inst.apEnable == "disabled")
-    {
-        if (Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() ||
-            Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X())
-        {
-            /* Replace reset fields with randomized plaintext password */
-            let randPW = generateRandom128BitPW();
-            inst.swdPW0 = randPW[0];
-            inst.swdPW1 = randPW[1];
-            inst.swdPW2 = randPW[2];
-            inst.swdPW3 = randPW[3];
-        }
     }
 }
 
@@ -573,7 +649,8 @@ function updateGUIFRPassword(inst, ui)
         inst.frPW1 = 0xFFFFFFFF;
         inst.frPW2 = 0xFFFFFFFF;
         inst.frPW3 = 0xFFFFFFFF;
-        if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+        if (deviceOptions.SUPPORT_PW_HASH == true)
+        {
             inst.frPW4 = 0xFFFFFFFF;
             inst.frPW5 = 0xFFFFFFFF;
             inst.frPW6 = 0xFFFFFFFF;
@@ -584,7 +661,7 @@ function updateGUIFRPassword(inst, ui)
 
 function updateGUIMassErase(inst, ui)
 {
-    if (inst.meMode == "enabledWithPW" && !(Common.isDeviceM0C()))
+    if (inst.meMode == "enabledWithPW" && !(Common.isDeviceFamily_PARENT_MSPM0C110X()))
     {
         system.utils.showGroupConfig("GROUP_MASS_ERASE_PW", inst, ui);
     }
@@ -605,7 +682,8 @@ function updateGUIMEPassword(inst, ui)
         inst.mePW1 = 0xFFFFFFFF;
         inst.mePW2 = 0xFFFFFFFF;
         inst.mePW3 = 0xFFFFFFFF;
-        if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+        if (deviceOptions.SUPPORT_PW_HASH == true)
+        {
             inst.mePW4 = 0xFFFFFFFF;
             inst.mePW5 = 0xFFFFFFFF;
             inst.mePW6 = 0xFFFFFFFF;
@@ -630,7 +708,10 @@ function onChangeBSLEnable(inst, ui)
 {
     updateGUIBSLEnable(inst, ui);
     updateGUIGPIOInvoke(inst, ui);
-    updateGUIPluginConfig(inst, ui);
+    if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN)
+    {
+        updateGUIPluginConfig(inst, ui);
+    }
     updateGUIAltBSLConfig(inst, ui);
 }
 
@@ -639,38 +720,51 @@ function updateGUIBSLEnable(inst, ui)
     if (inst.bslMode)
     {
         system.utils.showGroupConfig("GROUP_BSL", inst, ui);
-
-        inst.bslInvokePinCheck = true;
-        inst.bslDefaultInvokePin = true;
     }
     else
     {
         system.utils.hideGroupConfig("GROUP_BSL", inst, ui);
-
-        inst.bslInvokePinCheck = false;
-        inst.bslDefaultInvokePin = false;
     }
 
     /* Reset fields to default */
+    /* Enable/disable ROM BSL not tied to invoke pin functionality */
+    inst.bslInvokePinCheck = true;
+    inst.bslDefaultInvokePin = true;
+
     ui.bslInvokePinData0.hidden = true;
     ui.bslInvokePinData1.hidden = true;
 
-    inst.uartTXPin = defaultBSLUARTTX;
-    inst.uartRXPin = defaultBSLUARTRX;
-    inst.i2cSCLPin = defaultBSLI2CSCL;
-    inst.i2cSDAPin = defaultBSLI2CSDA;
-    inst.i2cSlaveAddress = 0x0048;
+    if (deviceOptions.SUPPORT_ROM_BSL == true)
+    {
+        inst.uartTXPin = defaultBSLUARTTX;
+        inst.uartRXPin = defaultBSLUARTRX;
+        if (deviceOptions.BSL_SUPPORT_UART_BAUD == true)
+        {
+            inst.uartBaudDefault = "FFFF";
+        }
 
-    inst.bslFlashPluginEnable = false;
-    inst.bslPluginSRAMSize = 0xFF;
+        inst.i2cSCLPin = defaultBSLI2CSCL;
+        inst.i2cSDAPin = defaultBSLI2CSDA;
+        inst.i2cSlaveAddress = 0x0048;
+        inst.bslAppVersion = 0xFFFFFFFF;
+        inst.bslEnableReadOut = false;
+        inst.bslSecurityConfig = "ignoreAlert";
+    }
+
+    if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN)
+    {
+        inst.bslFlashPluginEnable = false;
+        inst.bslPluginSRAMSize = 0xFF;
+    }
+
+    if (deviceOptions.BSL_DISABLE_NRST == true)
+    {
+        inst.disableNRST = false;
+    }
 
     inst.bslAltConfig = false;
     inst.bslAltAddress = 0xFFFFFFFF;
-
-    inst.bslConfigID = defaultBSLConfigID;
-    inst.bslAppVersion = 0xFFFFFFFF;
-    inst.bslEnableReadOut = false;
-    inst.bslSecurityConfig = "ignoreAlert";
+    inst.bslConfigID = deviceOptions.BSL_CONFIG_ID;
 
     updateGUIBSLPassword(inst, ui);
 }
@@ -680,25 +774,30 @@ function updateGUIBSLPassword(inst, ui)
     if (!inst.bslMode)
     {
         /* Reset password */
-        if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-            inst.bslPW0 = 0x761396AF;
-            inst.bslPW1 = 0x5F63720F;
-            inst.bslPW2 = 0x5A4AB4BD;
-            inst.bslPW3 = 0x9FC3630A;
-            inst.bslPW4 = 0xF930AF12;
-            inst.bslPW5 = 0x5CEEA650;
-            inst.bslPW6 = 0x88E11B97;
-            inst.bslPW7 = 0x51409CE8;
-        }
-        else{
-            inst.bslPW0 = 0xFFFFFFFF;
-            inst.bslPW1 = 0xFFFFFFFF;
-            inst.bslPW2 = 0xFFFFFFFF;
-            inst.bslPW3 = 0xFFFFFFFF;
-            inst.bslPW4 = 0xFFFFFFFF;
-            inst.bslPW5 = 0xFFFFFFFF;
-            inst.bslPW6 = 0xFFFFFFFF;
-            inst.bslPW7 = 0xFFFFFFFF;
+        if (deviceOptions.SUPPORT_ROM_BSL == true)
+        {
+            if (deviceOptions.SUPPORT_PW_HASH == true)
+            {
+                inst.bslPW0 = 0x761396AF;
+                inst.bslPW1 = 0x5F63720F;
+                inst.bslPW2 = 0x5A4AB4BD;
+                inst.bslPW3 = 0x9FC3630A;
+                inst.bslPW4 = 0xF930AF12;
+                inst.bslPW5 = 0x5CEEA650;
+                inst.bslPW6 = 0x88E11B97;
+                inst.bslPW7 = 0x51409CE8;
+            }
+            else
+            {
+                inst.bslPW0 = 0xFFFFFFFF;
+                inst.bslPW1 = 0xFFFFFFFF;
+                inst.bslPW2 = 0xFFFFFFFF;
+                inst.bslPW3 = 0xFFFFFFFF;
+                inst.bslPW4 = 0xFFFFFFFF;
+                inst.bslPW5 = 0xFFFFFFFF;
+                inst.bslPW6 = 0xFFFFFFFF;
+                inst.bslPW7 = 0xFFFFFFFF;
+            }
         }
     }
 }
@@ -798,12 +897,12 @@ function onChangeAltBSLConfig(inst, ui)
 /************************* Profiles functions *******************************/
 let securityLevel0Profile = {
     name : "LEVEL_0",
-    apEnable: "enabled",
+    debugAccessEnable: "enabled",
     swdEnable: true,
     frMode: "enabled",
 };
 
-if (!Common.isDeviceM0C())
+if (!Common.isDeviceFamily_PARENT_MSPM0C110X())
 {
     securityLevel0Profile = {...securityLevel0Profile, ...{tifaEnable: true}, ...{meMode: "enabled"}}
 }
@@ -854,7 +953,7 @@ function onChangeSetCustomProfile(inst,ui)
 /* Device-Specific Configurables */
 /* BCR Configurables */
 let extendedConfigBCR = [];
-if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+if (deviceOptions.BCR_SUPPORT_CSC == true) {
     extendedConfigBCR = [
         {
             // .CSCexist
@@ -863,17 +962,23 @@ if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PAR
             description: "Enable / disable the CSC policy in SYSCTL",
             default: false,
         },
-        {
-            // .flashBankSwapPolicy
-            name: "flashBankSwap",
-            displayName: "Enable Flash Bank Swap Policy",
-            description: "Enable / Disable the Flash Bank Swap Policy in SYSCTL",
-            default: false,
-        },
     ]
+
+    if (deviceOptions.BCR_SUPPORT_BANK_SWAP == true)
+    {
+        extendedConfigBCR = extendedConfigBCR.concat([
+            {
+                // .flashBankSwapPolicy
+                name: "flashBankSwap",
+                displayName: "Enable Flash Bank Swap Policy",
+                description: "Enable / Disable the Flash Bank Swap Policy in SYSCTL",
+                default: false,
+            }
+        ]);
+    }
 };
 let extendedConfigBCRDebug = [];
-if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+if (deviceOptions.BCR_SUPPORT_CSC == true) {
     extendedConfigBCRDebug = [
         {
             // .debugHold
@@ -885,7 +990,7 @@ if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PAR
     ];
 };
 let extendedConfigBCRCRC = [];
-if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+if (deviceOptions.BCR_SUPPORT_USER_APP_HASH == true){
     extendedConfigBCRCRC = [
         {
             // NOTE: this feature is currently disabled/hidden
@@ -911,7 +1016,7 @@ if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PAR
 };
 
 let bslExtendedConfigUART = [];
-if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+if (deviceOptions.BSL_SUPPORT_UART_BAUD == true){
     bslExtendedConfigUART = [
         {
             name: "uartBaudDefault",
@@ -933,7 +1038,7 @@ if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSP
 }
 
 let bslExtendedConfigNRST = [];
-if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
+if (deviceOptions.BSL_DISABLE_NRST == true){
     bslExtendedConfigNRST = [
         {
             name: "disableNRST",
@@ -945,7 +1050,7 @@ if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
 }
 
 let extendedConfigWriteProtection = [];
-if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+if(deviceOptions.BCR_SUPPORT_DUAL_BANK == true){
     extendedConfigWriteProtection = [
         {
             name: "GROUP_FLASH_STATIC_WRITE_PROTECTION_CONFIG_2",
@@ -983,12 +1088,12 @@ Refer to the TRM and the device datasheet for more information.
 
 /* Display Flash Bank Numbering */
 let flashBank0Display = "";
-if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+if(deviceOptions.BCR_SUPPORT_DUAL_BANK == true){
     flashBank0Display = " (Bank 0)";
 }
 
 /* Password Configurables: Device Specific */
-const passwordWordLen = ((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()) ? 8:4);
+const passwordWordLen = ((deviceOptions.SUPPORT_PW_HASH == true) ? 8:4);
 let mePWConfig = createPWConfig("mePW", true, passwordWordLen);
 let frPWConfig = createPWConfig("frPW", true, passwordWordLen);
 let swdPWConfig = createPWConfig("swdPW", true, passwordWordLen);
@@ -1139,22 +1244,69 @@ Refer to the Boot Configuration Routine (BCR) Security Policies section of the
 [Cybersecurity Enablers in MSPM0 MCUs app note](https://www.ti.com/lit/slaae29)
 for more details on the security levels.
 `,
-                        hidden      : false,
+                        /* Hidden to preserve backwards compatibility */
+                        hidden      : true,
                         default     : "enabled",
                         options: enableOptions,
+                        getDisabledOptions: getDisabledEnableOptions,
+                        onChange: onChangeAPEnable,
+                        onChange : (inst, ui) => {
+                            if ((deviceOptions.SUPPORT_PW_HASH == false) && (inst.apEnable == "disabled"))
+                            {
+                                /*
+                                 * If device using plaintext password and
+                                 * disabling debug, set the value to enabled
+                                 */
+                                inst.debugAccessEnable = "enabledWithPW";
+                            }
+                            else
+                            {
+                                /* Otherwise keep value */
+                                inst.debugAccessEnable = inst.apEnable;
+                            }
+                            /*
+                             * Catch case where debugAccessEnable is set with
+                             * password
+                             */
+                            if (inst.debugAccessEnable == "enabledWithPW")
+                            {
+                                system.utils.showGroupConfig("GROUP_SWD_PW", inst, ui);
+                            }
+                        },
+                    },
+                    {
+                        name        : "debugAccessEnable",
+                        displayName : "Enable Application Debug Access",
+                        description : "Selects if application debug access is enabled, disabled, or enabled with password.",
+                        longDescription: `
+Application debug access includes:
+
+* Full access to the processor, memory map, and peripherals through the AHB-AP
+* Access to the device EnergyTrace+ state information through the ET-AP
+* Access to the device power state controls for debug through the PWR-AP
+
+This field can be modified to implement **SWD Security Level 1**, which allows
+for a customized security configuration. Level 1 is well suited for restricted
+prototyping/development scenarios and for mass production scenarios where the
+the desire is to retain certain SWD functions such as factory reset and TI
+failure analysis while disabling other functions (such as application debug).
+
+Refer to the Boot Configuration Routine (BCR) Security Policies section of the
+[Cybersecurity Enablers in MSPM0 MCUs app note](https://www.ti.com/lit/slaae29)
+for more details on the security levels.
+`,
+                        hidden      : false,
+                        default     : "enabled",
+                        /* Special AP enable options due to debug disable */
+                        options: getAPEnableOptions,
                         getDisabledOptions: getDisabledEnableOptions,
                         onChange    : onChangeAPEnable,
                     },
                     {
                         // .passwordDebugLock
-                        /* SWDPW[0-3] */
                         name: "GROUP_SWD_PW",
                         displayName: "SWD Password",
-                        longDescription: `
-User should provide the SHA-2 256 Hash of the Password. In order to calculate
-the hash value, user can use online tools like the one provided here:
-[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
-                        `,
+                        longDescription: sha256Note,
                         config: swdPWConfig,
                     },
                     // .tifaMode
@@ -1172,8 +1324,8 @@ information stored in the device flash memory when a failure analysis flow is
 initiated.
 `,
                         hidden      : false,
-                        default     : !(Common.isDeviceM0C()),
-                        readOnly    : Common.isDeviceM0C(),
+                        default     : !(Common.isDeviceFamily_PARENT_MSPM0C110X()),
+                        readOnly    : Common.isDeviceFamily_PARENT_MSPM0C110X(),
                         onChange    : onChangeTIFAEnable,
                     },
                 ].concat(extendedConfigBCRDebug),
@@ -1196,8 +1348,8 @@ device over SWD from a debug probe using the debug subsystem mailbox (DSSM).
 This command is not available in SWD security level 2 but is optionally
 available in security levels 0 and 1.
 
-The factory reset command can be configured to be enabled, enabled with an
-unique 128-bit password, or disabled.
+The factory reset command can be configured to be enabled, enabled with a
+password, or disabled.
 
 A SWD factory reset is an erase of the MAIN flash regions followed by a reset
 of the NONMAIN flash region to default values. This erase is useful for
@@ -1212,14 +1364,9 @@ application code and data.
                     },
                     {
                         // .passwordFactoryReset
-                        /* FRPW[0-3] */
                         name: "GROUP_FACTORY_RESET_PW",
                         displayName: "Factory Reset Password",
-                        longDescription: `
-User should provide the SHA-2 256 Hash of the Password. In order to calculate
-the hash value, user can use online tools like the one provided here:
-[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
-                        `,
+                        longDescription: sha256Note,
                         config: frPWConfig,
                     },
                     {
@@ -1234,8 +1381,8 @@ device over SWD from a debug probe using the debug subsystem mailbox (DSSM).
 This command is not available in SWD security level 2 but is optionally
 available in security levels 0 and 1.
 
-The mass erase command can be configured to be enabled, enabled with an
-unique 128-bit password, or disabled.
+The mass erase command can be configured to be enabled, enabled with a
+password, or disabled.
 
 A SWD mass erase is an erase of the MAIN flash regions only, which typically
 includes the user application. The BCR and BSL policies stored in NONMAIN
@@ -1244,21 +1391,16 @@ and data while leaving the device configuration intact.
 `,
                         hidden      : false,
                         default     : "enabled",
-                        readOnly    : Common.isDeviceM0C(),
+                        readOnly    : Common.isDeviceFamily_PARENT_MSPM0C110X(),
                         options: enableOptions,
                         getDisabledOptions: getDisabledEnableOptions,
                         onChange    : onChangeMassErase,
                     },
                     {
                         // .passwordMassErase
-                        /* MEPW[0-3] */
                         name: "GROUP_MASS_ERASE_PW",
                         displayName: "Mass Erase Password",
-                        longDescription: `
-User should provide the SHA-2 256 Hash of the Password. In order to calculate
-the hash value, user can use online tools like the one provided here:
-[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
-                        `,
+                        longDescription: sha256Note,
                         config: mePWConfig,
                     },
                 ],
@@ -1361,7 +1503,7 @@ be started. If the BSL is enabled, it is entered. If not, then the boot fails.
                             ui.appCRCCheckStartAddress.hidden = !(inst.appCRCCheck);
                             ui.appCRCCheckLength.hidden = !(inst.appCRCCheck);
                             ui.appCRC.hidden = !(inst.appCRCCheck);
-                            if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+                            if(deviceOptions.BCR_SUPPORT_USER_APP_HASH == true){
                                 ui.appCRCHash.hidden = !(inst.appCRCCheck);
                             }
                         },
@@ -1424,7 +1566,7 @@ boot mode speeds up the boot process via the following methods:
 `,
                 hidden      : false,
                 default     : false,
-                readOnly    : Common.isDeviceM0C(),
+                readOnly    : Common.isDeviceFamily_PARENT_MSPM0C110X(),
             },
             // .bcrConfigID
             {
@@ -1435,27 +1577,7 @@ boot mode speeds up the boot process via the following methods:
                 hidden      : false,
                 readOnly    : true,
                 displayFormat: "hex",
-                default     : 0x00000001,
-                getValue    : (inst) => {
-                    if (Common.isDeviceM0C())
-                    {
-                        return 0x00000003;
-                    }
-                    else if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X())
-                    {
-                        return 0x01000002;
-                    }
-                    else if (Common.isDeviceFamily_PARENT_MSPM0GX51X()){
-                        return 0x04000000;
-                    }
-                    else if (Common.isDeviceFamily_PARENT_MSPM0L111X()){
-                        return 0x06000000;
-                    }
-                    else
-                    {
-                        return 0x00000001;
-                    }
-                },
+                default     : deviceOptions.BCR_CONFIG_ID,
             },
             {
                 // .userCfgCRC
@@ -1468,19 +1590,27 @@ The BCR configuration data structure is protected by a 32-bit CRC to improve
 security. The BCR configuration CRC is stored in the BOOTCRC field of NONMAIN.
 
 If the stored CRC of the BCR configuration doesn't match the calculated CRC
-during boot, the result is a boot error, and the device assumes a
-**fully restrictive** state. In this state, commands sent to the debug
-mailbox are ignored, the BSL and the main application aren't started, and **it's
-not possible to recover the device**.
+during boot, the result is a boot error. BSL will not be invoked, the user
+application is not started, and no application debug access is enabled. Pending
+SWD factory reset commands and TI failure analysis flow entry will be honored.
+See the device TRM for more details.
 `,
                 hidden      : false,
                 displayFormat: "hex",
                 default     : 0,
                 getValue    : (inst) => {
-                    if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-                        return calculateBCRCRC_Advanced(inst);
+                    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0L111X())
+                    {
+                        return calculateBCRCRC_Advanced_32Bit(inst);
                     }
-                    else if (!Common.isDeviceM0C())
+                    else if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+                             Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+                    {
+                        return calculateBCRCRC_Advanced_16Bit(inst);
+                    }
+                    else if (!Common.isDeviceFamily_PARENT_MSPM0C110X())
                     {
                         return calculateBCRCRC(inst);
                     }
@@ -1490,6 +1620,34 @@ not possible to recover the device**.
                         return 0xFFFFFFFF;
                     }
                 },
+            },
+            {
+                name: "bootCRCString",
+                /* Test and debug only. Used in crc output .txt file */
+                hidden: true,
+                default: "",
+                getValue: (inst) => {
+                    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0L111X())
+                    {
+                        return createAdvancedBCRConfigString(inst);
+                    }
+                    else if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+                             Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+                    {
+                        return createAdvancedBCRConfigString(inst);
+                    }
+                    else if (!Common.isDeviceFamily_PARENT_MSPM0C110X())
+                    {
+                        return createBCRString(inst);
+                    }
+                    else
+                    {
+                        /* M0C doesn't support BCR CRC validation */
+                        return "FFFFFFFF";
+                    }
+                }
             },
             {
                 // .bootloaderMode
@@ -1502,18 +1660,27 @@ not possible to recover the device**.
 any invocation mechanism.
 `,
                 hidden      : false,
-                default     : !(Common.isDeviceM0C()),
-                readOnly    : Common.isDeviceM0C(),
+                default     : !(deviceOptions.SUPPORT_ROM_BSL != true),
+                readOnly    : Common.isDeviceFamily_PARENT_MSPM0C110X(),
                 onChange    : onChangeBSLEnable,
             },
         ])
     },
 ]
 
-/* JS CRC implementation from https://github.com/SheetJS/js-crc32 */
-const CRC32 = require("./crc-32/crc32");
 
-function calculateBCRCRC(inst){
+const CRC32 = require('./crc/cjs/calculators/crc32').default;
+/*
+ * BSL CRC for N1_48 uses the CRC16-CCITT polynomial with a custom
+ * configuration (input and output reflected with initial seed value of
+ * 0xFFFF). This custom configuration isn't supported in the CRC package, so
+ * use CRC16-Kermit, which uses same polynomial and input/output reflection,
+ * and specify a seed value of 0xFFFF
+ */
+const CRC16 = require('./crc/cjs/calculators/crc16kermit').default;
+
+function createBCRString(inst)
+{
     /*
      * Data is stored, LSB first. To emulate, create a string of the BCR struct
      * values, starting from the last struct field (excluding the BCR struct CRC).
@@ -1579,11 +1746,11 @@ function calculateBCRCRC(inst){
     bcrConfigStr += (inst.swdEnable) ? "AABB" : "FFFF";
 
     let debugAccessStr = "FFFF"
-    if (inst.apEnable == "enabled")
+    if (inst.debugAccessEnable == "enabled")
     {
         debugAccessStr = "AABB";
     }
-    else if (inst.apEnable == "enabledWithPW")
+    else if (inst.debugAccessEnable == "enabledWithPW")
     {
         debugAccessStr = "CCDD";
     }
@@ -1591,11 +1758,18 @@ function calculateBCRCRC(inst){
     bcrConfigStr += debugAccessStr;
     bcrConfigStr += (inst.bcrConfigID).toString(16).padStart(8, "0");
 
+    return (bcrConfigStr);
+}
+
+function calculateBCRCRC(inst)
+{
+    let bcrConfigStr = createBCRString(inst);
+
     /* Convert into an array and reverse the values */
     let bcrConfigArr = chunkString(bcrConfigStr, 2).reverse();
 
     /* Convert array of strings into array of hex numbers */
-    let crc = CRC32.buf(bcrConfigArr.map(el => parseInt(el, 16)));
+    let crc = CRC32(bcrConfigArr.map(el => parseInt(el, 16)));
 
     /* Calculate the JAMCRC and get the unsigned value */
     crc = (~crc) >>> 0
@@ -1603,8 +1777,8 @@ function calculateBCRCRC(inst){
     return (crc);
 }
 
-/* Advanced BCRCRC Calculation for MSPM0L122X_L222X and MSPM0GX51X */
-function calculateBCRCRC_Advanced(inst)
+/* Create config string to calculate CRC over */
+function createAdvancedBCRConfigString(inst)
 {
     /*
      * Data is stored, LSB first. To emulate, create a string of the BCR struct
@@ -1619,11 +1793,16 @@ function calculateBCRCRC_Advanced(inst)
      * calculations
      */
 
-    if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
-    /* Reserved, 32-bits (bc_reserved_1) */
+    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
+        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+        Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+    {
+    /* Reserved, 32-bits (bc_reserved_1 or bc_reserved_2 for H321x) */
         bcrConfigStr +=  "FFFFFFFF"
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    else if (Common.isDeviceFamily_PARENT_MSPM0GX51X())
+    {
         bcrConfigStr += (inst.staticWriteProtectionMainHigh_2).toString(16).padStart(8, "0");
     }
 
@@ -1661,7 +1840,7 @@ function calculateBCRCRC_Advanced(inst)
     bcrConfigStr += (inst.appCRCCheckStartAddress).toString(16).padStart(8, "0");
     bcrConfigStr += (inst.appCRCCheck) ? "AABB" : "FFFF";
 
-    /* Reserved, 16-bits (bc_reserved_0) */
+    /* Reserved, 16-bits (bc_reserved_0) or bc_reserved_1 for H321x */
     bcrConfigStr += "FFFF";
 
     bcrConfigStr += (inst.swdPW7).toString(16).padStart(8, "0") +
@@ -1714,7 +1893,17 @@ function calculateBCRCRC_Advanced(inst)
     bcrConfigStr += (inst.bslMode) ? "AABB" : "FFFF";
     bcrConfigStr += (inst.fastBootMode) ? "AABB" : "FFFF";
 
-    bcrConfigStr += (inst.flashBankSwap) ? "FFFF" : "AABB";
+    /* H321x does not have flash bank swap. Has 16-bit bc_reserved_0 instead */
+    if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+    {
+        bcrConfigStr += "FFFF";
+    }
+    else
+    {
+        bcrConfigStr += (inst.flashBankSwap) ? "FFFF" : "AABB";
+    }
+
     bcrConfigStr += (inst.cscExists) ? "FFFF" : "AABB";
     bcrConfigStr += (inst.debugHold) ? "FFFF" : "AABB";
 
@@ -1727,11 +1916,11 @@ function calculateBCRCRC_Advanced(inst)
     bcrConfigStr += (inst.swdEnable) ? "AABB" : "FFFF";
 
     let debugAccessStr = "FFFF"
-    if (inst.apEnable == "enabled")
+    if (inst.debugAccessEnable == "enabled")
     {
         debugAccessStr = "AABB";
     }
-    else if (inst.apEnable == "enabledWithPW")
+    else if (inst.debugAccessEnable == "enabledWithPW")
     {
         debugAccessStr = "CCDD";
     }
@@ -1739,11 +1928,28 @@ function calculateBCRCRC_Advanced(inst)
     bcrConfigStr += debugAccessStr;
     bcrConfigStr += (inst.bcrConfigID).toString(16).padStart(8, "0");
 
+    return (bcrConfigStr);
+}
+
+/*
+ * Splits a string into substrings of a particular length. Helper function for
+ * CRC calculations
+ */
+function chunkString(str, length)
+{
+    return str.match(new RegExp('.{1,' + length + '}', 'g'));
+}
+
+/* 32-bit CRCJAM Calculation for L122x_L222x, Gx51x, and L111x devices BCR */
+function calculateBCRCRC_Advanced_32Bit(inst)
+{
+    let bcrConfigStr = createAdvancedBCRConfigString(inst);
+
     /* Convert into an array and reverse the values */
     let bcrConfigArr = chunkString(bcrConfigStr, 2).reverse();
 
     /* Convert array of strings into array of hex numbers */
-    let crc = CRC32.buf(bcrConfigArr.map(el => parseInt(el, 16)));
+    let crc = CRC32(bcrConfigArr.map(el => parseInt(el, 16)));
 
     /* Calculate the JAMCRC and get the unsigned value */
     crc = (~crc) >>> 0
@@ -1751,7 +1957,22 @@ function calculateBCRCRC_Advanced(inst)
     return (crc);
 }
 
-function calculateBSLCRC(inst)
+/* 16-bit CRC Calculation for H321x BCR */
+function calculateBCRCRC_Advanced_16Bit(inst)
+{
+    let bcrConfigStr = createAdvancedBCRConfigString(inst);
+
+    /* Convert into an array and reverse the values */
+    let bcrConfigArr = chunkString(bcrConfigStr, 2).reverse();
+
+    /* Convert array of strings into hex numbers. CRC16-Kermit + FFFF seed */
+    let crc = CRC16(bcrConfigArr.map(el => parseInt(el, 16)), 0xFFFF);
+
+    return (crc);
+}
+
+/* Create BSL config string (supporting ROM BSL) to calculate CRC over */
+function createROMBSLString(inst)
 {
     /*
      * Data is stored, LSB first. To emulate, create a string of the BSL struct
@@ -1864,11 +2085,86 @@ function calculateBSLCRC(inst)
 
     bslConfigStr += (inst.bslConfigID).toString(16).padStart(8, "0");
 
+    return (bslConfigStr);
+}
+
+/* Create no-Flash BSL config string for CRC calculation */
+function createNoFlashBSLConfigString(inst)
+{
+    /*
+     * Data is stored, LSB first. To emulate, create a string of the BSL struct
+     * values, starting from the last struct field (excluding the BSL struct CRC).
+     *
+     * Once the string is created, convert to an array and reverse the values.
+     */
+    let bslConfigStr = "";
+
+    /* Reserved, 32-bits (bl_reserved_1) */
+    bslConfigStr +=  "FFFFFFFF"
+    /* Reserved, 16-bits (bl_reserved_0) */
+    bslConfigStr += "FFFF";
+    /* disableNRST */
+    bslConfigStr += "FFFF";
+
+    /* I2C Address string */
+    bslConfigStr += "FFFF";
+    /* Security Alert string */
+    bslConfigStr += "FFFF";
+    /* Application Version string */
+    bslConfigStr += "FFFFFFFF";
+    /*
+     * Alternate BSL address is at a fixed location (secondary_bsl example).
+     * Note, Cortex-M type ARM processors only support thumb mode. Any pointers
+     * to functions must have the LSB set. When taking the address of a
+     * function, the toolchain automatically handles this.
+     *
+     * Therefore, the alternate BSL address is actually located at 0x00001041
+     */
+    bslConfigStr += (inst.bslAltAddress).toString(16).padStart(8, "0");
+    bslConfigStr += (inst.bslAltConfig) ? "AABB" : "FFFF";
+
+    /* Total 56 reserved bytes filled with F's in this chunk */
+    /* UART baud string */
+    bslConfigStr += "FFFF";
+
+    /* Flash plugin strings */
+    bslConfigStr += "FFFFFFFF"; /* De-init */
+    bslConfigStr += "FFFFFFFF"; /* Transmit */
+    bslConfigStr += "FFFFFFFF"; /* Receive */
+    bslConfigStr += "FFFFFFFF"; /* Init */
+    bslConfigStr += "FF"; /* Flash plugin SRAM size */
+    bslConfigStr += "FF"; /* Flash plugin enable */
+    bslConfigStr += "FFFF"; /* Plugin Type */
+
+    /* BSL PW string */
+    bslConfigStr += "FFFFFFFF" + "FFFFFFFF" + "FFFFFFFF" + "FFFFFFFF" +
+    "FFFFFFFF" + "FFFFFFFF" + "FFFFFFFF" + "FFFFFFFF";
+
+    /* BSL Memory Readout string */
+    bslConfigStr += "FFFF";
+    /* End reserved chunk */
+
+    bslConfigStr += (inst.bslInvokePinData1).toString(16).padStart(2, "0");
+    bslConfigStr += (inst.bslInvokePinData0).toString(16).padStart(2, "0");
+
+    /* BSL UART and I2C pins */
+    bslConfigStr += "FFFFFFFF" + "FFFFFFFF";
+
+    bslConfigStr += (inst.bslConfigID).toString(16).padStart(8, "0");
+
+    return (bslConfigStr);
+}
+
+/* Calculate 32-bit CRCJAM over BSL config string (supporting ROM BSL) */
+function calculateBSLCRC_32Bit(inst)
+{
+    let bslConfigStr = createROMBSLString(inst);
+
     /* Convert into an array and reverse the values */
     let bslConfigArr = chunkString(bslConfigStr, 2).reverse();
 
     /* Convert array of strings into array of hex numbers */
-    let crc = CRC32.buf(bslConfigArr.map(el => parseInt(el, 16)));
+    let crc = CRC32(bslConfigArr.map(el => parseInt(el, 16)));
 
     /* Calculate the JAMCRC and get the unsigned value */
     crc = (~crc) >>> 0
@@ -1876,10 +2172,22 @@ function calculateBSLCRC(inst)
     return (crc);
 }
 
-/* Splits a string into substrings of a particular length */
-function chunkString(str, length)
+/*
+ * Calculate 16-bit CRC over BSL config string (not supporting Flash BSL)
+ * Currently only devices that don't support Flash BSL require 16-bit CRC
+ * calculations
+ */
+function calculateBSLCRC_NoFlash_16Bit(inst)
 {
-    return str.match(new RegExp('.{1,' + length + '}', 'g'));
+    let bslConfigStr = createNoFlashBSLConfigString(inst);
+
+    /* Convert into an array and reverse the values */
+    let bslConfigArr = chunkString(bslConfigStr, 2).reverse();
+
+    /* Convert array of strings into hex numbers. CRC16-Kermit + FFFF seed */
+    let crc = CRC16(bslConfigArr.map(el => parseInt(el, 16)), 0xFFFF);
+
+    return (crc);
 }
 
 /* Get device data pins with a valid PINCM */
@@ -1890,6 +2198,7 @@ let validDeviceDataPins = _.filter(system.deviceData.devicePins, (pin) =>
 const pinOptions = _.map(validDeviceDataPins, (pin) =>
     ({name: pin.mux.muxSetting[0].peripheralPin.peripheralName}));
 
+/* BSL Invoke Pin will never be on GPIOC */
 const filteredPinOptions = pinOptions.filter((pin) =>
     {return Common.getGPIOPort(pin.name) !== "GPIOC"});
 
@@ -1897,126 +2206,572 @@ const filteredPinOptions = pinOptions.filter((pin) =>
 const iomuxPincmOptions = _.map(validDeviceDataPins, (pin) =>
     ({name: pin.designSignalName, num: pin.attributes.iomux_pincm}));
 
-/* Create array of pins with UART TX functionality */
-let uartTXPinData = validDeviceDataPins.map((obj) => ({
-    ...obj,
-    muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UART\d.[T]X$/)),
-}));
-uartTXPinData = _.filter(uartTXPinData, (pin) => pin.muxOptions.length);
+/* Device-specific BSL configurables */
+let extendedConfigBSLPW = [];
+if (deviceOptions.SUPPORT_ROM_BSL == true)
+{
+    extendedConfigBSLPW = [
+        {
+            // .password
+            /* BSLPW[0-7] */
+            name: "GROUP_BSL_ACCESS_PW",
+            displayName: "BSL Access Password",
+            longDescription: sha256Note,
+            config: createPWConfig("bslPW", false, 8),
+        },
+    ];
+}
 
-/* Create array of pins with UART RX functionality */
-let uartRXPinData = validDeviceDataPins.map((obj) => ({
-    ...obj,
-    muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UART\d.[R]X$/)),
-}));
-uartRXPinData = _.filter(uartRXPinData, (pin) => pin.muxOptions.length);
-
-/* Create array of pins with I2C SCL functionality */
-let i2cSCLPinData = validDeviceDataPins.map((obj) => ({
-    ...obj,
-    muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/I2C\d.SCL$/)),
-}));
-i2cSCLPinData = _.filter(i2cSCLPinData, (pin) => pin.muxOptions.length);
-
-/* Create array of pins with I2C SDA functionality */
-let i2cSDAPinData = validDeviceDataPins.map((obj) => ({
-    ...obj,
-    muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/I2C\d.SDA$/)),
-}));
-i2cSDAPinData = _.filter(i2cSDAPinData, (pin) => pin.muxOptions.length);
-
-let defaultBSLUARTRXPinCM;
-let defaultBSLUARTTXPinCM;
-let defaultBSLI2CSCLPinCM;
-let defaultBSLI2CSDAPinCM;
-
+/*
+ * Default UART/I2C pin names should NOT go in NONMAINOptions.js because the
+ * actual pin name can change depending on the particular package. For example,
+ * on some pin-constrained packages, the pin name in SysConfig has the format
+ * "Px/ABC" rather than "Px"
+ */
 let defaultBSLUARTRX = "";
 let defaultBSLUARTTX = "";
 let defaultBSLI2CSCL = "";
 let defaultBSLI2CSDA = "";
+let uartTXPinData;
+let uartRXPinData;
+let i2cSCLPinData;
+let i2cSDAPinData;
+let extendedConfigROMBSL = [];
 
-if (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L111X())
+function isStandaloneNumberPresent(number, str)
 {
-    defaultBSLUARTRXPinCM = "22";
-    defaultBSLUARTTXPinCM = "21";
-    defaultBSLI2CSCLPinCM = "2";
-    defaultBSLI2CSDAPinCM = "1";
+    const regex = new RegExp(`(?:^|,\s*)(${number})(?=\s*,|$)`);
+    const match = str.match(regex);
+    /* Match returns the match and captured groups, return the captured group */
+    return match ? match[1] : null;
 }
-else if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X())
+if (deviceOptions.SUPPORT_ROM_BSL == true)
 {
-    defaultBSLUARTRXPinCM = "26";
-    defaultBSLUARTTXPinCM = "25";
-    defaultBSLI2CSCLPinCM = "2";
-    defaultBSLI2CSDAPinCM = "1";
+    /* Derive UART/I2C interface pins */
+    /* Create array of pins with UART TX functionality */
+    uartTXPinData = validDeviceDataPins.map((obj) => ({
+        ...obj,
+        muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UART\d.[T]X$/)),
+    }));
+    uartTXPinData = _.filter(uartTXPinData, (pin) => pin.muxOptions.length);
+
+    /* Create array of pins with UART RX functionality */
+    uartRXPinData = validDeviceDataPins.map((obj) => ({
+        ...obj,
+        muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UART\d.[R]X$/)),
+    }));
+    uartRXPinData = _.filter(uartRXPinData, (pin) => pin.muxOptions.length);
+
+    /* Create array of pins with I2C SCL functionality */
+    i2cSCLPinData = validDeviceDataPins.map((obj) => ({
+        ...obj,
+        muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/I2C\d.SCL$/)),
+    }));
+    i2cSCLPinData = _.filter(i2cSCLPinData, (pin) => pin.muxOptions.length);
+
+    /* Create array of pins with I2C SDA functionality */
+    i2cSDAPinData = validDeviceDataPins.map((obj) => ({
+        ...obj,
+        muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/I2C\d.SDA$/)),
+    }));
+    i2cSDAPinData = _.filter(i2cSDAPinData, (pin) => pin.muxOptions.length);
+
+    /*
+     * Get default BSL UART/I2C pins (based on device). num field can be more
+     * than one entry e.g. "A,B" because of dual-purpose pins
+     */
+    defaultBSLUARTRX = iomuxPincmOptions.find(x => isStandaloneNumberPresent(deviceOptions.BSL_UART_RX_PINCM, x.num));
+    defaultBSLUARTTX = iomuxPincmOptions.find(x => isStandaloneNumberPresent(deviceOptions.BSL_UART_TX_PINCM, x.num));
+    defaultBSLI2CSCL = iomuxPincmOptions.find(x => isStandaloneNumberPresent(deviceOptions.BSL_I2C_SCL_PINCM, x.num));
+    defaultBSLI2CSDA = iomuxPincmOptions.find(x => isStandaloneNumberPresent(deviceOptions.BSL_I2C_SDA_PINCM, x.num));
+
+    defaultBSLUARTRX = (!defaultBSLUARTRX) ? "0xFF" : defaultBSLUARTRX.name;
+    defaultBSLUARTTX = (!defaultBSLUARTTX) ? "0xFF" : defaultBSLUARTTX.name;
+    defaultBSLI2CSCL = (!defaultBSLI2CSCL) ? "0xFF" : defaultBSLI2CSCL.name;
+    defaultBSLI2CSDA = (!defaultBSLI2CSDA) ? "0xFF" : defaultBSLI2CSDA.name;
+
+    extendedConfigROMBSL = [
+        {
+            name: "GROUP_BSL_UART_PIN_CONFIG",
+            displayName: "BSL UART Pin Configuration",
+            description: "",
+            config: [
+                {
+                    name: "uartPeripheral",
+                    displayName: "UART Peripheral",
+                    description: "Select the UART peripheral",
+                    hidden: false,
+                    /* BSL UART instance is tied to UART0 */
+                    readOnly: true,
+                    default: "UART0",
+                },
+            ].concat(bslExtendedConfigUART).concat([
+                {
+                    name: "uartTXPin",
+                    displayName: "UART TX Pin",
+                    description: "Select the UART TX pin",
+                    hidden: false,
+                    default: defaultBSLUARTTX,
+                    options: createUARTTXPinOptions,
+                },
+                {
+                    // .interfacePins.UART_TXD_pad_num
+                    name: "uartTXPadNum",
+                    displayName: "UART TX Pad Number",
+                    description: "Pad number represents the IOMUX PINCM value",
+                    default: 0,
+                    getValue: (inst) => {
+                        let selectedPin = uartTXPinData.find(pin => pin.designSignalName == inst.uartTXPin);
+                        let iomuxPINCM = 0;
+
+                        if (selectedPin)
+                        {
+                            /* Convert to integer with radix 10 */
+                            iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
+                        }
+
+                        return iomuxPINCM;
+                    }
+                },
+                {
+                    // .interfacePins.UART_TXD_PF_mux_sel
+                    name: "uartTXMux",
+                    displayName: "UART TX Mux",
+                    description: "The mux value represents the pin function",
+                    default: 0,
+                    getValue: (inst) => {
+                        let selectedPin = uartTXPinData.find(pin => pin.designSignalName == inst.uartTXPin);
+                        let muxSetting = 0;
+
+                        if (selectedPin)
+                        {
+                            muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
+                        }
+
+                        return muxSetting;
+                    }
+                },
+                {
+                    name: "uartRXPin",
+                    displayName: "UART RX Pin",
+                    description: "Select the UART RX pin",
+                    hidden: false,
+                    default: defaultBSLUARTRX,
+                    options: createUARTRXPinOptions,
+                },
+                {
+                    // .interfacePins.UART_RXD_pad_num
+                    name: "uartRXPadNum",
+                    displayName: "UART RX Pad Number",
+                    description: "Pad number represents the IOMUX PINCM value",
+                    default: 0,
+                    getValue: (inst) => {
+                        let selectedPin = uartRXPinData.find(pin => pin.designSignalName == inst.uartRXPin);
+                        let iomuxPINCM = 0;
+
+                        if (selectedPin)
+                        {
+                            /* Convert to integer with radix 10 */
+                            iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
+                        }
+
+                        return iomuxPINCM;
+                    }
+                },
+                {
+                    // .interfacePins.UART_RXD_PF_mux_sel
+                    name: "uartRXMux",
+                    displayName: "UART RX Mux",
+                    description: "The mux value represents the pin function",
+                    default: 0,
+                    getValue: (inst) => {
+                        let selectedPin = uartRXPinData.find(pin => pin.designSignalName == inst.uartRXPin);
+                        let muxSetting = 0;
+
+                        if (selectedPin)
+                        {
+                            muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
+                        }
+
+                        return muxSetting;
+                    }
+                },
+            ],)
+        },
+        {
+            name: "GROUP_BSL_I2C_PIN_CONFIG",
+            displayName: "BSL I2C Pin Configuration",
+            description: "",
+            config: [
+                {
+                    name: "i2cPeripheral",
+                    displayName: "I2C Peripheral",
+                    description: "Select the I2C peripheral",
+                    hidden: false,
+                    /* BSL I2C instance is tied to I2C0 */
+                    readOnly: true,
+                    default: "I2C0",
+                },
+                {
+                    name: "i2cSCLPin",
+                    displayName: "I2C SCL Pin",
+                    description: "Select the I2C SCL pin",
+                    hidden: false,
+                    default: defaultBSLI2CSCL,
+                    options: createI2CSCLPinOptions,
+                },
+                {
+                    // .interfacePins.I2C_SCL_pad_num
+                    name: "i2cSCLPadNum",
+                    displayName: "I2C SCL Pad Number",
+                    description: "Pad number represents the IOMUX PINCM value",
+                    default: 0,
+                    getValue: (inst) => {
+                        let selectedPin = i2cSCLPinData.find(pin => pin.designSignalName == inst.i2cSCLPin);
+                        let iomuxPINCM = 0;
+
+                        if (selectedPin)
+                        {
+                            /* Convert to integer with radix 10 */
+                            iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
+                        }
+
+                        return iomuxPINCM;
+                    }
+                },
+                {
+                    // .interfacePins.I2C_SCL_PF_mux_sel
+                    name: "i2cSCLMux",
+                    displayName: "I2C SCL Mux",
+                    description: "The mux value represents the pin function",
+                    default: 0,
+                    getValue: (inst) => {
+                        let selectedPin = i2cSCLPinData.find(pin => pin.designSignalName == inst.i2cSCLPin);
+                        let muxSetting = 0;
+
+                        if (selectedPin)
+                        {
+                            muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
+                        }
+
+                        return muxSetting;
+                    }
+                },
+                {
+                    name: "i2cSDAPin",
+                    displayName: "I2C SDA Pin",
+                    description: "Select the I2C SDA pin",
+                    hidden: false,
+                    default: defaultBSLI2CSDA,
+                    options: createI2CSDAPinOptions,
+                },
+                {
+                    // .interfacePins.I2C_SDA_pad_num
+                    name: "i2cSDAPadNum",
+                    displayName: "I2C SDA Pad Number",
+                    description: "Pad number represents the IOMUX PINCM value",
+                    default: 0,
+                    getValue: (inst) => {
+                        let selectedPin = i2cSDAPinData.find(pin => pin.designSignalName == inst.i2cSDAPin);
+                        let iomuxPINCM = 0;
+
+                        if (selectedPin)
+                        {
+                            /* Convert to integer with radix 10 */
+                            iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
+                        }
+
+                        return iomuxPINCM;
+                    }
+                },
+                {
+                    // .interfacePins.I2C_SDA_PF_mux_sel
+                    name: "i2cSDAMux",
+                    displayName: "I2C SDA Mux",
+                    description: "The mux value represents the pin function",
+                    default: 0,
+                    getValue: (inst) => {
+                        let selectedPin = i2cSDAPinData.find(pin => pin.designSignalName == inst.i2cSDAPin);
+                        let muxSetting = 0;
+
+                        if (selectedPin)
+                        {
+                            muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
+                        }
+
+                        return muxSetting;
+                    }
+                },
+                {
+                    // .i2cSlaveAddress
+                    name: "i2cSlaveAddress",
+                    displayName: "I2C Target Address (7-bit)",
+                    default: 0x0048,
+                    displayFormat: "hex",
+                    range: [0, 0x007F],
+                },
+            ],
+        },
+    ];
 }
-else if (Common.isDeviceM0L())
+
+let extendedConfigBSLFlashPlugins = [];
+if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN == true)
 {
-    defaultBSLUARTRXPinCM = "23";
-    defaultBSLUARTTXPinCM = "24";
-    defaultBSLI2CSCLPinCM = "2";
-    defaultBSLI2CSDAPinCM = "1";
+    extendedConfigBSLFlashPlugins = [
+        {
+            name: "GROUP_BSL_PLUGIN_CONFIG",
+            displayName: "BSL Plugin Configuration",
+            description: "",
+            config: [
+                {
+                    // .flashPluginEnable
+                    /* BSLPLUGINCFG.PLUGINEXISTS */
+                    name        : "bslFlashPluginEnable",
+                    displayName : "BSL Flash Plugin Enable",
+                    description : "Enables use of Flash or ROM plugin",
+                    longDescription: `
+    The BSL supports MAIN flash plugins to enable additional interfaces beyond
+    UART and I2C. When this feature is enabled, the BSL core will call the
+    corresponding plugin functions (Init, Receive, Transmit and De-Init).
+
+    The MSPM0 SDK includes code examples illustrating the implementation of plugins.`,
+                    hidden      : false,
+                    default     : false,
+                    onChange    : onChangePluginConfig,
+                },
+                {
+                    // .pluginType
+                    /* BSLPLUGINCFG.PLUGINTYPE */
+                    name        : "bslPluginType",
+                    displayName : "BSL Plugin Type",
+                    description : "",
+                    longDescription: ``,
+                    hidden      : true,
+                    default     : "bslPluginAny",
+                    options:    [
+                        {name: "bslPluginUART", displayName: "Plugin is for UART"},
+                        {name: "bslPluginI2C", displayName: "Plugin is for I2C"},
+                        {name: "bslPluginAny", displayName: "Any other interface with valid hooks"},
+                    ],
+                },
+                {
+                    // .pluginSramSize
+                    /* BSL Plugin SRAM size */
+                    name: "bslPluginSRAMSize",
+                    displayName: "Plugin SRAM Size",
+                    description: "SRAM memory consumed by the flash plugin",
+                    longDescription: `
+    SRAM memory consumed by flash plugin. The size should be derived from the .map file
+    output of the flash plugin code, primarily the .data and .bss sections.
+
+    The methods to calculate the SRAM memory size in different IDEs are listed below:
+
+    **CCS**:
+    - Build the project in CCS
+    - Navigate to the Debug directory in the project
+    - Open the .map file, and find the .bss and .data sections
+    - Add the section lengths together to get the plugin SRAM size
+    - Input the calculated value into SysConfig
+    - Save the changes, and rebuild the project
+
+    **IAR**:
+    - Build the project in IAR
+    - Navigate to the Output directory in the project
+    - Open the .map file, and find the .bss and .data sections
+    - Add the section lengths together to get the plugin SRAM size
+    - Input the calculated value into SysConfig
+    - Save the changes, and rebuild the project
+
+    **Keil**:
+    - Build the project in Keil
+    - Right-click the project, select "Open Map File", and find the .bss and .data sections
+    - Add the section lengths together to get the plugin SRAM size
+    - Input the calculated value into SysConfig
+    - Save the changes, and rebuild the project
+    `,
+                    hidden: true,
+                    default: 0xFF,
+                    displayFormat: "hex",
+                    range: [0, 0xFF],
+                },
+                {
+                    // .pluginHook[0]
+                    /* BSLPLUGINHOOK[0] */
+                    name        : "bslPluginHookInit",
+                    displayName : "Function Pointer for Plugin Init",
+                    description : "Flash plugin init function",
+                    longDescription: ``,
+                    hidden      : true,
+                    default: "",
+                    onChange: (inst, ui) => {
+                        ui.bslPluginHookInitAddress.hidden = !(inst.bslPluginHookInit.length > 0);
+                    }
+                },
+                {
+                    /* Allow user to customize function pointer address */
+                    name        : "bslPluginHookInitAddress",
+                    displayName : "Plugin Init Address",
+                    description : "Address to the flash plugin init function",
+                    longDescription: ``,
+                    hidden      : true,
+                    default: 0xFFFFFFFF,
+                    displayFormat: "hex",
+                    range: [0, 0xFFFFFFFF],
+                },
+                {
+                    // .pluginHook[1]
+                    /* BSLPLUGINHOOK[1] */
+                    name        : "bslPluginHookReceive",
+                    displayName : "Function Pointer for Plugin Receive",
+                    description : "Flash plugin receive function",
+                    longDescription: ``,
+                    hidden      : true,
+                    default: "",
+                    onChange: (inst, ui) => {
+                        ui.bslPluginHookReceiveAddress.hidden = !(inst.bslPluginHookReceive.length > 0);
+                    }
+                },
+                {
+                    /* Allow user to customize function pointer address */
+                    name        : "bslPluginHookReceiveAddress",
+                    displayName : "Plugin Receive Address",
+                    description : "Address to the flash plugin receive function",
+                    longDescription: ``,
+                    hidden      : true,
+                    default: 0xFFFFFFFF,
+                    displayFormat: "hex",
+                    range: [0, 0xFFFFFFFF],
+                },
+                {
+                    // .pluginHook[2]
+                    /* BSLPLUGINHOOK[2] */
+                    name        : "bslPluginHookTransmit",
+                    displayName : "Function Pointer for Plugin Transmit",
+                    description : "Flash plugin transmit function",
+                    longDescription: ``,
+                    hidden      : true,
+                    default: "",
+                    onChange: (inst, ui) => {
+                        ui.bslPluginHookTransmitAddress.hidden = !(inst.bslPluginHookTransmit.length > 0);
+                    }
+                },
+                {
+                    /* Allow user to customize function pointer address */
+                    name        : "bslPluginHookTransmitAddress",
+                    displayName : "Plugin Transmit Address",
+                    description : "Address to the flash plugin transmit function",
+                    longDescription: ``,
+                    hidden      : true,
+                    default: 0xFFFFFFFF,
+                    displayFormat: "hex",
+                    range: [0, 0xFFFFFFFF],
+                },
+                {
+                    // .pluginHook[3]
+                    /* BSLPLUGINHOOK[3] */
+                    name        : "bslPluginHookDeInit",
+                    displayName : "Function Pointer for Plugin De-Init",
+                    description : "Flash plugin de-init function",
+                    longDescription: ``,
+                    hidden      : true,
+                    default: "",
+                    onChange: (inst, ui) => {
+                        ui.bslPluginHookDeInitAddress.hidden = !(inst.bslPluginHookDeInit.length > 0);
+                    }
+                },
+                {
+                    /* Allow user to customize function pointer address */
+                    name        : "bslPluginHookDeInitAddress",
+                    displayName : "Plugin De-Init Address",
+                    description : "Address to the flash plugin de-init function",
+                    longDescription: ``,
+                    hidden      : true,
+                    default: 0xFFFFFFFF,
+                    displayFormat: "hex",
+                    range: [0, 0xFFFFFFFF],
+                },
+            ],
+        }
+    ];
 }
-else
+
+let extendedConfigBSLAdvanced = [];
+if (deviceOptions.SUPPORT_ROM_BSL == true)
 {
-    /* Land here if M0C, which does not have BSL. Do nothing */
+    extendedConfigBSLAdvanced = [
+        {
+            // .appRev
+            /* BSLAPPVER */
+            name        : "bslAppVersion",
+            displayName : "BSL App Version",
+            description : "BSL App Version",
+            longDescription: `
+The BSL supports returning an application version number through the BSL serial
+interface. This allows the BSL host to interrogate the firmware version without
+being able to read the firmware. The version field is 32 bits in length.
+
+To link the application version command to a version number programmed in the
+main flash, program the address of the version number in this field.
+
+The version data is only returned if the specified address corresponds to a
+valid flash memory address.
+`,
+            hidden      : false,
+            displayFormat: "hex",
+            default     : 0xFFFFFFFF,
+            range       : [0, 0xFFFFFFFF]
+        },
+        {
+            // .memoryRead
+            /* BSLCFG.READOUTEN */
+            name        : "bslEnableReadOut",
+            displayName : "BSL Read Out Enable",
+            description : "Enables memory read-out via BSL",
+            longDescription: `
+The BSL can be configured to allow read-out of memory locations through the BSL
+serial interface. The default BSL configuration on new devices does not enable
+read-out.
+`,
+            hidden      : false,
+            default     : false,
+        },
+        {
+            // .securityAlert
+            /* BSLSECCFG */
+            name        : "bslSecurityConfig",
+            displayName : "BSL Security Alert Configuration",
+            description : "BSL Security Alert Configuration",
+            longDescription: `
+A brute force attack security alert occurs if three consecutive invalid
+passwords are provided to the BSL in an attempt to gain access to the BSL. The
+BSL can be configured to respond to the security alert in one of the following
+ways:
+
+* Issue a factory reset where MAIN and NONMAIN flash regions are erased. Only
+memory regions which are not protected by static write protection settings will
+be erased/reset.
+
+* Disable the bootloader (leaves MAIN intact but reconfigures NONMAIN to
+block BSL access). This option is only available if NONMAIN is not statically
+write protected.
+
+* Ignore (do not modify the configuration and allow password attempts to
+continue).
+`,
+            hidden      : false,
+            default     : "ignoreAlert",
+            options:    [
+                {name: "triggerFactoryReset", displayName: "Trigger a factory reset"},
+                {name: "disableBSL", displayName: "Disable BSL"},
+                {name: "ignoreAlert", displayName: "Ignore security alert"},
+            ],
+        },
+    ];
 }
 
-// Default BSL Config ID Definition
-let defaultBSLConfigID = 0x00000001;
-if (Common.isDeviceFamily_PARENT_MSPM0GX51X())
+if (deviceOptions.SUPPORT_BSL == true)
 {
-    defaultBSLConfigID = 0x04000000;
-}
-else if (Common.isDeviceFamily_PARENT_MSPM0L111X())
-{
-    defaultBSLConfigID = 0x06000000;
-}
-
-/* M0C does not have ROM bootloader */
-if (!Common.isDeviceM0C())
-{
-    /* Get default BSL UART/I2C pins (based on device) */
-    defaultBSLUARTRX = iomuxPincmOptions.find(x => x.num === defaultBSLUARTRXPinCM);
-    defaultBSLUARTTX = iomuxPincmOptions.find(x => x.num === defaultBSLUARTTXPinCM);
-    defaultBSLI2CSCL = iomuxPincmOptions.find(x => x.num === defaultBSLI2CSCLPinCM);
-    defaultBSLI2CSDA = iomuxPincmOptions.find(x => x.num === defaultBSLI2CSDAPinCM);
-
-    if (!defaultBSLUARTRX)
-    {
-        defaultBSLUARTRX = "";
-    }
-    else
-    {
-        defaultBSLUARTRX = defaultBSLUARTRX.name;
-    }
-
-    if (!defaultBSLUARTTX)
-    {
-        defaultBSLUARTTX = "";
-    }
-    else
-    {
-        defaultBSLUARTTX = defaultBSLUARTTX.name;
-    }
-
-    if (!defaultBSLI2CSCL)
-    {
-        defaultBSLI2CSCL = "";
-    }
-    else
-    {
-        defaultBSLI2CSCL = defaultBSLI2CSCL.name;
-    }
-
-    if (!defaultBSLI2CSDA)
-    {
-        defaultBSLI2CSDA = "";
-    }
-    else
-    {
-        defaultBSLI2CSDA = defaultBSLI2CSDA.name;
-    }
-
     nonMainConfig = nonMainConfig.concat([
         /****** BSL CONFIGURATION *******/
         {
@@ -2044,19 +2799,7 @@ if (!Common.isDeviceM0C())
     mode in the BCR configuration in NONMAIN flash.
     `,
             collapsed: true,
-            config: [
-                {
-                    // .password
-                    /* BSLPW[0-7] */
-                    name: "GROUP_BSL_ACCESS_PW",
-                    displayName: "BSL Access Password",
-                    longDescription: `
-User should provide the SHA-2 256 Hash of the Password. In order to calculate
-the hash value, user can use online tools like the one provided here:
-[SHA256 online tool](https://emn178.github.io/online-tools/sha256.html)
-                    `,
-                    config: createPWConfig("bslPW", false, 8),
-                },
+            config: extendedConfigBSLPW.concat([
                 {
                     name: "GROUP_BSL_GPIO_INVOKE_CONFIG",
                     displayName: "BSL GPIO Invoke Configuration",
@@ -2078,9 +2821,8 @@ the hash value, user can use online tools like the one provided here:
                             displayName : "Use Default BSL Invoke Pin",
                             description : "Use Default BSL Invoke Pin",
                             longDescription: `
-    The default BSL invoke pin on M0L and M0G devices is PA18. Refer to the device
-    datasheet for more details.
-            `,
+    Refer to the device datasheet for details on the default BSL invoke pin.
+    `,
                             hidden      : false,
                             default     : true,
                             onChange    : updateGUIGPIOInvoke,
@@ -2105,7 +2847,13 @@ the hash value, user can use online tools like the one provided here:
                             readOnly    : true,
                             default     : "1",
                             getValue    : (inst) => {
-                                return iomuxPincmOptions.find(x => x.name.includes(inst.bslInvokePin)).num;
+                                let matchPinCM = iomuxPincmOptions.find(x => x.name.includes(inst.bslInvokePin)).num;
+                                /*
+                                 * Handle case of dual purpose pins. This
+                                 * assumes that the first function is used for
+                                 * BSL GPIO invoke
+                                 */
+                                return ((matchPinCM.split(","))[0]);
                             }
                         },
                         {
@@ -2149,401 +2897,7 @@ the hash value, user can use online tools like the one provided here:
                         },
                     ],
                 },
-                {
-                    name: "GROUP_BSL_UART_PIN_CONFIG",
-                    displayName: "BSL UART Pin Configuration",
-                    description: "",
-                    config: [
-                        {
-                            name: "uartPeripheral",
-                            displayName: "UART Peripheral",
-                            description: "Select the UART peripheral",
-                            hidden: false,
-                            /* BSL UART instance is tied to UART0 */
-                            readOnly: true,
-                            default: "UART0",
-                        },
-                    ].concat(bslExtendedConfigUART).concat([
-                        {
-                            name: "uartTXPin",
-                            displayName: "UART TX Pin",
-                            description: "Select the UART TX pin",
-                            hidden: false,
-                            default: defaultBSLUARTTX,
-                            options: createUARTTXPinOptions,
-                        },
-                        {
-                            // .interfacePins.UART_TXD_pad_num
-                            name: "uartTXPadNum",
-                            displayName: "UART TX Pad Number",
-                            description: "Pad number represents the IOMUX PINCM value",
-                            default: 0,
-                            getValue: (inst) => {
-                                let selectedPin = uartTXPinData.find(pin => pin.designSignalName == inst.uartTXPin);
-                                let iomuxPINCM = 0;
-
-                                if (selectedPin)
-                                {
-                                    /* Convert to integer with radix 10 */
-                                    iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
-                                }
-
-                                return iomuxPINCM;
-                            }
-                        },
-                        {
-                            // .interfacePins.UART_TXD_PF_mux_sel
-                            name: "uartTXMux",
-                            displayName: "UART TX Mux",
-                            description: "The mux value represents the pin function",
-                            default: 0,
-                            getValue: (inst) => {
-                                let selectedPin = uartTXPinData.find(pin => pin.designSignalName == inst.uartTXPin);
-                                let muxSetting = 0;
-
-                                if (selectedPin)
-                                {
-                                    muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
-                                }
-
-                                return muxSetting;
-                            }
-                        },
-                        {
-                            name: "uartRXPin",
-                            displayName: "UART RX Pin",
-                            description: "Select the UART RX pin",
-                            hidden: false,
-                            default: defaultBSLUARTRX,
-                            options: createUARTRXPinOptions,
-                        },
-                        {
-                            // .interfacePins.UART_RXD_pad_num
-                            name: "uartRXPadNum",
-                            displayName: "UART RX Pad Number",
-                            description: "Pad number represents the IOMUX PINCM value",
-                            default: 0,
-                            getValue: (inst) => {
-                                let selectedPin = uartRXPinData.find(pin => pin.designSignalName == inst.uartRXPin);
-                                let iomuxPINCM = 0;
-
-                                if (selectedPin)
-                                {
-                                    /* Convert to integer with radix 10 */
-                                    iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
-                                }
-
-                                return iomuxPINCM;
-                            }
-                        },
-                        {
-                            // .interfacePins.UART_RXD_PF_mux_sel
-                            name: "uartRXMux",
-                            displayName: "UART RX Mux",
-                            description: "The mux value represents the pin function",
-                            default: 0,
-                            getValue: (inst) => {
-                                let selectedPin = uartRXPinData.find(pin => pin.designSignalName == inst.uartRXPin);
-                                let muxSetting = 0;
-
-                                if (selectedPin)
-                                {
-                                    muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
-                                }
-
-                                return muxSetting;
-                            }
-                        },
-                    ],)
-                },
-                {
-                    name: "GROUP_BSL_I2C_PIN_CONFIG",
-                    displayName: "BSL I2C Pin Configuration",
-                    description: "",
-                    config: [
-                        {
-                            name: "i2cPeripheral",
-                            displayName: "I2C Peripheral",
-                            description: "Select the I2C peripheral",
-                            hidden: false,
-                            /* BSL I2C instance is tied to I2C0 */
-                            readOnly: true,
-                            default: "I2C0",
-                        },
-                        {
-                            name: "i2cSCLPin",
-                            displayName: "I2C SCL Pin",
-                            description: "Select the I2C SCL pin",
-                            hidden: false,
-                            default: defaultBSLI2CSCL,
-                            options: createI2CSCLPinOptions,
-                        },
-                        {
-                            // .interfacePins.I2C_SCL_pad_num
-                            name: "i2cSCLPadNum",
-                            displayName: "I2C SCL Pad Number",
-                            description: "Pad number represents the IOMUX PINCM value",
-                            default: 0,
-                            getValue: (inst) => {
-                                let selectedPin = i2cSCLPinData.find(pin => pin.designSignalName == inst.i2cSCLPin);
-                                let iomuxPINCM = 0;
-
-                                if (selectedPin)
-                                {
-                                    /* Convert to integer with radix 10 */
-                                    iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
-                                }
-
-                                return iomuxPINCM;
-                            }
-                        },
-                        {
-                            // .interfacePins.I2C_SCL_PF_mux_sel
-                            name: "i2cSCLMux",
-                            displayName: "I2C SCL Mux",
-                            description: "The mux value represents the pin function",
-                            default: 0,
-                            getValue: (inst) => {
-                                let selectedPin = i2cSCLPinData.find(pin => pin.designSignalName == inst.i2cSCLPin);
-                                let muxSetting = 0;
-
-                                if (selectedPin)
-                                {
-                                    muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
-                                }
-
-                                return muxSetting;
-                            }
-                        },
-                        {
-                            name: "i2cSDAPin",
-                            displayName: "I2C SDA Pin",
-                            description: "Select the I2C SDA pin",
-                            hidden: false,
-                            default: defaultBSLI2CSDA,
-                            options: createI2CSDAPinOptions,
-                        },
-                        {
-                            // .interfacePins.I2C_SDA_pad_num
-                            name: "i2cSDAPadNum",
-                            displayName: "I2C SDA Pad Number",
-                            description: "Pad number represents the IOMUX PINCM value",
-                            default: 0,
-                            getValue: (inst) => {
-                                let selectedPin = i2cSDAPinData.find(pin => pin.designSignalName == inst.i2cSDAPin);
-                                let iomuxPINCM = 0;
-
-                                if (selectedPin)
-                                {
-                                    /* Convert to integer with radix 10 */
-                                    iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
-                                }
-
-                                return iomuxPINCM;
-                            }
-                        },
-                        {
-                            // .interfacePins.I2C_SDA_PF_mux_sel
-                            name: "i2cSDAMux",
-                            displayName: "I2C SDA Mux",
-                            description: "The mux value represents the pin function",
-                            default: 0,
-                            getValue: (inst) => {
-                                let selectedPin = i2cSDAPinData.find(pin => pin.designSignalName == inst.i2cSDAPin);
-                                let muxSetting = 0;
-
-                                if (selectedPin)
-                                {
-                                    muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
-                                }
-
-                                return muxSetting;
-                            }
-                        },
-                        {
-                            // .i2cSlaveAddress
-                            name: "i2cSlaveAddress",
-                            displayName: "I2C Target Address (7-bit)",
-                            default: 0x0048,
-                            displayFormat: "hex",
-                            range: [0, 0x007F],
-                        },
-                    ],
-                },
-                {
-                    name: "GROUP_BSL_PLUGIN_CONFIG",
-                    displayName: "BSL Plugin Configuration",
-                    description: "",
-                    config: [
-                        {
-                            // .flashPluginEnable
-                            /* BSLPLUGINCFG.PLUGINEXISTS */
-                            name        : "bslFlashPluginEnable",
-                            displayName : "BSL Flash Plugin Enable",
-                            description : "Enables use of Flash or ROM plugin",
-                            longDescription: `
-    The BSL supports MAIN flash plugins to enable additional interfaces beyond
-    UART and I2C. When this feature is enabled, the BSL core will call the
-    corresponding plugin functions (Init, Receive, Transmit and De-Init).
-
-    The MSPM0 SDK includes code examples illustrating the implementation of plugins.`,
-                            hidden      : false,
-                            default     : false,
-                            onChange    : onChangePluginConfig,
-                        },
-                        {
-                            // .pluginType
-                            /* BSLPLUGINCFG.PLUGINTYPE */
-                            name        : "bslPluginType",
-                            displayName : "BSL Plugin Type",
-                            description : "",
-                            longDescription: ``,
-                            hidden      : true,
-                            default     : "bslPluginAny",
-                            options:    [
-                                {name: "bslPluginUART", displayName: "Plugin is for UART"},
-                                {name: "bslPluginI2C", displayName: "Plugin is for I2C"},
-                                {name: "bslPluginAny", displayName: "Any other interface with valid hooks"},
-                            ],
-                        },
-                        {
-                            // .pluginSramSize
-                            /* BSL Plugin SRAM size */
-                            name: "bslPluginSRAMSize",
-                            displayName: "Plugin SRAM Size",
-                            description: "SRAM memory consumed by the flash plugin",
-                            longDescription: `
-    SRAM memory consumed by flash plugin. The size should be derived from the .map file
-    output of the flash plugin code, primarily the .data and .bss sections.
-
-    The methods to calculate the SRAM memory size in different IDEs are listed below:
-
-    **CCS**:
-    - Build the project in CCS
-    - Navigate to the Debug directory in the project
-    - Open the .map file, and find the .bss and .data sections
-    - Add the section lengths together to get the plugin SRAM size
-    - Input the calculated value into SysConfig
-    - Save the changes, and rebuild the project
-
-    **IAR**:
-    - Build the project in IAR
-    - Navigate to the Output directory in the project
-    - Open the .map file, and find the .bss and .data sections
-    - Add the section lengths together to get the plugin SRAM size
-    - Input the calculated value into SysConfig
-    - Save the changes, and rebuild the project
-
-    **Keil**:
-    - Build the project in Keil
-    - Right-click the project, select "Open Map File", and find the .bss and .data sections
-    - Add the section lengths together to get the plugin SRAM size
-    - Input the calculated value into SysConfig
-    - Save the changes, and rebuild the project
-    `,
-                            hidden: true,
-                            default: 0xFF,
-                            displayFormat: "hex",
-                            range: [0, 0xFF],
-                        },
-                        {
-                            // .pluginHook[0]
-                            /* BSLPLUGINHOOK[0] */
-                            name        : "bslPluginHookInit",
-                            displayName : "Function Pointer for Plugin Init",
-                            description : "Flash plugin init function",
-                            longDescription: ``,
-                            hidden      : true,
-                            default: "",
-                            onChange: (inst, ui) => {
-                                ui.bslPluginHookInitAddress.hidden = !(inst.bslPluginHookInit.length > 0);
-                            }
-                        },
-                        {
-                            /* Allow user to customize function pointer address */
-                            name        : "bslPluginHookInitAddress",
-                            displayName : "Plugin Init Address",
-                            description : "Address to the flash plugin init function",
-                            longDescription: ``,
-                            hidden      : true,
-                            default: 0xFFFFFFFF,
-                            displayFormat: "hex",
-                            range: [0, 0xFFFFFFFF],
-                        },
-                        {
-                            // .pluginHook[1]
-                            /* BSLPLUGINHOOK[1] */
-                            name        : "bslPluginHookReceive",
-                            displayName : "Function Pointer for Plugin Receive",
-                            description : "Flash plugin receive function",
-                            longDescription: ``,
-                            hidden      : true,
-                            default: "",
-                            onChange: (inst, ui) => {
-                                ui.bslPluginHookReceiveAddress.hidden = !(inst.bslPluginHookReceive.length > 0);
-                            }
-                        },
-                        {
-                            /* Allow user to customize function pointer address */
-                            name        : "bslPluginHookReceiveAddress",
-                            displayName : "Plugin Receive Address",
-                            description : "Address to the flash plugin receive function",
-                            longDescription: ``,
-                            hidden      : true,
-                            default: 0xFFFFFFFF,
-                            displayFormat: "hex",
-                            range: [0, 0xFFFFFFFF],
-                        },
-                        {
-                            // .pluginHook[2]
-                            /* BSLPLUGINHOOK[2] */
-                            name        : "bslPluginHookTransmit",
-                            displayName : "Function Pointer for Plugin Transmit",
-                            description : "Flash plugin transmit function",
-                            longDescription: ``,
-                            hidden      : true,
-                            default: "",
-                            onChange: (inst, ui) => {
-                                ui.bslPluginHookTransmitAddress.hidden = !(inst.bslPluginHookTransmit.length > 0);
-                            }
-                        },
-                        {
-                            /* Allow user to customize function pointer address */
-                            name        : "bslPluginHookTransmitAddress",
-                            displayName : "Plugin Transmit Address",
-                            description : "Address to the flash plugin transmit function",
-                            longDescription: ``,
-                            hidden      : true,
-                            default: 0xFFFFFFFF,
-                            displayFormat: "hex",
-                            range: [0, 0xFFFFFFFF],
-                        },
-                        {
-                            // .pluginHook[3]
-                            /* BSLPLUGINHOOK[3] */
-                            name        : "bslPluginHookDeInit",
-                            displayName : "Function Pointer for Plugin De-Init",
-                            description : "Flash plugin de-init function",
-                            longDescription: ``,
-                            hidden      : true,
-                            default: "",
-                            onChange: (inst, ui) => {
-                                ui.bslPluginHookDeInitAddress.hidden = !(inst.bslPluginHookDeInit.length > 0);
-                            }
-                        },
-                        {
-                            /* Allow user to customize function pointer address */
-                            name        : "bslPluginHookDeInitAddress",
-                            displayName : "Plugin De-Init Address",
-                            description : "Address to the flash plugin de-init function",
-                            longDescription: ``,
-                            hidden      : true,
-                            default: 0xFFFFFFFF,
-                            displayFormat: "hex",
-                            range: [0, 0xFFFFFFFF],
-                        },
-                    ],
-                },
+            ]).concat(extendedConfigROMBSL).concat(extendedConfigBSLFlashPlugins).concat([
                 {
                     name: "GROUP_BSL_ALT_CONFIG",
                     displayName: "Alternate BSL Configuration",
@@ -2602,77 +2956,9 @@ the hash value, user can use online tools like the one provided here:
                     hidden      : false,
                     readOnly    : true,
                     displayFormat: "hex",
-                    default     : defaultBSLConfigID,
-                    range       : [0, 0xFFFFFFFF]
+                    default     : deviceOptions.BSL_CONFIG_ID,
                 },
-                {
-                    // .appRev
-                    /* BSLAPPVER */
-                    name        : "bslAppVersion",
-                    displayName : "BSL App Version",
-                    description : "BSL App Version",
-                    longDescription: `
-    The BSL supports returning an application version number through the BSL serial
-    interface. This allows the BSL host to interrogate the firmware version without
-    being able to read the firmware. The version field is 32 bits in length.
-
-    To link the application version command to a version number programmed in the
-    main flash, program the address of the version number in this field.
-
-    The version data is only returned if the specified address corresponds to a
-    valid flash memory address.
-    `,
-                    hidden      : false,
-                    displayFormat: "hex",
-                    default     : 0xFFFFFFFF,
-                    range       : [0, 0xFFFFFFFF]
-                },
-                {
-                    // .memoryRead
-                    /* BSLCFG.READOUTEN */
-                    name        : "bslEnableReadOut",
-                    displayName : "BSL Read Out Enable",
-                    description : "Enables memory read-out via BSL",
-                    longDescription: `
-    The BSL can be configured to allow read-out of memory locations through the BSL
-    serial interface. The default BSL configuration on new devices does not enable
-    read-out.
-    `,
-                    hidden      : false,
-                    default     : false,
-                },
-                {
-                    // .securityAlert
-                    /* BSLSECCFG */
-                    name        : "bslSecurityConfig",
-                    displayName : "BSL Security Alert Configuration",
-                    description : "BSL Security Alert Configuration",
-                    longDescription: `
-    A brute force attack security alert occurs if three consecutive invalid
-    passwords are provided to the BSL in an attempt to gain access to the BSL. The
-    BSL can be configured to respond to the security alert in one of the following
-    ways:
-
-    * Issue a factory reset where MAIN and NONMAIN flash regions are erased. Only
-    memory regions which are not protected by static write protection settings will
-    be erased/reset.
-
-    * Disable the bootloader (leaves MAIN intact but reconfigures NONMAIN to
-    block BSL access). This option is only available if NONMAIN is not statically
-    write protected.
-
-    * Ignore (do not modify the configuration and allow password attempts to
-    continue).
-    `,
-                    hidden      : false,
-                    default     : "ignoreAlert",
-                    options:    [
-                        {name: "triggerFactoryReset", displayName: "Trigger a factory reset"},
-                        {name: "disableBSL", displayName: "Disable BSL"},
-                        {name: "ignoreAlert", displayName: "Ignore security alert"},
-                    ],
-                },
-            ].concat(bslExtendedConfigNRST).concat([
+            ]).concat(extendedConfigBSLAdvanced).concat(bslExtendedConfigNRST).concat([
                 {
                     // .userCfgCRC
                     /* BSLCRC */
@@ -2684,7 +2970,32 @@ the hash value, user can use online tools like the one provided here:
                     displayFormat: "hex",
                     default     : 0,
                     getValue    : (inst) =>  {
-                        return calculateBSLCRC(inst);
+                        if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+                            Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+                        {
+                            return calculateBSLCRC_NoFlash_16Bit(inst);
+                        }
+                        else
+                        {
+                            return calculateBSLCRC_32Bit(inst);
+                        }
+                    },
+                },
+                {
+                    name        : "bslCRCString",
+                    /* Test and debug only. Used for crc output .txt */
+                    hidden      : true,
+                    default     : "",
+                    getValue    : (inst) =>  {
+                        if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+                            Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+                        {
+                            return createNoFlashBSLConfigString(inst);
+                        }
+                        else
+                        {
+                            return createROMBSLString(inst);
+                        }
                     },
                 },
             ])
@@ -2702,15 +3013,8 @@ function calculatePinData0(inst)
     }
     else
     {
-        /* Default pincm depends on the device family */
-        let pinCM = (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L111X()) ? 40 : 19;
-        /* TODO: update approach to get desired PinCM from deviceData + existing apis vs hardcoded */
-        if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-            pinCM = 50;
-        }
-
         /* Default pin level is high */
-        pinData0 = pinCM | (1 << 7);
+        pinData0 = (deviceOptions.BSL_INVOKE_PIN_PINCM) | (1 << 7);
     }
 
     return (pinData0);
@@ -2719,21 +3023,22 @@ function calculatePinData0(inst)
 function calculatePinData1(inst)
 {
     let pinData1;
+    let pin;
+    let gpioBaseIndex;
 
     if (!inst.bslDefaultInvokePin)
     {
-        let pinID = Common.getGPIONumber(inst.bslInvokePin);
-
-        let port = Common.getGPIOPort(inst.bslInvokePin);
-        let gpioBaseIndex = (port == "GPIOA") ? 0 : 1;
-
-        pinData1 = pinID | (gpioBaseIndex << 5);
+        pin = inst.bslInvokePin;
     }
     else
     {
-        /* Default pin is PA18 for both M0L and M0G device families */
-        pinData1 = 0x12;
+
+        pin = iomuxPincmOptions.find(x => isStandaloneNumberPresent(deviceOptions.BSL_INVOKE_PIN_PINCM, x.num)).name;
     }
+
+    /* Note: This assumes that BSL invoke pin will never be on GPIOC */
+    gpioBaseIndex = (Common.getGPIOPort(pin) == "GPIOA") ? 0 : 1;
+    pinData1 = Common.getGPIONumber(pin) | (gpioBaseIndex << 5);
 
     return (pinData1);
 }

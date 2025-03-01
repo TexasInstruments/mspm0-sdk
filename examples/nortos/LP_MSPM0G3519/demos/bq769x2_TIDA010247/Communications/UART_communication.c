@@ -46,7 +46,7 @@ RS485_t gRS485;
 void RS485_Send(uint8_t BQid, uint8_t cmd, uint16_t *data, uint32_t length)
 {
     DL_GPIO_setPins(RS485_PORT, RS485_TX_EN_PIN);
-    DL_GPIO_setPins(RS485_PORT, RS485_RX_EN_PIN);
+    DL_GPIO_clearPins(RS485_PORT, RS485_RX_EN_PIN);
 
     uint8_t RS485_data[RS485_TX_MAX_PACKET_SIZE] = {0};
     uint32_t RS485_count;
@@ -86,6 +86,9 @@ void RS485_Send(uint8_t BQid, uint8_t cmd, uint16_t *data, uint32_t length)
         ;
     DL_UART_Main_disableInterrupt(RS485_INST, DL_UART_MAIN_INTERRUPT_TX);
     gRS485.status = RS485_STATUS_IDLE;
+
+    DL_GPIO_clearPins(RS485_PORT, RS485_TX_EN_PIN);
+    DL_GPIO_setPins(RS485_PORT, RS485_RX_EN_PIN);
 }
 
 /******************************************************************
@@ -97,7 +100,7 @@ void RS485_Send(uint8_t BQid, uint8_t cmd, uint16_t *data, uint32_t length)
 void RS485_Receive(uint8_t *RS485_data, uint32_t RS485_count)
 {
     DL_GPIO_clearPins(RS485_PORT, RS485_TX_EN_PIN);
-    DL_GPIO_clearPins(RS485_PORT, RS485_RX_EN_PIN);
+    DL_GPIO_setPins(RS485_PORT, RS485_RX_EN_PIN);
 
     if ((RS485_count > RS485_RX_MAX_PACKET_SIZE) ||
         (gRS485.status != RS485_STATUS_IDLE)) {
@@ -120,6 +123,9 @@ void RS485_Receive(uint8_t *RS485_data, uint32_t RS485_count)
     while (RS485_count--) {
         RS485_data[RS485_count] = gRS485.rxPacket[RS485_count];
     }
+
+    DL_GPIO_setPins(RS485_PORT, RS485_TX_EN_PIN);
+    DL_GPIO_clearPins(RS485_PORT, RS485_RX_EN_PIN);
 }
 
 void UART_0_INST_IRQHandler(void)

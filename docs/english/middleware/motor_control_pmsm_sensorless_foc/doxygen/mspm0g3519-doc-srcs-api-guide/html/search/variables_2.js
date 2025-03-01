@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['c',['c',['../struct_m_c___a_b_c___t.html#a1ce0dc6b52c73fea40cadaa27d93596f',1,'MC_ABC_T']]],
+  ['clacc',['clAcc',['../structuser_input_close_loop1.html#ac124549371e65aef2de4565c745ea4cc',1,'userInputCloseLoop1']]],
+  ['cldec',['clDec',['../structuser_input_close_loop1.html#a9cc262397f0cda67ba27a07799b57c23',1,'userInputCloseLoop1']]],
+  ['cldeccfg',['clDecCfg',['../structuser_input_close_loop1.html#a88fee28db07122d4c3a798337a09c139',1,'userInputCloseLoop1']]],
+  ['clearflt',['clearFlt',['../structram_algo_debug_ctrl1.html#aec4991178b6d572f35ed15b9d5c0b0ee',1,'ramAlgoDebugCtrl1']]],
+  ['closeloop1',['closeLoop1',['../struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ac2f94d9bac7ba5c255915d1be8ce80d3',1,'USER_INPUT_INTERFACE_T']]],
+  ['closeloop2',['closeLoop2',['../struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ad0cc67e7df29deb59bdc022f78ac69a1',1,'USER_INPUT_INTERFACE_T']]],
+  ['closeloopdis',['closeLoopDis',['../structram_algo_debug_ctrl1.html#af06f24e19d276842a9ed730e3a28c23e',1,'ramAlgoDebugCtrl1']]],
+  ['closeloopfastaccelspeedslewratedecihzpersec',['closeLoopFastAccelSpeedSlewRateDeciHzPerSec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a84a5fc492738da5d064c545418b41b60',1,'USER_INPUTS_T']]],
+  ['closeloopfastdecelspeedslewratedecihzpersec',['closeLoopFastDecelSpeedSlewRateDeciHzPerSec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#ac9e4d45856083ddaf003bb96139f89d1',1,'USER_INPUTS_T']]],
+  ['closeloopslowaccelspeedslewratedecihzpersec',['closeLoopSlowAccelSpeedSlewRateDeciHzPerSec',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#ae6bb407fdc778a0e532c154541363dc7',1,'USER_INPUTS_T']]],
+  ['clslowacc',['clSlowAcc',['../structuser_input_misc_algo.html#a30ceac13bfe464832f9c7fb93d5b2e40',1,'userInputMiscAlgo']]],
+  ['controllerfaultstatus',['controllerFaultStatus',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#aac93939dead15efa0ea96b510fcf4206',1,'USER_STATUS_INTERFACE_T']]],
+  ['controlmode',['controlMode',['../structuser_input_close_loop1.html#ab5bcb290cde2a1a353b8bf84f93b2099',1,'userInputCloseLoop1']]],
+  ['cos',['cos',['../struct_m_c___s_i_n_c_o_s___t.html#a63ea11339786be41d2006828470670d1',1,'MC_SINCOS_T']]],
+  ['current',['current',['../struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a0b6362c80d0e944c5327c1f0c42acc65',1,'HAL_MEASURE_MOTOR_INPUTS_T']]],
+  ['currentbase',['currentBase',['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#acbe28dbe11b185119b2daf15b7fdbb64',1,'SYSTEM_PARAMETERS_T']]],
+  ['currentpi',['currentPI',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a99cf24f90ef81fd54d362fbe93070a6a',1,'USER_STATUS_INTERFACE_T']]],
+  ['currentshunt',['currentShunt',['../struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a53bf368959c08de827be7804536e270e',1,'HAL_MEASURE_CURRENT_T']]],
+  ['currentshuntset',['currentShuntSet',['../struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#acacf56f28534d0a0422e84e4e35bcd90',1,'HAL_MEASURE_CURRENT_T']]],
+  ['currloopdis',['currLoopDis',['../structram_algo_debug_ctrl2.html#a59714fb03e77207f722927d7c9947a1b',1,'ramAlgoDebugCtrl2']]],
+  ['currloopki',['currLoopKi',['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#af533570b8b05a31e93aa16380088c210',1,'SYSTEM_PARAMETERS_T']]],
+  ['currloopkp',['currLoopKp',['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#aba0a9b15385d00e87fafc46e32869c6b',1,'SYSTEM_PARAMETERS_T']]]
+];

@@ -351,7 +351,7 @@ bool DL_MCAN_isReady(DL_MCAN_INSTANCE instance)
             (uint32_t) instance);
 }
 
-void DL_MCAN_setClockConfig(MCAN_Regs *mcan, DL_MCAN_ClockConfig *config)
+void DL_MCAN_setClockConfig(MCAN_Regs *mcan, const DL_MCAN_ClockConfig *config)
 {
     DL_Common_updateReg(&SYSCTL->SOCLOCK.GENCLKCFG,
         (uint32_t) config->clockSel, SYSCTL_GENCLKCFG_CANCLKSRC_MASK);
@@ -367,7 +367,7 @@ void DL_MCAN_getClockConfig(MCAN_Regs *mcan, DL_MCAN_ClockConfig *config)
     config->clockSel = (DL_MCAN_FCLK)(clockSource);
 }
 
-bool DL_MCAN_isInReset(MCAN_Regs *mcan)
+bool DL_MCAN_isInReset(const MCAN_Regs *mcan)
 {
     uint32_t reset;
     bool state;
@@ -382,7 +382,7 @@ bool DL_MCAN_isInReset(MCAN_Regs *mcan)
     return state;
 }
 
-bool DL_MCAN_isFDOpEnable(MCAN_Regs *mcan)
+bool DL_MCAN_isFDOpEnable(const MCAN_Regs *mcan)
 {
     uint32_t fdoe;
     bool state;
@@ -398,7 +398,7 @@ bool DL_MCAN_isFDOpEnable(MCAN_Regs *mcan)
     return state;
 }
 
-bool DL_MCAN_isMemInitDone(MCAN_Regs *mcan)
+bool DL_MCAN_isMemInitDone(const MCAN_Regs *mcan)
 {
     uint32_t memInit;
     bool state;
@@ -419,7 +419,7 @@ void DL_MCAN_setOpMode(MCAN_Regs *mcan, uint32_t mode)
     HW_WR_FIELD32(&mcan->MCANSS.MCAN.MCAN_CCCR, MCAN_CCCR_INIT, mode);
 }
 
-uint32_t DL_MCAN_getOpMode(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getOpMode(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_CCCR, MCAN_CCCR_INIT));
 }
@@ -753,7 +753,7 @@ int32_t DL_MCAN_TXBufAddReq(MCAN_Regs *mcan, uint32_t bufNum)
 }
 
 void DL_MCAN_getNewDataStatus(
-    MCAN_Regs *mcan, DL_MCAN_RxNewDataStatus *newDataStatus)
+    const MCAN_Regs *mcan, DL_MCAN_RxNewDataStatus *newDataStatus)
 {
     newDataStatus->statusLow  = HW_RD_REG32(&mcan->MCANSS.MCAN.MCAN_NDAT1);
     newDataStatus->statusHigh = HW_RD_REG32(&mcan->MCANSS.MCAN.MCAN_NDAT2);
@@ -766,8 +766,8 @@ void DL_MCAN_clearNewDataStatus(
     HW_WR_REG32(&mcan->MCANSS.MCAN.MCAN_NDAT2, newDataStatus->statusHigh);
 }
 
-void DL_MCAN_readMsgRam(MCAN_Regs *mcan, uint32_t memType, uint32_t bufNum,
-    uint32_t fifoNum, DL_MCAN_RxBufElement *elem)
+void DL_MCAN_readMsgRam(const MCAN_Regs *mcan, uint32_t memType,
+    uint32_t bufNum, uint32_t fifoNum, DL_MCAN_RxBufElement *elem)
 {
     uint32_t startAddr = 0U, elemSize = 0U, elemAddr = 0U;
     uint32_t enableMod = 0U, idx = 0U;
@@ -816,7 +816,7 @@ void DL_MCAN_readMsgRam(MCAN_Regs *mcan, uint32_t memType, uint32_t bufNum,
 }
 
 void DL_MCAN_readTxEventFIFO(
-    MCAN_Regs *mcan, DL_MCAN_TxEventFIFOElement *txEventElem)
+    const MCAN_Regs *mcan, DL_MCAN_TxEventFIFOElement *txEventElem)
 {
     uint32_t startAddr = 0U, elemSize = 0U, elemAddr = 0U;
     uint32_t idx = 0U, regVal;
@@ -927,7 +927,8 @@ void DL_MCAN_lpbkModeEnable(MCAN_Regs *mcan, uint32_t lpbkMode, bool enable)
     DL_MCAN_writeProtectedRegAccessLock(mcan);
 }
 
-void DL_MCAN_getErrCounters(MCAN_Regs *mcan, DL_MCAN_ErrCntStatus *errCounter)
+void DL_MCAN_getErrCounters(
+    const MCAN_Regs *mcan, DL_MCAN_ErrCntStatus *errCounter)
 {
     errCounter->canErrLogCnt =
         HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_ECR, MCAN_ECR_CEL);
@@ -940,7 +941,7 @@ void DL_MCAN_getErrCounters(MCAN_Regs *mcan, DL_MCAN_ErrCntStatus *errCounter)
 }
 
 void DL_MCAN_getProtocolStatus(
-    MCAN_Regs *mcan, DL_MCAN_ProtocolStatus *protStatus)
+    const MCAN_Regs *mcan, DL_MCAN_ProtocolStatus *protStatus)
 {
     uint32_t regVal;
 
@@ -989,7 +990,7 @@ void DL_MCAN_selectIntrLine(
     }
 }
 
-uint32_t DL_MCAN_getIntrLineSelectStatus(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getIntrLineSelectStatus(const MCAN_Regs *mcan)
 {
     return (HW_RD_REG32(&mcan->MCANSS.MCAN.MCAN_ILS));
 }
@@ -1005,7 +1006,7 @@ void DL_MCAN_enableIntrLine(MCAN_Regs *mcan, uint32_t lineNum, bool enable)
     HW_WR_REG32(&mcan->MCANSS.MCAN.MCAN_ILE, regVal);
 }
 
-uint32_t DL_MCAN_getIntrStatus(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getIntrStatus(const MCAN_Regs *mcan)
 {
     return (HW_RD_REG32(&mcan->MCANSS.MCAN.MCAN_IR));
 }
@@ -1019,7 +1020,7 @@ void DL_MCAN_clearIntrStatus(
 }
 
 void DL_MCAN_getHighPriorityMsgStatus(
-    MCAN_Regs *mcan, DL_MCAN_HighPriorityMsgInfo *hpm)
+    const MCAN_Regs *mcan, DL_MCAN_HighPriorityMsgInfo *hpm)
 {
     hpm->bufIdx = HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_HPMS, MCAN_HPMS_BIDX);
     hpm->msi    = HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_HPMS, MCAN_HPMS_MSI);
@@ -1029,7 +1030,8 @@ void DL_MCAN_getHighPriorityMsgStatus(
         HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_HPMS, MCAN_HPMS_FLST);
 }
 
-void DL_MCAN_getRxFIFOStatus(MCAN_Regs *mcan, DL_MCAN_RxFIFOStatus *fifoStatus)
+void DL_MCAN_getRxFIFOStatus(
+    const MCAN_Regs *mcan, DL_MCAN_RxFIFOStatus *fifoStatus)
 {
     uint32_t regVal;
 
@@ -1093,7 +1095,7 @@ int32_t DL_MCAN_writeRxFIFOAck(MCAN_Regs *mcan, uint32_t fifoNum, uint32_t idx)
 }
 
 void DL_MCAN_getTxFIFOQueStatus(
-    MCAN_Regs *mcan, DL_MCAN_TxFIFOStatus *fifoStatus)
+    const MCAN_Regs *mcan, DL_MCAN_TxFIFOStatus *fifoStatus)
 {
     uint32_t regVal;
 
@@ -1104,7 +1106,7 @@ void DL_MCAN_getTxFIFOQueStatus(
     fifoStatus->fifoFull = HW_GET_FIELD(regVal, MCAN_TXFQS_TFQF);
 }
 
-uint32_t DL_MCAN_getTxBufReqPend(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getTxBufReqPend(const MCAN_Regs *mcan)
 {
     return (HW_RD_REG32(&mcan->MCANSS.MCAN.MCAN_TXBRP));
 }
@@ -1133,12 +1135,12 @@ int32_t DL_MCAN_txBufCancellationReq(MCAN_Regs *mcan, uint32_t buffNum)
     return status;
 }
 
-uint32_t DL_MCAN_getTxBufTransmissionStatus(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getTxBufTransmissionStatus(const MCAN_Regs *mcan)
 {
     return (HW_RD_REG32(&mcan->MCANSS.MCAN.MCAN_TXBTO));
 }
 
-uint32_t DL_MCAN_txBufCancellationStatus(MCAN_Regs *mcan)
+uint32_t DL_MCAN_txBufCancellationStatus(const MCAN_Regs *mcan)
 {
     return (HW_RD_REG32(&mcan->MCANSS.MCAN.MCAN_TXBCF));
 }
@@ -1167,7 +1169,7 @@ int32_t DL_MCAN_TXBufTransIntrEnable(
 }
 
 int32_t DL_MCAN_getTxBufCancellationIntrEnable(
-    MCAN_Regs *mcan, uint32_t bufNum, bool enable)
+    const MCAN_Regs *mcan, uint32_t bufNum, bool enable)
 {
     int32_t status;
     uint32_t regVal;
@@ -1190,7 +1192,7 @@ int32_t DL_MCAN_getTxBufCancellationIntrEnable(
 }
 
 void DL_MCAN_getTxEventFIFOStatus(
-    MCAN_Regs *mcan, DL_MCAN_TxEventFIFOStatus *fifoStatus)
+    const MCAN_Regs *mcan, DL_MCAN_TxEventFIFOStatus *fifoStatus)
 {
     uint32_t regVal;
 
@@ -1381,7 +1383,7 @@ void DL_MCAN_eccEnableIntr(MCAN_Regs *mcan, uint32_t errType, bool enable)
     }
 }
 
-uint32_t DL_MCAN_eccGetIntrStatus(MCAN_Regs *mcan, uint32_t errType)
+uint32_t DL_MCAN_eccGetIntrStatus(const MCAN_Regs *mcan, uint32_t errType)
 {
     uint32_t retVal = 0U;
 
@@ -1453,7 +1455,7 @@ void DL_MCAN_extTSWriteEOI(MCAN_Regs *mcan)
         MCAN_EOI_EOI, 0x1U);
 }
 
-uint32_t DL_MCAN_extTSGetUnservicedIntrCount(MCAN_Regs *mcan)
+uint32_t DL_MCAN_extTSGetUnservicedIntrCount(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.TI_WRAPPER.PROCESSORS.MCANSS_REGS
                                .MCANSS_EXT_TS_UNSERVICED_INTR_CNTR,
@@ -1464,7 +1466,7 @@ uint32_t DL_MCAN_extTSGetUnservicedIntrCount(MCAN_Regs *mcan)
 /*                          Advance Functions                                 */
 /* ========================================================================== */
 
-void DL_MCAN_getRevisionId(MCAN_Regs *mcan, DL_MCAN_RevisionId *revId)
+void DL_MCAN_getRevisionId(const MCAN_Regs *mcan, DL_MCAN_RevisionId *revId)
 {
     uint32_t regVal;
 
@@ -1484,7 +1486,7 @@ void DL_MCAN_getRevisionId(MCAN_Regs *mcan, DL_MCAN_RevisionId *revId)
     revId->rel     = HW_GET_FIELD(regVal, MCAN_CREL_REL);
 }
 
-uint32_t DL_MCAN_getClockStopAck(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getClockStopAck(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_CCCR, MCAN_CCCR_CSR));
 }
@@ -1501,7 +1503,7 @@ void DL_MCAN_extTSClearRawStatus(MCAN_Regs *mcan)
         MCAN_ICS_EXT_TS_CNTR_OVFL, 1U);
 }
 
-uint32_t DL_MCAN_getRxPinState(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getRxPinState(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_TEST, MCAN_TEST_RX));
 }
@@ -1516,22 +1518,23 @@ void DL_MCAN_setTxPinState(MCAN_Regs *mcan, uint32_t state)
     DL_MCAN_writeProtectedRegAccessLock(mcan);
 }
 
-uint32_t DL_MCAN_getTxPinState(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getTxPinState(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_TEST, MCAN_TEST_TX));
 }
 
-uint32_t DL_MCAN_getTSCounterVal(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getTSCounterVal(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_TSCV, MCAN_TSCV_TSC));
 }
 
-uint32_t DL_MCAN_getClkStopAck(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getClkStopAck(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_CCCR, MCAN_CCCR_CSA));
 }
 
-void DL_MCAN_getBitTime(MCAN_Regs *mcan, DL_MCAN_BitTimingParams *configParams)
+void DL_MCAN_getBitTime(
+    const MCAN_Regs *mcan, DL_MCAN_BitTimingParams *configParams)
 {
     configParams->nomSynchJumpWidth =
         HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_NBTP, MCAN_NBTP_NSJW);
@@ -1557,13 +1560,13 @@ void DL_MCAN_resetTSCounter(MCAN_Regs *mcan)
     HW_WR_FIELD32(&mcan->MCANSS.MCAN.MCAN_TSCV, MCAN_TSCV_TSC, 0x0U);
 }
 
-uint32_t DL_MCAN_getTOCounterVal(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getTOCounterVal(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_TOCV, MCAN_TOCV_TOC));
 }
 
 void DL_MCAN_eccAggrGetRevisionId(
-    MCAN_Regs *mcan, DL_MCAN_ECCAggrRevisionId *revId)
+    const MCAN_Regs *mcan, DL_MCAN_ECCAggrRevisionId *revId)
 {
     uint32_t regVal;
 
@@ -1591,7 +1594,7 @@ void DL_MCAN_eccWrapGetRevisionId(
     revId->scheme = HW_GET_FIELD(regVal, MCAN_WRAP_REV_SCHEME);
 }
 
-bool DL_MCAN_extTSIsIntrEnable(MCAN_Regs *mcan)
+bool DL_MCAN_extTSIsIntrEnable(const MCAN_Regs *mcan)
 {
     bool status;
 
@@ -1606,12 +1609,12 @@ bool DL_MCAN_extTSIsIntrEnable(MCAN_Regs *mcan)
     return status;
 }
 
-uint32_t DL_MCAN_getEndianVal(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getEndianVal(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_ENDN, MCAN_ENDN_ETV));
 }
 
-uint32_t DL_MCAN_getExtIDANDMask(MCAN_Regs *mcan)
+uint32_t DL_MCAN_getExtIDANDMask(const MCAN_Regs *mcan)
 {
     return (HW_RD_FIELD32(&mcan->MCANSS.MCAN.MCAN_XIDAM, MCAN_XIDAM_EIDM));
 }
@@ -1789,7 +1792,8 @@ __STATIC_INLINE uint32_t HW_RD_FIELD32_RAW(
     return (regVal);
 }
 
-bool DL_MCAN_saveConfiguration(MCAN_Regs *mcan, DL_MCAN_backupConfig *ptr)
+bool DL_MCAN_saveConfiguration(
+    const MCAN_Regs *mcan, DL_MCAN_backupConfig *ptr)
 {
     bool saveState = !ptr->backupRdy;
     if (saveState) {

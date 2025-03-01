@@ -42,7 +42,7 @@ static void DL_AESADV_readData(
 static const uint32_t *DL_AESADV_checkAlignmentAndReturnConstPtr(
     const uint8_t *ptr);
 
-static uint32_t *DL_AESADV_checkAlignmentAndReturnPtr(uint8_t *ptr);
+static uint32_t *DL_AESADV_checkAlignmentAndReturnPtr(const uint8_t *ptr);
 
 DL_AESADV_STATUS DL_AESADV_setKey(
     AESADV_Regs *aesadv, const uint8_t *key, DL_AESADV_KEY_SIZE keySize)
@@ -186,7 +186,7 @@ void DL_AESADV_loadIntermediateTAGAligned(
 }
 
 DL_AESADV_STATUS DL_AESADV_loadInitializationVector(
-    AESADV_Regs *aesadv, uint8_t *iv)
+    AESADV_Regs *aesadv, const uint8_t *iv)
 {
     DL_AESADV_STATUS status = DL_AESADV_STATUS_SUCCESS;
     uint32_t *ivAligned;
@@ -201,7 +201,7 @@ DL_AESADV_STATUS DL_AESADV_loadInitializationVector(
 }
 
 void DL_AESADV_loadInitializationVectorAligned(
-    AESADV_Regs *aesadv, uint32_t *ivAligned)
+    AESADV_Regs *aesadv, const uint32_t *ivAligned)
 {
     uint8_t numWords = 4U;
 
@@ -211,7 +211,7 @@ void DL_AESADV_loadInitializationVectorAligned(
 }
 
 DL_AESADV_STATUS DL_AESADV_readInitializationVector(
-    AESADV_Regs *aesadv, uint8_t *iv)
+    AESADV_Regs *aesadv, const uint8_t *iv)
 {
     DL_AESADV_STATUS status = DL_AESADV_STATUS_SUCCESS;
     uint32_t *ivAligned;
@@ -271,7 +271,8 @@ void DL_AESADV_loadCCMNonceAndCounter(
     return;
 }
 
-DL_AESADV_STATUS DL_AESADV_loadInputData(AESADV_Regs *aesadv, uint8_t *data)
+DL_AESADV_STATUS DL_AESADV_loadInputData(
+    AESADV_Regs *aesadv, const uint8_t *data)
 {
     DL_AESADV_STATUS status = DL_AESADV_STATUS_SUCCESS;
     uint32_t *dataAligned;
@@ -285,7 +286,8 @@ DL_AESADV_STATUS DL_AESADV_loadInputData(AESADV_Regs *aesadv, uint8_t *data)
     return status;
 }
 
-void DL_AESADV_loadInputDataAligned(AESADV_Regs *aesadv, uint32_t *dataAligned)
+void DL_AESADV_loadInputDataAligned(
+    AESADV_Regs *aesadv, const uint32_t *dataAligned)
 {
     uint8_t numWords = 4U;
 
@@ -294,7 +296,8 @@ void DL_AESADV_loadInputDataAligned(AESADV_Regs *aesadv, uint32_t *dataAligned)
     return;
 }
 
-DL_AESADV_STATUS DL_AESADV_readOutputData(AESADV_Regs *aesadv, uint8_t *data)
+DL_AESADV_STATUS DL_AESADV_readOutputData(
+    const AESADV_Regs *aesadv, const uint8_t *data)
 {
     DL_AESADV_STATUS status = DL_AESADV_STATUS_SUCCESS;
     uint32_t *dataAligned;
@@ -309,7 +312,7 @@ DL_AESADV_STATUS DL_AESADV_readOutputData(AESADV_Regs *aesadv, uint8_t *data)
 }
 
 void DL_AESADV_readOutputDataAligned(
-    AESADV_Regs *aesadv, uint32_t *dataAligned)
+    const AESADV_Regs *aesadv, uint32_t *dataAligned)
 {
     uint8_t numWords = 4U;
 
@@ -318,7 +321,8 @@ void DL_AESADV_readOutputDataAligned(
     return;
 }
 
-DL_AESADV_STATUS DL_AESADV_readTAG(AESADV_Regs *aesadv, uint8_t *tag)
+DL_AESADV_STATUS DL_AESADV_readTAG(
+    const AESADV_Regs *aesadv, const uint8_t *tag)
 {
     DL_AESADV_STATUS status = DL_AESADV_STATUS_SUCCESS;
     uint32_t *tagAligned;
@@ -332,7 +336,7 @@ DL_AESADV_STATUS DL_AESADV_readTAG(AESADV_Regs *aesadv, uint8_t *tag)
     return status;
 }
 
-void DL_AESADV_readTAGAligned(AESADV_Regs *aesadv, uint32_t *tagAligned)
+void DL_AESADV_readTAGAligned(const AESADV_Regs *aesadv, uint32_t *tagAligned)
 {
     uint8_t numWords = 4U;
 
@@ -341,7 +345,7 @@ void DL_AESADV_readTAGAligned(AESADV_Regs *aesadv, uint32_t *tagAligned)
     return;
 }
 
-void DL_AESADV_initECB(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initECB(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     DL_Common_updateReg(&aesadv->CTRL,
         ((uint32_t) DL_AESADV_MODE_ECB | config->direction),
@@ -352,7 +356,7 @@ void DL_AESADV_initECB(AESADV_Regs *aesadv, DL_AESADV_Config *config)
     DL_AESADV_setLowerCryptoLength(aesadv, config->lowerCryptoLength);
 }
 
-void DL_AESADV_initCBC(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initCBC(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     DL_Common_updateReg(&aesadv->CTRL,
         ((uint32_t) DL_AESADV_MODE_CBC | config->direction),
@@ -365,7 +369,7 @@ void DL_AESADV_initCBC(AESADV_Regs *aesadv, DL_AESADV_Config *config)
     DL_AESADV_setLowerCryptoLength(aesadv, config->lowerCryptoLength);
 }
 
-void DL_AESADV_initCFB(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initCFB(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     DL_Common_updateReg(&aesadv->CTRL,
         (((uint32_t) DL_AESADV_MODE_CFB) | ((uint32_t) config->direction) |
@@ -379,7 +383,7 @@ void DL_AESADV_initCFB(AESADV_Regs *aesadv, DL_AESADV_Config *config)
     DL_AESADV_setLowerCryptoLength(aesadv, config->lowerCryptoLength);
 }
 
-void DL_AESADV_initOFB(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initOFB(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     DL_Common_updateReg(&aesadv->CTRL,
         (((uint32_t) DL_AESADV_MODE_OFB) | ((uint32_t) config->direction) |
@@ -393,7 +397,7 @@ void DL_AESADV_initOFB(AESADV_Regs *aesadv, DL_AESADV_Config *config)
     DL_AESADV_setLowerCryptoLength(aesadv, config->lowerCryptoLength);
 }
 
-void DL_AESADV_initCTR(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initCTR(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     DL_Common_updateReg(&aesadv->CTRL,
         (((uint32_t) DL_AESADV_MODE_CTR) | ((uint32_t) config->direction) |
@@ -407,7 +411,7 @@ void DL_AESADV_initCTR(AESADV_Regs *aesadv, DL_AESADV_Config *config)
     DL_AESADV_setLowerCryptoLength(aesadv, config->lowerCryptoLength);
 }
 
-void DL_AESADV_initICM(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initICM(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     DL_Common_updateReg(&aesadv->CTRL,
         ((uint32_t) DL_AESADV_MODE_ICM | ((uint32_t) config->direction)),
@@ -420,7 +424,7 @@ void DL_AESADV_initICM(AESADV_Regs *aesadv, DL_AESADV_Config *config)
     DL_AESADV_setLowerCryptoLength(aesadv, config->lowerCryptoLength);
 }
 
-void DL_AESADV_initCMAC(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initCMAC(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     uint32_t zeroArray[4] = {0x00000000, 0x00000000, 0x00000000, 0x00000000};
 
@@ -439,7 +443,7 @@ void DL_AESADV_initCMAC(AESADV_Regs *aesadv, DL_AESADV_Config *config)
     DL_AESADV_setLowerCryptoLength(aesadv, config->lowerCryptoLength);
 }
 
-void DL_AESADV_initCBCMAC(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initCBCMAC(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     uint32_t zeroArray[4] = {0x00000000, 0x00000000, 0x00000000, 0x00000000};
 
@@ -459,7 +463,7 @@ void DL_AESADV_initCBCMAC(AESADV_Regs *aesadv, DL_AESADV_Config *config)
     DL_AESADV_setLowerCryptoLength(aesadv, config->lowerCryptoLength);
 }
 
-void DL_AESADV_initGCM(AESADV_Regs *aesadv, DL_AESADV_Config *config)
+void DL_AESADV_initGCM(AESADV_Regs *aesadv, const DL_AESADV_Config *config)
 {
     uint32_t zeroArray[4] = {0x00000000, 0x00000000, 0x00000000, 0x00000000};
 
@@ -537,7 +541,7 @@ static const uint32_t *DL_AESADV_checkAlignmentAndReturnConstPtr(
     return alignedPtr;
 }
 
-static uint32_t *DL_AESADV_checkAlignmentAndReturnPtr(uint8_t *ptr)
+static uint32_t *DL_AESADV_checkAlignmentAndReturnPtr(const uint8_t *ptr)
 {
     uint32_t address = (uint32_t) ptr;
     uint32_t *alignedPtr;

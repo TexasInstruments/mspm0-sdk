@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -1647,7 +1647,7 @@ __STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Set the STOP mode power policy to STOP0. </p>
 <p>In STOP0, the SYSOSC is left running at the current frequency when entering STOP mode (either 32MHz, 24MHz, 16MHz, or 4MHz). ULPCLK is always limited to 4MHz automatically by hardware, but SYSOSC is not disturbed to support consistent operation of analog peripherals such as the ADC, OPA, or COMP.</p>
-<p>There are two STOP mode policy options: STOP0 and STOP2. Refer to the device TRM for more information on each policy.</p>
+<p>There are two STOP mode policy options: STOP0 and STOP2. STOP0 should only be entered from RUN0 or SLEEP0. Refer to the device TRM for more information on each policy.</p>
 <dl class="section post"><dt>Postcondition</dt><dd>This API does not actually enter STOP mode. After using this API to set the power policy, to enter STOP mode you must call <code>__WFI()</code> to wait for interrupts or <code>__WFE()</code> to wait for ARM events. <code>__WFI()</code> is used in interrupt-driven applications, and <code>__WFE()</code> is used for interactions between the interrupt handler and main application. </dd></dl>
 
 </div>
@@ -1670,7 +1670,7 @@ __STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Set the STOP mode power policy to STOP2. </p>
 <p>In STOP2, the SYSOSC is disabled and the ULPCLK is sourced from LFCLK at 32kHz. This is the lowest power state in STOP mode.</p>
-<p>There are two STOP mode policy options: STOP0 and STOP2. Refer to the device TRM for more information on each policy.</p>
+<p>There are two STOP mode policy options: STOP0 and STOP2. STOP2 should only be entered from RUN2 or SLEEP2. Refer to the device TRM for more information on each policy.</p>
 <dl class="section post"><dt>Postcondition</dt><dd>This API does not actually enter STOP mode. After using this API to set the power policy, to enter STOP mode you must call <code>__WFI()</code> to wait for interrupts or <code>__WFE()</code> to wait for ARM events. <code>__WFI()</code> is used in interrupt-driven applications, and <code>__WFE()</code> is used for interactions between the interrupt handler and main application. </dd></dl>
 
 <p>References <a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_c110_x.html#gaf40c9a9621190c006e48f4e2885b6be3">DL_SYSCTL_getPowerPolicySTOP()</a>.</p>
@@ -3496,7 +3496,7 @@ DL_SYSCTL_getMCLKFreq </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

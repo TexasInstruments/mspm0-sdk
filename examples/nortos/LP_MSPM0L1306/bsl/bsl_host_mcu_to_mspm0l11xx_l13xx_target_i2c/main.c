@@ -84,6 +84,7 @@ int main(void)
 #endif
 #ifdef Software_Invoke
                 Host_BSL_software_trigger();  //PLACE TARGET INTO BSL MODE by software invoke
+				//Note: need the application code(include software invoke) exist on the chip
                 delay_cycles(20000000);  //wait for target go into BSL
 #endif
                 bsl_err = Host_BSL_Connection();

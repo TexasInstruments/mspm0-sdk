@@ -5,7 +5,7 @@ include $(SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 AR = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-ar"
 
-NAME = mspm0l11xx_l13xx/gauge_l2_rts
+NAME = gauge_l2_rts
 
 OBJ_DIR = ../../../../obj/gcc/m0p/mspm0l11xx_l13xx/gauge_l2_rts
 SRC_DIR = ../../../../gauge_level2

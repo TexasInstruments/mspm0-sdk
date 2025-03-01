@@ -46,7 +46,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 SMBus Library User’s Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#smbus-library-supported-features">2. SMBus Library Supported Features</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#smbus-controller-supported-features">2.1 SMBus Controller Supported Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#smbus-target-supported-features">2.2 SMBus Target Supported Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#smbus-features-not-currently-implemented">2.3 SMBus Features Not Currently Implemented</a></li>
 </ul>
@@ -100,9 +99,7 @@
 </section>
 <section id="smbus-library-supported-features">
 <h2>2. SMBus Library Supported Features<a class="headerlink" href="#smbus-library-supported-features" title="Permalink to this heading">¶</a></h2>
-<p>This library was developed in compliance with the SMBus 3.2 specification.</p>
-<section id="smbus-controller-supported-features">
-<h3>2.1 SMBus Controller Supported Features<a class="headerlink" href="#smbus-controller-supported-features" title="Permalink to this heading">¶</a></h3>
+<p>This library was developed in compliance with the SMBus 3.2 specification. This library supports optional Address resolution Protocol and Host notification as two examples ### 2.1 SMBus Controller Supported Features</p>
 <ul class="simple">
 <li><p>Clock Timeout detection</p></li>
 <li><p>PEC</p></li>
@@ -114,9 +111,9 @@
 <li><p>Process call</p></li>
 <li><p>Block read/write (up to 255 bytes)</p></li>
 <li><p>Block write-block read process call (up to 255 bytes)</p></li>
+<li><p>Address Resolution protocol Commands</p></li>
 <li><p>Host notify protocol</p></li>
 </ul>
-</section>
 <section id="smbus-target-supported-features">
 <h3>2.2 SMBus Target Supported Features<a class="headerlink" href="#smbus-target-supported-features" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
@@ -139,7 +136,8 @@
 <p>The SMBus features listed below are supported in hardware but have not been implemented in this release:</p>
 <ul class="simple">
 <li><p>FastMode+ 1MHz operation</p></li>
-<li><p>Address resolution protocol</p></li>
+<li><p>Controller Side Full ARP state machine.</p></li>
+<li><p>Storing Persistent Target Address , AR , AV flags in Flash for ARP.</p></li>
 <li><p>SMBAlert#</p></li>
 <li><p>SMBSUS#</p></li>
 </ul>
@@ -147,18 +145,20 @@
 </section>
 <section id="smbus-example-usage">
 <h2>3. SMBus Example Usage<a class="headerlink" href="#smbus-example-usage" title="Permalink to this heading">¶</a></h2>
-<p>This software library contains 4 examples that demonstrate communication between a SMBus Controller and SMBus Target:</p>
+<p>This software library contains 6 examples that demonstrate communication between a SMBus Controller and SMBus Target:</p>
 <ul class="simple">
 <li><p>Target:</p>
 <ul>
 <li><p>smb_target00_all_protocols: shows the implementation of all basic SMBus protocols</p></li>
 <li><p>smbus_target_host_notify: shows implementation of host notify protocol</p></li>
+<li><p>smbus_target_ARP: demonstrates implementation of ARP State Machine on the SMBus stack as per SMBus 3.2 Specification</p></li>
 </ul>
 </li>
 <li><p>Controller:</p>
 <ul>
 <li><p>smb_controller00_all_protocols: shows the implementation of all basic SMBus protocols</p></li>
 <li><p>smbus_controller_host_notify: shows implementation of host notify protocol</p></li>
+<li><p>smbus_controller_ARP: shows basic commands to test the target side ARP implementation</p></li>
 </ul>
 </li>
 </ul>
@@ -168,6 +168,7 @@
 <ul class="simple">
 <li><p>LP-MSPM0L1306 LaunchPad evaluation boards</p></li>
 <li><p>LP-MSPM0G3507 LaunchPad evaluation boards</p></li>
+<li><p>LP-MSPM0G3519 LaunchPad evaluation boards</p></li>
 </ul>
 </section>
 </section>
@@ -510,6 +511,25 @@
 <section id="library-versions">
 <h2>6. Library Versions<a class="headerlink" href="#library-versions" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
+<li><p><strong>Version 2.01.00.00</strong></p>
+<ul>
+<li><p>SDK Release: 2.04.00.xx</p></li>
+<li><p>Updates:</p>
+<ul>
+<li><p>Added Support for Address Resolution protocol (ARP).</p></li>
+<li><p>Added two examples for Controller and Target demonstrating ARP functionality.</p></li>
+<li><p>Added complete ARP statemachine on the Target side with below commands</p>
+<ul>
+<li><p>Prepare for ARP.</p></li>
+<li><p>Device Reset.</p></li>
+<li><p>Get UDID (Direct &amp; General).</p></li>
+<li><p>Assign Address (Direct &amp; General).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p><strong>Version 2.00.00.00</strong></p>
 <ul>
 <li><p>SDK Release: 2.00.00.xx</p></li>

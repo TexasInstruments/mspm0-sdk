@@ -1,0 +1,118 @@
+MSPM0 Sensored FOC Software User's Guide
+========================================
+
+1. CCS Project setup
+--------------------
+
+1. Go to Import CCS Projects as shown below.
+
+   .. figure:: ./images/CCS_IMPORT.jpg
+      :alt: 
+
+2. Click Browse. Navigate to ``C:\ti\mspm0_sdk_<SDK_Version>\examples\nortos\[LAUNCHPAD]\motor_control_pmsm_sensored_foc``.
+3. Click Select Folder. Check the desired hardware board, and click Finish to import the project into your workspace.
+
+.. figure:: ./images/CCS_IMPORT_1.jpg
+   :alt: 
+
+Register Overview
+~~~~~~~~~~~~~~~~~
+
+The Sensored FOC Library is structured to be interfaced through Specific Registers, the Registers will be periodically parsed by the application interface to convert to the Sensored FOC algorithm variables. This helps users to have a clear interface to the motor control software via external communication.
+
+For using the Sensored FOC library the user need to use three registers namely UserCtrlRegs, UserInputRegs and UserStatusRegs. The Library exposes these registers through pointers.
+
+The pointers for 3 registers:
+
+-  pUserCtrlRegs
+
+   All the variables used for controlling the motor like speed input is present in this user controls structure
+
+-  pUserInputRegs
+
+   All the configurations like different startup modes etc are present in the User input registers
+
+-  pUserStatusRegs
+
+   Used for monitoring the algorithm status and algorithm variables
+
+Configuring the Project
+~~~~~~~~~~~~~~~~~~~~~~~
+
+For running the motor we first need to configure the userInputRegs with the correct parameters.
+
+There are 2 types of parameters present in the userInputRegs:
+
+-  System parameters
+
+   This sets the motor parameters, and hardware defined parameters like Current base value, Voltage base value .etc. The system parameters are present in pUserInputRegs→systemParams.
+
+-  Tuning parameters
+
+   All the other elements in the userInputRegs except systemParams are the tuning parameters. The tuning parameter helps to tune the motor to the desired performance. Refer to the Tuning Document `Tuning Document <https://www.ti.com/lit/pdf/slau948>`__ for further details on tuning specific motor for application use case.
+
+The Sensored FOC library initializes the input registers to a default value it is present in the setUserDefaultMotorParameters() function in ISR.c file. The default motor parameters are for `LVSERVOMTR <https://www.ti.com/tool/LVSERVOMTR>`__ motor available at ti.com .
+
+Refer to the Tuning Document for details on configurations.
+
+Starting the Project
+~~~~~~~~~~~~~~~~~~~~
+
+1. Connect the hardware and turn on the power supply. There should be no more than 50mA on the power supply.
+2. Click on the Build button.\ |image0| Project should build with no errors.
+3. Click on the Debug button. |image1|
+4. Open the Expressions window and add the following global structures pointers as below.
+
+-  pUserCtrlRegs
+
+-  pUserInputRegs
+
+-  pUserStatusRegs
+
+6. Press Play |image2| to start the code.
+7. Enable “Continuous Refresh” in the Expressions window. |image3|
+
+8. Refer to the `Tuning Document <https://www.ti.com/lit/pdf/slau948>`__ for spinning and tuning the motor.
+
+2. API Guide
+------------
+
+The Sensored FOC API guide provides a detailed description of files, variables, and APIs for the MSPM0 FOC motor control library
+
+-  `MSPM0G3507 Sensorless FOC API Guide <../../doxygen/mspm0g3507-doc-srcs-api-guide/html/index.html>`__
+-  `MSPM0G3519 Sensorless FOC API Guide <../../doxygen/mspm0g3519-doc-srcs-api-guide/html/index.html>`__
+
+3. Supported Devices
+--------------------
+
+DRV8316
+~~~~~~~
+
+Supported MSPM0 LaunchPads
+
+-  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__
+-  `LP-MSPM0G3519 <https://www.ti.com/tool/LP-MSPM0G3519>`__
+
+Links
+
+-  `SENSORED FOC - DRV8316 Gate Driver User Guide <drv8316/DRV8316_Hardware_User_Guide_CN.html>`__
+
+TIDA010251
+~~~~~~~~~~
+
+-  `TIDA010251 <https://www.ti.com/tool/TIDA-010251>`__
+
+Links
+
+-  `SENSORED FOC - TIDA010251 User Guide <tida010251/TIDA010251_Hardware_User_Guide_CN.html>`__
+
+5. Tuning Documentation
+-----------------------
+
+For tuning the motor for running FOC application please refer to `Hall SENSORED FOC Guide <https://www.ti.com/lit/pdf/slau948>`__
+
+.. |image0| image:: images/CCS_BUILD.jpg
+.. |image1| image:: images/CCS_DEBUG.jpg
+.. |image2| image:: images/CCS_PLAY.jpg
+.. |image3| image:: images/CCS_REFRESH.jpg
+

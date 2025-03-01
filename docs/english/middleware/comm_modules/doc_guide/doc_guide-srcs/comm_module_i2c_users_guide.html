@@ -72,6 +72,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#acknowledge-response">6. Acknowledge Response</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="comm_module_uart_users_guide.html">MSPM0 Communication Modules - UART User Guide</a></li>
@@ -324,11 +325,19 @@
 <p><span class="caption-number">Fig. 13 </span><span class="caption-text">Response for 32bit Read</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p><img alt="Controller side Expressions" src="../_images/I2C_EG_32_READ_AFTER_CMD.jpg" /> ## 6. Acknowledge Response</p>
-<p>For a successful write operation, Acknowledgement(0xAC by default, can be modified by setting ACK_WRITE) is sent in the response.</p>
+<figure class="align-default" id="id15">
+<img alt="Controller side Expressions" src="../_images/I2C_EG_32_READ_AFTER_CMD.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Controller side Expressions</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="acknowledge-response">
+<h2>6. Acknowledge Response<a class="headerlink" href="#acknowledge-response" title="Permalink to this heading">¶</a></h2>
+<p>For a successful write operation, Acknowledgement (0xAC by default, can be modified by setting ACK_WRITE) is sent in the response.</p>
 <p>For an Erroneous operation, Appropriate Error code (can be modified by setting ErrorType enum) is sent in the response.</p>
-</section>
-</section>
 </section>
 </section>
 

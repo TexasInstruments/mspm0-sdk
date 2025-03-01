@@ -68,11 +68,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../gpio_toggle_output_cpp.cpp" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../gpio_toggle_output_cpp.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../gpio_toggle_output_cpp.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

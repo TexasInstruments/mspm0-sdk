@@ -409,7 +409,7 @@ function filterHardware(component)
         intController                       : [],
 
     };
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile1 = {...configProfile1, ...defaultDMAConfig};
     };
     let configProfile2 = {
@@ -431,7 +431,7 @@ function filterHardware(component)
         advTargetTXEmptyEn                  : false,
         intController                       : [],
     };
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile2 = {...configProfile2, ...defaultDMAConfig};
     };
     let configProfile3 = {
@@ -462,7 +462,7 @@ function filterHardware(component)
         advTargetTXEmptyEn                  : false,
         intController                       : [],
     };
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile3 = {...configProfile3, ...defaultDMAConfig};
     };
 const profilesI2C = [

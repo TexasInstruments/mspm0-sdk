@@ -1,0 +1,33 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const i2cSMBUS      = scripting.addModule("/ti/driverlib/i2cSMBUS", {}, false);
+const i2cSMBUS1     = i2cSMBUS.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+i2cSMBUS1.basicEnableController             = true;
+i2cSMBUS1.$name                             = "SMB_I2C";
+i2cSMBUS1.enableTimeoutA                    = true;
+i2cSMBUS1.intGeneric                        = ["TIMEOUT_A"];
+i2cSMBUS1.enableControllerPEC               = true;
+i2cSMBUS1.intController                     = ["ARBITRATION_LOST","NACK","PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_TRIGGER"];
+i2cSMBUS1.timeoutACount                     = 135;
+i2cSMBUS1.peripheral.$assign                = "I2C1";
+i2cSMBUS1.peripheral.sdaPin.$assign         = "PB3";
+i2cSMBUS1.peripheral.sclPin.$assign         = "PB2";
+
+ProjectConfig.genLibSMBUS = true;
+

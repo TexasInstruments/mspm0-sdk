@@ -68,7 +68,7 @@
             <RepFail>1</RepFail>
             <useFile>0</useFile>
             <ScatterFile>./mspm0l1117.sct</ScatterFile>
-            <Misc>../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0l111x/driverlib.a ../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0h321x/driverlib.a</Misc>
+            <Misc>../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0l111x/driverlib.a</Misc>
           </LDads>
         </TargetArmAds>
       </TargetOption>
@@ -307,6 +307,11 @@
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.h</FilePath>
             </File>
             <File>
+              <FileName>dl_sysctl_mspm0h321x.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0h321x.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_sysctl_mspm0l111x.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l111x.h</FilePath>
@@ -342,6 +347,11 @@
               <FilePath>../ti/driverlib/dl_common.c</FilePath>
             </File>
             <File>
+              <FileName>dl_comp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_comp.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_crc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_crc.c</FilePath>
@@ -367,9 +377,24 @@
               <FilePath>../ti/driverlib/dl_flashctl.c</FilePath>
             </File>
             <File>
+              <FileName>dl_gpamp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_gpamp.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_gpio.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_iwdt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_iwdt.c</FilePath>
             </File>
             <File>
               <FileName>dl_keystorectl.c</FileName>
@@ -402,9 +427,29 @@
               <FilePath>../ti/driverlib/dl_opa.c</FilePath>
             </File>
             <File>
+              <FileName>dl_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_rtc_a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_rtc_a.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_rtc_b.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_rtc_b.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_rtc_common.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_rtc_common.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_scratchpad.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_scratchpad.c</FilePath>
             </File>
             <File>
               <FileName>dl_spi.c</FileName>
@@ -412,9 +457,24 @@
               <FilePath>../ti/driverlib/dl_spi.c</FilePath>
             </File>
             <File>
+              <FileName>dl_tamperio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_tamperio.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_timera.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_timera.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_timerg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_timerg.c</FilePath>
             </File>
             <File>
               <FileName>dl_trng.c</FileName>
@@ -430,6 +490,11 @@
               <FileName>dl_vref.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_vref.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_wwdt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_wwdt.c</FilePath>
             </File>
             <File>
               <FileName>dl_factoryregion.c</FileName>
@@ -455,6 +520,11 @@
               <FileName>dl_sysctl_mspm0gx51x.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0h321x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0h321x.c</FilePath>
             </File>
             <File>
               <FileName>dl_sysctl_mspm0l111x.c</FileName>

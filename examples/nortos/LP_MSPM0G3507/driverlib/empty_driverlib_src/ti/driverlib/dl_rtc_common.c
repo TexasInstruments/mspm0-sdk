@@ -71,7 +71,8 @@ void DL_RTC_Common_initCalendar(RTC_Regs *rtc_common,
     }
 }
 
-DL_RTC_Common_Calendar DL_RTC_Common_getCalendarTime(RTC_Regs *rtc_common)
+DL_RTC_Common_Calendar DL_RTC_Common_getCalendarTime(
+    const RTC_Regs *rtc_common)
 {
     DL_RTC_Common_Calendar calendarTime;
     DL_RTC_COMMON_FORMAT format;
@@ -128,7 +129,7 @@ void DL_RTC_Common_setCalendarAlarm1(
 }
 
 DL_RTC_Common_CalendarAlarm DL_RTC_Common_getCalendarAlarm1(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     DL_RTC_Common_CalendarAlarm alarmTime;
     DL_RTC_COMMON_FORMAT format;
@@ -214,7 +215,7 @@ void DL_RTC_Common_setCalendarAlarm2(
 }
 
 DL_RTC_Common_CalendarAlarm DL_RTC_Common_getCalendarAlarm2(
-    RTC_Regs *rtc_common)
+    const RTC_Regs *rtc_common)
 {
     DL_RTC_Common_CalendarAlarm alarmTime;
     DL_RTC_COMMON_FORMAT format;

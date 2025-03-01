@@ -93,6 +93,8 @@ interface (UART or I2C).
     templates: {
         "/ti/driverlib/nonmain/NonMain.c.xdt" : true,
         "/ti/driverlib/nonmain/NonMain.h.xdt" : true,
+        /* Commented out. File currently only for debugging purposes */
+        // "/ti/driverlib/templates/nonmainCRCOutput.txt.xdt" : true,
     },
 
     _getPinResources: _getPinResources // Ignore

@@ -61,14 +61,14 @@ else if(["MSPM0G310X"].includes(Common.getDeviceName())){
     MasterOrder = [
         "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "AES", "CRC", "RTC", "TRNG", "SYSTICK", "WWDT", "MATHACL", "MCAN"
+        "GPIO", "AES", "CRC", "RTC", "TRNG", "SYSTICK", "WWDT", "MCAN"
     ];
 }
 else if(["MSPM0G110X"].includes(Common.getDeviceName())){
     MasterOrder = [
         "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE",  "TIMER", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "VREF", "GPAMP", "EVENT", "DMA",
-        "GPIO", "CRC", "RTC", "SYSTICK", "WWDT", "MATHACL"
+        "GPIO", "CRC", "RTC", "SYSTICK", "WWDT",
     ];
 }
 /* MSPM0L Series-Specific Option */
@@ -143,6 +143,15 @@ else if(["MSPM0H321X"].includes(Common.getDeviceName())){
         "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT",
     ];
 }
+/* MSPM0C1105_C1106 specific options */
+else if(["MSPM0C1105_C1106"].includes(Common.getDeviceName())){
+    MasterOrder = [
+        "SYSCTL", "BEEPER", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
+        "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT",
+    ];
+}
+
 
 
 /* master sorted template list of modules */
@@ -484,7 +493,17 @@ Any conflicting configurations will be overriden by these settings.`,
                 name: "genResourceCSV",
                 displayName: "Generate Resource Usage CSV",
                 description: "Generate Resource Usage CSV",
-                longDescription: ``,
+                longDescription:
+`Enabling this option generates a CSV file that summarizes the resource
+utilization of the current user-configuration.\nThis list includes a list of
+utilized pins sorted by Pin Number, detailing: \n* Device Pin Name \n* IO Type\n
+* Assigned Peripheral\n* Assigned Function\n* User Label\n* All Pin Functions
+(optional)\n\nSummary of peripheral resource usage percentage is also provided -
+this includes a list of the individual peripheral hardware resources used in the
+ current configuration alongside a count of how many are being used in
+comparison to the max available resources.\nUser can find the report on the
+*Generated Files* tab as *"resourceUsageReport.csv"*
+`,
                 default: false,
                 onChange: (inst,ui) =>{
                     ui.genResourceCSVAdvanced.hidden = !inst.genResourceCSV;

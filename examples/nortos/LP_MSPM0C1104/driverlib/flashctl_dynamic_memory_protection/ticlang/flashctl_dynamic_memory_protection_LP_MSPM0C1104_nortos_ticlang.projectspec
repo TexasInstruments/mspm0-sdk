@@ -54,11 +54,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../flashctl_dynamic_memory_protection.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../flashctl_dynamic_memory_protection.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../flashctl_dynamic_memory_protection.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

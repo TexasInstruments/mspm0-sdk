@@ -49,6 +49,21 @@ function _getPinResources(inst)
     return "";
 }
 
+
+function getTimerClockSourceOptions(inst) {
+    let TimerClockSourceOptions = [];
+    TimerClockSourceOptions = [
+        { name: "BUSCLK", displayName: "BUSCLK" },
+        { name: "MFCLK", displayName: "MFCLK" },
+        { name: "LFCLK", displayName: "LFCLK" },
+    ];
+    if (Common.isTimerA2XBUSCLKSupported() && (inst.peripheral.$solution.peripheralName.match(/TIMA0/))){
+        TimerClockSourceOptions.unshift({ name: "2X_BUSCLK", displayName: "2x BUSCLK" });
+    }
+
+    return TimerClockSourceOptions;
+}
+
 const pwmFilterElementsUsed = ["deadBandEn", "ccIndex", "faultHandlerEn", "clockPrescale"];
 
 const memoizedPWMFilter = _.memoize(curryPWMFilter,
@@ -533,6 +548,11 @@ function validate(inst, validation)
 function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
+
+    if ((inst.clockSource == "2X_BUSCLK") && (solution.match(/TIMA0/) == null)){
+        validation.logError("2x BUSCLK is not supported for timer instances outside of TIMA. Please select a different timer instance", inst, "clockSource");
+    }
+
     if(Common.hasTimerA()){
         if(inst.enableRepeatCounter){
             if(!(/TIMA/.test(solution))){
@@ -1064,6 +1084,9 @@ function getTimerClockSourceFreq(inst) {
    switch (inst.clockSource){
        case "BUSCLK":
             timerClockFreq = Common.getBUSCLKFreq(inst, "GPTIMER");
+        break;
+        case "2X_BUSCLK":
+            timerClockFreq = (Common.getBUSCLKFreq(inst, "GPTIMER") * 2);
         break;
         case "MFCLK":
             timerClockFreq = system.modules["/ti/driverlib/SYSCTL"].$static.MFCLK_Freq;
@@ -2418,11 +2441,7 @@ The Quick Profile Options are:
                             longDescription:`The frequency of the clock sources are configured
                             by the clock modules.`,
                             default: "BUSCLK",
-                            options: [
-                                { name: "BUSCLK", displayName: "BUSCLK" },
-                                { name: "MFCLK", displayName: "MFCLK" },
-                                { name: "LFCLK", displayName: "LFCLK" },
-                            ],
+                            options: (inst) => getTimerClockSourceOptions(inst),
                             onChange: onChangeCLK
                         },
                         {
@@ -2433,6 +2452,8 @@ The Quick Profile Options are:
                                 switch(inst.clockSource){
                                     case "BUSCLK":
                                         return Common.getBUSCLKFreq(inst, "GPTIMER");
+                                    case "2X_BUSCLK":
+                                        return (Common.getBUSCLKFreq(inst, "GPTIMER") * 2);
                                     case "MFCLK":
                                         return system.modules["/ti/driverlib/SYSCTL"].$static.MFCLK_Freq;
                                     case "LFCLK":

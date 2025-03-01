@@ -1102,6 +1102,26 @@ typedef DL_UART_ClockConfig                           DL_UART_Main_ClockConfig;
 #define DL_UART_Main_clearDMATransmitEventStatus                              \
                                             DL_UART_clearDMATransmitEventStatus
 
+/*!
+ * @brief Redirects to common @ref DL_UART_setAddressMask
+ */
+#define DL_UART_Main_setAddressMask                    DL_UART_setAddressMask
+
+/*!
+ * @brief Redirects to common @ref DL_UART_getAddressMask
+ */
+#define DL_UART_Main_getAddressMask                    DL_UART_getAddressMask
+
+/*!
+ * @brief Redirects to common @ref DL_UART_setAddress
+ */
+#define DL_UART_Main_setAddress                            DL_UART_setAddress
+
+/*!
+ * @brief Redirects to common @ref DL_UART_getAddress
+ */
+#define DL_UART_Main_getAddress                            DL_UART_getAddress
+
 /* clang-format on */
 
 #ifdef __cplusplus

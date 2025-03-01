@@ -52,6 +52,10 @@ void SMBus_processDone(SMBus *smbus)
             }
             else
             {
+                if(smbus->arpStatus.arpInProgress)
+                {
+                    smbus->arpStatus.arpInProgress = 0;
+                }
                 SMBus_PHY_targetManualACK(smbus,  false);
             }
         }
@@ -532,4 +536,449 @@ void SMBus_controllerDisableHostNotify(SMBus *smbus)
     SMBus_NWK_controllerDisableHostNotify(smbus);
     SMBus_PHY_controllerDisableHostNotify(smbus);
     smbus->ctrl.bits.hostNotifyEn = 0;
+}
+uint8_t SMBus_targetGetAddress(SMBus *smbus)
+{
+    // Return new Target Address
+    return(smbus->ownTargetAddr);
+}
+
+
+void SMBusARPAssignAddress(SMBus *smbus)
+{
+    smbus->ownTargetAddr = smbus->nwk.rxBuffPtr[smbus->nwk.rxIndex -2] >> 1;
+
+    smbus->arpStatus.arpAddResolved = 1;
+    smbus->arpStatus.arpAddressValid = 1;
+    /* Update the device's new Target Own Address from the Target through ARP */
+    SMBus_Phy_ARP_TARGET_ADDR_Reset(smbus);
+}
+
+int8_t SMBusARPUDIDByteValidate(SMBus *smbus)
+{
+    smbus->arpStatus.arpRxData = smbus->nwk.rxBuffPtr[(smbus->nwk.rxIndex-1)];
+    tSMBusUDID *pUDID = smbus->nwk.pUDID;
+   switch((smbus->nwk.rxIndex - 1))
+   {
+       /* Length of the Bytes*/
+       case 0x01:
+           if(smbus->arpStatus.arpRxData != SMBUS_ARP_UDID_LEN)
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x02:
+           if(smbus->arpStatus.arpRxData != ((pUDID->ui8DeviceCapabilities) & 0xFF))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x03:
+           if(smbus->arpStatus.arpRxData != ((pUDID->ui8Version) & 0xFF))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+          break;
+       case 0x04:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)((pUDID->ui16VendorID & 0xff00) >> 8)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x05:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)(pUDID->ui16VendorID & 0x00ff)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x06:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)((pUDID->ui16DeviceID & 0xff00) >> 8)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+          break;
+       case 0x07:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)(pUDID->ui16DeviceID & 0x00ff)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x08:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)((pUDID->ui16Interface & 0xff00) >> 8)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x09:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)(pUDID->ui16Interface & 0x00ff)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+          break;
+       case 0x0A:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)((pUDID->ui16SubSystemVendorID & 0xff00) >> 8)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x0B:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)(pUDID->ui16SubSystemVendorID & 0x00ff)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x0C:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)((pUDID->ui16SubSystemDeviceID & 0xff00) >> 8)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+          break;
+       case 0x0D:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)(pUDID->ui16SubSystemDeviceID & 0x00ff)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x0E:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)((pUDID->ui32VendorSpecificID & 0xff000000) >>
+                   24)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+          break;
+       case 0x0F:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)((pUDID->ui32VendorSpecificID & 0x00ff0000) >>
+                   16)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x10:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)((pUDID->ui32VendorSpecificID & 0x0000ff00) >>
+                   8)))
+
+           {
+              return(SMBUS_RET_ERROR);
+           }
+           break;
+       case 0x11:
+           if(smbus->arpStatus.arpRxData != ((uint8_t)(pUDID->ui32VendorSpecificID & 0x000000ff)))
+           {
+               return(SMBUS_RET_ERROR);
+           }
+          break;
+      /* Wait for the command completion to acknowledge the Target Address */
+       default:
+          break;
+   }
+   return(SMBUS_RET_OK_FIXED);
+}
+
+void SMBusARPGetUDIDPacketDirect(SMBus *smbus)
+{
+    tSMBusUDID *pUDID = smbus->nwk.pUDID;
+    //
+    // Place data from the UDID structure and address into the data buffer
+    // using the correct MSB->LSB + address order.
+    //
+    smbus->nwk.txBuffPtr[0] = SMBUS_ARP_UDID_LEN;
+
+    smbus->nwk.txBuffPtr[1] = pUDID->ui8DeviceCapabilities;
+    smbus->nwk.txBuffPtr[2] = pUDID->ui8Version;
+    smbus->nwk.txBuffPtr[3] = (uint8_t)((pUDID->ui16VendorID & 0xff00) >> 8);
+    smbus->nwk.txBuffPtr[4] = (uint8_t)(pUDID->ui16VendorID & 0x00ff);
+    smbus->nwk.txBuffPtr[5] = (uint8_t)((pUDID->ui16DeviceID & 0xff00) >> 8);
+    smbus->nwk.txBuffPtr[6] = (uint8_t)(pUDID->ui16DeviceID & 0x00ff);
+    smbus->nwk.txBuffPtr[7] = (uint8_t)((pUDID->ui16Interface & 0xff00) >> 8);
+    smbus->nwk.txBuffPtr[8] = (uint8_t)(pUDID->ui16Interface & 0x00ff);
+    smbus->nwk.txBuffPtr[9] = (uint8_t)((pUDID->ui16SubSystemVendorID & 0xff00) >> 8);
+    smbus->nwk.txBuffPtr[10] = (uint8_t)(pUDID->ui16SubSystemVendorID & 0x00ff);
+    smbus->nwk.txBuffPtr[11] = (uint8_t)((pUDID->ui16SubSystemDeviceID & 0xff00) >> 8);
+    smbus->nwk.txBuffPtr[12] = (uint8_t)(pUDID->ui16SubSystemDeviceID & 0x00ff);
+    smbus->nwk.txBuffPtr[13] = (uint8_t)((pUDID->ui32VendorSpecificID & 0xff000000) >>
+                            24);
+    smbus->nwk.txBuffPtr[14] = (uint8_t)((pUDID->ui32VendorSpecificID & 0x00ff0000) >>
+                             16);
+    smbus->nwk.txBuffPtr[15] = (uint8_t)((pUDID->ui32VendorSpecificID & 0x0000ff00) >>
+                             8);
+    smbus->nwk.txBuffPtr[16] = (uint8_t)(pUDID->ui32VendorSpecificID & 0x000000ff);
+
+    /* If SMBus has Valid Address, send the DTA/PTA */
+    if(smbus->arpStatus.arpAddressValid)
+        smbus->nwk.txBuffPtr[17] = (smbus->ownTargetAddr << 1) | 0x01;
+    /* if the AV Flag is cleared , Send 0x7F for the Address and 1b at LSB*/
+    else
+        smbus->nwk.txBuffPtr[17] = (0x7F << 1) | 0x01; //
+
+    // Number of bytes to send (including LEN)
+    smbus->nwk.txLen = (17 + 1);
+}
+
+void SMBusARPGetUDIDPacket(SMBus *smbus)
+{
+    /* If the Address of the target is already resolved and UDID Command is
+    * acked from a different Target, Send 0xff to create arbitration loss
+    * for resolved Target
+    * */
+    if(smbus->arpStatus.arpAddResolved == 1)
+    {
+        smbus->nwk.txBuffPtr[0] = RESPONSE_NTR;
+        smbus->nwk.txLen = 1;
+    }
+    else
+    {
+        SMBusARPGetUDIDPacketDirect(smbus);
+    }
+
+}
+
+void SMBusARP_RESET(SMBus *smbus)
+{
+    volatile uint8_t addressType = (smbus->nwk.pUDID->ui8DeviceCapabilities & 0xC0) >> 6;
+
+    switch(addressType)
+    {
+        //Default Address Mode
+        case 0x00:
+            smbus->arpStatus.arpAddResolved = 0x00;
+            smbus->arpStatus.arpAddressValid = 0x01;
+            smbus->ownTargetAddr =  SMBUS_TARGET_OWN_ADDRESS;
+            break;
+        // Persistent Target Address (Non- Volatile)
+        case 0x01:
+            smbus->arpStatus.arpAddResolved = 0x00;
+            smbus->arpStatus.arpAddressValid  = ARP_ADD_VALID;
+            // TOD0: Update Target Address from NVM
+            smbus->ownTargetAddr =  SMBUS_TARGET_OWN_ADDRESS;
+            break;
+        // Volatile Target Address
+        case 0x02:
+            smbus->arpStatus.arpAddResolved = 0x00;
+            smbus->arpStatus.arpAddressValid    = 0x00;
+
+            break;
+        // Random Number
+        case 0x03:
+            smbus->arpStatus.arpAddResolved = 0x00;
+            smbus->arpStatus.arpAddressValid    = 0x00;
+            // TODO: Generate Random UDID and call SMBusARPUDIDPacketDecode()
+            break;
+    }
+    SMBus_Phy_ARP_TARGET_ADDR_Reset(smbus);
+}
+
+void
+SMBusARPUDIDPacketDecode(tSMBusUDID *pUDID, uint8_t *pui8Data)
+{
+    //
+    // Populate the UDID structure with data from the input data buffer.
+    //
+    pUDID->ui8DeviceCapabilities = pui8Data[0];
+    pUDID->ui8Version = pui8Data[1];
+    pUDID->ui16VendorID = (uint16_t)((pui8Data[2] << 8) | pui8Data[3]);
+    pUDID->ui16DeviceID = (uint16_t)((pui8Data[4] << 8) | pui8Data[5]);
+    pUDID->ui16Interface = (uint16_t)((pui8Data[6] << 8) | pui8Data[7]);
+    pUDID->ui16SubSystemVendorID = (uint16_t)((pui8Data[8] << 8) |
+                                              pui8Data[9]);
+    pUDID->ui16SubSystemDeviceID = (uint16_t)((pui8Data[10] << 8) |
+                                              pui8Data[11]);
+    pUDID->ui32VendorSpecificID = (uint32_t)((pui8Data[12] << 24) |
+                                             (pui8Data[13] << 16) |
+                                             (pui8Data[14] << 8) |
+                                             pui8Data[15]);
+}
+
+
+uint8_t SMBus_targetGetARPInProgress(SMBus *smbus)
+{
+    return(smbus->arpStatus.arpInProgress);
+}
+
+uint8_t SMBus_targetGetARStatus(SMBus *smbus)
+{
+    return (smbus->arpStatus.arpAddResolved);
+}
+
+void SMBus_targetSetARStatus(SMBus *smbus , uint8_t val)
+{
+    smbus->arpStatus.arpAddResolved = val;
+}
+
+void SMBus_targetSetAVStatus(SMBus *smbus, uint8_t val)
+{
+    smbus->arpStatus.arpAddressValid = val;
+}
+
+uint8_t SMBus_targetGetAVStatus(SMBus *smbus)
+{
+    return (smbus->arpStatus.arpAddressValid);
+}
+
+uint8_t SMBus_targetGetAddressDirect(SMBus *smbus)
+{
+    return ((smbus->nwk.currentCmd & 0xFE) >> 1);
+}
+
+uint8_t SMBus_targetGetDirectCmd(SMBus *smbus)
+{
+    return (smbus->nwk.currentCmd & 0x01);
+}
+
+int8_t ARP_isCmdValid(SMBus *smbus)
+{
+    /* Read the First Byte of the command */
+    smbus->arpStatus.arpCommand = SMBus_targetGetCommand(smbus);
+
+    /* Valid ARP Transaction only starts with a Write Bit - Read transaction for Target*/
+    if(SMBus_Phy_ARP_Get_Write_Status(smbus))
+    {
+        /* Validate the First Command from the SMBus Packet, Valid ARP Transaction only starts with Write Bit */
+        smbus->arpStatus.arpUDIDTransmit = 0;
+        switch(smbus->arpStatus.arpCommand)
+        {
+            /* General Prepare ARP command */
+            case SMBUS_CMD_PREPARE_TO_ARP:
+                /* Always ACK irrespective of Flags */
+                smbus->arpStatus.arpDataLength = 0;
+                break;
+            /* General ARP Reset Command */
+            case SMBUS_CMD_ARP_RESET_DEVICE:
+                /* Always ACK irrespective of Flags */
+                smbus->arpStatus.arpDataLength = 0;
+                break;
+            /* General GET UDID command */
+            case SMBUS_CMD_ARP_GET_UDID:
+
+                /* If the Address is already resolved for the given Address
+                 * Send NACK for General UDID Call
+                */
+                if(SMBus_targetGetARStatus(smbus))
+                {
+                    smbus->arpStatus.arpUDIDNacked = 1;
+                    ARP_invalidCMD(smbus);
+                }
+                else
+                {
+                    smbus->arpStatus.arpUDIDTransmit = 1;
+                }
+                smbus->arpStatus.arpDataLength = 0;
+                break;
+            /* General Assign Address Command */
+            case SMBUS_CMD_ARP_ASSIGN_ADDRESS:
+                smbus->nwk.pecBlockLenOverride = 1;
+                /* SMBUS UDID Address length = 17 (0x11) */
+                smbus->arpStatus.arpDataLength = SMBUS_ARP_UDID_LEN;
+                /* Always ACK irrespective of Flags */
+                break;
+            default:
+                /* Direct Address Handling */
+                if(SMBus_targetGetAddressDirect(smbus) == SMBus_targetGetAddress(smbus))
+                {
+                    // If the Target AV Status is not set and Its a directed Command, Its an illegal Command
+                    if(!SMBus_targetGetAVStatus(smbus))
+                    {
+                        smbus->arpStatus.arpUDIDNacked = 1;
+                        ARP_invalidCMD(smbus);
+                    }
+                    else if(SMBus_targetGetDirectCmd(smbus))
+                    {
+                        smbus->arpStatus.arpUDIDTransmit = 1;
+                    }
+                    smbus->arpStatus.arpDataLength = 0;
+                }
+                /* If Valid Command is not received, return error */
+                else
+                {
+                    ARP_invalidCMD(smbus);
+                }
+                break;
+        }
+    }
+
+    /* All the ARP Command Responses are of Fixed Length */
+    /* At the End of the State, an ACK will be sent by the Target
+     * if the Return State is Fixed / Block*/
+    return(SMBUS_RET_OK_FIXED);
+}
+
+
+int8_t ARP_UDIDValidate(SMBus *smbus)
+{
+    if(smbus->arpStatus.arpCommand == SMBUS_CMD_ARP_ASSIGN_ADDRESS)
+    {
+        return(SMBusARPUDIDByteValidate(smbus));
+    }
+    return(SMBUS_RET_OK_FIXED);
+}
+
+void  ARP_invalidCMD(SMBus *smbus)
+{
+    smbus->arpStatus.errorState = SMBus_State_Invalid_ARP_Cmd;
+    smbus->arpStatus.arpInProgress = 0;
+
+    /* send the NACK from the Target */
+    SMBus_PHY_targetManualACK(smbus,  false);
+    smbus->phy.SMBus_Phy_AckPending = false;
+
+    /* Initiate the Buffer with NTR Packet In case of Multi Target System */
+    smbus->nwk.pecBlockLenOverride = 1;
+    smbus->arpStatus.arpDataLength = SMBUS_ARP_UDID_LEN;
+    smbus->nwk.txBuffPtr[0] = RESPONSE_NTR;
+    SMBus_targetReportLength(smbus, smbus->arpStatus.arpDataLength);
+
+}
+
+int8_t ARP_CmdComplete(SMBus *smbus)
+{
+    /* After the Stop Byte Reset the ARP Status */
+    smbus->arpStatus.arpInProgress = 0;
+    /* Evaluate the Command from the SMBus Packet to Process ARP */
+    switch(smbus->arpStatus.arpCommand)
+    {
+        /* Prepare ARP command */
+        case SMBUS_CMD_PREPARE_TO_ARP:
+            /* Always ACK irrespective of Flags */
+            SMBus_targetSetARStatus(smbus, 0);
+            //TODO: Suspend Notify Host Function
+            break;
+        /* General ARP Reset Command */
+        case SMBUS_CMD_ARP_RESET_DEVICE:
+            SMBusARP_RESET(smbus);
+            /* Always ACK irrespective of Flags */
+            break;
+        /* General GET UDID command */
+        case SMBUS_CMD_ARP_GET_UDID:
+            SMBusARPGetUDIDPacket(smbus);
+            break;
+        /* General Assign Address Command */
+        case SMBUS_CMD_ARP_ASSIGN_ADDRESS:
+            SMBusARPAssignAddress(smbus);
+            /* Always ACK irrespective of Flags */
+            break;
+        default:
+            /* Direct Address Handling */
+            // If the Target AV Status is not set and Its a directed Command, Its an illegal Command
+            // If last bit of Direct Address is 1b -> Get UDID.
+            if(SMBus_targetGetAddressDirect(smbus) == SMBus_targetGetAddress(smbus))
+            {
+                if(SMBus_targetGetDirectCmd(smbus))
+                {
+                    SMBusARPGetUDIDPacketDirect(smbus);
+                }
+                else
+                {
+                    SMBusARP_RESET(smbus);
+                }
+            }
+            /* If Valid Command is not received, return error */
+            else
+            {
+                ARP_invalidCMD(smbus);
+            }
+
+            break;
+    }
+    /* All the ARP Command Responses are of Fixed Length */
+    /* At the End of the State, an ACK will be sent by the Target */
+    return(SMBUS_RET_OK_FIXED);
 }

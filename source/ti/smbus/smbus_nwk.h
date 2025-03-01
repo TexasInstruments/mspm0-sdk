@@ -181,6 +181,17 @@ extern SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus);
 
 //*****************************************************************************
 //
+//! \brief   Handles the SMBus protocol when a Arbitration is lost by PHY
+//
+//! \param smbus       Pointer to SMBus structure
+//
+//! \return  SMBus_State_Controller_ArbLost
+//
+//*****************************************************************************
+extern SMBus_State SMBus_NWK_targetArbLost(SMBus *smbus);
+
+//*****************************************************************************
+//
 //! \brief   Handles the SMBus protocol when a Timeout error is detected by PHY
 //
 //! \param smbus       Pointer to SMBus structure

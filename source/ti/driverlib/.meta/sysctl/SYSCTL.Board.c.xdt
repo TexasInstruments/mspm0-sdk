@@ -39,7 +39,7 @@
     let SYSCTL = args[0]; /* passed by /ti/drivers/templates/Board.c.xdt */
     let content = args[1]; /* passed by /ti/drivers/templates/Board.c.xdt */
     let Common = system.getScript("/ti/driverlib/Common.js");
-
+    let { ClockSignals } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
 
     /* shorthand names for some common references in template below */
     // since sysctl is static we don't use the inst variable
@@ -294,12 +294,13 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
 %if(stat.forceDefaultClkConfig) {
     /* Set default configuration */
     DL_SYSCTL_disableHFXT();
-%   if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
+%    if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X() &&
+%       !Common.isDeviceFamily_PARENT_MSPM0H321X() && !Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()) {
     DL_SYSCTL_disableSYSPLL();
 %   }
 %}
 % /* HFCLK Config */
-% if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceM0C()){
+% if(ClockSignals.includes("HFCLK")){
 %   if(stat.useHFCLK){
 %       if(stat.HFCLKSource == "HFXT"){
     DL_SYSCTL_setHFCLKSourceHFXTParams(`stat.HFXTRange`, `stat.HFXTStartup`, `stat.HFCLKMonitor`);

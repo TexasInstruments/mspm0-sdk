@@ -203,12 +203,17 @@ Set gSendCommand to 1 to send the command.
 
    Response for 32bit Read
 
-|Controller side Expressions| ## 6. Acknowledge Response
+.. figure:: images/I2C_EG_32_READ_AFTER_CMD.jpg
+   :alt: Controller side Expressions
 
-For a successful write operation, Acknowledgement(0xAC by default, can be modified by setting ACK\_WRITE) is sent in the response.
+   Controller side Expressions
+
+6. Acknowledge Response
+-----------------------
+
+For a successful write operation, Acknowledgement (0xAC by default, can be modified by setting ACK\_WRITE) is sent in the response.
 
 For an Erroneous operation, Appropriate Error code (can be modified by setting ErrorType enum) is sent in the response.
 
 .. |Controller side Expressions before command| image:: images/I2C_EG_32_WRITE_BEFORE_CMD.jpg
-.. |Controller side Expressions| image:: images/I2C_EG_32_READ_AFTER_CMD.jpg
 

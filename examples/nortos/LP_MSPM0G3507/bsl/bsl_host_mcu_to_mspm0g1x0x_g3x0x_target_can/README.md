@@ -65,7 +65,7 @@ Set up Initial CAN configurations as
     * Nominal Speed : 1 Mbps
     * Sampling point : 87.5
 Push the S2 button to start program MSPM0G3507.
-
+Note: if use software trigger need the application code(include software invoke) exist on the chip. 
 # Note
 * * The Example is configured to work in CAN mode initially at 1 Mbps to get response from CAN plugin.
 * To change the bitrate of communication based on the configuration obtained from host through Change Baudrate Command

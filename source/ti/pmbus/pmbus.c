@@ -34,6 +34,8 @@
 //
 #include <stdint.h>
 #include "ti/smbus/smbus.h"
+#include "ti/smbus/smbus_nwk.h"
+#include "ti/smbus/smbus_phy.h"
 #include "pmbus.h"
 
 #include <ti/devices/msp/msp.h>
@@ -52,6 +54,7 @@
 #define PMB_WRITE_BYTE                              0x30
 #define PMB_WRITE_WORD                              0x40
 #define PMB_BLOCK_WRITE                             0x50
+#define PMB_EXTENDED_CMD                            0xFF
 
 uint8_t PMBus_Commands[] =
 {
@@ -251,73 +254,269 @@ uint8_t PMBus_Commands[] =
     PMB_WRITE_WORD | PMB_READ_WORD,            // MFR_MAX_TEMP_1,C0h
     PMB_WRITE_WORD | PMB_READ_WORD,            // MFR_MAX_TEMP_2,C1h
     PMB_WRITE_WORD | PMB_READ_WORD,            // MFR_MAX_TEMP_3,C2h
+    PMB_RESERVED,                              // RESERVED,C3h
+    PMB_RESERVED,                              // RESERVED,C4h
+    PMB_RESERVED,                              // RESERVED,C5h
+    PMB_RESERVED,                              // RESERVED,C6h
+    PMB_RESERVED,                              // RESERVED,C7h
+    PMB_RESERVED,                              // RESERVED,C8h
+    PMB_RESERVED,                              // RESERVED,C9h
+    PMB_RESERVED,                              // RESERVED,CAh
+    PMB_RESERVED,                              // RESERVED,CBh
+    PMB_RESERVED,                              // RESERVED,CCh
+    PMB_RESERVED,                              // RESERVED,CDh
+    PMB_RESERVED,                              // RESERVED,CEh
+    PMB_RESERVED,                              // RESERVED,CFh
+    PMB_WRITE_WORD | PMB_READ_WORD,            // MFR_defined,D0h
+    PMB_BLOCK_WRITE | PMB_BLOCK_READ,          // MFR_defined,D1h
+    PMB_RESERVED,                              // RESERVED,D2h
+    PMB_RESERVED,                              // RESERVED,D3h
+    PMB_RESERVED,                              // RESERVED,D4h
+    PMB_RESERVED,                              // RESERVED,D5h
+    PMB_RESERVED,                              // RESERVED,D6h
+    PMB_RESERVED,                              // RESERVED,D7h
+    PMB_RESERVED,                              // RESERVED,D8h
+    PMB_RESERVED,                              // RESERVED,D9h
+    PMB_RESERVED,                              // RESERVED,DAh
+    PMB_RESERVED,                              // RESERVED,DBh
+    PMB_RESERVED,                              // RESERVED,DCh
+    PMB_RESERVED,                              // RESERVED,DDh
+    PMB_RESERVED,                              // RESERVED,DEh
+    PMB_RESERVED,                              // RESERVED,DFh
+    PMB_RESERVED,                              // RESERVED,E0h
+    PMB_RESERVED,                              // RESERVED,E1h
+    PMB_RESERVED,                              // RESERVED,E2h
+    PMB_RESERVED,                              // RESERVED,E3h
+    PMB_RESERVED,                              // RESERVED,E4h
+    PMB_RESERVED,                              // RESERVED,E5h
+    PMB_RESERVED,                              // RESERVED,E6h
+    PMB_RESERVED,                              // RESERVED,E7h
+    PMB_RESERVED,                              // RESERVED,E8h
+    PMB_RESERVED,                              // RESERVED,E9h
+    PMB_RESERVED,                              // RESERVED,EAh
+    PMB_RESERVED,                              // RESERVED,EBh
+    PMB_RESERVED,                              // RESERVED,ECh
+    PMB_RESERVED,                              // RESERVED,EDh
+    PMB_RESERVED,                              // RESERVED,EEh
+    PMB_RESERVED,                              // RESERVED,EFh
+    PMB_RESERVED,                              // RESERVED,F0h
+    PMB_RESERVED,                              // RESERVED,F1h
+    PMB_RESERVED,                              // RESERVED,F2h
+    PMB_RESERVED,                              // RESERVED,F3h
+    PMB_RESERVED,                              // RESERVED,F4h
+    PMB_RESERVED,                              // RESERVED,F5h
+    PMB_RESERVED,                              // RESERVED,F6h
+    PMB_RESERVED,                              // RESERVED,F7h
+    PMB_RESERVED,                              // RESERVED,F8h
+    PMB_RESERVED,                              // RESERVED,F9h
+    PMB_RESERVED,                              // RESERVED,FAh
+    PMB_RESERVED,                              // RESERVED,FBh
+    PMB_RESERVED,                              // RESERVED,FCh
+    PMB_NO_WRITE | PMB_NO_READ,                // RESERVED,FDh
+    PMB_EXTENDED_CMD,                          // RESERVED,FEh
+    PMB_EXTENDED_CMD,                          // RESERVED,FFh
 };
 
-/*! SMBus Controller Struct  */
-static SMBus SMB;
+/*! SMB Reception Buffer      */
+static uint8_t au8RxBuff[SMB_MAX_PACKET_SIZE];
+/*! SMB Transmission Buffer   */
+static uint8_t au8TxBuff[SMB_MAX_PACKET_SIZE];
 
-void PMBus_init(I2C_Regs* i2cAddr,
-                uint32_t busClk)
+void PMBus_controllerInit(SMBus *SMB, I2C_Regs* i2cAddr, uint32_t busClk)
 {
-    // Initialize SMBus Controller
-    SMBus_controllerInit(&SMB,i2cAddr, busClk);
-    // Enable SMBus Interrupts, after initializing I2C
-    SMBus_controllerEnableInt(&SMB);
+    /* Initialize SMBus as Controller   */
+    SMBus_controllerInit(SMB,i2cAddr, busClk);
+    /* Enable SMBus Interrupts, after initializing I2C  */
+    SMBus_controllerEnableInt(SMB);
 }
 
-void PMBus_processInt()
+void PMBus_targetInit(SMBus *SMB, I2C_Regs* i2cAddr, uint8_t targetAddr)
 {
-    // Process SMBus ISR as Controller, store result flags
-    // Note that the Controller starts transfers in Main loop and this function
-    // handles the SMBus State machine. The main loop just waits for completion
-    SMBus_State sSMBState = SMBus_controllerProcessInt(&SMB);
+    /* Initialize SMBus as target   */
+    SMBus_targetInit(SMB,i2cAddr);
+    /* Set the own target address   */
+    SMBus_targetSetAddress(SMB, targetAddr);
+
+    SMBus_targetSetRxBuffer(SMB, au8RxBuff, sizeof(au8RxBuff));
+    SMBus_targetSetTxBuffer(SMB, au8TxBuff, sizeof(au8TxBuff));
+
+    /* Enable SMBus Interrupts, after initializing I2C  */
+    SMBus_targetEnableInt(SMB);
 }
 
-
-void PMBus_enablePEC()
+void PMBus_controllerProcessInt(SMBus *SMB)
 {
-    SMBus_enablePEC(&SMB);
+    /*
+     * Process SMBus ISR as Controller, store result flags
+     * Note that the Controller starts transfers in Main loop and this function
+     * handles the SMBus State machine. The main loop just waits for completion
+     */
+    SMBus_State sSMBState = SMBus_controllerProcessInt(SMB);
 }
 
-void PMBus_disablePEC()
+SMBus_State PMBus_targetProcessInt(SMBus *SMB)
 {
-    SMBus_disablePEC(&SMB);
+    return SMBus_targetProcessInt(SMB);
 }
 
-int8_t PMBus_cmdRead(uint8_t targetAddress,
+void PMBus_enablePEC(SMBus *SMB)
+{
+    SMBus_enablePEC(SMB);
+}
+
+void PMBus_disablePEC(SMBus *SMB)
+{
+    SMBus_disablePEC(SMB);
+}
+
+uint16_t PMBus_getTargetCommand(SMBus *SMB)
+{
+    return (uint16_t)SMBus_targetGetCommand(SMB);
+}
+
+uint16_t PMBus_getTargetExtendedCommand(SMBus *SMB)
+{
+    uint16_t cmd = (uint16_t)(((uint16_t)SMB->nwk.rxBuffPtr[0]) | (((uint16_t)SMB->nwk.rxBuffPtr[1]) << 8));
+    return cmd;
+}
+
+void PMBus_processDone(SMBus *SMB)
+{
+    SMBus_processDone(SMB);
+}
+
+void PMBus_targetReportBlock(SMBus *SMB)
+{
+    SMBus_targetReportBlock(SMB);
+}
+
+void PMBus_targetReportLength(SMBus *SMB, uint16_t length)
+{
+    SMBus_targetReportLength(SMB, length);
+}
+
+int8_t PMBus_cmdWrite(SMBus *SMB,
+                      uint8_t targetAddress,
+                      uint8_t commandId,
+                      uint8_t* txData,
+                      uint8_t txSize,
+                      PMBUS_GRP_CMD groupCmd,
+                      uint32_t timeout)
+{
+    // Make sure commandId is in range
+    if((uint16_t)commandId >= sizeof(PMBus_Commands) / sizeof(PMBus_Commands[0]))
+    {
+        return(PMBUS_RET_ERROR);
+    }
+    uint8_t transaction = (PMBus_Commands[commandId] & 0xF0);
+
+    int8_t ret = PMBUS_RET_ERROR;
+    switch(transaction)
+    {
+    case PMB_NO_WRITE:
+        if(txSize != 0)
+        {
+            return (PMBUS_RET_ERROR);
+        }
+        ret = PMBus_QuickCommand(SMB,
+                                 targetAddress,
+                                 true,
+                                 groupCmd,
+                                 timeout);
+        break;
+    case PMB_SEND_BYTE:
+        if(txSize != 0)
+        {
+            return (PMBUS_RET_ERROR);
+        }
+        ret = PMBus_cmdSendByte(SMB,
+                                targetAddress,
+                                commandId,
+                                groupCmd,
+                                timeout);
+        break;
+    case PMB_WRITE_BYTE:
+        if(txSize != 1)
+        {
+            return (PMBUS_RET_ERROR);
+        }
+        ret = PMBus_cmdWriteByte(SMB,
+                                 targetAddress,
+                                 commandId,
+                                 txData,
+                                 txSize,
+                                 groupCmd,
+                                 timeout);
+        break;
+    case PMB_WRITE_WORD:
+        if(txSize != 2)
+        {
+            return (PMBUS_RET_ERROR);
+        }
+        ret = PMBus_cmdWriteWord(SMB,
+                                 targetAddress,
+                                 commandId,
+                                 txData,
+                                 txSize,
+                                 groupCmd,
+                                 timeout);
+        break;
+    case PMB_BLOCK_WRITE:
+        ret = PMBus_cmdBlockWrite(SMB,
+                                  targetAddress,
+                                  commandId,
+                                  txData,
+                                  txSize,
+                                  groupCmd,
+                                  timeout);
+        break;
+    case PMB_RESERVED:
+    default:
+        ret = PMBUS_RET_ERROR;
+    }
+    return(ret);
+}
+
+int8_t PMBus_cmdRead(SMBus *SMB,
+                     uint8_t targetAddress,
                      uint8_t commandId,
                      uint8_t* rxData,
                      uint8_t* rxSize,
                      uint32_t timeout)
 {
-    // Make sure commandId is in range
-    if(commandId >= sizeof(PMBus_Commands) / sizeof(PMBus_Commands[0]))
+    /* Make sure commandId is in range  */
+    if((uint16_t)commandId >= sizeof(PMBus_Commands) / sizeof(PMBus_Commands[0]))
     {
         return(PMBUS_RET_ERROR);
     }
+
     int8_t ret = PMBUS_RET_ERROR;
     uint8_t transaction = (PMBus_Commands[commandId] & 0x0F);
+
     switch(transaction)
     {
     case PMB_NO_READ:
         ret = PMBUS_RET_OK;
         break;
     case PMB_READ_BYTE:
-        ret = PMBus_cmdReadByte(targetAddress,
+        ret = PMBus_cmdReadByte(SMB,
+                                targetAddress,
                                 commandId,
                                 rxData,
                                 timeout);
         *rxSize = 1;
         break;
     case PMB_READ_WORD:
-        ret = PMBus_cmdReadWord(targetAddress,
+        ret = PMBus_cmdReadWord(SMB,
+                                targetAddress,
                                 commandId,
                                 rxData,
                                 timeout);
         *rxSize = 2;
         break;
     case PMB_BLOCK_READ:
-        ret = PMBus_cmdBlockRead(targetAddress,
+        ret = PMBus_cmdBlockRead(SMB,
+                                 targetAddress,
                                  commandId,
                                  rxData,
                                  rxSize,
@@ -330,182 +529,276 @@ int8_t PMBus_cmdRead(uint8_t targetAddress,
     return(ret);
 }
 
-int8_t PMBus_cmdWrite(uint8_t targetAddress,
-                      uint8_t commandId,
-                      uint8_t* txData,
-                      uint8_t txSize,
-                      uint32_t timeout)
+int8_t PMBus_QuickCommand(SMBus *SMB,
+                          uint8_t targetAddress,
+                          bool write,
+                          PMBUS_GRP_CMD groupCmd,
+                          uint32_t timeout)
 {
-    // Make sure commandId is in range
-    if(commandId >= sizeof(PMBus_Commands) / sizeof(PMBus_Commands[0]))
+    if(groupCmd == PMBUS_GRP_CMD_DISABLE)
+    {
+        if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+        {
+            return(PMBUS_RET_ERROR);
+        }
+    }
+
+    if(write != true)
     {
         return(PMBUS_RET_ERROR);
     }
-    uint8_t transaction = (PMBus_Commands[commandId] & 0xF0);
 
-    int8_t ret = PMBUS_RET_ERROR;
-    switch(transaction)
+    (SMB)->nwk.rxLen = 0;  //No read
+    (SMB)->nwk.txLen = 0; // No Command
+    (SMB)->nwk.eState = SMBus_NwkState_TXQuickCMD;
+    (SMB)->nwk.currentAddr = targetAddress;
+
+    if(write == true)
     {
-    case PMB_NO_WRITE:
-        ret = PMBUS_RET_OK;
-        break;
-    case PMB_SEND_BYTE:
-        if(txSize != 0)
-        {
-            return (PMBUS_RET_ERROR);
-        }
-        ret = PMBus_cmdSendByte(targetAddress,
-                                commandId,
-                                timeout);
-        break;
-    case PMB_WRITE_BYTE:
-        if(txSize != 1)
-        {
-            return (PMBUS_RET_ERROR);
-        }
-        ret = PMBus_cmdWriteByte(targetAddress,
-                                 commandId,
-                                 txData,
-                                 timeout);
-        break;
-    case PMB_WRITE_WORD:
-        if(txSize != 2)
-        {
-            return (PMBUS_RET_ERROR);
-        }
-        ret = PMBus_cmdWriteWord(targetAddress,
-                                 commandId,
-                                 txData,
-                                 timeout);
-        break;
-    case PMB_BLOCK_WRITE:
-        ret = PMBus_cmdBlockWrite(targetAddress,
-                                  commandId,
-                                  txData,
-                                  txSize,
-                                  timeout);
-        break;
-    case PMB_RESERVED:
-    default:
-        ret = PMBUS_RET_ERROR;
+        PMBus_startTxTransfer(SMB, groupCmd);
     }
-    return(ret);
+
+    if (groupCmd == PMBUS_GRP_CMD_ENABLE)
+    {
+        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        {
+
+        }
+        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+    }
+    else
+    {
+        if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+           (SMBus_getState(SMB) != SMBus_State_OK))
+        {
+            SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+            return(PMBUS_RET_ERROR);
+        }
+    }
+
+    return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdSendByte(uint8_t targetAddress,
+int8_t PMBus_cmdSendByte(SMBus *SMB,
+                         uint8_t targetAddress,
                          uint8_t commandByte,
+                         PMBUS_GRP_CMD groupCmd,
                          uint32_t timeout)
 {
-    if(SMBus_controllerSendByte(&SMB,                          // SMB struct
-                            targetAddress,                  // Target Addr
-                            commandByte) != PMBUS_RET_OK)  // PMB Command
+    if(groupCmd == PMBUS_GRP_CMD_DISABLE)
     {
-        return(PMBUS_RET_ERROR);
+        if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+        {
+            return(PMBUS_RET_ERROR);
+        }
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    (SMB)->nwk.currentCmd = commandByte;
+    (SMB)->nwk.rxLen = 0;  //No read
+    (SMB)->nwk.txLen = 1; // Only Command(Data)
+    (SMB)->nwk.eState = SMBus_NwkState_TX;
+    (SMB)->nwk.currentAddr = targetAddress;
+
+    PMBus_startTxTransfer(SMB, groupCmd);
+
+    if (groupCmd == PMBUS_GRP_CMD_ENABLE)
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
-        return(PMBUS_RET_ERROR);
+        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        {
+
+        }
+        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+    }
+    else
+    {
+        if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+           (SMBus_getState(SMB) != SMBus_State_OK))
+        {
+            SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+            return(PMBUS_RET_ERROR);
+        }
     }
 
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdWriteByte(uint8_t targetAddress,
+int8_t PMBus_cmdWriteByte(SMBus *SMB,
+                          uint8_t targetAddress,
                           uint8_t commandByte,
-                          uint8_t* txData,
+                          uint8_t *txData,
+                          uint8_t txSize,
+                          PMBUS_GRP_CMD groupCmd,
                           uint32_t timeout)
 {
-    if(SMBus_controllerWriteByteWord(&SMB,               // SMB struct
-                                 targetAddress,       // Target Addr
-                                 commandByte,        // PMB Command
-                                 txData,             // DataPtr
-                                 1) != PMBUS_RET_OK) // 1 byte data
+    if(groupCmd == PMBUS_GRP_CMD_DISABLE)
+    {
+        if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+        {
+            return(PMBUS_RET_ERROR);
+        }
+    }
+    if((txSize != 1))
     {
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    (SMB)->nwk.currentCmd = commandByte;
+    (SMB)->nwk.rxLen = 0; // Read 1 or 2 bytes
+    (SMB)->nwk.txLen = 1 + txSize; // Command + Size
+    (SMB)->nwk.txBuffPtr = txData;
+    (SMB)->nwk.eState = SMBus_NwkState_TX;
+    (SMB)->nwk.currentAddr = targetAddress;
+
+    PMBus_startTxTransfer(SMB, groupCmd);
+
+    if (groupCmd == PMBUS_GRP_CMD_ENABLE)
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
-        return(PMBUS_RET_ERROR);
+        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        {
+
+        }
+        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+    }
+    else
+    {
+        if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+           (SMBus_getState(SMB) != SMBus_State_OK))
+        {
+            SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+            return(PMBUS_RET_ERROR);
+        }
     }
 
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdWriteWord(uint8_t targetAddress,
+int8_t PMBus_cmdWriteWord(SMBus *SMB,
+                          uint8_t targetAddress,
                           uint8_t commandByte,
-                          uint8_t* txData,
+                          uint8_t *txData,
+                          uint8_t txSize,
+                          PMBUS_GRP_CMD groupCmd,
                           uint32_t timeout)
 {
-    if(SMBus_controllerWriteByteWord(&SMB,                  // SMB struct
-                                 targetAddress,          // Target Addr
-                                 commandByte,           // PMB Command
-                                 txData,                // DataPtr
-                                 2) != PMBUS_RET_OK)    // 2 bytes data
+    if(groupCmd == PMBUS_GRP_CMD_DISABLE)
+    {
+        if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+        {
+            return(PMBUS_RET_ERROR);
+        }
+    }
+
+    if((txSize != 2))
     {
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
-    {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
-        return(PMBUS_RET_ERROR);
-    }
+    (SMB)->nwk.currentCmd = commandByte;
+    (SMB)->nwk.rxLen = 0; // Read 1 or 2 bytes
+    (SMB)->nwk.txLen = 1 + txSize; // Command + Size
+    (SMB)->nwk.txBuffPtr = txData;
+    (SMB)->nwk.eState = SMBus_NwkState_TX;
+    (SMB)->nwk.currentAddr = targetAddress;
 
+    PMBus_startTxTransfer(SMB, groupCmd);
+
+    if (groupCmd == PMBUS_GRP_CMD_ENABLE)
+    {
+        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        {
+
+        }
+        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+    }
+    else
+    {
+        if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+           (SMBus_getState(SMB) != SMBus_State_OK))
+        {
+            SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+            return(PMBUS_RET_ERROR);
+        }
+    }
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdBlockWrite(uint8_t targetAddress,
+int8_t PMBus_cmdBlockWrite(SMBus *SMB,
+                           uint8_t targetAddress,
                            uint8_t commandByte,
-                           uint8_t* txData,
-                           uint8_t txSize,
+                           uint8_t *txData,
+                           uint16_t txSize,
+                           PMBUS_GRP_CMD groupCmd,
                            uint32_t timeout)
 {
-    if(SMBus_controllerWriteBlock(&SMB,                       // SMB struct
-                              targetAddress,               // Target Addr
-                              commandByte,                // PMB Command
-                              txData,                     // Data ptr
-                              txSize) != PMBUS_RET_OK)    // number of bytes
+    if(groupCmd == PMBUS_GRP_CMD_DISABLE)
+    {
+        if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+        {
+            return(PMBUS_RET_ERROR);
+        }
+    }
+
+    if((txSize == 0) || (txSize > SMB_MAX_PAYLOAD_SIZE))
     {
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    (SMB)->nwk.currentCmd = commandByte;
+    (SMB)->nwk.rxLen = 0;
+    (SMB)->nwk.txLen = txSize + 2; // Size includes Command and byte count
+    (SMB)->nwk.txBuffPtr = txData;
+    (SMB)->nwk.eState = SMBus_NwkState_TX_Block;
+    (SMB)->nwk.currentAddr = targetAddress;
+
+    PMBus_startTxTransfer(SMB, groupCmd);
+
+    if (groupCmd == PMBUS_GRP_CMD_ENABLE)
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
-        return(PMBUS_RET_ERROR);
+        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        {
+
+        }
+        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+    }
+    else
+    {
+        if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+           (SMBus_getState(SMB) != SMBus_State_OK))
+        {
+            SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+            return(PMBUS_RET_ERROR);
+        }
     }
 
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdReceiveByte(uint8_t targetAddress,
+int8_t PMBus_cmdReceiveByte(SMBus *SMB,
+                            uint8_t targetAddress,
                             uint8_t* rxData,
                             uint32_t timeout)
 {
-    if(SMBus_controllerReceiveByte(&SMB,                      // SMB struct
+    if(SMBus_controllerReceiveByte(SMB,                      // SMB struct
                                targetAddress,              // Target Addr
                                rxData) != PMBUS_RET_OK)   // DataPtr
     {
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
         return(PMBUS_RET_ERROR);
     }
 
     // Get the length of payload for response
-    if(SMBus_getRxPayloadAvailable(&SMB) != 1)
+    if(SMBus_getRxPayloadAvailable(SMB) != 1)
     {
         return(PMBUS_RET_ERROR);  // RX Data size Error
     }
@@ -513,12 +806,13 @@ int8_t PMBus_cmdReceiveByte(uint8_t targetAddress,
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdReadByte(uint8_t targetAddress,
+int8_t PMBus_cmdReadByte(SMBus *SMB,
+                         uint8_t targetAddress,
                          uint8_t commandByte,
                          uint8_t* rxData,
                          uint32_t timeout)
 {
-    if(SMBus_controllerReadByteWord(&SMB,                      // SMB struct
+    if(SMBus_controllerReadByteWord(SMB,                      // SMB struct
                                 targetAddress,              // Target Addr
                                 commandByte,               // PMB Command
                                 rxData,                    // DataPtr
@@ -527,15 +821,15 @@ int8_t PMBus_cmdReadByte(uint8_t targetAddress,
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
         return(PMBUS_RET_ERROR);
     }
 
     // Get the length of payload for response
-    if(SMBus_getRxPayloadAvailable(&SMB) != 1)
+    if(SMBus_getRxPayloadAvailable(SMB) != 1)
     {
         return(PMBUS_RET_ERROR);  // RX Data size Error
     }
@@ -543,12 +837,13 @@ int8_t PMBus_cmdReadByte(uint8_t targetAddress,
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdReadWord(uint8_t targetAddress,
+int8_t PMBus_cmdReadWord(SMBus *SMB,
+                         uint8_t targetAddress,
                          uint8_t commandByte,
                          uint8_t* rxData,
                          uint32_t timeout)
 {
-    if(SMBus_controllerReadByteWord(&SMB,                      // SMB struct
+    if(SMBus_controllerReadByteWord(SMB,                      // SMB struct
                                 targetAddress,              // Target Addr
                                 commandByte,               // PMB Command
                                 rxData,                    // DataPtr
@@ -557,15 +852,15 @@ int8_t PMBus_cmdReadWord(uint8_t targetAddress,
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
         return(PMBUS_RET_ERROR);
     }
 
     // Get the length of payload for response
-    if(SMBus_getRxPayloadAvailable(&SMB) != 2)
+    if(SMBus_getRxPayloadAvailable(SMB) != 2)
     {
         return(PMBUS_RET_ERROR); // RX Data size Error
     }
@@ -573,13 +868,14 @@ int8_t PMBus_cmdReadWord(uint8_t targetAddress,
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdBlockRead(uint8_t targetAddress,
+int8_t PMBus_cmdBlockRead(SMBus *SMB,
+                          uint8_t targetAddress,
                           uint8_t commandByte,
                           uint8_t* rxData,
                           uint8_t* rxSize,
                           uint32_t timeout)
 {
-    if(SMBus_controllerReadBlock(&SMB,                            // SMB struct
+    if(SMBus_controllerReadBlock(SMB,                            // SMB struct
                              targetAddress,                    // Target Addr
                              commandByte,                     // PMB Command
                              rxData) != PMBUS_RET_OK)         // DataPtr
@@ -587,26 +883,27 @@ int8_t PMBus_cmdBlockRead(uint8_t targetAddress,
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
         return(PMBUS_RET_ERROR);
     }
 
     // Return the number of bytes received
-    *rxSize = SMBus_getRxPayloadAvailable(&SMB);
+    *rxSize = SMBus_getRxPayloadAvailable(SMB);
 
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdProcessCall(uint8_t targetAddress,
+int8_t PMBus_cmdProcessCall(SMBus *SMB,
+                            uint8_t targetAddress,
                             uint8_t commandByte,
                             uint8_t* txData,
                             uint8_t* rxData,
                             uint32_t timeout)
 {
-    if(SMBus_controllerProcessCall(&SMB,                      // SMB struct
+    if(SMBus_controllerProcessCall(SMB,                      // SMB struct
                                targetAddress,              // Target Addr
                                commandByte,               // PMB Command
                                txData,                    // Tx data
@@ -615,15 +912,15 @@ int8_t PMBus_cmdProcessCall(uint8_t targetAddress,
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
         return(PMBUS_RET_ERROR);
     }
 
     // Get the length of payload for response
-    if(SMBus_getRxPayloadAvailable(&SMB) != 2)
+    if(SMBus_getRxPayloadAvailable(SMB) != 2)
     {
         return(PMBUS_RET_ERROR); // RX Data size Error
     }
@@ -631,7 +928,8 @@ int8_t PMBus_cmdProcessCall(uint8_t targetAddress,
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_cmdBlockWriteBlockReadProcessCall(uint8_t targetAddress,
+int8_t PMBus_cmdBlockWriteBlockReadProcessCall(SMBus *SMB,
+                                               uint8_t targetAddress,
                                                uint8_t commandByte,
                                                uint8_t* txData,
                                                uint8_t txSize,
@@ -639,7 +937,7 @@ int8_t PMBus_cmdBlockWriteBlockReadProcessCall(uint8_t targetAddress,
                                                uint8_t* rxSize,
                                                uint32_t timeout)
 {
-    if(SMBus_controllerProcessCallBlock(&SMB,                         // SMB struct
+    if(SMBus_controllerProcessCallBlock(SMB,                         // SMB struct
                                     targetAddress,                 // Target Addr
                                     commandByte,                  // PMB Command
                                     txData,                       // Tx data
@@ -649,21 +947,289 @@ int8_t PMBus_cmdBlockWriteBlockReadProcessCall(uint8_t targetAddress,
         return(PMBUS_RET_ERROR);
     }
 
-    if((SMBus_controllerWaitUntilDone(&SMB,timeout) != PMBUS_RET_OK) ||
-       (SMBus_getState(&SMB) != SMBus_State_OK))
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
     {
-        SMBus_controllerReset(&SMB); // Force a reset, so we can retry later
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
         return(PMBUS_RET_ERROR);
     }
 
     // Return the number of bytes received
-    *rxSize = SMBus_getRxPayloadAvailable(&SMB);
+    *rxSize = SMBus_getRxPayloadAvailable(SMB);
 
     return(PMBUS_RET_OK);
 }
 
-int8_t PMBus_ReceiveByteARA(uint8_t *rxData,
-                            uint32_t timeout)
+int8_t PMBus_cmdGroupCommand(SMBus *SMB,
+                             uint8_t *targetAddr,
+                             uint8_t *command,
+                             uint8_t **txData,
+                             uint8_t *txSize,
+                             uint8_t length,
+                             uint32_t timeout)
 {
-    return(PMBus_cmdReceiveByte(PMBUS_ARA, rxData, timeout));
+    if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    uint8_t ret;
+
+    for(int i=0;i<length-1;i++)
+    {
+        ret = PMBus_cmdWrite(SMB,
+                             targetAddr[i],
+                             command[i],
+                             txData[i],
+                             txSize[i],
+                             PMBUS_GRP_CMD_ENABLE,
+                             timeout);
+        if (ret == (uint8_t) PMBUS_RET_ERROR)
+        {
+            return (PMBUS_RET_ERROR);
+        }
+    }
+    ret = PMBus_cmdWrite(SMB,
+                         targetAddr[length-1],
+                         command[length-1],
+                         txData[length-1],
+                         txSize[length-1],
+                         PMBUS_GRP_CMD_LAST_TARGET,
+                         timeout);
+    if (ret == (uint8_t) PMBUS_RET_ERROR)
+    {
+        return (PMBUS_RET_ERROR);
+    }
+    return (ret);
 }
+
+void PMBus_startTxTransfer(SMBus *SMB, PMBUS_GRP_CMD groupCmd)
+{
+    uint8_t targetAddr = (SMB)->nwk.currentAddr;
+    uint16_t length = (SMB)->nwk.txLen;
+    SMBus_Stop stop;
+    SMBus_Auto_Ack ack;
+    uint8_t setPEC;
+
+    // Reset state
+    (SMB)->state = SMBus_State_OK;
+    (SMB)->nwk.rxIndex = 0;
+    (SMB)->nwk.txIndex = 0;
+
+
+    // TX only
+    if ((SMB)->nwk.rxLen == 0) {
+        stop = SMBus_Stop_After_Transfer; // Nothing after TX only, so send a stop
+        ack = SMBus_Auto_Ack_Last_Byte; // ack is a don't care because the target will perform the ack
+
+        if (((SMB)->nwk.eState != SMBus_NwkState_TXQuickCMD) && (((SMB)->nwk.eState != SMBus_NwkState_TXHostAlert)))
+        {
+          if ((SMB)->ctrl.bits.pecEn == 1) {
+              // Add 1 to account for pec after payload
+              length += 1;
+          }
+        }
+        if ((SMB)->nwk.eState != SMBus_NwkState_TXHostAlert){
+            setPEC = 1;
+        }
+        else
+        {
+            setPEC = 0;
+        }
+    }
+    // TX packet followed by RX
+    else
+    {
+        stop = SMBus_No_Stop_After_Transfer; // Repeated start so NO stop between TX and RX
+        ack = SMBus_Auto_Ack_Last_Byte; // ack is a don't care because the target will perform the ack
+        setPEC = 0;
+    }
+
+    if (groupCmd == PMBUS_GRP_CMD_ENABLE)
+    {
+        stop = SMBus_No_Stop_After_Transfer;
+    }
+
+    SMBus_PHY_controllerStartTx(SMB, targetAddr, length, stop, setPEC);
+}
+
+int8_t PMBus_cmdExtendedWriteByte(SMBus *SMB,
+                                  uint8_t targetAddress,
+                                  uint8_t commandByte1,
+                                  uint8_t commandByte2,
+                                  uint8_t *txData,
+                                  uint8_t txSize,
+                                  uint32_t timeout)
+{
+    if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    if((txSize != 1))
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    txData[1] = txData[0];
+    txData[0] = commandByte2;
+
+    (SMB)->nwk.currentCmd = commandByte1;
+    (SMB)->nwk.rxLen = 0;
+    (SMB)->nwk.txLen = 2 + txSize; // 2 Commands + Size
+    (SMB)->nwk.txBuffPtr = txData;
+    (SMB)->nwk.eState = SMBus_NwkState_TX;
+    (SMB)->nwk.currentAddr = targetAddress;
+
+    SMBus_NWK_startTxTransfer(SMB);
+
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
+    {
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+        return(PMBUS_RET_ERROR);
+    }
+
+    return(PMBUS_RET_OK);
+}
+
+int8_t PMBus_cmdExtendedWriteWord(SMBus *SMB,
+                                  uint8_t targetAddress,
+                                  uint8_t commandByte1,
+                                  uint8_t commandByte2,
+                                  uint8_t *txData,
+                                  uint8_t txSize,
+                                  uint32_t timeout)
+{
+    if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    if((txSize != 2))
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    txData[2] = txData[1];
+    txData[1] = txData[0];
+    txData[0] = commandByte2;
+
+    (SMB)->nwk.currentCmd = commandByte1;
+    (SMB)->nwk.rxLen = 0;
+    (SMB)->nwk.txLen = 2 + txSize; // 2 Commands + Size
+    (SMB)->nwk.txBuffPtr = txData;
+    (SMB)->nwk.eState = SMBus_NwkState_TX;
+    (SMB)->nwk.currentAddr = targetAddress;
+
+    SMBus_NWK_startTxTransfer(SMB);
+
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
+    {
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+        return(PMBUS_RET_ERROR);
+    }
+
+    return(PMBUS_RET_OK);
+}
+
+int8_t PMBus_cmdExtendedReadByte(SMBus *SMB,
+                                 uint8_t targetAddress,
+                                 uint8_t commandByte1,
+                                 uint8_t commandByte2,
+                                 uint8_t* rxData,
+                                 uint8_t rxSize,
+                                 uint32_t timeout)
+{
+    if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    if((rxSize != 1))
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    uint8_t *txData = (uint8_t *)malloc(sizeof(uint8_t)*1);
+    txData[0] = commandByte2;
+
+    (SMB)->nwk.currentCmd = commandByte1;
+    (SMB)->nwk.rxLen = rxSize; // Read 1 byte
+    (SMB)->nwk.rxBuffPtr = rxData;
+    (SMB)->nwk.txLen = 2; // Only send 2 command
+    (SMB)->nwk.txBuffPtr = txData;
+    (SMB)->nwk.eState = SMBus_NwkState_TX;
+    (SMB)->nwk.currentAddr = targetAddress;
+
+    SMBus_NWK_startTxTransfer(SMB);
+
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
+    {
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+        return(PMBUS_RET_ERROR);
+    }
+
+    // Get the length of payload for response
+    if(SMBus_getRxPayloadAvailable(SMB) != 1)
+    {
+        return(PMBUS_RET_ERROR);  // RX Data size Error
+    }
+
+    return(PMBUS_RET_OK);
+}
+
+int8_t PMBus_cmdExtendedReadWord(SMBus *SMB,
+                                 uint8_t targetAddress,
+                                 uint8_t commandByte1,
+                                 uint8_t commandByte2,
+                                 uint8_t* rxData,
+                                 uint8_t rxSize,
+                                 uint32_t timeout)
+{
+    if((SMB)->nwk.eState != SMBus_NwkState_Idle)
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    if((rxSize != 2))
+    {
+        return(PMBUS_RET_ERROR);
+    }
+
+    uint8_t *txData = (uint8_t *)malloc(sizeof(uint8_t)*1);
+    txData[0] = commandByte2;
+
+    (SMB)->nwk.currentCmd = commandByte1;
+    (SMB)->nwk.rxLen = rxSize; // Read 2 bytes
+    (SMB)->nwk.rxBuffPtr = rxData;
+    (SMB)->nwk.txLen = 2; // Only send 2 commands
+    (SMB)->nwk.txBuffPtr = txData;
+    (SMB)->nwk.eState = SMBus_NwkState_TX;
+    (SMB)->nwk.currentAddr = targetAddress;
+
+    SMBus_NWK_startTxTransfer(SMB);
+
+    if((SMBus_controllerWaitUntilDone(SMB,timeout) != PMBUS_RET_OK) ||
+       (SMBus_getState(SMB) != SMBus_State_OK))
+    {
+        SMBus_controllerReset(SMB); // Force a reset, so we can retry later
+        return(PMBUS_RET_ERROR);
+    }
+
+    // Get the length of payload for response
+    if(SMBus_getRxPayloadAvailable(SMB) != 2)
+    {
+        return(PMBUS_RET_ERROR); // RX Data size Error
+    }
+
+    return(PMBUS_RET_OK);
+}
+
+int8_t PMBus_ReceiveByteARA(SMBus *SMB, uint8_t *rxData, uint32_t timeout)
+{
+    return(PMBus_cmdReceiveByte(SMB, PMBUS_ARA, rxData, timeout));
+}
+

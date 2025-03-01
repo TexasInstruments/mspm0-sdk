@@ -30,11 +30,11 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef APP_TASK_H_
-#define APP_TASK_H_
-
 #include "Communications/I2C_communication.h"
 #include "ti_msp_dl_config.h"
+
+#ifndef APP_TASK_H_
+#define APP_TASK_H_
 
 /******************************************************************
  * Variables:
@@ -45,18 +45,22 @@ extern volatile uint32_t Systick_counter;
 extern volatile bool gWAKEINMCU;
 extern volatile bool gCANIDSet;
 extern volatile bool gTIMER0;
-extern volatile bool gTOP_Volt_Updated;
-extern volatile bool gBOT_Volt_Updated;
-extern volatile bool Temp_polling;
 extern volatile uint8_t FET_TEST;
-extern volatile uint8_t TOPFULLSCANCycle;
-extern volatile uint8_t BOTFULLSCANCycle;
+
+extern uint8_t TOPFULLSCANCycle;
+extern uint8_t BOTFULLSCANCycle;
+
 //extern volatile uint16_t TopCellVoltage[16];
-extern volatile uint16_t BOTBatteryStatus;
-extern volatile uint16_t BOTProtectionFlag;
-extern volatile uint16_t TOPBatteryStatus;
-extern volatile uint16_t TOPProtectionFlag;
-extern volatile uint16_t gADCResult;
+extern uint16_t BOTBatteryStatus;
+extern uint16_t BOTProtectionFlag;
+extern uint16_t TOPBatteryStatus;
+extern uint16_t TOPProtectionFlag;
+extern uint16_t gADCResult;
+
+extern bool gTOP_Volt_Updated;
+extern bool gBOT_Volt_Updated;
+
+extern float THRM_Coefficients_10k_3V3[5];
 /******************************************************************
  * Define:
  */
@@ -72,7 +76,7 @@ extern volatile uint16_t gADCResult;
 #define DEBOUNCE_TIME 1
 #define TMP_MUX_Enabled \
     0  //Configure 9 GPIOs to thermistor input to enable temp mux feature, Note: need modify hardware at same time.
-
+#define Current_Calibration 0
 #define BOT_AFEID 0x00
 #define TOP_AFEID 0x01
 

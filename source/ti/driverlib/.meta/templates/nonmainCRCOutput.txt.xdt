@@ -1,0 +1,37 @@
+%%{
+    let Common = system.getScript("/ti/driverlib/Common.js");
+
+    let bootCRCString = "";
+    let bslCRCString = "";
+    let bootString = "";
+    let bslString = "";
+
+    if(system.modules["/ti/driverlib/NONMAIN"].moduleStatic)
+    {
+        let bootCRC = (system.modules["/ti/driverlib/NONMAIN"].$static.bootCRC);
+        let bslCRC = (system.modules["/ti/driverlib/NONMAIN"].$static.bslCRC);
+
+        if (bootCRC)
+        {
+            bootCRCString = bootCRC.toString(16);
+            bootString =
+                (system.modules["/ti/driverlib/NONMAIN"].$static.bootCRCString).match(/.{1,2}/g).reverse().join(" ");
+        }
+
+        if (bslCRC)
+        {
+            bslCRCString = bslCRC.toString(16);
+            bslString =
+                (system.modules["/ti/driverlib/NONMAIN"].$static.bslCRCString).match(/.{1,2}/g).reverse().join(" ");
+        }
+    }
+%%}
+
+Generated Boot CRC: `bootCRCString`
+Generated BSL CRC: `bslCRCString`
+
+BCR Region:
+`bootString`
+
+BSL Region:
+`bslString`

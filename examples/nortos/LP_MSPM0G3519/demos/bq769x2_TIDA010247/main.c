@@ -1,5 +1,4 @@
-//#############################################################################
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com/
+//##################################################
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -32,8 +31,8 @@
 //#############################################################################
 /*
  * Name:    TIDA-010247-Example-Code
- * Version: 1.0
- * Date:    2024-11-21
+ * Version: 2.0
+ * Date:    2025-02-14
  *
  * Description/Notes:
  *
@@ -57,17 +56,19 @@ int main(void)
 {
     /********************* MCU initiations ***************************/
     SYSCFG_DL_init();
-    NVIC_EnableIRQ(I2C_0_INST_INT_IRQN);
-    NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
-    NVIC_EnableIRQ(WAKE_INT_IRQN);  //Enable WAKE_INT_IRQn
     DL_SYSCTL_disableSleepOnExit();
-    //   DL_TimerG_startCounter(PWM_0_INST);  //used for fan control
+
     Gpio_Init();
     Variables_Init();
 
+    NVIC_EnableIRQ(I2C_0_INST_INT_IRQN);
+    NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
+    NVIC_EnableIRQ(WAKE_INT_IRQN);  //Enable WAKE_INT_IRQn
+    //    DL_TimerG_startCounter(PWM_0_INST);  //used for fan control
+
 #if AFEOTP
     BQ769x2_OTP_Programming();  // Run this function once on production line
-#endif
+#else
 
     BQ769x2_BOT_Init();  // Bottom BQ769x2 initiation
     BQ769x2_TOP_Init();  // Top BQ769x2 initiation
@@ -100,6 +101,7 @@ int main(void)
         }
 #endif
     }
+#endif
 }  //end of main.c
 
 // Timer Intp, 100ms period

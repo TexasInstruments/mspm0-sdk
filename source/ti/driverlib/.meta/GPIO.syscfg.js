@@ -43,9 +43,6 @@ let logError = Common.logError;
 let logWarning = Common.logWarning;
 let logInfo = Common.logInfo;
 
-/* get /ti/drivers family name from device object */
-let family = Common.device2Family(system.deviceData, "GPIO");
-
 /* generic configuration parameters for GPIO instances */
 let gpioConfig = [
 

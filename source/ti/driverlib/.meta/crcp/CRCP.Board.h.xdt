@@ -63,8 +63,12 @@
 %       let seed = inst.seed.toString(16).toUpperCase();
 %       let seedStr = "#define CRCP_SEED"
 %       let seedStr2 = "(0x" + seed + ")"
+%       let seedStr3 = "#define CRC_SEED"
+%       let seedStr4 = "CRCP_SEED"
 /* Defines for CRC */
 `seedStr.padEnd(40," ")+seedStr2.padStart(40," ")`
+/* Redirects to CRCP_SEED for compatibility between CRC and CRCP modules */
+`seedStr3.padEnd(40," ")+seedStr4.padStart(40," ")`
 
 % if(inst.polynomial.slice(14) == "CUSTOM"){
 %       let customPoly = inst.polynomialTypeIn.toString(16).toUpperCase();

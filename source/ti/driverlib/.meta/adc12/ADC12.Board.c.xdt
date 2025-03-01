@@ -193,6 +193,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void)
         }
 %%}
 %%{
+        let vref_sel = inst["adcMem" + adcMemIdx.toString() + "vrefDependency"];
+        if(Common.hasExpandedADCVRSEL()){
+            vref_sel = "DL_ADC12_REFERENCE_VOLTAGE_"+inst["adcMem" + adcMemIdx.toString() + "vrefp"]+"_"+inst["adcMem" + adcMemIdx.toString() + "vrefm"];
+        }
         /* Check if default case for ADCMEM configuration */
         if(!(
             (inst["adcMem" + adcMemIdx.toString() + "chansel"]=="DL_ADC12_INPUT_CHAN_0")&&
@@ -205,7 +209,7 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void)
         )){
 %%}
     DL_ADC12_configConversionMem(`baseName`, `inst.$name+"_ADCMEM_"+inst["adcMem"+adcMemIdx+"_name"]`,
-        `inst["adcMem" + adcMemIdx.toString() + "chansel"]`, `inst["adcMem" + adcMemIdx.toString() + "vrefDependency"]`, `inst["adcMem" + adcMemIdx.toString() + "stime"]`, `chosenAVGen`,
+        `inst["adcMem" + adcMemIdx.toString() + "chansel"]`, `vref_sel`, `inst["adcMem" + adcMemIdx.toString() + "stime"]`, `chosenAVGen`,
         `chosenBCSen`, `inst["adcMem" + adcMemIdx.toString() + "trig"]`, `chosenWinComp`);
 %       }
 %   }

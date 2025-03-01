@@ -353,7 +353,8 @@ __STATIC_INLINE void DL_FlashCTL_disableInterrupt(FLASHCTL_Regs *flashctl)
  *  @retval     false if interrupt is disabled
  *  @retval     true if interrupt is enabled
  */
-__STATIC_INLINE bool DL_FlashCTL_isInterruptEnabled(FLASHCTL_Regs *flashctl)
+__STATIC_INLINE bool DL_FlashCTL_isInterruptEnabled(
+    const FLASHCTL_Regs *flashctl)
 {
     return (flashctl->GEN.IMASK == FLASHCTL_IMASK_DONE_ENABLED);
 }
@@ -371,7 +372,7 @@ __STATIC_INLINE bool DL_FlashCTL_isInterruptEnabled(FLASHCTL_Regs *flashctl)
  *  @retval     The value of @ref DL_FLASHCTL_INTERRUPT
  */
 __STATIC_INLINE uint32_t DL_FlashCTL_getEnabledInterruptStatus(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     return (flashctl->GEN.MIS);
 }
@@ -390,7 +391,7 @@ __STATIC_INLINE uint32_t DL_FlashCTL_getEnabledInterruptStatus(
  *  @retval     The value of @ref DL_FLASHCTL_INTERRUPT
  */
 __STATIC_INLINE uint32_t DL_FlashCTL_getRawInterruptStatus(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     return (flashctl->GEN.RIS);
 }
@@ -407,7 +408,7 @@ __STATIC_INLINE uint32_t DL_FlashCTL_getRawInterruptStatus(
  *
  */
 __STATIC_INLINE uint32_t DL_FlashCTL_getPendingInterrupt(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     return (flashctl->GEN.IIDX);
 }
@@ -430,7 +431,8 @@ __STATIC_INLINE void DL_FlashCTL_clearInterruptStatus(FLASHCTL_Regs *flashctl)
  *  @return     If a command has been set to execute
  *
  */
-__STATIC_INLINE bool DL_FlashCTL_isCommandExecuted(FLASHCTL_Regs *flashctl)
+__STATIC_INLINE bool DL_FlashCTL_isCommandExecuted(
+    const FLASHCTL_Regs *flashctl)
 {
     return (flashctl->GEN.CMDEXEC == FLASHCTL_CMDEXEC_VAL_EXECUTE);
 }
@@ -467,7 +469,7 @@ __STATIC_INLINE void DL_FlashCTL_disbleStairStepErase(FLASHCTL_Regs *flashctl)
  *
  */
 __STATIC_INLINE bool DL_FlashCTL_isStairStepEraseDisabled(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     return ((flashctl->GEN.CMDCTL & FLASHCTL_CMDCTL_SSERASEDIS_MASK) ==
             FLASHCTL_CMDCTL_SSERASEDIS_DISABLE);
@@ -515,7 +517,7 @@ __STATIC_INLINE void DL_FlashCTL_enableAddressOverrideMode(
  *  @return     If address override mode is enabled
  */
 __STATIC_INLINE bool DL_FlashCTL_isAddressOverrideModeEnabled(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     return ((flashctl->GEN.CMDCTL & FLASHCTL_CMDCTL_ADDRXLATEOVR_MASK) ==
             FLASHCTL_CMDCTL_ADDRXLATEOVR_OVERRIDE);
@@ -559,7 +561,7 @@ __STATIC_INLINE void DL_FlashCTL_enableOverrideHardwareGeneratedECC(
  *  @return     If overriding hardware generation of ECC code is enabled
  */
 __STATIC_INLINE bool DL_FlashCTL_isOverrideHardwareGeneratedECCEnabled(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     return ((flashctl->GEN.CMDCTL & FLASHCTL_CMDCTL_ECCGENOVR_MASK) ==
             FLASHCTL_CMDCTL_ECCGENOVR_OVERRIDE);
@@ -607,7 +609,7 @@ __STATIC_INLINE void DL_FlashCTL_setRegionSelect(
  *  @retval     One of @ref DL_FLASHCTL_REGION_SELECT
  */
 __STATIC_INLINE DL_FLASHCTL_REGION_SELECT DL_FlashCTL_getRegionSelect(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     uint32_t region = flashctl->GEN.CMDCTL & FLASHCTL_CMDCTL_REGIONSEL_MASK;
 
@@ -648,7 +650,7 @@ __STATIC_INLINE void DL_FlashCTL_setBankSelect(
  *  @retval     One of @ref DL_FLASHCTL_BANK_SELECT
  */
 __STATIC_INLINE DL_FLASHCTL_BANK_SELECT DL_FlashCTL_getBankSelect(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     uint32_t bank = flashctl->GEN.CMDCTL & FLASHCTL_CMDCTL_BANKSEL_MASK;
 
@@ -705,7 +707,7 @@ __STATIC_INLINE void DL_FlashCTL_setCommandByteEnable(
  *  @retval     Value between [0,0x1FF].
  */
 __STATIC_INLINE uint32_t DL_FlashCTL_getCommandByteEnable(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     return ((uint32_t) flashctl->GEN.CMDCTL &
             (uint32_t)(FLASHCTL_CMDBYTEN_VAL_MASK));
@@ -736,7 +738,7 @@ __STATIC_INLINE uint32_t DL_FlashCTL_getCommandByteEnable(
  *                         Value between [0,0xFFFFFFFF]
  */
 __STATIC_INLINE void DL_FlashCTL_setCommandData(
-    FLASHCTL_Regs *flashctl, uint8_t index, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint8_t index, const uint32_t *data)
 {
     volatile uint32_t *pReg = &(flashctl->GEN.CMDDATA0) + index;
 
@@ -793,7 +795,7 @@ __STATIC_INLINE uint32_t DL_FlashCTL_getCommandData(
  *                         Value between [0, 0xFF]
  */
 __STATIC_INLINE void DL_FlashCTL_setCommandDataECC(
-    FLASHCTL_Regs *flashctl, uint8_t index, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint8_t index, const uint8_t *data)
 {
     volatile uint32_t *pReg = &(flashctl->GEN.CMDDATAECC0) + index;
 
@@ -864,7 +866,7 @@ __STATIC_INLINE void DL_FlashCTL_setCommandAddress(
  *  @retval     One of @ref DL_FLASHCTL_COMMAND_STATUS values
  */
 __STATIC_INLINE DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_getCommandStatus(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     uint32_t commandStatus =
         flashctl->GEN.STATCMD &
@@ -885,7 +887,7 @@ __STATIC_INLINE DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_getCommandStatus(
  *  @retval     One of @ref DL_FLASHCTL_FAIL_TYPE values
  */
 __STATIC_INLINE DL_FLASHCTL_FAIL_TYPE DL_FlashCTL_getFailureStatus(
-    FLASHCTL_Regs *flashctl)
+    const FLASHCTL_Regs *flashctl)
 {
     uint32_t commandFailureType =
         flashctl->GEN.STATCMD &
@@ -906,7 +908,7 @@ __STATIC_INLINE DL_FLASHCTL_FAIL_TYPE DL_FlashCTL_getFailureStatus(
  *  @retval     false if command didn't succeed
  *  @retval     true if command was successful
  */
-__STATIC_INLINE bool DL_FlashCTL_waitForCmdDone(FLASHCTL_Regs *flashctl)
+__STATIC_INLINE bool DL_FlashCTL_waitForCmdDone(const FLASHCTL_Regs *flashctl)
 {
     /* Wait for command to complete */
     while ((flashctl->GEN.STATCMD & FLASHCTL_STATCMD_CMDDONE_MASK) !=
@@ -1030,7 +1032,8 @@ __STATIC_INLINE void DL_FlashCTL_setWaitState(
  *
  *  @return     The number of wait states used by the Flash
  */
-__STATIC_INLINE uint32_t DL_FlashCTL_getWaitState(FLASHCTL_Regs *flashctl)
+__STATIC_INLINE uint32_t DL_FlashCTL_getWaitState(
+    const FLASHCTL_Regs *flashctl)
 {
     return (flashctl->GEN.CFGCMD & FLASHCTL_CFGCMD_WAITSTATE_MASK);
 }
@@ -1258,7 +1261,7 @@ bool DL_FlashCTL_factoryResetMultiBank(FLASHCTL_Regs *flashctl);
  *  NOTE: This API does not enable programming the ECC code.
  */
 void DL_FlashCTL_programMemory8(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data);
 
 /**
  *  @brief      Programs 8 bit data to unprotected memory at the given address,
@@ -1298,7 +1301,7 @@ void DL_FlashCTL_programMemory8(
  *  NOTE: This API does not enable programming the ECC code.
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data);
 
 /**
  *  @brief      Programs 16 bit data to unprotected memory at the given address
@@ -1319,7 +1322,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8(
  *  NOTE: This API does not enable programming the ECC code.
  */
 void DL_FlashCTL_programMemory16(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data);
 
 /**
  *  @brief      Programs 16 bit data to unprotected memory at the given
@@ -1349,7 +1352,7 @@ void DL_FlashCTL_programMemory16(
  *  NOTE: This API does not enable programming the ECC code.
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data);
 
 /**
  *  @brief      Programs 32 bit data to unprotected memory at the given address
@@ -1370,7 +1373,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16(
  *  NOTE: This API does not enable programming the ECC code.
  */
 void DL_FlashCTL_programMemory32(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 32 bit data to unprotected memory at the given
@@ -1400,7 +1403,7 @@ void DL_FlashCTL_programMemory32(
  *  NOTE: This API does not enable programming the ECC code.
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 64 bit data to unprotected memory at the given address
@@ -1421,7 +1424,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32(
  *  NOTE: This API does not enable programming the ECC code.
  */
 void DL_FlashCTL_programMemory64(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 64 bit data to unprotected memory at the given
@@ -1451,7 +1454,7 @@ void DL_FlashCTL_programMemory64(
  *  NOTE: This API does not enable programming the ECC code.
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 8 bit data with hardware generated ECC code
@@ -1479,7 +1482,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory8WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data);
 
 /**
  *  @brief      Programs 8 bit data with hardware generated ECC code, and
@@ -1516,7 +1519,7 @@ void DL_FlashCTL_programMemory8WithECCGenerated(
  *  hardware generated or manually provided).
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data);
 
 /**
  *  @brief      Programs 16 bit data with hardware generated ECC code
@@ -1544,7 +1547,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory16WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data);
 
 /**
  *  @brief      Programs 16 bit data with hardware generated ECC code, and
@@ -1581,7 +1584,7 @@ void DL_FlashCTL_programMemory16WithECCGenerated(
  *  hardware generated or manually provided).
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data);
 
 /**
  *  @brief      Programs 32 bit data with hardware generated ECC code
@@ -1609,7 +1612,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory32WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 32 bit data with hardware generated ECC code, and
@@ -1646,7 +1649,7 @@ void DL_FlashCTL_programMemory32WithECCGenerated(
  *  hardware generated or manually provided).
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 64 bit data with hardware generated ECC code
@@ -1674,7 +1677,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory64WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 64 bit data with hardware generated ECC code, and
@@ -1711,7 +1714,7 @@ void DL_FlashCTL_programMemory64WithECCGenerated(
  *  hardware generated or manually provided).
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 8 bit data with user provided ECC code
@@ -1745,7 +1748,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory8WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint8_t *data, uint8_t *eccCode);
+    uint32_t address, const uint8_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Programs 8 bit data with user provided ECC code, and executes
@@ -1788,8 +1791,8 @@ void DL_FlashCTL_programMemory8WithECCManual(FLASHCTL_Regs *flashctl,
  *  hardware generated or manually provided).
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data,
-    uint8_t *eccCode);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data,
+    const uint8_t *eccCode);
 
 /**
  *  @brief      Programs 16 bit data with user provided ECC code
@@ -1823,7 +1826,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8WithECCManual(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory16WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint16_t *data, uint8_t *eccCode);
+    uint32_t address, const uint16_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Programs 16 bit data with user provided ECC code, and executes
@@ -1866,8 +1869,8 @@ void DL_FlashCTL_programMemory16WithECCManual(FLASHCTL_Regs *flashctl,
  *  hardware generated or manually provided).
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data,
-    uint8_t *eccCode);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data,
+    const uint8_t *eccCode);
 
 /**
  *  @brief      Programs 32 bit data with user provided ECC code
@@ -1901,7 +1904,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16WithECCManual(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory32WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode);
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Programs 32 bit data with user provided ECC code, and executes
@@ -1944,8 +1947,8 @@ void DL_FlashCTL_programMemory32WithECCManual(FLASHCTL_Regs *flashctl,
  *  hardware generated or manually provided).
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
-    uint8_t *eccCode);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data,
+    const uint8_t *eccCode);
 
 /**
  *  @brief      Programs 64 bit data with user provided ECC code
@@ -1979,7 +1982,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32WithECCManual(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory64WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode);
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Programs 64 bit data with user provided ECC code, and executes
@@ -2022,8 +2025,8 @@ void DL_FlashCTL_programMemory64WithECCManual(FLASHCTL_Regs *flashctl,
  *  hardware generated or manually provided).
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
-    uint8_t *eccCode);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data,
+    const uint8_t *eccCode);
 
 /**
  *  @brief      Programs provided data with hardware generated ECC code
@@ -2350,7 +2353,7 @@ void DL_FlashCTL_protectSector(FLASHCTL_Regs *flashctl, uint32_t addr,
  *  @param[in]  data        Pointer to the data source to verify
  */
 void DL_FlashCTL_readVerify8(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data);
 
 /**
  *  @brief      Verifies 8-bit data in specified address, and executes command
@@ -2373,7 +2376,7 @@ void DL_FlashCTL_readVerify8(
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data);
 
 /**
  *  @brief      Verifies 16-bit data in specified address
@@ -2386,7 +2389,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8(
  *  @param[in]  data        Pointer to the data source to verify
  */
 void DL_FlashCTL_readVerify16(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data);
 
 /**
  *  @brief      Verifies 16-bit data in specified address, and executes command
@@ -2409,7 +2412,7 @@ void DL_FlashCTL_readVerify16(
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data);
 
 /**
  *  @brief      Verifies 32-bit data in specified address
@@ -2422,7 +2425,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16(
  *  @param[in]  data        Pointer to the data source to verify
  */
 void DL_FlashCTL_readVerify32(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Verifies 32-bit data in specified address, and executes command
@@ -2445,7 +2448,7 @@ void DL_FlashCTL_readVerify32(
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Verifies 64-bit data in specified address
@@ -2458,7 +2461,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32(
  *  @param[in]  data        Pointer to the data source to verify
  */
 void DL_FlashCTL_readVerify64(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Verifies 64-bit data in specified address, and executes command
@@ -2481,7 +2484,7 @@ void DL_FlashCTL_readVerify64(
  *
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Verifies 8-bit data in specified address with hardware
@@ -2501,7 +2504,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_readVerify8WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data);
 
 /**
  *  @brief      Verifies 8-bit data in specified address with hardware generated
@@ -2529,7 +2532,7 @@ void DL_FlashCTL_readVerify8WithECCGenerated(
  *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data);
 
 /**
  *  @brief      Verifies 16-bit data in specified address with hardware
@@ -2549,7 +2552,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_readVerify16WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data);
 
 /**
  *  @brief      Verifies 16-bit data in specified address with hardware
@@ -2577,7 +2580,7 @@ void DL_FlashCTL_readVerify16WithECCGenerated(
  *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data);
 
 /**
  *  @brief      Verifies 32-bit data in specified address with hardware
@@ -2597,7 +2600,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_readVerify32WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Verifies 32-bit data in specified address with hardware
@@ -2625,7 +2628,7 @@ void DL_FlashCTL_readVerify32WithECCGenerated(
  *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Verifies 64-bit data in specified address with hardware
@@ -2645,7 +2648,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_readVerify64WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Verifies 32-bit data in specified address with hardware
@@ -2673,7 +2676,7 @@ void DL_FlashCTL_readVerify64WithECCGenerated(
  *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Verifies 8-bit data in specified address with user provided ECC
@@ -2700,7 +2703,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_readVerify8WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint8_t *data, uint8_t *eccCode);
+    uint32_t address, const uint8_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Verifies 8-bit data in specified address with user provided ECC
@@ -2735,8 +2738,8 @@ void DL_FlashCTL_readVerify8WithECCManual(FLASHCTL_Regs *flashctl,
  *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data,
-    uint8_t *eccCode);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data,
+    const uint8_t *eccCode);
 
 /**
  *  @brief      Verifies 16-bit data in specified address with user provided ECC
@@ -2763,7 +2766,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCManual(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_readVerify16WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint16_t *data, uint8_t *eccCode);
+    uint32_t address, const uint16_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Verifies 16-bit data in specified address with user provided ECC
@@ -2798,8 +2801,8 @@ void DL_FlashCTL_readVerify16WithECCManual(FLASHCTL_Regs *flashctl,
  *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data,
-    uint8_t *eccCode);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data,
+    const uint8_t *eccCode);
 
 /**
  *  @brief      Verifies 32-bit data in specified address with user provided ECC
@@ -2826,7 +2829,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCManual(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_readVerify32WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode);
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Verifies 32-bit data in specified address with user provided ECC
@@ -2861,8 +2864,8 @@ void DL_FlashCTL_readVerify32WithECCManual(FLASHCTL_Regs *flashctl,
  *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
-    uint8_t *eccCode);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data,
+    const uint8_t *eccCode);
 
 /**
  *  @brief      Verifies 64-bit data in specified address with user provided ECC
@@ -2889,7 +2892,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCManual(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_readVerify64WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode);
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Verifies 64-bit data in specified address with user provided ECC
@@ -2924,8 +2927,8 @@ void DL_FlashCTL_readVerify64WithECCManual(FLASHCTL_Regs *flashctl,
  *  @retval     DL_FLASHCTL_COMMAND_STATUS_PASSED   if command was successful
  */
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
-    uint8_t *eccCode);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data,
+    const uint8_t *eccCode);
 
 /**
  *  @brief      Verifies that a flash word is blank
@@ -3014,7 +3017,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_blankVerifyFromRAM(
  *  NOTE: This API does not enable programming the ECC code.
  */
 void DL_FlashCTL_programMemory128(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
 /**
  *  @brief      Programs 128 bit data with hardware generated ECC code
@@ -3042,35 +3045,35 @@ void DL_FlashCTL_programMemory128(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory128WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data);
 
-/**
- *  @brief      Programs 128 bit data with hardware generated ECC code
- *
- *  Programs 128 bit data, along with the 16 ECC bits which correspond to the
- *  128-bit data word, to unprotected memory at the given address. This API
- *  assumes that hardware generation of the ECC code has NOT been disabled,
- *  and so the flash controller will generate the ECC bits.
- *
- *  @param[in]  flashctl   Pointer to the register overlay for the peripheral
- *  @param[in]  address    Destination memory address to program data. The
- *                         address must be flash word (64-bit) aligned i.e.
- *                         aligned to a 0b000 boundary.
- *  @param[in]  data       Pointer to the 32-bit source data
- *
- *  @pre         Before programming memory, the user must unprotect the region
- *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
- *  @post        This API just starts the program process. Check the result of it
- *               using an interrupt or the @ref DL_FlashCTL_waitForCmdDone API
- *
- *  NOTE: After completion of a program operation, the flash controller will
- *  configure all memory to a protected state.
- *  NOTE: After completion of a program operation, the flash controller will
- *  disable programming of the ECC code (regardless of whether ECC code is
- *  hardware generated or manually provided).
- */
-void DL_FlashCTL_programMemory128WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
+// /**
+//  *  @brief      Programs 128 bit data with hardware generated ECC code
+//  *
+//  *  Programs 128 bit data, along with the 16 ECC bits which correspond to the
+//  *  128-bit data word, to unprotected memory at the given address. This API
+//  *  assumes that hardware generation of the ECC code has NOT been disabled,
+//  *  and so the flash controller will generate the ECC bits.
+//  *
+//  *  @param[in]  flashctl   Pointer to the register overlay for the peripheral
+//  *  @param[in]  address    Destination memory address to program data. The
+//  *                         address must be flash word (64-bit) aligned i.e.
+//  *                         aligned to a 0b000 boundary.
+//  *  @param[in]  data       Pointer to the 32-bit source data
+//  *
+//  *  @pre         Before programming memory, the user must unprotect the region
+//  *               of memory to program. Refer to @ref DL_FlashCTL_unprotectSector
+//  *  @post        This API just starts the program process. Check the result of it
+//  *               using an interrupt or the @ref DL_FlashCTL_waitForCmdDone API
+//  *
+//  *  NOTE: After completion of a program operation, the flash controller will
+//  *  configure all memory to a protected state.
+//  *  NOTE: After completion of a program operation, the flash controller will
+//  *  disable programming of the ECC code (regardless of whether ECC code is
+//  *  hardware generated or manually provided).
+//  */
+// void DL_FlashCTL_programMemory128WithECCGenerated(
+//     FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data);
 
 /**
  *  @brief      Programs 128 bit data with user provided ECC code
@@ -3104,7 +3107,7 @@ void DL_FlashCTL_programMemory128WithECCGenerated(
  *  hardware generated or manually provided).
  */
 void DL_FlashCTL_programMemory128WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode);
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode);
 
 /**
  *  @brief      Programs provided data up to 128-bits with ECC generated

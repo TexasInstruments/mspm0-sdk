@@ -1,0 +1,502 @@
+Energy Measurement Library
+==========================
+
+The energy measurement library contains full software implementation of sample collection, power calculations and energy accumulations. The library takes inputs from user through template.h where user specifies the parameters and definitions as per the requirement. The library works around two processes:
+
+-  Background Process
+
+   -  Operates for every sample of data from ADC
+
+-  Foreground Process
+
+   -  Operates after every 10 cycles of accumulated voltage and current from the background process.
+
+Background Process
+==================
+
+Per Sample Processing
+---------------------
+
+The per sample processing updates the intermediate dot product quantities used to calculate metrology parameters. It always works on the new set of data received through ADC so that the previous set of data is used to calculate metrology calculations in foreground process. Everytime a new sample data is available, per sampling processing accumulates the samples. This routine, process and accumulates both voltage and current samples, along with per-phase active power and reactive power.
+
+Foreground Process
+==================
+
+The foreground process performs the following activities on the previous set of acquired voltage and current samples:
+
+-  Computes RMS values, active power, reactive power.
+-  Computes voltage THD, Current THD, power factor.
+-  Computes three phase power, aggregate power factor.
+-  Computes line to line voltage, phase to phase angle.
+-  Checks for sag/swell condition.
+
+Metrology Calculations
+======================
+
+The following sections describes the Energy Metrology Library that performs energy measurements. The overall software architecture assumes background process that operates on every sample to square voltage and current, as well as accumulate active and reactive power. Once enough samples for a whole cycle are captured, then the following calculations are computed.
+
+RMS Calculations
+================
+
+The following sections show the RMS voltage and current calculations.
+
+Per phase RMS Voltage
+---------------------
+
+The per phase RMS Voltage is computed by calculateRMSVoltage():
+
+:math:`V_{RMS,ph} (mV) = K_{V,ph} × \sqrt{ \sum_{n=1}^{SamplCnt} \frac{V_{ADC,ph}\,\,(n) × V_{ADC,ph}\,\,(n)}{SamplCnt}} - V_{offset,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`V_{ADC,ph}(n)` = Voltage sample of ADC of phase ph at a sample instant n
+-  :math:`V_{offset,ph}` = Offset used to subtract effects of the additive white Gaussian noise from the voltage converter
+-  SamplCnt = Number of samples within the present frame.
+-  :math:`K_{v,ph}` = Scaling calibration factor for voltage
+
+Per phase Fundamental RMS Voltage
+---------------------------------
+
+The per phase Fundamental RMS Voltage is computed by calculateFundamentalRMSVoltage():
+
+:math:`V_{FRMS,ph} (mV)= \frac{K_{V,ph}}{\sqrt{2}} × \sqrt{ \frac{ \sum_{n=1}^{SamplCnt}V_{F,ph}\,\,\,(n)}{SamplCnt}}× T_{a}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`V_{F,ph}(n)` = Voltage of fundamental of phase ph at sample intant n
+-  SamplCnt = Number of samples within the present frame
+-  :math:`K_{v,ph}` = Scaling calibration factor for voltage of phase ph
+-  :math:`T_{a}` = temperature correction amplitude factor
+
+Per phase RMS Current
+---------------------
+
+The per phase RMS Current is computed by calculateRMSCurrent():
+
+:math:`I_{RMS,ph} (µA) = K_{I,ph}× \sqrt{ \frac{\sum_{n=1}^{SamplCnt}I_{ADC,ph}\,\,(n)×I_{ADC,ph}\,\,(n)}{SamplCnt}} - I_{offset,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`I_{ADC,ph}(n)` = Current sample of ADC of phase ph at a sample instant n
+-  :math:`I_{offset,ph}` = Offset used to subtract effects of the additive white Gaussian noise from the current converter of phase ph
+-  SamplCnt = Number of samples within the present frame
+-  :math:`K_{I,ph}` = Scaling calibration factor for current of phase ph
+
+Per phase Fundamental RMS Current
+---------------------------------
+
+The per phase Fundamental RMS Current is computed by calculateFundamentalRMSCurrent():
+
+:math:`I_{FRMS,ph} (µA) = \sqrt{ \frac{{P_{Fact,ph}}^2 + {P_{Freact,ph}}^2 }{V_{FRMS,ph}}} × T_{a}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`V_{FRMS,ph}` = RMS Voltage of fundamental of phase ph
+-  :math:`P_{Fact,ph}` = Fundamental Active Power of phase ph
+-  :math:`P_{Freact,ph}` = Fundamental Reactive Power of phase ph
+-  :math:`T_{a}` = temperature correction amplitude factor
+
+Power Calculations
+==================
+
+Per phase Active Power
+----------------------
+
+The per phase Active Power is computed by calculateActivePower():
+
+:math:`P_{ACT,ph} (mW) = K_{P,ph} × \frac{\sum_{n=1}^{SamplCnt}V_{firACT}\,\,(n) × I_{ADC,ph}\,\,(n))}{SamplCnt} × K_{firACTgain} - P_{ACToffset,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`I_{ADC,ph}(n)` = Current sample of ADC at a sample instant n of phase ph
+-  :math:`P_{ACT_Offset,ph}` = Offset used to subtract effects of crosstalk on the active power measurements from other phases and the neutral of phase ph
+-  SamplCnt = Number of samples within the present frame
+-  :math:`K_{P,ph}` = Scaling calibration power factor of phase ph
+-  :math:`V_{firACT}(n)` = voltage sample at sample instant n, shifted by the phase compensation value. This voltage sample is generated by feeding voltage samples into a fractional delay fir to generate the phase shift for phase compensation. The actual fir filter coefficient used depends on the desired phase shift. Different coefficients lead to different gains, which are compensated out.
+-  :math:`K_{firACTgain}` = Coefficient used to compensate the fir filter gain from :math:`V_{firACT}\,\,(n)`.
+
+Per phase Fundamental Active Power
+----------------------------------
+
+The per phase Fundamental Active Power is computed by calculateFundamentalActivePower():
+
+:math:`P_{Fact,ph} (mW) = K_{P,ph} × \sum_{n=1}^{SamplCnt}\frac{V_{Real,ph}\,\,(n) × I_{ADC,ph}\,\,(n)}{SamplCnt}×\sum_{n=1}^{SamplCnt}\frac{V_{F}\,\,(n)}{SamplCnt}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`V_{Real,ph}` = Real Voltage of phase ph at a sample instant n
+-  :math:`I_{ADC,ph}(n)` = Current sample of ADC of phase ph at a sample instant n
+-  SamplCnt = Number of samples within the present frame
+-  :math:`K_{P,ph}` = Scaling calibration power factor of phase ph
+-  :math:`V_{F,ph}` = Voltage of fundamental of phase ph
+
+Per phase Reactive Power
+------------------------
+
+The per phase Reactive Power is computed by calculateReactivePower():
+
+:math:`P_{react,ph} (mW) = K_{P,ph} × \sum_{n=1}^{SamplCnt} \frac{V_{firREACT}\,\,(n) × I_{ADC,ph}\,\,(n)}{SamplCnt} × K_{firREACTgain} - P_{REACToffset,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`I_{ADC,ph}(n)` = Current sample of ADC of phase ph at a sample instant n
+-  :math:`P_{REACToffset,ph}` = Offset used to subtract effects of crosstalk on the reactive power measurements from other phases and the neutral of phase ph
+-  SamplCnt = Number of samples within the present frame
+-  :math:`K_{P,ph}` = Scaling calibration power factor of phase ph
+-  :math:`V_{firREACT}(n)` = voltage sample at sample instant n, shifted by the phase compensation value and 90°. This voltage sample is generated by - feeding voltage samples into a fractional delay fir to generate the phase shift for phase compensation. The actual fir filter coefficient used depends on the desired phase shift. Different coefficients lead to different gains, which are compensated out.
+-  :math:`K_{firREACTgain}` = Coefficient used to compensate the fir filter gain from :math:`V_{firREACT}\,\,(n)`.
+
+Per phase Fundamental Reactive Power
+------------------------------------
+
+The per phase Fundamental Reactive Power is computed by calculateFundamentalReactivePower():
+
+:math:`P_{Freact,ph} (mW) = K_{P,ph}×\sum_{n=1}^{SamplCnt}\frac{V_{Quad,ph}\,\,(n) × I_{ADC,ph}\,\,(n)}{SamplCnt} × \sum_{n=1}^{SamplCnt} \frac{(V_{F}\,\,(n)}{SamplCnt}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`V_{Quad,ph}` = Synthesized quadrature voltage of phase ph at a sample instant
+-  :math:`I_{ADC,ph}(n)` = Current sample of ADC of phase ph at a sample instant n
+-  SamplCnt = Number of samples within the present frame
+-  :math:`K_{P,ph}` = Scaling calibration power factor of phase ph
+-  :math:`V_{F,ph}` = Voltage of fundamental of phase ph
+
+Per phase Apparent Power
+------------------------
+
+The per phase Apparent Power is computed by calculateApparentPower():
+
+:math:`P_{APP,ph} (mW) = \sqrt{ {P_{act,ph}}^2 + {P_{react,ph}}^2 }`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{act,ph}` = Active power of phase ph
+-  :math:`P_{react,ph}` = Reactive power of phase ph
+
+Per phase Fundamental Apparent Power
+------------------------------------
+
+The per phase Fundamental apparent Power is computed by calculateFundamentalApparentPower():
+
+:math:`P_{FAPP,ph} (mW) = \sqrt{ {P_{Fact,ph}}^2 + {P_{Freact,ph}}^2 }`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{Fact,ph}` = Fundamental active power of phase ph
+-  :math:`P_{Freact,ph}` = Fundamental reactive power of phase ph
+
+Per phase Power Factor
+----------------------
+
+The Power Factor is computed by calculatePowerFactor():
+
+:math:`P_{APP,ph} (mW) = \begin{cases}  \frac{P_{act,ph}}{P_{APP,ph}} & if capactive load,  \frac{-P_{act,ph}}{P_{APP,ph}} & if inductive load  \end{cases}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{act}` = Active power of phase ph
+-  :math:`P_{App}` = Apparent power of phase ph
+
+Energy Calculations
+===================
+
+The following sections show the per phase and total energy calculations.
+
+Per Phase Energy Calculations
+-----------------------------
+
+The following sections show the per phase energy calculations.
+
+Per phase Active Energy
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The Per phase Active Energy is computed by accumulateActiveEnergy():
+
+:math:`E_{act,ph}= P_{act,ph} × SamplCnt`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{act,ph}` = Active power of phase ph
+-  SamplCnt = Number of samples within the present frame
+
+Per phase Fundamental Active Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Per phase Fundamental Active Energy is computed by accumulateFundamentalActiveEnergy():
+
+:math:`E_{Fact,ph} = P_{Fact,ph} × SamplCnt`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{Fact,ph}` = Fundamental Active power of phase ph
+-  SamplCnt = Number of samples within the present frame
+
+Per phase Reactive Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Per phase Reactive Power is computed by accumulateReactiveEnergy():
+
+:math:`E_{react,ph} = P_{react,ph} × SamplCnt`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{react,ph}` = Reactive power of phase ph
+-  SamplCnt = Number of samples within the present frame
+
+Per phase Fundamental Reactive Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Per phase Fundamental Reactive Energy is computed by accumulateFundamentalReactiveEnergy():
+
+:math:`E_{Freact,ph} = P_{Freact,ph} × SamplCnt`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{Freact,ph}` = Fundamental Reactive power of phase ph
+-  SamplCnt = Number of samples within the present frame
+
+Per phase Apparent Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Per phase Apparent Power is computed by accumulateApparentEnergy():
+
+:math:`E_{APP,ph} = P_{APP,ph} × SamplCnt`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{APP,ph}` = Apparent power of phase ph
+-  SamplCnt = Number of samples within the present frame
+
+Per phase Fundamental Apparent Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Per phase Fundamental apparent Power is computed by accumulateFundamentalApparentEnergy():
+
+:math:`E_{FAPP,ph} = P_{FAPP,ph} × SamplCnt`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{FAPP,ph}` = Apparent power of phase ph
+-  SamplCnt = Number of samples within the present frame
+
+Total Active Energy
+-------------------
+
+The following sections show the total energy calculations.
+
+Total Active Energy
+~~~~~~~~~~~~~~~~~~~
+
+The Total Active Energy is computed by:
+
+:math:`E_{Tact}` = :math:`\sum_{n=1}^{NumPhases} E_{act,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`E_{act,ph}` = Active energy of phase ph
+
+Total Fundamental Active Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Total Fundamental Active Energy is computed by:
+
+:math:`E_{TFact}` = :math:`\sum_{n=1}^{NumPhases} E_{Fact,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`E_{Fact,ph}` = Fundamental Active energy of phase ph
+
+Total Reactive Energy
+~~~~~~~~~~~~~~~~~~~~~
+
+The Total Reactive Power is computed by:
+
+:math:`E_{Treact}` = :math:`\sum_{n=1}^{NumPhases} E_{react,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  Ereact,ph = Reactive energy of phase ph
+
+Total Fundamental Reactive Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Total Fundamental Reactive Energy is computed by:
+
+:math:`E_{TFreact}` = :math:`\sum_{n=1}^{NumPhases} E_{Freact,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`E_{Freact,ph}` = Fundamental Reactive energy of phase ph
+
+Total Apparent Energy
+~~~~~~~~~~~~~~~~~~~~~
+
+The Total Apparent Power is computed by:
+
+:math:`E_{TAPP}` = :math:`\sum_{n=1}^{NumPhases} E_{APP,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`E_{APP,ph}` = Apparent energy of phase ph
+
+Total Fundamental Apparent Energy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Total Fundamental apparent Power is computed by:
+
+:math:`E_{TFAPP}` = :math:`\sum_{n=1}^{NumPhases} E_{FAPP,ph}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`E_{FAPP,ph}` = Fundamental apparent energy of phase ph
+
+Other Calculations
+==================
+
+Voltage Harmonics
+-----------------
+
+Total harmonic voltage distortion is computed by calculateVoltageTHD():
+
+:math:`V_{THD,ph} = \frac{ \sqrt{{V_{RMS,ph}}^2 - {V_{FRMS,ph}}^2 }}{V_{FRMS,ph}}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`V_{RMS,ph}` = Total RMS Voltage of phase ph
+-  :math:`V_{FRMS,ph}` = Fundamental RMS Voltage of phase ph
+
+Current Harmonics
+-----------------
+
+Total harmonic current distortion is computed by calculateCurrentTHD():
+
+:math:`I_{THD,ph} = \frac{ \sqrt{{I_{RMS,ph}}^2 - {I_{FRMS,ph}}^2}}{I_{FRMS,ph}}`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`I_{RMS,ph}` = Total RMS Current of phase ph
+-  :math:`I_{FRMS,ph}` = Fundamental RMS Current of phase ph
+
+Line-to-Line Voltage
+--------------------
+
+The Line-to-Line Voltage is computed by calculateLinetoLineVoltage():
+
+:math:`V_{RMS,xy} (mV) = \sqrt{ {[V_{RMS,x} + V_{RMS,y} * sin(k - 90) ]}^2 + {[V_{RMS,y} * sin(k)]}^2 }`
+
+where:
+
+-  :math:`V_{RMS,x}` = RMS Voltage of phase x
+-  :math:`V_{RMS,y}` = RMS Voltage of phase y
+-  k = angle between x and y phases
+
+Fundamental Line-to-Line Voltage
+--------------------------------
+
+The Line-to-Line Voltage is computed by calculateFundamentalLinetoLineVoltage():
+
+:math:`V_{FRMS,xy} (mV) = \sqrt{ {[V_{FRMS,x} + V_{FRMS,y} * sin(k - 90)]}^2 + {[V_{FRMS,y} * sin(k)]}^2 }`
+
+where:
+
+-  :math:`V_{FRMS,x}` = RMS Fundamental voltage of phase x
+-  :math:`V_{FRMS,y}` = RMS Funcamental voltage of phase y
+-  k = angle between x and y phases
+
+Per Phase Voltage to Current Angle
+----------------------------------
+
+The per phase Voltage to Current Angle is computed by calculateAngleVoltagetoCurrent():
+
+:math:`Angle_{ph} (rad) = arctan{ P_{react,ph} / P_{act,ph} }`
+
+where:
+
+-  ph = Phase parameters that are being calculated [that is, Phase A (= 1) or B (= 2)]
+-  :math:`P_{react,ph}` = Reactive power of phase ph
+-  :math:`P_{act,ph}` = Active power of phase ph
+-  :math:`Angle_{ph}` = Angle in radians in Q15, to convert to degrees:
+-  :math:`Angle_{ph}` = :math:`Angle_{ph} * 360 / (\pi * 2^{15})`
+
+Current Vector Sum
+------------------
+
+The Current Vector Sum is computed by calculateVectorCurrentSum():
+
+:math:`I_{TRMS} (uA) = \sqrt{ {I_{x}}^2 + {I_{y}}^2 }`
+
+:math:`I_{x} (uA) = -I_{RMS,a} * sin(k_{a} - 90) - I_{RMS,b} * sin(k_{b} - 90) - I_{RMS,c} * sin(k_{c} - 90)`
+
+:math:`I_{y} (uA) = I_{RMS,a} * sin(k_{a}) + I_{RMS,b} * sin(k_{b}) + I_{RMS,c} * sin(k_{c})`
+
+where:
+
+-  :math:`I_{RMS,a}` = RMS Current of phase a in uA
+-  :math:`I_{RMS,b}` = RMS Current of phase b in uA
+-  :math:`I_{RMS,c}` = RMS Current of phase c in uA
+-  :math:`k_{a}` = angle of phase a
+-  :math:`k_{b}` = angle of phase b
+-  :math:`k_{c}` = angle of phase c
+
+Sag or Swell Detection
+======================
+
+Sag or Swell detection determines if the per-phase RMS voltage drops below or above a pre-set threshold within a window of time. The sag\_swell\_event() routine updates the following global variables:
+
+-  Swell global variables:
+
+   -  swell\_events: This variable logs the total number of swell events that have occurred since the meter was first reset.
+
+      -  The start of a swell event occurs whenever the 1-cycle RMS is above a user-defined sag.
+      -  The end of a sag event occurs when the 1-cycle RMS is below the user-defined swell threshold minus a user-defined hysteresis value.
+
+   -  swell\_duration: This variable logs the number of cycles during the current ongoing swell event. If a swell event isn’t currently occurring, this variable represents the duration of the previously completed swell event.
+
+-  Sag global variables:
+
+   -  sag\_events: This variable logs the total number of sag events that have occurred since the meter was first reset.
+
+      -  The start of a sag event occurs whenever the 1-cycle RMS is below a user-defined sag threshold but is still greater than the user-defined interruption threshold.
+      -  The end of a sag event occurs when the 1-cycle RMS is above the user-defined sag threshold plus a user-defined hysteresis value.
+
+   -  sag\_duration: This variable logs the number of cycles during the current ongoing sag event. If a sag event isn’t currently occurring, this variable represents the duration of the previously completed sag event.
+
+-  Swell internal variables
+
+   -  max\_swell\_value: This variable is the maximum 1-cycle RMS reading that was observed during the current ongoing swell event. If a swell event isn’t currently occurring, this variable represents the maximum 1-cycle RMS reading during the previously completed swell event.
+
+-  Sag internal variables
+
+   -  min\_sag\_value: This variable is the minimum 1-cycle RMS reading that was observed during the current ongoing sag event. If a sag event isn’t currently occurring, this variable represents the minimum 1-cycle RMS reading during the previously completed sag event.
+
+-  Interruption internal variables
+
+   -  interruption\_events: This variable logs the total number of interruption events that have occurred since the meter was first reset.
+
+      -  The start of an interruption event occurs whenever the 1-cycle RMS is below a user-defined interruption threshold, which is lower than the sag voltage threshold.
+      -  interruption\_duration: This variable logs the number of cycles during the current ongoing sag event. If a sag event isn’t currently occurring, this variable represents the duration of the previously completed sag event. Note that this variable does not increment when there is no voltage applied to the meter since there are no cycles to count; however, the absence of voltage is still able to be counted as an interruption event.

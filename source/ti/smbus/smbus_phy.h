@@ -183,6 +183,16 @@ extern void SMBus_PHY_targetManualACK(SMBus *smbus, bool ackVal);
 
 //*****************************************************************************
 //
+//! \brief   Resets the Target's Address based on the ARP Status
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//! \return  None
+//
+//*****************************************************************************
+extern void SMBus_Phy_ARP_TARGET_ADDR_Reset(SMBus *smbus);
+//*****************************************************************************
+//
 //! \brief   Enables the PHY and Data Link layer
 //
 //! \param *smbus     Pointer to SMBus structure
@@ -192,6 +202,26 @@ extern void SMBus_PHY_targetManualACK(SMBus *smbus, bool ackVal);
 //*****************************************************************************
 extern void SMBus_PHY_controllerEnable(SMBus *smbus);
 
+//*****************************************************************************
+//
+//! \brief   Returns the Write Bus direction of the ARP transaction
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//! \return  Read / Write status
+//
+//*****************************************************************************
+extern uint8_t SMBus_Phy_ARP_Get_Write_Status(SMBus *smbus);
+//*****************************************************************************
+//
+//! \brief   Returns the Read Bus direction of the ARP transaction
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//! \return  Read / Write status
+//
+//*****************************************************************************
+extern uint8_t SMBus_Phy_ARP_Get_Read_Status(SMBus *smbus);
 //*****************************************************************************
 //
 //! \brief   Initializes the I2C Controller module supporting SMBus functionality

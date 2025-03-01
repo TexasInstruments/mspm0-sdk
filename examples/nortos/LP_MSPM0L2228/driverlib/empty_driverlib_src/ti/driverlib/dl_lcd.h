@@ -1025,7 +1025,7 @@ typedef struct {
  *  @param[in] lcd      Pointer to the register overlay for the peripheral
  *  @param[in] config   Configuration for LCD peripheral
  */
-void DL_LCD_init(LCD_Regs *lcd, DL_LCD_Config *config);
+void DL_LCD_init(LCD_Regs *lcd, const DL_LCD_Config *config);
 
 /**
  *  @brief Enable a pin as LCD function
@@ -1073,7 +1073,13 @@ void DL_LCD_setPinAsCommon(LCD_Regs *lcd, uint8_t pin, uint32_t com);
 void DL_LCD_setPinAsSegment(LCD_Regs *lcd, uint8_t pin);
 
 /**
- *  @brief Enables power to the LCD module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the LCD
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  @note For power savings, please refer to @ref DL_LCD_enable
  *
  *  @param[in] lcd  Pointer to the register overlay for the peripheral
  *
@@ -1084,7 +1090,13 @@ __STATIC_INLINE void DL_LCD_enablePower(LCD_Regs *lcd)
 }
 
 /**
- * @brief Disables power to the LCD module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the LCD
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings. For power savings,
+ *  please refer to @ref DL_LCD_enable
  *
  * @param lcd   Pointer to the register overlay for the peripheral
  */
@@ -1094,16 +1106,24 @@ __STATIC_INLINE void DL_LCD_disablePower(LCD_Regs *lcd)
 }
 
 /**
- *  @brief Checks if power module on LCD is enabled
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the LCD
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  *  @param[in]  lcd  Pointer to the register overlay for the peripheral
  *
  *  @return     If power module on LCD is enabled
  *
- *  @retval     true if power module on LCD is enabled
- *  @retval     false if power module on LCD is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_LCD_isPowerEnabled(LCD_Regs *lcd)
+__STATIC_INLINE bool DL_LCD_isPowerEnabled(const LCD_Regs *lcd)
 {
     return ((lcd->PWREN & LCD_PWREN_ENABLE_MASK) ==
             LCD_PWREN_ENABLE_ENABLE);
@@ -1132,7 +1152,7 @@ __STATIC_INLINE void DL_LCD_reset(LCD_Regs *lcd)
  *              RESETSTKYCLR in the RSTCTL register
  *  @retval     false if peripheral was not reset since the last bit clear
  */
-__STATIC_INLINE bool DL_LCD_isReset(LCD_Regs *lcd)
+__STATIC_INLINE bool DL_LCD_isReset(const LCD_Regs *lcd)
 {
     return ((lcd->STAT & LCD_STAT_RESETSTKY_MASK) ==
             LCD_STAT_RESETSTKY_RESET);
@@ -1147,7 +1167,7 @@ __STATIC_INLINE bool DL_LCD_isReset(LCD_Regs *lcd)
  *
  *  @retval     One of @ref DL_LCD_EVENT_LINE_MODE
  */
-__STATIC_INLINE DL_LCD_EVENT_LINE_MODE DL_LCD_getEventLineMode(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_EVENT_LINE_MODE DL_LCD_getEventLineMode(const LCD_Regs *lcd)
 {
     uint32_t eventLineMode = (lcd->EVT_MODE & LCD_EVT_MODE_INT0_CFG_MASK);
 
@@ -1167,7 +1187,7 @@ __STATIC_INLINE DL_LCD_EVENT_LINE_MODE DL_LCD_getEventLineMode(LCD_Regs *lcd)
  *
  *  @retval     One of @ref DL_LCD_IIDX
  */
-__STATIC_INLINE DL_LCD_IIDX DL_LCD_getPendingInterrupt(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_IIDX DL_LCD_getPendingInterrupt(const LCD_Regs *lcd)
 {
     return ((DL_LCD_IIDX) lcd->INT_EVENT0.IIDX);
 }
@@ -1213,7 +1233,7 @@ __STATIC_INLINE void DL_LCD_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_LCD_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_LCD_getEnabledInterrupts(
-    LCD_Regs *lcd, uint32_t interruptMask)
+    const LCD_Regs *lcd, uint32_t interruptMask)
 {
     return (lcd->INT_EVENT0.IMASK & interruptMask);
 }
@@ -1234,7 +1254,7 @@ __STATIC_INLINE uint32_t DL_LCD_getEnabledInterrupts(
  *  @retval     Bitwise OR of @ref DL_LCD_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_LCD_getRawInterruptStatus(
-    LCD_Regs *lcd, uint32_t interruptMask)
+    const LCD_Regs *lcd, uint32_t interruptMask)
 {
     return (lcd->INT_EVENT0.RIS & interruptMask);
 }
@@ -1257,7 +1277,7 @@ __STATIC_INLINE uint32_t DL_LCD_getRawInterruptStatus(
  *  @sa         DL_LCD_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_LCD_getEnabledInterruptStatus(
-    LCD_Regs *lcd, uint32_t interruptMask)
+    const LCD_Regs *lcd, uint32_t interruptMask)
 {
     return (lcd->INT_EVENT0.MIS & interruptMask);
 }
@@ -1320,7 +1340,7 @@ __STATIC_INLINE void DL_LCD_disableExternalSync(LCD_Regs *lcd)
  *  @retval     true if external synchronization enabled
  *  @retval     false if external synchronization is disabled
  */
-__STATIC_INLINE bool DL_LCD_isExternalSyncEnabled(LCD_Regs *lcd)
+__STATIC_INLINE bool DL_LCD_isExternalSyncEnabled(const LCD_Regs *lcd)
 {
     return ((lcd->LCDCTL0 & LCD_LCDCTL0_LCDSYNCEXT_MASK) ==
             LCD_LCDCTL0_LCDSYNCEXT_LCD_EXT_SYNC_ON);
@@ -1354,7 +1374,7 @@ __STATIC_INLINE void DL_LCD_setFreqDiv(
  *
  *  @retval     One of @ref DL_LCD_FREQ_DIVIDE
  */
-__STATIC_INLINE DL_LCD_FREQ_DIVIDE DL_LCD_getFreqDiv(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_FREQ_DIVIDE DL_LCD_getFreqDiv(const LCD_Regs *lcd)
 {
     uint32_t fDiv = (lcd->LCDCTL0 & LCD_LCDCTL0_LCDDIVX_MASK);
 
@@ -1389,7 +1409,7 @@ __STATIC_INLINE void DL_LCD_setMuxRate(
  *
  *  @retval     One of @ref DL_LCD_MUX_RATE
  */
-__STATIC_INLINE DL_LCD_MUX_RATE DL_LCD_getMuxRate(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_MUX_RATE DL_LCD_getMuxRate(const LCD_Regs *lcd)
 {
     uint32_t muxRate = (lcd->LCDCTL0 & LCD_LCDCTL0_LCDMXX_MASK);
 
@@ -1447,7 +1467,7 @@ __STATIC_INLINE void DL_LCD_setWaveformPowerMode(
  *  @retval     One of @ref DL_LCD_WAVEFORM_POWERMODE
  */
 __STATIC_INLINE DL_LCD_WAVEFORM_POWERMODE DL_LCD_getWaveformPowerMode(
-    LCD_Regs *lcd)
+    const LCD_Regs *lcd)
 {
     uint32_t waveformPowerMode = (lcd->LCDCTL0 & LCD_LCDCTL0_LCDLP_MASK);
 
@@ -1501,7 +1521,7 @@ __STATIC_INLINE void DL_LCD_setBlinkingControl(
  *
  *  @retval     One of @ref DL_LCD_BLINKING_DIVIDE
  */
-__STATIC_INLINE DL_LCD_BLINKING_DIVIDE DL_LCD_getBlinkingFreqDiv(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_BLINKING_DIVIDE DL_LCD_getBlinkingFreqDiv(const LCD_Regs *lcd)
 {
     uint32_t blinkFreqDiv = (lcd->LCDBLKCTL & LCD_LCDBLKCTL_LCDBLKPREX_MASK);
 
@@ -1517,7 +1537,7 @@ __STATIC_INLINE DL_LCD_BLINKING_DIVIDE DL_LCD_getBlinkingFreqDiv(LCD_Regs *lcd)
  *
  *  @retval     One of @ref DL_LCD_BLINKING_MODE
  */
-__STATIC_INLINE DL_LCD_BLINKING_MODE DL_LCD_getBlinkingMode(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_BLINKING_MODE DL_LCD_getBlinkingMode(const LCD_Regs *lcd)
 {
     uint32_t blinkMode = (lcd->LCDBLKCTL & LCD_LCDBLKCTL_LCDBLKMODX_MASK);
 
@@ -1583,7 +1603,7 @@ __STATIC_INLINE void DL_LCD_selectMemRegsForDisplay(
  *
  *  @retval     One of @ref DL_LCD_DISP
  */
-__STATIC_INLINE DL_LCD_DISP DL_LCD_getSelectedMemRegsForDisplay(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_DISP DL_LCD_getSelectedMemRegsForDisplay(const LCD_Regs *lcd)
 {
     uint32_t dispSel = (lcd->LCDMEMCTL & LCD_LCDMEMCTL_LCDDISP_MASK);
 
@@ -1636,7 +1656,7 @@ __STATIC_INLINE void DL_LCD_setChargePumpFreq(
  *  @retval     One of @ref DL_LCD_CHARGE_PUMP_FREQUENCY
  */
 __STATIC_INLINE DL_LCD_CHARGE_PUMP_FREQUENCY DL_LCD_getChargePumpFreq(
-    LCD_Regs *lcd)
+    const LCD_Regs *lcd)
 {
     uint32_t chargePumpFreq = (lcd->LCDVCTL & LCD_LCDVCTL_LCDCPFSELX_MASK);
 
@@ -1667,7 +1687,7 @@ __STATIC_INLINE void DL_LCD_setVREFInternal(
  *
  *  @retval     One of @ref DL_LCD_VREF_INTERNAL
  */
-__STATIC_INLINE DL_LCD_VREF_INTERNAL DL_LCD_getVREFInternal(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_VREF_INTERNAL DL_LCD_getVREFInternal(const LCD_Regs *lcd)
 {
     uint32_t vrefInternal = (lcd->LCDVCTL & LCD_LCDVCTL_VLCDX_MASK);
 
@@ -1742,7 +1762,7 @@ __STATIC_INLINE void DL_LCD_setR33source(
  *
  *  @retval     One of @ref DL_LCD_R33_SOURCE
  */
-__STATIC_INLINE DL_LCD_R33_SOURCE DL_LCD_getR33Source(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_R33_SOURCE DL_LCD_getR33Source(const LCD_Regs *lcd)
 {
     uint32_t r33Source = (lcd->LCDVCTL & LCD_LCDVCTL_LCDSELVDD_MASK);
 
@@ -1775,7 +1795,7 @@ __STATIC_INLINE void DL_LCD_setInternalBiasPowerMode(
  *
  *  @retval     One of @ref DL_LCD_POWER_MODE
  */
-__STATIC_INLINE DL_LCD_POWER_MODE DL_LCD_getPowerMode(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_POWER_MODE DL_LCD_getPowerMode(const LCD_Regs *lcd)
 {
     uint32_t powerMode = (lcd->LCDVCTL & LCD_LCDVCTL_LCDSELVDD_MASK);
 
@@ -1810,7 +1830,7 @@ __STATIC_INLINE void DL_LCD_setBiasVoltageSource(
  *  @retval     One of @ref DL_LCD_BIAS_VOLTAGE_SOURCE
  */
 __STATIC_INLINE DL_LCD_BIAS_VOLTAGE_SOURCE DL_LCD_getBiasVoltageSource(
-    LCD_Regs *lcd)
+    const LCD_Regs *lcd)
 {
     uint32_t biasVoltageSource = (
         lcd->LCDVCTL & LCD_LCDVCTL_VLCDSEL_VDD_R33_MASK);
@@ -1864,7 +1884,7 @@ __STATIC_INLINE void DL_LCD_setBias(
  *
  *  @retval     One of @ref DL_LCD_BIAS
  */
-__STATIC_INLINE DL_LCD_BIAS DL_LCD_getBias(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_BIAS DL_LCD_getBias(const LCD_Regs *lcd)
 {
     uint32_t biasSel = (lcd->LCDVCTL & LCD_LCDVCTL_LCDBIASSEL_MASK);
 
@@ -1894,7 +1914,7 @@ __STATIC_INLINE void DL_LCD_setRefMode(
  *
  *  @retval     One of @ref DL_LCD_REFERENCE_MODE
  */
-__STATIC_INLINE DL_LCD_REFERENCE_MODE DL_LCD_getRefMode(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_REFERENCE_MODE DL_LCD_getRefMode(const LCD_Regs *lcd)
 {
     uint32_t refMode = (lcd->LCDVCTL & LCD_LCDVCTL_LCDREFMODE_MASK);
 
@@ -1972,7 +1992,7 @@ __STATIC_INLINE void DL_LCD_clearMemory(
  *  @sa         DL_LCD_MEMORY_BIT
  */
 __STATIC_INLINE uint32_t DL_LCD_getMemory(
-    LCD_Regs *lcd, DL_LCD_MEMORY memIndex)
+    const LCD_Regs *lcd, DL_LCD_MEMORY memIndex)
 {
     return lcd -> LCDM[(uint32_t) memIndex];
 }
@@ -2048,7 +2068,7 @@ __STATIC_INLINE void DL_LCD_clearBlinkingMemory(
  *  @sa         DL_LCD_BLINK_MEMORY_BIT
  */
 __STATIC_INLINE uint32_t DL_LCD_getBlinkingMemory(
-    LCD_Regs *lcd, DL_LCD_BLINKING_MEMORY memIndex)
+    const LCD_Regs *lcd, DL_LCD_BLINKING_MEMORY memIndex)
 {
     return lcd -> LCDBM[(uint32_t) memIndex];
 }
@@ -2076,7 +2096,7 @@ __STATIC_INLINE void DL_LCD_setVrefOnTimeCycles(
  *
  *  @retval     One of @ref DL_LCD_VREFGEN_CYCLES
  */
-__STATIC_INLINE DL_LCD_VREFGEN_CYCLES DL_LCD_getVrefOnTimeCycles(LCD_Regs *lcd)
+__STATIC_INLINE DL_LCD_VREFGEN_CYCLES DL_LCD_getVrefOnTimeCycles(const LCD_Regs *lcd)
 {
     uint32_t cycles = (lcd->LCDVREFCFG & LCD_LCDVREFCFG_ONTIME_MASK);
 

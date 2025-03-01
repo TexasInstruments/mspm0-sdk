@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['sincosmathaclcompute',['sinCosMATHACLCompute',['../iq_trig_8h.html#a86d0c40c49fdb16c8d346aedf93bce0d',1,'iqTrig.c']]],
+  ['sine',['sine',['../iq_trig_8h.html#a61191ce317176d32ca814f8a4dd1e7d3',1,'iqTrig.h']]],
+  ['sine_5flowprioirty',['sine_LowPrioirty',['../iq_trig_8h.html#acc0eea90cf96bdf566a2c30f6f364697',1,'iqTrig.h']]],
+  ['sine_5flowpriority',['sine_LowPriority',['../iq_trig_8h.html#ac80ca8d5d518112faec3f62cbe1e2044',1,'iqTrig.c']]],
+  ['slewrate',['slewRate',['../slew_rate_8h.html#a38c58725436c67a2cb115b1bb7843448',1,'slewRate.c']]],
+  ['softstopinit',['softStopInit',['../soft_stop_8h.html#ad8b1a3deb748926ecb6f4477216a5b0c',1,'softStop.c']]],
+  ['softstoprun',['softStopRun',['../soft_stop_8h.html#a466f64d3873cf90f9412204d370c845e',1,'softStop.c']]],
+  ['sourcecurrentestiminit',['sourceCurrentEstimInit',['../source_current_estim_8h.html#af823f43b8d83100023f500a654dcc51a',1,'sourceCurrentEstim.c']]],
+  ['sourcecurrentestimrun',['sourceCurrentEstimRun',['../source_current_estim_8h.html#a7847239e00b8ace2208912e9c2dce8e9',1,'sourceCurrentEstim.c']]],
+  ['sourcecurrentlimitinit',['sourceCurrentLimitInit',['../source_current_limit_8h.html#a33b1dd68d10367c6c935f1522281a8ab',1,'sourceCurrentLimit.c']]],
+  ['sourcecurrentlimitrun',['sourceCurrentLimitRun',['../source_current_limit_8h.html#a9989fa58d7492a063395feac3de001bf',1,'sourceCurrentLimit.c']]],
+  ['sourcelimitsinit',['sourceLimitsInit',['../source_limits_8h.html#a42c47186181610434faef7ce3844c211',1,'sourceLimits.c']]],
+  ['sourcelimitsrun',['sourceLimitsRun',['../source_limits_8h.html#a16df628beeb08dcf10f998021f342bc6',1,'sourceLimits.c']]],
+  ['sourcevoltagelimitinit',['sourceVoltageLimitInit',['../source_voltage_limit_8h.html#ae555d3f979eaba12c1cb5afaaa15b734',1,'sourceVoltageLimit.c']]],
+  ['sourcevoltagelimitrun',['sourceVoltageLimitRun',['../source_voltage_limit_8h.html#ad0c2360270aafa1fb6931bf5f84a63eb',1,'sourceVoltageLimit.c']]],
+  ['speedprofile',['speedProfile',['../speed_profile_8h.html#aa82a40b8b6cf61fbd456a99bb54d8931',1,'speedProfile.c']]],
+  ['stalldetectinit',['stallDetectInit',['../stall_detect_8h.html#a9249b38000d48716248daef330a1cbce',1,'stallDetect.c']]],
+  ['stalldetectlowpriorityrun',['stallDetectLowPriorityRun',['../stall_detect_8h.html#a1a5f36db565b731a402a71c9abb08fa6',1,'stallDetect.c']]],
+  ['stalldetectrun',['stallDetectRun',['../stall_detect_8h.html#ab7b3fadf2fe657deb41f8b834b423234',1,'stallDetect.c']]]
+];

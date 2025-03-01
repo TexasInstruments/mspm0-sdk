@@ -79,7 +79,7 @@ extern void WWDT0_IRQHandler(void);
 extern void LFSS_IRQHandler(void);
 extern void DMA_IRQHandler(void);
 
-/* Cortex-M4 Processor Exceptions */
+/* Cortex-M0+ Processor Exceptions */
 #pragma weak NMI_Handler       = Default_Handler
 #pragma weak HardFault_Handler = Default_Handler
 #pragma weak SVC_Handler       = Default_Handler

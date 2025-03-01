@@ -39,6 +39,7 @@
     let SYSCTL = args[0]; /* passed by /ti/drivers/templates/Board.c.xdt */
     let content = args[1]; /* passed by /ti/drivers/templates/Board.c.xdt */
     let Common = system.getScript("/ti/driverlib/Common.js");
+    let { ClockSignals } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
 
 
     /* shorthand names for some common references in template below */
@@ -103,8 +104,9 @@
 % if(stat.forceDefaultClkConfig) {
 %    funcStr += "\t/* Set default configuration */"
 %    funcStr += "\n\tDL_SYSCTL_disableHFXT();"
-%    if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
-%    funcStr += "\n\tDL_SYSCTL_disableSYSPLL();"
+%    if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X() &&
+%       !Common.isDeviceFamily_PARENT_MSPM0H321X() && !Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()) {
+%    funcStr += "\n\tDL_SYSCTL_disableSYSPLL();";
 %    }
 %    funcStr += "\n"
 %}
@@ -112,7 +114,7 @@
 %     let genPinFunc = system.getTemplate(mod.templates.boardc);
 %  tempStr = _.trimEnd(genPinFunc(mod, "Function"));
 %  funcStr += tempStr != ""?tempStr + "\n":"";
-%   if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
+%   if(ClockSignals.includes("HFXT")) {
 %     let genHFCLK = system.getTemplate("/ti/clockTree/templates/hfclkSource.Board.c.xdt");
 %  tempStr = _.trimEnd(genHFCLK());
 %  funcStr += tempStr != ""?tempStr + "\n":"";

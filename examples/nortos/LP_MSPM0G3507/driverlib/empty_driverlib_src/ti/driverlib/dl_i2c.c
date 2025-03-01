@@ -38,7 +38,7 @@
  *  @brief I2C Controller APIs
  */
 
-void DL_I2C_setClockConfig(I2C_Regs *i2c, DL_I2C_ClockConfig *config)
+void DL_I2C_setClockConfig(I2C_Regs *i2c, const DL_I2C_ClockConfig *config)
 {
     DL_Common_updateReg(&i2c->CLKSEL, (uint32_t) config->clockSel,
         I2C_CLKSEL_BUSCLK_SEL_MASK | I2C_CLKSEL_MFCLK_SEL_MASK);
@@ -47,7 +47,7 @@ void DL_I2C_setClockConfig(I2C_Regs *i2c, DL_I2C_ClockConfig *config)
         &i2c->CLKDIV, (uint32_t) config->divideRatio, I2C_CLKDIV_RATIO_MASK);
 }
 
-void DL_I2C_getClockConfig(I2C_Regs *i2c, DL_I2C_ClockConfig *config)
+void DL_I2C_getClockConfig(const I2C_Regs *i2c, DL_I2C_ClockConfig *config)
 {
     uint32_t clockSel =
         i2c->CLKSEL & (I2C_CLKSEL_BUSCLK_SEL_MASK | I2C_CLKSEL_MFCLK_SEL_MASK);
@@ -58,7 +58,7 @@ void DL_I2C_getClockConfig(I2C_Regs *i2c, DL_I2C_ClockConfig *config)
 }
 
 uint16_t DL_I2C_fillControllerTXFIFO(
-    I2C_Regs *i2c, uint8_t *buffer, uint16_t count)
+    I2C_Regs *i2c, const uint8_t *buffer, uint16_t count)
 {
     uint16_t i;
     for (i = (uint16_t) 0; i < count; i++) {
@@ -92,7 +92,8 @@ void DL_I2C_flushControllerRXFIFO(I2C_Regs *i2c)
 /**
  *  @brief I2C Target APIs
  */
-uint8_t DL_I2C_fillTargetTXFIFO(I2C_Regs *i2c, uint8_t *buffer, uint8_t count)
+uint8_t DL_I2C_fillTargetTXFIFO(
+    I2C_Regs *i2c, const uint8_t *buffer, uint8_t count)
 {
     uint8_t i;
     for (i = (uint8_t) 0; i < count; i++) {
@@ -145,7 +146,7 @@ bool DL_I2C_transmitTargetDataCheck(I2C_Regs *i2c, uint8_t data)
     return status;
 }
 
-uint8_t DL_I2C_receiveTargetDataBlocking(I2C_Regs *i2c)
+uint8_t DL_I2C_receiveTargetDataBlocking(const I2C_Regs *i2c)
 {
     while (
         (DL_I2C_getTargetStatus(i2c) & DL_I2C_TARGET_STATUS_RECEIVE_REQUEST) !=
@@ -155,7 +156,7 @@ uint8_t DL_I2C_receiveTargetDataBlocking(I2C_Regs *i2c)
     return DL_I2C_receiveTargetData(i2c);
 }
 
-bool DL_I2C_receiveTargetDataCheck(I2C_Regs *i2c, uint8_t *buffer)
+bool DL_I2C_receiveTargetDataCheck(const I2C_Regs *i2c, uint8_t *buffer)
 {
     bool status;
     if (DL_I2C_isTargetRXFIFOEmpty(i2c)) {

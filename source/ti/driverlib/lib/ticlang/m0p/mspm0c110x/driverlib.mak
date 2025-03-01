@@ -5,7 +5,7 @@ include $(SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 AR = "$(TICLANG_ARMCOMPILER)/bin/tiarmar"
 
-NAME = mspm0c110x/driverlib
+NAME = driverlib
 
 OBJ_DIR = ../../../../obj/ticlang/m0p/mspm0c110x/driverlib
 SRC_DIR = ../../../..
@@ -14,7 +14,7 @@ CFLAGS = -I$(TICLANG_ARMCOMPILER)/include "-I$(SDK_INSTALL_DIR)/source/third_par
 AFLAGS = rc
 ASMFLAGS = -I$(TICLANG_ARMCOMPILER)/include 
 
-OBJECTS = $(OBJ_DIR)/dl_adc12.o $(OBJ_DIR)/dl_aes.o $(OBJ_DIR)/dl_aesadv.o $(OBJ_DIR)/dl_common.o $(OBJ_DIR)/dl_crc.o $(OBJ_DIR)/dl_crcp.o $(OBJ_DIR)/dl_dac12.o $(OBJ_DIR)/dl_dma.o $(OBJ_DIR)/dl_flashctl.o $(OBJ_DIR)/dl_i2c.o $(OBJ_DIR)/dl_keystorectl.o $(OBJ_DIR)/dl_lcd.o $(OBJ_DIR)/dl_lfss.o $(OBJ_DIR)/dl_mathacl.o $(OBJ_DIR)/dl_mcan.o $(OBJ_DIR)/dl_opa.o $(OBJ_DIR)/dl_rtc_common.o $(OBJ_DIR)/dl_spi.o $(OBJ_DIR)/dl_timer.o $(OBJ_DIR)/dl_trng.o $(OBJ_DIR)/dl_uart.o $(OBJ_DIR)/dl_vref.o $(OBJ_DIR)/dl_factoryregion.o $(OBJ_DIR)/dl_interrupt.o $(OBJ_DIR)/dl_sysctl_mspm0c110x.o $(OBJ_DIR)/dl_sysctl_mspm0g1x0x_g3x0x.o $(OBJ_DIR)/dl_sysctl_mspm0gx51x.o $(OBJ_DIR)/dl_sysctl_mspm0l111x.o $(OBJ_DIR)/dl_sysctl_mspm0l11xx_l13xx.o $(OBJ_DIR)/dl_sysctl_mspm0l122x_l222x.o
+OBJECTS = $(OBJ_DIR)/dl_adc12.o $(OBJ_DIR)/dl_aes.o $(OBJ_DIR)/dl_aesadv.o $(OBJ_DIR)/dl_common.o $(OBJ_DIR)/dl_comp.o $(OBJ_DIR)/dl_crc.o $(OBJ_DIR)/dl_crcp.o $(OBJ_DIR)/dl_dac12.o $(OBJ_DIR)/dl_dma.o $(OBJ_DIR)/dl_flashctl.o $(OBJ_DIR)/dl_gpamp.o $(OBJ_DIR)/dl_gpio.o $(OBJ_DIR)/dl_i2c.o $(OBJ_DIR)/dl_iwdt.o $(OBJ_DIR)/dl_keystorectl.o $(OBJ_DIR)/dl_lcd.o $(OBJ_DIR)/dl_lfss.o $(OBJ_DIR)/dl_mathacl.o $(OBJ_DIR)/dl_mcan.o $(OBJ_DIR)/dl_opa.o $(OBJ_DIR)/dl_rtc.o $(OBJ_DIR)/dl_rtc_a.o $(OBJ_DIR)/dl_rtc_b.o $(OBJ_DIR)/dl_rtc_common.o $(OBJ_DIR)/dl_scratchpad.o $(OBJ_DIR)/dl_spi.o $(OBJ_DIR)/dl_tamperio.o $(OBJ_DIR)/dl_timer.o $(OBJ_DIR)/dl_timera.o $(OBJ_DIR)/dl_timerg.o $(OBJ_DIR)/dl_trng.o $(OBJ_DIR)/dl_uart.o $(OBJ_DIR)/dl_vref.o $(OBJ_DIR)/dl_wwdt.o $(OBJ_DIR)/dl_factoryregion.o $(OBJ_DIR)/dl_interrupt.o $(OBJ_DIR)/dl_sysctl_mspm0c110x.o $(OBJ_DIR)/dl_sysctl_mspm0g1x0x_g3x0x.o $(OBJ_DIR)/dl_sysctl_mspm0gx51x.o $(OBJ_DIR)/dl_sysctl_mspm0h321x.o $(OBJ_DIR)/dl_sysctl_mspm0l111x.o $(OBJ_DIR)/dl_sysctl_mspm0l11xx_l13xx.o $(OBJ_DIR)/dl_sysctl_mspm0l122x_l222x.o
 
 all: $(NAME).a
 
@@ -38,6 +38,11 @@ $(OBJ_DIR)/dl_aesadv.o: $(SRC_DIR)/dl_aesadv.c
 	@ $(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR)/dl_common.o: $(SRC_DIR)/dl_common.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_comp.o: $(SRC_DIR)/dl_comp.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -67,7 +72,22 @@ $(OBJ_DIR)/dl_flashctl.o: $(SRC_DIR)/dl_flashctl.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/dl_gpamp.o: $(SRC_DIR)/dl_gpamp.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_gpio.o: $(SRC_DIR)/dl_gpio.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/dl_i2c.o: $(SRC_DIR)/dl_i2c.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_iwdt.o: $(SRC_DIR)/dl_iwdt.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -102,7 +122,27 @@ $(OBJ_DIR)/dl_opa.o: $(SRC_DIR)/dl_opa.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/dl_rtc.o: $(SRC_DIR)/dl_rtc.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_rtc_a.o: $(SRC_DIR)/dl_rtc_a.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_rtc_b.o: $(SRC_DIR)/dl_rtc_b.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/dl_rtc_common.o: $(SRC_DIR)/dl_rtc_common.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_scratchpad.o: $(SRC_DIR)/dl_scratchpad.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -112,7 +152,22 @@ $(OBJ_DIR)/dl_spi.o: $(SRC_DIR)/dl_spi.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/dl_tamperio.o: $(SRC_DIR)/dl_tamperio.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/dl_timer.o: $(SRC_DIR)/dl_timer.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_timera.o: $(SRC_DIR)/dl_timera.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_timerg.o: $(SRC_DIR)/dl_timerg.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -128,6 +183,11 @@ $(OBJ_DIR)/dl_uart.o: $(SRC_DIR)/dl_uart.c
 	@ $(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR)/dl_vref.o: $(SRC_DIR)/dl_vref.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_wwdt.o: $(SRC_DIR)/dl_wwdt.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -153,6 +213,11 @@ $(OBJ_DIR)/dl_sysctl_mspm0g1x0x_g3x0x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0g1
 	@ $(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR)/dl_sysctl_mspm0gx51x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0gx51x.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_sysctl_mspm0h321x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0h321x.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@

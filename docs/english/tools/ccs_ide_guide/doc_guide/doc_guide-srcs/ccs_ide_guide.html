@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Code Composer Studio v12 (Eclipse) IDE Version 12.8.0+ for MSPM0 MCUs &mdash; Code Composer Studio v12 Eclipse IDE for MSPM0 MCUs 2.03.00.07 documentation</title>
+  <title>Code Composer Studio v12 (Eclipse) IDE Version 12.8.0+ for MSPM0 MCUs &mdash; Code Composer Studio v12 Eclipse IDE for MSPM0 MCUs 2.04.00.06 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> Code Composer Studio v12 Eclipse IDE for MSPM0 MCUs
           </a>
               <div class="version">
-                2.03.00.07
+                2.04.00.06
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -97,6 +97,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#connecting-to-an-incorrect-device">3.6 Connecting to an Incorrect Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diagnostic-readings-in-code-composer-studio">3.7 Diagnostic readings in Code Composer Studio</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-arm-gcc">4. Installing Arm GCC</a></li>
@@ -688,6 +689,22 @@ projects, where all the configuration files can be handled by the built-in devic
 <p>CCS will show a warning if an unsupported device is connected as shown below:</p>
 <p><img alt="image0" src="../_images/ccs_connectionerror1.png" /> <img alt="image1" src="../_images/ccs_connectionerror2.png" /></p>
 <p>Programming an incorrect device is not recommended and can lead to unexpected and unrecoverable behavior.</p>
+</section>
+<section id="diagnostic-readings-in-code-composer-studio">
+<h3>3.7 Diagnostic readings in Code Composer Studio<a class="headerlink" href="#diagnostic-readings-in-code-composer-studio" title="Permalink to this heading">¶</a></h3>
+<p>In CCS 12.8.1, with MSPM0 support package v1.13.00.02 or later, if there are issues connecting to the MSPM0, a diagnosis is performed on the MSPM0 to determine device state by utilizing the BOOTDIAG register from our CFG-AP. This is done by reading and then decoding the output to provide a list of possible root causes and solutions.</p>
+<p>Below is a screenshot of an example output depicting the possible errors unique to the BOOTDIAG reading</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_debug_prompt.png" />
+</figure>
+<p>Within the prompt press on the “Read boot diagnostic” button to get a detailed diagnosis of the issue.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_debug_prompt_highlighted.png" />
+</figure>
+<p>An output will appear in the console providing possible root causes alongside solutions to resolve the issue.</p>
+<figure class="align-default">
+<img alt="" src="../_images/ccs_bootdiag_read.png" />
+</figure>
 </section>
 </section>
 <section id="installing-arm-gcc">

@@ -1,8 +1,8 @@
 var searchData=
 [
   ['inter_2dintegrated_20circuit_20_28i2c_29',['Inter-Integrated Circuit (I2C)',['../group___i2_c.html',1,'']]],
-  ['i2c_5fgettargetownaddressalternate',['I2C_getTargetOwnAddressAlternate',['../group___i2_c.html#gafade425db4ab48e03ed67cfd035b6153',1,'dl_i2c.h']]],
-  ['i2c_5fgettargetownaddressalternatemask',['I2C_getTargetOwnAddressAlternateMask',['../group___i2_c.html#ga7c7d38d1e2820699da762af548258e7e',1,'dl_i2c.h']]],
+  ['i2c_5fgettargetownaddressalternate',['I2C_getTargetOwnAddressAlternate',['../group___i2_c.html#ga3fac7bd0083eeb7755cc839b6c990906',1,'dl_i2c.h']]],
+  ['i2c_5fgettargetownaddressalternatemask',['I2C_getTargetOwnAddressAlternateMask',['../group___i2_c.html#gaad709a97f5cf0aa4aaba50405a980041',1,'dl_i2c.h']]],
   ['ibrd',['ibrd',['../struct_d_l___u_a_r_t___main__backup_config.html#aa14dd94c6c258d77b1a3191a9f2e51e7',1,'DL_UART_Main_backupConfig::ibrd()'],['../struct_d_l___u_a_r_t___extend__backup_config.html#aae4d449f998c921cc2f111e2f5b15969',1,'DL_UART_Extend_backupConfig::ibrd()']]],
   ['id',['id',['../struct_d_l___m_c_a_n___tx_buf_element.html#a2e436f3688ff09b3ec987915f0f19502',1,'DL_MCAN_TxBufElement::id()'],['../struct_d_l___m_c_a_n___rx_buf_element.html#aa76e4c8f4363000e8941f26e1fa1bc1c',1,'DL_MCAN_RxBufElement::id()'],['../struct_d_l___m_c_a_n___tx_event_f_i_f_o_element.html#a20bf9ebb81609d46c6a19e412ce83131',1,'DL_MCAN_TxEventFIFOElement::id()']]],
   ['in0filtctl',['in0FiltCtl',['../struct_d_l___timer__backup_config.html#a94650dcbc226ba8885b9974730a3218d',1,'DL_Timer_backupConfig::in0FiltCtl()'],['../struct_d_l___timer_a__backup_config.html#ada331f1abb603fe62be1c448b7b0ff6d',1,'DL_TimerA_backupConfig::in0FiltCtl()']]],

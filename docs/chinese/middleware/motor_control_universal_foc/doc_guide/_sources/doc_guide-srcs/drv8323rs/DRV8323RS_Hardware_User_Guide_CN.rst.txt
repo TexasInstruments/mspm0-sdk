@@ -7,6 +7,7 @@ This User Guide outlines the usage of DRV8323RS gate driver along with the FOC A
 --------------------
 
 -  `LP-MSPM0G3507 <https://www.ti.com/tool/LP-MSPM0G3507>`__ - MSPM0G3507 Launchpad
+-  `LP-MSPM0G3519 <https://www.ti.com/tool/LP-MSPM0G3519>`__ - MSPM0G3519 Launchpad
 -  `BOOSTXL-DRV8323RS <https://www.ti.com/tool/BOOSTXL-DRV8323RS>`__ - BOOSTXL-DRV8323RS is a 15A, 3-phase brushless DC drive stage based on the DRV8323RH gate driver and CSD88599Q5DC NexFET™ power block
 -  DC Power supply that supports the required voltage and current
 -  Brushless-DC Motor
@@ -22,61 +23,61 @@ This User Guide outlines the usage of DRV8323RS gate driver along with the FOC A
 
    J18 header removed in LP-MSPM0G3507
 
-2. Connect the LP-MSPM0G3507 to the BOOSTXL-DRV8323RS in one of two ways:
+2. Connect the LP-MSPM0G3507/LP-MSPM0G3519 to the BOOSTXL-DRV8323RS in one of two ways:
 
    -  1 Plug the connectors J3 and J4 of the BOOSTXL-DRV8323RS to the top of the connectors J3/J4 of the LP-MSPM0G3507.
 
    -  2 If using the jumper wires, connect as shown in the table below. Refer to the schematic of J3 and J4 connector pinout on BOOSTXL-DRV8323RS for the location of the signals.
 
-      +---------------------------+--------------+---------------------+
-      | Connection                | MSPM0G3507   | BOOSTXL-DRV8323RS   |
-      +===========================+==============+=====================+
-      | Phase A HS input          | PB4          | INHA                |
-      +---------------------------+--------------+---------------------+
-      | Phase A LS input          | PB1          | INLA                |
-      +---------------------------+--------------+---------------------+
-      | Phase B HS input          | PA28         | INHB                |
-      +---------------------------+--------------+---------------------+
-      | Phase B LS input          | PA31         | INLB                |
-      +---------------------------+--------------+---------------------+
-      | Phase C HS input          | PB20         | INHC                |
-      +---------------------------+--------------+---------------------+
-      | Phase C LS input          | PB13         | INLC                |
-      +---------------------------+--------------+---------------------+
-      | Serial clock input        | PB9          | SCLK                |
-      +---------------------------+--------------+---------------------+
-      | Serial data input         | PB8          | SDI                 |
-      +---------------------------+--------------+---------------------+
-      | Serial data output        | PB7          | SDO                 |
-      +---------------------------+--------------+---------------------+
-      | Chip Select               | PB0          | nSCS                |
-      +---------------------------+--------------+---------------------+
-      | Bus voltage input         | PA25         | VSENVM              |
-      +---------------------------+--------------+---------------------+
-      | Phase A current input     | PA17         | ISENA               |
-      +---------------------------+--------------+---------------------+
-      | Phase B current input     | PA24         | ISENB               |
-      +---------------------------+--------------+---------------------+
-      | Phase C current input     | PA18         | ISENC               |
-      +---------------------------+--------------+---------------------+
-      | Phase A Voltage input     | PB19         | VSENA               |
-      +---------------------------+--------------+---------------------+
-      | Phase B Voltage input     | PA22         | VSENB               |
-      +---------------------------+--------------+---------------------+
-      | Phase C Voltage input     | PB18         | VSENC               |
-      +---------------------------+--------------+---------------------+
-      | Fault Input               | PA27         | nFAULT              |
-      +---------------------------+--------------+---------------------+
-      | DRV Enable output         | PA26         | ENABLE              |
-      +---------------------------+--------------+---------------------+
-      | Controller Fault Output   | PA11         | LED                 |
-      +---------------------------+--------------+---------------------+
-      | Common Ground             | GND          | GND                 |
-      +---------------------------+--------------+---------------------+
-      | UART TX                   | PB12         | TX                  |
-      +---------------------------+--------------+---------------------+
-      | UART RX                   | PA13         | RX                  |
-      +---------------------------+--------------+---------------------+
+      +---------------------------+--------------+--------------+---------------------+
+      | Connection                | MSPM0G3507   | MSPM0G3519   | BOOSTXL-DRV8323RS   |
+      +===========================+==============+==============+=====================+
+      | Phase A HS input          | PB4          | PB3          | INHA                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase A LS input          | PB1          | PB9          | INLA                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase B HS input          | PA28         | PC4          | INHB                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase B LS input          | PA31         | PC5          | INLB                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase C HS input          | PB20         | PB4          | INHC                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase C LS input          | PB13         | PB5          | INLC                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Serial clock input        | PB9          | PB31         | SCLK                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Serial data input         | PB8          | PB8          | SDI                 |
+      +---------------------------+--------------+--------------+---------------------+
+      | Serial data output        | PB7          | PB7          | SDO                 |
+      +---------------------------+--------------+--------------+---------------------+
+      | Chip Select               | PB0          | PB11         | nSCS                |
+      +---------------------------+--------------+--------------+---------------------+
+      | Bus voltage input         | PA25         | PA14         | VSENVM              |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase A current input     | PA17         | PB27         | ISENA               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase B current input     | PA24         | PB26         | ISENB               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase C current input     | PA18         | PB25         | ISENC               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase A Voltage input     | PB19         | PA27         | VSENA               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase B Voltage input     | PA22         | PA26         | VSENB               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Phase C Voltage input     | PB18         | PB24         | VSENC               |
+      +---------------------------+--------------+--------------+---------------------+
+      | Fault Input               | PA27         | PB30         | nFAULT              |
+      +---------------------------+--------------+--------------+---------------------+
+      | DRV Enable output         | PA26         | PB29         | ENABLE              |
+      +---------------------------+--------------+--------------+---------------------+
+      | Controller Fault Output   | PA11         | PA11         | LED                 |
+      +---------------------------+--------------+--------------+---------------------+
+      | Common Ground             | GND          | GND          | GND                 |
+      +---------------------------+--------------+--------------+---------------------+
+      | UART TX                   | PB12         | PA9          | TX                  |
+      +---------------------------+--------------+--------------+---------------------+
+      | UART RX                   | PA13         | PA8          | RX                  |
+      +---------------------------+--------------+--------------+---------------------+
 
 .. figure:: images/DRV-CONNECTOR.jpg
    :alt: BOOSTXL-DRV8323RS J3 and J4 connector pinout
@@ -89,7 +90,7 @@ This User Guide outlines the usage of DRV8323RS gate driver along with the FOC A
 
 5. Set the power supply to a motor voltage between 4.5V to 48V within the DRV8323RS specifications and a 15-A current limit.
 
-6. Connect a Micro-USB cable from the LP-MSPM0G3507 to the PC.
+6. Connect a Micro-USB cable from the MSPM0G launchpad to the PC.
 
 7. Turn on the power supply. The green VM LED on the BOOSTXL-DRV8323RS should turn on.
 

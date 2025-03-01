@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs &mdash; Arm Keil MDK IDE for MSPM0 MCUs Documentation 2.03.00.07 documentation</title>
+  <title>Arm Keil MDK IDE Version 5.38+ for MSPM0 MCUs &mdash; Arm Keil MDK IDE for MSPM0 MCUs Documentation 2.04.00.06 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> Arm Keil MDK IDE for MSPM0 MCUs Documentation
           </a>
               <div class="version">
-                2.03.00.07
+                2.04.00.06
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -71,6 +71,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#using-segger-j-link-debug-probe">3.2 Using Segger J-Link Debug Probe</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#using-arm-ulink-debug-adapters">3.3 Using Arm ULINK Debug Adapters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#breakpoint-types">3.4 Breakpoint Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diagnostic-readings-in-keil">3.5 Diagnostic readings in Keil</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#known-issues-and-frequently-asked-questions-faqs">4. Known Issues and Frequently Asked Questions (FAQs)</a></li>
@@ -344,6 +345,42 @@
 <figure class="align-default">
 <img alt="" src="../_images/keil_ide_max_breakpoints.png" />
 </figure>
+</section>
+<section id="diagnostic-readings-in-keil">
+<h3>3.5 Diagnostic readings in Keil<a class="headerlink" href="#diagnostic-readings-in-keil" title="Permalink to this heading">¶</a></h3>
+<p>In the latest CMSIS Packs, if there are issues connecting to the MSPM0, a diagnosis is performed on the device to determine its current state by utilizing the BOOTDIAG register from our CFG-AP. This is done by reading and then decoding the output to provide a list of possible root causes and solutions.</p>
+<p>Below is a screenshot of an example output depicting the possible errors unique to the BOOTDIAG reading and solutions.</p>
+<figure class="align-default">
+<img alt="" src="../_images/keil_ide_debug_prompt.png" />
+</figure>
+<p>The update will be present in all CMSIS Packs beginning from these versions.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMSIS pack</p></th>
+<th class="head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MSPM0L11XX_L13XX_DFP</p></td>
+<td><p>1.3.2+</p></td>
+</tr>
+<tr class="row-odd"><td><p>MSPM0G1X0X_G3X0X_DFP</p></td>
+<td><p>1.3.2+</p></td>
+</tr>
+<tr class="row-even"><td><p>MSPM0C110X_DFP</p></td>
+<td><p>1.2.1+</p></td>
+</tr>
+<tr class="row-odd"><td><p>MSPS003FX_DFP</p></td>
+<td><p>1.1.1+</p></td>
+</tr>
+<tr class="row-even"><td><p>MSPM0L122X_L222X_DFP</p></td>
+<td><p>1.1.2+</p></td>
+</tr>
+<tr class="row-odd"><td><p>MSPM0H321x_DFP</p></td>
+<td><p>1.0.0+</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="known-issues-and-frequently-asked-questions-faqs">

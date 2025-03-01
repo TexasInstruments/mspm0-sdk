@@ -126,6 +126,7 @@ var searchData=
   ['dl_5ftimer_5fcapture_5fmode',['DL_TIMER_CAPTURE_MODE',['../group___t_i_m_x.html#ga7af958c9e76a3924249f65e386352900',1,'dl_timer.h']]],
   ['dl_5ftimer_5fcc_5findex',['DL_TIMER_CC_INDEX',['../group___t_i_m_x.html#gacbf745cd89582e044de7aac0b46aa620',1,'dl_timer.h']]],
   ['dl_5ftimer_5fcc_5fupdate_5fmethod',['DL_TIMER_CC_UPDATE_METHOD',['../group___t_i_m_x.html#ga3c5241acef0cec52c2ab68760fd56e70',1,'dl_timer.h']]],
+  ['dl_5ftimer_5fccact_5fupdate_5fmethod',['DL_TIMER_CCACT_UPDATE_METHOD',['../group___t_i_m_x.html#ga9ec86ee202719cb538a9ab67f5a00079',1,'dl_timer.h']]],
   ['dl_5ftimer_5fccp_5fdis_5fout',['DL_TIMER_CCP_DIS_OUT',['../group___t_i_m_x.html#ga90ea6d4b0c69f1be5386a4f3307837cd',1,'dl_timer.h']]],
   ['dl_5ftimer_5fclc',['DL_TIMER_CLC',['../group___t_i_m_x.html#ga9eda8ceca2510928f79364577b0a5664',1,'dl_timer.h']]],
   ['dl_5ftimer_5fclock',['DL_TIMER_CLOCK',['../group___t_i_m_x.html#ga7d7852e0a1f7db7231224c8c03243d92',1,'dl_timer.h']]],

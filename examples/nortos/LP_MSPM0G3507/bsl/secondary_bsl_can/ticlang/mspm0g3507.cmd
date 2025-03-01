@@ -41,7 +41,7 @@ MEMORY
     FLASH_SBSL_START(RWX)   :	 org = 0x00001040,      len = 0x00000040,
     FLASH_SBSL(RWX)   		:	 org = 0x00001080,      len = 0x00003400,
 
-    SRAM(RW)				:    org = 0x20200000,      len = 0x00008000,
+    SRAM(RW)				:    org = 0x20000000,      len = 0x00008000,
 
     BCR_CFG		 		    : 	 org = 0x41C00000,      len = 0x00000080,
     BSL_CFG				    : 	 org = 0x41C00100,      len = 0x00000080,

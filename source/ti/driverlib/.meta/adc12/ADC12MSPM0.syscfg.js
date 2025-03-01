@@ -179,7 +179,7 @@ function validate(inst, validation)
 
 
             /* Checks if VREF module is added when voltage reference is internal */
-            if((inst["adcMem"+adcMemIdx.toString()+"vref"])=="VREF"){
+            if(((inst["adcMem"+adcMemIdx.toString()+"vref"])=="VREF")&&!Common.hasExpandedADCVRSEL()){
                 /* External VREF validation */
                 let vrefInstance = system.modules["/ti/driverlib/VREF"];
                 if((inst["adcMem"+adcMemIdx.toString()+"vrefDependency"])=="DL_ADC12_REFERENCE_VOLTAGE_EXTREF"){
@@ -210,6 +210,14 @@ function validate(inst, validation)
                     }
                 }
             }
+            /* Managing compatibility break - previous version of MSPM0GX51X configuration included this configurable */
+            // NOTE: this warning will only show up if importing a project that uses the deprecated vref parameter for M0GX51X
+            if(((inst["adcMem"+adcMemIdx.toString()+"vref"])=="VREF")&&Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+                validation.logWarning(
+                    "Previous ADC VREF configuration is overriden, please select your desired VREFP & VREFM values.",
+                        inst, ["adcMem"+adcMemIdx.toString()+"vrefp","adcMem"+adcMemIdx.toString()+"vrefm"],
+                )
+            }
             /* Check that ADCMEM is a C identifier */
             if ((inst["adcMem"+adcMemIdx.toString()+"_name"]) != "") {
                 let proposedName = inst["adcMem"+adcMemIdx.toString()+"_name"];
@@ -228,6 +236,53 @@ function validate(inst, validation)
                     );
                 }
             }
+
+            if(Common.hasExpandedADCVRSEL()){
+                if((inst["adcMem"+adcMemIdx.toString()+"vrefp"]=="EXTREF")&&(inst["adcMem"+adcMemIdx.toString()+"vrefm"]=="VSSA")){
+                    validation.logError(
+                        "Invalid mode selection - Cannot set VREFM to VSSA when VREFP is set to VREF+.",
+                        inst, ["adcMem"+adcMemIdx.toString()+"vrefp","adcMem"+adcMemIdx.toString()+"vrefm"]
+                    );
+                }
+                let vrefInstance = system.modules["/ti/driverlib/VREF"];
+                if(["EXTREF"].includes(inst["adcMem"+adcMemIdx.toString()+"vrefp"])){
+                    if(!vrefInstance.$static.basicMode.includes("DL_VREF_ENABLE_DISABLE")){
+                        validation.logError(
+                            "External Reference is not enabled in VREF module.",
+                            inst, ["adcMem"+adcMemIdx.toString()+"vrefp"]
+                        );
+                    }
+                    else if(!["VREF+","VREF+-"].includes(vrefInstance.$static.basicVrefPins)){
+                        validation.logError(
+                            "VREF+ is not enabled in VREF module.",
+                            inst, ["adcMem"+adcMemIdx.toString()+"vrefp"]
+                        );
+                    }
+                }
+                if(["INTREF"].includes(inst["adcMem"+adcMemIdx.toString()+"vrefp"])){
+                    if(!vrefInstance.$static.basicMode.includes("DL_VREF_ENABLE_ENABLE")){
+                        validation.logError(
+                            "Internal Reference is not enabled in VREF module.",
+                            inst, ["adcMem"+adcMemIdx.toString()+"vrefp"]
+                        );
+                    }
+                }
+                if(["VREFM"].includes(inst["adcMem"+adcMemIdx.toString()+"vrefm"])){
+                    if(!vrefInstance.$static.basicMode.includes("DL_VREF_ENABLE_DISABLE")){
+                        validation.logError(
+                            "External Reference is not enabled in VREF module.",
+                            inst, ["adcMem"+adcMemIdx.toString()+"vrefm"]
+                        );
+                    }
+                    else if(!["VREF-","VREF+-"].includes(vrefInstance.$static.basicVrefPins)){
+                        validation.logError(
+                            "VREF- is not enabled in VREF module.",
+                            inst, ["adcMem"+adcMemIdx.toString()+"vrefm"]
+                        );
+                    }
+                }
+            }
+
 
             /* Keep track of which ADCMEM names to validate */
             adcMemNamesEnabled.push("adcMem"+adcMemIdx+"_name");
@@ -378,7 +433,7 @@ function validate(inst, validation)
     }
 
     /* MSPM0C-specific validation */
-    if(Common.isDeviceM0C()){
+    if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
         /* Resolution Validation */
         if(inst.resolution == "DL_ADC12_SAMP_CONV_RES_12_BIT"){
             validation.logInfo(
@@ -501,7 +556,7 @@ function pinmuxRequirements(inst)
      * M0C can configure channels 0-9,11,15
      * MSPM0GX51X can configure channels 0-15
      * MSPM0L111X can configure Channels 0-9, 11-14,28,31
-     * MSPM0H321X can configure channels 0-26, 28, 29, 31
+     * MSPM0H321X/MSPM0C1105_C1106 can configure channels 0-26, 28, 29, 31
      */
     let ind = 0;
     for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
@@ -606,15 +661,23 @@ function updateGUIEnabledADCMem(inst,ui){
             "adcMem" + adcMemIdx.toString() + "channelConnection",
             // "adcMem" + adcMemIdx.toString() + "calcVoltage", // calcVoltage cannot be turned on always
         ];
-        if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
+        if(Common.hasExpandedADCVRSEL()){
             adcMemConfigs.push(
-                "adcMem" + adcMemIdx.toString() + "vrefDependency",
+                "adcMem" + adcMemIdx.toString() + "vrefp",
+                "adcMem" + adcMemIdx.toString() + "vrefm",
             )
         }
-        else if(Common.isDeviceM0L()){
-            adcMemConfigs.push(
-                "adcMem" + adcMemIdx.toString() + "vrefDependencySelect",
-            )
+        else{
+            if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceM0C()){
+                adcMemConfigs.push(
+                    "adcMem" + adcMemIdx.toString() + "vrefDependency",
+                )
+            }
+            else if(Common.isDeviceM0L()){
+                adcMemConfigs.push(
+                    "adcMem" + adcMemIdx.toString() + "vrefDependencySelect",
+                )
+            }
         }
         if(isAveragingEnabled()){
             adcMemConfigs.push(
@@ -647,9 +710,13 @@ function updateGUIVREF(inst,ui){
         isHidden = true;
         if( inst.enabledADCMems.includes(adcMemIdx) ){
             isHidden = false;
+            if(Common.hasExpandedADCVRSEL()){
+                ui["adcMem"+adcMemIdx.toString()+"vrefp"].hidden = false;
+                ui["adcMem"+adcMemIdx.toString()+"vrefm"].hidden = false;
+            }
             if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
                 /* un-hide VREF components, hide VDDA components */
-                if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+                if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceM0C()) {
                     ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = isHidden;
                 }
                 else if(Common.isDeviceM0L()){
@@ -663,7 +730,7 @@ function updateGUIVREF(inst,ui){
                 /* un-hide VDDA components, hide VREF components */
                 ui["adcMem"+adcMemIdx.toString()+"getVDDA"].hidden = isHidden;
 
-                if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+                if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceM0C()) {
                     ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = !isHidden;
                 }
                 else if(Common.isDeviceM0L()){
@@ -1023,7 +1090,7 @@ const profilesADC12 = [
     {
         name                    : "singleChannel",
         samplingOperationMode   : "single",
-        resolution              : (Common.isDeviceM0C())?"DL_ADC12_SAMP_CONV_RES_10_BIT":"DL_ADC12_SAMP_CONV_RES_12_BIT",
+        resolution              : (Common.isDeviceFamily_PARENT_MSPM0C110X())?"DL_ADC12_SAMP_CONV_RES_10_BIT":"DL_ADC12_SAMP_CONV_RES_12_BIT",
         sampClkSrc              : "DL_ADC12_CLOCK_ULPCLK",
         sampClkDiv              : "DL_ADC12_CLOCK_DIVIDE_1",
         enabledADCMems          : [0],
@@ -1591,7 +1658,7 @@ function addADCMEMGroup(adcMemIdx, hiddenStatus){
             name        : "adcMem"+adcMemIdx.toString()+"vref",
             displayName : "Reference Voltage",
             description : 'Selects reference voltage',
-            hidden      : hiddenStatus,
+            hidden      : hiddenStatus||Common.hasExpandedADCVRSEL(),
             default     : "VDDA",
             longDescription: `
             \nSupported Reference Voltage:
@@ -1617,7 +1684,7 @@ function addADCMEMGroup(adcMemIdx, hiddenStatus){
                 let returnVoltage = Common.getUnitPrefix(getVDDAVoltage(inst,adcMemIdx)).str+"V";
                 return returnVoltage;
             },
-            hidden      : hiddenStatus,
+            hidden      : hiddenStatus||Common.hasExpandedADCVRSEL(),
         },
         {
             name        : "adcMem"+adcMemIdx.toString()+"vrefDependency",
@@ -1633,7 +1700,7 @@ function addADCMEMGroup(adcMemIdx, hiddenStatus){
             ],
         },
     ];
-    if(Common.isDeviceM0L()){
+    if(Common.isDeviceM0L() && !Common.hasExpandedADCVRSEL()){
         adcMem_config = adcMem_config.concat([
             {
                 name        : "adcMem"+adcMemIdx.toString()+"vrefDependencySelect",
@@ -1644,6 +1711,35 @@ function addADCMEMGroup(adcMemIdx, hiddenStatus){
                 options     : [
                     {name: "DL_ADC12_REFERENCE_VOLTAGE_EXTREF", displayName: "External"},
                     {name: "DL_ADC12_REFERENCE_VOLTAGE_INTREF", displayName: "Internal"},
+                ],
+            },
+        ]);
+    }
+    if(Common.hasExpandedADCVRSEL()){
+        adcMem_config = adcMem_config.concat([
+            {
+                name        : "adcMem"+adcMemIdx.toString()+"vrefp",
+                displayName : "VREFP",
+                description : 'Selected VREF mode from VREF module',
+                hidden      : hiddenStatus,
+                default     : "VDDA",
+                options     : [
+                    // DL_ADC12_REFERENCE_VOLTAGE_
+                    {name: "VDDA",     displayName: "VDDA"},
+                    {name: "EXTREF",  displayName: "VREF+"},
+                    {name: "INTREF",   displayName: "VREF_INT"},
+                ],
+            },
+            {
+                name        : "adcMem"+adcMemIdx.toString()+"vrefm",
+                displayName : "VREFM",
+                description : 'Selected VREF mode from VREF module',
+                hidden      : hiddenStatus,
+                default     : "VSSA",
+                options     : [
+                    // DL_ADC12_REFERENCE_VOLTAGE_
+                    {name: "VSSA",     displayName: "VSSA"},
+                    {name: "VREFM",  displayName: "VREF-"},
                 ],
             },
         ]);
@@ -2738,68 +2834,35 @@ function moduleInstances(inst){
      * Gets a Peripheral GPIO Configuration submodule
      */
     /* CONDITIONS CODE START */
-    // ADC Channel 0-9 Pins
-    let adcConfig = [...new Array(32)].map(() => false);
-
     let ind = 0;
     for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
         if( inst.enabledADCMems.includes(adcMemIdx) ){
             let tempIdx = inst["adcMem" + adcMemIdx.toString() + "chansel"]
             let tempIdxTrim = tempIdx.slice(20);
             ind = parseInt(tempIdxTrim);
-            /* Both MSPM0 families can configure Channels 1-8 to pins */
-            if(ind<9){
-                adcConfig[ind] = true;
+            try{
+                // if (system.deviceData.peripheralPins[inst.peripheral.$solution.peripheralName+"."+ind]) {
+                if((Object.keys(system.deviceData.peripheralPins).filter(element => (element.includes("ADC")&&(element.endsWith("."+ind))))).length){
+                    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12 && inst.disChan12){
+                        // do nothing
+                    }
+                    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X() && ind == 11 && inst.disChan11){
+                        // do nothing
+                    }
+                    else {
+                        if(!modInstances.some(e=>e.name === "adcPin"+ind+"Config")){
+                            Common.pushGPIOConfigInstOnlyIntRes(inst, modInstances,   true,    "adcPin"+ind,
+                                "C"+ind, "ADC12 Channel "+ind+" Pin",
+                                "INPUT");
+                        }
+                    }
+                }
+            }catch (e) {
+                // do nothing
             }
-            /* MSPM0L can also configure channels 8-9 to pins */
-            else if(Common.isDeviceM0L() && ind<10){
-                adcConfig[ind] = true;
-            }
-
-            if(ind<9){
-                adcConfig[ind] = true;
-            }
-            /* MSPM0L11XX_L13XX can also configure channel 9 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind<10){
-                adcConfig[ind] = true;
-            }
-            /* MSPM0L122X_L222X and M0GX51X can also configure channel 10 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind==10){
-                adcConfig[ind] = true;
-            }
-            /* MSPM0L122X_L222X can also configure channel 11 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) && ind==11){
-                adcConfig[ind] = true;
-            }
-            /* MSPM0L122X_L222X and M0GX51X can also configure channels 12-14 to pins */
-            else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && ind>11 && ind<15){
-                adcConfig[ind] = true;
-            }
-            /* MSPM0L122X_L222X can also configure channels 15-25 to pins */
-            else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && ind>14 && ind<26){
-                adcConfig[ind] = true;
-            }
-            /* Special case of MSPM0G1X0X_G3X0X Channel 12 */
-            if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12){
-                adcConfig[ind] = true;
-            }
-            /* Special case of M0GX51X Channel 11 */
-            if(Common.isDeviceFamily_PARENT_MSPM0GX51X() && ind == 11){
-                adcConfig[ind] = true;
-            }
-
         }
     }
     /* CONDITIONS CODE END */
-
-    for(let ix = 0; ix < 26; ix++){
-        /* ADC Channel Pin Configuration */
-        if(ix == 12 && inst.disChan12) continue;
-        if(ix == 11 && inst.disChan11) continue;
-        Common.pushGPIOConfigInstOnlyIntRes(inst, modInstances,   adcConfig[ix],    "adcPin"+ix,
-        "C"+ix, "ADC12 Channel "+ix+" Pin",
-        "INPUT");
-    }
 
     return modInstances;
 }
@@ -2851,6 +2914,11 @@ function setRequiredModules(inst){
         if ( inst.enabledADCMems.includes(adcMemIdx) ){
             if((inst["adcMem"+adcMemIdx+"vref"])=="VREF"){
                 enabledVREF = true;
+            }
+            if(Common.hasExpandedADCVRSEL()){
+                if(["INTREF","EXTREF"].includes(inst["adcMem"+adcMemIdx+"vrefp"]) || ["VREFM"].includes(inst["adcMem"+adcMemIdx+"vrefm"])){
+                    enabledVREF = true;
+                }
             }
         }
     }

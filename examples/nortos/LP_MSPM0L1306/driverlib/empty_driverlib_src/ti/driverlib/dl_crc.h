@@ -110,7 +110,11 @@ typedef enum {
 } DL_CRC_OUTPUT_BYTESWAP;
 
 /**
- * @brief Enables power on crc module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the CRC
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  * @param crc        Pointer to the register overlay for the CRC peripheral
  */
@@ -120,7 +124,12 @@ __STATIC_INLINE void DL_CRC_enablePower(CRC_Regs *crc)
 }
 
 /**
- * @brief Disables power on crc module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the CRC
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings.
  *
  * @param crc        Pointer to the register overlay for the CRC peripheral
  */
@@ -130,15 +139,23 @@ __STATIC_INLINE void DL_CRC_disablePower(CRC_Regs *crc)
 }
 
 /**
- * @brief Returns if power on crc module is enabled
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the CRC
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param crc        Pointer to the register overlay for the CRC peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  *
  */
-__STATIC_INLINE bool DL_CRC_isPowerEnabled(CRC_Regs *crc)
+__STATIC_INLINE bool DL_CRC_isPowerEnabled(const CRC_Regs *crc)
 {
     return (
         (crc->GPRCM.PWREN & CRC_PWREN_ENABLE_MASK) == CRC_PWREN_ENABLE_ENABLE);
@@ -165,7 +182,7 @@ __STATIC_INLINE void DL_CRC_reset(CRC_Regs *crc)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_CRC_isReset(CRC_Regs *crc)
+__STATIC_INLINE bool DL_CRC_isReset(const CRC_Regs *crc)
 {
     return ((crc->GPRCM.STAT & CRC_STAT_RESETSTKY_MASK) ==
             CRC_STAT_RESETSTKY_RESET);
@@ -287,7 +304,7 @@ __STATIC_INLINE void DL_CRC_feedData32(CRC_Regs *crc, uint32_t dataIn)
  *
  *  @return     The calculation result for the 16-bit polynomial
  */
-__STATIC_INLINE uint16_t DL_CRC_getResult16(CRC_Regs *crc)
+__STATIC_INLINE uint16_t DL_CRC_getResult16(const CRC_Regs *crc)
 {
     return ((uint16_t) crc->CRCOUT);
 }
@@ -299,7 +316,7 @@ __STATIC_INLINE uint16_t DL_CRC_getResult16(CRC_Regs *crc)
  *
  *  @return     The calculation result for the 32-bit polynomial
  */
-__STATIC_INLINE uint32_t DL_CRC_getResult32(CRC_Regs *crc)
+__STATIC_INLINE uint32_t DL_CRC_getResult32(const CRC_Regs *crc)
 {
     return (crc->CRCOUT);
 }
@@ -318,7 +335,7 @@ __STATIC_INLINE uint32_t DL_CRC_getResult32(CRC_Regs *crc)
  *  @return     The calculated CRC signature value
  */
 extern uint32_t DL_CRC_calculateBlock32(
-    CRC_Regs *crc, uint32_t seed, uint32_t *ptr, uint32_t size);
+    CRC_Regs *crc, uint32_t seed, const uint32_t *ptr, uint32_t size);
 
 /*!
  *  @brief      Calculates the CRC over a memory range
@@ -336,7 +353,7 @@ extern uint32_t DL_CRC_calculateBlock32(
  *  @return     The calculated CRC signature value
  */
 extern uint32_t DL_CRC_calculateMemoryRange32(
-    CRC_Regs *crc, uint32_t seed, uint32_t *ptrStart, uint32_t *ptrEnd);
+    CRC_Regs *crc, uint32_t seed, uint32_t *ptrStart, const uint32_t *ptrEnd);
 
 /*!
  *  @brief      Calculates the CRC over a range of 16-bit values
@@ -352,7 +369,7 @@ extern uint32_t DL_CRC_calculateMemoryRange32(
  *  @return     The calculated CRC signature value
  */
 extern uint16_t DL_CRC_calculateBlock16(
-    CRC_Regs *crc, uint16_t seed, uint16_t *ptr, uint16_t size);
+    CRC_Regs *crc, uint16_t seed, const uint16_t *ptr, uint16_t size);
 
 /*!
  *  @brief      Calculates the CRC over a memory range
@@ -370,7 +387,7 @@ extern uint16_t DL_CRC_calculateBlock16(
  *  @return     The calculated CRC signature value
  */
 extern uint16_t DL_CRC_calculateMemoryRange16(
-    CRC_Regs *crc, uint16_t seed, uint16_t *ptrStart, uint16_t *ptrEnd);
+    CRC_Regs *crc, uint16_t seed, uint16_t *ptrStart, const uint16_t *ptrEnd);
 
 /**
  *  @brief Returns the address of the CRC input data register.
@@ -382,7 +399,7 @@ extern uint16_t DL_CRC_calculateMemoryRange16(
  *                        peripheral
  *  @return Address of the CRC input data register
  */
-__STATIC_INLINE uintptr_t DL_CRC_getCRCINAddr(CRC_Regs *crc)
+__STATIC_INLINE uintptr_t DL_CRC_getCRCINAddr(const CRC_Regs *crc)
 {
     return ((uintptr_t) &crc->CRCIN);
 }

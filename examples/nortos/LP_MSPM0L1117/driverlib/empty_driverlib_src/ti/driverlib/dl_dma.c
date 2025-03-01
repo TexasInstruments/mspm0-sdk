@@ -33,7 +33,7 @@
 #include <ti/driverlib/dl_dma.h>
 
 void DL_DMA_initChannel(
-    DMA_Regs *dma, uint8_t channelNum, DL_DMA_Config *config)
+    DMA_Regs *dma, uint8_t channelNum, const DL_DMA_Config *config)
 {
     DL_DMA_configTransfer(dma, channelNum, config->transferMode,
         config->extendedMode, config->srcWidth, config->destWidth,

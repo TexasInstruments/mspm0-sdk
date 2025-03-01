@@ -54,11 +54,11 @@
         <property name="isHybrid" value="true"/>
         <file path="../i2c_target_rw_multibyte_fifo_interrupts.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../i2c_target_rw_multibyte_fifo_interrupts.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../i2c_target_rw_multibyte_fifo_interrupts.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>
     </project>
 </projectSpec>

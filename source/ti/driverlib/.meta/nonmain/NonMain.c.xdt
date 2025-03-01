@@ -41,6 +41,8 @@
 
     /* get ti/drivers common utility functions */
     let Common = system.getScript("/ti/driverlib/Common.js");
+
+    let deviceOptions = system.getScript("/ti/driverlib/nonmain/NONMAINOptions.js");
 %%}
 /*
  * Copyright (c) 2023, Texas Instruments Incorporated
@@ -86,11 +88,11 @@
 %
 %%{
     let debugAccessStr = "BCR_CFG_DEBUG_ACCESS_DIS";
-    if (inst.apEnable == "enabled")
+    if (inst.debugAccessEnable == "enabled")
     {
         debugAccessStr = "BCR_CFG_DEBUG_ACCESS_EN";
     }
-    else if (inst.apEnable == "enabledWithPW")
+    else if (inst.debugAccessEnable == "enabledWithPW")
     {
         debugAccessStr = "BCR_CFG_DEBUG_ACCESS_EN_PW";
     }
@@ -136,37 +138,37 @@ const BCR_Config BCRConfig =
     .bcrConfigID          = `createHexStr(inst.bcrConfigID)`,
     .debugAccess          = `debugAccessStr`,
     .swdpMode             = `inst.swdEnable ? "BCR_CFG_SWDP_EN" : "BCR_CFG_SWDP_DIS"`,
-%   if (!Common.isDeviceM0C()) {
+%   if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
     .tifaMode             = `inst.tifaEnable ? "BCR_CFG_TIFA_EN" : "BCR_CFG_TIFA_DIS"`,
     .bslPinInvokeEnable   = `inst.bslInvokePinCheck ? "BCR_CFG_BSL_PIN_INVOKE_EN" : "BCR_CFG_BSL_PIN_INVOKE_DIS"`,
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%   if (deviceOptions.BCR_SUPPORT_CSC == true){
     .staticWriteProtectionMainLow  = `createHexStr(inst.staticWriteProtectionMainLow)`,
     .staticWriteProtectionMainHigh = `createHexStr(inst.staticWriteProtectionMainHigh)`,
     .staticWriteProtectionNonMain  = `inst.staticWriteProtectionNonMain ? "BCR_CFG_NON_MAIN_STATIC_PROT_EN" : "BCR_CFG_NON_MAIN_STATIC_PROT_DIS"`,
     .debugHold            = `inst.debugHold ? "BCR_CFG_DEBUG_HOLD_EN" : "BCR_CFG_DEBUG_HOLD_DIS"`,
     .CSCexist             = `inst.cscExists ? "BCR_CFG_CSC_EXIST" : "BCR_CFG_CSC_NOT_EXIST"`,
+%       if (deviceOptions.BCR_SUPPORT_BANK_SWAP == true) {
     .flashBankSwapPolicy  = `inst.flashBankSwap ? "BCR_CFG_FLASH_BS_EN" : "BCR_CFG_FLASH_BS_DIS"`,
-%   }
-%   if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-%       if ((Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() ||
-%            Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()) && (inst.apEnable == "disabled")) {
-    /* Randomly generated password will differ at build time */
+%       } else {
+    .bc_reserved_0        = 0xFFFFU,
 %       }
+%   } // end device CSC check
+%
+%   if (deviceOptions.SUPPORT_PW_HASH == false) {
     .passwordDebugLock    = {`createHexStr(inst.swdPW0)`, `createHexStr(inst.swdPW1)`,
         `createHexStr(inst.swdPW2)`, `createHexStr(inst.swdPW3)`},
-%   } // device is MSPM0L122X_L222X
+%   } // device does not support hashed passwords
     .fastBootMode         = `inst.fastBootMode ? "BCR_CFG_FAST_BOOT_EN" : "BCR_CFG_FAST_BOOT_DIS"`,
     .bootloaderMode       = `inst.bslMode ? "BCR_CFG_BOOTLOADER_MODE_EN" : "BCR_CFG_BOOTLOADER_MODE_DIS"`,
     .massEraseMode        = `massEraseStr`,
-%   } // device is not M0C
+%   } // device is not M0C check end
     .factoryResetMode     = `factoryResetStr`,
-%   if (!Common.isDeviceM0C() && !(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())) {
+%   if (deviceOptions.SUPPORT_PW_HASH == false) {
     .passwordMassErase    = {`createHexStr(inst.mePW0)`, `createHexStr(inst.mePW1)`,
         `createHexStr(inst.mePW2)`, `createHexStr(inst.mePW3)`},
     .passwordFactoryReset = {`createHexStr(inst.frPW0)`, `createHexStr(inst.frPW1)`,
         `createHexStr(inst.frPW2)`, `createHexStr(inst.frPW3)`},
-%   } // device is not M0C or MSPM0L122X_L222X
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
+%   } else if (deviceOptions.SUPPORT_PW_HASH == true) {
     .passwordMassErase    = {`createHexStr(inst.mePW0)`, `createHexStr(inst.mePW1)`,
         `createHexStr(inst.mePW2)`, `createHexStr(inst.mePW3)`,
         `createHexStr(inst.mePW4)`, `createHexStr(inst.mePW5)`,
@@ -179,70 +181,83 @@ const BCR_Config BCRConfig =
         `createHexStr(inst.swdPW2)`, `createHexStr(inst.swdPW3)`,
         `createHexStr(inst.swdPW4)`, `createHexStr(inst.swdPW5)`,
         `createHexStr(inst.swdPW6)`, `createHexStr(inst.swdPW7)`},
-%   } // device is MSPM0L122X_L222X
+%   } // device supports hashed passwords check end
 %
 %   /* Due to structure padding, write protection fields for M0C need to be in a different order */
-%   if(!(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-%       if (!Common.isDeviceM0C()) {
+%   if (deviceOptions.BCR_SUPPORT_CSC == false){
+%       if (!Common.isDeviceFamily_PARENT_MSPM0C110X()) {
     .staticWriteProtectionMainLow  = `createHexStr(inst.staticWriteProtectionMainLow)`,
     .staticWriteProtectionMainHigh = `createHexStr(inst.staticWriteProtectionMainHigh)`,
     .staticWriteProtectionNonMain  = `inst.staticWriteProtectionNonMain ? "BCR_CFG_NON_MAIN_STATIC_PROT_EN" : "BCR_CFG_NON_MAIN_STATIC_PROT_DIS"`,
-%       } // device is not M0C
-%       else {
+%       } else {
     .staticWriteProtectionNonMain  = `inst.staticWriteProtectionNonMain ? "BCR_CFG_NON_MAIN_STATIC_PROT_EN" : "BCR_CFG_NON_MAIN_STATIC_PROT_DIS"`,
     .staticWriteProtectionMainLow  = `createHexStr(inst.staticWriteProtectionMainLow)`,
     .staticWriteProtectionMainHigh = `createHexStr(inst.staticWriteProtectionMainHigh)`,
-%       } // device is M0C
-%   } // device is not MSPM0L122X_L222X
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-    .bc_reserved_0 = 0xFFFF,
-%   }
-%   if (!Common.isDeviceM0C()){
+%       } // device M0C check end
+%   } // device CSC check end
+%
+%   if (!Common.isDeviceFamily_PARENT_MSPM0C110X()){
+%       if (deviceOptions.BCR_SUPPORT_BANK_SWAP == true) {
+    .bc_reserved_0                 = 0xFFFFU,
+%       } else {
+%           if (!(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() ||
+%                 Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX())) {
+    .bc_reserved_1                 = 0xFFFFU,
+%           }
+%       } // device bank swap check end (for reserved offsets)
     .secureBootMode                = `inst.appCRCCheck ? "BCR_CFG_SECURE_BOOT_EN" : "BCR_CFG_SECURE_BOOT_DIS"`,
     .userSecureAppStartAddr        = `createHexStr(inst.appCRCCheckStartAddress)`,
     .userSecureAppLength           = `createHexStr(inst.appCRCCheckLength)`,
-%   if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X())){
-    .userSecureAppHash = {CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,
-    CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE,CFG_DEFAULT_VALUE},
-%       if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
-%    /*! Reserved */
-    .bc_reserved_1 = 0xFFFFFFFFU,
-%       }
-%       else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
-%   /*! staticWriteProtectionMainHigh_2 */
+%   if (deviceOptions.BCR_SUPPORT_USER_APP_HASH == true) {
+%   /* TODO: User app hash functionality not implemented yet. Left default vals */
+    .userSecureAppHash = {CFG_DEFAULT_VALUE, CFG_DEFAULT_VALUE,
+        CFG_DEFAULT_VALUE, CFG_DEFAULT_VALUE,
+        CFG_DEFAULT_VALUE, CFG_DEFAULT_VALUE,
+        CFG_DEFAULT_VALUE, CFG_DEFAULT_VALUE},
+%       if (deviceOptions.BCR_SUPPORT_DUAL_BANK == true) {
     .staticWriteProtectionMainHigh_2 = `createHexStr(inst.staticWriteProtectionMainHigh_2)`,
-%       }
-%   } // device is MSPM0L122X_L222X
-%   else{
+%       } else {
+%           if (deviceOptions.BCR_SUPPORT_BANK_SWAP == true) {
+    .bc_reserved_1                 = 0xFFFFFFFFU,
+%           } else {
+    .bc_reserved_2                 = 0xFFFFFFFFU,
+%           } // device bank swap check end (for reserved offsets)
+%       } // device dual bank check end
+%   } else {
     .userSecureAppCrc              = `createHexStr(inst.appCRC)`,
-%   }
+%   } // device user app hash check end
     .userCfgCRC                    = `createHexStr(inst.bootCRC)`,
 %   } else {
-    .reserved = 0xFFFFFFFFU,
-%   }
+    .reserved                      = 0xFFFFFFFFU,
+%   } // device is M0C check end
 };
 
-%
-%   if (!Common.isDeviceM0C()) {
+%   if (deviceOptions.SUPPORT_BSL == true) {
 %%{
     let pluginTypeStr = "BSL_CFG_PLUGIN_TYPE_ANY";
-    if (inst.bslPluginType == "bslPluginUART")
+    if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN == true)
     {
-        pluginTypeStr = "BSL_CFG_PLUGIN_TYPE_UART";
-    }
-    else if (inst.bslPluginType == "bslPluginI2C")
-    {
-        pluginTypeStr = "BSL_CFG_PLUGIN_TYPE_I2C";
+        if (inst.bslPluginType == "bslPluginUART")
+        {
+            pluginTypeStr = "BSL_CFG_PLUGIN_TYPE_UART";
+        }
+        else if (inst.bslPluginType == "bslPluginI2C")
+        {
+            pluginTypeStr = "BSL_CFG_PLUGIN_TYPE_I2C";
+        }
     }
 
     let securityAlertStr = "BSL_CFG_SECURITY_IGNORE";
-    if (inst.bslSecurityConfig == "triggerFactoryReset")
+    if (deviceOptions.SUPPORT_ROM_BSL == true)
     {
-        securityAlertStr = "BSL_CFG_SECURITY_FACTORY_RESET";
-    }
-    else if (inst.bslSecurityConfig == "disableBSL")
-    {
-        securityAlertStr = "BSL_CFG_SECURITY_DISABLE_BSL";
+        if (inst.bslSecurityConfig == "triggerFactoryReset")
+        {
+            securityAlertStr = "BSL_CFG_SECURITY_FACTORY_RESET";
+        }
+        else if (inst.bslSecurityConfig == "disableBSL")
+        {
+            securityAlertStr = "BSL_CFG_SECURITY_DISABLE_BSL";
+        }
     }
 %%}
 
@@ -252,20 +267,28 @@ PLACE_IN_MEMORY(".BSLConfig")
 const BSL_Config BSLConfig =
 {
     .configID                          = `createHexStr(inst.bslConfigID)`,
-    .interfacePins.UART_RXD_pad_num    = DEF_UART_RXD_PAD,
-    .interfacePins.UART_RXD_PF_mux_sel = DEF_UART_RXD_MUX,
-    .interfacePins.UART_TXD_pad_num    = DEF_UART_TXD_PAD,
-    .interfacePins.UART_TXD_PF_mux_sel = DEF_UART_TXD_MUX,
-    .interfacePins.I2C_SDA_pad_num     = DEF_I2C_SDA_PAD,
-    .interfacePins.I2C_SDA_PF_mux_sel  = DEF_I2C_SDA_MUX,
-    .interfacePins.I2C_SCL_pad_num     = DEF_I2C_SCL_PAD,
-    .interfacePins.I2C_SCL_PF_mux_sel  = DEF_I2C_SCL_MUX,
+    .interfacePins.UART_RXD_pad_num    = `(deviceOptions.SUPPORT_ROM_BSL == true) ? "DEF_UART_RXD_PAD" : "0xFFU"`,
+    .interfacePins.UART_RXD_PF_mux_sel = `(deviceOptions.SUPPORT_ROM_BSL == true) ? "DEF_UART_RXD_MUX" : "0xFFU"`,
+    .interfacePins.UART_TXD_pad_num    = `(deviceOptions.SUPPORT_ROM_BSL == true) ? "DEF_UART_TXD_PAD" : "0xFFU"`,
+    .interfacePins.UART_TXD_PF_mux_sel = `(deviceOptions.SUPPORT_ROM_BSL == true) ? "DEF_UART_TXD_MUX" : "0xFFU"`,
+    .interfacePins.I2C_SDA_pad_num     = `(deviceOptions.SUPPORT_ROM_BSL == true) ? "DEF_I2C_SDA_PAD" : "0xFFU"`,
+    .interfacePins.I2C_SDA_PF_mux_sel  = `(deviceOptions.SUPPORT_ROM_BSL == true) ? "DEF_I2C_SDA_MUX" : "0xFFU"`,
+    .interfacePins.I2C_SCL_pad_num     = `(deviceOptions.SUPPORT_ROM_BSL == true) ? "DEF_I2C_SCL_PAD" : "0xFFU"`,
+    .interfacePins.I2C_SCL_PF_mux_sel  = `(deviceOptions.SUPPORT_ROM_BSL == true) ? "DEF_I2C_SCL_MUX" : "0xFFU"`,
     .pin.pinData0                      = DEFAULT_BSL_PIN_INVOCATION_DATA0,
     .pin.pinData1                      = DEFAULT_BSL_PIN_INVOCATION_DATA1,
+%   if (deviceOptions.SUPPORT_ROM_BSL == false) {
+    .memoryRead         = 0xFFFFU,
+    .password           = {0xFFFFFFFFU, 0xFFFFFFFFU,
+        0xFFFFFFFFU, 0xFFFFFFFFU, 0xFFFFFFFFU,
+        0xFFFFFFFFU, 0xFFFFFFFFU, 0xFFFFFFFFU},
+%   } else {
     .memoryRead         = `inst.bslEnableReadOut ? "BSL_CFG_MEMORY_READOUT_ENABLE" : "BSL_CFG_MEMORY_READOUT_DISABLE"`,
     .password           = {`createHexStr(inst.bslPW0)`, `createHexStr(inst.bslPW1)`,
         `createHexStr(inst.bslPW2)`, `createHexStr(inst.bslPW3)`, `createHexStr(inst.bslPW4)`,
         `createHexStr(inst.bslPW5)`, `createHexStr(inst.bslPW6)`, `createHexStr(inst.bslPW7)`},
+%   } // device support Flash BSL check end
+%   if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN == true) {
     .pluginType         = `pluginTypeStr`,
     .flashPluginEnable  = `inst.bslFlashPluginEnable ? "BSL_CFG_PLUGIN_FLASH_EXIST" : "BSL_CFG_PLUGIN_FLASH_NOT_EXIST"`,
     .pluginSramSize     = `createHexStr(inst.bslPluginSRAMSize)`,
@@ -273,27 +296,54 @@ const BSL_Config BSLConfig =
     .pluginHook[1]      = `(inst.bslPluginHookReceive.length) ? "(uint32_t) " + inst.bslPluginHookReceive : "CFG_DEFAULT_VALUE"`,
     .pluginHook[2]      = `(inst.bslPluginHookTransmit.length) ? "(uint32_t) " + inst.bslPluginHookTransmit : "CFG_DEFAULT_VALUE"`,
     .pluginHook[3]      = `(inst.bslPluginHookDeInit.length) ? "(uint32_t) " + inst.bslPluginHookDeInit : "CFG_DEFAULT_VALUE"`,
-%   if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+%   } else {
+    .bl_reserved_0[0]   = 0xFFFFFFFFU,
+    .bl_reserved_0[1]   = 0xFFFFFFFFU,
+    .bl_reserved_0[2]   = 0xFFFFFFFFU,
+    .bl_reserved_0[3]   = 0xFFFFFFFFU,
+    .bl_reserved_0[4]   = 0xFFFFFFFFU,
+%   } // device support flash plugin check end
+%   if (deviceOptions.BSL_SUPPORT_UART_BAUD == true) {
+%       if (deviceOptions.SUPPORT_ROM_BSL == true) {
     .uartBaudRate       = DEF_UART_BAUD_RATE,
+%       } else {
+    .uartBaudRate       = 0xFFFFU,
+%       }
 %   }
     .BSLAlternateConfig = `inst.bslAltConfig ? "BSL_CFG_FLASH_BSL_EXIST" : "BSL_CFG_FLASH_BSL_NOT_EXIST"`,
-%   if(!Common.isDeviceFamily_PARENT_MSPM0GX51X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
-    .reserved           = 0xFFFF,
+%   if (deviceOptions.BSL_SUPPORT_UART_BAUD == false){
+    .reserved           = 0xFFFFU,
 %   }
     .BSLAlternateAddr   = `createHexStr(inst.bslAltAddress)`,
+%   if (deviceOptions.SUPPORT_ROM_BSL == false) {
+    .appRev             = (uint32_t *) 0xFFFFFFFFU,
+    .securityAlert      = 0xFFFFU,
+    .i2cSlaveAddress    = 0xFFFFU,
+%   } else {
     .appRev             = `"(uint32_t *) " + createHexStr(inst.bslAppVersion)`,
     .securityAlert      = `securityAlertStr`,
     .i2cSlaveAddress    = `createHexStr(inst.i2cSlaveAddress)`,
-%   if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
+%   }
+%   if ((deviceOptions.BSL_DISABLE_NRST == true) ||
+%       (deviceOptions.SUPPORT_ROM_BSL == false)) {
+%       if (deviceOptions.SUPPORT_ROM_BSL == true) {
     .disableNRST        = `inst.disableNRST ? "BSL_CFG_NRST_DISABLE" : "BSL_CFG_NRST_ENABLE"`,
-    .bl_reserved_0      = 0xFFFF,
-    .bl_reserved_1      = 0xFFFFFFFF,
+%       } else if (deviceOptions.SUPPORT_ROM_BSL == false) {
+    .disableNRST        = 0xFFFFU,
+%       }
+%       if (deviceOptions.BSL_SUPPORT_FLASH_PLUGIN == true) {
+    .bl_reserved_0      = 0xFFFFU,
+    .bl_reserved_1      = 0xFFFFFFFFU,
+%       } else {
+    .bl_reserved_1      = 0xFFFFU,
+    .bl_reserved_2      = 0xFFFFFFFFU,
+%       }
 %   }
     .userCfgCRC         = `createHexStr(inst.bslCRC)`,
 };
 
 /* Added for secondary_bsl to build */
-%   } // !(Common.isDeviceM0C())
+%   } // device supports BSL check end
 /* 'main' function will never get called */
 #if defined(__ti_version__) || defined(__TI_COMPILER_VERSION__)
 __attribute__((weak)) int main(void)

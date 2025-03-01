@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0GX51X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -318,13 +318,13 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gafa0f76dcbb27def7070eeb320e56fb5b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#gafa0f76dcbb27def7070eeb320e56fb5b">DL_COMP_enablePower</a> (COMP_Regs *comp)</td></tr>
-<tr class="memdesc:gafa0f76dcbb27def7070eeb320e56fb5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on the comparator module.  <a href="group___c_o_m_p.html#gafa0f76dcbb27def7070eeb320e56fb5b">More...</a><br /></td></tr>
+<tr class="memdesc:gafa0f76dcbb27def7070eeb320e56fb5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the COMP.  <a href="group___c_o_m_p.html#gafa0f76dcbb27def7070eeb320e56fb5b">More...</a><br /></td></tr>
 <tr class="separator:gafa0f76dcbb27def7070eeb320e56fb5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafa99ef3920d8c1cd7d22f1d00a1b3fe8"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#gafa99ef3920d8c1cd7d22f1d00a1b3fe8">DL_COMP_disablePower</a> (COMP_Regs *comp)</td></tr>
-<tr class="memdesc:gafa99ef3920d8c1cd7d22f1d00a1b3fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables power on the comparator module.  <a href="group___c_o_m_p.html#gafa99ef3920d8c1cd7d22f1d00a1b3fe8">More...</a><br /></td></tr>
+<tr class="memdesc:gafa99ef3920d8c1cd7d22f1d00a1b3fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the COMP.  <a href="group___c_o_m_p.html#gafa99ef3920d8c1cd7d22f1d00a1b3fe8">More...</a><br /></td></tr>
 <tr class="separator:gafa99ef3920d8c1cd7d22f1d00a1b3fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga658ae107bc41f96aea82f2f3034ab1fb"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga658ae107bc41f96aea82f2f3034ab1fb">DL_COMP_isPowerEnabled</a> (COMP_Regs *comp)</td></tr>
-<tr class="memdesc:ga658ae107bc41f96aea82f2f3034ab1fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if power is on for the comparator module.  <a href="group___c_o_m_p.html#ga658ae107bc41f96aea82f2f3034ab1fb">More...</a><br /></td></tr>
+<tr class="memdesc:ga658ae107bc41f96aea82f2f3034ab1fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the COMP is enabled.  <a href="group___c_o_m_p.html#ga658ae107bc41f96aea82f2f3034ab1fb">More...</a><br /></td></tr>
 <tr class="separator:ga658ae107bc41f96aea82f2f3034ab1fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3c70e8750c707ac99023a6527f476954"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga3c70e8750c707ac99023a6527f476954">DL_COMP_reset</a> (COMP_Regs *comp)</td></tr>
 <tr class="memdesc:ga3c70e8750c707ac99023a6527f476954"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets comparator peripheral.  <a href="group___c_o_m_p.html#ga3c70e8750c707ac99023a6527f476954">More...</a><br /></td></tr>
@@ -453,25 +453,25 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga94e805c476a5c31e6d54488e7564f0e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the blanking source for the comparator.  <a href="group___c_o_m_p.html#ga94e805c476a5c31e6d54488e7564f0e7">More...</a><br /></td></tr>
 <tr class="separator:ga94e805c476a5c31e6d54488e7564f0e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1fe25df5e56fbe9f1948f17fb5e22dd0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga1fe25df5e56fbe9f1948f17fb5e22dd0">DL_COMP_setDACControl</a> (COMP_Regs *comp, <a class="el" href="group___c_o_m_p.html#ga41d462552469c42e0056264859ec29eb">DL_COMP_DAC_CONTROL</a> control)</td></tr>
-<tr class="memdesc:ga1fe25df5e56fbe9f1948f17fb5e22dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the source for COMP control.  <a href="group___c_o_m_p.html#ga1fe25df5e56fbe9f1948f17fb5e22dd0">More...</a><br /></td></tr>
+<tr class="memdesc:ga1fe25df5e56fbe9f1948f17fb5e22dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the source for DAC control.  <a href="group___c_o_m_p.html#ga1fe25df5e56fbe9f1948f17fb5e22dd0">More...</a><br /></td></tr>
 <tr class="separator:ga1fe25df5e56fbe9f1948f17fb5e22dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga882a1ed26705567948ce46aef65da6ae"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___c_o_m_p.html#ga41d462552469c42e0056264859ec29eb">DL_COMP_DAC_CONTROL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga882a1ed26705567948ce46aef65da6ae">DL_COMP_getDACControl</a> (COMP_Regs *comp)</td></tr>
-<tr class="memdesc:ga882a1ed26705567948ce46aef65da6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get what controls the input to the COMP.  <a href="group___c_o_m_p.html#ga882a1ed26705567948ce46aef65da6ae">More...</a><br /></td></tr>
+<tr class="memdesc:ga882a1ed26705567948ce46aef65da6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get what controls the input to the DAC.  <a href="group___c_o_m_p.html#ga882a1ed26705567948ce46aef65da6ae">More...</a><br /></td></tr>
 <tr class="separator:ga882a1ed26705567948ce46aef65da6ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga374d71536a2ccad9ce421e2d5108ed8f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga374d71536a2ccad9ce421e2d5108ed8f">DL_COMP_setDACInput</a> (COMP_Regs *comp, <a class="el" href="group___c_o_m_p.html#ga6ad5a70fde6a94f41ff6024323b57dfc">DL_COMP_DAC_INPUT</a> input)</td></tr>
-<tr class="memdesc:ga374d71536a2ccad9ce421e2d5108ed8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set whether DACCODE0 or DACCODE1 is the input to the COMP.  <a href="group___c_o_m_p.html#ga374d71536a2ccad9ce421e2d5108ed8f">More...</a><br /></td></tr>
+<tr class="memdesc:ga374d71536a2ccad9ce421e2d5108ed8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set whether DACCODE0 or DACCODE1 is the input to the DAC.  <a href="group___c_o_m_p.html#ga374d71536a2ccad9ce421e2d5108ed8f">More...</a><br /></td></tr>
 <tr class="separator:ga374d71536a2ccad9ce421e2d5108ed8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gada4da6a65223d304e02c28f840ef2873"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___c_o_m_p.html#ga6ad5a70fde6a94f41ff6024323b57dfc">DL_COMP_DAC_INPUT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#gada4da6a65223d304e02c28f840ef2873">DL_COMP_getDACInput</a> (COMP_Regs *comp)</td></tr>
-<tr class="memdesc:gada4da6a65223d304e02c28f840ef2873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get whether DACCODE0 or DACCODE1 is the input to the COMP.  <a href="group___c_o_m_p.html#gada4da6a65223d304e02c28f840ef2873">More...</a><br /></td></tr>
+<tr class="memdesc:gada4da6a65223d304e02c28f840ef2873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get whether DACCODE0 or DACCODE1 is the input to the DAC.  <a href="group___c_o_m_p.html#gada4da6a65223d304e02c28f840ef2873">More...</a><br /></td></tr>
 <tr class="separator:gada4da6a65223d304e02c28f840ef2873"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga466d15327733732269805499d967ea39"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga466d15327733732269805499d967ea39">DL_COMP_setDACCode0</a> (COMP_Regs *comp, uint32_t value)</td></tr>
-<tr class="memdesc:ga466d15327733732269805499d967ea39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the 8-bit COMP input code through DACCODE0.  <a href="group___c_o_m_p.html#ga466d15327733732269805499d967ea39">More...</a><br /></td></tr>
+<tr class="memdesc:ga466d15327733732269805499d967ea39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the 8-bit DAC input code through DACCODE0.  <a href="group___c_o_m_p.html#ga466d15327733732269805499d967ea39">More...</a><br /></td></tr>
 <tr class="separator:ga466d15327733732269805499d967ea39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga71f3dd5b6eadab56559bf8c41d235204"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga71f3dd5b6eadab56559bf8c41d235204">DL_COMP_getDACCode0</a> (COMP_Regs *comp)</td></tr>
 <tr class="memdesc:ga71f3dd5b6eadab56559bf8c41d235204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the code value of DACCODE0.  <a href="group___c_o_m_p.html#ga71f3dd5b6eadab56559bf8c41d235204">More...</a><br /></td></tr>
 <tr class="separator:ga71f3dd5b6eadab56559bf8c41d235204"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7f2e0f8c90b0a586ae8b444dc2fda4b1"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga7f2e0f8c90b0a586ae8b444dc2fda4b1">DL_COMP_setDACCode1</a> (COMP_Regs *comp, uint32_t value)</td></tr>
-<tr class="memdesc:ga7f2e0f8c90b0a586ae8b444dc2fda4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the 8-bit COMP input code through DACCODE1.  <a href="group___c_o_m_p.html#ga7f2e0f8c90b0a586ae8b444dc2fda4b1">More...</a><br /></td></tr>
+<tr class="memdesc:ga7f2e0f8c90b0a586ae8b444dc2fda4b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the 8-bit DAC input code through DACCODE1.  <a href="group___c_o_m_p.html#ga7f2e0f8c90b0a586ae8b444dc2fda4b1">More...</a><br /></td></tr>
 <tr class="separator:ga7f2e0f8c90b0a586ae8b444dc2fda4b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6ec340a1138eca16d0beb2d69ab54273"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_o_m_p.html#ga6ec340a1138eca16d0beb2d69ab54273">DL_COMP_getDACCode1</a> (COMP_Regs *comp)</td></tr>
 <tr class="memdesc:ga6ec340a1138eca16d0beb2d69ab54273"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the code value of DACCODE1.  <a href="group___c_o_m_p.html#ga6ec340a1138eca16d0beb2d69ab54273">More...</a><br /></td></tr>
@@ -544,7 +544,7 @@ Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

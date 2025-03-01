@@ -1443,7 +1443,7 @@ This form of communication requires encoding/decoding mechanisms to ensure the s
 
 function getDMAConfig(inst,ui){
     // UART does not support DMA for MSPM0Cxx
-    if(Common.isDeviceM0C()){
+    if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
         return [];
     }
     return [
@@ -1489,7 +1489,7 @@ function getDMAConfig(inst,ui){
 /************************* devSpecific functions *******************************/
 function getDMAModInstances(inst, modInstances){
     /* UART does not support DMA configuration for MSPM0Cxx */
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
     if(!["None"].includes(inst.enabledDMARXTriggers)){
         let mod = {
             name: "DMA_CHANNEL_RX",
@@ -1534,7 +1534,7 @@ function getDMAModInstances(inst, modInstances){
 function setRequiredModules(inst){
     let theModules = ["Board", "SYSCTL"]
     /* UART does not support DMA configuration for MSPM0Cxx */
-    if(!Common.isDeviceM0C()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         if(!["None"].includes(inst.enabledDMARXTriggers) || !["None"].includes(inst.enabledDMATXTriggers)){
             theModules.push("DMA");
         }

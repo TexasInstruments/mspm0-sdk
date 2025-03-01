@@ -1,0 +1,1567 @@
+<toc label="MSPM0G3507SensorlessFOCMotorControlLibrary" topic="index.html">
+  <topic label="Sensorless FOC Library API Reference" href="index.html"/>
+  <topic label="Data Structures" href="annotated.html">
+    <topic label="Data Structures" href="annotated.html">
+      <topic label="APP_INTERFACE_T" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html">
+        <topic label="userInputs" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#aca7c120a73da55c19d94df6d7040aebe"/>
+        <topic label="userInputsInterface" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#ab2a928bb8c70e85bfda402e3087ff4d9"/>
+        <topic label="pUserOutputs" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#aad42b2add4a3b85502bc141f9d494e86"/>
+        <topic label="flags" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#af51f1a195c26a5609f1cc11d61c544b2"/>
+        <topic label="servicesCount" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#a043b75f0976f0570e846b81d868145a6"/>
+      </topic>
+      <topic label="APP_VERSION_T" href="union_a_p_p___v_e_r_s_i_o_n___t.html">
+        <topic label="b" href="union_a_p_p___v_e_r_s_i_o_n___t.html#a9b9bc996e8552fa02b6bc2578f340c8a"/>
+        <topic label="w" href="union_a_p_p___v_e_r_s_i_o_n___t.html#a1eb8138e9d53bbb14ea2b7287d4d696a"/>
+      </topic>
+      <topic label="APPINTERFACE_FLAGS_T" href="union_a_p_p_i_n_t_e_r_f_a_c_e___f_l_a_g_s___t.html">
+        <topic label="b" href="union_a_p_p_i_n_t_e_r_f_a_c_e___f_l_a_g_s___t.html#ac428295195cd9c4cd0fc368882f27bb5"/>
+        <topic label="w" href="union_a_p_p_i_n_t_e_r_f_a_c_e___f_l_a_g_s___t.html#ac8cf10da1fa6e019f629e523ed12d9ed"/>
+      </topic>
+      <topic label="appInterfaceFlags" href="structapp_interface_flags.html">
+        <topic label="shadowToAlgorithmSet" href="structapp_interface_flags.html#a397dd4a7bc9f5024cf93bfe16282b0f8"/>
+        <topic label="hvDieConfigSet" href="structapp_interface_flags.html#ab1549368c97428e4a8fb5a0b34b5129f"/>
+        <topic label="faultsResponseSet" href="structapp_interface_flags.html#a8f0fae226acc027792d56b7950dec795"/>
+      </topic>
+      <topic label="appVersion" href="structapp_version.html">
+        <topic label="patchVersion" href="structapp_version.html#ad75dc19527ca1a433223fdc0674d7763"/>
+        <topic label="minorVersion" href="structapp_version.html#a73a4a13e9e7c9c0c9a73b5724636a307"/>
+        <topic label="majorVersion" href="structapp_version.html#a33d1a3f8f6310c21b238f32b4437b54d"/>
+        <topic label="reserved" href="structapp_version.html#a7ace3deb13704c00c631358ef24adaa3"/>
+      </topic>
+      <topic label="BufferInfo" href="struct_buffer_info.html">
+        <topic label="_Alignas" href="struct_buffer_info.html#a4446fedef85f189c4114076c20b3cd55"/>
+        <topic label="ptr" href="struct_buffer_info.html#aa0e7e9bc31fa138a718777ce94990616"/>
+        <topic label="len" href="struct_buffer_info.html#ace30fe5affc4757504df8d91053ce27e"/>
+      </topic>
+      <topic label="CURRENT_OFFSET_T" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html">
+        <topic label="iaOffset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#ae26f9be1d60134d3e57f78e378701a98"/>
+        <topic label="ibADC0Offset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#ac6e507e4b6ce95dd2a1ba6ffdb09a47b"/>
+        <topic label="ibADC1Offset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#a760a182862580931ec7533e35780db48"/>
+        <topic label="icOffset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#a74e3255e23464e92f2d3e5e9bc33c4dc"/>
+        <topic label="i1Offset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#a3be236e379b5b05d5a88604ab51a5cb4"/>
+        <topic label="i2Offset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#a80249bd7dc7b98123e4595cf55f53b67"/>
+      </topic>
+      <topic label="DEBUG_ENABLE_FLAGS_T" href="union_d_e_b_u_g___e_n_a_b_l_e___f_l_a_g_s___t.html">
+        <topic label="b" href="union_d_e_b_u_g___e_n_a_b_l_e___f_l_a_g_s___t.html#a0b220311a27b87768f97bd0cd60be8ee"/>
+        <topic label="w" href="union_d_e_b_u_g___e_n_a_b_l_e___f_l_a_g_s___t.html#a75f5f3fc02e9c1cbbc3bbe0399edc6a2"/>
+      </topic>
+      <topic label="debugEnableFlags" href="structdebug_enable_flags.html">
+        <topic label="updatedData" href="structdebug_enable_flags.html#a8029f2a099dd652c7e6ff75cc1a74752"/>
+        <topic label="updatedKe" href="structdebug_enable_flags.html#a06ae8a9d23abcd47314ec368b1e28e6d"/>
+      </topic>
+      <topic label="HAL_MEASURE_CURRENT_T" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html">
+        <topic label="state" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#aed0471a26e339ec0026e2771816e1a53"/>
+        <topic label="iabc" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#af1cd83e772a007ff017a153703ab01fc"/>
+        <topic label="iabcRaw" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a66c8fe416ad169f193b2896ec07f2ac9"/>
+        <topic label="pPrevPrevSector" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a7fea38a87f5387c97e9b92f5ec01bed0"/>
+        <topic label="offsetGainIMaxBy1" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a876451d6527568e45bb9be45046cf09e"/>
+        <topic label="pOffset" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a060e973c009d2dfc38af510ebb4a67b9"/>
+        <topic label="iaSum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a0e9b6f594cdf776b92318a5b8dd618d1"/>
+        <topic label="ibADC0Sum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a540a66a2ac54b26ad62f4def85750f27"/>
+        <topic label="ibADC1Sum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a388a226a3d8d612d8c60dd19d56e4471"/>
+        <topic label="icSum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a9f7283f6bdbe1840cc40a96577f9a1e7"/>
+        <topic label="i1Sum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#afd0c4f5ca604032a9e87dbd09984e4fa"/>
+        <topic label="i2Sum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a0513807eb5119c7ae3357b1214bfc483"/>
+        <topic label="iMagSqr" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#acf9746c9ea64de584c3410f33a2e1233"/>
+        <topic label="iFirstSample" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#afc9af6595a7d3fe99c32a570a0539a67"/>
+        <topic label="iSecondSample" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#ad97919ca0c96c0678c915e62fe72c376"/>
+        <topic label="currentShuntSet" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#acacf56f28534d0a0422e84e4e35bcd90"/>
+        <topic label="currentShunt" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a53bf368959c08de827be7804536e270e"/>
+        <topic label="pMaxDutyPhase" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a6d45bce83de3d8bda90f10096a2dd8ee"/>
+        <topic label="prevMaxDutyPhase" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a5c5f8011094c527dc1a74fcd648e85f6"/>
+        <topic label="offsetMeasCount" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a392a01f3b87a89642275ef98f26e1efb"/>
+        <topic label="pSourceCurrentFilt" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a8b5b4b399e148925f42de8885e35d6cb"/>
+        <topic label="flags" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a4d3b89c0d672a21bc407b8e4499928f6"/>
+      </topic>
+      <topic label="HAL_MEASURE_MOTOR_INPUTS_T" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html">
+        <topic label="adcSamplingRatio" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a7ee80456253dc8470701af92ab9625c9"/>
+        <topic label="deltaT" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#af536da46224624cc1b9415d8b5fa3503"/>
+        <topic label="pwmPeriod" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#ab190bbd56d278fb7db944a8b6e221cd5"/>
+        <topic label="propagationDelay" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a8486d3c8cb11310a2dd0da3ab68af155"/>
+        <topic label="measureQuantity" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#aabe3f5b5e852d4a9c77cb6c25b09c740"/>
+        <topic label="current" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a0b6362c80d0e944c5327c1f0c42acc65"/>
+        <topic label="voltage" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#abc0a4db04dbf1a8711efdff6b82eb61c"/>
+      </topic>
+      <topic label="HAL_MEASURE_VOLTAGE_T" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html">
+        <topic label="voltageGain" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a7589005661c11859d09464b11d419938"/>
+        <topic label="voltageGainSet" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#ac4e95ec90e8b7ce2733aeda606429225"/>
+        <topic label="vdc" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a4032d28b623c87b82e672ba43f6947e7"/>
+        <topic label="vdcFilt" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a65fcdc624fe3abc7025520e39799765d"/>
+        <topic label="invVdcFilt" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a79f125a8e215aef9d6b1fc5b91e254cd"/>
+        <topic label="vabc" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a6e1584f23be2a12f6bb5806e6f1cca13"/>
+        <topic label="vabcRaw" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#ae827ded87f29808eb4bf0893d09c50e3"/>
+      </topic>
+      <topic label="IQ_NUM_T" href="struct_i_q___n_u_m___t.html">
+        <topic label="scaledNum" href="struct_i_q___n_u_m___t.html#accb1efeb8551d8a17b8f62de3b07d9d5"/>
+        <topic label="iqScaling" href="struct_i_q___n_u_m___t.html#a14689a1198288fd202caad318021e552"/>
+      </topic>
+      <topic label="MC_ABC_T" href="struct_m_c___a_b_c___t.html">
+        <topic label="a" href="struct_m_c___a_b_c___t.html#a1006fabf4d30260be633c418bd0c39c5"/>
+        <topic label="b" href="struct_m_c___a_b_c___t.html#a03de4e942065b1c138a5f9d44834e1f4"/>
+        <topic label="c" href="struct_m_c___a_b_c___t.html#a1ce0dc6b52c73fea40cadaa27d93596f"/>
+      </topic>
+      <topic label="MC_ALPHABETA_T" href="struct_m_c___a_l_p_h_a_b_e_t_a___t.html">
+        <topic label="alpha" href="struct_m_c___a_l_p_h_a_b_e_t_a___t.html#a79f7d3703f4577843f3a135ccd6fba3f"/>
+        <topic label="beta" href="struct_m_c___a_l_p_h_a_b_e_t_a___t.html#adaecef4cd87869c51b73d986a29e8795"/>
+      </topic>
+      <topic label="MC_DQ_T" href="struct_m_c___d_q___t.html">
+        <topic label="d" href="struct_m_c___d_q___t.html#a06f869b40f2211860c0edd6eb359818f"/>
+        <topic label="q" href="struct_m_c___d_q___t.html#a8d20a7c2af13a4f93a7962aaaae72b20"/>
+      </topic>
+      <topic label="MC_SINCOS_T" href="struct_m_c___s_i_n_c_o_s___t.html">
+        <topic label="sin" href="struct_m_c___s_i_n_c_o_s___t.html#a9b31af0e1c739f24b0247124859dbd73"/>
+        <topic label="cos" href="struct_m_c___s_i_n_c_o_s___t.html#a63ea11339786be41d2006828470670d1"/>
+      </topic>
+      <topic label="MC_SVM_T" href="struct_m_c___s_v_m___t.html">
+        <topic label="voltageSector" href="struct_m_c___s_v_m___t.html#a692994a9604040b3bf3b8e5d0097e9ec"/>
+        <topic label="angleSector" href="struct_m_c___s_v_m___t.html#a288b894d37c1b94eddb27bbf1ca96222"/>
+        <topic label="prevPrevVoltageSector" href="struct_m_c___s_v_m___t.html#a86a799bb8d579dc784e42fe2522105d3"/>
+        <topic label="prevVoltageSector" href="struct_m_c___s_v_m___t.html#a12649dc91023226522473b321342fff3"/>
+        <topic label="maxDutyPhase" href="struct_m_c___s_v_m___t.html#a92a5cb7ecb52a5ce431a215733af3f20"/>
+        <topic label="minDutyPhase" href="struct_m_c___s_v_m___t.html#a2e36b3e50262e859394c777dc613526c"/>
+        <topic label="minDuty" href="struct_m_c___s_v_m___t.html#a33463a5a7bbd659f234734291f3dc386"/>
+        <topic label="minDutyDisCont" href="struct_m_c___s_v_m___t.html#a10e0058ca6d25a29acf8bab6dacfff8c"/>
+        <topic label="blankingTime" href="struct_m_c___s_v_m___t.html#a0abc62c4efcfce4df35e6e282bfbab2d"/>
+        <topic label="minPWMdelta" href="struct_m_c___s_v_m___t.html#a0efc5d6ccb6ff056f09b81ceab6f286d"/>
+        <topic label="svmGen" href="struct_m_c___s_v_m___t.html#aa3b1ad49023e43798f69f0dbe19e97aa"/>
+        <topic label="Dabc" href="struct_m_c___s_v_m___t.html#adaca7f6f16beacdf448177a79c5425d6"/>
+        <topic label="sectorCount" href="struct_m_c___s_v_m___t.html#ab877bb397f55b8a7ed620f1955104fc6"/>
+      </topic>
+      <topic label="MEASURE_CURRENT_FLAGS_T" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html">
+        <topic label="b" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html#a70c26fe4e19b7e0fb97bd176cbeec7cc"/>
+        <topic label="w" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html#a1074af1c6cf913dab408e29ef20d4489"/>
+      </topic>
+      <topic label="measureCurrentFlags" href="structmeasure_current_flags.html">
+        <topic label="threeShuntDynamic" href="structmeasure_current_flags.html#a12bb96016563885aacfbd8c4835f0223"/>
+        <topic label="threeShuntDynamicSet" href="structmeasure_current_flags.html#a112d96cd3ad44cad831cbd4d6ecbefb9"/>
+        <topic label="offsetAB_CStatus" href="structmeasure_current_flags.html#a9291a788b17b1e562f27bdaf41fadd40"/>
+        <topic label="offsetGainStatus" href="structmeasure_current_flags.html#a57cc9346e54f14794e5d585aaef638de"/>
+        <topic label="offsetStatus" href="structmeasure_current_flags.html#a8b1d7a6704122f131d0255dda7003c7a"/>
+      </topic>
+      <topic label="MODULE_ENABLE_FLAGS_T" href="union_m_o_d_u_l_e___e_n_a_b_l_e___f_l_a_g_s___t.html">
+        <topic label="b" href="union_m_o_d_u_l_e___e_n_a_b_l_e___f_l_a_g_s___t.html#ae01830cca8c6babddc8e3f4ff51f6c42"/>
+        <topic label="w" href="union_m_o_d_u_l_e___e_n_a_b_l_e___f_l_a_g_s___t.html#a82cd66fc928194613525ba94d542f94f"/>
+      </topic>
+      <topic label="moduleEnableFlags" href="structmodule_enable_flags.html">
+        <topic label="hardwareOverCurrentFaultEnable" href="structmodule_enable_flags.html#a8ca8473817ce2489c7e712051ba1d8da"/>
+        <topic label="lowBemfStallDetectEnable" href="structmodule_enable_flags.html#af05fdcaf7126f5a184337c69d9cab745"/>
+        <topic label="noMotorStallDetectEnable" href="structmodule_enable_flags.html#a3e9c4751bd3d82c5f82b164d04633172"/>
+        <topic label="abnormalSpeedStallDetectEnable" href="structmodule_enable_flags.html#a29bbe281d6113c2c3c22d0b3bd18504c"/>
+        <topic label="motorStallReportOnlyEnable" href="structmodule_enable_flags.html#a541585e7348e3a536693e2b427d700b1"/>
+        <topic label="plugAVSEnable" href="structmodule_enable_flags.html#a79633247b62834133951277523da4a15"/>
+        <topic label="reserved" href="structmodule_enable_flags.html#a8bf1d6fdb12a090bd1e1c2507bd45825"/>
+      </topic>
+      <topic label="MOTOR_T" href="struct_m_o_t_o_r___t.html">
+        <topic label="polePairs" href="struct_m_o_t_o_r___t.html#a421485d7ff7a68ab8db4be6b33b59bd0"/>
+        <topic label="rs" href="struct_m_o_t_o_r___t.html#a82e41be3e4b9a1c0089efc7b50c10641"/>
+        <topic label="LdDt" href="struct_m_o_t_o_r___t.html#afb6973d64811109d6c16c8fe16f4749d"/>
+        <topic label="LqDt" href="struct_m_o_t_o_r___t.html#a3e8359f98530252a5bc772d4c7c08166"/>
+        <topic label="L0Dt" href="struct_m_o_t_o_r___t.html#a0abd8f0c2299698d8adff8b1ad1d4caa"/>
+        <topic label="L1Dt" href="struct_m_o_t_o_r___t.html#a67f87ded686f55c1d4dc8491c01fe322"/>
+        <topic label="Ke" href="struct_m_o_t_o_r___t.html#a094247b53323fe4b6f66b33273ccc42f"/>
+        <topic label="InvKe" href="struct_m_o_t_o_r___t.html#acce22a71054f85a236544b28213c27fd"/>
+        <topic label="saliency" href="struct_m_o_t_o_r___t.html#ad7d3717b8efb4d2db2e0c73edc6e996c"/>
+      </topic>
+      <topic label="OUTPUT_DQ_T" href="struct_o_u_t_p_u_t___d_q___t.html">
+        <topic label="d" href="struct_o_u_t_p_u_t___d_q___t.html#a9f2362daab1125328bf304394f331f8d"/>
+        <topic label="q" href="struct_o_u_t_p_u_t___d_q___t.html#ab4661fb6c470d3f141f5b55789e666be"/>
+      </topic>
+      <topic label="OUTPUTS_CURRENT_PI_T" href="struct_o_u_t_p_u_t_s___c_u_r_r_e_n_t___p_i___t.html">
+        <topic label="kp" href="struct_o_u_t_p_u_t_s___c_u_r_r_e_n_t___p_i___t.html#a3e1c4047b95b5dabc7c551cac5603168"/>
+        <topic label="ki" href="struct_o_u_t_p_u_t_s___c_u_r_r_e_n_t___p_i___t.html#acec4ef59b04b79cb8a8990f3b6908c77"/>
+      </topic>
+      <topic label="OUTPUTS_PI_T" href="struct_o_u_t_p_u_t_s___p_i___t.html">
+        <topic label="reference" href="struct_o_u_t_p_u_t_s___p_i___t.html#a499fefbb8b032ca65bc1a9bedfec2508"/>
+        <topic label="feedback" href="struct_o_u_t_p_u_t_s___p_i___t.html#a346de8af374fc3c6243159f3cd8456e0"/>
+      </topic>
+      <topic label="RAM_ALGO_DEBUG_1_T" href="union_r_a_m___a_l_g_o___d_e_b_u_g__1___t.html">
+        <topic label="b" href="union_r_a_m___a_l_g_o___d_e_b_u_g__1___t.html#a05e60a1d17a0a43c44354edf704b06a1"/>
+        <topic label="w" href="union_r_a_m___a_l_g_o___d_e_b_u_g__1___t.html#ada32e96ab408e7f29c281de46fd20f46"/>
+      </topic>
+      <topic label="RAM_ALGO_DEBUG_2_T" href="union_r_a_m___a_l_g_o___d_e_b_u_g__2___t.html">
+        <topic label="b" href="union_r_a_m___a_l_g_o___d_e_b_u_g__2___t.html#ae95755b4fc4420d0d2c5eb2eca8baca2"/>
+        <topic label="w" href="union_r_a_m___a_l_g_o___d_e_b_u_g__2___t.html#a221f0a3fa88ee8ce941607dce6f017ad"/>
+      </topic>
+      <topic label="RAM_ALGO_DEBUG_3_T" href="union_r_a_m___a_l_g_o___d_e_b_u_g__3___t.html">
+        <topic label="b" href="union_r_a_m___a_l_g_o___d_e_b_u_g__3___t.html#a62336ac5618ceb7c49d4c6a44cacd176"/>
+        <topic label="w" href="union_r_a_m___a_l_g_o___d_e_b_u_g__3___t.html#ae6288e7703353d8b7cee2c531245273e"/>
+      </topic>
+      <topic label="RAM_DAC_CNTRL_T" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html">
+        <topic label="dacEn" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html#a4f31ebe10e34a5942ffc959b5836c9be"/>
+        <topic label="dacShift" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html#a4b77623ab5ae649fc4c40ea662d4a902"/>
+        <topic label="dacScalingFactor" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html#adc5b82162e563f7ad10f2bf977e5647b"/>
+        <topic label="dacOutAddr" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html#ade019d25e264a3ccf45f5f365bb64233"/>
+      </topic>
+      <topic label="RAM_SPEED_CTRL_T" href="union_r_a_m___s_p_e_e_d___c_t_r_l___t.html">
+        <topic label="b" href="union_r_a_m___s_p_e_e_d___c_t_r_l___t.html#ae790207cc0360d6e14b6bccf5d43c042"/>
+        <topic label="w" href="union_r_a_m___s_p_e_e_d___c_t_r_l___t.html#a5465e0e5693946c83639d235957eb6c9"/>
+      </topic>
+      <topic label="ramAlgoDebugCtrl1" href="structram_algo_debug_ctrl1.html">
+        <topic label="reserved1" href="structram_algo_debug_ctrl1.html#a9cd1fda4d51c80aa70b8d9846e8f267f"/>
+        <topic label="forceAlignAngleSrcSelect" href="structram_algo_debug_ctrl1.html#aa7c379f373a67bf2f2ccf8349c87d2fe"/>
+        <topic label="forceISDEn" href="structram_algo_debug_ctrl1.html#ae6e842f6ff5d48b168240983f8e079d8"/>
+        <topic label="forceIPDEn" href="structram_algo_debug_ctrl1.html#abe5b3e837298d28dcc89ee629d62af27"/>
+        <topic label="forceSlowCycleFirstCycleEn" href="structram_algo_debug_ctrl1.html#a98ed1319fc45d962226cfd1c68e06c9f"/>
+        <topic label="forceAlignEn" href="structram_algo_debug_ctrl1.html#ac74de4ebb778cea8b960f611bd1f07ed"/>
+        <topic label="closeLoopDis" href="structram_algo_debug_ctrl1.html#af06f24e19d276842a9ed730e3a28c23e"/>
+        <topic label="reserved" href="structram_algo_debug_ctrl1.html#aa86230e4f265750d3d6e0dbeda81f864"/>
+        <topic label="forcedAlignAngle" href="structram_algo_debug_ctrl1.html#a3dd9288a531e031a27461745b3d45ce8"/>
+        <topic label="clearFlt" href="structram_algo_debug_ctrl1.html#aec4991178b6d572f35ed15b9d5c0b0ee"/>
+      </topic>
+      <topic label="ramAlgoDebugCtrl2" href="structram_algo_debug_ctrl2.html">
+        <topic label="reserved" href="structram_algo_debug_ctrl2.html#a571f2fe7dfab492b4b81c0f64b9a159f"/>
+        <topic label="forceVQCurrLoopDis" href="structram_algo_debug_ctrl2.html#aaac1849d28d7907e20152e79b8449b77"/>
+        <topic label="forceVDCurrLoopDis" href="structram_algo_debug_ctrl2.html#a0d3af9073781d913e9927fac479f82ac"/>
+        <topic label="currLoopDis" href="structram_algo_debug_ctrl2.html#a59714fb03e77207f722927d7c9947a1b"/>
+        <topic label="statusUpdateEn" href="structram_algo_debug_ctrl2.html#a34288e8d590753f339d98595b82d330c"/>
+        <topic label="updateConfigs" href="structram_algo_debug_ctrl2.html#ac6444767b16a03250f732de796bc0353"/>
+        <topic label="updateSysParams" href="structram_algo_debug_ctrl2.html#a6a27b30119e8857158308218545e5fa8"/>
+        <topic label="Reserved2" href="structram_algo_debug_ctrl2.html#a487b64602a77f47db7e881cd302fb8dd"/>
+      </topic>
+      <topic label="ramAlgoDebugCtrl3" href="structram_algo_debug_ctrl3.html">
+        <topic label="fluxModeReference" href="structram_algo_debug_ctrl3.html#a143d433b2caa9e37d986f4e11198eb2e"/>
+        <topic label="reserved1" href="structram_algo_debug_ctrl3.html#abc9e050de332df2bfd6d4d0377525ca3"/>
+      </topic>
+      <topic label="ramSpeedCtrl" href="structram_speed_ctrl.html">
+        <topic label="speedInput" href="structram_speed_ctrl.html#a35a7d951b59a668a0733bcda5730a26e"/>
+        <topic label="reserved" href="structram_speed_ctrl.html#a8652db5b9e33f0fa7296da50d29c48a7"/>
+      </topic>
+      <topic label="SYSTEM_PARAMETERS_T" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html">
+        <topic label="mtrResist" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a76b99ba23ab5dc9491453f9b1d397bca"/>
+        <topic label="mtrInductance" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a387d94d6b45d59995ec3ae6b9a920c35"/>
+        <topic label="mtrSaliency" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#adc5a2cbf6c6df5200bc5af87376664c7"/>
+        <topic label="mtrBemfConst" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a16953d206851dadd324d823f077aec64"/>
+        <topic label="voltageBase" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a0f8629e9d6a12f5198110b9a71fdd7d2"/>
+        <topic label="currentBase" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#acbe28dbe11b185119b2daf15b7fdbb64"/>
+        <topic label="maxMotorSpeed" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a6416e43018a738bdfb31807b481455f9"/>
+        <topic label="maxMotorPower" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a89755f4c637be4171491c2d60e4586ca"/>
+        <topic label="speedLoopKp" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a39eabdcbf139d522105581720fe4413b"/>
+        <topic label="speedLoopKi" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a19654afccfdaba31ca9e5ad11f6bd80f"/>
+        <topic label="currLoopKp" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#aba0a9b15385d00e87fafc46e32869c6b"/>
+        <topic label="currLoopKi" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#af533570b8b05a31e93aa16380088c210"/>
+        <topic label="fluxWeakeningKi" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a3bcce732d0cf31ce3d53402ec2cb7b8d"/>
+        <topic label="fluxWeakeningKp" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a2ef26bbb09f97cabea0e56c2cff23d68"/>
+      </topic>
+      <topic label="UART_Instance" href="struct_u_a_r_t___instance.html">
+        <topic label="txMsg" href="struct_u_a_r_t___instance.html#a14dc9f8568a0ee1d49886357bab22f56"/>
+        <topic label="rxMsg" href="struct_u_a_r_t___instance.html#ac15e555998be0aec432eaaca20bb7b31"/>
+        <topic label="dataLen" href="struct_u_a_r_t___instance.html#a6760c17949e8534a7f416bfe3af62abd"/>
+        <topic label="isCrc" href="struct_u_a_r_t___instance.html#a688ceaea98ecaf4d26270f9009eae75b"/>
+        <topic label="status" href="struct_u_a_r_t___instance.html#adb0bce459473975933d0d7be9f0554b0"/>
+        <topic label="error" href="struct_u_a_r_t___instance.html#aec8fb0e1bf6c8d1f10c4c291df561e30"/>
+      </topic>
+      <topic label="USER_CTRL_INTERFACE_T" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html">
+        <topic label="speedCtrl" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#add429dd80de374cd7ecbe3821446fd65"/>
+        <topic label="algoDebugCtrl1" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a88dab47126e93d189c3d2846cb1cc0cd"/>
+        <topic label="algoDebugCtrl2" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a6547c63945f909164e009efca83d947d"/>
+        <topic label="algoDebugCtrl3" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a426f7184476ffb551950ffad7a44a21d"/>
+        <topic label="dacCtrl" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a559a55ede102e7945bc5b36f98a1cff2"/>
+      </topic>
+      <topic label="USER_INPUT_CLOSE_LOOP1_T" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p1___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p1___t.html#a00b0e4b4015256e4a1eeb19c8c0b06ac"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p1___t.html#ae612d68d0b497d60cc2ac36a1db8f54d"/>
+      </topic>
+      <topic label="USER_INPUT_CLOSE_LOOP2_T" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p2___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p2___t.html#a0c5ec579b38bf77fcdbea45c2e104c60"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p2___t.html#a1478bf3a6a1b9a8f4cb3597d672ee1cf"/>
+      </topic>
+      <topic label="USER_INPUT_FAULT_CFG1_T" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g1___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g1___t.html#a8056ed17d4463149f2ca96a0ef71c697"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g1___t.html#ac0915147390710d5a7c27a85ceb27461"/>
+      </topic>
+      <topic label="USER_INPUT_FAULT_CFG2_T" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g2___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g2___t.html#a2a8cdb8cf789cd9adbfcf0a70a9b00d1"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g2___t.html#a78d938626802efcfea7b68bf11a088de"/>
+      </topic>
+      <topic label="USER_INPUT_FIELD_CTRL_T" href="union_u_s_e_r___i_n_p_u_t___f_i_e_l_d___c_t_r_l___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___f_i_e_l_d___c_t_r_l___t.html#a06258315cc7f480322c59ac65655cf9e"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___f_i_e_l_d___c_t_r_l___t.html#adb7732e78a92de29e5685041abcebb57"/>
+      </topic>
+      <topic label="USER_INPUT_INTERFACE_T" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html">
+        <topic label="systemParams" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a10a721805ba695b15010ad2fa9ae0bab"/>
+        <topic label="isdCfg" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a5389758269550b06cc4a8ac2c6549b77"/>
+        <topic label="rvsDrvCfg" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ad4653f92ff7a554210c76442190a1024"/>
+        <topic label="mtrStartUp1" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a51edd77caa9e5097f1886818140f7783"/>
+        <topic label="mtrStartUp2" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a08f76653518595cd3b8519923503ba0f"/>
+        <topic label="closeLoop1" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ac2f94d9bac7ba5c255915d1be8ce80d3"/>
+        <topic label="closeLoop2" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ad0cc67e7df29deb59bdc022f78ac69a1"/>
+        <topic label="fieldCtrl" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a2eb0b529b7ff5d6d847f934bd5537f8b"/>
+        <topic label="faultCfg1" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a93584aa934fd632256d81fa66dcb6b0a"/>
+        <topic label="faultCfg2" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ae6cfad1e633f768c8b9ba661dacfcd44"/>
+        <topic label="miscAlgo" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#abef15cd68ce2e02470d2dd0d2e6113a6"/>
+        <topic label="pinCfg" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#af5c9b22e13f8f68a3ad0ace6a6d22f27"/>
+        <topic label="periphCfg1" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a10b0ed36e737ef63a2b4d94ed9534f47"/>
+      </topic>
+      <topic label="USER_INPUT_ISDCFG_T" href="union_u_s_e_r___i_n_p_u_t___i_s_d_c_f_g___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___i_s_d_c_f_g___t.html#a0bb05ca8b1694caea34a8c81b3eaa2f4"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___i_s_d_c_f_g___t.html#ae05a1c7296da0c399281eed0dfa19be4"/>
+      </topic>
+      <topic label="USER_INPUT_MISC_ALGO_T" href="union_u_s_e_r___i_n_p_u_t___m_i_s_c___a_l_g_o___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___m_i_s_c___a_l_g_o___t.html#ad14a0b5884bf89364ce307c1edd9c6b3"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___m_i_s_c___a_l_g_o___t.html#a9c39bb0fb404d46d649a55c097ad3dd5"/>
+      </topic>
+      <topic label="USER_INPUT_MTR_STARTUP1_T" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p1___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p1___t.html#af508c78d763b2c08af6d44efb1f154ae"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p1___t.html#a418b552c1e2de83e24ad733f7773553f"/>
+      </topic>
+      <topic label="USER_INPUT_MTR_STARTUP2_T" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p2___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p2___t.html#aee2e3a52b70afa47f35a1c4b0e317642"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p2___t.html#afda1c6dbe2f16b0489c6839e3ab259ed"/>
+      </topic>
+      <topic label="USER_INPUT_PERI_CFG1_T" href="union_u_s_e_r___i_n_p_u_t___p_e_r_i___c_f_g1___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___p_e_r_i___c_f_g1___t.html#afc09a91635ce4a3ec1883dd4f164a4fb"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___p_e_r_i___c_f_g1___t.html#a9887581f38bd35ccfb389ac07e7b411f"/>
+      </topic>
+      <topic label="USER_INPUT_PIN_CFG_T" href="union_u_s_e_r___i_n_p_u_t___p_i_n___c_f_g___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___p_i_n___c_f_g___t.html#ad1152bd916e1038e1150461b45e01727"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___p_i_n___c_f_g___t.html#a9b26146124e10b2ca7545f6d62e37c3f"/>
+      </topic>
+      <topic label="USER_INPUT_RVSDRVCFG_T" href="union_u_s_e_r___i_n_p_u_t___r_v_s_d_r_v_c_f_g___t.html">
+        <topic label="b" href="union_u_s_e_r___i_n_p_u_t___r_v_s_d_r_v_c_f_g___t.html#adf481b04c68cc00b20c4f147770cbebe"/>
+        <topic label="w" href="union_u_s_e_r___i_n_p_u_t___r_v_s_d_r_v_c_f_g___t.html#adc0b0de7ef345c7c1b925966021a2884"/>
+      </topic>
+      <topic label="USER_INPUTS_INTERFACE_T" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html">
+        <topic label="phaseCurrentBase" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#add5d211e5d770c80cb7939184a97b5f1"/>
+        <topic label="motorImpedanceBase" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a48a499e4b3d65f84262d4013f84da696"/>
+        <topic label="adcSamplingFrequencyKHz" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a24320463be4b8113e65658d2ede3162c"/>
+        <topic label="adcSamplingRate" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a0dd8537c98ae2e9b6af3308775ffc123"/>
+        <topic label="kpCurrent" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#ac7afb6ce0235b9e02f9036c7e7f546ec"/>
+        <topic label="kiCurrent" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#ae06249ac658f591aa201ae5f5e7ed4b2"/>
+        <topic label="overCurrentBase" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a79e5066f2698edcd282eb920f49f1ea9"/>
+        <topic label="L0MicroHenry" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#acf676104fcbcfe6124b37a0a0785530b"/>
+        <topic label="negL1MicroHenry" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#aa36f05346acfa0e77bee6ab7d96dc9d4"/>
+      </topic>
+      <topic label="USER_INPUTS_T" href="struct_u_s_e_r___i_n_p_u_t_s___t.html">
+        <topic label="hardwareOverCurrentLimitPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a19172536b00acb906c21e5fedb77cad0"/>
+        <topic label="noMotorLimitPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a8ababb74ee80725a23d7339da60aa3ec"/>
+        <topic label="rsMilliOhms" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#aee828fd0d389b79df5ac4b22fa11eae6"/>
+        <topic label="LdMicroHenry" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a11be28f0438d721d106618ff8128c693"/>
+        <topic label="LqMicroHenry" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a8246b50528f09de342bdabe92724cbfd"/>
+        <topic label="KeMilliVoltPhasePkPerHz" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a81c56a9b894ab81b7d5cf4e6d65ddcba"/>
+        <topic label="openLoopDecelToSlowAccelSlewRateRatioPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a0b038c79ac096ff4a3a40f454352a796"/>
+        <topic label="forwardTransitionSpeedPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a4c432937e0b55c67b785efc2237e8d3e"/>
+        <topic label="reverseTransitionSpeedPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ad27b6e0c5f0352e2086ee688620f99d5"/>
+        <topic label="angleErrorSlewRateMilliDegreesPerMsec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#aabac3b0d75085a8cc55aa9d3ff96e819"/>
+        <topic label="closeLoopSlowAccelSpeedSlewRateDeciHzPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ae6bb407fdc778a0e532c154541363dc7"/>
+        <topic label="lowBemfEmagThresholdPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ae02c8fe4d5fc222b69752c71a12ef11f"/>
+        <topic label="abnormalSpeedLimitPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a2e03b7cd3f8ec2528bd1975b09980efc"/>
+        <topic label="isdMaxStopBemfPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#adac5b515901d7cfd28b6949f6ca29dc8"/>
+        <topic label="faultRetryTimeMsec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a8a0ed6b2e139044498f766fc79ec6ac6"/>
+        <topic label="underVoltageHystPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#acb9377364b3976c6fa83e2285d69375d"/>
+        <topic label="overVoltageHystPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a8406aaa6ab89d2528d6f45ce2dd84102"/>
+        <topic label="moduleFlags" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#acdcd291f2224829c1b1be1e7cfde033b"/>
+        <topic label="debugFlags" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#af566d2c8ceb7af18fda95c7276ef3fd4"/>
+        <topic label="systemDCBusVoltageVolts" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ac1bdb912cabca2313051060b8eaf4063"/>
+        <topic label="fullScalePhaseCurrentAmp" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#aa4a740c20d16993caa7aea9fe68fd046"/>
+        <topic label="maximumSpeedHz" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a831c0b8575f20d4c2a766e0e1a1a2e03"/>
+        <topic label="basePower" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ac0f31cd473760f737a81872d4ca47fed"/>
+        <topic label="kpCurrent" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#abec9c7b023e3082647d46fa98c15ab75"/>
+        <topic label="kiCurrent" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ae2daecaf678432accd83bb9e26f4db7b"/>
+        <topic label="kpSpeed" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a7233b0c1007ebce5dcca681b39076649"/>
+        <topic label="kiSpeed" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a2924cdf20b7219310194e776ac42faba"/>
+        <topic label="kpPlug" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#aae58d5a1150f02e0a8e0871df6bfe197"/>
+        <topic label="kiPlug" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ad355ad58f8fe2f702d15a406d05304d9"/>
+        <topic label="kpFluxWeak" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#af29c2ea8f87ee5fced6bedada207c620"/>
+        <topic label="kiFluxWeak" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a4e81f0ddb9fa0648eef3eb71795c5b67"/>
+        <topic label="ipdPulseToPulseTimeMsec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a88abdcdd3cb8830dcf84e137bb80c8cd"/>
+        <topic label="speedInput" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a878075b73dad3936f2a613ab4f786c63"/>
+        <topic label="openLoopFastAccelAccelSlewRateCentiHzPerSecPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a28d633ede01ad961148b344242fa99b7"/>
+        <topic label="openLoopSlowAccelSpeedSlewRateCentiHzPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a16a4f580aa2b7854c8a340f51cf8bc04"/>
+        <topic label="openLoopSlowAccelAccelSlewRateCentiHzPerSecPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#acddd1d1562425e2493f90c960b660d70"/>
+        <topic label="closeLoopFastAccelSpeedSlewRateDeciHzPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a84a5fc492738da5d064c545418b41b60"/>
+        <topic label="closeLoopFastDecelSpeedSlewRateDeciHzPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ac9e4d45856083ddaf003bb96139f89d1"/>
+        <topic label="ipdMaxOverflow" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a747a8e918c6ddd5331538ecc2639aece"/>
+      </topic>
+      <topic label="USER_STATUS_INTERFACE_T" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html">
+        <topic label="systemFaultStatus" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a053060b3fab51d001ae0c87ec064ef90"/>
+        <topic label="motorState" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#aea278ee27ccb0fb42e5f9ccf90e788df"/>
+        <topic label="VdqFilt" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#ae44eead89f3b41beb3d53b2287a75221"/>
+        <topic label="currentPI" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a99cf24f90ef81fd54d362fbe93070a6a"/>
+        <topic label="piSpeed" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#ac0c09054bdd879ded094e5181ebc9ad1"/>
+        <topic label="piPower" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#ad977b18796d7093c6ea389317d81ed91"/>
+        <topic label="piId" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#ad569e7b6624b0b9018fd36fe3b2e607e"/>
+        <topic label="piIq" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a5bc1bfc1b219d8b7a5da3249a318065f"/>
+        <topic label="ipdIdentifiedSector" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a16414b95b1431a9700c2f3771b1a7bd2"/>
+        <topic label="estimatedSpeed" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#adf136e84dfeb0c298cd726b43f65f56d"/>
+        <topic label="dcBusVoltage" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a77a9e26bd20236b29c7a25b3c1ce87e6"/>
+        <topic label="torqueLimit" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a8383f44ab234678140643289b08c69ff"/>
+        <topic label="gateDriverFaultStatus" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a0bb36c9eaf7fc2eb7b1886f7f8517ca8"/>
+        <topic label="controllerFaultStatus" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#aac93939dead15efa0ea96b510fcf4206"/>
+        <topic label="appVersion" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a3d7ecc0500c59b0dae6dcecb689c2199"/>
+      </topic>
+      <topic label="userInputCloseLoop1" href="structuser_input_close_loop1.html">
+        <topic label="reserved1" href="structuser_input_close_loop1.html#a9478cac84bc680d8bbaf280d5e73d36b"/>
+        <topic label="deadTimeCompEn" href="structuser_input_close_loop1.html#a6c8d366596e1eda628f403bc52ac8b22"/>
+        <topic label="avsEn" href="structuser_input_close_loop1.html#a14a3cd45c9f6f1761cb9fdd0ecd4146d"/>
+        <topic label="pwmMode" href="structuser_input_close_loop1.html#aa150d6111cef899c2a1e0b51850ed623"/>
+        <topic label="pwmFreqOut" href="structuser_input_close_loop1.html#ab1f4cd817a9d335f8759029264a5d395"/>
+        <topic label="clDec" href="structuser_input_close_loop1.html#a9cc262397f0cda67ba27a07799b57c23"/>
+        <topic label="clDecCfg" href="structuser_input_close_loop1.html#a88fee28db07122d4c3a798337a09c139"/>
+        <topic label="clAcc" href="structuser_input_close_loop1.html#ac124549371e65aef2de4565c745ea4cc"/>
+        <topic label="overModEnable" href="structuser_input_close_loop1.html#ac0f9880f65f04aca3324cfa8be65f528"/>
+        <topic label="mtrStopOption" href="structuser_input_close_loop1.html#a2011fc49c37cc61efb839ac6bb5cf5f1"/>
+        <topic label="iLimit" href="structuser_input_close_loop1.html#a81ed848cb9f67633cce9792b794e5000"/>
+        <topic label="highFreqFOCEn" href="structuser_input_close_loop1.html#aefce6c808c25acbf84ceddd6f919c491"/>
+        <topic label="controlMode" href="structuser_input_close_loop1.html#ab5bcb290cde2a1a353b8bf84f93b2099"/>
+        <topic label="reserved" href="structuser_input_close_loop1.html#abc3064bbbd94ee79165fff500d44da8d"/>
+      </topic>
+      <topic label="userInputCloseLoop2" href="structuser_input_close_loop2.html">
+        <topic label="reserved" href="structuser_input_close_loop2.html#aeda4aa8793df3f2c2c6b932688dacb9c"/>
+        <topic label="leadAngle" href="structuser_input_close_loop2.html#a956d8117cfc12b2e428382ee59488513"/>
+        <topic label="brkCurrThr" href="structuser_input_close_loop2.html#ad058b701b5b6e2ef45394ed0ec52461c"/>
+        <topic label="brkSpeedThr" href="structuser_input_close_loop2.html#a7874d75981c7264faef7b4fb5bc24b6b"/>
+        <topic label="actSpinThr" href="structuser_input_close_loop2.html#a84af8c944881cbb9fa3d73877ccddb2e"/>
+      </topic>
+      <topic label="userInputFaultCfg1" href="structuser_input_fault_cfg1.html">
+        <topic label="mtrLckMode" href="structuser_input_fault_cfg1.html#a2c1f2780c2d6c2f5b22689cad15953ff"/>
+        <topic label="lockRetry" href="structuser_input_fault_cfg1.html#ac2356010b75fa9442fe20a6f6ab944b0"/>
+        <topic label="reserved" href="structuser_input_fault_cfg1.html#a974551772a96658a0fe129079e3db3fa"/>
+      </topic>
+      <topic label="userInputFaultCfg2" href="structuser_input_fault_cfg2.html">
+        <topic label="maxVmMode" href="structuser_input_fault_cfg2.html#ad7c3acfa2c0baa8c4ab1e506c9c9dea6"/>
+        <topic label="maxVmMtr" href="structuser_input_fault_cfg2.html#a8b7a375c8e64a00e793736d42afa101a"/>
+        <topic label="minVmMode" href="structuser_input_fault_cfg2.html#abe132c5803337347d02a561f9a3ab481"/>
+        <topic label="minVmMtr" href="structuser_input_fault_cfg2.html#a0e7dda95a4adb3848bb85a953a6c23cc"/>
+        <topic label="reserved1" href="structuser_input_fault_cfg2.html#a94265da1204bed168f26320eb04c433f"/>
+        <topic label="noMtrThr" href="structuser_input_fault_cfg2.html#aaaac88e3a75037cdec098b09c11e1b76"/>
+        <topic label="abnBemfThr" href="structuser_input_fault_cfg2.html#a85d040aa2b12f8396faf7b9d612b0ffc"/>
+        <topic label="lockAbnSpeed" href="structuser_input_fault_cfg2.html#ad9ee9adfb8fe0b797407011c4892bb15"/>
+        <topic label="lock3En" href="structuser_input_fault_cfg2.html#a4567ed5d534e4710d7ea9fff5099d8fa"/>
+        <topic label="lock2En" href="structuser_input_fault_cfg2.html#ad3534793d76fe263506da2c312d34283"/>
+        <topic label="lock1En" href="structuser_input_fault_cfg2.html#a1f5f0b4582cbc333a811def546ce54b0"/>
+        <topic label="reserved" href="structuser_input_fault_cfg2.html#a1ff5d36ec3e555a4d9c744c622a0bfc3"/>
+      </topic>
+      <topic label="userInputFieldCtrl" href="structuser_input_field_ctrl.html">
+        <topic label="fluxWeakeningEn" href="structuser_input_field_ctrl.html#a03b2bc5cacfc30cc7c13c6a5feb91763"/>
+        <topic label="fluxWeakCurrRatio" href="structuser_input_field_ctrl.html#afb5db34e367ba3e711a3f5da72c9b3aa"/>
+        <topic label="fluxWeakeningReference" href="structuser_input_field_ctrl.html#a0ef91fe02547ac9fc6f23050f6120cac"/>
+        <topic label="mtpaEnable" href="structuser_input_field_ctrl.html#a54cd145fb268932a8e3e9cad45d2a15a"/>
+        <topic label="reserved" href="structuser_input_field_ctrl.html#a3b5cb47750911322923d953c2f6cdfab"/>
+      </topic>
+      <topic label="userInputISD" href="structuser_input_i_s_d.html">
+        <topic label="revDrvOpenLoopCurr" href="structuser_input_i_s_d.html#a1717b4d55e221564c776453da5602471"/>
+        <topic label="revDrvHandoffThr" href="structuser_input_i_s_d.html#a4f0c5c486a4fa257afa4b2c25f543a5f"/>
+        <topic label="statDetectThr" href="structuser_input_i_s_d.html#a6a9cad432644eaaa202fda5f8bd4e9db"/>
+        <topic label="hiZTime" href="structuser_input_i_s_d.html#a3e37e1e1b6f108f7973628f6be2d4833"/>
+        <topic label="brkTime" href="structuser_input_i_s_d.html#a9acd7d7ab0fd7d162baf9355ca328973"/>
+        <topic label="brkConfig" href="structuser_input_i_s_d.html#a411e507242fe582176670dd9872282fd"/>
+        <topic label="fwDrvResyncThr" href="structuser_input_i_s_d.html#a3f5541eec485506b32de5f6d7c3b0150"/>
+        <topic label="resyncEn" href="structuser_input_i_s_d.html#a64763be7301b048278986d28f981cc70"/>
+        <topic label="rvsDrEn" href="structuser_input_i_s_d.html#a20d740f2541970b790e58e2da88670fd"/>
+        <topic label="hiZEn" href="structuser_input_i_s_d.html#ad394198d372c0cd0d1f667c052680041"/>
+        <topic label="brakeEn" href="structuser_input_i_s_d.html#a9055244866b2feb2527d1dc8b69577ec"/>
+        <topic label="isdEn" href="structuser_input_i_s_d.html#a646398d7463b99c84c900e7a7fd9c09d"/>
+        <topic label="bemfResynCThreshold" href="structuser_input_i_s_d.html#a6cfd07f5d471b0c4dd919c1ae70917d3"/>
+      </topic>
+      <topic label="userInputMiscAlgo" href="structuser_input_misc_algo.html">
+        <topic label="avsRevDrvOLDec" href="structuser_input_misc_algo.html#a95e0531482fb1b083de4eb7ebf6aacdb"/>
+        <topic label="brkCurrPersist" href="structuser_input_misc_algo.html#ad4f694b31f20a97060ea8c2b834273d3"/>
+        <topic label="autoHandoffMinBemf" href="structuser_input_misc_algo.html#a37b755b49d896c2d4cf2718080cdd1aa"/>
+        <topic label="isdTimeOut" href="structuser_input_misc_algo.html#aad00afc9d1967dc0dba1b5cbc8e9ec6b"/>
+        <topic label="isdRunTime" href="structuser_input_misc_algo.html#a097fdd76955c4aeb40e2e1a13cb4db4c"/>
+        <topic label="isdStopTime" href="structuser_input_misc_algo.html#a27609589caa90ff179edd7052a70fc55"/>
+        <topic label="fastIsdEnable" href="structuser_input_misc_algo.html#aa6db284dd388ecf60fd2d32f7c917956"/>
+        <topic label="ipdHiResolEn" href="structuser_input_misc_algo.html#ab108822a3697cc3521c707aa8c8f9f59"/>
+        <topic label="clSlowAcc" href="structuser_input_misc_algo.html#a30ceac13bfe464832f9c7fb93d5b2e40"/>
+        <topic label="ipdMaxOverflow" href="structuser_input_misc_algo.html#a639f6e525cc803f30bf35419a3c0fa59"/>
+        <topic label="reserved" href="structuser_input_misc_algo.html#a0e90f7e5614daf1aa7939a4e62f737ec"/>
+      </topic>
+      <topic label="userInputMotorStartUp1" href="structuser_input_motor_start_up1.html">
+        <topic label="iqRampEn" href="structuser_input_motor_start_up1.html#affc4d61606db275d2b673acceca2abf8"/>
+        <topic label="olILimitCfg" href="structuser_input_motor_start_up1.html#ac50f52a676e1b8c687f564f8cf7a0e28"/>
+        <topic label="ipdRepeat" href="structuser_input_motor_start_up1.html#adf3a01153722ec222d36364017a9bd1f"/>
+        <topic label="ipdAdvAngle" href="structuser_input_motor_start_up1.html#ae24bb1c855dadfb557b8fd3fb15d44c7"/>
+        <topic label="reserved" href="structuser_input_motor_start_up1.html#a9ae84608a675e2673726aca1efd3036a"/>
+        <topic label="ipdCurrThresh" href="structuser_input_motor_start_up1.html#a12ec3761c41e5c4d2008a9a3b5c6efe7"/>
+        <topic label="ipdClkFreq" href="structuser_input_motor_start_up1.html#a8657200c76a7e19bb7df7fb94ab89d31"/>
+        <topic label="alignOrSlowCurrLimit" href="structuser_input_motor_start_up1.html#aea9dcadc8ac09daaf54312cff5b4c86c"/>
+        <topic label="alignTime" href="structuser_input_motor_start_up1.html#a472fedaaaac0c44e88d4fcb5099e6636"/>
+        <topic label="alignSlowRampRate" href="structuser_input_motor_start_up1.html#a0a0fb0760829ee3db869e002e736d793"/>
+        <topic label="mtrStartUpOption" href="structuser_input_motor_start_up1.html#a24dc7a2c38ee5c3521c1d7922a7b4388"/>
+      </topic>
+      <topic label="userInputMotorStartUp2" href="structuser_input_motor_start_up2.html">
+        <topic label="thetaErrRampRate" href="structuser_input_motor_start_up2.html#a297ed25bc19eac96844f3e9e32c20890"/>
+        <topic label="FirstCycFreqSel" href="structuser_input_motor_start_up2.html#a142900e4d2fd911c600255580ec84223"/>
+        <topic label="slowFirstCycFreq" href="structuser_input_motor_start_up2.html#a592d84db782a2387976249c1b7e9e690"/>
+        <topic label="alignAngle" href="structuser_input_motor_start_up2.html#a7115b3c05b68fc34480dda57b9cc1158"/>
+        <topic label="olClHandOffThr" href="structuser_input_motor_start_up2.html#a72a9e9f181d5fdd94db5dfe6e7c572e5"/>
+        <topic label="autoHandOffEn" href="structuser_input_motor_start_up2.html#a6ba63ed95889007b88d8668e9c8fca72"/>
+        <topic label="olAcc2" href="structuser_input_motor_start_up2.html#aa9dd02fd065d51794585c5182343d8a8"/>
+        <topic label="olAcc1" href="structuser_input_motor_start_up2.html#ab56c083108396190c5c524f5c9d1dd4c"/>
+        <topic label="olILimit" href="structuser_input_motor_start_up2.html#ab59a8c1bcbd8d349e02ea7ac744ea6b7"/>
+      </topic>
+      <topic label="userInputPeriCfg1" href="structuser_input_peri_cfg1.html">
+        <topic label="dirChangeMode" href="structuser_input_peri_cfg1.html#a21f7eaa4002840b63ecb307476181587"/>
+        <topic label="dirInput" href="structuser_input_peri_cfg1.html#a29396d48035447b2d615de4b1179560a"/>
+        <topic label="busCurrLimitEnable" href="structuser_input_peri_cfg1.html#a5c015ffbc9900b8b808b129ac21ac596"/>
+        <topic label="busCurrLimit" href="structuser_input_peri_cfg1.html#a6c55c3a5775d099696cc5b29c8c9c338"/>
+        <topic label="mcuDeadTime" href="structuser_input_peri_cfg1.html#a14607e2c643fbffb7271f772b9312ece"/>
+        <topic label="reserved" href="structuser_input_peri_cfg1.html#a378b2323eb0d2c004e17ebd42b0a3b79"/>
+      </topic>
+      <topic label="userInputPinCfg" href="structuser_input_pin_cfg.html">
+        <topic label="brakeInp" href="structuser_input_pin_cfg.html#a54190abb962bc6b41ee3345cc283e877"/>
+        <topic label="brakePinMode" href="structuser_input_pin_cfg.html#aa34d3f1d65b214b221a71a94b62c9364"/>
+        <topic label="reserved1" href="structuser_input_pin_cfg.html#a86d4b1aa1691053f6d18eecf87eee90d"/>
+        <topic label="vdcFiltDis" href="structuser_input_pin_cfg.html#ad415852b38624d0290e3cb669b0fbf2a"/>
+        <topic label="reserved" href="structuser_input_pin_cfg.html#a85e296f828215ea186bd990f3ee9955d"/>
+      </topic>
+      <topic label="userInputRvrDrvCfg" href="structuser_input_rvr_drv_cfg.html">
+        <topic label="activeBrakeKi" href="structuser_input_rvr_drv_cfg.html#a0d1774795acbc1358ed8078ed254b788"/>
+        <topic label="activeBrakeKp" href="structuser_input_rvr_drv_cfg.html#a084bd468699ce32a6591f2ddd827174f"/>
+        <topic label="revDrvOpenLoopAccelA2" href="structuser_input_rvr_drv_cfg.html#aeb488a9394a09c7a25806967fc83fa86"/>
+        <topic label="revDrvOpenLoopAccelA1" href="structuser_input_rvr_drv_cfg.html#a9683314a677dfc3798cec59153a24202"/>
+        <topic label="revDrvConfig" href="structuser_input_rvr_drv_cfg.html#a172f2d2a217036d343646d108c06e258"/>
+        <topic label="reserved" href="structuser_input_rvr_drv_cfg.html#a5d374ae12639ec6f8c56f3a53306654e"/>
+      </topic>
+    </topic>
+    <topic label="Data Fields" href="functions.html">
+      <topic label="All" href="functions.html">
+        <topic label="_" href="functions.html"/>
+        <topic label="a" href="functions_a.html"/>
+        <topic label="b" href="functions_b.html"/>
+        <topic label="c" href="functions_c.html"/>
+        <topic label="d" href="functions_d.html"/>
+        <topic label="e" href="functions_e.html"/>
+        <topic label="f" href="functions_f.html"/>
+        <topic label="g" href="functions_g.html"/>
+        <topic label="h" href="functions_h.html"/>
+        <topic label="i" href="functions_i.html"/>
+        <topic label="k" href="functions_k.html"/>
+        <topic label="l" href="functions_l.html"/>
+        <topic label="m" href="functions_m.html"/>
+        <topic label="n" href="functions_n.html"/>
+        <topic label="o" href="functions_o.html"/>
+        <topic label="p" href="functions_p.html"/>
+        <topic label="q" href="functions_q.html"/>
+        <topic label="r" href="functions_r.html"/>
+        <topic label="s" href="functions_s.html"/>
+        <topic label="t" href="functions_t.html"/>
+        <topic label="u" href="functions_u.html"/>
+        <topic label="v" href="functions_v.html"/>
+        <topic label="w" href="functions_w.html"/>
+      </topic>
+      <topic label="Functions" href="functions_func.html"/>
+      <topic label="Variables" href="functions_vars.html">
+        <topic label="a" href="functions_vars.html"/>
+        <topic label="b" href="functions_vars_b.html"/>
+        <topic label="c" href="functions_vars_c.html"/>
+        <topic label="d" href="functions_vars_d.html"/>
+        <topic label="e" href="functions_vars_e.html"/>
+        <topic label="f" href="functions_vars_f.html"/>
+        <topic label="g" href="functions_vars_g.html"/>
+        <topic label="h" href="functions_vars_h.html"/>
+        <topic label="i" href="functions_vars_i.html"/>
+        <topic label="k" href="functions_vars_k.html"/>
+        <topic label="l" href="functions_vars_l.html"/>
+        <topic label="m" href="functions_vars_m.html"/>
+        <topic label="n" href="functions_vars_n.html"/>
+        <topic label="o" href="functions_vars_o.html"/>
+        <topic label="p" href="functions_vars_p.html"/>
+        <topic label="q" href="functions_vars_q.html"/>
+        <topic label="r" href="functions_vars_r.html"/>
+        <topic label="s" href="functions_vars_s.html"/>
+        <topic label="t" href="functions_vars_t.html"/>
+        <topic label="u" href="functions_vars_u.html"/>
+        <topic label="v" href="functions_vars_v.html"/>
+        <topic label="w" href="functions_vars_w.html"/>
+      </topic>
+    </topic>
+  </topic>
+  <topic label="Files">
+    <topic label="File List" href="files.html">
+      <topic label="_IQNdiv_mathacl.h" href="___i_q_ndiv__mathacl_8h.html">
+        <topic label="__IQNdiv_mathacl" href="___i_q_ndiv__mathacl_8h.html#aab724f217f6c3fc5175a499847268b75"/>
+      </topic>
+      <topic label="_IQNmpy_mathacl.h" href="___i_q_nmpy__mathacl_8h.html">
+        <topic label="__IQNmpy_mathacl" href="___i_q_nmpy__mathacl_8h.html#a5f2d3a05ead5306ca25fc50a983a6c2a"/>
+      </topic>
+      <topic label="appDefs.h" href="app_defs_8h.html">
+        <topic label="TRUE" href="app_defs_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d"/>
+        <topic label="FALSE" href="app_defs_8h.html#aa93f0eb578d23995850d61f7d61c55c1"/>
+        <topic label="PI" href="app_defs_8h.html#a598a3330b3c21701223ee0ca14316eca"/>
+      </topic>
+      <topic label="appInputCtrlInterface.h" href="app_input_ctrl_interface_8h.html">
+        <topic label="userInputISD" href="structuser_input_i_s_d.html">
+          <topic label="revDrvOpenLoopCurr" href="structuser_input_i_s_d.html#a1717b4d55e221564c776453da5602471"/>
+          <topic label="revDrvHandoffThr" href="structuser_input_i_s_d.html#a4f0c5c486a4fa257afa4b2c25f543a5f"/>
+          <topic label="statDetectThr" href="structuser_input_i_s_d.html#a6a9cad432644eaaa202fda5f8bd4e9db"/>
+          <topic label="hiZTime" href="structuser_input_i_s_d.html#a3e37e1e1b6f108f7973628f6be2d4833"/>
+          <topic label="brkTime" href="structuser_input_i_s_d.html#a9acd7d7ab0fd7d162baf9355ca328973"/>
+          <topic label="brkConfig" href="structuser_input_i_s_d.html#a411e507242fe582176670dd9872282fd"/>
+          <topic label="fwDrvResyncThr" href="structuser_input_i_s_d.html#a3f5541eec485506b32de5f6d7c3b0150"/>
+          <topic label="resyncEn" href="structuser_input_i_s_d.html#a64763be7301b048278986d28f981cc70"/>
+          <topic label="rvsDrEn" href="structuser_input_i_s_d.html#a20d740f2541970b790e58e2da88670fd"/>
+          <topic label="hiZEn" href="structuser_input_i_s_d.html#ad394198d372c0cd0d1f667c052680041"/>
+          <topic label="brakeEn" href="structuser_input_i_s_d.html#a9055244866b2feb2527d1dc8b69577ec"/>
+          <topic label="isdEn" href="structuser_input_i_s_d.html#a646398d7463b99c84c900e7a7fd9c09d"/>
+          <topic label="bemfResynCThreshold" href="structuser_input_i_s_d.html#a6cfd07f5d471b0c4dd919c1ae70917d3"/>
+        </topic>
+        <topic label="USER_INPUT_ISDCFG_T" href="union_u_s_e_r___i_n_p_u_t___i_s_d_c_f_g___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___i_s_d_c_f_g___t.html#a0bb05ca8b1694caea34a8c81b3eaa2f4"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___i_s_d_c_f_g___t.html#ae05a1c7296da0c399281eed0dfa19be4"/>
+        </topic>
+        <topic label="userInputRvrDrvCfg" href="structuser_input_rvr_drv_cfg.html">
+          <topic label="activeBrakeKi" href="structuser_input_rvr_drv_cfg.html#a0d1774795acbc1358ed8078ed254b788"/>
+          <topic label="activeBrakeKp" href="structuser_input_rvr_drv_cfg.html#a084bd468699ce32a6591f2ddd827174f"/>
+          <topic label="revDrvOpenLoopAccelA2" href="structuser_input_rvr_drv_cfg.html#aeb488a9394a09c7a25806967fc83fa86"/>
+          <topic label="revDrvOpenLoopAccelA1" href="structuser_input_rvr_drv_cfg.html#a9683314a677dfc3798cec59153a24202"/>
+          <topic label="revDrvConfig" href="structuser_input_rvr_drv_cfg.html#a172f2d2a217036d343646d108c06e258"/>
+          <topic label="reserved" href="structuser_input_rvr_drv_cfg.html#a5d374ae12639ec6f8c56f3a53306654e"/>
+        </topic>
+        <topic label="USER_INPUT_RVSDRVCFG_T" href="union_u_s_e_r___i_n_p_u_t___r_v_s_d_r_v_c_f_g___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___r_v_s_d_r_v_c_f_g___t.html#adf481b04c68cc00b20c4f147770cbebe"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___r_v_s_d_r_v_c_f_g___t.html#adc0b0de7ef345c7c1b925966021a2884"/>
+        </topic>
+        <topic label="userInputMotorStartUp1" href="structuser_input_motor_start_up1.html">
+          <topic label="iqRampEn" href="structuser_input_motor_start_up1.html#affc4d61606db275d2b673acceca2abf8"/>
+          <topic label="olILimitCfg" href="structuser_input_motor_start_up1.html#ac50f52a676e1b8c687f564f8cf7a0e28"/>
+          <topic label="ipdRepeat" href="structuser_input_motor_start_up1.html#adf3a01153722ec222d36364017a9bd1f"/>
+          <topic label="ipdAdvAngle" href="structuser_input_motor_start_up1.html#ae24bb1c855dadfb557b8fd3fb15d44c7"/>
+          <topic label="reserved" href="structuser_input_motor_start_up1.html#a9ae84608a675e2673726aca1efd3036a"/>
+          <topic label="ipdCurrThresh" href="structuser_input_motor_start_up1.html#a12ec3761c41e5c4d2008a9a3b5c6efe7"/>
+          <topic label="ipdClkFreq" href="structuser_input_motor_start_up1.html#a8657200c76a7e19bb7df7fb94ab89d31"/>
+          <topic label="alignOrSlowCurrLimit" href="structuser_input_motor_start_up1.html#aea9dcadc8ac09daaf54312cff5b4c86c"/>
+          <topic label="alignTime" href="structuser_input_motor_start_up1.html#a472fedaaaac0c44e88d4fcb5099e6636"/>
+          <topic label="alignSlowRampRate" href="structuser_input_motor_start_up1.html#a0a0fb0760829ee3db869e002e736d793"/>
+          <topic label="mtrStartUpOption" href="structuser_input_motor_start_up1.html#a24dc7a2c38ee5c3521c1d7922a7b4388"/>
+        </topic>
+        <topic label="USER_INPUT_MTR_STARTUP1_T" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p1___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p1___t.html#af508c78d763b2c08af6d44efb1f154ae"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p1___t.html#a418b552c1e2de83e24ad733f7773553f"/>
+        </topic>
+        <topic label="userInputMotorStartUp2" href="structuser_input_motor_start_up2.html">
+          <topic label="thetaErrRampRate" href="structuser_input_motor_start_up2.html#a297ed25bc19eac96844f3e9e32c20890"/>
+          <topic label="FirstCycFreqSel" href="structuser_input_motor_start_up2.html#a142900e4d2fd911c600255580ec84223"/>
+          <topic label="slowFirstCycFreq" href="structuser_input_motor_start_up2.html#a592d84db782a2387976249c1b7e9e690"/>
+          <topic label="alignAngle" href="structuser_input_motor_start_up2.html#a7115b3c05b68fc34480dda57b9cc1158"/>
+          <topic label="olClHandOffThr" href="structuser_input_motor_start_up2.html#a72a9e9f181d5fdd94db5dfe6e7c572e5"/>
+          <topic label="autoHandOffEn" href="structuser_input_motor_start_up2.html#a6ba63ed95889007b88d8668e9c8fca72"/>
+          <topic label="olAcc2" href="structuser_input_motor_start_up2.html#aa9dd02fd065d51794585c5182343d8a8"/>
+          <topic label="olAcc1" href="structuser_input_motor_start_up2.html#ab56c083108396190c5c524f5c9d1dd4c"/>
+          <topic label="olILimit" href="structuser_input_motor_start_up2.html#ab59a8c1bcbd8d349e02ea7ac744ea6b7"/>
+        </topic>
+        <topic label="USER_INPUT_MTR_STARTUP2_T" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p2___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p2___t.html#aee2e3a52b70afa47f35a1c4b0e317642"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___m_t_r___s_t_a_r_t_u_p2___t.html#afda1c6dbe2f16b0489c6839e3ab259ed"/>
+        </topic>
+        <topic label="userInputCloseLoop1" href="structuser_input_close_loop1.html">
+          <topic label="reserved1" href="structuser_input_close_loop1.html#a9478cac84bc680d8bbaf280d5e73d36b"/>
+          <topic label="deadTimeCompEn" href="structuser_input_close_loop1.html#a6c8d366596e1eda628f403bc52ac8b22"/>
+          <topic label="avsEn" href="structuser_input_close_loop1.html#a14a3cd45c9f6f1761cb9fdd0ecd4146d"/>
+          <topic label="pwmMode" href="structuser_input_close_loop1.html#aa150d6111cef899c2a1e0b51850ed623"/>
+          <topic label="pwmFreqOut" href="structuser_input_close_loop1.html#ab1f4cd817a9d335f8759029264a5d395"/>
+          <topic label="clDec" href="structuser_input_close_loop1.html#a9cc262397f0cda67ba27a07799b57c23"/>
+          <topic label="clDecCfg" href="structuser_input_close_loop1.html#a88fee28db07122d4c3a798337a09c139"/>
+          <topic label="clAcc" href="structuser_input_close_loop1.html#ac124549371e65aef2de4565c745ea4cc"/>
+          <topic label="overModEnable" href="structuser_input_close_loop1.html#ac0f9880f65f04aca3324cfa8be65f528"/>
+          <topic label="mtrStopOption" href="structuser_input_close_loop1.html#a2011fc49c37cc61efb839ac6bb5cf5f1"/>
+          <topic label="iLimit" href="structuser_input_close_loop1.html#a81ed848cb9f67633cce9792b794e5000"/>
+          <topic label="highFreqFOCEn" href="structuser_input_close_loop1.html#aefce6c808c25acbf84ceddd6f919c491"/>
+          <topic label="controlMode" href="structuser_input_close_loop1.html#ab5bcb290cde2a1a353b8bf84f93b2099"/>
+          <topic label="reserved" href="structuser_input_close_loop1.html#abc3064bbbd94ee79165fff500d44da8d"/>
+        </topic>
+        <topic label="USER_INPUT_CLOSE_LOOP1_T" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p1___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p1___t.html#a00b0e4b4015256e4a1eeb19c8c0b06ac"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p1___t.html#ae612d68d0b497d60cc2ac36a1db8f54d"/>
+        </topic>
+        <topic label="userInputCloseLoop2" href="structuser_input_close_loop2.html">
+          <topic label="reserved" href="structuser_input_close_loop2.html#aeda4aa8793df3f2c2c6b932688dacb9c"/>
+          <topic label="leadAngle" href="structuser_input_close_loop2.html#a956d8117cfc12b2e428382ee59488513"/>
+          <topic label="brkCurrThr" href="structuser_input_close_loop2.html#ad058b701b5b6e2ef45394ed0ec52461c"/>
+          <topic label="brkSpeedThr" href="structuser_input_close_loop2.html#a7874d75981c7264faef7b4fb5bc24b6b"/>
+          <topic label="actSpinThr" href="structuser_input_close_loop2.html#a84af8c944881cbb9fa3d73877ccddb2e"/>
+        </topic>
+        <topic label="USER_INPUT_CLOSE_LOOP2_T" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p2___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p2___t.html#a0c5ec579b38bf77fcdbea45c2e104c60"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___c_l_o_s_e___l_o_o_p2___t.html#a1478bf3a6a1b9a8f4cb3597d672ee1cf"/>
+        </topic>
+        <topic label="userInputFieldCtrl" href="structuser_input_field_ctrl.html">
+          <topic label="fluxWeakeningEn" href="structuser_input_field_ctrl.html#a03b2bc5cacfc30cc7c13c6a5feb91763"/>
+          <topic label="fluxWeakCurrRatio" href="structuser_input_field_ctrl.html#afb5db34e367ba3e711a3f5da72c9b3aa"/>
+          <topic label="fluxWeakeningReference" href="structuser_input_field_ctrl.html#a0ef91fe02547ac9fc6f23050f6120cac"/>
+          <topic label="mtpaEnable" href="structuser_input_field_ctrl.html#a54cd145fb268932a8e3e9cad45d2a15a"/>
+          <topic label="reserved" href="structuser_input_field_ctrl.html#a3b5cb47750911322923d953c2f6cdfab"/>
+        </topic>
+        <topic label="USER_INPUT_FIELD_CTRL_T" href="union_u_s_e_r___i_n_p_u_t___f_i_e_l_d___c_t_r_l___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___f_i_e_l_d___c_t_r_l___t.html#a06258315cc7f480322c59ac65655cf9e"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___f_i_e_l_d___c_t_r_l___t.html#adb7732e78a92de29e5685041abcebb57"/>
+        </topic>
+        <topic label="userInputFaultCfg1" href="structuser_input_fault_cfg1.html">
+          <topic label="mtrLckMode" href="structuser_input_fault_cfg1.html#a2c1f2780c2d6c2f5b22689cad15953ff"/>
+          <topic label="lockRetry" href="structuser_input_fault_cfg1.html#ac2356010b75fa9442fe20a6f6ab944b0"/>
+          <topic label="reserved" href="structuser_input_fault_cfg1.html#a974551772a96658a0fe129079e3db3fa"/>
+        </topic>
+        <topic label="USER_INPUT_FAULT_CFG1_T" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g1___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g1___t.html#a8056ed17d4463149f2ca96a0ef71c697"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g1___t.html#ac0915147390710d5a7c27a85ceb27461"/>
+        </topic>
+        <topic label="userInputFaultCfg2" href="structuser_input_fault_cfg2.html">
+          <topic label="maxVmMode" href="structuser_input_fault_cfg2.html#ad7c3acfa2c0baa8c4ab1e506c9c9dea6"/>
+          <topic label="maxVmMtr" href="structuser_input_fault_cfg2.html#a8b7a375c8e64a00e793736d42afa101a"/>
+          <topic label="minVmMode" href="structuser_input_fault_cfg2.html#abe132c5803337347d02a561f9a3ab481"/>
+          <topic label="minVmMtr" href="structuser_input_fault_cfg2.html#a0e7dda95a4adb3848bb85a953a6c23cc"/>
+          <topic label="reserved1" href="structuser_input_fault_cfg2.html#a94265da1204bed168f26320eb04c433f"/>
+          <topic label="noMtrThr" href="structuser_input_fault_cfg2.html#aaaac88e3a75037cdec098b09c11e1b76"/>
+          <topic label="abnBemfThr" href="structuser_input_fault_cfg2.html#a85d040aa2b12f8396faf7b9d612b0ffc"/>
+          <topic label="lockAbnSpeed" href="structuser_input_fault_cfg2.html#ad9ee9adfb8fe0b797407011c4892bb15"/>
+          <topic label="lock3En" href="structuser_input_fault_cfg2.html#a4567ed5d534e4710d7ea9fff5099d8fa"/>
+          <topic label="lock2En" href="structuser_input_fault_cfg2.html#ad3534793d76fe263506da2c312d34283"/>
+          <topic label="lock1En" href="structuser_input_fault_cfg2.html#a1f5f0b4582cbc333a811def546ce54b0"/>
+          <topic label="reserved" href="structuser_input_fault_cfg2.html#a1ff5d36ec3e555a4d9c744c622a0bfc3"/>
+        </topic>
+        <topic label="USER_INPUT_FAULT_CFG2_T" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g2___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g2___t.html#a2a8cdb8cf789cd9adbfcf0a70a9b00d1"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___f_a_u_l_t___c_f_g2___t.html#a78d938626802efcfea7b68bf11a088de"/>
+        </topic>
+        <topic label="userInputMiscAlgo" href="structuser_input_misc_algo.html">
+          <topic label="avsRevDrvOLDec" href="structuser_input_misc_algo.html#a95e0531482fb1b083de4eb7ebf6aacdb"/>
+          <topic label="brkCurrPersist" href="structuser_input_misc_algo.html#ad4f694b31f20a97060ea8c2b834273d3"/>
+          <topic label="autoHandoffMinBemf" href="structuser_input_misc_algo.html#a37b755b49d896c2d4cf2718080cdd1aa"/>
+          <topic label="isdTimeOut" href="structuser_input_misc_algo.html#aad00afc9d1967dc0dba1b5cbc8e9ec6b"/>
+          <topic label="isdRunTime" href="structuser_input_misc_algo.html#a097fdd76955c4aeb40e2e1a13cb4db4c"/>
+          <topic label="isdStopTime" href="structuser_input_misc_algo.html#a27609589caa90ff179edd7052a70fc55"/>
+          <topic label="fastIsdEnable" href="structuser_input_misc_algo.html#aa6db284dd388ecf60fd2d32f7c917956"/>
+          <topic label="ipdHiResolEn" href="structuser_input_misc_algo.html#ab108822a3697cc3521c707aa8c8f9f59"/>
+          <topic label="clSlowAcc" href="structuser_input_misc_algo.html#a30ceac13bfe464832f9c7fb93d5b2e40"/>
+          <topic label="ipdMaxOverflow" href="structuser_input_misc_algo.html#a639f6e525cc803f30bf35419a3c0fa59"/>
+          <topic label="reserved" href="structuser_input_misc_algo.html#a0e90f7e5614daf1aa7939a4e62f737ec"/>
+        </topic>
+        <topic label="USER_INPUT_MISC_ALGO_T" href="union_u_s_e_r___i_n_p_u_t___m_i_s_c___a_l_g_o___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___m_i_s_c___a_l_g_o___t.html#ad14a0b5884bf89364ce307c1edd9c6b3"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___m_i_s_c___a_l_g_o___t.html#a9c39bb0fb404d46d649a55c097ad3dd5"/>
+        </topic>
+        <topic label="userInputPinCfg" href="structuser_input_pin_cfg.html">
+          <topic label="brakeInp" href="structuser_input_pin_cfg.html#a54190abb962bc6b41ee3345cc283e877"/>
+          <topic label="brakePinMode" href="structuser_input_pin_cfg.html#aa34d3f1d65b214b221a71a94b62c9364"/>
+          <topic label="reserved1" href="structuser_input_pin_cfg.html#a86d4b1aa1691053f6d18eecf87eee90d"/>
+          <topic label="vdcFiltDis" href="structuser_input_pin_cfg.html#ad415852b38624d0290e3cb669b0fbf2a"/>
+          <topic label="reserved" href="structuser_input_pin_cfg.html#a85e296f828215ea186bd990f3ee9955d"/>
+        </topic>
+        <topic label="USER_INPUT_PIN_CFG_T" href="union_u_s_e_r___i_n_p_u_t___p_i_n___c_f_g___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___p_i_n___c_f_g___t.html#ad1152bd916e1038e1150461b45e01727"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___p_i_n___c_f_g___t.html#a9b26146124e10b2ca7545f6d62e37c3f"/>
+        </topic>
+        <topic label="userInputPeriCfg1" href="structuser_input_peri_cfg1.html">
+          <topic label="dirChangeMode" href="structuser_input_peri_cfg1.html#a21f7eaa4002840b63ecb307476181587"/>
+          <topic label="dirInput" href="structuser_input_peri_cfg1.html#a29396d48035447b2d615de4b1179560a"/>
+          <topic label="busCurrLimitEnable" href="structuser_input_peri_cfg1.html#a5c015ffbc9900b8b808b129ac21ac596"/>
+          <topic label="busCurrLimit" href="structuser_input_peri_cfg1.html#a6c55c3a5775d099696cc5b29c8c9c338"/>
+          <topic label="mcuDeadTime" href="structuser_input_peri_cfg1.html#a14607e2c643fbffb7271f772b9312ece"/>
+          <topic label="reserved" href="structuser_input_peri_cfg1.html#a378b2323eb0d2c004e17ebd42b0a3b79"/>
+        </topic>
+        <topic label="USER_INPUT_PERI_CFG1_T" href="union_u_s_e_r___i_n_p_u_t___p_e_r_i___c_f_g1___t.html">
+          <topic label="b" href="union_u_s_e_r___i_n_p_u_t___p_e_r_i___c_f_g1___t.html#afc09a91635ce4a3ec1883dd4f164a4fb"/>
+          <topic label="w" href="union_u_s_e_r___i_n_p_u_t___p_e_r_i___c_f_g1___t.html#a9887581f38bd35ccfb389ac07e7b411f"/>
+        </topic>
+        <topic label="SYSTEM_PARAMETERS_T" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html">
+          <topic label="mtrResist" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a76b99ba23ab5dc9491453f9b1d397bca"/>
+          <topic label="mtrInductance" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a387d94d6b45d59995ec3ae6b9a920c35"/>
+          <topic label="mtrSaliency" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#adc5a2cbf6c6df5200bc5af87376664c7"/>
+          <topic label="mtrBemfConst" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a16953d206851dadd324d823f077aec64"/>
+          <topic label="voltageBase" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a0f8629e9d6a12f5198110b9a71fdd7d2"/>
+          <topic label="currentBase" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#acbe28dbe11b185119b2daf15b7fdbb64"/>
+          <topic label="maxMotorSpeed" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a6416e43018a738bdfb31807b481455f9"/>
+          <topic label="maxMotorPower" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a89755f4c637be4171491c2d60e4586ca"/>
+          <topic label="speedLoopKp" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a39eabdcbf139d522105581720fe4413b"/>
+          <topic label="speedLoopKi" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a19654afccfdaba31ca9e5ad11f6bd80f"/>
+          <topic label="currLoopKp" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#aba0a9b15385d00e87fafc46e32869c6b"/>
+          <topic label="currLoopKi" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#af533570b8b05a31e93aa16380088c210"/>
+          <topic label="fluxWeakeningKi" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a3bcce732d0cf31ce3d53402ec2cb7b8d"/>
+          <topic label="fluxWeakeningKp" href="struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#a2ef26bbb09f97cabea0e56c2cff23d68"/>
+        </topic>
+        <topic label="USER_INPUT_INTERFACE_T" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html">
+          <topic label="systemParams" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a10a721805ba695b15010ad2fa9ae0bab"/>
+          <topic label="isdCfg" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a5389758269550b06cc4a8ac2c6549b77"/>
+          <topic label="rvsDrvCfg" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ad4653f92ff7a554210c76442190a1024"/>
+          <topic label="mtrStartUp1" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a51edd77caa9e5097f1886818140f7783"/>
+          <topic label="mtrStartUp2" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a08f76653518595cd3b8519923503ba0f"/>
+          <topic label="closeLoop1" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ac2f94d9bac7ba5c255915d1be8ce80d3"/>
+          <topic label="closeLoop2" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ad0cc67e7df29deb59bdc022f78ac69a1"/>
+          <topic label="fieldCtrl" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a2eb0b529b7ff5d6d847f934bd5537f8b"/>
+          <topic label="faultCfg1" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a93584aa934fd632256d81fa66dcb6b0a"/>
+          <topic label="faultCfg2" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#ae6cfad1e633f768c8b9ba661dacfcd44"/>
+          <topic label="miscAlgo" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#abef15cd68ce2e02470d2dd0d2e6113a6"/>
+          <topic label="pinCfg" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#af5c9b22e13f8f68a3ad0ace6a6d22f27"/>
+          <topic label="periphCfg1" href="struct_u_s_e_r___i_n_p_u_t___i_n_t_e_r_f_a_c_e___t.html#a10b0ed36e737ef63a2b4d94ed9534f47"/>
+        </topic>
+        <topic label="ramSpeedCtrl" href="structram_speed_ctrl.html">
+          <topic label="speedInput" href="structram_speed_ctrl.html#a35a7d951b59a668a0733bcda5730a26e"/>
+          <topic label="reserved" href="structram_speed_ctrl.html#a8652db5b9e33f0fa7296da50d29c48a7"/>
+        </topic>
+        <topic label="RAM_SPEED_CTRL_T" href="union_r_a_m___s_p_e_e_d___c_t_r_l___t.html">
+          <topic label="b" href="union_r_a_m___s_p_e_e_d___c_t_r_l___t.html#ae790207cc0360d6e14b6bccf5d43c042"/>
+          <topic label="w" href="union_r_a_m___s_p_e_e_d___c_t_r_l___t.html#a5465e0e5693946c83639d235957eb6c9"/>
+        </topic>
+        <topic label="ramAlgoDebugCtrl1" href="structram_algo_debug_ctrl1.html">
+          <topic label="reserved1" href="structram_algo_debug_ctrl1.html#a9cd1fda4d51c80aa70b8d9846e8f267f"/>
+          <topic label="forceAlignAngleSrcSelect" href="structram_algo_debug_ctrl1.html#aa7c379f373a67bf2f2ccf8349c87d2fe"/>
+          <topic label="forceISDEn" href="structram_algo_debug_ctrl1.html#ae6e842f6ff5d48b168240983f8e079d8"/>
+          <topic label="forceIPDEn" href="structram_algo_debug_ctrl1.html#abe5b3e837298d28dcc89ee629d62af27"/>
+          <topic label="forceSlowCycleFirstCycleEn" href="structram_algo_debug_ctrl1.html#a98ed1319fc45d962226cfd1c68e06c9f"/>
+          <topic label="forceAlignEn" href="structram_algo_debug_ctrl1.html#ac74de4ebb778cea8b960f611bd1f07ed"/>
+          <topic label="closeLoopDis" href="structram_algo_debug_ctrl1.html#af06f24e19d276842a9ed730e3a28c23e"/>
+          <topic label="reserved" href="structram_algo_debug_ctrl1.html#aa86230e4f265750d3d6e0dbeda81f864"/>
+          <topic label="forcedAlignAngle" href="structram_algo_debug_ctrl1.html#a3dd9288a531e031a27461745b3d45ce8"/>
+          <topic label="clearFlt" href="structram_algo_debug_ctrl1.html#aec4991178b6d572f35ed15b9d5c0b0ee"/>
+        </topic>
+        <topic label="RAM_ALGO_DEBUG_1_T" href="union_r_a_m___a_l_g_o___d_e_b_u_g__1___t.html">
+          <topic label="b" href="union_r_a_m___a_l_g_o___d_e_b_u_g__1___t.html#a05e60a1d17a0a43c44354edf704b06a1"/>
+          <topic label="w" href="union_r_a_m___a_l_g_o___d_e_b_u_g__1___t.html#ada32e96ab408e7f29c281de46fd20f46"/>
+        </topic>
+        <topic label="ramAlgoDebugCtrl2" href="structram_algo_debug_ctrl2.html">
+          <topic label="reserved" href="structram_algo_debug_ctrl2.html#a571f2fe7dfab492b4b81c0f64b9a159f"/>
+          <topic label="forceVQCurrLoopDis" href="structram_algo_debug_ctrl2.html#aaac1849d28d7907e20152e79b8449b77"/>
+          <topic label="forceVDCurrLoopDis" href="structram_algo_debug_ctrl2.html#a0d3af9073781d913e9927fac479f82ac"/>
+          <topic label="currLoopDis" href="structram_algo_debug_ctrl2.html#a59714fb03e77207f722927d7c9947a1b"/>
+          <topic label="statusUpdateEn" href="structram_algo_debug_ctrl2.html#a34288e8d590753f339d98595b82d330c"/>
+          <topic label="updateConfigs" href="structram_algo_debug_ctrl2.html#ac6444767b16a03250f732de796bc0353"/>
+          <topic label="updateSysParams" href="structram_algo_debug_ctrl2.html#a6a27b30119e8857158308218545e5fa8"/>
+          <topic label="Reserved2" href="structram_algo_debug_ctrl2.html#a487b64602a77f47db7e881cd302fb8dd"/>
+        </topic>
+        <topic label="RAM_ALGO_DEBUG_2_T" href="union_r_a_m___a_l_g_o___d_e_b_u_g__2___t.html">
+          <topic label="b" href="union_r_a_m___a_l_g_o___d_e_b_u_g__2___t.html#ae95755b4fc4420d0d2c5eb2eca8baca2"/>
+          <topic label="w" href="union_r_a_m___a_l_g_o___d_e_b_u_g__2___t.html#a221f0a3fa88ee8ce941607dce6f017ad"/>
+        </topic>
+        <topic label="ramAlgoDebugCtrl3" href="structram_algo_debug_ctrl3.html">
+          <topic label="fluxModeReference" href="structram_algo_debug_ctrl3.html#a143d433b2caa9e37d986f4e11198eb2e"/>
+          <topic label="reserved1" href="structram_algo_debug_ctrl3.html#abc9e050de332df2bfd6d4d0377525ca3"/>
+        </topic>
+        <topic label="RAM_ALGO_DEBUG_3_T" href="union_r_a_m___a_l_g_o___d_e_b_u_g__3___t.html">
+          <topic label="b" href="union_r_a_m___a_l_g_o___d_e_b_u_g__3___t.html#a62336ac5618ceb7c49d4c6a44cacd176"/>
+          <topic label="w" href="union_r_a_m___a_l_g_o___d_e_b_u_g__3___t.html#ae6288e7703353d8b7cee2c531245273e"/>
+        </topic>
+        <topic label="RAM_DAC_CNTRL_T" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html">
+          <topic label="dacEn" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html#a4f31ebe10e34a5942ffc959b5836c9be"/>
+          <topic label="dacShift" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html#a4b77623ab5ae649fc4c40ea662d4a902"/>
+          <topic label="dacScalingFactor" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html#adc5b82162e563f7ad10f2bf977e5647b"/>
+          <topic label="dacOutAddr" href="struct_r_a_m___d_a_c___c_n_t_r_l___t.html#ade019d25e264a3ccf45f5f365bb64233"/>
+        </topic>
+        <topic label="USER_CTRL_INTERFACE_T" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html">
+          <topic label="speedCtrl" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#add429dd80de374cd7ecbe3821446fd65"/>
+          <topic label="algoDebugCtrl1" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a88dab47126e93d189c3d2846cb1cc0cd"/>
+          <topic label="algoDebugCtrl2" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a6547c63945f909164e009efca83d947d"/>
+          <topic label="algoDebugCtrl3" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a426f7184476ffb551950ffad7a44a21d"/>
+          <topic label="dacCtrl" href="struct_u_s_e_r___c_t_r_l___i_n_t_e_r_f_a_c_e___t.html#a559a55ede102e7945bc5b36f98a1cff2"/>
+        </topic>
+        <topic label="pUserInputRegs" href="app_input_ctrl_interface_8h.html#af6895f02ce64fd52a2afbb3290968e42"/>
+        <topic label="pUserCtrlRegs" href="app_input_ctrl_interface_8h.html#a69b4e1f024f6bd7aa84779a8f54b20a2"/>
+      </topic>
+      <topic label="appInterface.h" href="app_interface_8h.html">
+        <topic label="appInterfaceFlags" href="structapp_interface_flags.html">
+          <topic label="shadowToAlgorithmSet" href="structapp_interface_flags.html#a397dd4a7bc9f5024cf93bfe16282b0f8"/>
+          <topic label="hvDieConfigSet" href="structapp_interface_flags.html#ab1549368c97428e4a8fb5a0b34b5129f"/>
+          <topic label="faultsResponseSet" href="structapp_interface_flags.html#a8f0fae226acc027792d56b7950dec795"/>
+        </topic>
+        <topic label="APPINTERFACE_FLAGS_T" href="union_a_p_p_i_n_t_e_r_f_a_c_e___f_l_a_g_s___t.html">
+          <topic label="b" href="union_a_p_p_i_n_t_e_r_f_a_c_e___f_l_a_g_s___t.html#ac428295195cd9c4cd0fc368882f27bb5"/>
+          <topic label="w" href="union_a_p_p_i_n_t_e_r_f_a_c_e___f_l_a_g_s___t.html#ac8cf10da1fa6e019f629e523ed12d9ed"/>
+        </topic>
+        <topic label="APP_INTERFACE_T" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html">
+          <topic label="userInputs" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#aca7c120a73da55c19d94df6d7040aebe"/>
+          <topic label="userInputsInterface" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#ab2a928bb8c70e85bfda402e3087ff4d9"/>
+          <topic label="pUserOutputs" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#aad42b2add4a3b85502bc141f9d494e86"/>
+          <topic label="flags" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#af51f1a195c26a5609f1cc11d61c544b2"/>
+          <topic label="servicesCount" href="struct_a_p_p___i_n_t_e_r_f_a_c_e___t.html#a043b75f0976f0570e846b81d868145a6"/>
+        </topic>
+        <topic label="SERVICE_INTERVAL" href="app_interface_8h.html#a1a0f03fe709877cd83d3fd17340b36da"/>
+        <topic label="HVDIE_SERVICE_COUNT" href="app_interface_8h.html#a1ed9b999991badeca2a1ce51a795cb66"/>
+        <topic label="FAULT_SERVICE_COUNT" href="app_interface_8h.html#a23f79748276e7d1370c4c6b5d0a3e798"/>
+        <topic label="g_pAppInterface" href="app_interface_8h.html#a5ba568f984343462e3f8b57d0b769235"/>
+      </topic>
+      <topic label="appUserInputs.h" href="app_user_inputs_8h.html">
+        <topic label="moduleEnableFlags" href="structmodule_enable_flags.html">
+          <topic label="hardwareOverCurrentFaultEnable" href="structmodule_enable_flags.html#a8ca8473817ce2489c7e712051ba1d8da"/>
+          <topic label="lowBemfStallDetectEnable" href="structmodule_enable_flags.html#af05fdcaf7126f5a184337c69d9cab745"/>
+          <topic label="noMotorStallDetectEnable" href="structmodule_enable_flags.html#a3e9c4751bd3d82c5f82b164d04633172"/>
+          <topic label="abnormalSpeedStallDetectEnable" href="structmodule_enable_flags.html#a29bbe281d6113c2c3c22d0b3bd18504c"/>
+          <topic label="motorStallReportOnlyEnable" href="structmodule_enable_flags.html#a541585e7348e3a536693e2b427d700b1"/>
+          <topic label="plugAVSEnable" href="structmodule_enable_flags.html#a79633247b62834133951277523da4a15"/>
+          <topic label="reserved" href="structmodule_enable_flags.html#a8bf1d6fdb12a090bd1e1c2507bd45825"/>
+        </topic>
+        <topic label="MODULE_ENABLE_FLAGS_T" href="union_m_o_d_u_l_e___e_n_a_b_l_e___f_l_a_g_s___t.html">
+          <topic label="b" href="union_m_o_d_u_l_e___e_n_a_b_l_e___f_l_a_g_s___t.html#ae01830cca8c6babddc8e3f4ff51f6c42"/>
+          <topic label="w" href="union_m_o_d_u_l_e___e_n_a_b_l_e___f_l_a_g_s___t.html#a82cd66fc928194613525ba94d542f94f"/>
+        </topic>
+        <topic label="debugEnableFlags" href="structdebug_enable_flags.html">
+          <topic label="updatedData" href="structdebug_enable_flags.html#a8029f2a099dd652c7e6ff75cc1a74752"/>
+          <topic label="updatedKe" href="structdebug_enable_flags.html#a06ae8a9d23abcd47314ec368b1e28e6d"/>
+        </topic>
+        <topic label="DEBUG_ENABLE_FLAGS_T" href="union_d_e_b_u_g___e_n_a_b_l_e___f_l_a_g_s___t.html">
+          <topic label="b" href="union_d_e_b_u_g___e_n_a_b_l_e___f_l_a_g_s___t.html#a0b220311a27b87768f97bd0cd60be8ee"/>
+          <topic label="w" href="union_d_e_b_u_g___e_n_a_b_l_e___f_l_a_g_s___t.html#a75f5f3fc02e9c1cbbc3bbe0399edc6a2"/>
+        </topic>
+        <topic label="USER_INPUTS_T" href="struct_u_s_e_r___i_n_p_u_t_s___t.html">
+          <topic label="hardwareOverCurrentLimitPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a19172536b00acb906c21e5fedb77cad0"/>
+          <topic label="noMotorLimitPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a8ababb74ee80725a23d7339da60aa3ec"/>
+          <topic label="rsMilliOhms" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#aee828fd0d389b79df5ac4b22fa11eae6"/>
+          <topic label="LdMicroHenry" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a11be28f0438d721d106618ff8128c693"/>
+          <topic label="LqMicroHenry" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a8246b50528f09de342bdabe92724cbfd"/>
+          <topic label="KeMilliVoltPhasePkPerHz" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a81c56a9b894ab81b7d5cf4e6d65ddcba"/>
+          <topic label="openLoopDecelToSlowAccelSlewRateRatioPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a0b038c79ac096ff4a3a40f454352a796"/>
+          <topic label="forwardTransitionSpeedPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a4c432937e0b55c67b785efc2237e8d3e"/>
+          <topic label="reverseTransitionSpeedPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ad27b6e0c5f0352e2086ee688620f99d5"/>
+          <topic label="angleErrorSlewRateMilliDegreesPerMsec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#aabac3b0d75085a8cc55aa9d3ff96e819"/>
+          <topic label="closeLoopSlowAccelSpeedSlewRateDeciHzPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ae6bb407fdc778a0e532c154541363dc7"/>
+          <topic label="lowBemfEmagThresholdPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ae02c8fe4d5fc222b69752c71a12ef11f"/>
+          <topic label="abnormalSpeedLimitPerMil" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a2e03b7cd3f8ec2528bd1975b09980efc"/>
+          <topic label="isdMaxStopBemfPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#adac5b515901d7cfd28b6949f6ca29dc8"/>
+          <topic label="faultRetryTimeMsec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a8a0ed6b2e139044498f766fc79ec6ac6"/>
+          <topic label="underVoltageHystPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#acb9377364b3976c6fa83e2285d69375d"/>
+          <topic label="overVoltageHystPU" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a8406aaa6ab89d2528d6f45ce2dd84102"/>
+          <topic label="moduleFlags" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#acdcd291f2224829c1b1be1e7cfde033b"/>
+          <topic label="debugFlags" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#af566d2c8ceb7af18fda95c7276ef3fd4"/>
+          <topic label="systemDCBusVoltageVolts" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ac1bdb912cabca2313051060b8eaf4063"/>
+          <topic label="fullScalePhaseCurrentAmp" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#aa4a740c20d16993caa7aea9fe68fd046"/>
+          <topic label="maximumSpeedHz" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a831c0b8575f20d4c2a766e0e1a1a2e03"/>
+          <topic label="basePower" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ac0f31cd473760f737a81872d4ca47fed"/>
+          <topic label="kpCurrent" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#abec9c7b023e3082647d46fa98c15ab75"/>
+          <topic label="kiCurrent" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ae2daecaf678432accd83bb9e26f4db7b"/>
+          <topic label="kpSpeed" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a7233b0c1007ebce5dcca681b39076649"/>
+          <topic label="kiSpeed" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a2924cdf20b7219310194e776ac42faba"/>
+          <topic label="kpPlug" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#aae58d5a1150f02e0a8e0871df6bfe197"/>
+          <topic label="kiPlug" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ad355ad58f8fe2f702d15a406d05304d9"/>
+          <topic label="kpFluxWeak" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#af29c2ea8f87ee5fced6bedada207c620"/>
+          <topic label="kiFluxWeak" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a4e81f0ddb9fa0648eef3eb71795c5b67"/>
+          <topic label="ipdPulseToPulseTimeMsec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a88abdcdd3cb8830dcf84e137bb80c8cd"/>
+          <topic label="speedInput" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a878075b73dad3936f2a613ab4f786c63"/>
+          <topic label="openLoopFastAccelAccelSlewRateCentiHzPerSecPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a28d633ede01ad961148b344242fa99b7"/>
+          <topic label="openLoopSlowAccelSpeedSlewRateCentiHzPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a16a4f580aa2b7854c8a340f51cf8bc04"/>
+          <topic label="openLoopSlowAccelAccelSlewRateCentiHzPerSecPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#acddd1d1562425e2493f90c960b660d70"/>
+          <topic label="closeLoopFastAccelSpeedSlewRateDeciHzPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a84a5fc492738da5d064c545418b41b60"/>
+          <topic label="closeLoopFastDecelSpeedSlewRateDeciHzPerSec" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#ac9e4d45856083ddaf003bb96139f89d1"/>
+          <topic label="ipdMaxOverflow" href="struct_u_s_e_r___i_n_p_u_t_s___t.html#a747a8e918c6ddd5331538ecc2639aece"/>
+        </topic>
+        <topic label="MOTOR_START_OPTIONS_TYPES" href="app_user_inputs_8h.html#a2ac3b7c4bd796995a2f34c3733d48be6">
+          <topic label="MOTOR_START_ALIGN_AND_GO" href="app_user_inputs_8h.html#a2ac3b7c4bd796995a2f34c3733d48be6aafa85e3952f4cce5b31851e9f8ad9cb8"/>
+          <topic label="MOTOR_START_DOUBLE_ALIGN" href="app_user_inputs_8h.html#a2ac3b7c4bd796995a2f34c3733d48be6a607cb6fb74182239674992ad9552ecb4"/>
+          <topic label="MOTOR_START_IPD" href="app_user_inputs_8h.html#a2ac3b7c4bd796995a2f34c3733d48be6aecc73f59e6f2d630448ed51e1dd4b7a7"/>
+          <topic label="MOTOR_START_SLOW_FIRST_CYCLE" href="app_user_inputs_8h.html#a2ac3b7c4bd796995a2f34c3733d48be6aeb229c344cc4464da5652404eb226fe0"/>
+        </topic>
+        <topic label="MOTOR_STOP_OPTIONS_TYPES" href="app_user_inputs_8h.html#af2c8084c87670d0e3aed2972f5dd2801">
+          <topic label="MOTOR_STOP_HI_Z" href="app_user_inputs_8h.html#af2c8084c87670d0e3aed2972f5dd2801a683928f535c4bc8edcf0dc7962ffb767"/>
+          <topic label="MOTOR_STOP_ACTIVE_SPIN_DOWN" href="app_user_inputs_8h.html#af2c8084c87670d0e3aed2972f5dd2801abe360ea85c76999dfe2c1105270a1694"/>
+          <topic label="MOTOR_STOP_HARD_STOP" href="app_user_inputs_8h.html#af2c8084c87670d0e3aed2972f5dd2801a017c702a4d7ca0a1111477637cd28cdc"/>
+        </topic>
+      </topic>
+      <topic label="appUserInputsConfig.h" href="app_user_inputs_config_8h.html">
+        <topic label="openLoopAccelDecelRate" href="app_user_inputs_config_8h.html#a465d6fe50cf3519005c508ab0875fc0f"/>
+        <topic label="closeLoopAccelDecelRate" href="app_user_inputs_config_8h.html#a04c39b306eb2b6c9d3673edec97a0f51"/>
+        <topic label="update_ISDConfig" href="app_user_inputs_config_8h.html#a80286f9727b68a1fd28d07cf719e6c5c"/>
+        <topic label="update_RvsDrvConfig" href="app_user_inputs_config_8h.html#a951d27155b4abb01de6939a4020806bd"/>
+        <topic label="update_MotorStartUp1Config" href="app_user_inputs_config_8h.html#a9d702fcca858439572827e72b84891c8"/>
+        <topic label="update_MotorStartUp2Config" href="app_user_inputs_config_8h.html#a77ebce2b74f1f4e09d44ca035b5718a4"/>
+        <topic label="update_CloseLoop1Config" href="app_user_inputs_config_8h.html#a0bb87e1f25da9f929a2e7753543e3a54"/>
+        <topic label="update_SystemParams" href="app_user_inputs_config_8h.html#a93d69307dae1d0ee9b1552859a8f8b3d"/>
+        <topic label="update_FaultCfg1Config" href="app_user_inputs_config_8h.html#a132dcbc61660269374ebfe22bb548e0b"/>
+        <topic label="update_FaultCfg2Config" href="app_user_inputs_config_8h.html#af42fa113830042a196b55c0d4f9fdc92"/>
+        <topic label="update_MiscAlgoConfig" href="app_user_inputs_config_8h.html#a62924f6ea8408e99afdaff4394d4e10d"/>
+        <topic label="appUserInputRegsConfig" href="app_user_inputs_config_8h.html#a90967c6eb29d224e2ce8bbbf2ea1b745"/>
+        <topic label="appUserInputsInit" href="app_user_inputs_config_8h.html#a9bc12c253ecc028b49d7077d9130dc56"/>
+      </topic>
+      <topic label="appUserInputsInterface.h" href="app_user_inputs_interface_8h.html">
+        <topic label="USER_INPUTS_INTERFACE_T" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html">
+          <topic label="phaseCurrentBase" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#add5d211e5d770c80cb7939184a97b5f1"/>
+          <topic label="motorImpedanceBase" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a48a499e4b3d65f84262d4013f84da696"/>
+          <topic label="adcSamplingFrequencyKHz" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a24320463be4b8113e65658d2ede3162c"/>
+          <topic label="adcSamplingRate" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a0dd8537c98ae2e9b6af3308775ffc123"/>
+          <topic label="kpCurrent" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#ac7afb6ce0235b9e02f9036c7e7f546ec"/>
+          <topic label="kiCurrent" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#ae06249ac658f591aa201ae5f5e7ed4b2"/>
+          <topic label="overCurrentBase" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#a79e5066f2698edcd282eb920f49f1ea9"/>
+          <topic label="L0MicroHenry" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#acf676104fcbcfe6124b37a0a0785530b"/>
+          <topic label="negL1MicroHenry" href="struct_u_s_e_r___i_n_p_u_t_s___i_n_t_e_r_f_a_c_e___t.html#aa36f05346acfa0e77bee6ab7d96dc9d4"/>
+        </topic>
+      </topic>
+      <topic label="appUserOutputs.h" href="app_user_outputs_8h.html">
+        <topic label="OUTPUTS_CURRENT_PI_T" href="struct_o_u_t_p_u_t_s___c_u_r_r_e_n_t___p_i___t.html">
+          <topic label="kp" href="struct_o_u_t_p_u_t_s___c_u_r_r_e_n_t___p_i___t.html#a3e1c4047b95b5dabc7c551cac5603168"/>
+          <topic label="ki" href="struct_o_u_t_p_u_t_s___c_u_r_r_e_n_t___p_i___t.html#acec4ef59b04b79cb8a8990f3b6908c77"/>
+        </topic>
+        <topic label="OUTPUTS_PI_T" href="struct_o_u_t_p_u_t_s___p_i___t.html">
+          <topic label="reference" href="struct_o_u_t_p_u_t_s___p_i___t.html#a499fefbb8b032ca65bc1a9bedfec2508"/>
+          <topic label="feedback" href="struct_o_u_t_p_u_t_s___p_i___t.html#a346de8af374fc3c6243159f3cd8456e0"/>
+        </topic>
+        <topic label="OUTPUT_DQ_T" href="struct_o_u_t_p_u_t___d_q___t.html">
+          <topic label="d" href="struct_o_u_t_p_u_t___d_q___t.html#a9f2362daab1125328bf304394f331f8d"/>
+          <topic label="q" href="struct_o_u_t_p_u_t___d_q___t.html#ab4661fb6c470d3f141f5b55789e666be"/>
+        </topic>
+        <topic label="appVersion" href="structapp_version.html">
+          <topic label="patchVersion" href="structapp_version.html#ad75dc19527ca1a433223fdc0674d7763"/>
+          <topic label="minorVersion" href="structapp_version.html#a73a4a13e9e7c9c0c9a73b5724636a307"/>
+          <topic label="majorVersion" href="structapp_version.html#a33d1a3f8f6310c21b238f32b4437b54d"/>
+          <topic label="reserved" href="structapp_version.html#a7ace3deb13704c00c631358ef24adaa3"/>
+        </topic>
+        <topic label="APP_VERSION_T" href="union_a_p_p___v_e_r_s_i_o_n___t.html">
+          <topic label="b" href="union_a_p_p___v_e_r_s_i_o_n___t.html#a9b9bc996e8552fa02b6bc2578f340c8a"/>
+          <topic label="w" href="union_a_p_p___v_e_r_s_i_o_n___t.html#a1eb8138e9d53bbb14ea2b7287d4d696a"/>
+        </topic>
+        <topic label="USER_STATUS_INTERFACE_T" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html">
+          <topic label="systemFaultStatus" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a053060b3fab51d001ae0c87ec064ef90"/>
+          <topic label="motorState" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#aea278ee27ccb0fb42e5f9ccf90e788df"/>
+          <topic label="VdqFilt" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#ae44eead89f3b41beb3d53b2287a75221"/>
+          <topic label="currentPI" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a99cf24f90ef81fd54d362fbe93070a6a"/>
+          <topic label="piSpeed" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#ac0c09054bdd879ded094e5181ebc9ad1"/>
+          <topic label="piPower" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#ad977b18796d7093c6ea389317d81ed91"/>
+          <topic label="piId" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#ad569e7b6624b0b9018fd36fe3b2e607e"/>
+          <topic label="piIq" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a5bc1bfc1b219d8b7a5da3249a318065f"/>
+          <topic label="ipdIdentifiedSector" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a16414b95b1431a9700c2f3771b1a7bd2"/>
+          <topic label="estimatedSpeed" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#adf136e84dfeb0c298cd726b43f65f56d"/>
+          <topic label="dcBusVoltage" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a77a9e26bd20236b29c7a25b3c1ce87e6"/>
+          <topic label="torqueLimit" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a8383f44ab234678140643289b08c69ff"/>
+          <topic label="gateDriverFaultStatus" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a0bb36c9eaf7fc2eb7b1886f7f8517ca8"/>
+          <topic label="controllerFaultStatus" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#aac93939dead15efa0ea96b510fcf4206"/>
+          <topic label="appVersion" href="struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a3d7ecc0500c59b0dae6dcecb689c2199"/>
+        </topic>
+        <topic label="MOTOR_STATE_TYPES_T" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766">
+          <topic label="MOTOR_IDLE" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a4fb74f2ab945070a7d5ca157061df104"/>
+          <topic label="MOTOR_ISD" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766aa549d976d56d0a6f18998ed3cbd55872"/>
+          <topic label="MOTOR_TRISTATE" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766aec7cdbefd762267698d7c9d3061fdff4"/>
+          <topic label="MOTOR_BRAKE_ON_START" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766ac5bfabdd8e0395ef17f1ed7a2dbd1fb8"/>
+          <topic label="MOTOR_IPD" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a439f55dd791a6605280ac9c697052af2"/>
+          <topic label="MOTOR_SLOW_FIRST_CYCLE" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a0970004e386a6855fb6b112666ab11d3"/>
+          <topic label="MOTOR_ALIGN" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a18ea35bbb6033b3552871d58deec25fa"/>
+          <topic label="MOTOR_OPEN_LOOP" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766aa365f5d10c0b078ac5990bd84909be80"/>
+          <topic label="MOTOR_CLOSE_LOOP_UNALIGNED" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766aedf4f927193b787d79b8d3fb4ad02e26"/>
+          <topic label="MOTOR_CLOSE_LOOP_ALIGNED" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766ada89889abaad50993f7c175fa4cddc23"/>
+          <topic label="MOTOR_CLOSE_LOOP_ACTIVE_BRAKING" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a8c103ed625f32d0b2f40775e05f90300"/>
+          <topic label="MOTOR_SOFT_STOP" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766a9f24eba962950ba26bcc869071319c43"/>
+          <topic label="MOTOR_BRAKE_ON_STOP" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766afbb2b28ddcf50d6eba4d2c7bae002df0"/>
+          <topic label="MOTOR_FAULT" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766adb9c7ad15395a834ddad63b31ee68838"/>
+          <topic label="MOTOR_MAX" href="app_user_outputs_8h.html#a646d894ff0b1dae9fe11aea1fbdaa766adec9f2b2d5a998dcf18c6558a4b848e2"/>
+        </topic>
+        <topic label="USER_FAULT_TYPES" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71f">
+          <topic label="NO_FAULTS" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa22c5bfe6e152f1447e090de8da4308b4"/>
+          <topic label="FAULT_MOTOR_STALL" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa6c93bf80b8388bf9710a9a4b5b79f0aa"/>
+          <topic label="FAULT_VOLTAGE_OUT_OF_BOUNDS" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa915c7a17b6e0008954f0f6334d2c0482"/>
+          <topic label="FAULT_LOAD_STALL" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fad1d5d56c1da497f573c7c3bc9649a4e2"/>
+          <topic label="FAULT_HARDWARE_OVER_CURRENT" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa2ca1806b9ab9205480f777808f01a2ee"/>
+          <topic label="FAULT_HV_DIE" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71faa73a8c359fdd99e40c124f43b19572a5"/>
+          <topic label="FAULT_NONE" href="app_user_outputs_8h.html#a679c28296bc352d8d85437a4168bf71fa310bdf86a6ad78c2997c0f88e11aae28"/>
+        </topic>
+        <topic label="IPD_IDENTIFIED_SECTOR_T" href="app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81">
+          <topic label="Ac" href="app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81a82f1a3829f8a7d5960d14fa78549cb3e"/>
+          <topic label="aC" href="app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81af3a6d67cd4df85da4b48cd88f6c1fea3"/>
+          <topic label="Bc" href="app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81a99d9622679ad019e8d12a20d500a4cf4"/>
+          <topic label="bC" href="app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81ab847e505f1e4eca7e6984e6afa7283ec"/>
+          <topic label="aB" href="app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81ac2765e8d8e27b56a462ce1c526bd3783"/>
+          <topic label="Ab" href="app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81ab2a3401c6363e4639223bcceafe3fc5a"/>
+          <topic label="IPD_IDENTIFIED_SECTOR_MAX" href="app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81a464bfe18cb490969dd725dc4354d5ba3"/>
+        </topic>
+        <topic label="pUserStatusRegs" href="app_user_outputs_8h.html#a167b8dae7f33f68c76fc15c6c1eddb08"/>
+      </topic>
+      <topic label="configTables.h" href="config_tables_8h.html">
+        <topic label="FULL_SCALE_CURRENT_FACTOR" href="config_tables_8h.html#aafd298549025f5f4ca265769b20d9d82"/>
+        <topic label="tbl_fwRevDrv_pMil" href="config_tables_8h.html#a0227732299d4c6539c9d7a0a33949f5a"/>
+        <topic label="tbl_hiZ_brk_Time_ms" href="config_tables_8h.html#a2bc97fa574b885b475a73c43717efc41"/>
+        <topic label="tbl_StatDetectThr_pu" href="config_tables_8h.html#aaebc49f19ff5a36fb3f7d5ffd1a9d77e"/>
+        <topic label="tbl_revDrvHandOffThr_pMil" href="config_tables_8h.html#a71bc858793f3ca9db708f7aa1494a91f"/>
+        <topic label="tbl1_olAccA1A2_centiHzPerSec" href="config_tables_8h.html#a60ac13d18ca8ad23bcc32e031e87d15d"/>
+        <topic label="tbl2_olAccA1A2_HzPerSec" href="config_tables_8h.html#aee53f59446f348bf677f5d5308e6fa07"/>
+        <topic label="tbl1_clPWMFreqKHz" href="config_tables_8h.html#a67711e6a86a7cab516d54e99be6d0d9d"/>
+        <topic label="tbl1_clDecClAcc_deciHzPerSec" href="config_tables_8h.html#a6de2db94fc0f40d75675ae3897b32e78"/>
+        <topic label="tbl2_clDecClAcc_HzPerSec" href="config_tables_8h.html#a0b681db2b43fe9d0de6337441f635b03"/>
+        <topic label="tbl_brkDutyActSPinThr_pMil" href="config_tables_8h.html#ad804cb5028cd668b259f307e8ec0c8e9"/>
+        <topic label="tbl_ipdClkFreq_Hz" href="config_tables_8h.html#a43791a10e7183b9a416ea21423c054fc"/>
+        <topic label="tbl_alignTime_msec" href="config_tables_8h.html#a81028b7a7765c585fbfdb456732e4ce7"/>
+        <topic label="tbl_alignSlowRampRate" href="config_tables_8h.html#a5cb7a12edf7461fa5ca1c609cb347d05"/>
+        <topic label="tbl_thetaErrRampRate_mili" href="config_tables_8h.html#acf9064bb282dea8a1018ddfaed775666"/>
+        <topic label="tbl_alignAngle" href="config_tables_8h.html#afcc02b0fce677602728cc6b5321266bf"/>
+        <topic label="tbl_slowFirstCycFreqPerMil" href="config_tables_8h.html#ae952486b1806e645e3333d3077315df1"/>
+        <topic label="tbl_lckAbnormalSpeed_pMil" href="config_tables_8h.html#a1c69a4ced548e1c24a0b5a2ecfed7572"/>
+        <topic label="tbl_AbnormalBEMFThr_pMil" href="config_tables_8h.html#a07b896eaf183188548c406bbbdcc0517"/>
+        <topic label="tbl_minVm_pMil" href="config_tables_8h.html#a327a4fa7416bc670dd035160ee3c12d8"/>
+        <topic label="tbl_maxVm_pMil" href="config_tables_8h.html#acb6dccb370a892b4c178cf190b6baa75"/>
+        <topic label="tbl_isdStopRunTime_msec" href="config_tables_8h.html#ae4ec09fa99f714a5431728c701b02ba8"/>
+        <topic label="tbl_isd_bemfMarginPu" href="config_tables_8h.html#aad9d5ccadcad9e42f85584f37bd1798a"/>
+        <topic label="tbl_isdTimeOut_msec" href="config_tables_8h.html#a20e69973de16811eea6c7183bec57fff"/>
+        <topic label="tbl_autoHandOffMinBemf_mV" href="config_tables_8h.html#a1d51191d48bcbed8c35d7255bc794d0e"/>
+        <topic label="tbl_brakeCurrPersist_msec" href="config_tables_8h.html#a7aed2754ab763f46b3003c98741ded41"/>
+        <topic label="tbl_avsRevDrvOLDec_pMil" href="config_tables_8h.html#a2c6b204719f21d31e74ae10a4c0fe33b"/>
+        <topic label="tbl_clSlowAcc_deci" href="config_tables_8h.html#a4704ff6f7d2b9a8001802fef6d76fdb1"/>
+        <topic label="tbl_pu" href="config_tables_8h.html#a54719f795e2e9a325631e73642eeb5ca"/>
+        <topic label="tbl_mSqrRef" href="config_tables_8h.html#af5ff12e06bb52a0de25abdcfcb04695f"/>
+        <topic label="tbl_ipdMaxOverflow" href="config_tables_8h.html#a0f8c7a57fdd2e5807aba7827582d0ed8"/>
+      </topic>
+      <topic label="custom.h" href="custom_8h.html"/>
+      <topic label="drv8316.h" href="drv8316_8h.html"/>
+      <topic label="drv8316_spi_hal.h" href="drv8316__spi__hal_8h.html">
+        <topic label="DRV8316_SPI_INST" href="drv8316__spi__hal_8h.html#a565db6c290a90e2f858ef20a664a2819"/>
+        <topic label="drv8316SPIRead" href="drv8316__spi__hal_8h.html#a40e4bca451f028932b1c728cecb9767e"/>
+        <topic label="drv8316SPIWrite" href="drv8316__spi__hal_8h.html#a27f8c2d945c2fa0a30a86957819a4242"/>
+        <topic label="findParity" href="drv8316__spi__hal_8h.html#a5a718630d164ad35934ee0a00dead1b1"/>
+        <topic label="HAL_writeSPI16" href="drv8316__spi__hal_8h.html#ae9c8c3098b9abec149a40df59b358f85"/>
+        <topic label="HAL_readSPI16" href="drv8316__spi__hal_8h.html#a8fbba54d0397bd1b004358a095d96fea"/>
+      </topic>
+      <topic label="drv8323.h" href="drv8323_8h.html"/>
+      <topic label="drv8323_spi_hal.h" href="drv8323__spi__hal_8h.html">
+        <topic label="DRV8323_SPI_INST" href="drv8323__spi__hal_8h.html#a555b9df1ebd8611c34a2d7f50e166bcd"/>
+        <topic label="drv8323SPIRead" href="drv8323__spi__hal_8h.html#ad92f4217f35e450173500c15d77efa74"/>
+        <topic label="drv8323SPIWrite" href="drv8323__spi__hal_8h.html#a63b5a6637493a09081d8f046c7f79b5b"/>
+        <topic label="HAL_writeSPI16" href="drv8323__spi__hal_8h.html#ae9c8c3098b9abec149a40df59b358f85"/>
+        <topic label="HAL_readSPI16" href="drv8323__spi__hal_8h.html#a8fbba54d0397bd1b004358a095d96fea"/>
+      </topic>
+      <topic label="drv8329.h" href="drv8329_8h.html"/>
+      <topic label="drv8329_hal.h" href="drv8329__hal_8h.html">
+        <topic label="DRV8329_setNSleep" href="drv8329__hal_8h.html#a5c009ab84e7f702318bd2c550819635c"/>
+        <topic label="DRV8329_clearNSleep" href="drv8329__hal_8h.html#aebbe7293d545fd66f6dc8fed774104d9"/>
+      </topic>
+      <topic label="focHALInterface.h" href="foc_h_a_l_interface_8h.html">
+        <topic label="MIN_FLOAT_VOLTAGE" href="foc_h_a_l_interface_8h.html#a691a2f99e56f3c11f6298121b644645d"/>
+        <topic label="MAX_FLOAT_VOLTAGE" href="foc_h_a_l_interface_8h.html#aec4b71cc73f934d9084bd2483c91a700"/>
+        <topic label="HAL_MCU_CLK_SPEED_HZ" href="foc_h_a_l_interface_8h.html#af7b3b79e289ed08f29cfdb2d7d86387c"/>
+        <topic label="HAL_CYCLES_TO_1_US_DELAY" href="foc_h_a_l_interface_8h.html#a191fee96e3061328f11023c31e7e643d"/>
+        <topic label="HAL_GPIO_HIGH" href="foc_h_a_l_interface_8h.html#aff764a333508e4efda8723eda6688461"/>
+        <topic label="HAL_GPIO_LOW" href="foc_h_a_l_interface_8h.html#a57001c247592837dd3ee0a2cc8a4dc05"/>
+        <topic label="VOLTAGE_VECTOR" href="foc_h_a_l_interface_8h.html#accd92ee97a33bc47920b126774b37584">
+          <topic label="VOLTAGE_VECTOR_AC" href="foc_h_a_l_interface_8h.html#accd92ee97a33bc47920b126774b37584a52f486859de9b0af4eef413eee354560"/>
+          <topic label="VOLTAGE_VECTOR_CA" href="foc_h_a_l_interface_8h.html#accd92ee97a33bc47920b126774b37584aacf48eff9b6d77006b958e7d88f7eb78"/>
+          <topic label="VOLTAGE_VECTOR_BC" href="foc_h_a_l_interface_8h.html#accd92ee97a33bc47920b126774b37584ae87e5039a75a770387781bf9252403b4"/>
+          <topic label="VOLTAGE_VECTOR_CB" href="foc_h_a_l_interface_8h.html#accd92ee97a33bc47920b126774b37584a0bcb8baf09a4cb9e22c76992166dc8c5"/>
+          <topic label="VOLTAGE_VECTOR_BA" href="foc_h_a_l_interface_8h.html#accd92ee97a33bc47920b126774b37584af93e674fcf56cc27b2cc890cf2063ab5"/>
+          <topic label="VOLTAGE_VECTOR_AB" href="foc_h_a_l_interface_8h.html#accd92ee97a33bc47920b126774b37584a38327af1e245a80c2d4acd331e9946a2"/>
+          <topic label="VOLTAGE_VECTOR_MAX" href="foc_h_a_l_interface_8h.html#accd92ee97a33bc47920b126774b37584a84708a2c89af3f7e15737a518dabd730"/>
+        </topic>
+        <topic label="HAL_ReadMotorInputs" href="foc_h_a_l_interface_8h.html#a7a70076056589847f8482d6b54e32cee"/>
+        <topic label="HAL_SetPhaseCurrentChannels" href="foc_h_a_l_interface_8h.html#a85c59dc21cc244887779e3c500b19687"/>
+        <topic label="HAL_setADCIdxChannel" href="foc_h_a_l_interface_8h.html#acf9c21e7fe7c002ef776761d31fc4f2f"/>
+        <topic label="HAL_SetPhaseVoltageChannels" href="foc_h_a_l_interface_8h.html#a79b28189dd5e54810a1c6eff00bcfd9c"/>
+        <topic label="HAL_ReadPhaseVoltages" href="foc_h_a_l_interface_8h.html#aa42798936c0189cd90d1b6db7169f4f7"/>
+        <topic label="HAL_ReadCurrents" href="foc_h_a_l_interface_8h.html#ab83f044dda925ccef7880d8b46f1b455"/>
+        <topic label="HAL_SelectShuntMeasure" href="foc_h_a_l_interface_8h.html#afb14dafac642c44306d4803abb0d0880"/>
+        <topic label="HAL_EnablePWM" href="foc_h_a_l_interface_8h.html#a307c498cd58bf296fb4c57baf9d99e64"/>
+        <topic label="HAL_DisablePWM" href="foc_h_a_l_interface_8h.html#aeb866e079f97bd56814bb547828c387a"/>
+        <topic label="HAL_EnableLowSideBrake" href="foc_h_a_l_interface_8h.html#a8f94024d34eb7f72ed887b06b8abe636"/>
+        <topic label="HAL_UpdateDuty" href="foc_h_a_l_interface_8h.html#ab64ffeae350be419297ae3a3f853ab6f"/>
+        <topic label="HAL_SetPWMFrequency" href="foc_h_a_l_interface_8h.html#aeb755b8dadce86c6a54f1ae4e6419557"/>
+        <topic label="HAL_enterIPDMode" href="foc_h_a_l_interface_8h.html#ace1944ec808e458adb18036b65788d74"/>
+        <topic label="HAL_exitIPDMode" href="foc_h_a_l_interface_8h.html#acf03c15b7dec9adeabb0d899b31dfec7"/>
+        <topic label="HAL_SetADCSamplingFrequency" href="foc_h_a_l_interface_8h.html#ae643c3342161800e1d2d0dbff7b261ac"/>
+        <topic label="HAL_SetSystemFrequency" href="foc_h_a_l_interface_8h.html#a97d5071f1125dc4bfc4fe84516898c32"/>
+        <topic label="HAL_GetPhasesFloatingStatus" href="foc_h_a_l_interface_8h.html#aeb43005ea1832b8c73ffe901dbd28a9c"/>
+        <topic label="HAL_ClearNFault" href="foc_h_a_l_interface_8h.html#a3345b1ce0e4eb8d7cbae343817741cc3"/>
+        <topic label="HAL_SetNFault" href="foc_h_a_l_interface_8h.html#ac285a9ff61bc2a1364e03b5d218d50d3"/>
+        <topic label="HAL_getRawHVdieFaultStatus" href="foc_h_a_l_interface_8h.html#ab06e24df3a275d98611d5f838ccc453e"/>
+        <topic label="HAL_getRawFaultStatus" href="foc_h_a_l_interface_8h.html#ac83d2c9d6291e983989d4dbdc7fb5bdc"/>
+        <topic label="HAL_clearFaultStatus" href="foc_h_a_l_interface_8h.html#a60e27fb12310cd1e4ee35ccde473a63a"/>
+        <topic label="HAL_setGateDriveOffsetCalib" href="foc_h_a_l_interface_8h.html#a29b34ae7881422038ba48e649d2ded1c"/>
+        <topic label="HAL_resetGateDriveOffsetCalib" href="foc_h_a_l_interface_8h.html#ae1b0bbf759dd4c2627f4b7695faa3854"/>
+        <topic label="HAL_pwmCountZero" href="foc_h_a_l_interface_8h.html#a3dc3514d9b5d0eb8290d750c7af1044a"/>
+        <topic label="HAL_delayMicroSeconds" href="foc_h_a_l_interface_8h.html#a2172aa821a7abb3c83537b022790f7c4"/>
+        <topic label="HAL_DisableINT" href="foc_h_a_l_interface_8h.html#a5410a304f9cec2f7676f9a20292435fa"/>
+        <topic label="HAL_resetPOR" href="foc_h_a_l_interface_8h.html#a8efb2c73075b9308365d54a487bfa66d"/>
+        <topic label="HAL_getDirPinStatus" href="foc_h_a_l_interface_8h.html#a75ee94cf5eeb42ad2deb1d2a502fc5bf"/>
+        <topic label="HAL_getBrakePinStatus" href="foc_h_a_l_interface_8h.html#a83734a19014e37b222770ab2103260a3"/>
+        <topic label="HAL_TimerOverRideCCPOut" href="foc_h_a_l_interface_8h.html#a659c38bf0c61ff3c5f62bbd4d0ce2577"/>
+        <topic label="HAL_FGToggle" href="foc_h_a_l_interface_8h.html#ace630097dea775e356aa3517690be449"/>
+        <topic label="HAL_PWMForceHigh" href="foc_h_a_l_interface_8h.html#ad4042e1ef64d176e3e6f7f92bfd626a4"/>
+        <topic label="HAL_PWMForceLow" href="foc_h_a_l_interface_8h.html#a2f801e93ce2c6b8d3caaf0338df852b6"/>
+        <topic label="HAL_PWMForceDisable" href="foc_h_a_l_interface_8h.html#a989e77e95492fd43b361bb907d2ad045"/>
+        <topic label="HAL_PWMAllForceDisable" href="foc_h_a_l_interface_8h.html#ad99fe895a000d929e11b4438e88ba6b4"/>
+        <topic label="HAL_PWMAllForceLow" href="foc_h_a_l_interface_8h.html#ae5ff48c1273084f28c262641b06405c8"/>
+        <topic label="HAL_IPDEnableISR" href="foc_h_a_l_interface_8h.html#af577f886931858ee65b21a3ebaa87479"/>
+        <topic label="HAL_IPDDisableISR" href="foc_h_a_l_interface_8h.html#abae8c958b582316522825f82bc636591"/>
+        <topic label="HAL_IPDGetTime" href="foc_h_a_l_interface_8h.html#a44250121f1005fb0f1fb5337a8aaf3b1"/>
+        <topic label="HAL_IPDGetLoadVal" href="foc_h_a_l_interface_8h.html#acaf7151e2584bb8a8d808584244fef34"/>
+        <topic label="HAL_Is_SingleShunt" href="foc_h_a_l_interface_8h.html#ac7812f2bdb0b3c9f10ac1cda657c21f9"/>
+        <topic label="HAL_IPDCOMPDACSetZero" href="foc_h_a_l_interface_8h.html#a2dfcba6259cd9e84220903261c4e94fa"/>
+        <topic label="HAL_setIPDPulseConfig" href="foc_h_a_l_interface_8h.html#ad4cfaa622c6fc330e4abd960e8943fba"/>
+        <topic label="HAL_ADCDisConv" href="foc_h_a_l_interface_8h.html#a748c7c38e1dcf850a8957b37e14f3048"/>
+        <topic label="HAL_ADCEnConv" href="foc_h_a_l_interface_8h.html#a2c780b344d9e32cad12b0fbf8e9db17f"/>
+        <topic label="HAL_ADCEnWCOMP" href="foc_h_a_l_interface_8h.html#a5226262e713d503302e9085cb22ee026"/>
+        <topic label="HAL_ADCDisWCOMP" href="foc_h_a_l_interface_8h.html#af33c8f3959784fd99c392fc79fea5ace"/>
+        <topic label="HAL_enableTriggerFault" href="foc_h_a_l_interface_8h.html#a3867746e04ed33ab47bd47db80e09b4f"/>
+        <topic label="HAL_disableTriggerFault" href="foc_h_a_l_interface_8h.html#ac79e454d4582875fc3db839bcc4f1df9"/>
+        <topic label="HAL_setCaptureCompareValue" href="foc_h_a_l_interface_8h.html#afa2cfc594e84e1906d5925fab6265321"/>
+      </topic>
+      <topic label="focPeriphInit.h" href="foc_periph_init_8h.html">
+        <topic label="FOC_GPIO_DIR_PORT" href="foc_periph_init_8h.html#ae863d11b0156f84f22ec4217bc2974a0"/>
+        <topic label="FOC_GPIO_DIR_PIN" href="foc_periph_init_8h.html#ab2fd8676428163034f0bd81f34097251"/>
+        <topic label="FOC_GPIO_BRAKE_PORT" href="foc_periph_init_8h.html#ac71e0e2eff4d92b329bec37759d5a7cc"/>
+        <topic label="FOC_GPIO_BRAKE_PIN" href="foc_periph_init_8h.html#aaec064ce2793965efb3038bfdac87b28"/>
+        <topic label="FOC_GPIO_NFAULT_PORT" href="foc_periph_init_8h.html#a19953cfbda490c0af40fe81f509d1605"/>
+        <topic label="FOC_GPIO_NFAULT_PIN" href="foc_periph_init_8h.html#a5445958e8af55d112fac07a0e03152bc"/>
+        <topic label="FOC_PWMA0_INST" href="foc_periph_init_8h.html#a987b4552d087e2408526bca2e45e1e81"/>
+        <topic label="FOC_TIMA1_INST" href="foc_periph_init_8h.html#abf0fc5ab52f8da9eacc896c63d491ade"/>
+        <topic label="FOC_PWMA0_ADC_TRIG_LOAD_EVENT" href="foc_periph_init_8h.html#a5156981a774f450847df261b42e9d2c3"/>
+        <topic label="FOC_TIMER_INST" href="foc_periph_init_8h.html#ac2f0c24c2e25024d0ff7c0ef3a98cc57"/>
+        <topic label="ADC_PWM_TRIG_CH" href="foc_periph_init_8h.html#a3f3ea53e2c3ad19758247a2b59607ab5"/>
+        <topic label="focPeriphInit" href="foc_periph_init_8h.html#a3a2fa0d59620c803bfb3d44b40beb979"/>
+      </topic>
+      <topic label="gateDriver.h" href="gate_driver_8h.html">
+        <topic label="FOC_CURR_ADC0_INST" href="gate_driver_8h.html#a823a59b299b4d9c111ad544be32f0b97"/>
+        <topic label="FOC_CURR_ADC1_INST" href="gate_driver_8h.html#a1b44943405024fee3bd13024024ac296"/>
+        <topic label="FOC_ADC0_INST" href="gate_driver_8h.html#a55dcc8677e60ce0a2da656801bf12cf5"/>
+        <topic label="FOC_ADC1_INST" href="gate_driver_8h.html#aa783dd437f843ef5b5cf36bb527ab94c"/>
+        <topic label="ADC0_IDX_0" href="gate_driver_8h.html#a0c0a0e9394437dfe918864b16a387ee7"/>
+        <topic label="ADC0_IDX_1" href="gate_driver_8h.html#a252ba27cbd57cb0b083ec93081255961"/>
+        <topic label="ADC0_IDX_2" href="gate_driver_8h.html#a19612e6af9a1e22291200342c976eb73"/>
+        <topic label="ADC1_IDX_0" href="gate_driver_8h.html#a31b90c7482e0a4a9279e1b8204b3cd04"/>
+        <topic label="ADC1_IDX_1" href="gate_driver_8h.html#ac2b4bbc9223e2fa158087496ca78dbb2"/>
+        <topic label="ADC1_IDX_2" href="gate_driver_8h.html#a45244fd42d0fdab1a7bdb355ad18f8fc"/>
+        <topic label="FOC_CURR_ADC0_IDX_0" href="gate_driver_8h.html#ad21ffa3e5674ef1734130ed1a85de3e7"/>
+        <topic label="FOC_CURR_ADC0_IDX_1" href="gate_driver_8h.html#ad49c1f57bfbf3f213f23f3d36ef7fd3b"/>
+        <topic label="FOC_CURR_ADC0_IDX_2" href="gate_driver_8h.html#a7269aa246d6eaf0fb242615189a4bd7e"/>
+        <topic label="FOC_CURR_ADC1_IDX_0" href="gate_driver_8h.html#a67ba1f7897d47b67dfc83ebafca4f112"/>
+        <topic label="FOC_CURR_ADC1_IDX_1" href="gate_driver_8h.html#acb6c33259fda4c8f2e3b04ad5926ec39"/>
+        <topic label="FOC_CURR_ADC1_IDX_2" href="gate_driver_8h.html#a4bef36cec0b39f52d4020765d2b148ca"/>
+        <topic label="HAL_GD_ReadCurrents" href="gate_driver_8h.html#acc7974c792c5d99d1a346d3d481f7543"/>
+        <topic label="HAL_GD_ReadVoltages" href="gate_driver_8h.html#a94def28b9c89b1189acbf2685dfb66b1"/>
+        <topic label="HAL_GD_ConfigureVoltageChannels" href="gate_driver_8h.html#aeefe29d86a7fb7858a31216977a1a8db"/>
+        <topic label="HAL_currentReconstruction" href="gate_driver_8h.html#adf8cb16d67651cb0d996158a95467a98"/>
+        <topic label="HAL_GD_ConfigureCurrentChannels" href="gate_driver_8h.html#abfc7152f42ecf42815ba5c2309bf9ca1"/>
+        <topic label="HAL_GD_ReadDCVBusVoltage" href="gate_driver_8h.html#a72d3385e1652275860c532c9f84748f8"/>
+        <topic label="gateDriverConfig" href="gate_driver_8h.html#ad48c82f215ae30e5a12d911002b79512"/>
+        <topic label="gateDriverClearFault" href="gate_driver_8h.html#a61c2d20fee8e6b3131423a908c6f31c5"/>
+        <topic label="gateDriverGetFaultStatus" href="gate_driver_8h.html#a27a18e5e037c2273e526198944d2a256"/>
+        <topic label="gateDriverFaultResponse" href="gate_driver_8h.html#a4fb59a58f3c27383c2d24d651cbf8c9b"/>
+        <topic label="gateDriverParamsUpdate" href="gate_driver_8h.html#ad11c69ef81253c4e2b4c6dadcd8cff14"/>
+        <topic label="gateDriverCSACalib" href="gate_driver_8h.html#af0bcf0cb8d4b7f98bc4f3c27624e1c0f"/>
+        <topic label="gateDriverOffsetCalibSet" href="gate_driver_8h.html#aa8ffaa93ff50e47e765f18788f45c129"/>
+        <topic label="gateDriverOffsetCalibReset" href="gate_driver_8h.html#a4157d4acf998392d8a64772df39dd601"/>
+        <topic label="gateDriverInit" href="gate_driver_8h.html#a8a26fad2bf7c5ea2d337b875c856576b"/>
+        <topic label="gateDriverRegRead" href="gate_driver_8h.html#afd2f79fb3cf99391dda3f4f2512158b8"/>
+        <topic label="gateDrivernFaultReport" href="gate_driver_8h.html#af9009b16919899c4bca23f853e323c06"/>
+        <topic label="gateDriverFaultAction" href="gate_driver_8h.html#a0212fd7b400d1bdb4fce7a63ef4bb250"/>
+      </topic>
+      <topic label="IQmath_mathacl.h" href="_i_qmath__mathacl_8h.html">
+        <topic label="GLOBAL_IQ" href="_i_qmath__mathacl_8h.html#a96615d6505f4650838ead852b54f29fc"/>
+        <topic label="_IQmpy_mathacl" href="_i_qmath__mathacl_8h.html#acb4cfa4abb9077475d95727ca1b073f0"/>
+        <topic label="_IQdiv_mathacl" href="_i_qmath__mathacl_8h.html#a0f7faaf51f6374ac4101b4c1f3953cc6"/>
+        <topic label="_IQsqrt_mathacl" href="_i_qmath__mathacl_8h.html#afe6777d9274443dd09d503b922764990"/>
+        <topic label="_IQNmpy_mathacl_inline" href="_i_qmath__mathacl_8h.html#a29891620ac22abeecb60715f478c9f72"/>
+      </topic>
+      <topic label="iqNum.h" href="iq_num_8h.html">
+        <topic label="IQ_NUM_T" href="struct_i_q___n_u_m___t.html">
+          <topic label="scaledNum" href="struct_i_q___n_u_m___t.html#accb1efeb8551d8a17b8f62de3b07d9d5"/>
+          <topic label="iqScaling" href="struct_i_q___n_u_m___t.html#a14689a1198288fd202caad318021e552"/>
+        </topic>
+        <topic label="float2IQ" href="iq_num_8h.html#a9540be90d93899d569205b87a9715e9a"/>
+        <topic label="float2IQx" href="iq_num_8h.html#a97414581143a8c07f806d983aab0465e"/>
+      </topic>
+      <topic label="iqTrig.h" href="iq_trig_8h.html">
+        <topic label="LOOKUP_POINTS" href="iq_trig_8h.html#a44805ecc3dee89b571d2c11baa32e633"/>
+        <topic label="DELX_LOOKUP" href="iq_trig_8h.html#a9de39050318d2b1693def332f11c5dbf"/>
+        <topic label="INV_DELX_LOOKUP" href="iq_trig_8h.html#a146c368f5aaab9a8457d7d719ae898ca"/>
+        <topic label="sine_LowPriority" href="iq_trig_8h.html#ac80ca8d5d518112faec3f62cbe1e2044"/>
+        <topic label="cosine_LowPriority" href="iq_trig_8h.html#a9adfbb801fda0eb8bb9a038b1c792cdd"/>
+        <topic label="sinCosMATHACLCompute" href="iq_trig_8h.html#a86d0c40c49fdb16c8d346aedf93bce0d"/>
+        <topic label="readMATHACLSin" href="iq_trig_8h.html#a9625aee16c104ece1b1afb0f62dfa45d"/>
+        <topic label="readMATHACLCos" href="iq_trig_8h.html#a07afb350512174c1d6c27f8bc1cb3a63"/>
+        <topic label="sine_LowPrioirty" href="iq_trig_8h.html#acc0eea90cf96bdf566a2c30f6f364697"/>
+        <topic label="sine" href="iq_trig_8h.html#a61191ce317176d32ca814f8a4dd1e7d3"/>
+        <topic label="cosine" href="iq_trig_8h.html#a0a6b353c498b9f3366964870a9485eea"/>
+        <topic label="arcTan2" href="iq_trig_8h.html#a33d4426302f41fdc7142a2ccfa79ee55"/>
+      </topic>
+      <topic label="mcLib.h" href="mc_lib_8h.html">
+        <topic label="MC_ABC_T" href="struct_m_c___a_b_c___t.html">
+          <topic label="a" href="struct_m_c___a_b_c___t.html#a1006fabf4d30260be633c418bd0c39c5"/>
+          <topic label="b" href="struct_m_c___a_b_c___t.html#a03de4e942065b1c138a5f9d44834e1f4"/>
+          <topic label="c" href="struct_m_c___a_b_c___t.html#a1ce0dc6b52c73fea40cadaa27d93596f"/>
+        </topic>
+        <topic label="MC_ALPHABETA_T" href="struct_m_c___a_l_p_h_a_b_e_t_a___t.html">
+          <topic label="alpha" href="struct_m_c___a_l_p_h_a_b_e_t_a___t.html#a79f7d3703f4577843f3a135ccd6fba3f"/>
+          <topic label="beta" href="struct_m_c___a_l_p_h_a_b_e_t_a___t.html#adaecef4cd87869c51b73d986a29e8795"/>
+        </topic>
+        <topic label="MC_DQ_T" href="struct_m_c___d_q___t.html">
+          <topic label="d" href="struct_m_c___d_q___t.html#a06f869b40f2211860c0edd6eb359818f"/>
+          <topic label="q" href="struct_m_c___d_q___t.html#a8d20a7c2af13a4f93a7962aaaae72b20"/>
+        </topic>
+        <topic label="MC_SINCOS_T" href="struct_m_c___s_i_n_c_o_s___t.html">
+          <topic label="sin" href="struct_m_c___s_i_n_c_o_s___t.html#a9b31af0e1c739f24b0247124859dbd73"/>
+          <topic label="cos" href="struct_m_c___s_i_n_c_o_s___t.html#a63ea11339786be41d2006828470670d1"/>
+        </topic>
+        <topic label="MC_SVM_T" href="struct_m_c___s_v_m___t.html">
+          <topic label="voltageSector" href="struct_m_c___s_v_m___t.html#a692994a9604040b3bf3b8e5d0097e9ec"/>
+          <topic label="angleSector" href="struct_m_c___s_v_m___t.html#a288b894d37c1b94eddb27bbf1ca96222"/>
+          <topic label="prevPrevVoltageSector" href="struct_m_c___s_v_m___t.html#a86a799bb8d579dc784e42fe2522105d3"/>
+          <topic label="prevVoltageSector" href="struct_m_c___s_v_m___t.html#a12649dc91023226522473b321342fff3"/>
+          <topic label="maxDutyPhase" href="struct_m_c___s_v_m___t.html#a92a5cb7ecb52a5ce431a215733af3f20"/>
+          <topic label="minDutyPhase" href="struct_m_c___s_v_m___t.html#a2e36b3e50262e859394c777dc613526c"/>
+          <topic label="minDuty" href="struct_m_c___s_v_m___t.html#a33463a5a7bbd659f234734291f3dc386"/>
+          <topic label="minDutyDisCont" href="struct_m_c___s_v_m___t.html#a10e0058ca6d25a29acf8bab6dacfff8c"/>
+          <topic label="blankingTime" href="struct_m_c___s_v_m___t.html#a0abc62c4efcfce4df35e6e282bfbab2d"/>
+          <topic label="minPWMdelta" href="struct_m_c___s_v_m___t.html#a0efc5d6ccb6ff056f09b81ceab6f286d"/>
+          <topic label="svmGen" href="struct_m_c___s_v_m___t.html#aa3b1ad49023e43798f69f0dbe19e97aa"/>
+          <topic label="Dabc" href="struct_m_c___s_v_m___t.html#adaca7f6f16beacdf448177a79c5425d6"/>
+          <topic label="sectorCount" href="struct_m_c___s_v_m___t.html#ab877bb397f55b8a7ed620f1955104fc6"/>
+        </topic>
+        <topic label="ONE_BY_THREE" href="mc_lib_8h.html#a28358f508e0c3e956443ef9a38914c95"/>
+        <topic label="TWO_BY_THREE" href="mc_lib_8h.html#af077d35e283d45c64cdc57e497e4ec26"/>
+        <topic label="ONE_BY_SQRT_THREE" href="mc_lib_8h.html#aa1618716a2efbeddac23f979f577c920"/>
+        <topic label="TWO_BY_SQRT_THREE" href="mc_lib_8h.html#a5431334ec4f901bd2947725b0da8282a"/>
+        <topic label="SQRT_THREE_BY_TWO" href="mc_lib_8h.html#af102b54938f2818cc9baa6c8e3c0bd0f"/>
+        <topic label="ONE_BY_TWO" href="mc_lib_8h.html#acc1029c392d9495ae6786c52976bcb98"/>
+        <topic label="SQRT_THREE" href="mc_lib_8h.html#affe03c0f350b4f022f96735912125810"/>
+        <topic label="MC_PHASE_TYPES" href="mc_lib_8h.html#a682c47838caa64798b4037746350dc9d">
+          <topic label="PHASE_INVALID" href="mc_lib_8h.html#a682c47838caa64798b4037746350dc9dac02edeb71720e6fb1432e9ca64f3cc62"/>
+          <topic label="PHASE_A" href="mc_lib_8h.html#a682c47838caa64798b4037746350dc9da8825a1a26ae9bf551b490741d7ae280a"/>
+          <topic label="PHASE_B" href="mc_lib_8h.html#a682c47838caa64798b4037746350dc9dac9590e77e32637ec7e053fe2690876bf"/>
+          <topic label="PHASE_C" href="mc_lib_8h.html#a682c47838caa64798b4037746350dc9daa40453ff9dcc9108a8f76456fd68c464"/>
+        </topic>
+        <topic label="MC_SECTOR_TYPES" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820">
+          <topic label="SECTOR_INVALID" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820abadc3efa82a7efb89dd36f8652096ea4"/>
+          <topic label="SECTOR_1" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820ab11574143c5c7abe514051b82f588ae2"/>
+          <topic label="SECTOR_2" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820a40ea2c9a67ec394cd6abb53b759b98d5"/>
+          <topic label="SECTOR_3" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820a5e6c83c6c003a3914632b05b228b391d"/>
+          <topic label="SECTOR_4" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820a19239d5d7810688334a626741366847d"/>
+          <topic label="SECTOR_5" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820a65e9aef2d951a1b95a5b80a9b09cdeee"/>
+          <topic label="SECTOR_6" href="mc_lib_8h.html#ae2d5e6b336e9eb86407487e36b2e0820a552268b78f311ea37ad3eb9b98be71ac"/>
+        </topic>
+        <topic label="SVM_GENERATOR_TYPES" href="mc_lib_8h.html#a038a0c63e5f5cb84f18112b3b263797a">
+          <topic label="SVM_CONTINUOUS" href="mc_lib_8h.html#a038a0c63e5f5cb84f18112b3b263797aa48b93f5a8bc5eebe34a036fea5148a8c"/>
+          <topic label="SVM_DISCONTINUOUS" href="mc_lib_8h.html#a038a0c63e5f5cb84f18112b3b263797aa632da022c847bba6e0c3da787c914290"/>
+        </topic>
+        <topic label="MC_ClarkeTransformNoZeroSeq" href="mc_lib_8h.html#abad8ba90049eee2a812cd14acdbf6d75"/>
+        <topic label="MC_ClarkeTransform" href="mc_lib_8h.html#a6eff67e5538e4692b9fcb0c368a9c030"/>
+        <topic label="MC_SVM_ClarkeTransform" href="mc_lib_8h.html#a8a943f2a9aa7844335b3a4ce3fd077fd"/>
+        <topic label="MC_InverseClarkeTransform" href="mc_lib_8h.html#affd4350cc7f3d519763a68176ca46d7c"/>
+        <topic label="MC_ParkTransform" href="mc_lib_8h.html#acbff5f96424b8d0661e7424d3db6909f"/>
+        <topic label="MC_InverseParkTransform" href="mc_lib_8h.html#a9662a105072c7d1702573ba714486101"/>
+        <topic label="MC_SinCos" href="mc_lib_8h.html#a1f4cffd48586b5501e4cbf240a22ee90"/>
+        <topic label="MC_SpaceVectorGen" href="mc_lib_8h.html#ac966c5784d80942fc53344ef23b33bf3"/>
+        <topic label="MC_AngleSectorGen" href="mc_lib_8h.html#af97a017fc06096530ebcd49b31787af5"/>
+      </topic>
+      <topic label="measure.h" href="measure_8h.html">
+        <topic label="CURRENT_OFFSET_T" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html">
+          <topic label="iaOffset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#ae26f9be1d60134d3e57f78e378701a98"/>
+          <topic label="ibADC0Offset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#ac6e507e4b6ce95dd2a1ba6ffdb09a47b"/>
+          <topic label="ibADC1Offset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#a760a182862580931ec7533e35780db48"/>
+          <topic label="icOffset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#a74e3255e23464e92f2d3e5e9bc33c4dc"/>
+          <topic label="i1Offset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#a3be236e379b5b05d5a88604ab51a5cb4"/>
+          <topic label="i2Offset" href="struct_c_u_r_r_e_n_t___o_f_f_s_e_t___t.html#a80249bd7dc7b98123e4595cf55f53b67"/>
+        </topic>
+        <topic label="measureCurrentFlags" href="structmeasure_current_flags.html">
+          <topic label="threeShuntDynamic" href="structmeasure_current_flags.html#a12bb96016563885aacfbd8c4835f0223"/>
+          <topic label="threeShuntDynamicSet" href="structmeasure_current_flags.html#a112d96cd3ad44cad831cbd4d6ecbefb9"/>
+          <topic label="offsetAB_CStatus" href="structmeasure_current_flags.html#a9291a788b17b1e562f27bdaf41fadd40"/>
+          <topic label="offsetGainStatus" href="structmeasure_current_flags.html#a57cc9346e54f14794e5d585aaef638de"/>
+          <topic label="offsetStatus" href="structmeasure_current_flags.html#a8b1d7a6704122f131d0255dda7003c7a"/>
+        </topic>
+        <topic label="MEASURE_CURRENT_FLAGS_T" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html">
+          <topic label="b" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html#a70c26fe4e19b7e0fb97bd176cbeec7cc"/>
+          <topic label="w" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html#a1074af1c6cf913dab408e29ef20d4489"/>
+        </topic>
+        <topic label="HAL_MEASURE_CURRENT_T" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html">
+          <topic label="state" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#aed0471a26e339ec0026e2771816e1a53"/>
+          <topic label="iabc" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#af1cd83e772a007ff017a153703ab01fc"/>
+          <topic label="iabcRaw" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a66c8fe416ad169f193b2896ec07f2ac9"/>
+          <topic label="pPrevPrevSector" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a7fea38a87f5387c97e9b92f5ec01bed0"/>
+          <topic label="offsetGainIMaxBy1" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a876451d6527568e45bb9be45046cf09e"/>
+          <topic label="pOffset" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a060e973c009d2dfc38af510ebb4a67b9"/>
+          <topic label="iaSum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a0e9b6f594cdf776b92318a5b8dd618d1"/>
+          <topic label="ibADC0Sum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a540a66a2ac54b26ad62f4def85750f27"/>
+          <topic label="ibADC1Sum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a388a226a3d8d612d8c60dd19d56e4471"/>
+          <topic label="icSum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a9f7283f6bdbe1840cc40a96577f9a1e7"/>
+          <topic label="i1Sum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#afd0c4f5ca604032a9e87dbd09984e4fa"/>
+          <topic label="i2Sum" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a0513807eb5119c7ae3357b1214bfc483"/>
+          <topic label="iMagSqr" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#acf9746c9ea64de584c3410f33a2e1233"/>
+          <topic label="iFirstSample" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#afc9af6595a7d3fe99c32a570a0539a67"/>
+          <topic label="iSecondSample" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#ad97919ca0c96c0678c915e62fe72c376"/>
+          <topic label="currentShuntSet" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#acacf56f28534d0a0422e84e4e35bcd90"/>
+          <topic label="currentShunt" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a53bf368959c08de827be7804536e270e"/>
+          <topic label="pMaxDutyPhase" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a6d45bce83de3d8bda90f10096a2dd8ee"/>
+          <topic label="prevMaxDutyPhase" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a5c5f8011094c527dc1a74fcd648e85f6"/>
+          <topic label="offsetMeasCount" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a392a01f3b87a89642275ef98f26e1efb"/>
+          <topic label="pSourceCurrentFilt" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a8b5b4b399e148925f42de8885e35d6cb"/>
+          <topic label="flags" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a4d3b89c0d672a21bc407b8e4499928f6"/>
+        </topic>
+        <topic label="HAL_MEASURE_VOLTAGE_T" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html">
+          <topic label="voltageGain" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a7589005661c11859d09464b11d419938"/>
+          <topic label="voltageGainSet" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#ac4e95ec90e8b7ce2733aeda606429225"/>
+          <topic label="vdc" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a4032d28b623c87b82e672ba43f6947e7"/>
+          <topic label="vdcFilt" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a65fcdc624fe3abc7025520e39799765d"/>
+          <topic label="invVdcFilt" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a79f125a8e215aef9d6b1fc5b91e254cd"/>
+          <topic label="vabc" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#a6e1584f23be2a12f6bb5806e6f1cca13"/>
+          <topic label="vabcRaw" href="struct_h_a_l___m_e_a_s_u_r_e___v_o_l_t_a_g_e___t.html#ae827ded87f29808eb4bf0893d09c50e3"/>
+        </topic>
+        <topic label="HAL_MEASURE_MOTOR_INPUTS_T" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html">
+          <topic label="adcSamplingRatio" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a7ee80456253dc8470701af92ab9625c9"/>
+          <topic label="deltaT" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#af536da46224624cc1b9415d8b5fa3503"/>
+          <topic label="pwmPeriod" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#ab190bbd56d278fb7db944a8b6e221cd5"/>
+          <topic label="propagationDelay" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a8486d3c8cb11310a2dd0da3ab68af155"/>
+          <topic label="measureQuantity" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#aabe3f5b5e852d4a9c77cb6c25b09c740"/>
+          <topic label="current" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a0b6362c80d0e944c5327c1f0c42acc65"/>
+          <topic label="voltage" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#abc0a4db04dbf1a8711efdff6b82eb61c"/>
+        </topic>
+        <topic label="HAL_CURRENT_OFFSET_MEAS_BITS" href="measure_8h.html#a336c1cca3293d7813be6ce23080aabcd"/>
+        <topic label="HAL_CURRENT_OFFSET_MEAS_COUNT" href="measure_8h.html#aefd2615e42f8bc7d5869540af24b770f"/>
+        <topic label="INV_VDC_IQ_SCALING" href="measure_8h.html#aebb581d395ae980a0df8704da4d92828"/>
+        <topic label="VOLTAGE_GAIN_TYPES" href="measure_8h.html#ab7ed1d6ec6994980346f54e20ebe7e26">
+          <topic label="VOLTAGE_GAIN_VMAX_BY_4" href="measure_8h.html#ab7ed1d6ec6994980346f54e20ebe7e26a99e240ad712260b8cf6e15a635692752"/>
+          <topic label="VOLTAGE_GAIN_VMAX_BY_2" href="measure_8h.html#ab7ed1d6ec6994980346f54e20ebe7e26a11b3e91c61bad12725ff920d8c34557b"/>
+          <topic label="VOLTAGE_GAIN_VMAX_BY_1" href="measure_8h.html#ab7ed1d6ec6994980346f54e20ebe7e26a93a8fb92cc25b7faac91d0ed17d150bc"/>
+        </topic>
+        <topic label="HAL_MEASUREMENT_TYPES" href="measure_8h.html#a5375f3596311cf6c84b7cd5391cf5c06">
+          <topic label="MEASURE_PHASE_CURRENT" href="measure_8h.html#a5375f3596311cf6c84b7cd5391cf5c06a4c9574167e9b95ca12229f9f122844d0"/>
+          <topic label="MEASURE_PHASE_VOLTAGE" href="measure_8h.html#a5375f3596311cf6c84b7cd5391cf5c06a5a13dda6d91343c5b73113d1247e8c2b"/>
+        </topic>
+        <topic label="CURRENT_SHUNT_TYPES" href="measure_8h.html#a75de04916ac46d6665a643d358806009">
+          <topic label="CURRENT_INVALID" href="measure_8h.html#a75de04916ac46d6665a643d358806009ae16f57110ee3563190ea1135685d8af1"/>
+          <topic label="CURRENT_THREE_SHUNT_DYNAMIC" href="measure_8h.html#a75de04916ac46d6665a643d358806009a6155bce9baac2cba57de1d0f4c6d69e7"/>
+          <topic label="CURRENT_THREE_SHUNT_AB_C" href="measure_8h.html#a75de04916ac46d6665a643d358806009ade9de64a4d11ca8e390c68613b44c6d7"/>
+          <topic label="CURRENT_THREE_SHUNT_A_BC" href="measure_8h.html#a75de04916ac46d6665a643d358806009a084b3985727bcb84e4fbcafd09c77a30"/>
+          <topic label="CURRENT_TWO_SHUNT_A_B" href="measure_8h.html#a75de04916ac46d6665a643d358806009aa2232144912ae5085345b2180dbde200"/>
+          <topic label="CURRENT_TWO_SHUNT_A_C" href="measure_8h.html#a75de04916ac46d6665a643d358806009a462b88971b9eb0e9c36667f004727d2f"/>
+          <topic label="CURRENT_TWO_SHUNT_B_C" href="measure_8h.html#a75de04916ac46d6665a643d358806009a84e0054237d602a5958007c5b5759ece"/>
+          <topic label="CURRENT_SINGLE_SHUNT" href="measure_8h.html#a75de04916ac46d6665a643d358806009a5e7c6ca554ffc10b068469472fd81b39"/>
+        </topic>
+        <topic label="ADC_SAMPLING_RATIO_TYPES" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8">
+          <topic label="ADC_SAMPLE_EVERY_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a386f7db9c5dd0291439f967643b51f7f"/>
+          <topic label="ADC_SAMPLE_EVERY_2_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a5c9546be766fa93aa8619b6c044d7307"/>
+          <topic label="ADC_SAMPLE_EVERY_3_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a0d2d79771058977528bd36f913f879b0"/>
+          <topic label="ADC_SAMPLE_EVERY_4_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8ab3833229d008c83f2084b60f489004eb"/>
+          <topic label="ADC_SAMPLE_EVERY_5_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a40ca2c0a6767aed7b9e50de926cb33b7"/>
+          <topic label="ADC_SAMPLE_EVERY_6_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a220d1e3fab17373747a69c140175ad7d"/>
+          <topic label="ADC_SAMPLE_EVERY_7_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a52be28e98381265a5b0a7fe1436ad5d8"/>
+          <topic label="ADC_SAMPLE_EVERY_8_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8aae27e43ee8d0541aab78bedf3cac7895"/>
+          <topic label="ADC_SAMPLE_EVERY_9_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8aaa0efb09dce3aa81cb93acc363c1cc2b"/>
+          <topic label="ADC_SAMPLE_EVERY_10_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a4215e06cbc6c52f5957941bc7dffb7ea"/>
+          <topic label="ADC_SAMPLE_EVERY_11_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a1cedcf9f4afd0bf4e7299c132bbb1fa8"/>
+          <topic label="ADC_SAMPLE_EVERY_12_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8ad7379351c0ac4cc0f63e8a8f817ca549"/>
+          <topic label="ADC_SAMPLE_EVERY_13_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8adb2bf638986eb44649ed69847e175837"/>
+          <topic label="ADC_SAMPLE_EVERY_14_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8ab128f0c24505d1d14eccfcd46177aabc"/>
+          <topic label="ADC_SAMPLE_EVERY_15_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8ae424de124343b6419b134d070abea016"/>
+          <topic label="ADC_SAMPLE_EVERY_16_PWM" href="measure_8h.html#ab6399cdc857ed2b7a6d87d683cc36fe8a72d123428ba9204cbc416ddf7d41e120"/>
+        </topic>
+        <topic label="OFFSET_MEASUREMENT_STATES" href="measure_8h.html#afe92de6725b87707c2a0405225eceeb5">
+          <topic label="OFFSET_INIT" href="measure_8h.html#afe92de6725b87707c2a0405225eceeb5a4e6f6fba1fa2f39c15c2f652e4152698"/>
+          <topic label="COMPUTE_OFFSET" href="measure_8h.html#afe92de6725b87707c2a0405225eceeb5a9236a4d280701b71e13adf65ec75a09d"/>
+          <topic label="OFFSET_COMPLETE" href="measure_8h.html#afe92de6725b87707c2a0405225eceeb5ac4891628402a1560b2cd6539d7e06748"/>
+        </topic>
+        <topic label="inputsInit" href="measure_8h.html#a0c0a90c58cbe59a2b53c0f7d0e610f2e"/>
+        <topic label="measureCurrentOffset" href="measure_8h.html#a62aebea339bb27e87b668f41b29c4e65"/>
+        <topic label="getMeasureOffsetStatus" href="measure_8h.html#a848e82135f034f13a966cf26c2b22125"/>
+        <topic label="g_pMotorInputs" href="measure_8h.html#a456816eff3266e17d52390ec76056cf0"/>
+      </topic>
+      <topic label="motor.h" href="motor_8h.html">
+        <topic label="MOTOR_T" href="struct_m_o_t_o_r___t.html">
+          <topic label="polePairs" href="struct_m_o_t_o_r___t.html#a421485d7ff7a68ab8db4be6b33b59bd0"/>
+          <topic label="rs" href="struct_m_o_t_o_r___t.html#a82e41be3e4b9a1c0089efc7b50c10641"/>
+          <topic label="LdDt" href="struct_m_o_t_o_r___t.html#afb6973d64811109d6c16c8fe16f4749d"/>
+          <topic label="LqDt" href="struct_m_o_t_o_r___t.html#a3e8359f98530252a5bc772d4c7c08166"/>
+          <topic label="L0Dt" href="struct_m_o_t_o_r___t.html#a0abd8f0c2299698d8adff8b1ad1d4caa"/>
+          <topic label="L1Dt" href="struct_m_o_t_o_r___t.html#a67f87ded686f55c1d4dc8491c01fe322"/>
+          <topic label="Ke" href="struct_m_o_t_o_r___t.html#a094247b53323fe4b6f66b33273ccc42f"/>
+          <topic label="InvKe" href="struct_m_o_t_o_r___t.html#acce22a71054f85a236544b28213c27fd"/>
+          <topic label="saliency" href="struct_m_o_t_o_r___t.html#ad7d3717b8efb4d2db2e0c73edc6e996c"/>
+        </topic>
+        <topic label="RS_IQ_SCALING" href="motor_8h.html#ab8df24ead61f8808e4c1bc2b6aad10c0"/>
+        <topic label="LS_IQ_SCALING" href="motor_8h.html#a904726986639cb8ef82655548a48a409"/>
+        <topic label="KE_IQ_SCALING" href="motor_8h.html#ac7b787bf4b399b52d4bc2be3b93dc740"/>
+      </topic>
+      <topic label="services.h" href="services_8h.html">
+        <topic label="update_DirectionStatus" href="services_8h.html#a2bd00c538aa1ddddc2b449ad866551ea"/>
+        <topic label="update_BrakeStatus" href="services_8h.html#a527e8008b6e7334a18036cb97ad4cbaa"/>
+        <topic label="peri1Config" href="services_8h.html#a10044f292fd00aad3465c6ead4b50b34"/>
+        <topic label="CurrSenseAmpConfigInit" href="services_8h.html#a7be299cacb470e253d48908b5a7c7e70"/>
+      </topic>
+      <topic label="servicesHAL.h" href="services_h_a_l_8h.html">
+        <topic label="HAL_setDeadTime" href="services_h_a_l_8h.html#a09eccb7e84472ec459f5d588eae814c9"/>
+        <topic label="gateDriverGetMinOTimeSineMod" href="services_h_a_l_8h.html#a06f337c47c3eefb07dc5f86e2d8c8074"/>
+        <topic label="gateDriverGetMinOnTimeOverMod" href="services_h_a_l_8h.html#a7727d8cc6554d8b5e614dd30c4c2f95e"/>
+        <topic label="gateDriverGetPropagationDelay" href="services_h_a_l_8h.html#ae04c498b176e31881eb5a1ca958384d1"/>
+      </topic>
+      <topic label="tida010250.h" href="tida010250_8h.html"/>
+      <topic label="tida010251.h" href="tida010251_8h.html"/>
+      <topic label="tida010265.h" href="tida010265_8h.html"/>
+      <topic label="uart_comm.h" href="uart__comm_8h.html">
+        <topic label="BufferInfo" href="struct_buffer_info.html">
+          <topic label="_Alignas" href="struct_buffer_info.html#a4446fedef85f189c4114076c20b3cd55"/>
+          <topic label="ptr" href="struct_buffer_info.html#aa0e7e9bc31fa138a718777ce94990616"/>
+          <topic label="len" href="struct_buffer_info.html#ace30fe5affc4757504df8d91053ce27e"/>
+        </topic>
+        <topic label="UART_Instance" href="struct_u_a_r_t___instance.html">
+          <topic label="txMsg" href="struct_u_a_r_t___instance.html#a14dc9f8568a0ee1d49886357bab22f56"/>
+          <topic label="rxMsg" href="struct_u_a_r_t___instance.html#ac15e555998be0aec432eaaca20bb7b31"/>
+          <topic label="dataLen" href="struct_u_a_r_t___instance.html#a6760c17949e8534a7f416bfe3af62abd"/>
+          <topic label="isCrc" href="struct_u_a_r_t___instance.html#a688ceaea98ecaf4d26270f9009eae75b"/>
+          <topic label="status" href="struct_u_a_r_t___instance.html#adb0bce459473975933d0d7be9f0554b0"/>
+          <topic label="error" href="struct_u_a_r_t___instance.html#aec8fb0e1bf6c8d1f10c4c291df561e30"/>
+        </topic>
+        <topic label="PREAMBLE_BYTE" href="uart__comm_8h.html#a5be9603ac66621f115795cac329c47bb"/>
+        <topic label="PREAMBLE_BYTE_SIZE" href="uart__comm_8h.html#ac14aa88b0c98647895788a4a50e3a53a"/>
+        <topic label="TARGET_ADDR" href="uart__comm_8h.html#ad6c54bbcff81bbacbaf929f8415c68aa"/>
+        <topic label="BROADCAST_ADDR" href="uart__comm_8h.html#a8450d5398907cd2b9ab0466daf027d73"/>
+        <topic label="START_IDX" href="uart__comm_8h.html#af31379b5434dd0f1dfff9e469684dd6f"/>
+        <topic label="START_BYTE_SIZE" href="uart__comm_8h.html#a50e823bd9b2beeab68543393eebe1028"/>
+        <topic label="FRAME_START_BYTE" href="uart__comm_8h.html#ad9819c28ac5abdc130130a759517f40d"/>
+        <topic label="TARGET_ADDR_IDX" href="uart__comm_8h.html#a9ae93f7cfc5751cf3eb5ba53652d5b78"/>
+        <topic label="TARGET_ADDR_SIZE" href="uart__comm_8h.html#a794fa36716275a81bc6de75b6ee91df0"/>
+        <topic label="CTRL_IDX" href="uart__comm_8h.html#a6ddca9e0a769e88519032f62ef1eff51"/>
+        <topic label="CTRL_SIZE" href="uart__comm_8h.html#ac9dabdb57992a3957027111ff1942c2c"/>
+        <topic label="CMD_MASK" href="uart__comm_8h.html#aede8404e1d3398c2c235eaa17ea2cd5d"/>
+        <topic label="CRC_MASK" href="uart__comm_8h.html#ac21f2d275f975b7357d95a49567856c8"/>
+        <topic label="LEN_MASK" href="uart__comm_8h.html#aeaa17ee141fcb93eff10803e7d0153d9"/>
+        <topic label="WRITE_CMD" href="uart__comm_8h.html#af792feb13ae0c1eab8f95f64c8baa96d"/>
+        <topic label="READ_CMD" href="uart__comm_8h.html#a21623e2a5501c821da54dd76ffc1d077"/>
+        <topic label="HEADER_SIZE" href="uart__comm_8h.html#a49999be01380f41cc0d0f1f1406fb277"/>
+        <topic label="MEM_ADDR_IDX" href="uart__comm_8h.html#a0d5293e611c9aa5fcd753ff5449cd428"/>
+        <topic label="MEM_ADDR_SIZE" href="uart__comm_8h.html#a1d137d8897aa20256d8baed832ecfd60"/>
+        <topic label="MEM_ADDR_RANGE_START" href="uart__comm_8h.html#a71fa5f659b34cd73cf7cc63c1b7ab048"/>
+        <topic label="MEM_ADDR_RANGE_END" href="uart__comm_8h.html#aa7e64b1b0f895e3c0a70f4e283ff84d9"/>
+        <topic label="DATA_IDX" href="uart__comm_8h.html#aff3c02fae08da4b61c45dc4c86f5da25"/>
+        <topic label="MAX_DATA_SIZE" href="uart__comm_8h.html#a87f68e96fb938eddc39ad1f19d923a96"/>
+        <topic label="ACK_WRITE" href="uart__comm_8h.html#af7367f80850bb69b4a5aa8529f86d615"/>
+        <topic label="CRC_OFFSET" href="uart__comm_8h.html#ab09683186c7443a4edc846bd38b6ffe8"/>
+        <topic label="CRC_SIZE" href="uart__comm_8h.html#aa93e89217587fdff12bf43b5d7f54f74"/>
+        <topic label="END_OFFSET" href="uart__comm_8h.html#a48942c7427156052e2b1b901e85a9f77"/>
+        <topic label="FRAME_END_BYTE" href="uart__comm_8h.html#ae9d254d170527b7d9e94b4da2a196724"/>
+        <topic label="END_BYTE_SIZE" href="uart__comm_8h.html#a83d5feffae324698881bc41151a2065e"/>
+        <topic label="TRAILER_SIZE" href="uart__comm_8h.html#ae32c854642cd312f2d2247bea999e244"/>
+        <topic label="MAX_BUFFER_SIZE" href="uart__comm_8h.html#ad4d796b98c583d49e83adabd74a63bf6"/>
+        <topic label="ERROR_OFFSET" href="uart__comm_8h.html#a34da2490156c0fde3a3a9e8b658e6639"/>
+        <topic label="DMA_RX_TRANSFER_SIZE" href="uart__comm_8h.html#aa03eb1875b435b776df8615f90a156f8"/>
+        <topic label="UART_Status" href="uart__comm_8h.html#a778bbef5f4b52a5651552136715f53c4">
+          <topic label="UART_STATUS_IDLE" href="uart__comm_8h.html#a778bbef5f4b52a5651552136715f53c4a79ebec8408b7a8279567fbfbfc1a3f99"/>
+          <topic label="UART_STATUS_RX_BUFFERING" href="uart__comm_8h.html#a778bbef5f4b52a5651552136715f53c4aec5b1811ed18c5065224e381833d9f39"/>
+          <topic label="UART_STATUS_PROCESS_FRAME" href="uart__comm_8h.html#a778bbef5f4b52a5651552136715f53c4a1a50a930d80f7f48f537dfbae758fac7"/>
+          <topic label="UART_STATUS_TX_TRANSMITTING" href="uart__comm_8h.html#a778bbef5f4b52a5651552136715f53c4a9f4851acd106af09e58ea590a774f2ac"/>
+        </topic>
+        <topic label="ErrorType" href="uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45a">
+          <topic label="ERROR_NONE" href="uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa4edc8aade11e1de7bbbdc04704baae5f"/>
+          <topic label="ERROR_MISMATCH_START_BYTE" href="uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aacc5748ad3407d078b4dd2019cdf6f76d"/>
+          <topic label="ERROR_MISMATCH_END_BYTE" href="uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa0e5499fcbd3e32d505accebd92c7b277"/>
+          <topic label="ERROR_ADDR_RANGE" href="uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aa62cd76a829509411d0bd44d94dfafbb7"/>
+          <topic label="ERROR_MISMATCH_CRC" href="uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aadcda995dcc17bff6d0e56d0cbc405461"/>
+          <topic label="ERROR_MISMATCH_TARGET_ADDR" href="uart__comm_8h.html#ab0df38968e4f03a3f1f6d6df0f31f45aae9ff793c745e0502abbfba95475f5eda"/>
+        </topic>
+        <topic label="UART_init" href="uart__comm_8h.html#af21454d8c68ca267a189fdd0524cd9de"/>
+        <topic label="UART_checkForCommand" href="uart__comm_8h.html#abac7d05b78930afcec50fe26803feeb9"/>
+        <topic label="UART_getFrameLength" href="uart__comm_8h.html#a8ea5cb0aa5f5611ab1a9b1bb35376e64"/>
+        <topic label="DMA_RX_init" href="uart__comm_8h.html#a5ff9f546dea92b6ed6be5c4df5472aeb"/>
+        <topic label="pUART" href="uart__comm_8h.html#afbe7dcd8657b8d071d83a664aeaeb981"/>
+      </topic>
+    </topic>
+    <topic label="Globals" href="globals.html">
+      <topic label="All" href="globals.html">
+        <topic label="_" href="globals.html"/>
+        <topic label="a" href="globals_a.html"/>
+        <topic label="b" href="globals_b.html"/>
+        <topic label="c" href="globals_c.html"/>
+        <topic label="d" href="globals_d.html"/>
+        <topic label="e" href="globals_e.html"/>
+        <topic label="f" href="globals_f.html"/>
+        <topic label="g" href="globals_g.html"/>
+        <topic label="h" href="globals_h.html"/>
+        <topic label="i" href="globals_i.html"/>
+        <topic label="k" href="globals_k.html"/>
+        <topic label="l" href="globals_l.html"/>
+        <topic label="m" href="globals_m.html"/>
+        <topic label="n" href="globals_n.html"/>
+        <topic label="o" href="globals_o.html"/>
+        <topic label="p" href="globals_p.html"/>
+        <topic label="r" href="globals_r.html"/>
+        <topic label="s" href="globals_s.html"/>
+        <topic label="t" href="globals_t.html"/>
+        <topic label="u" href="globals_u.html"/>
+        <topic label="v" href="globals_v.html"/>
+        <topic label="w" href="globals_w.html"/>
+      </topic>
+      <topic label="Functions" href="globals_func.html"/>
+      <topic label="Variables" href="globals_vars.html"/>
+      <topic label="Enumerations" href="globals_enum.html"/>
+      <topic label="Enumerator" href="globals_eval.html"/>
+      <topic label="Macros" href="globals_defs.html"/>
+    </topic>
+  </topic>
+  <topic label="Disclaimer" href="_disclaimer.html"/>
+</toc>

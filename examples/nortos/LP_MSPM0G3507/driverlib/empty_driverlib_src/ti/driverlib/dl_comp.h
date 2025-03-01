@@ -227,10 +227,10 @@ typedef enum {
 
 /*! @enum DL_COMP_REF_MODE */
 typedef enum {
-    /*! ULP_REF bandgap, local reference buffer, and 8-bit COMP inside
+    /*! ULP_REF bandgap, local reference buffer, and 8-bit DAC inside
      * comparator operate in static mode */
     DL_COMP_REF_MODE_STATIC = COMP_CTL2_REFMODE_STATIC,
-    /*! ULP_REF bandgap, local reference buffer, and 8-bit COMP inside
+    /*! ULP_REF bandgap, local reference buffer, and 8-bit DAC inside
      * comparator operate in sampled mode */
     DL_COMP_REF_MODE_SAMPLED = COMP_CTL2_REFMODE_SAMPLED,
 } DL_COMP_REF_MODE;
@@ -299,9 +299,9 @@ typedef enum {
 
 /*! @enum DL_COMP_DAC_INPUT */
 typedef enum {
-    /*! DACCODE0 selected as input for 8-bit COMP when DACCTL bit is 1 */
+    /*! DACCODE0 selected as input for 8-bit DAC when DACCTL bit is 1 */
     DL_COMP_DAC_INPUT_DACCODE0 = COMP_CTL2_DACSW_DACCODE0_SEL,
-    /*! DACCODE1 selected as input for 8-bit COMP when DACCTL bit is 1 */
+    /*! DACCODE1 selected as input for 8-bit DAC when DACCTL bit is 1 */
     DL_COMP_DAC_INPUT_DACCODE1 = COMP_CTL2_DACSW_DACCODE1_SEL,
 } DL_COMP_DAC_INPUT;
 
@@ -357,7 +357,13 @@ typedef struct {
 } DL_COMP_RefVoltageConfig;
 
 /**
- * @brief      Enables power on the comparator module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the COMP
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  @note For power savings, please refer to @ref DL_COMP_enable
  *
  * @param[in]  comp  Pointer to the register overlay for the peripheral
  */
@@ -367,7 +373,13 @@ __STATIC_INLINE void DL_COMP_enablePower(COMP_Regs *comp)
 }
 
 /**
- * @brief      Disables power on the comparator module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the COMP
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings. For power savings,
+ *  please refer to @ref DL_COMP_enable
  *
  * @param[in]  comp  Pointer to the register overlay for the peripheral
  */
@@ -377,14 +389,22 @@ __STATIC_INLINE void DL_COMP_disablePower(COMP_Regs *comp)
 }
 
 /**
- * @brief      Returns if power is on for the comparator module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the COMP
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param[in]  comp  Pointer to the register overlay for the peripheral
  *
  *  @return    The status of the peripheral power
  *
- * @retval     true  If power is enabled
- * @retval     false If power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
 __STATIC_INLINE bool DL_COMP_isPowerEnabled(COMP_Regs *comp)
 {
@@ -918,7 +938,7 @@ __STATIC_INLINE DL_COMP_IMSEL_CHANNEL DL_COMP_getNegativeChannelInput(
  *  @brief      Set the mode for the reference voltage
  *
  * This bit requests ULP_REF bandgap operation in static mode or sampled mode.
- * The local reference buffer and 8-bit COMP inside comparator module are also
+ * The local reference buffer and 8-bit DAC inside comparator module are also
  * configured accordingly.
  *     - In @ref DL_COMP_REF_MODE_STATIC, operation offers higher accuracy but
  *       consumes higher current.
@@ -1047,14 +1067,14 @@ __STATIC_INLINE DL_COMP_BLANKING_SOURCE DL_COMP_getBlankingSource(
 }
 
 /**
- *  @brief      Select the source for COMP control
+ *  @brief      Select the source for DAC control
  *
  * The DACCTL bit determines if the comparator output or a software control
  * bit, DACSW, selects between DACCODE0 and DACCODE1 bits as the input to
- * the COMP.
+ * the DAC.
  *
  *  @param[in]  comp     Pointer to the register overlay for the peripheral
- *  @param[in]  control  What controls the inputs to the COMP.
+ *  @param[in]  control  What controls the inputs to the DAC.
  *                       One of @ref DL_COMP_DAC_CONTROL
  */
 __STATIC_INLINE void DL_COMP_setDACControl(
@@ -1065,7 +1085,7 @@ __STATIC_INLINE void DL_COMP_setDACControl(
 }
 
 /**
- *  @brief      Get what controls the input to the COMP
+ *  @brief      Get what controls the input to the DAC
  *
  *  @param[in]  comp  Pointer to the register overlay for the peripheral
  *
@@ -1081,7 +1101,7 @@ __STATIC_INLINE DL_COMP_DAC_CONTROL DL_COMP_getDACControl(COMP_Regs *comp)
 }
 
 /**
- *  @brief      Set whether DACCODE0 or DACCODE1 is the input to the COMP
+ *  @brief      Set whether DACCODE0 or DACCODE1 is the input to the DAC
  *
  * @pre The DACCTL bit must be set to 1 in order to program the DACSW bit to
  * select between DACCODE0 or DACCODE1.
@@ -1089,7 +1109,7 @@ __STATIC_INLINE DL_COMP_DAC_CONTROL DL_COMP_getDACControl(COMP_Regs *comp)
  * @sa          DL_COMP_setDACControl
  *
  *  @param[in]  comp   Pointer to the register overlay for the peripheral
- *  @param[in]  input  The input to the COMP. One of @ref DL_COMP_DAC_INPUT
+ *  @param[in]  input  The input to the DAC. One of @ref DL_COMP_DAC_INPUT
  */
 __STATIC_INLINE void DL_COMP_setDACInput(
     COMP_Regs *comp, DL_COMP_DAC_INPUT input)
@@ -1098,14 +1118,14 @@ __STATIC_INLINE void DL_COMP_setDACInput(
 }
 
 /**
- *  @brief      Get whether DACCODE0 or DACCODE1 is the input to the COMP
+ *  @brief      Get whether DACCODE0 or DACCODE1 is the input to the DAC
  *
  * @pre The DACCTL bit must be set to 1 in order to program the DACSW bit to
  * select between DACCODE0 or DACCODE1.
  *
  *  @param[in]  comp  Pointer to the register overlay for the peripheral
  *
- *  @return     The input to the COMP
+ *  @return     The input to the DAC
  *
  *  @retval     One of @ref DL_COMP_DAC_INPUT
  */
@@ -1117,11 +1137,11 @@ __STATIC_INLINE DL_COMP_DAC_INPUT DL_COMP_getDACInput(COMP_Regs *comp)
 }
 
 /**
- *  @brief      Set the 8-bit COMP input code through DACCODE0
+ *  @brief      Set the 8-bit DAC input code through DACCODE0
  *
- * Sets the first 8-bit COMP code through DACCODE0.  When the COMP code is 0x0
- * the COMP output will be 0 V. When the COMP code is 0xFF the COMP output will
- * be selected reference voltage x 255/256.
+ * Sets the first 8-bit DAC code through DACCODE0.  When the DAC code is 0x0
+ * the DAC output will be selected reference voltage x 1/256 V. When the DAC
+ * code is 0xFF the DAC output will be selected reference voltage x 255/256.
  *
  * @pre The DACCTL bit determines what controls the selection between
  * DACCODE0 and DACCODE1.
@@ -1155,11 +1175,11 @@ __STATIC_INLINE uint32_t DL_COMP_getDACCode0(COMP_Regs *comp)
 }
 
 /**
- *  @brief      Set the 8-bit COMP input code through DACCODE1
+ *  @brief      Set the 8-bit DAC input code through DACCODE1
  *
- * Sets the second 8-bit COMP code through DACCODE1.  When the COMP code is 0x0
- * the COMP output will be 0 V. When the COMP code is 0xFF the COMP output will
- * be selected reference voltage x 255/256.
+ * Sets the second 8-bit DAC code through DACCODE1.  When the DAC code is 0x0
+ * the DAC output will be selected reference voltage x 1/256 V. When the DAC
+ * code is 0xFF the DAC output will be selected reference voltage x 255/256.
  *
  * @pre The DACCTL bit determines what controls the selection between
  * DACCODE0 and DACCODE1.

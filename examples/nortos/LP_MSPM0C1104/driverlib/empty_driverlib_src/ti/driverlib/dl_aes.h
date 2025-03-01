@@ -225,7 +225,11 @@ typedef struct {
 } DL_AES_backupConfig;
 
 /**
- * @brief Enables power on AES module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the AES
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
  * @param aes        Pointer to the register overlay for the peripheral
  */
@@ -235,7 +239,10 @@ __STATIC_INLINE void DL_AES_enablePower(AES_Regs *aes)
 }
 
 /**
- * @brief Disables power on AES module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the AES
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param aes        Pointer to the register overlay for the peripheral
  */
@@ -245,14 +252,22 @@ __STATIC_INLINE void DL_AES_disablePower(AES_Regs *aes)
 }
 
 /**
- * @brief Returns if power enabled on AES module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the AES
+ *        is enabled
  *
- * @param aes        Pointer to the register overlay for the peripheral
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @param aes        Pointer to the register overlay for the peripheral
+ *
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_AES_isPowerEnabled(AES_Regs *aes)
+__STATIC_INLINE bool DL_AES_isPowerEnabled(const AES_Regs *aes)
 {
     return (
         (aes->GPRCM.PWREN & AES_PWREN_ENABLE_MASK) == AES_PWREN_ENABLE_ENABLE);
@@ -279,7 +294,7 @@ __STATIC_INLINE void DL_AES_reset(AES_Regs *aes)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_AES_isReset(AES_Regs *aes)
+__STATIC_INLINE bool DL_AES_isReset(const AES_Regs *aes)
 {
     return ((aes->GPRCM.STAT & AES_STAT_RESETSTKY_MASK) ==
             AES_STAT_RESETSTKY_RESET);
@@ -331,7 +346,7 @@ __STATIC_INLINE void DL_AES_softwareReset(AES_Regs *aes)
  *  @retval true flag is set
  *  @retval false flag is cleared
  */
-__STATIC_INLINE bool DL_AES_isFaultFlagSet(AES_Regs *aes)
+__STATIC_INLINE bool DL_AES_isFaultFlagSet(const AES_Regs *aes)
 {
     return (
         (aes->AESACTL0 & AES_AESACTL0_ERRFG_MASK) == AES_AESACTL0_ERRFG_ERR);
@@ -408,7 +423,7 @@ __STATIC_INLINE void DL_AES_setCipherBlockCounter(
  *
  * @retval           Value between [0x0, 0xFF]
  */
-__STATIC_INLINE uint32_t DL_AES_getCipherBlockCounter(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getCipherBlockCounter(const AES_Regs *aes)
 {
     return (aes->AESACTL1 & AES_AESACTL1_BLKCNTX_MASK);
 }
@@ -425,7 +440,7 @@ __STATIC_INLINE uint32_t DL_AES_getCipherBlockCounter(AES_Regs *aes)
  * @retval false. Module is in idle state
  *
  */
-__STATIC_INLINE bool DL_AES_isBusy(AES_Regs *aes)
+__STATIC_INLINE bool DL_AES_isBusy(const AES_Regs *aes)
 {
     return (
         (aes->AESASTAT & AES_AESASTAT_BUSY_MASK) == AES_AESASTAT_BUSY_BUSY);
@@ -443,7 +458,7 @@ __STATIC_INLINE bool DL_AES_isBusy(AES_Regs *aes)
  * @retval false. Not all bytes read
  *
  */
-__STATIC_INLINE bool DL_AES_getDataOutReadStatus(AES_Regs *aes)
+__STATIC_INLINE bool DL_AES_getDataOutReadStatus(const AES_Regs *aes)
 {
     return (
         (aes->AESASTAT & AES_AESASTAT_DOUTRD_MASK) == AES_AESASTAT_DOUTRD_ALL);
@@ -459,7 +474,7 @@ __STATIC_INLINE bool DL_AES_getDataOutReadStatus(AES_Regs *aes)
  * @return Number of Key bytes loaded
  *
  */
-__STATIC_INLINE uint8_t DL_AES_getKeyBytesCount(AES_Regs *aes)
+__STATIC_INLINE uint8_t DL_AES_getKeyBytesCount(const AES_Regs *aes)
 {
     return ((uint8_t)((aes->AESASTAT & AES_AESASTAT_KEYCNTX_MAXNUM) >> 4));
 }
@@ -474,7 +489,7 @@ __STATIC_INLINE uint8_t DL_AES_getKeyBytesCount(AES_Regs *aes)
  * @return Number of Data In bytes loaded
  *
  */
-__STATIC_INLINE uint8_t DL_AES_getDataInBytesCount(AES_Regs *aes)
+__STATIC_INLINE uint8_t DL_AES_getDataInBytesCount(const AES_Regs *aes)
 {
     return ((uint8_t)((aes->AESASTAT & AES_AESASTAT_DINCNTX_MAXNUM) >> 8));
 }
@@ -489,7 +504,7 @@ __STATIC_INLINE uint8_t DL_AES_getDataInBytesCount(AES_Regs *aes)
  * @return Number of Data Out bytes loaded
  *
  */
-__STATIC_INLINE uint8_t DL_AES_getDataOutBytesCount(AES_Regs *aes)
+__STATIC_INLINE uint8_t DL_AES_getDataOutBytesCount(const AES_Regs *aes)
 {
     return ((uint8_t)((aes->AESASTAT & AES_AESASTAT_DOUTCNTX_MAXNUM) >> 12));
 }
@@ -534,7 +549,7 @@ __STATIC_INLINE void DL_AES_setAllKeyWritten(AES_Regs *aes)
  * @retval false Not all bytes are written to these registers
  *
  */
-__STATIC_INLINE bool DL_AES_isAllDataWritten(AES_Regs *aes)
+__STATIC_INLINE bool DL_AES_isAllDataWritten(const AES_Regs *aes)
 {
     return (aes->AESASTAT & AES_AESASTAT_DINWR_MASK) == AES_AESASTAT_DINWR_ALL;
 }
@@ -550,7 +565,7 @@ __STATIC_INLINE bool DL_AES_isAllDataWritten(AES_Regs *aes)
  * @retval true All bytes are written to these registers
  * @retval false Not all bytes are written to these registers
  */
-__STATIC_INLINE bool DL_AES_isAllKeysWritten(AES_Regs *aes)
+__STATIC_INLINE bool DL_AES_isAllKeysWritten(const AES_Regs *aes)
 {
     return (aes->AESASTAT & AES_AESASTAT_KEYWR_MASK) == AES_AESASTAT_KEYWR_ALL;
 }
@@ -613,7 +628,7 @@ void DL_AES_setKeyAligned(
  *
  */
 DL_AES_STATUS DL_AES_xorData(
-    uint8_t *data, uint8_t *xorData, uint8_t *xorOutputData);
+    const uint8_t *data, const uint8_t *xorData, uint8_t *xorOutputData);
 
 /**
  *
@@ -679,7 +694,7 @@ void DL_AES_loadDataInAligned(AES_Regs *aes, const uint32_t *dataAligned);
  *        writes, if this is not necessary, consider using uint32_t pointers and
  *        @ref DL_AES_getDataOutAligned
  */
-DL_AES_STATUS DL_AES_getDataOut(AES_Regs *aes, uint8_t *data);
+DL_AES_STATUS DL_AES_getDataOut(const AES_Regs *aes, uint8_t *data);
 
 /**
  *
@@ -693,7 +708,7 @@ DL_AES_STATUS DL_AES_getDataOut(AES_Regs *aes, uint8_t *data);
  *  @sa DL_AES_getDataOut
  *
  */
-void DL_AES_getDataOutAligned(AES_Regs *aes, uint32_t *dataAligned);
+void DL_AES_getDataOutAligned(const AES_Regs *aes, uint32_t *dataAligned);
 
 /**
  *
@@ -870,7 +885,7 @@ __STATIC_INLINE void DL_AES_disableDMATrigger2Event(AES_Regs *aes)
  *  @retval      DL_AES_INTERRUPT_AES_READY if AES Ready interrupt is enabled
  *  @retval      0 if AES Ready interrupt is not enabled
  */
-__STATIC_INLINE uint32_t DL_AES_getEnabledInterrupts(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getEnabledInterrupts(const AES_Regs *aes)
 {
     return (aes->CPU_INT.IMASK & AES_CPU_INT_IMASK_AESRDY_MASK);
 }
@@ -886,7 +901,7 @@ __STATIC_INLINE uint32_t DL_AES_getEnabledInterrupts(AES_Regs *aes)
  *  @retval      DL_AES_EVENT_AES_DMA_TRIGGER0 if DMA Trigger 0 Event is enabled
  *  @retval      0 if DMA Trigger 0 Event is not enabled
  */
-__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger0Event(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger0Event(const AES_Regs *aes)
 {
     return (aes->DMA_TRIG0.IMASK & AES_DMA_TRIG0_IMASK_DMA0_MASK);
 }
@@ -902,7 +917,7 @@ __STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger0Event(AES_Regs *aes)
  *  @retval      DL_AES_EVENT_AES_DMA_TRIGGER1 if DMA Trigger 1 Event is enabled
  *  @retval      0 if DMA Trigger 1 Event is not enabled
  */
-__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger1Event(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger1Event(const AES_Regs *aes)
 {
     return (aes->DMA_TRIG1.IMASK & AES_DMA_TRIG1_IMASK_DMA1_MASK);
 }
@@ -918,7 +933,7 @@ __STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger1Event(AES_Regs *aes)
  *  @retval      DL_AES_EVENT_AES_DMA_TRIGGER2 if DMA Trigger 2 Event is enabled
  *  @retval      0 if DMA Trigger 2 Event is not enabled
  */
-__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger2Event(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger2Event(const AES_Regs *aes)
 {
     return (aes->DMA_TRIG2.IMASK & AES_DMA_TRIG2_IMASK_DMA2_MASK);
 }
@@ -938,7 +953,7 @@ __STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger2Event(AES_Regs *aes)
  *
  *  @sa         DL_AES_enableInterrupt
  */
-__STATIC_INLINE uint32_t DL_AES_getEnabledInterruptStatus(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getEnabledInterruptStatus(const AES_Regs *aes)
 {
     return (aes->CPU_INT.MIS & AES_CPU_INT_IMASK_AESRDY_MASK);
 }
@@ -958,7 +973,8 @@ __STATIC_INLINE uint32_t DL_AES_getEnabledInterruptStatus(AES_Regs *aes)
  *
  *  @sa         DL_AES_enableDMATrigger0Event
  */
-__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger0EventStatus(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger0EventStatus(
+    const AES_Regs *aes)
 {
     return (aes->DMA_TRIG0.MIS & AES_DMA_TRIG0_IMASK_DMA0_MASK);
 }
@@ -978,7 +994,8 @@ __STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger0EventStatus(AES_Regs *aes)
  *
  *  @sa         DL_AES_enableDMATrigger1Event
  */
-__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger1EventStatus(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger1EventStatus(
+    const AES_Regs *aes)
 {
     return (aes->DMA_TRIG1.MIS & AES_DMA_TRIG1_IMASK_DMA1_MASK);
 }
@@ -998,7 +1015,8 @@ __STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger1EventStatus(AES_Regs *aes)
  *
  *  @sa         DL_AES_enableDMATrigger2Event
  */
-__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger2EventStatus(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger2EventStatus(
+    const AES_Regs *aes)
 {
     return (aes->DMA_TRIG2.MIS & AES_DMA_TRIG2_IMASK_DMA2_MASK);
 }
@@ -1017,7 +1035,7 @@ __STATIC_INLINE uint32_t DL_AES_getEnabledDMATrigger2EventStatus(AES_Regs *aes)
  *  @retval      DL_AES_EVENT_AES_DMA_TRIGGER0 if AES Ready interrupt is pending
  *  @retval      0 if AES Ready interrupt is not pending
  */
-__STATIC_INLINE uint32_t DL_AES_getRawInterruptStatus(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getRawInterruptStatus(const AES_Regs *aes)
 {
     return (aes->CPU_INT.RIS & AES_CPU_INT_IMASK_AESRDY_MASK);
 }
@@ -1036,7 +1054,8 @@ __STATIC_INLINE uint32_t DL_AES_getRawInterruptStatus(AES_Regs *aes)
  *  @retval      DL_AES_EVENT_AES_DMA_TRIGGER0 if DMA Trigger 0 Event is pending
  *  @retval      0 if DMA Trigger 0 Event is not pending
  */
-__STATIC_INLINE uint32_t DL_AES_getRawDMATrigger0EventStatus(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getRawDMATrigger0EventStatus(
+    const AES_Regs *aes)
 {
     return (aes->DMA_TRIG0.RIS & AES_DMA_TRIG0_IMASK_DMA0_MASK);
 }
@@ -1055,7 +1074,8 @@ __STATIC_INLINE uint32_t DL_AES_getRawDMATrigger0EventStatus(AES_Regs *aes)
  *  @retval      DL_AES_EVENT_AES_DMA_TRIGGER0 if DMA Trigger 1 Event is pending
  *  @retval      0 if DMA Trigger 1 Event is not pending
  */
-__STATIC_INLINE uint32_t DL_AES_getRawDMATrigger1EventStatus(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getRawDMATrigger1EventStatus(
+    const AES_Regs *aes)
 {
     return (aes->DMA_TRIG1.RIS & AES_DMA_TRIG1_IMASK_DMA1_MASK);
 }
@@ -1074,7 +1094,8 @@ __STATIC_INLINE uint32_t DL_AES_getRawDMATrigger1EventStatus(AES_Regs *aes)
  *  @retval      DL_AES_EVENT_AES_DMA_TRIGGER0 if DMA Trigger 2 Event is pending
  *  @retval      0 if DMA Trigger 2 Event is not pending
  */
-__STATIC_INLINE uint32_t DL_AES_getRawDMATrigger2EventStatus(AES_Regs *aes)
+__STATIC_INLINE uint32_t DL_AES_getRawDMATrigger2EventStatus(
+    const AES_Regs *aes)
 {
     return (aes->DMA_TRIG2.RIS & AES_DMA_TRIG2_IMASK_DMA2_MASK);
 }
@@ -1090,7 +1111,7 @@ __STATIC_INLINE uint32_t DL_AES_getRawDMATrigger2EventStatus(AES_Regs *aes)
  *
  *  @return     The highest priority pending AES interrupt
  */
-__STATIC_INLINE DL_AES_IIDX DL_AES_getPendingInterrupt(AES_Regs *aes)
+__STATIC_INLINE DL_AES_IIDX DL_AES_getPendingInterrupt(const AES_Regs *aes)
 {
     uint32_t interruptIdx = (uint32_t) aes->CPU_INT.IIDX;
 
@@ -1108,7 +1129,8 @@ __STATIC_INLINE DL_AES_IIDX DL_AES_getPendingInterrupt(AES_Regs *aes)
  *
  *  @return     The highest priority pending DMA Trigger 0 Event
  */
-__STATIC_INLINE DL_AES_IIDX DL_AES_getPendingDMATrigger0Event(AES_Regs *aes)
+__STATIC_INLINE DL_AES_IIDX DL_AES_getPendingDMATrigger0Event(
+    const AES_Regs *aes)
 {
     uint32_t eventIdx = (uint32_t) aes->DMA_TRIG0.IIDX;
 
@@ -1126,7 +1148,8 @@ __STATIC_INLINE DL_AES_IIDX DL_AES_getPendingDMATrigger0Event(AES_Regs *aes)
  *
  *  @return     The highest priority pending DMA Trigger 1 Event
  */
-__STATIC_INLINE DL_AES_IIDX DL_AES_getPendingDMATrigger1Event(AES_Regs *aes)
+__STATIC_INLINE DL_AES_IIDX DL_AES_getPendingDMATrigger1Event(
+    const AES_Regs *aes)
 {
     uint32_t eventIdx = (uint32_t) aes->DMA_TRIG1.IIDX;
 
@@ -1144,7 +1167,8 @@ __STATIC_INLINE DL_AES_IIDX DL_AES_getPendingDMATrigger1Event(AES_Regs *aes)
  *
  *  @return     The highest priority pending DMA Trigger 2 Event
  */
-__STATIC_INLINE DL_AES_IIDX DL_AES_getPendingDMATrigger2Event(AES_Regs *aes)
+__STATIC_INLINE DL_AES_IIDX DL_AES_getPendingDMATrigger2Event(
+    const AES_Regs *aes)
 {
     uint32_t eventIdx = (uint32_t) aes->DMA_TRIG2.IIDX;
 
@@ -1210,7 +1234,7 @@ __STATIC_INLINE void DL_AES_clearDMATrigger2EventStatus(AES_Regs *aes)
  *              overwritten). TRUE if a configuration was successfully saved
  *
  */
-bool DL_AES_saveConfiguration(AES_Regs *aes, DL_AES_backupConfig *ptr);
+bool DL_AES_saveConfiguration(const AES_Regs *aes, DL_AES_backupConfig *ptr);
 
 /**
  *  @brief      Restore AES configuration after leaving a power loss state.

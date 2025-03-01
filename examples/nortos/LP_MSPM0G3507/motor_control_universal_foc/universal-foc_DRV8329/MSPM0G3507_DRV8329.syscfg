@@ -36,8 +36,6 @@ const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 /**
  * Write custom configuration values to the imported modules.
  */
-ProjectConfig.genDisable = true;
-
 ADC121.$name                      = "ADC0";
 ADC121.sampClkSrc                 = "DL_ADC12_CLOCK_ULPCLK";
 ADC121.samplingOperationMode      = "sequence";
@@ -46,19 +44,19 @@ ADC121.trigSrc                    = "DL_ADC12_TRIG_SRC_EVENT";
 ADC121.powerDownMode              = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
 ADC121.subChanID                  = 12;
 ADC121.adcMem0avgen               = true;
-ADC121.interruptPriority          = "1";
 ADC121.sampleTime0                = "250ns";
 ADC121.sampleTime1                = "250ns";
 ADC121.hwNumerator                = "DL_ADC12_HW_AVG_NUM_ACC_4";
 ADC121.hwDenominator              = "DL_ADC12_HW_AVG_DEN_DIV_BY_4";
 ADC121.enabledEvents              = ["DL_ADC12_EVENT_MEM0_RESULT_LOADED"];
 ADC121.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_7";
-ADC121.endAdd                     = 1;
 ADC121.adcMem1_name               = "DUMMY";
 ADC121.adcMem1chansel             = "DL_ADC12_INPUT_CHAN_7";
 ADC121.adcMem1trig                = "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT";
-ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM1_RESULT_LOADED"];
 ADC121.adcMem1avgen               = true;
+ADC121.adcMem0trig                = "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT";
+ADC121.enabledInterrupts          = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.interruptPriority          = "0";
 ADC121.peripheral.$assign         = "ADC0";
 ADC121.peripheral.adcPin7.$assign = "PA22";
 
@@ -77,16 +75,14 @@ ADC122.sampleTime1                = "250ns";
 ADC122.hwNumerator                = "DL_ADC12_HW_AVG_NUM_ACC_4";
 ADC122.hwDenominator              = "DL_ADC12_HW_AVG_DEN_DIV_BY_4";
 ADC122.subChanID                  = 13;
-ADC122.enabledEvents              = ["DL_ADC12_EVENT_MEM0_RESULT_LOADED"];
-ADC122.pubChanID                  = 11;
-ADC122.endAdd                     = 2;
 ADC122.adcMem2chansel             = "DL_ADC12_INPUT_CHAN_3";
-ADC122.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_6";
-ADC122.adcMem1chansel             = "DL_ADC12_INPUT_CHAN_5";
+ADC122.endAdd                     = 2;
+ADC122.adcMem0chansel             = "DL_ADC12_INPUT_CHAN_2";
+ADC122.adcMem0trig                = "DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT";
+ADC122.adcMem1chansel             = "DL_ADC12_INPUT_CHAN_2";
 ADC122.peripheral.$assign         = "ADC1";
 ADC122.peripheral.adcPin3.$assign = "PA18";
-ADC122.peripheral.adcPin6.$assign = "PB19";
-ADC122.peripheral.adcPin5.$assign = "PB18";
+ADC122.peripheral.adcPin2.$assign = "PA17";
 
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";
@@ -205,12 +201,12 @@ TIMER2.timerPeriod                 = "100us";
 TIMER2.$name                       = "TIMA1";
 TIMER2.timerMode                   = "PERIODIC";
 TIMER2.event2PublisherChannel      = 13;
-TIMER2.event2ControllerInterruptEn = ["CC1_DN_EVENT"];
 TIMER2.event1PublisherChannel      = 12;
 TIMER2.event1ControllerInterruptEn = ["CC0_DN_EVENT"];
 TIMER2.enableShadowLoad            = true;
 TIMER2.crossTriggerEn              = true;
 TIMER2.crossTriggerAuthority       = "Secondary";
+TIMER2.event2ControllerInterruptEn = ["CC0_DN_EVENT","CC1_DN_EVENT"];
 TIMER2.peripheral.$assign          = "TIMA1";
 
 PWM1.associatedFault              = TIMERFault1;
@@ -243,3 +239,6 @@ UART1.DMA_CHANNEL_RX.destIncrement        = "INCREMENT";
 UART1.DMA_CHANNEL_RX.enableEarlyInterrupt = true;
 UART1.DMA_CHANNEL_RX.earlyIntThresh       = "64";
 UART1.DMA_CHANNEL_RX.peripheral.$assign   = "DMA_CH0";
+
+ProjectConfig.genDisable = true;
+

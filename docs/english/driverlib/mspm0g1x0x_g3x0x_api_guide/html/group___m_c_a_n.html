@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -175,7 +175,7 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure for MCAN Extended Message ID Filter Element.  <a href="struct_d_l___m_c_a_n___ext_msg_i_d_filter_element.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___m_c_a_n__backup_config.html">DL_MCAN_backupConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure to backup MCAN peripheral state before entering STOP or STANDBY mode. Not required after PG 1.0 silicon. Used by <a class="el" href="group___m_c_a_n.html#gaaccda0bf8d7c1e00249265e1c1f32a88">DL_MCAN_saveConfiguration</a> and <a class="el" href="group___m_c_a_n.html#gae782dcf96b6197b6ab2aee766cbe9f68">DL_MCAN_restoreConfiguration</a>.  <a href="struct_d_l___m_c_a_n__backup_config.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration structure to backup MCAN peripheral state before entering STOP or STANDBY mode. Used by <a class="el" href="group___m_c_a_n.html#ga5931235039ceb7c5ddb77e7b7e2644d0">DL_MCAN_saveConfiguration</a> and <a class="el" href="group___m_c_a_n.html#gae782dcf96b6197b6ab2aee766cbe9f68">DL_MCAN_restoreConfiguration</a>.  <a href="struct_d_l___m_c_a_n__backup_config.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -436,27 +436,27 @@ Functions</h2></td></tr>
 <tr class="memitem:gaf96b53b5c72a7d7079f6baa2ec086471"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf96b53b5c72a7d7079f6baa2ec086471">DL_MCAN_isReady</a> (<a class="el" href="group___m_c_a_n.html#ga687492fa529549bc1dff8c5fb068a783">DL_MCAN_INSTANCE</a> instance)</td></tr>
 <tr class="memdesc:gaf96b53b5c72a7d7079f6baa2ec086471"><td class="mdescLeft">&#160;</td><td class="mdescRight">if MCAN instance is ready to be configured  <a href="#gaf96b53b5c72a7d7079f6baa2ec086471">More...</a><br /></td></tr>
 <tr class="separator:gaf96b53b5c72a7d7079f6baa2ec086471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga93a2efae51b0d93112e7c5aec7f33ae7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga93a2efae51b0d93112e7c5aec7f33ae7">DL_MCAN_setClockConfig</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___clock_config.html">DL_MCAN_ClockConfig</a> *config)</td></tr>
-<tr class="memdesc:ga93a2efae51b0d93112e7c5aec7f33ae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure CANCLK source clock.  <a href="#ga93a2efae51b0d93112e7c5aec7f33ae7">More...</a><br /></td></tr>
-<tr class="separator:ga93a2efae51b0d93112e7c5aec7f33ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9fc6bfcb14de1747801a6bee7fbf293e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga9fc6bfcb14de1747801a6bee7fbf293e">DL_MCAN_setClockConfig</a> (MCAN_Regs *mcan, const <a class="el" href="struct_d_l___m_c_a_n___clock_config.html">DL_MCAN_ClockConfig</a> *config)</td></tr>
+<tr class="memdesc:ga9fc6bfcb14de1747801a6bee7fbf293e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure CANCLK source clock.  <a href="#ga9fc6bfcb14de1747801a6bee7fbf293e">More...</a><br /></td></tr>
+<tr class="separator:ga9fc6bfcb14de1747801a6bee7fbf293e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4d37f7f6f3c84c7a2db1f1659822fd03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4d37f7f6f3c84c7a2db1f1659822fd03">DL_MCAN_getClockConfig</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___clock_config.html">DL_MCAN_ClockConfig</a> *config)</td></tr>
 <tr class="memdesc:ga4d37f7f6f3c84c7a2db1f1659822fd03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get CANCLK clock configuration.  <a href="#ga4d37f7f6f3c84c7a2db1f1659822fd03">More...</a><br /></td></tr>
 <tr class="separator:ga4d37f7f6f3c84c7a2db1f1659822fd03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga35959ca3d6f65648dbe763441d8db242"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga35959ca3d6f65648dbe763441d8db242">DL_MCAN_isInReset</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga35959ca3d6f65648dbe763441d8db242"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if the MCAN module is in Reset.  <a href="#ga35959ca3d6f65648dbe763441d8db242">More...</a><br /></td></tr>
-<tr class="separator:ga35959ca3d6f65648dbe763441d8db242"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3b5eb33e7ce8862008d833d1a9fd6253"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga3b5eb33e7ce8862008d833d1a9fd6253">DL_MCAN_isFDOpEnable</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga3b5eb33e7ce8862008d833d1a9fd6253"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return flexible data rate operation status MCAN module.  <a href="#ga3b5eb33e7ce8862008d833d1a9fd6253">More...</a><br /></td></tr>
-<tr class="separator:ga3b5eb33e7ce8862008d833d1a9fd6253"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad2acf6e372afa1f90b68a81f8e860eec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gad2acf6e372afa1f90b68a81f8e860eec">DL_MCAN_isMemInitDone</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gad2acf6e372afa1f90b68a81f8e860eec"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if the memory initialization is done for MCAN module.  <a href="#gad2acf6e372afa1f90b68a81f8e860eec">More...</a><br /></td></tr>
-<tr class="separator:gad2acf6e372afa1f90b68a81f8e860eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga624290b19824c0abe4b427e817b636ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga624290b19824c0abe4b427e817b636ea">DL_MCAN_isInReset</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga624290b19824c0abe4b427e817b636ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if the MCAN module is in Reset.  <a href="#ga624290b19824c0abe4b427e817b636ea">More...</a><br /></td></tr>
+<tr class="separator:ga624290b19824c0abe4b427e817b636ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7df40a5a3f086c10da0e4d03278de669"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga7df40a5a3f086c10da0e4d03278de669">DL_MCAN_isFDOpEnable</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga7df40a5a3f086c10da0e4d03278de669"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return flexible data rate operation status MCAN module.  <a href="#ga7df40a5a3f086c10da0e4d03278de669">More...</a><br /></td></tr>
+<tr class="separator:ga7df40a5a3f086c10da0e4d03278de669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf6dcf9d367002c9d07cdbcc0b84192a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gacf6dcf9d367002c9d07cdbcc0b84192a">DL_MCAN_isMemInitDone</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:gacf6dcf9d367002c9d07cdbcc0b84192a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if the memory initialization is done for MCAN module.  <a href="#gacf6dcf9d367002c9d07cdbcc0b84192a">More...</a><br /></td></tr>
+<tr class="separator:gacf6dcf9d367002c9d07cdbcc0b84192a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae0009399ef1ec0ea50be9a3396db769e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gae0009399ef1ec0ea50be9a3396db769e">DL_MCAN_setOpMode</a> (MCAN_Regs *mcan, uint32_t mode)</td></tr>
 <tr class="memdesc:gae0009399ef1ec0ea50be9a3396db769e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will set MCAN module mode of operation.  <a href="#gae0009399ef1ec0ea50be9a3396db769e">More...</a><br /></td></tr>
 <tr class="separator:gae0009399ef1ec0ea50be9a3396db769e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga623517caa24ea5b96ee96bb5c1fa00cc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga623517caa24ea5b96ee96bb5c1fa00cc">DL_MCAN_getOpMode</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga623517caa24ea5b96ee96bb5c1fa00cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return MCAN module mode of operation.  <a href="#ga623517caa24ea5b96ee96bb5c1fa00cc">More...</a><br /></td></tr>
-<tr class="separator:ga623517caa24ea5b96ee96bb5c1fa00cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadf79bc80cee4ef9ab4f3ad3754c6598a"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gadf79bc80cee4ef9ab4f3ad3754c6598a">DL_MCAN_getOpMode</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:gadf79bc80cee4ef9ab4f3ad3754c6598a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return MCAN module mode of operation.  <a href="#gadf79bc80cee4ef9ab4f3ad3754c6598a">More...</a><br /></td></tr>
+<tr class="separator:gadf79bc80cee4ef9ab4f3ad3754c6598a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9c2f7bdd2bad9c167f1a69e111ef9605"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga9c2f7bdd2bad9c167f1a69e111ef9605">DL_MCAN_init</a> (MCAN_Regs *mcan, const <a class="el" href="struct_d_l___m_c_a_n___init_params.html">DL_MCAN_InitParams</a> *initParams)</td></tr>
 <tr class="memdesc:ga9c2f7bdd2bad9c167f1a69e111ef9605"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will initialize MCAN module.  <a href="#ga9c2f7bdd2bad9c167f1a69e111ef9605">More...</a><br /></td></tr>
 <tr class="separator:ga9c2f7bdd2bad9c167f1a69e111ef9605"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -481,18 +481,18 @@ Functions</h2></td></tr>
 <tr class="memitem:gae2867729dc6feb05c3592a2c88140ab6"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gae2867729dc6feb05c3592a2c88140ab6">DL_MCAN_TXBufAddReq</a> (MCAN_Regs *mcan, uint32_t bufNum)</td></tr>
 <tr class="memdesc:gae2867729dc6feb05c3592a2c88140ab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will set Tx Buffer Add Request.  <a href="#gae2867729dc6feb05c3592a2c88140ab6">More...</a><br /></td></tr>
 <tr class="separator:gae2867729dc6feb05c3592a2c88140ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabf4999b6afa1e249d2fbc143d118c7f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gabf4999b6afa1e249d2fbc143d118c7f1">DL_MCAN_getNewDataStatus</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___rx_new_data_status.html">DL_MCAN_RxNewDataStatus</a> *newDataStatus)</td></tr>
-<tr class="memdesc:gabf4999b6afa1e249d2fbc143d118c7f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return New Data Message Status.  <a href="#gabf4999b6afa1e249d2fbc143d118c7f1">More...</a><br /></td></tr>
-<tr class="separator:gabf4999b6afa1e249d2fbc143d118c7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a6d2df509c3f5ec8ec50509d58bfa13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga0a6d2df509c3f5ec8ec50509d58bfa13">DL_MCAN_getNewDataStatus</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___rx_new_data_status.html">DL_MCAN_RxNewDataStatus</a> *newDataStatus)</td></tr>
+<tr class="memdesc:ga0a6d2df509c3f5ec8ec50509d58bfa13"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return New Data Message Status.  <a href="#ga0a6d2df509c3f5ec8ec50509d58bfa13">More...</a><br /></td></tr>
+<tr class="separator:ga0a6d2df509c3f5ec8ec50509d58bfa13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4c5a896f88e8377ab704eaa925858f5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4c5a896f88e8377ab704eaa925858f5a">DL_MCAN_clearNewDataStatus</a> (MCAN_Regs *mcan, const <a class="el" href="struct_d_l___m_c_a_n___rx_new_data_status.html">DL_MCAN_RxNewDataStatus</a> *newDataStatus)</td></tr>
 <tr class="memdesc:ga4c5a896f88e8377ab704eaa925858f5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API clear New Data Message Status.  <a href="#ga4c5a896f88e8377ab704eaa925858f5a">More...</a><br /></td></tr>
 <tr class="separator:ga4c5a896f88e8377ab704eaa925858f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8b298ebf9fa98135ff5bd2ba1591691b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga8b298ebf9fa98135ff5bd2ba1591691b">DL_MCAN_readMsgRam</a> (MCAN_Regs *mcan, uint32_t memType, uint32_t bufNum, uint32_t fifoNum, <a class="el" href="struct_d_l___m_c_a_n___rx_buf_element.html">DL_MCAN_RxBufElement</a> *elem)</td></tr>
-<tr class="memdesc:ga8b298ebf9fa98135ff5bd2ba1591691b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to read received message form message RAM.  <a href="#ga8b298ebf9fa98135ff5bd2ba1591691b">More...</a><br /></td></tr>
-<tr class="separator:ga8b298ebf9fa98135ff5bd2ba1591691b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga15a844979922a4b0914fd5824fd3cdbc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga15a844979922a4b0914fd5824fd3cdbc">DL_MCAN_readTxEventFIFO</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___tx_event_f_i_f_o_element.html">DL_MCAN_TxEventFIFOElement</a> *txEventElem)</td></tr>
-<tr class="memdesc:ga15a844979922a4b0914fd5824fd3cdbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to read message form Tx Event FIFO.  <a href="#ga15a844979922a4b0914fd5824fd3cdbc">More...</a><br /></td></tr>
-<tr class="separator:ga15a844979922a4b0914fd5824fd3cdbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab2f7e6e74923583567f08a94fcdec0c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gab2f7e6e74923583567f08a94fcdec0c4">DL_MCAN_readMsgRam</a> (const MCAN_Regs *mcan, uint32_t memType, uint32_t bufNum, uint32_t fifoNum, <a class="el" href="struct_d_l___m_c_a_n___rx_buf_element.html">DL_MCAN_RxBufElement</a> *elem)</td></tr>
+<tr class="memdesc:gab2f7e6e74923583567f08a94fcdec0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to read received message form message RAM.  <a href="#gab2f7e6e74923583567f08a94fcdec0c4">More...</a><br /></td></tr>
+<tr class="separator:gab2f7e6e74923583567f08a94fcdec0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84a3ea245cb479611d7c4b43b429ca25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga84a3ea245cb479611d7c4b43b429ca25">DL_MCAN_readTxEventFIFO</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___tx_event_f_i_f_o_element.html">DL_MCAN_TxEventFIFOElement</a> *txEventElem)</td></tr>
+<tr class="memdesc:ga84a3ea245cb479611d7c4b43b429ca25"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to read message form Tx Event FIFO.  <a href="#ga84a3ea245cb479611d7c4b43b429ca25">More...</a><br /></td></tr>
+<tr class="separator:ga84a3ea245cb479611d7c4b43b429ca25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga99fd697b79f01240d6949df1ff048a28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga99fd697b79f01240d6949df1ff048a28">DL_MCAN_addStdMsgIDFilter</a> (MCAN_Regs *mcan, uint32_t filtNum, const <a class="el" href="struct_d_l___m_c_a_n___std_msg_i_d_filter_element.html">DL_MCAN_StdMsgIDFilterElement</a> *elem)</td></tr>
 <tr class="memdesc:ga99fd697b79f01240d6949df1ff048a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to add Standard Message ID Filter Element.  <a href="#ga99fd697b79f01240d6949df1ff048a28">More...</a><br /></td></tr>
 <tr class="separator:ga99fd697b79f01240d6949df1ff048a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -502,66 +502,66 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1c8fdf7c8b27124182f51a467c682d6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga1c8fdf7c8b27124182f51a467c682d6a">DL_MCAN_lpbkModeEnable</a> (MCAN_Regs *mcan, uint32_t lpbkMode, bool enable)</td></tr>
 <tr class="memdesc:ga1c8fdf7c8b27124182f51a467c682d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will enable/disable Loop Back Test Mode for MCAN module.  <a href="#ga1c8fdf7c8b27124182f51a467c682d6a">More...</a><br /></td></tr>
 <tr class="separator:ga1c8fdf7c8b27124182f51a467c682d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga12d99f9e992ec83c54a4c73cf1477a0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga12d99f9e992ec83c54a4c73cf1477a0a">DL_MCAN_getErrCounters</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___err_cnt_status.html">DL_MCAN_ErrCntStatus</a> *errCounter)</td></tr>
-<tr class="memdesc:ga12d99f9e992ec83c54a4c73cf1477a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return error counter status for MCAN module.  <a href="#ga12d99f9e992ec83c54a4c73cf1477a0a">More...</a><br /></td></tr>
-<tr class="separator:ga12d99f9e992ec83c54a4c73cf1477a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5fb72255a1d194980d39c2b5ade980d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga5fb72255a1d194980d39c2b5ade980d7">DL_MCAN_getProtocolStatus</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___protocol_status.html">DL_MCAN_ProtocolStatus</a> *protStatus)</td></tr>
-<tr class="memdesc:ga5fb72255a1d194980d39c2b5ade980d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return protocol status for MCAN module.  <a href="#ga5fb72255a1d194980d39c2b5ade980d7">More...</a><br /></td></tr>
-<tr class="separator:ga5fb72255a1d194980d39c2b5ade980d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaafb4e9d98cea75e84ae4158e4d98b531"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaafb4e9d98cea75e84ae4158e4d98b531">DL_MCAN_getErrCounters</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___err_cnt_status.html">DL_MCAN_ErrCntStatus</a> *errCounter)</td></tr>
+<tr class="memdesc:gaafb4e9d98cea75e84ae4158e4d98b531"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return error counter status for MCAN module.  <a href="#gaafb4e9d98cea75e84ae4158e4d98b531">More...</a><br /></td></tr>
+<tr class="separator:gaafb4e9d98cea75e84ae4158e4d98b531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56c094e48ea966f7df2e841627eaf67d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga56c094e48ea966f7df2e841627eaf67d">DL_MCAN_getProtocolStatus</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___protocol_status.html">DL_MCAN_ProtocolStatus</a> *protStatus)</td></tr>
+<tr class="memdesc:ga56c094e48ea966f7df2e841627eaf67d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return protocol status for MCAN module.  <a href="#ga56c094e48ea966f7df2e841627eaf67d">More...</a><br /></td></tr>
+<tr class="separator:ga56c094e48ea966f7df2e841627eaf67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga34636aec3a13bb42f01e342522c6ceeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga34636aec3a13bb42f01e342522c6ceeb">DL_MCAN_enableIntr</a> (MCAN_Regs *mcan, uint32_t intrMask, bool enable)</td></tr>
 <tr class="memdesc:ga34636aec3a13bb42f01e342522c6ceeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to enable/disable interrupts.  <a href="#ga34636aec3a13bb42f01e342522c6ceeb">More...</a><br /></td></tr>
 <tr class="separator:ga34636aec3a13bb42f01e342522c6ceeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9e31a64d052ea0118d9c7f95ae3023fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga9e31a64d052ea0118d9c7f95ae3023fe">DL_MCAN_selectIntrLine</a> (MCAN_Regs *mcan, uint32_t intrMask, uint32_t lineNum)</td></tr>
 <tr class="memdesc:ga9e31a64d052ea0118d9c7f95ae3023fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to select interrupt line.  <a href="#ga9e31a64d052ea0118d9c7f95ae3023fe">More...</a><br /></td></tr>
 <tr class="separator:ga9e31a64d052ea0118d9c7f95ae3023fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4e79b6680d6046a07dde10b933c34dbe"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4e79b6680d6046a07dde10b933c34dbe">DL_MCAN_getIntrLineSelectStatus</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga4e79b6680d6046a07dde10b933c34dbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get interrupt line selected for each interrupt.  <a href="#ga4e79b6680d6046a07dde10b933c34dbe">More...</a><br /></td></tr>
-<tr class="separator:ga4e79b6680d6046a07dde10b933c34dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga234e101bb51d9836be58f558fc18f269"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga234e101bb51d9836be58f558fc18f269">DL_MCAN_getIntrLineSelectStatus</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga234e101bb51d9836be58f558fc18f269"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get interrupt line selected for each interrupt.  <a href="#ga234e101bb51d9836be58f558fc18f269">More...</a><br /></td></tr>
+<tr class="separator:ga234e101bb51d9836be58f558fc18f269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga322b2514d10a0a746729338df667e0b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga322b2514d10a0a746729338df667e0b3">DL_MCAN_enableIntrLine</a> (MCAN_Regs *mcan, uint32_t lineNum, bool enable)</td></tr>
 <tr class="memdesc:ga322b2514d10a0a746729338df667e0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to enable/disable selected interrupt line.  <a href="#ga322b2514d10a0a746729338df667e0b3">More...</a><br /></td></tr>
 <tr class="separator:ga322b2514d10a0a746729338df667e0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5a5b333af77f09b9b34d0b530a02603e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga5a5b333af77f09b9b34d0b530a02603e">DL_MCAN_getIntrStatus</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga5a5b333af77f09b9b34d0b530a02603e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return interrupt status.  <a href="#ga5a5b333af77f09b9b34d0b530a02603e">More...</a><br /></td></tr>
-<tr class="separator:ga5a5b333af77f09b9b34d0b530a02603e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9d8d675224eee440cee8d74c4d6009a7"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga9d8d675224eee440cee8d74c4d6009a7">DL_MCAN_getIntrStatus</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga9d8d675224eee440cee8d74c4d6009a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return interrupt status.  <a href="#ga9d8d675224eee440cee8d74c4d6009a7">More...</a><br /></td></tr>
+<tr class="separator:ga9d8d675224eee440cee8d74c4d6009a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga31a8a77f2b0a07ec72e6a9ba460841f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga31a8a77f2b0a07ec72e6a9ba460841f9">DL_MCAN_clearIntrStatus</a> (MCAN_Regs *mcan, uint32_t intrMask, <a class="el" href="group___m_c_a_n.html#ga916af23815a182700e1cb2e16befbada">DL_MCAN_INTR_SRC_MCAN</a> eoi)</td></tr>
 <tr class="memdesc:ga31a8a77f2b0a07ec72e6a9ba460841f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to clear the interrupt status.  <a href="#ga31a8a77f2b0a07ec72e6a9ba460841f9">More...</a><br /></td></tr>
 <tr class="separator:ga31a8a77f2b0a07ec72e6a9ba460841f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga283cb81360f40307a70f4af21bcb8e32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga283cb81360f40307a70f4af21bcb8e32">DL_MCAN_getHighPriorityMsgStatus</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___high_priority_msg_info.html">DL_MCAN_HighPriorityMsgInfo</a> *hpm)</td></tr>
-<tr class="memdesc:ga283cb81360f40307a70f4af21bcb8e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return High Priority Message Status.  <a href="#ga283cb81360f40307a70f4af21bcb8e32">More...</a><br /></td></tr>
-<tr class="separator:ga283cb81360f40307a70f4af21bcb8e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0041ba2b39a20ba506a4582d8752fca7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga0041ba2b39a20ba506a4582d8752fca7">DL_MCAN_getRxFIFOStatus</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___rx_f_i_f_o_status.html">DL_MCAN_RxFIFOStatus</a> *fifoStatus)</td></tr>
-<tr class="memdesc:ga0041ba2b39a20ba506a4582d8752fca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will Rx FIFO status.  <a href="#ga0041ba2b39a20ba506a4582d8752fca7">More...</a><br /></td></tr>
-<tr class="separator:ga0041ba2b39a20ba506a4582d8752fca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4901f39a8b2a98130e1a8f81125a34a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4901f39a8b2a98130e1a8f81125a34a5">DL_MCAN_getHighPriorityMsgStatus</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___high_priority_msg_info.html">DL_MCAN_HighPriorityMsgInfo</a> *hpm)</td></tr>
+<tr class="memdesc:ga4901f39a8b2a98130e1a8f81125a34a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return High Priority Message Status.  <a href="#ga4901f39a8b2a98130e1a8f81125a34a5">More...</a><br /></td></tr>
+<tr class="separator:ga4901f39a8b2a98130e1a8f81125a34a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9e724f662c9df199aef8bc9e1c5bbd11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga9e724f662c9df199aef8bc9e1c5bbd11">DL_MCAN_getRxFIFOStatus</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___rx_f_i_f_o_status.html">DL_MCAN_RxFIFOStatus</a> *fifoStatus)</td></tr>
+<tr class="memdesc:ga9e724f662c9df199aef8bc9e1c5bbd11"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will Rx FIFO status.  <a href="#ga9e724f662c9df199aef8bc9e1c5bbd11">More...</a><br /></td></tr>
+<tr class="separator:ga9e724f662c9df199aef8bc9e1c5bbd11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaba09cf19a45ecbe83995ca1ba76912dd"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaba09cf19a45ecbe83995ca1ba76912dd">DL_MCAN_writeRxFIFOAck</a> (MCAN_Regs *mcan, uint32_t fifoNum, uint32_t idx)</td></tr>
 <tr class="memdesc:gaba09cf19a45ecbe83995ca1ba76912dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will write Rx FIFO Acknowledgement.  <a href="#gaba09cf19a45ecbe83995ca1ba76912dd">More...</a><br /></td></tr>
 <tr class="separator:gaba09cf19a45ecbe83995ca1ba76912dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga07be495e6384898eb17dc6876edde4a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga07be495e6384898eb17dc6876edde4a8">DL_MCAN_getTxFIFOQueStatus</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___tx_f_i_f_o_status.html">DL_MCAN_TxFIFOStatus</a> *fifoStatus)</td></tr>
-<tr class="memdesc:ga07be495e6384898eb17dc6876edde4a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will Tx FIFO status.  <a href="#ga07be495e6384898eb17dc6876edde4a8">More...</a><br /></td></tr>
-<tr class="separator:ga07be495e6384898eb17dc6876edde4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf57dad025c846d7f311880def8193926"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf57dad025c846d7f311880def8193926">DL_MCAN_getTxBufReqPend</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gaf57dad025c846d7f311880def8193926"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Tx Buffer Request Pending status.  <a href="#gaf57dad025c846d7f311880def8193926">More...</a><br /></td></tr>
-<tr class="separator:gaf57dad025c846d7f311880def8193926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21cfac2801bd56c85411335927b37517"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga21cfac2801bd56c85411335927b37517">DL_MCAN_getTxFIFOQueStatus</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___tx_f_i_f_o_status.html">DL_MCAN_TxFIFOStatus</a> *fifoStatus)</td></tr>
+<tr class="memdesc:ga21cfac2801bd56c85411335927b37517"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will Tx FIFO status.  <a href="#ga21cfac2801bd56c85411335927b37517">More...</a><br /></td></tr>
+<tr class="separator:ga21cfac2801bd56c85411335927b37517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4091779d590ddf87dbe3d43d182a9801"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4091779d590ddf87dbe3d43d182a9801">DL_MCAN_getTxBufReqPend</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga4091779d590ddf87dbe3d43d182a9801"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Tx Buffer Request Pending status.  <a href="#ga4091779d590ddf87dbe3d43d182a9801">More...</a><br /></td></tr>
+<tr class="separator:ga4091779d590ddf87dbe3d43d182a9801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf4a991ff1f9a3717cd9d608226e80383"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf4a991ff1f9a3717cd9d608226e80383">DL_MCAN_txBufCancellationReq</a> (MCAN_Regs *mcan, uint32_t buffNum)</td></tr>
 <tr class="memdesc:gaf4a991ff1f9a3717cd9d608226e80383"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will set Tx Buffer Cancellation Request.  <a href="#gaf4a991ff1f9a3717cd9d608226e80383">More...</a><br /></td></tr>
 <tr class="separator:gaf4a991ff1f9a3717cd9d608226e80383"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaea710e47a00a4ae1589cca522abfc6e2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaea710e47a00a4ae1589cca522abfc6e2">DL_MCAN_getTxBufTransmissionStatus</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gaea710e47a00a4ae1589cca522abfc6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Tx Buffer Transmission Occurred status.  <a href="#gaea710e47a00a4ae1589cca522abfc6e2">More...</a><br /></td></tr>
-<tr class="separator:gaea710e47a00a4ae1589cca522abfc6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5ca6548eb53d95efed309004bdb454aa"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga5ca6548eb53d95efed309004bdb454aa">DL_MCAN_txBufCancellationStatus</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga5ca6548eb53d95efed309004bdb454aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Transmit Buffer Cancellation Finished status.  <a href="#ga5ca6548eb53d95efed309004bdb454aa">More...</a><br /></td></tr>
-<tr class="separator:ga5ca6548eb53d95efed309004bdb454aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3904167230b4090a4e3d1701d229acd6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga3904167230b4090a4e3d1701d229acd6">DL_MCAN_getTxBufTransmissionStatus</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga3904167230b4090a4e3d1701d229acd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Tx Buffer Transmission Occurred status.  <a href="#ga3904167230b4090a4e3d1701d229acd6">More...</a><br /></td></tr>
+<tr class="separator:ga3904167230b4090a4e3d1701d229acd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e1f52e365eff76c7f8ba9cd8f1bdccd"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga5e1f52e365eff76c7f8ba9cd8f1bdccd">DL_MCAN_txBufCancellationStatus</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga5e1f52e365eff76c7f8ba9cd8f1bdccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Transmit Buffer Cancellation Finished status.  <a href="#ga5e1f52e365eff76c7f8ba9cd8f1bdccd">More...</a><br /></td></tr>
+<tr class="separator:ga5e1f52e365eff76c7f8ba9cd8f1bdccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac12509863c836dac2f9ab7da6d225bf0"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac12509863c836dac2f9ab7da6d225bf0">DL_MCAN_TXBufTransIntrEnable</a> (MCAN_Regs *mcan, uint32_t bufNum, bool enable)</td></tr>
 <tr class="memdesc:gac12509863c836dac2f9ab7da6d225bf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to enable/disable Tx Buffer Transmission Interrupt.  <a href="#gac12509863c836dac2f9ab7da6d225bf0">More...</a><br /></td></tr>
 <tr class="separator:gac12509863c836dac2f9ab7da6d225bf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf04b26e90761ea29efdc7050fa4ed1ba"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf04b26e90761ea29efdc7050fa4ed1ba">DL_MCAN_getTxBufCancellationIntrEnable</a> (MCAN_Regs *mcan, uint32_t bufNum, bool enable)</td></tr>
-<tr class="memdesc:gaf04b26e90761ea29efdc7050fa4ed1ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to enable/disable Tx Buffer Cancellation Finished Interrupt.  <a href="#gaf04b26e90761ea29efdc7050fa4ed1ba">More...</a><br /></td></tr>
-<tr class="separator:gaf04b26e90761ea29efdc7050fa4ed1ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3a0462f1b87326815d030b3b2c7607cd"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga3a0462f1b87326815d030b3b2c7607cd">DL_MCAN_getTxBufCancellationIntrEnable</a> (const MCAN_Regs *mcan, uint32_t bufNum, bool enable)</td></tr>
+<tr class="memdesc:ga3a0462f1b87326815d030b3b2c7607cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to enable/disable Tx Buffer Cancellation Finished Interrupt.  <a href="#ga3a0462f1b87326815d030b3b2c7607cd">More...</a><br /></td></tr>
+<tr class="separator:ga3a0462f1b87326815d030b3b2c7607cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac1b3e06e15f731130440e7cd846c9705"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac1b3e06e15f731130440e7cd846c9705">DL_MCAN_addClockStopRequest</a> (MCAN_Regs *mcan, bool enable)</td></tr>
 <tr class="memdesc:gac1b3e06e15f731130440e7cd846c9705"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API add clock stop request for MCAN module to put it in power down mode.  <a href="#gac1b3e06e15f731130440e7cd846c9705">More...</a><br /></td></tr>
 <tr class="separator:gac1b3e06e15f731130440e7cd846c9705"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3a0a7cfda96f19e7faca8c5e306d8584"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga3a0a7cfda96f19e7faca8c5e306d8584">DL_MCAN_getTxEventFIFOStatus</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___tx_event_f_i_f_o_status.html">DL_MCAN_TxEventFIFOStatus</a> *fifoStatus)</td></tr>
-<tr class="memdesc:ga3a0a7cfda96f19e7faca8c5e306d8584"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will Tx Event FIFO status.  <a href="#ga3a0a7cfda96f19e7faca8c5e306d8584">More...</a><br /></td></tr>
-<tr class="separator:ga3a0a7cfda96f19e7faca8c5e306d8584"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga66580f78e8bf355fa7edbf23d03c870b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga66580f78e8bf355fa7edbf23d03c870b">DL_MCAN_getTxEventFIFOStatus</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___tx_event_f_i_f_o_status.html">DL_MCAN_TxEventFIFOStatus</a> *fifoStatus)</td></tr>
+<tr class="memdesc:ga66580f78e8bf355fa7edbf23d03c870b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will Tx Event FIFO status.  <a href="#ga66580f78e8bf355fa7edbf23d03c870b">More...</a><br /></td></tr>
+<tr class="separator:ga66580f78e8bf355fa7edbf23d03c870b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga582cba36b2a0514ce4bf2dba98bde569"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga582cba36b2a0514ce4bf2dba98bde569">DL_MCAN_writeTxEventFIFOAck</a> (MCAN_Regs *mcan, uint32_t idx)</td></tr>
 <tr class="memdesc:ga582cba36b2a0514ce4bf2dba98bde569"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will write Event FIFO Acknowledge Index.  <a href="#ga582cba36b2a0514ce4bf2dba98bde569">More...</a><br /></td></tr>
 <tr class="separator:ga582cba36b2a0514ce4bf2dba98bde569"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -580,9 +580,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga56067e63b0341ba104002102ba408bdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga56067e63b0341ba104002102ba408bdb">DL_MCAN_eccEnableIntr</a> (MCAN_Regs *mcan, uint32_t errType, bool enable)</td></tr>
 <tr class="memdesc:ga56067e63b0341ba104002102ba408bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to enable ECC interrupt.  <a href="#ga56067e63b0341ba104002102ba408bdb">More...</a><br /></td></tr>
 <tr class="separator:ga56067e63b0341ba104002102ba408bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga60341ec8401e5219cd17bc3aa0230d2d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga60341ec8401e5219cd17bc3aa0230d2d">DL_MCAN_eccGetIntrStatus</a> (MCAN_Regs *mcan, uint32_t errType)</td></tr>
-<tr class="memdesc:ga60341ec8401e5219cd17bc3aa0230d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get ECC interrupt status.  <a href="#ga60341ec8401e5219cd17bc3aa0230d2d">More...</a><br /></td></tr>
-<tr class="separator:ga60341ec8401e5219cd17bc3aa0230d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga97872d1d061440fa600d425712eb47ad"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga97872d1d061440fa600d425712eb47ad">DL_MCAN_eccGetIntrStatus</a> (const MCAN_Regs *mcan, uint32_t errType)</td></tr>
+<tr class="memdesc:ga97872d1d061440fa600d425712eb47ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get ECC interrupt status.  <a href="#ga97872d1d061440fa600d425712eb47ad">More...</a><br /></td></tr>
+<tr class="separator:ga97872d1d061440fa600d425712eb47ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacf93298f062f4a3545459235a9425f7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gacf93298f062f4a3545459235a9425f7d">DL_MCAN_eccClearIntrStatus</a> (MCAN_Regs *mcan, uint32_t errType)</td></tr>
 <tr class="memdesc:gacf93298f062f4a3545459235a9425f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to clear ECC interrupt status.  <a href="#gacf93298f062f4a3545459235a9425f7d">More...</a><br /></td></tr>
 <tr class="separator:gacf93298f062f4a3545459235a9425f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -598,152 +598,152 @@ Functions</h2></td></tr>
 <tr class="memitem:ga41d893b31d5ea3b62360aa0bf1c935ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga41d893b31d5ea3b62360aa0bf1c935ee">DL_MCAN_extTSWriteEOI</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:ga41d893b31d5ea3b62360aa0bf1c935ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to write End of Interrupt for External TimeStamp Counter Overflow Interrupt.  <a href="#ga41d893b31d5ea3b62360aa0bf1c935ee">More...</a><br /></td></tr>
 <tr class="separator:ga41d893b31d5ea3b62360aa0bf1c935ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4af39a8390f4a5fa996efbeefd1dfa2c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4af39a8390f4a5fa996efbeefd1dfa2c">DL_MCAN_extTSGetUnservicedIntrCount</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga4af39a8390f4a5fa996efbeefd1dfa2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API returns Number of unserviced rollover/overflow interrupts for external TimeStamp counter.  <a href="#ga4af39a8390f4a5fa996efbeefd1dfa2c">More...</a><br /></td></tr>
-<tr class="separator:ga4af39a8390f4a5fa996efbeefd1dfa2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga93f88db47bfc12f2f704cf889771e602"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga93f88db47bfc12f2f704cf889771e602">DL_MCAN_getRevisionId</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___revision_id.html">DL_MCAN_RevisionId</a> *revId)</td></tr>
-<tr class="memdesc:ga93f88db47bfc12f2f704cf889771e602"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used get the MCAN revision ID.  <a href="#ga93f88db47bfc12f2f704cf889771e602">More...</a><br /></td></tr>
-<tr class="separator:ga93f88db47bfc12f2f704cf889771e602"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga64796244675e716f98d0e7e952bec626"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga64796244675e716f98d0e7e952bec626">DL_MCAN_getClockStopAck</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga64796244675e716f98d0e7e952bec626"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API get clock stop acknowledgement for MCAN module. It return whether MCAN is power down mode or not.  <a href="#ga64796244675e716f98d0e7e952bec626">More...</a><br /></td></tr>
-<tr class="separator:ga64796244675e716f98d0e7e952bec626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga63ea13209873a59e3d56e62ccb826fff"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga63ea13209873a59e3d56e62ccb826fff">DL_MCAN_extTSGetUnservicedIntrCount</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga63ea13209873a59e3d56e62ccb826fff"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API returns Number of unserviced rollover/overflow interrupts for external TimeStamp counter.  <a href="#ga63ea13209873a59e3d56e62ccb826fff">More...</a><br /></td></tr>
+<tr class="separator:ga63ea13209873a59e3d56e62ccb826fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac90a177bfe757eb1c062e7b332e3afb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac90a177bfe757eb1c062e7b332e3afb5">DL_MCAN_getRevisionId</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___revision_id.html">DL_MCAN_RevisionId</a> *revId)</td></tr>
+<tr class="memdesc:gac90a177bfe757eb1c062e7b332e3afb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used get the MCAN revision ID.  <a href="#gac90a177bfe757eb1c062e7b332e3afb5">More...</a><br /></td></tr>
+<tr class="separator:gac90a177bfe757eb1c062e7b332e3afb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c765f12d4fdceab23b8721071d7d669"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga3c765f12d4fdceab23b8721071d7d669">DL_MCAN_getClockStopAck</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga3c765f12d4fdceab23b8721071d7d669"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API get clock stop acknowledgement for MCAN module. It return whether MCAN is power down mode or not.  <a href="#ga3c765f12d4fdceab23b8721071d7d669">More...</a><br /></td></tr>
+<tr class="separator:ga3c765f12d4fdceab23b8721071d7d669"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0a6d118c3c10051af96bf39e658094f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga0a6d118c3c10051af96bf39e658094f2">DL_MCAN_extTSSetRawStatus</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:ga0a6d118c3c10051af96bf39e658094f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will set External TimeStamp Counter Overflow Interrupt Raw status for MCAN module.  <a href="#ga0a6d118c3c10051af96bf39e658094f2">More...</a><br /></td></tr>
 <tr class="separator:ga0a6d118c3c10051af96bf39e658094f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf50e8bef7ecc0cbe8749e9fd32f5b047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf50e8bef7ecc0cbe8749e9fd32f5b047">DL_MCAN_extTSClearRawStatus</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:gaf50e8bef7ecc0cbe8749e9fd32f5b047"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will clear External TimeStamp Counter Overflow Interrupt raw status for MCAN module.  <a href="#gaf50e8bef7ecc0cbe8749e9fd32f5b047">More...</a><br /></td></tr>
 <tr class="separator:gaf50e8bef7ecc0cbe8749e9fd32f5b047"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa81f6b1f4143c5d2d795757aa7fae155"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaa81f6b1f4143c5d2d795757aa7fae155">DL_MCAN_getRxPinState</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gaa81f6b1f4143c5d2d795757aa7fae155"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Rx pin state of MCAN module.  <a href="#gaa81f6b1f4143c5d2d795757aa7fae155">More...</a><br /></td></tr>
-<tr class="separator:gaa81f6b1f4143c5d2d795757aa7fae155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27bc7dfb6c367eafce902f81b19533a8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga27bc7dfb6c367eafce902f81b19533a8">DL_MCAN_getRxPinState</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga27bc7dfb6c367eafce902f81b19533a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Rx pin state of MCAN module.  <a href="#ga27bc7dfb6c367eafce902f81b19533a8">More...</a><br /></td></tr>
+<tr class="separator:ga27bc7dfb6c367eafce902f81b19533a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf51e16a80095b6a2b49e2073b8392e89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf51e16a80095b6a2b49e2073b8392e89">DL_MCAN_setTxPinState</a> (MCAN_Regs *mcan, uint32_t state)</td></tr>
 <tr class="memdesc:gaf51e16a80095b6a2b49e2073b8392e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will set Tx pin state of MCAN module.  <a href="#gaf51e16a80095b6a2b49e2073b8392e89">More...</a><br /></td></tr>
 <tr class="separator:gaf51e16a80095b6a2b49e2073b8392e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac7694a823b2b442c23ddf9540249b1d1"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac7694a823b2b442c23ddf9540249b1d1">DL_MCAN_getTxPinState</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gac7694a823b2b442c23ddf9540249b1d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Tx pin state of MCAN module.  <a href="#gac7694a823b2b442c23ddf9540249b1d1">More...</a><br /></td></tr>
-<tr class="separator:gac7694a823b2b442c23ddf9540249b1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6ec6f6af86569689f2c9e5e748873351"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga6ec6f6af86569689f2c9e5e748873351">DL_MCAN_getTSCounterVal</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga6ec6f6af86569689f2c9e5e748873351"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return current timestamp counter value.  <a href="#ga6ec6f6af86569689f2c9e5e748873351">More...</a><br /></td></tr>
-<tr class="separator:ga6ec6f6af86569689f2c9e5e748873351"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga74dd849c0db07431eca7c374cace5a47"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga74dd849c0db07431eca7c374cace5a47">DL_MCAN_getClkStopAck</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga74dd849c0db07431eca7c374cace5a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return clock stop acknowledgement for MCAN module.  <a href="#ga74dd849c0db07431eca7c374cace5a47">More...</a><br /></td></tr>
-<tr class="separator:ga74dd849c0db07431eca7c374cace5a47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7a9f9b843c998edc928417bb44a6d34a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga7a9f9b843c998edc928417bb44a6d34a">DL_MCAN_getBitTime</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___bit_timing_params.html">DL_MCAN_BitTimingParams</a> *configParams)</td></tr>
-<tr class="memdesc:ga7a9f9b843c998edc928417bb44a6d34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will get the configured bit timings for MCAN module.  <a href="#ga7a9f9b843c998edc928417bb44a6d34a">More...</a><br /></td></tr>
-<tr class="separator:ga7a9f9b843c998edc928417bb44a6d34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga40a52ef82f33ac488df4e2365ae69dea"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga40a52ef82f33ac488df4e2365ae69dea">DL_MCAN_getTxPinState</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga40a52ef82f33ac488df4e2365ae69dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return Tx pin state of MCAN module.  <a href="#ga40a52ef82f33ac488df4e2365ae69dea">More...</a><br /></td></tr>
+<tr class="separator:ga40a52ef82f33ac488df4e2365ae69dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga46a45b592cdafec839bdc47cbfd1e700"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga46a45b592cdafec839bdc47cbfd1e700">DL_MCAN_getTSCounterVal</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga46a45b592cdafec839bdc47cbfd1e700"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return current timestamp counter value.  <a href="#ga46a45b592cdafec839bdc47cbfd1e700">More...</a><br /></td></tr>
+<tr class="separator:ga46a45b592cdafec839bdc47cbfd1e700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac33a7a1d9e6a499ddf717e0d8ca2ab46"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac33a7a1d9e6a499ddf717e0d8ca2ab46">DL_MCAN_getClkStopAck</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:gac33a7a1d9e6a499ddf717e0d8ca2ab46"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return clock stop acknowledgement for MCAN module.  <a href="#gac33a7a1d9e6a499ddf717e0d8ca2ab46">More...</a><br /></td></tr>
+<tr class="separator:gac33a7a1d9e6a499ddf717e0d8ca2ab46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga65c6f7cc78f399560de805bff0117a11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga65c6f7cc78f399560de805bff0117a11">DL_MCAN_getBitTime</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___bit_timing_params.html">DL_MCAN_BitTimingParams</a> *configParams)</td></tr>
+<tr class="memdesc:ga65c6f7cc78f399560de805bff0117a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will get the configured bit timings for MCAN module.  <a href="#ga65c6f7cc78f399560de805bff0117a11">More...</a><br /></td></tr>
+<tr class="separator:ga65c6f7cc78f399560de805bff0117a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac1f5a6b437db8e9870959717bab777d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac1f5a6b437db8e9870959717bab777d8">DL_MCAN_resetTSCounter</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:gac1f5a6b437db8e9870959717bab777d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will reset timestamp counter value.  <a href="#gac1f5a6b437db8e9870959717bab777d8">More...</a><br /></td></tr>
 <tr class="separator:gac1f5a6b437db8e9870959717bab777d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga43ce90209901dd6d8b5cd092a7c48b5e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga43ce90209901dd6d8b5cd092a7c48b5e">DL_MCAN_getTOCounterVal</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga43ce90209901dd6d8b5cd092a7c48b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return current time-out counter value.  <a href="#ga43ce90209901dd6d8b5cd092a7c48b5e">More...</a><br /></td></tr>
-<tr class="separator:ga43ce90209901dd6d8b5cd092a7c48b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga975d6b16a3bd6acc7d342e01e079ec4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga975d6b16a3bd6acc7d342e01e079ec4a">DL_MCAN_eccAggrGetRevisionId</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___e_c_c_aggr_revision_id.html">DL_MCAN_ECCAggrRevisionId</a> *revId)</td></tr>
-<tr class="memdesc:ga975d6b16a3bd6acc7d342e01e079ec4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used get the ECC AGGR revision ID.  <a href="#ga975d6b16a3bd6acc7d342e01e079ec4a">More...</a><br /></td></tr>
-<tr class="separator:ga975d6b16a3bd6acc7d342e01e079ec4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac75eaae313190d9d38c52a3ebd1912aa"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac75eaae313190d9d38c52a3ebd1912aa">DL_MCAN_getTOCounterVal</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:gac75eaae313190d9d38c52a3ebd1912aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will return current time-out counter value.  <a href="#gac75eaae313190d9d38c52a3ebd1912aa">More...</a><br /></td></tr>
+<tr class="separator:gac75eaae313190d9d38c52a3ebd1912aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga946892df8e6ad8094f01fe83459690df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga946892df8e6ad8094f01fe83459690df">DL_MCAN_eccAggrGetRevisionId</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___e_c_c_aggr_revision_id.html">DL_MCAN_ECCAggrRevisionId</a> *revId)</td></tr>
+<tr class="memdesc:ga946892df8e6ad8094f01fe83459690df"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used get the ECC AGGR revision ID.  <a href="#ga946892df8e6ad8094f01fe83459690df">More...</a><br /></td></tr>
+<tr class="separator:ga946892df8e6ad8094f01fe83459690df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadb5a443668e77fc680e0d85d27e1e4b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gadb5a443668e77fc680e0d85d27e1e4b2">DL_MCAN_eccWrapGetRevisionId</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n___e_c_c_wrap_revision_id.html">DL_MCAN_ECCWrapRevisionId</a> *revId)</td></tr>
 <tr class="memdesc:gadb5a443668e77fc680e0d85d27e1e4b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used get the ECC Wrapper revision ID.  <a href="#gadb5a443668e77fc680e0d85d27e1e4b2">More...</a><br /></td></tr>
 <tr class="separator:gadb5a443668e77fc680e0d85d27e1e4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga04426e38349147050369ae163e436b83"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga04426e38349147050369ae163e436b83">DL_MCAN_extTSIsIntrEnable</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga04426e38349147050369ae163e436b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API returns External TimeStamp Counter Overflow Interrupt enable status for MCAN module.  <a href="#ga04426e38349147050369ae163e436b83">More...</a><br /></td></tr>
-<tr class="separator:ga04426e38349147050369ae163e436b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2170a4d18108b3a06dc349ba76bbb84f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga2170a4d18108b3a06dc349ba76bbb84f">DL_MCAN_getEndianVal</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga2170a4d18108b3a06dc349ba76bbb84f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function return endianness value of MCAN module.  <a href="#ga2170a4d18108b3a06dc349ba76bbb84f">More...</a><br /></td></tr>
-<tr class="separator:ga2170a4d18108b3a06dc349ba76bbb84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabf46a6d7357dc961adf2ba0e73a23b4f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gabf46a6d7357dc961adf2ba0e73a23b4f">DL_MCAN_getExtIDANDMask</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gabf46a6d7357dc961adf2ba0e73a23b4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will get the configured Extended ID AND Mask.  <a href="#gabf46a6d7357dc961adf2ba0e73a23b4f">More...</a><br /></td></tr>
-<tr class="separator:gabf46a6d7357dc961adf2ba0e73a23b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf6f70b8ee25785fc47b6d711c814fb0a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf6f70b8ee25785fc47b6d711c814fb0a">DL_MCAN_extTSIsIntrEnable</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:gaf6f70b8ee25785fc47b6d711c814fb0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API returns External TimeStamp Counter Overflow Interrupt enable status for MCAN module.  <a href="#gaf6f70b8ee25785fc47b6d711c814fb0a">More...</a><br /></td></tr>
+<tr class="separator:gaf6f70b8ee25785fc47b6d711c814fb0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga774fef465e5f342ea63aa20a4c775a89"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga774fef465e5f342ea63aa20a4c775a89">DL_MCAN_getEndianVal</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga774fef465e5f342ea63aa20a4c775a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function return endianness value of MCAN module.  <a href="#ga774fef465e5f342ea63aa20a4c775a89">More...</a><br /></td></tr>
+<tr class="separator:ga774fef465e5f342ea63aa20a4c775a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaac0714c5284cc51e067923a37668b4e6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaac0714c5284cc51e067923a37668b4e6">DL_MCAN_getExtIDANDMask</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:gaac0714c5284cc51e067923a37668b4e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API will get the configured Extended ID AND Mask.  <a href="#gaac0714c5284cc51e067923a37668b4e6">More...</a><br /></td></tr>
+<tr class="separator:gaac0714c5284cc51e067923a37668b4e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7daa10ab06e50b2481bf5f241ae8b079"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga7daa10ab06e50b2481bf5f241ae8b079">DL_MCAN_enablePower</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga7daa10ab06e50b2481bf5f241ae8b079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on MCAN module.  <a href="#ga7daa10ab06e50b2481bf5f241ae8b079">More...</a><br /></td></tr>
+<tr class="memdesc:ga7daa10ab06e50b2481bf5f241ae8b079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the MCAN.  <a href="#ga7daa10ab06e50b2481bf5f241ae8b079">More...</a><br /></td></tr>
 <tr class="separator:ga7daa10ab06e50b2481bf5f241ae8b079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga60b3b60dc1ab9096375ccf47b1a96534"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga60b3b60dc1ab9096375ccf47b1a96534">DL_MCAN_disablePower</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga60b3b60dc1ab9096375ccf47b1a96534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables power on mcan module.  <a href="#ga60b3b60dc1ab9096375ccf47b1a96534">More...</a><br /></td></tr>
+<tr class="memdesc:ga60b3b60dc1ab9096375ccf47b1a96534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the MCAN.  <a href="#ga60b3b60dc1ab9096375ccf47b1a96534">More...</a><br /></td></tr>
 <tr class="separator:ga60b3b60dc1ab9096375ccf47b1a96534"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacaeed06f82fdc238de6e3ba51d3a0fde"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gacaeed06f82fdc238de6e3ba51d3a0fde">DL_MCAN_isPowerEnabled</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gacaeed06f82fdc238de6e3ba51d3a0fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if power on mcan module.  <a href="#gacaeed06f82fdc238de6e3ba51d3a0fde">More...</a><br /></td></tr>
-<tr class="separator:gacaeed06f82fdc238de6e3ba51d3a0fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3ef27e3e5cf588dd239e837b9eb797cc"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga3ef27e3e5cf588dd239e837b9eb797cc">DL_MCAN_isPowerEnabled</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga3ef27e3e5cf588dd239e837b9eb797cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the MCAN is enabled.  <a href="#ga3ef27e3e5cf588dd239e837b9eb797cc">More...</a><br /></td></tr>
+<tr class="separator:ga3ef27e3e5cf588dd239e837b9eb797cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga553cf11ffc3adb5b763de966d0f28255"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga553cf11ffc3adb5b763de966d0f28255">DL_MCAN_reset</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:ga553cf11ffc3adb5b763de966d0f28255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets mcan peripheral.  <a href="#ga553cf11ffc3adb5b763de966d0f28255">More...</a><br /></td></tr>
 <tr class="separator:ga553cf11ffc3adb5b763de966d0f28255"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4b53ce92349a9438c63f105a0ab2392e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4b53ce92349a9438c63f105a0ab2392e">DL_MCAN_isReset</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga4b53ce92349a9438c63f105a0ab2392e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if mcan peripheral was reset.  <a href="#ga4b53ce92349a9438c63f105a0ab2392e">More...</a><br /></td></tr>
-<tr class="separator:ga4b53ce92349a9438c63f105a0ab2392e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadd61bdcf2c307e6f347925386311c85d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gadd61bdcf2c307e6f347925386311c85d">DL_MCAN_isReset</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:gadd61bdcf2c307e6f347925386311c85d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if mcan peripheral was reset.  <a href="#gadd61bdcf2c307e6f347925386311c85d">More...</a><br /></td></tr>
+<tr class="separator:gadd61bdcf2c307e6f347925386311c85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7e2d40a156f8b66af65f1457f4ab54ec"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga7e2d40a156f8b66af65f1457f4ab54ec">DL_MCAN_enableInterrupt</a> (MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga7e2d40a156f8b66af65f1457f4ab54ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable MCAN interrupts.  <a href="#ga7e2d40a156f8b66af65f1457f4ab54ec">More...</a><br /></td></tr>
 <tr class="separator:ga7e2d40a156f8b66af65f1457f4ab54ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4f80ad83207fa38b3d7af2096de9d72f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4f80ad83207fa38b3d7af2096de9d72f">DL_MCAN_disableInterrupt</a> (MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga4f80ad83207fa38b3d7af2096de9d72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable MCAN interrupts.  <a href="#ga4f80ad83207fa38b3d7af2096de9d72f">More...</a><br /></td></tr>
 <tr class="separator:ga4f80ad83207fa38b3d7af2096de9d72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf07fa0402c100176a43f8900fbe9d263"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf07fa0402c100176a43f8900fbe9d263">DL_MCAN_getEnabledInterrupts</a> (MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:gaf07fa0402c100176a43f8900fbe9d263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check which MCAN interrupts are enabled.  <a href="#gaf07fa0402c100176a43f8900fbe9d263">More...</a><br /></td></tr>
-<tr class="separator:gaf07fa0402c100176a43f8900fbe9d263"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga01f97ee37898428afc16265736d18b37"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga01f97ee37898428afc16265736d18b37">DL_MCAN_getEnabledInterruptStatus</a> (MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:ga01f97ee37898428afc16265736d18b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of enabled MCAN interrupts.  <a href="#ga01f97ee37898428afc16265736d18b37">More...</a><br /></td></tr>
-<tr class="separator:ga01f97ee37898428afc16265736d18b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab92ae5ac44725e57b0fe4eb0cab6568d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gab92ae5ac44725e57b0fe4eb0cab6568d">DL_MCAN_getRawInterruptStatus</a> (MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
-<tr class="memdesc:gab92ae5ac44725e57b0fe4eb0cab6568d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of any MCAN interrupt.  <a href="#gab92ae5ac44725e57b0fe4eb0cab6568d">More...</a><br /></td></tr>
-<tr class="separator:gab92ae5ac44725e57b0fe4eb0cab6568d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga452b3363e0cb95f79a0b26ea38fcc136"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___m_c_a_n.html#gafb8c1360f87967058729532f1c0b7035">DL_MCAN_IIDX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga452b3363e0cb95f79a0b26ea38fcc136">DL_MCAN_getPendingInterrupt</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga452b3363e0cb95f79a0b26ea38fcc136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get highest priority pending MCAN interrupt.  <a href="#ga452b3363e0cb95f79a0b26ea38fcc136">More...</a><br /></td></tr>
-<tr class="separator:ga452b3363e0cb95f79a0b26ea38fcc136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a8370632edebb7e4707821f36e74bcb"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga9a8370632edebb7e4707821f36e74bcb">DL_MCAN_getEnabledInterrupts</a> (const MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:ga9a8370632edebb7e4707821f36e74bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check which MCAN interrupts are enabled.  <a href="#ga9a8370632edebb7e4707821f36e74bcb">More...</a><br /></td></tr>
+<tr class="separator:ga9a8370632edebb7e4707821f36e74bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21faa82ad42cef909baa2778f66abdfa"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga21faa82ad42cef909baa2778f66abdfa">DL_MCAN_getEnabledInterruptStatus</a> (const MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:ga21faa82ad42cef909baa2778f66abdfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of enabled MCAN interrupts.  <a href="#ga21faa82ad42cef909baa2778f66abdfa">More...</a><br /></td></tr>
+<tr class="separator:ga21faa82ad42cef909baa2778f66abdfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd743f669dc43c6c6bc23cc71310ab44"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gafd743f669dc43c6c6bc23cc71310ab44">DL_MCAN_getRawInterruptStatus</a> (const MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
+<tr class="memdesc:gafd743f669dc43c6c6bc23cc71310ab44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check interrupt flag of any MCAN interrupt.  <a href="#gafd743f669dc43c6c6bc23cc71310ab44">More...</a><br /></td></tr>
+<tr class="separator:gafd743f669dc43c6c6bc23cc71310ab44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6c1461d804934fc1524a5234bbf0dbd1"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___m_c_a_n.html#gafb8c1360f87967058729532f1c0b7035">DL_MCAN_IIDX</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga6c1461d804934fc1524a5234bbf0dbd1">DL_MCAN_getPendingInterrupt</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga6c1461d804934fc1524a5234bbf0dbd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get highest priority pending MCAN interrupt.  <a href="#ga6c1461d804934fc1524a5234bbf0dbd1">More...</a><br /></td></tr>
+<tr class="separator:ga6c1461d804934fc1524a5234bbf0dbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga726fe9890522c204d76af1e204c876fc"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga726fe9890522c204d76af1e204c876fc">DL_MCAN_clearInterruptStatus</a> (MCAN_Regs *mcan, uint32_t interruptMask)</td></tr>
 <tr class="memdesc:ga726fe9890522c204d76af1e204c876fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear pending MCAN interrupts.  <a href="#ga726fe9890522c204d76af1e204c876fc">More...</a><br /></td></tr>
 <tr class="separator:ga726fe9890522c204d76af1e204c876fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga22e89dfee173ba4f579a9c9bb079c336"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga22e89dfee173ba4f579a9c9bb079c336">DL_MCAN_isModuleClockEnabled</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga22e89dfee173ba4f579a9c9bb079c336"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the MCAN module clock request is enabled.  <a href="#ga22e89dfee173ba4f579a9c9bb079c336">More...</a><br /></td></tr>
-<tr class="separator:ga22e89dfee173ba4f579a9c9bb079c336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga750218f1e2abcdbd028334ad396882f0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga750218f1e2abcdbd028334ad396882f0">DL_MCAN_isModuleClockEnabled</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga750218f1e2abcdbd028334ad396882f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the MCAN module clock request is enabled.  <a href="#ga750218f1e2abcdbd028334ad396882f0">More...</a><br /></td></tr>
+<tr class="separator:ga750218f1e2abcdbd028334ad396882f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga10040624959b921cee8c75d83457734b"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga10040624959b921cee8c75d83457734b">DL_MCAN_enableModuleClock</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:ga10040624959b921cee8c75d83457734b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the MCAN functional module clock.  <a href="#ga10040624959b921cee8c75d83457734b">More...</a><br /></td></tr>
 <tr class="separator:ga10040624959b921cee8c75d83457734b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac0f4d87af89aa45d03fb99c3719b69e5"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac0f4d87af89aa45d03fb99c3719b69e5">DL_MCAN_disableModuleClock</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:gac0f4d87af89aa45d03fb99c3719b69e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the MCAN functional module clock.  <a href="#gac0f4d87af89aa45d03fb99c3719b69e5">More...</a><br /></td></tr>
 <tr class="separator:gac0f4d87af89aa45d03fb99c3719b69e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3444398a99ef6cc87235c4cc7c4d318e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga3444398a99ef6cc87235c4cc7c4d318e">DL_MCAN_getModuleClockDivider</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga3444398a99ef6cc87235c4cc7c4d318e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the MCAN functional module clock divide ratio.  <a href="#ga3444398a99ef6cc87235c4cc7c4d318e">More...</a><br /></td></tr>
-<tr class="separator:ga3444398a99ef6cc87235c4cc7c4d318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga350fc92b176b562afb347970c28d638f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga350fc92b176b562afb347970c28d638f">DL_MCAN_getModuleClockDivider</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga350fc92b176b562afb347970c28d638f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the MCAN functional module clock divide ratio.  <a href="#ga350fc92b176b562afb347970c28d638f">More...</a><br /></td></tr>
+<tr class="separator:ga350fc92b176b562afb347970c28d638f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga088e8d7b660213c86ea702574e35dfbc"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga088e8d7b660213c86ea702574e35dfbc">DL_MCAN_setModuleClockDivider</a> (MCAN_Regs *mcan, uint32_t clkdiv)</td></tr>
 <tr class="memdesc:ga088e8d7b660213c86ea702574e35dfbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures clock divide settings for the MCAN functional module clock.  <a href="#ga088e8d7b660213c86ea702574e35dfbc">More...</a><br /></td></tr>
 <tr class="separator:ga088e8d7b660213c86ea702574e35dfbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga430ca7a6375d1ca2175782762b453103"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga430ca7a6375d1ca2175782762b453103">DL_MCAN_isClockStopGateRequestEnabled</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga430ca7a6375d1ca2175782762b453103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the MCAN clock gating request is enabled.  <a href="#ga430ca7a6375d1ca2175782762b453103">More...</a><br /></td></tr>
-<tr class="separator:ga430ca7a6375d1ca2175782762b453103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga209ba0dd2fee2939474afd3b903a05a5"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga209ba0dd2fee2939474afd3b903a05a5">DL_MCAN_isClockStopGateRequestEnabled</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga209ba0dd2fee2939474afd3b903a05a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the MCAN clock gating request is enabled.  <a href="#ga209ba0dd2fee2939474afd3b903a05a5">More...</a><br /></td></tr>
+<tr class="separator:ga209ba0dd2fee2939474afd3b903a05a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5dc609b6fba12890897b97b84998483d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga5dc609b6fba12890897b97b84998483d">DL_MCAN_enableClockStopGateRequest</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:ga5dc609b6fba12890897b97b84998483d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the MCAN clock gating request.  <a href="#ga5dc609b6fba12890897b97b84998483d">More...</a><br /></td></tr>
 <tr class="separator:ga5dc609b6fba12890897b97b84998483d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4d0730e9010a30f6aa9850c5c063b10e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga4d0730e9010a30f6aa9850c5c063b10e">DL_MCAN_disableClockStopGateRequest</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:ga4d0730e9010a30f6aa9850c5c063b10e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the MCAN clock gating request.  <a href="#ga4d0730e9010a30f6aa9850c5c063b10e">More...</a><br /></td></tr>
 <tr class="separator:ga4d0730e9010a30f6aa9850c5c063b10e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac66957b03a17b4140565ca8251d0e9a3"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac66957b03a17b4140565ca8251d0e9a3">DL_MCAN_isClockStopWakeupInterruptEnabled</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gac66957b03a17b4140565ca8251d0e9a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the MCAN clock stop wakeup interrupt is enabled.  <a href="#gac66957b03a17b4140565ca8251d0e9a3">More...</a><br /></td></tr>
-<tr class="separator:gac66957b03a17b4140565ca8251d0e9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga011470acd803042b8a75940d5ae271cd"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga011470acd803042b8a75940d5ae271cd">DL_MCAN_isClockStopWakeupInterruptEnabled</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga011470acd803042b8a75940d5ae271cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the MCAN clock stop wakeup interrupt is enabled.  <a href="#ga011470acd803042b8a75940d5ae271cd">More...</a><br /></td></tr>
+<tr class="separator:ga011470acd803042b8a75940d5ae271cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8bb0b37de812696211785518e2791343"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga8bb0b37de812696211785518e2791343">DL_MCAN_enableClockStopWakeupInterrupt</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:ga8bb0b37de812696211785518e2791343"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the MCAN clock stop wakeup interrupt.  <a href="#ga8bb0b37de812696211785518e2791343">More...</a><br /></td></tr>
 <tr class="separator:ga8bb0b37de812696211785518e2791343"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad26d8c4212db8c719388023dc6c71310"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gad26d8c4212db8c719388023dc6c71310">DL_MCAN_disableClockStopWakeupInterrupt</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:gad26d8c4212db8c719388023dc6c71310"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the MCAN clock stop wakeup interrupt.  <a href="#gad26d8c4212db8c719388023dc6c71310">More...</a><br /></td></tr>
 <tr class="separator:gad26d8c4212db8c719388023dc6c71310"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac24e23bb848d5350aeca5d984116659d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac24e23bb848d5350aeca5d984116659d">DL_MCAN_isGlitchFilterWakeupEnabled</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gac24e23bb848d5350aeca5d984116659d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the glitch filter on MCAN RXD input is enabled.  <a href="#gac24e23bb848d5350aeca5d984116659d">More...</a><br /></td></tr>
-<tr class="separator:gac24e23bb848d5350aeca5d984116659d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga578c56721aea5759de4c0e35542884f7"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga578c56721aea5759de4c0e35542884f7">DL_MCAN_isGlitchFilterWakeupEnabled</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga578c56721aea5759de4c0e35542884f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the glitch filter on MCAN RXD input is enabled.  <a href="#ga578c56721aea5759de4c0e35542884f7">More...</a><br /></td></tr>
+<tr class="separator:ga578c56721aea5759de4c0e35542884f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac98939aad8ac986b00fffdaaadd7ac28"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gac98939aad8ac986b00fffdaaadd7ac28">DL_MCAN_enableGlitchFilterWakeup</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:gac98939aad8ac986b00fffdaaadd7ac28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the glitch filter on MCAN RXD input.  <a href="#gac98939aad8ac986b00fffdaaadd7ac28">More...</a><br /></td></tr>
 <tr class="separator:gac98939aad8ac986b00fffdaaadd7ac28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5dc9df775555f63aaae74c1a0837be4a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga5dc9df775555f63aaae74c1a0837be4a">DL_MCAN_disableGlitchFilterWakeup</a> (MCAN_Regs *mcan)</td></tr>
 <tr class="memdesc:ga5dc9df775555f63aaae74c1a0837be4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the glitch filter on MCAN RXD input.  <a href="#ga5dc9df775555f63aaae74c1a0837be4a">More...</a><br /></td></tr>
 <tr class="separator:ga5dc9df775555f63aaae74c1a0837be4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2e9d857f621ee9220f4cc27648f3362d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga2e9d857f621ee9220f4cc27648f3362d">DL_MCAN_getClockStopAcknowledgeStatus</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga2e9d857f621ee9220f4cc27648f3362d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the clock stop acknowledge status.  <a href="#ga2e9d857f621ee9220f4cc27648f3362d">More...</a><br /></td></tr>
-<tr class="separator:ga2e9d857f621ee9220f4cc27648f3362d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf7c7b125dd0c805c1215d3f86eb234b2"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaf7c7b125dd0c805c1215d3f86eb234b2">DL_MCAN_getClockStopHardwareOverrideStatus</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:gaf7c7b125dd0c805c1215d3f86eb234b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the clock stop hardware override status.  <a href="#gaf7c7b125dd0c805c1215d3f86eb234b2">More...</a><br /></td></tr>
-<tr class="separator:gaf7c7b125dd0c805c1215d3f86eb234b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga66fdbc1d25446c95e5d8664cac8ff2fd"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga66fdbc1d25446c95e5d8664cac8ff2fd">DL_MCAN_getControllerClockRequestStatus</a> (MCAN_Regs *mcan)</td></tr>
-<tr class="memdesc:ga66fdbc1d25446c95e5d8664cac8ff2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the status of MCAN controller clock request from GPRCM.  <a href="#ga66fdbc1d25446c95e5d8664cac8ff2fd">More...</a><br /></td></tr>
-<tr class="separator:ga66fdbc1d25446c95e5d8664cac8ff2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaaccda0bf8d7c1e00249265e1c1f32a88"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaaccda0bf8d7c1e00249265e1c1f32a88">DL_MCAN_saveConfiguration</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n__backup_config.html">DL_MCAN_backupConfig</a> *ptr)</td></tr>
-<tr class="memdesc:gaaccda0bf8d7c1e00249265e1c1f32a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves MCAN configuration before entering STOP or STANDBY mode. Only necessary for PG 1.0 silicon.  <a href="#gaaccda0bf8d7c1e00249265e1c1f32a88">More...</a><br /></td></tr>
-<tr class="separator:gaaccda0bf8d7c1e00249265e1c1f32a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ddac518faebc825ee922a0dde8fd0f8"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga6ddac518faebc825ee922a0dde8fd0f8">DL_MCAN_getClockStopAcknowledgeStatus</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga6ddac518faebc825ee922a0dde8fd0f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the clock stop acknowledge status.  <a href="#ga6ddac518faebc825ee922a0dde8fd0f8">More...</a><br /></td></tr>
+<tr class="separator:ga6ddac518faebc825ee922a0dde8fd0f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa2c1ceb954b0ce4684538dec0158367f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gaa2c1ceb954b0ce4684538dec0158367f">DL_MCAN_getClockStopHardwareOverrideStatus</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:gaa2c1ceb954b0ce4684538dec0158367f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the clock stop hardware override status.  <a href="#gaa2c1ceb954b0ce4684538dec0158367f">More...</a><br /></td></tr>
+<tr class="separator:gaa2c1ceb954b0ce4684538dec0158367f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2be32dd00329b60d2d51b914883a1dfb"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga2be32dd00329b60d2d51b914883a1dfb">DL_MCAN_getControllerClockRequestStatus</a> (const MCAN_Regs *mcan)</td></tr>
+<tr class="memdesc:ga2be32dd00329b60d2d51b914883a1dfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the status of MCAN controller clock request from GPRCM.  <a href="#ga2be32dd00329b60d2d51b914883a1dfb">More...</a><br /></td></tr>
+<tr class="separator:ga2be32dd00329b60d2d51b914883a1dfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5931235039ceb7c5ddb77e7b7e2644d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#ga5931235039ceb7c5ddb77e7b7e2644d0">DL_MCAN_saveConfiguration</a> (const MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n__backup_config.html">DL_MCAN_backupConfig</a> *ptr)</td></tr>
+<tr class="memdesc:ga5931235039ceb7c5ddb77e7b7e2644d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves MCAN configuration before entering STOP or STANDBY mode.  <a href="#ga5931235039ceb7c5ddb77e7b7e2644d0">More...</a><br /></td></tr>
+<tr class="separator:ga5931235039ceb7c5ddb77e7b7e2644d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae782dcf96b6197b6ab2aee766cbe9f68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___m_c_a_n.html#gae782dcf96b6197b6ab2aee766cbe9f68">DL_MCAN_restoreConfiguration</a> (MCAN_Regs *mcan, <a class="el" href="struct_d_l___m_c_a_n__backup_config.html">DL_MCAN_backupConfig</a> *ptr)</td></tr>
-<tr class="memdesc:gae782dcf96b6197b6ab2aee766cbe9f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore MCAN configuration after leaving STOP or STANDBY mode. Only necessary for PG 1.0 silicon.  <a href="#gae782dcf96b6197b6ab2aee766cbe9f68">More...</a><br /></td></tr>
+<tr class="memdesc:gae782dcf96b6197b6ab2aee766cbe9f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore MCAN configuration after leaving STOP or STANDBY mode.  <a href="#gae782dcf96b6197b6ab2aee766cbe9f68">More...</a><br /></td></tr>
 <tr class="separator:gae782dcf96b6197b6ab2aee766cbe9f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -1234,8 +1234,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga93a2efae51b0d93112e7c5aec7f33ae7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga93a2efae51b0d93112e7c5aec7f33ae7">&sect;&nbsp;</a></span>DL_MCAN_setClockConfig()</h2>
+<a id="ga9fc6bfcb14de1747801a6bee7fbf293e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9fc6bfcb14de1747801a6bee7fbf293e">&sect;&nbsp;</a></span>DL_MCAN_setClockConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1249,7 +1249,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_l___m_c_a_n___clock_config.html">DL_MCAN_ClockConfig</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_d_l___m_c_a_n___clock_config.html">DL_MCAN_ClockConfig</a> *&#160;</td>
           <td class="paramname"><em>config</em>&#160;</td>
         </tr>
         <tr>
@@ -1308,8 +1308,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga35959ca3d6f65648dbe763441d8db242"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga35959ca3d6f65648dbe763441d8db242">&sect;&nbsp;</a></span>DL_MCAN_isInReset()</h2>
+<a id="ga624290b19824c0abe4b427e817b636ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga624290b19824c0abe4b427e817b636ea">&sect;&nbsp;</a></span>DL_MCAN_isInReset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1317,7 +1317,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">bool DL_MCAN_isInReset </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1340,8 +1340,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga3b5eb33e7ce8862008d833d1a9fd6253"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3b5eb33e7ce8862008d833d1a9fd6253">&sect;&nbsp;</a></span>DL_MCAN_isFDOpEnable()</h2>
+<a id="ga7df40a5a3f086c10da0e4d03278de669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7df40a5a3f086c10da0e4d03278de669">&sect;&nbsp;</a></span>DL_MCAN_isFDOpEnable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1349,7 +1349,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">bool DL_MCAN_isFDOpEnable </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1367,8 +1367,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gad2acf6e372afa1f90b68a81f8e860eec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad2acf6e372afa1f90b68a81f8e860eec">&sect;&nbsp;</a></span>DL_MCAN_isMemInitDone()</h2>
+<a id="gacf6dcf9d367002c9d07cdbcc0b84192a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacf6dcf9d367002c9d07cdbcc0b84192a">&sect;&nbsp;</a></span>DL_MCAN_isMemInitDone()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1376,7 +1376,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">bool DL_MCAN_isMemInitDone </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1437,8 +1437,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga623517caa24ea5b96ee96bb5c1fa00cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga623517caa24ea5b96ee96bb5c1fa00cc">&sect;&nbsp;</a></span>DL_MCAN_getOpMode()</h2>
+<a id="gadf79bc80cee4ef9ab4f3ad3754c6598a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadf79bc80cee4ef9ab4f3ad3754c6598a">&sect;&nbsp;</a></span>DL_MCAN_getOpMode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1446,7 +1446,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getOpMode </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1782,8 +1782,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gabf4999b6afa1e249d2fbc143d118c7f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabf4999b6afa1e249d2fbc143d118c7f1">&sect;&nbsp;</a></span>DL_MCAN_getNewDataStatus()</h2>
+<a id="ga0a6d2df509c3f5ec8ec50509d58bfa13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0a6d2df509c3f5ec8ec50509d58bfa13">&sect;&nbsp;</a></span>DL_MCAN_getNewDataStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1791,7 +1791,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getNewDataStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -1858,8 +1858,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga8b298ebf9fa98135ff5bd2ba1591691b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8b298ebf9fa98135ff5bd2ba1591691b">&sect;&nbsp;</a></span>DL_MCAN_readMsgRam()</h2>
+<a id="gab2f7e6e74923583567f08a94fcdec0c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab2f7e6e74923583567f08a94fcdec0c4">&sect;&nbsp;</a></span>DL_MCAN_readMsgRam()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1867,7 +1867,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_readMsgRam </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -1917,8 +1917,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga15a844979922a4b0914fd5824fd3cdbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga15a844979922a4b0914fd5824fd3cdbc">&sect;&nbsp;</a></span>DL_MCAN_readTxEventFIFO()</h2>
+<a id="ga84a3ea245cb479611d7c4b43b429ca25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga84a3ea245cb479611d7c4b43b429ca25">&sect;&nbsp;</a></span>DL_MCAN_readTxEventFIFO()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1926,7 +1926,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_readTxEventFIFO </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -2095,8 +2095,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga12d99f9e992ec83c54a4c73cf1477a0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga12d99f9e992ec83c54a4c73cf1477a0a">&sect;&nbsp;</a></span>DL_MCAN_getErrCounters()</h2>
+<a id="gaafb4e9d98cea75e84ae4158e4d98b531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaafb4e9d98cea75e84ae4158e4d98b531">&sect;&nbsp;</a></span>DL_MCAN_getErrCounters()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2104,7 +2104,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getErrCounters </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -2133,8 +2133,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga5fb72255a1d194980d39c2b5ade980d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5fb72255a1d194980d39c2b5ade980d7">&sect;&nbsp;</a></span>DL_MCAN_getProtocolStatus()</h2>
+<a id="ga56c094e48ea966f7df2e841627eaf67d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga56c094e48ea966f7df2e841627eaf67d">&sect;&nbsp;</a></span>DL_MCAN_getProtocolStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2142,7 +2142,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getProtocolStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -2261,8 +2261,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga4e79b6680d6046a07dde10b933c34dbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4e79b6680d6046a07dde10b933c34dbe">&sect;&nbsp;</a></span>DL_MCAN_getIntrLineSelectStatus()</h2>
+<a id="ga234e101bb51d9836be58f558fc18f269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga234e101bb51d9836be58f558fc18f269">&sect;&nbsp;</a></span>DL_MCAN_getIntrLineSelectStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2270,7 +2270,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getIntrLineSelectStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2333,8 +2333,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga5a5b333af77f09b9b34d0b530a02603e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5a5b333af77f09b9b34d0b530a02603e">&sect;&nbsp;</a></span>DL_MCAN_getIntrStatus()</h2>
+<a id="ga9d8d675224eee440cee8d74c4d6009a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9d8d675224eee440cee8d74c4d6009a7">&sect;&nbsp;</a></span>DL_MCAN_getIntrStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2342,7 +2342,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getIntrStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2405,8 +2405,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga283cb81360f40307a70f4af21bcb8e32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga283cb81360f40307a70f4af21bcb8e32">&sect;&nbsp;</a></span>DL_MCAN_getHighPriorityMsgStatus()</h2>
+<a id="ga4901f39a8b2a98130e1a8f81125a34a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4901f39a8b2a98130e1a8f81125a34a5">&sect;&nbsp;</a></span>DL_MCAN_getHighPriorityMsgStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2414,7 +2414,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getHighPriorityMsgStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -2443,8 +2443,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga0041ba2b39a20ba506a4582d8752fca7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0041ba2b39a20ba506a4582d8752fca7">&sect;&nbsp;</a></span>DL_MCAN_getRxFIFOStatus()</h2>
+<a id="ga9e724f662c9df199aef8bc9e1c5bbd11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9e724f662c9df199aef8bc9e1c5bbd11">&sect;&nbsp;</a></span>DL_MCAN_getRxFIFOStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2452,7 +2452,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getRxFIFOStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -2526,8 +2526,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga07be495e6384898eb17dc6876edde4a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga07be495e6384898eb17dc6876edde4a8">&sect;&nbsp;</a></span>DL_MCAN_getTxFIFOQueStatus()</h2>
+<a id="ga21cfac2801bd56c85411335927b37517"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga21cfac2801bd56c85411335927b37517">&sect;&nbsp;</a></span>DL_MCAN_getTxFIFOQueStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2535,7 +2535,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getTxFIFOQueStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -2564,8 +2564,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gaf57dad025c846d7f311880def8193926"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf57dad025c846d7f311880def8193926">&sect;&nbsp;</a></span>DL_MCAN_getTxBufReqPend()</h2>
+<a id="ga4091779d590ddf87dbe3d43d182a9801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4091779d590ddf87dbe3d43d182a9801">&sect;&nbsp;</a></span>DL_MCAN_getTxBufReqPend()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2573,7 +2573,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getTxBufReqPend </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2629,8 +2629,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gaea710e47a00a4ae1589cca522abfc6e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaea710e47a00a4ae1589cca522abfc6e2">&sect;&nbsp;</a></span>DL_MCAN_getTxBufTransmissionStatus()</h2>
+<a id="ga3904167230b4090a4e3d1701d229acd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3904167230b4090a4e3d1701d229acd6">&sect;&nbsp;</a></span>DL_MCAN_getTxBufTransmissionStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2638,7 +2638,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getTxBufTransmissionStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2656,8 +2656,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga5ca6548eb53d95efed309004bdb454aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5ca6548eb53d95efed309004bdb454aa">&sect;&nbsp;</a></span>DL_MCAN_txBufCancellationStatus()</h2>
+<a id="ga5e1f52e365eff76c7f8ba9cd8f1bdccd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5e1f52e365eff76c7f8ba9cd8f1bdccd">&sect;&nbsp;</a></span>DL_MCAN_txBufCancellationStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2665,7 +2665,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_txBufCancellationStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2728,8 +2728,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gaf04b26e90761ea29efdc7050fa4ed1ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf04b26e90761ea29efdc7050fa4ed1ba">&sect;&nbsp;</a></span>DL_MCAN_getTxBufCancellationIntrEnable()</h2>
+<a id="ga3a0462f1b87326815d030b3b2c7607cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3a0462f1b87326815d030b3b2c7607cd">&sect;&nbsp;</a></span>DL_MCAN_getTxBufCancellationIntrEnable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2737,7 +2737,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">int32_t DL_MCAN_getTxBufCancellationIntrEnable </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -2811,8 +2811,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga3a0a7cfda96f19e7faca8c5e306d8584"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3a0a7cfda96f19e7faca8c5e306d8584">&sect;&nbsp;</a></span>DL_MCAN_getTxEventFIFOStatus()</h2>
+<a id="ga66580f78e8bf355fa7edbf23d03c870b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga66580f78e8bf355fa7edbf23d03c870b">&sect;&nbsp;</a></span>DL_MCAN_getTxEventFIFOStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2820,7 +2820,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getTxEventFIFOStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -3084,8 +3084,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga60341ec8401e5219cd17bc3aa0230d2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga60341ec8401e5219cd17bc3aa0230d2d">&sect;&nbsp;</a></span>DL_MCAN_eccGetIntrStatus()</h2>
+<a id="ga97872d1d061440fa600d425712eb47ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga97872d1d061440fa600d425712eb47ad">&sect;&nbsp;</a></span>DL_MCAN_eccGetIntrStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3093,7 +3093,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_eccGetIntrStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -3302,8 +3302,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga4af39a8390f4a5fa996efbeefd1dfa2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4af39a8390f4a5fa996efbeefd1dfa2c">&sect;&nbsp;</a></span>DL_MCAN_extTSGetUnservicedIntrCount()</h2>
+<a id="ga63ea13209873a59e3d56e62ccb826fff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga63ea13209873a59e3d56e62ccb826fff">&sect;&nbsp;</a></span>DL_MCAN_extTSGetUnservicedIntrCount()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3311,7 +3311,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_extTSGetUnservicedIntrCount </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3329,8 +3329,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga93f88db47bfc12f2f704cf889771e602"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga93f88db47bfc12f2f704cf889771e602">&sect;&nbsp;</a></span>DL_MCAN_getRevisionId()</h2>
+<a id="gac90a177bfe757eb1c062e7b332e3afb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac90a177bfe757eb1c062e7b332e3afb5">&sect;&nbsp;</a></span>DL_MCAN_getRevisionId()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3338,7 +3338,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getRevisionId </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -3367,8 +3367,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga64796244675e716f98d0e7e952bec626"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga64796244675e716f98d0e7e952bec626">&sect;&nbsp;</a></span>DL_MCAN_getClockStopAck()</h2>
+<a id="ga3c765f12d4fdceab23b8721071d7d669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c765f12d4fdceab23b8721071d7d669">&sect;&nbsp;</a></span>DL_MCAN_getClockStopAck()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3376,7 +3376,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getClockStopAck </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3448,8 +3448,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gaa81f6b1f4143c5d2d795757aa7fae155"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa81f6b1f4143c5d2d795757aa7fae155">&sect;&nbsp;</a></span>DL_MCAN_getRxPinState()</h2>
+<a id="ga27bc7dfb6c367eafce902f81b19533a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga27bc7dfb6c367eafce902f81b19533a8">&sect;&nbsp;</a></span>DL_MCAN_getRxPinState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3457,7 +3457,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getRxPinState </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3513,8 +3513,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gac7694a823b2b442c23ddf9540249b1d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac7694a823b2b442c23ddf9540249b1d1">&sect;&nbsp;</a></span>DL_MCAN_getTxPinState()</h2>
+<a id="ga40a52ef82f33ac488df4e2365ae69dea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga40a52ef82f33ac488df4e2365ae69dea">&sect;&nbsp;</a></span>DL_MCAN_getTxPinState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3522,7 +3522,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getTxPinState </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3540,8 +3540,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga6ec6f6af86569689f2c9e5e748873351"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6ec6f6af86569689f2c9e5e748873351">&sect;&nbsp;</a></span>DL_MCAN_getTSCounterVal()</h2>
+<a id="ga46a45b592cdafec839bdc47cbfd1e700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga46a45b592cdafec839bdc47cbfd1e700">&sect;&nbsp;</a></span>DL_MCAN_getTSCounterVal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3549,7 +3549,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getTSCounterVal </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3567,8 +3567,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga74dd849c0db07431eca7c374cace5a47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga74dd849c0db07431eca7c374cace5a47">&sect;&nbsp;</a></span>DL_MCAN_getClkStopAck()</h2>
+<a id="gac33a7a1d9e6a499ddf717e0d8ca2ab46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac33a7a1d9e6a499ddf717e0d8ca2ab46">&sect;&nbsp;</a></span>DL_MCAN_getClkStopAck()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3576,7 +3576,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getClkStopAck </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3594,8 +3594,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga7a9f9b843c998edc928417bb44a6d34a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7a9f9b843c998edc928417bb44a6d34a">&sect;&nbsp;</a></span>DL_MCAN_getBitTime()</h2>
+<a id="ga65c6f7cc78f399560de805bff0117a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga65c6f7cc78f399560de805bff0117a11">&sect;&nbsp;</a></span>DL_MCAN_getBitTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3603,7 +3603,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_getBitTime </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -3659,8 +3659,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga43ce90209901dd6d8b5cd092a7c48b5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga43ce90209901dd6d8b5cd092a7c48b5e">&sect;&nbsp;</a></span>DL_MCAN_getTOCounterVal()</h2>
+<a id="gac75eaae313190d9d38c52a3ebd1912aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac75eaae313190d9d38c52a3ebd1912aa">&sect;&nbsp;</a></span>DL_MCAN_getTOCounterVal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3668,7 +3668,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getTOCounterVal </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3686,8 +3686,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga975d6b16a3bd6acc7d342e01e079ec4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga975d6b16a3bd6acc7d342e01e079ec4a">&sect;&nbsp;</a></span>DL_MCAN_eccAggrGetRevisionId()</h2>
+<a id="ga946892df8e6ad8094f01fe83459690df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga946892df8e6ad8094f01fe83459690df">&sect;&nbsp;</a></span>DL_MCAN_eccAggrGetRevisionId()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3695,7 +3695,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">void DL_MCAN_eccAggrGetRevisionId </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -3762,8 +3762,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga04426e38349147050369ae163e436b83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga04426e38349147050369ae163e436b83">&sect;&nbsp;</a></span>DL_MCAN_extTSIsIntrEnable()</h2>
+<a id="gaf6f70b8ee25785fc47b6d711c814fb0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf6f70b8ee25785fc47b6d711c814fb0a">&sect;&nbsp;</a></span>DL_MCAN_extTSIsIntrEnable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3771,7 +3771,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">bool DL_MCAN_extTSIsIntrEnable </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3789,8 +3789,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="ga2170a4d18108b3a06dc349ba76bbb84f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2170a4d18108b3a06dc349ba76bbb84f">&sect;&nbsp;</a></span>DL_MCAN_getEndianVal()</h2>
+<a id="ga774fef465e5f342ea63aa20a4c775a89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga774fef465e5f342ea63aa20a4c775a89">&sect;&nbsp;</a></span>DL_MCAN_getEndianVal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3798,7 +3798,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getEndianVal </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3821,8 +3821,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gabf46a6d7357dc961adf2ba0e73a23b4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabf46a6d7357dc961adf2ba0e73a23b4f">&sect;&nbsp;</a></span>DL_MCAN_getExtIDANDMask()</h2>
+<a id="gaac0714c5284cc51e067923a37668b4e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaac0714c5284cc51e067923a37668b4e6">&sect;&nbsp;</a></span>DL_MCAN_getExtIDANDMask()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3830,7 +3830,7 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">uint32_t DL_MCAN_getExtIDANDMask </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -3864,7 +3864,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Enables power on MCAN module. </p>
+<p>Enables the Peripheral Write Enable (PWREN) register for the MCAN. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mcan</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -3890,7 +3891,9 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Disables power on mcan module. </p>
+<p>Disables the Peripheral Write Enable (PWREN) register for the MCAN. </p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
+<dl class="section note"><dt>Note</dt><dd>This API does not provide large power savings.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mcan</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -3900,8 +3903,8 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
 
 </div>
 </div>
-<a id="gacaeed06f82fdc238de6e3ba51d3a0fde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacaeed06f82fdc238de6e3ba51d3a0fde">&sect;&nbsp;</a></span>DL_MCAN_isPowerEnabled()</h2>
+<a id="ga3ef27e3e5cf588dd239e837b9eb797cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3ef27e3e5cf588dd239e837b9eb797cc">&sect;&nbsp;</a></span>DL_MCAN_isPowerEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3909,23 +3912,25 @@ false if MCAN instance clock synchronization is ongoing. </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_isPowerEnabled </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns if power on mcan module. </p>
+<p>Returns if the Peripheral Write Enable (PWREN) register for the MCAN is enabled. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mcan</td><td>Pointer to the register overlay for the peripheral</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if power is enabled </dd>
+<dl class="section return"><dt>Returns</dt><dd>true if peripheral register access is enabled </dd>
 <dd>
-false if power is disabled </dd></dl>
+false if peripheral register access is disabled </dd></dl>
 
 </div>
 </div>
@@ -3955,8 +3960,8 @@ false if power is disabled </dd></dl>
 
 </div>
 </div>
-<a id="ga4b53ce92349a9438c63f105a0ab2392e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4b53ce92349a9438c63f105a0ab2392e">&sect;&nbsp;</a></span>DL_MCAN_isReset()</h2>
+<a id="gadd61bdcf2c307e6f347925386311c85d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadd61bdcf2c307e6f347925386311c85d">&sect;&nbsp;</a></span>DL_MCAN_isReset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3964,7 +3969,7 @@ false if power is disabled </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_isReset </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4058,8 +4063,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaf07fa0402c100176a43f8900fbe9d263"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf07fa0402c100176a43f8900fbe9d263">&sect;&nbsp;</a></span>DL_MCAN_getEnabledInterrupts()</h2>
+<a id="ga9a8370632edebb7e4707821f36e74bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a8370632edebb7e4707821f36e74bcb">&sect;&nbsp;</a></span>DL_MCAN_getEnabledInterrupts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4067,7 +4072,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_MCAN_getEnabledInterrupts </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -4102,8 +4107,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga01f97ee37898428afc16265736d18b37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga01f97ee37898428afc16265736d18b37">&sect;&nbsp;</a></span>DL_MCAN_getEnabledInterruptStatus()</h2>
+<a id="ga21faa82ad42cef909baa2778f66abdfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga21faa82ad42cef909baa2778f66abdfa">&sect;&nbsp;</a></span>DL_MCAN_getEnabledInterruptStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4111,7 +4116,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_MCAN_getEnabledInterruptStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -4147,8 +4152,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gab92ae5ac44725e57b0fe4eb0cab6568d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab92ae5ac44725e57b0fe4eb0cab6568d">&sect;&nbsp;</a></span>DL_MCAN_getRawInterruptStatus()</h2>
+<a id="gafd743f669dc43c6c6bc23cc71310ab44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafd743f669dc43c6c6bc23cc71310ab44">&sect;&nbsp;</a></span>DL_MCAN_getRawInterruptStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4156,7 +4161,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_MCAN_getRawInterruptStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -4192,8 +4197,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga452b3363e0cb95f79a0b26ea38fcc136"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga452b3363e0cb95f79a0b26ea38fcc136">&sect;&nbsp;</a></span>DL_MCAN_getPendingInterrupt()</h2>
+<a id="ga6c1461d804934fc1524a5234bbf0dbd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6c1461d804934fc1524a5234bbf0dbd1">&sect;&nbsp;</a></span>DL_MCAN_getPendingInterrupt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4201,7 +4206,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE <a class="el" href="group___m_c_a_n.html#gafb8c1360f87967058729532f1c0b7035">DL_MCAN_IIDX</a> DL_MCAN_getPendingInterrupt </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4257,8 +4262,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga22e89dfee173ba4f579a9c9bb079c336"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga22e89dfee173ba4f579a9c9bb079c336">&sect;&nbsp;</a></span>DL_MCAN_isModuleClockEnabled()</h2>
+<a id="ga750218f1e2abcdbd028334ad396882f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga750218f1e2abcdbd028334ad396882f0">&sect;&nbsp;</a></span>DL_MCAN_isModuleClockEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4266,7 +4271,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_isModuleClockEnabled </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4336,8 +4341,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga3444398a99ef6cc87235c4cc7c4d318e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3444398a99ef6cc87235c4cc7c4d318e">&sect;&nbsp;</a></span>DL_MCAN_getModuleClockDivider()</h2>
+<a id="ga350fc92b176b562afb347970c28d638f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga350fc92b176b562afb347970c28d638f">&sect;&nbsp;</a></span>DL_MCAN_getModuleClockDivider()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4345,7 +4350,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE uint32_t DL_MCAN_getModuleClockDivider </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4402,8 +4407,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga430ca7a6375d1ca2175782762b453103"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga430ca7a6375d1ca2175782762b453103">&sect;&nbsp;</a></span>DL_MCAN_isClockStopGateRequestEnabled()</h2>
+<a id="ga209ba0dd2fee2939474afd3b903a05a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga209ba0dd2fee2939474afd3b903a05a5">&sect;&nbsp;</a></span>DL_MCAN_isClockStopGateRequestEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4411,7 +4416,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_isClockStopGateRequestEnabled </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4485,8 +4490,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gac66957b03a17b4140565ca8251d0e9a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac66957b03a17b4140565ca8251d0e9a3">&sect;&nbsp;</a></span>DL_MCAN_isClockStopWakeupInterruptEnabled()</h2>
+<a id="ga011470acd803042b8a75940d5ae271cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga011470acd803042b8a75940d5ae271cd">&sect;&nbsp;</a></span>DL_MCAN_isClockStopWakeupInterruptEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4494,7 +4499,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_isClockStopWakeupInterruptEnabled </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4568,8 +4573,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gac24e23bb848d5350aeca5d984116659d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac24e23bb848d5350aeca5d984116659d">&sect;&nbsp;</a></span>DL_MCAN_isGlitchFilterWakeupEnabled()</h2>
+<a id="ga578c56721aea5759de4c0e35542884f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga578c56721aea5759de4c0e35542884f7">&sect;&nbsp;</a></span>DL_MCAN_isGlitchFilterWakeupEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4577,7 +4582,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_isGlitchFilterWakeupEnabled </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4654,8 +4659,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga2e9d857f621ee9220f4cc27648f3362d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2e9d857f621ee9220f4cc27648f3362d">&sect;&nbsp;</a></span>DL_MCAN_getClockStopAcknowledgeStatus()</h2>
+<a id="ga6ddac518faebc825ee922a0dde8fd0f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6ddac518faebc825ee922a0dde8fd0f8">&sect;&nbsp;</a></span>DL_MCAN_getClockStopAcknowledgeStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4663,7 +4668,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_getClockStopAcknowledgeStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4681,8 +4686,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaf7c7b125dd0c805c1215d3f86eb234b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf7c7b125dd0c805c1215d3f86eb234b2">&sect;&nbsp;</a></span>DL_MCAN_getClockStopHardwareOverrideStatus()</h2>
+<a id="gaa2c1ceb954b0ce4684538dec0158367f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa2c1ceb954b0ce4684538dec0158367f">&sect;&nbsp;</a></span>DL_MCAN_getClockStopHardwareOverrideStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4690,7 +4695,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_getClockStopHardwareOverrideStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4709,8 +4714,8 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="ga66fdbc1d25446c95e5d8664cac8ff2fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga66fdbc1d25446c95e5d8664cac8ff2fd">&sect;&nbsp;</a></span>DL_MCAN_getControllerClockRequestStatus()</h2>
+<a id="ga2be32dd00329b60d2d51b914883a1dfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2be32dd00329b60d2d51b914883a1dfb">&sect;&nbsp;</a></span>DL_MCAN_getControllerClockRequestStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4718,7 +4723,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">__STATIC_INLINE bool DL_MCAN_getControllerClockRequestStatus </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em></td><td>)</td>
           <td></td>
         </tr>
@@ -4734,12 +4739,12 @@ false if peripheral wasn't reset </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The status of the MCAN controller clock request from GPRCM </dd></dl>
 
-<p>References <a class="el" href="group___m_c_a_n.html#gae782dcf96b6197b6ab2aee766cbe9f68">DL_MCAN_restoreConfiguration()</a>, and <a class="el" href="group___m_c_a_n.html#gaaccda0bf8d7c1e00249265e1c1f32a88">DL_MCAN_saveConfiguration()</a>.</p>
+<p>References <a class="el" href="group___m_c_a_n.html#gae782dcf96b6197b6ab2aee766cbe9f68">DL_MCAN_restoreConfiguration()</a>, and <a class="el" href="group___m_c_a_n.html#ga5931235039ceb7c5ddb77e7b7e2644d0">DL_MCAN_saveConfiguration()</a>.</p>
 
 </div>
 </div>
-<a id="gaaccda0bf8d7c1e00249265e1c1f32a88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaaccda0bf8d7c1e00249265e1c1f32a88">&sect;&nbsp;</a></span>DL_MCAN_saveConfiguration()</h2>
+<a id="ga5931235039ceb7c5ddb77e7b7e2644d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5931235039ceb7c5ddb77e7b7e2644d0">&sect;&nbsp;</a></span>DL_MCAN_saveConfiguration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4747,7 +4752,7 @@ false if peripheral wasn't reset </dd></dl>
         <tr>
           <td class="memname">bool DL_MCAN_saveConfiguration </td>
           <td>(</td>
-          <td class="paramtype">MCAN_Regs *&#160;</td>
+          <td class="paramtype">const MCAN_Regs *&#160;</td>
           <td class="paramname"><em>mcan</em>, </td>
         </tr>
         <tr>
@@ -4764,7 +4769,7 @@ false if peripheral wasn't reset </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Saves MCAN configuration before entering STOP or STANDBY mode. Only necessary for PG 1.0 silicon. </p>
+<p>Saves MCAN configuration before entering STOP or STANDBY mode. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">mcan</td><td>Pointer to the register overlay for the peripheral</td></tr>
@@ -4779,7 +4784,7 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___m_c_a_n.html#ga66fdbc1d25446c95e5d8664cac8ff2fd">DL_MCAN_getControllerClockRequestStatus()</a>.</p>
+<p>Referenced by <a class="el" href="group___m_c_a_n.html#ga2be32dd00329b60d2d51b914883a1dfb">DL_MCAN_getControllerClockRequestStatus()</a>.</p>
 
 </div>
 </div>
@@ -4809,7 +4814,7 @@ false if peripheral wasn't reset </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Restore MCAN configuration after leaving STOP or STANDBY mode. Only necessary for PG 1.0 silicon. </p>
+<p>Restore MCAN configuration after leaving STOP or STANDBY mode. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">mcan</td><td>Pointer to the register overlay for the peripheral</td></tr>
@@ -4824,7 +4829,7 @@ false if peripheral wasn't reset </dd></dl>
   </dd>
 </dl>
 
-<p>Referenced by <a class="el" href="group___m_c_a_n.html#ga66fdbc1d25446c95e5d8664cac8ff2fd">DL_MCAN_getControllerClockRequestStatus()</a>.</p>
+<p>Referenced by <a class="el" href="group___m_c_a_n.html#ga2be32dd00329b60d2d51b914883a1dfb">DL_MCAN_getControllerClockRequestStatus()</a>.</p>
 
 </div>
 </div>
@@ -4832,7 +4837,7 @@ false if peripheral wasn't reset </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

@@ -211,6 +211,48 @@ function validatePinmux(inst, validation){
                 inst, ["disableNRSTPin"]);
         }
     }
+    /* MSPM0H321x Validation - LFXIN/LFXOUT Workaround*/
+    if(Common.isDeviceFamily_PARENT_MSPM0H321X()){
+        if(["LQFP-44(NNA)","LQFP-32(VFC)"].includes(system.deviceData.package)){
+            let validationMsgLFXIN = ""
+            if(system.deviceData.package == "LQFP-32(VFC)"){
+                try{
+                    if((inst.peripheral["lfxInPin"].$solution.devicePinName == "PA3") || (inst.peripheral["lfxOutPin"].$solution.devicePinName == "PA4")){
+                        validation.logError("LFXT configuration is not available for the selected package.",
+                            inst, ["LFCLKSource"]);
+                    }
+                }catch(e){}
+            }
+            else{
+                try{
+                    if(inst.peripheral["lfxInPin"].$solution.devicePinName == "PA3"){
+                        validation.logError("The selected pin is not available for LFXIN configuration on this package, please select a different one.",
+                            inst, ["LFCLKSource"]);
+                    }
+                }catch(e){}
+                try{
+                    if(inst.peripheral["lfxOutPin"].$solution.devicePinName == "PA4"){
+                        validation.logError("The selected pin is not available for LFXOUT configuration on this package, please select a different one.",
+                            inst, ["LFCLKSource"]);
+                    }
+                }catch(e){}
+            }
+        }
+        else{
+            try{
+                if(inst.peripheral["lfxInPin"].$solution.devicePinName == "PA27"){
+                    validation.logError("The selected pin is not available for LFXIN configuration on this package, please select a different one.",
+                        inst, ["LFCLKSource"]);
+                }
+            }catch(e){}
+            try{
+                if(inst.peripheral["lfxOutPin"].$solution.devicePinName == "PA26"){
+                    validation.logError("The selected pin is not available for LFXOUT configuration on this package, please select a different one.",
+                        inst, ["LFCLKSource"]);
+                }
+            }catch(e){}
+        }
+    }
 }
 
 /*
@@ -236,6 +278,19 @@ function validateSYSCTL(inst, validation)
 
 
     validatePowerPolicy(inst, validation);
+
+    /*
+     * FlashCtl register will be updated later than the CPU if the CPU is
+     * running at maximum frequency (80MHz and above). Warn the user that prior
+     * to executing any flash operation at above default CPUCLK speed, the
+     * flash status bit should be cleared
+     */
+    if (inst.CPUCLK_Freq > 32000000)
+    {
+        validation.logWarning("For best practices when the CPUCLK is running at 32MHz and above, "+
+            "clear the flash status bit using DL_FlashCTL_executeClearStatus() before executing any flash operation. " +
+            "Otherwise there may be false positives.", inst);
+    }
 
     if(!inst.clockTreeEn){
     /* HFCLK Validation */
@@ -310,6 +365,14 @@ function validateSYSCTL(inst, validation)
         }
         if (inst.SYSPLL_Freq_CLK2X > 80000000) {
             validation.logError("Calculated frequency is greater than 80MHz, which is a spec violation for this device.", inst, "SYSPLL_Freq_CLK2X");
+        }
+
+        if(inst.SYSPLL_VCOFreq < 80000000) {
+            validation.logError("The combination of PDIV and QDIV values drives the output frequency to VCO below minimum possible value. Please refer to device datasheet for exact operating range.", inst, "SYSPLL_VCOFreq_disp");
+        }
+
+        if(inst.SYSPLL_VCOFreq > 400000000) {
+            validation.logError("The combination of PDIV and QDIV values drives the output frequency to VCO above maximum possible value. Please refer to device datasheet for exact operating range.", inst, "SYSPLL_VCOFreq_disp");
         }
 
         // CAN CLK specific validation
@@ -712,12 +775,9 @@ INT_GROUP0:
                 description : 'Desired number of flash wait states.',
                 hidden      : true,
                 default     : "2",
-                options     : [
-                    // DL_SYSCTL_FLASH_WAIT_STATE_
-                    {name: "0",},
-                    {name: "1",},
-                    {name: "2",},
-                ],
+                default     :  Options.WaitStates[(Options.WaitStates.length-1)].name,
+                // DL_SYSCTL_FLASH_WAIT_STATE_
+                options     : Options.WaitStates,
             },
     );}
     return flashConfig;
@@ -956,7 +1016,7 @@ function getInterruptGroupConfig(){
 }
 
 function getForceDefaultClkConfig(){
-    if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()||Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+    if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()|| Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
         return [];
     }
     else{
@@ -1724,6 +1784,8 @@ function getClockInterrupts(inst){
             {name: "HFCLK_GOOD", displayName: "High Frequency Clock is stabilized and ready to use"},
             {name: "SYSPLL_GOOD", displayName: "System PLL is stabilized and ready to use"},
             {name: "HSCLK_GOOD", displayName: "High Speed Clock is stabilized and ready to use"},
+            {name: "FLASH_SEC", displayName: "Flash Single Error Correct"},
+            {name: "SRAM_SEC", displayName: "SRAM Single Error Correct"},
         ];
     }
     else if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()){
@@ -1733,7 +1795,19 @@ function getClockInterrupts(inst){
             {name: "ANALOG_CLOCK_ERROR", displayName: "Analog clocking consistency error"},
         ];
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+        return [
+            // DL_SYSCTL_INTERRUPT_[...]
+            {name: "LFOSC_GOOD", displayName: "Low Frequency Oscillator is stabilized and ready to use"},
+            {name: "ANALOG_CLOCK_ERROR", displayName: "Analog clocking consistency error"},
+            {name: "LFXT_GOOD", displayName: "Low Frequency Crystal is stabilized and ready to use"},
+            {name: "HFCLK_GOOD", displayName: "High Frequency Clock is stabilized and ready to use"},
+            {name: "HSCLK_GOOD", displayName: "High Speed Clock is stabilized and ready to use"},
+            {name: "FLASH_SEC", displayName: "Flash Single Error Correct"},
+            {name: "SRAM_SEC", displayName: "SRAM Single Error Correct"},
+        ];
+    }
+    else if(Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
         return [
             // DL_SYSCTL_INTERRUPT_[...]
             {name: "LFOSC_GOOD", displayName: "Low Frequency Oscillator is stabilized and ready to use"},
@@ -1743,7 +1817,7 @@ function getClockInterrupts(inst){
             {name: "HSCLK_GOOD", displayName: "High Speed Clock is stabilized and ready to use"},
         ];
     }
-    else if(Common.isDeviceM0C()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
         return [
             // DL_SYSCTL_INTERRUPT_[...]
             {name: "LFOSC_GOOD", displayName: "Low Frequency Oscillator is stabilized and ready to use"},

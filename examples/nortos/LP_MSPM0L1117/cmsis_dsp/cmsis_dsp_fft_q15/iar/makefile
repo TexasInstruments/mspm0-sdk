@@ -39,7 +39,6 @@ LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/lib/iar/m0p/arm
     "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0l111x/driverlib.a" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
     -L.. \
-    "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0h321x/driverlib.a" \
     --config ../iar/mspm0l1117.icf \
     --map "$(NAME).map" \
     --silent \

@@ -1,0 +1,77 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+// @cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+// @v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const i2cSMBUS      = scripting.addModule("/ti/driverlib/i2cSMBUS", {}, false);
+const i2cSMBUS1     = i2cSMBUS.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_SYSPLL2X";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction3     = system.clockTree["HFCLKEXT"];
+pinFunction3.inputFreq = 40;
+
+const pinFunction4                        = system.clockTree["HFXT"];
+pinFunction4.inputFreq                    = 40;
+pinFunction4.enable                       = true;
+pinFunction4.HFXTStartup                  = 100;
+pinFunction4.peripheral.$assign           = "SYSCTL";
+pinFunction4.peripheral.hfxInPin.$assign  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$assign = "PA6";
+
+GPIO1.$name                         = "GPIO_LED";
+GPIO1.associatedPins[0].$name       = "D0";
+GPIO1.associatedPins[0].invert      = "ENABLE";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+SYSCTL.validateClkStatus = true;
+SYSCTL.MCLKSource        = "HSCLK";
+SYSCTL.HSCLKSource       = "SYSPLLCLK2X";
+SYSCTL.SYSPLL_CLK2XEn    = true;
+SYSCTL.SYSPLL_Pdiv       = 1;
+SYSCTL.SYSPLL_Qdiv       = 5;
+SYSCTL.SYSPLL_CLK2XDiv   = 3;
+SYSCTL.clockTreeEn       = true;
+
+i2cSMBUS1.basicEnableController             = true;
+i2cSMBUS1.$name                             = "SMB_I2C";
+i2cSMBUS1.enableTimeoutA                    = true;
+i2cSMBUS1.intGeneric                        = ["TIMEOUT_A"];
+i2cSMBUS1.enableControllerPEC               = true;
+i2cSMBUS1.intController                     = ["ARBITRATION_LOST","NACK","PEC_RX_ERROR","RXFIFO_TRIGGER","START","STOP","TXFIFO_TRIGGER"];
+i2cSMBUS1.basicControllerStandardBusSpeed   = "Fast";
+i2cSMBUS1.timeoutACount                     = 135;
+i2cSMBUS1.peripheral.$assign                = "I2C0";
+i2cSMBUS1.peripheral.sdaPin.$assign         = "PA28";
+i2cSMBUS1.peripheral.sclPin.$assign         = "PA31";
+
+ProjectConfig.genLibPMBUS        = true;
+ProjectConfig.migrationCondition = true;

@@ -29,12 +29,11 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "App_task.h"
+#include "Communications/I2C_communication.h"
 
 #ifndef BQ769X2_CONFIGS_BQ769X2_PROTOCOL_H_
 #define BQ769X2_CONFIGS_BQ769X2_PROTOCOL_H_
-
-#include "App_task.h"
-#include "Communications/I2C_communication.h"
 
 /******************************************************************
  * Define:
@@ -44,6 +43,9 @@
 #define R 0         //Read
 #define W 1         //Write
 #define W2 2        //write data with two bytes
+
+#define Cell_count \
+    16  // Set the actual cell count per AFE. Also need change Settings:Configuration:Vcell mode if not 16
 
 //Data  Memory  registers   Name in TRM
 #define Cell1Gain 0x9180     //Calibration:Voltage:Cell 1 Gain
@@ -494,23 +496,36 @@
 /******************************************************************
  * Variables:
  */
-extern volatile uint16_t Battery_status;
-extern volatile uint8_t ProtectionsTriggered;
-extern volatile uint32_t CFETOFF_Count;
-extern volatile uint32_t DFETOFF_Count;
-extern volatile uint32_t ALERT_Count;
-extern volatile uint32_t TS1_Count;
-extern volatile uint32_t TS2_Count;
-extern volatile uint32_t TS3_Count;
-extern volatile uint32_t HDQ_Count;
-extern volatile uint32_t DCHG_Count;
-extern volatile uint32_t DDSG_Count;
+
+extern uint8_t ProtectionsTriggered;
+extern uint8_t TOP_FULLSCAN;
+extern uint8_t BOT_FULLSCAN;
+extern uint8_t TOP_ADCSCAN;
+extern uint8_t BOT_ADCSCAN;
+
+extern uint16_t Battery_status;
+extern uint16_t AlarmBits;
+
+extern uint32_t CFETOFF_Count;
+extern uint32_t DFETOFF_Count;
+extern uint32_t ALERT_Count;
+extern uint32_t TS1_Count;
+extern uint32_t TS2_Count;
+extern uint32_t TS3_Count;
+extern uint32_t HDQ_Count;
+extern uint32_t DCHG_Count;
+extern uint32_t DDSG_Count;
+extern uint32_t AccumulatedCharge_Time;
+
+extern float PASS_Q;
 
 /******************************************************************
  * Functions:
  */
 unsigned char CRC8(unsigned char *ptr, unsigned char len);
+
 float BQ769x2_ReadTemperature(uint8_t command);
+
 void BQ769x2_ReadAllTemperature_Count();
 void BQ769x2_Readpullup_pad_RES();
 void BQ769x2_BOT_Init();
@@ -536,7 +551,7 @@ void Subcommands(uint16_t command, uint16_t data, uint8_t type);
 void CommandSubcommands(uint16_t command);
 void BQ769x2_SetRegister(
     uint16_t reg_addr, uint32_t reg_data, uint8_t datalen);
-
+void BQ769x2_ReadAllCellVoltage(uint16_t *Cell_V);
 uint16_t BQ769x2_ReadSafetyStatus();
 uint16_t BQ769x2_ReadVoltage(uint8_t command);
 uint16_t BQ769x2_Current_BoardOffset_Calibration();

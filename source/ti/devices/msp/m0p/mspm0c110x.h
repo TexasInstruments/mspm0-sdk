@@ -175,6 +175,7 @@ typedef enum IRQn
 #define __MSPM0_HAS_UART_MAIN__
 #define __MSPM0_HAS_VREF__
 #define __MSPM0_HAS_WWDT__
+#define __MSPM0_HAS_LEGACY_ADC_REFERENCE__ 
 
 #define __MSPM0C110X_ADC_ERR_06__
 

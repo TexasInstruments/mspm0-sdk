@@ -40,14 +40,14 @@ static void DL_FlashCTL_programMemoryConfig(
     FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd);
 static DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_executeCommandFromRAM(
     FLASHCTL_Regs *flashctl);
-static void DL_FlashCTL_programMemory8Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint8_t *data);
-static void DL_FlashCTL_programMemory16Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint16_t *data);
-static void DL_FlashCTL_programMemory32Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data);
-static void DL_FlashCTL_programMemory64Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data);
+static void DL_FlashCTL_programMemory8Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint8_t *data);
+static void DL_FlashCTL_programMemory16Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint16_t *data);
+static void DL_FlashCTL_programMemory32Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint32_t *data);
+static void DL_FlashCTL_programMemory64Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint32_t *data);
 
 #if defined(__ti_version__) || defined(__TI_COMPILER_VERSION__)
 #define RAMFUNC \
@@ -279,8 +279,8 @@ static void DL_FlashCTL_programMemoryConfig(
     DL_FlashCTL_setCommandAddress(flashctl, address);
 }
 
-static void DL_FlashCTL_programMemory8Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint8_t *data)
+static void DL_FlashCTL_programMemory8Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint8_t *data)
 {
     DL_FlashCTL_programMemoryConfig(flashctl, address, cmd);
 
@@ -288,8 +288,8 @@ static void DL_FlashCTL_programMemory8Config(
     flashctl->GEN.CMDDATA0 = *data;
 }
 
-static void DL_FlashCTL_programMemory16Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint16_t *data)
+static void DL_FlashCTL_programMemory16Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint16_t *data)
 {
     DL_FlashCTL_programMemoryConfig(flashctl, address, cmd);
 
@@ -297,8 +297,8 @@ static void DL_FlashCTL_programMemory16Config(
     flashctl->GEN.CMDDATA0 = *data;
 }
 
-static void DL_FlashCTL_programMemory32Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data)
+static void DL_FlashCTL_programMemory32Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint32_t *data)
 {
     DL_FlashCTL_programMemoryConfig(flashctl, address, cmd);
 
@@ -306,8 +306,8 @@ static void DL_FlashCTL_programMemory32Config(
     flashctl->GEN.CMDDATA0 = *data;
 }
 
-static void DL_FlashCTL_programMemory64Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data)
+static void DL_FlashCTL_programMemory64Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint32_t *data)
 {
     DL_FlashCTL_programMemoryConfig(flashctl, address, cmd);
 
@@ -317,7 +317,7 @@ static void DL_FlashCTL_programMemory64Config(
 }
 
 void DL_FlashCTL_programMemory8(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data)
 {
     /* Only enable the bottom 8 bits for programming*/
     DL_FlashCTL_programMemory8Config(
@@ -328,7 +328,7 @@ void DL_FlashCTL_programMemory8(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data)
 {
     /* Only enable the bottom 8 bits for programming*/
     DL_FlashCTL_programMemory8Config(
@@ -338,7 +338,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8(
 }
 
 void DL_FlashCTL_programMemory16(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data)
 {
     /* Enable 16 bits per data register for programming*/
     DL_FlashCTL_programMemory16Config(
@@ -349,7 +349,7 @@ void DL_FlashCTL_programMemory16(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data)
 {
     /* Enable 16 bits per data register for programming*/
     DL_FlashCTL_programMemory16Config(
@@ -360,7 +360,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16(
 }
 
 void DL_FlashCTL_programMemory32(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 32 bits per data register for programming*/
     DL_FlashCTL_programMemory32Config(
@@ -371,7 +371,7 @@ void DL_FlashCTL_programMemory32(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 32 bits per data register for programming*/
     DL_FlashCTL_programMemory32Config(
@@ -382,7 +382,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32(
 }
 
 void DL_FlashCTL_programMemory64(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 64 bits per data register for programming*/
     DL_FlashCTL_programMemory64Config(
@@ -393,7 +393,7 @@ void DL_FlashCTL_programMemory64(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 64 bits per data register for programming*/
     DL_FlashCTL_programMemory64Config(
@@ -404,7 +404,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64(
 }
 
 void DL_FlashCTL_programMemory8WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data)
 {
     /* Only enable the bottom 8 bits for programming*/
     DL_FlashCTL_programMemory8Config(
@@ -415,7 +415,7 @@ void DL_FlashCTL_programMemory8WithECCGenerated(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data)
 {
     /* Only enable the bottom 8 bits for programming*/
     DL_FlashCTL_programMemory8Config(
@@ -426,7 +426,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8WithECCGenerated(
 }
 
 void DL_FlashCTL_programMemory16WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data)
 {
     /* Enable 16 bits per data register for programming*/
     DL_FlashCTL_programMemory16Config(
@@ -437,7 +437,7 @@ void DL_FlashCTL_programMemory16WithECCGenerated(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data)
 {
     /* Enable 16 bits per data register for programming*/
     DL_FlashCTL_programMemory16Config(
@@ -448,7 +448,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16WithECCGenerated(
 }
 
 void DL_FlashCTL_programMemory32WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 32 bits per data register for programming*/
     DL_FlashCTL_programMemory32Config(
@@ -458,7 +458,7 @@ void DL_FlashCTL_programMemory32WithECCGenerated(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 32 bits per data register for programming*/
     DL_FlashCTL_programMemory32Config(
@@ -468,7 +468,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32WithECCGenerated(
 }
 
 void DL_FlashCTL_programMemory64WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 64 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory64Config(
@@ -479,7 +479,7 @@ void DL_FlashCTL_programMemory64WithECCGenerated(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 64 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory64Config(
@@ -489,8 +489,8 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64WithECCGenerated(
     return DL_FlashCTL_executeCommandFromRAM(flashctl);
 }
 
-void DL_FlashCTL_programMemory8WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data, uint8_t *eccCode)
+void DL_FlashCTL_programMemory8WithECCManual(FLASHCTL_Regs *flashctl,
+    uint32_t address, const uint8_t *data, const uint8_t *eccCode)
 {
     /* Enable 8 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory8Config(
@@ -503,7 +503,8 @@ void DL_FlashCTL_programMemory8WithECCManual(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data, uint8_t *eccCode)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data,
+    const uint8_t *eccCode)
 {
     /* Enable 8 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory8Config(
@@ -516,7 +517,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM8WithECCManual(
 }
 
 void DL_FlashCTL_programMemory16WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint16_t *data, uint8_t *eccCode)
+    uint32_t address, const uint16_t *data, const uint8_t *eccCode)
 {
     /* Enable 16 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory16Config(
@@ -529,8 +530,8 @@ void DL_FlashCTL_programMemory16WithECCManual(FLASHCTL_Regs *flashctl,
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data,
-    uint8_t *eccCode)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data,
+    const uint8_t *eccCode)
 {
     /* Enable 16 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory16Config(
@@ -543,7 +544,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM16WithECCManual(
 }
 
 void DL_FlashCTL_programMemory32WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode)
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode)
 {
     /* Enable 32 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory32Config(
@@ -556,8 +557,8 @@ void DL_FlashCTL_programMemory32WithECCManual(FLASHCTL_Regs *flashctl,
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
-    uint8_t *eccCode)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data,
+    const uint8_t *eccCode)
 {
     /* Enable 32 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory32Config(
@@ -570,7 +571,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM32WithECCManual(
 }
 
 void DL_FlashCTL_programMemory64WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode)
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode)
 {
     /* Enable 64 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory64Config(
@@ -583,8 +584,8 @@ void DL_FlashCTL_programMemory64WithECCManual(FLASHCTL_Regs *flashctl,
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_programMemoryFromRAM64WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
-    uint8_t *eccCode)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data,
+    const uint8_t *eccCode)
 {
     /* Enable 64 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory64Config(
@@ -1043,32 +1044,32 @@ static void DL_FlashCTL_readVerifyConfig(
     DL_FlashCTL_setCommandAddress(flashctl, address);
 }
 
-static void DL_FlashCTL_readVerify8Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint8_t *data)
+static void DL_FlashCTL_readVerify8Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint8_t *data)
 {
     DL_FlashCTL_readVerifyConfig(flashctl, address, cmd);
 
     flashctl->GEN.CMDDATA0 = *data;
 }
 
-static void DL_FlashCTL_readVerify16Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint16_t *data)
+static void DL_FlashCTL_readVerify16Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint16_t *data)
 {
     DL_FlashCTL_readVerifyConfig(flashctl, address, cmd);
 
     flashctl->GEN.CMDDATA0 = *data;
 }
 
-static void DL_FlashCTL_readVerify32Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data)
+static void DL_FlashCTL_readVerify32Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint32_t *data)
 {
     DL_FlashCTL_readVerifyConfig(flashctl, address, cmd);
 
     flashctl->GEN.CMDDATA0 = *data;
 }
 
-static void DL_FlashCTL_readVerify64Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data)
+static void DL_FlashCTL_readVerify64Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint32_t *data)
 {
     DL_FlashCTL_readVerifyConfig(flashctl, address, cmd);
 
@@ -1078,7 +1079,7 @@ static void DL_FlashCTL_readVerify64Config(
 }
 
 void DL_FlashCTL_readVerify8(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1096,7 +1097,7 @@ void DL_FlashCTL_readVerify8(
 }
 
 void DL_FlashCTL_readVerify16(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1114,7 +1115,7 @@ void DL_FlashCTL_readVerify16(
 }
 
 void DL_FlashCTL_readVerify32(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1132,7 +1133,7 @@ void DL_FlashCTL_readVerify32(
 }
 
 void DL_FlashCTL_readVerify64(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1151,7 +1152,7 @@ void DL_FlashCTL_readVerify64(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data)
 {
     DL_FlashCTL_readVerify8Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_8_WITHOUT_ECC, data);
@@ -1161,7 +1162,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data)
 {
     DL_FlashCTL_readVerify16Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_16_WITHOUT_ECC, data);
@@ -1171,7 +1172,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     DL_FlashCTL_readVerify32Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_32_WITHOUT_ECC, data);
@@ -1181,7 +1182,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     DL_FlashCTL_readVerify64Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_64_WITHOUT_ECC, data);
@@ -1191,7 +1192,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data)
 {
     DL_FlashCTL_readVerify8Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_8_WITH_ECC, data);
@@ -1201,7 +1202,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCGenerated(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data)
 {
     DL_FlashCTL_readVerify16Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_16_WITH_ECC, data);
@@ -1211,7 +1212,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCGenerated(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     DL_FlashCTL_readVerify32Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_32_WITH_ECC, data);
@@ -1221,7 +1222,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCGenerated(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     DL_FlashCTL_readVerify64Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_64_WITH_ECC, data);
@@ -1231,7 +1232,8 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCGenerated(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data, uint8_t *eccCode)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data,
+    const uint8_t *eccCode)
 {
     DL_FlashCTL_readVerify8Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_8_WITH_ECC, data);
@@ -1243,8 +1245,8 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM8WithECCManual(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data,
-    uint8_t *eccCode)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data,
+    const uint8_t *eccCode)
 {
     DL_FlashCTL_readVerify16Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_16_WITH_ECC, data);
@@ -1256,8 +1258,8 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM16WithECCManual(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
-    uint8_t *eccCode)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data,
+    const uint8_t *eccCode)
 {
     DL_FlashCTL_readVerify32Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_32_WITH_ECC, data);
@@ -1269,8 +1271,8 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM32WithECCManual(
 }
 
 DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data,
-    uint8_t *eccCode)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data,
+    const uint8_t *eccCode)
 {
     DL_FlashCTL_readVerify64Config(
         flashctl, address, DL_FLASHCTL_READ_VERIFY_64_WITH_ECC, data);
@@ -1282,7 +1284,7 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_readVerifyFromRAM64WithECCManual(
 }
 
 void DL_FlashCTL_readVerify8WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint8_t *data)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1300,7 +1302,7 @@ void DL_FlashCTL_readVerify8WithECCGenerated(
 }
 
 void DL_FlashCTL_readVerify16WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint16_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint16_t *data)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1318,7 +1320,7 @@ void DL_FlashCTL_readVerify16WithECCGenerated(
 }
 
 void DL_FlashCTL_readVerify32WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1336,7 +1338,7 @@ void DL_FlashCTL_readVerify32WithECCGenerated(
 }
 
 void DL_FlashCTL_readVerify64WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1354,8 +1356,8 @@ void DL_FlashCTL_readVerify64WithECCGenerated(
     flashctl->GEN.CMDEXEC = FLASHCTL_CMDEXEC_VAL_EXECUTE;
 }
 
-void DL_FlashCTL_readVerify8WithECCManual(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint8_t *data, uint8_t *eccCode)
+void DL_FlashCTL_readVerify8WithECCManual(FLASHCTL_Regs *flashctl,
+    uint32_t address, const uint8_t *data, const uint8_t *eccCode)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1374,7 +1376,7 @@ void DL_FlashCTL_readVerify8WithECCManual(
 }
 
 void DL_FlashCTL_readVerify16WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint16_t *data, uint8_t *eccCode)
+    uint32_t address, const uint16_t *data, const uint8_t *eccCode)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1393,7 +1395,7 @@ void DL_FlashCTL_readVerify16WithECCManual(FLASHCTL_Regs *flashctl,
 }
 
 void DL_FlashCTL_readVerify32WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode)
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1412,7 +1414,7 @@ void DL_FlashCTL_readVerify32WithECCManual(FLASHCTL_Regs *flashctl,
 }
 
 void DL_FlashCTL_readVerify64WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode)
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode)
 {
     flashctl->GEN.CMDTYPE = (uint32_t) DL_FLASHCTL_COMMAND_SIZE_ONE_WORD |
                             (uint32_t) DL_FLASHCTL_COMMAND_TYPE_READ_VERIFY;
@@ -1505,8 +1507,8 @@ DL_FLASHCTL_COMMAND_STATUS DL_FlashCTL_eraseDataBankFromRAM(
 
 #ifdef DEVICE_HAS_FLASH_128_BIT_WORD
 
-static void DL_FlashCTL_programMemory128Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data);
+static void DL_FlashCTL_programMemory128Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint32_t *data);
 static void DL_FlashCTL_programMemoryConfigMultiWord(FLASHCTL_Regs *flashctl,
     uint32_t address, uint32_t cmd, DL_FLASHCTL_COMMAND_SIZE cmdSize);
 
@@ -1532,8 +1534,8 @@ static void DL_FlashCTL_programMemoryConfigMultiWord(FLASHCTL_Regs *flashctl,
     DL_FlashCTL_setCommandAddress(flashctl, address);
 }
 
-static void DL_FlashCTL_programMemory128Config(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t cmd, uint32_t *data)
+static void DL_FlashCTL_programMemory128Config(FLASHCTL_Regs *flashctl,
+    uint32_t address, uint32_t cmd, const uint32_t *data)
 {
     DL_FlashCTL_programMemoryConfigMultiWord(
         flashctl, address, cmd, DL_FLASHCTL_COMMAND_SIZE_TWO_WORDS);
@@ -1546,7 +1548,7 @@ static void DL_FlashCTL_programMemory128Config(
 }
 
 void DL_FlashCTL_programMemory128(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 128 bits per data register for programming*/
     DL_FlashCTL_programMemory128Config(
@@ -1557,7 +1559,7 @@ void DL_FlashCTL_programMemory128(
 }
 
 void DL_FlashCTL_programMemory128WithECCGenerated(
-    FLASHCTL_Regs *flashctl, uint32_t address, uint32_t *data)
+    FLASHCTL_Regs *flashctl, uint32_t address, const uint32_t *data)
 {
     /* Enable 128 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory128Config(
@@ -1568,7 +1570,7 @@ void DL_FlashCTL_programMemory128WithECCGenerated(
 }
 
 void DL_FlashCTL_programMemory128WithECCManual(FLASHCTL_Regs *flashctl,
-    uint32_t address, uint32_t *data, uint8_t *eccCode)
+    uint32_t address, const uint32_t *data, const uint8_t *eccCode)
 {
     /* Enable 128 bits per data register for programming, with ECC enabled */
     DL_FlashCTL_programMemory128Config(

@@ -35,7 +35,12 @@
 <div id="content">
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
-<p>This example demonstrates program multiple size (8/16/32/64-bit) data to flash with automatic hardware generated ECC.</p>
+<p>This example demonstrates how to write to the BCR and BSL configuration structures that are in NONMAIN Memory.</p>
+<p>The BCR and BSL configuration data structures are both contained within a single flash sector in the NONMAIN flash memory region.</p>
+<p>Both the BCR and BSL configuration data structures are protected by individual 32-bit CRCs to improve security. The application first calculates the 32-bit CRCs for both structures based on the user configuration values, and then sets the calculated CRC for each structure.</p>
+<p>To successfully change any parameter in the boot configuration, the application must erase the entire NONMAIN sector. Then both the BCR and BSL configuration structures are re-programed with the given user configuration values.</p>
+<p>The BCR and BSL configuration structures at application startup are configured with the default values. To update the values, the user should refer to boot_config.h to view the possible values that may be configured to BCR and BSL configuration structures.</p>
+<p><em>Note</em>: Please use caution before erasing and writing to NONMAIN memory.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -52,17 +57,17 @@
 <td>Open-Drain Output</td>
 </tr>
 <tr class="even">
-<td>GPIOA</td>
-<td>PA15</td>
-<td>Standard Output</td>
-</tr>
-<tr class="odd">
 <td>SYSCTL</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>EVENT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>CRC</td>
 <td></td>
 <td></td>
 </tr>
@@ -99,20 +104,13 @@
 <td><ul><li>PA0 is 5V tolerant open-drain so it requires pull-up<br><ul><li><code>J19 1:2</code> Use 3.3V pull-up<br><li><code>J19 2:3</code> Use 5V pull-up</ul><br><li>PA0 can be connected to LED1<br><ul><li><code>J4 ON</code> Connect to LED1<br><li><code>J4 OFF</code> Disconnect from LED1</ul></ul></td>
 </tr>
 <tr class="even">
-<td>PA15</td>
-<td>GPIOA</td>
-<td>PA15</td>
-<td>J3_30</td>
-<td><ul><li>This pin can be used for testing purposes in boosterpack connector<ul><li>Pin can be reconfigured for general purpose as necessary</ul></ul></td>
-</tr>
-<tr class="odd">
 <td>PA20</td>
 <td>DEBUGSS</td>
 <td>SWCLK</td>
 <td>N/A</td>
 <td><ul><li>PA20 is used by SWD during debugging<br><ul><li><code>J101 15:16 ON</code> Connect to XDS-110 SWCLK while debugging<br><li><code>J101 15:16 OFF</code> Disconnect from XDS-110 SWCLK if using pin in application</ul></ul></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>PA19</td>
 <td>DEBUGSS</td>
 <td>SWDIO</td>
@@ -124,7 +122,7 @@
 <h3 id="device-migration-recommendations">Device Migration Recommendations</h3>
 <p>This project was developed for a superset device included in the LP_MSPM0L2228 LaunchPad. Please visit the <a href="https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#non-sysconfig-compatible-project-migration">CCS User’s Guide</a> for information about migrating to other MSPM0 devices.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load and run the example. The flash operations will start automatically when the example is run. If all flash operations complete, the LED will turn on. The application will stop at a breakpoint so the user can verify the values in memory match those expected in the comments.</p>
+<p>Compile, load and run the example. The flash operations will start automatically when the example is run. LED0 will blink after all flash executions are completed. The user can view the contents of memory to verify the results of the write operations.</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">
@@ -132,7 +130,7 @@
   with 100,000+ analog ICs and embedded processors, along with software, tools
   and the industry‘s largest sales/support staff.</p>
   <p>
-    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br>
+    <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br>
     <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
   </p>
 </footer>

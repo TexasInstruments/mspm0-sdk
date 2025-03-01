@@ -46,7 +46,7 @@
             /* http://www.ti.com/tools-software/launchpads/boosterpacks/build.html */
             "type": "BoosterPack 40 pin",
             "default": true,
-            "name": "boosterpack",
+            "name": "boosterpack_top",
             "displayName": "BoosterPack Standard Header",
             "dimensions": {
                 "columns": [
@@ -271,7 +271,7 @@
             /* http://www.ti.com/tools-software/launchpads/boosterpacks/build.html */
             "type": "BoosterPack 40 pin",
             "default": true,
-            "name": "boosterpack",
+            "name": "boosterpack_bottom",
             "displayName": "BoosterPack Standard Header",
             "dimensions": {
                 "columns": [
@@ -291,8 +291,8 @@
                 },
                 {
                     "number": 2,     /* Analog in */
-                    "name": "PB10",
-                    "ball": "44"
+                    "name": "PB0",
+                    "ball": "20"
                 },
                 {
                     "number": 3,     /* UART RX */
@@ -493,9 +493,9 @@
             ]
         },
         {
-            "type": "MSPM0G3519 J18 Edge Connector",
+            "type": "MSPM0G3519 J11 Edge Connector",
             "default": true,
-            "name": "j18_expansion",
+            "name": "j11_expansion",
             "displayName": "Edge Connector for QEI Interface",
             "displayNumbers": true,
             "dimensions": {
@@ -530,47 +530,10 @@
             ]
         },
         {
-            "type": "MSPM0G3519 J18 Edge Connector",
+            "type": "MSPM0G3519 J101 Edge Connector",
             "default": true,
-            "name": "j18_expansion",
-            "displayName": "Edge Connector for QEI Interface",
-            "displayNumbers": true,
-            "dimensions": {
-                "columns": [
-                    { "top":  1, "bottom": 5}
-                ]
-            },
-            "pins": [
-                {
-                    "number": 1,
-                    "name": "PB29",
-                    "ball": "30"
-                },
-                {
-                    "number": 2,
-                    "name": "PB30",
-                    "ball": "31"
-                },
-                    {
-                    "number": 3,
-                    "name": "PB31",
-                    "ball": "32"
-                },
-                {
-                    "number": 4,
-                    "name": "3V3"
-                },
-                {
-                    "number": 5,
-                    "name": "GND"
-                }
-            ]
-        },
-        {
-            "type": "MSPM0G3519 J19 Edge Connector",
-            "default": true,
-            "name": "j19_expansion",
-            "displayName": "Edge Connector for Unused Pin Access",
+            "name": "j101_expansion",
+            "displayName": "Display for XDS110-ET to LP",
             "displayNumbers": true,
             "dimensions": {
                 "columns": [
@@ -587,7 +550,7 @@
                     "number": 2,
                     "name": "GND"
                 },
-				{
+                {
                     "number": 3,
                     "name": "XDS_VBUS"
                 },
@@ -657,7 +620,194 @@
                     "ball": "70"
                 }
             ]
-        }
+        },
+        {
+            "type": "MSPM0G3519 J24 Edge Connector",
+            "default": true,
+            "name": "j24_expansion",
+            "displayName": "Edge Connector for Unused Pin Access",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 9},
+                    { "top":  2, "bottom": 10}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PC24",
+                    "ball": "62"
+                },
+                {
+                    "number": 2,
+                    "name": "GND"
+                },
+                {
+                    "number": 3,
+                    "name": "PC8",
+                    "ball": "80"
+                },
+                {
+                    "number": 4,
+                    "name": "PC9",
+                    "ball": "81"
+                },
+                {
+                    "number": 5,
+                    "name": "GND"
+                },
+                {
+                    "number": 6,
+                    "name": "GND"
+                },
+                {
+                    "number": 7,
+                    "name": "3V3"
+                },
+                {
+                    "number": 8,
+                    "name": "3V3"
+                },
+                {
+                    "number": 9,
+                    "name": "5V"
+                },
+                {
+                    "number": 10,
+                    "name": "5V"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G3519 J25 Edge Connector",
+            "default": true,
+            "name": "j25_expansion",
+            "displayName": "Edge Connector for Unused Pin Access",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 9},
+                    { "top":  2, "bottom": 10}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PC28",
+                    "ball": "14"
+                },
+                {
+                    "number": 2,
+                    "name": "PC29",
+                    "ball": "37"
+                },
+                {
+                    "number": 3,
+                    "name": "PC16",
+                    "ball": "35"
+                },
+                {
+                    "number": 4,
+                    "name": "PC15",
+                    "ball": "11"
+                },
+                {
+                    "number": 5,
+                    "name": "PC18",
+                    "ball": "38"
+                },
+                {
+                    "number": 6,
+                    "name": "PC19",
+                    "ball": "39"
+                },
+                {
+                    "number": 7,
+                    "name": "PC20",
+                    "ball": "58"
+                },
+                {
+                    "number": 8,
+                    "name": "PC21",
+                    "ball": "59"
+                },
+                {
+                    "number": 9,
+                    "name": "PC22",
+                    "ball": "60"
+                },
+                {
+                    "number": 10,
+                    "name": "PC23",
+                    "ball": "61"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G3519 J26 Edge Connector",
+            "default": true,
+            "name": "j26_expansion",
+            "displayName": "Edge Connector for Unused Pin Access",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 9},
+                    { "top":  2, "bottom": 10}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PA2",
+                    "ball": "15"
+                },
+                {
+                    "number": 2,
+                    "name": "PA3",
+                    "ball": "16"
+                },
+                {
+                    "number": 3,
+                    "name": "PA4",
+                    "ball": "17"
+                },
+                {
+                    "number": 4,
+                    "name": "PA5",
+                    "ball": "18"
+                },
+                {
+                    "number": 5,
+                    "name": "PA6",
+                    "ball": "19"
+                },
+                {
+                    "number": 6,
+                    "name": "GND"
+                },
+                {
+                    "number": 7,
+                    "name": "PC0",
+                    "ball": "56"
+                },
+                {
+                    "number": 8,
+                    "name": "PC1",
+                    "ball": "57"
+                },
+                {
+                    "number": 9,
+                    "name": "PC12",
+                    "ball": "10"
+                },
+                {
+                    "number": 10,
+                    "name": "PC13",
+                    "ball": "12"
+                }
+            ]
+        },
     ],
     "components": {}
 }

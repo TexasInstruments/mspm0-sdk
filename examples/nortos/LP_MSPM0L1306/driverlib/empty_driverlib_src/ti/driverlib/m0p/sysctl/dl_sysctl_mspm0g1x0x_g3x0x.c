@@ -38,7 +38,7 @@
 #include <ti/driverlib/m0p/dl_core.h>
 #include <ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h>
 
-void DL_SYSCTL_configSYSPLL(DL_SYSCTL_SYSPLLConfig *config)
+void DL_SYSCTL_configSYSPLL(const DL_SYSCTL_SYSPLLConfig *config)
 {
     /* PLL configurations are retained in lower reset levels. Set default
      * behavior of disabling the PLL to keep a consistent behavior regardless
@@ -106,7 +106,7 @@ void DL_SYSCTL_configSYSPLL(DL_SYSCTL_SYSPLLConfig *config)
     }
 }
 
-void DL_SYSCTL_setLFCLKSourceLFXT(DL_SYSCTL_LFCLKConfig *config)
+void DL_SYSCTL_setLFCLKSourceLFXT(const DL_SYSCTL_LFCLKConfig *config)
 {
     DL_Common_updateReg(&SYSCTL->SOCLOCK.LFCLKCFG,
         ((uint32_t) config->lowCap << SYSCTL_LFCLKCFG_LOWCAP_OFS) |

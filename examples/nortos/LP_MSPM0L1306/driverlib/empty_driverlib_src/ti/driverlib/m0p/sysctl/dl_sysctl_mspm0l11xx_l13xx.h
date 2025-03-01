@@ -190,7 +190,7 @@ typedef enum {
 #define DL_SYSCTL_STATUS_FLASH_SEC              (SYSCTL_SYSSTATUS_FLASHSEC_TRUE)
 /*! @brief Current Brown Out Reset minimum level */
 #define DL_SYSCTL_STATUS_BOR_LEVEL0                                            \
-                                  (SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORLEVELMIN)
+                                       (SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORMIN)
 /*! @brief Current Brown Out Reset level 1 */
 #define DL_SYSCTL_STATUS_BOR_LEVEL1 (SYSCTL_SYSSTATUS_BORCURTHRESHOLD_BORLEVEL1)
 /*! @brief Current Brown Out Reset level 2 */
@@ -810,6 +810,7 @@ DL_SYSCTL_POWER_POLICY_RUN_SLEEP DL_SYSCTL_getPowerPolicyRUNSLEEP(void);
  * consistent operation of analog peripherals such as the ADC, OPA, or COMP.
  *
  * There are three STOP mode policy options: STOP0, STOP1, and STOP2.
+ * STOP0 should only be entered from RUN0 or SLEEP0.
  * Refer to the device TRM for more information on each policy.
  *
  * @post This API does not actually enter STOP mode. After using this API to
@@ -857,6 +858,7 @@ __STATIC_INLINE void DL_SYSCTL_setPowerPolicySTOP1(void)
  * 32kHz. This is the lowest power state in STOP mode.
  *
  * There are three STOP mode policy options: STOP0, STOP1, and STOP2.
+ * STOP2 should only be entered from RUN2 or SLEEP2.
  * Refer to the device TRM for more information on each policy.
  *
  * @post This API does not actually enter STOP mode. After using this API to
@@ -1310,7 +1312,7 @@ __STATIC_INLINE void DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ freq)
  *  @sa DL_SYSCTL_setMCLKDivider
  */
 __STATIC_INLINE void DL_SYSCTL_configSYSOSCUserTrim(
-    DL_SYSCTL_SYSOSCUserTrimConfig *config)
+    const DL_SYSCTL_SYSOSCUserTrimConfig *config)
 {
     SYSCTL->SOCLOCK.SYSOSCTRIMUSER =
         ((config->rDiv << SYSCTL_SYSOSCTRIMUSER_RDIV_OFS) &

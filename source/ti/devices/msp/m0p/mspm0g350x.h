@@ -241,6 +241,7 @@ typedef enum IRQn
 #define __MSPM0_HAS_WWDT__
 
 #define __MSPM0_HAS_ECC__
+#define __MSPM0_HAS_LEGACY_ADC_REFERENCE__ 
 
 /*! @brief Workaround added for bug in sineCosine operation in MATHACL */
 #define _IQMATH_MATHACL_SINCOS_BUG_WORKAROUND_

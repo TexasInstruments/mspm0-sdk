@@ -642,7 +642,7 @@ typedef struct {
  *  @param[in]  config        Pointer to DMA channel configuration settings
  */
 void DL_DMA_initChannel(
-    DMA_Regs *dma, uint8_t channelNum, DL_DMA_Config *config);
+    DMA_Regs *dma, uint8_t channelNum, const DL_DMA_Config *config);
 
 /**
  *  @brief      Configure a DMA channel for a transfer
@@ -718,7 +718,7 @@ __STATIC_INLINE void DL_DMA_disableRoundRobinPriority(DMA_Regs *dma)
  *  @retval     true  Round-robin priority is enabled
  *  @retval     false Round-robin priority is disabled
  */
-__STATIC_INLINE bool DL_DMA_isRoundRobinPriorityEnabled(DMA_Regs *dma)
+__STATIC_INLINE bool DL_DMA_isRoundRobinPriorityEnabled(const DMA_Regs *dma)
 {
     return ((dma->DMAPRIO & DMA_DMAPRIO_ROUNDROBIN_MASK) ==
             DMA_DMAPRIO_ROUNDROBIN_ENABLE);
@@ -756,7 +756,7 @@ __STATIC_INLINE void DL_DMA_setBurstSize(
  *
  *  @retval     One of @ref DL_DMA_BURST_SIZE
  */
-__STATIC_INLINE DL_DMA_BURST_SIZE DL_DMA_getBurstSize(DMA_Regs *dma)
+__STATIC_INLINE DL_DMA_BURST_SIZE DL_DMA_getBurstSize(const DMA_Regs *dma)
 {
     uint32_t burstSize = dma->DMAPRIO & DMA_DMAPRIO_BURSTSZ_MASK;
 
@@ -796,7 +796,8 @@ __STATIC_INLINE void DL_DMA_disableChannel(DMA_Regs *dma, uint8_t channelNum)
  *  @retval     true  The DMA channel is enabled
  *  @retval     false The DMA channel is disabled
  */
-__STATIC_INLINE bool DL_DMA_isChannelEnabled(DMA_Regs *dma, uint8_t channelNum)
+__STATIC_INLINE bool DL_DMA_isChannelEnabled(
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     return ((dma->DMACHAN[channelNum].DMACTL & DMA_DMACTL_DMAEN_MASK) ==
             DMA_DMACTL_DMAEN_ENABLE);
@@ -855,7 +856,7 @@ __STATIC_INLINE void DL_DMA_setTransferMode(
  *  @retval     One of @ref DL_DMA_TRANSFER_MODE
  */
 __STATIC_INLINE DL_DMA_TRANSFER_MODE DL_DMA_getTransferMode(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     uint32_t mode = (dma->DMACHAN[channelNum].DMACTL & DMA_DMACTL_DMATM_MASK);
 
@@ -891,7 +892,7 @@ __STATIC_INLINE void DL_DMA_setExtendedMode(
  *  @retval     One of @ref DL_DMA_EXTENDED_MODE
  */
 __STATIC_INLINE DL_DMA_EXTENDED_MODE DL_DMA_getExtendedMode(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     uint32_t mode = (dma->DMACHAN[channelNum].DMACTL & DMA_DMACTL_DMAEM_MASK);
 
@@ -940,7 +941,8 @@ __STATIC_INLINE void DL_DMA_setTrigger(DMA_Regs *dma, uint8_t channelNum,
  *  @retval     Check the device datasheet for what values are mapped to on
  *              your device.
  */
-__STATIC_INLINE uint32_t DL_DMA_getTrigger(DMA_Regs *dma, uint8_t channelNum)
+__STATIC_INLINE uint32_t DL_DMA_getTrigger(
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     return (dma->DMATRIG[channelNum].DMATCTL & DMA_DMATCTL_DMATSEL_MASK);
 }
@@ -957,7 +959,7 @@ __STATIC_INLINE uint32_t DL_DMA_getTrigger(DMA_Regs *dma, uint8_t channelNum)
  *  @retval     One of @ref DL_DMA_TRIGGER_TYPE
  */
 __STATIC_INLINE DL_DMA_TRIGGER_TYPE DL_DMA_getTriggerType(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     uint32_t triggerType =
         (dma->DMATRIG[channelNum].DMATCTL & DMA_DMATCTL_DMATINT_MASK);
@@ -992,7 +994,8 @@ __STATIC_INLINE void DL_DMA_setSrcAddr(
  *
  *  @return     Source address for the DMA channel
  */
-__STATIC_INLINE uint32_t DL_DMA_getSrcAddr(DMA_Regs *dma, uint8_t channelNum)
+__STATIC_INLINE uint32_t DL_DMA_getSrcAddr(
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     return dma->DMACHAN[channelNum].DMASA;
 }
@@ -1025,7 +1028,8 @@ __STATIC_INLINE void DL_DMA_setDestAddr(
  *
  *  @return     Destination address for the DMA channel
  */
-__STATIC_INLINE uint32_t DL_DMA_getDestAddr(DMA_Regs *dma, uint8_t channelNum)
+__STATIC_INLINE uint32_t DL_DMA_getDestAddr(
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     return dma->DMACHAN[channelNum].DMADA;
 }
@@ -1064,7 +1068,7 @@ __STATIC_INLINE void DL_DMA_setTransferSize(
  *  @retval     A value between 0 - 65535.
  */
 __STATIC_INLINE uint16_t DL_DMA_getTransferSize(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     return (uint16_t)(dma->DMACHAN[channelNum].DMASZ & DMA_DMASZ_SIZE_MASK);
 }
@@ -1107,7 +1111,7 @@ __STATIC_INLINE void DL_DMA_setSrcIncrement(
  *  @retval     One of @ref DL_DMA_INCREMENT.
  */
 __STATIC_INLINE DL_DMA_INCREMENT DL_DMA_getSrcIncrement(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     uint32_t incrementAmount =
         (dma->DMACHAN[channelNum].DMACTL & DMA_DMACTL_DMASRCINCR_MASK);
@@ -1154,7 +1158,7 @@ __STATIC_INLINE void DL_DMA_setDestIncrement(
  *  @retval     One of @ref DL_DMA_INCREMENT.
  */
 __STATIC_INLINE DL_DMA_INCREMENT DL_DMA_getDestIncrement(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     /* Right shifted by 4 to align with provided defines */
     uint32_t incrementAmount =
@@ -1191,7 +1195,7 @@ __STATIC_INLINE void DL_DMA_setSrcWidth(
  *  @retval     One of @ref DL_DMA_WIDTH.
  */
 __STATIC_INLINE DL_DMA_WIDTH DL_DMA_getSrcWidth(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     uint32_t width =
         (dma->DMACHAN[channelNum].DMACTL & DMA_DMACTL_DMASRCWDTH_MASK);
@@ -1228,7 +1232,7 @@ __STATIC_INLINE void DL_DMA_setDestWidth(
  *  @retval     One of @ref DL_DMA_WIDTH.
  */
 __STATIC_INLINE DL_DMA_WIDTH DL_DMA_getDestWidth(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     /* Right shifted by 4 to align with provided defines */
     uint32_t width =
@@ -1288,7 +1292,8 @@ __STATIC_INLINE void DL_DMA_Full_Ch_setEarlyInterruptThreshold(DMA_Regs *dma,
  *  @retval     One of @ref DL_DMA_EARLY_INTERRUPT_THRESHOLD.
  */
 __STATIC_INLINE DL_DMA_EARLY_INTERRUPT_THRESHOLD
-DL_DMA_Full_Ch_getEarlyInterruptThreshold(DMA_Regs *dma, uint8_t channelNum)
+DL_DMA_Full_Ch_getEarlyInterruptThreshold(
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     uint32_t threshold =
         dma->DMACHAN[channelNum].DMACTL & DMA_DMACTL_DMAPREIRQ_MASK;
@@ -1338,7 +1343,7 @@ __STATIC_INLINE void DL_DMA_disableInterrupt(
  *  @retval     Bitwise OR of @ref DL_DMA_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_DMA_getEnabledInterrupts(
-    DMA_Regs *dma, uint32_t interruptMask)
+    const DMA_Regs *dma, uint32_t interruptMask)
 {
     return (dma->CPU_INT.IMASK & interruptMask);
 }
@@ -1361,7 +1366,7 @@ __STATIC_INLINE uint32_t DL_DMA_getEnabledInterrupts(
  *  @sa         DL_DMA_enableInterrupt
  */
 __STATIC_INLINE uint32_t DL_DMA_getEnabledInterruptStatus(
-    DMA_Regs *dma, uint32_t interruptMask)
+    const DMA_Regs *dma, uint32_t interruptMask)
 {
     return (dma->CPU_INT.MIS & interruptMask);
 }
@@ -1382,7 +1387,7 @@ __STATIC_INLINE uint32_t DL_DMA_getEnabledInterruptStatus(
  *  @retval     Bitwise OR of @ref DL_DMA_INTERRUPT values
  */
 __STATIC_INLINE uint32_t DL_DMA_getRawInterruptStatus(
-    DMA_Regs *dma, uint32_t interruptMask)
+    const DMA_Regs *dma, uint32_t interruptMask)
 {
     return (dma->CPU_INT.RIS & interruptMask);
 }
@@ -1400,7 +1405,8 @@ __STATIC_INLINE uint32_t DL_DMA_getRawInterruptStatus(
  *
  *  @retval     One of @ref DL_DMA_EVENT_IIDX
  */
-__STATIC_INLINE DL_DMA_EVENT_IIDX DL_DMA_getPendingInterrupt(DMA_Regs *dma)
+__STATIC_INLINE DL_DMA_EVENT_IIDX DL_DMA_getPendingInterrupt(
+    const DMA_Regs *dma)
 {
     return (DL_DMA_EVENT_IIDX) dma->CPU_INT.IIDX;
 }
@@ -1528,7 +1534,7 @@ __STATIC_INLINE void DL_DMA_disableEvent(DMA_Regs *dma, uint32_t eventMask)
  *  @retval     Bitwise OR of @ref DL_DMA_EVENT values
  */
 __STATIC_INLINE uint32_t DL_DMA_getEnabledEvents(
-    DMA_Regs *dma, uint32_t eventMask)
+    const DMA_Regs *dma, uint32_t eventMask)
 {
     return (dma->GEN_EVENT.IMASK & eventMask);
 }
@@ -1551,7 +1557,7 @@ __STATIC_INLINE uint32_t DL_DMA_getEnabledEvents(
  *  @sa         DL_DMA_enableEvent
  */
 __STATIC_INLINE uint32_t DL_DMA_getEnabledEventStatus(
-    DMA_Regs *dma, uint32_t eventMask)
+    const DMA_Regs *dma, uint32_t eventMask)
 {
     return (dma->GEN_EVENT.MIS & ~(eventMask));
 }
@@ -1572,7 +1578,7 @@ __STATIC_INLINE uint32_t DL_DMA_getEnabledEventStatus(
  *  @retval     Bitwise OR of @ref DL_DMA_EVENT values
  */
 __STATIC_INLINE uint32_t DL_DMA_getRawEventsStatus(
-    DMA_Regs *dma, uint32_t eventMask)
+    const DMA_Regs *dma, uint32_t eventMask)
 {
     return (dma->GEN_EVENT.RIS & ~(eventMask));
 }
@@ -1630,7 +1636,7 @@ __STATIC_INLINE void DL_DMA_disableAutoEnable(
  *  @retval     false   auto-enable is disabled
  */
 __STATIC_INLINE bool DL_DMA_isAutoEnableEnabled(
-    DMA_Regs *dma, uint8_t channelNum)
+    const DMA_Regs *dma, uint8_t channelNum)
 {
     return ((dma->DMACHAN[channelNum].DMACTL & DMA_DMACTL_DMAAUTOEN_MASK) !=
             DMA_DMACTL_DMAAUTOEN_DISABLE);

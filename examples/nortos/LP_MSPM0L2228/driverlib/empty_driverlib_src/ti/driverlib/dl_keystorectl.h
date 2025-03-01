@@ -242,7 +242,7 @@ __STATIC_INLINE void DL_KEYSTORECTL_setNumberOf256Keys(
  *  @sa DL_KEYSTORECTL_setNumberOf256Keys
  */
 __STATIC_INLINE DL_KEYSTORECTL_NUM_256_KEYS DL_KEYSTORECTL_getNumberOf256Keys(
-    KEYSTORECTL_Regs *keystorectl)
+    const KEYSTORECTL_Regs *keystorectl)
 {
     uint32_t numKeys = (keystorectl->CFG & KEYSTORECTL_CFG_NK256_MASK);
 
@@ -292,7 +292,7 @@ __STATIC_INLINE void DL_KEYSTORECTL_setDestinationKeySlot(
  *  @sa DL_KEYSTORECTL_setDestinationKeySlot
  */
 __STATIC_INLINE uint32_t DL_KEYSTORECTL_getDestinationKeySlot(
-    KEYSTORECTL_Regs *keystorectl)
+    const KEYSTORECTL_Regs *keystorectl)
 {
     return (keystorectl->KEYWR & KEYSTORECTL_KEYWR_KEYSLOTSEL_MASK);
 }
@@ -335,7 +335,7 @@ __STATIC_INLINE void DL_KEYSTORECTL_setDestinationKeySize(
  *  @sa DL_KEYSTORECTL_setDestinationKeySize
  */
 __STATIC_INLINE DL_KEYSTORECTL_KEY_SIZE DL_KEYSTORECTL_getDestinationKeySize(
-    KEYSTORECTL_Regs *keystorectl)
+    const KEYSTORECTL_Regs *keystorectl)
 {
     uint32_t keySize = (keystorectl->KEYWR & KEYSTORECTL_KEYWR_KEYSZSEL_MASK);
 
@@ -398,7 +398,7 @@ __STATIC_INLINE void DL_KEYSTORECTL_setSourceKeySlot(
  *  @sa DL_KEYSTORECTL_setSourceKeySlot
  */
 __STATIC_INLINE uint32_t DL_KEYSTORECTL_getSourceKeySlot(
-    KEYSTORECTL_Regs *keystorectl)
+    const KEYSTORECTL_Regs *keystorectl)
 {
     return (keystorectl->KEYRD & KEYSTORECTL_KEYRD_KEYSLOTSEL_MASK);
 }
@@ -435,7 +435,7 @@ __STATIC_INLINE void DL_KEYSTORECTL_setSourceKeySize(
  *  @sa DL_KEYSTORECTL_setSourceKeySize
  */
 __STATIC_INLINE DL_KEYSTORECTL_KEY_SIZE DL_KEYSTORECTL_getSourceKeySize(
-    KEYSTORECTL_Regs *keystorectl)
+    const KEYSTORECTL_Regs *keystorectl)
 {
     uint32_t keySize = (keystorectl->KEYRD & KEYSTORECTL_KEYRD_KEYSZSEL_MASK);
 
@@ -450,7 +450,7 @@ __STATIC_INLINE DL_KEYSTORECTL_KEY_SIZE DL_KEYSTORECTL_getSourceKeySize(
  *  @return    The status of the keystorectl. One of @ref DL_KEYSTORECTL_STATUS
  */
 __STATIC_INLINE DL_KEYSTORECTL_STATUS DL_KEYSTORECTL_getStatus(
-    KEYSTORECTL_Regs *keystorectl)
+    const KEYSTORECTL_Regs *keystorectl)
 {
     uint32_t status = (keystorectl->STATUS & KEYSTORECTL_STATUS_STAT_MASK);
 
@@ -470,7 +470,7 @@ __STATIC_INLINE DL_KEYSTORECTL_STATUS DL_KEYSTORECTL_getStatus(
  *             @ref DL_KEYSTORECTL_KEY_SLOT values.
  */
 __STATIC_INLINE uint32_t DL_KEYSTORECTL_getValidKeySlots(
-    KEYSTORECTL_Regs *keystorectl)
+    const KEYSTORECTL_Regs *keystorectl)
 {
     return (keystorectl->STATUS & KEYSTORECTL_STATUS_VALID_MASK);
 }
@@ -489,7 +489,7 @@ __STATIC_INLINE uint32_t DL_KEYSTORECTL_getValidKeySlots(
  *             @ref DL_KEYSTORECTL_NUM_SLOTS
  */
 __STATIC_INLINE DL_KEYSTORECTL_NUM_SLOTS DL_KEYSTORECTL_getNumSlots(
-    KEYSTORECTL_Regs *keystorectl)
+    const KEYSTORECTL_Regs *keystorectl)
 {
     uint32_t numSlots =
         (keystorectl->STATUS & KEYSTORECTL_STATUS_NKEYSLOTS_MASK);
@@ -551,7 +551,7 @@ DL_KEYSTORECTL_STATUS DL_KEYSTORECTL_writeKey(
  *             error status.
  */
 DL_KEYSTORECTL_STATUS DL_KEYSTORECTL_transferKey(
-    KEYSTORECTL_Regs *keystorectl, DL_KEYSTORECTL_Config *config);
+    KEYSTORECTL_Regs *keystorectl, const DL_KEYSTORECTL_Config *config);
 
 #ifdef __cplusplus
 }

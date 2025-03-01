@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0GX51X Driver Library
-   &#160;<span id="projectnumber">2.03.00.07</span>
+   &#160;<span id="projectnumber">2.04.00.06</span>
    </div>
   </td>
  </tr>
@@ -178,13 +178,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga20be7bde67b141016a72667c82ef6b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Window Watchdog Timer in interval timer mode.  <a href="#ga20be7bde67b141016a72667c82ef6b50">More...</a><br /></td></tr>
 <tr class="separator:ga20be7bde67b141016a72667c82ef6b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae78c6d4e85255a6ad4d92d22c8367ad2"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___w_w_d_t.html#gae78c6d4e85255a6ad4d92d22c8367ad2">DL_WWDT_enablePower</a> (WWDT_Regs *wwdt)</td></tr>
-<tr class="memdesc:gae78c6d4e85255a6ad4d92d22c8367ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables power on WWDT module.  <a href="#gae78c6d4e85255a6ad4d92d22c8367ad2">More...</a><br /></td></tr>
+<tr class="memdesc:gae78c6d4e85255a6ad4d92d22c8367ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the Peripheral Write Enable (PWREN) register for the WWDT.  <a href="#gae78c6d4e85255a6ad4d92d22c8367ad2">More...</a><br /></td></tr>
 <tr class="separator:gae78c6d4e85255a6ad4d92d22c8367ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae4f7247eb07dd6f118a8bf9fe315b0c8"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___w_w_d_t.html#gae4f7247eb07dd6f118a8bf9fe315b0c8">DL_WWDT_disablePower</a> (WWDT_Regs *wwdt)</td></tr>
-<tr class="memdesc:gae4f7247eb07dd6f118a8bf9fe315b0c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables power on wwdt module.  <a href="#gae4f7247eb07dd6f118a8bf9fe315b0c8">More...</a><br /></td></tr>
+<tr class="memdesc:gae4f7247eb07dd6f118a8bf9fe315b0c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the Peripheral Write Enable (PWREN) register for the WWDT.  <a href="#gae4f7247eb07dd6f118a8bf9fe315b0c8">More...</a><br /></td></tr>
 <tr class="separator:gae4f7247eb07dd6f118a8bf9fe315b0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad93ea51ec99d54063ab5745ad28bf08d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___w_w_d_t.html#gad93ea51ec99d54063ab5745ad28bf08d">DL_WWDT_isPowerEnabled</a> (WWDT_Regs *wwdt)</td></tr>
-<tr class="memdesc:gad93ea51ec99d54063ab5745ad28bf08d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if power on wwdt module.  <a href="#gad93ea51ec99d54063ab5745ad28bf08d">More...</a><br /></td></tr>
+<tr class="memdesc:gad93ea51ec99d54063ab5745ad28bf08d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the Peripheral Write Enable (PWREN) register for the WWDT is enabled.  <a href="#gad93ea51ec99d54063ab5745ad28bf08d">More...</a><br /></td></tr>
 <tr class="separator:gad93ea51ec99d54063ab5745ad28bf08d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaff7dd51f2ebdad4c8aeb81939f2c441f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___w_w_d_t.html#gaff7dd51f2ebdad4c8aeb81939f2c441f">DL_WWDT_reset</a> (WWDT_Regs *wwdt)</td></tr>
 <tr class="memdesc:gaff7dd51f2ebdad4c8aeb81939f2c441f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets wwdt peripheral.  <a href="#gaff7dd51f2ebdad4c8aeb81939f2c441f">More...</a><br /></td></tr>
@@ -592,7 +592,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables power on WWDT module. </p>
+<p>Enables the Peripheral Write Enable (PWREN) register for the WWDT. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wwdt</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -618,7 +619,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Disables power on wwdt module. </p>
+<p>Disables the Peripheral Write Enable (PWREN) register for the WWDT. </p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
+<dl class="section note"><dt>Note</dt><dd>This API does not provide large power savings.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wwdt</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -644,16 +647,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns if power on wwdt module. </p>
+<p>Returns if the Peripheral Write Enable (PWREN) register for the WWDT is enabled. </p>
+<p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<p>When the PWREN.ENABLE bit is cleared, the peripheral's registers are not accessible for read/write operations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wwdt</td><td>Pointer to the register overlay for the peripheral</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if power is enabled </dd>
+<dl class="section return"><dt>Returns</dt><dd>true if peripheral register access is enabled </dd>
 <dd>
-false if power is disabled </dd></dl>
+false if peripheral register access is disabled </dd></dl>
 
 </div>
 </div>
@@ -1307,7 +1312,7 @@ false if peripheral wasn't reset </dd></dl>
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

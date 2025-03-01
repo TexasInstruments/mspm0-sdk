@@ -35,7 +35,7 @@
 #ifdef __MSPM0_HAS_CRC__
 
 uint32_t DL_CRC_calculateBlock32(
-    CRC_Regs* crc, uint32_t seed, uint32_t* ptr, uint32_t size)
+    CRC_Regs* crc, uint32_t seed, const uint32_t* ptr, uint32_t size)
 {
     uint32_t i;
 
@@ -49,7 +49,7 @@ uint32_t DL_CRC_calculateBlock32(
 }
 
 uint32_t DL_CRC_calculateMemoryRange32(
-    CRC_Regs* crc, uint32_t seed, uint32_t* ptrStart, uint32_t* ptrEnd)
+    CRC_Regs* crc, uint32_t seed, uint32_t* ptrStart, const uint32_t* ptrEnd)
 {
     DL_CRC_setSeed32(crc, seed);
 
@@ -64,7 +64,7 @@ uint32_t DL_CRC_calculateMemoryRange32(
 }
 
 uint16_t DL_CRC_calculateBlock16(
-    CRC_Regs* crc, uint16_t seed, uint16_t* ptr, uint16_t size)
+    CRC_Regs* crc, uint16_t seed, const uint16_t* ptr, uint16_t size)
 {
     uint32_t i;
 
@@ -78,7 +78,7 @@ uint16_t DL_CRC_calculateBlock16(
 }
 
 uint16_t DL_CRC_calculateMemoryRange16(
-    CRC_Regs* crc, uint16_t seed, uint16_t* ptrStart, uint16_t* ptrEnd)
+    CRC_Regs* crc, uint16_t seed, uint16_t* ptrStart, const uint16_t* ptrEnd)
 {
     DL_CRC_setSeed16(crc, seed);
 

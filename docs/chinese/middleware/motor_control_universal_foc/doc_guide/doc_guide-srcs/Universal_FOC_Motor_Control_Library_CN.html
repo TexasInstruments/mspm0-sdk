@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Universal FOC Motor Control Library Overview &mdash; Universal FOC Motor Control User Guide 1.00.00.xx documentation</title>
+  <title>Universal FOC Motor Control Library Overview &mdash; Universal FOC Motor Control User Guide 1.01.00.xx documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> Universal FOC Motor Control User Guide
           </a>
               <div class="version">
-                1.00.00.xx
+                1.01.00.xx
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -160,7 +160,7 @@
 <p>User Can define the Default System Configurations from the main.h</p>
 <p><strong>Base Address</strong> : The default RAM address space for the Input,Ctrl &amp; Status register map structures are defined in main.h. It is recommended to not alter the address space as these will be used by the GUI application for variable referencing.</p>
 <p><strong>Hardware Configurations</strong></p>
-<p><strong>Gate Driver Selection</strong> - Select the connected HW using #ifdef Macro with the available Gate Driver Configurations. Ex: DRV8329/DRV8323/DRV8316/CUSTOM</p>
+<p><strong>Gate Driver Selection</strong> - Select the connected HW using #ifdef Macro with the available Gate Driver Configurations. Ex: DRV8329/DRV8323/DRV8316/TIDA010250/CUSTOM</p>
 <p>If user selects a Custom gate driver , It is recommended to choose any of the Gate driver configurations as a starting point and update the SYSCONFIG and HAL based on the pin configurations. The DRV8316/DRV8323 has SPI based Gate Driver Communication with Three Shunt Configuration &amp; DRV8329 Example is based on Single Shunt configuration without SPI communication.</p>
 <p><strong>Current Shunt Configuration</strong> - User can choose the Current shunt configurations based on the actual number of Shunt Resistors used for Current Sensing.</p>
 <p>“#define CURRENT_SHUNT_CONFIG” Macro will be used for the definition of given shunt configuration</p>
@@ -216,15 +216,15 @@
 <li><p>Gate driver HAL Interface</p></li>
 </ul>
 <p>Gate driver HAL Interface handles the configurations of ADC channels to convert phase voltage inputs and phase current inputs from gate driver.</p>
-<p>Single Shunt Configurations:</p>
-<p>In single shunt based current sensing, the PWM’s are dynamically shifted near the sector cross overs where there is no margin for current sampling in the non overlapping regions. For this reason, the PWM’s are not center aligned and we assign Compare B indexes of Timer A to achieve this shifting. It is important for user to configure the Compare B index for the PWM’s based on the Pin configuration.</p>
+<p>Single Shunt PWM Configurations:</p>
+<p>In single shunt based current sensing method, the three phase currents are estimated based on sampled DC bus current from multiple instances. Unlike in three phase current sensing, where the currents are sampled at center of PWM’s, the currents in 1-shunt method are sampled at various phase switching points within one PWM cycle. To realize this, the PWM’s are dynamically shifted to enable sampling at different voltage vectors in a given sector. This way enough margin is created for current sampling in the non overlapping regions. For this reason, the PWM’s are not center aligned and we assign Compare B indexes of Timer A to achieve this shifting. It is important for user to configure the Compare B index for the PWM’s based on the Pin configuration.</p>
 <figure class="align-default" id="id4">
 <img alt="Compare B Index Configuration" src="../_images/SingleShuntCompareBConfig.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 15 </span><span class="caption-text">Compare B Index Configuration</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>In the above example for DRV8329 ,The primary compare events are selected based on HS PWM pins and the corresponding Timer Compare ports. The secondary Compare events are selected from the remaining Compare indexes from 0-5.</p>
+<p>In the above example for DRV8329 ,The primary compare events are selected based on HS PWM pins and the corresponding Timer A0 Compare ports as C2-C3-C1 respectively for U-V-W phases from available primary ports from C0 to C3. The secondary Compare events are selected from the remaining Compare indexes from 0-5 as CC0-CC4-CC5.</p>
 </section>
 <section id="enabling-simultaneous-current-sampling">
 <h3>Enabling simultaneous current sampling :<a class="headerlink" href="#enabling-simultaneous-current-sampling" title="Permalink to this heading">¶</a></h3>
@@ -307,7 +307,7 @@
 </tr>
 </tbody>
 </table>
-<p>User can user the same SPI connection to interface any other device, but need to see if the gate driver spi transmission is busy. Also user need to take care of using a different chip select line.</p>
+<p>User can use the same SPI connection to interface any other device, but need to see if the gate driver spi transmission is busy. Also user need to take care of using a different chip select line.</p>
 </section>
 <section id="pwm">
 <h4>3. PWM<a class="headerlink" href="#pwm" title="Permalink to this heading">¶</a></h4>
@@ -337,7 +337,7 @@
 <td><p>Active low</p></td>
 </tr>
 <tr class="row-even"><td><p>Hardware averaging</p></td>
-<td><p>8 conversions</p></td>
+<td><p>4 conversions</p></td>
 </tr>
 </tbody>
 </table>
@@ -357,7 +357,44 @@
 </figcaption>
 </figure>
 <p>For phase voltage and phase current configuration the Library sets the channel using the channel listed in gateDriver.h. For DC bus voltage conversion the pin is specified by TI SysConfig and user needs to take care to update the defines in gateDriver.h, if the pin is changed in TI SysConfig.</p>
-<p>The first Two memory indexes of the ADC 0 &amp; 1 are used for the Current Sampling / Voltage sampling and shound’t be modified. The DC bus Voltage is sampled from the 2nd Memory Index and user can choose to use any other Memory Index apart from 0 &amp; 1 of ADC 0 &amp; ADC 1 for any custom ADC addition.</p>
+<p>The first Two memory indices of the ADC 0 &amp; 1 are used for the Current Sampling / Voltage sampling and shound’t be modified. The DC bus Voltage is sampled from the 2nd Memory Index and user can choose to use any other Memory Index apart from 0 &amp; 1 of ADC 0 &amp; ADC 1 for any custom ADC addition.</p>
+<p>In case ISD is enabled, Voltage signals are sampled instead of phase current at the startup. It is recommended to use the same memory indices as phase currents for phase voltages to ensure a smooth ISD operation.</p>
+<p><em>Ex:</em> If phase currents A &amp; B are connected to ADC-0 indices 0 &amp; 1 , Phase C currents is connected to ADC-1 memory index - 0. The same ADC, memory indices can be allocated to voltage channels in the gateDriver.h file.</p>
+<p>In the existing FOC architecture, The ADC-0 is configured to generate the core FOC Interrupt. User needs to configure this interrupt based on the phase current memory indices as below.</p>
+<p>In case all three phase currents are chosen from the same ADC, then memory Index 2 or higher is to be selected for the Interrupt generation.</p>
+<p>In case two phase currents are chosen from 1 ADC instance &amp; third phase current is from different ADC instance , memory index 1 or higher to be choosen from the Interrupts</p>
+<p>In the below configuration, All the phase voltages are sampled from same ADC thus memory 3 index is chosen so that all the phase voltages are sampled before generating the FOC interrupt for a smooth ISD operation.</p>
+<figure class="align-default" id="id9">
+<img alt="ADC Trigger" src="../_images/SingleShuntADCInterruptSyscfg.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">ADC Trigger</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><em>Note</em> : If none of the phase currents/ Voltages / any sensing pins are connected to ADC-0 , Dummy memory indices are to be created to generate the ADC-0 interrupt matching with above criteria.</p>
+<section id="single-shunt-foc-current-sensing-adc-configurations">
+<h5>Single Shunt FOC Current Sensing ADC Configurations<a class="headerlink" href="#single-shunt-foc-current-sensing-adc-configurations" title="Permalink to this heading">¶</a></h5>
+<p>In Single shunt current sensing , First two ADC indices of a selected ADC are to be allocated for sampling the Current sensing pin. Also for the 0th memory index , trigger option to be selected as <em>Valid Trigger will step to next conversion register</em>. The last memory index of this ADC is to be selected again with <em>Valid Trigger will step to next conversion register</em> .The in between memory indices if used are to be selected with <em>Trigger will automatically step to next conversion register</em></p>
+<p>In the below configuration, Memory Index 0 &amp; 1 are the only two ADC indices used thus both are set with “Valid trigger…”</p>
+<figure class="align-default" id="id10">
+<img alt="ADC sysconfig" src="../_images/SingleShuntADCSyscfg.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">ADC sysconfig</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="single-shunt-foc-trigger-configurations">
+<h5>Single Shunt FOC Trigger configurations<a class="headerlink" href="#single-shunt-foc-trigger-configurations" title="Permalink to this heading">¶</a></h5>
+<p>In single shunt operation, Timer A1’s compare down events are allocated for triggering the ADC. Timer A1 is cross triggered from Timer A0 thus Timer A0/Timer A1 are never to be stopped by the application code.</p>
+<p>Two triggers are generated for FOC algorithm with a minimum seperation of “Sampling time + Settling time” requirements to read the Single shunt current sample.</p>
+<p>Either of ADC -0 or ADC - 1 used for sampling the DC Bus current is triggered from Timer A1 - compare down Events 0 &amp; 1. First sample is associated with Channel ‘1’ compare down Event and Second ADC sample is linked with Channel ‘0’ compare down event.</p>
+<figure class="align-default" id="id11">
+<img alt="Timer A1 sysconfig" src="../_images/SingleShuntTimerA1Config.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Timer A1 sysconfig</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><em>Note :</em> If ADC-1 is chosen for sampling the DC Bus current, ADC 0 is also to be triggered with Timer -A1 compare down channel 0 event as the core FOC interrupt is associated with ADC-0 interrupt. This ensures timely interrupt at the end of ADC-1 current sample.</p>
+</section>
 </section>
 <section id="dac">
 <h4>5. DAC<a class="headerlink" href="#dac" title="Permalink to this heading">¶</a></h4>
@@ -397,14 +434,17 @@
 <thead>
 <tr class="row-odd"><th class="head"><p>UART comm pin</p></th>
 <th class="head"><p>LP-MSPM0G3507</p></th>
+<th class="head"><p>LP-MSPM0G3519</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>UART TX</p></td>
 <td><p>PA26</p></td>
+<td><p>PA8</p></td>
 </tr>
 <tr class="row-odd"><td><p>UART RX</p></td>
 <td><p>PA13</p></td>
+<td><p>PA9</p></td>
 </tr>
 </tbody>
 </table>
@@ -413,14 +453,17 @@
 <thead>
 <tr class="row-odd"><th class="head"><p>UART comm pin</p></th>
 <th class="head"><p>LP-MSPM0G3507</p></th>
+<th class="head"><p>LP-MSPM0G3519</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>UART TX</p></td>
 <td><p>PB12</p></td>
+<td><p>PA8</p></td>
 </tr>
 <tr class="row-odd"><td><p>UART RX</p></td>
 <td><p>PA13</p></td>
+<td><p>PA9</p></td>
 </tr>
 </tbody>
 </table>
@@ -429,14 +472,17 @@
 <thead>
 <tr class="row-odd"><th class="head"><p>UART comm pin</p></th>
 <th class="head"><p>LP-MSPM0G3507</p></th>
+<th class="head"><p>LP-MSPM0G3519</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>UART TX</p></td>
 <td><p>PB12</p></td>
+<td><p>PA8</p></td>
 </tr>
 <tr class="row-odd"><td><p>UART RX</p></td>
 <td><p>PA13</p></td>
+<td><p>PA9</p></td>
 </tr>
 </tbody>
 </table>

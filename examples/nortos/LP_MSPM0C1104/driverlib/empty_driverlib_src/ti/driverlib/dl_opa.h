@@ -188,7 +188,13 @@ typedef struct {
 } DL_OPA_Config;
 
 /**
- * @brief Enables power on OPA module
+ * @brief Enables the Peripheral Write Enable (PWREN) register for the OPA
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  @note For power savings, please refer to @ref DL_OPA_enable
  *
  * @param[in]  opa  Pointer to the register overlay for the peripheral
  */
@@ -198,7 +204,13 @@ __STATIC_INLINE void DL_OPA_enablePower(OA_Regs *opa)
 }
 
 /**
- * @brief Disables power on OPA module
+ * @brief Disables the Peripheral Write Enable (PWREN) register for the OPA
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
+ *
+ *  @note This API does not provide large power savings. For power savings,
+ *  please refer to @ref DL_OPA_enable
  *
  * @param[in]  opa  Pointer to the register overlay for the peripheral
  */
@@ -208,14 +220,22 @@ __STATIC_INLINE void DL_OPA_disablePower(OA_Regs *opa)
 }
 
 /**
- * @brief Returns if  power on opa module
+ * @brief Returns if the Peripheral Write Enable (PWREN) register for the OPA
+ *        is enabled
+ *
+ *  Before any peripheral registers can be configured by software, the
+ *  peripheral itself must be enabled by writing the ENABLE bit together with
+ *  the appropriate KEY value to the peripheral's PWREN register.
+ *
+ *  When the PWREN.ENABLE bit is cleared, the peripheral's registers are not
+ *  accessible for read/write operations.
  *
  * @param[in]  opa  Pointer to the register overlay for the peripheral
  *
- * @return true if power is enabled
- * @return false if power is disabled
+ * @return true if peripheral register access is enabled
+ * @return false if peripheral register access is disabled
  */
-__STATIC_INLINE bool DL_OPA_isPowerEnabled(OA_Regs *opa)
+__STATIC_INLINE bool DL_OPA_isPowerEnabled(const OA_Regs *opa)
 {
     return (
         (opa->GPRCM.PWREN & OA_PWREN_ENABLE_MASK) == OA_PWREN_ENABLE_ENABLE);
@@ -241,7 +261,7 @@ __STATIC_INLINE void DL_OPA_reset(OA_Regs *opa)
  * @return false if peripheral wasn't reset
  *
  */
-__STATIC_INLINE bool DL_OPA_isReset(OA_Regs *opa)
+__STATIC_INLINE bool DL_OPA_isReset(const OA_Regs *opa)
 {
     return ((opa->GPRCM.STAT & OA_GPRCM_STAT_RESETSTKY_MASK) ==
             OA_GPRCM_STAT_RESETSTKY_RESET);
@@ -268,7 +288,7 @@ __STATIC_INLINE void DL_OPA_enable(OA_Regs *opa)
  *  @retval     false The OPA peripheral is disabled
 
  */
-__STATIC_INLINE bool DL_OPA_isEnabled(OA_Regs *opa)
+__STATIC_INLINE bool DL_OPA_isEnabled(const OA_Regs *opa)
 {
     return ((opa->CTL & OA_CTL_ENABLE_MASK) == OA_CTL_ENABLE_ON);
 }
@@ -293,7 +313,7 @@ __STATIC_INLINE void DL_OPA_disable(OA_Regs *opa)
  *  @param[in]  opa    Pointer to the register overlay for the peripheral
  *  @param[in]  config  Configuration for OPA peripheral
  */
-__STATIC_INLINE void DL_OPA_init(OA_Regs *opa, DL_OPA_Config *config)
+__STATIC_INLINE void DL_OPA_init(OA_Regs *opa, const DL_OPA_Config *config)
 {
     DL_Common_updateReg(&opa->CFG,
         (uint32_t) config->choppingMode | (uint32_t) config->outputPinState |
@@ -329,7 +349,7 @@ __STATIC_INLINE void DL_OPA_setGainBandwidth(
  *
  *  @retval     One of @ref DL_OPA_GBW
  */
-__STATIC_INLINE DL_OPA_GBW DL_OPA_getGainBandwidth(OA_Regs *opa)
+__STATIC_INLINE DL_OPA_GBW DL_OPA_getGainBandwidth(const OA_Regs *opa)
 {
     uint32_t bandwidth = (opa->CFGBASE & OA_CFGBASE_GBW_MASK);
 
@@ -399,7 +419,7 @@ __STATIC_INLINE void DL_OPA_setChoppingMode(
  *
  *  @retval     One of @ref DL_OPA_CHOPPING_MODE
  */
-__STATIC_INLINE DL_OPA_CHOPPING_MODE DL_OPA_getChoppingMode(OA_Regs *opa)
+__STATIC_INLINE DL_OPA_CHOPPING_MODE DL_OPA_getChoppingMode(const OA_Regs *opa)
 {
     uint32_t mode = (opa->CFG & OA_CFG_CHOP_MASK);
 
@@ -442,7 +462,8 @@ __STATIC_INLINE void DL_OPA_setOutputPinState(
  *
  *  @retval     One of @ref DL_OPA_OUTPUT_PIN_STATE
  */
-__STATIC_INLINE DL_OPA_OUTPUT_PIN_STATE DL_OPA_getOutputPinState(OA_Regs *opa)
+__STATIC_INLINE DL_OPA_OUTPUT_PIN_STATE DL_OPA_getOutputPinState(
+    const OA_Regs *opa)
 {
     uint32_t state = (opa->CFG & OA_CFG_OUTPIN_MASK);
 
@@ -488,7 +509,8 @@ __STATIC_INLINE void DL_OPA_setNonInvertingInputChannel(
  *
  *  @retval     One of @ref DL_OPA_PSEL
  */
-__STATIC_INLINE DL_OPA_PSEL DL_OPA_getNonInvertingInputChannel(OA_Regs *opa)
+__STATIC_INLINE DL_OPA_PSEL DL_OPA_getNonInvertingInputChannel(
+    const OA_Regs *opa)
 {
     uint32_t inputChannel = (opa->CFG & OA_CFG_PSEL_MASK);
 
@@ -520,7 +542,7 @@ __STATIC_INLINE void DL_OPA_setInvertingInputChannel(
  *
  *  @retval     One of @ref DL_OPA_NSEL
  */
-__STATIC_INLINE DL_OPA_NSEL DL_OPA_getInvertingInputChannel(OA_Regs *opa)
+__STATIC_INLINE DL_OPA_NSEL DL_OPA_getInvertingInputChannel(const OA_Regs *opa)
 {
     uint32_t inputChannel = (opa->CFG & OA_CFG_NSEL_MASK);
 
@@ -552,7 +574,7 @@ __STATIC_INLINE void DL_OPA_setMMUXInputChannel(
  *
  *  @retval     One of @ref DL_OPA_MSEL
  */
-__STATIC_INLINE DL_OPA_MSEL DL_OPA_getMMUXInputChannel(OA_Regs *opa)
+__STATIC_INLINE DL_OPA_MSEL DL_OPA_getMMUXInputChannel(const OA_Regs *opa)
 {
     uint32_t inputChannel = (opa->CFG & OA_CFG_MSEL_MASK);
 
@@ -587,7 +609,7 @@ __STATIC_INLINE void DL_OPA_setGain(OA_Regs *opa, DL_OPA_GAIN gain)
  *
  *  @retval     The gain. One of @ref DL_OPA_GAIN
  */
-__STATIC_INLINE DL_OPA_GAIN DL_OPA_getGain(OA_Regs *opa)
+__STATIC_INLINE DL_OPA_GAIN DL_OPA_getGain(const OA_Regs *opa)
 {
     uint32_t gain = (opa->CFG & OA_CFG_GAIN_MASK);
 
@@ -637,7 +659,7 @@ DL_OPA_GAIN DL_OPA_decreaseGain(OA_Regs *opa);
  *  @retval     false  The OPA is not ready
  *
  */
-__STATIC_INLINE bool DL_OPA_isReady(OA_Regs *opa)
+__STATIC_INLINE bool DL_OPA_isReady(const OA_Regs *opa)
 {
     return ((opa->STAT & OA_STAT_RDY_MASK) == OA_STAT_RDY_TRUE);
 }

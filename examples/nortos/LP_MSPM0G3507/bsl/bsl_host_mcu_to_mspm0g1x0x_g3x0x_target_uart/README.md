@@ -53,3 +53,4 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.co
 
 Connect the hardware that descriped in the document. Compile, load and run the example.
 Push the S2 button to start program MSPM0G3507.
+Note: if use software trigger need the application code(include software invoke) exist on the chip. 
