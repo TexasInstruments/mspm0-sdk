@@ -69,7 +69,7 @@ function validatePinmux(inst, validation) {
 function validate(inst, validation)
 {
     if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-        validation.logWarning("Note: VBAT needs to be powered for IWDT operation.", inst);
+        validation.logInfo("Note: VBAT pin needs to be powered for IWDT operation.", inst);
     }
 }
 

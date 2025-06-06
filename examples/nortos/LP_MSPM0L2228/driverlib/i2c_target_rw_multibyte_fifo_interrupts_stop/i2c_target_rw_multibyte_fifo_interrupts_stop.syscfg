@@ -44,3 +44,4 @@ I2C1.peripheral.sclPin.$assign = "PA1";
 SYSCTL.powerPolicy        = "STOP0";
 SYSCTL.peripheral.$assign = "SYSCTL";
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

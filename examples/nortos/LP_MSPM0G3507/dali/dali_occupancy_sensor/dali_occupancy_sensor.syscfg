@@ -1,0 +1,120 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G350X" --part "Default" --package "LQFP-64(PM)"
+//@v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+ 
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const CAPTURE       = scripting.addModule("/ti/driverlib/CAPTURE", {}, false);
+const CAPTURE1      = CAPTURE.addInstance();
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER         = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1        = TIMER.addInstance();
+const TIMER2        = TIMER.addInstance();
+const TIMER3        = TIMER.addInstance();
+const TIMER4        = TIMER.addInstance();
+const TIMER5        = TIMER.addInstance();
+const TRNG          = scripting.addModule("/ti/driverlib/TRNG");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_SYSPLL0";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction4     = system.clockTree["HFXT"];
+pinFunction4.inputFreq = 32;
+
+
+CAPTURE1.$name                       = "TIMER_DALI_RX";
+CAPTURE1.timerPeriod                 = "2 ms";
+CAPTURE1.captureInputMode            = "multi";
+CAPTURE1.ccIndexMulti                = [0,1];
+CAPTURE1.multi_countMode             = "DL_TIMER_COUNT_MODE_UP";
+CAPTURE1.multi_countRep              = "DL_TIMER_REPEAT_MODE_ENABLED";
+CAPTURE1.multi_cvae                  = "DL_TIMER_COUNT_AFTER_EN_ZERO";
+CAPTURE1.multi_ch_zero               = 1;
+CAPTURE1.multi_ch0_input_filter      = true;
+CAPTURE1.multi_ch0_filterPeriod      = "PER_8";
+CAPTURE1.multi_ch0_captEdgeDetection = "DL_TIMER_CC_CCOND_TRIG_FALL";
+CAPTURE1.multi_ch1_input_filter      = true;
+CAPTURE1.multi_ch1_filterPeriod      = "PER_8";
+CAPTURE1.interrupts                  = ["CC0_UP","CC1_UP","LOAD"];
+CAPTURE1.multi_ch0_input_mode        = "DL_TIMER_CC_IN_SEL_CCPX_PAIR";
+CAPTURE1.peripheral.$assign          = "TIMG6";
+CAPTURE1.peripheral.ccp1Pin.$assign  = "PB7";
+
+GPIO1.$name                         = "GPIO_PIR";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "DIRECT_LINK";
+GPIO1.associatedPins[0].direction   = "INPUT";
+GPIO1.associatedPins[0].interruptEn = true;
+GPIO1.associatedPins[0].polarity    = "RISE";
+GPIO1.associatedPins[0].pin.$assign = "PA22";
+GPIO1.associatedPins[1].$name       = "PIN_SERIN";
+GPIO1.associatedPins[1].pin.$assign = "PB18";
+
+SYSCTL.MCLKSource                   = "HSCLK";
+SYSCTL.HSCLKSource                  = "SYSPLLCLK2X";
+SYSCTL.useHFCLK_Manual              = true;
+SYSCTL.HFCLKSource                  = "HFXT";
+SYSCTL.HFCLK_Freq                   = 40000000;
+SYSCTL.SYSPLLSource                 = "HFCLK";
+SYSCTL.SYSPLL_Pdiv                  = 1;
+SYSCTL.SYSPLL_Qdiv                  = 4;
+SYSCTL.SYSPLL_CLK2XEn               = true;
+SYSCTL.HFCLKMonitor                 = true;
+SYSCTL.SYSPLL_CLK2XDiv              = 9;
+SYSCTL.peripheral.hfxInPin.$assign  = "PA5";
+SYSCTL.peripheral.hfxOutPin.$assign = "PA6";
+
+TIMER1.timerMode          = "PERIODIC_UP";
+TIMER1.timerPeriod        = "416.67 us";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.$name              = "TIMER_DALI_TX";
+TIMER1.peripheral.$assign = "TIMA0";
+
+TIMER2.$name              = "TIMER_FR";
+TIMER2.interrupts         = ["ZERO"];
+TIMER2.timerMode          = "PERIODIC";
+TIMER2.timerPeriod        = "10 ms";
+TIMER2.timerClkDiv        = 5;
+TIMER2.peripheral.$assign = "TIMG0";
+
+TIMER3.$name              = "SETTLING_TIMER";
+TIMER3.timerClkDiv        = 8;
+TIMER3.timerClkPrescale   = 8;
+TIMER3.timerMode          = "ONE_SHOT_UP";
+TIMER3.timerPeriod        = "100ms";
+TIMER3.timerStartTimer    = true;
+TIMER3.peripheral.$assign = "TIMG7";
+
+TIMER4.$name              = "TIMER_303";
+TIMER4.timerMode          = "PERIODIC";
+TIMER4.timerPeriod        = "10 ms";
+TIMER4.interrupts         = ["ZERO"];
+TIMER4.timerClkDiv        = 5;
+TIMER4.peripheral.$assign = "TIMG8";
+
+TIMER5.$name              = "TIMER_PIR_SERIN";
+TIMER5.timerMode          = "PERIODIC";
+TIMER5.timerPeriod        = "80 us";
+TIMER5.interrupts         = ["ZERO"];
+TIMER5.peripheral.$assign = "TIMG12";
+
+TRNG.profile = "CUSTOM";
+

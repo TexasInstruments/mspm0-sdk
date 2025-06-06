@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = CRC_LUT.obj dma.obj eeprom_data.obj eeprom_default.obj eeprom.obj FlexWire.obj IOPORT.obj main.obj Patterns.obj system_info.obj Timer.obj TPS929xxx_APIs.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = CRC_LUT.obj tps_eeprom_data.obj tps_eeprom_default.obj tps_eeprom.obj FlexWire.obj main.obj mspm0_dma.obj mspm0_gpio.obj mspm0_timer.obj Patterns.obj system_info.obj TPS929xxx_APIs.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = TPS929xxx_control_uart_over_can
 
 CFLAGS += -I.. \
@@ -74,19 +74,15 @@ CRC_LUT.obj: ../CRC_LUT.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-dma.obj: ../dma.c $(SYSCFG_H_FILES)
+tps_eeprom_data.obj: ../tps_eeprom_data.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-eeprom_data.obj: ../eeprom_data.c $(SYSCFG_H_FILES)
+tps_eeprom_default.obj: ../tps_eeprom_default.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-eeprom_default.obj: ../eeprom_default.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-eeprom.obj: ../eeprom.c $(SYSCFG_H_FILES)
+tps_eeprom.obj: ../tps_eeprom.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
@@ -94,11 +90,19 @@ FlexWire.obj: ../FlexWire.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-IOPORT.obj: ../IOPORT.c $(SYSCFG_H_FILES)
+main.obj: ../main.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-main.obj: ../main.c $(SYSCFG_H_FILES)
+mspm0_dma.obj: ../mspm0_dma.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mspm0_gpio.obj: ../mspm0_gpio.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mspm0_timer.obj: ../mspm0_timer.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
@@ -107,10 +111,6 @@ Patterns.obj: ../Patterns.c $(SYSCFG_H_FILES)
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
 system_info.obj: ../system_info.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-Timer.obj: ../Timer.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

@@ -42,17 +42,14 @@ CAPTURE1.$name                              = "TIMER_DALI_RX";
 CAPTURE1.multi_ch0_filterPeriod             = "PER_8";
 CAPTURE1.multi_ch1_filterPeriod             = "PER_8";
 CAPTURE1.peripheral.$assign                 = "TIMG2";
-CAPTURE1.peripheral.ccp1Pin.$assign         = "PA9";
-
-
+CAPTURE1.peripheral.ccp1Pin.$assign         = "PA4";
 
 PWM1.$name                      = "PWM_0";
 PWM1.peripheral.$assign         = "TIMG1";
 PWM1.peripheral.ccp0Pin.$assign = "PA0";
 PWM1.peripheral.ccp1Pin.$assign = "PA1";
-PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+
 PWM1.PWM_CHANNEL_0.dutyCycle    = 10;
-PWM1.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC1";
 
 
 
@@ -79,9 +76,8 @@ UART1.enableManchester         = true;
 UART1.txFifoThreshold          = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
 UART1.enableMSBFirst           = true;
 UART1.direction                = "TX";
-UART1.peripheral.$assign       = "UART0";
-UART1.peripheral.txPin.$assign = "PA17/OPA1.IN0-";
-UART1.txPinConfig.invert       = "ENABLE";
 UART1.txPinConfig.enableConfig = true;
+UART1.peripheral.$assign       = "UART0";
+UART1.peripheral.txPin.$assign = "PA23";
 
 ProjectConfig.genLibIQ = true;

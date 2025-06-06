@@ -53,6 +53,10 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
+        <file path="../HAL_UART_M0G3519.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
         <file path="../callbacks_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../callbacks_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy">
@@ -64,10 +68,6 @@
         <file path="../MSP_GUI/GUIComm_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
         </file>
         <file path="../MSP_GUI/GUIComm_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
-        </file>
-        <file path="../HAL_UART_M0G3519.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

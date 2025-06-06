@@ -1874,7 +1874,7 @@ function onValidate(inst, validation) {
     let rxFIFO0EndAddr = inst.rxFIFO0startAddr + (inst.rxFIFO0size *(rxFIFO0ElemSizeBytes + 8));
     let rxFIFO1EndAddr = inst.rxFIFO1startAddr + (inst.rxFIFO1size *(rxFIFO1ElemSizeBytes + 8));
     let txBufEndAddr = inst.txStartAddr + ((inst.txBufNum+inst.txFIFOSize) * (txBuffElemSizeBytes + 8));
-    let txEventFIFOEndAddr = inst.txEventFIFOStartAddr + (inst.txEventFIFOSize*2);
+    let txEventFIFOEndAddr = inst.txEventFIFOStartAddr + (inst.txEventFIFOSize*4);
     let stdIDEndAddr = inst.flssa + (inst.lss*4);
     let extIDEndAddr = inst.flesa + (inst.lse*8);
     // TODO Revied if this need to be displayed or not

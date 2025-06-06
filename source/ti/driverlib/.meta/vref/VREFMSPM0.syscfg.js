@@ -152,15 +152,6 @@ function validateVREF(inst, validation)
     {
 
     }
-
-    // This is something Common does on its own to check uniqueness and the like
-    // I don't see a reason to remove it
-    //Common.validateNames(inst, validation);
-
-    /* Info message for MSPM0GX51X pin workaround/issue */
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
-        validation.logInfo("Please refer to device datasheet for valid VREF pin selection", inst, "basicVrefPins")
-    }
 }
 
 
@@ -173,26 +164,20 @@ function validateVREF(inst, validation)
  */
 function pinmuxRequirements(inst)
 {
-    let vrefPosInterfaces = ["VREF+"];
-    let vrefNegInterfaces = ["VREF-"];
-    /* Workaround for MSPM0GX51X device data error */
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
-        let vrefPosInterfaces = ["VREF+","VREF-"];
-        let vrefNegInterfaces = ["VREF-", "VREF+"];
-    }
-    /* No External Pins to be configured for M0C */
-    if(Common.isDeviceM0C()){
+    /* No External Pins to be configured for M0C110X */
+    if(Common.vrefOnlyInternal()){
         return [];
     }
     let pinResources = []
-    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || ((Common.isDeviceM0L() || Common.isDeviceM0H() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
+    // TODO: Special case currently of MSPM0G1X0X_G3X0X, to be updated for consistency
+    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || ((!Common.vrefOnlyInternal()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
         if (["VREF+-","VREF+"].includes(inst.basicVrefPins))
         {
             pinResources.push(
                 {
                     name:"vrefPosPin",
                     displayName:"VREF Positive (VREF+)",
-                    interfaceNames:["VREF+","VREF-"],
+                    interfaceNames:["VREF+"],
                 },
             );
         }
@@ -202,7 +187,7 @@ function pinmuxRequirements(inst)
                 {
                     name:"vrefNegPin",
                     displayName:"VREF Negative (VREF-)",
-                    interfaceNames:["VREF-", "VREF+"],
+                    interfaceNames:["VREF-"],
                 }
             )
         }
@@ -255,7 +240,7 @@ else {
     profileOptions.push({name: "INT_2_5_V", displayName: "Internal 2.5V with Sample-and-Hold disabled"});
 }
 
-if(!Common.isDeviceM0C()){
+if(!Common.vrefOnlyInternal()){
     profileOptions.push({name: "EXT_2_0_V", displayName: "External 2V"});
 }
 
@@ -334,15 +319,20 @@ pins.`
 
 let basicModeStaticOptions = [
     {name: "DL_VREF_ENABLE_ENABLE", displayName: "Internal"},
-    {name: "DL_VREF_ENABLE_DISABLE", displayName: "External"},
 ]
-if(Common.isDeviceFamily_PARENT_MSPM0GX51X()|| Common.isDeviceM0H()){
+if(!Common.vrefOnlyInternal()){
+    basicModeStaticOptions.push(
+        {name: "DL_VREF_ENABLE_DISABLE", displayName: "External"},
+    )
+}
+if(Common.vrefCanSetBothModes()){
     basicModeStaticOptions.push(
         {name: "DL_VREF_ENABLE_ENABLE_DL_VREF_ENABLE_DISABLE", displayName: "Internal and External"}
     )
 }
 
-if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARENT_MSPM0GX51X()|| Common.isDeviceM0H()){
+// LEGACY - able to enable both internal AND external
+if(Common.vrefHasLegacyBasicMode()){
     vrefBasicConfig = vrefBasicConfig.concat(
         [
             {
@@ -351,51 +341,34 @@ if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceFamily_PARE
                 description : 'Configures VREF for internal or external mode',
                 longDescription: basicModeLongDesc,
                 hidden      : false,
+                default     : ["DL_VREF_ENABLE_ENABLE"],
+                minSelections: 1,
+                options     : [
+                    {name: "DL_VREF_ENABLE_ENABLE", displayName: "Internal"},
+                    {name: "DL_VREF_ENABLE_DISABLE", displayName: "External"},
+                ],
+                onChange    : onChangeBasicMode,
+            },
+        ]
+    )
+}
+else{
+    vrefBasicConfig = vrefBasicConfig.concat(
+        [
+            {
+                name        : "basicMode",
+                displayName : "Mode",
+                description : 'Configures VREF for internal or external mode',
+                longDescription: basicModeLongDesc,
+                readOnly    : Common.vrefOnlyInternal(),
+                hidden      : false,
                 default     : "DL_VREF_ENABLE_ENABLE",
                 options     : basicModeStaticOptions,
                 onChange    : onChangeBasicMode,
             },
         ]
-        )
-    } else if(Common.isDeviceM0L()){
-        vrefBasicConfig = vrefBasicConfig.concat(
-            [
-                {
-                    name        : "basicMode",
-                    displayName : "Mode",
-                    description : 'Configures VREF for internal or external mode',
-                    longDescription: basicModeLongDesc,
-                    hidden      : false,
-                    default     : ["DL_VREF_ENABLE_ENABLE"],
-                    minSelections: 1,
-                    options     : [
-                        {name: "DL_VREF_ENABLE_ENABLE", displayName: "Internal"},
-                        {name: "DL_VREF_ENABLE_DISABLE", displayName: "External"},
-                    ],
-                    onChange    : onChangeBasicMode,
-                },
-            ]
-        )
-    } else if(Common.isDeviceM0C()){
-        /* MSPM0C only supports an internal VREF */
-        vrefBasicConfig = vrefBasicConfig.concat(
-            [
-                {
-                    name        : "basicMode",
-                    displayName : "Mode",
-                    description : 'Configures VREF for internal or external mode',
-                    longDescription: basicModeLongDesc,
-                    readOnly    : true,
-                    hidden      : false,
-                    default     : "DL_VREF_ENABLE_ENABLE",
-                    options     : [
-                        {name: "DL_VREF_ENABLE_ENABLE", displayName: "Internal"},
-                    ],
-                    onChange    : onChangeBasicMode,
-                },
-            ]
-        )
-    }
+    )
+}
 
 
     vrefBasicConfig = vrefBasicConfig.concat(
@@ -418,7 +391,7 @@ decoupling capacitor is recommended. Consult datasheet for details.
 When not enabled, VSS is used as ground reference.
 
     **Note: If VREF- is not available in package, the option won't be available.**`,
-                hidden      : Common.isDeviceM0L() || Common.isDeviceM0C(),
+                hidden      : Common.vrefHasLegacyBasicMode() || Common.vrefOnlyInternal(),
                 default     : "VREF+",
                 options     : [
                     {name: "VREF+", displayName: "VREF+ enabled, VREF- disabled"},
@@ -788,7 +761,7 @@ function hasMuxablePins(interfaceName, pinName) {
 function updateGUIbasedonConfig(inst, ui)
 {
     /* Mode Selection */
-    if(Common.isDeviceM0L() || Common.isDeviceM0C() || Common.isDeviceM0H() || Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    if(Common.vrefCanSetBothModes()){
         let boolInternal = (inst.basicMode).includes("DL_VREF_ENABLE_ENABLE");
         let boolExternal = (inst.basicMode).includes("DL_VREF_ENABLE_DISABLE");
 
@@ -801,7 +774,7 @@ function updateGUIbasedonConfig(inst, ui)
         ui.basicExtVolt.hidden          = !boolExternal;
         ui.basicVrefPins.hidden         = !boolExternal;
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
+    else{
         switch (inst.basicMode)
         {
             case "DL_VREF_ENABLE_ENABLE":
@@ -866,7 +839,7 @@ function updateGUIbasedonConfig(inst, ui)
 const profilesVref = [
     {
         name            : "INT_1_4_V",
-        basicMode       : ((Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()||Common.isDeviceM0C()||Common.isDeviceFamily_PARENT_MSPM0GX51X())?"DL_VREF_ENABLE_ENABLE":["DL_VREF_ENABLE_ENABLE"]),
+        basicMode       : ((!Common.vrefHasLegacyBasicMode())?"DL_VREF_ENABLE_ENABLE":["DL_VREF_ENABLE_ENABLE"]),
         basicIntVolt    : "DL_VREF_BUFCONFIG_OUTPUT_1_4V",
         basicVrefPins   : "VREF+",
         advClockConfigEnable     : true,
@@ -878,7 +851,7 @@ const profilesVref = [
     },
     {
         name            : "INT_2_5_V",
-        basicMode       : ((Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()||Common.isDeviceM0C()||Common.isDeviceFamily_PARENT_MSPM0GX51X())?"DL_VREF_ENABLE_ENABLE":["DL_VREF_ENABLE_ENABLE"]),
+        basicMode       : ((!Common.vrefHasLegacyBasicMode())?"DL_VREF_ENABLE_ENABLE":["DL_VREF_ENABLE_ENABLE"]),
         basicIntVolt    : "DL_VREF_BUFCONFIG_OUTPUT_2_5V",
         basicVrefPins   : "VREF+",
         advClockConfigEnable     : true,
@@ -901,10 +874,10 @@ const profilesVref = [
         advSHHold       : 0,
     }
 ];
-if(!Common.isDeviceM0C()){
+if(!Common.vrefOnlyInternal()){
     profilesVref.push({
         name            : "EXT_2_0_V",
-        basicMode       : ((Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()||Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceM0H())?"DL_VREF_ENABLE_DISABLE":["DL_VREF_ENABLE_DISABLE"]),
+        basicMode       : ((!Common.vrefHasLegacyBasicMode())?"DL_VREF_ENABLE_DISABLE":["DL_VREF_ENABLE_DISABLE"]),
         basicExtVolt    : 2.0,
         basicVrefPins   : "VREF+",
         advClockConfigEnable     : false,

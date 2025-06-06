@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MSPM0 DALI User’s Guide &mdash; MSPM0 DALI User&#39;s Guide 1.2.0.x documentation</title>
+  <title>MSPM0 DALI User’s Guide &mdash; MSPM0 DALI User&#39;s Guide 2.0.0.x documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> MSPM0 DALI User's Guide
           </a>
               <div class="version">
-                1.2.0.x
+                2.0.0.x
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,17 +45,23 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 DALI User’s Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dali-in-the-mspm0-sdk">2. DALI in the MSPM0 SDK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#configuring-the-uart-and-timer-for-dali-with-sysconfig">3. Configuring the UART and TIMER for DALI with SysConfig</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#enable-dali-tx-mode">Enable DALI Tx Mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enable-dali-rx-mode">Enable DALI Rx Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dali-in-the-mspm0-sdk">2. DALI in the MSPM0 SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#control-gear">Control Gear</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#supported-dali-parts">Supported DALI Parts</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#example-applications-led-demo">4. Example Applications - LED Demo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#modifying-the-example-applications">Modifying the Example Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-devices">Control Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Supported DALI Parts</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#known-issues">5. Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-applications">3. Example Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#led-demo">1. LED Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#occupancy-sensor-demo">2. Occupancy Sensor demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-controller-demo">3. Test Controller demo</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -92,17 +98,19 @@
 <img alt="" src="../_images/DALI_logo.png" />
 </figure>
 <p><strong>Note</strong>: The use of “Master” and “Slave” terminology is being considered obsolete. These terms have been replaced with “Controller” and “Gear” respectively.</p>
-<p>The MSPM0 SDK provides an easy way to start development of DALI applications using the MSPM0’s Universal Asynchronous Receiver Transmitter (UART) module and contains the following:</p>
-<ul class="simple">
-<li><p>Support for DALI 2</p></li>
-<li><p>Full source code for DALI Library</p></li>
-<li><p>Graphical configuration of UART (DALI Tx) and TIMER (DALI Rx) module using SysConfig</p></li>
-</ul>
 </section>
 <section id="dali-in-the-mspm0-sdk">
 <h2>2. DALI in the MSPM0 SDK<a class="headerlink" href="#dali-in-the-mspm0-sdk" title="Permalink to this heading">¶</a></h2>
-<p>The DALI source code in the MSPM0 SDK was developed to be run on the MSPM0 devices. This source code implementation focuses on the basic capabilities and functions of DALI to showcase the ability of the MSPM0 devices to handle DALI communications via UART. DALI Standards IEC 62386-102 for control gear(general) and IEC 62386-207 for control gear(LED modules) were implemented for this example. Support for most required features for IEC 62386-102/207 are included in the dali_target_commands.h/c and dali_target_led_commands.h/c files with exceptions marked in the <a class="reference external" href="#known-issues">Known Issues</a> section as well as in the source code. Optional features for IEC 62386-102/207 were excluded from this implementation. The source code is also availabe to modify and edit, allowing customers to modify or customize any feature as desired.</p>
-<p><strong>Note</strong>: While the source code was developed to be used on all MSPM0 devices, the example code was only tested and validated on the MSPM0L1306.</p>
+<p>The MSPM0 SDK provides a DALI protocol software layer that enables the MSPM0 to act either as a control gear or as a control device. The implementation is based on selected parts of the IEC62386 standard and is structure to provide essential protocol handling, while leaving flexibility for users to build custom application logic on top.</p>
+<section id="control-gear">
+<h3>Control Gear<a class="headerlink" href="#control-gear" title="Permalink to this heading">¶</a></h3>
+<p>Control gear are devices that receive and act on DALI commands. These devices control lighting loads based on the instructions received over the DALI bus.</p>
+<section id="supported-dali-parts">
+<h4>Supported DALI Parts<a class="headerlink" href="#supported-dali-parts" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>DALI IEC 62386-102:2014 - (General Requirements)</strong> defines the core behaviors for all DALI control gear, including addressability, command handling, and light output control parameters.</p></li>
+<li><p><strong>DALI IEC 62386-207:2018 - (LED Modules)</strong> extends Part 102 with specific functionality required for controlling LED drivers.</p></li>
+</ul>
 <p><strong>Included Features</strong></p>
 <ul class="simple">
 <li><p>Functions to receive and transmit DALI commands and responses, respectively</p></li>
@@ -117,13 +125,14 @@
 <ul>
 <li><p>Extended Fade Time and Identify Device were omitted for customer implementation</p></li>
 <li><p>Template for setting fast fade time was included, but translation to timer load value implementation was omitted</p></li>
-<li><p>See <a class="reference external" href="#known-issues">Known Issues</a> for where Extended Fade Time and Fast Fade Time can be implemented</p></li>
-<li><p>Template for Reset Memory Bank was included in source code</p></li>
+<li><p>Only fade time for IEC62386-102:2014 is supported</p>
+<ul>
+<li><p>Extended Fade Time and Fast Fade Time are not supported</p></li>
+<li><p>Fast fade times can be set, computation for extended fade times will have to be included by customer</p></li>
+<li><p>Modify timeToPeriodConversion to support use in DAPC</p></li>
 </ul>
 </li>
-<li><p>Support for all Query Commands for IEC 62386-102</p>
-<ul>
-<li><p>Some support for query commands in IEC 62386-207, queries for load deviation and thermal features were omitted since they are optional features</p></li>
+<li><p>Template for Reset Memory Bank was included in source code</p></li>
 </ul>
 </li>
 <li><p>Support for both logarithmic and linear fade curves</p>
@@ -134,49 +143,42 @@
 </li>
 </ul>
 </section>
-<section id="configuring-the-uart-and-timer-for-dali-with-sysconfig">
-<h2>3. Configuring the UART and TIMER for DALI with SysConfig<a class="headerlink" href="#configuring-the-uart-and-timer-for-dali-with-sysconfig" title="Permalink to this heading">¶</a></h2>
-<p>The source code provided for this example is mostly for controlling the LED on the MSPM0 using a PWM. However, the key feature that enables the MSPM0 to interpret DALI commands is through Timer Capture and to transmit is through UART DALI interface. See the sections below for all the specific configurations needed to successfully enable DALI Communication.</p>
-<p>Note: Rx Mode in UART DALI interface currently doesn’t support a wide tolerance range for half bit duration as specified in the DALI Spec.</p>
-<section id="enable-dali-tx-mode">
-<h3>Enable DALI Tx Mode<a class="headerlink" href="#enable-dali-tx-mode" title="Permalink to this heading">¶</a></h3>
-<p>In SysConfig, navigate to the UART module under the communications tab</p>
-<figure class="align-default">
-<img alt="" src="../_images/UART_under_communications.png" />
-</figure>
-<p>In the section labeled Basic Configuration, change the Target Baud Rate to 1200, and the number of stop bits to 2.</p>
-<figure class="align-default">
-<img alt="" src="../_images/UART_basic_config.png" />
-</figure>
-<p>In the section labeled Advanced Configuration, select the drop-down menu for UART mode, and notice that DALI Mode is disabled/not available for selection. Navigate to the Extend Configuration section below and Enable Extend Features and Manchester Encoding. These selections are needed as DALI mode is available as an UART Extend feature, and DALI messages are Manchester encoded according to the DALI standards. Once these options are selected, go back to the Advanced Configuration section and select DALI mode for UART mode. Enable only TX as the Communication Direction, and set the TX FIFO Threshold &lt;= 1 entry. Enable MSB first as the final step for the Advanced Configuration section.</p>
-<figure class="align-default">
-<img alt="" src="../_images/UART_advanced_config_extend_config.png" />
-</figure>
-<p>The final UART configuration required is the Pin Configuration section. For the TX pin, select enable pin configuration, and in the Digital IOMUX Features, only enable the invert feature.</p>
-<figure class="align-default">
-<img alt="" src="../_images/UART_pin_config.png" />
-</figure>
 </section>
-<section id="enable-dali-rx-mode">
-<h3>Enable DALI Rx Mode<a class="headerlink" href="#enable-dali-rx-mode" title="Permalink to this heading">¶</a></h3>
-<p>In SysConfig, navigate to the TIMER-CAPTURE module under the Timers tab</p>
-<figure class="align-default">
-<img alt="" src="../_images/TIMER_basic_config.png" />
-</figure>
-<p>Set Desired Timer Period to 2ms for detecting stop condition.</p>
-<p>In the section labeled Capture Configuration, Set Input Capture mode as Multi. Configure Capture Multi Input Configuration as given in the picture below</p>
-<figure class="align-default">
-<img alt="" src="../_images/TIMER_capture_config.png" />
-</figure>
-<p>In the section Capture Channel Configuration, for Both Channels 0 and 1, Set Input Mode as External Pin CCP1 and enable Input Filtering if needed. Set Capture Edge detection mode as Falling Edge detection for Channel 0 and Rising Edge detection for Channel 1.</p>
-<figure class="align-default">
-<img alt="" src="../_images/TIMER_capture_channel_config.png" />
-</figure>
-<p>In the Interrupt Configuration section, enable Load event, Channel 0 compare up event and Channel 1 compare up event interrupt.</p>
+<section id="control-devices">
+<h3>Control Devices<a class="headerlink" href="#control-devices" title="Permalink to this heading">¶</a></h3>
+<p>Control devices are responsible for initiating communication on the DALI bus. These devices send commands or events based on inputs such as sensor triggers.</p>
+<section id="id1">
+<h4>Supported DALI Parts<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>DALI IEC 62386-103:2014 - (General Requirements)</strong> defines the general behaviors for all DALI control devices, including instance based addressing, event generation and communication format.</p></li>
+<li><p><strong>DALI IEC 62386-303:2017 - (Occupancy Sensors)</strong> extends Part 103 with input behaviors specific to occupancy detection devices, such as movement and presence sensors.</p></li>
+</ul>
+<p><strong>Included Features</strong></p>
+<ul class="simple">
+<li><p>Functions to receive and transmit DALI commands and responses, respectively</p></li>
+<li><p>Template functions using EEPROM to store certain DALI information in Flash memory and reload that information at startup</p></li>
+<li><p>Support for Multi Master Application Controller (Collision Detection, Collision Avoidance and Collision Recovery)</p></li>
+<li><p>Support for DALI 103 Commands</p>
+<ul>
+<li><p>Device Control Instructions</p></li>
+<li><p>Device Configuration Instructions</p></li>
+<li><p>Device Queries</p></li>
+<li><p>Instance Control Instructions</p></li>
+<li><p>Special Commands</p></li>
+</ul>
+</li>
+<li><p>Support for DALI 303 Event Messages</p></li>
+<li><p>Support for configuring the onboard PIR sensor on the TIDA 010-963 boosterpack.</p></li>
+</ul>
 </section>
 </section>
-<section id="example-applications-led-demo">
-<h2>4. Example Applications - LED Demo<a class="headerlink" href="#example-applications-led-demo" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="example-applications">
+<h2>3. Example Applications<a class="headerlink" href="#example-applications" title="Permalink to this heading">¶</a></h2>
+<p>This section provides example applications based on the supported DALI functionality. Each example demonstrates the use of specific parts and can be used as a reference for developing full-featured applications.</p>
+<section id="led-demo">
+<h3>1. LED Demo<a class="headerlink" href="#led-demo" title="Permalink to this heading">¶</a></h3>
+<p>This example demonstrates DALI control gear implementation using DALI Part 102 and 207. The onboard LED on the launchpad is used to represent the lighting load.</p>
 <p>Required Materials</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.ti.com/product/MSPM0L1306">MSPM0L1306 LaunchPad(LP)</a></p>
@@ -190,63 +192,43 @@
 <li><p><img alt="image2" src="../_images/hasseb_DALI_2_controller_gui.png" /></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="https://www.mikroe.com/dali-2-click">DALI 2 Click</a></p>
+<li><p>TIDA 010-963 Boosterpack</p>
 <ul>
-<li><p><img alt="image3" src="../_images/DALI_2_click.png" /></p></li>
+<li><p><img alt="image3" src="../_images/tida_010_963.png" /></p></li>
 </ul>
 </li>
 </ul>
-<p>To import the DALI example, select import project in Code Composer Studio(CCS), navigate to the examples folder in the SDK, select DALI, select the MSPM0L folder, and navigate to the ticlang directory. Once imported, you can flash the code onto the device.</p>
-<p>To test this example, attach the DALI 2 Click to the MSPM0 by connecting the RX and TX pins to the appropriate pins on the MSPM0L device, while connecting the 3.3V, 5V, and GND pins on the Click board to the 3.3V, 5V, and GND pins on the Launchpad. Screw in two wires into the screw terminals on the DALI 2 Click, and connect those wires to the corresponding terminal on the Hasseb DALI 2 Controller. Connect the power to the controller, and the USB from the controller to the laptop. Connect the Launchpad to the laptop and flash the example via CCS. Once the example is flashed device is running example, launch the DALI 2 Controller GUI and press initialize. Once a short address, random address, and device type appear, you can begin sending supported/implemented commands to the device. You will see an LED on the device respond to the supported execution commands</p>
-<section id="modifying-the-example-applications">
-<h3>Modifying the Example Applications<a class="headerlink" href="#modifying-the-example-applications" title="Permalink to this heading">¶</a></h3>
-<p>The source code to the DALI implementation for MSPM0L is available for editing. This allows customers and users to re-implement or modify existing features to match personal specifications. Certain features, such as device identification and updating variables in flash, can differ from implementation to implementation. Here are a list of features that require user modification to implement. These are features that are either user specific or known issues.</p>
-<ul class="simple">
-<li><p>Update Flash - Variable in the control gear struct that controls when flash gets updated values. Set this flag to true in any desired function to trigger the update flash procedure in the main execution loop.</p></li>
-<li><p>Identify Device - This procedure varies per user, and can utilize the recall min and max functions to trigger the LED to toggle</p></li>
-<li><p>Reset Memory Bank/Read and Write Memory Location - Will need to be updated as more memory banks are implemented as the current implementation only supports memory bank 0</p></li>
-<li><p>Load Deviation and Thermal Protection Features - Is an optional feature, command support is available(device will call function if command is received) but implementation is up to user discretion</p></li>
-<li><p>Failure/Status Bits - Template functions available, but implementation is up to customer</p></li>
-<li><p>Extend Fade Time/Fast Fade Time - See <a class="reference external" href="#known-issues">Known Issues</a></p></li>
-</ul>
+<p>Mount the TIDA 010-963 Boosterpack onto MSPM0L1306_LP. Connect the DALI bus lines to Hasseb DALI 2 controller. Once the example is flashed and device is running the example, launch the DALI 2 Controller GUI and press initialize. Once a short address, random address, and device type appear, you can begin sending supported/implemented commands to the device. LED on the launchpad will respond to the supported execution commands.</p>
 </section>
-</section>
-<section id="known-issues">
-<h2>5. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<section id="occupancy-sensor-demo">
+<h3>2. Occupancy Sensor demo<a class="headerlink" href="#occupancy-sensor-demo" title="Permalink to this heading">¶</a></h3>
+<p>This example uses DALI Part 103 and Part 303 to implement an occupancy sensor using the onboard PIR sensor on the TIDA 010-963 board. The device sends event messages based on the detection motion.</p>
+<p>Required Materials</p>
 <ul class="simple">
-<li><p>Only fade time for IEC62386-102:2014 is supported</p>
+<li><p><a class="reference external" href="https://www.ti.com/product/MSPM0G3507">MSPM0G3507 LaunchPad(LP)</a></p>
 <ul>
-<li><p>Extended Fade Time and Fast Fade Time not supported</p></li>
-<li><p>Fast fade times can be set, computation for extended fade times will have to be included by customer</p></li>
-<li><p>Will have to modify timeToPeriodConversion to support use in DAPC</p></li>
+<li><p><img alt="image4" src="../_images/MSPM0G3507.png" /></p></li>
 </ul>
 </li>
-<li><p>Random Address will generate 1</p>
+<li><p>TIDA 010-963 Boosterpack</p>
 <ul>
-<li><p>GUI Tool crashes during initialization when the connected device’s random address exceeds a certain value</p></li>
-<li><p>This does not impact functionality, as the device is still able to be initialized, but will generate the same random address every time it is initialized</p></li>
-<li><p>If using a different DALI controller, define <em>GENERATE_RANDOM_ADDR_TRNG</em> macro to generate random address in the MSPM0 devices that supports TRNG.</p></li>
-</ul>
-</li>
-<li><p>Initializing Multiple Devices</p>
-<ul>
-<li><p>GUI Tool crashes when trying to initialize multiple devices, but successfully initializes the device when connected individually to controller</p></li>
-<li><p>No issue seen on application code function, may require different DALI bus setup rather than direct connection to DALI Controller screw terminal</p></li>
-</ul>
-</li>
-<li><p>Timing for Identify Device Command</p>
-<ul>
-<li><p>Due to the limitations of the number of timers that can be enabled on the MSPM0L, and the desire to keep one timer available for a PWM controlling an LED and one timer for DALI Rx, no timer is available to indivdually control the identify device process</p></li>
-<li><p>However, the initialization timer is designed to run for 15 minutes, so it can be utilized for the identify device process as well</p></li>
-</ul>
-</li>
-<li><p>Hasseb DALI 2 Controller GUI does not have support for LED commands</p>
-<ul>
-<li><p>As a result, LED Functions have not been validated</p></li>
-<li><p>However, the Hasseb GUI code is available publicly on GitHub if users wish to modify the GUI to add support for LED commands</p></li>
+<li><p><img alt="image5" src="../_images/tida_010_963.png" /></p></li>
 </ul>
 </li>
 </ul>
+<p>External DALI Application controller can be used to send commands and verify event messages of the input device.</p>
+<p>The test controller example can be used to evaluate this demo. However, no predefined commands are included in the code, users must manually input valid forward frame data to test the input devices.</p>
+<p>Mount the TIDA 010-963 Boosterpack onto MSPM0G3507_LP. Connect the DALI bus lines to the boosterpack mounted on another MSPM0G3507_LP which is running the test controller example. Ensure that one of the TIDA 010-963 board provides power to the bus by supplying a 24V external DC input through the barrel jack connector on the board. Also, make sure the J1 and J7 connectors are properly connected to enable the external supply to power the DALI bus. Details on how to send commands using the test controller example are provided in the following section.</p>
+</section>
+<section id="test-controller-demo">
+<h3>3. Test Controller demo<a class="headerlink" href="#test-controller-demo" title="Permalink to this heading">¶</a></h3>
+<p>This example uses DALI Part 103 to implement a basic DALI application controller capable of sending forward frames. It allows users to manually construct and transmit 16-bit or 24-bit frames over the DALI bus.</p>
+<p>No predefined commands are included in this example. Users are expected to modify or input the desired command frames at runtime. This setup serves as a reference for building a full-featured application controller, where custom control logic and flow can be added based on their requirements.</p>
+<p>Once the example is flashed and the device is running, users can add the gUserVar variable to the expressions tab and modify its parameters as needed. Then set toSend to 1 to trigger the command transmission. If a response is received, the gReceive variable is set to 1, and the response data can be viewed in dali_gpio.Rx.dataArr.</p>
+<figure class="align-default">
+<img alt="" src="../_images/expressions_tab.png" />
+</figure>
+</section>
 </section>
 </section>
 

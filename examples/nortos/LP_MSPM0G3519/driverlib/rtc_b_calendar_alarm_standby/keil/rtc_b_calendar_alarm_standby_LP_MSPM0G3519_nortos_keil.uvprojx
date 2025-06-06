@@ -21,8 +21,8 @@
           <CreateHexFile>1</CreateHexFile>
           <BrowseInformation>1</BrowseInformation>
           <BeforeMake>
-            <RunUserProg1>0</RunUserProg1>
-            <UserProg1Name></UserProg1Name>
+            <RunUserProg1>1</RunUserProg1>
+            <UserProg1Name>cmd.exe /C "$P../../../../../../tools/keil/syscfg.bat '$P' rtc_b_calendar_alarm_standby.syscfg"</UserProg1Name>
           </BeforeMake>
         </TargetCommonOption>
         <DllOption>
@@ -57,7 +57,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0G3519__</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
+              <IncludePath>../,../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
             </VariousControls>
           </Cads>
           <LDads>
@@ -82,6 +82,16 @@
               <FilePath>../rtc_b_calendar_alarm_standby.c</FilePath>
             </File>
             <File>
+              <FileName>rtc_b_calendar_alarm_standby.syscfg</FileName>
+              <FileType>5</FileType>
+              <FilePath>../rtc_b_calendar_alarm_standby.syscfg</FilePath>
+            </File>
+            <File>
+              <FileName>startup_mspm0g351x_uvision.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>startup_mspm0g351x_uvision.s</FilePath>
+            </File>
+            <File>
               <FileName>ti_msp_dl_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti_msp_dl_config.h</FilePath>
@@ -90,11 +100,6 @@
               <FileName>ti_msp_dl_config.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti_msp_dl_config.c</FilePath>
-            </File>
-            <File>
-              <FileName>startup_mspm0g351x_uvision.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>startup_mspm0g351x_uvision.s</FilePath>
             </File>
           </Files>
         </Group>

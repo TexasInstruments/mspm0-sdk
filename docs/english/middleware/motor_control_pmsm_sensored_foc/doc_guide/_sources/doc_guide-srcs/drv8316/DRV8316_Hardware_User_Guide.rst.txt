@@ -34,13 +34,11 @@ This User Guide outlines the usage of DRV8316 gate driver along with the Hall se
 
 2. Connect the LP-MSPM0G3507/LP-MSPM0G3519 to the DRV8316REVM in one of two ways:
 
--  1 Plug the connectors J3 and J4 of the DRV8316REVM to the top of the connectors J3/J4 of the LP-MSPM0G3507/MSPM0G3519.
+   -  1 Plug the connectors J3 and J4 of the DRV8316REVM to the top of the connectors J3/J4 of the LP-MSPM0G3507/MSPM0G3519.
 
-   ::
+      -  In case of LP-MSPM0G3507 an additional connection need to be made from ISENB in DRV8316REVM to the PA25.
 
-       - In case of LP-MSPM0G3507 an additional connection need to be made from ISENB in DRV8316REVM to the PA25. 
-
-       - In case of LP-MSPM0G3519 additional connection need to be made from ISENB to PA14 & ISENC to PA25.
+      -  In case of LP-MSPM0G3519 additional connection need to be made from ISENB to PA14 & ISENC to PA25.
 
    -  2 If using the jumper wires, connect as shown in the table below. Refer to the schematic of J3 and J4 connector pinout on DRV8316REVM for the location of the signals.
 

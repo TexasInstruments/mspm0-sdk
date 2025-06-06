@@ -33,7 +33,7 @@
 #ifndef FLEXWIRE_H_
 #define FLEXWIRE_H_
 
-#include "led_driver.h"
+#include "system_info.h"
 
 extern char ledXmtBuffer[];
 extern char ledRcvBuffer[];

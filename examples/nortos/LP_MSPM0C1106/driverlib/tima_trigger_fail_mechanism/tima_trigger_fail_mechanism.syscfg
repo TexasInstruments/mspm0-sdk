@@ -1,0 +1,74 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0C1105_C1106" --package "VQFN-48(RGZ)" --part "Default"
+//@v2CliArgs --device "MSPM0C1106" --package "VQFN-48(RGZ)"
+// @cliArgs --board /ti/boards/LP_MSPM0C1106 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
+const TIMERFault  = scripting.addModule("/ti/driverlib/TIMERFault", {}, false);
+const TIMERFault1 = TIMERFault.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPin         = "26";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].assignedPin         = "25";
+GPIO1.associatedPins[1].initialValue        = "SET";
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+PWM1.$name                      = "PWM_0";
+PWM1.interrupts                 = ["FAULT_EVENT"];
+PWM1.clockSource                = "LFCLK";
+PWM1.timerCount                 = 100;
+PWM1.faultHandlerEn             = true;
+PWM1.faultSource                = ["0"];
+PWM1.faultInputEn               = "FIEN_ENABLED";
+PWM1.faultInput                 = "FI_DEPENDENT";
+PWM1.faultInputFilterEn         = true;
+PWM1.faultTimerCountEntry       = "FAULT_ENTRY_CTR_SUSP_COUNT";
+PWM1.faultTimerCountExit        = "FAULT_EXIT_CTR_CVAE_ACTION";
+PWM1.faultInputDetect           = true;
+PWM1.faultPin0Sense             = "SENSE_HIGH";
+PWM1.faultChannel0BehaviorEntry = "HIGH";
+PWM1.faultChannel0BehaviorExit  = "LOW";
+PWM1.faultChannel1BehaviorEntry = "LOW";
+PWM1.faultChannel1BehaviorExit  = "HIGH";
+PWM1.peripheral.$assign         = "TIMA0";
+PWM1.peripheral.ccp0Pin.$assign = "PA0";
+PWM1.peripheral.ccp1Pin.$assign = "PA7";
+PWM1.PWM_CHANNEL_0.$name        = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle    = 80;
+PWM1.PWM_CHANNEL_1.$name        = "ti_driverlib_pwm_PWMTimerCC1";
+PWM1.PWM_CHANNEL_1.dutyCycle    = 90;
+
+SYSCTL.enableEXCLK                  = true;
+SYSCTL.EXCLKSource                  = "LFCLK";
+SYSCTL.peripheral.clkOutPin.$assign = "PA27";
+SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;
+
+TIMERFault1.$name             = "FAULT_0";
+PWM1.associatedFault          = TIMERFault1;
+TIMERFault1.enabledFaults     = ["0"];
+TIMERFault1.faultPin0.$assign = "PA8";
+TIMERFault1.faultPin0Config.enableConfig     = true;
+TIMERFault1.faultPin0Config.internalResistor = "PULL_DOWN";

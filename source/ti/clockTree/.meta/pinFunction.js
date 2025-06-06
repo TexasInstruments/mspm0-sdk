@@ -118,13 +118,13 @@ function validate(inst, validation)
 			validation.logInfo("After LFXT is enabled, the internal LFOSC is disabled, and cannot be re-enabled other than by executing a BOOTRST.",inst,"enable");
 		}
 		if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && clockTreeEn) {
-			validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", inst, "enable");
+			validation.logInfo("Note: VBAT pin needs to be powered for LFCLK operation.", inst, "enable");
 		}
 	}
 
 	if(inst.$name == "LFCLKEXT" && inst.enable && clockTreeEn){
 		if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) {
-			validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", inst, "enable");
+			validation.logInfo("Note: VBAT pin needs to be powered for LFCLK operation.", inst, "enable");
 		}
 	}
 
@@ -224,6 +224,7 @@ const CLKOUT_extendedConfig = [
 			{name: "N/A", displayName: "N/A"},
 			{name: "SD", displayName: "Standard"},
 			{name: "SDL", displayName: "Standard"},
+			{name: "USB", displayName: "Standard"},
 			{name: "SDW", displayName: "Standard with Wake"},
 			{name: "HS", displayName: "High-Speed"},
 			{name: "HD", displayName: "High-Drive"},
@@ -231,7 +232,7 @@ const CLKOUT_extendedConfig = [
 		],
 		getValue: (inst) => {
 			try{
-				let value =  system.deviceData.gpio.pinInfo[inst.peripheral.clkOutPin.$solution.packagePinName].devicePin.attributes.io_type;
+				let value = Common.getAttribute((system.deviceData.gpio.pinInfo[inst.peripheral.clkOutPin.$solution.packagePinName].devicePin),("io_type"));
 				if(value !== null){ return value};
 			} catch(e){
 				return "N/A"
@@ -364,6 +365,7 @@ const maxFrequencyCLKOUTDir = {
     "SD" : [ 16, 32 ],
     "SDW" : [16, 32], // same as SD simply with wake
     "SDL" : [16, 32], // same as SD simply with low leakage
+	"USB" : [16, 32], // same as SD simply with low leakage
     "HS_DRVLOW" : [ 16, 32 ], // LOW Drive, used later on in pinmux validation
     "HS" : [ 24, 40 ], // High drive enabled
     "HD" : [ 16, 20 ],
@@ -388,7 +390,7 @@ function validClkOutPinSet(inst){
     for(let pinIdx in system.deviceData.gpio.pinInfo){
         let eligible = true;
 
-        let pinType = system.deviceData.gpio.pinInfo[pinIdx].devicePin.attributes.io_type;
+		let pinType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinIdx].devicePin),("io_type"));
 
         if(inst.ClkOutForceHighDrive && !["HD", "HS"].includes(pinType)){
             eligible = false;
@@ -425,10 +427,10 @@ function pinmuxRequirements(inst)
 	let signalTypes = {
 		lfxInPin    : ["LFXIN"],
 		lfxOutPin   : ["LFXOUT"],
-		lfclkInPin  : ["LFXOUT"],
+		lfclkInPin  : ["LFCLKIN"],
 		hfxInPin    : ["LFXIN"],
 		hfxOutPin   : ["HFXOUT"],
-		hfclkInPin  : ["HFXOUT"],
+		hfclkInPin  : ["HFCLKIN"],
 		roscPin     : ["ROSC"],
 		clkOutPin   : ["CLK_OUT"],
 		fccInPin	: ["FCC_IN"],
@@ -452,19 +454,11 @@ function pinmuxRequirements(inst)
                 });
                 break;
             case "LFCLKEXT":
-				if(!isDeviceFamily_PARENT_MSPM0C110X()){
-					resources.push({
-						name            : "lfclkInPin",
-						displayName     : "LFCLK In",
-						interfaceNames  : ["LFXOUT"],
-					});
-				} else {
-					resources.push({
-						name            : "lfclkInPin",
-						displayName     : "LFCLK In",
-						interfaceNames  : ["LFCLKIN"],
-					});
-				}
+				resources.push({
+					name            : "lfclkInPin",
+					displayName     : "LFCLK In",
+					interfaceNames  : ["LFCLKIN"],
+				});
                 break;
             case "HFXT":
                 resources.push({
@@ -479,19 +473,11 @@ function pinmuxRequirements(inst)
                 });
                 break;
             case "HFCLKEXT":
-				if(!isDeviceFamily_PARENT_MSPM0C110X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
-					resources.push({
-						name            : "hfclkInPin",
-						displayName     : "HFCLK In",
-						interfaceNames  : ["HFXOUT"],
-					});
-				} else {
-					resources.push({
-						name            : "hfclkInPin",
-						displayName     : "HFCLK In",
-						interfaceNames  : ["HFCLKIN"],
-					});
-				}
+				resources.push({
+					name            : "hfclkInPin",
+					displayName     : "HFCLK In",
+					interfaceNames  : ["HFCLKIN"],
+				});
                 break;
 			case "CLKOUT":
 				resources.push({

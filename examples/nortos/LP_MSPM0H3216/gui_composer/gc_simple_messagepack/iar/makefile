@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj HAL_UART_M0H3216.obj main.obj iar_startup_mspm0h321x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = HAL_UART_M0H3216.obj main.obj callbacks_mpack.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj iar_startup_mspm0h321x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = gc_simple_messagepack
 
 CFLAGS += -I.. \
@@ -73,6 +73,14 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
+HAL_UART_M0H3216.obj: ../HAL_UART_M0H3216.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -o $@
+
+main.obj: ../main.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -o $@
+
 callbacks_mpack.obj: ../callbacks_mpack.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -82,14 +90,6 @@ MSP_GUI_GUI_mpack.obj: ../MSP_GUI/GUI_mpack.c $(SYSCFG_H_FILES)
 	@ $(CC) $(CFLAGS) $< -o $@
 
 MSP_GUI_GUIComm_mpack.obj: ../MSP_GUI/GUIComm_mpack.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-HAL_UART_M0H3216.obj: ../HAL_UART_M0H3216.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-main.obj: ../main.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

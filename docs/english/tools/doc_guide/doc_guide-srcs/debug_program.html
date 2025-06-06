@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Debugging and Programming Tools &mdash; MSPM0 Tools Guide 2.04.00.06 documentation</title>
+  <title>Debugging and Programming Tools &mdash; MSPM0 Tools Guide 2.05.00.05 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="&lt;no title&gt;" href="debug_program_xds110.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="codegen_easeofuse_analogconfig.html" /> 
+    <link rel="prev" title="&lt;no title&gt;" href="codegen_easeofuse_zerocodestudio.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> MSPM0 Tools Guide
           </a>
               <div class="version">
-                2.04.00.06
+                2.05.00.05
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -62,8 +62,16 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#c-gang">C-GANG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference external" href="https://www.ti.com/tool/ELPRO-3P-C-GANG">C-GANG</a></li>
+<li class="toctree-l4"><a class="reference external" href="https://elprotronic.atlassian.net/wiki/spaces/FPGPARM/pages/53575728/FlashPro+GangPro+User+Guide">C-GANG User's Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#uniflash">UniFlash</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Documentation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="uniflash_guide.html">UniFlash Guide for MSPM0</a></li>
 <li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/v5_0/quick_start_guide/uniflash_quick_start_guide.html">UniFlash generic Quick Start Guide (external)</a></li>
 <li class="toctree-l4"><a class="reference external" href="https://software-dl.ti.com/ccs/esd/uniflash/docs/uniflash.html">UniFlash documentation (external)</a></li>
@@ -72,7 +80,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#bsl-host">BSL Host</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Documentation</a><ul>
 <li class="toctree-l4"><a class="reference external" href="https://www.ti.com/lit/slaae88">MSPM0 Bootloader (BSL) Host Implementation</a></li>
 <li class="toctree-l4"><a class="reference external" href="https://www.ti.com/lit/slau887">MSPM0 Bootloader User Guide</a></li>
 </ul>
@@ -80,21 +88,21 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mspm0-factory-reset-gui-tool">MSPM0 Factory Reset GUI Tool</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Documentation</a><ul>
 <li class="toctree-l4"><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_Factory_Reset_Tool/">MSPM0 Factory Reset GUI Tool</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#elprotronic">Elprotronic</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Documentation</a><ul>
 <li class="toctree-l4"><a class="reference external" href="https://www.elprotronic.com/pages/ti">Elprotronic's Flash Programmers for TI (external)</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#segger">Segger</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Documentation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="segger_jlink.html">Using Segger programmers with MSPM0</a></li>
 <li class="toctree-l4"><a class="reference external" href="https://www.segger.com/downloads/jlink/UM08001">J-Link/J-Trace User Guide (external)</a></li>
 </ul>
@@ -102,14 +110,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pemicro">PEmicro</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Documentation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="pemicro.html">Using PEmicro interfaces with MSPM0</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#lauterbach">Lauterbach</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Documentation</a><ul>
 <li class="toctree-l4"><a class="reference external" href="https://www2.lauterbach.com/pdf/microtrace_cortexm.pdf">MicroTrace for Cortex-M User's Guide (external)</a></li>
 </ul>
 </li>
@@ -181,6 +189,23 @@
 </div>
 </section>
 </section>
+<section id="c-gang">
+<h2>C-GANG<a class="headerlink" href="#c-gang" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line">The Compact Gang Programmer (C-GANG) from Elprotronic is a device programmer that supports all variants of MSPM0, MSP432, and MSP430.</div>
+<div class="line">The C-GANG can program up to six identical MSP Flash or FRAM devices at the same time.</div>
+<div class="line">It connects to a host PC using a USB-C connection and provides flexible programming options that allow the user to fully customize the process.</div>
+</div>
+<section id="id2">
+<h3>Documentation<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://www.ti.com/tool/ELPRO-3P-C-GANG">C-GANG</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://elprotronic.atlassian.net/wiki/spaces/FPGPARM/pages/53575728/FlashPro+GangPro+User+Guide">C-GANG User's Guide</a></li>
+</ul>
+</div>
+</section>
+</section>
 <section id="uniflash">
 <h2>UniFlash<a class="headerlink" href="#uniflash" title="Permalink to this heading">¶</a></h2>
 <div class="line-block">
@@ -188,8 +213,8 @@
 <div class="line">Uniflash has a GUI, command line, and scripting interface.</div>
 <div class="line">CCS Uniflash is available free of charge.</div>
 </div>
-<section id="id3">
-<h3>Documentation<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<section id="id4">
+<h3>Documentation<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="uniflash_guide.html">UniFlash Guide for MSPM0</a></li>
@@ -205,8 +230,8 @@
 <div class="line">MSPM0 devices are shipped with a highly customizable ROM-based bootloader that supports UART and I2C communication by default.</div>
 <div class="line">The MSPM0 SDK contains two demos: one demo uses an MCU (an MSPM0) as the host to update the MSPM0 target device through UART or I2C (the projects are based on CCS), while the other demo uses a PC as the host that communicates with the backchannel UART of a XDS110 programmer</div>
 </div>
-<section id="id4">
-<h3>Documentation<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<section id="id5">
+<h3>Documentation<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.ti.com/lit/slaae88">MSPM0 Bootloader (BSL) Host Implementation</a></li>
@@ -223,8 +248,8 @@
 <div class="line">The <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_Factory_Reset_Tool/">MSPM0 Factory Reset GUI tool</a>  is a standalone tool used to gain debug access or recover an MSPM0 device using this interface.</div>
 <div class="line">This tool is available free of charge.</div>
 </div>
-<section id="id6">
-<h3>Documentation<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+<section id="id7">
+<h3>Documentation<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0_Factory_Reset_Tool/">MSPM0 Factory Reset GUI Tool</a></li>
@@ -237,10 +262,10 @@
 <div class="line-block">
 <div class="line">Elprotronic offers multiple hardware and software programming tools supporting MSPM0 in addition to Texas Instruments’ MSP430/432, SimpleLink (CC), C2000, and TIVA-C MCUs.</div>
 <div class="line"><br /></div>
-<div class="line">Elprotronic’s solutions for MSPM0 include the MSP-GANG, FlashPro-ARM and GangPro-ARM.</div>
+<div class="line">Elprotronic’s solutions for MSPM0 include the MSP-GANG, FlashPro-ARM, GangPro-ARM, and C-GANG.</div>
 </div>
-<section id="id7">
-<h3>Documentation<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+<section id="id8">
+<h3>Documentation<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www.elprotronic.com/pages/ti">Elprotronic's Flash Programmers for TI (external)</a></li>
@@ -261,8 +286,8 @@
 <div class="line">* IAR Embedded Workbench for Arm® (EWARM)</div>
 <div class="line">* Keil MDK-ARM (µVision)</div>
 </div>
-<section id="id8">
-<h3>Documentation<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+<section id="id9">
+<h3>Documentation<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="segger_jlink.html">Using Segger programmers with MSPM0</a></li>
@@ -282,8 +307,8 @@
 <div class="line">These Cyclones include a 4.3” touchscreen LCD and an access panel which provides easy access to all debug headers.</div>
 <div class="line">Cyclones programmers offer multiple communications interfaces (including USB, Ethernet, and Serial), stand-alone programming functionality, high speed data transfer, a status LCD, and many other advanced capabilities.</div>
 </div>
-<section id="id9">
-<h3>Documentation<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+<section id="id10">
+<h3>Documentation<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pemicro.html">Using PEmicro interfaces with MSPM0</a></li>
@@ -300,8 +325,8 @@
 <div class="line"><br /></div>
 <div class="line">Another tool that fits for the MSPM0 family is a <a class="reference external" href="https://www.lauterbach.com/frames.html?powerdebug_e40.html">Power Debug E40</a> with a debug cable. These modules support the common debug protocols and can be reused for other architectures.</div>
 </div>
-<section id="id10">
-<h3>Documentation<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+<section id="id11">
+<h3>Documentation<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://www2.lauterbach.com/pdf/microtrace_cortexm.pdf">MicroTrace for Cortex-M User's Guide (external)</a></li>
@@ -314,9 +339,13 @@
 <div class="line-block">
 <div class="line">OpenOCD is an open-source project that provides command line debugging, in-system programming, and boundary-scan testing for embedded devices.</div>
 <div class="line"><br /></div>
-<div class="line">MSPM0 support is currently available for OpenOCD, please contact your local TI sales representative to receive access to the Github branch it currently lives on.</div>
+<div class="line">MSPM0 support is available in GitHub on the <a class="reference external" href="https://github.com/openocd-org/openocd">master branch</a> for OpenOCD. The implementation supports all MSPM0 devices and DSSM commands.</div>
 <div class="line"><br /></div>
-<div class="line">The branch currently supports MSPM0G and MSPM0L, it also contains support for our DSSM commands as well. It will be continuously updated and pushed to the main branch in the future.</div>
+<div class="line">To learn how to build and utilize OpenOCD from the master branch, please refer to this <a class="reference external" href="https://openocd.org/pages/documentation.html">page</a> provided by the OpenOCD organization.</div>
+<div class="line"><br /></div>
+<div class="line">The page links to documentation showing users how to build the the branch locally on <a class="reference external" href="https://sourceforge.net/p/openocd/code/ci/master/tree/README.Windows">Windows</a>, <a class="reference external" href="https://sourceforge.net/p/openocd/code/ci/master/tree/README.macOS">MacOS</a>, and <a class="reference external" href="https://sourceforge.net/p/openocd/code/ci/master/tree/README">Linux</a>.</div>
+<div class="line"><br /></div>
+<div class="line">Also linked is the <a class="reference external" href="https://openocd.org/doc/pdf/openocd.pdf">User’s Guide</a> containing documentation on how to use the MSPM0 implementation and any of its device specific commands.</div>
 </div>
 </section>
 </section>
@@ -325,7 +354,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="codegen_easeofuse_analogconfig.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="codegen_easeofuse_zerocodestudio.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="debug_program_xds110.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

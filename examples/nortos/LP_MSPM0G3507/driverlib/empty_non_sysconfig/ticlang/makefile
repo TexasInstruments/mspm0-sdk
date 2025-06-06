@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = empty_non_sysconfig.obj ti_msp_dl_config.obj ticlang_startup_mspm0g350x_ticlang.obj
+OBJECTS = ti_msp_dl_config.obj empty_non_sysconfig.obj ticlang_startup_mspm0g350x_ticlang.obj
 NAME = empty_non_sysconfig
 
 CFLAGS += -I.. \
@@ -31,11 +31,11 @@ LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0g
 
 all: $(NAME).out
 
-empty_non_sysconfig.obj: ../empty_non_sysconfig.c
+ti_msp_dl_config.obj: ../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_msp_dl_config.obj: ../ti_msp_dl_config.c
+empty_non_sysconfig.obj: ../empty_non_sysconfig.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

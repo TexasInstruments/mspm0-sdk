@@ -34,7 +34,6 @@ COMP1.terminalSelect                 = "DL_COMP_REF_TERMINAL_SELECT_NEG";
 COMP1.enableOutputFilter             = true;
 COMP1.peripheral.$assign             = "COMP0";
 COMP1.peripheral.compPinPos0.$assign = "PA26";
-COMP1.compPinPos0Config.$name        = "ti_driverlib_gpio_GPIOPinGeneric3";
 
 PWM1.$name                      = "PWM_0";
 PWM1.faultHandlerEn             = true;

@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = lin_config.obj lin_commander.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = lin_commander.obj lin_config.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = lin_commander
 
 CFLAGS += -I.. \
@@ -37,8 +37,10 @@ CFLAGS += -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS += -nostartfiles \
+LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx" \
+    -nostartfiles \
     -Tdevice.lds.genlibs \
+    -l:driverlib.a \
     -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
@@ -84,11 +86,11 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
-lin_config.obj: ../lin_config.c $(SYSCFG_H_FILES)
+lin_commander.obj: ../lin_commander.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
-lin_commander.obj: ../lin_commander.c $(SYSCFG_H_FILES)
+lin_config.obj: ../lin_config.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

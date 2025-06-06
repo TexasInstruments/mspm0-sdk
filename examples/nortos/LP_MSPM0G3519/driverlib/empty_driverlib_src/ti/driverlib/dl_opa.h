@@ -337,7 +337,8 @@ __STATIC_INLINE void DL_OPA_init(OA_Regs *opa, const DL_OPA_Config *config)
 __STATIC_INLINE void DL_OPA_setGainBandwidth(
     OA_Regs *opa, DL_OPA_GBW bandwidth)
 {
-    opa->CFGBASE |= ((uint32_t) bandwidth);
+    DL_Common_updateReg(
+        &opa->CFGBASE, (uint32_t) bandwidth, OA_CFGBASE_GBW_MASK);
 }
 
 /**

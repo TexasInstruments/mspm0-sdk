@@ -118,6 +118,7 @@ exports = {
     isDeviceFamily_PARENT_MSPM0L111X        : isDeviceFamily_PARENT_MSPM0L111X,
     isDeviceFamily_PARENT_MSPM0H321X        : isDeviceFamily_PARENT_MSPM0H321X,
     isDeviceFamily_PARENT_MSPM0C1105_C1106  : isDeviceFamily_PARENT_MSPM0C1105_C1106,
+    isDeviceFamily_PARENT_MSPM0G511X        : isDeviceFamily_PARENT_MSPM0G511X,
     isDeviceFamily_MSPS003FX                : isDeviceFamily_MSPS003FX,
 
     I2CTargetWakeupWorkaroundFixed          : I2CTargetWakeupWorkaroundFixed,
@@ -185,6 +186,19 @@ exports = {
 
     hasExpandedADCVRSEL     : hasExpandedADCVRSEL,
     hasMATHACL              : hasMATHACL,
+
+    vrefCanSetBothModes     : vrefCanSetBothModes,
+    vrefOnlyInternal        : vrefOnlyInternal,
+    vrefHasLegacyBasicMode  : vrefHasLegacyBasicMode,
+    hasLegacyRTC            : hasLegacyRTC,
+
+    hasCOMPDACOutput        : hasCOMPDACOutput,
+
+    isUnicommUART           : isUnicommUART,
+    isUnicommSPI            : isUnicommSPI,
+    isUnicommI2C            : isUnicommI2C,
+
+    getAttribute            : getAttribute,
 };
 
 /*
@@ -1815,6 +1829,12 @@ function isDeviceFamily_PARENT_MSPM0L111X(){
     return (["MSPM0L111X"].includes(deviceName));
 }
 
+/* Checks if device is part of MSPM0G511X device family */
+function isDeviceFamily_PARENT_MSPM0G511X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0G511X"].includes(deviceName));
+}
+
 /* checks if current device is one of M0x110x series */
 function isDeviceM0x110x(){
 	var deviceName = system.deviceData.device;
@@ -1831,7 +1851,7 @@ function isDeviceM0x310x(){
 /* checks if current device is one of MSPM0G-series */
 function isDeviceM0G()
 {
-	return (isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || isDeviceFamily_PARENT_MSPM0GX51X());
+	return (isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || isDeviceFamily_PARENT_MSPM0GX51X() || isDeviceFamily_PARENT_MSPM0G511X());
 }
 /* checks if current device is one of MSPM0L-series */
 function isDeviceM0L(){
@@ -1872,6 +1892,9 @@ function getDeviceFamily(){
     else if(isDeviceFamily_PARENT_MSPM0C1105_C1106()) {
         return "MSPM0C1105_C1106";
     }
+    else if(isDeviceFamily_PARENT_MSPM0G511X()) {
+        return "MSPM0G511X";
+    }
     return undefined;
 }
 
@@ -1896,7 +1919,7 @@ function hasBSLConfig(){
 
 /* Check if device supports Data Region configuration */
 function hasDataRegionConfig(){
-    return (isDeviceFamily_PARENT_MSPM0GX51X());
+    return (isDeviceFamily_PARENT_MSPM0GX51X() || isDeviceFamily_PARENT_MSPM0G511X());
 }
 
 
@@ -1959,7 +1982,10 @@ function getGPIOPort(gpioName){
  *  @returns string of the form P<port>
  */
 function getGPIOPortMultiPad(packagePin, inst, pinInterfaceName){
-    let pinNames = (system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName).split("/");
+    let pinNames = (system.deviceData.devicePins[packagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName).split("/");
+    if(pinNames.length==1){
+        return getGPIOPort(pinNames[0]);
+    }
     let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
     return getGPIOPort(pinNames[padIndex])
 }
@@ -1976,7 +2002,10 @@ function getGPIOPortMultiPad(packagePin, inst, pinInterfaceName){
  *  @returns string of the form <pin number>
  */
 function getGPIONumberMultiPad(packagePin, inst, pinInterfaceName){
-    let pinNames = (system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName).split("/");
+    let pinNames = (system.deviceData.devicePins[packagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName).split("/");
+    if(pinNames.length==1){
+        return getGPIONumber(pinNames[0])
+    }
     let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
     return getGPIONumber(pinNames[padIndex])
 
@@ -2072,7 +2101,12 @@ function getPinCM(packagePin, inst, pinInterfaceName)
 // TODO: example call => getPinCM(11, (spi inst), "POCI")
 {
     // TODO: want to add condition to only do the steps after this one if more than one pinCM is returned
-    let pinCMs = (system.deviceData.devicePins[packagePin].attributes.iomux_pincm).split(",")
+    let pinCMsAttribute = getAttribute((system.deviceData.devicePins[packagePin]),("iomux_pincm"));
+    if(pinCMsAttribute == undefined){ return undefined; }
+    let pinCMs = (pinCMsAttribute).split(",")
+    if(pinCMs.length==1){
+        return pinCMs[0];
+    }
     let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
     return pinCMs[padIndex];
 
@@ -2366,7 +2400,7 @@ function getGPIOGroupConfig(){
  *
  */
 function hasWakeupLogic(){
-    if(isDeviceM0C()){
+    if(isDeviceFamily_PARENT_MSPM0C110X()){
         return false;
     }
     return true;
@@ -2564,7 +2598,7 @@ function getBUSCLKFreq(inst, peripheralName){
     // Get Power Domain of selected peripheral via device data
     try{
         let peripheralIndex = system.deviceData.interfaces[peripheralName].peripherals.findIndex(object => { return object.name === inst.peripheral.$solution.peripheralName });
-        powerDomain = system.deviceData.interfaces[peripheralName].peripherals[peripheralIndex].attributes.power_domain;
+        powerDomain = getAttribute((system.deviceData.interfaces[peripheralName].peripherals[peripheralIndex]),("power_domain"));
     }catch (e) {
         // do nothing
     }
@@ -2961,6 +2995,30 @@ function getMainTriggerETSELValue(inst) {
                 break;
         }
     }
+    else if(isDeviceFamily_PARENT_MSPM0G511X()) {
+        switch (true) {
+            case main_timer == "TIMA0":
+                return 0;
+                break;
+            case main_timer == "TIMG0":
+                return 1;
+                break;
+            case main_timer == "TIMG6":
+                return 2;
+                break;
+            case main_timer == "TIMG7":
+                return 3;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    // NOTE: not returning anything would lead to an undefined tool error with
+    //       new devices.
+    else{
+        return 0;
+    }
 }
 
 
@@ -2972,9 +3030,48 @@ function getMainTriggerETSELValue(inst) {
  *
  */
 function hasExpandedADCVRSEL(){
-    // Features initially supported in MSPM0H family of devices.
-    // --Ideally we should be able to check this from device data if possible.
-    return (isDeviceFamily_PARENT_MSPM0H321X() || isDeviceFamily_PARENT_MSPM0GX51X());
+    // This check echoes the devices that have __MSPM0_HAS_LEGACY_ADC_REFERENCE__
+    // define - all other devices going forward will have updated configuration
+    return(!(isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()
+        || isDeviceFamily_PARENT_MSPM0L11XX_L13XX()
+        || isDeviceFamily_PARENT_MSPM0L122X_L222X()
+        || isDeviceFamily_PARENT_MSPM0C110X()
+        || isDeviceFamily_PARENT_MSPM0L111X()));
+}
+
+/*
+ *  ======== vrefOnlyInternal ========
+ *  Check if VREF can only be configured to internal mode
+ *
+ *  @return bolean answer
+ *
+ */
+function vrefOnlyInternal(){
+    return (isDeviceFamily_PARENT_MSPM0C110X());
+}
+/*
+ *  ======== vrefCanSetBothModes ========
+ *  Check if VREF can configure both internal and external modes
+ *  at the same time
+ *
+ *  @return bolean answer
+ *
+ */
+function vrefCanSetBothModes(){
+    return !(isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || vrefOnlyInternal());
+}
+/*
+ *  ======== vrefHasLegacyBasicMode ========
+ *  Check if VREF module has legacy basicMode configuration.
+ *  - legacy configuration is stored as an array selection
+ *
+ *  @return bolean answer
+ *
+ */
+function vrefHasLegacyBasicMode(){
+    return (isDeviceFamily_PARENT_MSPM0L11XX_L13XX()
+            || isDeviceFamily_PARENT_MSPM0L122X_L222X()
+            || isDeviceFamily_PARENT_MSPM0L111X());
 }
 /*
  *  ======== hasMATHACL ========
@@ -2985,4 +3082,103 @@ function hasExpandedADCVRSEL(){
  */
 function hasMATHACL(){
     return /MATHACL/.test(peripherals);
+}
+
+/*
+ *  ======== hasLegacyRTC ========
+ *  For a given device, check if it has RTC peripheral resource
+ *  Newer devices will include RTC resources as part of the LFSS peripheral
+ *
+ *  @return true if has RTC peripheral resource
+ *
+ */
+function hasLegacyRTC(){
+    return /RTC/.test(peripherals);
+}
+
+/*
+ *  ======== isUnicommUART ========
+ *  For a given device, check if the UART peripheral is implemented
+ *  as part of UNICOMM
+ *
+ *  @return true if UART is part of UNICOMM
+ *
+ */
+function isUnicommUART(){
+    // Checks if the UART interface includes UC peripheral resources
+    try{
+        return system.deviceData.interfaces["UART"].peripherals.some(x=>x.name.includes("UC"));
+    }
+    catch(e){
+        return false;
+    }
+}
+
+/*
+ *  ======== isUnicommSPI ========
+ *  For a given device, check if the SPI peripheral is implemented
+ *  as part of UNICOMM
+ *
+ *  @return true if SPI is part of UNICOMM
+ *
+ */
+function isUnicommSPI(){
+    // Checks if the SPI interface includes UC peripheral resources
+    try{
+        return system.deviceData.interfaces["SPI"].peripherals.some(x=>x.name.includes("UC"));
+    }
+    catch(e){
+        return false;
+    }
+}
+
+/*
+ *  ======== isUnicommI2C ========
+ *  For a given device, check if the I2C peripheral is implemented
+ *  as part of UNICOMM
+ *
+ *  @return true if I2C is part of UNICOMM
+ *
+ */
+function isUnicommI2C(){
+    // Checks if the I2C interface includes UC peripheral resources
+    try{
+        return system.deviceData.interfaces["I2C"].peripherals.some(x=>x.name.includes("UC"));
+    }
+    catch(e){
+        return false;
+    }
+}
+
+/*
+ *  ======== hasCOMPDACOutput ========
+ *  For a given device, check if the COMP IP has the ability to
+ *  output the internal DAC to a pin.
+ *
+ *  @return true if the device supports to functionality.
+ *
+ */
+function hasCOMPDACOutput() {
+    return (isDeviceFamily_PARENT_MSPM0C1105_C1106() || isDeviceFamily_PARENT_MSPM0G511X() || isDeviceFamily_PARENT_MSPM0H321X());
+}
+
+/*
+ *  ======== getAttribute ========
+ *   This is a function to get attribute from a device data object
+ *   It is meant to be used to bypass compatibility issues with
+ *   different capitalization of parameters between devices.
+ *
+ *  The function will check the passed attribute on the specified
+ *  object, and if it returns undefined (does not exist) it will
+ *  check the capitalized parameter name.
+ *
+ *  @return the resulting attribute from the search
+ *
+ */
+function getAttribute(object,attributeName){
+    let returnAttribute = object.attributes[attributeName];
+    if(returnAttribute == undefined){
+        returnAttribute = object.attributes[attributeName.toUpperCase()];
+    }
+    return returnAttribute;
 }

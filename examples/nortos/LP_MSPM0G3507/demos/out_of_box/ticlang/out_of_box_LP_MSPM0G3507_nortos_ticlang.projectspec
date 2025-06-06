@@ -46,18 +46,6 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
-        <file path="../MSP_GUI/GUI_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
-        </file>
-        <file path="../MSP_GUI/GUI_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
-        </file>
-        <file path="../MSP_GUI/GUIComm_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
-        </file>
-        <file path="../MSP_GUI/GUIComm_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
-        </file>
-        <file path="../MSP_GUI/mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
-        </file>
-        <file path="../MSP_GUI/mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
-        </file>
         <file path="../blink_led.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../blink_led.c" openOnCreation="false" excludeFromBuild="false" action="copy">
@@ -93,6 +81,18 @@
         <file path="../function_generator.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../functions.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../MSP_GUI/GUI_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/GUI_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/GUIComm_mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/GUIComm_mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/mpack.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
+        </file>
+        <file path="../MSP_GUI/mpack.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="MSP_GUI">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

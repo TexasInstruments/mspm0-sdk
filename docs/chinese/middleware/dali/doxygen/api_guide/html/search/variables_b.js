@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['randomaddress',['randomAddress',['../structdali__control_gear_var.html#a3d7adc995640288385e4287b55d8037d',1,'dali_controlGearVar']]],
-  ['resetstate',['resetState',['../structdali__control_gear_var.html#a805f0138a9eb965f2d6fb554daf1bba9',1,'dali_controlGearVar']]]
+  ['numberofinstances',['numberOfInstances',['../structdali__control_device_var.html#a9ce96c47775b7eb29573f0c6c75cc070',1,'dali_controlDeviceVar']]]
 ];

@@ -34,7 +34,10 @@
 #define SYSTEM_INFO_H_
 
 #include <stdint.h>
-#include "led_driver.h"
+#include "led_driver/TPS929240.h"
+
+#define FALSE (0x00)
+#define TRUE (0x01)
 
 // Define if CAN or UART is used
 #define CAN_USED FALSE

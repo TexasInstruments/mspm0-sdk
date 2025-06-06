@@ -260,7 +260,7 @@ structures to be used in the solution.\n
             for(let opt in badOpts){
                 if(badOpts[opt] === true){ // then it should be disabled
                     /* Check for special case for SDL type */
-                    if(opt !== "SDL"){
+                    if(opt !== "SDL" && opt !== "USB"){
                         disabledOptions.push({name: opt,
                             reason: "IOMux configuration does not allow for this type of IO structure"});
                     }
@@ -408,7 +408,7 @@ NOTE: Fast-Wake can be utilized on any GPIO, but only works down to STANDBY mode
                         let packagePin = pin.packagePinName;
                         let io_type = "SD";
                         try{
-                            io_type = system.deviceData.devicePins[packagePin].attributes.io_type;
+                            io_type = Common.getAttribute((system.deviceData.devicePins[packagePin]),("io_type"));
                         }
                         catch(e){
                             return "Disabled"
@@ -928,11 +928,11 @@ function pinmuxRequirements(inst)
                 if(!eligible){ continue; }
             }
         }
-        let struct = pin.devicePin.attributes.io_type;
+        let struct = Common.getAttribute((pin.devicePin),("io_type"));
         if(inst.ioStructure == "SD"){
             // possible GPIO pin must match specific structure
             // also handling special case of SDL io type
-            eligible &= (struct === inst.ioStructure || struct === "SDL");
+            eligible &= (struct === inst.ioStructure || struct === "SDL" || struct === "USB");
         }
         else if(inst.ioStructure !== "Any"){
             // possible GPIO pin must match specific structure
@@ -1065,7 +1065,7 @@ function validatePinmux(inst, validation)
         let invalid = determineInvalidOptions(inst);
         if(_.some(invalid, (s) => {return s === true;})) {
             // some limitations on possible GPIO pins
-            let struct = system.deviceData.devicePins[packagePin].attributes.io_type;
+            let struct = Common.getAttribute((system.deviceData.devicePins[packagePin]),("io_type"));
             // if invalid is true, then pin should be ineligible
             if(invalid[struct] === true) {
                 validation.logError("Selected Pin with structure "+ struct +" incapable of current configuration",inst,"ioStructure");

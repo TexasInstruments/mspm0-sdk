@@ -41,8 +41,10 @@
             -I${CG_TOOL_ROOT}/arm-none-eabi/include
         "
         linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0l122x_l222x
             -nostartfiles
             -Tdevice.lds.genlibs
+            -l:driverlib.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg

@@ -64,7 +64,7 @@ SYSCTL.enableEXCLK                  = true;
 SYSCTL.EXCLKSource                  = "LFCLK";
 SYSCTL.peripheral.clkOutPin.$assign = "PA27";
 SYSCTL.clockTreeEn = true;
-
+SYSCTL.forceDefaultClkConfig = true;
 TIMERFault1.$name             = "FAULT_0";
 PWM1.associatedFault          = TIMERFault1;
 TIMERFault1.enabledFaults     = ["0"];

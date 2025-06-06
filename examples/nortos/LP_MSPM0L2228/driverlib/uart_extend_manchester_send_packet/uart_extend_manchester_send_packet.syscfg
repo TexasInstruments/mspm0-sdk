@@ -34,3 +34,4 @@ UART1.peripheral.rxPin.$assign = "PA9";
 UART1.peripheral.txPin.$assign = "PA8";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

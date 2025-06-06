@@ -22,7 +22,7 @@ function pinmuxRequirements(inst)
                 resources.push({
                     name            : "lfclkInPin",
                     displayName     : "LFCLK In",
-                    interfaceNames  : ["LFXOUT"],
+                    interfaceNames  : ["LFCLKIN"],
                 });
                 break;
             case "HFXT":
@@ -41,7 +41,7 @@ function pinmuxRequirements(inst)
                 resources.push({
                     name            : "hfclkInPin",
                     displayName     : "HFCLK In",
-                    interfaceNames  : ["HFXOUT"],
+                    interfaceNames  : ["HFCLKIN"],
                 });
                 break;
             default:

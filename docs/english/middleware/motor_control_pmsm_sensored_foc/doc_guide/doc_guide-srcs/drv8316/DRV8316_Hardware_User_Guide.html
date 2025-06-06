@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hall Sensored FOC - DRV8316 Gate Driver User Guide &mdash; Sensored FOC Motor Control User Guide 1.02.00.xx documentation</title>
+  <title>Hall Sensored FOC - DRV8316 Gate Driver User Guide &mdash; Sensored FOC Motor Control User Guide 1.02.01.xx documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> Sensored FOC Motor Control User Guide
           </a>
               <div class="version">
-                1.02.00.xx
+                1.02.01.xx
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -119,16 +119,14 @@
 </li>
 </ul>
 </li>
-<li><p>Connect the LP-MSPM0G3507/LP-MSPM0G3519 to the DRV8316REVM in one of two ways:</p></li>
-</ol>
+<li><p>Connect the LP-MSPM0G3507/LP-MSPM0G3519 to the DRV8316REVM in one of two ways:</p>
 <ul>
 <li><p>1 Plug the connectors J3 and J4 of the DRV8316REVM to the top of the connectors J3/J4 of the LP-MSPM0G3507/MSPM0G3519.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">In</span> <span class="n">case</span> <span class="n">of</span> <span class="n">LP</span><span class="o">-</span><span class="n">MSPM0G3507</span> <span class="n">an</span> <span class="n">additional</span> <span class="n">connection</span> <span class="n">need</span> <span class="n">to</span> <span class="n">be</span> <span class="n">made</span> <span class="kn">from</span> <span class="nn">ISENB</span> <span class="ow">in</span> <span class="n">DRV8316REVM</span> <span class="n">to</span> <span class="n">the</span> <span class="n">PA25</span><span class="o">.</span>
-
-<span class="o">-</span> <span class="n">In</span> <span class="n">case</span> <span class="n">of</span> <span class="n">LP</span><span class="o">-</span><span class="n">MSPM0G3519</span> <span class="n">additional</span> <span class="n">connection</span> <span class="n">need</span> <span class="n">to</span> <span class="n">be</span> <span class="n">made</span> <span class="kn">from</span> <span class="nn">ISENB</span> <span class="n">to</span> <span class="n">PA14</span> <span class="o">&amp;</span> <span class="n">ISENC</span> <span class="n">to</span> <span class="n">PA25</span><span class="o">.</span>
-</pre></div>
-</div>
-<ul>
+<ul class="simple">
+<li><p>In case of LP-MSPM0G3507 an additional connection need to be made from ISENB in DRV8316REVM to the PA25.</p></li>
+<li><p>In case of LP-MSPM0G3519 additional connection need to be made from ISENB to PA14 &amp; ISENC to PA25.</p></li>
+</ul>
+</li>
 <li><p>2 If using the jumper wires, connect as shown in the table below. Refer to the schematic of J3 and J4 connector pinout on DRV8316REVM for the location of the signals.</p>
 <table class="docutils align-default">
 <thead>
@@ -284,7 +282,7 @@
 </li>
 </ul>
 </li>
-</ul>
+</ol>
 <figure class="align-default" id="id3">
 <img alt="DRV8316REVM J3 and J4 connector pinout" src="../../_images/DRV-CONNECTOR.jpg" />
 <figcaption>

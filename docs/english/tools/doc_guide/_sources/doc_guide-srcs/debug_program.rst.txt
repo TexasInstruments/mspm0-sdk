@@ -30,6 +30,19 @@ Documentation
 
    debug_program_msp_gang
 
+C-GANG
+----------
+| The Compact Gang Programmer (C-GANG) from Elprotronic is a device programmer that supports all variants of MSPM0, MSP432, and MSP430.
+| The C-GANG can program up to six identical MSP Flash or FRAM devices at the same time.
+| It connects to a host PC using a USB-C connection and provides flexible programming options that allow the user to fully customize the process.
+
+Documentation
+~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   debug_program_c_gang
+
 UniFlash
 ----------------------
 | `UniFlash <https://www.ti.com/tool/UNIFLASH>`_  is a standalone tool used to program on-chip flash memory on TI MCUs and on-board flash memory for Sitara processors.
@@ -73,7 +86,7 @@ Elprotronic
 -------------
 | Elprotronic offers multiple hardware and software programming tools supporting MSPM0 in addition to Texas Instruments' MSP430/432, SimpleLink (CC), C2000, and TIVA-C MCUs.
 |
-| Elprotronic's solutions for MSPM0 include the MSP-GANG, FlashPro-ARM and GangPro-ARM.
+| Elprotronic's solutions for MSPM0 include the MSP-GANG, FlashPro-ARM, GangPro-ARM, and C-GANG.
 
 Documentation
 ~~~~~~~~~~~~~~~~~~~
@@ -136,6 +149,10 @@ OpenOCD
 -------------
 | OpenOCD is an open-source project that provides command line debugging, in-system programming, and boundary-scan testing for embedded devices.
 |
-| MSPM0 support is currently available for OpenOCD, please contact your local TI sales representative to receive access to the Github branch it currently lives on.
+| MSPM0 support is available in GitHub on the `master branch <https://github.com/openocd-org/openocd>`_ for OpenOCD. The implementation supports all MSPM0 devices and DSSM commands.
 |
-| The branch currently supports MSPM0G and MSPM0L, it also contains support for our DSSM commands as well. It will be continuously updated and pushed to the main branch in the future.
+| To learn how to build and utilize OpenOCD from the master branch, please refer to this `page <https://openocd.org/pages/documentation.html>`_ provided by the OpenOCD organization.
+|
+| The page links to documentation showing users how to build the the branch locally on `Windows <https://sourceforge.net/p/openocd/code/ci/master/tree/README.Windows>`_, `MacOS <https://sourceforge.net/p/openocd/code/ci/master/tree/README.macOS>`_, and `Linux <https://sourceforge.net/p/openocd/code/ci/master/tree/README>`_.
+|
+| Also linked is the `User's Guide <https://openocd.org/doc/pdf/openocd.pdf>`_ containing documentation on how to use the MSPM0 implementation and any of its device specific commands.

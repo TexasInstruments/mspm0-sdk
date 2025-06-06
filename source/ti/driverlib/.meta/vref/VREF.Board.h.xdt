@@ -66,13 +66,13 @@
 `vrefVoltStr.padEnd(40, " ")+vrefVoltStr2.padStart(40, " ")`
 %   /* This is one possible way to do GPIO defines. Good if you need to find out PINCM */
 %       let gpioStr = "GPIO_VREF";
-% if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || ((Common.isDeviceM0L() || Common.isDeviceM0C() || Common.isDeviceM0H() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
+% if((inst.basicMode.includes("DL_VREF_ENABLE_DISABLE"))){
 %       if(["VREF+","VREF+-"].includes(inst.basicVrefPins)) {
 %       /* figure out pin number and pinCMx */
 %       let vrefPosPinName = "vrefPos"+"Pin";
 %       let vrefPosPackagePin = inst.peripheral[vrefPosPinName].$solution.packagePinName;
 %       let vrefPosPinCM = Common.getPinCM(vrefPosPackagePin,inst,"VREF+");
-%       let vrefPosGpioName = system.deviceData.devicePins[vrefPosPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let vrefPosGpioName = system.deviceData.devicePins[vrefPosPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let vrefPosPort = Common.getGPIOPortMultiPad(vrefPosPackagePin,inst,"VREF+");
 %       let vrefPosGpioPin = Common.getGPIONumberMultiPad(vrefPosPackagePin,inst,"VREF+");
 %       let vrefPosPortStr = "#define "+gpioStr+"_VREFPOS_PORT";
@@ -91,7 +91,7 @@
 %           let vrefNegPinName = "vrefNeg"+"Pin";
 %           let vrefNegPackagePin = inst.peripheral[vrefNegPinName].$solution.packagePinName;
 %           let vrefNegPinCM = Common.getPinCM(vrefNegPackagePin,inst,"VREF-");
-%           let vrefNegGpioName = system.deviceData.devicePins[vrefNegPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%           let vrefNegGpioName = system.deviceData.devicePins[vrefNegPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %           let vrefNegPort = Common.getGPIOPortMultiPad(vrefNegPackagePin,inst,"VREF-");
 %           let vrefNegGpioPin = Common.getGPIONumberMultiPad(vrefNegPackagePin,inst,"VREF-");
 %           let vrefNegPortStr = "#define "+gpioStr+"_VREFNEG_PORT";

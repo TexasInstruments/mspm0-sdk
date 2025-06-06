@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = SENT_SENT.obj SENT_HAL_HAL_GPIO.obj SENT_HAL_hal_interrupts.obj SENT_HAL_hal_system.obj SENT_HAL_hal_timer.obj sent_transmit.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = sent_transmit.obj SENT_SENT.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = sent_transmit
 
 CFLAGS += -I.. \
@@ -37,8 +37,10 @@ CFLAGS += -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS += -nostartfiles \
+LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx" \
+    -nostartfiles \
     -Tdevice.lds.genlibs \
+    -l:driverlib.a \
     -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
@@ -84,27 +86,11 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
-SENT_SENT.obj: ../SENT/SENT.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-SENT_HAL_HAL_GPIO.obj: ../SENT/HAL/HAL_GPIO.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-SENT_HAL_hal_interrupts.obj: ../SENT/HAL/hal_interrupts.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-SENT_HAL_hal_system.obj: ../SENT/HAL/hal_system.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-SENT_HAL_hal_timer.obj: ../SENT/HAL/hal_timer.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
 sent_transmit.obj: ../sent_transmit.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+SENT_SENT.obj: ../SENT/SENT.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

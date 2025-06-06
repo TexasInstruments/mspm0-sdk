@@ -14,7 +14,7 @@
 	* CRC verification
 	* Start Application
 * One of UART/I2C interface can be used to communicate with the Host.
-* By default flash BSL occupies the 5 KB of main flash starting from 0x1000 main address.
+* By default flash BSL occupies the 5.2 KB of main flash starting from 0x2000 main address.
 * This region is static write protected using bootcode user configuration section in the sysconfig.
 * Once this image is loaded to the device, the FLash Bootloader will be active. To revert the device to default state, DSSM Factory_Reset command has to be used.
 * Users can alter the interface pins/ invoke pin in bootloader user configuration section in the sysconfig.

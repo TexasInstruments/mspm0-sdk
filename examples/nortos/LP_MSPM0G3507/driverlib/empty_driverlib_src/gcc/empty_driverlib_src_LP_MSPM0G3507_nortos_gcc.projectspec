@@ -41,8 +41,10 @@
             -I${CG_TOOL_ROOT}/arm-none-eabi/include
         "
         linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x
             -nostartfiles
             -Tdevice.lds.genlibs
+            -l:driverlib.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
@@ -152,6 +154,8 @@
         </file>
         <file path="../ti/driverlib/m0p/dl_systick.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p">
         </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
@@ -237,6 +241,8 @@
         <file path="../ti/driverlib/m0p/dl_factoryregion.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p">
         </file>
         <file path="../ti/driverlib/m0p/dl_interrupt.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>

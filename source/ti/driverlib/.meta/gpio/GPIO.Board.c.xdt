@@ -160,7 +160,7 @@ function portGroupDetermine(pinstances, group, port) {
             if(!pinst.hysteresisOverride){
                 let pin = pinst.pin.$solution;
                 let packagePin = pin.packagePinName;
-                let io_type = system.deviceData.devicePins[packagePin].attributes.io_type;
+                let io_type = Common.getAttribute((system.deviceData.devicePins[packagePin]),("io_type"));
                 if(io_type.match(/Any|OD/) === null){
                     hysteresisControl = "DISABLE";
                 }

@@ -87,7 +87,7 @@
 %       let mosiPinName = "mosi"+"Pin";
 %       let mosiPackagePin = inst.peripheral[mosiPinName].$solution.packagePinName;
 %       let mosiPinCM = Common.getPinCM(mosiPackagePin,inst,'PICO');
-%       let mosiGpioName = system.deviceData.devicePins[mosiPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let mosiGpioName = system.deviceData.devicePins[mosiPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let mosiPort    = Common.getGPIOPortMultiPad(mosiPackagePin, inst, 'PICO');
 %       let mosiGpioPin = Common.getGPIONumberMultiPad(mosiPackagePin, inst, 'PICO');
 % let mosiPortStr = "#define "+gpioStr+"_PICO_PORT";
@@ -110,7 +110,7 @@
 %       let misoPinName = "miso"+"Pin";
 %       let misoPackagePin = inst.peripheral[misoPinName].$solution.packagePinName;
 %       let misoPinCM = Common.getPinCM(misoPackagePin,inst,'POCI');
-%       let misoGpioName = system.deviceData.devicePins[misoPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let misoGpioName = system.deviceData.devicePins[misoPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let misoPort    = Common.getGPIOPortMultiPad(misoPackagePin, inst, 'POCI');
 %       let misoGpioPin = Common.getGPIONumberMultiPad(misoPackagePin, inst, 'POCI');
 % let misoPortStr = "#define "+gpioStr+"_POCI_PORT";
@@ -132,7 +132,7 @@
 %       let sclkPinName = "sclk"+"Pin";
 %       let sclkPackagePin = inst.peripheral[sclkPinName].$solution.packagePinName;
 %       let sclkPinCM = Common.getPinCM(sclkPackagePin,inst,"SCLK")
-%       let sclkGpioName = system.deviceData.devicePins[sclkPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let sclkGpioName = system.deviceData.devicePins[sclkPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let sclkPort = Common.getGPIOPortMultiPad(sclkPackagePin,inst,"SCLK");
 %       let sclkGpioPin = Common.getGPIONumberMultiPad(sclkPackagePin,inst,"SCLK");
 %
@@ -162,7 +162,7 @@
 %       let csPinName = "cs"+csNum+"Pin";
 %       let csPackagePin = inst.peripheral[csPinName].$solution.packagePinName;
 %       let csPinCM = Common.getPinCM(csPackagePin,inst,pinInterfaceName);
-%       let csGpioName = system.deviceData.devicePins[csPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let csGpioName = system.deviceData.devicePins[csPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let csPort = Common.getGPIOPortMultiPad(csPackagePin,inst,pinInterfaceName);
 %       let csGpioPin = Common.getGPIONumberMultiPad(csPackagePin,inst,pinInterfaceName);
 % let csPortStr = "#define "+gpioStr+"_CS"+csNum+"_PORT";
@@ -178,7 +178,8 @@
 % //#define `gpioStr`_IOMUX_CS+csNum                    `csIomux`
 % let csFuncStr = "#define "+gpioStr+"_IOMUX_CS"+csNum+"_FUNC";
 % let csFuncStr2 = "IOMUX_PINCM"+csPinCM+"_PF_"+flavor+"_CS"+csNum+"_POCI"+csNum;
-%if(csNum == "0"){
+% /* UNICOMM pin naming only references CS# */
+%if(csNum == "0" || Common.isUnicommSPI()){
 %csFuncStr2 = "IOMUX_PINCM"+csPinCM+"_PF_"+flavor+"_CS"+csNum;
 %} else if(csNum == "3"){
 % csFuncStr2 = "IOMUX_PINCM"+csPinCM+"_PF_"+flavor+"_CS3_CD_POCI3";
@@ -192,7 +193,7 @@
 %       let cdPinName = "cs3Pin";
 %       let cdPackagePin = inst.peripheral[cdPinName].$solution.packagePinName;
 %       let cdPinCM = Common.getPinCM(cdPackagePin,inst,"CS3_CD_POCI3");
-%       let cdGpioName = system.deviceData.devicePins[cdPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let cdGpioName = system.deviceData.devicePins[cdPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let cdPort = Common.getGPIOPortMultiPad(cdPackagePin,inst,"CS3_CD_POCI3");
 %       let cdGpioPin = Common.getGPIONumberMultiPad(cdPackagePin,inst,"CS3_CD_POCI3");
 % let cdPortStr = "#define "+gpioStr+"_CD_PORT";
@@ -208,6 +209,9 @@
 % //#define `gpioStr`_IOMUX_CD                    `cdIomux`
 % let cdFuncStr = "#define "+gpioStr+"_IOMUX_CD_FUNC";
 % let cdFuncStr2 = "IOMUX_PINCM"+cdPinCM+"_PF_"+flavor+"_CS3_CD_POCI3";
+% if(Common.isUnicommSPI()){
+%   cdFuncStr2 = "IOMUX_PINCM"+cdPinCM+"_PF_"+flavor+"_CS3";
+% }
 `cdFuncStr.padEnd(40, " ")+cdFuncStr2.padStart(39, " ")`
 % //#define `gpioStr`_IOMUX_CD_FUNC       IOMUX_PINCM`cdPinCM`_PF_`flavor`_CS3_CD_POCI3
 %}
@@ -218,7 +222,7 @@
 %       let csPinName = "cs" + csNum + "Pin";
 %       let csPackagePin = inst.peripheral[csPinName].$solution.packagePinName;
 %       let csPinCM = Common.getPinCM(csPackagePin,inst,pinInterfaceName);
-%       let csGpioName = system.deviceData.devicePins[csPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let csGpioName = system.deviceData.devicePins[csPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let csPort = Common.getGPIOPortMultiPad(csPackagePin,inst,pinInterfaceName);
 %       let csGpioPin = Common.getGPIONumberMultiPad(csPackagePin,inst,pinInterfaceName);
 % let csPortStr = "#define "+gpioStr+"_CS_PORT";
@@ -236,8 +240,8 @@
 %
 % let csFuncStr2 = "IOMUX_PINCM"+csPinCM+"_PF_"+flavor+"_CS"+csNum+"_POCI"+csNum;
 %
-% if (csNum == "0") {
-%   csFuncStr2 = "IOMUX_PINCM"+csPinCM+"_PF_"+flavor+"_CS0";
+% if (csNum == "0" || Common.isUnicommSPI()) {
+%   csFuncStr2 = "IOMUX_PINCM"+csPinCM+"_PF_"+flavor+"_CS"+csNum;
 % } else if (csNum == "3") {
 %   csFuncStr2 = "IOMUX_PINCM"+csPinCM+"_PF_"+flavor+"_CS3_CD_POCI3";
 % }

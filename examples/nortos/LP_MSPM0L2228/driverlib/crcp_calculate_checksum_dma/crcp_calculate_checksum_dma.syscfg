@@ -36,3 +36,4 @@ GPIO1.associatedPins[0].assignedPortSegment = "Lower";
 GPIO1.associatedPins[0].assignedPin         = "0";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

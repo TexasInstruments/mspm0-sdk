@@ -75,7 +75,7 @@
                 }
                 pinWithResource += currentInstance.direction.charAt(0) + currentInstance.direction.slice(1).toLowerCase()+pinInternalResistor+": "
                 pinWithResource += currentInstance.pin.$solution.devicePinName;
-                let pinIOType = system.deviceData.gpio.pinInfo[currentInstance.pin.$solution.packagePinName].devicePin.attributes.io_type;
+                let pinIOType = Common.getAttribute((system.deviceData.gpio.pinInfo[currentInstance.pin.$solution.packagePinName].devicePin),("io_type"));
                 let pinIOTypeExtended = "";
                 switch (pinIOType) {
                     case "SD":
@@ -94,6 +94,9 @@
                         pinIOTypeExtended = "Open-Drain";
                         break;
                     case "SDL":
+                        pinIOTypeExtended = "Standard";
+                        break;
+                    case "USB":
                         pinIOTypeExtended = "Standard";
                         break;
                     default:

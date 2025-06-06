@@ -58,8 +58,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../drv8323/DRV8323_Hardware_User_Guide.html">DRV8323RHEVM Hardware User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8328/DRV8328_GUI_User_Guide.html">DRV8328 GUI User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8328/DRV8328_Hardware_User_Guide.html">DRV8328AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0C1106/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0C1106/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0G3507/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0G3507/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0G3519/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0G3519/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0H3216/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0H3216/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L1306/DRV8329_GUI_User_Guide.html">DRV8329 GUI User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../drv8329/LP_MSPM0L1306/DRV8329_Hardware_User_Guide.html">DRV8329AEVM Hardware User Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8353 GUI User Guide</a><ul>
@@ -132,14 +138,14 @@
 <h2>2. Using the GUI<a class="headerlink" href="#using-the-gui" title="Permalink to this heading">¶</a></h2>
 <p>The GUI will automatically program the LaunchPad with the necessary firmware. If everything is successful the bottom left corner of the GUI should say “Hardware connected”.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Hardware_connected8.png" />
+<img alt="" src="../../_images/Hardware_connected11.png" />
 </figure>
 </section>
 <section id="gui-window">
 <h2>3. GUI Window<a class="headerlink" href="#gui-window" title="Permalink to this heading">¶</a></h2>
 <p>In the GUI window user can find various controls like nSleep (ENABLE), Direction control, dutycycle, PWM frequency, deadband, and acceleration rate. Various faults are also indicated using LEDs.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/GUI_window8.png" />
+<img alt="" src="../../_images/GUI_window11.png" />
 </figure>
 <section id="motor-control">
 <h3>3.1 Motor Control<a class="headerlink" href="#motor-control" title="Permalink to this heading">¶</a></h3>
@@ -186,7 +192,7 @@
 <h3>3.2 Motor Braking<a class="headerlink" href="#motor-braking" title="Permalink to this heading">¶</a></h3>
 <p>The motor can be stopped from GUI without turning off the DRV by using stop button. The motor stops spinning with brake type selected.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Braking8.png" />
+<img alt="" src="../../_images/Braking11.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -211,7 +217,7 @@
 <h3>3.3 Current setting<a class="headerlink" href="#current-setting" title="Permalink to this heading">¶</a></h3>
 <p>The DRV8353 integrates three low side current sense amplifiers for current measurements. It has features like programmable gain and setting external references. Changing the CSA Gain will automatically update the DRV register.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/current_settings8.png" />
+<img alt="" src="../../_images/current_settings11.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -236,7 +242,7 @@
 <h3>3.4 Fault Status<a class="headerlink" href="#fault-status" title="Permalink to this heading">¶</a></h3>
 <p>The firmware continuously monitors the motor parameters like voltage and current. The user can set the limits for voltage and current from GUI. When any of the faults occur the corresponding LED glows.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/Faults8.png" />
+<img alt="" src="../../_images/Faults11.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -269,7 +275,7 @@
 <h3>3.5 ADC Reference Setting<a class="headerlink" href="#adc-reference-setting" title="Permalink to this heading">¶</a></h3>
 <p>The user can use 3 different ADC references, it can be changed from GUI.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/ADC_reference_settings8.png" />
+<img alt="" src="../../_images/ADC_reference_settings11.png" />
 </figure>
 <table class="docutils align-default">
 <thead>
@@ -298,7 +304,7 @@
 <section id="voltage-and-current-monitoring">
 <h3>3.6 Voltage and Current Monitoring<a class="headerlink" href="#voltage-and-current-monitoring" title="Permalink to this heading">¶</a></h3>
 <figure class="align-default">
-<img alt="" src="../../_images/motor_parameters8.png" />
+<img alt="" src="../../_images/motor_parameters11.png" />
 </figure>
 <figure class="align-default">
 <img alt="" src="../../_images/voltage_graph5.png" />
@@ -309,7 +315,7 @@
 <h3>3.7 Speed Monitoring<a class="headerlink" href="#speed-monitoring" title="Permalink to this heading">¶</a></h3>
 <p>When the motor starts spinning the user can see the motor speed displayed in RPM. The user needs to input the number of poles in the motor used. The user must enter even number of poles failing which the speed calculation go wrong.</p>
 <figure class="align-default">
-<img alt="" src="../../_images/speed8.png" />
+<img alt="" src="../../_images/speed11.png" />
 </figure>
 </section>
 </section>

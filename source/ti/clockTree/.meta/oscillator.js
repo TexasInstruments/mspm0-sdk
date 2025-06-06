@@ -3,6 +3,21 @@ const { getDefaultValue } = system.getScript("./defaultValue.js");
 
 function validateM0GSYSOSC(inst, validation)
 {
+    if(inst.enableUserTrim) {
+        let mod = system.modules["/ti/clockTree/fcc.js"];
+        let fcc = _.find(mod.$instances, ['$name', 'FCC']);
+        mod = system.modules["/ti/clockTree/mux.js"];
+        let fccMux = _.find(mod.$instances, ['$name', 'FCCSELCLKMUX']);
+        if(!fcc.enable) {
+            validation.logError("The FCC module must be enabled with SYSOSC as its source.", inst, ["enableUserTrim"]);
+        }
+        else if(fccMux && !(_.endsWith(fccMux.inputSelect, "SYSOSC"))) {
+            validation.logError("The FCC module must be enabled with SYSOSC as its source.", inst, ["enableUserTrim"]);
+        }
+        else if(fcc.enable && fcc.fccPeriods != 32) {
+            validation.logInfo("For best accuracy when performing the SYSOSC trim, 32 FCC CLK periods are recommended.", inst, ["enableUserTrim"]);
+        }
+    }
     if(inst.$isUsed && inst.disableSYSOSC){
         // find who's using it
         let str = "";
@@ -95,7 +110,7 @@ function validateM0LSYSOSC(inst, validation) {
             let mod = system.modules["/ti/clockTree/mux.js"];
             let lfxtMux = _.find(mod.$instances, ['$name','LFXTMUX']);
             if(lfxtMux && _.endsWith(lfxtMux.inputSelect, "FALSE")){
-                validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", lfxtMux, "inputSelect");
+                validation.logInfo("Note: VBAT pin needs to be powered for LFCLK operation.", lfxtMux, "inputSelect");
             }
         }
     }
@@ -202,10 +217,10 @@ function pinmuxRequirements(inst)
 		signalTypes   : {
             lfxInPin    : ["LFXIN"],
             lfxOutPin   : ["LFXOUT"],
-            lfclkInPin  : ["LFXOUT"],
+            lfclkInPin  : ["LFCLKIN"],
             hfxInPin    : ["LFXIN"],
             hfxOutPin   : ["HFXOUT"],
-            hfclkInPin  : ["HFXOUT"],
+            hfclkInPin  : ["HFCLKIN"],
             roscPin     : ["ROSC"],
             clkOutPin   : ["CLK_OUT"],
 			fccInPin	: ["FCC_IN"],
@@ -256,6 +271,34 @@ then RUN1 is the power mode used. This is reflected in SYSCTL module and the Clo
         onChange: (inst, ui) => {}
     },
 
+];
+
+let autoTrimSYSOSCConfig = [
+    {
+        name: "enableUserTrim",
+        displayName: "Perform SYSOSC User Trim Procedure",
+        default: false,
+        hidden: false,
+        onChange: (inst, ui) => {
+            if(inst.enableUserTrim) {
+                ui.userTrimFrequency.hidden = false;
+                ui.frequencySelect.hidden = true;
+            }
+            else {
+                ui.userTrimFrequency.hidden = true;
+                ui.frequencySelect.hidden = false;
+            }
+        }
+    },
+    {
+        name: "userTrimFrequency",
+        displayName: "Desired Frequency",
+        default: "SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC16M",
+        options: [{ name: "SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC16M" , displayName: "16 MHz"},
+                  { name: "SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC24M" , displayName: "24 MHz"}
+                ],
+        hidden: true
+    }
 ];
 
 function extendConfig({ $ipInstance })
@@ -315,12 +358,23 @@ function extendConfig({ $ipInstance })
                 default: frequencySelectOptions[0].name,
                 options: frequencySelectOptions
             },
+            ... Common.isDeviceM0C() ? [] : autoTrimSYSOSCConfig,
             ...SYSOSC_extraConfig,
             {
                 name: outPin.name,
                     displayName: "Main Output",
                 default: [0, 0],
-                getValue: (inst) => { return !inst.disableSYSOSC?inst.frequencySelect:0; }
+                getValue: (inst) => {
+                    if(inst.disableSYSOSC) {
+                        return 0;
+                    }
+                    else if(inst.enableUserTrim) {
+                        return inst.userTrimFrequency == "SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC16M" ? 16 : 24;
+                    }
+                    else {
+                        return inst.frequencySelect;
+                    }
+                }
             },
             {
                 /* 4 MHz constant output */

@@ -33,9 +33,6 @@ COMP1.peripheral.$assign             = "COMP0";
 COMP1.peripheral.compPinPos0.$assign = "PA26";
 COMP1.peripheral.compPinNeg0.$assign = "PA27";
 COMP1.peripheral.compPinOut.$assign  = "PB10";
-COMP1.compPinPos0Config.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
-COMP1.compPinNeg0Config.$name        = "ti_driverlib_gpio_GPIOPinGeneric2";
-COMP1.compPinOutConfig.$name         = "ti_driverlib_gpio_GPIOPinGeneric3";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;

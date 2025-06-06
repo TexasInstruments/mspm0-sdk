@@ -61,6 +61,13 @@
 extern "C" {
 #endif
 
+#ifdef COMP_SYS_DACOUT_EN
+/*!
+ * @brief Device has support for 8-bit DAC output to pin
+ */
+#define DEVICE_HAS_DAC_OUT_TO_PIN
+#endif /* COMP_SYS_DACOUT_EN */
+
 /* clang-format off */
 
 /** @addtogroup DL_COMP_INTERRUPT
@@ -307,10 +314,10 @@ typedef enum {
 
 /*! @enum DL_COMP_OUTPUT */
 typedef enum {
-    /*! Comparator output is high */
-    DL_COMP_OUTPUT_HIGH = COMP_STAT_OUT_LOW,
     /*! Comparator output is low */
-    DL_COMP_OUTPUT_LOW = COMP_STAT_OUT_HIGH,
+    DL_COMP_OUTPUT_LOW = COMP_STAT_OUT_LOW,
+    /*! Comparator output is high */
+    DL_COMP_OUTPUT_HIGH = COMP_STAT_OUT_HIGH,
 } DL_COMP_OUTPUT;
 
 /*! @enum DL_COMP_SUBSCRIBER_INDEX */
@@ -827,6 +834,48 @@ __STATIC_INLINE void DL_COMP_disableWindowComparator(COMP_Regs *comp)
 {
     comp->CTL1 &= ~(COMP_CTL1_WINCOMPEN_MASK);
 }
+
+#ifdef DEVICE_HAS_DAC_OUT_TO_PIN
+/**
+ *  @brief      Enable 8-bit DAC output to pin
+ *
+ * Please check your device datasheet for which pin the 8-bit DAC output is
+ * connected to.
+ *
+ *  @param[in]  comp   Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_COMP_enableDACOutputToPin(COMP_Regs *comp)
+{
+    comp->CTL1 |= COMP_CTL1_DACOUTEN_ENABLE;
+}
+
+/**
+ *  @brief      Checks if 8-bit DAC output to pin is enabled
+ *
+ *  @param[in]  comp  Pointer to the register overlay for the peripheral
+ *
+ *  @return     Returns if the 8-bit DAC output is enabled
+ *
+ *  @retval     true  The 8-bit DAC output is enabled
+ *  @retval     false The 8-bit DAC output is not enabled
+ */
+__STATIC_INLINE bool DL_COMP_isDACOutputToPinEnabled(COMP_Regs *comp)
+{
+    return (
+        (comp->CTL1 & COMP_CTL1_DACOUTEN_MASK) == COMP_CTL1_DACOUTEN_ENABLE);
+}
+
+/**
+ *  @brief      Disable 8-bit DAC output to pin
+ *
+ *  @param[in]  comp  Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_COMP_disableDACOutputToPin(COMP_Regs *comp)
+{
+    comp->CTL1 &= ~(COMP_CTL1_DACOUTEN_MASK);
+}
+
+#endif /* DEVICE_HAS_DAC_OUT_TO_PIN */
 
 /**
  *  @brief      Set the enabled channels for the comparator terminals

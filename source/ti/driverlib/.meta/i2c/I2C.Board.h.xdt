@@ -97,8 +97,10 @@
 %if(inst.basicTargetSecAddressEnable){
 % let ownSecAddrStr = "#define "+inst.$name+"_TARGET_SEC_OWN_ADDR";
 % let ownSecAddrStr2 = "0x"+(inst.basicTargetSecAddress).toString(16);
+% let ownSecAddrMaskStr = "#define "+inst.$name+"_TARGET_SEC_OWN_ADDR_MASK";
+% let ownSecAddrMaskStr2 = "0x"+(inst.basicTargetSecAddressMask).toString(16);
 `ownSecAddrStr.padEnd(40, " ")+ownSecAddrStr2.padStart(40, " ")`
-% //#define `inst.$name`_TARGET_SEC_OWN_ADDR          `inst.basicTargetSecAddress`
+`ownSecAddrMaskStr.padEnd(40, " ")+ownSecAddrMaskStr2.padStart(40, " ")`
 %}
 %}
 %
@@ -112,8 +114,8 @@
 %       let sdaPinCM = Common.getPinCM(sdaPackagePin,inst,"SDA");
 %       let sclPinCM = Common.getPinCM(sclPackagePin,inst,"SCL");
 %       let flav = flavorStrings[flavor];
-%       let sdaGpioName = system.deviceData.devicePins[sdaPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
-%       let sclGpioName = system.deviceData.devicePins[sclPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let sdaGpioName = system.deviceData.devicePins[sdaPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
+%       let sclGpioName = system.deviceData.devicePins[sclPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let sdaPort = Common.getGPIOPortMultiPad(sdaPackagePin,inst,"SDA");
 %       let sclPort = Common.getGPIOPortMultiPad(sclPackagePin,inst,"SCL");
 %       let sdaGpioPin = Common.getGPIONumberMultiPad(sdaPackagePin,inst,"SDA");

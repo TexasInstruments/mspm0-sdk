@@ -182,8 +182,6 @@ Macros</h2></td></tr>
 <tr class="separator:abeaf77bbaa2c798a1b88c5933ddb4ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48e9862751bcb2a7cb18bedb84e90a23"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="measure_8h.html#a48e9862751bcb2a7cb18bedb84e90a23">HALL_ANGLE_SUM</a>&#160;&#160;&#160;_IQ(3.0)</td></tr>
 <tr class="separator:a48e9862751bcb2a7cb18bedb84e90a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1962f6224308329c4fcfe49487e18b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="measure_8h.html#ab1962f6224308329c4fcfe49487e18b5">TIMER_CAPT_CLK_FREQ</a>&#160;&#160;&#160;80000000U</td></tr>
-<tr class="separator:ab1962f6224308329c4fcfe49487e18b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -289,6 +287,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a74099ef73f6f3c62ea039db3af38fc18"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="measure_8h.html#a74099ef73f6f3c62ea039db3af38fc18">getHallFrequency</a> (<a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html">HAL_MEASURE_HALL_HANDLE_T</a> *pHallHandle)</td></tr>
 <tr class="memdesc:a74099ef73f6f3c62ea039db3af38fc18"><td class="mdescLeft">&#160;</td><td class="mdescRight">getHallFrequency  <a href="#a74099ef73f6f3c62ea039db3af38fc18">More...</a><br /></td></tr>
 <tr class="separator:a74099ef73f6f3c62ea039db3af38fc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a353a60d893a009ea8b4a4eb9ea462e6a"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="measure_8h.html#a353a60d893a009ea8b4a4eb9ea462e6a">getHallPhaseError</a> (<a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html">HAL_MEASURE_HALL_HANDLE_T</a> *pHallHandle, int32_t hallEstimVelocity)</td></tr>
+<tr class="memdesc:a353a60d893a009ea8b4a4eb9ea462e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">getHallPhaseError  <a href="#a353a60d893a009ea8b4a4eb9ea462e6a">More...</a><br /></td></tr>
+<tr class="separator:a353a60d893a009ea8b4a4eb9ea462e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -329,23 +330,6 @@ Variables</h2></td></tr>
 <p>Total Electrical Angle Summation </p>
 
 <p>Referenced by <a class="el" href="hall_calib_8h.html#a0ef00d10faf5ac36173dc98ae35b1bf2">hallCalibRun()</a>.</p>
-
-</div>
-</div>
-<a id="ab1962f6224308329c4fcfe49487e18b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1962f6224308329c4fcfe49487e18b5">&sect;&nbsp;</a></span>TIMER_CAPT_CLK_FREQ</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define TIMER_CAPT_CLK_FREQ&#160;&#160;&#160;80000000U</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>CAPTURE TIMER CLOCK FREQUENCY </p>
-
-<p>Referenced by <a class="el" href="measure_8h.html#a0c0a90c58cbe59a2b53c0f7d0e610f2e">inputsInit()</a>.</p>
 
 </div>
 </div>
@@ -529,7 +513,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>References <a class="el" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html#a70c26fe4e19b7e0fb97bd176cbeec7cc">MEASURE_CURRENT_FLAGS_T::b</a>, <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#aa2558a6f904220dde12cb8c3acd70bc9">HALL_INTERFACE_T::captureInput</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a0b6362c80d0e944c5327c1f0c42acc65">HAL_MEASURE_MOTOR_INPUTS_T::current</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a53bf368959c08de827be7804536e270e">HAL_MEASURE_CURRENT_T::currentShunt</a>, <a class="el" href="app_defs_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a4d3b89c0d672a21bc407b8e4499928f6">HAL_MEASURE_CURRENT_T::flags</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga443d0b0f105b5a88fe4383416976944fa873e97346d95f1dae44971d11446632c">HAL_CAPTURE_TIMER_01</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a445ceac59e5385e228b5f793a38012fc">HAL_GPIO_IN_01</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a12029c9ab80694ad0696f2dc28630523">HAL_GPIO_IN_02</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a877d28f12c77483067b20ad6684f0742">HAL_GPIO_IN_03</a>, <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#ada8da2851e082cc1a2b4e1c924f083da">HALL_INTERFACE_T::hallA</a>, <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#ad8bfcb1e7e2eb3d2d83b4fa6876a3f78">HALL_INTERFACE_T::hallB</a>, <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#aeb83820b7daba5dd676734a938d14dac">HALL_INTERFACE_T::hallC</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a440d806f16fffd6b659eb49cb111c3af">HAL_MEASURE_HALL_HANDLE_T::HallInterface</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a92fb80526d6f6b8070282ac8b6f28b66">HAL_MEASURE_HALL_HANDLE_T::halMaxFreqCount</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#afd0c4f5ca604032a9e87dbd09984e4fa">HAL_MEASURE_CURRENT_T::i1Sum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a0513807eb5119c7ae3357b1214bfc483">HAL_MEASURE_CURRENT_T::i2Sum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a0e9b6f594cdf776b92318a5b8dd618d1">HAL_MEASURE_CURRENT_T::iaSum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a540a66a2ac54b26ad62f4def85750f27">HAL_MEASURE_CURRENT_T::ibADC0Sum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a388a226a3d8d612d8c60dd19d56e4471">HAL_MEASURE_CURRENT_T::ibADC1Sum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a9f7283f6bdbe1840cc40a96577f9a1e7">HAL_MEASURE_CURRENT_T::icSum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a535aa7d715bc27bd5c0497146ffe467f">HAL_MEASURE_MOTOR_INPUTS_T::measureHALL</a>, <a class="el" href="structmeasure_current_flags.html#a9291a788b17b1e562f27bdaf41fadd40">measureCurrentFlags::offsetAB_CStatus</a>, <a class="el" href="structmeasure_current_flags.html#a57cc9346e54f14794e5d585aaef638de">measureCurrentFlags::offsetGainStatus</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a392a01f3b87a89642275ef98f26e1efb">HAL_MEASURE_CURRENT_T::offsetMeasCount</a>, <a class="el" href="structmeasure_current_flags.html#a8b1d7a6704122f131d0255dda7003c7a">measureCurrentFlags::offsetStatus</a>, <a class="el" href="structmeasure_current_flags.html#a12bb96016563885aacfbd8c4835f0223">measureCurrentFlags::threeShuntDynamic</a>, <a class="el" href="structmeasure_current_flags.html#a112d96cd3ad44cad831cbd4d6ecbefb9">measureCurrentFlags::threeShuntDynamicSet</a>, and <a class="el" href="measure_8h.html#ab1962f6224308329c4fcfe49487e18b5">TIMER_CAPT_CLK_FREQ</a>.</p>
+<p>References <a class="el" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html#a70c26fe4e19b7e0fb97bd176cbeec7cc">MEASURE_CURRENT_FLAGS_T::b</a>, <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#aa2558a6f904220dde12cb8c3acd70bc9">HALL_INTERFACE_T::captureInput</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a0b6362c80d0e944c5327c1f0c42acc65">HAL_MEASURE_MOTOR_INPUTS_T::current</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a53bf368959c08de827be7804536e270e">HAL_MEASURE_CURRENT_T::currentShunt</a>, <a class="el" href="app_defs_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a4d3b89c0d672a21bc407b8e4499928f6">HAL_MEASURE_CURRENT_T::flags</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#gga443d0b0f105b5a88fe4383416976944fa873e97346d95f1dae44971d11446632c">HAL_CAPTURE_TIMER_01</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a445ceac59e5385e228b5f793a38012fc">HAL_GPIO_IN_01</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a12029c9ab80694ad0696f2dc28630523">HAL_GPIO_IN_02</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ggac635f165de0baac53708e407f4cb55e1a877d28f12c77483067b20ad6684f0742">HAL_GPIO_IN_03</a>, <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#ada8da2851e082cc1a2b4e1c924f083da">HALL_INTERFACE_T::hallA</a>, <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#ad8bfcb1e7e2eb3d2d83b4fa6876a3f78">HALL_INTERFACE_T::hallB</a>, <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#aeb83820b7daba5dd676734a938d14dac">HALL_INTERFACE_T::hallC</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a440d806f16fffd6b659eb49cb111c3af">HAL_MEASURE_HALL_HANDLE_T::HallInterface</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#afd0c4f5ca604032a9e87dbd09984e4fa">HAL_MEASURE_CURRENT_T::i1Sum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a0513807eb5119c7ae3357b1214bfc483">HAL_MEASURE_CURRENT_T::i2Sum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a0e9b6f594cdf776b92318a5b8dd618d1">HAL_MEASURE_CURRENT_T::iaSum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a540a66a2ac54b26ad62f4def85750f27">HAL_MEASURE_CURRENT_T::ibADC0Sum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a388a226a3d8d612d8c60dd19d56e4471">HAL_MEASURE_CURRENT_T::ibADC1Sum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a9f7283f6bdbe1840cc40a96577f9a1e7">HAL_MEASURE_CURRENT_T::icSum</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a535aa7d715bc27bd5c0497146ffe467f">HAL_MEASURE_MOTOR_INPUTS_T::measureHALL</a>, <a class="el" href="structmeasure_current_flags.html#a9291a788b17b1e562f27bdaf41fadd40">measureCurrentFlags::offsetAB_CStatus</a>, <a class="el" href="structmeasure_current_flags.html#a57cc9346e54f14794e5d585aaef638de">measureCurrentFlags::offsetGainStatus</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a392a01f3b87a89642275ef98f26e1efb">HAL_MEASURE_CURRENT_T::offsetMeasCount</a>, <a class="el" href="structmeasure_current_flags.html#a8b1d7a6704122f131d0255dda7003c7a">measureCurrentFlags::offsetStatus</a>, <a class="el" href="structmeasure_current_flags.html#a12bb96016563885aacfbd8c4835f0223">measureCurrentFlags::threeShuntDynamic</a>, and <a class="el" href="structmeasure_current_flags.html#a112d96cd3ad44cad831cbd4d6ecbefb9">measureCurrentFlags::threeShuntDynamicSet</a>.</p>
 
 <p>Referenced by <a class="el" href="measure_8h.html#a62aebea339bb27e87b668f41b29c4e65">measureCurrentOffset()</a>.</p>
 
@@ -603,7 +587,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>References <a class="el" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html#a70c26fe4e19b7e0fb97bd176cbeec7cc">MEASURE_CURRENT_FLAGS_T::b</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a0b6362c80d0e944c5327c1f0c42acc65">HAL_MEASURE_MOTOR_INPUTS_T::current</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a4d3b89c0d672a21bc407b8e4499928f6">HAL_MEASURE_CURRENT_T::flags</a>, <a class="el" href="measure_8h.html#a74099ef73f6f3c62ea039db3af38fc18">getHallFrequency()</a>, <a class="el" href="structmeasure_current_flags.html#a8b1d7a6704122f131d0255dda7003c7a">measureCurrentFlags::offsetStatus</a>, and <a class="el" href="measure_8h.html#a4d7d33c56117faf46d2a7985a25d551b">ReadHallState()</a>.</p>
+<p>References <a class="el" href="union_m_e_a_s_u_r_e___c_u_r_r_e_n_t___f_l_a_g_s___t.html#a70c26fe4e19b7e0fb97bd176cbeec7cc">MEASURE_CURRENT_FLAGS_T::b</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___m_o_t_o_r___i_n_p_u_t_s___t.html#a0b6362c80d0e944c5327c1f0c42acc65">HAL_MEASURE_MOTOR_INPUTS_T::current</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a4d3b89c0d672a21bc407b8e4499928f6">HAL_MEASURE_CURRENT_T::flags</a>, <a class="el" href="measure_8h.html#a74099ef73f6f3c62ea039db3af38fc18">getHallFrequency()</a>, <a class="el" href="measure_8h.html#a353a60d893a009ea8b4a4eb9ea462e6a">getHallPhaseError()</a>, <a class="el" href="structmeasure_current_flags.html#a8b1d7a6704122f131d0255dda7003c7a">measureCurrentFlags::offsetStatus</a>, and <a class="el" href="measure_8h.html#a4d7d33c56117faf46d2a7985a25d551b">ReadHallState()</a>.</p>
 
 <p>Referenced by <a class="el" href="foc_h_a_l_interface_8h.html#ab83f044dda925ccef7880d8b46f1b455">HAL_ReadCurrents()</a>.</p>
 
@@ -665,7 +649,49 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Motor Speed in Electrical Hertz </dd></dl>
 
-<p>References <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#aa2558a6f904220dde12cb8c3acd70bc9">HALL_INTERFACE_T::captureInput</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#ab774e364cc5c9b347051fde6243aa2a8">HAL_MEASURE_HALL_HANDLE_T::commCountIndex</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a460d1cd8d95cb19d6bd7ebd30c01e38b">HAL_MEASURE_HALL_HANDLE_T::commTimerIndex</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a0ce90f010d947acc3684ebb0b1a31c48">HAL_MEASURE_HALL_HANDLE_T::compHallState</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a882f36ebfa6eb1ab25473c977d74ca8f">HAL_MEASURE_HALL_HANDLE_T::countDiff</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a61c6c015d8c9ab76f009b1b3edd97208">HAL_MEASURE_HALL_HANDLE_T::countError</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga98bc42a78e3dc57ace6060b34b6eaa1f">HAL_getCaptureRunningValue()</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga437d72d812c7ab249a2a6bcc161a4468">HAL_getCaptureValue()</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga2c1f2fa3e66133eb9436943f1ea99801">HAL_getTimerLoadValue()</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a744227f8494d989b06171d8e0f80b24f">HAL_MEASURE_HALL_HANDLE_T::halCapFreqPU</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a440d806f16fffd6b659eb49cb111c3af">HAL_MEASURE_HALL_HANDLE_T::HallInterface</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#afd550877226740a02d97b8626d331f03">HAL_MEASURE_HALL_HANDLE_T::hallState</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a92fb80526d6f6b8070282ac8b6f28b66">HAL_MEASURE_HALL_HANDLE_T::halMaxFreqCount</a>, and <a class="el" href="measure_8h.html#abeaf77bbaa2c798a1b88c5933ddb4ac6">MAX_HALL_INDEX</a>.</p>
+<p>References <a class="el" href="struct_h_a_l_l___i_n_t_e_r_f_a_c_e___t.html#aa2558a6f904220dde12cb8c3acd70bc9">HALL_INTERFACE_T::captureInput</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#ab774e364cc5c9b347051fde6243aa2a8">HAL_MEASURE_HALL_HANDLE_T::commCountIndex</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a460d1cd8d95cb19d6bd7ebd30c01e38b">HAL_MEASURE_HALL_HANDLE_T::commTimerIndex</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a0ce90f010d947acc3684ebb0b1a31c48">HAL_MEASURE_HALL_HANDLE_T::compHallState</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a882f36ebfa6eb1ab25473c977d74ca8f">HAL_MEASURE_HALL_HANDLE_T::countDiff</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a61c6c015d8c9ab76f009b1b3edd97208">HAL_MEASURE_HALL_HANDLE_T::countError</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga98bc42a78e3dc57ace6060b34b6eaa1f">HAL_getCaptureRunningValue()</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga437d72d812c7ab249a2a6bcc161a4468">HAL_getCaptureValue()</a>, <a class="el" href="group___h_a_l_l___s_e_n_s_o_r_e_d___t_r_a_p_____m_s_p_m0_g___h_a_l.html#ga2c1f2fa3e66133eb9436943f1ea99801">HAL_getTimerLoadValue()</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a744227f8494d989b06171d8e0f80b24f">HAL_MEASURE_HALL_HANDLE_T::halCapFreqPU</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a440d806f16fffd6b659eb49cb111c3af">HAL_MEASURE_HALL_HANDLE_T::HallInterface</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#afd550877226740a02d97b8626d331f03">HAL_MEASURE_HALL_HANDLE_T::hallState</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a895d0839be6ce97742e5b4bd1a2007c2">HAL_MEASURE_HALL_HANDLE_T::halMaxFreqCount</a>, and <a class="el" href="measure_8h.html#abeaf77bbaa2c798a1b88c5933ddb4ac6">MAX_HALL_INDEX</a>.</p>
+
+<p>Referenced by <a class="el" href="measure_8h.html#a848e82135f034f13a966cf26c2b22125">getMeasureOffsetStatus()</a>, and <a class="el" href="hall_estimator_8h.html#a95c759b6c31d6e14be1ac53db62c47c8">hallAngleEstimRun()</a>.</p>
+
+</div>
+</div>
+<a id="a353a60d893a009ea8b4a4eb9ea462e6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a353a60d893a009ea8b4a4eb9ea462e6a">&sect;&nbsp;</a></span>getHallPhaseError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t getHallPhaseError </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html">HAL_MEASURE_HALL_HANDLE_T</a> *&#160;</td>
+          <td class="paramname"><em>pHallHandle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>hallEstimVelocity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getHallPhaseError </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">*pHallHandle</td><td>Input Pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hallEstimVelocity</td><td>Estimated velocity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Phase Error </dd></dl>
+
+<p>References <a class="el" href="_i_qmath__mathacl_8h.html#acb4cfa4abb9077475d95727ca1b073f0">_IQmpy_mathacl</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a61c6c015d8c9ab76f009b1b3edd97208">HAL_MEASURE_HALL_HANDLE_T::countError</a>, <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#aec15f209d52934dc3100a0ea44832e24">HAL_MEASURE_HALL_HANDLE_T::halPhaseError</a>, and <a class="el" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#af722e51ad211948cebe9c5823ba49e6a">HAL_MEASURE_HALL_HANDLE_T::halPhaseErrorConst</a>.</p>
 
 <p>Referenced by <a class="el" href="measure_8h.html#a848e82135f034f13a966cf26c2b22125">getMeasureOffsetStatus()</a>, and <a class="el" href="hall_estimator_8h.html#a95c759b6c31d6e14be1ac53db62c47c8">hallAngleEstimRun()</a>.</p>
 

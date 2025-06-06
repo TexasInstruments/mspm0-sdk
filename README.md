@@ -30,13 +30,14 @@ Full SDK documentation is located in the repository. An online version of the do
 You can learn more about the MSPM0 product family supported by this SDK [here](https://www.ti.com/microcontrollers-mcus-processors/arm-based-microcontrollers/arm-cortex-m0-mcus/overview.html)
 
 ## Evaluation Modules ##
-* [MSPM0G3519 EVM - LP-MSPM0G3519](https://www.ti.com/tool/LP-MSPM0G3519)
+* [MSPM0C1104 EVM - LP-MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104)
+* LP-MSPM0C1106
 * [MSPM0G3507 EVM - LP-MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507)
+* [MSPM0G3519 EVM - LP-MSPM0G3519](https://www.ti.com/tool/LP-MSPM0G3519)
+* MSPM0H3216 EVM LP-MSPM0H3216
+* [MSPM0L1117 EVM - LP-MSPM0L1117](https://www.ti.com/tool/LP-MSPM0L1117)
 * [MSPM0L1306 EVM - LP-MSPM0L1306](https://www.ti.com/tool/LP-MSPM0L1306)
 * [MSPM0L2228 EVM - LP-MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228)
-* [MSPM0C1104 EVM - LP-MSPM0C1104](https://www.ti.com/tool/LP-MSPM0C1104)
-* [MSPM0L1117 EVM - LP-MSPM0L1117](https://www.ti.com/tool/LP-MSPM0L1117)
-* MSPM0H3216 EVM LP-MSPM0H3216
 
 # Support #
 If you have any question or issues with the Software Development Kit, our MSPM0 development boards or using IDEs such as Code Composer Studio with our devices please go to Texas Instrument's E2E support forum [here](https://e2e.ti.com/support/microcontrollers/arm-based-microcontrollers-group/arm-based-microcontrollers/f/arm-based-microcontrollers-forum).

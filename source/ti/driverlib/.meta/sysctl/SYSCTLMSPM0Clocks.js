@@ -20,6 +20,34 @@ let clkConfigShell = {
     "UDIV": [],
 }
 
+let autoTrimSYSOSCConfig = [
+    {
+        name: "enableUserTrim",
+        displayName: "Perform SYSOSC User Trim Procedure",
+        default: false,
+        hidden: false,
+        onChange: (inst, ui) => {
+            if(inst.enableUserTrim) {
+                ui.userTrimFrequency.hidden = false;
+                ui.SYSOSC_Freq.hidden = true;
+            }
+            else {
+                ui.userTrimFrequency.hidden = true;
+                ui.SYSOSC_Freq.hidden = false;
+            }
+        }
+    },
+    {
+        name: "userTrimFrequency",
+        displayName: "Desired Frequency",
+        default: "SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC16M",
+        options: [{ name: "SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC16M" , displayName: "16 MHz"},
+                  { name: "SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC24M" , displayName: "24 MHz"}
+                ],
+        hidden: true
+    }
+];
+
 const clkConfigSuperset = {
     "SYSOSC": [
         {
@@ -72,6 +100,7 @@ const clkConfigSuperset = {
             default: Options.SYSOSCFreq[0].name,
             options: Options.SYSOSCFreq
         },
+        ... Common.isDeviceM0C() ? [] : autoTrimSYSOSCConfig,
         // DL_SYSCTL_enableSYSOSCFCL [!]
         {
             name: "enableSYSOSCFCL",
@@ -449,6 +478,8 @@ such as DAC.
                     case "SYSPLLCLK2X":
                         return inst.SYSPLLSource != "Disabled"? inst.SYSPLL_Freq_CLK2X : 0;
                         break;
+                    case "USBFLL":
+                        return 60000000;
                     default:
                         return 0;
                 }
@@ -1147,7 +1178,11 @@ const clkFreqSuperset = {
             getValue: (inst) => {
                 if(inst.clockTreeEn){
                     return system.clockTree["net_sysosc"].in * 1000000;
-                } else {
+                }
+                else if(inst.enableUserTrim) {
+                    return inst.userTrimFrequency == "SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC16M" ? 16000000 : 24000000;
+                }
+                else {
                     return inst.SYSOSC_Freq;
                 }
             }
@@ -1239,7 +1274,21 @@ const ClockSignals = {
         "HSCLK",
         "LFXT",
         ... commonClockSignals,
-    ]
+    ],
+    "MSPM0G511X": [
+        "MFPCLK",
+        "ADCCLK_1",
+        "CANCLK",
+        "RTCCLK",
+        "HFCLK",
+        "HFXT",
+        "LFXT",
+        "HSCLK",
+        "SYSPLL",
+        "UDIV",
+        "ROSC",
+        ... commonClockSignals,
+    ],
 };
 
 

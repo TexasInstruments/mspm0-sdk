@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRV8329 GUI User Guide &mdash; Hall_sensored_Motor_Control_Software_User_Guide_CN 1.10.00.xx documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="DRV8329AEVM Hardware User Guide" href="DRV8329_Hardware_User_Guide_CN.html" />
+    <link rel="prev" title="DRV8328AEVM Hardware User Guide" href="../../drv8328/DRV8328_Hardware_User_Guide_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Hall_sensored_Motor_Control_Software_User_Guide_CN
+          </a>
+              <div class="version">
+                1.10.00.xx
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Hall_sensored_Trap_Motor_Control_library_CN.html">BLDC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../MSPM0_Sensored_Trap_Software_Users_Guide_CN.html">MSPM0 Sensored Trap Software User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8300/DRV8300_GUI_User_Guide_CN.html">DRV8300 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8300/DRV8300_Hardware_User_Guide_CN.html">DRV8300Dxxx-EVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8311/DRV8311_GUI_User_Guide_CN.html">DRV8311 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8311/DRV8311_Hardware_User_Guide_CN.html">DRV8311HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8316/DRV8316_GUI_User_Guide_CN.html">DRV8316 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8316/DRV8316_Hardware_User_Guide_CN.html">DRV8316REVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8317/DRV8317_GUI_User_Guide_CN.html">DRV8317 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8317/DRV8317_Hardware_User_Guide_CN.html">DRV8317HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8323/DRV8323_GUI_User_Guide_CN.html">DRV8323 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8323/DRV8323_Hardware_User_Guide_CN.html">DRV8323RHEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8328/DRV8328_GUI_User_Guide_CN.html">DRV8328 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8328/DRV8328_Hardware_User_Guide_CN.html">DRV8328AEVM Hardware User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8329 GUI User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">1. Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started-with-gui">1.1 Getting Started with GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-connection">1.2 Hardware Connection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-gui">2. Using the GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gui-window">3. GUI Window</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motor-control">3.1 Motor Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motor-braking">3.2 Motor Braking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#current-setting">3.3 Current setting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fault-status">3.4 Fault Status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adc-reference-setting">3.5 ADC Reference Setting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voltage-and-current-monitoring">3.6 Voltage and Current Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#speed-monitoring">3.7 Speed Monitoring</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0G3507/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0G3507/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0G3519/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0G3519/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0H3216/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0H3216/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0L1306/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0L1306/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8353/DRV8353_GUI_User_Guide_CN.html">DRV8353 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8353/DRV8353_Hardware_User_GuideCN.html">DRV8353RHEVM Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Hall_sensored_Motor_Control_Software_User_Guide_CN</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DRV8329 GUI User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drv8329-gui-user-guide">
+<h1>DRV8329 GUI User Guide<a class="headerlink" href="#drv8329-gui-user-guide" title="Permalink to this heading">¶</a></h1>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>This graphical user interface (GUI) was developed to allow simple evaluation of a user’s motor with the DRV8329AEVM being controlled by TI’s MSPM0 microcontroller. This guide will go over the key parts of the GUI to allow you to get up and running quickly. You can access the GUI described in this document <a class="reference external" href="https://dev.ti.com/gallery/view/TIMSPGC/MSPM0C-DRV8329AEVM-GUI">here</a>.</p>
+<section id="getting-started-with-gui">
+<h3>1.1 Getting Started with GUI<a class="headerlink" href="#getting-started-with-gui" title="Permalink to this heading">¶</a></h3>
+<p>The GUI allows the user to configure various settings required for BLDC motor control. The user can adjust settings like duty cycle, PWM Frequency, deadband, direction control, acceleration rate, ADC reference, fault status monitoring, speed monitoring.</p>
+</section>
+<section id="hardware-connection">
+<h3>1.2 Hardware Connection<a class="headerlink" href="#hardware-connection" title="Permalink to this heading">¶</a></h3>
+<p>Perform the following steps to begin using the GUI:</p>
+<ol class="arabic simple">
+<li><p>Connect the BLDC motor to the DRV8329AEVM.</p></li>
+<li><p>Make the necessary connections for connecting LP-MSPM0C1106 to DRV8329AEVM.</p></li>
+<li><p>Plug in the micro-USB cable to the PC.</p></li>
+<li><p>Enable the power supply to EVM.</p></li>
+</ol>
+<p>View the <a class="reference external" href="DRV8329_Hardware_User_Guide_CN.html">hardware user guide</a> for detailed steps required to get the hardware in the right state to run this GUI example.</p>
+</section>
+</section>
+<section id="using-the-gui">
+<h2>2. Using the GUI<a class="headerlink" href="#using-the-gui" title="Permalink to this heading">¶</a></h2>
+<p>The GUI will automatically program the LaunchPad with the necessary firmware. If everything is successful the bottom left corner of the GUI should say “Hardware connected”.</p>
+<figure class="align-default">
+<img alt="" src="../../../_images/Hardware_connected6.png" />
+</figure>
+</section>
+<section id="gui-window">
+<h2>3. GUI Window<a class="headerlink" href="#gui-window" title="Permalink to this heading">¶</a></h2>
+<p>In the GUI window user can find various controls like nSleep, DRVOFF, Direction control, duty cycle, pwm frequency, deadband, acceleration rate. Various faults are also indicated using LEDs.</p>
+<figure class="align-default">
+<img alt="" src="../../../_images/GUI_window6.png" />
+</figure>
+<section id="motor-control">
+<h3>3.1 Motor Control<a class="headerlink" href="#motor-control" title="Permalink to this heading">¶</a></h3>
+<p>Once the hardware connections are done and GUI is connected to device, the motor is ready to spin. All the controls are in defaults. The user can spin the motor by adjusting the duty cycle.</p>
+<figure class="align-default">
+<img alt="" src="../../../_images/motor_control1.png" />
+</figure>
+<p>Note: In DRV8329AEVM the nSleep and DRVOFF pins are default controlled by switches provided on EVM. The user need to modify hardware connections to control nSLEEP and DRVOFF pins from GUI. Please refer to <a class="reference external" href="DRV8329_Hardware_User_Guide_CN.html">hardware user guide</a> for modifications.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nSLEEP</p></td>
+<td><p>Awake</p></td>
+<td><p>Controls the DRV low power status and sets the duty cycle to zero</p></td>
+</tr>
+<tr class="row-odd"><td><p>DRVOFF</p></td>
+<td><p>ON</p></td>
+<td><p>Controls the DRV pwm output and sets the duty cycle to zero</p></td>
+</tr>
+<tr class="row-even"><td><p>Direction</p></td>
+<td><p>Reverse</p></td>
+<td><p>Controls the direction of motor spinning</p></td>
+</tr>
+<tr class="row-odd"><td><p>PWM Frequency</p></td>
+<td><p>20kHz</p></td>
+<td><p>PWM Frequency can be varied from 1kHz to 100kHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Deadband</p></td>
+<td><p>320ns</p></td>
+<td><p>Deadband can be varied from 100ns to 1000ns</p></td>
+</tr>
+<tr class="row-odd"><td><p>Duty cycle</p></td>
+<td><p>0%</p></td>
+<td><p>Minimum of 5 percent is applied to start spinning</p></td>
+</tr>
+<tr class="row-even"><td><p>Acceleration rate</p></td>
+<td><p>20</p></td>
+<td><p>Duty cycle is incremented or decremented at a rate of 1% per 20ms</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="motor-braking">
+<h3>3.2 Motor Braking<a class="headerlink" href="#motor-braking" title="Permalink to this heading">¶</a></h3>
+<p>The motor can be stopped from GUI without turning off the DRV by using stop button. The motor stops spinning with brake type selected.</p>
+<figure class="align-default">
+<img alt="" src="../../../_images/Braking6.png" />
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Run/Stop</p></td>
+<td><p>Run</p></td>
+<td><p>Stops the motor according to the braking type</p></td>
+</tr>
+<tr class="row-odd"><td><p>Braking type</p></td>
+<td><p>Coast</p></td>
+<td><p>Braking type can be coast or brake.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="current-setting">
+<h3>3.3 Current setting<a class="headerlink" href="#current-setting" title="Permalink to this heading">¶</a></h3>
+<p>The DRV8329AEVM has internal current sense amplifier, the gain is controlled with external resistors. A shunt resister and current reference are provided for current measurement. The user need to input all these parameters into GUI.</p>
+<figure class="align-default">
+<img alt="" src="../../../_images/current_settings6.png" />
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CSA gain</p></td>
+<td><p>40V/V</p></td>
+<td><p>CSA gain can be set to 5, 10, 20 or 40V/V (change the jumper in hardware)</p></td>
+</tr>
+<tr class="row-odd"><td><p>CSA Vref</p></td>
+<td><p>3.3V</p></td>
+<td><p>External voltage reference for current monitoring.</p></td>
+</tr>
+<tr class="row-even"><td><p>Rshunt</p></td>
+<td><p>1mohm</p></td>
+<td><p>Shunt resistance value used for current measurement.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fault-status">
+<h3>3.4 Fault Status<a class="headerlink" href="#fault-status" title="Permalink to this heading">¶</a></h3>
+<p>The firmware continuously monitors the motor parameters, in case of any fault occurred it is indicated by LED. The user can set the voltage and current limits from GUI.</p>
+<figure class="align-default">
+<img alt="" src="../../../_images/Faults6.png" />
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fault</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>UV</p></td>
+<td><p>Undervoltage fault</p></td>
+<td><p>LED glows when module voltage is less than undervoltage limit</p></td>
+</tr>
+<tr class="row-odd"><td><p>OV</p></td>
+<td><p>Overvoltage fault</p></td>
+<td><p>LED glows when module voltage is more than overvoltage limit</p></td>
+</tr>
+<tr class="row-even"><td><p>OC</p></td>
+<td><p>Overcurrent fault</p></td>
+<td><p>LED glows when phase current is more than overcurrent limit</p></td>
+</tr>
+<tr class="row-odd"><td><p>DRV</p></td>
+<td><p>DRVFault</p></td>
+<td><p>LED glows when DRV generates a fault</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="adc-reference-setting">
+<h3>3.5 ADC Reference Setting<a class="headerlink" href="#adc-reference-setting" title="Permalink to this heading">¶</a></h3>
+<p>The user can use 3 different ADC references, which can be changed from GUI.</p>
+<figure class="align-default">
+<img alt="" src="../../../_images/ADC_reference_settings6.png" />
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ADC VREF</p></td>
+<td><p>ADC Reference Voltage</p></td>
+<td><p>User reference voltage source of VDDA, internal reference, or external reference.</p></td>
+</tr>
+<tr class="row-odd"><td><p>INT VREF</p></td>
+<td><p>ADC VREF 2.5V</p></td>
+<td><p>Internal reference can be 2.5V or 1.4V</p></td>
+</tr>
+<tr class="row-even"><td><p>EXT VREF</p></td>
+<td><p>3300mV</p></td>
+<td><p>User need to input the external reference voltage applied</p></td>
+</tr>
+</tbody>
+</table>
+<p>When VDDA is used as ADC reference the data input in internal reference and external reference is ignored.</p>
+</section>
+<section id="voltage-and-current-monitoring">
+<h3>3.6 Voltage and Current Monitoring<a class="headerlink" href="#voltage-and-current-monitoring" title="Permalink to this heading">¶</a></h3>
+<figure class="align-default">
+<img alt="" src="../../../_images/motor_parameters6.png" />
+</figure>
+<figure class="align-default">
+<img alt="" src="../../../_images/graphs1.png" />
+</figure>
+<p>The user can monitor the motor parameters like bus voltage, bus current and phase voltages. The user can see the bus voltage and bus current graphs.</p>
+</section>
+<section id="speed-monitoring">
+<h3>3.7 Speed Monitoring<a class="headerlink" href="#speed-monitoring" title="Permalink to this heading">¶</a></h3>
+<p>When the motor starts spinning the user can see the motor speed displayed in RPM. The user needs to input the number of poles in the motor used. The user must enter even number of poles failing which the speed calculation go wrong.</p>
+<figure class="align-default">
+<img alt="" src="../../../_images/speed6.png" />
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../drv8328/DRV8328_Hardware_User_Guide_CN.html" class="btn btn-neutral float-left" title="DRV8328AEVM Hardware User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DRV8329_Hardware_User_Guide_CN.html" class="btn btn-neutral float-right" title="DRV8329AEVM Hardware User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

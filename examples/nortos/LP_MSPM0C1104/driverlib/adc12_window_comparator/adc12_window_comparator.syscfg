@@ -31,7 +31,7 @@ ADC121.configWinCompLowThld       = 511;
 ADC121.configWinCompHighThld      = 511;
 ADC121.peripheral.$assign         = "ADC0";
 ADC121.peripheral.adcPin2.$assign = "PA25";
-ADC121.adcPin2Config.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
+
 
 GPIO1.$name                          = "GPIO_LEDS";
 GPIO1.associatedPins.create(2);

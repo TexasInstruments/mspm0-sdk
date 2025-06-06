@@ -57,7 +57,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0L1117__</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../../kernel/freertos/Source/include,../../../../../../../source,../../../../../../../kernel/freertos/Source/portable/GCC/ARM_CM0,../../../../../../../kernel/freertos/builds/LP_MSPM0L1117/release</IncludePath>
+              <IncludePath>../,../../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../../kernel/freertos/Source/include,../../../../../../../source,../../../../../../../kernel/freertos/Source/portable/GCC/ARM_CM0,../../../../../../../kernel/freertos/builds/LP_MSPM0L1117/release</IncludePath>
             </VariousControls>
           </Cads>
           <LDads>
@@ -68,7 +68,7 @@
             <RepFail>1</RepFail>
             <useFile>0</useFile>
             <ScatterFile>./mspm0l1117.sct</ScatterFile>
-            <Misc>../../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0l111x/driverlib.a ../../../../../../../kernel/freertos/builds/LP_MSPM0L1117/release/keil/Objects/freertos_builds_LP_MSPM0L1117_release_keil.lib</Misc>
+            <Misc>../../../../../../../kernel/freertos/builds/LP_MSPM0L1117/release/keil/Objects/freertos_builds_LP_MSPM0L1117_release_keil.lib ../../../../../../../source/ti/driverlib/lib/keil/m0p/mspm0l111x/driverlib.a</Misc>
           </LDads>
         </TargetArmAds>
       </TargetOption>

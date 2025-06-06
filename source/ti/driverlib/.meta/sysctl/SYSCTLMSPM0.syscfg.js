@@ -40,7 +40,7 @@
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
 let Options = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0options.js");
-let { ClockFrequencies, ClockConfig, ConfigurableList } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
+let { ClockFrequencies, ClockConfig, ConfigurableList, ClockSignals } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
 
 function validatePowerPolicy(inst, validation){
     if(inst.runPowerPolicy != "RUN0"){
@@ -381,6 +381,17 @@ function validateSYSCTL(inst, validation)
                 validation.logError("SYSPLLCLK1 is not enabled.", inst, "SYSPLL_CLK1En");
             }
         }
+
+        if(inst.enableUserTrim) {
+            /* Validate that FCC is being used with SYSOSC as the source */
+            if(!inst.enableFCC || (inst.enableFCC && inst.fccClkSrc != "SYSOSC" )) {
+                validation.logError("The FCC module must be enabled with SYSOSC as its source.", inst, ["enableUserTrim"]);
+            }
+            /* Add info message that for best performance, 32 clk periods should be used */
+            else if(inst.enableFCC && inst.fccPeriods != 32) {
+                validation.logInfo("For best accuracy when performing the SYSOSC trim, 32 FCC CLK periods are recommended.", inst, ["enableUserTrim"]);
+            }
+        }
     }
 
     /* MSPM0L122X_L222X Unavailable Sources Validation and MSPM0L111X Unavailable Sources Validation */
@@ -533,7 +544,7 @@ function validateSYSCTL(inst, validation)
     }
 
     if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
-        validation.logWarning("Note: VBAT needs to be powered for LFCLK operation.", inst, ["LFCLKSource"]);
+        validation.logInfo("Note: VBAT pin needs to be powered for LFCLK operation.", inst, ["LFCLKSource"]);
     }
 
     } // if Clock Tree is enabled
@@ -1016,7 +1027,7 @@ function getInterruptGroupConfig(){
 }
 
 function getForceDefaultClkConfig(){
-    if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()|| Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+    if(!(ClockSignals.includes("HFXT") || ClockSignals.includes("SYSPLL"))){
         return [];
     }
     else{
@@ -1220,7 +1231,7 @@ Additionally, higher numbers save more power by disabling more features`,
                     hidden      : false,
                     default     : "0",
                     options     : Options.BORThresh,
-                    readOnly    : Common.isDeviceM0C(),
+                    readOnly    : Common.isDeviceFamily_PARENT_MSPM0C110X(),
                 },
                 // DL_SYSCTL_enableWriteLock / DL_SYSCTL_disableWriteLock
                 {
@@ -1497,6 +1508,7 @@ The default behavior for some system error conditions can be configured.
                                 {name: "N/A", displayName: "N/A"},
                                 {name: "SD", displayName: "Standard"},
                                 {name: "SDL", displayName: "Standard"},
+                                {name: "USB", displayName: "Standard"},
                                 {name: "SDW", displayName: "Standard with Wake"},
                                 {name: "HS", displayName: "High-Speed"},
                                 {name: "HD", displayName: "High-Drive"},
@@ -1504,7 +1516,7 @@ The default behavior for some system error conditions can be configured.
                             ],
                             getValue: (inst) => {
                                 try{
-                                    let value =  system.deviceData.gpio.pinInfo[inst.peripheral.clkOutPin.$solution.packagePinName].devicePin.attributes.io_type;
+                                    let value = Common.getAttribute((system.deviceData.gpio.pinInfo[inst.peripheral.clkOutPin.$solution.packagePinName].devicePin),("io_type"));
                                     if(value !== null){ return value};
                                 } catch(e){
                                     return "N/A"
@@ -1914,6 +1926,7 @@ const maxFrequencyCLKOUTDir = {
     "SD" : [ 16, 32 ],
     "SDW" : [16, 32], // same as SD simply with wake
     "SDL" : [16, 32], // same as SD simply with low leakage
+    "USB" : [16, 32],
     "HS_DRVLOW" : [ 16, 32 ], // LOW Drive, used later on in pinmux validation
     "HS" : [ 24, 40 ], // High drive enabled
     "HD" : [ 16, 20 ],
@@ -1938,7 +1951,7 @@ function validClkOutPinSet(inst){
     for(let pinIdx in system.deviceData.gpio.pinInfo){
         let eligible = true;
 
-        let pinType = system.deviceData.gpio.pinInfo[pinIdx].devicePin.attributes.io_type;
+        let pinType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinIdx].devicePin),("io_type"));
 
         if(inst.ClkOutForceHighDrive && !["HD", "HS"].includes(pinType)){
             eligible = false;
@@ -1980,7 +1993,7 @@ function pinmuxRequirements(inst)
 {
     /* Regular Pinmux Requirements for SysCtl */
     let resources = [];
-    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
+    if(ClockSignals.includes("LFCLK") && Options.LFCLKSource.some(x=>x.name==("LFCLK_IN"))) {
         if(inst.LFCLKSource === "LFXT"){
             resources.push({
                 name            : "lfxInPin",
@@ -1997,11 +2010,11 @@ function pinmuxRequirements(inst)
             resources.push({
                 name            : "lfclkInPin",
                 displayName     : "LFCLK In",
-                interfaceNames  : ["LFXOUT"],
+                interfaceNames  : ["LFCLKIN"],
             });
         }
     }
-    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
+    if(ClockSignals.includes("HFCLK")) {
         if(inst.useHFCLK_Manual && inst.HFCLKSource === "HFXT"){
             resources.push({
                 name            : "hfxInPin",
@@ -2014,11 +2027,12 @@ function pinmuxRequirements(inst)
                 interfaceNames  : ["HFXOUT"],
             });
         }
-        else if(inst.useHFCLK_Manual && inst.HFCLKSource === "HFCLK_IN"){
+        /* Temporary Workaround - avoiding reserving resource for M0C */
+        else if((inst.useHFCLK_Manual && inst.HFCLKSource === "HFCLK_IN")){
             resources.push({
                 name            : "hfclkInPin",
                 displayName     : "HFCLK In",
-                interfaceNames  : ["HFXOUT"],
+                interfaceNames  : ["HFCLKIN"],
             });
         }
     }
@@ -2056,10 +2070,10 @@ function pinmuxRequirements(inst)
         signalTypes   : {
             lfxInPin    : ["LFXIN"],
             lfxOutPin   : ["LFXOUT"],
-            lfclkInPin  : ["LFXOUT"],
+            lfclkInPin  : ["LFCLKIN"],
             hfxInPin    : ["LFXIN"],
             hfxOutPin   : ["HFXOUT"],
-            hfclkInPin  : ["HFXOUT"],
+            hfclkInPin  : ["HFCLKIN"],
             roscPin     : ["ROSC"],
             clkOutPin   : ["CLK_OUT"],
         }

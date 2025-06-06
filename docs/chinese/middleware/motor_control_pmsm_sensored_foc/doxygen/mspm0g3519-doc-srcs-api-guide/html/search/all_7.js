@@ -35,6 +35,7 @@ var searchData=
   ['getfocstallstatusforreport',['getFOCStallStatusForReport',['../foc_8h.html#a73c8ecf4e827a1011f6140fdd3eb027f',1,'foc.h']]],
   ['gethallcalibstatus',['getHallCalibStatus',['../hall_calib_8h.html#a27c14a78c9ae4e574e2ea92222ccb1bf',1,'hallCalib.h']]],
   ['gethallfrequency',['getHallFrequency',['../measure_8h.html#a74099ef73f6f3c62ea039db3af38fc18',1,'measure.c']]],
+  ['gethallphaseerror',['getHallPhaseError',['../measure_8h.html#a353a60d893a009ea8b4a4eb9ea462e6a',1,'measure.c']]],
   ['getkickbackstatus',['getKickBackStatus',['../foc_8h.html#a6de51f3eaf96ac98d818d598e8bda188',1,'foc.h']]],
   ['getloadstallstatus',['getLoadStallStatus',['../load_8h.html#aa9f991e922f00ab8dc04597f0a323a2e',1,'load.h']]],
   ['getloadstartreadystatus',['getLoadStartReadyStatus',['../load_8h.html#a85de5f40f9448d9d30041a063584d69d',1,'load.h']]],

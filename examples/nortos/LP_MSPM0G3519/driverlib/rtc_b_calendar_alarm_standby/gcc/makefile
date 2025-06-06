@@ -5,12 +5,23 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 
-OBJECTS = rtc_b_calendar_alarm_standby.obj ti_msp_dl_config.obj gcc_startup_mspm0g351x_gcc.obj
+SYSCONFIG_GUI_TOOL = $(dir $(SYSCONFIG_TOOL))sysconfig_gui$(suffix $(SYSCONFIG_TOOL))
+SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler gcc --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
+SYSCFG_GUI_CMD_STUB = $(SYSCONFIG_GUI_TOOL) --compiler gcc --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../rtc_b_calendar_alarm_standby.syscfg)
+
+SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
+SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
+
+OBJECTS = rtc_b_calendar_alarm_standby.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = rtc_b_calendar_alarm_standby
 
 CFLAGS += -I.. \
-    -D__MSPM0G3519__ \
+    -I. \
+    $(addprefix @,$(SYSCFG_OPT_FILES)) \
     -O2 \
+    @device.opt \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/Core/Include" \
     "-I$(MSPM0_SDK_INSTALL_DIR)/source" \
     -mcpu=cortex-m0plus \
@@ -28,8 +39,9 @@ CFLAGS += -I.. \
 
 LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0gx51x" \
     -nostartfiles \
+    -Tdevice.lds.genlibs \
     -l:driverlib.a \
-    -Wl,-T,../gcc/mspm0g3519.lds \
+    -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
     -L.. \
@@ -46,15 +58,35 @@ LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0gx51x
 
 all: $(NAME).out
 
-rtc_b_calendar_alarm_standby.obj: ../rtc_b_calendar_alarm_standby.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
+.INTERMEDIATE: syscfg
+$(SYSCFG_FILES): syscfg
+	@ echo generation complete
 
-ti_msp_dl_config.obj: ../ti_msp_dl_config.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
+syscfg: ../rtc_b_calendar_alarm_standby.syscfg
+	@ echo Generating configuration files...
+	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
 
-gcc_startup_mspm0g351x_gcc.obj: ../gcc/startup_mspm0g351x_gcc.c
+
+# Helpful hint that the user needs to use a standalone SysConfig installation
+$(SYSCONFIG_GUI_TOOL):
+	$(error $(dir $(SYSCONFIG_TOOL)) does not contain the GUI framework \
+        necessary to launch the SysConfig GUI.  Please set SYSCONFIG_TOOL \
+        (in your SDK's imports.mak) to a standalone SysConfig installation \
+        rather than one inside CCS)
+
+syscfg-gui: ../rtc_b_calendar_alarm_standby.syscfg $(SYSCONFIG_GUI_TOOL)
+	@ echo Opening SysConfig GUI
+	@ $(SYSCFG_GUI_CMD_STUB) $<
+
+define C_RULE
+$(basename $(notdir $(1))).obj: $(1) $(SYSCFG_H_FILES)
+	@ echo Building $$@
+	@ $(CC) $(CFLAGS) $$< -c -o $$@
+endef
+
+$(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
+
+rtc_b_calendar_alarm_standby.obj: ../rtc_b_calendar_alarm_standby.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
@@ -67,3 +99,4 @@ clean:
 	@ $(RM) $(OBJECTS) > $(DEVNULL) 2>&1
 	@ $(RM) $(NAME).out > $(DEVNULL) 2>&1
 	@ $(RM) $(NAME).map > $(DEVNULL) 2>&1
+	@ $(RM) $(SYSCFG_FILES)> $(DEVNULL) 2>&1

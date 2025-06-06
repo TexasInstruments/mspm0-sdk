@@ -68,11 +68,3 @@ test pins will be set, and the LED will remain off. Otherwise, the LED and test
 pins will be cleared, and the LED will turn on.
 The application will hit a SW breakpoint to allow the user to inspect the
 contents of gTRNGBuffer, and gIsRetentionError should be false.
-
-## Important Note
-Early experimental samples have a known issue where the user is unable to
-reconnect their debugger connection after the device has gone into STOP or
-STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain
-the ability to connect the device to the debugger. This information is located
-in the "MSPM0G and MSPM0L Families: Functional Differences With Early Samples"
-document.

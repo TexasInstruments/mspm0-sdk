@@ -41,8 +41,10 @@
             -I${CG_TOOL_ROOT}/arm-none-eabi/include
         "
         linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0gx51x
             -nostartfiles
             -Tdevice.lds.genlibs
+            -l:driverlib.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
@@ -66,11 +68,11 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
-        <file path="../lin_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../lin_responder.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../lin_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../lin_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

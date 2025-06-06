@@ -107,7 +107,7 @@ The Quick Profile Options are:
     * No interrupts enabled by default.
 * **Custom**:
     * Allows custom configuration.`,
-                hidden      : false,
+                hidden      : Common.isUnicommI2C(),
                 default     : "CUSTOM",
                 options     : [
                     {name: "CONFIG_PROFILE_1", displayName: "Controller Fast Mode Plus using BUSCLK"},
@@ -294,6 +294,8 @@ let devSpecific = {
 
     validate: validate,
 
+    validatePinmux: validatePinmux,
+
     pinmuxRequirements: pinmuxRequirements,
 
     filterHardware: filterHardware,
@@ -399,9 +401,6 @@ function filterHardware(component)
         basicClockSourceDivider             : 1,
         basicControllerStandardBusSpeed     : "FastPlus",
         basicEnableController10BitAddress   : false,
-        advControllerRXFIFOTRIG             : "BYTES_8",
-        advControllerTXFIFOTRIG             : "BYTES_7",
-        advAnalogGlitchFilter               : "50",
         advDigitalGlitchFilter              : "CLOCKS_1",
         advControllerLoopback               : false,
         advControllerMultiController        : false,
@@ -409,6 +408,11 @@ function filterHardware(component)
         intController                       : [],
 
     };
+    if(!Common.isUnicommI2C()){
+        configProfile1.advAnalogGlitchFilter    = "50";
+        configProfile1.advControllerRXFIFOTRIG  = "BYTES_8";
+        configProfile1.advControllerTXFIFOTRIG  = "BYTES_7";
+    }
     if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile1 = {...configProfile1, ...defaultDMAConfig};
     };
@@ -422,15 +426,17 @@ function filterHardware(component)
         basicTargetAddress                  : 0x10,
         basicTargetSecAddressEnable         : false,
         basicTargetGeneralCall              : false,
-        advTargetRXFIFOTRIG                 : "BYTES_1",
-        advTargetTXFIFOTRIG                 : "EMPTY",
         advTargetClkStretch                 : true,
-        advAnalogGlitchFilter               : "50",
         advDigitalGlitchFilter              : "CLOCKS_1",
         advTargetAckOverride                : false,
         advTargetTXEmptyEn                  : false,
         intController                       : [],
     };
+    if(!Common.isUnicommI2C()){
+        configProfile2.advTargetTXFIFOTRIG      = "EMPTY";
+        configProfile2.advAnalogGlitchFilter    = "50";
+        configProfile2.advTargetRXFIFOTRIG      = "BYTES_1";
+    }
     if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile2 = {...configProfile2, ...defaultDMAConfig};
     };
@@ -442,18 +448,13 @@ function filterHardware(component)
         basicClockSourceDivider             : 1,
         basicControllerStandardBusSpeed     : "Fast",
         basicEnableController10BitAddress   : false,
-        advControllerRXFIFOTRIG             : "BYTES_1",
-        advControllerTXFIFOTRIG             : "EMPTY",
         basicEnableTarget10BitAddress       : false,
         basicTargetOwnAddressEnable         : true,
         basicTargetAddress                  : 0x10,
         basicTargetSecAddressEnable         : true,
         basicTargetSecAddress               : 0x11,
         basicTargetGeneralCall              : false,
-        advTargetRXFIFOTRIG                 : "BYTES_1",
-        advTargetTXFIFOTRIG                 : "EMPTY",
         advTargetClkStretch                 : true,
-        advAnalogGlitchFilter               : "50",
         advDigitalGlitchFilter              : "CLOCKS_1",
         advControllerLoopback               : false,
         advControllerMultiController        : false,
@@ -462,6 +463,13 @@ function filterHardware(component)
         advTargetTXEmptyEn                  : false,
         intController                       : [],
     };
+    if(!Common.isUnicommI2C()){
+        configProfile3.advTargetTXFIFOTRIG      = "EMPTY";
+        configProfile3.advAnalogGlitchFilter    = "50";
+        configProfile3.advTargetRXFIFOTRIG      = "BYTES_1";
+        configProfile3.advControllerRXFIFOTRIG  = "BYTES_1";
+        configProfile3.advControllerTXFIFOTRIG  = "EMPTY";
+    }
     if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
         configProfile3 = {...configProfile3, ...defaultDMAConfig};
     };
@@ -638,6 +646,19 @@ function validate(inst, validation)
 {
     I2CCommon.getValidation(inst,validation);
 }
+
+/*
+ *  ======== validatePinmux ========
+ *  Validate this inst's configuration
+ *
+ *  param inst       - PWM instance to be validated
+ *  param validation - object to hold detected validation issues
+ */
+function validatePinmux(inst, validation)
+{
+    I2CCommon.getPinmuxValidation(inst,validation);
+}
+
 
 /*
  *  ======== _getPinResources ========

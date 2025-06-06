@@ -1,0 +1,136 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G351X" --package "LQFP-100(PZ)" --part "Default"
+//@v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3519 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
+const MCAN   = scripting.addModule("/ti/driverlib/MCAN", {}, false);
+const MCAN1  = MCAN.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const UART   = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1  = UART.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 4;
+
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_SYSPLL0";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction4        = system.clockTree["HFXT"];
+pinFunction4.inputFreq    = 40;
+pinFunction4.HFXTStartup  = 10;
+pinFunction4.HFCLKMonitor = true;
+pinFunction4.enable       = true;
+
+GPIO1.$name                         = "MPIOx";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name       = "MPIO0";
+GPIO1.associatedPins[0].pin.$assign = "PB0";
+GPIO1.associatedPins[1].$name       = "MPIO1";
+GPIO1.associatedPins[1].pin.$assign = "PB20";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO2.$name                          = "LED";
+GPIO2.associatedPins[0].assignedPin  = "0";
+GPIO2.associatedPins[0].assignedPort = "PORTA";
+GPIO2.associatedPins[0].$name        = "ERR";
+GPIO2.associatedPins[0].initialValue = "SET";
+
+MCAN1.$name                    = "MCAN0";
+MCAN1.wkupReqEnable            = true;
+MCAN1.emulationEnable          = true;
+MCAN1.autoWkupEnable           = true;
+MCAN1.tdcEnable                = true;
+MCAN1.spPercent                = 80;
+MCAN1.desiredDataRate          = 2;
+MCAN1.stdFiltElem              = "001";
+MCAN1.stdFiltType              = "10";
+MCAN1.flesa                    = 16;
+MCAN1.extFiltType              = "10";
+MCAN1.extFiltID2               = 536870911;
+MCAN1.txStartAddr              = 48;
+MCAN1.txBufNum                 = 4;
+MCAN1.txEventFIFOStartAddr     = 336;
+MCAN1.txEventFIFOSize          = 4;
+MCAN1.txEventFIFOWaterMark     = 1;
+MCAN1.rxFIFO0startAddr         = 368;
+MCAN1.rxFIFO0waterMark         = 0;
+MCAN1.rxFIFO1startAddr         = 800;
+MCAN1.rxFIFO1waterMark         = 2;
+MCAN1.rxFIFO1OpMode            = "1";
+MCAN1.rxBufStartAddr           = 944;
+MCAN1.rxFIFO0size              = 6;
+MCAN1.additionalCoreConfig     = true;
+MCAN1.rrfs                     = true;
+MCAN1.rrfe                     = true;
+MCAN1.overrideRetention        = true;
+MCAN1.enableInterrupt          = true;
+MCAN1.interruptFlags           = ["DL_MCAN_INTERRUPT_ARA","DL_MCAN_INTERRUPT_BEU","DL_MCAN_INTERRUPT_BO","DL_MCAN_INTERRUPT_ELO","DL_MCAN_INTERRUPT_EP","DL_MCAN_INTERRUPT_EW","DL_MCAN_INTERRUPT_MRAF","DL_MCAN_INTERRUPT_PEA","DL_MCAN_INTERRUPT_PED","DL_MCAN_INTERRUPT_TOO","DL_MCAN_INTERRUPT_TSW","DL_MCAN_INTERRUPT_WDI"];
+MCAN1.interruptLine            = ["DL_MCAN_INTR_LINE_NUM_1"];
+MCAN1.interruptLine1Flag       = ["DL_MCAN_INTR_MASK_ALL"];
+MCAN1.m0interrupts             = ["DL_MCAN_MSP_INTERRUPT_LINE1"];
+MCAN1.stdFiltID1               = 12;
+MCAN1.stdFiltID2               = 2047;
+MCAN1.lss                      = 4;
+MCAN1.lse                      = 4;
+MCAN1.anfs                     = "1";
+MCAN1.anfe                     = "1";
+MCAN1.peripheral.rxPin.$assign = "PA13";
+MCAN1.peripheral.txPin.$assign = "PA12";
+MCAN1.txPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric2";
+MCAN1.rxPinConfig.$name        = "ti_driverlib_gpio_GPIOPinGeneric3";
+scripting.suppress("SysConfig currently does not support configuration of more than one filter\\. More filters can be added in the user application, however care must be taken to ensure that enough RAM is allocated during initialization\\.", MCAN1, "lss");
+scripting.suppress("SysConfig currently does not support configuration of more than one filter\\. More filters can be added in the user application, however care must be taken to ensure that enough RAM is allocated during initialization\\.", MCAN1, "lse");
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;
+SYSCTL.validateClkStatus     = true;
+
+TIMER1.$name            = "TIME_OUT";
+TIMER1.interrupts       = ["ZERO"];
+TIMER1.timerClkDiv      = 8;
+TIMER1.timerClkPrescale = 32;
+
+UART1.$name                      = "UART_0";
+UART1.enabledInterrupts          = ["DMA_DONE_RX","DMA_DONE_TX"];
+UART1.enabledDMARXTriggers       = "DL_UART_DMA_INTERRUPT_RX";
+UART1.enabledDMATXTriggers       = "DL_UART_DMA_INTERRUPT_TX";
+UART1.rxFifoThreshold            = "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+UART1.txFifoThreshold            = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
+UART1.targetBaudRate             = 1000000;
+UART1.peripheral.$assign         = "UART0";
+UART1.peripheral.rxPin.$assign   = "PA11";
+UART1.peripheral.txPin.$assign   = "PA10";
+UART1.txPinConfig.$name          = "ti_driverlib_gpio_GPIOPinGeneric0";
+UART1.rxPinConfig.$name          = "ti_driverlib_gpio_GPIOPinGeneric1";
+UART1.DMA_CHANNEL_RX.$name       = "DMA_CH0";
+UART1.DMA_CHANNEL_RX.addressMode = "f2b";
+UART1.DMA_CHANNEL_RX.srcLength   = "BYTE";
+UART1.DMA_CHANNEL_RX.dstLength   = "BYTE";
+UART1.DMA_CHANNEL_TX.$name       = "DMA_CH1";
+UART1.DMA_CHANNEL_TX.addressMode = "b2f";
+UART1.DMA_CHANNEL_TX.srcLength   = "BYTE";
+UART1.DMA_CHANNEL_TX.dstLength   = "BYTE";

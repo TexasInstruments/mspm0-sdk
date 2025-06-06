@@ -331,10 +331,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
 % if (inst.parityDirection == "TX") {
     DL_SPI_disableReceiveParity(`instName`_INST);
 %}
+% // Option disabled for UNICOMM
+% if(!Common.isUnicommSPI()){
 %if (inst.enablePacking) {
     /* Enable packing feature */
     DL_SPI_enablePacking(`instName`_INST);
 %}
+% }
 %if (inst.enabledDMAEvent2Triggers != "None" && inst.enableDMAEvent2) {
 
     /* Enable SPI TX interrupt as a trigger for DMA */

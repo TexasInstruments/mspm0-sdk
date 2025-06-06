@@ -63,7 +63,6 @@ void SMBus_PHY_targetEnable(SMBus *smbus)
     */
     SYSCFG_DL_SMB_I2C_init();
     smbus->ctrl.bits.phyEn = 1;      // Set global flag
-    SMBusARP_RESET(smbus);           // Set the ARP status
 }
 
 void SMBus_PHY_targetInit(SMBus *smbus, I2C_Regs *i2cInst)

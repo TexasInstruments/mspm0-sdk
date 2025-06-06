@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['control_5fgear_5ftype_5fdefault',['CONTROL_GEAR_TYPE_DEFAULT',['../dali__variables_8h.html#a21f7a489f535887c5d6c193544f93246',1,'dali_variables.h']]]
+  ['backward_5fframe_5fsettling_5fmin',['BACKWARD_FRAME_SETTLING_MIN',['../dali__timings_8h.html#aee482568d286b84ad2956c85a74f29ef',1,'dali_timings.h']]]
 ];

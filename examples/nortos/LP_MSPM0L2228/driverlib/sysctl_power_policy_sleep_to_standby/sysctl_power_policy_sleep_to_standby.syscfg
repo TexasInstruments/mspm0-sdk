@@ -51,3 +51,4 @@ TIMER2.interrupts         = ["ZERO"];
 TIMER2.peripheral.$assign = "TIMG4";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

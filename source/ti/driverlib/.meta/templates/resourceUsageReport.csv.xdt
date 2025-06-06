@@ -49,7 +49,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                 }
                 pinWithResource += currentInstance.direction.charAt(0) + currentInstance.direction.slice(1).toLowerCase()+pinInternalResistor+": "
                 pinWithResource += currentInstance.pin.$solution.devicePinName;
-                let pinIOType = system.deviceData.gpio.pinInfo[currentInstance.pin.$solution.packagePinName].devicePin.attributes.io_type;
+                let pinIOType = Common.getAttribute((system.deviceData.gpio.pinInfo[currentInstance.pin.$solution.packagePinName].devicePin),("io_type"));
                 let pinIOTypeExtended = "";
                 switch (pinIOType) {
                     case "SD":
@@ -70,6 +70,9 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                     case "SDL":
                         pinIOTypeExtended = "Standard";
                         break;
+                    case "USB":
+                        pinIOTypeExtended = "Standard";
+                        break;
                     default:
                         break;
                 }
@@ -77,7 +80,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                 let pinSolution = currentInstance.pin.$solution;
                 let resource_pinNumber = pinSolution.packagePinName;
                 let resource_devicePinName = pinSolution.devicePinName;
-                let resource_IOType = system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin.attributes.io_type;
+                let resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
                 let resource_assignedFunction = pinIOTypeExtended + " " + currentInstance.direction.charAt(0) + currentInstance.direction.slice(1).toLowerCase()+pinInternalResistor;
                 let resource_assignedPeripheral = "GPIO";
                 let resource_userLabel = currentInstance.$name;
@@ -133,7 +136,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                                     let pinSolution = currentInstance[currentResource.name].$solution;
                                     let resource_pinNumber = pinSolution.packagePinName;
                                     let resource_devicePinName = pinSolution.devicePinName;
-                                    let resource_IOType = system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin.attributes.io_type;
+                                    let resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
                                     let resource_assignedFunction = "\""+currentResource.displayName+"\"";
                                     let resource_assignedPeripheral = "TIMER";
                                     let resource_userLabel = ""
@@ -183,7 +186,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                                 let pinSolution = system.modules[currentModule].$static[currentResource.name].$solution;
                                 let resource_pinNumber = pinSolution.packagePinName;
                                 let resource_devicePinName = pinSolution.devicePinName;
-                                let resource_IOType = system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin.attributes.io_type;
+                                let resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
                                 let resource_assignedFunction = "\""+currentResource.displayName+"\"";
                                 let resource_assignedPeripheral = "TAMPER IO"; // TODO: see if name update needed
                                 let resource_userLabel = ""
@@ -231,7 +234,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                             let pinSolution = system.modules[currentModule].$static.peripheral[currentResource.name].$solution;
                             let resource_pinNumber = pinSolution.packagePinName;
                             let resource_devicePinName = pinSolution.devicePinName;
-                            let resource_IOType = system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin.attributes.io_type;
+                            llet resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
                             let resource_assignedFunction = "\""+currentResource.displayName+"\"";
                             let resource_assignedPeripheral = readCurrentName;
                             let resource_userLabel = ""
@@ -311,7 +314,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                                 let pinSolution = currentInstance.peripheral[currentResource.name].$solution;
                                 let resource_pinNumber = pinSolution.packagePinName;
                                 let resource_devicePinName = pinSolution.devicePinName;
-                                let resource_IOType = system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin.attributes.io_type;
+                                let resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
                                 let resource_assignedFunction = "\""+currentResource.displayName+"\"";
                                 let resource_assignedPeripheral = readCurrentName;
                                 let resource_userLabel = "";
@@ -347,7 +350,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
             /* ======================= PIN CODE ======================= */
             let resource_pinNumber = system.modules["/ti/driverlib/Board"].$static.peripheral[currentResource.name].$solution.packagePinName;
             let resource_devicePinName = system.modules["/ti/driverlib/Board"].$static.peripheral[currentResource.name].$solution.devicePinName;
-            let resource_IOType = system.deviceData.gpio.pinInfo[system.modules["/ti/driverlib/Board"].$static.peripheral[currentResource.name].$solution.packagePinName].devicePin.attributes.io_type;
+            let resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[system.modules["/ti/driverlib/Board"].$static.peripheral[currentResource.name].$solution.packagePinName].devicePin),("io_type"));
             let resource_assignedFunction = "\""+currentResource.displayName+"\"";
             let resource_assignedPeripheral = "BOARD";
             let resource_userLabel = "";
@@ -385,7 +388,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                                     let pinSolution = currentInstance.peripheral[currentResource.name].$solution;
                                     let resource_pinNumber = pinSolution.packagePinName;
                                     let resource_devicePinName = pinSolution.devicePinName;
-                                    let resource_IOType = system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin.attributes.io_type;
+                                    let resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
                                     let resource_assignedFunction = "\""+currentResource.displayName+"\"";
                                     let resource_assignedPeripheral = "SYSCTL";
                                     let resource_userLabel = "";
@@ -419,7 +422,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                                     let pinSolution = currentInstance.peripheral[currentResource.name].$solution;
                                     let resource_pinNumber = pinSolution.packagePinName;
                                     let resource_devicePinName = pinSolution.devicePinName;
-                                    let resource_IOType = system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin.attributes.io_type;
+                                    let resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
                                     let resource_assignedFunction = "\""+currentResource.displayName+"\"";
                                     let resource_assignedPeripheral = "SYSCTL";
                                     let resource_userLabel = "";

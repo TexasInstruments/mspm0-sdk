@@ -40,3 +40,4 @@ GPIO2.associatedPins[0].assignedPin      = "18";
 GPIO2.associatedPins[0].pin.$assign      = "PA18";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

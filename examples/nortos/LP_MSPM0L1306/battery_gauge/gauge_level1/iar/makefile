@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(IAR_ARMCOMPILER)/bin/iccarm"
 LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 
-OBJECTS = main.obj Gauge_App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj Gauge_Algorithm_VoltGauge.obj Gauge_UserConfig_Gauge_UserConfig.obj iar_startup_mspm0l130x_iar.obj
+OBJECTS = Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj Gauge_Algorithm_VoltGauge.obj Gauge_UserConfig_Gauge_UserConfig.obj main.obj Gauge_App.obj iar_startup_mspm0l130x_iar.obj
 NAME = gauge_level1
 
 CFLAGS += -I.. \
@@ -34,14 +34,6 @@ LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/iar/m0p/rts/mspm0l11xx_
 
 all: $(NAME).out
 
-main.obj: ../main.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-Gauge_App.obj: ../Gauge_App.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
 Driver_MSPM0Lxx_BSP.obj: ../Driver/MSPM0Lxx_BSP.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -55,6 +47,14 @@ Gauge_Algorithm_VoltGauge.obj: ../Gauge_Algorithm/VoltGauge.c
 	@ $(CC) $(CFLAGS) $< -o $@
 
 Gauge_UserConfig_Gauge_UserConfig.obj: ../Gauge_UserConfig/Gauge_UserConfig.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -o $@
+
+main.obj: ../main.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -o $@
+
+Gauge_App.obj: ../Gauge_App.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

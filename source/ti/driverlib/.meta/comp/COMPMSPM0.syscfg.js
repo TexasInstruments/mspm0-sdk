@@ -80,13 +80,7 @@ function validate(inst, validation)
     if(["DL_COMP_REF_SOURCE_VDDA_DAC"].includes(inst.vSource)){
         if(inst.controlSelect == "DL_COMP_DAC_CONTROL_COMP_OUT"){
             validation.logInfo(
-                "DACCODE selection is being controlled by comparator output, calculation assumes DACCODE0 here. Assuming VDDA = 3.3V for calculated value.",
-                inst, "calcVoltage"
-            );
-        }
-        else{
-            validation.logInfo(
-                "Assuming VDDA = 3.3V for calculated value.",
+                "DACCODE selection is being controlled by comparator output, calculation assumes DACCODE0 here.",
                 inst, "calcVoltage"
             );
         }
@@ -313,6 +307,13 @@ function pinmuxRequirements(inst)
         interfaceNames:["OUT"],
     };
 
+    let dacOutPin =
+    {
+        name:"compDACPinOut",
+        displayName:"COMP Internal DAC Output Pin",
+        interfaceNames:["DAC_OUT"],
+    };
+
     let comp = {
         name: "peripheral",
         displayName: "COMP Peripheral",
@@ -334,6 +335,10 @@ function pinmuxRequirements(inst)
 
     if (inst.outputEnable) {
         comp.resources.push(outPin);
+    }
+
+    if(inst.internalDACOutputEnable) {
+        comp.resources.push(dacOutPin);
     }
 
     let ind = 0;
@@ -837,6 +842,26 @@ function getBlankingOptions(inst){
 }
 
 /*
+ *  ======== getVDDAVoltage ========
+ *  get VDDA reference voltage from Board module.
+ *  requires Board module to be added.
+ *
+ *
+ */
+function getVDDAVoltage(inst){
+
+    let vddaVoltage = 3.3;
+
+    let vddaInstance = system.modules["/ti/driverlib/Board"];
+
+    if (vddaInstance && (vddaInstance.$static.configureVDDA == true)){
+        vddaVoltage = (vddaInstance.$static.voltageVDDA)
+    }
+
+    return vddaVoltage;
+}
+
+/*
  *  ======== calculateVoltage ========
  *  calculate voltage based on user provided parameters
  */
@@ -846,7 +871,7 @@ function calculateVoltage(inst){
     let vrefVoltage = 0;
     let dacCode = 0;
     if(inst.vSource == "DL_COMP_REF_SOURCE_VDDA_DAC"){
-        vrefVoltage = 3.3
+        vrefVoltage = getVDDAVoltage(inst);
     }
     else{
         let vrefInstance = system.modules["/ti/driverlib/VREF"];
@@ -996,6 +1021,15 @@ function getPinName(inst, passedPin){
     return pinInfo
 }
 
+let internalDACOutputConfig = [{
+    name        : "internalDACOutputEnable",
+    displayName : "Enable Internal DAC Output",
+    description : 'Enable the output of the internal DAC',
+    hidden      : false,
+    default     : false,
+    onChange    : onChangeCustomProfile,
+}];
+
 let config = [
     /* Show selected peripheral below instance name */
     {
@@ -1055,12 +1089,13 @@ let config = [
             },
             {
                 name        : "outputEnable",
-                displayName : "Enable Output",
+                displayName : "Enable Comparator Output",
                 description : 'Enable the output of the comparator',
                 hidden      : false,
                 default     : false,
                 onChange    : onChangeCustomProfile,
             },
+            ...Common.hasCOMPDACOutput() ? internalDACOutputConfig : [],
             {
                 name        : "posChannel",
                 displayName : "Positive Terminal Channel Input",

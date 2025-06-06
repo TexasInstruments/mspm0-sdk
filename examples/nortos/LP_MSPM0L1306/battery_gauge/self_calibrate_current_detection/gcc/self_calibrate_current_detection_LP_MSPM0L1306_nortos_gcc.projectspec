@@ -62,12 +62,6 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
-        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../Driver/MSPM0Lxx_BSP.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
         </file>
         <file path="../Driver/MSPM0Lxx_BSP.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
@@ -81,6 +75,12 @@
         <file path="../UserConfig/UserConfig.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="UserConfig">
         </file>
         <file path="../UserConfig/UserConfig.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="UserConfig">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

@@ -45,3 +45,4 @@ VREF.advClkSrc                     = "DL_VREF_CLOCK_BUSCLK";
 VREF.peripheral.$assign            = "VREF";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

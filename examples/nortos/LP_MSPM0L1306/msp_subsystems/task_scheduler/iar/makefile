@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = modules_scheduler_scheduler.obj modules_DAC8Driver.obj modules_switchDriver.obj task_scheduler.obj iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = task_scheduler.obj modules_scheduler_scheduler.obj modules_DAC8Driver.obj modules_switchDriver.obj iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = task_scheduler
 
 CFLAGS += -I.. \
@@ -72,6 +72,10 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
+task_scheduler.obj: ../task_scheduler.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -o $@
+
 modules_scheduler_scheduler.obj: ../modules/scheduler/scheduler.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -81,10 +85,6 @@ modules_DAC8Driver.obj: ../modules/DAC8Driver.c $(SYSCFG_H_FILES)
 	@ $(CC) $(CFLAGS) $< -o $@
 
 modules_switchDriver.obj: ../modules/switchDriver.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-task_scheduler.obj: ../task_scheduler.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

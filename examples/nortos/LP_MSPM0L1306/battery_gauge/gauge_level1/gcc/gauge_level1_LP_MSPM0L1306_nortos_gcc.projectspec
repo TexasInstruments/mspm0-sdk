@@ -62,12 +62,6 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
-        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../Gauge_App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../Gauge_App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../Driver/BatteryRunFile_ChgDhg.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
         </file>
         <file path="../Driver/MSPM0Lxx_BSP.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
@@ -89,6 +83,12 @@
         <file path="../Gauge_UserConfig/Gauge_UserConfig.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_UserConfig">
         </file>
         <file path="../Gauge_UserConfig/Gauge_UserConfig.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Gauge_UserConfig">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Gauge_App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Gauge_App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

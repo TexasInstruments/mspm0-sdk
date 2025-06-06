@@ -62,7 +62,7 @@
             printGPIO();
             break;
         case "PreFunction":
-            //printPreFunction();
+            printPreFunction();
             break;
         case "Function":
             printFunction();
@@ -77,9 +77,109 @@
 % function printGPIO(){
 %   if(!sysoscInst.disableSYSOSC && sysoscInst.enableROSC){
     DL_GPIO_initPeripheralAnalogFunction(GPIO_ROSC_IOMUX);
-%   }
+%  }
 % }
-%
+% function printPreFunction() {
+% if(sysoscInst.enableUserTrim) {
+/*
+   Performs SYSOSC trim by adjusting values of RESCOARE and RFINE and using the FCC
+   module to read back the frequency until the target value is hit.
+*/
+SYSCONFIG_WEAK void DL_SYSCFG_SYSCTL_SYSOSC_USERTRIM(uint8_t SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC)
+{
+    float freqTarget = SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC == SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC16M ? 16000 : 24000;
+    float freqStart = 0, freqMid = 0, freqEnd = 0, freqBest = 0;
+    float errorStart = 1, errorEnd = 1;
+    bool perfectFlag = 0;
+
+    uint32_t FCC_period;
+    uint32_t countStart, countEnd, countBest;
+    uint32_t startOSCTRIM, endOSCTRIM, bestOSCTRIM;
+
+    DL_SYSCTL_startFCC();
+    while (false == DL_SYSCTL_isFCCDone());
+    uint32_t fccPeriodCalibration = ((SYSCTL->SOCLOCK.GENCLKCFG & SYSCTL_GENCLKCFG_FCCTRIGCNT_MASK) >> SYSCTL_GENCLKCFG_FCCTRIGCNT_OFS) + 1;
+    uint32_t fccCountCalibration = (SYSCTL->SOCLOCK.FCC) & SYSCTL_FCC_DATA_MASK;
+    float freqMidCalibration = fccCountCalibration / 32000.0;
+    float freqTriggerCalibration = fccPeriodCalibration / freqMidCalibration;
+
+    uint32_t grayCodeRESFINE[16] = {0x00,0x01,0x03,0x02,0x06,0x07,0x05,0x04,0x0C,0x0D,0x0F,0x0E,0x0A,0x0B,0x09,0x08};
+    uint32_t startIndexRESFINE = 0;
+    uint32_t startRESFINEValue = 0x000C0000;
+    uint32_t endIndexRESFINE = 0x0F;
+    uint32_t setRESFINE = 0;
+    uint32_t startRESCOARE = 0x00001F00;
+    uint32_t endRESCOARE = 0x00003F00;
+    uint32_t setRESCOARE = 0;
+
+    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+    DL_Common_updateReg(&SYSCTL->SOCLOCK.SYSOSCTRIMUSER, startRESCOARE, SYSCTL_SYSOSCTRIMUSER_RESCOARSE_MASK);
+    DL_Common_updateReg(&SYSCTL->SOCLOCK.SYSOSCTRIMUSER, startRESFINEValue, SYSCTL_SYSOSCTRIMUSER_RESFINE_MASK);
+    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_USERTRIM);
+    delay_cycles (10000);
+
+    uint32_t startSYSTRIM = (startRESCOARE >> 4) + startIndexRESFINE;
+    uint32_t endSYSTRIM = (endRESCOARE >> 4) + endIndexRESFINE;
+    uint32_t midSYSTRIM;
+
+    while(endSYSTRIM > startSYSTRIM + 1) {
+        midSYSTRIM = (startSYSTRIM + endSYSTRIM) / 2;
+        setRESFINE = grayCodeRESFINE [midSYSTRIM & 0x0000000F] << 16;
+        setRESCOARE = (midSYSTRIM & 0x00000FF0) << 4;
+
+        DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+        DL_Common_updateReg(&SYSCTL->SOCLOCK.SYSOSCTRIMUSER, SYSCTL_SYSOSCTRIMUSER_FREQ_SYSOSC, SYSCTL_SYSOSCTRIMUSER_FREQ_MASK);
+        DL_Common_updateReg(&SYSCTL->SOCLOCK.SYSOSCTRIMUSER, setRESCOARE, SYSCTL_SYSOSCTRIMUSER_RESCOARSE_MASK);
+        DL_Common_updateReg(&SYSCTL->SOCLOCK.SYSOSCTRIMUSER, setRESFINE, SYSCTL_SYSOSCTRIMUSER_RESFINE_MASK);
+        DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_USERTRIM);
+        delay_cycles (10000);
+        DL_SYSCTL_startFCC();
+        while (false == DL_SYSCTL_isFCCDone());
+        bestOSCTRIM = SYSCTL->SOCLOCK.SYSOSCTRIMUSER;
+        FCC_period = (((SYSCTL->SOCLOCK.GENCLKCFG) & SYSCTL_GENCLKCFG_FCCTRIGCNT_MASK) >> SYSCTL_GENCLKCFG_FCCTRIGCNT_OFS) + 1;
+        countBest = (SYSCTL->SOCLOCK.FCC) & SYSCTL_FCC_DATA_MASK;
+        freqMid = FCC_period / freqTriggerCalibration;
+        freqBest = countBest / freqMid;
+        if (freqBest > freqTarget) {
+           startSYSTRIM = midSYSTRIM;
+           freqStart = freqBest;
+           errorStart = (freqBest - freqTarget ) / freqTarget * 100;
+           countStart =  countBest;
+           startOSCTRIM = bestOSCTRIM;
+        }
+        if (freqBest < freqTarget) {
+           endSYSTRIM = midSYSTRIM;
+           errorEnd = (freqTarget - freqBest) / freqTarget * 100;
+           freqEnd = freqBest;
+           countEnd = countBest;
+           endOSCTRIM = bestOSCTRIM;
+        }
+        if (freqBest == freqTarget) {
+           perfectFlag = 1;
+           break;
+        }
+    }
+
+    if (perfectFlag != 1) {
+        if (errorEnd <= errorStart) {
+            freqBest =  freqEnd;
+            countBest = countEnd;
+            bestOSCTRIM = endOSCTRIM;
+        }
+        else {
+            freqBest =  freqStart;
+            countBest = countStart;
+            bestOSCTRIM = startOSCTRIM;
+        }
+    }
+
+    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+    SYSCTL->SOCLOCK.SYSOSCTRIMUSER = bestOSCTRIM;
+    DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_USERTRIM);
+}
+
+% } //if stat.enableUserTrim
+%}
 % function printFunction(){
 %%{
     let sysoscStr = "";
@@ -96,7 +196,10 @@
                 sysoscStr += "\n\tDL_SYSCTL_enableSYSOSCFCL();"
             }
         }
-        if(sysoscInst.frequencySelect === 4){
+        if(sysoscInst.enableUserTrim) {
+            sysoscStr += "\n\tDL_SYSCFG_SYSCTL_SYSOSC_USERTRIM(" + sysoscInst.userTrimFrequency + ");"
+        }
+        else if(sysoscInst.frequencySelect === 4){
             sysoscStr += "\n\tDL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_4M);";
         } else {
             sysoscStr += "\n\tDL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);";

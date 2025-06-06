@@ -45,6 +45,10 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
+        <file path="../ti_msp_dl_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../ti_msp_dl_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
         <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
@@ -54,10 +58,6 @@
         <file path="../ti/eeprom/emulation_type_a/eeprom_emulation_type_a.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_a">
         </file>
         <file path="../ti/eeprom/emulation_type_b/eeprom_emulation_type_b.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/eeprom/emulation_type_b">
-        </file>
-        <file path="../ti_msp_dl_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../ti_msp_dl_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

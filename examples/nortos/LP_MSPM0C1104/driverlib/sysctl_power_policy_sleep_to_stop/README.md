@@ -58,11 +58,3 @@ Compile, load and run the example.
 Monitor the behavior of LED1 and LED2.
 LED1 will toggle for 5 seconds while the device is in SLEEP0, and and then
 toggle every 2s while the device is in STOP.
-
-## Important Note
-Early experimental samples have a known issue where the user is unable to
-reconnect their debugger connection after the device has gone into STOP or
-STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain
-the ability to connect the device to the debugger. This information is located
-in the "MSPM0G and MSPM0L Families: Functional Differences With Early Samples"
-document.

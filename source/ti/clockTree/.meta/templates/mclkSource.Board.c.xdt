@@ -64,9 +64,16 @@
             if(_.endsWith(hsclkMuxInst.inputSelect, "SYSOSC")){
                 return; /* nothing to print */
             } else if (_.endsWith(hsclkMuxInst.inputSelect, "HFCLK")){
-                mclkStr = "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_HFCLK);";
-            } else {
+                if(Common.isDeviceFamily_PARENT_MSPM0C110X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+                    mclkStr += "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK);";
+                }
+                else{
+                    mclkStr += "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_HFCLK);";
+                }
+            } else if(hsclkMuxInst.inputSelect.includes("SYSPLL")) {
                 mclkStr = "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_SYSPLL);";
+            } else if(_.endsWith(hsclkMuxInst.inputSelect, "USBFLL")){
+                mclkStr = "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK, DL_SYSCTL_HSCLK_SOURCE_USBFLL);";
             }
         } else if(!_.isUndefined(exhfMuxInst)) {
             if(_.endsWith(exhfMuxInst.inputSelect, "SYSOSC")){

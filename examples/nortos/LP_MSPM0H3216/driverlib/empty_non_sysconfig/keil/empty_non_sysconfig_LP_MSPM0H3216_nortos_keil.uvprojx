@@ -57,7 +57,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0H3216__</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
+              <IncludePath>../,../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
             </VariousControls>
           </Cads>
           <LDads>
@@ -77,11 +77,6 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>empty_non_sysconfig.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../empty_non_sysconfig.c</FilePath>
-            </File>
-            <File>
               <FileName>ti_msp_dl_config.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti_msp_dl_config.c</FilePath>
@@ -90,6 +85,11 @@
               <FileName>ti_msp_dl_config.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti_msp_dl_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>empty_non_sysconfig.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../empty_non_sysconfig.c</FilePath>
             </File>
             <File>
               <FileName>startup_mspm0h321x_uvision.s</FileName>

@@ -22,3 +22,4 @@ CRCP.seed       = 0xF1D;
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

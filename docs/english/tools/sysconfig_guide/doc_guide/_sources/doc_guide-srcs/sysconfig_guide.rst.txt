@@ -59,7 +59,7 @@ These instructions are required in order to integrate the standalone SysConfig i
 3.1.1 Enabling SysConfig in CCS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Code Composer Studio (Eclipse) 12.8.0 and Code Composer Studio 20.1.0+ include a SysConfig version which is compatible with MSPM0, thus not requiring any additional steps to use it. The steps below apply only when integrating a standalone version of SysConfig in cases such as upgrading the SysConfig version.
+Code Composer Studio (Eclipse) 12.8.0 and Code Composer Studio 20.2.0+ include a SysConfig version which is compatible with MSPM0, thus not requiring any additional steps to use it. The steps below apply only when integrating a standalone version of SysConfig in cases such as upgrading the SysConfig version.
 
 1. | Follow instructions from the `MSPM0 SDK QuickStart Guide for Code Composer Studio <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs_theia.html>`__ to install Code Composer Studio for MSPM0.
    | Alternatively, follow instructions from the `MSPM0 SDK QuickStart Guide for CCS <../../../../quickstart_guides/doc_guide/doc_guide-srcs/quickstart_guide_ccs.html>`__ to install CCS for MSPM0.
@@ -270,7 +270,7 @@ The following steps describe how to start a SysConfig project using MSPM0 withou
 
 1. Run the standalone version of SysConfig
 
-2. SysConfig 1.23.x includes support for MSPM0 and supports M0 SDK:
+2. SysConfig 1.24.x includes support for MSPM0 and supports M0 SDK:
 
    .. figure:: ./images/sysconfig_guide/sysconfig_pre_installed_product.png
       :alt: 

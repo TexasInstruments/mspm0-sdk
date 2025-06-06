@@ -443,7 +443,7 @@ let config = [
                                 let powerPolicy = "";
                                 try{
                                     let peripheralIndex = system.deviceData.interfaces.GPTIMER.peripherals.findIndex(object => { return object.name === inst.peripheral.$solution.peripheralName });
-                                    powerPolicy = system.deviceData.interfaces.GPTIMER.peripherals[peripheralIndex].attributes.power_domain;
+                                    powerPolicy = Common.getAttribute((system.deviceData.interfaces.GPTIMER.peripherals[peripheralIndex]),("power_domain"));
                                 }catch (e) {
                                     // do nothing
                                 }

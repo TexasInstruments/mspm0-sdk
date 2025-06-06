@@ -29,34 +29,34 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "mspm0_dma.h"
+#include "mspm0_gpio.h"
+#include "mspm0_timer.h"
+#include "ti_msp_dl_config.h"
 
-#include <stdint.h>
 #include "CRC_LUT.h"
 #include "FlexWire.h"
-#include "IOPORT.h"
 #include "Patterns.h"
 #include "TPS929xxx_APIs.h"
-#include "Timer.h"
-#include "dma.h"
-#include "eeprom.h"
-#include "eeprom_data.h"
-#include "eeprom_default.h"
-#include "led_driver.h"
 #include "system_info.h"
-#include "ti_msp_dl_config.h"
+#include "tps_eeprom.h"
+#include "tps_eeprom_default.h"
 
 int main(void)
 {
-    unsigned int dev_idx = 0;
-    unsigned int eepromData[EEPROM_DEFAULT_REGS];
-    unsigned int patternMode;
-    unsigned int regValue[1];
-    unsigned int progResult = FALSE;
-    unsigned int dev_addr_temp;
+    uint32_t dev_idx = 0;
+    uint32_t patternMode;
+    uint32_t regValue[1];
+    uint32_t progResult = FALSE;
+    uint32_t dev_addr_temp;
+    uint32_t eepromData[EEPROM_DEFAULT_REGS];
 
     SYSCFG_DL_init();
-    NVIC_EnableIRQ(GPIO_GRP_1_GPIOA_INT_IRQN);
-    NVIC_EnableIRQ(GPIO_GRP_1_GPIOB_INT_IRQN);
+
+    NVIC_EnableIRQ(1);
+    NVIC_EnableIRQ(UART_1_INST_INT_IRQN);
+    NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);
+    NVIC_EnableIRQ(TIMER_1_INST_INT_IRQN);
 
     // Calculate and store the CRC of data from 0x00 to 0xFF
     crcInitial();
@@ -112,13 +112,13 @@ int main(void)
             setRefRange(device_address[dev_idx], REFRANGE__512);
         }
 
-        //***Set DC for all Channels - actually this is the reset value in EEPROM
+        // Set DC for all Channels - actually this is the reset value in EEPROM
         regValue[0] = IOUT__MAX;
-        setIOUTAllCh(BROADCAST, &regValue[0], TRUE);
+        setIOUTAllCh(BROADCAST, (unsigned int *) &regValue[0], TRUE);
 
-        //***Set PWMOUT for all Channels - PWM high is reset value in EEPROM and PWM low is reset from register
+        // Set PWMOUT for all Channels - PWM high is reset value in EEPROM and PWM low is reset from register
         regValue[0] = PWM__1;
-        setPWMAllCh(BROADCAST, &regValue[0], TRUE);
+        setPWMAllCh(BROADCAST, (unsigned int *) &regValue[0], TRUE);
 
         // Set Single-LED-Short threshold and Low Supply Threshold - Settings are for EVMs
 #if TPS929120
@@ -127,7 +127,7 @@ int main(void)
         for (dev_idx = 0; dev_idx < DEVICE_CNT; dev_idx++) {
             // Set Low Supply Threshold per device to prevent overwriting of setting CONF_FLTIMEOUT
             setLowSupplyTh(BROADCAST, LOWSUPTH__7V);
-            //     ***Lock CLR register - only for TPS929120/TPS929121
+            // Lock CLR register - only for TPS929120/TPS929121
             setLock(device_address[dev_idx], CLRLOCK);
         }
 #elif TPS929121
@@ -136,7 +136,7 @@ int main(void)
         for (dev_idx = 0; dev_idx < DEVICE_CNT; dev_idx++) {
             // Set Low Supply Threshold per device to prevent overwriting of setting CONF_FLTIMEOUT
             setLowSupplyTh(BROADCAST, LOWSUPTH__10V);
-            //     ***Lock CLR register - only for TPS929120/TPS929121
+            // Lock CLR register - only for TPS929120/TPS929121
             setLock(device_address[dev_idx], CLRLOCK);
         }
 #else
@@ -164,8 +164,8 @@ int main(void)
                     delay(2500);
                     break;
                 case (1):
-                    //                    CC = 99;
-                    //                    DL_TimerG_setCaptureCompareValue(PWM_0_INST, CC, DL_TIMER_CC_0_INDEX);
+                    // CC = 99;
+                    // DL_TimerG_setCaptureCompareValue(PWM_0_INST, CC, DL_TIMER_CC_0_INDEX);
                     sequential_turn(0);
                     break;
                 case (2):
@@ -214,7 +214,7 @@ int main(void)
             dev_addr_temp = device_address[dev_idx];
             // Read EEPROM - Not required for programming
             // For TPS929160 and TPS929240 this is actually the current data in the registers and not the data in the EEPROM
-            readEEPROM(dev_addr_temp, eepromData, FALSE);
+            readEEPROM(dev_addr_temp, (unsigned int *) eepromData, FALSE);
 #if TPS92912X
             // Read EEPROM shadow registers - They are expected to be random here - Not required for programming
             readEEPROM(dev_addr_temp, eepromData, TRUE);
@@ -235,13 +235,19 @@ int main(void)
                     delay(12500);
                 }
 
-                if (PROG_DEFAULT_EEPROM == TRUE) {
-                    progResult = programDefaultEEPROM(
-                        &dev_addr_temp, USE_REF_PIN_FOR_EEPROM_PROG);
-                } else {
-                    progResult = programEEPROM(
-                        &dev_addr_temp, USE_REF_PIN_FOR_EEPROM_PROG);
+#if PROG_DEFAULT_EEPROM
+                progResult =
+                    programDefaultEEPROM((unsigned int *) &dev_addr_temp,
+                        USE_REF_PIN_FOR_EEPROM_PROG);
+#else
+                progResult = programEEPROM((unsigned int *) &dev_addr_temp,
+                    USE_REF_PIN_FOR_EEPROM_PROG);
+#endif
+                if (progResult == FALSE) {
+                    // Error handle
                 }
+                // Reset progResult value here
+                progResult = FALSE;
 
                 // Now release REF pin pull-up
                 // Wait until S2 is pressed after releasing REF pin pull-up
@@ -272,23 +278,29 @@ int main(void)
                 }
 
                 // Write EEPROM shadow registers and program EEPROM for all devices specified
-                if (PROG_DEFAULT_EEPROM == TRUE) {
-                    progResult = programDefaultEEPROM(
-                        &dev_addr_temp, USE_REF_PIN_FOR_EEPROM_PROG);
-                } else {
-                    progResult = programEEPROM(
-                        &dev_addr_temp, USE_REF_PIN_FOR_EEPROM_PROG);
+#if PROG_DEFAULT_EEPROM
+                progResult =
+                    programDefaultEEPROM((unsigned int *) &dev_addr_temp,
+                        USE_REF_PIN_FOR_EEPROM_PROG);
+#else
+                progResult = programEEPROM((unsigned int *) &dev_addr_temp,
+                    USE_REF_PIN_FOR_EEPROM_PROG);
+#endif
+                if (progResult == FALSE) {
+                    // Error handle
                 }
+                // Reset progResult value here
+                progResult = FALSE;
             }
 
             // If address has been updated, now need to use the new address
 #if TPS92912X
             // Read EEPROM shadow registers - Now should be the same as programmed data - Not required
-            readEEPROM(dev_addr_temp, eepromData, TRUE);
+            readEEPROM(dev_addr_temp, (unsigned int *) eepromData, TRUE);
 #endif
             // Read EEPROM - Now should be the same as programmed data - Not required
             // For TPS929160 and TPS929240 this is actually the current data in the registers and not the data in the EEPROM
-            readEEPROM(dev_addr_temp, eepromData, FALSE);
+            readEEPROM(dev_addr_temp, (unsigned int *) eepromData, FALSE);
 
             // Turn off LED2 to show EEPROM programming and verification is done
             LED_RUN_OFF;

@@ -34,6 +34,6 @@ RTCA.enabledInterrupts = ["TSEVT"];
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 SYSCTL.clockTreeEn = true;
-
+SYSCTL.forceDefaultClkConfig = true;
 TAMPERIO.enabletio0         = true;
 TAMPERIO.tio0polarityEnable = "RISE";

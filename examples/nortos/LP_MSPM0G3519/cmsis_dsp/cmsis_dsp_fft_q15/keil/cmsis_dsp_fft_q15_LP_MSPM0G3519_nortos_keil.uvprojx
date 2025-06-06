@@ -57,7 +57,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0G3519__,ARM_MATH_CM0</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source/third_party/CMSIS/DSP/Include,../../../../../../source</IncludePath>
+              <IncludePath>../,../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source/third_party/CMSIS/DSP/Include,../../../../../../source</IncludePath>
             </VariousControls>
           </Cads>
           <LDads>

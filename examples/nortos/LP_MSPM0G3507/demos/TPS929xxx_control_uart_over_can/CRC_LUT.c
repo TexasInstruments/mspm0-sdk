@@ -31,19 +31,18 @@
  */
 
 #include "CRC_LUT.h"
-#include "ti_msp_dl_config.h"
 
 // As UART transmit from LSB to MSB, invert the polynomial 0x31 (0011 0001) to 0x8C (1000 1100)
 #define polynomialINV 0x8C
 #define LSB 0x01
 
-unsigned int crcArray[256];
+uint32_t crcArray[256];
 
 // Calculate and store the CRC of data from 0x00 to 0xFF
-void crcInitial()
+void crcInitial(void)
 {
-    unsigned int k, j;
-    unsigned int remainder;
+    uint32_t k, j;
+    uint32_t remainder;
 
     for (k = 0; k < 256; k++) {
         remainder = k;
@@ -60,11 +59,10 @@ void crcInitial()
 }
 
 // Calculate CRC of command frame
-unsigned int CRC_LUT(
-    unsigned int commandFrame_withoutCRC[], unsigned int byteLength)
+uint32_t CRC_LUT(uint32_t commandFrame_withoutCRC[], uint32_t byteLength)
 {
-    unsigned int k;
-    unsigned int remainder, tempData;
+    uint32_t k;
+    uint32_t remainder, tempData;
 
     // Assign the initial value 0xFF
     remainder = 0xFF;

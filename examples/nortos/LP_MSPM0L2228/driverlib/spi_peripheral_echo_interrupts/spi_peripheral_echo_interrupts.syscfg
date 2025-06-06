@@ -44,3 +44,4 @@ SPI1.peripheral.cs1Pin.$assign  = "PA27";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

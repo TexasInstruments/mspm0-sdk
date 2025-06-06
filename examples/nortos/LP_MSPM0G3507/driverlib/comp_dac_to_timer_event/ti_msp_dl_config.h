@@ -91,10 +91,6 @@ extern "C" {
 
 /* Defines for VREF */
 #define VREF_VOLTAGE_MV                                                     1400
-#define GPIO_VREF_VREFPOS_PORT                                             GPIOA
-#define GPIO_VREF_VREFPOS_PIN                                     DL_GPIO_PIN_23
-#define GPIO_VREF_IOMUX_VREFPOS                                  (IOMUX_PINCM53)
-#define GPIO_VREF_IOMUX_VREFPOS_FUNC                IOMUX_PINCM53_PF_UNCONNECTED
 
 
 

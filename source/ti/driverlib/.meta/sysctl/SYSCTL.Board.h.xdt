@@ -73,7 +73,7 @@
 %       let lfxInPinName = "lfxIn"+"Pin";
 %       let lfxInPackagePin = stat.peripheral[lfxInPinName].$solution.packagePinName;
 %       let lfxInPinCM = Common.getPinCM(lfxInPackagePin,stat,"LFXIN");
-%       let lfxInGpioName = system.deviceData.devicePins[lfxInPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let lfxInGpioName = system.deviceData.devicePins[lfxInPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let lfxInPort = Common.getGPIOPortMultiPad(lfxInPackagePin,stat,"LFXIN");
 %       let lfxInGpioPin = Common.getGPIONumberMultiPad(lfxInPackagePin,stat,"LFXIN");
 % let lfxInPortStr = "#define "+gpioStr+"_LFXT_PORT";
@@ -88,7 +88,7 @@
 %       let lfxOutPinName = "lfxOut"+"Pin";
 %       let lfxOutPackagePin = stat.peripheral[lfxOutPinName].$solution.packagePinName;
 %       let lfxOutPinCM = Common.getPinCM(lfxOutPackagePin,stat,"LFXOUT");
-%       let lfxOutGpioName = system.deviceData.devicePins[lfxOutPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let lfxOutGpioName = system.deviceData.devicePins[lfxOutPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let lfxOutGpioPin = Common.getGPIONumberMultiPad(lfxOutPackagePin,stat,"LFXOUT");
 % let lfxOutPinStr = "#define "+gpioStr+"_LFXOUT_PIN";
 % let lfxOutPinStr2 = "DL_GPIO_PIN_"+lfxOutGpioPin;
@@ -102,7 +102,7 @@
 %       let lfclkInPinName = "lfclkIn"+"Pin";
 %       let lfclkInPackagePin = stat.peripheral[lfclkInPinName].$solution.packagePinName;
 %       let lfclkInPinCM = Common.getPinCM(lfclkInPackagePin,stat,"LFCLKIN");
-%       let lfclkInGpioName = system.deviceData.devicePins[lfclkInPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let lfclkInGpioName = system.deviceData.devicePins[lfclkInPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let lfclkInPort = Common.getGPIOPortMultiPad(lfclkInPackagePin,stat,"LFCLKIN");
 %       let lfclkInGpioPin = Common.getGPIONumberMultiPad(lfclkInPackagePin,stat,"LFCLKIN");
 % let lfclkInPortStr = "#define "+gpioStr+"_LFCLKIN_PORT";
@@ -124,7 +124,7 @@
 %       let hfxInPinName = "hfxIn"+"Pin";
 %       let hfxInPackagePin = stat.peripheral[hfxInPinName].$solution.packagePinName;
 %       let hfxInPinCM = Common.getPinCM(hfxInPackagePin,stat,"HFXIN");
-%       let hfxInGpioName = system.deviceData.devicePins[hfxInPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let hfxInGpioName = system.deviceData.devicePins[hfxInPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let hfxInPort = Common.getGPIOPortMultiPad(hfxInPackagePin,stat,"HFXIN");
 %       let hfxInGpioPin = Common.getGPIONumberMultiPad(hfxInPackagePin,stat,"HFXIN");
 % let hfxInPortStr = "#define "+gpioStr+"_HFXT_PORT";
@@ -139,7 +139,7 @@
 %       let hfxOutPinName = "hfxOut"+"Pin";
 %       let hfxOutPackagePin = stat.peripheral[hfxOutPinName].$solution.packagePinName;
 %       let hfxOutPinCM = Common.getPinCM(hfxOutPackagePin,stat,"HFXOUT");
-%       let hfxOutGpioName = system.deviceData.devicePins[hfxOutPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let hfxOutGpioName = system.deviceData.devicePins[hfxOutPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let hfxOutGpioPin = Common.getGPIONumberMultiPad(hfxOutPackagePin,stat,"HFXOUT");
 % let hfxOutPinStr = "#define "+gpioStr+"_HFXOUT_PIN";
 % let hfxOutPinStr2 = "DL_GPIO_PIN_"+hfxOutGpioPin;
@@ -153,7 +153,7 @@
 %       let hfclkInPinName = "hfclkIn"+"Pin";
 %       let hfclkInPackagePin = stat.peripheral[hfclkInPinName].$solution.packagePinName;
 %       let hfclkInPinCM = Common.getPinCM(hfclkInPackagePin,stat,"HFCLKIN");
-%       let hfclkInGpioName = system.deviceData.devicePins[hfclkInPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let hfclkInGpioName = system.deviceData.devicePins[hfclkInPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let hfclkInPort = Common.getGPIOPortMultiPad(hfclkInPackagePin,stat,"HFCLKIN");
 %       let hfclkInGpioPin = Common.getGPIONumberMultiPad(hfclkInPackagePin,stat,"HFCLKIN");
 % let hfclkInPortStr = "#define "+gpioStr+"_HFCLKIN_PORT";
@@ -174,7 +174,7 @@
 %       let clkOutPinName = "clkOut"+"Pin";
 %       let clkOutPackagePin = stat.peripheral[clkOutPinName].$solution.packagePinName;
 %       let clkOutPinCM = Common.getPinCM(clkOutPackagePin,stat,"CLK_OUT");
-%       let clkOutGpioName = system.deviceData.devicePins[clkOutPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let clkOutGpioName = system.deviceData.devicePins[clkOutPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let clkOutPort = Common.getGPIOPortMultiPad(clkOutPackagePin,stat,"CLK_OUT");
 %       let clkOutGpioPin = Common.getGPIONumberMultiPad(clkOutPackagePin,stat,"CLK_OUT");
 % let clkOutPortStr = "#define "+gpioStr+"_CLKOUT_PORT";
@@ -207,7 +207,7 @@
 %       let roscPinName = "rosc"+"Pin";
 %       let roscPackagePin = stat.peripheral[roscPinName].$solution.packagePinName;
 %       let roscPinCM = Common.getPinCM(roscPackagePin,stat,"ROSC");
-%       let roscGpioName = system.deviceData.devicePins[roscPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let roscGpioName = system.deviceData.devicePins[roscPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let roscPort = Common.getGPIOPortMultiPad(roscPackagePin,stat,"ROSC");
 %       let roscGpioPin = Common.getGPIONumberMultiPad(roscPackagePin,stat,"ROSC");
 % let roscPortStr = "#define "+gpioStr+"_ROSC_PORT";

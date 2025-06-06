@@ -32,7 +32,7 @@ ADC121.peripheral.adcPin12.$assign    = "PA14";
 ADC121.DMA_CHANNEL.$name              = "DMA_CH0";
 ADC121.DMA_CHANNEL.addressMode        = "f2b";
 ADC121.DMA_CHANNEL.peripheral.$assign = "DMA_CH0";
-ADC121.adcPin12Config.$name           = "ti_driverlib_gpio_GPIOPinGeneric0";
+
 
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";

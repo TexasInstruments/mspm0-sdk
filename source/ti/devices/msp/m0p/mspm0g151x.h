@@ -104,6 +104,7 @@ typedef enum IRQn
   AESADV_INT_IRQn             = 28,     /* 44 AESADV_INT Interrupt */
   UART6_INT_IRQn              = 29,     /* 45 UART6_INT Interrupt */
   LFSS_INT_IRQn               = 30,     /* 46 LFSS_INT Interrupt */
+  RTC_B_INT_IRQn              = 30,     /* 46 RTC_B_INT Interrupt */
   DMA_INT_IRQn                = 31,     /* 47 DMA_INT Interrupt */
 } IRQn_Type;
 
@@ -151,6 +152,7 @@ typedef enum IRQn
 #define AESADV_INT_VECn         44    /* AESADV_INT Interrupt */
 #define UART6_INT_VECn          45    /* UART6_INT Interrupt */
 #define LFSS_INT_VECn           46    /* LFSS_INT Interrupt */
+#define RTC_B_INT_VECn          46    /* RTC_B_INT Interrupt */
 #define DMA_INT_VECn            47    /* DMA_INT Interrupt */
 
 
@@ -214,6 +216,7 @@ typedef enum IRQn
 #include <ti/devices/msp/peripherals/hw_keystorectl.h>
 #include <ti/devices/msp/peripherals/hw_lfss.h>
 #include <ti/devices/msp/peripherals/hw_mathacl.h>
+#include <ti/devices/msp/peripherals/hw_rtc.h>
 #include <ti/devices/msp/peripherals/hw_spi.h>
 #include <ti/devices/msp/peripherals/hw_trng.h>
 #include <ti/devices/msp/peripherals/hw_uart.h>
@@ -237,6 +240,7 @@ typedef enum IRQn
 #define __MSPM0_HAS_KEYSTORE_CTL__
 #define __MSPM0_HAS_MATHACL__
 #define __MSPM0_HAS_LFSS__
+#define __MSPM0_HAS_RTC_B__
 #define __MSPM0_HAS_SPI__
 #define __MSPM0_HAS_TRNG__
 #define __MSPM0_HAS_UART_EXTD__
@@ -308,6 +312,7 @@ typedef enum IRQn
 #define UART6_BASE                     (0x40506000U)     /*!< Base address of module UART6 */
 #define FLASHCTL_BASE                  (0x400CD000U)     /*!< Base address of module FLASHCTL */
 #define LFSS_BASE                      (0x40094000U)     /*!< Base address of module LFSS */
+#define RTC_B_BASE                     (0x40094000U)     /*!< Base address of module RTC_B */
 #define I2C1_BASE                      (0x400F2000U)     /*!< Base address of module I2C1 */
 #define I2C2_BASE                      (0x400F4000U)     /*!< Base address of module I2C2 */
 #define FACTORYREGION_BASE             (0x41C40000U)     /*!< Base address of module FACTORYREGION */
@@ -370,6 +375,7 @@ static UART_Regs                                * const UART5                   
 static UART_Regs                                * const UART6                          = ((UART_Regs *) UART6_BASE);
 static FLASHCTL_Regs                            * const FLASHCTL                       = ((FLASHCTL_Regs *) FLASHCTL_BASE);
 static LFSS_Regs                                * const LFSS                           = ((LFSS_Regs *) LFSS_BASE);
+static RTC_Regs                                 * const RTC_B                          = ((RTC_Regs *) RTC_B_BASE);
 static I2C_Regs                                 * const I2C1                           = ((I2C_Regs *) I2C1_BASE);
 static I2C_Regs                                 * const I2C2                           = ((I2C_Regs *) I2C2_BASE);
 static FACTORYREGION_OPEN_Regs                  * const FACTORYREGION                  = ((FACTORYREGION_OPEN_Regs *) FACTORYREGION_BASE);

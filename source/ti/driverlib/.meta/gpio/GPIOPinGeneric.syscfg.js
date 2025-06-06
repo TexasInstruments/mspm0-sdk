@@ -33,6 +33,7 @@ let config = [
         options: [
             {name: "SD", displayName: "Standard"},
             {name: "SDL", displayName: "Standard"},
+            {name: "USB", displayName: "Standard"},
             {name: "SDW", displayName: "Standard with Wake"},
             {name: "HS", displayName: "High-Speed"},
             {name: "HD", displayName: "High-Drive"},
@@ -41,10 +42,10 @@ let config = [
         getValue: (inst) => {
             try{
                 if(inst.$ownedBy.$module.$name == "/ti/driverlib/TIMERFault"){
-                    return system.deviceData.gpio.pinInfo[inst.$ownedBy[inst.passedResourceName].$solution.packagePinName].devicePin.attributes.io_type;
+                    return Common.getAttribute((system.deviceData.gpio.pinInfo[inst.$ownedBy[inst.passedResourceName].$solution.packagePinName].devicePin),("io_type"));
                 }
                 else{
-                    return system.deviceData.gpio.pinInfo[inst.$ownedBy.peripheral[inst.passedResourceName].$solution.packagePinName].devicePin.attributes.io_type;
+                    return Common.getAttribute((system.deviceData.gpio.pinInfo[inst.$ownedBy.peripheral[inst.passedResourceName].$solution.packagePinName].devicePin),("io_type"));
                 }
             }
             catch (e) {
@@ -237,10 +238,10 @@ function validatePinmux(inst,validation){
     try{
         let pinIOStructure = "SD";
         if(inst.$ownedBy.$module.$name == "/ti/driverlib/TIMERFault"){
-            pinIOStructure = system.deviceData.gpio.pinInfo[inst.$ownedBy[inst.passedResourceName].$solution.packagePinName].devicePin.attributes.io_type;
+            pinIOStructure = Common.getAttribute((system.deviceData.gpio.pinInfo[inst.$ownedBy[inst.passedResourceName].$solution.packagePinName].devicePin),("io_type"));
         }
         else{
-            pinIOStructure = system.deviceData.gpio.pinInfo[inst.$ownedBy.peripheral[inst.passedResourceName].$solution.packagePinName].devicePin.attributes.io_type;
+            pinIOStructure = Common.getAttribute((system.deviceData.gpio.pinInfo[inst.$ownedBy.peripheral[inst.passedResourceName].$solution.packagePinName].devicePin),("io_type"));
         }
         if(inst.direction === "OUTPUT") {
             if(inst.driveStrength === "HIGH" && (pinIOStructure.match(/HD|HS/) === null)){

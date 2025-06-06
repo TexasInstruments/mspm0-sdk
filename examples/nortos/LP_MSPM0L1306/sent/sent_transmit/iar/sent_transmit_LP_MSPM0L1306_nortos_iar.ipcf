@@ -87,16 +87,5 @@
             <path copyTo="$PROJ_DIR$/SENT/SENT.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/SENT.c</path>
             <path copyTo="$PROJ_DIR$/SENT/SENT.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/SENT.h</path>
         </group>
-        <group name="SENT/HAL" build="true">
-            <path copyTo="$PROJ_DIR$/SENT/HAL/hal.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/hal.h</path>
-            <path copyTo="$PROJ_DIR$/SENT/HAL/HAL_GPIO.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/HAL_GPIO.c</path>
-            <path copyTo="$PROJ_DIR$/SENT/HAL/HAL_GPIO.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/HAL_GPIO.h</path>
-            <path copyTo="$PROJ_DIR$/SENT/HAL/hal_interrupts.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/hal_interrupts.c</path>
-            <path copyTo="$PROJ_DIR$/SENT/HAL/hal_interrupts.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/hal_interrupts.h</path>
-            <path copyTo="$PROJ_DIR$/SENT/HAL/hal_system.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/hal_system.c</path>
-            <path copyTo="$PROJ_DIR$/SENT/HAL/hal_system.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/hal_system.h</path>
-            <path copyTo="$PROJ_DIR$/SENT/HAL/hal_timer.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/hal_timer.c</path>
-            <path copyTo="$PROJ_DIR$/SENT/HAL/hal_timer.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/sent/sent_transmit/SENT/HAL/hal_timer.h</path>
-        </group>
     </files>
 </iarProjectConnection>

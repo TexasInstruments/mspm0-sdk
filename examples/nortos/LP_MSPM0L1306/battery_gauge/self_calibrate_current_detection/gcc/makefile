@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 
-OBJECTS = main.obj App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj UserConfig_UserConfig.obj gcc_startup_mspm0l130x_gcc.obj
+OBJECTS = Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj UserConfig_UserConfig.obj main.obj App.obj gcc_startup_mspm0l130x_gcc.obj
 NAME = self_calibrate_current_detection
 
 CFLAGS += -I.. \
@@ -48,14 +48,6 @@ LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/gcc/m0p/rts/mspm0l11x
 
 all: $(NAME).out
 
-main.obj: ../main.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-App.obj: ../App.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
 Driver_MSPM0Lxx_BSP.obj: ../Driver/MSPM0Lxx_BSP.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
@@ -65,6 +57,14 @@ Driver_MSPM0Lxx_Driver.obj: ../Driver/MSPM0Lxx_Driver.c
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
 UserConfig_UserConfig.obj: ../UserConfig/UserConfig.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+main.obj: ../main.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+App.obj: ../App.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

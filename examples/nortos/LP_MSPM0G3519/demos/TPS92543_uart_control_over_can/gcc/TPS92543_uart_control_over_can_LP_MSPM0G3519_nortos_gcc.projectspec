@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0G3519"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="TPS92543_uart_control_over_can"
+        name="TPS92543_uart_control_over_can_LP_MSPM0G3519_nortos_gcc"
+        configurations="Debug"
+        toolChain="GNU"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G3519"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -O2
+            @device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -mcpu=cortex-m0plus
+            -march=armv6-m
+            -mthumb
+            -std=c99
+            -std=c++11
+            -mfloat-abi=soft
+            -ffunction-sections
+            -fdata-sections
+            -g
+            -gstrict-dwarf
+            -Wall
+            -I${CG_TOOL_ROOT}/arm-none-eabi/include/newlib-nano
+            -I${CG_TOOL_ROOT}/arm-none-eabi/include
+        "
+        linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0gx51x
+            -nostartfiles
+            -Tdevice.lds.genlibs
+            -l:driverlib.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -march=armv6-m
+            -mthumb
+            -static
+            -Wl,--gc-sections
+            -L${CG_TOOL_ROOT}/arm-none-eabi/lib/thumb/v6-m/nofp
+            -lgcc
+            -lc
+            -lm
+            --specs=nosys.specs
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler gcc
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="This example shows the implementation of using MSPM0 to drive TPS9254x to control different LED patterns.">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../CRC.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../CRC.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../MSPM0_DMA.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../MSPM0_DMA.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../MSPM0_LED.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../MSPM0_MCAN.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../MSPM0_MCAN.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../MSPM0_TIMER.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../MSPM0_TIMER.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../SYSTEM_INFO.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../SYSTEM_INFO.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS92543_API.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS92543_API.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS92543_PATTERN.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS92543_PATTERN.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS92543_RWPACK.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS92543_RWPACK.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../TPS92543.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../main.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

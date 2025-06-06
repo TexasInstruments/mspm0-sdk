@@ -49,6 +49,14 @@
     </linkerExtraOptions>
 
     <customBuildTools>
+        <customBuildTool atRoot="true" name="SysConfig"> <!-- Custom build tool for entire project-->
+            <fileExtensions>.syscfg</fileExtensions>
+            <command>$SYSCONFIG_ROOT$/sysconfig_cli.bat -o $PROJ_DIR$ -s "$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json" --compiler iar $FILE_PATH$</command>
+            <output>
+                <path>SysConfig_Generated_Files.ipcf</path>
+            </output>
+            <hasPrio>true</hasPrio> <!-- true: run this tool before all other tools-->
+        </customBuildTool>
     </customBuildTools>
 
     <heaps>
@@ -71,8 +79,7 @@
         <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3519/driverlib/rtc_b_calendar_alarm_standby/README.html</path>
         <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3519/driverlib/rtc_b_calendar_alarm_standby/README.md</path>
         <path copyTo="$PROJ_DIR$/rtc_b_calendar_alarm_standby.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3519/driverlib/rtc_b_calendar_alarm_standby/rtc_b_calendar_alarm_standby.c</path>
-        <path copyTo="$PROJ_DIR$/ti_msp_dl_config.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3519/driverlib/rtc_b_calendar_alarm_standby/ti_msp_dl_config.c</path>
-        <path copyTo="$PROJ_DIR$/ti_msp_dl_config.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3519/driverlib/rtc_b_calendar_alarm_standby/ti_msp_dl_config.h</path>
+        <path copyTo="$PROJ_DIR$/rtc_b_calendar_alarm_standby.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3519/driverlib/rtc_b_calendar_alarm_standby/rtc_b_calendar_alarm_standby.syscfg</path>
         <group name="iar" build="true">
             <path copyTo="$PROJ_DIR$/iar/startup_mspm0g351x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G3519/driverlib/rtc_b_calendar_alarm_standby/iar/startup_mspm0g351x_iar.c</path>
         </group>

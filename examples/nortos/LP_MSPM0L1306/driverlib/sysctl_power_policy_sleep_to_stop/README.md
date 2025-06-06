@@ -11,11 +11,6 @@ every 2s while the device is in STOP.
 TIMG0 will toggle the LED2 constantly every 5000ms during both SLEEP and
 STOP.
 
-**Note**: When debugging the application, the power access port (PWR-AP) will force
-the device to remain active. In order to see full functionality of this example, it is
-recommended to terminate the debug session. Refer to the Debug section of the TRM
-for more information about debugging in low power modes.
-
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
@@ -62,10 +57,9 @@ LED1 will toggle for 5 seconds while the device is in SLEEP0, and and then
 toggle every 2s while the device is in STOP.
 LED0 will continue to toggle every 500ms.
 
-## Important Note
-Early experimental samples have a known issue where the user is unable to
-reconnect their debugger connection after the device has gone into STOP or
-STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain
-the ability to connect the device to the debugger. This information is located
-in the "MSPM0G and MSPM0L Families: Functional Differences With Early Samples"
-document.
+
+**Note**: When debugging the application, the power access port (PWR-AP) will force
+the device to remain active, and not enter the low power mode.
+In order to see full functionality of this example, it is
+recommended to terminate the debug session. Refer to the Debug section of the TRM
+for more information about debugging in low power modes.

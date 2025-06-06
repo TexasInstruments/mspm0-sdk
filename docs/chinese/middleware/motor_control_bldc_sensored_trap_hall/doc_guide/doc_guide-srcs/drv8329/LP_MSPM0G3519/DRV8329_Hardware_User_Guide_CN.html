@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRV8329AEVM Hardware User Guide &mdash; Hall_sensored_Motor_Control_Software_User_Guide_CN 1.10.00.xx documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="DRV8329 GUI User Guide" href="../LP_MSPM0H3216/DRV8329_GUI_User_Guide_CN.html" />
+    <link rel="prev" title="DRV8329 GUI User Guide" href="DRV8329_GUI_User_Guide_CN.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Hall_sensored_Motor_Control_Software_User_Guide_CN
+          </a>
+              <div class="version">
+                1.10.00.xx
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Hall_sensored_Trap_Motor_Control_library_CN.html">BLDC Motor Control Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../MSPM0_Sensored_Trap_Software_Users_Guide_CN.html">MSPM0 Sensored Trap Software User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8300/DRV8300_GUI_User_Guide_CN.html">DRV8300 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8300/DRV8300_Hardware_User_Guide_CN.html">DRV8300Dxxx-EVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8311/DRV8311_GUI_User_Guide_CN.html">DRV8311 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8311/DRV8311_Hardware_User_Guide_CN.html">DRV8311HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8316/DRV8316_GUI_User_Guide_CN.html">DRV8316 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8316/DRV8316_Hardware_User_Guide_CN.html">DRV8316REVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8317/DRV8317_GUI_User_Guide_CN.html">DRV8317 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8317/DRV8317_Hardware_User_Guide_CN.html">DRV8317HEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8323/DRV8323_GUI_User_Guide_CN.html">DRV8323 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8323/DRV8323_Hardware_User_Guide_CN.html">DRV8323RHEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8328/DRV8328_GUI_User_Guide_CN.html">DRV8328 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8328/DRV8328_Hardware_User_Guide_CN.html">DRV8328AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0C1106/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0C1106/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0G3507/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0G3507/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DRV8329AEVM Hardware User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">1. Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-required">2. Hardware Required</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-setup">3. Hardware Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0H3216/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0H3216/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0L1306/DRV8329_GUI_User_Guide_CN.html">DRV8329 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LP_MSPM0L1306/DRV8329_Hardware_User_Guide_CN.html">DRV8329AEVM Hardware User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8353/DRV8353_GUI_User_Guide_CN.html">DRV8353 GUI User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../drv8353/DRV8353_Hardware_User_GuideCN.html">DRV8353RHEVM Hardware User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Hall_sensored_Motor_Control_Software_User_Guide_CN</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>DRV8329AEVM Hardware User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drv8329aevm-hardware-user-guide">
+<h1>DRV8329AEVM Hardware User Guide<a class="headerlink" href="#drv8329aevm-hardware-user-guide" title="Permalink to this heading">¶</a></h1>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>To spin the BLDC motor with DRV8329AEVM the user needs to modify some jumpers on the MSP0 Launchpad, connect the EVM pins to the LaunchPad, connect the motor phases and hall sensors to the DRV hardware and power on the supply.</p>
+</section>
+<section id="hardware-required">
+<h2>2. Hardware Required<a class="headerlink" href="#hardware-required" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ti.com/tool/LP-MSPM0G3519">LP-MSPM0G3519</a> - MSPM0G3519 Launchpad</p></li>
+<li><p><a class="reference external" href="https://www.ti.com/tool/DRV8329AEVM">DRV8329AEVM</a> - DRV8329AEVM evaluation module</p></li>
+<li><p>DC Power supply that supports the required voltage and current</p></li>
+<li><p>BLDC Motor</p></li>
+<li><p>Jumper wires (to connect LP to EVM)</p></li>
+<li><p>Micro-USB cable</p></li>
+</ul>
+</section>
+<section id="hardware-setup">
+<h2>3. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Connect the jumpers J12 and J13 on the LP-MSPM0G3519 to the BP position</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../../../_images/jumpers_image7.png" />
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>If using external ADC reference, populate resistor R21 on the LP-MSPM0G3519 and apply the external reference voltage to PA21, which is accessible on the bottom header row of the Launchpad.</p></li>
+<li><p>Connect the LP-MSPM0G3519 to the DRV8329AEVM using jumper wires as shown in the table below. Refer to the schematic connector pinout for the locations of the DRV8329AEVM signals.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="" src="../../../_images/schematic7.png" />
+</figure>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Connection</p></th>
+<th class="head"><p>MSPM0G3519</p></th>
+<th class="head"><p>DRV8329AEVM</p></th>
+<th class="head"><p>Jumper Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Phase A HS input</p></td>
+<td><p>PB3</p></td>
+<td><p>INHA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Phase A LS input</p></td>
+<td><p>PB9</p></td>
+<td><p>INLA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Phase B HS input</p></td>
+<td><p>PC4</p></td>
+<td><p>INHB</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Phase B LS input</p></td>
+<td><p>PC5</p></td>
+<td><p>INLB</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Phase C HS input</p></td>
+<td><p>PB4</p></td>
+<td><p>INHC</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Phase C LS input</p></td>
+<td><p>PB5</p></td>
+<td><p>INLC</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>HALL A input</p></td>
+<td><p>PA10</p></td>
+<td><p>HALLA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>HALL B input</p></td>
+<td><p>PA30</p></td>
+<td><p>HALLB</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>HALL C input</p></td>
+<td><p>PA12</p></td>
+<td><p>HALLC</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Bus voltage input</p></td>
+<td><p>PA14</p></td>
+<td><p>VSENPVDD</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Phase A voltage</p></td>
+<td><p>PA27</p></td>
+<td><p>VSENA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Phase B voltage</p></td>
+<td><p>PA26</p></td>
+<td><p>VSENB</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Phase C voltage</p></td>
+<td><p>PB24</p></td>
+<td><p>VSENC</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Shunt current</p></td>
+<td><p>PB27</p></td>
+<td><p>ISENA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DRV fault input</p></td>
+<td><p>PB6</p></td>
+<td><p>nFAULT_49C</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>DRV sleep input</p></td>
+<td><p>PA11</p></td>
+<td><p>nSLEEP_49C</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>DRVOFF input</p></td>
+<td><p>PB12</p></td>
+<td><p>DRVOFF</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li><p>Connect the 3 phases of the motor to OUTA, OUTB, and OUTC of the motor connector terminal block on the DRV8329AEVM and the HALLA/B/C, Hall power, and Hall GND signals to the Hall connector block. <strong>Note: The user should identify the correct phases of motor from motor datasheets, this will varry from motor to motor.</strong></p></li>
+<li><p>Connect the positive and negative of the power supply to VM and PGND/GND of the power connector terminal block to the DRV8329AEVM. Don’t turn on the power supply output.</p></li>
+<li><p>Connect a Micro-USB cable from the LP-MSPM0G3519 to the PC.</p></li>
+<li><p>Set the power supply to a motor voltage within the DRV8329 specifications. Turn on the power supply. The green VM LED on the DRV8329AEVM should turn on.</p></li>
+<li><p>Once all the setup is done, spin the motor using the software or GUI. Refer to <a class="reference external" href="../../MSPM0_Sensored_Trap_Software_Users_Guide_CN.html">Software User Guide</a> or <a class="reference external" href="DRV8329_GUI_User_Guide_CN.html">GUI User Guide</a> for more details.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="DRV8329_GUI_User_Guide_CN.html" class="btn btn-neutral float-left" title="DRV8329 GUI User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../LP_MSPM0H3216/DRV8329_GUI_User_Guide_CN.html" class="btn btn-neutral float-right" title="DRV8329 GUI User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

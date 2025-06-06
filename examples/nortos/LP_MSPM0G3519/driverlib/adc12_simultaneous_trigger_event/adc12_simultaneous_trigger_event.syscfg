@@ -32,9 +32,9 @@ ADC121.subChanID            = 1;
 ADC121.adcMem0avgen         = true;
 ADC121.hwNumerator          = "DL_ADC12_HW_AVG_NUM_ACC_128";
 ADC121.hwDenominator        = "DL_ADC12_HW_AVG_DEN_DIV_BY_128";
-ADC121.adcMem0chansel       = "DL_ADC12_INPUT_CHAN_12";
+ADC121.adcMem0chansel       = "DL_ADC12_INPUT_CHAN_2";
 ADC121.peripheral.$assign   = "ADC0";
-ADC121.adcPin12Config.$name = "ti_driverlib_gpio_GPIOPinGeneric0";
+
 
 ADC122.$name                       = "ADC12_1";
 ADC122.sampClkSrc                  = "DL_ADC12_CLOCK_ULPCLK";
@@ -49,7 +49,7 @@ ADC122.enabledInterrupts           = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
 ADC122.adcMem0chansel              = "DL_ADC12_INPUT_CHAN_14";
 ADC122.peripheral.$assign          = "ADC1";
 ADC122.peripheral.adcPin14.$assign = "PB27";
-ADC122.adcPin14Config.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
+
 
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";

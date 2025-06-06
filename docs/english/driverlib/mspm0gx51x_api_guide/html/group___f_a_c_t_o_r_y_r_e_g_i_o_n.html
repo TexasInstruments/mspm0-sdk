@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0GX51X Driver Library
-   &#160;<span id="projectnumber">2.04.00.06</span>
+   &#160;<span id="projectnumber">2.05.00.05</span>
    </div>
   </td>
  </tr>
@@ -67,32 +67,14 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Factory Region (FACTORYREGION)</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html">DL_FACTORYREGION_TrimValues</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data struct for <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gab1d2d4dfcdf4da3aa721b82b39311bb5">DL_FactoryRegion_initTrimTable</a>.  <a href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:gabc80466c74d7804ea6f567feb3e92c2f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gabc80466c74d7804ea6f567feb3e92c2f">DL_FACTORYREGION_TRIM_FLAG_IS_SET</a>&#160;&#160;&#160;(0xCAFECAFE)</td></tr>
-<tr class="memdesc:gabc80466c74d7804ea6f567feb3e92c2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro indicating SRAM trim table has been initialized.  <a href="#gabc80466c74d7804ea6f567feb3e92c2f">More...</a><br /></td></tr>
-<tr class="separator:gabc80466c74d7804ea6f567feb3e92c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga39f1ab68097f1f1c678f57d2a7956b30"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram</a> (void)</td></tr>
-<tr class="memdesc:ga39f1ab68097f1f1c678f57d2a7956b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check to see if TRIM content has been copied to SRAM.  <a href="#ga39f1ab68097f1f1c678f57d2a7956b30">More...</a><br /></td></tr>
-<tr class="separator:ga39f1ab68097f1f1c678f57d2a7956b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga40ce96a6b6a3f1174104010cc8abc028"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga40ce96a6b6a3f1174104010cc8abc028">DL_FactoryRegion_getMAINFlashSize</a> (void)</td></tr>
 <tr class="memdesc:ga40ce96a6b6a3f1174104010cc8abc028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of the MAIN Flash region.  <a href="#ga40ce96a6b6a3f1174104010cc8abc028">More...</a><br /></td></tr>
 <tr class="separator:ga40ce96a6b6a3f1174104010cc8abc028"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,73 +153,11 @@ Functions</h2></td></tr>
 <tr class="memitem:ga30ed496165c67dac65333c7704a33d5a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga30ed496165c67dac65333c7704a33d5a">DL_FactoryRegion_getBOOTCRCData</a> (void)</td></tr>
 <tr class="memdesc:ga30ed496165c67dac65333c7704a33d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the BOOTCRC value.  <a href="#ga30ed496165c67dac65333c7704a33d5a">More...</a><br /></td></tr>
 <tr class="separator:ga30ed496165c67dac65333c7704a33d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab1d2d4dfcdf4da3aa721b82b39311bb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gab1d2d4dfcdf4da3aa721b82b39311bb5">DL_FactoryRegion_initTrimTable</a> (void)</td></tr>
-<tr class="memdesc:gab1d2d4dfcdf4da3aa721b82b39311bb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the struct with values from TRIM.  <a href="#gab1d2d4dfcdf4da3aa721b82b39311bb5">More...</a><br /></td></tr>
-<tr class="separator:gab1d2d4dfcdf4da3aa721b82b39311bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:gaef2a203c98128f5f84b4c10cf8173017"><td class="memItemLeft" align="right" valign="top"><a id="gaef2a203c98128f5f84b4c10cf8173017"></a>
-<a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html">DL_FACTORYREGION_TrimValues</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gaef2a203c98128f5f84b4c10cf8173017">FACTORYVALUE</a></td></tr>
-<tr class="memdesc:gaef2a203c98128f5f84b4c10cf8173017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to trim table values in SRAM. <br /></td></tr>
-<tr class="separator:gaef2a203c98128f5f84b4c10cf8173017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p><a class="anchor" id="ti_dl_dl_factoryregion_Overview"></a></p><h1>Overview</h1>
 <hr/>
- <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="gabc80466c74d7804ea6f567feb3e92c2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabc80466c74d7804ea6f567feb3e92c2f">&sect;&nbsp;</a></span>DL_FACTORYREGION_TRIM_FLAG_IS_SET</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DL_FACTORYREGION_TRIM_FLAG_IS_SET&#160;&#160;&#160;(0xCAFECAFE)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Macro indicating SRAM trim table has been initialized. </p>
-<p>This define is used to indicate that the trim table in SRAM has been initialized with values from TRIM. </p>
-
-<p>Referenced by <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ga39f1ab68097f1f1c678f57d2a7956b30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga39f1ab68097f1f1c678f57d2a7956b30">&sect;&nbsp;</a></span>DL_FactoryRegion_isTrimTableInSram()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">__STATIC_INLINE bool DL_FactoryRegion_isTrimTableInSram </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Check to see if TRIM content has been copied to SRAM. </p>
-<dl class="section return"><dt>Returns</dt><dd>Status of trim table flag.</dd></dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">Returns</td><td>'1' if flag has been set. </td></tr>
-    <tr><td class="paramname">Returns</td><td>'0' if flag has not been set. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#a40b95d5da16925b77cb18cf8dbc9c98e">DL_FACTORYREGION_TrimValues::DATA_SET</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gabc80466c74d7804ea6f567feb3e92c2f">DL_FACTORYREGION_TRIM_FLAG_IS_SET</a>.</p>
-
-<p>Referenced by <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga09b17f17a05b597418abe1b42205080c">DL_FactoryRegion_getBSLPinI2CSCLFunction()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga787193febe709889611977cdff0559fa">DL_FactoryRegion_getBSLPinI2CSCLPad()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga0ec958d93e5cfafe2283bd81b4b63c7e">DL_FactoryRegion_getBSLPinI2CSDAFunction()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gab239912e78e79f9b1f4fb56311245042">DL_FactoryRegion_getBSLPinI2CSDAPad()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga5436a0ccf1bb18358a3a6fbd87f0b426">DL_FactoryRegion_getBSLPinInvokeGPIOLevel()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga2b8cc3c958d58bfddc5d9b849da1c899">DL_FactoryRegion_getBSLPinInvokeGPIOModule()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga56b6c24c8182541e492fc0694e1998df">DL_FactoryRegion_getBSLPinInvokeGPIOModulePad()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga9aabf21b02cf8865517f5ea81d6a8d8e">DL_FactoryRegion_getBSLPinInvokeGPIOPin()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga9fece2a8915d5b777d7fae84fdb3c8fe">DL_FactoryRegion_getBSLPinUARTRXDFunction()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga2d5d46ece3f9d6f77ad222d4d33d4a72">DL_FactoryRegion_getBSLPinUARTRXDPad()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga580426429e9515b5c74bb9686e8e626c">DL_FactoryRegion_getBSLPinUARTTXDFunction()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga026726ff5904c392c62a457294d252f4">DL_FactoryRegion_getBSLPinUARTTXDPad()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gaf4b4c1374ce1ecd5ca82d58967d74cd1">DL_FactoryRegion_getDATAFlashSize()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga40ce96a6b6a3f1174104010cc8abc028">DL_FactoryRegion_getMAINFlashSize()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga9b9fbefd5b311955878b27fbb59717bd">DL_FactoryRegion_getManufacturerCode()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga5ad34be0c975f04010e1b85e31a1cd5c">DL_FactoryRegion_getNumBanks()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga3ca8c87e951628c37f788fbc153286fc">DL_FactoryRegion_getPartNumber()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga79e3ce930ef0ad4b02f37cc060291524">DL_FactoryRegion_getSRAMFlashSize()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gaadca77b3f265865214254f6df3dd1843">DL_FactoryRegion_getTemperatureVoltage()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gaeebb4fc2fe754da9e19c3633faaae22b">DL_FactoryRegion_getTraceID()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gada04f47591d77c057810429e4b3e71ad">DL_FactoryRegion_getUserIDMajorRev()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga0278a888be1980c09171f3bf99b59a89">DL_FactoryRegion_getUserIDMinorRev()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga10a2789816c4e12d801e4182112c743e">DL_FactoryRegion_getUserIDPart()</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga838b32ac0bc068b498a7472c0ea6d5d2">DL_FactoryRegion_getUserIDVariant()</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga183315ee116873f843fb03c758da1458">DL_FactoryRegion_getVersion()</a>.</p>
-
-</div>
-</div>
+ <h2 class="groupheader">Function Documentation</h2>
 <a id="ga40ce96a6b6a3f1174104010cc8abc028"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga40ce96a6b6a3f1174104010cc8abc028">&sect;&nbsp;</a></span>DL_FactoryRegion_getMAINFlashSize()</h2>
 
@@ -257,7 +177,7 @@ Variables</h2></td></tr>
 <p>Get the size of the MAIN Flash region. </p>
 <dl class="section return"><dt>Returns</dt><dd>The size of the MAIN Flash region in number of kB. </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#adbb7cbc63e4fb84fc0309e5a044463df">DL_FACTORYREGION_TrimValues::SRAMFLASH</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 <p>Referenced by <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaec5c6d11afcd6bcac2db0e2789892b5d">DL_FlashCTL_getFlashSectorNumberInBank()</a>.</p>
 
@@ -282,7 +202,7 @@ Variables</h2></td></tr>
 <p>Get the size of the SRAM region. </p>
 <dl class="section return"><dt>Returns</dt><dd>The size of the SRAM region in number of kB. </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#adbb7cbc63e4fb84fc0309e5a044463df">DL_FACTORYREGION_TrimValues::SRAMFLASH</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -305,7 +225,7 @@ Variables</h2></td></tr>
 <p>Get the size of the DATA Flash region. </p>
 <dl class="section return"><dt>Returns</dt><dd>The size of the DATA Flash region in number of kB. </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#adbb7cbc63e4fb84fc0309e5a044463df">DL_FACTORYREGION_TrimValues::SRAMFLASH</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -328,7 +248,7 @@ Variables</h2></td></tr>
 <p>Get the number of Flash banks on the device. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of flash banks. A value between [1, 4]. </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#adbb7cbc63e4fb84fc0309e5a044463df">DL_FACTORYREGION_TrimValues::SRAMFLASH</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 <p>Referenced by <a class="el" href="group___f_l_a_s_h_c_t_l.html#gaec5c6d11afcd6bcac2db0e2789892b5d">DL_FlashCTL_getFlashSectorNumberInBank()</a>.</p>
 
@@ -353,7 +273,7 @@ Variables</h2></td></tr>
 <p>Get the trace ID of the device. </p>
 <dl class="section return"><dt>Returns</dt><dd>The trace ID of the device. </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#a40e1fb07bb34634ddbc4ffb8557c9b67">DL_FACTORYREGION_TrimValues::TRACEID</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -376,7 +296,7 @@ Variables</h2></td></tr>
 <p>Get JEDEC bank and company code. </p>
 <dl class="section return"><dt>Returns</dt><dd>TI's JEDEC bank and company code </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#aaa24a3c93bcc6e5091152298a61fa61d">DL_FACTORYREGION_TrimValues::DEVICEID</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -399,7 +319,7 @@ Variables</h2></td></tr>
 <p>Get the part number of the device. </p>
 <dl class="section return"><dt>Returns</dt><dd>The part number of the device </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#aaa24a3c93bcc6e5091152298a61fa61d">DL_FACTORYREGION_TrimValues::DEVICEID</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -422,7 +342,7 @@ Variables</h2></td></tr>
 <p>Get the version of the device. </p>
 <dl class="section return"><dt>Returns</dt><dd>The version of the device </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#aaa24a3c93bcc6e5091152298a61fa61d">DL_FACTORYREGION_TrimValues::DEVICEID</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -445,7 +365,7 @@ Variables</h2></td></tr>
 <p>Get the bit pattern identifying the part. </p>
 <dl class="section return"><dt>Returns</dt><dd>The bit pattern identifying the part </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#ae7a5333065907c07ab0492b231a42da9">DL_FACTORYREGION_TrimValues::USERID</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -468,7 +388,7 @@ Variables</h2></td></tr>
 <p>Get the bit pattern identifying a variant of a part. </p>
 <dl class="section return"><dt>Returns</dt><dd>The bit pattern identifying a variant of a part </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#ae7a5333065907c07ab0492b231a42da9">DL_FACTORYREGION_TrimValues::USERID</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -492,7 +412,7 @@ Variables</h2></td></tr>
 <p>Monotonic increasing value indicating a new revision that preserves compatibility with lesser minorrev values. New capability may be introduced such that lesser minorrev numbers may not be compatible with greater if the new capability is used</p>
 <dl class="section return"><dt>Returns</dt><dd>The value that preserves compatibility with lesser minorrev values </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#ae7a5333065907c07ab0492b231a42da9">DL_FACTORYREGION_TrimValues::USERID</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -516,7 +436,7 @@ Variables</h2></td></tr>
 <p>Monotonic increasing value indicating a new revision significant enough that users of the device may have to revise PCB or or software design</p>
 <dl class="section return"><dt>Returns</dt><dd>The value that tells users they may have to revise PCB or majorrev design </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#ae7a5333065907c07ab0492b231a42da9">DL_FACTORYREGION_TrimValues::USERID</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -539,7 +459,7 @@ Variables</h2></td></tr>
 <p>Get the UART RXD PIN used by BSL. </p>
 <dl class="section return"><dt>Returns</dt><dd>The UART RXD PIN used by BSL </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#afb1473c681c9decd270027eb044415c2">DL_FACTORYREGION_TrimValues::BSLPIN_UART</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -562,7 +482,7 @@ Variables</h2></td></tr>
 <p>Get the UART RXD Pin function selection value used by BSL. </p>
 <dl class="section return"><dt>Returns</dt><dd>The UART RXD Pin function selection value used by BSL </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#afb1473c681c9decd270027eb044415c2">DL_FACTORYREGION_TrimValues::BSLPIN_UART</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -585,7 +505,7 @@ Variables</h2></td></tr>
 <p>Get the UART TXD PIN used by BSL. </p>
 <dl class="section return"><dt>Returns</dt><dd>The UART TXD PIN used by BSL </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#afb1473c681c9decd270027eb044415c2">DL_FACTORYREGION_TrimValues::BSLPIN_UART</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -608,7 +528,7 @@ Variables</h2></td></tr>
 <p>Get the UART TXD Pin function selection value used by BSL. </p>
 <dl class="section return"><dt>Returns</dt><dd>The UART TXD Pin function selection value used by BSL </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#afb1473c681c9decd270027eb044415c2">DL_FACTORYREGION_TrimValues::BSLPIN_UART</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -631,7 +551,7 @@ Variables</h2></td></tr>
 <p>Get the I2C SDA Pin used by BSL. </p>
 <dl class="section return"><dt>Returns</dt><dd>The I2C SDA Pin used by BSL </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#a356d0925e944d267ee14e3da87940fa7">DL_FACTORYREGION_TrimValues::BSLPIN_I2C</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -654,7 +574,7 @@ Variables</h2></td></tr>
 <p>Get the I2C SDA Pin function selection value used by BSL. </p>
 <dl class="section return"><dt>Returns</dt><dd>The I2C SDA Pin function selection value used by BSL </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#a356d0925e944d267ee14e3da87940fa7">DL_FACTORYREGION_TrimValues::BSLPIN_I2C</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -677,7 +597,7 @@ Variables</h2></td></tr>
 <p>Get the I2C SCL Pin used by BSL. </p>
 <dl class="section return"><dt>Returns</dt><dd>The I2C SCL Pin used by BSL </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#a356d0925e944d267ee14e3da87940fa7">DL_FACTORYREGION_TrimValues::BSLPIN_I2C</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -700,7 +620,7 @@ Variables</h2></td></tr>
 <p>Get the I2C SCL Pin function selection value used by BSL. </p>
 <dl class="section return"><dt>Returns</dt><dd>The I2C SCL Pin function selection value used by BSL </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#a356d0925e944d267ee14e3da87940fa7">DL_FACTORYREGION_TrimValues::BSLPIN_I2C</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -723,7 +643,7 @@ Variables</h2></td></tr>
 <p>Get the GPIO level used by BSL pin invocation. </p>
 <dl class="section return"><dt>Returns</dt><dd>The GPIO level used by BSL pin invocation </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#adcdd3c0d98f54276aee564ca05b43347">DL_FACTORYREGION_TrimValues::BSLPIN_INVOKE</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -746,7 +666,7 @@ Variables</h2></td></tr>
 <p>Get the GPIO Pin selection value used by BSL pin invocation. </p>
 <dl class="section return"><dt>Returns</dt><dd>The GPIO Pin selection value used by BSL pin invocation </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#adcdd3c0d98f54276aee564ca05b43347">DL_FACTORYREGION_TrimValues::BSLPIN_INVOKE</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -769,7 +689,7 @@ Variables</h2></td></tr>
 <p>Get the GPIO module selection used by BSL pin invocation. </p>
 <dl class="section return"><dt>Returns</dt><dd>The GPIO module selection used by BSL pin invocation </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#adcdd3c0d98f54276aee564ca05b43347">DL_FACTORYREGION_TrimValues::BSLPIN_INVOKE</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -792,7 +712,7 @@ Variables</h2></td></tr>
 <p>Get the BSL invocation pin number. </p>
 <dl class="section return"><dt>Returns</dt><dd>The BSL invocation pin number </dd></dl>
 
-<p>References <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#adcdd3c0d98f54276aee564ca05b43347">DL_FACTORYREGION_TrimValues::BSLPIN_INVOKE</a>, <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>
@@ -816,7 +736,7 @@ Variables</h2></td></tr>
 <p>Returns the temperature sensor output voltage at the factory trim temperature in ADC result code format. This ADC result code is based upon 12-bit sampling mode together with the 1.4-V internal voltage reference.</p>
 <dl class="section return"><dt>Returns</dt><dd>The ADC conversion results of temperature sensor output voltage </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga39f1ab68097f1f1c678f57d2a7956b30">DL_FactoryRegion_isTrimTableInSram()</a>, and <a class="el" href="struct_d_l___f_a_c_t_o_r_y_r_e_g_i_o_n___trim_values.html#a45206a35baa46af644f42ad08540c570">DL_FACTORYREGION_TrimValues::TEMP_SENSE0</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 <p>Referenced by <a class="el" href="group___s_y_s_c_t_l__mspm0gx51x.html#ga4b827d98ddbc2ba384560e36e12218f7">DL_SYSCTL_getTempCalibrationConstant()</a>.</p>
 
@@ -842,30 +762,7 @@ Variables</h2></td></tr>
 <p>The 32-bit CRC of all locations in OPEN including reserved locations.</p>
 <dl class="section return"><dt>Returns</dt><dd>The BOOTCRC value </dd></dl>
 
-<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>, and <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#gab1d2d4dfcdf4da3aa721b82b39311bb5">DL_FactoryRegion_initTrimTable()</a>.</p>
-
-</div>
-</div>
-<a id="gab1d2d4dfcdf4da3aa721b82b39311bb5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab1d2d4dfcdf4da3aa721b82b39311bb5">&sect;&nbsp;</a></span>DL_FactoryRegion_initTrimTable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DL_FactoryRegion_initTrimTable </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initializes the struct with values from TRIM. </p>
-<p>Workaround for TRIM region becoming unreadable upon setting flash wait states equal to 2 on MSPM0GX51X devices. </p>
-
-<p>Referenced by <a class="el" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga30ed496165c67dac65333c7704a33d5a">DL_FactoryRegion_getBOOTCRCData()</a>.</p>
+<p>References <a class="el" href="group___d_l___c_o_r_e___c_a_c_h_e.html#gaea7280a6a78a259650d57c6c2a27dd98">DL_CORE_CACHE_DISABLED</a>, <a class="el" href="dl__core_8h.html#a9619b904d03b295c1e8453fcc4ef82d6">DL_CORE_configInstruction()</a>, <a class="el" href="dl__core_8h.html#a391d1d42cdc53a20949bf472a64ebda9">DL_CORE_getInstructionConfig()</a>, <a class="el" href="group___d_l___c_o_r_e___l_i_t_e_r_a_l___c_a_c_h_e.html#ga569c6d6d8a38ed8dc7fb10570305edd0">DL_CORE_LITERAL_CACHE_ENABLED</a>, and <a class="el" href="group___d_l___c_o_r_e___p_r_e_f_e_t_c_h.html#gabb075d269a89121102b51655fc82ba1a">DL_CORE_PREFETCH_ENABLED</a>.</p>
 
 </div>
 </div>

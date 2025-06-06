@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 
-OBJECTS = main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj ti_msp_dl_config.obj gcc_startup_mspm0h321x_gcc.obj
+OBJECTS = ti_msp_dl_config.obj main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj gcc_startup_mspm0h321x_gcc.obj
 NAME = eeprom_emulation_type_a
 
 CFLAGS += -I.. \
@@ -46,6 +46,10 @@ LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0h321x
 
 all: $(NAME).out
 
+ti_msp_dl_config.obj: ../ti_msp_dl_config.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
 main.obj: ../main.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
@@ -55,10 +59,6 @@ ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj: ../ti/eeprom/emulation_t
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
 ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj: ../ti/eeprom/emulation_type_b/eeprom_emulation_type_b.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-ti_msp_dl_config.obj: ../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

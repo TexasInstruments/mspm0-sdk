@@ -29,13 +29,13 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#include "TPS929xxx_APIs.h"
 #include <stdint.h>
-#include "FlexWire.h"
-#include "led_driver.h"
-#include "system_info.h"
+
 #include "ti_msp_dl_config.h"
+
+#include "FlexWire.h"
+#include "TPS929xxx_APIs.h"
+#include "system_info.h"
 
 unsigned int read_offset;
 
@@ -1098,11 +1098,12 @@ void setPWMAllCh(
     unsigned int reg_low_addr  = 0x00;
     unsigned int data_high[MAX_CHANNEL_CNT];
     unsigned int data_low[MAX_CHANNEL_CNT];
-    unsigned int length     = DATA_LENGTH__1;
-    unsigned int data_idx   = 0;
-    unsigned int dataLength = 0;
+    unsigned int length   = DATA_LENGTH__1;
+    unsigned int data_idx = 0;
 
 #if TPS92912X
+    unsigned int dataLength = 0;
+
     reg_high_addr = PWM0;
     reg_low_addr  = PWML0;
     length        = DATA_LENGTH__8;
@@ -1489,12 +1490,13 @@ void setIOUTAllCh(
     unsigned int reg_addr = 0x00;
     // Currently support 24 channels maximum
     unsigned int data[24];
-    unsigned int length     = DATA_LENGTH__1;
-    int data_idx            = 0;
-    int loop_idx            = 0;
-    unsigned int dataLength = 0;
+    unsigned int length = DATA_LENGTH__1;
+    int data_idx        = 0;
+    int loop_idx        = 0;
 
 #if TPS92912X
+    unsigned int dataLength = 0;
+
     reg_addr = IOUT0;
     length   = DATA_LENGTH__8;
 
@@ -1653,12 +1655,13 @@ void clearLockAll(unsigned int dev_addr_x)
  */
 void setClr(unsigned int dev_addr_x, unsigned int clr_val)
 {
-    unsigned int reg_addr   = 0x00;
-    unsigned int clrLockSet = 0x00;
+    unsigned int reg_addr = 0x00;
 
     reg_addr = CLR;
 
 #if TPS92912X
+    unsigned int clrLockSet = 0x00;
+
     if (dev_addr_x != BROADCAST_MODE) {
         // Check if CLR register was locked
         FlexRead(dev_addr_x, CONF_LOCK, DATA_LENGTH__1, TRUE);

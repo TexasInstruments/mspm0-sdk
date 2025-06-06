@@ -31,8 +31,7 @@
  */
 
 #include "system_info.h"
-#include <stdint.h>
 
 const uint16_t device_address[DEVICE_CNT] = {DEVICE_ADDR__1};
 
-struct chipStatus chip_status[16];
+struct chipStatus chip_status[DEVICE_CNT];

@@ -118,6 +118,7 @@ int main(void)
 
     /* SMBUS ARP Init is executed during Physical Layer Init*/
     SMBus_targetInit(&sSMBusTarget, SMB_I2C_INST);
+    SMBusARP_RESET(&sSMBusTarget);
 
     /* SMBus Target own address in this example is set through ARP Command ASSIGN Address
      * Device responds through ARP Commands after Init*/
@@ -741,6 +742,7 @@ void SMB_I2C_INST_IRQHandler (void)
         __NOP();
         break;
     case SMBus_State_TimeOutError:
+        SMBusARP_RESET(&sSMBusTarget);
         // This demo updates the smbus->status.bits.toErr when an error is
         // detected. The Host can check this register
         DL_GPIO_togglePins(SMB_GPIO_PORT, SMB_GPIO_LED_ERROR_PIN);

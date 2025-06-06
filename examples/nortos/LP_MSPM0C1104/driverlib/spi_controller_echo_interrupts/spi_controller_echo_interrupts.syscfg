@@ -1,0 +1,51 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0C110X" --package "VSSOP-20(DGS20)" --part "Default"
+//@v2CliArgs --device "MSPM0C1104" --package "VSSOP-20(DGS20)"
+// @cliArgs --board /ti/boards/LP_MSPM0C1104 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO  = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1 = GPIO.addInstance();
+const GPIO2 = GPIO.addInstance();
+const SPI   = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1  = SPI.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                          = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name        = "USER_LED_1";
+GPIO1.associatedPins[0].initialValue = "SET";
+GPIO1.associatedPins[0].assignedPin  = "22";
+GPIO1.associatedPins[1].$name        = "USER_TEST";
+GPIO1.associatedPins[1].assignedPin  = "2";
+GPIO1.associatedPins[1].initialValue = "SET";
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO2.$name                              = "GPIO_SWITCHES";
+GPIO2.associatedPins[0].$name            = "USER_SWITCH_1";
+GPIO2.associatedPins[0].direction        = "INPUT";
+GPIO2.associatedPins[0].interruptEn      = true;
+GPIO2.associatedPins[0].polarity         = "RISE";
+GPIO2.associatedPins[0].assignedPin      = "16";
+GPIO2.associatedPins[0].assignedPort     = "PORTA";
+GPIO2.associatedPins[0].internalResistor = "PULL_UP";
+
+SPI1.$name               = "SPI_0";
+SPI1.targetBitRate       = 500000;
+SPI1.txFifoThreshold     = "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME";
+SPI1.enabledInterrupts   = ["RX"];
+SPI1.rxFifoThreshold     = "DL_SPI_RX_FIFO_LEVEL_ONE_FRAME";
+
+const SYSCTL       = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+SYSCTL.clockTreeEn = true;

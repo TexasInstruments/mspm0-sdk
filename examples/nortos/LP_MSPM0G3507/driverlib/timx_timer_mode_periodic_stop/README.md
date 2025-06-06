@@ -48,11 +48,3 @@ MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.co
 Compile, load and run the example. LED1 will toggle increasingly rapidly.
 USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the
 BoosterPack header and can be used to verify the LED behavior.
-
-## Important Note
-Early experimental samples have a known issue where the user is unable to
-reconnect their debugger connection after the device has gone into STOP or
-STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain
-the ability to connect the device to the debugger. This information is located
-in the "MSPM0G and MSPM0L Families: Functional Differences With Early Samples"
-document.

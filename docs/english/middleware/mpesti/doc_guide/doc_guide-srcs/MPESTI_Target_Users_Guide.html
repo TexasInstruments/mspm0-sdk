@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSPM0 M-PESTI Target User’s Guide &mdash; M-PESTI Target User&#39;s Guide 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="M-PESTI Target User’s Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> M-PESTI Target User's Guide
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSPM0 M-PESTI Target User’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#m-pesti-target-in-the-mspm0-sdk">2. M-PESTI Target in the MSPM0 SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-the-uart-with-sysconfig">3. Configuring the UART with SysConfig</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configure-the-uart">Configure the UART</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-applications-m-pesti-target">4. Example Applications - M-PESTI Target</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-the-example-applications">Modifying the Example Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#features-not-included">5. Features Not Included</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">M-PESTI Target User's Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>MSPM0 M-PESTI Target User’s Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mspm0-m-pesti-target-user-s-guide">
+<h1>MSPM0 M-PESTI Target User’s Guide<a class="headerlink" href="#mspm0-m-pesti-target-user-s-guide" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Modular Peripheral Sideband Tunneling Interface (M-PESTI) is a generic and extensible 1-wire, bidirectional circuit, and protocol for applications such as cabled high-speed I/O interposers, managed power distribution, cooling subsystems and control panels</p>
+<p><strong>Note</strong>: This driver will work with the M-PESTI Electical Circuit given in the base specification Version 1.2 Release Candidate 2. The circuit is shown below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/MPESTI_Circuit_Diagram.png" />
+</figure>
+<p>The MSPM0 SDK provides an easy way to start development of M-PESTI Target applications using the MSPM0’s Universal Asynchronous Receiver Transmitter (UART) module and contains the following:</p>
+<ul class="simple">
+<li><p>Full source code for M-PESTI Target</p></li>
+<li><p>Graphical configuration of UART (PESTI line) module using SysConfig</p></li>
+</ul>
+</section>
+<section id="m-pesti-target-in-the-mspm0-sdk">
+<h2>2. M-PESTI Target in the MSPM0 SDK<a class="headerlink" href="#m-pesti-target-in-the-mspm0-sdk" title="Permalink to this heading">¶</a></h2>
+<p>The M-PESTI target source code in the MSPM0 SDK was developed to be run on the MSPM0 devices. This source code implementation focuses on the basic capabilities and functions of the M-PESTI target to showcase the ability of the MSPM0 devices to handle PESTI communications via UART. The M-PESTI Target is implemented based on the Open Compute Project M-PESTI base specification V1.2 RC 2. This example supports the DPR, VWE and broadcast commands. PESTI Fanout is not included in this implementation. Optional features were excluded from this implementation. The source code is also availabe to modify and edit, allowing customers to modify or customize any feature as desired.</p>
+<p><strong>Note</strong>: The example code was only tested and validated on the MSPM0G3507.</p>
+<p><strong>Included Features</strong></p>
+<ul class="simple">
+<li><p>Target Detection</p></li>
+<li><p>Simple presence using the hardware circuit provided by the spec.</p></li>
+<li><p>Discovery Rules.</p></li>
+<li><p>Active Phase Rules.</p></li>
+<li><p>DPR command and the packet response.</p></li>
+<li><p>VWE command with no support which sends 0 out to the initiator and with support, user can fill the buffer and send data.</p></li>
+<li><p>The broadcast command can be interpreted and user can take action as needed.</p></li>
+<li><p>The broadcast command only works after the DPR request received.</p></li>
+</ul>
+</section>
+<section id="configuring-the-uart-with-sysconfig">
+<h2>3. Configuring the UART with SysConfig<a class="headerlink" href="#configuring-the-uart-with-sysconfig" title="Permalink to this heading">¶</a></h2>
+<p>The source code provided for this example is mostly configure the UART as per the spec requirements. However, the UART pins should be configured as a high Z state for the circuit to work.</p>
+<section id="configure-the-uart">
+<h3>Configure the UART<a class="headerlink" href="#configure-the-uart" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>In SysConfig, navigate to the UART module under the communications tab</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_Sysconfig.png" />
+</figure>
+</li>
+<li><p>In the section labeled Basic Configuration, change the Target Baud Rate to 250000, and the parity to odd.</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_Basic_Configuration.png" />
+</figure>
+</li>
+<li><p>In the section labeled Advanced Configuration, select all the configuration as shown in the below picture.</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_Advanced_Configuration.png" />
+</figure>
+</li>
+<li><p>The final UART configuration required is the Pin Configuration section. For the TX pin, select enable pin configuration, and in the Digital IOMUX Features, enable the High-Impedance feature.</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_Pin_Configuration.png" />
+</figure>
+</li>
+<li><p>In the interrupt configuration section, enable the interrupts as shown in the picture below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/UART_Interrupts.png" />
+</figure>
+</li>
+<li><p>Configure the Ready to Receive GPIO as shown below</p>
+<figure class="align-default">
+<img alt="" src="../_images/Ready_To_Receive_GPIO_Config.png" />
+</figure>
+</li>
+</ul>
+</section>
+</section>
+<section id="example-applications-m-pesti-target">
+<h2>4. Example Applications - M-PESTI Target<a class="headerlink" href="#example-applications-m-pesti-target" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p>Required Materials</p></li>
+<li><p><a class="reference external" href="https://www.ti.com/product/MSPM0G3507">MSPM0G3507 LaunchPad(LP)</a></p>
+<ul class="simple">
+<li><p><img alt="image0" src="../_images/lp-mspm0g3507-top.png" /></p></li>
+</ul>
+</li>
+<li><p>The Circuit built on the breadboard as shown below</p>
+<ul class="simple">
+<li><p><img alt="image1" src="../_images/Breadboard_Circuit.png" /></p></li>
+</ul>
+</li>
+<li><p>To import the M-PESTI Target example, select import project in Code Composer Studio(CCS), navigate to the examples folder in the SDK, select mpesti, select the MSPM0G folder, and navigate to the ticlang directory. Once imported, you can flash the code onto the device. Same way, open an another instance of the CCS and import the M-PESTI initiator project (this has been created to test the M-PESTI target).</p></li>
+<li><p>To test this example, Build the breadboad circuit with the component shown in the circuit diagram (available at the top of this document). Then create a setup using the Initiator application programmed board, Breadboad circuit and Target application programmed board. The setup is shown below.</p>
+<figure class="align-default">
+<img alt="" src="../_images/Board_Setup.png" />
+</figure>
+</li>
+<li><p>once the setup is ready, power it up, connect a logic analyzer to the pesti line, the break and ready to receive can be observed. <img alt="image2" src="../_images/Ready_To_Receive.png" /></p></li>
+<li><p>After this step, press switch S1 on the initiator launch pad, it will send DPR command and the target will respond with the DPR response and toggles the RED led. <img alt="image3" src="../_images/DPR_Request_And_Response.png" /></p></li>
+<li><p>Press the switch S2 on the initiator launch pad, it will send VWE command and the target will respond with data packets and toggles the BLUE led. The data is configurable as per the user need. <img alt="image4" src="../_images/VWE_Command_Received_And_Response.png" /></p></li>
+<li><p>Press the switch S1 again on the initiator launch pad, it will send the broadcast command and target will nto respond anything but it will toggle the Green led. <img alt="image5" src="../_images/Broadcast_Command.png" /></p></li>
+</ul>
+<section id="modifying-the-example-applications">
+<h3>Modifying the Example Applications<a class="headerlink" href="#modifying-the-example-applications" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The source code for the M-PESTI Target implementation is available for editing. The user can use this driver as a starting point and modify existing features if needed. The user can modify the config parameters in the MPESTI_Target_Config.h as per their need. The VWE support is also configurable.</p></li>
+</ul>
+</section>
+</section>
+<section id="features-not-included">
+<h2>5. Features Not Included<a class="headerlink" href="#features-not-included" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The PESTI Fanout is not implemented</p></li>
+<li><p>The PEC is not supported in the active phase.</p></li>
+<li><p>Target does not generate BREAK, The BREAK is handled by hardware circuit</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="M-PESTI Target User’s Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">1995-2023, Texas Instruments Incorporated. All rights reserved</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

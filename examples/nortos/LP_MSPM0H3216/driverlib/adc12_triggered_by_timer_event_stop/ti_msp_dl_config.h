@@ -95,8 +95,7 @@ extern "C" {
 #define ADC12_0_WIN_COMP_LOW_THLD_VAL                                          0
 #define ADC12_0_WIN_COMP_HIGH_THLD_VAL                                         0
 #define ADC12_0_ADCMEM_0                                      DL_ADC12_MEM_IDX_0
-#define ADC12_0_ADCMEM_0_REF                     DL_ADC12_REFERENCE_VOLTAGE_VDDA
-#define ADC12_0_ADCMEM_0_REF_VOLTAGE_V                                       3.3
+#define ADC12_0_ADCMEM_0_REF                DL_ADC12_REFERENCE_VOLTAGE_VDDA_VSSA
 #define ADC12_0_INST_SUB_CH                                                  (1)
 
 

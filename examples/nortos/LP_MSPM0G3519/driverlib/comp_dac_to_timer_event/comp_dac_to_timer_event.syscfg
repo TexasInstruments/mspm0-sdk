@@ -47,7 +47,6 @@ COMP1.channelEnable                         = ["NEG"];
 COMP1.$name                                 = "COMP";
 COMP1.peripheral.$assign                    = "COMP0";
 COMP1.peripheral.compPinNeg0.$assign        = "PA27";
-COMP1.compPinNeg0Config.$name               = "ti_driverlib_gpio_GPIOPinGeneric0";
 COMP1.compPinNeg0Config.hideOutputInversion = scripting.forceWrite(false);
 
 SYSCTL.powerPolicy           = "STOP0";

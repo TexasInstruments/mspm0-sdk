@@ -307,8 +307,9 @@ enum CHANNEL_ID_A {
 #define FLEXWIRE0 (0x84) /*  */
 #define FLEXWIRE1 (0x85) /*  */
 #define FLEXWIRE2 (0x86) /*  */
-#define CRC \
-    (0x87) /* CRC reference for all EEPROM registers including RESERVED registers. */
+/* CRC reference for all EEPROM registers including RESERVED registers. */
+/* Change from CRC to TPS_CRC, to be compatible with MSPM0 CRC */
+#define TPS_CRC (0x87)
 
 /* CTRL registers */
 #define ADCCH \

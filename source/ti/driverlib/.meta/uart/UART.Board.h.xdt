@@ -97,7 +97,7 @@
 %   if(useRX) { // receive defines are necessary
 %       rxPackagePin = inst.peripheral.rxPin.$solution.packagePinName;
 %       rxPinCM = Common.getPinCM(rxPackagePin,inst,"RX");
-%       rxGpioName = system.deviceData.devicePins[rxPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       rxGpioName = system.deviceData.devicePins[rxPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       rxGpioPin = Common.getGPIONumberMultiPad(rxPackagePin,inst,"RX");
 %       rxPort = Common.getGPIOPortMultiPad(rxPackagePin,inst,"RX");
 %   }
@@ -110,7 +110,7 @@
 %   if(useTX) { // transmission defines are necessary
 %       txPackagePin = inst.peripheral.txPin.$solution.packagePinName;
 %       txPinCM = Common.getPinCM(txPackagePin,inst,"TX");
-%       txGpioName = system.deviceData.devicePins[txPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       txGpioName = system.deviceData.devicePins[txPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       txGpioPin = Common.getGPIONumberMultiPad(txPackagePin,inst,"TX");
 %       txPort = Common.getGPIOPortMultiPad(txPackagePin,inst,"TX");
 %   }
@@ -174,7 +174,7 @@
 %   if(useRTS) { // receive defines are necessary
 %       rtsPackagePin = inst.peripheral.rtsPin.$solution.packagePinName;
 %       rtsPinCM = Common.getPinCM(rtsPackagePin,inst,"RTS");
-%       rtsGpioName = system.deviceData.devicePins[rtsPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       rtsGpioName = system.deviceData.devicePins[rtsPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       rtsGpioPin = Common.getGPIONumberMultiPad(rtsPackagePin,inst,"RTS");
 %       rtsPort = Common.getGPIOPortMultiPad(rtsPackagePin,inst,"RTS");
 %   }
@@ -187,7 +187,7 @@
 %   if(useCTS) { // transmission defines are necessary
 %       ctsPackagePin = inst.peripheral.ctsPin.$solution.packagePinName;
 %       ctsPinCM = Common.getPinCM(ctsPackagePin,inst,"CTS");
-%       ctsGpioName = system.deviceData.devicePins[ctsPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       ctsGpioName = system.deviceData.devicePins[ctsPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       ctsGpioPin = Common.getGPIONumberMultiPad(ctsPackagePin,inst,"CTS");
 %       ctsPort = Common.getGPIOPortMultiPad(ctsPackagePin,inst,"CTS");
 %   }

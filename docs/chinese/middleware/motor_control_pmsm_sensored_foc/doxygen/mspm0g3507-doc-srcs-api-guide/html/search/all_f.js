@@ -59,7 +59,7 @@ var searchData=
   ['pmotorinputs',['pMotorInputs',['../struct_l_o_a_d___t.html#acdfa61fab37cd3b10b6a1da646f453e1',1,'LOAD_T']]],
   ['pmotorstallstatus',['pMotorStallStatus',['../struct_f_a_u_l_t___s_e_r_v_i_c_e___t.html#a440a8b085e998e502ba40c00d6d23858',1,'FAULT_SERVICE_T']]],
   ['poffset',['pOffset',['../struct_h_a_l___m_e_a_s_u_r_e___c_u_r_r_e_n_t___t.html#a060e973c009d2dfc38af510ebb4a67b9',1,'HAL_MEASURE_CURRENT_T']]],
-  ['polepairs',['polePairs',['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#af6bd68d572c77f309e6b91e2f3c36c21',1,'SYSTEM_PARAMETERS_T']]],
+  ['polepairs',['polePairs',['../struct_h_a_l_l___c_a_l_i_b___t.html#a105868e3e0eafd56f425d97d9079d5a1',1,'HALL_CALIB_T::polePairs()'],['../struct_s_y_s_t_e_m___p_a_r_a_m_e_t_e_r_s___t.html#af6bd68d572c77f309e6b91e2f3c36c21',1,'SYSTEM_PARAMETERS_T::polePairs()']]],
   ['port',['port',['../struct_h_a_l___g_p_i_o___instance__.html#a92527b731343ebe40db848de9069cd89',1,'HAL_GPIO_Instance_']]],
   ['powerfeedback',['PowerFeedback',['../struct_c_l_o_s_e___l_o_o_p___t.html#a59b0b06469622aae1b275116b9d96f92',1,'CLOSE_LOOP_T']]],
   ['powerreference',['PowerReference',['../struct_c_l_o_s_e___l_o_o_p___t.html#af1bffc47df89e2475cb1585dc6554367',1,'CLOSE_LOOP_T']]],

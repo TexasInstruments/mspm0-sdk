@@ -61,7 +61,7 @@ SPI1.DMA_CHANNEL_EVENT1.dstLength   = "BYTE";
 
 SYSCTL.validateClkStatus  = true;
 SYSCTL.clockTreeEn = true;
-
+SYSCTL.forceDefaultClkConfig = true;
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerClkDiv        = 8;
 TIMER1.timerClkSrc        = "LFCLK";

@@ -76,14 +76,6 @@ function validate(inst, validation)
 {
     // Common.validateNames(inst, validation);
 
-    /* Validate Calculated Voltage */
-    if(inst.dacPosVREF == "VDDA" && inst.dacOutputPinEn){
-        validation.logInfo(
-            "Assuming VDDA = 3.3V for calculated value.",
-            inst, "calcVoltage"
-        );
-    }
-
     /* Check if MFPCLK enabled */
     if(system.modules["/ti/driverlib/SYSCTL"].$static.MFPCLK_Freq == 0) {
         validation.logError("MFPCLK must be enabled in order to use DAC12.", inst, ["dacEnable"]);
@@ -199,6 +191,26 @@ function filterHardware(component)
     let result = modulePin ? true : false;
 
     return (result);
+}
+
+/*
+ *  ======== getVDDAVoltage ========
+ *  get VDDA reference voltage from Board module.
+ *  requires Board module to be added.
+ *
+ *
+ */
+function getVDDAVoltage(inst){
+
+    let vddaVoltage = 3.3;
+
+    let vddaInstance = system.modules["/ti/driverlib/Board"];
+
+    if (vddaInstance && (vddaInstance.$static.configureVDDA == true)){
+        vddaVoltage = (vddaInstance.$static.voltageVDDA)
+    }
+
+    return vddaVoltage;
 }
 
 /************************* Profiles functions *******************************/
@@ -462,7 +474,7 @@ Calculated voltage based on user provided parameters:\n
                     let vrefVoltage = 0;
                     let dacCode = 0;
                     if(inst.dacPosVREF == "VDDA"){
-                        vrefVoltage = 3.3
+                        vrefVoltage = getVDDAVoltage(inst);
                     }
                     else{
                         let vrefInstance = system.modules["/ti/driverlib/VREF"];

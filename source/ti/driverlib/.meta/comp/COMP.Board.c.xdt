@@ -202,6 +202,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_`inst.$name`_init(void)
 %   if(inst.enableOutputFilter){
     DL_COMP_enableOutputFilter(`baseName`,`inst.selectOutputFilter`);
 %   }
+%   if(inst.internalDACOutputEnable){
+    DL_COMP_enableDACOutputToPin(`baseName`);
+%}
     DL_COMP_refVoltageInit(`baseName`, (DL_COMP_RefVoltageConfig *) &g`inst.$name`VRefConfig);
 %   if(["DL_COMP_REF_SOURCE_VDDA_DAC","DL_COMP_REF_SOURCE_VREF_DAC"].includes(inst.vSource)){
 %       if((inst.controlSelect == "DL_COMP_DAC_CONTROL_COMP_OUT") || (inst.inputSelect == "DL_COMP_DAC_INPUT_DACCODE0")){

@@ -442,8 +442,8 @@
         <topic label="DL_COMP_DAC_INPUT_DACCODE1" href="group___c_o_m_p.html#gga6ad5a70fde6a94f41ff6024323b57dfca7dffcc2b36fe29512f1a52808daf2fe1"/>
       </topic>
       <topic label="DL_COMP_OUTPUT" href="group___c_o_m_p.html#ga7cf57c771340514cb0e3adffd3db0b28">
-        <topic label="DL_COMP_OUTPUT_HIGH" href="group___c_o_m_p.html#gga7cf57c771340514cb0e3adffd3db0b28ab21a5a8f2388aa34d1f8b8691be2da7f"/>
         <topic label="DL_COMP_OUTPUT_LOW" href="group___c_o_m_p.html#gga7cf57c771340514cb0e3adffd3db0b28a9f7150928f832c0e208101e2d50a4411"/>
+        <topic label="DL_COMP_OUTPUT_HIGH" href="group___c_o_m_p.html#gga7cf57c771340514cb0e3adffd3db0b28ab21a5a8f2388aa34d1f8b8691be2da7f"/>
       </topic>
       <topic label="DL_COMP_SUBSCRIBER_INDEX" href="group___c_o_m_p.html#gad79bc53bdbef9653af35a968efbf87c5">
         <topic label="DL_COMP_SUBSCRIBER_INDEX_0" href="group___c_o_m_p.html#ggad79bc53bdbef9653af35a968efbf87c5aac02d21c130fd9fdae7484a936b3efa7"/>
@@ -1332,6 +1332,10 @@
         <topic label="DL_GPIO_WAKEUP_ON_0" href="group___g_p_i_o.html#gga9103dc3316c3493251bc46cf4d139dcda4ba335adea57d1f0f632a57f94e33a4e"/>
         <topic label="DL_GPIO_WAKEUP_ON_1" href="group___g_p_i_o.html#gga9103dc3316c3493251bc46cf4d139dcdabc64d807fa28b6719f5ca6cafbd568d6"/>
       </topic>
+      <topic label="DL_GPIO_WAKEUP_COMPARE_VALUE" href="group___g_p_i_o.html#gab17bed7cfb26f57135d1e49e1434b37f">
+        <topic label="DL_GPIO_WAKEUP_COMPARE_VALUE_0" href="group___g_p_i_o.html#ggab17bed7cfb26f57135d1e49e1434b37faed7732ff66845eed63597bcb69cf79f0"/>
+        <topic label="DL_GPIO_WAKEUP_COMPARE_VALUE_1" href="group___g_p_i_o.html#ggab17bed7cfb26f57135d1e49e1434b37fa81504cef5b10f80db47c798771afa2e8"/>
+      </topic>
       <topic label="DL_GPIO_HIZ" href="group___g_p_i_o.html#ga52f1c39bc3eb6f6d3fbf2dfad325c4a2">
         <topic label="DL_GPIO_HIZ_ENABLE" href="group___g_p_i_o.html#gga52f1c39bc3eb6f6d3fbf2dfad325c4a2a4345a233ef1661b2d1c06adb217dfff9"/>
         <topic label="DL_GPIO_HIZ_DISABLE" href="group___g_p_i_o.html#gga52f1c39bc3eb6f6d3fbf2dfad325c4a2a4725018242974e8b6c11be7ff5f7c649"/>
@@ -1442,6 +1446,8 @@
       <topic label="DL_GPIO_enableWakeUp" href="group___g_p_i_o.html#ga4ab03ae91b211b32979d54484baae9ba"/>
       <topic label="DL_GPIO_disableWakeUp" href="group___g_p_i_o.html#ga921dda4b641c7842f1c835c7291cd6a4"/>
       <topic label="DL_GPIO_isWakeUpEnabled" href="group___g_p_i_o.html#gade1271ea61c36332516ac3e7b41a3612"/>
+      <topic label="DL_GPIO_setWakeupCompareValue" href="group___g_p_i_o.html#ga0f2d6988b06b367efc4e1e4f7caca9f5"/>
+      <topic label="DL_GPIO_getWakeupCompareValue" href="group___g_p_i_o.html#ga942fdaf873949a7a7c63386a1f71fc5a"/>
       <topic label="DL_GPIO_isWakeStateGenerated" href="group___g_p_i_o.html#ga8652b9ce42f455802831043096041526"/>
       <topic label="DL_GPIO_readPins" href="group___g_p_i_o.html#ga42aa9cb95e25e2b52ff12c20f0b9ca1f"/>
       <topic label="DL_GPIO_writePins" href="group___g_p_i_o.html#gac202acd64d045a84efc15cc80cdefa34"/>
@@ -4608,8 +4614,8 @@
       <topic label="DL_SYSCTL_configFCC" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#gabc3a566bffa1f7cb61c94dddc2ad7870"/>
       <topic label="DL_SYSCTL_setFCCPeriods" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga04566c3fe45eed79d9d05248c3173b16"/>
       <topic label="DL_SYSCTL_getFCCPeriods" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga5c3f461bd82d8f9dc1f3eb380502ab25"/>
-      <topic label="DL_SYSCTL_enableSYSOSCFCL" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga8209173a763a90618c126b4f3a0a533a"/>
       <topic label="DL_SYSCTL_enableSYSOSCFCLExternalResistor" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga3974b94a8e546a7d399b77a90657f680"/>
+      <topic label="DL_SYSCTL_enableSYSOSCFCL" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga8209173a763a90618c126b4f3a0a533a"/>
       <topic label="DL_SYSCTL_enableWriteLock" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#gae0b1c86e5a0be32ac2238c2a0e2540b2"/>
       <topic label="DL_SYSCTL_disableWriteLock" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga277a6e9bb37507630bc258f3d0cbcaed"/>
       <topic label="DL_SYSCTL_setVBOOSTConfig" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga5c2c4728010a6f06487971a43b594896"/>
@@ -5245,8 +5251,8 @@
           <topic label="DL_COMP_DAC_INPUT_DACCODE1" href="group___c_o_m_p.html#gga6ad5a70fde6a94f41ff6024323b57dfca7dffcc2b36fe29512f1a52808daf2fe1"/>
         </topic>
         <topic label="DL_COMP_OUTPUT" href="group___c_o_m_p.html#ga7cf57c771340514cb0e3adffd3db0b28">
-          <topic label="DL_COMP_OUTPUT_HIGH" href="group___c_o_m_p.html#gga7cf57c771340514cb0e3adffd3db0b28ab21a5a8f2388aa34d1f8b8691be2da7f"/>
           <topic label="DL_COMP_OUTPUT_LOW" href="group___c_o_m_p.html#gga7cf57c771340514cb0e3adffd3db0b28a9f7150928f832c0e208101e2d50a4411"/>
+          <topic label="DL_COMP_OUTPUT_HIGH" href="group___c_o_m_p.html#gga7cf57c771340514cb0e3adffd3db0b28ab21a5a8f2388aa34d1f8b8691be2da7f"/>
         </topic>
         <topic label="DL_COMP_SUBSCRIBER_INDEX" href="group___c_o_m_p.html#gad79bc53bdbef9653af35a968efbf87c5">
           <topic label="DL_COMP_SUBSCRIBER_INDEX_0" href="group___c_o_m_p.html#ggad79bc53bdbef9653af35a968efbf87c5aac02d21c130fd9fdae7484a936b3efa7"/>
@@ -6148,6 +6154,10 @@
           <topic label="DL_GPIO_WAKEUP_ON_0" href="group___g_p_i_o.html#gga9103dc3316c3493251bc46cf4d139dcda4ba335adea57d1f0f632a57f94e33a4e"/>
           <topic label="DL_GPIO_WAKEUP_ON_1" href="group___g_p_i_o.html#gga9103dc3316c3493251bc46cf4d139dcdabc64d807fa28b6719f5ca6cafbd568d6"/>
         </topic>
+        <topic label="DL_GPIO_WAKEUP_COMPARE_VALUE" href="group___g_p_i_o.html#gab17bed7cfb26f57135d1e49e1434b37f">
+          <topic label="DL_GPIO_WAKEUP_COMPARE_VALUE_0" href="group___g_p_i_o.html#ggab17bed7cfb26f57135d1e49e1434b37faed7732ff66845eed63597bcb69cf79f0"/>
+          <topic label="DL_GPIO_WAKEUP_COMPARE_VALUE_1" href="group___g_p_i_o.html#ggab17bed7cfb26f57135d1e49e1434b37fa81504cef5b10f80db47c798771afa2e8"/>
+        </topic>
         <topic label="DL_GPIO_HIZ" href="group___g_p_i_o.html#ga52f1c39bc3eb6f6d3fbf2dfad325c4a2">
           <topic label="DL_GPIO_HIZ_ENABLE" href="group___g_p_i_o.html#gga52f1c39bc3eb6f6d3fbf2dfad325c4a2a4345a233ef1661b2d1c06adb217dfff9"/>
           <topic label="DL_GPIO_HIZ_DISABLE" href="group___g_p_i_o.html#gga52f1c39bc3eb6f6d3fbf2dfad325c4a2a4725018242974e8b6c11be7ff5f7c649"/>
@@ -6258,6 +6268,8 @@
         <topic label="DL_GPIO_enableWakeUp" href="group___g_p_i_o.html#ga4ab03ae91b211b32979d54484baae9ba"/>
         <topic label="DL_GPIO_disableWakeUp" href="group___g_p_i_o.html#ga921dda4b641c7842f1c835c7291cd6a4"/>
         <topic label="DL_GPIO_isWakeUpEnabled" href="group___g_p_i_o.html#gade1271ea61c36332516ac3e7b41a3612"/>
+        <topic label="DL_GPIO_setWakeupCompareValue" href="group___g_p_i_o.html#ga0f2d6988b06b367efc4e1e4f7caca9f5"/>
+        <topic label="DL_GPIO_getWakeupCompareValue" href="group___g_p_i_o.html#ga942fdaf873949a7a7c63386a1f71fc5a"/>
         <topic label="DL_GPIO_isWakeStateGenerated" href="group___g_p_i_o.html#ga8652b9ce42f455802831043096041526"/>
         <topic label="DL_GPIO_readPins" href="group___g_p_i_o.html#ga42aa9cb95e25e2b52ff12c20f0b9ca1f"/>
         <topic label="DL_GPIO_writePins" href="group___g_p_i_o.html#gac202acd64d045a84efc15cc80cdefa34"/>
@@ -7333,8 +7345,8 @@
         <topic label="DL_SYSCTL_configFCC" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#gabc3a566bffa1f7cb61c94dddc2ad7870"/>
         <topic label="DL_SYSCTL_setFCCPeriods" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga04566c3fe45eed79d9d05248c3173b16"/>
         <topic label="DL_SYSCTL_getFCCPeriods" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga5c3f461bd82d8f9dc1f3eb380502ab25"/>
-        <topic label="DL_SYSCTL_enableSYSOSCFCL" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga8209173a763a90618c126b4f3a0a533a"/>
         <topic label="DL_SYSCTL_enableSYSOSCFCLExternalResistor" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga3974b94a8e546a7d399b77a90657f680"/>
+        <topic label="DL_SYSCTL_enableSYSOSCFCL" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga8209173a763a90618c126b4f3a0a533a"/>
         <topic label="DL_SYSCTL_enableWriteLock" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#gae0b1c86e5a0be32ac2238c2a0e2540b2"/>
         <topic label="DL_SYSCTL_disableWriteLock" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga277a6e9bb37507630bc258f3d0cbcaed"/>
         <topic label="DL_SYSCTL_setVBOOSTConfig" href="group___s_y_s_c_t_l___m_s_p_m0_l11_x_x___l13_x_x.html#ga5c2c4728010a6f06487971a43b594896"/>

@@ -96,9 +96,11 @@
 % }
 %
 % function printGPIO() {
+% if(stat.enableRTCOutputPin) {
     /* Configure RTC_A OUT pin */
     DL_GPIO_initPeripheralOutputFunction(
         GPIO_RTC_A_IOMUX_RTCOUT, GPIO_RTC_A_IOMUX_RTCOUT_FUNC);
+% }
 % }
 %
 % /* Main Function */

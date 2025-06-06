@@ -41,8 +41,12 @@
             -I${CG_TOOL_ROOT}/arm-none-eabi/include
         "
         linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/gcc/m0p/mathacl/mspm0gx51x
+            -l:iqmath.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0gx51x
             -nostartfiles
             -Tdevice.lds.genlibs
+            -l:driverlib.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg

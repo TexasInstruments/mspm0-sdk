@@ -69,17 +69,13 @@ SYSCTL.clockTreeEn           = true;
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerClkDiv        = 8;
 TIMER1.timerClkPrescale   = 32;
-TIMER1.timerMode          = "PERIODIC";
-TIMER1.timerPeriod        = "100 ms";
-TIMER1.interrupts         = ["LOAD"];
+TIMER1.interrupts         = ["ZERO"];
 TIMER1.peripheral.$assign = "TIMG0";
 
 TIMER2.$name              = "TIMER_1";
 TIMER2.timerClkDiv        = 8;
 TIMER2.timerClkPrescale   = 32;
-TIMER2.timerPeriod        = "1 ms";
-TIMER2.interrupts         = ["LOAD"];
-TIMER2.timerMode          = "PERIODIC";
+TIMER2.interrupts         = ["ZERO"];
 TIMER2.peripheral.$assign = "TIMG6";
 
 UART1.$name                    = "UART_0";

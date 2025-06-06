@@ -12,11 +12,6 @@ the device is in STANDBY.
 TIMG0 will toggle the LED2 constantly every 5000ms during both SLEEP0 and
 STANDBY0.
 
-**Note**: When debugging the application, the power access port (PWR-AP) will force
-the device to remain active. In order to see full functionality of this example, it is
-recommended to terminate the debug session. Refer to the Debug section of the TRM
-for more information about debugging in low power modes.
-
 ## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
 | --- | --- | --- | --- | --- |
@@ -51,3 +46,9 @@ Monitor the behavior of LED1 and LED2.
 LED1 will toggle for 5 seconds while the device is in SLEEP0, and then not
 toggle for 5s when the device switches to STANDBY0.
 LED0 will continue to toggle every 500ms.
+
+**Note**: When debugging the application, the power access port (PWR-AP) will force
+the device to remain active, and not enter the low power mode.
+In order to see full functionality of this example, it is
+recommended to terminate the debug session. Refer to the Debug section of the TRM
+for more information about debugging in low power modes.

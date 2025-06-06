@@ -55,11 +55,3 @@ Compile, load and run the example.
 LED2 will toggle if transmission and/or reception are successful.
 LED2 will remain off if there is a problem during initialization.
 LED2 will remain on if there is a problem during data transfers.
-
-## Important Note
-Early experimental samples have a known issue where the user is unable to
-reconnect their debugger connection after the device has gone into STOP or
-STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain
-the ability to connect the device to the debugger. This information is located
-in the "MSPM0G and MSPM0L Families: Functional Differences With Early Samples"
-document.

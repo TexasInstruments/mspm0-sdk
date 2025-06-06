@@ -44,8 +44,6 @@
 /*
  * User Application Address Info
  */
-#define MAIN_APP_START_ADDR ((uint32_t) 0x00001000U)
-#define MAIN_APP_RESET_VECTOR_ADDR ((uint32_t) 0x000010c1U)
 
 #if UART_INTERFACE
 #define ACTIVE_INTERFACE_INIT BSL_PI_UART_init
@@ -134,10 +132,6 @@
  * */
 #define BSL_SRAM_BUF_START_ADDR (uint32_t) 0x20000200
 #define BSL_SRAM_BUF_END_ADDR (uint32_t) 0x200003C0
-
-/*! Enable static write protection for First 6KB memory */
-
-#define BCR_CFG_MAIN_STATIC_PROT_EN_BSL_SEC (0xFFFFFE03U)
 
 /*
  * Enum that lists the various states involved in packet reception

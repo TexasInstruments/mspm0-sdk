@@ -32,3 +32,4 @@ COMP1.peripheral.compPinNeg0.$assign = "PA27";
 COMP1.peripheral.compPinOut.$assign  = "PA11";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

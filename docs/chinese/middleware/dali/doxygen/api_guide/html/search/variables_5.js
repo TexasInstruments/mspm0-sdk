@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['gcontrolvar1',['gControlVar1',['../dali__variables_8h.html#af2724b1545ee9f26d27dd2d5583f34d1',1,'dali_variables.h']]],
-  ['geargroups',['gearGroups',['../structdali__control_gear_var.html#ade72176c4e40b7b5a12a3544216823a9',1,'dali_controlGearVar']]],
-  ['greceive',['gReceive',['../dali__target__comm_8h.html#a79b7f8cdb8ff283fea2920ab4738768d',1,'dali_target_comm.h']]]
+  ['faderate',['fadeRate',['../structdali__control_gear_var.html#a5a2c20406c6855c941420ab72e43065f',1,'dali_controlGearVar']]],
+  ['faderunning',['fadeRunning',['../structdali__control_gear_var.html#a767ef8466e9aac90afb347ec4e3b7a42',1,'dali_controlGearVar']]],
+  ['fadetime',['fadeTime',['../structdali__control_gear_var.html#a8279e99600945e3cd5f5498f30774143',1,'dali_controlGearVar']]],
+  ['failurestatus',['failureStatus',['../structdali__led_control_gear_var.html#a4ad85bf270384007bc75b68edc4854f0',1,'dali_ledControlGearVar']]],
+  ['fastfadetime',['fastFadeTime',['../structdali__led_control_gear_var.html#aa64ff18fa3273afa4941e7d3be6017e7',1,'dali_ledControlGearVar']]],
+  ['features',['features',['../structdali__led_control_gear_var.html#ac5a249bf9b3416180dfbcb3f0def47d7',1,'dali_ledControlGearVar']]],
+  ['frame',['frame',['../struct_d_a_l_i___t_x.html#afec2445db7a59b7d20e3ef7d28048f7c',1,'DALI_TX']]]
 ];

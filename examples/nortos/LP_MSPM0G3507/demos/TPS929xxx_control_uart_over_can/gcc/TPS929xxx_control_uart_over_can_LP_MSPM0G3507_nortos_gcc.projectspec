@@ -41,8 +41,10 @@
             -I${CG_TOOL_ROOT}/arm-none-eabi/include
         "
         linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x
             -nostartfiles
             -Tdevice.lds.genlibs
+            -l:driverlib.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
@@ -84,21 +86,17 @@
         </file>
         <file path="../CRC_LUT.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../dma.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../tps_eeprom_data.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../dma.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../tps_eeprom_data.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../eeprom_data.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../tps_eeprom_default.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../eeprom_data.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../tps_eeprom_default.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../eeprom_default.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../tps_eeprom.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../eeprom_default.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../eeprom.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../eeprom.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        <file path="../tps_eeprom.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../FlexWire.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
@@ -110,13 +108,19 @@
         </file>
         <file path="../FW_protocol_def.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../IOPORT.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../IOPORT.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../led_driver.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../mspm0_dma.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../mspm0_dma.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../mspm0_gpio.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../mspm0_gpio.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../mspm0_timer.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../mspm0_timer.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../Patterns.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
@@ -126,15 +130,9 @@
         </file>
         <file path="../system_info.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="../Timer.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../Timer.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../TPS929xxx_APIs.c" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../TPS929xxx_APIs.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../TPS929240.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

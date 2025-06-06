@@ -1153,6 +1153,19 @@ let dmaEvt2Options = [
     {name: "DL_SPI_DMA_INTERRUPT_TX", displayName: "SPI TX interrupt"},
 ]
 
+let rxUCOptions = [];
+let txUCOptions = [];
+if(Common.isUnicommSPI()){
+    rxUCOptions = [
+        {name: "DL_SPI_RX_FIFO_LEVEL_ALMOST_FULL", displayName: "RX FIFO is almost full"},
+        {name: "DL_SPI_RX_FIFO_LEVEL_ALMOST_EMPTY", displayName: "RX FIFO is almost empty"},
+    ]
+    txUCOptions = [
+        {name: "DL_SPI_TX_FIFO_LEVEL_ALMOST_FULL", displayName: "TX FIFO is almost full"},
+        {name: "DL_SPI_TX_FIFO_LEVEL_ALMOST_EMPTY", displayName: "TX FIFO is almost empty"},
+    ]
+}
+
 config = config.concat([
     {
         name: "GROUP_ADVANCED",
@@ -1204,10 +1217,10 @@ When detecting a fault, the interrupt flag PER is set (to mark the data as inval
                 options     : [
                     {name: "DL_SPI_RX_FIFO_LEVEL_ONE_FRAME", displayName: "RX FIFO contains >= 1 entry"},
                     {name: "DL_SPI_RX_FIFO_LEVEL_FULL", displayName: "RX FIFO is full"},
-                    {name: "DL_SPI_RX_FIFO_LEVEL_3_4_FULL", displayName: "RX FIFO contains>= 3 entries"},
-                    {name: "DL_SPI_RX_FIFO_LEVEL_1_2_FULL", displayName: "RX FIFO contains>= 2 entries"},
-                    {name: "DL_SPI_RX_FIFO_LEVEL_1_4_FULL", displayName: "RX FIFO contains >= 3/4 full"},
-                ],
+                    {name: "DL_SPI_RX_FIFO_LEVEL_3_4_FULL", displayName: "RX FIFO >= 3/4 full"},
+                    {name: "DL_SPI_RX_FIFO_LEVEL_1_2_FULL", displayName: "RX FIFO >= 1/2 full"},
+                    {name: "DL_SPI_RX_FIFO_LEVEL_1_4_FULL", displayName: "RX FIFO >= 1/4 full"},
+                ].concat(rxUCOptions),
                 onChange : onChangeSetCustomProfile,
             },
             /* DL_SPI_setTXFIFOThreshold */
@@ -1217,12 +1230,12 @@ When detecting a fault, the interrupt flag PER is set (to mark the data as inval
                 description : 'The TX FIFO interrupt threshold level',
                 default     : "DL_SPI_TX_FIFO_LEVEL_1_2_EMPTY",
                 options     : [
-                    {name: "DL_SPI_TX_FIFO_LEVEL_3_4_EMPTY", displayName: "TX FIFO contains <= 1 entry"},
-                    {name: "DL_SPI_TX_FIFO_LEVEL_1_2_EMPTY", displayName: "TX FIFO contains <= 2 entries"},
-                    {name: "DL_SPI_TX_FIFO_LEVEL_1_4_EMPTY", displayName: "TX FIFO contains <= 3 entries"},
+                    {name: "DL_SPI_TX_FIFO_LEVEL_3_4_EMPTY", displayName: "TX FIFO <= 3/4 empty"},
+                    {name: "DL_SPI_TX_FIFO_LEVEL_1_2_EMPTY", displayName: "TX FIFO <= 1/2 empty"},
+                    {name: "DL_SPI_TX_FIFO_LEVEL_1_4_EMPTY", displayName: "TX FIFO <= 1/4 empty"},
                     {name: "DL_SPI_TX_FIFO_LEVEL_EMPTY", displayName: "TX FIFO is empty"},
-                    {name: "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME", displayName: "TX FIFO contains 1 entry"},
-                ],
+                    {name: "DL_SPI_TX_FIFO_LEVEL_ONE_FRAME", displayName: "TX FIFO is not full"},
+                ].concat(txUCOptions),
                 onChange : onChangeSetCustomProfile,
             },
             {
@@ -1249,7 +1262,7 @@ When detecting a fault, the interrupt flag PER is set (to mark the data as inval
  When writing to the TX FIFO, a 32-bit write will be written as one FIFO
  entry.
 `,
-                hidden      : false,
+                hidden      : Common.isUnicommSPI(), // option disabled for UNICOMM,
                 default     : false,
                 onChange : onChangeSetCustomProfile,
             },
@@ -1738,6 +1751,16 @@ function _getPinResources(inst)
 
 }
 
+// Interfaces are defined differently for UNICOMM-enabled devices
+let cs1interfaces = ["CS1_POCI1"];
+let cs2interfaces = ["CS2_POCI2"];
+let cs3interfaces = ["CS3_CD_POCI3"];
+if(Common.isUnicommSPI()){
+    cs1interfaces = ["CS1"];
+    cs2interfaces = ["CS2"];
+    cs3interfaces = ["CS3"];
+}
+
 /*  ======== pinmuxRequirements ========
  *  Returns peripheral pin requirements of the specified instance
  *
@@ -1773,19 +1796,19 @@ function pinmuxRequirements(inst)
     let cs1 = {
         name              : "cs1Pin",
         displayName       : "SPI CS1 (Chip Select 1)",
-        interfaceNames    : ["CS1_POCI1"]
+        interfaceNames    : cs1interfaces
     };
 
     let cs2 = {
         name              : "cs2Pin",
         displayName       : "SPI CS2 (Chip Select 2)",
-        interfaceNames    : ["CS2_POCI2"]
+        interfaceNames    : cs2interfaces
     };
 
     let cs3 = {
         name              : "cs3Pin",
         displayName       : "SPI CS3/CD (Chip Select 3/Command Data)",
-        interfaceNames    : ["CS3_CD_POCI3"]
+        interfaceNames    : cs3interfaces
     };
 
     let resources = [];

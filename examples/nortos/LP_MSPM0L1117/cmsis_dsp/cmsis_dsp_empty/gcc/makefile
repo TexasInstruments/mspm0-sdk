@@ -39,8 +39,12 @@ CFLAGS += -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS += -nostartfiles \
+LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/third_party/CMSIS/DSP/lib/gcc/m0p" \
+    -l:arm_cortexM0l_math.a \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l111x" \
+    -nostartfiles \
     -Tdevice.lds.genlibs \
+    -l:driverlib.a \
     -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \

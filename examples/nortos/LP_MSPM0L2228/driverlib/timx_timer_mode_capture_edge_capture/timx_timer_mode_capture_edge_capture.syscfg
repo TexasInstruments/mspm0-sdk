@@ -39,3 +39,4 @@ CAPTURE1.peripheral.$assign         = "TIMG4";
 CAPTURE1.peripheral.ccp0Pin.$assign = "PB2";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

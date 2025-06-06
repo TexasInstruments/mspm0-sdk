@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['faderate',['fadeRate',['../structdali__control_gear_var.html#a5a2c20406c6855c941420ab72e43065f',1,'dali_controlGearVar']]],
-  ['faderunning',['fadeRunning',['../structdali__control_gear_var.html#a767ef8466e9aac90afb347ec4e3b7a42',1,'dali_controlGearVar']]],
-  ['fadetime',['fadeTime',['../structdali__control_gear_var.html#a8279e99600945e3cd5f5498f30774143',1,'dali_controlGearVar']]],
-  ['failurestatus',['failureStatus',['../structdali__led_control_gear_var.html#a4ad85bf270384007bc75b68edc4854f0',1,'dali_ledControlGearVar']]],
-  ['fastfadetime',['fastFadeTime',['../structdali__led_control_gear_var.html#aa64ff18fa3273afa4941e7d3be6017e7',1,'dali_ledControlGearVar']]],
-  ['features',['features',['../structdali__led_control_gear_var.html#ac5a249bf9b3416180dfbcb3f0def47d7',1,'dali_ledControlGearVar']]]
+  ['enableleddevice',['enableLEDDevice',['../structdali__led_control_gear_var.html#a6aa2bc4763aff36823ade8122ebe4fe7',1,'dali_ledControlGearVar']]],
+  ['eventfilter',['eventFilter',['../structdali__instance_var.html#a86bdb39380a468dcab4bd4d7caa5235d',1,'dali_instanceVar']]],
+  ['eventpriority',['eventPriority',['../structdali__instance_var.html#a25d48bc01cd8a32f19e8e79927e38ce8',1,'dali_instanceVar']]],
+  ['eventscheme',['eventScheme',['../structdali__instance_var.html#a983eee9bcfdcbb970cbff6e25d8e25d1',1,'dali_instanceVar']]],
+  ['extendedfadetimebase',['extendedFadeTimeBase',['../structdali__control_gear_var.html#afdd7faf62168bd84d490888a05c002c7',1,'dali_controlGearVar']]],
+  ['extendedfadetimemultiplier',['extendedFadeTimeMultiplier',['../structdali__control_gear_var.html#ab2e3ff9df97234525c30346a3a2cf93d',1,'dali_controlGearVar']]]
 ];

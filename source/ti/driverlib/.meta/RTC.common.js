@@ -929,6 +929,14 @@ function getAdvancedConfig(peripheral)
             ],
         },
         {
+            name        : "enableRTCOutputPin",
+            displayName : "Enable RTC Output",
+            description : "Enable the RTC output to a pin",
+            hidden      : false,
+            default     : true,
+
+        },
+        {
             name        : "enableWriteProtect",
             displayName : "Enable Write Protect",
             description : "The RTC lock bit protects the CLKCTL, SEC, MIN, HOUR, DAY, MON, YEAR and LFSSRST registers from accidental updates.",

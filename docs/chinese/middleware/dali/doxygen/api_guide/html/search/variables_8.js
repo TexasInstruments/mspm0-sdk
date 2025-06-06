@@ -1,7 +1,22 @@
 var searchData=
 [
-  ['maxlevel',['maxLevel',['../structdali__control_gear_var.html#a73c7e8826f0a55f8ffa7bdcd6b0dc52d',1,'dali_controlGearVar']]],
-  ['memorybank0',['memoryBank0',['../structdali__control_gear_var.html#abd2fdcec4ab0890e81776e7c454d8ea3',1,'dali_controlGearVar']]],
-  ['minfastfadetime',['minFastFadeTime',['../structdali__led_control_gear_var.html#a1c8f89437e2672bf6dd1c85d9b11fa55',1,'dali_ledControlGearVar']]],
-  ['minlevel',['minLevel',['../structdali__control_gear_var.html#ac1ae5bf27ad00cb3310d6037d4774443',1,'dali_controlGearVar']]]
+  ['identifystate',['identifyState',['../structdali__control_gear_var.html#a63b84a96dc8244c7b5600badd54be442',1,'dali_controlGearVar']]],
+  ['initialisationcounter',['initialisationCounter',['../struct_tick_counter.html#a4004a284299dd9afc656f87f07f0d668',1,'TickCounter']]],
+  ['initialisationstate',['initialisationState',['../structdali__control_gear_var.html#a35a76dc1bd48425165bef00bf6c534cc',1,'dali_controlGearVar::initialisationState()'],['../structdali__control_device_var.html#a34985a85bf7e8c3f4fd318e54122e2ba',1,'dali_controlDeviceVar::initialisationState()']]],
+  ['inputdeviceerror',['inputDeviceError',['../structdali__control_device_var.html#a509f662a7b7e5bec8a4d1fd2f3737f20',1,'dali_controlDeviceVar']]],
+  ['inputvalue',['inputValue',['../structdali__instance_var.html#a3fef957c4ae4032729b326338a973234',1,'dali_instanceVar']]],
+  ['instance',['instance',['../structdali__control_device_var.html#a67dfe7eb4e6d2afb689da95a8a0d7355',1,'dali_controlDeviceVar']]],
+  ['instanceactive',['instanceActive',['../structdali__instance_var.html#a7966c94a92f6cdd98cf3ed6c06ac877e',1,'dali_instanceVar']]],
+  ['instancebyte',['instanceByte',['../structuser_vars.html#a396c9d1bb692c5cd975b03c745e08bce',1,'userVars']]],
+  ['instanceerror',['instanceError',['../structdali__instance_var.html#ae8ace0ab471d699749698edf1ffa0683',1,'dali_instanceVar']]],
+  ['instanceerrorbyte',['instanceErrorByte',['../structdali__occupancy_sensor_var.html#a8d7c1bfd7659494bcba8c1ffe87c6ce1',1,'dali_occupancySensorVar']]],
+  ['instancegroups0',['instanceGroups0',['../structdali__instance_var.html#a31ff3c1b66501eaaf9b86c82ae483252',1,'dali_instanceVar']]],
+  ['instancegroups1',['instanceGroups1',['../structdali__instance_var.html#a3ef90e78d617a944257ba6badef50461',1,'dali_instanceVar']]],
+  ['instancegroups2',['instanceGroups2',['../structdali__instance_var.html#a3dbd65a5b0e16eb65525a1bbfd901d44',1,'dali_instanceVar']]],
+  ['instancenumber',['instanceNumber',['../structdali__instance_var.html#a0b801e6ed4d916531bbfdcf2e9cc18b8',1,'dali_instanceVar']]],
+  ['instancetype',['instanceType',['../structdali__instance_var.html#aedb618cb621712cdf48ba1e7935de1f0',1,'dali_instanceVar']]],
+  ['isactive',['isActive',['../struct_d_a_l_i___r_x.html#a2af0d04eb2bd74678534d0c98a4a87e8',1,'DALI_RX']]],
+  ['iscdetectionactive',['isCDetectionActive',['../struct_d_a_l_i___t_x.html#a421d890d79b3070bca8213c75e628528',1,'DALI_TX']]],
+  ['isdeadtimeon',['isDeadtimeOn',['../structdali__occupancy_sensor_var.html#adbf9d0748aa1beb368ec9fe3cdc6eb81',1,'dali_occupancySensorVar']]],
+  ['issendtwicecmd',['isSendTwiceCmd',['../structuser_vars.html#ab3baa8c32983615c00ee96a74b64a8f0',1,'userVars::isSendTwiceCmd()'],['../struct_d_a_l_i___r_x.html#a9b27ee423c310b5c3370e4636aa7a47b',1,'DALI_RX::isSendTwiceCmd()']]]
 ];

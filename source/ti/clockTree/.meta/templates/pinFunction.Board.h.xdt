@@ -82,7 +82,7 @@
                 let pinInterfaceName = prefix+postfix; // TODO: add logic to get the pinInterfaceName extracted from the prefix and the given conditions
 %%}
 %               let Pin1_CM = Common.getPinCM(Pin1_PackagePin,inst,pinInterfaceName);
-%               let Pin1_GpioName = system.deviceData.devicePins[Pin1_PackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%               let Pin1_GpioName = system.deviceData.devicePins[Pin1_PackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %               let Pin1_Port = Common.getGPIOPortMultiPad(Pin1_PackagePin,inst,pinInterfaceName);
 %               let Pin1_GpioPin = Common.getGPIONumberMultiPad(Pin1_PackagePin,inst,pinInterfaceName);
 %               if (["HFX", "LFX"].includes(prefix)) {  string =  prefix + "T" }
@@ -103,7 +103,7 @@
 %              let OutPinName = _.lowerCase(prefix) + "OutPin";
 %              let OutPackagePin = inst.peripheral[OutPinName].$solution.packagePinName;
 %              let OutPinCM = Common.getPinCM(OutPackagePin,inst,pinInterfaceName);
-%              let OutGpioName = system.deviceData.devicePins[OutPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%              let OutGpioName = system.deviceData.devicePins[OutPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %              let OutGpioPin = Common.getGPIONumberMultiPad(OutPackagePin,inst,pinInterfaceName);
 %              let OutPinStr = "#define "+gpioStr+"_"+prefix+"OUT_PIN";
 %              let OutPinStr2 = "DL_GPIO_PIN_"+OutGpioPin;

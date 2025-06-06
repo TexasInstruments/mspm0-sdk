@@ -16,11 +16,11 @@ const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
  * Write custom configuration values to the imported modules.
  */
 NONMAIN.nonmainWarning               = true;
-NONMAIN.staticWriteProtectionMainLow = 0xFFFFFE0F;
 NONMAIN.staticWriteProtectionNonMain = true;
 NONMAIN.bslMode                      = true;
 NONMAIN.bslAltConfig                 = true;
-NONMAIN.bslAltAddress                = 0x10C1;
+NONMAIN.staticWriteProtectionMainLow = 0xFFFF00FF;
+NONMAIN.bslAltAddress                = 0x20C1;
 
 ProjectConfig.genLinker  = false;
 ProjectConfig.genStartup = false;

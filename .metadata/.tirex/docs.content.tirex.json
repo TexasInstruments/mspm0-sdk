@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_04_00_06.html",
+    "location": "../../release_notes_mspm0_sdk_2_05_00_05.html",
     "mainCategories": [
         [
             "Documents"
@@ -183,7 +183,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../manifest_mspm0_sdk_2_04_00_06.html",
+    "location": "../../manifest_mspm0_sdk_2_05_00_05.html",
     "mainCategories": [
         [
             "Documents"
@@ -532,6 +532,40 @@
     "resourceType": "file",
     "resourceClass": ["document"],
     "location": "../../docs/english/tools/analog_config_overview/Analog_Configurator_Overview.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Tools"
+    ]
+},
+{
+    "name": "MSP Zero Code Studio Overview",
+    "tags": [
+        "MSP Zero Code Studio Overview",
+        "Documentation",
+        "MSPM0",
+        "Quick Start Guide",
+        "User's Guide",
+        "GUI Composer",
+        "Live Configuration",
+        "Application",
+        "LaunchPad",
+        "Evaluation",
+        "ADC OPA COMP GPIO PWM UART SPI I2C",
+        "Development",
+        "Visual",
+        "SysConfig",
+        "Plotting",
+        "Code Generation"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/tools/zero_code_studio_overview/MSP_Zero_Code_Studio_Overview.html",
     "mainCategories": [
         [
             "Documents"
@@ -1068,6 +1102,29 @@
     ]
 },
 {
+    "name": "M-PESTI Target User's Guide",
+    "tags": [
+        "M-PESTI Target User's Guide",
+        "Modular Peripheral Sideband Tunneling Interface",
+        "Documentation",
+        "Middleware"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/mpesti/M-PESTI_Target_Users_Guide.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "M-PESTI"
+    ]
+},
+{
     "name": "Quick Start Guide Overview",
     "tags": [
         "Quick Start Guide Overview",
@@ -1263,7 +1320,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_04_00_06.html",
+    "location": "../../release_notes_mspm0_sdk_2_05_00_05.html",
     "mainCategories": [
         [
             "Documents - Chinese"

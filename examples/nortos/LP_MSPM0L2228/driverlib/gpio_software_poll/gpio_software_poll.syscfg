@@ -33,3 +33,4 @@ GPIO2.associatedPins[0].assignedPin      = "8";
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

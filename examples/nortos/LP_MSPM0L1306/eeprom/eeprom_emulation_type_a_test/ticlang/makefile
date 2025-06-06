@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj ti_msp_dl_config.obj ticlang_startup_mspm0l130x_ticlang.obj
+OBJECTS = ti_msp_dl_config.obj main.obj ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj ticlang_startup_mspm0l130x_ticlang.obj
 NAME = eeprom_emulation_type_a_test
 
 CFLAGS += -I.. \
@@ -31,6 +31,10 @@ LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/ticlang/m0p/mspm0l
 
 all: $(NAME).out
 
+ti_msp_dl_config.obj: ../ti_msp_dl_config.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
 main.obj: ../main.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
@@ -40,10 +44,6 @@ ti_eeprom_emulation_type_a_eeprom_emulation_type_a.obj: ../ti/eeprom/emulation_t
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
 ti_eeprom_emulation_type_b_eeprom_emulation_type_b.obj: ../ti/eeprom/emulation_type_b/eeprom_emulation_type_b.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-ti_msp_dl_config.obj: ../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

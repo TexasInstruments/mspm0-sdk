@@ -34,3 +34,4 @@ TIMER1.peripheral.$assign = "TIMG0";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

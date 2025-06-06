@@ -84,16 +84,18 @@
         <group name="iar" build="true">
             <path copyTo="$PROJ_DIR$/iar/startup_mspm0l130x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/dali/dali_led_demo/iar/startup_mspm0l130x_iar.c</path>
         </group>
-        <group name="ti/dali" build="true">
-            <path reference="$PROJ_DIR$/ti/dali/dali_gpio_comm.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_gpio_comm.c</path>
-            <path reference="$PROJ_DIR$/ti/dali/dali_gpio_comm.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_gpio_comm.h</path>
-            <path reference="$PROJ_DIR$/ti/dali/dali_target_comm.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_comm.c</path>
-            <path reference="$PROJ_DIR$/ti/dali/dali_target_comm.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_comm.h</path>
-            <path reference="$PROJ_DIR$/ti/dali/dali_target_command.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_command.c</path>
-            <path reference="$PROJ_DIR$/ti/dali/dali_target_command.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_command.h</path>
-            <path reference="$PROJ_DIR$/ti/dali/dali_target_led_command.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_led_command.c</path>
-            <path reference="$PROJ_DIR$/ti/dali/dali_target_led_command.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_target_led_command.h</path>
-            <path reference="$PROJ_DIR$/ti/dali/dali_variables.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_variables.h</path>
+        <group name="ti/dali/dali_102" build="true">
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_gpio_comm.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_gpio_comm.c</path>
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_gpio_comm.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_gpio_comm.h</path>
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_target_comm.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_target_comm.c</path>
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_target_comm.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_target_comm.h</path>
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_target_command.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_target_command.c</path>
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_target_command.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_target_command.h</path>
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_variables.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_variables.h</path>
+        </group>
+        <group name="ti/dali/dali_102/dali_207" build="true">
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_207/dali_target_led_command.c">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_207/dali_target_led_command.c</path>
+            <path reference="$PROJ_DIR$/ti/dali/dali_102/dali_207/dali_target_led_command.h">$MSPM0_SDK_INSTALL_DIR$/source/ti/dali/dali_102/dali_207/dali_target_led_command.h</path>
         </group>
         <group name="ti/eeprom/emulation_type_a" build="true">
             <path copyTo="$PROJ_DIR$/ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0L1306/dali/dali_led_demo/ti/eeprom/emulation_type_a/eeprom_emulation_type_a.c</path>

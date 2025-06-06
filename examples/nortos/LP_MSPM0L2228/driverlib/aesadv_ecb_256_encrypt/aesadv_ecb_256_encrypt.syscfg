@@ -21,3 +21,4 @@ AESADV.keySize           = "DL_AESADV_KEY_SIZE_256_BIT";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

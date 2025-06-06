@@ -14,7 +14,7 @@ CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/sour
 AFLAGS = -cr --target=elf32-little
 ASMFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" 
 
-OBJECTS = $(OBJ_DIR)/dl_adc12.o $(OBJ_DIR)/dl_aes.o $(OBJ_DIR)/dl_aesadv.o $(OBJ_DIR)/dl_common.o $(OBJ_DIR)/dl_comp.o $(OBJ_DIR)/dl_crc.o $(OBJ_DIR)/dl_crcp.o $(OBJ_DIR)/dl_dac12.o $(OBJ_DIR)/dl_dma.o $(OBJ_DIR)/dl_flashctl.o $(OBJ_DIR)/dl_gpamp.o $(OBJ_DIR)/dl_gpio.o $(OBJ_DIR)/dl_i2c.o $(OBJ_DIR)/dl_iwdt.o $(OBJ_DIR)/dl_keystorectl.o $(OBJ_DIR)/dl_lcd.o $(OBJ_DIR)/dl_lfss.o $(OBJ_DIR)/dl_mathacl.o $(OBJ_DIR)/dl_mcan.o $(OBJ_DIR)/dl_opa.o $(OBJ_DIR)/dl_rtc.o $(OBJ_DIR)/dl_rtc_a.o $(OBJ_DIR)/dl_rtc_b.o $(OBJ_DIR)/dl_rtc_common.o $(OBJ_DIR)/dl_scratchpad.o $(OBJ_DIR)/dl_spi.o $(OBJ_DIR)/dl_tamperio.o $(OBJ_DIR)/dl_timer.o $(OBJ_DIR)/dl_timera.o $(OBJ_DIR)/dl_timerg.o $(OBJ_DIR)/dl_trng.o $(OBJ_DIR)/dl_uart.o $(OBJ_DIR)/dl_vref.o $(OBJ_DIR)/dl_wwdt.o $(OBJ_DIR)/dl_factoryregion.o $(OBJ_DIR)/dl_interrupt.o $(OBJ_DIR)/dl_sysctl_mspm0c110x.o $(OBJ_DIR)/dl_sysctl_mspm0g1x0x_g3x0x.o $(OBJ_DIR)/dl_sysctl_mspm0gx51x.o $(OBJ_DIR)/dl_sysctl_mspm0h321x.o $(OBJ_DIR)/dl_sysctl_mspm0l111x.o $(OBJ_DIR)/dl_sysctl_mspm0l11xx_l13xx.o $(OBJ_DIR)/dl_sysctl_mspm0l122x_l222x.o
+OBJECTS = $(OBJ_DIR)/dl_adc12.o $(OBJ_DIR)/dl_aes.o $(OBJ_DIR)/dl_aesadv.o $(OBJ_DIR)/dl_common.o $(OBJ_DIR)/dl_comp.o $(OBJ_DIR)/dl_crc.o $(OBJ_DIR)/dl_crcp.o $(OBJ_DIR)/dl_dac12.o $(OBJ_DIR)/dl_dma.o $(OBJ_DIR)/dl_flashctl.o $(OBJ_DIR)/dl_gpamp.o $(OBJ_DIR)/dl_gpio.o $(OBJ_DIR)/dl_i2c.o $(OBJ_DIR)/dl_iwdt.o $(OBJ_DIR)/dl_keystorectl.o $(OBJ_DIR)/dl_lcd.o $(OBJ_DIR)/dl_lfss.o $(OBJ_DIR)/dl_mathacl.o $(OBJ_DIR)/dl_mcan.o $(OBJ_DIR)/dl_opa.o $(OBJ_DIR)/dl_rtc.o $(OBJ_DIR)/dl_rtc_a.o $(OBJ_DIR)/dl_rtc_b.o $(OBJ_DIR)/dl_rtc_common.o $(OBJ_DIR)/dl_scratchpad.o $(OBJ_DIR)/dl_spi.o $(OBJ_DIR)/dl_tamperio.o $(OBJ_DIR)/dl_timer.o $(OBJ_DIR)/dl_timera.o $(OBJ_DIR)/dl_timerg.o $(OBJ_DIR)/dl_trng.o $(OBJ_DIR)/dl_uart.o $(OBJ_DIR)/dl_vref.o $(OBJ_DIR)/dl_wwdt.o $(OBJ_DIR)/dl_factoryregion.o $(OBJ_DIR)/dl_interrupt.o $(OBJ_DIR)/dl_sysctl_mspm0c1105_c1106.o $(OBJ_DIR)/dl_sysctl_mspm0c110x.o $(OBJ_DIR)/dl_sysctl_mspm0g1x0x_g3x0x.o $(OBJ_DIR)/dl_sysctl_mspm0gx51x.o $(OBJ_DIR)/dl_sysctl_mspm0h321x.o $(OBJ_DIR)/dl_sysctl_mspm0l111x.o $(OBJ_DIR)/dl_sysctl_mspm0l11xx_l13xx.o $(OBJ_DIR)/dl_sysctl_mspm0l122x_l222x.o
 
 all: $(NAME).a
 
@@ -198,6 +198,11 @@ $(OBJ_DIR)/dl_factoryregion.o: $(SRC_DIR)/m0p/dl_factoryregion.c
 	@ $(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR)/dl_interrupt.o: $(SRC_DIR)/m0p/dl_interrupt.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_sysctl_mspm0c1105_c1106.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@

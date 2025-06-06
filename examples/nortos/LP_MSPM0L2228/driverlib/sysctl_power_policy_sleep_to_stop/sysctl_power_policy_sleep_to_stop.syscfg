@@ -58,3 +58,4 @@ TIMER2.peripheral.$assign = "TIMG8";
 
 SYSCTL.MFCLKEn = true;
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

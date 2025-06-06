@@ -53,3 +53,4 @@ TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
 TIMER1.peripheral.$assign          = "TIMG0";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

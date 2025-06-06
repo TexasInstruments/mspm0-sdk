@@ -1633,8 +1633,15 @@ typedef enum {
     DL_GPIO_WAKEUP_ON_0 = (IOMUX_PINCM_WUEN_ENABLE | IOMUX_PINCM_WCOMP_MATCH0),
     /*! Wakeup when pin changes to 1 */
     DL_GPIO_WAKEUP_ON_1 = (IOMUX_PINCM_WUEN_ENABLE | IOMUX_PINCM_WCOMP_MATCH1),
-
 } DL_GPIO_WAKEUP;
+
+/*! @enum DL_GPIO_WAKEUP_COMPARE_VALUE */
+typedef enum {
+    /*! Wakeup compare value of 0 */
+    DL_GPIO_WAKEUP_COMPARE_VALUE_0 = IOMUX_PINCM_WCOMP_MATCH0,
+    /*! Wakeup compare value of 1 */
+    DL_GPIO_WAKEUP_COMPARE_VALUE_1 = IOMUX_PINCM_WCOMP_MATCH1,
+} DL_GPIO_WAKEUP_COMPARE_VALUE;
 
 /*! @enum DL_GPIO_HIZ */
 typedef enum {
@@ -2157,6 +2164,39 @@ __STATIC_INLINE bool DL_GPIO_isWakeUpEnabled(uint32_t pincmIndex)
 {
     return ((IOMUX->SECCFG.PINCM[pincmIndex] & IOMUX_PINCM_WUEN_MASK) ==
             IOMUX_PINCM_WUEN_ENABLE);
+}
+
+/**
+ *  @brief Set the compare value to use for wake for the specified pin
+ *
+ *  @param[in]  pincmIndex  The PINCM register index that maps to the target
+ *                          GPIO pin.
+ *  @param[in]  value       The wakeup compare value to set.
+ *                          One of @ref DL_GPIO_WAKEUP_COMPARE_VALUE
+ */
+__STATIC_INLINE void DL_GPIO_setWakeupCompareValue(
+    uint32_t pincmIndex, DL_GPIO_WAKEUP_COMPARE_VALUE value)
+{
+    DL_Common_updateReg(&IOMUX->SECCFG.PINCM[pincmIndex], (uint32_t) value,
+        IOMUX_PINCM_WCOMP_MASK);
+}
+
+/**
+ *  @brief Get the compare value to use for wake for the specified pin
+ *
+ *  @param[in]  pincmIndex  The PINCM register index that maps to the target
+ *                          GPIO pin.
+ *
+ *  @return     The wakeup compare value for the specified pin
+ *
+ *  @retval     One of @ref DL_GPIO_WAKEUP_COMPARE_VALUE
+ */
+__STATIC_INLINE DL_GPIO_WAKEUP_COMPARE_VALUE DL_GPIO_getWakeupCompareValue(
+    uint32_t pincmIndex)
+{
+    uint32_t value = IOMUX->SECCFG.PINCM[pincmIndex] & IOMUX_PINCM_WCOMP_MASK;
+
+    return (DL_GPIO_WAKEUP_COMPARE_VALUE)(value);
 }
 
 /**

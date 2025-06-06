@@ -34,13 +34,14 @@
  *  ============ ti_msp_dl_config.h =============
  *  Configured MSPM0 DriverLib module declarations
  *
- *  DO NOT EDIT - This file is generated for the MSPM0G350X
+ *  DO NOT EDIT - This file is generated for the LP_MSPM0G3519
  *  by the SysConfig tool.
  */
 #ifndef ti_msp_dl_config_h
 #define ti_msp_dl_config_h
 
-#define CONFIG_MSPM0G350X
+#define CONFIG_LP_MSPM0G3519
+#define CONFIG_MSPM0G3519
 
 #if defined(__ti_version__) || defined(__TI_COMPILER_VERSION__)
 #define SYSCONFIG_WEAK __attribute__((weak))
@@ -66,6 +67,7 @@ extern "C" {
  *  MSP DL.
  */
 
+
 /* clang-format off */
 
 #define POWER_STARTUP_DELAY                                                (16)
@@ -80,12 +82,20 @@ extern "C" {
 /* Port definition for Pin Group GPIO_LEDS */
 #define GPIO_LEDS_PORT                                                   (GPIOA)
 
-/* Defines for USER_LED_1: GPIOA.0 with pinCMx 1 on package pin 33 */
+/* Defines for USER_LED_1: GPIOA.0 with pinCMx 1 on package pin 1 */
 #define GPIO_LEDS_USER_LED_1_PIN                                 (DL_GPIO_PIN_0)
 #define GPIO_LEDS_USER_LED_1_IOMUX                                (IOMUX_PINCM1)
-/* Defines for USER_TEST: GPIOA.15 with pinCMx 37 on package pin 8 */
+/* Defines for USER_TEST: GPIOA.15 with pinCMx 37 on package pin 54 */
 #define GPIO_LEDS_USER_TEST_PIN                                 (DL_GPIO_PIN_15)
 #define GPIO_LEDS_USER_TEST_IOMUX                                (IOMUX_PINCM37)
+
+
+/* Defines for RTC_B */
+#define GPIO_RTC_B_RTCOUT_PORT                                           (GPIOA)
+#define GPIO_RTC_B_RTCOUT_PIN                                   (DL_GPIO_PIN_13)
+#define GPIO_RTC_B_IOMUX_RTCOUT                                  (IOMUX_PINCM35)
+#define GPIO_RTC_B_IOMUX_RTCOUT_FUNC             (IOMUX_PINCM35_PF_LFSS_RTC_OUT)
+
 
 /* clang-format on */
 
@@ -95,6 +105,7 @@ void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
 
 void SYSCFG_DL_RTC_B_init(void);
+
 
 #ifdef __cplusplus
 }

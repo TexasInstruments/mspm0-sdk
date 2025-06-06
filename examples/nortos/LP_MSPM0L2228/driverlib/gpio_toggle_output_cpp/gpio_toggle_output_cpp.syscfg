@@ -37,3 +37,4 @@ GPIO2.associatedPins[1].pin.$assign = "PB9";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

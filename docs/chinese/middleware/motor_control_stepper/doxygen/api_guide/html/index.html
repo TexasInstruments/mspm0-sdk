@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.12"/>
-<title>StepperMotorControlLibrary: Stepper Library API Reference</title>
+<title>StepperMotorControlLibrary: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link id="favicon" rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -67,22 +67,14 @@ $(function() {
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Stepper Library API Reference </div>  </div>
+<div class="title">StepperMotorControlLibrary Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The Stepper Library is designed to be able to support wide range of motor driver across all three interfaces: STEP, PWM and Phase Enable interface. The library follows an architecture which allows configuring settings from TI SysConfig, which makes managing the hardware settings quite easy for the user.</p>
-<p>The Stepper Library consists of three modules:</p>
-<p><b>1. HAL Module</b></p>
-<p>HAL Module is an abstraction layer that provides APIs to configure different pins and peripherals. The goal of using HAL is to abstract all device specific configuration which simplifies porting of the library to various hardware by minimizing the updates needed to other components.</p>
-<p><b>2. Stepper Library Module</b></p>
-<p>The stepper library contains the generic algorithms for stepper motor control. This layer helps to reduce the code size when using multiple motor driver modules as all the different motor drivers can use the same generic algorithms in this layer.</p>
-<p><b>3. Motor Driver Module</b></p>
-<p>Motor Driver Module abstracts all the motor driving tasks into simple APIs like start motor, stop motor, set speed etc. The idea of this layer is to be independent of the hardware and use the HAL APIs to perform the hardware tasks. </p>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
 <hr class="footer"/><small>
-  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2024</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+  <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">© Copyright 1995-2025</a>, Texas Instruments Incorporated. All rights reserved. <br/>
   <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
 </small>
 </body>

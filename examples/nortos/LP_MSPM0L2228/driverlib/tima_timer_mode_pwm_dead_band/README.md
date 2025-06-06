@@ -51,5 +51,5 @@ Compile, load and run the example. Monitor the PWM signals on PA0, PA22, PB20,
 and PB13.
 The pair of signals on PA0 and PA22 are complementary signals with deadband
 insertion.
-The second pair of signals on PB20 and PB13 are also complementary signals with
+The second pair of signals on PA1 and PB5 are also complementary signals with
 deadband insertion.

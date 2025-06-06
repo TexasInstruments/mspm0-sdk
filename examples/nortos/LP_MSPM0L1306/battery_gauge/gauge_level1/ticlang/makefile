@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = main.obj Gauge_App.obj Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj Gauge_Algorithm_VoltGauge.obj Gauge_UserConfig_Gauge_UserConfig.obj ticlang_startup_mspm0l130x_ticlang.obj
+OBJECTS = Driver_MSPM0Lxx_BSP.obj Driver_MSPM0Lxx_Driver.obj Gauge_Algorithm_VoltGauge.obj Gauge_UserConfig_Gauge_UserConfig.obj main.obj Gauge_App.obj ticlang_startup_mspm0l130x_ticlang.obj
 NAME = gauge_level1
 
 CFLAGS += -I.. \
@@ -32,14 +32,6 @@ LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/iqmath/lib/ticlang/m0p/rts/mspm0
 
 all: $(NAME).out
 
-main.obj: ../main.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-Gauge_App.obj: ../Gauge_App.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
 Driver_MSPM0Lxx_BSP.obj: ../Driver/MSPM0Lxx_BSP.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
@@ -53,6 +45,14 @@ Gauge_Algorithm_VoltGauge.obj: ../Gauge_Algorithm/VoltGauge.c
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
 Gauge_UserConfig_Gauge_UserConfig.obj: ../Gauge_UserConfig/Gauge_UserConfig.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+main.obj: ../main.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+Gauge_App.obj: ../Gauge_App.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

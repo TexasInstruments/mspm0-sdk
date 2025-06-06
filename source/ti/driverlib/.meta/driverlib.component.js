@@ -86,7 +86,8 @@ if(Common.hasMATHACL()){
     );
 };
 
-if(/RTC/.test(peripherals)) {
+/* System (RTC): exists as its own peripheral or as part of the LFSS peripheral */
+if(/RTC/.test(peripherals) && !(/LFSS/.test(peripherals))) {
     systemModulesList.push(
         "/ti/driverlib/RTC",
     );
@@ -108,9 +109,10 @@ if(/LFSS/.test(peripherals) && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
     );
 };
 
-/* System: GX51X, L111X, and H321X have an RTC_B within the LFSS Peripheral */
+/* System: GX51X, L111X, and H321X, and G511X have an RTC_B within the LFSS Peripheral */
 if(/LFSS/.test(peripherals) && (Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())) {
+                                Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
+                                Common.isDeviceFamily_PARENT_MSPM0G511X())) {
     systemModulesList.push(
         "/ti/driverlib/RTCB",
     );
@@ -124,7 +126,7 @@ if(/LCD/.test(peripherals)){
 };
 
 /* System (SYSTICK): Devices with SysTick support */
-if(Common.isDeviceM0G() || Common.isDeviceM0L()){
+if(Common.isDeviceM0G() || Common.isDeviceM0L() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
     systemModulesList.push(
         "/ti/driverlib/SYSTICK",
     );
@@ -165,6 +167,11 @@ let commModulesList = [
     "/ti/driverlib/i2cSMBUS",
     "/ti/driverlib/SPI",
 ];
+if(Common.isDeviceFamily_PARENT_MSPM0G511X()){
+    commModulesList.push(
+        "/ti/driverlib/USB",
+    )
+}
 
 let analogModulesList = [
     "/ti/driverlib/ADC12",
@@ -210,7 +217,7 @@ if(["MSPM0G350X","MSPM0G310X", "MSPM0G351X"].includes(system.deviceData.device))
 
 let securityModulesList = [
 ]
-if(/AES/.test(peripherals)) {
+if(/AES/.test(peripherals) && !/AESADV/.test(peripherals)) {
     securityModulesList.push(
         "/ti/driverlib/AES",
     );

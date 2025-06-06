@@ -52,3 +52,4 @@ WWDT1.sleepMode         = true;
 WWDT1.enabledInterrupts = true;
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

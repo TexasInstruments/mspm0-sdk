@@ -29,14 +29,13 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#include "FlexWire.h"
-#include "CRC_LUT.h"
-#include "TPS929xxx_APIs.h"
-#include "dma.h"
-#include "led_driver.h"
-#include "system_info.h"
+#include "mspm0_dma.h"
 #include "ti_msp_dl_config.h"
+
+#include "CRC_LUT.h"
+#include "FlexWire.h"
+#include "TPS929xxx_APIs.h"
+#include "system_info.h"
 
 char ledXmtBuffer[MAX_BURST_CNT + 4];
 char ledRcvBuffer[MAX_BURST_CNT + 6];
@@ -100,7 +99,7 @@ void FlexReadWriteInternal(unsigned int dev_addr, unsigned int reg_addr,
     }
 
     // Calculate CRC of all the command frame bytes
-    commandFrame[i + 3] = CRC_LUT(commandFrame, i + 3);
+    commandFrame[i + 3] = CRC_LUT((uint32_t *) commandFrame, i + 3);
 
     for (i = 0; i < ledXmtFrameSize; i++) {
         ledXmtBuffer[i] = (char) commandFrame[i];
@@ -123,7 +122,7 @@ void FlexReadWriteInternal(unsigned int dev_addr, unsigned int reg_addr,
             commandFrame[i] = ledRcvBuffer[i + read_offset - 1];
         }
         // Check if calculated CRC matched received CRC
-        if ((CRC_LUT(commandFrame, i) & 0x7F) !=
+        if ((CRC_LUT((uint32_t *) commandFrame, i) & 0x7F) !=
             (ledRcvBuffer[i + read_offset - 1] & 0x7F)) {
             // Error occurred
             rcvCrcError = TRUE;

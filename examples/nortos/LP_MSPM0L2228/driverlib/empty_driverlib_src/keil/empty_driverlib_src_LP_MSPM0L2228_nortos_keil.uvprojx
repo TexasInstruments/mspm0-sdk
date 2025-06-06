@@ -57,7 +57,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0L2228__</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
+              <IncludePath>../,../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
             </VariousControls>
           </Cads>
           <LDads>
@@ -292,6 +292,11 @@
               <FilePath>../ti/driverlib/m0p/dl_systick.h</FilePath>
             </File>
             <File>
+              <FileName>dl_sysctl_mspm0c1105_c1106.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_sysctl_mspm0c110x.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h</FilePath>
@@ -505,6 +510,11 @@
               <FileName>dl_interrupt.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/m0p/dl_interrupt.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0c1105_c1106.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.c</FilePath>
             </File>
             <File>
               <FileName>dl_sysctl_mspm0c110x.c</FileName>

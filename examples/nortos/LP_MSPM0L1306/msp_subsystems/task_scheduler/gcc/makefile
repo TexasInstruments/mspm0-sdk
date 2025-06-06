@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = modules_scheduler_scheduler.obj modules_DAC8Driver.obj modules_switchDriver.obj task_scheduler.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = task_scheduler.obj modules_scheduler_scheduler.obj modules_DAC8Driver.obj modules_switchDriver.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = task_scheduler
 
 CFLAGS += -I.. \
@@ -37,8 +37,10 @@ CFLAGS += -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS += -nostartfiles \
+LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx" \
+    -nostartfiles \
     -Tdevice.lds.genlibs \
+    -l:driverlib.a \
     -Wl,-T,../gcc/device_linker.lds \
     "-Wl,-Map,$(NAME).map" \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source" \
@@ -84,6 +86,10 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
+task_scheduler.obj: ../task_scheduler.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
 modules_scheduler_scheduler.obj: ../modules/scheduler/scheduler.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
@@ -93,10 +99,6 @@ modules_DAC8Driver.obj: ../modules/DAC8Driver.c $(SYSCFG_H_FILES)
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
 modules_switchDriver.obj: ../modules/switchDriver.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -c -o $@
-
-task_scheduler.obj: ../task_scheduler.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

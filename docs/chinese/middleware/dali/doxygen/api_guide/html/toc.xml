@@ -6,6 +6,34 @@
   </topic>
   <topic label="Data Structures" href="annotated.html">
     <topic label="Data Structures" href="annotated.html">
+      <topic label="dali_303_TimerCounter" href="structdali__303___timer_counter.html">
+        <topic label="deadtimeCounter" href="structdali__303___timer_counter.html#a14775f4ce436f703ad62e17c033e9035"/>
+        <topic label="holdCounter" href="structdali__303___timer_counter.html#aab2ec7e9ba71ae848e6dac0b415942fc"/>
+        <topic label="reportCounter" href="structdali__303___timer_counter.html#a10b41845a61d23e48c1dab492be3c92e"/>
+        <topic label="blindTimeCounter" href="structdali__303___timer_counter.html#ac425e09cb98b62023c9fc3021a72fdd7"/>
+      </topic>
+      <topic label="dali_controlDeviceVar" href="structdali__control_device_var.html">
+        <topic label="shortAddress" href="structdali__control_device_var.html#a3138183d8022790513567c817d6557a6"/>
+        <topic label="deviceGroups" href="structdali__control_device_var.html#a60b099da964f967c834658c16deec299"/>
+        <topic label="searchAddress" href="structdali__control_device_var.html#ae5a57a2217eed52637847624e4e04d42"/>
+        <topic label="randomAddress" href="structdali__control_device_var.html#a9d20d7a37ac74c072424327e37295cc8"/>
+        <topic label="DTR0" href="structdali__control_device_var.html#aa5d2cb4f34ecb9fbfab5a2540f4c3af3"/>
+        <topic label="DTR1" href="structdali__control_device_var.html#a8c2cfd4887bd275b87f8f1dfd028df17"/>
+        <topic label="DTR2" href="structdali__control_device_var.html#a35b855227761fbadf1474492ff401935"/>
+        <topic label="numberOfInstances" href="structdali__control_device_var.html#a9ce96c47775b7eb29573f0c6c75cc070"/>
+        <topic label="operatingMode" href="structdali__control_device_var.html#a44172466a2cc17f6f5f3b93b15f5e7a8"/>
+        <topic label="quiescentMode" href="structdali__control_device_var.html#a37c5a6d2189f565fd524b67a017a8be0"/>
+        <topic label="applicationActive" href="structdali__control_device_var.html#ac368994478c54537cface6c3be356010"/>
+        <topic label="writeEnableState" href="structdali__control_device_var.html#a5a5bb6ea5f26985f4eac2b179e9353eb"/>
+        <topic label="applicationControllerPresent" href="structdali__control_device_var.html#a2709abf7be24cbaae6bf1f4811955de3"/>
+        <topic label="powerCycleSeen" href="structdali__control_device_var.html#a62ce201bfd9da04bbf878487539f4b2b"/>
+        <topic label="powerCycleNotification" href="structdali__control_device_var.html#a8a4211c698b58a2c4e5fb82580201cc1"/>
+        <topic label="initialisationState" href="structdali__control_device_var.html#a34985a85bf7e8c3f4fd318e54122e2ba"/>
+        <topic label="applicationControllerError" href="structdali__control_device_var.html#a5e5d6aab0ef2927384a102e573f8bd73"/>
+        <topic label="inputDeviceError" href="structdali__control_device_var.html#a509f662a7b7e5bec8a4d1fd2f3737f20"/>
+        <topic label="resetState" href="structdali__control_device_var.html#a092d8721cdc024324cfd9d692c08cece"/>
+        <topic label="instance" href="structdali__control_device_var.html#a67dfe7eb4e6d2afb689da95a8a0d7355"/>
+      </topic>
       <topic label="dali_controlGearVar" href="structdali__control_gear_var.html">
         <topic label="actualLevel" href="structdali__control_gear_var.html#ad97af9474baf9e7330c0b6573910cf20"/>
         <topic label="targetLevel" href="structdali__control_gear_var.html#a887229567fb46e6d1c2911791119e662"/>
@@ -49,6 +77,24 @@
         <topic label="deviceType" href="structdali__control_gear_var.html#a8c4db607b8c11468047b7f75beed9ed2"/>
         <topic label="ledControlGear" href="structdali__control_gear_var.html#a004f0e6e0790ddddb5d9de8b6c2df126"/>
       </topic>
+      <topic label="DALI_GPIO" href="struct_d_a_l_i___g_p_i_o.html">
+        <topic label="Rx" href="struct_d_a_l_i___g_p_i_o.html#a32667fbcd0221bb8c85339d8445aed0a"/>
+        <topic label="Tx" href="struct_d_a_l_i___g_p_i_o.html#ae820a525f57e9c91ba12fc9759c8fc69"/>
+      </topic>
+      <topic label="dali_instanceVar" href="structdali__instance_var.html">
+        <topic label="instanceGroups0" href="structdali__instance_var.html#a31ff3c1b66501eaaf9b86c82ae483252"/>
+        <topic label="instanceGroups1" href="structdali__instance_var.html#a3ef90e78d617a944257ba6badef50461"/>
+        <topic label="instanceGroups2" href="structdali__instance_var.html#a3dbd65a5b0e16eb65525a1bbfd901d44"/>
+        <topic label="instanceActive" href="structdali__instance_var.html#a7966c94a92f6cdd98cf3ed6c06ac877e"/>
+        <topic label="instanceType" href="structdali__instance_var.html#aedb618cb621712cdf48ba1e7935de1f0"/>
+        <topic label="resolution" href="structdali__instance_var.html#ab7403b76884a1f94d58a137fc0f904fe"/>
+        <topic label="inputValue" href="structdali__instance_var.html#a3fef957c4ae4032729b326338a973234"/>
+        <topic label="instanceNumber" href="structdali__instance_var.html#a0b801e6ed4d916531bbfdcf2e9cc18b8"/>
+        <topic label="eventFilter" href="structdali__instance_var.html#a86bdb39380a468dcab4bd4d7caa5235d"/>
+        <topic label="eventScheme" href="structdali__instance_var.html#a983eee9bcfdcbb970cbff6e25d8e25d1"/>
+        <topic label="eventPriority" href="structdali__instance_var.html#a25d48bc01cd8a32f19e8e79927e38ce8"/>
+        <topic label="instanceError" href="structdali__instance_var.html#ae8ace0ab471d699749698edf1ffa0683"/>
+      </topic>
       <topic label="dali_ledControlGearVar" href="structdali__led_control_gear_var.html">
         <topic label="enableLEDDevice" href="structdali__led_control_gear_var.html#a6aa2bc4763aff36823ade8122ebe4fe7"/>
         <topic label="minFastFadeTime" href="structdali__led_control_gear_var.html#a1c8f89437e2672bf6dd1c85d9b11fa55"/>
@@ -59,11 +105,69 @@
         <topic label="deviceType" href="structdali__led_control_gear_var.html#af39ceac56a7cec6dab9aa89fe16a149d"/>
         <topic label="dimmingCurve" href="structdali__led_control_gear_var.html#a20f4a5072e78320c369c663d5172cadf"/>
       </topic>
+      <topic label="dali_occupancySensorVar" href="structdali__occupancy_sensor_var.html">
+        <topic label="instanceErrorByte" href="structdali__occupancy_sensor_var.html#a8d7c1bfd7659494bcba8c1ffe87c6ce1"/>
+        <topic label="tDeadtime" href="structdali__occupancy_sensor_var.html#a53705671af35ec4e7eab2b64b98ef7ce"/>
+        <topic label="tHold" href="structdali__occupancy_sensor_var.html#a0ff662a0442ec33f17419ac41aa62a98"/>
+        <topic label="tReport" href="structdali__occupancy_sensor_var.html#a7c5f36fc6877aadb651b24d362ce7f63"/>
+        <topic label="catching" href="structdali__occupancy_sensor_var.html#a2add44e1e98badf7e9b0b9ba01ba0b05"/>
+        <topic label="isDeadtimeOn" href="structdali__occupancy_sensor_var.html#adbf9d0748aa1beb368ec9fe3cdc6eb81"/>
+      </topic>
       <topic label="dali_Rx" href="structdali___rx.html">
         <topic label="captBits" href="structdali___rx.html#a30f5ce9c85972b3c1af0d9a4b3bde4e9"/>
         <topic label="captBitTimings" href="structdali___rx.html#a4277a53a74c8cdc10c772ac1eb8f07e4"/>
         <topic label="captIndex" href="structdali___rx.html#ae89b9f0f574fb531cad1d6172ec5e548"/>
         <topic label="dataArr" href="structdali___rx.html#a030f8752ec21f53d6388cc87e9cb60f1"/>
+      </topic>
+      <topic label="DALI_RX" href="struct_d_a_l_i___r_x.html">
+        <topic label="captBits" href="struct_d_a_l_i___r_x.html#a04ff22a7dd93a273e23320ffe4bb029f"/>
+        <topic label="captBitTimings" href="struct_d_a_l_i___r_x.html#a72efa4758010bd4653e1a8dffc0b64ae"/>
+        <topic label="captIndex" href="struct_d_a_l_i___r_x.html#acc54d70c65e0700460cea76d9a81f127"/>
+        <topic label="currBit" href="struct_d_a_l_i___r_x.html#aa335c99c08babf968de14b2aa50699a3"/>
+        <topic label="dataSize" href="struct_d_a_l_i___r_x.html#afa95c4ecce60f44941f2179ccb021f9e"/>
+        <topic label="dataArr" href="struct_d_a_l_i___r_x.html#a540058d6a0b578569d2bba848f10a0b7"/>
+        <topic label="isSendTwiceCmd" href="struct_d_a_l_i___r_x.html#a9b27ee423c310b5c3370e4636aa7a47b"/>
+        <topic label="isActive" href="struct_d_a_l_i___r_x.html#a2af0d04eb2bd74678534d0c98a4a87e8"/>
+      </topic>
+      <topic label="DALI_TX" href="struct_d_a_l_i___t_x.html">
+        <topic label="transmitBits" href="struct_d_a_l_i___t_x.html#a6471032f3f281b3edd56e766e95a2c96"/>
+        <topic label="tBitsCount" href="struct_d_a_l_i___t_x.html#ae4f163acfa6bf3530b4ba65716f24948"/>
+        <topic label="tIndex" href="struct_d_a_l_i___t_x.html#add0ae3cc92eae38a7dde1290a1fefa39"/>
+        <topic label="currBit" href="struct_d_a_l_i___t_x.html#aa1b91eb7e674a0f11f15f623d7e52c3b"/>
+        <topic label="frame" href="struct_d_a_l_i___t_x.html#afec2445db7a59b7d20e3ef7d28048f7c"/>
+        <topic label="dataSize" href="struct_d_a_l_i___t_x.html#a399b5ad5ebc76161830a52a6829bf8da"/>
+        <topic label="dataArr" href="struct_d_a_l_i___t_x.html#a98f5b4eec0d6d8bbdadbac27d23ef28c"/>
+        <topic label="settlingTime" href="struct_d_a_l_i___t_x.html#a0e8022c97f48b2c0b58372bbb530c3e4"/>
+        <topic label="isCDetectionActive" href="struct_d_a_l_i___t_x.html#a421d890d79b3070bca8213c75e628528"/>
+        <topic label="toSend" href="struct_d_a_l_i___t_x.html#aaaebf3298e6dc3dabfeff5247a88e107"/>
+        <topic label="status" href="struct_d_a_l_i___t_x.html#a5367b9763729bfa8d9227ad9fd64bcd1"/>
+      </topic>
+      <topic label="PIR_configRegister" href="struct_p_i_r__config_register.html">
+        <topic label="threshold" href="struct_p_i_r__config_register.html#aa964a354c3bde64f8cad9a809d080de7"/>
+        <topic label="blindTime" href="struct_p_i_r__config_register.html#a729f0025f1649d248a84acce298fbf84"/>
+        <topic label="pulseCounter" href="struct_p_i_r__config_register.html#acb13c87e82cd3679290e176b0509c9b3"/>
+        <topic label="windowTime" href="struct_p_i_r__config_register.html#a46426540304fb0fac619e0b3ed76a440"/>
+        <topic label="operationMode" href="struct_p_i_r__config_register.html#a6fa7a2c431b20ea001554290ee016ded"/>
+        <topic label="signalSource" href="struct_p_i_r__config_register.html#ab509fb13c687d2554413172d82db4e05"/>
+        <topic label="hpfCutOff" href="struct_p_i_r__config_register.html#acad3811055cf20601f32be02be7355c7"/>
+        <topic label="countMode" href="struct_p_i_r__config_register.html#a0d14e15cd2fd38eccf2c9cf7cee75ee3"/>
+      </topic>
+      <topic label="PIR_directLink" href="struct_p_i_r__direct_link.html">
+        <topic label="Config" href="struct_p_i_r__direct_link.html#a4e40a058251f0dfddb4c8ec0134ed6de"/>
+        <topic label="AdcValue" href="struct_p_i_r__direct_link.html#a3008841b501e42ffe76b8aeac155aa73"/>
+        <topic label="OutOfRange" href="struct_p_i_r__direct_link.html#aaec6bc5e038d6e1c33a0cd71f688820b"/>
+      </topic>
+      <topic label="TickCounter" href="struct_tick_counter.html">
+        <topic label="resetCounter" href="struct_tick_counter.html#a6c8dbfef694af985635e1b25c8b5ab2b"/>
+        <topic label="quiescentMode" href="struct_tick_counter.html#a9e0c0346cda48ae8f5a8ed24cb4342b4"/>
+        <topic label="initialisationCounter" href="struct_tick_counter.html#a4004a284299dd9afc656f87f07f0d668"/>
+      </topic>
+      <topic label="userVars" href="structuser_vars.html">
+        <topic label="toSend" href="structuser_vars.html#a92d7dcdf444720647fe8a1d8341c52b8"/>
+        <topic label="addrByte" href="structuser_vars.html#afc7dc4707a3bace2cf386372bbbfa217"/>
+        <topic label="instanceByte" href="structuser_vars.html#a396c9d1bb692c5cd975b03c745e08bce"/>
+        <topic label="opcodeByte" href="structuser_vars.html#a4a6dcb2ceae911087d68ae32a7ab396c"/>
+        <topic label="isSendTwiceCmd" href="structuser_vars.html#ab3baa8c32983615c00ee96a74b64a8f0"/>
       </topic>
     </topic>
     <topic label="Data Fields" href="functions.html">
@@ -73,7 +177,237 @@
   </topic>
   <topic label="Files">
     <topic label="File List" href="files.html">
-      <topic label="dali_gpio_comm.h" href="dali__gpio__comm_8h_source.html"/>
+      <topic label="dali_103_command.h" href="dali__103__command_8h.html">
+        <topic label="DALI_103_identifyDevice" href="dali__103__command_8h.html#a9984ec76f098cae5a06474d44a9475e4"/>
+        <topic label="DALI_103_resetPowerCycleSeen" href="dali__103__command_8h.html#adb70d5ae7fd70926618909c52843cf2f"/>
+        <topic label="DALI_103_reset" href="dali__103__command_8h.html#a3ac2cd70abd732ad95df297d89681fcd"/>
+        <topic label="DALI_103_resetMemBank" href="dali__103__command_8h.html#a83fd32e7f2dc7e846eb7a5b42db1d219"/>
+        <topic label="DALI_103_setShortAddr" href="dali__103__command_8h.html#a21b9872ca5bd399ba0e62ab50ae1d873"/>
+        <topic label="DALI_103_enableWriteMemory" href="dali__103__command_8h.html#afc208d7ecdac287250e67665d6e0d2e8"/>
+        <topic label="DALI_103_enableAppController" href="dali__103__command_8h.html#aec04ca0abee538efe2ccaf53788f64ff"/>
+        <topic label="DALI_103_disableAppController" href="dali__103__command_8h.html#a074f8c0e78ebf49ecce9efa4ba2f9fd6"/>
+        <topic label="DALI_103_setOperatingMode" href="dali__103__command_8h.html#aead130b80b2226c8f526290ffd342cbe"/>
+        <topic label="DALI_103_addDeviceGroups_0_15" href="dali__103__command_8h.html#a3c1ee61b5f1d119cf962f743b3f18746"/>
+        <topic label="DALI_103_addDeviceGroups_16_31" href="dali__103__command_8h.html#a27a09154ba83ad6be4aff17576c19b8d"/>
+        <topic label="DALI_103_removeDeviceGroups_0_15" href="dali__103__command_8h.html#af0f7c2bdbdad302322e01df6c0453796"/>
+        <topic label="DALI_103_removeDeviceGroups_16_31" href="dali__103__command_8h.html#a97f7af5f7aee61525d3245d37d06397b"/>
+        <topic label="DALI_103_startQuiescentMode" href="dali__103__command_8h.html#a2c0cc7fe906652313392c41d96b6e74c"/>
+        <topic label="DALI_103_stopQuiescentMode" href="dali__103__command_8h.html#a92edfe40e1264109c6540d646582e0aa"/>
+        <topic label="DALI_103_enablePowerCycNotification" href="dali__103__command_8h.html#ad9b739bc6ed65626a0e1ad47b26fad50"/>
+        <topic label="DALI_103_disablePowerCycNotification" href="dali__103__command_8h.html#a625c0fd525b592f26f3e27fae0ee483c"/>
+        <topic label="DALI_103_savePersistentVariables" href="dali__103__command_8h.html#acdc1c1f7f8285e32207d9d5d97bcb11c"/>
+        <topic label="DALI_103_terminate" href="dali__103__command_8h.html#ad82f59f24d17c03c8cd05233aa56819e"/>
+        <topic label="DALI_103_initialise" href="dali__103__command_8h.html#a8f980993f471986374ea039d1f5c30e3"/>
+        <topic label="DALI_103_randomise" href="dali__103__command_8h.html#aada4546b0454d32e1e03616d15dab759"/>
+        <topic label="DALI_103_compare" href="dali__103__command_8h.html#a856a7f4a0ca2514caa556a185ea3ac99"/>
+        <topic label="DALI_103_withdraw" href="dali__103__command_8h.html#a13af9a24a3096d55219e67fb36fb9564"/>
+        <topic label="DALI_103_searchAddrH" href="dali__103__command_8h.html#aeb305e8025c594060ea53b1e3f3e8962"/>
+        <topic label="DALI_103_searchAddrM" href="dali__103__command_8h.html#a23741b4880196033cf8391b39b4c9356"/>
+        <topic label="DALI_103_searchAddrL" href="dali__103__command_8h.html#a2aab6429443879fe448cc6099d3bf177"/>
+        <topic label="DALI_103_programShortAddr" href="dali__103__command_8h.html#a4a8160f7b92689fb3cd9121ba9308c92"/>
+        <topic label="DALI_103_verifyShortAddr" href="dali__103__command_8h.html#af0d33ef32d16671bd0350caa52799d6d"/>
+        <topic label="DALI_103_queryShortAddr" href="dali__103__command_8h.html#a27a2d74a7c987c33434e440712d15468"/>
+        <topic label="DALI_103_writeMemLocation" href="dali__103__command_8h.html#a341592bacfab7fa654627ab630406282"/>
+        <topic label="DALI_103_writeMemLocation_NoReply" href="dali__103__command_8h.html#a1b96174a1ecebb3d0975ef58769b379d"/>
+        <topic label="DALI_103_DTR0" href="dali__103__command_8h.html#a1326fb153a4e52d5f6ebf689fb88a086"/>
+        <topic label="DALI_103_DTR1" href="dali__103__command_8h.html#a84b7e051ef5262c7b2a4686fb4aa8698"/>
+        <topic label="DALI_103_DTR2" href="dali__103__command_8h.html#af77b1b44a9204179a48146d3a7791c77"/>
+        <topic label="DALI_103_directWriteMem" href="dali__103__command_8h.html#ae20a94a3beb00a2fc8776c49628c7a65"/>
+        <topic label="DALI_103_DTR1_DTR0" href="dali__103__command_8h.html#a7953260154686ce62a0ff21f8e93c684"/>
+        <topic label="DALI_103_DTR2_DTR1" href="dali__103__command_8h.html#ac1365774a13767f2f1ed691edeb1eabf"/>
+        <topic label="DALI_103_sendTestFrame" href="dali__103__command_8h.html#a0081ec9e2c0305d0f85a8a5393ce3a5e"/>
+        <topic label="DALI_103_setEventPriority" href="dali__103__command_8h.html#a2d8f44ae053a37e3a7306cbb69695ca8"/>
+        <topic label="DALI_103_enableInstance" href="dali__103__command_8h.html#a6e6e9d6ece37d05caa498fa4e3b0f09b"/>
+        <topic label="DALI_103_disableInstance" href="dali__103__command_8h.html#a6953e3909accc3735311b970a1de854a"/>
+        <topic label="DALI_103_setPrimaryInstGroup" href="dali__103__command_8h.html#a1195a86db9814730e697664d529852f4"/>
+        <topic label="DALI_103_setInstGroup1" href="dali__103__command_8h.html#a4d1d3141b2a2de4898bc4f3bb72dc4e1"/>
+        <topic label="DALI_103_setInstGroup2" href="dali__103__command_8h.html#a79c4cfb4e267e281ec1b4a9a44f42217"/>
+        <topic label="DALI_103_setEventScheme" href="dali__103__command_8h.html#ac6ee699d6aea2d13afa9c29ece7cb4f5"/>
+        <topic label="DALI_103_setEventFilter" href="dali__103__command_8h.html#aa3dfb87e70a7cc963f17d7264f1a1f2a"/>
+        <topic label="DALI_103_query_deviceStatus" href="dali__103__command_8h.html#adcc484dddacb348e66a440e1ff5356b6"/>
+        <topic label="DALI_103_query_appControllerError" href="dali__103__command_8h.html#a0dea510edb1d1df5c6d9a417cc0f9b76"/>
+        <topic label="DALI_103_query_inputDeviceError" href="dali__103__command_8h.html#a55221c07348c1c040c7a035227347952"/>
+        <topic label="DALI_103_query_missingShortAddr" href="dali__103__command_8h.html#a96029b68806c87c13bc208c6a0c13f82"/>
+        <topic label="DALI_103_query_versionNumber" href="dali__103__command_8h.html#a097a63039f09dca090cf89ccca53285b"/>
+        <topic label="DALI_103_query_numberOfInstances" href="dali__103__command_8h.html#a0f6fe770acdb89fa824ccb570a76b5c8"/>
+        <topic label="DALI_103_query_DTR0" href="dali__103__command_8h.html#ae12c2f0222bf474b6383093322f5757c"/>
+        <topic label="DALI_103_query_DTR1" href="dali__103__command_8h.html#a73aa5e6db70e4c5325a638d807978806"/>
+        <topic label="DALI_103_query_DTR2" href="dali__103__command_8h.html#a1da72f6f9ebc52d045fbd8061ecbecd9"/>
+        <topic label="DALI_103_query_randomAddrH" href="dali__103__command_8h.html#abe16a65451ec282a90756cc8b2dcab3f"/>
+        <topic label="DALI_103_query_randomAddrM" href="dali__103__command_8h.html#adc5da252f291c3ab76f99ec7aa92f052"/>
+        <topic label="DALI_103_query_randomAddrL" href="dali__103__command_8h.html#ade3db53316e0f5fb73af3f52e551c677"/>
+        <topic label="DALI_103_query_readMemLocation" href="dali__103__command_8h.html#a71d4317c44cc85355d269737ea5b3a19"/>
+        <topic label="DALI_103_query_appControlEnabled" href="dali__103__command_8h.html#a82cbf6de1360b9ab5ba2b6998f721410"/>
+        <topic label="DALI_103_query_operatingMode" href="dali__103__command_8h.html#a6c76ff20d2c01f22fde42143543d859a"/>
+        <topic label="DALI_103_query_manufacturerSpecificMode" href="dali__103__command_8h.html#a764ae4a84efcdd45856916cf27ac1a95"/>
+        <topic label="DALI_103_query_quiescentMode" href="dali__103__command_8h.html#a6ce82261ff823b05dd457cfd0a433f01"/>
+        <topic label="DALI_103_query_deviceGroups_0_7" href="dali__103__command_8h.html#a2b83c9c2e869c051b81c6ce561b1b54b"/>
+        <topic label="DALI_103_query_deviceGroups_8_15" href="dali__103__command_8h.html#adb569d45f7dfcc9ef7ced12a12bafa70"/>
+        <topic label="DALI_103_query_deviceGroups_16_23" href="dali__103__command_8h.html#a0894f7129e95feea859521dc8d1c3ad5"/>
+        <topic label="DALI_103_query_deviceGroups_24_31" href="dali__103__command_8h.html#a6a57b40f9d6ba414176cc41493438eab"/>
+        <topic label="DALI_103_query_powerCycNotification" href="dali__103__command_8h.html#ade994a22e7e8f88bcdd7ed6214fcdf10"/>
+        <topic label="DALI_103_query_deviceCapabilites" href="dali__103__command_8h.html#a195becfb4bf0f70d8c5d7d8074488561"/>
+        <topic label="DALI_103_query_extendedVersionNumber" href="dali__103__command_8h.html#a0bcb541058ff0c070188cb28c50574a3"/>
+        <topic label="DALI_103_query_resetState" href="dali__103__command_8h.html#a6b7dbb795146ff0c81c9653510f04d88"/>
+      </topic>
+      <topic label="dali_103_variables.h" href="dali__103__variables_8h.html">
+        <topic label="dali_instanceVar" href="structdali__instance_var.html">
+          <topic label="instanceGroups0" href="structdali__instance_var.html#a31ff3c1b66501eaaf9b86c82ae483252"/>
+          <topic label="instanceGroups1" href="structdali__instance_var.html#a3ef90e78d617a944257ba6badef50461"/>
+          <topic label="instanceGroups2" href="structdali__instance_var.html#a3dbd65a5b0e16eb65525a1bbfd901d44"/>
+          <topic label="instanceActive" href="structdali__instance_var.html#a7966c94a92f6cdd98cf3ed6c06ac877e"/>
+          <topic label="instanceType" href="structdali__instance_var.html#aedb618cb621712cdf48ba1e7935de1f0"/>
+          <topic label="resolution" href="structdali__instance_var.html#ab7403b76884a1f94d58a137fc0f904fe"/>
+          <topic label="inputValue" href="structdali__instance_var.html#a3fef957c4ae4032729b326338a973234"/>
+          <topic label="instanceNumber" href="structdali__instance_var.html#a0b801e6ed4d916531bbfdcf2e9cc18b8"/>
+          <topic label="eventFilter" href="structdali__instance_var.html#a86bdb39380a468dcab4bd4d7caa5235d"/>
+          <topic label="eventScheme" href="structdali__instance_var.html#a983eee9bcfdcbb970cbff6e25d8e25d1"/>
+          <topic label="eventPriority" href="structdali__instance_var.html#a25d48bc01cd8a32f19e8e79927e38ce8"/>
+          <topic label="instanceError" href="structdali__instance_var.html#ae8ace0ab471d699749698edf1ffa0683"/>
+        </topic>
+        <topic label="dali_controlDeviceVar" href="structdali__control_device_var.html">
+          <topic label="shortAddress" href="structdali__control_device_var.html#a3138183d8022790513567c817d6557a6"/>
+          <topic label="deviceGroups" href="structdali__control_device_var.html#a60b099da964f967c834658c16deec299"/>
+          <topic label="searchAddress" href="structdali__control_device_var.html#ae5a57a2217eed52637847624e4e04d42"/>
+          <topic label="randomAddress" href="structdali__control_device_var.html#a9d20d7a37ac74c072424327e37295cc8"/>
+          <topic label="DTR0" href="structdali__control_device_var.html#aa5d2cb4f34ecb9fbfab5a2540f4c3af3"/>
+          <topic label="DTR1" href="structdali__control_device_var.html#a8c2cfd4887bd275b87f8f1dfd028df17"/>
+          <topic label="DTR2" href="structdali__control_device_var.html#a35b855227761fbadf1474492ff401935"/>
+          <topic label="numberOfInstances" href="structdali__control_device_var.html#a9ce96c47775b7eb29573f0c6c75cc070"/>
+          <topic label="operatingMode" href="structdali__control_device_var.html#a44172466a2cc17f6f5f3b93b15f5e7a8"/>
+          <topic label="quiescentMode" href="structdali__control_device_var.html#a37c5a6d2189f565fd524b67a017a8be0"/>
+          <topic label="applicationActive" href="structdali__control_device_var.html#ac368994478c54537cface6c3be356010"/>
+          <topic label="writeEnableState" href="structdali__control_device_var.html#a5a5bb6ea5f26985f4eac2b179e9353eb"/>
+          <topic label="applicationControllerPresent" href="structdali__control_device_var.html#a2709abf7be24cbaae6bf1f4811955de3"/>
+          <topic label="powerCycleSeen" href="structdali__control_device_var.html#a62ce201bfd9da04bbf878487539f4b2b"/>
+          <topic label="powerCycleNotification" href="structdali__control_device_var.html#a8a4211c698b58a2c4e5fb82580201cc1"/>
+          <topic label="initialisationState" href="structdali__control_device_var.html#a34985a85bf7e8c3f4fd318e54122e2ba"/>
+          <topic label="applicationControllerError" href="structdali__control_device_var.html#a5e5d6aab0ef2927384a102e573f8bd73"/>
+          <topic label="inputDeviceError" href="structdali__control_device_var.html#a509f662a7b7e5bec8a4d1fd2f3737f20"/>
+          <topic label="resetState" href="structdali__control_device_var.html#a092d8721cdc024324cfd9d692c08cece"/>
+          <topic label="instance" href="structdali__control_device_var.html#a67dfe7eb4e6d2afb689da95a8a0d7355"/>
+        </topic>
+        <topic label="userVars" href="structuser_vars.html">
+          <topic label="toSend" href="structuser_vars.html#a92d7dcdf444720647fe8a1d8341c52b8"/>
+          <topic label="addrByte" href="structuser_vars.html#afc7dc4707a3bace2cf386372bbbfa217"/>
+          <topic label="instanceByte" href="structuser_vars.html#a396c9d1bb692c5cd975b03c745e08bce"/>
+          <topic label="opcodeByte" href="structuser_vars.html#a4a6dcb2ceae911087d68ae32a7ab396c"/>
+          <topic label="isSendTwiceCmd" href="structuser_vars.html#ab3baa8c32983615c00ee96a74b64a8f0"/>
+        </topic>
+        <topic label="MASK" href="dali__103__variables_8h.html#ae7520c5477c11965aabeedc033c9862b"/>
+        <topic label="YES" href="dali__103__variables_8h.html#a7ebc9a785e5ab85457c98595aac81589"/>
+        <topic label="DEVICE_INSTANCE_COUNT" href="dali__103__variables_8h.html#a3d72692c46760089c85eba7d8343b375"/>
+        <topic label="APP_CONTROLLER_PRESENT" href="dali__103__variables_8h.html#a39da6585ef6bd0680b04cf70cdda1380"/>
+        <topic label="OPERATING_MODE" href="dali__103__variables_8h.html#a8d261bc4944c9143e060c93903ccf87e"/>
+        <topic label="SHORT_ADDRESS_DEFAULT" href="dali__103__variables_8h.html#aca48af04c380c469489aeaee04b69416"/>
+        <topic label="DEVICE_GROUP_DEFAULT" href="dali__103__variables_8h.html#a6bdc9c6f02e8a39c11565cd9ae104b61"/>
+        <topic label="RANDOM_ADDRESS_DEFAULT" href="dali__103__variables_8h.html#a5cea6722c361030967c64d5770fc6b54"/>
+        <topic label="POWER_CYC_NOTIFICATION_DEFAULT" href="dali__103__variables_8h.html#a4717aa29817eb35683ef8adc81f31fa6"/>
+        <topic label="RESET_STATE_DEFAULT" href="dali__103__variables_8h.html#aebffaaf19f4402bd6255ce63196e0e3f"/>
+        <topic label="INST_GROUP0_DEFAULT" href="dali__103__variables_8h.html#aa286bb7d4ec3a9b55e457ba00f6e0e06"/>
+        <topic label="INST_GROUP1_DEFAULT" href="dali__103__variables_8h.html#a1a9260e5c2d975ab5145c09cbdea3f0e"/>
+        <topic label="INST_GROUP2_DEFAULT" href="dali__103__variables_8h.html#a6c09164ae4a60de19dc76b5b689c43a4"/>
+        <topic label="INST_ACTIVE_DEFAULT" href="dali__103__variables_8h.html#a89184e3fac657885ece0165c1d24afee"/>
+        <topic label="EVENT_FILTER_DEFAULT" href="dali__103__variables_8h.html#a76d442be0bf63cabf8c3c771965f0ade"/>
+        <topic label="EVENT_SCHEME_DEFAULT" href="dali__103__variables_8h.html#a323812697701c4a26b532a4db3f894e2"/>
+        <topic label="EVENT_PRIORITY_DEFAULT" href="dali__103__variables_8h.html#add9a2695cb47cda4b88f1f09f17ddd63"/>
+        <topic label="DEVICE_GROUP_RESET" href="dali__103__variables_8h.html#a19ab921a88a2b9e730617ac45d54987c"/>
+        <topic label="SEARCH_ADDR_RESET" href="dali__103__variables_8h.html#af9a3fedb580e43463a3c116ecfe4e72b"/>
+        <topic label="RANDOM_ADDRESS_RESET" href="dali__103__variables_8h.html#a3b46568e0674ad4ff16b1342adb3b2fc"/>
+        <topic label="QUIESCENT_MODE_RESET" href="dali__103__variables_8h.html#a8939b424223430cfd4be605e1637dc95"/>
+        <topic label="WRITE_ENABLE_RESET" href="dali__103__variables_8h.html#adbbf157ee048ea54b0e74546bb3da6ea"/>
+        <topic label="POWER_CYC_SEEN_RESET" href="dali__103__variables_8h.html#afbc8e89f5267f3c5c0ca701bfbc98431"/>
+        <topic label="INIT_STATE_RESET" href="dali__103__variables_8h.html#ae84b54daad1f1ed44b9e907adcd1d02b"/>
+        <topic label="APP_CONTROLLER_ERROR_RESET" href="dali__103__variables_8h.html#a5b9b6d76f77ba7aed80702dd0f948806"/>
+        <topic label="INPUT_DEVICE_ERROR_RESET" href="dali__103__variables_8h.html#af1fc4c1c29f84e6fb6946c0013e0c850"/>
+        <topic label="RESET_STATE_RESET" href="dali__103__variables_8h.html#add75577d1f30c156c84853416e05ceda"/>
+        <topic label="INST_GROUP0_RESET" href="dali__103__variables_8h.html#ac757c0f0fd7909a048128950cf54a5e5"/>
+        <topic label="INST_GROUP1_RESET" href="dali__103__variables_8h.html#a7c159ad02735e1e18d0c85078423722a"/>
+        <topic label="INST_GROUP2_RESET" href="dali__103__variables_8h.html#a89f69e24cfd8b84e74babc99dbbedb15"/>
+        <topic label="EVENT_FILTER_RESET" href="dali__103__variables_8h.html#a54c03d420ac7978a1fc8f4f4923f8301"/>
+        <topic label="EVENT_SCHEME_RESET" href="dali__103__variables_8h.html#a5520eda29de1d79f7a77d1cf347ac4ab"/>
+        <topic label="INST_ERROR_RESET" href="dali__103__variables_8h.html#ab318ce762db856071e43cbf58a193866"/>
+        <topic label="DALI_stateType" href="dali__103__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5">
+          <topic label="ENABLED" href="dali__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5a99788d1f27bac42d0c7bac63026c5959"/>
+          <topic label="DISABLED" href="dali__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5a40f39385238042f6ec0cbac821a19fc4"/>
+          <topic label="WITHDRAWN" href="dali__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5ae2b5ce0407d9045f52686e18e5d58dbf"/>
+          <topic label="ENABLED" href="dali__103__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5a99788d1f27bac42d0c7bac63026c5959"/>
+          <topic label="DISABLED" href="dali__103__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5a40f39385238042f6ec0cbac821a19fc4"/>
+          <topic label="WITHDRAWN" href="dali__103__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5ae2b5ce0407d9045f52686e18e5d58dbf"/>
+        </topic>
+        <topic label="gUserVar" href="dali__103__variables_8h.html#a28c0ee18eb65460a1e624260e9dd21d5"/>
+        <topic label="gControlDeviceVar1" href="dali__103__variables_8h.html#a2dc89a576bf0b616e10cc252cef4d118"/>
+      </topic>
+      <topic label="dali_303_command.h" href="dali__303__command_8h.html">
+        <topic label="DALI_303_catchMovement" href="dali__303__command_8h.html#ac0ee1740db080101d6ce505e8ab392a9"/>
+        <topic label="DALI_303_cancelHoldTimer" href="dali__303__command_8h.html#af80138f9660ffe37d52721368a709bb5"/>
+        <topic label="DALI_303_setHoldTimer" href="dali__303__command_8h.html#a40b469f9dcaef84c5dbffa067c5c7585"/>
+        <topic label="DALI_303_setReportTimer" href="dali__303__command_8h.html#a21edf71148eb5dfe39ec0fd0829c129b"/>
+        <topic label="DALI_303_setDeadtimeTimer" href="dali__303__command_8h.html#aa9dc5c8f1243820199e23ea2a985b135"/>
+        <topic label="DALI_303_queryHoldTimer" href="dali__303__command_8h.html#ab093759c9e013e79967a85c194fd0fe8"/>
+        <topic label="DALI_303_queryReportTimer" href="dali__303__command_8h.html#aef440ddff7661f62d9709c90907ec4c4"/>
+        <topic label="DALI_303_queryDeadtimeTimer" href="dali__303__command_8h.html#af6ac70de664dd94fb20d1bf9180240aa"/>
+        <topic label="DALI_303_queryCatching" href="dali__303__command_8h.html#aebdd2029cfa60d384132df9361560795"/>
+        <topic label="DALI_303_getCounterValue" href="dali__303__command_8h.html#a266329d2d0082ee7880d580b419273bd"/>
+      </topic>
+      <topic label="dali_303_variables.h" href="dali__303__variables_8h.html">
+        <topic label="dali_303_TimerCounter" href="structdali__303___timer_counter.html">
+          <topic label="deadtimeCounter" href="structdali__303___timer_counter.html#a14775f4ce436f703ad62e17c033e9035"/>
+          <topic label="holdCounter" href="structdali__303___timer_counter.html#aab2ec7e9ba71ae848e6dac0b415942fc"/>
+          <topic label="reportCounter" href="structdali__303___timer_counter.html#a10b41845a61d23e48c1dab492be3c92e"/>
+          <topic label="blindTimeCounter" href="structdali__303___timer_counter.html#ac425e09cb98b62023c9fc3021a72fdd7"/>
+        </topic>
+        <topic label="dali_occupancySensorVar" href="structdali__occupancy_sensor_var.html">
+          <topic label="instanceErrorByte" href="structdali__occupancy_sensor_var.html#a8d7c1bfd7659494bcba8c1ffe87c6ce1"/>
+          <topic label="tDeadtime" href="structdali__occupancy_sensor_var.html#a53705671af35ec4e7eab2b64b98ef7ce"/>
+          <topic label="tHold" href="structdali__occupancy_sensor_var.html#a0ff662a0442ec33f17419ac41aa62a98"/>
+          <topic label="tReport" href="structdali__occupancy_sensor_var.html#a7c5f36fc6877aadb651b24d362ce7f63"/>
+          <topic label="catching" href="structdali__occupancy_sensor_var.html#a2add44e1e98badf7e9b0b9ba01ba0b05"/>
+          <topic label="isDeadtimeOn" href="structdali__occupancy_sensor_var.html#adbf9d0748aa1beb368ec9fe3cdc6eb81"/>
+        </topic>
+        <topic label="DALI_303_INSTANCE_TYPE" href="dali__303__variables_8h.html#abc455a9b6bc9c64dce604abef06af5e5"/>
+        <topic label="DALI_303_RESOLUTION" href="dali__303__variables_8h.html#a9d22c2f61aa30ca5a322af0957403f62"/>
+        <topic label="DALI_303_EVENT_FILTER_DEFAULT" href="dali__303__variables_8h.html#ae882f0460ad7921c0d68f8b29e7fab04"/>
+        <topic label="DALI_303_EVENT_PRIORITY_DEFAULT" href="dali__303__variables_8h.html#aa4e97530aa73aac7f58d5ffbf1015292"/>
+        <topic label="DALI_303_DEADTIME_DEFAULT" href="dali__303__variables_8h.html#aebf363a12b5f890e75e334260901ecf3"/>
+        <topic label="DALI_303_HOLD_DEFAULT" href="dali__303__variables_8h.html#af579b1f3ac0a9461656b5e989fb4cdcd"/>
+        <topic label="DALI_303_REPORT_DEFAULT" href="dali__303__variables_8h.html#a8b18c4a9a976040fdfe731580904b0ff"/>
+        <topic label="DALI_303_EVENT_FILTER_RESET" href="dali__303__variables_8h.html#a5da0c0decfbe0fd282a25a46f7df9330"/>
+        <topic label="DALI_303_EVENT_PRIORITY_RESET" href="dali__303__variables_8h.html#a55070b7d273ce81a34f9250e3dc2392a"/>
+        <topic label="DALI_303_DEADTIME_RESET" href="dali__303__variables_8h.html#aba0149848add85ddf5b675c12853f1a4"/>
+        <topic label="DALI_303_HOLD_RESET" href="dali__303__variables_8h.html#ab512f08b56108cfa845a2ee37080b338"/>
+        <topic label="DALI_303_REPORT_RESET" href="dali__303__variables_8h.html#a70030d80181b4c607aee305f09fe5fda"/>
+        <topic label="DALI_303_CATCHING_RESET" href="dali__303__variables_8h.html#a9fcd3eecf2f1d5eeba5e01c89697b068"/>
+        <topic label="DALI_303_EVENT_FILTER_MOVEMENT" href="dali__303__variables_8h.html#a67e339a0c84aa181428b631aca35f2be"/>
+        <topic label="DALI_303_DEADTIME_INCREMENT" href="dali__303__variables_8h.html#ae7e46590e295c92764fd69487dea6d98"/>
+        <topic label="DALI_303_HOLD_INCREMENT" href="dali__303__variables_8h.html#aa0dcb05a328071121cdc024efc9f0f04"/>
+        <topic label="DALI_303_REPORT_INCREMENT" href="dali__303__variables_8h.html#a94cb3c4477cdc7d907f57b17849c8d4e"/>
+        <topic label="DALI_303_BLINDTIME_INCREMENT" href="dali__303__variables_8h.html#ab313cf0ed8fadfd729371277ec399f72"/>
+        <topic label="TIMER_303_PERIOD" href="dali__303__variables_8h.html#a2e14f4d869e6c03135bd713c1e39163e"/>
+        <topic label="dali_303_inputValues" href="dali__303__variables_8h.html#a78f0c15c0ae018c917b7c62538052270">
+          <topic label="VACANT_NO_MOVEMENT" href="dali__303__variables_8h.html#a78f0c15c0ae018c917b7c62538052270a147d9a6364b9e89ce04f7603df6f9ed9"/>
+          <topic label="VACANT_WITH_MOVEMENT" href="dali__303__variables_8h.html#a78f0c15c0ae018c917b7c62538052270a7691a5d1ca1627404ce6610b0008daf1"/>
+          <topic label="OCCCUPIED_NO_MOVEMENT" href="dali__303__variables_8h.html#a78f0c15c0ae018c917b7c62538052270aa5a40a9aa9d4dd8c3018beefd2259957"/>
+          <topic label="OCCUPIED_WITH_MOVEMENT" href="dali__303__variables_8h.html#a78f0c15c0ae018c917b7c62538052270a137956578f28480379adfec904654a5d"/>
+        </topic>
+        <topic label="gOccupancySensorVar1" href="dali__303__variables_8h.html#af63617250086250729cf536bae9d845a"/>
+        <topic label="g303_TimerCounter" href="dali__303__variables_8h.html#a37e2f660acf67640db42729a16c981f0"/>
+      </topic>
+      <topic label="dali_cd_comm.h" href="dali__cd__comm_8h.html">
+        <topic label="DALI_ControlDevice_init" href="dali__cd__comm_8h.html#afd2310698735b307caab74d5dcbad28a"/>
+        <topic label="DALI_ControlDevice_receive" href="dali__cd__comm_8h.html#a90c0aa5a6d5f3b564a54949a75b3ef2c"/>
+        <topic label="DALI_ControlDevice_execDeviceCommand" href="dali__cd__comm_8h.html#a76f290dff3031ec14c415272f4dcf043"/>
+        <topic label="DALI_ControlDevice_execInstanceCommand" href="dali__cd__comm_8h.html#a95fb77ae489aa98f2ea3d4a9914418af"/>
+        <topic label="DALI_ControlDevice_execSpecialCommand" href="dali__cd__comm_8h.html#a49c75f4dc3ee461bc56a71678db62e38"/>
+        <topic label="DALI_ControlDevice_testTransmit" href="dali__cd__comm_8h.html#a52fb7cf825616c51560fd876fc22025e"/>
+        <topic label="DALI_ControlDevice_transmit" href="dali__cd__comm_8h.html#a4cac0a34448c75b829f537a145856d8f"/>
+        <topic label="DALI_ControlDevice_AddrCheck" href="dali__cd__comm_8h.html#ad859d9d5ae1ad4497b535b993fc7b84c"/>
+        <topic label="DALI_ControlDevice_InstCheck" href="dali__cd__comm_8h.html#a97d0486218b4c476511203d395b6fe94"/>
+        <topic label="DALI_ControlDevice_loadDefaults" href="dali__cd__comm_8h.html#aad598652b5103acc0d19766307f02391"/>
+        <topic label="DALI_ControlDevice_EventMessages" href="dali__cd__comm_8h.html#abc1a4efa0b6ca9a02545aa2e72c5122f"/>
+      </topic>
+      <topic label="dali_102/dali_gpio_comm.h" href="dali__102_2dali__gpio__comm_8h_source.html"/>
+      <topic label="dali_103/dali_gpio_comm.h" href="dali__103_2dali__gpio__comm_8h_source.html"/>
       <topic label="dali_target_comm.h" href="dali__target__comm_8h.html">
         <topic label="DATA_SIZE" href="dali__target__comm_8h.html#af55149bc1f05cf18af067a302e31e3f9"/>
         <topic label="DALI_Target_init" href="dali__target__comm_8h.html#af4c94d31ff1a96fde93578c93223aa6e"/>
@@ -182,6 +516,38 @@
         <topic label="DALI_LED_queryMinFastFadeTime" href="dali__target__led__command_8h.html#a8bef09f434e023d15d6929159fd464ed"/>
         <topic label="DALI_LED_queryExtendedVersionNumber" href="dali__target__led__command_8h.html#a7e40e2be6cacf6c6f235c20265a2abfc"/>
         <topic label="DALI_LED_enableDeviceType" href="dali__target__led__command_8h.html#a171ae81e334dd839de7c683448804475"/>
+      </topic>
+      <topic label="dali_timings.h" href="dali__timings_8h.html">
+        <topic label="TickCounter" href="struct_tick_counter.html">
+          <topic label="resetCounter" href="struct_tick_counter.html#a6c8dbfef694af985635e1b25c8b5ab2b"/>
+          <topic label="quiescentMode" href="struct_tick_counter.html#a9e0c0346cda48ae8f5a8ed24cb4342b4"/>
+          <topic label="initialisationCounter" href="struct_tick_counter.html#a4004a284299dd9afc656f87f07f0d668"/>
+        </topic>
+        <topic label="RECEIVER_HALF_BIT_MIN" href="dali__timings_8h.html#a80c02489d48b6b06db9e74fa84a9f326"/>
+        <topic label="RECEIVER_HALF_BIT_MAX" href="dali__timings_8h.html#a50c9aef7974b22aa0f952ed52265d2e1"/>
+        <topic label="RECEIVER_BIT_MIN" href="dali__timings_8h.html#a1d11ade3445c97ec1cb2dedd7f110b9e"/>
+        <topic label="RECEIVER_BIT_MAX" href="dali__timings_8h.html#a3026d081ce44424b9df2feb1f1984aa0"/>
+        <topic label="TRANSMITTER_HALF_BIT" href="dali__timings_8h.html#a9364cf52c2949aaf0d9127dc7346a431"/>
+        <topic label="TRANSMITTER_CD_HALFBIT_MIN" href="dali__timings_8h.html#aedd27cb72425eb344d4c29f8cb7409b1"/>
+        <topic label="TRANSMITTER_CD_HALFBIT_MAX" href="dali__timings_8h.html#a28d3d743c96bd27edc8a14b57287214c"/>
+        <topic label="TRANSMITTER_CD_BIT_MIN" href="dali__timings_8h.html#a310f764e30c873dcc6af43d93fbb3485"/>
+        <topic label="TRANSMITTER_CD_BIT_MAX" href="dali__timings_8h.html#a756008efeb0cfeb01f1df8fedbd74416"/>
+        <topic label="TRANSMITTER_CR_BREAK_TIME" href="dali__timings_8h.html#a53efafaf62d1f44adea17a37be5565e6"/>
+        <topic label="TRANSMITTER_CR_RECOVERY_TIME" href="dali__timings_8h.html#a17d0dbf1496f5217a7ca5d4632739e47"/>
+        <topic label="BACKWARD_FRAME_SETTLING_MIN" href="dali__timings_8h.html#aee482568d286b84ad2956c85a74f29ef"/>
+        <topic label="FORWARD_FRAME_P1_SETTLING_MIN" href="dali__timings_8h.html#ad37afcb50160b6b5cd95a62b5490ed11"/>
+        <topic label="FORWARD_FRAME_P2_SETTLING_MIN" href="dali__timings_8h.html#a028b46f2226885c0eea10313eca2ba65"/>
+        <topic label="FORWARD_FRAME_P3_SETTLING_MIN" href="dali__timings_8h.html#af9f69198843b7db8bd674f637cfc38f3"/>
+        <topic label="FORWARD_FRAME_P4_SETTLING_MIN" href="dali__timings_8h.html#ab29882521ab30d3b997858f4b599c5a0"/>
+        <topic label="FORWARD_FRAME_P5_SETTLING_MIN" href="dali__timings_8h.html#a41e7aeecb91e15cb9d28cbadd9e8f3b6"/>
+        <topic label="SEND_TWICE_SETTLING_MIN" href="dali__timings_8h.html#ace7a45ef06dd6cae2898ac0bf14a3f17"/>
+        <topic label="SEND_TWICE_SETTLING_MAX" href="dali__timings_8h.html#afad12cafa888c816102f52dce31a882f"/>
+        <topic label="INITIALISE_STATE_COUNTER" href="dali__timings_8h.html#a124d83c130c042abe1fc7533ebaf31a6"/>
+        <topic label="QUIESCENT_MODE_COUNTER" href="dali__timings_8h.html#a474ef42fd0e36483d1d0a3a1b5452db6"/>
+        <topic label="RESET_CMD_COUNTER" href="dali__timings_8h.html#a0830429741a76cc7d5943e8c420685e7"/>
+        <topic label="TIMER_FR_PERIOD" href="dali__timings_8h.html#a3dba5eeb061fdfdef3d71cc389517619"/>
+        <topic label="SETTLING_TIMER_TICK" href="dali__timings_8h.html#af38f5b816884b1383ae76c71d6d4f691"/>
+        <topic label="gTickCounter" href="dali__timings_8h.html#a17c38d4a5a06c59838973be820ad46a4"/>
       </topic>
       <topic label="dali_variables.h" href="dali__variables_8h.html">
         <topic label="dali_ledControlGearVar" href="structdali__led_control_gear_var.html">
@@ -304,6 +670,9 @@
           <topic label="ENABLED" href="dali__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5a99788d1f27bac42d0c7bac63026c5959"/>
           <topic label="DISABLED" href="dali__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5a40f39385238042f6ec0cbac821a19fc4"/>
           <topic label="WITHDRAWN" href="dali__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5ae2b5ce0407d9045f52686e18e5d58dbf"/>
+          <topic label="ENABLED" href="dali__103__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5a99788d1f27bac42d0c7bac63026c5959"/>
+          <topic label="DISABLED" href="dali__103__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5a40f39385238042f6ec0cbac821a19fc4"/>
+          <topic label="WITHDRAWN" href="dali__103__variables_8h.html#a5a8b0f74442be8576f2309b4901b52d5ae2b5ce0407d9045f52686e18e5d58dbf"/>
         </topic>
         <topic label="DALI_phaseType" href="dali__variables_8h.html#a49db76200831f845dc497b8cdea83654">
           <topic label="STANDBY" href="dali__variables_8h.html#a49db76200831f845dc497b8cdea83654ae4634ae4352b512b38c5da9dc1610ca6"/>
@@ -313,9 +682,31 @@
         </topic>
         <topic label="gControlVar1" href="dali__variables_8h.html#af2724b1545ee9f26d27dd2d5583f34d1"/>
       </topic>
+      <topic label="pir_interface.h" href="pir__interface_8h_source.html"/>
     </topic>
     <topic label="Globals" href="globals.html">
-      <topic label="All" href="globals.html"/>
+      <topic label="All" href="globals.html">
+        <topic label="a" href="globals.html"/>
+        <topic label="b" href="globals_b.html"/>
+        <topic label="c" href="globals_c.html"/>
+        <topic label="d" href="globals_d.html"/>
+        <topic label="e" href="globals_e.html"/>
+        <topic label="f" href="globals_f.html"/>
+        <topic label="g" href="globals_g.html"/>
+        <topic label="i" href="globals_i.html"/>
+        <topic label="l" href="globals_l.html"/>
+        <topic label="m" href="globals_m.html"/>
+        <topic label="n" href="globals_n.html"/>
+        <topic label="o" href="globals_o.html"/>
+        <topic label="p" href="globals_p.html"/>
+        <topic label="q" href="globals_q.html"/>
+        <topic label="r" href="globals_r.html"/>
+        <topic label="s" href="globals_s.html"/>
+        <topic label="t" href="globals_t.html"/>
+        <topic label="v" href="globals_v.html"/>
+        <topic label="w" href="globals_w.html"/>
+        <topic label="y" href="globals_y.html"/>
+      </topic>
       <topic label="Functions" href="globals_func.html"/>
       <topic label="Variables" href="globals_vars.html"/>
       <topic label="Enumerations" href="globals_enum.html"/>

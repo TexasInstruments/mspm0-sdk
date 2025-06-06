@@ -42,7 +42,7 @@ SYSCTL.enableEXCLK = true;
 SYSCTL.MFCLKEn     = true;
 SYSCTL.powerPolicy = "STOP0";
 SYSCTL.clockTreeEn = true;
-
+SYSCTL.forceDefaultClkConfig = true;
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerMode          = "PERIODIC";
 TIMER1.timerPeriod        = "500 ms";

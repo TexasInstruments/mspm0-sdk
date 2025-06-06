@@ -1725,19 +1725,6 @@ __STATIC_INLINE DL_SYSCTL_FCC_TRIG_CNT DL_SYSCTL_getFCCPeriods(void)
 }
 
 /**
- *  @brief  Enable Frequency Correction Loop (FCL)
- *
- *  FCL for this device is using the external resistor by default.
- *
- *  This API calls @ref DL_SYSCTL_enableSYSOSCFCLExternalResistor
- */
-__STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCL(void)
-{
-    SYSCTL->SOCLOCK.SYSOSCFCLCTL =
-        (SYSCTL_SYSOSCFCLCTL_KEY_VALUE | SYSCTL_SYSOSCFCLCTL_SETUSEFCL_TRUE);
-}
-
-/**
  *  @brief  Enable Frequency Correction Loop (FCL) in External Resistor Mode
  *
  *  Used to increase SYSOSC accuracy. An ROSC reference resistor which is suitable
@@ -1753,7 +1740,20 @@ __STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCL(void)
  */
 __STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCLExternalResistor(void)
 {
-    DL_SYSCTL_enableSYSOSCFCL();
+    SYSCTL->SOCLOCK.SYSOSCFCLCTL =
+        (SYSCTL_SYSOSCFCLCTL_KEY_VALUE | SYSCTL_SYSOSCFCLCTL_SETUSEFCL_TRUE);
+}
+
+/**
+ *  @brief  Enable Frequency Correction Loop (FCL)
+ *
+ *  FCL for this device is using the external resistor by default.
+ *
+ *  This API calls @ref DL_SYSCTL_enableSYSOSCFCLExternalResistor
+ */
+__STATIC_INLINE void DL_SYSCTL_enableSYSOSCFCL(void)
+{
+    DL_SYSCTL_enableSYSOSCFCLExternalResistor();
 }
 
 /**

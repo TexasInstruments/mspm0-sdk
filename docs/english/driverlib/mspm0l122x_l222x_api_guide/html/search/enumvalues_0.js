@@ -374,6 +374,8 @@ var searchData=
   ['dl_5fgpio_5fsubscriber_5fout_5fpolicy_5fclear',['DL_GPIO_SUBSCRIBER_OUT_POLICY_CLEAR',['../group___g_p_i_o.html#ggad6f6f4a4228b2c136b95e41c08051211af03948fac270229db2ca9e417e63c275',1,'dl_gpio.h']]],
   ['dl_5fgpio_5fsubscriber_5fout_5fpolicy_5fset',['DL_GPIO_SUBSCRIBER_OUT_POLICY_SET',['../group___g_p_i_o.html#ggad6f6f4a4228b2c136b95e41c08051211a7addcb05941e242fff4f5c17ff297719',1,'dl_gpio.h']]],
   ['dl_5fgpio_5fsubscriber_5fout_5fpolicy_5ftoggle',['DL_GPIO_SUBSCRIBER_OUT_POLICY_TOGGLE',['../group___g_p_i_o.html#ggad6f6f4a4228b2c136b95e41c08051211a3c25a7b1b8e3367fdb62f856226e7f83',1,'dl_gpio.h']]],
+  ['dl_5fgpio_5fwakeup_5fcompare_5fvalue_5f0',['DL_GPIO_WAKEUP_COMPARE_VALUE_0',['../group___g_p_i_o.html#ggab17bed7cfb26f57135d1e49e1434b37faed7732ff66845eed63597bcb69cf79f0',1,'dl_gpio.h']]],
+  ['dl_5fgpio_5fwakeup_5fcompare_5fvalue_5f1',['DL_GPIO_WAKEUP_COMPARE_VALUE_1',['../group___g_p_i_o.html#ggab17bed7cfb26f57135d1e49e1434b37fa81504cef5b10f80db47c798771afa2e8',1,'dl_gpio.h']]],
   ['dl_5fgpio_5fwakeup_5fdisable',['DL_GPIO_WAKEUP_DISABLE',['../group___g_p_i_o.html#gga9103dc3316c3493251bc46cf4d139dcdabbdd1aad2c351d10ede26747fe3b8501',1,'dl_gpio.h']]],
   ['dl_5fgpio_5fwakeup_5fenable',['DL_GPIO_WAKEUP_ENABLE',['../group___g_p_i_o.html#gga9103dc3316c3493251bc46cf4d139dcdaaf215f9396c747952be2fcf58ca14d3e',1,'dl_gpio.h']]],
   ['dl_5fgpio_5fwakeup_5fon_5f0',['DL_GPIO_WAKEUP_ON_0',['../group___g_p_i_o.html#gga9103dc3316c3493251bc46cf4d139dcda4ba335adea57d1f0f632a57f94e33a4e',1,'dl_gpio.h']]],

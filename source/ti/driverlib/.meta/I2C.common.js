@@ -45,6 +45,7 @@ exports = {
     getDMAModInstances  : getDMAModInstances,
     setRequiredModules  : setRequiredModules,
     getValidation       : getValidation,
+    getPinmuxValidation : getPinmuxValidation,
     updateGUIbasedonConfig  : updateGUIbasedonConfig,
     onChangeintController   : onChangeintController,
     onChangeintTarget       : onChangeintTarget,
@@ -104,7 +105,7 @@ function updateGUIEnableController(inst, ui)
         ui.basicEnableController10BitAddress.hidden = false;
         ui.advControllerRXFIFOTRIG.hidden = false;
         ui.advControllerTXFIFOTRIG.hidden = false;
-        ui.advControllerLoopback.hidden = false;
+        ui.advControllerLoopback.hidden = false && Common.isUnicommI2C(); //remain hidden on UNICOMM
         ui.advControllerMultiController.hidden = false;
         ui.advControllerClkStretch.hidden = false;
     }
@@ -154,6 +155,7 @@ function updateGUIEnableTarget(inst, ui) {
         if (inst.basicTargetSecAddressEnable == true)
         {
             ui.basicTargetSecAddress.hidden = false;
+            ui.basicTargetSecAddressMask.hidden = false;
         }
         ui.basicTargetGeneralCall.hidden = false;
         ui.advTargetRXFIFOTRIG.hidden = false;
@@ -196,6 +198,7 @@ function updateGUIEnableTargetSecAddress(inst, ui) {
     if (ui.basicTargetSecAddressEnable.hidden == false)
     {
         ui.basicTargetSecAddress.hidden = (inst.basicTargetSecAddressEnable === false);
+        ui.basicTargetSecAddressMask.hidden = (inst.basicTargetSecAddressEnable === false);
     }
 }
 
@@ -819,6 +822,22 @@ Per I2C spec, the following addresses are reserved:\n
                         onChange    : onChangebasicTargetSecAddress
                     },
                     {
+                        name        : "basicTargetSecAddressMask",
+                        displayName : "Target's Secondary Own Address Mask",
+                        description : "Set the mask for the target's secondary address",
+                        longDescription: `
+These bits with a value of '1' in this field will make the corresponding
+incoming address bits match by default regardless of the value set for
+the target's secondary address, treating that bit position as a "don't care"
+`,
+                        hidden      : true,
+                        displayFormat: "hex",
+                        isInteger   : true,
+                        default     : 0x00,
+                        range       : [0, 0x7F],
+                        onChange    : onChangebasicTargetSecAddress
+                    },
+                    {
                         name        : "basicTargetGeneralCall",
                         displayName : "Enable General Call Response",
                         description : `Enables/Disables the target
@@ -840,6 +859,82 @@ and will behave as a receiver.
     ];
 }
 
+let RXFIFOTRIG_options = [];
+let TXFIFOTRIG_options = [];
+let RXFIFOTRIG_default = "ONE_ENTRY";
+if(Common.isUnicommI2C()){
+    RXFIFOTRIG_options = [
+        {name: "3_4_FULL", displayName: "RX FIFO >= 3/4 full"},
+        {name: "1_2_FULL", displayName: "RX FIFO >= 1/2 full"},
+        {name: "1_4_FULL", displayName: "RX FIFO >= 1/4 full"},
+        {name: "ONE_ENTRY", displayName: "RX FIFO contains >= 1 entry"},
+        {name: "FULL", displayName: "RX FIFO is full"},
+        {name: "ALMOST_EMPTY", displayName: "RX FIFO is almost empty"},
+        {name: "ALMOST_FULL", displayName: "RX FIFO is almost full"},
+    ];
+    TXFIFOTRIG_options = [
+        {name: "3_4_EMPTY", displayName: "TX FIFO <= 3/4 empty"},
+        {name: "1_2_EMPTY", displayName: "TX FIFO <= 1/2 empty"},
+        {name: "1_4_EMPTY", displayName: "TX FIFO <= 1/4 empty"},
+        {name: "ONE_ENTRY", displayName: "TX FIFO is not full"},
+        {name: "EMPTY",   displayName: "TX FIFO is empty"},
+        {name: "ALMOST_EMPTY", displayName: "TX FIFO is almost empty"},
+        {name: "ALMOST_FULL", displayName: "TX FIFO is almost full"},
+    ];
+}
+else {
+    RXFIFOTRIG_options = [
+        {name: "BYTES_1", displayName: "RX FIFO contains >= 1 bytes"},
+        {name: "BYTES_2", displayName: "RX FIFO contains >= 2 bytes"},
+        {name: "BYTES_3", displayName: "RX FIFO contains >= 3 bytes"},
+        {name: "BYTES_4", displayName: "RX FIFO contains >= 4 bytes"},
+        {name: "BYTES_5", displayName: "RX FIFO contains >= 5 bytes"},
+        {name: "BYTES_6", displayName: "RX FIFO contains >= 6 bytes"},
+        {name: "BYTES_7", displayName: "RX FIFO contains >= 7 bytes"},
+        {name: "BYTES_8", displayName: "RX FIFO contains >= 8 bytes"},
+    ];
+    TXFIFOTRIG_options = [
+        {name: "EMPTY",   displayName: "TX FIFO contains <= 0 bytes"},
+        {name: "BYTES_1", displayName: "TX FIFO contains <= 1 bytes"},
+        {name: "BYTES_2", displayName: "TX FIFO contains <= 2 bytes"},
+        {name: "BYTES_3", displayName: "TX FIFO contains <= 3 bytes"},
+        {name: "BYTES_4", displayName: "TX FIFO contains <= 4 bytes"},
+        {name: "BYTES_5", displayName: "TX FIFO contains <= 5 bytes"},
+        {name: "BYTES_6", displayName: "TX FIFO contains <= 6 bytes"},
+        {name: "BYTES_7", displayName: "TX FIFO contains <= 7 bytes"},
+    ];
+    RXFIFOTRIG_default = "BYTES_1";
+}
+
+let advAnalogGlitchFilterConfig = [
+    {
+        name        : "advAnalogGlitchFilter",
+        displayName : "Analog Glitch Filter",
+        description : `Enables and configures the analog filter`,
+        longDescription:`
+The analog filter is optional.\n
+By default the analog filter is enabled and configured to suppress spikes with
+a pulse width up to 50ns.\n
+When disabled, the input signal will be passed to the I2C module without
+filtering.\n
+The analog filter has variation over temperature and voltage.
+Please see datasheet for more information.\n
+The analog filter can be used to wake-up the I2C module from low-power mode.`,
+        default     : "50",
+        options     : [
+            {name: "DISABLED",  displayName: "Disabled"},
+            {name: "5",         displayName: "Filter pulses < 5ns"},
+            {name: "10",        displayName: "Filter pulses < 10ns"},
+            {name: "25",        displayName: "Filter pulses < 25ns"},
+            {name: "50",        displayName: "Filter pulses < 50ns"}
+        ],
+        onChange    : onChangeadvAnalogGlitchFilter
+    },
+];
+if(Common.isUnicommI2C()){
+    advAnalogGlitchFilterConfig = [];
+}
+
 function getAdvancedConfig(inst,ui){
     return [
             {
@@ -850,30 +945,7 @@ function getAdvancedConfig(inst,ui){
 The I2C peripheral must be enabled in the application if left disabled after
 initialization.`,
                 default     : true,
-            },
-            {
-                name        : "advAnalogGlitchFilter",
-                displayName : "Analog Glitch Filter",
-                description : `Enables and configures the analog filter`,
-                longDescription:`
-The analog filter is optional.\n
-By default the analog filter is enabled and configured to suppress spikes with
-a pulse width up to 50ns.\n
-When disabled, the input signal will be passed to the I2C module without
-filtering.\n
-The analog filter has variation over temperature and voltage.
-Please see datasheet for more information.\n
-The analog filter can be used to wake-up the I2C module from low-power mode.`,
-                default     : "50",
-                options     : [
-                    {name: "DISABLED",  displayName: "Disabled"},
-                    {name: "5",         displayName: "Filter pulses < 5ns"},
-                    {name: "10",        displayName: "Filter pulses < 10ns"},
-                    {name: "25",        displayName: "Filter pulses < 25ns"},
-                    {name: "50",        displayName: "Filter pulses < 50ns"}
-                ],
-                onChange    : onChangeadvAnalogGlitchFilter
-            },
+            }].concat(advAnalogGlitchFilterConfig).concat([
             {
                 name        : "advDigitalGlitchFilter",
                 displayName : "Digital Glitch Filter",
@@ -916,17 +988,8 @@ length; however, it's not available to wake-up the device from low-power mode.`,
                         description : 'Indicates at what fill level the RX \
                         FIFO trigger will be generated',
                         hidden      : true,
-                        default     : "BYTES_1",
-                        options     : [
-                            {name: "BYTES_1", displayName: "RX FIFO contains >= 1 bytes"},
-                            {name: "BYTES_2", displayName: "RX FIFO contains >= 2 bytes"},
-                            {name: "BYTES_3", displayName: "RX FIFO contains >= 3 bytes"},
-                            {name: "BYTES_4", displayName: "RX FIFO contains >= 4 bytes"},
-                            {name: "BYTES_5", displayName: "RX FIFO contains >= 5 bytes"},
-                            {name: "BYTES_6", displayName: "RX FIFO contains >= 6 bytes"},
-                            {name: "BYTES_7", displayName: "RX FIFO contains >= 7 bytes"},
-                            {name: "BYTES_8", displayName: "RX FIFO contains >= 8 bytes"},
-                        ],
+                        default     : RXFIFOTRIG_default,
+                        options     : RXFIFOTRIG_options,
                         onChange    : onChangeadvControllerRXFIFOTRIG
                     },
                     {
@@ -936,16 +999,7 @@ length; however, it's not available to wake-up the device from low-power mode.`,
                         FIFO trigger will be generated',
                         hidden      : true,
                         default     : "EMPTY",
-                        options     : [
-                            {name: "EMPTY", displayName: "TX FIFO contains <= 0 bytes"},
-                            {name: "BYTES_1", displayName: "TX FIFO contains <= 1 bytes"},
-                            {name: "BYTES_2", displayName: "TX FIFO contains <= 2 bytes"},
-                            {name: "BYTES_3", displayName: "TX FIFO contains <= 3 bytes"},
-                            {name: "BYTES_4", displayName: "TX FIFO contains <= 4 bytes"},
-                            {name: "BYTES_5", displayName: "TX FIFO contains <= 5 bytes"},
-                            {name: "BYTES_6", displayName: "TX FIFO contains <= 6 bytes"},
-                            {name: "BYTES_7", displayName: "TX FIFO contains <= 7 bytes"},
-                        ],
+                        options     : TXFIFOTRIG_options,
                         onChange    : onChangeadvControllerTXFIFOTRIG
                     },
                     {
@@ -1085,17 +1139,8 @@ stretching.`,
                         description : 'Indicates at what fill level the RX \
                         FIFO trigger will be generated',
                         hidden      : true,
-                        default     : "BYTES_1",
-                        options     : [
-                            {name: "BYTES_1", displayName: "RX FIFO contains >= 1 bytes"},
-                            {name: "BYTES_2", displayName: "RX FIFO contains >= 2 bytes"},
-                            {name: "BYTES_3", displayName: "RX FIFO contains >= 3 bytes"},
-                            {name: "BYTES_4", displayName: "RX FIFO contains >= 4 bytes"},
-                            {name: "BYTES_5", displayName: "RX FIFO contains >= 5 bytes"},
-                            {name: "BYTES_6", displayName: "RX FIFO contains >= 6 bytes"},
-                            {name: "BYTES_7", displayName: "RX FIFO contains >= 7 bytes"},
-                            {name: "BYTES_8", displayName: "RX FIFO contains >= 8 bytes"},
-                        ],
+                        default: RXFIFOTRIG_default,
+                        options: RXFIFOTRIG_options,
                         onChange    : onChangeadvTargetRXFIFOTRIG
                     },
                     {
@@ -1105,16 +1150,7 @@ stretching.`,
                         FIFO trigger will be generated',
                         hidden      : true,
                         default     : "EMPTY",
-                        options     : [
-                            {name: "EMPTY",   displayName: "TX FIFO contains <= 0 bytes"},
-                            {name: "BYTES_1", displayName: "TX FIFO contains <= 1 bytes"},
-                            {name: "BYTES_2", displayName: "TX FIFO contains <= 2 bytes"},
-                            {name: "BYTES_3", displayName: "TX FIFO contains <= 3 bytes"},
-                            {name: "BYTES_4", displayName: "TX FIFO contains <= 4 bytes"},
-                            {name: "BYTES_5", displayName: "TX FIFO contains <= 5 bytes"},
-                            {name: "BYTES_6", displayName: "TX FIFO contains <= 6 bytes"},
-                            {name: "BYTES_7", displayName: "TX FIFO contains <= 7 bytes"},
-                        ],
+                        options     : TXFIFOTRIG_options,
                         onChange    : onChangeadvTargetTXFIFOTRIG
                     },
                     {
@@ -1165,7 +1201,7 @@ the FIFO is written or read on time.
                     },
                 ]
             }, /****** End of TARGET ADVANCED CONFIGURATION *******/
-    ];
+    ]);
 }
 
 function getDMAConfig(inst,ui){
@@ -1304,10 +1340,20 @@ function getValidation(inst, validation){
         // Todo validate BUSCLK based on PD1/PD0
     }
     else if (inst.basicClockSource == "MFCLK"){
-        if(system.modules["/ti/driverlib/SYSCTL"].$static.MFCLKEn != true){
-            Common.logError(validation, inst,
-                            "basicClockSource",
-                            "MFCLK not initialized in SYSCTL");
+        if(!system.modules["/ti/driverlib/SYSCTL"].$static.clockTreeEn){
+            if(system.modules["/ti/driverlib/SYSCTL"].$static.MFCLKEn != true ){
+                Common.logError(validation, inst,
+                                "basicClockSource",
+                                "MFCLK not initialized in SYSCTL");
+            }
+        }
+        /* Clock Tree Validation */
+        else{
+            if(!system.clockTree.MFCLKGATE.enable){
+                Common.logError(validation, inst,
+                    "basicClockSource",
+                    "MFCLK not initialized in Clock Tree");
+            }
         }
     }
     if (inst.basicEnableTarget == true)
@@ -1366,6 +1412,57 @@ function getValidation(inst, validation){
                             "Actual bus speed differs from requested. Try using a\
                             different clock source or adjust bus speed if needed.\
                             See detailed help.");
+        }
+    }
+
+    // Unicomm Validation
+    if(Common.isUnicommI2C()){
+        if(inst.basicEnableController && inst.basicEnableTarget){
+            validation.logError("Cannot enable Target & Controller mode at the same time",
+                inst,["basicEnableController","basicEnableTarget"]);
+        }
+        if(!inst.basicEnableController && !inst.basicEnableTarget){
+            validation.logError("I2C must be configured to either Target or Controller mode",
+                inst,["basicEnableController","basicEnableTarget"]);
+        }
+    }
+}
+
+let targetPeripherals = [];
+let controllerPeripherals = [];
+if(Common.isUnicommI2C()){
+    try{
+        let i2cPeripherals = system.deviceData.interfaces["I2C"].peripherals.map(a => a.name);
+        for(let item of i2cPeripherals){
+            if(system.deviceData.peripherals[item].attributes["UNICOMM_I2C_TARGET"]=="true"){
+                targetPeripherals.push(item);
+            }
+            if(system.deviceData.peripherals[item].attributes["UNICOMM_I2C_CONTROLLER"]=="true"){
+                controllerPeripherals.push(item);
+            }
+        }
+    }catch(e){/*do nothing*/}
+}
+
+
+function getPinmuxValidation(inst,validation){
+    /* Verify if using UART Advanced instance */
+    if(Common.isUnicommI2C()){
+        try{
+            let peripheralSolution = inst.peripheral.$solution.peripheralName;
+            // Target Mode
+            if(system.deviceData.peripherals[peripheralSolution].attributes["UNICOMM_I2C_TARGET"]  == "false") {
+                validation.logError("Target Mode is only available on: " + targetPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
+                inst,"basicEnableTarget");
+            }
+            // Controller Mode
+            if(system.deviceData.peripherals[peripheralSolution].attributes["UNICOMM_I2C_CONTROLLER"] == "false") {
+                validation.logError("Controller Mode is only available on: " + controllerPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
+                inst,"basicEnableController");
+            }
+        }
+        catch(e){
+            // do nothing
         }
     }
 }

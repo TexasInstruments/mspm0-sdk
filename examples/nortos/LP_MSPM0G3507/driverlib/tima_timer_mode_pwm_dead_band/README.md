@@ -47,3 +47,9 @@ For more information about jumper configuration to achieve low-power using the
 MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873).
 
 ## Example Usage
+Compile, load and run the example. Monitor the PWM signals on PA8, PA22, PB9,
+and PA25.
+The pair of signals on PA8 and PA22 are complementary signals with deadband
+insertion.
+The second pair of signals on PB9 and PA25 are also complementary signals with
+deadband insertion.

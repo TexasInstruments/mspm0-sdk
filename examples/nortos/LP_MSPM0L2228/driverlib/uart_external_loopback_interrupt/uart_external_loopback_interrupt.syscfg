@@ -29,3 +29,4 @@ UART1.peripheral.rxPin.$assign = "PA9";
 
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

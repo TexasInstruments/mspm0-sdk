@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = SENT_SENT.obj SENT_HAL_HAL_GPIO.obj SENT_HAL_hal_interrupts.obj SENT_HAL_hal_system.obj SENT_HAL_hal_timer.obj sent_transmit.obj iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = sent_transmit.obj SENT_SENT.obj iar_startup_mspm0l130x_iar.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = sent_transmit
 
 CFLAGS += -I.. \
@@ -72,27 +72,11 @@ endef
 
 $(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
 
-SENT_SENT.obj: ../SENT/SENT.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-SENT_HAL_HAL_GPIO.obj: ../SENT/HAL/HAL_GPIO.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-SENT_HAL_hal_interrupts.obj: ../SENT/HAL/hal_interrupts.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-SENT_HAL_hal_system.obj: ../SENT/HAL/hal_system.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
-SENT_HAL_hal_timer.obj: ../SENT/HAL/hal_timer.c $(SYSCFG_H_FILES)
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) $< -o $@
-
 sent_transmit.obj: ../sent_transmit.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -o $@
+
+SENT_SENT.obj: ../SENT/SENT.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

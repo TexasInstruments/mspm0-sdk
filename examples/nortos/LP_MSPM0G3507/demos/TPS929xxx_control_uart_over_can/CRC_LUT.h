@@ -33,10 +33,11 @@
 #ifndef CRC_LUT_H_
 #define CRC_LUT_H_
 
-extern unsigned int crcArray[256];
+#include "ti_msp_dl_config.h"
 
-void crcInitial();
-unsigned int CRC_LUT(
-    unsigned int commandFrame_withoutCRC[], unsigned int byteLength);
+extern uint32_t crcArray[256];
+
+void crcInitial(void);
+uint32_t CRC_LUT(uint32_t commandFrame_withoutCRC[], uint32_t byteLength);
 
 #endif /* CRC_LUT_H_ */

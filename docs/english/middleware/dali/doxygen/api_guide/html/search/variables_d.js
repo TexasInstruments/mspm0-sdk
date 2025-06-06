@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['targetlevel',['targetLevel',['../structdali__control_gear_var.html#a887229567fb46e6d1c2911791119e662',1,'dali_controlGearVar']]],
-  ['terminate',['terminate',['../structdali__control_gear_var.html#ae48fe5b06a2ed30b6a74aa94ebdb000e',1,'dali_controlGearVar']]],
-  ['transmitdata',['transmitData',['../structdali__control_gear_var.html#aee30c9c05b3858cbdbf5f68236c116ae',1,'dali_controlGearVar']]],
-  ['transmitdataflag',['transmitDataFlag',['../structdali__control_gear_var.html#a8fe074042b510aa113b1ff11db92ade8',1,'dali_controlGearVar']]]
+  ['phasestate',['phaseState',['../structdali__control_gear_var.html#a19c66d6767c603e50831a2fef8a0fbd2',1,'dali_controlGearVar']]],
+  ['phm',['PHM',['../structdali__control_gear_var.html#a8d7fb9f8d46aaa904c742611b16a9fdd',1,'dali_controlGearVar']]],
+  ['powercyclenotification',['powerCycleNotification',['../structdali__control_device_var.html#a8a4211c698b58a2c4e5fb82580201cc1',1,'dali_controlDeviceVar']]],
+  ['powercycleseen',['powerCycleSeen',['../structdali__control_gear_var.html#aec39619393de58f0eef8004e7144a853',1,'dali_controlGearVar::powerCycleSeen()'],['../structdali__control_device_var.html#a62ce201bfd9da04bbf878487539f4b2b',1,'dali_controlDeviceVar::powerCycleSeen()']]],
+  ['poweronlevel',['powerOnLevel',['../structdali__control_gear_var.html#a0aae15302e0cfd8a2e88214e040397b6',1,'dali_controlGearVar']]],
+  ['pulsecounter',['pulseCounter',['../struct_p_i_r__config_register.html#acb13c87e82cd3679290e176b0509c9b3',1,'PIR_configRegister']]]
 ];

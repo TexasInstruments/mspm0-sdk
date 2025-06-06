@@ -73,7 +73,7 @@
 %       let in0PosPinName = "In0Pos"+"Pin";
 %       let in0PosPackagePin = inst.peripheral[in0PosPinName].$solution.packagePinName;
 %       let in0PosPinCM = Common.getPinCM(in0PosPackagePin,inst,"IN0+");
-%       let in0PosGpioName = system.deviceData.devicePins[in0PosPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let in0PosGpioName = system.deviceData.devicePins[in0PosPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let in0PosPort = Common.getGPIOPortMultiPad(in0PosPackagePin,inst,"IN0+");
 %       let in0PosGpioPin = Common.getGPIONumberMultiPad(in0PosPackagePin,inst,"IN0+");
 %       let in0PosPortStr = "#define "+gpioStr+"_IN0POS_PORT";
@@ -96,7 +96,7 @@
 %       let in1PosPinName = "In1Pos"+"Pin";
 %       let in1PosPackagePin = inst.peripheral[in1PosPinName].$solution.packagePinName;
 %       let in1PosPinCM = Common.getPinCM(in1PosPackagePin,inst,"IN1+");
-%       let in1PosGpioName = system.deviceData.devicePins[in1PosPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let in1PosGpioName = system.deviceData.devicePins[in1PosPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let in1PosPort = Common.getGPIOPortMultiPad(in1PosPackagePin,inst,"IN1+");
 %       let in1PosGpioPin = Common.getGPIONumberMultiPad(in1PosPackagePin,inst,"IN1+");
 %       let in1PosPortStr = "#define "+gpioStr+"_IN1POS_PORT";
@@ -119,7 +119,7 @@
 %       let in0NegPinName = "In0Neg"+"Pin";
 %       let in0NegPackagePin = inst.peripheral[in0NegPinName].$solution.packagePinName;
 %       let in0NegPinCM = Common.getPinCM(in0NegPackagePin,inst,"IN0-");
-%       let in0NegGpioName = system.deviceData.devicePins[in0NegPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let in0NegGpioName = system.deviceData.devicePins[in0NegPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let in0NegPort = Common.getGPIOPortMultiPad(in0NegPackagePin,inst,"IN0-");
 %       let in0NegGpioPin = Common.getGPIONumberMultiPad(in0NegPackagePin,inst,"IN0-");
 %       let in0NegPortStr = "#define "+gpioStr+"_IN0NEG_PORT";
@@ -142,7 +142,7 @@
 %       let in1NegPinName = "In1Neg"+"Pin";
 %       let in1NegPackagePin = inst.peripheral[in1NegPinName].$solution.packagePinName;
 %       let in1NegPinCM = Common.getPinCM(in1NegPackagePin,inst,"IN1-");
-%       let in1NegGpioName = system.deviceData.devicePins[in1NegPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let in1NegGpioName = system.deviceData.devicePins[in1NegPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let in1NegPort = Common.getGPIOPortMultiPad(in1NegPackagePin,inst,"IN1-");
 %       let in1NegGpioPin = Common.getGPIONumberMultiPad(in1NegPackagePin,inst,"IN1-");
 %       let in1NegPortStr = "#define "+gpioStr+"_IN1NEG_PORT";
@@ -165,7 +165,7 @@
 %       let outPinName = "Out"+"Pin";
 %       let outPackagePin = inst.peripheral[outPinName].$solution.packagePinName;
 %       let outPinCM = Common.getPinCM(outPackagePin,inst,"OUT");
-%       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let outPort = Common.getGPIOPortMultiPad(outPackagePin,inst,"OUT");
 %       let outGpioPin = Common.getGPIONumberMultiPad(outPackagePin,inst,"OUT");
 %       let outPortStr = "#define "+gpioStr+"_OUT_PORT";

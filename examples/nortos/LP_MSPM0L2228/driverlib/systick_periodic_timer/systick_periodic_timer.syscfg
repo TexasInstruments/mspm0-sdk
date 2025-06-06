@@ -27,7 +27,7 @@ GPIO1.associatedPins[1].initialValue = "SET";
 GPIO1.associatedPins[1].pin.$assign  = "PA21";
 
 SYSCTL.clockTreeEn = true;
-
+SYSCTL.forceDefaultClkConfig = true;
 SYSTICK.period          = 16000000;
 SYSTICK.periodEnable    = true;
 SYSTICK.systickEnable   = true;

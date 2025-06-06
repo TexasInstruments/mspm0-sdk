@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(IAR_ARMCOMPILER)/bin/iccarm"
 LNK = "$(IAR_ARMCOMPILER)/bin/ilinkarm"
 
-OBJECTS = empty_non_sysconfig.obj ti_msp_dl_config.obj iar_startup_mspm0c110x_iar.obj
+OBJECTS = ti_msp_dl_config.obj empty_non_sysconfig.obj iar_startup_mspm0c110x_iar.obj
 NAME = empty_non_sysconfig
 
 CFLAGS += -I.. \
@@ -33,11 +33,11 @@ LFLAGS += "$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/iar/m0p/mspm0c110x/d
 
 all: $(NAME).out
 
-empty_non_sysconfig.obj: ../empty_non_sysconfig.c
+ti_msp_dl_config.obj: ../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 
-ti_msp_dl_config.obj: ../ti_msp_dl_config.c
+empty_non_sysconfig.obj: ../empty_non_sysconfig.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -o $@
 

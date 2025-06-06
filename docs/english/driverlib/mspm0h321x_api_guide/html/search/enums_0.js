@@ -43,6 +43,7 @@ var searchData=
   ['dl_5fgpio_5fsubscriber_5fout_5fpolicy',['DL_GPIO_SUBSCRIBER_OUT_POLICY',['../group___g_p_i_o.html#gad6f6f4a4228b2c136b95e41c08051211',1,'dl_gpio.h']]],
   ['dl_5fgpio_5fsubscriberx_5fpin',['DL_GPIO_SUBSCRIBERx_PIN',['../group___g_p_i_o.html#gabe7b75a82c8bf0d3cbdce0706ec0899b',1,'dl_gpio.h']]],
   ['dl_5fgpio_5fwakeup',['DL_GPIO_WAKEUP',['../group___g_p_i_o.html#ga9103dc3316c3493251bc46cf4d139dcd',1,'dl_gpio.h']]],
+  ['dl_5fgpio_5fwakeup_5fcompare_5fvalue',['DL_GPIO_WAKEUP_COMPARE_VALUE',['../group___g_p_i_o.html#gab17bed7cfb26f57135d1e49e1434b37f',1,'dl_gpio.h']]],
   ['dl_5fi2c_5fanalog_5fglitch_5ffilter_5fwidth',['DL_I2C_ANALOG_GLITCH_FILTER_WIDTH',['../group___i2_c.html#ga031f0b093a1d7448b0ba89a6ecc0a32a',1,'dl_i2c.h']]],
   ['dl_5fi2c_5fclock',['DL_I2C_CLOCK',['../group___i2_c.html#gad912db0203e9bb0e55bb0ddbc0ddcfcc',1,'dl_i2c.h']]],
   ['dl_5fi2c_5fclock_5fdivide',['DL_I2C_CLOCK_DIVIDE',['../group___i2_c.html#ga03737f74607dfbe4048cff93862c9faa',1,'dl_i2c.h']]],

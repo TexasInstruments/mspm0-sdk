@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L11XX_L13XX Driver Library
-   &#160;<span id="projectnumber">2.04.00.06</span>
+   &#160;<span id="projectnumber">2.05.00.05</span>
    </div>
   </td>
  </tr>
@@ -1292,6 +1292,13 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:ga9103dc3316c3493251bc46cf4d139dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab17bed7cfb26f57135d1e49e1434b37f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#gab17bed7cfb26f57135d1e49e1434b37f">DL_GPIO_WAKEUP_COMPARE_VALUE</a> { <br />
+&#160;&#160;<a class="el" href="group___g_p_i_o.html#ggab17bed7cfb26f57135d1e49e1434b37faed7732ff66845eed63597bcb69cf79f0">DL_GPIO_WAKEUP_COMPARE_VALUE_0</a> = IOMUX_PINCM_WCOMP_MATCH0, 
+<br />
+&#160;&#160;<a class="el" href="group___g_p_i_o.html#ggab17bed7cfb26f57135d1e49e1434b37fa81504cef5b10f80db47c798771afa2e8">DL_GPIO_WAKEUP_COMPARE_VALUE_1</a> = IOMUX_PINCM_WCOMP_MATCH1
+<br />
+ }</td></tr>
+<tr class="separator:gab17bed7cfb26f57135d1e49e1434b37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga52f1c39bc3eb6f6d3fbf2dfad325c4a2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga52f1c39bc3eb6f6d3fbf2dfad325c4a2">DL_GPIO_HIZ</a> { <br />
 &#160;&#160;<a class="el" href="group___g_p_i_o.html#gga52f1c39bc3eb6f6d3fbf2dfad325c4a2a4345a233ef1661b2d1c06adb217dfff9">DL_GPIO_HIZ_ENABLE</a> = IOMUX_PINCM_HIZ1_ENABLE, 
 <br />
@@ -1528,6 +1535,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gade1271ea61c36332516ac3e7b41a3612"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#gade1271ea61c36332516ac3e7b41a3612">DL_GPIO_isWakeUpEnabled</a> (uint32_t pincmIndex)</td></tr>
 <tr class="memdesc:gade1271ea61c36332516ac3e7b41a3612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if GPIO pin's wake up bit is enabled.  <a href="group___g_p_i_o.html#gade1271ea61c36332516ac3e7b41a3612">More...</a><br /></td></tr>
 <tr class="separator:gade1271ea61c36332516ac3e7b41a3612"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f2d6988b06b367efc4e1e4f7caca9f5"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga0f2d6988b06b367efc4e1e4f7caca9f5">DL_GPIO_setWakeupCompareValue</a> (uint32_t pincmIndex, <a class="el" href="group___g_p_i_o.html#gab17bed7cfb26f57135d1e49e1434b37f">DL_GPIO_WAKEUP_COMPARE_VALUE</a> value)</td></tr>
+<tr class="memdesc:ga0f2d6988b06b367efc4e1e4f7caca9f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the compare value to use for wake for the specified pin.  <a href="group___g_p_i_o.html#ga0f2d6988b06b367efc4e1e4f7caca9f5">More...</a><br /></td></tr>
+<tr class="separator:ga0f2d6988b06b367efc4e1e4f7caca9f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga942fdaf873949a7a7c63386a1f71fc5a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE <a class="el" href="group___g_p_i_o.html#gab17bed7cfb26f57135d1e49e1434b37f">DL_GPIO_WAKEUP_COMPARE_VALUE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga942fdaf873949a7a7c63386a1f71fc5a">DL_GPIO_getWakeupCompareValue</a> (uint32_t pincmIndex)</td></tr>
+<tr class="memdesc:ga942fdaf873949a7a7c63386a1f71fc5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the compare value to use for wake for the specified pin.  <a href="group___g_p_i_o.html#ga942fdaf873949a7a7c63386a1f71fc5a">More...</a><br /></td></tr>
+<tr class="separator:ga942fdaf873949a7a7c63386a1f71fc5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8652b9ce42f455802831043096041526"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___g_p_i_o.html#ga8652b9ce42f455802831043096041526">DL_GPIO_isWakeStateGenerated</a> (uint32_t pincmIndex)</td></tr>
 <tr class="memdesc:ga8652b9ce42f455802831043096041526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the GPIO pin's Wake State bit is active.  <a href="group___g_p_i_o.html#ga8652b9ce42f455802831043096041526">More...</a><br /></td></tr>
 <tr class="separator:ga8652b9ce42f455802831043096041526"><td class="memSeparator" colspan="2">&#160;</td></tr>

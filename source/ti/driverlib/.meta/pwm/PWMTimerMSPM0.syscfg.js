@@ -659,7 +659,7 @@ function validatePinmux(inst, validation) {
 
     let CCMod = system.modules["/ti/driverlib/pwm/PWMTimerCC"];
     if(CCMod){
-        let CCInst = CCMod.$instances;
+        let CCInst = CCMod.$instances.filter(channel => channel.$ownedBy.$name == inst.$name);
         for(let singleCC of CCInst){
             if(singleCC.shadowUpdateMode != "IMMEDIATE"){
                 var errorStr = "Shadow Capture Compare mode for this device is only supported by timer instance(s): <VALID_INSTANCE>. Please select one of these Timer instances from Pinmux."

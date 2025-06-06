@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 LNK = "$(GCC_ARMCOMPILER)/bin/arm-none-eabi-gcc"
 
-OBJECTS = empty_non_sysconfig.obj ti_msp_dl_config.obj gcc_startup_mspm0l222x_gcc.obj
+OBJECTS = ti_msp_dl_config.obj empty_non_sysconfig.obj gcc_startup_mspm0l222x_gcc.obj
 NAME = empty_non_sysconfig
 
 CFLAGS += -I.. \
@@ -46,11 +46,11 @@ LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0l122x
 
 all: $(NAME).out
 
-empty_non_sysconfig.obj: ../empty_non_sysconfig.c
+ti_msp_dl_config.obj: ../ti_msp_dl_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
-ti_msp_dl_config.obj: ../ti_msp_dl_config.c
+empty_non_sysconfig.obj: ../empty_non_sysconfig.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

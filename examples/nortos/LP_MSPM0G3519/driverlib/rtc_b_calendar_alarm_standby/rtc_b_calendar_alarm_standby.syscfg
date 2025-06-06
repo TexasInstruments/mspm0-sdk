@@ -1,0 +1,54 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G351X" --package "LQFP-100(PZ)" --part "Default"
+//@v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3519 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const RTCB          = scripting.addModule("/ti/driverlib/RTCB");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].assignedPortSegment = "Lower";
+GPIO1.associatedPins[0].assignedPin         = "0";
+
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].initialValue        = "SET";
+GPIO1.associatedPins[1].pin.$assign         = "PA15";
+
+RTCB.enCalAlarm1     = true;
+RTCB.calMonth        = "4";
+RTCB.calDOM          = 5;
+RTCB.calDOW          = "1";
+RTCB.calHour         = 10;
+RTCB.calMin          = 32;
+RTCB.calSec          = 58;
+RTCB.enCalAlarm1Min  = true;
+RTCB.enCalAlarm1Hour = true;
+RTCB.enCalAlarm1DOM  = true;
+RTCB.enCalAlarm1DOW  = true;
+RTCB.calAlarm1Min    = 33;
+RTCB.calAlarm1Hour   = 10;
+RTCB.calAlarm1DOW    = "1";
+RTCB.calAlarm1DOM    = 5;
+RTCB.enabledInterrupts = ["CALENDAR_ALARM1"];
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

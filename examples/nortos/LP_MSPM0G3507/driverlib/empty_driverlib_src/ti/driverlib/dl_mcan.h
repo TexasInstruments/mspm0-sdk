@@ -1399,7 +1399,7 @@ typedef struct {
     /*! Data bytes.
      *   Only first dlc number of bytes are valid.
      */
-    uint16_t data[DL_MCAN_MAX_PAYLOAD_BYTES];
+    uint8_t data[DL_MCAN_MAX_PAYLOAD_BYTES];
 } DL_MCAN_TxBufElement;
 
 /**
@@ -1451,7 +1451,7 @@ typedef struct {
     /*! Data bytes.
      *   Only first dlc number of bytes are valid.
      */
-    uint16_t data[DL_MCAN_MAX_PAYLOAD_BYTES];
+    uint8_t data[DL_MCAN_MAX_PAYLOAD_BYTES];
 } DL_MCAN_RxBufElement;
 
 /**

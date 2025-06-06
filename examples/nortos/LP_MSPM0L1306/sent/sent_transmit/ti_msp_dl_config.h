@@ -73,8 +73,21 @@ extern "C" {
 #define POWER_STARTUP_DELAY                                                (16)
 
 
-
 #define CPUCLK_FREQ                                                     32000000
+
+
+
+/* Defines for PWM_0 */
+#define PWM_0_INST                                                         TIMG1
+#define PWM_0_INST_IRQHandler                                   TIMG1_IRQHandler
+#define PWM_0_INST_INT_IRQN                                     (TIMG1_INT_IRQn)
+#define PWM_0_INST_CLK_FREQ                                              4000000
+/* GPIO defines for channel 1 */
+#define GPIO_PWM_0_C1_PORT                                                 GPIOA
+#define GPIO_PWM_0_C1_PIN                                          DL_GPIO_PIN_1
+#define GPIO_PWM_0_C1_IOMUX                                       (IOMUX_PINCM2)
+#define GPIO_PWM_0_C1_IOMUX_FUNC                      IOMUX_PINCM2_PF_TIMG1_CCP1
+#define GPIO_PWM_0_C1_IDX                                    DL_TIMER_CC_1_INDEX
 
 
 
@@ -92,6 +105,7 @@ void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+void SYSCFG_DL_PWM_0_init(void);
 
 
 

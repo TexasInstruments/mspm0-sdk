@@ -57,7 +57,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0G3507__</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
+              <IncludePath>../,../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
             </VariousControls>
           </Cads>
           <LDads>
@@ -77,11 +77,6 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>lin_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../lin_config.h</FilePath>
-            </File>
-            <File>
               <FileName>lin_responder.c</FileName>
               <FileType>1</FileType>
               <FilePath>../lin_responder.c</FilePath>
@@ -90,6 +85,11 @@
               <FileName>lin_config.c</FileName>
               <FileType>1</FileType>
               <FilePath>../lin_config.c</FilePath>
+            </File>
+            <File>
+              <FileName>lin_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../lin_config.h</FilePath>
             </File>
             <File>
               <FileName>lin_responder.syscfg</FileName>

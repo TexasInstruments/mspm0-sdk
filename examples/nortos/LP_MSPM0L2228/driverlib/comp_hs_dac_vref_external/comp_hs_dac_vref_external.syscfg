@@ -51,3 +51,4 @@ VREF.peripheral.$assign            = "VREF";
 VREF.peripheral.vrefPosPin.$assign = "PA23";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

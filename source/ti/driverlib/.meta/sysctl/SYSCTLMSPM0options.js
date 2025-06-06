@@ -33,6 +33,10 @@ const SYSOSCFreqOptions = {
         { name: 32000000, displayName: "32 MHz" },
         { name: 4000000,  displayName: "4 MHz"  },
     ],
+    "MSPM0G511X": [
+        { name: 32000000, displayName: "32 MHz" },
+        { name: 4000000,  displayName: "4 MHz"  },
+    ],
 }
 
 const LFCLKSourceOptions = {
@@ -73,6 +77,11 @@ const LFCLKSourceOptions = {
         { name: "LFXT", displayName: "LF External XTAL" },
         { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
     ],
+    "MSPM0G511X": [
+        { name: "LFOSC" },
+        { name: "LFXT", displayName: "LF External XTAL" },
+        { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
+    ],
 };
 
 const MFPCLKSourceOptions = {
@@ -104,6 +113,10 @@ const MFPCLKSourceOptions = {
         { name: "HFCLK" },
     ],
     "MSPM0C1105_C1106": [
+        { name: "SYSOSC" },
+        { name: "HFCLK" },
+    ],
+    "MSPM0G511X": [
         { name: "SYSOSC" },
         { name: "HFCLK" },
     ],
@@ -149,6 +162,11 @@ const MCLKSourceOptions = {
         { name: "LFCLK" },
         { name: "HSCLK" },
     ],
+    "MSPM0G511X": [
+        { name: "SYSOSC" },
+        { name: "LFCLK" },
+        { name: "HSCLK" },
+    ],
 };
 
 const HFCLKSourceOptions = {
@@ -178,6 +196,10 @@ const HFCLKSourceOptions = {
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
     "MSPM0C1105_C1106": [
+        {name: "HFXT", displayName: "HF External XTAL"},
+        {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
+    ],
+    "MSPM0G511X": [
         {name: "HFXT", displayName: "HF External XTAL"},
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
@@ -241,6 +263,14 @@ const EXCLKSourceOptions = {
         { name: "MFPCLK" },
         { name: "HFCLK" },
     ],
+    "MSPM0G511X": [
+        { name: "SYSOSC" },
+        { name: "ULPCLK" },
+        { name: "LFCLK" },
+        { name: "MFPCLK" },
+        { name: "HFCLK" },
+        { name: "SYSPLLOUT1", displayName: "SYSPLL Clock 1" },
+    ],
 };
 
 const HSCLKSourceOptions = {
@@ -272,6 +302,12 @@ const HSCLKSourceOptions = {
     ],
     "MSPM0C1105_C1106": [
         { name: "HFCLK" },
+    ],
+    "MSPM0G511X": [
+        { name: "SYSPLLCLK0" },
+        { name: "SYSPLLCLK2X" },
+        { name: "HFCLK" },
+        { name: "USBFLL"}
     ],
 };
 
@@ -321,6 +357,12 @@ const BORThreshOptions = {
         {name: "2"},
         {name: "3"},
     ],
+    "MSPM0G511X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+        {name: "3"},
+    ],
 }
 
 let WaitStateOptions = {
@@ -361,6 +403,11 @@ let WaitStateOptions = {
     "MSPM0C1105_C1106": [
         {name: "0"},
         {name: "1"},
+    ],
+    "MSPM0G511X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
     ],
 }
 

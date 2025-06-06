@@ -1759,6 +1759,15 @@ typedef struct {
                                                                                     Once enabled, this state is locked
                                                                                     until the next BOOTRST. */
 #define SYSCTL_SYSOSCFCLCTL_SETUSEFCL_TRUE       ((uint32_t)0x00000001U)         /* !< Enable the SYSOSC FCL */
+/* SYSCTL_SYSOSCFCLCTL[SETUSEEXRES] Bits */
+#define SYSCTL_SYSOSCFCLCTL_SETUSEEXRES_OFS      (1)                             /* !< SETUSEEXRES Offset */
+#define SYSCTL_SYSOSCFCLCTL_SETUSEEXRES_MASK     ((uint32_t)0x00000002U)         /* !< Set SETUSEEXRES to specify that an
+                                                                                    external resistor will be used for
+                                                                                    the FCL.  An appropriate resistor
+                                                                                    must be populated on the ROSC pin.
+                                                                                    This state is locked until the next
+                                                                                    BOOTRST. */
+#define SYSCTL_SYSOSCFCLCTL_SETUSEEXRES_TRUE     ((uint32_t)0x00000002U)         /* !< Enable the SYSOSC external Resistor */
 
 /* SYSCTL_LFXTCTL Bits */
 /* SYSCTL_LFXTCTL[KEY] Bits */

@@ -52,3 +52,4 @@ GPIO3.associatedPins[1].pin.$assign = "PA13";
 GPIO3.associatedPins[1].internalResistor = "PULL_UP";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

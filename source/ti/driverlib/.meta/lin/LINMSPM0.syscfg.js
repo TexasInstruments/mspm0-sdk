@@ -41,6 +41,19 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 let UARTCommon = system.getScript("/ti/driverlib/UART.common.js");
 
+let linPeripherals = [];
+if(Common.isUnicommUART()){
+    try{
+        let uartPeripherals = system.deviceData.interfaces["UART"].peripherals.map(a => a.name);
+        for(let item of uartPeripherals){
+            let unicomm = system.deviceData.peripherals[item].attributes.UNICOMM;
+            if(system.deviceData.peripherals[item].attributes["SYS_"+unicomm+"_UART_LIN_EN"]=="true"){
+                linPeripherals.push(item);
+            }
+        }
+    }catch(e){/*do nothing*/}
+}
+
 /*
  *  ======== validate ========
  *  Validate this inst's configuration
@@ -85,6 +98,16 @@ function validatePinmux(inst, validation) {
             validation.logError("LIN functionality is only available on the UART0 and UART7 instances. Please select a valid instance from PinMux if available.",
                 inst,"peripheral");
         }
+    }
+    if(Common.isUnicommUART()){
+        try{
+            let peripheralSolution = inst.peripheral.$solution.peripheralName;
+            let unicomm = system.deviceData.peripherals[peripheralSolution].attributes.UNICOMM;
+            if(system.deviceData.peripherals[peripheralSolution].attributes["SYS_"+unicomm+"_UART_IRDA_EN"]=="false"){
+                validation.logError("LIN functionality is only available on: " +linPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
+                    inst,"peripheral");
+            }
+        }catch(e){/*do nothing*/}
     }
 }
 

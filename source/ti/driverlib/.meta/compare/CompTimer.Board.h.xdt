@@ -95,7 +95,7 @@
 %           let pinName = "ccp"+cc+"Pin";
 %           let packagePin = inst.peripheral[pinName].$solution.packagePinName;
 %           let pinCM = Common.getPinCM(packagePin,inst,"CCP"+cc);
-%           let gpioName = system.deviceData.devicePins[packagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%           let gpioName = system.deviceData.devicePins[packagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %           let port = Common.getGPIOPortMultiPad(packagePin,inst,"CCP"+cc);
 %           let gpioPin = Common.getGPIONumberMultiPad(packagePin,inst,"CCP"+cc);
 /* GPIO defines for channel `cc` */

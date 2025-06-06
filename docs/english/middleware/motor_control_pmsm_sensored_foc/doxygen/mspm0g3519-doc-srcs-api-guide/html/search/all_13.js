@@ -33,7 +33,6 @@ var searchData=
   ['timeoutcountmax',['timeOutCountMax',['../struct_b_r_a_k_e___t.html#a3f0accc018e148131c13e62b3e58a9d1',1,'BRAKE_T']]],
   ['timeoutcountmaxonstart',['timeOutCountMaxOnStart',['../struct_b_r_a_k_e___t.html#abc5371051617f57a78a5a811cb7eaa9b',1,'BRAKE_T']]],
   ['timeoutcountmaxonstop',['timeOutCountMaxOnStop',['../struct_b_r_a_k_e___t.html#aaaf6943269b28804ac849d6dd90c526b',1,'BRAKE_T']]],
-  ['timer_5fcapt_5fclk_5ffreq',['TIMER_CAPT_CLK_FREQ',['../measure_8h.html#ab1962f6224308329c4fcfe49487e18b5',1,'measure.h']]],
   ['torqrefscalingfactor',['torqRefScalingFactor',['../struct_c_l_o_s_e___l_o_o_p___t.html#a2f0ead31fa5f2c0b393f12b6866e208d',1,'CLOSE_LOOP_T']]],
   ['torquelimit',['torqueLimit',['../struct_u_s_e_r___s_t_a_t_u_s___i_n_t_e_r_f_a_c_e___t.html#a8383f44ab234678140643289b08c69ff',1,'USER_STATUS_INTERFACE_T']]],
   ['torquemodeenable',['torqueModeEnable',['../struct_c_l_o_s_e___l_o_o_p___f_l_a_g_s___t_1_1close_loop_flags.html#ad39ef2755a80457cb5684a99409a07cf',1,'CLOSE_LOOP_FLAGS_T::closeLoopFlags']]],

@@ -57,7 +57,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0L1306__</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
+              <IncludePath>../,../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
             </VariousControls>
           </Cads>
           <LDads>
@@ -77,6 +77,11 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
+              <FileName>sent_transmit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../sent_transmit.c</FilePath>
+            </File>
+            <File>
               <FileName>SENT.c</FileName>
               <FileType>1</FileType>
               <FilePath>../SENT/SENT.c</FilePath>
@@ -85,56 +90,6 @@
               <FileName>SENT.h</FileName>
               <FileType>5</FileType>
               <FilePath>../SENT/SENT.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_GPIO.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../SENT/HAL/HAL_GPIO.c</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_GPIO.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../SENT/HAL/HAL_GPIO.h</FilePath>
-            </File>
-            <File>
-              <FileName>hal_interrupts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../SENT/HAL/hal_interrupts.c</FilePath>
-            </File>
-            <File>
-              <FileName>hal_interrupts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../SENT/HAL/hal_interrupts.h</FilePath>
-            </File>
-            <File>
-              <FileName>hal_system.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../SENT/HAL/hal_system.c</FilePath>
-            </File>
-            <File>
-              <FileName>hal_system.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../SENT/HAL/hal_system.h</FilePath>
-            </File>
-            <File>
-              <FileName>hal_timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../SENT/HAL/hal_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>hal_timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../SENT/HAL/hal_timer.h</FilePath>
-            </File>
-            <File>
-              <FileName>hal.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../SENT/HAL/hal.h</FilePath>
-            </File>
-            <File>
-              <FileName>sent_transmit.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../sent_transmit.c</FilePath>
             </File>
             <File>
               <FileName>sent_transmit.syscfg</FileName>

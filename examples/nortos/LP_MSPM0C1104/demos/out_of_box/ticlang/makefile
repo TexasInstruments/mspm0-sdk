@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj MSP_GUI_mpack.obj blink_led.obj callbacks_mpack.obj HAL_MSPM0C1104.obj main.obj ti_msp_dl_config.obj ticlang_startup_mspm0c110x_ticlang.obj
+OBJECTS = blink_led.obj callbacks_mpack.obj HAL_MSPM0C1104.obj main.obj ti_msp_dl_config.obj MSP_GUI_GUI_mpack.obj MSP_GUI_GUIComm_mpack.obj MSP_GUI_mpack.obj ticlang_startup_mspm0c110x_ticlang.obj
 NAME = out_of_box
 
 CFLAGS += -I.. \
@@ -32,18 +32,6 @@ LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/gui_composer/lib/ticlang/m0p/gui
 
 all: $(NAME).out
 
-MSP_GUI_GUI_mpack.obj: ../MSP_GUI/GUI_mpack.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-MSP_GUI_GUIComm_mpack.obj: ../MSP_GUI/GUIComm_mpack.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-MSP_GUI_mpack.obj: ../MSP_GUI/mpack.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
 blink_led.obj: ../blink_led.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
@@ -61,6 +49,18 @@ main.obj: ../main.c
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
 ti_msp_dl_config.obj: ../ti_msp_dl_config.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+MSP_GUI_GUI_mpack.obj: ../MSP_GUI/GUI_mpack.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+MSP_GUI_GUIComm_mpack.obj: ../MSP_GUI/GUIComm_mpack.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+MSP_GUI_mpack.obj: ../MSP_GUI/mpack.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

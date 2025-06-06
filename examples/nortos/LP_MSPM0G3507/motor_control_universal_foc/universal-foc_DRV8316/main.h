@@ -41,7 +41,7 @@ extern "C" {
 /*! @brief Application Minor FW Version */
 #define APP_MINOR_VER  (0x01)
 /*! @brief Application Patch FW Version */
-#define APP_PATCH_VER  (0x00)
+#define APP_PATCH_VER  (0x01)
 /*! @brief Application FW Version */
 #define APP_FW_VERSION (APP_MAJOR_VER << 16) + (APP_MINOR_VER<<8) + (APP_PATCH_VER)
 

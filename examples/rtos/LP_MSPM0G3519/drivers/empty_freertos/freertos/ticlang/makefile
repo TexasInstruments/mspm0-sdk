@@ -7,7 +7,7 @@ KERNEL_BUILD := $(MSPM0_SDK_INSTALL_DIR)/kernel/freertos/builds/LP_MSPM0G3519/re
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = main_freertos.obj empty.obj ti_drivers_config.obj ti_msp_dl_config.obj freertos_ticlang_startup_mspm0g351x_ticlang.obj
+OBJECTS = ti_drivers_config.obj ti_msp_dl_config.obj main_freertos.obj empty.obj freertos_ticlang_startup_mspm0g351x_ticlang.obj
 NAME = empty_freertos
 
 CFLAGS += -I../.. \
@@ -46,19 +46,19 @@ $(KERNEL_BUILD)/ticlang/freertos.lib:
 	@ echo You can build it by issuing $(MAKE) in $(dir $@).
 	@ $(ECHOBLANKLINE)
 
-main_freertos.obj: ../../main_freertos.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-empty.obj: ../../empty.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
 ti_drivers_config.obj: ../../ti_drivers_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
 ti_msp_dl_config.obj: ../../ti_msp_dl_config.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+main_freertos.obj: ../../main_freertos.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+empty.obj: ../../empty.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

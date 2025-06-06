@@ -47,7 +47,7 @@ For more details on BSL communication interface refer to BSL User Guide.
 | --- | --- | --- |
 | DEBUGSS | PA20 | Debug Clock |
 | DEBUGSS | PA19 | Debug Data In Out |
-| UART0 | PA24 | RX Pin |
+| UART0 | PA26 | RX Pin |
 | UART0 | PA27 | TX Pin |
 | I2C0 | PA0 | I2C Serial Data line (SDA) |
 | I2C0 | PA11 | I2C Serial Clock line (SCL) |

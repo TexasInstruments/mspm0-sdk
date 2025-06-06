@@ -1,0 +1,86 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0H3216" --package "LQFP-48(PT)" --part "Default"
+//@v2CliArgs --device "MSPM0H3216" --package "LQFP-48(PT)"
+// @cliArgs --board /ti/boards/LP_MSPM0H3216 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12         = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121        = ADC12.addInstance();
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER         = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1        = TIMER.addInstance();
+const i2cSMBUS      = scripting.addModule("/ti/driverlib/i2cSMBUS", {}, false);
+const i2cSMBUS1     = i2cSMBUS.addInstance();
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const mux3       = system.clockTree["EXHFMUX"];
+mux3.inputSelect = "EXHFMUX_XTAL";
+
+const pinFunction4       = system.clockTree["HFXT"];
+pinFunction4.inputFreq   = 40;
+pinFunction4.HFXTStartup = 100;
+
+ADC121.$name                             = "SMB_ADC";
+ADC121.sampClkDiv                        = "DL_ADC12_CLOCK_DIVIDE_8";
+ADC121.repeatMode                        = true;
+ADC121.adcMem0_name                      = "SMB_ADC_channel_0";
+ADC121.sampleTime0                       = "25 us";
+ADC121.sampleTime1                       = "12.5 us";
+ADC121.enabledInterrupts                 = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.subChanID                         = 3;
+ADC121.trigSrc                           = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.peripheral.$assign                = "ADC0";
+ADC121.peripheral.adcPin0.$assign        = "PA27";
+ADC121.adcPin0Config.hideOutputInversion = scripting.forceWrite(false);
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+GPIO1.$name                         = "GPIO_LED";
+GPIO1.associatedPins[0].$name       = "PIN_0";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+SYSCTL.validateClkStatus = true;
+SYSCTL.MCLKSource        = "HSCLK";
+SYSCTL.clockTreeEn       = true;
+
+TIMER1.$name                       = "ADC_SAMPLE_TIMER";
+TIMER1.timerClkSrc                 = "LFCLK";
+TIMER1.timerClkDiv                 = 8;
+TIMER1.timerMode                   = "PERIODIC";
+TIMER1.timerPeriod                 = "10 ms";
+TIMER1.timerStartTimer             = true;
+TIMER1.event1PublisherChannel      = 3;
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.peripheral.$assign          = "TIMG1";
+
+i2cSMBUS1.$name                             = "SMB_I2C";
+i2cSMBUS1.enableTimeoutA                    = true;
+i2cSMBUS1.intGeneric                        = ["TIMEOUT_A"];
+i2cSMBUS1.enableControllerPEC               = true;
+i2cSMBUS1.timeoutACount                     = 135;
+i2cSMBUS1.basicEnableTarget                 = true;
+i2cSMBUS1.basicTargetAddress                = 0x1A;
+i2cSMBUS1.enableTargetPEC                   = true;
+i2cSMBUS1.enableTargetPECACKNext            = true;
+i2cSMBUS1.advTargetTXEmptyEn                = true;
+i2cSMBUS1.advTargetAckOverride              = true;
+i2cSMBUS1.intTarget                         = ["RXFIFO_TRIGGER","START","STOP","TXFIFO_EMPTY"];
+i2cSMBUS1.peripheral.$assign                = "I2C0";
+i2cSMBUS1.peripheral.sdaPin.$assign         = "PA24";
+i2cSMBUS1.peripheral.sclPin.$assign         = "PA25";
+
+ProjectConfig.genLibPMBUS        = true;
+ProjectConfig.migrationCondition = true;

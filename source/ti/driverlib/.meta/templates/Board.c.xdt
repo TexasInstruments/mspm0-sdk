@@ -351,8 +351,11 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
         for(let selectUnused of unusedPinIDs){
             /* Add IOMUX_PINCM to create an array of IOMUX_PINCM defines */
             /* Note: in the case of multiple pinCMs on same pad, access the first one */
-            if((system.deviceData.devicePins[selectUnused].attributes.iomux_pincm).split(",")[0] !== "None"){
-                unusedIOMUX.push("IOMUX_PINCM" + (system.deviceData.devicePins[selectUnused].attributes.iomux_pincm).split(",")[0]);
+            let pinCMAttribute = Common.getAttribute((system.deviceData.devicePins[selectUnused]),("iomux_pincm"));
+            if(pinCMAttribute !== undefined){
+                if((pinCMAttribute).split(",")[0] !== "None"){
+                    unusedIOMUX.push("IOMUX_PINCM" + (pinCMAttribute).split(",")[0]);
+                }
             }
 
         }

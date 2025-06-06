@@ -87,9 +87,10 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 
     
 	DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
+	/* Set default configuration */
+	DL_SYSCTL_disableHFXT();
 
 }
-
 
 
 static const DL_UART_Main_ClockConfig gUART_0ClockConfig = {

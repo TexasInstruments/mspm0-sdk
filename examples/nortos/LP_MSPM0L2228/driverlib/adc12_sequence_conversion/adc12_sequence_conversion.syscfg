@@ -35,3 +35,4 @@ ADC121.peripheral.adcPin2.$assign = "PA25";
 ADC121.peripheral.adcPin3.$assign = "PA24";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

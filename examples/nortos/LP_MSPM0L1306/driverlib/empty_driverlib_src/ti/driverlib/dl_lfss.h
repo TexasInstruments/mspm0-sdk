@@ -1239,8 +1239,7 @@ __STATIC_INLINE void DL_LFSS_IWDT_setClockDivider(
 __STATIC_INLINE DL_LFSS_IWDT_CLOCK_DIVIDE DL_LFSS_IWDT_getClockDivider(
     const LFSS_Regs *lfss)
 {
-    uint32_t divider =
-        (lfss->IPSPECIFIC_WDT.WDTCTL & LFSS_WDTCTL_CLKDIV_MASK) + (uint32_t) 1;
+    uint32_t divider = (lfss->IPSPECIFIC_WDT.WDTCTL & LFSS_WDTCTL_CLKDIV_MASK);
 
     return (DL_LFSS_IWDT_CLOCK_DIVIDE)(divider);
 }

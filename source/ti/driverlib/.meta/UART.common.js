@@ -137,7 +137,7 @@ function getDisabledUARTModeOptions(inst)
         { name: "DALI", displayName: "DALI Mode", reason: "Extend mode is disabled" },
     ];
 
-    if (inst.enableExtend == true)
+    if ((inst.enableExtend || Common.isUnicommUART()) == true)
     {
         return [];
     }
@@ -157,7 +157,9 @@ function onIrdaEnable(inst, ui){
             ui["setIrdaTxPolarity"].hidden = false
             ui["setIrdaPulseLength"].hidden = false
             ui["irdaPulseLengthCalc"].hidden = false
-            ui["uartClkDiv2"].hidden = false
+            if(!Common.isUnicommUART()){
+                ui["uartClkDiv2"].hidden = false
+            }
         }
     }
     else{
@@ -165,7 +167,9 @@ function onIrdaEnable(inst, ui){
         ui["setIrdaTxPolarity"].hidden = true
         ui["setIrdaPulseLength"].hidden = true
         ui["irdaPulseLengthCalc"].hidden = true
-        ui["uartClkDiv2"].hidden = true
+        if(!Common.isUnicommUART()){
+            ui["uartClkDiv2"].hidden = true
+        }
     }
 }
 
@@ -177,17 +181,21 @@ function updateIrdaConfig(inst,ui){
         ui["setIrdaTxPolarity"].hidden = true
         ui["setIrdaPulseLength"].hidden = true
         ui["irdaPulseLengthCalc"].hidden = true
-        ui["uartClkDiv2"].hidden = true
+        if(!Common.isUnicommUART()){
+            ui["uartClkDiv2"].hidden = true
+        }
     }
     else{
-        if(inst.enableExtend){
+        if(inst.enableExtend || Common.isUnicommUART()){
             ui.enableIrda.hidden = false
             if(inst.enableIrda){
                 ui["setIrdaTxPulseClock"].hidden = false
                 ui["setIrdaTxPolarity"].hidden = false
                 ui["setIrdaPulseLength"].hidden = false
                 ui["irdaPulseLengthCalc"].hidden = false
-                ui["uartClkDiv2"].hidden = false
+                if(!Common.isUnicommUART()){
+                    ui["uartClkDiv2"].hidden = false
+                }
             }
         }
     }
@@ -266,7 +274,7 @@ function updateGUIbasedonConfig(inst, ui)
 
 function updateGUIEnableExtend(inst, ui)
 {
-    if (inst.enableExtend == false) {
+    if ((inst.enableExtend || Common.isUnicommUART()) == false) {
         ui.enableManchester.hidden = true
 
         ui.enableIrda.hidden = true
@@ -274,7 +282,9 @@ function updateGUIEnableExtend(inst, ui)
         ui["setIrdaTxPolarity"].hidden = true
         ui["setIrdaPulseLength"].hidden = true
         ui["irdaPulseLengthCalc"].hidden = true
-        ui["uartClkDiv2"].hidden = true
+        if(!Common.isUnicommUART()){
+            ui["uartClkDiv2"].hidden = true
+        }
         ui.setExtDriverSetup.hidden = true
         ui.setExtDriverHold.hidden = true
     }
@@ -287,14 +297,18 @@ function updateGUIEnableExtend(inst, ui)
                 ui["setIrdaTxPolarity"].hidden = false
                 ui["setIrdaPulseLength"].hidden = false
                 ui["irdaPulseLengthCalc"].hidden = false
-                ui["uartClkDiv2"].hidden = false
+                if(!Common.isUnicommUART()){
+                    ui["uartClkDiv2"].hidden = false
+                }
             }
             else{
                 ui["setIrdaTxPulseClock"].hidden = true
                 ui["setIrdaTxPolarity"].hidden = true
                 ui["setIrdaPulseLength"].hidden = true
                 ui["irdaPulseLengthCalc"].hidden = true
-                ui["uartClkDiv2"].hidden = true
+                if(!Common.isUnicommUART()){
+                    ui["uartClkDiv2"].hidden = true
+                }
             }
         }
         else{
@@ -304,7 +318,9 @@ function updateGUIEnableExtend(inst, ui)
             ui["setIrdaTxPolarity"].hidden = true
             ui["setIrdaPulseLength"].hidden = true
             ui["irdaPulseLengthCalc"].hidden = true
-            ui["uartClkDiv2"].hidden = true
+            if(!Common.isUnicommUART()){
+                ui["uartClkDiv2"].hidden = true
+            }
         }
         if (inst.enableIrda == false)
         {
@@ -312,14 +328,18 @@ function updateGUIEnableExtend(inst, ui)
             ui["setIrdaTxPolarity"].hidden = true
             ui["setIrdaPulseLength"].hidden = true
             ui["irdaPulseLengthCalc"].hidden = true
-            ui["uartClkDiv2"].hidden = true
+            if(!Common.isUnicommUART()){
+                ui["uartClkDiv2"].hidden = true
+            }
         }
         else{
             ui["setIrdaTxPulseClock"].hidden = false
             ui["setIrdaTxPolarity"].hidden = false
             ui["setIrdaPulseLength"].hidden = false
             ui["irdaPulseLengthCalc"].hidden = false
-            ui["uartClkDiv2"].hidden = false
+            if(!Common.isUnicommUART()){
+                ui["uartClkDiv2"].hidden = false
+            }
         }
     }
     // for interrupts
@@ -334,11 +354,15 @@ function updateGUIbasicBaudRateCalc(inst, ui) {
 
 function updateFifoThresholds(inst, ui) {
     if (inst.enableFIFO == true) {
-        ui.rxFifoThreshold.hidden = false;
-        ui.txFifoThreshold.hidden = false;
+        ui.rxFifoThreshold.hidden = !inst.direction.includes("RX");
+        ui.txFifoThreshold.hidden = !inst.direction.includes("TX");
+        ui.rxFifoThreshold_default.hidden = inst.direction.includes("RX");
+        ui.txFifoThreshold_default.hidden = inst.direction.includes("TX");
     } else {
         ui.rxFifoThreshold.hidden = true;
         ui.txFifoThreshold.hidden = true;
+        ui.rxFifoThreshold_default.hidden = false;
+        ui.txFifoThreshold_default.hidden = false;
     }
 }
 
@@ -363,6 +387,10 @@ function onChangeBasicClockSourceDivider(inst, ui)
 
 function onChangeBasicEnableExtend(inst, ui)
 {
+    if(!inst.enableExtend){
+        inst.enableManchester = false;
+        inst.enableIrda = false;
+    }
     updateGUIEnableExtend(inst, ui);
     onChangeSetCustomProfile(inst, ui);
 }
@@ -396,6 +424,7 @@ function onChangeAdvUartModeLIN(inst, ui)
 
 function onChangeAdvDirection(inst, ui)
 {
+    updateFifoThresholds(inst, ui);
     onChangeSetCustomProfile(inst, ui);
 }
 
@@ -445,6 +474,9 @@ function onChangeAdvLoopbackMode(inst, ui)
 
 function onChangeExtendManchesterMode(inst, ui)
 {
+    if(Common.isUnicommUART()){
+        inst.enableExtend = inst.enableManchester || inst.enableIrda;
+    }
     onChangeSetCustomProfile(inst, ui);
 }
 
@@ -456,6 +488,9 @@ function onChangeExtendManchesterMode(inst, ui)
 
 function onChangeExtendIrdaMode(inst, ui)
 {
+    if(Common.isUnicommUART()){
+        inst.enableExtend = inst.enableManchester || inst.enableIrda;
+    }
     onIrdaEnable(inst, ui);
     onChangeSetCustomProfile(inst, ui);
 }
@@ -994,6 +1029,25 @@ To select a UART Extend-only mode, a UART Extend instance must be selected.
     return uartConfig;
 }
 
+let enableFIFO_displayName = "Enable FIFOs";
+let enableFIFO_desc = 'Enable the TX and RX FIFOs';
+if(Common.isUnicommUART()){
+    enableFIFO_displayName= "Enable TX and RX FIFO Threshold Selection"
+    enableFIFO_desc = 'Enable selection of the TX and RX FIFO Thresholds'
+}
+let rxUCOptions = [];
+let txUCOptions = [];
+if(Common.isUnicommUART()){
+    rxUCOptions = [
+        {name: "DL_UART_RX_FIFO_LEVEL_ALMOST_FULL", displayName: "RX FIFO is almost full"},
+        {name: "DL_UART_RX_FIFO_LEVEL_ALMOST_EMPTY", displayName: "RX FIFO is almost empty"},
+    ]
+    txUCOptions = [
+        {name: "DL_UART_TX_FIFO_LEVEL_ALMOST_FULL", displayName: "TX FIFO is almost full"},
+        {name: "DL_UART_TX_FIFO_LEVEL_ALMOST_EMPTY", displayName: "TX FIFO is almost empty"},
+    ]
+}
+
 function getAdvancedConfig(inst,ui){
     return [
 {
@@ -1143,8 +1197,8 @@ deviations. But the maximumspeed is limited to UARTclk/16.\n
         /* DL_UART_enableFIFOs */
         {
             name        : "enableFIFO",
-            displayName : "Enable FIFOs",
-            description : 'Enable the TX and RX FIFOs',
+            displayName : enableFIFO_displayName,
+            description : enableFIFO_desc,
             longDescription: `
 The UART has two FIFOs with a depth of 4 entries, one for transmit and one for receive.\n
 The FIFOs are accessed via the UART Data registers.
@@ -1167,11 +1221,33 @@ When disabled, the FIFOs act as 1-byte-deep holding registers.\n
             options     : [
                 {name: "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY", displayName: "RX FIFO contains >= 1 entry"},
                 {name: "DL_UART_RX_FIFO_LEVEL_FULL", displayName: "RX FIFO is full"},
-                {name: "DL_UART_RX_FIFO_LEVEL_3_4_FULL", displayName: "RX FIFO contains>= 3 entries"},
-                {name: "DL_UART_RX_FIFO_LEVEL_1_2_FULL", displayName: "RX FIFO contains>= 2 entries"},
-                {name: "DL_UART_RX_FIFO_LEVEL_1_4_FULL", displayName: "RX FIFO contains >= 3/4 full"},
-            ],
+                {name: "DL_UART_RX_FIFO_LEVEL_3_4_FULL", displayName: "RX FIFO >= 3/4 full"},
+                {name: "DL_UART_RX_FIFO_LEVEL_1_2_FULL", displayName: "RX FIFO >= 1/2 full"},
+                {name: "DL_UART_RX_FIFO_LEVEL_1_4_FULL", displayName: "RX FIFO >= 1/4 full"},
+            ].concat(rxUCOptions),
             onChange : onChangeAdvRxFifoThreshold,
+        },
+        {
+            name        : "rxFifoThreshold_default",
+            displayName : "RX FIFO Threshold Level",
+            description : 'The RX FIFO threshold level for when the interrupt triggers',
+            hidden      : false,
+            default     : "DL_UART_RX_FIFO_LEVEL_1_2_FULL",
+            options     : [
+                {name: "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY", displayName: "RX FIFO contains >= 1 entry"},
+                {name: "DL_UART_RX_FIFO_LEVEL_FULL", displayName: "RX FIFO is full"},
+                {name: "DL_UART_RX_FIFO_LEVEL_3_4_FULL", displayName: "RX FIFO >= 3/4 full"},
+                {name: "DL_UART_RX_FIFO_LEVEL_1_2_FULL", displayName: "RX FIFO >= 1/2 full"},
+                {name: "DL_UART_RX_FIFO_LEVEL_1_4_FULL", displayName: "RX FIFO >= 1/4 full"},
+            ].concat(rxUCOptions),
+            getValue: (inst)=>{
+                if(Common.isUnicommUART()){
+                    return "DL_UART_RX_FIFO_LEVEL_ONE_ENTRY";
+                }
+                else{
+                    return "DL_UART_RX_FIFO_LEVEL_1_2_FULL";
+                }
+            }
         },
         /* DL_UART_setTXFIFOThreshold */
         {
@@ -1181,13 +1257,35 @@ When disabled, the FIFOs act as 1-byte-deep holding registers.\n
             hidden      : true,
             default     : "DL_UART_TX_FIFO_LEVEL_1_2_EMPTY",
             options     : [
-                {name: "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY", displayName: "TX FIFO contains <= 1 entry"},
-                {name: "DL_UART_TX_FIFO_LEVEL_1_2_EMPTY", displayName: "TX FIFO contains <= 2 entries"},
-                {name: "DL_UART_TX_FIFO_LEVEL_1_4_EMPTY", displayName: "TX FIFO contains <= 3 entries"},
+                {name: "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY", displayName: "TX FIFO <= 3/4 empty"},
+                {name: "DL_UART_TX_FIFO_LEVEL_1_2_EMPTY", displayName: "TX FIFO <= 1/2 empty"},
+                {name: "DL_UART_TX_FIFO_LEVEL_1_4_EMPTY", displayName: "TX FIFO <= 1/4 empty"},
                 {name: "DL_UART_TX_FIFO_LEVEL_EMPTY", displayName: "TX FIFO is empty"},
-                {name: "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY", displayName: "TX FIFO contains 1 entry"}, // TODO: Differentiate between 3_4 empty and one entry
-            ],
+                {name: "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY", displayName: "TX FIFO is not full"},
+            ].concat(txUCOptions),
             onChange : onChangeAdvTxFifoThreshold,
+        },
+        {
+            name        : "txFifoThreshold_default",
+            displayName : "TX FIFO Threshold Level",
+            description : 'The TX FIFO interrupt threshold level',
+            hidden      : false,
+            default     : "DL_UART_TX_FIFO_LEVEL_1_2_EMPTY",
+            options     : [
+                {name: "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY", displayName: "TX FIFO <= 3/4 empty"},
+                {name: "DL_UART_TX_FIFO_LEVEL_1_2_EMPTY", displayName: "TX FIFO <= 1/2 empty"},
+                {name: "DL_UART_TX_FIFO_LEVEL_1_4_EMPTY", displayName: "TX FIFO <= 1/4 empty"},
+                {name: "DL_UART_TX_FIFO_LEVEL_EMPTY", displayName: "TX FIFO is empty"},
+                {name: "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY", displayName: "TX FIFO is not full"},
+            ].concat(txUCOptions),
+            getValue: (inst)=>{
+                if(Common.isUnicommUART()){
+                    return "DL_UART_TX_FIFO_LEVEL_ONE_ENTRY";
+                }
+                else{
+                    return "DL_UART_TX_FIFO_LEVEL_1_2_EMPTY";
+                }
+            }
         },
         /* DL_UART_enableAnalogGlitchFilter */
         {
@@ -1324,13 +1422,38 @@ This bit has effect on both the way the protocol byte is transmitted and receive
     ]
 }
 
+let uartClkDiv2_config = [
+    {
+        name        : "uartClkDiv2",
+        displayName : "Clock Divider 2",
+        description : 'Clock divider 2 ratio selection',
+        hidden      : true,
+        default     : "1",
+        options     : [
+            {name: "1", displayName: "Divide by 1"},
+            {name: "2", displayName: "Divide by 2"},
+            {name: "3", displayName: "Divide by 3"},
+            {name: "4", displayName: "Divide by 4"},
+            {name: "5", displayName: "Divide by 5"},
+            {name: "6", displayName: "Divide by 6"},
+            {name: "7", displayName: "Divide by 7"},
+            {name: "8", displayName: "Divide by 8"},
+        ],
+        onChange    : onChangeBasicClockSourceDivider,
+    },
+];
+if(Common.isUnicommUART()){
+    // configuration is not supported for UNICOMM
+    uartClkDiv2_config = [];
+}
+
 function getExtendConfig(inst,ui){
     return [
         {
             name        : "enableExtend",
             displayName : "Enable Extend Features",
             description : 'Enable the UART Extend mode features. A UART instance that supports Extend functionality must be selected in the PinMux section.',
-            hidden      : false,
+            hidden: Common.isUnicommUART(),
             default     : false,
             onChange    : onChangeBasicEnableExtend,
         },
@@ -1350,11 +1473,13 @@ So for the data transmit there is an edge at the beginning and the middle of
 each data bit. For the receive signal the edge in the middle of the bit is
 detected to decode the RX data.
             `,
-            hidden      : true,
+            hidden      : !Common.isUnicommUART(),
             default     : false,
             onChange : onChangeExtendManchesterMode,
         },
         /* DL_UART_enableIrDAMode */
+        // TODO: make sure that its hidden/shown appropiately based on selected device after migration
+        // -- can run the onChange again after onMigrayion?
         {
             name        : "enableIrda",
             displayName : "Enable IrDA Mode",
@@ -1364,7 +1489,7 @@ Infrared Data Association, or IrDA, is a serial protocol designed for wireless i
 It is useful in enabling communication over longer distances via wireless when the devices are in each other's line of sight.
 This form of communication requires encoding/decoding mechanisms to ensure the security of messages sent through this protocol.
 `,
-            hidden      : true,
+            hidden      : !Common.isUnicommUART(),
             default     : false,
             onChange    : onChangeExtendIrdaMode
         },
@@ -1417,25 +1542,7 @@ This form of communication requires encoding/decoding mechanisms to ensure the s
                     default     : "0s",
                     getValue    : (inst) => (Common.getUnitPrefix((getValueUARTIrDAPulseLength(inst))).str+'s'),
                 },
-                {
-                    name        : "uartClkDiv2",
-                    displayName : "Clock Divider 2",
-                    description : 'Clock divider 2 ratio selection',
-                    hidden      : true,
-                    default     : "1",
-                    options     : [
-                        {name: "1", displayName: "Divide by 1"},
-                        {name: "2", displayName: "Divide by 2"},
-                        {name: "3", displayName: "Divide by 3"},
-                        {name: "4", displayName: "Divide by 4"},
-                        {name: "5", displayName: "Divide by 5"},
-                        {name: "6", displayName: "Divide by 6"},
-                        {name: "7", displayName: "Divide by 7"},
-                        {name: "8", displayName: "Divide by 8"},
-                    ],
-                    onChange    : onChangeBasicClockSourceDivider,
-                },
-            ]
+            ].concat(uartClkDiv2_config),
         },
 
     ];

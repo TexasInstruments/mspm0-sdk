@@ -140,8 +140,8 @@ switch(content){
 %       let extendedMode;
 %       let destIncrement;
 %       let srcIncrement;
-%       let srcWidth = inst.srcLength;
-%       let destWidth = inst.dstLength;
+%       let srcWidth = (inst.srcLength == "LONGLONG") ? "LONG_LONG" : inst.srcLength;
+%       let destWidth = (inst.dstLength == "LONGLONG") ? "LONG_LONG" : inst.dstLength
 %       switch(inst.addressMode){
 %           case "f2f":
 %               /* no change from defaults */

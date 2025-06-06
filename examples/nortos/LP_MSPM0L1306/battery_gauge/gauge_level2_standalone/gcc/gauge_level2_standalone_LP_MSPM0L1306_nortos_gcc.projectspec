@@ -41,8 +41,14 @@
             -I${CG_TOOL_ROOT}/arm-none-eabi/include
         "
         linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/lib/gcc/m0p/mspm0l11xx_l13xx
+            -l:gauge_l2_rts.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/iqmath/lib/gcc/m0p/rts/mspm0l11xx_l13xx
+            -l:iqmath.a
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0l11xx_l13xx
             -nostartfiles
             -Tdevice.lds.genlibs
+            -l:driverlib.a
             -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -L${PROJECT_ROOT}
             -L${PROJECT_BUILD_DIR}/syscfg
@@ -66,12 +72,6 @@
 
         <property name="buildProfile" value="release"/>
         <property name="isHybrid" value="true"/>
-        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../Gauge_App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
-        <file path="../Gauge_App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
-        </file>
         <file path="../Driver/MSPM0Lxx_BSP.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
         </file>
         <file path="../Driver/MSPM0Lxx_BSP.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="Driver">
@@ -99,6 +99,12 @@
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/gauge_level2/Mixing.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/battery_gauge/gauge_level2">
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/battery_gauge/gauge_level2/VoltGauge.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/battery_gauge/gauge_level2">
+        </file>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Gauge_App.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../Gauge_App.h" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

@@ -66,7 +66,7 @@
 %       let rtcOutPinName = "rtcOut"+"Pin";
 %       let rtcOutPackagePin = stat.peripheral[rtcOutPinName].$solution.packagePinName;
 %       let rtcOutPinCM = Common.getPinCM(rtcOutPackagePin,stat,"RTC_OUT");
-%       let rtcOutGpioName = system.deviceData.devicePins[rtcOutPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let rtcOutGpioName = system.deviceData.devicePins[rtcOutPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let rtcOutPort = "("+Common.getGPIOPortMultiPad(rtcOutPackagePin,stat,"RTC_OUT")+")";
 %       let rtcOutGpioPin = Common.getGPIONumberMultiPad(rtcOutPackagePin,stat,"RTC_OUT");
 % let rtcOutPortStr = "#define GPIO_RTC_RTCOUT_PORT";

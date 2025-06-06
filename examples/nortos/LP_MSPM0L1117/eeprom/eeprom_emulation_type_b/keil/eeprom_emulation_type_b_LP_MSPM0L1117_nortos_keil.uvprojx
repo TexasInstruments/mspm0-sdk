@@ -57,7 +57,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0L1117__</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
+              <IncludePath>../,../../../../../../source/third_party/CMSIS/Core/Include,../../../../../../source</IncludePath>
             </VariousControls>
           </Cads>
           <LDads>
@@ -76,6 +76,16 @@
         <Group>
           <GroupName>Source</GroupName>
           <Files>
+            <File>
+              <FileName>ti_msp_dl_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti_msp_dl_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>ti_msp_dl_config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti_msp_dl_config.c</FilePath>
+            </File>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
@@ -100,16 +110,6 @@
               <FileName>eeprom_emulation_type_b.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/eeprom/emulation_type_b/eeprom_emulation_type_b.h</FilePath>
-            </File>
-            <File>
-              <FileName>ti_msp_dl_config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../ti_msp_dl_config.h</FilePath>
-            </File>
-            <File>
-              <FileName>ti_msp_dl_config.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../ti_msp_dl_config.c</FilePath>
             </File>
             <File>
               <FileName>startup_mspm0l111x_uvision.s</FileName>

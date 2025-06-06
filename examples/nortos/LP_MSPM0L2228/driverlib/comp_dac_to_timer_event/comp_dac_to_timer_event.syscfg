@@ -47,3 +47,4 @@ COMP1.peripheral.compPinNeg0.$assign = "PA27";
 
 SYSCTL.powerPolicy = "STOP0";
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

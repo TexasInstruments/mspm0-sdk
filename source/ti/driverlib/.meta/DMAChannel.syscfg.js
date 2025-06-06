@@ -43,7 +43,7 @@ let dmaInstances = 0;
 let dmaFullInstances = 0;
 let test = "DMA_CH" + dmaInstances;
 while(system.deviceData.peripherals[test]) {
-        if(system.deviceData.peripherals[test].attributes.full_channel) {
+        if(Common.getAttribute((system.deviceData.peripherals[test]),("full_channel"))){
             dmaFullInstances++;
         }
         dmaInstances++;
@@ -98,9 +98,11 @@ function validate(inst, validation){
     }
 }
 
+
+
 function validatePinmux(inst, validation){
     // FULL CHANNEL VALIDATION
-    if(!system.deviceData.peripherals[`DMA_CH` + inst.channelID].attributes.full_channel) {
+    if(!(Common.getAttribute((system.deviceData.peripherals[`DMA_CH` + inst.channelID]),("full_channel")))) {
         if(["FULL_CH_REPEAT_BLOCK","FULL_CH_REPEAT_SINGLE"].includes(inst.transferMode)){
             validation.logError("Repeat Mode only available on Full DMA Channels.", inst, ["transferMode", "channelID"]);
         }
@@ -355,7 +357,7 @@ function getAddressModeOptions() {
         {name: "fill", displayName: "Fill Data Extended Mode"},
         {name: "table", displayName: "Data Table Extended Mode"}
     ];
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
         options.push(
             {name: "gather", displayName: "Gather Data Extended Mode"}
         );
@@ -370,7 +372,7 @@ function getLengthOptions() {
         {name: "WORD", displayName: "Word (4 Bytes)"},
         {name: "LONG", displayName: "Long (8 Bytes)"}
     ];
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
         options.push(
             {name: "LONGLONG", displayName: "Long Long (16 Bytes)"}
         );
@@ -379,21 +381,21 @@ function getLengthOptions() {
 }
 
 function hasAutomaticEnable() {
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
         return true;
     }
     return false;
 }
 
 function hasGatherMode() {
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
         return true;
     }
     return false;
 }
 
 function hasLongLongOption() {
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
         return true;
     }
     return false;

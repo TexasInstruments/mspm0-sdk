@@ -38,7 +38,7 @@ GPIO1.associatedPins[1].initialValue        = "SET";
 SYSCTL.powerPolicy       = "STANDBY0";
 SYSCTL.validateClkStatus = true;
 SYSCTL.clockTreeEn = true;
-
+SYSCTL.forceDefaultClkConfig = true;
 TIMER1.$name              = "TIMER_0";
 TIMER1.timerMode          = "PERIODIC";
 TIMER1.interrupts         = ["ZERO"];

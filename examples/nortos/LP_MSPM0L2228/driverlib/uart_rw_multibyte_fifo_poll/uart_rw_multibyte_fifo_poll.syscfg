@@ -32,7 +32,7 @@ GPIO1.associatedPins[1].assignedPin  = "21";
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
 SYSCTL.clockTreeEn = true;
-
+SYSCTL.forceDefaultClkConfig = true;
 UART1.$name                    = "UART_0";
 UART1.enableFIFO               = true;
 UART1.enableDMARX              = false;

@@ -41,6 +41,7 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 let EVENT = system.getScript("/ti/driverlib/EVENT.syscfg.js");
 let InternalConnections = system.getScript("ADC12_internalConnections.js")
+let { ClockSignals } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
 
 /* ADCMEM range varies per device family */
 const adcMemRange = (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) ? 11:3;
@@ -668,12 +669,12 @@ function updateGUIEnabledADCMem(inst,ui){
             )
         }
         else{
-            if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceM0C()){
+            if(!Common.vrefCanSetBothModes()){
                 adcMemConfigs.push(
                     "adcMem" + adcMemIdx.toString() + "vrefDependency",
                 )
             }
-            else if(Common.isDeviceM0L()){
+            else{
                 adcMemConfigs.push(
                     "adcMem" + adcMemIdx.toString() + "vrefDependencySelect",
                 )
@@ -714,29 +715,31 @@ function updateGUIVREF(inst,ui){
                 ui["adcMem"+adcMemIdx.toString()+"vrefp"].hidden = false;
                 ui["adcMem"+adcMemIdx.toString()+"vrefm"].hidden = false;
             }
-            if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
-                /* un-hide VREF components, hide VDDA components */
-                if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceM0C()) {
-                    ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = isHidden;
-                }
-                else if(Common.isDeviceM0L()){
-                    ui["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"].hidden = isHidden;
-                }
-                ui["adcMem"+adcMemIdx.toString()+"calcVoltage"].hidden = isHidden;
+            else{
+                if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
+                    /* un-hide VREF components, hide VDDA components */
+                    if(!Common.vrefCanSetBothModes()) {
+                        ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = isHidden;
+                    }
+                    else{
+                        ui["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"].hidden = isHidden;
+                    }
+                    ui["adcMem"+adcMemIdx.toString()+"calcVoltage"].hidden = isHidden;
 
-                ui["adcMem"+adcMemIdx.toString()+"getVDDA"].hidden = !isHidden;
-            }
-            else if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VDDA"){
-                /* un-hide VDDA components, hide VREF components */
-                ui["adcMem"+adcMemIdx.toString()+"getVDDA"].hidden = isHidden;
+                    ui["adcMem"+adcMemIdx.toString()+"getVDDA"].hidden = !isHidden;
+                }
+                else if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VDDA"){
+                    /* un-hide VDDA components, hide VREF components */
+                    ui["adcMem"+adcMemIdx.toString()+"getVDDA"].hidden = isHidden;
 
-                if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || Common.isDeviceM0C()) {
-                    ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = !isHidden;
+                    if(!Common.vrefCanSetBothModes()) {
+                        ui["adcMem"+adcMemIdx.toString()+"vrefDependency"].hidden = !isHidden;
+                    }
+                    else{
+                        ui["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"].hidden = !isHidden;
+                    }
+                    ui["adcMem"+adcMemIdx.toString()+"calcVoltage"].hidden = !isHidden;
                 }
-                else if(Common.isDeviceM0L()){
-                    ui["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"].hidden = !isHidden;
-                }
-                ui["adcMem"+adcMemIdx.toString()+"calcVoltage"].hidden = !isHidden;
             }
         }
     }
@@ -753,19 +756,21 @@ function calculateVREFDependency(inst,adcMemIdx){
     if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VDDA"){
         calcDependency="DL_ADC12_REFERENCE_VOLTAGE_VDDA"
     }
-    else if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
-        if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
-            if(vrefMode=="DL_VREF_ENABLE_ENABLE"){
-                calcDependency="DL_ADC12_REFERENCE_VOLTAGE_INTREF"
-            }
-            else if(vrefMode=="DL_VREF_ENABLE_DISABLE"){
-                calcDependency="DL_ADC12_REFERENCE_VOLTAGE_EXTREF"
+    else{
+        if(!Common.vrefHasLegacyBasicMode()){
+            if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
+                if(vrefMode=="DL_VREF_ENABLE_ENABLE"){
+                    calcDependency="DL_ADC12_REFERENCE_VOLTAGE_INTREF"
+                }
+                else if(vrefMode=="DL_VREF_ENABLE_DISABLE"){
+                    calcDependency="DL_ADC12_REFERENCE_VOLTAGE_EXTREF"
+                }
             }
         }
-    }
-    else if(Common.isDeviceM0L()){
-        if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
-            calcDependency = inst["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"];
+        else{
+            if(inst["adcMem"+adcMemIdx.toString()+"vref"]=="VREF"){
+                calcDependency = inst["adcMem"+adcMemIdx.toString()+"vrefDependencySelect"];
+            }
         }
     }
     return calcDependency
@@ -1496,10 +1501,12 @@ function calculateVoltage(inst, adcMemIdx){
     let vrefInstance = system.modules["/ti/driverlib/VREF"];
 
     if (vrefInstance){
-        if(Common.isDeviceM0G() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0H321X()){
+        // VREF Basic Mode legacy configuration uses an array of options, update
+        // is single selection.
+        if(!Common.vrefHasLegacyBasicMode()){
             vrefVoltage = (vrefInstance.$static.basicVREFVoltage)
         }
-        else if(Common.isDeviceM0L()){
+        else{
             if(inst["adcMem"+adcMemIdx.toString()+"vrefDependency"] == "DL_ADC12_REFERENCE_VOLTAGE_INTREF"){
                 vrefVoltage = (vrefInstance.$static.basicVREFVoltageInternal)
             }
@@ -1964,7 +1971,7 @@ function getClockOptions(inst)
         {name: "DL_ADC12_CLOCK_ULPCLK", displayName: "ULPCLK"},
     ];
 
-    if (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceM0H())
+    if(ClockSignals.includes("HFCLK"))
     {
         clockOptions.push(
             {name: "DL_ADC12_CLOCK_HFCLK", displayName: "HFCLK"},
@@ -2395,7 +2402,7 @@ let resolutionConfig = {
     options     : resOptions,
     onChange    : onChangeCustomProfile,
 };
-if(Common.isDeviceM0C()){
+if(Common.isDeviceFamily_PARENT_MSPM0C110X()){
         resolutionConfig = {
         name        : "resolution",
         displayName : "Conversion Resolution",

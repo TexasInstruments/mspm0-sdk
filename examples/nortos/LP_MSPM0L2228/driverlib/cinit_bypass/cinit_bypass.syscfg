@@ -27,3 +27,4 @@ GPIO1.associatedPins[1].initialValue = "SET";
 GPIO1.associatedPins[1].pin.$assign  = "PA15";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

@@ -31,7 +31,7 @@ ADC121.enabledInterrupts           = ["DL_ADC12_INTERRUPT_WINDOW_COMP_HIGH","DL_
 ADC121.adcMem0chansel              = "DL_ADC12_INPUT_CHAN_12";
 ADC121.peripheral.$assign          = "ADC0";
 ADC121.peripheral.adcPin12.$assign = "PA14";
-ADC121.adcPin12Config.$name        = "ti_driverlib_gpio_GPIOPinGeneric0";
+
 
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";

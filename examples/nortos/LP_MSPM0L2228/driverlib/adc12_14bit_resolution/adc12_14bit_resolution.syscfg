@@ -39,3 +39,4 @@ ADC121.DMA_CHANNEL.transferMode       = "FULL_CH_REPEAT_SINGLE";
 ADC121.DMA_CHANNEL.peripheral.$assign = "DMA_CH0";
 
 SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

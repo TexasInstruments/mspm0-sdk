@@ -53,6 +53,24 @@ while(system.deviceData.peripherals[test]) {
     test = "UART" + instance;
 }
 
+let manchesterPeripherals = [];
+let irDAPeripherals = [];
+if(Common.isUnicommUART()){
+    try{
+        let uartPeripherals = system.deviceData.interfaces["UART"].peripherals.map(a => a.name);
+        for(let item of uartPeripherals){
+            let unicomm = system.deviceData.peripherals[item].attributes.UNICOMM;
+            if(system.deviceData.peripherals[item].attributes["SYS_"+unicomm+"_UART_IRDA_EN"]=="true"){
+                irDAPeripherals.push(item);
+            }
+            if(system.deviceData.peripherals[item].attributes["SYS_"+unicomm+"_UART_DALI_MENC_EN"]=="true"){
+                manchesterPeripherals.push(item);
+            }
+        }
+    }catch(e){/*do nothing*/}
+}
+
+
 /*
  *  ======== validate ========
  *  Validate this inst's configuration
@@ -76,12 +94,42 @@ function validatePinmux(inst, validation) {
     /* Validation run after solution */
     let solution = inst.peripheral.$solution.peripheralName;
     /* Verify if using UART Advanced instance */
-    if(inst.enableExtend) {
-        if(!advancedUARTPeripherals.includes(solution)) {
-            validation.logError("Extend features are only available on: " + advancedUARTPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
-            inst,"enableExtend");
+    if(!Common.isUnicommUART()){
+        if(inst.enableExtend) {
+            // NOTE: UNICOMM-supported UART configuration will check each individual feature
+            if(!Common.isUnicommUART()){
+                if(!advancedUARTPeripherals.includes(solution)) {
+                    validation.logError("Extend features are only available on: " + advancedUARTPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
+                    inst,"enableExtend");
+                }
+            }
         }
     }
+    // UNICOMM UART Validation
+    else{
+        try{
+            let peripheralSolution = inst.peripheral.$solution.peripheralName;
+            let unicomm = system.deviceData.peripherals[peripheralSolution].attributes.UNICOMM;
+            if(inst.enableManchester){
+                if(system.deviceData.peripherals[peripheralSolution].attributes["SYS_"+unicomm+"_UART_DALI_MENC_EN"]  == "false") {
+                // if( /* has Manchester */){
+                    validation.logError("Manchester Encoding is only available on: " + manchesterPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
+                    inst,"enableManchester");
+                }
+            }
+            if(inst.enableIrda){
+                if(system.deviceData.peripherals[peripheralSolution].attributes["SYS_"+unicomm+"_UART_IRDA_EN"] == "false") {
+                // if( /* hasIrDA */){
+                    validation.logError("IrDA Mode is only available on: " + irDAPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
+                    inst,"enableIrda");
+                }
+            }
+        }
+        catch(e){
+            // do nothing
+        }
+    }
+
     Common.getRetentionValidation(inst,validation);
 }
 
@@ -213,7 +261,7 @@ function getDisabledIntOptions(inst)
         {name: "ADDRESS_MATCH", displayName: "9-bit mode address match", reason: "Extend mode is disabled"},
     ];
 
-    if (inst.enableExtend == true)
+    if ((inst.enableExtend || Common.isUnicommUART()) == true)
     {
         return [];
     }
@@ -354,6 +402,11 @@ basic communication and configure the serial interface.
     }
 ])
 
+let advancedConfig = UARTCommon.getAdvancedConfigUART();
+if(Common.isUnicommUART()){
+ advancedConfig = advancedConfig.concat(UARTCommon.getExtendConfig())
+}
+
 config = config.concat([
     {
         name: "GROUP_ADVANCED",
@@ -361,22 +414,29 @@ config = config.concat([
         description: "",
         longDescription: "",
         collapsed: true,
-        config: UARTCommon.getAdvancedConfigUART(),
+        config: advancedConfig,
     },
-    {
-        name: "GROUP_EXTEND",
-        displayName: "Extend Configuration",
-        description: "",
-        longDescription:
+]);
+// NOTE: "Extend Configuration" terminology is only used for non-UNICOMM enabled devices
+if(!Common.isUnicommUART()){
+    config = config.concat([
+        {
+            name: "GROUP_EXTEND",
+            displayName: "Extend Configuration",
+            description: "",
+            longDescription:
 `This section allows configuration of the UART Extend specific features.
 A UART Extend instance must be selected to use these features.
 The table below shows the main differences between UART Main and UART Extend.
 
 ![UART Main vs Extend Table](../docs/english/sysconfig/images/uartExtendFeaturesTableM0G3xx.png "UART Main vs Extend Table")
 `,
-        collapsed: true,
-        config: UARTCommon.getExtendConfig(),
-    },
+            collapsed: true,
+            config: UARTCommon.getExtendConfig(),
+        },
+    ]);
+}
+config = config.concat([
     {
         name: "GROUP_INTERRUPTS",
         displayName: "Interrupt Configuration",
@@ -668,6 +728,11 @@ function extend(base)
 
     /* concatenate device-specific configs */
     result.config = base.config.concat(devSpecific.config);
+    result.onMigrate = function (newInst, oldInst, oldSystem) {
+        // Note: due to different default values, this handles the case of
+        // migrating from UNICOMM device to non-unicomm for the extend checkbox
+        newInst.enableExtend = oldInst.enableExtend;
+    };
 
     return (result);
 }

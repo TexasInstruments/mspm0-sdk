@@ -84,20 +84,19 @@ extern "C" {
 #define ADC12_0_INST_IRQHandler                                  ADC0_IRQHandler
 #define ADC12_0_INST_INT_IRQN                                    (ADC0_INT_IRQn)
 #define ADC12_0_ADCMEM_0                                      DL_ADC12_MEM_IDX_0
-#define ADC12_0_ADCMEM_0_REF                     DL_ADC12_REFERENCE_VOLTAGE_VDDA
-#define ADC12_0_ADCMEM_0_REF_VOLTAGE_V                                       3.3
+#define ADC12_0_ADCMEM_0_REF             DL_ADC12_REFERENCE_VOLTAGE_EXTREF_VREFM
 
 
 /* Defines for VREF */
 #define VREF_VOLTAGE_MV                                                     2000
 #define GPIO_VREF_VREFPOS_PORT                                             GPIOA
-#define GPIO_VREF_VREFPOS_PIN                                     DL_GPIO_PIN_23
-#define GPIO_VREF_IOMUX_VREFPOS                                  (IOMUX_PINCM40)
-#define GPIO_VREF_IOMUX_VREFPOS_FUNC                IOMUX_PINCM40_PF_UNCONNECTED
+#define GPIO_VREF_VREFPOS_PIN                                     DL_GPIO_PIN_22
+#define GPIO_VREF_IOMUX_VREFPOS                                  (IOMUX_PINCM37)
+#define GPIO_VREF_IOMUX_VREFPOS_FUNC                IOMUX_PINCM37_PF_UNCONNECTED
 #define GPIO_VREF_VREFNEG_PORT                                             GPIOA
-#define GPIO_VREF_VREFNEG_PIN                                     DL_GPIO_PIN_22
-#define GPIO_VREF_IOMUX_VREFNEG                                  (IOMUX_PINCM37)
-#define GPIO_VREF_IOMUX_VREFNEG_FUNC                IOMUX_PINCM37_PF_UNCONNECTED
+#define GPIO_VREF_VREFNEG_PIN                                     DL_GPIO_PIN_23
+#define GPIO_VREF_IOMUX_VREFNEG                                  (IOMUX_PINCM40)
+#define GPIO_VREF_IOMUX_VREFNEG_FUNC                IOMUX_PINCM40_PF_UNCONNECTED
 
 
 

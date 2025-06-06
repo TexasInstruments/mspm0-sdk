@@ -11,17 +11,31 @@
  */
 const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1  = GPIO.addInstance();
-const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+const PWM    = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1   = PWM.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 /**
  * Write custom configuration values to the imported modules.
  */
 GPIO1.$name                          = "GPIO_LEDS";
-GPIO1.associatedPins.create(1);
 GPIO1.associatedPins[0].$name        = "USER_LED_1";
 GPIO1.associatedPins[0].assignedPort = "PORTA";
 GPIO1.associatedPins[0].assignedPin  = "0";
 GPIO1.associatedPins[0].initialValue = "SET";
 
-SYSCTL.clockTreeEn = true;
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+PWM1.$name                      = "PWM_0";
+PWM1.ccIndex                    = [1];
+PWM1.pwmMode                    = "EDGE_ALIGN_UP";
+PWM1.clockSource                = "MFCLK";
+PWM1.timerCount                 = 1;
+PWM1.interrupts                 = ["ZERO_EVENT"];
+PWM1.peripheral.$assign         = "TIMG1";
+PWM1.peripheral.ccp1Pin.$assign = "PA1";
+PWM1.PWM_CHANNEL_1.initVal      = "HIGH";
+PWM1.PWM_CHANNEL_1.invert       = true;
+
+SYSCTL.MFCLKEn = true;
+

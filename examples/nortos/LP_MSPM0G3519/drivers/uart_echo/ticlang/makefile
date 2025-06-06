@@ -5,7 +5,7 @@ include $(MSPM0_SDK_INSTALL_DIR)/imports.mak
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = uart_echo.obj ti_drivers_config.obj ticlang_startup_mspm0g351x_ticlang.obj
+OBJECTS = ti_drivers_config.obj uart_echo.obj ticlang_startup_mspm0g351x_ticlang.obj
 NAME = uart_echo
 
 CFLAGS += -I.. \
@@ -33,11 +33,11 @@ LFLAGS += "-l$(MSPM0_SDK_INSTALL_DIR)/source/ti/drivers/lib/ticlang/m0p/drivers_
 
 all: $(NAME).out
 
-uart_echo.obj: ../uart_echo.c
+ti_drivers_config.obj: ../ti_drivers_config.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_drivers_config.obj: ../ti_drivers_config.c
+uart_echo.obj: ../uart_echo.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

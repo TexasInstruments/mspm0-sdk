@@ -34,6 +34,7 @@ let ADC12_internalSignals = {
     MSPM0C110X: {
         ADC0: {
             CH11: "Temperature Sensor",
+            CH12: "Internal VREF",
             CH15: "Supply Monitor"
         },
     },
@@ -66,6 +67,14 @@ let ADC12_internalSignals = {
             CH29: "Internal VREF",
             CH31: "Supply Monitor",
         },
+    },
+    MSPM0G511X: {
+        ADC0: {
+            CH28: "Internal VREF",
+            CH29: "Temperature Sensor",
+            CH30: "VUSB monitor",
+            CH31: "Supply/Battery Monitor",
+        }
     }
 }
 

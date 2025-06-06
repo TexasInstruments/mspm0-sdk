@@ -64,11 +64,3 @@ DL_GPIO_initPeripheralAnalogFunction for pinmuxing those pins are not needed.
 
 ## Application Design Details
 N/A
-
-## Important Note
-Early experimental samples have a known issue where the user is unable to
-reconnect their debugger connection after the device has gone into STOP or
-STANDBY mode. Please review advisory DEBUGSS_02 to see the steps to regain
-the ability to connect the device to the debugger. This information is located
-in the "MSPM0G and MSPM0L Families: Functional Differences With Early Samples"
-document.

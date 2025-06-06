@@ -91,21 +91,28 @@
 %     let mod = system.modules["/ti/clockTree/pinFunction.js"];
 %     let genPinFunc = system.getTemplate(mod.templates.boardc);
 `_.trimEnd(genPinFunc(mod, "PreFunction"))`
+%     mod = system.modules["/ti/clockTree/oscillator.js"];
+%     let genOsc = system.getTemplate(mod.templates.boardc);
+`_.trimEnd(genOsc("PreFunction"))`
 % } // empty
 %
 %
 % function printFunction() {
 %  let funcStr = "";
 %  let tempStr = "";
+%     let genFCC = system.getTemplate("/ti/clockTree/templates/fccSource.Board.c.xdt");
+%  tempStr = _.trimEnd(genFCC());
+%  funcStr += tempStr != ""?tempStr + "\n":"";
 %     let genOSC = system.getTemplate("/ti/clockTree/templates/oscillator.Board.c.xdt");
 %  tempStr = _.trimEnd(genOSC("Function"));
 %  funcStr += tempStr != ""?tempStr + "\n":"";
 % let forceDefaultClkStr = "";
 % if(stat.forceDefaultClkConfig) {
+%   if(ClockSignals.includes("HFXT")) {
 %    funcStr += "\t/* Set default configuration */"
 %    funcStr += "\n\tDL_SYSCTL_disableHFXT();"
-%    if(!Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() && !Common.isDeviceFamily_PARENT_MSPM0L111X() &&
-%       !Common.isDeviceFamily_PARENT_MSPM0H321X() && !Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()) {
+%   }
+%   if(ClockSignals.includes("SYSPLL")) {
 %    funcStr += "\n\tDL_SYSCTL_disableSYSPLL();";
 %    }
 %    funcStr += "\n"
@@ -138,9 +145,6 @@
 %  funcStr += tempStr != ""?tempStr + "\n":"";
 %     let genEXCLK = system.getTemplate("/ti/clockTree/templates/exclkSource.Board.c.xdt");
 %  tempStr = _.trimEnd(genEXCLK());
-%  funcStr += tempStr != ""?tempStr + "\n":"";
-%     let genFCC = system.getTemplate("/ti/clockTree/templates/fccSource.Board.c.xdt");
-%  tempStr = _.trimEnd(genFCC());
 %  funcStr += tempStr != ""?tempStr + "\n":"";
 `funcStr`
 % } // empty

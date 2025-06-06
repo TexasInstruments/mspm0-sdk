@@ -1,7 +1,7 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- */ 
+ */
  // @cliArgs --device "MSPM0L222X" --package "LQFP-80(PN)" --part "Default"
  // @v2CliArgs --device "MSPM0L2228" --package "LQFP-80(PN)"
 // @cliArgs --board /ti/boards/LP_MSPM0L2228 --rtos nortos
@@ -27,7 +27,6 @@ const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 /**
  * Write custom configuration values to the imported modules.
  */
-
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";
 Board.peripheral.swdioPin.$assign = "PA19";
@@ -44,9 +43,9 @@ CAPTURE1.multi_ch0_captEdgeDetection = "DL_TIMER_CC_CCOND_TRIG_FALL";
 CAPTURE1.interrupts                  = ["CC0_UP","CC1_UP","LOAD"];
 CAPTURE1.interruptPriority           = "0";
 CAPTURE1.multi_ch0_input_mode        = "DL_TIMER_CC_IN_SEL_CCPX_PAIR";
-CAPTURE1.peripheral.$assign          = "TIMA0";
-CAPTURE1.peripheral.ccp1Pin.$assign  = "PA28";
 
+CAPTURE1.peripheral.$assign          = "TIMG8";
+CAPTURE1.peripheral.ccp1Pin.$assign  = "PB7";
 
 PWM1.$name                      = "PWM_0";
 PWM1.peripheral.$assign         = "TIMG12";
@@ -86,9 +85,8 @@ UART1.uartMode                 = "DALI";
 UART1.enableMSBFirst           = true;
 UART1.enableFIFO               = true;
 UART1.txFifoThreshold          = "DL_UART_TX_FIFO_LEVEL_3_4_EMPTY";
-UART1.peripheral.$assign       = "UART0";
-UART1.peripheral.txPin.$assign = "PB0";
 UART1.txPinConfig.enableConfig = true;
-UART1.txPinConfig.invert       = "ENABLE";
+UART1.peripheral.$assign       = "UART1";
+UART1.peripheral.txPin.$assign = "PB4";
 
 ProjectConfig.genLibIQ = true;

@@ -88,7 +88,7 @@
           <topic label="reverseDirectionCmd" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#af169726f53ee9ecd65b335a65fbc80c0"/>
           <topic label="prevDirectionCmd" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#a87c4f3bd174f3b53729b4d05c2cf50da"/>
           <topic label="directionActionTaken" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#acc1136df5618e7e29ba715f7cb976a34"/>
-          <topic label="reserved" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#aa94ced529804457450594dbc2a502722"/>
+          <topic label="hwDieFaultStatus" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#ab2ba95e1f1a5017f00ef4cc0d1172c65"/>
           <topic label="motorRun" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#a47cbab8fdbeac5d6b87c63a2aa1b2506"/>
         </topic>
         <topic label="b" href="union_a_p_p___f_l_a_g_s___t.html#a234fdc0d0f6fe7a0727787982df0c3f1"/>
@@ -352,7 +352,9 @@
         <topic label="commCountIndex" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#ab774e364cc5c9b347051fde6243aa2a8"/>
         <topic label="commTimerIndex" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a460d1cd8d95cb19d6bd7ebd30c01e38b"/>
         <topic label="halCapFreqPU" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a744227f8494d989b06171d8e0f80b24f"/>
-        <topic label="halMaxFreqCount" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a92fb80526d6f6b8070282ac8b6f28b66"/>
+        <topic label="halPhaseError" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#aec15f209d52934dc3100a0ea44832e24"/>
+        <topic label="halMaxFreqCount" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a895d0839be6ce97742e5b4bd1a2007c2"/>
+        <topic label="halPhaseErrorConst" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#af722e51ad211948cebe9c5823ba49e6a"/>
         <topic label="compHallState" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a0ce90f010d947acc3684ebb0b1a31c48"/>
         <topic label="countDiff" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a882f36ebfa6eb1ab25473c977d74ca8f"/>
         <topic label="countError" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a61c6c015d8c9ab76f009b1b3edd97208"/>
@@ -393,6 +395,7 @@
         <topic label="angle" href="struct_h_a_l_l___c_a_l_i_b___t.html#a4730c6e46d0c53a794287753fa3ca6f0"/>
         <topic label="pThetaHallForwardPU" href="struct_h_a_l_l___c_a_l_i_b___t.html#af40ada18b04f3b4d7e83e9e7fe572510"/>
         <topic label="pThetaHallReversePU" href="struct_h_a_l_l___c_a_l_i_b___t.html#aa18299b1ab5a19f24b48c3d7dd66816b"/>
+        <topic label="polePairs" href="struct_h_a_l_l___c_a_l_i_b___t.html#a105868e3e0eafd56f425d97d9079d5a1"/>
         <topic label="count" href="struct_h_a_l_l___c_a_l_i_b___t.html#ad6389b5405c508b70f0ef078a9d02f50"/>
         <topic label="countMax" href="struct_h_a_l_l___c_a_l_i_b___t.html#a2dcc84064ff3ce7ab0660d455147804e"/>
         <topic label="countMaxAlign" href="struct_h_a_l_l___c_a_l_i_b___t.html#a45f947e8e6fa0ac28d8de5fd8811a60b"/>
@@ -1425,7 +1428,7 @@
             <topic label="reverseDirectionCmd" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#af169726f53ee9ecd65b335a65fbc80c0"/>
             <topic label="prevDirectionCmd" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#a87c4f3bd174f3b53729b4d05c2cf50da"/>
             <topic label="directionActionTaken" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#acc1136df5618e7e29ba715f7cb976a34"/>
-            <topic label="reserved" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#aa94ced529804457450594dbc2a502722"/>
+            <topic label="hwDieFaultStatus" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#ab2ba95e1f1a5017f00ef4cc0d1172c65"/>
             <topic label="motorRun" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#a47cbab8fdbeac5d6b87c63a2aa1b2506"/>
           </topic>
           <topic label="b" href="union_a_p_p___f_l_a_g_s___t.html#a234fdc0d0f6fe7a0727787982df0c3f1"/>
@@ -1437,7 +1440,7 @@
           <topic label="reverseDirectionCmd" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#af169726f53ee9ecd65b335a65fbc80c0"/>
           <topic label="prevDirectionCmd" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#a87c4f3bd174f3b53729b4d05c2cf50da"/>
           <topic label="directionActionTaken" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#acc1136df5618e7e29ba715f7cb976a34"/>
-          <topic label="reserved" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#aa94ced529804457450594dbc2a502722"/>
+          <topic label="hwDieFaultStatus" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#ab2ba95e1f1a5017f00ef4cc0d1172c65"/>
           <topic label="motorRun" href="struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#a47cbab8fdbeac5d6b87c63a2aa1b2506"/>
         </topic>
         <topic label="SENSORED_FOC_APPLICATION_T" href="struct_s_e_n_s_o_r_e_d___f_o_c___a_p_p_l_i_c_a_t_i_o_n___t.html">
@@ -1897,6 +1900,7 @@
         <topic label="CONTROLLER_FAULT_REPORT_DEFAULT" href="faults_8h.html#afc47a3f768753bc9fb8707b3a5034e61"/>
         <topic label="CONTROLLER_FAULT_ACTION_DEFAULT" href="faults_8h.html#a0e114718f51820ec601dead7d7231c9a"/>
         <topic label="CONTROLLER_FAULT_ACTION_LATCHED_DEFAULT" href="faults_8h.html#a0016167767a2dbdc3936ca9f6aefd566"/>
+        <topic label="HV_DIE_FAULT_INDEX" href="faults_8h.html#a6161e7a07d0cc22bac913d7a06725d70"/>
         <topic label="BUS_CURRENT_LIMIT_INDEX" href="faults_8h.html#a9619431d163e708bbf5d0c0cfbe26a7f"/>
         <topic label="ABN_SPEED_FAULT_INDEX" href="faults_8h.html#aa687ace8c7c689ba5e0ba9e2cff99b9f"/>
         <topic label="ABN_HALL_INDEX_FAULT_INDEX" href="faults_8h.html#acb15e08f6b2362b9df83a855abb8aa50"/>
@@ -2155,6 +2159,7 @@
           <topic label="angle" href="struct_h_a_l_l___c_a_l_i_b___t.html#a4730c6e46d0c53a794287753fa3ca6f0"/>
           <topic label="pThetaHallForwardPU" href="struct_h_a_l_l___c_a_l_i_b___t.html#af40ada18b04f3b4d7e83e9e7fe572510"/>
           <topic label="pThetaHallReversePU" href="struct_h_a_l_l___c_a_l_i_b___t.html#aa18299b1ab5a19f24b48c3d7dd66816b"/>
+          <topic label="polePairs" href="struct_h_a_l_l___c_a_l_i_b___t.html#a105868e3e0eafd56f425d97d9079d5a1"/>
           <topic label="count" href="struct_h_a_l_l___c_a_l_i_b___t.html#ad6389b5405c508b70f0ef078a9d02f50"/>
           <topic label="countMax" href="struct_h_a_l_l___c_a_l_i_b___t.html#a2dcc84064ff3ce7ab0660d455147804e"/>
           <topic label="countMaxAlign" href="struct_h_a_l_l___c_a_l_i_b___t.html#a45f947e8e6fa0ac28d8de5fd8811a60b"/>
@@ -2477,7 +2482,9 @@
           <topic label="commCountIndex" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#ab774e364cc5c9b347051fde6243aa2a8"/>
           <topic label="commTimerIndex" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a460d1cd8d95cb19d6bd7ebd30c01e38b"/>
           <topic label="halCapFreqPU" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a744227f8494d989b06171d8e0f80b24f"/>
-          <topic label="halMaxFreqCount" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a92fb80526d6f6b8070282ac8b6f28b66"/>
+          <topic label="halPhaseError" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#aec15f209d52934dc3100a0ea44832e24"/>
+          <topic label="halMaxFreqCount" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a895d0839be6ce97742e5b4bd1a2007c2"/>
+          <topic label="halPhaseErrorConst" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#af722e51ad211948cebe9c5823ba49e6a"/>
           <topic label="compHallState" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a0ce90f010d947acc3684ebb0b1a31c48"/>
           <topic label="countDiff" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a882f36ebfa6eb1ab25473c977d74ca8f"/>
           <topic label="countError" href="struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a61c6c015d8c9ab76f009b1b3edd97208"/>
@@ -2497,7 +2504,6 @@
         <topic label="INV_VDC_IQ_SCALING" href="measure_8h.html#aebb581d395ae980a0df8704da4d92828"/>
         <topic label="MAX_HALL_INDEX" href="measure_8h.html#abeaf77bbaa2c798a1b88c5933ddb4ac6"/>
         <topic label="HALL_ANGLE_SUM" href="measure_8h.html#a48e9862751bcb2a7cb18bedb84e90a23"/>
-        <topic label="TIMER_CAPT_CLK_FREQ" href="measure_8h.html#ab1962f6224308329c4fcfe49487e18b5"/>
         <topic label="VOLTAGE_GAIN_TYPES" href="measure_8h.html#ab7ed1d6ec6994980346f54e20ebe7e26">
           <topic label="VOLTAGE_GAIN_VMAX_BY_4" href="measure_8h.html#ab7ed1d6ec6994980346f54e20ebe7e26a99e240ad712260b8cf6e15a635692752"/>
           <topic label="VOLTAGE_GAIN_VMAX_BY_2" href="measure_8h.html#ab7ed1d6ec6994980346f54e20ebe7e26a11b3e91c61bad12725ff920d8c34557b"/>
@@ -2545,6 +2551,7 @@
         <topic label="getMeasureOffsetStatus" href="measure_8h.html#a848e82135f034f13a966cf26c2b22125"/>
         <topic label="ReadHallState" href="measure_8h.html#a4d7d33c56117faf46d2a7985a25d551b"/>
         <topic label="getHallFrequency" href="measure_8h.html#a74099ef73f6f3c62ea039db3af38fc18"/>
+        <topic label="getHallPhaseError" href="measure_8h.html#a353a60d893a009ea8b4a4eb9ea462e6a"/>
         <topic label="g_pMotorInputs" href="measure_8h.html#a456816eff3266e17d52390ec76056cf0"/>
       </topic>
       <topic label="motor.h" href="motor_8h.html">

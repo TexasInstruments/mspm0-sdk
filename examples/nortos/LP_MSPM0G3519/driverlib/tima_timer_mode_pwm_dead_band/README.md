@@ -31,3 +31,9 @@ For more information about jumper configuration to achieve low-power using the
 MSPM0 LaunchPad, please visit the LP-MSPM0G3519 User's Guide.
 
 ## Example Usage
+Compile, load and run the example. Monitor the PWM signals on PB3, PB9, PC4,
+and PC5.
+The pair of signals on PB3 and PB9 are complementary signals with deadband
+insertion.
+The second pair of signals on PC4 and PC5 are also complementary signals with
+deadband insertion.

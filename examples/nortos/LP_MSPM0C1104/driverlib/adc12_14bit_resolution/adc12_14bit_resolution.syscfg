@@ -32,7 +32,7 @@ ADC121.configureDMA            = true;
 ADC121.sampCnt                 = 1;
 ADC121.enableFIFO              = true;
 ADC121.enabledDMATriggers      = ["DL_ADC12_DMA_MEM1_RESULT_LOADED"];
-ADC121.adcPin2Config.$name     = "ti_driverlib_gpio_GPIOPinGeneric0";
+
 ADC121.DMA_CHANNEL.$name       = "DMA_CH0";
 ADC121.DMA_CHANNEL.addressMode = "f2b";
 SYSCTL.clockTreeEn = true;

@@ -13,7 +13,8 @@ TIMG0 will toggle the LED2 constantly every 5000ms during both SLEEP0 and
 STANDBY0.
 
 **Note**: When debugging the application, the power access port (PWR-AP) will force
-the device to remain active. In order to see full functionality of this example, it is
+the device to remain active, and not enter the low power mode.
+In order to see full functionality of this example, it is
 recommended to terminate the debug session. Refer to the Debug section of the TRM
 for more information about debugging in low power modes.
 

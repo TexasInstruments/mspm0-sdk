@@ -292,9 +292,8 @@ enum CHANNEL_ID_A {
 #define FLEXWIRE0 (0x84) /*  */
 #define FLEXWIRE1 (0x85) /*  */
 #define FLEXWIRE2 (0x86) /*  */
-#define CRC \
-    (0x87) /* CRC reference for all EEPROM registers including RESERVED registers. */
-
+/* CRC reference for all EEPROM registers including RESERVED registers. */
+#define TPS_CRC (0x87)
 /* CTRL registers */
 #define ADCCH \
     (0x90) /* Channel selection setting for ADC voltage measurement, write this register automatically initiates the ADC conversion */

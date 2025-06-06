@@ -7,7 +7,7 @@ KERNEL_BUILD := $(MSPM0_SDK_INSTALL_DIR)/kernel/freertos/builds/LP_MSPM0G3507/re
 CC = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 
-OBJECTS = main_freertos.obj spiperipheral.obj ti_display_Display.obj ti_display_DisplayUart.obj ti_drivers_config.obj ti_msp_dl_config.obj freertos_ticlang_startup_mspm0g350x_ticlang.obj
+OBJECTS = ti_drivers_config.obj ti_msp_dl_config.obj main_freertos.obj spiperipheral.obj ti_display_Display.obj ti_display_DisplayUart.obj freertos_ticlang_startup_mspm0g350x_ticlang.obj
 NAME = spi_peripheral
 
 CFLAGS += -I../.. \
@@ -46,6 +46,14 @@ $(KERNEL_BUILD)/ticlang/freertos.lib:
 	@ echo You can build it by issuing $(MAKE) in $(dir $@).
 	@ $(ECHOBLANKLINE)
 
+ti_drivers_config.obj: ../../ti_drivers_config.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+ti_msp_dl_config.obj: ../../ti_msp_dl_config.c
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
 main_freertos.obj: ../../main_freertos.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
@@ -54,19 +62,11 @@ spiperipheral.obj: ../../spiperipheral.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_Display.obj: /home/developer/.cache/bazel/_bazel_developer/2ca1f4ebdc59348ffdc31d97a51a98d5/sandbox/processwrapper-sandbox/12920/execroot/__main__/source/ti/display/Display.c
+ti_display_Display.obj: /home/developer/.cache/bazel/_bazel_developer/2ca1f4ebdc59348ffdc31d97a51a98d5/sandbox/processwrapper-sandbox/5740/execroot/__main__/source/ti/display/Display.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_DisplayUart.obj: /home/developer/.cache/bazel/_bazel_developer/2ca1f4ebdc59348ffdc31d97a51a98d5/sandbox/processwrapper-sandbox/12920/execroot/__main__/source/ti/display/DisplayUart.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-ti_drivers_config.obj: ../../ti_drivers_config.c
-	@ echo Building $@
-	@ $(CC) $(CFLAGS) -c $< -o $@
-
-ti_msp_dl_config.obj: ../../ti_msp_dl_config.c
+ti_display_DisplayUart.obj: /home/developer/.cache/bazel/_bazel_developer/2ca1f4ebdc59348ffdc31d97a51a98d5/sandbox/processwrapper-sandbox/5740/execroot/__main__/source/ti/display/DisplayUart.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

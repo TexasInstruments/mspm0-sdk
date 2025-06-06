@@ -30,8 +30,8 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <ti/dali/dali_gpio_comm.h>
-#include <ti/dali/dali_target_comm.h>
+#include <ti/dali/dali_102/dali_gpio_comm.h>
+#include <ti/dali/dali_102/dali_target_comm.h>
 #include "ti_msp_dl_config.h"
 
 #define DATA_SIZE 2

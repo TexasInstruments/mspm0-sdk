@@ -147,7 +147,7 @@ function _getPinResources(inst)
 
 function validate(inst, validation)
 {
-    validation.logWarning("Note: VBAT needs to be powered for RTC_A operation.", inst);
+    validation.logInfo("Note: VBAT pin needs to be powered for RTC_A operation.", inst);
 
     RTCCommon.getValidation(inst,validation);
 }
@@ -169,8 +169,10 @@ function pinmuxRequirements(inst)
         displayName       : "RTC_A Out Pin", /* GUI name */
         interfaceNames    : ["RTC_OUT"]   /* pinmux tool name */
     };
-    resources.push(RTCAOut);
 
+    if(inst.enableRTCOutputPin) {
+        resources.push(RTCAOut);
+    }
 
     let rtc_a = {
         name          : "peripheral",

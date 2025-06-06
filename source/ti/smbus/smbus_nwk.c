@@ -513,6 +513,7 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
         if (smbus->ctrl.bits.pecEn == 1)
         {
             DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
+            smbus->nwk.pecBlockLenOverride = 0;
         }
         // Set the network state machine to idle in order to get new packet
         smbus->nwk.eState = SMBus_NwkState_Idle;

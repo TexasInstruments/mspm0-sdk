@@ -38,7 +38,6 @@ ADC121.adcMem3chansel              = "DL_ADC12_INPUT_CHAN_12";
 ADC121.adcMem0chansel              = "DL_ADC12_INPUT_CHAN_12";
 ADC121.peripheral.$assign          = "ADC0";
 ADC121.peripheral.adcPin12.$assign = "PA14";
-ADC121.adcPin12Config.$name        = "ti_driverlib_gpio_GPIOPinGeneric1";
 
 Board.peripheral.$assign          = "DEBUGSS";
 Board.peripheral.swclkPin.$assign = "PA20";

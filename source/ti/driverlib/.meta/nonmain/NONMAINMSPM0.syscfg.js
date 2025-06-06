@@ -122,6 +122,15 @@ for the desired function e.g. mass erase, factory reset, or debug lock.
 `;
 }
 
+let apEnableOptionsVar = [
+    {name: "enabled", displayName: "Enabled"},
+    {name: "enabledWithPW", displayName: "Enabled with password match"},
+];
+if (deviceOptions.SUPPORT_PW_HASH != false)
+{
+    apEnableOptionsVar.push({name: "disabled", displayName: "Disabled"});
+}
+
 function getAPEnableOptions(inst)
 {
     let apEnableOptions = [
@@ -209,7 +218,8 @@ function validateNONMAIN(inst, validation)
     validateBCR(inst, validation);
 
     /* Some devices don't support BSL */
-    if (deviceOptions.SUPPORT_BSL == true)
+    // + BSL validation should not be triggered when BSL mode is disabled
+    if ((deviceOptions.SUPPORT_BSL == true) && inst.bslMode)
     {
         validateBSL(inst, validation);
     }
@@ -306,6 +316,13 @@ function validateBCR(inst, validation)
         validation.logInfo("For password fields in this device, user should " +
             "provide SHA256 hash of 128-bit password. See field descriptions " +
             "for more details.", inst)
+    }
+
+    /* FLASH_ERR_02 */
+    let debugAccessError = `
+Debug Access cannot be disabled for this device, for more information refer to the device Errata FLASH_ERR_02. It is recommended to set Debug Enabled with Password and provide a unique password.`
+    if(!inst.legacyConfigAck_DebugAccess && (deviceOptions.SUPPORT_PW_HASH == false)){
+        validation.logError(debugAccessError,inst,"legacyConfigAck_DebugAccess")
     }
 }
 
@@ -532,6 +549,23 @@ function createPWConfig(pwType, hiddenStatus, numPWRegs)
                 },
             )
         }
+        else if ((pwType == "swdPW")){
+            pwConfig.push(
+                {
+                    name        : pwType + idx,
+                    displayName : pwMap[pwType] + "[" + idx + "]",
+                    description : "",
+                    longDescription: ``,
+                    hidden      : hiddenStatus,
+                    displayFormat: "hex",
+                    default     : 0xFFFFFFFF,
+                    range       : [0, 0xFFFFFFFF],
+                    onChange: (inst)=>{
+                        // inst.randomizedSWDPW = false;
+                    }
+                },
+            )
+        }
         else{
             pwConfig.push(
                 {
@@ -562,6 +596,8 @@ function onChangeAPEnable(inst, ui)
     {
         updateGUIMassErase(inst, ui);
     }
+    // Remove info message if the user changes the debugAccessEnable mode [ FLASH_ERR_02 ]
+    inst.apEnable = inst.debugAccessEnable;
 }
 
 function updateGUIAPEnable(inst, ui)
@@ -1257,7 +1293,9 @@ for more details on the security levels.
                                  * If device using plaintext password and
                                  * disabling debug, set the value to enabled
                                  */
-                                inst.debugAccessEnable = "enabledWithPW";
+                                inst.debugAccessEnable = "enabled";
+                                inst.legacyConfigAck_DebugAccess = false;
+                                ui.legacyConfigAck_DebugAccess.hidden = false;
                             }
                             else
                             {
@@ -1273,6 +1311,18 @@ for more details on the security levels.
                                 system.utils.showGroupConfig("GROUP_SWD_PW", inst, ui);
                             }
                         },
+                    },
+                    {
+                        // This configurable is used for Workaround Validation
+                        // FLASH_ERR_02
+                        name: "legacyConfigAck_DebugAccess",
+                        displayName: "Acknowledge Configuration",
+                        default: true,
+                        hidden: true,
+                        onChange: (inst,ui)=>{
+                                ui.legacyConfigAck_DebugAccess.hidden = inst.legacyConfigAck_DebugAccess;
+                                inst.apEnable = inst.debugAccessEnable;
+                        }
                     },
                     {
                         name        : "debugAccessEnable",
@@ -1298,7 +1348,8 @@ for more details on the security levels.
                         hidden      : false,
                         default     : "enabled",
                         /* Special AP enable options due to debug disable */
-                        options: getAPEnableOptions,
+                        options: apEnableOptionsVar,
+                        // options: getAPEnableOptions,
                         getDisabledOptions: getDisabledEnableOptions,
                         onChange    : onChangeAPEnable,
                     },
@@ -2192,11 +2243,10 @@ function calculateBSLCRC_NoFlash_16Bit(inst)
 
 /* Get device data pins with a valid PINCM */
 let validDeviceDataPins = _.filter(system.deviceData.devicePins, (pin) =>
-    pin.attributes.iomux_pincm != "None");
-
+    Common.getAttribute((pin),("iomux_pincm")) != "None");
 /* Create array of GPIO pin names */
 const pinOptions = _.map(validDeviceDataPins, (pin) =>
-    ({name: pin.mux.muxSetting[0].peripheralPin.peripheralName}));
+    ({name: pin.mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName}));
 
 /* BSL Invoke Pin will never be on GPIOC */
 const filteredPinOptions = pinOptions.filter((pin) =>
@@ -2204,7 +2254,7 @@ const filteredPinOptions = pinOptions.filter((pin) =>
 
 /* Create array of GPIO pins with their associated PINCM */
 const iomuxPincmOptions = _.map(validDeviceDataPins, (pin) =>
-    ({name: pin.designSignalName, num: pin.attributes.iomux_pincm}));
+    ({name: pin.designSignalName, num: Common.getAttribute((pin),("iomux_pincm"))}));
 
 /* Device-specific BSL configurables */
 let extendedConfigBSLPW = [];
@@ -2327,7 +2377,9 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
                         if (selectedPin)
                         {
                             /* Convert to integer with radix 10 */
-                            iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
+                            let pinCMAttribute = Common.getAttribute((selectedPin),("iomux_pincm"));
+                            if(pinCMAttribute==undefined){return -1};
+                            iomuxPINCM = parseInt(pinCMAttribute, 10);
                         }
 
                         return iomuxPINCM;
@@ -2372,7 +2424,9 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
                         if (selectedPin)
                         {
                             /* Convert to integer with radix 10 */
-                            iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
+                            let pinCMAttribute = Common.getAttribute((selectedPin),("iomux_pincm"));
+                            if(pinCMAttribute==undefined){return -1};
+                            iomuxPINCM = parseInt(pinCMAttribute, 10);
                         }
 
                         return iomuxPINCM;
@@ -2433,7 +2487,9 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
                         if (selectedPin)
                         {
                             /* Convert to integer with radix 10 */
-                            iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
+                            let pinCMAttribute = Common.getAttribute((selectedPin),("iomux_pincm"));
+                            if(pinCMAttribute==undefined){return -1};
+                            iomuxPINCM = parseInt(pinCMAttribute, 10);
                         }
 
                         return iomuxPINCM;
@@ -2478,7 +2534,9 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
                         if (selectedPin)
                         {
                             /* Convert to integer with radix 10 */
-                            iomuxPINCM = parseInt(selectedPin.attributes.iomux_pincm, 10);
+                            let pinCMAttribute = Common.getAttribute((selectedPin),("iomux_pincm"));
+                            if(pinCMAttribute==undefined){return -1};
+                            iomuxPINCM = parseInt(pinCMAttribute, 10);
                         }
 
                         return iomuxPINCM;
@@ -3156,6 +3214,26 @@ function extend(base)
     /* concatenate device-specific configs */
     // moduleStatic specific to NONMAIN as it's statically defined
     result.config = base.moduleStatic.config.concat(devSpecific.config);
+    result.onMigrate = function (newInst, oldInst, oldSystem) {
+        // newInst.enableExtend = oldInst.enableExtend;
+        if ((deviceOptions.SUPPORT_PW_HASH == true))
+        {
+            /*
+            * If device using plaintext password and
+            * disabling debug, set the value to enabled
+            */
+            newInst.legacyConfigAck_DebugAccess = true;
+        }
+        else if ((deviceOptions.SUPPORT_PW_HASH == false) && (oldInst.debugAccessEnable == "disabled"))
+        {
+            /*
+            * If device using plaintext password and
+            * disabling debug, set the value to enabled
+            */
+            newInst.legacyConfigAck_DebugAccess = false;
+            newInst.debugAccessEnable = "enabled";
+        }
+    };
     base.moduleStatic = result;
 
     return (base);

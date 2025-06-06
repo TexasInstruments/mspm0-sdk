@@ -76,14 +76,6 @@ i2cSMBUS1.enableDefaultDevAddr              = true;
 i2cSMBUS1.peripheral.$assign                = "I2C1";
 i2cSMBUS1.peripheral.sdaPin.$assign         = "PB3";
 i2cSMBUS1.peripheral.sclPin.$assign         = "PB2";
-i2cSMBUS1.sdaPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric1";
-i2cSMBUS1.sdaPinConfig.hideOutputInversion  = scripting.forceWrite(false);
-i2cSMBUS1.sdaPinConfig.onlyInternalResistor = scripting.forceWrite(false);
-i2cSMBUS1.sdaPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
-i2cSMBUS1.sclPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric2";
-i2cSMBUS1.sclPinConfig.hideOutputInversion  = scripting.forceWrite(false);
-i2cSMBUS1.sclPinConfig.onlyInternalResistor = scripting.forceWrite(false);
-i2cSMBUS1.sclPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
 
 ProjectConfig.genLibSMBUS = true;
 

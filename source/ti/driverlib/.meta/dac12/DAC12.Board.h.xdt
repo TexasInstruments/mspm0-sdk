@@ -70,7 +70,7 @@
 %       let outPinName = "Out"+"Pin";
 %       let outPackagePin = inst.peripheral[outPinName].$solution.packagePinName;
 %       let outPinCM = Common.getPinCM(outPackagePin,inst,"OUT");
-%       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let outPort = Common.getGPIOPortMultiPad(outPackagePin,inst,"OUT");
 %       let outGpioPin = Common.getGPIONumberMultiPad(outPackagePin,inst,"OUT");
 %       let outPortStr = "#define "+gpioStr+"_OUT_PORT";

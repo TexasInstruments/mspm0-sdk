@@ -61,6 +61,7 @@
     if(fccInst.enable) {
         /* Traverse to find the trigger source and clk source */
         let fccClkSrc = fccMuxInst.inputSelect.slice(_.indexOf(fccMuxInst.inputSelect, "_") + 1);
+        if(fccClkSrc=="EXTCLK"){ fccClkSrc = "CLK_OUT"};
         let fccTrigSrc = "FCC_IN";
         if(!_.isUndefined(fcctrigMuxInst)){
             fccTrigSrc = fcctrigMuxInst.inputSelect.slice(_.indexOf(fcctrigMuxInst.inputSelect, "_") + 1);

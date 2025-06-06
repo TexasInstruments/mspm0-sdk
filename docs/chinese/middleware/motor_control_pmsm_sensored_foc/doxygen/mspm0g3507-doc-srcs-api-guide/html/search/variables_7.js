@@ -29,11 +29,14 @@ var searchData=
   ['hallspeedpwmratio',['hallSpeedPWMRatio',['../struct_h_a_l_l___e_s_t_i_m_a_t_o_r___o_b_j___t.html#a5e7370872c9fdfabb1b1b1f5c5e4bdec',1,'HALL_ESTIMATOR_OBJ_T']]],
   ['hallstate',['hallState',['../struct_h_a_l_l___e_s_t_i_m_a_t_o_r___o_b_j___t.html#a18b7ccbd44b3d11381f67ec61f230fc3',1,'HALL_ESTIMATOR_OBJ_T::hallState()'],['../struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#afd550877226740a02d97b8626d331f03',1,'HAL_MEASURE_HALL_HANDLE_T::hallState()']]],
   ['hallvelfiltconst',['hallVelFiltConst',['../struct_h_a_l_l___e_s_t_i_m_a_t_o_r___o_b_j___t.html#ad7638e71501b989acfa36497b6afb1b2',1,'HALL_ESTIMATOR_OBJ_T']]],
-  ['halmaxfreqcount',['halMaxFreqCount',['../struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a92fb80526d6f6b8070282ac8b6f28b66',1,'HAL_MEASURE_HALL_HANDLE_T']]],
+  ['halmaxfreqcount',['halMaxFreqCount',['../struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#a895d0839be6ce97742e5b4bd1a2007c2',1,'HAL_MEASURE_HALL_HANDLE_T']]],
+  ['halphaseerror',['halPhaseError',['../struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#aec15f209d52934dc3100a0ea44832e24',1,'HAL_MEASURE_HALL_HANDLE_T']]],
+  ['halphaseerrorconst',['halPhaseErrorConst',['../struct_h_a_l___m_e_a_s_u_r_e___h_a_l_l___h_a_n_d_l_e___t.html#af722e51ad211948cebe9c5823ba49e6a',1,'HAL_MEASURE_HALL_HANDLE_T']]],
   ['hardwareovercurrent',['hardwareOverCurrent',['../struct_f_a_u_l_t___s_e_r_v_i_c_e___t.html#adf63bc771379f9b2a4887573426288b0',1,'FAULT_SERVICE_T']]],
   ['hardwareovercurrentfaultenable',['hardwareOverCurrentFaultEnable',['../structmodule_enable_flags.html#a8ca8473817ce2489c7e712051ba1d8da',1,'moduleEnableFlags']]],
   ['hardwareovercurrentlimitpu',['hardwareOverCurrentLimitPU',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a19172536b00acb906c21e5fedb77cad0',1,'USER_INPUTS_T']]],
   ['hardwareovercurrentretryenable',['hardwareOverCurrentRetryEnable',['../struct_f_a_u_l_t___f_l_a_g_s___t_1_1fault_flags.html#ae95e9ca6f62bce0978404fc9f80920fe',1,'FAULT_FLAGS_T::faultFlags']]],
   ['highfreqfocen',['highFreqFOCEn',['../structuser_input_close_loop1.html#aefce6c808c25acbf84ceddd6f919c491',1,'userInputCloseLoop1']]],
-  ['hvdieconfigset',['hvDieConfigSet',['../structapp_interface_flags.html#ab1549368c97428e4a8fb5a0b34b5129f',1,'appInterfaceFlags']]]
+  ['hvdieconfigset',['hvDieConfigSet',['../structapp_interface_flags.html#ab1549368c97428e4a8fb5a0b34b5129f',1,'appInterfaceFlags']]],
+  ['hwdiefaultstatus',['hwDieFaultStatus',['../struct_a_p_p___f_l_a_g_s___t_1_1app_flags.html#ab2ba95e1f1a5017f00ef4cc0d1172c65',1,'APP_FLAGS_T::appFlags']]]
 ];

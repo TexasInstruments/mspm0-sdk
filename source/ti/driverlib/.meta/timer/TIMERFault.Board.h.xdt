@@ -71,8 +71,8 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin0";
 %               let faultPackagePin = inst[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
-%               let faultGpioName = system.deviceData.devicePins[faultPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%               let faultPinCM = Common.getAttribute((system.deviceData.devicePins[faultPackagePin]),("iomux_pincm"));
+%               let faultGpioName = system.deviceData.devicePins[faultPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %               let faultPort = Common.getGPIOPort(faultGpioName);
 %               let faultGpioPin = Common.getGPIONumber(faultGpioName);
 %               let faultPortStr = "#define "+gpioStr+"_FAULT_PIN_0_PORT";
@@ -91,8 +91,8 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin1";
 %               let faultPackagePin = inst[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
-%               let faultGpioName = system.deviceData.devicePins[faultPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%               let faultPinCM = Common.getAttribute((system.deviceData.devicePins[faultPackagePin]),("iomux_pincm"));
+%               let faultGpioName = system.deviceData.devicePins[faultPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %               let faultPort = Common.getGPIOPort(faultGpioName);
 %               let faultGpioPin = Common.getGPIONumber(faultGpioName);
 %               let faultPortStr = "#define "+gpioStr+"_FAULT_PIN_1_PORT";
@@ -111,8 +111,8 @@
 %               let gpioStr = "GPIO_"+inst.$name;
 %               let faultPinName = "fault"+"Pin2";
 %               let faultPackagePin = inst[faultPinName].$solution.packagePinName;
-%               let faultPinCM = system.deviceData.devicePins[faultPackagePin].attributes.iomux_pincm;
-%               let faultGpioName = system.deviceData.devicePins[faultPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%               let faultPinCM = Common.getAttribute((system.deviceData.devicePins[faultPackagePin]),("iomux_pincm"));
+%               let faultGpioName = system.deviceData.devicePins[faultPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %               let faultPort = Common.getGPIOPort(faultGpioName);
 %               let faultGpioPin = Common.getGPIONumber(faultGpioName);
 %               let faultPortStr = "#define "+gpioStr+"_FAULT_PIN_2_PORT";

@@ -29,14 +29,14 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#include "Patterns.h"
-#include "FlexWire.h"
-#include "TPS929xxx_APIs.h"
-#include "Timer.h"
-#include "led_driver.h"
-#include "system_info.h"
+#include "mspm0_timer.h"
 #include "ti_msp_dl_config.h"
+
+#include "FlexWire.h"
+#include "Patterns.h"
+#include "TPS929xxx_APIs.h"
+#include "system_info.h"
+
 int ADC_value_MAXOUT;
 int ADC_value_SUPPLY;
 int CC;

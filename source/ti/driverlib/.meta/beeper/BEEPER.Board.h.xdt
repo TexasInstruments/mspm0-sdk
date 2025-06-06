@@ -71,7 +71,7 @@
 %   if(stat.beeperEnable) {
 %       outPackagePin = stat.peripheral[outPinName].$solution.packagePinName;
 %       outPinCM = Common.getPinCM(outPackagePin,stat,"OUT");
-%       outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       outGpioPin = Common.getGPIONumberMultiPad(outPackagePin,stat,"OUT");
 %       outPort = Common.getGPIOPortMultiPad(outPackagePin,stat,"OUT");
 %   let outPortStr = "#define "+gpioStr2+"_OUT_PORT";

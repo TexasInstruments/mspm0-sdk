@@ -1,33 +1,33 @@
 /*****************************************************************************
 
-  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+  Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/ 
 
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
+  Redistribution and use in source and binary forms, with or without 
+  modification, are permitted provided that the following conditions 
   are met:
 
-   Redistributions of source code must retain the above copyright
+   Redistributions of source code must retain the above copyright 
    notice, this list of conditions and the following disclaimer.
 
    Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the
+   notice, this list of conditions and the following disclaimer in the 
+   documentation and/or other materials provided with the   
    distribution.
 
    Neither the name of Texas Instruments Incorporated nor the names of
    its contributors may be used to endorse or promote products derived
    from this software without specific prior written permission.
 
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 *****************************************************************************/
@@ -36,8 +36,8 @@
 #define ti_devices_msp_peripherals_hw_comp__include
 
 /* Filename: hw_comp.h */
-/* Revised: 2023-05-10 21:23:38 */
-/* Revision: 5c29864c187960f76e656cbc0f0f844cdb69a263 */
+/* Revised: 2024-07-09 06:39:02 */
+/* Revision: ff0f23ebcffe2c65cfa0450897995c6372fa6195 */
 
 #ifndef __CORTEX_M
   #ifdef __cplusplus
@@ -676,6 +676,14 @@ typedef struct {
 #define COMP_CTL1_FLTDLY_DLY_1                   ((uint32_t)0x00000200U)         /* !< Typical filter delay of 500 ns */
 #define COMP_CTL1_FLTDLY_DLY_2                   ((uint32_t)0x00000400U)         /* !< Typical filter delay of 1200 ns */
 #define COMP_CTL1_FLTDLY_DLY_3                   ((uint32_t)0x00000600U)         /* !< Typical filter delay of 2700 ns */
+/* COMP_CTL1[DACOUTEN] Bits */
+#define COMP_CTL1_DACOUTEN_OFS                   (11)                            /* !< DACOUTEN Offset */
+#define COMP_CTL1_DACOUTEN_MASK                  ((uint32_t)0x00000800U)         /* !< This bit enables DAC8 output to be
+                                                                                    connected to the pin. */
+#define COMP_CTL1_DACOUTEN_DISABLE               ((uint32_t)0x00000000U)         /* !< Disable the DAC8 output
+                                                                                    connectivity to pin. */
+#define COMP_CTL1_DACOUTEN_ENABLE                ((uint32_t)0x00000800U)         /* !< Enable the DAC8 output connectivity
+                                                                                    to pin. */
 /* COMP_CTL1[WINCOMPEN] Bits */
 #define COMP_CTL1_WINCOMPEN_OFS                  (12)                            /* !< WINCOMPEN Offset */
 #define COMP_CTL1_WINCOMPEN_MASK                 ((uint32_t)0x00001000U)         /* !< This bit enables window comparator
@@ -721,14 +729,9 @@ typedef struct {
 #define COMP_CTL2_REFSRC_VREF                    ((uint32_t)0x00000018U)         /* !< In devices where internal VREF is
                                                                                     buffered and hookedup to extrernal
                                                                                     VREF pin, VREF applied as reference
-                                                                                    to comparator. DAC is switched off.
-                                                                                    Note: In LEGO_A3, DAC is turned off
-                                                                                    in this selection, in other deviced
-                                                                                    DAC is kept on. */
+                                                                                    to comparator. DAC is switched off. */
 #define COMP_CTL2_REFSRC_VDDA                    ((uint32_t)0x00000028U)         /* !< VDDA is used as comparator
-                                                                                    reference. Note: In LEGO_A3, DAC is
-                                                                                    turned off in this selection, in
-                                                                                    other deviced DAC is kept on. */
+                                                                                    reference. */
 #define COMP_CTL2_REFSRC_INTVREF_DAC             ((uint32_t)0x00000030U)         /* !< Internal reference selected as the
                                                                                     reference source to DAC and DAC
                                                                                     output applied as reference to
@@ -792,18 +795,22 @@ typedef struct {
 #define COMP_CTL3_DACCODE0_OFS                   (0)                             /* !< DACCODE0 Offset */
 #define COMP_CTL3_DACCODE0_MASK                  ((uint32_t)0x000000FFU)         /* !< This is the first 8-bit DAC code.
                                                                                     When the DAC code is 0x0 the DAC
-                                                                                    output will be 0 V. When the DAC code
+                                                                                    output will be selected reference
+                                                                                    voltage x 1/256 V. When the DAC code
                                                                                     is 0xFF the DAC output will be
-                                                                                    selected reference voltage x 255/256. */
+                                                                                    selected reference voltage x 255/256
+                                                                                    V. */
 #define COMP_CTL3_DACCODE0_MNIMUM                ((uint32_t)0x00000000U)         /* !< Minimum DAC code value */
 #define COMP_CTL3_DACCODE0_MAXIMUM               ((uint32_t)0x000000FFU)         /* !< Minimum DAC code value */
 /* COMP_CTL3[DACCODE1] Bits */
 #define COMP_CTL3_DACCODE1_OFS                   (16)                            /* !< DACCODE1 Offset */
 #define COMP_CTL3_DACCODE1_MASK                  ((uint32_t)0x00FF0000U)         /* !< This is the second 8-bit DAC code.
                                                                                     When the DAC code is 0x0 the DAC
-                                                                                    output will be 0 V. When the DAC code
+                                                                                    output will be selected reference
+                                                                                    voltage x 1/256 V. When the DAC code
                                                                                     is 0xFF the DAC output will be
-                                                                                    selected reference voltage x 255/256. */
+                                                                                    selected reference voltage x 255/256
+                                                                                    V. */
 #define COMP_CTL3_DACCODE1_MNIMUM                ((uint32_t)0x00000000U)         /* !< Minimum DAC code value */
 #define COMP_CTL3_DACCODE1_MAXIMUM               ((uint32_t)0x00FF0000U)         /* !< Minimum DAC code value */
 

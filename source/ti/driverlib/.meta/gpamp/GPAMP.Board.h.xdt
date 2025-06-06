@@ -73,7 +73,7 @@
 %       let inPosPinName = "InPos"+"Pin";
 %       let inPosPackagePin = inst.peripheral[inPosPinName].$solution.packagePinName;
 %       let inPosPinCM = Common.getPinCM(inPosPackagePin,inst,"IN+");
-%       let inPosGpioName = system.deviceData.devicePins[inPosPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let inPosGpioName = system.deviceData.devicePins[inPosPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let inPosPort = Common.getGPIOPortMultiPad(inPosPackagePin,inst,"IN+");
 %       let inPosGpioPin = Common.getGPIONumberMultiPad(inPosPackagePin,inst,"IN+");
 %       let inPosPortStr = "#define "+gpioStr+"_INPOS_PORT";
@@ -96,7 +96,7 @@
 %       let inNegPinName = "InNeg"+"Pin";
 %       let inNegPackagePin = inst.peripheral[inNegPinName].$solution.packagePinName;
 %       let inNegPinCM = Common.getPinCM(inNegPackagePin,inst,"IN-");
-%       let inNegGpioName = system.deviceData.devicePins[inNegPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let inNegGpioName = system.deviceData.devicePins[inNegPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let inNegPort = Common.getGPIOPortMultiPad(inNegPackagePin,inst,"IN-");
 %       let inNegGpioPin = Common.getGPIONumberMultiPad(inNegPackagePin,inst,"IN-");
 %       let inNegPortStr = "#define "+gpioStr+"_INNEG_PORT";
@@ -119,7 +119,7 @@
 %       let outPinName = "Out"+"Pin";
 %       let outPackagePin = inst.peripheral[outPinName].$solution.packagePinName;
 %       let outPinCM = Common.getPinCM(outPackagePin,inst,"OUT");
-%       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting[0].peripheralPin.peripheralName;
+%       let outGpioName = system.deviceData.devicePins[outPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
 %       let outPort = Common.getGPIOPortMultiPad(outPackagePin,inst,"OUT");
 %       let outGpioPin = Common.getGPIONumberMultiPad(outPackagePin,inst,"OUT");
 %       let outPortStr = "#define "+gpioStr+"_OUT_PORT";

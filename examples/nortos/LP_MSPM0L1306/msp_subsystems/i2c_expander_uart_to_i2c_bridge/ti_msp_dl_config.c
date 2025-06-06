@@ -179,7 +179,6 @@ SYSCONFIG_WEAK void SYSCFG_DL_I2C_BRIDGE2_init(void) {
 
 }
 
-
 static const DL_UART_Main_ClockConfig gUART_BRIDGEClockConfig = {
     .clockSel    = DL_UART_MAIN_CLOCK_BUSCLK,
     .divideRatio = DL_UART_MAIN_CLOCK_DIVIDE_RATIO_1

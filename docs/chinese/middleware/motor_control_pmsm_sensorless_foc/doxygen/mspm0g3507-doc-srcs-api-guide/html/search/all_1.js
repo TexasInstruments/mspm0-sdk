@@ -5,7 +5,7 @@ var searchData=
   ['abnbemfthr',['abnBemfThr',['../structuser_input_fault_cfg2.html#a85d040aa2b12f8396faf7b9d612b0ffc',1,'userInputFaultCfg2']]],
   ['abnormalspeedlimitpermil',['abnormalSpeedLimitPerMil',['../struct_u_s_e_r___i_n_p_u_t_s___t.html#a2e03b7cd3f8ec2528bd1975b09980efc',1,'USER_INPUTS_T']]],
   ['abnormalspeedstalldetectenable',['abnormalSpeedStallDetectEnable',['../structmodule_enable_flags.html#a29bbe281d6113c2c3c22d0b3bd18504c',1,'moduleEnableFlags']]],
-  ['ac',['Ac',['../app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81a82f1a3829f8a7d5960d14fa78549cb3e',1,'Ac():&#160;appUserOutputs.h'],['../app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81af3a6d67cd4df85da4b48cd88f6c1fea3',1,'aC():&#160;appUserOutputs.h']]],
+  ['ac',['aC',['../app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81af3a6d67cd4df85da4b48cd88f6c1fea3',1,'aC():&#160;appUserOutputs.h'],['../app_user_outputs_8h.html#a6f01981c8493a563db18f8036ddf7e81a82f1a3829f8a7d5960d14fa78549cb3e',1,'Ac():&#160;appUserOutputs.h']]],
   ['ack_5fwrite',['ACK_WRITE',['../uart__comm_8h.html#af7367f80850bb69b4a5aa8529f86d615',1,'uart_comm.h']]],
   ['activebrakeki',['activeBrakeKi',['../structuser_input_rvr_drv_cfg.html#a0d1774795acbc1358ed8078ed254b788',1,'userInputRvrDrvCfg']]],
   ['activebrakekp',['activeBrakeKp',['../structuser_input_rvr_drv_cfg.html#a084bd468699ce32a6591f2ddd827174f',1,'userInputRvrDrvCfg']]],

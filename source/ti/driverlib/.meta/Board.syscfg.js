@@ -150,6 +150,12 @@ else if(["MSPM0C1105_C1106"].includes(Common.getDeviceName())){
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
         "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT",
     ];
+}else if(["MSPM0G511X"].includes(Common.getDeviceName())){
+    MasterOrder = [
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
+        "GPIO", "AESADV", "CRCP", "RTCB", "SYSTICK", "WWDT", "USB"
+    ];
 }
 
 
@@ -534,7 +540,7 @@ Any conflicting configurations will be overriden by these settings.`,
         config: [
             {
                 name: "configureVDDA",
-                displayName: "Configure ADC VDDA",
+                displayName: "Configure VDDA",
                 description: "Configure VDDA",
                 longDescription: ``,
                 default: false,
@@ -551,7 +557,7 @@ Any conflicting configurations will be overriden by these settings.`,
                 config: [
                     {
                         name: "voltageVDDA",
-                        displayName: "ADC VDDA (V)",
+                        displayName: "VDDA (V)",
                         description: "Configure VDDA",
                         default: getDefaultVDDA(),
                         hidden: true,

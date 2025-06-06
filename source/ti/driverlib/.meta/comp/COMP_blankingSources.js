@@ -112,7 +112,33 @@ let blankingSources = {
             peripheral: "TIMG2",
             channel: "1",
         },
-    }
+    },
+    MSPM0G511X: {
+        1: {
+            peripheral: "TIMA0",
+            channel: "2",
+        },
+        2: {
+            peripheral: "TIMA0",
+            channel: "3",
+        },
+        3: {
+            peripheral: "TIMG0",
+            channel: "0",
+        },
+        4: {
+            peripheral: "TIMG0",
+            channel: "1",
+        },
+        5: {
+            peripheral: "TIMG6",
+            channel: "1",
+        },
+        6: {
+            peripheral: "TIMG7",
+            channel: "1",
+        },
+    },
 }
 
 let index = Common.getDeviceFamily();
