@@ -267,8 +267,8 @@ void DL_Timer_initCaptureTriggerMode(
 void DL_Timer_initCaptureCombinedMode(
     GPTIMER_Regs *gptimer, const DL_Timer_CaptureCombinedConfig *config)
 {
-    Timer_Input_Chan_Config captConfig;
-    Timer_Input_Pair_Chan_Config captPairConfig;
+    Timer_Input_Chan_Config captConfig = {0};
+    Timer_Input_Pair_Chan_Config captPairConfig = {0};
 
     DL_Timer_getInChanConfig(config->inputChan, &captConfig);
     DL_Timer_getInChanPairConfig(config->inputChan, &captPairConfig);
