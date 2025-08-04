@@ -118,8 +118,13 @@
 %
 %
 % function printPreFunction() {
-%   if(Common.isDeviceM0G() || (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-%      Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())){
+%   if(Common.isDeviceM0G()
+%        || (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()
+%        || Common.isDeviceFamily_PARENT_MSPM0L111X()
+%        || Common.isDeviceFamily_PARENT_MSPM0H321X()
+%        || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()
+%        || Common.isDeviceFamily_PARENT_MSPM0L211X_L112X()
+%        || Common.isDeviceFamily_PARENT_MSPM0L210X())){
 %   let lfxtInst = _.find(instances, ['$name','LFXT']);
 %   let exlfInst = _.find(instances, ['$name','LFCLKEXT']);
 %       if(lfxtInst.enable || exlfInst.enable){

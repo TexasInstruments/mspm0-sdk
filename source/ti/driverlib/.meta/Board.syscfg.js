@@ -128,7 +128,7 @@ else if(["MSPM0G151X"].includes(Common.getDeviceName())){
     ];
 }
 /* MSPM0L111X specific options */
-else if(["MSPM0L111X"].includes(Common.getDeviceName())){
+else if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
     MasterOrder = [
         "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "VREF","EVENT", "DMA",
@@ -136,7 +136,7 @@ else if(["MSPM0L111X"].includes(Common.getDeviceName())){
     ];
 }
 /* MSPM0H321X specific options */
-else if(["MSPM0H321X"].includes(Common.getDeviceName())){
+else if(Common.isDeviceFamily_PARENT_MSPM0H321X()){
     MasterOrder = [
         "SYSCTL", "BEEPER", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "VREF", "EVENT", "DMA",
@@ -144,17 +144,35 @@ else if(["MSPM0H321X"].includes(Common.getDeviceName())){
     ];
 }
 /* MSPM0C1105_C1106 specific options */
-else if(["MSPM0C1105_C1106"].includes(Common.getDeviceName())){
+else if(Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
     MasterOrder = [
         "SYSCTL", "BEEPER", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
         "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT",
     ];
-}else if(["MSPM0G511X"].includes(Common.getDeviceName())){
+}
+/* MSPM0G511X specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0G511X()){
     MasterOrder = [
         "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
         "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
         "GPIO", "AESADV", "CRCP", "RTCB", "SYSTICK", "WWDT", "USB"
+    ];
+}
+/* MSPM0L211X_L112X specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0L211X_L112X()){
+    MasterOrder = [
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "COMP", "VREF", "EVENT", "DMA",
+        "GPIO", "AESADV", "CRC", "RTCB", "SYSTICK", "WWDT","LCD"
+    ];
+}
+/* MSPM0L210X specific options */
+else if(Common.isDeviceFamily_PARENT_MSPM0L210X()){
+    MasterOrder = [
+        "SYSCTL", "PWM", "QEI", "CAPTURE", "COMPARE", "TIMER", "IWDT", "I2C", "i2cSMBUS", "UART", "uartLIN",
+        "SPI", "ADC12", "VREF", "EVENT", "DMA",
+        "GPIO", "CRC", "RTCB", "SYSTICK", "WWDT","LCD"
     ];
 }
 

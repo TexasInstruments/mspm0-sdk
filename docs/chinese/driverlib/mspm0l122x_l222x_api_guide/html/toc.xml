@@ -2872,7 +2872,6 @@
         <topic label="DL_RTC_A_INTERRUPT_CALENDAR_ALARM2" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga7cea10b2115a3f82f021052c4745fe73"/>
         <topic label="DL_RTC_A_INTERRUPT_PRESCALER0" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga0c53cd037aa8fffd44a8fa457d5f14c7"/>
         <topic label="DL_RTC_A_INTERRUPT_PRESCALER1" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga1fbc6587205e94bd385206b206acbb5c"/>
-        <topic label="DL_RTC_A_INTERRUPT_PRESCALER2" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#gacca0926e6dce61146c8ee5420d2121fe"/>
         <topic label="DL_RTC_A_INTERRUPT_INTERVAL_ALARM" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga1a0a857f5c5a90922804c37ea438373e"/>
         <topic label="DL_RTC_A_INTERRUPT_READY" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga1d8435e41ea6d64eec4f6001bce49141"/>
         <topic label="DL_RTC_A_INTERRUPT_TSEVT" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga4447841c416f673400bc5a9f9df490e6"/>
@@ -2882,7 +2881,6 @@
         <topic label="DL_RTC_A_EVENT_CALENDAR_ALARM2" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga3eac1868eca37e3f5ac9e1562ef3b45e"/>
         <topic label="DL_RTC_A_EVENT_PRESCALER0" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga4438493f891c4978129490f09d03258d"/>
         <topic label="DL_RTC_A_EVENT_PRESCALER1" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga503c889081bef19ec3c1c3c9830914b6"/>
-        <topic label="DL_RTC_A_EVENT_PRESCALER2" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga15c820fa5f37f818e33af24fdea967f7"/>
         <topic label="DL_RTC_A_EVENT_INTERVAL_ALARM" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga2a9ffab29932f0ef3aa2d3af7208ee98"/>
         <topic label="DL_RTC_A_EVENT_READY" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga2793a5690dfc88ccd521166931752f2e"/>
         <topic label="DL_RTC_A_EVENT_TSEVT" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga2c76efd0d6491d9e866d73d6a9e63164"/>
@@ -2959,9 +2957,6 @@
       <topic label="DL_RTC_A_PRESCALER1_DIVIDE_64" href="group___r_t_c___a.html#gaabc18e951eb4336a50d1b2147ccbd552"/>
       <topic label="DL_RTC_A_PRESCALER1_DIVIDE_128" href="group___r_t_c___a.html#gaeaf534c4e39d9e7185a8b751a1eabcc6"/>
       <topic label="DL_RTC_A_PRESCALER1_DIVIDE_256" href="group___r_t_c___a.html#ga1ac91499a54f88901a5e7ae597976b53"/>
-      <topic label="DL_RTC_A_PRESCALER2_4_SEC" href="group___r_t_c___a.html#gae38cab68c6a401aeb2074ee0178aeaa5"/>
-      <topic label="DL_RTC_A_PRESCALER2_8_SEC" href="group___r_t_c___a.html#ga31595219e84b3ebd1e856ecc573103d8"/>
-      <topic label="DL_RTC_A_PRESCALER2_16_SEC" href="group___r_t_c___a.html#ga3f19f338ef2f3cb1f558dc619190b398"/>
       <topic label="DL_RTC_A_IIDX_ALARM1" href="group___r_t_c___a.html#gafe116635390281748ed0e70fde2df819"/>
       <topic label="DL_RTC_A_IIDX_ALARM2" href="group___r_t_c___a.html#ga7dc77db72f462b39ab99adcc63ca43ce"/>
       <topic label="DL_RTC_A_IIDX_PRESCALER0" href="group___r_t_c___a.html#gad0887f0bd7de28b35bf3259ecb207db3"/>
@@ -3105,10 +3100,8 @@
       <topic label="DL_RTC_A_setPrescalerEvents" href="group___r_t_c___a.html#ga06c96a29177114c60d019c7a8edfb609"/>
       <topic label="DL_RTC_A_setPeriodicAlarm0" href="group___r_t_c___a.html#gadb87f2331ba49fb4a39d8892c96607d7"/>
       <topic label="DL_RTC_A_setPeriodicAlarm1" href="group___r_t_c___a.html#gae60c558e20108189fe165d1274778ef2"/>
-      <topic label="DL_RTC_A_setPeriodicAlarm2" href="group___r_t_c___a.html#ga17298a430bb0ef9093c0b1b725c9bf8c"/>
       <topic label="DL_RTC_A_getPrescaler0" href="group___r_t_c___a.html#ga673aacfeeb06e6f434be1fb44a52aed4"/>
       <topic label="DL_RTC_A_getPrescaler1" href="group___r_t_c___a.html#gae146e7101864c923ec2cb6ce380368b3"/>
-      <topic label="DL_RTC_A_getPrescaler2" href="group___r_t_c___a.html#gaebe67378bee64a3491a6f8f009300ed8"/>
       <topic label="DL_RTC_A_getTimeStampSecondsBCD" href="group___r_t_c___a.html#ga4b48bac0865ead5c3f7d286e8c784222"/>
       <topic label="DL_RTC_A_getTimeStampMinutesBCD" href="group___r_t_c___a.html#ga16a4569d397de45e00f686cc8eb26e53"/>
       <topic label="DL_RTC_A_getTimeStampHoursBCD" href="group___r_t_c___a.html#ga08d7ece48123a78ca5dc4b6a482d3755"/>
@@ -6429,7 +6422,6 @@
         <topic label="DL_RTC_COMMON_INTERRUPT_CALENDAR_ALARM2" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga6c4d9b064cd7febebf276787bf177037"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_PRESCALER0" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#gaaa031998f73e1e598ecb0548e81e414d"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_PRESCALER1" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga6034ab4b86b2726bb761dd27c11e61a3"/>
-        <topic label="DL_RTC_COMMON_INTERRUPT_PRESCALER2" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga9fbc9fd2402ed792a7a0bcbb549f8b86"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_INTERVAL_ALARM" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga0b075983a64c58acd29ccf8187f7008c"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_READY" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga54eaa42fe045895d52c6367398cfc22f"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_TSEVT" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga308864129f1706da453ad2dd46de8c1e"/>
@@ -6439,7 +6431,6 @@
         <topic label="DL_RTC_COMMON_EVENT_CALENDAR_ALARM2" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gab49e7e2bd45c0d7f1bd42ae6f61776f3"/>
         <topic label="DL_RTC_COMMON_EVENT_PRESCALER0" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gac09e3161d62eaeccebee422c8e547bb8"/>
         <topic label="DL_RTC_COMMON_EVENT_PRESCALER1" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#ga8f9fef500d9b83db11b8d22244d7d6b8"/>
-        <topic label="DL_RTC_COMMON_EVENT_PRESCALER2" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gae035442e8adea17f11e07d9527b08fba"/>
         <topic label="DL_RTC_COMMON_EVENT_INTERVAL_ALARM" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#ga84efdfa3e80dac1aa47f49cbcdb57586"/>
         <topic label="DL_RTC_COMMON_EVENT_READY" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#ga23ba05a17f72305b794e881a56b3470b"/>
         <topic label="DL_RTC_COMMON_EVENT_TSEVT" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gaa11c45af57f69a626f11e8883e87a33b"/>
@@ -10131,7 +10122,6 @@
         <topic label="DL_RTC_A_INTERRUPT_CALENDAR_ALARM2" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga7cea10b2115a3f82f021052c4745fe73"/>
         <topic label="DL_RTC_A_INTERRUPT_PRESCALER0" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga0c53cd037aa8fffd44a8fa457d5f14c7"/>
         <topic label="DL_RTC_A_INTERRUPT_PRESCALER1" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga1fbc6587205e94bd385206b206acbb5c"/>
-        <topic label="DL_RTC_A_INTERRUPT_PRESCALER2" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#gacca0926e6dce61146c8ee5420d2121fe"/>
         <topic label="DL_RTC_A_INTERRUPT_INTERVAL_ALARM" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga1a0a857f5c5a90922804c37ea438373e"/>
         <topic label="DL_RTC_A_INTERRUPT_READY" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga1d8435e41ea6d64eec4f6001bce49141"/>
         <topic label="DL_RTC_A_INTERRUPT_TSEVT" href="group___d_l___r_t_c___a___i_n_t_e_r_r_u_p_t.html#ga4447841c416f673400bc5a9f9df490e6"/>
@@ -10139,7 +10129,6 @@
         <topic label="DL_RTC_A_EVENT_CALENDAR_ALARM2" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga3eac1868eca37e3f5ac9e1562ef3b45e"/>
         <topic label="DL_RTC_A_EVENT_PRESCALER0" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga4438493f891c4978129490f09d03258d"/>
         <topic label="DL_RTC_A_EVENT_PRESCALER1" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga503c889081bef19ec3c1c3c9830914b6"/>
-        <topic label="DL_RTC_A_EVENT_PRESCALER2" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga15c820fa5f37f818e33af24fdea967f7"/>
         <topic label="DL_RTC_A_EVENT_INTERVAL_ALARM" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga2a9ffab29932f0ef3aa2d3af7208ee98"/>
         <topic label="DL_RTC_A_EVENT_READY" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga2793a5690dfc88ccd521166931752f2e"/>
         <topic label="DL_RTC_A_EVENT_TSEVT" href="group___d_l___r_t_c___a___e_v_e_n_t.html#ga2c76efd0d6491d9e866d73d6a9e63164"/>
@@ -10211,9 +10200,6 @@
         <topic label="DL_RTC_A_PRESCALER1_DIVIDE_64" href="group___r_t_c___a.html#gaabc18e951eb4336a50d1b2147ccbd552"/>
         <topic label="DL_RTC_A_PRESCALER1_DIVIDE_128" href="group___r_t_c___a.html#gaeaf534c4e39d9e7185a8b751a1eabcc6"/>
         <topic label="DL_RTC_A_PRESCALER1_DIVIDE_256" href="group___r_t_c___a.html#ga1ac91499a54f88901a5e7ae597976b53"/>
-        <topic label="DL_RTC_A_PRESCALER2_4_SEC" href="group___r_t_c___a.html#gae38cab68c6a401aeb2074ee0178aeaa5"/>
-        <topic label="DL_RTC_A_PRESCALER2_8_SEC" href="group___r_t_c___a.html#ga31595219e84b3ebd1e856ecc573103d8"/>
-        <topic label="DL_RTC_A_PRESCALER2_16_SEC" href="group___r_t_c___a.html#ga3f19f338ef2f3cb1f558dc619190b398"/>
         <topic label="DL_RTC_A_IIDX_ALARM1" href="group___r_t_c___a.html#gafe116635390281748ed0e70fde2df819"/>
         <topic label="DL_RTC_A_IIDX_ALARM2" href="group___r_t_c___a.html#ga7dc77db72f462b39ab99adcc63ca43ce"/>
         <topic label="DL_RTC_A_IIDX_PRESCALER0" href="group___r_t_c___a.html#gad0887f0bd7de28b35bf3259ecb207db3"/>
@@ -10357,10 +10343,8 @@
         <topic label="DL_RTC_A_setPrescalerEvents" href="group___r_t_c___a.html#ga06c96a29177114c60d019c7a8edfb609"/>
         <topic label="DL_RTC_A_setPeriodicAlarm0" href="group___r_t_c___a.html#gadb87f2331ba49fb4a39d8892c96607d7"/>
         <topic label="DL_RTC_A_setPeriodicAlarm1" href="group___r_t_c___a.html#gae60c558e20108189fe165d1274778ef2"/>
-        <topic label="DL_RTC_A_setPeriodicAlarm2" href="group___r_t_c___a.html#ga17298a430bb0ef9093c0b1b725c9bf8c"/>
         <topic label="DL_RTC_A_getPrescaler0" href="group___r_t_c___a.html#ga673aacfeeb06e6f434be1fb44a52aed4"/>
         <topic label="DL_RTC_A_getPrescaler1" href="group___r_t_c___a.html#gae146e7101864c923ec2cb6ce380368b3"/>
-        <topic label="DL_RTC_A_getPrescaler2" href="group___r_t_c___a.html#gaebe67378bee64a3491a6f8f009300ed8"/>
         <topic label="DL_RTC_A_getTimeStampSecondsBCD" href="group___r_t_c___a.html#ga4b48bac0865ead5c3f7d286e8c784222"/>
         <topic label="DL_RTC_A_getTimeStampMinutesBCD" href="group___r_t_c___a.html#ga16a4569d397de45e00f686cc8eb26e53"/>
         <topic label="DL_RTC_A_getTimeStampHoursBCD" href="group___r_t_c___a.html#ga08d7ece48123a78ca5dc4b6a482d3755"/>
@@ -10417,7 +10401,6 @@
         <topic label="DL_RTC_COMMON_INTERRUPT_CALENDAR_ALARM2" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga6c4d9b064cd7febebf276787bf177037"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_PRESCALER0" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#gaaa031998f73e1e598ecb0548e81e414d"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_PRESCALER1" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga6034ab4b86b2726bb761dd27c11e61a3"/>
-        <topic label="DL_RTC_COMMON_INTERRUPT_PRESCALER2" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga9fbc9fd2402ed792a7a0bcbb549f8b86"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_INTERVAL_ALARM" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga0b075983a64c58acd29ccf8187f7008c"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_READY" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga54eaa42fe045895d52c6367398cfc22f"/>
         <topic label="DL_RTC_COMMON_INTERRUPT_TSEVT" href="group___d_l___r_t_c___c_o_m_m_o_n___i_n_t_e_r_r_u_p_t.html#ga308864129f1706da453ad2dd46de8c1e"/>
@@ -10425,7 +10408,6 @@
         <topic label="DL_RTC_COMMON_EVENT_CALENDAR_ALARM2" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gab49e7e2bd45c0d7f1bd42ae6f61776f3"/>
         <topic label="DL_RTC_COMMON_EVENT_PRESCALER0" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gac09e3161d62eaeccebee422c8e547bb8"/>
         <topic label="DL_RTC_COMMON_EVENT_PRESCALER1" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#ga8f9fef500d9b83db11b8d22244d7d6b8"/>
-        <topic label="DL_RTC_COMMON_EVENT_PRESCALER2" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gae035442e8adea17f11e07d9527b08fba"/>
         <topic label="DL_RTC_COMMON_EVENT_INTERVAL_ALARM" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#ga84efdfa3e80dac1aa47f49cbcdb57586"/>
         <topic label="DL_RTC_COMMON_EVENT_READY" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#ga23ba05a17f72305b794e881a56b3470b"/>
         <topic label="DL_RTC_COMMON_EVENT_TSEVT" href="group___d_l___r_t_c___c_o_m_m_o_n___e_v_e_n_t.html#gaa11c45af57f69a626f11e8883e87a33b"/>

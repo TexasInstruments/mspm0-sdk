@@ -1657,7 +1657,9 @@ See the device TRM for more details.
                         return calculateBCRCRC_Advanced_32Bit(inst);
                     }
                     else if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-                             Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+                             Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
+                             Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+                             Common.isDeviceFamily_PARENT_MSPM0L210X())
                     {
                         return calculateBCRCRC_Advanced_16Bit(inst);
                     }
@@ -1847,7 +1849,9 @@ function createAdvancedBCRConfigString(inst)
     if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
         Common.isDeviceFamily_PARENT_MSPM0L111X() ||
         Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
+        Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+        Common.isDeviceFamily_PARENT_MSPM0L210X())
     {
     /* Reserved, 32-bits (bc_reserved_1 or bc_reserved_2 for H321x) */
         bcrConfigStr +=  "FFFFFFFF"
@@ -1946,7 +1950,9 @@ function createAdvancedBCRConfigString(inst)
 
     /* H321x does not have flash bank swap. Has 16-bit bc_reserved_0 instead */
     if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()||
+        Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+        Common.isDeviceFamily_PARENT_MSPM0L210X())
     {
         bcrConfigStr += "FFFF";
     }
@@ -2033,7 +2039,9 @@ function createROMBSLString(inst)
      */
     let bslConfigStr = "";
 
-    if(Common.isDeviceFamily_PARENT_MSPM0L111X()){
+    if(Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+       Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+       Common.isDeviceFamily_PARENT_MSPM0L210X()){
         /* Reserved, 32-bits (bl_reserved_1) */
         bslConfigStr +=  "FFFFFFFF"
         /* Reserved, 16-bits (bl_reserved_0) */
@@ -2223,6 +2231,20 @@ function calculateBSLCRC_32Bit(inst)
     return (crc);
 }
 
+/* Calculate 16-bit CRC over BSL config string (supporting ROM BSL) */
+function calculateBSLCRC_16Bit(inst)
+{
+    let bslConfigStr = createROMBSLString(inst);
+
+   /* Convert into an array and reverse the values */
+   let bslConfigArr = chunkString(bslConfigStr, 2).reverse();
+
+   /* Convert array of strings into hex numbers. CRC16-Kermit + FFFF seed */
+   let crc = CRC16(bslConfigArr.map(el => parseInt(el, 16)), 0xFFFF);
+
+   return (crc);
+}
+
 /*
  * Calculate 16-bit CRC over BSL config string (not supporting Flash BSL)
  * Currently only devices that don't support Flash BSL require 16-bit CRC
@@ -2299,31 +2321,60 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 {
     /* Derive UART/I2C interface pins */
     /* Create array of pins with UART TX functionality */
-    uartTXPinData = validDeviceDataPins.map((obj) => ({
-        ...obj,
-        muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UART\d.[T]X$/)),
-    }));
+    if(Common.isUnicommUART()){
+        uartTXPinData = validDeviceDataPins.map((obj) => ({
+            ...obj,
+            muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/^UC\d.[T]X$/)),
+        }));
+    }else{
+        uartTXPinData = validDeviceDataPins.map((obj) => ({
+            ...obj,
+            muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UART\d.[T]X$/)),
+        }));
+    }
     uartTXPinData = _.filter(uartTXPinData, (pin) => pin.muxOptions.length);
 
     /* Create array of pins with UART RX functionality */
-    uartRXPinData = validDeviceDataPins.map((obj) => ({
-        ...obj,
-        muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UART\d.[R]X$/)),
-    }));
+    if(Common.isUnicommUART()){
+        uartRXPinData = validDeviceDataPins.map((obj) => ({
+            ...obj,
+            muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/^UC\d.[R]X$/)),
+        }));
+    }else{
+        uartRXPinData = validDeviceDataPins.map((obj) => ({
+            ...obj,
+            muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UART\d.[R]X$/)),
+        }));
+    }
     uartRXPinData = _.filter(uartRXPinData, (pin) => pin.muxOptions.length);
 
     /* Create array of pins with I2C SCL functionality */
-    i2cSCLPinData = validDeviceDataPins.map((obj) => ({
-        ...obj,
-        muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/I2C\d.SCL$/)),
-    }));
+    if(Common.isUnicommI2C()){
+        i2cSCLPinData = validDeviceDataPins.map((obj) => ({
+            ...obj,
+            muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UC\d.SCL$/)),
+        }));
+    }else{
+        i2cSCLPinData = validDeviceDataPins.map((obj) => ({
+            ...obj,
+            muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/I2C\d.SCL$/)),
+        }));
+    }
     i2cSCLPinData = _.filter(i2cSCLPinData, (pin) => pin.muxOptions.length);
 
     /* Create array of pins with I2C SDA functionality */
-    i2cSDAPinData = validDeviceDataPins.map((obj) => ({
-        ...obj,
-        muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/I2C\d.SDA$/)),
-    }));
+    if(Common.isUnicommI2C()){
+        i2cSDAPinData = validDeviceDataPins.map((obj) => ({
+            ...obj,
+            muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/UC\d.SDA$/)),
+        }));
+    }else{
+        i2cSDAPinData = validDeviceDataPins.map((obj) => ({
+            ...obj,
+            muxOptions: obj.mux.muxSetting.filter((muxOption) => muxOption.peripheralPin.name.match(/I2C\d.SDA$/)),
+        }));
+    }
+
     i2cSDAPinData = _.filter(i2cSDAPinData, (pin) => pin.muxOptions.length);
 
     /*
@@ -2354,6 +2405,14 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
                     /* BSL UART instance is tied to UART0 */
                     readOnly: true,
                     default: "UART0",
+                    getValue: (inst)=>{
+                        /* Peripheral selection is tied to a specific
+                           instance, dependent on selected device */
+                        if(Common.isUnicommUART()){
+                            return "UC0";
+                        }
+                        return "UART0";
+                    }
                 },
             ].concat(bslExtendedConfigUART).concat([
                 {
@@ -2376,10 +2435,10 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
+                            let pinCM = Common.getPinCMAlt(selectedPin.name,"TX",inst.uartPeripheral);
+                            if(pinCM==undefined){return -1};
                             /* Convert to integer with radix 10 */
-                            let pinCMAttribute = Common.getAttribute((selectedPin),("iomux_pincm"));
-                            if(pinCMAttribute==undefined){return -1};
-                            iomuxPINCM = parseInt(pinCMAttribute, 10);
+                            iomuxPINCM = parseInt(pinCM, 10);
                         }
 
                         return iomuxPINCM;
@@ -2397,7 +2456,7 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
-                            muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
+                            muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.uartPeripheral+".TX")[0].mode,10);
                         }
 
                         return muxSetting;
@@ -2423,10 +2482,10 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
+                            let pinCM = Common.getPinCMAlt(selectedPin.name,"RX",inst.uartPeripheral);
+                            if(pinCM==undefined){return -1};
                             /* Convert to integer with radix 10 */
-                            let pinCMAttribute = Common.getAttribute((selectedPin),("iomux_pincm"));
-                            if(pinCMAttribute==undefined){return -1};
-                            iomuxPINCM = parseInt(pinCMAttribute, 10);
+                            iomuxPINCM = parseInt(pinCM, 10);
                         }
 
                         return iomuxPINCM;
@@ -2444,7 +2503,7 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
-                            muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
+                            muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.uartPeripheral+".RX")[0].mode,10);
                         }
 
                         return muxSetting;
@@ -2465,6 +2524,12 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
                     /* BSL I2C instance is tied to I2C0 */
                     readOnly: true,
                     default: "I2C0",
+                    getValue: (inst)=> {
+                        if(Common.isUnicommUART()){
+                            return "UC2";
+                        }
+                        return "I2C0";
+                    }
                 },
                 {
                     name: "i2cSCLPin",
@@ -2486,10 +2551,10 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
+                            let pinCM = Common.getPinCMAlt(selectedPin.name,"SCL",inst.i2cPeripheral);
+                            if(pinCM==undefined){return -1};
                             /* Convert to integer with radix 10 */
-                            let pinCMAttribute = Common.getAttribute((selectedPin),("iomux_pincm"));
-                            if(pinCMAttribute==undefined){return -1};
-                            iomuxPINCM = parseInt(pinCMAttribute, 10);
+                            iomuxPINCM = parseInt(pinCM, 10);
                         }
 
                         return iomuxPINCM;
@@ -2507,7 +2572,7 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
-                            muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
+                            muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.i2cPeripheral+".SCL")[0].mode,10);
                         }
 
                         return muxSetting;
@@ -2533,10 +2598,10 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
+                            let pinCM = Common.getPinCMAlt(selectedPin.name,"SDA",inst.i2cPeripheral);
+                            if(pinCM==undefined){return -1};
                             /* Convert to integer with radix 10 */
-                            let pinCMAttribute = Common.getAttribute((selectedPin),("iomux_pincm"));
-                            if(pinCMAttribute==undefined){return -1};
-                            iomuxPINCM = parseInt(pinCMAttribute, 10);
+                            iomuxPINCM = parseInt(pinCM, 10);
                         }
 
                         return iomuxPINCM;
@@ -2554,7 +2619,7 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
-                            muxSetting = parseInt(selectedPin.muxOptions[0].mode, 10);
+                            muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.i2cPeripheral+".SDA")[0].mode,10);
                         }
 
                         return muxSetting;
@@ -3028,15 +3093,18 @@ if (deviceOptions.SUPPORT_BSL == true)
                     displayFormat: "hex",
                     default     : 0,
                     getValue    : (inst) =>  {
-                        if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-                            Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
-                        {
-                            return calculateBSLCRC_NoFlash_16Bit(inst);
-                        }
-                        else
-                        {
+                        if(deviceOptions.CRC_BITS == 32){
                             return calculateBSLCRC_32Bit(inst);
                         }
+                        else if(deviceOptions.CRC_BITS == 16){
+                            if(deviceOptions.SUPPORT_ROM_BSL){
+                                return calculateBSLCRC_16Bit(inst);
+                            }
+                            else{
+                                return calculateBSLCRC_NoFlash_16Bit(inst);
+                            }
+                        }
+                        return -1;
                     },
                 },
                 {
@@ -3045,14 +3113,13 @@ if (deviceOptions.SUPPORT_BSL == true)
                     hidden      : true,
                     default     : "",
                     getValue    : (inst) =>  {
-                        if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-                            Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+                        if (deviceOptions.SUPPORT_ROM_BSL)
                         {
-                            return createNoFlashBSLConfigString(inst);
+                            return createROMBSLString(inst);
                         }
                         else
                         {
-                            return createROMBSLString(inst);
+                            return createNoFlashBSLConfigString(inst);
                         }
                     },
                 },
@@ -3107,9 +3174,9 @@ function createUARTTXPinOptions(inst, ui)
 
     for (let i in uartTXPinData)
     {
-        let peripheralPinName = uartTXPinData[i].muxOptions[0].peripheralPin.name;
 
-        if (peripheralPinName.match(inst.uartPeripheral + ".TX"))
+        let filteredUARTPin = uartTXPinData[i].muxOptions.filter(a=>a.peripheralPin.name==inst.uartPeripheral+".TX")
+        if (filteredUARTPin.length>0)
         {
             pinOptions.push(
                 {name: uartTXPinData[i].designSignalName}
@@ -3126,9 +3193,8 @@ function createUARTRXPinOptions(inst, ui)
 
     for (let i in uartRXPinData)
     {
-        let peripheralPinName = uartRXPinData[i].muxOptions[0].peripheralPin.name;
-
-        if (peripheralPinName.includes(inst.uartPeripheral + ".RX"))
+        let filteredUARTPin = uartRXPinData[i].muxOptions.filter(a=>a.peripheralPin.name==inst.uartPeripheral+".RX")
+        if (filteredUARTPin.length>0)
         {
             pinOptions.push(
                 {name: uartRXPinData[i].designSignalName}
@@ -3145,9 +3211,8 @@ function createI2CSCLPinOptions(inst, ui)
 
     for (let i in i2cSCLPinData)
     {
-        let peripheralPinName = i2cSCLPinData[i].muxOptions[0].peripheralPin.name;
-
-        if (peripheralPinName.match(inst.i2cPeripheral + ".SCL"))
+        let filteredI2CPin = i2cSCLPinData[i].muxOptions.filter(a=>a.peripheralPin.name==inst.i2cPeripheral+".SCL")
+        if (filteredI2CPin.length>0)
         {
             pinOptions.push(
                 {name: i2cSCLPinData[i].designSignalName}
@@ -3164,9 +3229,8 @@ function createI2CSDAPinOptions(inst, ui)
 
     for (let i in i2cSDAPinData)
     {
-        let peripheralPinName = i2cSDAPinData[i].muxOptions[0].peripheralPin.name;
-
-        if (peripheralPinName.includes(inst.i2cPeripheral + ".SDA"))
+        let filteredI2CPin = i2cSDAPinData[i].muxOptions.filter(a=>a.peripheralPin.name==inst.i2cPeripheral+".SDA")
+        if (filteredI2CPin.length>0)
         {
             pinOptions.push(
                 {name: i2cSDAPinData[i].designSignalName}

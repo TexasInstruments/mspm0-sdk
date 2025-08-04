@@ -294,8 +294,8 @@ function validateSYSCTL(inst, validation)
 
     if(!inst.clockTreeEn){
     /* HFCLK Validation */
-    if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-       Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+    // Check if HFCLK exists on device
+    if(ClockSignals.includes("HFCLK")) {
         /* Validate case of disabled HFCLK */
         if(!["None"].includes(inst.usesHFCLK) && !inst.useHFCLK_Manual){
             validation.logError("Must enable HFCLK for this configuration", inst, ["useHFCLK_Manual"]);
@@ -326,7 +326,8 @@ function validateSYSCTL(inst, validation)
     }
 
     /* SYSPLL Validation */
-    if(Common.isDeviceM0G()){
+    // Check if SYSPLL exists on device
+    if(ClockSignals.includes("SYSPLL")){
         /* SYSPLL frequency range must be between [4MHz, 48MHz] */
         if (inst.SYSPLLSource == "HFCLK")
         {
@@ -445,7 +446,7 @@ function validateSYSCTL(inst, validation)
 
     /* CLK_OUT Validation */
     if(inst.enableEXCLK){
-        if(Common.isDeviceM0G()){
+        if(ClockSignals.includes("SYSPLL")){
             if(inst.EXCLKSource === "SYSPLLOUT1" && !inst.SYSPLL_CLK1En){
                 validation.logError("SYSPLL Clock 1 is not currently enabled", inst, "EXCLKSource");
                 validation.logError("CLK_OUT has selected SYSPLL Clock 1 as its source, which is currently disabled.", inst, "SYSPLL_CLK1En");
@@ -1844,8 +1845,7 @@ function getClockInterrupts(inst){
             {name: "LFOSC_GOOD", displayName: "Low Frequency Oscillator is stabilized and ready to use"},
             {name: "ANALOG_CLOCK_ERROR", displayName: "Analog clocking consistency error"},
             {name: "LFXT_GOOD", displayName: "Low Frequency Crystal is stabilized and ready to use"},
-            {name: "HFCLK_GOOD", displayName: "High Frequency Clock is stabilized and ready to use"},
-            {name: "HSCLK_GOOD", displayName: "High Speed Clock is stabilized and ready to use"},
+            {name: "FLASH_SEC", displayName: "Flash Single Error Correct"},
         ];
     }
     return [];
@@ -1888,7 +1888,7 @@ function getFCCClkSrcs(inst){
         ];
     }
     else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceM0C() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-            Common.isDeviceFamily_PARENT_MSPM0H321X()){
+            Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() || Common.isDeviceFamily_PARENT_MSPM0L210X()){
         return [
             {name: "MCLK",},
             {name: "SYSOSC",},

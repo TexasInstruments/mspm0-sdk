@@ -44,7 +44,7 @@
     let Common = system.getScript("/ti/driverlib/Common.js");
 
     let instances = MODULE.$instances;
-
+    let InternalConnections = system.getScript("ADC12_internalConnections.js");
     switch(content) {
         case "Define":
             printDefine();
@@ -83,7 +83,7 @@
 % }
 %%{
     /* ADCMEM range varies per device family */
-    const adcMemRange = (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) ? 11:3;
+    const adcMemRange = InternalConnections.ADC12_adcMemRange;
     let adcEnabledChannels = [];
     for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
         if((inst.enabledADCMems).includes(adcMemIdx)){

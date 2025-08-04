@@ -18,8 +18,8 @@ device running the `spi_peripheral` example is required.
 | SPI1 | PB8 | SPI PICO (Peripheral In, Controller Out) |
 | SPI1 | PB7 | SPI POCI (Peripheral Out, Controller In) |
 | SPI1 | PB6 | SPI CS0 (Chip Select 0) |
-| GPIOA | PA25 | Controller Ready Standard Input |
-| GPIOA | PA26 | Peripheral Ready Standard Output |
+| GPIOA | PA25 | Controller Ready Standard Output |
+| GPIOA | PA26 | Peripheral Ready Standard Input |
 
 ## BoosterPacks, Board Resources & Jumper Settings
 

@@ -12,6 +12,8 @@ let SUPPORT_PW_HASH = {
     MSPM0L111X          : true,
     MSPM0H321X          : true,
     MSPM0C1105_C1106    : true,
+    MSPM0L211X_L112X    : true,
+    MSPM0L210X          : true,
 }
 
 let BCR_CONFIG_ID = {
@@ -23,6 +25,8 @@ let BCR_CONFIG_ID = {
     MSPM0L111X          : 0x06000000,
     MSPM0H321X          : 0x05000000,
     MSPM0C1105_C1106    : 0x05000000,
+    MSPM0L211X_L112X    : 0x07000000,
+    MSPM0L210X          : 0x07000000,
 }
 
 /* Some devices support hashing user application */
@@ -35,6 +39,8 @@ let BCR_SUPPORT_USER_APP_HASH = {
     MSPM0L111X          : true,
     MSPM0H321X          : true,
     MSPM0C1105_C1106    : true,
+    MSPM0L211X_L112X    : true,
+    MSPM0L210X          : true,
 }
 
 /* Some devices have > 256kB Main Flash memory/dual bank */
@@ -47,6 +53,8 @@ let BCR_SUPPORT_DUAL_BANK = {
     MSPM0L111X          : false,
     MSPM0H321X          : false,
     MSPM0C1105_C1106    : false,
+    MSPM0L211X_L112X    : false,
+    MSPM0L210X          : false,
 }
 
 /* Some devices support CSC (custom secure code) */
@@ -59,6 +67,8 @@ let BCR_SUPPORT_CSC = {
     MSPM0L111X          : true,
     MSPM0H321X          : true,
     MSPM0C1105_C1106    : true,
+    MSPM0L211X_L112X    : true,
+    MSPM0L210X          : true,
 }
 
 /* Some devices support flash bank swap */
@@ -71,6 +81,8 @@ let BCR_SUPPORT_BANK_SWAP = {
     MSPM0L111X          : true,
     MSPM0H321X          : false,
     MSPM0C1105_C1106    : false,
+    MSPM0L211X_L112X    : false,
+    MSPM0L210X          : false,
 }
 
 /* Some devices do not have BSL support */
@@ -83,6 +95,8 @@ let SUPPORT_BSL = {
     MSPM0L111X          : true,
     MSPM0H321X          : true,
     MSPM0C1105_C1106    : true,
+    MSPM0L211X_L112X    : true,
+    MSPM0L210X          : true,
 }
 
 let BSL_CONFIG_ID = {
@@ -94,6 +108,8 @@ let BSL_CONFIG_ID = {
     MSPM0L111X          : 0x06000000,
     MSPM0H321X          : 0x05000000,
     MSPM0C1105_C1106    : 0x05000000,
+    MSPM0L211X_L112X    : 0x07000000,
+    MSPM0L210X          : 0x07000000,
 }
 
 let SUPPORT_ROM_BSL = {
@@ -106,6 +122,8 @@ let SUPPORT_ROM_BSL = {
     /* N1_48 devices have ROM code which places BSL into SRAM */
     MSPM0H321X          : false,
     MSPM0C1105_C1106    : false,
+    MSPM0L211X_L112X    : true,
+    MSPM0L210X          : true,
 }
 
 /* Default BSL UART and I2C pinCM values are different per device */
@@ -118,6 +136,8 @@ let BSL_UART_RX_PINCM = {
     MSPM0L111X          : "22",
     MSPM0H321X          : "",
     MSPM0C1105_C1106    : "",
+    MSPM0L211X_L112X    : "22",
+    MSPM0L210X          : "22",
 }
 
 let BSL_UART_TX_PINCM = {
@@ -129,6 +149,8 @@ let BSL_UART_TX_PINCM = {
     MSPM0L111X          : "21",
     MSPM0H321X          : "",
     MSPM0C1105_C1106    : "",
+    MSPM0L211X_L112X    : "21",
+    MSPM0L210X          : "21",
 }
 
 let BSL_I2C_SCL_PINCM = {
@@ -140,6 +162,8 @@ let BSL_I2C_SCL_PINCM = {
     MSPM0L111X          : "2",
     MSPM0H321X          : "",
     MSPM0C1105_C1106    : "",
+    MSPM0L211X_L112X    : "2",
+    MSPM0L210X          : "2",
 }
 
 let BSL_I2C_SDA_PINCM = {
@@ -151,6 +175,8 @@ let BSL_I2C_SDA_PINCM = {
     MSPM0L111X          : "1",
     MSPM0H321X          : "",
     MSPM0C1105_C1106    : "",
+    MSPM0L211X_L112X    : "1",
+    MSPM0L210X          : "1",
 }
 
 /* Default BSL GPIO invoke pin differs per device */
@@ -163,6 +189,8 @@ let BSL_INVOKE_PIN_PINCM = {
     MSPM0L111X          : 40,
     MSPM0H321X          : 16,
     MSPM0C1105_C1106    : 30,
+    MSPM0L211X_L112X    : 40,
+    MSPM0L210X          : 40,
 }
 
 /* Some devices support wider range of IOMUX_PINCM values */
@@ -175,6 +203,8 @@ let BSL_CFG_INVOKE_PIN_PINCM_INDEX_MASK   = {
     MSPM0L111X          : "0x3FU",
     MSPM0H321X          : "0x3FU",
     MSPM0C1105_C1106    : "0x3FU",
+    MSPM0L211X_L112X    : "0x3FU",
+    MSPM0L210X          : "0x3FU",
 }
 
 /* Some devices support more than 2 GPIO ports */
@@ -187,7 +217,8 @@ let BSL_CFG_INVOKE_PIN_GPIO_PORT_NUM_MASK    = {
     MSPM0L111X          : "0x20U",
     MSPM0H321X          : "0x20U",
     MSPM0C1105_C1106    : "0x20U",
-
+    MSPM0L211X_L112X    : "0x20U",
+    MSPM0L210X          : "0x20U",
 }
 
 /* Number of words for BSL Password */
@@ -200,6 +231,8 @@ let BSL_PASSWORD_LEN    = {
     MSPM0L111X          : 8,
     MSPM0H321X          : 8,
     MSPM0C1105_C1106    : 8,
+    MSPM0L211X_L112X    : 8,
+    MSPM0L210X          : 8,
 }
 
 /* Some devices do not have flash plugin support */
@@ -212,6 +245,8 @@ let BSL_SUPPORT_FLASH_PLUGIN = {
     MSPM0L111X          : true,
     MSPM0H321X          : false,
     MSPM0C1105_C1106    : false,
+    MSPM0L211X_L112X    : true,
+    MSPM0L210X          : true,
 }
 
 /* Some devices have UART baud rate support */
@@ -224,6 +259,8 @@ let BSL_SUPPORT_UART_BAUD = {
     MSPM0L111X          : true,
     MSPM0H321X          : true,
     MSPM0C1105_C1106    : true,
+    MSPM0L211X_L112X    : true,
+    MSPM0L210X          : true,
 }
 
 /* Some devices support disabling NRST */
@@ -240,6 +277,21 @@ let BSL_DISABLE_NRST = {
      */
     MSPM0H321X          : false,
     MSPM0C1105_C1106    : false,
+    MSPM0L211X_L112X    : true,
+    MSPM0L210X          : true,
+}
+
+let CRC_BITS = {
+    MSPM0G1X0X_G3X0X    : 32,
+    MSPM0L11XX_L13XX    : 32,
+    MSPM0L122X_L222X    : 32,
+    MSPM0C110X          : 32,
+    MSPM0GX51X          : 32,
+    MSPM0L111X          : 32,
+    MSPM0H321X          : 16,
+    MSPM0C1105_C1106    : 16,
+    MSPM0L211X_L112X    : 16,
+    MSPM0L210X          : 16,
 }
 
 let index = Common.getDeviceFamily();
@@ -264,4 +316,5 @@ exports = {
     BSL_SUPPORT_FLASH_PLUGIN                : BSL_SUPPORT_FLASH_PLUGIN[index],
     BSL_SUPPORT_UART_BAUD                   : BSL_SUPPORT_UART_BAUD[index],
     BSL_DISABLE_NRST                        : BSL_DISABLE_NRST[index],
+    CRC_BITS                                : CRC_BITS[index],
 }

@@ -67,6 +67,9 @@ let blankingSources = {
             channel: "1",
         },
     },
+    MSPM0L111X: {
+        // N/A: COMP not available for this device
+    },
     MSPM0C110X: {
         // N/A: COMP not available for this device
     },
@@ -138,6 +141,35 @@ let blankingSources = {
             peripheral: "TIMG7",
             channel: "1",
         },
+    },
+    MSPM0L211X_L112X: {
+        1: {
+            peripheral: "TIMA0",
+            channel: "2",
+        },
+        2: {
+            peripheral: "TIMA0",
+            channel: "3",
+        },
+        3: {
+            peripheral: "TIMA0",
+            channel: "1",
+        },
+        4: {
+            peripheral: "TIMG0",
+            channel: "1",
+        },
+        5: {
+            peripheral: "TIMG1",
+            channel: "1",
+        },
+        6: {
+            peripheral: "TIMG2",
+            channel: "1",
+        },
+    },
+    MSPM0L210X: {
+        // N/A: COMP not available for this device
     },
 }
 

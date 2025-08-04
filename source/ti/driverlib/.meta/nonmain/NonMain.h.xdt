@@ -286,7 +286,9 @@ typedef enum {
         Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
         Common.isDeviceFamily_PARENT_MSPM0L111X() ||
         Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()||
+        Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+        Common.isDeviceFamily_PARENT_MSPM0L210X()){
         BCR_CFG_NON_MAIN_STATIC_PROT_EN = "0xFFFFU";
     }
 %%}
@@ -299,7 +301,9 @@ typedef enum {
         Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
         Common.isDeviceFamily_PARENT_MSPM0L111X() ||
         Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
+        Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+        Common.isDeviceFamily_PARENT_MSPM0L210X()){
         BCR_CFG_NON_MAIN_STATIC_PROT_DIS = "0xAABBU";
     }
 %%}

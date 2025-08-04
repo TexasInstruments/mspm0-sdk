@@ -41,7 +41,10 @@ let Common = system.getScript("/ti/driverlib/Common.js");
 
 let MAX_NUM_EVENT_CHANNELS;
 let SPLITTER_EVENT_CHANNELS = [];
-if (Common.isDeviceM0L() || Common.isDeviceFamily_PARENT_MSPM0C110X())
+if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()
+    || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()
+    || Common.isDeviceFamily_PARENT_MSPM0L111X()
+    || Common.isDeviceFamily_PARENT_MSPM0C110X())
 {
     /*
      * M0L devices support 4 event channels (0, 1, 2, and 3). Event channel
@@ -50,7 +53,9 @@ if (Common.isDeviceM0L() || Common.isDeviceFamily_PARENT_MSPM0C110X())
     MAX_NUM_EVENT_CHANNELS = 4;
     SPLITTER_EVENT_CHANNELS = [3];
 }
-else if(Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() || Common.isDeviceFamily_PARENT_MSPM0H321X()) {
+else if(Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()
+    || Common.isDeviceFamily_PARENT_MSPM0H321X()
+    || Common.isDeviceFamily_PARENT_MSPM0L210X()) {
     MAX_NUM_EVENT_CHANNELS = 8;
     SPLITTER_EVENT_CHANNELS = [6, 7];
 }

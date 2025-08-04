@@ -42,7 +42,7 @@ VREF.basicMode                     = "DL_VREF_ENABLE_DISABLE";
 VREF.profile                       = "EXT_2_0_V";
 VREF.basicVrefPins                 = "VREF+-";
 VREF.peripheral.$assign            = "VREF";
-VREF.peripheral.vrefPosPin.$assign = "PA22";
+VREF.peripheral.vrefPosPin.$assign = "PA23";
 
 SYSCTL.clockTreeEn = true;
 SYSCTL.forceDefaultClkConfig = true;

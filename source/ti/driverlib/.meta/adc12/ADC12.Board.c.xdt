@@ -44,7 +44,9 @@
     if (instances.length == 0) return;
 
     /* ADCMEM range varies per device family */
-    const adcMemRange = (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) ? 11:3;
+    let InternalConnections = system.getScript("ADC12_internalConnections.js");
+    const adcMemRange = InternalConnections.ADC12_adcMemRange;
+
 
     switch(content){
         case "Call":

@@ -41,6 +41,8 @@
 
     /* shorthand names for some common references in template below */
     let inst = CRC.$static;
+    let updatedInstanceName = system.getScript("/ti/driverlib/crc/CRC_options.js").updatedInstanceName;
+    let CRCInstance = updatedInstanceName?"CRC0":"CRC";
     if (inst.length == 0) return;
 
 
@@ -72,10 +74,10 @@
 % }
 %
 % function printReset(){
-    DL_CRC_reset(CRC);
+    DL_CRC_reset(`CRCInstance`);
 % }
 % function printPower(){
-    DL_CRC_enablePower(CRC);
+    DL_CRC_enablePower(`CRCInstance`);
 % }
 %
 % function printGPIO(){
@@ -89,13 +91,13 @@ SYSCONFIG_WEAK void SYSCFG_DL_CRC_init(void)
 {
 % let byteswapVar;
 % byteswapVar = (inst.byteswap) ? "ENABLED" : "DISABLED";
-    DL_CRC_init(CRC, DL_CRC_`inst.polynomial`, DL_CRC_BIT_`inst.bitReverse`,
+    DL_CRC_init(`CRCInstance`, DL_CRC_`inst.polynomial`, DL_CRC_BIT_`inst.bitReverse`,
         DL_CRC_INPUT_ENDIANESS_`inst.endianness`, DL_CRC_OUTPUT_BYTESWAP_`byteswapVar`);
 
 % if(inst.polynomial === "32_POLYNOMIAL"){
-    DL_CRC_setSeed32(CRC, CRC_SEED);
+    DL_CRC_setSeed32(`CRCInstance`, CRC_SEED);
 %}else{
-    DL_CRC_setSeed16(CRC, CRC_SEED);
+    DL_CRC_setSeed16(`CRCInstance`, CRC_SEED);
 %}
 }
 %

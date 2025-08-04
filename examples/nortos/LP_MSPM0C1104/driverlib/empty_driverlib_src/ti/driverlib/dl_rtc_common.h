@@ -91,7 +91,7 @@ extern "C" {
  */
 #define DL_RTC_COMMON_INTERRUPT_PRESCALER1               (RTC_CPU_INT_IMASK_RT1PS_SET)
 
-#ifdef __MSPM0_HAS_RTC_A__
+#ifdef __MSPM0_HAS_RTC_B__
 /**
  * @brief RTC Common prescaler 2 interrupt
  */
@@ -141,7 +141,7 @@ extern "C" {
  */
 #define DL_RTC_COMMON_EVENT_PRESCALER1                   (RTC_GEN_EVENT_IMASK_RT1PS_SET)
 
-#ifdef __MSPM0_HAS_RTC_A__
+#ifdef __MSPM0_HAS_RTC_B__
 /**
  * @brief RTC Common prescaler 2 event
  */
@@ -2405,7 +2405,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2DayOfMonthBinary(
 }
 
 /**
- *  @brief      Set prescale interrupt interval for timer 0 and 1
+ *  @brief      Set prescale interrupt interval for timer 0, 1, and 2.
  *
  *  Set prescale timer interrupt interval to DL_RTC_COMMON_PRESCALE_NONE to keep the
  *  timer disabled.

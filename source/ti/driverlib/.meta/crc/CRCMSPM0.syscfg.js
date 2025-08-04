@@ -39,7 +39,7 @@
 
 /* get Common /ti/driverlib utility functions */
 let Common = system.getScript("/ti/driverlib/Common.js");
-
+let polynomial32Support = system.getScript("/ti/driverlib/crc/CRC_options.js").polynomial32Support;
 /************************* Profiles functions *******************************/
 const profilesCRC = [
     {
@@ -96,7 +96,7 @@ const profilesCRC = [
  * MSPM0C / MSPM0H only supports 16-bit polynomial
  */
 let polyOptions = [];
-if(Common.isDeviceM0G() || Common.isDeviceM0L()){
+if(polynomial32Support){
     polyOptions.push({name: "32_POLYNOMIAL", displayName: "CRC-32 ISO-3309"})
 }
 polyOptions = polyOptions.concat([
@@ -256,7 +256,7 @@ The CRC Polynomial can be configured to used the following options:\n
     options     : polyOptions,
     onChange    : onChangeCfgPoly,
 };
-if(Common.isDeviceM0C() || Common.isDeviceM0H()){
+if(!polynomial32Support){
     polyConfig = {
         name        : "polynomial",
         displayName : "CRC Polynomial",
@@ -269,7 +269,7 @@ if(Common.isDeviceM0C() || Common.isDeviceM0H()){
         default     : "16_POLYNOMIAL",
         options     : polyOptions,
         onChange    : onChangeCfgPoly,
-        readOnly    : Common.isDeviceM0C() || Common.isDeviceM0H(),
+        readOnly    : !polynomial32Support,
     };
 }
 

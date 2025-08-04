@@ -1,6 +1,123 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 let Options = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0options.js");
 
+let index = Common.getDeviceFamily();
+const commonClockSignals = [
+    "SYSOSC",
+    "MCLK",
+    "ULPCLK",
+    "CPUCLK",
+    "LFCLK",
+    "MFCLK",
+    "CLK_OUT",
+    "ADCCLK_0",
+];
+
+/* Eventually would be replaced by internal device data */
+const ClockSignals = {
+    "MSPM0G1X0X_G3X0X": [
+        "MFPCLK",
+        "ADCCLK_1",
+        "CANCLK",
+        "RTCCLK",
+        "HFCLK",
+        "HFXT",
+        "LFXT",
+        "HSCLK",
+        "SYSPLL",
+        "UDIV",
+        "ROSC",
+        ... commonClockSignals,
+    ],
+    "MSPM0L11XX_L13XX": [
+        "MFPCLK",
+        "ROSC",
+        ... commonClockSignals,
+    ],
+    "MSPM0L122X_L222X": [
+        "MFPCLK",
+        "HFCLK",
+        "HFXT",
+        "HSCLK",
+        "LFXT",
+        "ROSC",
+        ... commonClockSignals,
+    ],
+    "MSPM0C110X": [
+        "HFCLK",
+        "HSCLK",
+        ... commonClockSignals,
+    ],
+    "MSPM0GX51X": [
+        "MFPCLK",
+        "ADCCLK_1",
+        "CANCLK",
+        "RTCCLK",
+        "HFCLK",
+        "HFXT",
+        "LFXT",
+        "HSCLK",
+        "SYSPLL",
+        "UDIV",
+        "ROSC",
+        ... commonClockSignals,
+    ],
+    "MSPM0L111X": [
+        "MFPCLK",
+        "LFXT",
+        "ROSC",
+        "HFCLK",
+        "HSCLK",
+        ... commonClockSignals,
+    ],
+    "MSPM0H321X": [
+        "MFPCLK",
+        "HFCLK",
+        "HFXT",
+        "HSCLK",
+        "LFXT",
+        ... commonClockSignals,
+    ],
+    "MSPM0C1105_C1106": [
+        "MFPCLK",
+        "HFCLK",
+        "HFXT",
+        "HSCLK",
+        "LFXT",
+        ... commonClockSignals,
+    ],
+    "MSPM0G511X": [
+        "MFPCLK",
+        "ADCCLK_1",
+        "CANCLK",
+        "RTCCLK",
+        "HFCLK",
+        "HFXT",
+        "LFXT",
+        "HSCLK",
+        "SYSPLL",
+        "UDIV",
+        "ROSC",
+        ... commonClockSignals,
+    ],
+    "MSPM0L211X_L112X": [
+        "MFPCLK",
+        "HFCLK",
+        "HFXT",
+        "HSCLK",
+        "LFXT",
+        ... commonClockSignals,
+    ],
+    "MSPM0L210X": [
+        "MFPCLK",
+        "HFCLK",
+        "HFXT",
+        "HSCLK",
+        "LFXT",
+        ... commonClockSignals,
+    ],
+};
+
 const clkValidationSuperset = {
 
 }
@@ -100,7 +217,7 @@ const clkConfigSuperset = {
             default: Options.SYSOSCFreq[0].name,
             options: Options.SYSOSCFreq
         },
-        ... Common.isDeviceM0C() ? [] : autoTrimSYSOSCConfig,
+        ... Options.AutoTrimAvailable ? autoTrimSYSOSCConfig:[],
         // DL_SYSCTL_enableSYSOSCFCL [!]
         {
             name: "enableSYSOSCFCL",
@@ -143,9 +260,8 @@ By default, this configuration enables the internal resistor FCL mode for suppor
                     ui.LFCLK_Freq_IN.hidden = true;
                     inst.LFCLK_Freq_IN = 32768;
                 }
-
-                if(Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
-                   Common.isDeviceFamily_PARENT_MSPM0L111X() || Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+                // Check that LFXT is an option on device
+                if(ClockSignals[index].includes("LFXT")){
                     if(inst.LFCLKSource == "LFXT"){
                         inst.validateClkStatus = true;
                         ui.validateClkStatus.readOnly = true;
@@ -320,8 +436,8 @@ such as DAC.
             hidden      : true,
             default     : false,
             getValue    : (inst) => {
-                /* HFCLK is not available for MSPM0L11XX_L13XX device family */
-                if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || !inst.useHFCLK_Manual){
+                /* Check if HFCLK is avalable for device or if its manually disabled */
+                if((!ClockSignals[index].includes("HFCLK")) || !inst.useHFCLK_Manual){
                     return false;
                 }
                 let inUse = false;
@@ -362,8 +478,8 @@ such as DAC.
             hidden      : false,
             default     : "",
             getValue    : (inst) => {
-                /* HFCLK is not available for MSPM0L11XX_L13XX device family */
-                if(Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || inst.clockTreeEn){
+                /* Check if HFCLK is not available or if controlled by ClockTree */
+                if((!ClockSignals[index].includes("HFCLK")) || inst.clockTreeEn){
                     return "None";
                 }
                 let inUse = "";
@@ -447,7 +563,8 @@ such as DAC.
             displayName: "CANCLK Source",
             description: "Specifies the clock source of the CAN Clock",
             default: "None",
-            hidden: (Common.isDeviceM0G() === false),
+            // Check if CANCLK exists on device
+            hidden: (!ClockSignals[index].includes("CANCLK")),
             options: [
                 { name: "None" },
                 { name: "SYSPLLCLK1" },
@@ -493,8 +610,8 @@ such as DAC.
             hidden      : true,
             default     : false,
             getValue    : (inst) => {
-                /* SYSPLL is not available foor M0Lx device family */
-                if(Common.isDeviceM0L() || Common.isDeviceM0C() || Common.isDeviceM0H() || inst.clockTreeEn){
+                // Check if SYSPLL exists on device or is controlled by ClockTree
+                if((!ClockSignals[index].includes("SYSPLL")) || inst.clockTreeEn){
                     return false;
                 }
                 if((inst.MCLKSource === "HSCLK")&&
@@ -520,8 +637,8 @@ such as DAC.
             hidden      : false,
             default     : "",
             getValue    : (inst) => {
-                /* SYSPLL is not available foor M0Lx device family */
-                if(Common.isDeviceM0L() || Common.isDeviceM0C() || Common.isDeviceM0H() || inst.clockTreeEn){
+                // Check if SYSPLL exists on device or is controlled by ClockTree
+                if((!ClockSignals[index].includes("SYSPLL")) || inst.clockTreeEn){
                     return "";
                 }
                 let inUse = "";
@@ -1190,111 +1307,6 @@ const clkFreqSuperset = {
         { name: "SYSOSC_Freq_unit", displayName: "SYSOSC", default: "32 MHz", readOnly: true, getValue: (inst)=>{return (Common.getUnitPrefix(inst.SYSOSC_FreqOut)).str+"Hz"}},
     ]
 };
-
-const commonClockSignals = [
-    "SYSOSC",
-    "MCLK",
-    "ULPCLK",
-    "CPUCLK",
-    "LFCLK",
-    "MFCLK",
-    "CLK_OUT",
-    "ADCCLK_0",
-];
-
-/* Eventually would be replaced by internal device data */
-const ClockSignals = {
-    "MSPM0G1X0X_G3X0X": [
-        "MFPCLK",
-        "ADCCLK_1",
-        "CANCLK",
-        "RTCCLK",
-        "HFCLK",
-        "HFXT",
-        "LFXT",
-        "HSCLK",
-        "SYSPLL",
-        "UDIV",
-        "ROSC",
-        ... commonClockSignals,
-    ],
-    "MSPM0L11XX_L13XX": [
-        "MFPCLK",
-        "ROSC",
-        ... commonClockSignals,
-    ],
-    "MSPM0L122X_L222X": [
-        "MFPCLK",
-        "HFCLK",
-        "HFXT",
-        "HSCLK",
-        "LFXT",
-        "ROSC",
-        ... commonClockSignals,
-    ],
-    "MSPM0C110X": [
-        "HFCLK",
-        "HSCLK",
-        ... commonClockSignals,
-    ],
-    "MSPM0GX51X": [
-        "MFPCLK",
-        "ADCCLK_1",
-        "CANCLK",
-        "RTCCLK",
-        "HFCLK",
-        "HFXT",
-        "LFXT",
-        "HSCLK",
-        "SYSPLL",
-        "UDIV",
-        "ROSC",
-        ... commonClockSignals,
-    ],
-    "MSPM0L111X": [
-        "MFPCLK",
-        "LFXT",
-        "ROSC",
-        "HFCLK",
-        "HSCLK",
-        ... commonClockSignals,
-    ],
-    "MSPM0H321X": [
-        "MFPCLK",
-        "HFCLK",
-        "HFXT",
-        "HSCLK",
-        "LFXT",
-        ... commonClockSignals,
-    ],
-    "MSPM0C1105_C1106": [
-        "MFPCLK",
-        "HFCLK",
-        "HFXT",
-        "HSCLK",
-        "LFXT",
-        ... commonClockSignals,
-    ],
-    "MSPM0G511X": [
-        "MFPCLK",
-        "ADCCLK_1",
-        "CANCLK",
-        "RTCCLK",
-        "HFCLK",
-        "HFXT",
-        "LFXT",
-        "HSCLK",
-        "SYSPLL",
-        "UDIV",
-        "ROSC",
-        ... commonClockSignals,
-    ],
-};
-
-
-let index = Common.getDeviceFamily();
-
-
 
 
 exports = {

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L111X Driver Library
-   &#160;<span id="projectnumber">2.05.00.05</span>
+   &#160;<span id="projectnumber">2.05.01.00</span>
    </div>
   </td>
  </tr>
@@ -138,6 +138,14 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga1f5aa0e83f3e879b4b63632a0e2c9121">DL_SYSCTL_INTERRUPT_ANALOG_CLOCK_ERROR</a>&#160;&#160;&#160;(SYSCTL_IMASK_ANACLKERR_ENABLE)</td></tr>
 <tr class="memdesc:ga1f5aa0e83f3e879b4b63632a0e2c9121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analog clocking consistency error. <br /></td></tr>
 <tr class="separator:ga1f5aa0e83f3e879b4b63632a0e2c9121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga86e7d59572193f4c2fe888a66ee4c79a"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga86e7d59572193f4c2fe888a66ee4c79a">DL_SYSCTL_INTERRUPT_FLASH_SEC</a>&#160;&#160;&#160;(SYSCTL_IMASK_FLASHSEC_ENABLE)</td></tr>
+<tr class="memdesc:ga86e7d59572193f4c2fe888a66ee4c79a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flash Single Error Correct. <br /></td></tr>
+<tr class="separator:ga86e7d59572193f4c2fe888a66ee4c79a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2f128257c768a3f51f56504732dff903"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga2f128257c768a3f51f56504732dff903">DL_SYSCTL_INTERRUPT_LFXT_GOOD</a>&#160;&#160;&#160;(SYSCTL_IMASK_LFXTGOOD_ENABLE)</td></tr>
+<tr class="memdesc:ga2f128257c768a3f51f56504732dff903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Low Frequency Crystal is stabilized and ready to use. <br /></td></tr>
+<tr class="separator:ga2f128257c768a3f51f56504732dff903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf184273a789c3b048e7b6ebec8c3ea16"><td class="memItemLeft" align="right" valign="top">
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___s_y_s_c_t_l___n_m_i.html#gaf184273a789c3b048e7b6ebec8c3ea16">DL_SYSCTL_NMI_WWDT0_FAULT</a>&#160;&#160;&#160;(SYSCTL_NMIISET_WWDT0_SET)</td></tr>
 <tr class="memdesc:gaf184273a789c3b048e7b6ebec8c3ea16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-maskable interrupt for Watchdog 0 Fault. <br /></td></tr>
@@ -273,9 +281,15 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga11f6187e683dcf2a0892c4ca5a818156"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga11f6187e683dcf2a0892c4ca5a818156">DL_SYSCTL_IIDX</a> { <br />
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156a29c692e503546222ed7cb10af4f8eb3f">DL_SYSCTL_IIDX_NO_INT</a> = SYSCTL_IIDX_STAT_NO_INTR, 
+<br />
 &#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156a2f3e40fca586aecb1441f01a6754528b">DL_SYSCTL_IIDX_LFOSC_GOOD</a> = SYSCTL_IIDX_STAT_LFOSCGOOD, 
 <br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156af66353af425d4fdab66d1b89d4d0080c">DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR</a> = SYSCTL_IIDX_STAT_ANACLKERR
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156af66353af425d4fdab66d1b89d4d0080c">DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR</a> = SYSCTL_IIDX_STAT_ANACLKERR, 
+<br />
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156ab9b42fe9e21276a511cfa8762c3b5521">DL_SYSCTL_IIDX_FLASH_SEC</a> = SYSCTL_IIDX_STAT_FLASHSEC, 
+<br />
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156aaed008cb41818421b22cf98b1eb987cd">DL_SYSCTL_IIDX_LFXT_GOOD</a> = SYSCTL_IIDX_STAT_LFXTGOOD
 <br />
  }</td></tr>
 <tr class="separator:ga11f6187e683dcf2a0892c4ca5a818156"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -62,11 +62,11 @@ main_freertos.obj: ../../main_freertos.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_Display.obj: /home/developer/.cache/bazel/_bazel_developer/2ca1f4ebdc59348ffdc31d97a51a98d5/sandbox/processwrapper-sandbox/4754/execroot/__main__/source/ti/display/Display.c
+ti_display_Display.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/dd237d46d8fee3fb72298676893138fd/sandbox/linux-sandbox/328/execroot/__main__/source/ti/display/Display.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 
-ti_display_DisplayUart.obj: /home/developer/.cache/bazel/_bazel_developer/2ca1f4ebdc59348ffdc31d97a51a98d5/sandbox/processwrapper-sandbox/4754/execroot/__main__/source/ti/display/DisplayUart.c
+ti_display_DisplayUart.obj: /home/a0273011/.cache/bazel/_bazel_a0273011/dd237d46d8fee3fb72298676893138fd/sandbox/linux-sandbox/328/execroot/__main__/source/ti/display/DisplayUart.c
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) -c $< -o $@
 

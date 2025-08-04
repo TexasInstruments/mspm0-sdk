@@ -44,7 +44,7 @@ let InternalConnections = system.getScript("ADC12_internalConnections.js")
 let { ClockSignals } = system.getScript("/ti/driverlib/sysctl/SYSCTLMSPM0Clocks.js");
 
 /* ADCMEM range varies per device family */
-const adcMemRange = (Common.isDeviceM0G() || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()) ? 11:3;
+const adcMemRange = InternalConnections.ADC12_adcMemRange;
 
 
 /*

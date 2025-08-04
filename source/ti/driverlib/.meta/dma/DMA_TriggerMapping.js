@@ -123,7 +123,29 @@ let DMA_TRIGGERS = {
         "I2S0"   : ["DMA_I2S0_RX_TRIG","DMA_I2S0_TX_TRIG"],
         "USBFS0": ["DMA_USBFS0_EVT_0_TRIG","DMA_USBFS0_EVT_1_TRIG","DMA_USBFS0_EVT_2_TRIG","DMA_USBFS0_EVT_3_TRIG","DMA_USBFS0_EVT_4_TRIG","DMA_USBFS0_EVT_5_TRIG","DMA_USBFS0_EVT_6_TRIG","DMA_USBFS0_EVT_7_TRIG"],
         "ADC0"  : ["DMA_ADC0_EVT_GEN_BD_TRIG"],
-    }
+    },
+    MSPM0L211X_L112X: {
+        "SW"    : ["DMA_SOFTWARE_TRIG"],
+        "FSUB_0": ["DMA_GENERIC_SUB0_TRIG"],
+        "FSUB_1": ["DMA_GENERIC_SUB1_TRIG"],
+        "AES"   : ["DMA_AESADV_AES_0_TRIG", "DMA_AESADV_AES_1_TRIG"],
+        "ADC0"  : ["DMA_ADC0_EVT_GEN_BD_TRIG"],
+        "UC0": ["DMA_UC0_RX_BD_TRIG","DMA_UC0_TX_BD_TRIG"],
+        "UC1": ["DMA_UC1_RX_BD_TRIG","DMA_UC1_TX_BD_TRIG"],
+        "UC2": ["DMA_UC2_RX_BD_TRIG","DMA_UC2_TX_BD_TRIG"],
+        "UC3": ["DMA_UC3_RX_BD_TRIG","DMA_UC3_TX_BD_TRIG"],
+        "UC4": ["DMA_UC4_RX_BD_TRIG","DMA_UC4_TX_BD_TRIG"],
+    },
+    MSPM0L210X: {
+        "SW"    : ["DMA_SOFTWARE_TRIG"],
+        "FSUB_0": ["DMA_GENERIC_SUB0_TRIG"],
+        "FSUB_1": ["DMA_GENERIC_SUB1_TRIG"],
+        "ADC0"  : ["DMA_ADC0_EVT_GEN_BD_TRIG"],
+        "UC0": ["DMA_UC0_RX_BD_TRIG","DMA_UC0_TX_BD_TRIG"],
+        "UC1": ["DMA_UC1_RX_BD_TRIG","DMA_UC1_TX_BD_TRIG"],
+        "UC2": ["DMA_UC2_RX_BD_TRIG","DMA_UC2_TX_BD_TRIG"],
+        "UC3": ["DMA_UC3_RX_BD_TRIG","DMA_UC3_TX_BD_TRIG"],
+    },
 };
 
 let index = Common.getDeviceFamily();

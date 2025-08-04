@@ -456,7 +456,7 @@ typedef enum {
     DL_CRCP_CRCPOLY_POLYNOMIAL_16_CDMA2000 = 0x0000C867,
     /*! CRCP commonly used polynomial CRC16_MODBUS. To match online output,
      *  seed value must be set to 0xFFFF and bit order reversed */
-    DL_CRCP_CRCPOLY_POLYNOMIAL_16_MODBUS = 0x00001DCF,
+    DL_CRCP_CRCPOLY_POLYNOMIAL_16_MODBUS = 0x00008005,
 
 } DL_CRCP_CRCPOLY_POLYNOMIAL;
 
@@ -500,7 +500,7 @@ typedef enum {
      *  polynomial must be set to 0x0000C867 */
     DL_CRCP_CRCSEED_SEED_16_CDMA2000 = 0xFFFF,
     /*! CRCP commonly used polynomial CRC16_MODBUS. To match online output,
-     *  polynomial must be set to 0x00001DCF and bit order reversed */
+     *  polynomial must be set to 0x00008005 and bit order reversed */
     DL_CRCP_CRCSEED_SEED_16_MODBUS = 0xFFFF,
 
 } DL_CRCP_CRCSEED_SEED;

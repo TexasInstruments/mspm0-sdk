@@ -32,7 +32,7 @@
 
 /*
  *  ============ ti_drivers_config.c =============
- *  Configured MSPM0 DriverLib module definitions
+ *  Configured TI-Drivers module definitions
  */
 
 #include "ti_drivers_config.h"
@@ -269,7 +269,7 @@ const SPIMSPM0_HWAttrs SPIMSPM0_hwAttrs[CONFIG_SPI_COUNT] = {
 
         .txFifoThreshold = DL_SPI_TX_FIFO_LEVEL_ONE_FRAME,
         .rxFifoThreshold = DL_SPI_RX_FIFO_LEVEL_ONE_FRAME,
-        .cssel           = 0,
+        .cssel           = 1, /* CS1 */
         .noOfDMAChannels = 2,
     },
 };

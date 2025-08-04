@@ -65,6 +65,8 @@ let systemModulesList = [
  *  - MSPM0L111X
  *  - MSPM0H321X
  *  - MSPM0C1105_C1106
+ *  - MSPM0L211X_L112X
+ *  - MSPM0L210X
  */
 if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() ||
     Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() ||
@@ -73,7 +75,9 @@ if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() ||
     Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
     Common.isDeviceFamily_PARENT_MSPM0L111X() ||
     Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-    Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+    Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
+    Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+    Common.isDeviceFamily_PARENT_MSPM0L210X()){
 systemModulesList.push(
     "/ti/driverlib/NONMAIN",
 );
@@ -112,7 +116,8 @@ if(/LFSS/.test(peripherals) && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
 /* System: GX51X, L111X, and H321X, and G511X have an RTC_B within the LFSS Peripheral */
 if(/LFSS/.test(peripherals) && (Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
                                 Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
-                                Common.isDeviceFamily_PARENT_MSPM0G511X())) {
+                                Common.isDeviceFamily_PARENT_MSPM0G511X() || Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0L210X())) {
     systemModulesList.push(
         "/ti/driverlib/RTCB",
     );

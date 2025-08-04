@@ -4801,6 +4801,8 @@
       <topic label="DL_SYSCTL_INTERRUPT" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html">
         <topic label="DL_SYSCTL_INTERRUPT_LFOSC_GOOD" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga885d09f7b83cd9056dff79f004d67e2f"/>
         <topic label="DL_SYSCTL_INTERRUPT_ANALOG_CLOCK_ERROR" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga1f5aa0e83f3e879b4b63632a0e2c9121"/>
+        <topic label="DL_SYSCTL_INTERRUPT_FLASH_SEC" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga86e7d59572193f4c2fe888a66ee4c79a"/>
+        <topic label="DL_SYSCTL_INTERRUPT_LFXT_GOOD" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga2f128257c768a3f51f56504732dff903"/>
       </topic>
       <topic label="DL_SYSCTL_NMI" href="group___d_l___s_y_s_c_t_l___n_m_i.html">
         <topic label="DL_SYSCTL_NMI_WWDT0_FAULT" href="group___d_l___s_y_s_c_t_l___n_m_i.html#gaf184273a789c3b048e7b6ebec8c3ea16"/>
@@ -4854,8 +4856,11 @@
       </topic>
       <topic label="DL_SYSCTL_setMCLKSource" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga4da4b81ab27057df56b8933baa88f495"/>
       <topic label="DL_SYSCTL_IIDX" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga11f6187e683dcf2a0892c4ca5a818156">
+        <topic label="DL_SYSCTL_IIDX_NO_INT" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156a29c692e503546222ed7cb10af4f8eb3f"/>
         <topic label="DL_SYSCTL_IIDX_LFOSC_GOOD" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156a2f3e40fca586aecb1441f01a6754528b"/>
         <topic label="DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156af66353af425d4fdab66d1b89d4d0080c"/>
+        <topic label="DL_SYSCTL_IIDX_FLASH_SEC" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156ab9b42fe9e21276a511cfa8762c3b5521"/>
+        <topic label="DL_SYSCTL_IIDX_LFXT_GOOD" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156aaed008cb41818421b22cf98b1eb987cd"/>
       </topic>
       <topic label="DL_SYSCTL_NMI_IIDX" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga6bcbb65890c723d59c075c19f49419e6">
         <topic label="DL_SYSCTL_NMI_IIDX_FLASH_DED" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga6bcbb65890c723d59c075c19f49419e6a1d7717f94056d2806267e23a56c49a0f"/>
@@ -7728,6 +7733,8 @@
         <topic label="DL_SYSCTL_RESET_BOOTLOADER_ENTRY" href="group___d_l___s_y_s_c_t_l___r_e_s_e_t.html#gaf171e7ebdf3e748ebf23e6460d8640e0"/>
         <topic label="DL_SYSCTL_INTERRUPT_LFOSC_GOOD" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga885d09f7b83cd9056dff79f004d67e2f"/>
         <topic label="DL_SYSCTL_INTERRUPT_ANALOG_CLOCK_ERROR" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga1f5aa0e83f3e879b4b63632a0e2c9121"/>
+        <topic label="DL_SYSCTL_INTERRUPT_FLASH_SEC" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga86e7d59572193f4c2fe888a66ee4c79a"/>
+        <topic label="DL_SYSCTL_INTERRUPT_LFXT_GOOD" href="group___d_l___s_y_s_c_t_l___i_n_t_e_r_r_u_p_t.html#ga2f128257c768a3f51f56504732dff903"/>
         <topic label="DL_SYSCTL_NMI_WWDT0_FAULT" href="group___d_l___s_y_s_c_t_l___n_m_i.html#gaf184273a789c3b048e7b6ebec8c3ea16"/>
         <topic label="DL_SYSCTL_NMI_BORLVL" href="group___d_l___s_y_s_c_t_l___n_m_i.html#ga30d85a6526bba772c142bc149262dace"/>
         <topic label="DL_SYSCTL_CLK_STATUS_HFCLK_CONFIG_BLOCKED" href="group___d_l___s_y_s_c_t_l___c_l_k___s_t_a_t_u_s.html#ga85a7dbcb7ca5b2b95d78ebbd6c4944d5"/>
@@ -7762,8 +7769,11 @@
         <topic label="DL_SYSCTL_STATUS_BOR_LEVEL3" href="group___d_l___s_y_s_c_t_l___s_t_a_t_u_s.html#ga91afef8220f7061106708e44bcc757bf"/>
         <topic label="DL_SYSCTL_setMCLKSource" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga4da4b81ab27057df56b8933baa88f495"/>
         <topic label="DL_SYSCTL_IIDX" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga11f6187e683dcf2a0892c4ca5a818156">
+          <topic label="DL_SYSCTL_IIDX_NO_INT" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156a29c692e503546222ed7cb10af4f8eb3f"/>
           <topic label="DL_SYSCTL_IIDX_LFOSC_GOOD" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156a2f3e40fca586aecb1441f01a6754528b"/>
           <topic label="DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156af66353af425d4fdab66d1b89d4d0080c"/>
+          <topic label="DL_SYSCTL_IIDX_FLASH_SEC" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156ab9b42fe9e21276a511cfa8762c3b5521"/>
+          <topic label="DL_SYSCTL_IIDX_LFXT_GOOD" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156aaed008cb41818421b22cf98b1eb987cd"/>
         </topic>
         <topic label="DL_SYSCTL_NMI_IIDX" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga6bcbb65890c723d59c075c19f49419e6">
           <topic label="DL_SYSCTL_NMI_IIDX_FLASH_DED" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga6bcbb65890c723d59c075c19f49419e6a1d7717f94056d2806267e23a56c49a0f"/>

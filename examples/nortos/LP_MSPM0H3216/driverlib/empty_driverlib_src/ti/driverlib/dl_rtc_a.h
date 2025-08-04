@@ -87,11 +87,6 @@ extern "C" {
 #define DL_RTC_A_INTERRUPT_PRESCALER1               (DL_RTC_COMMON_INTERRUPT_PRESCALER1)
 
 /**
- * @brief Redirects to common @ref DL_RTC_COMMON_INTERRUPT_PRESCALER2
- */
-#define DL_RTC_A_INTERRUPT_PRESCALER2               (DL_RTC_COMMON_INTERRUPT_PRESCALER2)
-
-/**
  * @brief Redirects to common @ref DL_RTC_COMMON_INTERRUPT_INTERVAL_ALARM
  */
 #define DL_RTC_A_INTERRUPT_INTERVAL_ALARM           (DL_RTC_COMMON_INTERRUPT_INTERVAL_ALARM)
@@ -132,11 +127,6 @@ extern "C" {
  * @brief Redirects to common @ref DL_RTC_COMMON_EVENT_PRESCALER1
  */
 #define DL_RTC_A_EVENT_PRESCALER1               (DL_RTC_COMMON_EVENT_PRESCALER1)
-
-/**
- * @brief Redirects to common @ref DL_RTC_COMMON_EVENT_PRESCALER2
- */
-#define DL_RTC_A_EVENT_PRESCALER2               (DL_RTC_COMMON_EVENT_PRESCALER2)
 
 /**
  * @brief Redirects to common @ref DL_RTC_COMMON_EVENT_INTERVAL_ALARM
@@ -506,21 +496,6 @@ extern "C" {
  * @brief Redirects to common @ref DL_RTC_COMMON_PRESCALER1_DIVIDE_256
  */
 #define DL_RTC_A_PRESCALER1_DIVIDE_256                      DL_RTC_COMMON_PRESCALER1_DIVIDE_256
-
-/*!
- * @brief Redirects to common @ref DL_RTC_COMMON_PRESCALER2_4_SEC
- */
-#define DL_RTC_A_PRESCALER2_4_SEC                           DL_RTC_COMMON_PRESCALER2_4_SEC
-
-/*!
- * @brief Redirects to common @ref DL_RTC_COMMON_PRESCALER2_8_SEC
- */
-#define DL_RTC_A_PRESCALER2_8_SEC                           DL_RTC_COMMON_PRESCALER2_8_SEC
-
-/*!
- * @brief Redirects to common @ref DL_RTC_COMMON_PRESCALER2_16_SEC
- */
-#define DL_RTC_A_PRESCALER2_16_SEC                          DL_RTC_COMMON_PRESCALER2_16_SEC
 
 /*!
  * @brief Redirects to common @ref DL_RTC_COMMON_IIDX_ALARM1
@@ -1251,11 +1226,6 @@ typedef DL_RTC_Common_CalendarAlarm                 DL_RTC_A_CalendarAlarm;
 #define DL_RTC_A_setPeriodicAlarm1                  DL_RTC_Common_setPeriodicAlarm1
 
 /*!
- * @brief Redirects to common @ref DL_RTC_Common_setPeriodicAlarm2
- */
-#define DL_RTC_A_setPeriodicAlarm2                  DL_RTC_Common_setPeriodicAlarm2
-
-/*!
  * @brief Redirects to common @ref DL_RTC_Common_getPrescaler0
  */
 #define DL_RTC_A_getPrescaler0                      DL_RTC_Common_getPrescaler0
@@ -1264,11 +1234,6 @@ typedef DL_RTC_Common_CalendarAlarm                 DL_RTC_A_CalendarAlarm;
  * @brief Redirects to common @ref DL_RTC_Common_getPrescaler1
  */
 #define DL_RTC_A_getPrescaler1                      DL_RTC_Common_getPrescaler1
-
-/*!
- * @brief Redirects to common @ref DL_RTC_Common_getPrescaler2
- */
-#define DL_RTC_A_getPrescaler2                      DL_RTC_Common_getPrescaler2
 
 /*!
  * @brief Redirects to common @ref DL_RTC_Common_getTimeStampSecondsBCD

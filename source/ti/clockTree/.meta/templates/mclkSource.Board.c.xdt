@@ -64,7 +64,10 @@
             if(_.endsWith(hsclkMuxInst.inputSelect, "SYSOSC")){
                 return; /* nothing to print */
             } else if (_.endsWith(hsclkMuxInst.inputSelect, "HFCLK")){
-                if(Common.isDeviceFamily_PARENT_MSPM0C110X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+                if(Common.isDeviceFamily_PARENT_MSPM0C110X()
+                    || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()
+                    || Common.isDeviceFamily_PARENT_MSPM0L211X_L112X()
+                    || Common.isDeviceFamily_PARENT_MSPM0L210X()){
                     mclkStr += "DL_SYSCTL_setMCLKSource(SYSOSC, HSCLK);";
                 }
                 else{

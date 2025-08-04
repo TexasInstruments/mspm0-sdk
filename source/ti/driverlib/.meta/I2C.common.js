@@ -120,6 +120,7 @@ function updateGUIEnableTarget(inst, ui) {
         ui.basicTargetAddress.hidden = true;
         ui.basicTargetSecAddressEnable.hidden = true;
         ui.basicTargetSecAddress.hidden = true;
+        ui.basicTargetSecAddressMask.hidden = true;
         ui.basicTargetGeneralCall.hidden = true;
         ui.advTargetRXFIFOTRIG.hidden = true;
         ui.advTargetTXFIFOTRIG.hidden = true;
@@ -1451,12 +1452,12 @@ function getPinmuxValidation(inst,validation){
         try{
             let peripheralSolution = inst.peripheral.$solution.peripheralName;
             // Target Mode
-            if(system.deviceData.peripherals[peripheralSolution].attributes["UNICOMM_I2C_TARGET"]  == "false") {
+            if(inst.basicEnableTarget && system.deviceData.peripherals[peripheralSolution].attributes["UNICOMM_I2C_TARGET"]  == "false") {
                 validation.logError("Target Mode is only available on: " + targetPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
                 inst,"basicEnableTarget");
             }
             // Controller Mode
-            if(system.deviceData.peripherals[peripheralSolution].attributes["UNICOMM_I2C_CONTROLLER"] == "false") {
+            if(inst.basicEnableController && system.deviceData.peripherals[peripheralSolution].attributes["UNICOMM_I2C_CONTROLLER"] == "false") {
                 validation.logError("Controller Mode is only available on: " + controllerPeripherals.toString() + ". Please select one of these instances from PinMux if available.",
                 inst,"basicEnableController");
             }

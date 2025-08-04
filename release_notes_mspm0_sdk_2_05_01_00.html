@@ -60,19 +60,19 @@
 <h2 id="introduction">Introduction</h2>
 <p>The MSPM0 SDK delivers components that enable engineers to develop applications on Texas Instruments MSPM0 microcontroller devices. The product is comprised of multiple software components and examples of how to use these components together. In addition, examples are provided to demonstrate the use of each functional area and each supported device and as a starting point for your own projects.</p>
 <p>The MSPM0 MCU portfolio offers a single development environment that delivers flexible hardware, software and tool options for customers developing applications. A one-time investment with the MSPM0 software development kit (SDK) allows you create portable and modular code, opening the door to create unlimited applications. For more information, visit <a href="https://www.ti.com/mspm0">www.ti.com/mspm0</a>.</p>
-<p>This is version 2.05.00.05 of the MSPM0 SDK.</p>
+<p>This is version 2.05.01.00 of the MSPM0 SDK.</p>
 <h2 id="documentation">Documentation</h2>
 <ul>
 <li><a href="docs/english/MSPM0_SDK_Documentation_Overview.html">MSPM0 SDK Documentation Overview</a></li>
 <li><a href="docs/chinese/MSPM0_SDK_Documentation_Overview_CN.html">MSPM0 SDK Documentation Overview - Chinese</a></li>
 <li><a href="known_issues_FAQ.html">MSPM0 SDK Known Issues and FAQ</a></li>
-<li><a href="license_mspm0_sdk_2_05_00_05.txt">Software License</a></li>
-<li><a href="manifest_mspm0_sdk_2_05_00_05.html">Software Manifest</a></li>
+<li><a href="license_mspm0_sdk_2_05_01_00.txt">Software License</a></li>
+<li><a href="manifest_mspm0_sdk_2_05_01_00.html">Software Manifest</a></li>
 </ul>
 <h2 id="whats-included">What’s Included</h2>
-<p>The MSPM0 SDK 2.05.00.05 includes the following:</p>
+<p>The MSPM0 SDK 2.05.01.00 includes the following:</p>
 <ul>
-<li><strong>DriverLib Library</strong> - v1.36.00:
+<li><strong>DriverLib Library</strong> - v1.36.01:
 <ul>
 <li>Low-level driver library APIs to configure device peripherals</li>
 </ul></li>
@@ -80,7 +80,7 @@
 <ul>
 <li>Hundreds of examples from low-level drivers to middleware and demos</li>
 </ul></li>
-<li><strong>SysConfig</strong> - v1.36.00:
+<li><strong>SysConfig</strong> - v1.36.01:
 <ul>
 <li>Support for code generation of all DriverLib peripherals</li>
 <li>Clock Tree for easier configuration of Clock System</li>
@@ -121,7 +121,7 @@
 <li>Driver Porting Layer (DPL) - v1.11.00</li>
 <li>TI POSIX - v1.10.00</li>
 </ul></li>
-<li><strong>TI-Drivers</strong> - v2.02.01:
+<li><strong>TI-Drivers</strong> - v2.02.02:
 <ul>
 <li>GPIO</li>
 <li>I2C</li>
@@ -139,187 +139,49 @@
 </ul>
 <p><strong>For more information about these features, please visit the <a href="docs/english/MSPM0_SDK_Documentation_Overview.html">MSPM0 SDK Documentation Overview</a> or <a href="docs/chinese/MSPM0_SDK_Documentation_Overview_CN.html">MSPM0 SDK Documentation Overview - Chinese</a>.</strong></p>
 <h2 id="whats-new">What’s New</h2>
-<p>This release includes the following updates.</p>
+<p>This is a patch release of the MSPM0 SDK. This release includes the following fixes.</p>
 <ul>
-<li><strong>New Device Support!</strong> The MSPM0 SDK now supports <strong>MSPM0C1105/C1106 devices</strong>, and corresponding <strong>LP-MSPM0C1106 EVM.</strong> This includes support for:
+<li><strong>DriverLib Library</strong> - v1.36.01
 <ul>
-<li>DriverLib code examples</li>
-<li>BSL code examples</li>
-<li>SysConfig modules, including
+<li>CRCP
 <ul>
-<li>DriverLib modules</li>
-<li>Clock Tree</li>
-<li>NVM Configurator</li>
-<li>Security Configurator</li>
-</ul></li>
-<li>Middleware
-<ul>
-<li>CMSIS DSP Library</li>
-<li>DALI Library</li>
-<li>SENT Library</li>
-<li>EEPROM Library</li>
-<li>GUI Composer Library</li>
-<li>IQMath Library</li>
-<li>Brushed Motor Control Library</li>
-<li>Hall Sensored Trap BLDC Motor Control Library</li>
-<li>Stepper Motor Control Library</li>
-<li>PMBUS Library</li>
-<li>SMBUS Library</li>
-</ul></li>
-<li>Documentation</li>
-</ul></li>
-<li><strong>DriverLib Library</strong> - v1.36.00
-<ul>
-<li>COMP
-<ul>
-<li>MSPSWSDK-4732: Fixed incorrect definition for DL_COMP_OUTPUT enum, where the values were swapped for DL_COMP_OUTPUT_HIGH and DL_COMP_OUTPUT_LOW</li>
-<li>MSPSWSDK-5375: Added APIs (DL_COMP_enableDACOutputToPin, DL_COMP_isDACOutputToPinEnabled, DL_COMP_disableDACOutputToPin) in dl_comp.h which configure the 8-bit DAC output to pin feature. Refer to device datasheet if COMP supports this feature on your device.</li>
-</ul></li>
-<li>GPIO
-<ul>
-<li>MSPSWSDK-4711: Added APIs to to individually set the WCOMP bit, which sets the compare value to use for wakeup of a specified pin</li>
-</ul></li>
-<li>MCAN
-<ul>
-<li>MSPSWSDK-3816: Updated the “data” member of the DL_MCAN_TxBufElement struct, and the DL_MCAN_RxBufElement struct, from uint16_t to uint8_t. This is to match the CAN protocol, which defines that this data width should be 8 bits.</li>
-</ul></li>
-<li>OA
-<ul>
-<li>MSPSWSDK-4351: Fixed incorrect implementation of DL_OPA_setBandwidthGain API, which was not able to change GBW from HIGH to LOW</li>
-</ul></li>
-<li>IWDT
-<ul>
-<li>MSPSWSDK-4433: Fixed LFSS_IWDT_getClockDivider API incorrectly returning a value one higher than expected</li>
-</ul></li>
-<li>RTC_B
-<ul>
-<li>MSPSWSDK-5512: Added missing support for RTC_B module to MSPM0G151x devices</li>
-</ul></li>
-</ul></li>
-<li><strong>SysConfig</strong> - v1.36.00
-<ul>
-<li>SYSCTL
-<ul>
-<li>MSPSWSDK-5164: Added new option “Perform SYSOSC User Trim Procedure” to SYSCTL moodule and Clock Tree configuration, which will automatically trim SYSOSC to 16MHz or 24 MHz</li>
-<li>MSPSWSDK-5261: Updated HFCLKIN and LFCLKIN pin selection to allow all available options to be selected</li>
-<li>MSPSWSDK-5281: Fixed incorrect code generation for when FCC configuration is enabled with CLK_OUT as the Clock Source</li>
-<li>MSPSWSDK-5650: Improved clarity of message for peripherals that require VBAT to be powered, and changed this message from a warning to an info message</li>
-</ul></li>
-<li>I2C
-<ul>
-<li>MSPSWSDK-5370: Added option to enable a I2C Target to configure its secondary target address mask</li>
-<li>MSPSWSDK-5353: Fixed I2C clock validation to correctly check for dependencies based on whether SysCtl or ClockTree configuration is enabled</li>
-</ul></li>
-<li>COMP
-<ul>
-<li>MSPSWSDK-3781: Updated COMP module to use VDDA configured in Board module rather than defaulting to 3.3V</li>
-</ul></li>
-<li>DAC
-<ul>
-<li>MSPSWSDK-3781: Updated DAC12 module to use VDDA configured in Board module rather than defaulting to 3.3V</li>
-</ul></li>
-<li>MCAN
-<ul>
-<li>MSPSWSDK-5064: Fixed end address calculation for TX EVENT FIFO based on number of TX EVENT FIFO elements</li>
-</ul></li>
-<li>DMA:
-<ul>
-<li>MSPSWSDK-5494: Fixed incorrect code generation for Source Length or Destination Length selected Long Long (16 bytes)</li>
-</ul></li>
-<li>NONMAIN:
-<ul>
-<li>MSPSWSDK-5367: Added a warning for the DSSM password to highlight user requirements</li>
-<li>MSPSWSDK-5623: Disabled BSL validation when BSL configuration is disabled</li>
-<li>MSPSWSDK-5651: Added validation for user to acknowledge that debug access mode cannot be disabled on MSPM0G1X0X_G3X0X and MSPM0L11XX_L13XX when importing a legacy project. This addresses errata FLASH_ERR_02.</li>
+<li>MSPSWSDK-5789: Fixed incorrect value for DL_CRCP_CRCPOLY_POLYNOMIAL_16_MODBUS enum from 0x00001DCF to 0x00008005</li>
 </ul></li>
 <li>RTC_A
 <ul>
-<li>MSPSWSDK-5351: Added option within RTC_A to disable the RTC_OUT pin resource</li>
+<li>MSPSWSDK-5711: Updated conditional define for RTC Prescaler 2 interrupt defines to only be included for RTC_B and not RTC_A</li>
 </ul></li>
-<li>VREF
+<li>RTC_B
 <ul>
-<li>MSPSWSDK-5511: Updated VREF pin selection to only allow selecting the correct VREF+/VREF- pins</li>
+<li>MSPSWSDK-5660: Removed DL_RTC_B_reset and DL_RTC_B_isReset APIs since the RTC_B peripheral can only be reset from a POR</li>
 </ul></li>
-<li>PWM
+<li>SYSCTL
 <ul>
-<li>MSPSWSDK-5074: Fixed shadow load validation error. The previous validation method was checking all CC channels available in the system rather than only checking CC channels assigned to certain timer module. This was causing an error in the case where a system had 1 timer with shadow capability, but another without.</li>
+<li>MSPSWSDK-5666: Added missing IIDX and IMASK defines to dl_sysctl_mspm0l111x.h for NO_INTR, FLASHSEC, and LFXTGOOD interrupts</li>
+<li>MSPSWSDK-5788: Fixed DL_SYSCTL_disableSuperCapacitor API in dl_sysctl_mspm0l122x_l222x.h not correctly clearing the register to disable the super capacitor function</li>
+</ul></li>
+</ul></li>
+<li><strong>SysConfig</strong> - v1.36.01
+<ul>
+<li>I2C
+<ul>
+<li>MSPSWSDK-5817: Fixed Secondary Target Address Mask option persisting after disabling I2C as Target</li>
+</ul></li>
+<li>Board
+<ul>
+<li>MSPSWSDK-5779: Fixed error that would prevent enabling generation of the Resource Usage CSV file</li>
+</ul></li>
+<li>SYSCTL
+<ul>
+<li>MSPSWSDK-5812: Fixed SYSCTL module for MSPM0L111x devices incorrectly showing options for HFCLK and HSCLK interrupts. Also added the option for the FLASH_SEC interrupt which was missing</li>
 </ul></li>
 </ul></li>
 <li><strong>Middleware</strong>
 <ul>
-<li><strong>(New!) M-PESTI Target Drivers</strong> - v1.00.00
+<li><strong>TI-Drivers</strong> - v2.02.02
 <ul>
-<li>MSPSWSDK-5221: Initial release of M-PESTI Target drivers and examples with user guide</li>
+<li>MSPSWSDK-5859: Fixed the SPI example configuration errors for MSPM0L2228 and MSPM0L1117. For MSPM0L2228: The SPI SCLK pin is updated in sync with the README file. For MSPM0L1117: The cssel variable in the SPIMSPM0_hwAttrs struct is updated in sync with the CS pin configuration.</li>
 </ul></li>
-<li><strong>DALI Library</strong> - v2.00.00
-<ul>
-<li>MSPSWSDK-5407: Added support and examples for DALI Parts 103 and 303 (Occupancy Sensor)</li>
-</ul></li>
-<li><strong>SENT Library</strong> - v1.00.02
-<ul>
-<li>MSPSWSDK-5594: Removed HAL folder and updated to use SysConfig for configuration</li>
-</ul></li>
-<li><strong>SMBus</strong> - v2.02.01
-<ul>
-<li>MSPSWSDK-5283: Fixed bug for SMBUS Target not properly ACKing in all commands</li>
-<li>MSPSWSDK-5593: Fixed bug for write byte followed by read block was not working</li>
-</ul></li>
-<li><strong>Sensorless FOC PMSM Motor Control Library</strong> - v2.04.01
-<ul>
-<li>MSPSWSDK-5625: Added Non Inverting Current sensing configuration for 3 shunt</li>
-<li>MSPSWSDK-5626: Fixed bug for clear fault logic inverted for DRV8329</li>
-<li>MSPSWSDK-5627: Fixed bug of UART communication stuck in while loop if stop byte not received</li>
-<li>MSPSWSDK-5628: Added latching of NFault input for non SPI based gatedriver</li>
-<li>MSPSWSDK-5631: Fixed compiler warnings while building</li>
-</ul></li>
-<li><strong>Sensored FOC PMSM Motor Control Library</strong> - v1.02.01
-<ul>
-<li>MSPSWSDK-5625: Added Non Inverting Current sensing configuration for 3 shunt</li>
-<li>MSPSWSDK-5626: Fixed bug for clear fault logic inverted for DRV8329</li>
-<li>MSPSWSDK-5627: Fixed bug of UART communication stuck in while loop if stop byte not received</li>
-<li>MSPSWSDK-5628: Added latching of NFault input for non SPI based gatedriver</li>
-<li>MSPSWSDK-5629: Fixed bug of pole pairs not updated in Hall Calibration routine</li>
-<li>MSPSWSDK-5630: Fixed Bug of Hall sensor duration in correct by one count value when overflow of timer occurs</li>
-<li>MSPSWSDK-5631: Fixed compiler warnings while building</li>
-</ul></li>
-<li><strong>Universal FOC Motor Control Library</strong> - v1.01.01
-<ul>
-<li>MSPSWSDK-5625: Added Non Inverting Current sensing configuration for 3 shunt</li>
-<li>MSPSWSDK-5626: Fixed bug for clear fault logic inverted for DRV8329</li>
-<li>MSPSWSDK-5627: Fixed bug of UART communication stuck in while loop if stop byte not received</li>
-<li>MSPSWSDK-5628: Added latching of NFault input for non SPI based gatedriver</li>
-</ul></li>
-</ul></li>
-<li><strong>Code Examples</strong>
-<ul>
-<li><strong>(New!) Edge AI Code Examples</strong>
-<ul>
-<li>MSPSWSDK-5640: Added a new edge AI “hello world” waveform classification code example to simplify getting started with analytics on MSPM0. This example demonstrates the deployment of a machine learning model, built with TI’s neural network compiler, onto the LP-MSPM0G3507 evaluation kit. In the example, a pre-trained classification model is used to analyze time series waveform data sets and predict if a waveform is a sine wave, square wave, or sawtooth wave. This example may also be used as a reference for deploying your own trained &amp; compiled models to MSPM0.</li>
-</ul></li>
-<li>MSP Subsystems
-<ul>
-<li>MSPSWSDK-5634: Added I2C to SPI, and SPI to I2C bridge subsystems</li>
-<li>MSPSWSDK-5652: Added support for several subsystems to the LP_MSPM0G5117</li>
-<li>MSPSWSDK-5653: Added support for several subsystems to the LP_MSPM0L1117</li>
-</ul></li>
-<li>MSPSWSDK-4971: Added new CC110x_TxRx_comm code example to demonstrate using a MSPM0 to transmit/receive data to/from a CC110x antenna</li>
-<li>MSPSWSDK-3505: Updated DriverLib code examples for LP_MSPM0L2228 to enable by default in SysConfig the “Force Default Clock Configuration” option, which disables the HFXT. This allows the HFXT to be in a known state prior to initialization.</li>
-<li>MSPSWSDK-3992: Added support for sram_parity DriverLib code example for LP_MSPM0G3519</li>
-<li>MSPSWSDK-5643: Added support for rtc_b_calendar_alarm_standby and rtc_b_offset_calibration_lfxt DriverLib code examples for LP_MSPM0G3519</li>
-<li>MSPSWSDK-5554: Added empty example for MSPR packages</li>
-</ul></li>
-<li><strong>Header Files</strong>
-<ul>
-<li>MSPSWSDK-5374: Added definitions for COMP_CTL1_DACOUTEN bit support in hw_comp.h which configures 8-bit DAC output to a pin. Refer to device datasheet if COMP supports this feature</li>
-</ul></li>
-<li><strong>Linker Files</strong>
-<ul>
-<li>MSPSWSDK-5396: Fixing BCRConfig and BSLConfig defines within linker for MSPM0Lx22x family</li>
-</ul></li>
-<li><strong>Documentation</strong>
-<ul>
-<li>MSPSWSDK-5182: Updating OpenOCD documentation within debug_program.html to reflect master branch presence with MSPM0</li>
-<li>MSPSWSDK-5656: Updating Tools Guide to include C-GANG</li>
 </ul></li>
 </ul>
 <h2 id="operating-systems-support">Operating Systems Support</h2>
@@ -435,6 +297,189 @@
 <p>The updates and compatibility information prior to MSPM0 SDK 2.00 can be viewed at <a href="https://dev.ti.com/tirex/explore/node?a=a3PaaoK__1.30.00.03&amp;node=A__ADMjnimJ4C5BfFnmM3X-jg__MSPM0-SDK__a3PaaoK__1.30.00.03">TI Resource Explorer</a>.</p>
 <h3 id="previous-updates">Previous Updates</h3>
 <ul>
+<li>2.05.00.05
+<ul>
+<li>New Device Support! The MSPM0 SDK now supports MSPM0C1105/C1106 devices, and corresponding LP-MSPM0C1106 EVM. This includes support for:
+<ul>
+<li>DriverLib code examples</li>
+<li>BSL code examples</li>
+<li>SysConfig modules, including
+<ul>
+<li>DriverLib modules</li>
+<li>Clock Tree</li>
+<li>NVM Configurator</li>
+<li>Security Configurator</li>
+</ul></li>
+<li>Middleware
+<ul>
+<li>CMSIS DSP Library</li>
+<li>DALI Library</li>
+<li>SENT Library</li>
+<li>EEPROM Library</li>
+<li>GUI Composer Library</li>
+<li>IQMath Library</li>
+<li>Brushed Motor Control Library</li>
+<li>Hall Sensored Trap BLDC Motor Control Library</li>
+<li>Stepper Motor Control Library</li>
+<li>PMBUS Library</li>
+<li>SMBUS Library</li>
+</ul></li>
+<li>Documentation</li>
+</ul></li>
+<li><strong>DriverLib Library</strong> - v1.36.00
+<ul>
+<li>COMP
+<ul>
+<li>MSPSWSDK-4732: Fixed incorrect definition for DL_COMP_OUTPUT enum, where the values were swapped for DL_COMP_OUTPUT_HIGH and DL_COMP_OUTPUT_LOW</li>
+<li>MSPSWSDK-5375: Added APIs (DL_COMP_enableDACOutputToPin, DL_COMP_isDACOutputToPinEnabled, DL_COMP_disableDACOutputToPin) in dl_comp.h which configure the 8-bit DAC output to pin feature. Refer to device datasheet if COMP supports this feature on your device.</li>
+</ul></li>
+<li>GPIO
+<ul>
+<li>MSPSWSDK-4711: Added APIs to to individually set the WCOMP bit, which sets the compare value to use for wakeup of a specified pin</li>
+</ul></li>
+<li>MCAN
+<ul>
+<li>MSPSWSDK-3816: Updated the “data” member of the DL_MCAN_TxBufElement struct, and the DL_MCAN_RxBufElement struct, from uint16_t to uint8_t. This is to match the CAN protocol, which defines that this data width should be 8 bits.</li>
+</ul></li>
+<li>OA
+<ul>
+<li>MSPSWSDK-4351: Fixed incorrect implementation of DL_OPA_setBandwidthGain API, which was not able to change GBW from HIGH to LOW</li>
+</ul></li>
+<li>IWDT
+<ul>
+<li>MSPSWSDK-4433: Fixed LFSS_IWDT_getClockDivider API incorrectly returning a value one higher than expected</li>
+</ul></li>
+<li>RTC_B
+<ul>
+<li>MSPSWSDK-5512: Added missing support for RTC_B module to MSPM0G151x devices</li>
+</ul></li>
+</ul></li>
+<li><strong>SysConfig</strong> - v1.36.00
+<ul>
+<li>SYSCTL
+<ul>
+<li>MSPSWSDK-5164: Added new option “Perform SYSOSC User Trim Procedure” to SYSCTL moodule and Clock Tree configuration, which will automatically trim SYSOSC to 16MHz or 24 MHz</li>
+<li>MSPSWSDK-5261: Updated HFCLKIN and LFCLKIN pin selection to allow all available options to be selected</li>
+<li>MSPSWSDK-5281: Fixed incorrect code generation for when FCC configuration is enabled with CLK_OUT as the Clock Source</li>
+<li>MSPSWSDK-5650: Improved clarity of message for peripherals that require VBAT to be powered, and changed this message from a warning to an info message</li>
+</ul></li>
+<li>I2C
+<ul>
+<li>MSPSWSDK-5370: Added option to enable a I2C Target to configure its secondary target address mask</li>
+<li>MSPSWSDK-5353: Fixed I2C clock validation to correctly check for dependencies based on whether SysCtl or ClockTree configuration is enabled</li>
+</ul></li>
+<li>COMP
+<ul>
+<li>MSPSWSDK-3781: Updated COMP module to use VDDA configured in Board module rather than defaulting to 3.3V</li>
+</ul></li>
+<li>DAC
+<ul>
+<li>MSPSWSDK-3781: Updated DAC12 module to use VDDA configured in Board module rather than defaulting to 3.3V</li>
+</ul></li>
+<li>MCAN
+<ul>
+<li>MSPSWSDK-5064: Fixed end address calculation for TX EVENT FIFO based on number of TX EVENT FIFO elements</li>
+</ul></li>
+<li>DMA:
+<ul>
+<li>MSPSWSDK-5494: Fixed incorrect code generation for Source Length or Destination Length selected Long Long (16 bytes)</li>
+</ul></li>
+<li>NONMAIN:
+<ul>
+<li>MSPSWSDK-5367: Added a warning for the DSSM password to highlight user requirements</li>
+<li>MSPSWSDK-5623: Disabled BSL validation when BSL configuration is disabled</li>
+<li>MSPSWSDK-5651: Added validation for user to acknowledge that debug access mode cannot be disabled on MSPM0G1X0X_G3X0X and MSPM0L11XX_L13XX when importing a legacy project. This addresses errata FLASH_ERR_02.</li>
+</ul></li>
+<li>RTC_A
+<ul>
+<li>MSPSWSDK-5351: Added option within RTC_A to disable the RTC_OUT pin resource</li>
+</ul></li>
+<li>VREF
+<ul>
+<li>MSPSWSDK-5511: Updated VREF pin selection to only allow selecting the correct VREF+/VREF- pins</li>
+</ul></li>
+<li>PWM
+<ul>
+<li>MSPSWSDK-5074: Fixed shadow load validation error. The previous validation method was checking all CC channels available in the system rather than only checking CC channels assigned to certain timer module. This was causing an error in the case where a system had 1 timer with shadow capability, but another without.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Middleware</strong>
+<ul>
+<li><strong>(New!) M-PESTI Target Drivers</strong> - v1.00.00
+<ul>
+<li>MSPSWSDK-5221: Initial release of M-PESTI Target drivers and examples with user guide</li>
+</ul></li>
+<li><strong>DALI Library</strong> - v2.00.00
+<ul>
+<li>MSPSWSDK-5407: Added support and examples for DALI Parts 103 and 303 (Occupancy Sensor)</li>
+</ul></li>
+<li><strong>SENT Library</strong> - v1.00.02
+<ul>
+<li>MSPSWSDK-5594: Removed HAL folder and updated to use SysConfig for configuration</li>
+</ul></li>
+<li><strong>SMBus</strong> - v2.02.01
+<ul>
+<li>MSPSWSDK-5283: Fixed bug for SMBUS Target not properly ACKing in all commands</li>
+<li>MSPSWSDK-5593: Fixed bug for write byte followed by read block was not working</li>
+</ul></li>
+<li><strong>Sensorless FOC PMSM Motor Control Library</strong> - v2.04.01
+<ul>
+<li>MSPSWSDK-5625: Added Non Inverting Current sensing configuration for 3 shunt</li>
+<li>MSPSWSDK-5626: Fixed bug for clear fault logic inverted for DRV8329</li>
+<li>MSPSWSDK-5627: Fixed bug of UART communication stuck in while loop if stop byte not received</li>
+<li>MSPSWSDK-5628: Added latching of NFault input for non SPI based gatedriver</li>
+<li>MSPSWSDK-5631: Fixed compiler warnings while building</li>
+</ul></li>
+<li><strong>Sensored FOC PMSM Motor Control Library</strong> - v1.02.01
+<ul>
+<li>MSPSWSDK-5625: Added Non Inverting Current sensing configuration for 3 shunt</li>
+<li>MSPSWSDK-5626: Fixed bug for clear fault logic inverted for DRV8329</li>
+<li>MSPSWSDK-5627: Fixed bug of UART communication stuck in while loop if stop byte not received</li>
+<li>MSPSWSDK-5628: Added latching of NFault input for non SPI based gatedriver</li>
+<li>MSPSWSDK-5629: Fixed bug of pole pairs not updated in Hall Calibration routine</li>
+<li>MSPSWSDK-5630: Fixed Bug of Hall sensor duration in correct by one count value when overflow of timer occurs</li>
+<li>MSPSWSDK-5631: Fixed compiler warnings while building</li>
+</ul></li>
+<li><strong>Universal FOC Motor Control Library</strong> - v1.01.01
+<ul>
+<li>MSPSWSDK-5625: Added Non Inverting Current sensing configuration for 3 shunt</li>
+<li>MSPSWSDK-5626: Fixed bug for clear fault logic inverted for DRV8329</li>
+<li>MSPSWSDK-5627: Fixed bug of UART communication stuck in while loop if stop byte not received</li>
+<li>MSPSWSDK-5628: Added latching of NFault input for non SPI based gatedriver</li>
+</ul></li>
+</ul></li>
+<li><strong>Code Examples</strong>
+<ul>
+<li><strong>(New!) Edge AI Code Examples</strong>
+<ul>
+<li>MSPSWSDK-5640: Added a new edge AI “hello world” waveform classification code example to simplify getting started with analytics on MSPM0. This example demonstrates the deployment of a machine learning model, built with TI’s neural network compiler, onto the LP-MSPM0G3507 evaluation kit. In the example, a pre-trained classification model is used to analyze time series waveform data sets and predict if a waveform is a sine wave, square wave, or sawtooth wave. This example may also be used as a reference for deploying your own trained &amp; compiled models to MSPM0.</li>
+</ul></li>
+<li>MSP Subsystems
+<ul>
+<li>MSPSWSDK-5634: Added I2C to SPI, and SPI to I2C bridge subsystems</li>
+<li>MSPSWSDK-5652: Added support for several subsystems to the LP_MSPM0G5117</li>
+<li>MSPSWSDK-5653: Added support for several subsystems to the LP_MSPM0L1117</li>
+</ul></li>
+<li>MSPSWSDK-4971: Added new CC110x_TxRx_comm code example to demonstrate using a MSPM0 to transmit/receive data to/from a CC110x antenna</li>
+<li>MSPSWSDK-3505: Updated DriverLib code examples for LP_MSPM0L2228 to enable by default in SysConfig the “Force Default Clock Configuration” option, which disables the HFXT. This allows the HFXT to be in a known state prior to initialization.</li>
+<li>MSPSWSDK-3992: Added support for sram_parity DriverLib code example for LP_MSPM0G3519</li>
+<li>MSPSWSDK-5643: Added support for rtc_b_calendar_alarm_standby and rtc_b_offset_calibration_lfxt DriverLib code examples for LP_MSPM0G3519</li>
+<li>MSPSWSDK-5554: Added empty example for MSPR packages</li>
+</ul></li>
+<li><strong>Header Files</strong>
+<ul>
+<li>MSPSWSDK-5374: Added definitions for COMP_CTL1_DACOUTEN bit support in hw_comp.h which configures 8-bit DAC output to a pin. Refer to device datasheet if COMP supports this feature</li>
+</ul></li>
+<li><strong>Linker Files</strong>
+<ul>
+<li>MSPSWSDK-5396: Fixing BCRConfig and BSLConfig defines within linker for MSPM0Lx22x family</li>
+</ul></li>
+<li><strong>Documentation</strong>
+<ul>
+<li>MSPSWSDK-5182: Updating OpenOCD documentation within debug_program.html to reflect master branch presence with MSPM0</li>
+<li>MSPSWSDK-5656: Updating Tools Guide to include C-GANG</li>
+</ul></li>
 <li>2.04.00.06
 <ul>
 <li>New Device Support for the MSPM0H321x devices, and corresponding LP-MSPM0H3216 EVM. Support for this device family includes:
@@ -1398,6 +1443,10 @@
 </ul>
 <h3 id="previous-upgrade-and-compatibility">Previous Upgrade and Compatibility</h3>
 <ul>
+<li>2.05.00.05
+<ul>
+<li>Not applicable for this release</li>
+</ul></li>
 <li>2.04.00.06
 <ul>
 <li><strong>SysConfig ADC Module</strong>

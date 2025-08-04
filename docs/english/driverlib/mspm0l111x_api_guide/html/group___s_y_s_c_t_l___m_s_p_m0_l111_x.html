@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L111X Driver Library
-   &#160;<span id="projectnumber">2.05.00.05</span>
+   &#160;<span id="projectnumber">2.05.01.00</span>
    </div>
   </td>
  </tr>
@@ -121,9 +121,15 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga11f6187e683dcf2a0892c4ca5a818156"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#ga11f6187e683dcf2a0892c4ca5a818156">DL_SYSCTL_IIDX</a> { <br />
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156a29c692e503546222ed7cb10af4f8eb3f">DL_SYSCTL_IIDX_NO_INT</a> = SYSCTL_IIDX_STAT_NO_INTR, 
+<br />
 &#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156a2f3e40fca586aecb1441f01a6754528b">DL_SYSCTL_IIDX_LFOSC_GOOD</a> = SYSCTL_IIDX_STAT_LFOSCGOOD, 
 <br />
-&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156af66353af425d4fdab66d1b89d4d0080c">DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR</a> = SYSCTL_IIDX_STAT_ANACLKERR
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156af66353af425d4fdab66d1b89d4d0080c">DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR</a> = SYSCTL_IIDX_STAT_ANACLKERR, 
+<br />
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156ab9b42fe9e21276a511cfa8762c3b5521">DL_SYSCTL_IIDX_FLASH_SEC</a> = SYSCTL_IIDX_STAT_FLASHSEC, 
+<br />
+&#160;&#160;<a class="el" href="group___s_y_s_c_t_l___m_s_p_m0_l111_x.html#gga11f6187e683dcf2a0892c4ca5a818156aaed008cb41818421b22cf98b1eb987cd">DL_SYSCTL_IIDX_LFXT_GOOD</a> = SYSCTL_IIDX_STAT_LFXTGOOD
 <br />
  }</td></tr>
 <tr class="separator:ga11f6187e683dcf2a0892c4ca5a818156"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -921,9 +927,15 @@ __STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga11f6187e683dcf2a0892c4ca5a818156a2f3e40fca586aecb1441f01a6754528b"></a>DL_SYSCTL_IIDX_LFOSC_GOOD&#160;</td><td class="fielddoc"><p>Low Frequency Oscillator is stabilized and ready to use. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga11f6187e683dcf2a0892c4ca5a818156a29c692e503546222ed7cb10af4f8eb3f"></a>DL_SYSCTL_IIDX_NO_INT&#160;</td><td class="fielddoc"><p>Interrupt index if no interrupt is pending. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga11f6187e683dcf2a0892c4ca5a818156a2f3e40fca586aecb1441f01a6754528b"></a>DL_SYSCTL_IIDX_LFOSC_GOOD&#160;</td><td class="fielddoc"><p>Low Frequency Oscillator is stabilized and ready to use. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga11f6187e683dcf2a0892c4ca5a818156af66353af425d4fdab66d1b89d4d0080c"></a>DL_SYSCTL_IIDX_ANALOG_CLOCK_ERROR&#160;</td><td class="fielddoc"><p>Analog clocking consistency error. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga11f6187e683dcf2a0892c4ca5a818156ab9b42fe9e21276a511cfa8762c3b5521"></a>DL_SYSCTL_IIDX_FLASH_SEC&#160;</td><td class="fielddoc"><p>Flash Single Error Correct. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga11f6187e683dcf2a0892c4ca5a818156aaed008cb41818421b22cf98b1eb987cd"></a>DL_SYSCTL_IIDX_LFXT_GOOD&#160;</td><td class="fielddoc"><p>Low Frequency Crystal is stabilized and ready to use. </p>
 </td></tr>
 </table>
 

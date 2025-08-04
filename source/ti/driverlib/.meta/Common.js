@@ -119,6 +119,10 @@ exports = {
     isDeviceFamily_PARENT_MSPM0H321X        : isDeviceFamily_PARENT_MSPM0H321X,
     isDeviceFamily_PARENT_MSPM0C1105_C1106  : isDeviceFamily_PARENT_MSPM0C1105_C1106,
     isDeviceFamily_PARENT_MSPM0G511X        : isDeviceFamily_PARENT_MSPM0G511X,
+    isDeviceFamily_PARENT_MSPM0L211X_L112X  : isDeviceFamily_PARENT_MSPM0L211X_L112X,
+    isDeviceFamily_PARENT_MSPM0L211X        : isDeviceFamily_PARENT_MSPM0L211X,
+    isDeviceFamily_PARENT_MSPM0L210X        : isDeviceFamily_PARENT_MSPM0L210X,
+    isDeviceFamily_PARENT_MSPM0L112X        : isDeviceFamily_PARENT_MSPM0L112X,
     isDeviceFamily_MSPS003FX                : isDeviceFamily_MSPS003FX,
 
     I2CTargetWakeupWorkaroundFixed          : I2CTargetWakeupWorkaroundFixed,
@@ -176,6 +180,7 @@ exports = {
     hasWakeupLogic      : hasWakeupLogic,
 
     getPinCM                : getPinCM,
+    getPinCMAlt             : getPinCMAlt,
     getGPIOPortMultiPad     : getGPIOPortMultiPad,
     getGPIONumberMultiPad   : getGPIONumberMultiPad,
     getAllPorts             : getAllPorts,
@@ -1828,11 +1833,30 @@ function isDeviceFamily_PARENT_MSPM0L111X(){
     var deviceName = system.deviceData.device;
     return (["MSPM0L111X"].includes(deviceName));
 }
-
 /* Checks if device is part of MSPM0G511X device family */
 function isDeviceFamily_PARENT_MSPM0G511X(){
     var deviceName = system.deviceData.device;
     return (["MSPM0G511X"].includes(deviceName));
+}
+/* Checks if device is part of MSPM0L211X_L112X family */
+function isDeviceFamily_PARENT_MSPM0L211X_L112X (){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0L211X","MSPM0L112X"].includes(deviceName));
+}
+/* Checks if device is part of MSPM0L210X_L112X family */
+function isDeviceFamily_PARENT_MSPM0L210X(){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0L210X"].includes(deviceName));
+}
+/* Checks if device is part of MSPM0L211X family */
+function isDeviceFamily_PARENT_MSPM0L211X (){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0L211X"].includes(deviceName));
+}
+/* Checks if device is part of MSPM0L112X family */
+function isDeviceFamily_PARENT_MSPM0L112X (){
+    var deviceName = system.deviceData.device;
+    return (["MSPM0L112X"].includes(deviceName));
 }
 
 /* checks if current device is one of M0x110x series */
@@ -1855,7 +1879,11 @@ function isDeviceM0G()
 }
 /* checks if current device is one of MSPM0L-series */
 function isDeviceM0L(){
-    return (isDeviceFamily_PARENT_MSPM0L11XX_L13XX() || isDeviceFamily_PARENT_MSPM0L122X_L222X() || isDeviceFamily_PARENT_MSPM0L111X());
+    return (isDeviceFamily_PARENT_MSPM0L11XX_L13XX()
+    || isDeviceFamily_PARENT_MSPM0L122X_L222X()
+    || isDeviceFamily_PARENT_MSPM0L111X()
+    || isDeviceFamily_PARENT_MSPM0L211X_L112X()
+    || isDeviceFamily_PARENT_MSPM0L210X());
 }
 /* checks if current device is one of MSPM0C-series */
 function isDeviceM0C(){
@@ -1895,6 +1923,12 @@ function getDeviceFamily(){
     else if(isDeviceFamily_PARENT_MSPM0G511X()) {
         return "MSPM0G511X";
     }
+    else if(isDeviceFamily_PARENT_MSPM0L211X_L112X()) {
+        return "MSPM0L211X_L112X";
+    }
+    else if(isDeviceFamily_PARENT_MSPM0L210X()) {
+        return "MSPM0L210X";
+    }
     return undefined;
 }
 
@@ -1914,7 +1948,7 @@ function I2CTargetWakeupWorkaroundFixed() {
 // TODO: confirm with documentation
 /* Check if device supports BSL configuration */
 function hasBSLConfig(){
-    return (isDeviceM0G() || isDeviceM0L() || isDeviceFamily_PARENT_MSPM0C1105_C1106() || isDeviceFamily_PARENT_MSPM0H321X());
+    return (!isDeviceFamily_PARENT_MSPM0C110X());
 }
 
 /* Check if device supports Data Region configuration */
@@ -1986,7 +2020,7 @@ function getGPIOPortMultiPad(packagePin, inst, pinInterfaceName){
     if(pinNames.length==1){
         return getGPIOPort(pinNames[0]);
     }
-    let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
+    let padIndex = identifyPadIndexUsingInst(packagePin,inst,pinInterfaceName);
     return getGPIOPort(pinNames[padIndex])
 }
 
@@ -2006,7 +2040,7 @@ function getGPIONumberMultiPad(packagePin, inst, pinInterfaceName){
     if(pinNames.length==1){
         return getGPIONumber(pinNames[0])
     }
-    let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
+    let padIndex = identifyPadIndexUsingInst(packagePin,inst,pinInterfaceName);
     return getGPIONumber(pinNames[padIndex])
 
 }
@@ -2030,7 +2064,7 @@ function isInstanceStatic(inst){
 }
 
 /*
- *  ======== identifyPadIndex ========
+ *  ======== identifyPadIndexUsingInst ========
  *  Return index of the specified pin's mux location
  *  Accesses device data to find the id of the specified package pin id
  *  index location of the provided <PERIPHERAL>.<PIN INTERFACE NAME>
@@ -2041,7 +2075,7 @@ function isInstanceStatic(inst){
  *
  *  @returns string index of the desired pin mux
  */
-function identifyPadIndex(packagePin,inst,pinInterfaceName){
+function identifyPadIndexUsingInst(packagePin,inst,pinInterfaceName){
     let peripheralName = undefined;
     let gpioName = undefined;
     /* Handling use case of static module: */
@@ -2060,6 +2094,23 @@ function identifyPadIndex(packagePin,inst,pinInterfaceName){
             peripheralName = inst.peripheral.$solution.peripheralName;
         }
     }
+    return identifyPadIndex(packagePin,pinInterfaceName,peripheralName,gpioName);
+}
+
+/*
+ *  ======== identifyPadIndex ========
+ *  Return index of the specified pin's mux location
+ *  Accesses device data to find the id of the specified package pin id
+ *  index location of the provided <PERIPHERAL>.<PIN INTERFACE NAME>
+ *
+ *  @param packagePin - package pin number
+ *  @pinInterfaceName - interface name of specific pin functionality
+ *  @peripheralName - which peripheral resource instance is being used
+ *  @gpioName - which gpio function is being used, undefined if not configured as gpio
+ *
+ *  @returns string index of the desired pin mux
+ */
+function identifyPadIndex(packagePin,pinInterfaceName,peripheralName,gpioName){
     /* determine index of mux functionality */
     let muxId = undefined;
     if(peripheralName !== undefined){
@@ -2069,7 +2120,14 @@ function identifyPadIndex(packagePin,inst,pinInterfaceName){
         muxId = ((system.deviceData.devicePins[packagePin].mux.muxSetting).map(a => a.peripheralPin.name)).indexOf(peripheralName+"."+pinInterfaceName)
     }
     /* divide the pad functionality, determine appropiate segment */
-    let modeMiddleIndex = getModeIndex(packagePin);
+    let modeMiddleIndex = 0;
+    /* Temporary separation of approaches for existing devices until device data update */
+    if(isDeviceFamily_PARENT_MSPM0L211X_L112X() || isDeviceFamily_PARENT_MSPM0L210X()){
+        modeMiddleIndex = getModeIndexAlt(packagePin);
+    }
+    else{
+        modeMiddleIndex = getModeIndex(packagePin);
+    }
     if(muxId !== undefined){
         if(muxId>modeMiddleIndex){
             return 1;
@@ -2100,16 +2158,63 @@ function getAllPorts(){
 function getPinCM(packagePin, inst, pinInterfaceName)
 // TODO: example call => getPinCM(11, (spi inst), "POCI")
 {
-    // TODO: want to add condition to only do the steps after this one if more than one pinCM is returned
+    /* Temporary separation of approaches for existing devices until device data update */
+    if(isDeviceFamily_PARENT_MSPM0L211X_L112X() || isDeviceFamily_PARENT_MSPM0L210X()){
+        let pinCMsDescription = system.deviceData.devicePins[packagePin].description2
+        if(pinCMsDescription == undefined){ return undefined; }
+        let pinCMs = (pinCMsDescription).split("/")
+        if(pinCMs.length==1){
+            return pinCMs[0].replace("PINCM","");
+        }
+        let padIndex = identifyPadIndexUsingInst(packagePin,inst,pinInterfaceName);
+        return pinCMs[padIndex].replace("PINCM","");
+    }
+
     let pinCMsAttribute = getAttribute((system.deviceData.devicePins[packagePin]),("iomux_pincm"));
     if(pinCMsAttribute == undefined){ return undefined; }
     let pinCMs = (pinCMsAttribute).split(",")
     if(pinCMs.length==1){
         return pinCMs[0];
     }
-    let padIndex = identifyPadIndex(packagePin,inst,pinInterfaceName);
+    let padIndex = identifyPadIndexUsingInst(packagePin,inst,pinInterfaceName);
     return pinCMs[padIndex];
 
+}
+
+/*
+ *  ======== getPinCMAlt ========
+ *  Return PinCM number of the specified pin
+ *  Accesses device data to find the id of the specified package pin id
+ *  index location of the provided <PERIPHERAL>.<PIN INTERFACE NAME>
+ *
+ *  @param packagePin - package pin number
+ *  @param peripheralName - peripheral instance name
+ *  @pinInterfaceName - interface name of specific pin functionality
+ *
+ *  @returns string PinCM number.
+ */
+function getPinCMAlt(packagePin, pinInterfaceName, peripheralName){
+    /* Temporary separation of approaches for existing devices until device data update */
+    if(isDeviceFamily_PARENT_MSPM0L211X_L112X() || isDeviceFamily_PARENT_MSPM0L210X()){
+        let pinCMsDescription = system.deviceData.devicePins[packagePin].description2
+        if(pinCMsDescription == undefined){ return undefined; }
+        let pinCMs = (pinCMsDescription).split("/")
+        if(pinCMs.length==1){
+            return pinCMs[0].replace("PINCM","");
+        }
+        let padIndex = identifyPadIndex(packagePin,pinInterfaceName,peripheralName,undefined);
+        return pinCMs[padIndex].replace("PINCM","");
+    }
+
+    let pinCMsAttribute = getAttribute((system.deviceData.devicePins[packagePin]),("iomux_pincm"));
+    if(pinCMsAttribute == undefined){ return undefined; }
+    let pinCMs = (pinCMsAttribute).split(",")
+    if(pinCMs.length==1){
+        return pinCMs[0];
+    }
+    let padIndex = identifyPadIndex(packagePin,pinInterfaceName,peripheralName,undefined);
+    // peripheralName,gpioName
+    return pinCMs[padIndex];
 }
 
 /*
@@ -2135,6 +2240,37 @@ function getModeIndex(packagePin){
          */
         if(((parseInt(modes[parseInt(modeIdx)])>parseInt(modes[parseInt(modeIdx)+1]))&&(parseInt(modes[parseInt(modeIdx)+1])!==0))
         ||((parseInt(modes[parseInt(modeIdx)])==0)&&(parseInt(modes[parseInt(modeIdx)])<parseInt(modes[parseInt(modeIdx)+1])))){
+            return parseInt(modeIdx)
+        }
+    };
+    return modes.length-1;
+}
+
+/*
+ *  ======== getModeIndexAlt ========
+ *  Get the index of the last element of the pinmux dividing the pins in the
+ *  same pad
+ *  Where in device data the modes are ordered ['0','1', '2', '0', '2', '3'],
+ *  the rule to follow is that where the mode either decreases to a non-zero
+ *  number, or increases after a 0 number, that marks the beginning of a
+ *  different pin.
+ *
+ *  NOTE: this is intended as a temporary workaround for
+ *  MSPM0L211X_112X / MSPM0L210X devices
+ *
+ *  @param packagePin - package pin id
+ *
+ *  @returns string index of the last object in the mode list belonging to the
+ *  first pin
+ */
+function getModeIndexAlt(packagePin){
+    let modes = (system.deviceData.devicePins[packagePin].mux.muxSetting).map(a => a.mode);
+    for(let modeIdx in modes){
+        /* In order to find the midpoint of that divides the pins, the logic is as follows:
+         * if(((mode[i]>mode[i+1])&&(mode[i]!=0))||((mode[i]==0)&&(mode[i]<mode[i+1])))
+         * The midpoint exists when the mode decreases to a non-zero number, or increases after a zero
+         */
+        if( (parseInt(modes[parseInt(modeIdx)])>parseInt(modes[parseInt(modeIdx)+1])) && (parseInt(modes[parseInt(modeIdx)+1])==0)){
             return parseInt(modeIdx)
         }
     };
@@ -3014,6 +3150,38 @@ function getMainTriggerETSELValue(inst) {
                 break;
         }
     }
+    else if(isDeviceFamily_PARENT_MSPM0L211X_L112X()){
+        switch (true) {
+            case main_timer == "TIMA0":
+                return 0;
+                break;
+            case main_timer == "TIMG14":
+                return 1;
+                break;
+            case main_timer == "TIMG1":
+                return 2;
+                break;
+            case main_timer == "TIMG2":
+                return 3;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else if(isDeviceFamily_PARENT_MSPM0L210X()){
+        switch (true) {
+            case main_timer == "TIMG14":
+                return 1;
+                break;
+            case main_timer == "TIMG1":
+                return 2;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
     // NOTE: not returning anything would lead to an undefined tool error with
     //       new devices.
     else{
@@ -3159,7 +3327,11 @@ function isUnicommI2C(){
  *
  */
 function hasCOMPDACOutput() {
-    return (isDeviceFamily_PARENT_MSPM0C1105_C1106() || isDeviceFamily_PARENT_MSPM0G511X() || isDeviceFamily_PARENT_MSPM0H321X());
+    return (isDeviceFamily_PARENT_MSPM0C1105_C1106()
+    || isDeviceFamily_PARENT_MSPM0G511X()
+    || isDeviceFamily_PARENT_MSPM0H321X()
+    || isDeviceFamily_PARENT_MSPM0L211X_L112X()
+    || isDeviceFamily_PARENT_MSPM0L210X());
 }
 
 /*

@@ -234,7 +234,7 @@ Pin Number,Device Pin Name,IO Type,Assigned Peripheral,Assigned Function ,User L
                             let pinSolution = system.modules[currentModule].$static.peripheral[currentResource.name].$solution;
                             let resource_pinNumber = pinSolution.packagePinName;
                             let resource_devicePinName = pinSolution.devicePinName;
-                            llet resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
+                            let resource_IOType = Common.getAttribute((system.deviceData.gpio.pinInfo[pinSolution.packagePinName].devicePin),("io_type"));
                             let resource_assignedFunction = "\""+currentResource.displayName+"\"";
                             let resource_assignedPeripheral = readCurrentName;
                             let resource_userLabel = ""
