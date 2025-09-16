@@ -35,6 +35,64 @@
 #include "smbus_nwk.h"
 #include "smbus_phy.h"
 
+#if defined(__MSPM0_HAS_I2C__)
+
+uint32_t SMBus_getTargetStatus(I2C_Regs *i2c)
+{
+    return DL_I2C_getTargetStatus(i2c);
+}
+
+void SMBus_setTargetPECCountValue(I2C_Regs *i2c, uint32_t count)
+{
+    DL_I2C_setTargetPECCountValue(i2c, count);
+}
+
+uint32_t SMBus_getControllerRawInterruptStatus(I2C_Regs *i2c, uint32_t interruptMask)
+{
+    return DL_I2C_getRawInterruptStatus(i2c, interruptMask);
+}
+
+SMBUS_TARGET_PEC_STATUS SMBus_getTargetPECCheckedStatus(I2C_Regs *i2c)
+{
+    return (SMBUS_TARGET_PEC_STATUS)DL_I2C_getTargetPECCheckedStatus(i2c);
+}
+
+SMBUS_TARGET_PEC_CHECK_ERROR SMBus_getTargetPECCheckedError(I2C_Regs *i2c)
+{
+    return (SMBUS_TARGET_PEC_CHECK_ERROR)DL_I2C_getTargetPECCheckError(i2c);
+}
+
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+
+uint32_t SMBus_getTargetStatus(UNICOMM_Inst_Regs *i2c)
+{
+    return DL_I2CT_getStatus(i2c);
+}
+
+void SMBus_setTargetPECCountValue(UNICOMM_Inst_Regs *i2c, uint32_t count)
+{
+    DL_I2CT_setPECCountValue(i2c, count);
+}
+
+uint32_t SMBus_getControllerRawInterruptStatus(UNICOMM_Inst_Regs *i2c, uint32_t interruptMask)
+{
+    return DL_I2CT_getRawInterruptStatus(i2c, interruptMask);
+}
+
+SMBUS_TARGET_PEC_STATUS SMBus_getTargetPECCheckedStatus(UNICOMM_Inst_Regs *i2c)
+{
+    return (SMBUS_TARGET_PEC_STATUS)DL_I2CT_getPECCheckedStatus(i2c);
+}
+
+SMBUS_TARGET_PEC_CHECK_ERROR SMBus_getTargetPECCheckedError(UNICOMM_Inst_Regs *i2c)
+{
+    return (SMBUS_TARGET_PEC_CHECK_ERROR)DL_I2CT_getPECCheckError(i2c);
+}
+
+#endif
+
 uint16_t SMBus_NWK_getRxPayloadSize(SMBus *smbus)
 {
     uint16_t data_size = smbus->nwk.rxIndex;
@@ -213,18 +271,18 @@ SMBus_State SMBus_NWK_targetProcessStart(SMBus *smbus,
         {
             /* Read the ARP Start transaction Bit - Read/Write */
 
-            smbus->arpStatus.arpWriteState = (DL_I2C_getTargetStatus(smbus->phy.SMBus_Phy_i2cBase));
+            smbus->arpStatus.arpWriteState = (SMBus_getTargetStatus(smbus->phy.SMBus_Phy_i2cBase));
 
             /* Wait till one of the Read/Write status is reflected */
             while(!SMBus_Phy_ARP_Get_Write_Status(smbus) &&
                     !SMBus_Phy_ARP_Get_Read_Status(smbus))
             {
-                smbus->arpStatus.arpWriteState = (DL_I2C_getTargetStatus(smbus->phy.SMBus_Phy_i2cBase));
+                smbus->arpStatus.arpWriteState = (SMBus_getTargetStatus(smbus->phy.SMBus_Phy_i2cBase));
             }
 
             /* If ARP UDID status return is not expected, Invalidate the Command and report error */
             /* If Read is initiated from Controller, Nothing to respond code is sent by the Target */
-            if((smbus->arpStatus.arpUDIDTransmit == 0) && (smbus->arpStatus.arpWriteState & I2C_SSR_TXMODE_SET))
+            if((smbus->arpStatus.arpUDIDTransmit == 0) && (smbus->arpStatus.arpWriteState & SMBUS_SSR_TXMODE_SET))
             {
                 smbus->arpStatus.errorState = SMBus_State_Invalid_ARP_Cmd;
                 smbus->nwk.eState = SMBus_NwkState_Error;
@@ -236,7 +294,7 @@ SMBus_State SMBus_NWK_targetProcessStart(SMBus *smbus,
             }
         }
         // SMBus set the PEC counter to 0. It will be set correctly before it is needed.
-        DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
+        SMBus_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
 
         // Clear rxIndex if previous bus state was Idle. If the bus was
         // not idle assume we are in a restart condition where the application
@@ -447,7 +505,7 @@ SMBus_State SMBus_NWK_targetProcessTx(SMBus *smbus,
         else if((smbus->ctrl.bits.pecEn == 1)  &&
                 (smbus->nwk.txIndex == smbus->nwk.txLen))
         {
-            DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 1);
+            SMBus_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 1);
             *data = 0x00; // Dummy data, I2C PEC HW will overlay correct PEC value
             smbus->nwk.txIndex++;
         }
@@ -477,10 +535,10 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
                 /* Check if a PEC was processed correctly */
                 if (smbus->ctrl.bits.pecEn == 1)
                 {
-                    if ( (DL_I2C_getTargetPECCheckedStatus(smbus->phy.SMBus_Phy_i2cBase) !=
-                        DL_I2C_TARGET_PEC_STATUS_CHECKED) ||
-                         (DL_I2C_getTargetPECCheckError(smbus->phy.SMBus_Phy_i2cBase) !=
-                          DL_I2C_TARGET_PEC_CHECK_ERROR_CLEARED) )
+                    if ( (SMBus_getTargetPECCheckedStatus(smbus->phy.SMBus_Phy_i2cBase) !=
+                          SMBUS_TARGET_PEC_STATUS_CHECKED) ||
+                         (SMBus_getTargetPECCheckedError(smbus->phy.SMBus_Phy_i2cBase) !=
+                          SMBUS_TARGET_PEC_CHECK_ERROR_CLEARED) )
                     {
                         smbus->nwk.eState = SMBus_NwkState_Error;
                         ret_state = SMBus_State_Target_Error;
@@ -512,7 +570,7 @@ SMBus_State SMBus_NWK_targetProcessStop(SMBus *smbus)
         /* Restart PEC */
         if (smbus->ctrl.bits.pecEn == 1)
         {
-            DL_I2C_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
+            SMBus_setTargetPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
             smbus->nwk.pecBlockLenOverride = 0;
         }
         // Set the network state machine to idle in order to get new packet
@@ -549,7 +607,7 @@ SMBus_State SMBus_NWK_targetProcessTimeout(SMBus *smbus)
     smbus->status.bits.toErr = 1;
 
     // Restart the SMBus Interface
-    SMBus_PHY_disable(smbus);
+    SMBus_PHY_targetDisable(smbus);
     delay_cycles(SMB_TIMEOUT_WAIT_CYCLES);
     SMBus_PHY_targetEnable(smbus);
     // After restart, be ready to accept new packet
@@ -708,9 +766,9 @@ SMBus_State SMBus_NWK_controllerProcessStop(SMBus *smbus)
         {
             if(smbus->ctrl.bits.pecEn == 1)
             {
-                if(DL_I2C_getRawInterruptStatus(smbus->phy.SMBus_Phy_i2cBase,
-                                  DL_I2C_INTERRUPT_CONTROLLER_PEC_RX_ERROR) ==
-                                  DL_I2C_INTERRUPT_CONTROLLER_PEC_RX_ERROR)
+                if(SMBus_getControllerRawInterruptStatus(smbus->phy.SMBus_Phy_i2cBase,
+                                                         SMBUS_INTERRUPT_CONTROLLER_PEC_RX_ERROR) ==
+                                                         SMBUS_INTERRUPT_CONTROLLER_PEC_RX_ERROR)
                 {
                     smbus->status.bits.pecErr = 1;
                     smbus->nwk.eState = SMBus_NwkState_Idle;
@@ -739,7 +797,7 @@ SMBus_State SMBus_NWK_controllerProcessStop(SMBus *smbus)
 void SMBus_NWK_controllerReset(SMBus *smbus)
 {
     // Restart the SMBus Interface
-    SMBus_PHY_disable(smbus);
+    SMBus_PHY_controllerDisable(smbus);
     SMBus_PHY_controllerEnable(smbus);
     // After restart, be ready to accept new packet
     smbus->nwk.eState = SMBus_NwkState_Idle;

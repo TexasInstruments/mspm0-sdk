@@ -62,6 +62,10 @@ int main(void)
         __WFE();
     }
 
+    /* Calling WFI after calling DL_SYSCTL_enableSleepOnExit will result in
+     * only ISR code to be executed. This is done to showcase the device's
+     * low power consumption when sleeping.
+     */
     DL_SYSCTL_enableSleepOnExit();
     while (1) {
         /* LED will turn ON to indicate example has completed without error */

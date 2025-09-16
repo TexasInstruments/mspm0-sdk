@@ -67,6 +67,8 @@
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/posix/freertos/timer.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="posix" >
         </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/posix/freertos/PTLS.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="posix" >
+        </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/posix/freertos/aeabi_portable.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="posix" >
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/croutine.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="freertos" >
@@ -83,9 +85,25 @@
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/timers.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="freertos" >
         </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/MemMang/heap_1.c" openOnCreation="false" excludeFromBuild="true" action="link" targetDirectory="freertos" >
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/MemMang/heap_2.c" openOnCreation="false" excludeFromBuild="true" action="link" targetDirectory="freertos" >
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/MemMang/heap_3.c" openOnCreation="false" excludeFromBuild="true" action="link" targetDirectory="freertos" >
+        </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/MemMang/heap_4.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="freertos" >
         </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/MemMang/heap_5.c" openOnCreation="false" excludeFromBuild="true" action="link" targetDirectory="freertos" >
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/Common/mpu_wrappers_v2.c" openOnCreation="false" excludeFromBuild="true" action="link" targetDirectory="freertos" >
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/Common/mpu_wrappers.c" openOnCreation="false" excludeFromBuild="true" action="link" targetDirectory="freertos" >
+        </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/GCC/ARM_CM0/port.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="freertos/portable/GCC/ARM_CM0" >
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/GCC/ARM_CM0/portasm.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="freertos/portable/GCC/ARM_CM0" >
+        </file>
+        <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/Source/portable/GCC/ARM_CM0/mpu_wrappers_v2_asm.c" openOnCreation="false" excludeFromBuild="true" action="link" targetDirectory="freertos/portable/GCC/ARM_CM0" >
         </file>
         <file path="${COM_TI_MSPM0_SDK_INSTALL_DIR}/kernel/freertos/dpl/AppHooks_freertos.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory="dpl" >
         </file>

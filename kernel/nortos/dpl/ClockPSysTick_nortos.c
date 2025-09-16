@@ -50,7 +50,8 @@
 #define CPU_CLOCK_MHZ ((uint32_t) 32)
 
 #elif ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X) || \
-       (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X))
+       (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) ||       \
+       (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X))
 
 #define CPU_CLOCK_HZ ((uint32_t) 32000000)
 #define CPU_CLOCK_MHZ ((uint32_t) 32)

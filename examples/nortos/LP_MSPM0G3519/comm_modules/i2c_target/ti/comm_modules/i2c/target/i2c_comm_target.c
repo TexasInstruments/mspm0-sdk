@@ -132,25 +132,6 @@ __STATIC_INLINE void I2C_clearBuffer(BufferInfo *frame)
     frame->len = 0;
 }
 
-#ifdef CONFIG_MSPM0G351X
-static uint16_t CRC_calc16(uint8_t* ptr,uint8_t size)
-{
-    uint8_t remainder = (size & 1);
-    uint16_t size16 = size>>1;
-
-    uint16_t checkSum = DL_CRCP_calculateBlock16(CRCP0,CRCP_SEED,
-                                                    (uint16_t*)ptr,size16);
-
-    if(remainder)
-    {
-        DL_CRCP_feedData8(CRCP0,ptr[size - 1]);
-        checkSum = ((uint16_t) DL_CRCP_getResult16(CRCP0));
-    }
-
-    return checkSum;
-}
-
-#else
 static uint16_t CRC_calc16(uint8_t* ptr,uint8_t size)
 {
     uint8_t remainder = (size & 1);
@@ -167,8 +148,6 @@ static uint16_t CRC_calc16(uint8_t* ptr,uint8_t size)
 
     return checkSum;
 }
-
-#endif
 
 void I2C_init(I2C_Instance* I2C_handle)
 {
@@ -363,9 +342,18 @@ void DMA_RX_init(I2C_Instance *I2C_handle)
 {
     DL_DMA_disableChannel(DMA, DMA_CH_RX_CHAN_ID);
 
+#if defined(__MSPM0_HAS_I2C__)
     /* Rx */
-    DL_DMA_setSrcAddr(DMA, DMA_CH_RX_CHAN_ID, 
+    DL_DMA_setSrcAddr(DMA, DMA_CH_RX_CHAN_ID,
                                     (uint32_t) &I2C_0_INST->SLAVE.SRXDATA);
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CT__)
+    /* Rx */
+    DL_DMA_setSrcAddr(DMA, DMA_CH_RX_CHAN_ID,
+                                    (uint32_t) &I2C_0_INST->i2ct->RXDATA);
+#endif
+
     DL_DMA_setDestAddr(DMA, DMA_CH_RX_CHAN_ID,(uint32_t) &I2C_handle->rxMsg.buffer[0]);
     DL_DMA_setTransferSize(DMA, DMA_CH_RX_CHAN_ID, MAX_BUFFER_SIZE);
     DL_DMA_enableChannel(DMA, DMA_CH_RX_CHAN_ID);
@@ -377,8 +365,17 @@ void DMA_TX_init(I2C_Instance *I2C_handle,uint32_t dataLen)
 
     /* Tx */
     DL_DMA_setSrcAddr(DMA, DMA_CH_TX_CHAN_ID,(uint32_t)  &I2C_handle->txMsg.buffer[0]);
+
+#if defined(__MSPM0_HAS_I2C__)
     DL_DMA_setDestAddr(DMA, DMA_CH_TX_CHAN_ID,
                                          (uint32_t) &I2C_0_INST->SLAVE.STXDATA);
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CT__)
+    DL_DMA_setDestAddr(DMA, DMA_CH_TX_CHAN_ID,
+                                         (uint32_t) &I2C_0_INST->i2ct->TTXDATA);
+#endif
+
     DL_DMA_setTransferSize(DMA, DMA_CH_TX_CHAN_ID, dataLen);
     DL_DMA_enableChannel(DMA, DMA_CH_TX_CHAN_ID);
 }

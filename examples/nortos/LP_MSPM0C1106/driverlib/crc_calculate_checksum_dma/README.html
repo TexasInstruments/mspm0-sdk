@@ -41,28 +41,36 @@
 <li>Little endian</li>
 <li>Not reversed</li>
 </ul>
-<h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
+<h2 id="peripherals-pin-functions-mcu-pins-launchpad-pins">Peripherals, Pin Functions, MCU Pins, Launchpad Pins</h2>
 <table>
 <thead>
 <tr class="header">
 <th>Peripheral</th>
-<th>Pin</th>
 <th>Function</th>
+<th>MCU Pin</th>
+<th>Launchpad Pin</th>
+<th>Launchpad Settings</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>PA0</td>
 <td>Open-Drain Output</td>
+<td>PA0</td>
+<td>Red LED1</td>
+<td>Populate Jumper(s): J4[1:2]</td>
 </tr>
 <tr class="even">
 <td>GPIOA</td>
+<td>Standard Output</td>
 <td>PA15</td>
-<td>Open-Drain Output</td>
+<td>J4_38</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SYSCTL</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -70,9 +78,13 @@
 <td>EVENT</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>DMA</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -80,16 +92,22 @@
 <td>CRC</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>DEBUGSS</td>
-<td>PA20</td>
+<td>BOARD</td>
 <td>Debug Clock</td>
+<td>PA20</td>
+<td>J14_4</td>
+<td></td>
 </tr>
 <tr class="even">
-<td>DEBUGSS</td>
-<td>PA19</td>
+<td>BOARD</td>
 <td>Debug Data In Out</td>
+<td>PA19</td>
+<td>J14_2</td>
+<td></td>
 </tr>
 </tbody>
 </table>

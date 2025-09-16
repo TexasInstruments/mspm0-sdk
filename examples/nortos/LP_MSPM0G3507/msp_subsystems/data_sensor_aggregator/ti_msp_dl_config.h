@@ -123,6 +123,8 @@ extern "C" {
 #define ADC12_0_ADCMEM_0_REF_VOLTAGE_V                                       3.3
 #define GPIO_ADC12_0_C2_PORT                                               GPIOA
 #define GPIO_ADC12_0_C2_PIN                                       DL_GPIO_PIN_25
+#define GPIO_ADC12_0_IOMUX_C2                                    (IOMUX_PINCM55)
+#define GPIO_ADC12_0_IOMUX_C2_FUNC                (IOMUX_PINCM55_PF_UNCONNECTED)
 
 
 
@@ -151,6 +153,7 @@ extern "C" {
 #define GPIO_SENSORS_POWER_INT2_PORT                                     (GPIOB)
 #define GPIO_SENSORS_POWER_INT2_PIN                              (DL_GPIO_PIN_6)
 #define GPIO_SENSORS_POWER_INT2_IOMUX                            (IOMUX_PINCM23)
+
 
 /* clang-format on */
 

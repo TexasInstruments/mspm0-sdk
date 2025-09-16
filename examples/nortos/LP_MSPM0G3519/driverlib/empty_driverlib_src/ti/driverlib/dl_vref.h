@@ -107,12 +107,12 @@ extern "C" {
 /*!
 * @brief Minimum value for VREF hold, if enabled
 */
-#define DL_VREF_HOLD_MIN             (VREF_CTL2_HCYCLE_MINIMUM)
+#define DL_VREF_HOLD_MIN             (0x0000U)
 
 /*!
 * @brief Maximum value for VREF hold, if enabled
 */
-#define DL_VREF_HOLD_MAX             (VREF_CTL2_HCYCLE_MAXIMUM)
+#define DL_VREF_HOLD_MAX             (0xFFFFU)
 
 /** @}*/
 
@@ -187,9 +187,9 @@ typedef struct {
     /*! VREF sample and hold enable configuration setting. Either @ref DL_VREF_SHMODE_DISABLE or @ref DL_VREF_SHMODE_ENABLE */
     DL_VREF_SHMODE shModeEnable;
     /*! Number of cycles to sample and hold for, if sample and hold mode is enabled. Minimum @ref DL_VREF_SH_MIN, maximum @ref DL_VREF_SH_MAX */
-    uint32_t shCycleCount;
+    uint16_t shCycleCount;
     /*! Number of cycles to hold for, if sample and hold mode is enabled. Minimum @ref DL_VREF_HOLD_MIN, maximum @ref DL_VREF_HOLD_MAX */
-    uint32_t holdCycleCount;
+    uint16_t holdCycleCount;
 } DL_VREF_Config;
 
 /**
@@ -288,7 +288,7 @@ __STATIC_INLINE bool DL_VREF_isEnabled(const VREF_Regs *vref)
     return ((vref->CTL0 & VREF_CTL0_ENABLE_MASK) == VREF_CTL0_ENABLE_ENABLE);
 }
 
-#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)
+#if defined(VREF_SYS_INT_COMP_REF) && (VREF_SYS_INT_COMP_REF == 1)
 /**
  *  @brief      Enable VREF buffer as internal reference input for comparator
  *
@@ -323,6 +323,44 @@ __STATIC_INLINE bool DL_VREF_isInternalRefCOMPEnabled(const VREF_Regs *vref)
 __STATIC_INLINE void DL_VREF_disableInternalRefCOMP(VREF_Regs *vref)
 {
     vref->CTL0 &= ~(VREF_CTL0_COMP_VREF_ENABLE_MASK);
+}
+#endif
+
+#if defined(VREF_SYS_INT_ADC_REF) && (VREF_SYS_INT_ADC_REF == 1)
+/**
+ *  @brief      Enable VREF buffer as internal reference input for ADC
+ *
+ * @param vref       Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_VREF_enableInternalRefADC(VREF_Regs *vref)
+{
+    vref->CTL0 |= VREF_CTL0_ADC_VREF_ENABLE_ENABLE;
+}
+
+/**
+ *  @brief      Checks if VREF buffer for ADC is enabled
+ *
+ * @param vref       Pointer to the register overlay for the peripheral
+ *
+ *  @return     Returns if VREF buffer for ADC is enabled
+ *
+ *  @retval     true  VREF buffer for ADC is enabled
+ *  @retval     false VREF buffer for ADC is disabled
+ */
+__STATIC_INLINE bool DL_VREF_isInternalRefADCEnabled(const VREF_Regs *vref)
+{
+    return ((vref->CTL0 & VREF_CTL0_ADC_VREF_ENABLE_MASK) ==
+            VREF_CTL0_ADC_VREF_ENABLE_ENABLE);
+}
+
+/**
+ *  @brief      Disable VREF buffer as internal reference input for ADC
+ *
+ * @param vref       Pointer to the register overlay for the peripheral
+ */
+__STATIC_INLINE void DL_VREF_disableInternalRefADC(VREF_Regs *vref)
+{
+    vref->CTL0 &= ~(VREF_CTL0_ADC_VREF_ENABLE_MASK);
 }
 #endif
 

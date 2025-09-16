@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L111X Driver Library
-   &#160;<span id="projectnumber">2.05.01.00</span>
+   &#160;<span id="projectnumber">2.06.00.05</span>
    </div>
   </td>
  </tr>
@@ -510,7 +510,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga9d25f8badf9c91d1031e0c0626010d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable ADC12 event.  <a href="#ga9d25f8badf9c91d1031e0c0626010d80">More...</a><br /></td></tr>
 <tr class="separator:ga9d25f8badf9c91d1031e0c0626010d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac1ee7d425ac17c4138767f5cc435afbe"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___a_d_c12.html#gac1ee7d425ac17c4138767f5cc435afbe">DL_ADC12_getEnabledEvents</a> (const ADC12_Regs *adc12, uint32_t eventMask)</td></tr>
-<tr class="memdesc:gac1ee7d425ac17c4138767f5cc435afbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check which adc12 dma triggers are enabled.  <a href="#gac1ee7d425ac17c4138767f5cc435afbe">More...</a><br /></td></tr>
+<tr class="memdesc:gac1ee7d425ac17c4138767f5cc435afbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check which ADC12 events are enabled.  <a href="#gac1ee7d425ac17c4138767f5cc435afbe">More...</a><br /></td></tr>
 <tr class="separator:gac1ee7d425ac17c4138767f5cc435afbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2b8ff71d8a639fd5caac1c8db9977238"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___a_d_c12.html#ga2b8ff71d8a639fd5caac1c8db9977238">DL_ADC12_getEnabledEventStatus</a> (const ADC12_Regs *adc12, uint32_t eventMask)</td></tr>
 <tr class="memdesc:ga2b8ff71d8a639fd5caac1c8db9977238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check event flag of enabled adc12 event.  <a href="#ga2b8ff71d8a639fd5caac1c8db9977238">More...</a><br /></td></tr>
@@ -1121,7 +1121,7 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>One of <a class="el" href="group___d_l___a_d_c12___s_e_q___e_n_d___a_d_d_r.html">DL_ADC12_SEQ_END_ADDR</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One of <a class="el" href="group___d_l___a_d_c12___s_e_q___s_t_a_r_t___a_d_d_r.html">DL_ADC12_SEQ_START_ADDR</a> </dd></dl>
 
 </div>
 </div>
@@ -2072,10 +2072,13 @@ false if peripheral wasn't reset </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">adc12</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">adcclks</td><td>Specifies the sample time in number of ADCCLK cycles. Actual sample time is (adcclks + 1) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">adcclks</td><td>The sample time in number of ADCCLK cycles.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Actual sample time is calculated as follows:</p>
+<p>If adcclks (SCOMP register) = 0 or 1, then: number of sampling clocks = sample clock divide value (actual divide value of SCLKDIV register) Ex. If adcclks = 0, and SCLKDIV = 2 (implies divide value of 4), then: the total number of sampling clocks is 4.</p>
+<p>If adcclks (SCOMP register) &gt;= 1, then: number of sampling clocks = adcclks * sample clock divide value (actual divide value of SCLKDIV) Ex. If adcclks = 5, and SCLKDIV = 6 (implies divide value of 16), then: 5 * 16 = 80 sampling clocks. </p>
 
 </div>
 </div>
@@ -2200,7 +2203,7 @@ false if peripheral wasn't reset </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">adc12</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>Window comparator low threshold value. Threshold value must take into account result data format and and resolution confugred via DL_ADC12_initSingleSample or DL_ADC12_initSeqSample </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>Window comparator low threshold value. Threshold value must take into account result data format and resolution configured via <a class="el" href="group___a_d_c12.html#gac71c58178d557f5393da8c9840edf123">DL_ADC12_initSingleSample</a> or <a class="el" href="group___a_d_c12.html#gacaedd12e82217c794bc40573cd45a8a1">DL_ADC12_initSeqSample</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -2237,7 +2240,7 @@ false if peripheral wasn't reset </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">adc12</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>Window comparator high threshold value. Threshold value must take into account result data format and and resolution confugred via DL_ADC12_initSingleSample or DL_ADC12_initSeqSample </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>Window comparator high threshold value. Threshold value must take into account result data format and resolution configured via <a class="el" href="group___a_d_c12.html#gac71c58178d557f5393da8c9840edf123">DL_ADC12_initSingleSample</a> or <a class="el" href="group___a_d_c12.html#gacaedd12e82217c794bc40573cd45a8a1">DL_ADC12_initSeqSample</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -3104,7 +3107,7 @@ false if peripheral wasn't reset </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">adc12</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">eventMask</td><td>Bit mask of events to enable. Bitwise OR of <a class="el" href="group___d_l___a_d_c12___e_v_e_n_t.html">DL_ADC12_EVENT</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eventMask</td><td>Bit mask of events to disable. Bitwise OR of <a class="el" href="group___d_l___a_d_c12___e_v_e_n_t.html">DL_ADC12_EVENT</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3137,7 +3140,7 @@ false if peripheral wasn't reset </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Check which adc12 dma triggers are enabled. </p>
+<p>Check which ADC12 events are enabled. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">adc12</td><td>Pointer to the register overlay for the peripheral </td></tr>
@@ -3190,7 +3193,7 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Which of the requested adc12 eventes are pending</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Which of the requested adc12 events are pending</dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">Bitwise</td><td>OR of <a class="el" href="group___d_l___a_d_c12___e_v_e_n_t.html">DL_ADC12_EVENT</a> values</td></tr>
@@ -3350,7 +3353,7 @@ false if peripheral wasn't reset </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">adc12</td><td>Pointer to the register overlay for the peripheral </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dmaMask</td><td>Bit mask of DMA triggers to enable. Bitwise OR of <a class="el" href="group___d_l___a_d_c12___d_m_a.html">DL_ADC12_DMA</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dmaMask</td><td>Bit mask of DMA triggers to disable. Bitwise OR of <a class="el" href="group___d_l___a_d_c12___d_m_a.html">DL_ADC12_DMA</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -3436,7 +3439,7 @@ false if peripheral wasn't reset </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Which of the requested adc12 eventes are pending</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Which of the requested adc12 events are pending</dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">Bitwise</td><td>OR of <a class="el" href="group___d_l___a_d_c12___d_m_a.html">DL_ADC12_DMA</a> values</td></tr>

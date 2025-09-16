@@ -34,7 +34,8 @@
 
 #include <ti/driverlib/m0p/dl_factoryregion.h>
 
-#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X)
+#if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) || \
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X))
 
 /* Creating a section for structure inside SRAM*/
 __attribute__((section(".TrimTable")))

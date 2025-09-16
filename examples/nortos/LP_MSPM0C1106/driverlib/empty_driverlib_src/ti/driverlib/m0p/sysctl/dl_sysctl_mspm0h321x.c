@@ -64,17 +64,14 @@ void DL_SYSCTL_setLFCLKSourceLFXT(const DL_SYSCTL_LFCLKConfig *config)
 
 void DL_SYSCTL_switchMCLKfromSYSOSCtoLFCLK(bool disableSYSOSC)
 {
-    // Set SYSOSC back to base frequency if left enabled
     if (disableSYSOSC == false) {
+        // Set SYSOSC back to base frequency if left enabled
         DL_SYSCTL_setSYSOSCFreq(DL_SYSCTL_SYSOSC_FREQ_BASE);
-        // Do not set both bits
         SYSCTL->SOCLOCK.SYSOSCCFG &= ~SYSCTL_SYSOSCCFG_DISABLE_ENABLE;
-        SYSCTL->SOCLOCK.MCLKCFG |= SYSCTL_MCLKCFG_USELFCLK_ENABLE;
     } else {
-        // Do not set both bits
-        SYSCTL->SOCLOCK.MCLKCFG &= ~SYSCTL_MCLKCFG_USELFCLK_ENABLE;
         SYSCTL->SOCLOCK.SYSOSCCFG |= SYSCTL_SYSOSCCFG_DISABLE_ENABLE;
     }
+    SYSCTL->SOCLOCK.MCLKCFG |= SYSCTL_MCLKCFG_USELFCLK_ENABLE;
 
     // Verify LFCLK -> MCLK
     while ((DL_SYSCTL_getClockStatus() & SYSCTL_CLKSTATUS_CURMCLKSEL_MASK) !=

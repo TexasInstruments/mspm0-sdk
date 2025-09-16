@@ -53,6 +53,10 @@ int main(void)
 
     DL_DMA_enableChannel(DMA, DMA_CH0_CHAN_ID);
 
+    /* Calling WFI after calling DL_SYSCTL_enableSleepOnExit will result in
+     * only ISR code to be executed. This is done to showcase the device's
+     * low power consumption when sleeping.
+     */
     DL_SYSCTL_enableSleepOnExit();
     while (1) {
         __WFI();

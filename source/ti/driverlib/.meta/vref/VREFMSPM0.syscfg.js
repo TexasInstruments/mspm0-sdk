@@ -724,7 +724,13 @@ function moduleInstances(inst){
      */
     /* CONDITIONS CODE START */
     let vrefPosConfig, vrefNegConfig = false;
-    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() || ((Common.isDeviceM0L() || Common.isDeviceM0H() || Common.isDeviceFamily_PARENT_MSPM0GX51X()) && (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE")))){
+    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() ||
+        ((Common.isDeviceM0L() ||
+        Common.isDeviceM0H() ||
+        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G352X()) &&
+        (inst.basicMode.includes("DL_VREF_ENABLE_DISABLE"))))
+    {
         if (["VREF+-","VREF+"].includes(inst.basicVrefPins))
         {
             vrefPosConfig = true;

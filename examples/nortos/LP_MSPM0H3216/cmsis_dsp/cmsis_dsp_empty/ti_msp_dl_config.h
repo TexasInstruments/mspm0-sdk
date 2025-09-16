@@ -77,6 +77,7 @@ extern "C" {
 #define CPUCLK_FREQ                                                     32000000
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

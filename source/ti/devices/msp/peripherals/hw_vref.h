@@ -200,6 +200,13 @@ typedef struct {
 #define VREF_CTL0_COMP_VREF_ENABLE_DISABLE       ((uint32_t)0x00000000U)         /* !< COMP VREF is disabled */
 #define VREF_CTL0_COMP_VREF_ENABLE_ENABLE        ((uint32_t)0x00000002U)         /* !< COMP VREF is enabled */
 
+/* VREF_CTL0[ADC_VREF_ENABLE] Bits */
+#define VREF_CTL0_ADC_VREF_ENABLE_OFS            (1)                             /* !< ADC_VREF_ENABLE Offset */
+#define VREF_CTL0_ADC_VREF_ENABLE_MASK           ((uint32_t)0x00000002U)         /* !< ADC Vref Enable */
+#define VREF_CTL0_ADC_VREF_ENABLE_DISABLE        ((uint32_t)0x00000000U)         /* !< ADC VREF is disabled */
+#define VREF_CTL0_ADC_VREF_ENABLE_ENABLE         ((uint32_t)0x00000002U)         /* !< ADC VREF is enabled */
+
+
 /* VREF_CTL1 Bits */
 /* VREF_CTL1[READY] Bits */
 #define VREF_CTL1_READY_OFS                      (0)                             /* !< READY Offset */

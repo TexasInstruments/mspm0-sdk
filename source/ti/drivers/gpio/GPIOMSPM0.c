@@ -85,7 +85,8 @@ static const PortConfig portConfigs[NUM_PORTS] = {
 };
 
 #elif ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X) || \
-       (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X))
+       (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) ||       \
+       (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X))
 
 #define NUM_PORTS (3)
 #define PORTA_INDEX (0)
@@ -221,7 +222,8 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
 #if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X) || \
      (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X) || \
      (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) ||       \
-     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X))
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X) ||       \
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X))
         uint32_t pendingIntMaskGPIOB = 0;
         pendingIntMaskGPIOB =
             DL_GPIO_getEnabledInterruptStatus(GPIOB, ALL_INTERRUPTS_MASK);
@@ -242,7 +244,8 @@ void GPIO_hwiIntFxn(uintptr_t portIndex)
         }
 #endif
 #if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X) || \
-     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X))
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) ||       \
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X))
         uint32_t pendingIntMaskGPIOC = 0;
         pendingIntMaskGPIOC =
             DL_GPIO_getEnabledInterruptStatus(GPIOC, ALL_INTERRUPTS_MASK);

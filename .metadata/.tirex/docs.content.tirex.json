@@ -12,7 +12,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_05_01_00.html",
+    "location": "../../release_notes_mspm0_sdk_2_06_00_05.html",
     "mainCategories": [
         [
             "Documents"
@@ -183,7 +183,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../manifest_mspm0_sdk_2_05_01_00.html",
+    "location": "../../manifest_mspm0_sdk_2_06_00_05.html",
     "mainCategories": [
         [
             "Documents"
@@ -1125,6 +1125,67 @@
     ]
 },
 {
+    "name": "Modbus Library User's Guide",
+    "tags": [
+        "Modbus Library User's Guide",
+        "Modbus User's Guide",
+        "Modbus Controller",
+        "Modbus Target",
+        "Documentation",
+        "Middleware"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/modbus/Modbus_Guide.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "Modbus"
+    ]
+},
+{
+    "name": "USB Library User's Guide",
+    "tags": [
+        "USB Library User's Guide",
+        "USB User's Guide",
+        "TinyUSB",
+        "USB Host",
+        "USB Device",
+        "Modbus Controller",
+        "Communication Device Class (CDC)",
+        "Human Interface Device (HID)",
+        "Mass Storage Class (MSC)",
+        "Billboard Class",
+        "Audio Class",
+        "HID Host",
+        "MSC Host",
+        "CDC Host",
+        "USB Descriptor Tool",
+        "Documentation",
+        "Middleware"
+    ],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "file",
+    "resourceClass": ["document"],
+    "location": "../../docs/english/middleware/tinyusb/TinyUSB_User_Guide.html",
+    "mainCategories": [
+        [
+            "Documents"
+        ]
+    ],
+    "subCategories": [
+        "Middleware",
+        "USB"
+    ]
+},
+{
     "name": "Quick Start Guide Overview",
     "tags": [
         "Quick Start Guide Overview",
@@ -1320,7 +1381,7 @@
     "devtools": ["$(MSPM0_all_devtools)"],
     "resourceType": "file",
     "resourceClass": ["document"],
-    "location": "../../release_notes_mspm0_sdk_2_05_01_00.html",
+    "location": "../../release_notes_mspm0_sdk_2_06_00_05.html",
     "mainCategories": [
         [
             "Documents - Chinese"

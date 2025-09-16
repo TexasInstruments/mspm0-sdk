@@ -71,8 +71,12 @@ void BSL_Flash_Init(void);
 uint32_t BSL_RAM_bufStartAddress;
 uint32_t BSL_RAM_bufEndAddress;
 
-#define BSL_SRAM_BUF_START_ADDR ((uint32_t) 0x20205000)
-#define BSL_STACK_SIZE ((uint32_t) 0x1000)
+/* NOTE: buffer section in linker file must be last thing before stack. */
+extern uint32_t __buffer_start;
+extern uint32_t __buffer_end;
+
+#define BSL_SRAM_BUF_START_ADDR ((uint32_t) &__buffer_start)
+#define BSL_SRAM_BUF_END_ADDR ((uint32_t) &__buffer_end)
 
 volatile uint8_t timeoutDetected = (uint8_t) 0x0;
 
@@ -174,10 +178,10 @@ void BSL_RAM_BufferInit(void)
     /*
      * 'BSL_RAM_bufStartAddress' and  'BSL_RAM_bufEndAddress' gives the memory
      * range available for buffer operations, excluding the RAM consumed by
-     * the Secondary BSL for it's operation
+     * the Secondary BSL for it's operation. Currently fixed by linker file.
      */
     BSL_RAM_bufStartAddress = BSL_SRAM_BUF_START_ADDR;
-    BSL_RAM_bufEndAddress   = BSL_CI_getRAMEndAddress() - BSL_STACK_SIZE;
+    BSL_RAM_bufEndAddress   = BSL_SRAM_BUF_END_ADDR;
 
     /*
      * Divide the available memory by 2,

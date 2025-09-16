@@ -32,7 +32,7 @@
 
 *****************************************************************************/
 -uinterruptVectors
---stack_size=256
+--stack_size=1024
 
 #define CSC_APPLICATION_IMAGE_BASE_ADDRESS 0x4800
 #define CSC_APPLICATION_IMAGE_SIZE 0x2800
@@ -79,6 +79,12 @@ SECTIONS
     .bss    :   > SRAM_BANK0
     .sysmem :   > SRAM_BANK0
     .TrimTable :  > SRAM_BANK0
+    .buffer : palign(8)
+	  {
+			__buffer_start = .;
+			. = 0xA000;
+			__buffer_end = .;
+	  } (NOINIT) > SRAM_BANK0
     .stack  :   > SRAM_BANK0 (HIGH)
 
     .lockStg : {} (NOLOAD) > LOCK_STG

@@ -38,6 +38,15 @@ let COMP_POS_internalSignals = {
         },
         COMP2: undefined,
     },
+    MSPM0G352X: {
+        COMP0: {
+            7: "COMPy positive terminal signal",
+        },
+        COMP1: {
+            7: "COMPy positive terminal signal",
+        },
+        COMP2: undefined,
+    },
     MSPM0L111X: undefined,
     MSPM0H321X: undefined,
     MSPM0C1105_C1106: { // VERIFY WITH SPEC/DS
@@ -46,6 +55,9 @@ let COMP_POS_internalSignals = {
         },
     },
     MSPM0G511X: {
+        COMP0: undefined,
+    },
+    MSPM0G518X: {
         COMP0: undefined,
     },
     MSPM0L211X_L112X: {
@@ -89,6 +101,15 @@ let COMP_NEG_internalSignals = {
         },
         COMP2: undefined,
     },
+    MSPM0G352X: {
+        COMP0: {
+            5: "Temperature Sensor",
+        },
+        COMP1: {
+            5: "Temperature Sensor",
+        },
+        COMP2: undefined,
+    },
     MSPM0L111X: undefined,
     MSPM0H321X: undefined,
     MSPM0C1105_C1106: { // VERIFY WITH SPEC/DS
@@ -98,6 +119,11 @@ let COMP_NEG_internalSignals = {
         },
     },
     MSPM0G511X: {
+        COMP0: {
+            5: "Temperature Sensor",
+        },
+    },
+    MSPM0G518X: {
         COMP0: {
             5: "Temperature Sensor",
         },

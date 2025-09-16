@@ -110,6 +110,7 @@ extern "C" {
 #define COMP_OUTPUT_C_PIN                                       (DL_GPIO_PIN_17)
 #define COMP_OUTPUT_C_IOMUX                                      (IOMUX_PINCM18)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

@@ -85,8 +85,12 @@ void SMBus_disablePEC(SMBus *smbus)
     smbus->ctrl.bits.pecEn = 0;
 }
 
-
+#if defined(__MSPM0_HAS_I2C__)
 void SMBus_targetInit(SMBus *smbus, I2C_Regs *i2cAddr)
+#endif
+#if defined(__MCU_HAS_UNICOMMI2CT__)
+void SMBus_targetInit(SMBus *smbus, UNICOMM_Inst_Regs *i2cAddr)
+#endif
 {
     smbus->nwk.eState = SMBus_NwkState_Idle;
     smbus->nwk.currentCmd = 0;
@@ -236,9 +240,12 @@ int8_t SMBus_targetHostAlert(SMBus *smbus,
     return(SMBUS_RET_OK);
 }
 
-void SMBus_controllerInit(SMBus *smbus,
-                      I2C_Regs *i2cAddr,
-                      uint32_t busClk)
+#if defined(__MSPM0_HAS_I2C__)
+void SMBus_controllerInit(SMBus *smbus, I2C_Regs *i2cAddr, uint32_t busClk)
+#endif
+#if defined(__MCU_HAS_UNICOMMI2CC__)
+void SMBus_controllerInit(SMBus *smbus, UNICOMM_Inst_Regs *i2cAddr, uint32_t busClk)
+#endif
 {
     smbus->nwk.eState = SMBus_NwkState_Idle;
     smbus->nwk.currentAddr = 0;

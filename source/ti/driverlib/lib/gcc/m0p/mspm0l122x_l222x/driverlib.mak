@@ -14,7 +14,7 @@ CFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" "-I$(SDK_INSTALL_DIR)/sour
 AFLAGS = -cr --target=elf32-little
 ASMFLAGS = "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include" 
 
-OBJECTS = $(OBJ_DIR)/dl_adc12.o $(OBJ_DIR)/dl_aes.o $(OBJ_DIR)/dl_aesadv.o $(OBJ_DIR)/dl_common.o $(OBJ_DIR)/dl_comp.o $(OBJ_DIR)/dl_crc.o $(OBJ_DIR)/dl_crcp.o $(OBJ_DIR)/dl_dac12.o $(OBJ_DIR)/dl_dma.o $(OBJ_DIR)/dl_flashctl.o $(OBJ_DIR)/dl_gpamp.o $(OBJ_DIR)/dl_gpio.o $(OBJ_DIR)/dl_i2c.o $(OBJ_DIR)/dl_iwdt.o $(OBJ_DIR)/dl_keystorectl.o $(OBJ_DIR)/dl_lcd.o $(OBJ_DIR)/dl_lfss.o $(OBJ_DIR)/dl_mathacl.o $(OBJ_DIR)/dl_mcan.o $(OBJ_DIR)/dl_opa.o $(OBJ_DIR)/dl_rtc.o $(OBJ_DIR)/dl_rtc_a.o $(OBJ_DIR)/dl_rtc_b.o $(OBJ_DIR)/dl_rtc_common.o $(OBJ_DIR)/dl_scratchpad.o $(OBJ_DIR)/dl_spi.o $(OBJ_DIR)/dl_tamperio.o $(OBJ_DIR)/dl_timer.o $(OBJ_DIR)/dl_timera.o $(OBJ_DIR)/dl_timerg.o $(OBJ_DIR)/dl_trng.o $(OBJ_DIR)/dl_uart.o $(OBJ_DIR)/dl_vref.o $(OBJ_DIR)/dl_wwdt.o $(OBJ_DIR)/dl_factoryregion.o $(OBJ_DIR)/dl_interrupt.o $(OBJ_DIR)/dl_sysctl_mspm0c1105_c1106.o $(OBJ_DIR)/dl_sysctl_mspm0c110x.o $(OBJ_DIR)/dl_sysctl_mspm0g1x0x_g3x0x.o $(OBJ_DIR)/dl_sysctl_mspm0gx51x.o $(OBJ_DIR)/dl_sysctl_mspm0h321x.o $(OBJ_DIR)/dl_sysctl_mspm0l111x.o $(OBJ_DIR)/dl_sysctl_mspm0l11xx_l13xx.o $(OBJ_DIR)/dl_sysctl_mspm0l122x_l222x.o
+OBJECTS = $(OBJ_DIR)/dl_adc12.o $(OBJ_DIR)/dl_aes.o $(OBJ_DIR)/dl_aesadv.o $(OBJ_DIR)/dl_common.o $(OBJ_DIR)/dl_comp.o $(OBJ_DIR)/dl_crc.o $(OBJ_DIR)/dl_crcp.o $(OBJ_DIR)/dl_dac12.o $(OBJ_DIR)/dl_dma.o $(OBJ_DIR)/dl_flashctl.o $(OBJ_DIR)/dl_gpamp.o $(OBJ_DIR)/dl_gpio.o $(OBJ_DIR)/dl_i2c.o $(OBJ_DIR)/dl_i2s.o $(OBJ_DIR)/dl_iwdt.o $(OBJ_DIR)/dl_keystorectl.o $(OBJ_DIR)/dl_lcd.o $(OBJ_DIR)/dl_lfss.o $(OBJ_DIR)/dl_mathacl.o $(OBJ_DIR)/dl_mcan.o $(OBJ_DIR)/dl_npu.o $(OBJ_DIR)/dl_opa.o $(OBJ_DIR)/dl_rtc.o $(OBJ_DIR)/dl_rtc_a.o $(OBJ_DIR)/dl_rtc_b.o $(OBJ_DIR)/dl_rtc_common.o $(OBJ_DIR)/dl_scratchpad.o $(OBJ_DIR)/dl_spgss.o $(OBJ_DIR)/dl_spi.o $(OBJ_DIR)/dl_tamperio.o $(OBJ_DIR)/dl_timer.o $(OBJ_DIR)/dl_timera.o $(OBJ_DIR)/dl_timerb.o $(OBJ_DIR)/dl_timerg.o $(OBJ_DIR)/dl_trng.o $(OBJ_DIR)/dl_uart.o $(OBJ_DIR)/dl_unicomm.o $(OBJ_DIR)/dl_unicommi2cc.o $(OBJ_DIR)/dl_unicommi2ct.o $(OBJ_DIR)/dl_unicommspi.o $(OBJ_DIR)/dl_unicommuart.o $(OBJ_DIR)/dl_vref.o $(OBJ_DIR)/dl_wwdt.o $(OBJ_DIR)/dl_factoryregion.o $(OBJ_DIR)/dl_interrupt.o $(OBJ_DIR)/dl_sysctl_mspm0c1105_c1106.o $(OBJ_DIR)/dl_sysctl_mspm0c110x.o $(OBJ_DIR)/dl_sysctl_mspm0g1x0x_g3x0x.o $(OBJ_DIR)/dl_sysctl_mspm0g352x.o $(OBJ_DIR)/dl_sysctl_mspm0g511x.o $(OBJ_DIR)/dl_sysctl_mspm0g518x.o $(OBJ_DIR)/dl_sysctl_mspm0gx51x.o $(OBJ_DIR)/dl_sysctl_mspm0h321x.o $(OBJ_DIR)/dl_sysctl_mspm0l111x.o $(OBJ_DIR)/dl_sysctl_mspm0l11xx_l13xx.o $(OBJ_DIR)/dl_sysctl_mspm0l122x_l222x.o $(OBJ_DIR)/dl_sysctl_mspm0l211x_l112x.o
 
 all: $(NAME).a
 
@@ -87,6 +87,11 @@ $(OBJ_DIR)/dl_i2c.o: $(SRC_DIR)/dl_i2c.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/dl_i2s.o: $(SRC_DIR)/dl_i2s.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/dl_iwdt.o: $(SRC_DIR)/dl_iwdt.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
@@ -113,6 +118,11 @@ $(OBJ_DIR)/dl_mathacl.o: $(SRC_DIR)/dl_mathacl.c
 	@ $(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR)/dl_mcan.o: $(SRC_DIR)/dl_mcan.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_npu.o: $(SRC_DIR)/dl_npu.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -147,6 +157,11 @@ $(OBJ_DIR)/dl_scratchpad.o: $(SRC_DIR)/dl_scratchpad.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/dl_spgss.o: $(SRC_DIR)/dl_spgss.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/dl_spi.o: $(SRC_DIR)/dl_spi.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
@@ -167,6 +182,11 @@ $(OBJ_DIR)/dl_timera.o: $(SRC_DIR)/dl_timera.c
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/dl_timerb.o: $(SRC_DIR)/dl_timerb.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/dl_timerg.o: $(SRC_DIR)/dl_timerg.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
@@ -178,6 +198,31 @@ $(OBJ_DIR)/dl_trng.o: $(SRC_DIR)/dl_trng.c
 	@ $(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR)/dl_uart.o: $(SRC_DIR)/dl_uart.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_unicomm.o: $(SRC_DIR)/dl_unicomm.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_unicommi2cc.o: $(SRC_DIR)/dl_unicommi2cc.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_unicommi2ct.o: $(SRC_DIR)/dl_unicommi2ct.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_unicommspi.o: $(SRC_DIR)/dl_unicommspi.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_unicommuart.o: $(SRC_DIR)/dl_unicommuart.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
@@ -217,6 +262,21 @@ $(OBJ_DIR)/dl_sysctl_mspm0g1x0x_g3x0x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0g1
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@
 
+$(OBJ_DIR)/dl_sysctl_mspm0g352x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0g352x.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_sysctl_mspm0g511x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0g511x.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_sysctl_mspm0g518x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0g518x.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
 $(OBJ_DIR)/dl_sysctl_mspm0gx51x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0gx51x.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
@@ -238,6 +298,11 @@ $(OBJ_DIR)/dl_sysctl_mspm0l11xx_l13xx.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0l1
 	@ $(CC) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR)/dl_sysctl_mspm0l122x_l222x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.c
+	@ echo Building $@
+	@ mkdir -p $(dir $@)
+	@ $(CC) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR)/dl_sysctl_mspm0l211x_l112x.o: $(SRC_DIR)/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.c
 	@ echo Building $@
 	@ mkdir -p $(dir $@)
 	@ $(CC) $(CFLAGS) $< -o $@

@@ -88,6 +88,8 @@ extern "C" {
 #define ADC12_0_ADCMEM_0_REF_VOLTAGE_V                                       3.3
 #define GPIO_ADC12_0_C7_PORT                                               GPIOA
 #define GPIO_ADC12_0_C7_PIN                                       DL_GPIO_PIN_18
+#define GPIO_ADC12_0_IOMUX_C7                                    (IOMUX_PINCM19)
+#define GPIO_ADC12_0_IOMUX_C7_FUNC                (IOMUX_PINCM19_PF_UNCONNECTED)
 
 
 /* Defines for GPAMP_0 */
@@ -95,6 +97,7 @@ extern "C" {
 #define GPIO_GPAMP_0_INPOS_PIN                                    DL_GPIO_PIN_26
 #define GPIO_GPAMP_0_IOMUX_INPOS                                 (IOMUX_PINCM27)
 #define GPIO_GPAMP_0_IOMUX_INPOS_FUNC               IOMUX_PINCM27_PF_UNCONNECTED
+
 
 
 /* clang-format on */

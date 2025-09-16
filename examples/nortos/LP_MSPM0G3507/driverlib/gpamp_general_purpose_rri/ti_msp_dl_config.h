@@ -92,6 +92,7 @@ extern "C" {
 #define GPIO_GPAMP_0_IOMUX_OUT                                   (IOMUX_PINCM47)
 #define GPIO_GPAMP_0_IOMUX_OUT_FUNC                 IOMUX_PINCM47_PF_UNCONNECTED
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

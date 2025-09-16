@@ -61,6 +61,9 @@ uint8_t  dutyCycleState = 0;
 /* Initialize variable which stores duty cycle to half of default period */
 uint32_t dutyCycle = 500;
 
+/* Initialize variable which stores 75% duty cycle for CC1 */
+uint32_t dutyCycle75 = 249;
+
 /* Software flag edited by interrupt handler to change state of period */
 volatile uint8_t swFlagPeriod = 0;
 
@@ -91,9 +94,12 @@ int main(void)
                     /* Period and duty cycle x2 */
                     gPeriodVal = PWM_PERIOD * 2;
                     dutyCycle = dutyCycle*2;
+                    dutyCycle75 = dutyCycle75*2;
                     DL_TimerG_setLoadValue(PWM_INST, gPeriodVal);
                     DL_TimerG_setCaptureCompareValue(
                             PWM_INST, dutyCycle, DL_TIMERG_CAPTURE_COMPARE_0_INDEX);
+                    DL_TimerG_setCaptureCompareValue(
+                            PWM_INST, dutyCycle75, DL_TIMERG_CAPTURE_COMPARE_1_INDEX);
                     periodState = 1;
                     swFlagPeriod = 0;
                     break;
@@ -102,9 +108,12 @@ int main(void)
                     /* Period and duty cycle x4 */
                     gPeriodVal = PWM_PERIOD * 4;
                     dutyCycle = dutyCycle*2;
+                    dutyCycle75 = dutyCycle75*2;
                     DL_TimerG_setLoadValue(PWM_INST, gPeriodVal);
                     DL_TimerG_setCaptureCompareValue(
                             PWM_INST, dutyCycle, DL_TIMERG_CAPTURE_COMPARE_0_INDEX);
+                    DL_TimerG_setCaptureCompareValue(
+                            PWM_INST, dutyCycle75, DL_TIMERG_CAPTURE_COMPARE_1_INDEX);
                     periodState = 2;
                     swFlagPeriod = 0;
                     break;
@@ -113,9 +122,12 @@ int main(void)
                     /* Period and duty cycle x0.5 */
                     gPeriodVal = PWM_PERIOD * 0.5;
                     dutyCycle = dutyCycle/8;
+                    dutyCycle75 = dutyCycle75/8;
                     DL_TimerG_setLoadValue(PWM_INST, gPeriodVal);
                     DL_TimerG_setCaptureCompareValue(
                             PWM_INST, dutyCycle, DL_TIMERG_CAPTURE_COMPARE_0_INDEX);
+                    DL_TimerG_setCaptureCompareValue(
+                            PWM_INST, dutyCycle75, DL_TIMERG_CAPTURE_COMPARE_1_INDEX);
                     periodState = 3;
                     swFlagPeriod = 0;
                     break;
@@ -124,9 +136,12 @@ int main(void)
                     /* Period and duty cycle to default */
                     gPeriodVal = PWM_PERIOD;
                     dutyCycle = dutyCycle*2;
+                    dutyCycle75 = dutyCycle75*2;
                     DL_TimerG_setLoadValue(PWM_INST, gPeriodVal);
                     DL_TimerG_setCaptureCompareValue(
                             PWM_INST, dutyCycle, DL_TIMERG_CAPTURE_COMPARE_0_INDEX);
+                    DL_TimerG_setCaptureCompareValue(
+                            PWM_INST, dutyCycle75, DL_TIMERG_CAPTURE_COMPARE_1_INDEX);
                     periodState = 0;
                     swFlagPeriod = 0;
                     break;

@@ -107,6 +107,9 @@ extern "C" {
 #define ADC12_0_INST_SUB_CH                                                  (1)
 #define GPIO_ADC12_0_C2_PORT                                               GPIOA
 #define GPIO_ADC12_0_C2_PIN                                       DL_GPIO_PIN_25
+#define GPIO_ADC12_0_IOMUX_C2                                    (IOMUX_PINCM55)
+#define GPIO_ADC12_0_IOMUX_C2_FUNC                (IOMUX_PINCM55_PF_UNCONNECTED)
+
 
 
 /* clang-format on */

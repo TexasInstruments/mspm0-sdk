@@ -104,6 +104,8 @@ extern "C" {
 #define ADC12_0_ADCMEM_0_REF_VOLTAGE_V                                       3.3
 #define GPIO_ADC12_0_C4_PORT                                               GPIOA
 #define GPIO_ADC12_0_C4_PIN                                       DL_GPIO_PIN_22
+#define GPIO_ADC12_0_IOMUX_C4                                    (IOMUX_PINCM23)
+#define GPIO_ADC12_0_IOMUX_C4_FUNC                (IOMUX_PINCM23_PF_UNCONNECTED)
 
 
 
@@ -113,6 +115,7 @@ extern "C" {
 /* Defines for USER_LED_1: GPIOA.26 with pinCMx 27 on package pin 30 */
 #define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_26)
 #define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM27)
+
 
 /* clang-format on */
 

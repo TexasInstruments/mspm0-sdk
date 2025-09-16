@@ -40,6 +40,7 @@
 #include "smbus_nwk.h"
 #include "smbus_phy.h"
 
+#if defined(__MSPM0_HAS_I2C__)
 void SMBus_PHY_disable(SMBus *smbus)
 {
     DL_I2C_reset(smbus->phy.SMBus_Phy_i2cBase);
@@ -48,6 +49,21 @@ void SMBus_PHY_disable(SMBus *smbus)
     smbus->ctrl.bits.phyEn = 0;      // Update control flag
 }
 
+void SMBus_PHY_targetDisable(SMBus *smbus)
+{
+    DL_I2C_reset(smbus->phy.SMBus_Phy_i2cBase);
+    DL_I2C_disablePower(smbus->phy.SMBus_Phy_i2cBase);
+
+    smbus->ctrl.bits.phyEn = 0;      // Update control flag
+}
+
+void SMBus_PHY_controllerDisable(SMBus *smbus)
+{
+    DL_I2C_reset(smbus->phy.SMBus_Phy_i2cBase);
+    DL_I2C_disablePower(smbus->phy.SMBus_Phy_i2cBase);
+
+    smbus->ctrl.bits.phyEn = 0;      // Update control flag
+}
 
 void SMBus_PHY_targetEnable(SMBus *smbus)
 {
@@ -73,7 +89,7 @@ void SMBus_PHY_targetInit(SMBus *smbus, I2C_Regs *i2cInst)
     smbus->ctrl.bits.swackEn = true;            /* SW ACK is enabled */
     smbus->phy.SMBus_Phy_AckPending = false;    /* Clear Ack flag */
 
-    SMBus_PHY_disable(smbus);
+    SMBus_PHY_targetDisable(smbus);
     /* I2C init and enable done in SMBus_PHY_targetEnable */
     SMBus_PHY_targetEnable(smbus);
 }
@@ -351,7 +367,7 @@ void SMBus_PHY_controllerInit(SMBus *smbus,
     // Target Address not initialized by default
     smbus->ownTargetAddr = 0;
 
-    SMBus_PHY_disable(smbus);
+    SMBus_PHY_controllerDisable(smbus);
     /* I2C init and enable done in SMBus_PHY_controllerEnable */
     SMBus_PHY_controllerEnable(smbus);
 }
@@ -560,6 +576,457 @@ SMBus_State SMBus_PHY_controllerProcessInt(SMBus *smbus)
 
     return(ret_state);
 }
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+
+void SMBus_PHY_controllerDisable(SMBus *smbus)
+{
+    DL_I2CC_reset(smbus->phy.SMBus_Phy_i2cBase);
+    DL_I2CC_disablePower(smbus->phy.SMBus_Phy_i2cBase);
+
+    smbus->ctrl.bits.phyEn = 0;      // Update control flag
+}
+
+void SMBus_PHY_targetDisable(SMBus *smbus)
+{
+    DL_I2CT_reset(smbus->phy.SMBus_Phy_i2cBase);
+    DL_I2CT_disablePower(smbus->phy.SMBus_Phy_i2cBase);
+
+    smbus->ctrl.bits.phyEn = 0;      // Update control flag
+}
+
+void SMBus_PHY_targetEnable(SMBus *smbus)
+{
+    extern void SYSCFG_DL_SMB_I2C_init(void);
+
+    DL_I2CT_reset(smbus->phy.SMBus_Phy_i2cBase);
+    DL_I2CT_enablePower(smbus->phy.SMBus_Phy_i2cBase);
+    delay_cycles(SMB_POWER_STARTUP_DELAY);
+
+    /*
+        This implementation uses the SysConfig initialization.
+        Developers can implement a custom initialization
+    */
+    SYSCFG_DL_SMB_I2C_init();
+    smbus->ctrl.bits.phyEn = 1;      // Set global flag
+}
+
+void SMBus_PHY_targetInit(SMBus *smbus, UNICOMM_Inst_Regs *i2cInst)
+{
+    SMBus_Phy *SMBusPHY = &smbus->phy;
+
+    smbus->phy.SMBus_Phy_i2cBase = i2cInst;     /* Set the I2C Base Address */
+    smbus->ctrl.bits.swackEn = true;            /* SW ACK is enabled */
+    smbus->phy.SMBus_Phy_AckPending = false;    /* Clear Ack flag */
+
+    SMBus_PHY_targetDisable(smbus);
+    /* I2C init and enable done in SMBus_PHY_targetEnable */
+    SMBus_PHY_targetEnable(smbus);
+}
+
+void SMBus_PHY_targetEnableInt(SMBus *smbus)
+{
+
+    DL_I2CT_clearInterruptStatus(smbus->phy.SMBus_Phy_i2cBase,
+                                DL_I2CT_INTERRUPT_PEC_RX_ERROR |
+                                DL_I2CT_INTERRUPT_RXFIFO_TRIGGER |
+                                DL_I2CT_INTERRUPT_START |
+                                DL_I2CT_INTERRUPT_STOP |
+                                DL_I2CT_INTERRUPT_TXFIFO_EMPTY |
+                                DL_I2CT_INTERRUPT_TIMEOUT_A);
+    DL_I2CT_enableInterrupt(smbus->phy.SMBus_Phy_i2cBase,
+                            DL_I2CT_INTERRUPT_RXFIFO_TRIGGER |
+                            DL_I2CT_INTERRUPT_START |
+                            DL_I2CT_INTERRUPT_STOP |
+                            DL_I2CT_INTERRUPT_TXFIFO_EMPTY |
+                            DL_I2CT_INTERRUPT_TIMEOUT_A);
+
+    /* Set global flag */
+    smbus->ctrl.bits.intEn = 1;
+}
+
+void SMBus_PHY_targetDisableInt(SMBus *smbus)
+{
+
+    DL_I2CT_disableInterrupt(smbus->phy.SMBus_Phy_i2cBase,
+                            DL_I2CT_INTERRUPT_PEC_RX_ERROR |
+                            DL_I2CT_INTERRUPT_RXFIFO_TRIGGER |
+                            DL_I2CT_INTERRUPT_START |
+                            DL_I2CT_INTERRUPT_STOP |
+                            DL_I2CT_INTERRUPT_TXFIFO_EMPTY |
+                            DL_I2CT_INTERRUPT_TIMEOUT_A);
+
+    /* Set global flag */
+    smbus->ctrl.bits.intEn = 0;
+}
+
+SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus)
+{
+    SMBus_State ret_state = SMBus_State_Target_NTR;
+    SMBus_Phy *SMBusPHY = &smbus->phy;
+    uint8_t data, addr;
+    /* Prioritized interrupts processing */
+    if ( DL_I2CT_getEnabledInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
+                                          DL_I2CT_INTERRUPT_STOP) )
+    {
+        ret_state = SMBus_NWK_targetProcessStop(smbus);
+        DL_I2CT_clearInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
+                                      DL_I2CT_INTERRUPT_STOP);
+    }
+    else if ( DL_I2CT_getEnabledInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
+                                               DL_I2CT_INTERRUPT_START) )
+    {
+
+        data = (uint8_t) DL_I2CT_getAddressMatch(SMBusPHY->SMBus_Phy_i2cBase);
+        ret_state = SMBus_NWK_targetProcessStart(smbus, data);
+        DL_I2CT_clearInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
+                                      DL_I2CT_INTERRUPT_START);
+    }
+    else
+    {
+        switch (DL_I2CT_getPendingInterrupt(SMBusPHY->SMBus_Phy_i2cBase)) {
+            /* SMBus Target Interrupts */
+            case DL_I2CT_IIDX_RXFIFO_TRIGGER:
+                data = DL_I2CT_receiveData(SMBusPHY->SMBus_Phy_i2cBase);
+                ret_state = SMBus_NWK_targetProcessRx(smbus, data);
+                // Check if last byte in the transfer that the PEC checked out,
+                // otherwise NACK
+                if(DL_I2CT_getRawInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
+                                              DL_I2CT_INTERRUPT_PEC_RX_ERROR)){
+
+                    DL_I2CT_clearInterruptStatus(SMBusPHY->SMBus_Phy_i2cBase,
+                                              DL_I2CT_INTERRUPT_PEC_RX_ERROR);
+                    smbus->status.bits.pecErr = 1;
+                    ret_state = SMBus_State_PECError;
+                }
+                smbus->phy.SMBus_Phy_AckPending = true;
+            break;
+            case DL_I2CT_IIDX_START:
+                /* Handled with higher priority */
+            break;
+            case DL_I2CT_IIDX_STOP:
+                /* Handled with higher priority */
+            break;
+            case DL_I2CT_IIDX_TXFIFO_EMPTY:
+                ret_state = SMBus_NWK_targetProcessTx(smbus, &data);
+                DL_I2CT_fillTXFIFO(SMBusPHY->SMBus_Phy_i2cBase, &data, 1);
+            break;
+            case DL_I2CT_IIDX_PEC_RX_ERROR:
+                smbus->status.bits.pecErr = 1;
+                ret_state = SMBus_State_PECError;
+            break;
+            case DL_I2CT_IIDX_ARBITRATION_LOST:
+                ret_state = SMBus_NWK_targetArbLost(smbus);
+            break;
+            /* SMBus Timeout interrupt */
+            case DL_I2CT_IIDX_TIMEOUT_A:
+                ret_state = SMBus_NWK_targetProcessTimeout(smbus);
+            break;
+
+            default:
+                break;
+
+        }
+    }
+    return(ret_state);
+}
+
+void SMBus_PHY_targetSetPECCount(SMBus * smbus, uint16_t length){
+    DL_I2CT_setPECCountValue(smbus->phy.SMBus_Phy_i2cBase, (uint32_t) 0x00000000 | length);
+}
+
+void SMBus_PHY_targetManualACK(SMBus *smbus, bool ackVal)
+{
+    if (ackVal == true)
+    {
+        DL_I2CT_setACKOverrideValue(smbus->phy.SMBus_Phy_i2cBase,
+                                    DL_I2CT_RESPONSE_OVERRIDE_VALUE_ACK);
+    }
+    else
+    {
+        DL_I2CT_setACKOverrideValue(smbus->phy.SMBus_Phy_i2cBase,
+                                    DL_I2CT_RESPONSE_OVERRIDE_VALUE_NACK);
+    }
+    smbus->phy.SMBus_Phy_AckPending = false;
+}
+void SMBus_Phy_ARP_TARGET_ADDR_Reset(SMBus *smbus)
+{
+    if(smbus->arpStatus.arpAddressValid)
+    {
+        DL_I2CT_setOwnAddress(smbus->phy.SMBus_Phy_i2cBase, smbus->ownTargetAddr);
+        DL_I2CT_enableOwnAddress(smbus->phy.SMBus_Phy_i2cBase);
+    }
+    else
+    {
+        DL_I2CT_disableOwnAddress(smbus->phy.SMBus_Phy_i2cBase);
+    }
+}
+uint8_t SMBus_Phy_ARP_Get_Write_Status(SMBus *smbus)
+{
+    return(smbus->arpStatus.arpWriteState & UNICOMMI2CT_SR_RXMODE_SET);
+}
+uint8_t SMBus_Phy_ARP_Get_Read_Status(SMBus *smbus)
+{
+    return(smbus->arpStatus.arpWriteState & UNICOMMI2CT_SR_TXMODE_SET);
+}
+
+void SMBus_PHY_controllerEnable(SMBus *smbus)
+{
+    extern void SYSCFG_DL_SMB_I2C_init(void);
+
+    DL_I2CC_reset(smbus->phy.SMBus_Phy_i2cBase);
+    DL_I2CC_enablePower(smbus->phy.SMBus_Phy_i2cBase);
+    delay_cycles(SMB_POWER_STARTUP_DELAY);
+
+    /*
+        This implementation uses the SysConfig initialization.
+        Developers can implement a custom initialization
+    */
+    SYSCFG_DL_SMB_I2C_init();
+
+    smbus->ctrl.bits.phyEn = 1;      // Set global flag
+}
+
+void SMBus_PHY_controllerEnableInt(SMBus *smbus)
+{
+    DL_I2CC_clearInterruptStatus(smbus->phy.SMBus_Phy_i2cBase,
+                                DL_I2CC_INTERRUPT_ARBITRATION_LOST |
+                                DL_I2CC_INTERRUPT_NACK |
+                                DL_I2CC_INTERRUPT_PEC_RX_ERROR |
+                                DL_I2CC_INTERRUPT_RXFIFO_TRIGGER |
+                                DL_I2CC_INTERRUPT_START |
+                                DL_I2CC_INTERRUPT_STOP |
+                                DL_I2CC_INTERRUPT_TXFIFO_TRIGGER |
+                                DL_I2CC_INTERRUPT_TIMEOUT_A);
+    DL_I2CC_enableInterrupt(smbus->phy.SMBus_Phy_i2cBase,
+                            DL_I2CC_INTERRUPT_ARBITRATION_LOST |
+                            DL_I2CC_INTERRUPT_NACK |
+                            DL_I2CC_INTERRUPT_PEC_RX_ERROR |
+                            DL_I2CC_INTERRUPT_RXFIFO_TRIGGER |
+                            DL_I2CC_INTERRUPT_START |
+                            DL_I2CC_INTERRUPT_STOP |
+                            DL_I2CC_INTERRUPT_TXFIFO_TRIGGER |
+                            DL_I2CC_INTERRUPT_TIMEOUT_A);
+
+    /* Set global flag */
+    smbus->ctrl.bits.intEn = 1;
+}
+
+void SMBus_PHY_controllerDisableInt(SMBus *smbus)
+{
+    DL_I2CC_disableInterrupt(smbus->phy.SMBus_Phy_i2cBase,
+                            DL_I2CC_INTERRUPT_ARBITRATION_LOST |
+                            DL_I2CC_INTERRUPT_NACK |
+                            DL_I2CC_INTERRUPT_PEC_RX_ERROR |
+                            DL_I2CC_INTERRUPT_RXFIFO_TRIGGER |
+                            DL_I2CC_INTERRUPT_START |
+                            DL_I2CC_INTERRUPT_STOP |
+                            DL_I2CC_INTERRUPT_TXFIFO_TRIGGER |
+                            DL_I2CC_INTERRUPT_TIMEOUT_A);
+
+    /* Set global flag */
+    smbus->ctrl.bits.intEn = 0;
+}
+
+void SMBus_PHY_controllerInit(SMBus *smbus,
+                              UNICOMM_Inst_Regs *i2cRegs,
+                          uint32_t busClk)
+{
+    SMBus_Phy *SMBusPHY = &smbus->phy;
+    smbus->phy.SMBus_Phy_i2cBase = i2cRegs;
+
+    // Target Address not initialized by default
+    smbus->ownTargetAddr = 0;
+
+    SMBus_PHY_controllerDisable(smbus);
+    /* I2C init and enable done in SMBus_PHY_controllerEnable */
+    SMBus_PHY_controllerEnable(smbus);
+}
+
+void SMBus_PHY_controllerSendStop(SMBus *smbus)
+{
+        DL_I2CC_startTransferAdvanced(smbus->phy.SMBus_Phy_i2cBase,
+                                       0x0, // This is a don't care
+                                       DL_I2CC_DIRECTION_TX,
+                                       0,
+                                       DL_I2CC_START_DISABLE,
+                                       DL_I2CC_STOP_ENABLE,
+                                       DL_I2CC_ACK_DISABLE);
+}
+
+
+void SMBus_PHY_controllerStartTx(SMBus *smbus,
+                             uint8_t targetaddr,
+                             uint16_t length,
+                             SMBus_Stop stopFlag,
+                             uint8_t setPEC)
+
+{
+    uint8_t data;
+    DL_I2CC_STOP phy_stop;
+
+    if (stopFlag == SMBus_Stop_After_Transfer)
+    {
+        phy_stop = DL_I2CC_STOP_ENABLE;
+        DL_I2CC_disableInterrupt(smbus->phy.SMBus_Phy_i2cBase, DL_I2CC_INTERRUPT_TX_DONE);
+    }
+    else
+    {
+        phy_stop = DL_I2CC_STOP_DISABLE;
+        DL_I2CC_clearInterruptStatus(smbus->phy.SMBus_Phy_i2cBase, DL_I2CC_INTERRUPT_TX_DONE);
+        DL_I2CC_enableInterrupt(smbus->phy.SMBus_Phy_i2cBase, DL_I2CC_INTERRUPT_TX_DONE);
+    }
+
+    if (length > 0) {
+      DL_I2CC_disableInterrupt(smbus->phy.SMBus_Phy_i2cBase,
+                             DL_I2CC_INTERRUPT_TXFIFO_TRIGGER);
+      DL_I2CC_flushTXFIFO(smbus->phy.SMBus_Phy_i2cBase);
+      DL_I2CC_clearInterruptStatus(smbus->phy.SMBus_Phy_i2cBase,
+                                  DL_I2CC_INTERRUPT_TXFIFO_TRIGGER);
+      DL_I2CC_enableInterrupt(smbus->phy.SMBus_Phy_i2cBase,
+                            DL_I2CC_INTERRUPT_TXFIFO_TRIGGER);
+
+      SMBus_NWK_controllerProcessTx(smbus, &data);
+      DL_I2CC_fillTXFIFO(smbus->phy.SMBus_Phy_i2cBase, &data, 1);
+    }
+
+    if (setPEC == 1 && smbus->ctrl.bits.pecEn == 1) {
+        DL_I2CC_setPECCountValue(smbus->phy.SMBus_Phy_i2cBase, length);
+    }
+    else {
+        DL_I2CC_setPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
+    }
+
+    DL_I2CC_startTransferAdvanced(smbus->phy.SMBus_Phy_i2cBase,
+                                   targetaddr,
+                                   DL_I2CC_DIRECTION_TX,
+                                   length,
+                                   DL_I2CC_START_ENABLE,
+                                   phy_stop,
+                                   DL_I2CC_ACK_ENABLE);
+}
+
+void SMBus_PHY_controllerStartRx(SMBus *smbus,
+                             uint8_t targetaddr,
+                             uint16_t length,
+                             SMBus_Start startFlag,
+                             SMBus_Stop stopFlag,
+                             SMBus_Auto_Ack ackFlag,
+                             uint8_t setPEC)
+{
+    DL_I2CC_START phy_start;
+    DL_I2CC_STOP phy_stop;
+    DL_I2CC_ACK phy_ack;
+    uint8_t data;
+    volatile uint32_t timeout = SMB_SW_TIMEOUT;
+
+    if (startFlag == SMBus_Start_Before_Transfer)
+    {
+        phy_start = DL_I2CC_START_ENABLE;
+    }
+    else
+    {
+        phy_start = DL_I2CC_START_DISABLE;
+    }
+
+    if (stopFlag == SMBus_Stop_After_Transfer)
+    {
+        phy_stop = DL_I2CC_STOP_ENABLE;
+    }
+    else
+    {
+        phy_stop = DL_I2CC_STOP_DISABLE;
+    }
+
+    if (ackFlag == SMBus_Auto_Ack_Last_Byte)
+    {
+        phy_ack = DL_I2CC_ACK_ENABLE;
+    }
+    else
+    {
+        phy_ack = DL_I2CC_ACK_DISABLE;
+    }
+
+    if (setPEC == 1 && smbus->ctrl.bits.pecEn == 1) {
+        DL_I2CC_setPECCountValue(smbus->phy.SMBus_Phy_i2cBase, length);
+    }
+    else {
+        DL_I2CC_setPECCountValue(smbus->phy.SMBus_Phy_i2cBase, 0);
+    }
+
+    // HW will ignore new transfer requests while a transfer is active, so wait until the HW is ready + 1 delay_cycle
+    // In normal operation this should just be a small region of time between when the HW has received a byte
+    // and while ack is being generated.
+    while (timeout &&
+               ( (DL_I2CC_getStatus(smbus->phy.SMBus_Phy_i2cBase) |
+                       DL_I2CC_STATUS_BUSY) ==
+                       DL_I2CC_STATUS_BUSY ) )
+    {
+        timeout--;
+    }
+
+
+    DL_I2CC_startTransferAdvanced(smbus->phy.SMBus_Phy_i2cBase,
+                                   targetaddr,
+                                   DL_I2CC_DIRECTION_RX,
+                                   length,
+                                   phy_start,
+                                   phy_stop,
+                                   phy_ack);
+
+}
+
+SMBus_State SMBus_PHY_controllerProcessInt(SMBus *smbus)
+{
+    uint8_t data;
+    SMBus_State ret_state;
+    SMBus_Phy *SMBusPHY = &smbus->phy;
+
+    switch (DL_I2CC_getPendingInterrupt(SMBusPHY->SMBus_Phy_i2cBase)) {
+        /* SMBus Controller interrupts */
+        case DL_I2CC_IIDX_TX_DONE:
+            SMBus_NWK_controllerTxDone(smbus);
+        break;
+        case DL_I2CC_IIDX_RXFIFO_TRIGGER:
+            data = DL_I2CC_receiveData(SMBusPHY->SMBus_Phy_i2cBase);
+           // Pass data to NWK layer
+           ret_state = SMBus_NWK_controllerProcessRx(smbus, data);
+        break;
+        case DL_I2CC_IIDX_TXFIFO_TRIGGER:
+            // TXIFG0 is set when the TX buffer is empty and we need to send data to
+            // target
+            ret_state = SMBus_NWK_controllerProcessTx(smbus, &data);
+            // Send the data
+            DL_I2CC_fillTXFIFO(SMBusPHY->SMBus_Phy_i2cBase, &data, 1);
+        break;
+        case DL_I2CC_IIDX_NACK:
+            ret_state = SMBus_NWK_controllerProcessNACK(smbus);
+            //__BKPT(0); /* Placeholder for debugging purposes */
+        break;
+        case DL_I2CC_IIDX_START:
+            //__BKPT(0); /* Placeholder for debugging purposes */
+        break;
+        case DL_I2CC_IIDX_STOP:
+            ret_state = SMBus_NWK_controllerProcessStop(smbus);
+        break;
+        case DL_I2CC_IIDX_ARBITRATION_LOST:
+            //__BKPT(0); /* Placeholder for debugging purposes */
+        break;
+        /* SMBus Timeout interrupt */
+        case DL_I2CC_IIDX_TIMEOUT_A:
+            ret_state = SMBus_NWK_controllerProcessTimeout(smbus);
+        break;
+
+        default:
+        break;
+    }
+
+    return(ret_state);
+}
+
+
+#endif
 
 
 

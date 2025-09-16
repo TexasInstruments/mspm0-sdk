@@ -1,0 +1,80 @@
+%%{
+    /* Licensing & Includes */
+%%}
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2019 Ha Thach (tinyusb.org)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+#ifndef USB_DESCRIPTORS_H_
+#define USB_DESCRIPTORS_H_
+
+%%{
+    /* Get Common utility functions */
+    let Common = system.getScript("/ti/driverlib/Common.js");
+    let tusbCommon = system.getScript("/ti/tinyusb_meta/Common.js");
+    let inst = system.modules["/ti/tinyusb_meta/tinyusb"].$static;
+    let associatedUSB = inst.associated_USB;
+%%}
+%%{
+    // Helper Defines
+    // define associated instance arrays to determine length
+    let hidInsts    = tusbCommon.getHIDInstances(inst);
+%%}
+%%{
+    // HID Report Defines
+%%}
+%    // Device Configuration
+%    if(inst.mode == "device"){
+%        // Iterate through Device HID instances
+%        for(var myClass of inst.associated_devHID){
+%%{
+    // Define changes based on how many modes enabled
+    let modesEnabled = 0;
+    if(myClass.enableKeyboard) modesEnabled++;
+    if(myClass.enableMouse) modesEnabled++;
+    if(myClass.enableConsumer) modesEnabled++;
+    if(myClass.enableGamepad) modesEnabled++;
+    if(myClass.enableGenericInOut) modesEnabled++;
+    let defineFlavor = (hidInsts.length>1)?("_"+myClass.$name):""
+%%}
+%           if(myClass.enableKeyboard){
+`("#define REPORT_ID"+defineFlavor+"_KEYBOARD").padEnd(40, " ") + ("0x"+(myClass.keyboardID).toString(16)).padStart(10, " ")`
+%           }
+%           if(myClass.enableMouse){
+`("#define REPORT_ID"+defineFlavor+"_MOUSE").padEnd(40, " ") + ("0x"+(myClass.mouseID).toString(16)).padStart(10, " ")`
+%           }
+%           if(myClass.enableConsumer){
+`("#define REPORT_ID"+defineFlavor+"_CONSUMER_CONTROL").padEnd(40, " ") + ("0x"+(myClass.consumerID).toString(16)).padStart(10, " ")`
+%           }
+%           if(myClass.enableGamepad){
+`("#define REPORT_ID"+defineFlavor+"_GAMEPAD").padEnd(40, " ") + ("0x"+(myClass.gamepadID).toString(16)).padStart(10, " ")`
+%           }
+%           if(myClass.enableGenericInOut){
+`("#define REPORT_ID"+defineFlavor+"_GENERIC_INOUT").padEnd(40, " ") + ("0x"+(myClass.genericInOutID).toString(16)).padStart(10, " ")`
+%           }
+%           if(hidInsts.length > 0){
+`("#define REPORT_ID"+defineFlavor+"_COUNT").padEnd(40, " ") + (modesEnabled).toString().padStart(10, " ")`
+%           }
+%        }
+%    }
+#endif /* USB_DESCRIPTORS_H_ */

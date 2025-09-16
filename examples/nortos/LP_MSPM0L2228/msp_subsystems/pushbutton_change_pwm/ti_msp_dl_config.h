@@ -106,10 +106,10 @@ extern "C" {
 
 
 
-/* Defines for USER_LED_1: GPIOA.23 with pinCMx 67 on package pin 72 */
+/* Defines for USER_LED_1: GPIOA.16 with pinCMx 42 on package pin 45 */
 #define GPIO_LEDS_USER_LED_1_PORT                                        (GPIOA)
-#define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_23)
-#define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM67)
+#define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_16)
+#define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM42)
 /* Defines for USER_LED_2: GPIOB.9 with pinCMx 30 on package pin 33 */
 #define GPIO_LEDS_USER_LED_2_PORT                                        (GPIOB)
 #define GPIO_LEDS_USER_LED_2_PIN                                 (DL_GPIO_PIN_9)
@@ -134,6 +134,7 @@ extern "C" {
 #define GPIO_SWITCHES_USER_SWITCH_2_IIDX                     (DL_GPIO_IIDX_DIO8)
 #define GPIO_SWITCHES_USER_SWITCH_2_PIN                          (DL_GPIO_PIN_8)
 #define GPIO_SWITCHES_USER_SWITCH_2_IOMUX                        (IOMUX_PINCM29)
+
 
 /* clang-format on */
 

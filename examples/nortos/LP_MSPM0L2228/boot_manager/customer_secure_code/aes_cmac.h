@@ -72,7 +72,7 @@ typedef enum cmac_status {
 } CMAC_status;
 
 CMAC_status CMAC_init(uint32_t forceNewKey);
-CMAC_status CMAC_compareTag(uint32_t *, struct image_version *);
+CMAC_status CMAC_compareTag(uint32_t *, const struct image_version *);
 CMAC_status CMAC_generateTag(
     uint32_t *dataPtr, uint32_t length, const struct image_version *);
 

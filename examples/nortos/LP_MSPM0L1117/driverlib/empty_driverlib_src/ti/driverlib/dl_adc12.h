@@ -242,43 +242,43 @@ extern "C" {
 #define DL_ADC12_HW_AVG_NUM_ACC_DISABLED               (ADC12_CTL1_AVGN_DISABLE)
 
 /*!
- * @brief Accumulates 2 conversions and then is get divided by the
+ * @brief Accumulates 2 conversions and then is divided by the
  *        denominator selected.
  */
 #define DL_ADC12_HW_AVG_NUM_ACC_2                        (ADC12_CTL1_AVGN_AVG_2)
 
 /*!
- * @brief Accumulates 4 conversions and then is get divided by the
+ * @brief Accumulates 4 conversions and then is divided by the
  *        denominator selected.
  */
 #define DL_ADC12_HW_AVG_NUM_ACC_4                        (ADC12_CTL1_AVGN_AVG_4)
 
 /*!
- * @brief Accumulates 8 conversions and then is get divided by the
+ * @brief Accumulates 8 conversions and then is divided by the
  *        denominator selected.
  */
 #define DL_ADC12_HW_AVG_NUM_ACC_8                        (ADC12_CTL1_AVGN_AVG_8)
 
 /*!
- * @brief Accumulates 16 conversions and then is get divided by the
+ * @brief Accumulates 16 conversions and then is divided by the
  *        denominator selected.
  */
 #define DL_ADC12_HW_AVG_NUM_ACC_16                      (ADC12_CTL1_AVGN_AVG_16)
 
 /*!
- * @brief Accumulates 32 conversions and then is get divided by the
+ * @brief Accumulates 32 conversions and then is divided by the
  *        denominator selected.
  */
 #define DL_ADC12_HW_AVG_NUM_ACC_32                      (ADC12_CTL1_AVGN_AVG_32)
 
 /*!
- * @brief Accumulates 64 conversions and then is get divided by the
+ * @brief Accumulates 64 conversions and then is divided by the
  *        denominator selected.
  */
 #define DL_ADC12_HW_AVG_NUM_ACC_64                      (ADC12_CTL1_AVGN_AVG_64)
 
 /*!
- * @brief Accumulates 128 conversions and then is get divided by the
+ * @brief Accumulates 128 conversions and then is divided by the
  *        denominator selected.
  */
 #define DL_ADC12_HW_AVG_NUM_ACC_128                    (ADC12_CTL1_AVGN_AVG_128)
@@ -605,7 +605,7 @@ extern "C" {
 #define DL_ADC12_BURN_OUT_SOURCE_ENABLED             (ADC12_MEMCTL_BCSEN_ENABLE)
 
 /*!
- * @brief ADC12 burn out current source enabled
+ * @brief ADC12 burn out current source disabled
  */
 #define DL_ADC12_BURN_OUT_SOURCE_DISABLED           (ADC12_MEMCTL_BCSEN_DISABLE)
 
@@ -616,7 +616,7 @@ extern "C" {
  */
 
 /*!
- * @brief ADC12 trigger automaticaly step to next memory conversion register
+ * @brief ADC12 trigger automatically step to next memory conversion register
  */
 #define DL_ADC12_TRIGGER_MODE_AUTO_NEXT           (ADC12_MEMCTL_TRIG_AUTO_NEXT)
 
@@ -1285,7 +1285,7 @@ __STATIC_INLINE void DL_ADC12_setStartAddress(
  *
  *  @param[in] adc12       Pointer to the register overlay for the peripheral
  *
- *  @return One of @ref DL_ADC12_SEQ_END_ADDR
+ *  @return One of @ref DL_ADC12_SEQ_START_ADDR
  *
  */
 __STATIC_INLINE uint32_t DL_ADC12_getStartAddress(const ADC12_Regs *adc12)
@@ -1671,8 +1671,21 @@ __STATIC_INLINE uint32_t DL_ADC12_getHwAverageConfig(const ADC12_Regs *adc12)
  *  @brief      Set sample time 0
  *
  *  @param[in]  adc12    Pointer to the register overlay for the peripheral
- *  @param[in]  adcclks  Specifies the sample time in number of ADCCLK cycles.
- *                       Actual sample time is (adcclks + 1)
+ *  @param[in]  adcclks  The sample time in number of ADCCLK cycles.
+ *
+ * Actual sample time is calculated as follows:
+ *
+ * If adcclks (SCOMP register) = 0 or 1, then:
+ *     number of sampling clocks = sample clock divide value
+ *                                 (actual divide value of SCLKDIV register)
+ * Ex. If adcclks = 0, and SCLKDIV = 2 (implies divide value of 4), then:
+ *     the total number of sampling clocks is 4.
+ *
+ * If adcclks (SCOMP register) >= 1, then:
+ *     number of sampling clocks = adcclks * sample clock divide value
+ *                                           (actual divide value of SCLKDIV)
+ * Ex. If adcclks = 5, and SCLKDIV = 6 (implies divide value of 16), then:
+ *     5 * 16 = 80 sampling clocks.
  *
  */
 __STATIC_INLINE void DL_ADC12_setSampleTime0(
@@ -1725,8 +1738,9 @@ __STATIC_INLINE uint16_t DL_ADC12_getSampleTime1(const ADC12_Regs *adc12)
  * @param[in] adc12          Pointer to the register overlay for the peripheral
  * @param[in] threshold      Window comparator low threshold value. Threshold
  *                           value must take into account result data format and
- *                           and resolution confugred via
- *                           DL_ADC12_initSingleSample or DL_ADC12_initSeqSample
+ *                           resolution configured via
+ *                           @ref DL_ADC12_initSingleSample or
+ *                           @ref DL_ADC12_initSeqSample
  */
 __STATIC_INLINE void DL_ADC12_configWinCompLowThld(
     ADC12_Regs *adc12, uint16_t threshold)
@@ -1740,8 +1754,9 @@ __STATIC_INLINE void DL_ADC12_configWinCompLowThld(
  * @param[in] adc12          Pointer to the register overlay for the peripheral
  * @param[in] threshold      Window comparator high threshold value. Threshold
  *                           value must take into account result data format and
- *                           and resolution confugred via
- *                           DL_ADC12_initSingleSample or DL_ADC12_initSeqSample
+ *                           resolution configured via
+ *                           @ref DL_ADC12_initSingleSample or
+ *                           @ref DL_ADC12_initSeqSample
  */
 __STATIC_INLINE void DL_ADC12_configWinCompHighThld(
     ADC12_Regs *adc12, uint16_t threshold)
@@ -2116,7 +2131,7 @@ __STATIC_INLINE void DL_ADC12_enableEvent(
  *
  *  @param[in]  adc12          Pointer to the register overlay for the
  *                             peripheral
- *  @param[in]  eventMask      Bit mask of events to enable. Bitwise OR of
+ *  @param[in]  eventMask      Bit mask of events to disable. Bitwise OR of
  *                             @ref DL_ADC12_EVENT.
  */
 __STATIC_INLINE void DL_ADC12_disableEvent(
@@ -2126,7 +2141,7 @@ __STATIC_INLINE void DL_ADC12_disableEvent(
 }
 
 /**
- *  @brief      Check which adc12 dma triggers are enabled
+ *  @brief      Check which ADC12 events are enabled
  *
  *  @param[in]  adc12          Pointer to the register overlay for the
  *                             peripheral
@@ -2154,7 +2169,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getEnabledEvents(
  *  @param[in]  eventMask      Bit mask of events to check. Bitwise OR of
  *                             @ref DL_ADC12_EVENT.
  *
- *  @return     Which of the requested adc12 eventes are pending
+ *  @return     Which of the requested adc12 events are pending
  *
  *  @retval     Bitwise OR of @ref DL_ADC12_EVENT values
  *
@@ -2220,7 +2235,7 @@ __STATIC_INLINE void DL_ADC12_enableDMATrigger(
  *
  *  @param[in]  adc12          Pointer to the register overlay for the
  *                             peripheral
- *  @param[in]  dmaMask        Bit mask of DMA triggers to enable. Bitwise OR of
+ *  @param[in]  dmaMask        Bit mask of DMA triggers to disable. Bitwise OR of
  *                             @ref DL_ADC12_DMA.
  */
 __STATIC_INLINE void DL_ADC12_disableDMATrigger(
@@ -2258,7 +2273,7 @@ __STATIC_INLINE uint32_t DL_ADC12_getEnabledDMATrigger(
  *  @param[in]  dmaMask      Bit mask of DMA triggers to check. Bitwise OR of
  *                             @ref DL_ADC12_DMA.
  *
- *  @return     Which of the requested adc12 eventes are pending
+ *  @return     Which of the requested adc12 events are pending
  *
  *  @retval     Bitwise OR of @ref DL_ADC12_DMA values
  *

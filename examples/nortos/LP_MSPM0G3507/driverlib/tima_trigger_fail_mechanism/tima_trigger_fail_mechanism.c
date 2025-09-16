@@ -37,6 +37,10 @@ int main(void)
     SYSCFG_DL_init();
 
     NVIC_EnableIRQ(PWM_0_INST_INT_IRQN);
+    /* Calling WFI after calling DL_SYSCTL_enableSleepOnExit will result in
+     * only ISR code to be executed. This is done to showcase the device's
+     * low power consumption when sleeping.
+     */
     DL_SYSCTL_enableSleepOnExit();
 
     DL_TimerA_startCounter(PWM_0_INST);

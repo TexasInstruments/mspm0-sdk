@@ -78,10 +78,18 @@
 */
 
 typedef struct {
+#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X) 
+  __I  uint32_t USERID;                            /* !< (@ 0x41C40000) Defined by TI, depending on device spin */
+#else
   __I  uint32_t TRACEID;                           /* !< (@ 0x41C40000) Defined by TI, during ATE, based on wafer */
+#endif
   __I  uint32_t DEVICEID;                          /* !< (@ 0x41C40004) This is the JTAGIDCODE that comes from the Ramp
                                                       system */
+#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X)
+  __I  uint32_t TRACEID;                           /* !< (@ 0x41C40008) Defined by TI, during ATE, based on wafer */
+#else
   __I  uint32_t USERID;                            /* !< (@ 0x41C40008) Defined by TI, depending on device spin */
+#endif
   __I  uint32_t BSLPIN_UART;                       /* !< (@ 0x41C4000C) BSL UART Pin Configuration */
   __I  uint32_t BSLPIN_I2C;                        /* !< (@ 0x41C40010) BSL I2C Pin Configuration */
   __I  uint32_t BSLPIN_INVOKE;                     /* !< (@ 0x41C40014) BSL Pin Invocation Configuration */

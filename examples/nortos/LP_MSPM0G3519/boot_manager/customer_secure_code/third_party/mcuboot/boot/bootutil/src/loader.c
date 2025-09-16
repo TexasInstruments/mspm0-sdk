@@ -2576,7 +2576,7 @@ boot_return_highest_version(struct boot_rsp *rsp){
 
 
 int
-boot_compare_version(struct image_version *ver1,
+boot_compare_version(const struct image_version *ver1,
                 volatile const struct image_version *ver2){
     if (ver1->iv_major > ver2->iv_major) {
         return 1;

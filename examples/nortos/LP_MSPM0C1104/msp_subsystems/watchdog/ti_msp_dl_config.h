@@ -104,6 +104,7 @@ extern "C" {
 #define WDT_WDO_PIN                                              (DL_GPIO_PIN_0)
 #define WDT_WDO_IOMUX                                             (IOMUX_PINCM1)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

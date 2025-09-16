@@ -112,6 +112,7 @@ extern "C" {
 #define GPIO_RTC_IOMUX_RTCOUT_FUNC                (IOMUX_PINCM20_PF_RTC_RTC_OUT)
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

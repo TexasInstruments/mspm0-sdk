@@ -44,7 +44,7 @@
 #define LED_RUN_OFF \
     DL_GPIO_clearPins(GPIO_GRP_0_LED2_PORT, GPIO_GRP_0_LED2_PIN);
 
-extern uint8_t buttonS2Pressed;
-extern uint8_t buttonS1Pressed;
+extern volatile uint8_t buttonS2Pressed;
+extern volatile uint8_t buttonS1Pressed;
 
 #endif /* MSPM0_GPIO_H_ */

@@ -34,8 +34,8 @@
 #include "bsl_uart.h"
 #include "ti_msp_dl_config.h"
 
-#define BSL_UART (UART0)
-#define BSL_UART_INTERRUPT_NUM (UART0_INT_IRQn)
+#define BSL_UART (UART_0_INST)
+#define BSL_UART_INTERRUPT_NUM (UART_0_INST_INT_IRQN)
 #define BSL_UART_CLOCK_SOURCE (DL_UART_MAIN_CLOCK_BUSCLK)
 #define BSL_UART_DEFAULT_BAUD ((uint32_t) 9600U)
 #define BSL_UART_CLOCK ((uint32_t) 32000000U)
@@ -155,8 +155,7 @@ uint16_t BSL_PI_UART_init(uint8_t* buffer, uint16_t bufferSize)
 
     DL_UART_Main_configBaudRate(
         BSL_UART, BSL_UART_CLOCK, BSL_UART_DEFAULT_BAUD);
-    DL_UART_Main_setRXFIFOThreshold(
-        BSL_UART, DL_UART_MAIN_RX_FIFO_LEVEL_ONE_ENTRY);
+    DL_UART_Main_setRXFIFOThreshold(BSL_UART, DL_UART_RX_FIFO_LEVEL_ONE_ENTRY);
 
     /* Enable UART */
     DL_UART_Main_enableFIFOs(BSL_UART);

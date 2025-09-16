@@ -146,5 +146,10 @@
 %     let genEXCLK = system.getTemplate("/ti/clockTree/templates/exclkSource.Board.c.xdt");
 %  tempStr = _.trimEnd(genEXCLK());
 %  funcStr += tempStr != ""?tempStr + "\n":"";
+% if(ClockSignals.includes("USBCLK")) {
+%   let genUSBCLK = system.getTemplate("/ti/clockTree/templates/usbclkSource.Board.c.xdt");
+%   tempStr = _.trimEnd(genUSBCLK());
+%   funcStr += tempStr != ""?tempStr + "\n":"";
+% }
 `funcStr`
 % } // empty

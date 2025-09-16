@@ -75,11 +75,24 @@ let migration_inst = MigrationController.$static;
 % if(migration_inst.genLibIQ && migration_inst.genLibIQVersion == "MATHACL"){
 -l"ti/iqmath/lib/ticlang/m0p/mathacl/`Common.getDeviceFamily().toLowerCase()`/iqmath.a"
 % }
+% if(migration_inst.genLibModbus) {
+-l"ti/modbus/lib/ticlang/m0p/modbus.a"
+% }
 % if(migration_inst.genLibPMBUS){
--l"ti/pmbus/lib/ticlang/m0p/pmbus.a"
+%   if(Common.isUnicommI2C()) {
+-l"ti/pmbus/lib/ticlang/m0p/pmbus_unicomm/pmbus.a"
+%   }
+%   else {
+-l"ti/pmbus/lib/ticlang/m0p/pmbus_i2c/pmbus.a"
+%}
 % }
 % if(migration_inst.genLibSMBUS){
--l"ti/smbus/lib/ticlang/m0p/smbus.a"
+%   if(Common.isUnicommI2C()) {
+-l"ti/smbus/lib/ticlang/m0p/smbus_unicomm/smbus.a"
+%   }
+%   else {
+-l"ti/smbus/lib/ticlang/m0p/smbus_i2c/smbus.a"
+%}
 % }
 % if(migration_inst.genLibCMSIS){
 -l"third_party/CMSIS/DSP/lib/ticlang/m0p/arm_cortexM0l_math.a"

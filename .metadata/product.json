@@ -1,7 +1,7 @@
 {
     "name": "mspm0_sdk",
     "displayName": "MSPM0 SDK",
-    "version": "2.05.01.00",
+    "version": "2.06.00.05",
     "documentationPath": "../docs",
     "includePaths": [
         "../source",
@@ -13,7 +13,8 @@
         "/ti/project_config/templates/options.component.js",
         "/ti/project_config/templates/genlibs.component.js",
         "/ti/driverlib/driverlib.component.js",
-        "/ti/clockTree/clockTree.component.js"
+        "/ti/clockTree/clockTree.component.js",
+        "/ti/tinyusb_meta/tinyusb.component.js"
     ],
     "devices": [
         "MSPM0.*",

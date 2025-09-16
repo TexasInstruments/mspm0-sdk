@@ -165,6 +165,8 @@ void DL_UART_transmitDataBlocking(UART_Regs *uart, uint8_t data)
     while (DL_UART_isTXFIFOFull(uart)) {
     };
     DL_UART_transmitData(uart, data);
+    while (DL_UART_isBusy(uart)) {
+    };
 }
 
 bool DL_UART_receiveDataCheck(const UART_Regs *uart, uint8_t *buffer)

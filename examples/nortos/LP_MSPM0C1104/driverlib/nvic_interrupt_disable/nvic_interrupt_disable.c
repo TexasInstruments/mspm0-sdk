@@ -63,6 +63,10 @@ int main(void)
      */
     DL_TimerG_disableInterrupt(TIMER_0_INST, DL_TIMER_INTERRUPT_ZERO_EVENT);
 
+    /* Calling WFI after calling DL_SYSCTL_enableSleepOnExit will result in
+     * only ISR code to be executed. This is done to showcase the device's
+     * low power consumption when sleeping.
+     */
     DL_SYSCTL_enableSleepOnExit();
 
     while (1) {

@@ -1,0 +1,399 @@
+%%{
+    /* get common utility functions */
+    let Common = system.getScript("/ti/driverlib/Common.js");
+    let tusbCommon = system.getScript("/ti/tinyusb_meta/Common.js");
+    let inst = system.modules["/ti/tinyusb_meta/tinyusb"].$static;
+    let associatedUSB = inst.associated_USB;
+
+    // define associated instance arrays to determine length
+    let cdcInsts    = tusbCommon.getCDCInstances(inst);
+    let hidInsts    = tusbCommon.getHIDInstances(inst);
+    let audioInsts  = tusbCommon.getAudioInstances(inst);
+    let mscInsts    = tusbCommon.getMSCInstances(inst);
+    let billboardInsts  = tusbCommon.getBillboardInstances(inst);
+
+    let modeFlavor = (inst.mode == "device")?"TUD":"TUH";
+%%}
+%%{
+    // Static Initialization & Licensing
+%%}
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2019 Ha Thach (tinyusb.org)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
+
+#ifndef _TUSB_CONFIG_H_
+#define _TUSB_CONFIG_H_
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+//--------------------------------------------------------------------+
+// Board Specific Configuration
+//--------------------------------------------------------------------+
+
+// RHPort number used for device can be defined by board.mk, default to port 0
+#ifndef BOARD_`modeFlavor`_RHPORT
+#define BOARD_`modeFlavor`_RHPORT      0
+#endif
+
+// RHPort max operational speed can defined by board.mk
+#ifndef BOARD_`modeFlavor`_MAX_SPEED
+#define BOARD_`modeFlavor`_MAX_SPEED   OPT_MODE_DEFAULT_SPEED
+#endif
+
+//--------------------------------------------------------------------
+// COMMON CONFIGURATION
+//--------------------------------------------------------------------
+
+// defined by board.mk
+#ifndef CFG_TUSB_MCU
+#error CFG_TUSB_MCU must be defined
+#endif
+
+#ifndef CFG_TUSB_OS
+#define CFG_TUSB_OS           OPT_OS_NONE
+#endif
+
+#ifndef CFG_TUSB_DEBUG
+#define CFG_TUSB_DEBUG        0
+#endif
+
+// Enable Device stack
+#define CFG_`modeFlavor`_ENABLED       1
+
+// Default is max speed that hardware controller could support with on-chip PHY
+#define CFG_`modeFlavor`_MAX_SPEED     BOARD_`modeFlavor`_MAX_SPEED
+
+/* USB DMA on some MCUs can only access a specific SRAM region with restriction on alignment.
+ * Tinyusb use follows macros to declare transferring memory so that they can be put
+ * into those specific section.
+ * e.g
+ * - CFG_TUSB_MEM SECTION : __attribute__ (( section(".usb_ram") ))
+ * - CFG_TUSB_MEM_ALIGN   : __attribute__ ((aligned(4)))
+ */
+#ifndef CFG_TUSB_MEM_SECTION
+#define CFG_TUSB_MEM_SECTION
+#endif
+
+#ifndef CFG_TUSB_MEM_ALIGN
+#define CFG_TUSB_MEM_ALIGN          __attribute__ ((aligned(4)))
+#endif
+
+//--------------------------------------------------------------------
+// `inst.mode.toUpperCase()` CONFIGURATION
+//--------------------------------------------------------------------
+
+#ifndef CFG_`modeFlavor`_ENDPOINT0_SIZE
+#define CFG_`modeFlavor`_ENDPOINT0_SIZE    64
+#endif
+%%{
+    // Host Defines
+%%}
+% if(inst.mode == "host"){
+`("#define CFG_TUH_ENUMERATION_BUFSIZE").padEnd(50, " ") + (inst.enumerationBuffer).toString().padStart(4, " ")`
+% }
+%%{
+    // Class Defines
+%%}
+//------------- CLASS -------------//
+`("#define CFG_"+modeFlavor+"_CDC").padEnd(50, " ") + (tusbCommon.getCDCInstances(inst).length).toString().padStart(4, " ")`
+`("#define CFG_"+modeFlavor+"_HID").padEnd(50, " ") + (tusbCommon.getHIDInstances(inst).length).toString().padStart(4, " ")`
+%   if(inst.mode=="device"){
+`("#define CFG_"+modeFlavor+"_AUDIO").padEnd(50, " ") + (tusbCommon.getAudioInstances(inst).length).toString().padStart(4, " ")`
+%   }
+`("#define CFG_"+modeFlavor+"_MSC").padEnd(50, " ") + (tusbCommon.getMSCInstances(inst).length).toString().padStart(4, " ")`
+%   if(inst.mode=="device"){
+`("#define CFG_"+modeFlavor+"_BILLBOARD").padEnd(50, " ") + (tusbCommon.getBillboardInstances(inst).length).toString().padStart(4, " ")`
+%   }
+
+%%{
+    // Buffer Size Definitions
+%%}
+%    // Device Configuration
+%    if(inst.mode == "device"){
+% // CDC Buffer Defines
+// CDC FIFO size of TX and RX
+% if(cdcInsts.length > 0){
+`("#define CFG_TUD_CDC_RX_BUFSIZE").padEnd(50, " ") + (inst.DEV_CDC_RX_BUFSIZE).toString().padStart(4, " ")`
+`("#define CFG_TUD_CDC_TX_BUFSIZE").padEnd(50, " ") + (inst.DEV_CDC_TX_BUFSIZE).toString().padStart(4, " ")`
+// CDC Endpoint transfer buffer size
+`("#define CFG_TUD_CDC_EP_BUFSIZE").padEnd(50, " ") + (inst.DEV_CDC_EP_BUFSIZE).toString().padStart(4, " ")`
+% }
+% if(hidInsts.length > 0){
+// HID Endpoint transfer buffer size
+`("#define CFG_TUD_HID_EP_BUFSIZE").padEnd(50, " ") + (inst.DEV_HID_EP_BUFSIZE).toString().padStart(4, " ")`
+% }
+% if(audioInsts.length > 0){
+// AUDIO Endpoint transfer buffer size
+`("#define CFG_TUD_AUDIO_EP_BUFSIZE").padEnd(50, " ") + (inst.DEV_AUDIO_EP_BUFSIZE).toString().padStart(4, " ")`
+% }
+% if(mscInsts.length > 0){
+// MSC Endpoint transfer buffer size
+`("#define CFG_TUD_MSC_EP_BUFSIZE").padEnd(50, " ") + (inst.DEV_MSC_EP_BUFSIZE).toString().padStart(4, " ")`
+% }
+
+%    }
+%    // Host Configuration
+%    else if(inst.mode == "host"){
+% if(cdcInsts.length > 0){
+`("#define CFG_TUH_CDC_RX_BUFSIZE").padEnd(50, " ") + (inst.HOST_CDC_RX_BUFSIZE).toString().padStart(4, " ")`
+`("#define CFG_TUH_CDC_TX_BUFSIZE").padEnd(50, " ") + (inst.HOST_CDC_TX_BUFSIZE).toString().padStart(4, " ")`
+`("#define CFG_TUH_CDC_RX_EPSIZE").padEnd(50, " ") + (inst.HOST_CDC_RX_BUFSIZE).toString().padStart(4, " ")`
+`("#define CFG_TUH_CDC_TX_EPSIZE").padEnd(50, " ") + (inst.HOST_CDC_TX_BUFSIZE).toString().padStart(4, " ")`
+% }
+% // Static Host Defines for HID
+`("#define CFG_TUH_HUB").padEnd(50, " ") + (1).toString().padStart(20, " ")`
+`("#define CFG_TUH_DEVICE_MAX").padEnd(50, " ") + ("(3*CFG_TUH_HUB + 1)").toString().padStart(20, " ")`
+% if(hidInsts.length > 0){
+// HID Endpoint transfer buffer size
+`("#define CFG_TUH_HID_EPIN_BUFSIZE").padEnd(50, " ") + (inst.HOST_HID_EP_BUFSIZE).toString().padStart(20, " ")`
+`("#define CFG_TUH_HID_EPOUT_BUFSIZE").padEnd(50, " ") + (inst.HOST_HID_EP_BUFSIZE).toString().padStart(20, " ")`
+% }
+
+%    } // if Host Mode
+%%{
+    // Audio Defines
+%%}
+%    if(inst.mode == "device"){
+%    if(audioInsts.length > 0){
+//--------------------------------------------------------------------
+// AUDIO CLASS DRIVER CONFIGURATION
+//--------------------------------------------------------------------
+%%{
+    // Check if endpoints exist for this class (across all instances)
+    let epInEnabledForClass = system.modules['/ti/tinyusb_meta/endpoint_in/EP_IN']?.$instances.filter(x=>(x.$ownedBy.$module.$name == "/ti/tinyusb_meta/tinyusb/USB_devAudio"))?.length>0;
+    let epOutEnabledForClass = system.modules['/ti/tinyusb_meta/endpoint_out/EP_OUT']?.$instances.filter(x=>(x.$ownedBy.$module.$name == "/ti/tinyusb_meta/tinyusb/USB_devAudio"))?.length>0;
+%%}
+`("#define CFG_TUD_AUDIO_ENABLE_EP_IN").padEnd(50, " ") + (epInEnabledForClass?"1":"0").toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_ENABLE_EP_OUT").padEnd(50, " ") + (epOutEnabledForClass?"1":"0").toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_ENABLE_FEEDBACK_EP").padEnd(50, " ") + (inst.enableSpeakerFeedback?"1":"0").toString().padStart(6, " ")`
+%       for(var myClass of inst.associated_devAudio){
+%           let audio_func_idx = inst.associated_devAudio.indexOf(myClass)+1;
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_MAX_SAMPLE_RATE").padEnd(50, " ") + (myClass.sampleRate).toString().padStart(6, " ")`
+%%{
+    /* Audio Length String*/
+    let audioLenStr = "";
+    let components = [];
+    if(myClass.enableOneChannelMic){
+        components.push("TUD_AUDIO_MIC_ONE_CH_DESC_LEN");
+    }
+    if(myClass.enableFourChannelMic){
+        components.push("TUD_AUDIO_MIC_FOUR_CH_DESC_LEN");
+    }
+    if(myClass.enableHeadset){
+        components.push("TUD_AUDIO_HEADSET_STERO_DESC_LEN");
+    }
+    if(myClass.enableSpeaker){
+        components.push("TUD_AUDIO_SPEAKER_STEREO_FB_DESC_LEN");
+    }
+    for(let i = 0; i < components.length; i++) {
+        audioLenStr += (components[i]);
+        if (i < components.length - 1) {
+            audioLenStr += " + ";
+        }
+    }
+    audioLenStr = "( "+audioLenStr+" )";
+
+    /* Audio Settings Configuration */
+    let rxEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+    let txEnabled = (myClass.enableOneChannelMic || myClass.enableFourChannelMic || myClass.enableHeadset);
+    let multiFormatEnabled = (myClass.enableHeadset);
+    let resolutionEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+%%}
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_DESC_LEN").padEnd(50, " ") + (audioLenStr).toString().padStart(6, " ")`
+%       if(rxEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_RX").padEnd(50, " ") + (myClass.rxChannels).toString().padStart(6, " ")`
+%       }
+%       if(txEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_TX").padEnd(50, " ") + (myClass.txChannels).toString().padStart(6, " ")`
+%       }
+%       if(rxEnabled && txEnabled && multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_N_BYTES_PER_SAMPLE_RX").padEnd(50, " ") + (myClass.bytesPerSampleRX).toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_N_BYTES_PER_SAMPLE_TX").padEnd(50, " ") + (myClass.bytesPerSampleTX).toString().padStart(6, " ")`
+%           if(resolutionEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_RESOLUTION_RX").padEnd(50, " ") + (myClass.rxResolution).toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_RESOLUTION_TX").padEnd(50, " ") + (myClass.txResolution).toString().padStart(6, " ")`
+%           }
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"FORMAT_2_N_BYTES_PER_SAMPLE_RX").padEnd(50, " ") + (myClass.bytesPerSampleRX_F2).toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"FORMAT_2_N_BYTES_PER_SAMPLE_TX").padEnd(50, " ") + (myClass.bytesPerSampleTX_F2).toString().padStart(6, " ")`
+%           if(resolutionEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_RESOLUTION_RX").padEnd(50, " ") + (myClass.rxResolution_F2).toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_RESOLUTION_TX").padEnd(50, " ") + (myClass.txResolution_F2).toString().padStart(6, " ")`
+%           }
+%       }
+%       else{
+%           if(rxEnabled && !multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_BYTES_PER_SAMPLE_RX").padEnd(50, " ") + (myClass.bytesPerSampleRX).toString().padStart(6, " ")`
+%               if(resolutionEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_RESOLUTION_RX").padEnd(50, " ") + (myClass.rxResolution).toString().padStart(6, " ")`
+%               }
+%           }
+%           if(txEnabled && !multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_BYTES_PER_SAMPLE_TX").padEnd(50, " ") + (myClass.bytesPerSampleTX).toString().padStart(6, " ")`
+%               if(resolutionEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_RESOLUTION_TX").padEnd(50, " ") + (myClass.txResolution).toString().padStart(6, " ")`
+%               }
+%           }
+%       }
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_AS_INT").padEnd(50, " ") + ((myClass.enableHeadset)?"2":"1").toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_CTRL_BUF_SZ").padEnd(50, " ") + ((myClass.enableHeadset)?"2":"1").toString().padStart(6, " ")`
+%       if(txEnabled && multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_IN").padEnd(50, " ") + ("TUD_AUDIO_EP_SIZE(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_MAX_SAMPLE_RATE, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_N_BYTES_PER_SAMPLE_TX, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_TX)").toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_IN").padEnd(50, " ") + ("TUD_AUDIO_EP_SIZE(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_MAX_SAMPLE_RATE, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_N_BYTES_PER_SAMPLE_TX, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_TX)").toString().padStart(6, " ")`
+
+%       }
+%       if(rxEnabled && multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_OUT").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_MAX_SAMPLE_RATE, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_N_BYTES_PER_SAMPLE_RX, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_RX").toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_OUT").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_MAX_SAMPLE_RATE, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_N_BYTES_PER_SAMPLE_RX, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_RX").toString().padStart(6, " ")`
+
+%       }
+%       if(txEnabled && !multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_IN").padEnd(50, " ") + ("TUD_AUDIO_EP_SIZE(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_MAX_SAMPLE_RATE, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_BYTES_PER_SAMPLE_TX, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_TX)").toString().padStart(6, " ")`
+%       }
+%       if(rxEnabled && !multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_OUT").padEnd(50, " ") + ("TUD_AUDIO_EP_SIZE(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_MAX_SAMPLE_RATE, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_BYTES_PER_SAMPLE_RX, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_RX)").toString().padStart(6, " ")`
+%       }
+%    } // loop through audio functions
+%%{
+    /* ENCODING/DECODING DEFINES */
+%%}
+`("#define CFG_TUD_AUDIO_ENABLE_ENCODING").padEnd(50, " ") + (inst.enableEncoding?"1":"0").toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_ENABLE_DECODING").padEnd(50, " ") + (inst.enableDecoding?"1":"0").toString().padStart(6, " ")`
+%   if(inst.enableEncoding){
+#if CFG_TUD_AUDIO_ENABLE_ENCODING
+`("#define CFG_TUD_AUDIO_ENABLE_TYPE_I_ENCODING").padEnd(50, " ") + (inst.enableTypeIEncoding?"1":"0").toString().padStart(6, " ")`
+%       for(var myClass of inst.associated_devAudio){
+%           let audio_func_idx = inst.associated_devAudio.indexOf(myClass)+1;
+%%{
+            /* Audio Settings Configuration */
+            let rxEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+            let txEnabled = (myClass.enableOneChannelMic || myClass.enableFourChannelMic || myClass.enableHeadset);
+            let multiFormatEnabled = (myClass.enableHeadset);
+            let resolutionEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+%%}
+%           if(txEnabled && !multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_IN_SZ_MAX").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_IN").toString().padStart(50, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_IN_SW_BUF_SZ").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_IN").toString().padStart(50, " ")`
+
+%           }
+%           if(txEnabled && multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_IN_SZ_MAX").padEnd(50, " ") + ("TU_MAX(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_IN, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_IN)").toString().padStart(90, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_IN_SW_BUF_SZ").padEnd(50, " ") + ("TU_MAX(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_IN, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_IN)").toString().padStart(90, " ")`
+
+%           }
+%           if(txEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_CHANNEL_PER_FIFO_TX").padEnd(50, " ") + (myClass.txChannelsPerFifo).toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_TX_SUPP_SW_FIFO").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_TX / CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_CHANNEL_PER_FIFO_TX").toString().padStart(90, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_TX_SUPP_SW_FIFO_SZ").padEnd(50, " ") + ("(4) * (CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_IN / CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_TX_SUPP_SW_FIFO)").toString().padStart(90, " ")`
+%           }
+%       }
+
+#else
+% } // end if encoding enabled
+%   for(var myClass of inst.associated_devAudio){
+%       let audio_func_idx = inst.associated_devAudio.indexOf(myClass)+1;
+%%{
+        /* Audio Settings Configuration */
+        let rxEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+        let txEnabled = (myClass.enableOneChannelMic || myClass.enableFourChannelMic || myClass.enableHeadset);
+        let multiFormatEnabled = (myClass.enableHeadset);
+        let resolutionEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+%%}
+%%{
+    // EP Size Defines - TX, Encoding Disabled
+%%}
+%       if(txEnabled && !multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_IN_SZ_MAX").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_IN").toString().padStart(50, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_IN_SW_BUF_SZ").padEnd(50, " ") + ("(4) * (CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_IN)").toString().padStart(50, " ")`
+%       }
+%       if(txEnabled && multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_IN_SZ_MAX").padEnd(50, " ") + ("TU_MAX(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_IN, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_IN)").toString().padStart(90, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_IN_SW_BUF_SZ").padEnd(50, " ") + ("(4) * (TU_MAX(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_IN, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_IN))").toString().padStart(90, " ")`
+%       }
+%   }
+%   if(inst.enableEncoding){
+#endif
+%   } // end if encoding enabled
+%   if(inst.enableDecoding){
+#if CFG_TUD_AUDIO_ENABLE_DECODING
+`("#define CFG_TUD_AUDIO_ENABLE_TYPE_I_DECODING").padEnd(50, " ") + (inst.enableTypeIDecoding?"1":"0").toString().padStart(6, " ")`
+%       for(var myClass of inst.associated_devAudio){
+%           let audio_func_idx = inst.associated_devAudio.indexOf(myClass)+1;
+%%{
+            /* Audio Settings Configuration */
+            let rxEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+            let txEnabled = (myClass.enableOneChannelMic || myClass.enableFourChannelMic || myClass.enableHeadset);
+            let multiFormatEnabled = (myClass.enableHeadset);
+            let resolutionEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+%%}
+%           if(rxEnabled && !multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_OUT_SZ_MAX").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_OUT").toString().padStart(50, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_OUT_SW_BUF_SZ").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_OUT").toString().padStart(50, " ")`
+
+%           }
+%           if(rxEnabled && multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_OUT_SZ_MAX").padEnd(50, " ") + ("TU_MAX(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_OUT, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_OUT)").toString().padStart(90, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_OUT_SW_BUF_SZ").padEnd(50, " ") + ("TU_MAX(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_OUT, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_OUT)").toString().padStart(90, " ")`
+
+%           }
+%           if(rxEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_CHANNEL_PER_FIFO_RX").padEnd(50, " ") + (myClass.rxChannelsPerFifo).toString().padStart(6, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_RX_SUPP_SW_FIFO").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_CHANNELS_RX / CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_CHANNEL_PER_FIFO_RX").toString().padStart(90, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_RX_SUPP_SW_FIFO_SZ").padEnd(50, " ") + ("(4) * (CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_IN / CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_N_RX_SUPP_SW_FIFO)").toString().padStart(90, " ")`
+%           }
+%       }
+#else
+%   } // end if decoding enabled
+%   for(var myClass of inst.associated_devAudio){
+%       let audio_func_idx = inst.associated_devAudio.indexOf(myClass)+1;
+%%{
+        /* Audio Settings Configuration */
+        let rxEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+        let txEnabled = (myClass.enableOneChannelMic || myClass.enableFourChannelMic || myClass.enableHeadset);
+        let multiFormatEnabled = (myClass.enableHeadset);
+        let resolutionEnabled = (myClass.enableHeadset || myClass.enableSpeaker);
+%%}
+%%{
+    // EP Size Defines - RX, Decoding Disabled
+%%}
+%       if(rxEnabled && !multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_OUT_SZ_MAX").padEnd(50, " ") + ("CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_OUT").toString().padStart(50, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_OUT_SW_BUF_SZ").padEnd(50, " ") + ("(4) * (CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_SZ_OUT)").toString().padStart(50, " ")`
+%       }
+%       if(rxEnabled && multiFormatEnabled){
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_OUT_SZ_MAX").padEnd(50, " ") + ("TU_MAX(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_OUT, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_OUT)").toString().padStart(90, " ")`
+`("#define CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_EP_OUT_SW_BUF_SZ").padEnd(50, " ") + ("(4) * (TU_MAX(CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_1_EP_SZ_OUT, CFG_TUD_AUDIO_FUNC_"+audio_func_idx+"_FORMAT_2_EP_SZ_OUT))").toString().padStart(90, " ")`
+%       }
+%   }
+%   if(inst.enableDecoding){
+#endif
+%   }
+% } // if audio instances > 0
+% } // if usb mode == device
+#ifdef __cplusplus
+ }
+#endif
+
+#endif /* _TUSB_CONFIG_H_ */

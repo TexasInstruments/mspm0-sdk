@@ -1,0 +1,5 @@
+MCU_VARIANT = mspm0g511x
+MCU_SPECIFIC = mspm0g5117
+CFLAGS += \
+	-D__MSPM0G511x__ \
+	-D__MSPM0G5117__

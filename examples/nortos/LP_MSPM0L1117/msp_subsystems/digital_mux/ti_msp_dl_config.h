@@ -119,6 +119,7 @@ extern "C" {
 #define SELECT_S1_PIN                                           (DL_GPIO_PIN_27)
 #define SELECT_S1_IOMUX                                          (IOMUX_PINCM60)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

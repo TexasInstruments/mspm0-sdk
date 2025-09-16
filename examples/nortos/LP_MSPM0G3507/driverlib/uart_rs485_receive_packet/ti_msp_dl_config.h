@@ -114,6 +114,7 @@ extern "C" {
 #define GPIO_DE_TX_RECEIVER_PIN                                  (DL_GPIO_PIN_3)
 #define GPIO_DE_TX_RECEIVER_IOMUX                                (IOMUX_PINCM16)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

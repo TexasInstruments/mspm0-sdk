@@ -62,3 +62,8 @@ let gpn = migration_inst.deviceSpinAdvanced;
  */
 %%}
 -D__`gpn`__
+-D__USE_SYSCONFIG__
+% if(system.modules["/ti/tinyusb_meta/tinyusb"]){
+-D__`Common.getDeviceFamily()`__
+-DCFG_TUSB_MCU=OPT_MCU_`Common.getDeviceFamily()`
+% }

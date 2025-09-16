@@ -10,10 +10,7 @@ USER_LED_1 every time a rising or falling edge is detected on USER_SWITCH_1.
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
 | --- | --- | --- | --- | --- |
 | GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J1[1:2] |
-| GPIOA | Standard Input with internal pull-up | PA5 | J21_1 | Populate Component(s): J21 |
- !!!MULTI!!!
 | GPIOA | Standard Input with internal pull-up | PA5 | S2 | Populate Jumper(s): J6[1:2] |
- !!!MULTI!!!
 | SYSCTL |  |  |  |  |
 | EVENT |  |  |  |  |
 | BOARD | Debug Clock | PA20 | J22_16 |  |

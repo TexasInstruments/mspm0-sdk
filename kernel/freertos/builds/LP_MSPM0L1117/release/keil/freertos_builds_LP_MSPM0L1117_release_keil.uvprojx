@@ -180,6 +180,11 @@
               <FilePath>../../../../../../kernel/freertos/Source/portable/GCC/ARM_CM0/port.c</FilePath>
             </File>
             <File>
+              <FileName>portasm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../../kernel/freertos/Source/portable/GCC/ARM_CM0/portasm.c</FilePath>
+            </File>
+            <File>
               <FileName>AppHooks_freertos.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../../kernel/freertos/dpl/AppHooks_freertos.c</FilePath>
@@ -227,7 +232,7 @@
             <File>
               <FileName>startup_mspm0l111x_uvision.s</FileName>
               <FileType>2</FileType>
-              <FilePath>../../../../../../source/ti/devices/msp/m0p/startup_system_files/keil/startup_mspm0l1117x_uvision.s</FilePath>
+              <FilePath>../../../../../../source/ti/devices/msp/m0p/startup_system_files/keil/startup_mspm0l111x_uvision.s</FilePath>
             </File>
           </Files>
         </Group>

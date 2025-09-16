@@ -88,6 +88,7 @@ extern "C" {
 #define ADC12_0_INST_SUB_CH                                                  (1)
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

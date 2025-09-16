@@ -97,6 +97,8 @@ extern "C" {
 #define ADC_INST_SUB_CH                                                      (1)
 #define GPIO_ADC_C9_PORT                                                   GPIOA
 #define GPIO_ADC_C9_PIN                                           DL_GPIO_PIN_15
+#define GPIO_ADC_IOMUX_C9                                        (IOMUX_PINCM16)
+#define GPIO_ADC_IOMUX_C9_FUNC                    (IOMUX_PINCM16_PF_UNCONNECTED)
 
 
 /* Defines for THERMISTOR_OPA */
@@ -128,6 +130,7 @@ extern "C" {
 /* Defines for GREEN: GPIOA.13 with pinCMx 14 on package pin 17 */
 #define RGB_GREEN_PIN                                           (DL_GPIO_PIN_13)
 #define RGB_GREEN_IOMUX                                          (IOMUX_PINCM14)
+
 
 /* clang-format on */
 

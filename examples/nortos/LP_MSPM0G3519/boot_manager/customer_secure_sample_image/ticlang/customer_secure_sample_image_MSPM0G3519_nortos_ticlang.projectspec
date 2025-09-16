@@ -28,6 +28,7 @@
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
             -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
             -I${WORKSPACE_LOC}/customer_secure_code_LP_MSPM0G3519_nortos_ticlang/Debug/syscfg
+            -I${WORKSPACE_LOC}/customer_secure_code_LP_MSPM0G3519_nortos_ticlang
             -I${CG_TOOL_INCLUDE_PATH}
             -D__MSPM0G3519__
             -gdwarf-3

@@ -17,21 +17,20 @@ When data is received and the SPI RXINT is set, this triggers the DMA to transfe
 The SPI Controller must first initiate the transaction. When the SPI Peripheral receives SPI_PACKET_SIZE bytes, this will trigger the DL_SPI_IIDX_DMA_DONE_RX interrupt indicating that the DMA is done transferring all expected bytes from the RXFIFO to the buffer.
 During the transaction, the SPI Peripheral will transmit the data that is in the TXFIFO until it is empty. When the TXFIFO is empty, this will trigger the DL_SPI_IIDX_TX_EMPTY interrupt indicating that the transfer is complete.
 
-## Peripherals & Pin Assignments
-
-| Peripheral | Pin | Function |
-| --- | --- | --- |
-| GPIOA | PA0 | Open-Drain Output |
-| GPIOA | PA15 | Standard Output |
-| SYSCTL |  |  |
+## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
+| Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
+| --- | --- | --- | --- | --- |
+| GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
+| GPIOA | Standard Output | PA15 | J4_38 |  |
+| SYSCTL |  |  |  |  |
 | SPI0 | SPI SCLK (Clock) | PA25 | J1_7 |  |
 | SPI0 | SPI PICO (Peripheral In, Controller Out) | PA10 | J2_15 |  |
 | SPI0 | SPI POCI (Peripheral Out, Controller In) | PA9 | J2_14 |  |
 | SPI0 | SPI CS0 (Chip Select 0) | PA8 | J2_13 |  |
-| EVENT |  |  |
-| DMA |  |  |
-| DEBUGSS | PA20 | Debug Clock |
-| DEBUGSS | PA19 | Debug Data In Out |
+| EVENT |  |  |  |  |
+| DMA |  |  |  |  |
+| BOARD | Debug Clock | PA20 | J14_4 |  |
+| BOARD | Debug Data In Out | PA19 | J14_2 |  |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the LP_MSPM0G3507 LaunchPad. Please

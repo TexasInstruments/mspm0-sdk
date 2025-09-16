@@ -68,7 +68,7 @@
 /*!
  * @brief The sector address to use
  */
-#define EEPROM_EMULATION_ADDRESS                                    (0x00004000)
+#define EEPROM_EMULATION_ADDRESS                                    (0x00006000)
 /*!
  * @brief The number of sectors to use
  */

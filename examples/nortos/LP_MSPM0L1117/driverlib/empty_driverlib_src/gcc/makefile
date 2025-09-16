@@ -14,7 +14,7 @@ SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
 SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-OBJECTS = empty.obj ti_driverlib_dl_adc12.obj ti_driverlib_dl_aes.obj ti_driverlib_dl_aesadv.obj ti_driverlib_dl_common.obj ti_driverlib_dl_comp.obj ti_driverlib_dl_crc.obj ti_driverlib_dl_crcp.obj ti_driverlib_dl_dac12.obj ti_driverlib_dl_dma.obj ti_driverlib_dl_flashctl.obj ti_driverlib_dl_gpamp.obj ti_driverlib_dl_gpio.obj ti_driverlib_dl_i2c.obj ti_driverlib_dl_iwdt.obj ti_driverlib_dl_keystorectl.obj ti_driverlib_dl_lcd.obj ti_driverlib_dl_lfss.obj ti_driverlib_dl_mathacl.obj ti_driverlib_dl_mcan.obj ti_driverlib_dl_opa.obj ti_driverlib_dl_rtc.obj ti_driverlib_dl_rtc_a.obj ti_driverlib_dl_rtc_b.obj ti_driverlib_dl_rtc_common.obj ti_driverlib_dl_scratchpad.obj ti_driverlib_dl_spi.obj ti_driverlib_dl_tamperio.obj ti_driverlib_dl_timer.obj ti_driverlib_dl_timera.obj ti_driverlib_dl_timerg.obj ti_driverlib_dl_trng.obj ti_driverlib_dl_uart.obj ti_driverlib_dl_vref.obj ti_driverlib_dl_wwdt.obj ti_driverlib_m0p_dl_factoryregion.obj ti_driverlib_m0p_dl_interrupt.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c1105_c1106.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0gx51x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0h321x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l111x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l122x_l222x.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+OBJECTS = empty.obj ti_driverlib_dl_adc12.obj ti_driverlib_dl_aes.obj ti_driverlib_dl_aesadv.obj ti_driverlib_dl_common.obj ti_driverlib_dl_comp.obj ti_driverlib_dl_crc.obj ti_driverlib_dl_crcp.obj ti_driverlib_dl_dac12.obj ti_driverlib_dl_dma.obj ti_driverlib_dl_flashctl.obj ti_driverlib_dl_gpamp.obj ti_driverlib_dl_gpio.obj ti_driverlib_dl_i2c.obj ti_driverlib_dl_i2s.obj ti_driverlib_dl_iwdt.obj ti_driverlib_dl_keystorectl.obj ti_driverlib_dl_lcd.obj ti_driverlib_dl_lfss.obj ti_driverlib_dl_mathacl.obj ti_driverlib_dl_mcan.obj ti_driverlib_dl_npu.obj ti_driverlib_dl_opa.obj ti_driverlib_dl_rtc.obj ti_driverlib_dl_rtc_a.obj ti_driverlib_dl_rtc_b.obj ti_driverlib_dl_rtc_common.obj ti_driverlib_dl_scratchpad.obj ti_driverlib_dl_spgss.obj ti_driverlib_dl_spi.obj ti_driverlib_dl_tamperio.obj ti_driverlib_dl_timer.obj ti_driverlib_dl_timera.obj ti_driverlib_dl_timerb.obj ti_driverlib_dl_timerg.obj ti_driverlib_dl_trng.obj ti_driverlib_dl_uart.obj ti_driverlib_dl_unicomm.obj ti_driverlib_dl_unicommi2cc.obj ti_driverlib_dl_unicommi2ct.obj ti_driverlib_dl_unicommspi.obj ti_driverlib_dl_unicommuart.obj ti_driverlib_dl_vref.obj ti_driverlib_dl_wwdt.obj ti_driverlib_m0p_dl_factoryregion.obj ti_driverlib_m0p_dl_interrupt.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c1105_c1106.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0c110x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g352x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g511x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g518x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0gx51x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0h321x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l111x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l122x_l222x.obj ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l211x_l112x.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
 NAME = empty_driverlib_src
 
 CFLAGS += -I.. \
@@ -142,6 +142,10 @@ ti_driverlib_dl_i2c.obj: ../ti/driverlib/dl_i2c.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
+ti_driverlib_dl_i2s.obj: ../ti/driverlib/dl_i2s.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
 ti_driverlib_dl_iwdt.obj: ../ti/driverlib/dl_iwdt.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
@@ -163,6 +167,10 @@ ti_driverlib_dl_mathacl.obj: ../ti/driverlib/dl_mathacl.c $(SYSCFG_H_FILES)
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
 ti_driverlib_dl_mcan.obj: ../ti/driverlib/dl_mcan.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_npu.obj: ../ti/driverlib/dl_npu.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
@@ -190,6 +198,10 @@ ti_driverlib_dl_scratchpad.obj: ../ti/driverlib/dl_scratchpad.c $(SYSCFG_H_FILES
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
+ti_driverlib_dl_spgss.obj: ../ti/driverlib/dl_spgss.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
 ti_driverlib_dl_spi.obj: ../ti/driverlib/dl_spi.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
@@ -206,6 +218,10 @@ ti_driverlib_dl_timera.obj: ../ti/driverlib/dl_timera.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
+ti_driverlib_dl_timerb.obj: ../ti/driverlib/dl_timerb.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
 ti_driverlib_dl_timerg.obj: ../ti/driverlib/dl_timerg.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
@@ -215,6 +231,26 @@ ti_driverlib_dl_trng.obj: ../ti/driverlib/dl_trng.c $(SYSCFG_H_FILES)
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
 ti_driverlib_dl_uart.obj: ../ti/driverlib/dl_uart.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_unicomm.obj: ../ti/driverlib/dl_unicomm.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_unicommi2cc.obj: ../ti/driverlib/dl_unicommi2cc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_unicommi2ct.obj: ../ti/driverlib/dl_unicommi2ct.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_unicommspi.obj: ../ti/driverlib/dl_unicommspi.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_dl_unicommuart.obj: ../ti/driverlib/dl_unicommuart.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
@@ -246,6 +282,18 @@ ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g1x0x_g3x0x.obj: ../ti/driverlib/m0p/sysc
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
+ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g352x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g511x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_m0p_sysctl_dl_sysctl_mspm0g518x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
 ti_driverlib_m0p_sysctl_dl_sysctl_mspm0gx51x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
@@ -263,6 +311,10 @@ ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l11xx_l13xx.obj: ../ti/driverlib/m0p/sysc
 	@ $(CC) $(CFLAGS) $< -c -o $@
 
 ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l122x_l222x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) $< -c -o $@
+
+ti_driverlib_m0p_sysctl_dl_sysctl_mspm0l211x_l112x.obj: ../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.c $(SYSCFG_H_FILES)
 	@ echo Building $@
 	@ $(CC) $(CFLAGS) $< -c -o $@
 

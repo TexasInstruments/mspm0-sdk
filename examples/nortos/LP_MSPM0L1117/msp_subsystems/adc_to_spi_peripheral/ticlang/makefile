@@ -8,7 +8,7 @@ LNK = "$(TICLANG_ARMCOMPILER)/bin/tiarmclang"
 SYSCONFIG_GUI_TOOL = $(dir $(SYSCONFIG_TOOL))sysconfig_gui$(suffix $(SYSCONFIG_TOOL))
 SYSCFG_CMD_STUB = $(SYSCONFIG_TOOL) --compiler ticlang --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
 SYSCFG_GUI_CMD_STUB = $(SYSCONFIG_GUI_TOOL) --compiler ticlang --product $(MSPM0_SDK_INSTALL_DIR)/.metadata/product.json
-SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../LP_MSPM0L1306/adc_to_spi_peripheral.syscfg)
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../adc_to_spi_peripheral.syscfg)
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
@@ -46,7 +46,7 @@ all: $(NAME).out
 $(SYSCFG_FILES): syscfg
 	@ echo generation complete
 
-syscfg: ../LP_MSPM0L1306/adc_to_spi_peripheral.syscfg
+syscfg: ../adc_to_spi_peripheral.syscfg
 	@ echo Generating configuration files...
 	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
 
@@ -58,7 +58,7 @@ $(SYSCONFIG_GUI_TOOL):
         (in your SDK's imports.mak) to a standalone SysConfig installation \
         rather than one inside CCS)
 
-syscfg-gui: ../LP_MSPM0L1306/adc_to_spi_peripheral.syscfg $(SYSCONFIG_GUI_TOOL)
+syscfg-gui: ../adc_to_spi_peripheral.syscfg $(SYSCONFIG_GUI_TOOL)
 	@ echo Opening SysConfig GUI
 	@ $(SYSCFG_GUI_CMD_STUB) $<
 

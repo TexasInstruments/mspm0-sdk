@@ -1,0 +1,232 @@
+%%{
+/*
+ * Copyright (c) 2023 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/*
+ *  ======== I2S.Board.h.xdt ========
+ */
+
+    let I2S = args[0]; /* passed by /ti/driverlib/templates/Board.c.xdt */
+    let content = args[1];
+
+    /* get ti/drivers common utility functions */
+    let Common = system.getScript("/ti/driverlib/Common.js");
+
+    let instances = I2S.$instances;
+    let defs = Common.genBoardHeader(instances, I2S);
+
+    switch(content) {
+        case "Define":
+            printDefine();
+            break;
+        case "Declare":
+            printDeclare();
+            break;
+        default:
+            /* do nothing */
+            return;
+    }
+
+%%}
+%
+% function printDefine() {
+%   for (let i in instances) {
+%       let inst = instances[i];
+%       let flavor = inst.peripheral.$solution.peripheralName;
+%       let nameStr = "#define "+inst.$name+"_INST";
+%       let intHandlerStr = nameStr + "_IRQHandler";
+%       let intHandlerStr2 = flavor + "_IRQHandler";
+%       let intNumberStr = nameStr + "_INT_IRQN";
+%       let intNumberStr2 = flavor + "_INT_IRQn";
+/* Defines for `inst.$name` */
+`nameStr.padEnd(40," ")+flavor.padStart(39," ")`
+`intHandlerStr.padEnd(40, " ") + intHandlerStr2.padStart(39, " ")`
+`intNumberStr.padEnd(40, " ") + intNumberStr2.padStart(39, " ")`
+%       let gpioStr = "GPIO_"+inst.$name;
+%%{
+    // Data Pin 0 Defines
+%%}
+%%{
+        if (inst.dataPin0Enable) {
+            let pinResourceName = "AD0";
+            let selectedPinName = pinResourceName + "Pin";
+            let selectedPackagePin = inst.peripheral[selectedPinName].$solution.packagePinName;
+            let selectedPinCM = Common.getPinCM(selectedPackagePin,inst,pinResourceName);
+            let selectedGpioName = system.deviceData.devicePins[selectedPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
+            let selectedPort    = Common.getGPIOPortMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedGpioPin = Common.getGPIONumberMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedPortStr = "#define "+gpioStr+"_"+pinResourceName+"_PORT";
+%%}
+`selectedPortStr.padEnd(40," ")+selectedPort.padStart(39, " ")`
+% //#define `gpioStr`_`pinResourceName`_PORT            `selectedPort`
+%           let selectedPinStr = "#define "+gpioStr+"_"+pinResourceName+"_PIN";
+%           let selectedPinStr2 = "DL_GPIO_PIN_"+selectedGpioPin;
+`selectedPinStr.padEnd(40," ")+selectedPinStr2.padStart(39," ")`
+% //#define `gpioStr`_`pinResourceName`_PIN             DL_GPIO_PIN_`selectedGpioPin`
+%           let selectedIOmuxStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName;
+%           let selectedIOmuxStr2 = "(IOMUX_PINCM"+selectedPinCM.toString()+")";
+`selectedIOmuxStr.padEnd(40," ")+selectedIOmuxStr2.padStart(39," ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`           `selectedIomux`
+%           let selectedFuncStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName+"_FUNC";
+%           let selectedFuncStr2 = "IOMUX_PINCM"+selectedPinCM+"_PF_"+flavor+"_"+pinResourceName;
+`selectedFuncStr.padEnd(50, " ")+selectedFuncStr2.padStart(29, " ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`_FUNC      IOMUX_PINCM`selectedPinCM`_PF_`flavor`_`pinResourceName`
+%       } //if (inst.enableDataPin0)
+%%{
+    // Data Pin 1 Defines
+%%}
+%%{
+        if (inst.dataPin1Enable) {
+            let pinResourceName = "AD1";
+            let selectedPinName = pinResourceName + "Pin";
+            let selectedPackagePin = inst.peripheral[selectedPinName].$solution.packagePinName;
+            let selectedPinCM = Common.getPinCM(selectedPackagePin,inst,pinResourceName);
+            let selectedGpioName = system.deviceData.devicePins[selectedPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
+            let selectedPort    = Common.getGPIOPortMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedGpioPin = Common.getGPIONumberMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedPortStr = "#define "+gpioStr+"_"+pinResourceName+"_PORT";
+%%}
+`selectedPortStr.padEnd(40," ")+selectedPort.padStart(39, " ")`
+% //#define `gpioStr`_`pinResourceName`_PORT            `selectedPort`
+%           let selectedPinStr = "#define "+gpioStr+"_"+pinResourceName+"_PIN";
+%           let selectedPinStr2 = "DL_GPIO_PIN_"+selectedGpioPin;
+`selectedPinStr.padEnd(40," ")+selectedPinStr2.padStart(39," ")`
+% //#define `gpioStr`_`pinResourceName`_PIN             DL_GPIO_PIN_`selectedGpioPin`
+%           let selectedIOmuxStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName;
+%           let selectedIOmuxStr2 = "(IOMUX_PINCM"+selectedPinCM.toString()+")";
+`selectedIOmuxStr.padEnd(40," ")+selectedIOmuxStr2.padStart(39," ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`           `selectedIomux`
+%           let selectedFuncStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName+"_FUNC";
+%           let selectedFuncStr2 = "IOMUX_PINCM"+selectedPinCM+"_PF_"+flavor+"_"+pinResourceName;
+`selectedFuncStr.padEnd(50, " ")+selectedFuncStr2.padStart(29, " ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`_FUNC      IOMUX_PINCM`selectedPinCM`_PF_`flavor`_`pinResourceName`
+%       } //if (inst.enableDataPin1)
+%%{
+    // BCLK Pin Defines
+%%}
+%%{
+        let BCLKPinEnable = true;
+        if (BCLKPinEnable) {
+            let pinResourceName = "BCLK";
+            let selectedPinName = pinResourceName + "Pin";
+            let selectedPackagePin = inst.peripheral[selectedPinName].$solution.packagePinName;
+            let selectedPinCM = Common.getPinCM(selectedPackagePin,inst,pinResourceName);
+            let selectedGpioName = system.deviceData.devicePins[selectedPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
+            let selectedPort    = Common.getGPIOPortMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedGpioPin = Common.getGPIONumberMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedPortStr = "#define "+gpioStr+"_"+pinResourceName+"_PORT";
+%%}
+`selectedPortStr.padEnd(40," ")+selectedPort.padStart(39, " ")`
+% //#define `gpioStr`_`pinResourceName`_PORT            `selectedPort`
+%           let selectedPinStr = "#define "+gpioStr+"_"+pinResourceName+"_PIN";
+%           let selectedPinStr2 = "DL_GPIO_PIN_"+selectedGpioPin;
+`selectedPinStr.padEnd(40," ")+selectedPinStr2.padStart(39," ")`
+% //#define `gpioStr`_`pinResourceName`_PIN             DL_GPIO_PIN_`selectedGpioPin`
+%           let selectedIOmuxStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName;
+%           let selectedIOmuxStr2 = "(IOMUX_PINCM"+selectedPinCM.toString()+")";
+`selectedIOmuxStr.padEnd(40," ")+selectedIOmuxStr2.padStart(39," ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`           `selectedIomux`
+%           let selectedFuncStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName+"_FUNC";
+%           let selectedFuncStr2 = "IOMUX_PINCM"+selectedPinCM+"_PF_"+flavor+"_"+pinResourceName;
+`selectedFuncStr.padEnd(50, " ")+selectedFuncStr2.padStart(29, " ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`_FUNC      IOMUX_PINCM`selectedPinCM`_PF_`flavor`_`pinResourceName`
+%       } //if (BCLKPinEnable)
+%%{
+    // MCLK Pin Defines
+%%}
+%%{
+        if (inst.enableMCLK && inst.mode == "CONTROLLER") {
+            let pinResourceName = "MCLK";
+            let selectedPinName = pinResourceName + "Pin";
+            let selectedPackagePin = inst.peripheral[selectedPinName].$solution.packagePinName;
+            let selectedPinCM = Common.getPinCM(selectedPackagePin,inst,pinResourceName);
+            let selectedGpioName = system.deviceData.devicePins[selectedPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
+            let selectedPort    = Common.getGPIOPortMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedGpioPin = Common.getGPIONumberMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedPortStr = "#define "+gpioStr+"_"+pinResourceName+"_PORT";
+%%}
+`selectedPortStr.padEnd(40," ")+selectedPort.padStart(39, " ")`
+% //#define `gpioStr`_`pinResourceName`_PORT            `selectedPort`
+%           let selectedPinStr = "#define "+gpioStr+"_"+pinResourceName+"_PIN";
+%           let selectedPinStr2 = "DL_GPIO_PIN_"+selectedGpioPin;
+`selectedPinStr.padEnd(40," ")+selectedPinStr2.padStart(39," ")`
+% //#define `gpioStr`_`pinResourceName`_PIN             DL_GPIO_PIN_`selectedGpioPin`
+%           let selectedIOmuxStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName;
+%           let selectedIOmuxStr2 = "(IOMUX_PINCM"+selectedPinCM.toString()+")";
+`selectedIOmuxStr.padEnd(40," ")+selectedIOmuxStr2.padStart(39," ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`           `selectedIomux`
+%           let selectedFuncStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName+"_FUNC";
+%           let selectedFuncStr2 = "IOMUX_PINCM"+selectedPinCM+"_PF_"+flavor+"_"+pinResourceName;
+`selectedFuncStr.padEnd(50, " ")+selectedFuncStr2.padStart(29, " ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`_FUNC      IOMUX_PINCM`selectedPinCM`_PF_`flavor`_`pinResourceName`
+%       } //if (inst.enableMCLK && inst.mode == "CONTROLLER")
+%%{
+    // WCLK Pin Defines
+%%}
+%%{
+        let WCLKPinEnable = true;
+        if (WCLKPinEnable) {
+            let pinResourceName = "WCLK";
+            let selectedPinName = pinResourceName + "Pin";
+            let selectedPackagePin = inst.peripheral[selectedPinName].$solution.packagePinName;
+            let selectedPinCM = Common.getPinCM(selectedPackagePin,inst,pinResourceName);
+            let selectedGpioName = system.deviceData.devicePins[selectedPackagePin].mux.muxSetting.find(item => item["mode"] === "1").peripheralPin.peripheralName;
+            let selectedPort    = Common.getGPIOPortMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedGpioPin = Common.getGPIONumberMultiPad(selectedPackagePin, inst, pinResourceName);
+            let selectedPortStr = "#define "+gpioStr+"_"+pinResourceName+"_PORT";
+%%}
+`selectedPortStr.padEnd(40," ")+selectedPort.padStart(39, " ")`
+% //#define `gpioStr`_`pinResourceName`_PORT            `selectedPort`
+%           let selectedPinStr = "#define "+gpioStr+"_"+pinResourceName+"_PIN";
+%           let selectedPinStr2 = "DL_GPIO_PIN_"+selectedGpioPin;
+`selectedPinStr.padEnd(40," ")+selectedPinStr2.padStart(39," ")`
+% //#define `gpioStr`_`pinResourceName`_PIN             DL_GPIO_PIN_`selectedGpioPin`
+%           let selectedIOmuxStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName;
+%           let selectedIOmuxStr2 = "(IOMUX_PINCM"+selectedPinCM.toString()+")";
+`selectedIOmuxStr.padEnd(40," ")+selectedIOmuxStr2.padStart(39," ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`           `selectedIomux`
+%           let selectedFuncStr = "#define "+gpioStr+"_IOMUX_"+pinResourceName+"_FUNC";
+%           let selectedFuncStr2 = "IOMUX_PINCM"+selectedPinCM+"_PF_"+flavor+"_"+pinResourceName;
+`selectedFuncStr.padEnd(50, " ")+selectedFuncStr2.padStart(29, " ")`
+% //#define `gpioStr`_IOMUX_`pinResourceName`_FUNC      IOMUX_PINCM`selectedPinCM`_PF_`flavor`_`pinResourceName`
+%       } //if (WCLKPinEnable)
+%   } //for (let i in instances)
+% } // function printDefine
+%
+% function printDeclare() {
+%   for (let i in instances) {
+%       let inst = instances[i];
+%       let name = inst.$name
+void SYSCFG_DL_`name`_init(void);
+%   }
+% } // function printDeclare

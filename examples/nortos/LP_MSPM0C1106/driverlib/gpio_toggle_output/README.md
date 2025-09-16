@@ -5,10 +5,10 @@ Toggles three GPIO pins using HW toggle register.
 ## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
 | --- | --- | --- | --- | --- |
-| GPIOA | Standard Output | PB20 | LED2 Blue | Populate Jumper(s): J7[1:2] |
-| GPIOA | Standard Output | PB24 | LED2 Red | Populate Jumper(s): J8[1:2] |
 | GPIOA | Standard Output | PA30 | LED2 Green | Populate Jumper(s): J9[1:2] |
-| GPIOA | Standard Output | PB19 | J1_28 |  |
+| GPIOB | Standard Output | PB20 | LED2 Blue | Populate Jumper(s): J7[1:2] |
+| GPIOB | Standard Output | PB24 | LED2 Red | Populate Jumper(s): J8[1:2] |
+| GPIOB | Standard Output | PB19 | J3_28 |  |
 | SYSCTL |  |  |  |  |
 | EVENT |  |  |  |  |
 | BOARD | Debug Clock | PA20 | J14_4 |  |

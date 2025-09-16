@@ -112,6 +112,7 @@ extern "C" {
 #define GPIO_OUT_PIN_3_PIN                                      (DL_GPIO_PIN_15)
 #define GPIO_OUT_PIN_3_IOMUX                                     (IOMUX_PINCM37)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

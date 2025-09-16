@@ -1096,7 +1096,17 @@ function getBasicConfig(inst, ui, peripheral){
     `,
             collapsed: false,
             config: [
-                // DL_RTC_setClockFormat
+                {
+					name        : "enableClock",
+                    displayName : "Start RTC Clock",
+                    description : 'Enables the supply of the 32 kHz clock to the RTC module',
+                    longDescription:`
+    Enabling the clock is required for the RTC to begin operation. Note that once the clock is configured, the RTC and any configured alarm will
+	begin to count.
+            `,
+                    hidden      : false,
+                    default     : false
+				},
                 {
                     name        : "rtcFormat",
                     displayName : "RTC Format",
@@ -1785,6 +1795,11 @@ function getValidation(inst, validation)
                 break
         }
     }
+
+	if(inst.enableClock) {
+		validation.logInfo("Enabling clock control to the RTC will begin counting operation of the calendar and any configured alarms.",
+							inst, "enableClock");
+	}
 
     /* Validate Event selection for case of switching devices.
      * Checks that selected event is withing the valid options

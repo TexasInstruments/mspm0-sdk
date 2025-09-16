@@ -98,6 +98,7 @@ extern "C" {
 #define GPIO_INPUT_CONFIG_1_PIN                                 (DL_GPIO_PIN_23)
 #define GPIO_INPUT_CONFIG_1_IOMUX                                (IOMUX_PINCM24)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

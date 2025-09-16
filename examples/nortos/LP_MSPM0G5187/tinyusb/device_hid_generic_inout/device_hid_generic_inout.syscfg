@@ -1,0 +1,67 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G518X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G5187" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G5187 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const SYSCTL  = scripting.addModule("/ti/driverlib/SYSCTL");
+const SYSTICK = scripting.addModule("/ti/driverlib/SYSTICK");
+const tinyusb = scripting.addModule("/ti/tinyusb_meta/tinyusb");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const gate10           = system.clockTree["USBFLLGATE"];
+gate10.enable          = true;
+gate10.referenceSource = "SOF";
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 5;
+
+const mux7       = system.clockTree["HSCLKMUX"];
+mux7.inputSelect = "HSCLKMUX_SYSPLL0";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;
+scripting.suppress("For best practices when the CPUCLK is running at 32MHz and above, clear the flash status bit using DL_FlashCTL_executeClearStatus\\(\\) before executing any flash operation\\. Otherwise there may be false positives\\.", SYSCTL);
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SYSTICK.periodEnable    = true;
+SYSTICK.interruptEnable = true;
+SYSTICK.systickEnable   = true;
+SYSTICK.period          = 80000;
+
+tinyusb.DEV_HID_EP_BUFSIZE                                       = 64;
+tinyusb.associated_devHID.create(1);
+tinyusb.associated_devHID[0].$name                               = "HID_0";
+tinyusb.associated_devHID[0].enableGenericInOut                  = true;
+tinyusb.associated_devHID[0].pollingInterval                     = 10;
+tinyusb.associated_devHID[0].HID_EP_IN_DATA.$name                = "EP_IN_0";
+tinyusb.associated_devHID[0].HID_EP_OUT_DATA.$name               = "EP_OUT_0";
+tinyusb.associated_USB.$name                                     = "USB_0";
+tinyusb.associatedGPIO_LED.$name                                 = "GPIO_GRP_0";
+tinyusb.associatedGPIO_LED.port                                  = "PORTA";
+tinyusb.associatedGPIO_LED.portSegment                           = "Upper";
+tinyusb.associatedGPIO_LED.associatedPins[0].$name               = "PIN_0";
+tinyusb.associatedGPIO_LED.associatedPins[0].assignedPin         = "24";
+tinyusb.associatedGPIO_BUTTON.$name                              = "GPIO_GRP_1";
+tinyusb.associatedGPIO_BUTTON.port                               = "PORTA";
+tinyusb.associatedGPIO_BUTTON.portSegment                        = "Lower";
+tinyusb.associatedGPIO_BUTTON.associatedPins[0].$name            = "PIN_1";
+tinyusb.associatedGPIO_BUTTON.associatedPins[0].direction        = "INPUT";
+tinyusb.associatedGPIO_BUTTON.associatedPins[0].internalResistor = "PULL_UP";
+tinyusb.associatedGPIO_BUTTON.associatedPins[0].assignedPin      = "7";
+
+const UART                             = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1                            = UART.addInstance({}, false);
+UART1.$name                            = "UART_0";
+tinyusb.associatedUART                 = UART1;

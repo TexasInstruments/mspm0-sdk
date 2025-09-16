@@ -1,0 +1,50 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G518X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G5187" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G5187 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1         = GPIO.addInstance();
+const RTCB          = scripting.addModule("/ti/driverlib/RTCB");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+GPIO1.$name                              = "GPIO_SWITCHES";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name            = "USER_SWITCH_1";
+GPIO1.associatedPins[0].direction        = "INPUT";
+GPIO1.associatedPins[0].internalResistor = "PULL_UP";
+GPIO1.associatedPins[0].interruptEn      = true;
+GPIO1.associatedPins[0].polarity         = "RISE_FALL";
+GPIO1.associatedPins[0].assignedPort     = "PORTA";
+GPIO1.associatedPins[0].assignedPin      = "7";
+
+GPIO1.associatedPins[1].$name            = "USER_SWITCH_2";
+GPIO1.associatedPins[1].direction        = "INPUT";
+GPIO1.associatedPins[1].interruptEn      = true;
+GPIO1.associatedPins[1].polarity         = "RISE_FALL";
+GPIO1.associatedPins[1].assignedPort     = "PORTA";
+GPIO1.associatedPins[1].assignedPin      = "18";
+
+RTCB.calMonth        = "4";
+RTCB.calDOM          = 5;
+RTCB.calDOW          = "1";
+RTCB.calHour         = 10;
+RTCB.calMin          = 32;
+RTCB.calSec          = 58;
+RTCB.offsetCalFreq   = "512";
+
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+SYSCTL.clockTreeEn = true;
+SYSCTL.forceDefaultClkConfig = true;

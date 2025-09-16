@@ -403,6 +403,14 @@ extern "C"
 /*! @brief PMBus Command PMB_QUICK_COMMAND */
 #define PMB_QUICK_COMMAND                   0xFD
 
+#if defined(__MSPM0_HAS_I2C__)
+#define PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE  DL_I2C_INTERRUPT_CONTROLLER_TX_DONE
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+#define PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE  DL_I2CC_INTERRUPT_TX_DONE
+#endif
+
 //*****************************************************************************
 //
 //! Return value when successful
@@ -441,7 +449,7 @@ typedef enum
     /*! @brief PMBUS_GRP_CMD_LAST_TARGET */
     PMBUS_GRP_CMD_LAST_TARGET
 }PMBUS_GRP_CMD;
-
+#ifdef __MSPM0_HAS_I2C__
 //*****************************************************************************
 //
 //! \brief   Initialize the PMBus Interface
@@ -457,7 +465,27 @@ typedef enum
 extern void PMBus_controllerInit(SMBus *SMB,
                                  I2C_Regs* i2cAddr,
                                  uint32_t busClk);
+#endif
 
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+//*****************************************************************************
+//
+//! \brief   Initialize the PMBus Interface
+//
+//! \param SMB       Pointer to SMBus structure
+//! \param i2cAddr   Base address of I2C module. For MSP430G2xxx devices,
+//!                  this parameter is ignored.
+//! \param busClk    SMCLK Frequency
+//
+// \return  None
+//
+//*****************************************************************************
+extern void PMBus_controllerInit(SMBus *SMB,
+                                 UNICOMM_Inst_Regs* i2cAddr,
+                                 uint32_t busClk);
+#endif
+
+#ifdef __MSPM0_HAS_I2C__
 //*****************************************************************************
 //
 //! \brief   Initialize the PMBus Interface
@@ -471,6 +499,23 @@ extern void PMBus_controllerInit(SMBus *SMB,
 //
 //*****************************************************************************
 extern void PMBus_targetInit(SMBus *SMB, I2C_Regs* i2cAddr, uint8_t targetAddr);
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+//*****************************************************************************
+//
+//! \brief   Initialize the PMBus Interface
+//
+//! \param SMB       Pointer to SMBus structure
+//! \param i2cAddr     Base address of I2C module. For MSP430G2xxx devices,
+//!                    this parameter is ignored.
+//! \param targetAddr  Target Address
+//
+// \return  None
+//
+//*****************************************************************************
+extern void PMBus_targetInit(SMBus *SMB, UNICOMM_Inst_Regs* i2cAddr, uint8_t targetAddr);
+#endif
 
 //*****************************************************************************
 //

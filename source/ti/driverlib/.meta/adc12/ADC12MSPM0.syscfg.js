@@ -120,7 +120,7 @@ function validatePinmux(inst, validation){
             );
         }
     }
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G352X()){
         if(inst.peripheral.$solution.peripheralName == "ADC0"){
             if(isChannelSelected(inst,11) && !inst.disChan11){
                 validation.logError(
@@ -213,7 +213,9 @@ function validate(inst, validation)
             }
             /* Managing compatibility break - previous version of MSPM0GX51X configuration included this configurable */
             // NOTE: this warning will only show up if importing a project that uses the deprecated vref parameter for M0GX51X
-            if(((inst["adcMem"+adcMemIdx.toString()+"vref"])=="VREF")&&Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+            if(((inst["adcMem"+adcMemIdx.toString()+"vref"])=="VREF") &&
+                    (Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+                     Common.isDeviceFamily_PARENT_MSPM0G352X())){
                 validation.logWarning(
                     "Previous ADC VREF configuration is overriden, please select your desired VREFP & VREFM values.",
                         inst, ["adcMem"+adcMemIdx.toString()+"vrefp","adcMem"+adcMemIdx.toString()+"vrefm"],
@@ -571,7 +573,9 @@ function pinmuxRequirements(inst)
                     if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12 && inst.disChan12){
                         // do nothing
                     }
-                    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X() && ind == 11 && inst.disChan11){
+                    else if((Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0G352X()) &&
+                                ind == 11 && inst.disChan11){
                         // do nothing
                     }
                     else {
@@ -2801,7 +2805,7 @@ if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X()){
         },
     ]);
 }
-if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G352X()){
     config = config.concat([
         {
             name        : "disChan11",
@@ -2853,7 +2857,7 @@ function moduleInstances(inst){
                     if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12 && inst.disChan12){
                         // do nothing
                     }
-                    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X() && ind == 11 && inst.disChan11){
+                    else if((Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G352X())&& ind == 11 && inst.disChan11){
                         // do nothing
                     }
                     else {

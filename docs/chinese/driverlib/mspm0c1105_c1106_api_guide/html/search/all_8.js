@@ -2,7 +2,7 @@ var searchData=
 [
   ['inter_2dintegrated_20circuit_20_28i2c_29',['Inter-Integrated Circuit (I2C)',['../group___i2_c.html',1,'']]],
   ['i2c_5fgettargetownaddressalternate',['I2C_getTargetOwnAddressAlternate',['../group___i2_c.html#ga3fac7bd0083eeb7755cc839b6c990906',1,'dl_i2c.h']]],
-  ['i2c_5fgettargetownaddressalternatemask',['I2C_getTargetOwnAddressAlternateMask',['../group___i2_c.html#gaad709a97f5cf0aa4aaba50405a980041',1,'dl_i2c.h']]],
+  ['i2c_5fgettargetownaddressalternatemask',['I2C_getTargetOwnAddressAlternateMask',['../group___i2_c.html#ga4e2b42accca55a8c56d3be525af00283',1,'dl_i2c.h']]],
   ['ibrd',['ibrd',['../struct_d_l___u_a_r_t___main__backup_config.html#aa14dd94c6c258d77b1a3191a9f2e51e7',1,'DL_UART_Main_backupConfig::ibrd()'],['../struct_d_l___u_a_r_t___extend__backup_config.html#aae4d449f998c921cc2f111e2f5b15969',1,'DL_UART_Extend_backupConfig::ibrd()']]],
   ['in0filtctl',['in0FiltCtl',['../struct_d_l___timer__backup_config.html#a94650dcbc226ba8885b9974730a3218d',1,'DL_Timer_backupConfig::in0FiltCtl()'],['../struct_d_l___timer_a__backup_config.html#ada331f1abb603fe62be1c448b7b0ff6d',1,'DL_TimerA_backupConfig::in0FiltCtl()']]],
   ['in1filtctl',['in1FiltCtl',['../struct_d_l___timer__backup_config.html#a58b4f08b97717c8556e0cf79c0578a04',1,'DL_Timer_backupConfig::in1FiltCtl()'],['../struct_d_l___timer_a__backup_config.html#a98f5978b96c520480aa813d04c742085',1,'DL_TimerA_backupConfig::in1FiltCtl()']]],

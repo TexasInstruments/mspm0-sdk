@@ -1,0 +1,88 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G518X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G5187" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G5187 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO    = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1   = GPIO.addInstance();
+const SPI     = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1    = SPI.addInstance();
+const SYSCTL  = scripting.addModule("/ti/driverlib/SYSCTL");
+const SYSTICK = scripting.addModule("/ti/driverlib/SYSTICK");
+const UART    = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1   = UART.addInstance();
+const tinyusb = scripting.addModule("/ti/tinyusb_meta/tinyusb");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider9       = system.clockTree["UDIV"];
+divider9.divideValue = 2;
+
+const gate10           = system.clockTree["USBFLLGATE"];
+gate10.enable          = true;
+gate10.referenceSource = "SOF";
+
+const multiplier2         = system.clockTree["PLL_QDIV"];
+multiplier2.multiplyValue = 5;
+
+const mux7       = system.clockTree["HSCLKMUX"];
+mux7.inputSelect = "HSCLKMUX_SYSPLL0";
+
+GPIO1.$name                                 = "SD_CARD";
+GPIO1.associatedPins[0].$name               = "DETECT";
+GPIO1.associatedPins[0].direction           = "INPUT";
+GPIO1.associatedPins[0].ioStructure         = "SD";
+GPIO1.associatedPins[0].assignedPort        = "PORTB";
+GPIO1.associatedPins[0].assignedPortSegment = "Upper";
+GPIO1.associatedPins[0].assignedPin         = "20";
+GPIO1.associatedPins[0].interruptEn         = true;
+GPIO1.associatedPins[0].polarity            = "RISE_FALL";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+SPI1.$name                      = "SPI_0";
+SPI1.targetBitRate              = 400000;
+SPI1.chipSelect                 = ["1"];
+SPI1.peripheral.sclkPin.$assign = "PB18";
+SPI1.peripheral.mosiPin.$assign = "PB17";
+SPI1.peripheral.misoPin.$assign = "PB19";
+SPI1.peripheral.cs1Pin.$assign  = "PB6";
+
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;
+scripting.suppress("For best practices when the CPUCLK is running at 32MHz and above, clear the flash status bit using DL_FlashCTL_executeClearStatus\\(\\) before executing any flash operation\\. Otherwise there may be false positives\\.", SYSCTL);
+
+SYSTICK.periodEnable    = true;
+SYSTICK.interruptEnable = true;
+SYSTICK.systickEnable   = true;
+SYSTICK.period          = 80000;
+
+tinyusb.DEV_MSC_EP_BUFSIZE                                       = 512;
+tinyusb.associated_devMSC.create(1);
+tinyusb.associated_devMSC[0].$name                               = "MSC_0";
+tinyusb.associated_devMSC[0].MSC_EP_IN_DATA.$name                = "EP_IN_0";
+tinyusb.associated_devMSC[0].MSC_EP_OUT_DATA.$name               = "EP_OUT_0";
+tinyusb.associated_USB.$name                                     = "USB_0";
+tinyusb.associatedGPIO_LED.$name                                 = "GPIO_GRP_0";
+tinyusb.associatedGPIO_LED.port                                  = "PORTA";
+tinyusb.associatedGPIO_LED.portSegment                           = "Upper";
+tinyusb.associatedGPIO_LED.associatedPins[0].$name               = "PIN_0";
+tinyusb.associatedGPIO_LED.associatedPins[0].assignedPin         = "24";
+tinyusb.associatedGPIO_BUTTON.$name                              = "GPIO_GRP_1";
+tinyusb.associatedGPIO_BUTTON.port                               = "PORTA";
+tinyusb.associatedGPIO_BUTTON.portSegment                        = "Lower";
+tinyusb.associatedGPIO_BUTTON.associatedPins[0].$name            = "PIN_1";
+tinyusb.associatedGPIO_BUTTON.associatedPins[0].direction        = "INPUT";
+tinyusb.associatedGPIO_BUTTON.associatedPins[0].internalResistor = "PULL_UP";
+tinyusb.associatedGPIO_BUTTON.associatedPins[0].assignedPin      = "7";
+
+UART1.$name             = "UART_0";
+tinyusb.associatedUART  = UART1;
+UART1.targetBaudRate    = 115200;

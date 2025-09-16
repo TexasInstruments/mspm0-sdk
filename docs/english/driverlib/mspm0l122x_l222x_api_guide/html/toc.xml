@@ -1769,6 +1769,7 @@
       </topic>
       <topic label="DL_I2C_TX_FIFO_COUNT_MAXIMUM" href="group___i2_c.html#gadc068c6d6df6e875e4ea73d14b420e7e"/>
       <topic label="DL_I2C_RX_FIFO_COUNT_MAXIMUM" href="group___i2_c.html#ga2031ae56b0ebaf369e94df7f98fb9222"/>
+      <topic label="I2C_getTargetOwnAddressAlternateMask" href="group___i2_c.html#ga4e2b42accca55a8c56d3be525af00283"/>
       <topic label="DL_I2C_DMA_IIDX" href="group___i2_c.html#gaed43e22303286e1d4d9490c2b6ddf9bd">
         <topic label="DL_I2C_DMA_IIDX_TARGET_TXFIFO_TRIGGER" href="group___i2_c.html#ggaed43e22303286e1d4d9490c2b6ddf9bda765e3a6413b62d19764dc17090371f4f"/>
         <topic label="DL_I2C_DMA_IIDX_TARGET_RXFIFO_TRIGGER" href="group___i2_c.html#ggaed43e22303286e1d4d9490c2b6ddf9bda2fc3cd509080efe4196a8ac7c439b43a"/>
@@ -2025,7 +2026,7 @@
       <topic label="DL_I2C_getTargetAddressingMode" href="group___i2_c.html#ga1933bcabc755e7698dbd0308961e672a"/>
       <topic label="I2C_getTargetOwnAddressAlternate" href="group___i2_c.html#ga3fac7bd0083eeb7755cc839b6c990906"/>
       <topic label="DL_I2C_setTargetOwnAddressAlternate" href="group___i2_c.html#gab17d64b92d6cf53e00b7ddfb5350d5b0"/>
-      <topic label="I2C_getTargetOwnAddressAlternateMask" href="group___i2_c.html#gaad709a97f5cf0aa4aaba50405a980041"/>
+      <topic label="DL_I2C_getTargetOwnAddressAlternateMask" href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe"/>
       <topic label="DL_I2C_setTargetOwnAddressAlternateMask" href="group___i2_c.html#ga419cd19263a8e6a9fd5f198cde723a2e"/>
       <topic label="DL_I2C_disableTargetOwnAddressAlternate" href="group___i2_c.html#ga19850d8f84ed95205e9fe17af7f1d422"/>
       <topic label="DL_I2C_isTargetOwnAddressAlternateEnabled" href="group___i2_c.html#ga6fec3b4324a1169bc0300ef2275f0b23"/>
@@ -3146,6 +3147,7 @@
       <topic label="DL_RTC_A_getTimeStampEventCause" href="group___r_t_c___a.html#ga155011038dc0186b13de43df9d2cfc46"/>
       <topic label="DL_RTC_A_setTimeStampEventCapture" href="group___r_t_c___a.html#ga9a91e007ab9bfd416a050c5f410da497"/>
       <topic label="DL_RTC_A_getTimeStampEventCapture" href="group___r_t_c___a.html#gad76b0fe6540699706f5cf83fb8575aee"/>
+      <topic label="DL_RTC_A_getTimeStampCalendar" href="group___r_t_c___a.html#ga023f0ca5d65d41ca4aedc1c82598c04c"/>
       <topic label="DL_RTC_A_clearTimeStamp" href="group___r_t_c___a.html#ga0bfb4365b5640057e1024187cb7d0ada"/>
       <topic label="DL_RTC_A_enableWriteProtect" href="group___r_t_c___a.html#gab12f6f60e72590d0a8ad9a2ec7131d9b"/>
       <topic label="DL_RTC_A_isWriteProtectEnabled" href="group___r_t_c___a.html#gad7c48bf02651c09cc075a37c2907b206"/>
@@ -5740,8 +5742,8 @@
         <topic label="vrefEnable" href="struct_d_l___v_r_e_f___config.html#a520bcbcba239dce43107bec95a2238ee"/>
         <topic label="bufConfig" href="struct_d_l___v_r_e_f___config.html#af7389333c7d132551d0b41456ba57f99"/>
         <topic label="shModeEnable" href="struct_d_l___v_r_e_f___config.html#a9d76f1cb86682600a2bc030e5141ca76"/>
-        <topic label="shCycleCount" href="struct_d_l___v_r_e_f___config.html#a22d6a12f45784db4d0f4f93d64434f33"/>
-        <topic label="holdCycleCount" href="struct_d_l___v_r_e_f___config.html#adfb7643899499e7cb600ce6ec4e342a7"/>
+        <topic label="shCycleCount" href="struct_d_l___v_r_e_f___config.html#ab917bde1187f96bce1d4c5088d588ddc"/>
+        <topic label="holdCycleCount" href="struct_d_l___v_r_e_f___config.html#ac9782d2e3e70e586a36ac886861b7a1b"/>
       </topic>
       <topic label="DL_VREF_CLOCK" href="group___v_r_e_f.html#ga6c607aa1727a6f238ca9eb783925faa7">
         <topic label="DL_VREF_CLOCK_LFCLK" href="group___v_r_e_f.html#gga6c607aa1727a6f238ca9eb783925faa7af92ff1907671b784a4761a976a6635af"/>
@@ -5773,9 +5775,6 @@
       <topic label="DL_VREF_enableInternalRef" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2"/>
       <topic label="DL_VREF_disableInternalRef" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde"/>
       <topic label="DL_VREF_isEnabled" href="group___v_r_e_f.html#ga77a294efa26e0416fa3ed03dc9542a17"/>
-      <topic label="DL_VREF_enableInternalRefCOMP" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d"/>
-      <topic label="DL_VREF_isInternalRefCOMPEnabled" href="group___v_r_e_f.html#ga85de96b92b1160058f1992c93259b663"/>
-      <topic label="DL_VREF_disableInternalRefCOMP" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a"/>
       <topic label="DL_VREF_setClockConfig" href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b"/>
       <topic label="DL_VREF_getClockConfig" href="group___v_r_e_f.html#ga8fa96202e9c9d76b8e5c2b92f26bf401"/>
       <topic label="DL_VREF_reset" href="group___v_r_e_f.html#gaefeff903deb7460769e17033ddcd68f6"/>
@@ -6744,6 +6743,7 @@
       <topic label="DL_RTC_Common_disableCalendarAlarm2" href="group___r_t_c___common.html#gae67d421d2ba557f3c52876f14ada5c37"/>
       <topic label="DL_RTC_Common_setTimeStampEventSource" href="group___r_t_c___common.html#ga0523b6f9bd6c11ceb2ece2bcdd7a3471"/>
       <topic label="DL_RTC_Common_getTimeStampEventSource" href="group___r_t_c___common.html#ga5618c441b57039b5ac1cea23f048a50f"/>
+      <topic label="DL_RTC_Common_getTimeStampCalendar" href="group___r_t_c___common.html#gaff903f9d997aaebc2f8944bdeef5ef37"/>
       <topic label="DL_RTC_Common_setTimeStampEventCapture" href="group___r_t_c___common.html#gaf48c3ca43da2b3b23a087a349db59aec"/>
       <topic label="DL_RTC_Common_getTimeStampEventCapture" href="group___r_t_c___common.html#ga01d54f6c1bcbbfa57916678af7089bfd"/>
       <topic label="DL_RTC_Common_clearTimeStamp" href="group___r_t_c___common.html#ga022ee7a77242e843528c6bbd047b3cdb"/>
@@ -7222,8 +7222,8 @@
         <topic label="vrefEnable" href="struct_d_l___v_r_e_f___config.html#a520bcbcba239dce43107bec95a2238ee"/>
         <topic label="bufConfig" href="struct_d_l___v_r_e_f___config.html#af7389333c7d132551d0b41456ba57f99"/>
         <topic label="shModeEnable" href="struct_d_l___v_r_e_f___config.html#a9d76f1cb86682600a2bc030e5141ca76"/>
-        <topic label="shCycleCount" href="struct_d_l___v_r_e_f___config.html#a22d6a12f45784db4d0f4f93d64434f33"/>
-        <topic label="holdCycleCount" href="struct_d_l___v_r_e_f___config.html#adfb7643899499e7cb600ce6ec4e342a7"/>
+        <topic label="shCycleCount" href="struct_d_l___v_r_e_f___config.html#ab917bde1187f96bce1d4c5088d588ddc"/>
+        <topic label="holdCycleCount" href="struct_d_l___v_r_e_f___config.html#ac9782d2e3e70e586a36ac886861b7a1b"/>
       </topic>
     </topic>
     <topic label="Data Fields" href="functions.html">
@@ -8979,6 +8979,7 @@
         <topic label="DL_I2C_DMA_INTERRUPT_TARGET_RXFIFO_TRIGGER" href="group___d_l___i2_c___d_m_a___i_n_t_e_r_r_u_p_t.html#gace9c198f4a92a13ea2c873695a02a909"/>
         <topic label="DL_I2C_DMA_INTERRUPT_CONTROLLER_TXFIFO_TRIGGER" href="group___d_l___i2_c___d_m_a___i_n_t_e_r_r_u_p_t.html#ga67d095572619f589adb6bc6abdf73ece"/>
         <topic label="DL_I2C_DMA_INTERRUPT_CONTROLLER_RXFIFO_TRIGGER" href="group___d_l___i2_c___d_m_a___i_n_t_e_r_r_u_p_t.html#gaee937a2f2d1cef1340028283ec81fc90"/>
+        <topic label="I2C_getTargetOwnAddressAlternateMask" href="group___i2_c.html#ga4e2b42accca55a8c56d3be525af00283"/>
         <topic label="DL_I2C_DMA_IIDX" href="group___i2_c.html#gaed43e22303286e1d4d9490c2b6ddf9bd">
           <topic label="DL_I2C_DMA_IIDX_TARGET_TXFIFO_TRIGGER" href="group___i2_c.html#ggaed43e22303286e1d4d9490c2b6ddf9bda765e3a6413b62d19764dc17090371f4f"/>
           <topic label="DL_I2C_DMA_IIDX_TARGET_RXFIFO_TRIGGER" href="group___i2_c.html#ggaed43e22303286e1d4d9490c2b6ddf9bda2fc3cd509080efe4196a8ac7c439b43a"/>
@@ -9235,7 +9236,7 @@
         <topic label="DL_I2C_getTargetAddressingMode" href="group___i2_c.html#ga1933bcabc755e7698dbd0308961e672a"/>
         <topic label="I2C_getTargetOwnAddressAlternate" href="group___i2_c.html#ga3fac7bd0083eeb7755cc839b6c990906"/>
         <topic label="DL_I2C_setTargetOwnAddressAlternate" href="group___i2_c.html#gab17d64b92d6cf53e00b7ddfb5350d5b0"/>
-        <topic label="I2C_getTargetOwnAddressAlternateMask" href="group___i2_c.html#gaad709a97f5cf0aa4aaba50405a980041"/>
+        <topic label="DL_I2C_getTargetOwnAddressAlternateMask" href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe"/>
         <topic label="DL_I2C_setTargetOwnAddressAlternateMask" href="group___i2_c.html#ga419cd19263a8e6a9fd5f198cde723a2e"/>
         <topic label="DL_I2C_disableTargetOwnAddressAlternate" href="group___i2_c.html#ga19850d8f84ed95205e9fe17af7f1d422"/>
         <topic label="DL_I2C_isTargetOwnAddressAlternateEnabled" href="group___i2_c.html#ga6fec3b4324a1169bc0300ef2275f0b23"/>
@@ -10389,6 +10390,7 @@
         <topic label="DL_RTC_A_getTimeStampEventCause" href="group___r_t_c___a.html#ga155011038dc0186b13de43df9d2cfc46"/>
         <topic label="DL_RTC_A_setTimeStampEventCapture" href="group___r_t_c___a.html#ga9a91e007ab9bfd416a050c5f410da497"/>
         <topic label="DL_RTC_A_getTimeStampEventCapture" href="group___r_t_c___a.html#gad76b0fe6540699706f5cf83fb8575aee"/>
+        <topic label="DL_RTC_A_getTimeStampCalendar" href="group___r_t_c___a.html#ga023f0ca5d65d41ca4aedc1c82598c04c"/>
         <topic label="DL_RTC_A_clearTimeStamp" href="group___r_t_c___a.html#ga0bfb4365b5640057e1024187cb7d0ada"/>
         <topic label="DL_RTC_A_enableWriteProtect" href="group___r_t_c___a.html#gab12f6f60e72590d0a8ad9a2ec7131d9b"/>
         <topic label="DL_RTC_A_isWriteProtectEnabled" href="group___r_t_c___a.html#gad7c48bf02651c09cc075a37c2907b206"/>
@@ -10701,6 +10703,7 @@
         <topic label="DL_RTC_Common_disableCalendarAlarm2" href="group___r_t_c___common.html#gae67d421d2ba557f3c52876f14ada5c37"/>
         <topic label="DL_RTC_Common_setTimeStampEventSource" href="group___r_t_c___common.html#ga0523b6f9bd6c11ceb2ece2bcdd7a3471"/>
         <topic label="DL_RTC_Common_getTimeStampEventSource" href="group___r_t_c___common.html#ga5618c441b57039b5ac1cea23f048a50f"/>
+        <topic label="DL_RTC_Common_getTimeStampCalendar" href="group___r_t_c___common.html#gaff903f9d997aaebc2f8944bdeef5ef37"/>
         <topic label="DL_RTC_Common_setTimeStampEventCapture" href="group___r_t_c___common.html#gaf48c3ca43da2b3b23a087a349db59aec"/>
         <topic label="DL_RTC_Common_getTimeStampEventCapture" href="group___r_t_c___common.html#ga01d54f6c1bcbbfa57916678af7089bfd"/>
         <topic label="DL_RTC_Common_clearTimeStamp" href="group___r_t_c___common.html#ga022ee7a77242e843528c6bbd047b3cdb"/>
@@ -13493,9 +13496,6 @@
         <topic label="DL_VREF_enableInternalRef" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2"/>
         <topic label="DL_VREF_disableInternalRef" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde"/>
         <topic label="DL_VREF_isEnabled" href="group___v_r_e_f.html#ga77a294efa26e0416fa3ed03dc9542a17"/>
-        <topic label="DL_VREF_enableInternalRefCOMP" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d"/>
-        <topic label="DL_VREF_isInternalRefCOMPEnabled" href="group___v_r_e_f.html#ga85de96b92b1160058f1992c93259b663"/>
-        <topic label="DL_VREF_disableInternalRefCOMP" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a"/>
         <topic label="DL_VREF_setClockConfig" href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b"/>
         <topic label="DL_VREF_getClockConfig" href="group___v_r_e_f.html#ga8fa96202e9c9d76b8e5c2b92f26bf401"/>
         <topic label="DL_VREF_reset" href="group___v_r_e_f.html#gaefeff903deb7460769e17033ddcd68f6"/>
@@ -13603,6 +13603,7 @@
       <topic label="Macros" href="globals_defs.html">
         <topic label="d" href="globals_defs.html"/>
         <topic label="f" href="globals_defs_f.html"/>
+        <topic label="i" href="globals_defs_i.html"/>
         <topic label="l" href="globals_defs_l.html"/>
         <topic label="n" href="globals_defs_n.html"/>
       </topic>

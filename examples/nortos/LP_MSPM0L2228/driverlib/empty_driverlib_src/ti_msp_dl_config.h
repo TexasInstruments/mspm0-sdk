@@ -72,6 +72,7 @@ extern "C" {
 
 #define POWER_STARTUP_DELAY                                                (16)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

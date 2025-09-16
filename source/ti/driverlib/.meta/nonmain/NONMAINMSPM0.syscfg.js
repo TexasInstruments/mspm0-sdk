@@ -1652,7 +1652,10 @@ See the device TRM for more details.
                 getValue    : (inst) => {
                     if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
                         Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0L111X())
+                        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0G518X())
                     {
                         return calculateBCRCRC_Advanced_32Bit(inst);
                     }
@@ -1682,12 +1685,12 @@ See the device TRM for more details.
                 getValue: (inst) => {
                     if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
                         Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-                        Common.isDeviceFamily_PARENT_MSPM0L111X())
-                    {
-                        return createAdvancedBCRConfigString(inst);
-                    }
-                    else if (Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-                             Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
+                        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0G518X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+                        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106())
                     {
                         return createAdvancedBCRConfigString(inst);
                     }
@@ -1851,12 +1854,14 @@ function createAdvancedBCRConfigString(inst)
         Common.isDeviceFamily_PARENT_MSPM0H321X() ||
         Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
         Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
-        Common.isDeviceFamily_PARENT_MSPM0L210X())
+        Common.isDeviceFamily_PARENT_MSPM0L210X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G518X())
     {
     /* Reserved, 32-bits (bc_reserved_1 or bc_reserved_2 for H321x) */
         bcrConfigStr +=  "FFFFFFFF"
     }
-    else if (Common.isDeviceFamily_PARENT_MSPM0GX51X())
+    else if (deviceOptions.BCR_SUPPORT_DUAL_BANK)
     {
         bcrConfigStr += (inst.staticWriteProtectionMainHigh_2).toString(16).padStart(8, "0");
     }
@@ -2039,9 +2044,7 @@ function createROMBSLString(inst)
      */
     let bslConfigStr = "";
 
-    if(Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-       Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
-       Common.isDeviceFamily_PARENT_MSPM0L210X()){
+    if(deviceOptions.BSL_DISABLE_NRST){
         /* Reserved, 32-bits (bl_reserved_1) */
         bslConfigStr +=  "FFFFFFFF"
         /* Reserved, 16-bits (bl_reserved_0) */
@@ -2074,14 +2077,22 @@ function createROMBSLString(inst)
      */
     bslConfigStr += (inst.bslAltAddress).toString(16).padStart(8, "0");
 
-    if(!Common.isDeviceFamily_PARENT_MSPM0GX51X() && !Common.isDeviceFamily_PARENT_MSPM0L111X()){
+    if(!Common.isDeviceFamily_PARENT_MSPM0GX51X() &&
+        !Common.isDeviceFamily_PARENT_MSPM0G352X() &&
+        !Common.isDeviceFamily_PARENT_MSPM0L111X() &&
+        !Common.isDeviceFamily_PARENT_MSPM0G511X() &&
+        !Common.isDeviceFamily_PARENT_MSPM0G518X()){
         /* Reserved, 16-bits */
         bslConfigStr += "FFFF";
     }
 
     bslConfigStr += (inst.bslAltConfig) ? "AABB" : "FFFF";
 
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X()){
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G518X()){
         bslConfigStr += inst.uartBaudDefault;
     }
 
@@ -2408,10 +2419,7 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
                     getValue: (inst)=>{
                         /* Peripheral selection is tied to a specific
                            instance, dependent on selected device */
-                        if(Common.isUnicommUART()){
-                            return "UC0";
-                        }
-                        return "UART0";
+                        return deviceOptions.BSL_UART_INSTANCE;
                     }
                 },
             ].concat(bslExtendedConfigUART).concat([
@@ -2456,7 +2464,9 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
-                            muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.uartPeripheral+".TX")[0].mode,10);
+                            try{
+                                muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.uartPeripheral+".TX")[0].mode,10);
+                            }catch(e){return -1};
                         }
 
                         return muxSetting;
@@ -2503,7 +2513,9 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
-                            muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.uartPeripheral+".RX")[0].mode,10);
+                            try{
+                                muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.uartPeripheral+".RX")[0].mode,10);
+                            }catch(e){return -1};
                         }
 
                         return muxSetting;
@@ -2525,10 +2537,7 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
                     readOnly: true,
                     default: "I2C0",
                     getValue: (inst)=> {
-                        if(Common.isUnicommUART()){
-                            return "UC2";
-                        }
-                        return "I2C0";
+                        return deviceOptions.BSL_I2C_INSTANCE;
                     }
                 },
                 {
@@ -2572,7 +2581,9 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
-                            muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.i2cPeripheral+".SCL")[0].mode,10);
+                            try{
+                                muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.i2cPeripheral+".SCL")[0].mode,10);
+                            }catch(e){return -1};
                         }
 
                         return muxSetting;
@@ -2619,7 +2630,9 @@ if (deviceOptions.SUPPORT_ROM_BSL == true)
 
                         if (selectedPin)
                         {
-                            muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.i2cPeripheral+".SDA")[0].mode,10);
+                            try{
+                                muxSetting = parseInt(selectedPin.muxOptions.filter(a=>a.peripheralPin.name==inst.i2cPeripheral+".SDA")[0].mode,10);
+                            }catch(e){return -1}
                         }
 
                         return muxSetting;
@@ -2970,7 +2983,25 @@ if (deviceOptions.SUPPORT_BSL == true)
                             readOnly    : true,
                             default     : "1",
                             getValue    : (inst) => {
-                                let matchPinCM = iomuxPincmOptions.find(x => x.name.includes(inst.bslInvokePin)).num;
+                                /*
+                                 * The following function will:
+                                 *  - find a pin that matches the bslInvokePin selection, then get its pinCM
+                                 *  - in order to find the right pin, take care of exceptions where the name exists in some other form
+                                 *    ( like PA0 & OPA0-)
+                                 *  - splits the selected iomuxPincmOptions index to evaluate individual functions ( examples "PA24/OPA0.IN0-")
+                                 *  - check that either of the names directly matches the selection
+                                 */
+                                let matchPinCM = undefined;
+                                try{
+                                    if(inst.bslInvokePin.includes("/")){
+                                        matchPinCM = iomuxPincmOptions.find(x => x.name.includes(inst.bslInvokePin)).num;
+
+                                    }
+                                    else{
+                                        matchPinCM = iomuxPincmOptions.find(x => x.name.split("/")[0]==inst.bslInvokePin).num;
+                                    }
+                                }catch(e){return "0" /*error case*/};
+
                                 /*
                                  * Handle case of dual purpose pins. This
                                  * assumes that the first function is used for
@@ -3163,7 +3194,12 @@ function calculatePinData1(inst)
 
     /* Note: This assumes that BSL invoke pin will never be on GPIOC */
     gpioBaseIndex = (Common.getGPIOPort(pin) == "GPIOA") ? 0 : 1;
-    pinData1 = Common.getGPIONumber(pin) | (gpioBaseIndex << 5);
+    /*
+     *  The split operation is being done to make sure we get the gpio number
+     *  only for the first entry ( example: "PA24/OPA0.IN0-", we call function
+     *  on PA24 )
+     */
+    pinData1 = Common.getGPIONumber(pin.split("/")[0]) | (gpioBaseIndex << 5);
 
     return (pinData1);
 }

@@ -62,6 +62,20 @@ const ClockSignals = {
         "ROSC",
         ... commonClockSignals,
     ],
+    "MSPM0G352X": [
+        "MFPCLK",
+        "ADCCLK_1",
+        "CANCLK",
+        "RTCCLK",
+        "HFCLK",
+        "HFXT",
+        "LFXT",
+        "HSCLK",
+        "SYSPLL",
+        "UDIV",
+        "ROSC",
+        ... commonClockSignals,
+    ],
     "MSPM0L111X": [
         "MFPCLK",
         "LFXT",
@@ -89,7 +103,6 @@ const ClockSignals = {
     "MSPM0G511X": [
         "MFPCLK",
         "ADCCLK_1",
-        "CANCLK",
         "RTCCLK",
         "HFCLK",
         "HFXT",
@@ -98,6 +111,21 @@ const ClockSignals = {
         "SYSPLL",
         "UDIV",
         "ROSC",
+        "USBCLK",
+        ... commonClockSignals,
+    ],
+    "MSPM0G518X": [
+        "MFPCLK",
+        "ADCCLK_1",
+        "RTCCLK",
+        "HFCLK",
+        "HFXT",
+        "LFXT",
+        "HSCLK",
+        "SYSPLL",
+        "UDIV",
+        "ROSC",
+        "USBCLK",
         ... commonClockSignals,
     ],
     "MSPM0L211X_L112X": [
@@ -130,6 +158,7 @@ let clkConfigShell = {
     "MFPCLK": [],
     "HFCLK": [],
     "CANCLK": [],
+    "USBCLK": [],
     "HSCLK": [],
     "SYSPLL": [],
     "LFXT": [],
@@ -468,6 +497,9 @@ such as DAC.
                         }
                     }
                 }
+                if((inst.usesSYSPLL !== "None") && inst.SYSPLLSource === "HFCLK"){
+                    inUse= true;
+                }
                 return inUse;
             }
         },
@@ -486,11 +518,8 @@ such as DAC.
                 if(inst.MCLKSource === "HSCLK" && "HFCLK" === inst.HSCLKSource){
                     inUse+= "MCLK, ";
                 }
-                if((inst.MCLKSource === "HSCLK")&&
-                    (["SYSPLLCLK0","SYSPLLCLK2X"].includes(inst.HSCLKSource))){
-                    if(inst.SYSPLLSource === "HFCLK"){
-                        inUse+= "SYSPLL, ";
-                    }
+                if((inst.usesSYSPLL !== "None") && inst.SYSPLLSource === "HFCLK"){
+                    inUse+= "SYSPLL, ";
                 }
                 if(inst.MFPCLKEn && inst.MFPCLKSource === "HFCLK"){
                     inUse+= "MFPCLK, ";
@@ -573,6 +602,42 @@ such as DAC.
         },
     ],
 
+    "USBCLK": [
+        {
+            name: "USBCLKSource",
+            displayName: "USBCLK Source",
+            description: "Specifies the clock source of the USB Clock",
+            default: "SYSPLLCLK1",
+            // Check if USBCLK exists on device
+            hidden: (!ClockSignals[index].includes("USBCLK")),
+            options: [
+                { name: "SYSPLLCLK1" },
+                { name: "USBFLL" },
+            ]
+        },
+        {
+            name: "enableUSBFLL",
+            displayName: "Enable USBFLL",
+            description: "Enables USBFLL",
+            default: false,
+            hidden: (!ClockSignals[index].includes("USBCLK")),
+            onChange: (inst, ui) => {
+                ui.USBFLLReference.hidden = !inst.enableUSBFLL;
+            }
+        },
+        {
+            name: "USBFLLReference",
+            displayName: "USBFLL Reference",
+            description: "Specifies the reference source for the USBFLL",
+            default: "SOF",
+            hidden: true,
+            options: [
+                { name: "LFXT",    displayName: "LFXT" },
+                { name: "SOF",      displayName: "SOF" },
+            ]
+        }
+    ],
+
     "HSCLK": [
         {
             name: "HSCLKSource",
@@ -639,7 +704,7 @@ such as DAC.
             getValue    : (inst) => {
                 // Check if SYSPLL exists on device or is controlled by ClockTree
                 if((!ClockSignals[index].includes("SYSPLL")) || inst.clockTreeEn){
-                    return "";
+                    return "None";
                 }
                 let inUse = "";
                 if((inst.MCLKSource === "HSCLK")&&(["SYSPLLCLK0","SYSPLLCLK2X"].includes(inst.HSCLKSource))){
@@ -653,6 +718,9 @@ such as DAC.
                 }
                 if((inst.CANCLKSource === "SYSPLLCLK1")){
                     inUse += "CANCLK, "
+                }
+                if((inst.USBCLKSource === "SYSPLLCLK1")){
+                    inUse += "USBCLK, "
                 }
                 if(inUse.length == 0){
                     return "None"
@@ -1305,7 +1373,25 @@ const clkFreqSuperset = {
             }
         },
         { name: "SYSOSC_Freq_unit", displayName: "SYSOSC", default: "32 MHz", readOnly: true, getValue: (inst)=>{return (Common.getUnitPrefix(inst.SYSOSC_FreqOut)).str+"Hz"}},
-    ]
+    ],
+    "USBCLK": [
+        { name: "USBCLK_Freq", displayName: "USBCLK", default: 48000000, readOnly: true, hidden: true,
+            getValue: (inst) => {
+                if(inst.clockTreeEn){
+                    return system.clockTree["net_usbclk"].in * 1000000;
+                }else{
+                    if(inst.USBCLKSource == "SYSPLLCLK1")
+                    {
+                        return inst.SYSPLL_Freq_CLK1;
+                    }else if(inst.USBCLKSource == "USBFLL"){
+                        return 60000000;
+                    }else{
+                        return 0;
+                    }
+                }
+            }},
+        { name: "USBCLK_Freq_unit", displayName: "USBCLK", default: "60 MHz", readOnly: true, getValue: (inst)=>{return (Common.getUnitPrefix(inst.USBCLK_Freq)).str+"Hz"}},
+    ],
 };
 
 

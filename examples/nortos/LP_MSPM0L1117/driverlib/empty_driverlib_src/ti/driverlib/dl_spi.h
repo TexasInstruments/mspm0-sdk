@@ -1376,7 +1376,7 @@ __STATIC_INLINE void DL_SPI_setDelayedSampling(SPI_Regs *spi, uint32_t delay)
  */
 __STATIC_INLINE uint32_t DL_SPI_getDelayedSampling(const SPI_Regs *spi)
 {
-    return (spi->CLKCTL & SPI_CLKCTL_DSAMPLE_MASK >> SPI_CLKCTL_DSAMPLE_OFS);
+    return ((spi->CLKCTL & SPI_CLKCTL_DSAMPLE_MASK) >> SPI_CLKCTL_DSAMPLE_OFS);
 }
 
 /**
@@ -1735,9 +1735,11 @@ __STATIC_INLINE void DL_SPI_clearInterruptStatus(
 /**
  *  @brief      Blocks to ensure transmit is ready before sending data
  *
- *  Puts the data into the TX FIFO after blocking to ensure the TX FIFO is not
- *  full. Will wait indefinitely until there is space in the TX FIFO. See
- *  related APIs for additional transmit options.
+ *  Puts data into the TX FIFO, waiting indefintely until there is space in the
+ *  the TX FIFO. After placing data, waits indefintely until data is sent and
+ *  the SPI busy is no longer busy. Note that if data is already present in the
+ *  TX FIFO when this API is called, it will block until all data is sent.
+ *  See related APIs for additional transmit options.
  *
  *  Can be used for any data transfers that are less than or equal to 8 bits.
  *
@@ -1752,9 +1754,11 @@ void DL_SPI_transmitDataBlocking8(SPI_Regs *spi, uint8_t data);
 /**
  *  @brief      Blocks to ensure transmit is ready before sending data
  *
- *  Puts the data into the TX FIFO after blocking to ensure the TX FIFO is not
- *  full. Will wait indefinitely until there is space in the TX FIFO. See related
- *  APIs for additional transmit options.
+ *  Puts data into the TX FIFO, waiting indefintely until there is space in the
+ *  the TX FIFO. After placing data, waits indefintely until data is sent and
+ *  the SPI busy is no longer busy. Note that if data is already present in the
+ *  TX FIFO when this API is called, it will block until all data is sent.
+ *  See related APIs for additional transmit options.
  *
  *  Can be used for any data transfers that are less than or equal to 16 bits.
  *
@@ -1769,9 +1773,11 @@ void DL_SPI_transmitDataBlocking16(SPI_Regs *spi, uint16_t data);
 /**
  *  @brief      Blocks to ensure transmit is ready before sending data
  *
- *  Puts the data into the TX FIFO after blocking to ensure the TX FIFO is not
- *  full. Will wait indefinitely until there is space in the TX FIFO. See related
- *  APIs for additional transmit options.
+ *  Puts data into the TX FIFO, waiting indefintely until there is space in the
+ *  the TX FIFO. After placing data, waits indefintely until data is sent and
+ *  the SPI busy is no longer busy. Note that if data is already present in the
+ *  TX FIFO when this API is called, it will block until all data is sent.
+ *  See related APIs for additional transmit options.
  *
  *  Can be used for any data transfers that are less than or equal to 32 bits.
  *

@@ -12,6 +12,7 @@
 const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
 const AESADV        = scripting.addModule("/ti/driverlib/AESADV");
 const Board         = scripting.addModule("/ti/driverlib/Board", {}, false);
+const NONMAIN       = scripting.addModule("/ti/driverlib/NONMAIN");
 const SECCONFIG     = scripting.addModule("/ti/driverlib/SECCONFIG");
 const GPIO          = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1         = GPIO.addInstance();
@@ -22,6 +23,10 @@ const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
  * Write custom configuration values to the imported modules.
  */
 ProjectConfig.genDisable = true;
+
+NONMAIN.nonmainWarning = true;
+NONMAIN.cscExists      = true;
+NONMAIN.flashBankSwap  = true;
 
 SECCONFIG.cscPrereqAck        = true;
 SECCONFIG.developmentOptions  = ["enablePseudoRandom"];

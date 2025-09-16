@@ -174,6 +174,7 @@ extern "C" {
 #define GPIO_Signal_10_PIN_7_PIN                                (DL_GPIO_PIN_10)
 #define GPIO_Signal_10_PIN_7_IOMUX                               (IOMUX_PINCM11)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

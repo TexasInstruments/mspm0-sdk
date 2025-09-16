@@ -56,7 +56,3 @@ Message 2:
 - DLC: 0x01
 - FDF: 0x01
 - DATA[0] = 0x00
-
-Note: There is a known limitation where the example might stop transmitting
-packages if the application halts execution after hitting a breakpoint. It is
-highly recommended to use the free run option while testing the example.

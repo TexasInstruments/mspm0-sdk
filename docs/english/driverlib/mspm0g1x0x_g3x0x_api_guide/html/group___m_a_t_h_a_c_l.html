@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0G1X0X_G3X0X Driver Library
-   &#160;<span id="projectnumber">2.05.01.00</span>
+   &#160;<span id="projectnumber">2.06.00.05</span>
    </div>
   </td>
  </tr>
@@ -421,6 +421,7 @@ Functions</h2></td></tr>
 
 <p>Enables the Peripheral Write Enable (PWREN) register for the MATHACL. </p>
 <p>Before any peripheral registers can be configured by software, the peripheral itself must be enabled by writing the ENABLE bit together with the appropriate KEY value to the peripheral's PWREN register.</p>
+<dl class="section note"><dt>Note</dt><dd>If using compiler TI Clang LTS 4.0.0+ with the &ndash;mathacl flag, do not reset the MATHACL then perform a math divide. The peripheral will need to be reenabled with <a class="el" href="group___m_a_t_h_a_c_l.html#ga9a28296d28d7ae48b234a39de6853494">DL_MathACL_enablePower</a>; before performing a division.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mathacl</td><td>Pointer to the register overlay for the peripheral </td></tr>

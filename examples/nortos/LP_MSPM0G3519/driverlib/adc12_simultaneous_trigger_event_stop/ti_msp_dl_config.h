@@ -95,6 +95,10 @@ extern "C" {
 #define ADC12_0_ADCMEM_0                                      DL_ADC12_MEM_IDX_0
 #define ADC12_0_ADCMEM_0_REF                DL_ADC12_REFERENCE_VOLTAGE_VDDA_VSSA
 #define ADC12_0_INST_SUB_CH                                                 (12)
+#define GPIO_ADC12_0_C12_PORT                                              GPIOA
+#define GPIO_ADC12_0_C12_PIN                                      DL_GPIO_PIN_14
+#define GPIO_ADC12_0_IOMUX_C12                                   (IOMUX_PINCM36)
+#define GPIO_ADC12_0_IOMUX_C12_FUNC               (IOMUX_PINCM36_PF_UNCONNECTED)
 
 /* Defines for ADC12_1 */
 #define ADC12_1_INST                                                        ADC1
@@ -103,6 +107,10 @@ extern "C" {
 #define ADC12_1_ADCMEM_0                                      DL_ADC12_MEM_IDX_0
 #define ADC12_1_ADCMEM_0_REF                DL_ADC12_REFERENCE_VOLTAGE_VDDA_VSSA
 #define ADC12_1_INST_SUB_CH                                                 (12)
+#define GPIO_ADC12_1_C14_PORT                                              GPIOB
+#define GPIO_ADC12_1_C14_PIN                                      DL_GPIO_PIN_27
+#define GPIO_ADC12_1_IOMUX_C14                                   (IOMUX_PINCM58)
+#define GPIO_ADC12_1_IOMUX_C14_FUNC               (IOMUX_PINCM58_PF_UNCONNECTED)
 
 
 
@@ -112,6 +120,7 @@ extern "C" {
 /* Defines for USER_LED_1: GPIOA.0 with pinCMx 1 on package pin 1 */
 #define GPIO_LEDS_USER_LED_1_PIN                                 (DL_GPIO_PIN_0)
 #define GPIO_LEDS_USER_LED_1_IOMUX                                (IOMUX_PINCM1)
+
 
 /* clang-format on */
 

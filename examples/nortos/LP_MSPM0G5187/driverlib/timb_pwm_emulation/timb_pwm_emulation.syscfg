@@ -1,0 +1,48 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G511X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G5117" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G5187 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const GPIO    = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1   = GPIO.addInstance();
+const TIMERB  = scripting.addModule("/ti/driverlib/TIMERB", {}, false);
+const TIMERB1 = TIMERB.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+GPIO1.$name                          = "GPIO_OUTPUT";
+GPIO1.associatedPins[0].$name        = "USER_OUTPUT";
+GPIO1.associatedPins[0].subChanID       = 1;
+GPIO1.associatedPins[0].subOutputPolicy = "TOGGLE";
+GPIO1.associatedPins[0].assignedPort    = "PORTB";
+GPIO1.associatedPins[0].pin.$assign     = "PB4";
+
+const Board                       = scripting.addModule("/ti/driverlib/Board", {}, false);
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+const SYSCTL              = scripting.addModule("/ti/driverlib/SYSCTL", {}, false);
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMERB1.$name                            = "TIMERB0";
+TIMERB1.event1PublisherChannel           = 1;
+TIMERB1.event1ControllerInterruptEn      = ["CNT0_OVF_EVENT","CNT1_OVF_EVENT"];
+TIMERB1.peripheral.$assign               = "TIMB0";
+TIMERB1.associatedTimer.create(2);
+TIMERB1.associatedTimer[0].$name         = "COUNTER_0";
+TIMERB1.associatedTimer[0].desiredPeriod = "1.5625 ms";
+TIMERB1.associatedTimer[0].startCounter  = true;
+TIMERB1.associatedTimer[1].$name         = "COUNTER_1";
+TIMERB1.associatedTimer[1].startSource   = "CNT0_OVERFLOW";
+TIMERB1.associatedTimer[1].stopSource    = "CNT1_OVERFLOW";
+TIMERB1.associatedTimer[1].resetSource   = "CNT1_OVERFLOW";
+TIMERB1.associatedTimer[1].desiredPeriod = "0.78125 ms";
+TIMERB1.associatedTimer[1].startCounter  = true;

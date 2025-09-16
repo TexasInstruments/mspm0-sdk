@@ -37,28 +37,36 @@
 <h2 id="example-summary">Example Summary</h2>
 <p>Configures the IWDT module within the LFSS IP with a 500 ms period to be periodically reset by a repeating timer interrupt.</p>
 <p>This IWDT has its own system independent power and clock source. If the application software does not successfully reset the watchdog within the programmed time, the watchdog generates a POR reset to the SoC.</p>
-<h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
+<h2 id="peripherals-pin-functions-mcu-pins-launchpad-pins">Peripherals, Pin Functions, MCU Pins, Launchpad Pins</h2>
 <table>
 <thead>
 <tr class="header">
 <th>Peripheral</th>
-<th>Pin</th>
 <th>Function</th>
+<th>MCU Pin</th>
+<th>Launchpad Pin</th>
+<th>Launchpad Settings</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>PA0</td>
 <td>Open-Drain Output</td>
+<td>PA0</td>
+<td>Red LED1</td>
+<td>Populate Jumper(s): J4[1:2]</td>
 </tr>
 <tr class="even">
 <td>GPIOA</td>
-<td>PA21</td>
 <td>Standard Output</td>
+<td>PA15</td>
+<td>J4_38</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SYSCTL</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -66,9 +74,13 @@
 <td>TIMA0</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>IWDT</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -76,16 +88,22 @@
 <td>EVENT</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>DEBUGSS</td>
-<td>PA20</td>
+<td>BOARD</td>
 <td>Debug Clock</td>
+<td>PA20</td>
+<td>J14_4</td>
+<td></td>
 </tr>
 <tr class="even">
-<td>DEBUGSS</td>
-<td>PA19</td>
+<td>BOARD</td>
 <td>Debug Data In Out</td>
+<td>PA19</td>
+<td>J14_2</td>
+<td></td>
 </tr>
 </tbody>
 </table>

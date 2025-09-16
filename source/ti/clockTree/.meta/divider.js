@@ -20,10 +20,12 @@ function getEnableSYSPLL1(inst) {
 	let canclkMux = _.find(mod.$instances, ['$name', 'CANCLKMUX']);
 	let fccMux = _.find(mod.$instances, ['$name', 'FCCSELCLKMUX']);
 	let exclkMux = _.find(mod.$instances, ['$name', 'EXCLKMUX']);
-
-	if(_.endsWith(canclkMux.inputSelect, "PLLCLK1_OUT") ||
+	let usbclkMux = system.clockTree?.USBCLKMUX;
+	// canclkMux may not exist, prevent tool error
+	if((canclkMux?(_.endsWith(canclkMux.inputSelect, "PLLCLK1_OUT")):(false)) ||
 		_.endsWith(exclkMux.inputSelect, "PLLCLK1_OUT") ||
-	   	_.endsWith(fccMux.inputSelect, "SYSPLLCLK1")){
+	   	_.endsWith(fccMux.inputSelect, "SYSPLLCLK1") ||
+		_.endsWith(usbclkMux?.inputSelect, "PLLCLK1_OUT")){
 		return true;
 	} else {
 		return false;

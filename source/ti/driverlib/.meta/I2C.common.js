@@ -105,7 +105,7 @@ function updateGUIEnableController(inst, ui)
         ui.basicEnableController10BitAddress.hidden = false;
         ui.advControllerRXFIFOTRIG.hidden = false;
         ui.advControllerTXFIFOTRIG.hidden = false;
-        ui.advControllerLoopback.hidden = false && Common.isUnicommI2C(); //remain hidden on UNICOMM
+        ui.advControllerLoopback.hidden = false || Common.isUnicommI2C(); //remain hidden on UNICOMM
         ui.advControllerMultiController.hidden = false;
         ui.advControllerClkStretch.hidden = false;
     }
@@ -933,7 +933,21 @@ The analog filter can be used to wake-up the I2C module from low-power mode.`,
     },
 ];
 if(Common.isUnicommI2C()){
-    advAnalogGlitchFilterConfig = [];
+    advAnalogGlitchFilterConfig = [
+        {
+            name        : "enableAnalogGlitchFilter",
+            displayName : "Analog Glitch Filter",
+            description : `Enables the analog filter`,
+            longDescription:`
+    The analog filter is optional.\n
+    When disabled, the input signal will be passed to the I2C module without
+    filtering.\n
+    Please see datasheet for more information.\n
+    The analog filter can be used to wake-up the I2C module from low-power mode.`,
+            default     : false,
+            onChange    : onChangeSetCustomProfile,
+        },
+    ];
 }
 
 function getAdvancedConfig(inst,ui){
@@ -1464,6 +1478,56 @@ function getPinmuxValidation(inst,validation){
         }
         catch(e){
             // do nothing
+        }
+    }
+
+
+    /* UNICOMM Validation */
+    if(Common.isUnicommI2C()){
+        let selectedInstance = inst.peripheral.$solution.peripheralName;
+        let selectedPeripheral = system.deviceData.peripherals[selectedInstance];
+        let isSMBUS = (inst.$module.$name == "/ti/driverlib/i2cSMBUS");
+        let i2cMode = undefined;
+        if(inst.basicEnableController && !inst.basicEnableTarget){
+            i2cMode = "C";
+        }
+        if(!inst.basicEnableController && inst.basicEnableTarget){
+            i2cMode = "T";
+        }
+        if(!_.isUndefined(i2cMode)){
+            // Analog Glitch Filter
+            if(Common.getAttribute(selectedPeripheral,"SYS_I2C"+i2cMode+"_EN_AGFLT")=="false"){
+                if(inst.enableAnalogGlitchFilter){
+                    validation.logError("I2C Analog Glitch Filter is not supported on " + selectedInstance + ".", inst, "enableAnalogGlitchFilter");
+                }
+            }
+            // Digital Glitch Filter
+            if(Common.getAttribute(selectedPeripheral,"SYS_I2C"+i2cMode+"_EN_DGFLT")=="false"){
+                if(inst.advDigitalGlitchFilter !== "DISABLED"){
+                    validation.logError("I2C Digital Glitch Filter is not supported on " + selectedInstance + ".", inst, "advDigitalGlitchFilter");
+                }
+            }
+            // SMBUS
+            if(Common.getAttribute(selectedPeripheral,"SYS_I2C"+i2cMode+"_SMBUS_EN")=="false"){
+                if(isSMBUS){
+                    validation.logError("SMBUS is not supported for " + selectedInstance + ".", inst);
+                }
+            }
+            // DMA
+            if(Common.getAttribute(selectedPeripheral,"SYS_I2C"+i2cMode+"_EN_DMA")=="false"){
+                if(inst.DMAEvent1 !== "None"){
+                    validation.logError("DMA configuration not available on " + selectedInstance + ".", inst, "DMAEvent1");
+                }
+                if(inst.DMAEvent2 !== "None"){
+                    validation.logError("DMA configuration not available on " + selectedInstance + ".", inst, "DMAEvent2");
+                }
+            }
+            // Clock Divider
+            if(Common.getAttribute(selectedPeripheral,"SYS_I2C"+i2cMode+"_EXTEND_CLKDIV")=="false"){
+                if(inst.basicClockSourceDivider !== 1){
+                    validation.logError("I2C Clock Source Divider is not supported on " + selectedInstance + ".", inst, "basicClockSourceDivider");
+                }
+            }
         }
     }
 }

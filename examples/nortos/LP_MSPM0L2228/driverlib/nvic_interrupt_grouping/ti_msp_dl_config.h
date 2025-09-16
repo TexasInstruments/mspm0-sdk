@@ -111,6 +111,7 @@ extern "C" {
 #define WWDT0_INT_IRQN                                          (WWDT0_INT_IRQn)
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

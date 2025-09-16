@@ -6,20 +6,17 @@ repeating timer interrupt.
 This IWDT has its own system independent power and clock source. If the application software does not successfully reset the watchdog within
 the programmed time, the watchdog generates a POR reset to the SoC.
 
-## Peripherals & Pin Assignments
-
-| Peripheral | Pin | Function |
-| --- | --- | --- |
-| GPIOA | PA0 | Open-Drain Output |
-| GPIOA | PA21 | Standard Output |
-| SYSCTL |  |  |
-| TIMA0 |  |  |
-| IWDT |  |  |
-| EVENT |  |  |
-| DEBUGSS | PA20 | Debug Clock |
-| DEBUGSS | PA19 | Debug Data In Out |
-
-
+## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
+| Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
+| --- | --- | --- | --- | --- |
+| GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
+| GPIOA | Standard Output | PA15 | J4_38 |  |
+| SYSCTL |  |  |  |  |
+| TIMA0 |  |  |  |  |
+| IWDT |  |  |  |  |
+| EVENT |  |  |  |  |
+| BOARD | Debug Clock | PA20 | J14_4 |  |
+| BOARD | Debug Data In Out | PA19 | J14_2 |  |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the LaunchPad. Please

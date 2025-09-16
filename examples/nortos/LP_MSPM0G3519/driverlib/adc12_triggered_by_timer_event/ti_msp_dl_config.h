@@ -101,6 +101,11 @@ extern "C" {
 #define ADC12_0_ADCMEM_3                                      DL_ADC12_MEM_IDX_3
 #define ADC12_0_ADCMEM_3_REF                DL_ADC12_REFERENCE_VOLTAGE_VDDA_VSSA
 #define ADC12_0_INST_SUB_CH                                                  (1)
+#define GPIO_ADC12_0_C12_PORT                                              GPIOA
+#define GPIO_ADC12_0_C12_PIN                                      DL_GPIO_PIN_14
+#define GPIO_ADC12_0_IOMUX_C12                                   (IOMUX_PINCM36)
+#define GPIO_ADC12_0_IOMUX_C12_FUNC               (IOMUX_PINCM36_PF_UNCONNECTED)
+
 
 
 /* clang-format on */

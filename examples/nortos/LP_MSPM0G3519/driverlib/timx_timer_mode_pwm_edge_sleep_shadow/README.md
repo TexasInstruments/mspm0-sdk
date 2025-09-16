@@ -37,3 +37,5 @@ LED_1 will be off at the beginning of the program execution. LED_1 will turn on
 once the PWM signal starts to be generated.
 USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the
 BoosterPack header and can be used to verify the LED behavior.
+
+PWM signal on PB4.

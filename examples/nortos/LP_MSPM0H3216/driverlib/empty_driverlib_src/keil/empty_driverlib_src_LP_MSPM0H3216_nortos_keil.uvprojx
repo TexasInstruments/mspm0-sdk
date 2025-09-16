@@ -147,6 +147,11 @@
               <FilePath>../ti/driverlib/dl_i2c.h</FilePath>
             </File>
             <File>
+              <FileName>dl_i2s.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_i2s.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_iwdt.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_iwdt.h</FilePath>
@@ -175,6 +180,11 @@
               <FileName>dl_mcan.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_mcan.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_npu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_npu.h</FilePath>
             </File>
             <File>
               <FileName>dl_opa.h</FileName>
@@ -207,6 +217,11 @@
               <FilePath>../ti/driverlib/dl_scratchpad.h</FilePath>
             </File>
             <File>
+              <FileName>dl_spgss.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_spgss.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_spi.h</FilePath>
@@ -225,6 +240,11 @@
               <FileName>dl_timera.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_timera.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_timerb.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_timerb.h</FilePath>
             </File>
             <File>
               <FileName>dl_timerg.h</FileName>
@@ -250,6 +270,31 @@
               <FileName>dl_uart_main.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/dl_uart_main.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicomm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_unicomm.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicommi2cc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_unicommi2cc.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicommi2ct.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_unicommi2ct.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicommspi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_unicommspi.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicommuart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/dl_unicommuart.h</FilePath>
             </File>
             <File>
               <FileName>dl_vref.h</FileName>
@@ -307,6 +352,21 @@
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h</FilePath>
             </File>
             <File>
+              <FileName>dl_sysctl_mspm0g352x.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0g511x.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0g518x.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.h</FilePath>
+            </File>
+            <File>
               <FileName>dl_sysctl_mspm0gx51x.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.h</FilePath>
@@ -330,6 +390,11 @@
               <FileName>dl_sysctl_mspm0l122x_l222x.h</FileName>
               <FileType>5</FileType>
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.h</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0l211x_l112x.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.h</FilePath>
             </File>
             <File>
               <FileName>dl_adc12.c</FileName>
@@ -397,6 +462,11 @@
               <FilePath>../ti/driverlib/dl_i2c.c</FilePath>
             </File>
             <File>
+              <FileName>dl_i2s.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_i2s.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_iwdt.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_iwdt.c</FilePath>
@@ -425,6 +495,11 @@
               <FileName>dl_mcan.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_mcan.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_npu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_npu.c</FilePath>
             </File>
             <File>
               <FileName>dl_opa.c</FileName>
@@ -457,6 +532,11 @@
               <FilePath>../ti/driverlib/dl_scratchpad.c</FilePath>
             </File>
             <File>
+              <FileName>dl_spgss.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_spgss.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_spi.c</FilePath>
@@ -477,6 +557,11 @@
               <FilePath>../ti/driverlib/dl_timera.c</FilePath>
             </File>
             <File>
+              <FileName>dl_timerb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_timerb.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_timerg.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_timerg.c</FilePath>
@@ -490,6 +575,31 @@
               <FileName>dl_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/dl_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicomm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_unicomm.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicommi2cc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_unicommi2cc.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicommi2ct.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_unicommi2ct.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicommspi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_unicommspi.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_unicommuart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/dl_unicommuart.c</FilePath>
             </File>
             <File>
               <FileName>dl_vref.c</FileName>
@@ -527,6 +637,21 @@
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.c</FilePath>
             </File>
             <File>
+              <FileName>dl_sysctl_mspm0g352x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0g511x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0g518x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.c</FilePath>
+            </File>
+            <File>
               <FileName>dl_sysctl_mspm0gx51x.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.c</FilePath>
@@ -550,6 +675,11 @@
               <FileName>dl_sysctl_mspm0l122x_l222x.c</FileName>
               <FileType>1</FileType>
               <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.c</FilePath>
+            </File>
+            <File>
+              <FileName>dl_sysctl_mspm0l211x_l112x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.c</FilePath>
             </File>
             <File>
               <FileName>empty.syscfg</FileName>

@@ -1,6 +1,8 @@
 /*
- * FreeRTOS Kernel V10.4.3
- * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * FreeRTOS Kernel V11.2.0
+ * Copyright (C) 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * SPDX-License-Identifier: MIT
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -23,7 +25,7 @@
  * https://github.com/FreeRTOS
  *
  */
-
+/* clang-format off */
 
 /*
  * The simplest possible implementation of pvPortMalloc().  Note that this
@@ -49,20 +51,28 @@
 #endif
 
 /* A few bytes might be lost to byte aligning the heap start address. */
-#define configADJUSTED_HEAP_SIZE    ( configTOTAL_HEAP_SIZE - portBYTE_ALIGNMENT )
+#define configADJUSTED_HEAP_SIZE        ( configTOTAL_HEAP_SIZE - portBYTE_ALIGNMENT )
+
+/* Max value that fits in a size_t type. */
+#define heapSIZE_MAX                    ( ~( ( size_t ) 0 ) )
+
+/* Check if adding a and b will result in overflow. */
+#define heapADD_WILL_OVERFLOW( a, b )   ( ( a ) > ( heapSIZE_MAX - ( b ) ) )
+
+/*-----------------------------------------------------------*/
 
 /* Allocate the memory for the heap. */
 #if ( configAPPLICATION_ALLOCATED_HEAP == 1 )
 
 /* The application writer has already defined the array used for the RTOS
-* heap - probably so it can be placed in a special segment or address. */
+ * heap - probably so it can be placed in a special segment or address. */
     extern uint8_t ucHeap[ configTOTAL_HEAP_SIZE ];
 #else
     static uint8_t ucHeap[ configTOTAL_HEAP_SIZE ];
 #endif /* configAPPLICATION_ALLOCATED_HEAP */
 
 /* Index into the ucHeap array. */
-static size_t xNextFreeByte = ( size_t ) 0;
+static size_t xNextFreeByte = ( size_t ) 0U;
 
 /*-----------------------------------------------------------*/
 
@@ -73,34 +83,39 @@ void * pvPortMalloc( size_t xWantedSize )
 
     /* Ensure that blocks are always aligned. */
     #if ( portBYTE_ALIGNMENT != 1 )
+    {
+        size_t xAdditionalRequiredSize;
+
+        if( ( xWantedSize & portBYTE_ALIGNMENT_MASK ) != 0x00 )
         {
-            if( xWantedSize & portBYTE_ALIGNMENT_MASK )
+            /* Byte alignment required. */
+            xAdditionalRequiredSize = portBYTE_ALIGNMENT - ( xWantedSize & portBYTE_ALIGNMENT_MASK );
+
+            if( heapADD_WILL_OVERFLOW( xWantedSize, xAdditionalRequiredSize ) == 0 )
             {
-                /* Byte alignment required. Check for overflow. */
-                if ( (xWantedSize + ( portBYTE_ALIGNMENT - ( xWantedSize & portBYTE_ALIGNMENT_MASK ) )) > xWantedSize )
-                {
-                    xWantedSize += ( portBYTE_ALIGNMENT - ( xWantedSize & portBYTE_ALIGNMENT_MASK ) );
-                }
-                else
-                {
-                    xWantedSize = 0;
-                }
+                xWantedSize += xAdditionalRequiredSize;
+            }
+            else
+            {
+                xWantedSize = 0;
             }
         }
-    #endif
+    }
+    #endif /* if ( portBYTE_ALIGNMENT != 1 ) */
 
     vTaskSuspendAll();
     {
         if( pucAlignedHeap == NULL )
         {
             /* Ensure the heap starts on a correctly aligned boundary. */
-            pucAlignedHeap = ( uint8_t * ) ( ( ( portPOINTER_SIZE_TYPE ) & ucHeap[ portBYTE_ALIGNMENT - 1 ] ) & ( ~( ( portPOINTER_SIZE_TYPE ) portBYTE_ALIGNMENT_MASK ) ) );
+            pucAlignedHeap = ( uint8_t * ) ( ( ( portPOINTER_SIZE_TYPE ) &( ucHeap[ portBYTE_ALIGNMENT - 1 ] ) ) &
+                                             ( ~( ( portPOINTER_SIZE_TYPE ) portBYTE_ALIGNMENT_MASK ) ) );
         }
 
-        /* Check there is enough room left for the allocation and. */
-        if( ( xWantedSize > 0 ) && /* valid size */
-            ( ( xNextFreeByte + xWantedSize ) < configADJUSTED_HEAP_SIZE ) &&
-            ( ( xNextFreeByte + xWantedSize ) > xNextFreeByte ) ) /* Check for overflow. */
+        /* Check there is enough room left for the allocation. */
+        if( ( xWantedSize > 0 ) &&
+            ( heapADD_WILL_OVERFLOW( xNextFreeByte, xWantedSize ) == 0 ) &&
+            ( ( xNextFreeByte + xWantedSize ) < configADJUSTED_HEAP_SIZE ) )
         {
             /* Return the next free byte then increment the index past this
              * block. */
@@ -113,13 +128,12 @@ void * pvPortMalloc( size_t xWantedSize )
     ( void ) xTaskResumeAll();
 
     #if ( configUSE_MALLOC_FAILED_HOOK == 1 )
+    {
+        if( pvReturn == NULL )
         {
-            if( pvReturn == NULL )
-            {
-                extern void vApplicationMallocFailedHook( void );
-                vApplicationMallocFailedHook();
-            }
+            vApplicationMallocFailedHook();
         }
+    }
     #endif
 
     return pvReturn;
@@ -149,3 +163,17 @@ size_t xPortGetFreeHeapSize( void )
 {
     return( configADJUSTED_HEAP_SIZE - xNextFreeByte );
 }
+
+/*-----------------------------------------------------------*/
+
+/*
+ * Reset the state in this file. This state is normally initialized at start up.
+ * This function must be called by the application before restarting the
+ * scheduler.
+ */
+void vPortHeapResetState( void )
+{
+    xNextFreeByte = ( size_t ) 0U;
+}
+/*-----------------------------------------------------------*/
+/* clang-format on */

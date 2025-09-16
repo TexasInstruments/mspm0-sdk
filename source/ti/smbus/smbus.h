@@ -341,6 +341,7 @@ typedef union
 //! Physical and Data Link Layer object
 //
 //*****************************************************************************
+#ifdef __MSPM0_HAS_I2C__
 typedef struct
 {
     /*! I2C register map struct */
@@ -350,6 +351,19 @@ typedef struct
     /*! Waiting for ACK */
     bool       SMBus_Phy_AckPending;
 } SMBus_Phy;
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+typedef struct
+{
+    /*! I2CC register map struct */
+    UNICOMM_Inst_Regs*  SMBus_Phy_i2cBase;
+    /*! Send different types of Stop as controller */
+    SMBus_Stop SMBus_Phy_stop;
+    /*! Waiting for ACK */
+    bool       SMBus_Phy_AckPending;
+} SMBus_Phy;
+#endif
 
 //*****************************************************************************
 //
@@ -698,6 +712,7 @@ extern void SMBus_enablePEC(SMBus *smbus);
 //*****************************************************************************
 extern void SMBus_disablePEC(SMBus *smbus);
 
+#if defined(__MSPM0_HAS_I2C__)
 //*****************************************************************************
 //
 //! \brief   Initialize the SMBus interface as a target
@@ -711,6 +726,23 @@ extern void SMBus_disablePEC(SMBus *smbus);
 //
 //*****************************************************************************
 extern void SMBus_targetInit(SMBus *smbus, I2C_Regs *i2cAddr);
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CT__)
+//*****************************************************************************
+//
+//! \brief   Initialize the SMBus interface as a target
+//
+//! Initializes the NWK and PHY layers.
+//
+//!  \param smbus     Pointer to SMBus structure
+//!  \param i2cAddr   Base address of I2C module.
+//
+//  \return  None
+//
+//*****************************************************************************
+extern void SMBus_targetInit(SMBus *smbus, UNICOMM_Inst_Regs *i2cAddr);
+#endif
 
 //*****************************************************************************
 //
@@ -922,6 +954,8 @@ extern int8_t SMBus_targetHostAlert(SMBus *smbus,
                                  uint8_t deviceAddress,
                                  uint8_t *txData);
 
+
+#if defined(__MSPM0_HAS_I2C__)
 //*****************************************************************************
 //
 //! \brief   Initialize the SMBus Interface for a controller
@@ -935,9 +969,25 @@ extern int8_t SMBus_targetHostAlert(SMBus *smbus,
 // \return  None
 //
 //*****************************************************************************
-extern void SMBus_controllerInit(SMBus *smbus,
-                             I2C_Regs *i2cAddr,
-                             uint32_t busClk);
+extern void SMBus_controllerInit(SMBus *smbus, I2C_Regs *i2cAddr, uint32_t busClk);
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__)
+//*****************************************************************************
+//
+//! \brief   Initialize the SMBus Interface for a controller
+//
+//! Initializes the NWK and PHY layers
+//
+//! \param smbus     Pointer to SMBus structure
+//! \param i2cAddr   Base address of I2C module.
+//! \param busClk    SMCLK Frequency
+//
+// \return  None
+//
+//*****************************************************************************
+extern void SMBus_controllerInit(SMBus *smbus, UNICOMM_Inst_Regs *i2cAddr, uint32_t busClk);
+#endif
 
 //*****************************************************************************
 //
@@ -1373,10 +1423,10 @@ extern int8_t SMBus_controllerWriteBlock(SMBus *smbus,
 //
 //*****************************************************************************
 extern int8_t SMBus_controllerReadByteWord(SMBus *smbus,
-                                       uint8_t targetAddr,
-                                       uint8_t command,
-                                       uint8_t *rxData,
-                                       uint8_t rxSize);
+                                            uint8_t targetAddr,
+                                            uint8_t command,
+                                            uint8_t *rxData,
+                                            uint8_t rxSize);
 
 //*****************************************************************************
 //

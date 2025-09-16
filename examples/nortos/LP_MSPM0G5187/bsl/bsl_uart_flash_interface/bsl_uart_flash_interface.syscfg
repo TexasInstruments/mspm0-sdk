@@ -1,0 +1,35 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "MSPM0G518X" --package "LQFP-64(PM)" --part "Default"
+ * @v2CliArgs --device "MSPM0G5187" --package "LQFP-64(PM)"
+ */
+// @cliArgs --board /ti/boards/LP_MSPM0G5187 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const NONMAIN       = scripting.addModule("/ti/driverlib/NONMAIN");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+NONMAIN.nonmainWarning               = true;
+NONMAIN.bslFlashPluginEnable         = true;
+NONMAIN.bslPluginType                = "bslPluginUART";
+NONMAIN.bslPluginHookInit            = "BSL_PI_UART_init";
+NONMAIN.bslPluginHookInitAddress     = 0x2000;
+NONMAIN.bslPluginHookReceive         = "BSL_PI_UART_receive";
+NONMAIN.bslPluginHookReceiveAddress  = 0x2100;
+NONMAIN.bslPluginHookTransmit        = "BSL_PI_UART_send";
+NONMAIN.bslPluginHookTransmitAddress = 0x2300;
+NONMAIN.bslPluginHookDeInit          = "BSL_PI_UART_deinit";
+NONMAIN.bslPluginHookDeInitAddress   = 0x2400;
+NONMAIN.staticWriteProtectionMainLow = 0xFFFF00FF;
+NONMAIN.staticWriteProtectionNonMain = true;
+
+
+ProjectConfig.genLinker = false;
+ProjectConfig.genLibs   = false;
+ProjectConfig.genOpts   = false;

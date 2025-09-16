@@ -1,0 +1,96 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G351X" --package "LQFP-100(PZ)" --part "Default"
+//@v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3519 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12  = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121 = ADC12.addInstance();
+const ADC122 = ADC12.addInstance();
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const DMA    = scripting.addModule("/ti/driverlib/DMA");
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER  = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1 = TIMER.addInstance();
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name                          = "ADC12_0";
+ADC121.repeatMode                     = true;
+ADC121.powerDownMode                  = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC121.enabledInterrupts              = ["DL_ADC12_INTERRUPT_DMA_DONE"];
+ADC121.adcMem0vref                    = "VREF";
+ADC121.sampleTime1                    = "0";
+ADC121.sampleTime0                    = "10us";
+ADC121.subChanID                      = 15;
+ADC121.enableFIFO                     = true;
+ADC121.sampCnt                        = 6;
+ADC121.enabledDMATriggers             = ["DL_ADC12_DMA_MEM11_RESULT_LOADED"];
+ADC121.sampClkSrc                     = "DL_ADC12_CLOCK_ULPCLK";
+ADC121.configureDMA                   = true;
+ADC121.trigSrc                        = "DL_ADC12_TRIG_SRC_EVENT";
+ADC121.adcMem0vrefp                   = "INTREF";
+ADC121.peripheral.$assign             = "ADC0";
+ADC121.peripheral.adcPin0.$assign     = "PA27";
+ADC121.DMA_CHANNEL.$name              = "DMA_CH0";
+ADC121.DMA_CHANNEL.earlyIntThresh     = "HALF";
+ADC121.DMA_CHANNEL.addressMode        = "f2b";
+ADC121.DMA_CHANNEL.peripheral.$assign = "DMA_CH0";
+scripting.suppress("Previous ADC VREF configuration is overriden, please select your desired VREFP & VREFM values\\.", ADC121, "adcMem0vrefm");
+scripting.suppress("Previous ADC VREF configuration is overriden, please select your desired VREFP & VREFM values\\.", ADC121, "adcMem0vrefp");
+
+ADC122.$name                          = "ADC12_1";
+ADC122.adcMem0vref                    = "VREF";
+ADC122.repeatMode                     = true;
+ADC122.powerDownMode                  = "DL_ADC12_POWER_DOWN_MODE_MANUAL";
+ADC122.sampleTime0                    = "10us";
+ADC122.enabledInterrupts              = ["DL_ADC12_INTERRUPT_DMA_DONE"];
+ADC122.configureDMA                   = true;
+ADC122.sampleTime1                    = "0";
+ADC122.subChanID                      = 15;
+ADC122.sampClkSrc                     = "DL_ADC12_CLOCK_ULPCLK";
+ADC122.adcMem1chansel                 = "DL_ADC12_INPUT_CHAN_2";
+ADC122.adcMem1vref                    = "VREF";
+ADC122.sampCnt                        = 6;
+ADC122.enabledDMATriggers             = ["DL_ADC12_DMA_MEM11_RESULT_LOADED"];
+ADC122.enableFIFO                     = true;
+ADC122.trigSrc                        = "DL_ADC12_TRIG_SRC_EVENT";
+ADC122.peripheral.$assign             = "ADC1";
+ADC122.peripheral.adcPin0.$assign     = "PA15";
+ADC122.DMA_CHANNEL.$name              = "DMA_CH1";
+ADC122.DMA_CHANNEL.earlyIntThresh     = "HALF";
+ADC122.DMA_CHANNEL.addressMode        = "f2b";
+ADC122.DMA_CHANNEL.peripheral.$assign = "DMA_CH1";
+scripting.suppress("Previous ADC VREF configuration is overriden, please select your desired VREFP & VREFM values\\.", ADC122, "adcMem0vrefm");
+scripting.suppress("Previous ADC VREF configuration is overriden, please select your desired VREFP & VREFM values\\.", ADC122, "adcMem0vrefp");
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+SYSCTL.peripheral.$assign = "SYSCTL";
+
+TIMER1.$name                       = "TIMER_0";
+TIMER1.event1PublisherChannel      = 15;
+TIMER1.event1ControllerInterruptEn = ["ZERO_EVENT"];
+TIMER1.timerPeriod                 = "500ms";
+TIMER1.timerClkDiv                 = 8;
+TIMER1.timerClkPrescale            = 128;
+TIMER1.timerMode                   = "PERIODIC";
+TIMER1.interrupts                  = ["ZERO"];
+TIMER1.peripheral.$assign          = "TIMG0";
+
+VREF.advClockConfigEnable = true;
+VREF.checkVREFReady       = true;
+VREF.basicIntVolt         = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.peripheral.$assign   = "VREF";
+
+const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
+ProjectConfig.migrationCondition = true;

@@ -129,15 +129,16 @@ function validatePowerPolicy(inst, validation){
             let exhfclkMux = _.find(mod.$instances, ['$name', 'EXHFMUX']);
             let mfpclkMux = _.find(mod.$instances, ['$name', 'MFPCLKMUX']);
 
-            let pllMuxes = [ hsclkMuxInst, canclkMuxInst, fccMux, exclkMux ];
+            let pllMuxes = [ hsclkMuxInst, fccMux, exclkMux ];
+
             // TODO: later add ADC mux if applicable
             // canclk mux is not necessary because code is not generated on behalf of
             // CANCLK
             let hfMuxes = [ hsclkMuxInst, exclkMux, fccMux, mfpclkMux ];
-
+            if(ClockSignals.includes("CANCLK")){ hfMuxes.push(canclkMuxInst); }
             if(_.isUndefined(pllClk0Inst) || _.isUndefined(pllClk1Inst) ||
                _.isUndefined(pllClk2XInst) ||
-               _.isUndefined(hsclkMuxInst) || _.isUndefined(canclkMuxInst) ||
+               _.isUndefined(hsclkMuxInst) || ((ClockSignals.includes("CANCLK"))?(_.isUndefined(canclkMuxInst)):(false)) ||
                _.isUndefined(fccMux) || _.isUndefined(exclkMux) ||
                _.isUndefined(exhfclkMux))
             {
@@ -253,6 +254,45 @@ function validatePinmux(inst, validation){
             }catch(e){}
         }
     }
+
+    /* USBCLK Validation */
+    // Equivalent ClockTree validation
+    if(!inst.clockTreeEn){
+        if(ClockSignals.includes("USBCLK")){
+            // Check that USB module exists & expected peripheral is used
+            let USBMod = system.modules["/ti/driverlib/USB"];
+            if (USBMod){
+                let USBInsts = USBMod.$instances
+                for(let singleInst of USBInsts){
+                    if(singleInst.peripheral?.$solution?.peripheralName == "USBFS0"){
+                        // USBFS0 Validation
+                        // Frequency Check
+                        if(inst.USBCLK_Freq !== 60000000){
+                            validation.logError("USBCLK frequency must be 60MHz.", inst, ["USBCLK_Freq_unit","USBCLKSource"]);
+                        }
+                        // Host Mode Validation
+                        if(singleInst.mode == "host"){
+                            let isUSBCLKSourceSYSPLL1   = (inst.USBCLKSource == "SYSPLLCLK1");
+                            let isSYSPLLSourcedByHFCLK  = (inst.SYSPLLSource == "HFCLK");
+                            let isHFCLKsetToHFXT        = (inst.HFCLKSource == "HFXT");
+
+                            if(!isUSBCLKSourceSYSPLL1){
+                                validation.logError("USBCLK requires being sourced by HFCLK (through SYSPLL1) when USB Host is configured.", inst, ["USBCLKSource"]);
+                            }
+                            else if(!isSYSPLLSourcedByHFCLK){
+                                validation.logError("SYSPLL should be sourced by HFCLK when configuring USB as Host", inst, ["SYSPLLSource"]);
+                            }
+                            else if(!isHFCLKsetToHFXT){
+                                validation.logError("HFCLK should be sourced by HFXT when configuring USB as Host", inst, ["HFCLKSource"]);
+                            }
+                        }
+                    }
+                }
+            }else{
+                validation.logInfo("USB Peripheral is not currently enabled", inst, ["USBCLKSource"]);
+            }
+        }
+    }
 }
 
 /*
@@ -287,7 +327,7 @@ function validateSYSCTL(inst, validation)
      */
     if (inst.CPUCLK_Freq > 32000000)
     {
-        validation.logWarning("For best practices when the CPUCLK is running at 32MHz and above, "+
+        validation.logInfo("For best practices when the CPUCLK is running at 32MHz and above, "+
             "clear the flash status bit using DL_FlashCTL_executeClearStatus() before executing any flash operation. " +
             "Otherwise there may be false positives.", inst);
     }
@@ -560,6 +600,28 @@ function validateSYSCTL(inst, validation)
             validation.logInfo("PA2 is being configured for ROSC and should not be used for other pin selections.", inst, "enableROSC");
         }
     }
+
+    if(!inst.clockTreeEn){
+        if(ClockSignals.includes("USBCLK")){
+            // USBFLL Reference Validation
+            let enabledLFXT = false;
+            if(inst.enableUSBFLL){
+                enabledLFXT = (inst.LFCLKSource == "LFXT");
+                if(inst.USBFLLReference == "LFXT" && !enabledLFXT){
+                    validation.logError("LFXT is not enabled", inst, ["USBFLLReference"]);
+                    validation.logError("LFXT is required for the current configuration (USBFLL)", inst, ["LFCLKSource"]);
+                }
+            }
+            if(inst.HSCLKSource == "USBFLL" && !inst.enableUSBFLL){
+                validation.logError("USBFLL is not enabled", inst, ["HSCLKSource"]);
+                validation.logError("USBFLL is required for the current configuration (HSCLK)", inst, ["enableUSBFLL"]);
+            }
+            if(inst.USBCLKSource == "USBFLL" && !inst.enableUSBFLL){
+                validation.logError("USBFLL is not enabled", inst, ["USBCLKSource"]);
+                validation.logError("USBFLL is required for the current configuration (USBCLK)", inst, ["enableUSBFLL"]);
+            }
+        }
+    }
 }
 
 function onChangeUseDrivers(inst, ui){
@@ -619,7 +681,9 @@ function onChangeClockTree(inst, ui){
 
         ui.validateClkStatus.readOnly       = (inst.LFCLKSource == "LFXT") || (inst.useHFCLK_Manual && inst.HFCLKSource == "HFXT");
         ui.waitState.hidden = !inst.clockTreeEn && !(inst.MCLKSource == "HSCLK");
-        ui.CANCLKSource.readOnly                 = inst.clockTreeEn;
+        if(ClockSignals.includes("CANCLK")){
+            ui.CANCLKSource.readOnly                 = inst.clockTreeEn;
+        }
     }
 
     ui.MFCLKEn.readOnly                 = inst.clockTreeEn;
@@ -691,6 +755,10 @@ function getULPCLKConfig(){
 
 function getCANCLKConfig(){
     return ClockConfig["CANCLK"];
+}
+
+function getUSBCLKConfig(){
+    return ClockConfig["USBCLK"];
 }
 
 function getNMIConfig(){
@@ -1466,6 +1534,14 @@ The default behavior for some system error conditions can be configured.
                     config: getCANCLKConfig(),
                 },
                 {
+                    name: "USBCLK_Config_Group",
+                    displayName: "USBCLK (USB Clock)",
+                    description: "",
+                    longDescription: "",
+                    collapsed: true,
+                    config: getUSBCLKConfig(),
+                },
+                {
                     name: "EXCLK_Config_Group",
                     displayName: "Clock Output (CLK_OUT)",
                     collapsed: true,
@@ -1808,7 +1884,7 @@ function getClockInterrupts(inst){
             {name: "ANALOG_CLOCK_ERROR", displayName: "Analog clocking consistency error"},
         ];
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0L211X_L112X()){
         return [
             // DL_SYSCTL_INTERRUPT_[...]
             {name: "LFOSC_GOOD", displayName: "Low Frequency Oscillator is stabilized and ready to use"},

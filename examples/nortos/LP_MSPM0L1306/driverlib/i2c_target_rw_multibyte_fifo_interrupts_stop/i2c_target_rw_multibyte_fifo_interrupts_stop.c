@@ -74,6 +74,10 @@ int main(void)
 
     NVIC_EnableIRQ(I2C_INST_INT_IRQN);
 
+    /* Calling WFI after calling DL_SYSCTL_enableSleepOnExit will result in
+     * only ISR code to be executed. This is done to showcase the device's
+     * low power consumption when sleeping.
+     */
     DL_SYSCTL_enableSleepOnExit();
 
     /* Go to STOP, the device will wake-up on address match */

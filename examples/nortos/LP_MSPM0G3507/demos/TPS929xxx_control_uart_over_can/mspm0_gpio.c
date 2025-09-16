@@ -32,8 +32,8 @@
 
 #include "mspm0_gpio.h"
 
-uint8_t buttonS2Pressed;
-uint8_t buttonS1Pressed;
+volatile uint8_t buttonS2Pressed;
+volatile uint8_t buttonS1Pressed;
 
 void GROUP1_IRQHandler(void)
 {

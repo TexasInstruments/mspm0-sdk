@@ -158,7 +158,7 @@ LP\_MSPM0H3216
 
    <td>
 
-TPS92543\_uart\_control\_over\_can
+CC110x\_TxRx\_comm
 
 .. raw:: html
 
@@ -168,47 +168,7 @@ TPS92543\_uart\_control\_over\_can
 
    <td>
 
-This example shows the implementation of using MSPM0 to drive TPS9254x to control different LED patterns.
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
+Demonstrate CC110x communication using an MSPM0 MCU
 
 .. raw:: html
 
@@ -219,6 +179,46 @@ N
    <td align="center">
 
 |image1|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
 
 .. raw:: html
 
@@ -4488,7 +4488,338 @@ ADC12 single conversion in repeat mode using window comparator feature
 
    </table>
 
-2.2.4 Beeper
+2.2.4 Basic Timer
+^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+   <table class="docutils align-default">
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <th rowspan="2">
+
+Project Name
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th rowspan="2">
+
+Description
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th colspan="2">
+
+.. raw:: html
+
+   <p style="text-align: center;">
+
+EVM
+
+.. raw:: html
+
+   </p>
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0G3507
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0L1306
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0C1104
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0L2228
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0G3519
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0L1117
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0H3216
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+timb\_chain\_32timer
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+timb emulating 32bit timer
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+timb\_pwm\_emulation
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+timb emulating pwm
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   </table>
+
+2.2.5 Beeper
 ^^^^^^^^^^^^
 
 .. raw:: html
@@ -4721,7 +5052,7 @@ N
 
    </table>
 
-2.2.5 CRCP
+2.2.6 CRCP
 ^^^^^^^^^^
 
 .. raw:: html
@@ -5052,7 +5383,7 @@ N
 
    </table>
 
-2.2.6 Comparator (COMP)
+2.2.7 Comparator (COMP)
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -5677,7 +6008,7 @@ N
 
    </table>
 
-2.2.7 Controller Area Network (CAN)
+2.2.8 Controller Area Network (CAN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -6400,7 +6731,7 @@ N
 
    </table>
 
-2.2.8 Cyclic Redundancy Check (CRC)
+2.2.9 Cyclic Redundancy Check (CRC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -6731,8 +7062,8 @@ N
 
    </table>
 
-2.2.9 Digital-to-Analog Converter (DAC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2.2.10 Digital-to-Analog Converter (DAC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
@@ -7258,7 +7589,7 @@ N
 
    </table>
 
-2.2.10 Direct Memory Access (DMA)
+2.2.11 Direct Memory Access (DMA)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -7687,7 +8018,7 @@ N
 
    </table>
 
-2.2.11 Events Manager
+2.2.12 Events Manager
 ^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -7920,7 +8251,7 @@ Event configuration to toggle LED when switch is pressed
 
    </table>
 
-2.2.12 GPIO
+2.2.13 GPIO
 ^^^^^^^^^^^
 
 .. raw:: html
@@ -8643,7 +8974,7 @@ GPIO toggling an ouputput pin configured as Hi-Z
 
    </table>
 
-2.2.13 General-Purpose Amplifier (GPAMP)
+2.2.14 General-Purpose Amplifier (GPAMP)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -8974,7 +9305,7 @@ N
 
    </table>
 
-2.2.14 I2S
+2.2.15 I2S
 ^^^^^^^^^^
 
 .. raw:: html
@@ -9207,7 +9538,7 @@ N
 
    </table>
 
-2.2.15 IWDT
+2.2.16 IWDT
 ^^^^^^^^^^^
 
 .. raw:: html
@@ -9440,7 +9771,7 @@ N
 
    </table>
 
-2.2.16 Inter-Integrated Circuit (I2C)
+2.2.17 Inter-Integrated Circuit (I2C)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -10359,7 +10690,7 @@ I2C Target reading and writing multiple bytes polling FIFO
 
    </table>
 
-2.2.17 LCD
+2.2.18 LCD
 ^^^^^^^^^^
 
 .. raw:: html
@@ -10592,7 +10923,7 @@ N
 
    </table>
 
-2.2.18 Math Accelerator (MATHACL)
+2.2.19 Math Accelerator (MATHACL)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -10923,7 +11254,7 @@ N
 
    </table>
 
-2.2.19 Non-Volatile Memory (FLASHCTL)
+2.2.20 Non-Volatile Memory (FLASHCTL)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -11744,7 +12075,7 @@ N
 
    </table>
 
-2.2.20 Operational Amplifier (OPA)
+2.2.21 Operational Amplifier (OPA)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -12467,7 +12798,7 @@ N
 
    </table>
 
-2.2.21 Other
+2.2.22 Other
 ^^^^^^^^^^^^
 
 .. raw:: html
@@ -13582,7 +13913,7 @@ N
 
    </table>
 
-2.2.22 Real-Time Clock (RTC)
+2.2.23 Real-Time Clock (RTC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -14403,7 +14734,7 @@ N
 
    </table>
 
-2.2.23 Scratchpad
+2.2.24 Scratchpad
 ^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -14734,7 +15065,7 @@ N
 
    </table>
 
-2.2.24 Serial Peripheral Interface (SPI)
+2.2.25 Serial Peripheral Interface (SPI)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -16045,7 +16376,7 @@ N
 
    </table>
 
-2.2.25 System Controller (SYSCTL)
+2.2.26 System Controller (SYSCTL)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -16866,7 +17197,7 @@ Show correct wake-up mechanism after SHUTDOWN vs STOP, STANDBY and SLEEP
 
    </table>
 
-2.2.26 Tamper IO
+2.2.27 Tamper IO
 ^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -17099,7 +17430,7 @@ N
 
    </table>
 
-2.2.27 Timer - Advanced (TIMA)
+2.2.28 Timer - Advanced (TIMA)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -17528,7 +17859,7 @@ N
 
    </table>
 
-2.2.28 Timer - General Purpose (TIMG)
+2.2.29 Timer - General Purpose (TIMG)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -17957,7 +18288,7 @@ N
 
    </table>
 
-2.2.29 Timer - Generic (TIMx)
+2.2.30 Timer - Generic (TIMx)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -19170,7 +19501,7 @@ N
 
    </table>
 
-2.2.30 True Random Number Generator (TRNG)
+2.2.31 True Random Number Generator (TRNG)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -19501,7 +19832,7 @@ N
 
    </table>
 
-2.2.31 Universal Asynchronous Receiver-Transmitter (UART)
+2.2.32 Universal Asynchronous Receiver-Transmitter (UART)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -21106,7 +21437,7 @@ N
 
    </table>
 
-2.2.32 Window Watchdog Timer (WWDT)
+2.2.33 Window Watchdog Timer (WWDT)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
@@ -23031,6 +23362,104 @@ LP\_MSPM0H3216
 
    <td>
 
+empty\_npu\_ai
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Empty template for NPU-enabled AI model deployment
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
 hello\_world\_ai
 
 .. raw:: html
@@ -24583,6 +25012,202 @@ N
    <td align="center">
 
 |image738|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+bsl\_host\_mcu\_to\_mspm0c1106\_target\_i2c
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Demonstrate how to program a MSPM0C1106 MCU using a LP-MSPM0C1106 as host by BSL I2C interface.
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+bsl\_host\_mcu\_to\_mspm0c1106\_target\_uart
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Demonstrate how to program a MSPM0C1106 MCU using a LP-MSPM0C1106 as host by BSL UART interface.
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
 
 .. raw:: html
 
@@ -34229,7 +34854,7 @@ N
 
    <td>
 
-adc\_to\_i2c\_target
+adc\_simultaneous\_sample
 
 .. raw:: html
 
@@ -34239,7 +34864,7 @@ adc\_to\_i2c\_target
 
    <td>
 
-Sample ADC and respond to I2C commands sent by a controller
+Simultaneously capture data from 2 ADCs into respective buffers
 
 .. raw:: html
 
@@ -34250,6 +34875,36 @@ Sample ADC and respond to I2C commands sent by a controller
    <td align="center">
 
 |image902|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
 
 .. raw:: html
 
@@ -34287,6 +34942,34 @@ N
 
 .. raw:: html
 
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+adc\_to\_i2c\_target
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Sample ADC and respond to I2C commands sent by a controller
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
    <td align="center">
 
 |image904|
@@ -34300,6 +34983,46 @@ N
    <td align="center">
 
 |image905|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image906|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image907|
 
 .. raw:: html
 
@@ -34347,36 +35070,6 @@ Convert analog voltage to PWM
 
    <td align="center">
 
-|image906|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image907|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
 |image908|
 
 .. raw:: html
@@ -34397,7 +35090,37 @@ N
 
    <td align="center">
 
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
 |image910|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image911|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image912|
 
 .. raw:: html
 
@@ -34445,46 +35168,6 @@ Sample ADC and respond to SPI commands sent by a controller
 
    <td align="center">
 
-|image911|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image912|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
 |image913|
 
 .. raw:: html
@@ -34496,6 +35179,46 @@ N
    <td align="center">
 
 |image914|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image915|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image916|
 
 .. raw:: html
 
@@ -34543,36 +35266,6 @@ Configures the ADC0 to trigger single conversion and send the ADC data through U
 
    <td align="center">
 
-|image915|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image916|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
 |image917|
 
 .. raw:: html
@@ -34593,7 +35286,37 @@ N
 
    <td align="center">
 
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
 |image919|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image920|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image921|
 
 .. raw:: html
 
@@ -34641,7 +35364,7 @@ Bridge between CAN interface and I2C controller interface
 
    <td align="center">
 
-|image920|
+|image922|
 
 .. raw:: html
 
@@ -34739,7 +35462,7 @@ Bridge between CAN interface and I2C target interface
 
    <td align="center">
 
-|image921|
+|image923|
 
 .. raw:: html
 
@@ -34837,7 +35560,7 @@ Bridge between CAN interface and SPI interface
 
    <td align="center">
 
-|image922|
+|image924|
 
 .. raw:: html
 
@@ -34935,7 +35658,7 @@ Bridge between CAN interface and UART interface
 
    <td align="center">
 
-|image923|
+|image925|
 
 .. raw:: html
 
@@ -35033,7 +35756,7 @@ Generates waveform using DAC8 with the DMA
 
    <td align="center">
 
-|image924|
+|image926|
 
 .. raw:: html
 
@@ -35043,7 +35766,7 @@ Generates waveform using DAC8 with the DMA
 
    <td align="center">
 
-|image925|
+|image927|
 
 .. raw:: html
 
@@ -35131,7 +35854,7 @@ This example reads all the sensors on the BP-BASSENSORSMKI using I2C then transm
 
    <td align="center">
 
-|image926|
+|image928|
 
 .. raw:: html
 
@@ -35239,104 +35962,6 @@ N
 
    <td align="center">
 
-|image927|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image928|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-diode\_matrix
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Drive LEDs with fewer pins using diode matrix
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
 |image929|
 
 .. raw:: html
@@ -35405,7 +36030,7 @@ N
 
    <td>
 
-fir\_low\_pass\_filter
+diode\_matrix
 
 .. raw:: html
 
@@ -35415,7 +36040,17 @@ fir\_low\_pass\_filter
 
    <td>
 
-Applies digital FIR low-pass filter to sampled ADC signals
+Drive LEDs with fewer pins using diode matrix
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
 
 .. raw:: html
 
@@ -35483,6 +36118,94 @@ N
 
 .. raw:: html
 
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+fir\_low\_pass\_filter
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Applies digital FIR low-pass filter to sampled ADC signals
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image933|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image934|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
    <td align="center">
 
 N
@@ -35533,7 +36256,105 @@ N
 
    <td align="center">
 
-|image933|
+|image935|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+high\_gain\_self\_compensating\_adc
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Remove DC drift and prevent output saturation
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image936|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
 
 .. raw:: html
 
@@ -35651,7 +36472,7 @@ N
 
    <td align="center">
 
-|image934|
+|image937|
 
 .. raw:: html
 
@@ -35729,7 +36550,7 @@ N
 
    <td align="center">
 
-|image935|
+|image938|
 
 .. raw:: html
 
@@ -35817,7 +36638,7 @@ Example I2C IO expander and I2C host controller
 
    <td align="center">
 
-|image936|
+|image939|
 
 .. raw:: html
 
@@ -35827,7 +36648,7 @@ Example I2C IO expander and I2C host controller
 
    <td align="center">
 
-|image937|
+|image940|
 
 .. raw:: html
 
@@ -35838,6 +36659,104 @@ Example I2C IO expander and I2C host controller
    <td align="center">
 
 N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+i2c\_sensors\_to\_uart
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Read data from I2C sensors and send via UART.
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image941|
 
 .. raw:: html
 
@@ -35915,7 +36834,7 @@ Example I2C IO expander and I2C host controller
 
    <td align="center">
 
-|image938|
+|image942|
 
 .. raw:: html
 
@@ -35925,7 +36844,7 @@ Example I2C IO expander and I2C host controller
 
    <td align="center">
 
-|image939|
+|image943|
 
 .. raw:: html
 
@@ -36013,7 +36932,7 @@ Implements an I2C to SPI Bridge using an M0 MCU
 
    <td align="center">
 
-|image940|
+|image944|
 
 .. raw:: html
 
@@ -36111,7 +37030,7 @@ I2C Target receives I2C transmissions and passes them on via UART
 
    <td align="center">
 
-|image941|
+|image945|
 
 .. raw:: html
 
@@ -36141,7 +37060,7 @@ N
 
    <td align="center">
 
-|image942|
+|image946|
 
 .. raw:: html
 
@@ -36209,7 +37128,7 @@ Applies digital IIR filter to sampled ADC signals
 
    <td align="center">
 
-|image943|
+|image947|
 
 .. raw:: html
 
@@ -36249,7 +37168,7 @@ N
 
    <td align="center">
 
-|image944|
+|image948|
 
 .. raw:: html
 
@@ -36307,7 +37226,7 @@ Example I2C host controller
 
    <td align="center">
 
-|image945|
+|image949|
 
 .. raw:: html
 
@@ -36317,7 +37236,7 @@ Example I2C host controller
 
    <td align="center">
 
-|image946|
+|image950|
 
 .. raw:: html
 
@@ -36337,7 +37256,7 @@ N
 
    <td align="center">
 
-|image947|
+|image951|
 
 .. raw:: html
 
@@ -36347,7 +37266,7 @@ N
 
    <td align="center">
 
-|image948|
+|image952|
 
 .. raw:: html
 
@@ -36357,7 +37276,7 @@ N
 
    <td align="center">
 
-|image949|
+|image953|
 
 .. raw:: html
 
@@ -36405,7 +37324,7 @@ Example I2C IO expander target
 
    <td align="center">
 
-|image950|
+|image954|
 
 .. raw:: html
 
@@ -36415,7 +37334,7 @@ Example I2C IO expander target
 
    <td align="center">
 
-|image951|
+|image955|
 
 .. raw:: html
 
@@ -36435,7 +37354,7 @@ N
 
    <td align="center">
 
-|image952|
+|image956|
 
 .. raw:: html
 
@@ -36445,7 +37364,7 @@ N
 
    <td align="center">
 
-|image953|
+|image957|
 
 .. raw:: html
 
@@ -36455,7 +37374,7 @@ N
 
    <td align="center">
 
-|image954|
+|image958|
 
 .. raw:: html
 
@@ -36513,7 +37432,7 @@ N
 
    <td align="center">
 
-|image955|
+|image959|
 
 .. raw:: html
 
@@ -36553,7 +37472,7 @@ N
 
    <td align="center">
 
-|image956|
+|image960|
 
 .. raw:: html
 
@@ -36611,7 +37530,7 @@ N
 
    <td align="center">
 
-|image957|
+|image961|
 
 .. raw:: html
 
@@ -36621,17 +37540,7 @@ N
 
    <td align="center">
 
-|image958|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
+|image962|
 
 .. raw:: html
 
@@ -36651,7 +37560,17 @@ N
 
    <td align="center">
 
-|image959|
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image963|
 
 .. raw:: html
 
@@ -36699,7 +37618,7 @@ This sub system allows for different pins/applications be turned on/off in a seq
 
    <td align="center">
 
-|image960|
+|image964|
 
 .. raw:: html
 
@@ -36709,17 +37628,7 @@ This sub system allows for different pins/applications be turned on/off in a seq
 
    <td align="center">
 
-|image961|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
+|image965|
 
 .. raw:: html
 
@@ -36739,7 +37648,7 @@ N
 
    <td align="center">
 
-|image962|
+N
 
 .. raw:: html
 
@@ -36749,7 +37658,17 @@ N
 
    <td align="center">
 
-|image963|
+|image966|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image967|
 
 .. raw:: html
 
@@ -36807,7 +37726,7 @@ N
 
    <td align="center">
 
-|image964|
+|image968|
 
 .. raw:: html
 
@@ -36905,7 +37824,7 @@ N
 
    <td align="center">
 
-|image965|
+|image969|
 
 .. raw:: html
 
@@ -36993,7 +37912,7 @@ This example demonstrates using the two switches on the MSPM0 Launchpad to chang
 
    <td align="center">
 
-|image966|
+|image970|
 
 .. raw:: html
 
@@ -37023,7 +37942,7 @@ N
 
    <td align="center">
 
-|image967|
+|image971|
 
 .. raw:: html
 
@@ -37033,7 +37952,7 @@ N
 
    <td align="center">
 
-|image968|
+|image972|
 
 .. raw:: html
 
@@ -37101,7 +38020,7 @@ N
 
    <td align="center">
 
-|image969|
+|image973|
 
 .. raw:: html
 
@@ -37141,7 +38060,7 @@ N
 
    <td align="center">
 
-|image970|
+|image974|
 
 .. raw:: html
 
@@ -37189,7 +38108,7 @@ Create a pulsating LED effect using timers
 
    <td align="center">
 
-|image971|
+|image975|
 
 .. raw:: html
 
@@ -37199,7 +38118,7 @@ Create a pulsating LED effect using timers
 
    <td align="center">
 
-|image972|
+|image976|
 
 .. raw:: html
 
@@ -37219,7 +38138,7 @@ N
 
    <td align="center">
 
-|image973|
+|image977|
 
 .. raw:: html
 
@@ -37229,7 +38148,7 @@ N
 
    <td align="center">
 
-|image974|
+|image978|
 
 .. raw:: html
 
@@ -37239,7 +38158,7 @@ N
 
    <td align="center">
 
-|image975|
+|image979|
 
 .. raw:: html
 
@@ -37297,7 +38216,7 @@ N
 
    <td align="center">
 
-|image976|
+|image980|
 
 .. raw:: html
 
@@ -37385,7 +38304,7 @@ OPA supports two different sensor input voltages and uses common ADC channel
 
    <td align="center">
 
-|image977|
+|image981|
 
 .. raw:: html
 
@@ -37483,7 +38402,7 @@ Demonstrate SPI to CAN bridge
 
    <td align="center">
 
-|image978|
+|image982|
 
 .. raw:: html
 
@@ -37581,7 +38500,7 @@ Implements an SPI to I2C Bridge using an M0 MCU
 
    <td align="center">
 
-|image979|
+|image983|
 
 .. raw:: html
 
@@ -37679,7 +38598,7 @@ A simple run to completion task scheduler
 
    <td align="center">
 
-|image980|
+|image984|
 
 .. raw:: html
 
@@ -37689,17 +38608,7 @@ A simple run to completion task scheduler
 
    <td align="center">
 
-|image981|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
+|image985|
 
 .. raw:: html
 
@@ -37719,7 +38628,17 @@ N
 
    <td align="center">
 
-|image982|
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image986|
 
 .. raw:: html
 
@@ -37787,7 +38706,7 @@ N
 
    <td align="center">
 
-|image983|
+|image987|
 
 .. raw:: html
 
@@ -37885,7 +38804,7 @@ N
 
    <td align="center">
 
-|image984|
+|image988|
 
 .. raw:: html
 
@@ -37973,7 +38892,7 @@ Along with an external circuit this code amplifies the difference between two vo
 
    <td align="center">
 
-|image985|
+|image989|
 
 .. raw:: html
 
@@ -37983,7 +38902,7 @@ Along with an external circuit this code amplifies the difference between two vo
 
    <td align="center">
 
-|image986|
+|image990|
 
 .. raw:: html
 
@@ -38071,7 +38990,7 @@ Translates UART packets to multiple I2C devices
 
    <td align="center">
 
-|image987|
+|image991|
 
 .. raw:: html
 
@@ -38081,7 +39000,7 @@ Translates UART packets to multiple I2C devices
 
    <td align="center">
 
-|image988|
+|image992|
 
 .. raw:: html
 
@@ -38101,7 +39020,7 @@ N
 
    <td align="center">
 
-|image989|
+|image993|
 
 .. raw:: html
 
@@ -38111,7 +39030,7 @@ N
 
    <td align="center">
 
-|image990|
+|image994|
 
 .. raw:: html
 
@@ -38121,7 +39040,7 @@ N
 
    <td align="center">
 
-|image991|
+|image995|
 
 .. raw:: html
 
@@ -38169,7 +39088,7 @@ UART device receives packets and passes them on or executes reads in SPI format
 
    <td align="center">
 
-|image992|
+|image996|
 
 .. raw:: html
 
@@ -38199,7 +39118,7 @@ N
 
    <td align="center">
 
-|image993|
+|image997|
 
 .. raw:: html
 
@@ -38209,7 +39128,7 @@ N
 
    <td align="center">
 
-|image994|
+|image998|
 
 .. raw:: html
 
@@ -38287,7 +39206,7 @@ N
 
    <td align="center">
 
-|image995|
+|image999|
 
 .. raw:: html
 
@@ -38504,7 +39423,7 @@ PMBus controller example
 
    <td align="center">
 
-|image996|
+|image1000|
 
 .. raw:: html
 
@@ -38544,7 +39463,7 @@ N
 
    <td align="center">
 
-|image997|
+|image1001|
 
 .. raw:: html
 
@@ -38564,7 +39483,7 @@ N
 
    <td align="center">
 
-|image998|
+|image1002|
 
 .. raw:: html
 
@@ -38602,7 +39521,7 @@ PMBus controller example with group command
 
    <td align="center">
 
-|image999|
+|image1003|
 
 .. raw:: html
 
@@ -38642,7 +39561,7 @@ N
 
    <td align="center">
 
-|image1000|
+|image1004|
 
 .. raw:: html
 
@@ -38662,7 +39581,7 @@ N
 
    <td align="center">
 
-|image1001|
+|image1005|
 
 .. raw:: html
 
@@ -38700,7 +39619,7 @@ PMBus target example
 
    <td align="center">
 
-|image1002|
+|image1006|
 
 .. raw:: html
 
@@ -38740,7 +39659,7 @@ N
 
    <td align="center">
 
-|image1003|
+|image1007|
 
 .. raw:: html
 
@@ -38760,7 +39679,7 @@ N
 
    <td align="center">
 
-|image1004|
+|image1008|
 
 .. raw:: html
 
@@ -39282,7 +40201,7 @@ N
 
    <td align="center">
 
-|image1005|
+|image1009|
 
 .. raw:: html
 
@@ -39332,7 +40251,7 @@ N
 
    <td align="center">
 
-|image1006|
+|image1010|
 
 .. raw:: html
 
@@ -39509,104 +40428,6 @@ Demonstrates basic implementation of SMBus Controller testing all SMBus 2.0 prot
 
    <td align="center">
 
-|image1007|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image1008|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image1009|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-N
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
-|image1010|
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   </tr>
-
-.. raw:: html
-
-   <tr>
-
-.. raw:: html
-
-   <td>
-
-smbus\_controller\_ARP
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td>
-
-Demonstrates basic implementation of SMBus Controller testing ARP commands as per SMBus 3.2 Specification
-
-.. raw:: html
-
-   </td>
-
-.. raw:: html
-
-   <td align="center">
-
 |image1011|
 
 .. raw:: html
@@ -39685,7 +40506,7 @@ N
 
    <td>
 
-smbus\_controller\_host\_notify
+smbus\_controller\_ARP
 
 .. raw:: html
 
@@ -39695,7 +40516,7 @@ smbus\_controller\_host\_notify
 
    <td>
 
-Demonstrates implementation of SMBus Host Notify function on a Controller
+Demonstrates basic implementation of SMBus Controller testing ARP commands as per SMBus 3.2 Specification
 
 .. raw:: html
 
@@ -39783,7 +40604,7 @@ N
 
    <td>
 
-smbus\_target00\_all\_protocols
+smbus\_controller\_host\_notify
 
 .. raw:: html
 
@@ -39793,7 +40614,7 @@ smbus\_target00\_all\_protocols
 
    <td>
 
-Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocols using I2C
+Demonstrates implementation of SMBus Host Notify function on a Controller
 
 .. raw:: html
 
@@ -39881,7 +40702,7 @@ N
 
    <td>
 
-smbus\_target\_ARP
+smbus\_target00\_all\_protocols
 
 .. raw:: html
 
@@ -39891,7 +40712,7 @@ smbus\_target\_ARP
 
    <td>
 
-Demonstrates basic implementation of SMBus Target with ARP Support according SMBus 3.2 Specification
+Demonstrates basic implementation of SMBus Target testing all SMBus 2.0 protocols using I2C
 
 .. raw:: html
 
@@ -39979,7 +40800,7 @@ N
 
    <td>
 
-smbus\_target\_host\_notify
+smbus\_target\_ARP
 
 .. raw:: html
 
@@ -39989,7 +40810,7 @@ smbus\_target\_host\_notify
 
    <td>
 
-Demonstrates implementation of SMBus Host Notify function on a Target
+Demonstrates basic implementation of SMBus Target with ARP Support according SMBus 3.2 Specification
 
 .. raw:: html
 
@@ -40060,6 +40881,1711 @@ N
    <td align="center">
 
 |image1030|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+smbus\_target\_host\_notify
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Demonstrates implementation of SMBus Host Notify function on a Target
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image1031|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image1032|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image1033|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+|image1034|
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   </table>
+
+2.29 TinyUSB
+~~~~~~~~~~~~
+
+The MSPM0 USB Library is implemented using the open-source TinyUSB stack. This library adds supports for USB Host and Device mode implementing USB 2.0 full speed specification.
+
+.. raw:: html
+
+   <table class="docutils align-default">
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <th rowspan="2">
+
+Project Name
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th rowspan="2">
+
+Description
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th colspan="2">
+
+.. raw:: html
+
+   <p style="text-align: center;">
+
+EVM
+
+.. raw:: html
+
+   </p>
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0G3507
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0L1306
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0C1104
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0L2228
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0G3519
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0L1117
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   <th>
+
+LP\_MSPM0H3216
+
+.. raw:: html
+
+   </th>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_audio\_test
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device Audio Test Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_cdc\_acm\_uart
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device CDC to UART bridge example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_cdc\_dual\_ports
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device CDC Dual Ports
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_hid\_cdc\_composite\_ti
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device HID CDC Composite Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_hid\_composite
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device HID Composite Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_hid\_generic\_inout
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device HID Generic InOut
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_hid\_keyboard\_ti
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB TI's Device HID Keyboard Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_hid\_mouse\_ti
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB TI's Device HID Mouse Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_hid\_multiple\_interface
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device HID Multiple Interface
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_msc\_dual\_lun
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device Mass Storage Class Dual Logical Unit Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_uac2\_headset
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device USB Audio Class 2.0 Headset Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_uac2\_speaker\_fb
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device USB Audio Class 2.0 Speaker Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+device\_uac\_microphone\_i2s
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+TinyUSB Device Microphone to I2S Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+host\_device\_info
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Tiny USB Host Device Info Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+.. raw:: html
+
+   <td>
+
+host\_msc\_file\_explorer
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td>
+
+Tiny USB Host Mass Storage Class File Explorer Example
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
+
+.. raw:: html
+
+   </td>
+
+.. raw:: html
+
+   <td align="center">
+
+N
 
 .. raw:: html
 
@@ -41104,4 +43630,8 @@ N
 .. |image1028| image:: ./images/examples_guide/ex_sysconfig.png
 .. |image1029| image:: ./images/examples_guide/ex_sysconfig.png
 .. |image1030| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image1031| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image1032| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image1033| image:: ./images/examples_guide/ex_sysconfig.png
+.. |image1034| image:: ./images/examples_guide/ex_sysconfig.png
 

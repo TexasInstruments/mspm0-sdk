@@ -86,6 +86,8 @@ int main(void)
     }
 }
 
+#if defined(__MSPM0_HAS_I2C__)
+
 void I2C_INST_IRQHandler(void)
 {
     switch (DL_I2C_getPendingInterrupt(I2C_INST)) 
@@ -133,3 +135,55 @@ void I2C_INST_IRQHandler(void)
             break;
     }
 }
+
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__)
+void I2C_INST_IRQHandler(void)
+{
+    switch (DL_I2CC_getPendingInterrupt(I2C_INST))
+    {
+        case DL_I2CC_IIDX_RX_DONE:
+            gI2C.rxMsg.len = gI2C.rxMsg.ptr;
+            I2C_decodeResponse(&gI2C,&gResponse);
+            gI2C.status = I2C_STATUS_RX_COMPLETE;
+            break;
+
+        case DL_I2CC_IIDX_TX_DONE:
+            DL_I2CC_disableInterrupt(
+                I2C_INST, DL_I2CC_INTERRUPT_TXFIFO_TRIGGER);
+            gI2C.status = I2C_STATUS_TX_COMPLETE;
+            break;
+
+        case DL_I2CC_IIDX_RXFIFO_TRIGGER:
+            gI2C.status = I2C_STATUS_RX_INPROGRESS;
+            /* Store bytes received from target in Rx Msg Buffer */
+            while (DL_I2CC_isRXFIFOEmpty(I2C_INST) != true) {
+                if (gI2C.rxMsg.ptr < MAX_BUFFER_SIZE) {
+                    gI2C.rxMsg.buffer[gI2C.rxMsg.ptr++] =
+                        DL_I2CC_receiveData(I2C_INST);
+                } else {
+                    /* Ignore and remove from FIFO if the buffer is full */
+                    DL_I2CC_receiveData(I2C_INST);
+                }
+            }
+            break;
+
+        case DL_I2CC_IIDX_TXFIFO_TRIGGER:
+            gI2C.status = I2C_STATUS_TX_INPROGRESS;
+            /* Fill TX FIFO with bytes to send */
+            if (gI2C.txMsg.ptr < gI2C.txMsg.len) {
+                gI2C.txMsg.ptr += DL_I2CC_fillTXFIFO(
+                    I2C_INST, &gI2C.txMsg.buffer[gI2C.txMsg.ptr], gI2C.txMsg.len - gI2C.txMsg.ptr);
+            }
+            break;
+
+        case DL_I2CC_IIDX_ARBITRATION_LOST:
+        case DL_I2CC_IIDX_NACK:
+            gI2C.status = I2C_STATUS_ERROR;
+            break;
+        default:
+            break;
+    }
+}
+#endif

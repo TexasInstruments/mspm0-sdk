@@ -54,6 +54,8 @@ function validate(inst, validation)
     {
         validation.logInfo("This device does not support dual-bank. " +
             "Bank-swapping portions are fixed for this device.", inst);
+        validation.logInfo(`Flash bank swap is not available for this device`,
+             inst, "disableBankswap")
     }
 
     if (!inst.unprivVerifyOptions.includes("writeExecuteOnly"))
@@ -460,8 +462,8 @@ of images, primary and secondary, must be kept.
 
 NOTE: Only Bankswap is enabled currently
 `,
-            default: false,
-            hidden: false,
+            default: !deviceOptions.SUPPORT_BANKSWAP,
+            readOnly: !deviceOptions.SUPPORT_BANKSWAP,
             onChange: onChangeDisableBankswap,
         },
         {
@@ -548,7 +550,7 @@ image size.
             range: [0, 0xFFFFFFFF],
             displayFormat: "hex",
             isInteger: true,
-            hidden: true,
+            hidden: deviceOptions.SUPPORT_BANKSWAP,
         },
     ];
 
@@ -650,6 +652,13 @@ function extend(base)
     /* concatenate device-specific configs */
     // moduleStatic specific to SECCONFIG as it's statically defined
     result.config = base.moduleStatic.config.concat(devSpecific.config);
+    /* Force disableBankswap on devices that dont support it */
+    result.onMigrate = function (newInst, oldInst, oldSystem) {
+        let newDeviceOptions = system.getScript("/ti/driverlib/sec_config/SECCONFIGOptions.js")
+        if(!newDeviceOptions.SUPPORT_BANKSWAP){
+            newInst.disableBankswap = true;
+        }
+    };
     base.moduleStatic = result;
 
     return (base);

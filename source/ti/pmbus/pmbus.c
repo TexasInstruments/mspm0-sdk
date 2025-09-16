@@ -322,7 +322,46 @@ static uint8_t au8RxBuff[SMB_MAX_PACKET_SIZE];
 /*! SMB Transmission Buffer   */
 static uint8_t au8TxBuff[SMB_MAX_PACKET_SIZE];
 
+#if defined(__MSPM0_HAS_I2C__)
+void PMBus_I2C_disableInterrupt(I2C_Regs* i2cAddr, uint32_t interruptMask)
+{
+    DL_I2C_disableInterrupt(i2cAddr, interruptMask);
+}
+
+uint32_t PMBus_I2C_getRawInterruptStatus(I2C_Regs* i2cAddr, uint32_t interruptMask)
+{
+    return DL_I2C_getRawInterruptStatus(i2cAddr, interruptMask);
+}
+
+void PMBus_I2C_clearInterruptStatus(I2C_Regs* i2cAddr, uint32_t interruptMask)
+{
+    DL_I2C_clearInterruptStatus(i2cAddr, interruptMask);
+}
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+void PMBus_I2C_disableInterrupt(UNICOMM_Inst_Regs* i2cAddr, uint32_t interruptMask)
+{
+    DL_I2CC_disableInterrupt(i2cAddr, interruptMask);
+}
+
+uint32_t PMBus_I2C_getRawInterruptStatus(UNICOMM_Inst_Regs* i2cAddr, uint32_t interruptMask)
+{
+    return DL_I2CC_getRawInterruptStatus(i2cAddr, interruptMask);
+}
+
+void PMBus_I2C_clearInterruptStatus(UNICOMM_Inst_Regs* i2cAddr, uint32_t interruptMask)
+{
+    DL_I2CC_clearInterruptStatus(i2cAddr, interruptMask);
+}
+#endif
+
+#ifdef __MSPM0_HAS_I2C__
 void PMBus_controllerInit(SMBus *SMB, I2C_Regs* i2cAddr, uint32_t busClk)
+#endif
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+void PMBus_controllerInit(SMBus *SMB, UNICOMM_Inst_Regs* i2cAddr, uint32_t busClk)
+#endif
 {
     /* Initialize SMBus as Controller   */
     SMBus_controllerInit(SMB,i2cAddr, busClk);
@@ -330,7 +369,12 @@ void PMBus_controllerInit(SMBus *SMB, I2C_Regs* i2cAddr, uint32_t busClk)
     SMBus_controllerEnableInt(SMB);
 }
 
+#ifdef __MSPM0_HAS_I2C__
 void PMBus_targetInit(SMBus *SMB, I2C_Regs* i2cAddr, uint8_t targetAddr)
+#endif
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+void PMBus_targetInit(SMBus *SMB, UNICOMM_Inst_Regs* i2cAddr, uint8_t targetAddr)
+#endif
 {
     /* Initialize SMBus as target   */
     SMBus_targetInit(SMB,i2cAddr);
@@ -560,12 +604,12 @@ int8_t PMBus_QuickCommand(SMBus *SMB,
 
     if (groupCmd == PMBUS_GRP_CMD_ENABLE)
     {
-        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
-        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        PMBus_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!PMBus_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE))
         {
 
         }
-        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        PMBus_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
     }
     else
     {
@@ -604,12 +648,12 @@ int8_t PMBus_cmdSendByte(SMBus *SMB,
 
     if (groupCmd == PMBUS_GRP_CMD_ENABLE)
     {
-        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
-        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        PMBus_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!PMBus_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE))
         {
 
         }
-        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        PMBus_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
     }
     else
     {
@@ -655,12 +699,12 @@ int8_t PMBus_cmdWriteByte(SMBus *SMB,
 
     if (groupCmd == PMBUS_GRP_CMD_ENABLE)
     {
-        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
-        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        PMBus_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!PMBus_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE))
         {
 
         }
-        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        PMBus_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
     }
     else
     {
@@ -707,12 +751,12 @@ int8_t PMBus_cmdWriteWord(SMBus *SMB,
 
     if (groupCmd == PMBUS_GRP_CMD_ENABLE)
     {
-        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
-        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        PMBus_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!PMBus_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE))
         {
 
         }
-        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        PMBus_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
     }
     else
     {
@@ -758,12 +802,12 @@ int8_t PMBus_cmdBlockWrite(SMBus *SMB,
 
     if (groupCmd == PMBUS_GRP_CMD_ENABLE)
     {
-        DL_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
-        while (!DL_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE))
+        PMBus_I2C_disableInterrupt(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        while (!PMBus_I2C_getRawInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE))
         {
 
         }
-        DL_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, DL_I2C_INTERRUPT_CONTROLLER_TX_DONE);
+        PMBus_I2C_clearInterruptStatus(SMB->phy.SMBus_Phy_i2cBase, PMBUS_I2C_INTERRUPT_CONTROLLER_TX_DONE);
     }
     else
     {

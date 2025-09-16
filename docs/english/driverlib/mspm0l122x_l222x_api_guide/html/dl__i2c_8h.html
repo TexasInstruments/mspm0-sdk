@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.05.01.00</span>
+   &#160;<span id="projectnumber">2.06.00.05</span>
    </div>
   </td>
  </tr>
@@ -310,6 +310,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___i2_c___d_m_a___i_n_t_e_r_r_u_p_t.html#gaee937a2f2d1cef1340028283ec81fc90">DL_I2C_DMA_INTERRUPT_CONTROLLER_RXFIFO_TRIGGER</a>&#160;&#160;&#160;(I2C_DMA_TRIG1_IMASK_MRXFIFOTRG_SET)</td></tr>
 <tr class="memdesc:gaee937a2f2d1cef1340028283ec81fc90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controller Receive FIFO Trigger when &gt;= defined bytes for DMA trigger. <br /></td></tr>
 <tr class="separator:gaee937a2f2d1cef1340028283ec81fc90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e2b42accca55a8c56d3be525af00283"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga4e2b42accca55a8c56d3be525af00283">I2C_getTargetOwnAddressAlternateMask</a>&#160;&#160;&#160;<a class="el" href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe">DL_I2C_getTargetOwnAddressAlternateMask</a></td></tr>
+<tr class="memdesc:ga4e2b42accca55a8c56d3be525af00283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backwards compatible redirect for <a class="el" href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe">DL_I2C_getTargetOwnAddressAlternateMask</a>. <br /></td></tr>
+<tr class="separator:ga4e2b42accca55a8c56d3be525af00283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -638,7 +642,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga8f332a1d9f230510571654708d638816"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes/removes all elements in the target RX FIFO.  <a href="group___i2_c.html#ga8f332a1d9f230510571654708d638816">More...</a><br /></td></tr>
 <tr class="separator:ga8f332a1d9f230510571654708d638816"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5f56db4764b0e7acc0ef47e8439d79be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga5f56db4764b0e7acc0ef47e8439d79be">DL_I2C_transmitTargetDataBlocking</a> (I2C_Regs *i2c, uint8_t data)</td></tr>
-<tr class="memdesc:ga5f56db4764b0e7acc0ef47e8439d79be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit target data, waiting until transmit request.  <a href="group___i2_c.html#ga5f56db4764b0e7acc0ef47e8439d79be">More...</a><br /></td></tr>
+<tr class="memdesc:ga5f56db4764b0e7acc0ef47e8439d79be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit target data, blocking until transmit request is received. Will wait indefintely until bus is not busy. Note that if data is already present in the TX FIFO when this API is called, it will block until all data is sent.  <a href="group___i2_c.html#ga5f56db4764b0e7acc0ef47e8439d79be">More...</a><br /></td></tr>
 <tr class="separator:ga5f56db4764b0e7acc0ef47e8439d79be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1568de96bfa23a32f14989f5596b9ade"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga1568de96bfa23a32f14989f5596b9ade">DL_I2C_transmitTargetDataCheck</a> (I2C_Regs *i2c, uint8_t data)</td></tr>
 <tr class="memdesc:ga1568de96bfa23a32f14989f5596b9ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit target data.  <a href="group___i2_c.html#ga1568de96bfa23a32f14989f5596b9ade">More...</a><br /></td></tr>
@@ -916,9 +920,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gab17d64b92d6cf53e00b7ddfb5350d5b0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#gab17d64b92d6cf53e00b7ddfb5350d5b0">DL_I2C_setTargetOwnAddressAlternate</a> (I2C_Regs *i2c, uint32_t addr)</td></tr>
 <tr class="memdesc:gab17d64b92d6cf53e00b7ddfb5350d5b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set target own address alternate.  <a href="group___i2_c.html#gab17d64b92d6cf53e00b7ddfb5350d5b0">More...</a><br /></td></tr>
 <tr class="separator:gab17d64b92d6cf53e00b7ddfb5350d5b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaad709a97f5cf0aa4aaba50405a980041"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#gaad709a97f5cf0aa4aaba50405a980041">I2C_getTargetOwnAddressAlternateMask</a> (const I2C_Regs *i2c)</td></tr>
-<tr class="memdesc:gaad709a97f5cf0aa4aaba50405a980041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get target own address alternate mask.  <a href="group___i2_c.html#gaad709a97f5cf0aa4aaba50405a980041">More...</a><br /></td></tr>
-<tr class="separator:gaad709a97f5cf0aa4aaba50405a980041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga01c6972cfd526bc0c905e71da2b3bffe"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe">DL_I2C_getTargetOwnAddressAlternateMask</a> (const I2C_Regs *i2c)</td></tr>
+<tr class="memdesc:ga01c6972cfd526bc0c905e71da2b3bffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get target own address alternate mask.  <a href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe">More...</a><br /></td></tr>
+<tr class="separator:ga01c6972cfd526bc0c905e71da2b3bffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga419cd19263a8e6a9fd5f198cde723a2e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga419cd19263a8e6a9fd5f198cde723a2e">DL_I2C_setTargetOwnAddressAlternateMask</a> (I2C_Regs *i2c, uint32_t addressMask)</td></tr>
 <tr class="memdesc:ga419cd19263a8e6a9fd5f198cde723a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set target own address alternate mask.  <a href="group___i2_c.html#ga419cd19263a8e6a9fd5f198cde723a2e">More...</a><br /></td></tr>
 <tr class="separator:ga419cd19263a8e6a9fd5f198cde723a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -1,6 +1,6 @@
 ## Example Summary
 
-This example demonstrates using the two switches on the MSPM0G3519 Launchpad to change the period and duty cycle on TIMA1 PWM output channels CC0 and CC1. Pressing switch S1 changes the PWM period of the timer. Pressing S2 changes the duty cycle on CC1 output. This example also demonstrates the use of TIMA0 configured as a one-shot timer and interrupts for debouncing the switches.
+This example demonstrates using the two switches on the MSPM0G3519 Launchpad to change the period and duty cycle on TIMA1 PWM output channels CC0 and CC1. Pressing switch S1 changes the PWM period of the timer. Pressing S2 changes the duty cycle on CC0 output. This example also demonstrates the use of TIMA0 configured as a one-shot timer and interrupts for debouncing the switches.
 
 ## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
@@ -36,5 +36,5 @@ For more information about jumper configuration to achieve low-power using the
 MSPM0 LaunchPad, please visit the [LP-MSPM0G3519 User's Guide](https://www.ti.com/lit/slau947).
 
 ## Example Usage
-Compile, load, and run the example. At startup, TIMA1 is loaded with a PWM period of 1ms (1000Hz) and 75% duty cycle on CC0 and 25% duty cycle on CC1.  Pressing switch S1 will cycle through the following PWM periods: 1ms, 2ms, 4ms, and 0.5ms.    These changes are reflected on both CC0 and CC1 outputs. Pressing switch S2 will cycle through the following PWM duty cycles: 75%, 90%, 25%, and 50%
+Compile, load, and run the example. At startup, TIMA1 is loaded with a PWM period of 1ms (1000Hz) and 50% duty cycle on CC0 and 75% duty cycle on CC1.  Pressing switch S1 will cycle through the following PWM periods: 1ms, 2ms, 4ms, and 0.5ms.    These changes are reflected on both CC0 and CC1 outputs. Pressing switch S2 will cycle through the following PWM duty cycles: 75%, 10%, 25%, and 50%
 

@@ -103,6 +103,8 @@ extern "C" {
 #define ADC12_0_ADCMEM_0_REF                DL_ADC12_REFERENCE_VOLTAGE_VDDA_VSSA
 #define GPIO_ADC12_0_C0_PORT                                               GPIOA
 #define GPIO_ADC12_0_C0_PIN                                       DL_GPIO_PIN_27
+#define GPIO_ADC12_0_IOMUX_C0                                    (IOMUX_PINCM60)
+#define GPIO_ADC12_0_IOMUX_C0_FUNC                (IOMUX_PINCM60_PF_UNCONNECTED)
 
 
 
@@ -112,6 +114,7 @@ extern "C" {
 /* Defines for USER_LED_1: GPIOB.26 with pinCMx 57 on package pin 96 */
 #define GPIO_LEDS_USER_LED_1_PIN                                (DL_GPIO_PIN_26)
 #define GPIO_LEDS_USER_LED_1_IOMUX                               (IOMUX_PINCM57)
+
 
 /* clang-format on */
 

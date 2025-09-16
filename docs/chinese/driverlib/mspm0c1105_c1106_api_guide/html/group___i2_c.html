@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C1105_C1106 Driver Library
-   &#160;<span id="projectnumber">2.05.01.00</span>
+   &#160;<span id="projectnumber">2.06.00.05</span>
    </div>
   </td>
  </tr>
@@ -114,6 +114,10 @@ Macros</h2></td></tr>
 <tr class="memitem:ga2031ae56b0ebaf369e94df7f98fb9222"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga2031ae56b0ebaf369e94df7f98fb9222">DL_I2C_RX_FIFO_COUNT_MAXIMUM</a>&#160;&#160;&#160;((uint32_t)I2C_SYS_FENTRIES)</td></tr>
 <tr class="memdesc:ga2031ae56b0ebaf369e94df7f98fb9222"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C number of bytes which could be put into the RX FIFO.  <a href="#ga2031ae56b0ebaf369e94df7f98fb9222">More...</a><br /></td></tr>
 <tr class="separator:ga2031ae56b0ebaf369e94df7f98fb9222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e2b42accca55a8c56d3be525af00283"><td class="memItemLeft" align="right" valign="top"><a id="ga4e2b42accca55a8c56d3be525af00283"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga4e2b42accca55a8c56d3be525af00283">I2C_getTargetOwnAddressAlternateMask</a>&#160;&#160;&#160;<a class="el" href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe">DL_I2C_getTargetOwnAddressAlternateMask</a></td></tr>
+<tr class="memdesc:ga4e2b42accca55a8c56d3be525af00283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Backwards compatible redirect for <a class="el" href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe">DL_I2C_getTargetOwnAddressAlternateMask</a>. <br /></td></tr>
+<tr class="separator:ga4e2b42accca55a8c56d3be525af00283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -442,7 +446,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga8f332a1d9f230510571654708d638816"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes/removes all elements in the target RX FIFO.  <a href="#ga8f332a1d9f230510571654708d638816">More...</a><br /></td></tr>
 <tr class="separator:ga8f332a1d9f230510571654708d638816"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5f56db4764b0e7acc0ef47e8439d79be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga5f56db4764b0e7acc0ef47e8439d79be">DL_I2C_transmitTargetDataBlocking</a> (I2C_Regs *i2c, uint8_t data)</td></tr>
-<tr class="memdesc:ga5f56db4764b0e7acc0ef47e8439d79be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit target data, waiting until transmit request.  <a href="#ga5f56db4764b0e7acc0ef47e8439d79be">More...</a><br /></td></tr>
+<tr class="memdesc:ga5f56db4764b0e7acc0ef47e8439d79be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit target data, blocking until transmit request is received. Will wait indefintely until bus is not busy. Note that if data is already present in the TX FIFO when this API is called, it will block until all data is sent.  <a href="#ga5f56db4764b0e7acc0ef47e8439d79be">More...</a><br /></td></tr>
 <tr class="separator:ga5f56db4764b0e7acc0ef47e8439d79be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1568de96bfa23a32f14989f5596b9ade"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga1568de96bfa23a32f14989f5596b9ade">DL_I2C_transmitTargetDataCheck</a> (I2C_Regs *i2c, uint8_t data)</td></tr>
 <tr class="memdesc:ga1568de96bfa23a32f14989f5596b9ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit target data.  <a href="#ga1568de96bfa23a32f14989f5596b9ade">More...</a><br /></td></tr>
@@ -720,9 +724,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gab17d64b92d6cf53e00b7ddfb5350d5b0"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#gab17d64b92d6cf53e00b7ddfb5350d5b0">DL_I2C_setTargetOwnAddressAlternate</a> (I2C_Regs *i2c, uint32_t addr)</td></tr>
 <tr class="memdesc:gab17d64b92d6cf53e00b7ddfb5350d5b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set target own address alternate.  <a href="#gab17d64b92d6cf53e00b7ddfb5350d5b0">More...</a><br /></td></tr>
 <tr class="separator:gab17d64b92d6cf53e00b7ddfb5350d5b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaad709a97f5cf0aa4aaba50405a980041"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#gaad709a97f5cf0aa4aaba50405a980041">I2C_getTargetOwnAddressAlternateMask</a> (const I2C_Regs *i2c)</td></tr>
-<tr class="memdesc:gaad709a97f5cf0aa4aaba50405a980041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get target own address alternate mask.  <a href="#gaad709a97f5cf0aa4aaba50405a980041">More...</a><br /></td></tr>
-<tr class="separator:gaad709a97f5cf0aa4aaba50405a980041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga01c6972cfd526bc0c905e71da2b3bffe"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga01c6972cfd526bc0c905e71da2b3bffe">DL_I2C_getTargetOwnAddressAlternateMask</a> (const I2C_Regs *i2c)</td></tr>
+<tr class="memdesc:ga01c6972cfd526bc0c905e71da2b3bffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get target own address alternate mask.  <a href="#ga01c6972cfd526bc0c905e71da2b3bffe">More...</a><br /></td></tr>
+<tr class="separator:ga01c6972cfd526bc0c905e71da2b3bffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga419cd19263a8e6a9fd5f198cde723a2e"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___i2_c.html#ga419cd19263a8e6a9fd5f198cde723a2e">DL_I2C_setTargetOwnAddressAlternateMask</a> (I2C_Regs *i2c, uint32_t addressMask)</td></tr>
 <tr class="memdesc:ga419cd19263a8e6a9fd5f198cde723a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set target own address alternate mask.  <a href="#ga419cd19263a8e6a9fd5f198cde723a2e">More...</a><br /></td></tr>
 <tr class="separator:ga419cd19263a8e6a9fd5f198cde723a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1746,7 +1750,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">i2c</td><td>Pointer to the register overlay for the peripheral </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">buffer</td><td>Pointer to buffer of bytes </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>Number of bytes to fill controller TX FIFO from buffer</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>Number of bytes to fill controller TX FIFO from buffer [0x00, 0xFFF]</td></tr>
   </table>
   </dd>
 </dl>
@@ -1982,7 +1986,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">i2c</td><td>Pointer to the register overlay for the peripheral </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">targetAddr</td><td>Target address [0x00, 0x3FF] </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">direction</td><td>One of <a class="el" href="group___i2_c.html#ga4e5bff33e69ea760e7f8364b2f1cf259">DL_I2C_CONTROLLER_DIRECTION</a> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Intended burst length in number of bytes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Intended burst length in number of bytes [0x00, 0xFFF] </td></tr>
   </table>
   </dd>
 </dl>
@@ -2301,7 +2305,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Transmit target data, waiting until transmit request. </p>
+<p>Transmit target data, blocking until transmit request is received. Will wait indefintely until bus is not busy. Note that if data is already present in the TX FIFO when this API is called, it will block until all data is sent. </p>
 <dl class="section note"><dt>Note</dt><dd>Setting own target addresses and enabling target should be done separately.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -5294,14 +5298,14 @@ false if peripheral wasn't reset </dd></dl>
 
 </div>
 </div>
-<a id="gaad709a97f5cf0aa4aaba50405a980041"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaad709a97f5cf0aa4aaba50405a980041">&sect;&nbsp;</a></span>I2C_getTargetOwnAddressAlternateMask()</h2>
+<a id="ga01c6972cfd526bc0c905e71da2b3bffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga01c6972cfd526bc0c905e71da2b3bffe">&sect;&nbsp;</a></span>DL_I2C_getTargetOwnAddressAlternateMask()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">__STATIC_INLINE uint32_t I2C_getTargetOwnAddressAlternateMask </td>
+          <td class="memname">__STATIC_INLINE uint32_t DL_I2C_getTargetOwnAddressAlternateMask </td>
           <td>(</td>
           <td class="paramtype">const I2C_Regs *&#160;</td>
           <td class="paramname"><em>i2c</em></td><td>)</td>

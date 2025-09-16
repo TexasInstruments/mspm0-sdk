@@ -3023,9 +3023,11 @@ __STATIC_INLINE DL_UART_PULSE_WIDTH DL_UART_getAnalogPulseWidth(
 /**
  *  @brief      Blocks to ensure transmit is ready before sending data
  *
- *  Puts the data into the TX FIFO after blocking to ensure the TX FIFO is not
- *  full. Will wait indefintely until there is space in the TX FIFO. See
- *  related APIs for additional transmit options.
+ *  Puts data into the TX FIFO, waiting indefintely until there is space in the
+ *  the TX FIFO. After placing data, waits indefintely until data is sent and
+ *  the entire TX FIFO is empty. Note that if data is already present in the TX
+ *  FIFO when this API is called, it will block until all data is sent.
+ *  See related APIs for additional transmit options.
  *
  *  Can be used for any data transfers that are less than or equal to 8 bits.
  *

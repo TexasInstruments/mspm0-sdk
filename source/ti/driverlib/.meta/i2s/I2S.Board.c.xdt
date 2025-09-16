@@ -1,0 +1,271 @@
+%%{
+/*
+ * Copyright (c) 2018-2019, Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/*
+ *  ======== I2S.Board.c.xdt ========
+ */
+
+    let I2S = args[0];
+    let content = args[1];
+
+    let Common = system.getScript("/ti/driverlib/Common.js");
+
+    /* shorthand names for some common references in template below */
+    let instances = I2S.$instances;
+    if (instances.length == 0) return;
+
+/*
+ * Standard Trampoline:
+ * In order to preserve spacing, it is important to also set the boolean
+ * values in the templates object based on whether that condition should
+ * produce any code
+ * Example:
+ * templates: {
+ *       boardc: "/ti/driverlib/comp/COMP.Board.c.xdt",
+ *       boardh: "/ti/driverlib/comp/COMP.Board.h.xdt",
+ *       Call: true,
+ *       Reset: false,
+ *       Power: true,
+ *       GPIO: false,
+ *       Function: true
+ * },
+ */
+
+
+    switch(content){
+        case "Call":
+            printCall();
+            break;
+        case "Reset":
+            printReset();
+            break;
+        case "Power":
+            printPower();
+            break;
+        case "GPIO":
+            printGPIO();
+            break;
+        case "Function":
+            printFunction();
+            break;
+        default:
+            /* do nothing */
+            return;
+            break;
+    }
+%%}
+%
+% function printCall(){
+%   for (let i in instances) {
+%       let inst = instances[i];
+    SYSCFG_DL_`inst.$name`_init();
+%   }
+% }
+%
+% function printReset(){
+% for (let i in instances) {
+%       let inst = instances[i];
+    DL_I2S_reset(`inst.$name`_INST);
+%   }
+% }
+% function printPower(){
+% for (let i in instances) {
+%       let inst = instances[i];
+%       /* another possibility depending on the driver */
+    DL_I2S_enablePower(`inst.$name`_INST);
+%   }
+% }
+%
+% function printGPIO(){
+%   for (let i in instances) {
+%       let inst = instances[i];
+%       /* all of these are defined in the header */
+%       let gpioStr = "GPIO_"+inst.$name;
+%%{
+    // Data Pin 0 functions
+%%}
+%   if (inst.dataPin0Enable) {
+%       let pinResourceName = "AD0";
+%       let pinDirection = (inst.dataPin0Direction=="INPUT")?"Input":"Output";
+%       /* If Pin Configuration enabled, do not generate duplicate call */
+%       if(!inst[pinResourceName+"PinConfig"]?.enableConfig){
+    DL_GPIO_initPeripheral`pinDirection`Function(
+        `gpioStr`_IOMUX_`pinResourceName`, `gpioStr`_IOMUX_`pinResourceName`_FUNC);
+%       }
+%   }
+%%{
+    // Data Pin 1 functions
+%%}
+%   if (inst.dataPin1Enable) {
+%       let pinResourceName = "AD1";
+%       let pinDirection = (inst.dataPin1Direction=="INPUT")?"Input":"Output";
+%       /* If Pin Configuration enabled, do not generate duplicate call */
+%       if(!inst[pinResourceName+"PinConfig"]?.enableConfig){
+    DL_GPIO_initPeripheral`pinDirection`Function(
+        `gpioStr`_IOMUX_`pinResourceName`, `gpioStr`_IOMUX_`pinResourceName`_FUNC);
+%       }
+%   }
+%%{
+    // BCLK Pin functions
+%%}
+%   let BCLKEnable = true;
+%   if (BCLKEnable) {
+%       let pinResourceName = "BCLK";
+%       let pinDirection = (inst.mode=="TARGET")?"Input":"Output";
+%       /* If Pin Configuration enabled, do not generate duplicate call */
+%       if(!inst[pinResourceName+"PinConfig"]?.enableConfig){
+    DL_GPIO_initPeripheral`pinDirection`Function(
+        `gpioStr`_IOMUX_`pinResourceName`, `gpioStr`_IOMUX_`pinResourceName`_FUNC);
+%       }
+%   }
+%%{
+    // MCLK Pin functions
+%%}
+%   if (inst.enableMCLK && inst.mode == "CONTROLLER") {
+%       let pinResourceName = "MCLK";
+%       let pinDirection = "Output";
+%       /* If Pin Configuration enabled, do not generate duplicate call */
+%       if(!inst[pinResourceName+"PinConfig"]?.enableConfig){
+    DL_GPIO_initPeripheral`pinDirection`Function(
+        `gpioStr`_IOMUX_`pinResourceName`, `gpioStr`_IOMUX_`pinResourceName`_FUNC);
+%       }
+%   }
+%%{
+    // WCLK Pin functions
+%%}
+%   let WCLKEnable = true;
+%   if (WCLKEnable) {
+%       let pinResourceName = "WCLK";
+%       let pinDirection = (inst.mode=="TARGET")?"Input":"Output";
+%       /* If Pin Configuration enabled, do not generate duplicate call */
+%       if(!inst[pinResourceName+"PinConfig"]?.enableConfig){
+    DL_GPIO_initPeripheral`pinDirection`Function(
+        `gpioStr`_IOMUX_`pinResourceName`, `gpioStr`_IOMUX_`pinResourceName`_FUNC);
+%       }
+%   }
+
+% } //for (let i in instances)
+% } //printGPIO
+%
+% /* Main Function */
+% function printFunction(){
+%   for (let i in instances) {
+%       let inst = instances[i];
+%       let instName = inst.$name;
+%
+static const DL_I2S_Config g`instName`_config = {
+    .mode        = DL_I2S_MODE_`inst.mode`,
+    .wclkInvert  = DL_I2S_WCLK_INVERSION_`(inst.wclkInvert)?"ENABLED":"DISABLED"`,
+    .phase       = DL_I2S_PHASE_`inst.phase`,
+    .samplingEdge = DL_I2S_SAMPLE_EDGE_`inst.samplingEdge`,
+    .sampleWordLength = `inst.sampleWordLength-1`,
+    .dataDelay   = DL_I2S_DATA_DELAY_`inst.dataDelay`,
+    .emptySlotOutput = DL_I2S_EMPTY_SLOT_OUTPUT_`inst.emptySlotOutput`,
+    .memoryAccessLength = DL_I2S_MEMORY_LENGTH_`inst.memoryAccessLength`_BIT,
+    .dataPin0Direction = DL_I2S_DATA_PIN_DIRECTION_`(inst.dataPin0Enable)?inst.dataPin0Direction:"UNUSED"`,
+    .dataPin0ValidChannelMask = `inst.dataPin0ValidChannelMask`,
+    .dataPin1Direction = DL_I2S_DATA_PIN_DIRECTION_`(inst.dataPin1Enable)?inst.dataPin1Direction:"UNUSED"`,
+    .dataPin1ValidChannelMask = `inst.dataPin1ValidChannelMask`,
+    .mclkDivider = `(inst.mclkDivider==1024)?0:(inst.mclkDivider)`,
+    .enableMCLK = `(inst.mode == "CONTROLLER")?inst.enableMCLK:false`,
+};
+
+static const DL_I2S_ClockConfig g`instName`_clockConfig = {
+    .clockSel    = DL_I2S_CLOCK_SOURCE_`inst.clockSel`,
+    .wordBaudClockSource = DL_I2S_WORD_BAUD_CLOCK_SOURCE_`inst.wordBaudClockSource`,
+    .wclkPhase   = DL_I2S_WCLK_PHASE_`inst.wclkPhase`,
+    .wclkDivider = `inst.wclkDivider`,
+    .bclkDivider = `(inst.bclkDivider==1024)?0:(inst.bclkDivider)`,
+};
+
+SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
+    DL_I2S_setClockConfig(`instName`_INST, (DL_I2S_ClockConfig *) &g`instName`_clockConfig);
+    DL_I2S_init(`instName`_INST, (DL_I2S_Config *) &g`instName`_config);
+% if(inst.enableFreeRun){
+    DL_I2S_enableFreeRun(`instName`_INST);
+% } else{
+    DL_I2S_disableFreeRun(`instName`_INST);
+% }
+% if(inst.enableMCLKGeneration){
+    DL_I2S_enableMCLKGeneration(`instName`_INST);
+% } else{
+    DL_I2S_disableMCLKGeneration(`instName`_INST);
+% }
+    DL_I2S_setTXFIFOThreshold(`instName`_INST, DL_I2S_TX_FIFO_LEVEL_`inst.txFIFOThreshold`);
+    DL_I2S_setRXFIFOThreshold(`instName`_INST, DL_I2S_RX_FIFO_LEVEL_`inst.rxFIFOThreshold`);
+%   if (inst.enabledInterrupts?.length > 0) {
+%%{
+    /* DMA Configuration */
+%%}
+%if (inst.enabledDMAEvent2Triggers != "None" && inst.enableDMAEvent2) {
+
+    /* Enable SPI TX interrupt as a trigger for DMA */
+    DL_I2S_enableDMATransmitEvent(`instName`_INST, `inst.enabledDMAEvent2Triggers`);
+%}
+%if (inst.enabledDMAEvent1Triggers != "None" && inst.enableDMAEvent1) {
+
+    /* Enable SPI RX interrupt as a trigger for DMA */
+    DL_I2S_enableDMAReceiveEvent(`instName`_INST, `inst.enabledDMAEvent1Triggers`);
+%}
+%%{
+    /* Interrupt configuration */
+    /* Create interrupt bit mask to be used in DL_I2S_enableInterrupt() */
+    let intsToEnableOR = "(";
+    for (let intToEnable of inst.enabledInterrupts)
+    {
+        if (intToEnable == inst.enabledInterrupts[inst.enabledInterrupts.length - 1])
+        {
+            intsToEnableOR += ("DL_I2S_INTERRUPT_" + intToEnable + ")");
+        }
+        else
+        {
+            intsToEnableOR += ("DL_I2S_INTERRUPT_" + intToEnable + " |");
+            intsToEnableOR += "\n\t\t";
+        }
+    }
+%%}
+    DL_I2S_enableInterrupt(`instName`_INST, `intsToEnableOR`);
+%        if(inst.interruptPriority !== "DEFAULT"){
+%               let irqnStr = inst.$name + "_INST_INT_IRQN";
+    NVIC_SetPriority(`irqnStr`, `inst.interruptPriority`);
+%        }
+%   }
+
+    /* Enable module */
+    DL_I2S_enable(`instName`_INST);
+}
+% } // for i < instances.length
+%
+%
+% } // printFunction()

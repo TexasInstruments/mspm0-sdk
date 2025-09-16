@@ -1950,13 +1950,12 @@ __STATIC_INLINE void DL_GPIO_initDigitalOutputFeatures(uint32_t pincmIndex,
 __STATIC_INLINE void DL_GPIO_setDigitalInternalResistor(
     uint32_t pincmIndex, DL_GPIO_RESISTOR internalResistor)
 {
-    /* GPIO functionality is always a pin function of 0x00000001 */
-    IOMUX->SECCFG.PINCM[pincmIndex] = IOMUX_PINCM_PC_CONNECTED |
-                                      ((uint32_t) 0x00000001) |
-                                      (uint32_t) internalResistor;
+    IOMUX->SECCFG.PINCM[pincmIndex] &=
+        ~(DL_GPIO_RESISTOR_PULL_UP | DL_GPIO_RESISTOR_PULL_DOWN);
+    IOMUX->SECCFG.PINCM[pincmIndex] |=
+        IOMUX_PINCM_PC_CONNECTED | (uint32_t) internalResistor;
 }
 
-// TODO: verify no need to add input/output variable for the Input/Output enebale functionality
 /**
  *  @brief      Configures internal resistor for analog pin
  *
@@ -1971,8 +1970,7 @@ __STATIC_INLINE void DL_GPIO_setAnalogInternalResistor(
     /* GPIO functionality is always a pin function of 0x00000001 */
     /* For analog use case, setting IOMUX input enable */
     IOMUX->SECCFG.PINCM[pincmIndex] =
-        IOMUX_PINCM_INENA_ENABLE | IOMUX_PINCM_PC_UNCONNECTED |
-        ((uint32_t) 0x00000001) | (uint32_t) internalResistor;
+        IOMUX_PINCM_PC_UNCONNECTED | (uint32_t) internalResistor;
 }
 
 /**

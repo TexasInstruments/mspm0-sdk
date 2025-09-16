@@ -58,6 +58,56 @@ extern "C"
 #include <stdbool.h>
 #include "smbus.h"
 
+#if defined(__MSPM0_HAS_I2C__)
+/*! Slave TXMode set    */
+#define SMBUS_SSR_TXMODE_SET    I2C_SSR_TXMODE_SET
+/*! Controller PEC RX Error */
+#define SMBUS_INTERRUPT_CONTROLLER_PEC_RX_ERROR     DL_I2C_INTERRUPT_CONTROLLER_PEC_RX_ERROR
+/*! I2C Target PEC status checked */
+#define I2C_TARGET_PEC_STATUS_CHECKED   I2C_TARGET_PECSR_PECSTS_CHECK_SET
+/*! I2C Target PEC status not checked */
+#define I2C_TARGET_PEC_STATUS_NOT_CHECKED   I2C_TARGET_PECSR_PECSTS_CHECK_CLEARED
+/*! I2C Target PEC check error cleared */
+#define I2C_TARGET_PEC_CHECK_ERROR_CLEARED   I2C_TARGET_PECSR_PECSTS_ERROR_CLEARED
+/*! I2C Target PEC checke error set */
+#define I2C_TARGET_PEC_CHECK_ERROR_SET   I2C_TARGET_PECSR_PECSTS_ERROR_SET
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+/*! Slave TXMode set    */
+#define SMBUS_SSR_TXMODE_SET    UNICOMMI2CT_SR_TXMODE_SET
+/*! Controller PEC RX Error */
+#define SMBUS_INTERRUPT_CONTROLLER_PEC_RX_ERROR     DL_I2CC_INTERRUPT_PEC_RX_ERROR
+/*! I2C Target PEC status checked */
+#define I2C_TARGET_PEC_STATUS_CHECKED   UNICOMMI2CT_PECSR_PECSTS_CHECK_SET
+/*! I2C Target PEC status not checked */
+#define I2C_TARGET_PEC_STATUS_NOT_CHECKED   UNICOMMI2CT_PECSR_PECSTS_CHECK_CLEARED
+/*! I2C Target PEC check error cleared */
+#define I2C_TARGET_PEC_CHECK_ERROR_CLEARED   UNICOMMI2CT_PECSR_PECSTS_ERROR_CLEARED
+/*! I2C Target PEC checke error set */
+#define I2C_TARGET_PEC_CHECK_ERROR_SET   UNICOMMI2CT_PECSR_PECSTS_ERROR_SET
+#endif
+
+/** @enum SMBUS_TARGET_PEC_STATUS */
+typedef enum {
+    /*!  I2CT SMBus/PMBus PEC was checked in the transaction that occurred
+     *   before the last Stop */
+    SMBUS_TARGET_PEC_STATUS_CHECKED = I2C_TARGET_PEC_STATUS_CHECKED,
+    /*!  I2CT SMBus/PMBus PEC was not checked in the transaction that
+     *   occurred before the last Stop */
+    SMBUS_TARGET_PEC_STATUS_NOT_CHECKED = I2C_TARGET_PEC_STATUS_NOT_CHECKED,
+} SMBUS_TARGET_PEC_STATUS;
+
+/** @enum SMBUS_TARGET_PEC_CHECK_ERROR */
+typedef enum {
+    /*!  Indicates PEC check error did not occurr in the transaction that
+     *   occurred before the last Stop */
+    SMBUS_TARGET_PEC_CHECK_ERROR_CLEARED = I2C_TARGET_PEC_CHECK_ERROR_CLEARED,
+    /*!  Indicates PEC check error occurred in the transaction that
+     *   occurred before the last Stop */
+    SMBUS_TARGET_PEC_CHECK_ERROR_SET = I2C_TARGET_PEC_CHECK_ERROR_SET,
+} SMBUS_TARGET_PEC_CHECK_ERROR;
+
 //*****************************************************************************
 // Internal functions called by the physical layer and internal smbus
 // processing. Application programs should not call these functions directly.
@@ -306,8 +356,6 @@ extern void SMBus_NWK_controllerReset(SMBus *smbus);
 //! \param smbus    Pointer to SMBus structure
 //! \param buff     Pointer to Host Notify buffer
 //
-//! \return  The new state of controller (see SMBus_controllerProcessInt())
-//
 //*****************************************************************************
 extern void SMBus_NWK_controllerEnableHostNotify(SMBus *smbus, uint8_t *buff);
 
@@ -316,8 +364,6 @@ extern void SMBus_NWK_controllerEnableHostNotify(SMBus *smbus, uint8_t *buff);
 //! \brief   Disable network functions for Host Notify
 //
 //! \param smbus    Pointer to SMBus structure
-//
-//! \return  The new state of controller (see SMBus_controllerProcessInt())
 //
 //*****************************************************************************
 extern void SMBus_NWK_controllerDisableHostNotify(SMBus *smbus);

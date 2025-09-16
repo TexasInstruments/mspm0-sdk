@@ -10,7 +10,7 @@ var searchData=
   ['sfid1',['sfid1',['../struct_d_l___m_c_a_n___std_msg_i_d_filter_element.html#a0ddd8c9e15375d9b2b2f33f6fbbf6d71',1,'DL_MCAN_StdMsgIDFilterElement']]],
   ['sfid2',['sfid2',['../struct_d_l___m_c_a_n___std_msg_i_d_filter_element.html#ac03774b5a38395d7096afcaab51d43a8',1,'DL_MCAN_StdMsgIDFilterElement']]],
   ['sft',['sft',['../struct_d_l___m_c_a_n___std_msg_i_d_filter_element.html#a7ad692bb365d3ef9865dbd63718a6946',1,'DL_MCAN_StdMsgIDFilterElement']]],
-  ['shcyclecount',['shCycleCount',['../struct_d_l___v_r_e_f___config.html#a22d6a12f45784db4d0f4f93d64434f33',1,'DL_VREF_Config']]],
+  ['shcyclecount',['shCycleCount',['../struct_d_l___v_r_e_f___config.html#ab917bde1187f96bce1d4c5088d588ddc',1,'DL_VREF_Config']]],
   ['shmodeenable',['shModeEnable',['../struct_d_l___v_r_e_f___config.html#a9d76f1cb86682600a2bc030e5141ca76',1,'DL_VREF_Config']]],
   ['source',['source',['../struct_d_l___c_o_m_p___ref_voltage_config.html#a9f9537527f6b1f0b25c4b495179a6c68',1,'DL_COMP_RefVoltageConfig']]],
   ['serial_20peripheral_20interface_20_28spi_29',['Serial Peripheral Interface (SPI)',['../group___s_p_i.html',1,'']]],

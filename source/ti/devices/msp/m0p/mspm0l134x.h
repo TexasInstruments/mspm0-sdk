@@ -276,6 +276,8 @@ static GPTIMER_Regs                             * const TIMG0                   
 #define FLASHCTL_SYS_WEPROTAWIDTH                     (32)      /* !< Bit width of WEPROTA register */
 #define FLASHCTL_SYS_WEPROTBWIDTH                     (4)       /* !< Bit width of WEPROTB register */
 #define FLASHCTL_SYS_WEPROTCWIDTH                     (0)       /* !< Bit width of WEPROTC register */
+#define VREF_SYS_INT_COMP_REF                         (1)       /* !< Supports internal voltage reference for comparators. */
+
 
 /******************************************************************************
 * DMA Triggers                                                                *

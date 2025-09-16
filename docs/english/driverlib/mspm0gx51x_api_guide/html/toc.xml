@@ -1225,7 +1225,6 @@
         <topic label="DL_FLASHCTL_COMMAND_TYPE_MODE_CHANGE" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga6bb6fecf9bd8e480c419b06411fb963f"/>
         <topic label="DL_FLASHCTL_COMMAND_TYPE_CLEAR_STATUS" href="group___d_l___f_l_a_s_h_c_t_l___c_o_m_m_a_n_d___t_y_p_e.html#ga0dc1855e5deb8366972d3b0ebc1842a1"/>
       </topic>
-      <topic label="DEVICE_HAS_FLASH_128_BIT_WORD" href="group___f_l_a_s_h_c_t_l.html#ga794281b3522a79d8b27f2add9b864153"/>
       <topic label="DEVICE_HAS_NO_CMDWEPROTA" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb"/>
       <topic label="FLASHCTL_BANK0_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga3deb3bf1642e247a461ed82407086e3c"/>
       <topic label="FLASHCTL_MAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga7bb2935fff71f76119f77b221e8318a8"/>
@@ -3563,8 +3562,8 @@
         <topic label="vrefEnable" href="struct_d_l___v_r_e_f___config.html#a520bcbcba239dce43107bec95a2238ee"/>
         <topic label="bufConfig" href="struct_d_l___v_r_e_f___config.html#af7389333c7d132551d0b41456ba57f99"/>
         <topic label="shModeEnable" href="struct_d_l___v_r_e_f___config.html#a9d76f1cb86682600a2bc030e5141ca76"/>
-        <topic label="shCycleCount" href="struct_d_l___v_r_e_f___config.html#a22d6a12f45784db4d0f4f93d64434f33"/>
-        <topic label="holdCycleCount" href="struct_d_l___v_r_e_f___config.html#adfb7643899499e7cb600ce6ec4e342a7"/>
+        <topic label="shCycleCount" href="struct_d_l___v_r_e_f___config.html#ab917bde1187f96bce1d4c5088d588ddc"/>
+        <topic label="holdCycleCount" href="struct_d_l___v_r_e_f___config.html#ac9782d2e3e70e586a36ac886861b7a1b"/>
       </topic>
       <topic label="DL_VREF_CLOCK" href="group___v_r_e_f.html#ga6c607aa1727a6f238ca9eb783925faa7">
         <topic label="DL_VREF_CLOCK_LFCLK" href="group___v_r_e_f.html#gga6c607aa1727a6f238ca9eb783925faa7af92ff1907671b784a4761a976a6635af"/>
@@ -3596,9 +3595,6 @@
       <topic label="DL_VREF_enableInternalRef" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2"/>
       <topic label="DL_VREF_disableInternalRef" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde"/>
       <topic label="DL_VREF_isEnabled" href="group___v_r_e_f.html#ga77a294efa26e0416fa3ed03dc9542a17"/>
-      <topic label="DL_VREF_enableInternalRefCOMP" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d"/>
-      <topic label="DL_VREF_isInternalRefCOMPEnabled" href="group___v_r_e_f.html#ga85de96b92b1160058f1992c93259b663"/>
-      <topic label="DL_VREF_disableInternalRefCOMP" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a"/>
       <topic label="DL_VREF_setClockConfig" href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b"/>
       <topic label="DL_VREF_getClockConfig" href="group___v_r_e_f.html#ga8fa96202e9c9d76b8e5c2b92f26bf401"/>
       <topic label="DL_VREF_reset" href="group___v_r_e_f.html#gaefeff903deb7460769e17033ddcd68f6"/>
@@ -4823,8 +4819,8 @@
         <topic label="vrefEnable" href="struct_d_l___v_r_e_f___config.html#a520bcbcba239dce43107bec95a2238ee"/>
         <topic label="bufConfig" href="struct_d_l___v_r_e_f___config.html#af7389333c7d132551d0b41456ba57f99"/>
         <topic label="shModeEnable" href="struct_d_l___v_r_e_f___config.html#a9d76f1cb86682600a2bc030e5141ca76"/>
-        <topic label="shCycleCount" href="struct_d_l___v_r_e_f___config.html#a22d6a12f45784db4d0f4f93d64434f33"/>
-        <topic label="holdCycleCount" href="struct_d_l___v_r_e_f___config.html#adfb7643899499e7cb600ce6ec4e342a7"/>
+        <topic label="shCycleCount" href="struct_d_l___v_r_e_f___config.html#ab917bde1187f96bce1d4c5088d588ddc"/>
+        <topic label="holdCycleCount" href="struct_d_l___v_r_e_f___config.html#ac9782d2e3e70e586a36ac886861b7a1b"/>
       </topic>
     </topic>
     <topic label="Data Fields" href="functions.html">
@@ -6029,7 +6025,6 @@
         <topic label="DL_FactoryRegion_getBOOTCRCData" href="group___f_a_c_t_o_r_y_r_e_g_i_o_n.html#ga30ed496165c67dac65333c7704a33d5a"/>
       </topic>
       <topic label="dl_flashctl.h" href="dl__flashctl_8h.html">
-        <topic label="DEVICE_HAS_FLASH_128_BIT_WORD" href="group___f_l_a_s_h_c_t_l.html#ga794281b3522a79d8b27f2add9b864153"/>
         <topic label="DEVICE_HAS_NO_CMDWEPROTA" href="group___f_l_a_s_h_c_t_l.html#ga1fbc2d1db2bec0ea44c58a1dcde072bb"/>
         <topic label="FLASHCTL_BANK0_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga3deb3bf1642e247a461ed82407086e3c"/>
         <topic label="FLASHCTL_MAIN_ADDRESS" href="group___f_l_a_s_h_c_t_l.html#ga7bb2935fff71f76119f77b221e8318a8"/>
@@ -8839,9 +8834,6 @@
         <topic label="DL_VREF_enableInternalRef" href="group___v_r_e_f.html#gad0408e81503f7d9a3e3d1d84f07277b2"/>
         <topic label="DL_VREF_disableInternalRef" href="group___v_r_e_f.html#ga986041cf943fe8d29f39862a06e85cde"/>
         <topic label="DL_VREF_isEnabled" href="group___v_r_e_f.html#ga77a294efa26e0416fa3ed03dc9542a17"/>
-        <topic label="DL_VREF_enableInternalRefCOMP" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d"/>
-        <topic label="DL_VREF_isInternalRefCOMPEnabled" href="group___v_r_e_f.html#ga85de96b92b1160058f1992c93259b663"/>
-        <topic label="DL_VREF_disableInternalRefCOMP" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a"/>
         <topic label="DL_VREF_setClockConfig" href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b"/>
         <topic label="DL_VREF_getClockConfig" href="group___v_r_e_f.html#ga8fa96202e9c9d76b8e5c2b92f26bf401"/>
         <topic label="DL_VREF_reset" href="group___v_r_e_f.html#gaefeff903deb7460769e17033ddcd68f6"/>

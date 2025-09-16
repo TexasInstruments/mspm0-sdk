@@ -15,7 +15,7 @@ STOP.
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
 | --- | --- | --- | --- | --- |
 | GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
-| GPIOA | Standard Output | PB20 | LED2 Blue | Populate Jumper(s): J7[1:2] |
+| GPIOA | Standard Output | PA26 | J1_8 |  |
 | SYSCTL |  |  |  |  |
 | TIMG1 |  |  |  |  |
 | TIMG8 |  |  |  |  |

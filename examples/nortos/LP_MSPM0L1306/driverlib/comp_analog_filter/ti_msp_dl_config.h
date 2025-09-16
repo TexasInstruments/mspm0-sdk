@@ -106,6 +106,7 @@ extern "C" {
 #define GPIO_COMP_0_IOMUX_OUT_FUNC                    IOMUX_PINCM12_PF_COMP0_OUT
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

@@ -7,13 +7,13 @@ The device remains in STANDBY mode while waiting for an interrupt.
 ## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
 | --- | --- | --- | --- | --- |
-| GPIOA | Standard Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
+| GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
 | GPIOA | Standard Output | PA15 | J4_38 |  |
 | SYSCTL |  |  |  |  |
 | EVENT |  |  |  |  |
 | RTC_B | RTC_B Out Pin | PA13 | J2_18 |  |
-| BOARD | Debug Clock | PA20 | J13_4 | Populate Component(s): J13 |
-| BOARD | Debug Data In Out | PA19 | J13_2 | Populate Component(s): J13 |
+| BOARD | Debug Clock | PA20 | J14_4 |  |
+| BOARD | Debug Data In Out | PA19 | J14_2 |  |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the MSPM0 LaunchPad. Please

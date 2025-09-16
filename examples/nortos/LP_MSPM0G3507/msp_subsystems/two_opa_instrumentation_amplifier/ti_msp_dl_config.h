@@ -127,6 +127,7 @@ extern "C" {
 #define GPIO_OPA_1_IOMUX_OUT_FUNC                   IOMUX_PINCM38_PF_UNCONNECTED
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

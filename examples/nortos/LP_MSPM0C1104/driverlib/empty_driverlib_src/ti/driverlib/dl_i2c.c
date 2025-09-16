@@ -132,6 +132,10 @@ void DL_I2C_transmitTargetDataBlocking(I2C_Regs *i2c, uint8_t data)
         ;
     }
     DL_I2C_transmitTargetData(i2c, data);
+    while ((DL_I2C_getTargetStatus(i2c) & DL_I2C_TARGET_STATUS_BUS_BUSY) ==
+           DL_I2C_TARGET_STATUS_BUS_BUSY) {
+        ;
+    }
 }
 
 bool DL_I2C_transmitTargetDataCheck(I2C_Regs *i2c, uint8_t data)

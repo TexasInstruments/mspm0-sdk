@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['shcyclecount',['shCycleCount',['../struct_d_l___v_r_e_f___config.html#a22d6a12f45784db4d0f4f93d64434f33',1,'DL_VREF_Config']]],
+  ['shcyclecount',['shCycleCount',['../struct_d_l___v_r_e_f___config.html#ab917bde1187f96bce1d4c5088d588ddc',1,'DL_VREF_Config']]],
   ['shmodeenable',['shModeEnable',['../struct_d_l___v_r_e_f___config.html#a9d76f1cb86682600a2bc030e5141ca76',1,'DL_VREF_Config']]],
   ['serial_20peripheral_20interface_20_28spi_29',['Serial Peripheral Interface (SPI)',['../group___s_p_i.html',1,'']]],
   ['srcincrement',['srcIncrement',['../struct_d_l___d_m_a___config.html#ad0c2af4e1c6ad78a15ca03180065decb',1,'DL_DMA_Config']]],

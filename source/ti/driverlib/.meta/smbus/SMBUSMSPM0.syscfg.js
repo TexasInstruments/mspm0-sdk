@@ -388,6 +388,7 @@ let devSpecific = {
     maxInstances: Common.peripheralCount("I2C"),
 
     validate: validate,
+    validatePinmux: validatePinmux,
 
     pinmuxRequirements: pinmuxRequirements,
 
@@ -673,6 +674,18 @@ function getTargetDisabledIntOptions(inst)
 function validate(inst, validation)
 {
     I2CCommon.getValidation(inst,validation);
+}
+
+/*
+ *  ======== validatePinmux ========
+ *  Validate this inst's configuration
+ *
+ *  param inst       - PWM instance to be validated
+ *  param validation - object to hold detected validation issues
+ */
+function validatePinmux(inst, validation)
+{
+    I2CCommon.getPinmuxValidation(inst,validation);
 }
 
 /*

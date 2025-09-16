@@ -92,10 +92,21 @@ extern "C" {
 #define ADC12_0_ADCMEM_3_REF                DL_ADC12_REFERENCE_VOLTAGE_VDDA_VSSA
 #define GPIO_ADC12_0_C5_PORT                                               GPIOB
 #define GPIO_ADC12_0_C5_PIN                                       DL_GPIO_PIN_24
+#define GPIO_ADC12_0_IOMUX_C5                                    (IOMUX_PINCM52)
+#define GPIO_ADC12_0_IOMUX_C5_FUNC                (IOMUX_PINCM52_PF_UNCONNECTED)
 #define GPIO_ADC12_0_C4_PORT                                               GPIOB
 #define GPIO_ADC12_0_C4_PIN                                       DL_GPIO_PIN_25
+#define GPIO_ADC12_0_IOMUX_C4                                    (IOMUX_PINCM56)
+#define GPIO_ADC12_0_IOMUX_C4_FUNC                (IOMUX_PINCM56_PF_UNCONNECTED)
+#define GPIO_ADC12_0_C12_PORT                                              GPIOA
+#define GPIO_ADC12_0_C12_PIN                                      DL_GPIO_PIN_14
+#define GPIO_ADC12_0_IOMUX_C12                                   (IOMUX_PINCM36)
+#define GPIO_ADC12_0_IOMUX_C12_FUNC               (IOMUX_PINCM36_PF_UNCONNECTED)
 #define GPIO_ADC12_0_C2_PORT                                               GPIOA
 #define GPIO_ADC12_0_C2_PIN                                       DL_GPIO_PIN_25
+#define GPIO_ADC12_0_IOMUX_C2                                    (IOMUX_PINCM55)
+#define GPIO_ADC12_0_IOMUX_C2_FUNC                (IOMUX_PINCM55_PF_UNCONNECTED)
+
 
 
 /* clang-format on */

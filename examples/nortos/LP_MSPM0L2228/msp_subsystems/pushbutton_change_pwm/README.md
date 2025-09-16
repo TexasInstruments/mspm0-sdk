@@ -1,12 +1,12 @@
 ## Example Summary
 
-This example demonstrates using the two switches on the MSPM0G3507 Launchpad to change the period and duty cycle on TIMG4 PWM output channels CC0 and CC1. Pressing switch S1 changes the PWM period of the timer. Pressing S2 changes the duty cycle on CC1 output. This example also demonstrates the use of TIMA0 configured as a one-shot timer and interrupts for debouncing the switches.
+This example demonstrates using the two switches on the MSPM0G3507 Launchpad to change the period and duty cycle on TIMG4 PWM output channels CC0 and CC1. Pressing switch S1 changes the PWM period of the timer. Pressing S2 changes the duty cycle on CC0 output. This example also demonstrates the use of TIMA0 configured as a one-shot timer and interrupts for debouncing the switches.
 
 ## Peripherals & Pin Assignments
 
 | Peripheral | Pin | Function |
 | --- | --- | --- |
-| GPIOA | PA23 | Standard Output |
+| GPIOA | PA16 | Standard Output |
 | GPIOA | PA18 | Standard with Wake Input |
 | GPIOB | PB9 | Standard Output |
 | GPIOB | PB10 | Standard Output |
@@ -25,7 +25,7 @@ Visit [LP_MSPM0L2228](https://www.ti.com/tool/LP-MSPM0L2228) for LaunchPad infor
 
 | Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
 | --- | --- | --- | --- | --- |
-| PA23 | GPIOA | PA23 | N/A | <ul><li>PA23 can be connected to VCC using R8 or to GND using C9<br><ul><li>`R8` and `C9` are not soldered by default allowing the pin to be used for other functions</ul><br><li>PA23 can be connected to LED4 Blue<br><ul><li>`J4 ON` Connect to LED4 Blue<br><li>`J4 OFF` Disconnect from LED4 Blue</ul></ul> |
+| PA16 | GPIOA | PA16 | N/A | <ul><li>PA16 can be connected to VCC using R8 or to GND using C9<br><ul><li>`R8` and `C9` are not soldered by default allowing the pin to be used for other functions</ul><br><li>PA16 can be connected to LED4 Blue<br><ul><li>`J4 ON` Connect to LED4 Blue<br><li>`J4 OFF` Disconnect from LED4 Blue</ul></ul> |
 | PA18 | GPIOA | PA18 | J3_23 | <ul><li>PA18 can be connected to S2 button to VCC with external pull-down<br><ul><li>`J1 ON` Connect S2 button and external pull-down<br><li>`J1 OFF` Disconnect S2 button and external pull-down</ul><br><li>PA18 can be connected to XDS-110 BSL_Invoke<br><ul><li>`J14 17:18 OFF` Disconnect pin to XDS-110 BSL Invoke</ul></ul> |
 | PB9 | GPIOB | PB9 | N/A | <ul><li>PB9 can be connected to LED4 Green<br><ul><li>`J6 ON` Connect to LED4 Green<br><li>`J6 OFF` Disconnect from LED4 Green</ul></ul> |
 | PB10 | GPIOB | PB10 | N/A | <ul><li>PB10 can be connected to LED4 Red<br><ul><li>`J5 ON` Connect to LED4 Red<br><li>`J5 OFF` Disconnect from LED4 Red</ul></ul> |
@@ -51,5 +51,5 @@ For more information about jumper configuration to achieve low-power using the
 MSPM0 LaunchPad, please visit the [LP-MSPM0L2228 web page](https://www.ti.com/tool/LP-MSPM0L2228).
 
 ## Example Usage
-Compile, load, and run the example. At startup, TIMA1 is loaded with a PWM period of 1ms (1000Hz) and 75% duty cycle on CC0 and 25% duty cycle on CC1.  Pressing switch S1 will cycle through the following PWM periods: 1ms, 2ms, 4ms, and 0.5ms.    These changes are reflected on both CC0 and CC1 outputs. Pressing switch S2 will cycle through the following PWM duty cycles: 75%, 90%, 25%, and 50%
+Compile, load, and run the example. At startup, TIMA1 is loaded with a PWM period of 1ms (1000Hz) and 50% duty cycle on CC0 and 75% duty cycle on CC1.  Pressing switch S1 will cycle through the following PWM periods: 1ms, 2ms, 4ms, and 0.5ms.    These changes are reflected on both CC0 and CC1 outputs. Pressing switch S2 will cycle through the following PWM duty cycles: 75%, 10%, 25%, and 50%
 

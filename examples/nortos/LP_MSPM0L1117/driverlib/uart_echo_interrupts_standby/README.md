@@ -10,17 +10,9 @@ The device goes to Standby mode while waiting and uses interrupts to wake up.
 | GPIOA | High-Drive Output | PA15 | J3_30 |  |
 | SYSCTL |  |  |  |  |
 | UART0 | RX Pin | PA11 | J4_33 | Populate Jumper(s): J12[2:3] |
- !!!MULTI!!!
-| UART0 | RX Pin | PA11 | J22_7 | Populate Jumper(s): J12[2:1],J22[8:7] |
- !!!MULTI!!!
 | UART0 | RX Pin | PA11 | Back-Channel UART RXD | Populate Jumper(s): J12[2:1] |
- !!!MULTI!!!
 | UART0 | TX Pin | PA10 | J4_34 | Populate Jumper(s): J10[2:3] |
- !!!MULTI!!!
 | UART0 | TX Pin | PA10 | Back-Channel UART TXD | Populate Jumper(s): J10[2:1] |
- !!!MULTI!!!
-| UART0 | TX Pin | PA10 | J22_9 | Populate Jumper(s): J10[2:1],J22[10:9] |
- !!!MULTI!!!
 | EVENT |  |  |  |  |
 | BOARD | Debug Clock | PA20 | J22_16 |  |
 | BOARD | Debug Data In Out | PA19 | J22_14 |  |

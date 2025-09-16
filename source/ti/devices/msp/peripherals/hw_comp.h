@@ -172,10 +172,10 @@ typedef struct {
 #define COMP_GEN_EVENT_IIDX_STAT_OFS             (0)                             /* !< STAT Offset */
 #define COMP_GEN_EVENT_IIDX_STAT_MASK            ((uint32_t)0x00000003U)         /* !< Interrupt index status */
 #define COMP_GEN_EVENT_IIDX_STAT_NO_INTR         ((uint32_t)0x00000000U)         /* !< No pending interrupt */
-#define COMP_GEN_EVENT_IIDX_STAT_COMPIFG         ((uint32_t)0x00000002U)         /* !< Comparator output interrupt */
-#define COMP_GEN_EVENT_IIDX_STAT_COMPINVIFG      ((uint32_t)0x00000003U)         /* !< Comparator output inverted
+#define COMP_GEN_EVENT_IIDX_STAT_COMPIFG         ((uint32_t)0x00000001U)         /* !< Comparator output interrupt */
+#define COMP_GEN_EVENT_IIDX_STAT_COMPINVIFG      ((uint32_t)0x00000002U)         /* !< Comparator output inverted
                                                                                     interrupt */
-#define COMP_GEN_EVENT_IIDX_STAT_OUTRDYIFG       ((uint32_t)0x00000004U)         /* !< Comparator output ready interrupt */
+#define COMP_GEN_EVENT_IIDX_STAT_OUTRDYIFG       ((uint32_t)0x00000003U)         /* !< Comparator output ready interrupt */
 
 /* COMP_GEN_EVENT_IMASK Bits */
 /* COMP_GEN_EVENT_IMASK[COMPIFG] Bits */

@@ -87,6 +87,8 @@ extern "C" {
 #define ADC12_0_ADCMEM_0_REF_VOLTAGE_V                                       3.3
 #define GPIO_ADC12_0_C2_PORT                                               GPIOA
 #define GPIO_ADC12_0_C2_PIN                                       DL_GPIO_PIN_25
+#define GPIO_ADC12_0_IOMUX_C2                                    (IOMUX_PINCM55)
+#define GPIO_ADC12_0_IOMUX_C2_FUNC                (IOMUX_PINCM55_PF_UNCONNECTED)
 
 
 
@@ -98,6 +100,7 @@ extern "C" {
 #define GPIO_DAC12_OUT_PIN                                        DL_GPIO_PIN_15
 #define GPIO_DAC12_IOMUX_OUT                                     (IOMUX_PINCM37)
 #define GPIO_DAC12_IOMUX_OUT_FUNC                   IOMUX_PINCM37_PF_UNCONNECTED
+
 
 
 

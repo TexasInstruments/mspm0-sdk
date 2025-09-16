@@ -125,5 +125,8 @@ SYSCONFIG_WEAK void SYSCFG_DL_RTC_init(void)
 {
 %    let rtcInitString = RTC_CodeGen_Common.getRTCSyscfgInit(stat, "RTC");
 `rtcInitString`
+%	if(stat.enableClock) {
+	DL_RTC_enableClockControl(RTC);
+%}
 }
 %}

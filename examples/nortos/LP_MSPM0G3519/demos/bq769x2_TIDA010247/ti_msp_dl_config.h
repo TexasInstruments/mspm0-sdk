@@ -155,6 +155,8 @@ extern "C" {
 #define ADC12_0_ADCMEM_0_REF                DL_ADC12_REFERENCE_VOLTAGE_VDDA_VSSA
 #define GPIO_ADC12_0_C0_PORT                                               GPIOA
 #define GPIO_ADC12_0_C0_PIN                                       DL_GPIO_PIN_15
+#define GPIO_ADC12_0_IOMUX_C0                                    (IOMUX_PINCM37)
+#define GPIO_ADC12_0_IOMUX_C0_FUNC                (IOMUX_PINCM37_PF_UNCONNECTED)
 
 
 
@@ -364,6 +366,7 @@ extern "C" {
 						DL_MCAN_INTERRUPT_TOO | \
 						DL_MCAN_INTERRUPT_TSW | \
 						DL_MCAN_INTERRUPT_WDI)
+
 
 
 

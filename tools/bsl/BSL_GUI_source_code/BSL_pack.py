@@ -41,30 +41,48 @@ class BSL_Pack:
         self.CMD_MASS_ERASE = b"\x15"
         self.CMD_PROGRAM = b"\x20"
         self.CMD_START_APP = b"\x40"
+        self.CMD_FACTORY_RESET = b"\x30"
 
-    def connection_pack(self):
+    def connection_pack(self, device_var):
         txdata_c = self.BSL_HEADER + b"\x01\x00" + self.CMD_CONNECTION
         txdata_crc_c = self.CMD_CONNECTION
         checksum_c = 0
-        checksum_c = self.crc32(txdata_crc_c)
+        if device_var == 'MSPM0L/G':
+            checksum_c = self.crc32(txdata_crc_c)
+        else:
+            if device_var == 'MSPM0C':
+                checksum_c = self.crc16(txdata_crc_c)
         # print("%x"%checksum_c)
         checksum_c_buff = struct.pack("I", checksum_c)
         txdata_c = txdata_c + checksum_c_buff
         # print(txdata_c)
         return txdata_c
 
-    def get_ID_pack(self):
+    def factory_re_pack(self):
+        txdata_c = self.BSL_HEADER + b"\x01\x00" + self.CMD_FACTORY_RESET
+        txdata_crc_c = self.CMD_FACTORY_RESET
+        checksum_c = self.crc32(txdata_crc_c)
+        checksum_c_buff = struct.pack("I", checksum_c)
+        txdata_c = txdata_c + checksum_c_buff
+        # print(txdata_c)
+        return txdata_c
+
+    def get_ID_pack(self, device_var):
         txdata_c = self.BSL_HEADER + b"\x01\x00" + self.CMD_GET_ID
         txdata_crc_c = self.CMD_GET_ID
         checksum_c = 0
-        checksum_c = self.crc32(txdata_crc_c)
+        if device_var == 'MSPM0L/G':
+            checksum_c = self.crc32(txdata_crc_c)
+        else:
+            if device_var == 'MSPM0C':
+                checksum_c = self.crc16(txdata_crc_c)
         # print("%x"%checksum_c)
         checksum_c_buff = struct.pack("I", checksum_c)
         txdata_c = txdata_c + checksum_c_buff
         # print(txdata_c)
         return txdata_c
 
-    def password_pack(self, password):
+    def password_pack(self, password, device_var):
         bsl_err = 0
         values = bytearray(password)
         #       print(values)
@@ -74,7 +92,11 @@ class BSL_Pack:
         txdata = self.BSL_HEADER + DATA_Length_B + b"\x00" + self.CMD_PASSWORD + values
         txdata_crc = self.CMD_PASSWORD + values
         checksum = 0
-        checksum = self.crc32(txdata_crc)
+        if device_var == 'MSPM0L/G':
+            checksum = self.crc32(txdata_crc)
+        else:
+            if device_var == 'MSPM0C':
+                checksum = self.crc16(txdata_crc)
         # print("%x"%checksum)
         checksum_B = struct.pack("I", checksum)
         #    print(checksum_B)
@@ -82,18 +104,22 @@ class BSL_Pack:
         # print(txdata)
         return txdata
 
-    def mass_erase_pack(self):
+    def mass_erase_pack(self, device_var):
         txdata_c = self.BSL_HEADER + b"\x01\x00" + self.CMD_MASS_ERASE
         txdata_crc_c = self.CMD_MASS_ERASE
         checksum_c = 0
-        checksum_c = self.crc32(txdata_crc_c)
+        if device_var == 'MSPM0L/G':
+            checksum_c = self.crc32(txdata_crc_c)
+        else:
+            if device_var == 'MSPM0C':
+                checksum_c = self.crc16(txdata_crc_c)
         # print("%x"%checksum_c)
         checksum_c_buff = struct.pack("I", checksum_c)
         txdata_c = txdata_c + checksum_c_buff
         # print(txdata_c)
         return txdata_c
 
-    def firmware_pack(self, firmware):
+    def firmware_pack(self, firmware, device_var):
         bsl_err = 0
         send_count = 0
         address_count = 0
@@ -173,7 +199,12 @@ class BSL_Pack:
                     else:
                         addr_bufarray += bytes_buf
                         checksum = 0
-                        checksum = self.crc32(addr_bufarray)
+                        if device_var == 'MSPM0L/G':
+                            checksum = self.crc32(addr_bufarray)
+                        else:
+                            if device_var == 'MSPM0C':
+                                checksum = self.crc16(addr_bufarray)
+
                         # print("%x"%checksum)
                         checksum_B = struct.pack("I", checksum)
                         #                    print(checksum_B)
@@ -197,12 +228,43 @@ class BSL_Pack:
                 crc = (crc >> 1) ^ (crc32_POLY & mask)
                 ii += 1
         return crc
+    def invert_uint8(self, src_byte):
+        dst_byte = 0
+        for i in range(8):
+            if src_byte & (1 << i):
+                dst_byte |= 1 << (7 - i)
+        return dst_byte
 
-    def start_app_pack(self):
+    def invert_uint16(self, src_word):
+        dst_word = 0
+        for i in range(16):
+            if src_word & (1 << i):
+                dst_word |= 1 << (15 - i)
+        return dst_word
+
+    def crc16(self, data_B):
+        wCRCin = 0xFFFF
+        wCPoly = 0x1021
+        for byte in data_B:
+            wChar = self.invert_uint8(byte)
+            wCRCin ^= (wChar << 8)
+            for _ in range(8):
+                if wCRCin & 0x8000:
+                    wCRCin = (wCRCin << 1) ^ wCPoly
+                else:
+                    wCRCin = wCRCin << 1
+            wCRCin &= 0xFFFF
+        return self.invert_uint16(wCRCin)
+
+    def start_app_pack(self, device_var):
         txdata_d = self.BSL_HEADER + b"\x01\x00" + self.CMD_START_APP
         txdata_crc_d = self.CMD_START_APP
         checksum_d = 0
-        checksum_d = self.crc32(txdata_crc_d)
+        if device_var == 'MSPM0L/G':
+            checksum_d = self.crc32(txdata_crc_d)
+        else:
+            if device_var == 'MSPM0C':
+                checksum_d = self.crc16(txdata_crc_d)
         # print("%x"%checksum_c)
         checksum_d_buff = struct.pack("I", checksum_d)
         txdata_d = txdata_d + checksum_d_buff

@@ -52,7 +52,6 @@ let Common = system.getScript("/ti/driverlib/Common.js");
 /************************* Basic functions *******************************/
 /* onChange functions for Basic Configuration */
 
-
 /************************* Advanced functions *******************************/
 /* onChange functions for Advanced Configuration */
 
@@ -72,10 +71,82 @@ let Common = system.getScript("/ti/driverlib/Common.js");
 function validate(inst, validation)
 {
 
+    /* Clock Validation */
+    let sysctl_module = system.modules["/ti/driverlib/SYSCTL"].$static
+    /* - Device Mode */
+    if(inst.mode == "device"){
+        /* - ClockTree Enabled */
+        if(sysctl_module.clockTreeEn){
+
+        }
+        /* - SysCtl Configuration */
+        else{
+
+        }
+    }
+    /* - Host Mode */
+    else if(inst.mode == "host"){
+        /* - ClockTree Enabled */
+        if(sysctl_module.clockTreeEn){
+
+        }
+        /* - SysCtl Configuration */
+        else{
+
+        }
+    }
+
 }
 
+let deviceConfig = {
+    name: "GROUP_DEVICE",
+    displayName: "Device Configuration",
+    description: "",
+    longDescription: ``,
+    collapsed: false,
+    config: [],
+};
+
+let hostConfig = {
+    name: "GROUP_HOST",
+    displayName: "Host Configuration",
+    description: "",
+    longDescription: ``,
+    collapsed: false,
+    // cdc hid msc
+    config: [],
+};
+
+let clockConfig = {
+    name: "GROUP_CLOCK",
+    displayName: "Clock Configuration",
+    description: "",
+    longDescription: ``,
+    collapsed: false,
+    config: [
+        {
+            name        : "USBCLKSrc",
+            displayName : "USB Clock Source",
+            description : 'USB sample clock source selection',
+            hidden      : false,
+            default     : "undefined",
+            getValue: (inst) => {
+                return system.modules["/ti/driverlib/SYSCTL"]?.$static.USBCLKSource;
+            }
+        },
+        {
+            name: "USBCLK_Freq",
+            hidden: false,
+            default: "undefined",
+            getValue: (inst) => {
+                return system.modules["/ti/driverlib/SYSCTL"]?.$static.USBCLK_Freq_unit;
+            }
+        },
+    ],
+};
+
 /* PROFILES CONFIGURATION */
-let usbConfig = [
+let modConfig = [
     /* Show selected peripheral below instance name */
     {
         name: "selectedInstance",
@@ -92,9 +163,6 @@ let usbConfig = [
             return solution;
         }
     },
-]
-
-let basicConfig = [
     {
         name: "mode",
         displayName: "Mode",
@@ -102,11 +170,17 @@ let basicConfig = [
         options: [
             { name: "device",   displayName: "Device"},
             { name: "host",     displayName: "Host"},
-        ]
-    }
+        ],
+        // onChange: onChangeMode,
+    },
+    deviceConfig,
+    hostConfig,
+    clockConfig,
 ]
 
-usbConfig = usbConfig.concat([
+let basicConfig = []
+
+modConfig = modConfig.concat([
     {
         name: "GROUP_BASIC",
         displayName: "Basic Configuration",
@@ -117,22 +191,25 @@ usbConfig = usbConfig.concat([
     }
 ])
 
-usbConfig = usbConfig.concat([
+modConfig = modConfig.concat([
     {
         name: "GROUP_ADVANCED",
         displayName: "Advanced Configuration",
         description: "",
         longDescription: ``,
-        collapsed: true,
+        collapsed: false,
         config: [
 
         ],
     },
 ])
 
+/*
+ *  ======== moduleInstances ========
+ *
+ */
 function moduleInstances(inst){
-    let modInstances = [];
-    return modInstances;
+
 }
 
 /*
@@ -141,7 +218,7 @@ function moduleInstances(inst){
  */
 let devSpecific = {
 
-    config: usbConfig,
+    config: modConfig,
 
 
     maxInstances: Common.peripheralCount("USB"),
@@ -161,11 +238,16 @@ let devSpecific = {
         Reset: true,
         Power: true,
         GPIO: true,
-        Function: true
-
+        Function: true,
     },
+    /*
+        Files to generate:
+            tusb_config.h
+            usb_descriptors.c
+            usb_descriptors.h
+            Family.c
+    */
     modules: setRequiredModules,
-
     // moduleInstances: moduleInstances,
 };
 

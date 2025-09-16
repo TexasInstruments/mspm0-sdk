@@ -99,6 +99,8 @@ extern "C" {
 #define ADC12_0_INST_SUB_CH                                                  (1)
 #define GPIO_ADC12_0_C2_PORT                                               GPIOA
 #define GPIO_ADC12_0_C2_PIN                                       DL_GPIO_PIN_25
+#define GPIO_ADC12_0_IOMUX_C2                                    (IOMUX_PINCM26)
+#define GPIO_ADC12_0_IOMUX_C2_FUNC                (IOMUX_PINCM26_PF_UNCONNECTED)
 
 
 
@@ -111,6 +113,7 @@ extern "C" {
 /* Defines for USER_TEST: GPIOA.2 with pinCMx 3 on package pin 8 */
 #define GPIO_LEDS_USER_TEST_PIN                                  (DL_GPIO_PIN_2)
 #define GPIO_LEDS_USER_TEST_IOMUX                                 (IOMUX_PINCM3)
+
 
 /* clang-format on */
 

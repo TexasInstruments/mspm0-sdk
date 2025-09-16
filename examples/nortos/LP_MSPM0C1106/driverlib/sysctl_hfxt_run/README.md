@@ -6,18 +6,17 @@ HFXT -> HFCLK (4-48MHz) -> HSCLK -> MCLK -> /4 -> CLK_OUT
 
 TimerG is configured in periodic mode and toggles an LED every 500 ms.
 
-## Peripherals & Pin Assignments
-
-| Peripheral | Pin | Function |
-| --- | --- | --- |
-| GPIOA | PA0 | Open-Drain Output |
-| SYSCTL | PA14 | CLK OUT |
-| SYSCTL | PA5 | HFXIN |
-| SYSCTL | PA6 | HFXOUT |
-| TIMG0 |  |  |
-| EVENT |  |  |
-| DEBUGSS | PA20 | Debug Clock |
-| DEBUGSS | PA19 | Debug Data In Out |
+## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
+| Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
+| --- | --- | --- | --- | --- |
+| GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
+| SYSCTL | CLK OUT | PA14 |  |  |
+| SYSCTL | HFXIN | PA5 | J14_1 |  |
+| SYSCTL | HFXOUT | PA6 | J2_11 |  |
+| TIMG1 |  |  |  |  |
+| EVENT |  |  |  |  |
+| BOARD | Debug Clock | PA20 | J14_4 |  |
+| BOARD | Debug Data In Out | PA19 | J14_2 |  |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the LaunchPad. Please

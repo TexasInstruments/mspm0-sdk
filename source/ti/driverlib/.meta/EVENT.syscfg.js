@@ -41,7 +41,7 @@ let Common = system.getScript("/ti/driverlib/Common.js");
 
 let MAX_NUM_EVENT_CHANNELS;
 let SPLITTER_EVENT_CHANNELS = [];
-if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()
+if (Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX()
     || Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()
     || Common.isDeviceFamily_PARENT_MSPM0L111X()
     || Common.isDeviceFamily_PARENT_MSPM0C110X())

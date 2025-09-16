@@ -85,13 +85,38 @@
     /* ADCMEM range varies per device family */
     const adcMemRange = InternalConnections.ADC12_adcMemRange;
     let adcEnabledChannels = [];
+    let ind = 0;
+    for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
+        if( inst.enabledADCMems.includes(adcMemIdx) ){
+            let tempIdx = inst["adcMem" + adcMemIdx.toString() + "chansel"]
+            let tempIdxTrim = tempIdx.slice(20);
+            ind = parseInt(tempIdxTrim);
+            try{
+                if((Object.keys(system.deviceData.peripheralPins).filter(element => (element.includes("ADC")&&(element.endsWith("."+ind))))).length){
+                    if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() && ind == 12 && inst.disChan12){
+                        // do nothing
+                    }
+                    else if((Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0G352X()) &&
+                                ind == 11 && inst.disChan11){
+                        // do nothing
+                    }
+                    else {
+                        if(!((adcEnabledChannels).includes(tempIdxTrim))){
+                            adcEnabledChannels.push(tempIdxTrim)
+                        }
+                    }
+                }
+            }catch (e) {
+                // do nothing
+            }
+        }
+    }
+
+
+
     for(let adcMemIdx = 0; adcMemIdx <= adcMemRange; adcMemIdx++){
         if((inst.enabledADCMems).includes(adcMemIdx)){
-            /* Check enabled channels */
-            let tempIdx = (inst["adcMem" + adcMemIdx.toString() + "chansel"]).slice(20);
-            if(!((adcEnabledChannels).includes(tempIdx))){
-                adcEnabledChannels.push(tempIdx)
-            }
 %%}
 % let adcMemNameStr = "#define " + inst.$name+"_ADCMEM_"+inst["adcMem"+adcMemIdx+"_name"]
 `adcMemNameStr.padEnd(40, " ")+("DL_ADC12_MEM_IDX_" + adcMemIdx.toString()).padStart(40, " ")`
@@ -131,7 +156,6 @@
 %%{
     for(let cc of adcEnabledChannels){
         /* Verify channels are module-specific */
-        if((Common.isDeviceM0G() && parseInt(cc) < 9) || ((Common.isDeviceM0L() || Common.isDeviceM0C()) && parseInt(cc) < 10)){
             let gpioStr = "GPIO_"+inst.$name+"_C"+cc;
             /* figure out pin number and pinCMx */
             // let pinName = "ccp"+cc+"Pin";
@@ -152,7 +176,6 @@
 %           let pinStr2 = "DL_GPIO_PIN_"+gpioPin;
 `pinStr.padEnd(40," ")+pinStr2.padStart(40," ")`
 % //#define `gpioStr`_PIN                               DL_GPIO_PIN_`gpioPin`
-% if(inst[pinName+"Config"].enableConfig){
 %           let pinIOmuxStr = "#define " + "GPIO_"+inst.$name + "_IOMUX" + "_C"+cc;
 %           let pinIOmuxStr2 = "(IOMUX_PINCM" + pinCM.toString() + ")";
 `pinIOmuxStr.padEnd(50," ") + pinIOmuxStr2.padStart(30," ")`
@@ -161,8 +184,6 @@
 %           let pinFuncStr2 = "(IOMUX_PINCM" + pinCM + "_PF_UNCONNECTED)";
 `pinFuncStr.padEnd(50, " ") + pinFuncStr2.padStart(30, " ")`
 % //#define GPIO_`inst.$name`_IOMUX_C`cc`_FUNC
-% }
-%       }
 %   }
 % // ================================================================================================
 % }

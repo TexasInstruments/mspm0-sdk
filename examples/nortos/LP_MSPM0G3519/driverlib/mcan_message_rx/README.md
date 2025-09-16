@@ -57,7 +57,3 @@ To turn on the LED_2, the example must receive the following package:
 To turn off the LED_2, the example must receive the following package:
 - ID : 0x04
 - DATA[0] = 0x00
-
-Note: There is a known limitation where the example might stop receiving
-packages if the application halt execution after hitting a breakpoint. It is
-highly recommended to use free run option while testing the example.

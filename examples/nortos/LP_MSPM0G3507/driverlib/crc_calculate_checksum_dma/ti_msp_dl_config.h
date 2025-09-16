@@ -98,6 +98,7 @@ extern "C" {
 /* Defines for CRC */
 #define CRC_SEED                                                    (0xFFFFFFFF)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

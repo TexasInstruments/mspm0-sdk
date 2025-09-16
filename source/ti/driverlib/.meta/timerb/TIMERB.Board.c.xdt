@@ -1,0 +1,173 @@
+%%{
+/*
+ * Copyright (c) 2025, Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/*
+ *  ======== TIMERB.Board.c.xdt ========
+ */
+
+    let TIMERB = args[0]; /* passed by /ti/driverlib/templates/Board.c.xdt */
+    let content = args[1];
+
+    let Common = system.getScript("/ti/driverlib/Common.js");
+
+    let instances = TIMERB.$instances;
+
+    switch(content){
+        case "Call":
+            printCall();
+            break;
+        case "Reset":
+            printReset();
+            break;
+        case "Power":
+            printPower();
+            break;
+        case "Function":
+            printFunction();
+            break;
+        default:
+            /* do nothing */
+            return;
+            break;
+    }
+%%}
+%
+% function printCall(){
+%   for (let i in instances) {
+%       let inst = instances[i];
+    SYSCFG_DL_`inst.$name`_init();
+%   }
+% }
+%
+% function printReset(){
+% for (let i in instances) {
+%       let inst = instances[i];
+    DL_TimerB_reset(`inst.$name`_INST);
+%   }
+% }
+% function printPower(){
+% for (let i in instances) {
+%       let inst = instances[i];
+    DL_TimerB_enablePower(`inst.$name`_INST);
+%   }
+% }
+%
+% /* Main Function */
+% function printFunction(){
+%   for (let i in instances) {
+%       let inst = instances[i];
+%       let instName = inst.$name;
+%		let counter_mod = system.modules["/ti/driverlib/timerb/TIMERBCounter"];
+%		if(!counter_mod) return;
+%		let counters = counter_mod.$instances;
+%		counters = counters.filter(counter => counter.$ownedBy.$name == instName);
+%		for(let j in counters) {
+static DL_TimerB_TimerConfig g`instName`_`counters[j].$name`_TimerConfig = {
+	.clockSource = DL_TIMERB_CLOCK_SOURCE_`counters[j].clockSource`,
+	.startSource = DL_TIMERB_START_SOURCE_`counters[j].startSource`,
+	.stopSource = DL_TIMERB_STOP_SOURCE_`counters[j].stopSource`,
+	.resetSource = DL_TIMERB_RESET_SOURCE_`counters[j].resetSource`,
+%if(counters[j].clockSource == "BUSCLK") {
+	.loadValue = `counters[j].loadValue`,
+%}
+%else {
+	.loadValue = `counters[j].userLoadValue`,
+%}
+	.startTimer = `counters[j].startCounter`
+};
+
+% }
+SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
+{
+%		for(let j in counters) {
+%			let counter_idx = instName+"_INST_"+counters[j].$name+"_INDEX";
+	DL_TimerB_initTimer(`instName`_INST, &g`instName`_`counters[j].$name`_TimerConfig, `counter_idx`);
+%}
+%	 let validInterrupts = 0;
+%    let disabledInterrupts = [];
+%	 let maxCounters = parseInt(system.deviceData.peripherals[inst.peripheral.$solution.peripheralName].attributes.SYS_NUM_COUNTERS);
+%    if(counter_mod) {
+%		for(let i = counter_mod.$instances.length; i < maxCounters; i++) {
+%       	disabledInterrupts.push("CNT" + i + "_OVF_EVENT");
+%       	disabledInterrupts.push("CNT" + i + "_START_EVENT");
+%       	disabledInterrupts.push("CNT" + i + "_STOP_EVENT");
+%		}
+%}
+%    let interArgs = "";
+%    for (let inter of inst.enabledInterrupts) {
+%        if(disabledInterrupts.includes(inter)) continue;
+%        interArgs += "DL_TIMERB_INTERRUPT_"+inter+" |\n\t\t";
+%        validInterrupts++;
+%    }
+%    if(validInterrupts > 0) {
+%	 	interArgs = interArgs.slice(0,-5); // remove last OR and whitespace
+	DL_TimerB_enableInterrupt(`instName`_INST, `interArgs`);
+%}
+%   /* Event Generation for Publisher Event Route 1 */
+%
+%   if ((inst.event1PublisherChannel != 0) &&
+%       (inst.event1ControllerInterruptEn.length > 0)) {
+%%{
+    /* Event bit mask to be used in DL_TimerX_enableEvent() */
+    var eventsToEnableOR = "(";
+
+    for (let eventToEnable of inst.event1ControllerInterruptEn)
+    {
+		if(disabledInterrupts.includes(eventToEnable)) continue;
+        /* The last event should end with a closing parenthesis */
+        if (eventToEnable == inst.event1ControllerInterruptEn[inst.event1ControllerInterruptEn.length - 1])
+        {
+            eventsToEnableOR += ("DL_TIMERB" + "_EVENT_" + eventToEnable + ")");
+        }
+        else
+        {
+            eventsToEnableOR += ("DL_TIMERB"+ "_EVENT_" + eventToEnable + " |");
+            eventsToEnableOR += "\n\t\t";
+        }
+    }
+%%}
+    DL_TimerB_enableEvent(`inst.$name`_INST, `eventsToEnableOR`);
+
+    DL_TimerB_setPublisherChanID(`inst.$name`_INST, `inst.$name`_INST_PUB_0_CH);
+%   }
+
+%   /* Event Generation for Subscriber Port */
+%   if ((inst.subscriberPort) && (inst.subscriberChannel != 0)) {
+    DL_TimerB_setSubscriberChanID(`inst.$name`_INST, `inst.$name`_INST_SUB_CH);
+%   }
+}
+% } // for i < instances.length
+%
+%
+% } // printFunction()

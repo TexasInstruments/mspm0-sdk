@@ -37,9 +37,9 @@ CFLAGS += -I.. \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include/newlib-nano" \
     "-I$(GCC_ARMCOMPILER)/arm-none-eabi/include"
 
-LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/pmbus/lib/gcc/m0p" \
+LFLAGS += "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/pmbus/lib/gcc/m0p/pmbus_i2c" \
     -l:pmbus.a \
-    "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/smbus/lib/gcc/m0p" \
+    "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/smbus/lib/gcc/m0p/smbus_i2c" \
     -l:smbus.a \
     "-L$(MSPM0_SDK_INSTALL_DIR)/source/ti/driverlib/lib/gcc/m0p/mspm0g1x0x_g3x0x" \
     -nostartfiles \

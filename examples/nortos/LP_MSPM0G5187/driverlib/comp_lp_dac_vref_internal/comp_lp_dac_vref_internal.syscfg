@@ -1,0 +1,61 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G518X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G5187" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G5187 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Board  = scripting.addModule("/ti/driverlib/Board");
+const COMP   = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1  = COMP.addInstance();
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+const VREF   = scripting.addModule("/ti/driverlib/VREF");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Board.InitPriority8               = "/ti/driverlib/VREF";
+Board.configureUnused             = true;
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+COMP1.hysteresis                            = "DL_COMP_HYSTERESIS_20";
+COMP1.selectOutputFilter                    = "DL_COMP_FILTER_DELAY_1200";
+COMP1.channelEnable                         = ["POS"];
+COMP1.compMode                              = "DL_COMP_MODE_ULP";
+COMP1.vSource                               = "DL_COMP_REF_SOURCE_VREF_DAC";
+COMP1.terminalSelect                        = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP1.controlSelect                         = "DL_COMP_DAC_CONTROL_SW";
+COMP1.enabledInterrupts                     = ["DL_COMP_INTERRUPT_OUTPUT_EDGE","DL_COMP_INTERRUPT_OUTPUT_EDGE_INV"];
+COMP1.$name                                 = "COMP";
+COMP1.peripheral.$assign                    = "COMP0";
+COMP1.peripheral.compPinPos0.$assign        = "PB21";
+COMP1.compPinPos0Config.hideOutputInversion = scripting.forceWrite(false);
+
+GPIO1.$name                         = "GPIO_LEDS";
+GPIO1.port                          = "PORTA";
+GPIO1.portSegment                   = "Lower";
+GPIO1.associatedPins[0].assignedPin = "0";
+GPIO1.associatedPins[0].$name       = "USER_LED_1";
+GPIO1.associatedPins[0].pin.$assign = "PA0";
+
+SYSCTL.powerPolicy           = "STOP0";
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn           = true;
+
+VREF.basicVrefPins                 = "VREF+-";
+VREF.basicIntVolt                  = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.checkVREFReady                = true;
+VREF.advClockConfigEnable          = true;
+VREF.advClkSrc                     = "DL_VREF_CLOCK_BUSCLK";
+VREF.peripheral.$assign            = "VREF";
+
+const ProjectConfig              = scripting.addModule("/ti/project_config/ProjectConfig", {}, false);
+ProjectConfig.migrationCondition = true;

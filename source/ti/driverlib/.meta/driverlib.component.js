@@ -55,32 +55,11 @@ let systemModulesList = [
 ];
 
 /* nonmain */
-/*
- * TODO: NONMAIN currently supported for:
- *  - MSPM0G1X0X_G3X0X
- *  - MSPM0L11XX_L13XX
- *  - MSPM0C110X
- *  - MSPM0L122X_L222X
- *  - MSPM0GX51X
- *  - MSPM0L111X
- *  - MSPM0H321X
- *  - MSPM0C1105_C1106
- *  - MSPM0L211X_L112X
- *  - MSPM0L210X
- */
-if(Common.isDeviceFamily_PARENT_MSPM0G1X0X_G3X0X() ||
-    Common.isDeviceFamily_PARENT_MSPM0L11XX_L13XX() ||
-    Common.isDeviceFamily_PARENT_MSPM0C110X() ||
-    Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
-    Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-    Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-    Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-    Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
-    Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
-    Common.isDeviceFamily_PARENT_MSPM0L210X()){
-systemModulesList.push(
-    "/ti/driverlib/NONMAIN",
-);
+let nonmainOptions = system.getScript("/ti/driverlib/nonmain/NONMAINOptions.js");
+if(nonmainOptions.NONMAIN_SUPPORTED) {
+    systemModulesList.push(
+        "/ti/driverlib/NONMAIN",
+    );
 }
 
 /* System: MSPM0Gxx-specific modules */
@@ -97,9 +76,7 @@ if(/RTC/.test(peripherals) && !(/LFSS/.test(peripherals))) {
     );
 }
 
-/* System (IWDT): Part of LFSS peripheral */
-let IWDTlegacyCheck = (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() || Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X());
-if(IWDTlegacyCheck || (/LFSS/.test(peripherals) && system.deviceData.peripherals['LFSS'].attributes.SYS_LFSS_WDT_PRESENT)) {
+if(/LFSS/.test(peripherals)) {
     systemModulesList.push(
         "/ti/driverlib/IWDT",
     );
@@ -114,9 +91,14 @@ if(/LFSS/.test(peripherals) && Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()){
 };
 
 /* System: GX51X, L111X, and H321X, and G511X have an RTC_B within the LFSS Peripheral */
-if(/LFSS/.test(peripherals) && (Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-                                Common.isDeviceFamily_PARENT_MSPM0H321X() || Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
-                                Common.isDeviceFamily_PARENT_MSPM0G511X() || Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+if(/LFSS/.test(peripherals) && (Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0L111X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0H321X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
+                                Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0G518X() ||
+                                Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
                                 Common.isDeviceFamily_PARENT_MSPM0L210X())) {
     systemModulesList.push(
         "/ti/driverlib/RTCB",
@@ -165,6 +147,12 @@ if (Common.getTimerInstances("TIMERFault").length != 0) {
     );
 }
 
+if(/TIMB/.test(peripherals)) {
+	timerModulesList.push(
+		"/ti/driverlib/TIMERB",
+	);
+}
+
 let commModulesList = [
     "/ti/driverlib/UART",
     "/ti/driverlib/uartLIN",
@@ -172,9 +160,15 @@ let commModulesList = [
     "/ti/driverlib/i2cSMBUS",
     "/ti/driverlib/SPI",
 ];
-if(Common.isDeviceFamily_PARENT_MSPM0G511X()){
+
+if(/USB/.test(peripherals)){
     commModulesList.push(
         "/ti/driverlib/USB",
+    )
+}
+if(/I2S/.test(peripherals)){
+    commModulesList.push(
+        "/ti/driverlib/I2S",
     )
 }
 
@@ -252,9 +246,14 @@ if(/AESADV/.test(peripherals)) {
  */
 if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
     Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+    Common.isDeviceFamily_PARENT_MSPM0G352X() ||
     Common.isDeviceFamily_PARENT_MSPM0L111X() ||
     Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-    Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()){
+    Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
+    Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+    Common.isDeviceFamily_PARENT_MSPM0G518X() ||
+    Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
+    Common.isDeviceFamily_PARENT_MSPM0L210X()){
     securityModulesList.push(
         "/ti/driverlib/SECCONFIG",
     );

@@ -81,6 +81,7 @@ extern "C" {
 #define LCD_IRQHandler                                            LCD_IRQHandler
 #define LCD_INT_IRQN                                                LCD_INT_IRQn
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

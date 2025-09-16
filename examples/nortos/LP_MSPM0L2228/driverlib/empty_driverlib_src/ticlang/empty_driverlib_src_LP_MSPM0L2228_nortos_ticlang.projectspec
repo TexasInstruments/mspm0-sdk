@@ -80,6 +80,8 @@
         </file>
         <file path="../ti/driverlib/dl_i2c.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
+        <file path="../ti/driverlib/dl_i2s.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
         <file path="../ti/driverlib/dl_iwdt.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_keystorectl.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
@@ -91,6 +93,8 @@
         <file path="../ti/driverlib/dl_mathacl.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_mcan.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_npu.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_opa.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
@@ -104,6 +108,8 @@
         </file>
         <file path="../ti/driverlib/dl_scratchpad.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
+        <file path="../ti/driverlib/dl_spgss.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
         <file path="../ti/driverlib/dl_spi.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_tamperio.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
@@ -111,6 +117,8 @@
         <file path="../ti/driverlib/dl_timer.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_timera.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_timerb.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_timerg.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
@@ -121,6 +129,16 @@
         <file path="../ti/driverlib/dl_uart_extend.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_uart_main.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicomm.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicommi2cc.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicommi2ct.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicommspi.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicommuart.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_vref.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
@@ -144,6 +162,12 @@
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0h321x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
@@ -153,6 +177,8 @@
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/dl_adc12.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
@@ -180,6 +206,8 @@
         </file>
         <file path="../ti/driverlib/dl_i2c.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
+        <file path="../ti/driverlib/dl_i2s.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
         <file path="../ti/driverlib/dl_iwdt.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_keystorectl.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
@@ -191,6 +219,8 @@
         <file path="../ti/driverlib/dl_mathacl.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_mcan.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_npu.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_opa.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
@@ -204,6 +234,8 @@
         </file>
         <file path="../ti/driverlib/dl_scratchpad.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
+        <file path="../ti/driverlib/dl_spgss.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
         <file path="../ti/driverlib/dl_spi.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_tamperio.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
@@ -212,11 +244,23 @@
         </file>
         <file path="../ti/driverlib/dl_timera.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
+        <file path="../ti/driverlib/dl_timerb.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
         <file path="../ti/driverlib/dl_timerg.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_trng.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_uart.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicomm.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicommi2cc.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicommi2ct.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicommspi.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
+        </file>
+        <file path="../ti/driverlib/dl_unicommuart.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
         <file path="../ti/driverlib/dl_vref.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib">
         </file>
@@ -232,6 +276,12 @@
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0h321x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
@@ -241,6 +291,8 @@
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
+        </file>
+        <file path="../ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ti/driverlib/m0p/sysctl">
         </file>
         <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
         </file>

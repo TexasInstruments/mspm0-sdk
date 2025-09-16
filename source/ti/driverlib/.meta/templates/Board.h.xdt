@@ -120,6 +120,117 @@ extern "C" {
 `gen(faultMod,"Define")`
     % }
 % }
+% // TinyUSB Code
+% if(system.modules["/ti/tinyusb_meta/tinyusb"]){
+% let tinyusb = system.modules["/ti/tinyusb_meta/tinyusb"].$static;
+%%{
+//--------------------------------------------------------------------+
+// TinyUSB Dependencies
+//--------------------------------------------------------------------+
+%%}
+% if(tinyusb.configureGPIO){
+%%{
+    //--------------------------------------------------------------------+
+    // GPIO LED
+    //--------------------------------------------------------------------+
+    /* Generate Port & Pin String for LED */
+    let portStr = "";
+    let tusbGPIOGroup = tinyusb?.associatedGPIO_LED;
+
+    // All GPIO pin instances
+    let pinstances = system.modules["/ti/driverlib/gpio/GPIOPin"].$instances;
+    // Pin index (always the first pin)
+    let pin = 0;
+    // Pin instance
+    let pinst = tusbGPIOGroup.associatedPins[pin];
+    let packagePin = pinst.pin.$solution.packagePinName;
+    let port = Common.getGPIOPortMultiPad(packagePin,pinst,undefined);
+    // Are there other pins outside the same port?
+    let sameGroupOtherPort = _.filter(pinstances, (pin) => {
+        return pin.$ownedBy === pinst.$ownedBy &&
+        Common.getGPIOPortMultiPad(pin.pin.$solution.packagePinName,pin,undefined) !== port;});
+    if(pinst.$ownedBy.port !== "Any" || sameGroupOtherPort.length === 0) {
+        portStr = tusbGPIOGroup.$name+"_PORT";
+    }else{
+        portStr = tusbGPIOGroup.$name+"_"+pinst.$name+"_PORT";
+    }
+%%}
+/* TinyUSB GPIO LED Defines */
+`("#define GPIO_LED_TUSB").padEnd(40, " ") + (portStr).toString().padStart(40, " ")`
+`("#define GPIO_LED_PIN_TUSB").padEnd(40, " ") + (tusbGPIOGroup.$name+"_"+pinst.$name+"_PIN").toString().padStart(40, " ")`
+`("#define GPIO_LED_IOMUX_TUSB").padEnd(40, " ") + (tusbGPIOGroup.$name+"_"+pinst.$name+"_IOMUX").toString().padStart(40, " ")`
+%%{
+    //--------------------------------------------------------------------+
+    // GPIO Button
+    //--------------------------------------------------------------------+
+    /* Generate Port & Pin String for Button */
+    portStr = "";
+    tusbGPIOGroup = tinyusb?.associatedGPIO_BUTTON;
+
+    // All GPIO pin instances
+    pinstances = system.modules["/ti/driverlib/gpio/GPIOPin"].$instances;
+    // Pin index (always the first pin)
+    pin = 0;
+    // Pin instance
+    pinst = tusbGPIOGroup.associatedPins[pin];
+    packagePin = pinst.pin.$solution.packagePinName;
+    port = Common.getGPIOPortMultiPad(packagePin,pinst,undefined);
+    // Are there other pins outside the same port?
+    sameGroupOtherPort = _.filter(pinstances, (pin) => {
+        return pin.$ownedBy === pinst.$ownedBy &&
+        Common.getGPIOPortMultiPad(pin.pin.$solution.packagePinName,pin,undefined) !== port;});
+    if(pinst.$ownedBy.port !== "Any" || sameGroupOtherPort.length === 0) {
+        portStr = tusbGPIOGroup.$name+"_PORT";
+    }else{
+        portStr = tusbGPIOGroup.$name+"_"+pinst.$name+"_PORT";
+    }
+%%}
+/* TinyUSB GPIO Button Defines */
+`("#define GPIO_BUTTON_TUSB").padEnd(40, " ") + (portStr).toString().padStart(40, " ")`
+`("#define GPIO_BUTTON_PIN_TUSB").padEnd(40, " ") + (tusbGPIOGroup.$name+"_"+pinst.$name+"_PIN").toString().padStart(40, " ")`
+`("#define GPIO_BUTTON_IOMUX_TUSB").padEnd(40, " ") + (tusbGPIOGroup.$name+"_"+pinst.$name+"_IOMUX").toString().padStart(40, " ")`
+% }
+% if(tinyusb.configureUART){
+%%{
+    //--------------------------------------------------------------------+
+    // UART Logging
+    //--------------------------------------------------------------------+
+    let tusbUART = tinyusb?.associatedUART?.$name;
+%%}
+/* TinyUSB UART Logging defines */
+`("#define UNICOMM_TUSB").padEnd(40, " ") + (tusbUART+"_INST->inst").toString().padStart(40, " ")`
+`("#define UART_TUSB").padEnd(40, " ") + (tusbUART+"_INST->uart").toString().padStart(40, " ")`
+`("#define GPIO_UART_TX_IO_FUNC_TUSB").padEnd(40, " ") + ("GPIO_"+tusbUART+"_IOMUX_TX_FUNC").toString().padStart(40, " ")`
+`("#define GPIO_UART_TX_IOMUX_TUSB").padEnd(40, " ") + ("GPIO_"+tusbUART+"_IOMUX_TX").toString().padStart(40, " ")`
+`("#define GPIO_UART_RX_IO_FUNC_TUSB").padEnd(40, " ") + ("GPIO_"+tusbUART+"_IOMUX_RX_FUNC").toString().padStart(40, " ")`
+`("#define GPIO_UART_RX_IOMUX_TUSB").padEnd(40, " ") + ("GPIO_"+tusbUART+"_IOMUX_RX").toString().padStart(40, " ")`
+% }
+%%{
+    //--------------------------------------------------------------------+
+    // HFCLK Pins
+    //--------------------------------------------------------------------+
+    let sysctlMod = undefined;
+    let clockTreeEn = false;
+    if(system.modules["/ti/driverlib/SYSCTL"]){
+        sysctlMod = system.modules["/ti/driverlib/SYSCTL"].$static;
+		clockTreeEn = sysctlMod.clockTreeEn;
+	}
+    let hfxInPinTUSB = "0";
+    let hfxOutPinTUSB = "0";
+    if(!clockTreeEn){
+        if(sysctlMod.useHFCLK && sysctlMod.HFCLKSource === "HFXT"){
+            hfxInPinTUSB = "GPIO_HFXIN_IOMUX";
+            hfxOutPinTUSB = "GPIO_HFXOUT_IOMUX";
+        }
+    }else{
+        // TODO: Clocktree equivalent condition check
+    }
+%%}
+/* TinyUSB HFCLK Defines */
+`("#define GPIO_HFXIN_IOMUX_TUSB").padEnd(40, " ") + (hfxInPinTUSB).toString().padStart(40, " ")`
+`("#define GPIO_HFXOUT_IOMUX_TUSB").padEnd(40, " ") + (hfxOutPinTUSB).toString().padStart(40, " ")`
+% } // end if tinyusb condition
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

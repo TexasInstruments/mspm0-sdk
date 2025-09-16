@@ -13,6 +13,10 @@ mode to transmit and receive data.
 | GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
 | GPIOA | Standard Output | PA15 | J4_38 |  |
 | SYSCTL |  |  |  |  |
+| SPI0 | SPI SCLK (Clock) | PA12 | J2_17 |  |
+| SPI0 | SPI PICO (Peripheral In, Controller Out) | PA14 | S2 |  |
+| SPI0 | SPI POCI (Peripheral Out, Controller In) | PA10 | J2_15 |  |
+| SPI0 | SPI CS0 (Chip Select 0) | PA11 | J14_7 |  |
 | EVENT |  |  |  |  |
 | BOARD | Debug Clock | PA20 | J14_4 |  |
 | BOARD | Debug Data In Out | PA19 | J14_2 |  |

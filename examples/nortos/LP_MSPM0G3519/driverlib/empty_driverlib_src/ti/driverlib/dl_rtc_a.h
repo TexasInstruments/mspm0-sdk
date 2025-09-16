@@ -1456,6 +1456,11 @@ typedef DL_RTC_Common_CalendarAlarm                 DL_RTC_A_CalendarAlarm;
 #define DL_RTC_A_getTimeStampEventCapture           DL_RTC_Common_getTimeStampEventCapture
 
 /*!
+ * @brief Redirects to common @ref DL_RTC_Common_getTimeStampCalendar
+ */
+#define DL_RTC_A_getTimeStampCalendar               DL_RTC_Common_getTimeStampCalendar
+
+/*!
  * @brief Redirects to common @ref DL_RTC_Common_clearTimeStamp
  */
 #define DL_RTC_A_clearTimeStamp                     DL_RTC_Common_clearTimeStamp

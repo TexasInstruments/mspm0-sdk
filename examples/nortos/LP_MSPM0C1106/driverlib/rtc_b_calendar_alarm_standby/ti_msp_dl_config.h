@@ -97,6 +97,7 @@ extern "C" {
 #define GPIO_RTC_B_IOMUX_RTCOUT_FUNC             (IOMUX_PINCM25_PF_LFSS_RTC_OUT)
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

@@ -41,6 +41,7 @@ import os
 from txt_to_h import *
 import threading
 import subprocess
+from tkinter import ttk
 from subprocess import run
 
 class Tkinter_app:
@@ -49,6 +50,9 @@ class Tkinter_app:
         self.count = 0
         self.firmwaredfile = ""
         self.xds_v = tkinter.StringVar(None, "a")
+        self.invok_v = tkinter.StringVar(None, "a")
+        self.device_var = 'MSPM0L/G'
+
         # self.xds_r = tkinter.StringVar(None, '1')
         menubar = Menu(master, tearoff=0)
         #        menubar.add_command(label='MoreOption')
@@ -58,6 +62,7 @@ class Tkinter_app:
         menufile.add_command(label="TXT_to_H", command=self.txt_h)
         menufile.add_command(label="Update XDS110 firmware", command=self.update_xds110)
         menufile.add_command(label="Get_CRC", command=self.CRC_h)
+        menufile.add_command(label="Factory_reset", command=self.factoryreset)
         master["menu"] = menubar
 
         # menubar.config(bg='red')
@@ -68,9 +73,11 @@ class Tkinter_app:
         # w = OptionMenu(master, variable, "one", "two", "three")
         # w.config(bg="gray")  # Set background color to green
         # w.pack()
+        frame00 = Frame(master)
+        frame00.pack(padx=50, pady=5, anchor=E)
 
         frame0 = Frame(master)
-        frame0.pack(padx=50, pady=20, anchor=E)
+        frame0.pack(padx=50, anchor=E)
         frame1 = Frame(master)
         frame1.pack(padx=50, anchor=E)
         frame3 = Frame(master)
@@ -83,6 +90,18 @@ class Tkinter_app:
         # frame6.pack(padx=1, pady=20, anchor=E)
         frame2 = Frame(master)
         frame2.pack(side="bottom")
+
+        self.label0_0 = Label(frame00, text='Please choose a device family:')
+        self.label0_0.grid(column=0, row=0)
+        self.entry_0 = Entry(frame00, width=12)
+        self.entry_0.grid(column=1, row=0)
+        self.entry_0.delete(0, 'end')
+        self.entry_0.insert(INSERT, self.device_var)
+        self.entry_0['state'] = 'readonly'
+
+        self.buttons_0 = Button(frame00, text='Change', command=self.Device_choose)
+        self.buttons_0.grid(column=2, row=0)
+
 
         self.label0 = Label(frame0, text="Application firmware file:")
         self.label0.pack(side="left")
@@ -107,6 +126,23 @@ class Tkinter_app:
         photo = PhotoImage(file="imag\oi.GIF")
         self.label2 = Label(frame2, image=photo)
         self.label2.pack()
+
+        self.rad_button0 = Radiobutton(
+            frame3,
+            text="Hardware Invoke",
+            variable=self.invok_v,
+            value="a",
+            command=self.hw_v,
+        )
+        self.rad_button0.place(relx=0.1, rely=0)
+        self.rad_button1 = Radiobutton(
+            frame3,
+            text="Software Invoke",
+            variable=self.invok_v,
+            value="b",
+            command=self.sw_v,
+        )
+        self.rad_button1.place(relx=0.1, rely=0.5)
 
         self.button3 = Button(frame3, text="Download", command=self.downlaod_thread)
         self.button3.pack()
@@ -149,20 +185,96 @@ class Tkinter_app:
         #        self.textlog.insert(INSERT, "Python version: "+platform.python_version() + '\n')
         self.textlog.tag_config("error", foreground="red")
         self.textlog.tag_config("pass", foreground="green")
+        self.textlog.tag_config("warning", foreground="orange")
         self.textlog.tag_config("normal", foreground="black")
         self.textlog.config(state=DISABLED)
 
         self.button_c = Button(frame5, text="Clear", command=self.clear_text)
         self.button_c.pack()
 
-        self.connection_pack = BSL_pack.connection_pack()
-        self.get_ID_pack = BSL_pack.get_ID_pack()
+        self.connection_pack = BSL_pack.connection_pack(self.device_var)
+        self.get_ID_pack = BSL_pack.get_ID_pack(self.device_var)
         self.password_pack = b""
-        self.mass_erase_pack = BSL_pack.mass_erase_pack()
+        self.mass_erase_pack = BSL_pack.mass_erase_pack(self.device_var)
         self.firmware_pack = b""
-        self.start_app_pack = BSL_pack.start_app_pack()
+        self.start_app_pack = BSL_pack.start_app_pack(self.device_var)
         self.path = os.getcwd()
+    def Device_choose(self):
+        sub_win0_1_0 = Toplevel(root)
+        sub_win0_1_0.title('Choose other device')
+        #        sub_win.attributes("-topmost", True)
+        sub_win0_1_0.geometry("250x130+400+500")
+        sub_win0_1_0.grab_set()
+        w0_1_frames_0_0 = Frame(sub_win0_1_0)
+        w0_1_frames_0_0.pack(padx=10, pady=10, anchor=W)
+        w0_1_frames_1_0 = Frame(sub_win0_1_0)
+        w0_1_frames_1_0.pack(padx=100, pady=20, anchor=W)
+        # self.w0_1_labels_2 = Label(w0_1_frames_0_0, text='         Current: ')
+        # self.w0_1_labels_2.grid(column=0, row=1, sticky='w')
+        self.w0_1_comboExample = ttk.Combobox(w0_1_frames_0_0,
+                                    values=[
+                                        "MSPM0L/G",
+                                        "MSPM0C",],state= 'readonly')
+        self.w0_1_comboExample.set(self.device_var)
+        self.w0_1_comboExample.grid(column=0, row=0, sticky='w')
 
+        self.w0_1_buttons1_0 = Button(w0_1_frames_1_0, text='OK', command=self.Device_change_OK)
+        self.w0_1_buttons1_0.pack()
+    def Device_change_OK(self):
+        self.textlog.config(state=NORMAL)
+        self.device_var = self.w0_1_comboExample.get()
+
+        if self.device_var == 'MSPM0L/G':
+
+            self.textlog.insert(INSERT, 'Device family changed to MSPM0L/G.\n')
+
+        else :
+            if self.device_var == 'MSPM0C':
+
+                self.textlog.insert(INSERT, 'Device family changed to flash based BSL MSPM0C.\n')
+                if self.invok_v.get() == 'a':
+                    self.textlog.insert(
+                        INSERT, "Due to LP-MSPM0C1104 do not have BSL invoke pin. Please try to use"
+                                " ohter MSPM0 launchpad onboard XDS110 to do it.\n", "warning"
+                    )
+        self.connection_pack = BSL_pack.connection_pack(self.device_var)
+        self.get_ID_pack = BSL_pack.get_ID_pack(self.device_var)
+        self.mass_erase_pack = BSL_pack.mass_erase_pack(self.device_var)
+        self.start_app_pack = BSL_pack.start_app_pack(self.device_var)
+        self.entry_0['state'] = 'normal'
+        self.entry_0.delete(0, 'end')
+        self.entry_0.insert(INSERT, self.device_var)
+        self.entry_0['state'] = 'readonly'
+        input_name.set('')
+        input_name1.set('')
+        self.passwordfile = b""
+        self.firmwaredfile = ""
+        self.textlog.see(END)
+        self.textlog.config(state=DISABLED)
+    def hw_v(self):
+        self.textlog.config(state=NORMAL)
+        if self.device_var == 'MSPM0C':
+            self.textlog.insert(
+                INSERT, "Change to hardware invoke.\n", "normal"
+            )
+            self.textlog.insert(
+                INSERT, "Due to LP-MSPM0C1104 do not have BSL invoke pin. Please try to use"
+                        " ohter MSPM0 launchpad onboard XDS110 to do it.\n", "warning"
+            )
+        else:
+            self.textlog.insert(
+                INSERT, "Change to hardware invoke. Please connect reset pin and invoke pin on hardware.\n", "normal"
+            )
+        self.textlog.config(state=DISABLED)
+    def sw_v(self):
+        self.textlog.config(state=NORMAL)
+        self.textlog.insert(
+            INSERT, "Change to software invoke. Send 0x22 to trigger BSL.\n", "normal"
+        )
+        self.textlog.insert(
+            INSERT, "Make sure the application code support software invoke.\n", "warning"
+        )
+        self.textlog.config(state=DISABLED)
     def xds110_LP(self):
         self.textlog.config(state=NORMAL)
         self.textlog.insert(
@@ -200,7 +312,7 @@ class Tkinter_app:
                 INSERT, "Choose a firmware file at:" + f + "\n", "normal"
             )
             self.firmwaredfile = file_d.get_firmware(f)
-            self.firmware_pack = BSL_pack.firmware_pack(self.firmwaredfile)
+            self.firmware_pack = BSL_pack.firmware_pack(self.firmwaredfile, self.device_var)
         else:
             self.textlog.insert(
                 INSERT, "Error: Please choose a firmware file.\n", "error"
@@ -229,7 +341,7 @@ class Tkinter_app:
                     INSERT, "Error: Password format is not correct!\n", "error"
                 )
             else:
-                self.password_pack = BSL_pack.password_pack(self.passwordfile)
+                self.password_pack = BSL_pack.password_pack(self.passwordfile, self.device_var)
         else:
             self.passwordfile = b""
             self.textlog.insert(
@@ -247,52 +359,53 @@ class Tkinter_app:
         self.textlog.config(state=NORMAL)
         self.button3.config(state='disabled')
         if self.passwordfile != b"" and self.firmwaredfile != "":
-            if self.xds_v.get() == "a":
-                try:
-                    subprocess.run(
-                        self.path
-                        + "/common/uscif/dbgjtag.exe  -f @xds110 -Y gpiopins, config=0x1, write=0x1",
-                        shell=True,
-                        capture_output=True,
-                        encoding='utf-8')
-                    subprocess.run(
-                        self.path
-                        + "/common/uscif/xds110/xds110reset.exe -d 1400",
-                        shell=True,
-                        capture_output=True,
-                        encoding='utf-8')
-                except:
-                    self.textlog.insert(
-                        INSERT,
-                        "Error: please make sure the folder path not include !\n",
-                        "error",
-                    )
-            else:
-                if self.xds_v.get() == "b":
-                    subprocess.run(
-                        self.path
-                        + "/common/uscif/dbgjtag.exe -f @xds110 -Y power,supply=on,voltage=3.2",
-                        shell=True,
-                        capture_output=True,
-                        encoding='utf-8')
-                    subprocess.run(
-                        self.path
-                        + "/common/uscif/dbgjtag.exe -f @xds110 -Y gpiopins, config=0x3, write=0x02",
-                        shell=True,
-                        capture_output=True,
-                        encoding='utf-8')
-                    time.sleep(1.4)
-                    subprocess.run(
-                        self.path
-                        + "/common/uscif/dbgjtag.exe -f @xds110 -Y gpiopins, config=0x3, write=0x03",
-                        shell=True,
-                        capture_output=True,
-                        encoding='utf-8')
+            if self.invok_v.get() == "a":
+                if self.xds_v.get() == "a":
+                    try:
+                        subprocess.run(
+                            self.path
+                            + "/common/uscif/dbgjtag.exe  -f @xds110 -Y gpiopins, config=0x1, write=0x1",
+                            shell=True,
+                            capture_output=True,
+                            encoding='utf-8')
+                        subprocess.run(
+                            self.path
+                            + "/common/uscif/xds110/xds110reset.exe -d 1400",
+                            shell=True,
+                            capture_output=True,
+                            encoding='utf-8')
+                    except:
+                        self.textlog.insert(
+                            INSERT,
+                            "Error: please make sure the folder path not include !\n",
+                            "error",
+                        )
                 else:
-                    # print(self.xds_v.get())
-                    self.textlog.insert(
-                        INSERT, "No correct hardware bridge selected.\n", "error"
-                    )
+                    if self.xds_v.get() == "b":
+                        subprocess.run(
+                            self.path
+                            + "/common/uscif/dbgjtag.exe -f @xds110 -Y power,supply=on,voltage=3.2",
+                            shell=True,
+                            capture_output=True,
+                            encoding='utf-8')
+                        subprocess.run(
+                            self.path
+                            + "/common/uscif/dbgjtag.exe -f @xds110 -Y gpiopins, config=0x3, write=0x02",
+                            shell=True,
+                            capture_output=True,
+                            encoding='utf-8')
+                        time.sleep(1.4)
+                        subprocess.run(
+                            self.path
+                            + "/common/uscif/dbgjtag.exe -f @xds110 -Y gpiopins, config=0x3, write=0x03",
+                            shell=True,
+                            capture_output=True,
+                            encoding='utf-8')
+                    else:
+                        # print(self.xds_v.get())
+                        self.textlog.insert(
+                            INSERT, "No correct hardware bridge selected.\n", "error"
+                        )
             find_flag = UART_S.find_MSP_COM()
             if find_flag:
                 self.textlog.insert(
@@ -306,93 +419,103 @@ class Tkinter_app:
                     "normal",
                 )
                 self.textlog.see(END)
+                if self.invok_v.get() == "b":
+                    UART_S.send_data(ser_port, b"\x22")
+                    UART_S.read_data(ser_port, 1)
+                    time.sleep(0.1)
                 UART_S.send_data(ser_port, self.connection_pack)
-                response_ = UART_S.read_data(ser_port, 1)
                 if self.xds_v.get() == "a":
-                    subprocess.run(
-                        self.path
-                        + "/common/uscif/dbgjtag.exe  -f @xds110 -Y gpiopins, config=0x1, write=0x0",
-                        shell=True,
-                        capture_output=True,
-                        encoding='utf-8')
+                    response_ = UART_S.read_data(ser_port, 1)
+                    check = self.check_pack(response_)
                 else:
-                    if self.xds_v.get() == "b":
-                        subprocess.run(
-                            self.path
-                            + "/common/uscif/dbgjtag.exe -f @xds110 -Y gpiopins, config=0x3, write=0x01",
-                            shell=True,
-                            capture_output=True,
-                            encoding='utf-8')
-                # print(type(response))
-                # print(response)
-                UART_S.send_data(ser_port, b"\xbb")
-                response01 = UART_S.read_data(ser_port, 1)
-                #                print(response)
-                if response01 == "51":
-                    self.textlog.insert(
-                        INSERT, "MSPM0 is in BSL mode.\nGet device ID...\n", "normal"
-                    )
-                    self.textlog.see(END)
-                    UART_S.send_data(ser_port, self.get_ID_pack)
-                    response1 = UART_S.read_data(ser_port, 33)
-                    self.textlog.insert(INSERT, "Send the password...\n", "normal")
-                    self.textlog.see(END)
-                    UART_S.send_data(ser_port, self.password_pack)
-                    response2 = UART_S.read_data(ser_port, 1)
-                    check = self.check_pack(response2)
-                    if check:
-                        response2 = UART_S.read_data(ser_port, 9)
-                        check2 = self.check_reponse(response2[8:10])
-                        # print(response2[8:10])
-                        if check2:
-                            self.textlog.insert(INSERT, "Mass erase...\n", "normal")
-                            self.textlog.see(END)
-                            UART_S.send_data(ser_port, self.mass_erase_pack)
-                            response2 = UART_S.read_data(ser_port, 1)
+                    check = 1
+                if check:
+                    if self.invok_v.get() == "a":
+                        if self.xds_v.get() == "a":
+                            subprocess.run(
+                                self.path
+                                + "/common/uscif/dbgjtag.exe  -f @xds110 -Y gpiopins, config=0x1, write=0x0",
+                                shell=True,
+                                capture_output=True,
+                                encoding='utf-8')
+                        else:
+                            if self.xds_v.get() == "b":
+                                subprocess.run(
+                                    self.path
+                                    + "/common/uscif/dbgjtag.exe -f @xds110 -Y gpiopins, config=0x3, write=0x01",
+                                    shell=True,
+                                    capture_output=True,
+                                    encoding='utf-8')
+                    # print(type(response))
+                    # print(response)
+                    UART_S.send_data(ser_port, b"\xbb")
+                    response01 = UART_S.read_data(ser_port, 1)
+                    #                print(response)
+                    if response01 == "51":
+                        self.textlog.insert(
+                            INSERT, "MSPM0 is in BSL mode.\nGet device ID...\n", "normal"
+                        )
+                        self.textlog.see(END)
+                        UART_S.send_data(ser_port, self.get_ID_pack)
+                        response1 = UART_S.read_data(ser_port, 33)
+                        self.textlog.insert(INSERT, "Send the password...\n", "normal")
+                        self.textlog.see(END)
+                        UART_S.send_data(ser_port, self.password_pack)
+                        response2 = UART_S.read_data(ser_port, 1)
+                        check = self.check_pack_Password(response2)
+                        if check:
                             response2 = UART_S.read_data(ser_port, 9)
-                            self.textlog.insert(
-                                INSERT, "Send the firmware...\n", "normal"
-                            )
-                            self.textlog.see(END)
-                            # print(type(firmware_pack))
-                            # print(firmware_pack)
-                            for list_code in self.firmware_pack:
-                                UART_S.send_data(ser_port, list_code)
-                                response3 = UART_S.read_data(ser_port, 1)
-                                self.count = self.count + 1
-                                check = self.check_pack(response3)
-                                if check:
-                                    response3 = UART_S.read_data(ser_port, 9)
-                                    check3 = self.check_reponse(response3[8:10])
-                                    if check3:
-                                        pass
-                                    else:
-                                        break
-                                else:
-                                    break
-                            if check:
+                            check2 = self.check_reponse(response2[8:10])
+                            # print(response2[8:10])
+                            if check2:
+                                self.textlog.insert(INSERT, "Mass erase...\n", "normal")
+                                self.textlog.see(END)
+                                UART_S.send_data(ser_port, self.mass_erase_pack)
+                                response2 = UART_S.read_data(ser_port, 1)
+                                response2 = UART_S.read_data(ser_port, 9)
                                 self.textlog.insert(
-                                    INSERT, "Send firmware successfully!\n", "normal"
-                                )
-                                self.textlog.insert(
-                                    INSERT,
-                                    "Boot reset the device to start application ...\n",
-                                    "normal",
-                                )
-                                self.textlog.insert(
-                                    INSERT,
-                                    "-----------Download finished!----------\n",
-                                    "pass",
+                                    INSERT, "Send the firmware...\n", "normal"
                                 )
                                 self.textlog.see(END)
-                                UART_S.send_data(ser_port, self.start_app_pack)
-                                response3 = UART_S.read_data(ser_port, 1)
+                                # print(type(firmware_pack))
+                                # print(firmware_pack)
+                                for list_code in self.firmware_pack:
+                                    UART_S.send_data(ser_port, list_code)
+                                    response3 = UART_S.read_data(ser_port, 1)
+                                    self.count = self.count + 1
+                                    check = self.check_pack(response3)
+                                    if check:
+                                        response3 = UART_S.read_data(ser_port, 9)
+                                        check3 = self.check_reponse(response3[8:10])
+                                        if check3:
+                                            pass
+                                        else:
+                                            break
+                                    else:
+                                        break
+                                if check:
+                                    self.textlog.insert(
+                                        INSERT, "Send firmware successfully!\n", "normal"
+                                    )
+                                    self.textlog.insert(
+                                        INSERT,
+                                        "Boot reset the device to start application ...\n",
+                                        "normal",
+                                    )
+                                    self.textlog.insert(
+                                        INSERT,
+                                        "-----------Download finished!----------\n",
+                                        "pass",
+                                    )
+                                    self.textlog.see(END)
+                                    UART_S.send_data(ser_port, self.start_app_pack)
+                                    response3 = UART_S.read_data(ser_port, 1)
+                        else:
+                            self.textlog.insert(INSERT, "Error: No response！\n", "error")
+                            self.textlog.see(END)
                     else:
                         self.textlog.insert(INSERT, "Error: No response！\n", "error")
                         self.textlog.see(END)
-                else:
-                    self.textlog.insert(INSERT, "Error: No response！\n", "error")
-                    self.textlog.see(END)
             else:
                 self.textlog.insert(
                     INSERT, "Error: Can not find MSP COM port!\n", "error"
@@ -417,7 +540,30 @@ class Tkinter_app:
         #        self.textlog.config(state=NORMAL)
         if pack_ack == "00":
             flagg = 1
-            self.textlog.insert(INSERT, '[Firmware update on going...] Send firmware package ' + str(self.count) + ' successfully!\n', "normal")
+            self.textlog.insert(INSERT, '[on going...] Send data package ' + str(self.count) + ' successfully!\n', "normal")
+        elif pack_ack == "51":
+            self.textlog.insert(INSERT, "Error: Header incorrect!\n", "error")
+        elif pack_ack == "52":
+            self.textlog.insert(INSERT, "Error: Checksum incorrect!\n", "error")
+        elif pack_ack == "53":
+            self.textlog.insert(INSERT, "Error: Packet size zero!\n", "error")
+        elif pack_ack == "54":
+            self.textlog.insert(INSERT, "Error: Packet size too big!\n", "error")
+        elif pack_ack == "55":
+            self.textlog.insert(INSERT, "Error: Unknown error!\n", "error")
+        elif pack_ack == "56":
+            self.textlog.insert(INSERT, "Error: Unknown baud rate!\n", "error")
+        else:
+            self.textlog.insert(INSERT, "Error: Unknow else error!\n", "error")
+        #       self.textlog.config(state=DISABLED)
+        self.textlog.see(END)
+        return flagg
+    def check_pack_Password(self, pack_ack):
+        flagg = 0
+        #        self.textlog.config(state=NORMAL)
+        if pack_ack == "00":
+            flagg = 1
+            self.textlog.insert(INSERT, 'Send password package successfully!\n', "normal")
         elif pack_ack == "51":
             self.textlog.insert(INSERT, "Error: Header incorrect!\n", "error")
         elif pack_ack == "52":
@@ -590,7 +736,7 @@ class Tkinter_app:
     def update_xds110(self):
         self.textlog.config(state=NORMAL)
         self.textlog.insert(
-            INSERT, "Update the XDS110 firmware to version firmware_3.0.0.28...\n"
+            INSERT, "Update the XDS110 firmware to version firmware_3.0.0.36...\n"
         )
         path = os.getcwd()
         print(path)
@@ -613,7 +759,7 @@ class Tkinter_app:
             path
             + "/common/uscif/xds110/xdsdfu.exe -f "
             + path
-            + "/common/uscif/xds110/firmware_3.0.0.28.bin -r",
+            + "/common/uscif/xds110/firmware_3.0.0.36.bin -r",
             shell=True,
             capture_output=True,
             encoding='utf-8')
@@ -784,6 +930,233 @@ class Tkinter_app:
         self.entryss2_crc["state"] = "readonly"
         # print(hex(checksum))
 
+    def factoryreset(self):
+        sub_win3 = Toplevel(root)
+        sub_win3.title("Factory Reset")
+        #        sub_win1.attributes("-topmost", True)
+        sub_win3.geometry("700x200+300+200")
+        sub_win3.grab_set()
+        frames_factory_0 = Frame(sub_win3)
+        frames_factory_0.pack(padx=50, pady=20, anchor=W)
+        frames_factory_1 = Frame(sub_win3)
+        frames_factory_1.pack(padx=50, anchor=W)
+        frames_factory_3 = Frame(sub_win3)
+        frames_factory_3.pack(pady=10)
+        frames_factory_4 = Frame(sub_win3)
+        frames_factory_4.pack()
+
+        self.label_factory_0 = Label(frames_factory_0, text='NonMain data file::')
+        self.label_factory_0.grid(column=0, row=0)
+        global input_nonmain_name
+        input_nonmain_name = StringVar()
+        self.entry_factory_0 = Entry(frames_factory_0, width=50, textvariable=input_nonmain_name)
+        self.entry_factory_0.grid(column=1, row=0)
+        self.entry_factory_0.delete(0, 'end')
+
+        self.buttons_0 = Button(frames_factory_0, text='Choose .txt file', command=self.choosefile_nonmain)
+        self.buttons_0.grid(column=2, row=0)
+
+        self.label_factory1 = Label(frames_factory_1, text="BSL Password file:")
+        self.label_factory1.pack(side="left")
+        global input_factory_name1
+        input_factory_name1 = StringVar()
+        self.entry_factory1 = Entry(frames_factory_1, width=50, textvariable=input_factory_name1)
+        self.entry_factory1.pack(side="left")
+
+        self.button_factory1 = Button(frames_factory_1, text="Choose .txt file", command=self.choosefile_factory)
+        self.button_factory1.pack(side="left")
+
+        self.button_factory3 = Button(frames_factory_3, text="FactoryReset", command=self.factory_reset_thread)
+        self.button_factory3.pack()
+
+        self.label_factory3 = Label(frames_factory_3, text="(Just support UART with launchpad based XDS110 and GPIO invoke. Factory reset with password is not supported.)")
+        self.label_factory3.pack()
+
+        self.factory_reset_pack = BSL_pack.factory_re_pack()
+        #self.nonmaindata_pack = BSL_pack.nonmain_pack(self.device_varab)
+
+    def choosefile_nonmain(self):
+        f4 = askopenfilename(
+            title="Choose a nonmain data file",
+            initialdir="c:",
+            filetypes=[("textfile", ".txt")],
+        )
+        input_nonmain_name.set(f4)
+        self.textlog.config(state=NORMAL)
+        if f4:
+            self.textlog.insert(
+                INSERT, "Choose a nonmain file at:" + f4 + "\n", "normal"
+            )
+            self.nonmainfile = file_d.get_firmware(f4)
+            self.nonmain_data_pack = BSL_pack.firmware_pack(self.nonmainfile, self.device_var)
+        else:
+            self.nonmainfile = ""
+            self.nonmain_data_pack = b""
+            self.textlog.insert(
+                INSERT, "Error: Please choose a nonmain file.\n", "error"
+            )
+        # else:
+        #     print(self.passwordfile)
+        self.textlog.see(END)
+        self.textlog.config(state=DISABLED)
+    def choosefile_factory(self):
+        f1 = askopenfilename(
+            title="Choose a password file",
+            initialdir="c:",
+            filetypes=[("textfile", ".txt")],
+        )
+        input_factory_name1.set(f1)
+        self.textlog.config(state=NORMAL)
+        if f1:
+            self.textlog.insert(
+                INSERT, "Choose a password file at:" + f1 + "\n", "normal"
+            )
+            self.passwordfile = b""
+            self.passwordfile = file_d.get_password(f1)
+            if self.passwordfile == b"":
+                self.textlog.insert(
+                    INSERT, "Error: Password format is not correct!\n", "error"
+                )
+            else:
+                self.password_pack = BSL_pack.password_pack(self.passwordfile, self.device_var)
+        else:
+            self.passwordfile = b""
+            self.textlog.insert(
+                INSERT, "Error: Please choose a password file.\n", "error"
+            )
+
+        # else:
+        #     print(self.passwordfile)
+        self.textlog.see(END)
+        self.textlog.config(state=DISABLED)
+    def factory_reset_thread(self):
+        self.textlog.config(state=NORMAL)
+        self.button3.config(state='disabled')
+        if self.passwordfile != b"" and self.nonmainfile != "":
+            try:
+                subprocess.run(
+                    self.path
+                    + "/common/uscif/dbgjtag.exe  -f @xds110 -Y gpiopins, config=0x1, write=0x1",
+                    shell=True,
+                    capture_output=True,
+                    encoding='utf-8')
+                subprocess.run(
+                    self.path
+                    + "/common/uscif/xds110/xds110reset.exe -d 1400",
+                    shell=True,
+                    capture_output=True,
+                    encoding='utf-8')
+            except:
+                self.textlog.insert(
+                    INSERT,
+                    "Error: please make sure the folder path not include !\n",
+                    "error",
+                )
+            find_flag = UART_S.find_MSP_COM()
+            if find_flag:
+                self.textlog.insert(
+                    INSERT, "Find MSP COM port:" + find_flag + "\n", "normal"
+                )
+                self.textlog.see(END)
+                ser_port = UART_S.config_uart(find_flag)
+                self.textlog.insert(
+                    INSERT,
+                    "Configure UART: 9600 baudrate, 8 data bits (LSB first), no parity, and 1 stop bit.\n",
+                    "normal",
+                )
+                self.textlog.see(END)
+                UART_S.send_data(ser_port, self.connection_pack)
+                response_f = UART_S.read_data(ser_port, 1)
+                check_f = self.check_pack(response_f)
+                if check_f:
+                    subprocess.run(
+                        self.path
+                        + "/common/uscif/dbgjtag.exe  -f @xds110 -Y gpiopins, config=0x1, write=0x0",
+                        shell=True,
+                        capture_output=True,
+                        encoding='utf-8')
+                    UART_S.send_data(ser_port, b"\xbb")
+                    response01_f = UART_S.read_data(ser_port, 1)
+                    if response01_f == "51":
+                        self.textlog.insert(
+                            INSERT, "MSPM0 is in BSL mode.\nGet device ID...\n", "normal"
+                        )
+                        self.textlog.see(END)
+                        UART_S.send_data(ser_port, self.get_ID_pack)
+                        response1_ = UART_S.read_data(ser_port, 33)
+                        self.textlog.insert(INSERT, "Send the password...\n", "normal")
+                        self.textlog.see(END)
+                        UART_S.send_data(ser_port, self.password_pack)
+                        response2 = UART_S.read_data(ser_port, 1)
+                        check_f = self.check_pack_Password(response2)
+                        if check_f:
+                            response2 = UART_S.read_data(ser_port, 9)
+                            check2 = self.check_reponse(response2[8:10])
+                            if check2:
+                                self.textlog.insert(INSERT, "Send factory reset command...\n", "normal")
+                                self.textlog.see(END)
+                                UART_S.send_data(ser_port, self.factory_reset_pack)
+                                response2 = UART_S.read_data(ser_port, 1)
+                                check = self.check_pack(response2)
+                                if check:
+                                    response2 = UART_S.read_data(ser_port, 9)
+                                    check2 = self.check_reponse(response2[8:10])
+                                    if check2:
+                                        self.textlog.insert(
+                                            INSERT, "Send the nonmain data...\n", "normal"
+                                        )
+                                        self.textlog.see(END)
+                                        for list_code in self.nonmain_data_pack:
+                                            UART_S.send_data(ser_port, list_code)
+                                            response3 = UART_S.read_data(ser_port, 1)
+                                            self.count = self.count + 1
+                                            check = self.check_pack(response3)
+                                            if check:
+                                                response3 = UART_S.read_data(ser_port, 9)
+                                                check3 = self.check_reponse(response3[8:10])
+                                                if check3:
+                                                    pass
+                                                else:
+                                                    break
+                                            else:
+                                                break
+                                        if check:
+                                            self.textlog.insert(
+                                                INSERT, "Send nonmain data successfully!\n", "normal"
+                                            )
+                                            self.textlog.insert(
+                                                INSERT,
+                                                "-----------Factory reset finished!----------\n",
+                                                "pass",
+                                            )
+                                            self.textlog.see(END)
+                                    else:
+                                        self.textlog.insert(INSERT, "Error: No response！\n", "error")
+                                        self.textlog.see(END)
+                            else:
+                                self.textlog.insert(INSERT, "Error: No response！\n", "error")
+                                self.textlog.see(END)
+                        else:
+                            self.textlog.insert(INSERT, "Error: No response！\n", "error")
+                            self.textlog.see(END)
+                    else:
+                        self.textlog.insert(
+                            INSERT, "Error: Can not find MSP COM port!\n", "error"
+                        )
+                        self.textlog.see(END)
+
+            else:
+                self.textlog.insert(
+                    INSERT, "Error: Can not find MSP COM port!\n", "error"
+                )
+                self.textlog.see(END)
+        else:
+            self.textlog.insert(
+                INSERT, "Error: please choose all files above!\n", "error"
+            )
+        self.textlog.see(END)
+        self.textlog.config(state=DISABLED)
+        self.button3.config(state='normal')
     def crc32_(self, data_B):
         crc = 0xFFFFFFFF
         crc32_POLY = 0xEDB88320

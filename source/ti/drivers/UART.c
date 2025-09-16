@@ -190,7 +190,8 @@ int_fast16_t UART_readCallback(UART_Handle handle, void *buf, size_t size, size_
 
     UARTMSP_enableInts(handle);
 #if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)||(DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X) || \
-     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) || (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X))
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) || (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X) || \
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X))
     UARTMSP_dmaRx(handle, false);
 #endif
     HwiP_restore(key);
@@ -568,7 +569,8 @@ void UART_writeCancel(UART_Handle handle)
         object->writeCancel = true;
 
 #if ((DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G1X0X_G3X0X)||(DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L122X_L222X)|| \
-     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) || (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X))
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0GX51X) || (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0L111X) || \
+     (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X))
         /* Stop DMA transaction */
         UARTMSP_dmaStopTx(handle);
 #endif

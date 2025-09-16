@@ -319,7 +319,7 @@ uint8_t Host_BSL_writeMemory(uint32_t addr, const uint8_t *data, uint32_t len)
     uint16_t ui16PayloadSize;
     uint16_t ui16PacketSize;
     uint32_t ui32CRC;
-    uint16_t ui16BytesToWrite = len;
+    uint32_t ui16BytesToWrite = len;
     uint32_t TargetAddress    = addr;
 
     while (ui16BytesToWrite > 0) {

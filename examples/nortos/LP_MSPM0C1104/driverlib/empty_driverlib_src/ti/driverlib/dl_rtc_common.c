@@ -278,4 +278,41 @@ void DL_RTC_Common_disableCalendarAlarm2(RTC_Regs *rtc_common)
     }
 }
 
+DL_RTC_Common_Calendar DL_RTC_Common_getTimeStampCalendar(
+    const RTC_Regs *rtc_common)
+{
+    DL_RTC_Common_Calendar calendarTime;
+    DL_RTC_COMMON_FORMAT format;
+
+    format = DL_RTC_Common_getClockFormat(rtc_common);
+
+    if (format == DL_RTC_COMMON_FORMAT_BINARY) {
+        calendarTime.seconds =
+            DL_RTC_Common_getTimeStampSecondsBinary(rtc_common);
+        calendarTime.minutes =
+            DL_RTC_Common_getTimeStampMinutesBinary(rtc_common);
+        calendarTime.hours = DL_RTC_Common_getTimeStampHoursBinary(rtc_common);
+        calendarTime.dayOfWeek =
+            DL_RTC_Common_getTimeStampDayOfWeekBinary(rtc_common);
+        calendarTime.dayOfMonth =
+            DL_RTC_Common_getTimeStampDayOfMonthBinary(rtc_common);
+        calendarTime.month = DL_RTC_Common_getTimeStampMonthBinary(rtc_common);
+        calendarTime.year  = DL_RTC_Common_getTimeStampYearBinary(rtc_common);
+    } else {
+        calendarTime.seconds =
+            DL_RTC_Common_getTimeStampSecondsBCD(rtc_common);
+        calendarTime.minutes =
+            DL_RTC_Common_getTimeStampMinutesBCD(rtc_common);
+        calendarTime.hours = DL_RTC_Common_getTimeStampHoursBCD(rtc_common);
+        calendarTime.dayOfWeek =
+            DL_RTC_Common_getTimeStampDayOfWeekBCD(rtc_common);
+        calendarTime.dayOfMonth =
+            DL_RTC_Common_getTimeStampDayOfMonthBCD(rtc_common);
+        calendarTime.month = DL_RTC_Common_getTimeStampMonthBCD(rtc_common);
+        calendarTime.year  = DL_RTC_Common_getTimeStampYearBCD(rtc_common);
+    }
+
+    return calendarTime;
+}
+
 #endif /* __MSPM0_HAS_RTC_A__ || __MSPM0_HAS_RTC_B__ || defined __MSPM0_HAS_RTC__ */

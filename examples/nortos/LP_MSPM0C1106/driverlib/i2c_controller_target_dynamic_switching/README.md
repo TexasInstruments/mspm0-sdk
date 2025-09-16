@@ -20,7 +20,7 @@ The Target device must be enabled and active before running this example.
 | --- | --- | --- | --- | --- |
 | GPIOA | Standard Input with internal pull-up | PA14 | S2 |  |
 | GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
-| GPIOA | Standard Output | PB20 | LED2 Blue | Populate Jumper(s): J7[1:2] |
+| GPIOA | Standard Output | PA26 | J1_8 |  |
 | SYSCTL |  |  |  |  |
 | I2C0 | I2C Serial Data line (SDA) | PA30 | J1_10 |  |
 | I2C0 | I2C Serial Clock line (SCL) | PA27 | J1_9 |  |

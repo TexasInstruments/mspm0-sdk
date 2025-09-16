@@ -100,6 +100,7 @@ extern "C" {
 #define GPIOA_EVENT_PUBLISHER_1_CHANNEL                                      (1)
 #define GPIOA_EVENT_SUBSCRIBER_1_CHANNEL                                     (1)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

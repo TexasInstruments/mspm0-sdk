@@ -125,5 +125,8 @@ SYSCONFIG_WEAK void SYSCFG_DL_RTC_A_init(void)
 % if(stat.enableWriteProtect) {
     DL_RTC_A_enableWriteProtect(RTC_A);
 % }
+% if(stat.enableClock) {
+	DL_RTC_A_enableClockControl(RTC_A);
+%}
 }
 %}

@@ -88,6 +88,7 @@ extern "C" {
 #define GPIO_TIA_IOMUX_OUT                                       (IOMUX_PINCM17)
 #define GPIO_TIA_IOMUX_OUT_FUNC                     IOMUX_PINCM17_PF_UNCONNECTED
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

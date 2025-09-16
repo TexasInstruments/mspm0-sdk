@@ -300,14 +300,14 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
 %         }
 %     }
 %}
-%      if(inst.uartMode == "NORMAL" && (inst.enableExtend || Common.isUnicommUART()) && inst.enableIrda){
-    DL_UART`flavorLower`_set`divisorType`BaudRateDivisor(`instName`_INST,
+%      if(inst.uartMode == "NORMAL" && (inst.enableExtend && !Common.isUnicommUART()) && inst.enableIrda){
+    DL_UART`flavorLower`_setIrDABaudRateDivisor(`instName`_INST,
         `baudIBRD`,
         `baudFBRD`,
         DL_UART_CLOCK_DIVIDE2_RATIO_`inst.uartClkDiv2`);
 %      }
 %      else{
-    DL_UART`flavorLower`_set`divisorType`BaudRateDivisor(`instName`_INST, `baudIBRD`, `baudFBRD`);
+    DL_UART`flavorLower`_setBaudRateDivisor(`instName`_INST, `baudIBRD`, `baudFBRD`);
 %      }
 
 
@@ -377,8 +377,8 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
 %   }
 % }
 %}
-%    /* Glitch filter config generation */
-%if (inst.analogGlitchFilter != "Disabled"){
+%    /* Glitch filter config generation - not available on Unicomm */
+%if (inst.analogGlitchFilter != "Disabled" && !Common.isUnicommUART()){
 
     /* Configure analog glitch filter */
     DL_UART`flavorLower`_enableAnalogGlitchFilter(`instName`_INST);

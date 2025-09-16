@@ -147,6 +147,7 @@ function onChangeGenLibs(inst,ui){
     ui.genLibIQ.hidden = !inst.genLibs;
     ui.genLibIQVersion.hidden = (!inst.genLibIQ)||(!inst.genLibs);
     ui.genLibMC.hidden = !inst.genLibs;
+	ui.genLibModbus.hidden = !inst.genLibs;
     ui.genLibPMBUS.hidden = !inst.genLibs;
     ui.genLibSMBUS.hidden = !inst.genLibs;
     ui.genLibCMSIS.hidden = !inst.genLibs;
@@ -302,6 +303,11 @@ This file is specific to the selected device family.
 
                         }
                     },
+					{
+						name: "genLibModbus",
+						displayName: "MODBUS",
+						default: false,
+					},
                     // pmbus
                     {
                         name: "genLibPMBUS",

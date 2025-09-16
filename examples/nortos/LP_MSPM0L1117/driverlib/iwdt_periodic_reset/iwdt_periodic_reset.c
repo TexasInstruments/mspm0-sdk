@@ -43,7 +43,10 @@ int main(void)
     /* Enable TimerG interrupts on device */
     NVIC_EnableIRQ(TIMER_0_INST_INT_IRQN);
 
-    /* Enable sleep on exit */
+    /* Calling WFI after calling DL_SYSCTL_enableSleepOnExit will result in
+     * only ISR code to be executed. This is done to showcase the device's
+     * low power consumption when sleeping.
+     */
     DL_SYSCTL_enableSleepOnExit();
 
     /* Set LED to indicate Timer counter enable */

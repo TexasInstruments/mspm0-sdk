@@ -19,21 +19,20 @@ When the SPI Controller receives SPI_PACKET_SIZE bytes from the SPI Peripheral, 
 
 The SPI controller will then check the received bytes and compare against the expected bytes from the spi_peripheral_fifo_dma_interrupts example and set the LED and USER_TEST high upon a successful compare.
 
-## Peripherals & Pin Assignments
-
-| Peripheral | Pin | Function |
-| --- | --- | --- |
-| GPIOA | PA0 | Open-Drain Output |
-| GPIOA | PA15 | Standard Output |
-| SYSCTL |  |  |
+## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
+| Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
+| --- | --- | --- | --- | --- |
+| GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
+| GPIOA | Standard Output | PA15 | J4_38 |  |
+| SYSCTL |  |  |  |  |
 | SPI0 | SPI SCLK (Clock) | PA25 | J1_7 |  |
 | SPI0 | SPI PICO (Peripheral In, Controller Out) | PA10 | J2_15 |  |
 | SPI0 | SPI POCI (Peripheral Out, Controller In) | PA9 | J2_14 |  |
 | SPI0 | SPI CS0 (Chip Select 0) | PA8 | J2_13 |  |
-| EVENT |  |  |
-| DMA |  |  |
-| DEBUGSS | PA20 | Debug Clock |
-| DEBUGSS | PA19 | Debug Data In Out |
+| EVENT |  |  |  |  |
+| DMA |  |  |  |  |
+| BOARD | Debug Clock | PA20 | J14_4 |  |
+| BOARD | Debug Data In Out | PA19 | J14_2 |  |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the MSPM0 LaunchPad. Please

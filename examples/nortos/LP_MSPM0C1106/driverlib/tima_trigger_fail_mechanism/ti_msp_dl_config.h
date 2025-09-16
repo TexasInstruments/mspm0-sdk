@@ -116,6 +116,7 @@ extern "C" {
 #define GPIO_FAULT_0_IOMUX_FAULT_PIN_0                           (IOMUX_PINCM13)
 #define GPIO_FAULT_0_IOMUX_FAULT_PIN_0_FUNC            IOMUX_PINCM13_PF_TIMA_FAULT0
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

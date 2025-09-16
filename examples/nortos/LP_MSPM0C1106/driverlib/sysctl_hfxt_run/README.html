@@ -37,38 +37,50 @@
 <h2 id="example-summary">Example Summary</h2>
 <p>HFXT (40MHz in LaunchPad) is a source for HFCLK, which sources MCLK. HFCLK/4 is output to CLK_OUT pin that can be measured. HFXT -&gt; HFCLK (4-48MHz) -&gt; HSCLK -&gt; MCLK -&gt; /4 -&gt; CLK_OUT</p>
 <p>TimerG is configured in periodic mode and toggles an LED every 500 ms.</p>
-<h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
+<h2 id="peripherals-pin-functions-mcu-pins-launchpad-pins">Peripherals, Pin Functions, MCU Pins, Launchpad Pins</h2>
 <table>
 <thead>
 <tr class="header">
 <th>Peripheral</th>
-<th>Pin</th>
 <th>Function</th>
+<th>MCU Pin</th>
+<th>Launchpad Pin</th>
+<th>Launchpad Settings</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>PA0</td>
 <td>Open-Drain Output</td>
+<td>PA0</td>
+<td>Red LED1</td>
+<td>Populate Jumper(s): J4[1:2]</td>
 </tr>
 <tr class="even">
 <td>SYSCTL</td>
-<td>PA14</td>
 <td>CLK OUT</td>
+<td>PA14</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SYSCTL</td>
-<td>PA5</td>
 <td>HFXIN</td>
+<td>PA5</td>
+<td>J14_1</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>SYSCTL</td>
-<td>PA6</td>
 <td>HFXOUT</td>
+<td>PA6</td>
+<td>J2_11</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>TIMG0</td>
+<td>TIMG1</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -76,16 +88,22 @@
 <td>EVENT</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>DEBUGSS</td>
-<td>PA20</td>
+<td>BOARD</td>
 <td>Debug Clock</td>
+<td>PA20</td>
+<td>J14_4</td>
+<td></td>
 </tr>
 <tr class="even">
-<td>DEBUGSS</td>
-<td>PA19</td>
+<td>BOARD</td>
 <td>Debug Data In Out</td>
+<td>PA19</td>
+<td>J14_2</td>
+<td></td>
 </tr>
 </tbody>
 </table>

@@ -91,7 +91,8 @@ static DL_AESADV_Config gAESADV_config = {
     .aadLength         = 0,
 };
 
-CMAC_status CMAC_compareTag(uint32_t *offset, struct image_version *version)
+CMAC_status CMAC_compareTag(
+    uint32_t *offset, const struct image_version *version)
 {
     uint8_t candidateTag[16];
     uint32_t status = 0x00;
@@ -201,8 +202,7 @@ static void CMAC_run(
         while (!DL_AESADV_isInputReady(AESADV)) {
             ;
         }
-        DL_AESADV_loadInputDataAligned(
-            AESADV, (uint32_t *) ((uint32_t) dataPtr + i * 4));
+        DL_AESADV_loadInputDataAligned(AESADV, &dataPtr[i * 4]);
     }
 
     /* Wait for engine to complete operation */

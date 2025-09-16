@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="Cortex M.MSPM0G5187"
+            />
+        </when>
+    </applicability>
+
+    <import spec="${COM_TI_MSPM0_SDK_INSTALL_DIR}/examples/nortos/LP_MSPM0G5187/boot_manager/customer_secure_code/ticlang/customer_secure_code_LP_MSPM0G5187_nortos_ticlang.projectspec"/>
+
+    <project
+        title="customer_secure_image_with_bootloader"
+        name="customer_secure_image_with_bootloader_LP_MSPM0G5187_nortos_ticlang"
+        configurations="EITHER_SLOT_GREEN,EITHER_SLOT_BLUE"
+        toolChain="TICLANG"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G5187"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        references="customer_secure_code_LP_MSPM0G5187_nortos_ticlang"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -I${PROJECT_ROOT}/${ConfigName}/syscfg
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${CG_TOOL_INCLUDE_PATH}
+            -I${WORKSPACE_LOC}/customer_secure_code_LP_MSPM0G5187_nortos_ticlang/Debug/syscfg
+            -I${WORKSPACE_LOC}/customer_secure_code_LP_MSPM0G5187_nortos_ticlang
+            -D__MSPM0G5187__
+            -gdwarf-3
+            -gstrict-dwarf
+            -mcpu=cortex-m0plus
+            -march=thumbv6m
+            -mfloat-abi=soft
+            -mthumb
+            -mlittle-endian
+            -Oz
+        "
+        linkerBuildOptions="
+            --stack_size=0
+            -l${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/ticlang/m0p/mspm0g518x/driverlib.a
+            -L${CG_TOOL_ROOT}/lib
+            -llibc.a
+            -i${WORKSPACE_LOC}/customer_secure_code_LP_MSPM0G5187_nortos_ticlang/Debug/syscfg
+        "
+
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler ticlang
+        "
+
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="Customer Secure Code Sample Image">
+
+                <!-- Project configuration specific options -->
+        <configuration
+            name="EITHER_SLOT_GREEN"
+            compilerBuildOptions="
+                -DGREEN
+            "
+            postBuildStep="
+                ${PYTHON_${CCS_HOST_OS}} ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color green
+            ">
+        </configuration>
+        <configuration
+            name="EITHER_SLOT_BLUE"
+            compilerBuildOptions="
+                -DBLUE
+            "
+            postBuildStep="
+                ${PYTHON_${CCS_HOST_OS}} ${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/mcuboot/scripts/sign-image.py --sdk ${COM_TI_MSPM0_SDK_INSTALL_DIR} --toolchain ${CG_TOOL_ROOT} --name ${ProjName} --color blue
+            ">
+        </configuration>
+
+        <buildVariable name="PYTHON_win32" value ="python" />
+        <buildVariable name="PYTHON_macosx" value ="python3" />
+        <buildVariable name="PYTHON_linux" value ="python3" />
+        <!-- Backup Variable for older versions of CCS that doesn't support CCS_HOST_OS env variable -->
+        <buildVariable name="PYTHON_" value ="python" />
+        <file path="../customer_secure_image_with_bootloader.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="mspm0g5187.cmd" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="startup_mspm0g518x_ticlang.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="ticlang">
+        </file>
+        <file path="../boot_config.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../boot_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../signingArgs.json" openOnCreation="false" excludeFromBuild="true" action="copy">
+        </file>
+        <file path="../lockable_storage_public.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../secondary_bsl/aes_gcm.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../secondary_bsl/aes_gcm.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../secondary_bsl/bsl_ci.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../secondary_bsl/bsl_ci.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../secondary_bsl/bsl_uart.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../secondary_bsl/bsl_uart.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../secondary_bsl/bsl_main.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../secondary_bsl/bsl_main.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="secondary_bsl">
+        </file>
+        <file path="../customer_secure_image_with_bootloader.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

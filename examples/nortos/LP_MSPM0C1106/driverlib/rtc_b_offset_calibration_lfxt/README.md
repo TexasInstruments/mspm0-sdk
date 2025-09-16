@@ -8,12 +8,12 @@ frequency using RTCCLK output.
 | Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
 | --- | --- | --- | --- | --- |
 | GPIOA | Standard Input with internal pull-up | PA14 | S2 |  |
-| GPIOA | Standard with Wake Input | PA18 | S2 |
+| GPIOA | Standard Input | PA18 | S1 | Populate Jumper(s): J3[1:2] |
 | SYSCTL |  |  |  |  |
 | EVENT |  |  |  |  |
 | RTC_B | RTC_B Out Pin | PA0 | J4_34 |  |
-| BOARD | Debug Clock | PA20 | J13_4 | Populate Component(s): J13 |
-| BOARD | Debug Data In Out | PA19 | J13_2 | Populate Component(s): J13 |
+| BOARD | Debug Clock | PA20 | J14_4 |  |
+| BOARD | Debug Data In Out | PA19 | J14_2 |  |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the MSPM0 LaunchPad. Please

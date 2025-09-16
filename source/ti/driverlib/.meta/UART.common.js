@@ -1286,27 +1286,8 @@ When disabled, the FIFOs act as 1-byte-deep holding registers.\n
                     return "DL_UART_TX_FIFO_LEVEL_1_2_EMPTY";
                 }
             }
-        },
-        /* DL_UART_enableAnalogGlitchFilter */
-        {
-            name        : "analogGlitchFilter",
-            displayName : "Analog Glitch Filter",
-            description : 'Configure the pulse width for the analog glitch filter supprression on the RX input',
-            longDescription : `
-The analog glitch suppression on the RX line is based on the analog glitch filter.\n
-When disabled, the input signals will be passed through to the UART module
-without filtering.\n
-`,
-            default     : "Disabled",
-            options     : [
-                {name: "Disabled", displayName: "Disabled"},
-                {name: "DL_UART_PULSE_WIDTH_5_NS", displayName: "Filter pulses < 5ns"},
-                {name: "DL_UART_PULSE_WIDTH_10_NS", displayName: "Filter pulses < 10ns"},
-                {name: "DL_UART_PULSE_WIDTH_25_NS", displayName: "Filter pulses < 25ns"},
-                {name: "DL_UART_PULSE_WIDTH_50_NS", displayName: "Filter pulses < 50ns"},
-            ],
-            onChange : onChangeAdvAnalogGlitchFilter,
-        },
+        }
+    ].concat(analogGlitchFilterConfig).concat([
         /* DL_UART_setDigitalPulseWidth */
         {
             name        : "digitalGlitchFilter",
@@ -1419,7 +1400,7 @@ This bit has effect on both the way the protocol byte is transmitted and receive
             collapsed: false,
             config: retentionConfig,
         },
-    ]
+    ])
 }
 
 let uartClkDiv2_config = [
@@ -1445,6 +1426,33 @@ let uartClkDiv2_config = [
 if(Common.isUnicommUART()){
     // configuration is not supported for UNICOMM
     uartClkDiv2_config = [];
+}
+
+let analogGlitchFilterConfig = [
+    /* DL_UART_enableAnalogGlitchFilter */
+    {
+        name        : "analogGlitchFilter",
+        displayName : "Analog Glitch Filter",
+        description : 'Configure the pulse width for the analog glitch filter supprression on the RX input',
+        longDescription : `
+The analog glitch suppression on the RX line is based on the analog glitch filter.\n
+When disabled, the input signals will be passed through to the UART module
+without filtering.\n
+`,
+        default     : "Disabled",
+        options     : [
+            {name: "Disabled", displayName: "Disabled"},
+            {name: "DL_UART_PULSE_WIDTH_5_NS", displayName: "Filter pulses < 5ns"},
+            {name: "DL_UART_PULSE_WIDTH_10_NS", displayName: "Filter pulses < 10ns"},
+            {name: "DL_UART_PULSE_WIDTH_25_NS", displayName: "Filter pulses < 25ns"},
+            {name: "DL_UART_PULSE_WIDTH_50_NS", displayName: "Filter pulses < 50ns"},
+        ],
+        onChange : onChangeAdvAnalogGlitchFilter,
+    },
+]
+if(Common.isUnicommUART()){
+    // configuration is not supported for UNICOMM
+    analogGlitchFilterConfig = [];
 }
 
 function getExtendConfig(inst,ui){
@@ -1598,6 +1606,8 @@ function getDMAModInstances(inst, modInstances){
     /* UART does not support DMA configuration for MSPM0Cxx */
     if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
     if(!["None"].includes(inst.enabledDMARXTriggers)){
+		/* For UNICOMM, RX trigger is option 1, otherwise it is option 0 */
+		let rxPassedTriggerSelect = Common.isUnicommUART() ? 1 : 0;
         let mod = {
             name: "DMA_CHANNEL_RX",
             displayName: "DMA Channel RX",
@@ -1608,7 +1618,7 @@ function getDMAModInstances(inst, modInstances){
             },
             requiredArgs: {
                 hideTriggerSelect: true,
-                passedTriggerSelect: 0,
+                passedTriggerSelect: rxPassedTriggerSelect,
                 /* empty for now */
             },
 
@@ -1617,6 +1627,8 @@ function getDMAModInstances(inst, modInstances){
         /* TODO: pickup here */
     }
     if(!["None"].includes(inst.enabledDMATXTriggers)){
+        /* For UNICOMM, TX trigger is option 0, otherwise it is option 1 */
+        let txPassedTriggerSelect = Common.isUnicommUART() ? 0 : 1;
         let mod = {
             name: "DMA_CHANNEL_TX",
             displayName: "DMA Channel TX",
@@ -1627,7 +1639,7 @@ function getDMAModInstances(inst, modInstances){
             },
             requiredArgs: {
                 hideTriggerSelect: true,
-                passedTriggerSelect: 1,
+                passedTriggerSelect: txPassedTriggerSelect,
                 /* empty for now */
             },
 

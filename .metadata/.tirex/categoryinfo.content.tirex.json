@@ -602,5 +602,41 @@
     "resourceType": "categoryInfo",
     "resourceClass": ["document"],
     "description": "Modular Peripheral Sideband Tunneling Interface (M-PESTI) is a generic and extensible 1-wire, bidirectional circuit, and protocol for applications such as cabled high-speed I/O interposers, managed power distribution, cooling subsystems and control panels.<br><br>The MSPM0 SDK provides an easy way to start development of M-PESTI Target applications using the MSPM0's Universal Asynchronous Receiver Transmitter (UART) module and contains the following:<br><br><ul><li>Full source code for M-PESTI Target</li> <li>Graphical configuration of UART (PESTI line) module using SysConfig</li></ul>"
+  },
+  {
+    "name": "Modbus",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "The MSPM0 Modbus Library provides a simple way to start development of Modbus applications using MSPM0 devices."
+  },
+  {
+    "name": "USB",
+    "mainCategories": [
+      [
+        "Documents"
+      ],
+      [
+        "Examples",
+        "Development Tools"
+      ]
+    ],
+    "subCategories": ["Middleware"],
+    "devices": ["$(MSPM0_all_devices)"],
+    "devtools": ["$(MSPM0_all_devtools)"],
+    "resourceType": "categoryInfo",
+    "resourceClass": ["document"],
+    "description": "The MSPM0 port of TinyUSB enables developers to easily implement various USB device and host classes on MSPM0 microcontrollers. This integration leverages the built-in USB peripheral of the MSPM0 devices. TinyUSB is a cross-platform open-source USB Host/Device stack for embedded systems, designed to be memory-efficient, portable, and flexible."
   }
 ]

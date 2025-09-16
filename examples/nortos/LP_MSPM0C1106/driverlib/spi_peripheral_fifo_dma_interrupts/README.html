@@ -40,28 +40,36 @@
 <p>This example sets up the SPI to trigger the DMA Channel 0 to do a transmit data transfer and the DMA Channel 1 to do a receive data transfer.</p>
 <p>The DMA Channel 0 is configured in single transfer mode, using the static SPI TX DMA event as the DMA trigger. When the SPI TXINT is set (which indicates that the SPI is ready to transmit data), this triggers the DMA to transfer the data from a user buffer to the SPI TXFIFO. This transfer will start as soon as the channel is enabled, because the SPI TXINT should be set when the SPI is enabled. After SPI_PACKET_SIZE bytes have been transferred by the DMA, this will trigger the DL_SPI_IIDX_DMA_DONE_TX interrupt indicating that the DMA is done transferring all expected bytes from the buffer to the TXFIFO. However the SPI Peripheral will not actually start transmitted data until the SPI Controller initiates a transaction. The DMA Channel 1 is configured in single transfer mode, using the static SPI RX DMA event as the DMA trigger. When data is received and the SPI RXINT is set, this triggers the DMA to transfer the data from the SPI RXFIFO to a user buffer.</p>
 <p>The SPI Controller must first initiate the transaction. When the SPI Peripheral receives SPI_PACKET_SIZE bytes, this will trigger the DL_SPI_IIDX_DMA_DONE_RX interrupt indicating that the DMA is done transferring all expected bytes from the RXFIFO to the buffer. During the transaction, the SPI Peripheral will transmit the data that is in the TXFIFO until it is empty. When the TXFIFO is empty, this will trigger the DL_SPI_IIDX_TX_EMPTY interrupt indicating that the transfer is complete.</p>
-<h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
+<h2 id="peripherals-pin-functions-mcu-pins-launchpad-pins">Peripherals, Pin Functions, MCU Pins, Launchpad Pins</h2>
 <table>
 <thead>
 <tr class="header">
 <th>Peripheral</th>
-<th>Pin</th>
 <th>Function</th>
+<th>MCU Pin</th>
+<th>Launchpad Pin</th>
+<th>Launchpad Settings</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>PA0</td>
 <td>Open-Drain Output</td>
+<td>PA0</td>
+<td>Red LED1</td>
+<td>Populate Jumper(s): J4[1:2]</td>
 </tr>
 <tr class="even">
 <td>GPIOA</td>
-<td>PA15</td>
 <td>Standard Output</td>
+<td>PA15</td>
+<td>J4_38</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SYSCTL</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -69,24 +77,34 @@
 <td>SPI0</td>
 <td>SPI SCLK (Clock)</td>
 <td>PA25</td>
+<td>J1_7</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SPI0</td>
 <td>SPI PICO (Peripheral In, Controller Out)</td>
 <td>PA10</td>
+<td>J2_15</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>SPI0</td>
 <td>SPI POCI (Peripheral Out, Controller In)</td>
 <td>PA9</td>
+<td>J2_14</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SPI0</td>
 <td>SPI CS0 (Chip Select 0)</td>
 <td>PA8</td>
+<td>J2_13</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>EVENT</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -94,16 +112,22 @@
 <td>DMA</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>DEBUGSS</td>
-<td>PA20</td>
+<td>BOARD</td>
 <td>Debug Clock</td>
+<td>PA20</td>
+<td>J14_4</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>DEBUGSS</td>
-<td>PA19</td>
+<td>BOARD</td>
 <td>Debug Data In Out</td>
+<td>PA19</td>
+<td>J14_2</td>
+<td></td>
 </tr>
 </tbody>
 </table>

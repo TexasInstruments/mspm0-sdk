@@ -40,7 +40,7 @@
 let Common = system.getScript("/ti/driverlib/Common.js");
 
 /* generic configuration parameters for DEBUG instances */
-let usbConfig = []; /* nothing (yet) beyond generic driver configs */
+let modConfig = []; /* nothing (yet) beyond generic driver configs */
 
 /*
  *  ======== validate ========
@@ -73,12 +73,9 @@ let base = {
     description: "USB module for MSPM0",
     longDescription: ``,
     defaultInstanceName: "USB_",
-    config: Common.addNameConfig(usbConfig, "/ti/driverlib/usb", "USB_"),
     validate: validate,
+    config: Common.addNameConfig(modConfig, "/ti/driverlib/usb", "USB_"),
     modules: Common.autoForceModules(["SYSCTL", "Board"]),
-
-
-
     _getPinResources: _getPinResources
 };
 

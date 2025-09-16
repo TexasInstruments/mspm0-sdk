@@ -180,7 +180,7 @@ int32_t bootutil_get_img_security_cnt(struct image_header *hdr,
                                       const struct flash_area *fap,
                                       uint32_t *security_cnt);
 
-int boot_compare_version(struct image_version *ver1,
+int boot_compare_version(const struct image_version *ver1,
                          volatile const struct image_version *ver2);
 
 

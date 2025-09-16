@@ -71,12 +71,22 @@ extern "C" {
 
 /*! @brief  Data struct for @ref DL_FactoryRegion_initTrimTable. */
 typedef struct {
-    /*! Trace identifier */
-    uint32_t TRACEID;
-    /*! Device identifier */
-    uint32_t DEVICEID;
+#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X)
     /*! Device variant identifier */
     uint32_t USERID;
+#else
+    /*! Trace identifier */
+    uint32_t TRACEID;
+#endif
+    /*! Device identifier */
+    uint32_t DEVICEID;
+#if (DeviceFamily_PARENT == DeviceFamily_PARENT_MSPM0G352X)
+    /*! Trace identifier */
+    uint32_t TRACEID;
+#else
+    /*! Device variant identifier */
+    uint32_t USERID;
+#endif
     /*! BSL UART pin configuration */
     uint32_t BSLPIN_UART;
     /*! BSL I2C pin configuration */

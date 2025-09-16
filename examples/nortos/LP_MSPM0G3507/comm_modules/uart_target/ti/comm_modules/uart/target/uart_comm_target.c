@@ -367,7 +367,15 @@ static void UART_writeCommand(
 static void UART_sendBuffer(BufferInfo *frame)
 {
     DL_DMA_setSrcAddr(DMA, DMA_CH1_CHAN_ID, (uint32_t) &frame->buffer[0]);
+
+#if defined(__MCU_HAS_UNICOMMUART__)
+    DL_DMA_setDestAddr(DMA, DMA_CH1_CHAN_ID, (uint32_t) &UART_0_INST->uart->TXDATA);
+#endif 
+
+#if defined(__MSPM0_HAS_UART__)
     DL_DMA_setDestAddr(DMA, DMA_CH1_CHAN_ID, (uint32_t) &UART_0_INST->TXDATA);
+#endif
+
     DL_DMA_setTransferSize(DMA, DMA_CH1_CHAN_ID, frame->len);
     DL_DMA_enableChannel(DMA, DMA_CH1_CHAN_ID);
 }
@@ -470,7 +478,14 @@ void DMA_RX_init(UART_Instance *UART_handle)
 {
     DL_DMA_disableChannel(DMA, DMA_CH0_CHAN_ID);
 
+#if defined(__MCU_HAS_UNICOMMUART__)
+    DL_DMA_setSrcAddr(DMA, DMA_CH0_CHAN_ID, (uint32_t) &UART_0_INST->uart->RXDATA);
+#endif
+
+#if defined(__MSPM0_HAS_UART__)
     DL_DMA_setSrcAddr(DMA, DMA_CH0_CHAN_ID, (uint32_t) &UART_0_INST->RXDATA);
+#endif
+
     DL_DMA_setDestAddr(
         DMA, DMA_CH0_CHAN_ID, (uint32_t) &UART_handle->rxMsg.buffer[0]);
     DL_DMA_setTransferSize(DMA, DMA_CH0_CHAN_ID, DMA_RX_TRANSFER_SIZE);

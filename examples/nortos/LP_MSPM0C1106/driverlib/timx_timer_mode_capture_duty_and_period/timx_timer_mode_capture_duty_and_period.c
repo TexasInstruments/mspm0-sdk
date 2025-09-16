@@ -97,7 +97,8 @@ void CAPTURE_0_INST_IRQHandler(void)
             } else {
                 gSynced = true;
             }
-            /* Manual reload is needed to workaround timer capture limitation */
+            /* Workaround for errata TIMER_ERR_01:
+             * Manual reload is needed to workaround timer capture limitation */
             DL_TimerG_setTimerCount(CAPTURE_0_INST, gLoadValue);
             break;
         case DL_TIMERG_IIDX_ZERO:

@@ -21,6 +21,10 @@ const SYSOSCFreqOptions = {
         { name: 32000000, displayName: "32 MHz" },
         { name: 4000000,  displayName: "4 MHz"  },
     ],
+    "MSPM0G352X": [
+        { name: 32000000, displayName: "32 MHz" },
+        { name: 4000000,  displayName: "4 MHz"  },
+    ],
     "MSPM0L111X": [
         { name: 32000000, displayName: "32 MHz" },
         { name: 4000000,  displayName: "4 MHz"  },
@@ -34,6 +38,10 @@ const SYSOSCFreqOptions = {
         { name: 4000000,  displayName: "4 MHz"  },
     ],
     "MSPM0G511X": [
+        { name: 32000000, displayName: "32 MHz" },
+        { name: 4000000,  displayName: "4 MHz"  },
+    ],
+    "MSPM0G518X": [
         { name: 32000000, displayName: "32 MHz" },
         { name: 4000000,  displayName: "4 MHz"  },
     ],
@@ -70,6 +78,11 @@ const LFCLKSourceOptions = {
         { name: "LFXT", displayName: "LF External XTAL" },
         { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
     ],
+    "MSPM0G352X": [
+        { name: "LFOSC" },
+        { name: "LFXT", displayName: "LF External XTAL" },
+        { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
+    ],
     "MSPM0L111X": [
         { name: "LFOSC" },
         { name: "LFXT", displayName: "LF External XTAL" },
@@ -86,6 +99,11 @@ const LFCLKSourceOptions = {
         { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
     ],
     "MSPM0G511X": [
+        { name: "LFOSC" },
+        { name: "LFXT", displayName: "LF External XTAL" },
+        { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
+    ],
+    "MSPM0G518X": [
         { name: "LFOSC" },
         { name: "LFXT", displayName: "LF External XTAL" },
         { name: "LFCLK_IN", displayName: "LFCLK Digital In" }
@@ -122,6 +140,10 @@ const MFPCLKSourceOptions = {
         { name: "SYSOSC" },
         { name: "HFCLK" },
     ],
+    "MSPM0G352X": [
+        { name: "SYSOSC" },
+        { name: "HFCLK" },
+    ],
     "MSPM0L111X": [
         { name: "SYSOSC" },
         { name: "HFCLK" },
@@ -138,6 +160,10 @@ const MFPCLKSourceOptions = {
         { name: "SYSOSC" },
         { name: "HFCLK" },
     ],
+    "MSPM0G518X": [
+        { name: "SYSOSC" },
+        { name: "HFCLK" },
+    ],
     "MSPM0L211X_L112X": [
         { name: "SYSOSC" },
         { name: "HFCLK" },
@@ -146,7 +172,7 @@ const MFPCLKSourceOptions = {
         { name: "SYSOSC" },
         { name: "HFCLK" },
     ],
-}
+};
 
 const MCLKSourceOptions = {
     "MSPM0G1X0X_G3X0X": [
@@ -173,6 +199,11 @@ const MCLKSourceOptions = {
         { name: "LFCLK" },
         { name: "HSCLK" },
     ],
+    "MSPM0G352X": [
+        { name: "SYSOSC" },
+        { name: "LFCLK" },
+        { name: "HSCLK" },
+    ],
     "MSPM0L111X": [
         { name: "SYSOSC" },
         { name: "LFCLK" },
@@ -189,6 +220,11 @@ const MCLKSourceOptions = {
         { name: "HSCLK" },
     ],
     "MSPM0G511X": [
+        { name: "SYSOSC" },
+        { name: "LFCLK" },
+        { name: "HSCLK" },
+    ],
+    "MSPM0G518X": [
         { name: "SYSOSC" },
         { name: "LFCLK" },
         { name: "HSCLK" },
@@ -224,6 +260,10 @@ const HFCLKSourceOptions = {
         {name: "HFXT", displayName: "HF External XTAL"},
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
+    "MSPM0G352X": [
+        {name: "HFXT", displayName: "HF External XTAL"},
+        {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
+    ],
     "MSPM0L111X": [
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
@@ -236,6 +276,10 @@ const HFCLKSourceOptions = {
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
     "MSPM0G511X": [
+        {name: "HFXT", displayName: "HF External XTAL"},
+        {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
+    ],
+    "MSPM0G518X": [
         {name: "HFXT", displayName: "HF External XTAL"},
         {name: "HFCLK_IN", displayName: "HFCLK Digital In"}
     ],
@@ -286,6 +330,14 @@ const EXCLKSourceOptions = {
         { name: "HFCLK" },
         { name: "SYSPLLOUT1", displayName: "SYSPLL Clock 1" },
     ],
+    "MSPM0G352X": [
+        { name: "SYSOSC" },
+        { name: "ULPCLK" },
+        { name: "LFCLK" },
+        { name: "MFPCLK" },
+        { name: "HFCLK" },
+        { name: "SYSPLLOUT1", displayName: "SYSPLL Clock 1" },
+    ],
     "MSPM0L111X": [
         { name: "SYSOSC" },
         { name: "ULPCLK" },
@@ -308,6 +360,14 @@ const EXCLKSourceOptions = {
         { name: "HFCLK" },
     ],
     "MSPM0G511X": [
+        { name: "SYSOSC" },
+        { name: "ULPCLK" },
+        { name: "LFCLK" },
+        { name: "MFPCLK" },
+        { name: "HFCLK" },
+        { name: "SYSPLLOUT1", displayName: "SYSPLL Clock 1" },
+    ],
+    "MSPM0G518X": [
         { name: "SYSOSC" },
         { name: "ULPCLK" },
         { name: "LFCLK" },
@@ -352,6 +412,11 @@ const HSCLKSourceOptions = {
         { name: "SYSPLLCLK2X" },
         { name: "HFCLK" },
     ],
+    "MSPM0G352X": [
+        { name: "SYSPLLCLK0" },
+        { name: "SYSPLLCLK2X" },
+        { name: "HFCLK" },
+    ],
     "MSPM0L111X": [
         { name: "HFCLK" },
     ],
@@ -362,6 +427,12 @@ const HSCLKSourceOptions = {
         { name: "HFCLK" },
     ],
     "MSPM0G511X": [
+        { name: "SYSPLLCLK0" },
+        { name: "SYSPLLCLK2X" },
+        { name: "HFCLK" },
+        { name: "USBFLL"}
+    ],
+    "MSPM0G518X": [
         { name: "SYSPLLCLK0" },
         { name: "SYSPLLCLK2X" },
         { name: "HFCLK" },
@@ -403,6 +474,12 @@ const BORThreshOptions = {
         {name: "2"},
         {name: "3"},
     ],
+    "MSPM0G352X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+        {name: "3"},
+    ],
     "MSPM0L111X": [
         {name: "0"},
         {name: "1"},
@@ -422,6 +499,12 @@ const BORThreshOptions = {
         {name: "3"},
     ],
     "MSPM0G511X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+        {name: "3"},
+    ],
+    "MSPM0G518X": [
         {name: "0"},
         {name: "1"},
         {name: "2"},
@@ -467,6 +550,11 @@ let WaitStateOptions = {
         {name: "1"},
         {name: "2"},
     ],
+    "MSPM0G352X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+    ],
     "MSPM0L111X": [
         {name: "0"},
         {name: "1"},
@@ -481,6 +569,11 @@ let WaitStateOptions = {
         {name: "1"},
     ],
     "MSPM0G511X": [
+        {name: "0"},
+        {name: "1"},
+        {name: "2"},
+    ],
+    "MSPM0G518X": [
         {name: "0"},
         {name: "1"},
         {name: "2"},
@@ -501,10 +594,12 @@ let AutoTrimAvailable = {
     "MSPM0L122X_L222X"  : true,
     "MSPM0C110X"        : false,
     "MSPM0GX51X"        : true,
+    "MSPM0G352X"        : true,
     "MSPM0L111X"        : true,
     "MSPM0H321X"        : false,
     "MSPM0C1105_C1106"  : false,
     "MSPM0G511X"        : true,
+    "MSPM0G518X"        : true,
     "MSPM0L211X_L112X"  : false,
     "MSPM0L210X"        : false,
 }

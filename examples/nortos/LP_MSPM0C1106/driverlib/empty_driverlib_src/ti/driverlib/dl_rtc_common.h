@@ -1358,7 +1358,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm1MinutesBCD(
  */
 __STATIC_INLINE void DL_RTC_Common_enableAlarm1HoursBCD(RTC_Regs *rtc_common)
 {
-    rtc_common->A1HOUR |= RTC_A1HOUR_AHOURAEBIN_ENABLE;
+    rtc_common->A1HOUR |= RTC_A1HOUR_AHOURAEBCD_ENABLE;
 }
 
 /**
@@ -1369,7 +1369,7 @@ __STATIC_INLINE void DL_RTC_Common_enableAlarm1HoursBCD(RTC_Regs *rtc_common)
  */
 __STATIC_INLINE void DL_RTC_Common_disableAlarm1HoursBCD(RTC_Regs *rtc_common)
 {
-    rtc_common->A1HOUR &= ~(RTC_A1HOUR_AHOURAEBIN_MASK);
+    rtc_common->A1HOUR &= ~(RTC_A1HOUR_AHOURAEBCD_MASK);
 }
 
 /**
@@ -1581,7 +1581,7 @@ __STATIC_INLINE uint8_t DL_RTC_Common_getAlarm2MinutesBCD(
  */
 __STATIC_INLINE void DL_RTC_Common_enableAlarm2HoursBCD(RTC_Regs *rtc_common)
 {
-    rtc_common->A2HOUR |= RTC_A2HOUR_AHOURAEBIN_ENABLE;
+    rtc_common->A2HOUR |= RTC_A2HOUR_AHOURAEBCD_ENABLE;
 }
 
 /**
@@ -1592,7 +1592,7 @@ __STATIC_INLINE void DL_RTC_Common_enableAlarm2HoursBCD(RTC_Regs *rtc_common)
  */
 __STATIC_INLINE void DL_RTC_Common_disableAlarm2HoursBCD(RTC_Regs *rtc_common)
 {
-    rtc_common->A2HOUR &= ~(RTC_A2HOUR_AHOURAEBIN_MASK);
+    rtc_common->A2HOUR &= ~(RTC_A2HOUR_AHOURAEBCD_MASK);
 }
 
 /**
@@ -3244,6 +3244,23 @@ __STATIC_INLINE uint32_t DL_RTC_Common_getTimeStampEventSource(
 {
     return (rtc_common->TSCTL & sourceMask);
 }
+
+/**
+ *  @brief      Returns the Calendar Time of the Time Stamp
+ *
+ *  @param[in]  rtc_common             Pointer to the register overlay for the
+ *                                     RTC Common peripheral
+ *
+ * This function returns the current Calendar Time of the Time Stamp
+ * in the form of a Calendar structure.
+ * The time returned will be in the previously selected format from
+ * @ref DL_RTC_Common_setClockFormat, one of @ref DL_RTC_COMMON_FORMAT.
+ *
+ *  @return            @ref DL_RTC_Common_Calendar containing the time stamp
+ *
+ */
+DL_RTC_Common_Calendar DL_RTC_Common_getTimeStampCalendar(
+    const RTC_Regs *rtc_common);
 
 /**
  *  @brief      Set the capture method when a time stamp capture event occurs

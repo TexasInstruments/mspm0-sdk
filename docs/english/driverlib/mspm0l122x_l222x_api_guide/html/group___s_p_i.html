@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.05.01.00</span>
+   &#160;<span id="projectnumber">2.06.00.05</span>
    </div>
   </td>
  </tr>
@@ -3602,7 +3602,7 @@ false if peripheral wasn't reset </dd></dl>
 </div><div class="memdoc">
 
 <p>Blocks to ensure transmit is ready before sending data. </p>
-<p>Puts the data into the TX FIFO after blocking to ensure the TX FIFO is not full. Will wait indefinitely until there is space in the TX FIFO. See related APIs for additional transmit options.</p>
+<p>Puts data into the TX FIFO, waiting indefintely until there is space in the the TX FIFO. After placing data, waits indefintely until data is sent and the SPI busy is no longer busy. Note that if data is already present in the TX FIFO when this API is called, it will block until all data is sent. See related APIs for additional transmit options.</p>
 <p>Can be used for any data transfers that are less than or equal to 8 bits.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3646,7 +3646,7 @@ false if peripheral wasn't reset </dd></dl>
 </div><div class="memdoc">
 
 <p>Blocks to ensure transmit is ready before sending data. </p>
-<p>Puts the data into the TX FIFO after blocking to ensure the TX FIFO is not full. Will wait indefinitely until there is space in the TX FIFO. See related APIs for additional transmit options.</p>
+<p>Puts data into the TX FIFO, waiting indefintely until there is space in the the TX FIFO. After placing data, waits indefintely until data is sent and the SPI busy is no longer busy. Note that if data is already present in the TX FIFO when this API is called, it will block until all data is sent. See related APIs for additional transmit options.</p>
 <p>Can be used for any data transfers that are less than or equal to 16 bits.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3690,7 +3690,7 @@ false if peripheral wasn't reset </dd></dl>
 </div><div class="memdoc">
 
 <p>Blocks to ensure transmit is ready before sending data. </p>
-<p>Puts the data into the TX FIFO after blocking to ensure the TX FIFO is not full. Will wait indefinitely until there is space in the TX FIFO. See related APIs for additional transmit options.</p>
+<p>Puts data into the TX FIFO, waiting indefintely until there is space in the the TX FIFO. After placing data, waits indefintely until data is sent and the SPI busy is no longer busy. Note that if data is already present in the TX FIFO when this API is called, it will block until all data is sent. See related APIs for additional transmit options.</p>
 <p>Can be used for any data transfers that are less than or equal to 32 bits.</p>
 <p>NOTE: If packing is enabled by calling <a class="el" href="group___s_p_i.html#gad1c1d31aeb86e180b4d617956b2b90b6">DL_SPI_enablePacking</a> prior to calling this API, then a 32-bit write will be written as one FIFO entry. If packing is disabled, then a 32-bit write will be written as two FIFO entries.</p>
 <dl class="params"><dt>Parameters</dt><dd>

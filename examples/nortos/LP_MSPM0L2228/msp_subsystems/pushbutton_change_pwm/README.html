@@ -35,7 +35,7 @@
 <div id="content">
   <h1>Readme</h1>
 <h2 id="example-summary">Example Summary</h2>
-<p>This example demonstrates using the two switches on the MSPM0G3507 Launchpad to change the period and duty cycle on TIMG4 PWM output channels CC0 and CC1. Pressing switch S1 changes the PWM period of the timer. Pressing S2 changes the duty cycle on CC1 output. This example also demonstrates the use of TIMA0 configured as a one-shot timer and interrupts for debouncing the switches.</p>
+<p>This example demonstrates using the two switches on the MSPM0G3507 Launchpad to change the period and duty cycle on TIMG4 PWM output channels CC0 and CC1. Pressing switch S1 changes the PWM period of the timer. Pressing S2 changes the duty cycle on CC0 output. This example also demonstrates the use of TIMA0 configured as a one-shot timer and interrupts for debouncing the switches.</p>
 <h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
 <table>
 <thead>
@@ -48,7 +48,7 @@
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>PA23</td>
+<td>PA16</td>
 <td>Standard Output</td>
 </tr>
 <tr class="even">
@@ -122,11 +122,11 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>PA23</td>
+<td>PA16</td>
 <td>GPIOA</td>
-<td>PA23</td>
+<td>PA16</td>
 <td>N/A</td>
-<td><ul><li>PA23 can be connected to VCC using R8 or to GND using C9<br><ul><li><code>R8</code> and <code>C9</code> are not soldered by default allowing the pin to be used for other functions</ul><br><li>PA23 can be connected to LED4 Blue<br><ul><li><code>J4 ON</code> Connect to LED4 Blue<br><li><code>J4 OFF</code> Disconnect from LED4 Blue</ul></ul></td>
+<td><ul><li>PA16 can be connected to VCC using R8 or to GND using C9<br><ul><li><code>R8</code> and <code>C9</code> are not soldered by default allowing the pin to be used for other functions</ul><br><li>PA16 can be connected to LED4 Blue<br><ul><li><code>J4 ON</code> Connect to LED4 Blue<br><li><code>J4 OFF</code> Disconnect from LED4 Blue</ul></ul></td>
 </tr>
 <tr class="even">
 <td>PA18</td>
@@ -193,7 +193,7 @@
 <p>SysConfig allows developers to easily configure unused pins by selecting <strong>Board</strong>→<strong>Configure Unused Pins</strong>.</p>
 <p>For more information about jumper configuration to achieve low-power using the MSPM0 LaunchPad, please visit the <a href="https://www.ti.com/tool/LP-MSPM0L2228">LP-MSPM0L2228 web page</a>.</p>
 <h2 id="example-usage">Example Usage</h2>
-<p>Compile, load, and run the example. At startup, TIMA1 is loaded with a PWM period of 1ms (1000Hz) and 75% duty cycle on CC0 and 25% duty cycle on CC1. Pressing switch S1 will cycle through the following PWM periods: 1ms, 2ms, 4ms, and 0.5ms. These changes are reflected on both CC0 and CC1 outputs. Pressing switch S2 will cycle through the following PWM duty cycles: 75%, 90%, 25%, and 50%</p>
+<p>Compile, load, and run the example. At startup, TIMA1 is loaded with a PWM period of 1ms (1000Hz) and 50% duty cycle on CC0 and 75% duty cycle on CC1. Pressing switch S1 will cycle through the following PWM periods: 1ms, 2ms, 4ms, and 0.5ms. These changes are reflected on both CC0 and CC1 outputs. Pressing switch S2 will cycle through the following PWM duty cycles: 75%, 10%, 25%, and 50%</p>
 <!-- Close div from before_body_template.html -->
 </div>
 <footer id="tiFooter">

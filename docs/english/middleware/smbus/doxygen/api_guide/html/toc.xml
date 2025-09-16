@@ -20,6 +20,7 @@
         <topic label="SMBus_Phy_i2cBase" href="struct_s_m_bus___phy.html#ad907588fbd2269897ec007f8d95e3b1c"/>
         <topic label="SMBus_Phy_stop" href="struct_s_m_bus___phy.html#a72809a0ade6e067b9877637c1547a513"/>
         <topic label="SMBus_Phy_AckPending" href="struct_s_m_bus___phy.html#abc984daeba630348f119ec0cabc53b11"/>
+        <topic label="SMBus_Phy_i2cBase" href="struct_s_m_bus___phy.html#a1b18f76ccc30e76d21840af4db72577e"/>
       </topic>
       <topic label="tSMBusUDID" href="structt_s_m_bus_u_d_i_d.html">
         <topic label="ui8DeviceCapabilities" href="structt_s_m_bus_u_d_i_d.html#a60990354149c6b97f2c57f82e1ab9ecd"/>
@@ -160,6 +161,7 @@
       <topic label="SMBus_enablePEC" href="group__smbus.html#gaccc25b1f327ce23df64735491eba36ce"/>
       <topic label="SMBus_disablePEC" href="group__smbus.html#ga1bcbb63a315f1f5637484260fb083090"/>
       <topic label="SMBus_targetInit" href="group__smbus.html#ga3e4abcec1fa62470dc8a73dfd5a9efc4"/>
+      <topic label="SMBus_targetInit" href="group__smbus.html#ga8101db34fc691d2819cc40ab684269ee"/>
       <topic label="SMBus_targetEnableInt" href="group__smbus.html#gaad7b9c43dd5b25fa23e70d5c4c281a79"/>
       <topic label="SMBus_targetDisableInt" href="group__smbus.html#ga0c22c62141a981063a276851b55dd85f"/>
       <topic label="SMBus_targetProcessInt" href="group__smbus.html#ga469af3fb5408b22ab7a5c9fe7e7fd8a6"/>
@@ -175,6 +177,7 @@
       <topic label="SMBus_targetWriteCtrlReg" href="group__smbus.html#ga8fbdd3f6187e83a1d7e608239da23aa5"/>
       <topic label="SMBus_targetHostAlert" href="group__smbus.html#gac3bea7c055d202ee1a6f187831563f6d"/>
       <topic label="SMBus_controllerInit" href="group__smbus.html#gabb9ea515bb36eb4508e4b27cfc47ae2f"/>
+      <topic label="SMBus_controllerInit" href="group__smbus.html#gaece5777b6b21cdab7be5e9fa0fd80417"/>
       <topic label="SMBus_controllerEnableInt" href="group__smbus.html#ga2184e508e644bf156d635fbacc161255"/>
       <topic label="SMBus_controllerDisableInt" href="group__smbus.html#ga20c8ff6b79aa49b28ab5f08b0c49ff00"/>
       <topic label="SMBus_controllerProcessInt" href="group__smbus.html#ga44056371d29436f34dbab57f7d050985"/>
@@ -207,6 +210,26 @@
       <topic label="ARP_CmdComplete" href="group__smbus.html#ga344bb6365f800a96822401643887d168"/>
     </topic>
     <topic label="NWK layer" href="group__smbus__nwk.html">
+      <topic label="SMBUS_SSR_TXMODE_SET" href="group__smbus__nwk.html#gab8f7937fa4e47277fdf5ff408a846c2b"/>
+      <topic label="SMBUS_SSR_TXMODE_SET" href="group__smbus__nwk.html#gab8f7937fa4e47277fdf5ff408a846c2b"/>
+      <topic label="SMBUS_INTERRUPT_CONTROLLER_PEC_RX_ERROR" href="group__smbus__nwk.html#ga977ea2beaa8b807d814f3f27d5348f7a"/>
+      <topic label="SMBUS_INTERRUPT_CONTROLLER_PEC_RX_ERROR" href="group__smbus__nwk.html#ga977ea2beaa8b807d814f3f27d5348f7a"/>
+      <topic label="I2C_TARGET_PEC_STATUS_CHECKED" href="group__smbus__nwk.html#gae87aef8898aec571d8f5b996d7975875"/>
+      <topic label="I2C_TARGET_PEC_STATUS_CHECKED" href="group__smbus__nwk.html#gae87aef8898aec571d8f5b996d7975875"/>
+      <topic label="I2C_TARGET_PEC_STATUS_NOT_CHECKED" href="group__smbus__nwk.html#gab09d5737bf36e40d478655ffb2f5a07c"/>
+      <topic label="I2C_TARGET_PEC_STATUS_NOT_CHECKED" href="group__smbus__nwk.html#gab09d5737bf36e40d478655ffb2f5a07c"/>
+      <topic label="I2C_TARGET_PEC_CHECK_ERROR_CLEARED" href="group__smbus__nwk.html#gae387636a191a51b3f9f42593b094c361"/>
+      <topic label="I2C_TARGET_PEC_CHECK_ERROR_CLEARED" href="group__smbus__nwk.html#gae387636a191a51b3f9f42593b094c361"/>
+      <topic label="I2C_TARGET_PEC_CHECK_ERROR_SET" href="group__smbus__nwk.html#ga7207535c44b822f23036288dc86d590a"/>
+      <topic label="I2C_TARGET_PEC_CHECK_ERROR_SET" href="group__smbus__nwk.html#ga7207535c44b822f23036288dc86d590a"/>
+      <topic label="SMBUS_TARGET_PEC_STATUS" href="group__smbus__nwk.html#ga4416249994035d7b2b4028a20a4d3767">
+        <topic label="SMBUS_TARGET_PEC_STATUS_CHECKED" href="group__smbus__nwk.html#gga4416249994035d7b2b4028a20a4d3767a293b38cd860d6255059f5a341a5385b1"/>
+        <topic label="SMBUS_TARGET_PEC_STATUS_NOT_CHECKED" href="group__smbus__nwk.html#gga4416249994035d7b2b4028a20a4d3767a8f239b869f805687f83eab60b9584881"/>
+      </topic>
+      <topic label="SMBUS_TARGET_PEC_CHECK_ERROR" href="group__smbus__nwk.html#ga12efcf4362e67b13496f3bb45cbc3898">
+        <topic label="SMBUS_TARGET_PEC_CHECK_ERROR_CLEARED" href="group__smbus__nwk.html#gga12efcf4362e67b13496f3bb45cbc3898a17f05cb3a9895c2f580a1cf9bdb593fe"/>
+        <topic label="SMBUS_TARGET_PEC_CHECK_ERROR_SET" href="group__smbus__nwk.html#gga12efcf4362e67b13496f3bb45cbc3898a175a6b38774008b32c1045de3d7270c8"/>
+      </topic>
       <topic label="SMBus_NWK_getRxPayloadSize" href="group__smbus__nwk.html#gac44fd144e71e9e37c6d243352760e7ec"/>
       <topic label="SMBus_NWK_startTxTransfer" href="group__smbus__nwk.html#ga30408fa613f9a796b7815c16cb91432e"/>
       <topic label="SMBus_NWK_startRxTransfer" href="group__smbus__nwk.html#gae4cdea4657b9aa4e994a74e89290d750"/>
@@ -233,8 +256,11 @@
       <topic label="SMB_TIMEOUT_WAIT_CYCLES" href="group__smbus___m_s_p_m0__phy.html#gab13b233d22fe1a988f6425827fede2ac"/>
       <topic label="SMB_POWER_STARTUP_DELAY" href="group__smbus___m_s_p_m0__phy.html#gaba168a289e1f53a0e0729d31959d4ef5"/>
       <topic label="SMBus_PHY_disable" href="group__smbus___m_s_p_m0__phy.html#ga74880d68d3c3d258ee7a9aaa5c85917a"/>
+      <topic label="SMBus_PHY_targetDisable" href="group__smbus___m_s_p_m0__phy.html#ga946aea9b17ab0ebae39ae261eb137600"/>
+      <topic label="SMBus_PHY_controllerDisable" href="group__smbus___m_s_p_m0__phy.html#ga8860aa04ccd7145aa623b56f6eb0adbf"/>
       <topic label="SMBus_PHY_targetEnable" href="group__smbus___m_s_p_m0__phy.html#gad9c5087d175d1d9b64388e23dbb824d7"/>
       <topic label="SMBus_PHY_targetInit" href="group__smbus___m_s_p_m0__phy.html#gab9202564c768c00f51c15a99114621ae"/>
+      <topic label="SMBus_PHY_targetInit" href="group__smbus___m_s_p_m0__phy.html#gafc46151a9db058d43eaa035ef47a0a4a"/>
       <topic label="SMBus_PHY_targetEnableInt" href="group__smbus___m_s_p_m0__phy.html#ga2fd6816c3722e970e50f1145a76fe67b"/>
       <topic label="SMBus_PHY_targetDisableInt" href="group__smbus___m_s_p_m0__phy.html#ga31fc7b0437fb5d857af5f3de8114dfbd"/>
       <topic label="SMBus_PHY_targetProcessInt" href="group__smbus___m_s_p_m0__phy.html#ga2dd61b10c2394a521fc5c02c10e6f441"/>
@@ -245,6 +271,7 @@
       <topic label="SMBus_Phy_ARP_Get_Write_Status" href="group__smbus___m_s_p_m0__phy.html#ga1adde0401e5563ec9a2b6aa46d6dcfe9"/>
       <topic label="SMBus_Phy_ARP_Get_Read_Status" href="group__smbus___m_s_p_m0__phy.html#ga6aaac0fd8607391adf2aaffb34e8b054"/>
       <topic label="SMBus_PHY_controllerInit" href="group__smbus___m_s_p_m0__phy.html#gae0687f0965cd09003ee29dd01591284f"/>
+      <topic label="SMBus_PHY_controllerInit" href="group__smbus___m_s_p_m0__phy.html#ga7c72ac62f3b1b0fd8c48d2d0934d41af"/>
       <topic label="SMBus_PHY_controllerEnableInt" href="group__smbus___m_s_p_m0__phy.html#ga9977098517c3823d976e15e6ab028da6"/>
       <topic label="SMBus_PHY_controllerDisableInt" href="group__smbus___m_s_p_m0__phy.html#ga8cf773d3f77e2d9ab869e70ba38dd1ca"/>
       <topic label="SMBus_PHY_controllerSendStop" href="group__smbus___m_s_p_m0__phy.html#gae4638ddf0de23adaadfc2343c3fd9e44"/>
@@ -314,6 +341,7 @@
         <topic label="SMBus_Phy_i2cBase" href="struct_s_m_bus___phy.html#ad907588fbd2269897ec007f8d95e3b1c"/>
         <topic label="SMBus_Phy_stop" href="struct_s_m_bus___phy.html#a72809a0ade6e067b9877637c1547a513"/>
         <topic label="SMBus_Phy_AckPending" href="struct_s_m_bus___phy.html#abc984daeba630348f119ec0cabc53b11"/>
+        <topic label="SMBus_Phy_i2cBase" href="struct_s_m_bus___phy.html#a1b18f76ccc30e76d21840af4db72577e"/>
       </topic>
       <topic label="SMBus_Status" href="union_s_m_bus___status.html">
         <topic label="pecErr" href="union_s_m_bus___status.html#a6975b54f0b8603da7bf2279b310bbe1e"/>

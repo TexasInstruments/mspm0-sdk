@@ -630,6 +630,39 @@ function validatePinmux(inst, validation) {
     if(!Common.isDeviceM0C()){
         Common.getRetentionValidation(inst,validation);
     }
+
+    /* UNICOMM Validation */
+    if(Common.isUnicommSPI()){
+        let selectedInstance = inst.peripheral.$solution.peripheralName;
+        let selectedPeripheral = system.deviceData.peripherals[selectedInstance];
+        // Receive Timeout
+        if(Common.getAttribute(selectedPeripheral,"SYS_SPI_EN_RTOUT")=="false"){
+            if(inst.rxTimeoutValue>0){
+                validation.logError("SPI Receive Timeout is not supported on " + selectedInstance + ".", inst, "rxTimeoutValue");
+            }
+        }
+        // Command / Data Control
+        if(Common.getAttribute(selectedPeripheral,"SYS_EN_COMMAND_DATA")=="false"){
+            if(inst.enableCDMod){
+                validation.logError("SPI Command Data Mode is not supported on " + selectedInstance + ".", inst, "enableCDMod");
+            }
+        }
+        // Packing
+        if(Common.getAttribute(selectedPeripheral,"SYS_EN_PACKING")=="false"){
+            if(inst.enablePacking){
+                validation.logError("SPI Packing is not supported on " + selectedInstance + ".", inst, "enablePacking");
+            }
+        }
+        // DMA
+        if(Common.getAttribute(selectedPeripheral,"SYS_SPI_EN_DMA")=="false"){
+            if(inst.enabledDMAEvent1Triggers !== "None"){
+                validation.logError("DMA configuration not available on " + selectedInstance + ".", inst, "enabledDMAEvent1Triggers");
+            }
+            if(inst.enabledDMAEvent2Triggers !== "None"){
+                validation.logError("DMA configuration not available on " + selectedInstance + ".", inst, "enabledDMAEvent2Triggers");
+            }
+        }
+    }
 }
 
 /*
@@ -1518,9 +1551,8 @@ function moduleInstances(inst){
     let modInstances = []
     /* SPI does not support DMA configuration for MSPM0Cxx */
     if(!Common.isDeviceFamily_PARENT_MSPM0C110X()){
-        /*
-        * Gets a DMA module if available
-        */
+		/* For UNICOMM, RX trigger is option 1, otherwise it is option 0 */
+	    let rxPassedTriggerSelect = Common.isUnicommSPI() ? 1 : 0;
         if(!["None"].includes(inst.enabledDMAEvent1Triggers)){
             let mod = {
                 name: "DMA_CHANNEL_EVENT1",
@@ -1532,7 +1564,7 @@ function moduleInstances(inst){
                 },
                 requiredArgs: {
                     hideTriggerSelect: true,
-                    passedTriggerSelect: 0,
+                    passedTriggerSelect: rxPassedTriggerSelect,
 
                 },
 
@@ -1540,6 +1572,8 @@ function moduleInstances(inst){
             modInstances.push(mod);
         }
         if(!["None"].includes(inst.enabledDMAEvent2Triggers)){
+			/* For UNICOMM, TX trigger is option 0, otherwise it is option 1 */
+			let txPassedTriggerSelect = Common.isUnicommSPI() ? 0 : 1;
             let mod = {
                 name: "DMA_CHANNEL_EVENT2",
                 displayName: "DMA Channel Event 2",
@@ -1549,7 +1583,7 @@ function moduleInstances(inst){
                 },
                 requiredArgs: {
                     hideTriggerSelect: true,
-                    passedTriggerSelect: 1,
+                    passedTriggerSelect: txPassedTriggerSelect,
 
                 },
 

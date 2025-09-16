@@ -78,15 +78,32 @@ extern void SMBus_PHY_disable(SMBus *smbus);
 
 //*****************************************************************************
 //
+//! \brief   Disables the target PHY and Data Link layer
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//*****************************************************************************
+extern void SMBus_PHY_targetDisable(SMBus *smbus);
+
+//*****************************************************************************
+//
+//! \brief   Disables the controller PHY and Data Link layer
+//
+//! \param *smbus     Pointer to SMBus structure
+//
+//*****************************************************************************
+extern void SMBus_PHY_controllerDisable(SMBus *smbus);
+
+//*****************************************************************************
+//
 //! \brief   Enables the PHY and Data Link layer for target operation
 //
 //! \param *smbus     Pointer to SMBus structure
 //
-//! \return  None
-//
 //*****************************************************************************
 extern void SMBus_PHY_targetEnable(SMBus *smbus);
 
+#if defined(__MSPM0_HAS_I2C__)
 //*****************************************************************************
 //
 //! \brief   Initializes the I2C Target module supporting SMBus functionality
@@ -101,8 +118,25 @@ extern void SMBus_PHY_targetEnable(SMBus *smbus);
 // \return  None
 //
 //*****************************************************************************
-extern void SMBus_PHY_targetInit(SMBus *smbus,
-                                I2C_Regs *i2cAddr);
+extern void SMBus_PHY_targetInit(SMBus *smbus, I2C_Regs *i2cAddr);
+#endif
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+//*****************************************************************************
+//
+//! \brief   Initializes the I2C Target module supporting SMBus functionality
+//
+//!  - Resets and then configures the I2C for SMBus support
+//!  - I2C is enabled using Automatic ACK and Target address is initialized to 0x00
+//!  - Call SMBus_targetSetAddress() in order to set the Target address
+//
+//! \param *smbus     Pointer to SMBus structure
+//! \param i2cAddr    Base address of I2C module
+//
+// \return  None
+//
+//*****************************************************************************
+extern void SMBus_PHY_targetInit(SMBus *smbus, UNICOMM_Inst_Regs *i2cAddr);
+#endif
 
 //*****************************************************************************
 //
@@ -112,8 +146,6 @@ extern void SMBus_PHY_targetInit(SMBus *smbus,
 //!  SMBus_PHY_targetInit() must be called before this function.
 //
 //! \param *smbus     Pointer to SMBus structure
-//
-//! \return  None
 //
 //*****************************************************************************
 extern void SMBus_PHY_targetEnableInt(SMBus *smbus);
@@ -125,8 +157,6 @@ extern void SMBus_PHY_targetEnableInt(SMBus *smbus);
 //!  This function disables the I2C Start ,Stop, RX ,TX, Timeout interrupts.
 //
 //! \param *smbus     Pointer to SMBus structure
-//
-//! \return  None
 //
 //*****************************************************************************
 extern void SMBus_PHY_targetDisableInt(SMBus *smbus);
@@ -160,8 +190,6 @@ extern SMBus_State SMBus_PHY_targetProcessInt(SMBus *smbus);
 //! \param smbus    Pointer to SMBus structure
 //! \param length   Number of bytes left to be counted in current packet
 //
-//! \return  None
-//
 //*****************************************************************************
 extern void SMBus_PHY_targetSetPECCount(SMBus * smbus, uint16_t length);
 
@@ -176,8 +204,6 @@ extern void SMBus_PHY_targetSetPECCount(SMBus * smbus, uint16_t length);
 //! \param smbus    Pointer to SMBus structure
 //! \param ackVal   true for ACK, false for NACK
 //
-//! \return  None
-//
 //*****************************************************************************
 extern void SMBus_PHY_targetManualACK(SMBus *smbus, bool ackVal);
 
@@ -187,8 +213,6 @@ extern void SMBus_PHY_targetManualACK(SMBus *smbus, bool ackVal);
 //
 //! \param *smbus     Pointer to SMBus structure
 //
-//! \return  None
-//
 //*****************************************************************************
 extern void SMBus_Phy_ARP_TARGET_ADDR_Reset(SMBus *smbus);
 //*****************************************************************************
@@ -196,8 +220,6 @@ extern void SMBus_Phy_ARP_TARGET_ADDR_Reset(SMBus *smbus);
 //! \brief   Enables the PHY and Data Link layer
 //
 //! \param *smbus     Pointer to SMBus structure
-//
-//! \return  None
 //
 //*****************************************************************************
 extern void SMBus_PHY_controllerEnable(SMBus *smbus);
@@ -222,6 +244,8 @@ extern uint8_t SMBus_Phy_ARP_Get_Write_Status(SMBus *smbus);
 //
 //*****************************************************************************
 extern uint8_t SMBus_Phy_ARP_Get_Read_Status(SMBus *smbus);
+
+#if defined(__MSPM0_HAS_I2C__)
 //*****************************************************************************
 //
 //! \brief   Initializes the I2C Controller module supporting SMBus functionality
@@ -233,12 +257,29 @@ extern uint8_t SMBus_Phy_ARP_Get_Read_Status(SMBus *smbus);
 //! \param i2cAddr    Base address of I2C module
 //! \param busClk     SMCLK Frequency (used for I2C)
 //
-//! \return  None
-//
 //*****************************************************************************
 extern void SMBus_PHY_controllerInit(SMBus *smbus,
                                  I2C_Regs *i2cAddr,
                                  uint32_t busClk);
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__) && defined(__MCU_HAS_UNICOMMI2CT__)
+//*****************************************************************************
+//
+//! \brief   Initializes the I2C Controller module supporting SMBus functionality
+//
+//! - Resets and then configures the I2C for SMBus support
+//! - I2C is enabled using Automatic ACK and Target address is initialized to 0x00
+//
+//! \param smbus      Pointer to SMBus structure
+//! \param i2cAddr    Base address of I2C module
+//! \param busClk     SMCLK Frequency (used for I2C)
+//
+//*****************************************************************************
+extern void SMBus_PHY_controllerInit(SMBus *smbus,
+                                     UNICOMM_Inst_Regs *i2cAddr,
+                                     uint32_t busClk);
+#endif
 
 //*****************************************************************************
 //
@@ -248,8 +289,6 @@ extern void SMBus_PHY_controllerInit(SMBus *smbus,
 //!  SMBus_PHY_targetInit() must be called before this function.
 //
 //! \param *smbus     Pointer to SMBus structure
-//
-//! \return  None
 //
 //*****************************************************************************
 extern void SMBus_PHY_controllerEnableInt(SMBus *smbus);
@@ -262,8 +301,6 @@ extern void SMBus_PHY_controllerEnableInt(SMBus *smbus);
 //
 //! \param *smbus     Pointer to SMBus structure
 //
-//! \return  None
-//
 //*****************************************************************************
 extern void SMBus_PHY_controllerDisableInt(SMBus *smbus);
 
@@ -272,8 +309,6 @@ extern void SMBus_PHY_controllerDisableInt(SMBus *smbus);
 //! \brief   Generate Stop condition if it hasn't been sent
 //
 //! \param smbus      Pointer to SMBus structure
-//! \return  None
-//
 //*****************************************************************************
 extern void SMBus_PHY_controllerSendStop(SMBus *smbus);
 
@@ -287,8 +322,6 @@ extern void SMBus_PHY_controllerSendStop(SMBus *smbus);
 //! \param length     Number of bytes to send, not including the address byte
 //! \param stopFlag   Indicates whether the HW will generate stop condition
 //! \param setPEC   Packet Error Checking (PEC) count value
-//
-//! \return  None
 //
 //*****************************************************************************
 extern void SMBus_PHY_controllerStartTx(SMBus *smbus,
@@ -307,8 +340,6 @@ extern void SMBus_PHY_controllerStartTx(SMBus *smbus,
 //! \param startFlag  Indicates whether the HW will generate start condition
 //! \param ackFlag    Indicates whether the HW will auto ack the last byte
 //! \param setPEC   Packet Error Checking (PEC) count value
-//
-//! \return  None
 //
 //*****************************************************************************
 extern void SMBus_PHY_controllerStartRx(SMBus *smbus,
@@ -343,8 +374,6 @@ extern SMBus_State SMBus_PHY_controllerProcessInt(SMBus *smbus);
 //
 //! \param smbus    Pointer to SMBus structure
 //
-//! \return  The new state of controller (see SMBus_controllerProcessInt())
-//
 //*****************************************************************************
 extern void SMBus_PHY_controllerEnableHostNotify(SMBus *smbus);
 
@@ -354,8 +383,6 @@ extern void SMBus_PHY_controllerEnableHostNotify(SMBus *smbus);
 //!          address (0b000_1000)
 //
 //! \param smbus    Pointer to SMBus structure
-//
-//! \return  The new state of controller (see SMBus_controllerProcessInt())
 //
 //*****************************************************************************
 extern void SMBus_PHY_controllerDisableHostNotify(SMBus *smbus);

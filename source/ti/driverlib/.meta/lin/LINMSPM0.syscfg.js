@@ -93,7 +93,7 @@ function validatePinmux(inst, validation) {
                 inst,"peripheral");
         }
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G352X()){
         if(!(/UART0|UART7/.test(solution))){
             validation.logError("LIN functionality is only available on the UART0 and UART7 instances. Please select a valid instance from PinMux if available.",
                 inst,"peripheral");

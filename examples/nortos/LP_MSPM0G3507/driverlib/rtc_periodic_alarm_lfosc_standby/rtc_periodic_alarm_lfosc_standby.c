@@ -40,7 +40,10 @@ int main(void)
     /* Enable RTC interrupts on device */
     NVIC_EnableIRQ(RTC_INT_IRQn);
 
-    /* Enable sleep on exit */
+    /* Calling WFI after calling DL_SYSCTL_enableSleepOnExit will result in
+     * only ISR code to be executed. This is done to showcase the device's
+     * low power consumption when sleeping.
+     */
     DL_SYSCTL_enableSleepOnExit();
 
     /* Set LED to indicate RTC clock enable */

@@ -85,12 +85,17 @@ extern "C" {
 #define ADC12_0_INST_INT_IRQN                                    (ADC0_INT_IRQn)
 #define ADC12_0_ADCMEM_0                                      DL_ADC12_MEM_IDX_0
 #define ADC12_0_ADCMEM_0_REF                DL_ADC12_REFERENCE_VOLTAGE_VDDA_VSSA
+#define GPIO_ADC12_0_C12_PORT                                              GPIOA
+#define GPIO_ADC12_0_C12_PIN                                      DL_GPIO_PIN_14
+#define GPIO_ADC12_0_IOMUX_C12                                   (IOMUX_PINCM36)
+#define GPIO_ADC12_0_IOMUX_C12_FUNC               (IOMUX_PINCM36_PF_UNCONNECTED)
 
 
 
 /* Defines for DMA_CH0 */
 #define DMA_CH0_CHAN_ID                                                      (0)
 #define ADC12_0_INST_DMA_TRIGGER                      (DMA_ADC0_EVT_GEN_BD_TRIG)
+
 
 /* clang-format on */
 

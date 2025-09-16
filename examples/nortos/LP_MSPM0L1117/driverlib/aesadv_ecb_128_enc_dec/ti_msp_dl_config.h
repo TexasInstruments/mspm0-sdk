@@ -91,6 +91,7 @@ extern "C" {
 #define AES_KEY_SIZE                                                       (16)
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

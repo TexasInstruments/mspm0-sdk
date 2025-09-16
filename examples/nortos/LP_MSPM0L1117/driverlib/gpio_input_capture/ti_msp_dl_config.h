@@ -97,6 +97,7 @@ extern "C" {
 #define GPIO_SWITCHES_USER_SWITCH_1_IOMUX                        (IOMUX_PINCM10)
 #define GPIOA_EVENT_PUBLISHER_0_CHANNEL                                      (1)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

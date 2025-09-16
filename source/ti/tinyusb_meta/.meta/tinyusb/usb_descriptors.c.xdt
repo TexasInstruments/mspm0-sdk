@@ -1,0 +1,569 @@
+%%{
+    /* Licensing & Includes */
+%%}
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2019 Ha Thach (tinyusb.org)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+%%{
+    /* Get Common utility functions */
+    let Common = system.getScript("/ti/driverlib/Common.js");
+    let tusbCommon = system.getScript("/ti/tinyusb_meta/Common.js");
+    let inst = system.modules["/ti/tinyusb_meta/tinyusb"].$static;
+    let associatedUSB = inst.associated_USB;
+%%}
+%%{
+    // Static Defines & Initialization
+%%}
+#include "bsp/board_api.h"
+#include "tusb.h"
+#include "usb_descriptors.h"
+
+/* A combination of interfaces must have a unique product id, since PC will save device driver after the first plug.
+ * Same VID/PID with different interface e.g MSC (first), then CDC (later) will possibly cause system error on PC.
+ *
+ * Auto ProductID layout's Bitmap:
+ *   [MSB]         HID | MSC | CDC          [LSB]
+ */
+#define _PID_MAP(itf, n)  ( (CFG_TUD_##itf) << (n) )
+% if(inst.configPID){
+`("#define USB_PID").padEnd(40, " ") + ("0x"+inst.pidVal.toString(16)).padStart(6, " ")`
+% } else {
+#define USB_PID           (0x4000 | _PID_MAP(CDC, 0) | _PID_MAP(MSC, 1) | _PID_MAP(HID, 2) | \
+                           _PID_MAP(MIDI, 3) | _PID_MAP(VENDOR, 4) )
+% }
+
+`("#define USB_VID").padEnd(40, " ") + ("0x"+inst.vidVal.toString(16)).padStart(6, " ")`
+#define USB_BCD   0x0200
+
+//--------------------------------------------------------------------+
+// Device Descriptors
+//--------------------------------------------------------------------+
+tusb_desc_device_t const desc_device =
+{
+    .bLength            = sizeof(tusb_desc_device_t),
+    .bDescriptorType    = TUSB_DESC_DEVICE,
+    .bcdUSB             = USB_BCD,
+
+    // Use Interface Association Descriptor (IAD) for CDC
+    // As required by USB Specs IAD's subclass must be common class (2) and protocol must be IAD (1)
+    .bDeviceClass       = TUSB_CLASS_MISC,
+    .bDeviceSubClass    = MISC_SUBCLASS_COMMON,
+    .bDeviceProtocol    = MISC_PROTOCOL_IAD,
+    .bMaxPacketSize0    = CFG_TUD_ENDPOINT0_SIZE,
+
+    .idVendor           = USB_VID,
+    .idProduct          = USB_PID,
+    .bcdDevice          = 0x0100,
+
+    .iManufacturer      = 0x01,
+    .iProduct           = 0x02,
+    .iSerialNumber      = 0x03,
+
+    .bNumConfigurations = 0x01
+};
+
+// Invoked when received GET DEVICE DESCRIPTOR
+// Application return pointer to descriptor
+uint8_t const * tud_descriptor_device_cb(void)
+{
+  return (uint8_t const *) &desc_device;
+}
+
+%%{
+    // Endpoint Defines
+    /* Option A) iterate through all endpoints instances. find their parents
+     *  for the type of define
+     * Option B) iterate through all classes, go through their child endpoints.
+     *  multiple loops, but more accesible to find the elements.
+     *  and they would be grouped together
+     */
+    // Going with option B
+    // ----------------------------
+    // Loop through all CDC instances
+    // --> add each associated endpoint (in1/in2/out)
+
+    // String formatting:
+    //    `().padEnd(40, " ") + ().toString().padStart(40, " ")`
+%%}
+%%{
+    /* I. Enum Definition */
+    // define associated instance arrays to determine length
+    let cdcInsts    = tusbCommon.getCDCInstances(inst);
+    let hidInsts    = tusbCommon.getHIDInstances(inst);
+    let audioInsts  = tusbCommon.getAudioInstances(inst);
+    let mscInsts    = tusbCommon.getMSCInstances(inst);
+    let billboardInsts  = tusbCommon.getBillboardInstances(inst);
+
+    /* Generic Array of Configured Classes*/
+    let activeClassNames = [].concat(cdcInsts.map(x=>x.$name),hidInsts.map(x=>x.$name),audioInsts.map(x=>x.$name),mscInsts.map(x=>x.$name))
+
+    // list of class enums
+    let cdcEnum = cdcInsts.flatMap(i=>["ITF_NUM_"+i.$name,"ITF_NUM_"+i.$name+"_DATA"]);
+    let hidEnum = hidInsts.map(i=>"ITF_NUM_"+i.$name);
+    // let audioEnum = audioInsts.map(i=>["ITF_NUM_"+i.$name+"CONTROL","ITF_NUM_"+i.$name+"_STREAMING"]);
+    let audioEnum = audioInsts.flatMap(i=>{
+        if(i.mode == "oneChannelMic" || i.mode == "fourChannelMic"){
+            return ["ITF_NUM_"+i.$name+"_CONTROL","ITF_NUM_"+i.$name+"_STREAMING"]
+        }
+        else{
+            return ["ITF_NUM_"+i.$name]
+        }
+    });
+    let mscEnum = mscInsts.map(i=>"ITF_NUM_"+i.$name);
+    let billboardEnum = billboardInsts.map(i=>"ITF_NUM_"+i.$name);
+
+    // Array of enums for active classes ( ex: [ ITF_NUM_CDC_0, ITF_NUM_CDC_0_DATA, ITF_NUM_MSC_0 ])
+    let activeClassEnums = [].concat(cdcEnum,hidEnum,audioEnum,mscEnum,billboardEnum);
+%%}
+%%{
+    // HID Descriptors
+%%}
+% if(hidInsts.length>0){
+//--------------------------------------------------------------------+
+// HID Report Descriptor
+//--------------------------------------------------------------------+
+%    // Device Configuration
+%    if(inst.mode == "device"){
+%        // Iterate through Device CDC instances
+%        for(var myClass of inst.associated_devHID){
+%%{
+    // Define changes based on how many modes enabled
+    let modesEnabled = 0;
+    if(myClass.enableKeyboard) modesEnabled++;
+    if(myClass.enableMouse) modesEnabled++;
+    if(myClass.enableConsumer) modesEnabled++;
+    if(myClass.enableGamepad) modesEnabled++;
+    if(myClass.enableGenericInOut) modesEnabled++;
+    let defineFlavor = (hidInsts.length>1)?("_"+myClass.$name):""
+%%}
+uint8_t const desc_`myClass.$name`_report[] =
+{
+%           if(myClass.enableKeyboard){
+    TUD_HID_REPORT_DESC_KEYBOARD( HID_REPORT_ID(REPORT_ID`defineFlavor`_KEYBOARD )),
+%           }
+%           if(myClass.enableMouse){
+    TUD_HID_REPORT_DESC_MOUSE   ( HID_REPORT_ID(REPORT_ID`defineFlavor`_MOUSE            )),
+%           }
+%           if(myClass.enableConsumer){
+    TUD_HID_REPORT_DESC_CONSUMER( HID_REPORT_ID(REPORT_ID`defineFlavor`_CONSUMER_CONTROL )),
+%           }
+%           if(myClass.enableGamepad){
+    TUD_HID_REPORT_DESC_GAMEPAD ( HID_REPORT_ID(REPORT_ID`defineFlavor`_GAMEPAD           )),
+%           }
+%           if(myClass.enableGenericInOut){
+    TUD_HID_REPORT_DESC_GENERIC_INOUT ( CFG_TUD_HID_EP_BUFSIZE,HID_REPORT_ID(REPORT_ID`defineFlavor`_GENERIC_INOUT)),
+%           }
+};
+%       }
+% if(inst.associated_devHID.length==1){
+uint8_t const * tud_hid_descriptor_report_cb(uint8_t itf)
+{
+  (void) itf;
+  return desc_`inst.associated_devHID[0].$name`_report;
+}
+%} else{
+uint8_t const * tud_hid_descriptor_report_cb(uint8_t instance)
+{
+    switch(instance) {
+%        for(var myClass of inst.associated_devHID){
+        case `inst.associated_devHID.indexOf(myClass)`:
+            return desc_`myClass.$name`_report;
+            break;
+%        }
+        default:
+            return 0;
+            break;
+    }
+}
+%    }
+%   }
+% }
+%%{
+    // Generic Descriptors
+%%}
+//--------------------------------------------------------------------+
+// Configuration Descriptor
+//--------------------------------------------------------------------+
+% if(activeClassEnums.length>0){
+enum {
+%   for(let itemIndex in activeClassEnums){
+    `activeClassEnums[itemIndex]+((itemIndex==0)?" = 0,":",")`
+%   }
+    ITF_NUM_TOTAL
+};
+% }
+%%{
+    /* II. CONFIG_TOTAL_LEN */
+%%}
+%%{
+    let configTotalLenStr = "(TUD_CONFIG_DESC_LEN";
+    if(cdcInsts.length>0){
+        configTotalLenStr += " + ("+cdcInsts.length.toString()+" * TUD_CDC_DESC_LEN)"
+    }
+    if(hidInsts.length > 0) {
+        // Get instances that have generic IO enabled
+        let ioInstances = hidInsts.filter(x => x.enableGenericInOut);
+        let regularInstances = hidInsts.filter(x => !x.enableGenericInOut);
+
+        // Add appropriate descriptor length based on instance type in a single string
+        if(regularInstances.length > 0 && ioInstances.length > 0) {
+            configTotalLenStr += " + (" + regularInstances.length.toString() + " * TUD_HID_DESC_LEN) + ("
+                            + ioInstances.length.toString() + " * TUD_HID_INOUT_DESC_LEN)";
+        } else if(regularInstances.length > 0) {
+            configTotalLenStr += " + (" + regularInstances.length.toString() + " * TUD_HID_DESC_LEN)";
+        } else if(ioInstances.length > 0) {
+            configTotalLenStr += " + (" + ioInstances.length.toString() + " * TUD_HID_INOUT_DESC_LEN)";
+        }
+    }
+
+    if(audioInsts.length>0){
+        configTotalLenStr += " + ("
+
+        let oneChMicCount = audioInsts.filter(x => x.enableOneChannelMic)?.length;
+        let fourChMicCount = audioInsts.filter(x => x.enableFourChannelMic)?.length;
+        let headsetCount = audioInsts.filter(x => x.enableHeadset)?.length;
+        let speakerCount = audioInsts.filter(x => x.enableSpeaker)?.length;
+
+        if(oneChMicCount > 0){
+            configTotalLenStr += "("+oneChMicCount.toString()+" * TUD_AUDIO_MIC_ONE_CH_DESC_LEN)"
+        }
+        if(fourChMicCount > 0){
+            configTotalLenStr += "("+fourChMicCount.toString()+" * TUD_AUDIO_MIC_FOUR_CH_DESC_LEN)"
+        }
+        if(headsetCount > 0){
+            configTotalLenStr += "("+headsetCount.toString()+" * TUD_AUDIO_HEADSET_STEREO_DESC_LEN)"
+        }
+        if(speakerCount > 0){
+            configTotalLenStr += "("+speakerCount.toString()+" * TUD_AUDIO_SPEAKER_STEREO_FB_DESC_LEN)"
+        }
+
+        configTotalLenStr += ")"
+    }
+    if(mscInsts.length>0){
+        configTotalLenStr += " + ("+mscInsts.length.toString()+" * TUD_MSC_DESC_LEN)"
+    }
+    configTotalLenStr += ")";
+%%}
+`("#define CONFIG_TOTAL_LEN").padEnd(40, " ") + (configTotalLenStr).toString().padStart(40, " ")`
+%%{
+    /* III. Class Endpoint Defines */
+%%}
+%    // Device Configuration
+%    if(inst.mode == "device"){
+%        // Iterate through Device CDC instances
+%       if(cdcInsts.length>0){
+%        for(var myClass of inst.associated_devCDC){
+%            // Identify endpoints
+%            let ep_notif    = myClass.CDC_EP_IN_NOTIF;
+`("#define EPNUM_"+myClass.$name+"_NOTIF").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_notif).toString(16)).padStart(40, " ")`
+%            let ep_in       = myClass.CDC_EP_IN_DATA;
+`("#define EPNUM_"+myClass.$name+"_IN").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_in).toString(16)).padStart(40, " ")`
+%            let ep_out      = myClass.CDC_EP_OUT_DATA;
+`("#define EPNUM_"+myClass.$name+"_OUT").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointOutCode(ep_out).toString(16)).padStart(40, " ")`
+%        }
+%       }
+%       if(hidInsts.length > 0){
+%        for(var myClass of inst.associated_devHID){
+%            // Identify endpoints
+%            let ep_in       = myClass.HID_EP_IN_DATA;
+`("#define EPNUM_"+myClass.$name+"_IN").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_in).toString(16)).padStart(40, " ")`
+%           if(myClass.enableGenericInOut){
+%               let ep_out      = myClass.HID_EP_OUT_DATA;
+`("#define EPNUM_"+myClass.$name+"_OUT").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointOutCode(ep_out).toString(16)).padStart(40, " ")`
+%           }
+%        }
+%       }
+%       if(audioInsts.length > 0){
+%        for(var myClass of inst.associated_devAudio){
+%            // Identify endpoints
+%           if(myClass.enableOneChannelMic){
+%               let ep_in       = myClass.AUDIO_EP_IN_ONE_CHANNEL_MIC;
+`("#define EPNUM_"+myClass.$name+"_IN_ONE_CHANNEL_MIC").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_in).toString(16)).padStart(40, " ")`
+%           }
+%           if(myClass.enableFourChannelMic){
+%               let ep_in       = myClass.AUDIO_EP_IN_FOUR_CHANNEL_MIC;
+`("#define EPNUM_"+myClass.$name+"_IN_FOUR_CHANNEL_MIC").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_in).toString(16)).padStart(40, " ")`
+%           }
+%           if(myClass.enableHeadset){
+%               let ep_in       = myClass.AUDIO_EP_IN_HEADSET;
+`("#define EPNUM_"+myClass.$name+"_IN_HEADSET").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_in).toString(16)).padStart(40, " ")`
+%               let ep_out      = myClass.AUDIO_EP_OUT_HEADSET;
+`("#define EPNUM_"+myClass.$name+"_OUT_HEADSET").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointOutCode(ep_out).toString(16)).padStart(40, " ")`
+%               if(myClass.interruptEnable){
+%               let ep_interrupt       = myClass.AUDIO_EP_IN_INTERRUPT;
+`("#define EPNUM_"+myClass.$name+"_IN_INTERRUPT").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_interrupt).toString(16)).padStart(40, " ")`
+%               }
+%           }
+%           if(myClass.enableSpeaker){
+%               let ep_out      = myClass.AUDIO_EP_OUT_SPEAKER;
+`("#define EPNUM_"+myClass.$name+"_OUT_SPEAKER").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointOutCode(ep_out).toString(16)).padStart(40, " ")`
+%               if(myClass.enableFeedback){
+%               let ep_feedback       = myClass.AUDIO_EP_IN_FEEDBACK;
+`("#define EPNUM_"+myClass.$name+"_IN_FEEDBACK").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_feedback).toString(16)).padStart(40, " ")`
+%               }
+%               if(myClass.enableDebug){
+%               let ep_debug       = myClass.AUDIO_EP_IN_DEBUG;
+`("#define EPNUM_"+myClass.$name+"_IN_DEBUG").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_debug).toString(16)).padStart(40, " ")`
+%               }
+%           }
+%        }
+%       }
+%       if(mscInsts.length > 0){
+%        for(var myClass of inst.associated_devMSC){
+%            let ep_in       = myClass.MSC_EP_IN_DATA;
+`("#define EPNUM_"+myClass.$name+"_IN").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointInCode(ep_in).toString(16)).padStart(40, " ")`
+%            let ep_out      = myClass.MSC_EP_OUT_DATA;
+`("#define EPNUM_"+myClass.$name+"_OUT").padEnd(40, " ") + ("0x"+tusbCommon.getEndpointOutCode(ep_out).toString(16)).padStart(40, " ")`
+%        }
+%       }
+%    }
+
+%%{
+    /* IV. desc_fs_configuration[] */
+    // TUD_CDC_DESCRIPTOR(ITF_NUM_CDC_0, 4, EPNUM_CDC_0_NOTIF, 8, EPNUM_CDC_0_OUT,
+    //     EPNUM_CDC_0_IN, 64),
+%%}
+uint8_t const desc_fs_configuration[] = {
+    // Config number, interface count, string index, total length, attribute, power in mA
+    TUD_CONFIG_DESCRIPTOR(1, ITF_NUM_TOTAL, 0, CONFIG_TOTAL_LEN, 0x00, 100),
+
+%    // Device Configuration
+%    if(inst.mode == "device"){
+%        // Iterate through Device CDC instances
+%        for(var myClass of inst.associated_devCDC){
+%%{
+    // Define descriptor dynamic arguments
+    let strIdx = activeClassNames.indexOf(myClass.$name)+4; // String Index
+%%}
+    // Interface number, string index, EP notification address and size, EP data
+    // address (out, in) and size.
+    TUD_CDC_DESCRIPTOR(ITF_NUM_`myClass.$name`,
+                        `strIdx`,
+                        EPNUM_`myClass.$name`_NOTIF,
+                        `myClass.CDC_EP_IN_NOTIF.epSize`,
+                        EPNUM_`myClass.$name`_OUT,
+                        EPNUM_`myClass.$name`_IN,
+                        `myClass.epBufferSize`),
+%       }
+%       for(var myClass of inst.associated_devHID){
+%%{
+    // Define descriptor dynamic arguments
+    let strIdx = activeClassNames.indexOf(myClass.$name)+4; // String Index
+%%}
+    // Interface number, string index, EP notification address and size, EP data
+    // address (out, in) and size.
+%           if(myClass.enableGenericInOut){
+    TUD_HID_INOUT_DESCRIPTOR(ITF_NUM_`myClass.$name`,
+                        `strIdx`,
+                        HID_ITF_PROTOCOL_NONE,
+                        sizeof(desc_`myClass.$name`_report),
+                        EPNUM_`myClass.$name`_OUT,
+                        EPNUM_`myClass.$name`_IN,
+                        `myClass.epBufferSize`,
+                        `myClass.pollingInterval`),
+%           } else{
+    TUD_HID_DESCRIPTOR(ITF_NUM_`myClass.$name`,
+                        `strIdx`,
+                        HID_ITF_PROTOCOL_`myClass.hidProtocol`,
+                        sizeof(desc_`myClass.$name`_report),
+                        EPNUM_`myClass.$name`_IN,
+                        `myClass.epBufferSize`,
+                        `myClass.pollingInterval`),
+%           }
+%       }
+%       if(audioInsts.length > 0){
+%       for(var myClass of inst.associated_devAudio){
+%           let audio_func_idx = inst.associated_devAudio.indexOf(myClass)+1;
+%%{
+    // Define descriptor dynamic arguments
+    let strIdx = activeClassNames.indexOf(myClass.$name)+4; // String Index
+%%}
+%           if(myClass.enableOneChannelMic){
+    TUD_AUDIO_MIC_ONE_CH_DESCRIPTOR(ITF_NUM_`myClass.$name`_CONTROL,
+                        `strIdx`,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_N_BYTES_PER_SAMPLE_TX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_RESOLUTION_TX,
+                        EPNUM_`myClass.$name`_IN_ONE_CHANNEL_MIC,
+                        `myClass.epBufferSize`),
+%           }
+%           if(myClass.enableFourChannelMic){
+    TUD_AUDIO_MIC_FOUR_CH_DESCRIPTOR(ITF_NUM_`myClass.$name`,
+                        `strIdx`,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_N_BYTES_PER_SAMPLE_TX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_RESOLUTION_TX,
+                        EPNUM_`myClass.$name`_IN_FOUR_CHANNEL_MIC,
+                        `myClass.epBufferSize`),
+%           }
+%           if(myClass.enableHeadset){
+    TUD_AUDIO_HEADSET_STEREO_DESCRIPTOR(ITF_NUM_`myClass.$name`,
+                        `strIdx`,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_MAX_SAMPLE_RATE,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_FORMAT_1_N_BYTES_PER_SAMPLE_TX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_FORMAT_1_RESOLUTION_TX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_FORMAT_1_N_BYTES_PER_SAMPLE_RX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_FORMAT_1_RESOLUTION_RX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_FORMAT_2_N_BYTES_PER_SAMPLE_TX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_FORMAT_2_RESOLUTION_TX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_FORMAT_2_N_BYTES_PER_SAMPLE_RX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_FORMAT_2_RESOLUTION_RX,
+                        EPNUM_`myClass.$name`_OUT_HEADSET,
+                        EPNUM_`myClass.$name`_IN_HEADSET,
+%               if(myClass.interruptEnable){
+                        EPNUM_`myClass.$name`_IN_INTERRUPT,
+%               }
+                        ),
+%           }
+%           if(myClass.enableSpeaker){
+    TUD_AUDIO_SPEAKER_STEREO`(inst.enableFeedback)?"_FB":""`_DESCRIPTOR(ITF_NUM_`myClass.$name`,
+                        `strIdx`,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_N_BYTES_PER_SAMPLE_RX,
+                        CFG_TUD_AUDIO_FUNC_`audio_func_idx`_RESOLUTION_RX,
+                        EPNUM_`myClass.$name`_OUT_SPEAKER,
+%               if(myClass.enableFeedback){
+                        EPNUM_`myClass.$name`_IN_FEEDBACK,
+%               }
+%               if(myClass.enableDebug){
+                        EPNUM_`myClass.$name`_IN_DEBUG,
+%               }
+                        `myClass.epBufferSize`),
+%           }
+%       } // loop through Audio functions
+%       } // check if Audio instances exist
+%       for(var myClass of inst.associated_devMSC){
+%%{
+    // Define descriptor dynamic arguments
+    let strIdx = activeClassNames.indexOf(myClass.$name)+4; // String Index
+%%}
+    TUD_MSC_DESCRIPTOR(ITF_NUM_`myClass.$name`,
+                        `strIdx`,
+                        EPNUM_`myClass.$name`_OUT,
+                        EPNUM_`myClass.$name`_IN,
+                        `myClass.epIOSize`),
+%       }
+%    }
+%
+};
+
+%%{
+    // Configuration Callback
+%%}
+// Invoked when received GET CONFIGURATION DESCRIPTOR
+// Application return pointer to descriptor
+// Descriptor contents must exist long enough for transfer to complete
+uint8_t const * tud_descriptor_configuration_cb(uint8_t index)
+{
+  (void) index; // for multiple configurations
+
+  // This example use the same configuration for both high and full speed mode
+  return desc_fs_configuration;
+}
+
+%%{
+  // String Codegen
+%%}
+//--------------------------------------------------------------------+
+// String Descriptors
+//--------------------------------------------------------------------+
+
+// String Descriptor Index
+enum {
+  STRID_LANGID = 0,
+  STRID_MANUFACTURER,
+  STRID_PRODUCT,
+  STRID_SERIAL,
+};
+
+% if(activeClassNames.length>0){
+char const *string_desc_arr[] = {
+    (const char[]){
+        0x09, 0x04},            // 0: is supported language is English (0x0409)
+    "`inst.strManufacturer`",   // 1: Manufacturer
+    "`inst.strProduct`",        // 2: Product
+    NULL,                       // 3: Serials will use unique ID if possible
+%    // Device Configuration
+%    if(inst.mode == "device"){
+%        // Iterate through Device CDC instances
+%       for(var myClass of inst.associated_devCDC){
+    "`(myClass.overrideDefaultStr)?myClass.classString:myClass.defaultClassString`", // `myClass.$name`
+%       }
+%       for(var myClass of inst.associated_devHID){
+    "`(myClass.overrideDefaultStr)?myClass.classString:myClass.defaultClassString`", // `myClass.$name`
+%       }
+%       if(audioInsts.length > 0){
+%           for(var myClass of inst.associated_devAudio){
+    "`(myClass.overrideDefaultStr)?myClass.classString:myClass.defaultClassString`", // `myClass.$name`
+%           }
+%       }
+%       for(var myClass of inst.associated_devMSC){
+    "`(myClass.overrideDefaultStr)?myClass.classString:myClass.defaultClassString`", // `myClass.$name`
+%       }
+%    }
+};
+% }
+
+%%{
+    // Static Initialization COde
+%%}
+static uint16_t _desc_str[32 + 1];
+
+// Invoked when received GET STRING DESCRIPTOR request
+// Application return pointer to descriptor, whose contents must exist long enough for transfer to complete
+uint16_t const *tud_descriptor_string_cb(uint8_t index, uint16_t langid) {
+  (void) langid;
+  size_t chr_count;
+
+  switch ( index ) {
+    case STRID_LANGID:
+      memcpy(&_desc_str[1], string_desc_arr[0], 2);
+      chr_count = 1;
+      break;
+
+    case STRID_SERIAL:
+      chr_count = board_usb_get_serial(_desc_str + 1, 32);
+      break;
+
+    default:
+      // Note: the 0xEE index string is a Microsoft OS 1.0 Descriptors.
+      // https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/microsoft-defined-usb-descriptors
+
+      if ( !(index < sizeof(string_desc_arr) / sizeof(string_desc_arr[0])) ) return NULL;
+
+      const char *str = string_desc_arr[index];
+
+      // Cap at max char
+      chr_count = strlen(str);
+      size_t const max_count = sizeof(_desc_str) / sizeof(_desc_str[0]) - 1; // -1 for string type
+      if ( chr_count > max_count ) chr_count = max_count;
+
+      // Convert ASCII string into UTF-16
+      for ( size_t i = 0; i < chr_count; i++ ) {
+        _desc_str[1 + i] = str[i];
+      }
+      break;
+  }
+
+  // first byte is length (including header), second byte is string type
+  _desc_str[0] = (uint16_t) ((TUSB_DESC_STRING << 8) | (2 * chr_count + 2));
+
+  return _desc_str;
+}

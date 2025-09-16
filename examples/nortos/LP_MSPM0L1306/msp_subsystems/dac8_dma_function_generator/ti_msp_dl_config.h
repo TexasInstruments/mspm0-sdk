@@ -113,6 +113,7 @@ extern "C" {
 #define DMA_CH0_CHAN_ID                                                      (0)
 #define DMA_CH0_TRIGGER_SEL_FSUB_0                       (DMA_GENERIC_SUB0_TRIG)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

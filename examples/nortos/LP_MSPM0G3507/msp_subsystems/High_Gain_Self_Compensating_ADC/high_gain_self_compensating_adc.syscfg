@@ -1,0 +1,108 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ */
+//@cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ADC12         = scripting.addModule("/ti/driverlib/ADC12", {}, false);
+const ADC121        = ADC12.addInstance();
+const ADC122        = ADC12.addInstance();
+const Board         = scripting.addModule("/ti/driverlib/Board");
+const COMP          = scripting.addModule("/ti/driverlib/COMP", {}, false);
+const COMP1         = COMP.addInstance();
+const COMP2         = COMP.addInstance();
+const OPA           = scripting.addModule("/ti/driverlib/OPA", {}, false);
+const OPA1          = OPA.addInstance();
+const OPA2          = OPA.addInstance();
+const SYSCTL        = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER         = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1        = TIMER.addInstance();
+const UART          = scripting.addModule("/ti/driverlib/UART", {}, false);
+const UART1         = UART.addInstance();
+const VREF          = scripting.addModule("/ti/driverlib/VREF");
+const ProjectConfig = scripting.addModule("/ti/project_config/ProjectConfig");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ADC121.$name              = "ADC12_0";
+ADC121.endAdd             = 1;
+ADC121.adcMem1chansel     = "DL_ADC12_INPUT_CHAN_15";
+ADC121.sampleTime0        = "40 us";
+ADC121.adcMem0chansel     = "DL_ADC12_INPUT_CHAN_13";
+ADC121.enabledInterrupts  = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC121.peripheral.$assign = "ADC0";
+
+ADC122.$name              = "ADC12_1";
+ADC122.adcMem0chansel     = "DL_ADC12_INPUT_CHAN_13";
+ADC122.enabledInterrupts  = ["DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED"];
+ADC122.sampleTime0        = "40 us";
+ADC122.peripheral.$assign = "ADC1";
+
+Board.peripheral.$assign          = "DEBUGSS";
+Board.peripheral.swclkPin.$assign = "PA20";
+Board.peripheral.swdioPin.$assign = "PA19";
+
+COMP1.$name              = "COMP_0";
+COMP1.terminalSelect     = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP1.controlSelect      = "DL_COMP_DAC_CONTROL_SW";
+COMP1.setDACCode0        = 0x75;
+COMP1.compMode           = "DL_COMP_MODE_ULP";
+COMP1.vSource            = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP1.peripheral.$assign = "COMP0";
+
+COMP2.$name              = "COMP_1";
+COMP2.terminalSelect     = "DL_COMP_REF_TERMINAL_SELECT_NEG";
+COMP2.controlSelect      = "DL_COMP_DAC_CONTROL_SW";
+COMP2.setDACCode0        = 0x78;
+COMP2.compMode           = "DL_COMP_MODE_ULP";
+COMP2.vSource            = "DL_COMP_REF_SOURCE_VDDA_DAC";
+COMP2.peripheral.$assign = "COMP1";
+
+OPA1.$name                        = "OPA_0";
+OPA1.cfg0NSELChannel              = "RTAP";
+OPA1.cfg0MSELChannel              = "IN1_NEG";
+OPA1.cfg0PSELChannel              = "DAC8_OUT";
+OPA1.advRRI                       = true;
+OPA1.cfg0Gain                     = "N15_P16";
+OPA1.peripheral.$assign           = "OPA0";
+OPA1.peripheral.In1NegPin.$assign = "PA24";
+
+OPA2.$name                     = "OPA_1";
+OPA2.cfg0PSELChannel           = "DAC8_OUT";
+OPA2.cfg0NSELChannel           = "RTAP";
+OPA2.cfg0MSELChannel           = "RTOP";
+OPA2.cfg0OutputPin             = "ENABLED";
+OPA2.advRRI                    = true;
+OPA2.cfg0Gain                  = "N15_P16";
+OPA2.peripheral.$assign        = "OPA1";
+OPA2.peripheral.OutPin.$assign = "PA16";
+
+SYSCTL.powerPolicy           = "STANDBY1";
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.MFPCLKEn              = true;
+SYSCTL.peripheral.$assign    = "SYSCTL";
+
+TIMER1.$name              = "TIMER_1";
+TIMER1.timerClkSrc        = "LFCLK";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerPeriod        = "10ms";
+TIMER1.peripheral.$assign = "TIMA0";
+
+UART1.$name                    = "UART_0";
+UART1.targetBaudRate           = 115200;
+UART1.enableFIFO               = true;
+UART1.peripheral.$assign       = "UART0";
+UART1.peripheral.rxPin.$assign = "PA11";
+UART1.peripheral.txPin.$assign = "PA10";
+
+VREF.checkVREFReady                = true;
+VREF.basicIntVolt                  = "DL_VREF_BUFCONFIG_OUTPUT_2_5V";
+VREF.peripheral.$assign            = "VREF";
+VREF.peripheral.vrefPosPin.$assign = "PA23";

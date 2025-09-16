@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <applicability>
+        <when>
+            <context
+                deviceFamily="ARM"
+                deviceId="MSPM0G5187"
+            />
+        </when>
+    </applicability>
+
+    <project
+        title="device_uac2_speaker_fb"
+        name="device_uac2_speaker_fb_LP_MSPM0G5187_nortos_gcc"
+        configurations="Debug"
+        toolChain="GNU"
+        connection="TIXDS110_Connection.xml"
+        device="MSPM0G5187"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="MSPM0-SDK;sysconfig"
+        compilerBuildOptions="
+            -I${PROJECT_ROOT}
+            -I${PROJECT_ROOT}/${ConfigName}
+            -g
+            -mthumb
+            -std=c99
+            -std=c++11
+            -mcpu=cortex-m0plus
+            -mfloat-abi=soft
+            -fsingle-precision-constant
+            -fno-strict-aliasing
+            -MD
+            -ggdb
+            -fdata-sections
+            -ffunction-sections
+            -Wextra
+            -Wfatal-errors
+            -Wdouble-promotion
+            -Wstrict-prototypes
+            -Wstrict-overflow
+            -Werror-implicit-function-declaration
+            -Wfloat-equal
+            -Wshadow
+            -Wwrite-strings
+            -Wsign-compare
+            -Wmissing-format-attribute
+            -Wunreachable-code
+            -Wcast-function-type
+            -Wnull-dereference
+            -Wuninitialized
+            -Wreturn-type
+            -Wredundant-decls
+            -O0
+            -Wno-error=format=
+            @device.opt
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/third_party/CMSIS/Core/Include
+            -I${PROJECT_ROOT}/third_party/tinyusb/src
+            -I${PROJECT_ROOT}/third_party/tinyusb/hw
+            -I${PROJECT_ROOT}/third_party/tinyusb/lib/fatfs/source
+            -I${PROJECT_ROOT}/third_party/tinyusb/lib/embedded-cli
+            -I${PROJECT_ROOT}/third_party/tinyusb/hw/bsp/mspm0
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti
+            -I${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/devices/msp
+            -march=armv6-m
+            -gstrict-dwarf
+            -Wall
+            -I${CG_TOOL_ROOT}/arm-none-eabi/include/newlib-nano
+            -I${CG_TOOL_ROOT}/arm-none-eabi/include
+        "
+        linkerBuildOptions="
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib/lib/gcc/m0p/mspm0g518x
+            -Wl,-Map=.map
+            -Wl,--cref
+            -Wl,-gc-sections
+            -Wl,--print-memory-usage
+            -g
+            -mthumb
+            -mcpu=cortex-m0plus
+            -mfloat-abi=soft
+            -fsingle-precision-constant
+            -MD
+            -ggdb
+            -fdata-sections
+            -ffunction-sections
+            -fno-strict-aliasing
+            -Wextra
+            -Wfatal-errors
+            -Wdouble-promotion
+            -Wstrict-prototypes
+            -Wstrict-overflow
+            -Werror-implicit-function-declaration
+            -Wfloat-equal
+            -Wshadow
+            -Wwrite-strings
+            -Wsign-compare
+            -Wmissing-format-attribute
+            -Wunreachable-code
+            -Wcast-function-type
+            -Wnull-dereference
+            -Wuninitialized
+            -Wreturn-type
+            -Wredundant-decls
+            -O0
+            -Wno-error=format=
+            --specs=nosys.specs
+            -nostartfiles
+            -Wl,--start-group
+            -l:driverlib.a
+            -lgcc
+            -lm
+            -lnosys
+            -lc
+            -Wl,--end-group
+            -L${CG_TOOL_ROOT}/arm-none-eabi/lib/thumb/v6-m/nofp
+            -Tdevice.lds.genlibs
+            -L${COM_TI_MSPM0_SDK_INSTALL_DIR}/source
+            -L${PROJECT_ROOT}
+            -L${PROJECT_BUILD_DIR}/syscfg
+            -march=armv6-m
+            -static
+            -Wl,--gc-sections
+        "
+        sysConfigBuildOptions="
+            --output .
+            --product ${COM_TI_MSPM0_SDK_INSTALL_DIR}/.metadata/product.json
+            --compiler gcc
+        "
+        sourceLookupPath="${COM_TI_MSPM0_SDK_INSTALL_DIR}/source/ti/driverlib"
+        description="TinyUSB Device USB Audio Class 2.0 Speaker Example">
+
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <file path="../main.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../tusb_config.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../usb_descriptors.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../usb_descriptors.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../common_types.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../quirk_os_guessing.c" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../quirk_os_guessing.h" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../third_party/tinyusb/hw/bsp/ansi_escape.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/bsp">
+        </file>
+        <file path="../third_party/tinyusb/hw/bsp/board.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/bsp">
+        </file>
+        <file path="../third_party/tinyusb/hw/bsp/board_api.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/bsp">
+        </file>
+        <file path="../third_party/tinyusb/hw/bsp/board_mcu.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/bsp">
+        </file>
+        <file path="../third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5117/board.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5117">
+        </file>
+        <file path="../third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5187/board.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/bsp/mspm0/boards/lp-mspm0g5187">
+        </file>
+        <file path="../third_party/tinyusb/hw/bsp/mspm0/family.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/bsp/mspm0">
+        </file>
+        <file path="../third_party/tinyusb/hw/mcu/ti/mspm0/system_mspm0g511x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/mcu/ti/mspm0">
+        </file>
+        <file path="../third_party/tinyusb/hw/mcu/ti/mspm0/system_mspm0g511x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/mcu/ti/mspm0">
+        </file>
+        <file path="../third_party/tinyusb/hw/mcu/ti/mspm0/system_mspm0g518x.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/mcu/ti/mspm0">
+        </file>
+        <file path="../third_party/tinyusb/hw/mcu/ti/mspm0/system_mspm0g518x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/hw/mcu/ti/mspm0">
+        </file>
+        <file path="../third_party/tinyusb/src/class/audio/audio.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/audio">
+        </file>
+        <file path="../third_party/tinyusb/src/class/audio/audio_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/audio">
+        </file>
+        <file path="../third_party/tinyusb/src/class/audio/audio_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/audio">
+        </file>
+        <file path="../third_party/tinyusb/src/class/bth/bth_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/bth">
+        </file>
+        <file path="../third_party/tinyusb/src/class/bth/bth_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/bth">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/cdc.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/cdc_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/cdc_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/cdc_host.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/cdc_host.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/cdc_rndis.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/cdc_rndis_host.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/cdc_rndis_host.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/serial/ch34x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc/serial">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/serial/cp210x.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc/serial">
+        </file>
+        <file path="../third_party/tinyusb/src/class/cdc/serial/ftdi_sio.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/cdc/serial">
+        </file>
+        <file path="../third_party/tinyusb/src/class/dfu/dfu.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/dfu">
+        </file>
+        <file path="../third_party/tinyusb/src/class/dfu/dfu_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/dfu">
+        </file>
+        <file path="../third_party/tinyusb/src/class/dfu/dfu_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/dfu">
+        </file>
+        <file path="../third_party/tinyusb/src/class/dfu/dfu_rt_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/dfu">
+        </file>
+        <file path="../third_party/tinyusb/src/class/dfu/dfu_rt_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/dfu">
+        </file>
+        <file path="../third_party/tinyusb/src/class/hid/hid.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/hid">
+        </file>
+        <file path="../third_party/tinyusb/src/class/hid/hid_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/hid">
+        </file>
+        <file path="../third_party/tinyusb/src/class/hid/hid_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/hid">
+        </file>
+        <file path="../third_party/tinyusb/src/class/hid/hid_host.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/hid">
+        </file>
+        <file path="../third_party/tinyusb/src/class/hid/hid_host.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/hid">
+        </file>
+        <file path="../third_party/tinyusb/src/class/midi/midi.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/midi">
+        </file>
+        <file path="../third_party/tinyusb/src/class/midi/midi_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/midi">
+        </file>
+        <file path="../third_party/tinyusb/src/class/midi/midi_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/midi">
+        </file>
+        <file path="../third_party/tinyusb/src/class/msc/msc.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/msc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/msc/msc_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/msc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/msc/msc_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/msc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/msc/msc_host.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/msc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/msc/msc_host.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/msc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/net/ecm_rndis_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/net">
+        </file>
+        <file path="../third_party/tinyusb/src/class/net/ncm.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/net">
+        </file>
+        <file path="../third_party/tinyusb/src/class/net/ncm_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/net">
+        </file>
+        <file path="../third_party/tinyusb/src/class/net/net_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/net">
+        </file>
+        <file path="../third_party/tinyusb/src/class/usbtmc/usbtmc.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/usbtmc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/usbtmc/usbtmc_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/usbtmc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/usbtmc/usbtmc_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/usbtmc">
+        </file>
+        <file path="../third_party/tinyusb/src/class/vendor/vendor_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/vendor">
+        </file>
+        <file path="../third_party/tinyusb/src/class/vendor/vendor_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/vendor">
+        </file>
+        <file path="../third_party/tinyusb/src/class/vendor/vendor_host.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/vendor">
+        </file>
+        <file path="../third_party/tinyusb/src/class/vendor/vendor_host.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/vendor">
+        </file>
+        <file path="../third_party/tinyusb/src/class/video/video.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/video">
+        </file>
+        <file path="../third_party/tinyusb/src/class/video/video_device.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/video">
+        </file>
+        <file path="../third_party/tinyusb/src/class/video/video_device.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/class/video">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_common.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_compiler.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_debug.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_fifo.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_fifo.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_mcu.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_private.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_types.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/common/tusb_verify.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/common">
+        </file>
+        <file path="../third_party/tinyusb/src/device/dcd.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/device">
+        </file>
+        <file path="../third_party/tinyusb/src/device/usbd.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/device">
+        </file>
+        <file path="../third_party/tinyusb/src/device/usbd.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/device">
+        </file>
+        <file path="../third_party/tinyusb/src/device/usbd_control.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/device">
+        </file>
+        <file path="../third_party/tinyusb/src/device/usbd_pvt.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/device">
+        </file>
+        <file path="../third_party/tinyusb/src/host/hcd.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/host">
+        </file>
+        <file path="../third_party/tinyusb/src/host/hub.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/host">
+        </file>
+        <file path="../third_party/tinyusb/src/host/hub.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/host">
+        </file>
+        <file path="../third_party/tinyusb/src/host/usbh.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/host">
+        </file>
+        <file path="../third_party/tinyusb/src/host/usbh.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/host">
+        </file>
+        <file path="../third_party/tinyusb/src/host/usbh_pvt.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/host">
+        </file>
+        <file path="../third_party/tinyusb/src/osal/osal.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/osal">
+        </file>
+        <file path="../third_party/tinyusb/src/osal/osal_freertos.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/osal">
+        </file>
+        <file path="../third_party/tinyusb/src/osal/osal_mynewt.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/osal">
+        </file>
+        <file path="../third_party/tinyusb/src/osal/osal_none.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/osal">
+        </file>
+        <file path="../third_party/tinyusb/src/osal/osal_pico.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/osal">
+        </file>
+        <file path="../third_party/tinyusb/src/osal/osal_rtthread.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/osal">
+        </file>
+        <file path="../third_party/tinyusb/src/osal/osal_rtx4.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/osal">
+        </file>
+        <file path="../third_party/tinyusb/src/portable/mentor/musb/dcd_musb.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/portable/mentor/musb">
+        </file>
+        <file path="../third_party/tinyusb/src/portable/mentor/musb/hcd_musb.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/portable/mentor/musb">
+        </file>
+        <file path="../third_party/tinyusb/src/portable/mentor/musb/musb_ti.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/portable/mentor/musb">
+        </file>
+        <file path="../third_party/tinyusb/src/portable/mentor/musb/musb_type.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src/portable/mentor/musb">
+        </file>
+        <file path="../third_party/tinyusb/src/tusb.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src">
+        </file>
+        <file path="../third_party/tinyusb/src/tusb.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src">
+        </file>
+        <file path="../third_party/tinyusb/src/tusb_option.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/src">
+        </file>
+        <file path="../third_party/tinyusb/lib/embedded-cli/embedded_cli.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/embedded-cli">
+        </file>
+        <file path="../third_party/tinyusb/lib/fatfs/source/diskio.c" openOnCreation="false" excludeFromBuild="true" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        </file>
+        <file path="../third_party/tinyusb/lib/fatfs/source/diskio.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        </file>
+        <file path="../third_party/tinyusb/lib/fatfs/source/ff.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        </file>
+        <file path="../third_party/tinyusb/lib/fatfs/source/ff.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        </file>
+        <file path="../third_party/tinyusb/lib/fatfs/source/ffconf.h" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        </file>
+        <file path="../third_party/tinyusb/lib/fatfs/source/ffsystem.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        </file>
+        <file path="../third_party/tinyusb/lib/fatfs/source/ffunicode.c" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory="third_party/tinyusb/lib/fatfs/source">
+        </file>
+        <file path="../README.md" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../README.html" openOnCreation="false" excludeFromBuild="false" action="copy">
+        </file>
+        <file path="../device_uac2_speaker_fb.syscfg" openOnCreation="true" excludeFromBuild="false" action="copy">
+        </file>
+    </project>
+</projectSpec>

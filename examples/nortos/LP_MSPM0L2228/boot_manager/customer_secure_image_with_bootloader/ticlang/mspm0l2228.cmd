@@ -32,7 +32,7 @@
 
 *****************************************************************************/
 -uinterruptVectors
---stack_size=256
+--stack_size=1024
 
 #define CSC_APPLICATION_IMAGE_BASE_ADDRESS 0x4800
 #define CSC_APPLICATION_IMAGE_SIZE 0x2800
@@ -77,6 +77,12 @@ SECTIONS
     .data   :   > SRAM
     .bss    :   > SRAM
     .sysmem :   > SRAM
+    .buffer : palign(8)
+	  {
+			__buffer_start = .;
+			. = 0x6000;
+			__buffer_end = .;
+	  } (NOINIT) > SRAM
     .stack  :   > SRAM (HIGH)
 
     .lockStg : {} (NOLOAD) > LOCK_STG

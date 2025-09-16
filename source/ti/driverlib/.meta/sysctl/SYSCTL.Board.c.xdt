@@ -186,7 +186,7 @@ static const DL_SYSCTL_LFCLKConfig gSYSCTLConfig = {
 
     %   }
 %   }
-% } // if Clock Tree
+% } // if Clock Tree disabled
 % if(stat.enableUserTrim) {
 /*
    Performs SYSOSC trim by adjusting values of RESCOARE and RFINE and using the FCC
@@ -321,7 +321,7 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
 % if (printPolicy) {
     `printPolicy`
 % }
-% if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+% if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G352X()){
 %   if(stat.powerPolicy.includes("STOP")){
     DL_SYSCTL_setSRAMBank1PowerLevelInSTOP(DL_SYSCTL_SRAM_BANK1_POWER_LEVEL_STOP_MODE_`stat.sramPowerLevel`);
 %   }
@@ -506,6 +506,17 @@ if(!stat.powerPolicy.match(/SLEEP/)) {
 % /* CLK_OUT Config */
 % if(stat.enableEXCLK){
     DL_SYSCTL_enableExternalClock(DL_SYSCTL_CLK_OUT_SOURCE_`stat.EXCLKSource`, DL_SYSCTL_CLK_OUT_DIVIDE_`stat.EXCLKDivider`);
+% }
+% /* USBCLK Config */
+% if(ClockSignals.includes("USBCLK")){
+%   if(stat.enableUSBFLL){
+    DL_SYSCTL_configUSBFLL(DL_SYSCTL_USBFLL_REFERENCE_`stat.USBFLLReference`);
+%   }
+%   let USBMod = system.modules["/ti/driverlib/USB"];
+%   if (USBMod){
+%       let usbClkSrc = (stat.USBCLKSource=="SYSPLLCLK1")?"PLLCLK1":stat.USBCLKSource;
+    DL_SYSCTL_setUSBCLKSource(DL_SYSCTL_USBCLK_SOURCE_`usbClkSrc`);
+%   }
 % }
 % } // if clockTreeEn = false
 % /* Disabled when TI Drivers configuration enabled */

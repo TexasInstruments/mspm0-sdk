@@ -44,10 +44,8 @@ SECRET_MSG const uint32_t  __attribute__((aligned(4))) gKey[8] = {0x10eb3d60, 0x
 static uint32_t gAesInput[INPUT_SIZE] = {0xe2bec16b, 0x969f402e, 0x117e3de9, 0x2a179373, 0x578a2dae ,
                                           0x9cac031e, 0xac6fb79e, 0x518eaf45, 0x461cc830, 0x11e45ca3, 0x00000080 ,0x00000000};
 
-static const uint32_t gAesExpectedTagOut[4] = {0xf1d8f3aa, 0xc24056de, 0x69b1f532, 0xe611c9b9};
+static const uint32_t gAesExpectedTagOut[4] = {0xeecb99f8,0x875c52e4,0xd5afb720,0x12a1204d};
 
-//static const uint32_t gKey[8] = {0x10eb3d60, 0xbe71ca15, 0xf0ae732b, 0x81777d85,
-//                                 0x072c351f, 0xd708613b, 0xa310982d, 0xf4df1409};
 
 static uint32_t gAesIv[4] = {0x0, 0x0, 0x0, 0x0};
 
@@ -73,7 +71,7 @@ static DL_AESADV_Config gAESADV_config = {
     .nonce             = NULL,
     .k1                = (uint8_t *) &gKey_1[0],
     .k2                = (uint8_t *) &gKey_2[0],
-    .lowerCryptoLength = 40, /* updated by the run below */
+    .lowerCryptoLength = 48, /* updated by the run below */
     .upperCryptoLength = 0,
     .aadLength         = 0,
 };

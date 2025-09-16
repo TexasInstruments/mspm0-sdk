@@ -1,0 +1,714 @@
+/*
+ * Copyright (c) 2024 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/*
+ *  ======== LP_MSPM0G5187.syscfg.json ========
+ *  Board schematics: http://www.ti.com/lit/ug/slau597f/slau597f.pdf
+ */
+
+ {
+    "name": "LP_MSPM0G5187",
+    "displayName": "MSPM0G5187 LaunchPad",
+    "gpn": "MSPM0G5187",
+    "pkg": "LQFP-64(PM)",
+    "headers": [
+        {
+            /* http://www.ti.com/tools-software/launchpads/boosterpacks/build.html */
+            "type": "BoosterPack 40 pin",
+            "default": true,
+            "name": "boosterpack",
+            "displayName": "BoosterPack Standard Header",
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 10 },
+                    { "top": 21, "bottom": 30 },
+
+                    { "blank": true },
+
+                    { "top": 40, "bottom": 31 },
+                    { "top": 20, "bottom": 11 }
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,     /* 3.3 V */
+                    "name": "3V3"
+                },
+                {
+                    "number": 2,     /* Analog in */
+                    "name": "PA25",
+                    "ball": "26"
+                },
+                {
+                    "number": 3,     /* UART TX */
+                    "name": "PB3",
+                    "ball": "51"
+                },
+                {
+                    "number": 4,     /* UART RX */
+                    "name": "PB2",
+                    "ball": "50"
+                },
+                {
+                    "number": 5,     /* GPIO (with interrupt) */
+                    "name": "PB21",
+                    "ball": "20"
+                },
+                {
+                    "number": 6,     /* Analog in */
+                    "name": "PB22",
+                    "ball": "21"
+                },
+                {
+                    "number": 7,
+                    "name": "PB18",
+                    "ball": "15",
+                    "preferredType": ["SPI_SCLK"]
+                },
+                {
+                    "number": 8,     /* GPIO (with interrupt) */
+                    "name": "PB25",
+                    "ball": "27"
+                },
+                {
+                    "number": 9,     /* I2C SCL */
+                    "name": "PA9",
+                    "ball": "55",
+                    "preferredType": ["I2C_SCL"]
+                },
+                {
+                    "number": 10,    /* I2C SDA */
+                    "name": "PA8",
+                    "ball": "54",
+                    "preferredType": ["I2C_SDA"]
+                },
+
+                {
+                    "number": 21,    /* 5 V */
+                    "name": "5V"
+                },
+                {
+                    "number": 22,    /* Ground */
+                    "name": "GND"
+                },
+                {
+                    "number": 23,    /* Analog input */
+                    "name": "PB14",
+                    "ball": "2"
+                },
+                {
+                    "number": 24,    /* Analog input */
+                    "name": "PB15",
+                    "ball": "3"
+                },
+                {
+                    "number": 25,    /* Analog input */
+                    "name": "PB16",
+                    "ball": "4"
+                },
+                {
+                    "number": 26,    /* Analog input */
+                    "name": "PA16",
+                    "ball": "9"
+                },
+                {
+                    "number": 27,    /* Analog input | I2S WS */
+                    "name": "PA15",
+                    "ball": "8"
+                },
+                {
+                    "number": 28,    /* Analog input | I2S SCLX */
+                    "name": "PA12",
+                    "ball": "5"
+                },
+                {
+                    "number": 29,    /* Analog Out | I2S SDout */
+                    "name": "PA13",
+                    "ball": "6",
+                    "preferredType" : ["AIN"]
+                },
+                {
+                    "number": 30,    /* Analog Out | I2S SDin */
+                    "name": "PA14",
+                    "ball": "7",
+                    "preferredType" : ["AIN"]
+                },
+
+                {
+                    "number": 40,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB4",
+                    "ball": "52"
+                },
+                {
+                    "number": 39,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB5",
+                    "ball": "53"
+                },
+                {
+                    "number": 38,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB0",
+                    "ball": "47"
+                },
+                {
+                    "number": 37,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB1",
+                    "ball": "48"
+                },
+                {
+                    "number": 36,    /* Timer Capture | GPIO (with interrupt) */
+                    "name": "PA28",
+                    "ball": "35"
+                },
+                {
+                    "number": 35,    /* Timer Capture | GPIO (with interrupt) */
+                    "name": "PA31",
+                    "ball": "39"
+                },
+                {
+                    "number": 34,    /* GPIO (with interrupt) */
+                    "name": "PA10",
+                    "ball": "56"
+                },
+                {
+                    "number": 33,    /* GPIO (with interrupt) */
+                    "name": "PA11",
+                    "ball": "57"
+                },
+                {
+                    "number": 32,    /* GPIO (with interrupt) */
+                    "name": "PA0",
+                    "ball": "33"
+                },
+                {
+                    "number": 31,    /* GPIO (with interrupt) */
+                    "name": "PA1",
+                    "ball": "34"
+                },
+
+                {
+                    "number": 20,    /* Ground */
+                    "name": "GND"
+                },
+                {
+                    "number": 19,    /* PWM | GPIO (with interrupt) */
+                    "name": "PB26",
+                    "ball": "28"
+                },
+                {
+                    "number": 18,    /* SPI CS (Wireless) | GPIO (with interrupt) */
+                    "name": "PB24",
+                    "ball": "23"
+                },
+                {
+                    "number": 17,    /* GPIO */
+                    "name": "PB23",
+                    "ball": "22"
+                },
+                {
+                    "number": 16,    /* Reset */
+                    "name": "RST"
+                },
+                {
+                    "number": 15,
+                    "name": "PB17",
+                    "ball": "14",
+                    "preferredType" : ["SPI_MOSI"]
+                },
+                {
+                    "number": 14,
+                    "name": "PB19",
+                    "ball": "16",
+                    "preferredType" : ["SPI_MISO"]
+                },
+                {
+                    "number": 13,    /* SPI CS (Display) | GPIO (with interrupt) */
+                    "name": "PA30",
+                    "ball": "37"
+                },
+                {
+                    "number": 12,    /* SPI CS (other) | GPIO (with interrupt) */
+                    "name": "PA29",
+                    "ball": "36"
+                },
+                {
+                    "number": 11,    /* GPIO (with interrupt) */
+                    "name": "PA22",
+                    "ball": "18"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J16 Edge Connector",
+            "default": true,
+            "name": "j16_expansion",
+            "displayName": "MiscroSD Memory Card Interface",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 10}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "DATA2"
+                },
+                {
+                    "number": 2,
+                    "name": "PB6",
+                    "ball": "58"
+                },
+                    {
+                    "number": 3,
+                    "name": "PB17",
+                    "ball": "14"
+                },
+                {
+                    "number": 4,
+                    "name": "3V3"
+                },
+                {
+                    "number": 5,
+                    "name": "PB18",
+                    "ball": "15"
+                },
+                {
+                    "number": 6,
+                    "name": "GND"
+                },
+                {
+                    "number": 7,
+                    "name": "PB19",
+                    "ball": "16"
+                },
+                    {
+                    "number": 8,
+                    "name": "DATA1"
+                },
+                {
+                    "number": 9,
+                    "name": "A - SW LEVEL (GND)"
+                },
+                {
+                    "number": 10,
+                    "name": "B - SW DETECT (SD VDD)"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J105 Edge Connector",
+            "default": true,
+            "name": "j105_expansion",
+            "displayName": "USB2 Interface",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 20}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "VBUS"
+                },
+                {
+                    "number": 2,
+                    "name": "VBUS"
+                },
+                    {
+                    "number": 3,
+                    "name": "VBUS"
+                },
+                {
+                    "number": 4,
+                    "name": "VBUS"
+                },
+                {
+                    "number": 5,
+                    "name": "CC1"
+                },
+                {
+                    "number": 6,
+                    "name": "PA27",
+                    "ball":"31"
+                },
+                {
+                    "number": 7,
+                    "name": "PA26",
+                    "ball": "30"
+                },
+                    {
+                    "number": 8,
+                    "name": "SBU1"
+                },
+                {
+                    "number": 9,
+                    "name": "CC2"
+                },
+                {
+                    "number": 10,
+                    "name": "PA27",
+                    "ball": "31"
+                },
+                {
+                    "number": 11,
+                    "name": "PA26",
+                    "ball": "30"
+                },
+                {
+                    "number": 12,
+                    "name": "SBU2",
+                },
+                    {
+                    "number": 13,
+                    "name": "GND",
+                },
+                {
+                    "number": 14,
+                    "name": "GND"
+                },
+                {
+                    "number": 15,
+                    "name": "GND",
+                },
+                {
+                    "number": 16,
+                    "name": "GND"
+                },
+                {
+                    "number": 17,
+                    "name": "MNT_1",
+                },
+                    {
+                    "number": 18,
+                    "name": "MNT_2"
+                },
+                {
+                    "number": 19,
+                    "name": "MNT_3"
+                },
+                {
+                    "number": 20,
+                    "name": "MNT_4"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J10 Button",
+            "default": true,
+            "name": "j10_button",
+            "displayName": "USER button",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 1}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PA7",
+                    "ball": "49"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J11 RGBLED",
+            "default": true,
+            "name": "j11_led",
+            "displayName": "Display for Blue LED2",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 1}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PB13",
+                    "ball": "1"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J12 RGBLED",
+            "default": true,
+            "name": "j12_led",
+            "displayName": "Display for Red LED2",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 1}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PA17",
+                    "ball": "10"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J13 RGBLED",
+            "default": true,
+            "name": "j13_led",
+            "displayName": "Display for Green LED2",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 1}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PA24",
+                    "ball": "25"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J101 Edge Connector",
+            "default": true,
+            "name": "j101_expansion",
+            "displayName": "Display for XDS110-ET to LP",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 17},
+                    { "top":  2, "bottom": 18}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "XDS_GND"
+                },
+                {
+                    "number": 2,
+                    "name": "GND"
+                },
+                {
+                    "number": 3,
+                    "name": "XDS_VBUS"
+                },
+                {
+                    "number": 4,
+                    "name": "5V"
+                },
+                {
+                    "number": 5,
+                    "name": "XDS_VCCTARGET"
+                },
+                {
+                    "number": 6,
+                    "name": "3V3"
+                },
+                {
+                    "number": 7,
+                    "name": "XDS_TXD"
+                },
+                {
+                    "number": 8,
+                    "name": "PA11",
+                    "ball": "57"
+                },
+                {
+                    "number": 9,
+                    "name": "XDS_RXD"
+                },
+                {
+                    "number": 10,
+                    "name": "PA10",
+                    "ball": "56"
+                },
+                {
+                    "number": 11,
+                    "name": "XDS_RESET_OUT"
+                },
+                {
+                    "number": 12,
+                    "name": "RST"
+                },
+                {
+                    "number": 13,
+                    "name": "XDS_TMS_SWDIO"
+                },
+                {
+                    "number": 14,
+                    "name": "PA19",
+                    "ball": "12"
+                },
+                {
+                    "number": 15,
+                    "name": "XDS_TCK_SWDCLK"
+                },
+                {
+                    "number": 16,
+                    "name": "PA20",
+                    "ball": "13"
+                },
+                {
+                    "number": 17,
+                    "name": "BSL_INVOKE"
+                },
+                {
+                    "number": 18,
+                    "name": "PA18",
+                    "ball": "11"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J21 Edge Connector",
+            "default": true,
+            "name": "j21_expansion",
+            "displayName": "Edge Connector for Unused Pin Access",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 9},
+                    { "top":  2, "bottom": 10}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PA2",
+                    "ball": "42"
+                },
+                {
+                    "number": 2,
+                    "name": "PB20",
+                    "ball": "19"
+                },
+                {
+                    "number": 3,
+                    "name": "PA4",
+                    "ball": "44"
+                },
+                {
+                    "number": 4,
+                    "name": "PA3",
+                    "ball": "43"
+                },
+                {
+                    "number": 5,
+                    "name": "PA6",
+                    "ball": "46"
+                },
+                {
+                    "number": 6,
+                    "name": "PA5",
+                    "ball": "45"
+                },
+                {
+                    "number": 7,
+                    "name": "GND"
+                },
+                {
+                    "number": 8,
+                    "name": "PA21",
+                    "ball": "17"
+                },
+                {
+                    "number": 9,
+                    "name": "GND"
+                },
+                {
+                    "number": 10,
+                    "name": "PA23",
+                    "ball": "24"
+                }
+            ]
+        },
+        {
+            "type": "MSPM0G5187 J20 Edge Connector",
+            "default": true,
+            "name": "j20_expansion",
+            "displayName": "Edge Connector for Unused Pin Access",
+            "displayNumbers": true,
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 7},
+                    { "top":  2, "bottom": 8}
+                ]
+            },
+            "pins": [
+                {
+                    "number": 1,
+                    "name": "PB6",
+                    "ball": "58"
+                },
+                {
+                    "number": 2,
+                    "name": "PB7",
+                    "ball": "59"
+                },
+                {
+                    "number": 3,
+                    "name": "PB8",
+                    "ball": "60"
+                },
+                {
+                    "number": 4,
+                    "name": "PB9",
+                    "ball": "61"
+                },
+                {
+                    "number": 5,
+                    "name": "PB10",
+                    "ball": "62"
+                },
+                {
+                    "number": 6,
+                    "name": "PB11",
+                    "ball": "63"
+                },
+                {
+                    "number": 7,
+                    "name": "PB12",
+                    "ball": "64"
+                },
+                {
+                    "number": 8,
+                    "name": "PB13",
+                    "ball": "1"
+                }
+            ]
+        },
+    ],
+    "components": {}
+}

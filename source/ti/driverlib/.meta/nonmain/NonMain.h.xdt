@@ -280,32 +280,12 @@ typedef enum {
 typedef enum {
     /*! Enable static write protection for non-main memory */
 %%{
-    let BCR_CFG_NON_MAIN_STATIC_PROT_EN = "0xFFFEU";
-
-    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
-        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-        Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106()||
-        Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
-        Common.isDeviceFamily_PARENT_MSPM0L210X()){
-        BCR_CFG_NON_MAIN_STATIC_PROT_EN = "0xFFFFU";
-    }
+    let BCR_CFG_NON_MAIN_STATIC_PROT_EN = deviceOptions.BCR_CFG_NON_MAIN_STATIC_PROT_EN;
 %%}
     BCR_CFG_NON_MAIN_STATIC_PROT_EN = `BCR_CFG_NON_MAIN_STATIC_PROT_EN`,
     /*! Disable static write protection for non-main memory */
 %%{
-    let BCR_CFG_NON_MAIN_STATIC_PROT_DIS = "0xFFFFU";
-
-    if (Common.isDeviceFamily_PARENT_MSPM0L122X_L222X() ||
-        Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
-        Common.isDeviceFamily_PARENT_MSPM0L111X() ||
-        Common.isDeviceFamily_PARENT_MSPM0H321X() ||
-        Common.isDeviceFamily_PARENT_MSPM0C1105_C1106() ||
-        Common.isDeviceFamily_PARENT_MSPM0L211X_L112X() ||
-        Common.isDeviceFamily_PARENT_MSPM0L210X()){
-        BCR_CFG_NON_MAIN_STATIC_PROT_DIS = "0xAABBU";
-    }
+    let BCR_CFG_NON_MAIN_STATIC_PROT_DIS = deviceOptions.BCR_CFG_NON_MAIN_STATIC_PROT_DIS;
 %%}
     BCR_CFG_NON_MAIN_STATIC_PROT_DIS = `BCR_CFG_NON_MAIN_STATIC_PROT_DIS`,
 } BCR_CFG_NON_MAIN_STATIC_PROT;

@@ -106,25 +106,6 @@ static uint16_t u16(uint8_t *b)
   return u;
 }
 
-#ifdef CONFIG_MSPM0G351X
-static uint16_t CRC_calc16(uint8_t* ptr,uint8_t size)
-{
-    uint8_t remainder = (size & 1);
-    uint16_t size16 = size>>1;
-
-    uint16_t checkSum = DL_CRCP_calculateBlock16(CRCP0,CRCP_SEED,
-                                                    (uint16_t*)ptr,size16);
-
-    if(remainder)
-    {
-        DL_CRCP_feedData8(CRCP0,ptr[size - 1]);
-        checkSum = ((uint16_t) DL_CRCP_getResult16(CRCP0));
-    }
-
-    return checkSum;
-}
-
-#else
 static uint16_t CRC_calc16(uint8_t* ptr,uint8_t size)
 {
     uint8_t remainder = (size & 1);
@@ -142,7 +123,6 @@ static uint16_t CRC_calc16(uint8_t* ptr,uint8_t size)
     return checkSum;
 }
 
-#endif
 
 /**
  * @brief     Resets pointer and length of the buffer
@@ -165,6 +145,45 @@ void I2C_init(I2C_Instance *I2C_handle)
     I2C_handle->error = ERROR_TYPE_NONE;
 }
 
+void I2C_decodeResponse(I2C_Instance *I2C_handle,I2C_ResponseInfo *response)
+{
+    response->received = true;
+
+    /* Length stored in frame is 1 less than actual length */
+    response->dataSize = ( I2C_handle->rxMsg.buffer[CTRL_IDX] & LEN_MASK ) + 1;
+
+    response->status = ERROR_TYPE_NONE;
+
+    if(I2C_handle->rxMsg.buffer[CTRL_IDX] & ERROR_MASK)
+    {
+        /* Store error code sent by target */
+        response->status = (ErrorType) I2C_handle->rxMsg.buffer[RESP_DATA_IDX];
+    }
+
+    response->frame.ctrl = I2C_handle->rxMsg.buffer[CTRL_IDX];
+
+    for(int i = 0; i < MAX_DATA_SIZE; i++)
+    {
+        if(i < response->dataSize)
+        {
+            response->frame.data[i] = I2C_handle->rxMsg.buffer[RESP_DATA_IDX + i];
+        }
+        /* Resetting extra space to zero*/
+        else
+        {
+            response->frame.data[i] = 0;
+        }
+    }
+
+    if(I2C_handle->isCrc)
+    {
+        response->frame.crc = u16(&I2C_handle->rxMsg.buffer[I2C_handle->rxMsg.len - CRC_SIZE]);
+    }
+}
+
+
+#if defined(__MSPM0_HAS_I2C__)
+
 void I2C_sendCommand(I2C_Instance *I2C_handle,I2C_CommandInfo *command)
 {
     /* Prepare TX Buffer */
@@ -178,12 +197,12 @@ void I2C_sendCommand(I2C_Instance *I2C_handle,I2C_CommandInfo *command)
 
     /* For Read Command */
     I2C_handle->dataLen = command->dataSize;
-    
+
     /* For Write Command */
     if(command->commandType == WRITE_COMMAND)
     {
         I2C_handle->dataLen = 1;
-        
+
         for(int i = 0 ; i < command->dataSize ; i++)
         {
             I2C_handle->txMsg.buffer[I2C_handle->txMsg.ptr++] = command->dataArray[i];
@@ -222,7 +241,9 @@ static void I2C_sendBuffer(I2C_Instance *I2C_handle,uint8_t targetAddr)
     {
         DL_I2C_enableInterrupt(
             I2C_INST, DL_I2C_INTERRUPT_CONTROLLER_TXFIFO_TRIGGER);
-    } else
+
+    }
+    else
     {
         DL_I2C_disableInterrupt(
             I2C_INST, DL_I2C_INTERRUPT_CONTROLLER_TXFIFO_TRIGGER);
@@ -255,8 +276,8 @@ static void I2C_sendBuffer(I2C_Instance *I2C_handle,uint8_t targetAddr)
         DL_I2C_CONTROLLER_STATUS_ERROR) {
         __BKPT(0);
     }
-}
 
+}
 
 void I2C_getResponse(I2C_Instance* I2C_handle,uint32_t targetAddr)
 {
@@ -275,6 +296,7 @@ void I2C_getResponse(I2C_Instance* I2C_handle,uint32_t targetAddr)
             delay_cycles(10000);
             DL_I2C_startControllerTransfer(
                 I2C_INST, targetAddr, DL_I2C_CONTROLLER_DIRECTION_RX, expectedLen);
+
         }
     }
 
@@ -282,40 +304,132 @@ void I2C_getResponse(I2C_Instance* I2C_handle,uint32_t targetAddr)
     while (DL_I2C_getControllerStatus(I2C_INST) &
             DL_I2C_CONTROLLER_STATUS_BUSY_BUS)
         ;
+
 }
 
-void I2C_decodeResponse(I2C_Instance *I2C_handle,I2C_ResponseInfo *response)
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CC__)
+
+void I2C_sendCommand(I2C_Instance *I2C_handle,I2C_CommandInfo *command)
 {
-    response->received = true;
+    /* Prepare TX Buffer */
+    I2C_handle->txMsg.ptr = 0;
 
-    /* Length stored in frame is 1 less than actual length */
-    response->dataSize = ( I2C_handle->rxMsg.buffer[CTRL_IDX] & LEN_MASK ) + 1;
+    /* Control Byte */
+    I2C_handle->txMsg.buffer[I2C_handle->txMsg.ptr++] = (command->commandType) | (command->crcEnable ? CRC_MASK : (0x00)) | ((command->dataSize - 1) & LEN_MASK) ;
 
-    response->status = ERROR_TYPE_NONE;
+    u8From32(&I2C_handle->txMsg.buffer[I2C_handle->txMsg.ptr],command->addr);
+    I2C_handle->txMsg.ptr += 4;
 
-    if(I2C_handle->rxMsg.buffer[CTRL_IDX] & ERROR_MASK)
+    /* For Read Command */
+    I2C_handle->dataLen = command->dataSize;
+
+    /* For Write Command */
+    if(command->commandType == WRITE_COMMAND)
     {
-        /* Store error code sent by target */
-        response->status = (ErrorType) I2C_handle->rxMsg.buffer[RESP_DATA_IDX];
-    }
+        I2C_handle->dataLen = 1;
 
-    response->frame.ctrl = I2C_handle->rxMsg.buffer[CTRL_IDX];
-
-    for(int i = 0; i < MAX_DATA_SIZE; i++)
-    {
-        if(i < response->dataSize)
+        for(int i = 0 ; i < command->dataSize ; i++)
         {
-            response->frame.data[i] = I2C_handle->rxMsg.buffer[RESP_DATA_IDX + i];
-        }
-        /* Resetting extra space to zero*/
-        else
-        {
-            response->frame.data[i] = 0;
+            I2C_handle->txMsg.buffer[I2C_handle->txMsg.ptr++] = command->dataArray[i];
         }
     }
 
-    if(I2C_handle->isCrc)
+    /* CRC */
+    I2C_handle->isCrc = false;
+    if(command->crcEnable)
     {
-        response->frame.crc = u16(&I2C_handle->rxMsg.buffer[I2C_handle->rxMsg.len - CRC_SIZE]);
+        I2C_handle->isCrc = true;
+        uint16_t Crc = CRC_calc16((&I2C_handle->txMsg.buffer[0]),I2C_handle->txMsg.ptr);
+        u8From16(&I2C_handle->txMsg.buffer[I2C_handle->txMsg.ptr],Crc);
+        I2C_handle->txMsg.ptr += 2;
+    }
+
+
+    I2C_handle->txMsg.len = I2C_handle->txMsg.ptr;
+
+    I2C_sendBuffer(I2C_handle, command->targetAddr);
+
+    /* Wait until I2C Controller is idle */
+    while (!(
+            DL_I2CC_getStatus(I2C_INST) & DL_I2CC_STATUS_IDLE))
+            ;
+}
+
+static void I2C_sendBuffer(I2C_Instance *I2C_handle,uint8_t targetAddr)
+{
+    I2C_handle->txMsg.ptr = 0;
+
+    I2C_handle->txMsg.ptr = DL_I2CC_fillTXFIFO(I2C_INST, &I2C_handle->txMsg.buffer[0], I2C_handle->txMsg.len);
+
+
+    /* Enable TXFIFO trigger interrupt if there are more bytes to send */
+    if (I2C_handle->txMsg.ptr < I2C_handle->txMsg.len)
+    {
+        DL_I2CC_enableInterrupt(I2C_INST, DL_I2CC_INTERRUPT_TXFIFO_TRIGGER);
+
+    } else
+    {
+        DL_I2CC_disableInterrupt(I2C_INST, DL_I2CC_INTERRUPT_TXFIFO_TRIGGER);
+    }
+
+
+    I2C_handle->status = I2C_STATUS_TX_STARTED;
+
+    /* Wait until I2C Controller is idle */
+    while (!(
+        DL_I2CC_getStatus(I2C_INST) & DL_I2CC_STATUS_IDLE))
+        ;
+
+    DL_I2CC_startTransfer(
+        I2C_INST, targetAddr, DL_I2CC_DIRECTION_TX, I2C_handle->txMsg.len);
+
+    /* Wait until the Controller sends all bytes */
+    while ((I2C_handle->status != I2C_STATUS_TX_COMPLETE) &&
+            (I2C_handle->status != I2C_STATUS_ERROR)) {
+        __WFE();
+    }
+
+
+    /* Wait until I2C bus is Idle */
+    while (DL_I2CC_getStatus(I2C_INST) &
+            DL_I2CC_STATUS_BUSY_BUS)
+        ;
+
+    /* Trap if there was an error */
+    if (DL_I2CC_getStatus(I2C_INST) &
+        DL_I2CC_STATUS_ERROR) {
+        __BKPT(0);
     }
 }
+
+void I2C_getResponse(I2C_Instance* I2C_handle,uint32_t targetAddr)
+{
+    uint32_t expectedLen = CTRL_SIZE + I2C_handle->dataLen + (I2C_handle->isCrc ? CRC_SIZE : 0);
+
+    DL_I2CC_startTransfer(I2C_INST, targetAddr, DL_I2CC_DIRECTION_RX, expectedLen);
+
+    /* Wait for all bytes to be received in interrupt */
+    while (I2C_handle->status != I2C_STATUS_RX_COMPLETE)
+    {
+        /* Resend the Read Command if it is N'ACKed */
+        if(I2C_handle->status == I2C_STATUS_ERROR)
+        {
+            I2C_handle->status = I2C_STATUS_RX_STARTED;
+            delay_cycles(10000);
+
+            DL_I2CC_startTransfer(I2C_INST, targetAddr, DL_I2CC_DIRECTION_RX, expectedLen);
+        }
+    }
+
+    /* Wait until I2C bus is Idle */
+    while (DL_I2CC_getStatus(I2C_INST) &
+            DL_I2CC_STATUS_BUSY_BUS)
+        ;
+
+}
+
+#endif
+
+

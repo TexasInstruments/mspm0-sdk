@@ -110,6 +110,7 @@ extern "C" {
 #define GPIO_SWITCHES_USER_SWITCH_3_PIN                         (DL_GPIO_PIN_14)
 #define GPIO_SWITCHES_USER_SWITCH_3_IOMUX                        (IOMUX_PINCM31)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

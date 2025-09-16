@@ -111,6 +111,7 @@ extern "C" {
 #define ROW_ROW_3_PIN                                           (DL_GPIO_PIN_27)
 #define ROW_ROW_3_IOMUX                                          (IOMUX_PINCM28)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

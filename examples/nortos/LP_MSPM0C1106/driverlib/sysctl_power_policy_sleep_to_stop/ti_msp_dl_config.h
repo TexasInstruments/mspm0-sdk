@@ -99,11 +99,12 @@ extern "C" {
 #define GPIO_LEDS1_USER_LED_1_PIN                                (DL_GPIO_PIN_0)
 #define GPIO_LEDS1_USER_LED_1_IOMUX                               (IOMUX_PINCM1)
 /* Port definition for Pin Group GPIO_LEDS2 */
-#define GPIO_LEDS2_PORT                                                  (GPIOA)
+#define GPIO_LEDS2_PORT                                                  (GPIOB)
 
-/* Defines for USER_LED_2: GPIOA.26 with pinCMx 44 on package pin 46 */
-#define GPIO_LEDS2_USER_LED_2_PIN                               (DL_GPIO_PIN_26)
-#define GPIO_LEDS2_USER_LED_2_IOMUX                              (IOMUX_PINCM44)
+/* Defines for USER_LED_2: GPIOB.20 with pinCMx 39 on package pin 41 */
+#define GPIO_LEDS2_USER_LED_2_PIN                               (DL_GPIO_PIN_20)
+#define GPIO_LEDS2_USER_LED_2_IOMUX                              (IOMUX_PINCM39)
+
 
 /* clang-format on */
 

@@ -355,7 +355,8 @@ function pinmuxRequirements(inst)
             }
             else if((Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()
                 || Common.isDeviceFamily_PARENT_MSPM0L211X_L112X()
-                || Common.isDeviceFamily_PARENT_MSPM0G511X())
+                || Common.isDeviceFamily_PARENT_MSPM0G511X()
+                || Common.isDeviceFamily_PARENT_MSPM0G518X())
                 && (compChanIdx==3)){
                 ind = 6;
                 if(!((comp.resources).includes(allResources[ind]))){
@@ -714,7 +715,7 @@ function getPositiveChannelOptionsWithReason(inst){
             {name: "DL_COMP_IPSEL_CHANNEL_7", displayName: "COMPy positive terminal signal", reason: "not available on chosen COMP instance"},
         ];
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G352X()){
         PositiveChannelOptionsWithReason = [
             {name: "DL_COMP_IPSEL_CHANNEL_0", displayName: "COMPx_IN0+", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IPSEL_CHANNEL_1", displayName: "COMPx_IN1+", reason: "not available on chosen COMP instance"},
@@ -723,7 +724,7 @@ function getPositiveChannelOptionsWithReason(inst){
             {name: "DL_COMP_IPSEL_CHANNEL_7", displayName: "COMPy positive terminal signal", reason: "not available on chosen COMP instance"},
         ];
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0G511X()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0G511X() || Common.isDeviceFamily_PARENT_MSPM0G518X()){
         PositiveChannelOptionsWithReason = [
             {name: "DL_COMP_IPSEL_CHANNEL_0", displayName: "COMPx_IN0+", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IPSEL_CHANNEL_1", displayName: "COMPx_IN1+", reason: "not available on chosen COMP instance"},
@@ -769,7 +770,8 @@ function getDisabledPositiveChannelOptions(inst){
             validChannels = [ 0, 1, 2, 5, 6, 7 ];
             if(Common.isDeviceFamily_PARENT_MSPM0L122X_L222X()
                 || Common.isDeviceFamily_PARENT_MSPM0L211X_L112X()
-                || Common.isDeviceFamily_PARENT_MSPM0G511X()){
+                || Common.isDeviceFamily_PARENT_MSPM0G511X()
+                || Common.isDeviceFamily_PARENT_MSPM0G518X()){
                 validChannels.push(3);
             }
             break;
@@ -805,7 +807,7 @@ function getNegativeChannelOptionsWithReason(inst){
             {name: "DL_COMP_IMSEL_CHANNEL_6", displayName: "OPA0 Output", reason: "not available on chosen COMP instance"},
         ];
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G352X()){
         NegativeChannelOptionsWithReason = [
             {name: "DL_COMP_IMSEL_CHANNEL_0", displayName: "COMPx_IN0-", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IMSEL_CHANNEL_1", displayName: "COMPx_IN1-", reason: "not available on chosen COMP instance"},
@@ -813,7 +815,7 @@ function getNegativeChannelOptionsWithReason(inst){
             {name: "DL_COMP_IMSEL_CHANNEL_5", displayName: "Temperature Sensor", reason: "not available on chosen COMP instance"},
         ];
     }
-    else if(Common.isDeviceFamily_PARENT_MSPM0G511X()){
+    else if(Common.isDeviceFamily_PARENT_MSPM0G511X() || Common.isDeviceFamily_PARENT_MSPM0G518X()){
         NegativeChannelOptionsWithReason = [
             {name: "DL_COMP_IMSEL_CHANNEL_0", displayName: "COMPx_IN0-", reason: "not available on chosen COMP instance"},
             {name: "DL_COMP_IMSEL_CHANNEL_1", displayName: "COMPx_IN1-", reason: "not available on chosen COMP instance"},

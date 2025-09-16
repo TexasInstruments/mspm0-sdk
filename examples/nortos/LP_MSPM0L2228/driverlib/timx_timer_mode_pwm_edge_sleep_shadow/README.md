@@ -53,4 +53,4 @@ once the PWM signal starts to be generated.
 USER_TEST_PIN GPIO will mimic the behavior of the LED pin on the
 BoosterPack header and can be used to verify the LED behavior.
 
-PWM signal on PA10.
+PWM signal on PB3.

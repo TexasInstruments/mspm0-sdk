@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0C110X Driver Library
-   &#160;<span id="projectnumber">2.05.01.00</span>
+   &#160;<span id="projectnumber">2.06.00.05</span>
    </div>
   </td>
  </tr>
@@ -125,11 +125,11 @@ Macros</h2></td></tr>
 <tr class="memdesc:gacbef51bdad0171ca4e81a29b9d69076c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for VREF sample and hold, if enabled. <br /></td></tr>
 <tr class="separator:gacbef51bdad0171ca4e81a29b9d69076c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4ea6be08cb689af70034f5c7c703e7ab"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___v_r_e_f___h_o_l_d.html#ga4ea6be08cb689af70034f5c7c703e7ab">DL_VREF_HOLD_MIN</a>&#160;&#160;&#160;(VREF_CTL2_HCYCLE_MINIMUM)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___v_r_e_f___h_o_l_d.html#ga4ea6be08cb689af70034f5c7c703e7ab">DL_VREF_HOLD_MIN</a>&#160;&#160;&#160;(0x0000U)</td></tr>
 <tr class="memdesc:ga4ea6be08cb689af70034f5c7c703e7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for VREF hold, if enabled. <br /></td></tr>
 <tr class="separator:ga4ea6be08cb689af70034f5c7c703e7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2137a2bd447f3b17d43db298896c66b6"><td class="memItemLeft" align="right" valign="top">
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___v_r_e_f___h_o_l_d.html#ga2137a2bd447f3b17d43db298896c66b6">DL_VREF_HOLD_MAX</a>&#160;&#160;&#160;(VREF_CTL2_HCYCLE_MAXIMUM)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___d_l___v_r_e_f___h_o_l_d.html#ga2137a2bd447f3b17d43db298896c66b6">DL_VREF_HOLD_MAX</a>&#160;&#160;&#160;(0xFFFFU)</td></tr>
 <tr class="memdesc:ga2137a2bd447f3b17d43db298896c66b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for VREF hold, if enabled. <br /></td></tr>
 <tr class="separator:ga2137a2bd447f3b17d43db298896c66b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -199,15 +199,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga77a294efa26e0416fa3ed03dc9542a17"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga77a294efa26e0416fa3ed03dc9542a17">DL_VREF_isEnabled</a> (const VREF_Regs *vref)</td></tr>
 <tr class="memdesc:ga77a294efa26e0416fa3ed03dc9542a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the internal VREF is enabled.  <a href="group___v_r_e_f.html#ga77a294efa26e0416fa3ed03dc9542a17">More...</a><br /></td></tr>
 <tr class="separator:ga77a294efa26e0416fa3ed03dc9542a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d">DL_VREF_enableInternalRefCOMP</a> (VREF_Regs *vref)</td></tr>
-<tr class="memdesc:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable VREF buffer as internal reference input for comparator.  <a href="group___v_r_e_f.html#gabc736fbcdc82be8e9b9fb35b6635293d">More...</a><br /></td></tr>
-<tr class="separator:gabc736fbcdc82be8e9b9fb35b6635293d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga85de96b92b1160058f1992c93259b663"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga85de96b92b1160058f1992c93259b663">DL_VREF_isInternalRefCOMPEnabled</a> (const VREF_Regs *vref)</td></tr>
-<tr class="memdesc:ga85de96b92b1160058f1992c93259b663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if VREF buffer for comparator is enabled.  <a href="group___v_r_e_f.html#ga85de96b92b1160058f1992c93259b663">More...</a><br /></td></tr>
-<tr class="separator:ga85de96b92b1160058f1992c93259b663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga55680259230d5c7281c7821ccb9d5f0a"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a">DL_VREF_disableInternalRefCOMP</a> (VREF_Regs *vref)</td></tr>
-<tr class="memdesc:ga55680259230d5c7281c7821ccb9d5f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable VREF buffer as internal reference input for comparator.  <a href="group___v_r_e_f.html#ga55680259230d5c7281c7821ccb9d5f0a">More...</a><br /></td></tr>
-<tr class="separator:ga55680259230d5c7281c7821ccb9d5f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad1551de5613602b2d2940ce3d89e852b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b">DL_VREF_setClockConfig</a> (VREF_Regs *vref, const <a class="el" href="struct_d_l___v_r_e_f___clock_config.html">DL_VREF_ClockConfig</a> *config)</td></tr>
 <tr class="memdesc:gad1551de5613602b2d2940ce3d89e852b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the clock select and clock divide fields in VREF.  <a href="group___v_r_e_f.html#gad1551de5613602b2d2940ce3d89e852b">More...</a><br /></td></tr>
 <tr class="separator:gad1551de5613602b2d2940ce3d89e852b"><td class="memSeparator" colspan="2">&#160;</td></tr>

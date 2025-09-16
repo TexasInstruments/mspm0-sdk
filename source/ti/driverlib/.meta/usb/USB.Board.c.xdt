@@ -68,10 +68,10 @@
             printCall();
             break;
         case "Reset":
-            printReset();
+            // printReset();
             break;
         case "Power":
-            printPower();
+            // printPower();
             break;
         case "GPIO":
             printGPIO();
@@ -124,11 +124,7 @@
 %
 SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void)
 {
-% if(inst.mode == "device"){
-    // mode = device
-% } else if(inst.mode == "host"){
-    // mode = host
-% }
+
 }
 % } // for i < instances.length
 %

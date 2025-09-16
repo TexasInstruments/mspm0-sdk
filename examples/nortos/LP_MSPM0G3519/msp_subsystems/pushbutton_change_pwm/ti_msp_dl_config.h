@@ -88,6 +88,12 @@ extern "C" {
 #define GPIO_PWM_C0_IOMUX                                        (IOMUX_PINCM21)
 #define GPIO_PWM_C0_IOMUX_FUNC                       IOMUX_PINCM21_PF_TIMA1_CCP0
 #define GPIO_PWM_C0_IDX                                      DL_TIMER_CC_0_INDEX
+/* GPIO defines for channel 1 */
+#define GPIO_PWM_C1_PORT                                                   GPIOA
+#define GPIO_PWM_C1_PIN                                           DL_GPIO_PIN_11
+#define GPIO_PWM_C1_IOMUX                                        (IOMUX_PINCM22)
+#define GPIO_PWM_C1_IOMUX_FUNC                       IOMUX_PINCM22_PF_TIMA1_CCP1
+#define GPIO_PWM_C1_IDX                                      DL_TIMER_CC_1_INDEX
 
 
 
@@ -128,6 +134,7 @@ extern "C" {
 #define GPIO_SWITCHES_USER_SWITCH_2_IIDX                    (DL_GPIO_IIDX_DIO21)
 #define GPIO_SWITCHES_USER_SWITCH_2_PIN                         (DL_GPIO_PIN_21)
 #define GPIO_SWITCHES_USER_SWITCH_2_IOMUX                        (IOMUX_PINCM49)
+
 
 /* clang-format on */
 

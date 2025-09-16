@@ -90,6 +90,8 @@ void DL_SPI_transmitDataBlocking8(SPI_Regs *spi, uint8_t data)
     while (DL_SPI_isTXFIFOFull(spi)) {
     };
     DL_SPI_transmitData8(spi, data);
+    while (DL_SPI_isBusy(spi)) {
+    };
 }
 
 void DL_SPI_transmitDataBlocking16(SPI_Regs *spi, uint16_t data)
@@ -97,6 +99,8 @@ void DL_SPI_transmitDataBlocking16(SPI_Regs *spi, uint16_t data)
     while (DL_SPI_isTXFIFOFull(spi)) {
     };
     DL_SPI_transmitData16(spi, data);
+    while (DL_SPI_isBusy(spi)) {
+    };
 }
 
 void DL_SPI_transmitDataBlocking32(SPI_Regs *spi, uint32_t data)
@@ -104,6 +108,8 @@ void DL_SPI_transmitDataBlocking32(SPI_Regs *spi, uint32_t data)
     while (DL_SPI_isTXFIFOFull(spi)) {
     };
     DL_SPI_transmitData32(spi, data);
+    while (DL_SPI_isBusy(spi)) {
+    };
 }
 
 bool DL_SPI_receiveDataCheck8(const SPI_Regs *spi, uint8_t *buffer)

@@ -72,12 +72,22 @@
 #include <ti/devices/msp/m0p/mspm0g151x.h>
 #elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0G351X)
 #include <ti/devices/msp/m0p/mspm0g351x.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0G352X)
+#include <ti/devices/msp/m0p/mspm0g352x.h>
 #elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0L111X)
 #include <ti/devices/msp/m0p/mspm0l111x.h>
 #elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0H321X)
 #include <ti/devices/msp/m0p/mspm0h321x.h>
 #elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0C1105_C1106)
 #include <ti/devices/msp/m0p/mspm0c1105_c1106.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0G511X)
+#include <ti/devices/msp/m0p/mspm0g511x.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0G518X)
+#include <ti/devices/msp/m0p/mspm0g518x.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0L211X)
+#include <ti/devices/msp/m0p/mspm0l211x.h>
+#elif (DeviceFamily_ID == DeviceFamily_ID_MSPM0L112X)
+#include <ti/devices/msp/m0p/mspm0l112x.h>
 
 /********************************************************************
  *

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['shcyclecount',['shCycleCount',['../struct_d_l___v_r_e_f___config.html#a22d6a12f45784db4d0f4f93d64434f33',1,'DL_VREF_Config']]],
+  ['shcyclecount',['shCycleCount',['../struct_d_l___v_r_e_f___config.html#ab917bde1187f96bce1d4c5088d588ddc',1,'DL_VREF_Config']]],
   ['shmodeenable',['shModeEnable',['../struct_d_l___v_r_e_f___config.html#a9d76f1cb86682600a2bc030e5141ca76',1,'DL_VREF_Config']]],
   ['source',['source',['../struct_d_l___c_o_m_p___ref_voltage_config.html#a9f9537527f6b1f0b25c4b495179a6c68',1,'DL_COMP_RefVoltageConfig']]],
   ['srcincrement',['srcIncrement',['../struct_d_l___d_m_a___config.html#ad0c2af4e1c6ad78a15ca03180065decb',1,'DL_DMA_Config']]],

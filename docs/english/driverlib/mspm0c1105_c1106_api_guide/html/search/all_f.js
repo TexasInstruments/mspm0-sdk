@@ -1,7 +1,7 @@
 var searchData=
 [
   ['seconds',['seconds',['../struct_d_l___r_t_c___common___calendar.html#aee69e09661e680e6d4907228f033e271',1,'DL_RTC_Common_Calendar']]],
-  ['shcyclecount',['shCycleCount',['../struct_d_l___v_r_e_f___config.html#a22d6a12f45784db4d0f4f93d64434f33',1,'DL_VREF_Config']]],
+  ['shcyclecount',['shCycleCount',['../struct_d_l___v_r_e_f___config.html#ab917bde1187f96bce1d4c5088d588ddc',1,'DL_VREF_Config']]],
   ['shmodeenable',['shModeEnable',['../struct_d_l___v_r_e_f___config.html#a9d76f1cb86682600a2bc030e5141ca76',1,'DL_VREF_Config']]],
   ['source',['source',['../struct_d_l___c_o_m_p___ref_voltage_config.html#a9f9537527f6b1f0b25c4b495179a6c68',1,'DL_COMP_RefVoltageConfig']]],
   ['serial_20peripheral_20interface_20_28spi_29',['Serial Peripheral Interface (SPI)',['../group___s_p_i.html',1,'']]],

@@ -43,14 +43,23 @@ int main(void)
 
     I2C_init(&gI2C);
 
+#if defined(__MSPM0_HAS_I2C__)
     /* Enabled to prevent stale bytes being sent on the next I2C packet */
     DL_I2C_enableTargetTXWaitWhenTXFIFOStale(I2C_0_INST);
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CT__)
+    /* Enabled to prevent stale bytes being sent on the next I2C packet */
+    DL_I2CT_enableTXWaitWhenTXFIFOStale(I2C_0_INST);
+#endif
 
     while(1)
     {
         I2C_checkForCommand(&gI2C);
     }
 }
+
+#if defined(__MSPM0_HAS_I2C__)
 
 void I2C_0_INST_IRQHandler(void)
 {
@@ -95,4 +104,54 @@ void I2C_0_INST_IRQHandler(void)
             break;
     }
 }
+
+#endif
+
+#if defined(__MCU_HAS_UNICOMMI2CT__)
+
+void I2C_0_INST_IRQHandler(void)
+{
+    switch (DL_I2CT_getPendingInterrupt(I2C_0_INST)) {
+
+        /* START is included to support Repeated Start condition */
+        case DL_I2CT_IIDX_START:
+        case DL_I2CT_IIDX_STOP:
+            /* Stop Condition of I2C Read Command */
+            if(DL_DMA_getTransferSize(DMA,DMA_CH_RX_CHAN_ID) < MAX_BUFFER_SIZE)
+            {
+                DL_DMA_disableChannel(DMA, DMA_CH_RX_CHAN_ID);
+                gI2C.status = I2C_STATUS_RX_BUFFERING;
+            }
+            /* Stop Condition of I2C Write Command */
+            else
+            {
+                DL_DMA_disableChannel(DMA, DMA_CH_TX_CHAN_ID);
+            }
+            break;
+
+        case DL_I2CT_IIDX_TXFIFO_EMPTY:
+            /* Clear Stale data from Tx FIFO */
+            if(DL_I2CT_getStatus(I2C_0_INST) & DL_I2CT_STATUS_STALE_TX_FIFO)
+            {
+
+               DL_I2CT_startFlushTXFIFO(I2C_0_INST);
+               while (DL_I2CT_getStatus(I2C_0_INST) & DL_I2CT_STATUS_STALE_TX_FIFO) {
+                    ;
+               }
+               DL_I2CT_stopFlushTXFIFO(I2C_0_INST);
+            }
+
+            /* Enable DMA Tx Channel if Response frame is prepared */
+            if(gI2C.status == I2C_STATUS_TX_PREPARED)
+            {
+                DMA_TX_init(&gI2C,MAX_RESP_SIZE);
+            }
+            break;
+
+        default:
+            break;
+    }
+}
+
+#endif
 

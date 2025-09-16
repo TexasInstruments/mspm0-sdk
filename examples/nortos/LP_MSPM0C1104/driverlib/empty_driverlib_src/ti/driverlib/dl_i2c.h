@@ -427,6 +427,11 @@ extern "C" {
 
 /** @}*/
 
+/*!
+ * @brief Backwards compatible redirect for @ref DL_I2C_getTargetOwnAddressAlternateMask
+*/
+#define I2C_getTargetOwnAddressAlternateMask DL_I2C_getTargetOwnAddressAlternateMask
+
 /* clang-format on */
 
 /*! @enum DL_I2C_DMA_IIDX */
@@ -780,6 +785,7 @@ void DL_I2C_getClockConfig(const I2C_Regs *i2c, DL_I2C_ClockConfig *config);
  *  @param[in]  i2c     Pointer to the register overlay for the peripheral
  *  @param[in]  buffer  Pointer to buffer of bytes
  *  @param[in]  count   Number of bytes to fill controller TX FIFO from buffer
+ *                      [0x00, 0xFFF]
  *
  *  @return     Number of bytes that were successfully written
  */
@@ -871,6 +877,7 @@ __STATIC_INLINE void DL_I2C_resetControllerTransfer(I2C_Regs *i2c)
  *  @param[in]  targetAddr  Target address [0x00, 0x3FF]
  *  @param[in]  direction   One of @ref DL_I2C_CONTROLLER_DIRECTION
  *  @param[in]  length      Intended burst length in number of bytes
+ *                          [0x00, 0xFFF]
  */
 __STATIC_INLINE void DL_I2C_startControllerTransfer(I2C_Regs *i2c,
     uint32_t targetAddr, DL_I2C_CONTROLLER_DIRECTION direction,
@@ -995,7 +1002,10 @@ void DL_I2C_flushTargetTXFIFO(I2C_Regs *i2c);
 void DL_I2C_flushTargetRXFIFO(I2C_Regs *i2c);
 
 /**
- *  @brief  Transmit target data, waiting until transmit request
+ *  @brief  Transmit target data, blocking until transmit request is received.
+ * 			Will wait indefintely until bus is not busy. Note that if data is
+ *          already present in the TX FIFO when this API is called, it will
+ *          block until all data is sent.
  *
  *  @note   Setting own target addresses and enabling target should be done
  *  separately.
@@ -2390,7 +2400,7 @@ __STATIC_INLINE void DL_I2C_setTargetOwnAddressAlternate(
  *  @retval     Bit mask with each bit corresponding to bits A6 through A0 of
  *              the target address. Value between [0x00, 0x7F]
  */
-__STATIC_INLINE uint32_t I2C_getTargetOwnAddressAlternateMask(
+__STATIC_INLINE uint32_t DL_I2C_getTargetOwnAddressAlternateMask(
     const I2C_Regs *i2c)
 {
     return ((i2c->SLAVE.SOAR2 & I2C_SOAR2_OAR2_MASK_MASK) >>
@@ -3314,7 +3324,7 @@ __STATIC_INLINE void DL_I2C_enableTargetPEC(I2C_Regs *i2c)
  */
 __STATIC_INLINE uint32_t DL_I2C_getTargetCurrentPECCount(const I2C_Regs *i2c)
 {
-    return (i2c->SLAVE.TARGET_PECCTL & I2C_TARGET_PECSR_PECBYTECNT_MASK);
+    return (i2c->SLAVE.TARGET_PECSR & I2C_TARGET_PECSR_PECBYTECNT_MASK);
 }
 
 /**

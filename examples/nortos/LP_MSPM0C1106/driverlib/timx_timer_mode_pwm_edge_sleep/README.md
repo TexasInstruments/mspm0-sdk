@@ -8,7 +8,7 @@ signals. The device is configured to wait in SLEEP mode.
 | --- | --- | --- | --- | --- |
 | SYSCTL |  |  |  |  |
 | TIMG14 | Capture/Compare Pin 0 | PA0 | J4_34 |  |
-| TIMG14 | Capture/Compare Pin 1 | PA6 | J2_11 | Populate Component(s): R16 |
+| TIMG14 | Capture/Compare Pin 1 | PA11 | J14_7 |  |
 | EVENT |  |  |  |  |
 | BOARD | Debug Clock | PA20 | J14_4 |  |
 | BOARD | Debug Data In Out | PA19 | J14_2 |  |

@@ -114,6 +114,7 @@ extern "C" {
 #define GPIO_LIN_ENABLE_USER_LIN_ENABLE_PIN                     (DL_GPIO_PIN_17)
 #define GPIO_LIN_ENABLE_USER_LIN_ENABLE_IOMUX                    (IOMUX_PINCM18)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

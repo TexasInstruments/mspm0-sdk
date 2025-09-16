@@ -73,9 +73,61 @@ function validateGates(inst, validation) {
 			validation.logWarning("The CLKOUT gate is enabled but the CLKOUT pin is not enabling the GPIO pin", clkOutInst, "enable");
 		}
 	}
+	if(inst.$name === "USBFLLGATE"){
+		if(clockTreeEn){
+			// USB Module
+			let USBMod = system.modules["/ti/driverlib/USB"];
+			// Check LFCLK is enabled
+			/*
+				LFCLK is enabled by default, but LFXT sources can be disabled
+				Check if LFFCLKEXT / LFXT are properly enabled as needed
+			*/
+			if(inst.enable){
+				if(_.endsWith(system.clockTree?.LFXTMUX?.inputSelect, "TRUE")){
+					if(_.endsWith(system.clockTree?.EXLFMUX?.inputSelect, "DIG")){
+						if(!system.clockTree?.LFCLKEXT?.enable){
+							let lfclkextInst = system.clockTree.LFCLKEXT;
+							validation.logError("LFCLK Source must be enabled when used as USBFLL reference", inst, "enable");
+							validation.logError("LFCLK Source must be enabled when used as USBFLL reference", lfclkextInst, "enable");
+						}
+					}
+					else if(_.endsWith(system.clockTree?.EXLFMUX?.inputSelect, "XTAL")){
+						if(!system.clockTree?.LFXT?.enable){
+							let lfxtInst = system.clockTree.LFXT;
+							validation.logError("LFCLK Source must be enabled when used as USBFLL reference", inst, "enable");
+							validation.logError("LFCLK Source must be enabled when used as USBFLL reference", lfxtInst, "enable");
+						}
+					}
+				}
+			}
+			// USBFLL source validation
+			/*
+				1) If used as HSCLK source, check if enabled
+				2) If used as USBCLK reference, check if enabled [ may be automatic by frequency check ]
+			*/
+			if(!inst.enable){
+				if(_.endsWith(system.clockTree?.HSCLKMUX?.inputSelect, "USBFLL")){
+					validation.logError("USBFLL must be enabled when used as HSCLK Source", inst, "enable");
+				}
+				if(USBMod && _.endsWith(system.clockTree?.USBCLKMUX?.inputSelect, "USBFLL")){
+					validation.logError("USBFLL must be enabled when used as USBCLK Source", inst, "enable");
+				}
+			}
+		}
+	}
 
 }
 
+let USBFLL_extendedConfig = [
+	{
+		name: "referenceSource",
+		default: "LFCLK",
+		options: [
+			{name: "LFCLK"},
+			{name: "SOF"}
+		]
+	}
+];
 
 exports = {
 	displayName: "Gate",
@@ -109,7 +161,11 @@ exports = {
 				return 0;
 			},
 		};
-
-		return isFixed?[pin]:[enable, pin];
+		let config = isFixed?[pin]:[enable, pin];
+		if($ipInstance.name === "USBFLLGATE"){
+			config = [enable,pin]; // Exception for USBFLL since Fixed property is not added
+			config = config.concat(USBFLL_extendedConfig);
+		}
+		return config;
 	},
 };

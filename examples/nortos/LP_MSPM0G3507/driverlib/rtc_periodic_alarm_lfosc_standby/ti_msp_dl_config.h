@@ -92,6 +92,7 @@ extern "C" {
 
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

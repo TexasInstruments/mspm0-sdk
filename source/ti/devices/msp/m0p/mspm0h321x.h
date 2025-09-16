@@ -293,7 +293,7 @@ static RTC_Regs                                 * const RTC_B                   
 
 
 #define CRC_SYS_CRC32_ENABLE                          (0)       /* !< Parameter to exclude or include 32-bit CRC. */
-#define FLASHCTL_SYS_DATAWIDTH                        (128)     /* !< Data bit width of a single flash word. */
+#define FLASHCTL_SYS_DATAWIDTH                        (64)      /* !< Data bit width of a single flash word. */
 #define ADC_SYS_NUM_ANALOG_CHAN                       (32)      /* !< Number of analog channels. */
 #define I2C_SYS_FENTRIES                              (4)       /* !< Number of FIFO entries */
 #define FLASHCTL_SYS_WEPROTAWIDTH                     (0)       /* !< Bit width of WEPROTA register */

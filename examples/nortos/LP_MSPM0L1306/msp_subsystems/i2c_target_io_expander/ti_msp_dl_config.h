@@ -136,6 +136,7 @@ extern "C" {
 #define GPIO_A_SW_S2_IOMUX                                       (IOMUX_PINCM15)
 #define GPIOA_EVENT_SUBSCRIBER_1_CHANNEL                                     (1)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

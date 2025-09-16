@@ -5,18 +5,17 @@ transfers with following configuration:
 - Little endian
 - Not reversed
 
-## Peripherals & Pin Assignments
-
-| Peripheral | Pin | Function |
-| --- | --- | --- |
-| GPIOA | PA0 | Open-Drain Output |
-| GPIOA | PA15 | Open-Drain Output |
-| SYSCTL |  |  |
-| EVENT |  |  |
-| DMA |  |  |
-| CRC |  |  |
-| DEBUGSS | PA20 | Debug Clock |
-| DEBUGSS | PA19 | Debug Data In Out |
+## Peripherals, Pin Functions, MCU Pins, Launchpad Pins
+| Peripheral | Function | MCU Pin | Launchpad Pin | Launchpad Settings |
+| --- | --- | --- | --- | --- |
+| GPIOA | Open-Drain Output | PA0 | Red LED1 | Populate Jumper(s): J4[1:2] |
+| GPIOA | Standard Output | PA15 | J4_38 |  |
+| SYSCTL |  |  |  |  |
+| EVENT |  |  |  |  |
+| DMA |  |  |  |  |
+| CRC |  |  |  |  |
+| BOARD | Debug Clock | PA20 | J14_4 |  |
+| BOARD | Debug Data In Out | PA19 | J14_2 |  |
 
 ### Device Migration Recommendations
 This project was developed for a superset device included in the MSPM0 LaunchPad. Please

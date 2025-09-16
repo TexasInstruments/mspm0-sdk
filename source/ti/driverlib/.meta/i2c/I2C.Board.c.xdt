@@ -192,6 +192,9 @@ SYSCONFIG_WEAK void SYSCFG_DL_`instName`_init(void) {
     DL_I2C`flavor`_enableAnalogGlitchFilter(`instNameModule`);
 %   }
 % }
+% if(Common.isUnicommI2C() && inst.enableAnalogGlitchFilter){
+    DL_I2C`flavor`_enableAnalogGlitchFilter(`instNameModule`);
+% }
 % if (inst.advDigitalGlitchFilter != "DISABLED") {
     DL_I2C`flavor`_setDigitalGlitchFilterPulseWidth(`instNameModule`,
         DL_I2C`flavor`_DIGITAL_GLITCH_FILTER_WIDTH_`inst.advDigitalGlitchFilter`);

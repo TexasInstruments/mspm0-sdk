@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IAR Project Connection File -->
+
+<iarProjectConnection version="1.2" name="empty_driverlib_src" oneShot="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="IarProjectConnection_1.2.xsd">
+
+    <device>
+        <name>MSPM0G5187</name>
+    </device>
+
+    <asmIncludePath>
+        <path>$PROJ_DIR$</path>
+    </asmIncludePath>
+
+    <includePath>
+        <path>$PROJ_DIR$</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source/third_party/CMSIS/Core/Include</path>
+        <path>$MSPM0_SDK_INSTALL_DIR$/source</path>
+    </includePath>
+
+    <defines>
+        <define>__MSPM0G5187__</define>
+    </defines>
+
+    <extraOptions>
+        <args>
+            <arg>--debug</arg>
+            <arg>--silent</arg>
+            <arg>-e</arg>
+            <arg>--aeabi</arg>
+            <arg>--thumb</arg>
+            <arg>--diag_suppress=Pa050</arg>
+        </args>
+    </extraOptions>
+
+    <linkerFile>
+        <override>true</override>
+        <path>$PROJ_DIR$/mspm0g5187.icf</path>
+    </linkerFile>
+
+    <linkerExtraOptions>
+        <args>
+            <arg>$MSPM0_SDK_INSTALL_DIR$/source/ti/driverlib/lib/iar/m0p/mspm0g518x/driverlib.a</arg>
+            <arg>-L$MSPM0_SDK_INSTALL_DIR$/source</arg>
+            <arg>-L$PROJ_DIR$</arg>
+            <arg>--silent</arg>
+        </args>
+    </linkerExtraOptions>
+
+    <customBuildTools>
+        <customBuildTool atRoot="true" name="SysConfig"> <!-- Custom build tool for entire project-->
+            <fileExtensions>.syscfg</fileExtensions>
+            <command>$SYSCONFIG_ROOT$/sysconfig_cli.bat -o $PROJ_DIR$ -s "$MSPM0_SDK_INSTALL_DIR$/.metadata/product.json" --compiler iar $FILE_PATH$</command>
+            <output>
+                <path>SysConfig_Generated_Files.ipcf</path>
+            </output>
+            <hasPrio>true</hasPrio> <!-- true: run this tool before all other tools-->
+        </customBuildTool>
+    </customBuildTools>
+
+    <heaps>
+        <heap> <!-- If omitted, id="0" -->
+            <size>0</size>
+        </heap>
+        <heap id="1">
+            <size>0</size>
+        </heap>
+    </heaps>
+    <stacks>
+        <stack> <!-- If omitted, id="0" -->
+            <size>512</size>
+        </stack>
+    </stacks>
+
+
+    <files>
+        <path copyTo="$PROJ_DIR$/empty.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/empty.c</path>
+        <path copyTo="$PROJ_DIR$/empty.syscfg">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/empty.syscfg</path>
+        <path copyTo="$PROJ_DIR$/mspm0g5187.icf">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/iar/mspm0g5187.icf</path>
+        <path copyTo="$PROJ_DIR$/README.html">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/README.html</path>
+        <path copyTo="$PROJ_DIR$/README.md">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/README.md</path>
+        <group name="iar" build="true">
+            <path copyTo="$PROJ_DIR$/iar/startup_mspm0g518x_iar.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/iar/startup_mspm0g518x_iar.c</path>
+        </group>
+        <group name="ti/driverlib" build="true">
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_adc12.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_adc12.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_adc12.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_adc12.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_aes.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_aes.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_aes.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_aes.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_aesadv.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_aesadv.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_aesadv.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_aesadv.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_common.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_common.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_common.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_common.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_comp.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_comp.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_comp.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_comp.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_crc.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_crc.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_crc.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_crc.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_crcp.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_crcp.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_crcp.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_crcp.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_dac12.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_dac12.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_dac12.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_dac12.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_dma.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_dma.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_dma.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_dma.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_flashctl.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_flashctl.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_flashctl.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_flashctl.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_gpamp.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_gpamp.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_gpamp.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_gpamp.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_gpio.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_gpio.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_gpio.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_gpio.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_i2c.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_i2c.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_i2c.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_i2c.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_i2s.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_i2s.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_i2s.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_i2s.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_iwdt.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_iwdt.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_iwdt.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_iwdt.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_keystorectl.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_keystorectl.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_keystorectl.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_keystorectl.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_lcd.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_lcd.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_lcd.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_lcd.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_lfss.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_lfss.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_lfss.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_lfss.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_mathacl.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_mathacl.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_mathacl.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_mathacl.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_mcan.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_mcan.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_mcan.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_mcan.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_npu.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_npu.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_npu.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_npu.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_opa.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_opa.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_opa.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_opa.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_rtc.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_rtc.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_rtc.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_rtc.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_rtc_a.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_rtc_a.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_rtc_a.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_rtc_a.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_rtc_b.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_rtc_b.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_rtc_b.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_rtc_b.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_rtc_common.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_rtc_common.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_rtc_common.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_rtc_common.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_scratchpad.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_scratchpad.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_scratchpad.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_scratchpad.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_spgss.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_spgss.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_spgss.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_spgss.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_spi.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_spi.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_spi.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_spi.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_tamperio.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_tamperio.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_tamperio.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_tamperio.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_timer.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_timer.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_timer.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_timer.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_timera.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_timera.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_timera.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_timera.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_timerb.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_timerb.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_timerb.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_timerb.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_timerg.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_timerg.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_timerg.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_timerg.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_trng.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_trng.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_trng.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_trng.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_uart.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_uart.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_uart.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_uart.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_uart_extend.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_uart_extend.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_uart_main.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_uart_main.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicomm.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicomm.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicomm.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicomm.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicommi2cc.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicommi2cc.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicommi2cc.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicommi2cc.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicommi2ct.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicommi2ct.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicommi2ct.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicommi2ct.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicommspi.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicommspi.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicommspi.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicommspi.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicommuart.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicommuart.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_unicommuart.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_unicommuart.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_vref.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_vref.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_vref.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_vref.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_wwdt.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_wwdt.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/dl_wwdt.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/dl_wwdt.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/driverlib.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/driverlib.h</path>
+        </group>
+        <group name="ti/driverlib/m0p" build="true">
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/dl_core.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/dl_core.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/dl_factoryregion.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/dl_factoryregion.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/dl_factoryregion.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/dl_factoryregion.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/dl_interrupt.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/dl_interrupt.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/dl_interrupt.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/dl_interrupt.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/dl_sysctl.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/dl_sysctl.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/dl_systick.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/dl_systick.h</path>
+        </group>
+        <group name="ti/driverlib/m0p/sysctl" build="true">
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c1105_c1106.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0c110x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g1x0x_g3x0x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g352x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g511x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0g518x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0gx51x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0h321x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0h321x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0h321x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0h321x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l111x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l111x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l111x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l111x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l11xx_l13xx.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l122x_l222x.h</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.c">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.c</path>
+            <path copyTo="$PROJ_DIR$/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.h">$MSPM0_SDK_INSTALL_DIR$/examples/nortos/LP_MSPM0G5187/driverlib/empty_driverlib_src/ti/driverlib/m0p/sysctl/dl_sysctl_mspm0l211x_l112x.h</path>
+        </group>
+    </files>
+</iarProjectConnection>

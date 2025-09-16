@@ -75,11 +75,24 @@ INPUT("ti/iqmath/lib/gcc/m0p/rts/`Common.getDeviceFamily().toLowerCase()`/iqmath
 % if(migration_inst.genLibIQ && migration_inst.genLibIQVersion == "MATHACL"){
 INPUT("ti/iqmath/lib/gcc/m0p/mathacl/`Common.getDeviceFamily().toLowerCase()`/iqmath.a")
 % }
+% if(migration_inst.genLibModbus) {
+INPUT("ti/modbus/lib/gcc/m0p/modbus.a")
+% }
 % if(migration_inst.genLibPMBUS){
-INPUT("ti/pmbus/lib/gcc/m0p/pmbus.a")
+%   if(Common.isUnicommI2C()) {
+INPUT("ti/pmbus/lib/ticlang/m0p/pmbus_unicomm/pmbus.a")
+%   }
+%   else {
+INPUT("ti/pmbus/lib/ticlang/m0p/pmbus_i2c/pmbus.a")
+%}
 % }
 % if(migration_inst.genLibSMBUS){
-INPUT("ti/smbus/lib/gcc/m0p/smbus.a")
+%   if(Common.isUnicommI2C()) {
+INPUT("ti/smbus/lib/ticlang/m0p/smbus_unicomm/smbus.a")
+%   }
+%   else {
+INPUT("ti/smbus/lib/ticlang/m0p/smbus_i2c/smbus.a")
+%}
 % }
 % if(migration_inst.genLibCMSIS){
 INPUT("third_party/CMSIS/DSP/lib/gcc/m0p/arm_cortexM0l_math.a")

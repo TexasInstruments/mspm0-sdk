@@ -264,6 +264,10 @@ typedef struct {
  *  peripheral itself must be enabled by writing the ENABLE bit together with
  *  the appropriate KEY value to the peripheral's PWREN register.
  *
+ * @note If using compiler TI Clang LTS 4.0.0+ with the --mathacl flag, do not reset
+ * the MATHACL then perform a math divide. The peripheral will need to be reenabled
+ * with @ref DL_MathACL_enablePower; before performing a division.
+ *
  * @param mathacl       Pointer to the register overlay for the peripheral
  */
 __STATIC_INLINE void DL_MathACL_enablePower(MATHACL_Regs *mathacl)

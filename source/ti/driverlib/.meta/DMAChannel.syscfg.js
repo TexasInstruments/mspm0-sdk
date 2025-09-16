@@ -357,7 +357,10 @@ function getAddressModeOptions() {
         {name: "fill", displayName: "Fill Data Extended Mode"},
         {name: "table", displayName: "Data Table Extended Mode"}
     ];
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G518X()) {
         options.push(
             {name: "gather", displayName: "Gather Data Extended Mode"}
         );
@@ -372,7 +375,10 @@ function getLengthOptions() {
         {name: "WORD", displayName: "Word (4 Bytes)"},
         {name: "LONG", displayName: "Long (8 Bytes)"}
     ];
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G518X()) {
         options.push(
             {name: "LONGLONG", displayName: "Long Long (16 Bytes)"}
         );
@@ -381,21 +387,30 @@ function getLengthOptions() {
 }
 
 function hasAutomaticEnable() {
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G518X()) {
         return true;
     }
     return false;
 }
 
 function hasGatherMode() {
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G518X()) {
         return true;
     }
     return false;
 }
 
 function hasLongLongOption() {
-    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() || Common.isDeviceFamily_PARENT_MSPM0G511X ()) {
+    if(Common.isDeviceFamily_PARENT_MSPM0GX51X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G352X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G511X() ||
+        Common.isDeviceFamily_PARENT_MSPM0G518X()) {
         return true;
     }
     return false;

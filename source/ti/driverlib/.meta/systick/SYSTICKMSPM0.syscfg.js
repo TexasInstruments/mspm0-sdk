@@ -149,6 +149,19 @@ function validate(inst, validation)
             inst, ["systickEnable"]
         );
     }
+
+    /* TinyUSB Validation */
+    if(system.modules["/ti/tinyusb_meta/tinyusb"]){
+        let tusbMod = system.modules["/ti/tinyusb_meta/tinyusb"].$static;
+        if(tusbMod.configureSysTick){
+            if(!inst.periodEnable){
+                validation.logError("SysTick period must be enabled", inst, ["periodEnable"]);
+            }
+            else if(inst.calcPeriod != "1.00 ms"){
+                validation.logError("SysTick period must be 1.00 ms", inst, ["calcPeriod"]);
+            }
+        }
+    }
 }
 
 /*

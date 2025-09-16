@@ -122,6 +122,7 @@ extern "C" {
 #define GPIO_LEDS_USER_TEST_PIN                                  (DL_GPIO_PIN_2)
 #define GPIO_LEDS_USER_TEST_IOMUX                                 (IOMUX_PINCM3)
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

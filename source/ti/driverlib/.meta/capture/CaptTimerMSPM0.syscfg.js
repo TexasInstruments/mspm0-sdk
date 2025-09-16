@@ -129,7 +129,7 @@ function getTimerClockSourceOptions(inst) {
         { name: "MFCLK", displayName: "MFCLK" },
         { name: "LFCLK", displayName: "LFCLK" },
     ];
-    if (Common.isTimerA2XBUSCLKSupported() && (inst.peripheral.$solution.peripheralName.match(/TIMA0/))){
+    if (Common.isTimerA2XBUSCLKSupported() && (inst?.peripheral?.$solution?.peripheralName?.match(/TIMA0/))){
         TimerClockSourceOptions.unshift({ name: "2X_BUSCLK", displayName: "2x BUSCLK" });
     }
 

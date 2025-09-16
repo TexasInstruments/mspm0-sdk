@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MSPM0L122X_L222X Driver Library
-   &#160;<span id="projectnumber">2.05.01.00</span>
+   &#160;<span id="projectnumber">2.06.00.05</span>
    </div>
   </td>
  </tr>
@@ -779,6 +779,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga5618c441b57039b5ac1cea23f048a50f"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_t_c___common.html#ga5618c441b57039b5ac1cea23f048a50f">DL_RTC_Common_getTimeStampEventSource</a> (const RTC_Regs *rtc_common, uint32_t sourceMask)</td></tr>
 <tr class="memdesc:ga5618c441b57039b5ac1cea23f048a50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the sources that can trigger a time stamp capture event.  <a href="#ga5618c441b57039b5ac1cea23f048a50f">More...</a><br /></td></tr>
 <tr class="separator:ga5618c441b57039b5ac1cea23f048a50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff903f9d997aaebc2f8944bdeef5ef37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_d_l___r_t_c___common___calendar.html">DL_RTC_Common_Calendar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_t_c___common.html#gaff903f9d997aaebc2f8944bdeef5ef37">DL_RTC_Common_getTimeStampCalendar</a> (const RTC_Regs *rtc_common)</td></tr>
+<tr class="memdesc:gaff903f9d997aaebc2f8944bdeef5ef37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Calendar Time of the Time Stamp.  <a href="#gaff903f9d997aaebc2f8944bdeef5ef37">More...</a><br /></td></tr>
+<tr class="separator:gaff903f9d997aaebc2f8944bdeef5ef37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf48c3ca43da2b3b23a087a349db59aec"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___r_t_c___common.html#gaf48c3ca43da2b3b23a087a349db59aec">DL_RTC_Common_setTimeStampEventCapture</a> (RTC_Regs *rtc_common, <a class="el" href="group___r_t_c___common.html#ga8ae64f7f7f47cc86d46fc47c21cd4771">DL_RTC_COMMON_TIME_STAMP_EVENT_CAPTURE</a> capture)</td></tr>
 <tr class="memdesc:gaf48c3ca43da2b3b23a087a349db59aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the capture method when a time stamp capture event occurs.  <a href="#gaf48c3ca43da2b3b23a087a349db59aec">More...</a><br /></td></tr>
 <tr class="separator:gaf48c3ca43da2b3b23a087a349db59aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -6739,6 +6742,38 @@ false if calibration write was unsuccessful </dd></dl>
   </table>
   </dd>
 </dl>
+
+<p>References <a class="el" href="group___r_t_c___common.html#gaff903f9d997aaebc2f8944bdeef5ef37">DL_RTC_Common_getTimeStampCalendar()</a>.</p>
+
+</div>
+</div>
+<a id="gaff903f9d997aaebc2f8944bdeef5ef37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff903f9d997aaebc2f8944bdeef5ef37">&sect;&nbsp;</a></span>DL_RTC_Common_getTimeStampCalendar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_d_l___r_t_c___common___calendar.html">DL_RTC_Common_Calendar</a> DL_RTC_Common_getTimeStampCalendar </td>
+          <td>(</td>
+          <td class="paramtype">const RTC_Regs *&#160;</td>
+          <td class="paramname"><em>rtc_common</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the Calendar Time of the Time Stamp. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rtc_common</td><td>Pointer to the register overlay for the RTC Common peripheral</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function returns the current Calendar Time of the Time Stamp in the form of a Calendar structure. The time returned will be in the previously selected format from <a class="el" href="group___r_t_c___common.html#ga0a047f6670f42647a604c06a6e6045c4">DL_RTC_Common_setClockFormat</a>, one of <a class="el" href="group___r_t_c___common.html#ga281b5c9f2ff0d1f6324c056f87a85bf7">DL_RTC_COMMON_FORMAT</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_d_l___r_t_c___common___calendar.html">DL_RTC_Common_Calendar</a> containing the time stamp </dd></dl>
+
+<p>Referenced by <a class="el" href="group___r_t_c___common.html#ga5618c441b57039b5ac1cea23f048a50f">DL_RTC_Common_getTimeStampEventSource()</a>.</p>
 
 </div>
 </div>

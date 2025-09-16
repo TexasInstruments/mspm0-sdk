@@ -24,7 +24,7 @@ let M0G511X_Simple_Entries = [
 	"HSCLKMUX",
 	"SYSCTLMUX",
 	"ULPCLKGATE",
-	"CANCLKMUX",
+	"USBCLKMUX",
 	//"ADCMUX",
 
 	"MFPCLKMUX",
@@ -33,7 +33,8 @@ let M0G511X_Simple_Entries = [
 	"LFCLKGATE",
 	"MCLKGATE",
 	"CPUCLKGATE",
-	"CANCLKGATE",
+	"USBCLKGATE",
+	"USBFLLGATE",
 	//"ADCCLKGATE",
 
 	// // Dividers
@@ -57,7 +58,7 @@ let M0G511X_Simple_Entries = [
 	"net_syspll1",
 	"net_syspll2x",
 	"net_ulpclk",
-	"net_canclk",
+	"net_usbclk",
 	"net_cpuclk",
 	"net_ulpclk",
 	"net_usbfll",
@@ -128,7 +129,7 @@ let M0G511X_Simple_reasonableLayout = {
 	"LFXTMUX": { layer: 7, position: 0 },
 	"EXHFMUX": { layer: 1, position: 5 },
 	"HSCLKMUX": { layer: 7, position: 4 },
-	"CANCLKMUX": { layer: 7, position: 5 },
+	"USBCLKMUX": { layer: 7, position: 5 },
 	"MFPCLKMUX": { layer: 8, position: 6 },
 	"SYSCTLMUX": { layer: 9, position: 2 },
 
@@ -149,7 +150,7 @@ let M0G511X_Simple_reasonableLayout = {
 	// "adc_ulp": {layer: 8, position: 6},
 	// //"ADCCLK": { layer: 0, position: 0 },
 	// "ADCCLKGATE": { layer: 10, position: 8 },
-	"CANCLKGATE": { layer: 10, position: 5},
+	"USBCLKGATE": { layer: 10, position: 5},
 
 	// SYSPLL
 	"SYSPLLMUX": { layer: 0, position: 1 },
@@ -162,7 +163,7 @@ let M0G511X_Simple_reasonableLayout = {
 	"PLL_CLK1_DIV": { layer: 5, position: 2 },
 
 	// "net_adcclk": { layer: 11, position: 9 },
-	"net_canclk": { layer: 11, position: 5 },
+	"net_usbclk": { layer: 11, position: 5 },
 	//"net_extlfclk": {layer: 2, position: 1},
 	"net_hfclk": {layer: 2, position: 5 },
 	"net_lfclk": { layer: 12, position: 0},
@@ -175,6 +176,7 @@ let M0G511X_Simple_reasonableLayout = {
 	"net_syspll0": {layer: 5, position: 3 },
 	"net_syspll1": {layer: 5, position: 4 },
 	"net_syspll2x": {layer: 5, position: 3 },
+	"USBFLLGATE": {layer: 4, position: 3 },
 	"net_usbfll": {layer: 5, position: 3 },
 	"net_ulpclk": {layer: 11, position: 1},
 	"net_cpuclk": {layer: 11, position: 3},
@@ -292,7 +294,7 @@ let full_layout = Object.assign(M0G511X_Full_AdditionalLayout, M0G511X_Simple_re
 const M0G511XGATESimple = [
 	"net_mclk", "net_ulpclk", "net_lfclk", "net_cpuclk", "net_sysosc",
 	"net_syspll2x", "net_syspll0", "net_syspll1", "net_usbfll",
-	"net_mfclk", "net_mfpclk", "net_canclk", "net_adcclk", "net_vco"];
+	"net_mfclk", "net_mfpclk", "net_usbclk", "net_adcclk", "net_vco"];
 
 const M0G511XGATEEXT = [
 	"net_mclk", "net_sysosc", "net_lfclk", "net_hfclk", "net_mfpclkGate",

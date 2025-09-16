@@ -93,6 +93,7 @@ extern "C" {
 #define TRNG_INT_IIDX                            (DL_INTERRUPT_GROUP1_IIDX_TRNG)
 
 
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);

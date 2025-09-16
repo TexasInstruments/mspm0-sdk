@@ -1,6 +1,6 @@
 /*****************************************************************************
 
-  Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/ 
+  Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/ 
 
   Redistribution and use in source and binary forms, with or without 
   modification, are permitted provided that the following conditions 
@@ -36,8 +36,8 @@
 #define ti_devices_msp_peripherals_hw_rtc__include
 
 /* Filename: hw_rtc.h */
-/* Revised: 2023-11-10 23:33:05 */
-/* Revision: 57bdd406cc3983634d43d73d4088fae123c0b478 */
+/* Revised: 2025-08-07 23:42:45 */
+/* Revision: dc9e142443540e975c7bab8070bd55003479c74b */
 
 #ifndef __CORTEX_M
   #ifdef __cplusplus
@@ -188,8 +188,10 @@ typedef struct {
   __I  uint32_t TSSTAT;                            /* !< (@ 0x00001168) Time Stamp Status Register */
   __IO uint32_t TSCTL;                             /* !< (@ 0x0000116C) Time Stamp Control Register */
   __O  uint32_t TSCLR;                             /* !< (@ 0x00001170) Time Stamp Clear Register */
-  __IO uint32_t LFSSRST;                           /* !< (@ 0x00001174) Low frequency sub-system reset request */
-  __IO uint32_t RTCLOCK;                           /* !< (@ 0x00001178) Real time clock lock register */
+       uint32_t RESERVED7[31];
+  __IO uint32_t LFSSRST;                           /* !< (@ 0x000011F0) Low frequency sub-system reset request */
+       uint32_t RESERVED8[2];
+  __IO uint32_t RTCLOCK;                           /* !< (@ 0x000011FC) Real time clock lock register */
 } RTC_Regs;
 
 /*@}*/ /* end of group RTC */
@@ -1793,7 +1795,10 @@ typedef struct {
                                                                                     measurement. The corresponding port
                                                                                     must be configured for the peripheral
                                                                                     module function. */
-#define RTC_CAL_RTCCALFX_OFF                     ((uint32_t)0x00000000U)         /* !< No frequency output to RTC_OUT pin */
+#define RTC_CAL_RTCCALFX_OFF                     ((uint32_t)0x00000000U)         /* !< No frequency output to RTC_OUT pin
+                                                                                    (MSPM0L1x0x, MSPM0G1x0x, MSPM0G3x0x
+                                                                                    only) */
+#define RTC_CAL_RTCCALFX_F32KHZ                  ((uint32_t)0x00000000U)         /* !< F32KHz */
 #define RTC_CAL_RTCCALFX_F512HZ                  ((uint32_t)0x00010000U)         /* !< 512 Hz */
 #define RTC_CAL_RTCCALFX_F256HZ                  ((uint32_t)0x00020000U)         /* !< 256 Hz */
 #define RTC_CAL_RTCCALFX_F1HZ                    ((uint32_t)0x00030000U)         /* !< 1 Hz */
@@ -2747,4 +2752,3 @@ typedef struct {
 #endif
 
 #endif /* ti_devices_msp_peripherals_hw_rtc__include */
-

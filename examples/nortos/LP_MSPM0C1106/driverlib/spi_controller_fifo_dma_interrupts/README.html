@@ -42,28 +42,36 @@
 <p>After SPI_PACKET_SIZE bytes have been transferred by the DMA, this will trigger the DL_SPI_IIDX_DMA_DONE_TX interrupt indicating that the DMA is done transferring all expected bytes from the buffer to the TXFIFO. The SPI Controller will then initiate the transaction. The SPI will transmit the data that is in the TXFIFO until it is empty. When the TXFIFO is empty, this will trigger the DL_SPI_IIDX_TX_EMPTY interrupt indicating that the transfer is complete.</p>
 <p>When the SPI Controller receives SPI_PACKET_SIZE bytes from the SPI Peripheral, this will trigger the DL_SPI_IIDX_DMA_DONE_RX interrupt indicating that the DMA is done transferring all expected bytes from the RXFIFO to the buffer.</p>
 <p>The SPI controller will then check the received bytes and compare against the expected bytes from the spi_peripheral_fifo_dma_interrupts example and set the LED and USER_TEST high upon a successful compare.</p>
-<h2 id="peripherals-pin-assignments">Peripherals &amp; Pin Assignments</h2>
+<h2 id="peripherals-pin-functions-mcu-pins-launchpad-pins">Peripherals, Pin Functions, MCU Pins, Launchpad Pins</h2>
 <table>
 <thead>
 <tr class="header">
 <th>Peripheral</th>
-<th>Pin</th>
 <th>Function</th>
+<th>MCU Pin</th>
+<th>Launchpad Pin</th>
+<th>Launchpad Settings</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>GPIOA</td>
-<td>PA0</td>
 <td>Open-Drain Output</td>
+<td>PA0</td>
+<td>Red LED1</td>
+<td>Populate Jumper(s): J4[1:2]</td>
 </tr>
 <tr class="even">
 <td>GPIOA</td>
-<td>PA15</td>
 <td>Standard Output</td>
+<td>PA15</td>
+<td>J4_38</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SYSCTL</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -71,24 +79,34 @@
 <td>SPI0</td>
 <td>SPI SCLK (Clock)</td>
 <td>PA25</td>
+<td>J1_7</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SPI0</td>
 <td>SPI PICO (Peripheral In, Controller Out)</td>
 <td>PA10</td>
+<td>J2_15</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>SPI0</td>
 <td>SPI POCI (Peripheral Out, Controller In)</td>
 <td>PA9</td>
+<td>J2_14</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>SPI0</td>
 <td>SPI CS0 (Chip Select 0)</td>
 <td>PA8</td>
+<td>J2_13</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>EVENT</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -96,16 +114,22 @@
 <td>DMA</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>DEBUGSS</td>
-<td>PA20</td>
+<td>BOARD</td>
 <td>Debug Clock</td>
+<td>PA20</td>
+<td>J14_4</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>DEBUGSS</td>
-<td>PA19</td>
+<td>BOARD</td>
 <td>Debug Data In Out</td>
+<td>PA19</td>
+<td>J14_2</td>
+<td></td>
 </tr>
 </tbody>
 </table>

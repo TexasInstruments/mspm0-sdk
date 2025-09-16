@@ -86,12 +86,14 @@ Data Fields</h2></td></tr>
 <tr class="separator:a72809a0ade6e067b9877637c1547a513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc984daeba630348f119ec0cabc53b11"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_m_bus___phy.html#abc984daeba630348f119ec0cabc53b11">SMBus_Phy_AckPending</a></td></tr>
 <tr class="separator:abc984daeba630348f119ec0cabc53b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b18f76ccc30e76d21840af4db72577e"><td class="memItemLeft" align="right" valign="top">UNICOMM_Inst_Regs *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_s_m_bus___phy.html#a1b18f76ccc30e76d21840af4db72577e">SMBus_Phy_i2cBase</a></td></tr>
+<tr class="separator:a1b18f76ccc30e76d21840af4db72577e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Physical and Data Link Layer object. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="ad907588fbd2269897ec007f8d95e3b1c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad907588fbd2269897ec007f8d95e3b1c">&sect;&nbsp;</a></span>SMBus_Phy_i2cBase</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad907588fbd2269897ec007f8d95e3b1c">&sect;&nbsp;</a></span>SMBus_Phy_i2cBase <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -103,7 +105,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>I2C register map struct </p>
 
-<p>Referenced by <a class="el" href="group__smbus__nwk.html#ga5c06afc93bb57125e2c9e020114204ab">SMBus_NWK_controllerProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#gabf230685664f8376a48560c7cf0d3353">SMBus_NWK_targetProcessStart()</a>, <a class="el" href="group__smbus__nwk.html#ga8cb8e0e1a4ebc9a7731e4ad7bcaa9f44">SMBus_NWK_targetProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#gafb81be811186a0a5c68296470fbfa59e">SMBus_NWK_targetProcessTx()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8763f33db902556fd27dd646a7a7d533">SMBus_Phy_ARP_TARGET_ADDR_Reset()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d">SMBus_PHY_controllerDisableHostNotify()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8cf773d3f77e2d9ab869e70ba38dd1ca">SMBus_PHY_controllerDisableInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga1ac90fc617113c9b3dbf69a88f796817">SMBus_PHY_controllerEnable()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gad610eec32d0a6ff025c60e5fcd00dbce">SMBus_PHY_controllerEnableHostNotify()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga9977098517c3823d976e15e6ab028da6">SMBus_PHY_controllerEnableInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gae0687f0965cd09003ee29dd01591284f">SMBus_PHY_controllerInit()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga3e86c2f96215dfc3ccff6cd8496a1390">SMBus_PHY_controllerProcessInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gae4638ddf0de23adaadfc2343c3fd9e44">SMBus_PHY_controllerSendStop()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga74880d68d3c3d258ee7a9aaa5c85917a">SMBus_PHY_disable()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga31fc7b0437fb5d857af5f3de8114dfbd">SMBus_PHY_targetDisableInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gad9c5087d175d1d9b64388e23dbb824d7">SMBus_PHY_targetEnable()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2fd6816c3722e970e50f1145a76fe67b">SMBus_PHY_targetEnableInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gab9202564c768c00f51c15a99114621ae">SMBus_PHY_targetInit()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8b310fa25bfb9acab69affdde935a9dd">SMBus_PHY_targetManualACK()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2dd61b10c2394a521fc5c02c10e6f441">SMBus_PHY_targetProcessInt()</a>, and <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2d91d35de508f9e3d99ed29999c7e8f0">SMBus_PHY_targetSetPECCount()</a>.</p>
+<p>Referenced by <a class="el" href="group__smbus__nwk.html#ga5c06afc93bb57125e2c9e020114204ab">SMBus_NWK_controllerProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#gabf230685664f8376a48560c7cf0d3353">SMBus_NWK_targetProcessStart()</a>, <a class="el" href="group__smbus__nwk.html#ga8cb8e0e1a4ebc9a7731e4ad7bcaa9f44">SMBus_NWK_targetProcessStop()</a>, <a class="el" href="group__smbus__nwk.html#gafb81be811186a0a5c68296470fbfa59e">SMBus_NWK_targetProcessTx()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8763f33db902556fd27dd646a7a7d533">SMBus_Phy_ARP_TARGET_ADDR_Reset()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8860aa04ccd7145aa623b56f6eb0adbf">SMBus_PHY_controllerDisable()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2ebd3ff5eb5f8c1825d3aab2ccdbb64d">SMBus_PHY_controllerDisableHostNotify()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8cf773d3f77e2d9ab869e70ba38dd1ca">SMBus_PHY_controllerDisableInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga1ac90fc617113c9b3dbf69a88f796817">SMBus_PHY_controllerEnable()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gad610eec32d0a6ff025c60e5fcd00dbce">SMBus_PHY_controllerEnableHostNotify()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga9977098517c3823d976e15e6ab028da6">SMBus_PHY_controllerEnableInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gae0687f0965cd09003ee29dd01591284f">SMBus_PHY_controllerInit()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga3e86c2f96215dfc3ccff6cd8496a1390">SMBus_PHY_controllerProcessInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gae4638ddf0de23adaadfc2343c3fd9e44">SMBus_PHY_controllerSendStop()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga74880d68d3c3d258ee7a9aaa5c85917a">SMBus_PHY_disable()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga946aea9b17ab0ebae39ae261eb137600">SMBus_PHY_targetDisable()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga31fc7b0437fb5d857af5f3de8114dfbd">SMBus_PHY_targetDisableInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gad9c5087d175d1d9b64388e23dbb824d7">SMBus_PHY_targetEnable()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2fd6816c3722e970e50f1145a76fe67b">SMBus_PHY_targetEnableInt()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gab9202564c768c00f51c15a99114621ae">SMBus_PHY_targetInit()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8b310fa25bfb9acab69affdde935a9dd">SMBus_PHY_targetManualACK()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2dd61b10c2394a521fc5c02c10e6f441">SMBus_PHY_targetProcessInt()</a>, and <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2d91d35de508f9e3d99ed29999c7e8f0">SMBus_PHY_targetSetPECCount()</a>.</p>
 
 </div>
 </div>
@@ -136,6 +138,21 @@ Data Fields</h2></td></tr>
 <p>Waiting for ACK </p>
 
 <p>Referenced by <a class="el" href="group__smbus.html#gaee2adcdf3acfea18ac1e9edabea909de">ARP_invalidCMD()</a>, <a class="el" href="group__smbus__nwk.html#ga37e24a26a17d4540ca6470cbff5b8263">SMBus_NWK_targetProcessRx()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#gab9202564c768c00f51c15a99114621ae">SMBus_PHY_targetInit()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga8b310fa25bfb9acab69affdde935a9dd">SMBus_PHY_targetManualACK()</a>, <a class="el" href="group__smbus___m_s_p_m0__phy.html#ga2dd61b10c2394a521fc5c02c10e6f441">SMBus_PHY_targetProcessInt()</a>, and <a class="el" href="group__smbus.html#ga177d76eca565276df0a2952d366ed6a1">SMBus_processDone()</a>.</p>
+
+</div>
+</div>
+<a id="a1b18f76ccc30e76d21840af4db72577e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b18f76ccc30e76d21840af4db72577e">&sect;&nbsp;</a></span>SMBus_Phy_i2cBase <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UNICOMM_Inst_Regs* SMBus_Phy::SMBus_Phy_i2cBase</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>I2CC register map struct </p>
 
 </div>
 </div>

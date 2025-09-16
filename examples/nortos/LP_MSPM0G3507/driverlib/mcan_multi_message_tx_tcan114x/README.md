@@ -99,7 +99,3 @@ Message 2:
 
 When using this example with mcan_multi_message_rx example, the packages
 controls the state of two LEDs.
-
-Note: There is a known limitation where the example might stop transmitting
-packages if the application halt execution after hitting a breakpoint. It is
-highly recommended to use the free run option while testing the example.
